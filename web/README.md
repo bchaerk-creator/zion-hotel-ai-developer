@@ -1,29 +1,30 @@
-# Web · Bruno Chaerk
+# Web · Zion Hotel Group International
 
-Site pessoal one-page de Bruno Chaerk (founder e CEO da Zion Hotel Group International), construído com a identidade visual oficial Zion e estrutura de copy ECROI.
+Site institucional do grupo + página do founder, construídos com a identidade visual oficial Zion e estrutura de copy ECROI. Arquivos autocontidos (CSS + fonte Aventa variável embutida em base64), sem dependências externas e sem build.
 
-## Características
+## Páginas
 
-- **Arquivo único e autocontido**: `index.html` inclui todo o CSS e a fonte Aventa (variável, pesos 100 a 900) embutida em base64. Nenhuma dependência externa, nenhum build.
-- **Identidade Zion**: paleta oficial (`#040605` preto, `#FEF5F0` creme, `#DED6BF` areia, `#8B714E` terra, `#1B2117` verde musgo), tipografia Aventa, palavras divididas com linha conectora, CAPS com letter-spacing amplo, zero gradientes.
-- **Responsivo**: desktop e mobile.
+### `index.html` — Zion Hotel Group International
+Site institucional acoplando as **três modalidades** do grupo:
 
-## Estrutura da página
+1. **Zion Hotel Development** — desenvolvimento imobiliário turístico (diagnóstico, viabilidade, produto, estrutura, captação)
+2. **Zion Hotel Management** — operação, performance, padrão e governança
+3. **Zion Collection** — a bandeira, com as 5 coleções: Bubble, Mountain, Beach, Wellness e Signature
 
-1. Hero (espelhamento + reencadramento)
-2. Manifesto
-3. Sobre (autoridade)
-4. Colapso de crença + custo invisível
-5. Método (Pirâmide Invertida©, etapas 0 a 6)
-6. Resultados (inevitabilidade)
-7. Ecossistema Zion (4 divisões + 5 bandeiras)
-8. Projetos
-9. Educação (loop viral)
-10. CTA final (Diagnóstico Territorial)
+Mais o **ecossistema** completo: Zion Bubble Glamping, Zion Advisory, Zion Hospitality Academy, Zion Capital, Zion Exchange, Zion Design Studio e Zion Glamp Store. Inclui método Pirâmide Invertida©, projetos, seção do founder e CTA de Diagnóstico Territorial.
+
+### `bruno.html` — Bruno Chaerk (founder)
+Página pessoal one-page: espelhamento, colapso de crença, método, resultados, ecossistema e educação. Interligada ao site do grupo pela navegação.
+
+## Identidade
+
+- Paleta oficial: `#040605` preto, `#FEF5F0` creme, `#DED6BF` areia, `#8B714E` terra, `#1B2117` verde musgo
+- Tipografia Aventa (variável, pesos 100 a 900, embutida)
+- Palavras divididas com linha conectora, CAPS com letter-spacing amplo, zero gradientes, espaço negativo generoso
 
 ## Deploy
 
-Qualquer host estático serve o arquivo direto:
+Qualquer host estático:
 
 - **GitHub Pages**: Settings → Pages → Deploy from branch → pasta `/web`
 - **Vercel / Netlify**: apontar para a pasta `web/`
@@ -31,5 +32,5 @@ Qualquer host estático serve o arquivo direto:
 
 ## Personalização
 
-- Os CTAs apontam hoje para o Instagram `@brunochaerkofc`. Para trocar por WhatsApp ou formulário, buscar por `instagram.com/brunochaerkofc` no `index.html`.
-- Fotografias editoriais (natureza, arquitetura, operação) podem ser adicionadas depois como camadas com overlay escuro, conforme o brand guideline.
+- CTAs apontam para o Instagram `@brunochaerkofc`. Para trocar por WhatsApp ou formulário (GoHighLevel), buscar por `instagram.com/brunochaerkofc` nos HTMLs.
+- Fotografias editoriais podem ser adicionadas como camadas com overlay escuro, conforme brand guideline.
