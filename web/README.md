@@ -13,6 +13,9 @@ Site institucional acoplando as **três modalidades** do grupo:
 
 Mais o **ecossistema** completo: Zion Bubble Glamping, Zion Advisory, Zion Hospitality Academy, Zion Capital, Zion Exchange, Zion Design Studio e Zion Glamp Store. Inclui método Pirâmide Invertida©, projetos, seção do founder e CTA de Diagnóstico Territorial.
 
+### `development.html` · `management.html` · `collection.html` — modalidades
+Páginas internas dedicadas, uma por modalidade, no mesmo padrão visual: hero próprio, "para quem é", processo/pilares detalhados, entregas em grade e CTA segmentado. Interligadas pela navegação e pelos botões "Explorar a Modalidade" da home.
+
 ### `bruno.html` — Bruno Chaerk (founder)
 Página pessoal one-page: espelhamento, colapso de crença, método, resultados, ecossistema e educação. Interligada ao site do grupo pela navegação.
 
