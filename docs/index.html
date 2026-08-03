@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zion Hotel Group International · Desenvolvemos Destinos</title>
+<meta name="description" content="Zion Hotel Group International: Development, Management e Collection. Desenvolvemos destinos: projetamos e estruturamos ativos turísticos que conectam território, experiência e valor.">
+<meta property="og:title" content="Zion Hotel Group International · Desenvolvemos Destinos">
+<meta property="og:description" content="Três modalidades integradas: Zion Hotel Development, Zion Hotel Management e Zion Collection. Do conceito à operação.">
+<meta property="og:type" content="website">
+<style>
+@font-face{font-family:'Aventa';src:url(assets/fonts/aventa.woff2) format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/cormorant.woff2) format('woff2');font-weight:300 700;font-display:swap;}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/cormorant-italic.woff2) format('woff2');font-weight:300 700;font-style:italic;font-display:swap;}
+
+
+
+
+:root{
+  --black:#040605;
+  --green:#1B2117;
+  --cream:#FEF5F0;
+  --sand:#DED6BF;
+  --earth:#8B714E;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:'Aventa','DM Sans',sans-serif;
+  background:var(--black);
+  color:var(--cream);
+  font-weight:400;
+  line-height:1.9;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--earth);color:var(--cream)}
+
+.wrap{max-width:1140px;margin:0 auto;padding:0 6vw}
+.narrow{max-width:760px;margin:0 auto;padding:0 6vw}
+.label{
+  font-weight:300;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--sand);
+}
+.section{padding:150px 0}
+.light{background:var(--cream);color:var(--green)}
+.light .label{color:var(--earth)}
+.sandbg{background:var(--sand);color:var(--green)}
+.sandbg .label{color:var(--earth)}
+
+.sec-head{margin-bottom:88px}
+.sec-head .label{display:block;margin-bottom:26px}
+.sec-head h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(34px,4.6vw,58px);
+  line-height:1.25;letter-spacing:.01em;
+}
+.sec-head h2 em{font-style:italic}
+
+.splitword{
+  display:flex;align-items:center;gap:24px;
+  font-weight:200;text-transform:uppercase;
+  font-size:clamp(13px,1.4vw,16px);
+  letter-spacing:.5em;color:var(--sand);
+  margin-bottom:30px;
+}
+.splitword .line{flex:1;height:1px;background:var(--cream);opacity:.3;min-width:40px}
+.light .splitword .line,.sandbg .splitword .line{background:var(--green);opacity:.35}
+.light .splitword,.sandbg .splitword{color:var(--earth)}
+
+.fade{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.fade.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  .fade{opacity:1;transform:none;transition:none}
+  .terrain g,.terrainband svg g{animation:none!important}
+}
+
+/* deriva lenta das linhas topográficas */
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-46px)}}
+.terrain g,.terrainband svg g{animation:drift 26s ease-in-out infinite alternate}
+
+/* ---------- nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:rgba(4,6,5,.82);backdrop-filter:blur(10px);
+  border-bottom:1px solid rgba(254,245,240,.07);
+}
+nav .bar{
+  max-width:1240px;margin:0 auto;padding:20px 4vw;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+nav .brand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;
+  color:var(--cream);text-decoration:none;
+}
+nav .links{display:flex;gap:30px;align-items:center}
+nav .links a{
+  font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  color:var(--sand);text-decoration:none;transition:color .4s;
+}
+nav .links a:hover{color:var(--cream)}
+nav .links a.navcta{
+  border:1px solid rgba(139,113,78,.75);padding:11px 24px;color:var(--cream);
+  transition:background .4s,border-color .4s;
+}
+nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
+@media(max-width:960px){nav .links a:not(.navcta){display:none}}
+
+/* ---------- hero ---------- */
+.hero{
+  min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;
+  text-align:center;padding:180px 6vw 140px;position:relative;overflow:hidden;
+}
+.hero .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.herovideo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 2s ease;pointer-events:none;
+}
+.herovideo-overlay{
+  position:absolute;inset:0;background:rgba(4,6,5,.55);
+  opacity:0;transition:opacity 2s ease;pointer-events:none;
+}
+.hero.hasvideo .herovideo,.hero.hasvideo .herovideo-overlay{opacity:1}
+.hero.hasvideo .terrain{opacity:.12}
+.hero > *{position:relative}
+.hero .kicker{margin-bottom:56px}
+.hero h1{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;
+  font-size:clamp(46px,8vw,110px);
+  line-height:1.12;letter-spacing:.01em;
+  max-width:900px;margin-bottom:44px;
+}
+.hero h1 em{font-style:italic}
+.hero .sub{
+  font-weight:300;font-size:clamp(13px,1.5vw,16px);line-height:2.2;
+  max-width:540px;color:var(--sand);margin-bottom:72px;
+}
+.ctarow{display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.cta{
+  display:inline-block;padding:17px 52px;
+  border:1px solid rgba(139,113,78,.75);color:var(--cream);
+  font-weight:400;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+  text-decoration:none;transition:background .5s,border-color .5s,color .5s;
+}
+.cta:hover{background:var(--earth);border-color:var(--earth)}
+.cta.solid{background:var(--earth);border-color:var(--earth)}
+.cta.solid:hover{background:transparent;border-color:rgba(139,113,78,.75)}
+.light .cta{color:var(--green)}
+.light .cta:hover{color:var(--cream)}
+.hero .scrollhint{
+  position:absolute;bottom:96px;left:50%;transform:translateX(-50%);
+  width:1px;height:56px;background:rgba(254,245,240,.28);overflow:hidden;
+}
+.hero .scrollhint::after{
+  content:"";position:absolute;left:0;top:-40%;width:1px;height:40%;background:var(--cream);
+  animation:scrolldot 2.4s ease-in-out infinite;
+}
+@keyframes scrolldot{0%{top:-40%}70%{top:110%}100%{top:110%}}
+.hero .foot{
+  position:absolute;bottom:34px;left:0;right:0;padding:0 6vw;
+  display:flex;justify-content:space-between;align-items:center;
+  font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);opacity:.8;
+}
+
+/* ---------- números vivos ---------- */
+.numbers{border-top:1px solid rgba(254,245,240,.08);border-bottom:1px solid rgba(254,245,240,.08)}
+.numbers .grid{
+  max-width:1240px;margin:0 auto;
+  display:grid;grid-template-columns:repeat(4,1fr);
+}
+@media(max-width:820px){.numbers .grid{grid-template-columns:repeat(2,1fr)}}
+.numbers .stat{padding:72px 32px;text-align:center}
+.numbers .stat + .stat{border-left:1px solid rgba(254,245,240,.08)}
+@media(max-width:820px){.numbers .stat:nth-child(3){border-left:none}.numbers .stat:nth-child(n+3){border-top:1px solid rgba(254,245,240,.08)}}
+.numbers .num{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(38px,4.8vw,60px);letter-spacing:.02em;display:block;margin-bottom:16px;
+}
+.numbers .num sup{font-size:.45em;vertical-align:super}
+.numbers .desc{font-weight:300;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);line-height:2}
+
+/* ---------- manifesto ---------- */
+.manifesto{text-align:center}
+.manifesto p{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(24px,3.2vw,38px);line-height:1.8;
+  max-width:820px;margin:0 auto;
+}
+.manifesto .sig{display:block;margin-top:64px}
+
+/* ---------- banda territorial ---------- */
+.terrainband{
+  position:relative;padding:200px 6vw;text-align:center;overflow:hidden;
+  border-top:1px solid rgba(254,245,240,.06);border-bottom:1px solid rgba(254,245,240,.06);
+}
+.terrainband svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+.terrainband p{
+  position:relative;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-style:italic;
+  font-size:clamp(24px,3.4vw,42px);line-height:1.6;
+  max-width:760px;margin:0 auto;
+}
+.terrainband .label{position:relative;display:block;margin-top:40px}
+
+/* ---------- modalidades ---------- */
+.mod{border-top:1px solid rgba(254,245,240,.09);padding:130px 0}
+.mod .head{margin-bottom:24px}
+.mod .num{
+  display:block;font-weight:200;font-size:12px;letter-spacing:.5em;color:var(--earth);
+  text-transform:uppercase;margin-bottom:22px;
+}
+.mod h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(32px,4.4vw,54px);line-height:1.2;letter-spacing:.01em;
+}
+.mod .forwho{
+  font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;
+  font-weight:300;font-size:clamp(17px,2vw,21px);color:var(--sand);
+  margin-bottom:56px;
+}
+.mod .body{display:grid;grid-template-columns:1.1fr .9fr;gap:88px;align-items:start}
+@media(max-width:860px){.mod .body{grid-template-columns:1fr;gap:44px}}
+.mod p{font-weight:300;font-size:14.5px;line-height:2.2;color:var(--cream);opacity:.92}
+.mod .quote{
+  margin-top:36px;font-family:'Cormorant Garamond',Georgia,serif;
+  font-style:italic;font-weight:300;font-size:21px;color:var(--sand);opacity:1;
+}
+.mod .modcta{margin-top:44px}
+.mod ul{list-style:none}
+.mod ul li{
+  display:flex;justify-content:space-between;gap:24px;align-items:baseline;
+  padding:19px 0;border-bottom:1px solid rgba(254,245,240,.09);
+}
+.mod ul li:first-child{border-top:1px solid rgba(254,245,240,.09)}
+.mod ul li strong{font-weight:500;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--cream)}
+.mod ul li span{font-weight:300;font-size:12px;color:var(--sand);text-align:right}
+
+/* ---------- jornada ---------- */
+.jornada .steps{counter-reset:passo;border-top:1px solid rgba(27,33,23,.14)}
+.jornada .step{
+  counter-increment:passo;
+  display:grid;grid-template-columns:120px 1fr 1.4fr;gap:40px;align-items:baseline;
+  padding:44px 0;border-bottom:1px solid rgba(27,33,23,.14);
+}
+@media(max-width:860px){.jornada .step{grid-template-columns:64px 1fr;gap:20px}.jornada .step p{grid-column:2}}
+.jornada .step::before{
+  content:"Ato " counter(passo);
+  font-weight:300;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--earth);
+}
+.jornada h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:clamp(20px,2.6vw,28px);letter-spacing:.02em;
+}
+.jornada h3 em{font-style:italic}
+.jornada p{font-weight:300;font-size:13px;line-height:2;color:rgba(27,33,23,.72)}
+
+/* ---------- ecossistema ---------- */
+.eco .intro{max-width:620px;margin-bottom:96px;font-weight:300;font-size:15px;line-height:2.2}
+.eco .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid rgba(27,33,23,.14)}
+@media(max-width:860px){.eco .grid{grid-template-columns:1fr}}
+.eco .cell{padding:52px 48px;border-bottom:1px solid rgba(27,33,23,.14);transition:background .5s}
+.eco .cell:hover{background:rgba(222,214,191,.28)}
+.eco .cell:nth-child(odd){border-right:1px solid rgba(27,33,23,.14)}
+@media(max-width:860px){.eco .cell:nth-child(odd){border-right:none}}
+.eco h3{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:24px;margin-bottom:14px;letter-spacing:.02em;
+}
+.eco p{font-weight:300;font-size:13px;line-height:2;color:rgba(27,33,23,.72)}
+.eco .quote{
+  margin-top:110px;text-align:center;
+  font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;
+  font-weight:300;font-size:clamp(22px,3vw,34px);line-height:1.7;
+}
+
+/* ---------- método ---------- */
+.metodo .intro{max-width:620px;margin-bottom:88px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
+.metodo ol{list-style:none;counter-reset:etapa -1}
+.metodo li{
+  counter-increment:etapa;
+  display:grid;grid-template-columns:90px 1fr 1.6fr;gap:36px;align-items:baseline;
+  padding:34px 0;border-top:1px solid rgba(254,245,240,.09);
+}
+.metodo li:last-child{border-bottom:1px solid rgba(254,245,240,.09)}
+@media(max-width:820px){.metodo li{grid-template-columns:60px 1fr;gap:18px}.metodo li p{grid-column:2}}
+.metodo li::before{
+  content:"0" counter(etapa);
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:30px;letter-spacing:.08em;color:var(--earth);
+}
+.metodo h3{font-weight:500;font-size:12px;letter-spacing:.24em;text-transform:uppercase}
+.metodo p{font-weight:300;font-size:13px;line-height:2;color:var(--sand)}
+
+/* ---------- zion score (curiosidade) ---------- */
+.score{
+  position:relative;text-align:center;padding:210px 6vw;overflow:hidden;
+  border-top:1px solid rgba(254,245,240,.06);border-bottom:1px solid rgba(254,245,240,.06);
+}
+.score .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.45;pointer-events:none}
+.score > *{position:relative}
+.score .bignum{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(90px,15vw,190px);line-height:1;
+  color:var(--earth);display:block;margin-bottom:36px;
+}
+.score h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(30px,4.6vw,54px);line-height:1.35;margin-bottom:36px;
+}
+.score h2 em{font-style:italic}
+.score p{max-width:560px;margin:0 auto 64px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
+
+/* ---------- projetos ---------- */
+.projetos .proj{
+  display:grid;grid-template-columns:2fr 1fr 1fr;gap:32px;align-items:baseline;
+  padding:40px 0;border-top:1px solid rgba(27,33,23,.14);
+}
+.projetos .proj:last-of-type{border-bottom:1px solid rgba(27,33,23,.14)}
+@media(max-width:820px){.projetos .proj{grid-template-columns:1fr;gap:8px}}
+.projetos .nome{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:clamp(22px,2.8vw,32px);letter-spacing:.02em;
+}
+.projetos .local{font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:rgba(27,33,23,.55)}
+.projetos .status{font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--earth);text-align:right}
+@media(max-width:820px){.projetos .status{text-align:left}}
+
+/* ---------- founder ---------- */
+.founder .grid{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:center}
+@media(max-width:860px){.founder .grid{grid-template-columns:1fr;gap:52px}}
+.founder h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(38px,5vw,62px);line-height:1.15;margin-bottom:20px;
+}
+.founder .role{margin-bottom:36px;display:block}
+.founder p{font-weight:300;font-size:14.5px;line-height:2.2;color:var(--cream);opacity:.92;margin-bottom:28px}
+.founder .creds{display:flex;flex-direction:column;gap:13px;margin-bottom:52px}
+.founder .creds span{
+  font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);
+  border-top:1px solid rgba(254,245,240,.09);padding-top:13px;
+}
+.founder blockquote{
+  font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;
+  font-weight:300;font-size:clamp(22px,2.8vw,32px);line-height:1.8;color:var(--sand);border:0;
+}
+
+/* ---------- faq ---------- */
+.faq .list{border-top:1px solid rgba(27,33,23,.14);max-width:860px}
+.faq details{border-bottom:1px solid rgba(27,33,23,.14)}
+.faq summary{
+  cursor:pointer;list-style:none;position:relative;
+  padding:34px 64px 34px 0;
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:clamp(19px,2.4vw,26px);letter-spacing:.01em;
+  transition:color .4s;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{
+  content:"+";position:absolute;right:8px;top:50%;transform:translateY(-50%);
+  font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;color:var(--earth);
+  transition:transform .4s;
+}
+.faq details[open] summary::after{transform:translateY(-50%) rotate(45deg)}
+.faq summary:hover{color:var(--earth)}
+.faq .a{padding:0 64px 40px 0;font-weight:300;font-size:14px;line-height:2.2;color:rgba(27,33,23,.75)}
+.faq .a strong{font-weight:500;color:var(--green)}
+
+/* ---------- cta final ---------- */
+.final{text-align:center;padding:190px 6vw;position:relative;overflow:hidden}
+.final .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.4;pointer-events:none}
+.final > *{position:relative}
+.final h2{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:300;font-size:clamp(34px,5.4vw,66px);line-height:1.3;
+  margin-bottom:44px;
+}
+.final h2 em{font-style:italic}
+.final p{max-width:520px;margin:0 auto 68px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
+
+/* ---------- CTA persistente ---------- */
+.stickycta{
+  position:fixed;right:28px;bottom:28px;z-index:60;
+  padding:15px 34px;background:rgba(4,6,5,.9);backdrop-filter:blur(8px);
+  border:1px solid rgba(139,113,78,.85);color:var(--cream);
+  font-weight:400;font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  text-decoration:none;
+  opacity:0;transform:translateY(14px);pointer-events:none;
+  transition:opacity .6s,transform .6s,background .4s;
+}
+.stickycta.show{opacity:1;transform:none;pointer-events:auto}
+.stickycta:hover{background:var(--earth)}
+
+/* ---------- footer institucional ---------- */
+footer{border-top:1px solid rgba(254,245,240,.08);padding:96px 0 56px}
+footer .cols{
+  display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:64px;margin-bottom:88px;
+}
+@media(max-width:860px){footer .cols{grid-template-columns:1fr 1fr;gap:48px}}
+@media(max-width:560px){footer .cols{grid-template-columns:1fr}}
+footer .fbrand{
+  font-family:'Cormorant Garamond',Georgia,serif;
+  font-weight:400;font-size:26px;letter-spacing:.3em;text-transform:uppercase;margin-bottom:20px;
+}
+footer .fdesc{font-weight:300;font-size:12.5px;line-height:2.1;color:var(--sand);max-width:280px}
+footer h4{
+  font-weight:400;font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--earth);
+  margin-bottom:24px;
+}
+footer .col a{
+  display:block;font-weight:300;font-size:12px;letter-spacing:.08em;color:var(--sand);
+  text-decoration:none;padding:7px 0;transition:color .4s;
+}
+footer .col a:hover{color:var(--cream)}
+footer .row{
+  display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
+  border-top:1px solid rgba(254,245,240,.08);padding-top:44px;
+  font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);
+}
+footer .row a{color:var(--sand);text-decoration:none;transition:color .4s}
+footer .row a:hover{color:var(--cream)}
+</style>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23040605'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23FEF5F0' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="canonical" href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/">
+<meta property="og:url" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/">
+<meta property="og:image" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/og.jpg">
+<link rel="preload" href="assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/aventa.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-italic.woff2" as="font" type="font/woff2" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Zion Hotel Group International",
+  "alternateName": "Zion",
+  "url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/",
+  "slogan": "Desenvolvemos Destinos",
+  "description": "Desenvolvimento, operação e bandeira de ativos turísticos: Zion Hotel Development, Zion Hotel Management e Zion Collection.",
+  "founder": {"@type": "Person", "name": "Bruno Chaerk", "jobTitle": "Founder & CEO"},
+  "address": {"@type": "PostalAddress", "addressLocality": "Florianópolis", "addressRegion": "SC", "addressCountry": "BR"},
+  "sameAs": ["https://www.instagram.com/brunochaerkofc"]
+}
+</script>
+</head>
+<body>
+
+<nav>
+  <div class="bar">
+    <a class="brand" href="#top">Zion</a>
+    <div class="links">
+      <a href="#modalidades">Modalidades</a>
+      <a href="#jornada">Jornada</a>
+      <a href="#ecossistema">Ecossistema</a>
+      <a href="#metodo">Método</a>
+      <a href="#projetos">Projetos</a>
+      <a href="bruno.html">Founder</a>
+      <a class="navcta" href="#contato">Diagnóstico</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <video class="herovideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="assets/media/hero.webm" type="video/webm">
+    <source src="assets/media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="herovideo-overlay" aria-hidden="true"></div>
+  <svg class="terrain" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".14">
+      <path d="M-90,620 C220,560 380,660 620,600 S1050,520 1530,600"/>
+      <path d="M-90,660 C240,600 400,700 640,640 S1070,560 1530,640"/>
+      <path d="M-90,700 C260,645 420,740 660,680 S1090,605 1530,680"/>
+      <path d="M-90,580 C200,520 360,615 600,560 S1030,480 1530,560"/>
+      <path d="M-90,540 C180,485 340,570 580,520 S1010,445 1530,520"/>
+      <path d="M-90,745 C280,690 440,780 680,725 S1110,650 1530,725"/>
+      <path d="M-90,160 C300,220 500,120 780,180 S1200,260 1530,180" opacity=".55"/>
+      <path d="M-90,120 C280,180 480,85 760,140 S1180,215 1530,140" opacity=".55"/>
+      <path d="M-90,200 C320,255 520,160 800,215 S1220,300 1530,220" opacity=".55"/>
+    </g>
+  </svg>
+  <p class="label kicker fade">Zion Hotel Group International · Florianópolis · Barcelona</p>
+  <h1 class="fade">Desenvolvemos <em>destinos</em>.</h1>
+  <p class="sub fade">Enquanto o mercado constrói hotéis, nós estruturamos ativos. Três modalidades integradas: desenvolvemos, operamos e validamos com a bandeira. Do conceito à operação.</p>
+  <div class="ctarow fade">
+    <a class="cta solid" href="#contato">Solicitar Diagnóstico</a>
+    <a class="cta" href="#modalidades">Conhecer o Grupo</a>
+  </div>
+  <div class="scrollhint" aria-hidden="true"></div>
+  <div class="foot">
+    <span>Experiential Destination Development</span>
+    <span>MMXXVI</span>
+  </div>
+</header>
+
+<!-- NÚMEROS VIVOS -->
+<section class="numbers">
+  <div class="grid">
+    <div class="stat fade"><span class="num">R$ <span data-count="1571" data-format="mil">0</span></span><span class="desc">Diária média validada em operação própria</span></div>
+    <div class="stat fade"><span class="num"><span data-count="43">0</span>%</span><span class="desc">Margem EBITDA em hospitalidade boutique</span></div>
+    <div class="stat fade"><span class="num"><span data-count="5" data-pad="2">0</span></span><span class="desc">Destinos em desenvolvimento simultâneo</span></div>
+    <div class="stat fade"><span class="num"><span data-count="11" data-pad="2">0</span></span><span class="desc">Unidades de negócio no ecossistema</span></div>
+  </div>
+</section>
+
+<!-- MANIFESTO -->
+<section class="section manifesto">
+  <div class="narrow fade">
+    <div class="splitword" style="justify-content:center"><span class="line"></span><span>Manifesto</span><span class="line"></span></div>
+    <p>Projetamos e estruturamos ativos que conectam território, experiência e valor. Do conceito à operação, criamos projetos com identidade, consistência e relevância de longo prazo.</p>
+    <span class="sig label">Zion · Um lugar elevado</span>
+  </div>
+</section>
+
+<!-- BANDA TERRITORIAL -->
+<div class="terrainband">
+  <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
+      <path d="M-90,300 C240,240 420,360 700,300 S1150,220 1530,300"/>
+      <path d="M-90,350 C260,290 440,410 720,350 S1170,270 1530,350"/>
+      <path d="M-90,400 C280,340 460,460 740,400 S1190,320 1530,400"/>
+      <path d="M-90,250 C220,195 400,305 680,250 S1130,175 1530,250"/>
+      <path d="M-90,200 C200,150 380,255 660,200 S1110,130 1530,200"/>
+      <path d="M-90,450 C300,395 480,505 760,450 S1210,375 1530,450"/>
+      <path d="M-90,150 C180,105 360,205 640,150 S1090,85 1530,150"/>
+    </g>
+  </svg>
+  <p class="fade">"A terra já sabe o que quer ser. O nosso trabalho é escutar o território antes de desenhar o destino."</p>
+  <span class="label fade">Leitura Territorial · O princípio de tudo</span>
+</div>
+
+<!-- MODALIDADES -->
+<section class="section" id="modalidades" style="padding-bottom:0">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Modalidades</span><span class="line"></span></div>
+      <h2>Um grupo. Três formas de <em>criar valor</em> no território.</h2>
+    </div>
+  </div>
+
+  <!-- 01 DEVELOPMENT -->
+  <article class="mod" id="development">
+    <div class="wrap">
+      <div class="head fade">
+        <span class="num">Modalidade 01</span>
+        <h3>Zion Hotel Development</h3>
+      </div>
+      <p class="forwho fade">Para quem tem um território e quer transformá-lo em um ativo que gera receita e valoriza.</p>
+      <div class="body">
+        <div class="fade">
+          <p>A origem de tudo. Desenvolvimento imobiliário turístico completo: leitura territorial, estudo de viabilidade, concepção de produto, master plan, estruturação societária e captação de investidores. O projeto nasce do território e da tese financeira, nunca do palpite.</p>
+          <p>Você entra com a terra e a visão. A Zion entra com o método, a marca e o acesso ao capital. No final, não existe "um hotel construído": existe um ativo estruturado, com tese, governança e caminho de saída.</p>
+          <p class="quote">"O ativo se transforma em resultado."</p>
+          <div class="modcta" style="display:flex;gap:16px;flex-wrap:wrap"><a class="cta" href="#contato">Tenho um território</a><a class="cta" href="development.html">Explorar a Modalidade</a></div>
+        </div>
+        <ul class="fade">
+          <li><strong>Diagnóstico</strong><span>Zion Score™ e leitura territorial</span></li>
+          <li><strong>Viabilidade</strong><span>Mercadológica e econômico-financeira</span></li>
+          <li><strong>Produto</strong><span>Conceito, posicionamento e master plan</span></li>
+          <li><strong>Estrutura</strong><span>SPE, governança e proteção patrimonial</span></li>
+          <li><strong>Captação</strong><span>Tese, teaser, info memo e pitch</span></li>
+          <li><strong>Implantação</strong><span>Governança de obra e milestones</span></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 02 MANAGEMENT -->
+  <article class="mod" id="management">
+    <div class="wrap">
+      <div class="head fade">
+        <span class="num">Modalidade 02</span>
+        <h3>Zion Hotel Management</h3>
+      </div>
+      <p class="forwho fade">Para quem tem um ativo pronto ou em operação e precisa que ele performe como investimento.</p>
+      <div class="body">
+        <div class="fade">
+          <p>O ativo pronto precisa performar. A Zion Hotel Management assume a operação com governança, controle de padrão e gestão de performance: jornada do hóspede, revenue management, SOPs, time treinado e relatórios periódicos para os investidores do ativo.</p>
+          <p>A diferença entre um hotel que sobrevive e um ativo que performa está na disciplina da operação. Quem opera com método defende a diária, protege a margem e entrega o resultado que a tese prometeu.</p>
+          <p class="quote">"Consistência, controle e escalabilidade."</p>
+          <div class="modcta" style="display:flex;gap:16px;flex-wrap:wrap"><a class="cta" href="#contato">Tenho um ativo operando</a><a class="cta" href="management.html">Explorar a Modalidade</a></div>
+        </div>
+        <ul class="fade">
+          <li><strong>Operação</strong><span>Gestão hoteleira completa do ativo</span></li>
+          <li><strong>Performance</strong><span>Revenue, ADR, ocupação e GOP</span></li>
+          <li><strong>Padrão</strong><span>SOPs, treinamento e experiência premium</span></li>
+          <li><strong>Governança</strong><span>Relatórios e aderência à tese</span></li>
+          <li><strong>Hóspede</strong><span>Jornada e hospitalidade experiencial</span></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+
+  <!-- 03 COLLECTION -->
+  <article class="mod" id="collection" style="border-bottom:1px solid rgba(254,245,240,.09)">
+    <div class="wrap">
+      <div class="head fade">
+        <span class="num">Modalidade 03</span>
+        <h3>Zion Collection</h3>
+      </div>
+      <p class="forwho fade">Para projetos que querem carregar uma bandeira com padrão, curadoria e tese validada.</p>
+      <div class="body">
+        <div class="fade">
+          <p>A bandeira do grupo. Apenas projetos homologados carregam o selo Zion Collection: curadoria de destinos com identidade, padrão de experiência e tese validada. Cinco coleções, cada uma com vocação territorial própria.</p>
+          <p>Uma bandeira não é um logotipo na fachada. É acesso a padrão, distribuição, comunidade de investidores e uma promessa que o hóspede reconhece antes de chegar. Por isso a homologação existe: o selo só vale porque nem todo projeto o recebe.</p>
+          <p class="quote">"A marca não é alugada. Ela é validada."</p>
+          <div class="modcta" style="display:flex;gap:16px;flex-wrap:wrap"><a class="cta" href="#contato">Quero a bandeira</a><a class="cta" href="collection.html">Explorar a Modalidade</a></div>
+        </div>
+        <ul class="fade">
+          <li><strong>Bubble Collection</strong><span>Glamping imersivo e contemplação</span></li>
+          <li><strong>Mountain Collection</strong><span>Serra, clima frio e refúgios de altitude</span></li>
+          <li><strong>Beach Collection</strong><span>Litoral premium e vida ao mar</span></li>
+          <li><strong>Wellness Collection</strong><span>Regeneração, biofilia e bem-estar</span></li>
+          <li><strong>Signature Collection</strong><span>Ativos únicos e icônicos por natureza</span></li>
+        </ul>
+      </div>
+    </div>
+  </article>
+</section>
+
+<!-- JORNADA -->
+<section class="section light jornada" id="jornada">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Jornada</span><span class="line"></span></div>
+      <h2>Do terreno parado ao destino que performa, <em>em seis atos</em>.</h2>
+    </div>
+    <div class="steps">
+      <div class="step fade"><h3>A terra <em>parada</em></h3><p>Um território com potencial enorme e nenhuma estrutura. Cada ano nesse estado é receita que não volta. É aqui que quase todos os projetos morrem: não por falta de potencial, por falta de método.</p></div>
+      <div class="step fade"><h3>O <em>diagnóstico</em></h3><p>O Zion Score™ lê a vocação do território e responde com um número de 0 a 10 se ele sustenta uma tese de destino. Sem achismo: mercado emissor, ADR de referência, CAPEX orientativo e concorrência.</p></div>
+      <div class="step fade"><h3>A <em>tese</em></h3><p>Viabilidade mercadológica e financeira em três cenários. O projeto ganha produto, posicionamento, master plan e uma tese que se sustenta na frente de qualquer investidor.</p></div>
+      <div class="step fade"><h3>A <em>estrutura</em></h3><p>SPE, governança, proteção patrimonial e desenho societário. O terreno deixa de ser um bem pessoal e vira um veículo de investimento pronto para receber capital.</p></div>
+      <div class="step fade"><h3>O <em>capital</em></h3><p>Teaser, information memorandum e pitch institucional na frente do investidor certo. O ativo bem estruturado atrai o capital. A ordem é essa, não o contrário.</p></div>
+      <div class="step fade"><h3>O <em>destino</em></h3><p>Implantação com governança e operação Zion Management. O território que estava parado agora recebe hóspedes, gera receita operacional e valoriza como patrimônio. E pode carregar a bandeira.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ECOSSISTEMA -->
+<section class="section sandbg eco" id="ecossistema">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Ecossistema</span><span class="line"></span></div>
+      <h2>O ciclo completo do desenvolvimento, <em>sob um mesmo teto</em>.</h2>
+    </div>
+    <p class="intro fade">Em volta das três modalidades, o grupo opera unidades complementares que fecham o ciclo do desenvolvimento hoteleiro: da educação do mercado ao capital, do design ao fornecimento.</p>
+    <div class="grid">
+      <div class="cell fade"><h3>Zion Bubble Glamping</h3><p>A operação pioneira do grupo em Florianópolis. Laboratório vivo da marca: benchmarks reais de ADR, ocupação e margem que alimentam todos os estudos de viabilidade.</p></div>
+      <div class="cell fade"><h3>Zion Advisory</h3><p>Consultoria estratégica para terrenistas, investidores e operadores. Diagnóstico, estruturação e direcionamento de ativos turísticos de terceiros.</p></div>
+      <div class="cell fade"><h3>Zion Hospitality Academy</h3><p>A escola do grupo. Formações, workshops e a série editorial Zion Land Development™: educar o mercado que a Zion mesma criou.</p></div>
+      <div class="cell fade"><h3>Zion Capital</h3><p>A ponte entre projetos estruturados e capital qualificado. Teses de investimento, ofertas estruturadas e relacionamento com investidores.</p></div>
+      <div class="cell fade"><h3>Zion Exchange</h3><p>Liquidez para ativos turísticos: intercâmbio, multipropriedade e novos modelos de acesso e saída para investidores e proprietários.</p></div>
+      <div class="cell fade"><h3>Zion Design Studio</h3><p>Direção criativa do grupo. Branding territorial, arquitetura de experiência e identidade de cada destino, do naming ao master plan conceitual.</p></div>
+      <div class="cell fade"><h3>Zion Glamp Store</h3><p>Fornecimento estratégico: estruturas, domos e equipamentos de glamping homologados pelo padrão Zion, para projetos próprios e de terceiros.</p></div>
+      <div class="cell fade"><h3>Zion Hotel Group</h3><p>Um grupo. Três modalidades. Um ecossistema completo a serviço do território.</p></div>
+    </div>
+    <p class="quote fade">"Território, experiência e valor."</p>
+  </div>
+</section>
+
+<!-- MÉTODO -->
+<section class="section metodo" id="metodo">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Método</span><span class="line"></span></div>
+      <h2>A Pirâmide Invertida<sup style="font-size:.4em">©</sup>: a ordem que <em>protege o capital</em>.</h2>
+    </div>
+    <p class="intro fade">Metodologia proprietária do grupo: sete etapas com entregável concreto. O projeto nasce do território e da tese financeira, não do sonho da arquitetura. É o método que conecta as três modalidades.</p>
+    <ol>
+      <li class="fade"><h3>Zion Score™</h3><p>Diagnóstico preliminar do território com nota de 0 a 10.</p></li>
+      <li class="fade"><h3>Viabilidade Mercadológica</h3><p>Fluxo turístico, sazonalidade, concorrência e posicionamento.</p></li>
+      <li class="fade"><h3>Modelagem Financeira</h3><p>CAPEX, EBITDA, TIR, VPL e payback em três cenários.</p></li>
+      <li class="fade"><h3>Produto e Posicionamento</h3><p>Conceito, narrativa territorial e diretrizes de master plan.</p></li>
+      <li class="fade"><h3>Estruturação do Negócio</h3><p>SPE, modelo societário e entrada de investidores.</p></li>
+      <li class="fade"><h3>Apresentação a Investidores</h3><p>Tese, teaser executivo, info memo e pitch institucional.</p></li>
+      <li class="fade"><h3>Governança de Implantação</h3><p>Milestones e aderência à tese até a operação performar.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ZION SCORE · GATILHO DE CURIOSIDADE -->
+<section class="score" id="score">
+  <svg class="terrain" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
+      <path d="M-90,520 C260,460 460,580 740,520 S1190,440 1530,520"/>
+      <path d="M-90,570 C280,515 480,625 760,570 S1210,495 1530,570"/>
+      <path d="M-90,470 C240,415 440,525 720,470 S1170,395 1530,470"/>
+      <path d="M-90,130 C280,185 480,90 760,145 S1180,220 1530,145" opacity=".6"/>
+      <path d="M-90,90 C260,145 460,55 740,105 S1160,180 1530,105" opacity=".6"/>
+    </g>
+  </svg>
+  <span class="bignum fade" aria-hidden="true"><span data-count="10" data-decimal="1">0</span></span>
+  <h2 class="fade">Todo território tem uma nota.<br>Você ainda não sabe <em>a da sua terra</em>.</h2>
+  <p class="fade">O Zion Score™ avalia vocação do destino, mercado emissor, diária de referência e potencial construtivo, e devolve um número de 0 a 10. É a diferença entre apostar e decidir.</p>
+  <a class="cta solid fade" href="#contato">Descobrir o Zion Score da minha terra</a>
+</section>
+
+<!-- PROJETOS -->
+<section class="section sandbg projetos" id="projetos">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Projetos</span><span class="line"></span></div>
+      <h2>Destinos em <em>desenvolvimento</em>.</h2>
+    </div>
+    <div class="proj fade">
+      <span class="nome">Zion Bubble Glamping</span>
+      <span class="local">Florianópolis · SC</span>
+      <span class="status">Em operação</span>
+    </div>
+    <div class="proj fade">
+      <span class="nome">Rota dos Milagres</span>
+      <span class="local">Litoral Norte · AL</span>
+      <span class="status">Estruturação</span>
+    </div>
+    <div class="proj fade">
+      <span class="nome">Marchese di Ivrea</span>
+      <span class="local">Serra Catarinense</span>
+      <span class="status">Viabilidade</span>
+    </div>
+    <div class="proj fade">
+      <span class="nome">Malhada do Caldeireiro</span>
+      <span class="local">Rota dos Milagres · AL</span>
+      <span class="status">Concepção</span>
+    </div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="section founder" id="founder">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Founder</span><span class="line"></span></div>
+    </div>
+    <div class="grid">
+      <div class="fade">
+        <h2>Bruno Chaerk</h2>
+        <span class="label role">Founder · CEO · Developer Hoteleiro</span>
+        <p>Formado dentro de grandes redes hoteleiras internacionais na Espanha, Bruno lidera o grupo com uma convicção: hotelaria não é imóvel com camas. É ativo estruturado, com marca, tese e saída.</p>
+        <div class="creds">
+          <span>Background · Meliá · Barceló · Wyndham (Espanha)</span>
+          <span>Base · Florianópolis, SC · Brasil</span>
+        </div>
+        <a class="cta" href="bruno.html">Conhecer o Founder</a>
+      </div>
+      <blockquote class="fade">"Você tem uma terra incrível. Eu transformo territórios em destinos."</blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section light faq" id="faq">
+  <div class="wrap">
+    <div class="sec-head fade">
+      <div class="splitword"><span>Perguntas</span><span class="line"></span></div>
+      <h2>O que todo dono de terra <em>pergunta primeiro</em>.</h2>
+    </div>
+    <div class="list">
+      <details class="fade">
+        <summary>Preciso de capital próprio para desenvolver meu terreno?</summary>
+        <div class="a"><p>Não é o capital que cria o projeto. É o projeto estruturado que atrai o capital. O papel da Zion é transformar o seu território em uma tese de investimento com viabilidade, governança e produto definidos, e colocá-la na frente do investidor certo. <strong>A ordem é essa, não o contrário.</strong></p></div>
+      </details>
+      <details class="fade">
+        <summary>Meu terreno serve para um projeto turístico?</summary>
+        <div class="a"><p>Essa é exatamente a pergunta que o Zion Score™ responde, com nota de 0 a 10: vocação do destino, mercado emissor, diária de referência, acesso e potencial construtivo. Alguns territórios pedem um glamping contemplativo, outros um resort de serra, outros nada. <strong>Saber isso antes de gastar um real em projeto é o que separa decisão de aposta.</strong></p></div>
+      </details>
+      <details class="fade">
+        <summary>Não entendo nada de hotelaria. Isso é um problema?</summary>
+        <div class="a"><p>Não. O developer não opera: ele estrutura. A operação é uma disciplina contratável, e é para isso que existe a Zion Hotel Management. O que não se contrata pronto é a estrutura do ativo, e é aí que a maioria erra sozinha. <strong>Operação se contrata. Estrutura se constrói.</strong></p></div>
+      </details>
+      <details class="fade">
+        <summary>Quanto tempo leva do diagnóstico à operação?</summary>
+        <div class="a"><p>Depende do porte e do licenciamento de cada território, mas o método existe para comprimir esse tempo com segurança: o Zion Score™ sai em dias, a tese completa de viabilidade em semanas, e cada etapa seguinte só começa quando a anterior está validada. <strong>O caminho mais rápido é o que não precisa ser refeito.</strong></p></div>
+      </details>
+      <details class="fade">
+        <summary>O que é preciso para carregar a bandeira Zion Collection?</summary>
+        <div class="a"><p>Homologação. A bandeira não é alugada: o projeto precisa passar pelo padrão Zion de experiência, tese e governança. É essa curadoria que protege o valor do selo para todos os que o carregam. <strong>O selo só vale porque nem todo projeto o recebe.</strong></p></div>
+      </details>
+      <details class="fade">
+        <summary>Por onde eu começo?</summary>
+        <div class="a"><p>Pelo Diagnóstico Territorial. Antes de arquiteto, antes de obra, antes de investidor: primeiro o território responde se sustenta um destino. É a decisão mais barata e mais importante de todo o processo. <strong>O próximo passo não é construir. É diagnosticar.</strong></p></div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final" id="contato">
+  <svg class="terrain" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
+      <path d="M-90,520 C260,460 460,580 740,520 S1190,440 1530,520"/>
+      <path d="M-90,570 C280,515 480,625 760,570 S1210,495 1530,570"/>
+      <path d="M-90,470 C240,415 440,525 720,470 S1170,395 1530,470"/>
+      <path d="M-90,620 C300,565 500,675 780,620 S1230,545 1530,620"/>
+      <path d="M-90,130 C280,185 480,90 760,145 S1180,220 1530,145" opacity=".6"/>
+      <path d="M-90,90 C260,145 460,55 740,105 S1160,180 1530,105" opacity=".6"/>
+    </g>
+  </svg>
+  <p class="label fade" style="margin-bottom:40px">O próximo passo não é construir. É diagnosticar.</p>
+  <h2 class="fade">Seu território pode ser<br>o próximo <em>destino Zion</em>.</h2>
+  <p class="fade">O Diagnóstico Territorial Zion responde a única pergunta que importa antes de qualquer tijolo: isso é um destino ou apenas um terreno?</p>
+  <div class="fade" style="max-width:620px;margin:0 auto">
+    <div id="zion-form" style="background:var(--cream);padding:48px 40px;text-align:left;min-height:320px">
+      <noscript><p style="color:#1B2117;font-size:13px">Ative o JavaScript para ver o formulário, ou agende direto: <a href="https://meetings.hubspot.com/bruno-chaerk">meetings.hubspot.com/bruno-chaerk</a></p></noscript>
+    </div>
+  </div>
+  <p class="fade" style="margin:44px auto 0;position:relative"><a class="cta" href="https://meetings.hubspot.com/bruno-chaerk" target="_blank" rel="noopener">Prefere conversar? Agendar Diagnóstico</a></p>
+  <script charset="utf-8" src="https://js.hsforms.net/forms/embed/v2.js"></script>
+  <script>
+  (function(){var go=function(){if(window.hbspt)hbspt.forms.create({region:"na1",portalId:"51284703",formId:"314c0987-e892-49c3-bb8c-8ee92b052917",target:"#zion-form"});};
+  document.readyState==="loading"?document.addEventListener("DOMContentLoaded",go):go();})();
+  </script>
+</section>
+
+<a class="stickycta" href="#contato">Diagnóstico Territorial</a>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div>
+        <div class="fbrand">Zion</div>
+        <p class="fdesc">Zion Hotel Group International. Desenvolvemos destinos: ativos turísticos que conectam território, experiência e valor.</p>
+      </div>
+      <div class="col">
+        <h4>Modalidades</h4>
+        <a href="development.html">Zion Hotel Development</a>
+        <a href="management.html">Zion Hotel Management</a>
+        <a href="collection.html">Zion Collection</a>
+      </div>
+      <div class="col">
+        <h4>Ecossistema</h4>
+        <a href="#ecossistema">Zion Bubble Glamping</a>
+        <a href="#ecossistema">Zion Advisory</a>
+        <a href="#ecossistema">Zion Hospitality Academy</a>
+        <a href="#ecossistema">Zion Capital</a>
+        <a href="#ecossistema">Zion Design Studio</a>
+      </div>
+      <div class="col">
+        <h4>Grupo</h4>
+        <a href="#metodo">Método</a>
+        <a href="#projetos">Projetos</a>
+        <a href="bruno.html">Founder</a>
+        <a href="https://www.instagram.com/brunochaerkofc" target="_blank" rel="noopener">@brunochaerkofc</a>
+      </div>
+    </div>
+    <div class="row">
+      <span>Zion Hotel · Group International</span>
+      <span>Florianópolis · Barcelona</span>
+      <span>© 2026 · Desenvolvemos Destinos</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// fade-in ao rolar
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+
+// contagem animada dos números
+const fmt = (el,v)=>{
+  if(el.dataset.format==='mil'){ el.textContent = v.toLocaleString('pt-BR'); return; }
+  if(el.dataset.decimal){ el.textContent = v.toFixed(1).replace('.',','); return; }
+  el.textContent = el.dataset.pad ? String(Math.round(v)).padStart(+el.dataset.pad,'0') : String(Math.round(v));
+};
+const cio = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    const el=e.target, target=+el.dataset.count, dur=1800, t0=performance.now();
+    const tick=(t)=>{
+      const p=Math.min((t-t0)/dur,1), ease=1-Math.pow(1-p,4);
+      fmt(el, target*ease);
+      if(p<1) requestAnimationFrame(tick);
+    };
+    requestAnimationFrame(tick);
+  });
+},{threshold:.5});
+document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// vídeo do hero: liga sozinho quando web/assets/media/hero.mp4 existir
+const hv=document.querySelector('.herovideo');
+if(hv){
+  const on=()=>document.querySelector('.hero').classList.add('hasvideo');
+  if(hv.readyState>=2) on();
+  hv.addEventListener('loadeddata',on);
+  hv.addEventListener('canplay',on);
+}
+
+// CTA persistente após o hero
+const sticky=document.querySelector('.stickycta');
+addEventListener('scroll',()=>{
+  const past=scrollY>innerHeight*.9;
+  const nearEnd=document.getElementById('contato').getBoundingClientRect().top<innerHeight;
+  sticky.classList.toggle('show',past&&!nearEnd);
+},{passive:true});
+</script>
+
+<script async defer src="https://js.hs-scripts.com/51284703.js" id="hs-script-loader"></script>
+</body>
+</html>
