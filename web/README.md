@@ -18,9 +18,14 @@ Página pessoal one-page: espelhamento, colapso de crença, método, resultados,
 
 ## Identidade
 
+Direção de arte com referências de luxo de Aman Resorts e Six Senses, mantendo o DNA Zion:
+
 - Paleta oficial: `#040605` preto, `#FEF5F0` creme, `#DED6BF` areia, `#8B714E` terra, `#1B2117` verde musgo
-- Tipografia Aventa (variável, pesos 100 a 900, embutida)
-- Palavras divididas com linha conectora, CAPS com letter-spacing amplo, zero gradientes, espaço negativo generoso
+- Display serifada Cormorant Garamond light (com itálico verdadeiro, subsetada e embutida) para títulos em caixa baixa, no código visual Aman
+- Aventa (variável, embutida) para labels em CAPS espaçadas, corpo e navegação
+- Heros centrados e contemplativos, CTAs silenciosos de borda fina, fade-in suave ao rolar
+- Bandas territoriais: curvas de nível SVG em areia sobre preto como camada imersiva (slots prontos para receber fotografia editorial real)
+- Palavras com linha conectora, zero gradientes, espaço negativo generoso
 
 ## Deploy
 
