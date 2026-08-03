@@ -1,0 +1,101 @@
+---
+title: "Diagnóstico Preliminar — Zion Score™"
+projeto: "{{ projeto_nome }}"
+empresa: "{{ empresa }}"
+data: "{{ data_geracao }}"
+versao: "{{ versao }}"
+---
+
+# Diagnóstico Preliminar — Zion Score™
+
+**Projeto:** {{ projeto_nome }}
+**Data:** {{ data_geracao }}
+**Elaborado por:** Zion Hotel AI Developer
+**Versão:** {{ versao }}
+
+---
+
+## Resumo Executivo
+
+{{ data.resumo_executivo }}
+
+---
+
+## Zion Score™
+
+| Critério | Nota | Peso |
+|----------|------|------|
+{% for criterio in data.criterios %}
+| {{ criterio.nome }} | {{ criterio.nota }}/10 | {{ criterio.peso }}% |
+{% endfor %}
+| **TOTAL** | **{{ data.zion_score }}/10** | **100%** |
+
+**Classificação:** {{ data.classificacao }}
+
+---
+
+## Vocação do Destino
+
+{{ data.vocacao_destino }}
+
+---
+
+## ADR Estimado de Referência
+
+**ADR estimado:** R$ {{ data.adr_estimado_brl }}
+
+{{ data.justificativa_adr }}
+
+---
+
+## CAPEX Orientativo Preliminar
+
+**CAPEX estimado:** R$ {{ data.capex_orientativo_brl }}
+
+{{ data.justificativa_capex }}
+
+---
+
+## Mercado Emissor
+
+{{ data.mercado_emissor }}
+
+---
+
+## Concorrência Regional
+
+{{ data.concorrencia_regional }}
+
+---
+
+## Pontos Fortes e Riscos
+
+### Pontos Fortes
+{% for ponto in data.pontos_fortes %}
+- {{ ponto }}
+{% endfor %}
+
+### Riscos Identificados
+{% for risco in data.riscos %}
+- {{ risco }}
+{% endfor %}
+
+---
+
+## Recomendação
+
+{{ data.recomendacao }}
+
+---
+
+## Próximos Passos
+
+{% for passo in data.proximos_passos %}
+{{ loop.index }}. {{ passo }}
+{% endfor %}
+
+---
+
+> *Documento gerado pelo Zion Hotel AI Developer*
+> *Zion Hotel Group International — Florianópolis (SC) · Barcelona (ESP)*
+> *Este documento é confidencial e de uso exclusivo do destinatário.*
