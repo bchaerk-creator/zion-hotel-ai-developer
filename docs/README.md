@@ -1,4 +1,4 @@
-# Web · Zion Hotel Group International
+# Site · Zion Hotel Group International
 
 Site institucional do grupo + página do founder, construídos com a identidade visual oficial Zion e estrutura de copy ECROI. Arquivos autocontidos (CSS + fonte Aventa variável embutida em base64), sem dependências externas e sem build.
 
@@ -30,13 +30,25 @@ Direção de arte com referências de luxo de Aman Resorts e Six Senses, mantend
 - Bandas territoriais: curvas de nível SVG em areia sobre preto como camada imersiva (slots prontos para receber fotografia editorial real)
 - Palavras com linha conectora, zero gradientes, espaço negativo generoso
 
+
+## Conversão e medição (HubSpot)
+
+- Formulário "Diagnóstico Estratégico Zion" (portal 51284703) embutido na seção de contato da home
+- CTA alternativo de agendamento: meetings.hubspot.com/bruno-chaerk
+- Tracking code HubSpot em todas as páginas (analytics + associação de leads)
+
+## Performance e SEO
+
+- Fontes WOFF2 subsetadas e externalizadas em `assets/fonts/` (~25 KB cada, cache entre páginas); HTML de 14 a 44 KB
+- Favicon, canonical, og:image (`assets/og.jpg`), sitemap.xml, robots.txt e JSON-LD Organization
+
 ## Deploy
 
 Qualquer host estático:
 
-- **GitHub Pages**: Settings → Pages → Deploy from branch → pasta `/web`
-- **Vercel / Netlify**: apontar para a pasta `web/`
-- **Teste local**: abrir `web/index.html` no navegador
+- **GitHub Pages**: Settings → Pages → Deploy from branch → pasta `/docs`
+- **Vercel / Netlify**: apontar para a pasta `docs/`
+- **Teste local**: abrir `docs/index.html` no navegador
 
 ## Personalização
 
