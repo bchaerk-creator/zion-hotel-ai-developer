@@ -109,6 +109,16 @@ nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
   text-align:center;padding:180px 6vw 140px;position:relative;overflow:hidden;
 }
 .hero .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.herovideo{
+  position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  opacity:0;transition:opacity 2s ease;pointer-events:none;
+}
+.herovideo-overlay{
+  position:absolute;inset:0;background:rgba(4,6,5,.55);
+  opacity:0;transition:opacity 2s ease;pointer-events:none;
+}
+.hero.hasvideo .herovideo,.hero.hasvideo .herovideo-overlay{opacity:1}
+.hero.hasvideo .terrain{opacity:.12}
 .hero > *{position:relative}
 .hero .kicker{margin-bottom:56px}
 .hero h1{
@@ -428,6 +438,11 @@ footer .row a:hover{color:var(--cream)}
 
 <!-- HERO -->
 <header class="hero" id="top">
+  <video class="herovideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
+    <source src="assets/media/hero.webm" type="video/webm">
+    <source src="assets/media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="herovideo-overlay" aria-hidden="true"></div>
   <svg class="terrain" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".14">
       <path d="M-90,620 C220,560 380,660 620,600 S1050,520 1530,600"/>
@@ -829,6 +844,15 @@ const cio = new IntersectionObserver((entries)=>{
   });
 },{threshold:.5});
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
+
+// vídeo do hero: liga sozinho quando web/assets/media/hero.mp4 existir
+const hv=document.querySelector('.herovideo');
+if(hv){
+  const on=()=>document.querySelector('.hero').classList.add('hasvideo');
+  if(hv.readyState>=2) on();
+  hv.addEventListener('loadeddata',on);
+  hv.addEventListener('canplay',on);
+}
 
 // CTA persistente após o hero
 const sticky=document.querySelector('.stickycta');
