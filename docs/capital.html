@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zion Capital · O cardápio de destinos investíveis</title>
+<meta name="description" content="Zion Capital: o marketplace de projetos da Zion Hotel Group International. Ofertas de dívida estruturada, equity e cotas de experiência em destinos turísticos, com padrão único de análise.">
+<meta property="og:title" content="Zion Capital · O cardápio de destinos investíveis">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/og.jpg">
+<meta property="og:url" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capital.html">
+<link rel="canonical" href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capital.html">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23040605'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23FEF5F0' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
+<link rel="preload" href="assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/aventa.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/cormorant-italic.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Aventa';src:url(assets/fonts/aventa.woff2) format('woff2');font-weight:100 900;font-display:swap;}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/cormorant.woff2) format('woff2');font-weight:300 700;font-display:swap;}
+@font-face{font-family:'Cormorant Garamond';src:url(assets/fonts/cormorant-italic.woff2) format('woff2');font-weight:300 700;font-style:italic;font-display:swap;}
+:root{--black:#040605;--green:#1B2117;--cream:#FEF5F0;--sand:#DED6BF;--earth:#8B714E}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Aventa','DM Sans',sans-serif;background:var(--black);color:var(--cream);font-weight:400;line-height:1.9;-webkit-font-smoothing:antialiased}
+::selection{background:var(--earth);color:var(--cream)}
+.wrap{max-width:1240px;margin:0 auto;padding:0 4vw}
+.label{font-weight:300;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--sand)}
+.section{padding:130px 0}
+.light{background:var(--cream);color:var(--green)}
+.light .label{color:var(--earth)}
+.sec-head{margin-bottom:72px}
+.sec-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(30px,4.2vw,50px);line-height:1.25}
+.sec-head h2 em{font-style:italic}
+.splitword{display:flex;align-items:center;gap:24px;font-weight:200;text-transform:uppercase;font-size:clamp(13px,1.4vw,16px);letter-spacing:.5em;color:var(--sand);margin-bottom:30px}
+.splitword .line{flex:1;height:1px;background:var(--cream);opacity:.3;min-width:40px}
+.light .splitword .line{background:var(--green);opacity:.35}
+.light .splitword{color:var(--earth)}
+.fade{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
+.fade.vis{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}.terrain g{animation:none!important}}
+@keyframes drift{from{transform:translateX(0)}to{transform:translateX(-46px)}}
+.terrain g{animation:drift 26s ease-in-out infinite alternate}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(4,6,5,.82);backdrop-filter:blur(10px);border-bottom:1px solid rgba(254,245,240,.07)}
+nav .bar{max-width:1240px;margin:0 auto;padding:20px 4vw;display:flex;align-items:center;justify-content:space-between;gap:24px}
+nav .brand{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--cream);text-decoration:none}
+nav .links{display:flex;gap:30px;align-items:center}
+nav .links a{font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);text-decoration:none;transition:color .4s}
+nav .links a:hover{color:var(--cream)}
+nav .links a.navcta{border:1px solid rgba(139,113,78,.75);padding:11px 24px;color:var(--cream);transition:background .4s,border-color .4s}
+nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
+@media(max-width:960px){nav .links a:not(.navcta){display:none}}
+.cta{display:inline-block;padding:17px 52px;border:1px solid rgba(139,113,78,.75);color:var(--cream);font-weight:400;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;text-decoration:none;transition:background .5s,border-color .5s,color .5s;cursor:pointer;background:none}
+.cta:hover{background:var(--earth);border-color:var(--earth)}
+.cta.solid{background:var(--earth);border-color:var(--earth)}
+.cta.solid:hover{background:transparent}
+.light .cta{color:var(--green)}
+.light .cta:hover{color:var(--cream)}
+
+/* hero */
+.hero{min-height:86vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:190px 6vw 120px;position:relative;overflow:hidden}
+.hero .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.hero > *{position:relative}
+.hero .kicker{margin-bottom:48px}
+.hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,6.6vw,88px);line-height:1.15;max-width:980px;margin-bottom:40px}
+.hero h1 em{font-style:italic}
+.hero .sub{font-weight:300;font-size:clamp(13px,1.5vw,16px);line-height:2.2;max-width:600px;color:var(--sand);margin-bottom:64px}
+
+/* filtros */
+.filters{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:56px}
+.filters button{padding:13px 30px;border:1px solid rgba(254,245,240,.2);background:none;color:var(--sand);font-family:'Aventa',sans-serif;font-weight:300;font-size:10px;letter-spacing:.28em;text-transform:uppercase;cursor:pointer;transition:all .4s}
+.filters button:hover{border-color:var(--earth);color:var(--cream)}
+.filters button.on{background:var(--earth);border-color:var(--earth);color:var(--cream)}
+
+/* carrossel */
+.rail-wrap{position:relative}
+.rail{display:flex;gap:28px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 4px 28px;scrollbar-width:thin;scrollbar-color:var(--earth) transparent}
+.rail::-webkit-scrollbar{height:4px}
+.rail::-webkit-scrollbar-thumb{background:var(--earth)}
+.card{scroll-snap-align:start;flex:0 0 400px;max-width:88vw;border:1px solid rgba(254,245,240,.12);background:rgba(254,245,240,.02);display:flex;flex-direction:column;transition:border-color .4s}
+.card:hover{border-color:rgba(139,113,78,.8)}
+.card .top{padding:30px 34px 0;display:flex;justify-content:space-between;align-items:center;gap:12px}
+.badge{font-weight:400;font-size:9px;letter-spacing:.26em;text-transform:uppercase;padding:7px 14px;border:1px solid var(--earth);color:var(--sand)}
+.badge.open{background:var(--earth);color:var(--cream)}
+.badge.soon{opacity:.65}
+.card .mod{font-weight:300;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--earth)}
+.card h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:27px;line-height:1.3;padding:22px 34px 4px}
+.card .dest{padding:0 34px 22px;font-weight:300;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--sand)}
+.card .big{padding:22px 34px;border-top:1px solid rgba(254,245,240,.1)}
+.card .big .v{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:44px;line-height:1.1}
+.card .big .k{font-weight:300;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand)}
+.card .grid{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid rgba(254,245,240,.1)}
+.card .grid div{padding:18px 22px 18px 34px;border-bottom:1px solid rgba(254,245,240,.08)}
+.card .grid div:nth-child(odd){border-right:1px solid rgba(254,245,240,.08)}
+.card .grid .v{font-weight:500;font-size:14px;letter-spacing:.02em;display:block}
+.card .grid .k{font-weight:300;font-size:8.5px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand)}
+.card .via{padding:20px 34px;font-weight:300;font-size:11.5px;line-height:2;color:var(--sand);border-bottom:1px solid rgba(254,245,240,.08);flex:1}
+.card .via strong{color:var(--cream);font-weight:500}
+.card .acts{display:flex;gap:12px;padding:26px 34px 30px;flex-wrap:wrap}
+.card .acts a{flex:1;text-align:center;padding:14px 10px;font-size:9px;letter-spacing:.24em}
+.card.pipe{opacity:.85}
+.card.pipe .big .v{color:var(--sand)}
+
+/* padrão de análise */
+.std .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid rgba(27,33,23,.14)}
+@media(max-width:900px){.std .grid{grid-template-columns:1fr}}
+.std .cell{padding:44px 40px;border-bottom:1px solid rgba(27,33,23,.14);border-right:1px solid rgba(27,33,23,.14)}
+.std .cell:nth-child(3n){border-right:none}
+@media(max-width:900px){.std .cell{border-right:none}}
+.std .n{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:26px;color:var(--earth);display:block;margin-bottom:10px}
+.std h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:21px;margin-bottom:10px}
+.std p{font-weight:300;font-size:12.5px;line-height:2;color:rgba(27,33,23,.72)}
+
+/* comparativo */
+.comp{overflow-x:auto}
+.comp table{width:100%;border-collapse:collapse;min-width:760px}
+.comp th,.comp td{padding:20px 22px;text-align:left;border-bottom:1px solid rgba(254,245,240,.1);font-weight:300;font-size:13px;line-height:1.7}
+.comp th{font-weight:300;font-size:9.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--earth);border-bottom:1px solid rgba(254,245,240,.25)}
+.comp td:first-child{font-weight:300;font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--sand)}
+.comp td strong{font-weight:500}
+
+/* disclaimer */
+.disc{padding:70px 0;border-top:1px solid rgba(254,245,240,.07)}
+.disc p{font-weight:300;font-size:10.5px;line-height:2.1;color:var(--sand);opacity:.7;max-width:900px}
+
+/* final */
+.final{text-align:center;padding:170px 6vw;position:relative;overflow:hidden}
+.final .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.4;pointer-events:none}
+.final > *{position:relative}
+.final h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(32px,5vw,60px);line-height:1.3;margin-bottom:44px}
+.final h2 em{font-style:italic}
+.final p{max-width:540px;margin:0 auto 64px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
+.final .row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid rgba(254,245,240,.08);padding:64px 0}
+footer .frow{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand)}
+footer a{color:var(--sand);text-decoration:none;transition:color .4s}
+footer a:hover{color:var(--cream)}
+</style>
+</head>
+<body>
+
+<nav><div class="bar">
+<a class="brand" href="index.html">Zion</a>
+<div class="links">
+<a href="development.html">Development</a>
+<a href="management.html">Management</a>
+<a href="collection.html">Collection</a>
+<a href="capital.html" style="color:var(--cream)">Capital</a>
+<a href="bruno.html">Founder</a>
+<a class="navcta" href="index.html#contato">Sala de Investidores</a>
+</div></div></nav>
+
+<header class="hero">
+<svg class="terrain" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".14">
+<path d="M-90,620 C220,560 380,660 620,600 S1050,520 1530,600"/><path d="M-90,660 C240,600 400,700 640,640 S1070,560 1530,640"/>
+<path d="M-90,700 C260,645 420,740 660,680 S1090,605 1530,680"/><path d="M-90,580 C200,520 360,615 600,560 S1030,480 1530,560"/>
+<path d="M-90,160 C300,220 500,120 780,180 S1200,260 1530,180" opacity=".55"/><path d="M-90,120 C280,180 480,85 760,140 S1180,215 1530,140" opacity=".55"/>
+</g></svg>
+<p class="label kicker fade">Zion Hotel Group International · Plataforma de Investimentos</p>
+<h1 class="fade">Zion Capital: o cardápio de <em>destinos investíveis</em>.</h1>
+<p class="sub fade">Cada projeto da plataforma é estruturado, analisado e apresentado no mesmo padrão: destino, modalidade, captação, retorno e viabilidade. O investidor compara e escolhe. Como um cardápio de incorporação turística.</p>
+<a class="cta solid fade" href="#projetos">Ver os Projetos</a>
+</header>
+
+<!-- CARDÁPIO -->
+<section class="section" id="projetos">
+<div class="wrap">
+<div class="sec-head fade">
+<div class="splitword"><span>O Cardápio</span><span class="line"></span></div>
+<h2>Projetos em captação e <em>em estruturação</em>.</h2>
+</div>
+<div class="filters fade" id="filters">
+<button class="on" data-f="all">Todos</button>
+<button data-f="divida">Dívida</button>
+<button data-f="equity">Equity</button>
+<button data-f="uso">Experiência</button>
+<button data-f="pipe">Pipeline</button>
+</div>
+<div class="rail-wrap fade">
+<div class="rail" id="rail"></div>
+</div>
+</div>
+</section>
+
+<!-- PADRÃO DE ANÁLISE -->
+<section class="section light std">
+<div class="wrap">
+<div class="sec-head fade">
+<div class="splitword"><span>O Padrão</span><span class="line"></span></div>
+<h2>Toda oferta responde às mesmas <em>seis perguntas</em>.</h2>
+</div>
+<div class="grid">
+<div class="cell fade"><span class="n">01</span><h3>Qual é o destino?</h3><p>Território, vocação e Zion Score™. Nenhum projeto entra no cardápio sem diagnóstico e leitura territorial concluídos.</p></div>
+<div class="cell fade"><span class="n">02</span><h3>Qual é a modalidade?</h3><p>Dívida estruturada, participação societária (equity), cota de experiência ou instrumento híbrido. Cada modalidade tem perfil de risco e retorno próprio.</p></div>
+<div class="cell fade"><span class="n">03</span><h3>Quanto capta e qual o ticket?</h3><p>Valor total da rodada, ticket mínimo de entrada e cronograma de tranches. Transparência sobre o uso de cada real captado.</p></div>
+<div class="cell fade"><span class="n">04</span><h3>Qual é o retorno?</h3><p>Taxa fixa, distribuição de resultados ou benefício de uso, sempre com cenários conservador, base e otimista. Nunca um número solto.</p></div>
+<div class="cell fade"><span class="n">05</span><h3>Qual é a estrutura?</h3><p>Veículo, garantias, carência, amortização e mecânica de saída, com os limites de cada garantia declarados com transparência.</p></div>
+<div class="cell fade"><span class="n">06</span><h3>A conta para em pé?</h3><p>Viabilidade econômico-financeira com benchmarks de operação real: ADR, ocupação, margem EBITDA, cobertura de dívida e sensibilidade.</p></div>
+</div>
+</div>
+</section>
+
+<!-- COMPARATIVO -->
+<section class="section comp-sec">
+<div class="wrap">
+<div class="sec-head fade">
+<div class="splitword"><span>Comparativo</span><span class="line"></span></div>
+<h2>Três formas de entrar no <em>mesmo programa</em>.</h2>
+</div>
+<div class="comp fade">
+<table>
+<tr><th></th><th>Dívida Estruturada</th><th>Equity · SCP</th><th>Experience Club</th></tr>
+<tr><td>Perfil</td><td>Renda fixa com prêmio</td><td>Sócio da plataforma</td><td>Viajante estratégico</td></tr>
+<tr><td>Retorno</td><td><strong>20% a.a. fixo</strong></td><td><strong>13 a 20% a.a. estimado</strong> + saída por múltiplo (MOIC até ~2,8x)</td><td><strong>7 noites/ano por 5 anos</strong> (R$ 857/noite, ~45% abaixo do mercado)</td></tr>
+<tr><td>Ticket</td><td>Sob consulta por tranche</td><td>R$ 30.000 por cota</td><td>R$ 30.000 (entrada parcelada a partir de R$ 3.000)</td></tr>
+<tr><td>Garantia / lastro</td><td>Cessão fiduciária de recebíveis</td><td>Participação de 49% nos resultados</td><td>Direito de uso em rede operante</td></tr>
+<tr><td>Horizonte</td><td>Carência 24m + amortização gradual</td><td>5 rodadas anuais até o evento de saída</td><td>Ciclo de 5 anos, renovável</td></tr>
+<tr><td>Regulação</td><td>Instrumento privado</td><td>Rota CVM 88 via plataforma registrada</td><td>Não é valor mobiliário</td></tr>
+</table>
+</div>
+</div>
+</section>
+
+<!-- DISCLAIMER -->
+<div class="disc"><div class="wrap">
+<p class="fade">As informações desta página têm caráter exclusivamente institucional e indicativo, baseadas nos memorandos oficiais de cada programa, e não constituem oferta pública de valores mobiliários. Projeções refletem premissas de mercado e desempenho histórico das operações validadas da Zion, não configurando garantia de resultados futuros. O acesso aos business plans completos é restrito a investidores cadastrados, mediante confidencialidade. A decisão de investir deve ser precedida de análise independente, com assessoria jurídica, contábil e financeira própria.</p>
+</div></div>
+
+<!-- CTA FINAL -->
+<section class="final" id="acesso">
+<svg class="terrain" viewBox="0 0 1440 700" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
+<path d="M-90,520 C260,460 460,580 740,520 S1190,440 1530,520"/><path d="M-90,570 C280,515 480,625 760,570 S1210,495 1530,570"/>
+<path d="M-90,470 C240,415 440,525 720,470 S1170,395 1530,470"/><path d="M-90,130 C280,185 480,90 760,145 S1180,220 1530,145" opacity=".6"/>
+</g></svg>
+<p class="label fade" style="margin-bottom:40px">Acesso restrito a investidores cadastrados</p>
+<h2 class="fade">Escolha o seu lugar<br>no <em>próximo destino</em>.</h2>
+<p class="fade">Cadastre-se na sala de investidores para receber os memorandos completos, ou agende uma conversa direta com a Zion Capital.</p>
+<div class="row fade">
+<a class="cta solid" href="index.html#contato">Entrar na Sala de Investidores</a>
+<a class="cta" href="https://meetings.hubspot.com/bruno-chaerk" target="_blank" rel="noopener">Agendar Conversa</a>
+</div>
+</section>
+
+<footer><div class="wrap frow">
+<span>Zion Capital · Zion Hotel Group International</span>
+<span>Florianópolis · Barcelona</span>
+<a href="index.html">Grupo</a>
+<a href="https://www.instagram.com/brunochaerkofc" target="_blank" rel="noopener">@brunochaerkofc</a>
+<span>© 2026 · Desenvolvemos Destinos</span>
+</div></footer>
+
+<script>
+// ============ CARDÁPIO DE PROJETOS ============
+// Para adicionar um projeto, acrescente um objeto neste array seguindo o Padrão Zion:
+// tipo: 'divida' | 'equity' | 'uso' | 'pipe'
+const PROJETOS = [
+  {
+    tipo: 'divida', status: 'Captação aberta', aberta: true,
+    modalidade: 'Dívida Estruturada · Crédito',
+    nome: 'Expansão Zion Collection · Fase 1',
+    destino: '23 destinos · Brasil · 138 a 276 unidades',
+    captacao: 'R$ 80,0M', captacaoLabel: 'Captação total · Fase 1',
+    m: [
+      ['20% a.a. fixo', 'Remuneração'],
+      ['Sob consulta', 'Ticket por tranche'],
+      ['24 meses', 'Carência (juros)'],
+      ['Cessão de recebíveis', 'Garantia'],
+    ],
+    via: 'Viabilidade: ADR validado <strong>R$ 1.571</strong> · Margem EBITDA <strong>~39%</strong> · Cobertura do serviço da dívida <strong>1,23x a 1,54x</strong> · Reserva de carência pré-captada de R$ 13,3M.'
+  },
+  {
+    tipo: 'equity', status: 'Rodada 1 de 5', aberta: true,
+    modalidade: 'Equity · SCP',
+    nome: 'Zion Collection · Participação Societária',
+    destino: '23 destinos · Brasil · 49% dos resultados',
+    captacao: 'R$ 66,7M', captacaoLabel: 'Captação total · 5 rodadas anuais',
+    m: [
+      ['13 a 20% a.a.', 'IRR estimado'],
+      ['R$ 30.000', 'Ticket por cota'],
+      ['MOIC até ~2,8x', 'Saída por múltiplo'],
+      ['SCP · rota CVM 88', 'Estrutura'],
+    ],
+    via: 'Distribuição estimada aos sócios: <strong>R$ 5,58M a R$ 9,30M/ano</strong> em regime (cenários 45/60/75% de ocupação) · Saída por múltiplo de EBITDA (7x a 11x) · Quem entra cedo compra mais participação.'
+  },
+  {
+    tipo: 'uso', status: 'Vendas abertas', aberta: true,
+    modalidade: 'Cota de Experiência · Direito de Uso',
+    nome: 'Zion Glamping Experience Club',
+    destino: 'Acesso rotativo a 23 destinos · Brasil',
+    captacao: 'R$ 30 mil', captacaoLabel: 'Cota · ciclo de 5 anos, renovável',
+    m: [
+      ['7 noites/ano', 'Benefício'],
+      ['R$ 857/noite', '~45% abaixo do ADR'],
+      ['A partir de R$ 3.000', 'Entrada parcelada'],
+      ['~R$ 1.100/ano', 'Manutenção'],
+    ],
+    via: 'Rede em operação desde <strong>2020</strong> (Urubici e Florianópolis) · ADR de mercado <strong>R$ 1.571</strong> · Não é valor mobiliário: é direito real de hospedagem com prioridade de reserva.'
+  },
+  {
+    tipo: 'pipe', status: 'Em estruturação', aberta: false,
+    modalidade: 'Development · Pipeline',
+    nome: 'Rota dos Milagres',
+    destino: 'Litoral Norte · Alagoas',
+    captacao: 'Em breve', captacaoLabel: 'Estruturação em andamento',
+    m: [
+      ['MOU assinado', 'Status'],
+      ['Resort & studios', 'Tipologia'],
+      ['Em análise', 'Zion Score™'],
+      ['2026', 'Previsão de abertura'],
+    ],
+    via: 'Destino em estruturação pela Zion Hotel Development. Business plan e oferta serão publicados no cardápio após a conclusão da viabilidade e da estrutura societária.'
+  },
+  {
+    tipo: 'pipe', status: 'Em estruturação', aberta: false,
+    modalidade: 'Development · Pipeline',
+    nome: 'Marchese di Ivrea',
+    destino: 'Serra Catarinense · SC',
+    captacao: 'Em breve', captacaoLabel: 'Viabilidade em andamento',
+    m: [
+      ['Viabilidade', 'Fase atual'],
+      ['Mountain Collection', 'Vocação'],
+      ['Em análise', 'Zion Score™'],
+      ['2026', 'Previsão de abertura'],
+    ],
+    via: 'Refúgio de altitude candidato à Mountain Collection. Estudo de viabilidade em curso pela metodologia Pirâmide Invertida©.'
+  },
+];
+
+const rail = document.getElementById('rail');
+function card(p){
+  const badge = p.aberta ? 'badge open' : 'badge soon';
+  const mm = p.m.map(x=>`<div><span class="v">${x[0]}</span><span class="k">${x[1]}</span></div>`).join('');
+  const acts = p.aberta
+    ? `<a class="cta" href="index.html#contato">Solicitar Business Plan</a><a class="cta solid" href="https://meetings.hubspot.com/bruno-chaerk" target="_blank" rel="noopener">Falar com a Zion</a>`
+    : `<a class="cta" href="index.html#contato">Entrar na Lista</a>`;
+  return `<article class="card ${p.tipo==='pipe'?'pipe':''}" data-t="${p.tipo}">
+    <div class="top"><span class="mod">${p.modalidade}</span><span class="${badge}">${p.status}</span></div>
+    <h3>${p.nome}</h3>
+    <div class="dest">${p.destino}</div>
+    <div class="big"><span class="v">${p.captacao}</span><span class="k">${p.captacaoLabel}</span></div>
+    <div class="grid">${mm}</div>
+    <div class="via">${p.via}</div>
+    <div class="acts">${acts}</div>
+  </article>`;
+}
+function render(f){
+  rail.innerHTML = PROJETOS.filter(p=>f==='all'||p.tipo===f).map(card).join('');
+}
+render('all');
+document.getElementById('filters').addEventListener('click',e=>{
+  if(e.target.tagName!=='BUTTON')return;
+  document.querySelectorAll('#filters button').forEach(b=>b.classList.remove('on'));
+  e.target.classList.add('on');
+  render(e.target.dataset.f);
+});
+
+// fade-in
+const io=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.fade').forEach(el=>io.observe(el));
+</script>
+<script async defer src="https://js.hs-scripts.com/51284703.js" id="hs-script-loader"></script>
+</body>
+</html>
