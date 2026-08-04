@@ -35,6 +35,12 @@ PREFEITO INAUGURA PRAÇA E ESCOLA FEITAS COM O LIXO DA PRÓPRIA CIDADE
 CASE POLÍTICO → PRÓXIMO MUNICÍPIO ASSINA → O ECOSSISTEMA REPLICA
 ```
 
+## 1.1 O modelo já foi provado em bolsa (benchmark Orizon)
+
+A tese não é aposta: a **Orizon Valorização de Resíduos (B3: ORVR3)** vale ~R$ 7 bilhões fazendo exatamente esse ciclo em megaescala — 18 ecoparques em 12 estados, resíduo de 40 milhões de brasileiros, receita 2025 de R$ 1,05 bilhão com **margem EBITDA de 48%**, 1,1 milhão de créditos de carbono vendidos em 2024 (750 mil comprados pelo Google) e gate fee médio de mercado de **R$ 84,80/tonelada**. O BNDES já financia a tese (R$ 450 milhões aprovados para biometano).
+
+O espaço da Zion é o flanco que a Orizon não alcança: municípios de 30–150 mil habitantes, contrapartida visível em patrimônio público, marca e narrativa política. Dossiê completo: `benchmark-orizon.md`.
+
 ## 2. Arquitetura do Ecossistema (5 camadas)
 
 | Camada | O que é | Quem opera |
@@ -142,7 +148,7 @@ Esta é a parte mais importante do plano. A venda para prefeitura não é uma ve
 
 **Regra de ouro:** nunca chegar ao prefeito sem um secretário já convencido. O secretário apresenta, a Zion conduz.
 
-## 2. O roteiro ECROI da apresentação (10 slides, 20 minutos)
+## 2. O roteiro ECROI da apresentação (11 páginas, 20 minutos)
 
 ### Slides 1–2 — ESPELHAMENTO (o problema dele, com os números dele)
 
@@ -176,7 +182,8 @@ A frase de virada:
 
 ### Slides 7–9 — INEVITABILIDADE (números, método, garantias)
 
-- **Comparativo direto:** custo atual do aterro vs. gate fee CIRO (sempre menor) + contrapartida em mobiliário (valor anual estimado em R$)
+- **Prova de mercado (página dedicada):** "Existe uma empresa na bolsa valendo R$ 7 bilhões fazendo isso para 40 milhões de brasileiros nas capitais (Orizon, ORVR3 — margem EBITDA 48%, créditos comprados pelo Google). Nós trazemos o mesmo modelo para a sua cidade — com uma diferença: aqui, o lixo volta em forma de praça."
+- **Comparativo direto:** custo atual do aterro vs. gate fee CIRO (sempre menor; referência de mercado: R$ 84,80/t Orizon) + contrapartida em mobiliário (valor anual estimado em R$)
 - **O método em 6 etapas** (Parte II resumida em uma linha do tempo visual)
 - **Quem financia:** Fundo Clima/BNDES, Finep, PAC — o município não investe CAPEX; a planta é privada
 - **O que o município assina primeiro:** um protocolo de intenções **sem custo e sem exclusividade** — risco zero para começar

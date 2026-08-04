@@ -27,6 +27,8 @@ O modelo com as prefeituras é circular e político ao mesmo tempo: **a prefeitu
 
 O lixo orgânico é o único "insumo" do mundo que o fornecedor paga para entregar.
 
+**Validação de mercado:** a Orizon (B3: ORVR3) vale ~R$ 7 bilhões monetizando exatamente essa tese em megaescala — receita de R$ 1,05 bi, margem EBITDA de 48%, gate fee médio de R$ 84,80/t e créditos de carbono vendidos até para o Google. O BNDES já aprovou R$ 450 milhões para biometano dela: a porta de financiamento que vamos usar já está aberta. Dossiê: `benchmark-orizon.md`.
+
 ---
 
 ## 3. O Modelo de Negócio
