@@ -60,9 +60,9 @@ Aproveitamento → Compostagem → Bioinsumos → Alimentos → Biomassa/Energia
 Fluxo: Recolección → Separación → **Trazabilidad** → Clasificación, com 3 saídas:
 A) Aproveitáveis inorgânicos → industrialização · B) Orgânicos → valorização biológica · C) Não aproveitáveis → disposição final controlada
 
-**Municípios já atendidos:**
-- Bolívia: Porongo, Colomi, Cotoca, **Sacaba**, Warnes
-- **Brasil: Senador Canedo (GO) e Pirenópolis (GO)** ← cabeça de ponte brasileira já existe
+**Municípios no modelo:**
+- Bolívia: Porongo, Colomi, Cotoca, **Sacaba**, Warnes (operação ativa)
+- Brasil: Senador Canedo (GO) e Pirenópolis (GO) — **relações em estruturação; as operações brasileiras AINDA NÃO FORAM INAUGURADAS** (correção de Bruno, ago/2026)
 
 Resultados declarados do modelo: menos disposição final, mais matéria-prima, novos produtos, mais indústria, emprego verde, desenvolvimento territorial e **dados para financiamento climático**.
 
@@ -100,8 +100,8 @@ Pirâmide de sustentabilidade em 6 níveis: ISO 9001 → ISO 14001 → medição
 
 ## 10. IMPLICAÇÕES PARA O ZION ECOSYSTEM (o que muda)
 
-1. **A tese sai de "promissora" para "operante".** Não estamos propondo um modelo: estamos trazendo para o Brasil, com marca e captação Zion, um modelo com 23 anos de operação, 2 municípios brasileiros já ativos e portfólio industrial completo.
-2. **A cabeça de ponte brasileira já existe em Goiás** (Senador Canedo e Pirenópolis). Decisão estratégica a tomar: âncora em SC/Floripa (base Zion) ou GO (base Ecogrupo) — ou dois pilotos paralelos.
+1. **A tese sai de "promissora" para "operante" — na Bolívia.** Estamos trazendo para o Brasil, com marca e captação Zion, um modelo com 23 anos de operação validada e portfólio industrial completo. No Brasil, nada foi inaugurado ainda: **a primeira operação brasileira da Ecogrupo será inaugurada pela representação Zion.**
+2. **Goiás é pipeline, não operação:** Senador Canedo e Pirenópolis são relações municipais em estruturação, sem planta inaugurada. Decisão estratégica: assumir e acelerar esse pipeline via representação, ou ancorar em SC/Floripa (base Zion) — ou ambos.
 3. **O portfólio de produtos do CIRO se expande**: além de mobiliário e composto — tubos, geoceldas, geomembranas, casas (viviendas), domos de glamping, naves hidropônicas, proteína BSF, biodiesel. As "carteiras e bancos" são a porta política; a fábrica é muito maior.
 4. **Vive Glamping × Zion Glamping**: os domos da Ecogrupo feitos de material reciclado podem virar a linha de unidades habitacionais "Resíduo Zero by Zion" — o glamping construído do lixo da própria região. Produto único no mundo em narrativa.
 5. **O caso Sacaba é o modelo financeiro a replicar**: "mesmo gasto atual, sem aumento de custo, redirecionado da disposição para a industrialização" — argumento ainda mais forte que o desconto de 15% no gate fee.

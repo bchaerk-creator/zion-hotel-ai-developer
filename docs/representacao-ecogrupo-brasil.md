@@ -16,11 +16,11 @@ Não é distribuição de produto. É **master representation de um modelo indus
 | A Ecogrupo entrega | A Zion entrega |
 |---|---|
 | 23 anos de tecnologia e operação validada | Estruturação de negócios e captação no Brasil (Fundo Clima, Finep, PAC, CVM 88) |
-| Playbook municipal Zero Waste (5 municípios BOL + 2 BR) | Relação institucional com prefeituras e método de venda política (ECROI) |
+| Playbook municipal Zero Waste (5 municípios na Bolívia; 2 em pipeline no BR) | Relação institucional com prefeituras e método de venda política (ECROI) |
 | Portfólio industrial completo (tubos a domos) | Marca, narrativa e distribuição premium (rede Zion, selo Resíduo Zero) |
 | Engenharia de planta e operação | Rede hoteleira como cliente âncora B2B e vitrine |
 | Hoja de ruta com doações ao município | Engenharia jurídica e societária brasileira (SPEs, consórcios, PPPs) |
-| Presença existente em Goiás (Senador Canedo, Pirenópolis) | Presença em SC (Floripa) e AL (Rota dos Milagres) + pipeline de 2.440 leads |
+| Pipeline iniciado em Goiás (Senador Canedo, Pirenópolis — ainda não inaugurados) | Presença em SC (Floripa) e AL (Rota dos Milagres) + pipeline de 2.440 leads |
 
 A Ecogrupo não precisa aprender o Brasil. A Zion não precisa inventar a tecnologia. Cada um entra com o ativo que o outro levaria uma década para construir.
 
@@ -62,11 +62,13 @@ ZION ECOSYSTEM BRASIL LTDA  ← veículo da representação
 ## 5. O que muda no discurso (posicionamento)
 
 **Antes:** "Zion e Ecogrupo formam uma joint venture para criar um modelo de economia circular."
-**Agora:** **"A Zion é a representante oficial no Brasil do maior grupo de economia circular da Bolívia — 23 anos de operação, mais de 500 empregos, presença em 2 países e o modelo Zero Waste já rodando em 7 municípios, incluindo 2 brasileiros."**
+**Agora:** **"A Zion é a representante oficial no Brasil do maior grupo de economia circular da Bolívia — 23 anos de operação, mais de 500 empregos e o modelo Zero Waste operando em 5 municípios bolivianos, agora chegando ao Brasil."**
 
-Frase para prefeituras: *"Não estamos propondo uma ideia. Estamos trazendo para a sua cidade uma indústria que opera há 23 anos e já entrega casas, praças, alimentos e energia a municípios como contrapartida do lixo."*
+⚠️ **Regra de honestidade comercial:** as operações brasileiras ainda não foram inauguradas. Nunca afirmar que o modelo "já roda no Brasil". A formulação correta: *"operação validada há 23 anos na Bolívia, com entrada no Brasil em estruturação"* — e o município que assinar conosco será **o primeiro do Brasil**, com todo o valor simbólico de pioneirismo que isso carrega.
 
-Frase para Finep/BNDES: *"Risco tecnológico mitigado por 23 anos de operação industrial, 300 t/mês processadas e modelo replicado em 7 municípios de 2 países, com parceria acadêmica ativa em 3 universidades."*
+Frase para prefeituras: *"Esta indústria opera há 23 anos na Bolívia entregando casas, praças, alimentos e energia aos municípios como contrapartida do lixo. Ela está chegando ao Brasil agora — e a sua cidade pode ser a primeira do país a inaugurar o modelo."*
+
+Frase para Finep/BNDES: *"Risco tecnológico mitigado por 23 anos de operação industrial na Bolívia, 300 t/mês processadas e modelo replicado em 5 municípios, com parceria acadêmica ativa em 3 universidades — projeto de nacionalização da tecnologia para o Brasil."*
 
 ## 6. Roadmap da formalização
 
@@ -75,7 +77,7 @@ Frase para Finep/BNDES: *"Risco tecnológico mitigado por 23 anos de operação 
 | 1. MOU de representação | Imediato | Termo com escopo das 4 frentes, exclusividade condicionada e confidencialidade |
 | 2. Constituição do veículo | 30 dias | Zion Ecosystem Brasil Ltda (CNAEs: representação + tratamento de resíduos) |
 | 3. Acordo definitivo | 60–90 dias | Contrato de representação master + licenciamento de tecnologia + acordo de sócios |
-| 4. Alinhamento Goiás | 30 dias | Visita a Senador Canedo/Pirenópolis: entender contratos atuais e definir se viram carteira Zion |
+| 4. Alinhamento Goiás | 30 dias | Mapear o estágio real do pipeline de Senador Canedo/Pirenópolis (nada inaugurado): o que existe assinado, o que falta, e se a representação Zion assume a condução |
 | 5. Proposta Finep | **31/08/2026** | Submeter com a Ecogrupo como parceira tecnológica do projeto cooperado |
 | 6. Kit comercial Brasil | 45 dias | Deck da representação, tabela de produtos em R$, catálogo Resíduo Zero by Zion |
 
@@ -85,7 +87,8 @@ Frase para Finep/BNDES: *"Risco tecnológico mitigado por 23 anos de operação 
 |---|---|
 | Exclusividade condicionada a metas irreais | Metas progressivas ano a ano, revisadas pelo comitê |
 | Dependência tecnológica sem transferência | Licenciamento por planta + treinamento de equipe brasileira previsto em contrato |
-| Conflito com a operação existente em GO | Passo 4 do roadmap: integrar (ou delimitar) os municípios goianos antes de assinar o definitivo |
+| Ambiguidade sobre o pipeline de GO (não inaugurado) | Passo 4 do roadmap: mapear o estágio real e definir quem conduz, antes de assinar o definitivo |
+| Prometer no Brasil histórico que só existe na Bolívia | Regra de honestidade comercial (seção 5): "validado na Bolívia, chegando ao Brasil" — o pioneirismo vira argumento, não passivo |
 | Câmbio/logística Bolívia→Brasil | Fabricação local licenciada o quanto antes; importar máquina, não produto |
 | Marca: quem aparece? | Prefeituras e produtos: co-branding "Zion Ecosystem powered by Ecogrupo"; glamping: marca Zion com selo técnico Ecogrupo |
 

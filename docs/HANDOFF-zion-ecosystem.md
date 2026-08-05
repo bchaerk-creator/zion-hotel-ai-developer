@@ -20,7 +20,7 @@ O **Zion Ecosystem** é a plataforma de economia circular da Zion Hotel Group In
 
 **Holding boliviano de Cochabamba, 23+ anos, "a indústria de economia circular mais importante da Bolívia".** +300 t/mês geridas · +540 t CO2/mês mitigadas · +500 empregos · presença em 2 países. Empresas do grupo: Grow Green (hidroponia), Hydro System, Geocel, Transforma (tubos/pellets) e **Vive Glamping (domos de material reciclado — conexão direta com Zion Glamping)**. Sociedades: GrunTube (200 t plástico/mês), Alimenta (125 t alimentos/mês), Aveco (Rep. Dominicana), Parque Don Bosco (crowdfunding em naves industriais).
 
-**Fatos que mudam o jogo:** (a) o modelo Zero Waste municipal deles já opera em 5 municípios bolivianos e **2 brasileiros — Senador Canedo e Pirenópolis, GO** (cabeça de ponte no Brasil já existe); (b) a **contrapartida em doações ao município já é playbook contratual deles** (ano 1: 5 casas · ano 2: praça reciclada · ano 3: 2 t de alimentos · ano 4: energia elétrica; redução de 60–80% da disposição final); (c) o caso Sacaba é o blueprint financeiro ("mesmo gasto atual redirecionado do enterro para a industrialização, sem aumentar custo"); (d) portfólio industrial completo: tubos, geoceldas, madeira plástica, geomembranas, casas, domos, naves hidropônicas, proteína BSF, pirólise/biodiesel; (e) internacionalização 2026 mira Brasil, Costa Rica, Rep. Dominicana e Alemanha — **a JV com a Zion é o veículo da entrada no Brasil**.
+**Fatos que mudam o jogo:** (a) o modelo Zero Waste municipal deles opera em 5 municípios bolivianos; no Brasil há pipeline em estruturação em **Senador Canedo e Pirenópolis (GO) — as operações brasileiras AINDA NÃO FORAM INAUGURADAS**: a primeira inauguração do país será conduzida pela representação Zion, e o município que assinar será o pioneiro nacional; (b) a **contrapartida em doações ao município já é playbook contratual deles** (ano 1: 5 casas · ano 2: praça reciclada · ano 3: 2 t de alimentos · ano 4: energia elétrica; redução de 60–80% da disposição final); (c) o caso Sacaba é o blueprint financeiro ("mesmo gasto atual redirecionado do enterro para a industrialização, sem aumentar custo"); (d) portfólio industrial completo: tubos, geoceldas, madeira plástica, geomembranas, casas, domos, naves hidropônicas, proteína BSF, pirólise/biodiesel; (e) internacionalização 2026 mira Brasil, Costa Rica, Rep. Dominicana e Alemanha — **a JV com a Zion é o veículo da entrada no Brasil**.
 
 **Dossiê completo:** `docs/perfil-ecogrupo.md` (deck original é confidencial — não distribuir).
 
@@ -165,7 +165,8 @@ Caso ilustrativo "Cidade Modelo": gate fee R$ 128/t (−15%), desvio 70% no ano 
 3. Agenda com Secretaria de Meio Ambiente de Florianópolis (+ município da Rota dos Milagres/AL, onde há MOU)
 
 ### Decisões novas a tomar (abertas pelo deck da Ecogrupo)
-- [ ] Município âncora: SC/Grande Floripa (base Zion) vs. Goiás (Senador Canedo/Pirenópolis, onde a Ecogrupo já opera) vs. dois pilotos
+- [ ] Município âncora: SC/Grande Floripa (base Zion) vs. Goiás (Senador Canedo/Pirenópolis — pipeline Ecogrupo ainda não inaugurado) vs. dois pilotos
+- [ ] Regra de honestidade comercial em todas as peças: "23 anos validados na Bolívia, chegando ao Brasil agora" — nunca "já roda no Brasil"
 - [ ] Incorporar a hoja de ruta Ecogrupo (casas → praça → alimentos → energia) ao contrato âncora e à apresentação
 - [ ] Linha "domos Resíduo Zero": Vive Glamping fornecendo unidades para a rede Zion Glamping
 - [ ] Adotar o argumento Sacaba ("mesmo gasto, sem aumento de custo") como alternativa ao desconto de 15% no gate fee
