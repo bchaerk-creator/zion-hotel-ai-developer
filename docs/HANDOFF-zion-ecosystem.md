@@ -10,6 +10,8 @@ O **Zion Ecosystem** é a plataforma de economia circular da Zion Hotel Group In
 
 **Tese central:** "O lixo de uma cidade é o único ativo que o fornecedor paga para entregar e que pode voltar para a população em forma de patrimônio público."
 
+**POSICIONAMENTO DEFINIDO (ago/2026): a Zion é a representante oficial da Ecogrupo no Brasil.** Master representation das 4 frentes: modelo municipal Zero Waste/CIRO, portfólio de produtos, linha exclusiva "Resíduo Zero by Zion" (domos de material reciclado + operação glamping) e captação/expansão. Estrutura completa em `docs/representacao-ecogrupo-brasil.md`.
+
 **Meta de captação: R$ 10 milhões** em créditos verdes federais (blended finance).
 
 ---
@@ -33,6 +35,8 @@ Todos commitados na branch `claude/zion-ecogropo-business-plan-g5th3y`:
 | Benchmark Orizon | `docs/benchmark-orizon.md` | Dossiê da Orizon (ORVR3) como prova de mercado |
 | Apresentação editorial (11 págs) | `docs/apresentacao-prefeituras.html` + artifact `claude.ai/code/artifact/014f1532-6b49-441e-9d57-f38e0d4b683f` | Pitch para prefeituras estilo revista (Cormorant + Aventa, preto/dourado), roteiro ECROI |
 | Ebook 79 páginas | `docs/Zion_Ecosystem_Cidade_Circular.pdf` + gerador `tools/gerar_ebook_cidade_circular.py` | "CIDADE CIRCULAR — Como Transformar o Lixo do Seu Município em Patrimônio Público" |
+| Perfil Ecogrupo | `docs/perfil-ecogrupo.md` | Dossiê completo extraído do deck oficial (confidencial) |
+| Estrutura da representação | `docs/representacao-ecogrupo-brasil.md` | Modelo da representação oficial Zion × Ecogrupo no Brasil: 4 frentes, societário, roadmap de formalização |
 
 ---
 
@@ -180,6 +184,7 @@ Caso ilustrativo "Cidade Modelo": gate fee R$ 128/t (−15%), desvio 70% no ano 
 - [ ] Encomendar 2 protótipos físicos (banco + carteira) em madeira plástica
 
 ### Decisões já tomadas (não reabrir)
+- **A Zion é a representante oficial da Ecogrupo no Brasil** (master representation, 4 frentes; veículo: Zion Ecosystem Brasil Ltda; formalizar via MOU → acordo definitivo)
 - Nome da plataforma: **Zion Ecosystem** | Planta: **CIRO** | Produto de entrada: **Diagnóstico Circular** (gratuito mediante protocolo)
 - Estratégia: blended finance (nunca fonte única) · carbono como upside · venda política antes da técnica · protocolo como única meta da 1ª reunião
 - Público do ebook: prefeito + secretário + empreendedor local · Bordão municipal: "Fala comigo, prefeito!"
