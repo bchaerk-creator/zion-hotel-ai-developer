@@ -14,6 +14,14 @@ O **Zion Ecosystem** é a plataforma de economia circular da Zion Hotel Group In
 
 ---
 
+## 1.1 QUEM É A ECOGRUPO (dado real — deck oficial recebido em ago/2026)
+
+**Holding boliviano de Cochabamba, 23+ anos, "a indústria de economia circular mais importante da Bolívia".** +300 t/mês geridas · +540 t CO2/mês mitigadas · +500 empregos · presença em 2 países. Empresas do grupo: Grow Green (hidroponia), Hydro System, Geocel, Transforma (tubos/pellets) e **Vive Glamping (domos de material reciclado — conexão direta com Zion Glamping)**. Sociedades: GrunTube (200 t plástico/mês), Alimenta (125 t alimentos/mês), Aveco (Rep. Dominicana), Parque Don Bosco (crowdfunding em naves industriais).
+
+**Fatos que mudam o jogo:** (a) o modelo Zero Waste municipal deles já opera em 5 municípios bolivianos e **2 brasileiros — Senador Canedo e Pirenópolis, GO** (cabeça de ponte no Brasil já existe); (b) a **contrapartida em doações ao município já é playbook contratual deles** (ano 1: 5 casas · ano 2: praça reciclada · ano 3: 2 t de alimentos · ano 4: energia elétrica; redução de 60–80% da disposição final); (c) o caso Sacaba é o blueprint financeiro ("mesmo gasto atual redirecionado do enterro para a industrialização, sem aumentar custo"); (d) portfólio industrial completo: tubos, geoceldas, madeira plástica, geomembranas, casas, domos, naves hidropônicas, proteína BSF, pirólise/biodiesel; (e) internacionalização 2026 mira Brasil, Costa Rica, Rep. Dominicana e Alemanha — **a JV com a Zion é o veículo da entrada no Brasil**.
+
+**Dossiê completo:** `docs/perfil-ecogrupo.md` (deck original é confidencial — não distribuir).
+
 ## 2. O QUE JÁ FOI CONSTRUÍDO (entregáveis prontos)
 
 Todos commitados na branch `claude/zion-ecogropo-business-plan-g5th3y`:
@@ -151,6 +159,13 @@ Caso ilustrativo "Cidade Modelo": gate fee R$ 128/t (−15%), desvio 70% no ano 
 1. **Submissão Finep até 31/08/2026** — fechar parceria ICT (UFSC/SENAI-SC/IFSC) esta semana
 2. Constituir a SPE Zion Ecosystem Ltda (CNAE tratamento de resíduos)
 3. Agenda com Secretaria de Meio Ambiente de Florianópolis (+ município da Rota dos Milagres/AL, onde há MOU)
+
+### Decisões novas a tomar (abertas pelo deck da Ecogrupo)
+- [ ] Município âncora: SC/Grande Floripa (base Zion) vs. Goiás (Senador Canedo/Pirenópolis, onde a Ecogrupo já opera) vs. dois pilotos
+- [ ] Incorporar a hoja de ruta Ecogrupo (casas → praça → alimentos → energia) ao contrato âncora e à apresentação
+- [ ] Linha "domos Resíduo Zero": Vive Glamping fornecendo unidades para a rede Zion Glamping
+- [ ] Adotar o argumento Sacaba ("mesmo gasto, sem aumento de custo") como alternativa ao desconto de 15% no gate fee
+- [ ] Usar o histórico operacional Ecogrupo (23 anos, 2 municípios BR) como credencial técnica na proposta Finep/BNDES
 
 ### Fila de produção (pedir na próxima conversa)
 - [ ] Personalizar a apresentação com nome e dados reais da 1ª prefeitura-alvo
