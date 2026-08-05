@@ -37,6 +37,7 @@ Todos commitados na branch `claude/zion-ecogropo-business-plan-g5th3y`:
 | Ebook 79 páginas | `docs/Zion_Ecosystem_Cidade_Circular.pdf` + gerador `tools/gerar_ebook_cidade_circular.py` | "CIDADE CIRCULAR — Como Transformar o Lixo do Seu Município em Patrimônio Público" |
 | Perfil Ecogrupo | `docs/perfil-ecogrupo.md` | Dossiê completo extraído do deck oficial (confidencial) |
 | Estrutura da representação | `docs/representacao-ecogrupo-brasil.md` | Modelo da representação oficial Zion × Ecogrupo no Brasil: 4 frentes, societário, roadmap de formalização |
+| **MASTER PLAN Brasil** | `docs/master-plan-brasil.md` | **O documento-mestre**: 2 rotas de entrada (concessionárias de aterro B2B e prefeituras B2G), pipeline de 6 fases (carta de intenções → gravimetria → PPP/PMI → MRF+aterro misto → industrialização inorgânica → orgânica), manual da PPP (Lei 11.079, PMI/Decreto 8.428), capital para planta de US$ 10M (grant 20–35% + dívida subsidiada + equity + offtake de créditos), mapa dos créditos (voluntário US$ 6–15/tCO2e, SBCE, Art. 6, CCRLR), alvos por região, onde apresentar (ABREMA, CNM, BNDES, BID/IFC/GCF, certificadoras), veículo Zion Ecosystem Brasil Ltda com Unidade de Créditos, roadmap 90 dias |
 
 ---
 
