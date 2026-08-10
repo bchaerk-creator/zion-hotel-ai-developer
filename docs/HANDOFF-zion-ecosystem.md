@@ -189,6 +189,7 @@ Caso ilustrativo "Cidade Modelo": gate fee R$ 128/t (−15%), desvio 70% no ano 
 
 ### Decisões já tomadas (não reabrir)
 - **A Zion é a representante oficial da Ecogrupo no Brasil** (master representation, 4 frentes; veículo: Zion Ecosystem Brasil Ltda; formalizar via MOU → acordo definitivo)
+- **Bruno é a pessoa de confiança de Cezar (Ecogrupo) no Brasil — a ponte:** faz sociedade com a Ecogrupo, apresenta aos fundos e origina os aterros/praças. Remuneração em 3 camadas (equity de founder local + success fee de captação 2–5% + fee de originação por praça). Proteções obrigatórias ANTES de apresentar a fundos: mandato formal por escrito, non-circumvention 3–5 anos, exclusividade Brasil com metas, tag along. O template 70/30→49/51 da proposta Ecogrupo é para investidor financeiro — a posição do Bruno é de sócio fundador local. Detalhes: `docs/representacao-ecogrupo-brasil.md` seção 3.1
 - Nome da plataforma: **Zion Ecosystem** | Planta: **CIRO** | Produto de entrada: **Diagnóstico Circular** (gratuito mediante protocolo)
 - Estratégia: blended finance (nunca fonte única) · carbono como upside · venda política antes da técnica · protocolo como única meta da 1ª reunião
 - Público do ebook: prefeito + secretário + empreendedor local · Bordão municipal: "Fala comigo, prefeito!"

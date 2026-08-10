@@ -38,6 +38,31 @@ Produto conjunto único no mundo: **unidades de glamping construídas com materi
 ### Frente 4 — Captação e expansão
 A Zion lidera a captação brasileira (R$ 10M — Finep, Fundo Clima, FNMA, PAC via prefeituras) usando o histórico operacional da Ecogrupo como credencial técnica, e estrutura os veículos de expansão (SPEs por praça, futura securitização CRA verde).
 
+## 3.1 O papel pessoal de Bruno Chaerk (o mandato da ponte)
+
+**Definição (ago/2026): Bruno é a pessoa de confiança de Cezar (Ecogrupo) no Brasil.** O papel tem três funções que nenhum outro ator da estrutura executa:
+
+1. **A ponte com os fundos:** Bruno apresenta o modelo Zero Waste ao capital brasileiro e internacional — fundos de impacto, family offices, BNDES/Finep, DFIs — como sócio local, não como intermediário
+2. **A originação de aterros e praças:** Bruno capta os alvos da Rota A (concessionárias/aterros) e da Rota B (municípios), abre as portas e conduz a negociação até o contrato
+3. **A estruturação:** sociedade, SPEs, jurídico, material de captação e narrativa — o pacote que transforma a tecnologia da Ecogrupo em proposta investível no Brasil
+
+**As três camadas de remuneração do papel (a negociar na sociedade):**
+
+| Camada | Mecanismo | Referência de mercado |
+|---|---|---|
+| **Equity de founder local** | Participação na Zion Ecosystem Brasil — como sócio fundador da operação, NÃO como investidor financeiro (o template 70/30→49/51 da proposta Ecogrupo é para fundos, não para Bruno) | Sócio operador local: participação relevante negociada pelo valor dos 4 aportes (mercado, captação, estruturação, marca) |
+| **Success fee de captação** | % sobre capital efetivamente captado para as plantas | 2–5% do capital levantado (padrão de mercado) |
+| **Fee de originação** | Valor fixo + % por praça/aterro contratado que Bruno originou | Por contrato assinado |
+
+**As quatro proteções obrigatórias antes de apresentar a qualquer fundo:**
+
+1. **Mandato formal por escrito** (carta-mandato ou cláusula no MOU): Bruno/Zion é o canal exclusivo da Ecogrupo para captação e originação no Brasil — sem isso, apresentar o projeto é trabalhar de graça
+2. **Non-circumvention:** nem a Ecogrupo nem o fundo apresentado podem fechar diretamente entre si excluindo Bruno — cláusula com prazo longo (3–5 anos) e válida para afiliadas
+3. **Exclusividade territorial Brasil** com metas progressivas (já prevista na seção 4)
+4. **Tag along e não-diluição qualificada** na sociedade: se a Ecogrupo vender ou o fundo entrar, a posição de Bruno acompanha
+
+**Nota regulatória (importante):** apresentar oportunidades diretamente a investidores qualificados e fundos (private placement) é legítimo; oferta pública de investimento no Brasil exige regime CVM (como a trilha CVM 88 que a Zion já usou no ZION-01). Na prática: reuniões diretas com fundos, family offices e bancos → sem restrição; captação pulverizada de investidores de varejo → estruturar via CVM 88/crowdfunding regulado, como já fizemos.
+
 ## 4. Modelo societário e comercial recomendado
 
 ```
