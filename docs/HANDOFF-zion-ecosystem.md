@@ -24,6 +24,8 @@ O **Zion Ecosystem** é a plataforma de economia circular da Zion Hotel Group In
 
 **Dossiê completo:** `docs/perfil-ecogrupo.md` (deck original é confidencial — não distribuir).
 
+**NÚMEROS OFICIAIS DO MODELO (Proposta de Investimento Zero Waste, ago/2026 — `docs/proposta-investimento-zero-waste-ecogrupo.md`):** modelo em 2 fases sequenciais e independentes. **Fase 1 — Planta MRF: US$ 500 mil**, 200 t/dia, 56 empregados, TIR 5a de 99%, VPL US$ 1,47M, payback 2,55 anos, curva de aproveitamento 20→80% (anos 1–4). **Fase 2 — Industrialização de Plásticos: US$ 3,5M**, 10,4 t/dia, 5 linhas (tubos PET/PE, pellets, madeira plástica, pirólise), receita ~US$ 6,6M/ano, TIR 31%, payback 4,96 anos. Estrutura societária proposta pela Ecogrupo ao investidor financeiro: investidor 70% do capital / 49% da sociedade; Ecogrupo 30% / 51% — **template que NÃO se aplica à Zion** (sócia industrial da entrada no Brasil, não investidora passiva). **Alvo brasileiro ativo revelado: Rio Novo do Sul (ES)**, além do pipeline de GO. As Fases 1–2 não incluem rota orgânica nem créditos de carbono/CCRLR — essa é a camada que a Zion agrega.
+
 ## 2. O QUE JÁ FOI CONSTRUÍDO (entregáveis prontos)
 
 Todos commitados na branch `claude/zion-ecogropo-business-plan-g5th3y`:
