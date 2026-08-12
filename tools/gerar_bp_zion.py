@@ -130,7 +130,7 @@ cap = Table([
  [Paragraph('ZION HOTEL GROUP INTERNATIONAL  ×  ECOGRUPO', S('c6',fontName='Helvetica-Bold',fontSize=10,textColor=CREAM,alignment=TA_CENTER,spaceAfter=2))],
  [Paragraph('Bruno Chaerk · CEO', S('c7',fontSize=9,textColor=GOLD,alignment=TA_CENTER,spaceAfter=0))],
  [Spacer(1, 7*mm)],
- [Paragraph('VERSÃO 1.0 · AGOSTO 2026 · CONFIDENCIAL', S('c8',fontSize=7.5,textColor=LGRAY,alignment=TA_CENTER,spaceAfter=0))],
+ [Paragraph('VERSÃO 2.0 · AGOSTO 2026 · CONFIDENCIAL', S('c8',fontSize=7.5,textColor=LGRAY,alignment=TA_CENTER,spaceAfter=0))],
 ], colWidths=[AV-30])
 cap.setStyle(TableStyle([('TOPPADDING',(0,0),(-1,-1),3),('BOTTOMPADDING',(0,0),(-1,-1),3),('ALIGN',(0,0),(-1,-1),'CENTER')]))
 outer = Table([[cap]], colWidths=[AV], rowHeights=[H-62*mm])
@@ -147,9 +147,9 @@ s.append(body('<b>O negócio:</b> implantar e operar complexos de industrializa�
 s.append(body('<b>Por que agora:</b> o Brasil gera cerca de 80 milhões de toneladas de resíduos por ano e enterra quase tudo, a R$ 80–200 por tonelada. O marco legal construído entre 2010 e 2024 — PNRS, Marco do Saneamento, crédito de reciclagem (Decreto 11.413/2023) e mercado regulado de carbono (Lei 15.042/2024) — transformou a tonelada enterrada em ativo desperdiçado. A Orizon (B3: ORVR3) provou a tese em bolsa: R$ 7 bilhões de valor de mercado e 48% de margem EBITDA em megaescala. O flanco de municípios médios e aterros regionais está vago.'))
 s.append(body('<b>Go-to-market em duas rotas:</b> (A) parcerias com concessionárias de aterro — que já têm concessão, fluxo e licença, e ganham industrialização, vida útil de célula e créditos; (B) contratos diretos com municípios e consórcios, pelo método comercial proprietário já estruturado.'))
 s.append(sp(3))
-s.append(kpis([('R$ 55M','CAPEX DA PLANTA<br/>DE REFERÊNCIA'),('34%','MARGEM EBITDA<br/>CASO-BASE (ANO 3)'),('2,5x','DSCR SEM CRÉDITOS<br/>DE CARBONO'),('18–24%','TIR ALAVANCADA<br/>DO PROJETO')]))
+s.append(kpis([('61,8%','TIR DO PROJETO<br/>(10A, PÓS-IMPOSTO)'),('~110%','TIR DO EQUITY<br/>ALAVANCADO'),('2,1 anos','PAYBACK<br/>FASE 1'),('5,7x','RESULTADO vs SELIC<br/>(14% a.a.) EM 10 ANOS')]))
 s.append(sp(4))
-s.append(hl_box('O pedido: R$ 55 milhões para a primeira planta, em blended finance — 20–35% não reembolsável, 40–55% dívida subsidiada (Fundo Clima/BNDES, 16 anos), 15–30% equity e offtake de créditos como complemento.'))
+s.append(hl_box('A oferta: R$ 2,0–2,5 milhões de equity na SPE da praça-piloto (Fase 1) ou R$ 8–12 milhões no pacote Fases 1+2 — com desembolso condicionado ao contrato âncora assinado e dívida subsidiada (Fundo Clima/BNDES) alavancando o retorno.'))
 
 # ═══ 2. VEÍCULO ═══
 s += secao(2, 'A Empresa e o Veículo')
@@ -195,13 +195,13 @@ s += secao(4, 'A Solução — Dois Formatos de Planta')
 s.append(body('A plataforma opera dois formatos complementares, cobrindo do consórcio de municípios pequenos à concessão metropolitana:'))
 s.append(sp(2))
 s.append(tabela([
- ['', 'CIRO Compacto', 'Complexo Industrial'],
- ['CAPEX', 'R$ 10 M', 'R$ 55 M (US$ 10 M)'],
- ['Capacidade', '40–60 t/dia', '250–400 t/dia'],
- ['Praça-alvo', 'Município/consórcio 80–150 mil hab.', 'Praça 300 mil+ hab. ou aterro concessionado'],
- ['Blocos', 'MRF simplificada + compostagem + madeira plástica', 'MRF completa + aterro misto c/ biogás + industrialização inorgânica + orgânica + energia'],
- ['Papel', 'Produto de entrada municipal (Rota B)', 'Planta de referência e de escala (Rota A)'],
-], [AV*0.14, AV*0.38, AV*0.48], bold_col0=True))
+ ['', 'FASE 1 — Planta MRF', 'FASE 2 — Industrialização', 'FASE 3 — Orgânicos + Créditos'],
+ ['CAPEX', 'US$ 0,5M (BR: R$ 4,5M)', 'US$ 3,5M (R$ 19M)', 'R$ 9–12M (modular)'],
+ ['Capacidade', '200 t/dia', '10,4 t/dia de plástico · 5 linhas', '100–150 t/dia orgânicos'],
+ ['Indicadores oficiais', 'TIR 99% · payback 2,55a (modelo Ecogrupo)', 'TIR 31% · payback 4,96a', 'camada Zion: carbono + CCRLR'],
+ ['Nacionalizado (BR)', 'TIR 62% c/ gate fee e custos BR', 'TIR ~25–30% c/ dívida subsidiada', 'upside fora do caso-base'],
+ ['Papel', 'Porta de entrada — caixa rápido', 'Valor agregado — tubos, madeira plástica', 'Multiplicador — metano evitado'],
+], [AV*0.15, AV*0.29, AV*0.28, AV*0.28], bold_col0=True, fs=7.6))
 s.append(sp(3))
 s.append(h2('O pipeline padrão de cada praça (6 fases)'))
 s.append(tabela([
@@ -268,64 +268,70 @@ s.append(sp(3))
 s.append(body('A concorrência se divide em dois grupos que não se encontram: os grandes operadores de aterro (têm fluxo, não têm industrialização nem varejo político) e as recicladoras locais (têm vocação, não têm capital, método nem créditos). A plataforma ocupa exatamente o espaço entre os dois — e chega com o pacote completo.'))
 
 # ═══ 8. FINANCEIRO ═══
-s += secao(8, 'Plano Financeiro — Planta de Referência')
-s.append(body('Premissas do caso-base: praça de 300 t/dia contratadas · gate fee R$ 170/t (abaixo dos ~R$ 200/t praticados por municípios de referência) · desvio de aterro de 65% em regime · <b>créditos de carbono fora do caso-base</b> · câmbio R$ 5,50.'))
-s.append(h2('CAPEX — R$ 55 milhões'))
+s += secao(8, 'Plano Financeiro — Fase 1 Nacionalizada (a base da oferta)')
+s.append(body('Modelo oficial Ecogrupo (MRF 200 t/dia) nacionalizado com premissas brasileiras deliberadamente conservadoras: CAPEX de R$ 4,5M (+64% sobre o oficial de US$ 500 mil, cobrindo custos, licenças e impostos do Brasil) · <b>gate fee de R$ 130/t</b> — abaixo da faixa de mercado de R$ 150–200/t · curva oficial de aproveitamento de materiais 20% → 80% (anos 1–4) · folha brasileira integral (56 postos) · IR/CSLL de 34% sem benefícios · inflação de 4% a.a. · <b>créditos de carbono e Fase 2 fora do caso-base</b>.'))
+s.append(h2('Projeção 10 anos — caso-base (R$ M)'))
 s.append(tabela([
- ['Bloco', 'R$ M'],
- ['MRF completa (balança, esteiras, triagem, prensas)', '14,0'],
- ['Aterro misto + captação de biogás', '8,0'],
- ['Industrialização inorgânica (extrusão, madeira plástica, CDR)', '13,0'],
- ['Industrialização orgânica (compostagem acelerada + biodigestor)', '9,0'],
- ['Infraestrutura, terreno e utilidades', '5,5'],
- ['Licenciamento, certificações e projeto de carbono', '1,5'],
- ['Capital de giro (18 meses)', '4,0'],
- ['Total', '55,0'],
-], [AV*0.78, AV*0.22]))
-s.append(PageBreak())
-s.append(h2('DRE simplificada em regime (ano 3) — 3 cenários (R$ M/ano)'))
-s.append(tabela([
- ['Linha', 'Conservador', 'Base', 'Otimista'],
- ['Volume · gate fee', '250 t/d · R$150', '300 t/d · R$170', '400 t/d · R$190'],
- ['Gate fee', '13,7', '18,6', '27,7'],
- ['Produtos industrializados', '3,5', '5,2', '8,5'],
- ['CCRLR', '0,9', '1,4', '2,2'],
- ['B2B / selo / serviços', '0,3', '0,5', '1,0'],
- ['Receita total (sem carbono)', '18,4', '25,7', '39,4'],
- ['OPEX total', '(13,3)', '(17,0)', '(24,4)'],
- ['EBITDA', '5,1 (28%)', '8,7 (34%)', '15,0 (38%)'],
- ['Carbono (upside líquido)', '+0,8', '+1,8', '+4,5'],
- ['EBITDA com carbono', '5,9', '10,5', '19,5'],
-], [AV*0.37, AV*0.21, AV*0.21, AV*0.21], bold_col0=True))
-s.append(sp(3))
-s.append(h2('Rampa do caso-base (R$ M)'))
-s.append(tabela([
- ['', 'Ano 1', 'Ano 2', 'Ano 3', 'Ano 4', 'Ano 5'],
- ['Receita', '8,5', '17,8', '25,7', '26,9', '28,2'],
- ['EBITDA', '(1,2)', '4,3', '8,7', '9,4', '10,1'],
-], [AV*0.25, AV*0.15, AV*0.15, AV*0.15, AV*0.15, AV*0.15], bold_col0=True))
-s.append(sp(3))
-s.append(kpis([('2,5x','DSCR — DÍVIDA R$ 27M<br/>FUNDO CLIMA 16 ANOS'),('~7 anos','PAYBACK DESCONTADO<br/>SEM CARBONO'),('~5 anos','PAYBACK<br/>COM CARBONO'),('18–24%','TIR ALAVANCADA<br/>10 ANOS')]))
+ ['Ano', '1', '2', '3', '4', '5', '7', '10'],
+ ['Receita', '7,7', '12,1', '13,7', '15,5', '16,1', '17,4', '19,6'],
+ ['EBITDA', '1,6', '4,6', '6,0', '7,4', '7,7', '8,3', '9,4'],
+ ['Margem', '20%', '38%', '43%', '48%', '48%', '48%', '48%'],
+ ['Fluxo de caixa livre', '1,0', '3,0', '3,8', '4,7', '4,9', '5,3', '5,9'],
+], [AV*0.28, AV*0.103, AV*0.103, AV*0.103, AV*0.103, AV*0.103, AV*0.103, AV*0.105], bold_col0=True))
+s.append(sp(2))
+s.append(body('Validação de mercado involuntária: a margem EBITDA em regime do modelo (47,7%) coincide com a margem real da Orizon listada em bolsa (48%) — sem calibração para isso.'))
+s.append(sp(2))
+s.append(kpis([('61,8%','TIR DO PROJETO<br/>DESALAVANCADA'),('~110%','TIR DO EQUITY<br/>(60% DÍVIDA, 9,5%)'),('R$ 16,3M','VPL DESCONTADO<br/>À SELIC DE 14%'),('9,8x','DSCR ANO 3<br/>(BANCO EXIGE 1,3x)')]))
 s.append(sp(4))
+s.append(h2('O confronto com a Selic (14,00% a.a. — Copom ago/2026)'))
+s.append(tabela([
+ ['Alternativa para R$ 4,5M em 10 anos', 'Resultado'],
+ ['Selic (média projetada ~11,5%, líquida de IR)', 'R$ 11,5M'],
+ ['Projeto Fase 1 (fluxos reinvestidos na própria Selic)', 'R$ 65,3M'],
+ ['Vantagem do projeto', '≈ 5,7x — e VPL positivo de R$ 16,3M já descontado a 14%'],
+], [AV*0.62, AV*0.38], bold_col0=False))
+s.append(sp(3))
+s.append(h2('Sensibilidade — onde o projeto quebra (lógica inversa)'))
+s.append(tabela([
+ ['Cenário de stress', 'Efeito', 'Veredito'],
+ ['Sem contrato de gate fee (só materiais)', 'EBITDA negativo', 'INVIÁVEL — o contrato é o projeto'],
+ ['Gate fee no piso duro de R$ 100/t', 'TIR ~40%', 'Viável'],
+ ['Volume a 150 t/dia (contrato parcial)', 'TIR ~35%', 'Viável'],
+ ['Aproveitamento estagnado em 40%', 'TIR ~45%', 'Viável — o gate fee segura'],
+ ['Breakeven', 'gate fee ~R$ 65–75/t', 'Margem de segurança ~2x'],
+], [AV*0.40, AV*0.26, AV*0.34]))
+s.append(sp(2))
+s.append(hl_box('O risco do negócio não é operacional nem de mercado — é comercial-contratual. Por isso o desembolso do investidor é condicionado ao contrato âncora assinado: o de-risking está desenhado na própria oferta.'))
+s.append(sp(3))
 s.append(h2('Valuation de saída da plataforma'))
-s.append(body('5 plantas em operação no ano 8 → EBITDA consolidado de R$ 45–60M → a múltiplos setoriais de 8–12x EV/EBITDA (a referência listada negocia acima disso) → <b>EV de R$ 400–700 milhões</b>. Rotas de saída: venda estratégica a player nacional/internacional, listagem (espelho ORVR3) ou securitização de recebíveis + dividendos.'))
+s.append(body('5 plantas em operação no ano 8 → EBITDA consolidado de R$ 45–60M → a múltiplos setoriais de 8–12x EV/EBITDA (a referência listada negocia acima disso) → <b>EV de R$ 400–700 milhões</b>. Rotas de saída: venda estratégica a player nacional/internacional, listagem (espelho ORVR3) ou securitização de recebíveis + dividendos. A Fase 2 oficial (US$ 3,5M · TIR 31% · payback 4,96 anos) entra como segundo degrau de cada praça, financiada pela dívida subsidiada.'))
 
 # ═══ 9. CAPTAÇÃO ═══
-s += secao(9, 'Captação — Uso e Fontes')
+s += secao(9, 'A Oferta ao Investidor')
 s.append(tabela([
- ['Fonte', 'R$ M', 'Camada'],
- ['Finep Economia Circular (crédito + subvenção) — prazo 31/08/2026', '8–12', 'Não reembolsável / subsidiado'],
- ['FNMA + Novo PAC (via município parceiro — infra da ponta)', '4–6', 'Não reembolsável'],
- ['Fundo Clima / BNDES — subprograma resíduos', '25–30', 'Dívida 16 anos, juros 1–8% a.a.'],
- ['Equity (Zion + Ecogrupo + parceiro da praça + fundo de impacto)', '10–15', 'Capital'],
- ['Offtake de créditos (venda antecipada carbono/CCRLR)', '3–5', 'Receita antecipada'],
- ['Total', '~55', ''],
-], [AV*0.56, AV*0.14, AV*0.30]))
+ ['Termo', 'Condição'],
+ ['Veículo', 'SPE da praça-piloto (ou holding, para investidor âncora)'],
+ ['Instrumento', 'Equity (aumento de capital) ou mútuo conversível para fechamento rápido'],
+ ['Ticket Fase 1', 'R$ 2,0–2,5M de equity (40–50% do CAPEX; restante em dívida subsidiada)'],
+ ['Ticket pacote Fases 1+2', 'R$ 8–12M de equity'],
+ ['Retorno-alvo oferecido', 'TIR de equity de 25–35% (caso-base do modelo: ~110%)'],
+ ['Gatilho de desembolso', 'Contrato âncora assinado — o capital só entra com o recebível na mão'],
+ ['Governança', 'Assento no conselho da SPE · relatórios trimestrais · painel de dados em tempo real'],
+ ['Saída', 'Recompra (ano 5–7) · venda estratégica · listagem da plataforma'],
+], [AV*0.30, AV*0.70], bold_col0=True))
 s.append(sp(3))
-s.append(body('<b>Nota de realismo:</b> não existe instrumento único de 60% a fundo perdido para planta industrial privada no Brasil. A estrutura acima entrega 20–35% de equivalente-subvenção combinando fontes — e a dívida a juro fortemente subsidiado funciona, em valor presente, como subsídio adicional. Quando a planta entra por PPP administrativa, a contraprestação pública cumpre papel análogo ao garantir a receita.'))
-s.append(body('<b>Fontes de escala (plantas 2–5):</b> BNDES Finem, debêntures incentivadas (Lei 12.431), BID Invest, IFC, GCF via entidades acreditadas (BNDES/Funbio/CAF), DFIs europeus (DEG, Proparco, FMO) e securitização dos recebíveis municipais (CRA verde).'))
+s.append(h2('Estrutura de capital por planta (blended finance)'))
+s.append(tabela([
+ ['Camada', 'Participação', 'Fonte'],
+ ['Dívida subsidiada', '50–60%', 'Fundo Clima/BNDES (16 anos, juros 1–9%) · DSCR 9,8x no ano 3'],
+ ['Equity', '40–50%', 'Holding (Zion+Ecogrupo) + fundo/family office na SPE'],
+ ['Subvenção (quando disponível)', 'redutor do equity', 'Finep Economia Circular (prazo 31/08/2026) · FNMA · PAC via município'],
+ ['Offtake de créditos', 'complemento', 'Venda antecipada de carbono/CCRLR na fase de escala'],
+], [AV*0.26, AV*0.18, AV*0.56], bold_col0=True))
+s.append(sp(3))
+s.append(body('<b>Fontes de escala (plantas 2–5):</b> BNDES Finem, debêntures incentivadas/verdes (Lei 12.431), BID Invest, IFC, GCF via entidades acreditadas (BNDES/Funbio/CAF), DFIs europeus (DEG, Proparco, FMO) e securitização dos recebíveis (CRA verde).'))
 s.append(sp(2))
-s.append(hl_box('Marco imediato: chamada Finep Mais Inovação — Economia Circular, submissão até 31/08/2026, com a Ecogrupo como parceira tecnológica e ICT brasileira no projeto cooperado.'))
+s.append(hl_box('Convite permanente ao investidor: visitar a operação da Ecogrupo em Cochabamba. A fábrica existe, opera há 23 anos — e quem vê, não compara mais este projeto com um pitch deck.'))
 
 # ═══ 10. RISCOS ═══
 s += secao(10, 'Riscos e Antídotos')
