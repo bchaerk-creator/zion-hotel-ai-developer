@@ -16,6 +16,26 @@ Mais o **ecossistema** completo: Zion Bubble Glamping, Zion Advisory, Zion Hospi
 ### `development.html` · `management.html` · `collection.html` — modalidades
 Páginas internas dedicadas, uma por modalidade, no mesmo padrão visual: hero próprio, "para quem é", processo/pilares detalhados, entregas em grade e CTA segmentado. Interligadas pela navegação e pelos botões "Explorar a Modalidade" da home.
 
+### `capital.html` — Zion Capital (investidores)
+Página de captação no padrão das plataformas de investimento: hero, números do portfólio, "como funciona" em 5 etapas, **esteira de projetos** filtrável por estágio, instrumentos (equity em SPE, mútuo conversível, unidade com renda), governança e proteção do capital, faixas de ticket, FAQ, CTA de cadastro e aviso legal.
+
+A esteira é renderizada a partir do array `PROJETOS`, no `<script>` ao final do arquivo — **é o único lugar a editar** para incluir, remover ou atualizar um projeto:
+
+```js
+{
+  nome:'Rota dos Milagres', local:'Litoral Norte · AL',
+  estagio:'captacao',          // concepcao | viabilidade | estruturacao | captacao | implantacao | operacao
+  tese:'...',                  // 2 a 3 linhas
+  instrumento:'Mútuo conversível · garantia real',
+  ticket:'R$ 50 mil', prazo:'36 meses',
+  retorno:'TIR alvo 24% a.a.', porte:'VGV R$ 62 mi',
+  captado:38,                  // % da rodada comprometida; null esconde a barra
+  cta:'Solicitar material'
+}
+```
+
+Os filtros no topo da seção leem o campo `estagio` — nenhuma outra alteração é necessária. Os indicadores financeiros hoje no arquivo são **preliminares** e devem ser substituídos pelos números finais de cada information memorandum antes da publicação.
+
 ### `bruno.html` — Bruno Chaerk (founder)
 Página pessoal one-page: espelhamento, colapso de crença, método, resultados, ecossistema e educação. Interligada ao site do grupo pela navegação.
 
