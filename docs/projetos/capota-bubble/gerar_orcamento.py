@@ -15,7 +15,7 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 
 # ----------------------------------------------------------------- geometria
 D, H, FOLGA = 5000.0, 2292.0, 150.0        # mm, Bubble real do CAD
-E1, E2 = 45.0, 120.0                        # faixa coberta, graus
+E1, E2 = 45.0, 89.0                         # faixa coberta, graus
 W = 4800.0                                  # largura útil do tecido
 NR, NP = 5, 5                               # arcos e longarinas
 ROD, RWT = 50.0, 2.5                        # tubo dos arcos
@@ -31,7 +31,9 @@ W2 = W / 2
 th0 = math.degrees(math.acos(min(W2 / rc, 1.0)))
 de = E2 - E1
 dRad = math.radians(de)
-aMax = 180 + math.degrees(math.asin((zc - 100) / rc)) - E2
+PISO = -480.0                               # piso do entorno vs. deck
+sLim = (PISO + 100 - zc) / rc
+aMax = (180 - math.degrees(math.asin(max(-1, min(1, sLim))))) - E2
 aWork = aMax - 4
 pedX = rc + 250
 

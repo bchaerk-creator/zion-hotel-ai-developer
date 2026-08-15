@@ -153,6 +153,11 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
       <input type="range" id="p_H" min="1800" max="6000" step="50" value="2292"></div>
     <div class="ctl"><div class="ctl-top"><span>CLEARANCE</span><output id="o_folga"></output></div>
       <input type="range" id="p_folga" min="80" max="400" step="10" value="150"></div>
+    <div class="ctl"><div class="ctl-top"><span>Raio do deck</span><output id="o_deckR"></output></div>
+      <input type="range" id="p_deckR" min="2000" max="4200" step="25" value="2560"></div>
+    <div class="ctl"><div class="ctl-top"><span>Piso do entorno vs. deck</span><output id="o_piso"></output></div>
+      <input type="range" id="p_piso" min="-900" max="0" step="10" value="-480"></div>
+    <p class="hint">Ao descer abaixo do deck a casca passa por fora da base da bolha, afastada exatamente da folga. Deck mais largo que isso trava o curso.</p>
     <dl class="derived" id="d_derived"></dl>
   </div>
 
@@ -161,7 +166,7 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
     <div class="ctl"><div class="ctl-top"><span>Borda dianteira ε1</span><output id="o_e1"></output></div>
       <input type="range" id="p_e1" min="10" max="80" step="1" value="45"></div>
     <div class="ctl"><div class="ctl-top"><span>Borda traseira ε2</span><output id="o_e2"></output></div>
-      <input type="range" id="p_e2" min="95" max="170" step="1" value="120"></div>
+      <input type="range" id="p_e2" min="60" max="170" step="1" value="89"></div>
     <div class="ctl"><div class="ctl-top"><span>CANOPY_WIDTH</span><output id="o_W"></output></div>
       <input type="range" id="p_W" min="2400" max="6200" step="100" value="4800"></div>
     <div class="ctl"><div class="ctl-top"><span>Arcos transversais</span><output id="o_Nr"></output></div>
@@ -444,6 +449,8 @@ const NS="http://www.w3.org/2000/svg";
 const CT={
  D:{e:"p_D",o:"o_D",fmt:v=>f0(v)+" mm"}, H:{e:"p_H",o:"o_H",fmt:v=>f0(v)+" mm"},
  folga:{e:"p_folga",o:"o_folga",fmt:v=>f0(v)+" mm"},
+ deckR:{e:"p_deckR",o:"o_deckR",fmt:v=>f0(v)+" mm"},
+ piso:{e:"p_piso",o:"o_piso",fmt:v=>f0(v)+" mm"},
  e1:{e:"p_e1",o:"o_e1",fmt:v=>f0(v)+"°"}, e2:{e:"p_e2",o:"o_e2",fmt:v=>f0(v)+"°"},
  W:{e:"p_W",o:"o_W",fmt:v=>f0(v)+" mm"},
  Nr:{e:"p_Nr",o:"o_Nr",fmt:v=>v+" arcos"}, Np:{e:"p_Np",o:"o_Np",fmt:v=>v+" longarinas"},
@@ -468,13 +475,26 @@ function model(){
   const baseR=P.D/2;
   const zc=(P.H*P.H-baseR*baseR)/(2*P.H);
   const R=P.H-zc, rc=R+P.folga;
-  const pedLevel=Math.min(0,zc)-260;      // nível de assentamento dos pedestais
+  const pedLevel=Math.min(P.piso,zc-120); // nível de assentamento dos pedestais
   const desnivel=Math.max(0,-zc);         // quanto o eixo fica abaixo do deck
   const W2=Math.min(P.W/2, rc-40);
   const th0=Math.acos(Math.min(W2/rc,0.999))*R2D;
   const thEnd=6, GG=100;
-  // curso: borda traseira nao pode descer abaixo de GG
-  const lim=180+Math.asin(Math.max(Math.min((zc-GG)/rc,1),-1))*R2D;
+  // Curso: quem para a casca não é a bolha nem o deck, é o piso do entorno.
+  // Num ponto da casca, s = senθ·senε, z = zc + rc·s e o raio horizontal é
+  // rc·√(1−s²). Abaixo do nível do deck esse raio nunca é menor que
+  // √(rc²−zc²), que é a base da bolha somada à folga: a casca passa por fora.
+  const sDeck=-zc/rc;
+  const rhCross=rc*Math.sqrt(Math.max(1-sDeck*sDeck,0));   // raio ao cruzar o deck
+  const deckOk=P.deckR < rhCross-5;
+  let sLim=sDeck, modo="casca mantida acima do deck";
+  if(deckOk){
+    const sp=(P.piso+GG-zc)/rc;
+    if(rc*Math.sqrt(Math.max(1-sp*sp,0))>P.deckR){ sLim=sp; modo="passa por fora do deck"; }
+  }
+  const eInf=Math.asin(Math.max(-1,Math.min(1,sLim)))*R2D;
+  const lim=180-eInf;                       // ε máximo da borda traseira
+  const arcoUtil=lim-eInf;                  // arco varrido disponível
   const aMax=Math.max(lim-P.e2,0);
   const aWork=Math.max(aMax-4,0);
   const de=(P.e2-P.e1);
@@ -586,7 +606,7 @@ function model(){
   const queda=rc-Math.sqrt(Math.max(rc*rc-W2*W2,0));
   const afast=Math.sqrt(Math.max(rc*rc-W2*W2,0))-Math.sqrt(Math.max(R*R-W2*W2,0));
 
-  return {R,zc,rc,baseR,W2,th0,thEnd,ribs,purl,de,dRad,aMax,aWork,lim,env,pedLevel,desnivel,
+  return {R,zc,rc,baseR,W2,th0,thEnd,ribs,purl,de,dRad,aMax,aWork,lim,env,pedLevel,desnivel,eInf,arcoUtil,rhCross,deckOk,modo,
     aR,aP,kR,kP,ribLen,ribKg,purlKg,fabA,fabKg,hwKg,massa,peso,cg0,Mgrav,
     pin,B,act,stroke,curve,FmaxA,Mmax,gsFrac,
     q,v,Aplan,Fup,Fh,Mvento,trib,w,Mfl,Ix,Wx,sig,sigN,Nhoop,
@@ -1082,6 +1102,9 @@ function paint(M){
   // troca curso x cobertura, e checagem de sombra ao meio-dia
   $("#s_eq").innerHTML="curso útil + ε2 = "+f(M.lim-4,1)+"°";
   $("#d_sol").innerHTML=[
+    ["Arco varrido disponível",f(M.arcoUtil,1)+"° · ε de "+f(M.eInf,1)+"° a "+f(M.lim,1)+"°"],
+    ["Limitado por",M.deckOk?"piso do entorno":"<span class='pill warn'>largura do deck</span>"],
+    ["Raio máximo do deck",f0(M.rhCross)+" mm <span style='color:var(--muted)'>(base + folga)</span>"],
     ["Faixa coberta hoje","ε "+f0(P.e1)+"° a "+f0(P.e2)+"° · curso "+f(M.aWork,1)+"°"],
     ["Área de lona",f(M.fabA,1)+" m²"]
   ].concat(SOL.map(o=>{
@@ -1089,7 +1112,7 @@ function paint(M){
     return ["Sol de "+o.k+" · "+f(o.alt,1)+"°",
       dentro?"<span class='pill ok'>na sombra</span>":"<span class='pill crit'>passa direto</span>"];
   })).map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
-  const CFG=[["Cobertura máxima",45,120],["Equilibrado",45,95],["Curso de 90°",41,79]];
+  const CFG=[["Cobertura máxima",45,120],["Curso de 90°",45,89],["Curso máximo",45,79]];
   $("#cfg_btns").innerHTML=CFG.map((c,i)=>{
     const on=(Math.abs(P.e1-c[1])<0.5&&Math.abs(P.e2-c[2])<0.5);
     return '<button type="button" data-cfg="'+i+'" aria-pressed="'+on+'">'+c[0]+" · "+f(M.lim-4-c[2],0)+"°</button>";

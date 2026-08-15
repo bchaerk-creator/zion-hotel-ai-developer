@@ -22,7 +22,7 @@ const f0=v=>Math.round(v).toLocaleString("pt-BR");
 const f1=v=>v.toFixed(1).replace(".",",");
 
 /* ---- parâmetros da Bubble real ---- */
-const P={D:5000,H:2292,folga:150,e1:45,e2:120,W:4800,Nr:5,Np:5};
+const P={D:5000,H:2292,folga:150,e1:45,e2:89,W:4800,Nr:5,Np:5,piso:-480};
 const baseR=P.D/2;
 const zc=(P.H*P.H-baseR*baseR)/(2*P.H);      // -217
 const R=P.H-zc;                               // 2509
@@ -31,7 +31,10 @@ const W2=P.W/2;
 const th0=Math.acos(W2/rc)/D2R;
 const thEnd=6;
 const pedX=rc+250, pedLevel=Math.min(0,zc)-260;
-const aMax=180+Math.asin((zc-100)/rc)/D2R-P.e2;
+// abaixo do deck a casca passa por fora da base da bolha; quem limita é o piso do entorno
+const sLim=(P.piso+100-zc)/rc;
+const eInf=Math.asin(Math.max(-1,Math.min(1,sLim)))/D2R;
+const aMax=(180-eInf)-P.e2;
 const aWork=aMax-4;                           // ~49,3°
 const de=P.e2-P.e1;
 
