@@ -1,0 +1,1029 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capota Retrátil Bubble</title>
+<style>
+:root{
+  --ground:#0B0C0E;
+  --surface:#131519;
+  --surface-2:#181B20;
+  --line:#252A31;
+  --line-soft:#1C2027;
+  --gold:#C9A84C;
+  --gold-dim:#8A7332;
+  --sand:#BE9A6E;
+  --sand-dim:#6E5A42;
+  --glass:#9FB6C2;
+  --ink:#ECEAE4;
+  --ink-2:#B6B9BD;
+  --muted:#7E848C;
+  --ok:#6FA97E;
+  --warn:#D9A441;
+  --crit:#C4603F;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0;
+  background:var(--ground);
+  color:var(--ink);
+  font-family:var(--mono);
+  font-size:14px;
+  line-height:1.5;
+  font-variant-numeric:tabular-nums;
+}
+p,.prose{font-family:var(--sans);color:var(--ink-2);line-height:1.65}
+a{color:var(--gold)}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+
+/* ---------- shell ---------- */
+.masthead{
+  border-bottom:1px solid var(--line);
+  padding:26px 28px 22px;
+  display:flex;flex-wrap:wrap;gap:24px;align-items:flex-end;justify-content:space-between;
+  background:
+    linear-gradient(180deg,rgba(201,168,76,.05),transparent 70%),
+    var(--ground);
+}
+.eyebrow{
+  font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+  display:flex;gap:10px;align-items:center;
+}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-dim)}
+.masthead h1{
+  font-family:var(--sans);font-size:clamp(26px,4.2vw,40px);font-weight:300;
+  letter-spacing:-.02em;margin-top:10px;
+}
+.masthead h1 b{font-weight:600;color:var(--gold)}
+.deck{font-family:var(--sans);color:var(--muted);font-size:13px;max-width:52ch;margin-top:8px}
+.stamp{
+  border:1px solid var(--line);padding:12px 16px;min-width:200px;
+  display:grid;gap:5px;font-size:10.5px;letter-spacing:.08em;color:var(--muted);
+}
+.stamp div{display:flex;justify-content:space-between;gap:18px}
+.stamp b{color:var(--ink);font-weight:500}
+
+.wrap{display:grid;grid-template-columns:298px minmax(0,1fr);align-items:start}
+@media(max-width:960px){.wrap{grid-template-columns:1fr}}
+
+/* ---------- rail ---------- */
+.rail{
+  border-right:1px solid var(--line);
+  padding:20px 20px 60px;
+  display:grid;gap:22px;align-content:start;
+  position:sticky;top:0;max-height:100vh;overflow-y:auto;
+  background:var(--surface);
+}
+@media(max-width:960px){.rail{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}}
+.rail-title{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  padding-bottom:8px;border-bottom:1px solid var(--line);
+}
+.grp{display:grid;gap:14px}
+.ctl{display:grid;gap:6px}
+.ctl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px}
+.ctl-top span{color:var(--ink-2);letter-spacing:.02em}
+.ctl-top output{color:var(--gold);font-size:12px}
+input[type=range]{
+  -webkit-appearance:none;appearance:none;width:100%;height:20px;background:transparent;cursor:pointer;
+}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--line);border-radius:2px}
+input[type=range]::-moz-range-track{height:2px;background:var(--line);border-radius:2px}
+input[type=range]::-webkit-slider-thumb{
+  -webkit-appearance:none;width:13px;height:13px;margin-top:-5.5px;border-radius:50%;
+  background:var(--gold);border:2px solid var(--ground);
+}
+input[type=range]::-moz-range-thumb{
+  width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid var(--ground)
+}
+input[type=range]:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.hint{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.45}
+
+/* ---------- main ---------- */
+.main{padding:24px 28px 80px;display:grid;gap:34px;min-width:0}
+.sec{display:grid;gap:14px;min-width:0}
+.sec-head{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:9px}
+.sec-head h2{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink)}
+.sec-head .num{font-size:10px;color:var(--gold);letter-spacing:.14em}
+.sec-head .note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-left:auto}
+
+/* viewports */
+.views{display:grid;grid-template-columns:repeat(auto-fit,minmax(268px,1fr));gap:14px}
+.view{border:1px solid var(--line);background:var(--surface);display:grid;grid-template-rows:auto 1fr}
+.view header{
+  display:flex;justify-content:space-between;align-items:center;gap:10px;
+  padding:9px 12px;border-bottom:1px solid var(--line-soft);
+  font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);
+}
+.view header b{color:var(--ink-2);font-weight:500}
+.view svg{display:block;width:100%;height:auto;align-self:center;
+  background:linear-gradient(180deg,#0E1013,#101317)}
+
+/* scrubber */
+.drive{
+  border:1px solid var(--line);background:var(--surface);padding:16px 18px;
+  display:grid;gap:14px;
+}
+.drive-top{display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+.state{
+  font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);
+  border:1px solid var(--gold-dim);padding:4px 10px;
+}
+.big{font-size:26px;color:var(--ink);letter-spacing:-.02em}
+.btns{display:flex;gap:8px;margin-left:auto;flex-wrap:wrap}
+button{
+  font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;
+  background:transparent;color:var(--ink-2);border:1px solid var(--line);
+  padding:7px 12px;cursor:pointer;transition:border-color .15s,color .15s;
+}
+button:hover{border-color:var(--gold-dim);color:var(--gold)}
+button[aria-pressed=true]{border-color:var(--gold);color:var(--gold)}
+button:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+
+/* readouts */
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(158px,1fr));gap:1px;background:var(--line)}
+.kpi{background:var(--surface);padding:14px 15px;display:grid;gap:4px}
+.kpi .k{font-size:9.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-size:21px;color:var(--ink);letter-spacing:-.01em}
+.kpi .v small{font-size:11px;color:var(--muted);letter-spacing:.04em;margin-left:3px}
+.kpi.acc .v{color:var(--gold)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:12px}
+th,td{padding:8px 12px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+th{
+  font-size:9.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--muted);
+  font-weight:400;background:var(--surface-2);position:sticky;top:0;
+}
+td:first-child,th:first-child{text-align:left}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#171A1F}
+tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(--line)}
+.pill{display:inline-block;padding:2px 8px;border:1px solid currentColor;font-size:10px;letter-spacing:.08em}
+.pill.ok{color:var(--ok)}.pill.warn{color:var(--warn)}.pill.crit{color:var(--crit)}
+
+/* two-col blocks */
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.card{border:1px solid var(--line);background:var(--surface);padding:16px 18px;display:grid;gap:10px;min-width:0}
+.card h3{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.card ul{margin:0;padding-left:16px;display:grid;gap:7px;font-family:var(--sans);font-size:12.5px;color:var(--ink-2);line-height:1.55}
+.card ul li::marker{color:var(--gold-dim)}
+.dl{display:grid;gap:0;font-size:12px}
+.dl div{display:flex;justify-content:space-between;gap:14px;padding:7px 0;border-bottom:1px solid var(--line-soft)}
+.dl div:last-child{border-bottom:0}
+.dl dt{color:var(--muted)}
+.dl dd{margin:0;color:var(--ink)}
+
+.molde{border:1px solid var(--line);background:var(--surface);padding:14px}
+.molde svg{display:block;width:100%;height:auto}
+
+.footnote{
+  font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.6;
+  border-left:2px solid var(--gold-dim);padding-left:14px;max-width:82ch;
+}
+.seal{
+  display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;
+  border-top:1px solid var(--line);padding-top:18px;font-size:10.5px;letter-spacing:.1em;color:var(--muted);
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div>
+    <div class="eyebrow">Zion Glamping · Engenharia de Produto</div>
+    <h1>Capota Retrátil <b>Bubble</b></h1>
+    <p class="deck">Protótipo paramétrico de capota em arcos aninhados sobre eixo horizontal único. Mexa nos parâmetros à esquerda: geometria, molde de corte, esforços e lista de materiais recalculam ao vivo.</p>
+  </div>
+  <div class="stamp">
+    <div><span>Projeto</span><b>ZG-CAP-01</b></div>
+    <div><span>Revisão</span><b>P0 · protótipo</b></div>
+    <div><span>Sistema</span><b>Arcos coaxiais</b></div>
+    <div><span>Unidades</span><b>metro · kg · N</b></div>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <aside class="rail">
+    <div class="rail-title">Parâmetros de projeto</div>
+
+    <div class="grp">
+      <div class="ctl">
+        <div class="ctl-top"><span>Diâmetro do Bubble</span><output id="o_D"></output></div>
+        <input type="range" id="p_D" min="4" max="9" step="0.1" value="6">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Folga mínima capota↔bolha</span><output id="o_folga"></output></div>
+        <input type="range" id="p_folga" min="0.08" max="0.60" step="0.01" value="0.20">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Altura do eixo de giro</span><output id="o_hEixo"></output></div>
+        <input type="range" id="p_hEixo" min="0.05" max="0.60" step="0.01" value="0.12">
+      </div>
+    </div>
+
+    <div class="rail-title">Arcos</div>
+    <div class="grp">
+      <div class="ctl">
+        <div class="ctl-top"><span>Número de arcos</span><output id="o_N"></output></div>
+        <input type="range" id="p_N" min="3" max="10" step="1" value="7">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Passo radial de aninhamento</span><output id="o_passo"></output></div>
+        <input type="range" id="p_passo" min="0.04" max="0.14" step="0.005" value="0.07">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Ângulo de cobertura</span><output id="o_phi"></output></div>
+        <input type="range" id="p_phi" min="60" max="165" step="1" value="125">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Ângulo de estacionamento</span><output id="o_park"></output></div>
+        <input type="range" id="p_park" min="100" max="178" step="1" value="155">
+      </div>
+      <p class="hint">O arco 1 é fixo (arco-mãe, maior raio, na traseira). Os demais giram no mesmo eixo com raios decrescentes para aninhar por dentro.</p>
+    </div>
+
+    <div class="rail-title">Têxtil</div>
+    <div class="grp">
+      <div class="ctl">
+        <div class="ctl-top"><span>Sobreposição entre gomos</span><output id="o_ov"></output></div>
+        <input type="range" id="p_ov" min="0" max="14" step="0.5" value="6">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Gramatura da lona</span><output id="o_gram"></output></div>
+        <input type="range" id="p_gram" min="280" max="900" step="10" value="600">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Largura útil do rolo</span><output id="o_rolo"></output></div>
+        <input type="range" id="p_rolo" min="1.20" max="3.20" step="0.05" value="2.05">
+      </div>
+    </div>
+
+    <div class="rail-title">Perfil estrutural</div>
+    <div class="grp">
+      <div class="ctl">
+        <div class="ctl-top"><span>Altura do tubo (h)</span><output id="o_pH"></output></div>
+        <input type="range" id="p_pH" min="40" max="150" step="5" value="80">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Base do tubo (b)</span><output id="o_pB"></output></div>
+        <input type="range" id="p_pB" min="25" max="80" step="5" value="40">
+      </div>
+      <div class="ctl">
+        <div class="ctl-top"><span>Espessura de parede (t)</span><output id="o_pT"></output></div>
+        <input type="range" id="p_pT" min="1.5" max="5" step="0.1" value="2.5">
+      </div>
+    </div>
+
+    <div class="rail-title">Vento</div>
+    <div class="grp">
+      <div class="ctl">
+        <div class="ctl-top"><span>Velocidade de projeto</span><output id="o_vento"></output></div>
+        <input type="range" id="p_vento" min="30" max="140" step="5" value="60">
+      </div>
+      <p class="hint">Pressão dinâmica por q = 0,613·V² (V em m/s). Coeficiente de forma adotado 0,60 para casca convexa impermeável.</p>
+    </div>
+  </aside>
+
+  <main class="main">
+
+    <!-- ACIONAMENTO -->
+    <section class="sec">
+      <div class="drive">
+        <div class="drive-top">
+          <div class="big"><span id="o_cob">100</span>%</div>
+          <div class="state" id="o_estado">Capota fechada</div>
+          <div class="btns">
+            <button type="button" data-set="0">Recolhida</button>
+            <button type="button" data-set="0.5">50%</button>
+            <button type="button" data-set="1">Fechada</button>
+            <button type="button" id="btn_play" aria-pressed="false">Animar ciclo</button>
+          </div>
+        </div>
+        <input type="range" id="p_t" min="0" max="1" step="0.005" value="1" aria-label="Percentual de cobertura">
+      </div>
+    </section>
+
+    <!-- VISTAS -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">01</span><h2>Vistas ortográficas</h2>
+        <span class="note">Geradas por projeção real da esfera de arcos · cotas em metros</span>
+      </div>
+      <div class="views">
+        <div class="view">
+          <header><b>Corte transversal</b><span>cinemática</span></header>
+          <svg id="v_corte" viewBox="0 0 100 100" role="img" aria-label="Corte transversal mostrando o leque de arcos"></svg>
+        </div>
+        <div class="view">
+          <header><b>Elevação lateral</b><span>vista do hóspede</span></header>
+          <svg id="v_elev" viewBox="0 0 100 100" role="img" aria-label="Elevação lateral com arcos aninhados"></svg>
+        </div>
+        <div class="view">
+          <header><b>Planta</b><span>projeção de sombra</span></header>
+          <svg id="v_plan" viewBox="0 0 100 100" role="img" aria-label="Planta com a pegada da capota"></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- KPIs -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">02</span><h2>Ficha técnica calculada</h2>
+        <span class="note">Atualiza a cada mudança de parâmetro</span>
+      </div>
+      <div class="kpis" id="kpis"></div>
+    </section>
+
+    <!-- MEMORIAL -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">03</span><h2>Memorial dos arcos</h2>
+        <span class="note">Arco 1 = fixo · arco N = líder acionado</span>
+      </div>
+      <div class="tbl-wrap">
+        <table id="t_arcos">
+          <thead><tr>
+            <th>Arco</th><th>Raio (m)</th><th>ψ fechada</th><th>ψ recolhida</th>
+            <th>Desenv. (m)</th><th>Barras 3 m</th><th>Luvas</th><th>Peso (kg)</th>
+          </tr></thead>
+          <tbody></tbody>
+          <tfoot></tfoot>
+        </table>
+      </div>
+      <p class="footnote">O raio de cada arco decresce do fundo para a frente exatamente pelo passo de aninhamento. É essa diferença que permite o encaixe telescópico: o arco maior sempre passa por fora do menor, sem colisão em nenhum ponto do curso.</p>
+    </section>
+
+    <!-- MOLDE -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">04</span><h2>Molde de corte dos gomos</h2>
+        <span class="note">Gomo esférico desenvolvido no plano · escala automática</span>
+      </div>
+      <div class="split">
+        <div class="molde">
+          <svg id="v_molde" viewBox="0 0 100 40" role="img" aria-label="Molde plano do gomo de lona"></svg>
+        </div>
+        <div class="card">
+          <h3>Leitura do molde</h3>
+          <dl class="dl" id="d_molde"></dl>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <table id="t_molde">
+          <thead><tr><th>Estação θ</th><th>Cota no arco (m)</th><th>Meia-largura (m)</th><th>Largura total (m)</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+      <p class="footnote">A largura do gomo em cada estação é <b>w(θ) = R · δ · sen θ</b>, com θ medido a partir do apoio no eixo. O corte sai como uma lente simétrica: risque a linha de centro, marque as estações a cada 15° e ligue os pontos com régua flexível. Acrescente a margem de costura já indicada e embuta o cordão keder nas duas bordas longitudinais.</p>
+    </section>
+
+    <!-- MECANISMO -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">05</span><h2>Mecanismo e acionamento</h2>
+        <span class="note">Arraste sequencial por fitas limitadoras</span>
+      </div>
+      <div class="split">
+        <div class="card">
+          <h3>Torre de articulação (2 un.)</h3>
+          <ul>
+            <li>Poste de alumínio naval com base flangeada e 4 chumbadores inox M12 em bloco de concreto.</li>
+            <li>Eixo-tronco horizontal curto, <b id="s_eixoLen"></b> de comprimento útil, posicionado <b>fora</b> da envoltória da bolha.</li>
+            <li>Uma pista de rolamento inox blindado por arco, escalonada ao longo do eixo: cada arco gira independente no mesmo centro geométrico.</li>
+            <li>Sem trilho perimetral no piso. Toda a carga vai para as duas torres, o que libera o entorno da bolha e preserva a leitura visual.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Cinemática e compensação</h3>
+          <ul>
+            <li>Acionamento por cabo e tambor: guincho autotravante na base da torre, cabo inox 6 mm sobre roldana de <b>350 mm</b> solidária ao cubo do arco líder. Torque vira tração, e tração é hardware barato.</li>
+            <li><b>Mola de torção pré-carregada em cada cubo</b>, uma por arco. Sem isso o conjunto pesa toneladas-força no eixo quando está no ninho. É o item crítico do projeto, não um acessório.</li>
+            <li>Fitas limitadoras de poliéster ligam cada arco ao seguinte. O líder avança, tensiona a fita e arrasta o próximo em cascata. Comprimento entre arcos <b id="s_fita"></b> · quantidade <b id="s_fitaQt"></b>.</li>
+            <li>Berço de descanso acolchoado na traseira: no ninho o peso morre na estrutura, não no redutor.</li>
+            <li>Pinos de travamento na posição fechada, engatando arco a arco: o momento de vento vai para as torres e não passa pelo acionamento.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Acomodação da lona</h3>
+          <ul>
+            <li>Cada gomo é fixo aos dois arcos que o delimitam, por cordão keder em canaleta dupla.</li>
+            <li>Ao recolher, o gomo sanfona para fora em pregas de <b>180 mm</b>. Pregas por gomo: <b id="s_pregas"></b>.</li>
+            <li>Pacote recolhido: <b id="s_pacote"></b> de arco angular na traseira.</li>
+            <li>Alternativa para pacote mais fino: gomo preso só no arco traseiro, borda dianteira livre com sanefa rígida e tensor de mola.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Drenagem e vedação</h3>
+          <ul>
+            <li>Sobreposição de <b id="s_ov"></b> sempre com o gomo de trás por cima: a água escorre de degrau em degrau até a saia frontal.</li>
+            <li>O ponto crítico é o ápice, onde a superfície é horizontal. O que decide empoçamento é a flecha do têxtil entre arcos: <b id="s_flecha"></b>. Acima de 60 mm, aumente o número de arcos.</li>
+            <li>Sem costura transversal na zona de escoamento. Emendas apenas nas bordas keder.</li>
+            <li>Pingadeira de 40 mm na borda livre do arco líder, afastando o gotejamento do vidro da bolha.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CARGAS -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">06</span><h2>Cargas e pré-dimensionamento</h2>
+        <span class="note">Verificação preliminar · não substitui ART</span>
+      </div>
+      <div class="split">
+        <div class="card">
+          <h3>Vento</h3>
+          <dl class="dl" id="d_vento"></dl>
+        </div>
+        <div class="card">
+          <h3>Perfil e flexão</h3>
+          <dl class="dl" id="d_perfil"></dl>
+        </div>
+        <div class="card">
+          <h3>Acionamento</h3>
+          <dl class="dl" id="d_motor"></dl>
+        </div>
+      </div>
+      <p class="footnote">Os números acima são pré-dimensionamento paramétrico para orientar compra de perfil e escolha de motor. Antes de fabricar, o conjunto precisa de verificação estrutural por engenheiro habilitado com ART, considerando NBR 6123 para a categoria de rugosidade e a altura real do terreno, e NBR 8800/9062 para as fundações das torres.</p>
+    </section>
+
+    <!-- BOM -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">07</span><h2>Lista de materiais</h2>
+        <span class="note">Quantidades por unidade de capota</span>
+      </div>
+      <div class="tbl-wrap">
+        <table id="t_bom">
+          <thead><tr><th>Item</th><th>Especificação</th><th>Qtd.</th><th>Un.</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SEQUENCIA DE MONTAGEM -->
+    <section class="sec">
+      <div class="sec-head">
+        <span class="num">08</span><h2>Sequência de fabricação</h2>
+        <span class="note">Ordem obrigatória · o aninhamento não perdoa erro de raio</span>
+      </div>
+      <div class="split">
+        <div class="card">
+          <h3>Oficina</h3>
+          <ul>
+            <li>Calandrar cada arco no seu raio próprio. Gabarito de piso único com marcação dos <b id="s_nraios"></b> raios evita troca de peça.</li>
+            <li>Emendar as barras com luva interna colada e rebitada, sempre fora do quadrante superior.</li>
+            <li>Furar as pistas de rolamento com o eixo já montado, nunca antes.</li>
+            <li>Pintura eletrostática dourado areia após toda a usinagem.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Costura</h3>
+          <ul>
+            <li>Cortar os gomos pelo molde da seção 04, um molde por par de arcos.</li>
+            <li>Costura dupla com linha de PTFE, ponto 4 mm, e solda de alta frequência nas bordas.</li>
+            <li>Keder de 6 mm nas duas bordas longitudinais, sem emenda no comprimento.</li>
+            <li>Reforço de 3 camadas nos pontos de ancoragem das fitas limitadoras.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Campo</h3>
+          <ul>
+            <li>Locar as duas torres pelo vão calculado, tolerância ±3 mm. Fora disso o conjunto trava.</li>
+            <li>Montar do maior arco para o menor, testando o giro livre a cada arco.</li>
+            <li>Enfiar os gomos pela canaleta com a bolha já inflada e protegida.</li>
+            <li>Regular fitas limitadoras com a capota 100% fechada e só então programar os fins de curso.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Operação</h3>
+          <ul>
+            <li>Recolhimento automático obrigatório acima de <b id="s_vlim"></b>.</li>
+            <li>Nunca operar com neve ou lona encharcada acumulada no ninho.</li>
+            <li>Lavagem da lona a cada 90 dias, sem alta pressão sobre a costura.</li>
+            <li>Inspeção de rolamentos e fitas a cada 6 meses.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <div class="seal">
+      <span>Zion Hotel Group Internacional · Estúdio de Produto</span>
+      <span>ZG-CAP-01 · Protótipo paramétrico P0</span>
+    </div>
+
+  </main>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $ = s => document.querySelector(s);
+const D2R = Math.PI/180;
+const fmt = (v,d=2) => (isFinite(v)?v:0).toFixed(d).replace(".",",");
+const fmt0 = v => Math.round(v).toLocaleString("pt-BR");
+
+/* ---------------- parâmetros ---------------- */
+const CTRL = {
+  D:{el:"p_D",out:"o_D",f:v=>"Ø "+fmt(v)+" m"},
+  folga:{el:"p_folga",out:"o_folga",f:v=>fmt(v)+" m"},
+  hEixo:{el:"p_hEixo",out:"o_hEixo",f:v=>fmt(v)+" m"},
+  N:{el:"p_N",out:"o_N",f:v=>v+" arcos"},
+  passo:{el:"p_passo",out:"o_passo",f:v=>fmt0(v*1000)+" mm"},
+  phi:{el:"p_phi",out:"o_phi",f:v=>fmt0(v)+"°"},
+  park:{el:"p_park",out:"o_park",f:v=>fmt0(v)+"°"},
+  ov:{el:"p_ov",out:"o_ov",f:v=>fmt(v,1)+"°"},
+  gram:{el:"p_gram",out:"o_gram",f:v=>fmt0(v)+" g/m²"},
+  rolo:{el:"p_rolo",out:"o_rolo",f:v=>fmt(v)+" m"},
+  pH:{el:"p_pH",out:"o_pH",f:v=>fmt0(v)+" mm"},
+  pB:{el:"p_pB",out:"o_pB",f:v=>fmt0(v)+" mm"},
+  pT:{el:"p_pT",out:"o_pT",f:v=>fmt(v,1)+" mm"},
+  vento:{el:"p_vento",out:"o_vento",f:v=>fmt0(v)+" km/h"}
+};
+const P = {};
+let t = 1;
+
+/* ---------------- geometria ---------------- */
+function geo(){
+  const Rb = P.D/2;
+  const N = P.N;
+  // raio do arco interno resolvido pela folga mínima real: sqrt(Rin² + h²) - Rb = folga
+  const alvo = Rb + P.folga;
+  const Rin = Math.sqrt(Math.max(alvo*alvo - P.hEixo*P.hEixo, 0.04));
+  const R = [];
+  for(let i=0;i<N;i++) R.push(Rin + (N-1-i)*P.passo);
+  const Rout = R[0];
+  const passoAng = P.phi/(N-1);
+  const stack = Math.min(3.0, passoAng*0.5);
+
+  const psi = tt => R.map((_,i)=> P.park - i*(stack + tt*(passoAng-stack)));
+
+  // seção do perfil
+  const aMM2 = P.pH*P.pB - Math.max(P.pH-2*P.pT,0)*Math.max(P.pB-2*P.pT,0);
+  const kgm = aMM2*0.0027;
+  const Ix = (P.pB*Math.pow(P.pH,3) - Math.max(P.pB-2*P.pT,0)*Math.pow(Math.max(P.pH-2*P.pT,0),3))/12; // mm4
+  const Wx = Ix/(P.pH/2); // mm3
+
+  // arcos
+  const arcos = R.map((r,i)=>{
+    const dev = Math.PI*r;
+    const barras = Math.ceil(dev/2.90);
+    return {i:i+1, r, dev, barras, luvas:barras-1, peso:dev*kgm};
+  });
+  const devTotal = arcos.reduce((s,a)=>s+a.dev,0);
+  const pesoArcos = arcos.reduce((s,a)=>s+a.peso,0);
+
+  // gomos
+  const dAng = (passoAng + P.ov)*D2R;
+  const gomos = [];
+  for(let i=0;i<N-1;i++){
+    const Rm = (R[i]+R[i+1])/2;
+    const area = 2*Rm*Rm*dAng;
+    gomos.push({i:i+1, Rm, area, comp:Math.PI*Rm, larg:Rm*dAng});
+  }
+  const areaLona = gomos.reduce((s,g)=>s+g.area,0);
+  const consumo = areaLona*1.08;
+  const pesoLona = areaLona*P.gram/1000;
+  const largMax = gomos.length? Math.max.apply(null,gomos.map(g=>g.larg)) : 0;
+  const cabeNoRolo = largMax + 0.05 <= P.rolo;
+  const linRolo = gomos.reduce((s,g)=>s+g.comp,0)*1.08;
+
+  // vento
+  const v = P.vento/3.6;
+  const q = 0.613*v*v;
+  const Aelev = Math.PI*Rout*Rout/2;
+  const Acorte = 0.5*Rout*Rout*P.phi*D2R;
+  const Aref = Math.max(Aelev,Acorte);
+  const F = q*0.60*Aref;
+  const Mvento = F*(2*Rout/Math.PI);
+
+  // momento gravitacional ao longo de todo o curso
+  const S = 60, Mt = [];
+  for(let s=0;s<=S;s++){
+    const ps = psi(s/S);
+    let M = 0;
+    for(let i=0;i<N;i++){
+      M += arcos[i].peso*9.81*(2*R[i]/Math.PI)*Math.cos(ps[i]*D2R);
+    }
+    for(let i=0;i<gomos.length;i++){
+      const w = gomos[i].area*P.gram/1000*9.81;
+      const pm = (ps[i]+ps[i+1])/2;
+      M += w*(Math.PI*gomos[i].Rm/4)*Math.cos(pm*D2R);
+    }
+    Mt.push(M);
+  }
+  const Mrep = Math.abs(Mt[0]);
+  const Mfec = Math.abs(Mt[S]);
+  const Mmax = Mt.reduce((a,b)=>Math.max(a,Math.abs(b)),0);
+  // molas de torção pré-carregadas nos cubos: torque = a + b·ψ, e ψ é linear em t,
+  // logo a compensação realizável é qualquer reta em t. Ajuste por mínimos quadrados.
+  let sx=0,sy=0,sxx=0,sxy=0;
+  Mt.forEach((m,k)=>{const x=k/S; sx+=x; sy+=m; sxx+=x*x; sxy+=x*m;});
+  const n=Mt.length, den=n*sxx-sx*sx;
+  const b=(n*sxy-sx*sy)/den, a=(sy-b*sx)/n;
+  let Mres=0;
+  Mt.forEach((m,k)=>{Mres=Math.max(Mres, Math.abs(m-(a+b*k/S)));});
+  const Matrito = 0.10*Mmax;
+  const Mmotor = (Mres+Matrito)*1.5;
+  const rTambor = 0.35;
+  const Fcabo = Mmotor/rTambor;
+  const rpm = 0.5;
+  const omega = rpm*2*Math.PI/60;
+  const Pot = Mmotor*omega/0.60;
+  const curso = (P.phi-(Math.min(3.0,passoAng*0.5)*(N-1)));
+  const ciclo = curso/(rpm*6);
+
+  // flexão preliminar: arco tratado como viga curva bi-apoiada, vão 2R
+  const vao = 2*Rout;
+  const wLin = kgm*9.81 + (gomos.length? (pesoLona*9.81/devTotal) : 0) + (q*0.60*P.passo*0); // N/m
+  const wTot = wLin + (q*0.60*(areaLona/Math.max(devTotal,0.01))); // + parcela de vento distribuída
+  const Mflex = wTot*vao*vao/8; // N·m
+  const sigma = Wx>0 ? (Mflex*1000)/Wx : 0; // N/mm² = MPa
+  const fy = 160; // 6063-T6 admissível de projeto
+
+  // pregas
+  const arcoFechado = gomos.length? gomos[0].Rm*passoAng*D2R : 0;
+  const arcoNinho = gomos.length? gomos[0].Rm*stack*D2R : 0;
+  const pregas = Math.max(1, Math.ceil((arcoFechado-arcoNinho)/0.36));
+  const pacoteAng = (N-1)*stack;
+
+  // flecha do têxtil entre arcos: o gomo cortado na esfera tende à corda sob tensão.
+  // é o critério que governa empoçamento no quadrante superior.
+  const flecha = Rout*(1-Math.cos(passoAng*D2R/2));
+
+  return {Rb,N,Rin,R,Rout,passoAng,stack,psi,arcos,devTotal,pesoArcos,
+          gomos,areaLona,consumo,pesoLona,largMax,cabeNoRolo,linRolo,
+          kgm,aMM2,Ix,Wx,q,v,Aref,F,Mvento,vao,Mflex,sigma,fy,
+          Mrep,Mfec,Mmax,Mres,Matrito,Mmotor,Fcabo,rTambor,Pot,rpm,curso,ciclo,
+          pregas,pacoteAng,dAng,flecha,
+          altura:P.hEixo+Rout, eixoLen:(N-1)*P.passo};
+}
+
+/* ---------------- desenho ---------------- */
+const NS = "http://www.w3.org/2000/svg";
+function svgEl(tag,attrs){
+  const e = document.createElementNS(NS,tag);
+  for(const k in attrs) e.setAttribute(k,attrs[k]);
+  return e;
+}
+function frame(svg, xmin, xmax, ymin, ymax){
+  svg.innerHTML = "";
+  const pad = 0.35;
+  const w = (xmax-xmin)+pad*2, h = (ymax-ymin)+pad*2;
+  svg.setAttribute("viewBox", (xmin-pad)+" "+(-(ymax+pad))+" "+w+" "+h);
+  const g = svgEl("g",{transform:"scale(1,-1)"});
+  svg.appendChild(g);
+  return g;
+}
+function ground(g,x0,x1){
+  g.appendChild(svgEl("line",{x1:x0,y1:0,x2:x1,y2:0,stroke:"#333A43","stroke-width":1,"vector-effect":"non-scaling-stroke"}));
+  for(let x=Math.ceil(x0*4)/4;x<x1;x+=0.5){
+    g.appendChild(svgEl("line",{x1:x,y1:0,x2:x-0.12,y2:-0.12,stroke:"#262C34","stroke-width":1,"vector-effect":"non-scaling-stroke"}));
+  }
+}
+function poly(g,pts,attrs){
+  const e = svgEl("polyline",Object.assign({points:pts.map(p=>p[0].toFixed(4)+","+p[1].toFixed(4)).join(" "),fill:"none"},attrs));
+  g.appendChild(e); return e;
+}
+function fill(g,pts,attrs){
+  const e = svgEl("polygon",Object.assign({points:pts.map(p=>p[0].toFixed(4)+","+p[1].toFixed(4)).join(" ")},attrs));
+  g.appendChild(e); return e;
+}
+function label(g,x,y,txt,anchor,color,size){
+  const e = svgEl("text",{x:x,y:-y,"text-anchor":anchor||"middle",
+    fill:color||"#7E848C","font-size":size||0.22,"font-family":"ui-monospace,monospace",
+    transform:"scale(1,-1)","letter-spacing":0.02});
+  e.setAttribute("transform","scale(1,-1)");
+  e.textContent = txt;
+  g.appendChild(e); return e;
+}
+function cota(g,x1,y1,x2,y2,txt,off){
+  const c = "#4A525C";
+  g.appendChild(svgEl("line",{x1,y1,x2,y2,stroke:c,"stroke-width":1,"vector-effect":"non-scaling-stroke","stroke-dasharray":"4 3"}));
+  label(g,(x1+x2)/2,(y1+y2)/2+(off||0.12),txt,"middle","#8C939B",0.2);
+}
+
+const SAND="#BE9A6E", SAND_F="rgba(190,154,110,.20)", GOLD="#C9A84C", GLASS="rgba(159,182,194,.10)";
+
+function drawCorte(G){
+  const svg = $("#v_corte");
+  const R0 = G.Rout, lim = R0*1.12;
+  const g = frame(svg,-lim,lim,-0.55,lim);
+  ground(g,-lim,lim);
+  // bolha (semicírculo)
+  const bpts=[]; for(let a=0;a<=180;a+=3) bpts.push([G.Rb*Math.cos(a*D2R), G.Rb*Math.sin(a*D2R)]);
+  fill(g,bpts,{fill:"rgba(159,182,194,.09)",stroke:"rgba(159,182,194,.60)","stroke-width":1.3,"vector-effect":"non-scaling-stroke"});
+  const ps = G.psi(t);
+  const cy = P.hEixo;
+  // setor de cobertura de referência (posição fechada)
+  const pc = G.psi(1);
+  [pc[0], pc[pc.length-1]].forEach(a=>{
+    poly(g,[[0,cy],[G.Rout*1.06*Math.cos(a*D2R), cy+G.Rout*1.06*Math.sin(a*D2R)]],
+      {stroke:"rgba(201,168,76,.22)","stroke-width":1,"stroke-dasharray":"5 4","vector-effect":"non-scaling-stroke"});
+  });
+  // faixa de lona entre arcos
+  for(let i=0;i<G.N-1;i++){
+    const Rm=(G.R[i]+G.R[i+1])/2, a1=ps[i], a2=ps[i+1];
+    const pts=[[0,cy]];
+    const st=(a2-a1)/12;
+    for(let k=0;k<=12;k++){const a=a1+st*k; pts.push([Rm*Math.cos(a*D2R), cy+Rm*Math.sin(a*D2R)]);}
+    fill(g,pts,{fill:SAND_F,stroke:"none"});
+    const band=[];
+    for(let k=0;k<=12;k++){const a=a1+st*k; band.push([Rm*Math.cos(a*D2R), cy+Rm*Math.sin(a*D2R)]);}
+    poly(g,band,{stroke:SAND,"stroke-width":3.5,"vector-effect":"non-scaling-stroke","stroke-linecap":"round",opacity:.85});
+  }
+  // arcos (raios)
+  ps.forEach((a,i)=>{
+    const r=G.R[i];
+    poly(g,[[0,cy],[r*Math.cos(a*D2R), cy+r*Math.sin(a*D2R)]],
+      {stroke: i===0?GOLD:"rgba(201,168,76,.62)","stroke-width": i===0?2.2:1.4,"vector-effect":"non-scaling-stroke"});
+    g.appendChild(svgEl("circle",{cx:r*Math.cos(a*D2R),cy:cy+r*Math.sin(a*D2R),r:0.055,fill:GOLD}));
+  });
+  // eixo
+  g.appendChild(svgEl("circle",{cx:0,cy:cy,r:0.09,fill:"none",stroke:GOLD,"stroke-width":1.4,"vector-effect":"non-scaling-stroke"}));
+  g.appendChild(svgEl("circle",{cx:0,cy:cy,r:0.03,fill:GOLD}));
+  label(g,0,cy+0.30,"eixo","middle","#6E757D",0.2);
+  cota(g,-G.Rb,-0.30,G.Rb,-0.30,"Ø "+fmt(P.D)+" m",-0.36);
+  label(g,-G.Rout*0.98,G.Rout*0.94,"cobertura "+fmt0(P.phi)+"°","start","#8C939B",0.24);
+  label(g,G.Rout*0.98,G.Rout*0.94,fmt0(t*100)+"%","end",GOLD,0.24);
+}
+
+function drawElev(G){
+  const svg = $("#v_elev");
+  const R0 = G.Rout, lim = R0*1.12;
+  const g = frame(svg,-lim,lim,-0.35,lim);
+  ground(g,-lim,lim);
+  const bpts=[]; for(let a=0;a<=180;a+=3) bpts.push([G.Rb*Math.cos(a*D2R), G.Rb*Math.sin(a*D2R)]);
+  fill(g,bpts,{fill:GLASS,stroke:"rgba(159,182,194,.45)","stroke-width":1,"vector-effect":"non-scaling-stroke"});
+  const ps = G.psi(t), cy = P.hEixo;
+  const ell = (r,psi) => {const o=[];for(let th=0;th<=180;th+=3)o.push([r*Math.cos(th*D2R), cy+r*Math.sin(th*D2R)*Math.sin(psi*D2R)]);return o;};
+  // gomos ordenados por altura para pintura correta
+  const panels=[];
+  for(let i=0;i<G.N-1;i++){
+    const A=ell(G.R[i],ps[i]), B=ell(G.R[i+1],ps[i+1]).slice().reverse();
+    panels.push({h:Math.max(G.R[i]*Math.sin(ps[i]*D2R), G.R[i+1]*Math.sin(ps[i+1]*D2R)), pts:A.concat(B)});
+  }
+  panels.sort((a,b)=>a.h-b.h).forEach(p=>{
+    fill(g,p.pts,{fill:"rgba(190,154,110,.30)",stroke:"rgba(190,154,110,.55)","stroke-width":1,"vector-effect":"non-scaling-stroke"});
+  });
+  ps.forEach((a,i)=>{
+    poly(g,ell(G.R[i],a),{stroke: i===0?GOLD:"rgba(201,168,76,.70)","stroke-width": i===0?2:1.3,"vector-effect":"non-scaling-stroke"});
+  });
+  // torres
+  [-G.Rout,G.Rout].forEach(x=>{
+    g.appendChild(svgEl("rect",{x:x-0.07,y:0,width:0.14,height:cy,fill:"#3A414A"}));
+  });
+  cota(g,-G.Rout,-0.22,G.Rout,-0.22,"vão torres "+fmt(2*G.Rout)+" m",-0.28);
+  cota(g,G.Rout*1.05,0,G.Rout*1.05,G.altura,"H "+fmt(G.altura)+" m",0);
+}
+
+function drawPlan(G){
+  const svg = $("#v_plan");
+  const R0 = G.Rout, lim = R0*1.12;
+  const g = frame(svg,-lim,lim,-lim,lim);
+  const ps = G.psi(t);
+  const ellp = (r,psi)=>{const o=[];for(let th=0;th<=180;th+=3)o.push([r*Math.cos(th*D2R), r*Math.sin(th*D2R)*Math.cos(psi*D2R)]);return o;};
+  const panels=[];
+  for(let i=0;i<G.N-1;i++){
+    const A=ellp(G.R[i],ps[i]), B=ellp(G.R[i+1],ps[i+1]).slice().reverse();
+    panels.push(A.concat(B));
+  }
+  panels.forEach(p=>fill(g,p,{fill:"rgba(190,154,110,.13)",stroke:"none"}));
+  // círculo de base / pegada máxima
+  g.appendChild(svgEl("circle",{cx:0,cy:0,r:G.Rout,fill:"none",stroke:"rgba(201,168,76,.22)","stroke-width":1,"stroke-dasharray":"6 5","vector-effect":"non-scaling-stroke"}));
+  ps.forEach((a,i)=>poly(g,ellp(G.R[i],a),{stroke:i===0?GOLD:"rgba(201,168,76,.50)","stroke-width":i===0?1.8:1,"vector-effect":"non-scaling-stroke"}));
+  // eixo de giro
+  poly(g,[[-G.Rout*1.06,0],[G.Rout*1.06,0]],{stroke:"#4A525C","stroke-width":1,"stroke-dasharray":"8 4 2 4","vector-effect":"non-scaling-stroke"});
+  // bolha em planta, por cima, só contorno
+  g.appendChild(svgEl("circle",{cx:0,cy:0,r:G.Rb,fill:"none",stroke:"rgba(159,182,194,.75)","stroke-width":1.4,"vector-effect":"non-scaling-stroke"}));
+  [-G.Rout,G.Rout].forEach(x=>g.appendChild(svgEl("circle",{cx:x,cy:0,r:0.1,fill:"none",stroke:GOLD,"stroke-width":1.4,"vector-effect":"non-scaling-stroke"})));
+  label(g,0,-G.Rout*0.94,"torre · eixo de rotação · torre","middle","#6E757D",0.24);
+  label(g,0,G.Rout*0.90,"pegada Ø "+fmt(2*G.Rout)+" m","middle","#8C939B",0.24);
+  cota(g,-G.Rb*0.955,-G.Rb*0.30,G.Rb*0.955,-G.Rb*0.30,"bolha Ø "+fmt(P.D)+" m",0.18);
+}
+
+function drawMolde(G){
+  const svg = $("#v_molde");
+  if(!G.gomos.length){svg.innerHTML="";return;}
+  const gm = G.gomos[0];
+  const L = gm.comp, W = gm.larg;
+  const pad = 0.55;
+  svg.innerHTML="";
+  svg.setAttribute("viewBox", (-pad)+" "+(-(W/2+pad))+" "+(L+pad*2)+" "+(W+pad*2));
+  const g = svgEl("g",{});
+  svg.appendChild(g);
+  // silhueta
+  const top=[],bot=[];
+  for(let th=0;th<=180;th+=2){
+    const x = gm.Rm*th*D2R, y = gm.Rm*G.dAng*Math.sin(th*D2R)/2;
+    top.push([x,-y]); bot.push([x,y]);
+  }
+  const all = top.concat(bot.slice().reverse());
+  g.appendChild(svgEl("polygon",{points:all.map(p=>p[0].toFixed(3)+","+p[1].toFixed(3)).join(" "),
+    fill:"rgba(190,154,110,.16)",stroke:SAND,"stroke-width":1.6,"vector-effect":"non-scaling-stroke"}));
+  // margem de costura 25 mm
+  const off=[];
+  for(let th=0;th<=180;th+=2){const x=gm.Rm*th*D2R, y=gm.Rm*G.dAng*Math.sin(th*D2R)/2+0.025; off.push([x,-y]);}
+  for(let th=180;th>=0;th-=2){const x=gm.Rm*th*D2R, y=gm.Rm*G.dAng*Math.sin(th*D2R)/2+0.025; off.push([x,y]);}
+  g.appendChild(svgEl("polygon",{points:off.map(p=>p[0].toFixed(3)+","+p[1].toFixed(3)).join(" "),
+    fill:"none",stroke:"rgba(190,154,110,.45)","stroke-width":1,"stroke-dasharray":"5 4","vector-effect":"non-scaling-stroke"}));
+  // linha de centro
+  g.appendChild(svgEl("line",{x1:0,y1:0,x2:L,y2:0,stroke:"#4A525C","stroke-width":1,"stroke-dasharray":"10 4 2 4","vector-effect":"non-scaling-stroke"}));
+  // estações
+  for(let th=15;th<180;th+=15){
+    const x=gm.Rm*th*D2R, y=gm.Rm*G.dAng*Math.sin(th*D2R)/2;
+    g.appendChild(svgEl("line",{x1:x,y1:-y,x2:x,y2:y,stroke:"rgba(201,168,76,.35)","stroke-width":1,"vector-effect":"non-scaling-stroke"}));
+  }
+  const tx=(x,y,s,col,sz)=>{const e=svgEl("text",{x,y,fill:col||"#7E848C","font-size":sz||0.16,
+    "font-family":"ui-monospace,monospace","text-anchor":"middle"});e.textContent=s;g.appendChild(e);};
+  tx(L/2, W/2+0.42, "comprimento desenvolvido "+fmt(L)+" m", "#8C939B", 0.17);
+  tx(L/2, -W/2-0.22, "largura máx. "+fmt(W)+" m  ·  margem de costura 25 mm", GOLD, 0.17);
+}
+
+/* ---------------- painéis ---------------- */
+function paint(G){
+  // KPIs
+  const kpis=[
+    ["Altura total", fmt(G.altura), "m", true],
+    ["Vão entre torres", fmt(2*G.Rout), "m", false],
+    ["Área têxtil", fmt(G.areaLona,1), "m²", true],
+    ["Peso do conjunto", fmt0(G.pesoArcos+G.pesoLona), "kg", false],
+    ["Tração no cabo", fmt0(G.Fcabo/9.81), "kgf", true],
+    ["Empuxo a "+fmt0(P.vento)+" km/h", fmt0(G.F/9.81), "kgf", false]
+  ];
+  $("#kpis").innerHTML = kpis.map(k=>
+    '<div class="kpi'+(k[3]?' acc':'')+'"><div class="k">'+k[0]+'</div><div class="v">'+k[1]+'<small>'+k[2]+'</small></div></div>'
+  ).join("");
+
+  // tabela arcos
+  const psC = G.psi(1), psP = G.psi(0);
+  const tb = $("#t_arcos tbody");
+  tb.innerHTML = G.arcos.map((a,i)=>
+    "<tr><td>Arco "+a.i+(i===0?" · mãe":(i===G.arcos.length-1?" · líder":""))+"</td><td>"+fmt(a.r,3)+"</td><td>"+fmt(psC[i],1)+"°</td><td>"+fmt(psP[i],1)+"°</td><td>"+fmt(a.dev)+"</td><td>"+a.barras+"</td><td>"+a.luvas+"</td><td>"+fmt(a.peso,1)+"</td></tr>"
+  ).join("");
+  $("#t_arcos tfoot").innerHTML =
+    "<tr><td>Total</td><td>—</td><td>—</td><td>—</td><td>"+fmt(G.devTotal,1)+"</td><td>"+G.arcos.reduce((s,a)=>s+a.barras,0)+"</td><td>"+G.arcos.reduce((s,a)=>s+a.luvas,0)+"</td><td>"+fmt(G.pesoArcos,1)+"</td></tr>";
+
+  // molde
+  const gm = G.gomos[0]||{Rm:0,comp:0,larg:0,area:0};
+  $("#d_molde").innerHTML = [
+    ["Gomos a cortar", (G.N-1)+" un."],
+    ["Raio médio de corte", fmt(gm.Rm,3)+" m"],
+    ["Ângulo do gomo", fmt(P.phi/(G.N-1)+P.ov,1)+"°"],
+    ["Comprimento do gomo", fmt(gm.comp)+" m"],
+    ["Largura máxima", fmt(gm.larg)+" m"],
+    ["Cabe no rolo de "+fmt(P.rolo)+" m", G.cabeNoRolo?'<span class="pill ok">sim</span>':'<span class="pill crit">não, emendar</span>'],
+    ["Área por gomo", fmt(gm.area,2)+" m²"],
+    ["Flecha entre arcos", fmt0(G.flecha*1000)+" mm "+
+      (G.flecha<=0.060?'<span class="pill ok">ok</span>':(G.flecha<=0.090?'<span class="pill warn">limite</span>':'<span class="pill crit">empoça</span>'))],
+    ["Consumo total com perdas", fmt(G.consumo,1)+" m²"],
+    ["Metragem linear de rolo", fmt(G.linRolo,1)+" m"],
+    ["Peso da lona", fmt(G.pesoLona,1)+" kg"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  const tm = $("#t_molde tbody");
+  let rows="";
+  for(let th=0;th<=180;th+=15){
+    const cota = gm.Rm*th*D2R;
+    const half = gm.Rm*G.dAng*Math.sin(th*D2R)/2;
+    rows += "<tr><td>"+th+"°</td><td>"+fmt(cota,3)+"</td><td>"+fmt(half,3)+"</td><td>"+fmt(half*2,3)+"</td></tr>";
+  }
+  tm.innerHTML = rows;
+
+  // vento
+  const vLim = 45;
+  $("#d_vento").innerHTML = [
+    ["Velocidade de projeto", fmt0(P.vento)+" km/h · "+fmt(G.v,1)+" m/s"],
+    ["Pressão dinâmica q", fmt0(G.q)+" Pa"],
+    ["Área de referência", fmt(G.Aref,1)+" m²"],
+    ["Coeficiente de forma", "0,60"],
+    ["Esforço resultante", fmt0(G.F)+" N · "+fmt0(G.F/9.81)+" kgf"],
+    ["Reação por torre", fmt0(G.F/2/9.81)+" kgf"],
+    ["Momento no eixo", fmt0(G.Mvento)+" N·m"],
+    ["Absorvido por", "pinos de travamento, não pelo redutor"],
+    ["Recolher acima de", vLim+" km/h"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  const okSig = G.sigma <= G.fy;
+  $("#d_perfil").innerHTML = [
+    ["Seção", fmt0(P.pH)+" × "+fmt0(P.pB)+" × "+fmt(P.pT,1)+" mm"],
+    ["Área da seção", fmt0(G.aMM2)+" mm²"],
+    ["Massa linear", fmt(G.kgm,2)+" kg/m"],
+    ["Inércia Ix", fmt0(G.Ix/1000)+" ×10³ mm⁴"],
+    ["Módulo Wx", fmt0(G.Wx)+" mm³"],
+    ["Momento estimado", fmt0(G.Mflex)+" N·m"],
+    ["Tensão atuante", fmt0(G.sigma)+" MPa"],
+    ["Verificação vs. 160 MPa", okSig?'<span class="pill ok">aprovado</span>':'<span class="pill crit">reforçar seção</span>']
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  $("#d_motor").innerHTML = [
+    ["Momento no ninho (repouso)", fmt0(G.Mrep)+" N·m"],
+    ["Momento na posição fechada", fmt0(G.Mfec)+" N·m"],
+    ["Compensado por molas de torção", fmt0(G.Mmax-G.Mres)+" N·m"],
+    ["Residual não compensado", fmt0(G.Mres)+" N·m"],
+    ["Atrito e rigidez do têxtil", fmt0(G.Matrito)+" N·m"],
+    ["Torque de projeto (FS 1,5)", fmt0(G.Mmotor)+" N·m"],
+    ["Tração no cabo · tambor Ø 700", fmt0(G.Fcabo)+" N · "+fmt0(G.Fcabo/9.81)+" kgf"],
+    ["Rotação · tempo de ciclo", fmt(G.rpm,1)+" rpm · "+fmt0(G.ciclo)+" s"],
+    ["Potência mecânica", fmt0(G.Pot)+" W"],
+    ["Acionamento sugerido", "guincho 24 V "+fmt0(Math.ceil(G.Fcabo/9.81/50)*50)+" kgf, autotravante"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  // mecanismo inline
+  const fitaLen = 2*gm.Rm*Math.sin((P.phi/(G.N-1))*D2R/2);
+  $("#s_eixoLen").textContent = fmt0(G.eixoLen*1000)+" mm";
+  $("#s_fita").textContent = fmt(fitaLen)+" m";
+  $("#s_fitaQt").textContent = (2*(G.N-1))+" un.";
+  $("#s_pregas").textContent = G.pregas+" pregas";
+  $("#s_pacote").textContent = fmt(G.pacoteAng,1)+"° · "+fmt0(G.Rout*G.pacoteAng*D2R*1000)+" mm";
+  $("#s_ov").textContent = fmt(P.ov,1)+"° · "+fmt0(gm.Rm*P.ov*D2R*1000)+" mm";
+  $("#s_flecha").innerHTML = fmt0(G.flecha*1000)+" mm "+
+    (G.flecha<=0.060?'<span class="pill ok">ok</span>':(G.flecha<=0.090?'<span class="pill warn">limite</span>':'<span class="pill crit">empoça</span>'));
+  $("#s_nraios").textContent = G.N;
+  $("#s_vlim").textContent = vLim+" km/h";
+
+  // BOM
+  const bom = [
+    ["Perfil tubular de alumínio","Naval 6063-T6 "+fmt0(P.pH)+"×"+fmt0(P.pB)+"×"+fmt(P.pT,1)+" mm, calandrado", fmt(G.devTotal*1.05,1), "m"],
+    ["Luvas de emenda","Interna usinada, colada e rebitada", G.arcos.reduce((s,a)=>s+a.luvas,0), "un."],
+    ["Lona acrílica","Impermeável, UV 95%, "+fmt0(P.gram)+" g/m², cor areia", fmt(G.consumo,1), "m²"],
+    ["Rolo de lona","Largura útil "+fmt(P.rolo)+" m", fmt(G.linRolo,1), "m lin."],
+    ["Cordão keder","Ø 6 mm, PVC extrudado", fmt(G.linRolo*2,1), "m"],
+    ["Torre de articulação","Poste alumínio + base flangeada", 2, "un."],
+    ["Eixo-tronco escalonado","Inox 316, "+fmt0(G.eixoLen*1000+120)+" mm útil", 2, "un."],
+    ["Rolamento blindado inox","Um por arco, por lado", 2*G.N, "un."],
+    ["Mola de torção pré-carregada","Aço mola, uma por arco móvel, no cubo", 2*(G.N-1), "un."],
+    ["Guincho autotravante","24 V, "+fmt0(Math.ceil(G.Fcabo/9.81/50)*50)+" kgf, com freio", 1, "un."],
+    ["Cabo de aço inox 316","Ø 6 mm, 7×19, com terminais prensados", fmt0(4*G.Rout+6), "m"],
+    ["Roldana de tambor","Ø 700 mm, solidária ao cubo do arco líder", 1, "un."],
+    ["Pino de travamento","Solenoide 24 V, posição fechada", 2*(G.N-1), "un."],
+    ["Central + controle remoto","433 MHz, 3 canais, com fim de curso", 1, "cj."],
+    ["Anemômetro","Recolhimento automático a 45 km/h", 1, "un."],
+    ["Berço de descanso","Perfil acolchoado com EPDM, na traseira", 2, "un."],
+    ["Fita limitadora","Poliéster 40 mm, "+fmt(fitaLen)+" m", 2*(G.N-1), "un."],
+    ["Chumbador inox","M12 × 160 mm, químico", 8, "un."],
+    ["Parafusaria inox A4","Kit por arco", G.N, "cj."],
+    ["Pintura eletrostática","Dourado areia, sobre pré-tratamento", fmt(G.devTotal*1.05,1), "m"]
+  ];
+  $("#t_bom tbody").innerHTML = bom.map(r=>
+    "<tr><td>"+r[0]+"</td><td>"+r[1]+"</td><td>"+r[2]+"</td><td>"+r[3]+"</td></tr>").join("");
+}
+
+/* ---------------- ciclo ---------------- */
+function estado(){
+  if(t>=0.985) return "Capota fechada";
+  if(t<=0.015) return "Capota recolhida";
+  return "Abertura parcial";
+}
+function render(){
+  const G = geo();
+  drawCorte(G); drawElev(G); drawPlan(G); drawMolde(G);
+  paint(G);
+  $("#o_cob").textContent = Math.round(t*100);
+  $("#o_estado").textContent = estado();
+}
+
+/* ---------------- bind ---------------- */
+for(const k in CTRL){
+  const c = CTRL[k], el = document.getElementById(c.el);
+  P[k] = parseFloat(el.value);
+  const sync = ()=>{ P[k] = parseFloat(el.value); document.getElementById(c.out).textContent = c.f(P[k]); render(); };
+  el.addEventListener("input", sync);
+  document.getElementById(c.out).textContent = c.f(P[k]);
+}
+const tEl = $("#p_t");
+tEl.addEventListener("input", ()=>{ t = parseFloat(tEl.value); stop(); render(); });
+document.querySelectorAll("[data-set]").forEach(b=>{
+  b.addEventListener("click", ()=>{ stop(); t = parseFloat(b.dataset.set); tEl.value = t; render(); });
+});
+
+let raf = null, dir = -1, last = 0;
+function stop(){ if(raf){cancelAnimationFrame(raf); raf=null; $("#btn_play").setAttribute("aria-pressed","false");} }
+function loop(ts){
+  if(!last) last = ts;
+  const dt = Math.min((ts-last)/1000, 0.05); last = ts;
+  t += dir*dt*0.22;
+  if(t<=0){t=0;dir=1;} if(t>=1){t=1;dir=-1;}
+  tEl.value = t; render();
+  raf = requestAnimationFrame(loop);
+}
+$("#btn_play").addEventListener("click", ()=>{
+  if(raf) stop();
+  else { last=0; $("#btn_play").setAttribute("aria-pressed","true"); raf = requestAnimationFrame(loop); }
+});
+if(window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+  $("#btn_play").disabled = true;
+}
+render();
+})();
+</script>
+</body>
+</html>
