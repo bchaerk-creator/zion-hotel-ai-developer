@@ -16,25 +16,25 @@ Mais o **ecossistema** completo: Zion Bubble Glamping, Zion Advisory, Zion Hospi
 ### `development.html` · `management.html` · `collection.html` — modalidades
 Páginas internas dedicadas, uma por modalidade, no mesmo padrão visual: hero próprio, "para quem é", processo/pilares detalhados, entregas em grade e CTA segmentado. Interligadas pela navegação e pelos botões "Explorar a Modalidade" da home.
 
-### `capital.html` — Zion Capital (investidores)
-Página de captação no padrão das plataformas de investimento: hero, números do portfólio, "como funciona" em 5 etapas, **esteira de projetos** filtrável por estágio, instrumentos (equity em SPE, mútuo conversível, unidade com renda), governança e proteção do capital, faixas de ticket, FAQ, CTA de cadastro e aviso legal.
+### `capital.html` — Zion Capital (investidores institucionais)
+Página da **rodada Fase 1 da Zion Collection**, construída sobre os dados do *Zion Collection Investment Teaser 2026*: hero, números da plataforma, track record de Urubici e Florianópolis, **esteira de destinos** filtrável, as três fases, o aporte (US$ 21,6 mi em duas tranches), o retorno (preferência de 20% a.a., IRR 38,0%, MOIC 1,62x), a cascata de distribuição, a tabela de reciclagem por ondas, estrutura societária, Land Partnership Model, taxas da plataforma, sete riscos com mitigadores, FAQ, o funil NDA→Closing e aviso legal.
 
-A esteira é renderizada a partir do array `PROJETOS`, no `<script>` ao final do arquivo — **é o único lugar a editar** para incluir, remover ou atualizar um projeto:
+A esteira é renderizada a partir do array `DESTINOS`, no `<script>` ao final do arquivo — **é o único lugar a editar** para incluir, remover ou atualizar um destino:
 
 ```js
 {
-  nome:'Rota dos Milagres', local:'Litoral Norte · AL',
-  estagio:'captacao',          // concepcao | viabilidade | estruturacao | captacao | implantacao | operacao
-  tese:'...',                  // 2 a 3 linhas
-  instrumento:'Mútuo conversível · garantia real',
-  ticket:'R$ 50 mil', prazo:'36 meses',
-  retorno:'TIR alvo 24% a.a.', porte:'VGV R$ 62 mi',
-  captado:38,                  // % da rodada comprometida; null esconde a barra
-  cta:'Solicitar material'
+  nome:'Gramado', local:'Serra Gaúcha · RS',
+  estagio:'onda1',              // operacao | onda1 | selecionado
+  etiqueta:'Onda 1 · Tranche A',
+  tese:'...',                   // 2 a 3 linhas
+  specs:[['Unidades','12 Bubble Suites'],['CAPEX do destino','≈ R$ 4,9 mi'],
+         ['Fase','01 · Asset Light'],['Implantação','6 meses']],
+  nota:'Liberação no closing',
+  cta:'Acessar data room', href:'#convite'
 }
 ```
 
-Os filtros no topo da seção leem o campo `estagio` — nenhuma outra alteração é necessária. Os indicadores financeiros hoje no arquivo são **preliminares** e devem ser substituídos pelos números finais de cada information memorandum antes da publicação.
+Os filtros no topo da seção leem o campo `estagio`; `specs` aceita 2 ou 4 pares `[rótulo, valor]`. Todos os números da página vêm do teaser — ao atualizar o teaser, atualize também esta página.
 
 ### `bruno.html` — Bruno Chaerk (founder)
 Página pessoal one-page: espelhamento, colapso de crença, método, resultados, ecossistema e educação. Interligada ao site do grupo pela navegação.
