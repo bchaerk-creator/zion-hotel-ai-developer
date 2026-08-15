@@ -1,0 +1,1334 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capota Chapéu ZG-CAP-02</title>
+<style>
+:root{
+  --ground:#0A0B0D; --surface:#121418; --surface-2:#171A1F;
+  --line:#242931; --line-soft:#1B1F26;
+  --gold:#C9A84C; --gold-dim:#8A7332; --sand:#BE9A6E;
+  --glass:#9FB6C2; --steel:#8E99A4;
+  --ink:#ECEAE4; --ink-2:#B4B8BD; --muted:#7B8189;
+  --ok:#6FA97E; --warn:#D9A441; --crit:#C4603F;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);
+  font-size:13.5px;line-height:1.5;font-variant-numeric:tabular-nums}
+p,.prose,.card ul,.steps li{font-family:var(--sans);color:var(--ink-2);line-height:1.62}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+
+.masthead{border-bottom:1px solid var(--line);padding:24px 26px 20px;display:flex;
+  flex-wrap:wrap;gap:22px;align-items:flex-end;justify-content:space-between;
+  background:linear-gradient(180deg,rgba(201,168,76,.05),transparent 70%),var(--ground)}
+.eyebrow{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);
+  display:flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-dim)}
+.masthead h1{font-family:var(--sans);font-size:clamp(24px,3.8vw,38px);font-weight:300;
+  letter-spacing:-.02em;margin-top:9px}
+.masthead h1 b{font-weight:600;color:var(--gold)}
+.deck{font-family:var(--sans);color:var(--muted);font-size:12.5px;max-width:56ch;margin-top:7px}
+.stamp{border:1px solid var(--line);padding:11px 15px;min-width:236px;display:grid;gap:4px;
+  font-size:10.5px;letter-spacing:.07em;color:var(--muted)}
+.stamp div{display:flex;justify-content:space-between;gap:18px}
+.stamp b{color:var(--ink);font-weight:500}
+
+.wrap{display:grid;grid-template-columns:296px minmax(0,1fr);align-items:start}
+@media(max-width:1000px){.wrap{grid-template-columns:minmax(0,1fr)}}
+.rail{border-right:1px solid var(--line);padding:18px 18px 60px;display:grid;gap:20px;
+  align-content:start;position:sticky;top:0;max-height:100vh;overflow-y:auto;background:var(--surface)}
+@media(max-width:1000px){.rail{position:static;max-height:none;border-right:0;border-bottom:1px solid var(--line)}}
+.rail-title{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);
+  padding-bottom:7px;border-bottom:1px solid var(--line)}
+.grp{display:grid;gap:13px}
+.ctl{display:grid;gap:5px}
+.ctl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:11px}
+.ctl-top span{color:var(--ink-2)}
+.ctl-top output{color:var(--gold);font-size:12px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:19px;background:transparent;cursor:pointer}
+input[type=range]::-webkit-slider-runnable-track{height:2px;background:var(--line)}
+input[type=range]::-moz-range-track{height:2px;background:var(--line)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:12px;height:12px;margin-top:-5px;
+  border-radius:50%;background:var(--gold);border:2px solid var(--ground)}
+input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:var(--gold);border:2px solid var(--ground)}
+input[type=range]:focus-visible{outline:1px solid var(--gold);outline-offset:4px}
+.derived{display:grid;gap:0;font-size:11px;border:1px solid var(--line-soft)}
+.derived div{display:flex;justify-content:space-between;gap:10px;padding:5px 9px;border-bottom:1px solid var(--line-soft)}
+.derived div:last-child{border-bottom:0}
+.derived dt{color:var(--muted)}.derived dd{margin:0;color:var(--gold)}
+.hint{font-family:var(--sans);font-size:11px;color:var(--muted);line-height:1.45}
+
+.main{padding:22px 26px 90px;display:grid;gap:32px;min-width:0}
+.sec{display:grid;gap:13px;min-width:0}
+.sec-head{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px}
+.sec-head h2{font-size:12px;letter-spacing:.19em;text-transform:uppercase}
+.sec-head .num{font-size:10px;color:var(--gold);letter-spacing:.14em}
+.sec-head .note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-left:auto}
+
+.verdict{border:1px solid var(--line);background:var(--surface);padding:16px 18px;display:grid;gap:12px}
+.verdict.bad{border-color:#5A2E22}
+.vhead{display:flex;gap:12px;align-items:center;flex-wrap:wrap}
+.vhead .big{font-size:22px;letter-spacing:-.01em}
+
+.plates{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
+.plates.two{grid-template-columns:repeat(auto-fit,minmax(min(380px,100%),1fr))}
+.plate{border:1px solid var(--line);background:var(--surface);display:grid;grid-template-rows:auto 1fr auto}
+.plate header{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:8px 11px;
+  border-bottom:1px solid var(--line-soft);font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.plate header b{color:var(--ink-2);font-weight:500}
+.plate footer{padding:6px 11px;border-top:1px solid var(--line-soft);font-size:9.5px;
+  letter-spacing:.1em;color:var(--muted);display:flex;justify-content:space-between;gap:8px}
+.plate svg{display:block;width:100%;height:auto;align-self:center;background:#0D0F12}
+
+.pos-strip{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));gap:12px}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(152px,100%),1fr));gap:1px;background:var(--line)}
+.kpi{background:var(--surface);padding:13px 14px;display:grid;gap:3px}
+.kpi .k{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-size:20px;letter-spacing:-.01em}
+.kpi .v small{font-size:11px;color:var(--muted);margin-left:3px}
+.kpi.acc .v{color:var(--gold)}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:600px;font-size:12px}
+th,td{padding:7px 11px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+th{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;background:var(--surface-2)}
+td:first-child,th:first-child,td.l,th.l{text-align:left}
+tbody tr:last-child td{border-bottom:0}
+tbody tr:hover td{background:#161A1F}
+tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(--line)}
+.pill{display:inline-block;padding:1px 7px;border:1px solid currentColor;font-size:10px;letter-spacing:.07em}
+.pill.ok{color:var(--ok)}.pill.warn{color:var(--warn)}.pill.crit{color:var(--crit)}
+
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(292px,100%),1fr));gap:12px}
+.card{border:1px solid var(--line);background:var(--surface);padding:15px 17px;display:grid;gap:9px;min-width:0}
+.card h3{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.card ul{margin:0;padding-left:16px;display:grid;gap:6px;font-size:12.5px}
+.card ul li::marker{color:var(--gold-dim)}
+.dl{display:grid;font-size:12px}
+.dl div{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid var(--line-soft)}
+.dl div:last-child{border-bottom:0}
+.dl dt{color:var(--muted)}.dl dd{margin:0}
+.steps{margin:0;padding-left:20px;display:grid;gap:8px;font-size:12.5px;counter-reset:none}
+.steps li::marker{color:var(--gold);font-family:var(--mono);font-size:11px}
+.qa{display:grid;gap:0;border:1px solid var(--line)}
+.qa div{display:grid;grid-template-columns:26px 1fr auto;gap:11px;padding:8px 12px;
+  border-bottom:1px solid var(--line-soft);align-items:baseline;font-size:12.5px;font-family:var(--sans)}
+.qa div:last-child{border-bottom:0}
+.qa .n{font-family:var(--mono);font-size:10px;color:var(--gold)}
+.footnote{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.6;
+  border-left:2px solid var(--gold-dim);padding-left:13px;max-width:84ch}
+.seal{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);
+  padding-top:16px;font-size:10.5px;letter-spacing:.09em;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div>
+    <div class="eyebrow">Zion Glamping · Projeto executivo preliminar</div>
+    <h1>Capota Chapéu <b>ZG-CAP-02</b></h1>
+    <p class="deck">Casca rígida articulada em dois pivôs laterais, cobrindo somente a calota superior da Bubble. Modelo paramétrico com verificação de interferência, desenhos cotados em milímetros, lista de corte e memorial de acionamento.</p>
+  </div>
+  <div class="stamp">
+    <div><span>Projeto</span><b>ZG-CAP-02</b></div>
+    <div><span>Revisão</span><b>P1 · para protótipo</b></div>
+    <div><span>Sistema</span><b>Casca concêntrica em 2 pivôs</b></div>
+    <div><span>Unidades</span><b>milímetro · kg · N</b></div>
+    <div><span>Status estrutural</span><b>não certificado</b></div>
+  </div>
+</header>
+
+<div class="wrap">
+<aside class="rail">
+  <div class="rail-title">Bubble</div>
+  <div class="grp">
+    <div class="ctl"><div class="ctl-top"><span>BUBBLE_DIAMETER</span><output id="o_D"></output></div>
+      <input type="range" id="p_D" min="4000" max="9000" step="100" value="6000"></div>
+    <div class="ctl"><div class="ctl-top"><span>BUBBLE_HEIGHT</span><output id="o_H"></output></div>
+      <input type="range" id="p_H" min="2200" max="6000" step="50" value="3600"></div>
+    <div class="ctl"><div class="ctl-top"><span>CLEARANCE</span><output id="o_folga"></output></div>
+      <input type="range" id="p_folga" min="80" max="400" step="10" value="150"></div>
+    <dl class="derived" id="d_derived"></dl>
+  </div>
+
+  <div class="rail-title">Capota</div>
+  <div class="grp">
+    <div class="ctl"><div class="ctl-top"><span>Borda dianteira ε1</span><output id="o_e1"></output></div>
+      <input type="range" id="p_e1" min="10" max="80" step="1" value="40"></div>
+    <div class="ctl"><div class="ctl-top"><span>Borda traseira ε2</span><output id="o_e2"></output></div>
+      <input type="range" id="p_e2" min="95" max="170" step="1" value="130"></div>
+    <div class="ctl"><div class="ctl-top"><span>CANOPY_WIDTH</span><output id="o_W"></output></div>
+      <input type="range" id="p_W" min="3000" max="6200" step="100" value="5800"></div>
+    <div class="ctl"><div class="ctl-top"><span>Arcos transversais</span><output id="o_Nr"></output></div>
+      <input type="range" id="p_Nr" min="3" max="9" step="1" value="5"></div>
+    <div class="ctl"><div class="ctl-top"><span>Longarinas</span><output id="o_Np"></output></div>
+      <input type="range" id="p_Np" min="3" max="9" step="2" value="5"></div>
+  </div>
+
+  <div class="rail-title">Perfil estrutural</div>
+  <div class="grp">
+    <div class="ctl"><div class="ctl-top"><span>Arco · Ø externo</span><output id="o_rod"></output></div>
+      <input type="range" id="p_rod" min="25" max="90" step="1" value="60"></div>
+    <div class="ctl"><div class="ctl-top"><span>Arco · parede</span><output id="o_rwt"></output></div>
+      <input type="range" id="p_rwt" min="1.5" max="5" step="0.1" value="2.5"></div>
+    <div class="ctl"><div class="ctl-top"><span>Longarina · Ø externo</span><output id="o_pod"></output></div>
+      <input type="range" id="p_pod" min="20" max="60" step="1" value="32"></div>
+    <div class="ctl"><div class="ctl-top"><span>Longarina · parede</span><output id="o_pwt"></output></div>
+      <input type="range" id="p_pwt" min="1.2" max="4" step="0.1" value="2"></div>
+    <p class="hint">A verificação compara com 160 MPa, admissível de projeto adotado para liga 6063-T6 em serviço externo.</p>
+  </div>
+
+  <div class="rail-title">Acionamento</div>
+  <div class="grp">
+    <div class="ctl"><div class="ctl-top"><span>Raio da manivela</span><output id="o_crank"></output></div>
+      <input type="range" id="p_crank" min="250" max="900" step="10" value="500"></div>
+    <div class="ctl"><div class="ctl-top"><span>Fase da manivela</span><output id="o_phase"></output></div>
+      <input type="range" id="p_phase" min="140" max="260" step="1" value="200"></div>
+    <div class="ctl"><div class="ctl-top"><span>Ancoragem · Y</span><output id="o_by"></output></div>
+      <input type="range" id="p_by" min="-1400" max="-200" step="10" value="-820"></div>
+    <div class="ctl"><div class="ctl-top"><span>Ancoragem · Z</span><output id="o_bz"></output></div>
+      <input type="range" id="p_bz" min="-560" max="200" step="10" value="-260"></div>
+    <div class="ctl"><div class="ctl-top"><span>Compensação por mola a gás</span><output id="o_gas"></output></div>
+      <input type="range" id="p_gas" min="0" max="90" step="5" value="65"></div>
+  </div>
+
+  <div class="rail-title">Vento e tecido</div>
+  <div class="grp">
+    <div class="ctl"><div class="ctl-top"><span>Velocidade de projeto</span><output id="o_v"></output></div>
+      <input type="range" id="p_v" min="40" max="140" step="5" value="90"></div>
+    <div class="ctl"><div class="ctl-top"><span>Gramatura do tecido</span><output id="o_gsm"></output></div>
+      <input type="range" id="p_gsm" min="280" max="900" step="10" value="600"></div>
+  </div>
+</aside>
+
+<main class="main">
+
+<!-- 01 VERIFICACAO CINEMATICA -->
+<section class="sec">
+  <div class="sec-head"><span class="num">01</span><h2>Verificação cinemática · onde fica o eixo</h2>
+    <span class="note">Feita antes de qualquer desenho</span></div>
+  <div class="verdict" id="v_kin">
+    <div class="vhead">
+      <span class="big" id="v_title"></span>
+      <span class="pill ok" id="v_pill"></span>
+    </div>
+    <p id="v_text" class="prose"></p>
+  </div>
+  <div class="plates two">
+    <div class="plate">
+      <header><b>Envelope da bolha visto do eixo</b><span>polar · mm</span></header>
+      <svg id="g_env" viewBox="0 0 100 100" role="img" aria-label="Diagrama polar do envelope da bolha para três alturas de pivô"></svg>
+      <footer><span>ZG-CAP-02 / K-01</span><span id="f_env"></span></footer>
+    </div>
+    <div class="card">
+      <h3>A regra que governa tudo</h3>
+      <p class="prose">Uma casca rígida só mantém folga constante contra uma esfera se o eixo de rotação passar pelo centro dessa esfera. Nesse caso a bolha é uma superfície de revolução em torno do eixo e o envelope vale o raio da esfera em qualquer ângulo, do fechamento à abertura total.</p>
+      <p class="prose">Fora do centro, o envelope varia. A casca teria de acompanhar uma curva que muda a cada grau de rotação, o que uma peça rígida não faz. As duas saídas seriam encostar na membrana ou afastar a casca até o maior valor do envelope, o que joga a capota mais de um metro acima do ápice e transforma o chapéu em uma vela.</p>
+      <dl class="dl" id="d_kin"></dl>
+    </div>
+  </div>
+  <p class="footnote" id="fn_kin"></p>
+</section>
+
+<!-- 02 CURSO -->
+<section class="sec">
+  <div class="sec-head"><span class="num">02</span><h2>Curso de abertura</h2>
+    <span class="note">Limitado pelo piso, não pelo mecanismo</span></div>
+  <div class="split">
+    <div class="card">
+      <h3>Posição atual</h3>
+      <div class="ctl" style="margin-top:4px">
+        <div class="ctl-top"><span>ALPHA</span><output id="o_alpha"></output></div>
+        <input type="range" id="p_alpha" min="0" max="90" step="0.5" value="0">
+      </div>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:4px" id="pos_btns"></div>
+      <dl class="dl" id="d_curso"></dl>
+    </div>
+    <div class="plate">
+      <header><b>Diagrama de movimento</b><span>corte no plano médio</span></header>
+      <svg id="g_move" viewBox="0 0 100 100" role="img" aria-label="Sobreposição das posições de abertura"></svg>
+      <footer><span>ZG-CAP-02 / M-01</span><span id="f_move"></span></footer>
+    </div>
+  </div>
+  <div class="tbl-wrap">
+    <table id="t_pos"><thead><tr><th class="l">Posição solicitada</th><th>ALPHA</th><th>Borda dianteira ε</th><th>Borda traseira ε</th><th>Cota da borda traseira</th><th class="l">Verificação</th></tr></thead><tbody></tbody></table>
+  </div>
+</section>
+
+<!-- 03 VISTAS -->
+<section class="sec">
+  <div class="sec-head"><span class="num">03</span><h2>Vistas ortográficas</h2>
+    <span class="note">Projeção ortográfica real do modelo · cotas em mm</span></div>
+  <div class="plates" id="views_a"></div>
+  <div class="plates" id="views_b"></div>
+</section>
+
+<!-- 04 POSICOES -->
+<section class="sec">
+  <div class="sec-head"><span class="num">04</span><h2>Posições de operação</h2>
+    <span class="note">Vista lateral · fração do curso homologado</span></div>
+  <div class="pos-strip" id="pos_strip"></div>
+</section>
+
+<!-- 05 DETALHES -->
+<section class="sec">
+  <div class="sec-head"><span class="num">05</span><h2>Detalhes construtivos</h2>
+    <span class="note">Cotas em mm</span></div>
+  <div class="plates two">
+    <div class="plate"><header><b>Det. 01 · Pivô, eixo e pedestal</b><span>corte vertical</span></header>
+      <svg id="g_d1" viewBox="0 0 100 100" role="img" aria-label="Detalhe do pivô"></svg>
+      <footer><span>ZG-CAP-02 / D-01</span><span>esc. livre</span></footer></div>
+    <div class="plate"><header><b>Det. 02 · Manivela, atuador e limitadores</b><span>vista do lado</span></header>
+      <svg id="g_d2" viewBox="0 0 100 100" role="img" aria-label="Detalhe do acionamento"></svg>
+      <footer><span>ZG-CAP-02 / D-02</span><span>esc. livre</span></footer></div>
+    <div class="plate"><header><b>Det. 03 · Fixação e tensão do tecido</b><span>corte no arco</span></header>
+      <svg id="g_d3" viewBox="0 0 100 100" role="img" aria-label="Detalhe da fixação do tecido"></svg>
+      <footer><span>ZG-CAP-02 / D-03</span><span>esc. livre</span></footer></div>
+    <div class="plate"><header><b>Det. 04 · Borda, pingadeira e drenagem</b><span>corte na longarina de bordo</span></header>
+      <svg id="g_d4" viewBox="0 0 100 100" role="img" aria-label="Detalhe da borda e drenagem"></svg>
+      <footer><span>ZG-CAP-02 / D-04</span><span>esc. livre</span></footer></div>
+  </div>
+</section>
+
+<!-- 06 FICHA -->
+<section class="sec">
+  <div class="sec-head"><span class="num">06</span><h2>Ficha técnica calculada</h2></div>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<!-- 07 ESTRUTURA -->
+<section class="sec">
+  <div class="sec-head"><span class="num">07</span><h2>Estrutura · duas opções de perfil</h2>
+    <span class="note">Verificação preliminar, arco em compressão e flexão reduzida</span></div>
+  <div class="tbl-wrap">
+    <table id="t_perfil"><thead><tr><th class="l">Opção</th><th class="l">Perfil</th><th>Área</th><th>kg/m</th><th>Ix</th><th>Wx</th><th>σ atuante</th><th class="l">Verif.</th></tr></thead><tbody></tbody></table>
+  </div>
+  <p class="footnote">O arco semicircular sob carga radial trabalha essencialmente por efeito de arco, em compressão, e a flexão vem da parcela assimétrica do vento. O momento foi estimado por <b>M = w·L²/12</b>, que é uma simplificação a favor da segurança para arco biarticulado. Flambagem no plano do arco e estabilidade fora do plano não estão verificadas aqui.</p>
+  <div class="tbl-wrap">
+    <table id="t_arcos"><thead><tr><th class="l">Peça</th><th>Raio / estação</th><th>ε (fechada)</th><th>Desenvolvimento</th><th>Barras 6 m</th><th>Emendas</th><th>Peso</th></tr></thead><tbody></tbody><tfoot></tfoot></table>
+  </div>
+</section>
+
+<!-- 08 VENTO -->
+<section class="sec">
+  <div class="sec-head"><span class="num">08</span><h2>Verificação preliminar de carga de vento</h2>
+    <span class="note">NBR 6123 · pré-dimensionamento</span></div>
+  <div class="split">
+    <div class="card"><h3>Ações</h3><dl class="dl" id="d_vento"></dl></div>
+    <div class="card"><h3>Reações por pedestal</h3><dl class="dl" id="d_reacao"></dl></div>
+    <div class="card">
+      <h3>Por que o vento quase não carrega o mecanismo</h3>
+      <p class="prose">A pressão do vento age normal à superfície. Numa casca esférica toda normal é radial e passa pelo centro da esfera, que aqui é exatamente o eixo de rotação. Momento de uma força que corta o próprio eixo é zero.</p>
+      <p class="prose">Sobra a parcela tangencial, de atrito e de imperfeição de forma, adotada aqui como 10%. O restante vai direto para os dois mancais e para as fundações, e não para o atuador. É a segunda vantagem estrutural de colocar o eixo no centro da esfera.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 09 ACIONAMENTO -->
+<section class="sec">
+  <div class="sec-head"><span class="num">09</span><h2>Acionamento</h2>
+    <span class="note">Força calculada ponto a ponto no curso</span></div>
+  <div class="plates two">
+    <div class="plate"><header><b>Curva de esforço</b><span>momento e força no atuador</span></header>
+      <svg id="g_act" viewBox="0 0 100 100" role="img" aria-label="Curva de força do atuador ao longo do curso"></svg>
+      <footer><span>ZG-CAP-02 / A-01</span><span id="f_act"></span></footer></div>
+    <div class="card"><h3>Alternativa B · motorizado (recomendada)</h3><dl class="dl" id="d_act"></dl></div>
+  </div>
+  <div class="split">
+    <div class="card"><h3>Alternativa A · manual assistido</h3><dl class="dl" id="d_manual"></dl></div>
+    <div class="card"><h3>Limitadores mecânicos</h3>
+      <ul>
+        <li>Batente de fechamento: bloco de aço com coxim de poliuretano no pedestal, encostando na manivela em ALPHA 0.</li>
+        <li>Batente de abertura: idêntico, posicionado no ângulo de trabalho, antes do limite geométrico.</li>
+        <li>Os batentes são calculados para a carga de vento fechada, não apenas para a inércia do movimento.</li>
+        <li>Fim de curso elétrico é redundância, nunca o único recurso. O atuador desliga por corrente e por curso, e mesmo assim a peça encosta em metal.</li>
+        <li>Trava de segurança: pino removível no cubo, na posição fechada, obrigatório quando a Bubble ficar desocupada.</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- 10 TECIDO E DRENAGEM -->
+<section class="sec">
+  <div class="sec-head"><span class="num">10</span><h2>Tecido, tensão e drenagem</h2></div>
+  <div class="split">
+    <div class="card"><h3>Especificação do tecido</h3><dl class="dl" id="d_tecido"></dl></div>
+    <div class="card"><h3>Sistema de fixação</h3>
+      <ul>
+        <li>Perfil canaleta de alumínio com ranhura keder, parafusado ao tubo do arco a cada 300 mm.</li>
+        <li>Bainha costurada com cordão keder Ø 6 mm nas quatro bordas do pano.</li>
+        <li>Tensionamento por esticadores de rosca nas longarinas de bordo, curso de 40 mm.</li>
+        <li>Velcro técnico de 50 mm nas emendas de manutenção, permitindo abrir o pano sem soltar a canaleta.</li>
+        <li>O pano sai inteiro pelas laterais, sem desmontar arco nenhum.</li>
+      </ul></div>
+    <div class="card"><h3>Drenagem</h3>
+      <ul>
+        <li>Os arcos correm de um pivô ao outro, então as calhas naturais da flecha do pano correm no sentido transversal e drenam para as duas laterais.</li>
+        <li>Queda disponível da crista até a borda lateral: <b id="s_queda"></b>.</li>
+        <li>Flecha do pano entre arcos: <b id="s_flecha"></b>. Acima de 60 mm começa a empoçar.</li>
+        <li>Pingadeira de alumínio de 40 mm na longarina de bordo, afastando o gotejamento <b id="s_afast"></b> da membrana.</li>
+        <li>Calha opcional na borda lateral, com descida embutida no pedestal.</li>
+      </ul></div>
+  </div>
+</section>
+
+<!-- 11 BOM -->
+<section class="sec">
+  <div class="sec-head"><span class="num">11</span><h2>Lista de materiais</h2><span class="note">Por capota</span></div>
+  <div class="tbl-wrap"><table id="t_bom"><thead><tr><th>Item</th><th class="l">Descrição</th><th class="l">Material</th><th class="l">Perfil</th><th>Qtd.</th><th>Compr.</th><th class="l">Observação</th></tr></thead><tbody></tbody></table></div>
+</section>
+
+<!-- 12 CORTE -->
+<section class="sec">
+  <div class="sec-head"><span class="num">12</span><h2>Lista de corte</h2><span class="note">Alumínio · barras comerciais de 6 m</span></div>
+  <div class="tbl-wrap"><table id="t_corte"><thead><tr><th>Peça</th><th class="l">Descrição</th><th class="l">Perfil</th><th>Qtd.</th><th>Compr. corte</th><th>Raio calandra</th><th>Âng. corte</th><th class="l">Furação</th></tr></thead><tbody></tbody></table></div>
+  <p class="footnote">Comprimentos de corte já incluem 25 mm de sobra por extremidade para ajuste em bancada. Calandrar sempre com barra inteira e conferir o raio em gabarito de piso antes de cortar as pontas.</p>
+</section>
+
+<!-- 13 MONTAGEM -->
+<section class="sec">
+  <div class="sec-head"><span class="num">13</span><h2>Sequência de montagem</h2></div>
+  <div class="split">
+    <div class="card"><h3>Campo · etapas 01 a 07</h3><ol class="steps" id="s_mont1"></ol></div>
+    <div class="card"><h3>Campo · etapas 08 a 13</h3><ol class="steps" id="s_mont2" start="8"></ol></div>
+  </div>
+</section>
+
+<!-- 14 OPERACAO -->
+<section class="sec">
+  <div class="sec-head"><span class="num">14</span><h2>Operação e manutenção</h2></div>
+  <div class="split">
+    <div class="card"><h3>Operação</h3><ul id="u_oper"></ul></div>
+    <div class="card"><h3>Manutenção</h3><ul id="u_manut"></ul></div>
+  </div>
+</section>
+
+<!-- 15 REVISAO -->
+<section class="sec">
+  <div class="sec-head"><span class="num">15</span><h2>Revisão crítica do projeto</h2>
+    <span class="note">16 perguntas · respostas recalculadas</span></div>
+  <div class="qa" id="qa"></div>
+</section>
+
+<!-- 16 RESSALVAS -->
+<section class="sec">
+  <div class="sec-head"><span class="num">16</span><h2>O que precisa de validação antes de fabricar</h2></div>
+  <p class="footnote">Este é um <b>projeto executivo preliminar para protótipo</b>. Ele não é um projeto estrutural certificado e não substitui ART. Antes da fabricação definitiva precisam ser verificados por engenheiro responsável: as forças de vento pela NBR 6123 com a categoria de rugosidade, o fator topográfico e a altura reais do terreno; a flambagem no plano e a estabilidade fora do plano dos arcos; o dimensionamento da fundação e dos chumbadores pela NBR 6118; a seleção final de mancais, eixo e solda pela NBR 8800 e pelas normas de alumínio aplicáveis; e a compatibilidade galvânica entre alumínio, inox e chumbadores. As tensões apresentadas usam 160 MPa como admissível de projeto para 6063-T6, valor conservador de partida que deve ser confirmado com o fornecedor da liga e do tratamento.</p>
+  <div class="seal"><span>Zion Hotel Group Internacional · Estúdio de Produto</span><span>ZG-CAP-02 · rev. P1</span></div>
+</section>
+
+</main>
+</div>
+
+<script>
+(function(){
+"use strict";
+const $=s=>document.querySelector(s), D2R=Math.PI/180, R2D=180/Math.PI;
+const f=(v,d=0)=>(isFinite(v)?v:0).toFixed(d).replace(".",",");
+const f0=v=>Math.round(isFinite(v)?v:0).toLocaleString("pt-BR");
+const NS="http://www.w3.org/2000/svg";
+
+/* ---------------- parâmetros ---------------- */
+const CT={
+ D:{e:"p_D",o:"o_D",fmt:v=>f0(v)+" mm"}, H:{e:"p_H",o:"o_H",fmt:v=>f0(v)+" mm"},
+ folga:{e:"p_folga",o:"o_folga",fmt:v=>f0(v)+" mm"},
+ e1:{e:"p_e1",o:"o_e1",fmt:v=>f0(v)+"°"}, e2:{e:"p_e2",o:"o_e2",fmt:v=>f0(v)+"°"},
+ W:{e:"p_W",o:"o_W",fmt:v=>f0(v)+" mm"},
+ Nr:{e:"p_Nr",o:"o_Nr",fmt:v=>v+" arcos"}, Np:{e:"p_Np",o:"o_Np",fmt:v=>v+" longarinas"},
+ rod:{e:"p_rod",o:"o_rod",fmt:v=>"Ø "+f0(v)+" mm"}, rwt:{e:"p_rwt",o:"o_rwt",fmt:v=>f(v,1)+" mm"},
+ pod:{e:"p_pod",o:"o_pod",fmt:v=>"Ø "+f0(v)+" mm"}, pwt:{e:"p_pwt",o:"o_pwt",fmt:v=>f(v,1)+" mm"},
+ crank:{e:"p_crank",o:"o_crank",fmt:v=>f0(v)+" mm"}, phase:{e:"p_phase",o:"o_phase",fmt:v=>f0(v)+"°"},
+ by:{e:"p_by",o:"o_by",fmt:v=>f0(v)+" mm"}, bz:{e:"p_bz",o:"o_bz",fmt:v=>f0(v)+" mm"},
+ gas:{e:"p_gas",o:"o_gas",fmt:v=>f0(v)+" %"},
+ v:{e:"p_v",o:"o_v",fmt:v=>f0(v)+" km/h"}, gsm:{e:"p_gsm",o:"o_gsm",fmt:v=>f0(v)+" g/m²"}
+};
+const P={}; let alpha=0;
+
+/* ---------------- modelo ---------------- */
+function model(){
+  const R=P.D/2, zc=P.H-R, rc=R+P.folga;
+  const baseR=Math.sqrt(Math.max(R*R-zc*zc,1));
+  const W2=Math.min(P.W/2, rc-40);
+  const th0=Math.acos(Math.min(W2/rc,0.999))*R2D;
+  const thEnd=6, GG=100;
+  // curso: borda traseira nao pode descer abaixo de GG
+  const lim=180+Math.asin(Math.max(Math.min((zc-GG)/rc,1),-1))*R2D;
+  const aMax=Math.max(lim-P.e2,0);
+  const aWork=Math.max(aMax-4,0);
+  const de=(P.e2-P.e1);
+  const dRad=de*D2R;
+
+  // envelope da bolha visto de um eixo a altura zp
+  const env=(zp,eps)=>{
+    const d=zp-zc, a=eps*D2R, b=d*Math.sin(a), c=d*d-R*R, disc=b*b-c;
+    if(disc<0) return null;
+    const t=-b+Math.sqrt(disc);
+    return {t, z: zp+t*Math.sin(a)};
+  };
+
+  // arcos e longarinas
+  const ribs=[]; for(let k=0;k<P.Nr;k++) ribs.push(P.e1+de*k/(P.Nr-1));
+  const purl=[]; for(let j=0;j<P.Np;j++){
+    const x=-W2+2*W2*j/(P.Np-1);
+    purl.push({x, rho:Math.sqrt(Math.max(rc*rc-x*x,1)), th:Math.acos(Math.max(Math.min(x/rc,1),-1))*R2D});
+  }
+
+  // massas
+  const secA=(od,wt)=>Math.PI/4*(od*od-Math.pow(od-2*wt,2));         // mm²
+  const kgm=a=>a*2.70e-3;                                            // kg/m (2,70 g/cm³)
+  const aR=secA(P.rod,P.rwt), aP=secA(P.pod,P.pwt);
+  const kR=kgm(aR), kP=kgm(aP);
+  const ribLen=rc*(180-2*thEnd)*D2R;                                 // mm
+  const ribKg=ribLen/1000*kR;
+  const purlKg=purl.reduce((s,q)=>s+q.rho*dRad/1000*kP,0);
+  const fabA=2*rc*W2*dRad/1e6;                                       // m²  (= 2·rc·W2·Δε)
+  const fabKg=fabA*P.gsm/1000;
+  const hwKg=P.Nr*1.2+8;                                             // cubos, canaletas, parafusos
+  const massa=P.Nr*ribKg+purlKg+fabKg+hwKg;
+
+  // centro de gravidade: soma discreta de todos os elementos
+  function cg(a){
+    let m=0, my=0;
+    const add=(dm,eps,rho)=>{m+=dm; my+=dm*rho*Math.cos((eps+a)*D2R);};
+    ribs.forEach(e=>{ // arco: centroide a 2rc/pi do eixo, na direcao û(e)
+      add(ribKg, e, 2*rc/Math.PI);
+    });
+    purl.forEach(q=>{ // arco de raio rho entre e1 e e2: centroide na bissetriz
+      const dm=q.rho*dRad/1000*kP;
+      add(dm, (P.e1+P.e2)/2, q.rho*Math.sin(dRad/2)/(dRad/2));
+    });
+    { // tecido
+      const t0=th0*D2R, i2=(Math.PI-2*t0)/2+Math.sin(2*t0)/2, i1=2*Math.cos(t0);
+      const rr=rc*(i2/i1)*(Math.sin(dRad/2)/(dRad/2));
+      add(fabKg,(P.e1+P.e2)/2, rr);
+    }
+    add(hwKg,(P.e1+P.e2)/2, 0.35*rc);
+    return {m, y:my/m};
+  }
+  const cg0=cg(0);
+  const Mgrav=a=>cg(a).m*9.81*cg(a).y/1000*-1;   // N·m, positivo = tende a abrir
+
+  // atuador
+  const pin=a=>{const e=((P.e1+P.e2)/2+P.phase+a)*D2R; return [P.crank*Math.cos(e), P.crank*Math.sin(e)];};
+  const B=[P.by,P.bz];
+  function act(a){
+    const K=pin(a), d=[K[0]-B[0],K[1]-B[1]], L=Math.hypot(d[0],d[1]);
+    const u=[d[0]/L,d[1]/L];
+    const arm=Math.abs(K[0]*u[1]-K[1]*u[0]);   // |r × û|
+    return {L, arm, K};
+  }
+  const stroke=Math.abs(act(aWork).L-act(0).L);
+
+  // curva de esforco
+  const NS_=41, curve=[];
+  let FmaxA=0, Mmax=0;
+  const gsFrac=P.gas/100;
+  for(let i=0;i<=NS_;i++){
+    const a=aWork*i/NS_;
+    const Mg=Math.abs(Mgrav(a));
+    const Mnet=Math.abs(Mg*(1-gsFrac));
+    const A=act(a);
+    const F=A.arm>1?Mnet*1000/A.arm:0;
+    Mmax=Math.max(Mmax,Mg); FmaxA=Math.max(FmaxA,F);
+    curve.push({a,Mg,Mnet,F,L:A.L,arm:A.arm});
+  }
+
+  // vento
+  const v=P.v/3.6, q=0.613*v*v;
+  const t0=th0*D2R;
+  const Aplan=(Math.cos(P.e1*D2R)-Math.cos(P.e2*D2R))*
+    (W2*Math.sqrt(Math.max(rc*rc-W2*W2,0))+rc*rc*Math.asin(Math.min(W2/rc,1)))/1e6; // m²
+  const Fup=q*1.0*Aplan;
+  const Fh=q*0.7*(fabA*0.45);
+  const Mvento=0.10*Fup*(rc/1000)*0.5;
+  const peso=massa*9.81;
+
+  // perfil: verificacao
+  const trib=fabA/P.Nr/(ribLen/1000);            // m de largura tributaria
+  const w=q*0.9*trib;                            // N/m
+  const span=2*rc/1000;
+  const Mfl=w*span*span/12;                      // N·m
+  const inerc=(od,wt)=>Math.PI/64*(Math.pow(od,4)-Math.pow(od-2*wt,4));
+  const Ix=inerc(P.rod,P.rwt), Wx=Ix/(P.rod/2);
+  const sig=Mfl*1000/Wx;
+  const Nhoop=w*rc/1000, sigN=Nhoop/aR;
+
+  // retangular equivalente
+  const rh=P.rod, rb=Math.round(P.rod*0.6), rt=P.rwt;
+  const aRet=rh*rb-Math.max(rh-2*rt,0)*Math.max(rb-2*rt,0);
+  const IxRet=(rb*Math.pow(rh,3)-Math.max(rb-2*rt,0)*Math.pow(Math.max(rh-2*rt,0),3))/12;
+  const WxRet=IxRet/(rh/2), sigRet=Mfl*1000/WxRet;
+
+  // flecha do tecido entre arcos
+  const flecha=rc*(1-Math.cos((de/(P.Nr-1))*D2R/2));
+  const queda=rc-Math.sqrt(Math.max(rc*rc-W2*W2,0));
+  const afast=Math.sqrt(Math.max(rc*rc-W2*W2,0))-Math.sqrt(Math.max(R*R-W2*W2,0));
+
+  return {R,zc,rc,baseR,W2,th0,thEnd,ribs,purl,de,dRad,aMax,aWork,lim,env,
+    aR,aP,kR,kP,ribLen,ribKg,purlKg,fabA,fabKg,hwKg,massa,peso,cg0,Mgrav,
+    pin,B,act,stroke,curve,FmaxA,Mmax,gsFrac,
+    q,v,Aplan,Fup,Fh,Mvento,trib,w,Mfl,Ix,Wx,sig,sigN,Nhoop,
+    rh,rb,rt,aRet,IxRet,WxRet,sigRet,flecha,queda,afast,
+    pedX:rc+250, altura:zc+rc};
+}
+
+/* ---------------- projeção ---------------- */
+function cam(az,el){
+  const a=az*D2R,e=el*D2R;
+  const u=[Math.sin(a)*Math.cos(e),Math.cos(a)*Math.cos(e),Math.sin(e)];
+  if(el>=89){return {r:[1,0,0],up:[0,1,0],u};}
+  const n=Math.hypot(-u[1],u[0])||1, r=[-u[1]/n,u[0]/n,0];
+  const up=[u[1]*r[2]-u[2]*r[1], u[2]*r[0]-u[0]*r[2], u[0]*r[1]-u[1]*r[0]];
+  return {r,up,u};
+}
+const VIEWS={
+  frontal:{az:0,el:0,lbl:"Vista frontal"}, traseira:{az:180,el:0,lbl:"Vista traseira"},
+  latE:{az:-90,el:0,lbl:"Vista lateral esquerda"}, latD:{az:90,el:0,lbl:"Vista lateral direita"},
+  superior:{az:0,el:90,lbl:"Vista superior"}, iso:{az:34,el:22,lbl:"Perspectiva isométrica"}
+};
+function pj(p,c){return [p[0]*c.r[0]+p[1]*c.r[1]+p[2]*c.r[2], -(p[0]*c.up[0]+p[1]*c.up[1]+p[2]*c.up[2])];}
+
+/* ---------------- geometria 3D ---------------- */
+function shellPt(M,th,eps){
+  const t=th*D2R,e=eps*D2R;
+  return [M.rc*Math.cos(t), M.rc*Math.sin(t)*Math.cos(e), M.zc+M.rc*Math.sin(t)*Math.sin(e)];
+}
+function ribCurve(M,eps,a,n){
+  n=n||60; const o=[];
+  for(let i=0;i<=n;i++) o.push(shellPt(M,M.thEnd+(180-2*M.thEnd)*i/n, eps+a));
+  return o;
+}
+function purlCurve(M,th,a,n){
+  n=n||36; const o=[];
+  for(let i=0;i<=n;i++) o.push(shellPt(M,th,P.e1+a+M.de*i/n));
+  return o;
+}
+function fabricLoop(M,a){
+  const n=48,o=[];
+  for(let i=0;i<=n;i++) o.push(shellPt(M,M.th0+(180-2*M.th0)*i/n,P.e1+a));
+  for(let i=0;i<=n;i++) o.push(shellPt(M,180-M.th0,P.e1+a+M.de*i/n));
+  for(let i=0;i<=n;i++) o.push(shellPt(M,180-M.th0-(180-2*M.th0)*i/n,P.e2+a));
+  for(let i=0;i<=n;i++) o.push(shellPt(M,M.th0,P.e2+a-M.de*i/n));
+  return o;
+}
+
+/* ---------------- desenho svg ---------------- */
+let TS=1;   // escala de texto: mantém a tipografia legível em qualquer viewBox
+function svgSetup(el,pts,pad){
+  el.innerHTML="";
+  let x0=1e9,x1=-1e9,y0=1e9,y1=-1e9;
+  pts.forEach(p=>{x0=Math.min(x0,p[0]);x1=Math.max(x1,p[0]);y0=Math.min(y0,p[1]);y1=Math.max(y1,p[1]);});
+  pad=pad||0.10;
+  const w=x1-x0,h=y1-y0,px=w*pad+40,py=h*pad+40;
+  const W=w+2*px;
+  el.setAttribute("viewBox",(x0-px)+" "+(y0-py)+" "+W+" "+(h+2*py));
+  const g=document.createElementNS(NS,"g"); el.appendChild(g);
+  TS=W/360;
+  return g;
+}
+function E(g,tag,at){const e=document.createElementNS(NS,tag);for(const k in at)e.setAttribute(k,at[k]);g.appendChild(e);return e;}
+function PL(g,pts,at){return E(g,"polyline",Object.assign({fill:"none",
+  points:pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" "),
+  "vector-effect":"non-scaling-stroke"},at));}
+function PG(g,pts,at){return E(g,"polygon",Object.assign({
+  points:pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" "),
+  "vector-effect":"non-scaling-stroke"},at));}
+function TX(g,x,y,s,at){
+  at=at||{};
+  const halo=at.halo; if(halo) delete at.halo;
+  const base={x,y,fill:"#8C939B","font-size":TS*10,"font-family":"ui-monospace,monospace","text-anchor":"middle"};
+  if(halo) Object.assign(base,{stroke:"#0D0F12","stroke-width":TS*2.6,"paint-order":"stroke","stroke-linejoin":"round"});
+  const e=E(g,"text",Object.assign(base,at)); e.textContent=s; return e;}
+function DIM(g,p1,p2,off,txt){
+  const dx=p2[0]-p1[0],dy=p2[1]-p1[1],L=Math.hypot(dx,dy)||1;
+  const nx=-dy/L*off, ny=dx/L*off;
+  const a=[p1[0]+nx,p1[1]+ny], b=[p2[0]+nx,p2[1]+ny];
+  const c="#4C555F";
+  PL(g,[p1,a],{stroke:c,"stroke-width":.9,"stroke-dasharray":"4 3"});
+  PL(g,[p2,b],{stroke:c,"stroke-width":.9,"stroke-dasharray":"4 3"});
+  PL(g,[a,b],{stroke:c,"stroke-width":.9});
+  [a,b].forEach(p=>E(g,"circle",{cx:p[0],cy:p[1],r:TS*1.7,fill:c}));
+  const mx=(a[0]+b[0])/2, my=(a[1]+b[1])/2;
+  const ang=Math.atan2(b[1]-a[1],b[0]-a[0])*R2D;
+  const rot=(Math.abs(ang)>95)?ang+180:ang;
+  TX(g,mx,my-TS*4,txt,{fill:"#9AA2AA","font-size":TS*9.5,
+    transform:"rotate("+rot.toFixed(1)+" "+mx.toFixed(1)+" "+my.toFixed(1)+")"});
+}
+/* superfície do pano como malha de quadriláteros, ordenada por profundidade.
+   Um polígono único do contorno se dobra sobre si mesmo em várias projeções. */
+function fabricMesh(g,M,a,c,dim){
+  const NTh=26, NEp=Math.max(P.Nr-1,1)*3;
+  const L=[0.34,-0.52,0.78], quads=[];
+  for(let i=0;i<NTh;i++){
+    for(let j=0;j<NEp;j++){
+      const t0=M.th0+(180-2*M.th0)*i/NTh, t1=M.th0+(180-2*M.th0)*(i+1)/NTh;
+      const e0=P.e1+a+M.de*j/NEp, e1=P.e1+a+M.de*(j+1)/NEp;
+      const w=[shellPt(M,t0,e0),shellPt(M,t1,e0),shellPt(M,t1,e1),shellPt(M,t0,e1)];
+      const ctr=[(w[0][0]+w[2][0])/2,(w[0][1]+w[2][1])/2,(w[0][2]+w[2][2])/2];
+      const n=[ctr[0]/M.rc,ctr[1]/M.rc,(ctr[2]-M.zc)/M.rc];
+      const lam=Math.max(0,n[0]*L[0]+n[1]*L[1]+n[2]*L[2]);
+      const depth=ctr[0]*c.u[0]+ctr[1]*c.u[1]+ctr[2]*c.u[2];
+      quads.push({p:w.map(q=>pj(q,c)), s:0.30+0.70*lam, d:depth});
+    }
+  }
+  quads.sort((x,y)=>x.d-y.d);
+  quads.forEach(q=>{
+    const v=Math.round(70+118*q.s), r=Math.round(v*1.05), gg=Math.round(v*0.86), bb=Math.round(v*0.63);
+    PG(g,q.p,{fill:"rgb("+r+","+gg+","+bb+")",stroke:"rgb("+r+","+gg+","+bb+")",
+      "stroke-width":.6,opacity:dim?0.55:0.92});
+  });
+}
+const C={gold:"#C9A84C",goldD:"rgba(201,168,76,.55)",sand:"rgba(190,154,110,.30)",
+  sandS:"rgba(190,154,110,.75)",glass:"rgba(159,182,194,.55)",glassF:"rgba(159,182,194,.07)",
+  steel:"#7C8792",grid:"#2A3138",ink:"#B4B8BD"};
+
+/* ---------------- vistas gerais ---------------- */
+function drawView(el,key,M,a,opts){
+  opts=opts||{};
+  const c=cam(VIEWS[key].az,VIEWS[key].el);
+  const horiz=VIEWS[key].el<45;
+  const all=[];
+  const push=arr=>arr.forEach(p=>all.push(p));
+  const ribsP=M.ribs.map(e=>ribCurve(M,e,a).map(p=>pj(p,c)));
+  const purlP=M.purl.map(q=>purlCurve(M,q.th,a).map(p=>pj(p,c)));
+  const fabP=fabricLoop(M,a).map(p=>pj(p,c));
+  ribsP.forEach(push); purlP.forEach(push); push(fabP);
+  const bc=pj([0,0,M.zc],c);
+  push([[bc[0]-M.R,bc[1]-M.R],[bc[0]+M.R,bc[1]+M.R]]);
+  const ped=[[-M.pedX,0,0],[M.pedX,0,0],[-M.pedX,0,M.zc],[M.pedX,0,M.zc]].map(p=>pj(p,c));
+  push(ped);
+  if(horiz) push([[0,120],[0,-120]]);
+  const g=svgSetup(el,all,opts.dims===false?0.09:0.20);
+
+  // solo
+  if(horiz){
+    const gy=pj([0,0,0],c)[1];
+    const xs=all.reduce((s,p)=>Math.min(s,p[0]),1e9)-200;
+    const xe=all.reduce((s,p)=>Math.max(s,p[0]),-1e9)+200;
+    PL(g,[[xs,gy],[xe,gy]],{stroke:"#39424B","stroke-width":1.6});
+    for(let x=xs;x<xe;x+=180) PL(g,[[x,gy],[x-70,gy+70]],{stroke:"#262E36","stroke-width":1});
+  }
+  // bolha
+  if(horiz){
+    const gy=pj([0,0,0],c)[1];
+    const pts=[];
+    for(let t=0;t<=360;t+=3){const x=bc[0]+M.R*Math.cos(t*D2R),y=bc[1]-M.R*Math.sin(t*D2R); if(y<=gy) pts.push([x,y]);}
+    if(pts.length) PG(g,pts,{fill:"rgba(159,182,194,.10)",stroke:"rgba(159,182,194,.72)","stroke-width":1.6});
+  } else {
+    E(g,"circle",{cx:bc[0],cy:bc[1],r:M.R,fill:"rgba(159,182,194,.10)",stroke:"rgba(159,182,194,.72)","stroke-width":1.6,"vector-effect":"non-scaling-stroke"});
+    E(g,"circle",{cx:bc[0],cy:bc[1],r:M.baseR,fill:"none",stroke:"rgba(159,182,194,.30)","stroke-width":1,"stroke-dasharray":"9 7","vector-effect":"non-scaling-stroke"});
+  }
+  // pedestais
+  [[-1],[1]].forEach(s=>{
+    const sx=s[0]*M.pedX;
+    const q=[[sx-60,0,0],[sx+60,0,0],[sx+60,0,M.zc],[sx-60,0,M.zc]].map(p=>pj(p,c));
+    PG(g,q,{fill:"#232A31",stroke:C.steel,"stroke-width":1.2});
+    const b=[[sx-150,0,0],[sx+150,0,0],[sx+150,0,60],[sx-150,0,60]].map(p=>pj(p,c));
+    PG(g,b,{fill:"#2C343C",stroke:C.steel,"stroke-width":1.2});
+  });
+  // eixo de rotacao
+  const ax=[[-M.pedX-140,0,M.zc],[M.pedX+140,0,M.zc]].map(p=>pj(p,c));
+  PL(g,ax,{stroke:"#4C555F","stroke-width":1,"stroke-dasharray":"16 5 3 5"});
+  // tecido como malha sombreada
+  fabricMesh(g,M,a,c,false);
+  // longarinas e arcos
+  purlP.forEach(p=>PL(g,p,{stroke:"rgba(255,226,150,.45)","stroke-width":1.1}));
+  ribsP.forEach((p,i)=>PL(g,p,{stroke:(i===0||i===ribsP.length-1)?"#F0D177":"rgba(240,209,119,.72)",
+    "stroke-width":(i===0||i===ribsP.length-1)?2.2:1.4}));
+  // contorno da bolha redesenhado por cima, para não sumir sob o pano
+  if(horiz){
+    const gy=pj([0,0,0],c)[1], pts=[];
+    for(let t=0;t<=360;t+=2){const x=bc[0]+M.R*Math.cos(t*D2R),y=bc[1]-M.R*Math.sin(t*D2R); if(y<=gy) pts.push([x,y]);}
+    if(pts.length) PL(g,pts,{stroke:"rgba(159,182,194,.80)","stroke-width":1.5,"stroke-dasharray":"7 5"});
+  } else {
+    E(g,"circle",{cx:bc[0],cy:bc[1],r:M.R,fill:"none",stroke:"rgba(159,182,194,.80)",
+      "stroke-width":1.5,"stroke-dasharray":"7 5","vector-effect":"non-scaling-stroke"});
+  }
+  // cotas
+  if(opts.dims!==false) dimsFor(g,key,M,a,c);
+  return g;
+}
+function dimsFor(g,key,M,a,c){
+  const P3=p=>pj(p,c);
+  if(key==="frontal"||key==="traseira"){
+    DIM(g,P3([-M.W2,0,0]),P3([M.W2,0,0]),260,f0(2*M.W2));
+    DIM(g,P3([-M.rc,0,M.zc]),P3([M.rc,0,M.zc]),-560,f0(2*M.rc)+" entre pivôs");
+    DIM(g,P3([M.pedX+240,0,0]),P3([M.pedX+240,0,M.zc]),0,f0(M.zc)+" eixo");
+    DIM(g,P3([-M.pedX-240,0,0]),P3([-M.pedX-240,0,M.altura]),0,f0(M.altura)+" total");
+    DIM(g,P3([-M.R,0,M.zc]),P3([M.R,0,M.zc]),300,"Ø "+f0(2*M.R)+" bolha");
+  } else if(key==="latE"||key==="latD"){
+    const s=(key==="latE")?1:-1;
+    const e1=P.e1+a, e2=P.e2+a;
+    DIM(g,P3([0,0,M.zc]),P3([0,s*M.rc*Math.cos(e1*D2R),M.zc+M.rc*Math.sin(e1*D2R)]),0,"R "+f0(M.rc));
+    DIM(g,P3([0,0,0]),P3([0,0,M.altura]),s*2300,f0(M.altura));
+    DIM(g,P3([0,s*M.rc*Math.cos(e1*D2R),0]),P3([0,s*M.rc*Math.cos(e1*D2R),M.zc+M.rc*Math.sin(e1*D2R)]),0,
+      f0(M.zc+M.rc*Math.sin(e1*D2R))+" borda");
+    [[e1+7,"ε1 "+f0(e1)+"°"],[e2-7,"ε2 "+f0(e2)+"°"]].forEach(o=>{
+      const q=P3([0,s*M.rc*0.70*Math.cos(o[0]*D2R),M.zc+M.rc*0.70*Math.sin(o[0]*D2R)]);
+      TX(g,q[0],q[1],o[1],{fill:"#F0D177","font-size":TS*10.5,halo:1});
+    });
+    DIM(g,P3([0,0,M.zc]),P3([0,s*M.R,M.zc]),-330,"R "+f0(M.R));
+  } else if(key==="superior"){
+    DIM(g,P3([-M.W2,0,M.zc]),P3([M.W2,0,M.zc]),-M.rc-420,f0(2*M.W2)+" tecido");
+    DIM(g,P3([0,M.rc*Math.cos((P.e1+a)*D2R),M.zc]),P3([0,M.rc*Math.cos((P.e2+a)*D2R),M.zc]),M.rc+420,
+      f0(M.rc*(Math.cos((P.e1+a)*D2R)-Math.cos((P.e2+a)*D2R)))+" projeção");
+    DIM(g,P3([-M.R,0,M.zc]),P3([M.R,0,M.zc]),260,"Ø "+f0(2*M.R));
+  }
+}
+
+/* ---------------- diagramas ---------------- */
+function drawEnvelope(M){
+  const el=$("#g_env");
+  // envelope puro: distância do eixo à superfície da bolha, sem corte de piso.
+  const zs=[{z:M.zc,c:"#C9A84C",l:"eixo no centro · z "+f0(M.zc)},
+            {z:M.zc+800,c:"#7FA5B8",l:"eixo a z "+f0(M.zc+800)},
+            {z:2200,c:"#C4603F",l:"eixo a z 2.200"}];
+  const all=[];
+  const curves=zs.map(o=>{
+    const pts=[]; let mn=1e9,mx=-1e9;
+    for(let e=0;e<=360;e+=2){
+      const r=M.env(o.z,e); if(!r) continue;
+      mn=Math.min(mn,r.t); mx=Math.max(mx,r.t);
+      pts.push([r.t*Math.cos(e*D2R), -r.t*Math.sin(e*D2R)]);
+    }
+    pts.forEach(p=>all.push(p));
+    return {pts,c:o.c,l:o.l,z:o.z,mn,mx};
+  });
+  const rmax=curves.reduce((s,c)=>Math.max(s,c.mx),0);
+  all.push([-rmax*1.05,-rmax*1.22]); all.push([rmax*1.05,rmax*1.14]);
+  const g=svgSetup(el,all,0.06);
+  // banda angular efetivamente varrida
+  const wed=[[0,0]];
+  for(let e=P.e1;e<=P.e2+M.aWork;e+=2) wed.push([rmax*1.02*Math.cos(e*D2R),-rmax*1.02*Math.sin(e*D2R)]);
+  PG(g,wed,{fill:"rgba(201,168,76,.06)",stroke:"none"});
+  for(let r=1000;r<=Math.ceil(rmax/1000)*1000;r+=1000){
+    E(g,"circle",{cx:0,cy:0,r:r,fill:"none",stroke:"#222932","stroke-width":1,"vector-effect":"non-scaling-stroke"});
+    TX(g,r,TS*11,f0(r/1000)+"k",{fill:"#4C555F","font-size":TS*8});
+  }
+  PL(g,[[-rmax*1.05,0],[rmax*1.05,0]],{stroke:"#2A3138","stroke-width":1});
+  PL(g,[[0,-rmax*1.05],[0,rmax*1.05]],{stroke:"#2A3138","stroke-width":1});
+  curves.forEach(cv=>PL(g,cv.pts,{stroke:cv.c,"stroke-width":2.2}));
+  E(g,"circle",{cx:0,cy:0,r:TS*2.4,fill:"#C9A84C"});
+  curves.forEach((cv,i)=>TX(g,-rmax*1.02,-rmax*1.20+i*TS*13,
+    cv.l+"  ·  varia "+f0(cv.mx-cv.mn)+" mm",
+    {fill:cv.c,"text-anchor":"start","font-size":TS*10}));
+  TX(g,0,rmax*1.13,"banda varrida "+f0(P.e1)+"° a "+f0(P.e2+M.aWork)+"°  ·  círculos de 1.000 mm",
+    {fill:"#7B8189","font-size":TS*9});
+}
+function drawMove(M){
+  const el=$("#g_move"), all=[];
+  const arc=(a,n)=>{const o=[];for(let i=0;i<=(n||40);i++){const e=(P.e1+a)+M.de*i/(n||40);
+    o.push([M.rc*Math.cos(e*D2R), -(M.zc+M.rc*Math.sin(e*D2R))]);}return o;};
+  const steps=[0,.25,.5,.75,1].map(t=>M.aWork*t);
+  steps.forEach(a=>arc(a).forEach(p=>all.push(p)));
+  all.push([-M.R-500,-M.zc]); all.push([M.R+500,0]); all.push([0,-M.altura-350]);
+  const g=svgSetup(el,all,0.12);
+  PL(g,[[-M.rc-500,0],[M.rc+500,0]],{stroke:"#39424B","stroke-width":1.6});
+  const bp=[];for(let t=0;t<=360;t+=3){const y=-(M.zc+M.R*Math.sin(t*D2R));if(y<=0)bp.push([M.R*Math.cos(t*D2R),y]);}
+  PG(g,bp,{fill:C.glassF,stroke:C.glass,"stroke-width":1.4});
+  steps.forEach((a,i)=>{
+    const on=Math.abs(a-alpha)<M.aWork/40;
+    PL(g,arc(a),{stroke:on?C.gold:"rgba(201,168,76,.30)","stroke-width":on?3.2:1.8});
+    const p=arc(a)[0];
+    TX(g,p[0]*1.09,p[1]*1.09,f0(a)+"°",{fill:on?C.gold:"#6E757D","font-size":150});
+  });
+  E(g,"circle",{cx:0,cy:-M.zc,r:26,fill:C.gold});
+  E(g,"circle",{cx:0,cy:-M.zc,r:110,fill:"none",stroke:C.gold,"stroke-width":1.4,"vector-effect":"non-scaling-stroke"});
+  TX(g,0,-M.zc+330,"eixo · z "+f0(M.zc),{fill:"#6E757D","font-size":150});
+  DIM(g,[M.rc*Math.cos((P.e1)*D2R),-(M.zc+M.rc*Math.sin(P.e1*D2R))],
+        [M.rc*Math.cos((P.e1)*D2R),0],-260,f0(M.zc+M.rc*Math.sin(P.e1*D2R)));
+  const gy=-100;
+  PL(g,[[-M.rc-400,gy],[M.rc+400,gy]],{stroke:"rgba(196,96,63,.5)","stroke-width":1,"stroke-dasharray":"12 8"});
+  TX(g,-M.rc-100,gy-80,"limite de piso",{fill:"rgba(196,96,63,.8)","text-anchor":"start","font-size":150});
+}
+function drawAct(M){
+  const el=$("#g_act"), W=1000,H=560, all=[[0,0],[W,H],[W,0],[0,H]];
+  const g=svgSetup(el,all,0.10);
+  const Fm=Math.max(M.FmaxA,1), Mm=Math.max(M.Mmax,1);
+  const x=a=>a/Math.max(M.aWork,1)*W, yF=v=>H-v/Fm*H*0.86, yM=v=>H-v/Mm*H*0.86;
+  for(let i=0;i<=4;i++){const y=H-i*H*0.215;PL(g,[[0,y],[W,y]],{stroke:"#232A31","stroke-width":1});}
+  PL(g,[[0,H],[W,H]],{stroke:"#39424B","stroke-width":1.4});
+  PL(g,M.curve.map(p=>[x(p.a),yM(p.Mg)]),{stroke:"rgba(159,182,194,.75)","stroke-width":2,"stroke-dasharray":"10 7"});
+  PL(g,M.curve.map(p=>[x(p.a),yM(p.Mnet)]),{stroke:"#7FA5B8","stroke-width":2});
+  PL(g,M.curve.map(p=>[x(p.a),yF(p.F)]),{stroke:C.gold,"stroke-width":2.6});
+  const cur=M.curve.reduce((b,p)=>Math.abs(p.a-alpha)<Math.abs(b.a-alpha)?p:b,M.curve[0]);
+  E(g,"circle",{cx:x(cur.a),cy:yF(cur.F),r:9,fill:C.gold});
+  TX(g,x(cur.a),yF(cur.F)-24,f0(cur.F)+" N",{fill:C.gold,"font-size":26});
+  TX(g,8,20,"momento bruto",{fill:"rgba(159,182,194,.75)","text-anchor":"start","font-size":24});
+  TX(g,8,52,"momento após mola a gás",{fill:"#7FA5B8","text-anchor":"start","font-size":24});
+  TX(g,8,84,"força no atuador",{fill:C.gold,"text-anchor":"start","font-size":24});
+  TX(g,0,H+42,"0°",{fill:"#7B8189","font-size":24});
+  TX(g,W,H+42,f0(M.aWork)+"°",{fill:"#7B8189","font-size":24});
+}
+
+/* ---------------- detalhes ---------------- */
+function drawD1(M){
+  const el=$("#g_d1"), g=svgSetup(el,[[-260,-160],[1500,900]],0.08);
+  const y0=820;                                   // piso
+  // base + chumbadores
+  PG(g,[[80,y0],[380,y0],[380,y0-24],[80,y0-24]],{fill:"#2C343C",stroke:C.steel,"stroke-width":1.4});
+  [140,320].forEach(x=>PL(g,[[x,y0],[x,y0+150]],{stroke:C.steel,"stroke-width":2.4}));
+  TX(g,230,y0+205,"4 × chumbador químico M12 × 160",{fill:"#8C939B","font-size":26});
+  // coluna
+  PG(g,[[170,y0-24],[290,y0-24],[290,300],[170,300]],{fill:"#232A31",stroke:C.steel,"stroke-width":1.4});
+  // mancal
+  PG(g,[[150,300],[310,300],[310,200],[150,200]],{fill:"#2C343C",stroke:C.steel,"stroke-width":1.6});
+  E(g,"circle",{cx:230,cy:250,r:34,fill:"#0D0F12",stroke:C.gold,"stroke-width":2,"vector-effect":"non-scaling-stroke"});
+  TX(g,230,168,"mancal UCP206 inox",{fill:"#8C939B","font-size":26});
+  // eixo
+  PG(g,[[230,232],[1180,232],[1180,268],[230,268]],{fill:"#3A434C",stroke:C.gold,"stroke-width":1.6});
+  TX(g,700,205,"eixo inox 304 Ø 30",{fill:C.gold,"font-size":27});
+  // cubo aranha
+  PG(g,[[1150,-60],[1178,-60],[1178,560],[1150,560]],{fill:"#39424B",stroke:C.steel,"stroke-width":1.5});
+  TX(g,1310,250,"cubo-aranha",{fill:"#8C939B","font-size":27});
+  TX(g,1310,290,"chapa 9,5 mm · Ø 700",{fill:"#8C939B","font-size":25});
+  // arcos
+  [0,1,2,3,4].forEach(k=>{
+    const yy=-30+k*145;
+    PG(g,[[1178,yy],[1420,yy-16],[1420,yy+22],[1178,yy+38]],{fill:"none",stroke:C.gold,"stroke-width":2});
+  });
+  TX(g,1300,-110,"5 arcos Ø "+f0(P.rod)+" × "+f(P.rwt,1),{fill:C.gold,"font-size":27});
+  DIM(g,[230,y0],[230,250],-420,f0(M.zc)+" altura do eixo");
+  DIM(g,[230,250],[1164,250],-330,f0(M.pedX-M.rc)+" balanço");
+  DIM(g,[80,y0-24],[380,y0-24],150,"300 × 300 × 12");
+  TX(g,760,880,"pedestal a "+f0(M.pedX)+" mm do centro · fora da projeção da bolha",{fill:"#7B8189","font-size":26});
+}
+function drawD2(M){
+  const el=$("#g_d2"), cr=P.crank;
+  const K0=M.pin(0), K1=M.pin(M.aWork), B=M.B;
+  const bb=[[0,0],[K0[0],-K0[1]],[K1[0],-K1[1]],[B[0],-B[1]]];
+  [0,M.aWork].forEach(a=>{const k=M.pin(a),u=Math.hypot(k[0],k[1])||1;
+    bb.push([k[0]/u*(cr+230),-k[1]/u*(cr+230)]);});
+  bb.push([0,cr*1.35]);
+  const g=svgSetup(el,bb,0.24);
+  E(g,"circle",{cx:0,cy:0,r:TS*11,fill:"none",stroke:C.steel,"stroke-width":1.5,"vector-effect":"non-scaling-stroke"});
+  E(g,"circle",{cx:0,cy:0,r:TS*2.4,fill:C.gold});
+  TX(g,0,-TS*15,"eixo de rotação",{fill:"#8C939B",halo:1});
+  const S=p=>[p[0],-p[1]];
+  PG(g,[[0,-TS*5],[0,TS*5],S(K0)],{fill:"rgba(201,168,76,.16)",stroke:C.gold,"stroke-width":2});
+  PL(g,[[0,0],S(K1)],{stroke:"rgba(201,168,76,.45)","stroke-width":2,"stroke-dasharray":"14 9"});
+  [K0,K1].forEach((k,i)=>{E(g,"circle",{cx:S(k)[0],cy:S(k)[1],r:TS*2.8,fill:i?"rgba(201,168,76,.45)":C.gold});});
+  E(g,"circle",{cx:S(B)[0],cy:S(B)[1],r:TS*3.2,fill:"#3A434C",stroke:C.steel,"stroke-width":2,"vector-effect":"non-scaling-stroke"});
+  PL(g,[S(B),S(K0)],{stroke:"#9FB6C2","stroke-width":6});
+  PL(g,[S(B),S(K1)],{stroke:"rgba(159,182,194,.4)","stroke-width":4,"stroke-dasharray":"14 9"});
+  TX(g,S(B)[0]-TS*4,S(B)[1]+TS*11,"ancoragem fixa",{fill:"#8C939B","text-anchor":"end",halo:1});
+  TX(g,S(B)[0]-TS*4,S(B)[1]+TS*22,"("+f0(P.by)+" , "+f0(P.bz)+")",{fill:"#8C939B","text-anchor":"end","font-size":TS*9,halo:1});
+  const mid=[(S(B)[0]+S(K0)[0])/2,(S(B)[1]+S(K0)[1])/2];
+  TX(g,mid[0],mid[1]-TS*7,"atuador fechado "+f0(M.act(0).L),{fill:"#9FB6C2",halo:1});
+  const mid1=[(S(B)[0]+S(K1)[0])/2,(S(B)[1]+S(K1)[1])/2];
+  TX(g,mid1[0],mid1[1]+TS*13,"aberto "+f0(M.act(M.aWork).L),{fill:"rgba(159,182,194,.75)","font-size":TS*9,halo:1});
+  [0,M.aWork].forEach((a,i)=>{
+    const k=M.pin(a), u=Math.hypot(k[0],k[1])||1;
+    const p=[k[0]/u*(cr+TS*13), k[1]/u*(cr+TS*13)];
+    E(g,"circle",{cx:p[0],cy:-p[1],r:TS*4.6,fill:"rgba(196,96,63,.32)",stroke:"#C4603F","stroke-width":2,"vector-effect":"non-scaling-stroke"});
+    TX(g,p[0],-p[1]+TS*12,i?"batente aberto":"batente fechado",{fill:"#C4603F","font-size":TS*9,halo:1});
+  });
+  DIM(g,[0,0],S(K0),-TS*20,"manivela "+f0(cr));
+  TX(g,0,cr*1.30,"curso do atuador "+f0(M.stroke)+" mm  ·  força máxima "+f0(M.FmaxA)+" N",{fill:C.gold,"font-size":TS*10.5,halo:1});
+}
+function drawD3(M){
+  const el=$("#g_d3"), g=svgSetup(el,[[-330,-260],[420,300]],0.10);
+  E(g,"circle",{cx:0,cy:0,r:P.rod/2,fill:"#1B2026",stroke:C.gold,"stroke-width":2.4,"vector-effect":"non-scaling-stroke"});
+  E(g,"circle",{cx:0,cy:0,r:P.rod/2-P.rwt,fill:"#0D0F12",stroke:"rgba(201,168,76,.6)","stroke-width":1.4,"vector-effect":"non-scaling-stroke"});
+  TX(g,0,P.rod/2+42,"tubo do arco Ø "+f0(P.rod)+" × "+f(P.rwt,1),{fill:C.gold,"font-size":15});
+  // canaleta keder
+  const t=P.rod/2;
+  PG(g,[[-t-14,-t-6],[t+14,-t-6],[t+14,-t-30],[-t-14,-t-30]],{fill:"#2C343C",stroke:C.steel,"stroke-width":1.6});
+  E(g,"circle",{cx:0,cy:-t-18,r:5,fill:"#0D0F12",stroke:C.sandS,"stroke-width":1.4,"vector-effect":"non-scaling-stroke"});
+  TX(g,150,-t-22,"perfil canaleta com ranhura keder",{fill:"#9AA2AA","text-anchor":"start","font-size":15});
+  TX(g,150,-t-2,"parafuso inox M6 a cada 300 mm",{fill:"#9AA2AA","text-anchor":"start","font-size":15});
+  // tecido
+  PL(g,[[-260,-t-30],[-t-14,-t-30]],{stroke:C.sandS,"stroke-width":4});
+  PL(g,[[t+14,-t-30],[300,-t-30]],{stroke:C.sandS,"stroke-width":4});
+  TX(g,-200,-t-48,"lona acrílica",{fill:C.sandS,"font-size":15});
+  // cordao
+  TX(g,-40,-t-56,"cordão keder Ø 6",{fill:C.sandS,"text-anchor":"end","font-size":14});
+  // esticador
+  PG(g,[[-40,t+16],[40,t+16],[40,t+52],[-40,t+52]],{fill:"#2C343C",stroke:C.steel,"stroke-width":1.4});
+  PL(g,[[0,t],[0,t+16]],{stroke:C.steel,"stroke-width":3});
+  TX(g,0,t+82,"esticador de rosca · curso 40 mm",{fill:"#9AA2AA","font-size":15});
+  DIM(g,[-t-14,-t-30],[t+14,-t-30],-64,f0(P.rod+28)+" canaleta");
+}
+function drawD4(M){
+  const el=$("#g_d4"), g=svgSetup(el,[[-330,-240],[430,320]],0.10);
+  E(g,"circle",{cx:0,cy:0,r:P.pod/2,fill:"#1B2026",stroke:C.gold,"stroke-width":2.2,"vector-effect":"non-scaling-stroke"});
+  TX(g,0,P.pod/2+40,"longarina de bordo Ø "+f0(P.pod),{fill:C.gold,"font-size":15});
+  const t=P.pod/2;
+  PL(g,[[-280,-t-8],[-t,-t-8]],{stroke:C.sandS,"stroke-width":4});
+  PL(g,[[-t,-t-8],[t+20,-t-8]],{stroke:C.sandS,"stroke-width":4});
+  PG(g,[[t+20,-t-14],[t+70,-t-14],[t+70,-t+34],[t+56,-t+34],[t+56,-t-2],[t+20,-t-2]],
+    {fill:"#2C343C",stroke:C.steel,"stroke-width":1.6});
+  TX(g,t+180,-t-24,"pingadeira de alumínio 40 mm",{fill:"#9AA2AA","text-anchor":"start","font-size":15});
+  // agua
+  [[-180,-t-24],[-90,-t-24],[0,-t-24]].forEach(p=>{
+    PL(g,[[p[0],p[1]],[p[0]+46,p[1]]],{stroke:"#7FA5B8","stroke-width":2.4});
+    PL(g,[[p[0]+46,p[1]],[p[0]+34,p[1]-9]],{stroke:"#7FA5B8","stroke-width":2.4});
+    PL(g,[[p[0]+46,p[1]],[p[0]+34,p[1]+9]],{stroke:"#7FA5B8","stroke-width":2.4});
+  });
+  TX(g,-150,-t-52,"escoamento para a lateral",{fill:"#7FA5B8","font-size":15});
+  [0,1,2].forEach(i=>{
+    PL(g,[[t+62,-t+40+i*26],[t+62,-t+58+i*26]],{stroke:"#7FA5B8","stroke-width":2.2});
+    PL(g,[[t+62,-t+58+i*26],[t+56,-t+50+i*26]],{stroke:"#7FA5B8","stroke-width":2});
+    PL(g,[[t+62,-t+58+i*26],[t+68,-t+50+i*26]],{stroke:"#7FA5B8","stroke-width":2});
+  });
+  PG(g,[[-300,150],[380,150],[380,168],[-300,168]],{fill:"rgba(159,182,194,.16)",stroke:"none"});
+  TX(g,40,206,"gotejamento a "+f0(M.afast)+" mm da membrana",{fill:"#9AA2AA","font-size":15});
+  TX(g,40,240,"calha opcional com descida embutida no pedestal",{fill:"#7B8189","font-size":14});
+}
+
+/* Área da silhueta real (m²). O contorno do pano se dobra sobre si mesmo em
+   algumas projeções, então shoelace não serve: rasteriza a superfície. */
+function projArea(M,a,c,cell){
+  cell=cell||50;
+  const set=new Set(), NT=260, NE=110;
+  for(let i=0;i<=NT;i++){
+    const th=M.th0+(180-2*M.th0)*i/NT;
+    for(let j=0;j<=NE;j++){
+      const q=pj(shellPt(M,th,P.e1+a+M.de*j/NE),c);
+      set.add(Math.round(q[0]/cell)+"_"+Math.round(q[1]/cell));
+    }
+  }
+  return set.size*cell*cell/1e6;
+}
+
+/* ---------------- painéis ---------------- */
+function paint(M){
+  const cTop=cam(0,90), cSide=cam(90,0);
+  const Ah0=projArea(M,0,cTop),  Av0=projArea(M,0,cSide);
+  const AhO=projArea(M,M.aWork,cTop), AvO=projArea(M,M.aWork,cSide);
+  M.Aplan=Ah0; M.Fup=M.q*1.0*Ah0; M.Fh=M.q*0.7*Av0;
+  M.FupO=M.q*1.0*AhO; M.FhO=M.q*0.7*AvO;
+  M.Mvento=0.10*M.Fup*(M.rc/1000)*0.5;
+  // derivados no rail
+  $("#d_derived").innerHTML=[
+    ["Raio da esfera","R "+f0(M.R)],["Centro da esfera","z "+f0(M.zc)],
+    ["Raio da casca","R "+f0(M.rc)],["PIVOT_HEIGHT","= "+f0(M.zc)],
+    ["Vão entre pivôs",f0(2*M.rc)],["ALPHA_MAX",f(M.aMax,1)+"°"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  // verificação cinemática
+  const eTop=M.env(M.zc,90), eSide=M.env(M.zc,180);
+  const e2200=[45,90,180,210].map(e=>M.env(2200,e)).filter(Boolean).map(r=>r.t);
+  const spread2200=Math.max.apply(null,e2200)-Math.min.apply(null,e2200);
+  $("#v_title").textContent="Eixo em z "+f0(M.zc)+" mm · centro da esfera";
+  $("#v_pill").className="pill ok"; $("#v_pill").textContent="folga constante "+f0(P.folga)+" mm";
+  $("#v_text").innerHTML="Com o eixo no centro da esfera o envelope da bolha vale <b>"+f0(M.R)+
+    " mm</b> em qualquer ângulo, do fechamento à abertura total. A casca é uma calota concêntrica de raio <b>"+
+    f0(M.rc)+" mm</b> e a folga não muda em nenhum ponto do curso. Se o eixo subisse para 2.200 mm o envelope passaria a variar <b>"+
+    f0(spread2200)+" mm</b> entre os ângulos do curso, e nenhuma peça rígida acompanha isso.";
+  $("#d_kin").innerHTML=[
+    ["Envelope no ápice (eixo no centro)",f0(eTop?eTop.t:0)+" mm"],
+    ["Envelope na lateral (eixo no centro)",f0(eSide?eSide.t:0)+" mm"],
+    ["Variação com eixo a 2.200 mm",f0(spread2200)+" mm"],
+    ["Raio da casca",f0(M.rc)+" mm"],
+    ["Folga radial constante",f0(P.folga)+" mm"],
+    ["Pedestal · distância do centro",f0(M.pedX)+" mm"],
+    ["Pedestal x base da bolha","+"+f0(M.pedX-M.baseR)+" mm livre"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  $("#f_env").textContent="R "+f0(M.R)+" / rc "+f0(M.rc);
+  $("#fn_kin").innerHTML="A altura do pivô não é uma escolha de projeto, é uma consequência da geometria da bolha: <b>PIVOT_HEIGHT = BUBBLE_HEIGHT − BUBBLE_DIAMETER/2</b>. Para esta bolha dá "+f0(M.zc)+" mm. Uma bolha mais esférica, de "+f0(M.R+2200)+" mm de altura com o mesmo diâmetro, colocaria o eixo exatamente nos 2.200 mm pedidos. Mexa em BUBBLE_HEIGHT no painel e veja o eixo subir.";
+
+  // curso
+  $("#d_curso").innerHTML=[
+    ["Limite geométrico ALPHA_MAX",f(M.aMax,1)+"°"],
+    ["Curso homologado",f(M.aWork,1)+"°"],
+    ["Reserva até o piso","4°"],
+    ["Borda dianteira fechada","ε "+f0(P.e1)+"° · z "+f0(M.zc+M.rc*Math.sin(P.e1*D2R))+" mm"],
+    ["Borda traseira aberta","ε "+f0(P.e2+M.aWork)+"° · z "+f0(M.zc+M.rc*Math.sin((P.e2+M.aWork)*D2R))+" mm"],
+    ["Céu liberado na abertura","de 0° a "+f0(P.e1+M.aWork)+"° de elevação"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  $("#t_pos tbody").innerHTML=[0,22.5,45,67.5,90].map(a=>{
+    const zb=M.zc+M.rc*Math.sin((P.e2+a)*D2R);
+    const ok=a<=M.aWork+0.01, warn=!ok&&a<=M.aMax+0.01;
+    return "<tr><td class='l'>"+f(a,1)+"°</td><td>"+f(a,1)+"°</td><td>"+f0(P.e1+a)+"°</td><td>"+f0(P.e2+a)+
+      "°</td><td>"+f0(zb)+" mm</td><td class='l'>"+
+      (ok?"<span class='pill ok'>dentro do curso</span>":
+        warn?"<span class='pill warn'>além da reserva</span>":
+        "<span class='pill crit'>borda "+f0(-zb)+" mm abaixo do piso</span>")+"</td></tr>";
+  }).join("");
+
+  // KPIs
+  $("#kpis").innerHTML=[
+    ["Altura total fechada",f0(M.altura),"mm",true],
+    ["Vão entre pivôs",f0(2*M.rc),"mm",false],
+    ["Área de tecido",f(M.fabA,1),"m²",false],
+    ["Massa da casca",f0(M.massa),"kg",true],
+    ["Curso homologado",f(M.aWork,1),"°",false],
+    ["Força no atuador",f0(M.FmaxA),"N",true],
+    ["Curso do atuador",f0(M.stroke),"mm",false],
+    ["Empuxo a "+f0(P.v)+" km/h",f0(M.Fup/9.81),"kgf",false]
+  ].map(k=>'<div class="kpi'+(k[3]?' acc':'')+'"><div class="k">'+k[0]+'</div><div class="v">'+k[1]+'<small>'+k[2]+'</small></div></div>').join("");
+
+  // perfis
+  const ok=v=>v<=160?"<span class='pill ok'>ok</span>":"<span class='pill crit'>reforçar</span>";
+  $("#t_perfil tbody").innerHTML=
+    "<tr><td class='l'>Opção 1</td><td class='l'>Tubo circular Ø "+f0(P.rod)+" × "+f(P.rwt,1)+
+      "</td><td>"+f0(M.aR)+" mm²</td><td>"+f(M.kR,3)+"</td><td>"+f0(M.Ix/1000)+" ×10³</td><td>"+f0(M.Wx)+
+      "</td><td>"+f0(M.sig)+" MPa</td><td class='l'>"+ok(M.sig)+"</td></tr>"+
+    "<tr><td class='l'>Opção 2</td><td class='l'>Tubo retangular "+f0(M.rh)+" × "+f0(M.rb)+" × "+f(M.rt,1)+
+      "</td><td>"+f0(M.aRet)+" mm²</td><td>"+f(M.aRet*2.70e-3,3)+"</td><td>"+f0(M.IxRet/1000)+" ×10³</td><td>"+f0(M.WxRet)+
+      "</td><td>"+f0(M.sigRet)+" MPa</td><td class='l'>"+ok(M.sigRet)+"</td></tr>";
+
+  // arcos e longarinas
+  let rows="";
+  M.ribs.forEach((e,k)=>{
+    const barras=Math.ceil(M.ribLen/5950);
+    rows+="<tr><td class='l'>Arco "+(k+1)+(k===0?" · bordo dianteiro":(k===M.ribs.length-1?" · bordo traseiro":""))+
+      "</td><td>R "+f0(M.rc)+"</td><td>"+f0(e)+"°</td><td>"+f0(M.ribLen)+" mm</td><td>"+barras+"</td><td>"+(barras-1)+
+      "</td><td>"+f(M.ribKg,1)+" kg</td></tr>";
+  });
+  M.purl.forEach((q,j)=>{
+    const L=q.rho*M.dRad;
+    rows+="<tr><td class='l'>Longarina "+(j+1)+"</td><td>x "+f0(q.x)+" · ρ "+f0(q.rho)+"</td><td>"+f0(P.e1)+"→"+f0(P.e2)+
+      "°</td><td>"+f0(L)+" mm</td><td>"+Math.ceil(L/5950)+"</td><td>"+Math.max(Math.ceil(L/5950)-1,0)+
+      "</td><td>"+f(L/1000*M.kP,1)+" kg</td></tr>";
+  });
+  $("#t_arcos tbody").innerHTML=rows;
+  $("#t_arcos tfoot").innerHTML="<tr><td class='l'>Total estrutura + tecido + ferragens</td><td>—</td><td>—</td><td>"+
+    f0(P.Nr*M.ribLen+M.purl.reduce((s,q)=>s+q.rho*M.dRad,0))+" mm</td><td>—</td><td>—</td><td>"+f0(M.massa)+" kg</td></tr>";
+
+  // vento
+  $("#d_vento").innerHTML=[
+    ["Velocidade de projeto",f0(P.v)+" km/h · "+f(M.v,1)+" m/s"],
+    ["Pressão dinâmica q",f0(M.q)+" Pa"],
+    ["Coeficientes adotados","sucção −1,0 · arrasto 0,7"],
+    ["Silhueta horizontal · fechada",f(Ah0,1)+" m²"],
+    ["Silhueta vertical · fechada",f(Av0,1)+" m²"],
+    ["Sucção · fechada",f0(M.Fup)+" N · "+f0(M.Fup/9.81)+" kgf"],
+    ["Arrasto · fechada",f0(M.Fh)+" N"],
+    ["Silhueta horizontal · recolhida",f(AhO,1)+" m²"],
+    ["Sucção · recolhida",f0(M.FupO)+" N · "+f0(M.FupO/9.81)+" kgf"],
+    ["Arrasto · recolhida",f0(M.FhO)+" N"],
+    ["Momento residual no eixo",f0(M.Mvento)+" N·m"],
+    ["Peso próprio",f0(M.peso)+" N · "+f0(M.massa)+" kgf"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  $("#d_reacao").innerHTML=[
+    ["Tração vertical por mancal",f0((M.Fup-M.peso)/2)+" N"],
+    ["Cortante horizontal por mancal",f0(M.Fh/2)+" N"],
+    ["Mancal sugerido","UCP206 inox · Ø 30 · C 19,5 kN"],
+    ["Tração por chumbador (4 un.)",f0(Math.max((M.Fup-M.peso)/2/4,0)+M.Fh/2*M.zc/(2*0.22*1000))+" N"],
+    ["Chumbador sugerido","M12 × 160 químico, aço inox A4"],
+    ["Bloco de fundação mínimo","600 × 600 × 700 mm"],
+    ["Verificação","<span class='pill warn'>confirmar com ART</span>"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+
+  // acionamento
+  const Fgs=M.gsFrac>0? M.Mmax*M.gsFrac*1000/Math.max(P.crank*0.85,1) : 0;
+  $("#d_act").innerHTML=[
+    ["Momento gravitacional máximo",f0(M.Mmax)+" N·m"],
+    ["Compensação por mola a gás",f0(P.gas)+" %"],
+    ["Mola a gás sugerida","2 × "+f0(Math.ceil(Fgs/2/50)*50)+" N"],
+    ["Força máxima no atuador",f0(M.FmaxA)+" N · "+f0(M.FmaxA/9.81)+" kgf"],
+    ["Curso necessário",f0(M.stroke)+" mm"],
+    ["Comprimento fechado / aberto",f0(M.act(0).L)+" / "+f0(M.act(M.aWork).L)+" mm"],
+    ["Atuador sugerido","2 × linear 24 V, "+f0(Math.ceil(M.FmaxA*1.4/500)*500)+" N, curso "+f0(Math.ceil(M.stroke/50)*50)+" mm"],
+    ["Velocidade","5 mm/s · ciclo "+f0(M.stroke/5)+" s"],
+    ["Sincronismo","central com leitura de corrente nos dois atuadores"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  const worm=100, hand=250;
+  const Mres=M.Mmax*(1-M.gsFrac);
+  $("#d_manual").innerHTML=[
+    ["Momento residual após molas",f0(Mres)+" N·m"],
+    ["Redutor sem-fim","1:"+worm+" · rendimento 0,35"],
+    ["Torque na entrada",f(Mres/worm/0.35,1)+" N·m"],
+    ["Manivela de "+worm0(hand)+" mm","força de mão "+f0(Mres/worm/0.35/(hand/1000))+" N"],
+    ["Voltas de manivela",f0(M.aWork/360*worm)+" voltas"],
+    ["Veredito", (Mres/worm/0.35/(hand/1000))<=120?"<span class='pill ok'>viável</span>":"<span class='pill warn'>aumentar compensação</span>"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  $("#f_act").textContent="máx "+f0(M.FmaxA)+" N";
+
+  // tecido
+  $("#d_tecido").innerHTML=[
+    ["Área desenvolvida",f(M.fabA,2)+" m²"],
+    ["Consumo com perdas",f(M.fabA*1.10,1)+" m²"],
+    ["Gramatura",f0(P.gsm)+" g/m²"],
+    ["Peso do pano",f(M.fabKg,1)+" kg"],
+    ["Material","acrílico outdoor tinto na massa, UV 95%"],
+    ["Cor","areia / champagne"],
+    ["Alternativa","PVC técnico 650 g/m² ou lona arquitetônica PVDF"],
+    ["Bordas","bainha com cordão keder Ø 6 nas quatro bordas"]
+  ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  $("#s_queda").textContent=f0(M.queda)+" mm";
+  $("#s_flecha").innerHTML=f0(M.flecha)+" mm "+(M.flecha<=60?"<span class='pill ok'>ok</span>":
+    M.flecha<=90?"<span class='pill warn'>limite</span>":"<span class='pill crit'>empoça</span>");
+  $("#s_afast").textContent=f0(M.afast)+" mm";
+
+  // BOM
+  const barras=Math.ceil(M.ribLen/5950), purLen=M.purl.reduce((s,q)=>s+q.rho*M.dRad,0);
+  const bom=[
+    ["01","Arco transversal","Alumínio 6063-T6","Tubo Ø "+f0(P.rod)+" × "+f(P.rwt,1),P.Nr,f0(M.ribLen)+" mm","calandrado R "+f0(M.rc)],
+    ["02","Longarina","Alumínio 6063-T6","Tubo Ø "+f0(P.pod)+" × "+f(P.pwt,1),P.Np,"variável","calandrada, raio por estação"],
+    ["03","Luva de emenda","Alumínio","Maciço Ø "+f0(P.rod-2*P.rwt-1),P.Nr*(barras-1),"180 mm","colada + rebite inox"],
+    ["04","Cubo-aranha","Aço inox 304","Chapa 9,5 mm · Ø 700",2,"—","corte a laser, 5 encaixes"],
+    ["05","Eixo","Aço inox 304","Barra Ø 30 h9",2,f0(M.pedX-M.rc+140)+" mm","rasgo de chaveta 8 mm"],
+    ["06","Mancal de pé","Inox / termoplástico","UCP206",2,"—","autocompensador, Ø 30"],
+    ["07","Pedestal","Aço galv. a fogo","Tubo 120 × 120 × 4,75",2,f0(M.zc)+" mm","pintura eletrostática"],
+    ["08","Placa de base","Aço galv. a fogo","Chapa 300 × 300 × 12",2,"—","4 furos Ø 14"],
+    ["09","Chumbador","Inox A4","M12 × 160 químico",8,"—","bloco 600×600×700"],
+    ["10","Manivela","Aço inox 304","Chapa 12 mm",2,f0(P.crank)+" mm","solda ao cubo"],
+    ["11","Atuador linear","—","24 V · "+f0(Math.ceil(M.FmaxA*1.4/500)*500)+" N",2,f0(Math.ceil(M.stroke/50)*50)+" mm","IP66, autotravante"],
+    ["12","Mola a gás","Inox","2 × "+f0(Math.ceil(Fgs/2/50)*50)+" N",2,"—","compensação de peso"],
+    ["13","Batente","Aço + poliuretano","Bloco Ø 60",4,"—","2 por lado"],
+    ["14","Pino de trava","Inox A4","Ø 12 removível",2,"—","posição fechada"],
+    ["15","Canaleta keder","Alumínio","Perfil "+f0(P.rod+28)+" mm",P.Nr*2,f0(M.ribLen)+" mm","ranhura Ø 6"],
+    ["16","Lona","Acrílico outdoor",f0(P.gsm)+" g/m²",1,f(M.fabA*1.10,1)+" m²","cor areia"],
+    ["17","Cordão keder","PVC","Ø 6 mm",1,f0((2*M.ribLen+2*purLen/P.Np)/1000)+" m","costurado na bainha"],
+    ["18","Esticador","Inox A4","M8 · curso 40",P.Np*2,"—","tensionamento do pano"],
+    ["19","Pingadeira","Alumínio","Perfil 40 mm",2,f0(purLen/P.Np)+" mm","borda dianteira e traseira"],
+    ["20","Central + rádio","—","24 V, 2 canais",1,"—","com anemômetro"],
+    ["21","Anemômetro","—","recolhimento automático",1,"—","limiar 45 km/h"],
+    ["22","Parafusaria","Inox A4","M6 / M8 / M10",1,"kit","isolamento galvânico em contato com aço"]
+  ];
+  $("#t_bom tbody").innerHTML=bom.map(r=>"<tr><td>"+r[0]+"</td><td class='l'>"+r[1]+"</td><td class='l'>"+r[2]+
+    "</td><td class='l'>"+r[3]+"</td><td>"+r[4]+"</td><td>"+r[5]+"</td><td class='l'>"+r[6]+"</td></tr>").join("");
+
+  // lista de corte
+  let cut="";
+  M.ribs.forEach((e,k)=>{
+    cut+="<tr><td>P"+String(k+1).padStart(2,"0")+"</td><td class='l'>Arco transversal "+(k+1)+
+      "</td><td class='l'>Tubo Ø "+f0(P.rod)+" × "+f(P.rwt,1)+"</td><td>1</td><td>"+f0(M.ribLen+50)+
+      " mm</td><td>"+f0(M.rc)+" mm</td><td>90°</td><td class='l'>Ø 6,5 a cada 300 mm, linha de topo</td></tr>";
+  });
+  M.purl.forEach((q,j)=>{
+    const L=q.rho*M.dRad;
+    cut+="<tr><td>P"+String(P.Nr+j+1).padStart(2,"0")+"</td><td class='l'>Longarina "+(j+1)+" · estação x "+f0(q.x)+
+      "</td><td class='l'>Tubo Ø "+f0(P.pod)+" × "+f(P.pwt,1)+"</td><td>1</td><td>"+f0(L+50)+" mm</td><td>"+
+      f0(q.rho)+" mm</td><td>90°</td><td class='l'>Ø 8,5 nos "+P.Nr+" cruzamentos</td></tr>";
+  });
+  cut+="<tr><td>P"+String(P.Nr+P.Np+1).padStart(2,"0")+"</td><td class='l'>Pedestal</td><td class='l'>Tubo 120 × 120 × 4,75</td><td>2</td><td>"+
+    f0(M.zc-12)+" mm</td><td>reto</td><td>90°</td><td class='l'>topo usinado para caixa do mancal</td></tr>";
+  cut+="<tr><td>P"+String(P.Nr+P.Np+2).padStart(2,"0")+"</td><td class='l'>Eixo</td><td class='l'>Inox Ø 30 h9</td><td>2</td><td>"+
+    f0(M.pedX-M.rc+140)+" mm</td><td>reto</td><td>90°</td><td class='l'>chaveta 8 × 7, furo M10 no topo</td></tr>";
+  cut+="<tr><td>P"+String(P.Nr+P.Np+3).padStart(2,"0")+"</td><td class='l'>Canaleta keder</td><td class='l'>Perfil "+f0(P.rod+28)+
+    " mm</td><td>"+(P.Nr*2)+"</td><td>"+f0(M.ribLen/2)+" mm</td><td>"+f0(M.rc)+" mm</td><td>90°</td><td class='l'>duas metades por arco</td></tr>";
+  $("#t_corte tbody").innerHTML=cut;
+
+  // montagem
+  const m1=["Locar e concretar os dois blocos de fundação, conferindo o vão de "+f0(2*M.pedX)+" mm entre eixos com tolerância de ±3 mm.",
+    "Fixar as placas de base com chumbador químico e conferir o nível das duas com mangueira ou laser. Diferença máxima entre lados: 2 mm.",
+    "Montar os pedestais e as caixas de mancal. Conferir o alinhamento dos dois mancais com linha esticada antes de apertar.",
+    "Instalar os eixos, com chaveta, e verificar giro livre sem a casca.",
+    "Pré-montar no chão os cubos-aranha com os cinco arcos, sem apertar, sobre cavaletes.",
+    "Levantar o conjunto de arcos e encaixar os dois cubos nos eixos. Duas pessoas por lado.",
+    "Instalar as longarinas de dentro para fora, começando pela central, esquadrejando o conjunto."];
+  const m2=["Apertar toda a estrutura só depois que o conjunto girar livre em todo o curso, sem tocar a membrana em nenhum ponto.",
+    "Parafusar as canaletas keder nos arcos e enfiar o pano pelas laterais.",
+    "Tensionar o pano pelos esticadores, do centro para as bordas, alternando os lados.",
+    "Montar manivelas, molas a gás e atuadores. Ligar um lado de cada vez e conferir sincronismo.",
+    "Regular os batentes mecânicos primeiro. Só depois programar os fins de curso elétricos.",
+    "Teste completo: 10 ciclos de abertura e fechamento, medindo a folga na membrana em quatro pontos a cada ciclo."];
+  $("#s_mont1").innerHTML=m1.map(s=>"<li>"+s+"</li>").join("");
+  $("#s_mont2").innerHTML=m2.map(s=>"<li>"+s+"</li>").join("");
+
+  $("#u_oper").innerHTML=["Recolhimento automático obrigatório acima de 45 km/h, por anemômetro.",
+    "Nunca operar com gelo ou neve acumulada sobre o pano.",
+    "Pino de trava na posição fechada sempre que a Bubble ficar desocupada por mais de 24 h.",
+    "Se um atuador falhar, não insistir: o movimento assimétrico torce o conjunto e empena os arcos.",
+    "Operação manual de emergência pela manivela do redutor, com os atuadores desacoplados."]
+    .map(s=>"<li>"+s+"</li>").join("");
+  $("#u_manut").innerHTML=["Inspeção de mancais, batentes e apertos a cada 6 meses.",
+    "Lavagem do pano a cada 90 dias com sabão neutro, sem alta pressão sobre a costura.",
+    "Reaperto dos esticadores no primeiro mês e depois anualmente.",
+    "Troca do pano sem desmontar arco: solta-se a canaleta e o pano sai pela lateral.",
+    "Verificar corrosão galvânica nos pontos de contato alumínio-aço a cada 12 meses."]
+    .map(s=>"<li>"+s+"</li>").join("");
+
+  // revisão crítica
+  const yes=t=>"<span class='pill ok'>"+t+"</span>", no=t=>"<span class='pill warn'>"+t+"</span>";
+  const qa=[
+    ["Um serralheiro consegue fabricar isso?","Tubo calandrado, chapa cortada a laser e mancal de catálogo. Nada usinado além do eixo.",yes("sim")],
+    ["As peças possuem dimensões?","Lista de corte com comprimento, raio de calandra e furação por peça.",yes("sim")],
+    ["Os pontos de fixação estão definidos?","Canaleta a cada 300 mm, cruzamentos longarina-arco, cubo com 5 encaixes.",yes("sim")],
+    ["O mecanismo gira o curso previsto?","Gira "+f(M.aWork,1)+"°. Os 90° pedidos não cabem: a borda traseira desceria abaixo do piso.",no("parcial")],
+    ["Existe interferência com a Bubble?","Folga radial constante de "+f0(P.folga)+" mm em todo o curso, por construção concêntrica.",yes("não")],
+    ["Existe interferência entre braços?","Os arcos convergem ao polo e param a 6° dele, no cubo. Espaçamento mínimo entre tubos: "+f0(M.rc*Math.sin(6*D2R)*(M.de/(P.Nr-1))*D2R)+" mm.",yes("não")],
+    ["O atuador possui curso suficiente?","Curso necessário "+f0(M.stroke)+" mm, dentro de modelos de catálogo.",yes("sim")],
+    ["A capota pode ser retirada para manutenção?","Solta-se o cubo do eixo pelos dois lados e o conjunto sai inteiro com talha.",yes("sim")],
+    ["O tecido pode ser substituído?","Sim, pela lateral, sem desmontar arco.",yes("sim")],
+    ["Existe drenagem?","As calhas da flecha correm de pivô a pivô e drenam para as duas laterais, com "+f0(M.queda)+" mm de queda.",yes("sim")],
+    ["Existe risco de acumular água?","Flecha entre arcos de "+f0(M.flecha)+" mm. Acima de 60 mm, aumentar o número de arcos.",M.flecha<=60?yes("não"):no("atenção")],
+    ["Existe risco de o vento levantar a capota?","Sucção de "+f0(M.Fup/9.81)+" kgf a "+f0(P.v)+" km/h. Vai para os mancais e chumbadores, com recolhimento automático a 45 km/h.",no("mitigado")],
+    ["Os limitadores impedem sobrecurso?","Dois batentes metálicos por lado, dimensionados para a carga de vento e não só para a inércia.",yes("sim")],
+    ["O centro de gravidade está coerente?","CG a "+f0(Math.abs(M.cg0.y))+" mm do eixo na posição fechada. Momento quase nulo fechado, máximo aberto.",yes("sim")],
+    ["Os dois lados estão sincronizados?","Casca única e rígida entre os dois cubos. O sincronismo é mecânico, não eletrônico.",yes("sim")],
+    ["O mecanismo funciona sem torcer a estrutura?","Torção só apareceria com atuadores dessincronizados. Por isso a central lê corrente nos dois.",yes("sim")]
+  ];
+  $("#qa").innerHTML=qa.map((r,i)=>"<div><span class='n'>"+String(i+1).padStart(2,"0")+
+    "</span><span>"+r[0]+" <span style='color:var(--muted)'>"+r[1]+"</span></span>"+r[2]+"</div>").join("");
+}
+function worm0(v){return f0(v);}
+
+/* ---------------- render ---------------- */
+let M=null;
+function buildViewPlates(){
+  const A=["frontal","latD","superior"], B=["traseira","latE","iso"];
+  const mk=(host,keys)=>{host.innerHTML=keys.map((k,i)=>
+    '<div class="plate"><header><b>'+VIEWS[k].lbl+'</b><span>'+
+    (k==="iso"?"axonométrica":"ortográfica")+'</span></header><svg id="g_'+k+
+    '" viewBox="0 0 100 100" role="img" aria-label="'+VIEWS[k].lbl+'"></svg>'+
+    '<footer><span>ZG-CAP-02 / V-'+String(i+1)+'</span><span class="pf_'+k+'"></span></footer></div>').join("");};
+  mk($("#views_a"),A); mk($("#views_b"),B);
+  return A.concat(B);
+}
+function buildPosStrip(){
+  const host=$("#pos_strip");
+  host.innerHTML=[0,.25,.5,.75,1].map((t,i)=>
+    '<div class="plate"><header><b>'+["Fechada","25%","50%","75%","Aberta"][i]+
+    '</b><span class="ps_'+i+'"></span></header><svg id="g_ps'+i+
+    '" viewBox="0 0 100 100" role="img" aria-label="Posição"></svg>'+
+    '<footer><span>ZG-CAP-02 / P-'+(i+1)+'</span><span class="pfp_'+i+'"></span></footer></div>').join("");
+}
+function render(){
+  M=model();
+  if(alpha>M.aWork) alpha=M.aWork;
+  $("#p_alpha").max=Math.max(M.aWork,1);
+  $("#p_alpha").value=alpha;
+  $("#o_alpha").textContent=f(alpha,1)+"° de "+f(M.aWork,1)+"°";
+  VKEYS.forEach(k=>{
+    drawView(document.getElementById("g_"+k),k,M,alpha);
+    const el=document.querySelector(".pf_"+k); if(el) el.textContent="α "+f(alpha,1)+"°";
+  });
+  [0,.25,.5,.75,1].forEach((t,i)=>{
+    const a=M.aWork*t;
+    drawView(document.getElementById("g_ps"+i),"latD",M,a,{dims:false});
+    const h=document.querySelector(".ps_"+i); if(h) h.textContent=f(a,1)+"°";
+    const fo=document.querySelector(".pfp_"+i); if(fo) fo.textContent="ε "+f0(P.e1+a)+"→"+f0(P.e2+a)+"°";
+  });
+  drawEnvelope(M); drawMove(M); drawAct(M);
+  drawD1(M); drawD2(M); drawD3(M); drawD4(M);
+  paint(M);
+  $("#f_move").textContent="curso "+f(M.aWork,1)+"°";
+}
+
+/* ---------------- bind ---------------- */
+for(const k in CT){
+  const c=CT[k], el=document.getElementById(c.e);
+  P[k]=parseFloat(el.value);
+  document.getElementById(c.o).textContent=c.fmt(P[k]);
+  el.addEventListener("input",()=>{
+    P[k]=parseFloat(el.value);
+    if(k==="e1"&&P.e1>P.e2-25){P.e1=P.e2-25;el.value=P.e1;}
+    if(k==="e2"&&P.e2<P.e1+25){P.e2=P.e1+25;el.value=P.e2;}
+    document.getElementById(c.o).textContent=c.fmt(P[k]);
+    render();
+  });
+}
+$("#p_alpha").addEventListener("input",e=>{alpha=parseFloat(e.target.value);render();});
+$("#pos_btns").innerHTML=["Fechada|0","25%|.25","50%|.5","75%|.75","Aberta|1"]
+  .map(s=>{const [l,v]=s.split("|");return '<button type="button" data-t="'+v+'">'+l+'</button>';}).join("");
+$("#pos_btns").addEventListener("click",e=>{
+  const b=e.target.closest("[data-t]"); if(!b) return;
+  alpha=M.aWork*parseFloat(b.dataset.t); render();
+});
+const VKEYS=buildViewPlates();
+buildPosStrip();
+render();
+window.addEventListener("resize",()=>{clearTimeout(window._rt);window._rt=setTimeout(render,180);});
+})();
+</script>
+</body>
+</html>
