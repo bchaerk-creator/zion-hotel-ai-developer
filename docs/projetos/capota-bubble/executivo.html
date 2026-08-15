@@ -249,8 +249,16 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
       <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:4px" id="pos_btns"></div>
       <dl class="dl" id="d_curso"></dl>
     </div>
+    <div class="card">
+      <h3>Curso × cobertura · a troca é linear</h3>
+      <p class="prose">Com o eixo no centro da esfera a bolha nunca limita a rotação: a casca giraria 360° sem tocar a membrana. Quem para o movimento é o <b>piso</b>, quando a borda traseira desce. Daí sai uma relação de uma linha só:</p>
+      <div style="text-align:center;padding:9px 0;font-size:15px;color:var(--gold)" id="s_eq"></div>
+      <p class="prose">Cada grau a mais de curso custa exatamente um grau de cobertura na traseira. Não há terceiro caminho: levantar o eixo para ganhar curso obriga a casca a crescer até flutuar acima do ápice.</p>
+      <dl class="dl" id="d_sol"></dl>
+      <div style="display:flex;gap:7px;flex-wrap:wrap;margin-top:2px" id="cfg_btns"></div>
+    </div>
     <div class="plate">
-      <header><b>Diagrama de movimento</b><span>corte no plano médio</span></header>
+      <header><b>Diagrama de movimento</b><span>corte no plano médio · sol ao meio-dia</span></header>
       <svg id="g_move" viewBox="0 0 100 100" role="img" aria-label="Sobreposição das posições de abertura"></svg>
       <footer><span>ZG-CAP-02 / M-01</span><span id="f_move"></span></footer>
     </div>
@@ -447,6 +455,11 @@ const CT={
  v:{e:"p_v",o:"o_v",fmt:v=>f0(v)+" km/h"}, gsm:{e:"p_gsm",o:"o_gsm",fmt:v=>f0(v)+" g/m²"}
 };
 const P={}; let alpha=0;
+/* Sol ao meio-dia solar em Florianópolis, latitude -27,6°.
+   altura = 90 - |latitude - declinação|. A frente da capota (ε1) aponta ao norte. */
+const LAT=-27.6;
+const SOL=[{k:"verão",d:-23.44},{k:"equinócio",d:0},{k:"inverno",d:23.44}]
+  .map(o=>({k:o.k,alt:90-Math.abs(LAT-o.d)}));
 
 /* ---------------- modelo ---------------- */
 function model(){
@@ -849,6 +862,15 @@ function drawMove(M){
     const p=arc(a)[0];
     TX(g,p[0]*1.09,p[1]*1.09,f0(a)+"°",{fill:on?C.gold:"#6E757D","font-size":150});
   });
+  // sol ao meio-dia em Florianópolis, projetado no plano do movimento
+  SOL.forEach(o=>{
+    const dentro=(o.alt>=P.e1 && o.alt<=P.e2);
+    const rr=M.rc*1.16, px=rr*Math.cos(o.alt*D2R), py=-(M.zc+rr*Math.sin(o.alt*D2R));
+    PL(g,[[M.rc*0.30*Math.cos(o.alt*D2R),-(M.zc+M.rc*0.30*Math.sin(o.alt*D2R))],[px,py]],
+      {stroke:dentro?"rgba(111,169,126,.75)":"rgba(196,96,63,.65)","stroke-width":1.6,"stroke-dasharray":"9 6"});
+    TX(g,px*1.02,py,o.k+" "+f(o.alt,0)+"°",{fill:dentro?"#6FA97E":"#C4603F",
+      "text-anchor":px<0?"end":"start","font-size":TS*8.5,halo:1});
+  });
   E(g,"circle",{cx:0,cy:-M.zc,r:26,fill:C.gold});
   E(g,"circle",{cx:0,cy:-M.zc,r:110,fill:"none",stroke:C.gold,"stroke-width":1.4,"vector-effect":"non-scaling-stroke"});
   TX(g,0,-M.zc+330,"eixo · z "+f0(M.zc),{fill:"#6E757D","font-size":150});
@@ -1057,6 +1079,31 @@ function paint(M){
     ["Borda traseira aberta","ε "+f0(P.e2+M.aWork)+"° · z "+f0(M.zc+M.rc*Math.sin((P.e2+M.aWork)*D2R))+" mm"],
     ["Céu liberado na abertura","de 0° a "+f0(P.e1+M.aWork)+"° de elevação"]
   ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  // troca curso x cobertura, e checagem de sombra ao meio-dia
+  $("#s_eq").innerHTML="curso útil + ε2 = "+f(M.lim-4,1)+"°";
+  $("#d_sol").innerHTML=[
+    ["Faixa coberta hoje","ε "+f0(P.e1)+"° a "+f0(P.e2)+"° · curso "+f(M.aWork,1)+"°"],
+    ["Área de lona",f(M.fabA,1)+" m²"]
+  ].concat(SOL.map(o=>{
+    const dentro=(o.alt>=P.e1&&o.alt<=P.e2);
+    return ["Sol de "+o.k+" · "+f(o.alt,1)+"°",
+      dentro?"<span class='pill ok'>na sombra</span>":"<span class='pill crit'>passa direto</span>"];
+  })).map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
+  const CFG=[["Cobertura máxima",45,120],["Equilibrado",45,95],["Curso de 90°",41,79]];
+  $("#cfg_btns").innerHTML=CFG.map((c,i)=>{
+    const on=(Math.abs(P.e1-c[1])<0.5&&Math.abs(P.e2-c[2])<0.5);
+    return '<button type="button" data-cfg="'+i+'" aria-pressed="'+on+'">'+c[0]+" · "+f(M.lim-4-c[2],0)+"°</button>";
+  }).join("");
+  $("#cfg_btns").onclick=e=>{
+    const b=e.target.closest("[data-cfg]"); if(!b) return;
+    const c=CFG[+b.dataset.cfg];
+    P.e1=c[1]; P.e2=c[2];
+    document.getElementById("p_e1").value=c[1]; document.getElementById("p_e2").value=c[2];
+    document.getElementById("o_e1").textContent=CT.e1.fmt(c[1]);
+    document.getElementById("o_e2").textContent=CT.e2.fmt(c[2]);
+    alpha=0; render();
+  };
+
   $("#t_pos tbody").innerHTML=[0,22.5,45,67.5,90].map(a=>{
     const zb=M.zc+M.rc*Math.sin((P.e2+a)*D2R);
     const ok=a<=M.aWork+0.01, warn=!ok&&a<=M.aMax+0.01;
