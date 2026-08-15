@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Capota ZG-CAP-02 em movimento</title>
+<style>
+:root{--mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace}
+html,body{margin:0;background:#0A0B0D;height:100%}
+body{display:grid;place-items:center;font-family:var(--mono)}
+#wrap{width:min(100vw,1600px);aspect-ratio:16/9;position:relative}
+canvas{width:100%;height:100%;display:block}
+</style>
+</head>
+<body>
+<div id="wrap"><canvas id="c" width="1600" height="900"></canvas></div>
+<script>
+(function(){
+"use strict";
+const D2R=Math.PI/180;
+const f0=v=>Math.round(v).toLocaleString("pt-BR");
+const f1=v=>v.toFixed(1).replace(".",",");
+
+/* ---- parâmetros da Bubble real ---- */
+const P={D:5000,H:2292,folga:150,e1:45,e2:120,W:4800,Nr:5,Np:5};
+const baseR=P.D/2;
+const zc=(P.H*P.H-baseR*baseR)/(2*P.H);      // -217
+const R=P.H-zc;                               // 2509
+const rc=R+P.folga;                           // 2659
+const W2=P.W/2;
+const th0=Math.acos(W2/rc)/D2R;
+const thEnd=6;
+const pedX=rc+250, pedLevel=Math.min(0,zc)-260;
+const aMax=180+Math.asin((zc-100)/rc)/D2R-P.e2;
+const aWork=aMax-4;                           // ~49,3°
+const de=P.e2-P.e1;
+
+/* ---- projeção ortográfica ---- */
+function cam(az,el){
+  const a=az*D2R,e=el*D2R;
+  const u=[Math.sin(a)*Math.cos(e),Math.cos(a)*Math.cos(e),Math.sin(e)];
+  const n=Math.hypot(-u[1],u[0])||1, r=[-u[1]/n,u[0]/n,0];
+  const up=[u[1]*r[2]-u[2]*r[1],u[2]*r[0]-u[0]*r[2],u[0]*r[1]-u[1]*r[0]];
+  return {r,up,u};
+}
+const SC=0.153, CX=620, CY=560;
+function pj(p,c){
+  return [CX+(p[0]*c.r[0]+p[1]*c.r[1]+p[2]*c.r[2])*SC,
+          CY-(p[0]*c.up[0]+p[1]*c.up[1]+p[2]*c.up[2])*SC];
+}
+function depth(p,c){return p[0]*c.u[0]+p[1]*c.u[1]+p[2]*c.u[2];}
+function shellPt(th,eps){
+  const t=th*D2R,e=eps*D2R;
+  return [rc*Math.cos(t),rc*Math.sin(t)*Math.cos(e),zc+rc*Math.sin(t)*Math.sin(e)];
+}
+
+/* ---- cena ---- */
+const cv=document.getElementById("c"), x=cv.getContext("2d");
+const LIGHT=(function(){const v=[0.36,-0.50,0.79],n=Math.hypot(v[0],v[1],v[2]);return v.map(q=>q/n);})();
+
+function path(pts,close){
+  x.beginPath(); x.moveTo(pts[0][0],pts[0][1]);
+  for(let i=1;i<pts.length;i++) x.lineTo(pts[i][0],pts[i][1]);
+  if(close) x.closePath();
+}
+function drawGround(c){
+  x.lineWidth=1;
+  for(let i=-4;i<=4;i++){
+    const t=i*900;
+    [[[t,-3800,0],[t,3800,0]],[[-3800,t,0],[3800,t,0]]].forEach(seg=>{
+      const a=pj(seg[0],c), b=pj(seg[1],c);
+      x.strokeStyle=(i===0)?"rgba(120,132,146,.20)":"rgba(90,102,116,.11)";
+      path([a,b]); x.stroke();
+    });
+  }
+  // círculo do deck
+  const dk=[]; for(let t=0;t<=360;t+=4) dk.push(pj([baseR*Math.cos(t*D2R),baseR*Math.sin(t*D2R),0],c));
+  x.strokeStyle="rgba(150,166,180,.35)"; x.lineWidth=1.4; path(dk,true); x.stroke();
+}
+// A bolha é uma esfera truncada pelo deck. Vista de cima, o recorte não é uma
+// reta na tela, então desenhar o círculo inteiro atravessa o piso: vai como malha.
+const PSI_MAX=Math.acos(Math.max(-1,Math.min(1,-zc/R)))/D2R;
+function bubbleQuads(c){
+  const NP=26,NF=44,out=[];
+  for(let i=0;i<NP;i++) for(let j=0;j<NF;j++){
+    const p0=PSI_MAX*i/NP,p1=PSI_MAX*(i+1)/NP,f0_=360*j/NF,f1_=360*(j+1)/NF;
+    const S=(ps,fi)=>[R*Math.sin(ps*D2R)*Math.cos(fi*D2R),R*Math.sin(ps*D2R)*Math.sin(fi*D2R),zc+R*Math.cos(ps*D2R)];
+    const w=[S(p0,f0_),S(p1,f0_),S(p1,f1_),S(p0,f1_)];
+    const ct=[(w[0][0]+w[2][0])/2,(w[0][1]+w[2][1])/2,(w[0][2]+w[2][2])/2];
+    const n=[ct[0]/R,ct[1]/R,(ct[2]-zc)/R];
+    const lam=Math.max(0,n[0]*LIGHT[0]+n[1]*LIGHT[1]+n[2]*LIGHT[2]);
+    const face=n[0]*c.u[0]+n[1]*c.u[1]+n[2]*c.u[2];
+    out.push({p:w.map(q=>pj(q,c)),d:depth(ct,c),glass:true,
+      s:0.20+0.80*lam, rim:Math.abs(face)});
+  }
+  return out;
+}
+function drawBaseRing(c){
+  const rr=Math.sqrt(Math.max(R*R-zc*zc,1)),pts=[];
+  for(let t=0;t<=360;t+=3) pts.push(pj([rr*Math.cos(t*D2R),rr*Math.sin(t*D2R),0],c));
+  x.strokeStyle="rgba(178,200,214,.55)"; x.lineWidth=1.6; path(pts,true); x.stroke();
+}
+function quads(a,c){
+  const NT=30,NE=14,out=[];
+  for(let i=0;i<NT;i++) for(let j=0;j<NE;j++){
+    const t0=th0+(180-2*th0)*i/NT, t1=th0+(180-2*th0)*(i+1)/NT;
+    const e0=P.e1+a+de*j/NE, e1=P.e1+a+de*(j+1)/NE;
+    const w=[shellPt(t0,e0),shellPt(t1,e0),shellPt(t1,e1),shellPt(t0,e1)];
+    const ct=[(w[0][0]+w[2][0])/2,(w[0][1]+w[2][1])/2,(w[0][2]+w[2][2])/2];
+    const n=[ct[0]/rc,ct[1]/rc,(ct[2]-zc)/rc];
+    const lam=Math.max(0,n[0]*LIGHT[0]+n[1]*LIGHT[1]+n[2]*LIGHT[2]);
+    out.push({p:w.map(q=>pj(q,c)),s:0.26+0.74*lam,d:depth(ct,c)});
+  }
+  return out.sort((p,q)=>p.d-q.d);
+}
+function paintQuads(qs){
+  qs.forEach(q=>{
+    if(q.glass){
+      const v=Math.round(112+96*q.s), a=(0.10+0.16*(1-q.rim)).toFixed(3);
+      x.fillStyle="rgba("+Math.round(v*.92)+","+Math.round(v*1.02)+","+Math.round(v*1.10)+","+a+")";
+      path(q.p,true); x.fill();
+      x.strokeStyle="rgba(180,204,218,.05)"; x.lineWidth=.6; x.stroke();
+    } else {
+      const v=70+120*q.s;
+      x.fillStyle="rgb("+Math.round(v*1.06)+","+Math.round(v*.86)+","+Math.round(v*.62)+")";
+      path(q.p,true); x.fill();
+      x.strokeStyle=x.fillStyle; x.lineWidth=.8; x.stroke();
+    }
+  });
+}
+function ribsOf(a,c){
+  const out=[];
+  for(let k=0;k<P.Nr;k++){
+    const e=P.e1+a+de*k/(P.Nr-1), pts=[];
+    let dm=0;
+    for(let i=0;i<=54;i++){
+      const th=thEnd+(180-2*thEnd)*i/54, p3=shellPt(th,e);
+      pts.push(pj(p3,c)); dm+=depth(p3,c);
+    }
+    out.push({pts,d:dm/55,edge:(k===0||k===P.Nr-1)});
+  }
+  for(let j=0;j<P.Np;j++){
+    const xs=-W2+2*W2*j/(P.Np-1), th=Math.acos(Math.max(-1,Math.min(1,xs/rc)))/D2R;
+    const pts=[]; let dm=0;
+    for(let i=0;i<=30;i++){
+      const p3=shellPt(th,P.e1+a+de*i/30); pts.push(pj(p3,c)); dm+=depth(p3,c);
+    }
+    out.push({pts,d:dm/31,edge:false,purlin:true});
+  }
+  return out;
+}
+function paintRibs(rs){
+  rs.forEach(r=>{
+    const m=r.back?0.34:1;
+    x.strokeStyle=r.purlin?"rgba(255,226,150,"+(0.42*m)+")":(r.edge?"#F5D888":"rgba(245,216,136,"+(0.72*m)+")");
+    x.lineWidth=r.purlin?1.3:(r.edge?2.6:1.7);
+    x.lineJoin="round"; path(r.pts); x.stroke();
+  });
+}
+function drawPedestals(c){
+  [-1,1].forEach(s=>{
+    const sx=s*pedX;
+    const q=[[sx-70,-70,pedLevel],[sx+70,-70,pedLevel],[sx+70,70,pedLevel],[sx-70,70,pedLevel]];
+    const top=q.map(p=>[p[0],p[1],zc]);
+    x.fillStyle="rgba(46,54,63,.95)"; x.strokeStyle="rgba(130,144,158,.75)"; x.lineWidth=1.2;
+    [[q[0],q[1],top[1],top[0]],[q[1],q[2],top[2],top[1]]].forEach(fq=>{
+      path(fq.map(p=>pj(p,c)),true); x.fill(); x.stroke();
+    });
+    path(top.map(p=>pj(p,c)),true); x.fillStyle="rgba(66,76,86,.95)"; x.fill(); x.stroke();
+  });
+  const ax=[pj([-pedX-260,0,zc],c),pj([pedX+260,0,zc],c)];
+  x.setLineDash([11,7]); x.strokeStyle="rgba(140,154,168,.45)"; x.lineWidth=1.2;
+  path(ax); x.stroke(); x.setLineDash([]);
+}
+
+/* ---- painel ---- */
+function txt(s,px,py,size,col,align,weight){
+  x.font=(weight||400)+" "+size+"px ui-monospace, SF Mono, Menlo, monospace";
+  x.fillStyle=col; x.textAlign=align||"left"; x.textBaseline="alphabetic";
+  x.fillText(s,px,py);
+}
+function drawHUD(a,t){
+  const PX=1120;
+  txt("ZION GLAMPING",64,62,13,"#C9A84C","left");
+  x.strokeStyle="rgba(201,168,76,.45)"; x.lineWidth=1;
+  path([[64,78],[220,78]]); x.stroke();
+  txt("Capota chapéu retrátil",64,116,30,"#ECEAE4","left",300);
+  txt("ZG-CAP-02",64,146,15,"#7B8189","left");
+
+  // bloco de estado
+  const st=a<0.6?"CAPOTA FECHADA":(a>aWork-0.6?"CAPOTA RECOLHIDA":(t<0.5?"ABRINDO":"FECHANDO"));
+  txt("ÂNGULO DE ABERTURA",PX,150,12,"#7B8189","left");
+  txt(f1(a)+"°",PX,214,54,"#C9A84C","left",300);
+  txt("de "+f1(aWork)+"° de curso",PX,242,13,"#7B8189","left");
+  txt(st,PX,300,17,"#ECEAE4","left");
+  x.strokeStyle="rgba(201,168,76,.30)"; x.lineWidth=1;
+  x.strokeRect(PX-14,276,236,32);
+
+  // barra de curso
+  x.fillStyle="rgba(120,132,146,.22)"; x.fillRect(PX,344,400,3);
+  x.fillStyle="#C9A84C"; x.fillRect(PX,344,400*(a/aWork),3);
+  txt("0°",PX,368,11,"#5F6771","left");
+  txt(f1(aWork)+"°",PX+400,368,11,"#5F6771","right");
+
+  // ficha
+  const rows=[["Ø da bolha no deck",f0(P.D)+" mm"],
+    ["Altura da bolha",f0(P.H)+" mm"],
+    ["Folga constante",f0(P.folga)+" mm"],
+    ["Raio da casca",f0(rc)+" mm"],
+    ["Vão entre pivôs",f0(2*rc)+" mm"],
+    ["Eixo · centro da esfera","z "+f0(zc)+" mm"],
+    ["Faixa coberta",f0(P.e1)+"° a "+f0(P.e2)+"°"],
+    ["Céu livre na abertura","0° a "+f0(P.e1+aWork)+"°"]];
+  rows.forEach((r,i)=>{
+    const y=436+i*34;
+    txt(r[0],PX,y,13,"#7B8189","left");
+    txt(r[1],PX+400,y,13,"#C6CBD1","right");
+    x.strokeStyle="rgba(120,132,146,.13)"; x.lineWidth=1;
+    path([[PX,y+11],[PX+400,y+11]]); x.stroke();
+  });
+  txt("Projeto executivo preliminar · não certificado estruturalmente",PX,824,11,"#5F6771","left");
+}
+
+/* ---- frame ---- */
+function draw(t){
+  const cyc=(t<0.42)?(t/0.42):(t<0.50?1:(t<0.92?1-(t-0.50)/0.42:0));
+  const ease=q=>q<0.5?2*q*q:1-Math.pow(-2*q+2,2)/2;
+  const a=aWork*ease(Math.max(0,Math.min(1,cyc)));
+  const az=20+30*(0.5-0.5*Math.cos(t*Math.PI*2));
+  const c=cam(az,21);
+
+  const g=x.createLinearGradient(0,0,0,900);
+  g.addColorStop(0,"#0E1116"); g.addColorStop(1,"#08090B");
+  x.fillStyle=g; x.fillRect(0,0,1600,900);
+  x.fillStyle="rgba(201,168,76,.03)"; x.fillRect(0,0,1040,900);
+
+  drawGround(c);
+  const dB=depth([0,0,zc],c);
+  const rs=ribsOf(a,c);
+  // casca e bolha ordenadas juntas: é o que dá oclusão correta nos dois sentidos
+  const qs=quads(a,c).concat(bubbleQuads(c)).sort((p,q)=>p.d-q.d);
+  paintQuads(qs.filter(q=>q.d<dB));
+  paintRibs(rs.filter(r=>r.d<dB).map(r=>Object.assign({},r,{edge:false,back:1})));
+  paintQuads(qs.filter(q=>q.d>=dB));
+  drawBaseRing(c);
+  drawPedestals(c);
+  paintRibs(rs.filter(r=>r.d>=dB));
+  drawHUD(a,t);
+
+  x.strokeStyle="rgba(201,168,76,.16)"; x.lineWidth=1;
+  x.strokeRect(28,28,1544,844);
+}
+window.__setT=function(t){draw(t);};
+
+let t0=null, playing=true;
+function loop(ts){
+  if(!playing) return;
+  if(t0===null) t0=ts;
+  draw(((ts-t0)/9000)%1);
+  requestAnimationFrame(loop);
+}
+if(!/[?&]still/.test(location.search)) requestAnimationFrame(loop); else draw(0);
+cv.addEventListener("click",()=>{playing=!playing; t0=null; if(playing) requestAnimationFrame(loop);});
+})();
+</script>
+</body>
+</html>

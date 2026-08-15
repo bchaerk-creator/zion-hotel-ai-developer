@@ -147,10 +147,10 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
 <aside class="rail">
   <div class="rail-title">Bubble</div>
   <div class="grp">
-    <div class="ctl"><div class="ctl-top"><span>BUBBLE_DIAMETER</span><output id="o_D"></output></div>
-      <input type="range" id="p_D" min="4000" max="9000" step="100" value="6000"></div>
+    <div class="ctl"><div class="ctl-top"><span>Ø na base do deck</span><output id="o_D"></output></div>
+      <input type="range" id="p_D" min="3000" max="9000" step="100" value="5000"></div>
     <div class="ctl"><div class="ctl-top"><span>BUBBLE_HEIGHT</span><output id="o_H"></output></div>
-      <input type="range" id="p_H" min="2200" max="6000" step="50" value="3600"></div>
+      <input type="range" id="p_H" min="1800" max="6000" step="50" value="2292"></div>
     <div class="ctl"><div class="ctl-top"><span>CLEARANCE</span><output id="o_folga"></output></div>
       <input type="range" id="p_folga" min="80" max="400" step="10" value="150"></div>
     <dl class="derived" id="d_derived"></dl>
@@ -159,11 +159,11 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
   <div class="rail-title">Capota</div>
   <div class="grp">
     <div class="ctl"><div class="ctl-top"><span>Borda dianteira ε1</span><output id="o_e1"></output></div>
-      <input type="range" id="p_e1" min="10" max="80" step="1" value="40"></div>
+      <input type="range" id="p_e1" min="10" max="80" step="1" value="45"></div>
     <div class="ctl"><div class="ctl-top"><span>Borda traseira ε2</span><output id="o_e2"></output></div>
-      <input type="range" id="p_e2" min="95" max="170" step="1" value="130"></div>
+      <input type="range" id="p_e2" min="95" max="170" step="1" value="120"></div>
     <div class="ctl"><div class="ctl-top"><span>CANOPY_WIDTH</span><output id="o_W"></output></div>
-      <input type="range" id="p_W" min="3000" max="6200" step="100" value="5800"></div>
+      <input type="range" id="p_W" min="2400" max="6200" step="100" value="4800"></div>
     <div class="ctl"><div class="ctl-top"><span>Arcos transversais</span><output id="o_Nr"></output></div>
       <input type="range" id="p_Nr" min="3" max="9" step="1" value="5"></div>
     <div class="ctl"><div class="ctl-top"><span>Longarinas</span><output id="o_Np"></output></div>
@@ -173,7 +173,7 @@ tfoot td{background:var(--surface-2);color:var(--gold);border-top:1px solid var(
   <div class="rail-title">Perfil estrutural</div>
   <div class="grp">
     <div class="ctl"><div class="ctl-top"><span>Arco · Ø externo</span><output id="o_rod"></output></div>
-      <input type="range" id="p_rod" min="25" max="90" step="1" value="60"></div>
+      <input type="range" id="p_rod" min="25" max="90" step="1" value="50"></div>
     <div class="ctl"><div class="ctl-top"><span>Arco · parede</span><output id="o_rwt"></output></div>
       <input type="range" id="p_rwt" min="1.5" max="5" step="0.1" value="2.5"></div>
     <div class="ctl"><div class="ctl-top"><span>Longarina · Ø externo</span><output id="o_pod"></output></div>
@@ -450,8 +450,13 @@ const P={}; let alpha=0;
 
 /* ---------------- modelo ---------------- */
 function model(){
-  const R=P.D/2, zc=P.H-R, rc=R+P.folga;
-  const baseR=Math.sqrt(Math.max(R*R-zc*zc,1));
+  // D é o diâmetro medido no nível do deck. A esfera passa por esse círculo
+  // e pelo ápice, então R e o centro saem por geometria, não por arbítrio.
+  const baseR=P.D/2;
+  const zc=(P.H*P.H-baseR*baseR)/(2*P.H);
+  const R=P.H-zc, rc=R+P.folga;
+  const pedLevel=Math.min(0,zc)-260;      // nível de assentamento dos pedestais
+  const desnivel=Math.max(0,-zc);         // quanto o eixo fica abaixo do deck
   const W2=Math.min(P.W/2, rc-40);
   const th0=Math.acos(Math.min(W2/rc,0.999))*R2D;
   const thEnd=6, GG=100;
@@ -568,7 +573,7 @@ function model(){
   const queda=rc-Math.sqrt(Math.max(rc*rc-W2*W2,0));
   const afast=Math.sqrt(Math.max(rc*rc-W2*W2,0))-Math.sqrt(Math.max(R*R-W2*W2,0));
 
-  return {R,zc,rc,baseR,W2,th0,thEnd,ribs,purl,de,dRad,aMax,aWork,lim,env,
+  return {R,zc,rc,baseR,W2,th0,thEnd,ribs,purl,de,dRad,aMax,aWork,lim,env,pedLevel,desnivel,
     aR,aP,kR,kP,ribLen,ribKg,purlKg,fabA,fabKg,hwKg,massa,peso,cg0,Mgrav,
     pin,B,act,stroke,curve,FmaxA,Mmax,gsFrac,
     q,v,Aplan,Fup,Fh,Mvento,trib,w,Mfl,Ix,Wx,sig,sigN,Nhoop,
@@ -724,12 +729,20 @@ function drawView(el,key,M,a,opts){
   }
   // pedestais
   [[-1],[1]].forEach(s=>{
-    const sx=s[0]*M.pedX;
-    const q=[[sx-60,0,0],[sx+60,0,0],[sx+60,0,M.zc],[sx-60,0,M.zc]].map(p=>pj(p,c));
+    const sx=s[0]*M.pedX, z0=M.pedLevel;
+    const q=[[sx-60,0,z0],[sx+60,0,z0],[sx+60,0,M.zc],[sx-60,0,M.zc]].map(p=>pj(p,c));
     PG(g,q,{fill:"#232A31",stroke:C.steel,"stroke-width":1.2});
-    const b=[[sx-150,0,0],[sx+150,0,0],[sx+150,0,60],[sx-150,0,60]].map(p=>pj(p,c));
+    const b=[[sx-150,0,z0],[sx+150,0,z0],[sx+150,0,z0+60],[sx-150,0,z0+60]].map(p=>pj(p,c));
     PG(g,b,{fill:"#2C343C",stroke:C.steel,"stroke-width":1.2});
   });
+  // nível rebaixado dos pedestais, quando o eixo fica abaixo do deck
+  if(horiz && M.desnivel>10){
+    const yl=pj([0,0,M.pedLevel],c)[1];
+    const x0=-M.pedX-420, x1=M.pedX+420;
+    PL(g,[[x0,yl],[x1,yl]],{stroke:"#39424B","stroke-width":1.4,"stroke-dasharray":"9 6"});
+    TX(g,0,yl+TS*13,"nível de assentamento dos pedestais · "+f0(M.desnivel+260)+" mm abaixo do deck",
+      {fill:"#7B8189","font-size":TS*9});
+  }
   // eixo de rotacao
   const ax=[[-M.pedX-140,0,M.zc],[M.pedX+140,0,M.zc]].map(p=>pj(p,c));
   PL(g,ax,{stroke:"#4C555F","stroke-width":1,"stroke-dasharray":"16 5 3 5"});
@@ -892,10 +905,10 @@ function drawD1(M){
     PG(g,[[1178,yy],[1420,yy-16],[1420,yy+22],[1178,yy+38]],{fill:"none",stroke:C.gold,"stroke-width":2});
   });
   TX(g,1300,-110,"5 arcos Ø "+f0(P.rod)+" × "+f(P.rwt,1),{fill:C.gold,"font-size":27});
-  DIM(g,[230,y0],[230,250],-420,f0(M.zc)+" altura do eixo");
+  DIM(g,[230,y0],[230,250],-420,f0(M.zc-M.pedLevel)+" altura do pedestal");
   DIM(g,[230,250],[1164,250],-330,f0(M.pedX-M.rc)+" balanço");
   DIM(g,[80,y0-24],[380,y0-24],150,"300 × 300 × 12");
-  TX(g,760,880,"pedestal a "+f0(M.pedX)+" mm do centro · fora da projeção da bolha",{fill:"#7B8189","font-size":26});
+  TX(g,760,880,"pedestal a "+f0(M.pedX)+" mm do centro, "+(M.desnivel>10?f0(M.desnivel+260)+" mm abaixo do deck":"no nível do deck")+" · fora da projeção da bolha",{fill:"#7B8189","font-size":26});
 }
 function drawD2(M){
   const el=$("#g_d2"), cr=P.crank;
@@ -1007,6 +1020,7 @@ function paint(M){
   $("#d_derived").innerHTML=[
     ["Raio da esfera","R "+f0(M.R)],["Centro da esfera","z "+f0(M.zc)],
     ["Raio da casca","R "+f0(M.rc)],["PIVOT_HEIGHT","= "+f0(M.zc)],
+    ["Eixo vs. deck", M.desnivel>10? f0(M.desnivel)+" mm abaixo":"acima do deck"],
     ["Vão entre pivôs",f0(2*M.rc)],["ALPHA_MAX",f(M.aMax,1)+"°"]
   ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
 
@@ -1027,7 +1041,9 @@ function paint(M){
     ["Raio da casca",f0(M.rc)+" mm"],
     ["Folga radial constante",f0(P.folga)+" mm"],
     ["Pedestal · distância do centro",f0(M.pedX)+" mm"],
-    ["Pedestal x base da bolha","+"+f0(M.pedX-M.baseR)+" mm livre"]
+    ["Pedestal x base da bolha","+"+f0(M.pedX-M.baseR)+" mm livre"],
+    ["Assentamento do pedestal", M.desnivel>10?
+      f0(M.desnivel+260)+" mm abaixo do deck":"no nível do deck"]
   ].map(r=>"<div><dt>"+r[0]+"</dt><dd>"+r[1]+"</dd></div>").join("");
   $("#f_env").textContent="R "+f0(M.R)+" / rc "+f0(M.rc);
   $("#fn_kin").innerHTML="A altura do pivô não é uma escolha de projeto, é uma consequência da geometria da bolha: <b>PIVOT_HEIGHT = BUBBLE_HEIGHT − BUBBLE_DIAMETER/2</b>. Para esta bolha dá "+f0(M.zc)+" mm. Uma bolha mais esférica, de "+f0(M.R+2200)+" mm de altura com o mesmo diâmetro, colocaria o eixo exatamente nos 2.200 mm pedidos. Mexa em BUBBLE_HEIGHT no painel e veja o eixo subir.";

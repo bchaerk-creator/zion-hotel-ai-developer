@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Orçamento da Capota Bubble</title>
+<style>
+:root{
+  --ground:#0A0B0D;--surface:#121418;--surface-2:#171A1F;--line:#242931;--line-soft:#1B1F26;
+  --gold:#C9A84C;--gold-dim:#8A7332;--sand:#BE9A6E;--ink:#ECEAE4;--ink-2:#B4B8BD;--muted:#7B8189;
+  --ok:#6FA97E;--warn:#D9A441;--crit:#C4603F;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--mono);
+  font-size:13.5px;line-height:1.5;font-variant-numeric:tabular-nums}
+p,.prose,.card ul,.card ol{font-family:var(--sans);color:var(--ink-2);line-height:1.62}
+h1,h2,h3{margin:0;font-weight:400;text-wrap:balance}
+a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(201,168,76,.35)}
+a:hover{border-bottom-color:var(--gold)}
+a:focus-visible{outline:1px solid var(--gold);outline-offset:3px}
+
+.masthead{border-bottom:1px solid var(--line);padding:24px 26px 20px;display:flex;flex-wrap:wrap;
+  gap:22px;align-items:flex-end;justify-content:space-between;
+  background:linear-gradient(180deg,rgba(201,168,76,.05),transparent 70%),var(--ground)}
+.eyebrow{font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--gold);display:flex;gap:10px;align-items:center}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--gold-dim)}
+.masthead h1{font-family:var(--sans);font-size:clamp(24px,3.8vw,38px);font-weight:300;letter-spacing:-.02em;margin-top:9px}
+.masthead h1 b{font-weight:600;color:var(--gold)}
+.deck{font-family:var(--sans);color:var(--muted);font-size:12.5px;max-width:58ch;margin-top:7px}
+.stamp{border:1px solid var(--line);padding:11px 15px;min-width:230px;display:grid;gap:4px;
+  font-size:10.5px;letter-spacing:.07em;color:var(--muted)}
+.stamp div{display:flex;justify-content:space-between;gap:16px}
+.stamp b{color:var(--ink);font-weight:500}
+
+main{padding:22px 26px 90px;display:grid;gap:30px;max-width:1400px;margin:0 auto}
+.sec{display:grid;gap:13px;min-width:0}
+.sec-head{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:8px}
+.sec-head h2{font-size:12px;letter-spacing:.19em;text-transform:uppercase}
+.sec-head .num{font-size:10px;color:var(--gold);letter-spacing:.14em}
+.sec-head .note{font-family:var(--sans);font-size:11.5px;color:var(--muted);margin-left:auto}
+
+.alerta{border:1px solid #5A4A22;background:linear-gradient(180deg,rgba(217,164,65,.07),transparent);
+  padding:15px 18px;display:grid;gap:8px}
+.alerta h3{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--warn)}
+
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(150px,100%),1fr));gap:1px;background:var(--line)}
+.kpi{background:var(--surface);padding:13px 14px;display:grid;gap:3px}
+.kpi .k{font-size:9.5px;letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+.kpi .v{font-size:20px;letter-spacing:-.01em}
+.kpi .v small{font-size:11px;color:var(--muted);margin-left:3px}
+.kpi.acc .v{color:var(--gold)}
+
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line)}
+table{border-collapse:collapse;width:100%;min-width:820px;font-size:12px}
+th,td{padding:7px 11px;text-align:right;border-bottom:1px solid var(--line-soft);white-space:nowrap}
+th{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:400;background:var(--surface-2)}
+td.l,th.l{text-align:left}
+tbody tr:hover td{background:#161A1F}
+tr.grp td{background:#10141A;color:var(--gold);font-size:10px;letter-spacing:.15em;text-transform:uppercase;
+  border-top:1px solid var(--line)}
+tfoot td{background:var(--surface-2);border-top:1px solid var(--line)}
+tfoot tr.big td{color:var(--gold);font-size:14px}
+input.q{width:96px;background:#0D1014;border:1px solid var(--line);color:var(--gold);
+  font-family:var(--mono);font-size:12px;padding:3px 7px;text-align:right;border-radius:2px}
+input.q:focus{outline:none;border-color:var(--gold)}
+input.q::placeholder{color:#4A525C}
+
+.split{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr));gap:12px}
+.card{border:1px solid var(--line);background:var(--surface);padding:15px 17px;display:grid;gap:9px;min-width:0}
+.card h3{font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.card h3 .tag{color:var(--muted);letter-spacing:.05em;text-transform:none;font-size:10.5px;margin-left:6px}
+.card ul,.card ol{margin:0;padding-left:17px;display:grid;gap:7px;font-size:12.5px}
+.card ul li::marker,.card ol li::marker{color:var(--gold-dim)}
+.forn{display:grid;gap:11px}
+.forn .f{display:grid;gap:3px;padding-bottom:10px;border-bottom:1px solid var(--line-soft)}
+.forn .f:last-child{border-bottom:0;padding-bottom:0}
+.forn .n{font-size:13px;color:var(--ink)}
+.forn .d{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.5}
+.badge{display:inline-block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
+  border:1px solid currentColor;padding:1px 6px;margin-left:6px}
+.badge.a{color:var(--ok)}.badge.b{color:var(--gold)}.badge.c{color:var(--muted)}
+
+.footnote{font-family:var(--sans);font-size:11.5px;color:var(--muted);line-height:1.6;
+  border-left:2px solid var(--gold-dim);padding-left:13px;max-width:86ch}
+.seal{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;border-top:1px solid var(--line);
+  padding-top:16px;font-size:10.5px;letter-spacing:.09em;color:var(--muted)}
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <div>
+    <div class="eyebrow">Zion Glamping · ZG-CAP-02</div>
+    <h1>Orçamento e <b>fornecedores</b></h1>
+    <p class="deck">Quantitativo tirado da geometria do projeto, faixas de preço de referência para triagem e as frentes de fabricação da Grande Florianópolis. Digite a cotação real de cada item e a planilha recalcula.</p>
+  </div>
+  <div class="stamp">
+    <div><span>Projeto</span><b>ZG-CAP-02</b></div>
+    <div><span>Bubble</span><b id="s_bub"></b></div>
+    <div><span>Emitido em</span><b id="s_data"></b></div>
+    <div><span>Moeda</span><b>BRL</b></div>
+  </div>
+</header>
+
+<main>
+
+<section class="sec">
+  <div class="alerta">
+    <h3>Leia antes de usar os números</h3>
+    <p class="prose">As colunas <b>mín / provável / máx</b> são faixas de <b>ordem de grandeza</b>, para triagem e planejamento. Não são cotação. Preço de alumínio extrudado, inox e lona acrílica oscila com câmbio, lote e prazo, e varia bastante entre fornecedores da mesma cidade.</p>
+    <p class="prose">O quantitativo, esse sim, é firme: sai direto da geometria do projeto executivo. Leve o quantitativo aos fornecedores e substitua os preços pelos que eles derem, no campo <b>sua cotação</b> de cada linha.</p>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">01</span><h2>Quantitativo</h2>
+    <span class="note">Derivado da geometria, não estimado</span></div>
+  <div class="kpis" id="kpis"></div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">02</span><h2>Planilha de cotação</h2>
+    <span class="note">Digite o preço unitário real na última coluna</span></div>
+  <div class="tbl-wrap">
+    <table id="t"><thead><tr>
+      <th class="l">Item</th><th class="l">Descrição</th><th>Un.</th><th>Qtd.</th>
+      <th>R$ mín</th><th>R$ provável</th><th>R$ máx</th>
+      <th class="l">Sua cotação R$/un</th><th>Total R$</th>
+    </tr></thead><tbody></tbody><tfoot></tfoot></table>
+  </div>
+  <p class="footnote">Enquanto você não digitar nada, o total usa o preço <b>provável</b>. Cada linha que você preencher passa a valer a sua cotação. A mesma planilha existe em <b>ZG-CAP-02-cotacao.xlsx</b>, com as fórmulas prontas e uma aba de quantitativo, para mandar por e-mail ao fornecedor.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">03</span><h2>Como dividir a fabricação</h2>
+    <span class="note">Três frentes, não uma</span></div>
+  <div class="split">
+    <div class="card">
+      <h3>Frente 1 · Capotaria náutica <span class="tag">o coração da peça</span></h3>
+      <p class="prose">É o ofício mais próximo do que a capota é. Capotaria náutica calandra tubo, faz arco articulado, costura lona acrílica, embute cordão keder e trabalha com inox marítimo todo dia. Uma capota de lancha de quatro arcos é, em essência, este projeto em escala menor.</p>
+      <ul>
+        <li>Entregue: arcos calandrados, longarinas, canaleta keder, pano costurado e tensionado.</li>
+        <li>Peça amostra de costura e de acabamento de bainha antes de fechar.</li>
+        <li>Confirme se trabalham com tubo de <b>50 mm</b>. Náutica costuma parar em 22 a 25 mm, e aí a peça vira serviço especial.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Frente 2 · Serralheria com calandra <span class="tag">estrutura e pivô</span></h3>
+      <p class="prose">Cubo-aranha em chapa cortada a laser, eixo usinado com chaveta, berço do mancal, pedestal e placa de base. Procure serralheria que tenha <b>calandra de tubo própria</b> e trabalhe inox, não só ferro.</p>
+      <ul>
+        <li>Leve o desenho D-01 do projeto executivo e a lista de corte.</li>
+        <li>Exija gabarito de piso para o raio de <b>2.659 mm</b>, conferido antes de cortar as pontas.</li>
+        <li>Tolerância de locação dos dois pedestais: <b>±3 mm</b>. Diga isso na hora de contratar, não depois.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Frente 3 · Automação de toldo <span class="tag">motor e comando</span></h3>
+      <p class="prose">Atuador linear 24 V, central com rádio, fim de curso e anemômetro. Toldista que já faz cobertura retrátil motorizada resolve isso sem inventar nada.</p>
+      <ul>
+        <li>Dois atuadores sincronizados por leitura de corrente, um de cada lado.</li>
+        <li>Anemômetro com recolhimento automático a 45 km/h é item de segurança, não opcional.</li>
+        <li>Peça garantia separada do motor e da central.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Quem fecha o pacote</h3>
+      <p class="prose">O caminho mais simples é contratar <b>uma</b> das três frentes como integradora e deixar que ela subcontrate as outras duas. Assim existe um responsável único pelo conjunto girar.</p>
+      <ul>
+        <li>Se a capotaria aceitar integrar, prefira. É quem entende a peça.</li>
+        <li>Se não, a serralheria costuma ser a segunda melhor integradora.</li>
+        <li>Não divida em três contratos independentes sem alguém responsável pela montagem final. É onde os projetos desse tipo travam.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">04</span><h2>Fornecedores na Grande Florianópolis</h2>
+    <span class="note">Nomes e sites levantados por busca · contatos a confirmar</span></div>
+  <div class="split" id="fornecedores"></div>
+  <p class="footnote">Levantei estes nomes por busca na web. <b>Não consegui abrir os sites para conferir telefone, endereço e CNPJ</b>, porque o ambiente onde rodo bloqueia esses domínios. Trate a lista como ponto de partida de prospecção, não como cadastro verificado: confirme dados, situação cadastral e portfólio antes de contratar. Onde um endereço aparece abaixo, ele veio do resultado de busca e também precisa ser confirmado.</p>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">05</span><h2>Roteiro para pedir a cotação</h2>
+    <span class="note">O que mandar e o que exigir de volta</span></div>
+  <div class="split">
+    <div class="card">
+      <h3>O que enviar</h3>
+      <ol>
+        <li>A planilha <b>ZG-CAP-02-cotacao.xlsx</b>, aba Cotação, com as colunas de preço em branco.</li>
+        <li>O PDF <b>ZG-CAP-02.pdf</b>, que tem as vistas cotadas, a lista de corte e os detalhes.</li>
+        <li>O vídeo de abertura e fechamento. Resolve em quinze segundos a conversa que o desenho não resolve.</li>
+        <li>Uma frase de escopo: capota rígida articulada em dois pivôs, vão de 5.319 mm, curso de 49°, uma unidade, protótipo.</li>
+      </ol>
+    </div>
+    <div class="card">
+      <h3>O que exigir na resposta</h3>
+      <ul>
+        <li>Preço aberto por item, não valor fechado. Sem isso não dá para comparar três propostas.</li>
+        <li>Prazo de fabricação e prazo de entrega separados.</li>
+        <li>Liga e têmpera do alumínio: <b>6063-T6</b>. Se oferecerem 6061 ou liga não especificada, pergunte por quê.</li>
+        <li>Marca e modelo do atuador, da central e do mancal.</li>
+        <li>Garantia separada de estrutura, tecido e automação.</li>
+        <li>Se o serviço inclui ou não montagem em campo e regulagem dos batentes.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Três perguntas que revelam quem sabe fazer</h3>
+      <ul>
+        <li><b>Você calandra com gabarito ou no olho?</b> Erro de raio entre arcos aparece direto na folga contra a bolha.</li>
+        <li><b>Como você garante que os dois lados abrem juntos?</b> Se a resposta for só "dois motores", falta o sincronismo por corrente.</li>
+        <li><b>Que batente mecânico você põe no fim de curso?</b> Quem responde "o fim de curso do motor" ainda não entendeu o problema de vento.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Onde o orçamento costuma estourar</h3>
+      <ul>
+        <li><b>Lona.</b> Acrílico importado tinto na massa custa o dobro do nacional e dura muito mais. É a escolha que mais move o total.</li>
+        <li><b>Atuador IP66 de verdade.</b> Modelo barato de e-commerce não sobrevive a maresia. Litoral de Santa Catarina não perdoa.</li>
+        <li><b>Inox 316 no lugar do 304</b> nos pontos expostos. Custa mais e é o certo tão perto do mar.</li>
+        <li><b>Frete e lote mínimo</b> do alumínio extrudado. Comprar 50 kg costuma sair a preço de varejo, não de indústria.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="sec">
+  <div class="sec-head"><span class="num">06</span><h2>Ressalvas</h2></div>
+  <p class="footnote">Este orçamento é de <b>planejamento</b>. Não é proposta comercial nem cotação firme. Os quantitativos vêm da geometria do projeto executivo preliminar ZG-CAP-02, que ainda não tem verificação estrutural com ART. Se o engenheiro responsável alterar a seção dos tubos, a espessura da chapa do cubo ou a fundação, o quantitativo muda e a planilha precisa ser regerada. A linha de projeto estrutural e ART já está prevista na planilha justamente porque ela vem antes da fabricação, não depois.</p>
+  <div class="seal"><span>Zion Hotel Group Internacional · Estúdio de Produto</span><span>ZG-CAP-02 · orçamento rev. 1</span></div>
+</section>
+
+</main>
+
+<script>
+(function(){
+"use strict";
+const DADOS = /*DADOS*/null/*FIM*/;
+const $=s=>document.querySelector(s);
+const brl=v=>"R$ "+(isFinite(v)?v:0).toLocaleString("pt-BR",{minimumFractionDigits:0,maximumFractionDigits:0});
+const num=(v,d)=>(isFinite(v)?v:0).toLocaleString("pt-BR",{minimumFractionDigits:d||0,maximumFractionDigits:d||0});
+const G=DADOS.geo, FERROS=DADOS.ferros;
+
+$("#s_bub").textContent="Ø "+num(G.D)+" × "+num(G.H)+" mm";
+$("#s_data").textContent=DADOS.hoje;
+
+/* ---- KPIs ---- */
+const kpis=[
+  ["Alumínio 6063-T6",num(G.kgAl,1),"kg",true],
+  ["Inox 304",num(G.kgInox,1),"kg",false],
+  ["Aço galvanizado",num(G.kgAco,1),"kg",false],
+  ["Lona acrílica",num(G.areaPano,2),"m²",false],
+  ["Barras de 6 m",String(G.barrasArco+G.barrasLong),"un",false],
+  ["Área de pintura",num(G.areaPintura,2),"m²",false]
+];
+$("#kpis").innerHTML=kpis.map(k=>'<div class="kpi'+(k[3]?' acc':'')+'"><div class="k">'+k[0]+
+  '</div><div class="v">'+k[1]+'<small>'+k[2]+'</small></div></div>').join("");
+
+/* ---- tabela ---- */
+const tb=$("#t tbody"); let html=""; let grpAtual=null;
+DADOS.itens.forEach((it,i)=>{
+  const [g,nome,desc,un,q,a,b,c]=it;
+  if(g!==grpAtual){grpAtual=g; html+='<tr class="grp"><td class="l" colspan="9">'+g+'</td></tr>';}
+  html+='<tr data-i="'+i+'"><td class="l">'+nome+'</td><td class="l" style="color:var(--muted)">'+desc+
+    '</td><td>'+un+'</td><td>'+num(q,2)+'</td><td>'+brl(a*q)+'</td><td>'+brl(b*q)+'</td><td>'+brl(c*q)+
+    '</td><td class="l"><input class="q" type="number" min="0" step="0.01" placeholder="'+num(b,2)+
+    '" aria-label="Cotação de '+nome+'"></td><td class="tot">'+brl(b*q)+'</td></tr>';
+});
+tb.innerHTML=html;
+
+function totais(){
+  let f=[0,0,0,0], t=[0,0,0,0];
+  DADOS.itens.forEach((it,i)=>{
+    const [g,,,,q,a,b,c]=it;
+    const inp=tb.querySelector('tr[data-i="'+i+'"] input');
+    const u=parseFloat(inp.value);
+    const meu=(isFinite(u)&&u>=0)?u:b;
+    tb.querySelector('tr[data-i="'+i+'"] .tot').textContent=brl(meu*q);
+    tb.querySelector('tr[data-i="'+i+'"] .tot').style.color=(isFinite(u)&&u>=0)?"var(--gold)":"";
+    const add=(arr)=>{arr[0]+=a*q;arr[1]+=b*q;arr[2]+=c*q;arr[3]+=meu*q;};
+    add(t); if(FERROS.indexOf(g)>=0) add(f);
+  });
+  $("#t tfoot").innerHTML=
+    '<tr><td class="l" colspan="4">Subtotal · só os ferros (grupos A + B + C)</td>'+
+    '<td>'+brl(f[0])+'</td><td>'+brl(f[1])+'</td><td>'+brl(f[2])+'</td>'+
+    '<td class="l" style="color:var(--muted);font-size:10px">com a sua cotação →</td><td style="color:var(--gold)">'+brl(f[3])+'</td></tr>'+
+    '<tr class="big"><td class="l" colspan="4">Total geral do kit</td>'+
+    '<td>'+brl(t[0])+'</td><td>'+brl(t[1])+'</td><td>'+brl(t[2])+'</td>'+
+    '<td class="l" style="color:var(--muted);font-size:10px">com a sua cotação →</td><td>'+brl(t[3])+'</td></tr>';
+}
+tb.addEventListener("input",e=>{if(e.target.classList.contains("q")) totais();});
+totais();
+
+/* ---- fornecedores ---- */
+const FORN=[
+ {t:"Capotaria náutica",tag:"Frente 1",badge:["a","melhor encaixe técnico"],
+  intro:"Calandram tubo, montam arco articulado e costuram lona acrílica com keder. É o ofício mais próximo desta peça.",
+  itens:[
+   ["BAILLY Capotaria Náutica","Unidade em Palhoça-SC, além de Niterói e Angra dos Reis. Nos resultados de busca aparece com endereço postal Caixa Postal 230, CEP 88131-972, Palhoça-SC, e e-mail vendas@bailly.com.br. Vende também tecido Sunbrella por metro linear.","bailly.com.br","https://www.bailly.com.br/"],
+   ["BAILLY · loja de insumos","Loja online do mesmo grupo, útil para cotar tecido acrílico, keder e ferragem náutica separadamente.","capotanautica.com.br","https://www.capotanautica.com.br/"],
+   ["Mega Capotaria Náutica","Capotaria com catálogo próprio de capotas e toldos náuticos. Localização não confirmada, vale perguntar se atendem SC.","megacapotarianautica.com.br","https://megacapotarianautica.com.br/"]]},
+ {t:"Serralheria e calandra de tubo",tag:"Frente 2",badge:["b","estrutura e pivô"],
+  intro:"Cubo-aranha, eixo usinado, pedestal e placa de base. Procure quem tenha calandra própria e trabalhe inox.",
+  itens:[
+   ["Rinox","Florianópolis. Especializada em aço inox e cita explicitamente serviço de calandra em tubos e dobra em chapas, além de estruturas e peças náuticas. É o perfil mais aderente que encontrei para a Frente 2.","rinoxsc.com.br","https://www.rinoxsc.com.br/servicos-e-produtos.html"],
+   ["JD Serralheria","Atende Florianópolis, São José e Palhoça. Estruturas metálicas em geral.","jdserralheria.com.br","https://www.jdserralheria.com.br/"],
+   ["FLP Esquadrias","Esquadrias de alumínio em Florianópolis, São José e Palhoça, com base no Campeche.","flpesquadrias.com.br","https://www.flpesquadrias.com.br/"],
+   ["Serralheria em Florianópolis","Trabalha inox, alumínio e ferro, atendendo do Centro a Jurerê.","serralheriaemflorianopolis.com.br","https://serralheriaemflorianopolis.com.br/"]]},
+ {t:"Toldos, lona e automação",tag:"Frente 3",badge:["b","tecido e motor"],
+  intro:"Lona acrílica, confecção, motorização e anemômetro. Vários também fazem cobertura retrátil motorizada.",
+  itens:[
+   ["Primeira Linha Toldos","Florianópolis, com atendimento em toda a Grande Florianópolis. Coberturas e sombreamento.","primeiralinhatoldos.com.br","https://www.primeiralinhatoldos.com.br/"],
+   ["Classe A Toldos e Coberturas","Empresa familiar com mais de 30 anos de ramo, em Santa Catarina desde 2001. Trabalha tecido marítimo e lona acrílica.","classeatoldos.com.br","https://classeatoldos.com.br/"],
+   ["Toldos Florianópolis","Nos resultados de busca aparece na Rod. Francisco Thomaz dos Santos, 4751, Armação do Pântano do Sul, Florianópolis-SC.","toldosflorianopolis.com.br","http://toldosflorianopolis.com.br/"],
+   ["Abreflex","Coberturas e toldos em Florianópolis, incluindo cobertura retrátil para terraço e persiana motorizada. Bom candidato para a parte de automação.","abreflex.com.br","https://www.abreflex.com.br/coberturas-e-toldos-em-florianopolis"],
+   ["Floripa Persianas &amp; Toldos","Toldos sob medida em Santa Catarina, retráteis e verticais.","floripapersianas.com.br","https://floripapersianas.com.br/toldos-sob-medida-santa-catarina"],
+   ["Elmo Persianas","Atua na Grande Florianópolis desde 1992, com linha de toldo retrátil.","elmopersianas.com.br","https://www.elmopersianas.com.br/toldos-retratil"]]},
+ {t:"Insumo e onde procurar mais",tag:"Apoio",badge:["c","matéria-prima e prospecção"],
+  intro:"Para comprar o alumínio direto e para ampliar a lista de serralherias da região.",
+  itens:[
+   ["Alumínios Forten","Distribuidor de tubos de alumínio com pronta entrega para Paraná, Santa Catarina e Rio Grande do Sul.","aluminiosforten.com.br","https://www.aluminiosforten.com.br/tubos-de-aluminio/"],
+   ["Reflo · Blumenau","Produtos siderúrgicos com pronta entrega de tubos, perfis e chapas, e serviço de corte e dobra.","reflo.com.br","https://www.reflo.com.br/produto/tubo-de-aluminio-redondo"],
+   ["Guia Fácil · serralherias em Florianópolis","Diretório com listagem de serralherias e serralheiros da cidade.","guiafacil.com","https://www.guiafacil.com/encontre/serralherias-e-serralheiros/florianopolis/sc/"],
+   ["TeleListas · serralherias em São José","Listagem de serralherias de São José, útil para completar a prospecção.","telelistas.net","https://www.telelistas.net/sc/sao+jose/serralherias+e+serralheiros"]]}
+];
+$("#fornecedores").innerHTML=FORN.map(g=>
+ '<div class="card"><h3>'+g.t+'<span class="badge '+g.badge[0]+'">'+g.badge[1]+'</span></h3>'+
+ '<p class="prose">'+g.intro+'</p><div class="forn">'+
+ g.itens.map(i=>'<div class="f"><div class="n">'+i[0]+'</div><div class="d">'+i[1]+
+   '</div><div><a href="'+i[3]+'" target="_blank" rel="noopener noreferrer">'+i[2]+'</a></div></div>').join("")+
+ '</div></div>').join("");
+})();
+</script>
+</body>
+</html>

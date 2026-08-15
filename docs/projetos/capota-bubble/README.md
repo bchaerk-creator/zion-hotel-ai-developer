@@ -35,17 +35,41 @@ PIVOT_HEIGHT = BUBBLE_HEIGHT − BUBBLE_DIAMETER / 2
 
 Não é escolha de projeto, é consequência da geometria da bolha.
 
+## Geometria da Bubble real
+
+A partir do CAD do fabricante, o ZG-CAP-02 passou a usar as medidas reais:
+Ø 5.000 mm no nível do deck e 2.292 mm de altura. Disso sai esfera de raio
+2.509 mm com centro **217 mm abaixo do deck**, ou seja, os dois mancais ficam
+num nível rebaixado ao lado do deck, não sobre ele.
+
 ## Estrutura
 
 ```
-index.html                 ZG-CAP-01 · protótipo paramétrico
-MEMORIAL.md                ZG-CAP-01 · memorial
-executivo.html             ZG-CAP-02 · projeto executivo paramétrico
-MEMORIAL-ZG-CAP-02.md      ZG-CAP-02 · memorial, achados e ressalvas
-ZG-CAP-02.pdf              ZG-CAP-02 · prancha técnica A3
-cad/                       ZG-CAP-02 · modelo OpenSCAD
-svg/                       ZG-CAP-02 · 18 desenhos exportados
+index.html                    ZG-CAP-01 · protótipo paramétrico
+MEMORIAL.md                   ZG-CAP-01 · memorial
+executivo.html                ZG-CAP-02 · projeto executivo paramétrico
+MEMORIAL-ZG-CAP-02.md         ZG-CAP-02 · memorial, achados e ressalvas
+ZG-CAP-02.pdf                 ZG-CAP-02 · prancha técnica A3
+animacao.html                 ZG-CAP-02 · animação de abertura no navegador
+ZG-CAP-02-animacao.mp4        ZG-CAP-02 · vídeo 16:9, 9 s em loop
+ZG-CAP-02-animacao-quadrado.mp4  ZG-CAP-02 · vídeo 1:1 para redes
+orcamento.html                ZG-CAP-02 · orçamento e fornecedores
+ZG-CAP-02-cotacao.xlsx        ZG-CAP-02 · planilha de cotação para fornecedor
+gerar_orcamento.py            gera a planilha e a página a partir da geometria
+orcamento-template.html       template da página de orçamento
+cad/                          ZG-CAP-02 · modelo OpenSCAD
+svg/                          ZG-CAP-02 · 18 desenhos exportados
 ```
+
+## Refazer o orçamento depois de mudar o projeto
+
+```
+python3 gerar_orcamento.py
+```
+
+Regera `ZG-CAP-02-cotacao.xlsx` e `orcamento.html` a partir da geometria. Se o
+engenheiro responsável mudar seção de tubo, chapa ou fundação, altere as
+constantes no topo do script e rode de novo.
 
 Nenhum dos dois é projeto estrutural certificado. Cargas de vento, ancoragem e
 dimensionamento final precisam de engenheiro responsável com ART antes da
