@@ -22,7 +22,7 @@ const f0=v=>Math.round(v).toLocaleString("pt-BR");
 const f1=v=>v.toFixed(1).replace(".",",");
 
 /* ---- parâmetros da Bubble real ---- */
-const P={D:5000,H:2292,folga:150,e1:45,e2:89,W:4800,Nr:5,Np:5,piso:-480};
+const P={D:5000,H:2292,folga:150,e1:0,e2:44,W:4800,Nr:5,Np:5,piso:-480};
 const baseR=P.D/2;
 const zc=(P.H*P.H-baseR*baseR)/(2*P.H);      // -217
 const R=P.H-zc;                               // 2509
@@ -35,7 +35,10 @@ const pedX=rc+250, pedLevel=Math.min(0,zc)-260;
 const sLim=(P.piso+100-zc)/rc;
 const eInf=Math.asin(Math.max(-1,Math.min(1,sLim)))/D2R;
 const aMax=(180-eInf)-P.e2;
-const aWork=aMax-4;                           // ~49,3°
+// varredura de 180° do círculo: a borda dianteira parte de 0° e a traseira
+// termina em 180°. faixa coberta + curso = 180.
+const aWork=Math.min(aMax-2, 180-P.e2);
+const arcoVarrido=P.e2+aWork-P.e1;
 const de=P.e2-P.e1;
 
 /* ---- projeção ortográfica ---- */
@@ -160,6 +163,25 @@ function paintRibs(rs){
     x.lineJoin="round"; path(r.pts); x.stroke();
   });
 }
+// arco de referência no plano médio, mostrando os 180° do círculo varridos
+function drawArcIndicator(a,c){
+  const rr=rc*1.13, pts=[];
+  for(let e=0;e<=180;e+=2) pts.push(pj([0,rr*Math.cos(e*D2R),zc+rr*Math.sin(e*D2R)],c));
+  x.strokeStyle="rgba(140,154,168,.28)"; x.lineWidth=1.4; path(pts); x.stroke();
+  for(let e=0;e<=180;e+=30){
+    const p0=pj([0,rr*Math.cos(e*D2R),zc+rr*Math.sin(e*D2R)],c);
+    const p1=pj([0,rr*1.035*Math.cos(e*D2R),zc+rr*1.035*Math.sin(e*D2R)],c);
+    x.strokeStyle="rgba(140,154,168,.45)"; x.lineWidth=1.4; path([p0,p1]); x.stroke();
+  }
+  // trecho ocupado pela casca agora
+  const oc=[];
+  for(let e=P.e1+a;e<=P.e2+a;e+=1.5) oc.push(pj([0,rr*Math.cos(e*D2R),zc+rr*Math.sin(e*D2R)],c));
+  x.strokeStyle="#C9A84C"; x.lineWidth=4.5; x.lineCap="round"; path(oc); x.stroke(); x.lineCap="butt";
+  [[0,"0°"],[180,"180°"]].forEach(o=>{
+    const p=pj([0,rr*1.10*Math.cos(o[0]*D2R),zc+rr*1.10*Math.sin(o[0]*D2R)],c);
+    txt(o[1],p[0],p[1],17,"rgba(160,174,188,.85)","center");
+  });
+}
 function drawPedestals(c){
   [-1,1].forEach(s=>{
     const sx=s*pedX;
@@ -191,10 +213,15 @@ function drawHUD(a,t){
   txt("ZG-CAP-02",64,146,15,"#7B8189","left");
 
   // bloco de estado
-  const st=a<0.6?"CAPOTA FECHADA":(a>aWork-0.6?"CAPOTA RECOLHIDA":(t<0.5?"ABRINDO":"FECHANDO"));
-  txt("ÂNGULO DE ABERTURA",PX,150,12,"#7B8189","left");
+  // com 180° varridos, a sombra útil fica no meio do curso e as duas pontas
+  // são posições de recolhimento. O rótulo mostra para onde a sombra aponta.
+  const eMid=P.e1+a+de/2;
+  const st = eMid<26 ? "RECOLHIDA À FRENTE"
+           : eMid>154 ? "RECOLHIDA ATRÁS"
+           : "SOMBRA APONTADA A "+f0(eMid)+"°";
+  txt("POSIÇÃO NO ARCO",PX,150,12,"#7B8189","left");
   txt(f1(a)+"°",PX,214,54,"#C9A84C","left",300);
-  txt("de "+f1(aWork)+"° de curso",PX,242,13,"#7B8189","left");
+  txt("de "+f1(aWork)+"° de curso · arco varrido "+f1(arcoVarrido)+"°",PX,242,13,"#7B8189","left");
   txt(st,PX,300,17,"#ECEAE4","left");
   x.strokeStyle="rgba(201,168,76,.30)"; x.lineWidth=1;
   x.strokeRect(PX-14,276,236,32);
@@ -206,14 +233,14 @@ function drawHUD(a,t){
   txt(f1(aWork)+"°",PX+400,368,11,"#5F6771","right");
 
   // ficha
-  const rows=[["Ø da bolha no deck",f0(P.D)+" mm"],
+  const rows=[["Bissetriz da sombra","ε "+f0(eMid)+"°"],
+    ["Arco varrido do círculo",f1(arcoVarrido)+"°"],
+    ["Curso da capota",f1(aWork)+"°"],
+    ["Faixa coberta",f0(P.e2-P.e1)+"°, de "+f0(P.e1)+"° a "+f0(P.e2)+"°"],
+    ["Ø da bolha no deck",f0(P.D)+" mm"],
     ["Altura da bolha",f0(P.H)+" mm"],
     ["Folga constante",f0(P.folga)+" mm"],
-    ["Raio da casca",f0(rc)+" mm"],
-    ["Vão entre pivôs",f0(2*rc)+" mm"],
-    ["Eixo · centro da esfera","z "+f0(zc)+" mm"],
-    ["Faixa coberta",f0(P.e1)+"° a "+f0(P.e2)+"°"],
-    ["Céu livre na abertura","0° a "+f0(P.e1+aWork)+"°"]];
+    ["Vão entre pivôs",f0(2*rc)+" mm"]];
   rows.forEach((r,i)=>{
     const y=436+i*34;
     txt(r[0],PX,y,13,"#7B8189","left");
@@ -246,6 +273,7 @@ function draw(t){
   paintRibs(rs.filter(r=>r.d<dB).map(r=>Object.assign({},r,{edge:false,back:1})));
   paintQuads(qs.filter(q=>q.d>=dB));
   drawBaseRing(c);
+  drawArcIndicator(a,c);
   drawPedestals(c);
   paintRibs(rs.filter(r=>r.d>=dB));
   drawHUD(a,t);
