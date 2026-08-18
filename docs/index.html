@@ -421,6 +421,7 @@ footer .row{
 footer .row a{color:var(--sand);text-decoration:none;transition:color .4s}
 footer .row a:hover{color:var(--cream)}
 </style>
+<link rel="stylesheet" href="assets/editorial.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23040605'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23FEF5F0' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/">
 <meta property="og:url" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/">
@@ -462,12 +463,7 @@ footer .row a:hover{color:var(--cream)}
 </nav>
 
 <!-- HERO -->
-<header class="hero" id="top">
-  <video class="herovideo" autoplay muted loop playsinline preload="auto" aria-hidden="true">
-    <source src="assets/media/hero.webm" type="video/webm">
-    <source src="assets/media/hero.mp4" type="video/mp4">
-  </video>
-  <div class="herovideo-overlay" aria-hidden="true"></div>
+<header class="hero ed" id="top">
   <svg class="terrain" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
     <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".14">
       <path d="M-90,620 C220,560 380,660 620,600 S1050,520 1530,600"/>
@@ -481,18 +477,28 @@ footer .row a:hover{color:var(--cream)}
       <path d="M-90,200 C320,255 520,160 800,215 S1220,300 1530,220" opacity=".55"/>
     </g>
   </svg>
-  <p class="label kicker fade">Zion Hotel Group International · Florianópolis · Barcelona</p>
-  <h1 class="fade">Desenvolvemos <em>destinos</em>.</h1>
-  <p class="sub fade">Enquanto o mercado constrói hotéis, nós estruturamos ativos. Três modalidades integradas: desenvolvemos, operamos e validamos com a bandeira. Do conceito à operação.</p>
-  <div class="ctarow fade">
-    <a class="cta solid" href="#contato">Solicitar Diagnóstico</a>
-    <a class="cta" href="#modalidades">Conhecer o Grupo</a>
+  <div class="heroimg" data-slot="hero-urubici-noite">
+  <img fetchpriority="high" decoding="async" alt="Bubble Suite iluminada por dentro ao anoitecer, na Serra Catarinense"
+       src="assets/media/hero-urubici-noite-1600.jpg"
+       srcset="assets/media/hero-urubici-noite-960.jpg 960w, assets/media/hero-urubici-noite-1600.jpg 1600w, assets/media/hero-urubici-noite-2400.jpg 2400w" sizes="100vw">
+  <div class="brief"><b>hero-urubici-noite.jpg</b>Bubble ao anoitecer, luz quente por dentro, céu ainda azul. Plano aberto, horizonte baixo. Sem pessoas no enquadramento.</div>
+</div>
+<div class="heroveil" aria-hidden="true"></div>
+  <video class="herovideo" autoplay muted loop playsinline preload="none" aria-hidden="true">
+    <source src="assets/media/hero.webm" type="video/webm">
+    <source src="assets/media/hero.mp4" type="video/mp4">
+  </video>
+  <div class="inner">
+    <p class="label kicker fade">Zion Hotel Group International · Florianópolis · Barcelona</p>
+    <h1 class="fade">Desenvolvemos <em>destinos</em>.</h1>
+    <p class="sub fade">Enquanto o mercado constrói hotéis, nós estruturamos ativos. Três modalidades integradas: desenvolvemos, operamos e validamos com a bandeira. Do conceito à operação.</p>
+    <div class="ctarow fade">
+      <a class="cta solid" href="#contato">Solicitar Diagnóstico</a>
+      <a class="cta" href="#modalidades">Conhecer o Grupo</a>
+    </div>
   </div>
+  <span class="credit">Urubici · Serra Catarinense</span>
   <div class="scrollhint" aria-hidden="true"></div>
-  <div class="foot">
-    <span>Experiential Destination Development</span>
-    <span>MMXXVI</span>
-  </div>
 </header>
 
 <!-- NÚMEROS VIVOS -->
@@ -514,21 +520,20 @@ footer .row a:hover{color:var(--cream)}
   </div>
 </section>
 
-<!-- BANDA TERRITORIAL -->
-<div class="terrainband">
-  <svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-    <g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
-      <path d="M-90,300 C240,240 420,360 700,300 S1150,220 1530,300"/>
-      <path d="M-90,350 C260,290 440,410 720,350 S1170,270 1530,350"/>
-      <path d="M-90,400 C280,340 460,460 740,400 S1190,320 1530,400"/>
-      <path d="M-90,250 C220,195 400,305 680,250 S1130,175 1530,250"/>
-      <path d="M-90,200 C200,150 380,255 660,200 S1110,130 1530,200"/>
-      <path d="M-90,450 C300,395 480,505 760,450 S1210,375 1530,450"/>
-      <path d="M-90,150 C180,105 360,205 640,150 S1090,85 1530,150"/>
-    </g>
-  </svg>
-  <p class="fade">"A terra já sabe o que quer ser. O nosso trabalho é escutar o território antes de desenhar o destino."</p>
-  <span class="label fade">Leitura Territorial · O princípio de tudo</span>
+<!-- BANDA FOTOGRÁFICA · TERRITÓRIO -->
+<div class="bleed">
+<figure class="fig fade" data-slot="territorio-serra">
+  <div class="frame panorama">
+    <img loading="lazy" decoding="async" alt="Serra catarinense ao amanhecer, camadas de montanha na neblina"
+       src="assets/media/territorio-serra-1600.jpg"
+       srcset="assets/media/territorio-serra-960.jpg 960w, assets/media/territorio-serra-1600.jpg 1600w, assets/media/territorio-serra-2400.jpg 2400w" sizes="100vw">
+    <div class="brief"><b>territorio-serra.jpg</b>Paisagem ampla ao amanhecer: camadas de serra na neblina, sem construção visível. Horizonte no terço inferior, muito céu.</div>
+  </div>
+</figure>
+<div class="over">
+  <span class="label">O território</span>
+  <h2>A terra não fala. <em>O método traduz</em>.</h2>
+</div>
 </div>
 
 <!-- MODALIDADES -->
@@ -548,6 +553,23 @@ footer .row a:hover{color:var(--cream)}
         <h3>Zion Hotel Development</h3>
       </div>
       <p class="forwho fade">Para quem tem um território e quer transformá-lo em um ativo que gera receita e valoriza.</p>
+      <div class="duo">
+        <figure class="fig fade" data-slot="development-terreno">
+  <div class="frame portrait">
+    <img loading="lazy" decoding="async" alt="Território ainda sem construção, ao entardecer"
+       src="assets/media/development-terreno-1600.jpg"
+       srcset="assets/media/development-terreno-960.jpg 960w, assets/media/development-terreno-1600.jpg 1600w, assets/media/development-terreno-2400.jpg 2400w"
+       sizes="(max-width:860px) 92vw, 46vw">
+    <div class="brief"><b>development-terreno.jpg</b>Terreno bruto com vocação turística: campo aberto, relevo, luz rasante de fim de tarde. Sem construção. Sensação de potencial adormecido.</div>
+  </div>
+  <figcaption>Antes do projeto, o território</figcaption>
+</figure>
+        <div class="txt fade">
+          <span class="label">O que existe antes</span>
+          <p>Uma terra parada não é um patrimônio: é um custo silencioso. Cada temporada que passa sem produto é receita que não volta — e nenhuma valorização de mercado compensa o tempo em que o ativo ficou fora do jogo.</p>
+        </div>
+      </div>
+
       <div class="body">
         <div class="fade">
           <p>A origem de tudo. Desenvolvimento imobiliário turístico completo: leitura territorial, estudo de viabilidade, concepção de produto, master plan, estruturação societária e captação de investidores. O projeto nasce do território e da tese financeira, nunca do palpite.</p>
@@ -575,6 +597,23 @@ footer .row a:hover{color:var(--cream)}
         <h3>Zion Hotel Management</h3>
       </div>
       <p class="forwho fade">Para quem tem um ativo pronto ou em operação e precisa que ele performe como investimento.</p>
+      <div class="duo flip">
+        <figure class="fig fade" data-slot="management-servico">
+  <div class="frame portrait">
+    <img loading="lazy" decoding="async" alt="Detalhe do serviço em operação, luz natural"
+       src="assets/media/management-servico-1600.jpg"
+       srcset="assets/media/management-servico-960.jpg 960w, assets/media/management-servico-1600.jpg 1600w, assets/media/management-servico-2400.jpg 2400w"
+       sizes="(max-width:860px) 92vw, 46vw">
+    <div class="brief"><b>management-servico.jpg</b>Detalhe de serviço em operação: café da manhã sendo servido, mãos, textura de madeira e cerâmica. Luz natural lateral.</div>
+  </div>
+  <figcaption>O padrão, todos os dias</figcaption>
+</figure>
+        <div class="txt fade">
+          <span class="label">O que sustenta</span>
+          <p>Padrão não é um manual na gaveta. É a mesma xícara, na mesma hora, com a mesma temperatura — em Urubici e em qualquer destino que carregue a bandeira depois.</p>
+        </div>
+      </div>
+
       <div class="body">
         <div class="fade">
           <p>O ativo pronto precisa performar. A Zion Hotel Management assume a operação com governança, controle de padrão e gestão de performance: jornada do hóspede, revenue management, SOPs, time treinado e relatórios periódicos para os investidores do ativo.</p>
@@ -601,6 +640,23 @@ footer .row a:hover{color:var(--cream)}
         <h3>Zion Collection</h3>
       </div>
       <p class="forwho fade">Para projetos que querem carregar uma bandeira com padrão, curadoria e tese validada.</p>
+      <div class="duo">
+        <figure class="fig fade" data-slot="collection-bubble-interior">
+  <div class="frame portrait">
+    <img loading="lazy" decoding="async" alt="Interior da Bubble Suite ao amanhecer, com névoa do lado de fora"
+       src="assets/media/collection-bubble-interior-1600.jpg"
+       srcset="assets/media/collection-bubble-interior-960.jpg 960w, assets/media/collection-bubble-interior-1600.jpg 1600w, assets/media/collection-bubble-interior-2400.jpg 2400w"
+       sizes="(max-width:860px) 92vw, 46vw">
+    <div class="brief"><b>collection-bubble-interior.jpg</b>Interior da Bubble Suite ao amanhecer: cama desfeita, névoa do lado de fora, ninguém precisa acordar cedo. Sem pessoas ou apenas silhueta.</div>
+  </div>
+  <figcaption>A manhã em que ninguém precisa acordar cedo</figcaption>
+</figure>
+        <div class="txt fade">
+          <span class="label">O que se promete</span>
+          <p>A bandeira não é um logotipo na fachada. É a promessa que o hóspede reconhece antes de chegar — e a razão pela qual a homologação existe.</p>
+        </div>
+      </div>
+
       <div class="body">
         <div class="fade">
           <p>A bandeira do grupo. Apenas projetos homologados carregam o selo Zion Collection: curadoria de destinos com identidade, padrão de experiência e tese validada. Cinco coleções, cada uma com vocação territorial própria.</p>
@@ -645,6 +701,36 @@ footer .row a:hover{color:var(--cream)}
       <div class="splitword"><span>Ecossistema</span><span class="line"></span></div>
       <h2>O ciclo completo do desenvolvimento, <em>sob um mesmo teto</em>.</h2>
     </div>
+      <div class="tript">
+        <figure class="fig fade" data-slot="detalhe-textura">
+  <div class="frame square">
+    <img loading="lazy" decoding="async" alt="Textura natural em detalhe macro"
+       src="assets/media/detalhe-textura-1600.jpg"
+       srcset="assets/media/detalhe-textura-960.jpg 960w, assets/media/detalhe-textura-1600.jpg 1600w, assets/media/detalhe-textura-2400.jpg 2400w"
+       sizes="(max-width:760px) 46vw, 30vw">
+    <div class="brief"><b>detalhe-textura.jpg</b>Macro de textura natural: pedra molhada, casca de árvore ou musgo. Preenche o quadro inteiro.</div>
+  </div>
+</figure>
+        <figure class="fig fade" data-slot="pessoa-contemplacao">
+  <div class="frame portrait">
+    <img loading="lazy" decoding="async" alt="Pessoa de costas diante da paisagem"
+       src="assets/media/pessoa-contemplacao-1600.jpg"
+       srcset="assets/media/pessoa-contemplacao-960.jpg 960w, assets/media/pessoa-contemplacao-1600.jpg 1600w, assets/media/pessoa-contemplacao-2400.jpg 2400w"
+       sizes="(max-width:760px) 46vw, 30vw">
+    <div class="brief"><b>pessoa-contemplacao.jpg</b>Pessoa de costas contemplando a paisagem, em silêncio. Escala humana pequena diante do território.</div>
+  </div>
+</figure>
+        <figure class="fig fade" data-slot="arquitetura-modulo">
+  <div class="frame landscape">
+    <img loading="lazy" decoding="async" alt="Módulo de hospedagem integrado à vegetação"
+       src="assets/media/arquitetura-modulo-1600.jpg"
+       srcset="assets/media/arquitetura-modulo-960.jpg 960w, assets/media/arquitetura-modulo-1600.jpg 1600w, assets/media/arquitetura-modulo-2400.jpg 2400w"
+       sizes="(max-width:760px) 92vw, 30vw">
+    <div class="brief"><b>arquitetura-modulo.jpg</b>Arquitetura modular vista de fora, integrada à vegetação. Linha limpa, sem excesso de deque ou mobiliário.</div>
+  </div>
+</figure>
+      </div>
+
     <p class="intro fade">Em volta das três modalidades, o grupo opera unidades complementares que fecham o ciclo do desenvolvimento hoteleiro: da educação do mercado ao capital, do design ao fornecimento.</p>
     <div class="grid">
       <div class="cell fade"><h3>Zion Bubble Glamping</h3><p>A operação pioneira do grupo em Florianópolis. Laboratório vivo da marca: benchmarks reais de ADR, ocupação e margem que alimentam todos os estudos de viabilidade.</p></div>
@@ -696,6 +782,11 @@ footer .row a:hover{color:var(--cream)}
   <p class="fade">O Zion Score™ avalia vocação do destino, mercado emissor, diária de referência e potencial construtivo, e devolve um número de 0 a 10. É a diferença entre apostar e decidir.</p>
   <a class="cta solid fade" href="#contato">Descobrir o Zion Score da minha terra</a>
 </section>
+
+<div class="wrap"><div class="pull fade">
+<blockquote>Quem vai sozinho paga duas vezes: o custo do erro e o custo de reconstruir.</blockquote>
+<cite>Por que existe método</cite>
+</div></div>
 
 <!-- PROJETOS -->
 <section class="section sandbg projetos" id="projetos">
@@ -784,6 +875,21 @@ footer .row a:hover{color:var(--cream)}
     </div>
   </div>
 </section>
+
+<div class="bleed">
+<figure class="fig fade" data-slot="paisagem-amanhecer">
+  <div class="frame panorama">
+    <img loading="lazy" decoding="async" alt="Amanhecer sobre o vale, primeira luz atravessando a névoa"
+       src="assets/media/paisagem-amanhecer-1600.jpg"
+       srcset="assets/media/paisagem-amanhecer-960.jpg 960w, assets/media/paisagem-amanhecer-1600.jpg 1600w, assets/media/paisagem-amanhecer-2400.jpg 2400w" sizes="100vw">
+    <div class="brief"><b>paisagem-amanhecer.jpg</b>Primeira luz sobre o vale, névoa baixa, contraluz. Muito espaço negativo na metade superior para a headline respirar.</div>
+  </div>
+</figure>
+<div class="over">
+  <span class="label">O convite</span>
+  <h2>Sua terra já é um destino.<br><em>Falta a estrutura</em>.</h2>
+</div>
+</div>
 
 <!-- CTA FINAL -->
 <section class="final" id="contato">
@@ -899,5 +1005,16 @@ addEventListener('scroll',()=>{
 </script>
 
 <script async defer src="https://js.hs-scripts.com/51284703.js" id="hs-script-loader"></script>
+
+<script>
+/* fotografia: slot vazio vira briefing, nunca imagem quebrada */
+document.querySelectorAll('.fig, .heroimg').forEach(box=>{
+  const img = box.querySelector('img');
+  if(!img) return;
+  const miss = () => box.classList.add('noimg');
+  if(img.complete && img.naturalWidth === 0) miss();
+  img.addEventListener('error', miss);
+});
+</script>
 </body>
 </html>

@@ -241,6 +241,7 @@ footer .row{display:flex;justify-content:space-between;align-items:center;flex-w
 footer a{color:var(--sand);text-decoration:none;transition:color .4s}
 footer a:hover{color:var(--cream)}
 </style>
+<link rel="stylesheet" href="assets/editorial.css">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23040605'/%3E%3Ctext x='32' y='45' font-family='Georgia,serif' font-size='38' fill='%23FEF5F0' text-anchor='middle'%3EZ%3C/text%3E%3C/svg%3E">
 <link rel="canonical" href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capital.html">
 <meta property="og:url" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capital.html">
@@ -267,12 +268,20 @@ footer a:hover{color:var(--cream)}
 </div></div></nav>
 
 <!-- HERO -->
-<header class="hero" id="top">
+<header class="hero ed">
 <svg class="terrain" viewBox="0 0 1440 800" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".14">
 <path d="M-90,620 C220,560 380,660 620,600 S1050,520 1530,600"/><path d="M-90,660 C240,600 400,700 640,640 S1070,560 1530,640"/>
 <path d="M-90,700 C260,645 420,740 660,680 S1090,605 1530,680"/><path d="M-90,580 C200,520 360,615 600,560 S1030,480 1530,560"/>
 <path d="M-90,160 C300,220 500,120 780,180 S1200,260 1530,180" opacity=".55"/><path d="M-90,120 C280,180 480,85 760,140 S1180,215 1530,140" opacity=".55"/>
 </g></svg>
+<div class="heroimg" data-slot="hero-capital">
+  <img fetchpriority="high" decoding="async" alt="Vista aérea da operação integrada à paisagem"
+       src="assets/media/hero-capital-1600.jpg"
+       srcset="assets/media/hero-capital-960.jpg 960w, assets/media/hero-capital-1600.jpg 1600w, assets/media/hero-capital-2400.jpg 2400w" sizes="100vw">
+  <div class="brief"><b>hero-capital.jpg</b>Vista aérea baixa da operação: unidades pequenas dentro do território, mostrando escala e baixo impacto.</div>
+</div>
+<div class="heroveil" aria-hidden="true"></div>
+<div class="inner">
 <p class="label kicker fade">Zion Capital · Rodada institucional Zion Collection · Fase 1</p>
 <h1 class="fade">Prova, não <em>projeção</em>.</h1>
 <p class="sub fade">Seis anos de glamping em operação real, em duas estruturas fundiárias diferentes, entregando a mesma margem. É essa operação — não uma tese de papel — que sustenta a expansão para 23 destinos selecionados no modelo Asset Light.</p>
@@ -280,6 +289,8 @@ footer a:hover{color:var(--cream)}
 <a class="cta solid fade" href="#esteira">Ver a esteira de destinos</a>
 <a class="cta fade" href="#convite">Acessar o data room</a>
 </div>
+</div>
+<span class="credit">Urubici · operação desde 2020</span>
 </header>
 
 <!-- NÚMEROS -->
@@ -452,13 +463,19 @@ footer a:hover{color:var(--cream)}
 </section>
 
 <!-- BANDA -->
-<div class="terrainband">
-<svg viewBox="0 0 1440 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><g fill="none" stroke="#DED6BF" stroke-width="1" opacity=".12">
-<path d="M-90,300 C240,240 420,360 700,300 S1150,220 1530,300"/><path d="M-90,350 C260,290 440,410 720,350 S1170,270 1530,350"/>
-<path d="M-90,400 C280,340 460,460 740,400 S1190,320 1530,400"/><path d="M-90,250 C220,195 400,305 680,250 S1130,175 1530,250"/>
-<path d="M-90,200 C200,150 380,255 660,200 S1110,130 1530,200"/></g></svg>
-<p class="fade">"Onde a incorporação tradicional não pode construir, a Zion já sabe operar."</p>
-<span class="label fade">Áreas de preservação como vantagem</span>
+<div class="bleed">
+<figure class="fig fade" data-slot="banda-preservacao">
+  <div class="frame panorama">
+    <img loading="lazy" decoding="async" alt="Vegetação preservada em volta da estrutura leve, vista do solo"
+       src="assets/media/banda-preservacao-1600.jpg"
+       srcset="assets/media/banda-preservacao-960.jpg 960w, assets/media/banda-preservacao-1600.jpg 1600w, assets/media/banda-preservacao-2400.jpg 2400w" sizes="100vw">
+    <div class="brief"><b>banda-preservacao.jpg</b>Área de preservação com a estrutura leve pousada nela, sem fundação aparente. Vegetação intacta no primeiro plano.</div>
+  </div>
+</figure>
+<div class="over">
+  <span class="label">Áreas de preservação como vantagem</span>
+  <h2><em>Onde a incorporação tradicional não pode construir, a Zion já sabe operar.</em></h2>
+</div>
 </div>
 
 <!-- ESTRUTURA -->
@@ -566,6 +583,28 @@ footer a:hover{color:var(--cream)}
 <div class="p fade"><span class="i">04</span><span class="t">Due Diligence</span></div>
 <div class="p fade"><span class="i">05</span><span class="t">Estruturação</span></div>
 <div class="p fade"><span class="i">06</span><span class="t">Closing</span></div>
+</div>
+</div>
+</section>
+
+<section class="section">
+<div class="wrap">
+<div class="duo flip">
+<figure class="fig fade" data-slot="capital-operacao">
+  <div class="frame portrait">
+    <img loading="lazy" decoding="async" alt="Unidades acesas ao anoitecer em alta temporada"
+       src="assets/media/capital-operacao-1600.jpg"
+       srcset="assets/media/capital-operacao-960.jpg 960w, assets/media/capital-operacao-1600.jpg 1600w, assets/media/capital-operacao-2400.jpg 2400w"
+       sizes="(max-width:860px) 92vw, 46vw">
+    <div class="brief"><b>capital-operacao.jpg</b>Operação cheia em alta temporada: unidades acesas ao anoitecer, vista de drone baixo. Prova de ocupação.</div>
+  </div>
+  <figcaption>Alta temporada em Urubici</figcaption>
+</figure>
+<div class="txt fade">
+<span class="label">O lastro</span>
+<h3>Prova, não <em>projeção</em>.</h3>
+<p>Seis anos de operação em duas estruturas fundiárias diferentes, convergindo para a mesma margem. É desse resultado — e não de um modelo em planilha — que sai cada premissa desta rodada.</p>
+</div>
 </div>
 </div>
 </section>
@@ -720,5 +759,16 @@ const cio = new IntersectionObserver(es=>{
 document.querySelectorAll('[data-count]').forEach(el=>cio.observe(el));
 </script>
 <script async defer src="https://js.hs-scripts.com/51284703.js" id="hs-script-loader"></script>
+
+<script>
+/* fotografia: slot vazio vira briefing, nunca imagem quebrada */
+document.querySelectorAll('.fig, .heroimg').forEach(box=>{
+  const img = box.querySelector('img');
+  if(!img) return;
+  const miss = () => box.classList.add('noimg');
+  if(img.complete && img.naturalWidth === 0) miss();
+  img.addEventListener('error', miss);
+});
+</script>
 </body>
 </html>
