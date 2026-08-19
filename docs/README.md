@@ -50,6 +50,15 @@ Qualquer host estático:
 - **Vercel / Netlify**: apontar para a pasta `docs/`
 - **Teste local**: abrir `docs/index.html` no navegador
 
+## Design no Figma
+
+O mesmo site existe como arquivo editável de Figma, gerado por plugin: `figma-plugin/`.
+
+Ele desenha, dentro do Figma, o design system (paleta como estilos e variáveis,
+11 estilos de texto, 23 componentes com variantes) e as 5 páginas em Desktop 1440 e
+Mobile 390, em auto-layout nativo, com a copy lida daqui. Instruções de instalação em
+[`figma-plugin/README.md`](../figma-plugin/README.md).
+
 ## Personalização
 
 - CTAs apontam para o Instagram `@brunochaerkofc`. Para trocar por WhatsApp ou formulário (GoHighLevel), buscar por `instagram.com/brunochaerkofc` nos HTMLs.

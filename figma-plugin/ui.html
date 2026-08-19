@@ -1,0 +1,122 @@
+<style>
+  :root{
+    --black:#040605; --green:#1B2117; --cream:#FEF5F0; --sand:#DED6BF; --earth:#8B714E;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    background:var(--black); color:var(--cream);
+    font-family:'DM Sans','Inter',system-ui,sans-serif;
+    font-size:12px; line-height:1.7; padding:22px 22px 18px;
+  }
+  .brand{
+    font-family:Georgia,'Times New Roman',serif;
+    font-size:17px; letter-spacing:.34em; text-transform:uppercase; margin-bottom:6px;
+  }
+  .kicker{
+    font-size:9px; letter-spacing:.28em; text-transform:uppercase; color:var(--sand);
+    margin-bottom:22px;
+  }
+  .split{display:flex;align-items:center;gap:12px;margin:22px 0 12px}
+  .split span{font-size:9px;letter-spacing:.4em;text-transform:uppercase;color:var(--earth)}
+  .split i{flex:1;height:1px;background:var(--cream);opacity:.22}
+  label.row{
+    display:flex; align-items:center; gap:10px; padding:7px 0; cursor:pointer; color:var(--cream);
+  }
+  label.row:hover{color:var(--sand)}
+  input[type=checkbox]{
+    appearance:none; width:14px; height:14px; border:1px solid rgba(222,214,191,.5);
+    background:transparent; cursor:pointer; flex:none; position:relative;
+  }
+  input[type=checkbox]:checked{background:var(--earth);border-color:var(--earth)}
+  input[type=checkbox]:checked::after{
+    content:""; position:absolute; left:4px; top:1px; width:4px; height:8px;
+    border:solid var(--cream); border-width:0 1.5px 1.5px 0; transform:rotate(45deg);
+  }
+  .hint{font-size:10px;color:var(--sand);opacity:.65;line-height:1.75;margin-top:10px}
+  .actions{display:flex;gap:10px;margin-top:24px}
+  button{
+    flex:1; padding:13px 18px; background:var(--earth); border:1px solid var(--earth);
+    color:var(--cream); font-family:inherit; font-size:9.5px; letter-spacing:.3em;
+    text-transform:uppercase; cursor:pointer; transition:.25s;
+  }
+  button.ghost{background:transparent;border-color:rgba(139,113,78,.7);flex:0 0 96px}
+  button:hover{opacity:.82}
+  button:disabled{opacity:.45;cursor:wait}
+  #status{margin-top:14px;font-size:10px;letter-spacing:.06em;color:var(--sand);min-height:28px}
+  #status.err{color:#E6A6A6}
+</style>
+
+<div class="brand">Zion</div>
+<div class="kicker">Site Generator · Hotel Group International</div>
+
+<div class="split"><span>Páginas</span><i></i></div>
+<label class="row"><input type="checkbox" id="p_index" checked> Home · Grupo</label>
+<label class="row"><input type="checkbox" id="p_development" checked> Modalidade 01 · Development</label>
+<label class="row"><input type="checkbox" id="p_management" checked> Modalidade 02 · Management</label>
+<label class="row"><input type="checkbox" id="p_collection" checked> Modalidade 03 · Collection</label>
+<label class="row"><input type="checkbox" id="p_bruno" checked> Founder · Bruno Chaerk</label>
+
+<div class="split"><span>Breakpoints</span><i></i></div>
+<label class="row"><input type="checkbox" id="b_desktop" checked> Desktop · 1440</label>
+<label class="row"><input type="checkbox" id="b_mobile" checked> Mobile · 390</label>
+
+<div class="split"><span>Sistema</span><i></i></div>
+<label class="row"><input type="checkbox" id="s_sistema" checked> Fundamentos: paleta, tipografia e estilos</label>
+
+<p class="hint">
+  Gera tudo numa página nova, em auto-layout nativo. Se a fonte Aventa não estiver
+  instalada, o plugin cai para DM Sans (mesmo fallback do site) e avisa no final.
+</p>
+
+<div class="actions">
+  <button class="ghost" id="cancelar">Fechar</button>
+  <button id="gerar">Gerar Site</button>
+</div>
+<div id="status"></div>
+
+<script>
+  var status = document.getElementById('status');
+
+  document.getElementById('gerar').onclick = function () {
+    var paginas = {};
+    ['index', 'development', 'management', 'collection', 'bruno'].forEach(function (k) {
+      paginas[k] = document.getElementById('p_' + k).checked;
+    });
+    var opts = {
+      paginas: paginas,
+      desktop: document.getElementById('b_desktop').checked,
+      mobile: document.getElementById('b_mobile').checked,
+      sistema: document.getElementById('s_sistema').checked
+    };
+    var algumaPagina = Object.keys(paginas).some(function (k) { return paginas[k]; });
+    if (!algumaPagina && !opts.sistema) {
+      status.className = 'err';
+      status.textContent = 'Escolha ao menos uma página ou os fundamentos.';
+      return;
+    }
+    if (algumaPagina && !opts.desktop && !opts.mobile) {
+      status.className = 'err';
+      status.textContent = 'Escolha ao menos um breakpoint.';
+      return;
+    }
+    this.disabled = true;
+    status.className = '';
+    status.textContent = 'Carregando fontes…';
+    parent.postMessage({ pluginMessage: { type: 'gerar', opts: opts } }, '*');
+  };
+
+  document.getElementById('cancelar').onclick = function () {
+    parent.postMessage({ pluginMessage: { type: 'cancelar' } }, '*');
+  };
+
+  onmessage = function (event) {
+    var msg = event.data.pluginMessage;
+    if (!msg) return;
+    if (msg.type === 'progresso') { status.className = ''; status.textContent = msg.texto + '…'; }
+    if (msg.type === 'erro') {
+      status.className = 'err';
+      status.textContent = 'Erro: ' + msg.texto;
+      document.getElementById('gerar').disabled = false;
+    }
+  };
+</script>
