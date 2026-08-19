@@ -191,3 +191,21 @@
 /* no full bleed o briefing sobe, para não disputar espaço com a headline */
 .bleed .fig.noimg .frame{align-items:flex-start}
 .bleed .fig.noimg .brief{padding-top:var(--e-5)}
+
+/* -------------------------------------------------------------
+   09 · MARCA — logotipo oficial substitui o texto
+   ------------------------------------------------------------- */
+nav .brand{display:flex;align-items:center;line-height:0}
+nav .brand img{height:21px;width:auto;display:block}
+@media(max-width:520px){nav .brand img{height:18px}}
+footer .brandmark{display:flex;align-items:center;line-height:0}
+footer .brandmark img{height:30px;width:auto;display:block;opacity:.85;transition:opacity .4s}
+footer .brandmark:hover img{opacity:1}
+.hero.ed .symbol{
+  position:absolute;left:4vw;top:calc(50% - 200px);width:38px;height:auto;opacity:.5;pointer-events:none;
+}
+@media(max-width:1200px){.hero.ed .symbol{display:none}}
+footer .fbrand img{height:38px;width:auto;margin-bottom:22px}
+@media(max-width:640px){footer .fbrand img{height:28px}}
+footer .fbrand img{height:38px;width:auto;margin-bottom:22px}
+@media(max-width:640px){footer .fbrand img{height:28px}}
