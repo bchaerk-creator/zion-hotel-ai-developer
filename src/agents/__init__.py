@@ -10,6 +10,7 @@ from .product_agent import ProductAgent
 from .business_agent import BusinessAgent
 from .investor_agent import InvestorAgent
 from .governance_agent import GovernanceAgent
+from .land_bank_agent import LandBankAgent
 
 __all__ = [
     "ZionOrchestrator",
@@ -20,4 +21,5 @@ __all__ = [
     "BusinessAgent",
     "InvestorAgent",
     "GovernanceAgent",
+    "LandBankAgent",
 ]

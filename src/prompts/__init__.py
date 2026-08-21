@@ -10,6 +10,7 @@ from .product import PROMPT_PRODUCT_DEFINITION
 from .business import PROMPT_BUSINESS_STRUCTURE
 from .investor import PROMPT_INVESTOR_PACKAGE
 from .governance import PROMPT_GOVERNANCE
+from .land_bank import PROMPT_LAND_BANK
 
 __all__ = [
     "SYSTEM_PROMPT_BASE",
@@ -20,4 +21,5 @@ __all__ = [
     "PROMPT_BUSINESS_STRUCTURE",
     "PROMPT_INVESTOR_PACKAGE",
     "PROMPT_GOVERNANCE",
+    "PROMPT_LAND_BANK",
 ]

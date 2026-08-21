@@ -20,6 +20,12 @@ O **Zion Hotel AI Developer** é um agente de IA especializado em desenvolviment
 | 5 | Investor Readiness | Modelagem e apresentação para investidores |
 | 6 | Implementation Gov | Acompanhamento e consultoria de implantação |
 
+E um módulo transversal, que roda em paralelo a todas as etapas:
+
+| Módulo | Nome | Função |
+|-------|--------|--------|
+| 7 | Land Bank | Agregação territorial e originação de crédito de carbono |
+
 ---
 
 ## Arquitetura
@@ -28,7 +34,7 @@ O **Zion Hotel AI Developer** é um agente de IA especializado em desenvolviment
 zion-hotel-ai-developer/
 ├── src/
 │   ├── agents/           # Agentes especializados por etapa
-│   ├── modules/          # Módulos de processamento (mercado, financeiro, produto)
+│   ├── modules/          # Módulos de processamento (engine de carbono, relatórios)
 │   ├── models/           # Modelos de dados e schemas
 │   ├── utils/            # Utilitários compartilhados
 │   ├── prompts/          # System prompts especializados por etapa
@@ -100,6 +106,18 @@ zion-hotel-ai-developer/
 - Coordenação com stakeholders
 - Relatórios de governança periódicos
 
+### Módulo 7 — Land Bank™ (Agregação Territorial e Carbono)
+- Triagem de elegibilidade por talhão (rota metodológica, bloqueios, passivo legal)
+- Clusterização geográfica de glebas em projetos agrupados
+- Estimativa de créditos líquidos por bioma e rota, com curva de sequestro e buffer
+- Fluxo de caixa do projeto de carbono, com VPL, TIR, payback e custo por crédito
+- Preço de equilíbrio e pré-venda mínima por cluster
+- Carbon Readiness Score por gleba e fila priorizada de agregação
+- Instrumento jurídico recomendado por gleba
+
+A camada numérica é determinística e roda sem chave de API. O LLM entra apenas na
+camada estratégica. Documentação completa em [`docs/LAND_BANK.md`](docs/LAND_BANK.md).
+
 ---
 
 ## Instalação
@@ -137,6 +155,13 @@ python -m src.main --stage 1 --input data/projeto_exemplo.json
 
 # Executar modelagem financeira
 python -m src.main --stage 2 --input data/projeto_exemplo.json
+
+# Analisar o Land Bank (roda sem chave de API)
+python -m src.main land-bank --input data/exemplo_land_bank.json
+
+# Land Bank com relatório em Markdown, exportação JSON e camada estratégica de IA
+python -m src.main land-bank -i data/exemplo_land_bank.json \
+    -o output/land_bank.md --json output/land_bank.json --ia
 ```
 
 ---

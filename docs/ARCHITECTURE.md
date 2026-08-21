@@ -81,6 +81,43 @@ Todos os modelos são definidos com Pydantic v2, garantindo validação rigorosa
 | Raciocínio complexo | gpt-5 | Qualidade de análise |
 | Modelagem financeira | gpt-5 (thinking) | Precisão numérica |
 
+## Módulo Transversal: Land Bank
+
+O Land Bank (módulo 7) não segue o padrão dos agentes de etapa, porque o problema que ele
+resolve é aritmético antes de ser interpretativo. A arquitetura tem duas camadas:
+
+```
+┌──────────────────────────────────────────────────────────────┐
+│  LandBankAgent (src/agents/land_bank_agent.py)               │
+│                                                              │
+│  analisar()  → determinístico, roda sem chave de API         │
+│  execute()   → determinístico + camada estratégica com LLM   │
+└───────────────┬──────────────────────────────────────────────┘
+                │
+      ┌─────────┴──────────┐
+      ▼                    ▼
+┌──────────────────┐  ┌─────────────────────────┐
+│  carbon_engine   │  │  land_bank_report       │
+│                  │  │                         │
+│ elegibilidade    │  │ relatório Markdown      │
+│ clusterização    │  │ no padrão Zion          │
+│ curva/buffer     │  └─────────────────────────┘
+│ fluxo de caixa   │
+│ preço equilíbrio │
+│ pré-venda mínima │
+│ priorização      │
+└──────────────────┘
+```
+
+A separação é deliberada: números que vão para mesa de negociação e comitê de investimento
+precisam ser reproduzíveis e auditáveis. A engine é determinística e coberta por testes; o LLM
+recebe o resultado pronto e trabalha apenas a camada que não é cálculo — originação, negociação,
+estrutura jurídica e sequenciamento. O prompt instrui explicitamente a não recalcular nem
+inventar números.
+
+Consequência prática: `BaseAgent` instancia o cliente LLM sob demanda, para que agentes com
+camada determinística rodem sem credencial configurada.
+
 ## Extensibilidade
 
 O sistema é projetado para ser estendido com novos agentes, módulos de dados externos (APIs de mercado hoteleiro, dados de turismo) e integrações com ferramentas de apresentação.

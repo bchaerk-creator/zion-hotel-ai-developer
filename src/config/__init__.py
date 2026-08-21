@@ -41,5 +41,13 @@ ZION_STAGES = {
     6: "Acompanhamento e Consultoria de Implantação",
 }
 
+# Módulos transversais — rodam fora da sequência da Pirâmide Invertida©
+ZION_MODULOS = {
+    7: "Land Bank — Agregação Territorial e Crédito de Carbono",
+}
+
+# Tudo que o orquestrador sabe executar
+ZION_ETAPAS_EXECUTAVEIS = {**ZION_STAGES, **ZION_MODULOS}
+
 # Garantir que o diretório de output existe
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

@@ -27,9 +27,22 @@ class BaseAgent(ABC):
         """
         self.etapa = etapa
         self.nome = nome
-        self.llm = ZionLLMClient()
+        self._llm: Optional[ZionLLMClient] = None
         self.report_gen = ReportGenerator()
         self.context: Dict[str, Any] = {}
+
+    @property
+    def llm(self) -> ZionLLMClient:
+        """
+        Cliente LLM instanciado sob demanda.
+
+        Agentes com camada determinística (Land Bank, por exemplo) precisam
+        rodar sem chave de API configurada. Só quem chama o LLM paga o custo
+        de exigir credencial.
+        """
+        if self._llm is None:
+            self._llm = ZionLLMClient()
+        return self._llm
 
     @property
     @abstractmethod

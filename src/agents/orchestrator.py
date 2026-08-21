@@ -16,7 +16,8 @@ from .product_agent import ProductAgent
 from .business_agent import BusinessAgent
 from .investor_agent import InvestorAgent
 from .governance_agent import GovernanceAgent
-from src.config import OUTPUT_DIR, ZION_STAGES
+from .land_bank_agent import LandBankAgent
+from src.config import OUTPUT_DIR, ZION_ETAPAS_EXECUTAVEIS, ZION_STAGES
 
 logger = logging.getLogger(__name__)
 
@@ -36,6 +37,7 @@ class ZionOrchestrator:
             4: BusinessAgent(),
             5: InvestorAgent(),
             6: GovernanceAgent(),
+            7: LandBankAgent(),
         }
         self.project_state: Dict[str, Any] = {}
         self.execution_history: List[Dict[str, Any]] = []
@@ -82,13 +84,15 @@ class ZionOrchestrator:
             Resultado da etapa
         """
         if stage not in self.agents:
-            raise ValueError(f"Etapa {stage} não existe. Etapas válidas: 0-6")
+            raise ValueError(
+                f"Etapa {stage} não existe. Etapas válidas: {sorted(self.agents)}"
+            )
 
         # Usar dados do estado atual se não fornecidos
         if project_data is None:
             project_data = self._get_current_project_data()
 
-        stage_name = ZION_STAGES.get(stage, f"Etapa {stage}")
+        stage_name = ZION_ETAPAS_EXECUTAVEIS.get(stage, f"Etapa {stage}")
         logger.info(f"Executando: {stage_name}")
 
         # Executar o agente

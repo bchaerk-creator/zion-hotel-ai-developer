@@ -19,7 +19,7 @@ from rich.markdown import Markdown
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.agents.orchestrator import ZionOrchestrator
-from src.config import AGENT_NAME, AGENT_VERSION, ZION_STAGES
+from src.config import AGENT_NAME, AGENT_VERSION, ZION_ETAPAS_EXECUTAVEIS, ZION_MODULOS, ZION_STAGES
 from src.utils.logger import setup_logger
 
 console = Console()
@@ -66,6 +66,20 @@ def show_stages():
 
     console.print(table)
 
+    modulos = Table(title="Módulos Transversais", show_header=True)
+    modulos.add_column("Código", style="bold gold1", width=6)
+    modulos.add_column("Nome", style="white")
+    modulos.add_column("Pergunta-chave", style="dim")
+
+    perguntas_modulos = {
+        7: "Quanta terra falta para o carbono fechar conta?",
+    }
+
+    for num, nome in ZION_MODULOS.items():
+        modulos.add_row(str(num), nome, perguntas_modulos.get(num, ""))
+
+    console.print(modulos)
+
 
 @click.group()
 def cli():
@@ -81,18 +95,19 @@ def info():
 
 
 @cli.command()
-@click.option("--stage", "-s", type=int, required=True, help="Número da etapa (0-6)")
+@click.option("--stage", "-s", type=int, required=True, help="Número da etapa (0-6) ou módulo (7)")
 @click.option("--input", "-i", "input_file", type=click.Path(exists=True), required=True, help="Arquivo JSON com dados do projeto")
 @click.option("--output", "-o", "output_dir", type=click.Path(), help="Diretório de saída")
 def run(stage: int, input_file: str, output_dir: str = None):
     """Executa uma etapa específica do método Zion."""
     show_banner()
 
-    if stage not in ZION_STAGES:
-        console.print(f"[red]Erro: Etapa {stage} não existe. Use 0-6.[/red]")
+    if stage not in ZION_ETAPAS_EXECUTAVEIS:
+        validas = ", ".join(str(k) for k in sorted(ZION_ETAPAS_EXECUTAVEIS))
+        console.print(f"[red]Erro: Etapa {stage} não existe. Use: {validas}.[/red]")
         return
 
-    console.print(f"\n[bold]Executando: {ZION_STAGES[stage]}[/bold]\n")
+    console.print(f"\n[bold]Executando: {ZION_ETAPAS_EXECUTAVEIS[stage]}[/bold]\n")
 
     # Carregar dados do projeto
     with open(input_file, "r", encoding="utf-8") as f:
@@ -169,6 +184,126 @@ def quick_score(input_file: str):
 
     console.print(table)
     console.print(f"\n[dim]{result.get('resumo', '')}[/dim]")
+
+
+@cli.command("land-bank")
+@click.option("--input", "-i", "input_file", type=click.Path(exists=True), required=True, help="Arquivo JSON do Land Bank")
+@click.option("--output", "-o", "output_file", type=click.Path(), help="Caminho do relatório Markdown de saída")
+@click.option("--json", "json_file", type=click.Path(), help="Exporta o resultado completo em JSON")
+@click.option("--ia", is_flag=True, help="Adiciona a camada estratégica com LLM (requer chave de API)")
+def land_bank(input_file: str, output_file: str = None, json_file: str = None, ia: bool = False):
+    """Analisa o Land Bank: elegibilidade, clusters de carbono e fila de agregação."""
+    show_banner()
+
+    from src.agents.land_bank_agent import LandBankAgent
+
+    with open(input_file, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    agent = LandBankAgent()
+
+    with console.status("[bold gold1]Rodando engine de carbono...[/bold gold1]"):
+        resultado, relatorio = agent.analisar(dados)
+
+    console.print(f"\n[bold]{resultado.nome}[/bold]\n")
+
+    resumo = Table(title="Land Bank — Consolidado", show_header=False)
+    resumo.add_column("Indicador", style="bold")
+    resumo.add_column("Valor", justify="right")
+    resumo.add_row("Glebas mapeadas", f"{resultado.total_glebas}")
+    resumo.add_row("Área total", f"{resultado.area_total_ha:,.0f} ha")
+    resumo.add_row("Área elegível", f"{resultado.area_elegivel_ha:,.0f} ha")
+    resumo.add_row("Área contratada", f"{resultado.area_contratada_ha:,.0f} ha")
+    resumo.add_row("Área em pipeline", f"{resultado.area_prospeccao_ha:,.0f} ha")
+    resumo.add_row("Créditos líquidos", f"[bold gold1]{resultado.vcus_liquidos:,.0f} tCO2e[/bold gold1]")
+    resumo.add_row("Créditos contratados", f"{resultado.vcus_contratados:,.0f} tCO2e")
+    resumo.add_row("Receita bruta projetada", f"R$ {resultado.receita_bruta_brl:,.0f}")
+    resumo.add_row("VPL consolidado", f"R$ {resultado.vpl_total_brl:,.0f}")
+    resumo.add_row("Carbon Readiness médio", f"{resultado.readiness_medio:.2f}/10")
+    if resultado.meta_tco2e:
+        resumo.add_row(
+            "Meta do portfólio",
+            f"{resultado.meta_tco2e:,.0f} tCO2e ({(resultado.atingimento_meta or 0) * 100:.1f}%)",
+        )
+    console.print(resumo)
+
+    clusters = Table(title="Clusters de Carbono", show_header=True)
+    clusters.add_column("Cluster", style="bold gold1")
+    clusters.add_column("Elegível", justify="right")
+    clusters.add_column("Contratado", justify="right")
+    clusters.add_column("tCO2e líq.", justify="right")
+    clusters.add_column("VPL", justify="right")
+    clusters.add_column("Equilíbrio", justify="right")
+    clusters.add_column("Pré-venda mín.", justify="right")
+    clusters.add_column("Escala")
+
+    for c in sorted(resultado.clusters, key=lambda x: x.vcus_liquidos, reverse=True):
+        if c.prevenda_minima == 0:
+            prevenda = "dispensável"
+        elif c.prevenda_minima:
+            prevenda = f"{c.prevenda_minima * 100:.0f}%"
+        else:
+            prevenda = "não resolve"
+        clusters.add_row(
+            c.id,
+            f"{c.area_elegivel_ha:,.0f} ha",
+            f"{c.area_contratada_ha:,.0f} ha",
+            f"{c.vcus_liquidos:,.0f}",
+            f"R$ {c.vpl_brl:,.0f}",
+            f"R$ {c.preco_equilibrio_brl:,.0f}" if c.preco_equilibrio_brl else "—",
+            prevenda,
+            c.escala,
+        )
+    console.print(clusters)
+
+    if resultado.prioridades:
+        fila = Table(title="Fila de Agregação", show_header=True)
+        fila.add_column("#", width=3)
+        fila.add_column("Gleba", style="bold")
+        fila.add_column("Instrumento")
+        fila.add_column("Elegível", justify="right")
+        fila.add_column("tCO2e líq.", justify="right")
+        fila.add_column("Entrada", justify="right")
+        fila.add_column("Destrava")
+
+        for p in resultado.prioridades:
+            fila.add_row(
+                str(p.prioridade),
+                f"{p.gleba_id} {p.nome}",
+                p.instrumento_recomendado.value.replace("_", " "),
+                f"{p.area_elegivel_ha:,.0f} ha",
+                f"{p.vcus_liquidos:,.0f}",
+                f"R$ {p.custo_entrada_brl:,.0f}",
+                "sim" if p.destrava_escala else "",
+            )
+        console.print(fila)
+
+    for alerta in resultado.alertas:
+        console.print(f"[yellow]• {alerta}[/yellow]")
+
+    if ia:
+        console.print("\n[dim]Gerando camada estratégica com IA...[/dim]")
+        with console.status("[bold gold1]Analisando estratégia de agregação...[/bold gold1]"):
+            saida = agent.execute(dados)
+        console.print(Panel(
+            Markdown(saida["analise"]),
+            title="[bold]Estratégia de Agregação[/bold]",
+            border_style="gold1",
+        ))
+        console.print(f"\n[green]Relatório completo salvo em: {saida['relatorio_path']}[/green]")
+        relatorio = saida["relatorio_numerico"]
+
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(relatorio)
+        console.print(f"\n[green]Relatório salvo em: {output_file}[/green]")
+
+    if json_file:
+        Path(json_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(json_file, "w", encoding="utf-8") as f:
+            json.dump(resultado.model_dump(), f, ensure_ascii=False, indent=2, default=str)
+        console.print(f"[green]Resultado exportado em: {json_file}[/green]")
 
 
 @cli.command()
