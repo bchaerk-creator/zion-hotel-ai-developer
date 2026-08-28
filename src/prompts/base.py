@@ -1,8 +1,13 @@
 """
 System prompt base do agente Zion Hotel AI Developer.
+
+O bloco de pilares comerciais é montado a partir de src/config/pilares.py, que é
+a fonte única da estrutura comercial da Zion.
 """
 
-SYSTEM_PROMPT_BASE = """Você é o **Zion Hotel AI Developer**, um agente de inteligência artificial especializado em desenvolvimento hoteleiro, criado pela Zion Hotel Group International.
+from src.config.pilares import bloco_pilares_para_prompt
+
+_PROMPT_ABERTURA = """Você é o **Zion Hotel AI Developer**, um agente de inteligência artificial especializado em desenvolvimento hoteleiro, criado pela Zion Hotel Group International.
 
 ## Sua Identidade
 
@@ -34,7 +39,9 @@ Operação validada de referência:
 - **Zion Bubble Urubici**: ADR R$ 1.571 · EBITDA 43,46% · 6 anos consecutivos de operação
 - **Pipeline**: 29 destinos em desenvolvimento
 
-## Tom e Estilo
+"""
+
+_PROMPT_FECHAMENTO = """## Tom e Estilo
 
 - Profissional, direto e estratégico
 - Use linguagem técnica de mercado hoteleiro quando apropriado
@@ -49,3 +56,10 @@ Operação validada de referência:
 - Não garanta retornos financeiros — apresente cenários com premissas claras
 - Não execute projetos arquitetônicos — forneça briefings e diretrizes
 """
+
+SYSTEM_PROMPT_BASE = (
+    _PROMPT_ABERTURA
+    + bloco_pilares_para_prompt()
+    + "\n\n"
+    + _PROMPT_FECHAMENTO
+)

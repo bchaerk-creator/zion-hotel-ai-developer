@@ -120,6 +120,24 @@ camada estratégica. Documentação completa em [`docs/LAND_BANK.md`](docs/LAND_
 
 ---
 
+## Pilares Comerciais
+
+A Zion gera receita por seis frentes, definidas em [`src/config/pilares.py`](src/config/pilares.py)
+e injetadas no system prompt de todos os agentes:
+
+| Pilar | Oferta |
+|-------|--------|
+| Produto | Venda de bubbles e cabanas |
+| Desenvolvimento | Escopo inteiro do desenvolvimento hoteleiro como prestação de serviço |
+| Capital | Estruturação para apresentar a bancos, crédito e investidores |
+| Conhecimento | Mentoria para quem quer desenvolver o próprio projeto |
+| Parceria | Zion Joint Venture — entra com as bubbles e entra no equity |
+| Sustentabilidade | Selos ambientais, crédito de carbono e projetos fotovoltaicos |
+
+Leitura estratégica completa em [`docs/PILARES_COMERCIAIS.md`](docs/PILARES_COMERCIAIS.md).
+
+---
+
 ## Instalação
 
 ```bash
@@ -155,6 +173,10 @@ python -m src.main --stage 1 --input data/projeto_exemplo.json
 
 # Executar modelagem financeira
 python -m src.main --stage 2 --input data/projeto_exemplo.json
+
+# Consultar os pilares comerciais
+python -m src.main pilares
+python -m src.main pilares --pilar PARCERIA
 
 # Analisar o Land Bank (roda sem chave de API)
 python -m src.main land-bank --input data/exemplo_land_bank.json

@@ -49,5 +49,16 @@ ZION_MODULOS = {
 # Tudo que o orquestrador sabe executar
 ZION_ETAPAS_EXECUTAVEIS = {**ZION_STAGES, **ZION_MODULOS}
 
+# Pilares comerciais — fonte única da estrutura de receita da Zion
+from src.config.pilares import (  # noqa: E402
+    CADEIA_DE_VALOR,
+    ORDEM_PILARES,
+    PILARES,
+    PilarComercial,
+    listar_pilares,
+    obter_pilar,
+    pilares_da_etapa,
+)
+
 # Garantir que o diretório de output existe
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)

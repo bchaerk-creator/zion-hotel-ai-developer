@@ -19,7 +19,14 @@ from rich.markdown import Markdown
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 from src.agents.orchestrator import ZionOrchestrator
-from src.config import AGENT_NAME, AGENT_VERSION, ZION_ETAPAS_EXECUTAVEIS, ZION_MODULOS, ZION_STAGES
+from src.config import (
+    AGENT_NAME,
+    AGENT_VERSION,
+    ZION_ETAPAS_EXECUTAVEIS,
+    ZION_MODULOS,
+    ZION_STAGES,
+)
+from src.config.pilares import CADEIA_DE_VALOR, listar_pilares, obter_pilar, pilares_da_etapa
 from src.utils.logger import setup_logger
 
 console = Console()
@@ -184,6 +191,68 @@ def quick_score(input_file: str):
 
     console.print(table)
     console.print(f"\n[dim]{result.get('resumo', '')}[/dim]")
+
+
+@cli.command()
+@click.option("--pilar", "-p", "codigo", help="Detalha um pilar específico (ex.: PARCERIA)")
+@click.option("--etapa", "-e", type=int, help="Mostra os pilares alimentados por uma etapa do método")
+def pilares(codigo: str = None, etapa: int = None):
+    """Exibe os pilares comerciais da Zion."""
+    show_banner()
+
+    if codigo:
+        try:
+            p = obter_pilar(codigo)
+        except KeyError as erro:
+            console.print(f"[red]{erro}[/red]")
+            return
+
+        console.print(f"\n[bold gold1]{p.nome}[/bold gold1]")
+        console.print(f"[italic]{p.oferta}[/italic]\n")
+
+        detalhe = Table(show_header=False)
+        detalhe.add_column("Campo", style="bold")
+        detalhe.add_column("Valor")
+        detalhe.add_row("Cliente", p.cliente)
+        detalhe.add_row("Modelo de receita", p.modelo_receita)
+        detalhe.add_row("O que a Zion coloca", p.ativo_zion)
+        detalhe.add_row("Etapas do método", ", ".join(str(e) for e in p.etapas_zion))
+        detalhe.add_row("Módulo do sistema", p.modulo_sistema or "—")
+        console.print(detalhe)
+
+        console.print("\n[bold]Escopo:[/bold]")
+        for item in p.escopo:
+            console.print(f"  • {item}")
+
+        if p.observacoes:
+            console.print(f"\n[dim]{p.observacoes}[/dim]")
+        return
+
+    if etapa is not None:
+        encontrados = pilares_da_etapa(etapa)
+        nome_etapa = ZION_ETAPAS_EXECUTAVEIS.get(etapa, f"Etapa {etapa}")
+        console.print(f"\n[bold]Pilares alimentados por: {nome_etapa}[/bold]\n")
+        if not encontrados:
+            console.print("[dim]Nenhum pilar mapeado para esta etapa.[/dim]")
+            return
+        for p in encontrados:
+            console.print(f"  • [bold gold1]{p.nome}[/bold gold1] — {p.oferta}")
+        return
+
+    tabela = Table(title="Pilares Comerciais da Zion", show_header=True)
+    tabela.add_column("Pilar", style="bold gold1")
+    tabela.add_column("Oferta", style="white")
+    tabela.add_column("Como a Zion ganha", style="dim")
+
+    for p in listar_pilares():
+        tabela.add_row(p.nome, p.oferta, p.modelo_receita)
+
+    console.print(tabela)
+
+    console.print("\n[bold]A escada — como um pilar alimenta o outro:[/bold]\n")
+    for i, elo in enumerate(CADEIA_DE_VALOR, start=1):
+        console.print(f"  {i}. {elo}")
+    console.print()
 
 
 @cli.command("land-bank")
