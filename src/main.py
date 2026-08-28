@@ -376,6 +376,178 @@ def land_bank(input_file: str, output_file: str = None, json_file: str = None, i
 
 
 @cli.command()
+@click.option("--auditar", "modo_auditar", is_flag=True, help="AUDITAR MÉTODO — inconsistências e lacunas")
+@click.option("--mapear", "termo", help="MAPEAR CONHECIMENTO — o que existe sobre um termo")
+@click.option("--fonte", "item_id", help="VERIFICAR FONTE — origem de um item da base")
+@click.option("--output", "-o", "output_file", type=click.Path(), help="Salva o relatório em Markdown")
+def knowledge(modo_auditar: bool, termo: str = None, item_id: str = None, output_file: str = None):
+    """Zion Knowledge Engine — fonte de verdade do Método Zion 360°."""
+    show_banner()
+
+    from src.agents.knowledge_agent import KnowledgeAgent
+    agent = KnowledgeAgent()
+
+    if termo:
+        achados = agent.mapear(termo)
+        if not achados:
+            console.print(f"[yellow]Nada registrado sobre '{termo}'.[/yellow]")
+            return
+        for banco, itens in achados.items():
+            console.print(f"\n[bold gold1]{banco}[/bold gold1]")
+            for item in itens:
+                nome = getattr(item, "nome", None) or getattr(item, "pergunta", item.id)
+                status = getattr(item, "status", None)
+                marca = f" [{status.value}]" if status else ""
+                console.print(f"  • {item.id}: {nome}{marca}")
+        return
+
+    if item_id:
+        try:
+            r = agent.verificar_fonte(item_id)
+        except KeyError as erro:
+            console.print(f"[red]{erro}[/red]")
+            return
+        tabela = Table(show_header=False)
+        tabela.add_column("Campo", style="bold")
+        tabela.add_column("Valor")
+        tabela.add_row("Banco", r["banco"])
+        tabela.add_row("Fonte", r["fonte"].documento if r["fonte"] else "—")
+        tabela.add_row("Tipo", r["fonte"].tipo if r["fonte"] else "—")
+        tabela.add_row("Proveniência", r["proveniencia"].value if r["proveniencia"] else "—")
+        tabela.add_row("Status", r["status"].value if r["status"] else "—")
+        tabela.add_row("Fonte disponível", "sim" if r["fonte_disponivel"] else "não")
+        tabela.add_row(
+            "Conteúdo verificável",
+            "[green]sim[/green]" if r["conteudo_verificavel"] else "[red]não[/red]",
+        )
+        console.print(tabela)
+        return
+
+    saida = agent.auditar_metodo()
+    resultado = saida["resultado"]
+
+    matriz = Table(title="Matriz Conhecimento → Decisão", show_header=True)
+    matriz.add_column("Pilar", style="bold gold1")
+    matriz.add_column("Pergunta", style="dim")
+    matriz.add_column("Ferramenta")
+    matriz.add_column("Entregável")
+    matriz.add_column("Completa")
+    for linha in resultado.matriz:
+        cor = "green" if linha["completa"] == "sim" else "red"
+        matriz.add_row(
+            linha["pilar"], linha["pergunta"], linha["ferramenta"],
+            linha["entregavel"], f"[{cor}]{linha['completa']}[/{cor}]",
+        )
+    console.print(matriz)
+
+    console.print(
+        f"\n[bold]{len(resultado.achados)} achado(s), "
+        f"{len(resultado.bloqueantes)} bloqueante(s)[/bold]\n"
+    )
+    for a in resultado.achados:
+        cor = {"bloqueante": "red", "alta": "yellow", "media": "dim"}[a.gravidade]
+        console.print(f"[{cor}]● [{a.gravidade.upper()}] {a.tema}[/{cor}]")
+        console.print(f"  {a.descricao}")
+        for item in a.itens[:6]:
+            console.print(f"    - {item}")
+        console.print(f"  [dim]Ação: {a.acao}[/dim]\n")
+
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(saida["relatorio"])
+        console.print(f"[green]Relatório salvo em: {output_file}[/green]")
+
+
+@cli.command()
+@click.option("--input", "-i", "input_file", type=click.Path(exists=True), required=True, help="Arquivo JSON da base comercial")
+@click.option("--lead", "lead_id", help="PREPARAR REUNIÃO — briefing de um lead específico")
+@click.option("--output", "-o", "output_file", type=click.Path(), help="Salva o relatório em Markdown")
+@click.option("--ia", is_flag=True, help="Adiciona a leitura estratégica com LLM")
+def crm(input_file: str, lead_id: str = None, output_file: str = None, ia: bool = False):
+    """Zion CRM & Lead Intelligence — qualificação, roteamento e funil."""
+    show_banner()
+
+    from src.agents.crm_agent import CRMAgent
+    agent = CRMAgent()
+
+    with open(input_file, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    if lead_id:
+        base = agent.carregar(dados)
+        lead = next((l for l in base.leads if l.id == lead_id), None)
+        if lead is None:
+            console.print(f"[red]Lead '{lead_id}' não encontrado na base.[/red]")
+            return
+        console.print(Markdown(agent.preparar_reuniao(lead, base.data_referencia)))
+        return
+
+    with console.status("[bold gold1]Analisando base comercial...[/bold gold1]"):
+        relatorio, markdown = agent.analisar(dados)
+
+    painel = Table(title="Painel Comercial", show_header=False)
+    painel.add_column("Indicador", style="bold")
+    painel.add_column("Valor", justify="right")
+    painel.add_row("Total de leads", str(relatorio.total_leads))
+    painel.add_row("Oportunidades", f"[bold gold1]{relatorio.oportunidades}[/bold gold1]")
+    painel.add_row("Leads quentes", str(relatorio.quentes))
+    painel.add_row("Novos leads", str(relatorio.novos))
+    painel.add_row("Leads parados", str(relatorio.parados))
+    painel.add_row("Follow-ups atrasados", str(relatorio.followups_atrasados))
+    painel.add_row("Pipeline aberto", f"R$ {relatorio.pipeline_aberto_brl:,.0f}")
+    console.print(painel)
+
+    fila = Table(title="Prioridade Comercial", show_header=True)
+    fila.add_column("#", width=3)
+    fila.add_column("Lead", style="bold")
+    fila.add_column("Estágio")
+    fila.add_column("Temp.")
+    fila.add_column("Score", justify="right")
+    fila.add_column("Conf.", justify="right")
+    fila.add_column("Porta")
+
+    icone = {"oportunidade": "🔥", "quente": "🟢", "morno": "🟡", "frio": "🔴"}
+    for q in relatorio.qualificados[:12]:
+        fila.add_row(
+            str(q.prioridade), q.lead.nome, q.lead.estagio.value,
+            icone[q.score.temperatura.value], f"{q.score.score:.1f}",
+            f"{q.score.confianca:.0%}", q.roteamento.porta.value,
+        )
+    console.print(fila)
+
+    if relatorio.funil:
+        console.print(f"\n[bold]Funil:[/bold] {relatorio.funil.diagnostico}")
+
+    if relatorio.higiene:
+        console.print("\n[bold]Higiene da base:[/bold]")
+        for a in relatorio.higiene:
+            cor = {"bloqueante": "red", "alta": "yellow", "media": "dim"}[a.gravidade]
+            console.print(f"  [{cor}]● {a.tema}: {len(a.leads)} registro(s)[/{cor}]")
+
+    if relatorio.acoes_recomendadas:
+        console.print("\n[bold]Ações recomendadas:[/bold]")
+        for i, acao in enumerate(relatorio.acoes_recomendadas, start=1):
+            console.print(f"  {i}. {acao}")
+
+    if ia:
+        console.print("\n[dim]Gerando leitura estratégica...[/dim]")
+        with console.status("[bold gold1]Analisando padrões...[/bold gold1]"):
+            saida = agent.execute(dados)
+        console.print(Panel(
+            Markdown(saida["analise"]),
+            title="[bold]Leitura Estratégica[/bold]", border_style="gold1",
+        ))
+        console.print(f"\n[green]Relatório salvo em: {saida['relatorio_path']}[/green]")
+
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(markdown)
+        console.print(f"\n[green]Relatório salvo em: {output_file}[/green]")
+
+
+@cli.command()
 def interactive():
     """Modo interativo — conversa com o agente Zion."""
     show_banner()

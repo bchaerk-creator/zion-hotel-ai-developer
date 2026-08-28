@@ -20,11 +20,13 @@ O **Zion Hotel AI Developer** é um agente de IA especializado em desenvolviment
 | 5 | Investor Readiness | Modelagem e apresentação para investidores |
 | 6 | Implementation Gov | Acompanhamento e consultoria de implantação |
 
-E um módulo transversal, que roda em paralelo a todas as etapas:
+E os módulos transversais, que rodam em paralelo a todas as etapas:
 
 | Módulo | Nome | Função |
 |-------|--------|--------|
 | 7 | Land Bank | Agregação territorial e originação de crédito de carbono |
+| 8 | Knowledge Engine | Fonte de verdade do Método Zion 360°, com proveniência e auditoria |
+| 9 | CRM & Lead Intelligence | Qualificação, roteamento comercial e inteligência de funil |
 
 ---
 
@@ -118,6 +120,27 @@ zion-hotel-ai-developer/
 A camada numérica é determinística e roda sem chave de API. O LLM entra apenas na
 camada estratégica. Documentação completa em [`docs/LAND_BANK.md`](docs/LAND_BANK.md).
 
+### Módulo 8 — Zion Knowledge Engine™
+- Hierarquia de sete níveis, de princípio a case, com proveniência declarada por item
+- Distinção entre conhecimento Zion, conhecimento externo e inferência estratégica
+- Grafo conceito → pilar → ferramenta → entregável → decisão → próximo pilar
+- Matriz Conhecimento → Decisão por pilar do Método Zion 360°
+- Auditoria do método: divergências entre fontes, ferramentas sem definição, números sem
+  período, pilares sem instrumentação
+- Modos professor, aula, exercício e avaliação
+
+Documentação em [`docs/KNOWLEDGE_ENGINE.md`](docs/KNOWLEDGE_ENGINE.md).
+
+### Módulo 9 — Zion CRM & Lead Intelligence™
+- Zion Lead Score™ com oito dimensões, e confiança reportada separadamente do score
+- Temperatura por situação comercial real, não por engajamento
+- Roteamento de oferta com a regra de não empurrar venda
+- Higiene da base: duplicidade, follow-up vencido, lead sem próxima ação, perda sem motivo
+- Análise de funil com diagnóstico de gargalo por posição
+- Lista de reativação e briefing de reunião
+
+Documentação em [`docs/CRM.md`](docs/CRM.md).
+
 ---
 
 ## Pilares Comerciais
@@ -180,6 +203,12 @@ python -m src.main pilares --pilar PARCERIA
 
 # Analisar o Land Bank (roda sem chave de API)
 python -m src.main land-bank --input data/exemplo_land_bank.json
+
+# Auditar o método (Knowledge Engine)
+python -m src.main knowledge
+
+# Analisar a base comercial (CRM)
+python -m src.main crm -i data/exemplo_base_comercial.json
 
 # Land Bank com relatório em Markdown, exportação JSON e camada estratégica de IA
 python -m src.main land-bank -i data/exemplo_land_bank.json \
