@@ -193,6 +193,11 @@ class Lead(BaseModel):
     objetivo: Objetivo = Objetivo.DESCONHECIDO
     origem_primeira: Origem = Origem.DESCONHECIDA
     origem_ultima: Origem = Origem.DESCONHECIDA
+    utm_campaign: Optional[str] = Field(
+        None, description="Campanha de origem. É o que liga a venda ao anúncio que a gerou."
+    )
+    utm_source: Optional[str] = None
+    utm_content: Optional[str] = Field(None, description="Criativo de origem")
 
     ativos: Ativos = Field(default_factory=Ativos)
     terreno: DadosTerreno = Field(default_factory=DadosTerreno)

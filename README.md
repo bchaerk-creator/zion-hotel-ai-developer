@@ -27,6 +27,7 @@ E os módulos transversais, que rodam em paralelo a todas as etapas:
 | 7 | Land Bank | Agregação territorial e originação de crédito de carbono |
 | 8 | Knowledge Engine | Fonte de verdade do Método Zion 360°, com proveniência e auditoria |
 | 9 | CRM & Lead Intelligence | Qualificação, roteamento comercial e inteligência de funil |
+| 10 | Traffic & Acquisition | Aquisição digital, diagnóstico de funil e atribuição de receita |
 
 ---
 
@@ -141,6 +142,16 @@ Documentação em [`docs/KNOWLEDGE_ENGINE.md`](docs/KNOWLEDGE_ENGINE.md).
 
 Documentação em [`docs/CRM.md`](docs/CRM.md).
 
+### Módulo 10 — Zion Traffic & Acquisition Architect™
+- Gate de campanha: as dez perguntas obrigatórias antes de qualquer verba
+- Custo por oportunidade qualificada como métrica de decisão, acima do custo por lead
+- Diagnóstico da cadeia inteira, com o gargalo no primeiro ponto que quebra
+- Decisão de escala com volume estatístico verificado, não com limiar arbitrário
+- Teste de significância para declarar vencedor de A/B e para julgar campanha sem conversão
+- Atribuição de receita por campanha cruzando UTM com o CRM
+
+Documentação em [`docs/TRAFFIC.md`](docs/TRAFFIC.md).
+
 ---
 
 ## Pilares Comerciais
@@ -209,6 +220,9 @@ python -m src.main knowledge
 
 # Analisar a base comercial (CRM)
 python -m src.main crm -i data/exemplo_base_comercial.json
+
+# Analisar aquisição com atribuição real de receita (Traffic)
+python -m src.main traffic -i data/exemplo_conta_trafego.json --crm data/exemplo_base_comercial.json
 
 # Land Bank com relatório em Markdown, exportação JSON e camada estratégica de IA
 python -m src.main land-bank -i data/exemplo_land_bank.json \

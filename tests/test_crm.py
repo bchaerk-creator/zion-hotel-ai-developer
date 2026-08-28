@@ -231,7 +231,7 @@ def relatorio():
 
 
 def test_exemplo_analisa(relatorio):
-    assert relatorio.total_leads == 13
+    assert relatorio.total_leads == 15
     assert relatorio.qualificados
     assert relatorio.funil
 
@@ -343,7 +343,7 @@ def test_agente_roda_sem_chave_de_api():
     with open(EXEMPLO, "r", encoding="utf-8") as f:
         dados = json.load(f)
     relatorio, markdown = CRMAgent().analisar(dados, HOJE)
-    assert relatorio.total_leads == 13
+    assert relatorio.total_leads == 15
     assert "Relatório Comercial Zion" in markdown
 
 

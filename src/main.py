@@ -548,6 +548,126 @@ def crm(input_file: str, lead_id: str = None, output_file: str = None, ia: bool 
 
 
 @cli.command()
+@click.option("--input", "-i", "input_file", type=click.Path(exists=True), required=True, help="Arquivo JSON da conta de tráfego")
+@click.option("--crm", "crm_file", type=click.Path(exists=True), help="Base do CRM para atribuição real de receita")
+@click.option("--output", "-o", "output_file", type=click.Path(), help="Salva o relatório em Markdown")
+@click.option("--ia", is_flag=True, help="Adiciona a leitura estratégica com LLM")
+def traffic(input_file: str, crm_file: str = None, output_file: str = None, ia: bool = False):
+    """Zion Traffic & Acquisition — gate, diagnóstico, otimização e atribuição."""
+    show_banner()
+
+    from src.agents.traffic_agent import TrafficAgent
+    agent = TrafficAgent()
+
+    with open(input_file, "r", encoding="utf-8") as f:
+        dados = json.load(f)
+
+    dados_crm = None
+    if crm_file:
+        with open(crm_file, "r", encoding="utf-8") as f:
+            dados_crm = json.load(f)
+
+    with console.status("[bold gold1]Analisando aquisição...[/bold gold1]"):
+        relatorio, markdown = agent.analisar(dados, dados_crm)
+
+    painel = Table(title="Painel de Aquisição", show_header=False)
+    painel.add_column("Indicador", style="bold")
+    painel.add_column("Valor", justify="right")
+    painel.add_row("Investimento", f"R$ {relatorio.investimento_total_brl:,.0f}")
+    painel.add_row("Receita atribuída", f"R$ {relatorio.receita_total_brl:,.0f}")
+    painel.add_row("ROAS", f"{relatorio.roas_geral:.2f}x" if relatorio.roas_geral else "—")
+    painel.add_row("Leads", str(relatorio.leads))
+    painel.add_row("Oportunidades", str(relatorio.oportunidades))
+    painel.add_row("Vendas", str(relatorio.vendas))
+    painel.add_row(
+        "Custo por oportunidade",
+        f"[bold gold1]R$ {relatorio.cpqo_geral_brl:,.0f}[/bold gold1]"
+        if relatorio.cpqo_geral_brl else "—",
+    )
+    painel.add_row("CAC", f"R$ {relatorio.cac_geral_brl:,.0f}" if relatorio.cac_geral_brl else "—")
+    console.print(painel)
+
+    bloqueadas = [g for g in relatorio.gates if not g.liberada and g.perguntas_sem_resposta]
+    for g in bloqueadas:
+        console.print(f"\n[red]● {g.campanha_id}: {g.veredito}[/red]")
+        for p in g.perguntas_sem_resposta:
+            console.print(f"    - {p}")
+
+    tabela = Table(title="Diagnóstico por Campanha", show_header=True)
+    tabela.add_column("Campanha", style="bold")
+    tabela.add_column("Invest.", justify="right")
+    tabela.add_column("CTR", justify="right")
+    tabela.add_column("CPL", justify="right")
+    tabela.add_column("CPQO", justify="right")
+    tabela.add_column("CAC", justify="right")
+    tabela.add_column("Gargalo")
+    tabela.add_column("Decisão")
+
+    decisoes = {d.campanha_id: d for d in relatorio.decisoes}
+    cores = {"escalar": "green", "manter": "white", "investigar": "yellow",
+             "pausar": "red", "aguardar_volume": "dim"}
+    for d in relatorio.diagnosticos:
+        m = d.metricas
+        acao = decisoes[d.campanha_id].acao
+        tabela.add_row(
+            d.nome, f"R$ {m.investimento_brl:,.0f}",
+            f"{m.ctr:.2%}" if m.ctr else "—",
+            f"R$ {m.cpl_brl:,.0f}" if m.cpl_brl else "—",
+            f"R$ {m.cpqo_brl:,.0f}" if m.cpqo_brl else "—",
+            f"R$ {m.cac_brl:,.0f}" if m.cac_brl else "—",
+            d.gargalo.value if d.gargalo else "—",
+            f"[{cores[acao]}]{acao}[/{cores[acao]}]",
+        )
+    console.print(tabela)
+
+    if relatorio.atribuicao:
+        attr = Table(title="Atribuição Real (via CRM)", show_header=True)
+        attr.add_column("Campanha", style="bold")
+        attr.add_column("Leads", justify="right")
+        attr.add_column("Oport.", justify="right")
+        attr.add_column("Clientes", justify="right")
+        attr.add_column("Receita", justify="right")
+        attr.add_column("Rank leads", justify="right")
+        attr.add_column("Rank receita", justify="right")
+        for a in sorted(relatorio.atribuicao, key=lambda x: -x.receita_brl):
+            attr.add_row(
+                a.nome, str(a.leads), str(a.oportunidades), str(a.clientes),
+                f"R$ {a.receita_brl:,.0f}",
+                str(a.ranking_por_leads), str(a.ranking_por_receita),
+            )
+        console.print(attr)
+
+        from src.traffic import leitura_da_atribuicao
+        conta = agent.carregar(dados)
+        for o in leitura_da_atribuicao(relatorio.atribuicao, conta):
+            console.print(f"[yellow]• {o}[/yellow]")
+
+    if relatorio.acoes_recomendadas:
+        console.print("\n[bold]Ações recomendadas:[/bold]")
+        for i, acao in enumerate(relatorio.acoes_recomendadas, start=1):
+            console.print(f"  {i}. {acao}")
+
+    if ia:
+        console.print("\n[dim]Gerando leitura estratégica...[/dim]")
+        with console.status("[bold gold1]Analisando...[/bold gold1]"):
+            payload = dict(dados)
+            if dados_crm:
+                payload["base_comercial"] = dados_crm
+            saida = agent.execute(payload)
+        console.print(Panel(
+            Markdown(saida["analise"]),
+            title="[bold]Leitura Estratégica[/bold]", border_style="gold1",
+        ))
+        console.print(f"\n[green]Relatório salvo em: {saida['relatorio_path']}[/green]")
+
+    if output_file:
+        Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        with open(output_file, "w", encoding="utf-8") as f:
+            f.write(markdown)
+        console.print(f"\n[green]Relatório salvo em: {output_file}[/green]")
+
+
+@cli.command()
 def interactive():
     """Modo interativo — conversa com o agente Zion."""
     show_banner()

@@ -3,208 +3,681 @@
   "data_referencia": "2026-08-28",
   "leads": [
     {
-      "id": "LD-001", "nome": "Ricardo Menezes", "empresa": "Fazenda Santa Clara",
-      "email": "ricardo@santaclara.com.br", "telefone": "48999110022",
-      "cidade": "Urubici", "estado": "SC",
-      "perfil": "01_proprietario_terreno", "objetivo": "quer_desenvolver",
-      "origem_primeira": "livro", "origem_ultima": "whatsapp",
-      "ativos": {"terreno": "sim", "capital": "sim", "operacao": "nao", "projeto": "nao"},
-      "terreno": {"area_ha": 140.0, "localizacao": "Urubici, SC", "documentacao_regular": "sim"},
-      "financeiro": {"capital_disponivel_brl": 3500000, "busca_financiamento": "sim"},
-      "projeto": {"estagio": "terreno", "prazo_meses": 12, "objetivo": "glamping de alto padrão"},
-      "estagio": "04_diagnostico", "e_decisor": "sim", "valor_potencial_brl": 180000,
-      "responsavel": "Bruno", "data_criacao": "2026-05-10", "data_ultima_atividade": "2026-08-22",
-      "proxima_acao": {"acao": "Enviar proposta de Diagnóstico Territorial", "data_prevista": "2026-08-30", "responsavel": "Bruno"},
+      "id": "LD-001",
+      "nome": "Ricardo Menezes",
+      "empresa": "Fazenda Santa Clara",
+      "email": "ricardo@santaclara.com.br",
+      "telefone": "48999110022",
+      "cidade": "Urubici",
+      "estado": "SC",
+      "perfil": "01_proprietario_terreno",
+      "objetivo": "quer_desenvolver",
+      "origem_primeira": "livro",
+      "origem_ultima": "whatsapp",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "sim",
+        "operacao": "nao",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 140.0,
+        "localizacao": "Urubici, SC",
+        "documentacao_regular": "sim"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 3500000,
+        "busca_financiamento": "sim"
+      },
+      "projeto": {
+        "estagio": "terreno",
+        "prazo_meses": 12,
+        "objetivo": "glamping de alto padrão"
+      },
+      "estagio": "04_diagnostico",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 180000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-05-10",
+      "data_ultima_atividade": "2026-08-22",
+      "proxima_acao": {
+        "acao": "Enviar proposta de Diagnóstico Territorial",
+        "data_prevista": "2026-08-30",
+        "responsavel": "Bruno"
+      },
       "interacoes": [
-        {"data": "2026-05-10", "canal": "whatsapp", "o_que_foi_enviado": "Contato inicial após leitura do livro", "resposta": "Interessado, tem 140 ha"},
-        {"data": "2026-06-14", "canal": "call", "o_que_foi_enviado": "Sessão de qualificação", "resposta": "Quer delegar o desenvolvimento"},
-        {"data": "2026-08-22", "canal": "email", "o_que_foi_enviado": "Escopo do diagnóstico", "resposta": "Vai analisar"}
+        {
+          "data": "2026-05-10",
+          "canal": "whatsapp",
+          "o_que_foi_enviado": "Contato inicial após leitura do livro",
+          "resposta": "Interessado, tem 140 ha"
+        },
+        {
+          "data": "2026-06-14",
+          "canal": "call",
+          "o_que_foi_enviado": "Sessão de qualificação",
+          "resposta": "Quer delegar o desenvolvimento"
+        },
+        {
+          "data": "2026-08-22",
+          "canal": "email",
+          "o_que_foi_enviado": "Escopo do diagnóstico",
+          "resposta": "Vai analisar"
+        }
+      ],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
+    },
+    {
+      "id": "LD-002",
+      "nome": "Marta Nogueira",
+      "email": "marta.nogueira@gmail.com",
+      "telefone": "51988220033",
+      "cidade": "Gramado",
+      "estado": "RS",
+      "perfil": "01_proprietario_terreno",
+      "objetivo": "nao_sabe",
+      "origem_primeira": "instagram",
+      "origem_ultima": "instagram",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "desconhecido",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 18.0,
+        "localizacao": "Gramado, RS"
+      },
+      "estagio": "03_qualificacao",
+      "e_decisor": "sim",
+      "responsavel": "Bruno",
+      "data_criacao": "2026-07-02",
+      "data_ultima_atividade": "2026-08-18",
+      "proxima_acao": {
+        "acao": "Aplicar roteiro de qualificação de terrenista",
+        "data_prevista": "2026-09-02",
+        "responsavel": "Bruno"
+      },
+      "interacoes": [
+        {
+          "data": "2026-07-02",
+          "canal": "instagram",
+          "o_que_foi_enviado": "DM sobre o terreno da família",
+          "resposta": "Herdou 18 ha, não sabe o que fazer"
+        }
+      ],
+      "utm_campaign": "diag-meta-frio",
+      "utm_source": "meta_ads"
+    },
+    {
+      "id": "LD-003",
+      "nome": "Fundo Aurora Capital",
+      "empresa": "Aurora Capital",
+      "email": "deals@auroracapital.com",
+      "telefone": "1133445566",
+      "cidade": "São Paulo",
+      "estado": "SP",
+      "perfil": "07_investidor_institucional",
+      "objetivo": "quer_investir",
+      "origem_primeira": "indicacao",
+      "origem_ultima": "indicacao",
+      "ativos": {
+        "terreno": "nao",
+        "capital": "sim",
+        "rede": "sim",
+        "experiencia": "sim"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 25000000,
+        "origem_capital": "fundo próprio"
+      },
+      "estagio": "05_reuniao",
+      "e_decisor": "nao",
+      "valor_potencial_brl": 900000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-06-20",
+      "data_ultima_atividade": "2026-08-26",
+      "proxima_acao": {
+        "acao": "Enviar teaser do pipeline de destinos",
+        "data_prevista": "2026-09-01",
+        "responsavel": "Bruno"
+      },
+      "interacoes": [
+        {
+          "data": "2026-06-20",
+          "canal": "email",
+          "o_que_foi_enviado": "Apresentação institucional",
+          "resposta": "Pediu reunião"
+        },
+        {
+          "data": "2026-08-26",
+          "canal": "call",
+          "o_que_foi_enviado": "Reunião de apresentação",
+          "resposta": "Quer ver oportunidades concretas"
+        }
       ]
     },
     {
-      "id": "LD-002", "nome": "Marta Nogueira",
-      "email": "marta.nogueira@gmail.com", "telefone": "51988220033",
-      "cidade": "Gramado", "estado": "RS",
-      "perfil": "01_proprietario_terreno", "objetivo": "nao_sabe",
-      "origem_primeira": "instagram", "origem_ultima": "instagram",
-      "ativos": {"terreno": "sim", "capital": "desconhecido", "projeto": "nao"},
-      "terreno": {"area_ha": 18.0, "localizacao": "Gramado, RS"},
-      "estagio": "03_qualificacao", "e_decisor": "sim",
-      "responsavel": "Bruno", "data_criacao": "2026-07-02", "data_ultima_atividade": "2026-08-18",
-      "proxima_acao": {"acao": "Aplicar roteiro de qualificação de terrenista", "data_prevista": "2026-09-02", "responsavel": "Bruno"},
+      "id": "LD-004",
+      "nome": "Pousada Vista Verde",
+      "empresa": "Vista Verde Hotelaria",
+      "email": "contato@vistaverde.com.br",
+      "telefone": "4899887766",
+      "cidade": "Praia Grande",
+      "estado": "SC",
+      "perfil": "04_operador",
+      "objetivo": "quer_operar",
+      "origem_primeira": "google_ads",
+      "origem_ultima": "site",
+      "ativos": {
+        "terreno": "sim",
+        "operacao": "sim",
+        "marca": "sim",
+        "capital": "nao"
+      },
+      "terreno": {
+        "area_ha": 4.0
+      },
+      "projeto": {
+        "numero_unidades": 14,
+        "objetivo": "aumentar receita e reposicionar"
+      },
+      "estagio": "03_qualificacao",
+      "e_decisor": "sim",
+      "responsavel": "Bruno",
+      "data_criacao": "2026-07-15",
+      "data_ultima_atividade": "2026-08-20",
+      "proxima_acao": {
+        "acao": "Diagnóstico da operação atual",
+        "data_prevista": "2026-08-27",
+        "responsavel": "Bruno"
+      },
       "interacoes": [
-        {"data": "2026-07-02", "canal": "instagram", "o_que_foi_enviado": "DM sobre o terreno da família", "resposta": "Herdou 18 ha, não sabe o que fazer"}
-      ]
+        {
+          "data": "2026-07-15",
+          "canal": "site",
+          "o_que_foi_enviado": "Formulário de contato",
+          "resposta": "Ocupação baixa na baixa temporada"
+        }
+      ],
+      "utm_campaign": "diag-meta-frio",
+      "utm_source": "meta_ads"
     },
     {
-      "id": "LD-003", "nome": "Fundo Aurora Capital", "empresa": "Aurora Capital",
-      "email": "deals@auroracapital.com", "telefone": "1133445566",
-      "cidade": "São Paulo", "estado": "SP",
-      "perfil": "07_investidor_institucional", "objetivo": "quer_investir",
-      "origem_primeira": "indicacao", "origem_ultima": "indicacao",
-      "ativos": {"terreno": "nao", "capital": "sim", "rede": "sim", "experiencia": "sim"},
-      "financeiro": {"capital_disponivel_brl": 25000000, "origem_capital": "fundo próprio"},
-      "estagio": "05_reuniao", "e_decisor": "nao", "valor_potencial_brl": 900000,
-      "responsavel": "Bruno", "data_criacao": "2026-06-20", "data_ultima_atividade": "2026-08-26",
-      "proxima_acao": {"acao": "Enviar teaser do pipeline de destinos", "data_prevista": "2026-09-01", "responsavel": "Bruno"},
+      "id": "LD-005",
+      "nome": "Camila Duarte",
+      "email": "camila.duarte@outlook.com",
+      "telefone": "31977665544",
+      "cidade": "Belo Horizonte",
+      "estado": "MG",
+      "perfil": "08_aluno",
+      "objetivo": "quer_aprender",
+      "origem_primeira": "youtube",
+      "origem_ultima": "livro",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "desconhecido",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 6.0,
+        "localizacao": "Serra do Cipó, MG"
+      },
+      "projeto": {
+        "prazo_meses": 24
+      },
+      "estagio": "02_contato_iniciado",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 12000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-08-05",
+      "data_ultima_atividade": "2026-08-25",
+      "proxima_acao": {
+        "acao": "Convidar para sessão de diagnóstico da mentoria",
+        "data_prevista": "2026-09-03",
+        "responsavel": "Bruno"
+      },
       "interacoes": [
-        {"data": "2026-06-20", "canal": "email", "o_que_foi_enviado": "Apresentação institucional", "resposta": "Pediu reunião"},
-        {"data": "2026-08-26", "canal": "call", "o_que_foi_enviado": "Reunião de apresentação", "resposta": "Quer ver oportunidades concretas"}
-      ]
+        {
+          "data": "2026-08-05",
+          "canal": "youtube",
+          "o_que_foi_enviado": "Comentário respondido",
+          "resposta": "Quer aprender a desenvolver sozinha"
+        },
+        {
+          "data": "2026-08-25",
+          "canal": "whatsapp",
+          "o_que_foi_enviado": "Material da mentoria",
+          "resposta": "Vai avaliar"
+        }
+      ],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
     },
     {
-      "id": "LD-004", "nome": "Pousada Vista Verde", "empresa": "Vista Verde Hotelaria",
-      "email": "contato@vistaverde.com.br", "telefone": "4899887766",
-      "cidade": "Praia Grande", "estado": "SC",
-      "perfil": "04_operador", "objetivo": "quer_operar",
-      "origem_primeira": "google_ads", "origem_ultima": "site",
-      "ativos": {"terreno": "sim", "operacao": "sim", "marca": "sim", "capital": "nao"},
-      "terreno": {"area_ha": 4.0},
-      "projeto": {"numero_unidades": 14, "objetivo": "aumentar receita e reposicionar"},
-      "estagio": "03_qualificacao", "e_decisor": "sim",
-      "responsavel": "Bruno", "data_criacao": "2026-07-15", "data_ultima_atividade": "2026-08-20",
-      "proxima_acao": {"acao": "Diagnóstico da operação atual", "data_prevista": "2026-08-27", "responsavel": "Bruno"},
-      "interacoes": [
-        {"data": "2026-07-15", "canal": "site", "o_que_foi_enviado": "Formulário de contato", "resposta": "Ocupação baixa na baixa temporada"}
-      ]
-    },
-    {
-      "id": "LD-005", "nome": "Camila Duarte",
-      "email": "camila.duarte@outlook.com", "telefone": "31977665544",
-      "cidade": "Belo Horizonte", "estado": "MG",
-      "perfil": "08_aluno", "objetivo": "quer_aprender",
-      "origem_primeira": "youtube", "origem_ultima": "livro",
-      "ativos": {"terreno": "sim", "capital": "desconhecido", "projeto": "nao"},
-      "terreno": {"area_ha": 6.0, "localizacao": "Serra do Cipó, MG"},
-      "projeto": {"prazo_meses": 24},
-      "estagio": "02_contato_iniciado", "e_decisor": "sim", "valor_potencial_brl": 12000,
-      "responsavel": "Bruno", "data_criacao": "2026-08-05", "data_ultima_atividade": "2026-08-25",
-      "proxima_acao": {"acao": "Convidar para sessão de diagnóstico da mentoria", "data_prevista": "2026-09-03", "responsavel": "Bruno"},
-      "interacoes": [
-        {"data": "2026-08-05", "canal": "youtube", "o_que_foi_enviado": "Comentário respondido", "resposta": "Quer aprender a desenvolver sozinha"},
-        {"data": "2026-08-25", "canal": "whatsapp", "o_que_foi_enviado": "Material da mentoria", "resposta": "Vai avaliar"}
-      ]
-    },
-    {
-      "id": "LD-006", "nome": "Thiago Barros",
-      "email": "thiago.barros@empresa.com", "telefone": "21966554433",
-      "cidade": "Rio de Janeiro", "estado": "RJ",
-      "perfil": "03_empreendedor", "objetivo": "quer_comprar",
-      "origem_primeira": "meta_ads", "origem_ultima": "meta_ads",
-      "ativos": {"terreno": "nao", "capital": "sim", "projeto": "nao"},
-      "financeiro": {"capital_disponivel_brl": 600000},
-      "estagio": "03_qualificacao", "e_decisor": "sim", "valor_potencial_brl": 400000,
-      "responsavel": "Bruno", "data_criacao": "2026-08-12", "data_ultima_atividade": "2026-08-24",
-      "proxima_acao": {"acao": "Qualificar se existe terreno em vista", "data_prevista": "2026-08-29", "responsavel": "Bruno"},
+      "id": "LD-006",
+      "nome": "Thiago Barros",
+      "email": "thiago.barros@empresa.com",
+      "telefone": "21966554433",
+      "cidade": "Rio de Janeiro",
+      "estado": "RJ",
+      "perfil": "03_empreendedor",
+      "objetivo": "quer_comprar",
+      "origem_primeira": "meta_ads",
+      "origem_ultima": "meta_ads",
+      "ativos": {
+        "terreno": "nao",
+        "capital": "sim",
+        "projeto": "nao"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 600000
+      },
+      "estagio": "03_qualificacao",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 400000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-08-12",
+      "data_ultima_atividade": "2026-08-24",
+      "proxima_acao": {
+        "acao": "Qualificar se existe terreno em vista",
+        "data_prevista": "2026-08-29",
+        "responsavel": "Bruno"
+      },
       "observacoes": "Chegou pedindo preço de bubble. Não tem terreno nem projeto.",
       "interacoes": [
-        {"data": "2026-08-12", "canal": "meta_ads", "o_que_foi_enviado": "Lead do anúncio", "resposta": "Quer comprar 5 bubbles"}
-      ]
+        {
+          "data": "2026-08-12",
+          "canal": "meta_ads",
+          "o_que_foi_enviado": "Lead do anúncio",
+          "resposta": "Quer comprar 5 bubbles"
+        }
+      ],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
     },
     {
-      "id": "LD-007", "nome": "Grupo Serra Alta", "empresa": "Serra Alta Empreendimentos",
-      "email": "diretoria@serraalta.com.br", "telefone": "5433221100",
-      "cidade": "Canela", "estado": "RS",
-      "perfil": "05_desenvolvedor", "objetivo": "precisa_capital",
-      "origem_primeira": "indicacao", "origem_ultima": "evento",
-      "ativos": {"terreno": "sim", "capital": "nao", "projeto": "sim", "experiencia": "sim"},
-      "terreno": {"area_ha": 55.0, "localizacao": "Canela, RS", "documentacao_regular": "sim"},
-      "financeiro": {"faixa_investimento_brl": 12000000, "busca_financiamento": "sim"},
-      "projeto": {"estagio": "projeto", "numero_unidades": 40, "prazo_meses": 8, "modelo_desejado": "eco resort"},
-      "estagio": "06_oferta", "e_decisor": "sim", "valor_potencial_brl": 750000,
-      "responsavel": "Bruno", "data_criacao": "2026-04-18", "data_ultima_atividade": "2026-08-27",
-      "proxima_acao": {"acao": "Enviar proposta de estruturação de captação", "data_prevista": "2026-08-31", "responsavel": "Bruno"},
+      "id": "LD-007",
+      "nome": "Grupo Serra Alta",
+      "empresa": "Serra Alta Empreendimentos",
+      "email": "diretoria@serraalta.com.br",
+      "telefone": "5433221100",
+      "cidade": "Canela",
+      "estado": "RS",
+      "perfil": "05_desenvolvedor",
+      "objetivo": "precisa_capital",
+      "origem_primeira": "indicacao",
+      "origem_ultima": "evento",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "nao",
+        "projeto": "sim",
+        "experiencia": "sim"
+      },
+      "terreno": {
+        "area_ha": 55.0,
+        "localizacao": "Canela, RS",
+        "documentacao_regular": "sim"
+      },
+      "financeiro": {
+        "faixa_investimento_brl": 12000000,
+        "busca_financiamento": "sim"
+      },
+      "projeto": {
+        "estagio": "projeto",
+        "numero_unidades": 40,
+        "prazo_meses": 8,
+        "modelo_desejado": "eco resort"
+      },
+      "estagio": "06_oferta",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 750000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-04-18",
+      "data_ultima_atividade": "2026-08-27",
+      "proxima_acao": {
+        "acao": "Enviar proposta de estruturação de captação",
+        "data_prevista": "2026-08-31",
+        "responsavel": "Bruno"
+      },
       "interacoes": [
-        {"data": "2026-04-18", "canal": "evento", "o_que_foi_enviado": "Contato em feira do setor", "resposta": "Projeto pronto, falta capital"},
-        {"data": "2026-07-09", "canal": "call", "o_que_foi_enviado": "Revisão da viabilidade", "resposta": "Números batem"},
-        {"data": "2026-08-27", "canal": "email", "o_que_foi_enviado": "Escopo de estruturação", "resposta": "Aguardando proposta"}
-      ]
+        {
+          "data": "2026-04-18",
+          "canal": "evento",
+          "o_que_foi_enviado": "Contato em feira do setor",
+          "resposta": "Projeto pronto, falta capital"
+        },
+        {
+          "data": "2026-07-09",
+          "canal": "call",
+          "o_que_foi_enviado": "Revisão da viabilidade",
+          "resposta": "Números batem"
+        },
+        {
+          "data": "2026-08-27",
+          "canal": "email",
+          "o_que_foi_enviado": "Escopo de estruturação",
+          "resposta": "Aguardando proposta"
+        }
+      ],
+      "utm_campaign": "dev-google-search",
+      "utm_source": "google_ads"
     },
     {
-      "id": "LD-008", "nome": "Nivaldo Соуза", "empresa": "Rota dos Milagres",
-      "email": "nivaldo@rotadosmilagres.com.br", "telefone": "82988776655",
-      "cidade": "Passo de Camaragibe", "estado": "AL",
-      "perfil": "09_potencial_parceiro", "objetivo": "quer_parceria",
-      "origem_primeira": "parceiro", "origem_ultima": "whatsapp",
-      "ativos": {"terreno": "sim", "capital": "nao", "rede": "sim", "projeto": "nao"},
-      "terreno": {"area_ha": 520.0, "localizacao": "Passo de Camaragibe, AL"},
-      "projeto": {"prazo_meses": 18},
-      "estagio": "07_negociacao", "e_decisor": "sim", "valor_potencial_brl": 2000000,
-      "responsavel": "Bruno", "data_criacao": "2026-03-05", "data_ultima_atividade": "2026-08-19",
-      "proxima_acao": {"acao": "Estruturar termos da joint venture", "data_prevista": "2026-09-05", "responsavel": "Bruno"},
+      "id": "LD-008",
+      "nome": "Nivaldo Соуза",
+      "empresa": "Rota dos Milagres",
+      "email": "nivaldo@rotadosmilagres.com.br",
+      "telefone": "82988776655",
+      "cidade": "Passo de Camaragibe",
+      "estado": "AL",
+      "perfil": "09_potencial_parceiro",
+      "objetivo": "quer_parceria",
+      "origem_primeira": "parceiro",
+      "origem_ultima": "whatsapp",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "nao",
+        "rede": "sim",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 520.0,
+        "localizacao": "Passo de Camaragibe, AL"
+      },
+      "projeto": {
+        "prazo_meses": 18
+      },
+      "estagio": "07_negociacao",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 2000000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-03-05",
+      "data_ultima_atividade": "2026-08-19",
+      "proxima_acao": {
+        "acao": "Estruturar termos da joint venture",
+        "data_prevista": "2026-09-05",
+        "responsavel": "Bruno"
+      },
       "interacoes": [
-        {"data": "2026-03-05", "canal": "indicacao", "o_que_foi_enviado": "Apresentação da Zion", "resposta": "Tem terra, quer sócio"},
-        {"data": "2026-06-11", "canal": "presencial", "o_que_foi_enviado": "Visita ao terreno", "resposta": "MOU assinado"}
+        {
+          "data": "2026-03-05",
+          "canal": "indicacao",
+          "o_que_foi_enviado": "Apresentação da Zion",
+          "resposta": "Tem terra, quer sócio"
+        },
+        {
+          "data": "2026-06-11",
+          "canal": "presencial",
+          "o_que_foi_enviado": "Visita ao terreno",
+          "resposta": "MOU assinado"
+        }
       ]
     },
     {
-      "id": "LD-009", "nome": "Eduardo Pacheco",
-      "email": "eduardo.pacheco@terra.com.br", "telefone": "47955443322",
-      "cidade": "Bombinhas", "estado": "SC",
-      "perfil": "01_proprietario_terreno", "objetivo": "quer_desenvolver",
-      "origem_primeira": "organico", "origem_ultima": "organico",
-      "ativos": {"terreno": "sim", "capital": "sim", "projeto": "nao"},
-      "terreno": {"area_ha": 32.0, "localizacao": "Bombinhas, SC"},
-      "financeiro": {"capital_disponivel_brl": 2200000},
-      "projeto": {"prazo_meses": 18},
-      "estagio": "03_qualificacao", "e_decisor": "sim", "valor_potencial_brl": 150000,
-      "responsavel": "Bruno", "data_criacao": "2026-01-20", "data_ultima_atividade": "2026-04-15",
+      "id": "LD-009",
+      "nome": "Eduardo Pacheco",
+      "email": "eduardo.pacheco@terra.com.br",
+      "telefone": "47955443322",
+      "cidade": "Bombinhas",
+      "estado": "SC",
+      "perfil": "01_proprietario_terreno",
+      "objetivo": "quer_desenvolver",
+      "origem_primeira": "organico",
+      "origem_ultima": "organico",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "sim",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 32.0,
+        "localizacao": "Bombinhas, SC"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 2200000
+      },
+      "projeto": {
+        "prazo_meses": 18
+      },
+      "estagio": "03_qualificacao",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 150000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-01-20",
+      "data_ultima_atividade": "2026-04-15",
       "observacoes": "Sumiu depois da primeira conversa.",
       "interacoes": [
-        {"data": "2026-01-20", "canal": "site", "o_que_foi_enviado": "Formulário", "resposta": "Tem 32 ha em Bombinhas"},
-        {"data": "2026-04-15", "canal": "whatsapp", "o_que_foi_enviado": "Follow-up", "resposta": null}
-      ]
+        {
+          "data": "2026-01-20",
+          "canal": "site",
+          "o_que_foi_enviado": "Formulário",
+          "resposta": "Tem 32 ha em Bombinhas"
+        },
+        {
+          "data": "2026-04-15",
+          "canal": "whatsapp",
+          "o_que_foi_enviado": "Follow-up",
+          "resposta": null
+        }
+      ],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
     },
     {
-      "id": "LD-010", "nome": "Helena Vasconcelos",
-      "email": "helena.v@construtorahv.com.br", "telefone": "6299887711",
-      "cidade": "Pirenópolis", "estado": "GO",
-      "perfil": "05_desenvolvedor", "objetivo": "quer_desenvolver",
-      "origem_primeira": "podcast", "origem_ultima": "podcast",
-      "ativos": {"terreno": "sim", "capital": "sim", "projeto": "sim", "experiencia": "sim"},
-      "terreno": {"area_ha": 45.0, "localizacao": "Pirenópolis, GO"},
-      "financeiro": {"capital_disponivel_brl": 5000000},
-      "projeto": {"estagio": "conceito", "prazo_meses": 30},
-      "estagio": "10_perdido", "motivo_perda": "timing", "e_decisor": "sim",
-      "observacao_perda": "Adiou o projeto para depois da eleição municipal.",
-      "responsavel": "Bruno", "data_criacao": "2025-11-08", "data_ultima_atividade": "2026-02-10",
-      "interacoes": [
-        {"data": "2025-11-08", "canal": "podcast", "o_que_foi_enviado": "Contato após episódio", "resposta": "Interessada"},
-        {"data": "2026-02-10", "canal": "call", "o_que_foi_enviado": "Proposta de desenvolvimento", "resposta": "Adiou o projeto"}
-      ]
-    },
-    {
-      "id": "LD-011", "nome": "Marcos Tavares",
-      "email": "marcos.tavares@uol.com.br", "telefone": "1199001122",
-      "cidade": "Campos do Jordão", "estado": "SP",
-      "perfil": "03_empreendedor", "objetivo": "quer_desenvolver",
-      "origem_primeira": "meta_ads", "origem_ultima": "meta_ads",
-      "ativos": {"terreno": "desconhecido", "capital": "desconhecido"},
+      "id": "LD-010",
+      "nome": "Helena Vasconcelos",
+      "email": "helena.v@construtorahv.com.br",
+      "telefone": "6299887711",
+      "cidade": "Pirenópolis",
+      "estado": "GO",
+      "perfil": "05_desenvolvedor",
+      "objetivo": "quer_desenvolver",
+      "origem_primeira": "podcast",
+      "origem_ultima": "podcast",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "sim",
+        "projeto": "sim",
+        "experiencia": "sim"
+      },
+      "terreno": {
+        "area_ha": 45.0,
+        "localizacao": "Pirenópolis, GO"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 5000000
+      },
+      "projeto": {
+        "estagio": "conceito",
+        "prazo_meses": 30
+      },
       "estagio": "10_perdido",
-      "responsavel": "Bruno", "data_criacao": "2026-02-14", "data_ultima_atividade": "2026-03-30",
-      "observacoes": "Encerrado sem motivo registrado.",
-      "interacoes": []
+      "motivo_perda": "timing",
+      "e_decisor": "sim",
+      "observacao_perda": "Adiou o projeto para depois da eleição municipal.",
+      "responsavel": "Bruno",
+      "data_criacao": "2025-11-08",
+      "data_ultima_atividade": "2026-02-10",
+      "interacoes": [
+        {
+          "data": "2025-11-08",
+          "canal": "podcast",
+          "o_que_foi_enviado": "Contato após episódio",
+          "resposta": "Interessada"
+        },
+        {
+          "data": "2026-02-10",
+          "canal": "call",
+          "o_que_foi_enviado": "Proposta de desenvolvimento",
+          "resposta": "Adiou o projeto"
+        }
+      ]
     },
     {
-      "id": "LD-012", "nome": "Ricardo Menezes",
+      "id": "LD-011",
+      "nome": "Marcos Tavares",
+      "email": "marcos.tavares@uol.com.br",
+      "telefone": "1199001122",
+      "cidade": "Campos do Jordão",
+      "estado": "SP",
+      "perfil": "03_empreendedor",
+      "objetivo": "quer_desenvolver",
+      "origem_primeira": "meta_ads",
+      "origem_ultima": "meta_ads",
+      "ativos": {
+        "terreno": "desconhecido",
+        "capital": "desconhecido"
+      },
+      "estagio": "10_perdido",
+      "responsavel": "Bruno",
+      "data_criacao": "2026-02-14",
+      "data_ultima_atividade": "2026-03-30",
+      "observacoes": "Encerrado sem motivo registrado.",
+      "interacoes": [],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
+    },
+    {
+      "id": "LD-012",
+      "nome": "Ricardo Menezes",
       "email": "ricardo@santaclara.com.br",
-      "cidade": "Urubici", "estado": "SC",
-      "origem_primeira": "desconhecida", "origem_ultima": "desconhecida",
+      "cidade": "Urubici",
+      "estado": "SC",
+      "origem_primeira": "desconhecida",
+      "origem_ultima": "desconhecida",
       "estagio": "01_novo_lead",
       "data_criacao": "2026-08-26",
       "observacoes": "Registro criado por importação. Provável duplicidade.",
+      "interacoes": [],
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads"
+    },
+    {
+      "id": "LD-013",
+      "nome": "Arq. Paula Restrepo",
+      "cidade": "Florianópolis",
+      "estado": "SC",
+      "perfil": "06_profissional",
+      "objetivo": "quer_parceria",
+      "origem_primeira": "evento",
+      "origem_ultima": "evento",
+      "ativos": {
+        "rede": "sim",
+        "experiencia": "sim",
+        "terreno": "nao",
+        "capital": "nao"
+      },
+      "estagio": "02_contato_iniciado",
+      "data_criacao": "2026-08-01",
+      "data_ultima_atividade": "2026-08-01",
+      "observacoes": "Conheceu a Zion em evento. Sem canal de contato registrado.",
       "interacoes": []
     },
     {
-      "id": "LD-013", "nome": "Arq. Paula Restrepo",
-      "cidade": "Florianópolis", "estado": "SC",
-      "perfil": "06_profissional", "objetivo": "quer_parceria",
-      "origem_primeira": "evento", "origem_ultima": "evento",
-      "ativos": {"rede": "sim", "experiencia": "sim", "terreno": "nao", "capital": "nao"},
-      "estagio": "02_contato_iniciado",
-      "data_criacao": "2026-08-01", "data_ultima_atividade": "2026-08-01",
-      "observacoes": "Conheceu a Zion em evento. Sem canal de contato registrado.",
-      "interacoes": []
+      "id": "LD-014",
+      "nome": "Fazenda Alto da Serra",
+      "empresa": "Alto da Serra Agro",
+      "email": "contato@altodaserra.com.br",
+      "telefone": "5499887744",
+      "cidade": "Bento Gonçalves",
+      "estado": "RS",
+      "perfil": "05_desenvolvedor",
+      "objetivo": "quer_desenvolver",
+      "origem_primeira": "google_ads",
+      "origem_ultima": "google_ads",
+      "utm_campaign": "dev-google-search",
+      "utm_source": "google_ads",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "sim",
+        "projeto": "sim",
+        "experiencia": "sim"
+      },
+      "terreno": {
+        "area_ha": 80.0,
+        "localizacao": "Bento Gonçalves, RS",
+        "documentacao_regular": "sim"
+      },
+      "financeiro": {
+        "capital_disponivel_brl": 9000000
+      },
+      "projeto": {
+        "estagio": "projeto",
+        "numero_unidades": 30,
+        "prazo_meses": 6
+      },
+      "estagio": "09_ganho",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 420000,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-04-02",
+      "data_ultima_atividade": "2026-08-14",
+      "cliente_desde": "2026-08-14",
+      "produtos_contratados": [
+        "desenvolvimento"
+      ],
+      "interacoes": [
+        {
+          "data": "2026-04-02",
+          "canal": "google_ads",
+          "o_que_foi_enviado": "Lead de busca por 'estudo de viabilidade hoteleira'",
+          "resposta": "Projeto em andamento"
+        },
+        {
+          "data": "2026-08-14",
+          "canal": "call",
+          "o_que_foi_enviado": "Proposta de desenvolvimento",
+          "resposta": "Contrato assinado"
+        }
+      ]
+    },
+    {
+      "id": "LD-015",
+      "nome": "Juliana Prado",
+      "email": "juliana.prado@gmail.com",
+      "telefone": "48966553311",
+      "cidade": "Garopaba",
+      "estado": "SC",
+      "perfil": "08_aluno",
+      "objetivo": "quer_aprender",
+      "origem_primeira": "livro",
+      "origem_ultima": "instagram",
+      "utm_campaign": "livro-meta-frio",
+      "utm_source": "meta_ads",
+      "ativos": {
+        "terreno": "sim",
+        "capital": "nao",
+        "projeto": "nao"
+      },
+      "terreno": {
+        "area_ha": 3.0,
+        "localizacao": "Garopaba, SC"
+      },
+      "estagio": "09_ganho",
+      "e_decisor": "sim",
+      "valor_potencial_brl": 4900,
+      "responsavel": "Bruno",
+      "data_criacao": "2026-06-01",
+      "data_ultima_atividade": "2026-07-20",
+      "cliente_desde": "2026-07-20",
+      "produtos_contratados": [
+        "mentoria"
+      ],
+      "interacoes": [
+        {
+          "data": "2026-06-01",
+          "canal": "meta_ads",
+          "o_que_foi_enviado": "Lead do anúncio do livro",
+          "resposta": "Baixou o material"
+        },
+        {
+          "data": "2026-07-20",
+          "canal": "whatsapp",
+          "o_que_foi_enviado": "Oferta da mentoria",
+          "resposta": "Comprou"
+        }
+      ]
     }
   ]
 }

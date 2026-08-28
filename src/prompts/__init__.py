@@ -13,6 +13,7 @@ from .governance import PROMPT_GOVERNANCE
 from .land_bank import PROMPT_LAND_BANK
 from .knowledge import PROMPT_KNOWLEDGE_ENGINE
 from .crm import PROMPT_CRM
+from .traffic import PROMPT_TRAFFIC
 
 __all__ = [
     "SYSTEM_PROMPT_BASE",
@@ -26,4 +27,5 @@ __all__ = [
     "PROMPT_LAND_BANK",
     "PROMPT_KNOWLEDGE_ENGINE",
     "PROMPT_CRM",
+    "PROMPT_TRAFFIC",
 ]

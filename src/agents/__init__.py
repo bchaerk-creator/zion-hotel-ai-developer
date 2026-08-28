@@ -13,6 +13,7 @@ from .governance_agent import GovernanceAgent
 from .land_bank_agent import LandBankAgent
 from .knowledge_agent import KnowledgeAgent
 from .crm_agent import CRMAgent
+from .traffic_agent import TrafficAgent
 
 __all__ = [
     "ZionOrchestrator",
@@ -26,4 +27,5 @@ __all__ = [
     "LandBankAgent",
     "KnowledgeAgent",
     "CRMAgent",
+    "TrafficAgent",
 ]
