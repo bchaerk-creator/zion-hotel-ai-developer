@@ -54,3 +54,37 @@ Qualquer host estático:
 
 - CTAs apontam para o Instagram `@brunochaerkofc`. Para trocar por WhatsApp ou formulário (GoHighLevel), buscar por `instagram.com/brunochaerkofc` nos HTMLs.
 - Fotografias editoriais podem ser adicionadas como camadas com overlay escuro, conforme brand guideline.
+
+## Camada de movimento (Motion)
+
+As animações usam o [Motion](https://motion.dev) (antigo `framer-motion`), auto-hospedado
+em `assets/js/` — sem CDN em runtime, sem build, sem npm.
+
+| Arquivo | Papel |
+|---|---|
+| `assets/js/motion.dom.js` | Bundle UMD do Motion (`framer-motion/dom` v13.1.1, MIT, ~45 KB gzip). Expõe o global `Motion`. Não editar — é vendorizado. |
+| `assets/js/zion-motion.js` | Camada da Zion: reveals com stagger, contadores, parallax do relevo no hero. |
+| `assets/js/motion.LICENSE.md` | Licença MIT do Motion. |
+
+### Aprimoramento progressivo
+
+A base continua sendo CSS. O Motion só entra por cima:
+
+1. No `<head>`, `window.ZION_MOTION` é `false` se o visitante pediu `prefers-reduced-motion`.
+2. Se o Motion carregar, `zion-motion.js` assume os reveals e marca `window.ZION_MOTION_READY`.
+3. Se não carregar (rede, bloqueio, erro), o `IntersectionObserver` de cada página assume
+   300 ms após o `load`.
+
+**O conteúdo nunca fica invisível**, mesmo sem JavaScript algum. Ao mexer nas animações,
+mantenha essa garantia.
+
+### Atualizar o Motion
+
+```bash
+npm pack framer-motion@latest
+tar xzf framer-motion-*.tgz
+cp package/dist/dom.js docs/assets/js/motion.dom.js
+```
+
+Depois teste as 5 páginas nos três caminhos: com Motion, com o script bloqueado e com
+`prefers-reduced-motion: reduce`.
