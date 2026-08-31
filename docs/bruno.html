@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
+<!-- impeccable-disable flat-type-hierarchy -- a escala real vai de 12px a 120px via clamp() nos titulos; a regra so enxerga os px fixos (12/16/20). Inflar um tamanho fixo so para satisfazer a metrica seria maquiar o token, nao a hierarquia. -->
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bruno Chaerk · Founder · Zion Hotel Group International</title>
@@ -21,7 +22,9 @@
   --green:#1B2117;
   --cream:#FEF5F0;
   --sand:#DED6BF;
-  --earth:#8B714E;
+  --earth:#866D4B;
+  --earth-light:#A0825A;
+  --earth-deep:#6F5A3E;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -38,12 +41,25 @@ body{
 .wrap{max-width:1140px;margin:0 auto;padding:0 6vw}
 .narrow{max-width:760px;margin:0 auto;padding:0 6vw}
 .label{
-  font-weight:300;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+  font-weight:300;font-size:12px;letter-spacing:.34em;text-transform:uppercase;
   color:var(--sand);
 }
+/* Linha editorial longa: mantém o tom da marca sem caixa alta.
+   Caixa alta serve rótulo curto; em frase, apaga a forma da palavra e custa leitura. */
+.label-line{
+  font-weight:300;font-size:12px;letter-spacing:.04em;
+  color:var(--sand);text-transform:none;
+}
+.light .label-line,.sandbg .label-line{color:var(--earth-deep)}
+/* Assinatura institucional: vive depois da dobra do herói, não acima do título. */
+.sig-line{
+  font-weight:300;font-size:12px;letter-spacing:.04em;
+  color:var(--sand);text-transform:none;opacity:.8;margin-top:44px;
+}
+
 .section{padding:150px 0}
 .light{background:var(--cream);color:var(--green)}
-.light .label{color:var(--earth)}
+.light .label{color:var(--earth-deep)}
 
 .sec-head{margin-bottom:88px}
 .sec-head h2{
@@ -62,7 +78,7 @@ body{
 }
 .splitword .line{flex:1;height:1px;background:var(--cream);opacity:.3;min-width:40px}
 .light .splitword .line{background:var(--green);opacity:.35}
-.light .splitword{color:var(--earth)}
+.light .splitword{color:var(--earth-deep)}
 
 .fade{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
 .fade.vis{opacity:1;transform:none}
@@ -79,12 +95,12 @@ nav .bar{
 }
 nav .brand{
   font-family:'Cormorant Garamond',Georgia,serif;
-  font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;
+  font-weight:400;font-size:20px;letter-spacing:.34em;text-transform:uppercase;
   color:var(--cream);text-decoration:none;
 }
 nav .links{display:flex;gap:32px}
 nav .links a{
-  font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;
+  font-weight:300;font-size:12px;letter-spacing:.26em;text-transform:uppercase;
   color:var(--sand);text-decoration:none;transition:color .4s;
 }
 nav .links a:hover{color:var(--cream)}
@@ -112,22 +128,22 @@ nav .links a:hover{color:var(--cream)}
   max-width:680px;margin-bottom:28px;
 }
 .hero .reframe{
-  font-weight:300;font-size:clamp(13px,1.5vw,15.5px);line-height:2.2;
+  font-weight:300;font-size:clamp(16px,1.6vw,18px);line-height:2.2;
   max-width:540px;color:var(--sand);margin-bottom:68px;
 }
 .cta{
   display:inline-block;padding:17px 52px;
   border:1px solid rgba(139,113,78,.75);color:var(--cream);
-  font-weight:400;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;
+  font-weight:400;font-size:12px;letter-spacing:.04em;
   text-decoration:none;transition:background .5s,border-color .5s;
 }
-.cta:hover{background:var(--earth);border-color:var(--earth)}
+.cta:hover{background:var(--earth);border-color:var(--earth-light)}
 .light .cta{color:var(--green)}
 .light .cta:hover{color:var(--cream)}
 .hero .foot{
   position:absolute;bottom:34px;left:0;right:0;padding:0 6vw;
   display:flex;justify-content:space-between;align-items:center;
-  font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);opacity:.8;
+  font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--sand);opacity:.8;
 }
 
 /* ---------- sobre ---------- */
@@ -138,10 +154,10 @@ nav .links a:hover{color:var(--cream)}
   font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.35;
 }
 .sobre h2 em{font-style:italic}
-.sobre p{margin-bottom:26px;font-weight:300;font-size:14.5px;line-height:2.2}
+.sobre p{margin-bottom:26px;font-weight:300;font-size:16px;line-height:2.2}
 .sobre .creds{margin-top:44px;display:flex;flex-direction:column;gap:14px}
 .sobre .creds span{
-  font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--earth);
+  font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--earth-light);
   border-top:1px solid rgba(27,33,23,.14);padding-top:14px;
 }
 
@@ -163,7 +179,7 @@ nav .links a:hover{color:var(--cream)}
 }
 .colapso .cost{
   margin-top:88px;max-width:700px;
-  font-weight:300;font-size:15px;line-height:2.3;color:var(--sand);
+  font-weight:300;font-size:16px;line-height:2.3;color:var(--sand);
 }
 .colapso .cost strong{color:var(--cream);font-weight:500}
 
@@ -195,8 +211,8 @@ nav .links a:hover{color:var(--cream)}
   font-family:'Cormorant Garamond',Georgia,serif;
   font-weight:300;font-size:clamp(36px,4.6vw,56px);letter-spacing:.02em;display:block;margin-bottom:16px;
 }
-.prova .desc{font-weight:300;font-size:10px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);line-height:2}
-.prova .note{margin-top:44px;font-weight:300;font-size:11px;letter-spacing:.06em;color:var(--sand);opacity:.65;text-align:center}
+.prova .desc{font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--sand);line-height:2}
+.prova .note{margin-top:44px;font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--sand);opacity:.65;text-align:center}
 
 /* ---------- educação ---------- */
 .edu .grid{display:grid;grid-template-columns:1fr 1fr;gap:96px;align-items:start}
@@ -206,7 +222,7 @@ nav .links a:hover{color:var(--cream)}
   font-weight:300;font-size:clamp(30px,4vw,46px);line-height:1.35;margin-bottom:36px;
 }
 .edu h2 em{font-style:italic}
-.edu p{font-weight:300;font-size:14.5px;line-height:2.2;margin-bottom:28px}
+.edu p{font-weight:300;font-size:16px;line-height:2.2;margin-bottom:28px}
 .edu .pilares{display:flex;flex-direction:column;border-top:1px solid rgba(27,33,23,.14)}
 .edu .pilares div{
   display:flex;justify-content:space-between;align-items:baseline;gap:20px;
@@ -216,7 +232,7 @@ nav .links a:hover{color:var(--cream)}
   font-family:'Cormorant Garamond',Georgia,serif;
   font-weight:400;font-size:20px;letter-spacing:.02em;
 }
-.edu .pilares span{font-weight:300;font-size:11.5px;color:rgba(27,33,23,.6);text-align:right}
+.edu .pilares span{font-weight:300;font-size:12px;color:rgba(27,33,23,.6);text-align:right}
 
 /* ---------- cta final ---------- */
 .final{text-align:center;padding:190px 6vw;position:relative;overflow:hidden}
@@ -228,12 +244,12 @@ nav .links a:hover{color:var(--cream)}
   margin-bottom:44px;
 }
 .final h2 em{font-style:italic}
-.final p{max-width:520px;margin:0 auto 68px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
+.final p{max-width:520px;margin:0 auto 68px;font-weight:300;font-size:16px;line-height:2.2;color:var(--sand)}
 
 footer{border-top:1px solid rgba(254,245,240,.08);padding:64px 0}
 footer .row{
   display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;
-  font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand);
+  font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--sand);
 }
 footer a{color:var(--sand);text-decoration:none;transition:color .4s}
 footer a:hover{color:var(--cream)}
@@ -273,9 +289,9 @@ footer a:hover{color:var(--cream)}
       <path d="M-50,120 C280,180 480,85 760,140 S1180,215 1490,140" opacity=".55"/>
     </g>
   </svg>
-  <p class="label kicker fade">Zion Hotel Group International · Florianópolis · Barcelona</p>
   <h1 class="fade">Bruno Chaerk</h1>
-  <span class="label role fade">Founder · CEO · Developer Hoteleiro</span>
+  <p class="sig-line fade">Zion Hotel Group International · Florianópolis · Barcelona</p>
+  <span class="label-line role fade">Founder · CEO · Developer Hoteleiro</span>
   <p class="mirror fade">Você tem uma terra incrível. Sente que ela vale muito mais do que rende hoje. E toda vez que tenta avançar, trava.</p>
   <p class="reframe fade">Eu transformo territórios em destinos turísticos. Do conceito à operação: leitura territorial, viabilidade, marca, captação de investidores e gestão. Receita operacional e valorização patrimonial no mesmo ativo.</p>
   <a class="cta fade" href="#contato">Solicitar Diagnóstico Territorial</a>
@@ -343,7 +359,7 @@ footer a:hover{color:var(--cream)}
     </g>
   </svg>
   <p class="fade">"A terra já sabe o que quer ser. O nosso trabalho é escutar o território antes de desenhar o destino."</p>
-  <span class="label fade">Leitura Territorial · O princípio de tudo</span>
+  <span class="label-line fade">Leitura Territorial · O princípio de tudo</span>
 </div>
 
 <!-- PROVA -->
@@ -397,7 +413,7 @@ footer a:hover{color:var(--cream)}
       <path d="M-50,130 C280,185 480,90 760,145 S1180,220 1490,145" opacity=".6"/>
     </g>
   </svg>
-  <p class="label fade" style="margin-bottom:40px">O próximo passo não é construir. É diagnosticar.</p>
+  <p class="label-line fade" style="margin-bottom:40px">O próximo passo não é construir. É diagnosticar.</p>
   <h2 class="fade">Sua terra vale mais<br>do que <em>você imagina</em>.</h2>
   <p class="fade">O Diagnóstico Territorial Zion lê o seu território em profundidade e responde a única pergunta que importa antes de qualquer tijolo: isso é um destino ou apenas um terreno?</p>
   <a class="cta fade" href="index.html#contato">Solicitar Diagnóstico</a>

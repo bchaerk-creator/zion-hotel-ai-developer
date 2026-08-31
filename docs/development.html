@@ -14,23 +14,36 @@
 
 
 
-:root{--black:#040605;--green:#1B2117;--cream:#FEF5F0;--sand:#DED6BF;--earth:#8B714E}
+:root{--black:#040605;--green:#1B2117;--cream:#FEF5F0;--sand:#DED6BF;--earth:#866D4B;--earth-light:#A0825A;--earth-deep:#6F5A3E}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{font-family:'Aventa','DM Sans',sans-serif;background:var(--black);color:var(--cream);font-weight:400;line-height:1.9;-webkit-font-smoothing:antialiased}
 ::selection{background:var(--earth);color:var(--cream)}
 .wrap{max-width:1140px;margin:0 auto;padding:0 6vw}
-.label{font-weight:300;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;color:var(--sand)}
+.label{font-weight:300;font-size:12px;letter-spacing:.34em;text-transform:uppercase;color:var(--sand)}
+/* Linha editorial longa: mantém o tom da marca sem caixa alta.
+   Caixa alta serve rótulo curto; em frase, apaga a forma da palavra e custa leitura. */
+.label-line{
+  font-weight:300;font-size:13px;letter-spacing:.04em;
+  color:var(--sand);text-transform:none;
+}
+.light .label-line,.sandbg .label-line{color:var(--earth-deep)}
+/* Assinatura institucional: vive depois da dobra do herói, não acima do título. */
+.sig-line{
+  font-weight:300;font-size:13px;letter-spacing:.04em;
+  color:var(--sand);text-transform:none;opacity:.8;margin-top:44px;
+}
+
 .section{padding:150px 0}
 .light{background:var(--cream);color:var(--green)}
-.light .label{color:var(--earth)}
+.light .label{color:var(--earth-deep)}
 .sec-head{margin-bottom:88px}
 .sec-head h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(32px,4.4vw,54px);line-height:1.25}
 .sec-head h2 em{font-style:italic}
 .splitword{display:flex;align-items:center;gap:24px;font-weight:200;text-transform:uppercase;font-size:clamp(13px,1.4vw,16px);letter-spacing:.5em;color:var(--sand);margin-bottom:30px}
 .splitword .line{flex:1;height:1px;background:var(--cream);opacity:.3;min-width:40px}
 .light .splitword .line{background:var(--green);opacity:.35}
-.light .splitword{color:var(--earth)}
+.light .splitword{color:var(--earth-deep)}
 .fade{opacity:0;transform:translateY(26px);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),transform 1.2s cubic-bezier(.16,1,.3,1)}
 .fade.vis{opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.fade{opacity:1;transform:none;transition:none}.terrain g{animation:none!important}}
@@ -40,10 +53,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(4,6,5,.82);ba
 nav .bar{max-width:1240px;margin:0 auto;padding:20px 4vw;display:flex;align-items:center;justify-content:space-between;gap:24px}
 nav .brand{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:19px;letter-spacing:.34em;text-transform:uppercase;color:var(--cream);text-decoration:none}
 nav .links{display:flex;gap:30px;align-items:center}
-nav .links a{font-weight:300;font-size:10.5px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);text-decoration:none;transition:color .4s}
+nav .links a{font-weight:300;font-size:12px;letter-spacing:.26em;text-transform:uppercase;color:var(--sand);text-decoration:none;transition:color .4s}
 nav .links a:hover{color:var(--cream)}
 nav .links a.navcta{border:1px solid rgba(139,113,78,.75);padding:11px 24px;color:var(--cream);transition:background .4s,border-color .4s}
-nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
+nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth-light)}
 @media(max-width:960px){nav .links a:not(.navcta){display:none}}
 .hero{min-height:88vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:190px 6vw 130px;position:relative;overflow:hidden}
 .hero .terrain{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
@@ -52,9 +65,9 @@ nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
 .hero h1{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:clamp(40px,6.6vw,88px);line-height:1.15;max-width:960px;margin-bottom:40px}
 .hero h1 em{font-style:italic}
 .hero .sub{font-weight:300;font-size:clamp(13px,1.5vw,16px);line-height:2.2;max-width:560px;color:var(--sand);margin-bottom:64px}
-.cta{display:inline-block;padding:17px 52px;border:1px solid rgba(139,113,78,.75);color:var(--cream);font-weight:400;font-size:10.5px;letter-spacing:.34em;text-transform:uppercase;text-decoration:none;transition:background .5s,border-color .5s,color .5s}
-.cta:hover{background:var(--earth);border-color:var(--earth)}
-.cta.solid{background:var(--earth);border-color:var(--earth)}
+.cta{display:inline-block;padding:17px 52px;border:1px solid rgba(139,113,78,.75);color:var(--cream);font-weight:400;font-size:12px;letter-spacing:.04em;text-decoration:none;transition:background .5s,border-color .5s,color .5s}
+.cta:hover{background:var(--earth);border-color:var(--earth-light)}
+.cta.solid{background:var(--earth);border-color:var(--earth-light)}
 .cta.solid:hover{background:transparent}
 .light .cta{color:var(--green)}
 .light .cta:hover{color:var(--cream)}
@@ -63,7 +76,7 @@ nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
 .blocks .block{display:grid;grid-template-columns:110px 1fr 1.5fr;gap:40px;align-items:baseline;padding:44px 0;border-top:1px solid rgba(254,245,240,.09)}
 .blocks .block:last-child{border-bottom:1px solid rgba(254,245,240,.09)}
 @media(max-width:860px){.blocks .block{grid-template-columns:64px 1fr;gap:20px}.blocks .block p{grid-column:2}}
-.blocks .n{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;color:var(--earth)}
+.blocks .n{font-family:'Cormorant Garamond',Georgia,serif;font-weight:300;font-size:30px;color:var(--earth-light)}
 .blocks h3{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:clamp(20px,2.6vw,27px)}
 .blocks h3 em{font-style:italic}
 .blocks p{font-weight:300;font-size:13.5px;line-height:2.1;color:var(--sand)}
@@ -87,7 +100,7 @@ nav .links a.navcta:hover{background:var(--earth);border-color:var(--earth)}
 .final h2 em{font-style:italic}
 .final p{max-width:520px;margin:0 auto 64px;font-weight:300;font-size:15px;line-height:2.2;color:var(--sand)}
 footer{border-top:1px solid rgba(254,245,240,.08);padding:64px 0}
-footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;font-weight:300;font-size:9.5px;letter-spacing:.28em;text-transform:uppercase;color:var(--sand)}
+footer .row{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:20px;font-weight:300;font-size:12px;letter-spacing:.04em;color:var(--sand)}
 footer a{color:var(--sand);text-decoration:none;transition:color .4s}
 footer a:hover{color:var(--cream)}
 
@@ -120,9 +133,9 @@ footer a:hover{color:var(--cream)}
 <path d="M-90,700 C260,645 420,740 660,680 S1090,605 1530,680"/><path d="M-90,580 C200,520 360,615 600,560 S1030,480 1530,560"/>
 <path d="M-90,160 C300,220 500,120 780,180 S1200,260 1530,180" opacity=".55"/><path d="M-90,120 C280,180 480,85 760,140 S1180,215 1530,140" opacity=".55"/>
 </g></svg>
-<p class="label kicker fade">Zion Hotel Group International · Modalidade 01</p>
 <h1 class="fade">Do território ao <em>ativo estruturado</em>.</h1>
 <p class="sub fade">Zion Hotel Development: desenvolvimento imobiliário turístico completo. Leitura territorial, viabilidade, produto, estrutura societária e captação. O projeto nasce do território e da tese financeira, nunca do palpite.</p>
+  <p class="sig-line fade">Zion Hotel Group International · Modalidade 01</p>
 <a class="cta solid fade" href="index.html#contato">Tenho um território</a>
 </header>
 
