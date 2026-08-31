@@ -36,8 +36,16 @@ RETENCAO_DIAS = 365
 # ou proíbem em termos de uso, ou concentram dado pessoal que a prospecção
 # B2B da Zion não precisa.
 DOMINIOS_BLOQUEADOS = {
+    # Redes sociais: termos de uso proíbem extração e o dado é majoritariamente
+    # de pessoa física.
     "facebook.com", "instagram.com", "linkedin.com", "x.com", "twitter.com",
     "tiktok.com", "whatsapp.com",
+    # OTAs: os termos proíbem extração de dados de anfitrião e de anúncio, as
+    # duas litigam contra scrapers, e o anfitrião típico é pessoa física — sem
+    # base legal para prospecção fria.
+    "airbnb.com", "airbnb.com.br", "booking.com", "expedia.com",
+    "vrbo.com", "hoteis.com", "despegar.com.br", "tripadvisor.com",
+    "tripadvisor.com.br",
 }
 
 ESQUEMA_EXTRACAO = """

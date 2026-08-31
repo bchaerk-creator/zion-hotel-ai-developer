@@ -184,6 +184,15 @@ class TestConformidade(unittest.TestCase):
         with self.assertRaises(ColetaBloqueada):
             verificar_url("https://www.instagram.com/algum-perfil")
 
+    def test_otas_sao_bloqueadas(self):
+        """Airbnb, Booking e afins não são coletáveis — decisão, não descuido."""
+        from src.prospects.coletor import ColetaBloqueada, verificar_url
+        for url in ("https://www.airbnb.com.br/rooms/123",
+                    "https://www.booking.com/hotel/br/x.html",
+                    "https://www.tripadvisor.com.br/Hotel_Review-x"):
+            with self.assertRaises(ColetaBloqueada, msg=url):
+                verificar_url(url)
+
     def test_url_invalida_e_recusada(self):
         from src.prospects.coletor import ColetaBloqueada, verificar_url
         with self.assertRaises(ColetaBloqueada):

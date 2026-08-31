@@ -408,5 +408,93 @@ def prospects_coletar(urls, salvar):
 
 
 
+
+# ────────────────────────────────── Destinos turísticos ────────────────────
+
+@cli.group()
+def destinos():
+    """Mapa de destinos turísticos — as praças de prospecção."""
+    pass
+
+
+@destinos.command("listar")
+@click.option("--uf", "-u", help="Filtrar por UF (sigla)")
+@click.option("--relevancia", "-r", type=click.Choice(["alta", "media", "baixa"]),
+              help="Filtrar por relevância para o modelo Zion")
+@click.option("--bioma", "-b", help="Filtrar por bioma")
+@click.option("--prioridade", is_flag=True, help="Ordenar por relevância em vez de por ranking da UF")
+def destinos_listar(uf, relevancia, bioma, prioridade):
+    """Lista os destinos mapeados."""
+    from src.prospects.destinos import listar
+
+    itens = listar(uf=uf, relevancia=relevancia, bioma=bioma, por_relevancia=prioridade)
+    if not itens:
+        console.print("[yellow]Nenhum destino com esse filtro.[/yellow]")
+        return
+
+    cor = {"alta": "green", "media": "yellow", "baixa": "red"}
+    tabela = Table(title="Destinos Turísticos · Praças de Prospecção")
+    for coluna in ("UF", "#", "Município", "Vocação", "Bioma", "Sazonalidade", "Zion"):
+        tabela.add_column(coluna)
+
+    for d in itens:
+        tabela.add_row(
+            d.uf, str(d.rank_uf), d.municipio, d.vocacao, d.bioma, d.sazonalidade,
+            f"[{cor.get(d.relevancia_zion, 'white')}]{d.relevancia_zion}[/]",
+        )
+
+    console.print(tabela)
+    altas = sum(1 for d in itens if d.prioritario)
+    console.print(f"[dim]{len(itens)} destino(s) · {altas} de relevância alta.[/dim]")
+
+
+@destinos.command("resumo")
+def destinos_resumo():
+    """Contagem de destinos por UF e relevância."""
+    from src.prospects.destinos import resumo
+
+    dados = resumo()
+    if not dados:
+        console.print("[yellow]Nenhum destino carregado.[/yellow]")
+        return
+
+    tabela = Table(title="Destinos por UF")
+    for coluna in ("UF", "Total", "Alta", "Média", "Baixa"):
+        tabela.add_column(coluna, justify="right" if coluna != "UF" else "left")
+    for uf, b in sorted(dados.items()):
+        tabela.add_row(uf, str(b["total"]), str(b["alta"]), str(b["media"]), str(b["baixa"]))
+    console.print(tabela)
+
+
+@destinos.command("prospectar")
+@click.argument("municipio")
+@click.option("--uf", "-u", required=True, help="UF do município")
+def destinos_prospectar(municipio, uf):
+    """Mostra por onde começar a prospecção num destino."""
+    from src.prospects.destinos import consultas_prospeccao, listar
+
+    achados = [d for d in listar(uf=uf)
+               if d.municipio.lower().startswith(municipio.strip().lower())]
+    if not achados:
+        console.print(f"[red]{municipio}/{uf} não está no mapa de destinos.[/red]")
+        return
+
+    d = achados[0]
+    console.print(Panel(
+        f"[bold]{d.municipio} / {d.uf}[/bold] · {d.regiao_turistica}\n"
+        f"{d.vocacao} · {d.bioma} · pico no {d.sazonalidade}\n\n{d.nota}",
+        title=f"Relevância Zion: {d.relevancia_zion}",
+    ))
+
+    for grupo, termos in consultas_prospeccao(d).items():
+        console.print(f"\n[bold]{grupo}[/bold]")
+        for t in termos:
+            console.print(f"  · {t}")
+
+    console.print("\n[dim]Confira os termos de uso e o robots.txt de cada fonte antes de "
+                  "coletar. O coletor recusa domínios bloqueados de todo modo.[/dim]")
+
+
+
 if __name__ == "__main__":
     cli()
