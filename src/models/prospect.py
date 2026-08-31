@@ -88,7 +88,10 @@ class Prospect(BaseModel):
     estagio: Estagio = Field(default=Estagio.IDENTIFICADO, description="Estágio no funil")
     territorio: Territorio = Field(default_factory=Territorio, description="Território associado")
 
-    score: Optional[float] = Field(None, ge=0, le=10, description="Aderência ao ICP, de 0 a 10")
+    score: Optional[float] = Field(
+        None, ge=0, le=100,
+        description="ZION LEAD SCORE, de 0 a 100 — ver src/prospects/scoring.py",
+    )
     score_motivos: List[str] = Field(default_factory=list, description="O que pesou no score")
 
     origem: Origem = Field(..., description="Procedência do registro")

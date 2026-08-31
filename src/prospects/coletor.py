@@ -24,7 +24,8 @@ from urllib.robotparser import RobotFileParser
 
 from src.config import OPENAI_API_KEY, ZION_MODEL
 from src.models.prospect import BaseLegal, Origem, Prospect, Territorio
-from src.prospects.icp import inferir_modalidade, pontuar
+from src.prospects.icp import inferir_modalidade
+from src.prospects.scoring import pontuar_lead
 from src.prospects.repositorio import gerar_id
 
 logger = logging.getLogger(__name__)
@@ -209,7 +210,7 @@ class Coletor:
             notas=(item.get("notas") or None),
         )
         prospect.modalidade = inferir_modalidade(prospect)
-        return pontuar(prospect)
+        return pontuar_lead(prospect)
 
 
 def prospects_vencidos(prospects: List[Prospect], hoje: Optional[date] = None) -> List[Prospect]:

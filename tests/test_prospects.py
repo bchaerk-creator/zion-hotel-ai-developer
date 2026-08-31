@@ -16,7 +16,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from src.models.prospect import (  # noqa: E402
     BaseLegal, Estagio, Modalidade, Origem, Prospect, Territorio,
 )
-from src.prospects.icp import classificar, inferir_modalidade, pontuar  # noqa: E402
+from src.prospects.icp import inferir_modalidade  # noqa: E402
+from src.prospects.scoring import classificar_lead, pontuar_lead  # noqa: E402
 from src.prospects.repositorio import RepositorioProspects, gerar_id  # noqa: E402
 
 
@@ -45,40 +46,7 @@ class TestGerarId(unittest.TestCase):
 
 
 class TestICP(unittest.TestCase):
-    def test_terreno_em_praca_prioritaria_pontua_alto(self):
-        p = pontuar(fazer_prospect(
-            territorio=Territorio(uf="SC", bioma="Mata Atlântica", area_ha=40),
-            email="contato@exemplo.com.br",
-            modalidade=Modalidade.DEVELOPMENT,
-        ))
-        self.assertGreaterEqual(p.score, 8.0)
-        self.assertEqual(classificar(p.score), "prioridade alta")
-
-    def test_sem_dado_nenhum_pontua_baixo(self):
-        p = pontuar(fazer_prospect())
-        self.assertLess(p.score, 4.0)
-        self.assertIn("sem canal de contato", p.score_motivos)
-
-    def test_nao_contatar_zera_o_score(self):
-        p = pontuar(fazer_prospect(
-            nao_contatar=True,
-            territorio=Territorio(uf="SC", area_ha=40),
-            email="contato@exemplo.com.br",
-        ))
-        self.assertEqual(p.score, 0.0)
-
-    def test_score_nunca_passa_de_dez(self):
-        p = pontuar(fazer_prospect(
-            territorio=Territorio(uf="SC", bioma="Mata Atlântica", area_ha=50, unidades=12),
-            email="a@b.com", telefone="4899999", instagram="@x",
-            modalidade=Modalidade.COLLECTION,
-        ))
-        self.assertLessEqual(p.score, 10.0)
-
-    def test_area_grande_demais_pontua_menos_que_ideal(self):
-        ideal = pontuar(fazer_prospect(territorio=Territorio(uf="SC", area_ha=40)))
-        enorme = pontuar(fazer_prospect(territorio=Territorio(uf="SC", area_ha=5000)))
-        self.assertGreater(ideal.score, enorme.score)
+    """O que sobrou no módulo de ICP: a inferência de modalidade."""
 
     def test_inferir_modalidade(self):
         self.assertEqual(
@@ -91,8 +59,31 @@ class TestICP(unittest.TestCase):
             inferir_modalidade(fazer_prospect()),
             Modalidade.INDEFINIDA)
 
-    def test_classificar_sem_score(self):
-        self.assertEqual(classificar(None), "não pontuado")
+
+class TestEscalaDoScore(unittest.TestCase):
+    """
+    O campo `score` guarda o ZION LEAD SCORE (0–100).
+
+    Regressão: ele já teve teto 10, do ICP antigo. O import gravava 81,8 e a
+    leitura do banco quebrava na validação.
+    """
+
+    def test_score_de_cem_persiste_e_volta(self):
+        with TemporaryDirectory() as tmp:
+            with RepositorioProspects(Path(tmp) / "c.db") as repo:
+                p = pontuar_lead(fazer_prospect(
+                    id="alto", modalidade=Modalidade.DEVELOPMENT,
+                    territorio=Territorio(uf="SC", municipio="Urubici", area_ha=40),
+                    email="a@b.com", site="https://x.com",
+                    notas="terreno parado"), destination_score=79)
+                self.assertGreater(p.score, 10)
+                repo.salvar(p)
+                self.assertAlmostEqual(repo.buscar("alto").score, p.score)
+
+    def test_score_acima_de_cem_e_recusado(self):
+        from pydantic import ValidationError
+        with self.assertRaises(ValidationError):
+            fazer_prospect(score=101)
 
 
 class TestRepositorio(unittest.TestCase):
