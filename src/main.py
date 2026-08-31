@@ -210,5 +210,203 @@ def interactive():
         console.print()
 
 
+
+# ────────────────────────────────── Carteira de prospects ──────────────────
+
+@cli.group()
+def prospects():
+    """Carteira de clientes potenciais da Zion."""
+    pass
+
+
+@prospects.command("listar")
+@click.option("--modalidade", "-m", type=click.Choice(["development", "management", "collection", "indefinida"]))
+@click.option("--uf", "-u", help="Filtrar por UF (sigla)")
+@click.option("--score-minimo", "-s", type=float, help="Score mínimo de aderência ao ICP")
+@click.option("--todos", is_flag=True, help="Incluir quem pediu para não ser contatado")
+@click.option("--limite", "-n", type=int, default=30, show_default=True)
+def prospects_listar(modalidade, uf, score_minimo, todos, limite):
+    """Lista a carteira, do maior score para o menor."""
+    from src.models.prospect import Modalidade
+    from src.prospects import RepositorioProspects, classificar
+
+    with RepositorioProspects() as repo:
+        registros = repo.listar(
+            modalidade=Modalidade(modalidade) if modalidade else None,
+            uf=uf,
+            score_minimo=score_minimo,
+            apenas_contataveis=not todos,
+            limite=limite,
+        )
+
+    if not registros:
+        console.print("[yellow]Nenhum prospect encontrado com esse filtro.[/yellow]")
+        return
+
+    tabela = Table(title="Carteira de Prospects", show_lines=False)
+    for coluna in ("Score", "Prioridade", "Nome", "Modalidade", "Território", "Estágio"):
+        tabela.add_column(coluna)
+
+    for p in registros:
+        local = " / ".join(x for x in (p.territorio.municipio, p.territorio.uf) if x) or "—"
+        tabela.add_row(
+            f"{p.score:.1f}" if p.score is not None else "—",
+            classificar(p.score),
+            p.nome,
+            p.modalidade.value,
+            local,
+            p.estagio.value,
+        )
+
+    console.print(tabela)
+    console.print(f"[dim]{len(registros)} registro(s).[/dim]")
+
+
+@prospects.command("resumo")
+def prospects_resumo():
+    """Painel da carteira: totais por modalidade e por estágio."""
+    from src.prospects import RepositorioProspects
+
+    with RepositorioProspects() as repo:
+        r = repo.resumo()
+
+    if not r["total"]:
+        console.print("[yellow]Carteira vazia.[/yellow]")
+        return
+
+    console.print(Panel(
+        f"[bold]{r['total']}[/bold] prospects · score médio [bold]{r['score_medio']}[/bold]\n"
+        f"[dim]{r['nao_contatar']} marcado(s) como não-contatar[/dim]",
+        title="Carteira Zion",
+    ))
+
+    for titulo, dados in (("Por modalidade", r["por_modalidade"]), ("Por estágio", r["por_estagio"])):
+        tabela = Table(title=titulo)
+        tabela.add_column("Chave"); tabela.add_column("Total", justify="right")
+        for chave, total in sorted(dados.items(), key=lambda x: -x[1]):
+            tabela.add_row(chave, str(total))
+        console.print(tabela)
+
+
+@prospects.command("importar")
+@click.option("--arquivo", "-f", "arquivo", type=click.Path(exists=True), required=True,
+              help="CSV com colunas nome, empresa, email, telefone, municipio, uf, area_ha, unidades")
+@click.option("--fonte", default="importacao-manual", show_default=True,
+              help="Origem do dado, registrada em cada linha")
+def prospects_importar(arquivo, fonte):
+    """Importa prospects de um CSV, pontuando cada linha pelo ICP."""
+    import csv
+    from datetime import date, timedelta
+    from src.models.prospect import Origem, Prospect, Territorio
+    from src.prospects import RepositorioProspects, gerar_id, inferir_modalidade, pontuar
+
+    def numero(valor, conversor):
+        try:
+            return conversor(valor) if valor not in (None, "", "null") else None
+        except (TypeError, ValueError):
+            return None
+
+    novos = []
+    with open(arquivo, newline="", encoding="utf-8") as fh:
+        for linha in csv.DictReader(fh):
+            nome = (linha.get("nome") or "").strip()
+            if not nome:
+                continue
+            p = Prospect(
+                id=gerar_id(nome, linha.get("empresa")),
+                nome=nome,
+                empresa=linha.get("empresa") or None,
+                email=linha.get("email") or None,
+                telefone=linha.get("telefone") or None,
+                site=linha.get("site") or None,
+                instagram=linha.get("instagram") or None,
+                territorio=Territorio(
+                    municipio=linha.get("municipio") or None,
+                    uf=linha.get("uf") or None,
+                    bioma=linha.get("bioma") or None,
+                    area_ha=numero(linha.get("area_ha"), float),
+                    unidades=numero(linha.get("unidades"), int),
+                ),
+                origem=Origem(fonte=fonte, tipo="manual", coletado_por="cli"),
+                revisar_ate=date.today() + timedelta(days=365),
+            )
+            p.modalidade = inferir_modalidade(p)
+            novos.append(pontuar(p))
+
+    with RepositorioProspects() as repo:
+        total = repo.salvar_muitos(novos)
+
+    console.print(f"[green]{total} prospect(s) importado(s) e pontuado(s).[/green]")
+
+
+@prospects.command("exportar")
+@click.option("--saida", "-o", type=click.Path(), default="output/prospects.csv", show_default=True)
+@click.option("--todos", is_flag=True, help="Incluir quem pediu para não ser contatado")
+def prospects_exportar(saida, todos):
+    """Exporta a carteira em CSV."""
+    from src.prospects import RepositorioProspects
+
+    with RepositorioProspects() as repo:
+        destino = repo.exportar_csv(Path(saida), apenas_contataveis=not todos)
+
+    console.print(f"[green]Carteira exportada para {destino}[/green]")
+    if todos:
+        console.print("[yellow]Atenção: a exportação inclui registros marcados como "
+                      "não-contatar. Não use este arquivo para disparo.[/yellow]")
+
+
+@prospects.command("nao-contatar")
+@click.argument("prospect_id")
+def prospects_nao_contatar(prospect_id):
+    """Registra pedido de oposição do titular (LGPD Art. 18)."""
+    from src.prospects import RepositorioProspects
+
+    with RepositorioProspects() as repo:
+        ok = repo.marcar_nao_contatar(prospect_id)
+
+    if ok:
+        console.print(f"[green]{prospect_id} marcado como não-contatar.[/green]")
+    else:
+        console.print(f"[red]Prospect {prospect_id} não encontrado.[/red]")
+
+
+@prospects.command("coletar")
+@click.option("--url", "-u", "urls", multiple=True, required=True, help="URL a coletar (repetível)")
+@click.option("--salvar/--simular", default=True, show_default=True,
+              help="Gravar na carteira ou apenas exibir o que seria coletado")
+def prospects_coletar(urls, salvar):
+    """
+    Coleta prospects de páginas públicas via ScrapeGraphAI.
+
+    Requer o extra opcional: pip install -e ".[prospects]" (Python 3.12+).
+    Respeita robots.txt e a lista de domínios bloqueados.
+    """
+    from src.prospects.coletor import Coletor, ColetorIndisponivel
+    from src.prospects import RepositorioProspects
+
+    try:
+        coletor = Coletor()
+    except ColetorIndisponivel as erro:
+        from rich.markup import escape
+        console.print(f"[red]{escape(str(erro))}[/red]")
+        sys.exit(1)
+
+    achados = coletor.coletar_muitos(list(urls))
+    if not achados:
+        console.print("[yellow]Nenhum prospect coletado.[/yellow]")
+        return
+
+    for p in achados:
+        console.print(f"  [bold]{p.score:.1f}[/bold]  {p.nome}  [dim]{p.origem.fonte}[/dim]")
+
+    if salvar:
+        with RepositorioProspects() as repo:
+            repo.salvar_muitos(achados)
+        console.print(f"[green]{len(achados)} prospect(s) gravado(s) na carteira.[/green]")
+    else:
+        console.print(f"[dim]Simulação: {len(achados)} prospect(s) não foram gravados.[/dim]")
+
+
+
 if __name__ == "__main__":
     cli()

@@ -25,6 +25,13 @@ setup(
         "httpx>=0.27.0",
         "pyyaml>=6.0.0",
     ],
+    extras_require={
+        # Coleta automática de prospects. Pesado (~100 pacotes) e exige
+        # Python 3.12+, por isso fica fora da instalação padrão.
+        "prospects": ["scrapegraphai>=2.2.2"],
+        # tests/test_imports.py já usava pytest sem declará-lo em lugar nenhum
+        "dev": ["pytest>=8.0.0"],
+    },
     entry_points={
         "console_scripts": [
             "zion-ai=src.main:cli",
