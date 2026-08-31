@@ -256,6 +256,29 @@ ZION_THINKING_MODEL=gpt-5
 
 ---
 
+## Verificação no navegador (Playwright MCP)
+
+O repositório declara um servidor MCP do Playwright em `.mcp.json`. Ele dá ao agente o
+navegador como ferramenta — navegar, clicar, preencher formulário, ler console e tirar
+snapshot de acessibilidade — sem precisar escrever script a cada verificação.
+
+Serve para conferir o site de `docs/` de verdade: erros de console, requisições falhando,
+formulário de contato e comportamento em viewport de celular.
+
+```bash
+# servir o site local e apontar o agente para ele
+python3 -m http.server 8899 --directory docs
+```
+
+O servidor usa o Chrome do sistema por padrão. Em máquina sem Chrome instalado, acrescente
+`--browser chromium` aos argumentos e rode `npx playwright install chromium` uma vez; para
+apontar um binário específico, use `--executable-path`.
+
+Navegação a `file://` é bloqueada por padrão pelo próprio servidor — sirva por HTTP, como
+acima, em vez de abrir o arquivo direto.
+
+---
+
 ## Licença
 
 Propriedade intelectual da **Zion Hotel Group International**.
