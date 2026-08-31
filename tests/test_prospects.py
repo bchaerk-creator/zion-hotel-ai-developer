@@ -283,3 +283,119 @@ class TestRobots(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main(verbosity=2)
+
+
+class TestScoring(unittest.TestCase):
+    """ZION DESTINATION SCORE e ZION LEAD SCORE."""
+
+    def test_faixas_do_destino(self):
+        from src.prospects.scoring import classificar_destino
+        for score, esperado in ((95, "prioridade estratégica"), (80, "alta prioridade"),
+                                (65, "boa oportunidade"), (45, "monitoramento"),
+                                (20, "baixa prioridade")):
+            self.assertEqual(classificar_destino(score), esperado, msg=score)
+
+    def test_faixas_do_lead(self):
+        from src.prospects.scoring import classificar_lead
+        for score, esperado in ((95, "A+"), (80, "A"), (65, "B"), (45, "C"), (10, "D")):
+            self.assertEqual(classificar_lead(score), esperado, msg=score)
+        self.assertEqual(classificar_lead(None), "não pontuado")
+
+    def test_pesos_do_lead_somam_cem(self):
+        from src.prospects.scoring import PESOS_LEAD
+        self.assertEqual(sum(PESOS_LEAD.values()), 100)
+
+    def test_pesos_do_destino_somam_noventa_e_cinco(self):
+        """
+        A especificação declara total 100, mas as sete dimensões somam 95.
+        Mantemos os pesos verbatim e normalizamos — este teste fixa o fato
+        para a divergência não voltar despercebida.
+        """
+        from src.prospects.scoring import PESOS_DESTINO, TOTAL_DESTINO_BRUTO
+        self.assertEqual(sum(PESOS_DESTINO.values()), 95)
+        self.assertEqual(TOTAL_DESTINO_BRUTO, 95)
+
+    def test_normalizacao_alcanca_as_faixas_altas(self):
+        from src.prospects.scoring import classificar_destino, normalizar_destino
+        self.assertEqual(normalizar_destino(95), 100.0)
+        self.assertEqual(classificar_destino(95), "prioridade estratégica")
+        self.assertEqual(classificar_destino(86), "prioridade estratégica")
+
+    def test_validar_notas_recusa_nota_estourada(self):
+        from src.prospects.scoring import validar_notas_destino
+        boas = {"demanda": 20, "premium": 15, "natureza": 15, "glamping": 15,
+                "imobiliario": 10, "acesso": 10, "ticket": 10}
+        validar_notas_destino(boas)  # não levanta
+        with self.assertRaises(ValueError):
+            validar_notas_destino({**boas, "acesso": 11})
+        with self.assertRaises(ValueError):
+            validar_notas_destino({k: v for k, v in boas.items() if k != "ticket"})
+
+    def test_lead_score_nunca_passa_de_cem(self):
+        from src.prospects.scoring import pontuar_lead
+        p = pontuar_lead(fazer_prospect(
+            modalidade=Modalidade.DEVELOPMENT,
+            territorio=Territorio(uf="SC", municipio="Urubici", area_ha=40),
+            email="a@b.com", telefone="48999", instagram="@x", site="https://x.com",
+            notas="Terreno parado há 3 anos, quer renda",
+        ), destination_score=100)
+        self.assertLessEqual(p.score, 100.0)
+        self.assertEqual(len(p.score_motivos), 7)
+
+    def test_destino_melhor_puxa_o_lead_para_cima(self):
+        from src.prospects.scoring import pontuar_lead
+        def montar():
+            return fazer_prospect(modalidade=Modalidade.DEVELOPMENT,
+                                  territorio=Territorio(uf="SC", area_ha=40),
+                                  email="a@b.com")
+        forte = pontuar_lead(montar(), destination_score=90)
+        fraco = pontuar_lead(montar(), destination_score=40)
+        self.assertGreater(forte.score, fraco.score)
+
+    def test_nao_contatar_zera_o_lead_score(self):
+        from src.prospects.scoring import pontuar_lead
+        p = pontuar_lead(fazer_prospect(
+            nao_contatar=True, territorio=Territorio(uf="SC", area_ha=40),
+            email="a@b.com"), destination_score=90)
+        self.assertEqual(p.score, 0.0)
+
+    def test_produto_recomendado_por_modalidade(self):
+        from src.prospects.scoring import produto_recomendado
+        grande = fazer_prospect(modalidade=Modalidade.DEVELOPMENT,
+                                territorio=Territorio(area_ha=40))
+        pequeno = fazer_prospect(modalidade=Modalidade.DEVELOPMENT,
+                                 territorio=Territorio(area_ha=4))
+        self.assertIn("diagnóstico", produto_recomendado(grande))
+        self.assertIn("bubble", produto_recomendado(pequeno).lower())
+
+
+class TestDestinos(unittest.TestCase):
+    def test_sessenta_destinos_carregam(self):
+        from src.prospects.destinos import carregar
+        self.assertEqual(len(carregar()), 60)
+
+    def test_todo_destino_tem_score_coerente(self):
+        """A soma das sete parcelas tem que bater com o score gravado."""
+        from src.prospects.destinos import carregar
+        from src.prospects.scoring import validar_notas_destino
+        for d in carregar():
+            validar_notas_destino(d.notas)
+            self.assertEqual(sum(d.notas.values()), d.destination_score,
+                             msg=f"{d.municipio}/{d.uf}")
+
+    def test_top_devolve_ordenado(self):
+        from src.prospects.destinos import top
+        cinco = top("SC", 5)
+        self.assertEqual(len(cinco), 5)
+        scores = [d.destination_score for d in cinco]
+        self.assertEqual(scores, sorted(scores, reverse=True))
+
+    def test_vinte_por_uf(self):
+        from src.prospects.destinos import listar
+        for uf in ("SC", "PR", "RS"):
+            self.assertEqual(len(listar(uf=uf)), 20, msg=uf)
+
+    def test_buscar_municipio(self):
+        from src.prospects.destinos import buscar
+        self.assertIsNotNone(buscar("Urubici", "SC"))
+        self.assertIsNone(buscar("Narnia", "SC"))

@@ -228,7 +228,8 @@ def prospects():
 def prospects_listar(modalidade, uf, score_minimo, todos, limite):
     """Lista a carteira, do maior score para o menor."""
     from src.models.prospect import Modalidade
-    from src.prospects import RepositorioProspects, classificar
+    from src.prospects import RepositorioProspects
+    from src.prospects.scoring import classificar_lead
 
     with RepositorioProspects() as repo:
         registros = repo.listar(
@@ -243,15 +244,15 @@ def prospects_listar(modalidade, uf, score_minimo, todos, limite):
         console.print("[yellow]Nenhum prospect encontrado com esse filtro.[/yellow]")
         return
 
-    tabela = Table(title="Carteira de Prospects", show_lines=False)
-    for coluna in ("Score", "Prioridade", "Nome", "Modalidade", "Território", "Estágio"):
+    tabela = Table(title="Carteira de Prospects · ZION LEAD SCORE", show_lines=False)
+    for coluna in ("Score", "Classe", "Nome", "Modalidade", "Território", "Estágio"):
         tabela.add_column(coluna)
 
     for p in registros:
         local = " / ".join(x for x in (p.territorio.municipio, p.territorio.uf) if x) or "—"
         tabela.add_row(
-            f"{p.score:.1f}" if p.score is not None else "—",
-            classificar(p.score),
+            f"{p.score:.0f}" if p.score is not None else "—",
+            classificar_lead(p.score),
             p.nome,
             p.modalidade.value,
             local,
@@ -298,7 +299,9 @@ def prospects_importar(arquivo, fonte):
     import csv
     from datetime import date, timedelta
     from src.models.prospect import Origem, Prospect, Territorio
-    from src.prospects import RepositorioProspects, gerar_id, inferir_modalidade, pontuar
+    from src.prospects import RepositorioProspects, gerar_id, inferir_modalidade
+    from src.prospects.destinos import buscar as buscar_destino
+    from src.prospects.scoring import pontuar_lead
 
     def numero(valor, conversor):
         try:
@@ -331,7 +334,9 @@ def prospects_importar(arquivo, fonte):
                 revisar_ate=date.today() + timedelta(days=365),
             )
             p.modalidade = inferir_modalidade(p)
-            novos.append(pontuar(p))
+            destino = (buscar_destino(p.territorio.municipio, p.territorio.uf)
+                       if p.territorio.municipio and p.territorio.uf else None)
+            novos.append(pontuar_lead(p, destino.destination_score if destino else None))
 
     with RepositorioProspects() as repo:
         total = repo.salvar_muitos(novos)
@@ -432,20 +437,23 @@ def destinos_listar(uf, relevancia, bioma, prioridade):
         console.print("[yellow]Nenhum destino com esse filtro.[/yellow]")
         return
 
-    cor = {"alta": "green", "media": "yellow", "baixa": "red"}
-    tabela = Table(title="Destinos Turísticos · Praças de Prospecção")
-    for coluna in ("UF", "#", "Município", "Vocação", "Bioma", "Sazonalidade", "Zion"):
-        tabela.add_column(coluna)
+    cor = {"prioridade estratégica": "bright_green", "alta prioridade": "green",
+           "boa oportunidade": "yellow", "monitoramento": "bright_black",
+           "baixa prioridade": "red"}
+    tabela = Table(title="ZION DESTINATION SCORE — Praças de Prospecção")
+    for coluna in ("UF", "Score", "Município", "Classificação", "Vocação", "Sazonalidade"):
+        tabela.add_column(coluna, justify="right" if coluna == "Score" else "left")
 
     for d in itens:
         tabela.add_row(
-            d.uf, str(d.rank_uf), d.municipio, d.vocacao, d.bioma, d.sazonalidade,
-            f"[{cor.get(d.relevancia_zion, 'white')}]{d.relevancia_zion}[/]",
+            d.uf, str(d.destination_score), d.municipio,
+            f"[{cor.get(d.classificacao, 'white')}]{d.classificacao}[/]",
+            d.vocacao, d.sazonalidade,
         )
 
     console.print(tabela)
-    altas = sum(1 for d in itens if d.prioritario)
-    console.print(f"[dim]{len(itens)} destino(s) · {altas} de relevância alta.[/dim]")
+    altas = sum(1 for d in itens if d.destination_score >= 75)
+    console.print(f"[dim]{len(itens)} destino(s) · {altas} de alta prioridade ou acima.[/dim]")
 
 
 @destinos.command("resumo")
@@ -465,6 +473,57 @@ def destinos_resumo():
         tabela.add_row(uf, str(b["total"]), str(b["alta"]), str(b["media"]), str(b["baixa"]))
     console.print(tabela)
 
+
+@destinos.command("mapear")
+@click.argument("uf")
+@click.option("--top", "-n", "quantos", type=int, default=5, show_default=True,
+              help="Quantos destinos recomendar como prioridade máxima")
+def destinos_mapear(uf, quantos):
+    """
+    Executa MAPEAR [ESTADO]: pontua, classifica e recomenda os TOP N.
+
+    Segue o ZION MARKET INTELLIGENCE & LEAD ENGINE, seção 20.
+    """
+    from src.prospects.destinos import consultas_prospeccao, listar
+    from src.prospects.scoring import PESOS_DESTINO
+
+    itens = sorted(listar(uf=uf), key=lambda d: -d.destination_score)
+    if not itens:
+        console.print(f"[red]{uf.upper()} não está mapeado.[/red]")
+        return
+
+    console.print(Panel(
+        f"[bold]{uf.upper()}[/bold] · {len(itens)} destinos mapeados\n"
+        f"[dim]ZION DESTINATION SCORE — 100 pontos em 7 dimensões[/dim]",
+        title="Mapeamento de Estado",
+    ))
+
+    faixas = [("TOP 5 · PRIORIDADE MÁXIMA", itens[:5]),
+              ("TOP 6–10 · ALTA PRIORIDADE", itens[5:10]),
+              ("TOP 11–20 · MAPEAMENTO ESTRATÉGICO", itens[10:20])]
+
+    for titulo, grupo in faixas:
+        if not grupo:
+            continue
+        tabela = Table(title=titulo)
+        tabela.add_column("Score", justify="right")
+        for coluna in ("Município", "Classificação", "Vocação"):
+            tabela.add_column(coluna)
+        for d in grupo:
+            tabela.add_row(str(d.destination_score), d.municipio, d.classificacao, d.vocacao)
+        console.print(tabela)
+
+    console.print(f"\n[bold]Recomendação — comece por estes {quantos}:[/bold]\n")
+    for i, d in enumerate(itens[:quantos], 1):
+        parcelas = " · ".join(
+            f"{k} {v}/{PESOS_DESTINO[k]}" for k, v in d.notas.items())
+        console.print(f"[bold]{i}. {d.municipio}[/bold] — {d.destination_score}/100 "
+                      f"({d.classificacao})")
+        console.print(f"   [dim]{parcelas}[/dim]")
+        console.print(f"   {d.nota}\n")
+
+    console.print("[dim]Próximo passo: zion-ai destinos prospectar "
+                  f"\"{itens[0].municipio}\" --uf {uf.upper()}[/dim]")
 
 @destinos.command("prospectar")
 @click.argument("municipio")

@@ -39,10 +39,34 @@ class Destino:
     sazonalidade: str
     relevancia_zion: str
     nota: str
+    demanda: int = 0
+    premium: int = 0
+    natureza: int = 0
+    glamping: int = 0
+    imobiliario: int = 0
+    acesso: int = 0
+    ticket: int = 0
+    destination_score: int = 0
 
     @property
     def prioritario(self) -> bool:
         return self.relevancia_zion == "alta"
+
+    @property
+    def classificacao(self) -> str:
+        """Faixa de prioridade do ZION DESTINATION SCORE."""
+        from src.prospects.scoring import classificar_destino
+        return classificar_destino(self.destination_score)
+
+    @property
+    def notas(self) -> Dict[str, int]:
+        """As sete parcelas que compõem o score."""
+        return {
+            "demanda": self.demanda, "premium": self.premium,
+            "natureza": self.natureza, "glamping": self.glamping,
+            "imobiliario": self.imobiliario, "acesso": self.acesso,
+            "ticket": self.ticket,
+        }
 
 
 def carregar(arquivo: Optional[Path] = None) -> List[Destino]:
@@ -68,6 +92,14 @@ def carregar(arquivo: Optional[Path] = None) -> List[Destino]:
                     sazonalidade=linha["sazonalidade"].strip(),
                     relevancia_zion=linha["relevancia_zion"].strip().lower(),
                     nota=linha["nota"].strip(),
+                    demanda=int(linha.get("demanda") or 0),
+                    premium=int(linha.get("premium") or 0),
+                    natureza=int(linha.get("natureza") or 0),
+                    glamping=int(linha.get("glamping") or 0),
+                    imobiliario=int(linha.get("imobiliario") or 0),
+                    acesso=int(linha.get("acesso") or 0),
+                    ticket=int(linha.get("ticket") or 0),
+                    destination_score=int(linha.get("destination_score") or 0),
                 ))
     return destinos
 
@@ -90,10 +122,24 @@ def listar(
         itens = [d for d in itens if alvo in d.bioma.lower()]
 
     if por_relevancia:
-        itens.sort(key=lambda d: (RELEVANCIA_ORDEM.get(d.relevancia_zion, 9), d.uf, d.rank_uf))
+        itens.sort(key=lambda d: (-d.destination_score, d.uf))
     else:
-        itens.sort(key=lambda d: (d.uf, d.rank_uf))
+        itens.sort(key=lambda d: (d.uf, -d.destination_score))
     return itens
+
+
+def top(uf: str, n: int = 5) -> List[Destino]:
+    """Os N destinos de maior Destination Score na UF."""
+    return sorted(listar(uf=uf), key=lambda d: -d.destination_score)[:n]
+
+
+def buscar(municipio: str, uf: str) -> Optional[Destino]:
+    """Encontra um destino pelo início do nome."""
+    alvo = municipio.strip().lower()
+    for d in listar(uf=uf):
+        if d.municipio.lower().startswith(alvo):
+            return d
+    return None
 
 
 def resumo() -> Dict[str, dict]:
