@@ -1,4 +1,4 @@
-# CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ZELADORIA, CONSERVAÇÃO E APOIO OPERACIONAL
+# CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ZELADORIA, HOSPITALIDADE E APOIO OPERACIONAL
 
 **Contrato nº ZHG/MED/ZEL-001/2026**
 
@@ -14,19 +14,38 @@
 
 CONTRATANTE e CONTRATADA, quando referidas em conjunto, serão denominadas **Partes** e, individualmente, **Parte**.
 
-As Partes têm entre si justo e contratado o presente **Contrato de Prestação de Serviços de Zeladoria, Conservação e Apoio Operacional**, que se regerá pelas cláusulas e condições a seguir, e ainda pelos artigos 593 a 609 do Código Civil, obrigando-se por si e por seus sucessores.
+As Partes têm entre si justo e contratado o presente **Contrato de Prestação de Serviços de Zeladoria, Hospitalidade e Apoio Operacional**, que se regerá pelas cláusulas e condições a seguir, e ainda pelos artigos 593 a 609 do Código Civil, obrigando-se por si e por seus sucessores.
 
 ---
 
 ## CLÁUSULA 1 — DO OBJETO
 
-**1.1.** Constitui objeto deste Contrato a prestação, pela CONTRATADA, de forma autônoma, independente e sem qualquer vínculo de subordinação, dos serviços de **zeladoria, conservação, limpeza, higienização, paisagismo e apoio operacional** nas dependências do empreendimento turístico explorado pela CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC (doravante **"Empreendimento"**).
+**1.1.** Constitui objeto deste Contrato a prestação, pela CONTRATADA, de forma autônoma, independente e sem qualquer vínculo de subordinação, dos serviços de **zeladoria, conservação, hospitalidade e apoio operacional** no empreendimento turístico explorado pela CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC (doravante **"Empreendimento"**), organizados nos módulos abaixo.
 
-**1.2.** O escopo detalhado dos serviços, as frequências mínimas, os padrões de qualidade e os indicadores de desempenho (SLA) constam do **ANEXO I — Escopo de Serviços e Padrões de Qualidade**, que integra este Contrato para todos os fins.
+**1.2. Módulos contratados.** São objeto deste Contrato os módulos assinalados no **ANEXO I**, cujo detalhamento, frequências mínimas, padrões de qualidade e indicadores de desempenho (SLA) dele constam:
 
-**1.3.** A contratação tem por objeto **resultado**, e não jornada. A CONTRATADA obriga-se a entregar o Empreendimento nas condições de conservação, limpeza e apresentação descritas no ANEXO I, sendo-lhe facultado definir livremente os meios, os métodos, a equipe e a distribuição de horários necessários ao cumprimento desse resultado, observadas apenas as janelas operacionais previstas na Cláusula 3.
+| Módulo | Escopo |
+|---|---|
+| **A** | Conservação, limpeza e higienização de unidades, áreas comuns e áreas molhadas |
+| **B** | Paisagismo, jardinagem e conservação de áreas externas |
+| **C** | Hospitalidade e atendimento ao hóspede — recepção, check-in e check-out, orientação, acompanhamento da estadia e atendimento de solicitações |
+| **D** | Manutenção preventiva e pequenos reparos de baixa complexidade |
+| **E** | Zeladoria, ronda de conservação e guarda de chaves e acessos |
+| **F** | Apoio administrativo operacional e recebimento de valores (facultativo) |
 
-**1.4.** Ficam **expressamente excluídos** do objeto deste Contrato: (i) serviços de vigilância e segurança patrimonial armada ou desarmada, sujeitos a regulamentação própria; (ii) atendimento e recepção de hóspedes, reservas e gestão comercial; (iii) manutenção predial estrutural, elétrica de alta complexidade, hidráulica de rede ou obras civis; (iv) manuseio de valores, caixa ou meios de pagamento. Serviços não previstos no ANEXO I somente serão executados mediante **Ordem de Serviço Extraordinária** escrita e previamente orçada.
+**1.3.** A contratação tem por objeto **resultado**, e não jornada. A CONTRATADA obriga-se a entregar o Empreendimento operando nos padrões descritos no ANEXO I, sendo-lhe facultado definir livremente os meios, os métodos, a equipe e a distribuição de horários necessários ao cumprimento desse resultado, observadas apenas as janelas operacionais previstas na Cláusula 3.
+
+**1.4. Licitude da contratação.** As Partes reconhecem que a prestação de serviços ora ajustada, ainda que abranja atividades ligadas ao núcleo da operação hoteleira da CONTRATANTE, é **plenamente lícita**, nos termos da Lei nº 6.019/1974, com a redação dada pelas Leis nº 13.429/2017 e nº 13.467/2017, e conforme decidido pelo Supremo Tribunal Federal na **ADPF 324** e no **RE 958.252 (Tema 725 de Repercussão Geral)**, que admitem a terceirização de toda e qualquer atividade, meio ou fim, preservada a responsabilidade prevista na Cláusula 7.
+
+**1.5. Limites de ordem pública.** Independentemente dos módulos contratados, **não integram e não poderão integrar** o objeto deste Contrato:
+
+a) **Vigilância e segurança patrimonial**, armada ou desarmada, nos termos da Lei nº 7.102/1983, atividade privativa de empresa especializada autorizada pela Polícia Federal. O Módulo E tem natureza de **conservação e presença no imóvel**, e não de segurança: é vedado à CONTRATADA e a seus prepostos portar arma, realizar revista pessoal ou de bagagem, promover contenção física, perseguição, abordagem ou detenção de qualquer pessoa, ou assumir obrigação de guarda armada. Diante de qualquer ocorrência de segurança, a CONTRATADA acionará **imediatamente** a CONTRATANTE e as autoridades públicas competentes;
+
+b) **Serviços que dependam de habilitação legal, registro em conselho profissional ou anotação de responsabilidade técnica (ART/RRT)**, notadamente: intervenção em quadro geral e instalações elétricas energizadas (NR-10), instalações e recipientes de gás, hidráulica de rede, sistemas de aquecimento, estrutura e obras civis. Nessas hipóteses, cabe à CONTRATADA **identificar, isolar e comunicar** a ocorrência, e à CONTRATANTE contratar o profissional habilitado;
+
+c) **Decisões comerciais e de gestão do negócio** — precificação, política de cancelamento, aceitação ou recusa de reservas fora dos critérios previamente definidos pela CONTRATANTE, concessão de cortesias e descontos, contratação de fornecedores e representação da CONTRATANTE perante terceiros —, que permanecem de competência exclusiva da CONTRATANTE.
+
+**1.6.** Serviços não previstos no ANEXO I somente serão executados mediante **Ordem de Serviço Extraordinária** escrita e previamente orçada, na forma do item 4.8.
 
 ---
 
@@ -52,7 +71,7 @@ f) **Assunção de risco** — a CONTRATADA assume integralmente os riscos técn
 
 **2.4.** A CONTRATANTE obriga-se a **não emitir ordens diretas** aos empregados ou prepostos da CONTRATADA. Toda e qualquer comunicação, solicitação, crítica ou ajuste relativo à execução dos serviços será dirigida **exclusivamente ao Preposto** designado pela CONTRATADA, na forma do ANEXO V, pelos canais indicados na Cláusula 17.3.
 
-**2.5.** É **vedado** à CONTRATANTE: (i) exigir uso de uniforme, crachá ou identificação visual com a marca da CONTRATANTE por empregados da CONTRATADA, salvo por razões de segurança e controle de acesso, hipótese em que o crachá indicará expressamente a razão social da CONTRATADA; (ii) incluir a CONTRATADA ou seus prepostos em treinamentos internos obrigatórios, reuniões de equipe, avaliações de desempenho individual, programas de metas, premiações ou benefícios destinados a seus empregados; (iii) conceder à CONTRATADA ou a seus prepostos vale-transporte, vale-refeição, plano de saúde, adiantamentos, "vales", empréstimos ou qualquer outra utilidade típica de relação de emprego; (iv) submeter a CONTRATADA a controle de ponto, escala fixa ou autorização prévia para ausências, férias ou afastamentos.
+**2.5.** É **vedado** à CONTRATANTE: (i) exigir uso de uniforme, crachá ou identificação visual que apresente a CONTRATADA ou seus prepostos como integrantes do quadro de empregados da CONTRATANTE, observado o item 3.7 quanto à padronização de vestimenta no módulo de hospitalidade; (ii) incluir a CONTRATADA ou seus prepostos em treinamentos internos obrigatórios, reuniões de equipe, avaliações de desempenho individual, programas de metas, premiações ou benefícios destinados a seus empregados; (iii) conceder à CONTRATADA ou a seus prepostos vale-transporte, vale-refeição, plano de saúde, adiantamentos, "vales", empréstimos ou qualquer outra utilidade típica de relação de emprego; (iv) submeter a CONTRATADA a controle de ponto, escala fixa ou autorização prévia para ausências, férias ou afastamentos.
 
 **2.6.** A CONTRATADA declara e se obriga a, no prazo de **30 (trinta) dias** contados da assinatura deste Contrato, manter seu cadastro no CNPJ regularizado, com (i) **sede em endereço próprio e distinto** do endereço do Empreendimento, e (ii) **atividade econômica principal (CNAE) compatível** com o objeto deste Contrato, preferencialmente CNAE 81.29-0-00 ou 81.21-4-00. O descumprimento desta obrigação autoriza a CONTRATANTE a suspender os pagamentos até a regularização, sem incidência de mora ou penalidade.
 
@@ -71,6 +90,18 @@ f) **Assunção de risco** — a CONTRATADA assume integralmente os riscos técn
 **3.4.** A CONTRATANTE poderá **verificar o resultado** dos serviços mediante inspeções, checklists e registros fotográficos, apontando não conformidades por escrito ao Preposto. Constatada não conformidade, a CONTRATADA terá prazo de **24 (vinte e quatro) horas** para saneamento, sem custo adicional. A reincidência de não conformidades da mesma natureza por **3 (três) vezes** em um mesmo mês, ou a não correção no prazo, sujeitará a CONTRATADA às penalidades da Cláusula 12.
 
 **3.5.** A CONTRATADA obriga-se a manter registro próprio da jornada, das férias, dos afastamentos e do descanso semanal remunerado de seus empregados, respondendo com exclusividade pela observância das normas trabalhistas e de segurança do trabalho aplicáveis.
+
+**3.6. Módulo C — Hospitalidade e atendimento ao hóspede.** Contratado o Módulo C, a CONTRATADA executará o atendimento segundo o roteiro, os protocolos e os padrões de serviço descritos no ANEXO I, com autonomia quanto à forma de execução e à alocação de sua equipe. No exercício desse módulo, a CONTRATADA atua **em nome e por conta da CONTRATANTE**, sendo-lhe vedado: (i) alterar preços, tarifas, políticas de cancelamento ou condições de hospedagem; (ii) aceitar, recusar ou modificar reservas fora dos critérios previamente definidos por escrito pela CONTRATANTE; (iii) conceder cortesias, descontos, upgrades ou reembolsos sem autorização escrita; (iv) assumir compromissos, firmar documentos ou representar a CONTRATANTE perante terceiros.
+
+**3.6.1. Acessos a sistemas.** O acesso ao sistema de gestão hoteleira (PMS), aos canais de venda, às fechaduras eletrônicas e a quaisquer plataformas da CONTRATANTE será concedido mediante **credencial individual e nominal**, vinculada a cada pessoa da equipe da CONTRATADA, registrada em termo próprio, revogável a qualquer tempo e **intransferível**. É vedado o compartilhamento de senhas. A CONTRATADA responde pelos atos praticados sob as credenciais a ela concedidas e comunicará em até 24 (vinte e quatro) horas o desligamento de qualquer pessoa com acesso ativo, para revogação imediata.
+
+**3.7. Padronização de vestimenta.** Em razão do contato direto com hóspedes, a CONTRATADA e sua equipe observarão o padrão de apresentação pessoal (cor, estilo e asseio) descrito no ANEXO I, **adquirido e custeado exclusivamente pela CONTRATADA**. A identificação usada em serviço indicará a razão social da CONTRATADA, sendo vedada qualquer identificação que apresente a equipe como empregada ou integrante do quadro de pessoal da CONTRATANTE. O padrão de apresentação é **requisito de qualidade do serviço**, não constituindo uniforme, poder diretivo ou subordinação.
+
+**3.8. Módulos D e E — Manutenção e zeladoria.** No Módulo D, a CONTRATADA executará exclusivamente reparos de baixa complexidade, nos limites do item 1.5 (b), registrando cada intervenção no relatório mensal. No Módulo E, as rondas de conservação têm por finalidade **verificar o estado do imóvel, das instalações e dos acessos**, e a CONTRATADA obriga-se a comunicar imediatamente à CONTRATANTE qualquer anormalidade, sinistro, invasão ou ocorrência de segurança, **abstendo-se de qualquer ato de intervenção, abordagem ou contenção**, na forma do item 1.5 (a).
+
+**3.9. Disponibilidade fora das janelas operacionais.** Quando o Módulo C exigir atendimento fora das janelas ordinárias (chegadas tardias, saídas antecipadas, intercorrências com hóspedes), a CONTRATADA organizará, **por sua própria conta e critério**, escala de sobreaviso entre seus prepostos, não cabendo à CONTRATANTE determinar quem, quando ou por quanto tempo cada pessoa permanecerá disponível. A remuneração dessa disponibilidade está integralmente compreendida no preço global da Cláusula 4, não gerando adicional, sobreaviso, plantão ou hora extra de qualquer natureza.
+
+**3.10. Módulo F — Recebimento de valores.** Contratado o Módulo F, o recebimento observará obrigatoriamente: (i) uso **exclusivo** de meios de pagamento registrados em nome e conta da CONTRATANTE (link de pagamento, maquininha e chave PIX do CNPJ 55.493.012/0001-97), sendo **vedado** o recebimento em conta, chave PIX ou maquininha de titularidade da CONTRATADA ou de seus prepostos; (ii) **vedação ao recebimento em espécie**, salvo autorização escrita e específica da CONTRATANTE, hipótese em que o valor será depositado na conta da CONTRATANTE em até 24 (vinte e quatro) horas, com comprovante; (iii) prestação de contas diária, com conciliação no fechamento mensal; (iv) proibição de guarda de numerário na Casa de Operações ou em qualquer dependência do Empreendimento fora do cofre indicado pela CONTRATANTE; (v) contratação, pela CONTRATADA, de **seguro de fidelidade funcional** ou apresentação de garantia equivalente, na forma da Cláusula 14. O descumprimento de qualquer destes itens configura infração contratual grave, autorizando a rescisão imediata por justa causa.
 
 ---
 
@@ -260,7 +291,7 @@ c) impedimento de acesso às áreas necessárias à execução dos serviços por
 
 **11.1.** Não há exclusividade entre as Partes. A CONTRATADA poderá prestar serviços a terceiros e a CONTRATANTE poderá contratar outros prestadores para serviços não abrangidos pelo ANEXO I.
 
-**11.2.** A CONTRATADA obriga-se a não prestar, durante a vigência, serviços diretamente a hóspedes do Empreendimento, nem a intermediar hospedagem, locação ou serviços paralelos que concorram com a CONTRATANTE dentro de suas dependências.
+**11.2.** Ressalvado o atendimento prestado em nome e por conta da CONTRATANTE no âmbito do Módulo C, a CONTRATADA obriga-se a **não prestar serviços remunerados por conta própria** a hóspedes do Empreendimento, nem a cobrar deles qualquer valor em seu próprio benefício, nem a intermediar hospedagem, locação, passeios ou serviços paralelos que concorram com a CONTRATANTE ou que sejam ofertados dentro de suas dependências sem autorização escrita.
 
 **11.3.** A CONTRATADA obriga-se a não aliciar nem contratar, durante a vigência e por **12 (doze) meses** após o término, empregados da CONTRATANTE, salvo anuência escrita.
 
@@ -298,7 +329,9 @@ c) **multa de 10% (dez por cento)** sobre o valor equivalente a 12 (doze) mensal
 
 **14.1.** A CONTRATADA obriga-se a contratar e manter vigente, durante toda a vigência deste Contrato, apólice de **seguro de responsabilidade civil** com cobertura mínima de **R$ [______]**, apresentando cópia da apólice e dos comprovantes de pagamento sempre que solicitada.
 
-**14.2.** A existência ou a suficiência do seguro não limita nem exclui a responsabilidade integral da CONTRATADA prevista neste Contrato.
+**14.2.** Contratado o **Módulo F**, a CONTRATADA obriga-se a contratar adicionalmente **seguro de fidelidade funcional** (cobertura contra desvio, apropriação indébita e furto praticados por seus prepostos), com cobertura mínima de **R$ [______]**, ou a prestar garantia equivalente aceita pela CONTRATANTE.
+
+**14.3.** A existência ou a suficiência dos seguros não limita nem exclui a responsabilidade integral da CONTRATADA prevista neste Contrato.
 
 ---
 

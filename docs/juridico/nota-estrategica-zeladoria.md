@@ -1,4 +1,4 @@
-# NOTA ESTRATÉGICA — ESTRUTURA DA CONTRATAÇÃO DE ZELADORIA
+# NOTA ESTRATÉGICA — ESTRUTURA DA CONTRATAÇÃO DE ZELADORIA E HOSPITALIDADE
 ### Mediterrâneo Empreendimentos Turísticos Ltda × 19.525.600 Camila Rabelo Glicerio Gois
 **Data:** 30/08/2026 · **Uso interno** · **Não substitui parecer de advogado trabalhista**
 
@@ -37,6 +37,10 @@
 | Responsabilidade subsidiária (Súmula 331 TST) | **Cl. 7** — responsabilidade exclusiva dela + direito de regresso integral + obrigação de assumir o polo passivo |
 | Ela sumir e deixar dívida trabalhista | **Cl. 4.9** — retenção de 5% de cada fatura, liberada 90 dias após o fim, contra CNDT e quitação dos empregados |
 | Falta de fiscalização (culpa in vigilando) | **Cl. 5.12 + Anexo IV** — checklist mensal de certidões como condição de pagamento |
+| Terceirizar atividade-fim (recepção, hospitalidade) | **Cl. 1.4** — Lei 6.019/74 c/ Lei 13.467/17 + ADPF 324 e RE 958.252 |
+| Prestar "segurança" sem ser empresa de segurança | **Cl. 1.5 (a) + 3.8** — Módulo E é conservação e presença, nunca vigilância |
+| Disponibilidade noturna virar sobreaviso | **Cl. 3.9** — escala sob critério exclusivo dela, já dentro do preço global |
+| Desvio de valores e falha de conciliação | **Cl. 3.10 + 14.2** — meios de pagamento da Mediterrâneo, prestação de contas diária, seguro de fidelidade |
 | Casa vira "salário-utilidade" | **Cl. 8.2 (c)** — comodato instrumental, não remuneração, art. 458 CLT afastado |
 | Ela não sair da casa | **Cl. 8.8** — extinção automática, 10 dias, multa diária, taxa de ocupação, reintegração de posse |
 | Sair sem avisar na alta temporada | **Cl. 9.3** — 60 dias + multa de 2 mensalidades + bloqueio de saída entre 15/dez e 28/fev |
@@ -69,6 +73,39 @@ Empresa sediada dentro do cliente é um dos indícios mais citados em sentenças
 **c) Se a Camila é a única pessoa que presta o serviço, o risco é estruturalmente alto.**
 Empresa individual + uma única pessoa física + presença diária + morando no local = o cenário clássico de reconhecimento de vínculo, por mais bem escrito que seja o contrato.
 **Ação:** o ideal é que ela tenha ao menos **um empregado registrado ou substituto habitual** e que isso apareça nos relatórios mensais. Se na prática for só ela, sozinha, todos os dias, morando na casa, avalie com um advogado trabalhista se não é mais barato e mais seguro **contratá-la pela CLT** — o custo do vínculo assumido é previsível; o custo do vínculo reconhecido em juízo (com horas extras, adicional noturno, FGTS, multas, honorários e reflexos sobre anos) costuma ser várias vezes maior.
+
+### 2.4. Ela também recebe hóspede, faz reparo, ronda e mexe com pagamento — pode?
+
+Pode. A primeira versão excluía essas funções por conservadorismo, e isso estava errado para a sua operação real. Um glamping pequeno não tem recepcionista, camareira, zelador e manutentor separados: tem uma pessoa que faz tudo. O contrato agora reflete isso, com o objeto dividido em **seis módulos** (Cláusula 1.2) que você assinala no Anexo I conforme o que ela realmente faz.
+
+**Terceirizar atividade-fim é legal desde 2017.** A Lei 13.429/2017 e a Lei 13.467/2017 alteraram a Lei 6.019/1974, e o STF confirmou na **ADPF 324** e no **RE 958.252 (Tema 725)** que qualquer atividade pode ser terceirizada, meio ou fim. Recepcionar hóspede em hotel terceirizado é lícito. Isso está afirmado na Cláusula 1.4, citando os precedentes — não como enfeite, mas porque um juiz que leia o contrato já encontra a base pronta.
+
+**Só três coisas ficaram fora, e por motivo de lei, não de estratégia:**
+
+| Fica fora | Por quê | O que ela faz no lugar |
+|---|---|---|
+| Vigilância e segurança patrimonial | Lei 7.102/1983 — atividade privativa de empresa de segurança autorizada pela PF | Módulo E: ronda de **conservação**, verificação do imóvel e dos acessos. Vedado portar arma, revistar, abordar ou conter. Diante de ocorrência: aciona você e a polícia, não intervém |
+| Elétrica energizada, gás, hidráulica de rede, estrutura, obras | Exigem habilitação e ART/RRT | Módulo D: ela **identifica, isola e comunica**. Quem executa é profissional habilitado que você contrata |
+| Decisões comerciais (preço, reserva, desconto, fornecedor) | Não é limite legal, é limite de risco seu | Módulo C: ela executa dentro dos critérios que você definiu por escrito |
+
+**A diferença entre "zeladoria" e "vigilância" não é semântica.** Se o contrato disser que ela é responsável pela segurança do local, você contratou serviço de segurança de quem não pode prestá-lo, e passa a responder por isso. Se disser que ela faz ronda de conservação e comunica anormalidades, é zeladoria, que qualquer empresa pode prestar. A redação da Cláusula 1.5 (a) e do Módulo E foi construída sobre essa linha.
+
+**O módulo de recebimento de valores (F) é o mais perigoso — e é opcional.** Se ela recebe pagamento de hóspede, três riscos entram de uma vez: apropriação indébita, dificuldade de conciliação, e o reforço da aparência de empregada com acesso a caixa. As travas da Cláusula 3.10:
+
+- só link, maquininha e PIX **no CNPJ da Mediterrâneo** — nunca na conta dela;
+- dinheiro em espécie proibido, salvo autorização escrita, com depósito em 24h;
+- prestação de contas diária e conciliação mensal;
+- proibido guardar numerário na Casa de Operações;
+- seguro de fidelidade funcional obrigatório (Cláusula 14.2).
+
+Se der para não contratar o Módulo F — hóspede pagando antecipado no link, sem caixa no local — **não contrate**. É o único módulo que eu deixaria de fora se a operação permitir.
+
+**O custo dessa ampliação:** quanto mais central ela é na operação, maior a chance de um juiz enxergar vínculo. Isso não decorre da ilicitude da terceirização, e sim do fato de ser **uma pessoa física, todo dia, morando no local, fazendo tudo**. Aumentar o escopo torna o item 2.3 (c) mais urgente, não menos: ou ela passa a ter equipe própria registrada aparecendo nos relatórios mensais, ou você avalia a contratação CLT com um trabalhista. As duas coisas que mais seguram o contrato de pé aqui são a **substituição documentada** (Anexo II-A registra quem executou) e o **canal único pelo Preposto** (Cláusula 2.4).
+
+**Duas travas novas que valem destaque:**
+
+- **Cláusula 3.9 — sobreaviso.** Chegada noturna e intercorrência de hóspede geram disponibilidade fora de horário, e disponibilidade determinada por você é sobreaviso trabalhista. A cláusula põe a escala de sobreaviso sob critério exclusivo dela, com a remuneração já dentro do preço global. Na prática: nunca diga a ela "fique disponível até meia-noite".
+- **Cláusula 3.6.1 — credenciais nominais.** Cada pessoa da equipe dela acessa o PMS com login próprio, revogável, nunca compartilhado. Isso protege dados de hóspede (LGPD) e cria rastreabilidade de quem fez o quê — que é também prova de que existe equipe, não uma pessoa só.
 
 ---
 
@@ -128,7 +165,8 @@ Contrato desequilibrado é contrato que o juiz reescreve. As contrapartidas à C
 | 1 | Advogado trabalhista de SC revisa o instrumento (Cl. 2, 7, 8 e 9) | Antes de assinar |
 | 2 | Camila altera **endereço da sede** no CNPJ | Antes de assinar |
 | 3 | Camila altera **CNAE principal** para 81.21-4-00 ou 81.29-0-00 | Até 30 dias (Cl. 2.6) |
-| 4 | Preencher Anexo I (perímetro, frequências, janelas, SLA) com a operação real | Antes de assinar |
+| 4 | Assinalar os módulos A a F no Anexo I e preencher perímetro, frequências, janelas e SLA com a operação real | Antes de assinar |
+| 4.1 | Decidir se o Módulo F (recebimento de valores) entra — se der para não entrar, não entre | Antes de assinar |
 | 5 | Definir preço, dia de faturamento, dia de pagamento, multas em R$ | Antes de assinar |
 | 6 | Vistoria da casa com fotos datadas + Anexo III-A e III-B assinados | No dia da assinatura |
 | 7 | Assinar contrato + anexos com **2 testemunhas** (título executivo, art. 784 III CPC) | — |

@@ -1,4 +1,4 @@
-# ANEXOS — CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ZELADORIA
+# ANEXOS — CONTRATO DE PRESTAÇÃO DE SERVIÇOS DE ZELADORIA E HOSPITALIDADE
 ### Contrato nº ZHG/MED/ZEL-001/2026 — Mediterrâneo Empreendimentos Turísticos Ltda
 
 ---
@@ -16,26 +16,95 @@
 | Áreas verdes | jardins, gramados, canteiros | [__] m² |
 | Áreas de serviço | lavanderia, depósito, casa de máquinas | [__] |
 
-## I.2. Serviços e frequências mínimas
+## I.2. Módulos contratados
+
+> Assinale os módulos efetivamente contratados. Os módulos não assinalados não integram o objeto (Cláusula 1.2).
+
+| Módulo | Escopo | Contratado |
+|---|---|---|
+| **A** | Conservação, limpeza e higienização | ( ) Sim ( ) Não |
+| **B** | Paisagismo e áreas externas | ( ) Sim ( ) Não |
+| **C** | Hospitalidade e atendimento ao hóspede | ( ) Sim ( ) Não |
+| **D** | Manutenção preventiva e pequenos reparos | ( ) Sim ( ) Não |
+| **E** | Zeladoria, ronda de conservação e guarda de chaves | ( ) Sim ( ) Não |
+| **F** | Apoio administrativo e recebimento de valores | ( ) Sim ( ) Não |
+
+## I.3. Módulo A — Conservação, limpeza e higienização
 
 | # | Serviço | Frequência mínima | Padrão de entrega |
 |---|---|---|---|
-| 1 | Limpeza e higienização de unidades em check-out | A cada check-out | Unidade liberada para venda em até 3h do check-out |
-| 2 | Arrumação diária de unidades ocupadas | Diária | Concluída dentro da janela operacional |
-| 3 | Troca de enxoval de cama e banho | A cada check-out e a cada 2 dias em estadias longas | Enxoval íntegro, sem manchas, dobrado no padrão |
-| 4 | Limpeza de áreas comuns internas | Diária | Sem poeira, sem resíduos, piso seco |
-| 5 | Limpeza de áreas comuns externas e decks | Diária | Livre de folhas, resíduos e sujidade |
-| 6 | Higienização de áreas molhadas | Diária | Conforme protocolo sanitário |
-| 7 | Coleta, segregação e destinação de resíduos | Diária | Conforme coleta municipal e política ESG |
-| 8 | Jardinagem, poda e irrigação | Semanal | Gramado aparado, canteiros limpos |
-| 9 | Lavagem de vidros e esquadrias | Quinzenal | Sem marcas ou manchas |
-| 10 | Limpeza profunda (colchões, estofados, luminárias) | Mensal | Registro fotográfico |
-| 11 | Pequenos reparos (lâmpadas, sifões, vedações, chuveiros) | Sob demanda, em até 24h | Registro em relatório |
-| 12 | Ronda de conservação e reporte de avarias | Diária | Comunicação escrita ao gestor |
-| 13 | Controle de estoque de enxoval e amenities | Semanal | Planilha atualizada |
-| 14 | Preparação de unidades para chegada (mise en place) | A cada reserva | Conforme padrão da bandeira |
+| A1 | Limpeza e higienização de unidades em check-out | A cada check-out | Unidade liberada para venda em até 3h do check-out |
+| A2 | Arrumação diária de unidades ocupadas | Diária | Concluída dentro da janela operacional |
+| A3 | Troca de enxoval de cama e banho | A cada check-out e a cada 2 dias em estadias longas | Enxoval íntegro, sem manchas, dobrado no padrão |
+| A4 | Limpeza de áreas comuns internas | Diária | Sem poeira, sem resíduos, piso seco |
+| A5 | Higienização de áreas molhadas | Diária | Conforme protocolo sanitário |
+| A6 | Coleta, segregação e destinação de resíduos | Diária | Conforme coleta municipal e política ESG |
+| A7 | Lavagem de vidros e esquadrias | Quinzenal | Sem marcas ou manchas |
+| A8 | Limpeza profunda (colchões, estofados, luminárias) | Mensal | Registro fotográfico |
+| A9 | Controle de estoque de enxoval e amenities | Semanal | Planilha atualizada |
 
-## I.3. Janelas operacionais
+## I.4. Módulo B — Paisagismo e áreas externas
+
+| # | Serviço | Frequência mínima | Padrão de entrega |
+|---|---|---|---|
+| B1 | Limpeza de decks, passarelas e estacionamento | Diária | Livre de folhas, resíduos e sujidade |
+| B2 | Jardinagem, poda e irrigação | Semanal | Gramado aparado, canteiros limpos |
+| B3 | Conservação de trilhas e acessos | Quinzenal | Desobstruídos e sinalizados |
+
+## I.5. Módulo C — Hospitalidade e atendimento ao hóspede
+
+| # | Serviço | Frequência / gatilho | Padrão de entrega |
+|---|---|---|---|
+| C1 | Preparação da unidade para chegada (mise en place) | A cada reserva | Conforme padrão da bandeira |
+| C2 | Recepção e check-in do hóspede | A cada chegada | Acolhimento conforme roteiro; documentos e FNRH registrados no PMS |
+| C3 | Apresentação da unidade e orientações de uso | A cada chegada | Roteiro cumprido integralmente |
+| C4 | Atendimento de solicitações durante a estadia | Sob demanda | Primeira resposta em até 15 min na janela; 60 min em sobreaviso |
+| C5 | Check-out, conferência da unidade e devolução de acessos | A cada saída | Conferência registrada antes da liberação |
+| C6 | Registro de ocorrências e avarias no PMS | A cada ocorrência | Registro no mesmo dia |
+| C7 | Convite e acompanhamento de avaliação pós-estadia | A cada saída | Conforme política da CONTRATANTE |
+
+**Limites do Módulo C (Cláusula 3.6):** vedado alterar preços, tarifas ou políticas; aceitar, recusar ou modificar reservas fora dos critérios escritos; conceder cortesias, descontos, upgrades ou reembolsos sem autorização; representar a CONTRATANTE perante terceiros.
+
+**Padrão de apresentação pessoal (Cláusula 3.7):** [cor / estilo / asseio — descrever]. Custeado pela CONTRATADA. Identificação com a razão social da CONTRATADA.
+
+**Protocolo de sobreaviso (Cláusula 3.9):** organizado pela CONTRATADA entre seus prepostos. Canal de acionamento: [______]. Janela de sobreaviso: [__:__] às [__:__].
+
+## I.6. Módulo D — Manutenção preventiva e pequenos reparos
+
+| # | Serviço | Frequência / gatilho | Padrão de entrega |
+|---|---|---|---|
+| D1 | Troca de lâmpadas, pilhas e baterias | Sob demanda, em até 24h | Registro em relatório |
+| D2 | Reaperto e vedação de sifões, torneiras e chuveiros | Sob demanda, em até 24h | Sem vazamento |
+| D3 | Ajuste de portas, fechaduras mecânicas e dobradiças | Sob demanda, em até 24h | Funcionamento normal |
+| D4 | Retoques de pintura e pequenos acabamentos | Mensal | Sem marcas visíveis |
+| D5 | Verificação preventiva de instalações aparentes | Semanal | Checklist preenchido |
+| D6 | Identificação, isolamento e comunicação de falha técnica | A cada ocorrência | Comunicação imediata à CONTRATANTE |
+
+**Fora do Módulo D (Cláusula 1.5 b):** quadro geral e instalações elétricas energizadas (NR-10), gás, hidráulica de rede, sistemas de aquecimento, estrutura e obras civis. Nesses casos a CONTRATADA identifica, isola e comunica — quem executa é profissional habilitado contratado pela CONTRATANTE.
+
+## I.7. Módulo E — Zeladoria e ronda de conservação
+
+| # | Serviço | Frequência mínima | Padrão de entrega |
+|---|---|---|---|
+| E1 | Ronda de conservação do imóvel, instalações e acessos | Diária | Checklist com registro fotográfico |
+| E2 | Conferência de fechamento (portões, luzes, equipamentos) | Diária | Registro no relatório |
+| E3 | Guarda e controle de chaves, controles e códigos de acesso | Contínua | Inventário conferido semanalmente |
+| E4 | Comunicação de anormalidade, sinistro ou invasão | Imediata | Acionamento da CONTRATANTE e das autoridades |
+
+**Natureza do Módulo E (Cláusula 1.5 a):** conservação e presença, **não** vigilância. Vedado portar arma, revistar pessoas ou bagagens, abordar, conter fisicamente, perseguir ou deter qualquer pessoa. Diante de ocorrência de segurança: acionar a CONTRATANTE e a autoridade pública, sem intervir.
+
+## I.8. Módulo F — Apoio administrativo e recebimento de valores
+
+| # | Serviço | Frequência / gatilho | Padrão de entrega |
+|---|---|---|---|
+| F1 | Recebimento de pagamentos por meios da CONTRATANTE | A cada transação | Somente link, maquininha ou PIX do CNPJ 55.493.012/0001-97 |
+| F2 | Prestação de contas e conciliação | Diária | Enviada até o fim do dia seguinte |
+| F3 | Conferência de consumo de frigobar e extras | A cada check-out | Lançado no PMS antes da liberação |
+| F4 | Controle de pequenas despesas com fundo fixo | Semanal | Comprovantes anexados |
+
+**Regras obrigatórias do Módulo F (Cláusula 3.10):** vedado receber em conta, PIX ou maquininha da CONTRATADA ou de seus prepostos; vedado receber em espécie sem autorização escrita (com depósito em 24h); vedado guardar numerário na Casa de Operações; obrigatório seguro de fidelidade funcional (Cláusula 14.2).
+
+## I.9. Janelas operacionais
 
 - **Janela principal:** [__:__] às [__:__]
 - **Janela de contingência (check-outs tardios / alta ocupação):** [__:__] às [__:__]
@@ -43,7 +112,7 @@
 
 > As janelas são condicionantes técnicas de operação hoteleira (não interferência na experiência do hóspede), não constituindo controle de jornada. A CONTRATADA distribui livremente sua equipe dentro delas.
 
-## I.4. Indicadores de desempenho (SLA)
+## I.10. Indicadores de desempenho (SLA)
 
 | Indicador | Meta |
 |---|---|
@@ -52,9 +121,13 @@
 | Tempo de saneamento de não conformidade | ≤ 24 h |
 | Reclamações de hóspede sobre limpeza (Booking/Airbnb/Google) | 0 por mês |
 | Nota de limpeza nas OTAs | ≥ 9,0 |
+| Check-ins realizados no horário acordado com o hóspede | ≥ 98% |
+| Primeira resposta a solicitação de hóspede (na janela) | ≤ 15 min |
+| Prestação de contas do Módulo F entregue | Até o fim do dia seguinte |
+| Divergência de conciliação de valores | R$ 0,00 |
 | Entrega do relatório mensal | Até o dia [__] |
 
-## I.5. Insumos e equipamentos
+## I.11. Insumos e equipamentos
 
 **Fornecidos pela CONTRATADA (obrigatório):** mão de obra, EPIs, uniformes, produtos de limpeza e higienização, panos, mops, baldes, aspirador, ferramentas manuais, equipamentos de jardinagem, materiais de consumo próprios.
 
@@ -284,6 +357,7 @@ A CONTRATADA declara que **nada tem a reclamar** a título de benfeitorias, inde
 | 6 | Certidão Negativa de Débitos Trabalhistas (CNDT/TST) | Mensal | ( ) |
 | 7 | Comprovante de situação cadastral ativa no CNPJ | A cada 6 meses | ( ) |
 | 8 | Apólice de seguro de RC vigente (Cláusula 14) | Anual + comprovante de pagamento | ( ) |
+| 8.1 | Apólice de seguro de fidelidade funcional, se contratado o Módulo F (Cláusula 14.2) | Anual + comprovante de pagamento | ( ) |
 
 ## IV.2. Exigíveis se a CONTRATADA possuir empregados
 
