@@ -7,10 +7,10 @@
 ## QUALIFICAÇÃO DAS PARTES
 
 **CONTRATANTE:**
-**MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, sociedade empresária limitada, inscrita no CNPJ sob o nº **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Bairro Vargem Pequena, Florianópolis/SC, CEP 88.052-400, atividade econômica principal CNAE 55.10-8-01 (Hotéis), neste ato representada na forma de seu contrato social por seu administrador **[NOME COMPLETO]**, [nacionalidade], [estado civil], [profissão], portador da Cédula de Identidade RG nº **46.270.985-1** e inscrito no CPF sob o nº **386.386.288-03**, doravante denominada simplesmente **CONTRATANTE**.
+**MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, sociedade empresária limitada, inscrita no CNPJ sob o nº **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Bairro Vargem Pequena, Florianópolis/SC, CEP 88.052-400, atividade econômica principal CNAE 55.10-8-01 (Hotéis), neste ato representada na forma de seu contrato social por seu administrador **[NOME COMPLETO]**, [nacionalidade], [estado civil], [profissão], portador do RG nº [___] e inscrito no CPF sob o nº [___], doravante denominada simplesmente **CONTRATANTE**.
 
 **CONTRATADA:**
-**19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, inscrita no CNPJ sob o nº **19.525.600/0001-00**, com sede na [ENDEREÇO PRÓPRIO DA CONTRATADA — ver Cláusula 2.6], atividades econômicas compatíveis com o objeto deste instrumento (CNAE 81.29-0-00 — Atividades de limpeza não especificadas anteriormente; CNAE 81.30-3-00 — Atividades paisagísticas), neste ato representada por sua titular **CAMILA RABELO GLICERIO GOIS**, brasileira, [estado civil], [profissão], portadora do RG nº [___] e inscrita no CPF sob o nº [___], doravante denominada simplesmente **CONTRATADA**.
+**19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, inscrita no CNPJ sob o nº **19.525.600/0001-00**, com sede na [ENDEREÇO PRÓPRIO DA CONTRATADA — ver Cláusula 2.6], atividades econômicas compatíveis com o objeto deste instrumento (CNAE 81.29-0-00 — Atividades de limpeza não especificadas anteriormente; CNAE 81.30-3-00 — Atividades paisagísticas), neste ato representada por sua titular **CAMILA RABELO GLICERIO GOIS**, brasileira, [estado civil], [profissão], portadora da Cédula de Identidade RG nº **46.270.985-1** e inscrita no CPF sob o nº **386.386.288-03**, doravante denominada simplesmente **CONTRATADA**.
 
 CONTRATANTE e CONTRATADA, quando referidas em conjunto, serão denominadas **Partes** e, individualmente, **Parte**.
 
@@ -396,7 +396,7 @@ Florianópolis/SC, **[__] de [__________] de [____]**.
 
 | **CONTRATANTE** | **CONTRATADA** |
 |---|---|
-| **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**<br>CNPJ 55.493.012/0001-97<br><br>______________________________<br>Nome:<br>CPF: 386.386.288-03 | **19.525.600 CAMILA RABELO GLICERIO GOIS**<br>CNPJ 19.525.600/0001-00<br><br>______________________________<br>Camila Rabelo Glicerio Gois<br>CPF: |
+| **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**<br>CNPJ 55.493.012/0001-97<br><br>______________________________<br>Nome:<br>CPF: | **19.525.600 CAMILA RABELO GLICERIO GOIS**<br>CNPJ 19.525.600/0001-00<br><br>______________________________<br>Camila Rabelo Glicerio Gois<br>CPF: 386.386.288-03 |
 
 **TESTEMUNHAS:**
 

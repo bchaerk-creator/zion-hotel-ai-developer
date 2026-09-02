@@ -379,7 +379,7 @@ A CONTRATADA declara que **nada tem a reclamar** a título de benfeitorias, inde
 
 # ANEXO V — TERMO DE DESIGNAÇÃO DE PREPOSTO
 
-**19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, na qualidade de CONTRATADA no Contrato nº ZHG/MED/ZEL-001/2026, **DESIGNA** como seu Preposto:
+**19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, representada por sua titular **Camila Rabelo Glicerio Gois**, CPF 386.386.288-03, RG 46.270.985-1, na qualidade de CONTRATADA no Contrato nº ZHG/MED/ZEL-001/2026, **DESIGNA** como seu Preposto:
 
 | Campo | Dados |
 |---|---|
