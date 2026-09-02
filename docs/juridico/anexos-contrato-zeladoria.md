@@ -28,6 +28,7 @@
 | **D** | Manutenção preventiva e pequenos reparos | ( ) Sim ( ) Não |
 | **E** | Zeladoria, ronda de conservação e guarda de chaves | ( ) Sim ( ) Não |
 | **F** | Apoio administrativo e recebimento de valores | ( ) Sim ( ) Não |
+| **G** | Alimentos e bebidas | ( ) Sim ( ) Não |
 
 ## I.3. Módulo A — Conservação, limpeza e higienização
 
@@ -104,7 +105,34 @@
 
 **Regras obrigatórias do Módulo F (Cláusula 3.10):** vedado receber em conta, PIX ou maquininha da CONTRATADA ou de seus prepostos; vedado receber em espécie sem autorização escrita (com depósito em 24h); vedado guardar numerário na Casa de Operações; obrigatório seguro de fidelidade funcional (Cláusula 14.2).
 
-## I.9. Janelas operacionais
+## I.9. Módulo G — Alimentos e bebidas
+
+| # | Serviço | Frequência / gatilho | Padrão de entrega |
+|---|---|---|---|
+| G1 | Preparo e montagem do café da manhã | Diária | Servido entre [__:__] e [__:__], conforme cardápio |
+| G2 | Entrega do café da manhã na unidade | A cada unidade ocupada | Entregue na janela acordada com o hóspede |
+| G3 | Cortesia de boas-vindas (welcome amenity) | A cada chegada | Conforme padrão da bandeira |
+| G4 | Preparo e entrega de refeições avulsas | Sob demanda | Conforme cardápio e prazo do ANEXO I |
+| G5 | Reposição de frigobar e bebidas | Diária | Estoque completo, validade conferida |
+| G6 | Lançamento do consumo de A&B no PMS | A cada consumo | Antes do check-out |
+| G7 | Higienização de utensílios, louças e área de preparo | A cada uso | Conforme POP |
+| G8 | Registro de temperatura e guarda de amostras | Diária | Planilha preenchida; amostras por 72h |
+
+**Local de produção (Cláusula 3.11 c):**
+( ) Cozinha do Empreendimento, sob licença sanitária da CONTRATANTE
+( ) Estabelecimento próprio da CONTRATADA — alvará sanitário nº ______, validade ___/___/______
+
+**Fornecimento de insumos (Cláusula 3.11 g):**
+( ) Gêneros alimentícios e bebidas por conta da CONTRATANTE
+( ) Gêneros alimentícios e bebidas por conta da CONTRATADA (com nota fiscal de aquisição)
+
+**Cardápio contratado:** [descrever ou anexar — café da manhã, cortesias, refeições avulsas, carta de bebidas]
+
+**Restrições alimentares atendidas:** [ ] vegetariano [ ] vegano [ ] sem glúten [ ] sem lactose [ ] outras: ______
+
+**Regras obrigatórias (Cláusula 3.11):** RDC ANVISA 216/2004 com Manual de Boas Práticas e POPs; curso de manipulador e ASO vigentes para toda a equipe; controle diário de temperatura; guarda de amostras por 72h; informação de alergênicos (RDC 26/2015); vedado fornecer bebida alcoólica a menor de 18 anos (art. 243, ECA).
+
+## I.10. Janelas operacionais
 
 - **Janela principal:** [__:__] às [__:__]
 - **Janela de contingência (check-outs tardios / alta ocupação):** [__:__] às [__:__]
@@ -112,7 +140,7 @@
 
 > As janelas são condicionantes técnicas de operação hoteleira (não interferência na experiência do hóspede), não constituindo controle de jornada. A CONTRATADA distribui livremente sua equipe dentro delas.
 
-## I.10. Indicadores de desempenho (SLA)
+## I.11. Indicadores de desempenho (SLA)
 
 | Indicador | Meta |
 |---|---|
@@ -125,9 +153,12 @@
 | Primeira resposta a solicitação de hóspede (na janela) | ≤ 15 min |
 | Prestação de contas do Módulo F entregue | Até o fim do dia seguinte |
 | Divergência de conciliação de valores | R$ 0,00 |
+| Café da manhã entregue na janela acordada | ≥ 98% |
+| Registros de temperatura preenchidos | 100% dos dias |
+| Não conformidade sanitária | 0 por mês |
 | Entrega do relatório mensal | Até o dia [__] |
 
-## I.11. Insumos e equipamentos
+## I.12. Insumos e equipamentos
 
 **Fornecidos pela CONTRATADA (obrigatório):** mão de obra, EPIs, uniformes, produtos de limpeza e higienização, panos, mops, baldes, aspirador, ferramentas manuais, equipamentos de jardinagem, materiais de consumo próprios.
 
@@ -358,6 +389,9 @@ A CONTRATADA declara que **nada tem a reclamar** a título de benfeitorias, inde
 | 7 | Comprovante de situação cadastral ativa no CNPJ | A cada 6 meses | ( ) |
 | 8 | Apólice de seguro de RC vigente (Cláusula 14) | Anual + comprovante de pagamento | ( ) |
 | 8.1 | Apólice de seguro de fidelidade funcional, se contratado o Módulo F (Cláusula 14.2) | Anual + comprovante de pagamento | ( ) |
+| 8.2 | Alvará sanitário do local de produção, se contratado o Módulo G (Cláusula 3.11 c) | Anual | ( ) |
+| 8.3 | Certificados de curso de boas práticas de manipulação de alimentos da equipe (Cláusula 3.11 b) | Na admissão + renovação | ( ) |
+| 8.4 | Planilhas de controle de temperatura do mês (Cláusula 3.11 d) | Mensal | ( ) |
 
 ## IV.2. Exigíveis se a CONTRATADA possuir empregados
 

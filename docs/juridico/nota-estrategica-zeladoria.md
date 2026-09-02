@@ -41,6 +41,7 @@
 | Prestar "segurança" sem ser empresa de segurança | **Cl. 1.5 (a) + 3.8** — Módulo E é conservação e presença, nunca vigilância |
 | Disponibilidade noturna virar sobreaviso | **Cl. 3.9** — escala sob critério exclusivo dela, já dentro do preço global |
 | Desvio de valores e falha de conciliação | **Cl. 3.10 + 14.2** — meios de pagamento da Mediterrâneo, prestação de contas diária, seguro de fidelidade |
+| Intoxicação alimentar e autuação sanitária | **Cl. 3.11 + 3.11.1** — RDC 216/2004, amostras por 72h, alergênicos, responsabilidade primária dela com regresso |
 | Casa vira "salário-utilidade" | **Cl. 8.2 (c)** — comodato instrumental, não remuneração, art. 458 CLT afastado |
 | Ela não sair da casa | **Cl. 8.8** — extinção automática, 10 dias, multa diária, taxa de ocupação, reintegração de posse |
 | Sair sem avisar na alta temporada | **Cl. 9.3** — 60 dias + multa de 2 mensalidades + bloqueio de saída entre 15/dez e 28/fev |
@@ -107,6 +108,33 @@ Se der para não contratar o Módulo F — hóspede pagando antecipado no link, 
 - **Cláusula 3.9 — sobreaviso.** Chegada noturna e intercorrência de hóspede geram disponibilidade fora de horário, e disponibilidade determinada por você é sobreaviso trabalhista. A cláusula põe a escala de sobreaviso sob critério exclusivo dela, com a remuneração já dentro do preço global. Na prática: nunca diga a ela "fique disponível até meia-noite".
 - **Cláusula 3.6.1 — credenciais nominais.** Cada pessoa da equipe dela acessa o PMS com login próprio, revogável, nunca compartilhado. Isso protege dados de hóspede (LGPD) e cria rastreabilidade de quem fez o quê — que é também prova de que existe equipe, não uma pessoa só.
 
+### 2.5. Alimentos e bebidas — Módulo G
+
+Café da manhã, cortesia de boas-vindas e frigobar entraram como **Módulo G**. O CNPJ dela já cobre isso: CNAE 56.20-1-04, fornecimento de alimentos preparados. Do ponto de vista contratual é o módulo que mais exige documento, porque alimento tem regulador próprio e responsabilidade objetiva perante o hóspede.
+
+**A pergunta que decide tudo: onde a comida é preparada?**
+
+| Cenário | Quem responde pelo alvará | Implicação |
+|---|---|---|
+| Cozinha do empreendimento | **Mediterrâneo** | A Vigilância Sanitária autua você. Ela responde por regresso, mas a interdição é sua |
+| Cozinha própria dela | **Camila** | O alvará é dela, a autuação é dela, e você fica um grau mais protegido |
+
+Se a produção puder sair do empreendimento, sai. Está assinalável na Cláusula 3.11 (c) e no Anexo I.
+
+**O que a Cláusula 3.11 exige dela:**
+
+- RDC ANVISA 216/2004, com Manual de Boas Práticas e POPs escritos
+- Curso de manipulador de alimentos e ASO vigentes para toda a equipe
+- Controle diário de temperatura, prazos de validade e identificação de produto manipulado
+- **Guarda de amostras por 72 horas** — se um hóspede passar mal, é essa amostra que prova de onde veio (ou não veio) o problema
+- Informação de alergênicos (RDC 26/2015) e atendimento das restrições da reserva
+- Proibição de bebida alcoólica a menor de 18 anos (art. 243 do ECA)
+- Cobertura de A&B expressa na apólice de responsabilidade civil (Cl. 14.3)
+
+**O ponto que mais importa:** perante o hóspede, quem responde por intoxicação alimentar é a **Mediterrâneo**, por responsabilidade objetiva do fornecedor (CDC, arts. 12 e 14). Não existe cláusula que tire isso de você. O que a Cláusula 3.11.1 faz é deixar escrito que a responsabilidade primária é dela e que o regresso da Cláusula 7.3 se aplica integralmente — você paga o hóspede e cobra dela, com os 5% retidos como primeira garantia.
+
+Por isso os três documentos do Anexo IV (alvará sanitário, certificados de manipulador, planilhas de temperatura) não são burocracia: numa ação de consumidor ou numa autuação sanitária, são exatamente eles que mostram que você fiscalizou.
+
 ---
 
 ## 3. A casa de operações — como sair sem briga
@@ -167,6 +195,7 @@ Contrato desequilibrado é contrato que o juiz reescreve. As contrapartidas à C
 | 3 | Camila altera **CNAE principal** para 81.21-4-00 ou 81.29-0-00 | Até 30 dias (Cl. 2.6) |
 | 4 | Assinalar os módulos A a F no Anexo I e preencher perímetro, frequências, janelas e SLA com a operação real | Antes de assinar |
 | 4.1 | Decidir se o Módulo F (recebimento de valores) entra — se der para não entrar, não entre | Antes de assinar |
+| 4.2 | Definir onde o A&B é produzido (cozinha do empreendimento ou dela) e conferir o alvará sanitário correspondente | Antes de assinar |
 | 5 | Definir preço, dia de faturamento, dia de pagamento, multas em R$ | Antes de assinar |
 | 6 | Vistoria da casa com fotos datadas + Anexo III-A e III-B assinados | No dia da assinatura |
 | 7 | Assinar contrato + anexos com **2 testemunhas** (título executivo, art. 784 III CPC) | — |

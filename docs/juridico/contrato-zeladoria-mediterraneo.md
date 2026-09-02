@@ -7,10 +7,10 @@
 ## QUALIFICAÇÃO DAS PARTES
 
 **CONTRATANTE:**
-**MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, sociedade empresária limitada, inscrita no CNPJ sob o nº **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Bairro Vargem Pequena, Florianópolis/SC, CEP 88.052-400, atividade econômica principal CNAE 55.10-8-01 (Hotéis), neste ato representada na forma de seu contrato social por seu administrador **[NOME COMPLETO]**, [nacionalidade], [estado civil], [profissão], portador do RG nº [___] e inscrito no CPF sob o nº [___], doravante denominada simplesmente **CONTRATANTE**.
+**MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, sociedade empresária limitada, inscrita no CNPJ sob o nº **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Bairro Vargem Pequena, Florianópolis/SC, CEP 88.052-400, atividade econômica principal CNAE 55.10-8-01 (Hotéis), neste ato representada na forma de seu contrato social, doravante denominada simplesmente **CONTRATANTE**.
 
 **CONTRATADA:**
-**19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, inscrita no CNPJ sob o nº **19.525.600/0001-00**, com sede na [ENDEREÇO PRÓPRIO DA CONTRATADA — ver Cláusula 2.6], atividades econômicas compatíveis com o objeto deste instrumento (CNAE 81.29-0-00 — Atividades de limpeza não especificadas anteriormente; CNAE 81.30-3-00 — Atividades paisagísticas), neste ato representada por sua titular **CAMILA RABELO GLICERIO GOIS**, brasileira, [estado civil], [profissão], portadora da Cédula de Identidade RG nº **46.270.985-1** e inscrita no CPF sob o nº **386.386.288-03**, doravante denominada simplesmente **CONTRATADA**.
+**19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, inscrita no CNPJ sob o nº **19.525.600/0001-00**, com sede na [ENDEREÇO PRÓPRIO DA CONTRATADA — ver Cláusula 2.6], atividades econômicas compatíveis com o objeto deste instrumento (CNAE 81.29-0-00 — Atividades de limpeza não especificadas anteriormente; CNAE 81.30-3-00 — Atividades paisagísticas; CNAE 56.20-1-04 — Fornecimento de alimentos preparados), neste ato representada por sua titular **CAMILA RABELO GLICERIO GOIS**, brasileira, [estado civil], [profissão], portadora da Cédula de Identidade RG nº **46.270.985-1** e inscrita no CPF sob o nº **386.386.288-03**, doravante denominada simplesmente **CONTRATADA**.
 
 CONTRATANTE e CONTRATADA, quando referidas em conjunto, serão denominadas **Partes** e, individualmente, **Parte**.
 
@@ -20,7 +20,7 @@ As Partes têm entre si justo e contratado o presente **Contrato de Prestação 
 
 ## CLÁUSULA 1 — DO OBJETO
 
-**1.1.** Constitui objeto deste Contrato a prestação, pela CONTRATADA, de forma autônoma, independente e sem qualquer vínculo de subordinação, dos serviços de **zeladoria, conservação, hospitalidade e apoio operacional** no empreendimento turístico explorado pela CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC (doravante **"Empreendimento"**), organizados nos módulos abaixo.
+**1.1.** Constitui objeto deste Contrato a prestação, pela CONTRATADA, de forma autônoma, independente e sem qualquer vínculo de subordinação, dos serviços de **zeladoria, conservação, hospitalidade, alimentos e bebidas e apoio operacional** no empreendimento turístico explorado pela CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC (doravante **"Empreendimento"**), organizados nos módulos abaixo.
 
 **1.2. Módulos contratados.** São objeto deste Contrato os módulos assinalados no **ANEXO I**, cujo detalhamento, frequências mínimas, padrões de qualidade e indicadores de desempenho (SLA) dele constam:
 
@@ -32,6 +32,7 @@ As Partes têm entre si justo e contratado o presente **Contrato de Prestação 
 | **D** | Manutenção preventiva e pequenos reparos de baixa complexidade |
 | **E** | Zeladoria, ronda de conservação e guarda de chaves e acessos |
 | **F** | Apoio administrativo operacional e recebimento de valores (facultativo) |
+| **G** | Alimentos e bebidas — preparo, montagem, entrega e reposição de café da manhã, refeições, cortesias e bebidas nas unidades e áreas comuns |
 
 **1.3.** A contratação tem por objeto **resultado**, e não jornada. A CONTRATADA obriga-se a entregar o Empreendimento operando nos padrões descritos no ANEXO I, sendo-lhe facultado definir livremente os meios, os métodos, a equipe e a distribuição de horários necessários ao cumprimento desse resultado, observadas apenas as janelas operacionais previstas na Cláusula 3.
 
@@ -102,6 +103,26 @@ f) **Assunção de risco** — a CONTRATADA assume integralmente os riscos técn
 **3.9. Disponibilidade fora das janelas operacionais.** Quando o Módulo C exigir atendimento fora das janelas ordinárias (chegadas tardias, saídas antecipadas, intercorrências com hóspedes), a CONTRATADA organizará, **por sua própria conta e critério**, escala de sobreaviso entre seus prepostos, não cabendo à CONTRATANTE determinar quem, quando ou por quanto tempo cada pessoa permanecerá disponível. A remuneração dessa disponibilidade está integralmente compreendida no preço global da Cláusula 4, não gerando adicional, sobreaviso, plantão ou hora extra de qualquer natureza.
 
 **3.10. Módulo F — Recebimento de valores.** Contratado o Módulo F, o recebimento observará obrigatoriamente: (i) uso **exclusivo** de meios de pagamento registrados em nome e conta da CONTRATANTE (link de pagamento, maquininha e chave PIX do CNPJ 55.493.012/0001-97), sendo **vedado** o recebimento em conta, chave PIX ou maquininha de titularidade da CONTRATADA ou de seus prepostos; (ii) **vedação ao recebimento em espécie**, salvo autorização escrita e específica da CONTRATANTE, hipótese em que o valor será depositado na conta da CONTRATANTE em até 24 (vinte e quatro) horas, com comprovante; (iii) prestação de contas diária, com conciliação no fechamento mensal; (iv) proibição de guarda de numerário na Casa de Operações ou em qualquer dependência do Empreendimento fora do cofre indicado pela CONTRATANTE; (v) contratação, pela CONTRATADA, de **seguro de fidelidade funcional** ou apresentação de garantia equivalente, na forma da Cláusula 14. O descumprimento de qualquer destes itens configura infração contratual grave, autorizando a rescisão imediata por justa causa.
+
+**3.11. Módulo G — Alimentos e bebidas.** Contratado o Módulo G, a CONTRATADA executará o preparo, a montagem, a entrega e a reposição de café da manhã, refeições, cortesias e bebidas, nos cardápios, porcionamentos e horários descritos no ANEXO I, observando obrigatoriamente:
+
+a) **Conformidade sanitária.** Cumprimento integral da **RDC ANVISA nº 216/2004** e das normas da Vigilância Sanitária do Município de Florianópolis, mantendo **Manual de Boas Práticas e Procedimentos Operacionais Padronizados (POPs)** escritos, disponíveis para consulta da CONTRATANTE e da autoridade sanitária;
+
+b) **Capacitação e saúde dos manipuladores.** Todos os prepostos que manipulem alimentos deverão possuir **curso de boas práticas de manipulação de alimentos** válido e **atestado de saúde ocupacional** vigente, cujos comprovantes integram o ANEXO IV;
+
+c) **Local de produção.** Os alimentos serão preparados em **[ ( ) cozinha do Empreendimento, sob licença sanitária da CONTRATANTE / ( ) estabelecimento próprio da CONTRATADA, sob licença sanitária própria ]**, conforme assinalado no ANEXO I. Optando-se pela produção em estabelecimento próprio, a CONTRATADA apresentará **alvará sanitário e alvará de funcionamento vigentes** e responderá integralmente pela regularidade do local;
+
+d) **Cadeia de frio e rastreabilidade.** Controle e registro diário de temperatura de refrigeração, congelamento e transporte; observância de prazos de validade; identificação e datação de todo produto manipulado; **guarda de amostras** das preparações servidas pelo prazo mínimo de 72 (setenta e duas) horas;
+
+e) **Alergênicos e restrições alimentares.** Informação prévia e por escrito à CONTRATANTE e ao hóspede sobre a presença de alergênicos, nos termos da **RDC ANVISA nº 26/2015**, e atendimento das restrições alimentares comunicadas na reserva;
+
+f) **Bebidas alcoólicas.** É **vedado** o fornecimento de bebida alcoólica a menores de 18 (dezoito) anos, nos termos do artigo 243 do Estatuto da Criança e do Adolescente, cabendo à CONTRATADA conferir a idade sempre que houver dúvida. A comercialização de bebidas é atividade da CONTRATANTE, limitando-se a CONTRATADA ao serviço, à entrega e à reposição, com lançamento do consumo na forma do ANEXO I;
+
+g) **Insumos.** O fornecimento dos gêneros alimentícios e das bebidas correrá por conta de **[ ( ) CONTRATANTE / ( ) CONTRATADA ]**, conforme o ANEXO I. Cabendo à CONTRATADA, esta obriga-se a adquirir de fornecedores regulares, com nota fiscal, e a manter os comprovantes à disposição da CONTRATANTE.
+
+**3.11.1. Responsabilidade sanitária.** A CONTRATADA responde **integral e exclusivamente** por qualquer dano à saúde de hóspede, colaborador ou terceiro decorrente dos alimentos e bebidas por ela preparados, manipulados, transportados ou servidos, inclusive por doença transmitida por alimento (DTA), intoxicação ou reação alérgica. As Partes reconhecem que a responsabilidade da CONTRATANTE perante o consumidor, nos termos dos artigos 12 e 14 do Código de Defesa do Consumidor, **não exclui nem reduz** a responsabilidade primária da CONTRATADA, aplicando-se integralmente o direito de regresso da Cláusula 7.3.
+
+**3.11.2.** Autuação sanitária, interdição, multa ou termo de ajustamento de conduta decorrente de conduta imputável à CONTRATADA será por ela integralmente suportada, autorizada a compensação com créditos e com a retenção de garantia da Cláusula 4.9. A reincidência de não conformidade sanitária apontada pela autoridade competente configura **infração contratual grave**, autorizando a rescisão imediata por justa causa.
 
 ---
 
@@ -271,10 +292,11 @@ b) inadimplemento de obrigações trabalhistas, previdenciárias ou fiscais pela
 c) prática, pela CONTRATADA, seus empregados, prepostos ou ocupantes, de furto, apropriação indébita, dano doloso, agressão, assédio, embriaguez em serviço, uso ou porte de entorpecentes, ou qualquer conduta que exponha hóspedes, colaboradores ou a reputação do Empreendimento a risco;
 d) violação do dever de confidencialidade ou da legislação de proteção de dados;
 e) violação de qualquer vedação da Cláusula 8.4;
-f) falsidade de qualquer declaração da Cláusula 2;
-g) cessão ou transferência do Contrato sem anuência escrita;
-h) falência, recuperação judicial, insolvência, baixa, suspensão ou inaptidão do CNPJ da CONTRATADA;
-i) paralisação ou abandono dos serviços por mais de 48 (quarenta e oito) horas sem justificativa aceita.
+f) não conformidade sanitária reincidente ou interdição do serviço de alimentos e bebidas pela autoridade competente, na forma do item 3.11.2;
+g) falsidade de qualquer declaração da Cláusula 2;
+h) cessão ou transferência do Contrato sem anuência escrita;
+i) falência, recuperação judicial, insolvência, baixa, suspensão ou inaptidão do CNPJ da CONTRATADA;
+j) paralisação ou abandono dos serviços por mais de 48 (quarenta e oito) horas sem justificativa aceita.
 
 **10.1.2. Por iniciativa da CONTRATADA:**
 a) inadimplemento do pagamento por mais de 30 (trinta) dias do vencimento, desde que regular a documentação do item 4.3 e após notificação escrita com prazo de 10 (dez) dias para purgação da mora;
@@ -331,7 +353,9 @@ c) **multa de 10% (dez por cento)** sobre o valor equivalente a 12 (doze) mensal
 
 **14.2.** Contratado o **Módulo F**, a CONTRATADA obriga-se a contratar adicionalmente **seguro de fidelidade funcional** (cobertura contra desvio, apropriação indébita e furto praticados por seus prepostos), com cobertura mínima de **R$ [______]**, ou a prestar garantia equivalente aceita pela CONTRATANTE.
 
-**14.3.** A existência ou a suficiência dos seguros não limita nem exclui a responsabilidade integral da CONTRATADA prevista neste Contrato.
+**14.3.** Contratado o **Módulo G**, a apólice de responsabilidade civil da CONTRATADA deverá contemplar expressamente cobertura para **danos decorrentes do fornecimento de alimentos e bebidas**.
+
+**14.4.** A existência ou a suficiência dos seguros não limita nem exclui a responsabilidade integral da CONTRATADA prevista neste Contrato.
 
 ---
 
