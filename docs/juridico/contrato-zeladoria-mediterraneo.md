@@ -176,7 +176,9 @@ c) **Comprovantes de regularidade** listados no ANEXO IV (CND Federal/INSS, CRF/
 
 **5.11.** Manter absoluto sigilo sobre informações da CONTRATANTE, de hóspedes e de parceiros, nos termos da Cláusula 13.
 
-**5.12.** Apresentar mensalmente a documentação do ANEXO IV e, sempre que solicitado, franquear à CONTRATANTE ou a auditor por ela indicado o acesso aos registros trabalhistas relativos aos empregados alocados no Empreendimento.
+**5.12.** Observar e fazer observar por seus empregados, prepostos, subcontratados e ocupantes o **Regimento Operacional (ANEXO VI)**, colhendo de cada pessoa, antes do início das atividades, o **Termo de Adesão** nele previsto, e arquivando as vias originais à disposição da CONTRATANTE.
+
+**5.13.** Apresentar mensalmente a documentação do ANEXO IV e, sempre que solicitado, franquear à CONTRATANTE ou a auditor por ela indicado o acesso aos registros trabalhistas relativos aos empregados alocados no Empreendimento.
 
 ---
 
@@ -196,7 +198,9 @@ c) **Comprovantes de regularidade** listados no ANEXO IV (CND Federal/INSS, CRF/
 
 **6.7.** Fornecer as informações e os acessos necessários à boa execução dos serviços, bem como comunicar com antecedência razoável alterações de padrões ou procedimentos.
 
-**6.8.** Não aliciar nem contratar diretamente, durante a vigência e por **12 (doze) meses** após o término, empregados ou prepostos da CONTRATADA que tenham atuado no Empreendimento, salvo anuência escrita da CONTRATADA.
+**6.8.** Poderá exigir, por escrito e ao Preposto, o afastamento do Empreendimento de pessoa cuja conduta configure infração grave nos termos do artigo 40 do Regimento Operacional (ANEXO VI) ou que exponha hóspedes, colaboradores ou o patrimônio a risco, cabendo exclusivamente à CONTRATADA decidir sobre a relação de emprego e sobre a substituição no posto, sem que tal exigência configure ingerência ou poder diretivo.
+
+**6.9.** Não aliciar nem contratar diretamente, durante a vigência e por **12 (doze) meses** após o término, empregados ou prepostos da CONTRATADA que tenham atuado no Empreendimento, salvo anuência escrita da CONTRATADA.
 
 ---
 
@@ -293,10 +297,11 @@ c) prática, pela CONTRATADA, seus empregados, prepostos ou ocupantes, de furto,
 d) violação do dever de confidencialidade ou da legislação de proteção de dados;
 e) violação de qualquer vedação da Cláusula 8.4;
 f) não conformidade sanitária reincidente ou interdição do serviço de alimentos e bebidas pela autoridade competente, na forma do item 3.11.2;
-g) falsidade de qualquer declaração da Cláusula 2;
-h) cessão ou transferência do Contrato sem anuência escrita;
-i) falência, recuperação judicial, insolvência, baixa, suspensão ou inaptidão do CNPJ da CONTRATADA;
-j) paralisação ou abandono dos serviços por mais de 48 (quarenta e oito) horas sem justificativa aceita.
+g) prática de infração grave definida no artigo 40 do Regimento Operacional (ANEXO VI), ou descumprimento reiterado de suas disposições;
+h) falsidade de qualquer declaração da Cláusula 2;
+i) cessão ou transferência do Contrato sem anuência escrita;
+j) falência, recuperação judicial, insolvência, baixa, suspensão ou inaptidão do CNPJ da CONTRATADA;
+k) paralisação ou abandono dos serviços por mais de 48 (quarenta e oito) horas sem justificativa aceita.
 
 **10.1.2. Por iniciativa da CONTRATADA:**
 a) inadimplemento do pagamento por mais de 30 (trinta) dias do vencimento, desde que regular a documentação do item 4.3 e após notificação escrita com prazo de 10 (dez) dias para purgação da mora;
@@ -394,7 +399,7 @@ c) **multa de 10% (dez por cento)** sobre o valor equivalente a 12 (doze) mensal
 
 **17.5.** A eventual **nulidade ou ineficácia** de qualquer cláusula não afetará as demais, que permanecerão em pleno vigor, obrigando-se as Partes a substituir a disposição inválida por outra de efeito econômico equivalente.
 
-**17.6.** Os **Anexos I, II, III, IV e V** integram este Contrato para todos os fins de direito. Em caso de divergência, prevalece o corpo do Contrato.
+**17.6.** Os **Anexos I, II, III, IV, V e VI** integram este Contrato para todos os fins de direito. Em caso de divergência, prevalece o corpo do Contrato.
 
 **17.7.** As Partes declaram que negociaram livremente todas as cláusulas, com paridade e simetria, em contrato **civil e empresarial paritário**, aplicando-se os artigos 421, 421-A e 422 do Código Civil, e reconhecem que este instrumento **não constitui contrato de adesão**.
 

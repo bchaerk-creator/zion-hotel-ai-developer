@@ -392,6 +392,7 @@ A CONTRATADA declara que **nada tem a reclamar** a título de benfeitorias, inde
 | 8.2 | Alvará sanitário do local de produção, se contratado o Módulo G (Cláusula 3.11 c) | Anual | ( ) |
 | 8.3 | Certificados de curso de boas práticas de manipulação de alimentos da equipe (Cláusula 3.11 b) | Na admissão + renovação | ( ) |
 | 8.4 | Planilhas de controle de temperatura do mês (Cláusula 3.11 d) | Mensal | ( ) |
+| 8.5 | Termos de Adesão ao Regimento Operacional assinados por toda a equipe e ocupantes (ANEXO VI, art. 43) | Na entrada de cada pessoa | ( ) |
 
 ## IV.2. Exigíveis se a CONTRATADA possuir empregados
 

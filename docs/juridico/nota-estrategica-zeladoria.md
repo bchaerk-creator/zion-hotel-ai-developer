@@ -135,6 +135,27 @@ Se a produção puder sair do empreendimento, sai. Está assinalável na Cláusu
 
 Por isso os três documentos do Anexo IV (alvará sanitário, certificados de manipulador, planilhas de temperatura) não são burocracia: numa ação de consumidor ou numa autuação sanitária, são exatamente eles que mostram que você fiscalizou.
 
+### 2.6. O Regimento Operacional — e por que ele é uma faca de dois gumes
+
+O Anexo VI reúne as regras da operação: padrão de hospitalidade, conduta em área de hóspede, confidencialidade e redes sociais, chaves e sistemas, regras sanitárias de A&B, uso da Casa de Operações, protocolos de emergência e convivência com o entorno.
+
+**O risco embutido:** um documento com regras de conduta dirigidas a pessoas é, na leitura de um juiz do trabalho, a fotografia do **poder diretivo e disciplinar** — exatamente o que o contrato inteiro trabalha para afastar. Um regimento mal escrito derruba a Cláusula 2 sozinho.
+
+**Como foi neutralizado**, e o que você não pode quebrar na prática:
+
+| Trava | Onde | O que significa no dia a dia |
+|---|---|---|
+| Regras são especificação técnica do serviço, não norma disciplinar | Art. 3º | Você cobra padrão de entrega, não comportamento pessoal |
+| Nenhuma ordem direta a pessoa física | Art. 4º | Tudo passa pelo Preposto, sempre |
+| Consequência é contratual, exigível da empresa | Arts. 39 e 41 | Não conformidade → notificação → multa da Cl. 12 → justa causa. Nunca advertência a pessoa |
+| Afastamento sim, demissão não | Art. 42 e Cl. 6.8 | Você pode exigir que alguém não atue mais no empreendimento. Quem decide sobre o emprego é ela |
+
+A regra prática é uma só: **você não adverte, não suspende e não demite ninguém da equipe dela.** Se alguém precisa sair, você comunica o Preposto por escrito que aquela pessoa não pode mais atuar no empreendimento, e a Camila resolve o resto.
+
+**O Termo de Adesão (Cap. XI) é a peça que mais rende.** Cada pessoa que entra assina declarando que a empregadora é a Camila, que a Mediterrâneo não dirige seu trabalho nem controla sua jornada, e — se for ocupante da Casa de Operações — que a ocupação é precária e que ela tem **domicílio próprio**, com endereço declarado. Numa reclamação futura, essa declaração assinada pela própria pessoa, na data em que entrou, vale mais do que qualquer cláusula que você e a Camila tenham assinado entre si.
+
+Guarde as vias originais e cobre o termo **antes** de a pessoa começar. Termo assinado depois de instaurado o conflito não vale quase nada.
+
 ---
 
 ## 3. A casa de operações — como sair sem briga
