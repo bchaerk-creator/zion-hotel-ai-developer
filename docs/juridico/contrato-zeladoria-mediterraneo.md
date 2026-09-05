@@ -72,7 +72,7 @@ f) **Assunção de risco** — a CONTRATADA assume integralmente os riscos técn
 
 **2.4.** A CONTRATANTE obriga-se a **não emitir ordens diretas** aos empregados ou prepostos da CONTRATADA. Toda e qualquer comunicação, solicitação, crítica ou ajuste relativo à execução dos serviços será dirigida **exclusivamente ao Preposto** designado pela CONTRATADA, na forma do ANEXO V, pelos canais indicados na Cláusula 17.3.
 
-**2.5.** É **vedado** à CONTRATANTE: (i) exigir uso de uniforme, crachá ou identificação visual que apresente a CONTRATADA ou seus prepostos como integrantes do quadro de empregados da CONTRATANTE, observado o item 3.7 quanto à padronização de vestimenta no módulo de hospitalidade; (ii) incluir a CONTRATADA ou seus prepostos em treinamentos internos obrigatórios, reuniões de equipe, avaliações de desempenho individual, programas de metas, premiações ou benefícios destinados a seus empregados; (iii) conceder à CONTRATADA ou a seus prepostos vale-transporte, vale-refeição, plano de saúde, adiantamentos, "vales", empréstimos ou qualquer outra utilidade típica de relação de emprego; (iv) submeter a CONTRATADA a controle de ponto, escala fixa ou autorização prévia para ausências, férias ou afastamentos.
+**2.5.** É **vedado** à CONTRATANTE: (i) exigir uso de uniforme, crachá ou identificação visual que apresente a CONTRATADA ou seus prepostos como integrantes do quadro de empregados da CONTRATANTE, observado o item 3.7 quanto à padronização de vestimenta no módulo de hospitalidade; (ii) incluir a CONTRATADA ou seus prepostos em treinamentos internos obrigatórios, reuniões de equipe, avaliações de desempenho individual, programas de metas, premiações ou benefícios destinados a seus empregados; (iii) conceder à CONTRATADA ou a seus prepostos vale-transporte, vale-refeição, plano de saúde, adiantamentos, "vales", empréstimos ou qualquer outra utilidade típica de relação de emprego; (iv) submeter a CONTRATADA ou seus prepostos a controle de ponto, registro de horário, escala nominal, banco de horas, concessão ou autorização prévia de intervalos, folgas, férias ou afastamentos; (v) exigir a presença pessoal da titular da CONTRATADA em qualquer dia ou horário; (vi) designar diretamente qual pessoa cobrirá cada período da Janela de Atendimento.
 
 **2.6.** A CONTRATADA declara e se obriga a, no prazo de **30 (trinta) dias** contados da assinatura deste Contrato, manter seu cadastro no CNPJ regularizado, com (i) **sede em endereço próprio e distinto** do endereço do Empreendimento, e (ii) **atividade econômica principal (CNAE) compatível** com o objeto deste Contrato, preferencialmente CNAE 81.29-0-00 ou 81.21-4-00. O descumprimento desta obrigação autoriza a CONTRATANTE a suspender os pagamentos até a regularização, sem incidência de mora ou penalidade.
 
@@ -84,7 +84,19 @@ f) **Assunção de risco** — a CONTRATADA assume integralmente os riscos técn
 
 **3.1.** A CONTRATADA executará os serviços por meios próprios, com **equipe, ferramentas, equipamentos, materiais de consumo, produtos de limpeza e EPIs de sua exclusiva propriedade e responsabilidade**, salvo os itens expressamente listados como fornecidos pela CONTRATANTE no ANEXO I.
 
-**3.2.** Em razão da natureza hoteleira da atividade — que exige que os serviços não interfiram na experiência do hóspede — as Partes ajustam **janelas operacionais** dentro das quais a CONTRATADA organizará livremente sua rotina, nos termos do ANEXO I. A fixação de janelas operacionais decorre de **necessidade técnica do serviço**, não constituindo controle de jornada nem subordinação.
+**3.2. Janela de Atendimento e obrigação de cobertura.** O Empreendimento opera e recebe hóspedes **das 7h30 às 19h00, todos os dias da semana** (doravante **"Janela de Atendimento"**). A CONTRATADA obriga-se a **manter o serviço integralmente coberto durante toda a Janela de Atendimento**, com no mínimo **1 (uma) pessoa qualificada** presente e apta a atender hóspedes, e com o reforço de equipe que a demanda exigir.
+
+**3.2.1.** A Janela de Atendimento é **característica operacional do Empreendimento e requisito de resultado do serviço contratado** — assim como o padrão de limpeza ou o prazo de liberação de unidade —, e **não constitui jornada de trabalho, escala, horário de expediente ou controle de tempo** de qualquer pessoa.
+
+**3.2.2.** Compete **exclusivamente à CONTRATADA**, no exercício de sua autonomia empresarial, definir e alterar a qualquer tempo, sem anuência ou comunicação prévia à CONTRATANTE: (i) **quem** cobre cada período da Janela; (ii) o **revezamento** entre seus titulares, empregados, prepostos e subcontratados; (iii) os **intervalos, pausas, descansos e folgas** de cada pessoa; (iv) o **dimensionamento** da equipe; e (v) as **substituições** em caso de falta, férias, doença ou desligamento.
+
+**3.2.3.** A CONTRATANTE **não exige a presença pessoal da titular da CONTRATADA**, não determina quem cumpre cada período, não fixa horário de entrada ou de saída de pessoa alguma, não controla intervalos e não registra tempo de permanência. A obrigação de cobertura é **da empresa CONTRATADA**, e é satisfeita por qualquer pessoa qualificada por ela designada.
+
+**3.2.4.** A falha de cobertura da Janela de Atendimento — ausência de pessoa apta a atender no Empreendimento — constitui **não conformidade de resultado**, sujeita ao regime da Cláusula 3.4 e às penalidades da Cláusula 12, exigíveis da CONTRATADA como pessoa jurídica.
+
+**3.2.5.** Fora da Janela de Atendimento, aplica-se exclusivamente o regime de disponibilidade do item 3.9, organizado pela própria CONTRATADA.
+
+**3.2.6.** Os serviços que exijam execução em horário específico por razão técnica — limpeza de unidade após check-out, serviço de café da manhã, ronda de fechamento — observam as frequências e os prazos do ANEXO I, cabendo à CONTRATADA distribuir livremente sua equipe para cumpri-los.
 
 **3.3.** A CONTRATADA designará formalmente um **Preposto** (ANEXO V), responsável por: (i) organizar e dirigir a equipe; (ii) receber e responder as comunicações da CONTRATANTE; (iii) assinar relatórios e termos mensais; (iv) exercer, com exclusividade, o poder diretivo e disciplinar sobre os empregados da CONTRATADA.
 
@@ -128,7 +140,7 @@ g) **Insumos.** O fornecimento dos gêneros alimentícios e das bebidas correrá
 
 ## CLÁUSULA 4 — DO PREÇO, DA FATURAMENTO E DAS CONDIÇÕES DE PAGAMENTO
 
-**4.1.** Pela prestação dos serviços objeto deste Contrato, a CONTRATANTE pagará à CONTRATADA o **preço global mensal de R$ [______] ([valor por extenso])**, já compreendidos todos os custos diretos e indiretos, mão de obra, encargos, insumos, deslocamentos, tributos e a margem de lucro da CONTRATADA.
+**4.1.** Pela prestação dos serviços objeto deste Contrato, a CONTRATANTE pagará à CONTRATADA o **preço global mensal de R$ 5.000,00 (cinco mil reais)**, já compreendidos todos os custos diretos e indiretos, mão de obra, encargos, insumos, deslocamentos, tributos e a margem de lucro da CONTRATADA.
 
 **4.2.** O preço é **global e por resultado**, não se decompondo em valor-hora, diária, produtividade individual ou número de pessoas alocadas. Eventual variação no número de profissionais empregados pela CONTRATADA não altera o preço, salvo alteração formal de escopo por aditivo.
 
@@ -159,6 +171,12 @@ c) **Comprovantes de regularidade** listados no ANEXO IV (CND Federal/INSS, CRF/
 **5.2.** Manter, durante toda a vigência, sua **regularidade jurídica, fiscal, trabalhista e previdenciária**, bem como as certidões e licenças necessárias ao exercício da atividade.
 
 **5.3.** **Contratar, remunerar, dirigir e dispensar**, por sua conta exclusiva, todo o pessoal necessário à execução dos serviços, respondendo integralmente por salários, 13º salário, férias acrescidas de 1/3, horas extras, adicionais, FGTS, INSS, verbas rescisórias, vale-transporte, alimentação e quaisquer outros direitos trabalhistas e previdenciários.
+
+**5.3.1. Formalização integral da equipe.** A CONTRATADA declara e garante que **toda e qualquer pessoa** que atue no Empreendimento por sua conta — inclusive **cônjuge, companheiro, familiar ou pessoa de seu convívio** — o faz sob vínculo formal e regular com a CONTRATADA, na condição de **titular, sócio, empregado registrado em CTPS ou subcontratado com CNPJ próprio**, com os respectivos encargos recolhidos.
+
+**5.3.2.** É **vedada a atuação de pessoa não formalizada** no Empreendimento, ainda que em caráter eventual, de auxílio, de acompanhamento ou de cortesia. A CONTRATADA identificará mensalmente, no Relatório do ANEXO II-A, todas as pessoas que atuaram no período e a natureza do respectivo vínculo, e apresentará os comprovantes do ANEXO IV.
+
+**5.3.3.** A constatação de pessoa atuando sem formalização configura **infração contratual grave**, autorizando a rescisão imediata por justa causa e a retenção integral da garantia da Cláusula 4.9, sem prejuízo do direito de regresso da Cláusula 7.3.
 
 **5.4.** Cumprir integralmente as **Normas Regulamentadoras do Ministério do Trabalho** aplicáveis, em especial as relativas a EPIs (NR-6), ergonomia (NR-17), trabalho em altura (NR-35) e uso de produtos químicos, fornecendo, fiscalizando e registrando a entrega dos equipamentos de proteção individual a seus empregados.
 
