@@ -58,7 +58,7 @@ As Partes celebram o presente Contrato de Prestação de Serviços, regido pelos
 
 **4.2.** **Toda pessoa** que atue no empreendimento por conta da CONTRATADA — inclusive **cônjuge, companheiro ou familiar** — deve estar formalizada como titular, sócio, empregado registrado em CTPS ou subcontratado com CNPJ próprio, com os encargos recolhidos. **É vedada a atuação de pessoa não formalizada**, ainda que em caráter eventual ou de auxílio.
 
-**4.3.** A CONTRATADA informará mensalmente, no recibo do Anexo Único, todas as pessoas que atuaram no período e a natureza do respectivo vínculo.
+**4.3.** A CONTRATADA informará mensalmente, no recibo do Anexo Único, todas as pessoas que atuaram no período e a natureza do respectivo vínculo, e franqueará à CONTRATANTE, sempre que solicitado, o acesso aos registros trabalhistas correspondentes.
 
 **4.4.** A atuação de pessoa não formalizada configura **infração grave**, autorizando a rescisão imediata por justa causa e a retenção integral da garantia da Cláusula 5.
 
@@ -70,7 +70,7 @@ As Partes celebram o presente Contrato de Prestação de Serviços, regido pelos
 
 **5.2.** O preço é **global e por resultado**, não se decompondo em valor-hora, diária ou número de pessoas alocadas.
 
-**5.3.** A CONTRATADA emitirá **NFS-e** até o dia **[__]** do mês subsequente, acompanhada do **Recibo Mensal** (Anexo Único) e das certidões CND Federal, CRF/FGTS e CNDT. O pagamento será efetuado até o dia **[__]**, exclusivamente por transferência para conta da **pessoa jurídica CONTRATADA**. **É vedado o pagamento em espécie, em conta de pessoa física ou de forma fracionada semanal ou quinzenal.**
+**5.3.** A CONTRATADA emitirá **NFS-e** até o dia **[__]** do mês subsequente, acompanhada do **Recibo Mensal** (Anexo Único) e das certidões CND Federal, CRF/FGTS e CNDT. Possuindo empregados, apresentará ainda, do mês anterior: **folha de pagamento, guia de FGTS quitada, DCTFWeb ou DARF de INSS quitada e comprovantes de pagamento de salários**. O pagamento será efetuado até o dia **[__]**, exclusivamente por transferência para conta da **pessoa jurídica CONTRATADA**. **É vedado o pagamento em espécie, em conta de pessoa física ou de forma fracionada semanal ou quinzenal.**
 
 **5.4.** Não apresentados os documentos, a CONTRATANTE poderá reter o pagamento até a regularização, sem mora.
 
@@ -231,7 +231,7 @@ Florianópolis/SC, **[__] de [__________] de [____]**.
 | | | ( ) Titular ( ) Sócio ( ) Empregado CTPS ( ) Subcontratado CNPJ |
 | | | ( ) Titular ( ) Sócio ( ) Empregado CTPS ( ) Subcontratado CNPJ |
 
-**4.** A CONTRATADA está **em dia** com todas as obrigações trabalhistas, previdenciárias e fiscais do período, inclusive quanto às pessoas acima.
+**4.** A CONTRATADA está **em dia** com todas as obrigações trabalhistas, previdenciárias e fiscais do período, inclusive quanto às pessoas acima, e anexa a este recibo os comprovantes exigidos na Cláusula 5.3.
 
 **5.** A cessão de uso da Casa de Operações **não integra** a remuneração ora quitada, sendo mero instrumento operacional de caráter precário e gratuito.
 
