@@ -32,7 +32,7 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 **2.3.** Cabe **à CONTRATADA** organizar como cobre esse período: quem trabalha em cada momento, o revezamento da equipe, os intervalos, os descansos, as folgas, o tamanho do time e as substituições. Essas decisões são dela, e podem mudar quando ela quiser.
 
-**2.4.** A CONTRATANTE não exige a presença pessoal da titular, não escolhe quem cobre cada período, não marca horário de entrada ou saída de ninguém e não controla tempo de permanência.
+**2.4.** **Não há, para a CONTRATADA ou para qualquer pessoa de sua equipe, dia ou horário fixo de início e término.** A CONTRATANTE não exige a presença pessoal da titular, não escolhe quem cobre cada período, não marca horário de entrada ou de saída de ninguém, não controla tempo de permanência e não registra frequência. A obrigação assumida é da **empresa**, e consiste em manter o atendimento coberto.
 
 **2.5.** Fora desse período, eventuais chegadas tardias ou intercorrências serão atendidas conforme disponibilidade organizada pela própria CONTRATADA, já compreendida no preço.
 
@@ -82,17 +82,23 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 
 ## 6. PREÇO E PAGAMENTO
 
-**6.1.** O preço é de **R$ 5.000,00 (cinco mil reais) por mês**, valor global que compreende mão de obra, encargos, insumos, deslocamentos, tributos e a margem da CONTRATADA.
+**6.1.** O preço vigente é de **R$ 5.000,00 (cinco mil reais) por mês**, valor global que compreende mão de obra, encargos, insumos, deslocamentos, tributos e a margem da CONTRATADA.
+
+**6.1.1.** O preço pode ser **revisto a qualquer tempo, de comum acordo**, bastando o registro escrito da nova condição pelas duas Partes — inclusive por e-mail —, passando a valer a partir do mês seguinte. Enquanto não houver revisão, permanece o valor vigente.
 
 **6.2.** Até o dia **[__]** de cada mês a CONTRATADA emitirá a **nota fiscal** do mês anterior, acompanhada do **Recibo Mensal** (anexo) e das certidões CND Federal, CRF/FGTS e CNDT. Havendo empregados, apresentará também folha de pagamento e guias de FGTS e INSS quitadas.
 
-**6.3.** O pagamento será feito até o dia **[__]**, por transferência para a conta da **empresa** CONTRATADA. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
+**6.3.** O pagamento será feito até o dia **[__]**, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
 
-**6.4.** Faltando a documentação, o pagamento aguarda a regularização, sem que isso configure atraso. Havendo atraso por parte da CONTRATANTE, incidem multa de 2%, juros de 1% ao mês e correção pelo IPCA.
+**6.3.1.** Cada pagamento será identificado com a **competência a que se refere**, e o comprovante de transferência será arquivado pelas duas Partes junto à nota fiscal e ao **Recibo Mensal** do mesmo mês. Comprovante de pagamento isolado, sem nota fiscal e sem recibo, não substitui a documentação deste contrato.
+
+**6.3.2.** A CONTRATADA entregará o **Recibo Mensal assinado a cada mês**, sem exceção, ainda que o pagamento tenha sido feito antes da entrega. O recibo é a peça que registra a autonomia da prestação e a quitação do período.
+
+**6.4.** Faltando a nota fiscal, o recibo ou as certidões, o pagamento do mês seguinte aguarda a regularização, sem que isso configure atraso. Havendo atraso por parte da CONTRATANTE, incidem multa de 2%, juros de 1% ao mês e correção pelo IPCA.
 
 **6.5.** A CONTRATANTE reterá **5% (cinco por cento)** de cada pagamento, como garantia, devolvidos em parcela única **90 (noventa) dias** após o fim do contrato, mediante CNDT atualizada e comprovação de quitação das verbas dos empregados que atuaram no empreendimento.
 
-**6.6.** O preço é reajustado uma vez por ano, pelo **IPCA/IBGE**, na data de aniversário do contrato.
+**6.6.** Não havendo revisão de comum acordo ao longo do período, o preço é reajustado uma vez por ano, pelo **IPCA/IBGE**, na data de aniversário do contrato.
 
 ---
 
@@ -147,7 +153,7 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 
 ## 10. PRAZO E AVISO PRÉVIO
 
-**10.1.** O contrato vale por **12 (doze) meses**, de **[__/__/____]** a **[__/__/____]**, renovando-se automaticamente por períodos iguais, com o reajuste anual, se nenhuma das Partes avisar o contrário.
+**10.1.** O contrato começa a valer **na data de sua assinatura** e vale por **12 (doze) meses**, renovando-se automaticamente por períodos iguais se nenhuma das Partes avisar o contrário.
 
 **10.2.** Qualquer das Partes pode encerrar o contrato quando quiser, sem precisar justificar, **avisando a outra por escrito com 60 (sessenta) dias de antecedência**.
 
@@ -188,6 +194,26 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 **12.7.** Assinado por duas testemunhas, este contrato é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
 
 **12.8.** Fica eleito o foro de **Florianópolis/SC**.
+
+---
+
+## 13. DECLARAÇÕES CONJUNTAS DAS PARTES
+
+**13.1.** As Partes declaram, de forma livre, consciente e de comum acordo, que:
+
+a) negociaram todos os termos deste contrato em **igualdade de condições**, cada uma com plena compreensão do seu conteúdo, e que nenhuma cláusula lhes foi imposta;
+
+b) a relação entre elas é **civil e entre empresas**, e não de emprego: a CONTRATADA organiza seu trabalho como entende, sem dia ou horário fixo para qualquer pessoa, podendo se fazer substituir e atender outros clientes;
+
+c) **todas as pessoas** que trabalham no empreendimento por conta da CONTRATADA estão formalizadas por ela, que é a única empregadora, responsável por contratá-las, pagá-las, orientá-las e desligá-las;
+
+d) o uso da **Casa de Operações** é uma ferramenta de trabalho cedida gratuitamente, ligada à vigência deste contrato, e **não é aluguel, moradia definitiva, benefício ou parte do pagamento**, tendo sido concedida pela necessidade operacional descrita na Cláusula 9.1;
+
+e) o **preço da Cláusula 6.1 é a única contraprestação** pelos serviços, e as Partes podem revê-lo de comum acordo, por escrito, quando entenderem necessário;
+
+f) ambas se comprometem a **cumprir a legislação aplicável** — trabalhista, previdenciária, tributária, sanitária e de proteção de dados — cada uma no que lhe compete, e a comunicar à outra, com 30 (trinta) dias de antecedência, qualquer mudança relevante nas condições aqui combinadas;
+
+g) este contrato é firmado **de mútuo acordo**, assinado por ambas as Partes e por duas testemunhas, e substitui qualquer ajuste verbal anterior.
 
 ---
 
