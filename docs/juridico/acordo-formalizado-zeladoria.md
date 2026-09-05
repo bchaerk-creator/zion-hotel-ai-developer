@@ -173,7 +173,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 10. PRAZO E AVISO PRÉVIO
 
-**10.1.** O acordo começa a valer **na data de sua assinatura** e vale por **12 (doze) meses**, renovando-se automaticamente por períodos iguais se nenhuma das Partes avisar o contrário.
+**10.1.** Este acordo **formaliza a prestação de serviços iniciada em 1º de junho de 2026** e vigora por **12 (doze) meses** contados dessa data, encerrando-se em **31 de maio de 2027**, e renovando-se automaticamente por períodos iguais se nenhuma das Partes avisar o contrário.
 
 **10.2.** Qualquer das Partes pode encerrar o acordo quando quiser, sem precisar justificar, **avisando a outra por escrito com 60 (sessenta) dias de antecedência**.
 
@@ -224,21 +224,23 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 12. DISPOSIÇÕES FINAIS
 
-**12.1.** Este acordo, com o **Plano de Cobertura** e o **Recibo Mensal** anexos, reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
+**12.1. Ratificação do período anterior.** As Partes declaram que a prestação de serviços teve início em **1º de junho de 2026** e vem sendo executada desde então nos mesmos termos ora formalizados — com autonomia e organização próprias da CONTRATADA, sem subordinação, pessoalidade ou exclusividade, e mediante pagamento mensal à sua empresa. As Partes **ratificam expressamente** as competências de **junho, julho e agosto de 2026**, já quitadas, cujos recibos são firmados em apartado, obrigando-se a CONTRATADA a emitir as notas fiscais correspondentes. Nada é devido, por qualquer das Partes, em relação ao período ratificado.
 
-**12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste acordo, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
+**12.2.** Este acordo, com o **Plano de Cobertura** e o **Recibo Mensal** anexos, reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
 
-**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — ilhadosabor.sc@gmail.com, +55 (48) 99223-2826.
+**12.3. Aviso de mudança.** Qualquer mudança relevante nas condições deste acordo, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
-**12.4.** Nenhuma das Partes pode transferir este acordo a terceiros sem a concordância da outra.
+**12.4.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — ilhadosabor.sc@gmail.com, +55 (48) 99223-2826.
 
-**12.5.** Se alguma cláusula for considerada inválida, as demais continuam valendo.
+**12.5.** Nenhuma das Partes pode transferir este acordo a terceiros sem a concordância da outra.
 
-**12.6.** As Partes negociaram livremente estes termos, em acordo empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
+**12.6.** Se alguma cláusula for considerada inválida, as demais continuam valendo.
 
-**12.7.** Assinado por duas testemunhas, este acordo é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
+**12.7.** As Partes negociaram livremente estes termos, em acordo empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
 
-**12.8.** Fica eleito o foro de **Florianópolis/SC**.
+**12.8.** Assinado por duas testemunhas, este acordo é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
+
+**12.9.** Fica eleito o foro de **Florianópolis/SC**.
 
 ---
 
