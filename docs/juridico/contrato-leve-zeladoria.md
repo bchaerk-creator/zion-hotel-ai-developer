@@ -6,7 +6,7 @@
 
 **CONTRATANTE:** **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada na forma de seu contrato social.
 
-**CONTRATADA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, CNPJ **19.525.600/0001-00**, com sede em [ENDEREÇO], neste ato representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1, CPF 386.386.288-03.
+**CONTRATADA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, CNPJ **19.525.600/0001-00**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1, CPF 386.386.288-03.
 
 As Partes, de comum acordo, celebram o presente Contrato de Prestação de Serviços, regido pelos artigos 593 a 609 do Código Civil, nos termos a seguir.
 
@@ -80,7 +80,7 @@ c) **Horários.** A CONTRATANTE informa os horários **do hóspede e da operaç�
 
 d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cláusula 6.1, pago **à empresa** CONTRATADA contra nota fiscal. Valores adicionais eventualmente combinados — serviço extraordinário, reembolso de despesa ou antecipação do próprio preço — também são pagos à empresa e documentados. A CONTRATANTE não faz pagamentos, empréstimos nem concede benefícios individuais a pessoas da equipe.
 
-**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias** contados da assinatura, o cadastro do seu CNPJ, com **sede em endereço próprio e distinto do empreendimento** e atividade principal compatível com o objeto (CNAE 81.21-4-00 ou 81.29-0-00), e manterá **conta bancária e chave PIX em nome da empresa**, para recebimento na forma da Cláusula 6.3. Enquanto pendente a regularização, a CONTRATANTE poderá reter os pagamentos, sem que isso configure atraso.
+**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias** contados da assinatura, a **atividade econômica principal** do seu CNPJ, adotando código compatível com o objeto deste contrato (CNAE 81.21-4-00 ou 81.29-0-00), e manterá **conta bancária e chave PIX em nome da empresa**, para recebimento na forma da Cláusula 6.3. Enquanto pendente a regularização, a CONTRATANTE poderá reter os pagamentos, sem que isso configure atraso.
 
 ---
 
@@ -151,19 +151,21 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **9.2.** A cessão é um **comodato** vinculado ao contrato de serviços. As Partes deixam claro que ela é concedida **para o trabalho**, como ferramenta necessária à prestação, e **não como pagamento**: não é aluguel, não é remuneração, não entrou na formação do preço da Cláusula 6.1, e não transfere posse do imóvel.
 
-**9.3.** Podem ocupar a unidade apenas as pessoas indicadas por escrito e aceitas pela CONTRATANTE. Não é permitido emprestar ou ceder a unidade, hospedar terceiros, exercer atividade comercial, fazer obras, manter animais sem combinar antes, ou usar o endereço como sede da empresa.
+**9.3.** Podem ocupar a unidade apenas as pessoas indicadas por escrito e aceitas pela CONTRATANTE. Não é permitido emprestar ou ceder a unidade, hospedar terceiros, exercer no local atividade comercial estranha a este contrato, fazer obras ou manter animais sem combinar antes.
 
-**9.4.** Melhorias feitas na unidade ficam incorporadas ao imóvel, sem indenização ou retenção.
+**9.4. Residência e endereço.** As Partes registram, de forma expressa, que a CONTRATADA **reside na unidade e nela mantém o endereço de sua empresa**, situação que decorre **exclusivamente da natureza funcional da ocupação** e da vigência deste contrato, e não de direito próprio sobre o imóvel. Encerrado o contrato, cessa também essa condição, obrigando-se a CONTRATADA a **alterar o endereço do seu CNPJ** no mesmo prazo de devolução da unidade previsto na Cláusula 9.7.
 
-**9.5.** Na entrada e na saída será feita uma **vistoria com fotos**, assinada pelas duas Partes. A CONTRATADA responde pelos danos além do desgaste natural.
+**9.5.** Melhorias feitas na unidade ficam incorporadas ao imóvel, sem indenização ou retenção.
 
-**9.6.** A CONTRATADA pode usar a unidade **enquanto este contrato estiver em vigor**. Terminado o contrato, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
+**9.6.** Na entrada e na saída será feita uma **vistoria com fotos**, assinada pelas duas Partes. A CONTRATADA responde pelos danos além do desgaste natural.
 
-**9.6.1.** Passados os 30 (trinta) dias sem a devolução, será devida **multa de R$ 100,00 (cem reais) por dia de atraso**, até a efetiva desocupação, podendo a CONTRATANTE retomar o imóvel judicialmente, com as despesas dessa retomada por conta da CONTRATADA. **Devolvida a unidade no prazo, nada é devido.**
+**9.7.** A CONTRATADA pode usar a unidade **enquanto este contrato estiver em vigor**. Terminado o contrato, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
 
-**9.7. Despesas de consumo.** As instalações da unidade estão ligadas às redes do próprio empreendimento, razão pela qual **energia elétrica, água e internet correm por conta da CONTRATANTE**, como parte da infraestrutura operacional cedida junto com a unidade. Essas despesas seguem a mesma natureza da cessão: são **instrumentais à prestação, e não pagamento, benefício ou parcela remuneratória**, não tendo sido consideradas na formação do preço da Cláusula 6.1. A limpeza e a conservação interna da unidade ficam por conta da CONTRATADA, que se obriga ao uso moderado dos serviços, desligando equipamentos quando ausente e comunicando de imediato qualquer vazamento ou falha.
+**9.7.1.** Passados os 30 (trinta) dias sem a devolução, será devida **multa de R$ 100,00 (cem reais) por dia de atraso**, até a efetiva desocupação, podendo a CONTRATANTE retomar o imóvel judicialmente, com as despesas dessa retomada por conta da CONTRATADA. **Devolvida a unidade no prazo, nada é devido.**
 
-**9.8.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
+**9.8. Despesas de consumo.** As instalações da unidade estão ligadas às redes do próprio empreendimento, razão pela qual **energia elétrica, água e internet correm por conta da CONTRATANTE**, como parte da infraestrutura operacional cedida junto com a unidade. Essas despesas seguem a mesma natureza da cessão: são **instrumentais à prestação, e não pagamento, benefício ou parcela remuneratória**, não tendo sido consideradas na formação do preço da Cláusula 6.1. A limpeza e a conservação interna da unidade ficam por conta da CONTRATADA, que se obriga ao uso moderado dos serviços, desligando equipamentos quando ausente e comunicando de imediato qualquer vazamento ou falha.
+
+**9.9.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
 
 ---
 
@@ -187,7 +189,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **11.2.** A CONTRATADA pode encerrar imediatamente se o pagamento atrasar mais de 30 (trinta) dias, estando sua documentação regular, após aviso com 10 (dez) dias para regularização.
 
-**11.3.** Encerrado o contrato: a cessão da casa termina junto (Cláusula 9.6); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
+**11.3.** Encerrado o contrato: a cessão da casa termina junto (Cláusula 9.7); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
 
 **11.4.** Encerramentos por descumprimento não afastam a responsabilidade pelos prejuízos causados.
 

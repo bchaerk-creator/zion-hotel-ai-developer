@@ -7,27 +7,15 @@
 
 ---
 
-## 1. Sede do CNPJ em endereço próprio
+## 1. Endereço da sede — decisão tomada
 
-**Situação atual:** o CNPJ 19.525.600/0001-00 está registrado na Estrada Manoel Leôncio de Souza Brito, 1475 — o mesmo endereço do empreendimento.
+**Situação:** o CNPJ 19.525.600/0001-00 está registrado na Estrada Manoel Leôncio de Souza Brito, 1475, que é a Casa de Operações onde a titular reside.
 
-**O que fazer:** alterar o endereço da sede para um endereço distinto. Três caminhos possíveis:
+**Decisão da Contratante:** manter o endereço como está, uma vez que é de fato onde ela reside e onde a empresa opera.
 
-| Opção | Como funciona | Custo aproximado |
-|---|---|---|
-| Endereço de familiar | Alteração cadastral simples, com comprovante de endereço e autorização do titular | Taxa da Junta Comercial |
-| Endereço do escritório de contabilidade | Prática comum e legítima; o contador cede o endereço fiscal | Combinado com o contador |
-| Escritório virtual | Empresa especializada fornece endereço fiscal e recebimento de correspondência | R$ 80 a R$ 150 por mês |
+**Como o contrato trata:** a Cláusula 9.4 registra expressamente que a residência e o endereço da empresa na unidade decorrem da **natureza funcional da ocupação** e da vigência do contrato, e não de direito próprio sobre o imóvel. Encerrado o contrato, a Contratada fica obrigada a alterar o endereço do CNPJ no mesmo prazo de devolução da unidade.
 
-**Como se faz:** alteração do registro na **JUCESC** (Junta Comercial de Santa Catarina) pelo Portal do Empreendedor ou pelo contador, com atualização automática no CNPJ. Prazo típico: 3 a 10 dias úteis.
-
-> **Conferido em 05/09/2026:** o cartão CNPJ emitido em 05/07/2026 continua com a sede na Estrada Manoel Leôncio de Souza Brito, 1475, e com o CNAE principal 97.00-5-00. Os itens 1 e 2 seguem pendentes.
-
-- [ ] Endereço definido: ______________________________________________
-- [ ] Alteração protocolada na JUCESC em ___/___/______
-- [ ] Cartão CNPJ atualizado recebido
-
----
+- [ ] Ciência da Contratada quanto à obrigação de alteração ao término do contrato
 
 ## 2. CNAE principal compatível
 
@@ -110,7 +98,6 @@ O contador dela é quem indica a forma mais eficiente para o caso. O importante 
 ## 7. Pendências do contrato
 
 - [ ] Taxa de ocupação da Casa de Operações (Cláusula 9.6.1): R$ ______ por mês
-- [ ] Endereço da sede da Contratada, após o item 1
 - [ ] Vistoria de entrada da Casa de Operações, com fotos datadas, assinada pelas duas Partes
 - [ ] Designação do Preposto e do canal único de comunicação
 - [ ] Revisão por advogado trabalhista de Santa Catarina
