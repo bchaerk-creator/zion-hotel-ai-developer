@@ -109,7 +109,7 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 **7.2.** Se a CONTRATANTE for demandada ou autuada por fato decorrente deste contrato, inclusive por pessoa da equipe da CONTRATADA, esta **ressarcirá os valores despendidos** — principal, encargos, custas e honorários — em até **10 (dez) dias** da comprovação, e colaborará com a defesa fornecendo os documentos necessários. A CONTRATANTE poderá compensar esses valores com créditos da CONTRATADA, inclusive com a garantia da Cláusula 6.5. Esta obrigação permanece após o fim do contrato.
 
 **7.3.** No serviço de alimentos e bebidas, a CONTRATADA seguirá a **RDC ANVISA nº 216/2004**, mantendo boas práticas, curso de manipulador e atestado de saúde da equipe em dia, controle de temperatura, guarda de amostras por 72 horas e informação de alergênicos. Não servirá bebida alcoólica a menor de 18 anos. Responde pelos danos à saúde decorrentes dos alimentos que preparar ou servir.
-Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabelecimento próprio da CONTRATADA ]**.
+Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado da recepção**, sob a licença sanitária da CONTRATANTE, cabendo à CONTRATADA operar esse espaço em conformidade com as regras acima e manter a área e os equipamentos higienizados após cada uso.
 
 **7.4.** A CONTRATADA manterá **sigilo** sobre dados de hóspedes, senhas, acessos e informações da CONTRATANTE, observando a **LGPD**, e não divulgará imagens do empreendimento, de hóspedes ou de colaboradores sem autorização escrita. O sigilo permanece por 5 (cinco) anos após o fim do contrato.
 
@@ -147,7 +147,9 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 
 **9.6.1.** Passados os 30 (trinta) dias, será devida uma **taxa de ocupação de R$ [______] por mês**, calculada por dia, e a CONTRATANTE poderá retomar o imóvel judicialmente, correndo por conta da CONTRATADA as despesas dessa retomada.
 
-**9.7.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
+**9.7. Despesas de consumo.** As instalações da unidade estão ligadas às redes do próprio empreendimento, razão pela qual **energia elétrica, água e internet correm por conta da CONTRATANTE**, como parte da infraestrutura operacional cedida junto com a unidade. Essas despesas seguem a mesma natureza da cessão: são **instrumentais à prestação, e não pagamento, benefício ou parcela remuneratória**, não tendo sido consideradas na formação do preço da Cláusula 6.1. A limpeza e a conservação interna da unidade ficam por conta da CONTRATADA, que se obriga ao uso moderado dos serviços, desligando equipamentos quando ausente e comunicando de imediato qualquer vazamento ou falha.
+
+**9.8.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
 
 ---
 
@@ -183,7 +185,7 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 
 **12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste contrato, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
-**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — [e-mail], [telefone].
+**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — camila.consultoriamk@gmail.com, (48) 9223-2826.
 
 **12.4.** Nenhuma das Partes pode transferir este contrato a terceiros sem a concordância da outra.
 
