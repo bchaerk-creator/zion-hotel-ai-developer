@@ -30,7 +30,7 @@ As Partes, de boa-fé e de comum acordo, ajustam:
 
 **6. Valor.** **R$ 5.000,00 (cinco mil reais) por mês**, que inclui mão de obra, encargos, insumos e tributos da PRESTADORA. Pode ser revisto a qualquer tempo, de comum acordo, por escrito. Nota fiscal e recibo até o 3º dia útil; pagamento até o 5º dia útil, por PIX no CNPJ da PRESTADORA.
 
-**7. Uso das instalações.** **Enquanto prestar os serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor da Cláusula 6.
+**7. Uso das instalações.** **Enquanto prestar os serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor da Cláusula 6. **Morar na unidade não significa estar à disposição:** fora dos serviços decorrentes da ocupação, a PRESTADORA e sua equipe não ficam à disposição da CONTRATANTE.
 
 **8. Cuidados com a unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade a terceiros, nem fazer obras, sem combinar antes. Melhorias ficam incorporadas ao imóvel.
 
