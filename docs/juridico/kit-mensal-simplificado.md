@@ -32,7 +32,7 @@ As Partes, de boa-fé e de comum acordo, ajustam:
 
 **7. Uso das instalações.** **Enquanto prestar os serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor da Cláusula 6.
 
-**8. Cuidados com a unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade, hospedar terceiros, fazer obras ou manter animais sem combinar antes. Melhorias ficam incorporadas ao imóvel. Na entrada e na saída é feita **vistoria com fotos**, assinada pelas duas Partes.
+**8. Cuidados com a unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade a terceiros, nem fazer obras, sem combinar antes. Melhorias ficam incorporadas ao imóvel.
 
 | Ocupante | CPF |
 |---|---|
@@ -115,6 +115,6 @@ ______________________________
 
 ## COMO USAR
 
-**Uma vez:** assinar o **Termo** (documento 1), com duas testemunhas, e fazer a vistoria da unidade com fotos datadas.
+**Uma vez:** assinar o **Termo** (documento 1), com duas testemunhas.
 
 **Todo mês:** emitir a **Ordem de Serviço** no início do mês, e ela assina o **Recibo** ao receber. Arquivar a folha junto com a nota fiscal e o comprovante do PIX, numa pasta por mês.
