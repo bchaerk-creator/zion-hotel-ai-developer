@@ -121,6 +121,8 @@ Florianópolis/SC, ___ de _____________ de ______.
 
 **6.** Com este recebimento, dá **quitação plena** do mês, nada mais tendo a reclamar quanto a este período.
 
+**Anexos:** nota fiscal da competência · comprovante do PIX
+
 Florianópolis/SC, ___ de _____________ de ______.
 
 ______________________________
@@ -133,4 +135,4 @@ ______________________________
 
 **Uma vez:** assinar o **Acordo** (documento 1), com duas testemunhas.
 
-**Todo mês:** emitir a **Ordem de Serviço** no início do mês, e ela assina o **Recibo** ao receber. Arquivar a folha junto com a nota fiscal e o comprovante do PIX.
+**Todo mês:** emitir a **Ordem de Serviço** no início do mês. A PRESTADORA devolve a folha assinada nas duas partes — Ordem de Serviço e Recibo —, com a **nota fiscal** e o **comprovante do PIX** anexos. Arquivar tudo junto, numa pasta por competência.
