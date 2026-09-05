@@ -22,11 +22,11 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 **1.4.** A contratação é **por resultado**: importa o serviço entregue no padrão combinado.
 
-**1.5. Supervisão, controle e execução.** Cabe à CONTRATADA **supervisionar, controlar e executar**, por sua conta e no exercício de sua autonomia, tudo o que for necessário à entrega dos serviços deste contrato: a organização e a direção da própria equipe; o padrão e a qualidade do que é entregue; as rotinas de trabalho e a ordem de execução; o controle dos insumos, do enxoval e dos materiais sob sua guarda; o atendimento ao hóspede no que lhe compete; a conservação das instalações; e a verificação diária de que o empreendimento está em condições de receber e manter hóspedes.
+**1.5. Execução dos serviços.** A CONTRATADA **executa** os serviços da Cláusula 1.2 — recepção, check-in e check-out, limpeza e arrumação, entrega de café da manhã e lanches, conservação e apoio operacional —, organizando por sua conta a **equipe**, o **método** e a **ordem de execução**, e respondendo pela **qualidade e pelo padrão** do que entrega.
 
-**1.5.1.** A CONTRATADA é a **responsável pelo resultado** da operação dentro do escopo contratado e responde por sua condução perante a CONTRATANTE. Obriga-se a **comunicar de imediato** o que estiver fora da sua alçada: falha que exija profissional habilitado, ocorrência de segurança, dano relevante, risco a hóspede ou situação que dependa de decisão da CONTRATANTE.
+**1.5.1.** A **gestão do negócio** é conduzida pela CONTRATANTE: preços e tarifas, política de reservas e cancelamento, cortesias e descontos, escolha e contratação de fornecedores, investimentos e obras, representação perante terceiros, definição do padrão de serviço e a programação diária de que trata a Cláusula 3.
 
-**1.5.2.** Permanecem com a CONTRATANTE as **decisões de negócio**: preços e tarifas, política de reservas e cancelamento, cortesias e descontos, escolha e contratação de fornecedores, investimentos e obras, e a representação do empreendimento perante terceiros.
+**1.5.2.** A CONTRATADA comunica de imediato à CONTRATANTE o que estiver fora do seu escopo: falha que exija profissional habilitado, ocorrência de segurança, dano relevante ou risco a hóspede.
 
 ---
 
@@ -219,7 +219,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 a) negociaram todos os termos deste contrato em **igualdade de condições**, cada uma com plena compreensão do seu conteúdo, e que nenhuma cláusula lhes foi imposta;
 
-b) a relação entre elas é **civil e entre empresas**, e não de emprego: a CONTRATADA **supervisiona, controla e responde pela operação** no escopo contratado, organiza seu trabalho como entende, sem dia ou horário fixo para qualquer pessoa, podendo se fazer substituir e atender outros clientes;
+b) a relação entre elas é **civil e entre empresas**, e não de emprego: a CONTRATADA organiza a própria equipe e o próprio método, sem dia ou horário fixo para qualquer pessoa, podendo se fazer substituir e atender outros clientes;
 
 c) **todas as pessoas** que trabalham no empreendimento por conta da CONTRATADA estão formalizadas por ela, que é a única empregadora, responsável por contratá-las, pagá-las, orientá-las e desligá-las;
 
@@ -229,7 +229,9 @@ e) o **preço da Cláusula 6.1 é a única contraprestação** pelos serviços, 
 
 f) ambas se comprometem a **cumprir a legislação aplicável** — trabalhista, previdenciária, tributária, sanitária e de proteção de dados — cada uma no que lhe compete, e a comunicar à outra, com 30 (trinta) dias de antecedência, qualquer mudança relevante nas condições aqui combinadas;
 
-g) este contrato é firmado **de mútuo acordo**, assinado por ambas as Partes e por duas testemunhas, e substitui qualquer ajuste verbal anterior.
+g) a contratação sob a forma de **pessoa jurídica foi proposta e escolhida pela própria CONTRATADA**, que declara ter optado livremente por essa modalidade, com conhecimento das alternativas existentes, por ser a que melhor atende aos seus interesses e à sua atividade empresarial;
+
+h) este contrato é firmado **de mútuo acordo**, assinado por ambas as Partes e por duas testemunhas, e substitui qualquer ajuste verbal anterior.
 
 ---
 
