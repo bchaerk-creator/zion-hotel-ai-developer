@@ -98,7 +98,9 @@ As Partes celebram o presente Contrato de Prestação de Serviços, regido pelos
 
 ## 7. CASA DE OPERAÇÕES
 
-**7.1.** Exclusivamente para viabilizar a execução dos serviços e **enquanto durar este Contrato**, a CONTRATANTE cede à CONTRATADA, a **título gratuito, precário e revogável**, o uso da unidade denominada Casa de Operações.
+**7.1. Necessidade operacional.** O empreendimento situa-se em zona rural de difícil acesso, sem transporte público regular no período noturno, e sua operação exige cobertura contínua da Janela de Atendimento, atendimento a chegadas tardias e resposta imediata a intercorrências com hóspedes e a falhas de instalação. Por essa razão **técnica e operacional**, e exclusivamente para viabilizar a execução dos serviços **enquanto durar este Contrato**, a CONTRATANTE cede à CONTRATADA, a **título gratuito, precário e revogável**, o uso da unidade denominada Casa de Operações.
+
+**7.1.1.** As Partes declaram que a cessão é concedida **para o trabalho**, como instrumento necessário à prestação, e **não pelo trabalho**, não constituindo contraprestação, vantagem, benefício ou parcela remuneratória de qualquer natureza, nem sendo considerada na formação do preço da Cláusula 5.1.
 
 **7.2.** A cessão é **comodato modal** (art. 579 do Código Civil), vinculado por natureza à vigência deste Contrato, e **não constitui locação** (Lei nº 8.245/1991 inaplicável), **não transfere posse** — mas mera detenção (art. 1.198 do Código Civil) —, **não integra a remuneração** nem constitui salário-utilidade, por ser instrumento necessário à execução do serviço, e **não configura residência habitual** dos ocupantes, que declaram manter domicílio próprio.
 
