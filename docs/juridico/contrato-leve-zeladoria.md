@@ -153,7 +153,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **9.6.** A CONTRATADA pode usar a unidade **enquanto este contrato estiver em vigor**. Terminado o contrato, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
 
-**9.6.1.** Passados os 30 (trinta) dias, será devida uma **taxa de ocupação de R$ [______] por mês**, calculada por dia, e a CONTRATANTE poderá retomar o imóvel judicialmente, correndo por conta da CONTRATADA as despesas dessa retomada.
+**9.6.1.** Passados os 30 (trinta) dias sem a devolução, será devida **multa de R$ 100,00 (cem reais) por dia de atraso**, até a efetiva desocupação, podendo a CONTRATANTE retomar o imóvel judicialmente, com as despesas dessa retomada por conta da CONTRATADA. **Devolvida a unidade no prazo, nada é devido.**
 
 **9.7. Despesas de consumo.** As instalações da unidade estão ligadas às redes do próprio empreendimento, razão pela qual **energia elétrica, água e internet correm por conta da CONTRATANTE**, como parte da infraestrutura operacional cedida junto com a unidade. Essas despesas seguem a mesma natureza da cessão: são **instrumentais à prestação, e não pagamento, benefício ou parcela remuneratória**, não tendo sido consideradas na formação do preço da Cláusula 6.1. A limpeza e a conservação interna da unidade ficam por conta da CONTRATADA, que se obriga ao uso moderado dos serviços, desligando equipamentos quando ausente e comunicando de imediato qualquer vazamento ou falha.
 
