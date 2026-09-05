@@ -135,5 +135,3 @@ ______________________________
 2. Até o 3º dia útil do mês seguinte, ela entrega a **nota fiscal**, o **recibo** (documento 3) e as certidões CND, FGTS e CNDT
 3. Até o 5º dia útil, pagamento por PIX no CNPJ dela
 4. Arquivar os quatro papéis juntos, numa pasta por competência: OS + nota + recibo + comprovante
-
-**O que este kit não cobre**, e que existia no acordo anual: aviso prévio de 60 dias para encerrar, multa por saída sem aviso, direito de regresso em caso de reclamação trabalhista, retenção de garantia, cláusula de sigilo e proteção de dados, e as regras sanitárias de alimentos e bebidas.
