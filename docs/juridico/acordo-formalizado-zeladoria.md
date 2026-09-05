@@ -159,7 +159,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **9.6.** Na entrada e na saída será feita uma **vistoria com fotos**, assinada pelas duas Partes. A CONTRATADA responde pelos danos além do desgaste natural.
 
-**9.7.** A CONTRATADA pode usar a unidade **enquanto este acordo estiver em vigor**. Terminado o acordo, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
+**9.7.** A CONTRATADA pode usar a unidade **enquanto este acordo estiver em vigor**. Terminado o acordo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves — prazo reduzido para **15 (quinze) dias** nas situações de encerramento imediato da Cláusula 11.1, na forma da Cláusula 11.5. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
 
 **9.7.1.** Passados os 30 (trinta) dias sem a devolução, será devida **multa de R$ 100,00 (cem reais) por dia de atraso**, até a efetiva desocupação, podendo a CONTRATANTE retomar o imóvel judicialmente, com as despesas dessa retomada por conta da CONTRATADA. **Devolvida a unidade no prazo, nada é devido.**
 
@@ -185,13 +185,38 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 11. ENCERRAMENTO ANTES DO PRAZO
 
-**11.1.** O acordo pode ser encerrado **imediatamente**, sem aviso prévio, se houver: descumprimento do padrão de serviço após duas notificações escritas em 90 (noventa) dias; atraso nas obrigações trabalhistas ou fiscais da CONTRATADA; pessoa trabalhando sem formalização; furto, dano intencional, agressão, assédio, embriaguez ou uso de entorpecente em serviço; quebra de sigilo; descumprimento das regras da Casa de Operações; ou parada dos serviços por mais de 48 (quarenta e oito) horas sem justificativa.
+**11.1.** O acordo pode ser encerrado **imediatamente**, sem aviso prévio, pela CONTRATANTE, nas seguintes situações:
+
+**a) Falhas no atendimento ao hóspede**
+- deixar o horário de atendimento **descoberto**, sem substituição, por período que comprometa a operação;
+- **deixar de atender hóspede** presente no empreendimento, ou recusar-se a fazê-lo;
+- deixar de prestar as **assistências devidas** durante a estadia, ou não responder a chamado ou intercorrência;
+- deixar de comunicar à CONTRATANTE ocorrência grave: acidente, dano relevante, falha que exija profissional habilitado ou risco a hóspede;
+- tratar hóspede ou colaborador de forma **desrespeitosa, hostil ou constrangedora**;
+- reclamação formal de hóspede sobre atendimento, limpeza ou alimentação **repetida por 3 (três) vezes** no período de 90 (noventa) dias, ou avaliação pública que exponha a reputação do empreendimento por falha imputável à CONTRATADA.
+
+**b) Falhas de conduta e de conformidade**
+- furto, apropriação de bem ou de achado, dano intencional, agressão, assédio, embriaguez ou uso de entorpecente em serviço;
+- quebra de sigilo ou divulgação de imagem de hóspede;
+- pessoa trabalhando no empreendimento **sem formalização** pela CONTRATADA;
+- atraso nas obrigações trabalhistas, previdenciárias ou fiscais da CONTRATADA;
+- descumprimento das regras de uso da Casa de Operações (Cláusula 9.3);
+- não conformidade sanitária reincidente no serviço de alimentos e bebidas.
+
+**c) Descumprimento geral**
+- descumprimento do padrão de serviço após **duas notificações escritas** no período de 90 (noventa) dias;
+- parada ou abandono dos serviços por mais de **24 (vinte e quatro) horas** sem justificativa aceita;
+- falsidade de qualquer declaração deste acordo.
 
 **11.2.** A CONTRATADA pode encerrar imediatamente se o pagamento atrasar mais de 30 (trinta) dias, estando sua documentação regular, após aviso com 10 (dez) dias para regularização.
 
-**11.3.** Encerrado o acordo: a cessão da casa termina junto (Cláusula 9.7); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
+**11.3.** Encerrado o acordo: a cessão da casa termina junto (Cláusulas 9.7 e 11.5); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
 
-**11.4.** Encerramentos por descumprimento não afastam a responsabilidade pelos prejuízos causados.
+**11.4. Multa.** A Parte que der causa ao encerramento imediato pagará à outra **multa equivalente a 1 (uma) mensalidade** do valor vigente — hoje R$ 5.000,00 (cinco mil reais) —, **sem prejuízo** da indenização pelos prejuízos que a excederem, nos termos do parágrafo único do artigo 416 do Código Civil.
+
+**11.5. Devolução da unidade em caso de encerramento imediato.** Encerrado o acordo por qualquer das situações da Cláusula 11.1, a cessão da Casa de Operações cessa de imediato e a unidade será devolvida, desocupada e em ordem, em **15 (quinze) dias corridos** — prazo reduzido em relação ao da Cláusula 9.7 justamente pela gravidade das situações ali descritas. Vencido esse prazo, aplica-se a multa diária da Cláusula 9.7.1 e a CONTRATANTE poderá retomar o imóvel judicialmente.
+
+**11.6.** Encerramentos por descumprimento não afastam a responsabilidade pelos prejuízos causados.
 
 ---
 
