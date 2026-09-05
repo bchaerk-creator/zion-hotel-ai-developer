@@ -39,7 +39,7 @@ As Partes, de boa-fé e de comum acordo, ajustam:
 | | |
 | | |
 
-**9. Encerramento.** Qualquer das Partes pode encerrar quando quiser, sem precisar justificar, **avisando a outra por escrito com 30 (trinta) dias de antecedência**. Encerrada a prestação, o uso da unidade termina junto, e ela é devolvida desocupada e em ordem, com as chaves, em **30 (trinta) dias**, contados em paralelo ao aviso.
+**9. Encerramento.** Qualquer das Partes pode encerrar quando quiser, sem precisar justificar, **avisando a outra por escrito com 15 (quinze) dias de antecedência**. Encerrada a prestação, o uso da unidade termina junto, e ela é devolvida desocupada e em ordem, com as chaves, em **15 (quinze) dias**, contados em paralelo ao aviso.
 
 **10. Foro.** Fica eleito o foro de Florianópolis/SC.
 
