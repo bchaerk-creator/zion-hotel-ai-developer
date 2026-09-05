@@ -66,7 +66,7 @@ c) **Horários.** A CONTRATANTE informa os horários **do hóspede e da operaç�
 
 d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cláusula 6.1, pago **à empresa** CONTRATADA contra nota fiscal. Valores adicionais eventualmente combinados — serviço extraordinário, reembolso de despesa ou antecipação do próprio preço — também são pagos à empresa e documentados. A CONTRATANTE não faz pagamentos, empréstimos nem concede benefícios individuais a pessoas da equipe.
 
-**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias**, o cadastro do seu CNPJ, com sede em endereço próprio e atividade principal compatível com o objeto (CNAE 81.21-4-00 ou 81.29-0-00).
+**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias** contados da assinatura, o cadastro do seu CNPJ, com **sede em endereço próprio e distinto do empreendimento** e atividade principal compatível com o objeto (CNAE 81.21-4-00 ou 81.29-0-00), e manterá **conta bancária e chave PIX em nome da empresa**, para recebimento na forma da Cláusula 6.3. Enquanto pendente a regularização, a CONTRATANTE poderá reter os pagamentos, sem que isso configure atraso.
 
 ---
 

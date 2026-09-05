@@ -6,6 +6,9 @@
 |---|---|---|
 | `contrato-zeladoria-mediterraneo.*` | Contrato principal, 18 cláusulas, objeto modular (Módulos A a G) | Assinatura (2 vias + 2 testemunhas) |
 | `anexos-contrato-zeladoria.*` | Anexos I a V (escopo, recibos, comodato, checklist, preposto) | Assinatura junto ao contrato + rotina mensal |
+| `contrato-leve-zeladoria.*` | **Versão em uso** — 13 cláusulas em linguagem direta, com recibo mensal | Assinatura |
+| `contrato-simples-zeladoria.*` | Mesma estrutura, tom mais formal | Alternativa |
+| `checklist-regularizacao.*` | Pendências de CNPJ, conta PJ e registro da equipe | Enviar à Contratada e ao contador dela |
 | `regimento-operacional-mediterraneo.*` | Anexo VI — regras da operação, uso da Casa de Operações, protocolos de emergência e Termo de Adesão | Assinatura junto ao contrato + adesão individual da equipe |
 | `nota-estrategica-zeladoria.*` | Racional das decisões, riscos e regras de operação | **Uso interno** — não entregar à Contratada |
 
