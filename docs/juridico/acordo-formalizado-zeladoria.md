@@ -102,7 +102,7 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 
 **6.2.** Até o **3º (terceiro) dia útil** de cada mês a CONTRATADA emitirá a **nota fiscal** do mês anterior, acompanhada do **Recibo Mensal** (anexo) e das certidões CND Federal, CRF/FGTS e CNDT. Havendo empregados, apresentará também folha de pagamento e guias de FGTS e INSS quitadas.
 
-**6.3.** O pagamento será feito até o **5º (quinto) dia útil** de cada mês, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**, chave PIX aleatória **3d93dbc3-abb3-4361-adfb-beba493bbffe**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
+**6.3.** O pagamento será feito até o **5º (quinto) dia útil** de cada mês, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**, chave PIX aleatória **3d93dbc3-abb3-4361-adfb-beba493bbffe**, mantida junto ao **Nu Pagamentos S.A. — Instituição de Pagamento**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
 
 **6.3.1.** Cada pagamento será identificado com a **competência a que se refere**, e o comprovante de transferência será arquivado pelas duas Partes junto à nota fiscal e ao **Recibo Mensal** do mesmo mês. Comprovante de pagamento isolado, sem nota fiscal e sem recibo, não substitui a documentação deste acordo.
 

@@ -43,10 +43,10 @@ Como o serviço inclui hospitalidade e alimentos, convém manter também como se
 
 **O que fazer:** abrir conta PJ vinculada ao CNPJ 19.525.600/0001-00 e cadastrar chave PIX em nome da empresa. Bancos digitais abrem conta PJ sem custo de manutenção, em 1 a 3 dias, com cartão CNPJ, documento do titular e comprovante de endereço.
 
-- [ ] Conta PJ aberta — banco: ______________ agência/conta: ______________
-- [x] Chave PIX informada: **3d93dbc3-abb3-4361-adfb-beba493bbffe** (aleatória)
-- [ ] **Confirmar que essa chave está vinculada a conta PJ do CNPJ 19.525.600/0001-00**, e não a conta pessoa física — chave aleatória não revela o titular
-- [ ] Dados informados à Contratante
+- [x] Conta PJ — **Nu Pagamentos S.A. (Instituição de Pagamento)**
+- [x] Chave PIX aleatória: **3d93dbc3-abb3-4361-adfb-beba493bbffe**
+- [x] **Titularidade conferida em 05/09/2026**: comprovante Santander mostra recebedor 19525600 CAMILA RABELO GLICERIO GOIS, CNPJ 19.\*\*\*\*\*\*/\*\*\*\*-00 — item resolvido
+- [x] Dados informados à Contratante
 
 ---
 
