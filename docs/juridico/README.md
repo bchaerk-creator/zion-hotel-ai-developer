@@ -9,6 +9,10 @@
 | `regimento-operacional-mediterraneo.*` | Anexo VI — regras da operação, uso da Casa de Operações, protocolos de emergência e Termo de Adesão | Assinatura junto ao contrato + adesão individual da equipe |
 | `nota-estrategica-zeladoria.*` | Racional das decisões, riscos e regras de operação | **Uso interno** — não entregar à Contratada |
 
+| `pacote-assinatura-zeladoria.pdf` | Contrato + Anexos + Regimento num só arquivo, com índice | Envio à Contratada e assinatura |
+
+A **Nota Estratégica é de uso interno** e não deve ser enviada à Contratada: ela contém a análise de risco de vínculo e as observações sobre o cadastro CNPJ dela.
+
 Cada documento existe em três formatos: `.md` (fonte editável e versionada), `.docx` (edição em Word) e `.pdf` (leitura e assinatura).
 
 ### Regenerar os arquivos após editar o Markdown
@@ -16,6 +20,10 @@ Cada documento existe em três formatos: `.md` (fonte editável e versionada), `
 ```bash
 python3 scripts/md2docx.py docs/juridico/<nome>.md docs/juridico/<nome>.docx
 python3 scripts/md2pdf.py  docs/juridico/<nome>.md docs/juridico/<nome>.pdf "<texto do rodapé>"
+python3 scripts/merge_pdf.py docs/juridico/pacote-assinatura-zeladoria.pdf \
+    docs/juridico/contrato-zeladoria-mediterraneo.pdf \
+    docs/juridico/anexos-contrato-zeladoria.pdf \
+    docs/juridico/regimento-operacional-mediterraneo.pdf
 ```
 
 ### Antes de assinar
