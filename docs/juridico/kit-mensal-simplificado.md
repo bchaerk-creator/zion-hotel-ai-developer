@@ -4,13 +4,13 @@
 
 | # | Documento | Quando |
 |---|---|---|
-| 1 | **Termo de Prestação de Serviços e Uso das Instalações** | Assinado **uma vez** |
+| 1 | **Acordo de Prestação de Serviços** | Assinado **uma vez** |
 | 2 | **Ordem de Serviço e Recibo** | Uma folha **por mês** |
 
 ---
 ---
 
-# 1. TERMO DE PRESTAÇÃO DE SERVIÇOS E USO DAS INSTALAÇÕES
+# 1. ACORDO DE PRESTAÇÃO DE SERVIÇOS
 
 **CONTRATANTE:** **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ 55.493.012/0001-97, Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC.
 
@@ -18,11 +18,24 @@
 
 As Partes, de boa-fé e de comum acordo, ajustam:
 
-**1. Serviços.** A PRESTADORA presta os **serviços hoteleiros** do empreendimento: recepção, check-in e check-out; atendimento ao hóspede; limpeza e arrumação das unidades e áreas comuns; enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel, com guarda de chaves, ronda de conservação e comunicação de anormalidades. Cada mês os serviços são solicitados por **Ordem de Serviço** (documento 2).
+**1. Objeto.** A PRESTADORA presta os **serviços hoteleiros** do empreendimento da CONTRATANTE, solicitados a cada mês por **Ordem de Serviço**.
 
-**2. Como o serviço acontece.** Os serviços seguem a **ocupação do empreendimento**: a cada reserva, a PRESTADORA prepara a unidade antes da chegada, recebe o hóspede, atende durante a estadia e faz o check-out e a limpeza depois. **Nos dias sem ocupação e sem serviço programado, não há serviço a prestar.** O horário de chegada e de saída dos hóspedes segue a política do empreendimento — check-in a partir das **[__]h** e check-out até as **[__]h** —, que é regra para o hóspede.
+**2. Tarefas.** Conforme a ocupação do empreendimento:
 
-**3. Organização do trabalho.** A PRESTADORA organiza a própria equipe: quem atende cada reserva, o revezamento, as pausas e as substituições. A CONTRATANTE informa as reservas e a programação — chegadas, saídas, pedidos de hóspedes e prioridades.
+- preparar a unidade antes de cada chegada;
+- receber o hóspede e fazer o check-in;
+- atender o hóspede durante a estadia;
+- fazer o check-out e a limpeza da unidade;
+- limpar e higienizar as unidades e as áreas comuns;
+- trocar e controlar o enxoval;
+- preparar e entregar café da manhã, cortesias e bebidas;
+- cuidar do jardim e das áreas externas;
+- fazer pequenos reparos;
+- zelar pelo imóvel: guarda de chaves, ronda de conservação, abertura e fechamento e comunicação de anormalidades.
+
+Não estão incluídos serviços de segurança privada nem os que exijam habilitação técnica ou ART.
+
+**3. Ordem de Serviço.** A cada mês a CONTRATANTE emite a Ordem de Serviço do período, e a PRESTADORA assina de acordo. A CONTRATANTE informa as reservas e as prioridades; a PRESTADORA organiza a própria equipe e executa.
 
 **4. Sem vínculo.** Este é um ajuste **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes nem entre a CONTRATANTE e as pessoas da equipe da PRESTADORA.
 
@@ -30,9 +43,9 @@ As Partes, de boa-fé e de comum acordo, ajustam:
 
 **6. Valor.** **R$ 5.000,00 (cinco mil reais) por mês**, que inclui mão de obra, encargos, insumos e tributos da PRESTADORA. Pode ser revisto a qualquer tempo, de comum acordo, por escrito. Nota fiscal e recibo até o 3º dia útil; pagamento até o 5º dia útil, por PIX no CNPJ da PRESTADORA.
 
-**7. Uso das instalações.** **Enquanto prestar os serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor da Cláusula 6. **Morar na unidade não significa estar à disposição:** fora dos serviços decorrentes da ocupação, a PRESTADORA e sua equipe não ficam à disposição da CONTRATANTE.
+**7. Uso das instalações.** **Enquanto vigorar a prestação dos serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor do item 6. Morar na unidade não significa estar à disposição da CONTRATANTE.
 
-**8. Cuidados com a unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade a terceiros, nem fazer obras, sem combinar antes. Melhorias ficam incorporadas ao imóvel.
+**8. Uso da unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade a terceiros, nem fazer obras, sem combinar antes. Melhorias ficam incorporadas ao imóvel.
 
 | Ocupante | CPF |
 |---|---|
@@ -65,16 +78,19 @@ Florianópolis/SC, ___ de _____________ de ______.
 
 ### Ordem de Serviço
 
-Ficam solicitados, para o mês acima, os **serviços hoteleiros** previstos no Termo, **conforme a ocupação do empreendimento**: preparação da unidade antes de cada chegada; recepção, check-in e check-out; atendimento ao hóspede durante a estadia; limpeza, arrumação e enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel.
+Ficam solicitadas, para o mês acima, as tarefas do item 2 do Acordo de Prestação de Serviços, conforme a ocupação do empreendimento:
 
-| Item | Condição |
+| Item | |
 |---|---|
 | Reservas previstas no mês | [____] |
-| Check-in / check-out | a partir das [__]h / até as [__]h |
 | Responsável pelo contato | [____________] |
 | Valor do mês | R$ 5.000,00 |
 
-**Observações:** _______________________________________________________________
+**Tarefas ou observações adicionais do período:**
+
+_____________________________________________________________________________
+
+_____________________________________________________________________________
 
 Florianópolis/SC, ___ de _____________ de ______.
 
@@ -115,6 +131,6 @@ ______________________________
 
 ## COMO USAR
 
-**Uma vez:** assinar o **Termo** (documento 1), com duas testemunhas.
+**Uma vez:** assinar o **Acordo** (documento 1), com duas testemunhas.
 
-**Todo mês:** emitir a **Ordem de Serviço** no início do mês, e ela assina o **Recibo** ao receber. Arquivar a folha junto com a nota fiscal e o comprovante do PIX, numa pasta por mês.
+**Todo mês:** emitir a **Ordem de Serviço** no início do mês, e ela assina o **Recibo** ao receber. Arquivar a folha junto com a nota fiscal e o comprovante do PIX.
