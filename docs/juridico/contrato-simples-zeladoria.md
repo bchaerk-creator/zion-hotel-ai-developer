@@ -104,7 +104,7 @@ As Partes celebram o presente Contrato de Prestação de Serviços, regido pelos
 
 ## 7. CASA DE OPERAÇÕES
 
-**7.1. Necessidade operacional.** O empreendimento situa-se em zona rural de difícil acesso, sem transporte público regular no período noturno, e sua operação exige cobertura contínua da Janela de Atendimento, atendimento a chegadas tardias e resposta imediata a intercorrências com hóspedes e a falhas de instalação. Por essa razão **técnica e operacional**, e exclusivamente para viabilizar a execução dos serviços **enquanto durar este Contrato**, a CONTRATANTE cede à CONTRATADA, a **título gratuito, precário e revogável**, o uso da unidade denominada Casa de Operações.
+**7.1. Necessidade operacional.** A operação do Empreendimento exige **cobertura contínua da Janela de Atendimento**, recebimento de chegadas fora desse horário e resposta imediata a intercorrências com hóspedes e a falhas de instalação. Por essa razão **técnica e operacional**, e exclusivamente para viabilizar a execução dos serviços **enquanto durar este Contrato**, a CONTRATANTE cede à CONTRATADA, a **título gratuito, precário e revogável**, o uso da unidade denominada Casa de Operações.
 
 **7.1.1.** As Partes declaram que a cessão é concedida **para o trabalho**, como instrumento necessário à prestação, e **não pelo trabalho**, não constituindo contraprestação, vantagem, benefício ou parcela remuneratória de qualquer natureza, nem sendo considerada na formação do preço da Cláusula 5.1.
 

@@ -248,7 +248,7 @@ c) **Comprovantes de regularidade** listados no ANEXO IV (CND Federal/INSS, CRF/
 
 ## CLÁUSULA 8 — DA CESSÃO DE USO DA CASA DE OPERAÇÕES (COMODATO MODAL E PRECÁRIO)
 
-**8.1. Necessidade operacional.** O Empreendimento situa-se em zona rural de difícil acesso, sem transporte público regular no período noturno, e sua operação exige cobertura contínua da Janela de Atendimento (Cláusula 3.2), atendimento a chegadas tardias e resposta imediata a intercorrências com hóspedes e a falhas de instalação. Por essa razão **técnica e operacional**, e exclusivamente para viabilizar a execução dos serviços contratados enquanto perdurar esta relação contratual, a CONTRATANTE cede à CONTRATADA, **a título gratuito, precário e revogável**, o uso da unidade denominada **"Casa de Operações"**, situada no Empreendimento e descrita e inventariada no **ANEXO III-A**.
+**8.1. Necessidade operacional.** A operação do Empreendimento exige **cobertura contínua da Janela de Atendimento** (Cláusula 3.2), recebimento de chegadas fora desse horário e resposta imediata a intercorrências com hóspedes e a falhas de instalação. Por essa razão **técnica e operacional**, e exclusivamente para viabilizar a execução dos serviços contratados enquanto perdurar esta relação contratual, a CONTRATANTE cede à CONTRATADA, **a título gratuito, precário e revogável**, o uso da unidade denominada **"Casa de Operações"**, situada no Empreendimento e descrita e inventariada no **ANEXO III-A**.
 
 **8.1.1.** As Partes declaram que a cessão é concedida **para o trabalho**, como instrumento necessário à prestação, e **não pelo trabalho**, não constituindo contraprestação, vantagem, benefício ou parcela remuneratória de qualquer natureza, nem sendo considerada na formação do preço da Cláusula 4.1.
 

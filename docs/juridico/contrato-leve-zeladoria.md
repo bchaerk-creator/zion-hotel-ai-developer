@@ -36,6 +36,14 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 **2.5.** Fora desse período, eventuais chegadas tardias ou intercorrências serão atendidas conforme disponibilidade organizada pela própria CONTRATADA, já compreendida no preço.
 
+**2.6. Plano de Cobertura.** Para dar previsibilidade à operação, a CONTRATADA apresentará à CONTRATANTE, na assinatura deste contrato e sempre que houver alteração, um **Plano de Cobertura** por escrito, indicando **como pretende cobrir o horário de atendimento**: os períodos, as pessoas designadas para cada um, o revezamento previsto e quem responde em cada momento.
+
+**2.6.1.** O Plano é **elaborado pela CONTRATADA**, que pode alterá-lo sempre que entender necessário, bastando comunicar a CONTRATANTE. A CONTRATANTE **não aprova, não altera e não define** o conteúdo do Plano: apenas confere se ele atende à cobertura contratada na Cláusula 2.1 e registra o recebimento.
+
+**2.6.2.** O Plano vale como **compromisso da empresa CONTRATADA** quanto ao resultado prometido. Se a cobertura efetiva não corresponder ao que ela mesma se comprometeu, ou se o horário de atendimento ficar descoberto, aplica-se o regime de não conformidade da Cláusula 3.4.
+
+**2.6.3.** Serviços fora do escopo ordinário serão solicitados por **Ordem de Serviço escrita**, dirigida ao Preposto, com prazo e, se houver custo adicional, com orçamento previamente aceito.
+
 ---
 
 ## 3. COMO A OPERAÇÃO É COORDENADA NO DIA A DIA
@@ -133,7 +141,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 9. A CASA DE OPERAÇÕES
 
-**9.1.** O empreendimento fica em zona rural de difícil acesso, sem transporte público à noite, e sua operação exige presença ao longo do dia, atendimento a chegadas tardias e resposta rápida a intercorrências. **Por essa razão operacional**, e enquanto durar este contrato, a CONTRATANTE cede à CONTRATADA, **gratuitamente**, o uso da unidade chamada **Casa de Operações**.
+**9.1.** A operação do empreendimento exige **presença ao longo de todo o horário de atendimento**, recebimento de chegadas fora desse horário e atuação imediata diante de intercorrências com hóspedes e nas instalações. É por essa **razão operacional**, e enquanto durar este contrato, que a CONTRATANTE cede à CONTRATADA, **gratuitamente**, o uso da unidade chamada **Casa de Operações**, situada no próprio empreendimento.
 
 **9.2.** A cessão é um **comodato** vinculado ao contrato de serviços. As Partes deixam claro que ela é concedida **para o trabalho**, como ferramenta necessária à prestação, e **não como pagamento**: não é aluguel, não é remuneração, não entrou na formação do preço da Cláusula 6.1, e não transfere posse do imóvel.
 
@@ -181,7 +189,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 12. DISPOSIÇÕES FINAIS
 
-**12.1.** Este contrato reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
+**12.1.** Este contrato, com o **Plano de Cobertura** e o **Recibo Mensal** anexos, reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
 
 **12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste contrato, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
@@ -230,6 +238,37 @@ Florianópolis/SC, **[__] de [__________] de [____]**.
 | **TESTEMUNHA 1** | **TESTEMUNHA 2** |
 |---|---|
 | ______________________________<br>Nome:<br>CPF: | ______________________________<br>Nome:<br>CPF: |
+
+---
+
+# ANEXO — PLANO DE COBERTURA
+
+**Contrato nº ZHG/MED/ZEL-001/2026** — apresentado pela CONTRATADA em ___/___/______
+
+> Preenchido pela CONTRATADA. A CONTRATANTE apenas confere se atende à cobertura da Cláusula 2.1 e registra o recebimento.
+
+**Horário de atendimento a cobrir:** das 7h30 às 19h00, todos os dias.
+
+| Período | Pessoa designada | Vínculo com a CONTRATADA | Observações |
+|---|---|---|---|
+| | | ( ) Titular ( ) Sócio ( ) Empregado ( ) Subcontratado | |
+| | | ( ) Titular ( ) Sócio ( ) Empregado ( ) Subcontratado | |
+| | | ( ) Titular ( ) Sócio ( ) Empregado ( ) Subcontratado | |
+
+**Revezamento e descansos:** _______________________________________________________________
+
+**Substituição em caso de falta, férias ou afastamento:** ___________________________________
+
+**Responsável por chegadas fora do horário e intercorrências:** _____________________________
+
+**Preposto responsável pelo Plano:** ______________________ **Telefone:** ______________
+
+Este Plano é elaborado pela CONTRATADA no exercício de sua autonomia, podendo ser por ela alterado a qualquer tempo mediante comunicação à CONTRATANTE.
+
+______________________________
+**19.525.600 Camila Rabelo Glicerio Gois** — CNPJ 19.525.600/0001-00
+
+*Recebido pela CONTRATANTE em ___/___/______ — ______________________*
 
 ---
 
