@@ -14,19 +14,25 @@ As Partes, de comum acordo, celebram o presente **Acordo Formalizado de Prestaç
 
 ## 1. O QUE SERÁ PRESTADO
 
-**1.1.** A CONTRATADA prestará, com autonomia e organização próprias, os serviços de **zeladoria, conservação, limpeza, paisagismo, hospitalidade, apoio operacional e serviço de alimentos e bebidas** no empreendimento turístico da CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC.
+**1.1.** A CONTRATADA prestará, com autonomia e organização próprias, os serviços de **zeladoria e caseiro, conservação, limpeza, paisagismo, hospitalidade, apoio operacional e serviço de alimentos e bebidas** no empreendimento turístico da CONTRATANTE, situado na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC.
 
-**1.2.** Isso compreende: limpeza e higienização das unidades e áreas comuns; troca e controle de enxoval; jardinagem e conservação das áreas externas; recepção, check-in e check-out de hóspedes; atendimento às solicitações da estadia; preparo e entrega de café da manhã, cortesias e bebidas; pequenos reparos; e ronda de conservação com guarda de chaves.
+**1.2.** Isso compreende: limpeza e higienização das unidades e áreas comuns; troca e controle de enxoval; jardinagem e conservação das áreas externas; recepção, check-in e check-out de hóspedes; atendimento às solicitações da estadia; preparo e entrega de café da manhã, cortesias e bebidas; pequenos reparos; e as atribuições de zeladoria e caseiro descritas no item 1.3.
 
-**1.3.** Por exigência legal, dois grupos de serviço ficam fora e serão contratados pela CONTRATANTE junto a profissionais habilitados: **vigilância e segurança patrimonial** (Lei nº 7.102/1983) — a ronda aqui prevista é de conservação, cabendo à CONTRATADA comunicar ocorrências, sem intervir — e **serviços que exijam ART**, como elétrica energizada, gás, hidráulica de rede e obras.
+**1.3. Zeladoria e caseiro — o que está incluído.** Integram o objeto, e são executadas pela CONTRATADA, as atribuições próprias de **zeladoria e de caseiro**: presença no imóvel; cuidado e conservação das instalações, equipamentos e áreas; **guarda de chaves** e controle simples de acesso, com abertura e fechamento de portões e a identificação e orientação de quem chega; recebimento de entregas e de prestadores autorizados; **ronda de conservação** para verificar o estado do imóvel, das instalações e dos acessos; conferência de fechamento ao final do dia; e **comunicação imediata** à CONTRATANTE e, quando o caso exigir, às autoridades públicas, diante de qualquer anormalidade.
 
-**1.4.** A contratação é **por resultado**: importa o serviço entregue no padrão combinado.
+**1.4. O que não está incluído, por exigência legal.**
 
-**1.5. Execução dos serviços.** A CONTRATADA **executa** os serviços da Cláusula 1.2 — recepção, check-in e check-out, limpeza e arrumação, entrega de café da manhã e lanches, conservação e apoio operacional —, organizando por sua conta a **equipe**, o **método** e a **ordem de execução**, e respondendo pela **qualidade e pelo padrão** do que entrega.
+a) **Segurança privada e vigilância patrimonial**, regidas pela **Lei nº 7.102/1983**, que são atividade privativa de empresa especializada autorizada pela Polícia Federal e executada por vigilante com formação própria. A CONTRATADA e sua equipe **não assumem obrigação de proteção patrimonial contra ação criminosa**, e é-lhes vedado portar arma, revistar pessoas ou bagagens, abordar, deter, conter fisicamente ou perseguir quem quer que seja. Diante de ocorrência dessa natureza, o dever da CONTRATADA é **resguardar-se, acionar a CONTRATANTE e as autoridades, e registrar o ocorrido**. Caso a CONTRATANTE entenda necessário contratar vigilância patrimonial, fará por meio de empresa de segurança habilitada, em contrato próprio.
 
-**1.5.1.** A **gestão do negócio** é conduzida pela CONTRATANTE: preços e tarifas, política de reservas e cancelamento, cortesias e descontos, escolha e contratação de fornecedores, investimentos e obras, representação perante terceiros, definição do padrão de serviço e a programação diária de que trata a Cláusula 3.
+b) **Serviços que exijam habilitação técnica ou ART**, como instalações elétricas energizadas, gás, hidráulica de rede e obras. Nesses casos cabe à CONTRATADA identificar, isolar e comunicar, e à CONTRATANTE contratar o profissional habilitado.
 
-**1.5.2.** A CONTRATADA comunica de imediato à CONTRATANTE o que estiver fora do seu escopo: falha que exija profissional habilitado, ocorrência de segurança, dano relevante ou risco a hóspede.
+**1.5.** A contratação é **por resultado**: importa o serviço entregue no padrão combinado.
+
+**1.6. Execução dos serviços.** A CONTRATADA **executa** os serviços da Cláusula 1.2 — recepção, check-in e check-out, limpeza e arrumação, entrega de café da manhã e lanches, conservação e apoio operacional —, organizando por sua conta a **equipe**, o **método** e a **ordem de execução**, e respondendo pela **qualidade e pelo padrão** do que entrega.
+
+**1.6.1.** A **gestão do negócio** é conduzida pela CONTRATANTE: preços e tarifas, política de reservas e cancelamento, cortesias e descontos, escolha e contratação de fornecedores, investimentos e obras, representação perante terceiros, definição do padrão de serviço e a programação diária de que trata a Cláusula 3.
+
+**1.6.2.** A CONTRATADA comunica de imediato à CONTRATANTE o que estiver fora do seu escopo: falha que exija profissional habilitado, ocorrência de segurança, dano relevante ou risco a hóspede.
 
 ---
 
