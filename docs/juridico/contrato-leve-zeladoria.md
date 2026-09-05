@@ -185,7 +185,7 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste contrato, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
-**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — camila.consultoriamk@gmail.com, (48) 9223-2826.
+**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — ilhadosabor.sc@gmail.com, +55 (48) 99223-2826.
 
 **12.4.** Nenhuma das Partes pode transferir este contrato a terceiros sem a concordância da outra.
 

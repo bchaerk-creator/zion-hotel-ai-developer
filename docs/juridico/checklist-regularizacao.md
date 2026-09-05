@@ -21,6 +21,8 @@
 
 **Como se faz:** alteração do registro na **JUCESC** (Junta Comercial de Santa Catarina) pelo Portal do Empreendedor ou pelo contador, com atualização automática no CNPJ. Prazo típico: 3 a 10 dias úteis.
 
+> **Conferido em 05/09/2026:** o cartão CNPJ emitido em 05/07/2026 continua com a sede na Estrada Manoel Leôncio de Souza Brito, 1475, e com o CNAE principal 97.00-5-00. Os itens 1 e 2 seguem pendentes.
+
 - [ ] Endereço definido: ______________________________________________
 - [ ] Alteração protocolada na JUCESC em ___/___/______
 - [ ] Cartão CNPJ atualizado recebido
