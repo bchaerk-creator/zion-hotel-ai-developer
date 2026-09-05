@@ -28,11 +28,13 @@ As Partes, de boa-fé e de comum acordo, celebram o presente **Acordo de Presta�
 
 **2.1.** O empreendimento recebe hóspedes **das 7h30 às 19h00, todos os dias**, e a CONTRATADA se compromete a **manter esse período coberto**, com ao menos uma pessoa apta a atender, reforçando a equipe quando a ocupação exigir.
 
-**2.2.** Esse é o **horário de funcionamento do empreendimento**, e não jornada de ninguém. Cabe à CONTRATADA organizar quem cobre cada momento, o revezamento, os intervalos, as folgas e as substituições, podendo alterar isso quando quiser.
+**2.2.** Esse é o **horário de funcionamento do empreendimento** e a referência de tempo do serviço contratado — não é jornada de ninguém. A cobertura é devida **todos os dias**, e cabe à CONTRATADA organizar quem cobre cada momento, o revezamento, as pausas e as substituições da sua equipe.
 
 **2.3.** A CONTRATADA informa por escrito, e mantém atualizado, **quem responde por cada período**. Ficando o atendimento descoberto, a CONTRATANTE aponta por escrito e a CONTRATADA corrige em **24 (vinte e quatro) horas**.
 
-**2.4.** Chegadas fora do horário e intercorrências são atendidas conforme disponibilidade organizada pela própria CONTRATADA, já incluída no preço.
+**2.4. Dia de substituição.** Um dia por semana o atendimento é coberto por **pessoa substituta** indicada pela CONTRATADA, mantida a mesma qualidade. A CONTRATADA informa com antecedência qual será esse dia, e as Partes o **ajustam de comum acordo** à ocupação prevista e à demanda do empreendimento, de modo que a operação não fique descoberta. A escolha de quem substitui é da CONTRATADA.
+
+**2.5.** Chegadas fora do horário e intercorrências são atendidas conforme disponibilidade organizada pela própria CONTRATADA, já incluída no preço.
 
 ---
 
@@ -52,9 +54,9 @@ As Partes, de boa-fé e de comum acordo, celebram o presente **Acordo de Presta�
 
 **4.1.** Este é um acordo **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes, nem entre a CONTRATANTE e as pessoas que trabalham para a CONTRATADA.
 
-**4.2.** A CONTRATADA organiza seu trabalho com autonomia, **sem dia ou horário fixo para qualquer pessoa**, pode se fazer substituir quando quiser, é livre para atender outros clientes e assume os custos e os riscos da própria atividade.
+**4.2.** Os serviços são prestados dentro do **horário de funcionamento do empreendimento** (Cláusula 2.1), que é a referência de tempo do que foi contratado e decorre da natureza da atividade hoteleira. Dentro dele, a CONTRATADA organiza a própria equipe com autonomia — quem cobre cada período, o revezamento, as pausas, as substituições e o dia de substituição da Cláusula 2.4 —, pode se fazer substituir quando quiser, é livre para atender outros clientes e assume os custos e os riscos da própria atividade.
 
-**4.3.** A CONTRATANTE não fixa horário pessoal de ninguém, não exige a presença da titular, não controla frequência e não concede a pessoas da equipe pagamento, adiantamento, empréstimo ou benefício — tudo é pago à empresa, contra documento.
+**4.3.** A CONTRATANTE indica o **horário de funcionamento e a demanda do dia**, e não o horário pessoal de cada pessoa: não exige a presença da titular, não registra frequência, não controla entrada, saída ou pausas de ninguém, e não concede a pessoas da equipe pagamento, adiantamento, empréstimo ou benefício — tudo é pago à empresa, contra documento.
 
 **4.4.** A contratação sob a forma de pessoa jurídica **foi escolhida pela própria CONTRATADA**, que declara ter optado livremente por essa modalidade, com conhecimento das alternativas.
 
