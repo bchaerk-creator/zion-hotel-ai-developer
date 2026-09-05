@@ -1,48 +1,53 @@
-# KIT SIMPLIFICADO — PRESTAÇÃO DE SERVIÇOS MÊS A MÊS
+# PRESTAÇÃO DE SERVIÇOS — DOCUMENTOS
 
 ### Mediterrâneo Empreendimentos Turísticos Ltda × 19.525.600 Camila Rabelo Glicerio Gois
 
-Três documentos curtos, de uma página cada:
-
 | # | Documento | Quando |
 |---|---|---|
-| 1 | **Termo de Cessão de Uso da Casa de Operações** | Assinado **uma vez**, e vale enquanto durar a prestação |
-| 2 | **Ordem de Serviço Mensal** | Emitida **todo mês**, no início do mês |
-| 3 | **Recibo de Prestação de Serviços** | Assinado **todo mês**, junto com a nota fiscal |
+| 1 | **Termo de Prestação de Serviços e Uso das Instalações** | Assinado **uma vez** |
+| 2 | **Ordem de Serviço e Recibo** | Uma folha **por mês** |
 
 ---
 ---
 
-# 1. TERMO DE CESSÃO DE USO DA CASA DE OPERAÇÕES
+# 1. TERMO DE PRESTAÇÃO DE SERVIÇOS E USO DAS INSTALAÇÕES
 
-**MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ 55.493.012/0001-97, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC (**CEDENTE**), e **19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1 SSP/SP, CPF 386.386.288-03 (**CESSIONÁRIA**), de comum acordo, ajustam:
+**CONTRATANTE:** **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ 55.493.012/0001-97, Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC.
 
-**1.** A CEDENTE cede à CESSIONÁRIA, **gratuitamente**, o uso da unidade denominada **Casa de Operações**, situada no empreendimento acima, **exclusivamente enquanto durar a prestação de serviços** entre as Partes.
+**PRESTADORA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1 SSP/SP, CPF 386.386.288-03.
 
-**2.** A cessão é **ferramenta de trabalho**, concedida **para o trabalho** por exigir a operação presença no local, e **não como pagamento**: não é aluguel, não é remuneração, não integra o preço dos serviços e não transfere posse do imóvel.
+As Partes, de boa-fé e de comum acordo, ajustam:
 
-**3.** Energia elétrica, água e internet correm por conta da CEDENTE, por estarem ligadas às redes do próprio empreendimento. A limpeza e a conservação interna são da CESSIONÁRIA.
+**1. Serviços.** A PRESTADORA presta os **serviços hoteleiros** do empreendimento: recepção, check-in e check-out; atendimento ao hóspede; limpeza e arrumação das unidades e áreas comuns; enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel, com guarda de chaves, ronda de conservação e comunicação de anormalidades. Cada mês os serviços são solicitados por **Ordem de Serviço** (documento 2).
 
-**4.** Ocupam a unidade apenas as pessoas abaixo indicadas. Não é permitido ceder ou emprestar a unidade, hospedar terceiros, fazer obras ou manter animais sem combinar antes. Melhorias ficam incorporadas ao imóvel, sem indenização.
+**2. Horário.** O empreendimento recebe hóspedes **das 7h30 às 19h00, todos os dias**, e a PRESTADORA mantém esse período coberto, com ao menos uma pessoa apta a atender. Um dia por semana a cobertura é feita por pessoa substituta indicada por ela, combinado entre as Partes conforme a ocupação.
+
+**3. Organização do trabalho.** A PRESTADORA organiza a própria equipe: quem cobre cada período, o revezamento, as pausas e as substituições. A CONTRATANTE informa a programação do dia — chegadas, saídas, pedidos de hóspedes e prioridades.
+
+**4. Sem vínculo.** Este é um ajuste **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes nem entre a CONTRATANTE e as pessoas da equipe da PRESTADORA.
+
+**5. Equipe.** A PRESTADORA é a **empregadora** de todas as pessoas que utilizar — inclusive cônjuge ou familiar —, que devem estar formalizadas por ela, e responde pelos respectivos encargos.
+
+**6. Valor.** **R$ 5.000,00 (cinco mil reais) por mês**, que inclui mão de obra, encargos, insumos e tributos da PRESTADORA. Pode ser revisto a qualquer tempo, de comum acordo, por escrito. Nota fiscal e recibo até o 3º dia útil; pagamento até o 5º dia útil, por PIX no CNPJ da PRESTADORA.
+
+**7. Uso das instalações.** **Enquanto prestar os serviços**, a PRESTADORA pode usar, gratuitamente, a unidade denominada **Casa de Operações**, com energia, água e internet por conta da CONTRATANTE. O uso é **ferramenta de trabalho**, ligado à prestação: não é aluguel, não é remuneração e não integra o valor da Cláusula 6.
+
+**8. Cuidados com a unidade.** Ocupam a unidade apenas as pessoas indicadas abaixo. Não é permitido ceder ou emprestar a unidade, hospedar terceiros, fazer obras ou manter animais sem combinar antes. Melhorias ficam incorporadas ao imóvel. Na entrada e na saída é feita **vistoria com fotos**, assinada pelas duas Partes.
 
 | Ocupante | CPF |
 |---|---|
 | | |
 | | |
 
-**5.** Na entrada e na saída é feita **vistoria com fotos**, assinada pelas duas Partes. A CESSIONÁRIA responde pelos danos além do desgaste natural.
+**9. Encerramento.** Qualquer das Partes pode encerrar quando quiser, sem precisar justificar, **avisando a outra por escrito com 30 (trinta) dias de antecedência**. Encerrada a prestação, o uso da unidade termina junto, e ela é devolvida desocupada e em ordem, com as chaves, em **30 (trinta) dias**, contados em paralelo ao aviso.
 
-**6.** **Encerrada a prestação de serviços, por qualquer motivo, esta cessão termina junto**, e a unidade será devolvida desocupada e em ordem, com as chaves, em **30 (trinta) dias corridos**. Passado esse prazo, é devida **multa de R$ 100,00 por dia** até a devolução, podendo a CEDENTE retomar o imóvel judicialmente, com as despesas por conta da CESSIONÁRIA. **Devolvida no prazo, nada é devido.**
-
-**7.** A CEDENTE pode encerrar esta cessão isoladamente, mantendo os serviços, com aviso escrito de **30 (trinta) dias**.
-
-**8.** Fica eleito o foro de Florianópolis/SC.
+**10. Foro.** Fica eleito o foro de Florianópolis/SC.
 
 Florianópolis/SC, ___ de _____________ de ______.
 
-| **CEDENTE** | **CESSIONÁRIA** |
+| **CONTRATANTE** | **PRESTADORA** |
 |---|---|
-| ______________________________<br>Mediterrâneo Empreendimentos Turísticos Ltda | ______________________________<br>Camila Rabelo Glicerio Gois |
+| ______________________________<br>Mediterrâneo Empreendimentos Turísticos Ltda<br>CNPJ 55.493.012/0001-97 | ______________________________<br>Camila Rabelo Glicerio Gois<br>CNPJ 19.525.600/0001-00 |
 
 | **TESTEMUNHA 1** | **TESTEMUNHA 2** |
 |---|---|
@@ -51,40 +56,25 @@ Florianópolis/SC, ___ de _____________ de ______.
 ---
 ---
 
-# 2. ORDEM DE SERVIÇO MENSAL
+# 2. ORDEM DE SERVIÇO E RECIBO
 
-**Nº ______ / [____]** — **Competência: [____/____]**
+**Competência: [____/____]** — Ordem de Serviço nº ______
 
 **CONTRATANTE:** Mediterrâneo Empreendimentos Turísticos Ltda — CNPJ 55.493.012/0001-97
 **PRESTADORA:** 19.525.600 Camila Rabelo Glicerio Gois — CNPJ 19.525.600/0001-00
 
-### Serviços solicitados no período
+### Ordem de Serviço
 
-Serviços hoteleiros no empreendimento da CONTRATANTE: recepção, check-in e check-out; atendimento ao hóspede durante a estadia; limpeza, higienização e arrumação das unidades e áreas comuns; troca e controle de enxoval; preparo e entrega de café da manhã, cortesias e bebidas; jardinagem e conservação das áreas externas; pequenos reparos; e zeladoria do imóvel, com guarda de chaves, ronda de conservação, abertura e fechamento e comunicação de anormalidades.
-
-Não estão incluídos serviços de segurança privada (Lei nº 7.102/1983) nem os que exijam habilitação técnica ou ART.
-
-### Condições do período
+Ficam solicitados, para o mês acima, os **serviços hoteleiros** previstos no Termo de Prestação de Serviços: recepção, check-in e check-out; atendimento ao hóspede; limpeza e arrumação; enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel.
 
 | Item | Condição |
 |---|---|
-| **Horário de funcionamento do empreendimento** | 7h30 às 19h00, todos os dias |
-| **Cobertura** | A PRESTADORA mantém o período coberto, com ao menos uma pessoa apta a atender |
-| **Dia de substituição** | [____________], coberto por pessoa indicada pela PRESTADORA |
-| **Responsável pelo contato** | [____________] |
-| **Valor do período** | R$ 5.000,00 (cinco mil reais) |
-| **Nota fiscal** | Até o 3º dia útil do mês seguinte |
-| **Pagamento** | Até o 5º dia útil, por PIX no CNPJ da PRESTADORA |
+| Horário de funcionamento | 7h30 às 19h00, todos os dias |
+| Dia de substituição no mês | [____________] |
+| Responsável pelo contato | [____________] |
+| Valor do mês | R$ 5.000,00 |
 
-### Como o serviço é organizado
-
-A PRESTADORA executa os serviços com **equipe e organização próprias**, definindo quem cobre cada período, o revezamento, as pausas e as substituições. A CONTRATANTE informa diariamente a programação do empreendimento — chegadas, saídas, pedidos de hóspedes, eventos e prioridades — ao responsável indicado.
-
-Não há vínculo empregatício entre as Partes nem entre a CONTRATANTE e as pessoas da equipe da PRESTADORA, que é a única empregadora delas e responde por seus encargos.
-
-### Observações do período
-
-_____________________________________________________________________________
+**Observações:** _______________________________________________________________
 
 Florianópolis/SC, ___ de _____________ de ______.
 
@@ -93,30 +83,27 @@ Florianópolis/SC, ___ de _____________ de ______.
 | ______________________________ | ______________________________ |
 
 ---
----
 
-# 3. RECIBO DE PRESTAÇÃO DE SERVIÇOS
-
-**Competência: [____/____]** — referente à Ordem de Serviço nº ______
+### Recibo
 
 **19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, declara que:
 
-**1.** Recebeu de **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ 55.493.012/0001-97, o valor de **R$ ______ (___________________)**, referente aos serviços prestados na competência acima, conforme nota fiscal nº ______.
+**1.** Recebeu de **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ 55.493.012/0001-97, o valor de **R$ ______**, referente aos serviços da Ordem de Serviço acima, conforme nota fiscal nº ______.
 
-**2.** Os serviços foram prestados com **autonomia e organização próprias**, sem subordinação, sem pessoalidade e sem exclusividade, não havendo vínculo empregatício entre as Partes.
+**2.** Os serviços foram prestados com **autonomia e organização próprias**, sem vínculo empregatício entre as Partes.
 
 **3.** Trabalharam no período, por conta da PRESTADORA:
 
-| Nome | CPF | Vínculo com a PRESTADORA |
+| Nome | CPF | Vínculo |
 |---|---|---|
 | | | ( ) Titular ( ) Sócio ( ) Empregado CTPS ( ) CNPJ próprio |
 | | | ( ) Titular ( ) Sócio ( ) Empregado CTPS ( ) CNPJ próprio |
 
-**4.** A PRESTADORA está **em dia** com as obrigações trabalhistas, previdenciárias e fiscais do período, inclusive quanto às pessoas acima, e responde integralmente por elas.
+**4.** A PRESTADORA está em dia com as obrigações trabalhistas, previdenciárias e fiscais do período.
 
-**5.** O uso da Casa de Operações **não faz parte** do valor acima, sendo ferramenta de trabalho cedida gratuitamente, nos termos do Termo de Cessão de Uso.
+**5.** O uso da Casa de Operações **não faz parte** do valor acima, sendo ferramenta de trabalho cedida gratuitamente.
 
-**6.** Com este recebimento, a PRESTADORA dá **plena, geral e irrevogável quitação** quanto à competência acima, nada mais tendo a reclamar em relação a este período.
+**6.** Com este recebimento, dá **quitação plena** do mês, nada mais tendo a reclamar quanto a este período.
 
 Florianópolis/SC, ___ de _____________ de ______.
 
@@ -128,10 +115,6 @@ ______________________________
 
 ## COMO USAR
 
-**Uma vez:** assinem o **Termo de Cessão de Uso** (documento 1), com duas testemunhas, e façam a vistoria com fotos datadas.
+**Uma vez:** assinar o **Termo** (documento 1), com duas testemunhas, e fazer a vistoria da unidade com fotos datadas.
 
-**Todo mês:**
-1. No início do mês, emitir a **Ordem de Serviço** (documento 2), assinada pelos dois
-2. Até o 3º dia útil do mês seguinte, ela entrega a **nota fiscal**, o **recibo** (documento 3) e as certidões CND, FGTS e CNDT
-3. Até o 5º dia útil, pagamento por PIX no CNPJ dela
-4. Arquivar os quatro papéis juntos, numa pasta por competência: OS + nota + recibo + comprovante
+**Todo mês:** emitir a **Ordem de Serviço** no início do mês, e ela assina o **Recibo** ao receber. Arquivar a folha junto com a nota fiscal e o comprovante do PIX, numa pasta por mês.
