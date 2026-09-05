@@ -44,7 +44,8 @@ Como o serviço inclui hospitalidade e alimentos, convém manter também como se
 **O que fazer:** abrir conta PJ vinculada ao CNPJ 19.525.600/0001-00 e cadastrar chave PIX em nome da empresa. Bancos digitais abrem conta PJ sem custo de manutenção, em 1 a 3 dias, com cartão CNPJ, documento do titular e comprovante de endereço.
 
 - [ ] Conta PJ aberta — banco: ______________ agência/conta: ______________
-- [ ] Chave PIX da empresa: ______________________________________________
+- [x] Chave PIX informada: **3d93dbc3-abb3-4361-adfb-beba493bbffe** (aleatória)
+- [ ] **Confirmar que essa chave está vinculada a conta PJ do CNPJ 19.525.600/0001-00**, e não a conta pessoa física — chave aleatória não revela o titular
 - [ ] Dados informados à Contratante
 
 ---

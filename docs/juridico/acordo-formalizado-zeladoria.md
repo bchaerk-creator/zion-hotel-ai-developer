@@ -6,7 +6,7 @@
 
 **CONTRATANTE:** **MEDITERRÂNEO EMPREENDIMENTOS TURÍSTICOS LTDA**, CNPJ **55.493.012/0001-97**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada na forma de seu contrato social.
 
-**CONTRATADA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, CNPJ **19.525.600/0001-00**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1, CPF 386.386.288-03.
+**CONTRATADA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, CNPJ **19.525.600/0001-00**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada por sua titular **Camila Rabelo Glicerio Gois**, brasileira, nascida em 31 de março de 1990, natural de São José do Rio Preto/SP, portadora da Cédula de Identidade RG nº **46.270.985-1 SSP/SP**, expedida em 07/03/2023, e inscrita no CPF sob o nº **386.386.288-03**.
 
 As Partes, de comum acordo, celebram o presente **Acordo Formalizado de Prestação de Serviços**, que tem natureza de **contrato de prestação de serviços** e é regido pelos artigos 593 a 609 do Código Civil, nos termos a seguir.
 
@@ -102,11 +102,13 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 
 **6.2.** Até o **3º (terceiro) dia útil** de cada mês a CONTRATADA emitirá a **nota fiscal** do mês anterior, acompanhada do **Recibo Mensal** (anexo) e das certidões CND Federal, CRF/FGTS e CNDT. Havendo empregados, apresentará também folha de pagamento e guias de FGTS e INSS quitadas.
 
-**6.3.** O pagamento será feito até o **5º (quinto) dia útil** de cada mês, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
+**6.3.** O pagamento será feito até o **5º (quinto) dia útil** de cada mês, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**, chave PIX aleatória **3d93dbc3-abb3-4361-adfb-beba493bbffe**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
 
 **6.3.1.** Cada pagamento será identificado com a **competência a que se refere**, e o comprovante de transferência será arquivado pelas duas Partes junto à nota fiscal e ao **Recibo Mensal** do mesmo mês. Comprovante de pagamento isolado, sem nota fiscal e sem recibo, não substitui a documentação deste acordo.
 
 **6.3.2.** A CONTRATADA entregará o **Recibo Mensal assinado a cada mês**, sem exceção, ainda que o pagamento tenha sido feito antes da entrega. O recibo é a peça que registra a autonomia da prestação e a quitação do período.
+
+**6.3.3.** A CONTRATADA **declara que a chave PIX indicada no item 6.3 está vinculada a conta de titularidade da pessoa jurídica** CNPJ 19.525.600/0001-00. Qualquer alteração de conta ou de chave será comunicada por escrito e confirmada pela CONTRATANTE antes do pagamento seguinte.
 
 **6.4.** Faltando a nota fiscal, o recibo ou as certidões, o pagamento do mês seguinte aguarda a regularização, sem que isso configure atraso. Havendo atraso por parte da CONTRATANTE, incidem multa de 2%, juros de 1% ao mês e correção pelo IPCA.
 
