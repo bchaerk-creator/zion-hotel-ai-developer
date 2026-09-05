@@ -20,9 +20,9 @@ As Partes, de boa-fé e de comum acordo, ajustam:
 
 **1. Serviços.** A PRESTADORA presta os **serviços hoteleiros** do empreendimento: recepção, check-in e check-out; atendimento ao hóspede; limpeza e arrumação das unidades e áreas comuns; enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel, com guarda de chaves, ronda de conservação e comunicação de anormalidades. Cada mês os serviços são solicitados por **Ordem de Serviço** (documento 2).
 
-**2. Horário.** O empreendimento recebe hóspedes **das 7h30 às 19h00, todos os dias**, e a PRESTADORA mantém esse período coberto, com ao menos uma pessoa apta a atender. Um dia por semana a cobertura é feita por pessoa substituta indicada por ela, combinado entre as Partes conforme a ocupação.
+**2. Como o serviço acontece.** Os serviços seguem a **ocupação do empreendimento**: a cada reserva, a PRESTADORA prepara a unidade antes da chegada, recebe o hóspede, atende durante a estadia e faz o check-out e a limpeza depois. **Nos dias sem ocupação e sem serviço programado, não há serviço a prestar.** O horário de chegada e de saída dos hóspedes segue a política do empreendimento — check-in a partir das **[__]h** e check-out até as **[__]h** —, que é regra para o hóspede.
 
-**3. Organização do trabalho.** A PRESTADORA organiza a própria equipe: quem cobre cada período, o revezamento, as pausas e as substituições. A CONTRATANTE informa a programação do dia — chegadas, saídas, pedidos de hóspedes e prioridades.
+**3. Organização do trabalho.** A PRESTADORA organiza a própria equipe: quem atende cada reserva, o revezamento, as pausas e as substituições. A CONTRATANTE informa as reservas e a programação — chegadas, saídas, pedidos de hóspedes e prioridades.
 
 **4. Sem vínculo.** Este é um ajuste **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes nem entre a CONTRATANTE e as pessoas da equipe da PRESTADORA.
 
@@ -65,12 +65,12 @@ Florianópolis/SC, ___ de _____________ de ______.
 
 ### Ordem de Serviço
 
-Ficam solicitados, para o mês acima, os **serviços hoteleiros** previstos no Termo de Prestação de Serviços: recepção, check-in e check-out; atendimento ao hóspede; limpeza e arrumação; enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel.
+Ficam solicitados, para o mês acima, os **serviços hoteleiros** previstos no Termo, **conforme a ocupação do empreendimento**: preparação da unidade antes de cada chegada; recepção, check-in e check-out; atendimento ao hóspede durante a estadia; limpeza, arrumação e enxoval; café da manhã, cortesias e bebidas; jardinagem; pequenos reparos; e zeladoria do imóvel.
 
 | Item | Condição |
 |---|---|
-| Horário de funcionamento | 7h30 às 19h00, todos os dias |
-| Dia de substituição no mês | [____________] |
+| Reservas previstas no mês | [____] |
+| Check-in / check-out | a partir das [__]h / até as [__]h |
 | Responsável pelo contato | [____________] |
 | Valor do mês | R$ 5.000,00 |
 
