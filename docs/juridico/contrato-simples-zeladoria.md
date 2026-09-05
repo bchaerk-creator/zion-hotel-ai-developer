@@ -44,7 +44,13 @@ As Partes celebram o presente Contrato de Prestação de Serviços, regido pelos
 
 **3.2.** As Partes declaram que a execução deste Contrato **não reúne** os requisitos dos artigos 2º e 3º da CLT: não há subordinação jurídica, pessoalidade, exclusividade ou habitualidade pessoal. A CONTRATADA organiza sua atividade com autonomia, pode fazer-se substituir a qualquer tempo, é livre para prestar serviços a terceiros e assume os riscos econômicos de sua atividade.
 
-**3.3.** A CONTRATANTE **não emitirá ordens diretas** a empregados ou prepostos da CONTRATADA. Toda comunicação será dirigida ao **Preposto** por ela designado.
+**3.3. Programação Diária de Operação.** A CONTRATANTE transmitirá diariamente ao Preposto a **programação operacional do empreendimento**: chegadas e saídas previstas com os respectivos horários, unidades envolvidas, solicitações e restrições de hóspedes, eventos, bloqueios de unidade, prioridades do dia e demais informações necessárias à prestação. A programação constitui **ordem de serviço dirigida à CONTRATADA como pessoa jurídica**, e define **o que** deve ser entregue e **quando o hóspede espera receber** — jamais quem executa, por quanto tempo ou de que modo.
+
+**3.3.1.** A programação será transmitida **exclusivamente ao Preposto**, por canal escrito único. Cabe ao Preposto distribuir as tarefas entre a equipe da CONTRATADA, definir a ordem de execução e responder pelo cumprimento.
+
+**3.3.2.** É **vedado** à CONTRATANTE: (i) dirigir tarefa, instrução, correção, advertência ou cobrança **diretamente a empregado ou preposto** da CONTRATADA; (ii) designar nominalmente quem executará cada tarefa; (iii) determinar horário pessoal de entrada, saída, intervalo ou permanência de qualquer pessoa; e (iv) exigir a presença pessoal da titular da CONTRATADA.
+
+**3.3.3.** Apontamentos sobre a execução serão feitos **por escrito e ao Preposto**, na forma de não conformidade de resultado, nos termos da Cláusula 2.5.
 
 **3.4.** É vedado à CONTRATANTE: exigir uniforme ou identificação que apresente a equipe como seu quadro de pessoal; incluir a CONTRATADA ou seus prepostos em reuniões internas, metas ou premiações; conceder vale-transporte, vale-refeição, adiantamento, empréstimo ou benefício de qualquer natureza; e submeter qualquer pessoa a controle de ponto, escala nominal ou autorização prévia de folgas, férias ou ausências.
 
