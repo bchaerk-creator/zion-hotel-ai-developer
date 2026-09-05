@@ -1,6 +1,6 @@
 # CHECKLIST DE REGULARIZAÇÃO
 
-### Pendências para a assinatura do Contrato nº ZHG/MED/ZEL-001/2026
+### Pendências para a assinatura do Acordo Formalizado nº ZHG/MED/ZEL-001/2026
 **Mediterrâneo Empreendimentos Turísticos Ltda × 19.525.600 Camila Rabelo Glicerio Gois**
 
 > Documento de trabalho. Pode ser encaminhado à Contratada e ao contador dela.

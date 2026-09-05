@@ -1,6 +1,6 @@
-# CONTRATO DE PRESTAÇÃO DE SERVIÇOS
+# ACORDO FORMALIZADO DE PRESTAÇÃO DE SERVIÇOS
 
-**Contrato nº ZHG/MED/ZEL-001/2026**
+**Acordo nº ZHG/MED/ZEL-001/2026**
 
 ---
 
@@ -8,7 +8,7 @@
 
 **CONTRATADA:** **19.525.600 CAMILA RABELO GLICERIO GOIS**, empresário individual, CNPJ **19.525.600/0001-00**, com sede na Estrada Manoel Leôncio de Souza Brito, nº 1475, Vargem Pequena, Florianópolis/SC, CEP 88.052-400, neste ato representada por sua titular **Camila Rabelo Glicerio Gois**, RG 46.270.985-1, CPF 386.386.288-03.
 
-As Partes, de comum acordo, celebram o presente Contrato de Prestação de Serviços, regido pelos artigos 593 a 609 do Código Civil, nos termos a seguir.
+As Partes, de comum acordo, celebram o presente **Acordo Formalizado de Prestação de Serviços**, que tem natureza de **contrato de prestação de serviços** e é regido pelos artigos 593 a 609 do Código Civil, nos termos a seguir.
 
 ---
 
@@ -42,7 +42,7 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 **2.5.** Fora desse período, eventuais chegadas tardias ou intercorrências serão atendidas conforme disponibilidade organizada pela própria CONTRATADA, já compreendida no preço.
 
-**2.6. Plano de Cobertura.** Para dar previsibilidade à operação, a CONTRATADA apresentará à CONTRATANTE, na assinatura deste contrato e sempre que houver alteração, um **Plano de Cobertura** por escrito, indicando **como pretende cobrir o horário de atendimento**: os períodos, as pessoas designadas para cada um, o revezamento previsto e quem responde em cada momento.
+**2.6. Plano de Cobertura.** Para dar previsibilidade à operação, a CONTRATADA apresentará à CONTRATANTE, na assinatura deste acordo e sempre que houver alteração, um **Plano de Cobertura** por escrito, indicando **como pretende cobrir o horário de atendimento**: os períodos, as pessoas designadas para cada um, o revezamento previsto e quem responde em cada momento.
 
 **2.6.1.** O Plano é **elaborado pela CONTRATADA**, que pode alterá-lo sempre que entender necessário, bastando comunicar a CONTRATANTE. A CONTRATANTE **não aprova, não altera e não define** o conteúdo do Plano: apenas confere se ele atende à cobertura contratada na Cláusula 2.1 e registra o recebimento.
 
@@ -66,7 +66,7 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 ## 4. AUTONOMIA E AUSÊNCIA DE VÍNCULO
 
-**4.1.** Este é um contrato **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes, nem entre a CONTRATANTE e as pessoas que trabalham para a CONTRATADA.
+**4.1.** Este é um acordo **civil, entre duas empresas**. Não há vínculo empregatício entre as Partes, nem entre a CONTRATANTE e as pessoas que trabalham para a CONTRATADA.
 
 **4.2.** As Partes reconhecem que não estão presentes os requisitos dos artigos 2º e 3º da CLT: a CONTRATADA organiza seu trabalho com autonomia, pode se fazer substituir quando quiser, é livre para atender outros clientes e assume os riscos e os custos da própria atividade.
 
@@ -80,7 +80,7 @@ c) **Horários.** A CONTRATANTE informa os horários **do hóspede e da operaç�
 
 d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cláusula 6.1, pago **à empresa** CONTRATADA contra nota fiscal. Valores adicionais eventualmente combinados — serviço extraordinário, reembolso de despesa ou antecipação do próprio preço — também são pagos à empresa e documentados. A CONTRATANTE não faz pagamentos, empréstimos nem concede benefícios individuais a pessoas da equipe.
 
-**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias** contados da assinatura, a **atividade econômica principal** do seu CNPJ, adotando código compatível com o objeto deste contrato (CNAE 81.21-4-00 ou 81.29-0-00), e manterá **conta bancária e chave PIX em nome da empresa**, para recebimento na forma da Cláusula 6.3. Enquanto pendente a regularização, a CONTRATANTE poderá reter os pagamentos, sem que isso configure atraso.
+**4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias** contados da assinatura, a **atividade econômica principal** do seu CNPJ, adotando código compatível com o objeto deste acordo (CNAE 81.21-4-00 ou 81.29-0-00), e manterá **conta bancária e chave PIX em nome da empresa**, para recebimento na forma da Cláusula 6.3. Enquanto pendente a regularização, a CONTRATANTE poderá reter os pagamentos, sem que isso configure atraso.
 
 ---
 
@@ -104,15 +104,15 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 
 **6.3.** O pagamento será feito até o **5º (quinto) dia útil** de cada mês, por transferência ou PIX para **conta bancária de titularidade da empresa CONTRATADA, vinculada ao CNPJ 19.525.600/0001-00**. Não haverá pagamento em espécie, em conta de pessoa física, nem parcelado em datas semanais ou quinzenais.
 
-**6.3.1.** Cada pagamento será identificado com a **competência a que se refere**, e o comprovante de transferência será arquivado pelas duas Partes junto à nota fiscal e ao **Recibo Mensal** do mesmo mês. Comprovante de pagamento isolado, sem nota fiscal e sem recibo, não substitui a documentação deste contrato.
+**6.3.1.** Cada pagamento será identificado com a **competência a que se refere**, e o comprovante de transferência será arquivado pelas duas Partes junto à nota fiscal e ao **Recibo Mensal** do mesmo mês. Comprovante de pagamento isolado, sem nota fiscal e sem recibo, não substitui a documentação deste acordo.
 
 **6.3.2.** A CONTRATADA entregará o **Recibo Mensal assinado a cada mês**, sem exceção, ainda que o pagamento tenha sido feito antes da entrega. O recibo é a peça que registra a autonomia da prestação e a quitação do período.
 
 **6.4.** Faltando a nota fiscal, o recibo ou as certidões, o pagamento do mês seguinte aguarda a regularização, sem que isso configure atraso. Havendo atraso por parte da CONTRATANTE, incidem multa de 2%, juros de 1% ao mês e correção pelo IPCA.
 
-**6.5.** A CONTRATANTE reterá **5% (cinco por cento)** de cada pagamento, como garantia, devolvidos em parcela única **90 (noventa) dias** após o fim do contrato, mediante CNDT atualizada e comprovação de quitação das verbas dos empregados que atuaram no empreendimento.
+**6.5.** A CONTRATANTE reterá **5% (cinco por cento)** de cada pagamento, como garantia, devolvidos em parcela única **90 (noventa) dias** após o fim do acordo, mediante CNDT atualizada e comprovação de quitação das verbas dos empregados que atuaram no empreendimento.
 
-**6.6.** Não havendo revisão de comum acordo ao longo do período, o preço é reajustado uma vez por ano, pelo **IPCA/IBGE**, na data de aniversário do contrato.
+**6.6.** Não havendo revisão de comum acordo ao longo do período, o preço é reajustado uma vez por ano, pelo **IPCA/IBGE**, na data de aniversário do acordo.
 
 ---
 
@@ -120,12 +120,12 @@ d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cl�
 
 **7.1.** A CONTRATADA responde pelas obrigações trabalhistas, previdenciárias e fiscais de sua equipe, e pelos danos causados ao empreendimento, aos hóspedes ou a terceiros por si, sua equipe ou seus contratados.
 
-**7.2.** Se a CONTRATANTE for demandada ou autuada por fato decorrente deste contrato, inclusive por pessoa da equipe da CONTRATADA, esta **ressarcirá os valores despendidos** — principal, encargos, custas e honorários — em até **10 (dez) dias** da comprovação, e colaborará com a defesa fornecendo os documentos necessários. A CONTRATANTE poderá compensar esses valores com créditos da CONTRATADA, inclusive com a garantia da Cláusula 6.5. Esta obrigação permanece após o fim do contrato.
+**7.2.** Se a CONTRATANTE for demandada ou autuada por fato decorrente deste acordo, inclusive por pessoa da equipe da CONTRATADA, esta **ressarcirá os valores despendidos** — principal, encargos, custas e honorários — em até **10 (dez) dias** da comprovação, e colaborará com a defesa fornecendo os documentos necessários. A CONTRATANTE poderá compensar esses valores com créditos da CONTRATADA, inclusive com a garantia da Cláusula 6.5. Esta obrigação permanece após o fim do acordo.
 
 **7.3.** No serviço de alimentos e bebidas, a CONTRATADA seguirá a **RDC ANVISA nº 216/2004**, mantendo boas práticas, curso de manipulador e atestado de saúde da equipe em dia, controle de temperatura, guarda de amostras por 72 horas e informação de alergênicos. Não servirá bebida alcoólica a menor de 18 anos. Responde pelos danos à saúde decorrentes dos alimentos que preparar ou servir.
 Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado da recepção**, sob a licença sanitária da CONTRATANTE, cabendo à CONTRATADA operar esse espaço em conformidade com as regras acima e manter a área e os equipamentos higienizados após cada uso.
 
-**7.4.** A CONTRATADA manterá **sigilo** sobre dados de hóspedes, senhas, acessos e informações da CONTRATANTE, observando a **LGPD**, e não divulgará imagens do empreendimento, de hóspedes ou de colaboradores sem autorização escrita. O sigilo permanece por 5 (cinco) anos após o fim do contrato.
+**7.4.** A CONTRATADA manterá **sigilo** sobre dados de hóspedes, senhas, acessos e informações da CONTRATANTE, observando a **LGPD**, e não divulgará imagens do empreendimento, de hóspedes ou de colaboradores sem autorização escrita. O sigilo permanece por 5 (cinco) anos após o fim do acordo.
 
 ---
 
@@ -141,55 +141,55 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **8.5.** Falar sempre com o Preposto, e não com as pessoas da equipe.
 
-**8.6.** Não contratar diretamente, durante o contrato e por 12 (doze) meses depois, pessoas da equipe da CONTRATADA — assim como a CONTRATADA não contratará pessoas da equipe da CONTRATANTE.
+**8.6.** Não contratar diretamente, durante o acordo e por 12 (doze) meses depois, pessoas da equipe da CONTRATADA — assim como a CONTRATADA não contratará pessoas da equipe da CONTRATANTE.
 
 ---
 
 ## 9. A CASA DE OPERAÇÕES
 
-**9.1.** A operação do empreendimento exige **presença ao longo de todo o horário de atendimento**, recebimento de chegadas fora desse horário e atuação imediata diante de intercorrências com hóspedes e nas instalações. É por essa **razão operacional**, e enquanto durar este contrato, que a CONTRATANTE cede à CONTRATADA, **gratuitamente**, o uso da unidade chamada **Casa de Operações**, situada no próprio empreendimento.
+**9.1.** A operação do empreendimento exige **presença ao longo de todo o horário de atendimento**, recebimento de chegadas fora desse horário e atuação imediata diante de intercorrências com hóspedes e nas instalações. É por essa **razão operacional**, e enquanto durar este acordo, que a CONTRATANTE cede à CONTRATADA, **gratuitamente**, o uso da unidade chamada **Casa de Operações**, situada no próprio empreendimento.
 
-**9.2.** A cessão é um **comodato** vinculado ao contrato de serviços. As Partes deixam claro que ela é concedida **para o trabalho**, como ferramenta necessária à prestação, e **não como pagamento**: não é aluguel, não é remuneração, não entrou na formação do preço da Cláusula 6.1, e não transfere posse do imóvel.
+**9.2.** A cessão é um **comodato** vinculado ao acordo de serviços. As Partes deixam claro que ela é concedida **para o trabalho**, como ferramenta necessária à prestação, e **não como pagamento**: não é aluguel, não é remuneração, não entrou na formação do preço da Cláusula 6.1, e não transfere posse do imóvel.
 
-**9.3.** Podem ocupar a unidade apenas as pessoas indicadas por escrito e aceitas pela CONTRATANTE. Não é permitido emprestar ou ceder a unidade, hospedar terceiros, exercer no local atividade comercial estranha a este contrato, fazer obras ou manter animais sem combinar antes.
+**9.3.** Podem ocupar a unidade apenas as pessoas indicadas por escrito e aceitas pela CONTRATANTE. Não é permitido emprestar ou ceder a unidade, hospedar terceiros, exercer no local atividade comercial estranha a este acordo, fazer obras ou manter animais sem combinar antes.
 
-**9.4. Residência e endereço.** As Partes registram, de forma expressa, que a CONTRATADA **reside na unidade e nela mantém o endereço de sua empresa**, situação que decorre **exclusivamente da natureza funcional da ocupação** e da vigência deste contrato, e não de direito próprio sobre o imóvel. Encerrado o contrato, cessa também essa condição, obrigando-se a CONTRATADA a **alterar o endereço do seu CNPJ** no mesmo prazo de devolução da unidade previsto na Cláusula 9.7.
+**9.4. Residência e endereço.** As Partes registram, de forma expressa, que a CONTRATADA **reside na unidade e nela mantém o endereço de sua empresa**, situação que decorre **exclusivamente da natureza funcional da ocupação** e da vigência deste acordo, e não de direito próprio sobre o imóvel. Encerrado o acordo, cessa também essa condição, obrigando-se a CONTRATADA a **alterar o endereço do seu CNPJ** no mesmo prazo de devolução da unidade previsto na Cláusula 9.7.
 
 **9.5.** Melhorias feitas na unidade ficam incorporadas ao imóvel, sem indenização ou retenção.
 
 **9.6.** Na entrada e na saída será feita uma **vistoria com fotos**, assinada pelas duas Partes. A CONTRATADA responde pelos danos além do desgaste natural.
 
-**9.7.** A CONTRATADA pode usar a unidade **enquanto este contrato estiver em vigor**. Terminado o contrato, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
+**9.7.** A CONTRATADA pode usar a unidade **enquanto este acordo estiver em vigor**. Terminado o acordo, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
 
 **9.7.1.** Passados os 30 (trinta) dias sem a devolução, será devida **multa de R$ 100,00 (cem reais) por dia de atraso**, até a efetiva desocupação, podendo a CONTRATANTE retomar o imóvel judicialmente, com as despesas dessa retomada por conta da CONTRATADA. **Devolvida a unidade no prazo, nada é devido.**
 
 **9.8. Despesas de consumo.** As instalações da unidade estão ligadas às redes do próprio empreendimento, razão pela qual **energia elétrica, água e internet correm por conta da CONTRATANTE**, como parte da infraestrutura operacional cedida junto com a unidade. Essas despesas seguem a mesma natureza da cessão: são **instrumentais à prestação, e não pagamento, benefício ou parcela remuneratória**, não tendo sido consideradas na formação do preço da Cláusula 6.1. A limpeza e a conservação interna da unidade ficam por conta da CONTRATADA, que se obriga ao uso moderado dos serviços, desligando equipamentos quando ausente e comunicando de imediato qualquer vazamento ou falha.
 
-**9.9.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
+**9.9.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o acordo de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste acordo permanecem inalterados.
 
 ---
 
 ## 10. PRAZO E AVISO PRÉVIO
 
-**10.1.** O contrato começa a valer **na data de sua assinatura** e vale por **12 (doze) meses**, renovando-se automaticamente por períodos iguais se nenhuma das Partes avisar o contrário.
+**10.1.** O acordo começa a valer **na data de sua assinatura** e vale por **12 (doze) meses**, renovando-se automaticamente por períodos iguais se nenhuma das Partes avisar o contrário.
 
-**10.2.** Qualquer das Partes pode encerrar o contrato quando quiser, sem precisar justificar, **avisando a outra por escrito com 60 (sessenta) dias de antecedência**.
+**10.2.** Qualquer das Partes pode encerrar o acordo quando quiser, sem precisar justificar, **avisando a outra por escrito com 60 (sessenta) dias de antecedência**.
 
 **10.3.** Durante esse período de aviso, tudo segue normalmente: a CONTRATADA mantém o padrão, a frequência e a equipe, entrega em até 15 (quinze) dias o inventário de chaves, acessos e bens, repassa as rotinas e os contatos de fornecedores, e acompanha por até 10 (dez) dias a equipe que assumir.
 
 **10.4.** Quem encerrar sem cumprir o aviso paga à outra Parte o **equivalente a 2 (duas) mensalidades**, proporcional ao tempo que faltou.
 
-**10.5.** Por conta da temporada, o aviso dado pela CONTRATADA **não vence entre 15 de dezembro e 28 de fevereiro**: nesse caso o prazo se estende até o primeiro dia útil de março, com o contrato e o pagamento mantidos.
+**10.5.** Por conta da temporada, o aviso dado pela CONTRATADA **não vence entre 15 de dezembro e 28 de fevereiro**: nesse caso o prazo se estende até o primeiro dia útil de março, com o acordo e o pagamento mantidos.
 
 ---
 
 ## 11. ENCERRAMENTO ANTES DO PRAZO
 
-**11.1.** O contrato pode ser encerrado **imediatamente**, sem aviso prévio, se houver: descumprimento do padrão de serviço após duas notificações escritas em 90 (noventa) dias; atraso nas obrigações trabalhistas ou fiscais da CONTRATADA; pessoa trabalhando sem formalização; furto, dano intencional, agressão, assédio, embriaguez ou uso de entorpecente em serviço; quebra de sigilo; descumprimento das regras da Casa de Operações; ou parada dos serviços por mais de 48 (quarenta e oito) horas sem justificativa.
+**11.1.** O acordo pode ser encerrado **imediatamente**, sem aviso prévio, se houver: descumprimento do padrão de serviço após duas notificações escritas em 90 (noventa) dias; atraso nas obrigações trabalhistas ou fiscais da CONTRATADA; pessoa trabalhando sem formalização; furto, dano intencional, agressão, assédio, embriaguez ou uso de entorpecente em serviço; quebra de sigilo; descumprimento das regras da Casa de Operações; ou parada dos serviços por mais de 48 (quarenta e oito) horas sem justificativa.
 
 **11.2.** A CONTRATADA pode encerrar imediatamente se o pagamento atrasar mais de 30 (trinta) dias, estando sua documentação regular, após aviso com 10 (dez) dias para regularização.
 
-**11.3.** Encerrado o contrato: a cessão da casa termina junto (Cláusula 9.7); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
+**11.3.** Encerrado o acordo: a cessão da casa termina junto (Cláusula 9.7); a CONTRATADA devolve em 48 (quarenta e oito) horas chaves, acessos e bens da CONTRATANTE; e as Partes acertam as contas em até 30 (trinta) dias.
 
 **11.4.** Encerramentos por descumprimento não afastam a responsabilidade pelos prejuízos causados.
 
@@ -197,19 +197,19 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 ## 12. DISPOSIÇÕES FINAIS
 
-**12.1.** Este contrato, com o **Plano de Cobertura** e o **Recibo Mensal** anexos, reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
+**12.1.** Este acordo, com o **Plano de Cobertura** e o **Recibo Mensal** anexos, reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
 
-**12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste contrato, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
+**12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste acordo, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
 **12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — ilhadosabor.sc@gmail.com, +55 (48) 99223-2826.
 
-**12.4.** Nenhuma das Partes pode transferir este contrato a terceiros sem a concordância da outra.
+**12.4.** Nenhuma das Partes pode transferir este acordo a terceiros sem a concordância da outra.
 
 **12.5.** Se alguma cláusula for considerada inválida, as demais continuam valendo.
 
-**12.6.** As Partes negociaram livremente estes termos, em contrato empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
+**12.6.** As Partes negociaram livremente estes termos, em acordo empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
 
-**12.7.** Assinado por duas testemunhas, este contrato é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
+**12.7.** Assinado por duas testemunhas, este acordo é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
 
 **12.8.** Fica eleito o foro de **Florianópolis/SC**.
 
@@ -219,13 +219,13 @@ Os alimentos serão preparados na **copa da cozinha do empreendimento, ao lado d
 
 **13.1.** As Partes declaram, de forma livre, consciente e de comum acordo, que:
 
-a) negociaram todos os termos deste contrato em **igualdade de condições**, cada uma com plena compreensão do seu conteúdo, e que nenhuma cláusula lhes foi imposta;
+a) negociaram todos os termos deste acordo em **igualdade de condições**, cada uma com plena compreensão do seu conteúdo, e que nenhuma cláusula lhes foi imposta;
 
 b) a relação entre elas é **civil e entre empresas**, e não de emprego: a CONTRATADA organiza a própria equipe e o próprio método, sem dia ou horário fixo para qualquer pessoa, podendo se fazer substituir e atender outros clientes;
 
 c) **todas as pessoas** que trabalham no empreendimento por conta da CONTRATADA estão formalizadas por ela, que é a única empregadora, responsável por contratá-las, pagá-las, orientá-las e desligá-las;
 
-d) o uso da **Casa de Operações** é uma ferramenta de trabalho cedida gratuitamente, ligada à vigência deste contrato, e **não é aluguel, moradia definitiva, benefício ou parte do pagamento**, tendo sido concedida pela necessidade operacional descrita na Cláusula 9.1;
+d) o uso da **Casa de Operações** é uma ferramenta de trabalho cedida gratuitamente, ligada à vigência deste acordo, e **não é aluguel, moradia definitiva, benefício ou parte do pagamento**, tendo sido concedida pela necessidade operacional descrita na Cláusula 9.1;
 
 e) o **preço da Cláusula 6.1 é a única contraprestação** pelos serviços, e as Partes podem revê-lo de comum acordo, por escrito, quando entenderem necessário;
 
@@ -233,11 +233,11 @@ f) ambas se comprometem a **cumprir a legislação aplicável** — trabalhista,
 
 g) a contratação sob a forma de **pessoa jurídica foi proposta e escolhida pela própria CONTRATADA**, que declara ter optado livremente por essa modalidade, com conhecimento das alternativas existentes, por ser a que melhor atende aos seus interesses e à sua atividade empresarial;
 
-h) este contrato é firmado **de mútuo acordo**, assinado por ambas as Partes e por duas testemunhas, e substitui qualquer ajuste verbal anterior.
+h) este acordo é firmado **de mútuo acordo**, assinado por ambas as Partes e por duas testemunhas, e substitui qualquer ajuste verbal anterior.
 
 ---
 
-E por estarem de acordo, as Partes assinam este contrato em 2 (duas) vias, na presença de 2 (duas) testemunhas.
+E por estarem de acordo, as Partes assinam este Acordo em 2 (duas) vias, na presença de 2 (duas) testemunhas.
 
 Florianópolis/SC, **[__] de [__________] de [____]**.
 
@@ -253,7 +253,7 @@ Florianópolis/SC, **[__] de [__________] de [____]**.
 
 # ANEXO — PLANO DE COBERTURA
 
-**Contrato nº ZHG/MED/ZEL-001/2026** — apresentado pela CONTRATADA em ___/___/______
+**Acordo nº ZHG/MED/ZEL-001/2026** — apresentado pela CONTRATADA em ___/___/______
 
 > Preenchido pela CONTRATADA. A CONTRATANTE apenas confere se atende à cobertura da Cláusula 2.1 e registra o recebimento.
 
@@ -284,7 +284,7 @@ ______________________________
 
 # ANEXO — RECIBO MENSAL
 
-**Contrato nº ZHG/MED/ZEL-001/2026 — Competência [____/____]**
+**Acordo nº ZHG/MED/ZEL-001/2026 — Competência [____/____]**
 
 **19.525.600 CAMILA RABELO GLICERIO GOIS**, CNPJ 19.525.600/0001-00, declara que:
 
