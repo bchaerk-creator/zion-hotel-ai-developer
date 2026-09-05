@@ -56,7 +56,15 @@ As Partes, de comum acordo, celebram o presente Contrato de Prestação de Servi
 
 **4.2.** As Partes reconhecem que não estão presentes os requisitos dos artigos 2º e 3º da CLT: a CONTRATADA organiza seu trabalho com autonomia, pode se fazer substituir quando quiser, é livre para atender outros clientes e assume os riscos e os custos da própria atividade.
 
-**4.3.** Para preservar essa autonomia, a CONTRATANTE não dirigirá tarefas, correções ou cobranças diretamente às pessoas da equipe da CONTRATADA — tudo passa pelo Preposto —, não designará nominalmente quem faz cada tarefa, não fixará horário pessoal de ninguém e não concederá à CONTRATADA ou à sua equipe vale-transporte, vale-refeição, adiantamento, empréstimo ou benefício de qualquer natureza.
+**4.3.** Para preservar essa autonomia, as Partes combinam a seguinte forma de trabalho:
+
+a) **Coordenação do serviço.** A programação do dia, as informações sobre hóspedes e os pedidos pontuais que surgirem podem ser transmitidos a qualquer pessoa da equipe que esteja no local. Trata-se de **informação da demanda** — o que o hóspede precisa e quando —, necessária ao funcionamento do empreendimento.
+
+b) **Direção do trabalho.** A distribuição das tarefas entre as pessoas, a definição de quem faz o quê, as correções, as cobranças e os ajustes de conduta são feitos **pelo Preposto**, e é a ele que a CONTRATANTE se dirige nesses casos.
+
+c) **Horários.** A CONTRATANTE informa os horários **do hóspede e da operação** — chegadas, saídas, refeições, eventos. Não fixa horário pessoal de entrada, saída ou intervalo de nenhuma pessoa da equipe, nem exige a presença da titular da CONTRATADA.
+
+d) **Pagamentos.** A única contraprestação pelos serviços é o preço da Cláusula 6.1, pago **à empresa** CONTRATADA contra nota fiscal. Valores adicionais eventualmente combinados — serviço extraordinário, reembolso de despesa ou antecipação do próprio preço — também são pagos à empresa e documentados. A CONTRATANTE não faz pagamentos, empréstimos nem concede benefícios individuais a pessoas da equipe.
 
 **4.4.** A CONTRATADA regularizará, em até **30 (trinta) dias**, o cadastro do seu CNPJ, com sede em endereço próprio e atividade principal compatível com o objeto (CNAE 81.21-4-00 ou 81.29-0-00).
 
@@ -129,9 +137,11 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 
 **9.5.** Na entrada e na saída será feita uma **vistoria com fotos**, assinada pelas duas Partes. A CONTRATADA responde pelos danos além do desgaste natural.
 
-**9.6.** Quando o contrato terminar, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **10 (dez) dias corridos**, entregando as chaves. Passado esse prazo, será devida uma **taxa de ocupação de R$ [______] por mês**, calculada por dia, e a CONTRATANTE poderá retomar o imóvel judicialmente, correndo por conta da CONTRATADA as despesas dessa retomada.
+**9.6.** A CONTRATADA pode usar a unidade **enquanto este contrato estiver em vigor**. Terminado o contrato, por qualquer motivo, a cessão termina junto, e a CONTRATADA devolverá a unidade desocupada e em ordem em **30 (trinta) dias corridos**, entregando as chaves. Esse prazo corre em paralelo ao aviso prévio da Cláusula 10.2, de modo que a desmobilização comece já no aviso.
 
-**9.7.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, com aviso de 30 (trinta) dias, sem que isso altere o preço, o serviço ou o prazo deste contrato.
+**9.6.1.** Passados os 30 (trinta) dias, será devida uma **taxa de ocupação de R$ [______] por mês**, calculada por dia, e a CONTRATANTE poderá retomar o imóvel judicialmente, correndo por conta da CONTRATADA as despesas dessa retomada.
+
+**9.7.** A CONTRATANTE pode encerrar a cessão da casa isoladamente, mantendo o contrato de serviços, mediante **aviso escrito de 30 (trinta) dias**, admitida a notificação extrajudicial. Nesse caso o preço, o serviço e o prazo deste contrato permanecem inalterados.
 
 ---
 
@@ -165,17 +175,19 @@ Os alimentos serão preparados em **[ ( ) cozinha do empreendimento / ( ) estabe
 
 **12.1.** Este contrato reúne tudo o que foi combinado e só muda por **aditivo escrito**. Tolerar um descumprimento uma vez não significa aceitar que se repita.
 
-**12.2.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — [e-mail], [telefone].
+**12.2. Aviso de mudança.** Qualquer mudança relevante nas condições deste contrato, no escopo dos serviços ou no uso das instalações deverá ser comunicada pela Parte interessada à outra **por escrito e com 30 (trinta) dias de antecedência**, admitida a notificação extrajudicial. A mudança só passa a valer após esse prazo e mediante aditivo assinado pelas duas Partes, salvo se ambas concordarem em antecipar.
 
-**12.3.** Nenhuma das Partes pode transferir este contrato a terceiros sem a concordância da outra.
+**12.3.** As comunicações valem por escrito, por e-mail com confirmação: **CONTRATANTE** — a.chaerk@gmail.com, (49) 9170-4545; **CONTRATADA** — [e-mail], [telefone].
 
-**12.4.** Se alguma cláusula for considerada inválida, as demais continuam valendo.
+**12.4.** Nenhuma das Partes pode transferir este contrato a terceiros sem a concordância da outra.
 
-**12.5.** As Partes negociaram livremente estes termos, em contrato empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
+**12.5.** Se alguma cláusula for considerada inválida, as demais continuam valendo.
 
-**12.6.** Assinado por duas testemunhas, este contrato é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
+**12.6.** As Partes negociaram livremente estes termos, em contrato empresarial entre iguais (arts. 421, 421-A e 422 do Código Civil).
 
-**12.7.** Fica eleito o foro de **Florianópolis/SC**.
+**12.7.** Assinado por duas testemunhas, este contrato é **título executivo extrajudicial** (art. 784, III, do CPC). As Partes aceitam **assinatura eletrônica** (MP nº 2.200-2/2001 e Lei nº 14.063/2020).
+
+**12.8.** Fica eleito o foro de **Florianópolis/SC**.
 
 ---
 
