@@ -82,7 +82,7 @@ def arch_plan(x):
 def planta(human=True):
     sh = Sheet(1600, 1000, scale=78, ox=390, oy=520)
     sh.header("Zion Cocoon · Planta baixa " + ("humanizada" if human else "técnica"),
-              "Cabana biomórfica em casulo · 9,00 x 5,90 m · piso interno 41,0 m² + vestíbulo 2,5 m² · deck 26,0 m²")
+              "Cabana biomórfica em casulo · 9,60 x 6,00 x 4,20 m · piso interno 45,6 m² + vestíbulo 2,4 m² = 48 m² · deck 29,9 m² · total 78 m²")
     outline, ring = shell_plan_pts()
     D = C.DECK
     # deck
@@ -108,7 +108,7 @@ def planta(human=True):
     # espinha de luz
     x1, x2, ht = C.SPINE
     hw = ht * C.B_MAX
-    spine = [(C.shear(x1, 3.9), -hw), (C.shear(x2, 3.9), -hw), (C.shear(x2, 3.9), hw), (C.shear(x1, 3.9), hw)]
+    spine = [(C.shear(x1, 4.15), -hw), (C.shear(x2, 4.15), -hw), (C.shear(x2, 4.15), hw), (C.shear(x1, 4.15), hw)]
     sh.poly(spine, fill=GLASS if human else "none", stroke=GREEN, sw=0.8, dash="3 3", opacity=0.9)
     # janelas olho: marcar no contorno com traço grosso de vidro
     for w in C.WINDOWS:
@@ -122,74 +122,74 @@ def planta(human=True):
     sh.poly(gr, close=False, stroke=GLASS, sw=6, opacity=0.9 if human else 0.6)
     sh.poly(gr, close=False, stroke=GREEN, sw=1.0)
     # porta pivotante 1,00 m (y 0,60 a 1,60) girando para dentro
-    sh.line(1.0, 0.6, 1.0 + 1.0, 0.6, GREEN, 1.2)
-    sh.add(f'<path d="M{sh.X(2.0):.1f},{sh.Y(0.6):.1f} A{sh.s:.1f},{sh.s:.1f} 0 0 0 {sh.X(1.0):.1f},{sh.Y(1.6):.1f}" fill="none" stroke="{GREEN}" stroke-width="0.6" stroke-dasharray="3 3"/>')
+    sh.line(0.9, 0.6, 0.9 + 1.0, 0.6, GREEN, 1.2)
+    sh.add(f'<path d="M{sh.X(1.9):.1f},{sh.Y(0.6):.1f} A{sh.s:.1f},{sh.s:.1f} 0 0 0 {sh.X(0.9):.1f},{sh.Y(1.6):.1f}" fill="none" stroke="{GREEN}" stroke-width="0.6" stroke-dasharray="3 3"/>')
     # parede do banho e porta de correr
-    sh.rect(6.2, -2.72, 6.3, 0.95, fill=GREEN, stroke=GREEN, sw=0.5)
-    sh.rect(6.2, 1.85, 6.3, 2.62, fill=GREEN, stroke=GREEN, sw=0.5)
-    sh.line(6.25, 0.95, 6.25, 1.85, GREEN, 0.6, dash="4 3")
-    sh.rect(6.32, 0.1, 6.38, 0.98, fill="none", stroke=GREEN, sw=0.8)  # folha de correr recolhida
+    sh.rect(6.6, -2.85, 6.7, 0.95, fill=GREEN, stroke=GREEN, sw=0.5)
+    sh.rect(6.6, 1.85, 6.7, 2.85, fill=GREEN, stroke=GREEN, sw=0.5)
+    sh.line(6.65, 0.95, 6.65, 1.85, GREEN, 0.6, dash="4 3")
+    sh.rect(6.72, 0.1, 6.78, 0.98, fill="none", stroke=GREEN, sw=0.8)  # folha de correr recolhida
     # divisória da bacia
-    sh.rect(6.9, 0.9, 6.95, 1.85, fill=GREEN, stroke=GREEN, sw=0.4)
+    sh.rect(7.3, 0.9, 7.35, 1.85, fill=GREEN, stroke=GREEN, sw=0.4)
     # mobiliário
     draw_furniture(sh, C.furniture(), human)
     # box do chuveiro (vidro)
-    sh.line(7.25, -1.7, 7.25, -0.75, GLASS, 4); sh.line(7.25, -1.7, 7.25, -0.75, GREEN, 0.8)
+    sh.line(7.65, -1.75, 7.65, -0.8, GLASS, 4); sh.line(7.65, -1.75, 7.65, -0.8, GREEN, 0.8)
     # rótulos
-    lab = [("VESTÍ-​BULO", 0.75, 0.0, ""), ("ESTAR", 2.4, 0.25, "10,8 m²"), ("SUÍTE", 5.1, 0.0, "13,5 m²"),
-           ("BANHO", 8.35, 1.05, "8,9 m²"), ("DECK", -1.2, 2.2, "26,0 m²")]
+    lab = [("VESTÍ-​BULO", 0.68, 0.0, ""), ("ESTAR", 2.6, 0.25, "20,4 m²"), ("SUÍTE", 5.5, 0.0, "12,0 m²"),
+           ("BANHO", 8.8, 1.1, "13,2 m²"), ("DECK", -1.5, 2.2, "29,9 m²")]
     for t, x, y, a in lab:
         sh.text(x, y, t, 12, GREEN, weight=700, spacing=0.22, dy=(0 if not a else -4))
         if a: sh.text(x, y, a, 10, EARTH, dy=10)
     if human:
         sh.text(2.05, -0.95, "", 8)
-        sh.leader(2.0, 1.85, 2.3, 3.55, "Console café / minibar 1,40 m", 11)
-        sh.leader(3.6, 1.85, 3.9, 3.55, "Armário baixo embutido na curva", 11)
-        sh.leader(4.55, -2.98, 4.2, -3.9, "Janelas Olho 1,60 x 0,95 (basculantes)", 11)
-        sh.leader(4.1, 0.0, 4.6, -3.55, "Espinha de Luz 0,70 x 4,70 m", 11)
-        sh.leader(7.9, 0.0, 8.9, 1.9, "Banheira na cauda 1,55 x 0,76", 11)
-        sh.leader(1.05, 1.1, -1.6, 3.55, "Porta pivotante 1,00 x 2,40", 11, anchor="end")
-        sh.leader(9.7, -0.05, 9.4, -2.6, "Condensadora oculta por ripado", 11)
-        sh.leader(0.25, -2.0, -0.9, -3.9, "Lábio frontal inclinado 8° (beiral)", 11)
-        sh.leader(2.0, -1.8, 1.3, -3.6, "Chaise de contemplação", 11)
+        sh.leader(1.9, 1.9, 1.6, 3.6, "Console café / minibar 1,40 m", 11, anchor="end")
+        sh.leader(3.8, 1.9, 5.2, 3.6, "Armário baixo embutido na curva", 11)
+        sh.leader(4.9, -3.05, 4.5, -3.95, "Janelas Olho 1,60 x 0,95 (basculantes)", 11)
+        sh.leader(4.3, 0.0, 4.8, -3.6, "Espinha de Luz 0,70 x 4,70 m", 11)
+        sh.leader(8.3, 0.0, 9.4, 2.0, "Banheira na cauda 1,60 x 0,76", 11)
+        sh.leader(0.95, 1.1, -1.6, 3.6, "Porta pivotante 1,00 x 2,40", 11, anchor="end")
+        sh.leader(10.3, -0.05, 10.0, -2.7, "Condensadora oculta por ripado", 11)
+        sh.leader(0.2, -2.0, -0.9, -3.95, "Lábio frontal inclinado 8° (beiral)", 11)
+        sh.leader(1.9, -1.85, 1.3, -3.65, "Chaise de contemplação", 11)
     # cotas gerais
-    sh.dim(0.5, -3.55, 9.0, -3.55, -0.75, color=EARTH)
-    sh.dim(-3.0, -3.55, 1.0, -3.55, -0.75, color=EARTH)
-    sh.dim(-3.0, -3.55, 9.0, -3.55, -1.35, label="12,00 (deck + concha)", color=EARTH)
-    sh.dim(10.0, -2.95, 10.0, 2.95, 0.55, label="5,90", color=EARTH)
-    sh.dim(-3.4, -3.25, -3.4, 3.25, -0.4, label="6,50", color=EARTH)
+    sh.dim(0.45, -3.55, 9.6, -3.55, -0.75, color=EARTH)
+    sh.dim(-3.7, -3.55, 0.9, -3.55, -0.75, color=EARTH)
+    sh.dim(-3.7, -3.55, 9.6, -3.55, -1.35, label="13,30 (deck + concha)", color=EARTH)
+    sh.dim(10.9, -3.0, 10.9, 3.0, 0.55, label="6,00", color=EARTH)
+    sh.dim(-4.1, -3.25, -4.1, 3.25, -0.4, label="6,50", color=EARTH)
     if not human:
         # cadeia dos arcos
-        xs = [0.5, 1.7, 2.9, 4.1, 5.3, 6.5, 7.6, 8.5, 9.0]
+        xs = [0.45, 1.65, 2.85, 4.05, 5.25, 6.45, 7.65, 8.75, 9.6]
         sh.dim_chain(xs, 3.5, 0.45)
-        sh.dim(1.0, 3.5, 6.2, 3.5, 1.05, label="5,20 (estar + suíte)")
-        sh.dim(6.2, 3.5, 8.85, 3.5, 1.05, label="2,65 (banho)")
-        sh.dim(0.5, 3.5, 1.0, 3.5, 1.05, label="0,50")
-        sh.dim(-3.0, 3.5, 1.0, 3.5, 1.05, label="4,00 (deck)")
+        sh.dim(0.9, 3.5, 6.6, 3.5, 1.05, label="5,70 (estar + suíte)")
+        sh.dim(6.6, 3.5, 9.4, 3.5, 1.05, label="2,80 (banho)")
+        sh.dim(0.45, 3.5, 0.9, 3.5, 1.05, label="0,45")
+        sh.dim(-3.7, 3.5, 0.9, 3.5, 1.05, label="4,60 (deck)")
         # larguras internas
-        sh.dim(3.2, -2.87, 3.2, 2.87, 0, label="5,74", color=EARTH)
-        sh.dim(7.5, -2.36, 7.5, 2.36, 0, label="4,72", color=EARTH)
-        sh.dim(2.0, -2.85, 2.0, 2.85, 0, label="5,70", color=EARTH)
+        sh.dim(3.4, -2.93, 3.4, 2.93, 0, label="5,86", color=EARTH)
+        sh.dim(8.0, -2.40, 8.0, 2.40, 0, label="4,80", color=EARTH)
+        sh.dim(2.0, -2.91, 2.0, 2.91, 0, label="5,82", color=EARTH)
         # janelas
         for w in C.WINDOWS[:3]:
             sh.dim(w["xc"] - w["lx"], -3.05, w["xc"] + w["lx"], -3.05, -0.35, color=EARTH, size=10)
         # estacas (malha 2,4 m)
         npiles = 0
-        for px in [-2.6, -0.2, 1.0, 2.2, 3.4, 4.6, 5.8, 7.0, 8.2]:
+        for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]:
             for py in [-2.6, -1.3, 0.0, 1.3, 2.6]:
-                if px < 1.0 and abs(py) > 2.9: continue
+                if px < 0.9 and abs(py) > 2.9: continue
                 if px >= 1.0 and abs(py) > C.floor_hw(px) - 0.1 and abs(py) > 0.1: continue
                 npiles += 1
                 sh.add(f'<g transform="translate({sh.X(px):.1f},{sh.Y(py):.1f})"><circle r="4" fill="none" stroke="{STEEL}" stroke-width="0.9"/><line x1="-4" y1="0" x2="4" y2="0" stroke="{STEEL}" stroke-width="0.7"/><line x1="0" y1="-4" x2="0" y2="4" stroke="{STEEL}" stroke-width="0.7"/></g>')
-        sh.text(-3.0, 5.0, f"○+ estaca helicoidal Ø76 / hélice Ø300 (malha 1,20 x 1,30 m, {npiles} un.)", 10, STEEL, anchor="start")
+        sh.text(-3.7, 5.0, f"○+ estaca helicoidal Ø76 / hélice Ø300 (malha 1,20 x 1,30 m, {npiles} un.)", 10, STEEL, anchor="start")
         # marcas de corte
-        for (x, y1, y2, lbl) in [(4.6, -3.4, 3.4, "B")]:
+        for (x, y1, y2, lbl) in [(5.0, -3.4, 3.4, "B")]:
             sh.line(x, y1, x, y2, GREEN, 1.4, dash="10 4")
             sh.text(x, y2 + 0.2, lbl, 12, weight=700); sh.text(x, y1 - 0.35, lbl, 12, weight=700)
-        sh.line(-3.3, 0.0, 10.4, 0.0, GREEN, 1.4, dash="10 4")
-        sh.text(-3.55, 0.0, "A", 12, weight=700, dy=4); sh.text(10.6, 0.0, "A", 12, weight=700, dy=4)
+        sh.line(-4.0, 0.0, 11.0, 0.0, GREEN, 1.4, dash="10 4")
+        sh.text(-4.25, 0.0, "A", 12, weight=700, dy=4); sh.text(11.25, 0.0, "A", 12, weight=700, dy=4)
     sh.north(1500, 140, angle=-90)
-    sh.scalebar(-3.0, -5.55, 5)
+    sh.scalebar(-3.7, -5.55, 5)
     sh.title_block("ZION COCOON", "Planta baixa " + ("humanizada" if human else "técnica cotada"), "1:50 (A1) · cotas em metros", "02/27" if human else "03/27",
                    "Layout: vestíbulo, estar, suíte king, banho com banheira na cauda")
     return sh
@@ -197,7 +197,7 @@ def planta(human=True):
 # ------------------------------------------------------------------ ELEVAÇÃO FRONTAL
 def elev_frontal():
     sh = Sheet(1600, 1000, scale=110, ox=800, oy=720, flip_x=True)
-    sh.header("Zion Cocoon · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · largura 5,90 m · altura 3,95 m")
+    sh.header("Zion Cocoon · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · largura 6,00 m · altura 4,20 m")
     # solo e deck
     sh.rect(-6.5, -0.6, 6.5, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-6.5, -0.02, 6.5, -0.02, GREEN, 1.0)
@@ -217,7 +217,7 @@ def elev_frontal():
     sh.poly(gr, fill=GLASS, stroke=GREEN, sw=1.2, opacity=0.9)
     # montantes e travessa
     for yy in (-1.6, -0.5, 0.5, 1.6):
-        zt = C.ZC + (C.b(1.0) - 0.06) * math.sqrt(max(0, 1 - (yy / (C.a(1.0) - 0.06)) ** 2))
+        zt = C.ZC + (C.b(C.X_GLASS) - 0.06) * math.sqrt(max(0, 1 - (yy / (C.a(C.X_GLASS) - 0.06)) ** 2))
         sh.line(yy, 0, yy, zt, GREEN, 1.2)
     sh.line(-2.3, 2.4, 2.3, 2.4, GREEN, 1.2)
     # porta pivotante (y 0,6..1,6)
@@ -227,24 +227,24 @@ def elev_frontal():
     sh.rect(-0.97, 0.0, 0.97, 0.62, fill="#FFFFFF", stroke=GREEN, sw=0.6, opacity=0.8)
     sh.rect(-0.97, 0.62, 0.97, 1.0, fill="none", stroke=GREEN, sw=0.5, opacity=0.5)
     # espinha de luz no topo
-    sh.rect(-0.35, 3.85, 0.35, 3.97, fill=GLASS, stroke=GREEN, sw=0.8)
+    sh.rect(-0.35, C.top(C.XMAX) - 0.1, 0.35, C.top(C.XMAX) + 0.02, fill=GLASS, stroke=GREEN, sw=0.8)
     # rótulo de material
     sh.leader(-2.6, 2.7, -4.2, 3.4, "Membrana PVDF 1050 g/m² tensionada", 12, anchor="start")
     sh.leader(-2.45, 1.4, -4.2, 2.2, "Anel do lábio Ø101,6 inclinado 8°", 12, anchor="start")
-    sh.leader(0.0, 3.92, 1.6, 4.45, "Espinha de Luz (claraboia 0,70 m)", 12, anchor="end")
+    sh.leader(0.0, 4.17, 1.6, 4.7, "Espinha de Luz (claraboia 0,70 m)", 12, anchor="end")
     sh.leader(-1.05, 1.9, -4.2, 1.1, "Vidro duplo 6 lam + 12 Ar + 6 temp, low-e", 12, anchor="start")
     sh.leader(1.1, 1.2, 3.6, 1.9, "Porta pivotante 1,00 x 2,40", 12, anchor="end")
     sh.leader(2.6, 0.7, 3.9, 0.3, "Esquadria de alumínio bronze, ruptura térmica", 12, anchor="end")
     sh.leader(2.6, -0.4, 3.9, -1.1, "Deck cumaru sobre vigas U 150 e estacas helicoidais", 12, anchor="end")
     # cotas
-    sh.dim(-2.95, -0.9, 2.95, -0.9, -0.35, label="5,90")
-    sh.dim(-2.47, -0.9, 2.47, -0.9, -0.9, label="4,94 (anel frontal)")
+    sh.dim(-3.0, -0.9, 3.0, -0.9, -0.35, label="6,00")
+    sh.dim(-2.44, -0.9, 2.44, -0.9, -0.9, label="4,88 (anel frontal)")
     sh.dim(-3.25, -0.9, 3.25, -0.9, -1.45, label="6,50 (deck)")
-    sh.dim(-3.6, 0, -3.6, 3.95, -0.5, label="3,95")
+    sh.dim(-3.6, 0, -3.6, 4.2, -0.5, label="4,20")
     sh.dim(-3.6, 0, -3.6, 2.4, -1.15, label="2,40 (porta)")
     sh.dim(3.6, -0.6, 3.6, 0, 0.5, label="0,60")
     sh.scalebar(6.3, -1.9, 4)
-    sh.title_block("ZION COCOON", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica em anel inclinado, 8 arcos elípticos")
+    sh.title_block("ZION COCOON", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica em anel inclinado 8°, 8 arcos elípticos")
     return sh
 
 # ------------------------------------------------------------------ ELEVAÇÃO LATERAL
@@ -261,16 +261,16 @@ def bottom_profile():
 
 def elev_lateral():
     sh = Sheet(1600, 1000, scale=100, ox=470, oy=720)
-    sh.header("Zion Cocoon · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 9,55 m com lábio · deck 4,00 m")
+    sh.header("Zion Cocoon · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 9,75 m com lábio · deck 4,60 m")
     # solo
     sh.rect(-4.0, -0.6, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
-    for px in [-2.6, -0.2, 1.0, 2.2, 3.4, 4.6, 5.8, 7.0, 8.2]:
+    for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]:
         sh.rect(px - 0.04, -0.6, px + 0.04, -0.2, fill=STEEL, stroke="none")
-    sh.rect(-3.0, -0.2, 9.0, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9)
-    sh.rect(-3.0, -0.05, 9.0, 0.0, fill=GREEN, stroke="none")
+    sh.rect(-3.7, -0.2, 9.6, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9)
+    sh.rect(-3.7, -0.05, 9.6, 0.0, fill=GREEN, stroke="none")
     for i in range(3):
-        sh.rect(-3.0 - 0.3 * (i + 1), -0.2 + 0.05 * (i + 1) - 0.15, -3.0 - 0.3 * i, -0.2 + 0.05 * (i + 1), fill=WOOD2, stroke=GREEN, sw=0.7)
+        sh.rect(-3.7 - 0.3 * (i + 1), -0.2 + 0.05 * (i + 1) - 0.15, -3.7 - 0.3 * i, -0.2 + 0.05 * (i + 1), fill=WOOD2, stroke=GREEN, sw=0.7)
     # concha: topo + base
     top = top_profile(); bot = bottom_profile()
     sh.poly(top + bot[::-1], fill=MEMB, stroke=GREEN, sw=1.8)
@@ -278,9 +278,9 @@ def elev_lateral():
     for x in C.ARCH_X[1:]:
         sh.line(C.shear(x, 0), 0, C.shear(x, C.top(x)), C.top(x), EARTH, 0.6, dash="4 4", opacity=0.6)
     # lábio frontal (anel A0 inclinado)
-    sh.line(0.5, 0, C.shear(0.5, 3.88), 3.88, GREEN, 2.0)
+    sh.line(0.45, 0, C.shear(0.45, 4.13), 4.13, GREEN, 2.0)
     # vidro da fachada (recuado)
-    sh.line(1.0, 0, C.shear(1.0, 3.9), 3.9, GLASS, 5); sh.line(1.0, 0, C.shear(1.0, 3.9), 3.9, GREEN, 0.9)
+    sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GLASS, 5); sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GREEN, 0.9)
     # espinha de luz
     x1, x2, _ = C.SPINE
     spine = [(C.shear(x, C.top(x)), C.top(x)) for x in [x1 + (x2 - x1) * i / 30 for i in range(31)]]
@@ -292,24 +292,24 @@ def elev_lateral():
         sh.poly(pts, fill=GLASS, stroke=GREEN, sw=1.0)
         sh.poly([(x, z) for (x, y, z) in C.window_outline(dict(w, lx=w["lx"] + 0.11, lt=w["lt"] + 0.03), 48)], fill="none", stroke=WOOD2, sw=3)
     # condensadora na cauda
-    sh.rect(9.35, 0.0, 10.1, 0.62, fill="#E5E1D8", stroke=GREEN, sw=0.8)
-    for xx in [9.4 + 0.12 * i for i in range(6)]:
+    sh.rect(9.95, 0.0, 10.7, 0.62, fill="#E5E1D8", stroke=GREEN, sw=0.8)
+    for xx in [10.0 + 0.12 * i for i in range(6)]:
         sh.line(xx, 0.0, xx, 1.3, WOOD2, 2.2)
     # legendas
-    sh.leader(3.2, 3.95, 2.0, 4.6, "Cumeeira 3,95 m · Espinha de Luz 1,75 a 6,45", 12)
-    sh.leader(0.15, 3.3, -1.5, 4.1, "Lábio frontal: anel inclinado 8°, avanço 0,55 m", 12, anchor="end")
-    sh.leader(4.55, 1.5, 3.2, -1.15, "Janela Olho 1,60 x 0,95 com requadro de madeira 220 mm", 12, anchor="end")
-    sh.leader(7.45, 2.0, 7.2, 3.7, "Olho do banho 1,10 x 0,60 (alto)", 12, anchor="end")
-    sh.leader(8.95, 1.15, 8.2, 4.4, "Cauda: fecha em ponta a 1,10 m", 12, anchor="end")
-    sh.leader(9.8, 0.8, 9.2, 2.6, "Painel ripado da condensadora", 12, anchor="end")
-    sh.leader(6.0, 0.35, 6.5, -1.0, "Calha oculta no rodapé da concha, queda Ø75 nas extremidades", 12)
+    sh.leader(3.4, 4.2, 2.0, 4.85, "Cumeeira 4,20 m · Espinha de Luz 1,90 a 6,60", 12)
+    sh.leader(0.05, 3.5, -1.5, 4.3, "Lábio frontal: anel inclinado 8°, avanço 0,60 m", 12, anchor="end")
+    sh.leader(4.9, 1.5, 3.4, -1.15, "Janela Olho 1,60 x 0,95 com requadro de madeira 220 mm", 12, anchor="end")
+    sh.leader(7.9, 2.0, 7.6, 3.9, "Olho do banho 1,10 x 0,60 (alto)", 12, anchor="end")
+    sh.leader(9.55, 1.15, 8.7, 4.6, "Cauda: fecha em ponta a 1,10 m", 12, anchor="end")
+    sh.leader(10.4, 0.8, 9.8, 2.8, "Painel ripado da condensadora", 12, anchor="end")
+    sh.leader(6.4, 0.35, 6.9, -1.0, "Calha oculta no rodapé da concha, queda Ø75 nas extremidades", 12)
     # cotas
-    sh.dim(0.5, -0.95, 9.0, -0.95, -0.35, label="9,00 (piso)")
-    sh.dim(-0.05, -0.95, 9.0, -0.95, -0.95, label="9,55 (concha com lábio)")
-    sh.dim(-3.0, -0.95, 1.0, -0.95, -0.35, label="4,00 (deck)")
-    sh.dim(10.2, 0, 10.2, 3.95, 0.5, label="3,95")
-    sh.dim(-3.5, -0.6, -3.5, 0, -0.5, label="0,60")
-    sh.scalebar(-3.9, -2.5, 5)
+    sh.dim(0.45, -0.95, 9.6, -0.95, -0.35, label="9,60 (piso)")
+    sh.dim(-0.15, -0.95, 9.6, -0.95, -0.95, label="9,75 (concha com lábio)")
+    sh.dim(-3.7, -0.95, 0.9, -0.95, -0.35, label="4,60 (deck)")
+    sh.dim(10.8, 0, 10.8, 4.2, 0.5, label="4,20")
+    sh.dim(-4.2, -0.6, -4.2, 0, -0.4, label="0,60")
+    sh.scalebar(-4.4, -2.5, 5)
     sh.title_block("ZION COCOON", "Elevação lateral", "1:50 (A1)", "05/27", "Concha assimétrica: frente cheia, cauda afilada, 6 Janelas Olho")
     return sh
 
@@ -320,12 +320,12 @@ def corte_long():
     sh.rect(-4.0, -0.9, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
     # estacas / vigas / piso
-    for px in [-2.6, -0.2, 1.0, 2.2, 3.4, 4.6, 5.8, 7.0, 8.2]:
+    for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]:
         sh.rect(px - 0.04, -0.9, px + 0.04, -0.22, fill=STEEL, stroke="none")
         sh.rect(px - 0.12, -0.24, px + 0.12, -0.2, fill=STEEL, stroke="none")
-    sh.rect(-3.0, -0.2, 9.0, -0.05, fill=sh.pattern("insul"), stroke=GREEN, sw=0.9)   # vigotas + isolamento
-    sh.rect(-3.0, -0.05, 9.0, 0.0, fill=WOOD2, stroke=GREEN, sw=0.5)
-    sh.rect(-3.0, -0.2, 1.0, -0.05, fill=sh.pattern("deck"), stroke=GREEN, sw=0.9)
+    sh.rect(-3.7, -0.2, 9.6, -0.05, fill=sh.pattern("insul"), stroke=GREEN, sw=0.9)   # vigotas + isolamento
+    sh.rect(-3.7, -0.05, 9.6, 0.0, fill=WOOD2, stroke=GREEN, sw=0.5)
+    sh.rect(-3.7, -0.2, 0.9, -0.05, fill=sh.pattern("deck"), stroke=GREEN, sw=0.9)
     # concha cortada: externa e interna (espessura 0,13)
     top = top_profile(); bot = bottom_profile()
     inner = [(C.shear(x, C.top(x) - 0.13), C.top(x) - 0.13) for x in [0.5 + (C.L - 0.5) * i / 160 for i in range(161)]]
@@ -333,60 +333,60 @@ def corte_long():
     sh.poly(top, close=False, stroke=EARTH, sw=3)  # membrana externa
     sh.poly([p for p in bot if p[0] > 8.6], close=False, stroke=GREEN, sw=1.6)
     # anel frontal e vidro
-    sh.line(0.5, 0, C.shear(0.5, 3.88), 3.88, GREEN, 2.4)
-    sh.line(1.0, 0, C.shear(1.0, 3.9), 3.9, GLASS, 5); sh.line(1.0, 0, C.shear(1.0, 3.9), 3.9, GREEN, 1.0)
-    sh.line(1.0 - 0.6 * 2.4 / 3.9 * 0, 2.4, C.shear(1.0, 2.4), 2.4, GREEN, 1.0)
+    sh.line(0.45, 0, C.shear(0.45, 4.13), 4.13, GREEN, 2.4)
+    sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GLASS, 5); sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GREEN, 1.0)
+    sh.line(0.9, 2.4, C.shear(0.9, 2.4), 2.4, GREEN, 1.0)
     # espinha de luz
     x1, x2, _ = C.SPINE
     spine = [(C.shear(x, C.top(x)), C.top(x)) for x in [x1 + (x2 - x1) * i / 30 for i in range(31)]]
     sh.poly(spine, close=False, stroke=GLASS, sw=7); sh.poly(spine, close=False, stroke=GREEN, sw=0.9)
     # parede do banho / forro / ático
-    sh.rect(6.2, 0, 6.3, C.top(6.25) - 0.13, fill=sh.pattern("hatch"), stroke=GREEN, sw=0.9)
-    sh.line(6.3, 2.4, 8.7, 2.4, GREEN, 1.2)
-    sh.rect(6.6, 2.5, 7.6, 2.78, fill="#E5E1D8", stroke=GREEN, sw=0.8); sh.text(7.1, 2.64, "AC", 9, dy=3)
-    sh.rect(7.9, 2.45, 8.3, 2.7, fill="#E5E1D8", stroke=GREEN, sw=0.8); sh.text(8.1, 2.57, "AQ", 8, dy=3)
+    sh.rect(6.6, 0, 6.7, C.top(6.65) - 0.13, fill=sh.pattern("hatch"), stroke=GREEN, sw=0.9)
+    sh.line(6.7, 2.4, 9.3, 2.4, GREEN, 1.2)
+    sh.rect(7.0, 2.5, 8.0, 2.78, fill="#E5E1D8", stroke=GREEN, sw=0.8); sh.text(7.5, 2.64, "AC", 9, dy=3)
+    sh.rect(8.3, 2.45, 8.7, 2.7, fill="#E5E1D8", stroke=GREEN, sw=0.8); sh.text(8.5, 2.57, "AQ", 8, dy=3)
     # difusor
-    sh.rect(6.12, 2.05, 6.2, 2.25, fill=GREEN, stroke="none")
+    sh.rect(6.52, 2.05, 6.6, 2.25, fill=GREEN, stroke="none")
     # mobiliário em corte/vista: cama, cabeceira, chaise, banheira, bacia (vista), bancada
-    sh.rect(4.1, 0.0, 6.15, 0.35, fill=WOOD2, stroke=GREEN, sw=0.8)
-    sh.rect(4.1, 0.35, 6.15, 0.62, fill="#FFFFFF", stroke=GREEN, sw=0.8)
-    sh.rect(5.6, 0.62, 6.1, 0.8, fill="#F4EFE8", stroke=GREEN, sw=0.6)
-    sh.rect(6.15, 0.0, 6.2, 1.3, fill=WOOD, stroke=GREEN, sw=0.6)
-    sh.rect(1.25, 0.0, 2.85, 0.45, fill=SAND, stroke=GREEN, sw=0.8)   # chaise (vista)
-    sh.rect(7.1, 0.0, 8.65, 0.58, fill="#FFFFFF", stroke=GREEN, sw=0.9)   # banheira (corte)
-    sh.rect(6.35, 0.0, 6.9, 0.85, fill="#EFEDE6", stroke=GREEN, sw=0.8, opacity=0.6)
+    sh.rect(4.5, 0.0, 6.55, 0.35, fill=WOOD2, stroke=GREEN, sw=0.8)
+    sh.rect(4.5, 0.35, 6.55, 0.62, fill="#FFFFFF", stroke=GREEN, sw=0.8)
+    sh.rect(6.0, 0.62, 6.5, 0.8, fill="#F4EFE8", stroke=GREEN, sw=0.6)
+    sh.rect(6.55, 0.0, 6.6, 1.3, fill=WOOD, stroke=GREEN, sw=0.6)
+    sh.rect(1.15, 0.0, 2.75, 0.45, fill=SAND, stroke=GREEN, sw=0.8)   # chaise (vista)
+    sh.rect(7.55, 0.0, 9.15, 0.58, fill="#FFFFFF", stroke=GREEN, sw=0.9)   # banheira (corte)
+    sh.rect(6.75, 0.0, 7.3, 0.85, fill="#EFEDE6", stroke=GREEN, sw=0.8, opacity=0.6)
     # janelas olho do lado esquerdo (vista de fundo)
     for w in C.WINDOWS:
         if w["tc"] < math.pi / 2: continue
         pts = [(x, z) for (x, y, z) in C.window_outline(w, 48)]
         sh.poly(pts, fill=GLASS, stroke=GREEN, sw=0.9, opacity=0.9)
     # pessoa (escala)
-    sh.add(f'<g transform="translate({sh.X(3.3):.1f},{sh.Y(0):.1f}) scale({sh.s / 100:.3f})"><circle cx="0" cy="-165" r="11" fill="none" stroke="{GREEN}" stroke-width="1.5"/><path d="M0 -152 V-70 M0 -70 L-16 0 M0 -70 L16 0 M-22 -100 L0 -135 L22 -100" fill="none" stroke="{GREEN}" stroke-width="1.5" stroke-linecap="round"/></g>')
+    sh.add(f'<g transform="translate({sh.X(3.5):.1f},{sh.Y(0):.1f}) scale({sh.s / 100:.3f})"><circle cx="0" cy="-165" r="11" fill="none" stroke="{GREEN}" stroke-width="1.5"/><path d="M0 -152 V-70 M0 -70 L-16 0 M0 -70 L16 0 M-22 -100 L0 -135 L22 -100" fill="none" stroke="{GREEN}" stroke-width="1.5" stroke-linecap="round"/></g>')
     # legendas
     sh.leader(2.2, C.top(2.2) + 0.02, 1.2, 4.7, "1 Membrana PVDF · 2 câmara ventilada 60 mm · 3 lã PET 50 mm + refletiva · 4 forro tensionado", 12)
-    sh.leader(4.0, 3.92, 4.8, 4.55, "Espinha de Luz: 4 painéis de vidro laminado sobre treliça", 12)
-    sh.leader(6.25, 3.0, 7.0, 3.9, "Parede da cabeceira / banho até a concha", 12)
-    sh.leader(7.1, 2.64, 7.6, 3.5, "Ático técnico: evaporadora dutada 12k BTU, aquecedor, quadro", 12)
-    sh.leader(6.16, 2.15, 5.0, 3.0, "Difusor linear na cabeceira", 12, anchor="end")
-    sh.leader(0.45, 3.0, -0.6, 3.7, "Anel A0 Ø101,6 · vidro recuado 0,50 m", 12, anchor="end")
+    sh.leader(4.3, 4.17, 5.1, 4.8, "Espinha de Luz: 4 painéis de vidro laminado sobre treliça", 12)
+    sh.leader(6.65, 3.2, 7.4, 4.1, "Parede da cabeceira / banho até a concha", 12)
+    sh.leader(7.5, 2.64, 9.6, 3.9, "Ático técnico: evaporadora 12k BTU, aquecedor, quadro", 12, anchor="end")
+    sh.leader(6.56, 2.15, 5.4, 3.1, "Difusor linear na cabeceira", 12, anchor="end")
+    sh.leader(0.35, 3.2, -0.7, 3.9, "Anel A0 Ø101,6 · vidro recuado 0,45 m", 12, anchor="end")
     sh.leader(-1.0, -0.12, -3.9, 1.2, "Deck cumaru · vigas U 150 x 60 · PIR 50 mm", 12, anchor="start")
-    sh.leader(7.9, 0.4, 8.9, 1.6, "Banheira na cauda sob o Olho baixo", 12)
-    sh.leader(8.2, -0.5, 9.3, -1.5, "Estacas helicoidais Ø76 · cabeçote ajustável", 12, anchor="end")
+    sh.leader(8.3, 0.4, 9.9, 1.9, "Banheira na cauda sob o Olho baixo", 12, anchor="end")
+    sh.leader(8.1, -0.5, 7.6, -1.5, "Estacas helicoidais Ø76 · cabeçote ajustável", 12, anchor="end")
     # cotas
-    sh.dim(1.0, -1.05, 6.2, -1.05, -0.35, label="5,20")
-    sh.dim(6.2, -1.05, 8.85, -1.05, -0.35, label="2,65")
-    sh.dim(0.5, -1.05, 1.0, -1.05, -0.35, label="0,50")
-    sh.dim(-3.0, -1.05, 0.5, -1.05, -0.35, label="3,50")
-    sh.dim(10.2, 0, 10.2, 3.95, 0.5, label="3,95")
-    sh.dim(9.3, 0, 9.3, 2.4, 0.4, label="2,40 forro")
-    sh.dim(-3.5, -0.9, -3.5, 0, -0.5, label="0,90 (máx.)")
-    sh.scalebar(-3.9, -2.5, 5)
+    sh.dim(0.9, -1.05, 6.6, -1.05, -0.35, label="5,70")
+    sh.dim(6.6, -1.05, 9.4, -1.05, -0.35, label="2,80")
+    sh.dim(0.45, -1.05, 0.9, -1.05, -0.35, label="0,45")
+    sh.dim(-3.7, -1.05, 0.45, -1.05, -0.35, label="4,15")
+    sh.dim(10.8, 0, 10.8, 4.2, 0.5, label="4,20")
+    sh.dim(9.9, 0, 9.9, 2.4, 0.4, label="2,40 forro")
+    sh.dim(-4.2, -0.9, -4.2, 0, -0.4, label="0,90 (máx.)")
+    sh.scalebar(-4.4, -2.5, 5)
     sh.title_block("ZION COCOON", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Envelope em 4 camadas, ático técnico sobre o banho, Espinha de Luz")
     return sh
 
 # ------------------------------------------------------------------ CORTE TRANSVERSAL
 def corte_transv():
-    xc = 4.6
+    xc = 5.0
     sh = Sheet(1600, 1000, scale=120, ox=800, oy=720, flip_x=True)
     sh.header("Zion Cocoon · Corte transversal B-B", f"Plano x = {fmt(xc)} (suíte) · olhar para +x (cabeceira e banho ao fundo) · escala 1:40")
     sh.rect(-6.0, -0.9, 6.0, -0.02, fill=sh.pattern("soil"), stroke="none")
@@ -395,8 +395,8 @@ def corte_transv():
         sh.rect(py - 0.04, -0.9, py + 0.04, -0.22, fill=STEEL, stroke="none")
         sh.rect(py - 0.12, -0.24, py + 0.12, -0.2, fill=STEEL, stroke="none")
     hw = C.floor_hw(xc)
-    sh.rect(-3.2, -0.2, 3.2, -0.05, fill=sh.pattern("insul"), stroke=GREEN, sw=0.9)
-    sh.rect(-3.2, -0.05, 3.2, 0.0, fill=WOOD2, stroke=GREEN, sw=0.5)
+    sh.rect(-3.3, -0.2, 3.3, -0.05, fill=sh.pattern("insul"), stroke=GREEN, sw=0.9)
+    sh.rect(-3.3, -0.05, 3.3, 0.0, fill=WOOD2, stroke=GREEN, sw=0.5)
     # concha cortada (externa + interna)
     outer = C.section_local(xc, 100)
     t0, t1 = C.theta_range(xc)
@@ -413,7 +413,7 @@ def corte_transv():
     sh.rect(-0.35, C.top(xc) - 0.14, 0.35, C.top(xc) + 0.02, fill=GLASS, stroke=GREEN, sw=0.9)
     # fundo: parede da cabeceira com porta e difusores, banho ao fundo
     sh.poly([(y, max(0, z - 0.13)) for (y, z) in inner], fill="#F3EDE3", stroke="none")
-    sh.rect(-2.7, 0, 2.7, 1.3, fill=WOOD, stroke=GREEN, sw=0.7)  # painel de cabeceira
+    sh.rect(-2.85, 0, 2.85, 1.3, fill=WOOD, stroke=GREEN, sw=0.7)  # painel de cabeceira
     sh.rect(1.0, 0, 1.85, 2.1, fill="#F7F3EC", stroke=GREEN, sw=0.8)  # porta de correr
     sh.rect(-1.2, 2.05, 0.9, 2.15, fill=GREEN, stroke="none")     # difusor linear
     # cama cortada, criados
@@ -422,7 +422,7 @@ def corte_transv():
     sh.rect(-1.55, 0, -1.05, 0.5, fill=WOOD2, stroke=GREEN, sw=0.7)
     sh.rect(1.05, 0, 1.55, 0.5, fill=WOOD2, stroke=GREEN, sw=0.7)
     # armário embutido esquerdo (vista, y 1,55..2,15)
-    sh.rect(1.55, 0, 2.15, 1.5, fill=WOOD2, stroke=GREEN, sw=0.8)
+    sh.rect(1.6, 0, 2.2, 1.5, fill=WOOD2, stroke=GREEN, sw=0.8)
     # janela olho direita em corte (x=4,55): abertura na concha
     w = C.WINDOWS[1]
     zc = C.ZC + C.b(xc) * math.sin(w["tc"]); dz = w["lt"] * C.b(xc)
@@ -436,7 +436,7 @@ def corte_transv():
     sh.add(f'<g transform="translate({sh.X(-2.1):.1f},{sh.Y(0):.1f}) scale({sh.s / 100:.3f})"><circle cx="0" cy="-165" r="11" fill="none" stroke="{GREEN}" stroke-width="1.5"/><path d="M0 -152 V-70 M0 -70 L-16 0 M0 -70 L16 0 M-22 -100 L0 -135 L22 -100" fill="none" stroke="{GREEN}" stroke-width="1.5" stroke-linecap="round"/></g>')
     # legendas
     sh.leader(0.0, C.top(xc) + 0.02, 0.9, 4.5, "Espinha de Luz 0,70 m (vidro laminado sobre treliça)", 12, anchor="end")
-    sh.leader(-2.2, 2.5, -4.0, 3.5, "Arco elíptico Ø88,9 x 3,6 (A4)", 12, anchor="start")
+    sh.leader(-2.2, 2.5, -4.0, 3.5, "Arco elíptico Ø88,9 x 3,6 (A4, x 5,25)", 12, anchor="start")
     sh.leader(-2.85, 1.3, -4.0, 2.4, "Membrana · câmara 60 mm · lã PET 50 mm · forro", 12, anchor="start")
     sh.leader(yv - 0.1, zc, -4.0, 1.3, "Janela Olho basculante em corte", 12, anchor="start")
     sh.leader(2.6, 0.12, 4.0, 1.0, "Fita LED 2700 K no rodapé (indireta)", 12, anchor="end")

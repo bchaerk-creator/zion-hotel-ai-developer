@@ -878,7 +878,7 @@ def main():
         print("aviso: tools/vendor/ incompleto; a usar cdnjs")
 
     models = [
-        ("cocoon", cocoon_data(), "ZION COCOON", "Cabana biomórfica em casulo · 41 m² internos + deck 26 m²",
+        ("cocoon", cocoon_data(), "ZION COCOON", "Cabana biomórfica em casulo · 48 m² internos + deck 30 m²",
          os.path.join(PROJECT, "cocoon", "3d", "zion-cocoon-3d.html")),
         ("zenith", zenith_data(), "ZION ZENITH", "Cabana escultural de dois cumes · 48 m² internos + terraço 20 m²",
          os.path.join(PROJECT, "zenith", "3d", "zion-zenith-3d.html")),

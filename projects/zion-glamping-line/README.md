@@ -4,10 +4,13 @@ Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da
 
 | Produto | Conceito | Dimensões | Área |
 |---|---|---|---|
-| **ZION COCOON** | Cabana biomórfica em casulo: superelipse assimétrica com lábio frontal inclinado, Espinha de Luz na cumeeira e seis Janelas Olho em lente | Piso 9,00 x 5,74 m · concha 9,55 x 5,90 x 3,95 m | 41 m² internos + vestíbulo 2,5 m² + deck 26 m² = 71,5 m² |
+| **ZION COCOON** | Cabana biomórfica em casulo: superelipse assimétrica com lábio frontal inclinado, Espinha de Luz na cumeeira e seis Janelas Olho em lente | Piso 9,60 x 5,86 m · concha 9,75 x 6,00 x 4,20 m | 45,6 m² internos + vestíbulo 2,4 m² = 48 m² + deck 29,9 m² = 78 m² |
 | **ZION ZENITH** | Cabana escultural de dois cumes assimétricos em diagonal (5,80 e 4,60 m), Óculo do Zênite sobre a cama e chaminé do Respiro | Corpo 9,50 x 5,40 x 2,75 m · cobertura 12,90 x 7,40 m | 48,4 m² internos + terraço 20,4 m² + passarela 7,6 m² = 79,3 m² |
 
-## Documento principal
+## Documentos principais
+
+- **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Cocoon, depois Zenith): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
+- **`ZION_ORCAMENTO_SC_Cocoon_Zenith.xlsx`** — planilha com peças, conexões, BOM em 3 cenários, mão de obra, resumo do orçamento, escala e premissas de preço.
 
 - **`ZION_COCOON_ZENITH_Caderno_Tecnico.html`** — Caderno Técnico com os 27 entregáveis (abrir no navegador; referencia os desenhos e renders das pastas abaixo).
 - **`ZION_COCOON_ZENITH_Caderno_Tecnico.pdf`** — a mesma publicação em PDF (A4 paisagem).

@@ -26,35 +26,35 @@ def cyl(x, y, z1, z2, r, kind, name=""):
 # ==================================================================================
 class Cocoon:
     NAME = "ZION COCOON"
-    L = 9.0            # comprimento do piso (x = 0 ... 9,0)
-    X_FRONT = 0.5      # posição do anel frontal (piso)
-    X_GLASS = 1.0      # plano da fachada de vidro (piso)
-    XMAX = 3.2         # x da largura máxima
-    AMAX = 2.95        # semi-eixo horizontal máximo (largura da concha 5,90 m em z = ZC)
+    L = 9.6            # comprimento do piso (x = 0 ... 9,6)
+    X_FRONT = 0.45     # posição do anel frontal (piso)
+    X_GLASS = 0.9      # plano da fachada de vidro (piso)
+    XMAX = 3.4         # x da largura máxima
+    AMAX = 3.0         # semi-eixo horizontal máximo (largura da concha 6,00 m em z = ZC)
     N_FRONT = 4.0      # expoente da superelipse (frente cheia)
     N_REAR = 3.0       # expoente da superelipse (cauda afilada)
     N_B = 2.0          # expoente da altura na cauda
     ZC = 0.75          # altura do centro da elipse de seção
-    B_FRONT = 3.10     # semi-eixo vertical na frente (topo 3,85)
-    B_MAX = 3.20       # semi-eixo vertical máximo (topo 3,95)
+    B_FRONT = 3.35     # semi-eixo vertical na frente (topo 4,10)
+    B_MAX = 3.45       # semi-eixo vertical máximo (topo 4,20)
     B_MIN = 0.35       # semi-eixo vertical na ponta da cauda
-    TILT = 0.55        # inclinação do lábio frontal (topo avança 0,55 m)
+    TILT = 0.6         # inclinação do lábio frontal (topo avança 0,60 m)
     TILT_X = 2.6       # extensão da zona cisalhada
-    ARCH_X = [0.5, 1.7, 2.9, 4.1, 5.3, 6.5, 7.6, 8.5]   # posições dos arcos (8)
+    ARCH_X = [0.45, 1.65, 2.85, 4.05, 5.25, 6.45, 7.65, 8.75]   # posições dos arcos (8)
     PURLIN_V = [0.10, 0.22, 0.34, 0.5, 0.66, 0.78, 0.90]  # terças (fração da seção)
-    SPINE = (1.75, 6.45, 0.11)   # espinha de luz: x1, x2, meio-ângulo (rad)
-    X_PARTITION = 6.2  # parede do banho
-    X_FLOOR_END = 8.85
-    DECK = dict(x1=-3.0, x2=1.0, y1=-3.25, y2=3.25)  # deck frontal 4,0 x 6,5
+    SPINE = (1.9, 6.6, 0.105)   # espinha de luz: x1, x2, meio-ângulo (rad)
+    X_PARTITION = 6.6  # parede do banho
+    X_FLOOR_END = 9.4
+    DECK = dict(x1=-3.7, x2=0.9, y1=-3.25, y2=3.25)  # deck frontal 4,6 x 6,5 = 29,9 m²
 
     # Janelas "olho" (lente): xc, theta_c (rad), meio-comp (m), meio-ângulo (rad)
     WINDOWS = [
-        dict(name="Olho estar (dir.)",   xc=2.35, tc=0.22,          lx=0.80, lt=0.155),
-        dict(name="Olho suíte (dir.)",   xc=4.55, tc=0.22,          lx=0.80, lt=0.155),
-        dict(name="Olho banho (dir.)",   xc=7.45, tc=0.50,          lx=0.55, lt=0.13),
-        dict(name="Olho estar (esq.)",   xc=3.25, tc=math.pi-0.22,  lx=0.80, lt=0.155),
-        dict(name="Olho suíte (esq.)",   xc=5.35, tc=math.pi-0.22,  lx=0.70, lt=0.14),
-        dict(name="Olho banheira (esq.)",xc=8.05, tc=math.pi-0.35,  lx=0.45, lt=0.12),
+        dict(name="Olho estar (dir.)",   xc=2.3, tc=0.22,           lx=0.80, lt=0.15),
+        dict(name="Olho suíte (dir.)",   xc=4.9, tc=0.22,           lx=0.80, lt=0.15),
+        dict(name="Olho banho (dir.)",   xc=7.9, tc=0.50,           lx=0.55, lt=0.125),
+        dict(name="Olho estar (esq.)",   xc=3.4, tc=math.pi-0.22,   lx=0.80, lt=0.15),
+        dict(name="Olho suíte (esq.)",   xc=5.7, tc=math.pi-0.22,   lx=0.70, lt=0.135),
+        dict(name="Olho banheira (esq.)",xc=8.5, tc=math.pi-0.35,   lx=0.45, lt=0.115),
     ]
 
     # ---- perfis ----
@@ -84,7 +84,7 @@ class Cocoon:
         return self.TILT * max(0.0, 1 - (x - self.X_FRONT) / self.TILT_X)
 
     def shear(self, x, z):
-        return x - self.tilt(x) * (z / 3.9)
+        return x - self.tilt(x) * (z / 4.15)
 
     def theta_range(self, x):
         b = self.b(x)
@@ -165,7 +165,7 @@ class Cocoon:
         for v in self.PURLIN_V:
             pts = []
             for i in range(n + 1):
-                x = self.X_FRONT + (8.6 - self.X_FRONT) * i / n
+                x = self.X_FRONT + (9.2 - self.X_FRONT) * i / n
                 t0, t1 = self.theta_range(x)
                 pts.append(self.section_point(x, t0 + (t1 - t0) * v))
             out.append(pts)
@@ -198,27 +198,27 @@ class Cocoon:
     def furniture(self):
         F = []
         # piso interno / hood
-        F.append(box(6.2, 6.3, -2.7, 2.7, 0, 2.6, "wall", "Parede do banho"))
-        F.append(box(6.2, 6.3, 1.0, 1.85, 0, 2.1, "opening", "Porta de correr"))
-        F.append(box(4.1, 6.15, -0.97, 0.97, 0.0, 0.55, "bed", "Cama king 1,93 x 2,03"))
-        F.append(box(4.1, 6.15, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
-        F.append(box(5.55, 6.15, 1.05, 1.55, 0, 0.5, "table", "Criado-mudo"))
-        F.append(box(5.55, 6.15, -1.55, -1.05, 0, 0.5, "table", "Criado-mudo"))
-        F.append(box(2.9, 4.3, 1.55, 2.15, 0, 1.5, "cabinet", "Armário baixo embutido"))
-        F.append(box(1.3, 2.7, 1.55, 2.15, 0, 0.9, "cabinet", "Café / minibar"))
-        F.append(box(1.25, 2.85, -2.2, -1.4, 0, 0.45, "sofa", "Chaise de contemplação"))
-        F.append(box(3.0, 3.7, -2.2, -1.5, 0, 0.75, "chair", "Poltrona"))
-        F.append(cyl(2.05, -0.95, 0, 0.45, 0.28, "table", "Mesa lateral"))
+        F.append(box(6.6, 6.7, -2.8, 2.8, 0, 2.6, "wall", "Parede do banho"))
+        F.append(box(6.6, 6.7, 1.0, 1.85, 0, 2.1, "opening", "Porta de correr"))
+        F.append(box(4.5, 6.55, -0.97, 0.97, 0.0, 0.55, "bed", "Cama king 1,93 x 2,03"))
+        F.append(box(4.5, 6.55, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
+        F.append(box(5.95, 6.55, 1.05, 1.55, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(5.95, 6.55, -1.55, -1.05, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(3.1, 4.5, 1.6, 2.2, 0, 1.5, "cabinet", "Armário baixo embutido"))
+        F.append(box(1.2, 2.6, 1.6, 2.2, 0, 0.9, "cabinet", "Café / minibar"))
+        F.append(box(1.15, 2.75, -2.25, -1.45, 0, 0.45, "sofa", "Chaise de contemplação"))
+        F.append(box(3.2, 3.9, -2.25, -1.55, 0, 0.75, "chair", "Poltrona"))
+        F.append(cyl(1.95, -0.95, 0, 0.45, 0.28, "table", "Mesa lateral"))
         # banho
-        F.append(box(6.35, 6.9, -2.0, -0.5, 0, 0.85, "vanity", "Bancada 1,50 m"))
-        F.append(box(7.0, 7.7, 0.95, 1.7, 0, 0.42, "wc", "Bacia sanitária"))
-        F.append(box(7.25, 8.2, -1.7, -0.75, 0, 0.02, "shower", "Chuveiro 0,95 x 0,95"))
-        F.append(box(7.25, 7.28, -1.7, -0.75, 0, 2.1, "glass", ""))
-        F.append(box(7.1, 8.65, -0.38, 0.38, 0, 0.58, "tub", "Banheira 1,55 x 0,76"))
-        F.append(box(6.3, 8.8, -2.2, 2.2, 2.4, 2.45, "ceiling", "Forro do banho / ático técnico"))
+        F.append(box(6.75, 7.3, -2.05, -0.55, 0, 0.85, "vanity", "Bancada 1,50 m"))
+        F.append(box(7.4, 8.1, 0.95, 1.7, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(7.65, 8.6, -1.75, -0.8, 0, 0.02, "shower", "Chuveiro 0,95 x 0,95"))
+        F.append(box(7.65, 7.68, -1.75, -0.8, 0, 2.1, "glass", ""))
+        F.append(box(7.55, 9.15, -0.38, 0.38, 0, 0.58, "tub", "Banheira 1,60 x 0,76"))
+        F.append(box(6.7, 9.35, -2.3, 2.3, 2.4, 2.45, "ceiling", "Forro do banho / ático técnico"))
         # equipamentos
-        F.append(box(6.6, 7.6, -0.6, 0.4, 2.5, 2.78, "hvac", "Evaporadora dutada 12k BTU"))
-        F.append(box(9.35, 10.1, -0.45, 0.35, 0.0, 0.62, "condenser", "Condensadora"))
+        F.append(box(7.0, 8.0, -0.6, 0.4, 2.5, 2.78, "hvac", "Evaporadora dutada 12k BTU"))
+        F.append(box(9.95, 10.7, -0.45, 0.35, 0.0, 0.62, "condenser", "Condensadora"))
         return F
 
     def spec(self):

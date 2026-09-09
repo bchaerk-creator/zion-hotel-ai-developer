@@ -33,50 +33,50 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 ### 2.1 Dimensões
 | Item | Valor |
 |---|---|
-| Comprimento do piso | 9,00 m (x = 0 a 9,00) |
-| Comprimento total da concha com lábio frontal | 9,55 m |
-| Largura máxima da concha | 5,90 m (em z = 0,75 m); 5,74 m no piso |
-| Altura máxima | 3,95 m (x = 3,20) |
-| Altura na fachada de vidro | 3,90 m; na cauda 1,10 m |
-| Piso interno climatizado | 41,0 m² (x = 1,00 a 8,85) |
-| Vestíbulo coberto (hood) | 2,5 m² (x = 0,50 a 1,00) |
-| Projeção da concha | 45,5 m² |
-| Deck frontal | 4,00 x 6,50 m = 26,0 m² |
-| Área total (concha + deck) | 71,5 m² |
-| Pé-direito no quarto | 3,90 m (centro) / 2,10 m a 0,90 m das laterais |
+| Comprimento do piso | 9,60 m (x = 0 a 9,60) |
+| Comprimento total da concha com lábio frontal | 9,75 m |
+| Largura máxima da concha | 6,00 m (em z = 0,75 m); 5,86 m no piso |
+| Altura máxima | 4,20 m (x = 3,40) |
+| Altura na fachada de vidro | 4,15 m; na cauda 1,10 m |
+| Piso interno climatizado | 45,6 m² (x = 0,90 a 9,40) |
+| Vestíbulo coberto (hood) | 2,4 m² (x = 0,45 a 0,90) · área interna total 48 m² |
+| Projeção da concha | 50,5 m² |
+| Deck frontal | 4,60 x 6,50 m = 29,9 m² |
+| Área total (concha + deck) | 78 m² |
+| Pé-direito no quarto | 4,15 m (centro) / 2,20 m a 0,90 m das laterais |
 
 ### 2.2 Forma
-- Planta em superelipse assimétrica: frente cheia (expoente 4,0) e cauda afilada (expoente 3,0), com largura máxima a 3,20 m da frente. Lê-se como semente ou casulo, nunca como elipse regular.
+- Planta em superelipse assimétrica: frente cheia (expoente 4,0) e cauda afilada (expoente 3,0), com largura máxima a 3,40 m da frente. Lê-se como semente ou casulo, nunca como elipse regular.
 - Seção transversal em elipse com centro a 0,75 m do piso: a concha "abraça" o piso, curvando-se para dentro na base.
-- Lábio frontal: o anel de fachada inclina-se 8° para fora (topo avança 0,55 m), criando o beiral protetor e a leitura de casulo que se abre para a paisagem. A fachada de vidro fica 0,50 m recuada, em plano igualmente inclinado.
-- Espinha de Luz: claraboia contínua de 0,70 m de largura ao longo da cumeeira, de x = 1,75 a 6,45 (4 painéis facetados entre arcos), sobre o estar e a cama.
+- Lábio frontal: o anel de fachada inclina-se 8° para fora (topo avança 0,60 m), criando o beiral protetor e a leitura de casulo que se abre para a paisagem. A fachada de vidro fica 0,45 m recuada, em plano igualmente inclinado.
+- Espinha de Luz: claraboia contínua de 0,70 m de largura ao longo da cumeeira, de x = 1,90 a 6,60 (4 painéis facetados entre arcos), sobre o estar e a cama.
 - Janelas Olho: 6 janelas em forma de lente (superelipse n = 1,5), 1,60 x 0,95 m no estar e na suíte, 1,10 x 0,60 m no banho, com requadro profundo em madeira. Nenhuma janela circular: a lente é a assinatura do produto.
 
 ### 2.3 Layout interno (de frente para trás)
 | Zona | x (m) | Programa |
 |---|---|---|
-| Vestíbulo coberto | 0,50 a 1,00 | Capacho, iluminação de chegada, porta pivotante de vidro 1,00 x 2,40 (à direita da fachada) |
-| Estar | 1,00 a 4,10 | Chaise de contemplação 1,60 x 0,80, poltrona, mesa lateral Ø0,55, console café/minibar 1,40 x 0,60 |
-| Suíte | 4,10 a 6,20 | Cama king 1,93 x 2,03 com cabeceira na parede do banho, 2 criados 0,50 x 0,60, armário baixo embutido na curva 1,40 x 0,60 x 1,50 |
-| Banho | 6,20 a 8,85 | Bancada 1,50 m, bacia em nicho, chuveiro 0,95 x 0,95 com vidro, banheira na cauda 1,55 x 0,76, janela lente baixa junto à banheira |
-| Ático técnico | 6,30 a 8,80 (z > 2,40) | Evaporadora dutada, aquecedor de água, quadro elétrico, reservatório de pressurização |
-| Cauda externa | 9,00 a 10,10 | Condensadora sobre base, ocultada por painel ripado |
+| Vestíbulo coberto | 0,45 a 0,90 | Capacho, iluminação de chegada, porta pivotante de vidro 1,00 x 2,40 (à direita da fachada) |
+| Estar | 0,90 a 4,50 | Chaise de contemplação 1,60 x 0,80, poltrona, mesa lateral Ø0,55, console café/minibar 1,40 x 0,60 |
+| Suíte | 4,50 a 6,60 | Cama king 1,93 x 2,03 com cabeceira na parede do banho, 2 criados 0,50 x 0,60, armário baixo embutido na curva 1,40 x 0,60 x 1,50 |
+| Banho | 6,60 a 9,40 | Bancada 1,50 m, bacia em nicho, chuveiro 0,95 x 0,95 com vidro, banheira na cauda 1,55 x 0,76, janela lente baixa junto à banheira |
+| Ático técnico | 6,70 a 9,35 (z > 2,40) | Evaporadora dutada, aquecedor de água, quadro elétrico, reservatório de pressurização |
+| Cauda externa | 9,60 a 10,70 | Condensadora sobre base, ocultada por painel ripado |
 
 ### 2.4 Estrutura metálica
 | Componente | Especificação | Quantidade |
 |---|---|---|
-| Arcos elípticos A1 a A8 | Tubo Ø88,9 x 3,6 mm, calandrado em 3 segmentos (2 pernas + coroa), luvas internas Ø76 x 200 mm com 4 parafusos M12 | 8 arcos, comprimentos 10,4 / 11,1 / 11,2 / 11,1 / 10,8 / 10,1 / 8,8 / 6,9 m |
+| Arcos elípticos A1 a A8 | Tubo Ø88,9 x 3,6 mm, calandrado em 3 segmentos (2 pernas + coroa), luvas internas Ø76 x 200 mm com 4 parafusos M12 | 8 arcos, comprimentos 10,8 / 11,6 / 11,7 / 11,6 / 11,4 / 10,8 / 9,8 / 7,9 m |
 | Anel frontal (lábio) A0 | Tubo Ø101,6 x 4,0 mm inclinado 8°, com perfil de vidro integrado | 1 |
 | Anel da fachada de vidro | Perfil de alumínio 120 x 60 mm curvo (calandrado) | 1 |
-| Terças longitudinais | Tubo Ø48,3 x 3,0 mm, 7 linhas, em segmentos de 1,20 m com ponteiras rosqueadas | 7 x 8,1 m = 57 m |
+| Terças longitudinais | Tubo Ø48,3 x 3,0 mm, 7 linhas, em segmentos de 1,20 m com ponteiras rosqueadas | 7 x 8,75 m = 61 m |
 | Espinha de Luz | Treliça plana 300 mm de altura em tubo Ø42,4 + diagonais Ø26,9, apoia os painéis de vidro | 4,7 m |
-| Trilhos de base | Tubo retangular 100 x 50 x 3,0 mm curvado em planta, chumbado ao quadro do piso a cada 600 mm | 2 x 8,4 m |
+| Trilhos de base | Tubo retangular 100 x 50 x 3,0 mm curvado em planta, chumbado ao quadro do piso a cada 600 mm | 2 x 9,0 m |
 | Quadro da cauda | Anel Ø60,3 x 3,0 mm + 3 barras de fechamento | 1 |
 | Contraventamento | Cabos de aço inox Ø8 mm com esticadores em 2 vãos (A1-A2 e A6-A7) | 8 cabos |
 | Perfis keder | Perfil de alumínio duplo keder fixado sobre cada arco por presilhas a cada 300 mm | 8 |
 | Chapas de base | Chapa 200 x 150 x 10 mm com 4 chumbadores M16 por pé de arco | 16 |
 
-Estabilidade: os arcos trabalham como pórticos elípticos biengastados no quadro do piso; a membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos absorvem o vento longitudinal. Uplift máximo de projeto sobre a concha: 1,3 kN/m² x 45 m² ≈ 60 kN, distribuído em 16 pés de arco (≈ 4 kN cada) e transmitido a 12 estacas helicoidais.
+Estabilidade: os arcos trabalham como pórticos elípticos biengastados no quadro do piso; a membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos absorvem o vento longitudinal. Uplift máximo de projeto sobre a concha: 1,3 kN/m² x 48 m² ≈ 62 kN, distribuído em 16 pés de arco (≈ 4 kN cada) e transmitido às estacas helicoidais (46 no total sob piso e deck).
 
 ### 2.5 Sistemas
 - Climatização: evaporadora dutada inverter 12.000 BTU (quente/frio, operação até -15 °C) no ático técnico, com dois difusores lineares na parede da cabeceira (suíte) e um no estar; retorno pelo forro do banho. Condensadora na cauda. Piso radiante elétrico opcional no banho (150 W/m²).
@@ -153,7 +153,7 @@ Estabilidade: o corpo em painéis SIP forma um diafragma rígido; o anel de beir
 | Etapa | Cocoon | Zenith |
 |---|---|---|
 | Embalagem | 1 contêiner 40' HC (ou 1 carreta 12 m): 3 estrados de estrutura + 2 caixas de membrana/isolamento + 4 caixas de vidros + 2 paletes de piso + 1 palete de deck + 1 palete de instalações | 1 contêiner 40' HC: 2 estrados de estrutura + 8 painéis SIP + 3 caixas de membrana + 4 caixas de vidros + 3 paletes de piso/deck + 1 palete de instalações |
-| Peso total embarcado | ≈ 8,0 t (50,6 m³) | ≈ 10,8 t (62,6 m³) |
+| Peso total embarcado | ≈ 8,6 t (50,6 m³) | ≈ 10,8 t (62,6 m³) |
 | Equipe | 4 montadores + 1 líder | 4 montadores + 1 líder |
 | Equipamento | Motor hidráulico para estacas, guincho manual 1 t, andaime tubular, ferramentas de torque | Idem + talha para içar mastros |
 | Fundação (estacas + cabeçotes) | 1 dia | 1,5 dia |

@@ -82,7 +82,7 @@ concept = f"""
 <h3>ZION COCOON: a concha que se abre para a paisagem</h3>
 <p>Uma cabana biomórfica em forma de casulo: planta em superelipse assimétrica (frente cheia, cauda afilada), seção elíptica com o centro a 0,75 m do piso, de modo que a concha abraça o chão em vez de simplesmente pousar sobre ele. Três gestos definem a identidade e a distinguem de qualquer produto de mercado:</p>
 <ul>
-  <li><strong>Lábio frontal.</strong> O anel de fachada inclina-se 8° para fora e avança 0,55 m sobre o deck, formando o beiral e a expressão de casulo que se abre. A fachada de vidro fica recuada 0,50 m, inclinada no mesmo ângulo, como a proa de um barco.</li>
+  <li><strong>Lábio frontal.</strong> O anel de fachada inclina-se 8° para fora e avança 0,60 m sobre o deck, formando o beiral e a expressão de casulo que se abre. A fachada de vidro fica recuada 0,45 m, inclinada no mesmo ângulo, como a proa de um barco.</li>
   <li><strong>Espinha de Luz.</strong> Uma claraboia contínua de 0,70 x 4,70 m ao longo da cumeeira, sobre o estar e a cama. Deitado, o hóspede vê a copa das árvores e o céu.</li>
   <li><strong>Janelas Olho.</strong> Seis janelas em lente, com requadros profundos de madeira laminada: nenhuma escotilha circular. A lente é a assinatura gráfica do produto e aparece também na comunicação da marca.</li>
 </ul>
@@ -99,7 +99,7 @@ concept = f"""
 <h3>Originalidade e propriedade</h3>
 <p>Os modelos de referência do mercado (túnel segmentado com escotilhas circulares; cobertura de dois picos simétricos sobre planta octogonal) serviram apenas como parâmetro construtivo e dimensional. As geometrias aqui desenvolvidas (superelipse assimétrica com lábio inclinado e espinha envidraçada; cumes assimétricos em diagonal com óculo e chaminé) são proprietárias, definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code> e passíveis de registro de desenho industrial.</p>
 
-{two(kv([("Produto", "ZION COCOON"), ("Piso", "9,00 x 5,74 m"), ("Concha", "9,55 x 5,90 x 3,95 m"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,5 m²"), ("Deck", "26,0 m²"), ("Total", "71,5 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
+{two(kv([("Produto", "ZION COCOON"), ("Piso", "9,60 x 5,86 m"), ("Concha", "9,75 x 6,00 x 4,20 m"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck", "29,9 m²"), ("Total", "78 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
      kv([("Produto", "ZION ZENITH"), ("Corpo", "9,50 x 5,40 x 2,75 m"), ("Cumes", "5,80 m e 4,60 m"), ("Cobertura", "12,90 x 7,40 m (95,5 m² proj.)"), ("Piso interno", f"{fmt(Z.floor_area(), 1)} m²"), ("Terraço + passarela", "28,0 m²"), ("Total", "79,3 m²"), ("Peso embarcado", f"{fmt(BZ['total'], 0)} kg")]))}
 """
 section("01", "Conceito arquitetônico", concept)
@@ -112,10 +112,10 @@ DRAW = [("02", "Planta baixa humanizada", "02_planta_humanizada.svg"), ("03", "P
 NOTES = {
  "cocoon": {
   "02": "Sequência de intimidade crescente: vestíbulo coberto sob o lábio, estar com chaise voltada ao deck, suíte king com cabeceira na parede do banho e banho na cauda com banheira sob a Janela Olho baixa. Toda a marcenaria (console café, armário baixo, criados) é embutida na curva da concha, onde o pé-direito é menor.",
-  "03": "Arcos A0 a A7 a cada 1,20 m (0,90 e 0,50 m na cauda). Malha de estacas 1,20 x 1,30 m. Larguras internas de 5,74 m na seção máxima e 4,72 m no banho. Cortes A-A (longitudinal, no eixo) e B-B (transversal, x = 4,60).",
-  "04": "A silhueta é a seção máxima (5,90 x 3,95 m); dentro dela, o anel do lábio (4,94 m) e a fachada de vidro com quatro montantes, travessa a 2,40 m e porta pivotante de 1,00 m. A Espinha de Luz aparece como aresta de vidro na cumeeira.",
+  "03": "Arcos A0 a A7 a cada 1,20 m (1,10 m na cauda). Malha de estacas 1,20 x 1,30 m (46 estacas). Larguras internas de 5,86 m na seção máxima e 4,80 m no banho. Cortes A-A (longitudinal, no eixo) e B-B (transversal, x = 5,00).",
+  "04": "A silhueta é a seção máxima (6,00 x 4,20 m); dentro dela, o anel do lábio (4,88 m) e a fachada de vidro com quatro montantes, travessa a 2,40 m e porta pivotante de 1,00 m. A Espinha de Luz aparece como aresta de vidro na cumeeira.",
   "05": "A concha lê-se como semente: frente cheia e inclinada, cauda que fecha em ponta a 1,10 m. Três Janelas Olho por lado, com o Olho do banho mais alto por privacidade. A condensadora fica atrás da cauda, oculta por painel ripado.",
-  "06": "Envelope em quatro camadas; parede do banho sobe até a concha e cria o ático técnico sobre o forro de 2,40 m (evaporadora dutada, aquecedor, quadro). Espinha de Luz de x 1,75 a 6,45 sobre o estar e a cama.",
+  "06": "Envelope em quatro camadas; parede do banho sobe até a concha e cria o ático técnico sobre o forro de 2,40 m (evaporadora dutada, aquecedor, quadro). Espinha de Luz de x 1,90 a 6,60 sobre o estar e a cama.",
   "07": "Seção elíptica com centro a 0,75 m: a concha curva-se para dentro na base. Arco Ø88,9 na camada ventilada, Janela Olho basculante em corte, armário embutido onde o pé-direito é de 1,50 m, difusor linear na cabeceira, fita LED nos rodapés.",
   "08": "Volumetria a partir da frente e da lateral direita: lábio, fachada, Espinha de Luz, três Janelas Olho e deck com escada."},
  "zenith": {
@@ -323,8 +323,8 @@ biz = f"""
  ["Posicionamento", "Refúgio de casal, silêncio e imersão", "Suíte assinatura com terraço e hidromassagem"],
  ["Ocupação", "2 adultos", "2 adultos (+ 1 criança no sofá)"],
  ["ADR de referência", "R$ 1.200 a 1.800", "R$ 1.600 a 2.600"],
- ["CAPEX orientativo por unidade (kit + interiores + instalação, sem infraestrutura do sítio)", "R$ 420 a 560 mil", "R$ 560 a 740 mil"],
- ["Payback orientativo (ocupação 55%, margem operacional 45%)", "3,5 a 4,5 anos", "3,5 a 4,5 anos"],
+ ["CAPEX orientativo por unidade (kit + interiores + instalação, sem infraestrutura do sítio; ver Product Book para o orçamento detalhado em 3 cenários)", "R$ 540 a 720 mil (Standard, em série)", "R$ 620 a 800 mil (Standard, em série)"],
+ ["Payback orientativo (ocupação 55%, margem operacional 45%)", "4 a 5 anos", "4 a 5 anos"],
  ["Vida útil", "Membrana 15 anos (substituível); estrutura 30+ anos", "Idem"],
  ["Escala", "Kit único, estoque de componentes comuns aos dois produtos, montagem por equipe treinada Zion", "Idem"],
 ])}

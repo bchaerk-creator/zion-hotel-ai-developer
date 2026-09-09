@@ -101,7 +101,7 @@ def cocoon_iso(structural=False):
     sh.header("Zion Cocoon · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
               "Projeção isométrica a partir da frente e da lateral direita · sem escala" + (" · membrana a 15% para leitura dos arcos, terças e espinha" if structural else ""))
     sc = Scene(sh, 78, 760, 640)
-    ground_shadow(sc, 3.5, 0, 7.2, 4.4)
+    ground_shadow(sc, 3.6, 0, 7.6, 4.5)
     D = C.DECK
     sc.box(D["x1"], D["x2"], D["y1"], D["y2"], -0.2, 0.0, "#B99A73")
     for i in range(3):
@@ -122,9 +122,9 @@ def cocoon_iso(structural=False):
         sc.tri(cen, a, b, "#9FB7C2", 0.35, shade_on=False)
     # montantes
     for yy in (-1.6, -0.5, 0.5, 1.6):
-        zt = C.ZC + (C.b(1.0) - 0.06) * math.sqrt(max(0, 1 - (yy / (C.a(1.0) - 0.06)) ** 2))
-        sc.polyline([(C.shear(1.0, 0), yy, 0), (C.shear(1.0, zt), yy, zt)], "#3A3B3A", 1.6)
-    sc.polyline([(C.shear(1.0, 2.4), y, 2.4) for y in (-2.3, 2.3)], "#3A3B3A", 1.4)
+        zt = C.ZC + (C.b(C.X_GLASS) - 0.06) * math.sqrt(max(0, 1 - (yy / (C.a(C.X_GLASS) - 0.06)) ** 2))
+        sc.polyline([(C.shear(C.X_GLASS, 0), yy, 0), (C.shear(C.X_GLASS, zt), yy, zt)], "#3A3B3A", 1.6)
+    sc.polyline([(C.shear(C.X_GLASS, 2.4), y, 2.4) for y in (-2.3, 2.3)], "#3A3B3A", 1.4)
     # anéis e estrutura
     sc.polyline(C.front_ring(60), "#3A3B3A", 3.0 if structural else 2.2)
     sc.polyline(gr, "#6B5B45", 1.6)
@@ -139,13 +139,13 @@ def cocoon_iso(structural=False):
         x1, x2, ht = C.SPINE
         for th in (math.pi / 2 - ht, math.pi / 2 + ht):
             sc.polyline([C.section_point(x, th, 0.0) for x in np.linspace(x1, x2, 20)], "#3A3B3A", 1.8)
-        for (xa, xb) in [(0.5, 1.7), (6.5, 7.6)]:
+        for (xa, xb) in [(0.45, 1.65), (6.45, 7.65)]:
             for th in (0.35, math.pi - 0.35):
                 pa = C.section_point(xa, th); pb = C.section_point(xb, th + 0.5); pc = C.section_point(xa, th + 0.5); pd = C.section_point(xb, th)
                 sc.polyline([pa, pb], "#8B714E", 0.9, "4 3"); sc.polyline([pc, pd], "#8B714E", 0.9, "4 3")
         # trilhos de base
-        sc.polyline([(x, -C.floor_hw(x), 0) for x in np.linspace(1.0, 8.8, 40)], "#3A3B3A", 2.0)
-        sc.polyline([(x, C.floor_hw(x), 0) for x in np.linspace(1.0, 8.8, 40)], "#3A3B3A", 2.0)
+        sc.polyline([(x, -C.floor_hw(x), 0) for x in np.linspace(C.X_GLASS, C.X_FLOOR_END - 0.05, 40)], "#3A3B3A", 2.0)
+        sc.polyline([(x, C.floor_hw(x), 0) for x in np.linspace(C.X_GLASS, C.X_FLOOR_END - 0.05, 40)], "#3A3B3A", 2.0)
     else:
         for w in C.WINDOWS:
             wo = [C.section_point(x, th, 0.07) for (x, th) in [(w["xc"] + w["lx"] * ((abs(math.cos(a)) ** 1.5 + abs(math.sin(a)) ** 1.5) ** (-1 / 1.5)) * math.cos(a), w["tc"] + w["lt"] * ((abs(math.cos(a)) ** 1.5 + abs(math.sin(a)) ** 1.5) ** (-1 / 1.5)) * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 41)]]
@@ -161,7 +161,7 @@ def cocoon_iso(structural=False):
     else:
         items = [(1, "Concha em membrana PVDF tensionada sobre 8 arcos elípticos"), (2, "Lábio frontal inclinado 8° protegendo a fachada de vidro"),
                  (3, "Espinha de Luz na cumeeira (4,70 m)"), (4, "6 Janelas Olho em lente com requadro de madeira"),
-                 (5, "Deck frontal 4,00 x 6,50 m em cumaru"), (6, "Cauda afilada com a banheira e a condensadora oculta")]
+                 (5, "Deck frontal 4,60 x 6,50 m em cumaru"), (6, "Cauda afilada com a banheira e a condensadora oculta")]
         sh.legend(60, 760, items, size=12)
     sh.title_block("ZION COCOON", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
                    "Arcos, terças, espinha e contraventamento" if structural else "Volumetria do casulo com deck e fachada panorâmica")

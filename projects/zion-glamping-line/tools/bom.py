@@ -16,14 +16,14 @@ def r(v, n=0):
 def cocoon_bom():
     L = C.arch_lengths()
     memb, glass = C.membrane_area()
-    floor = C.floor_area() + 2.5
+    floor = C.floor_area() + 2.4
     deck = (C.DECK["x2"] - C.DECK["x1"]) * (C.DECK["y2"] - C.DECK["y1"])
     steel = [
         ("A0", "Anel frontal inclinado 8°", "Ø101,6 x 4,0", 1, L[0], KG["Ø101,6 x 4,0"]),
         ("A1-A7", "Arcos elípticos (3 segmentos cada)", "Ø88,9 x 3,6", 7, sum(L[1:]), KG["Ø88,9 x 3,6"]),
-        ("T1-T7", "Terças longitudinais em trechos de 1,20 m", "Ø48,3 x 3,0", 7, 7 * 8.1, KG["Ø48,3 x 3,0"]),
+        ("T1-T7", "Terças longitudinais em trechos de 1,20 m", "Ø48,3 x 3,0", 7, 7 * 8.75, KG["Ø48,3 x 3,0"]),
         ("EL", "Espinha de Luz: banzos + diagonais", "Ø42,4 x 3,0 / Ø26,9 x 2,6", 1, 4.7 * 2 + 9.0, 2.4),
-        ("TB", "Trilhos de base curvados", "100 x 50 x 3,0", 2, 2 * 8.4, KG["100 x 50 x 3,0"]),
+        ("TB", "Trilhos de base curvados", "100 x 50 x 3,0", 2, 2 * 9.0, KG["100 x 50 x 3,0"]),
         ("QC", "Quadro da cauda", "Ø60,3 x 3,0", 1, 7.5, KG["Ø60,3 x 3,0"]),
         ("LV", "Luvas internas Ø76 x 200 (21 un.)", "Ø76,1 x 3,6", 21, 21 * 0.2, KG["Ø76,1 x 3,6"]),
         ("CH", "Chapas de base 200 x 150 x 10 + enrijecedores (16 un.)", "chapa", 16, 16, 2.6),
@@ -41,7 +41,7 @@ def cocoon_bom():
            ("Manta refletiva de alumínio (bolha)", "m²", r(memb), r(memb * 0.25)),
            ("Forro tensionado Trevira CS", "m²", r(memb * 0.95), r(memb * 0.95 * 0.3)),
            ("Painéis ripados internos (cabeceira, rodapés)", "m²", 14, 14 * 9)]
-    front_glass = 0.8 * math.pi * (C.a(1.0) - 0.06) * (C.b(1.0) - 0.06)
+    front_glass = 0.8 * math.pi * (C.a(C.X_GLASS) - 0.06) * (C.b(C.X_GLASS) - 0.06)
     lens = 3 * 1.2 + 0.9 + 2 * 0.55
     spine = 4.7 * 0.7
     glz = [("Fachada de vidro duplo 6 lam + 12 Ar + 6 temp low-e (anel inclinado)", "m²", r(front_glass, 1), r(front_glass * 30)),
@@ -49,14 +49,14 @@ def cocoon_bom():
            ("Janelas Olho: vidro duplo curvo-facetado, 2 basculantes", "m²", r(lens, 1), r(lens * 32)),
            ("Espinha de Luz: 4 painéis laminados 8 + 8 mm", "m²", r(spine, 1), r(spine * 40)),
            ("Esquadrias de alumínio bronze com ruptura térmica", "kg", 120, 120)]
-    flr = [("Vigas U 150 x 60 x 3,0 galvanizadas (malha 2,4 m, piso + deck)", "m", 118, r(118 * 6.5)),
+    flr = [("Vigas U 150 x 60 x 3,0 galvanizadas (malha 2,4 m, piso + deck)", "m", 128, r(128 * 6.5)),
            ("Vigotas 50 x 150 tratadas a cada 400 mm", "m", r((floor + deck) * 2.5), r((floor + deck) * 9.4)),
            ("PIR 50 mm entre vigotas + manta inferior", "m²", r(floor), r(floor * 2.1)),
            ("Compensado naval 18 mm", "m²", r(floor), r(floor * 12)),
-           ("Piso de engenharia carvalho 14 mm", "m²", r(floor - 8.9), r((floor - 8.9) * 9)),
-           ("Zona molhada: placa cimentícia + impermeabilização + porcelanato", "m²", 9, 9 * 30),
+           ("Piso de engenharia carvalho 14 mm", "m²", r(floor - 13.2), r((floor - 13.2) * 9)),
+           ("Zona molhada: placa cimentícia + impermeabilização + porcelanato", "m²", 13, 13 * 30),
            ("Deck cumaru 20 x 140 com fixação oculta", "m²", r(deck), r(deck * 20)),
-           ("Estacas helicoidais Ø76, hélice Ø300, L 2,0 m + cabeçotes", "un", 39, r(39 * 18.8))]
+           ("Estacas helicoidais Ø76, hélice Ø300, L 2,0 m + cabeçotes", "un", 46, r(46 * 18.8))]
     interiors = [("Parede da cabeceira / banho (LSF + painel + ripado)", "m²", 16, 16 * 22),
                  ("Marcenaria: console café, armário baixo, criados, bancada", "cj", 1, 260),
                  ("Cama king, chaise, poltrona, mesa", "cj", 1, 190),
@@ -143,12 +143,12 @@ def zenith_bom():
 # ---------------- componentes para fabricação (códigos) ----------------
 def cocoon_parts():
     L = C.arch_lengths()
-    P = [("ZC-A0", "Anel frontal inclinado", "Tubo Ø101,6 x 4,0 calandrado em elipse 4,94 x 6,26 m, 2 segmentos, com perfil de vidro soldado", 1, "Calandra CNC + solda MIG + galvanização")]
+    P = [("ZC-A0", "Anel frontal inclinado", "Tubo Ø101,6 x 4,0 calandrado em elipse 4,88 x 4,13 m (acima do piso), 2 segmentos, com perfil de vidro soldado", 1, "Calandra CNC + solda MIG + galvanização")]
     for i, l in enumerate(L[1:], start=1):
         P.append((f"ZC-A{i}", f"Arco elíptico A{i}", f"Tubo Ø88,9 x 3,6, desenvolvido {l:.2f} m, 3 segmentos (2 pernas + coroa), 2 luvas", 1, "Calandra CNC por gabarito, furação M12, galvanização"))
-    P += [("ZC-T", "Trecho de terça", "Tubo Ø48,3 x 3,0, 1.200 mm, ponteiras rosqueadas M16 nas duas extremidades", 49, "Corte + usinagem das ponteiras"),
+    P += [("ZC-T", "Trecho de terça", "Tubo Ø48,3 x 3,0, 1.200 mm, ponteiras rosqueadas M16 nas duas extremidades", 56, "Corte + usinagem das ponteiras"),
           ("ZC-EL", "Espinha de Luz", "Treliça plana 4.700 x 300 mm, banzos Ø42,4, diagonais Ø26,9, 4 berços para vidro", 1, "Gabarito de solda"),
-          ("ZC-TB", "Trilho de base", "Tubo 100 x 50 x 3,0 curvado em planta (raio variável), furos Ø14 a cada 600 mm, 2 peças de 8,4 m em 3 trechos", 2, "Calandra de perfil + furação"),
+          ("ZC-TB", "Trilho de base", "Tubo 100 x 50 x 3,0 curvado em planta (raio variável), furos Ø14 a cada 600 mm, 2 peças de 9,0 m em 3 trechos", 2, "Calandra de perfil + furação"),
           ("ZC-QC", "Quadro da cauda", "Anel Ø60,3 + 3 barras, fechamento cônico", 1, "Solda"),
           ("ZC-CB", "Chapa de base", "200 x 150 x 10 mm, 2 enrijecedores, 4 furos Ø18", 16, "Corte plasma + solda"),
           ("ZC-LV", "Luva de emenda", "Tubo Ø76,1 x 3,6 x 200 mm, 4 furos Ø13", 21, "Corte + furação"),
@@ -160,9 +160,9 @@ def cocoon_parts():
           ("ZC-JO", "Janela Olho", "Requadro de madeira laminada 220 mm em lente 1,60 x 0,95 (ou 1,10 x 0,60), vidro duplo, 2 basculantes", 6, "Marcenaria CNC + esquadria"),
           ("ZC-VE", "Vidro da espinha", "Laminado 8 + 8 mm, 1.175 x 700 mm, bordas polidas", 4, "Vidraçaria"),
           ("ZC-PW", "Parede do banho", "Quadro LSF 90 mm + painel + porta de correr 0,85 x 2,10, pré-montada em 2 módulos", 1, "Pré-fabricação"),
-          ("ZC-PL", "Módulo de piso", "Quadros de vigotas 2,4 x 1,2 m com PIR e compensado, 16 módulos", 16, "Pré-fabricação"),
-          ("ZC-DK", "Módulo de deck", "Painéis cumaru 2,0 x 1,0 m sobre vigotas", 13, "Pré-fabricação"),
-          ("ZC-EH", "Estaca helicoidal", "Ø76 x 3,6, hélice Ø300, L 2,0 m, cabeçote ajustável", 39, "Compra"),
+          ("ZC-PL", "Módulo de piso", "Quadros de vigotas 2,4 x 1,2 m com PIR e compensado, 18 módulos", 18, "Pré-fabricação"),
+          ("ZC-DK", "Módulo de deck", "Painéis cumaru 2,0 x 1,0 m sobre vigotas", 15, "Pré-fabricação"),
+          ("ZC-EH", "Estaca helicoidal", "Ø76 x 3,6, hélice Ø300, L 2,0 m, cabeçote ajustável", 46, "Compra"),
           ("ZC-MQ", "Kit de instalações", "Quadro elétrico pré-montado, chicote LED, kit PEX, evaporadora dutada", 1, "Pré-montagem em bancada")]
     return P
 
@@ -219,8 +219,8 @@ def transport(b, name):
 
 ASSEMBLY = {
     "cocoon": [
-        ("Locação e fundação", "Topografia com estação total; cravação de 39 estacas helicoidais com motor hidráulico; nivelamento dos cabeçotes ajustáveis (tolerância ± 5 mm)", 1.0, "4 + operador"),
-        ("Grelha de vigas e módulos de piso", "Vigas U 150 parafusadas aos cabeçotes; 16 módulos de piso e 13 módulos de deck; fechamento inferior; passagem de esgoto e PEX", 2.0, "4"),
+        ("Locação e fundação", "Topografia com estação total; cravação de 46 estacas helicoidais com motor hidráulico; nivelamento dos cabeçotes ajustáveis (tolerância ± 5 mm)", 1.0, "4 + operador"),
+        ("Grelha de vigas e módulos de piso", "Vigas U 150 parafusadas aos cabeçotes; 18 módulos de piso e 15 módulos de deck; fechamento inferior; passagem de esgoto e PEX", 2.0, "4"),
         ("Trilhos de base e arcos", "Fixação dos trilhos curvados; montagem dos arcos A7 a A1 no chão (pernas + coroa com luvas), içamento com guincho manual e travamento provisório; anel A0 inclinado por último", 1.5, "4"),
         ("Terças, espinha e contraventamento", "Terças rosqueadas entre arcos; treliça da espinha; cabos em X tensionados a 2 kN; conferência de geometria", 0.5, "4"),
         ("Membrana externa", "Deslizamento dos painéis nos perfis keder (cauda para a frente); tensionamento das bolsas de base com esticadores; tampas de frente e cauda", 1.0, "4"),
