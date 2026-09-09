@@ -9,6 +9,7 @@ from product_book_data import (cocoon_parts, zenith_parts, COCOON_CONNECTIONS, Z
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 INLINE = "--inline" in sys.argv
+WEB = "--web" in sys.argv or INLINE   # usa renders/web/*.jpg (menores) para PDF e versão autônoma
 C, Z = Cocoon(), Zenith()
 
 def money(v): return "R$ " + f"{v:,.0f}".replace(",", ".")
@@ -18,8 +19,11 @@ def fmt(v, n=2):
 def src(rel):
     p = os.path.join(ROOT, rel)
     if not os.path.exists(p): return None
+    if WEB and "/renders/" in rel and rel.endswith(".png"):
+        alt = rel.replace("/renders/", "/renders/web/").replace(".png", ".jpg")
+        if os.path.exists(os.path.join(ROOT, alt)): rel = alt; p = os.path.join(ROOT, rel)
     if not INLINE: return rel
-    ext = rel.rsplit(".", 1)[-1].lower(); mime = {"svg": "image/svg+xml", "png": "image/png", "woff2": "font/woff2"}[ext]
+    ext = rel.rsplit(".", 1)[-1].lower(); mime = {"svg": "image/svg+xml", "png": "image/png", "jpg": "image/jpeg", "woff2": "font/woff2"}[ext]
     return f"data:{mime};base64," + base64.b64encode(open(p, "rb").read()).decode()
 def fig(rel, cap):
     s = src(rel)
@@ -409,12 +413,14 @@ for vol in (1, 2):
 HTML = f"""<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Zion Architectural Product Book · Cocoon e Zenith</title><style>{CSS}</style></head>
 <body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div></body></html>"""
-out = os.path.join(ROOT, "ZION_ARCHITECTURAL_PRODUCT_BOOK" + ("_standalone" if INLINE else "") + ".html")
+out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_ARCHITECTURAL_PRODUCT_BOOK" + ("_standalone" if INLINE else "") + ".html")
+if INLINE:   # versão para publicação em página única (sem esqueleto html/head/body; título e estilo no topo)
+    HTML = f"""<title>Zion Architectural Product Book</title>\n<style>{CSS}</style>\n<div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div>"""
 open(out, "w", encoding="utf-8").write(HTML)
 print("product book ->", out, f"{os.path.getsize(out) / 1e6:.2f} MB")
 
 # ----------------------------------------------------------------------------- XLSX
-if not INLINE:
+if not INLINE and not WEB:
     from openpyxl import Workbook
     from openpyxl.styles import Font, PatternFill, Alignment
     from openpyxl.utils import get_column_letter
@@ -423,7 +429,7 @@ if not INLINE:
     def sheet(name, headers, rows, widths=None):
         ws = wb.create_sheet(name[:31]); ws.append(headers)
         for c in ws[1]: c.fill = HEAD; c.font = HF; c.alignment = Alignment(wrap_text=True, vertical="top")
-        for r in rows: ws.append(list(r))
+        for r in rows: ws.append([round(v, 2) if isinstance(v, float) else v for v in r])
         for i, w in enumerate(widths or [18] * len(headers), start=1): ws.column_dimensions[get_column_letter(i)].width = w
         ws.freeze_panes = "A2"; return ws
     for product, P, CX in (("cocoon", cocoon_parts(), COCOON_CONNECTIONS), ("zenith", zenith_parts(), ZENITH_CONNECTIONS)):

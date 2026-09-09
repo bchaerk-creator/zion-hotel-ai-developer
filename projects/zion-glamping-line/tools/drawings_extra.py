@@ -116,11 +116,11 @@ def code_legend(sh, X, Y, items, size=9.5, pitch=21, wrap=None):
 # COCOON: fachada traseira
 # ==================================================================================
 def cocoon_fachada_traseira():
-    sh = Sheet(1600, 1000, scale=110, ox=800, oy=720, flip_x=False)
+    sh = Sheet(1600, 1000, scale=100, ox=800, oy=720, flip_x=False)
     sh.header("Zion Cocoon · Fachada traseira", "Vista da cauda (olhar para -x, +y a direita) · largura 6,00 m · altura 4,20 m · a cauda fecha em ponta a 1,10 m")
     # solo, estacas e quadro do piso
-    sh.rect(-6.5, -0.6, 6.5, -0.02, fill=sh.pattern("soil"), stroke="none")
-    sh.line(-6.5, -0.02, 6.5, -0.02, GREEN, 1.0)
+    sh.rect(-6.8, -0.6, 6.8, -0.02, fill=sh.pattern("soil"), stroke="none")
+    sh.line(-6.8, -0.02, 6.8, -0.02, GREEN, 1.0)
     for py in C_PY:
         sh.rect(py - 0.04, -0.6, py + 0.04, -0.2, fill=STEEL, stroke="none")
     sh.rect(-3.25, -0.2, 3.25, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9)
@@ -135,7 +135,7 @@ def cocoon_fachada_traseira():
     tip = C.section_local(9.58, 60)
     sh.poly(tip, fill=shade(MEMB, 0.88), stroke=GREEN, sw=0.8)
     sh.circle_px(0.0, C.top(C.L), 3, fill=GREEN, stroke=GREEN)
-    # linha do piso (base da concha) e rodape
+    # linha do piso (base da concha)
     hw = C.floor_hw(C.XMAX)
     sh.line(-hw, 0.0, hw, 0.0, GREEN, 1.2)
     # janelas olho do banho (indices 2 e 5), em escorco
@@ -150,36 +150,39 @@ def cocoon_fachada_traseira():
     sh.rect(-0.55, 0.0, 0.45, 1.3, fill="none", stroke=GREEN, sw=0.8)
     slats(sh, -0.52, 0.45, 0.0, 1.3, 0.08)
     sh.line(-0.55, 1.3, 0.45, 1.3, GREEN, 1.0)
-    # rotulos
-    sh.leader(-2.75, 2.6, -4.3, 3.6, "Membrana PVDF 1050 g/m² (silhueta maxima em x 3,40)", 12, anchor="start")
-    sh.leader(-1.95, 2.3, -4.3, 2.75, "Arco A7 Ø88,9 x 3,6 (x 8,75)", 12, anchor="start")
-    sh.leader(-1.2, 1.75, -4.3, 2.0, "Quadro da cauda Ø60,3 + 3 barras (x 9,30)", 12, anchor="start")
-    sh.leader(0.0, 1.1, 1.4, 3.0, "Ponta da cauda a 1,10 m: membrana fecha em bico", 12, anchor="start")
-    sh.leader(2.25, 1.95, 3.6, 2.6, "Olho do banho 1,10 x 0,60 (lateral, em escorco)", 12, anchor="start")
-    sh.leader(-1.95, 1.4, -4.3, 1.3, "Olho da banheira 0,90 x 0,50 (lateral esq.)", 12, anchor="start")
-    sh.leader(0.3, 0.9, 3.6, 1.6, "Painel ripado 40 x 40 oculta a condensadora", 12, anchor="start")
-    sh.leader(2.9, 0.3, 3.6, 0.7, "Trilho de base 100 x 50 + calha oculta 80 mm", 12, anchor="start")
-    sh.leader(2.6, -0.12, 3.6, -0.6, "Quadro do piso U 150 x 60 sobre estacas helicoidais", 12, anchor="start")
-    sh.leader(-2.6, 0.5, -4.3, 0.6, "Tubo de queda Ø75 na extremidade (calha oculta)", 12, anchor="start")
+    # rotulos: textos sempre para fora do desenho
+    L = -3.7; R = 5.4
+    sh.leader(-2.75, 2.6, L, 3.5, "Membrana PVDF 1050 g/m² (silhueta maxima em x 3,40)", 12, anchor="end")
+    sh.leader(-1.95, 2.3, L, 2.85, "Arco A7 Ø88,9 x 3,6 (x 8,75)", 12, anchor="end")
+    sh.leader(-1.2, 1.75, L, 2.25, "Quadro da cauda Ø60,3 + 3 barras (x 9,30)", 12, anchor="end")
+    sh.leader(-2.0, 1.4, L, 1.65, "Olho da banheira 0,90 x 0,50 (lateral, em escorco)", 12, anchor="end")
+    sh.leader(-2.6, 0.5, L, 0.95, "Tubo de queda Ø75 na extremidade da calha oculta", 12, anchor="end")
+    sh.leader(-2.9, 0.15, L, 0.35, "Trilho de base 100 x 50 + calha oculta 80 mm", 12, anchor="end")
+    sh.leader(0.0, 1.1, R, 3.5, "Ponta da cauda a 1,10 m", 12, anchor="start")
+    sh.leader(2.25, 1.95, R, 2.85, "Olho do banho 1,10 x 0,60 (escorco)", 12, anchor="start")
+    sh.leader(0.3, 0.9, R, 2.25, "Painel ripado 40 x 40 da condensadora", 12, anchor="start")
+    sh.leader(-0.05, 0.4, R, 1.65, "Condensadora 12k BTU oculta", 12, anchor="start")
+    sh.leader(2.6, -0.12, R, 0.95, "Quadro do piso U 150 x 60", 12, anchor="start")
+    sh.leader(2.6, -0.45, R, 0.35, "Estacas helicoidais Ø76", 12, anchor="start")
     # cotas
     sh.dim(-3.0, -0.9, 3.0, -0.9, -0.35, label="6,00")
     sh.dim(-C.floor_hw(8.75), -0.9, C.floor_hw(8.75), -0.9, -0.9, label=fmt(2 * C.floor_hw(8.75)) + " (base do arco A7)")
     sh.dim(-3.25, -0.9, 3.25, -0.9, -1.45, label="6,50 (deck)")
-    sh.dim(-3.6, 0, -3.6, 4.2, -0.5, label="4,20")
-    sh.dim(-3.6, 0, -3.6, C.top(8.75), -1.15, label=fmt(C.top(8.75)) + " (A7)")
-    sh.dim(3.6, 0, 3.6, 1.1, 0.5, label="1,10 (ponta)")
-    sh.dim(3.6, -0.6, 3.6, 0, 1.05, label="0,60")
-    sh.scalebar(-6.3, -1.9, 4)
-    sh.title_block("ZION COCOON", "Fachada traseira", "1:50 (A1)", "04b/27", "Cauda afilada: arco A7, quadro de fechamento, olhos do banho e condensadora oculta")
+    sh.dim(3.7, 0, 3.7, 4.2, 0.4, label="4,20")
+    sh.dim(3.7, 0, 3.7, C.top(8.75), 0.9, label=fmt(C.top(8.75)) + " (A7)")
+    sh.dim(3.7, 0, 3.7, 1.1, 1.4, label="1,10 (ponta)")
+    sh.dim(-3.7, -0.6, -3.7, 0, -0.4, label="0,60")
+    sh.scalebar(-7.0, -2.0, 4)
+    sh.title_block("ZION COCOON", "Fachada traseira", "1:50 (A1)", "04b/27", "Cauda afilada: arco A7, quadro da cauda, olhos do banho, condensadora oculta")
     return sh
 
 # ==================================================================================
 # ZENITH: fachada traseira
 # ==================================================================================
 def zenith_fachada_traseira():
-    sh = Sheet(1600, 1000, scale=92, ox=800, oy=740, flip_x=False)
+    sh = Sheet(1600, 1000, scale=84, ox=800, oy=740, flip_x=False)
     sh.header("Zion Zenith · Fachada traseira", "Vista dos fundos (olhar para -x, +y a direita) · painel ripado com a fresta da banheira · cobertura 7,40 m · cume 5,80 m")
-    ground(sh, -6.5, 6.5)
+    ground(sh, -7.5, 7.5)
     for py in Z_PY:
         sh.rect(py - 0.04, -0.6, py + 0.04, -0.2, fill=STEEL, stroke="none")
     for (px, py) in zenith_tension_piles():
@@ -209,42 +212,43 @@ def zenith_fachada_traseira():
     sh.rect(-2.2, 0.0, -1.4, 0.62, fill="#E5E1D8", stroke=GREEN, sw=0.8)
     sh.rect(-2.3, 0.0, -1.3, 1.3, fill="none", stroke=GREEN, sw=0.8)
     slats(sh, -2.27, -1.3, 0.0, 1.3, 0.1)
-    # rotulos
+    # rotulos: textos para fora
+    L = -5.5; R = 5.5
     sh.leader(0.4, 5.8, 1.9, 6.45, "Cume principal 5,80 m: Oculo do Zenite Ø1,20 (x 6,30; y +0,40)", 12, anchor="start")
     sh.leader(1.6, 4.6, 3.2, 5.45, "Cume secundario 4,60 m: chamine do Respiro (x 1,60; y +1,60)", 12, anchor="start")
-    sh.leader(-3.0, 3.35, -4.4, 4.2, "Membrana PVDF em balanco 1,00 m nos fundos", 12, anchor="start")
-    sh.leader(-1.85, 2.37, -4.4, 3.35, "Borda em catenaria, flecha 0,28 m, cabo Ø12 inox", 12, anchor="start")
-    sh.leader(-2.0, 1.0, -4.4, 1.55, "Painel SIP 100 mm + ripado termotratado 40 x 40", 12, anchor="start")
-    sh.leader(0.4, 1.83, 3.9, 2.25, "Fresta da banheira 2,40 x 0,65 (vidro fixo)", 12, anchor="start")
-    sh.leader(0.0, 1.4, 3.9, 1.65, "Poste central dos fundos Ø76,1 (vertical)", 12, anchor="start")
-    sh.leader(3.75, 1.3, 4.6, 1.05, "Poste de canto Ø76,1 inclinado 8°, estaiado", 12, anchor="start")
-    sh.leader(-2.1, 2.82, -4.4, 2.5, "Anel de beiral 150 x 100 a 2,90 m", 12, anchor="start")
-    sh.leader(-1.8, 0.45, -4.4, 0.6, "Condensadora atras do painel ripado", 12, anchor="start")
-    sh.leader(3.1, -0.12, 3.9, 0.35, "Passarela lateral 0,80 m", 12, anchor="start")
-    sh.leader(-3.2, -0.12, -4.4, -0.3, "Terraco frontal (atras)", 12, anchor="start")
+    sh.leader(-3.0, 3.35, L, 4.3, "Membrana PVDF em balanco 1,00 m nos fundos", 12, anchor="end")
+    sh.leader(-1.85, 2.37, L, 3.55, "Borda em catenaria, flecha 0,28 m, cabo Ø12 inox", 12, anchor="end")
+    sh.leader(-2.1, 2.82, L, 2.9, "Anel de beiral 150 x 100 a 2,90 m", 12, anchor="end")
+    sh.leader(-2.0, 1.0, L, 2.2, "Painel SIP 100 mm + ripado termotratado 40 x 40", 12, anchor="end")
+    sh.leader(-1.8, 0.45, L, 1.4, "Condensadora 18k BTU atras do ripado", 12, anchor="end")
+    sh.leader(-3.2, -0.12, L, 0.6, "Terraco frontal (atras) sobre vigas U 150", 12, anchor="end")
+    sh.leader(-3.7, -0.5, L, -0.9, "Estaca de tracao do estai", 12, anchor="end")
+    sh.leader(0.4, 1.83, R, 3.55, "Fresta da banheira 2,40 x 0,65 (vidro fixo)", 12, anchor="start")
+    sh.leader(0.0, 1.4, R, 2.9, "Poste central dos fundos Ø76,1 (vertical)", 12, anchor="start")
+    sh.leader(3.75, 1.3, R, 2.2, "Poste de canto Ø76,1 inclinado 8°, estaiado", 12, anchor="start")
+    sh.leader(2.2, 0.7, R, 1.4, "Ripado 40 x 40 termotratado, junta 40 mm", 12, anchor="start")
+    sh.leader(3.1, -0.12, R, 0.6, "Passarela lateral 0,80 m", 12, anchor="start")
     # cotas
     sh.dim(-2.7, -0.9, 2.7, -0.9, -0.35, label="5,40 (corpo)")
     sh.dim(y0, -0.9, y1, -0.9, -0.95, label="7,40 (cobertura)")
     sh.dim(-3.4, -0.9, 3.5, -0.9, -1.55, label="6,90 (terraco + passarela)")
-    sh.dim(-4.2, 0, -4.2, 5.8, -0.6, label="5,80")
-    sh.dim(-4.2, 0, -4.2, 2.75, -1.15, label="2,75")
-    sh.dim(4.2, 0, 4.2, 4.6, 0.6, label="4,60")
-    sh.dim(4.2, 0, 4.2, 2.65, 1.15, label="2,65 (postes)")
-    sh.scalebar(-6.3, -2.2, 4)
-    sh.title_block("ZION ZENITH", "Fachada traseira", "1:50 (A1)", "04b/27", "Painel ripado dos fundos, fresta da banheira, tres postes e borda em catenaria")
+    sh.dim(-4.3, 0, -4.3, 5.8, -0.45, label="5,80")
+    sh.dim(-4.3, 0, -4.3, 2.75, -0.95, label="2,75")
+    sh.dim(4.3, 0, 4.3, 4.6, 0.45, label="4,60")
+    sh.dim(4.3, 0, 4.3, 2.65, 0.95, label="2,65 (postes)")
+    sh.scalebar(-7.6, -2.3, 4)
+    sh.title_block("ZION ZENITH", "Fachada traseira", "1:50 (A1)", "04b/27", "Painel ripado, fresta da banheira, tres postes e borda em catenaria")
     return sh
 
 # ==================================================================================
 # COCOON: planta estrutural
 # ==================================================================================
 def cocoon_planta_estrutural():
-    sh = Sheet(1600, 1000, scale=78, ox=390, oy=520)
+    sh = Sheet(1600, 1000, scale=72, ox=440, oy=520)
     sh.header("Zion Cocoon · Planta estrutural", "Fundacoes, quadro do piso, trilhos de base, arcos e travamentos · codigos conforme a lista de materiais")
     D = C.DECK
     # contornos de referencia
     sh.rect(D["x1"], D["y1"], D["x2"], D["y2"], fill="none", stroke=GREEN, sw=0.9)
-    for i in range(3):
-        sh.rect(D["x1"] - 0.3 * (i + 1), -1.2, D["x1"] - 0.3 * i, 1.2, fill="none", stroke=GREEN, sw=0.5, opacity=0.6)
     sh.poly(C.shell_plan_outline(120), fill="none", stroke=EARTH, sw=0.7, dash="8 4", opacity=0.7)
     sh.poly(C.floor_outline(120), fill="none", stroke=GREEN, sw=0.8)
     # vigas do quadro do piso (A01 longitudinais, A02 transversais, A05 bordas do deck)
@@ -293,7 +297,7 @@ def cocoon_planta_estrutural():
     code_tag(sh, -2.2, -3.25, "A05", size=8, dy=12)
     code_tag(sh, 2.85, 2.95, "D01", size=8, anchor="start", dy=-16)
     code_tag(sh, 8.4, -1.05, "C01", size=8, anchor="start")
-    code_tag(sh, 4.25, 0.0, "C02", size=8)
+    code_tag(sh, 2.35, 0.62, "C02", size=8)
     code_tag(sh, 7.05, 2.35, "C03", size=8)
     code_tag(sh, 1.05, -2.35, "C03", size=8)
     code_tag(sh, 9.3, 1.75, "E01", size=8, anchor="start", dy=-8)
@@ -303,16 +307,16 @@ def cocoon_planta_estrutural():
     # marcas de corte
     sh.line(5.0, -3.4, 5.0, 3.4, GREEN, 1.4, dash="10 4")
     sh.text(5.0, 3.6, "B", 12, weight=700); sh.text(5.0, -3.75, "B", 12, weight=700)
-    sh.line(-4.0, 0.0, 11.0, 0.0, GREEN, 1.4, dash="10 4")
-    sh.text(-4.25, 0.0, "A", 12, weight=700, dy=4); sh.text(11.25, 0.0, "A", 12, weight=700, dy=4)
+    sh.line(-4.0, 0.0, 10.3, 0.0, GREEN, 1.4, dash="10 4")
+    sh.text(-4.25, 0.0, "A", 12, weight=700, dy=4); sh.text(10.5, 0.0, "A", 12, weight=700, dy=4)
     # cotas: eixos das estacas
     sh.dim_chain(C_PX, -3.55, -0.5, size=10)
     sh.dim(-3.7, -3.55, 9.6, -3.55, -1.15, label="13,30 (deck + concha)")
-    sh.dim_chain(C_PY, -4.1, -0.35, vertical=True, size=10)
-    sh.dim(-4.1, -3.25, -4.1, 3.25, -1.0, label="6,50 (deck)")
-    sh.dim(10.9, -3.0, 10.9, 3.0, 0.55, label="6,00")
+    sh.dim_chain(C_PY, -4.0, -0.4, vertical=True, size=10)
+    sh.dim(-4.0, -3.25, -4.0, 3.25, -0.95, label="6,50 (deck)")
+    sh.dim(10.3, -3.0, 10.3, 3.0, 0.5, label="6,00")
     # legenda de codigos
-    sh.north(1500, 120, angle=-90)
+    sh.north(1520, 120, angle=-90)
     sh.text_px(1290, 205, "CODIGOS ESTRUTURAIS", size=10, weight=700, spacing=0.2, anchor="start")
     items = [(f"F01-F{len(piles):02d}", "Estaca helicoidal Ø76 / helice Ø300, L 1,5 a 2,5 m"),
              ("A01", "Vigas longitudinais U 150 x 60 x 3,0 galv. (5 linhas)"),
@@ -324,9 +328,9 @@ def cocoon_planta_estrutural():
              ("C01", "7 tercas longitudinais Ø48,3 x 3,0"),
              ("C02", "Espinha de Luz: trelica plana 300 mm"),
              ("C03", "Cabos em X Ø8 inox nos vaos B00-B01 e B05-B06"),
-             ("D01", f"Chapa de base 200 x 150 x 10, 4 chumbadores M16 ({2 * len(C.ARCH_X)} un.)"),
+             ("D01", f"Chapa de base 200 x 150 x 10 + 4 M16 ({2 * len(C.ARCH_X)} un.)"),
              ("E01", "Quadro da cauda Ø60,3 x 3,0 + 3 barras")]
-    code_legend(sh, 1290, 232, items, size=9.2, pitch=21)
+    code_legend(sh, 1290, 232, items, size=9.0, pitch=21)
     sh.text_px(1290, 495, f"Malha de estacas 1,20 x 1,30 m · {len(piles)} estacas sob o deck e o piso", size=9, fill=EARTH, anchor="start")
     sh.text_px(1290, 511, "Arcos: pes engastados nos trilhos A03/A04 via D01", size=9, fill=EARTH, anchor="start")
     sh.scalebar(-3.7, -5.55, 5)
@@ -338,15 +342,13 @@ def cocoon_planta_estrutural():
 # ZENITH: planta estrutural
 # ==================================================================================
 def zenith_planta_estrutural():
-    sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
+    sh = Sheet(1600, 1000, scale=76, ox=400, oy=480)
     sh.header("Zion Zenith · Planta estrutural", "Fundacoes, quadro do piso, pilares, anel de beiral, mastros, postes e estais · codigos conforme a lista de materiais")
     D, Wk = Z.DECK, Z.WALK
     x0, x1, y0, y1 = Z.roof_bounds()
     # contornos de referencia
     sh.rect(D["x1"], D["y1"], D["x2"], D["y2"], fill="none", stroke=GREEN, sw=0.9)
     sh.rect(Wk["x1"], Wk["y1"], Wk["x2"], Wk["y2"], fill="none", stroke=GREEN, sw=0.9)
-    for i in range(3):
-        sh.rect(D["x1"] - 0.3 * (i + 1), -1.2, D["x1"] - 0.3 * i, 1.2, fill="none", stroke=GREEN, sw=0.5, opacity=0.6)
     H = Z.HOTTUB
     sh.circle(H["x"], H["y"], H["r"], fill="none", stroke=GREEN, sw=0.6, dash="4 3", opacity=0.7)
     sh.poly(roof_outline_pts(), fill="none", stroke=GREEN, sw=1.0, dash="10 5")
@@ -398,50 +400,50 @@ def zenith_planta_estrutural():
         sh.circle(px, py, 0.05, fill=STEEL, stroke="none")
         sh.circle(px, py, 0.16, fill="none", stroke=STEEL, sw=0.8)
         sh.line(px, py, tx, ty, EARTH, 0.9, dash="4 3")
-        ox_, oy_ = (0.0, 0.42 if py > 0 else -0.42) if abs(py) > 1 else (0.42, 0.0)
-        code_tag(sh, px + ox_, py + oy_, f"PE{i + 1:02d}", size=8, anchor="start" if abs(py) <= 1 else "middle")
+        oy_ = 0.42 if py > 0 else -0.42
+        code_tag(sh, px, py + oy_, f"PE{i + 1:02d}", size=8)
     # etiquetas de vigas
     code_tag(sh, -2.9, 2.6, "A01", size=8, anchor="start", dy=-12)
     code_tag(sh, -2.9, 0.0, "A01", size=8, anchor="start", dy=-12)
     code_tag(sh, 2.2, 3.5, "A02", size=8, dy=-12)
     code_tag(sh, -0.2, 3.4, "A02", size=8, dy=-12)
     code_tag(sh, -1.5, -3.4, "A03", size=8, dy=12)
-    code_tag(sh, 4.6, -2.7, "A03", size=8, dy=12)
+    code_tag(sh, 8.4, 3.5, "A03", size=8, dy=-12)
     code_tag(sh, 8.0, 2.0, "W01", size=8, anchor="start")
     code_tag(sh, x1 - 0.5, y0 + 0.08, "CB01", size=8, anchor="end", dy=12)
     arrow2(sh, -2.5, 1.9, -0.3, 1.9, "vigotas 50 x 150 c/ 400", EARTH)
     arrow2(sh, 2.35, -0.65, 4.45, -0.65, "vigotas 50 x 150 c/ 400", EARTH)
     # marcas de corte
-    sh.line(6.3, -4.3, 6.3, 4.3, GREEN, 1.4, dash="10 4")
-    sh.text(6.3, 4.5, "B", 12, weight=700); sh.text(6.3, -4.65, "B", 12, weight=700)
-    sh.line(-4.0, 0.4, 11.9, 0.4, GREEN, 1.4, dash="10 4")
-    sh.text(-4.25, 0.4, "A", 12, weight=700, dy=4); sh.text(12.1, 0.4, "A", 12, weight=700, dy=4)
+    sh.line(6.3, -4.2, 6.3, 4.3, GREEN, 1.4, dash="10 4")
+    sh.text(6.3, 4.5, "B", 12, weight=700); sh.text(6.3, -4.55, "B", 12, weight=700)
+    sh.line(-4.0, 0.4, 11.2, 0.4, GREEN, 1.4, dash="10 4")
+    sh.text(-4.25, 0.4, "A", 12, weight=700, dy=4); sh.text(11.45, 0.4, "A", 12, weight=700, dy=4)
     # cotas
-    sh.dim_chain(Z_PX, -4.0, -0.6, size=10)
-    sh.dim(x0, -4.0, x1, -4.0, -1.3, label="12,90 (cobertura)")
-    sh.dim_chain(Z_PY, -4.6, -0.3, vertical=True, size=10)
-    sh.dim(-4.6, -3.4, -4.6, 3.4, -0.95, label="6,80 (terraco)")
-    sh.dim(11.6, -2.7, 11.6, 2.7, 0.3, label="5,40")
-    sh.dim(11.6, y0, 11.6, y1, 0.85, label="7,40 (cobertura)")
+    sh.dim_chain(Z_PX, -3.9, -0.4, size=10)
+    sh.dim(x0, -3.9, x1, -3.9, -1.2, label="12,90 (cobertura)")
+    sh.dim_chain(Z_PY, -3.9, -0.3, vertical=True, size=10)
+    sh.dim(-3.9, -3.4, -3.9, 3.4, -0.8, label="6,80 (terraco)")
+    sh.dim(11.6, -2.7, 11.6, 2.7, 0.4, label="5,40")
+    sh.dim(11.6, y0, 11.6, y1, 0.9, label="7,40 (cobertura)")
     # legenda
-    sh.north(1500, 120, angle=-90)
-    sh.text_px(1300, 205, "CODIGOS ESTRUTURAIS", size=10, weight=700, spacing=0.2, anchor="start")
-    items = [(f"F01-F{len(grid)}", "Estaca helicoidal Ø76 / helice Ø300, malha 2,40 x 1,30"),
-             ("FT01-FT07", "Estaca de tracao Ø76 dos estais (15 a 25 kN)"),
-             ("A01", "Vigas longitudinais U 150 x 60 x 3,0 galv. (5 linhas)"),
-             ("A02", "Vigas transversais U 150 x 60 x 3,0 galv. (6 linhas)"),
-             ("A03", "Vigas de borda U 150 x 60 x 3,0 (deck e passarela)"),
-             ("P01-P10", "Pilares Ø101,6 x 4,0, h 2,90 m, embutidos nos paineis SIP"),
-             ("VB01-VB08", "Anel de beiral 150 x 100 x 4,0 em 8 trechos parafusados"),
-             ("M1", "Mastro Ø139,7 x 4,5 (5,05 m) + coroa + anel Ø1,20"),
-             ("M2", "Mastro Ø114,3 x 4,0 (4,00 m) + coroa + anel Ø0,70"),
-             ("PE01-PE07", "Postes externos Ø76,1 x 3,6 inclinados 8°, estaiados"),
-             ("CB01", "Cabo de borda Ø12 inox em bolsa, esticador em cada poste"),
-             ("W01", "Paineis SIP 100 mm: diafragma rigido do corpo")]
-    code_legend(sh, 1300, 232, items, size=9.0, pitch=21)
-    sh.text_px(1300, 495, f"{len(grid)} estacas sob o piso + {len(tens)} estacas de tracao dos postes", size=9, fill=EARTH, anchor="start")
-    sh.text_px(1300, 511, "Estais Ø10 inox dos postes ate as estacas FT (tracejado)", size=9, fill=EARTH, anchor="start")
-    sh.scalebar(-3.0, -5.55, 5)
+    sh.north(1520, 120, angle=-90)
+    sh.text_px(1362, 205, "CODIGOS ESTRUTURAIS", size=10, weight=700, spacing=0.2, anchor="start")
+    items = [(f"F01-F{len(grid)}", "Estaca helicoidal Ø76 (piso)"),
+             ("FT01-FT07", "Estaca de tracao dos estais"),
+             ("A01", "Vigas longitudinais U 150x60x3"),
+             ("A02", "Vigas transversais U 150x60x3"),
+             ("A03", "Vigas de borda U 150x60x3"),
+             ("P01-P10", "Pilares Ø101,6x4,0 h 2,90"),
+             ("VB01-VB08", "Anel de beiral 150x100x4,0"),
+             ("M1", "Mastro Ø139,7x4,5 + anel Ø1,20"),
+             ("M2", "Mastro Ø114,3x4,0 + anel Ø0,70"),
+             ("PE01-PE07", "Postes Ø76,1x3,6 inclinados 8°"),
+             ("CB01", "Cabo de borda Ø12 inox"),
+             ("W01", "Paineis SIP 100 mm (diafragma)")]
+    code_legend(sh, 1362, 232, items, size=8.4, pitch=21)
+    sh.text_px(1362, 495, f"{len(grid)} estacas sob o piso + {len(tens)} de tracao", size=8.5, fill=EARTH, anchor="start")
+    sh.text_px(1362, 511, "Estais Ø10 inox ate as estacas FT", size=8.5, fill=EARTH, anchor="start")
+    sh.scalebar(-3.0, -5.7, 5)
     sh.title_block("ZION ZENITH", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
                    "Estacas, quadro U 150, 10 pilares, anel de beiral, 2 mastros, 7 postes estaiados")
     return sh

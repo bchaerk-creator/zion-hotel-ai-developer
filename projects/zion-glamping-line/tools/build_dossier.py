@@ -7,6 +7,7 @@ from bom import cocoon_bom, zenith_bom, cocoon_parts, zenith_parts, transport, A
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 INLINE = "--inline" in sys.argv
+WEB = "--web" in sys.argv or INLINE   # usa renders/web/*.jpg (menores) para PDF e versão autônoma
 C, Z = Cocoon(), Zenith()
 BC, BZ = cocoon_bom(), zenith_bom()
 TC, TZ = transport(BC, "cocoon"), transport(BZ, "zenith")
@@ -20,6 +21,9 @@ def src(rel):
     path = os.path.join(ROOT, rel)
     if not os.path.exists(path):
         return None
+    if WEB and "/renders/" in rel and rel.endswith(".png"):
+        alt = rel.replace("/renders/", "/renders/web/").replace(".png", ".jpg")
+        if os.path.exists(os.path.join(ROOT, alt)): rel = alt; path = os.path.join(ROOT, rel)
     if not INLINE:
         return rel
     ext = rel.rsplit(".", 1)[-1].lower()
@@ -420,7 +424,7 @@ HTML = f"""<!DOCTYPE html>
 <style>{CSS}</style></head>
 <body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · CADERNO TÉCNICO</span>{nav}</nav><main>{body}</main></div></body></html>"""
 
-out = os.path.join(ROOT, "ZION_COCOON_ZENITH_Caderno_Tecnico" + ("_standalone" if INLINE else "") + ".html")
+out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_COCOON_ZENITH_Caderno_Tecnico" + ("_standalone" if INLINE else "") + ".html")
 with open(out, "w", encoding="utf-8") as f:
     f.write(HTML)
 print("dossier ->", out, f"{os.path.getsize(out) / 1e6:.2f} MB")

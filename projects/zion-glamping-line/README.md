@@ -21,8 +21,9 @@ Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da
 ```
 projects/zion-glamping-line/
 ├── cocoon/
-│   ├── desenhos/   02 planta humanizada · 03 planta técnica · 04 elevação frontal · 05 elevação lateral
-│   │               06 corte longitudinal · 07 corte transversal · 08 isométrica · 12 estrutura (isométrica)
+│   ├── desenhos/   02 planta humanizada · 03 planta técnica · 03b planta estrutural · 04 elevação frontal · 04b fachada traseira
+│   │               05 elevação lateral · 06 corte longitudinal · 07 corte transversal · 08 isométrica · 10 modelo explodido
+│   │               12 estrutura (isométrica) · 13 camadas construtivas (explodida)
 │   ├── 3d/         zion-cocoon-3d.html (visualizador interativo Three.js) · zion-cocoon.glb
 │   └── renders/    renders externos (frontal, lateral, cauda, aérea, noite), internos (estar, cama, banho), estrutura, corte
 ├── zenith/         mesma estrutura
@@ -73,9 +74,11 @@ pip install numpy            # única dependência Python
 python3 drawings_cocoon.py && python3 drawings_zenith.py && python3 iso.py && python3 details.py
 python3 build_viewer.py      # visualizadores 3D
 NODE_PATH=/opt/node22/lib/node_modules node render.js      # renders PNG + GLB (Playwright + Chromium)
+python3 drawings_extra.py && python3 exploded.py   # planta estrutural, fachada traseira, explodidas
 python3 build_dossier.py     # Caderno Técnico HTML
-python3 build_dossier.py --inline   # versão autônoma com imagens embutidas
-NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js   # PDF
+python3 build_product_book.py   # Product Book HTML + planilha XLSX
+NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js   # PDF do Caderno
+NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js ../ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf
 ```
 
 Toda a geometria (planta, seções, arcos, cumes, layout) vem de `tools/geometry.py`. Alterar um parâmetro ali e regenerar atualiza desenhos, isométricas, modelo 3D, renders e listas de materiais de forma consistente.

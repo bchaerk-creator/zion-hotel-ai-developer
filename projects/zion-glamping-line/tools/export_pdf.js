@@ -4,8 +4,8 @@ const { chromium } = require('playwright');
 const path = require('path');
 (async () => {
   const root = path.resolve(__dirname, '..');
-  const input = process.argv[2] || path.join(root, 'ZION_COCOON_ZENITH_Caderno_Tecnico.html');
-  const output = process.argv[3] || path.join(root, 'ZION_COCOON_ZENITH_Caderno_Tecnico.pdf');
+  const input = path.resolve(process.argv[2] || path.join(root, 'ZION_COCOON_ZENITH_Caderno_Tecnico.html'));
+  const output = path.resolve(process.argv[3] || path.join(root, 'ZION_COCOON_ZENITH_Caderno_Tecnico.pdf'));
   const browser = await chromium.launch({ executablePath: process.env.CHROMIUM_PATH || '/opt/pw-browsers/chromium' });
   const page = await browser.newPage({ viewport: { width: 1400, height: 1000 } });
   await page.goto('file://' + input, { waitUntil: 'load' });
