@@ -55,7 +55,7 @@ def cocoon_parts():
     add("D01", "Chapa de base dos arcos (200 x 150 x 10) com 2 enrijecedores", 18, 0.20, 150, 10, "Chapa A36 + enrijecedores 80 x 60 x 8", "ASTM A36 galv.", 10.0, 2.6, "Corte plasma + solda de fábrica no pé do arco", "4 chumbadores M16 8.8 na viga de borda", 6, "Engasta o arco no quadro do deck")
     add("D02", "Luva interna de emenda Ø76,1 x 200 (4 furos Ø13)", 16, 0.20, 0, 0, "Tubo Ø76,1 x 3,6", "ASTM A500 Gr. B galv.", 3.6, 0.2 * KG["Ø76,1 x 3,6"], "Corte + furação; soldada dentro da perna", "Encaixe macho-fêmea + 4 M12 8.8 + pino de segurança Ø6", 6, "Emenda de fábrica/campo entre perna e coroa")
     add("D03", "Talão de terça (chapa 8 mm com furo Ø17)", 56, 0.06, 40, 8, "Chapa A36", "ASTM A36 galv.", 8.0, 0.15, "Corte laser + solda de fábrica nos arcos", "Recebe a ponteira M16 das terças", 6, "Ponto de fixação das terças")
-    add("D04", "Chapa de topo dos cabeçotes (150 x 150 x 8, 4 furos)", 46, 0.15, 150, 8, "Chapa A36", "ASTM A36 galv.", 8.0, 1.4, "Corte + furação (fornecida com o cabeçote)", "4 M12 8.8 na mesa da viga U", 2, "Liga a fundação ao quadro do deck")
+    add("D04", "Chapa de topo dos cabeçotes (150 x 150 x 8, 4 furos)", 44, 0.15, 150, 8, "Chapa A36", "ASTM A36 galv.", 8.0, 1.4, "Corte + furação (fornecida com o cabeçote)", "4 M12 8.8 na mesa da viga U", 2, "Liga a fundação ao quadro do deck")
     add("D05", "Olhal para cabo (chapa 10 mm, furo Ø14)", 8, 0.08, 50, 10, "Chapa A36", "ASTM A36 galv.", 10.0, 0.3, "Corte laser + solda de fábrica nos arcos", "Manilha inox", 6, "Ancoragem dos cabos em X")
     add("D06", "Chapa de emenda das vigas (120 x 140 x 6, 4 furos)", 20, 0.14, 120, 6, "Chapa A36", "ASTM A36 galv.", 6.0, 0.8, "Corte + furação", "4 M12 8.8 por face", 3, "Emenda das vigas longitudinais e de borda")
     add("D07", "Cantoneira de cruzamento 75 x 75 x 6 x 140", 60, 0.14, 75, 6, "Cantoneira laminada", "ASTM A36 galv.", 6.0, 0.9, "Corte + furação", "2 M12 em cada aba", 3, "Ligação viga transversal x longitudinal")
@@ -69,8 +69,8 @@ def cocoon_parts():
     add("E06", "Anel de reforço da janela (chapa 3 mm curvada)", 6, 4.20, 60, 3, "Chapa A36 curvada", "ASTM A36 galv.", 3.0, 6.0, "Corte laser + calandra + solda nas terças", "Solda de fábrica", 6, "Distribui a tensão da membrana ao redor do Olho")
     add("E07", "Anel de alumínio da fachada 120 x 60 (2 metades)", 2, 5.10, 120, 60, "Alumínio 6063-T6 calandrado", "alumínio", 2.5, 5.1 * 2.5, "Calandra + usinagem", "Parafuso M8 @400 + fita EPDM sobre o anel B00", 11, "Base da esquadria da fachada inclinada")
     # ---- F · FUNDAÇÃO ----
-    add("F01", "Estaca helicoidal Ø76 x 3,6, hélice Ø300, L 2,0 m", 46, 2.00, 300, 0, "Tubo Ø76,1 x 3,6 + hélice chapa 8 mm", "ASTM A500 / A36 galv.", 3.6, 2.0 * KG["Ø76,1 x 3,6"] + 5.5, "Solda da hélice + galvanização (compra)", "Rosca M30 do cabeçote F02", 1, "Fundação removível sem escavação")
-    add("F02", "Cabeçote ajustável rosqueado (curso 150 mm) + chapa D04", 46, 0.25, 150, 8, "Barra roscada M30 + chapa", "aço galv.", 8.0, 2.2, "Compra", "Rosca M30 + contraporca; 4 M12 na viga", 2, "Nivelamento fino do deck")
+    add("F01", "Estaca helicoidal Ø76 x 3,6, hélice Ø300, L 2,0 m", 44, 2.00, 300, 0, "Tubo Ø76,1 x 3,6 + hélice chapa 8 mm", "ASTM A500 / A36 galv.", 3.6, 2.0 * KG["Ø76,1 x 3,6"] + 5.5, "Solda da hélice + galvanização (compra)", "Rosca M30 do cabeçote F02", 1, "Fundação removível sem escavação")
+    add("F02", "Cabeçote ajustável rosqueado (curso 150 mm) + chapa D04", 44, 0.25, 150, 8, "Barra roscada M30 + chapa", "aço galv.", 8.0, 2.2, "Compra", "Rosca M30 + contraporca; 4 M12 na viga", 2, "Nivelamento fino do deck")
     return P
 
 def zenith_parts():
@@ -117,8 +117,8 @@ def zenith_parts():
 # 2. CONEXÕES
 # =============================================================================
 COCOON_CONNECTIONS = [
-    ("CX01", "F01 estaca helicoidal", "F02 cabeçote ajustável", "Rosca M30 com contraporca", "Contraporca M30 zincada", 46, 2),
-    ("CX02", "F02 cabeçote / chapa D04", "A01-A04 vigas U", "Chapa 150 x 150 x 8 parafusada na mesa da viga", "Parafuso M12 x 40 cl. 8.8 + porca + arruela lisa e de pressão", 184, 3),
+    ("CX01", "F01 estaca helicoidal", "F02 cabeçote ajustável", "Rosca M30 com contraporca", "Contraporca M30 zincada", 44, 2),
+    ("CX02", "F02 cabeçote / chapa D04", "A01-A04 vigas U", "Chapa 150 x 150 x 8 parafusada na mesa da viga", "Parafuso M12 x 40 cl. 8.8 + porca + arruela lisa e de pressão", 176, 3),
     ("CX03", "A01/A02/A03 vigas longitudinais", "A01/A02/A03 (emendas)", "Chapa de emenda D06 dupla (uma por face da alma)", "Parafuso M12 x 40 cl. 8.8 (8 por emenda)", 80, 3),
     ("CX04", "A04 vigas transversais", "A01-A03 longitudinais", "Cantoneira D07 75 x 75 x 6 (2 por cruzamento)", "Parafuso M12 x 40 cl. 8.8 (4 por cruzamento)", 200, 3),
     ("CX05", "A05/A06 vigas de borda curvas", "A04 transversais", "Cantoneira D07 + chapa de emenda D06", "Parafuso M12 x 40 cl. 8.8", 48, 3),
@@ -275,7 +275,7 @@ def bom_priced(product):
             ("10 Deck", [("Deck cumaru 20 x 140", "m²", round(deck), "cumaru"), ("Vigotas do deck", "m", round(deck * 2.5), "vigota")]),
             ("11 Piso", [("Vigotas 50 x 150", "m", round(floor * 2.5), "vigota"), ("PIR 50 mm + manta", "m²", round(floor), "pir"), ("Compensado naval 18 mm", "m²", round(floor), "compensado"),
                          ("Piso de engenharia carvalho", "m²", round(floor - 13.2), "piso_eng"), ("Zona molhada (porcelanato)", "m²", 13, "porcelanato"),
-                         ("Estacas helicoidais + cabeçotes", "un", 46, "estaca"), ("Instalação das estacas", "un", 46, "estaca_inst"), ("Mobilização da cravação", "vb", 1, "mobiliz")]),
+                         ("Estacas helicoidais + cabeçotes", "un", 44, "estaca"), ("Instalação das estacas", "un", 44, "estaca_inst"), ("Mobilização da cravação", "vb", 1, "mobiliz")]),
             ("12 Banheiro", [("Louças e metais", "cj", 1, "loucas"), ("Banheira 1,60 m", "un", 1, "banheira"), ("Parede do banho / cabeceira", "m²", 16, "parede")]),
             ("13 Hidráulica", [("Kit PEX + esgoto + ventilação", "cj", 1, "pex"), ("Aquecedor a gás 23 L/min", "un", 1, "aquecedor"), ("Fossa + filtro compactos", "cj", 1, "esgoto")]),
             ("14 Elétrica", [("Quadro, cabos, tomadas, DR", "cj", 1, "eletrica")]),
@@ -393,7 +393,7 @@ def manual(product):
     step(1, "Preparação e marcação do terreno", "Líder + 2 montadores + topógrafo", "Estação total ou nível a laser, trena 30 m, estacas de madeira, linha, tinta de marcação", "Roçadeira, caminhonete",
          "4 h", "Erro de locação propaga para todas as etapas; raízes e rochas no eixo das estacas", ["Eixos x/y materializados com 2 referências fixas fora da obra", "Cota de referência (RN) definida", "Acesso do caminhão e área de estoque delimitados", "Interferências (raízes, rocha, rede) mapeadas"])
     step(2, "Instalação das fundações (estacas helicoidais)", "Operador de cravação + 2 montadores + líder", "Chaves de torque, nível, gabarito de posição", "Motor hidráulico de cravação (ou mini-escavadeira com cabeçote), gerador",
-         "1 dia" if c else "1,5 dia", "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{46 if c else 37} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", "Estacas de tração dos postes com olhal orientado (Zenith)"])
+         "1 dia" if c else "1,5 dia", "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{44 if c else 37} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", "Estacas de tração dos postes com olhal orientado (Zenith)"])
     step(3, "Montagem da estrutura base (grelha de vigas U 150)", "4 montadores + líder", "Torquímetro 20-100 N·m, chaves combinadas 19 mm, furadeira, esquadro de 1 m, cordão", "Guincho manual 1 t ou 2 cavaletes",
          "1 dia", "Esquadro fora: medir as duas diagonais; vigas com furos oblongos permitem ajuste", ["Diagonais iguais (± 10 mm)", "Todos os M12 com torque 45 N·m", "Vigas de borda curvas (Cocoon) / de borda do corpo (Zenith) conferidas com o gabarito de planta", "Cabeçotes travados com contraporca"])
     step(4, "Instalação das peças estruturais secundárias (módulos de piso e deck)", "4 montadores (2 carpinteiros)", "Parafusadeira, serra circular, nível", "Guincho manual",

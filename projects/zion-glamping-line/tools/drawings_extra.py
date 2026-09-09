@@ -49,7 +49,11 @@ def zenith_pile_grid():
     return [(px, py) for px in Z_PX for py in Z_PY]
 
 def zenith_tension_piles():
-    """estacas de tracao dos 7 postes (1,0 m para fora, na direcao do estai)."""
+    """estacas de tracao: uma sob cada um dos 7 postes externos."""
+    return list(Z.posts())
+
+def zenith_stay_anchors():
+    """chumbadores dos estais: 1,0 m para fora de cada poste, na direcao da inclinacao."""
     out = []
     for (px, py) in Z.posts():
         dx = -1.0 if px < 0 else (1.0 if px > 9 else 0.0)
@@ -187,6 +191,8 @@ def zenith_fachada_traseira():
         sh.rect(py - 0.04, -0.6, py + 0.04, -0.2, fill=STEEL, stroke="none")
     for (px, py) in zenith_tension_piles():
         if px > 10: sh.rect(py - 0.04, -0.6, py + 0.04, -0.02, fill=STEEL, stroke="none", opacity=0.6)
+    for (px, py) in zenith_stay_anchors():
+        if px > 10 and abs(py) > 1: sh.rect(py - 0.03, -0.45, py + 0.03, -0.02, fill=EARTH, stroke="none", opacity=0.8)
     sh.rect(-3.4, -0.2, 3.5, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9); sh.rect(-3.4, -0.05, 3.5, 0.0, fill=GREEN, stroke="none")
     # cobertura: silhueta + borda dos fundos (2 catenarias entre 3 postes)
     x0, x1, y0, y1 = Z.roof_bounds()
@@ -222,7 +228,8 @@ def zenith_fachada_traseira():
     sh.leader(-2.0, 1.0, L, 2.2, "Painel SIP 100 mm + ripado termotratado 40 x 40", 12, anchor="end")
     sh.leader(-1.8, 0.45, L, 1.4, "Condensadora 18k BTU atras do ripado", 12, anchor="end")
     sh.leader(-3.2, -0.12, L, 0.6, "Terraco frontal (atras) sobre vigas U 150", 12, anchor="end")
-    sh.leader(-3.7, -0.5, L, -0.9, "Estaca de tracao do estai", 12, anchor="end")
+    sh.leader(-3.7, -0.5, L, -0.9, "Estaca de tracao sob o poste", 12, anchor="end")
+    sh.leader(4.66, -0.3, R, -0.9, "Chumbador do estai Ø10 inox", 12, anchor="start")
     sh.leader(0.4, 1.83, R, 3.55, "Fresta da banheira 2,40 x 0,65 (vidro fixo)", 12, anchor="start")
     sh.leader(0.0, 1.4, R, 2.9, "Poste central dos fundos Ø76,1 (vertical)", 12, anchor="start")
     sh.leader(3.75, 1.3, R, 2.2, "Poste de canto Ø76,1 inclinado 8°, estaiado", 12, anchor="start")
@@ -392,15 +399,16 @@ def zenith_planta_estrutural():
     grid = zenith_pile_grid()
     for i, (px, py) in enumerate(grid):
         pile_symbol(sh, px, py, f"F{i + 1:02d}")
-    tens = zenith_tension_piles()
-    for i, (px, py) in enumerate(tens):
-        pile_symbol(sh, px, py, f"FT{i + 1:02d}", r=5)
-    # postes PE01..PE07 com estais ate as estacas de tracao
-    for i, ((px, py), (tx, ty)) in enumerate(zip(Z.posts(), tens)):
-        sh.circle(px, py, 0.05, fill=STEEL, stroke="none")
-        sh.circle(px, py, 0.16, fill="none", stroke=STEEL, sw=0.8)
+    tens = zenith_tension_piles(); anchors = zenith_stay_anchors()
+    # postes PE01..PE07 sobre estacas de tracao FT, estais ate chumbadores EA (1,0 m para fora)
+    for i, ((px, py), (tx, ty)) in enumerate(zip(tens, anchors)):
         sh.line(px, py, tx, ty, EARTH, 0.9, dash="4 3")
-        oy_ = 0.42 if py > 0 else -0.42
+        pile_symbol(sh, px, py, None, r=6)
+        sh.circle(px, py, 0.2, fill="none", stroke=STEEL, sw=1.0)
+        sh.text_px(sh.X(px) + 9, sh.Y(py) - 8, f"FT{i + 1:02d}", size=7.5, fill=EARTH, anchor="start")
+        ax_, ay_ = sh.X(tx), sh.Y(ty)
+        sh.add(f'<polygon points="{ax_:.1f},{ay_ - 5:.1f} {ax_ - 4.5:.1f},{ay_ + 3:.1f} {ax_ + 4.5:.1f},{ay_ + 3:.1f}" fill="{EARTH}"/>')
+        oy_ = 0.45 if py > 0 else -0.45
         code_tag(sh, px, py + oy_, f"PE{i + 1:02d}", size=8)
     # etiquetas de vigas
     code_tag(sh, -2.9, 2.6, "A01", size=8, anchor="start", dy=-12)
@@ -429,7 +437,8 @@ def zenith_planta_estrutural():
     sh.north(1520, 120, angle=-90)
     sh.text_px(1362, 205, "CODIGOS ESTRUTURAIS", size=10, weight=700, spacing=0.2, anchor="start")
     items = [(f"F01-F{len(grid)}", "Estaca helicoidal Ø76 (piso)"),
-             ("FT01-FT07", "Estaca de tracao dos estais"),
+             ("FT01-FT07", "Estaca de tracao sob cada poste"),
+             ("EA", "Chumbador do estai, 1,0 m fora do poste"),
              ("A01", "Vigas longitudinais U 150x60x3"),
              ("A02", "Vigas transversais U 150x60x3"),
              ("A03", "Vigas de borda U 150x60x3"),
@@ -441,8 +450,8 @@ def zenith_planta_estrutural():
              ("CB01", "Cabo de borda Ø12 inox"),
              ("W01", "Paineis SIP 100 mm (diafragma)")]
     code_legend(sh, 1362, 232, items, size=8.4, pitch=21)
-    sh.text_px(1362, 495, f"{len(grid)} estacas sob o piso + {len(tens)} de tracao", size=8.5, fill=EARTH, anchor="start")
-    sh.text_px(1362, 511, "Estais Ø10 inox ate as estacas FT", size=8.5, fill=EARTH, anchor="start")
+    sh.text_px(1362, 516, f"{len(grid)} estacas sob o piso + {len(tens)} de tracao", size=8.5, fill=EARTH, anchor="start")
+    sh.text_px(1362, 532, "Estais Ø10 inox dos postes aos chumbadores EA", size=8.5, fill=EARTH, anchor="start")
     sh.scalebar(-3.0, -5.7, 5)
     sh.title_block("ZION ZENITH", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
                    "Estacas, quadro U 150, 10 pilares, anel de beiral, 2 mastros, 7 postes estaiados")

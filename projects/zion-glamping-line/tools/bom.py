@@ -56,7 +56,7 @@ def cocoon_bom():
            ("Piso de engenharia carvalho 14 mm", "m²", r(floor - 13.2), r((floor - 13.2) * 9)),
            ("Zona molhada: placa cimentícia + impermeabilização + porcelanato", "m²", 13, 13 * 30),
            ("Deck cumaru 20 x 140 com fixação oculta", "m²", r(deck), r(deck * 20)),
-           ("Estacas helicoidais Ø76, hélice Ø300, L 2,0 m + cabeçotes", "un", 46, r(46 * 18.8))]
+           ("Estacas helicoidais Ø76, hélice Ø300, L 2,0 m + cabeçotes", "un", 44, r(44 * 18.8))]
     interiors = [("Parede da cabeceira / banho (LSF + painel + ripado)", "m²", 16, 16 * 22),
                  ("Marcenaria: console café, armário baixo, criados, bancada", "cj", 1, 260),
                  ("Cama king, chaise, poltrona, mesa", "cj", 1, 190),
@@ -162,7 +162,7 @@ def cocoon_parts():
           ("ZC-PW", "Parede do banho", "Quadro LSF 90 mm + painel + porta de correr 0,85 x 2,10, pré-montada em 2 módulos", 1, "Pré-fabricação"),
           ("ZC-PL", "Módulo de piso", "Quadros de vigotas 2,4 x 1,2 m com PIR e compensado, 18 módulos", 18, "Pré-fabricação"),
           ("ZC-DK", "Módulo de deck", "Painéis cumaru 2,0 x 1,0 m sobre vigotas", 15, "Pré-fabricação"),
-          ("ZC-EH", "Estaca helicoidal", "Ø76 x 3,6, hélice Ø300, L 2,0 m, cabeçote ajustável", 46, "Compra"),
+          ("ZC-EH", "Estaca helicoidal", "Ø76 x 3,6, hélice Ø300, L 2,0 m, cabeçote ajustável", 44, "Compra"),
           ("ZC-MQ", "Kit de instalações", "Quadro elétrico pré-montado, chicote LED, kit PEX, evaporadora dutada", 1, "Pré-montagem em bancada")]
     return P
 
@@ -219,7 +219,7 @@ def transport(b, name):
 
 ASSEMBLY = {
     "cocoon": [
-        ("Locação e fundação", "Topografia com estação total; cravação de 46 estacas helicoidais com motor hidráulico; nivelamento dos cabeçotes ajustáveis (tolerância ± 5 mm)", 1.0, "4 + operador"),
+        ("Locação e fundação", "Topografia com estação total; cravação de 44 estacas helicoidais com motor hidráulico; nivelamento dos cabeçotes ajustáveis (tolerância ± 5 mm)", 1.0, "4 + operador"),
         ("Grelha de vigas e módulos de piso", "Vigas U 150 parafusadas aos cabeçotes; 18 módulos de piso e 15 módulos de deck; fechamento inferior; passagem de esgoto e PEX", 2.0, "4"),
         ("Trilhos de base e arcos", "Fixação dos trilhos curvados; montagem dos arcos A7 a A1 no chão (pernas + coroa com luvas), içamento com guincho manual e travamento provisório; anel A0 inclinado por último", 1.5, "4"),
         ("Terças, espinha e contraventamento", "Terças rosqueadas entre arcos; treliça da espinha; cabos em X tensionados a 2 kN; conferência de geometria", 0.5, "4"),

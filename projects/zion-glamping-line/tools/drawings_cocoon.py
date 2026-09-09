@@ -181,7 +181,7 @@ def planta(human=True):
                 if px >= 1.0 and abs(py) > C.floor_hw(px) - 0.1 and abs(py) > 0.1: continue
                 npiles += 1
                 sh.add(f'<g transform="translate({sh.X(px):.1f},{sh.Y(py):.1f})"><circle r="4" fill="none" stroke="{STEEL}" stroke-width="0.9"/><line x1="-4" y1="0" x2="4" y2="0" stroke="{STEEL}" stroke-width="0.7"/><line x1="0" y1="-4" x2="0" y2="4" stroke="{STEEL}" stroke-width="0.7"/></g>')
-        sh.text(-3.7, 5.0, f"○+ estaca helicoidal Ø76 / hélice Ø300 (malha 1,20 x 1,30 m, {npiles} un.)", 10, STEEL, anchor="start")
+        sh.text(-3.7, 5.0, f"○+ estaca helicoidal Ø76 / hélice Ø300 (malha 1,20 x 1,30 m, 44 un.)", 10, STEEL, anchor="start")
         # marcas de corte
         for (x, y1, y2, lbl) in [(5.0, -3.4, 3.4, "B")]:
             sh.line(x, y1, x, y2, GREEN, 1.4, dash="10 4")

@@ -76,7 +76,7 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 | Perfis keder | Perfil de alumínio duplo keder fixado sobre cada arco por presilhas a cada 300 mm | 8 |
 | Chapas de base | Chapa 200 x 150 x 10 mm com 4 chumbadores M16 por pé de arco | 16 |
 
-Estabilidade: os arcos trabalham como pórticos elípticos biengastados no quadro do piso; a membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos absorvem o vento longitudinal. Uplift máximo de projeto sobre a concha: 1,3 kN/m² x 48 m² ≈ 62 kN, distribuído em 16 pés de arco (≈ 4 kN cada) e transmitido às estacas helicoidais (46 no total sob piso e deck).
+Estabilidade: os arcos trabalham como pórticos elípticos biengastados no quadro do piso; a membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos absorvem o vento longitudinal. Uplift máximo de projeto sobre a concha: 1,3 kN/m² x 48 m² ≈ 62 kN, distribuído em 16 pés de arco (≈ 4 kN cada) e transmitido às estacas helicoidais (44 no total sob piso e deck).
 
 ### 2.5 Sistemas
 - Climatização: evaporadora dutada inverter 12.000 BTU (quente/frio, operação até -15 °C) no ático técnico, com dois difusores lineares na parede da cabeceira (suíte) e um no estar; retorno pelo forro do banho. Condensadora na cauda. Piso radiante elétrico opcional no banho (150 W/m²).
