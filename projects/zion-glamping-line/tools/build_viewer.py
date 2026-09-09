@@ -89,9 +89,11 @@ def cocoon_data():
     c = G.Cocoon()
     d = c.export()
     # forro interno (tecido tensionado) 12 cm para dentro da membrana, do plano de vidro à cauda
-    d["liner"] = cocoon_shell_offset(c, -0.12, 64, 32, c.X_GLASS)
-    # arcos e terças 6 cm para dentro da membrana (entre membrana e forro)
-    d["arches_in"] = [dict(x=x, pts=c.section_curve(x, 48, offset=-0.06)) for x in c.ARCH_X]
+    LINER = -0.17   # câmara ventilada 60 mm + isolamento 50 mm + forro tensionado
+    STRUCT = -0.085  # eixo dos arcos/terças: entre a membrana (0) e o forro
+    d["liner"] = cocoon_shell_offset(c, LINER, 64, 32, c.X_GLASS)
+    # arcos e terças entre membrana e forro
+    d["arches_in"] = [dict(x=x, pts=c.section_curve(x, 48, offset=STRUCT)) for x in c.ARCH_X]
     pur = []
     n = 60
     for v in c.PURLIN_V:
@@ -99,7 +101,7 @@ def cocoon_data():
         for i in range(n + 1):
             x = c.X_FRONT + (8.6 - c.X_FRONT) * i / n
             t0, t1 = c.theta_range(x)
-            pts.append(c.section_point(x, t0 + (t1 - t0) * v, -0.06))
+            pts.append(c.section_point(x, t0 + (t1 - t0) * v, STRUCT))
         pur.append(pts)
     d["purlins_in"] = pur
     # trilhos da espinha de luz (treliça plana) nas bordas da claraboia
@@ -112,6 +114,20 @@ def cocoon_data():
             pts.append(c.section_point(x, math.pi / 2 + sgn * ht, -0.03))
         rails.append(pts)
     d["spine_rails"] = rails
+    # requadros profundos em madeira: faixa entre o contorno exterior (membrana) e o interior (forro)
+    def outline(w, offset, n=48):
+        pts = []
+        for i in range(n):
+            ang = 2 * math.pi * i / n
+            cs, sn = math.cos(ang), math.sin(ang)
+            r = (abs(cs) ** 1.5 + abs(sn) ** 1.5) ** (-1 / 1.5)
+            pts.append(c.section_point(w["xc"] + w["lx"] * r * cs, w["tc"] + w["lt"] * r * sn, offset))
+        return pts
+    d["reveals"] = [dict(outer=outline(w, 0.0), inner=outline(w, LINER), closed=True) for w in c.WINDOWS]
+    for sgn in (-1, 1):
+        outer = [c.section_point(x1 + (x2 - x1) * i / 24, math.pi / 2 + sgn * ht, -0.005) for i in range(25)]
+        inner = [c.section_point(x1 + (x2 - x1) * i / 24, math.pi / 2 + sgn * ht, LINER) for i in range(25)]
+        d["reveals"].append(dict(outer=outer, inner=inner, closed=False))
     # laje/quadro de piso sob toda a concha (x 0,5 a 9,0)
     right, left = [], []
     for i in range(61):
@@ -123,6 +139,30 @@ def cocoon_data():
     # plano da fachada de vidro: x = x0 - k * z
     d["glass_plane"] = dict(x0=c.X_GLASS, k=c.tilt(c.X_GLASS) / 3.9)
     d["top"] = c.top(c.XMAX)
+    # forro do banho recortado pela concha (cota 2,42 m) — evita que a laje do ático atravesse a membrana na cauda
+    zc = 2.42
+    pr, pl = [], []
+    for i in range(51):
+        x = 6.3 + (8.8 - 6.3) * i / 50
+        a_, b_ = c.a(x), c.b(x)
+        if b_ <= zc - c.ZC + 1e-9:
+            break
+        hw = a_ * math.sqrt(1 - ((zc - c.ZC) / b_) ** 2) - 0.02
+        if hw <= 0.05:
+            break
+        pr.append((x, -hw))
+        pl.append((x, hw))
+    d["ceiling_poly"] = dict(z=zc, pts=pr + pl[::-1])
+    # parede do banho: polígono (y, z) da seção da concha em x = 6,25 até z = 2,60, com o vão da porta (y 1,00 a 1,85; h 2,10)
+    xw, z2 = 6.25, 2.6
+    a_, b_ = c.a(xw), c.b(xw)
+    y2 = a_ * math.sqrt(1 - ((z2 - c.ZC) / b_) ** 2) - 0.01
+    hw0 = c.floor_hw(xw) - 0.01
+    sec = [(y * (1 - 0.01 / a_), z) for (y, z) in c.section_local(xw, 96)]
+    right = [(hw0, 0.0)] + [(y, z) for (y, z) in sec if y > 0 and 0 < z < z2] + [(y2, z2)]
+    left = [(-y2, z2)] + [(y, z) for (y, z) in sec if y < 0 and 0 < z < z2] + [(-hw0, 0.0)]
+    door = [(1.0, 0.0), (1.0, 2.1), (1.85, 2.1), (1.85, 0.0)]
+    d["partition"] = dict(x1=6.2, x2=6.3, poly=right + left + door)
     return d
 
 
@@ -268,16 +308,17 @@ scene.fog = new THREE.Fog(0x141c16, 45, 190); scene.fog.color.convertSRGBToLinea
 
 // ---------- luzes ----------
 const hemi = new THREE.HemisphereLight(0xc6d4e2, 0x3d4a2f, 0.55); hemi.color.convertSRGBToLinear(); hemi.groundColor.convertSRGBToLinear(); scene.add(hemi);
+const ambient = new THREE.AmbientLight(0xfff1e0, 0.16); ambient.color.convertSRGBToLinear(); scene.add(ambient);
 const sun = new THREE.DirectionalLight(0xfff0dc, 1.45); sun.color.convertSRGBToLinear();
 const SUN_DAY = Vx(-11, -9, 15), SUN_NIGHT = Vx(9, 12, 14);
 sun.position.copy(SUN_DAY); sun.castShadow = true;
 sun.shadow.mapSize.set(2048, 2048);
 sun.shadow.camera.left = -17; sun.shadow.camera.right = 17; sun.shadow.camera.top = 17; sun.shadow.camera.bottom = -17;
-sun.shadow.camera.near = 1; sun.shadow.camera.far = 70; sun.shadow.bias = -0.0006; sun.shadow.normalBias = 0.03; sun.shadow.radius = 3;
+sun.shadow.camera.near = 1; sun.shadow.camera.far = 70; sun.shadow.bias = -0.0004; sun.shadow.normalBias = 0.07; sun.shadow.radius = 3;
 sun.target.position.copy(Vx(4, 0, 0)); scene.add(sun); scene.add(sun.target);
 const interiorLights = [];
 function warmLight(x, y, z, iDay, dist) {
-  const l = new THREE.PointLight(0xFFD9A0, iDay, dist, 2); l.color.convertSRGBToLinear(); l.position.copy(Vx(x, y, z)); l.userData.iDay = iDay * 0.5; l.userData.iNight = iDay * 2.2; l.intensity = l.userData.iDay; scene.add(l); interiorLights.push(l); return l;
+  const l = new THREE.PointLight(0xFFD9A0, iDay, dist, 2); l.color.convertSRGBToLinear(); l.position.copy(Vx(x, y, z)); l.userData.iDay = iDay * 0.65; l.userData.iNight = iDay * 2.2; l.intensity = l.userData.iDay; scene.add(l); interiorLights.push(l); return l;
 }
 
 // ---------- texturas (canvas, determinísticas) ----------
@@ -394,6 +435,12 @@ function indexedMesh(verts, faces, mat, parent, cast) {
   const idx = new Uint32Array(faces.length * 3); faces.forEach((f, i) => { idx[i * 3] = f[0]; idx[i * 3 + 1] = f[1]; idx[i * 3 + 2] = f[2]; });
   g.setIndex(new THREE.BufferAttribute(idx, 1)); g.computeVertexNormals();
   return add(shadowed(new THREE.Mesh(g, mat), cast !== false, true), parent);
+}
+function strip(outer, inner, mat, closed, parent) { // faixa regrada entre dois contornos com o mesmo número de pontos
+  const n = outer.length, verts = outer.concat(inner), faces = [];
+  for (let i = 0; i < (closed ? n : n - 1); i++) { const j = (i + 1) % n; faces.push([i, n + i, n + j]); faces.push([i, n + j, j]); }
+  const mat2 = mat.clone(); mat2.side = THREE.DoubleSide;
+  return indexedMesh(verts, faces, mat2, parent);
 }
 function subtractBox(p, o, axis) { // subtrai a abertura o do painel p (eixo longo + z)
   const a1 = axis + '1', a2 = axis + '2';
@@ -551,6 +598,7 @@ function buildCocoon() {
     bar(P(y1 + 0.12, 0.85), P(y1 + 0.12, 1.35), 0.014, M.bronze, st); }
   // janelas lente: requadro de madeira
   D.windows.forEach(w => { const t = tube(w.pts, 0.04, M.woodInt, true, 72); t.name = w.name; });
+  (D.reveals || []).forEach(r => strip(r.outer, r.inner, M.woodInt, r.closed).name = 'requadro');
   // piso, laje e deck
   polyMesh(D.floor, 0.004, M.floor).name = 'piso';
   slabMesh(D.slab, -0.5, 0.0, M.dark).name = 'quadro_piso';
@@ -563,7 +611,13 @@ function buildCocoon() {
   [[dk.y1 + 0.08], [dk.y2 - 0.08]].forEach(([y]) => { for (let x = dk.x1 + 0.1; x <= dk.x2 - 0.5; x += 1.3) bar([x, y, 0], [x, y, 1.0], 0.02, M.steel); for (const z of [0.35, 0.65, 0.98]) bar([dk.x1 + 0.1, y, z], [dk.x2 - 0.5, y, z], 0.006, M.cable); });
   // fita LED nos rodapés (indireta)
   tube(D.floor.map(p => [p[0], p[1] * 0.985, 0.06]), 0.012, M.led, true, 160).castShadow = false;
-  furniture(D.furniture);
+  furniture(D.furniture.filter(f => !(D.partition && (f.kind === 'wall' || f.kind === 'opening')) && !(D.ceiling_poly && f.kind === 'ceiling')));
+  if (D.ceiling_poly) polyMesh(D.ceiling_poly.pts, D.ceiling_poly.z, M.liner).name = 'forro_banho';
+  if (D.partition) { // parede do banho recortada pela seção da concha, extrudada em x
+    const P = D.partition; const geo = new THREE.ExtrudeGeometry(shapeFrom(P.poly), { depth: P.x2 - P.x1, bevelEnabled: false });
+    const m = new THREE.Mesh(geo, M.plaster); shadowed(m); m.matrixAutoUpdate = false;
+    m.matrix.makeBasis(new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0, 0)).setPosition(new THREE.Vector3(P.x1, 0, 0)); m.name = 'parede_banho'; add(m);
+  }
   // luzes internas quentes (2700 K) junto ao rodapé + espinha
   warmLight(2.2, 0, 0.4, 0.55, 7); warmLight(5.0, 0, 0.4, 0.55, 7); warmLight(7.6, 0, 0.4, 0.45, 5); warmLight(3.6, 0, 3.2, 0.35, 8); warmLight(0.3, 0, 2.0, 0.25, 5);
   buildSite(4.0, 0);
@@ -587,7 +641,7 @@ function buildZenith() {
       const Rs = (p.r * p.r + 0.15 * 0.15) / 0.3; const phi = Math.asin(p.r / Rs);
       const dome = new THREE.Mesh(new THREE.SphereGeometry(Rs, 40, 10, 0, Math.PI * 2, 0, phi), M.glass);
       dome.position.copy(Vx(p.x, p.y, p.h - (Rs - 0.15))); dome.name = 'oculo'; add(dome);
-      const well = new THREE.Mesh(new THREE.CylinderGeometry(p.r, p.r, 0.34, 40, 1, true), M.woodInt); well.position.copy(Vx(p.x, p.y, p.h - 0.17)); well.material = M.woodInt.clone(); well.material.side = THREE.DoubleSide; add(shadowed(well));
+      const well = new THREE.Mesh(new THREE.CylinderGeometry(p.r, p.r, 0.34, 40, 1, true), M.liner.clone()); well.position.copy(Vx(p.x, p.y, p.h - 0.17)); add(shadowed(well)); warmLight(p.x, p.y, p.h - 0.2, 0.5, 4);
     } else { // chaminé do Respiro com veneziana
       cylMesh(p.x, p.y, p.h - 0.02, p.h + 0.32, p.r * 0.92, M.woodSlat);
       cylMesh(p.x, p.y, p.h + 0.32, p.h + 0.42, p.r * 1.25, M.steel, null, p.r * 0.5);
@@ -667,6 +721,8 @@ function buildZenith() {
 }
 
 if (MODEL === 'cocoon') buildCocoon(); else buildZenith();
+// depuração: #hide=estrutura,forro,membrana,mobiliario
+(function () { const h = /hide=([a-z_,]+)/i.exec(location.hash || ''); if (h) h[1].split(',').forEach(n => { const o = building.getObjectByName(n); if (o) o.visible = false; }); })();
 
 // ---------- ambiente (reflexos): cubemap de 8 bits por CubeCamera (robusto em WebGL por software) ----------
 const HASH = {}; (location.hash || '').replace(/^#/, '').split('&').forEach(kv => { const [k, v] = kv.split('='); if (k) HASH[k] = v === undefined ? '1' : v; });
@@ -682,19 +738,19 @@ if (HASH.env !== '0') {
 
 // ---------- modos: noite / estrutura / corte ----------
 const state = { night: false, structure: false, cut: false };
-const clipPlane = new THREE.Plane(new THREE.Vector3(0, 0, 1), 0); // mantém y (projeto) <= 0
+const clipPlane = new THREE.Plane(new THREE.Vector3(0, 0, MODEL === 'zenith' ? -1 : 1), 0); // Cocoon mantém y <= 0 (chaise, bancada, chuveiro); Zenith mantém y >= 0 (mastros, closet, ilha do café)
 const bMats = new Set(); building.traverse(o => { if (o.material) bMats.add(o.material); });
 function applyModes() {
   // noite
   if (state.night) {
     skyU.top.value.set(0x020303); skyU.mid.value.set(0x070c09); skyU.hor.value.set(0x1a1a14); skyU.sunI.value = 0.0;
     scene.fog.color.copy(lin(0x05080a)); scene.fog.near = 30; scene.fog.far = 130;
-    hemi.intensity = 0.14; hemi.color.copy(lin(0x5b6f95)); sun.intensity = 0.22; sun.color.copy(lin(0x8fa6c8)); sun.position.copy(SUN_NIGHT);
+    hemi.intensity = 0.14; ambient.intensity = 0.05; hemi.color.copy(lin(0x5b6f95)); sun.intensity = 0.22; sun.color.copy(lin(0x8fa6c8)); sun.position.copy(SUN_NIGHT);
     interiorLights.forEach(l => l.intensity = l.userData.iNight); M.led.color.copy(lin(0xffe2b0)); renderer.toneMappingExposure = 1.25;
   } else {
     skyU.top.value.set(0x040605); skyU.mid.value.set(0x141f18); skyU.hor.value.set(0x4a4a3a); skyU.sunI.value = 0.35;
     scene.fog.color.copy(lin(0x141c16)); scene.fog.near = 45; scene.fog.far = 190;
-    hemi.intensity = 0.55; hemi.color.copy(lin(0xc6d4e2)); sun.intensity = 1.45; sun.color.copy(lin(0xfff0dc)); sun.position.copy(SUN_DAY);
+    hemi.intensity = 0.55; ambient.intensity = 0.16; hemi.color.copy(lin(0xc6d4e2)); sun.intensity = 1.45; sun.color.copy(lin(0xfff0dc)); sun.position.copy(SUN_DAY);
     interiorLights.forEach(l => l.intensity = l.userData.iDay); M.led.color.copy(lin(0xffd9a0)); renderer.toneMappingExposure = 1.05;
   }
   skyU.sun.value.copy(sun.position).normalize();
@@ -716,7 +772,7 @@ const PRESETS = {
     ext_aerial: { pos: [-7.5, -11.5, 12.5], tgt: [3.6, 0, 0.3], fov: 45, label: 'Vista aérea' },
     int_living: { pos: [1.35, -0.55, 1.55], tgt: [6.4, 0.1, 1.85], fov: 66, label: 'Interior · estar' },
     int_bed: { pos: [5.75, 0.25, 1.25], tgt: [-2.0, -0.5, 1.35], fov: 66, label: 'Interior · suíte' },
-    int_bath: { pos: [6.5, 1.35, 1.5], tgt: [8.8, -0.55, 0.8], fov: 70, label: 'Interior · banho' },
+    int_bath: { pos: [6.4, 0.6, 1.55], tgt: [8.7, -0.6, 0.8], fov: 62, label: 'Interior · banho' },
     night: { like: 'ext_front', night: true, label: 'Noite' },
     structure: { pos: [-8.5, 9.8, 4.8], tgt: [4.2, 0, 1.3], fov: 42, structure: true, label: 'Estrutura' },
     section: { pos: [4.7, 15.0, 3.6], tgt: [4.7, 0, 1.3], fov: 38, cut: true, label: 'Corte longitudinal' },
@@ -726,12 +782,12 @@ const PRESETS = {
     ext_side: { pos: [2.5, -16.0, 2.4], tgt: [4.6, 0, 2.3], fov: 40, label: 'Exterior lateral' },
     ext_rear: { pos: [20.5, 8.5, 3.0], tgt: [6.0, 0, 2.3], fov: 40, label: 'Exterior fundos' },
     ext_aerial: { pos: [-9.5, -12.5, 13.5], tgt: [4.0, 0, 1.0], fov: 45, label: 'Vista aérea' },
-    int_living: { pos: [0.5, -0.7, 1.3], tgt: [5.6, 0.3, 3.1], fov: 76, label: 'Interior · estar' },
+    int_living: { pos: [0.3, -0.9, 1.1], tgt: [5.6, 0.3, 3.8], fov: 78, label: 'Interior · estar' },
     int_bed: { pos: [5.9, 0.0, 1.2], tgt: [-2.5, -0.7, 1.3], fov: 66, label: 'Interior · suíte' },
     int_bath: { pos: [6.6, 2.15, 1.5], tgt: [9.2, -0.7, 0.85], fov: 68, label: 'Interior · banho' },
     night: { like: 'ext_front', night: true, label: 'Noite' },
     structure: { pos: [-10.5, 10.5, 5.5], tgt: [4.6, 0, 2.2], fov: 42, structure: true, label: 'Estrutura' },
-    section: { pos: [4.7, 16.0, 3.4], tgt: [4.7, 0, 1.7], fov: 38, cut: true, label: 'Corte longitudinal' },
+    section: { pos: [4.7, -16.0, 3.4], tgt: [4.7, 0, 1.7], fov: 38, cut: true, label: 'Corte longitudinal' },
   }
 }[MODEL];
 
@@ -741,6 +797,7 @@ function setView(name) {
   camera.position.copy(Vx(base.pos[0], base.pos[1], base.pos[2]));
   controls.target.copy(Vx(base.tgt[0], base.tgt[1], base.tgt[2]));
   camera.fov = base.fov || 45; camera.updateProjectionMatrix();
+  controls.maxPolarAngle = Math.PI * (base.up || /^int_/.test(name) ? 0.98 : 0.53); // vistas interiores podem olhar para cima (óculo, espinha)
   state.night = !!p.night; state.structure = !!p.structure; state.cut = !!p.cut;
   applyModes(); controls.update();
   document.getElementById('views').value = name;
