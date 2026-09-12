@@ -139,6 +139,8 @@ Documentação em [`docs/KNOWLEDGE_ENGINE.md`](docs/KNOWLEDGE_ENGINE.md).
 - Higiene da base: duplicidade, follow-up vencido, lead sem próxima ação, perda sem motivo
 - Análise de funil com diagnóstico de gargalo por posição
 - Lista de reativação e briefing de reunião
+- Land Bank atrelado ao CRM: oportunidades, investimento declarado e hectares num painel só,
+  sem contar a mesma terra duas vezes
 
 Documentação em [`docs/CRM.md`](docs/CRM.md).
 
@@ -220,6 +222,9 @@ python -m src.main knowledge
 
 # Analisar a base comercial (CRM)
 python -m src.main crm -i data/exemplo_base_comercial.json
+
+# CRM com o Land Bank atrelado — oportunidades, investimento declarado e hectares
+python -m src.main crm -i data/exemplo_base_comercial.json --land-bank data/exemplo_land_bank.json
 
 # Analisar aquisição com atribuição real de receita (Traffic)
 python -m src.main traffic -i data/exemplo_conta_trafego.json --crm data/exemplo_base_comercial.json

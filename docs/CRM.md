@@ -165,7 +165,75 @@ recalculá-los.
 
 ---
 
-## 9. Integração com o HubSpot
+## 9. Land Bank no CRM
+
+O CRM sabe quem é dono da terra. O Land Bank sabe o que a terra vale em carbono. Enquanto
+as duas bases vivem separadas, três perguntas de diretoria ficam sem resposta defensável:
+quantas oportunidades existem, quanto de investimento foi declarado e quantos hectares a
+Zion tem no banco de áreas.
+
+[`src/crm/territorio.py`](../src/crm/territorio.py) responde as três — determinístico, sem
+LLM e sem chave de API.
+
+```bash
+python -m src.main crm -i data/exemplo_base_comercial.json \
+                       --land-bank data/exemplo_land_bank.json \
+                       -o output/crm_land_bank.md
+```
+
+### A regra que sustenta o número de hectares
+
+Uma gleba registrada no Land Bank e também declarada por um lead é **uma** área, não duas.
+O campo `lead.glebas_land_bank` guarda esse vínculo, e é ele que permite descontar a
+sobreposição:
+
+```
+total_consolidado_ha = área do Land Bank + originação aberta do CRM
+```
+
+A área do lead vinculado entra pelo registro da gleba — o dado auditável, com matrícula e
+CAR — e não pela declaração. A declaração aparece separada, como `sobreposicao_ha`, para
+que a diferença entre as duas fique visível em vez de ser resolvida no escuro.
+
+Corolário: **vínculo ausente é hectare contado duas vezes**. Por isso o módulo sugere
+vínculos prováveis (mesmo município e UF *mais* uma corroboração — área compatível ou nome
+do proprietário batendo com o do lead) e os reporta como alerta. Sugestão nunca vira
+vínculo sozinha e nunca mexe em total nenhum.
+
+### Por que "total de oportunidades" vem em quatro recortes
+
+"Oportunidade" é palavra que cada empresa usa de um jeito, e a discussão sobre o número
+costuma ser uma discussão sobre a definição. Os quatro convivem, cada um com nome próprio:
+
+| Recorte | O que conta |
+|---|---|
+| `abertas` | Leads em estágio aberto — o pipeline real |
+| `com_oferta_na_mesa` | Oferta, negociação ou decisão |
+| `sinalizadas_quentes` | Temperatura `oportunidade` pelo Zion Lead Score™ |
+| `territoriais` | Oportunidades abertas que trazem terra |
+
+### Investimento declarado é declarado, não verificado
+
+`declarado_brl` soma o que as pessoas disseram pretender ou poder investir — a faixa de
+investimento tem precedência sobre o capital disponível, e a ausência das duas é ausência
+de informação, nunca zero. O total vem sempre acompanhado da cobertura: sobre quantos leads
+da base ele se apoia. Serve para dimensionar apetite; não lastreia captação.
+
+Dois números que **não se somam** e por isso aparecem separados: `declarado_brl` é o
+dinheiro do lead; `pipeline_zion_brl` é a receita da Zion naquele negócio.
+
+### O que o painel entrega além dos três totais
+
+- **Originação** — terra que está no CRM e ainda não entrou no banco, ordenada por hectare
+  (é o que falta para um projeto agrupado fechar escala), com o score ao lado para mostrar
+  quais desses hectares são trabalháveis hoje. Área grande em lead frio não é ativo, é lista.
+- **Gap de escala por UF** — quando o banco está abaixo da `area_minima_cluster_ha` numa UF
+  e existe originação suficiente no CRM para fechar a conta, o painel diz.
+- **Gleba em negociação sem lead** — negociação sem dono no CRM é negociação sem follow-up.
+
+---
+
+## 10. Integração com o HubSpot
 
 O módulo hoje lê JSON. O schema em [`src/crm/models.py`](../src/crm/models.py) foi desenhado
 espelhando os campos recomendados para o HubSpot — dados, perfil, ativo, financeiro, projeto

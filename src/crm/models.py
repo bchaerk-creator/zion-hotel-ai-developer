@@ -212,6 +212,13 @@ class Lead(BaseModel):
     motivo_perda: Optional[MotivoPerda] = None
     observacao_perda: Optional[str] = None
 
+    glebas_land_bank: List[str] = Field(
+        default_factory=list,
+        description="IDs das glebas do Land Bank originadas por este lead. É o vínculo "
+                    "declarado entre as duas bases — e é o que impede a mesma terra de "
+                    "ser contada duas vezes, no CRM e no banco de áreas.",
+    )
+
     interacoes: List[Interacao] = Field(default_factory=list)
     data_criacao: Optional[date] = None
     data_ultima_atividade: Optional[date] = None

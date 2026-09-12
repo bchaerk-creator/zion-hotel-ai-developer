@@ -201,3 +201,147 @@ def briefing_lead(qualificado) -> str:
         linhas.append("")
 
     return "\n".join(linhas)
+
+
+# ---------------------------------------------------------------------------
+# Land Bank no CRM
+# ---------------------------------------------------------------------------
+
+def _ha(valor: float) -> str:
+    return f"{_num(valor, 1)} ha"
+
+
+def gerar_painel_territorial(p) -> str:
+    """
+    Painel Land Bank × CRM em Markdown.
+
+    Três números de diretoria — oportunidades, investimento declarado e
+    hectares — cada um com a definição e a cobertura do lado, para que o
+    número possa ser defendido numa reunião.
+    """
+    o, inv, a = p.oportunidades, p.investimentos, p.areas
+
+    linhas: List[str] = [
+        "# Land Bank no CRM",
+        "",
+        f"**Data:** {p.data}  ",
+        f"**Base:** {p.base_nome}  ",
+        f"**Banco de áreas:** {p.land_bank_nome or 'não carregado'}",
+        "",
+        "| Total | Número | O que é |",
+        "|---|---:|---|",
+        f"| Oportunidades abertas | **{o.abertas}** | Leads em estágio aberto — o pipeline real |",
+        f"| Investimento declarado | **{_brl(inv.declarado_brl)}** | "
+        f"Declarado por {inv.leads_declarantes} de {o.total_base} leads — não verificado |",
+        f"| Áreas no banco | **{_ha(a.total_consolidado_ha)}** | "
+        f"{_ha(a.land_bank_ha)} no Land Bank + {_ha(a.originacao_aberta_ha)} em originação |",
+        "",
+        "---",
+        "",
+        "## 1. Oportunidades",
+        "",
+        "| Recorte | Qtd. |",
+        "|---|---:|",
+        f"| Abertas (pipeline) | {o.abertas} |",
+        f"| Com oferta na mesa | {o.com_oferta_na_mesa} |",
+        f"| Sinalizadas como oportunidade pelo score | {o.sinalizadas_quentes} |",
+        f"| Territoriais (trazem terra) | {o.territoriais} |",
+        f"| Ganhas | {o.ganhas} |",
+        f"| Perdidas | {o.perdidas} |",
+        f"| **Base total** | **{o.total_base}** |",
+        "",
+    ]
+
+    if o.por_estagio:
+        linhas += ["**Por estágio:** " + " · ".join(
+            f"{k.split('_', 1)[1]}: {v}" for k, v in o.por_estagio.items()
+        ), ""]
+
+    linhas += [
+        "## 2. Investimento declarado",
+        "",
+        "Soma do que a base declarou pretender ou poder investir. Ninguém conferiu "
+        "extrato: serve para dimensionar apetite, não para lastrear captação.",
+        "",
+        "| Recorte | Valor |",
+        "|---|---:|",
+        f"| Declarado total | {_brl(inv.declarado_brl)} |",
+        f"| Em pipeline aberto | {_brl(inv.declarado_aberto_brl)} |",
+        f"| Em leads ganhos | {_brl(inv.declarado_ganho_brl)} |",
+        f"| Em leads perdidos | {_brl(inv.declarado_perdido_brl)} |",
+        f"| Ticket médio declarado | {_brl(inv.ticket_medio_brl)} |",
+        f"| Maior declaração | {_brl(inv.maior_declaracao_brl)}"
+        + (f" — {inv.maior_declarante}" if inv.maior_declarante else "") + " |",
+        f"| Cobertura | {_num(inv.cobertura * 100)}% da base "
+        f"({inv.leads_sem_declaracao} sem declaração) |",
+        "",
+        f"> Pipeline Zion (receita da própria Zion, número diferente e não somável a este): "
+        f"{_brl(inv.pipeline_zion_brl)}.",
+        "",
+        "## 3. Áreas no banco de áreas",
+        "",
+        "| Origem | Hectares |",
+        "|---|---:|",
+        f"| Land Bank — {a.land_bank_glebas} gleba(s) | {_ha(a.land_bank_ha)} |",
+        f"| — sob controle (própria + contratada) | {_ha(a.sob_controle_ha)} |",
+        f"| Originação no CRM (leads abertos, fora do banco) | {_ha(a.originacao_aberta_ha)} |",
+        f"| **Total consolidado** | **{_ha(a.total_consolidado_ha)}** |",
+        f"| Sobreposição descontada (já no banco e no CRM) | {_ha(a.sobreposicao_ha)} |",
+        f"| Fora do pipeline (leads ganhos/perdidos) | {_ha(a.originacao_fechada_ha)} |",
+        "",
+    ]
+
+    if a.por_status_ha:
+        linhas += ["**Land Bank por status dominial:** " + " · ".join(
+            f"{k.replace('_', ' ')}: {_num(v)} ha" for k, v in a.por_status_ha.items()
+        ), ""]
+
+    if a.por_uf_ha:
+        linhas += [
+            "| UF | No banco | Em originação | Somado |",
+            "|---|---:|---:|---:|",
+        ]
+        for uf, d in a.por_uf_ha.items():
+            linhas.append(
+                f"| {uf} | {_num(d['land_bank_ha'])} ha | {_num(d['originacao_ha'])} ha | "
+                f"{_num(d['land_bank_ha'] + d['originacao_ha'])} ha |"
+            )
+        linhas.append("")
+
+    if p.vinculos:
+        linhas += ["## 4. Vínculos lead ↔ gleba", "",
+                   "| Lead | Gleba | Município | Área declarada | Área registrada | Status |",
+                   "|---|---|---|---:|---:|---|"]
+        for v in p.vinculos:
+            linhas.append(
+                f"| {v.lead_nome} | {v.gleba_id} — {v.gleba_nome} | {v.municipio}/{v.uf} | "
+                f"{_ha(v.area_lead_ha) if v.area_lead_ha else '—'} | {_ha(v.area_gleba_ha or 0)} | "
+                f"{v.status_dominial.value if v.status_dominial else '—'} |"
+            )
+        linhas.append("")
+
+    if p.originacao:
+        linhas += [
+            "## 5. Terra no CRM fora do banco de áreas",
+            "",
+            "Ordenado por hectare — é o que falta para um projeto agrupado fechar escala. "
+            "O score diz quais desses hectares são trabalháveis hoje.",
+            "",
+            "| Lead | Local | Área | Estágio | Temp. | Score | Investimento declarado |",
+            "|---|---|---:|---|:--:|---:|---:|",
+        ]
+        for i in p.originacao:
+            local = f"{i.municipio or '—'}/{i.uf or '—'}"
+            linhas.append(
+                f"| {i.nome} | {local} | {_ha(i.area_ha)} | {i.estagio.value.split('_', 1)[1]} | "
+                f"{ICONE[i.temperatura]} | {_num(i.score, 1)} | "
+                f"{_brl(i.investimento_declarado_brl) if i.investimento_declarado_brl else '—'} |"
+            )
+        linhas.append("")
+
+    if p.alertas:
+        linhas += ["## 6. Alertas", ""]
+        linhas += [f"- {x}" for x in p.alertas]
+        linhas.append("")
+
+    return "\n".join(linhas)

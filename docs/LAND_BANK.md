@@ -188,6 +188,19 @@ de emissão (depende de auditor e registro), receita de área com adicionalidade
 preço futuro de tCO2e. Potencial é pipeline; só o contratado é estoque, e o relatório separa os
 dois em toda tabela justamente por isso.
 
+### O banco de áreas visto do CRM
+
+A originação do banco acontece no comercial: quem traz hectare é lead antes de ser gleba. O
+painel Land Bank × CRM fecha esse circuito — hectares no banco, hectares ainda no pipeline e
+o que falta para uma UF fechar a `area_minima_cluster_ha`:
+
+```bash
+python -m src.main crm -i data/exemplo_base_comercial.json --land-bank data/exemplo_land_bank.json
+```
+
+O vínculo é o campo `glebas_land_bank` de cada lead, e é ele que impede a mesma terra de ser
+contada nas duas bases. Detalhes em [`docs/CRM.md`](CRM.md), seção 9.
+
 ---
 
 ## 10. Como usar o módulo

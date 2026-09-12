@@ -13,7 +13,8 @@ from typing import Any, Dict, List, Optional
 from .base_agent import BaseAgent
 from src.crm.models import BaseComercial, Lead, LeadQualificado, RelatorioComercial
 from src.crm.operacoes import analisar_base
-from src.crm.relatorio import briefing_lead, gerar_relatorio_comercial
+from src.crm.relatorio import briefing_lead, gerar_painel_territorial, gerar_relatorio_comercial
+from src.crm.territorio import PainelTerritorial, consolidar_territorio
 from src.crm.engine import qualificar
 from src.prompts import PROMPT_CRM
 
@@ -55,6 +56,32 @@ class CRMAgent(BaseAgent):
             relatorio.total_leads, relatorio.oportunidades, len(relatorio.higiene),
         )
         return relatorio, gerar_relatorio_comercial(relatorio)
+
+    def consolidar_land_bank(
+        self,
+        dados: Dict[str, Any],
+        dados_land_bank: Optional[Dict[str, Any]] = None,
+        hoje: Optional[date] = None,
+    ) -> tuple[PainelTerritorial, str]:
+        """
+        ATRELAR LAND BANK — painel único de oportunidades, investimento declarado
+        e hectares no banco de áreas.
+
+        Sem o Land Bank carregado ainda funciona: mostra só o que o CRM sabe, e
+        todo hectare aparece como originação, nenhum como banco.
+        """
+        from src.agents.land_bank_agent import LandBankAgent
+
+        base = self.carregar(dados)
+        land_bank = LandBankAgent.carregar(dados_land_bank) if dados_land_bank else None
+        painel = consolidar_territorio(base, land_bank, hoje)
+        logger.info(
+            "Painel territorial: %s oportunidades abertas, %.0f ha consolidados, %s vínculo(s)",
+            painel.oportunidades.abertas,
+            painel.areas.total_consolidado_ha,
+            len(painel.vinculos),
+        )
+        return painel, gerar_painel_territorial(painel)
 
     def qualificar_lead(self, lead: Lead, hoje: Optional[date] = None) -> LeadQualificado:
         """QUALIFICAR LEAD — score, temperatura e roteamento."""

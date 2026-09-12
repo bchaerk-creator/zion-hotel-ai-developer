@@ -462,9 +462,10 @@ def knowledge(modo_auditar: bool, termo: str = None, item_id: str = None, output
 @cli.command()
 @click.option("--input", "-i", "input_file", type=click.Path(exists=True), required=True, help="Arquivo JSON da base comercial")
 @click.option("--lead", "lead_id", help="PREPARAR REUNIÃO — briefing de um lead específico")
+@click.option("--land-bank", "land_bank_file", type=click.Path(exists=True), help="Atrela o Land Bank: oportunidades, investimento declarado e hectares num painel só")
 @click.option("--output", "-o", "output_file", type=click.Path(), help="Salva o relatório em Markdown")
 @click.option("--ia", is_flag=True, help="Adiciona a leitura estratégica com LLM")
-def crm(input_file: str, lead_id: str = None, output_file: str = None, ia: bool = False):
+def crm(input_file: str, lead_id: str = None, land_bank_file: str = None, output_file: str = None, ia: bool = False):
     """Zion CRM & Lead Intelligence — qualificação, roteamento e funil."""
     show_banner()
 
@@ -497,6 +498,55 @@ def crm(input_file: str, lead_id: str = None, output_file: str = None, ia: bool 
     painel.add_row("Follow-ups atrasados", str(relatorio.followups_atrasados))
     painel.add_row("Pipeline aberto", f"R$ {relatorio.pipeline_aberto_brl:,.0f}")
     console.print(painel)
+
+    markdown_territorio = None
+    if land_bank_file:
+        with open(land_bank_file, "r", encoding="utf-8") as f:
+            dados_land_bank = json.load(f)
+
+        with console.status("[bold gold1]Atrelando o Land Bank...[/bold gold1]"):
+            territorio, markdown_territorio = agent.consolidar_land_bank(dados, dados_land_bank)
+
+        o, invest, areas = territorio.oportunidades, territorio.investimentos, territorio.areas
+        tabela = Table(title="Land Bank no CRM", show_header=True)
+        tabela.add_column("Total", style="bold")
+        tabela.add_column("Número", justify="right")
+        tabela.add_column("O que é", style="dim")
+        tabela.add_row(
+            "Oportunidades abertas", f"[bold gold1]{o.abertas}[/bold gold1]",
+            f"{o.com_oferta_na_mesa} com oferta na mesa · {o.territoriais} trazem terra",
+        )
+        tabela.add_row(
+            "Investimento declarado", f"[bold gold1]R$ {invest.declarado_brl:,.0f}[/bold gold1]",
+            f"{invest.leads_declarantes} de {o.total_base} leads declararam "
+            f"({invest.cobertura:.0%} da base)",
+        )
+        tabela.add_row(
+            "Áreas no banco", f"[bold gold1]{areas.total_consolidado_ha:,.0f} ha[/bold gold1]",
+            f"{areas.land_bank_ha:,.0f} ha no Land Bank + "
+            f"{areas.originacao_aberta_ha:,.0f} ha em originação",
+        )
+        console.print(tabela)
+
+        if territorio.originacao:
+            terra = Table(title="Terra no CRM fora do banco de áreas", show_header=True)
+            terra.add_column("Lead", style="bold")
+            terra.add_column("Local")
+            terra.add_column("Área", justify="right")
+            terra.add_column("Estágio")
+            terra.add_column("Score", justify="right")
+            for item in territorio.originacao[:8]:
+                terra.add_row(
+                    item.nome, f"{item.municipio or '—'}/{item.uf or '—'}",
+                    f"{item.area_ha:,.0f} ha", item.estagio.value.split("_", 1)[1],
+                    f"{item.score:.1f}",
+                )
+            console.print(terra)
+
+        if territorio.alertas:
+            console.print("\n[bold]Land Bank × CRM:[/bold]")
+            for alerta in territorio.alertas:
+                console.print(f"  [yellow]● {alerta}[/yellow]")
 
     fila = Table(title="Prioridade Comercial", show_header=True)
     fila.add_column("#", width=3)
@@ -542,8 +592,11 @@ def crm(input_file: str, lead_id: str = None, output_file: str = None, ia: bool 
 
     if output_file:
         Path(output_file).parent.mkdir(parents=True, exist_ok=True)
+        conteudo = markdown
+        if markdown_territorio:
+            conteudo = f"{markdown}\n\n---\n\n{markdown_territorio}"
         with open(output_file, "w", encoding="utf-8") as f:
-            f.write(markdown)
+            f.write(conteudo)
         console.print(f"\n[green]Relatório salvo em: {output_file}[/green]")
 
 
