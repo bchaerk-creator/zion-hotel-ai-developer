@@ -572,11 +572,10 @@ def corte_long():
     sh.dim(L.X_PART, yb, HF, yb, -0.3, label="1,85 (banho)")
     sh.dim(PX, yb, HF, yb, -0.85, label=fmt(HF - PX) + " (vela + deck + pavilhão)")
     sh.dim(5.8, 0, 5.8, L.Z_TOP, 0.0, label="5,20"); sh.dim(6.4, 0, 6.4, L.Z_LANTERN, 0.0, label="4,60 (anel)"); sh.dim(7.0, 0, 7.0, L.Z_EAVE, 0.0, label="2,70 (beiral)")
-    sh.dim(4.2, 0, 4.2, 2.4, 0.0, label="2,40 (forro)", size=10)
     sh.dim(-7.5, 0, -7.5, PC1["h"], 0.0, label="2,40 (PC1)", size=10)
     sh.dim(-7.5, -0.9, -7.5, 0, 0.0, label="0,90 (máx.)", size=10)
     sh.scalebar(-8.3, -2.2, 5)
-    sh.title_block("ZION LODGE", "Corte longitudinal A-A", "1:50 (A1)", "06/LG", "Deck e vela, cama sob a lanterna, banho com ático técnico, envelope em 4 camadas"[:70])
+    sh.title_block("ZION LODGE", "Corte longitudinal A-A", "1:50 (A1)", "06/LG", "Deck e vela, cama sob a lanterna, banho com ático técnico")
     return sh
 
 def corte_transv():
@@ -627,7 +626,7 @@ def corte_transv():
     sh.leader(-0.05, 1.3, Ru, 2.1, "Porta do banho 0,90 x 2,10", 12, anchor="start")
     sh.leader(-1.5, 1.8, Ru, 1.3, "Parede-corda do banho", 12, anchor="start")
     sh.leader(-2.55, -0.55, Ru, 0.45, "Estacas Ø76 · quadro U 150", 12, anchor="start")
-    sh.leader(0.4, 0.62, 1.3, 1.3, "Cama king 1,93 x 2,03", 11, anchor="end")
+    sh.text(0.0, 0.8, "cama king 1,93 x 2,03", 10, GREEN, dy=3)
     # cotas
     yb = -1.05
     sh.dim(-HF, yb, HF, yb, -0.3, label="6,80 (entre faces)")
