@@ -1,17 +1,62 @@
 # -*- coding: utf-8 -*-
 """Pranchas complementares do PROJETO ARQUITETÔNICO (padrão de projetista):
 PA-00 capa, índice, quadro de áreas e notas · PA-01 implantação · PA-04 planta de cobertura · PA-05 forro e iluminação
-· PA-08b fachada lateral esquerda · PA-09 quadro de esquadrias. Para ZION CASULO e ZION SAFARI."""
+· PA-08b fachada lateral esquerda · PA-09 quadro de esquadrias. Para ZION CASULO, ZION SAFARI e ZION LODGE."""
 import math, os
 import numpy as np
-from geometry import Cocoon, Zenith
+from geometry import Cocoon, Zenith, Lodge
 from svgkit import *
 from drawings_cocoon import shell_plan_pts, arch_plan, top_profile, bottom_profile
 from drawings_zenith import roof_outline_pts, contours, slats, ground
 
-C, Z = Cocoon(), Zenith()
-OUT = {"cocoon": os.path.join(os.path.dirname(__file__), "..", "cocoon", "projeto"), "zenith": os.path.join(os.path.dirname(__file__), "..", "zenith", "projeto")}
-NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
+C, Z, L = Cocoon(), Zenith(), Lodge()
+OUT = {"cocoon": os.path.join(os.path.dirname(__file__), "..", "cocoon", "projeto"), "zenith": os.path.join(os.path.dirname(__file__), "..", "zenith", "projeto"),
+       "lodge": os.path.join(os.path.dirname(__file__), "..", "lodge", "projeto")}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI", "lodge": "ZION LODGE"}
+
+# ----------------------------------------------------------------------------- geometria auxiliar do LODGE
+LV = L.vertices(); LR = L.r_corner()                          # vértices (pilares) e raio de vértice 3,68
+LRO = LR + L.OVER / math.cos(math.pi / 8); LVO = L.vertices(LRO)  # octógono do beiral (balanço 0,90 além das faces)
+LRE = LRO * math.cos(math.pi / 8)                             # 4,30: borda do beiral na direção das faces
+LYC = math.sqrt(LR ** 2 - L.X_PART ** 2)                      # meia-corda da parede do banho (x 1,55)
+LZ_EDGE = L.Z_EAVE - 0.35                                     # cota da borda da membrana (2,35)
+
+def lodge_d(z):
+    """distância radial em que a membrana está na cota z (inversa de Lodge.roof_z)."""
+    t = ((L.Z_LANTERN - z) / (L.Z_LANTERN - LZ_EDGE)) ** (1 / 1.25)
+    return L.R_LANTERN + t * (LR + L.OVER - L.R_LANTERN)
+
+def lodge_roof_profile(n=40):
+    """silhueta da cobertura em elevação, eixo pela metade das faces: (u, z) de -4,30 a +4,30, borda a 2,35."""
+    ds = np.linspace(L.R_LANTERN, LRE, n)
+    right = [(d, L.roof_z(d)) for d in ds] + [(LRE, LZ_EDGE)]
+    left = [(-d, z) for (d, z) in right][::-1]
+    return left + right
+
+def lodge_seams(n=24):
+    """8 costuras radiais dos gomos (sobre os caibros, nas direções dos vértices): listas de (x, y, z)."""
+    out = []
+    for k in range(8):
+        ang = math.pi / 8 + 2 * math.pi * k / 8
+        out.append([(d * math.cos(ang), d * math.sin(ang), max(L.roof_z(d), LZ_EDGE)) for d in np.linspace(L.R_LANTERN, LRO, n)])
+    return out
+
+def lodge_arc(sh, r, xmax, stroke=EARTH, sw=0.7, dash="5 3", n=96):
+    """circunferência de raio r desenhada só onde x <= xmax (curvas do forro tensionado, sem invadir o banho)."""
+    pts = [(r * math.cos(a), r * math.sin(a)) for a in np.linspace(0, 2 * math.pi, n, endpoint=False)]
+    vis = [p[0] <= xmax for p in pts]
+    if all(vis): sh.poly(pts, close=True, stroke=stroke, sw=sw, dash=dash); return
+    s = vis.index(False); seg = []
+    for i in range(s, s + n + 1):
+        if vis[i % n]: seg.append(pts[i % n])
+        elif seg: sh.poly(seg, close=False, stroke=stroke, sw=sw, dash=dash); seg = []
+    if seg: sh.poly(seg, close=False, stroke=stroke, sw=sw, dash=dash)
+
+def lodge_arrow(sh, x1, y1, x2, y2, color=EARTH):
+    sh.line(x1, y1, x2, y2, color, 1.0)
+    ang = math.atan2(y2 - y1, x2 - x1); hl, hw = 0.2, 0.09
+    bx, by = x2 - hl * math.cos(ang), y2 - hl * math.sin(ang)
+    sh.poly([(x2, y2), (bx - hw * math.sin(ang), by + hw * math.cos(ang)), (bx + hw * math.sin(ang), by - hw * math.cos(ang))], fill=color, stroke="none")
 
 # ----------------------------------------------------------------------------- quadro de áreas
 def zone_area(x1, x2, n=200):
@@ -27,6 +72,10 @@ AREAS = {
                ("05", "Banho", 2.95 * 5.2, "Porcelanato 60 x 120 antiderrapante", "-0,01"), ("06", "Ático técnico (sobre o banho)", 15.3, "Compensado naval", "+2,55"),
                ("07", "Terraço frontal", 20.4, "Cumaru 20 x 140", "-0,02"), ("08", "Passarela lateral", 7.6, "Cumaru 20 x 140", "-0,02"),
                ("09", "Hidromassagem (no terraço)", 2.84, "Fibra / acrílico", "-0,02")],
+    "lodge": [("01", "Estar / lounge", 13.0, "Carvalho de engenharia 14 mm", "+0,00"), ("02", "Suíte (sob a lanterna)", 12.4, "Carvalho de engenharia 14 mm", "+0,00"),
+              ("03", "Banho", 6.9, "Porcelanato 60 x 120 antiderrapante", "-0,01"), ("04", "Closet / café e minibar", 6.0, "Marcenaria sobre carvalho", "+0,00"),
+              ("05", "Ático técnico (sobre o banho)", 6.9, "Compensado naval", "+2,40"), ("06", "Deck frontal (3 faces)", L.deck_area(), "Cumaru 20 x 140", "-0,02"),
+              ("07", "Escada de acesso (3 degraus)", 2.2, "Cumaru", "-0,60 a -0,02")],
 }
 ESQUADRIAS = {
     "cocoon": [("PV1", "Porta pivotante de vidro", 1.00, 2.40, 1, "Vidro insulado 6 lam + 12 + 6 temp low-e; pivô de piso; alumínio bronze RPT", "Fachada, à esquerda (y +0,60 a +1,60)"),
@@ -47,6 +96,13 @@ ESQUADRIAS = {
                ("OC1", "Óculo do Zênite", 1.20, 1.20, 1, "Cúpula de vidro laminado curvo Ø1,20 sobre anel; vidro interno plano; esquadria RPT calandrada", "Cume principal, sobre a cama"),
                ("RE1", "Chaminé do Respiro", 0.70, 0.70, 1, "Tubo de alumínio Ø700 com veneziana motorizada e tela", "Cume secundário, sobre o café"),
                ("PC2", "Porta de correr do banho", 1.10, 2.20, 1, "Folha de madeira laminada, trilho superior", "Parede da cabeceira, y +1,50 a +2,60")],
+    "lodge": [("PC1", "Porta de correr frontal (2 folhas)", 2.00, 2.40, 1, "2 folhas 1,00 x 2,40; vidro insulado low-e; trilho embutido no piso com dreno", "Face frontal (3-4), x -3,40, y -1,00 a +1,00"),
+              ("VF1", "Vidro fixo frontal (folhas laterais à porta)", 0.41, 2.55, 2, "Painel fixo de vidro insulado entre o pilar e o batente da porta", "Face frontal (3-4), ambos os lados de PC1"),
+              ("VF2", "Vidro fixo das faces diagonais", 2.82, 2.55, 2, "Painel fixo de vidro insulado de pilar a pilar; montantes de alumínio RPT bronze", "Faces 2-3 e 4-5 (diagonais frontais)"),
+              ("VF3", "Vidro fixo das faces laterais", 2.82, 2.55, 2, "Idem, faces paralelas ao eixo x", "Faces 1-2 (y +3,40) e 5-6 (y -3,40)"),
+              ("J1", "Fresta da banheira (fixa)", 1.60, 0.60, 1, "Vidro insulado jateado; peitoril 1,60", "Face posterior (7-0), x +3,40, y -0,80 a +0,80"),
+              ("LZ1", "Lanterna Zion (anel de vidro)", 1.50, 0.45, 1, "Anel de vidro laminado curvo Ø1,50 x 0,45 em 8 segmentos sobre o anel de compressão; tampa de membrana Ø2,00 ventilada", "Cume, sobre a cama (z 4,60 a 5,20)"),
+              ("PC2", "Porta de correr do banho", 0.90, 2.10, 1, "Folha de madeira laminada, trilho superior embutido", "Parede-corda do banho, x 1,55, y -0,50 a +0,40")],
 }
 NOTAS = [
     "Cotas em metros; níveis em metros referidos ao piso interno acabado (+0,00). Prevalecem as cotas escritas sobre as medidas tomadas na prancha.",
@@ -71,6 +127,11 @@ SHEETS = {
                ("PA-06", "Cortes A-A e B-B", "1:50 / 1:45"), ("PA-07", "Fachada frontal e fachada traseira", "1:50"), ("PA-08", "Fachadas laterais direita e esquerda", "1:50"),
                ("PA-09", "Quadro de esquadrias", "1:50"), ("PA-10", "Planta estrutural", "1:50"), ("PA-11", "Detalhes construtivos DET-02, 03, 04, 05, 06, 11", "1:5 a 1:20"),
                ("PA-12", "Isométrica e modelo explodido", "s/ escala")],
+    "lodge": [("PA-00", "Capa, índice, quadro de áreas e notas gerais", "s/ escala"), ("PA-01", "Planta de situação e implantação", "1:200"), ("PA-02", "Planta baixa cotada", "1:50"),
+              ("PA-03", "Planta de layout", "1:50"), ("PA-04", "Planta de cobertura", "1:50"), ("PA-05", "Planta de forro e iluminação", "1:50"),
+              ("PA-06", "Cortes A-A (longitudinal) e B-B (transversal)", "1:50"), ("PA-07", "Fachada frontal e fachada traseira", "1:50"), ("PA-08", "Fachadas laterais direita e esquerda", "1:50"),
+              ("PA-09", "Quadro de esquadrias", "1:50"), ("PA-10", "Planta estrutural", "1:50"), ("PA-11", "Detalhes construtivos (lanterna, beiral, pilar, deck, vela)", "1:5 a 1:20"),
+              ("PA-12", "Isométrica e modelo explodido", "s/ escala")],
 }
 
 def tb(sh, product, title, scale, sheet, sub=""):
@@ -85,8 +146,11 @@ def capa(product):
     sh.text_px(60, 146, "GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL", size=9.5, spacing=0.3, fill=SAND, anchor="start")
     sh.text_px(60, 300, "PROJETO", size=13, spacing=0.5, fill=SAND, anchor="start"); sh.text_px(60, 322, "ARQUITETÔNICO", size=13, spacing=0.5, fill=SAND, anchor="start")
     sh.text_px(60, 420, NAME[product], size=46, weight=200, spacing=0.12, fill=CREAM, anchor="start")
-    sh.text_px(60, 456, "Cabana biomórfica em casulo" if c else "Cabana escultural de dois cumes", size=15, fill=SAND, anchor="start")
-    sh.text_px(60, 484, ("9,60 x 6,00 x 4,20 m · 48 m² internos · deck 29,9 m² · total 78 m²" if c else "9,50 x 5,40 m · cume 5,80 m · 48,4 m² internos · terraço 28 m² · total 79,3 m²"), size=11.5, fill=SAND, anchor="start")
+    sub = {"cocoon": "Cabana biomórfica em casulo", "zenith": "Cabana escultural de dois cumes", "lodge": "Pavilhão octogonal com Lanterna Zion"}[product]
+    dims = {"cocoon": "9,60 x 6,00 x 4,20 m · 48 m² internos · deck 29,9 m² · total 78 m²", "zenith": "9,50 x 5,40 m · cume 5,80 m · 48,4 m² internos · terraço 28 m² · total 79,3 m²",
+            "lodge": f"6,80 x 6,80 m (faces) · lanterna 5,20 m · {L.floor_area():.1f} m² internos · deck {L.deck_area():.1f} m² · total {L.floor_area() + L.deck_area():.1f} m²".replace(".", ",")}[product]
+    sh.text_px(60, 456, sub, size=15, fill=SAND, anchor="start")
+    sh.text_px(60, 484, dims, size=11.5, fill=SAND, anchor="start")
     for i, (k, v) in enumerate([("Proprietário", "Zion Hotel Group International Ltda"), ("Produto", NAME[product] + " (Zion Glamping Collection)"), ("Fase", "Estudo preliminar / anteprojeto de produto"),
                                 ("Uso", "Unidade de hospedagem (glamping / boutique hotel)"), ("Sistema", "ZION SHELL SYSTEM: aço galvanizado + membrana PVDF + vidro"), ("Revisão", "R00 · setembro de 2026"), ("Pranchas", f"{len(SHEETS[product])} (PA-00 a PA-12)")]):
         sh.text_px(60, 600 + i * 28, k.upper(), size=8.5, spacing=0.25, fill=EARTH, anchor="start"); sh.text_px(200, 600 + i * 28, v, size=11.5, fill=CREAM, anchor="start")
@@ -112,8 +176,9 @@ def capa(product):
         if "Deck" in amb or "Terraço" in amb or "Passarela" in amb or "Escada" in amb or "Hidro" in amb: tot_ext += a
         elif "Ático" not in amb: tot_int += a
     y = Y0 + 50 + len(AREAS[product]) * 18 + 6
+    proj = {"cocoon": 50.5, "zenith": 95.5, "lodge": 2 * (1 + math.sqrt(2)) * (2 * LRO * math.sin(math.pi / 8)) ** 2}[product]
     for j, (k, v) in enumerate([("Área interna (piso climatizado + vestíbulo)" if c else "Área interna (piso climatizado)", tot_int), ("Área externa (deck e terraços)", tot_ext),
-                                ("Projeção da cobertura", 50.5 if c else 95.5), ("Área total (interna + externa)", tot_int + tot_ext)]):
+                                ("Projeção da cobertura", proj), ("Área total (interna + externa)", tot_int + tot_ext)]):
         sh.text_px(X0 + 40, y + j * 18, k, size=10.5, weight=700 if j == 3 else 400, anchor="start"); sh.text_px(X0 + 380, y + j * 18, fmt(v), size=10.5, weight=700 if j == 3 else 400, anchor="end")
     # notas gerais em duas colunas
     Y1 = y + 4 * 18 + 26
@@ -128,8 +193,8 @@ def capa(product):
                 else: cur = (cur + " " + w).strip()
             lines.append(cur)
             sh.text_px(xc, yy, f"{col * half + i + 1:02d}", size=8.6, weight=700, anchor="start")
-            for L in lines:
-                sh.text_px(xc + 22, yy, L, size=8.6, anchor="start"); yy += 11.2
+            for Ln in lines:
+                sh.text_px(xc + 22, yy, Ln, size=8.6, anchor="start"); yy += 11.2
             yy += 4
     tb(sh, product, "Capa · índice · áreas · notas", "sem escala", "PA-00", "Projeto arquitetônico · estudo preliminar R00")
     return sh
@@ -154,7 +219,7 @@ def implantacao(product):
         sh.text(x0 + LX - 0.6, pts[-1][1] + 0.35, f"{100 + lv * 0.5:.1f}".replace(".", ","), 9, EARTH, anchor="end")
     # afastamentos
     sh.rect(x0 + 5, y0 + 5, x0 + LX - 5, y0 + LY - 5, fill="none", stroke=EARTH, sw=0.8, dash="10 5")
-    sh.text(x0 + 5.2, y0 + LY - 5.4, "afastamento mínimo 5,00 m (referência)", 9, EARTH, anchor="start")
+    sh.text(x0 + 5.2, y0 + LY - 5.4 if product != "lodge" else y0 + 5.3, "afastamento mínimo 5,00 m (referência)", 9, EARTH, anchor="start")
     # unidade (planta girada: frente para o norte = topo). x do produto aponta para -y do lote
     def P(x, y):  # produto -> lote: frente (x=0) no topo; direita (y<0) do produto à direita do lote
         return (-y, -x + 3.0)
@@ -167,7 +232,7 @@ def implantacao(product):
         sh.circle(*P(-2.2, -2.0), 0.95, fill="none", stroke=GREEN, sw=0.8, dash="4 3"); sh.text(*P(-2.2, -2.0), "hot tub opc.", 8, GREEN, dy=3)
         cond = P(10.3, 0.0); sh.rect(cond[0] - 0.4, cond[1] - 0.45, cond[0] + 0.4, cond[1] + 0.35, fill="#E5E1D8", stroke=GREEN, sw=0.7); sh.text(cond[0] + 0.6, cond[1] - 0.1, "condensadora", 8, anchor="start")
         tail = P(8.6, 1.4)
-    else:
+    elif product == "zenith":
         rb = Z.roof_bounds()
         sh.poly([P(rb[0], rb[2]), P(rb[1], rb[2]), P(rb[1], rb[3]), P(rb[0], rb[3])], fill=MEMB, stroke=GREEN, sw=1.0, dash="8 4", opacity=0.9)
         D, Wk = Z.DECK, Z.WALK
@@ -178,9 +243,18 @@ def implantacao(product):
         for p in Z.PEAKS: sh.circle(*P(p["x"], p["y"]), p["r"], fill="none", stroke=GREEN, sw=0.8)
         cond = P(10.25, -1.8); sh.rect(cond[0] - 0.4, cond[1] - 0.4, cond[0] + 0.4, cond[1] + 0.4, fill="#E5E1D8", stroke=GREEN, sw=0.7); sh.text(cond[0] + 0.6, cond[1] - 0.1, "condensadora", 8, anchor="start")
         tail = P(9.5, 1.5)
+    else:
+        sh.poly([P(*p) for p in LVO], fill=MEMB, stroke=GREEN, sw=1.0, dash="8 4", opacity=0.9)
+        sh.poly([P(*p) for p in L.deck_pts()], fill=sh.pattern("deck"), stroke=GREEN, sw=1.0)
+        sh.poly([P(*p) for p in LV], fill="#EFE7DA", stroke=GREEN, sw=1.4)
+        sp = L.sail_posts(); sh.poly([P(*LV[3]), P(*sp[1]), P(*sp[0]), P(*LV[4])], fill="none", stroke=GREEN, sw=0.8, dash="4 3")
+        for p in sp: sh.circle(*P(*p), 0.12, fill=STEEL, stroke="none")
+        sh.circle(*P(0, 0), L.R_LANTERN, fill=GLASS, stroke=GREEN, sw=0.8)
+        cond = P(4.8, 2.4); sh.rect(cond[0] - 0.35, cond[1] - 0.35, cond[0] + 0.35, cond[1] + 0.35, fill="#E5E1D8", stroke=GREEN, sw=0.7); sh.text(cond[0] - 0.55, cond[1] - 0.1, "condensadora", 8, anchor="end")
+        tail = P(3.4, 0.6)
     # acesso (caminho do portão ao deck), via
     sh.rect(x0, y0 - 3.0, x0 + LX, y0, fill="#E6DED2", stroke=GREEN, sw=0.8); sh.text(x0 + LX / 2, y0 - 1.5, "VIA DE ACESSO INTERNA DO EMPREENDIMENTO", 10, EARTH, spacing=0.2, dy=4)
-    ent = P(-3.7 if c else -3.0, 0)
+    ent = P({"cocoon": -3.7, "zenith": -3.0, "lodge": -6.0}[product], 0)
     path = [(x0 + 22.0, y0), (x0 + 22.0, y0 + 3.5), (ent[0] + 6.0, ent[1] - 1.5), (ent[0] + 1.2, ent[1] - 0.6)]
     sh.poly(path, close=False, stroke=EARTH, sw=6, opacity=0.35); sh.poly(path, close=False, stroke=EARTH, sw=1.0, dash="6 4")
     sh.text(x0 + 22.6, y0 + 1.4, "acesso de pedestres 1,20 m (madeira / brita)", 9, EARTH, anchor="start")
@@ -190,7 +264,7 @@ def implantacao(product):
     sh.circle(fx, fy, 0.75, fill="#E5E1D8", stroke=GREEN, sw=0.8); sh.circle(fx + 2.0, fy, 0.75, fill="#E5E1D8", stroke=GREEN, sw=0.8)
     sh.text(fx - 1.0, fy - 0.1, "fossa séptica + filtro anaeróbio", 8.5, GREEN, anchor="end"); sh.text(fx - 1.0, fy - 0.5, "(ou estação compacta)", 8, GREEN, anchor="end")
     sh.poly([tail, (fx, fy + 0.75)], close=False, stroke=GREEN, sw=0.8, dash="3 3"); sh.text((tail[0] + fx) / 2 - 0.3, (tail[1] + fy) / 2, "esgoto Ø100 i ≥ 2%", 8, GREEN, anchor="end")
-    for (bx, by) in [(ent[0] + 5.0, ent[1] - 1.2), (tail[0] + 3.2, tail[1] + 1.0)]:
+    for (bx, by) in [(ent[0] + 5.0, ent[1] - 1.2), (tail[0] + 5.4, tail[1] - 0.8) if product == "lodge" else (tail[0] + 3.2, tail[1] + 1.0)]:
         sh.rect(bx - 0.6, by - 0.4, bx + 0.6, by + 0.4, fill=sh.pattern("soil"), stroke=GREEN, sw=0.7); sh.text(bx, by - 0.75, "caixa de brita", 8, GREEN)
     # entrada de água/energia
     sh.line(x0 + 2.2, y0, x0 + 2.2, ent[1] + 2.0, "#4E6E8B", 1.0, dash="8 3"); sh.line(x0 + 2.2, ent[1] + 2.0, ent[0] - 1.0, ent[1] + 2.0, "#4E6E8B", 1.0, dash="8 3")
@@ -203,9 +277,14 @@ def implantacao(product):
     # cotas do lote e da unidade
     sh.dim(x0, y0 + LY, x0 + LX, y0 + LY, 0.9, label="30,00")
     sh.dim(x0, y0, x0, y0 + LY, -0.9, label="24,00")
-    ux = [P(-3.7 if c else -3.0, 0)[1], P(9.6 if c else 9.5, 0)[1]]
-    sh.dim(-4.6, ux[1], -4.6, ux[0], 0, label=("13,30" if c else "12,50") + " (deck + cabana)", size=10)
-    sh.dim(P(0, 3.25 if c else 3.5)[0], ux[0] + 0.9, P(0, -3.25 if c else -3.5)[0], ux[0] + 0.9, 0, label="6,50" if c else "7,00", size=10)
+    if product == "lodge":
+        ux = [P(-6.0, 0)[1], P(3.4, 0)[1]]
+        sh.dim(-7.0, ux[1], -7.0, ux[0], 0, label="9,40 (deck + cabana)", size=10)
+        sh.dim(P(0, 6.0)[0], ux[0] + 0.9, P(0, -6.0)[0], ux[0] + 0.9, 0, label="12,00 (deck) · cabana 6,80 entre faces", size=10)
+    else:
+        ux = [P(-3.7 if c else -3.0, 0)[1], P(9.6 if c else 9.5, 0)[1]]
+        sh.dim(-4.6, ux[1], -4.6, ux[0], 0, label=("13,30" if c else "12,50") + " (deck + cabana)", size=10)
+        sh.dim(P(0, 3.25 if c else 3.5)[0], ux[0] + 0.9, P(0, -3.25 if c else -3.5)[0], ux[0] + 0.9, 0, label="6,50" if c else "7,00", size=10)
     sh.text(x0 + 0.4, y0 + LY + 2.2, "LEGENDA:  ▭ deck cumaru   ▭ cobertura / concha   - - - curvas de nível (m)   - - - afastamentos   ○ fossa / filtro   ▦ caixa de brita", 9.5, GREEN, anchor="start")
     sh.scalebar(x0, y0 - 5.6, 10, 2)
     tb(sh, product, "Planta de situação e implantação", "1:200 (A1)", "PA-01", "Implantação genérica de referência para um sítio-tipo de 720 m²")
@@ -253,7 +332,7 @@ def cobertura(product):
         sh.dim(10.3, -3.0, 10.3, 3.0, 0.6, label="6,00"); sh.dim(C.shear(x1, 4.15), 3.6, C.shear(x2, 4.15), 3.6, 0.5, label="4,70 (espinha)")
         sh.leader(0.5, 2.3, -1.6, 4.5, "membrana PVDF 1050 g/m² · painéis deslizados em perfil duplo keder sobre cada arco", 10, anchor="start")
         sh.leader(2.2, -2.9, 1.0, -4.5, "Janelas Olho: recorte reforçado + clamp no anel E06", 10)
-    else:
+    elif product == "zenith":
         sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
         sh.header("Zion Safari · Planta de cobertura", "Membrana PVDF de dois cumes · curvas de nível a cada 0,40 m · bordas em catenária · pingadeiras nos pontos baixos · calha oculta no anel de beiral")
         rb = Z.roof_bounds()
@@ -288,14 +367,64 @@ def cobertura(product):
         sh.dim(x1 + 0.6, y0, x1 + 0.6, y1, 0.5, label="7,40"); sh.dim(x1 + 0.6, -2.7, x1 + 0.6, 2.7, 1.2, label="5,40")
         sh.leader(2.0, -2.2, -3.3, -5.05, "membrana PVDF 1050 g/m² em gomos radiais soldados por RF; i mín. 14° no vale", 10, anchor="start")
         sh.leader(x0, y0 + 1.2, -3.3, -4.6, "cabo de borda Ø12 inox em bolsa; postes PE inclinados 8°", 10, anchor="start")
-    sh.north(1500, 140, angle=-90); sh.scalebar(-3.7 if c else 2.0, -5.6, 5)
-    tb(sh, product, "Planta de cobertura", "1:50 (A1)", "PA-04", "Escoamento, calhas, tubos de queda, claraboia / óculo e respiros")
+    if product == "lodge":
+        sh = Sheet(1600, 1000, scale=58, ox=560, oy=505)
+        sh.header("Zion Lodge · Planta de cobertura", "Membrana PVDF cônica em 8 gomos radiais · Lanterna Zion no cume · calha oculta no anel de beiral com 4 TQ Ø75 nos pilares · vela de sombra sobre o deck")
+        BLUE = "#4E6E8B"
+        # deck e vela (abaixo da cobertura)
+        sh.poly(L.deck_pts(), fill="none", stroke=GREEN, sw=0.8, dash="6 3")
+        sp = L.sail_posts(); sh.poly([LV[3], sp[1], sp[0], LV[4]], fill="#F1EBDD", stroke=GREEN, sw=1.0, dash="4 3")
+        for p in sp: sh.circle(p[0], p[1], 0.1, fill=STEEL, stroke="none")
+        sh.text(sp[0][0] + 1.1, 0.0, "VELA DE SOMBRA · membrana PVDF em 2 postes · h 2,40", 9, GREEN, rotate=-90)
+        sh.text(-4.1, 4.5, "deck (abaixo)", 9, EARTH, rotate=-45)
+        # membrana (octógono do beiral), pilares e anel de beiral
+        sh.poly(LVO, fill=MEMB, stroke=GREEN, sw=1.8)
+        sh.poly(LV, fill="none", stroke=GREEN, sw=0.8, dash="6 3")
+        for (x, y) in LV: sh.rect(x - 0.08, y - 0.08, x + 0.08, y + 0.08, fill=STEEL, stroke="none")
+        # curvas de nível da membrana
+        for z in (2.6, 3.0, 3.4, 3.8, 4.2):
+            d = lodge_d(z); sh.circle(0, 0, d, fill="none", stroke=EARTH, sw=0.7, dash="5 3", opacity=0.9)
+            sh.text(d * math.cos(1.75) - 0.05, d * math.sin(1.75) + 0.1, f"+{fmt(z)}", 8, EARTH, anchor="end")
+        # 8 gomos (costuras sobre os caibros)
+        for k in range(8):
+            ang = math.pi / 8 + 2 * math.pi * k / 8
+            sh.line(L.R_LANTERN * math.cos(ang), L.R_LANTERN * math.sin(ang), LRO * math.cos(ang), LRO * math.sin(ang), GREEN, 0.9)
+            r = 2.6; sh.text(r * math.cos(ang + math.pi / 8), r * math.sin(ang + math.pi / 8), f"G{k + 1}", 8.5, EARTH, dy=3)
+        # setas de escoamento radiais (nas direções das faces)
+        for k in range(8):
+            ang = 2 * math.pi * k / 8
+            lodge_arrow(sh, 1.55 * math.cos(ang), 1.55 * math.sin(ang), 2.45 * math.cos(ang), 2.45 * math.sin(ang))
+        # lanterna
+        sh.circle(0, 0, L.R_LANTERN + 0.25, fill="#E5E1D8", stroke=GREEN, sw=1.2); sh.circle(0, 0, L.R_LANTERN, fill=GLASS, stroke=GREEN, sw=1.0)
+        sh.text(0, 0.05, "LZ1", 9, GREEN, weight=700, dy=3); sh.text(0, -0.28, "Ø1,50", 8, GREEN, dy=3)
+        # calha oculta no perfil de borda do beiral e tubos de queda nos pilares
+        gut = L.vertices(LRO - 0.12); sh.poly(gut, close=True, stroke=BLUE, sw=2.2)
+        for k in (1, 3, 5, 7):
+            (px, py) = LV[k]; (gx, gy) = gut[k]
+            sh.line(gx, gy, px, py, BLUE, 1.0, dash="3 2"); sh.circle(px, py, 0.13, fill=BLUE, stroke="none")
+            sh.text(px + (0.25 if px > 0 else -0.25), py + (0.32 if py > 0 else -0.42), "TQ Ø75", 8, BLUE, anchor="start" if px > 0 else "end")
+        # cotas
+        sh.dim(-LRE, 6.3, LRE, 6.3, 0.4, label="8,60 (projeção do beiral)")
+        sh.dim(5.0, -3.4, 5.0, 3.4, 0.4, label="6,80 (entre faces / pilares)"); sh.dim(5.0, -LRE, 5.0, LRE, 1.1, label="8,60"); sh.dim(5.0, -6.0, 5.0, 6.0, 1.8, label="12,00 (deck)")
+        sh.dim(-6.0, -6.3, -3.4, -6.3, -0.4, label="2,60 (deck)"); sh.dim(-3.4, -6.3, 3.4, -6.3, -0.4, label="6,80")
+        # chamadas
+        sh.leader(2.1, 2.1, 8.0, 4.6, "membrana PVDF 1050 g/m² em 8 gomos radiais soldados por RF; costuras sobre os caibros Ø76", 10)
+        sh.leader(LRE * math.cos(0.35), LRE * math.sin(0.35), 8.0, 3.9, "borda do beiral: perfil de alumínio com calha oculta 80 x 60 (i 0,5% para os TQ)", 10)
+        sh.leader(LV[1][0], LV[1][1], 8.0, 3.2, "pilar Ø101,6 (8 un.) · anel de beiral 150 x 100 a +2,70 · TQ Ø75 embutido em 4 pilares", 10)
+        sh.leader(0.55, 0.55, 8.0, 2.5, "Lanterna Zion: anel de compressão Ø1,50 a +4,60 · anel de vidro 0,45 · tampa ventilada Ø2,00 a +5,20", 10)
+        sh.leader(1.2, -1.2, 8.0, -1.4, "escoamento radial · i 28° no anel da lanterna a 8° na borda (perfil tensionado)", 10)
+        sh.leader(-4.9, -0.9, -6.3, -5.1, "vela de sombra: membrana independente presa ao anel de beiral e a 2 postes; não toca a cobertura", 10)
+        legend = [("- - -", "curvas de nível da membrana a cada 0,40 m"), ("G1 a G8", "gomos da membrana (costuras sobre os caibros)"), ("azul", "calha oculta na borda do beiral e TQ Ø75 nos pilares P2, P4, P6 e P8"), ("→", "sentido do escoamento")]
+        for i, (s, t) in enumerate(legend):
+            sh.text_px(1010, 700 + i * 18, s, size=9.5, weight=700, anchor="start"); sh.text_px(1090, 700 + i * 18, t, size=9.5, anchor="start")
+    sh.north(1500, 140, angle=-90); sh.scalebar({"cocoon": -3.7, "zenith": 2.0, "lodge": 7.4}[product], -5.6 if product != "lodge" else 5.2, 5)
+    tb(sh, product, "Planta de cobertura", "1:50 (A1)", "PA-04", "Escoamento, calhas, tubos de queda, claraboia / óculo e respiros" if product != "lodge" else "Escoamento radial, calha oculta, TQ Ø75, Lanterna Zion e vela de sombra")
     return sh
 
 # ----------------------------------------------------------------------------- PA-05 FORRO E ILUMINAÇÃO
 def forro(product):
     c = product == "cocoon"
-    sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
+    sh = Sheet(1600, 1000, scale=82, ox=390, oy=520) if product != "lodge" else Sheet(1600, 1000, scale=58, ox=560, oy=505)
     sh.header(f"{NAME[product]} · Planta de forro refletido e iluminação", "Forro tensionado, difusores, fitas LED 2700 K, luminárias, arandelas, balizadores e pontos de comando · sem pendentes (padrão Zion)")
     def led(pts, label=None):
         sh.poly(pts, close=False, stroke="#C9A84C", sw=2.4, dash="7 4")
@@ -339,7 +468,7 @@ def forro(product):
         legend = [("- - - dourado", "fita LED 2700 K em perfil de alumínio (rodapés, requadros, espinha)"), ("⊕", "luminária embutida IP44 (banho)"), ("▬", "arandela de leitura orientável"), ("▭ preto", "difusor linear do ar-condicionado"), ("●", "balizador LED de deck"), ("a b c d", "comandos: a estar (LED + geral) · b cabeceira (cena noite) · c banho · d deck")]
         for i, (s, t) in enumerate(legend):
             sh.text_px(60, 840 + i * 18, s, size=9.5, weight=700, anchor="start"); sh.text_px(150, 840 + i * 18, t, size=9.5, anchor="start")
-    else:
+    elif product == "zenith":
         rb = Z.roof_bounds()
         sh.rect(rb[0], rb[2], rb[1], rb[3], fill="none", stroke=GREEN, sw=0.8, dash="6 3")
         sh.rect(0.1, -2.6, 9.4, 2.6, fill="#F3EDE3", stroke=GREEN, sw=1.2)
@@ -372,7 +501,46 @@ def forro(product):
         legend = [("- - - dourado", "fita LED 2700 K em perfil de alumínio (anel de beiral, rodapés, óculo, bancadas)"), ("⊕", "luminária embutida IP44 (banho)"), ("▬", "arandela de leitura / passagem"), ("▭ preto", "difusor linear do ar-condicionado"), ("●", "balizador LED de deck"), ("a b c d", "comandos: a estar · b cabeceira (cena noite, motor da chaminé) · c banho · d terraço / hidromassagem")]
         for i, (s, t) in enumerate(legend):
             sh.text_px(60, 840 + i * 18, s, size=9.5, weight=700, anchor="start"); sh.text_px(150, 840 + i * 18, t, size=9.5, anchor="start")
-    sh.north(1500, 140, angle=-90); sh.scalebar(-3.7 if c else -3.0, -5.6, 5)
+    else:
+        sh.poly(LVO, fill="none", stroke=GREEN, sw=0.8, dash="6 3")
+        sh.poly(L.deck_pts(), fill="none", stroke=GREEN, sw=0.8)
+        sp = L.sail_posts(); sh.poly([LV[3], sp[1], sp[0], LV[4]], fill="none", stroke=GREEN, sw=0.7, dash="4 3")
+        for p in sp: sh.circle(p[0], p[1], 0.08, fill=STEEL, stroke="none")
+        sh.poly(LV, fill="#F3EDE3", stroke=GREEN, sw=1.2)
+        # forro tensionado cônico (estar + suíte) e forro plano do banho
+        tens = [LV[1], LV[2], LV[3], LV[4], LV[5], LV[6], (L.X_PART, -LYC), (L.X_PART, LYC)]
+        sh.poly(tens, fill=sh.pattern("insul"), stroke="none", opacity=0.5)
+        sh.poly([(L.X_PART, LYC), (L.X_PART, -LYC), LV[7], LV[0]], fill="#E8E6E0", stroke=GREEN, sw=0.8)
+        sh.text(2.75, -2.55, "forro plano 2,40", 8.5, GREEN); sh.text(2.75, -2.8, "(ático técnico)", 8, GREEN)
+        for z in (2.8, 3.2, 3.6, 4.0, 4.3): lodge_arc(sh, lodge_d(z + 0.22), L.X_PART - 0.05)
+        sh.text(0.8, -4.9, "forro tensionado cônico acompanhando a membrana (curvas a cada 0,40 m, -0,22 m da membrana) · h 4,38 no anel da lanterna", 9, GREEN)
+        # lanterna com anel LED
+        sh.circle(0, 0, L.R_LANTERN, fill=GLASS, stroke=GREEN, sw=1.0); led([(0.87 * math.cos(a), 0.87 * math.sin(a)) for a in np.linspace(0, 2 * math.pi, 40)])
+        sh.text(0, -1.2, "LZ1 lanterna + anel LED", 8.5, GREEN)
+        # LED contínuo no anel de beiral (perímetro) e rodapé
+        ring = L.vertices(LR - 0.16); led(ring + [ring[0]])
+        sh.text(1.0, 4.6, "fita LED contínua no anel de beiral (luz indireta no forro) + rodapé", 8.5, GREEN)
+        # difusores lineares na parede-corda (lado da suíte), retorno e evaporadora no ático
+        for (y1, y2) in ((-2.3, -1.0), (1.0, 2.3)):
+            sh.rect(L.X_PART - 0.13, y1, L.X_PART - 0.03, y2, fill=GREEN, stroke="none"); sh.text(L.X_PART - 0.32, (y1 + y2) / 2, "difusor linear", 8, GREEN, rotate=-90)
+        sh.rect(2.0, -0.5, 3.0, 0.5, fill="none", stroke=GREEN, sw=0.7, dash="2 2"); sh.text(2.5, 0.0, "evaporadora", 7.5, GREEN, dy=3); sh.text(2.5, -0.22, "(ático)", 7.5, GREEN, dy=3)
+        sh.rect(2.5, 0.6, 3.1, 1.0, fill="none", stroke=GREEN, sw=0.9); sh.text(2.8, 1.15, "retorno", 8, GREEN)
+        # luminárias, exaustor e arandelas
+        for (x, y) in [(2.1, 1.7), (3.05, 1.95), (2.9, -1.15), (2.25, -2.1)]: down(x, y)
+        sh.rect(3.05, -0.5, 3.35, -0.2, fill="none", stroke=GREEN, sw=0.9, dash="2 2"); sh.text(3.15, -0.75, "exaustor", 8, GREEN)
+        arand(1.42, 1.2); arand(1.42, -1.2); sh.text(0.45, 1.45, "arandelas de leitura", 8, GREEN)
+        led([(0.25, 2.15), (1.85, 2.15)]); sh.text(0.6, 1.92, "LED sob o café", 8, GREEN)
+        led([(0.25, -2.15), (1.85, -2.15)]); sh.text(0.6, -1.98, "LED no closet", 8, GREEN)
+        for (x, y) in [(-5.6, -2.0), (-5.6, 0.0), (-5.6, 2.0), (-4.15, -4.15), (-4.15, 4.15), (-2.6, -5.6), (-2.6, 5.6)]: baliz(x, y)
+        sh.text(-4.5, -3.45, "balizadores LED no deck", 8.5, GREEN, rotate=45)
+        switch(-3.05, 1.35, "a"); switch(1.2, 0.7, "b"); switch(1.85, 0.55, "c"); switch(-3.05, -1.35, "d")
+        sh.dim(-3.4, 6.3, L.X_PART, 6.3, 0.4, label="4,95 forro tensionado"); sh.dim(L.X_PART, 6.3, 3.4, 6.3, 0.4, label="1,85 forro plano")
+        sh.dim(5.0, -3.4, 5.0, 3.4, 0.4, label="6,80")
+        legend = [("- - - dourado", "fita LED 2700 K em perfil de alumínio (anel de beiral, rodapés, lanterna, café, closet)"), ("⊕", "luminária embutida IP44 (banho)"), ("▬", "arandela de leitura orientável"),
+                  ("▭ preto", "difusor linear do ar-condicionado (dutos no ático do banho)"), ("●", "balizador LED de deck"), ("a b c d", "comandos: a estar (LED + geral) · b cabeceira (cena noite + lanterna) · c banho · d deck / vela")]
+        for i, (s, t) in enumerate(legend):
+            sh.text_px(1010, 640 + i * 18, s, size=9.5, weight=700, anchor="start"); sh.text_px(1100, 640 + i * 18, t, size=9.5, anchor="start")
+    sh.north(1500, 140, angle=-90); sh.scalebar({"cocoon": -3.7, "zenith": -3.0, "lodge": 7.4}[product], -5.6 if product != "lodge" else 5.2, 5)
     tb(sh, product, "Planta de forro refletido e iluminação", "1:50 (A1)", "PA-05", "Forro tensionado + forro plano do banho; iluminação indireta 2700 K; difusores; comandos")
     return sh
 
@@ -410,7 +578,7 @@ def fachada_esquerda(product):
         sh.dim(11.0, 0, 11.0, 4.2, -0.4, label="4,20"); sh.dim(-4.1, -0.6, -4.1, 0, 0.3, label="0,60")
         sh.text(-4.4, 4.5, "+4,20", 10, EARTH, anchor="end"); sh.text(-4.4, 0.12, "+0,00", 10, EARTH, anchor="end"); sh.text(-4.4, -0.5, "-0,60", 10, EARTH, anchor="end")
         sh.scalebar(11.0, -2.5, 5)
-    else:
+    elif product == "zenith":
         sh = Sheet(1600, 1000, scale=96, ox=1130, oy=730, flip_x=True)
         sh.header("Zion Safari · Fachada lateral esquerda", "Vista da passarela e dos painéis ripados (olhar para -y, frente à direita) · J1 janela do café · J2 fresta do closet · postes PE02 / PE06 / PE04")
         ground(sh, -4.5, 12.0)
@@ -437,6 +605,47 @@ def fachada_esquerda(product):
         sh.dim(11.3, 0, 11.3, 5.8, -0.4, label="5,80"); sh.dim(-4.1, 0, -4.1, 2.9, 0.3, label="2,90 (beiral)")
         sh.text(-4.6, 5.95, "+5,80", 10, EARTH, anchor="end"); sh.text(-4.6, 0.12, "+0,00", 10, EARTH, anchor="end"); sh.text(-4.6, -0.5, "-0,60", 10, EARTH, anchor="end")
         sh.scalebar(11.5, -2.4, 5)
+    else:
+        sh = Sheet(1600, 1000, scale=96, ox=900, oy=700, flip_x=True)   # olhar para -y: frente (deck e vela) à direita
+        sh.header("Zion Lodge · Fachada lateral esquerda", "Vista da face lateral de vidro VF3 e da face diagonal VF2 (olhar para -y, frente à direita) · painel ripado da cabeceira · vela de sombra e deck à direita · condensadora à esquerda")
+        ground(sh, -7.4, 5.6)
+        for px in sorted(set(round(x, 2) for (x, y) in L.piles())): sh.rect(px - 0.04, -0.6, px + 0.04, -0.2, fill=STEEL, stroke="none")
+        sh.rect(-6.0, -0.2, 3.4, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9); sh.rect(-6.0, -0.05, 3.4, 0.0, fill=GREEN, stroke="none")
+        for i in range(3): sh.rect(-6.0 - 0.3 * (i + 1), -0.2 + 0.05 * (i + 1) - 0.15, -6.0 - 0.3 * i, -0.2 + 0.05 * (i + 1), fill=WOOD2, stroke=GREEN, sw=0.7)
+        # faces: vidro VF2 (2-3, diagonal) e VF3 (1-2, lateral); painel ripado (0-1, diagonal da cabeceira)
+        sh.rect(-3.4, 0, 1.41, L.Z_EAVE - 0.15, fill=GLASS, stroke=GREEN, sw=0.9); sh.line(-1.41, 0, -1.41, L.Z_EAVE - 0.15, GREEN, 0.9)
+        sh.line(-3.4, 2.4, 1.41, 2.4, GREEN, 0.6, opacity=0.7)
+        sh.rect(1.41, 0, 3.4, L.Z_EAVE - 0.15, fill="#C9B08C", stroke=GREEN, sw=1.0); slats(sh, 1.45, 3.4, 0, L.Z_EAVE - 0.15)
+        sh.text(0.0, 1.25, "VF3 2,82 x 2,55", 9.5, GREEN); sh.text(-2.4, 1.25, "VF2 2,82 x 2,55", 9.5, GREEN); sh.text(-2.4, 1.02, "(face diagonal, em escorço)", 8, GREEN)
+        for x in (-3.4, -1.41, 1.41, 3.4):
+            sh.rect(x - 0.12, 0, x + 0.12, L.Z_EAVE, fill=WOOD2, stroke=GREEN, sw=0.8); sh.rect(x - 0.05, 0, x + 0.05, L.Z_EAVE, fill=STEEL, stroke="none")
+        sh.rect(-3.4, L.Z_EAVE - 0.15, 3.4, L.Z_EAVE, fill=STEEL, stroke=GREEN, sw=0.6)
+        # cobertura cônica, costuras dos gomos visíveis (lado +y), lanterna
+        sh.poly(lodge_roof_profile(), fill=MEMB, stroke=GREEN, sw=1.8)
+        for pts in lodge_seams():
+            if pts[0][1] > 0: sh.poly([(x, z) for (x, y, z) in pts], close=False, stroke=EARTH, sw=0.6, dash="4 3", opacity=0.7)
+        sh.rect(-L.R_LANTERN, L.Z_LANTERN - 0.1, L.R_LANTERN, L.Z_LANTERN, fill=STEEL, stroke="none")
+        sh.rect(-L.R_LANTERN, L.Z_LANTERN, L.R_LANTERN, L.Z_TOP - 0.15, fill=GLASS, stroke=GREEN, sw=0.9)
+        for xx in (-0.53, 0.0, 0.53): sh.line(xx, L.Z_LANTERN, xx, L.Z_TOP - 0.15, GREEN, 0.6)
+        sh.rect(-L.R_LANTERN - 0.25, L.Z_TOP - 0.15, L.R_LANTERN + 0.25, L.Z_TOP, fill=MEMB, stroke=GREEN, sw=1.2)
+        # vela de sombra (poste e borda), condensadora
+        px = L.sail_posts()[0][0]
+        sh.poly([(px, L.SAIL["z_post"]), (-3.4, L.Z_EAVE + 0.15), (-3.4, L.Z_EAVE + 0.05), (px, L.SAIL["z_post"] - 0.08)], fill="#F1EBDD", stroke=GREEN, sw=1.2)
+        sh.line(px, 0, px, L.SAIL["z_post"], STEEL, 4)
+        sh.rect(4.35, 0.0, 5.05, 0.62, fill="#E5E1D8", stroke=GREEN, sw=0.8); slats(sh, 4.3, 5.1, 0, 1.3, 0.1)
+        # chamadas
+        sh.leader(0.4, L.Z_TOP, 1.8, 6.05, "Lanterna Zion LZ1 · anel de vidro Ø1,50 x 0,45 · tampa ventilada Ø2,00 · cume +5,20", 12, anchor="end")
+        sh.leader(-2.6, L.roof_z(2.6), -3.6, 5.3, "membrana PVDF 1050 g/m² em 8 gomos · costuras sobre os caibros Ø76", 12, anchor="end")
+        sh.leader(2.0, L.Z_EAVE - 0.07, 3.9, 3.7, "anel de beiral 150 x 100 · calha oculta na borda · TQ Ø75 nos pilares", 12, anchor="end")
+        sh.leader(3.4, 1.6, 4.6, 2.3, "pilar Ø101,6 revestido em madeira (8 un.)", 12, anchor="end")
+        sh.leader(2.4, 0.8, 3.9, -1.0, "painel SIP 100 mm + ripado termotratado 40 x 40 (faces opacas)", 12, anchor="end")
+        sh.leader(px + 0.8, L.SAIL["z_post"] + 0.1, -4.45, 3.6, "vela de sombra · 2 postes Ø101,6 · h 2,40", 12, anchor="start")
+        sh.leader(4.7, 0.9, 4.55, 1.75, "condensadora", 11, anchor="end")
+        sh.text(-6.45, -0.88, "escada 3 degraus", 8.5, EARTH)
+        sh.dim(-3.4, -0.95, 3.4, -0.95, -0.35, label="6,80 (pilares)"); sh.dim(-6.0, -0.95, -3.4, -0.95, -0.35, label="2,60 (deck)"); sh.dim(-LRE, -0.95, LRE, -0.95, -0.85, label="8,60 (cobertura)")
+        sh.dim(6.0, 0, 6.0, L.Z_TOP, -0.4, label="5,20"); sh.dim(6.0, 0, 6.0, L.Z_EAVE, 0.4, label="2,70 (beiral)")
+        for (z, s) in ((L.Z_TOP, "+5,20"), (L.Z_LANTERN, "+4,60"), (L.Z_EAVE, "+2,70"), (0, "+0,00"), (-0.6, "-0,60")): sh.text(-7.0, z + (0.12 if z >= 0 else 0.1), s, 10, EARTH, anchor="end")
+        sh.scalebar(5.5, -2.5, 5)
     tb(sh, product, "Fachada lateral esquerda", "1:50 (A1)", "PA-08b", "Complementa a fachada lateral direita (PA-08a)")
     return sh
 
@@ -472,13 +681,18 @@ def esquadrias(product):
             sh.line(X + w / 2 - 2.3, base + 2.4, X + w / 2 + 2.3, base + 2.4, GREEN, 1.0)
             sh.rect(X + w / 2 - 1.6, base, X + w / 2 - 0.6, base + 2.4, fill="none", stroke=GREEN, sw=1.6); sh.text(X + w / 2 - 1.1, base + 1.2, "PV1", 9, GREEN)
         else:
-            sh.rect(X, base, X + w, base + h, fill=GLASS if cod not in ("PC1", "PC2") or product == "zenith" and cod == "PC1" else WOOD, stroke=GREEN, sw=1.2)
-            if cod == "PC1" and product == "zenith":
-                for k in range(1, 4): sh.line(X + w * k / 4, base, X + w * k / 4, base + h, GREEN, 1.0)
+            gdoor = cod == "PC1" and product in ("zenith", "lodge")     # porta de correr de vidro (Safari 4 folhas, Lodge 2 folhas)
+            sh.rect(X, base, X + w, base + h, fill=GLASS if cod not in ("PC1", "PC2") or gdoor else WOOD, stroke=GREEN, sw=1.2)
+            if gdoor:
+                nf = 4 if product == "zenith" else 2
+                for k in range(1, nf): sh.line(X + w * k / nf, base, X + w * k / nf, base + h, GREEN, 1.0)
                 sh.add(f'<path d="M{sh.X(X + w * 0.3):.1f},{sh.Y(base + 0.35):.1f} l-10,-5 v10 z" fill="{GREEN}"/><path d="M{sh.X(X + w * 0.7):.1f},{sh.Y(base + 0.35):.1f} l10,-5 v10 z" fill="{GREEN}"/>')
-            if cod == "VF1": pass
+            if cod == "LZ1":   # anel de vidro da lanterna: anel de compressão abaixo, 8 segmentos, tampa de membrana acima
+                sh.rect(X, base - 0.1, X + w, base, fill=STEEL, stroke="none")
+                for k in range(1, 4): sh.line(X + w * k / 4, base, X + w * k / 4, base + h, GREEN, 0.8)
+                sh.rect(X - 0.25, base + h, X + w + 0.25, base + h + 0.15, fill=MEMB, stroke=GREEN, sw=1.2)
             if cod in ("J2", "J4"): sh.poly([(X + 0.1, base + 0.08), (X + w / 2, base + h - 0.08), (X + w - 0.1, base + 0.08)], close=False, stroke=GREEN, sw=0.6, dash="3 2")
-            if cod in ("PC1", "PC2") and not (product == "zenith" and cod == "PC1"):
+            if cod in ("PC1", "PC2") and not gdoor:
                 sh.add(f'<path d="M{sh.X(X + w * 0.6):.1f},{sh.Y(base + 1.05):.1f} l10,-5 v10 z" fill="{GREEN}"/>'); sh.rect(X, base, X + w, base + h, fill=sh.pattern("wood"), stroke=GREEN, sw=1.2)
         sh.dim(X, base, X + w, base, -0.35, label=fmt(w), size=10); sh.dim(X + w, base, X + w, base + h, 0.35, label=fmt(h), size=10)
         sh.text(X + w / 2, base + h + 0.45, f"{cod} · {q} un.", 11, GREEN, weight=700)
@@ -497,7 +711,7 @@ def esquadrias(product):
     return sh
 
 def build():
-    for product in ("cocoon", "zenith"):
+    for product in ("cocoon", "zenith", "lodge"):
         os.makedirs(OUT[product], exist_ok=True)
         capa(product).save(os.path.join(OUT[product], "PA-00_capa_indice_areas_notas.svg"))
         implantacao(product).save(os.path.join(OUT[product], "PA-01_implantacao.svg"))

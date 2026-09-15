@@ -521,13 +521,17 @@ if __name__ == "__main__":
 class Lodge:
     NAME = "ZION LODGE"
     F = 6.8                       # distância entre faces do octógono (m)
+    M = 0.0                       # inserção retangular no meio (octógono alongado); 0 = octógono regular
     N = 8
+    CODE = "lodge"
+    LABEL = "ZION LODGE 38"
     Z_EAVE = 2.7                  # anel de beiral (topo)
     Z_LANTERN = 4.6               # base da lanterna (anel de compressão)
     Z_TOP = 5.2                   # tampa da lanterna
     R_LANTERN = 0.75              # raio do anel da lanterna
     OVER = 0.9                    # beiral da membrana além dos pilares
     DECK_D = 2.6                  # profundidade do deck frontal (3 faces)
+    DECK_FACES = [2, 3, 4, 5]     # vértices que delimitam as faces com deck
     SAIL = dict(z_post=2.4, reach=2.6)   # vela frontal sobre o deck
 
     def side(self):
@@ -537,19 +541,26 @@ class Lodge:
         return (self.F / 2) / math.cos(math.pi / self.N)
 
     def vertices(self, r=None, rot=math.pi / 8):
-        """vértices do octógono (face 1 voltada para -x = frente)."""
+        """vértices do octógono (frente = face entre os vértices 3 e 4, voltada para -x); alongado por M no eixo x."""
         r = r or self.r_corner()
-        return [(r * math.cos(rot + 2 * math.pi * k / self.N), r * math.sin(rot + 2 * math.pi * k / self.N)) for k in range(self.N)]
+        out = []
+        for k in range(self.N):
+            x, y = r * math.cos(rot + 2 * math.pi * k / self.N), r * math.sin(rot + 2 * math.pi * k / self.N)
+            out.append((x + (self.M / 2 if x > 0 else -self.M / 2), y))
+        return out
+
+    def lantern_centers(self):
+        return [(0.0, 0.0)] if self.M < 0.5 else [(-self.M / 2, 0.0), (self.M / 2, 0.0)]
 
     def floor_area(self):
-        return 2 * (1 + math.sqrt(2)) * self.side() ** 2
+        return 2 * (1 + math.sqrt(2)) * self.side() ** 2 + self.M * self.F
 
     def deck_pts(self):
         """deck em três faces frontais (faces 3, 4, 5 do octógono, lado -x)."""
         V = self.vertices()
         ro = self.r_corner() + self.DECK_D / math.cos(math.pi / self.N)
         Vo = self.vertices(ro)
-        idx = [2, 3, 4, 5]
+        idx = self.DECK_FACES
         inner = [V[i] for i in idx]; outer = [Vo[i] for i in idx]
         return inner + outer[::-1]
 
@@ -616,31 +627,61 @@ class Lodge:
         return [(px, -1.8), (px, 1.8)]
 
     def rafters(self):
-        """8 caibros radiais: do vértice (anel de beiral) ao anel da lanterna."""
+        """8 caibros radiais: do vértice (anel de beiral) ao anel da lanterna mais próxima (+ 2 caibros de cumeeira no alongado)."""
         out = []
         for (x, y) in self.vertices():
-            ang = math.atan2(y, x)
-            out.append([(x, y, self.Z_EAVE), (self.R_LANTERN * math.cos(ang), self.R_LANTERN * math.sin(ang), self.Z_LANTERN)])
+            cx = self.M / 2 if x > 0 else -self.M / 2
+            ang = math.atan2(y, x - cx)
+            out.append([(x, y, self.Z_EAVE), (cx + self.R_LANTERN * math.cos(ang), self.R_LANTERN * math.sin(ang), self.Z_LANTERN)])
+        if self.M >= 0.5:
+            for sg in (-1, 1):
+                out.append([(-self.M / 2, sg * self.R_LANTERN, self.Z_LANTERN), (self.M / 2, sg * self.R_LANTERN, self.Z_LANTERN)])
+        return out
+
+    def _rim(self, na=64):
+        """amostras em volta do perímetro: (cx, ux, uy, r_edge) — centro da lanterna, direção radial unitária e raio até o beiral."""
+        ro = self.r_corner() + self.OVER / math.cos(math.pi / self.N)
+        def r_edge(ang):
+            k = (ang - math.pi / 8) % (2 * math.pi / self.N) - math.pi / self.N
+            return ro * math.cos(math.pi / self.N) / math.cos(k)
+        out = []
+        if self.M < 0.5:
+            for j in range(na):
+                ang = 2 * math.pi * j / na
+                out.append((0.0, math.cos(ang), math.sin(ang), r_edge(ang)))
+            return out
+        half = na // 2; seg = max(4, na // 8); ry = self.F / 2 + self.OVER
+        for j in range(half + 1):                                   # arco direito: -90° -> +90° em torno de (+M/2, 0)
+            ang = -math.pi / 2 + math.pi * j / half
+            out.append((self.M / 2, math.cos(ang), math.sin(ang), r_edge(ang)))
+        for j in range(1, seg):                                     # topo: de +M/2 a -M/2, direção +y
+            out.append((self.M / 2 - self.M * j / seg, 0.0, 1.0, ry))
+        for j in range(half + 1):                                   # arco esquerdo: 90° -> 270° em torno de (-M/2, 0)
+            ang = math.pi / 2 + math.pi * j / half
+            out.append((-self.M / 2, math.cos(ang), math.sin(ang), r_edge(ang)))
+        for j in range(1, seg):                                     # base: de -M/2 a +M/2, direção -y
+            out.append((-self.M / 2 + self.M * j / seg, 0.0, -1.0, ry))
         return out
 
     def roof_mesh(self, nr=14, na=64):
-        """membrana cônica em 8 gomos: anel da lanterna -> beiral (polígono com balanço OVER)."""
+        """membrana cônica em gomos: anel da(s) lanterna(s) -> beiral (polígono com balanço OVER). No octógono alongado
+        a superfície é gerada em torno do 'estádio' que liga as duas lanternas (cumeeira reta entre elas)."""
         verts, faces = [], []
-        ro = self.r_corner() + self.OVER / math.cos(math.pi / self.N)
+        rim = self._rim(na); n = len(rim)
         for i in range(nr + 1):
             t = i / nr
-            for j in range(na):
-                ang = 2 * math.pi * j / na
-                # raio da borda do octógono (com balanço) nessa direção
-                k = (ang - math.pi / 8) % (2 * math.pi / self.N) - math.pi / self.N
-                r_edge = ro * math.cos(math.pi / self.N) / math.cos(k)
-                r = self.R_LANTERN + (r_edge - self.R_LANTERN) * t
+            for (cx, ux, uy, re) in rim:
+                r = self.R_LANTERN + (re - self.R_LANTERN) * t
                 z = self.roof_z(r) if t < 1 else self.Z_EAVE - 0.35
-                verts.append((r * math.cos(ang), r * math.sin(ang), z))
+                verts.append((cx + r * ux, r * uy, z))
         for i in range(nr):
-            for j in range(na):
-                a0 = i * na + j; a1 = i * na + (j + 1) % na; b0 = a0 + na; b1 = a1 + na
+            for j in range(n):
+                a0 = i * n + j; a1 = i * n + (j + 1) % n; b0 = a0 + n; b1 = a1 + n
                 faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+        if self.M >= 0.5:   # cumeeira plana entre as duas lanternas
+            k = len(verts); r = self.R_LANTERN; z = self.Z_LANTERN
+            verts += [(-self.M / 2, -r, z), (self.M / 2, -r, z), (self.M / 2, r, z), (-self.M / 2, r, z)]
+            faces += [(k, k + 1, k + 2), (k, k + 2, k + 3)]
         return dict(vertices=verts, faces=faces)
 
     def piles(self):
@@ -661,3 +702,114 @@ class Lodge:
     def export(self):
         return dict(name=self.NAME, vertices=self.vertices(), walls=self.walls(), furniture=self.furniture(), rafters=self.rafters(), roof=self.roof_mesh(),
                     deck=self.deck_pts(), sail_posts=self.sail_posts(), piles=self.piles(), lantern=dict(r=self.R_LANTERN, z1=self.Z_LANTERN, z2=self.Z_TOP), z_eave=self.Z_EAVE)
+
+
+class Lodge24(Lodge):
+    """ZION LODGE 24: octógono compacto de 5,40 m entre faces (24 m²), deck em uma face, lanterna única. Referência de mercado: lodges de 23 m²."""
+    NAME = "ZION LODGE 24"; LABEL = "ZION LODGE 24"; CODE = "lodge24"
+    F = 5.4; M = 0.0
+    Z_EAVE = 2.6; Z_LANTERN = 4.2; Z_TOP = 4.7; R_LANTERN = 0.6; OVER = 0.8
+    DECK_D = 2.0; DECK_FACES = [3, 4]
+    SAIL = dict(z_post=2.3, reach=2.0)
+    X_PART = 1.2
+    GLASS_FACES = [(2, 3), (3, 4), (4, 5)]
+    WALL_FACES = [(5, 6), (6, 7), (7, 0), (0, 1), (1, 2)]
+
+    def walls(self):
+        V = self.vertices(); W = []
+        for (i, j) in self.GLASS_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="glass", name="Vidro insulado fixo / porta de correr" if (i, j) == (3, 4) else "Vidro insulado fixo"))
+        for (i, j) in self.WALL_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="wood", name="Painel SIP 100 mm + ripado"))
+        W.append(dict(p1=V[1], p2=V[2], z1=1.1, z2=2.1, kind="window", name="Janela do café 1,60 x 1,00"))
+        W.append(dict(p1=V[5], p2=V[6], z1=1.6, z2=2.2, kind="window", name="Fresta alta do banho"))
+        yc = math.sqrt(self.r_corner() ** 2 - self.X_PART ** 2)
+        W.append(dict(p1=(self.X_PART, -yc), p2=(self.X_PART, yc), z1=0, z2=2.3, kind="partition", name="Parede-corda do banho"))
+        return W
+
+    def furniture(self):
+        F = []
+        F.append(box(self.X_PART, self.X_PART + 0.1, -2.3, 2.3, 0, 2.3, "wall", "Parede do banho"))
+        F.append(box(self.X_PART, self.X_PART + 0.1, -0.35, 0.45, 0, 2.1, "opening", "Porta de correr do banho"))
+        F.append(box(-0.85, 1.15, -0.97, 0.97, 0, 0.55, "bed", "Cama king 1,93 x 2,03"))
+        F.append(box(-0.85, 1.15, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
+        F.append(box(0.65, 1.15, 1.05, 1.5, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(0.65, 1.15, -1.5, -1.05, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(-1.2, 0.4, 1.75, 2.35, 0, 0.9, "cabinet", "Café / minibar"))
+        F.append(box(-1.2, 0.4, -2.35, -1.75, 0, 2.2, "cabinet", "Closet"))
+        F.append(box(-2.45, -1.7, -0.8, 0.8, 0, 0.75, "chair", "Poltronas (2)"))
+        F.append(cyl(-1.65, 0.0, 0, 0.45, 0.25, "table", "Mesa lateral"))
+        F.append(box(1.4, 2.0, 0.6, 1.8, 0, 0.85, "vanity", "Bancada 1,20"))
+        F.append(box(2.1, 2.7, 1.1, 1.8, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(1.8, 2.7, -1.75, -0.85, 0, 0.02, "shower", "Chuveiro 0,90 x 0,90"))
+        F.append(box(1.8, 1.83, -1.75, -0.85, 0, 2.1, "glass", "Vidro do box"))
+        F.append(box(self.X_PART, 2.9, -2.2, 2.2, 2.3, 2.35, "ceiling", "Forro do banho"))
+        F.append(box(1.6, 2.4, -0.4, 0.4, 2.4, 2.55, "hvac", "Evaporadora hi-wall / dutada 9k BTU"))
+        F.append(box(3.6, 4.3, -1.6, -0.9, 0, 0.62, "condenser", "Condensadora"))
+        return F
+
+    def piles(self):
+        pts = [(x, y) for x in (-1.9, 0.0, 1.9) for y in (-1.9, 0.0, 1.9)]
+        pts += [(-2.9, 0.0), (2.9, 0.0), (0.0, -2.9), (0.0, 2.9)]
+        pts += [(-4.3, -1.0), (-4.3, 1.0)]
+        return pts
+
+    def sail_posts(self):
+        px = -self.r_corner() - self.SAIL["reach"]
+        return [(px, -1.1), (px, 1.1)]
+
+
+class Lodge28(Lodge):
+    """ZION LODGE 28: octógono alongado (4,20 m entre faces + 3,60 m de corpo = 7,80 m), duas lanternas, deck frontal em três faces. Referência de mercado: lodges de 26 m² + terraço 17 m²."""
+    NAME = "ZION LODGE 28"; LABEL = "ZION LODGE 28"; CODE = "lodge28"
+    F = 4.2; M = 3.6
+    Z_EAVE = 2.6; Z_LANTERN = 4.0; Z_TOP = 4.45; R_LANTERN = 0.55; OVER = 0.8
+    DECK_D = 2.2; DECK_FACES = [2, 3, 4, 5]
+    SAIL = dict(z_post=2.3, reach=2.2)
+    X_PART = 1.9
+    GLASS_FACES = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]
+    WALL_FACES = [(6, 7), (7, 0), (0, 1)]
+
+    def walls(self):
+        V = self.vertices(); W = []
+        for (i, j) in self.GLASS_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="glass", name="Vidro insulado fixo / porta de correr" if (i, j) == (3, 4) else "Vidro insulado fixo"))
+        for (i, j) in self.WALL_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="wood", name="Painel SIP 100 mm + ripado"))
+        W.append(dict(p1=V[7], p2=V[0], z1=1.6, z2=2.2, kind="window", name="Fresta alta do banho"))
+        W.append(dict(p1=(self.X_PART, -2.1), p2=(self.X_PART, 2.1), z1=0, z2=2.3, kind="partition", name="Parede do banho"))
+        return W
+
+    def furniture(self):
+        F = []
+        F.append(box(self.X_PART, self.X_PART + 0.1, -2.1, 2.1, 0, 2.3, "wall", "Parede do banho"))
+        F.append(box(self.X_PART, self.X_PART + 0.1, -0.4, 0.4, 0, 2.1, "opening", "Porta de correr do banho"))
+        F.append(box(-0.85, 1.15, -0.97, 0.97, 0, 0.55, "bed", "Cama king 1,93 x 2,03"))
+        F.append(box(-0.85, 1.15, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
+        F.append(box(0.65, 1.15, 1.05, 1.5, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(0.65, 1.15, -1.5, -1.05, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(-1.2, 0.6, 1.5, 2.05, 0, 0.9, "cabinet", "Café / minibar"))
+        F.append(box(-1.2, 0.6, -2.05, -1.5, 0, 2.2, "cabinet", "Closet"))
+        F.append(box(-3.4, -2.2, -1.0, 1.0, 0, 0.8, "sofa", "Sofá 2,00"))
+        F.append(cyl(-1.75, 0.0, 0, 0.45, 0.28, "table", "Mesa de centro"))
+        F.append(box(2.1, 2.7, 0.6, 1.9, 0, 0.85, "vanity", "Bancada 1,30"))
+        F.append(box(2.9, 3.5, 1.2, 1.9, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(2.5, 3.5, -1.9, -0.9, 0, 0.02, "shower", "Chuveiro 1,00 x 1,00"))
+        F.append(box(2.5, 2.53, -1.9, -0.9, 0, 2.1, "glass", "Vidro do box"))
+        F.append(box(self.X_PART, 3.9, -2.1, 2.1, 2.3, 2.35, "ceiling", "Forro do banho"))
+        F.append(box(2.2, 3.2, -0.4, 0.4, 2.4, 2.55, "hvac", "Evaporadora dutada 9k BTU"))
+        F.append(box(4.5, 5.2, -1.6, -0.9, 0, 0.62, "condenser", "Condensadora"))
+        return F
+
+    def piles(self):
+        pts = [(x, y) for x in (-2.8, -1.4, 0.0, 1.4, 2.8) for y in (-1.5, 0.0, 1.5)]
+        pts += [(-3.9, 0.0), (3.9, 0.0)]
+        pts += [(-5.4, -1.4), (-5.4, 1.4), (-4.4, -2.6), (-4.4, 2.6)]
+        return pts
+
+    def sail_posts(self):
+        px = -self.r_corner() - self.M / 2 - self.SAIL["reach"]
+        return [(px, -1.3), (px, 1.3)]
+
+
+LODGES = {"lodge": Lodge, "lodge24": Lodge24, "lodge28": Lodge28}

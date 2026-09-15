@@ -12,7 +12,7 @@ if [[ "$1" != "--no-render" ]]; then
   python3 - <<'EOF'
 from PIL import Image
 import glob, os
-for p in ("cocoon", "zenith"):
+for p in ("cocoon", "zenith", "lodge"):
     os.makedirs(f"../{p}/renders/web/deck", exist_ok=True)
     for f in sorted(glob.glob(f"../{p}/renders/*.png")):
         im = Image.open(f).convert("RGB"); w, h = im.size

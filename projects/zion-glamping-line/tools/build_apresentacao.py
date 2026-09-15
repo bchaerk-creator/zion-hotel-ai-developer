@@ -44,8 +44,8 @@ def capa():
 <div class="cover">
   <div class="eyebrow">ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
   <div class="split"><span>PROJETO</span><i></i><span>ARQUITETÔNICO</span></div>
-  <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE</div>
-  <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · 48 pranchas · engenharia peça a peça · 21 arquivos CAD · conceito da terceira unidade</div>
+  <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE 38 · 24 · 28</div>
+  <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · pranchas, engenharia peça a peça, CAD, FF&amp;E e orçamento · cinco cabanas sobre o mesmo sistema</div>
 </div>''', "dark cover-slide", "CAPA")
 
 def linha():
@@ -55,7 +55,7 @@ def linha():
 <div class="photo tall">{img(f"{p}/renders/web/{p}_ext_front.jpg")}</div>
 <dl class="kv"><dt>Dimensões</dt><dd>{dims}</dd><dt>Altura</dt><dd>{alt}</dd><dt>Áreas</dt><dd>{areas}</dd></dl></div>'''
     slide(f'''<h2>A LINHA</h2>
-<p class="lede">Três unidades proprietárias, o mesmo sistema construtivo: estrutura tubular em aço galvanizado, membrana PVDF tensionada, isolamento e vidro, sobre deck elevado em estacas helicoidais. Casulo e Safari em projeto arquitetônico completo; Lodge, a unidade de entrada, em estudo de conceito.</p>
+<p class="lede">Três unidades proprietárias, o mesmo sistema construtivo: estrutura tubular em aço galvanizado, membrana PVDF tensionada, isolamento e vidro, sobre deck elevado em estacas helicoidais. Casulo, Safari e Lodge 38 em projeto arquitetônico; Lodge 24 e 28 como variantes paramétricas em conceito.</p>
 <div class="two">{col("cocoon", "9,60 x 6,00 m", "48 m² internos · deck 29,9 m² · 78 m²", "4,20 m na cumeeira", "Cabana biomórfica em casulo · 8 arcos elípticos · Espinha de Luz · 6 Janelas Olho")}
 {col("zenith", "9,50 x 5,40 m · cobertura 12,90 x 7,40 m", "48,4 m² internos · terraço 28 m² · 79,3 m²", "5,80 m e 4,60 m nos dois cumes", "Cabana escultural de dois cumes · mastros com coroas · Óculo do Zênite · Respiro")}</div>''', "dark", "A LINHA")
 
@@ -105,17 +105,27 @@ def produto(p):
         slide(f'''<h2>DETALHES CONSTRUTIVOS <small>PA-11 · {det_sub} · 1:5 a 1:20</small></h2><div class="two-sheets">{sheet(det[0])}{sheet(det[1])}</div>''', "dark", NAME[p] + " · DETALHES")
     slide(f'''<h2>ISOMÉTRICA E MODELO EXPLODIDO <small>PA-12a · PA-12b</small></h2><div class="two-sheets">{sheet(f"{d}/08_isometrica.svg")}{sheet(f"{d}/10_modelo_explodido.svg")}</div>''', "dark", NAME[p] + " · ISOMÉTRICAS")
 
-def lodge():
-    from geometry import Lodge
-    Lg = Lodge()
-    slide(f'''<div class="divider"><div class="split"><span>ZION</span><i></i><span>LODGE</span></div><div class="sub">Pavilhão octogonal com Lanterna Zion · unidade de entrada · estudo de conceito</div></div>''', "dark cover-slide", "ZION LODGE")
-    pts = [("Planta", "octógono regular de 6,80 m entre faces (7,36 m entre vértices)"), ("Áreas", f"{fmt(Lg.floor_area())} m² internos · deck {fmt(Lg.deck_area())} m² em três faces · {fmt(Lg.floor_area() + Lg.deck_area())} m²"),
-           ("Alturas", "beiral 2,70 m · Lanterna Zion de 4,60 a 5,20 m"), ("Estrutura", "8 pilares Ø101,6 revestidos em madeira, anel de beiral, 8 caibros e anel de compressão"),
-           ("Fechamentos", "5 faces de vidro insulado · 3 faces opacas (banho e cabeceira) · porta de correr frontal"), ("Diferenciais", "luz zenital sobre a cama pela lanterna; vela de sombra independente sobre o deck; mesmo Zion Shell System")]
-    kv = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in pts)
-    slide(f'''<div class="wide">{sheet("lodge/desenhos/01_conceito.svg")}</div>
-<div class="side"><h3>CONCEITO</h3><div class="pa">FOLHA 01/LG · estudo de conceito R00</div><dl class="kv stack">{kv}</dl>
-<p class="note">Próxima etapa: desenvolver o Lodge no mesmo pipeline dos outros produtos (pranchas PA-00 a PA-12, engenharia peça a peça, DXF, orçamento SC).</p></div>''', "dark", "ZION LODGE · CONCEITO")
+def lodge_family():
+    """Lodge 24 e Lodge 28: variantes paramétricas (conceito) + FF&E da linha."""
+    from geometry import Lodge24, Lodge28
+    import ffe
+    slide(f'''<div class="divider"><div class="split"><span>LODGE</span><i></i><span>24 · 28</span></div><div class="sub">Variantes paramétricas da família Lodge · estudo de conceito</div></div>''', "dark cover-slide", "FAMÍLIA LODGE")
+    cards = ""
+    for L, code in ((Lodge24(), "lodge24"), (Lodge28(), "lodge28")):
+        cards += f'''<div class="col"><div class="pname">{L.NAME}</div><div class="pfam">{"Octógono compacto para casal" if code == "lodge24" else "Octógono alongado com terraço e duas lanternas"}</div>
+{sheet(f"{code}/desenhos/01_conceito.svg")}
+<dl class="kv"><dt>Planta</dt><dd>{fmt(L.F)} m entre faces{" · 7,80 m de comprimento" if L.M else ""}</dd><dt>Áreas</dt><dd>{fmt(L.floor_area())} m² internos · deck {fmt(L.deck_area())} m² · {fmt(L.floor_area() + L.deck_area())} m²</dd><dt>Alturas</dt><dd>beiral {fmt(L.Z_EAVE)} m · lanterna {fmt(L.Z_TOP)} m</dd></dl></div>'''
+    slide(f'''<h2>FAMÍLIA LODGE · 24 E 28</h2><p class="lede">A mesma geometria paramétrica do Lodge 38 gera a unidade compacta para casal e a unidade alongada com terraço: o octógono muda de tamanho ou ganha um corpo reto entre duas lanternas, e o kit continua o mesmo.</p><div class="two">{cards}</div>''', "dark", "LODGE 24 · 28")
+    rows = ""
+    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38"), ("lodge24", "ZION LODGE 24"), ("lodge28", "ZION LODGE 28")):
+        t = ffe.totals(code, 1); t0 = ffe.totals(code, 0); t2 = ffe.totals(code, 2)
+        rows += f'<tr><td>{name}</td><td class="num">{t["n_items"]}</td><td class="num">{money(t0["base"])}</td><td class="num">{money(t["base"])}</td><td class="num">{money(t2["base"])}</td><td class="num">{money(t["optional"])}</td></tr>'
+    cats = "".join(f"<li><b>{c}</b>{d}</li>" for c, d in (("Mobiliário", "cama king, cabeceira, criados, sofá, chaise, poltronas, ilha do café, closet, bancada"), ("Luminárias e decoração", "arandelas, luminárias de piso e mesa, tapetes de lã, cortinas e blackout, arte e objetos"),
+                                                        ("Equipamentos", "frigobar, cafeteira, cofre, som, fechadura digital, automação de cenas, lareira ecológica"), ("Enxoval e OS&E", "3 jogos de cama e banho, amenities, louças, mantas, acessórios, sinalização, segurança"), ("Deck e banho", "espreguiçadeiras, mesa e cadeiras, lanternas, ducha, acessórios em latão")))
+    slide(f'''<h2>FF&amp;E · TUDO O QUE VAI DENTRO</h2><p class="lede">Além da construção, cada unidade recebe o FF&amp;E completo no padrão Zion New Luxury: materiais naturais, sem plástico aparente, sem pendentes, luz 2700 K. Lista item a item no Catálogo da Linha e na planilha ZION_FFE_Linha.xlsx.</p>
+<div class="two"><div><table class="budget"><tr><th>Unidade</th><th class="num">Itens</th><th class="num">Econômico</th><th class="num">Zion Standard</th><th class="num">Zion Premium</th><th class="num">Opcionais</th></tr>{rows}</table>
+<p class="note">Sem opcionais (hidromassagem, TV, fire pit, poltrona suspensa). Preços SC set/2026 postos em obra, a confirmar por cotação. O FF&amp;E substitui as verbas de mobiliário solto e enxoval do Product Book.</p></div>
+<div><ol class="next">{cats}</ol></div></div>''', "dark", "FF&E")
 
 # ----------------------------------------------------------------------------- fechamento
 def implantacao():
@@ -188,6 +198,8 @@ h3{margin:0;font-weight:200;font-size:26px;letter-spacing:.3em;text-transform:up
 .half{position:absolute;top:64px;bottom:70px} .half.left{left:80px;width:640px} .half.right{left:780px;right:80px;overflow:hidden} .half.right .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 20px;background:rgba(4,6,5,.7);font-size:11px;letter-spacing:.14em;color:var(--sand);font-weight:300}
 ol.layers,ol.next,ol.steps{list-style:none;margin:0;padding:0} ol.layers li{display:flex;gap:16px;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px solid rgba(222,214,191,.16);font-weight:300} .n{color:var(--earth);font-weight:600;letter-spacing:.1em;font-size:11px;min-width:26px;padding-top:2px}
 ol.next li{display:grid;grid-template-columns:30px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid rgba(222,214,191,.16)} ol.next li b{font-weight:500;font-size:15px;letter-spacing:.04em} ol.next li p{grid-column:2;margin:0;font-size:12.5px;line-height:1.6;color:var(--sand);font-weight:300}
+ol.next li b{display:block} ol.next li{display:block;font-size:12.5px;line-height:1.6;color:var(--sand);font-weight:300}
+.col .sheet{margin:10px 0 14px}
 .three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:520px} .three img{width:100%;height:100%;object-fit:cover;display:block}
 .caps3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:12px;font-size:10.5px;letter-spacing:.24em;color:var(--sand);text-transform:uppercase;font-weight:300}
 .sheet{background:#FEF5F0;border:1px solid rgba(222,214,191,.35);line-height:0} .sheet svg{width:100%;height:auto;display:block}
@@ -206,8 +218,8 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 
 def build():
     capa(); linha(); sistema()
-    for p in ("cocoon", "zenith"): produto(p)
-    lodge(); implantacao(); logistica(); orcamento(); proximos(); fim()
+    for p in ("cocoon", "zenith", "lodge"): produto(p)
+    lodge_family(); implantacao(); logistica(); orcamento(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'

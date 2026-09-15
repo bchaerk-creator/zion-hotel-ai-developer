@@ -1,17 +1,20 @@
-# ZION CASULO, ZION SAFARI e ZION LODGE · Linha de hospedagens glamping de luxo
+# ZION CASULO, ZION SAFARI e ZION LODGE (38, 24 e 28) · Linha de hospedagens glamping de luxo
 
-Projeto conceitual, arquitetônico e técnico de três produtos proprietários da Zion Glamping Collection (Zion Hotel Group International), desenvolvidos como unidades de hospedagem premium para glampings, boutique hotels e destinos de natureza.
+Projeto conceitual, arquitetônico e técnico de cinco unidades proprietárias da Zion Glamping Collection (Zion Hotel Group International), desenvolvidos como unidades de hospedagem premium para glampings, boutique hotels e destinos de natureza.
 
 | Produto | Conceito | Dimensões | Área |
 |---|---|---|---|
 | **ZION CASULO** | Cabana biomórfica em casulo: superelipse assimétrica com lábio frontal inclinado, Espinha de Luz na cumeeira e seis Janelas Olho em lente | Piso 9,60 x 5,86 m · concha 9,75 x 6,00 x 4,20 m | 45,6 m² internos + vestíbulo 2,4 m² = 48 m² + deck 29,9 m² = 78 m² |
 | **ZION SAFARI** | Cabana escultural de dois cumes assimétricos em diagonal (5,80 e 4,60 m), Óculo do Zênite sobre a cama e chaminé do Respiro | Corpo 9,50 x 5,40 x 2,75 m · cobertura 12,90 x 7,40 m | 48,4 m² internos + terraço 20,4 m² + passarela 7,6 m² = 79,3 m² |
-| **ZION LODGE** (conceito) | Pavilhão octogonal com Lanterna Zion (luz zenital sobre a cama), cinco faces de vidro, banho no segmento posterior e vela de sombra sobre o deck | Octógono 6,80 m entre faces · beiral 2,70 m · lanterna 5,20 m | 38,3 m² internos + deck 30,4 m² = 68,7 m² |
+| **ZION LODGE 38** | Pavilhão octogonal com Lanterna Zion (luz zenital sobre a cama), cinco faces de vidro, banho no segmento posterior e vela de sombra sobre o deck | Octógono 6,80 m entre faces · beiral 2,70 m · lanterna 5,20 m | 38,3 m² internos + deck 30,4 m² = 68,7 m² |
+| **ZION LODGE 24** (conceito) | Octógono compacto para casal: três faces de vidro voltadas à paisagem, cinco opacas, lanterna Ø1,20, deck de uma face | Octógono 5,40 m entre faces · beiral 2,60 m · lanterna 4,70 m | 24,2 m² internos + deck 6,1 m² = 30,3 m² |
+| **ZION LODGE 28** (conceito) | Octógono alongado com duas Lanternas Zion em cumeeira (cama e estar), cinco faces de vidro, banho no fundo, terraço em três faces | 4,20 x 7,80 m · beiral 2,60 m · lanternas a 4,45 m | 29,7 m² internos + terraço 17,5 m² = 47,2 m² |
 
-Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion Safari** (código interno `zenith`, prefixo ZS) e **Zion Lodge** (`lodge`). As pastas e identificadores de código mantêm os nomes internos; títulos, carimbos e documentos usam os nomes comerciais. O Lodge está em estudo de conceito (`lodge/desenhos/01_conceito.svg`, gerado por `tools/lodge_concept.py`); o pipeline completo (pranchas, engenharia, DXF, orçamento) é a próxima etapa.
+Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion Safari** (código interno `zenith`, prefixo ZS) e **Zion Lodge** (`lodge`). As pastas e identificadores de código mantêm os nomes internos; títulos, carimbos e documentos usam os nomes comerciais. O Lodge 38 tem desenhos, pranchas PA, DXF, isométricas, modelo 3D, renders e orçamento peça a peça; o Lodge 24 e o Lodge 28 são variantes paramétricas da mesma classe (`geometry.Lodge24`, `geometry.Lodge28`) com prancha de conceito e isométrica (`tools/lodge_family.py`) e estimativa paramétrica de custo.
 
 ## Documentos principais
 
+- **`ZION_CATALOGO_LINHA.pdf`** e **`.html`** — Catálogo da linha: as cinco cabanas com dados, imagens, desenhos, **FF&E completo (tudo o que vai dentro: mobiliário, luminárias, equipamentos, enxoval, deck e banho)** por unidade e cenário, catálogo de itens com especificação Zion New Luxury e resumo de investimento (construção + FF&E). `ZION_FFE_Linha.xlsx` traz as mesmas listas em planilha (uma aba por unidade + catálogo + resumo); a base de dados está em `tools/ffe.py`.
 - **`ZION_PROJETO_ARQUITETONICO.pdf`** (6 MB, vetorial) e **`.html`** — Projeto arquitetônico como um projetista entrega: 24 pranchas por produto (PA-00 capa/índice/quadro de áreas/notas · PA-01 implantação 1:200 · PA-02 planta cotada · PA-03 layout · PA-04 cobertura · PA-05 forro e iluminação · PA-06 cortes A-A e B-B · PA-07 fachadas frontal e traseira · PA-08 fachadas laterais · PA-09 quadro de esquadrias · PA-10 planta estrutural · PA-11 detalhes construtivos · PA-12 isométrica, explodida, camadas e estrutura), uma por página A3 paisagem. `ZION_PROJETO_ARQUITETONICO_standalone.html` é a versão autônoma (tudo embutido, com hachuras).
 - **`cocoon/projeto/dxf/` e `zenith/projeto/dxf/`** — 21 arquivos DXF (AutoCAD 2010, metros, layers PAREDES / ESQUADRIAS / MOBILIARIO / ESTRUTURA / COBERTURA / DECK / FUNDACAO / COTAS / TEXTO / EIXOS): plantas cotada e de layout, cobertura, cortes, fachadas, planta estrutural e modelo 3D (3DFACE + polilinhas 3D) de cada produto.
 - **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Casulo, depois Safari): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
@@ -30,6 +33,7 @@ projects/zion-glamping-line/
 │   │               05 elevação lateral · 06 corte longitudinal · 07 corte transversal · 08 isométrica · 10 modelo explodido
 │   │               12 estrutura (isométrica) · 13 camadas construtivas (explodida)
 │   ├── projeto/    pranchas PA-00, PA-01, PA-04, PA-05, PA-08b, PA-09 (SVG) e dxf/ (ZC-*.dxf editáveis em CAD)
+├── lodge/          mesma estrutura (ZL-*.dxf) · lodge24/ e lodge28/: desenhos/01_conceito.svg e 08_isometrica.svg
 │   ├── 3d/         zion-cocoon-3d.html (visualizador interativo Three.js) · zion-cocoon.glb
 │   └── renders/    renders externos (frontal, lateral, cauda, aérea, noite), internos (estar, cama, banho), estrutura, corte
 ├── zenith/         mesma estrutura

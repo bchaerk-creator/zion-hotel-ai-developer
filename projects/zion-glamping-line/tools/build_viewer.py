@@ -215,6 +215,129 @@ def zenith_data():
 
 
 # ----------------------------------------------------------------------------------
+# LODGE: dados extras (forro cônico, clerestório, vela, parede-corda, forro do banho)
+# ----------------------------------------------------------------------------------
+def lodge_cone_mesh(l, r_in, apothem, zfn, nr=12, na=64):
+    """malha cônica em 8 gomos entre o raio r_in e o octógono de apótema `apothem`; z = zfn(r, t, ang)."""
+    verts, faces = [], []
+    for i in range(nr + 1):
+        t = i / nr
+        for j in range(na):
+            ang = 2 * math.pi * j / na
+            k = (ang - math.pi / 8) % (2 * math.pi / l.N) - math.pi / l.N
+            r_edge = apothem / math.cos(k)
+            r = r_in + (r_edge - r_in) * t
+            verts.append((r * math.cos(ang), r * math.sin(ang), zfn(r, t, ang)))
+    for i in range(nr):
+        for j in range(na):
+            a0 = i * na + j; a1 = i * na + (j + 1) % na; b0 = a0 + na; b1 = a1 + na
+            faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+    return dict(vertices=verts, faces=faces)
+
+
+def lodge_sail_mesh(A, B, C, D, nu=16, nv=12, scallop=0.14, sag=0.10):
+    """vela de sombra: superfície bilinear A-B (postes) / D-C (pilares) com bordas côncavas e flecha central."""
+    def lerp(p, q, t):
+        return [p[k] + (q[k] - p[k]) * t for k in range(3)]
+    verts, faces = [], []
+    for i in range(nu + 1):
+        u = i / nu
+        for j in range(nv + 1):
+            v = j / nv
+            P = lerp(lerp(A, B, v), lerp(D, C, v), u)
+            wu, wv = math.sin(math.pi * u), math.sin(math.pi * v)
+            # bordas u=0/1 côncavas (puxadas para v=0,5); bordas v=0/1 côncavas (puxadas para u=0,5)
+            mid_v = lerp(lerp(A, B, 0.5), lerp(D, C, 0.5), u)
+            mid_u = lerp(lerp(A, B, v), lerp(D, C, v), 0.5)
+            kv = scallop * wv * (1 - wu) ** 2
+            ku = scallop * wu * (1 - wv) ** 2
+            # deslocamento em planta (metros) na direção do meio da vela
+            P[0] += (mid_u[0] - P[0]) * ku / max(math.hypot(mid_u[0] - P[0], mid_u[1] - P[1]), 1e-6)
+            P[1] += (mid_v[1] - P[1]) * kv / max(math.hypot(mid_v[0] - P[0], mid_v[1] - P[1]), 1e-6)
+            P[2] -= sag * wu * wv
+            verts.append(tuple(P))
+    for i in range(nu):
+        for j in range(nv):
+            a0 = i * (nv + 1) + j; a1 = a0 + 1; b0 = a0 + nv + 1; b1 = b0 + 1
+            faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+    edges = [
+        [verts[j] for j in range(nv + 1)],                                # u=0 (postes)
+        [verts[nu * (nv + 1) + j] for j in range(nv + 1)],                # u=1 (pilares)
+        [verts[i * (nv + 1)] for i in range(nu + 1)],                     # v=0
+        [verts[i * (nv + 1) + nv] for i in range(nu + 1)],                # v=1
+    ]
+    return dict(vertices=verts, faces=faces, edges=edges, corners=[A, B, C, D])
+
+
+def lodge_data():
+    l = G.Lodge()
+    d = l.export()
+    R, ZE, ZL = l.r_corner(), l.Z_EAVE, l.Z_LANTERN
+    RL, AP = l.R_LANTERN, l.F / 2
+    d["r_corner"] = R; d["apothem"] = AP; d["side"] = l.side(); d["over"] = l.OVER
+    d["x_part"] = l.X_PART; d["door"] = l.DOOR; d["sail_cfg"] = l.SAIL
+    d["areas"] = dict(floor=l.floor_area(), deck=l.deck_area())
+    # borda exterior da membrana (último anel da malha) — perfil/keder
+    RV = d["roof"]["vertices"]; na = 64
+    d["roof_edge"] = RV[len(RV) - na:]
+    # forro tensionado: cone interno acima dos caibros (caibros ficam expostos), com poço da lanterna
+    def rafter_z(r):
+        return ZE + (ZL - ZE) * (R - r) / (R - RL)
+    LINER_TOP = ZL - 0.12
+    def liner_z(r, t, ang):
+        base = 2.74 + (LINER_TOP - 2.74) * (1 - t)
+        return min(max(base, rafter_z(r) + 0.08), l.roof_z(r) - 0.03)
+    d["liner"] = lodge_cone_mesh(l, RL + 0.03, AP - 0.02, liner_z)
+    d["liner_top"] = LINER_TOP
+    # clerestório: faixa de vidro entre o topo do anel de beiral (z 2,70) e a membrana, em todo o perímetro
+    bot, top = [], []
+    for j in range(na):
+        ang = 2 * math.pi * j / na
+        k = (ang - math.pi / 8) % (2 * math.pi / l.N) - math.pi / l.N
+        r = (AP - 0.02) / math.cos(k)
+        x, y = r * math.cos(ang), r * math.sin(ang)
+        bot.append((x, y, ZE)); top.append((x, y, l.roof_z(r) - 0.015))
+    d["clerestory"] = dict(bottom=bot, top=top)
+    # anel de purlins a meia altura dos caibros (octógono)
+    d["purlin_ring"] = [tuple(a[k] + (b[k] - a[k]) * 0.5 for k in range(3)) for (a, b) in d["rafters"]]
+    # forro do banho: octógono recortado em x >= X_PART (cota 2,40)
+    V = l.vertices()
+    poly = []
+    n = len(V)
+    for i in range(n):
+        p, q = V[i], V[(i + 1) % n]
+        pin, qin = p[0] >= l.X_PART, q[0] >= l.X_PART
+        if pin: poly.append(p)
+        if pin != qin:
+            t = (l.X_PART - p[0]) / (q[0] - p[0]); poly.append((l.X_PART, p[1] + (q[1] - p[1]) * t))
+    d["ceiling_poly"] = dict(z1=2.4, z2=2.45, pts=poly)
+    # parede-corda do banho: x de X_PART a X_PART+0,10, até a face interna dos painéis; porta de correr
+    x2 = l.X_PART + 0.1
+    yc = (R * math.cos(math.pi / 8) + R * math.sin(math.pi / 8)) - x2 - 0.02   # aresta diagonal do octógono: x + y = R·(cos π/8 + sin π/8)
+    d["partition"] = dict(x1=l.X_PART, x2=x2, y1=-yc, y2=yc, z2=2.4, door=dict(y1=-0.5, y2=0.4, h=2.1))
+    # montantes da face frontal alinhados com a porta (evita montante no meio do vão)
+    for w in d["walls"]:
+        if w["kind"] == "glass" and "porta" in w["name"]:
+            L = l.side(); t1 = (L / 2 - 1.0) / L
+            w["mullions"] = [0.0, t1, 1 - t1, 1.0]
+    # vela de sombra: cantos junto aos postes (z 2,35) e aos pilares frontais (z 2,15), sob o beiral
+    px = l.sail_posts()[0][0]; zp = l.SAIL["z_post"]
+    A = [px + 0.25, -1.65, zp - 0.05]; B = [px + 0.25, 1.65, zp - 0.05]
+    C = [V[3][0] - 0.12, V[3][1], 2.15]; Dd = [V[4][0] - 0.12, V[4][1], 2.15]
+    sail = lodge_sail_mesh(A, B, C, Dd)
+    sail["posts"] = [(x, y, zp) for (x, y) in l.sail_posts()]
+    sail["anchors"] = [(px - 1.3, -2.7, -0.55), (px - 1.3, 2.7, -0.55)]
+    d["sail"] = sail
+    # guarda-corpo do deck: arestas externas (com vão da escada na frente, y ±1,35) e topos laterais
+    dk = d["deck"]
+    rails = [(dk[3], dk[4]), (dk[4], dk[5]), (dk[5], (dk[5][0], -1.35)), ((dk[6][0], 1.35), dk[6]), (dk[6], dk[7]), (dk[7], dk[0])]
+    d["rails"] = [dict(p1=a, p2=b) for (a, b) in rails]
+    d["deck_center"] = [-3.6, 0.0]
+    d["stairs"] = dict(x=dk[5][0], y1=-1.3, y2=1.3)
+    return d
+
+
+# ----------------------------------------------------------------------------------
 # HTML / JS do visualizador
 # ----------------------------------------------------------------------------------
 HTML = r"""<!DOCTYPE html>
@@ -350,6 +473,7 @@ const M = {
   membrane: new THREE.MeshStandardMaterial({ color: 0xEDE6D6, roughness: 0.85, metalness: 0.0, side: THREE.DoubleSide, envMapIntensity: 0.35 }),
   liner: new THREE.MeshStandardMaterial({ color: 0xE8DCC6, roughness: 0.95, metalness: 0.0, side: THREE.DoubleSide, envMapIntensity: 0.25 }),
   glass: new THREE.MeshPhysicalMaterial({ color: 0xd8c5a6, transmission: 0.9, roughness: 0.05, metalness: 0.0, transparent: true, opacity: 0.55, side: THREE.DoubleSide, envMapIntensity: 1.4, clearcoat: 0.6, clearcoatRoughness: 0.05, depthWrite: false }),
+  glassClear: new THREE.MeshPhysicalMaterial({ color: 0xeef3f1, transmission: 0.95, roughness: 0.03, metalness: 0.0, transparent: true, opacity: 0.32, side: THREE.DoubleSide, envMapIntensity: 1.5, clearcoat: 0.7, clearcoatRoughness: 0.04, depthWrite: false }),
   steel: new THREE.MeshStandardMaterial({ color: 0x3a3b3a, metalness: 0.7, roughness: 0.38 }),
   bronze: new THREE.MeshStandardMaterial({ color: 0x5b4732, metalness: 0.65, roughness: 0.4 }),
   cable: new THREE.MeshStandardMaterial({ color: 0x8c8f90, metalness: 0.9, roughness: 0.3 }),
@@ -379,7 +503,7 @@ for (const k in M) if (M[k].color) M[k].color.convertSRGBToLinear();
 M.glass.userData.viewOpacity = M.glass.opacity;
 
 // ---------- helpers geométricos ----------
-const building = new THREE.Group(); building.name = MODEL === 'cocoon' ? 'ZION_CASULO' : 'ZION_SAFARI';
+const building = new THREE.Group(); building.name = { cocoon: 'ZION_CASULO', zenith: 'ZION_SAFARI', lodge: 'ZION_LODGE' }[MODEL] || 'ZION';
 const site = new THREE.Group(); site.name = 'site';
 scene.add(building); scene.add(site);
 
@@ -661,39 +785,7 @@ function buildSafari() {
     bar(top, [p[0] + nx * 1.4, p[1] + ny * 1.4, -0.55], 0.006, M.cable, st);
   });
   tube(D.edge_cable, 0.012, M.cable, true, 200, st);
-  // paredes
-  const wood = D.walls.filter(w => w.kind === 'wood'), wins = D.walls.filter(w => w.kind === 'window'), glz = D.walls.filter(w => w.kind === 'glass');
-  const T = 0.10;
-  wood.forEach(w => {
-    const dx = w.p2[0] - w.p1[0], dy = w.p2[1] - w.p1[1]; const L = Math.hypot(dx, dy); const ux = dx / L, uy = dy / L;
-    const proj = p => (p[0] - w.p1[0]) * ux + (p[1] - w.p1[1]) * uy;
-    const shape = new THREE.Shape(); shape.moveTo(0, w.z1); shape.lineTo(L, w.z1); shape.lineTo(L, w.z2); shape.lineTo(0, w.z2); shape.closePath();
-    wins.forEach(o => {
-      const d1 = Math.abs((o.p1[0] - w.p1[0]) * uy - (o.p1[1] - w.p1[1]) * ux); if (d1 > 1e-3) return;
-      const u1 = Math.min(proj(o.p1), proj(o.p2)), u2 = Math.max(proj(o.p1), proj(o.p2)); if (u2 < 0 || u1 > L) return;
-      const h = new THREE.Path(); h.moveTo(u1, o.z1); h.lineTo(u2, o.z1); h.lineTo(u2, o.z2); h.lineTo(u1, o.z2); h.closePath(); shape.holes.push(h);
-      // vidro da janela no meio da espessura + requadro bronze
-      rectBox(o.p1, o.p2, o.z1, o.z2, 0.02, M.glass, -T / 2).castShadow = false;
-      const n = outward(o.p1, o.p2); const off = -T / 2 + 0.005;
-      const q1 = [o.p1[0] + n[0] * off, o.p1[1] + n[1] * off], q2 = [o.p2[0] + n[0] * off, o.p2[1] + n[1] * off];
-      rectBox(q1, q2, o.z1 - 0.03, o.z1, T, M.bronze, 0); rectBox(q1, q2, o.z2, o.z2 + 0.03, T, M.bronze, 0);
-    });
-    const geo = new THREE.ExtrudeGeometry(shape, { depth: T, bevelEnabled: false });
-    const mat = M.woodSlat.clone(); mat.map = texSlat.clone(); mat.map.needsUpdate = true; mat.map.repeat.set(12.5, 1);
-    const m = new THREE.Mesh(geo, mat); shadowed(m);
-    // base: X local -> direção da parede; Y -> altura; Z -> normal (dy, -dx); painel fica no interior da linha
-    const xA = new THREE.Vector3(ux, 0, -uy), yA = new THREE.Vector3(0, 1, 0), zA = new THREE.Vector3().crossVectors(xA, yA);
-    const nSpec = [zA.x, -zA.z]; const o = outward(w.p1, w.p2); const inwardExtrude = (nSpec[0] * o[0] + nSpec[1] * o[1]) < 0;
-    const pos = Vx(w.p1[0], w.p1[1], 0); if (!inwardExtrude) pos.addScaledVector(zA, -T);
-    m.matrixAutoUpdate = false; m.matrix.makeBasis(xA, yA, zA).setPosition(pos); m.name = w.name; add(m);
-  });
-  glz.forEach(w => {
-    rectBox(w.p1, w.p2, w.z1, w.z2, 0.024, M.glass, -0.05).castShadow = false;
-    rectBox(w.p1, w.p2, w.z1, w.z1 + 0.06, 0.08, M.bronze, -0.05); rectBox(w.p1, w.p2, w.z2 - 0.06, w.z2, 0.08, M.bronze, -0.05);
-    const dx = w.p2[0] - w.p1[0], dy = w.p2[1] - w.p1[1]; const L = Math.hypot(dx, dy); const n = Math.max(1, Math.round(L / 1.35));
-    const nn = outward(w.p1, w.p2);
-    for (let i = 0; i <= n; i++) { const t = i / n; const x = w.p1[0] + dx * t - nn[0] * 0.05, y = w.p1[1] + dy * t - nn[1] * 0.05; bar([x, y, w.z1], [x, y, w.z2], 0.03, M.bronze, st); }
-  });
+  buildWalls(D.walls, st, 12.5);
   // piso, laje, terraço, passarela, hidromassagem
   boxMesh(0, D.L, -hw, hw, -0.02, 0.0, M.floor).name = 'piso';
   M.floor.map.repeat.set(D.L / 1.12, 1);
@@ -720,7 +812,133 @@ function buildSafari() {
   buildSite(4.0, 0);
 }
 
-if (MODEL === 'cocoon') buildCasulo(); else buildSafari();
+// =====================================================================================
+// ZION LODGE
+// =====================================================================================
+function buildLodge() {
+  BODY_CENTER = [0, 0];
+  const V8 = D.vertices, R = D.r_corner, ZE = D.z_eave, Lt = D.lantern;
+  const ring = (r, z, n) => Array.from({ length: n }, (_, i) => [r * Math.cos(2 * Math.PI * i / n), r * Math.sin(2 * Math.PI * i / n), z]);
+  // membrana cônica em 8 gomos, perfil de borda, forro tensionado e poço da lanterna
+  indexedMesh(D.roof.vertices, D.roof.faces, M.membrane).name = 'membrana';
+  const liner = indexedMesh(D.liner.vertices, D.liner.faces, M.liner); liner.name = 'forro'; liner.castShadow = false;
+  { const well = new THREE.Mesh(new THREE.CylinderGeometry(Lt.r + 0.03, Lt.r + 0.03, Lt.z1 - D.liner_top, 48, 1, true), M.liner.clone()); well.material.side = THREE.DoubleSide; well.position.copy(Vx(0, 0, (Lt.z1 + D.liner_top) / 2)); well.name = 'poco_lanterna'; add(shadowed(well, false, true)); }
+  const st = new THREE.Group(); st.name = 'estrutura'; building.add(st);
+  tube(D.roof_edge, 0.03, M.steel, true, 160, st).name = 'perfil_borda';
+  // clerestório: faixa de vidro entre o anel de beiral e a membrana
+  strip(D.clerestory.bottom, D.clerestory.top, M.glassClear, true).name = 'clerestorio';
+  // pilares de madeira (160 x 160, orientados radialmente), sapatas, anel de beiral, caibros e purlins
+  V8.forEach(([x, y]) => {
+    const m = new THREE.Mesh(new THREE.BoxGeometry(0.16, ZE - 0.15 + 0.12, 0.16), M.woodInt);
+    m.position.copy(Vx(x, y, (ZE - 0.15 - 0.12) / 2)); m.rotation.y = Math.atan2(y, x); m.name = 'pilar'; add(shadowed(m), st);
+    cylMesh(x, y, -0.12, 0.06, 0.12, M.steel, st);
+  });
+  V8.forEach((p, i) => rectBox(p, V8[(i + 1) % 8], ZE - 0.15, ZE, 0.15, M.woodInt, 0, st).name = 'anel_beiral');
+  D.rafters.forEach(r => bar(r[0], r[1], 0.055, M.woodInt, st).name = 'caibro');
+  tube(D.purlin_ring, 0.035, M.woodInt, true, 64, st).name = 'purlin';
+  // lanterna: anel de compressão, vidro claro com montantes bronze, anel superior, tampa e respiro
+  { const tor = new THREE.Mesh(new THREE.TorusGeometry(Lt.r, 0.05, 12, 72), M.steel); tor.rotation.x = Math.PI / 2; tor.position.copy(Vx(0, 0, Lt.z1)); tor.name = 'anel_lanterna'; add(shadowed(tor), st);
+    const g = new THREE.Mesh(new THREE.CylinderGeometry(Lt.r - 0.03, Lt.r - 0.03, Lt.z2 - Lt.z1, 64, 1, true), M.glassClear); g.position.copy(Vx(0, 0, (Lt.z1 + Lt.z2) / 2)); g.name = 'vidro_lanterna'; add(g);
+    for (let k = 0; k < 8; k++) { const a = Math.PI / 8 + k * Math.PI / 4; const x = (Lt.r - 0.03) * Math.cos(a), y = (Lt.r - 0.03) * Math.sin(a); bar([x, y, Lt.z1], [x, y, Lt.z2], 0.022, M.bronze, st); }
+    const tor2 = new THREE.Mesh(new THREE.TorusGeometry(Lt.r, 0.04, 12, 72), M.steel); tor2.rotation.x = Math.PI / 2; tor2.position.copy(Vx(0, 0, Lt.z2)); add(shadowed(tor2), st);
+    cylMesh(0, 0, Lt.z2, Lt.z2 + 0.06, Lt.r + 0.2, M.dark).name = 'tampa_lanterna';
+    { const lit = new THREE.MeshStandardMaterial({ color: lin(0xF3EBDD), emissive: lin(0xFFE6C4), emissiveIntensity: 0.55, roughness: 0.9 }); // face inferior clara da tampa (vista de dentro)
+      cylMesh(0, 0, Lt.z2 - 0.02, Lt.z2 + 0.001, Lt.r - 0.04, lit).castShadow = false; }
+    cylMesh(0, 0, Lt.z2 + 0.06, Lt.z2 + 0.3, Lt.r + 0.2, M.dark, null, 0.12);
+    cylMesh(0, 0, Lt.z2 + 0.3, Lt.z2 + 0.4, 0.05, M.steel);
+    tube(ring(Lt.r - 0.08, Lt.z1 + 0.03, 64), 0.012, M.led, true, 64).castShadow = false; }
+  // fechamentos (vidro / ripado / fresta) e porta de correr frontal
+  buildWalls(D.walls, st, 12.5);
+  { const dr = D.door, xf = -D.apothem, h = dr.h;
+    bar([xf - 0.05, dr.y1, 0.02], [xf - 0.05, dr.y1, h], 0.03, M.bronze, st); bar([xf - 0.05, dr.y2, 0.02], [xf - 0.05, dr.y2, h], 0.03, M.bronze, st);
+    bar([xf - 0.05, dr.y1, h], [xf - 0.05, dr.y2, h], 0.03, M.bronze, st);
+    bar([xf - 0.12, dr.y1 - 0.02, h + 0.05], [xf - 0.12, dr.y2 + 0.02, h + 0.05], 0.025, M.bronze, st); // trilho externo
+    const y0 = (dr.y1 + dr.y2) / 2; // folha móvel (exterior) sobre a metade -y
+    rectBox([xf, dr.y1], [xf, y0], 0.03, h - 0.02, 0.02, M.glass, 0.11).castShadow = false;
+    bar([xf - 0.11, dr.y1 + 0.02, 0.03], [xf - 0.11, dr.y1 + 0.02, h - 0.02], 0.02, M.bronze, st); bar([xf - 0.11, y0 - 0.02, 0.03], [xf - 0.11, y0 - 0.02, h - 0.02], 0.02, M.bronze, st);
+    bar([xf - 0.11, dr.y1, 0.04], [xf - 0.11, y0, 0.04], 0.02, M.bronze, st); bar([xf - 0.11, dr.y1, h - 0.03], [xf - 0.11, y0, h - 0.03], 0.02, M.bronze, st);
+    bar([xf - 0.16, y0 - 0.1, 0.95], [xf - 0.16, y0 - 0.1, 1.35], 0.012, M.bronze, st); }
+  // piso octogonal, quadro/laje, deck de cumaru em três faces, saia, escada e guarda-corpo de cabos
+  polyMesh(V8, 0.004, M.floor).name = 'piso';
+  slabMesh(V8.map(([x, y]) => [x * 0.985, y * 0.985]), -0.4, -0.02, M.dark).name = 'quadro_piso';
+  M.deck.map.repeat.set(1, 1);
+  slabMesh(D.deck, -0.12, 0, M.deck).name = 'deck';
+  { const c = D.deck_center; slabMesh(D.deck.map(([x, y]) => [c[0] + (x - c[0]) * 0.93, c[1] + (y - c[1]) * 0.93]), -0.55, -0.12, M.deckSide); }
+  steps(D.stairs.x, D.stairs.y1, D.stairs.y2);
+  D.rails.forEach(r => {
+    const dx = r.p2[0] - r.p1[0], dy = r.p2[1] - r.p1[1]; const L = Math.hypot(dx, dy); if (L < 0.4) return;
+    let n = [dy / L, -dx / L]; const mx = (r.p1[0] + r.p2[0]) / 2 - D.deck_center[0], my = (r.p1[1] + r.p2[1]) / 2 - D.deck_center[1];
+    if (n[0] * mx + n[1] * my < 0) n = [-n[0], -n[1]];
+    const P = t => [r.p1[0] + dx * t - n[0] * 0.08, r.p1[1] + dy * t - n[1] * 0.08];
+    const np = Math.max(1, Math.ceil(L / 1.3));
+    for (let i = 0; i <= np; i++) { const p = P(i / np); bar([p[0], p[1], 0], [p[0], p[1], 1.0], 0.02, M.steel); }
+    const a = P(0), b = P(1); [0.35, 0.65, 0.98].forEach(z => bar([a[0], a[1], z], [b[0], b[1], z], 0.006, M.cable));
+  });
+  // vela de sombra em membrana sobre dois postes de madeira, cabos de borda, tirantes e estais
+  const S = D.sail;
+  indexedMesh(S.vertices, S.faces, M.membrane).name = 'vela';
+  S.edges.forEach(e => tube(e, 0.008, M.cable, false, 40));
+  S.posts.forEach((p, i) => {
+    bar([p[0], p[1], -0.55], p, 0.06, M.woodInt).name = 'poste_vela';
+    cylMesh(p[0], p[1], -0.6, -0.5, 0.16, M.dark);
+    bar(p, S.corners[i], 0.006, M.cable);
+    bar(p, S.anchors[i], 0.006, M.cable); cylMesh(S.anchors[i][0], S.anchors[i][1], -0.58, -0.53, 0.1, M.dark);
+  });
+  // estacas helicoidais (visíveis entre o terreno e o quadro de piso)
+  D.piles.forEach(([x, y]) => cylMesh(x, y, -1.6, -0.4, 0.045, M.steel, st));
+  // parede-corda do banho (com vão da porta de correr) e forro do banho
+  { const P = D.partition, dr = P.door;
+    const sh = new THREE.Shape(); sh.moveTo(P.y1, 0); sh.lineTo(P.y2, 0); sh.lineTo(P.y2, P.z2); sh.lineTo(P.y1, P.z2); sh.closePath();
+    const hole = new THREE.Path(); hole.moveTo(dr.y1, 0); hole.lineTo(dr.y2, 0); hole.lineTo(dr.y2, dr.h); hole.lineTo(dr.y1, dr.h); hole.closePath(); sh.holes.push(hole);
+    const m = new THREE.Mesh(new THREE.ExtrudeGeometry(sh, { depth: P.x2 - P.x1, bevelEnabled: false }), M.plaster); shadowed(m); m.matrixAutoUpdate = false;
+    m.matrix.makeBasis(new THREE.Vector3(0, 0, -1), new THREE.Vector3(0, 1, 0), new THREE.Vector3(1, 0, 0)).setPosition(new THREE.Vector3(P.x1, 0, 0)); m.name = 'parede_banho'; add(m);
+    rectBox([P.x1 - 0.04, dr.y1 - 0.02], [P.x1 - 0.04, dr.y2 + 0.02], 0.02, dr.h, 0.03, M.woodSlat, 0).name = 'porta_banho'; }
+  slabMesh(D.ceiling_poly.pts, D.ceiling_poly.z1, D.ceiling_poly.z2, M.liner).name = 'forro_banho';
+  // fitas LED: perímetro sob o anel de beiral e rodapé
+  tube(V8.map(([x, y]) => [x * (R - 0.14) / R, y * (R - 0.14) / R, ZE - 0.18]), 0.012, M.led, true, 48).castShadow = false;
+  tube(V8.map(([x, y]) => [x * 0.985, y * 0.985, 0.05]), 0.012, M.led, true, 48).castShadow = false;
+  furniture(D.furniture.filter(f => f.kind !== 'wall' && f.kind !== 'opening' && f.kind !== 'ceiling'));
+  warmLight(0, 0, Lt.z1 - 0.25, 0.6, 7); warmLight(-1.7, 0, 2.45, 0.5, 7); warmLight(0.5, 0, 2.4, 0.4, 6); warmLight(2.5, 0.4, 2.25, 0.45, 5); warmLight(-4.9, 0, 2.05, 0.3, 6);
+  buildSite(-1.2, 0);
+}
+
+function buildWalls(walls, st, slatRepeat) { // painéis ripados (com janelas recortadas) e faces de vidro com montantes bronze
+  const wood = walls.filter(w => w.kind === 'wood'), wins = walls.filter(w => w.kind === 'window'), glz = walls.filter(w => w.kind === 'glass');
+  const T = 0.10;
+  wood.forEach(w => {
+    const dx = w.p2[0] - w.p1[0], dy = w.p2[1] - w.p1[1]; const L = Math.hypot(dx, dy); const ux = dx / L, uy = dy / L;
+    const proj = p => (p[0] - w.p1[0]) * ux + (p[1] - w.p1[1]) * uy;
+    const shape = new THREE.Shape(); shape.moveTo(0, w.z1); shape.lineTo(L, w.z1); shape.lineTo(L, w.z2); shape.lineTo(0, w.z2); shape.closePath();
+    wins.forEach(o => {
+      const d1 = Math.abs((o.p1[0] - w.p1[0]) * uy - (o.p1[1] - w.p1[1]) * ux), d2 = Math.abs((o.p2[0] - w.p1[0]) * uy - (o.p2[1] - w.p1[1]) * ux); if (d1 > 1e-3 || d2 > 1e-3) return; // janela colinear com o painel
+      const u1 = Math.min(proj(o.p1), proj(o.p2)), u2 = Math.max(proj(o.p1), proj(o.p2)); if (u2 < 1e-3 || u1 > L - 1e-3) return;
+      const h = new THREE.Path(); h.moveTo(u1, o.z1); h.lineTo(u2, o.z1); h.lineTo(u2, o.z2); h.lineTo(u1, o.z2); h.closePath(); shape.holes.push(h);
+      // vidro da janela no meio da espessura + requadro bronze
+      rectBox(o.p1, o.p2, o.z1, o.z2, 0.02, M.glass, -T / 2).castShadow = false;
+      const n = outward(o.p1, o.p2); const off = -T / 2 + 0.005;
+      const q1 = [o.p1[0] + n[0] * off, o.p1[1] + n[1] * off], q2 = [o.p2[0] + n[0] * off, o.p2[1] + n[1] * off];
+      rectBox(q1, q2, o.z1 - 0.03, o.z1, T, M.bronze, 0); rectBox(q1, q2, o.z2, o.z2 + 0.03, T, M.bronze, 0);
+    });
+    const geo = new THREE.ExtrudeGeometry(shape, { depth: T, bevelEnabled: false });
+    const mat = M.woodSlat.clone(); mat.map = texSlat.clone(); mat.map.needsUpdate = true; mat.map.repeat.set(slatRepeat, 1);
+    const m = new THREE.Mesh(geo, mat); shadowed(m);
+    // base: X local -> direção da parede; Y -> altura; Z -> normal (dy, -dx); painel fica no interior da linha
+    const xA = new THREE.Vector3(ux, 0, -uy), yA = new THREE.Vector3(0, 1, 0), zA = new THREE.Vector3().crossVectors(xA, yA);
+    const nSpec = [zA.x, -zA.z]; const o = outward(w.p1, w.p2); const inwardExtrude = (nSpec[0] * o[0] + nSpec[1] * o[1]) < 0;
+    const pos = Vx(w.p1[0], w.p1[1], 0); if (!inwardExtrude) pos.addScaledVector(zA, -T);
+    m.matrixAutoUpdate = false; m.matrix.makeBasis(xA, yA, zA).setPosition(pos); m.name = w.name; add(m);
+  });
+  glz.forEach(w => {
+    rectBox(w.p1, w.p2, w.z1, w.z2, 0.024, M.glass, -0.05).castShadow = false;
+    rectBox(w.p1, w.p2, w.z1, w.z1 + 0.06, 0.08, M.bronze, -0.05); rectBox(w.p1, w.p2, w.z2 - 0.06, w.z2, 0.08, M.bronze, -0.05);
+    const dx = w.p2[0] - w.p1[0], dy = w.p2[1] - w.p1[1]; const L = Math.hypot(dx, dy); const n = Math.max(1, Math.round(L / 1.35));
+    const nn = outward(w.p1, w.p2);
+    const ts = w.mullions || Array.from({ length: n + 1 }, (_, i) => i / n);
+    ts.forEach(t => { const x = w.p1[0] + dx * t - nn[0] * 0.05, y = w.p1[1] + dy * t - nn[1] * 0.05; bar([x, y, w.z1], [x, y, w.z2], 0.03, M.bronze, st); });
+  });
+}
+
+({ cocoon: buildCasulo, zenith: buildSafari, lodge: buildLodge })[MODEL]();
 // depuração: #hide=estrutura,forro,membrana,mobiliario
 (function () { const h = /hide=([a-z_,]+)/i.exec(location.hash || ''); if (h) h[1].split(',').forEach(n => { const o = building.getObjectByName(n); if (o) o.visible = false; }); })();
 
@@ -788,6 +1006,18 @@ const PRESETS = {
     night: { like: 'ext_front', night: true, label: 'Noite' },
     structure: { pos: [-10.5, 10.5, 5.5], tgt: [4.6, 0, 2.2], fov: 42, structure: true, label: 'Estrutura' },
     section: { pos: [4.7, -16.0, 3.4], tgt: [4.7, 0, 1.7], fov: 38, cut: true, label: 'Corte longitudinal' },
+  },
+  lodge: {
+    ext_front: { pos: [-14.0, -8.0, 1.9], tgt: [-1.0, 0.1, 2.3], fov: 42, label: 'Exterior frontal' },
+    ext_side: { pos: [0.8, -15.5, 2.4], tgt: [-0.6, 0, 2.3], fov: 40, label: 'Exterior lateral' },
+    ext_rear: { pos: [15.0, 7.5, 2.8], tgt: [0.3, 0, 2.3], fov: 40, label: 'Exterior fundos' },
+    ext_aerial: { pos: [-12.5, -9.0, 12.0], tgt: [-1.2, 0, 0.6], fov: 45, label: 'Vista aérea' },
+    int_living: { pos: [-2.4, -1.95, 1.5], tgt: [1.6, 0.5, 2.4], fov: 74, label: 'Interior · estar' },
+    int_bed: { pos: [-1.35, 2.5, 1.5], tgt: [0.9, -0.6, 2.4], fov: 72, label: 'Interior · suíte' },
+    int_bath: { pos: [1.9, -1.2, 1.5], tgt: [3.2, 1.0, 1.25], fov: 70, label: 'Interior · banho' },
+    night: { like: 'ext_front', night: true, label: 'Noite' },
+    structure: { pos: [-11.0, 9.5, 6.5], tgt: [-0.5, 0, 2.0], fov: 42, structure: true, label: 'Estrutura' },
+    section: { pos: [-0.8, 15.0, 3.2], tgt: [-0.8, 0, 1.7], fov: 38, cut: true, label: 'Corte transversal' },
   }
 }[MODEL];
 
@@ -869,6 +1099,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out-json", default=None, help="pasta para os JSON de geometria (padrão: $ZION_SCRATCH ou ./build)")
     ap.add_argument("--cdn", action="store_true", help="usar cdnjs em vez de embutir tools/vendor/*.js")
+    ap.add_argument("--model", default=None, choices=["cocoon", "zenith", "lodge"], help="gerar só este produto (padrão: todos)")
     args = ap.parse_args()
     out_json = args.out_json or os.environ.get("ZION_SCRATCH") or os.path.join(HERE, "build")
     os.makedirs(out_json, exist_ok=True)
@@ -882,8 +1113,12 @@ def main():
          os.path.join(PROJECT, "cocoon", "3d", "zion-cocoon-3d.html")),
         ("zenith", zenith_data(), "ZION SAFARI", "Cabana escultural de dois cumes · 48 m² internos + terraço 20 m²",
          os.path.join(PROJECT, "zenith", "3d", "zion-zenith-3d.html")),
+        ("lodge", lodge_data(), "ZION LODGE", "Pavilhão octogonal com Lanterna Zion · 38 m² internos + deck 30 m²",
+         os.path.join(PROJECT, "lodge", "3d", "zion-lodge-3d.html")),
     ]
     for model, data, title, subtitle, out_html in models:
+        if args.model and model != args.model:
+            continue
         jpath = os.path.join(out_json, "%s_geometry.json" % model)
         with open(jpath, "w", encoding="utf-8") as fh:
             json.dump(rnd(data), fh, separators=(",", ":"), sort_keys=True, ensure_ascii=False)

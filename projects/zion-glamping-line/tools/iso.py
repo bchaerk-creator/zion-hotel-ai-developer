@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""Isométricas sombreadas (algoritmo do pintor) e isométricas estruturais em SVG para Casulo e Safari."""
+"""Isométricas sombreadas (algoritmo do pintor) e isométricas estruturais em SVG para Casulo, Safari e Lodge."""
 import math, os
 import numpy as np
-from geometry import Cocoon, Zenith
+from geometry import Cocoon, Zenith, Lodge
 from svgkit import *
 
-C, Z = Cocoon(), Zenith()
+C, Z, L = Cocoon(), Zenith(), Lodge()
 VIEW = np.array([-1.0, -1.0, 1.0]) / math.sqrt(3)     # direção para o observador (mundo)
 LIGHT = np.array([-0.35, -0.75, 0.75]); LIGHT /= np.linalg.norm(LIGHT)
 
@@ -253,6 +253,277 @@ def zenith_iso(structural=False):
                    "Mastros, coroas, anel de beiral, postes e cabos" if structural else "Volumetria dos dois cumes sobre o corpo de vidro e madeira")
     return sh
 
+# ------------------------------------------------------------------ LODGE: geometria auxiliar
+LV = L.vertices(); LR = L.r_corner()
+LVO = L.vertices(LR + L.OVER / math.cos(math.pi / L.N))          # vértices do beiral da membrana (balanço 0,90)
+LVD = L.vertices(LR + L.DECK_D / math.cos(math.pi / L.N))        # vértices externos do deck
+LZ_EDGE = L.Z_EAVE - 0.35                                        # cota da borda da membrana
+WOOD_COL = "#8B6B4A"; SAIL_COL = "#E4D9C3"
+
+def lodge_halfwidth(t):
+    """meia-largura do octógono (faces a 3,40 dos eixos; |x|+|y| <= 3,40·√2) numa coordenada t."""
+    return max(0.0, min(L.F / 2, L.F / 2 * math.sqrt(2) - abs(t)))
+
+def _seg_at_x(p, q, x):
+    t = (x - p[0]) / (q[0] - p[0]); return p[1] + t * (q[1] - p[1])
+
+def lodge_girders():
+    """grelha de vigas U 150 x 60 sob o piso e o deck: lista de segmentos (x1, y1, x2, y2)."""
+    S = []
+    for x in (-2.4, 0.0, 2.4):
+        hw = lodge_halfwidth(x); S.append((x, -hw, x, hw))
+    for y in (-2.55, -0.85, 0.85, 2.55):
+        hl = lodge_halfwidth(y); S.append((-hl, y, hl, y))
+    for i in range(L.N):
+        j = (i + 1) % L.N; S.append((LV[i][0], LV[i][1], LV[j][0], LV[j][1]))
+    for i in (2, 3, 4, 5):
+        S.append((LV[i][0], LV[i][1], LVD[i][0], LVD[i][1]))
+    for i in (2, 3, 4):
+        S.append((LVD[i][0], LVD[i][1], LVD[i + 1][0], LVD[i + 1][1]))
+    yy = _seg_at_x(LVD[3], LVD[2], -4.7)
+    S.append((-4.7, -yy, -4.7, yy))
+    for y in (-1.8, 1.8):
+        S.append((-lodge_halfwidth(y), y, LVD[3][0], y))
+    return S
+
+def lodge_deck(sc, dz, color="#B99A73", z1=-0.2, stairs=True, opacity=1.0):
+    """deck em três faces (trapézios) com a escada frontal."""
+    nb = 16   # tábuas paralelas a cada face (ordenação de profundidade local)
+    for i in (2, 3, 4):
+        j = i + 1
+        a, b, c, d = LV[i], LV[j], LVD[j], LVD[i]
+        for k in range(nb):
+            t0, t1 = k / nb, (k + 1) / nb
+            p0 = (a[0] + (d[0] - a[0]) * t0, a[1] + (d[1] - a[1]) * t0); p1 = (a[0] + (d[0] - a[0]) * t1, a[1] + (d[1] - a[1]) * t1)
+            q0 = (b[0] + (c[0] - b[0]) * t0, b[1] + (c[1] - b[1]) * t0); q1 = (b[0] + (c[0] - b[0]) * t1, b[1] + (c[1] - b[1]) * t1)
+            sc.quad((p0[0], p0[1], dz), (q0[0], q0[1], dz), (q1[0], q1[1], dz), (p1[0], p1[1], dz), color if k % 2 else shade(color, 0.95), opacity)
+        sc.quad((d[0], d[1], z1 + dz), (c[0], c[1], z1 + dz), (c[0], c[1], dz), (d[0], d[1], dz), color, opacity)
+    for i in (2, 5):
+        a, b = LV[i], LVD[i]
+        sc.quad((a[0], a[1], z1 + dz), (b[0], b[1], z1 + dz), (b[0], b[1], dz), (a[0], a[1], dz), color, opacity)
+    if stairs:
+        x0 = LVD[3][0]
+        for i in range(3):
+            sc.box(x0 - 0.3 * (i + 1), x0 - 0.3 * i, -1.2, 1.2, z1 + dz, -0.05 * (i + 1) + dz, color, opacity)
+
+def lodge_floor(sc, dz, color="#C9AA7D", outline=False):
+    for i in range(1, L.N - 1):
+        sc.tri((LV[0][0], LV[0][1], dz), (LV[i][0], LV[i][1], dz), (LV[i + 1][0], LV[i + 1][1], dz), color, shade_on=False)
+    if outline:
+        sc.polyline([(x, y, dz + 0.005) for (x, y) in LV] + [(LV[0][0], LV[0][1], dz + 0.005)], GREEN, 0.7)
+
+def _outward(p1, p2):
+    mx, my = (p1[0] + p2[0]) / 2, (p1[1] + p2[1]) / 2; ln = math.hypot(mx, my)
+    return (mx / ln, my / ln)
+
+def lodge_walls(sc, dz, opacity=1.0, glass_op=0.35, slats=True, mullions=True):
+    """cinco faces de vidro, três opacas ripadas, fresta alta e porta de correr frontal."""
+    for w in L.walls():
+        (xa, ya), (xb, yb) = w["p1"], w["p2"]; z1, z2 = w["z1"] + dz, w["z2"] + dz
+        if w["kind"] == "glass":
+            sc.quad((xa, ya, z1), (xb, yb, z1), (xb, yb, z2), (xa, ya, z2), "#9FB7C2", glass_op * opacity, stroke="#6B7C84")
+            if mullions:
+                for t in (1 / 3, 2 / 3):
+                    x, y = xa + (xb - xa) * t, ya + (yb - ya) * t
+                    sc.polyline([(x, y, z1), (x, y, z2)], STEEL, 1.1)
+        elif w["kind"] == "wood":
+            sc.quad((xa, ya, z1), (xb, yb, z1), (xb, yb, z2), (xa, ya, z2), "#B08A5E", opacity)
+            if slats and opacity >= 0.99:
+                nx, ny = _outward(w["p1"], w["p2"])
+                for k in range(1, int((z2 - z1) / 0.12)):
+                    z = z1 + 0.12 * k
+                    sc.polyline([(xa + 0.012 * nx, ya + 0.012 * ny, z), (xb + 0.012 * nx, yb + 0.012 * ny, z)], "#8B6B4A", 0.5)
+        elif w["kind"] == "window":
+            nx, ny = _outward(w["p1"], w["p2"])
+            sc.quad((xa + 0.03 * nx, ya + 0.03 * ny, z1), (xb + 0.03 * nx, yb + 0.03 * ny, z1), (xb + 0.03 * nx, yb + 0.03 * ny, z2), (xa + 0.03 * nx, ya + 0.03 * ny, z2), "#9FB7C2", 0.6)
+    if mullions:
+        # porta de correr PC1 2,00 x 2,40 na face frontal (x = -3,40)
+        xf = LV[3][0] + 0.01; d = L.DOOR
+        sc.polyline([(xf, d["y1"], dz), (xf, d["y1"], d["h"] + dz), (xf, d["y2"], d["h"] + dz), (xf, d["y2"], dz)], GREEN, 1.0)
+        sc.polyline([(xf, 0.0, dz), (xf, 0.0, d["h"] + dz)], GREEN, 0.7)
+
+def lodge_columns(sc, dz, wood=True, on_top=False, z2=None):
+    z2 = L.Z_EAVE if z2 is None else z2
+    for (x, y) in LV:
+        if wood: sc.cylinder(x, y, dz, z2 + dz, 0.09, WOOD_COL, n=10)
+        else:
+            sc.polyline([(x, y, dz), (x, y, z2 + dz)], STEEL, 3.0, on_top=on_top)
+            sc.box(x - 0.11, x + 0.11, y - 0.11, y + 0.11, dz, 0.012 + dz, "#5A5B5A")
+
+def beam(sc, p1, p2, z1, z2, w, color, opacity=1.0, n=6):
+    """prisma retangular horizontal (viga) entre p1 e p2, largura w, entre as cotas z1 e z2.
+    Subdividida em n trechos para que a ordenação de profundidade (pintor) seja local."""
+    dx, dy = p2[0] - p1[0], p2[1] - p1[1]; ln = math.hypot(dx, dy)
+    nx, ny = -dy / ln * w / 2, dx / ln * w / 2
+    for k in range(n):
+        q1 = (p1[0] + dx * k / n, p1[1] + dy * k / n); q2 = (p1[0] + dx * (k + 1) / n, p1[1] + dy * (k + 1) / n)
+        a = (q1[0] + nx, q1[1] + ny); b = (q2[0] + nx, q2[1] + ny); c = (q2[0] - nx, q2[1] - ny); d = (q1[0] - nx, q1[1] - ny)
+        sc.quad((a[0], a[1], z2), (b[0], b[1], z2), (c[0], c[1], z2), (d[0], d[1], z2), color, opacity)
+        sc.quad((a[0], a[1], z1), (b[0], b[1], z1), (b[0], b[1], z2), (a[0], a[1], z2), color, opacity)
+        sc.quad((d[0], d[1], z1), (c[0], c[1], z1), (c[0], c[1], z2), (d[0], d[1], z2), color, opacity)
+        if k == 0: sc.quad((a[0], a[1], z1), (d[0], d[1], z1), (d[0], d[1], z2), (a[0], a[1], z2), color, opacity)
+        if k == n - 1: sc.quad((b[0], b[1], z1), (c[0], c[1], z1), (c[0], c[1], z2), (b[0], b[1], z2), color, opacity)
+
+def lodge_eave_ring(sc, dz, color=STEEL):
+    for i in range(L.N):
+        beam(sc, LV[i], LV[(i + 1) % L.N], L.Z_EAVE - 0.15 + dz, L.Z_EAVE + dz, 0.10, color)
+
+def lodge_rafters(sc, dz, color=STEEL, width=2.2, on_top=False):
+    for r in L.rafters():
+        sc.polyline([(p[0], p[1], p[2] + dz) for p in r], color, width, on_top=on_top)
+
+def lodge_lantern(sc, dz, glass=True, glass_op=0.45, cap=True, ring=True, mullions=True):
+    r = L.R_LANTERN; z1 = L.Z_LANTERN + dz; z2 = z1 + 0.45; zt = L.Z_TOP + dz
+    if glass: sc.cylinder(0, 0, z1, z2, r, "#9FB7C2", n=16, opacity=glass_op)
+    if mullions:
+        for k in range(8):
+            a = math.pi / 8 + k * math.pi / 4
+            sc.polyline([(r * math.cos(a), r * math.sin(a), z1), (r * math.cos(a), r * math.sin(a), z2)], STEEL, 1.2)
+    if ring:
+        sc.polyline([(r * math.cos(2 * math.pi * i / 32), r * math.sin(2 * math.pi * i / 32), z1) for i in range(33)], STEEL, 2.4)
+    if cap: sc.cylinder(0, 0, z2, zt, r + 0.12, "#4A4B4A", n=16)
+
+def lodge_membrane(sc, dz, opacity=1.0, seams=True, edge=True, nr=12, na=64):
+    rm = L.roof_mesh(nr, na)
+    sc.mesh([(v[0], v[1], v[2] + dz) for v in rm["vertices"]], rm["faces"], MEMB, opacity)
+    if seams and opacity > 0.5:
+        for (x, y) in LV:
+            ang = math.atan2(y, x); re = LR + L.OVER / math.cos(math.pi / L.N)
+            pts = [((L.R_LANTERN + (re - L.R_LANTERN) * t) * math.cos(ang), (L.R_LANTERN + (re - L.R_LANTERN) * t) * math.sin(ang),
+                    (L.roof_z(L.R_LANTERN + (re - L.R_LANTERN) * t) if t < 1 else LZ_EDGE) + 0.02 + dz) for t in np.linspace(0, 1, 16)]
+            sc.polyline(pts, shade(MEMB, 0.82), 0.9)
+    if edge:
+        sc.polyline([(x, y, LZ_EDGE + dz) for (x, y) in LVO] + [(LVO[0][0], LVO[0][1], LZ_EDGE + dz)], STEEL, 1.3)
+
+def lodge_liner_mesh(drop=0.3, nr=8, na=48, r_in=None):
+    """forro cônico interno (sem balanço): mesma lei da membrana, rebaixada 'drop'."""
+    r0 = (L.R_LANTERN + 0.05) if r_in is None else r_in
+    verts, faces = [], []
+    for i in range(nr + 1):
+        t = i / nr
+        for j in range(na):
+            ang = 2 * math.pi * j / na
+            k = (ang - math.pi / 8) % (2 * math.pi / L.N) - math.pi / L.N
+            r_edge = (LR - 0.08) * math.cos(math.pi / L.N) / math.cos(k)
+            r = r0 + (r_edge - r0) * t
+            verts.append((r * math.cos(ang), r * math.sin(ang), L.roof_z(r) - drop))
+    for i in range(nr):
+        for j in range(na):
+            a0 = i * na + j; a1 = i * na + (j + 1) % na; b0 = a0 + na; b1 = a1 + na
+            faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+    return dict(vertices=verts, faces=faces)
+
+def lodge_sail_curves(n=12, bow=0.3, bow_side=0.22):
+    """quatro curvas de borda da vela (Coons): u = poste -> beiral, v = -y -> +y."""
+    P = L.sail_posts(); zp = L.SAIL["z_post"]
+    A = (P[1][0], P[1][1], zp); B = (LVO[3][0], LVO[3][1], LZ_EDGE)     # lado +y
+    D = (P[0][0], P[0][1], zp); C = (LVO[4][0], LVO[4][1], LZ_EDGE)     # lado -y
+    def curve(p, q, inward, k):
+        return [tuple(p[i] + (q[i] - p[i]) * t + inward[i] * k * math.sin(math.pi * t) for i in range(3)) for t in np.linspace(0, 1, n + 1)]
+    side_m = curve(D, C, (0, 1, 0), bow_side)      # v = 0 (y negativo), bojo para +y
+    side_p = curve(A, B, (0, -1, 0), bow_side)     # v = 1 (y positivo), bojo para -y
+    front = curve(D, A, (1, 0, 0), bow)            # u = 0 (postes), bojo para +x
+    back = curve(C, B, (0, 0, 0), 0.0)             # u = 1 (beiral), reta
+    return side_m, side_p, front, back
+
+def lodge_sail_mesh(n=12, sag=0.10):
+    side_m, side_p, front, back = lodge_sail_curves(n)
+    P00, P10, P01, P11 = side_m[0], side_m[-1], side_p[0], side_p[-1]
+    verts = []
+    for i in range(n + 1):
+        u = i / n
+        for j in range(n + 1):
+            v = j / n
+            p = [(1 - v) * side_m[i][k] + v * side_p[i][k] + (1 - u) * front[j][k] + u * back[j][k]
+                 - ((1 - u) * (1 - v) * P00[k] + u * (1 - v) * P10[k] + (1 - u) * v * P01[k] + u * v * P11[k]) for k in range(3)]
+            p[2] -= sag * math.sin(math.pi * u) * math.sin(math.pi * v)
+            verts.append(tuple(p))
+    faces = []
+    for i in range(n):
+        for j in range(n):
+            a0 = i * (n + 1) + j; a1 = a0 + 1; b0 = a0 + n + 1; b1 = b0 + 1
+            faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+    return dict(vertices=verts, faces=faces)
+
+def lodge_sail(sc, dz, opacity=1.0, membrane=True, posts=True, cables=True, stays=True):
+    side_m, side_p, front, back = lodge_sail_curves()
+    if membrane:
+        m = lodge_sail_mesh()
+        sc.mesh([(v[0], v[1], v[2] + dz) for v in m["vertices"]], m["faces"], SAIL_COL, opacity)
+    if cables:
+        for cv in (side_m, side_p, front):
+            sc.polyline([(p[0], p[1], p[2] + 0.01 + dz) for p in cv], STEEL, 1.2)
+    if posts:
+        for (px, py) in L.sail_posts():
+            sc.polyline([(px, py, -0.05 + dz), (px, py, L.SAIL["z_post"] + dz)], STEEL, 3.0)
+            if stays:
+                sy = 1 if py > 0 else -1
+                sc.polyline([(px, py, L.SAIL["z_post"] + dz), (px - 1.3, py + sy * 0.9, -0.05 + dz)], EARTH, 0.9, "4 3")
+
+def lodge_bracing(sc, dz, color=EARTH):
+    """cabos em X Ø8 nas três faces opacas."""
+    for (i, j) in L.WALL_FACES:
+        (xa, ya), (xb, yb) = LV[i], LV[j]
+        sc.polyline([(xa, ya, 0.1 + dz), (xb, yb, L.Z_EAVE - 0.2 + dz)], color, 0.9, "4 3")
+        sc.polyline([(xb, yb, 0.1 + dz), (xa, ya, L.Z_EAVE - 0.2 + dz)], color, 0.9, "4 3")
+
+def lodge_piles(sc, dz):
+    for (px, py) in L.piles():
+        sc.cylinder(px, py, -0.6 + dz, -0.02 + dz, 0.045, STEEL, n=8)
+        sc.box(px - 0.1, px + 0.1, py - 0.1, py + 0.1, -0.02 + dz, 0.0 + dz, "#5A5B5A")
+
+def lodge_iso(structural=False):
+    sh = Sheet(1600, 1000)
+    sh.header("Zion Lodge · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
+              "Projeção isométrica a partir da frente e da lateral direita · sem escala" + (" · membrana a 15% para leitura de pilares, anel de beiral, caibros e lanterna" if structural else ""))
+    sc = Scene(sh, 68, 790, 590)
+    ground_shadow(sc, -1.2, 0.0, 7.2, 6.2)
+    if structural:
+        lodge_piles(sc, 0.0)
+        for (x1, y1, x2, y2) in lodge_girders():
+            sc.polyline([(x1, y1, -0.12), (x2, y2, -0.12)], STEEL, 1.8)
+        lodge_deck(sc, 0.0, stairs=True, opacity=0.35)
+        lodge_floor(sc, 0.0, outline=True)
+    else:
+        lodge_deck(sc, 0.0)
+        lodge_floor(sc, 0.0)
+    add_furniture(sc, L.furniture())
+    lodge_walls(sc, 0.0, opacity=1.0 if not structural else 0.25, glass_op=0.35 if not structural else 0.15, slats=not structural, mullions=not structural)
+    lodge_columns(sc, 0.0, wood=not structural, on_top=structural)
+    lodge_eave_ring(sc, 0.0)
+    if structural:
+        lodge_rafters(sc, 0.0, on_top=True, width=2.4)
+        lodge_bracing(sc, 0.0)
+        lodge_membrane(sc, 0.0, 0.15, seams=False, edge=True)
+        lodge_lantern(sc, 0.0, glass=False, cap=False)
+        lodge_sail(sc, 0.0, opacity=0.2)
+    else:
+        lodge_membrane(sc, 0.0, 1.0)
+        lodge_lantern(sc, 0.0)
+        lodge_sail(sc, 0.0)
+    sc.render()
+    if structural:
+        items = [(1, "8 pilares Ø101,6 x 4,0 nos vértices (revestidos em madeira), h = 2,70 m"),
+                 (2, "Anel de beiral 150 x 100 x 4,0 em 8 segmentos de 2,82 m, ligações parafusadas"),
+                 (3, "8 caibros radiais Ø76,1 x 3,6 do anel de beiral ao anel da lanterna (4,60 m)"),
+                 (4, "Anel de compressão da lanterna Ø1,50 (tubo 100 x 50) + 8 montantes do vidro"),
+                 (5, "2 postes da vela Ø88,9 x 4,0 (2,40 m) estaiados; cabos de borda Ø10 inox"),
+                 (6, "Cabos em X Ø8 inox nas três faces opacas (contraventamento)"),
+                 (7, "Quadro de piso: vigas U 150 x 60 x 3,0 sobre 22 estacas helicoidais"),
+                 (8, "Peso estimado da estrutura metálica: ≈ 1.400 kg de aço + 60 kg de alumínio")]
+        sh.legend(60, 720, items, size=12)
+    else:
+        items = [(1, "Octógono de 6,80 m entre faces (38,3 m²) sobre 8 pilares em madeira"),
+                 (2, "Membrana cônica em 8 gomos, balanço 0,90 m, lanterna de vidro no ápice (5,20 m)"),
+                 (3, "Cinco faces de vidro (frente e laterais) com porta de correr 2,00 x 2,40"),
+                 (4, "Três faces opacas ripadas: banho e cabeceira, fresta alta da banheira"),
+                 (5, "Deck em três faces (2,60 m) com escada frontal"),
+                 (6, "Vela de sombra sobre o deck em dois postes de 2,40 m")]
+        sh.legend(60, 760, items, size=12)
+    sh.title_block("ZION LODGE", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
+                   "Pilares, anel de beiral, caibros, lanterna e vela" if structural else "Volumetria do octógono com membrana cônica, lanterna e deck")
+    return sh
+
 def build():
     oc = os.path.join(os.path.dirname(__file__), "..", "cocoon", "desenhos")
     oz = os.path.join(os.path.dirname(__file__), "..", "zenith", "desenhos")
@@ -260,6 +531,10 @@ def build():
     cocoon_iso(True).save(os.path.join(oc, "12_estrutura_isometrica.svg"))
     zenith_iso(False).save(os.path.join(oz, "08_isometrica.svg"))
     zenith_iso(True).save(os.path.join(oz, "12_estrutura_isometrica.svg"))
+    ol = os.path.join(os.path.dirname(__file__), "..", "lodge", "desenhos")
+    os.makedirs(ol, exist_ok=True)
+    lodge_iso(False).save(os.path.join(ol, "08_isometrica.svg"))
+    lodge_iso(True).save(os.path.join(ol, "12_estrutura_isometrica.svg"))
     print("iso ok")
 
 if __name__ == "__main__":

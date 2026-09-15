@@ -161,6 +161,25 @@ Estabilidade: o corpo em painéis SIP forma um diafragma rígido; o anel de beir
 - **Fundação**: cerca de 20 estacas helicoidais; deck e piso em vigas U 150.
 - **Identidade**: luz zenital sobre a cama (o mercado fecha o cume em ponta cega), vela de sombra independente, cinco faces de vidro. Não replica os lodges octogonais de catálogo: proporção, lanterna, deck em três faces e sistema de camadas são próprios.
 
+### 3c. ZION LODGE 24 e ZION LODGE 28 (variantes paramétricas, estudo de conceito)
+
+| | Lodge 24 | Lodge 28 |
+|---|---|---|
+| Planta | octógono regular, 5,40 m entre faces (lado 2,24 m) | octógono alongado: 4,20 m entre faces + 3,60 m de corpo reto = 7,80 m |
+| Área interna | 24,2 m² (banho 5,0 m²) | 29,7 m² (banho 6,2 m²) |
+| Deck | 6,1 m² em uma face, profundidade 2,0 m, vela em 2 postes de 2,30 m | 17,5 m² em três faces, profundidade 2,2 m, vela em 2 postes |
+| Alturas | beiral 2,60 m · lanterna Ø1,20 de 4,20 a 4,70 m | beiral 2,60 m · duas lanternas Ø1,10 de 4,00 a 4,45 m, cumeeira reta entre elas |
+| Fechamentos | 3 faces de vidro (frente e diagonais) + 5 opacas; janela do café e fresta do banho | 5 faces de vidro + 3 opacas; fresta do banho |
+| Estrutura | 8 pilares Ø101,6 · anel de beiral · 8 caibros Ø76 · 15 estacas | 8 pilares · anel de beiral · 8 caibros + 2 de cumeeira · 21 estacas |
+| Montagem | 6 dias | 8 dias |
+| Custo (estimativa paramétrica, Zion Standard, 1ª un.) | ≈ R$ 413 mil | ≈ R$ 547 mil |
+
+Referências de mercado consideradas (lodges de catálogo de 23 m² e de 26 m² + terraço de 17 m²) apenas como faixa de área e programa; a geometria (lanterna, vela, proporções, deck em faces) é própria.
+
+## 3d. FF&E (tudo o que vai dentro)
+
+Base de dados em `tools/ffe.py`: catálogo de 55 itens em seis categorias (mobiliário, luminárias e decoração, equipamentos, enxoval e OS&E, deck e exterior, acessórios de banho) com especificação Zion New Luxury e preço de referência SC set/2026, e listas por unidade com quantidade, ambiente e observação. Totais no cenário Zion Standard, sem opcionais: Casulo R$ 138 mil · Safari R$ 198 mil · Lodge 38 R$ 139 mil · Lodge 24 R$ 110 mil · Lodge 28 R$ 129 mil (Econômico 72%, Premium 135%). O FF&E detalhado substitui as verbas de "mobiliário solto" e "acabamentos e enxoval de abertura" do Product Book.
+
 ## 4. Transporte e montagem (comum)
 
 | Etapa | Casulo | Safari |

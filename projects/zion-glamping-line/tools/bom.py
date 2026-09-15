@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """Listas de materiais, componentes de fabricação, pesos, transporte e cronograma de montagem (calculados a partir da geometria)."""
 import math, json
-from geometry import Cocoon, Zenith
+from geometry import Cocoon, Zenith, Lodge
 
-C, Z = Cocoon(), Zenith()
+C, Z, LD = Cocoon(), Zenith(), Lodge()
 
 # massas lineares (kg/m) de tubos e perfis de aço
 KG = {"Ø139,7 x 4,5": 15.0, "Ø114,3 x 4,0": 10.9, "Ø101,6 x 4,0": 9.63, "Ø88,9 x 3,6": 7.57, "Ø76,1 x 3,6": 6.44,
       "Ø60,3 x 3,0": 4.24, "Ø48,3 x 3,0": 3.35, "Ø42,4 x 3,0": 2.91, "Ø26,9 x 2,6": 1.56,
-      "150 x 100 x 4,0": 15.0, "100 x 50 x 3,0": 6.71, "U 150 x 60 x 3,0": 6.5, "chapa 80 x 10": 6.28}
+      "150 x 100 x 4,0": 15.0, "100 x 50 x 3,0": 6.71, "U 150 x 60 x 3,0": 6.5, "chapa 80 x 10": 6.28,
+      "Ue 150 x 40 x 1,25": 2.5}   # vigota LSF dos módulos de piso do Lodge
 
 def r(v, n=0):
     return round(v, n) if n else int(round(v))
@@ -140,6 +141,91 @@ def zenith_bom():
     return dict(steel_rows=steel_rows, steel_kg=steel_kg, alu_rows=alu_rows, alu_kg=alu_kg, groups=groups, weights=weights, total=total,
                 roof_s=roof_s, roof_p=roof_p, floor=floor, deck=deck)
 
+def lodge_membrane_area():
+    """área desenvolvida da membrana cônica (8 gomos, do anel da lanterna ao beiral com balanço), a partir da malha da geometria."""
+    m = LD.roof_mesh(); V = m["vertices"]; A = 0.0
+    for a, b, c in m["faces"]:
+        ax, ay, az = V[a]; bx, by, bz = V[b]; cx, cy, cz = V[c]
+        ux, uy, uz = bx - ax, by - ay, bz - az; vx, vy, vz = cx - ax, cy - ay, cz - az
+        A += 0.5 * math.sqrt((uy * vz - uz * vy) ** 2 + (uz * vx - ux * vz) ** 2 + (ux * vy - uy * vx) ** 2)
+    return A
+
+def lodge_bom():
+    side = LD.side(); floor = LD.floor_area(); deck = LD.deck_area()
+    memb = lodge_membrane_area()                       # ≈ 73 m² desenvolvidos (≈ 60 m² em projeção)
+    (x1, y1, z1), (x2, y2, z2) = LD.rafters()[0]
+    rafter = math.dist((x1, y1, z1), (x2, y2, z2))     # ≈ 3,49 m
+    ring = LD.N * side                                 # anel de beiral ≈ 22,5 m
+    lantern = math.pi * 2 * LD.R_LANTERN               # anel da lanterna Ø1,50 ≈ 4,7 m
+    wall_h = LD.Z_EAVE - 0.15                          # 2,55 m livres entre piso e anel
+    clear = side - 0.14                                # vão livre entre pilares revestidos (140 mm) ≈ 2,68 m
+    glass = 5 * clear * (wall_h - 0.10)                # cinco faces de vidro (vão líquido, soleira 100 mm) ≈ 33 m²
+    wall_op = 3 * clear * wall_h                       # três faces opacas ≈ 20,5 m²
+    forro = 44.0; ins = 46.0; sail = 14.0; bath = 6.9
+    n_piles = len(LD.piles())
+    steel = [
+        ("P1-P8", "Pilares nos vértices, revestidos em madeira até 2,70 m", "Ø101,6 x 4,0", 8, 8 * LD.Z_EAVE, KG["Ø101,6 x 4,0"]),
+        ("VB", "Anel de beiral em 8 segmentos de 2,82 m com chapas de topo a 135°", "150 x 100 x 4,0", 8, ring, KG["150 x 100 x 4,0"]),
+        ("R1-R8", "Caibros radiais do vértice (z 2,70) ao anel da lanterna (r 0,75, z 4,60)", "Ø76,1 x 3,6", 8, 8 * rafter, KG["Ø76,1 x 3,6"]),
+        ("AC", "Anel de compressão da lanterna Ø1,50 calandrado + 8 orelhas", "Ø60,3 x 3,0", 1, lantern, KG["Ø60,3 x 3,0"] + 1.0),
+        ("LT", "Lanterna: 8 montantes de 0,60 m + anel superior Ø1,50", "Ø42,4 x 3,0", 1, 8 * 0.6 + lantern, KG["Ø42,4 x 3,0"]),
+        ("PV", "Postes da vela de sombra com base articulada e olhal", "Ø76,1 x 3,6", 2, 2 * LD.SAIL["z_post"], KG["Ø76,1 x 3,6"]),
+        ("CB", "Cabos inox Ø8 em X nas 3 faces opacas + esticadores + olhais", "cabo", 6, 6 * 3.8, 0.35),
+        ("CV", "Cabos inox Ø8 da vela (4 vértices) + esticadores", "cabo", 4, 4 * 4.0, 0.35),
+        ("CH", "Chapas de base e topo dos pilares, chapas de topo do anel, talões dos caibros, nós da lanterna, chapas de canto", "chapa", 1, 1, 78.0),
+        ("PF", "Parafusos, chumbadores, perfis de clamp da membrana", "ferragens", 1, 1, 40.0),
+    ]
+    steel_rows = [(c, d, s, q, r(l, 1), r(l * k)) for (c, d, s, q, l, k) in steel]
+    steel_kg = sum(x[5] for x in steel_rows)
+    alu = [("PB", "Perfil de borda arredondado do beiral + calha oculta (8 lados)", 8, 8 * 3.0, 1.6), ("CL", "Perfil de clamp do anel da lanterna (2 metades)", 1, lantern, 1.2),
+           ("EL", "Esquadria da lanterna com ruptura térmica (vidro curvo 0,45 m)", 1, lantern, 3.0), ("TL", "Tampa da lanterna Ø1,60 em chapa de alumínio 2 mm sobre quadro, com pingadeira", 1, 1, 14.0),
+           ("TF", "Trilho do forro tensionado", 1, 46.0, 0.35)]
+    alu_rows = [(c, d, q, l, r(l * k)) for (c, d, q, l, k) in alu]
+    alu_kg = sum(x[4] for x in alu_rows)
+    env = [("Membrana PVDF 1050 g/m² em 8 gomos (+15% emendas/bolsas)", "m²", r(memb * 1.15), r(memb * 1.15 * 1.05)),
+           ("Vela de sombra: membrana PVDF 14 m² (+15%) com bolsas de cabo", "m²", r(sail * 1.15), r(sail * 1.15 * 1.05)),
+           ("Lã de PET 50 mm, 25 kg/m³ (sobre o forro, câmara ventilada acima)", "m²", r(ins), r(ins * 1.25)),
+           ("Manta refletiva de alumínio (bolha)", "m²", r(ins), r(ins * 0.25)),
+           ("Forro tensionado Trevira CS (cone interno até o anel da lanterna)", "m²", r(forro), r(forro * 0.3)),
+           ("Painéis SIP 100 mm (OSB/PIR/OSB) nas 3 faces opacas", "m²", r(wall_op, 1), r(wall_op * 22)),
+           ("Membrana hidrófuga + ripas de ventilação (câmara ventilada da parede)", "m²", r(wall_op, 1), r(wall_op * 2)),
+           ("Ripado de madeira termotratada 40 x 40 mm (externo)", "m²", r(wall_op, 1), r(wall_op * 8)),
+           ("Revestimento de madeira dos pilares (2 meias-canas 140 mm, h 2,70)", "un", 8, 8 * 10),
+           ("Painéis de madeira internos das faces opacas", "m²", 20, 20 * 7)]
+    glz = [("Cinco faces de vidro insulado 6 lam + 12 Ar + 6 temp low-e (vão líquido 2,68 x 2,45 por face)", "m²", r(glass, 1), r(glass * 30)),
+           ("Porta de correr 2,00 x 2,40 (folha incluída na fachada): trilho embutido + ferragens", "un", 1, 30),
+           ("Fresta alta da banheira 1,60 x 0,60, vidro insulado", "m²", 1.0, 30),
+           ("Lanterna: vidro laminado curvo 8 + 8 mm, h 0,45 m, Ø1,50", "m²", r(0.45 * lantern, 1), r(0.45 * lantern * 40)),
+           ("Esquadrias de alumínio bronze com ruptura térmica (montantes nos pilares, travessas)", "kg", 130, 130)]
+    flr = [("Vigas U 150 x 60 x 3,0 galvanizadas (grelha + anel de borda octogonal + deck)", "m", 100, r(100 * KG["U 150 x 60 x 3,0"])),
+           ("Vigotas LSF Ue 150 x 40 x 1,25 dos módulos de piso @ 400 mm", "m", r(floor * 3.3), r(floor * 3.3 * KG["Ue 150 x 40 x 1,25"])),
+           ("Vigotas LSF Ue 150 x 40 x 1,25 dos módulos de deck @ 400 mm (clipes do cumaru parafusados)", "m", r(deck * 2.5), r(deck * 2.5 * KG["Ue 150 x 40 x 1,25"])),
+           ("PIR 50 mm entre vigotas + manta inferior", "m²", r(floor), r(floor * 2.1)),
+           ("Compensado naval 18 mm", "m²", r(floor), r(floor * 12)),
+           ("Piso de engenharia carvalho 14 mm", "m²", r(floor - bath), r((floor - bath) * 9)),
+           ("Zona molhada: placa cimentícia + impermeabilização + porcelanato", "m²", bath, r(bath * 30)),
+           ("Deck cumaru 20 x 140 com fixação oculta (3 faces)", "m²", r(deck), r(deck * 20)),
+           ("Estacas helicoidais Ø76, hélice Ø300, L 2,0 m + cabeçotes (20 sob piso/deck + 2 sob os postes da vela)", "un", n_piles, r(n_piles * 18.8))]
+    interiors = [("Parede-corda do banho (LSF + painel + porta de correr 0,90 x 2,10)", "m²", 12.5, r(12.5 * 22)),
+                 ("Marcenaria: closet, café/minibar, criados, bancada 1,40", "cj", 1, 200),
+                 ("Cama king, sofá 2,40, poltrona, mesa lateral", "cj", 1, 190),
+                 ("Louças e metais: bacia, cuba, chuveiro, banheira de sentar 0,90 x 0,75", "cj", 1, 110),
+                 ("Vidro do box do chuveiro", "un", 1, 30)]
+    mep = [("Evaporadora dutada 9k BTU inverter + condensadora + dutos + difusores", "cj", 1, 75),
+           ("Aquecedor a gás 23 L/min (ou bomba de calor 200 L)", "un", 1, 25),
+           ("Quadro elétrico, cabos, fitas LED, luminárias, tomadas", "cj", 1, 60),
+           ("Tubulações PEX / esgoto / ventilação", "cj", 1, 40),
+           ("Exaustor com recuperador de calor + respiro da lanterna", "cj", 1, 12)]
+    groups = [("Estrutura metálica (aço galvanizado)", [(d, "kg", q, k) for (_, d, _, q, l, k) in steel_rows]),
+              ("Alumínio e lanterna", [(d, "un", q, k) for (_, d, q, l, k) in alu_rows]),
+              ("Envelope: membrana, vela, isolamento, painéis", env), ("Vidros e esquadrias", glz), ("Piso, deck e fundação", flr),
+              ("Interiores", interiors), ("Instalações", mep)]
+    weights = [(g, sum(x[3] for x in rows)) for g, rows in groups]
+    total = sum(w for _, w in weights)
+    return dict(steel_rows=steel_rows, steel_kg=steel_kg, alu_rows=alu_rows, alu_kg=alu_kg, groups=groups, weights=weights, total=total,
+                memb=memb, sail=sail, glass=glass, wall_op=wall_op, forro=forro, ins=ins, floor=floor, deck=deck, bath=bath, side=side,
+                rafter=rafter, ring=ring, lantern=lantern, n_piles=n_piles)
+
 # ---------------- componentes para fabricação (códigos) ----------------
 def cocoon_parts():
     L = C.arch_lengths()
@@ -190,6 +276,28 @@ def zenith_parts():
          ("ZZ-MQ", "Kit de instalações", "Quadro elétrico, chicote LED, kit PEX, evaporadora dutada 18k, kit da hidromassagem", 1, "Pré-montagem")]
     return P
 
+def lodge_parts():
+    b = lodge_bom()
+    P = [("ZL-P", "Pilar de vértice", "Tubo Ø101,6 x 4,0 x 2.700 mm, chapa de base 200 x 200 x 10 e chapa de topo 150 x 150 x 8 soldadas, 2 talões para os montantes de vidro", 8, "Corte + solda + galvanização"),
+         ("ZL-PR", "Revestimento do pilar", "2 meias-canas de madeira laminada 140 mm, h 2.700, usinadas, encaixe com clipes", 8, "Marcenaria CNC + verniz"),
+         ("ZL-VB", "Segmento do anel de beiral", "Tubo 150 x 100 x 4,0 x 2.820 mm, chapas de topo dobradas a 135° com 4 M16, talão do caibro, furos do perfil de borda", 8, "Corte + solda + furação + galvanização"),
+         ("ZL-R", "Caibro radial", f"Tubo Ø76,1 x 3,6 x {b['rafter'] * 1000:.0f} mm, chapa-orelha no pé (pino Ø16) e no topo (2 M16), talões do trilho do forro", 8, "Corte + solda + galvanização"),
+         ("ZL-AC", "Anel de compressão da lanterna", "Tubo Ø60,3 x 3,0 calandrado Ø1.500, 8 orelhas para os caibros, perfil de clamp da membrana", 1, "Calandra + solda em gabarito"),
+         ("ZL-LT", "Lanterna", "Quadro de 8 montantes Ø42,4 x 600 + anel superior Ø1.500; esquadria de alumínio RPT; vidro laminado curvo 8 + 8 h 450; tampa de alumínio Ø1.600", 1, "Solda + esquadria + vidraçaria especial"),
+         ("ZL-PV", "Poste da vela", "Tubo Ø76,1 x 3,6 x 2.400 mm, base articulada com pino Ø20, olhal no topo", 2, "Corte + solda"),
+         ("ZL-VS", "Vela de sombra", "PVDF 1050 g/m² ~14 m² (hipar), bolsas de cabo Ø8 nas 4 bordas, chapas de canto inox", 1, "Corte CNC + solda RF"),
+         ("ZL-MB", "Membrana externa", f"PVDF 1050 g/m² em 8 gomos ({b['memb']:.0f} m² desenvolvidos), bolsa de borda com tubo Ø20, clamp no anel da lanterna", 1, "Corte CNC + solda RF (form-finding)"),
+         ("ZL-CB", "Cabo de contraventamento", "Inox Ø8 x 3,8 m, terminais prensados, esticador M12 (6 nas faces opacas + 4 da vela)", 10, "Cabos prensados"),
+         ("ZL-SIP", "Painel de parede", "SIP 100 mm, h 2.550, larguras 1.340 / 670 mm, rebaixo para os pilares, hidrófuga + ripas + ripado externo", 12, "Pré-fabricação"),
+         ("ZL-FV", "Face de vidro", "Vidro insulado 6 lam + 12 Ar + 6 temp low-e, 2 painéis 1.320 x 2.450 por face, montantes fixados nos pilares; a face frontal com porta de correr 2,00 x 2,40", 5, "Esquadria sob medida"),
+         ("ZL-FR", "Forro tensionado", "Trevira CS em 8 gomos do anel de beiral ao anel da lanterna, harpão perimetral, mantas PET 50 mm", 1, "Costura + harpão"),
+         ("ZL-PW", "Parede-corda do banho", "Quadro LSF 90 mm x 5,20 x 2,40 + painel + porta de correr 0,90 x 2,10, pré-montada em 2 módulos", 1, "Pré-fabricação"),
+         ("ZL-PL", "Módulo de piso", "Quadros de vigotas LSF Ue 150 x 40 x 1,25 (2,4 x 1,2 m e recortes do octógono) com PIR e compensado", 14, "Pré-fabricação"),
+         ("ZL-DK", "Módulo de deck", "Painéis cumaru 2,0 x 1,0 m com fixação oculta sobre vigotas LSF Ue 150 x 40 x 1,25", 15, "Pré-fabricação"),
+         ("ZL-EH", "Estaca helicoidal", "Ø76 x 3,6, hélice Ø300, L 2,0 m, cabeçote ajustável (20 sob piso/deck + 2 sob os postes da vela)", b["n_piles"], "Compra"),
+         ("ZL-MQ", "Kit de instalações", "Quadro elétrico pré-montado, chicote LED, kit PEX, evaporadora dutada 9k", 1, "Pré-montagem em bancada")]
+    return P
+
 # ---------------- transporte ----------------
 def transport(b, name):
     if name == "cocoon":
@@ -202,6 +310,16 @@ def transport(b, name):
                  ("Palete de deck", "2,0 x 1,0 x 1,2 m", 2.4, 800),
                  ("Palete de instalações + louças + marcenaria", "2,4 x 1,2 x 1,4 m", 8.1, 900),
                  ("Estacas helicoidais em feixes", "2,1 x 0,6 x 0,6 m", 0.8, 730)]
+    elif name == "lodge":
+        items = [("Estrado de estrutura 1: pilares, anel de beiral, caibros, anéis da lanterna, postes da vela", "3,0 x 1,2 x 0,8 m", 2.9, 900),
+                 ("Estrado 2: vigas U, chapas, cabos, perfis de alumínio, tampa da lanterna", "4,8 x 1,2 x 0,6 m", 3.5, 800),
+                 ("Painéis SIP + parede-corda do banho", "2,8 x 1,25 x 0,9 m", 3.2, 700),
+                 ("Caixa da membrana + vela + isolamento + forro (rolos)", "2,4 x 1,2 x 1,0 m", 2.9, 300),
+                 ("Cavaletes de vidro x 3 (5 faces, porta de correr, lanterna)", "2,9 x 0,6 x 2,7 m", 14.1, 1300),
+                 ("Paletes de piso (módulos) x 2", "2,4 x 1,2 x 0,9 m", 5.2, 1300),
+                 ("Palete de deck", "2,0 x 1,0 x 1,3 m", 2.6, 800),
+                 ("Palete de instalações + louças + marcenaria + mobiliário", "2,4 x 1,2 x 1,4 m", 4.0, 800),
+                 ("Estacas helicoidais em feixes", "2,1 x 0,6 x 0,5 m", 0.6, 420)]
     else:
         items = [("Estrado de estrutura 1: mastros, coroas, anéis, pilares", "5,2 x 1,2 x 0,8 m", 5.0, 760),
                  ("Estrado de estrutura 2: anel de beiral, postes, cabos, chapas", "4,8 x 1,2 x 0,8 m", 4.6, 720),
@@ -241,10 +359,21 @@ ASSEMBLY = {
         ("Interiores", "Divisórias e forro do banho; louças, metais, banheira; piso; marcenaria; hidromassagem", 2.0, "4"),
         ("Instalações e comissionamento", "Quadro, circuitos, LED; evaporadora dutada e condensadora; aquecedor; chaminé do Respiro; testes", 1.5, "2 + eletricista"),
     ],
+    "lodge": [
+        ("Locação e fundação", "Locação do octógono por raios a partir do centro; cravação de 22 estacas helicoidais (20 sob piso/deck + 2 sob os postes da vela); nivelamento dos cabeçotes (± 5 mm)", 0.5, "3 + operador"),
+        ("Grelha e módulos de piso e deck", "Vigas U 150 na grelha e no anel de borda octogonal; 14 módulos de piso LSF e 15 módulos de deck; passagens de esgoto e PEX", 1.5, "4"),
+        ("Pilares, anel de beiral, caibros e lanterna", "8 pilares chumbados nas chapas de base; 8 segmentos do anel parafusados; anel de compressão içado com tripé e os 8 caibros pinados nos vértices; lanterna sobre o anel", 1.0, "4"),
+        ("Painéis SIP, parede-corda e cabos", "12 painéis SIP encaixados entre os pilares das 3 faces opacas; parede-corda do banho; cabos em X tensionados a 2 kN", 0.5, "4"),
+        ("Membrana externa", "Membrana içada pelo anel da lanterna; clamp no anel; gomos passados sobre o anel de beiral; bolsa de borda tensionada em cruz; vidro curvo e tampa da lanterna", 1.0, "3 + supervisor de membrana"),
+        ("Isolamento e forro", "Mantas de PET e refletiva; trilhos do forro nos caibros; forro tensionado em 8 gomos até o anel da lanterna; revestimento de madeira dos pilares", 1.0, "4"),
+        ("Vidros e esquadrias", "Montantes fixados nos pilares; 10 vidros insulados das 5 faces; porta de correr 2,00 x 2,40; fresta da banheira; selagem", 1.5, "3 + vidraceiro"),
+        ("Interiores", "Banho: louças, metais, banheira de sentar, box; piso de engenharia; marcenaria (closet, café, criados, bancada); painéis internos", 1.0, "4"),
+        ("Instalações, vela e comissionamento", "Quadro, circuitos, LED; evaporadora 9k e condensadora; aquecedor; postes e vela de sombra tensionada; testes de estanqueidade e climatização; limpeza", 1.0, "2 + eletricista"),
+    ],
 }
 
 if __name__ == "__main__":
-    for name, fn in (("cocoon", cocoon_bom), ("zenith", zenith_bom)):
+    for name, fn in (("cocoon", cocoon_bom), ("zenith", zenith_bom), ("lodge", lodge_bom)):
         b = fn()
         print(name.upper(), "aço:", b["steel_kg"], "kg · alumínio:", b["alu_kg"], "kg · total:", b["total"], "kg")
         for g, w in b["weights"]:

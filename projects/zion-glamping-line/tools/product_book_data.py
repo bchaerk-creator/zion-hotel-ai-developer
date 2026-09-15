@@ -6,11 +6,11 @@ mão de obra, cenários de orçamento, escala industrial e manual de montagem.
 Todos os dimensionamentos são PRÉ-DIMENSIONAMENTO de engenharia (a validar por engenheiro estrutural habilitado).
 """
 import math
-from geometry import Cocoon, Zenith
-from bom import KG, cocoon_bom, zenith_bom, ASSEMBLY
+from geometry import Cocoon, Zenith, Lodge
+from bom import KG, cocoon_bom, zenith_bom, lodge_bom, ASSEMBLY
 
-C, Z = Cocoon(), Zenith()
-BC, BZ = cocoon_bom(), zenith_bom()
+C, Z, LD = Cocoon(), Zenith(), Lodge()
+BC, BZ, BL = cocoon_bom(), zenith_bom(), lodge_bom()
 
 def r(v, n=0):
     return round(v, n) if n else int(round(v))
@@ -113,6 +113,59 @@ def zenith_parts():
     add("F03", "Estaca helicoidal de tração Ø76, hélice Ø300, L 2,5 m, cabeça com olhal", 7, 2.50, 300, 0, "Tubo Ø76,1 x 3,6 + hélice + olhal", "ASTM A500 / A36 galv.", 3.6, 2.5 * KG["Ø76,1 x 3,6"] + 6.5, "Compra + olhal soldado", "Esticador do estai C04", 1, "Ancoragem dos estais dos postes")
     return P
 
+def lodge_parts():
+    """ZION LODGE · octógono 6,80 m entre faces (lado 2,82 m, vértice a r 3,68 m); 8 pilares, anel de beiral, 8 caibros, lanterna Ø1,50, vela frontal."""
+    P = []
+    def add(cod, nome, qtd, comp, larg, alt, perfil, aco, esp, peso_un, fab, uniao, ordem, funcao):
+        P.append(dict(cod=cod, nome=nome, qtd=qtd, comp=comp, larg=larg, alt=alt, perfil=perfil, aco=aco, esp=esp,
+                      peso_un=round(peso_un, 1), peso_total=round(peso_un * qtd, 1), fab=fab, uniao=uniao, ordem=ordem, funcao=funcao))
+    U = KG["U 150 x 60 x 3,0"]; side = LD.side(); rafter = BL["rafter"]; lantern = BL["lantern"]
+    # ---- A · BASE (grelha do piso octogonal + deck em três faces) ----
+    add("A01", "Viga longitudinal central L0 (y = 0), 2 trechos", 2, 4.70, 150, 60, "U enrijecido 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 4.7 * U, "Corte + furação Ø14", "Cabeçotes J02 + emenda H06 (4 M12 por face)", 3, "Eixo do piso e do deck frontal")
+    add("A02", "Viga longitudinal L1/L2 (y = ± 0,85), 2 trechos cada", 4, 4.70, 150, 60, "U enrijecido 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 4.7 * U, "Corte + furação Ø14", "Cabeçotes J02 + emenda H06", 3, "Vigas principais sob o piso e o deck")
+    add("A03", "Viga longitudinal L3/L4 (y = ± 2,55), 2 trechos cada", 4, 4.05, 150, 60, "U enrijecido 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 4.05 * U, "Corte + furação Ø14", "Cabeçotes J02 + emenda H06", 3, "Vigas laterais sob o piso e o deck")
+    add("A04", "Viga transversal T0 (x = 0)", 1, 6.80, 150, 60, "U enrijecido 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 6.8 * U, "Corte + furação", "Cantoneira H07 + 4 M12 em cada cruzamento", 3, "Fecha a grelha 2,40 x 1,70 m")
+    add("A05", "Viga transversal T1/T2 (x = ± 2,40)", 2, 4.80, 150, 60, "U enrijecido 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 4.8 * U, "Corte + furação", "Cantoneira H07 + 4 M12", 3, "Idem A04")
+    add("A06", "Anel de borda octogonal, 8 segmentos de 2,82 m", 8, round(side, 2), 150, 60, "U 150 x 60 x 3,0 (caixão duplo sob os pilares)", "ZAR-230 galv. Z275", 3.0, side * U * 1.3, "Corte a 22,5° + furação + chapas de canto", "Chapa de canto H05 a 135° (6 M12); recebe as chapas de base H01 dos pilares", 3, "Contorno do piso; apoio dos pilares, dos SIP e das esquadrias")
+    add("A07", "Viga de borda do deck, 3 segmentos", 3, 4.97, 150, 60, "U 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 4.97 * U, "Corte a 22,5° + furação", "Chapa de canto H05 + cabeçotes J02", 3, "Contorno do deck em três faces")
+    add("A08", "Viga transversal do deck (x = − 4,70)", 1, 6.40, 150, 60, "U 150 x 60 x 3,0", "ZAR-230 galv. Z275", 3.0, 6.4 * U, "Corte + furação", "Cantoneira H07 + cabeçotes J02", 3, "Apoio intermediário do deck")
+    # ---- B · PILARES ----
+    add("B01", "Pilar de vértice P1 a P8", 8, LD.Z_EAVE, 0, 0, "Tubo Ø101,6 x 4,0", "ASTM A500 Gr. B galv.", 4.0, LD.Z_EAVE * KG["Ø101,6 x 4,0"] + 2.5, "Corte + chapas de base H01 e de topo H02 soldadas + 2 talões dos montantes de vidro", "Base H01: 4 chumbadores M16 no anel A06; topo H02: 4 M16 no anel de beiral C01", 5, "Apoio do anel de beiral; embutido no vidro / nos SIP")
+    add("B02", "Revestimento de madeira do pilar (2 meias-canas 140 mm)", 8, LD.Z_EAVE, 140, 140, "Madeira laminada de eucalipto usinada", "madeira laminada", 20.0, 10.0, "Usinagem CNC + verniz", "Clipes de mola + parafuso inox M5 no talão do pilar", 10, "Acabamento do pilar até 2,70 m; esconde montantes e cabos")
+    # ---- C · ANEL DE BEIRAL ----
+    add("C01", "Segmento do anel de beiral VB01 a VB08", 8, round(side, 2), 150, 100, "Tubo retangular 150 x 100 x 4,0", "ASTM A500 Gr. B galv.", 4.0, side * KG["150 x 100 x 4,0"] + 3.0, "Corte a 22,5° + chapas de topo H03 soldadas + talão H04 + furos do perfil de borda", "Chapa de topo H03 dobrada a 135° com 4 M16 8.8 entre segmentos; H02 dos pilares", 5, "Viga-anel: recebe os caibros, a membrana (bolsa de borda) e o topo dos vidros")
+    # ---- D · CAIBROS ----
+    add("D01", "Caibro radial R1 a R8", 8, round(rafter, 2), 0, 0, "Tubo Ø76,1 x 3,6", "ASTM A500 Gr. B galv.", 3.6, rafter * KG["Ø76,1 x 3,6"] + 1.2, "Corte + chapa-orelha nas duas pontas + 3 talões do trilho do forro", "Pé: pino Ø16 no talão H04 do vértice + 2 M12; topo: 2 M16 na orelha do anel E01", 6, "Do vértice (z 2,70) ao anel da lanterna (r 0,75, z 4,60); apoia a membrana e o forro")
+    # ---- E · LANTERNA ----
+    add("E01", "Anel de compressão da lanterna Ø1,50", 1, round(lantern, 2), 1500, 60, "Tubo Ø60,3 x 3,0 calandrado + 8 orelhas 8 mm", "ASTM A500 / A36 galv.", 3.0, lantern * KG["Ø60,3 x 3,0"] + 5.0, "Calandra + solda em gabarito + orelhas", "8 orelhas: 2 M16 por caibro; clamp I02 da membrana; lanterna E02 com 8 M10", 6, "Nó central da cobertura: comprimido pelos 8 caibros")
+    add("E02", "Lanterna: 8 montantes 0,60 m + anel superior Ø1,50", 1, round(8 * 0.6 + lantern, 2), 1500, 600, "Tubo Ø42,4 x 3,0 + anel Ø42,4 calandrado", "ASTM A500 Gr. B galv.", 3.0, (8 * 0.6 + lantern) * KG["Ø42,4 x 3,0"] + 2.0, "Solda em gabarito", "8 M10 no anel E01; esquadria E04 parafusada nos montantes", 6, "Sustenta o vidro curvo e a tampa; respiro na face superior")
+    add("E03", "Tampa da lanterna Ø1,60 (chapa de alumínio 2 mm sobre quadro + pingadeira)", 1, 1.60, 1600, 60, "Chapa alumínio 5052 2 mm + quadro 40 x 20", "alumínio", 2.0, 14.0, "Corte + dobra + solda TIG", "8 M8 inox no anel superior de E02 + EPDM", 11, "Fecha a lanterna; abriga o respiro com veneziana")
+    add("E04", "Esquadria da lanterna com ruptura térmica (vidro curvo h 0,45)", 1, round(lantern, 2), 1500, 450, "Alumínio 6063 calandrado + poliamida", "alumínio", 2.5, lantern * 3.0, "Calandra + usinagem", "M8 inox nos montantes de E02 + selante estrutural", 11, "Recebe o vidro laminado curvo 8 + 8 em 4 segmentos")
+    # ---- F · VELA DE SOMBRA ----
+    add("F01", "Poste da vela PV1 / PV2", 2, LD.SAIL["z_post"], 0, 0, "Tubo Ø76,1 x 3,6", "ASTM A500 Gr. B galv.", 3.6, LD.SAIL["z_post"] * KG["Ø76,1 x 3,6"] + 1.5, "Corte + base articulada H08 + olhal soldado", "Pino Ø20 na base H08 sobre o cabeçote J02; olhal recebe o cabo F02", 14, "Suporte frontal da vela sobre o deck (z 2,40)")
+    add("F02", "Cabo da vela Ø8 inox + esticador M12", 4, 4.00, 0, 0, "Cabo inox AISI 316 Ø8 mm 7 x 19", "inox 316", 8.0, 4.0 * 0.26 + 0.6, "Terminais prensados com olhal", "Manilha 3/8 + esticador M12 nos olhais dos postes (2) e do anel de beiral (2)", 14, "Tensiona os 4 vértices da vela")
+    add("F03", "Vela de sombra (membrana hipar ~14 m²)", 1, 5.20, 3600, 0, "PVDF 1050 g/m² com bolsas de cabo", "membrana PVDF", 1.0, 17.0, "Corte CNC + solda RF", "Bolsas de cabo Ø8 nas 4 bordas + chapas de canto inox", 14, "Sombra do deck frontal entre os postes e o beiral")
+    # ---- G · TRAVAMENTOS ----
+    add("G01", "Cabo de contraventamento em X nas 3 faces opacas", 6, 3.80, 0, 0, "Cabo de aço inox AISI 316 Ø8 mm 7 x 19", "inox 316", 8.0, 3.8 * 0.26 + 0.6, "Terminais prensados com olhal", "Olhal H09 + manilha + esticador M12 inox", 7, "Resiste ao vento; embutido nos painéis SIP")
+    # ---- H · CHAPAS E CONEXÕES ----
+    add("H01", "Chapa de base do pilar (200 x 200 x 10)", 8, 0.20, 200, 10, "Chapa A36", "ASTM A36 galv.", 10.0, 3.1, "Corte plasma + solda de fábrica no pilar", "4 chumbadores M16 8.8 no anel de borda A06 (furos oblongos)", 5, "Engasta o pilar no quadro do piso")
+    add("H02", "Chapa de topo do pilar (150 x 150 x 8)", 8, 0.15, 150, 8, "Chapa A36", "ASTM A36 galv.", 8.0, 1.4, "Corte + furação + solda", "4 M16 8.8 no anel de beiral C01", 5, "Liga o pilar ao anel")
+    add("H03", "Chapa de topo dos segmentos do anel (150 x 180 x 10, dobrada a 22,5°)", 16, 0.18, 150, 10, "Chapa A36 dobrada", "ASTM A36 galv.", 10.0, 2.1, "Corte + dobra + furação + solda", "4 M16 8.8 entre segmentos (emenda no vértice, sobre o pilar)", 5, "Emenda do anel de beiral a 135°")
+    add("H04", "Talão do caibro (chapa 8 mm com furo Ø17 + orelha)", 8, 0.10, 60, 8, "Chapa A36", "ASTM A36 galv.", 8.0, 0.6, "Corte laser + solda de fábrica no anel C01", "Pino Ø16 + 2 M12 no pé do caibro", 5, "Rótula do caibro no vértice")
+    add("H05", "Chapa de canto do anel de borda (135°, 2 por canto)", 22, 0.16, 120, 6, "Chapa A36 dobrada", "ASTM A36 galv.", 6.0, 1.0, "Corte + dobra + furação", "6 M12 8.8 por canto", 3, "Emenda das vigas U nos cantos do octógono e do deck")
+    add("H06", "Chapa de emenda das vigas (120 x 140 x 6, 4 furos)", 12, 0.14, 120, 6, "Chapa A36", "ASTM A36 galv.", 6.0, 0.8, "Corte + furação", "4 M12 8.8 por face", 3, "Emenda das vigas longitudinais")
+    add("H07", "Cantoneira de cruzamento 75 x 75 x 6 x 140", 32, 0.14, 75, 6, "Cantoneira laminada", "ASTM A36 galv.", 6.0, 0.9, "Corte + furação", "2 M12 em cada aba", 3, "Ligação viga transversal x longitudinal")
+    add("H08", "Base articulada do poste da vela (chapa 150 x 150 x 10 + garfo + pino Ø20)", 2, 0.15, 150, 10, "Chapa A36 + pino inox", "ASTM A36 galv.", 10.0, 3.4, "Corte + solda", "4 M12 no cabeçote J02", 14, "Base rotulada do poste")
+    add("H09", "Olhal para cabo (chapa 10 mm, furo Ø14)", 16, 0.08, 50, 10, "Chapa A36", "ASTM A36 galv.", 10.0, 0.3, "Corte laser + solda de fábrica nos pilares e no anel", "Manilha inox", 5, "Ancoragem dos cabos em X e da vela")
+    # ---- I · SUPORTE DA MEMBRANA E ACABAMENTO ----
+    add("I01", "Perfil de borda arredondado do beiral (alumínio 80 x 40) + calha oculta", 8, 3.00, 80, 40, "Alumínio 6063 extrudado", "alumínio", 2.0, 3.0 * 1.6, "Extrusão + corte a 22,5°", "Parafuso inox M8 @400 no anel C01; grampo da bolsa de borda", 8, "Passagem suave da membrana sobre o anel; drenagem")
+    add("I02", "Perfil de clamp do anel da lanterna (alumínio 60 x 12, 2 metades)", 1, round(lantern, 2), 60, 12, "Alumínio 6063 usinado", "alumínio", 12.0, lantern * 1.2, "Usinagem", "M10 inox @150 no anel E01 + EPDM", 8, "Fixa a membrana no anel de compressão")
+    add("I03", "Trilho do forro tensionado 40 x 20", 15, 3.00, 40, 20, "Alumínio 6063", "alumínio", 1.5, 3.0 * 0.35, "Extrusão + corte", "Rebite ou M6 nos talões dos caibros e no anel", 10, "Fixa os 8 gomos do forro")
+    # ---- J · FUNDAÇÃO ----
+    add("J01", "Estaca helicoidal Ø76 x 3,6, hélice Ø300, L 2,0 m", BL["n_piles"], 2.00, 300, 0, "Tubo Ø76,1 x 3,6 + hélice chapa 8 mm", "ASTM A500 / A36 galv.", 3.6, 2.0 * KG["Ø76,1 x 3,6"] + 5.5, "Solda da hélice + galvanização (compra)", "Rosca M30 do cabeçote J02", 1, "Fundação removível: 20 sob piso/deck + 2 sob os postes da vela")
+    add("J02", "Cabeçote ajustável rosqueado (curso 150 mm) + chapa 150 x 150 x 8", BL["n_piles"], 0.25, 150, 8, "Barra roscada M30 + chapa", "aço galv.", 8.0, 2.2, "Compra", "Rosca M30 + contraporca; 4 M12 na viga", 2, "Nivelamento fino do piso e do deck")
+    return P
+
 # =============================================================================
 # 2. CONEXÕES
 # =============================================================================
@@ -161,6 +214,30 @@ ZENITH_CONNECTIONS = [
     ("CX18", "V03 óculo (E04 esquadria)", "B03 anel", "Esquadria calandrada sobre o anel + EPDM", "M8 inox @200 + selante", 1, 11),
     ("CX19", "H02 forro isolado", "C05 cabos + E03 trilhos", "Forro suspenso pelos cabos, harpão nos trilhos", "Terminais Ø4 + rebites", 16, 10),
     ("CX20", "ZZ-PW parede da cabeceira", "Piso + B01 mastro", "Guia LSF parafusada; abraçadeiras no mastro", "Parafuso 4,8 x 32 + abraçadeira M8 (3)", 20, 13),
+]
+LODGE_CONNECTIONS = [
+    ("CX01", "J01 estaca helicoidal", "J02 cabeçote ajustável", "Rosca M30 com contraporca", "Contraporca M30 zincada", 22, 2),
+    ("CX02", "J02 cabeçote / chapa 150 x 150", "A01-A08 vigas U", "Chapa parafusada na mesa da viga", "Parafuso M12 x 40 cl. 8.8 + porca + arruelas (4 por cabeçote)", 88, 3),
+    ("CX03", "A01/A02/A03 vigas longitudinais", "emendas", "Chapa de emenda H06 dupla (uma por face da alma)", "Parafuso M12 x 40 cl. 8.8 (8 por emenda)", 40, 3),
+    ("CX04", "A04/A05/A08 transversais", "A01-A03 longitudinais", "Cantoneira H07 75 x 75 x 6 (2 por cruzamento)", "Parafuso M12 x 40 cl. 8.8 (4 por cruzamento)", 64, 3),
+    ("CX05", "A06 anel de borda / A07 borda do deck", "cantos a 135°", "Chapa de canto H05 dobrada (2 por canto)", "Parafuso M12 x 40 cl. 8.8 (6 por canto)", 66, 3),
+    ("CX06", "H01 chapa de base (soldada ao pilar)", "A06 anel de borda (caixão duplo)", "Chapa 200 x 200 x 10 sobre a mesa (furos oblongos 18 x 25)", "Chumbador / parafuso M16 x 60 cl. 8.8 + porca + arruela (4 por pilar)", 32, 5),
+    ("CX07", "B01 pilar / H02 chapa de topo", "C01 anel de beiral", "Chapa de topo sob o tubo retangular, no vértice", "Parafuso M16 x 60 cl. 8.8 (4 por pilar)", 32, 5),
+    ("CX08", "C01 segmentos do anel", "C01 segmentos (emendas a 135°)", "Chapas de topo H03 dobradas face a face", "Parafuso M16 x 60 cl. 8.8 (4 por emenda)", 32, 5),
+    ("CX09", "D01 caibro (pé)", "H04 talão no vértice do anel", "Chapa-orelha do caibro entre as orelhas do talão", "Pino Ø16 inox com contrapino + M12 x 60 (2 por caibro)", 24, 6),
+    ("CX10", "D01 caibro (topo)", "E01 anel de compressão (orelhas)", "Chapa-orelha do caibro aparafusada na orelha do anel", "Parafuso M16 x 60 cl. 8.8 (2 por caibro)", 16, 6),
+    ("CX11", "E02 lanterna", "E01 anel de compressão", "Montantes com chapa de pé sobre o anel", "Parafuso M10 x 40 cl. 8.8 (8) + EPDM", 8, 6),
+    ("CX12", "H01 membrana (topo dos gomos)", "E01 anel via I02 clamp", "Membrana prensada entre anel e clamp com EPDM", "Parafuso M10 inox @150 (2 x 16)", 32, 8),
+    ("CX13", "H01 membrana (bolsa de borda)", "C01 anel de beiral + I01 perfil de borda", "Bolsa com tubo Ø20 presa por grampo do perfil de borda; passagem sobre o perfil arredondado", "Parafuso inox M8 x 40 @400 + arruela EPDM", 60, 8),
+    ("CX14", "G01 cabos em X", "H09 olhais dos pilares", "Manilha inox + esticador garfo-garfo", "Manilha 3/8 inox + esticador M12 inox (1 por cabo)", 12, 7),
+    ("CX15", "F01 postes da vela (H08 base)", "J02 cabeçote", "Garfo com pino Ø20 sobre chapa", "M12 x 40 (4) + pino inox Ø20 com contrapino", 8, 14),
+    ("CX16", "F03 vela (bolsas de cabo)", "F01 postes + C01 anel (H09 olhais)", "Cabos F02 nas bolsas; chapas de canto inox", "Esticador M12 inox + manilha 3/8 (1 por vértice)", 4, 14),
+    ("CX17", "SIP painéis de parede", "B01 pilares + A06 anel de borda + C01 anel de beiral", "Rebaixo do painel abraça o pilar; guia inferior e superior", "Parafuso auto-brocante 5,5 x 75 @300 + espuma PU", 12, 9),
+    ("CX18", "V01 vidros insulados / V02 porta de correr", "B01 pilares (talões) + A06 + C01", "Montantes de alumínio RPT fixados nos talões dos pilares; trilho embutido da porta na soleira", "Kit de esquadria (fornecedor) + selante estrutural", 5, 11),
+    ("CX19", "V03 vidro curvo da lanterna", "E04 esquadria", "Vidro laminado curvo em 4 segmentos com gaxetas EPDM", "Selante estrutural + presilhas inox M6", 4, 11),
+    ("CX20", "H04 forro tensionado (8 gomos)", "I03 trilhos harpão", "Harpão costurado no tecido pressionado no trilho", "Sem fixador", 8, 10),
+    ("CX21", "ZL-PL módulos de piso", "A01-A06 vigas", "Vigotas LSF apoiadas na mesa; parafuso auto-brocante", "Parafuso auto-brocante 5,5 x 50 (6 por módulo)", 84, 4),
+    ("CX22", "ZL-PW parede-corda do banho", "Piso + C01 anel de beiral", "Guia LSF parafusada no piso; presilhas no anel", "Parafuso 4,8 x 32 + presilha M8 (4)", 24, 13),
 ]
 
 # =============================================================================
@@ -220,6 +297,12 @@ PRICES = {
     "paineis": ("Painéis ripados internos / revestimentos (R$/m²)", "m²", 480.0, 0.6, 1.4, ""),
     "acab": ("Acabamentos: selantes, rodapés, cortinas, tapetes, enxoval de abertura", "cj", 13500.0, 0.6, 1.6, ""),
     "parede": ("Parede do banho / cabeceira em LSF + painéis (R$/m²)", "m²", 310.0, 0.8, 1.2, ""),
+    "vigota_lsf": ("Vigota LSF Ue 150 x 40 x 1,25 galvanizada Z275 (R$/m)", "m", 21.0, 0.95, 1.05, "Lodge: módulos de piso e deck"),
+    "hidrofuga": ("Membrana hidrófuga + ripas de ventilação da parede (R$/m²)", "m²", 38.0, 0.9, 1.05, "Lodge: câmara ventilada atrás do ripado"),
+    "lanterna": ("Lanterna Ø1,50: vidro laminado curvo 8 + 8 h 0,45 + esquadria RPT + tampa de alumínio (un)", "un", 12500.0, 0.65, 1.3, "Lodge; Econ.: policarbonato compacto curvo"),
+    "porta_correr": ("Porta de correr de vidro 2,00 x 2,40: trilho embutido, roldanas, puxador, fechadura (un)", "un", 6500.0, 0.7, 1.4, "Lodge; folha incluída na fachada"),
+    "vela": ("Vela de sombra PVDF ~14 m² confeccionada, com cabos, esticadores e chapas de canto (un)", "un", 6800.0, 0.7, 1.25, "Lodge; Econ.: tela HDPE 340 g/m²"),
+    "pilar_madeira": ("Revestimento de madeira laminada do pilar, 2 meias-canas h 2,70 (un)", "un", 950.0, 0.6, 1.4, "Lodge; Econ.: pinus autoclavado; Premium: cumaru"),
 }
 
 # mão de obra (R$/h, custo empresa com encargos, EPI e ferramental) · STANDARD, fator ECON, fator PREMIUM
@@ -243,6 +326,9 @@ def labor_hours(product):
     if product == "cocoon":
         return {"serralheiro": 250, "soldador": 120, "montador": 4 * 12 * 8.8, "lider": 12 * 8.8, "carpinteiro": 130, "eletricista": 44, "encanador": 40,
                 "vidraceiro": 48, "membrana": 56, "marceneiro": 28, "acabamento": 64, "engenheiro": 24}
+    if product == "lodge":   # peças retas (sem calandra de arcos), 9 dias de montagem
+        return {"serralheiro": 170, "soldador": 80, "montador": 4 * 9 * 8.8, "lider": 9 * 8.8, "carpinteiro": 110, "eletricista": 40, "encanador": 36,
+                "vidraceiro": 56, "membrana": 40, "marceneiro": 24, "acabamento": 48, "engenheiro": 20}
     return {"serralheiro": 220, "soldador": 110, "montador": 4 * 15 * 8.8, "lider": 15 * 8.8, "carpinteiro": 150, "eletricista": 52, "encanador": 52,
             "vidraceiro": 64, "membrana": 72, "marceneiro": 36, "acabamento": 72, "engenheiro": 28}
 
@@ -283,6 +369,41 @@ def bom_priced(product):
             ("16 Ar-condicionado", [("Dutado inverter 12k BTU quente/frio instalado", "un", 1, "ac"), ("Exaustor com recuperador + respiro de cumeeira", "cj", 1, "exaustor")]),
             ("17 Marcenaria", [("Marcenaria sob medida", "cj", 1, "marcenaria"), ("Mobiliário solto", "cj", 1, "mobiliario")]),
             ("18 Acabamentos", [("Painéis ripados internos (cabeceira, rodapés)", "m²", 14, "paineis"), ("Acabamentos e enxoval de abertura", "cj", 1, "acab")]),
+        ]
+    elif product == "lodge":
+        b = BL; P = lodge_parts()
+        chapa_kg = sum(p["peso_total"] for p in P if p["cod"].startswith("H"))
+        tube_kg = sum(p["peso_total"] for p in P if p["cod"][0] in "BCDEFG" and p["aco"] not in ("inox 316", "alumínio", "madeira laminada", "membrana PVDF"))
+        u_kg = sum(p["peso_total"] for p in P if p["cod"].startswith("A"))
+        memb = b["memb"] * 1.15; floor = b["floor"]; deck = b["deck"]; wall_op = b["wall_op"]; glass = b["glass"]; bath = b["bath"]
+        alu_m = 24 + 5 + 45   # perfis de borda do beiral, clamp da lanterna, trilhos do forro
+        groups = [
+            ("01 Estrutura metálica", [("Pilares, anel de beiral, caibros, anéis da lanterna, postes da vela (peças retas + 2 anéis calandrados)", "kg", round(tube_kg), "tubo"),
+                                       ("Perfis U 150 x 60 x 3,0 galvanizados (grelha, anel de borda octogonal, deck)", "kg", round(u_kg), "perfilU")]),
+            ("02 Chapas", [("Chapas de base e topo, chapas de canto, talões, orelhas, cantoneiras, olhais (H01-H09)", "kg", round(chapa_kg), "chapa")]),
+            ("03 Elementos de conexão", [("Galvanização a fogo de tubos e chapas", "kg", round(tube_kg + chapa_kg), "galv"), ("Pintura a pó (anel de beiral, caibros e lanterna aparentes)", "kg", round((tube_kg + chapa_kg) * 0.6), "pintura"),
+                                        ("Cabos inox Ø8 (contraventamento das faces opacas)", "m", 24, "inox_cabo8"), ("Esticadores e manilhas inox", "un", 6, "esticador")]),
+            ("04 Parafusos e fixadores", [("Kit de parafusos cl. 8.8, chumbadores M16, pinos dos caibros, presilhas inox", "kit", 1, "fixadores")]),
+            ("05 Membrana externa", [("Membrana PVDF 1050 g/m² em 8 gomos (com 15% de emendas e bolsas)", "m²", round(memb), "membrana"), ("Confecção e form-finding do cone", "m²", round(memb), "membrana_conf"),
+                                     ("Vela de sombra completa (membrana, cabos, esticadores)", "un", 1, "vela"), ("Perfis de borda do beiral, clamp da lanterna e trilhos de alumínio", "m", alu_m, "alu_perfil")]),
+            ("06 Isolamento", [("Lã de PET 50 mm (sobre o forro)", "m²", round(b["ins"]), "pet"), ("Manta refletiva", "m²", round(b["ins"]), "refletiva"), ("Malha de apoio", "m²", round(b["ins"]), "malha"),
+                               ("Painéis SIP 100 mm (3 faces opacas)", "m²", round(wall_op, 1), "sip"), ("Membrana hidrófuga + ripas de ventilação", "m²", round(wall_op, 1), "hidrofuga"), ("Ripado termotratado externo", "m²", round(wall_op, 1), "ripado")]),
+            ("07 Membrana interna", [("Forro tensionado acústico em 8 gomos até o anel da lanterna", "m²", round(b["forro"]), "forro")]),
+            ("08 Vidros", [("Cinco faces + fresta da banheira: vidro insulado low-e", "m²", round(glass + 1.0, 1), "vidro_duplo"), ("Esquadrias com ruptura térmica (montantes nos pilares, travessas, soleiras)", "m²", round(glass + 1.0, 1), "esquadria"),
+                           ("Lanterna Ø1,50: vidro curvo + esquadria + tampa", "un", 1, "lanterna")]),
+            ("09 Portas", [("Porta de correr de vidro 2,00 x 2,40 (trilho embutido e ferragens)", "un", 1, "porta_correr"), ("Porta de correr do banho + box de vidro", "un", 1, "box")]),
+            ("10 Deck", [("Deck cumaru 20 x 140 (3 faces)", "m²", round(deck), "cumaru"), ("Vigotas LSF do deck", "m", round(deck * 2.5), "vigota_lsf")]),
+            ("11 Piso", [("Vigotas LSF Ue 150 x 40 x 1,25", "m", round(floor * 3.3), "vigota_lsf"), ("PIR 50 mm + manta", "m²", round(floor), "pir"), ("Compensado naval 18 mm", "m²", round(floor), "compensado"),
+                         ("Piso de engenharia carvalho", "m²", round(floor - bath), "piso_eng"), ("Zona molhada (porcelanato)", "m²", bath, "porcelanato"),
+                         ("Estacas helicoidais + cabeçotes (20 + 2 da vela)", "un", b["n_piles"], "estaca"), ("Instalação das estacas", "un", b["n_piles"], "estaca_inst"), ("Mobilização da cravação", "vb", 1, "mobiliz")]),
+            ("12 Banheiro", [("Louças e metais", "cj", 1, "loucas"), ("Banheira de sentar 0,90 x 0,75", "un", 1, "banheira"), ("Parede-corda do banho (LSF + painel)", "m²", 12.5, "parede")]),
+            ("13 Hidráulica", [("Kit PEX + esgoto + ventilação", "cj", 1, "pex"), ("Aquecedor a gás 23 L/min", "un", 1, "aquecedor"), ("Fossa + filtro compactos", "cj", 1, "esgoto")]),
+            ("14 Elétrica", [("Quadro, cabos, tomadas, DR", "cj", 1, "eletrica")]),
+            ("15 Iluminação", [("Fitas LED no anel de beiral e na lanterna, luminárias, balizadores do deck", "cj", 1, "iluminacao")]),
+            ("16 Ar-condicionado", [("Dutado inverter 9k BTU quente/frio instalado (ático do banho)", "un", 1, "ac"), ("Exaustor com recuperador + respiro da lanterna", "cj", 1, "exaustor")]),
+            ("17 Marcenaria", [("Marcenaria sob medida (closet, café/minibar, criados, bancada 1,40)", "cj", 1, "marcenaria"), ("Mobiliário solto (cama king, sofá 2,40, poltrona, mesa)", "cj", 1, "mobiliario"),
+                               ("Revestimento de madeira dos 8 pilares", "un", 8, "pilar_madeira")]),
+            ("18 Acabamentos", [("Painéis de madeira internos das faces opacas", "m²", 16, "paineis"), ("Acabamentos e enxoval de abertura", "cj", 1, "acab")]),
         ]
     else:
         b = BZ; P = zenith_parts()
@@ -329,6 +450,15 @@ def price_for(key, scen, product):
     if key == "ac" and product == "zenith": v *= 14900 / 12400
     if key == "aquecedor" and product == "zenith": v *= 1.27
     if key == "fixadores" and product == "zenith": v *= 1.1
+    if product == "lodge":
+        if key == "marcenaria": v *= 26000 / 39000     # closet, café/minibar, criados, bancada 1,40
+        if key == "ac": v *= 9800 / 12400              # 9k BTU
+        if key == "banheira": v *= 0.6                 # banheira de sentar 0,90 x 0,75
+        if key == "esquadria": v *= 0.85               # panos retos fixos entre pilares, sem calandra
+        if key == "loucas": v *= 0.85                  # banho compacto, bancada simples
+        if key == "iluminacao": v *= 0.85
+        if key == "acab": v *= 0.85                    # 38 m² internos (Casulo 48 m²)
+        if key == "fixadores": v *= 0.9
     return v
 
 def budget(product, scen, n_units=1):
@@ -357,9 +487,11 @@ def budget(product, scen, n_units=1):
     # produção x instalação
     prod_mat = sum(x[5] for x in rows if x[0][:2] in ("01", "02", "03", "04", "05", "06", "07", "08", "09", "17"))   # kit fabricado
     inst_mat = mat_total - prod_mat
-    transporte = (9300 if product == "cocoon" else 10800) * (1 - sc["transport"]) * (1.0 if scen != 2 else 1.1)
-    equipamentos = (5200 if product == "cocoon" else 8600) * (1 - sc["equip"])   # guincho, talha, andaime, munck (Safari)
-    hospedagem = (5 * (12 if product == "cocoon" else 15) * 185) * (1 - sc["site_labor"])
+    PP = {"cocoon": (9300, 5200, 12, 78.0, 48.0), "zenith": (10800, 8600, 15, 79.3, 48.4), "lodge": (7400, 4200, 9, 68.7, 38.3)}   # transporte, equipamentos, dias, área total, área interna
+    p_transp, p_equip, p_days, area_total, area_int = PP[product]
+    transporte = p_transp * (1 - sc["transport"]) * (1.0 if scen != 2 else 1.1)
+    equipamentos = p_equip * (1 - sc["equip"])   # guincho, talha, andaime, munck (Safari); tripé + talha (Lodge)
+    hospedagem = (5 * p_days * 185) * (1 - sc["site_labor"])
     indiretos_pct = sc["indiretos"]; conting_pct = sc["contingencia"] + (0.02 if scen == 0 else 0.0)
     nre = 240000 / n_units   # projeto executivo, cálculo, form-finding, gabaritos, protótipo (por produto)
     sub_prod = prod_mat + fab_labor
@@ -367,8 +499,6 @@ def budget(product, scen, n_units=1):
     subtotal = sub_prod + sub_inst
     indiretos = subtotal * indiretos_pct; conting = subtotal * conting_pct
     total = subtotal + indiretos + conting + nre
-    area_total = 78.0 if product == "cocoon" else 79.3
-    area_int = 48.0 if product == "cocoon" else 48.4
     return dict(rows=rows, mat_total=mat_total, lab_rows=lab_rows, lab_total=lab_total, fab_labor=fab_labor, site_labor=site_labor,
                 prod_mat=prod_mat, inst_mat=inst_mat, transporte=transporte, equipamentos=equipamentos, hospedagem=hospedagem,
                 indiretos=indiretos, indiretos_pct=indiretos_pct, conting=conting, conting_pct=conting_pct, nre=nre,
@@ -386,34 +516,39 @@ def scale_factors(n):
 # 5. MANUAL DE MONTAGEM (17 passos)
 # =============================================================================
 def manual(product):
-    c = product == "cocoon"
+    c = product == "cocoon"; z = product == "zenith"
+    pk = lambda casulo, safari, lodge: casulo if c else (safari if z else lodge)   # texto por produto
     S = []
     def step(n, t, equipe, ferr, equip, tempo, riscos, check):
         S.append(dict(n=n, titulo=t, equipe=equipe, ferramentas=ferr, equipamentos=equip, tempo=tempo, riscos=riscos, checklist=check))
     step(1, "Preparação e marcação do terreno", "Líder + 2 montadores + topógrafo", "Estação total ou nível a laser, trena 30 m, estacas de madeira, linha, tinta de marcação", "Roçadeira, caminhonete",
          "4 h", "Erro de locação propaga para todas as etapas; raízes e rochas no eixo das estacas", ["Eixos x/y materializados com 2 referências fixas fora da obra", "Cota de referência (RN) definida", "Acesso do caminhão e área de estoque delimitados", "Interferências (raízes, rocha, rede) mapeadas"])
     step(2, "Instalação das fundações (estacas helicoidais)", "Operador de cravação + 2 montadores + líder", "Chaves de torque, nível, gabarito de posição", "Motor hidráulico de cravação (ou mini-escavadeira com cabeçote), gerador",
-         "1 dia" if c else "1,5 dia", "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{44 if c else 37} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", "Estacas de tração dos postes com olhal orientado (Safari)"])
+         pk("1 dia", "1,5 dia", "0,5 dia"), "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{pk(44, 37, 22)} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", pk("Estacas de tração dos postes com olhal orientado (Safari)", "Estacas de tração dos postes com olhal orientado (Safari)", "2 estacas dos postes da vela locadas a partir do centro do octógono")])
     step(3, "Montagem da estrutura base (grelha de vigas U 150)", "4 montadores + líder", "Torquímetro 20-100 N·m, chaves combinadas 19 mm, furadeira, esquadro de 1 m, cordão", "Guincho manual 1 t ou 2 cavaletes",
-         "1 dia", "Esquadro fora: medir as duas diagonais; vigas com furos oblongos permitem ajuste", ["Diagonais iguais (± 10 mm)", "Todos os M12 com torque 45 N·m", "Vigas de borda curvas (Casulo) / de borda do corpo (Safari) conferidas com o gabarito de planta", "Cabeçotes travados com contraporca"])
+         "1 dia", "Esquadro fora: medir as duas diagonais; vigas com furos oblongos permitem ajuste", ["Diagonais iguais (± 10 mm)", "Todos os M12 com torque 45 N·m", pk("Vigas de borda curvas (Casulo) / de borda do corpo (Safari) conferidas com o gabarito de planta", "Vigas de borda curvas (Casulo) / de borda do corpo (Safari) conferidas com o gabarito de planta", "Anel de borda octogonal conferido pelos 8 raios a partir do centro (r 3,68 m ± 5 mm)"), "Cabeçotes travados com contraporca"])
     step(4, "Instalação das peças estruturais secundárias (módulos de piso e deck)", "4 montadores (2 carpinteiros)", "Parafusadeira, serra circular, nível", "Guincho manual",
-         "1,5 dia", "Módulos molhados antes do fechamento: proteger com lona", [f"{18 if c else 16} módulos de piso nivelados", "PIR contínuo, manta inferior fechada", "Passagens de esgoto e PEX deixadas nas posições do projeto", "Deck com juntas de 6 mm alinhadas"])
-    step(5, "Montagem dos arcos" if c else "Montagem de pilares, anel de beiral e mastros", "4 montadores + líder", "Torquímetro 50-250 N·m, chaves 19/24 mm, gabarito de luva, prumo, nível", "Guincho manual 1 t + tripé; escada / andaime tubular" if c else "Talha 1 t + tripé; munck opcional para M1",
-         "2 dias", "Queda do arco durante o içamento: travar cada arco com 2 escoras antes de soltar o guincho" if c else "Mastro sem escora antes do anel: içar somente com a base articulada travada e 3 cordas guia",
-         ["Cada arco montado no chão (2 pernas + coroa nas luvas D02, 4 M12 + pino)", "Sequência A7 para A1; A0 (lábio) por último", "Pés dos arcos com 4 M16 e torque 120 N·m", "Prumo e posição x de cada arco ± 10 mm"] if c else
-         ["10 pilares aprumados (1/500) e chumbados", "6 segmentos do anel parafusados (4 M16, 120 N·m)", "Mastros M1 e M2 içados e pinados; coroas e anéis fixados", "Diagonais do anel conferidas"])
+         "1,5 dia", "Módulos molhados antes do fechamento: proteger com lona", [f"{pk(18, 16, 14)} módulos de piso nivelados", "PIR contínuo, manta inferior fechada", "Passagens de esgoto e PEX deixadas nas posições do projeto", "Deck com juntas de 6 mm alinhadas"])
+    step(5, pk("Montagem dos arcos", "Montagem de pilares, anel de beiral e mastros", "Montagem de pilares, anel de beiral, caibros e lanterna"), "4 montadores + líder", "Torquímetro 50-250 N·m, chaves 19/24 mm, gabarito de luva, prumo, nível", pk("Guincho manual 1 t + tripé; escada / andaime tubular", "Talha 1 t + tripé; munck opcional para M1", "Tripé com talha 500 kg; escada / andaime tubular"),
+         pk("2 dias", "2 dias", "1 dia"), pk("Queda do arco durante o içamento: travar cada arco com 2 escoras antes de soltar o guincho", "Mastro sem escora antes do anel: içar somente com a base articulada travada e 3 cordas guia", "Anel de compressão sem os 8 caibros: manter o anel no tripé e pinar os caibros em pares opostos antes de soltar"),
+         pk(["Cada arco montado no chão (2 pernas + coroa nas luvas D02, 4 M12 + pino)", "Sequência A7 para A1; A0 (lábio) por último", "Pés dos arcos com 4 M16 e torque 120 N·m", "Prumo e posição x de cada arco ± 10 mm"],
+            ["10 pilares aprumados (1/500) e chumbados", "6 segmentos do anel parafusados (4 M16, 120 N·m)", "Mastros M1 e M2 içados e pinados; coroas e anéis fixados", "Diagonais do anel conferidas"],
+            ["8 pilares aprumados (1/500) e chumbados nas chapas de base H01", "8 segmentos do anel de beiral parafusados nos vértices (4 M16, 120 N·m); raios do octógono conferidos", "Anel de compressão içado a z 4,60; 8 caibros pinados nos talões H04 e parafusados nas orelhas (2 M16)", "Lanterna nivelada sobre o anel (± 5 mm); tampa e esquadria só após a membrana"]))
     step(6, "Instalação dos travamentos", "4 montadores", "Chaves 24 mm, tensiômetro de cabo, torquímetro", "Escada / andaime",
-         "0,5 dia", "Terça rosqueada sem contraporca solta com vibração", ["7 linhas de terças com porca e contraporca", "Espinha C03 fixada nos berços", "Cabos em X com 2 kN de pré-tensão (tensiômetro)"] if c else ["7 postes pinados nas bases, inclinação 8° conferida", "Estais passados sem tensão final", "Cabo de borda nas chapas de canto (frouxo)"])
+         "0,5 dia", "Terça rosqueada sem contraporca solta com vibração", pk(["7 linhas de terças com porca e contraporca", "Espinha C03 fixada nos berços", "Cabos em X com 2 kN de pré-tensão (tensiômetro)"], ["7 postes pinados nas bases, inclinação 8° conferida", "Estais passados sem tensão final", "Cabo de borda nas chapas de canto (frouxo)"],
+                                                                                                                         ["12 painéis SIP encaixados entre os pilares das 3 faces opacas e selados", "Parede-corda do banho fixada no piso e no anel", "Cabos em X das faces opacas com 2 kN de pré-tensão (tensiômetro)"]))
     step(7, "Conferência de esquadro e alinhamento", "Líder + engenheiro", "Estação total / nível a laser, trena, prumo", "",
          "3 h", "Prosseguir com a membrana sobre estrutura fora de geometria gera rugas e sobretensão", ["Topo de cada arco (ou anel/cumes) na cota do projeto ± 15 mm", "Eixos e diagonais registrados no relatório", "Torque de amostragem de 10% dos parafusos", "Liberação assinada para a membrana"])
     step(8, "Instalação da membrana externa", "2 instaladores de membrana + 2 montadores + líder", "Puxadores de keder, cordas, esticadores, tensiômetro, ferro de solda portátil (reparos)", "Andaime, guincho manual, cordas guia",
-         "1 dia" if c else "1,5 dia", "Vento acima de 30 km/h: suspender; membrana arrastada em aresta: proteger cantos", ["Painéis deslizados no keder da cauda para a frente" if c else "Membrana içada pelos anéis de cume e presa nos clamps", "Bolsas de base tensionadas progressivamente (cruzado)" if c else "Cantos e estais tensionados em cruz, flecha das bordas ± 20 mm", "Sem rugas; pré-tensão uniforme", "Teste de água nos rodapés / bordas (15 min)"])
+         pk("1 dia", "1,5 dia", "1 dia"), "Vento acima de 30 km/h: suspender; membrana arrastada em aresta: proteger cantos", [pk("Painéis deslizados no keder da cauda para a frente", "Membrana içada pelos anéis de cume e presa nos clamps", "Membrana içada pelo anel da lanterna e presa no clamp I02"), pk("Bolsas de base tensionadas progressivamente (cruzado)", "Cantos e estais tensionados em cruz, flecha das bordas ± 20 mm", "Bolsa de borda tensionada em cruz sobre o perfil do beiral; balanço de 0,90 m uniforme nos 8 lados"), "Sem rugas; pré-tensão uniforme", "Teste de água nos rodapés / bordas (15 min)"])
     step(9, "Instalação do isolamento", "3 montadores", "Estilete, grampeador, arame, tesoura", "Escada",
          "1 dia", "Isolamento comprimido perde R; manta úmida: instalar com a membrana já fechada", ["Mantas PET presas à malha das terças (ou cabos do forro), sem vazios", "Refletiva com face refletiva para a câmara", "Fitas nas emendas", "Passagens de eletrodutos previstas"])
     step(10, "Instalação da membrana interna (forro tensionado)", "2 instaladores + 1 montador", "Espátulas de harpão, soprador térmico, nível", "Escada",
-         "1 dia", "Forro tensionado antes das instalações elétricas: coordenar caixas e luminárias", ["Trilhos harpão fixados nos talões / cabos", "7 painéis tensionados sem ondulação" if c else "6 painéis seguindo os cumes, anéis internos fixados", "Aberturas de difusores e luminárias recortadas com anel"])
+         "1 dia", "Forro tensionado antes das instalações elétricas: coordenar caixas e luminárias", ["Trilhos harpão fixados nos talões / cabos", pk("7 painéis tensionados sem ondulação", "6 painéis seguindo os cumes, anéis internos fixados", "8 gomos tensionados do anel de beiral ao anel da lanterna, sem ondulação"), "Aberturas de difusores e luminárias recortadas com anel"])
     step(11, "Instalação das portas e vidros", "Vidraceiro + 2 auxiliares", "Ventosas, calços, nível, silicone estrutural, pistola", "Cavaletes de vidro, carrinho de ventosa",
-         "1,5 dia" if c else "2 dias", "Vidro de 90 kg (fachada): mínimo 3 pessoas ou içador a vácuo", ["Anel de alumínio E07 sobre EPDM (Casulo) / contramarcos (Safari) no prumo", "Vidros calçados e selados; porta pivotante ajustada", "Janelas Olho com selante PU curado 24 h", "Vidros da espinha / óculo com teste de água"])
+         pk("1,5 dia", "2 dias", "1,5 dia"), "Vidro de 90 kg (fachada): mínimo 3 pessoas ou içador a vácuo", pk(["Anel de alumínio E07 sobre EPDM (Casulo) / contramarcos (Safari) no prumo", "Vidros calçados e selados; porta pivotante ajustada", "Janelas Olho com selante PU curado 24 h", "Vidros da espinha / óculo com teste de água"],
+                                                                                                                  ["Anel de alumínio E07 sobre EPDM (Casulo) / contramarcos (Safari) no prumo", "Vidros calçados e selados; porta pivotante ajustada", "Janelas Olho com selante PU curado 24 h", "Vidros da espinha / óculo com teste de água"],
+                                                                                                                  ["Montantes RPT fixados nos talões dos pilares, no prumo", "10 vidros insulados calçados e selados; porta de correr 2,00 x 2,40 regulada no trilho embutido", "Fresta da banheira selada; revestimento dos pilares encaixado", "Vidro curvo e tampa da lanterna com teste de água"]))
     step(12, "Instalações elétricas", "Eletricista + auxiliar", "Alicate de crimpagem, multímetro, testador de DR, furadeira", "",
          "1,5 dia", "Passagem de cabos pelo ático depois do forro: usar eletrodutos previstos", ["Quadro no ático com circuitos identificados", "DR testado; aterramento < 10 Ω", "Fitas LED com drivers acessíveis", "Condensadora alimentada e protegida"])
     step(13, "Instalações hidráulicas", "Encanador + auxiliar", "Ferramenta de crimpar PEX, nível, teste de pressão", "",
@@ -421,7 +556,7 @@ def manual(product):
     step(14, "Montagem do banheiro", "Encanador + montador + acabamento", "Nível, furadeira, pistola de silicone", "",
          "1 dia", "Banheira pesada (Casulo: entra pela porta antes da marcenaria)", ["Louças fixadas e vedadas", "Bancada nivelada", "Box e porta de correr regulados", "Rejuntes e silicones concluídos"])
     step(15, "Montagem dos móveis", "Marceneiro + auxiliar", "Parafusadeira, nível, calços", "",
-         "1,5 dia", "Marcenaria embutida na curva: usar os gabaritos de fábrica", ["Console café, armário baixo, criados fixados" if c else "Closet, Ilha do Café (totem do mastro) e bancada dupla fixados", "Cama montada; cabeceira nivelada", "Portas e gavetas reguladas"])
+         "1,5 dia", "Marcenaria embutida na curva: usar os gabaritos de fábrica", [pk("Console café, armário baixo, criados fixados", "Closet, Ilha do Café (totem do mastro) e bancada dupla fixados", "Closet, café/minibar, criados e bancada 1,40 fixados"), "Cama montada; cabeceira nivelada", "Portas e gavetas reguladas"])
     step(16, "Acabamentos", "Equipe de acabamento (2)", "Espátulas, lixas, aspirador, panos", "",
          "1 dia", "Riscos em vidros e piso durante a limpeza grossa", ["Rodapés e perfis de LED instalados", "Painéis ripados fixados", "Selantes e arremates conferidos", "Limpeza fina e enxoval"])
     step(17, "Testes finais e entrega", "Líder + engenheiro + operador do glamping", "Termômetro IV, tensiômetro, testador elétrico, câmera", "",
@@ -438,11 +573,14 @@ FAB_SCHEDULE = {
     "zenith": [("Projeto executivo, cálculo e form-finding", 0, 3), ("Compra de aço, tubos, perfis, painéis SIP", 1, 2), ("Gabaritos de solda (coroas, anel)", 2, 1.5), ("Mastros, coroas, anéis, pilares", 3, 2.5),
                ("Anel de beiral, postes, grelha, chapas", 4, 2.5), ("Pré-montagem em fábrica (fit test)", 6.5, 1), ("Galvanização e pintura", 7.5, 1.5), ("Confecção da membrana (paralelo)", 3, 5),
                ("Esquadrias, vidros e cúpula (paralelo)", 3, 6), ("Painéis SIP, marcenaria, módulos (paralelo)", 4, 4.5), ("Embalagem e expedição", 9, 0.5)],
+    "lodge": [("Projeto executivo, cálculo e form-finding", 0, 2.5), ("Compra de aço, tubos, perfis, painéis SIP", 1, 2), ("Gabaritos (anel de beiral, lanterna)", 2, 1), ("Pilares, anel de beiral, caibros, anéis da lanterna", 3, 2),
+              ("Grelha, chapas, postes da vela", 3.5, 1.5), ("Pré-montagem em fábrica (fit test)", 5, 1), ("Galvanização e pintura", 6, 1.5), ("Confecção da membrana e da vela (paralelo)", 2.5, 3.5),
+              ("Esquadrias, vidros e lanterna (paralelo)", 2.5, 5), ("Painéis SIP, marcenaria, módulos (paralelo)", 3, 4), ("Embalagem e expedição", 7.5, 0.5)],
 }
 
 if __name__ == "__main__":
-    for prod in ("cocoon", "zenith"):
-        P = cocoon_parts() if prod == "cocoon" else zenith_parts()
+    for prod in ("cocoon", "zenith", "lodge"):
+        P = {"cocoon": cocoon_parts, "zenith": zenith_parts, "lodge": lodge_parts}[prod]()
         print(prod, "peças:", sum(p["qtd"] for p in P), "itens:", len(P), "aço:", round(sum(p["peso_total"] for p in P if "alumínio" not in p["aco"] and "madeira" not in p["aco"])), "kg")
         for s in range(3):
             b = budget(prod, s)

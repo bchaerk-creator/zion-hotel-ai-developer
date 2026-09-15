@@ -4,11 +4,12 @@
  (WebGL por software, SwiftShader) e exporta os GLB.
 
  Uso:
-   NODE_PATH=/opt/node22/lib/node_modules node render.js [--model cocoon|zenith] [--views a,b,c] [--no-glb] [--no-png] [--out <dir>] [--hash env=0]
+   NODE_PATH=/opt/node22/lib/node_modules node render.js [--model cocoon|zenith|lodge] [--views a,b,c] [--no-glb] [--no-png] [--out <dir>] [--hash env=0]
 
  Saídas (padrão):
    ../cocoon/renders/cocoon_<vista>.png   ../cocoon/3d/zion-cocoon.glb
    ../zenith/renders/zenith_<vista>.png   ../zenith/3d/zion-zenith.glb
+   ../lodge/renders/lodge_<vista>.png     ../lodge/3d/zion-lodge.glb
 */
 const fs = require('fs');
 const path = require('path');
@@ -20,6 +21,7 @@ const VIEWS = ['ext_front', 'ext_side', 'ext_rear', 'ext_aerial', 'int_living', 
 const MODELS = {
   cocoon: { html: path.join(PROJECT, 'cocoon', '3d', 'zion-cocoon-3d.html'), renders: path.join(PROJECT, 'cocoon', 'renders'), glb: path.join(PROJECT, 'cocoon', '3d', 'zion-cocoon.glb') },
   zenith: { html: path.join(PROJECT, 'zenith', '3d', 'zion-zenith-3d.html'), renders: path.join(PROJECT, 'zenith', 'renders'), glb: path.join(PROJECT, 'zenith', '3d', 'zion-zenith.glb') },
+  lodge: { html: path.join(PROJECT, 'lodge', '3d', 'zion-lodge-3d.html'), renders: path.join(PROJECT, 'lodge', 'renders'), glb: path.join(PROJECT, 'lodge', '3d', 'zion-lodge.glb') },
 };
 
 function arg(name, def) { const i = process.argv.indexOf(name); return i >= 0 ? process.argv[i + 1] : def; }

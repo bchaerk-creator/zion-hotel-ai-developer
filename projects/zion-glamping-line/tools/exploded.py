@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-"""Isometricas explodidas (SVG) do ZION CASULO e do ZION SAFARI:
+"""Isometricas explodidas (SVG) do ZION CASULO, do ZION SAFARI e do ZION LODGE:
  - 10_modelo_explodido.svg: modelo explodido da estrutura (paisagem 1600 x 1000)
  - 13_camadas_construtivas.svg: as 13 camadas construtivas em pilha explodida (retrato 1200 x 2000)
 Reutiliza geometry.py (geometria), svgkit.py (folha) e iso.py (cena com algoritmo do pintor)."""
 import math, os
 import numpy as np
-from geometry import Cocoon, Zenith
+from geometry import Cocoon, Zenith, Lodge
 from svgkit import *
-from iso import Scene, add_furniture
+from iso import (Scene, add_furniture, lodge_girders, lodge_deck, lodge_floor, lodge_walls, lodge_columns, lodge_eave_ring, lodge_rafters,
+                 lodge_lantern, lodge_membrane, lodge_liner_mesh, lodge_sail, lodge_bracing, lodge_piles, lodge_halfwidth, LV, LR, LVO, LZ_EDGE)
 from drawings_extra import (cocoon_pile_grid, cocoon_girders, zenith_pile_grid, zenith_tension_piles, zenith_stay_anchors, zenith_girders)
 
-C, Z = Cocoon(), Zenith()
+C, Z, L = Cocoon(), Zenith(), Lodge()
+OUTL = os.path.join(os.path.dirname(__file__), "..", "lodge", "desenhos")
 OUTC = os.path.join(os.path.dirname(__file__), "..", "cocoon", "desenhos")
 OUTZ = os.path.join(os.path.dirname(__file__), "..", "zenith", "desenhos")
 SAND2 = "#E2D5BE"; SILVER = "#C9C4B8"; BEIGE = "#EBDFCB"; COLD = "#4E6E8B"; HOT = "#B1543A"
@@ -472,6 +474,166 @@ def z_hydraulic(sc, dz):
     arrow3d(sc, [(10.4, 1.4, dz), (9.75, 1.4, dz)], COLD, 1.2)
     bump_from(sc, nf, nl)
 
+
+# ------------------------------------------------------------------ LODGE: componentes
+def l_piles(sc, dz):
+    ground_plate(sc, -7.8, 5.6, -6.4, 6.4, -0.62 + dz)
+    lodge_piles(sc, dz)
+
+def l_girders(sc, dz, deck=True):
+    for (x1, y1, x2, y2) in lodge_girders():
+        sc.polyline([(x1, y1, -0.12 + dz), (x2, y2, -0.12 + dz)], STEEL, 1.8)
+    if deck: lodge_deck(sc, dz, WOOD2, z1=-0.05)
+
+def l_floor(sc, dz, wall=True, deck=False):
+    if deck: lodge_deck(sc, dz, WOOD2, z1=-0.05)
+    lodge_floor(sc, dz, FLOOR, outline=True)
+    sc.polyline([(x, y, dz - 0.07) for (x, y) in LV] + [(LV[0][0], LV[0][1], dz - 0.07)], mix(EARTH, CREAM, 0.7), 0.6)
+    if wall:
+        yc = math.sqrt(LR ** 2 - L.X_PART ** 2) - 0.1
+        sc.box(L.X_PART, L.X_PART + 0.1, -yc, yc, dz, 2.4 + dz, "#E6DCC8")
+
+def l_frame(sc, dz, faint=False, rafters=False, lantern=False, cap=True, z0=0.0):
+    """pilares Ø101,6 + anel de beiral (e, opcionalmente, caibros e anel da lanterna). z0: base dos pilares esmaecidos."""
+    col = mix(STEEL, CREAM, 0.18) if faint else STEEL
+    if faint:
+        for (x, y) in LV: sc.polyline([(x, y, z0 + dz), (x, y, L.Z_EAVE + dz)], col, 1.6)
+        for i in range(L.N):
+            j = (i + 1) % L.N; sc.polyline([(LV[i][0], LV[i][1], L.Z_EAVE + dz), (LV[j][0], LV[j][1], L.Z_EAVE + dz)], col, 1.6)
+    else:
+        lodge_columns(sc, dz, wood=False)
+        lodge_eave_ring(sc, dz)
+    if rafters: lodge_rafters(sc, dz, col, 1.4 if faint else 2.2)
+    if lantern: lodge_lantern(sc, dz, glass=False, cap=(cap and not faint), ring=True, mullions=not faint)
+
+def l_roof_frame(sc, dz):
+    """caibros radiais + anel de compressao, montantes e tampa da lanterna (pilares e anel a 18%)."""
+    l_frame(sc, dz, faint=True, z0=L.Z_EAVE - 0.5)
+    lodge_rafters(sc, dz, STEEL, 2.2)
+    lodge_lantern(sc, dz, glass=True, glass_op=0.35, cap=True, ring=True, mullions=True)
+
+def l_membrane(sc, dz, opacity=1.0):
+    lodge_membrane(sc, dz, opacity, seams=True, edge=True)
+
+def l_windows(sc, dz, faint_frame=True):
+    if faint_frame: l_frame(sc, dz, faint=True)
+    lodge_walls(sc, dz, opacity=1.0, glass_op=0.5, slats=True, mullions=True)
+
+def l_sail(sc, dz, opacity=1.0):
+    lodge_sail(sc, dz, opacity)
+
+def l_bracing(sc, dz):
+    l_frame(sc, dz, faint=True, rafters=True, lantern=True)
+    lodge_bracing(sc, dz, EARTH)
+    lodge_sail(sc, dz, membrane=False, posts=True, cables=True, stays=True)
+    sc.polyline([(x, y, LZ_EDGE + dz) for (x, y) in LVO] + [(LVO[0][0], LVO[0][1], LZ_EDGE + dz)], EARTH, 1.0, "4 3")
+
+def l_liner(sc, dz, color=SAND2, opacity=1.0, drop=0.25):
+    m = lodge_liner_mesh(drop)
+    sc.mesh(lift(m["vertices"], dz), m["faces"], color, opacity)
+
+def l_liner_wire(sc, dz, color, drop=0.3):
+    re = LR - 0.08
+    for (x, y) in LV + [((LV[i][0] + LV[(i + 1) % 8][0]) / 2, (LV[i][1] + LV[(i + 1) % 8][1]) / 2) for i in range(8)]:
+        ang = math.atan2(y, x); r1 = math.hypot(x, y) - 0.08
+        sc.polyline([((L.R_LANTERN + 0.05 + (r1 - L.R_LANTERN - 0.05) * t) * math.cos(ang), (L.R_LANTERN + 0.05 + (r1 - L.R_LANTERN - 0.05) * t) * math.sin(ang),
+                      L.roof_z(L.R_LANTERN + 0.05 + (r1 - L.R_LANTERN - 0.05) * t) - drop + dz) for t in np.linspace(0, 1, 10)], color, 0.7)
+    for f in np.linspace(0.12, 1.0, 7):
+        pts = []
+        for j in range(65):
+            ang = 2 * math.pi * j / 64
+            k = (ang - math.pi / 8) % (2 * math.pi / L.N) - math.pi / L.N
+            r_edge = re * math.cos(math.pi / L.N) / math.cos(k)
+            r = L.R_LANTERN + 0.05 + (r_edge - L.R_LANTERN - 0.05) * f
+            pts.append((r * math.cos(ang), r * math.sin(ang), L.roof_z(r) - drop + dz))
+        sc.polyline(pts, color, 0.7)
+
+def l_chamber(sc, dz):
+    """camara de ventilacao: contorno tracejado da membrana + fluxo do beiral a lanterna (efeito chamine)."""
+    for (x, y) in LV:
+        ang = math.atan2(x and x or 1e-9, 1) if False else math.atan2(y, x); re = LR + L.OVER / math.cos(math.pi / L.N)
+        sc.polyline([((L.R_LANTERN + (re - L.R_LANTERN) * t) * math.cos(ang), (L.R_LANTERN + (re - L.R_LANTERN) * t) * math.sin(ang),
+                      (L.roof_z(L.R_LANTERN + (re - L.R_LANTERN) * t) if t < 1 else LZ_EDGE) + dz) for t in np.linspace(0, 1, 12)], EARTH, 0.8, "4 3")
+    sc.polyline([(x, y, LZ_EDGE + dz) for (x, y) in LVO] + [(LVO[0][0], LVO[0][1], LZ_EDGE + dz)], EARTH, 0.8, "4 3")
+    sc.polyline([(L.R_LANTERN * math.cos(2 * math.pi * i / 32), L.R_LANTERN * math.sin(2 * math.pi * i / 32), L.Z_LANTERN + dz) for i in range(33)], EARTH, 0.8, "4 3")
+    for ang in (math.pi, math.pi * 1.25, math.pi * 1.5, math.pi * 0.75, math.pi * 1.75):
+        pts = [((LR + 0.6 - (LR + 0.6 - L.R_LANTERN - 0.1) * t) * math.cos(ang), (LR + 0.6 - (LR + 0.6 - L.R_LANTERN - 0.1) * t) * math.sin(ang),
+                L.roof_z(LR + 0.6 - (LR + 0.6 - L.R_LANTERN - 0.1) * t) - 0.12 + dz) for t in np.linspace(0, 1, 12)]
+        arrow3d(sc, pts, COLD, 1.1)
+    arrow3d(sc, [(0.0, 0.0, L.Z_LANTERN + 0.1 + dz), (0.0, 0.0, L.Z_LANTERN + 0.9 + dz)], COLD, 1.1)
+
+def l_finishes(sc, dz):
+    sc.polyline([(x, y, dz) for (x, y) in LV] + [(LV[0][0], LV[0][1], dz)], mix(EARTH, CREAM, 0.55), 0.6, "4 3")
+    add_furniture(sc, lift_items(L.furniture(), dz))
+
+def octagon_grid(sc, dz, color, nr=5, na=32):
+    """piso octogonal em malha polar de quadrilateros (ordenacao de profundidade local)."""
+    def r_edge(ang):
+        k = (ang - math.pi / 8) % (2 * math.pi / L.N) - math.pi / L.N
+        return LR * math.cos(math.pi / L.N) / math.cos(k)
+    r0 = 0.5
+    cen = [(r0 * math.cos(2 * math.pi * j / na), r0 * math.sin(2 * math.pi * j / na)) for j in range(na)]
+    for j in range(na):
+        a, b = cen[j], cen[(j + 1) % na]
+        sc.tri((0, 0, dz), (a[0], a[1], dz), (b[0], b[1], dz), color, shade_on=False, stroke=color)
+    for i in range(nr):
+        for j in range(na):
+            a0, a1 = 2 * math.pi * j / na, 2 * math.pi * (j + 1) / na
+            ra0 = r0 + (r_edge(a0) - r0) * i / nr; ra1 = r0 + (r_edge(a0) - r0) * (i + 1) / nr
+            rb0 = r0 + (r_edge(a1) - r0) * i / nr; rb1 = r0 + (r_edge(a1) - r0) * (i + 1) / nr
+            sc.quad((ra0 * math.cos(a0), ra0 * math.sin(a0), dz), (ra1 * math.cos(a0), ra1 * math.sin(a0), dz),
+                    (rb1 * math.cos(a1), rb1 * math.sin(a1), dz), (rb0 * math.cos(a1), rb0 * math.sin(a1), dz), color, shade_on=False, stroke=color)
+    sc.polyline([(x, y, dz + 0.005) for (x, y) in LV] + [(LV[0][0], LV[0][1], dz + 0.005)], GREEN, 0.7)
+
+def l_electrical(sc, dz):
+    octagon_grid(sc, dz, FLOOR_LIGHT)
+    nf, nl = len(sc.faces), len(sc.lines)
+    z = dz + 0.1
+    yc = math.sqrt(LR ** 2 - L.X_PART ** 2) - 0.1
+    seg_polyline(sc, [(L.X_PART + 0.05, -yc, z), (L.X_PART + 0.05, yc, z)], GREEN, 0.7)
+    sc.box(1.65, 1.95, 2.45, 2.55, dz, dz + 0.45, EARTH)                       # QD junto a parede do banho
+    Vi = L.vertices(3.52)                                                       # anel interno (rodape / LED do anel de beiral)
+    runs = [
+        [(1.8, 2.5), (1.8, 0.0), (0.0, 0.0)],                                                  # lanterna: LED do anel + motor da abertura
+        [(1.8, 2.5), (1.6, 3.2), Vi[2], Vi[3], Vi[4], Vi[5], Vi[6], (1.6, -3.2), (1.6, -2.6)],  # rodape: LED indireta no anel de beiral
+        [(1.6, 3.2), (1.0, 2.6)],                                                              # cafe / minibar
+        [(-0.25, 3.25), (-0.25, 1.9)], [(-0.25, -3.25), (-0.25, -1.9)],                        # criados
+        [(-3.25, 0.9), (-2.7, 0.9)],                                                           # sofa / estar
+        [(1.8, 2.5), (2.1, 2.5), (2.1, 1.2)],                                                  # bancada do banho
+        [(1.8, 2.5), (2.5, 2.5), (2.5, 0.0), (3.0, 0.0), (3.0, 0.5)],                          # atico: evaporadora e aquecedor
+        [(2.5, 0.0), (3.4, 0.0), (3.4, -1.0), (4.0, -1.85), (4.65, -1.85)],                    # condensadora
+    ]
+    for r in runs:
+        seg_polyline(sc, [(x, y, z) for (x, y) in r], EARTH, 1.2)
+    for (x, y) in [(1.0, 2.6), (1.6, -2.6), (-0.25, 1.9), (-0.25, -1.9), (-2.7, 0.9), (2.1, 1.2), (4.65, -1.85)]:
+        outlet(sc, x, y, dz)
+    sc.box(2.0, 3.0, -0.5, 0.5, dz, dz + 0.18, "#D9D9D6")     # evaporadora (posicao em planta)
+    sc.box(2.8, 3.2, 0.3, 0.7, dz, dz + 0.22, "#D9D9D6")      # aquecedor
+    sc.box(4.3, 5.0, -2.2, -1.5, dz, dz + 0.3, "#D9D9D6")     # condensadora
+    bump_from(sc, nf, nl)
+
+def l_hydraulic(sc, dz):
+    octagon_grid(sc, dz, FLOOR_LIGHT)
+    nf, nl = len(sc.faces), len(sc.lines)
+    yc = math.sqrt(LR ** 2 - L.X_PART ** 2) - 0.1
+    seg_polyline(sc, [(L.X_PART + 0.05, -yc, dz + 0.1), (L.X_PART + 0.05, yc, dz + 0.1)], GREEN, 0.7)
+    # pontos: bancada (2,1;1,7), bacia (3,05;1,95), chuveiro (2,9;-1,15), banheira (2,25;-2,1), aquecedor (3,0;0,5)
+    sc.box(2.8, 3.2, 0.3, 0.7, dz, dz + 0.25, "#D9D9D6")
+    cold = [[(4.6, 0.0), (2.6, 0.0)], [(2.6, 0.0), (2.6, 1.9), (3.05, 1.9)], [(2.6, 1.5), (2.1, 1.5), (2.1, 1.7)],
+            [(2.6, 0.0), (2.6, -2.1), (2.25, -2.1)], [(2.6, -1.15), (2.9, -1.15)], [(2.6, 0.3), (2.9, 0.3)]]
+    hot = [[(3.0, 0.35), (2.75, 0.35), (2.75, 1.6), (2.15, 1.6)], [(2.75, 0.35), (2.75, -1.0), (2.85, -1.0), (2.85, -1.15)],
+           [(2.75, -1.0), (2.75, -2.0), (2.3, -2.0)]]
+    for r in cold: pipe(sc, r, dz, COLD)
+    for r in hot: pipe(sc, r, dz, HOT)
+    drain = [[(3.05, 1.95), (2.4, 1.95), (2.4, -2.35)], [(2.1, 1.7), (2.4, 1.7)], [(2.9, -1.15), (2.4, -1.15)], [(2.25, -2.1), (2.4, -2.1)],
+             [(2.4, -2.35), (2.4, -3.2)]]
+    for r in drain: pipe(sc, r, dz - 0.04, STEEL, 2.6, "6 4")
+    for (x, y) in [(2.1, 1.7), (3.05, 1.95), (2.9, -1.15), (2.25, -2.1)]:
+        sc.cylinder(x, y, dz + 0.02, dz + 0.1, 0.07, COLD, n=8)
+    arrow3d(sc, [(2.4, -3.2, dz), (2.4, -4.0, dz)], STEEL, 1.4)
+    arrow3d(sc, [(5.3, 0.0, dz), (4.65, 0.0, dz)], COLD, 1.2)
+    bump_from(sc, nf, nl)
+
 # ------------------------------------------------------------------ definicao das camadas
 def layer(num, name, sub, draw, bb, dz, func=""):
     return dict(num=num, name=name, sub=sub, draw=draw, bb=bb, dz=dz, func=func)
@@ -563,8 +725,47 @@ def zenith_camadas_layers(dzs):
     ]
     return L
 
+
+L_BB_BASE = (-7.8, 5.6, -6.4, 6.4, -0.62, 0.0)
+L_BB_DECK = (-6.9, 3.7, -6.0, 6.0, -0.2, 0.0)
+L_BB_FLOOR = (-3.7, 3.7, -3.7, 3.7, -0.1, 2.4)
+L_BB_FRAME = (-3.7, 3.7, -3.7, 3.7, 0.0, 2.7)
+L_BB_ROOF = (-4.7, 4.7, -4.7, 4.7, 2.3, 5.2)
+L_BB_SAIL = (-7.6, -4.2, -2.8, 2.8, -0.05, 2.4)
+L_BB_FURN = (-3.7, 5.0, -3.7, 3.7, 0.0, 2.7)
+
+def lodge_exploded_layers(dzs):
+    return [
+        dict(layer(1, "Fundacao", "22 estacas helicoidais Ø76, helice Ø300: malha 2,40 x 1,70 sob o piso, deck e postes da vela", l_piles, L_BB_BASE, dzs[0]), anchor_pt=(5.6, -6.4, -0.62)),
+        layer(2, "Grelha de vigas", "Vigas U 150 x 60 x 3,0 galv. em malha ortogonal + anel do octogono; deck cumaru em tres faces", lambda sc, dz: l_girders(sc, dz, True), L_BB_DECK, dzs[1]),
+        layer(3, "Piso", "Compensado 18 mm + PIR 50 mm + carvalho 14 mm (38,3 m²); parede-corda do banho em x 1,55", lambda sc, dz: l_floor(sc, dz, True), L_BB_FLOOR, dzs[2]),
+        layer(4, "Pilares e anel de beiral", "8 pilares Ø101,6 x 4,0 nos vertices + anel 150 x 100 x 4,0 em 8 segmentos (2,70 m)", lambda sc, dz: l_frame(sc, dz), L_BB_FRAME, dzs[3]),
+        layer(5, "Caibros e lanterna", "8 caibros radiais Ø76,1 ate o anel de compressao Ø1,50 (4,60 m); lanterna de vidro e tampa (5,20 m)", l_roof_frame, (-3.7, 3.7, -3.7, 3.7, 2.2, 5.2), dzs[4]),
+        layer(6, "Membrana externa", "PVDF 1050 g/m² conica em 8 gomos, ≈ 70 m², balanco 0,90 m; cabo de borda Ø10", lambda sc, dz: l_membrane(sc, dz), L_BB_ROOF, dzs[5]),
+        layer(7, "Esquadrias", "5 faces de vidro insulado com porta de correr 2,00 x 2,40; 3 paineis SIP ripados; fresta alta", lambda sc, dz: l_windows(sc, dz), L_BB_FRAME, dzs[6]),
+        layer(8, "Vela de sombra", "Membrana ≈ 8 m² em 2 postes Ø88,9 (2,40 m) estaiados; cabos de borda ate o beiral frontal", lambda sc, dz: l_sail(sc, dz), L_BB_SAIL, dzs[7]),
+    ]
+
+def lodge_camadas_layers(dzs):
+    L_BB_LINER = (-3.7, 3.7, -3.7, 3.7, 2.0, 4.4)
+    return [
+        dict(layer(1, "Fundacao", "22 estacas helicoidais Ø76", l_piles, L_BB_BASE, dzs[0], FUNC[1]), anchor_pt=(5.6, -6.4, -0.62)),
+        layer(2, "Estrutura do deck", "Vigas U 150 x 60 x 3,0 + anel do octogono", lambda sc, dz: l_girders(sc, dz, False), L_BB_DECK, dzs[1], FUNC[2]),
+        layer(3, "Piso e isolamento", "Deck cumaru em tres faces + piso interno isolado", lambda sc, dz: l_floor(sc, dz, False, True), (-6.9, 3.7, -6.0, 6.0, -0.1, 0.0), dzs[2], FUNC[3]),
+        layer(4, "Estrutura metalica principal", "8 pilares, anel de beiral, 8 caibros e anel da lanterna", lambda sc, dz: (lodge_walls(sc, dz, 0.6, 0.0, False, False), l_frame(sc, dz, rafters=True, lantern=True, cap=False)), L_BB_ROOF, dzs[3], "Pilares, anel de beiral e caibros radiais formam o esqueleto"),
+        layer(5, "Travamentos", "Cabos em X Ø8, postes e estais da vela, cabo de borda", l_bracing, (-7.6, 4.7, -4.7, 4.7, -0.05, 4.6), dzs[4], "Cabos em X nas faces opacas e estais da vela travam o conjunto"),
+        layer(6, "Membrana externa", "PVDF 1050 g/m² tensionada, ≈ 70 m²", lambda sc, dz: l_membrane(sc, dz), L_BB_ROOF, dzs[5], FUNC[6]),
+        layer(7, "Camara de ventilacao", "Lamina de ar ate a lanterna (efeito chamine)", l_chamber, L_BB_ROOF, dzs[6], "Ventila a face interna da membrana e sai pela lanterna"),
+        layer(8, "Isolamento termico", "La PET 50 mm sobre o forro conico", lambda sc, dz: l_liner(sc, dz, SAND2, 1.0, 0.25), L_BB_LINER, dzs[7], FUNC[8]),
+        layer(9, "Barreira de condensacao", "Filme de controle de vapor", lambda sc, dz: l_liner_wire(sc, dz, mix(SILVER, CREAM, 0.6), 0.3), L_BB_LINER, dzs[8], FUNC[9]),
+        layer(10, "Membrana interna", "Forro tensionado acustico (tecido) em 8 gomos", lambda sc, dz: l_liner(sc, dz, BEIGE, 1.0, 0.35), L_BB_LINER, dzs[9], FUNC[10]),
+        layer(11, "Instalacoes eletricas", "QD 12 modulos, 6,5 kW instalados", l_electrical, (-3.7, 5.0, -3.7, 3.7, 0.0, 0.5), dzs[10], FUNC[11]),
+        layer(12, "Instalacoes hidraulicas", "PEX Ø25, aquecedor no atico, esgoto Ø100", l_hydraulic, (-3.7, 5.3, -4.0, 3.7, -0.1, 0.3), dzs[11], FUNC[12]),
+        layer(13, "Acabamento interno", "Mobiliario fixo e parede do banho", l_finishes, L_BB_FURN, dzs[12], FUNC[13]),
+    ]
+
 # ------------------------------------------------------------------ folhas
-def draw_layers(sh, layers, box, smax, guides):
+def draw_layers(sh, layers, box, smax, guides, arrows=None):
     s, ox, oy = fit(layers, box, smax)
     sc = Scene(sh, s, ox, oy)
     for L in layers:
@@ -577,6 +778,7 @@ def draw_layers(sh, layers, box, smax, guides):
     ztop = layers[-1]["dz"] + layers[-1]["bb"][5] + 0.8
     for (gx, gy) in guides:
         sc.polyline([(gx, gy, -0.7), (gx, gy, ztop)], mix(EARTH, CREAM, 0.6), 0.8, "6 4", on_top=True)
+    if arrows: assembly_arrows(sc, layers, arrows[0], arrows[1])
     sc.render()
     return sc
 
@@ -595,19 +797,31 @@ def label_positions(sc, layers, ymin, ymax, pitch):
         ys = [y + d for y in ys]
     return anchors, ys
 
+PRODUCT_NAMES = dict(cocoon=("ZION CASULO", "Zion Casulo"), zenith=("ZION SAFARI", "Zion Safari"), lodge=("ZION LODGE", "Zion Lodge"))
+
+def assembly_arrows(sc, layers, gx, gy, length=1.2):
+    """setas verticais de montagem ao lado do eixo (gx, gy): cada grupo desce sobre o anterior."""
+    gx, gy = gx + 0.35, gy + 0.35   # ligeiro deslocamento lateral para nao cobrir a linha-guia
+    for b in layers[1:]:
+        z1 = b["dz"] + b["bb"][4] + 0.25
+        arrow3d(sc, [(gx, gy, z1), (gx, gy, z1 - length)], EARTH, 1.1)
+
 def modelo_explodido(product):
-    coc = product == "cocoon"
-    name = "ZION CASULO" if coc else "ZION SAFARI"
+    coc = product == "cocoon"; lod = product == "lodge"
+    name, pname = PRODUCT_NAMES[product]
     sh = Sheet(1600, 1000)
-    sh.header(("Zion Casulo" if coc else "Zion Safari") + " · Modelo explodido da estrutura",
+    sh.header(pname + " · Modelo explodido da estrutura",
               "Isometrica explodida · grupos construtivos separados na vertical, da fundacao aos acabamentos · sem escala")
     if coc:
         dzs = [0.0, 1.3, 2.5, 4.0, 7.4, 10.8, 14.4, 18.0, 20.6]
         layers = cocoon_exploded_layers(dzs); guides = [(9.0, -1.3), (-3.3, 2.6)]
+    elif lod:
+        dzs = [0.0, 1.4, 2.6, 5.8, 7.2, 10.6, 16.0, 19.4]
+        layers = lodge_exploded_layers(dzs); guides = [(5.4, -6.2), (-7.6, 6.2)]
     else:
         dzs = [0.0, 1.6, 3.2, 6.4, 10.0, 15.0, 19.0]
         layers = zenith_exploded_layers(dzs); guides = [(10.5, -3.7), (-2.4, 3.7)]
-    sc = draw_layers(sh, layers, (370, 100, 1040, 870), 46, guides)
+    sc = draw_layers(sh, layers, (370, 100, 1040, 870), 46, guides, arrows=((-7.6, 6.2) if lod else None))
     anchors, ys = label_positions(sc, layers, 120, 850, 46)
     for L, (ax, ay), y in zip(layers, anchors, ys):
         sh.add(f'<line x1="{ax:.1f}" y1="{ay:.1f}" x2="336" y2="{y:.1f}" stroke="{GREEN}" stroke-width="0.7"/>')
@@ -621,19 +835,25 @@ def modelo_explodido(product):
     seq = ([("1", "Fundacao: estacas + cabecotes", "1 dia"), ("2-3", "Deck + piso", "2 dias"), ("4-5", "Estrutura metalica", "2 dias"),
             ("6-7", "Membrana + isolamento + forro", "2 dias"), ("8", "Vidros + paineis", "1,5 dia"), ("9", "Instalacoes + acabamentos", "3,5 dias"),
             ("", "Total (dias uteis)", "12"), ("", "Desmontagem", "4 dias")] if coc else
+           [("1", "Fundacao: estacas + cabecotes", "1 dia"), ("2-3", "Grelha de vigas + deck + piso", "2 dias"), ("4-5", "Pilares, anel, caibros + lanterna", "2 dias"),
+            ("6", "Membrana tensionada + forro", "1,5 dia"), ("7-8", "Vidros, paineis + vela", "2 dias"), ("", "Instalacoes + acabamentos", "3 dias"),
+            ("", "Total (dias uteis)", "11,5"), ("", "Desmontagem", "4 dias")] if lod else
            [("1", "Fundacao: estacas + cabecotes", "1,5 dia"), ("2-3", "Deck + piso + paineis SIP", "3 dias"), ("4", "Pilares, anel, mastros + postes", "2,5 dias"),
             ("5-6", "Membrana + forro isolado", "2,5 dias"), ("3", "Vidros", "2 dias"), ("7", "Instalacoes + acabamentos", "3,5 dias"),
             ("", "Total (dias uteis)", "15"), ("", "Desmontagem", "5 dias")])
     for i, (n, t, d) in enumerate(seq):
         y = 146 + i * 22
         if n: sh.callout_px(X + 8, y - 4, n, r=8) if len(n) == 1 else sh.text_px(X + 8, y, n, size=9, weight=700)
-        sh.text_px(X + 26, y, t, size=10, anchor="start", weight=(700 if not n else 400))
+        sh.text_px(X + 26, y, t, size=10, anchor="start", weight=(700 if (not n and t.startswith(("Total", "Desmont"))) else 400))
         sh.text_px(X + 345, y, d, size=10, anchor="end", fill=EARTH)
         sh.add(f'<line x1="{X}" y1="{y + 7}" x2="{X + 345}" y2="{y + 7}" stroke="{GREEN}" stroke-width="0.4" opacity="0.4"/>')
     y0 = 146 + len(seq) * 22 + 20
     sh.text_px(X, y0, "PESOS E LOGISTICA", size=11, weight=700, spacing=0.22, anchor="start")
     notes = (["Estrutura metalica: ≈ 1.200 kg de aco + 200 kg de aluminio", "Peso total embarcado: ≈ 8,6 t em 1 conteiner 40' HC",
               "Equipe: 4 montadores + 1 lider; guincho manual 1 t", "Estacas instaladas com motor hidraulico portatil", "Todas as ligacoes parafusadas (classe 8.8, zincadas)"] if coc else
+             ["Estrutura metalica (estimativa): ≈ 1.400 kg de aco + 60 kg de aluminio", "Peso total embarcado: ≈ 8,2 t em 1 conteiner 40' HC",
+              "Equipe: 4 montadores + 1 lider; guincho manual 1 t", "8 caibros comprimem o anel da lanterna e tracionam o anel de beiral",
+              "Setas junto ao eixo da direita: cada grupo desce sobre o anterior"] if lod else
              ["Estrutura metalica: ≈ 1.230 kg de aco + 95 kg de aluminio", "Peso total embarcado: ≈ 10,8 t em 1 conteiner 40' HC",
               "Equipe: 4 montadores + 1 lider; talha para icar os mastros", "Postes estaiados a 7 estacas de tracao", "Paineis SIP formam diafragma rigido; anel de beiral comprimido"])
     for i, t in enumerate(notes):
@@ -641,23 +861,27 @@ def modelo_explodido(product):
     sh.text_px(X, y0 + 24 + len(notes) * 18 + 14, "Linhas tracejadas verticais: eixos de referencia da malha de estacas.", size=8.5, fill=EARTH, anchor="start")
     sh.title_block(name, "Modelo explodido da estrutura", "sem escala", "10/27",
                    ("Nove grupos, da fundacao aos acabamentos, com sequencia de montagem" if coc else
+                    "Oito grupos, da fundacao a vela de sombra, com sequencia de montagem" if lod else
                     "Sete grupos, da fundacao aos acabamentos, com sequencia de montagem"))
     return sh
 
 def camadas_construtivas(product):
-    coc = product == "cocoon"
-    name = "ZION CASULO" if coc else "ZION SAFARI"
+    coc = product == "cocoon"; lod = product == "lodge"
+    name, pname = PRODUCT_NAMES[product]
     sh = Sheet(1200, 2000)
-    sh.header(("Zion Casulo" if coc else "Zion Safari") + " · Camadas construtivas",
+    sh.header(pname + " · Camadas construtivas",
               "Pilha explodida das 13 camadas, da fundacao ao acabamento interno · isometrica · sem escala")
     step = 3.0
     dzs = [0.0]
     heights = ([0.6, 0.9, 1.0, 3.2, 3.2, 3.2, 3.2, 3.0, 3.0, 2.9, 0.9, 0.9, 2.6] if coc else
+               [0.6, 0.6, 0.8, 7.0, 4.4, 4.0, 4.4, 2.4, 2.4, 4.0, 0.9, 0.9, 2.6] if lod else
                [0.7, 0.9, 1.1, 4.4, 4.4, 4.4, 4.4, 2.6, 2.6, 2.6, 0.9, 0.9, 2.6])
     for h in heights[:-1]:
         dzs.append(dzs[-1] + step + 0.35 * h)
     if coc:
         layers = cocoon_camadas_layers(dzs); guides = [(9.0, -1.3), (-3.3, 2.6)]
+    elif lod:
+        layers = lodge_camadas_layers(dzs); guides = [(5.4, -6.2), (-7.6, 6.2)]
     else:
         layers = zenith_camadas_layers(dzs); guides = [(10.5, -3.7), (-2.4, 3.7)]
     sc = draw_layers(sh, layers, (350, 100, 1170, 1860), 44, guides)
@@ -676,11 +900,13 @@ def camadas_construtivas(product):
 
 
 def build():
-    os.makedirs(OUTC, exist_ok=True); os.makedirs(OUTZ, exist_ok=True)
+    os.makedirs(OUTC, exist_ok=True); os.makedirs(OUTZ, exist_ok=True); os.makedirs(OUTL, exist_ok=True)
     modelo_explodido("cocoon").save(os.path.join(OUTC, "10_modelo_explodido.svg"))
     modelo_explodido("zenith").save(os.path.join(OUTZ, "10_modelo_explodido.svg"))
+    modelo_explodido("lodge").save(os.path.join(OUTL, "10_modelo_explodido.svg"))
     camadas_construtivas("cocoon").save(os.path.join(OUTC, "13_camadas_construtivas.svg"))
     camadas_construtivas("zenith").save(os.path.join(OUTZ, "13_camadas_construtivas.svg"))
+    camadas_construtivas("lodge").save(os.path.join(OUTL, "13_camadas_construtivas.svg"))
     print("exploded ok")
 
 if __name__ == "__main__":
