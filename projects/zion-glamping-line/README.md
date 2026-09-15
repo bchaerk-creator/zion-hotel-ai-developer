@@ -19,8 +19,8 @@ Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion
 - **`ZION_CATALOGO_LINHA.pdf`** e **`.html`** — Catálogo da linha: as cinco cabanas com dados, imagens, desenhos, as 13 camadas com especificação de materiais, quadro de materiais estimados (quantidades) e **FF&E completo (tudo o que vai dentro: mobiliário, luminárias, equipamentos, enxoval, deck e banho)** por unidade. `ZION_MATERIAIS_FFE_Linha.xlsx` traz as mesmas listas em planilha (materiais por produto + FF&E por unidade + catálogo de itens); a base de dados do FF&E está em `tools/ffe.py`.
 - **`ZION_PROJETO_ARQUITETONICO.pdf`** (vetorial) e **`.html`** — Projeto arquitetônico como um projetista entrega, para Casulo, Safari e Lodge 38: 24 pranchas por produto (PA-00 capa/índice/quadro de áreas/notas · PA-01 implantação 1:200 · PA-02 planta cotada · PA-03 layout · PA-04 cobertura · PA-05 forro e iluminação · PA-06 cortes A-A e B-B · PA-07 fachadas frontal e traseira · PA-08 fachadas laterais · PA-09 quadro de esquadrias · PA-10 planta estrutural · PA-11 detalhes construtivos · PA-12 isométrica, explodida, camadas e estrutura) mais **PA-13 camadas construtivas e especificação de materiais** e **PA-14 quadro de materiais estimados (quantidades, sem preços)**, uma por página A3 paisagem. `ZION_PROJETO_ARQUITETONICO_standalone.html` é a versão autônoma (tudo embutido, com hachuras).
 - **`cocoon/projeto/dxf/` e `zenith/projeto/dxf/`** — 21 arquivos DXF (AutoCAD 2010, metros, layers PAREDES / ESQUADRIAS / MOBILIARIO / ESTRUTURA / COBERTURA / DECK / FUNDACAO / COTAS / TEXTO / EIXOS): plantas cotada e de layout, cobertura, cortes, fachadas, planta estrutural e modelo 3D (3DFACE + polilinhas 3D) de cada produto.
-- **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Casulo, depois Safari): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
-- **`ZION_ORCAMENTO_SC_Casulo_Safari.xlsx`** — planilha com peças, conexões, BOM em 3 cenários, mão de obra, resumo do orçamento, escala e premissas de preço.
+- **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial em três volumes (Casulo, Safari e Lodge 38): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM com quantidades estimadas, manual de montagem em 17 passos, horas por função, cronograma e escala industrial. Sem preços.
+- **`interno/ZION_ORCAMENTO_SC_Casulo_Safari_Lodge.xlsx`** — planilha interna de orçamento (com preços de referência SC): peças, conexões, BOM em 3 cenários, mão de obra, resumo, escala e premissas. Não faz parte dos documentos enviados à fábrica.
 
 - **`ZION_CASULO_SAFARI_Caderno_Tecnico.html`** — Caderno Técnico com os 27 entregáveis (abrir no navegador; referencia os desenhos e renders das pastas abaixo).
 - **`ZION_CASULO_SAFARI_Caderno_Tecnico.pdf`** — a mesma publicação em PDF (A4 paisagem).
@@ -89,7 +89,7 @@ python3 build_viewer.py      # visualizadores 3D
 NODE_PATH=/opt/node22/lib/node_modules node render.js      # renders PNG + GLB (Playwright + Chromium)
 python3 drawings_extra.py && python3 exploded.py   # planta estrutural, fachada traseira, explodidas
 python3 build_dossier.py     # Caderno Técnico HTML
-python3 build_product_book.py   # Product Book HTML + planilha XLSX
+python3 build_product_book.py   # Product Book HTML (sem preços; --precos gera a versão interna) + planilha interna XLSX
 NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js   # PDF do Caderno
 NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js ../ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf
 pip install ezdxf            # para os DXF

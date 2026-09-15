@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
-"""ZION ARCHITECTURAL PRODUCT BOOK · gera o HTML (Casulo primeiro, depois Safari) e a planilha XLSX de orçamento.
-Uso: python3 build_product_book.py [--inline]"""
+"""ZION ARCHITECTURAL PRODUCT BOOK · gera o HTML (Casulo, depois Safari, depois Lodge 38) e a planilha XLSX de orçamento.
+Uso: python3 build_product_book.py [--web] [--inline]
+Cada volume é montado por build_volume(vol, product) a partir do dicionário de configuração PRODUCTS[product]."""
 import os, sys, base64
-from geometry import Cocoon, Zenith
-from bom import cocoon_bom, zenith_bom, ASSEMBLY
-from product_book_data import (cocoon_parts, zenith_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS, PRICES, LABOR_RATES, labor_hours,
+from geometry import Cocoon, Zenith, Lodge
+from bom import cocoon_bom, zenith_bom, lodge_bom, ASSEMBLY
+from product_book_data import (cocoon_parts, zenith_parts, lodge_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS, LODGE_CONNECTIONS, PRICES, LABOR_RATES, labor_hours,
                                bom_priced, budget, scale_factors, manual, FAB_SCHEDULE, SCENARIOS)
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 INLINE = "--inline" in sys.argv
-WEB = "--web" in sys.argv or INLINE   # usa renders/web/*.jpg (menores) para PDF e versão autônoma
-C, Z = Cocoon(), Zenith()
+WEB = "--web" in sys.argv or INLINE
+PRECOS = "--precos" in sys.argv   # padrão: documento sem preços (só materiais e quantidades); --precos gera a versão interna com valores   # usa renders/web/*.jpg (menores) para PDF e versão autônoma
+C, Z, LD = Cocoon(), Zenith(), Lodge()
 
 def money(v): return "R$ " + f"{v:,.0f}".replace(",", ".")
 def fmt(v, n=2):
@@ -48,7 +50,7 @@ def section(vol, num, title, html):
 # ----------------------------------------------------------------------------- textos comuns
 DISCLAIMER = '<div class="warn"><strong>Pré-dimensionamento de engenharia.</strong> Todas as bitolas, espessuras, quantidades de fixadores e capacidades de fundação deste caderno são pré-dimensionamento para orçamento e desenvolvimento de produto. Devem ser calculadas e validadas por engenheiro estrutural habilitado (ART/RRT), com análise de membrana (form-finding) e sondagem do terreno, antes da fabricação.</div>'
 
-def membrane_spec():
+def membrane_spec(rain_note):
     return f"""
 <h3>Requisitos técnicos da membrana</h3>
 {table(["Requisito", "Especificação mínima", "Norma / ensaio", "Como se verifica"], [
@@ -56,7 +58,7 @@ def membrane_spec():
  ["Proteção UV", "Laca PVDF (fluoretada) 100% em ambas as faces; bloqueio UV > 99%; retenção de cor > 90% em 10 anos", "ISO 4892 (envelhecimento acelerado)", "Certificado do fabricante da membrana"],
  ["Resistência mecânica", "Tração urdume/trama ≥ 4.200 / 4.000 N/5 cm; rasgo ≥ 600 / 550 N; 1.050 g/m² (tipo III)", "DIN 53354 / DIN 53363", "Laudo por lote"],
  ["Resistência ao vento", "Projeto para V0 = 45 m/s (NBR 6123); pré-tensão 2,5 kN/m; fator de segurança 5 sobre a ruptura em uso", "NBR 6123 + análise não linear de membrana", "Memória de cálculo do form-finding; tensiômetro na obra"],
- ["Resistência à chuva", "Inclinação mínima 12° em qualquer ponto (Casulo: seção elíptica; Safari: cumes a 5,80 e 4,60 m); sem bolsões", "Geometria", "Modelo 3D e teste de água"],
+ ["Resistência à chuva", f"Inclinação mínima 12° em qualquer ponto ({rain_note}); sem bolsões", "Geometria", "Modelo 3D e teste de água"],
  ["Durabilidade", "Vida útil ≥ 15 anos (garantia) / 20 a 25 anos (esperada); estabilidade dimensional < 1%", "Garantia do fabricante", "Inspeção anual"],
  ["Fungos e algas", "Tratamento fungicida no revestimento e anti-wicking nos fios", "ISO 846", "Certificado"],
  ["Fogo", "Classe B1 (DIN 4102) / M2 (NF P92-507); autoextinguível", "DIN 4102", "Certificado"],
@@ -84,19 +86,28 @@ SAFARI_MEMBRANE_FIX = """
  <li><strong>Drenagem.</strong> Dos cumes a água corre para as bordas em catenária e pinga nos pontos baixos (meio dos vãos entre postes) sobre canaletas de brita; nas laterais do corpo a calha oculta do perfil E01 recolhe o que escorre pelo anel de beiral e desce por dois pilares com tubo Ø75 interno.</li>
  <li><strong>Arremates.</strong> Cintas de canto com catraca cobertas por capa de membrana; capas de esticador; tampas dos postes; saias nos anéis.</li>
 </ol>"""
+LODGE_MEMBRANE_FIX = """
+<ol>
+ <li><strong>Onde começa.</strong> Membrana cônica em peça única de 8 gomos radiais soldados por RF (≈ 73 m² desenvolvidos), com cordão keder Ø8 na borda superior (anel da lanterna), bolsa de borda com tubo Ø20 nos oito lados do beiral e faixas de reforço duplas sobre os vértices. A vela de sombra é uma segunda membrana independente (hipar ≈ 14 m²) com bolsas de cabo Ø8 nas quatro bordas e chapas de canto inox.</li>
+ <li><strong>Como é fixada.</strong> No anel de compressão da lanterna (E01) o keder entra no perfil de clamp I02 (alumínio 60 x 12, duas metades, M10 inox a cada 150 mm sobre EPDM) e um flashing de EPDM sela a membrana contra o perfil RPT da esquadria da lanterna. Cada caibro chega ao anel por um garfo articulado (duas chapas 8 mm soldadas ao caibro, pino M12 8.8 com bucha de nylon): o caibro gira ± 3° e o cone encontra a forma no tensionamento sem forçar as emendas (DET-12). No beiral, a membrana passa sobre o perfil de borda arredondado I01 (alumínio 80 x 40 com canal keder e calha oculta 100 x 80) parafusado no anel C01 e a bolsa de borda é presa pelo grampo do mesmo perfil (M8 inox a cada 400 mm com arruela EPDM) (DET-13).</li>
+ <li><strong>Como é tensionada.</strong> Sequência: (1) içar a membrana pelo anel da lanterna com o tripé e fechar o clamp I02; (2) passar os gomos sobre o perfil de borda dos 8 lados; (3) prender a bolsa de borda com os grampos frouxos; (4) tensionar em cruz (lados opostos: 1-5, 3-7, 2-6, 4-8) em 3 passes até a pré-tensão de 2,5 kN/m medida com tensiômetro; (5) conferir o balanço de 0,90 m uniforme nos oito lados e a articulação livre dos caibros; (6) só então fixar a esquadria, o vidro curvo e a tampa da lanterna.</li>
+ <li><strong>Encontros.</strong> Lanterna: vidro laminado curvo 8 + 8 em quatro segmentos na esquadria E04 sobre os montantes E02; tampa de alumínio Ø1,60 com pingadeira de 250 mm e veneziana de 150 mm com tela mosquiteira (respiro). Vértices: faixa de reforço sobre o topo do pilar; o revestimento de madeira termina 50 mm abaixo do perfil de borda. Paredes: a membrana não toca os vidros nem os painéis SIP; o beiral de 0,90 m protege as juntas. Vela: chapas de canto inox nos olhais dos dois postes e em dois olhais H09 soldados no anel de beiral, com esticadores M12.</li>
+ <li><strong>Drenagem.</strong> O cone escoa para os oito lados; a calha oculta 100 x 80 do perfil de borda recolhe a água no anel de beiral e desce por tubos de queda Ø75 dentro de quatro pilares (um a cada dois vértices) até caixas de brita. A tampa da lanterna tem pingadeira que lança a água para fora do vidro curvo.</li>
+ <li><strong>Arremates.</strong> Perfil de acabamento em alumínio bronze sobre o grampo da bolsa de borda; saias de EPDM na chaminé da lanterna e na passagem do duto da condensadora; tampas dos postes da vela; capas de esticador.</li>
+</ol>"""
 
-def foundation_models(product):
-    c = product == "cocoon"
+def foundation_models(cfg):
+    F = cfg["found"]
     return f"""
 <p>Três soluções de fundação para o mesmo quadro de deck (grelha de vigas U 150 x 60 sobre cabeçotes ajustáveis). A escolha é feita depois da sondagem SPT ou ensaio de torque no local; <strong>nenhum dimensionamento definitivo de fundação é apresentado sem dados geotécnicos.</strong></p>
 {table(["", "Modelo A · Deck sobre fundações pontuais", "Modelo B · Sistema metálico para terreno inclinado", "Modelo C · Baixo impacto para áreas naturais"], [
  ["Descrição", "Sapatas ou tubulões curtos de concreto (Ø300 a 400 mm, 0,8 a 1,2 m) com chumbador e cabeçote ajustável; ou blocos pré-moldados sobre brita compactada", "Estacas helicoidais de comprimentos diferentes (1,5 a 3,0 m) seguindo o declive; pilaretes tubulares Ø101,6 travados em X com cabos onde a altura livre passa de 0,8 m; deck em balanço no lado baixo com guarda-corpo", "Estacas helicoidais Ø76 curtas (1,5 a 2,0 m) cravadas por motor hidráulico portátil, sem abertura de acesso para máquinas; todos os elementos removíveis; sem concreto"],
  ["Terreno", "Plano a 3%, solo firme (SPT > 8), acesso de betoneira", "5 a 30% de declive, solo firme a médio", "Qualquer, com SPT > 4; floresta, dunas fixadas, campos de altitude"],
  ["Solo", "Verificar capacidade (≥ 150 kPa) e nível d'água", "Verificar deslizamento superficial e drenagem a montante", "Verificar torque de cravação (correlação com capacidade)"],
- ["Vento (tração)", "Chumbadores e peso das sapatas resistem ao uplift de ≈ {'4 kN' if c else '5 a 12 kN'} por apoio", "Estacas de tração dedicadas nos pés dos {'arcos extremos' if c else 'postes'}", "Hélice a ≥ 1,5 m dá tração de 15 a 25 kN por estaca"],
+ ["Vento (tração)", f"Chumbadores e peso das sapatas resistem ao uplift de ≈ {F['uplift']} por apoio", f"Estacas de tração dedicadas nos pés dos {F['tension']}", "Hélice a ≥ 1,5 m dá tração de 15 a 25 kN por estaca"],
  ["Chuvas e umidade", "Drenagem em brita ao redor das sapatas", "Canaleta de crista para desviar a água da encosta; brita sob o deck", "Solo intacto drena naturalmente; brita apenas nos pontos de queda"],
  ["Drenagem da unidade", "Caixas de brita nas quedas", "Descida canalizada pela encosta até dissipador", "Dispersão em vala de brita"],
- ["Carga da estrutura", f"≈ {fmt(cocoon_bom()['total'] / 44 if c else zenith_bom()['total'] / 37, 0)} kg por apoio (peso próprio) + sobrecarga 2 kN/m² + {'0' if c else '19 kN da hidromassagem'}", "Idem, com verificação de esforço horizontal nos pilaretes", "Idem"],
+ ["Carga da estrutura", f"≈ {fmt(cfg['bom']()['total'] / F['n_supports'], 0)} kg por apoio (peso próprio) + sobrecarga 2 kN/m² + {F['extra']}", "Idem, com verificação de esforço horizontal nos pilaretes", "Idem"],
  ["Impacto", "Médio (concreto)", "Baixo a médio", "Mínimo; reversível"],
  ["Tempo", "3 dias + cura 7 dias", "2 dias", "1 a 1,5 dia"],
  ["Custo relativo", "1,0", "1,3 a 1,6", "0,9 a 1,1"],
@@ -119,6 +130,21 @@ LAYERS = [
     ("12", "Instalações hidráulicas", "PEX quente/frio pelo piso; esgoto Ø100 sob o deck com 2% de declividade; aquecedor no ático; fossa compacta."),
     ("13", "Acabamento interno", "Piso de carvalho, porcelanato no banho, marcenaria embutida, louças, metais, mobiliário e enxoval."),
 ]
+LODGE_LAYERS = [
+    ("01", "Fundação", "Transfere as cargas ao solo sem escavação: 22 estacas helicoidais (ou sapatas pontuais) com cabeçotes ajustáveis que absorvem o desnível do terreno; 2 delas sob os postes da vela."),
+    ("02", "Estrutura do deck", "Grelha de vigas U 150 x 60 galvanizadas com anel de borda octogonal (caixão duplo sob os pilares): nivela a plataforma, engasta os 8 pilares e leva as instalações no vazio de 200 mm."),
+    ("03", "Piso e isolamento", "Módulos de vigotas LSF Ue 150 x 40 com PIR 50 mm, manta inferior, compensado naval e piso de engenharia: barreira térmica e acústica contra o solo."),
+    ("04", "Estrutura metálica principal", "Oito pilares Ø101,6 nos vértices, anel de beiral 150 x 100 em 8 segmentos e oito caibros radiais Ø76,1 até o anel de compressão da lanterna: esqueleto que dá forma ao cone e resiste ao vento."),
+    ("05", "Travamentos", "Anel de compressão da lanterna (fecha o cone), painéis SIP como diafragma nas três faces opacas e cabos em X: impedem a distorção do octógono e distribuem a tensão da membrana."),
+    ("06", "Membrana externa", "PVDF 1050 g/m² em 8 gomos tensionada entre o anel da lanterna e o beiral: impermeabiliza, bloqueia UV, dá a forma final e enrijece o cone pela pré-tensão."),
+    ("07", "Câmara de ventilação", "60 mm de ar em movimento entre a membrana e o isolamento, com saída pelo respiro da lanterna: seca a condensação da face interna da membrana e retira o calor radiante no verão."),
+    ("08", "Isolamento térmico", "Lã de PET 50 mm (25 kg/m³) em 8 gomos cônicos sobre o forro: R = 1,25 m²K/W; mantém o conforto na serra e no calor tropical."),
+    ("09", "Barreira de condensação", "Manta refletiva de alumínio (bolha) do lado da câmara, com emendas fitadas: reflete o calor radiante e evita que o vapor interno molhe a lã em climas frios."),
+    ("10", "Membrana / revestimento interno", "Forro tensionado acústico (Trevira CS) em 8 gomos do anel de beiral ao anel de LED da lanterna; painéis de madeira nas três faces opacas: fecha o envelope, absorve som e dá o acabamento contínuo do interior."),
+    ("11", "Instalações elétricas", "Quadro no ático técnico sobre o banho; cabos pelo vazio do piso e atrás do forro; fitas LED nos rodapés, no anel da lanterna e nos requadros; tomadas nos móveis."),
+    ("12", "Instalações hidráulicas", "PEX quente/frio pelo piso; esgoto Ø100 sob o deck com 2% de declividade; aquecedor no ático do banho; fossa compacta."),
+    ("13", "Acabamento interno", "Piso de carvalho, porcelanato no banho, revestimento de madeira dos pilares, marcenaria embutida, louças, metais, mobiliário e enxoval."),
+]
 
 def parts_table(P):
     rows = [[p["cod"], p["nome"], p["qtd"], fmt(p["comp"], 2), p["larg"] or "", p["alt"] or "", p["perfil"], p["aco"], fmt(p["esp"], 1), fmt(p["peso_un"], 1), fmt(p["peso_total"], 1), p["fab"], p["uniao"], p["ordem"]] for p in P]
@@ -130,6 +156,11 @@ def conn_table(CX):
     return table(["Conexão", "Peça A", "Peça B", "Sistema de união", "Fixador (tipo e classe)", "Qtd", "Passo"], [list(c) for c in CX], cls="small")
 
 def bom_table(product, scen=1):
+    if not PRECOS:
+        b = budget(product, scen); out = []; cur = None
+        for (g, desc, un, qtd, unit, tot) in b["rows"]:
+            out.append([g, desc, un, fmt(qtd, 1) if isinstance(qtd, float) else qtd])
+        return table(["Grupo", "Descrição", "Un.", "Qtd estimada"], out, cls="small")
     b = budget(product, scen); rows = []; cur = None; sub = 0; out = []
     for (g, desc, un, qtd, unit, tot) in b["rows"]:
         if g != cur:
@@ -169,6 +200,12 @@ def budget_section(product):
     return summary, totals, labor
 
 def scale_section(product):
+    if not PRECOS:
+        rows = []
+        for n in (1, 5, 10, 50):
+            sc = scale_factors(n)
+            rows.append([f"{n} unidade{'s' if n > 1 else ''}", f"-{fmt(sc['fab_labor'] * 100, 0)}%", f"-{fmt(sc['site_labor'] * 100, 0)}%", f"-{fmt(sc['material']['estrutura'] * 100, 0)}% aço · -{fmt(sc['material']['membrana'] * 100, 0)}% membrana", f"-{fmt(sc['transport'] * 100, 0)}%", f"{fmt(sc['indiretos'] * 100, 0)}%"])
+        return table(["Lote", "Horas de fabricação / un.", "Horas de instalação / un.", "Consumo de materiais / un.", "Transporte / un.", "Indiretos"], rows) + '<p class="note">Fatores de escala industrial (gabaritos, compra por lote, curva de aprendizagem da equipe, otimização de embarque); sem valores.</p>'
     rows = []
     for n in (1, 5, 10, 50):
         b = budget(product, 1, n); sc = scale_factors(n)
@@ -180,24 +217,18 @@ def scale_section(product):
         bars += f'<div class="grow"><div class="glabel">{n} un.</div><div class="gtrack"><div class="gbar" style="left:0;width:{100 * v / b1:.1f}%"></div></div><div class="gdays">{money(v)}</div></div>'
     return t + f'<div class="gantt">{bars}</div>'
 
-# ============================================================================= VOLUMES
-def build_volume(vol, product):
-    c = product == "cocoon"; G = C if c else Z
-    name = "ZION CASULO" if c else "ZION SAFARI"
-    bom_ = cocoon_bom() if c else zenith_bom()
-    P = cocoon_parts() if c else zenith_parts(); CX = COCOON_CONNECTIONS if c else ZENITH_CONNECTIONS
-    d = f"{product}/desenhos"; rd = f"{product}/renders"
-    # 01 conceito
-    if c:
-        concept = f"""
+# ============================================================================= CONCEITOS (seção 01 de cada volume)
+def cocoon_concept(G, bom_):
+    return f"""
 <p class="lead">Cabana orgânica premium em forma de casulo: uma concha contínua de membrana tensionada sobre oito pórticos elípticos, que se abre para a paisagem por um lábio inclinado e uma fachada de vidro de piso a cumeeira. Nada de escotilhas redondas nem túnel segmentado: a Casulo é uma semente, cheia na frente e afilada na cauda, com uma Espinha de Luz na cumeeira e seis Janelas Olho em lente.</p>
 {kv([("Comprimento do piso", "9,60 m (concha com lábio: 9,75 m)"), ("Largura máxima", "6,00 m (piso 5,86 m)"), ("Altura máxima", "4,20 m"), ("Área interna", f"{fmt(G.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck externo", "4,60 x 6,50 = 29,9 m²"), ("Área total", "78 m²"),
      ("Programa", "Lounge com chaise e minibar, suíte king, banho completo com banheira na cauda, opção de hot tub no deck"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 contêiner 40' HC"), ("Estrutura", "Aço carbono galvanizado a fogo: 8 pórticos elípticos + terças + espinha + trilhos de base")])}
 <h3>Inspiração e identidade proprietária</h3>
 <ul><li><strong>Casulo e concha:</strong> seção elíptica com centro a 0,75 m do piso, que abraça o chão e sobe sem quinas.</li><li><strong>Biomorfismo:</strong> planta em superelipse assimétrica (frente n = 4, cauda n = 3): a forma de uma semente, reconhecível em planta e em silhueta.</li><li><strong>Lábio frontal:</strong> anel de fachada inclinado 8°, avançando 0,60 m sobre o deck: beiral, sombra e a expressão de abertura.</li><li><strong>Espinha de Luz:</strong> claraboia contínua de 0,70 x 4,70 m sobre a cama e o estar.</li><li><strong>Janelas Olho:</strong> lentes 1,60 x 0,95 m com requadros profundos de madeira laminada.</li></ul>
 <p>As geometrias são definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code>; recomenda-se o registro de desenho industrial das duas formas e das marcas ZION CASULO e ZION SAFARI.</p>"""
-    else:
-        concept = f"""
+
+def zenith_concept(G, bom_):
+    return f"""
 <p class="lead">Cabana arquitetônica de dois cumes assimétricos deslocados em diagonal: 5,80 m no Zênite, sobre a cama, e 4,60 m no Respiro, sobre o café. A membrana desce dos cumes a um anel de beiral e continua em balanço sobre o terraço, com bordas em catenária entre postes inclinados. Sob ela, um corpo de vidro e madeira de 9,50 x 5,40 m.</p>
 {kv([("Corpo", "9,50 x 5,40 x 2,75 m"), ("Altura máxima (definida pelo estudo estrutural)", "5,80 m no cume principal; 4,60 m no secundário; anel de beiral a 2,90 m"), ("Cobertura", "12,90 x 7,40 m (95,5 m² em projeção; 118 m² de membrana)"), ("Área interna", f"{fmt(G.floor_area(), 1)} m²"), ("Terraço + passarela", "20,4 + 7,6 = 28,0 m²"), ("Área total", "79,3 m²"),
      ("Programa", "Lounge, Ilha do Café, suíte king sob o Óculo do Zênite, closet, banho com bancada dupla e banheira, terraço com hidromassagem"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 contêiner 40' HC"), ("Estrutura", "2 mastros com coroas de 3 braços, 10 pilares, anel de beiral 150 x 100, 7 postes estaiados, cabo de borda Ø12")])}
@@ -205,7 +236,101 @@ def build_volume(vol, product):
 <p>A altura do cume principal foi definida pelo estudo estrutural e de conforto: com o anel de beiral a 2,90 m e o cume a 5,80 m, a membrana tem inclinação mínima de 14° em todo o vale entre os cumes (acima dos 12° de drenagem), a relação flecha/vão da catenária de borda fica em 1/20 e a compressão de projeto no mastro M1 resulta em 45 kN, dentro do limite de flambagem de um tubo Ø139,7 x 4,5 com 5,05 m de comprimento (pré-dimensionamento). Um cume mais baixo criaria bolsões de água entre os cumes; mais alto aumentaria o vento no mastro sem ganho de espaço útil.</p>
 <h3>Identidade proprietária</h3>
 <ul><li><strong>Dois cumes assimétricos em diagonal:</strong> silhueta que muda a cada ângulo, nunca simétrica.</li><li><strong>Óculo do Zênite:</strong> anel Ø1,20 sustentado por coroa de três braços, com cúpula de vidro sobre a cama.</li><li><strong>Respiro:</strong> o cume secundário é uma chaminé de ventilação natural.</li><li><strong>Mastros integrados:</strong> M1 dentro da parede da cabeceira, M2 no totem da Ilha do Café.</li></ul>"""
-    section(vol, "01", "Conceito", concept)
+
+def lodge_concept(G, bom_):
+    return f"""
+<p class="lead">Pavilhão octogonal de 6,80 m entre faces sob uma cobertura cônica de membrana em oito gomos, que sobe do anel de beiral (2,70 m) à Lanterna Zion: um anel de compressão Ø1,50 a 4,60 m que sustenta um cilindro de vidro de 0,45 m e uma tampa ventilada a 5,20 m. Oito pilares Ø101,6 revestidos em madeira nos vértices, um anel de beiral 150 x 100 e oito caibros radiais Ø76 formam o esqueleto; cinco faces de vidro abrem a cama e o estar para a paisagem, três faces opacas guardam o banho e a cabeceira, e um deck em três faces com vela de sombra independente prolonga o pavilhão para fora.</p>
+{kv([("Planta", f"Octógono regular de 6,80 m entre faces (lado {fmt(G.side(), 2)} m; {fmt(2 * G.r_corner(), 2)} m entre vértices)"), ("Alturas", "Anel de beiral a 2,70 m; anel de compressão da lanterna a 4,60 m; vidro claro de 0,45 m; tampa ventilada a 5,20 m"), ("Cobertura", f"Membrana em 8 gomos com beiral de 0,90 m além dos pilares (≈ 61 m² em projeção; {fmt(bom_['memb'], 0)} m² desenvolvidos)"), ("Área interna", f"{fmt(G.floor_area(), 1)} m² (banho 6,9 m² no segmento posterior)"), ("Deck externo", f"Três faces frontais com 2,60 m de profundidade = {fmt(G.deck_area(), 1)} m²"), ("Área total", "68,7 m²"),
+     ("Programa", "Estar com sofá e poltrona, café / minibar, suíte king sob a lanterna, closet, banho com bancada 1,40, box e banheira de sentar, deck com vela de sombra"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 carreta 12 m ou 1 contêiner 40' HC"), ("Estrutura", "Aço carbono galvanizado a fogo: 8 pilares Ø101,6 + anel de beiral 150 x 100 + 8 caibros Ø76,1 + anel de compressão Ø60,3 + lanterna + 2 postes da vela; 22 estacas helicoidais; montagem em 9 dias úteis")])}
+<h3>Por que a lanterna</h3>
+<p>Os lodges octogonais de catálogo fecham o cume em ponta cega: a membrana sobe até um nó de aço e a luz entra só pelas paredes. A Lanterna Zion troca o nó por um anel de compressão Ø1,50: os oito caibros comprimem o anel, a membrana é fixada nele com clamp e, acima, um cilindro de vidro laminado curvo de 0,45 m traz luz zenital sobre a cama sem abrir a membrana à chuva (o vidro é vertical; a tampa com pingadeira de 250 mm e veneziana faz o efeito chaminé). Com o beiral a 2,70 m e o anel a 4,60 m, o cone tem inclinação de 33° (bem acima dos 12° de drenagem), e a compressão em cada caibro fica em 4 a 6 kN (pré-tensão 2,5 kN/m + vento), folgada para um tubo Ø76,1 x 3,6 com {fmt(bom_['rafter'], 2)} m de comprimento (pré-dimensionamento).</p>
+<h3>Identidade proprietária</h3>
+<ul><li><strong>Lanterna Zion:</strong> anel de compressão Ø1,50, vidro curvo e tampa ventilada: o cume é luz, não ponta cega.</li><li><strong>Vela de sombra independente:</strong> membrana hipar de 14 m² em dois postes sobre o deck, tensionada a olhais do anel de beiral; sombra sem tocar a cobertura.</li><li><strong>Deck em três faces:</strong> {fmt(G.deck_area(), 1)} m² que abraçam a frente e as duas diagonais de vidro.</li><li><strong>Cinco faces de vidro, três opacas:</strong> a proporção 5/3 orienta o pavilhão: paisagem à frente, banho e cabeceira atrás.</li><li><strong>Pilares revestidos:</strong> aço Ø101,6 dentro de duas meias-canas de madeira laminada; os montantes do vidro fixam-se em talões escondidos.</li></ul>
+<p>A geometria é paramétrica (classe <code>Lodge</code> em <code>tools/geometry.py</code>, com as variantes Lodge 24 e Lodge 28); recomenda-se o registro de desenho industrial da lanterna e do pavilhão e da marca ZION LODGE.</p>"""
+
+# ============================================================================= CONFIGURAÇÃO POR PRODUTO
+MEMORIAL_KV_COMMON = [("Fundação", "Estacas helicoidais Ø76 x 3,6 com hélice Ø300, L 1,5 a 2,5 m, galvanizadas; cabeçotes ajustáveis; 3 modelos alternativos (ver abaixo)"), ("Deck e piso", "Grelha U 150 x 60 x 3,0 galvanizada Z275; vigotas 50 x 150 autoclavadas a cada 400 mm; PIR 50 mm; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato no banho; deck cumaru 20 x 140"), ("Estrutura primária", "Tubos ASTM A500 galvanizados a fogo + pintura a pó bronze nas peças aparentes; ligações parafusadas cl. 8.8"), ("Membrana", "PVDF 1050 g/m² tipo III, garantia 15 anos, classe B1, autolimpante"), ("Isolamento", "Câmara ventilada 60 mm + lã de PET 50 mm + manta refletiva; U ≈ 0,6 W/m²K"), ("Forro", "Tecido tensionado acústico Trevira CS cor areia; painéis de madeira nas zonas de destaque"), ("Vidros", "Insulado 6 lam + 12 Ar + 6 temp low-e (U 1,6; FS 0,40) em esquadrias de alumínio com ruptura térmica, bronze"), ("Portas", "Casulo: pivotante de vidro 1,00 x 2,40; Safari: 2 folhas de correr 1,35 x 2,75 + porta de correr do banho" ), ("Climatização", "Dutado inverter quente/frio no ático (12k Casulo / 18k Safari); difusores lineares; condensadora oculta; opção de piso radiante"), ("Ventilação", "Respiro de cumeeira e janelas basculantes (Casulo) / chaminé do Respiro motorizada (Safari); exaustor com recuperador"), ("Elétrica", "220 V, quadro no ático (12 / 16 módulos), DR, tomadas USB, LED 2700 K indireto; opção solar 3 kWp"), ("Hidráulica", "PEX Ø25/20; aquecedor a gás 23 / 30 L/min ou bomba de calor; esgoto Ø100 a fossa + filtro compactos; reúso de águas cinzas opcional")]
+MEMORIAL_KV_LODGE = [("Fundação", "22 estacas helicoidais Ø76 x 3,6 com hélice Ø300, L 1,5 a 2,5 m, galvanizadas (20 sob piso e deck + 2 sob os postes da vela); cabeçotes ajustáveis; 3 modelos alternativos (ver abaixo)"), ("Deck e piso", "Grelha U 150 x 60 x 3,0 galvanizada Z275 com anel de borda octogonal; vigotas LSF Ue 150 x 40 x 1,25 a cada 400 mm; PIR 50 mm; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato no banho; deck cumaru 20 x 140 em três faces"), ("Estrutura primária", "Tubos ASTM A500 galvanizados a fogo + pintura a pó bronze nas peças aparentes; pilares revestidos em madeira laminada; ligações parafusadas cl. 8.8 e pinos nos caibros"), ("Membrana", "PVDF 1050 g/m² tipo III em 8 gomos, garantia 15 anos, classe B1, autolimpante; vela de sombra em PVDF (14 m²)"), ("Isolamento", "Câmara ventilada 60 mm + lã de PET 50 mm + manta refletiva; U ≈ 0,6 W/m²K; painéis SIP 100 mm nas faces opacas"), ("Forro", "Tecido tensionado acústico Trevira CS cor areia em 8 gomos até o anel da lanterna; painéis de madeira nas três faces opacas"), ("Vidros", "Insulado 6 lam + 12 Ar + 6 temp low-e (U 1,6; FS 0,40) nas cinco faces, em montantes de alumínio com ruptura térmica fixados nos talões dos pilares, bronze; lanterna em vidro laminado curvo 8 + 8; fresta alta da banheira 1,60 x 0,60"), ("Portas", "Porta de correr de vidro 2,00 x 2,40 na face frontal (trilho embutido na soleira) + porta de correr do banho 0,90 x 2,10"), ("Climatização", "Dutado inverter quente/frio 9k no ático do banho; difusores lineares; condensadora oculta atrás das faces opacas; opção de piso radiante"), ("Ventilação", "Respiro da lanterna (tampa ventilada com veneziana e tela) + fresta da banheira; exaustor com recuperador"), ("Elétrica", "220 V, quadro no ático (12 módulos), DR, tomadas USB, LED 2700 K indireto e anel de LED na lanterna; opção solar 3 kWp"), ("Hidráulica", "PEX Ø25/20; aquecedor a gás 23 L/min ou bomba de calor 200 L; esgoto Ø100 a fossa + filtro compactos; reúso de águas cinzas opcional")]
+
+KIT_PRINCIPLES_COMMON = """<ul>
+ <li><strong>Encaixe macho-fêmea com batente:</strong> as luvas internas D02 têm um anel de batente soldado a 100 mm, de modo que a perna só entra até a posição certa; os 4 furos coincidem automaticamente.</li>
+ <li><strong>Furos oblongos nas chapas de base:</strong> 18 x 25 mm permitem ajustar ± 6 mm a posição do arco / pilar sem forçar.</li>
+ <li><strong>Pinos de segurança:</strong> em todas as luvas e bases articuladas, pino Ø6 (ou Ø20/Ø30 nos mastros) com contrapino: a peça não se solta mesmo com parafuso frouxo.</li>
+ <li><strong>Parafusos por classe:</strong> M12 8.8 nas grelhas e luvas (45 N·m); M16 8.8 nas chapas de base e no anel de beiral (120 N·m); M20 nas bases dos mastros (230 N·m); inox A2 em tudo o que toca a membrana ou fica aparente.</li>
+ <li><strong>Sem ferramenta especial:</strong> chaves 19 / 24 / 30 mm, torquímetro, puxador de keder e tensiômetro. Tudo vai na caixa de ferramentas do kit.</li>
+</ul>"""
+KIT_PRINCIPLES_LODGE = """<ul>
+ <li><strong>Rótula no pé do caibro:</strong> a chapa-orelha do caibro entra entre as orelhas do talão H04 no vértice e recebe o pino Ø16 com contrapino; os 2 M12 só são travados depois do form-finding.</li>
+ <li><strong>Garfo articulado no anel da lanterna:</strong> pino M12 8.8 com bucha de nylon em cada uma das 8 abas do anel de compressão E01; os caibros são pinados em pares opostos com o anel ainda pendurado no tripé.</li>
+ <li><strong>Emendas do anel de beiral a 135°:</strong> chapas de topo H03 dobradas, face a face sobre o pilar, 4 M16 8.8 (120 N·m); as chapas de base H01 têm furos oblongos 18 x 25 mm para ajustar ± 6 mm a posição do pilar sem forçar.</li>
+ <li><strong>Pinos de segurança:</strong> contrapinos em todos os pinos (caibros, bases dos postes da vela): a peça não se solta mesmo com parafuso frouxo.</li>
+ <li><strong>Parafusos por classe:</strong> M12 8.8 na grelha, no anel de borda e nos talões (45 N·m); M16 8.8 nas chapas de base e de topo dos pilares e nas emendas do anel de beiral (120 N·m); M10 8.8 na lanterna; inox A2 em tudo o que toca a membrana ou fica aparente.</li>
+ <li><strong>Sem ferramenta especial:</strong> chaves 17 / 19 / 24 mm, torquímetro, tripé com talha de 500 kg, puxador de keder e tensiômetro. Tudo vai na caixa de ferramentas do kit.</li>
+</ul>"""
+
+PRODUCTS = {
+    "cocoon": dict(
+        name="ZION CASULO", tag="Casulo", geom=C, bom=cocoon_bom, parts=cocoon_parts, connections=COCOON_CONNECTIONS, concept=cocoon_concept,
+        side_caption="Fachadas laterais (a lateral esquerda é simétrica em silhueta; as janelas seguem a planta)",
+        det_structure=("detalhes/DET-10_arcos_cocoon.svg", "Sistema de arcos"),
+        structural_system="<p>Oito pórticos elípticos planos (A0 a A7) em tubo Ø88,9 x 3,6 (A0 em Ø101,6 x 4,0), cada um em 3 segmentos calandrados unidos por luvas internas, engastados por chapas de base na viga de borda do deck. Sete linhas de terças Ø48,3 rosqueadas em talões, a treliça da Espinha de Luz e cabos em X nos vãos extremos travam o conjunto. A membrana tensionada (2,5 kN/m) enrijece a concha contra ovalização. Uplift de projeto 1,3 kN/m² x 48 m² ≈ 62 kN em 16 pés (≈ 4 kN cada). A grelha do deck em U 150 x 60 x 3,0 sobre 44 estacas helicoidais fecha o caminho de carga.</p>",
+        cpe="Cpe -1,2 a +0,8 (concha)",
+        codes_note="Códigos: A base e grelha · B arcos / mastros · C travamentos · D chapas e conexões · E suporte da membrana e acabamento · F fundação. A coluna Ordem indica o passo do manual de montagem em que a peça entra.",
+        exploded_caption="Modelo explodido da estrutura: base, estrutura, arcos / mastros, travamentos, cobertura, isolamento, membrana interna, portas e janelas, acabamentos",
+        kit_principles=KIT_PRINCIPLES_COMMON, layers=LAYERS, det_envelope=("detalhes/DET-01_cobertura_cocoon.svg", "Seção do envelope: camadas 06 a 10"),
+        memorial_kv=MEMORIAL_KV_COMMON, rain_note="Casulo: seção elíptica; Safari: cumes a 5,80 e 4,60 m", membrane_fix=CASULO_MEMBRANE_FIX,
+        found=dict(uplift="4 kN", tension="arcos extremos", n_supports=44, extra="0"),
+        fab_weeks="5", series_weeks="5 a 6", glazing_extra=", Janelas Olho", delivery_weeks="3", disassembly_days="4", park10_weeks="9",
+        common_parts="aos dois produtos (grelha, estacas, cabeçotes, terças, perfis, quadros de instalação)",
+        proto_note="validar o tensionamento, a estanqueidade das Janelas Olho e da Espinha de Luz (Casulo) e do Óculo (Safari), o conforto térmico de verão e inverno e o tempo real de montagem.",
+        fire_note="rota de fuga pela fachada e pela porta do banho (Safari: janela da banheira como saída alternativa).",
+        ip_note="registro de desenho industrial (INPI) das duas geometrias e das marcas; contratos de fabricação com cláusula de exclusividade dos gabaritos.",
+    ),
+    "zenith": dict(
+        name="ZION SAFARI", tag="Safari", geom=Z, bom=zenith_bom, parts=zenith_parts, connections=ZENITH_CONNECTIONS, concept=zenith_concept,
+        side_caption="Fachadas laterais (a lateral esquerda é simétrica em silhueta; as janelas seguem a planta)",
+        det_structure=("detalhes/DET-11_mastros_zenith.svg", "Sistema de mastros, coroas e anel"),
+        structural_system="<p>Dois mastros a compressão (M1 Ø139,7 x 4,5 com 45 kN de projeto; M2 Ø114,3 x 4,0) com coroas de 3 braços e anéis de cume; dez pilares Ø101,6 embutidos nos painéis SIP sustentam o anel de beiral 150 x 100 x 4,0 (viga-anel comprimida pela membrana); sete postes Ø76,1 inclinados 8° e estaiados absorvem os cabos de borda. Os painéis SIP formam o diafragma. Uplift de projeto 1,3 kN/m² x 95 m² ≈ 125 kN entre pilares, postes e 37 estacas (30 de compressão + 7 de tração).</p>",
+        cpe="Cpe -1,4 a +0,6 (cobertura de cumes)",
+        codes_note="Códigos: A base e grelha · B arcos / mastros · C travamentos · D chapas e conexões · E suporte da membrana e acabamento · F fundação. A coluna Ordem indica o passo do manual de montagem em que a peça entra.",
+        exploded_caption="Modelo explodido da estrutura: base, estrutura, arcos / mastros, travamentos, cobertura, isolamento, membrana interna, portas e janelas, acabamentos",
+        kit_principles=KIT_PRINCIPLES_COMMON, layers=LAYERS, det_envelope=("detalhes/DET-02_cobertura_zenith.svg", "Seção do envelope: camadas 06 a 10"),
+        memorial_kv=MEMORIAL_KV_COMMON, rain_note="Casulo: seção elíptica; Safari: cumes a 5,80 e 4,60 m", membrane_fix=SAFARI_MEMBRANE_FIX,
+        found=dict(uplift="5 a 12 kN", tension="postes", n_supports=37, extra="19 kN da hidromassagem"),
+        fab_weeks="5", series_weeks="5 a 6", glazing_extra=", cúpula", delivery_weeks="3,5", disassembly_days="5", park10_weeks="11",
+        common_parts="aos dois produtos (grelha, estacas, cabeçotes, terças, perfis, quadros de instalação)",
+        proto_note="validar o tensionamento, a estanqueidade das Janelas Olho e da Espinha de Luz (Casulo) e do Óculo (Safari), o conforto térmico de verão e inverno e o tempo real de montagem.",
+        fire_note="rota de fuga pela fachada e pela porta do banho (Safari: janela da banheira como saída alternativa).",
+        ip_note="registro de desenho industrial (INPI) das duas geometrias e das marcas; contratos de fabricação com cláusula de exclusividade dos gabaritos.",
+    ),
+    "lodge": dict(
+        name="ZION LODGE 38", tag="Lodge 38", geom=LD, bom=lodge_bom, parts=lodge_parts, connections=LODGE_CONNECTIONS, concept=lodge_concept,
+        side_caption="Fachadas laterais (o pavilhão é simétrico em relação ao eixo longitudinal; as faces opacas do banho e da cabeceira ficam no fundo)",
+        det_structure=("detalhes/DET-12_lanterna_lodge.svg", "DET-12 · Lanterna Zion: anel de compressão, ligação articulada dos caibros e vidro curvo"),
+        structural_system="<p>Oito pilares Ø101,6 x 4,0 chumbados no anel de borda octogonal (caixão duplo de vigas U) sustentam o anel de beiral 150 x 100 x 4,0, viga-anel em 8 segmentos de 2,82 m emendados a 135° sobre os pilares. Oito caibros radiais Ø76,1 x 3,6 sobem do vértice (z 2,70) ao anel de compressão da lanterna Ø60,3 (r 0,75; z 4,60), rotulados no pé e articulados no topo por garfo com pino: o anel fecha o nó central do cone e recebe a lanterna (8 montantes Ø42,4 + anel superior + tampa). A membrana em 8 gomos, tensionada a 2,5 kN/m entre o anel de compressão e o beiral, enrijece o cone; os painéis SIP das três faces opacas e os cabos em X formam o diafragma contra o vento. Esforço axial de projeto de 4 a 6 kN por caibro (pré-tensão + vento; limite de compressão ≈ 65 kN para Ø76,1 x 3,6 com 3,50 m) e ≈ 8 kN de compressão no anel da lanterna. Uplift de projeto 1,3 kN/m² x 61 m² ≈ 80 kN nos 8 pilares (≈ 10 kN cada), levado pelos chumbadores ao anel de borda e às 22 estacas helicoidais (20 sob piso e deck + 2 sob os postes da vela).</p>",
+        cpe="Cpe -1,0 a +0,5 (cobertura cônica de baixa inclinação com lanterna)",
+        codes_note="Códigos: A base e grelha · B pilares · C anel de beiral · D caibros · E lanterna · F vela de sombra · G travamentos · H chapas e conexões · I suporte da membrana e acabamento · J fundação. A coluna Ordem indica o passo do manual de montagem em que a peça entra.",
+        exploded_caption="Modelo explodido da estrutura: base, pilares, anel de beiral, caibros e lanterna, travamentos, cobertura, isolamento, membrana interna, portas e janelas, acabamentos",
+        kit_principles=KIT_PRINCIPLES_LODGE, layers=LODGE_LAYERS, det_envelope=("detalhes/DET-13_caibros_lodge.svg", "DET-13 · Nó do vértice: camadas 06 a 10 sobre o anel de beiral, calha oculta, base do pilar e poste da vela"),
+        memorial_kv=MEMORIAL_KV_LODGE, rain_note="Lodge: cone de 33° do anel da lanterna a 4,60 m ao beiral a 2,70 m", membrane_fix=LODGE_MEMBRANE_FIX,
+        found=dict(uplift="10 kN", tension="pilares de vértice e dos postes da vela", n_supports=22, extra="0 (os 2 postes da vela têm estacas próprias)"),
+        fab_weeks="4", series_weeks="4 a 5", glazing_extra=", lanterna", delivery_weeks="2,5", disassembly_days="3", park10_weeks="7",
+        common_parts="aos três produtos (grelha, estacas, cabeçotes, perfis de borda, anel de beiral 150 x 100 compartilhado com o Safari, quadros de instalação)",
+        proto_note="validar o tensionamento do cone, a estanqueidade da lanterna (vidro curvo e tampa ventilada) e das cinco faces de vidro, o conforto térmico de verão e inverno sob a lanterna e o tempo real de montagem.",
+        fire_note="rota de fuga pela porta de correr frontal e pelas faces de vidro laterais; fresta da banheira como ventilação de fumaça do banho.",
+        ip_note="registro de desenho industrial (INPI) da Lanterna Zion e da geometria do pavilhão, e da marca ZION LODGE; contratos de fabricação com cláusula de exclusividade dos gabaritos.",
+    ),
+}
+VOLUMES = [(1, "cocoon"), (2, "zenith"), (3, "lodge")]
+
+# ============================================================================= VOLUMES
+def build_volume(vol, product):
+    cfg = PRODUCTS[product]; G = cfg["geom"]; name = cfg["name"]
+    bom_ = cfg["bom"]()
+    P = cfg["parts"](); CX = cfg["connections"]
+    d = f"{product}/desenhos"; rd = f"{product}/renders"
+    # 01 conceito
+    section(vol, "01", "Conceito", cfg["concept"](G, bom_))
     # 02 design
     section(vol, "02", "Design", two(fig(f"{rd}/{product}_ext_front.png", f"{name} · vista frontal 3/4"), fig(f"{rd}/{product}_ext_side.png", f"{name} · lateral")) +
             two(fig(f"{rd}/{product}_night.png", f"{name} · noite"), fig(f"{rd}/{product}_ext_aerial.png", f"{name} · aérea")) +
@@ -216,24 +341,23 @@ def build_volume(vol, product):
     section(vol, "03", "Master plan arquitetônico (plantas, fachadas, cortes)",
             fig(f"{d}/03_planta_tecnica.svg", "Planta baixa cotada") + fig(f"{d}/02_planta_humanizada.svg", "Planta de layout") + fig(f"{d}/03b_planta_estrutural.svg", "Planta estrutural") +
             two(fig(f"{d}/04_elevacao_frontal.svg", "Fachada frontal"), fig(f"{d}/04b_fachada_traseira.svg", "Fachada traseira")) +
-            fig(f"{d}/05_elevacao_lateral.svg", "Fachadas laterais (a lateral esquerda é simétrica em silhueta; as janelas seguem a planta)") +
+            fig(f"{d}/05_elevacao_lateral.svg", cfg["side_caption"]) +
             two(fig(f"{d}/06_corte_longitudinal.svg", "Corte longitudinal"), fig(f"{d}/07_corte_transversal.svg", "Corte transversal")))
     # 04 estrutura
     steel_kg = sum(p["peso_total"] for p in P if "alumínio" not in p["aco"] and "madeira" not in p["aco"])
     est = f"""
 {DISCLAIMER}
-{two(fig(f"{d}/12_estrutura_isometrica.svg", "Estrutura metálica (isométrica)"), fig("detalhes/DET-10_arcos_cocoon.svg" if c else "detalhes/DET-11_mastros_zenith.svg", "Sistema de arcos" if c else "Sistema de mastros, coroas e anel"))}
+{two(fig(f"{d}/12_estrutura_isometrica.svg", "Estrutura metálica (isométrica)"), fig(*cfg["det_structure"]))}
 <h3>Sistema estrutural</h3>
-{"<p>Oito pórticos elípticos planos (A0 a A7) em tubo Ø88,9 x 3,6 (A0 em Ø101,6 x 4,0), cada um em 3 segmentos calandrados unidos por luvas internas, engastados por chapas de base na viga de borda do deck. Sete linhas de terças Ø48,3 rosqueadas em talões, a treliça da Espinha de Luz e cabos em X nos vãos extremos travam o conjunto. A membrana tensionada (2,5 kN/m) enrijece a concha contra ovalização. Uplift de projeto 1,3 kN/m² x 48 m² ≈ 62 kN em 16 pés (≈ 4 kN cada). A grelha do deck em U 150 x 60 x 3,0 sobre 44 estacas helicoidais fecha o caminho de carga.</p>" if c else
- "<p>Dois mastros a compressão (M1 Ø139,7 x 4,5 com 45 kN de projeto; M2 Ø114,3 x 4,0) com coroas de 3 braços e anéis de cume; dez pilares Ø101,6 embutidos nos painéis SIP sustentam o anel de beiral 150 x 100 x 4,0 (viga-anel comprimida pela membrana); sete postes Ø76,1 inclinados 8° e estaiados absorvem os cabos de borda. Os painéis SIP formam o diafragma. Uplift de projeto 1,3 kN/m² x 95 m² ≈ 125 kN entre pilares, postes e 37 estacas (30 de compressão + 7 de tração).</p>"}
-{table(["Parâmetro", "Valor de pré-dimensionamento"], [["Vento", "V0 = 45 m/s, categoria II, S1 = S3 = 1,0 (NBR 6123); q ≈ 1,24 kN/m²"], ["Coeficientes de forma", "Cpe -1,2 a +0,8 (concha)" if c else "Cpe -1,4 a +0,6 (cobertura de cumes)"], ["Aço", "ASTM A500 Gr. B (fy 290 MPa) tubos; ZAR-230 perfis U; A36 chapas; galvanização NBR 6323"], ["Parafusos", "Classe 8.8 zincados; furos com folga 1 mm; torque M12 45 N·m, M16 120 N·m, M20 230 N·m"], ["Membrana", "PVDF 1050 g/m² tipo III; pré-tensão 2,5 kN/m; FS 5"], ["Peso do aço (lista de peças)", f"{fmt(steel_kg, 0)} kg (inclui grelha e estacas)"]])}
+{cfg["structural_system"]}
+{table(["Parâmetro", "Valor de pré-dimensionamento"], [["Vento", "V0 = 45 m/s, categoria II, S1 = S3 = 1,0 (NBR 6123); q ≈ 1,24 kN/m²"], ["Coeficientes de forma", cfg["cpe"]], ["Aço", "ASTM A500 Gr. B (fy 290 MPa) tubos; ZAR-230 perfis U; A36 chapas; galvanização NBR 6323"], ["Parafusos", "Classe 8.8 zincados; furos com folga 1 mm; torque M12 45 N·m, M16 120 N·m, M20 230 N·m"], ["Membrana", "PVDF 1050 g/m² tipo III; pré-tensão 2,5 kN/m; FS 5"], ["Peso do aço (lista de peças)", f"{fmt(steel_kg, 0)} kg (inclui grelha e estacas)"]])}
 <h3>Lista completa de peças (ferro por ferro)</h3>
-<p class="note">Códigos: A base e grelha · B arcos / mastros · C travamentos · D chapas e conexões · E suporte da membrana e acabamento · F fundação. A coluna Ordem indica o passo do manual de montagem em que a peça entra.</p>
+<p class="note">{cfg["codes_note"]}</p>
 {parts_table(P)}
 """
     section(vol, "04", "Engenharia da estrutura metálica", est)
     # 05 explodido
-    section(vol, "05", "Vista explodida", fig(f"{d}/10_modelo_explodido.svg", "Modelo explodido da estrutura: base, estrutura, arcos / mastros, travamentos, cobertura, isolamento, membrana interna, portas e janelas, acabamentos") + fig(f"{d}/13_camadas_construtivas.svg", "Camadas construtivas 01 a 13 (explodida)"))
+    section(vol, "05", "Vista explodida", fig(f"{d}/10_modelo_explodido.svg", cfg["exploded_caption"]) + fig(f"{d}/13_camadas_construtivas.svg", "Camadas construtivas 01 a 13 (explodida)"))
     # 06 encaixe
     enc = f"""
 <p>A estrutura chega pronta: todas as soldas são de fábrica (luvas, talões, chapas de base, olhais, berços) e no terreno só existem encaixes macho-fêmea, parafusos classe 8.8, porcas, arruelas e pinos de segurança. Nenhum corte e nenhuma solda em campo. Cada peça leva o código gravado a laser e cada conexão tem o torque especificado.</p>
@@ -241,32 +365,29 @@ def build_volume(vol, product):
 <h3>Tabela de conexões</h3>
 {conn_table(CX)}
 <h3>Princípios do kit</h3>
-<ul>
- <li><strong>Encaixe macho-fêmea com batente:</strong> as luvas internas D02 têm um anel de batente soldado a 100 mm, de modo que a perna só entra até a posição certa; os 4 furos coincidem automaticamente.</li>
- <li><strong>Furos oblongos nas chapas de base:</strong> 18 x 25 mm permitem ajustar ± 6 mm a posição do arco / pilar sem forçar.</li>
- <li><strong>Pinos de segurança:</strong> em todas as luvas e bases articuladas, pino Ø6 (ou Ø20/Ø30 nos mastros) com contrapino: a peça não se solta mesmo com parafuso frouxo.</li>
- <li><strong>Parafusos por classe:</strong> M12 8.8 nas grelhas e luvas (45 N·m); M16 8.8 nas chapas de base e no anel de beiral (120 N·m); M20 nas bases dos mastros (230 N·m); inox A2 em tudo o que toca a membrana ou fica aparente.</li>
- <li><strong>Sem ferramenta especial:</strong> chaves 19 / 24 / 30 mm, torquímetro, puxador de keder e tensiômetro. Tudo vai na caixa de ferramentas do kit.</li>
-</ul>
+{cfg["kit_principles"]}
 """
     section(vol, "06", "Sistema de encaixe", enc)
     # 07 camadas
-    section(vol, "07", "Camadas construtivas", table(["Camada", "Nome", "Função"], [[f"<b>{n}</b>", t, f] for n, t, f in LAYERS]) + fig("detalhes/DET-01_cobertura_cocoon.svg" if c else "detalhes/DET-02_cobertura_zenith.svg", "Seção do envelope: camadas 06 a 10"))
+    section(vol, "07", "Camadas construtivas", table(["Camada", "Nome", "Função"], [[f"<b>{n}</b>", t, f] for n, t, f in cfg["layers"]]) + fig(*cfg["det_envelope"]))
     # 08 memorial descritivo
     mem = f"""
 <h3>Estrutura e envelope</h3>
-{kv([("Fundação", "Estacas helicoidais Ø76 x 3,6 com hélice Ø300, L 1,5 a 2,5 m, galvanizadas; cabeçotes ajustáveis; 3 modelos alternativos (ver abaixo)"), ("Deck e piso", "Grelha U 150 x 60 x 3,0 galvanizada Z275; vigotas 50 x 150 autoclavadas a cada 400 mm; PIR 50 mm; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato no banho; deck cumaru 20 x 140"), ("Estrutura primária", "Tubos ASTM A500 galvanizados a fogo + pintura a pó bronze nas peças aparentes; ligações parafusadas cl. 8.8"), ("Membrana", "PVDF 1050 g/m² tipo III, garantia 15 anos, classe B1, autolimpante"), ("Isolamento", "Câmara ventilada 60 mm + lã de PET 50 mm + manta refletiva; U ≈ 0,6 W/m²K"), ("Forro", "Tecido tensionado acústico Trevira CS cor areia; painéis de madeira nas zonas de destaque"), ("Vidros", "Insulado 6 lam + 12 Ar + 6 temp low-e (U 1,6; FS 0,40) em esquadrias de alumínio com ruptura térmica, bronze"), ("Portas", "Casulo: pivotante de vidro 1,00 x 2,40; Safari: 2 folhas de correr 1,35 x 2,75 + porta de correr do banho" ), ("Climatização", "Dutado inverter quente/frio no ático (12k Casulo / 18k Safari); difusores lineares; condensadora oculta; opção de piso radiante"), ("Ventilação", "Respiro de cumeeira e janelas basculantes (Casulo) / chaminé do Respiro motorizada (Safari); exaustor com recuperador"), ("Elétrica", "220 V, quadro no ático (12 / 16 módulos), DR, tomadas USB, LED 2700 K indireto; opção solar 3 kWp"), ("Hidráulica", "PEX Ø25/20; aquecedor a gás 23 / 30 L/min ou bomba de calor; esgoto Ø100 a fossa + filtro compactos; reúso de águas cinzas opcional")])}
-{membrane_spec()}{CASULO_MEMBRANE_FIX if c else SAFARI_MEMBRANE_FIX}
+{kv(cfg["memorial_kv"])}
+{membrane_spec(cfg["rain_note"])}{cfg["membrane_fix"]}
 {two(fig("detalhes/DET-06_drenagem.svg", "DET-06 · Drenagem"), fig("detalhes/DET-05_esquadrias.svg", "DET-05 · Portas e janelas"))}
 <h3>Fundação e ancoragem: três modelos</h3>
-{foundation_models(product)}
+{foundation_models(cfg)}
 <h3>Instalações</h3>
 {two(fig("detalhes/DET-07_eletrica.svg", "DET-07 · Elétrica"), fig("detalhes/DET-08_hidraulica.svg", "DET-08 · Hidráulica"))}
 {fig("detalhes/DET-09_climatizacao.svg", "DET-09 · Climatização e ventilação")}
 """
     section(vol, "08", "Memorial descritivo", mem)
     # 09 BOM
-    section(vol, "09", "Bill of Materials (com preços de referência SC, cenário Zion Standard)", '<p class="note">Preços de referência em Santa Catarina, setembro de 2026, sem impostos de revenda (ver premissas na seção 11). Os cenários Econômico e Premium aplicam os fatores da tabela de preços; a planilha XLSX traz as três colunas.</p>' + bom_table(product, 1))
+    if PRECOS:
+        section(vol, "09", "Bill of Materials (com preços de referência SC, cenário Zion Standard)", '<p class="note">Preços de referência em Santa Catarina, setembro de 2026, sem impostos de revenda (ver premissas na seção 11). Os cenários Econômico e Premium aplicam os fatores da tabela de preços; a planilha XLSX traz as três colunas.</p>' + bom_table(product, 1))
+    else:
+        section(vol, "09", "Bill of Materials (materiais e quantidades estimadas)", '<p class="note">Quantidades estimadas a partir da geometria, com perdas e emendas onde indicado, organizadas nos 18 grupos do kit de fábrica. Lista sem preços, para cotação junto aos fornecedores e pedido de fabricação; a planilha de materiais traz a mesma lista.</p>' + bom_table(product, 1))
     # 10 manual
     M = manual(product)
     man = "".join(f"""<div class="step"><div class="stephead"><span class="stepnum">PASSO {s['n']:02d}</span><h4>{s['titulo']}</h4></div>
@@ -287,7 +408,12 @@ def build_volume(vol, product):
 {table(["Função", "R$/h Standard", "Econômico", "Premium"], [[v[0], fmt(v[1], 2), fmt(v[1] * v[2], 2), fmt(v[1] * v[3], 2)] for v in LABOR_RATES.values()], cls="small")}
 <p class="note">Fontes e método: pisos salariais 2026 (montador de estruturas metálicas em SC ≈ R$ 2.850/mês; serralheiro ≈ R$ 2.670 a 3.400/mês) convertidos em custo-hora com encargos (≈ 1,8x), EPI e ferramental; membranas PVC/PVDF instaladas anunciadas de R$ 95 a 145/m² para lonas simples, ajustadas para PVDF tipo III com confecção de forma dupla-curva; aço tubular e perfis pelos distribuidores de SC (lotes acima de 1 t); estacas helicoidais por fornecedores nacionais; demais itens por cotações de mercado em SC. Todos os valores devem ser confirmados por cotação formal de pelo menos 3 fornecedores antes do orçamento executivo. Não inclui: terreno, acessos, redes externas, paisagismo, licenças, impostos sobre a venda e margem da Zion.</p>
 """
-    section(vol, "11", "Orçamento Santa Catarina (3 cenários)", orc)
+    if PRECOS:
+        section(vol, "11", "Orçamento Santa Catarina (3 cenários)", orc)
+    else:
+        lab = budget(product, 1)
+        horas = table(["Função", "Horas", "Fase"], [[n, h, f] for (n, h, r, t, f) in lab["lab_rows"]], foot=["Total de horas", sum(x[1] for x in lab["lab_rows"]), ""])
+        section(vol, "11", "Recursos de fabricação e instalação (horas por função)", '<p class="lead">Horas de mão de obra estimadas por função para uma unidade, separadas em fabricação (oficina) e instalação (sítio), com equipe de 4 montadores e 1 líder mais especialistas pontuais. Transporte em carreta da fábrica ao sítio (até 300 km) e equipamentos leves (guincho manual, talha, andaime, cravação de estacas; munck para os mastros do Safari).</p>' + horas)
     # 12 cronograma
     fab = FAB_SCHEDULE[product]
     asm = [(t, sum(x[2] for x in ASSEMBLY[product][:i]), dd) for i, (t, _, dd, _) in enumerate(ASSEMBLY[product])]
@@ -298,40 +424,40 @@ def build_volume(vol, product):
         ["Projeto executivo, cálculo estrutural e form-finding", "3 semanas", "Engenheiro estrutural + projetista + confeccionador da membrana"],
         ["Compra de aço e insumos", "2 semanas (prazo de entrega)", "Distribuidores SC"],
         ["Gabaritos (calandra e bancada)", "2 semanas (uma vez; reaproveitados em série)", "Serralheria"],
-        ["Fabricação da estrutura (corte, calandra, solda, furação)", f"{'5' if c else '5'} semanas para a 1ª unidade; 2,5 a 3 semanas em série", f"2 serralheiros + 1 soldador ({labor_hours(product)['serralheiro'] + labor_hours(product)['soldador']} h)"],
+        ["Fabricação da estrutura (corte, calandra, solda, furação)", f"{cfg['fab_weeks']} semanas para a 1ª unidade; 2,5 a 3 semanas em série", f"2 serralheiros + 1 soldador ({labor_hours(product)['serralheiro'] + labor_hours(product)['soldador']} h)"],
         ["Pré-montagem em fábrica e fit test da membrana", "1 semana", "Equipe de montagem"],
         ["Galvanização a fogo e pintura a pó", "1,5 semana (terceiros)", "Galvanizadora em SC"],
         ["Confecção da membrana", "4 a 5 semanas em paralelo", "Confeccionador especializado"],
-        ["Esquadrias, vidros" + (", cúpula" if not c else ", Janelas Olho"), "5 a 6 semanas em paralelo", "Vidraçaria e serralheria de alumínio"],
+        ["Esquadrias, vidros" + cfg["glazing_extra"], "5 a 6 semanas em paralelo", "Vidraçaria e serralheria de alumínio"],
         ["Marcenaria, módulos de piso e deck", "4 semanas em paralelo", "Marcenaria + carpintaria"],
-        [f"<b>Total até a expedição</b>", f"<b>{fmt(fabend, 0)} semanas (1ª unidade) · 5 a 6 semanas por unidade em série</b>", ""],
+        [f"<b>Total até a expedição</b>", f"<b>{fmt(fabend, 0)} semanas (1ª unidade) · {cfg['series_weeks']} semanas por unidade em série</b>", ""],
     ]))
     # 14 montagem
     days = sum(x[2] for x in ASSEMBLY[product])
     section(vol, "14", "Estimativa de tempo de montagem", table(["Fase", "Atividades", "Dias", "Equipe"], [[t, dsc, fmt(dd, 1), tm] for (t, dsc, dd, tm) in ASSEMBLY[product]], foot=["Total", "", f"<b>{fmt(days, 0)} dias úteis</b>", "4 montadores + líder + especialistas pontuais"]) +
-            f"<p>Transporte: 1 a 5 dias (nacional). Do embarque à entrega ao operador: {'3' if c else '3,5'} semanas. Desmontagem e realocação: {'4' if c else '5'} dias. Em parque de 10 unidades com 2 equipes: ≈ {'9' if c else '11'} semanas de instalação.</p>")
+            f"<p>Transporte: 1 a 5 dias (nacional). Do embarque à entrega ao operador: {cfg['delivery_weeks']} semanas. Desmontagem e realocação: {cfg['disassembly_days']} dias. Em parque de 10 unidades com 2 equipes: ≈ {cfg['park10_weeks']} semanas de instalação.</p>")
     # 15 recomendações + escala
     rec = f"""
 <h3>Escala industrial: 1, 5, 10 e 50 unidades (cenário Standard)</h3>
 {scale_section(product)}
-<p>De onde vem a redução: compra de aço em lotes de 5 a 30 t (-5 a -13%); gabaritos e calandra por programa CNC amortizados (-14 a -34% na fabricação); membrana em séries de padrão repetido (-6 a -18%); esquadrias e vidros por lote (-5 a -14%); equipe de montagem com curva de aprendizado (-8 a -20%); equipamentos e mobilização diluídos; indiretos de 12% para 8%; e o desenvolvimento (R$ 240 mil por produto) diluído por unidade. A partir de 10 unidades vale a pena uma linha dedicada com bancadas fixas de pré-montagem e estoque de componentes comuns aos dois produtos (grelha, estacas, cabeçotes, terças, perfis, quadros de instalação).</p>
+<p>De onde vem a redução: compra de aço em lotes de 5 a 30 t (-5 a -13%); gabaritos e calandra por programa CNC amortizados (-14 a -34% na fabricação); membrana em séries de padrão repetido (-6 a -18%); esquadrias e vidros por lote (-5 a -14%); equipe de montagem com curva de aprendizado (-8 a -20%); equipamentos e mobilização diluídos; indiretos de 12% para 8%; e o custo de desenvolvimento (projeto executivo, gabaritos e protótipo) diluído por unidade. A partir de 10 unidades vale a pena uma linha dedicada com bancadas fixas de pré-montagem e estoque de componentes comuns {cfg['common_parts']}.</p>
 <h3>Recomendações de engenharia</h3>
 <ol>
  <li><strong>Cálculo estrutural com ART</strong> pela NBR 8800 (aço) e NBR 6123 (vento), com análise não linear da membrana (form-finding e carregamentos de vento e chuva) feita junto com o confeccionador da membrana.</li>
  <li><strong>Sondagem</strong> (SPT ou ensaio de torque de cravação) em cada sítio antes de definir comprimento e quantidade das estacas; teste de carga em 2 estacas por sítio.</li>
- <li><strong>Protótipo em escala real</strong> no Zion Bubble Glamping (Florianópolis) antes da série: validar o tensionamento, a estanqueidade das Janelas Olho e da Espinha de Luz (Casulo) e do Óculo (Safari), o conforto térmico de verão e inverno e o tempo real de montagem.</li>
+ <li><strong>Protótipo em escala real</strong> no Zion Bubble Glamping (Florianópolis) antes da série: {cfg['proto_note']}</li>
  <li><strong>Ensaios</strong>: teste de água nos encontros, termografia do envelope, medição de pré-tensão, ruído do ar-condicionado dutado (meta < 30 dB(A) na cama).</li>
  <li><strong>Galvanização a fogo obrigatória</strong> em todo aço estrutural (litoral); inox A2/A4 nos cabos, esticadores e presilhas; pintura a pó apenas estética.</li>
- <li><strong>Segurança contra incêndio</strong>: membrana e forro classe B1/M1; detector de fumaça; extintor; rota de fuga pela fachada e pela porta do banho (Safari: janela da banheira como saída alternativa).</li>
+ <li><strong>Segurança contra incêndio</strong>: membrana e forro classe B1/M1; detector de fumaça; extintor; {cfg['fire_note']}</li>
  <li><strong>Acessibilidade</strong>: versão acessível com rampa no deck e banho adaptado (NBR 9050) prevista como variante do kit.</li>
  <li><strong>Manutenção</strong>: inspeção anual (pré-tensão, esticadores, selantes, drenos), lavagem bienal da membrana, troca da membrana prevista em 15 a 20 anos com a estrutura em uso.</li>
- <li><strong>Propriedade intelectual</strong>: registro de desenho industrial (INPI) das duas geometrias e das marcas; contratos de fabricação com cláusula de exclusividade dos gabaritos.</li>
+ <li><strong>Propriedade intelectual</strong>: {cfg['ip_note']}</li>
 </ol>
 """
     section(vol, "15", "Recomendações de engenharia e escala industrial", rec)
 
-build_volume(1, "cocoon")
-build_volume(2, "zenith")
+for vol, product in VOLUMES:
+    build_volume(vol, product)
 
 # ----------------------------------------------------------------------------- HTML
 fonts = ""
@@ -383,24 +509,24 @@ tfoot td{font-weight:700;background:var(--paper)} table.kv th{width:32%}
 cover = """
 <section id="cover"><div class="cover">
  <div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
- <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span></div>
- <h1>Sistema construtivo industrializado, modular e desmontável para duas cabanas exclusivas da Zion</h1>
- <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials, manual de montagem, orçamento em Santa Catarina, cronograma e análise de escala industrial. Primeiro a ZION CASULO, depois a ZION SAFARI.</p>
- <div class="meta"><span>VOLUME 1 · CASULO · VOLUME 2 · SAFARI</span><span>ZION HOTEL GROUP INTERNATIONAL · SET 2026</span></div>
+ <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span><span class="line"></span><span>LODGE 38</span></div>
+ <h1>Sistema construtivo industrializado, modular e desmontável para três cabanas exclusivas da Zion</h1>
+ <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials com quantidades estimadas, manual de montagem, recursos de fabricação, cronograma e análise de escala industrial. Primeiro a ZION CASULO, depois a ZION SAFARI e, por fim, a ZION LODGE 38.</p>
+ <div class="meta"><span>VOLUME 1 · CASULO · VOLUME 2 · SAFARI · VOLUME 3 · LODGE 38</span><span>ZION HOTEL GROUP INTERNATIONAL · SET 2026</span></div>
 </div></section>
 <section id="intro"><span class="num">Como ler este caderno</span><h2>Um móvel premium de grande escala</h2>
-<p class="lead">Cada cabana é tratada como um produto industrial: um kit de peças codificadas, fabricadas em serralheria ou indústria, galvanizadas, pré-montadas em fábrica e embaladas em um contêiner. No terreno não há corte nem solda: só encaixes, parafusos e torque. O mesmo sistema (ZION SHELL SYSTEM) serve às duas cabanas, com componentes comuns de fundação, deck, membrana, isolamento, forro, vidros e instalações.</p>
+<p class="lead">Cada cabana é tratada como um produto industrial: um kit de peças codificadas, fabricadas em serralheria ou indústria, galvanizadas, pré-montadas em fábrica e embaladas em um contêiner. No terreno não há corte nem solda: só encaixes, parafusos e torque. O mesmo sistema (ZION SHELL SYSTEM) serve às três cabanas, com componentes comuns de fundação, deck, membrana, isolamento, forro, vidros e instalações.</p>
 <div class="team">
- <div><b>Arquitetura modular</b><br>conceito, plantas, layout, fachadas, cortes</div><div><b>Engenharia estrutural</b><br>pré-dimensionamento de arcos, mastros, anel, cabos, fundações</div><div><b>Engenharia mecânica / fabricação</b><br>processos, gabaritos, tolerâncias, luvas e encaixes</div><div><b>Projeto de estruturas metálicas</b><br>lista de peças, chapas, conexões, parafusos</div>
- <div><b>Membranas tensionadas</b><br>especificação, confecção, form-finding, tensionamento</div><div><b>Glamping e hospitality</b><br>programa, conforto, operação, experiência</div><div><b>Industrialização e montagem</b><br>kit, embalagem, manual, cronograma</div><div><b>Orçamentação SC</b><br>preços de referência, mão de obra, cenários, escala</div>
+ <div><b>Arquitetura modular</b><br>conceito, plantas, layout, fachadas, cortes</div><div><b>Engenharia estrutural</b><br>pré-dimensionamento de arcos, mastros, caibros, anéis, cabos, fundações</div><div><b>Engenharia mecânica / fabricação</b><br>processos, gabaritos, tolerâncias, luvas e encaixes</div><div><b>Projeto de estruturas metálicas</b><br>lista de peças, chapas, conexões, parafusos</div>
+ <div><b>Membranas tensionadas</b><br>especificação, confecção, form-finding, tensionamento</div><div><b>Glamping e hospitality</b><br>programa, conforto, operação, experiência</div><div><b>Industrialização e montagem</b><br>kit, embalagem, manual, cronograma</div><div><b>Materiais e escala</b><br>quantidades estimadas, horas por função, lotes</div>
 </div>
-<p class="note">Todas as bitolas, espessuras e capacidades são pré-dimensionamento e devem ser validadas por engenheiro estrutural habilitado antes da fabricação. Os preços são de referência (set/2026) e devem ser confirmados por cotação.</p>
+<p class="note">Todas as bitolas, espessuras e capacidades são pré-dimensionamento e devem ser validadas por engenheiro estrutural habilitado antes da fabricação. Documento sem preços: as quantidades de materiais são a base para cotação.</p>
 </section>
 """
 nav = ""
 body = cover
-for vol in (1, 2):
-    pname = "ZION CASULO" if vol == 1 else "ZION SAFARI"
+for vol, product in VOLUMES:
+    pname = PRODUCTS[product]["name"]
     nav += f'<div class="vol">Volume {vol} · {pname}</div>'
     first = True
     for sid, v, num, title, html in SECTIONS:
@@ -411,7 +537,7 @@ for vol in (1, 2):
         body += f'<section id="{sid}">{head}<span class="num">{pname} · {num}</span><h2>{title}</h2>{html}</section>'
 
 HTML = f"""<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zion Architectural Product Book · Casulo e Safari</title><style>{CSS}</style></head>
+<title>Zion Architectural Product Book · Casulo, Safari e Lodge 38</title><style>{CSS}</style></head>
 <body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div></body></html>"""
 out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_ARCHITECTURAL_PRODUCT_BOOK" + ("_standalone" if INLINE else "") + ".html")
 if INLINE:   # versão para publicação em página única (sem esqueleto html/head/body; título e estilo no topo)
@@ -432,8 +558,8 @@ if not INLINE and not WEB:
         for r in rows: ws.append([round(v, 2) if isinstance(v, float) else v for v in r])
         for i, w in enumerate(widths or [18] * len(headers), start=1): ws.column_dimensions[get_column_letter(i)].width = w
         ws.freeze_panes = "A2"; return ws
-    for product, P, CX in (("cocoon", cocoon_parts(), COCOON_CONNECTIONS), ("zenith", zenith_parts(), ZENITH_CONNECTIONS)):
-        tag = "Casulo" if product == "cocoon" else "Safari"
+    for _, product in VOLUMES:
+        cfg = PRODUCTS[product]; tag = cfg["tag"]; P = cfg["parts"](); CX = cfg["connections"]
         sheet(f"{tag} Peças", ["Código", "Nome", "Qtd", "Comp (m)", "Larg (mm)", "Alt (mm)", "Perfil", "Aço", "Esp (mm)", "Peso un (kg)", "Peso total (kg)", "Fabricação", "União", "Ordem", "Função"],
               [[p["cod"], p["nome"], p["qtd"], p["comp"], p["larg"], p["alt"], p["perfil"], p["aco"], p["esp"], p["peso_un"], p["peso_total"], p["fab"], p["uniao"], p["ordem"], p["funcao"]] for p in P],
               [9, 46, 6, 9, 9, 9, 34, 22, 8, 10, 11, 40, 46, 7, 40])
@@ -457,4 +583,5 @@ if not INLINE and not WEB:
               [[n] + [(lambda b: [b["mat_total"], b["fab_labor"] + b["site_labor"], b["transporte"] + b["equipamentos"] + b["hospedagem"], b["indiretos"] + b["conting"], b["nre"], b["total"], b["por_m2"]])(budget(product, 1, n)) for _ in [0]][0] for n in (1, 5, 10, 50)], [10, 16, 16, 20, 20, 18, 16, 12])
     sheet("Premissas de preço", ["Chave", "Insumo", "Un.", "Standard", "Fator Econômico", "Fator Premium", "Observação"], [[k] + list(v[:6]) for k, v in PRICES.items()], [14, 70, 6, 12, 12, 12, 50])
     sheet("Taxas de mão de obra", ["Função", "R$/h Standard", "Fator Econômico", "Fator Premium"], [list(v) for v in LABOR_RATES.values()], [50, 14, 14, 14])
-    xout = os.path.join(ROOT, "ZION_ORCAMENTO_SC_Casulo_Safari.xlsx"); wb.save(xout); print("xlsx ->", xout)
+    os.makedirs(os.path.join(ROOT, "interno"), exist_ok=True)
+    xout = os.path.join(ROOT, "interno", "ZION_ORCAMENTO_SC_Casulo_Safari_Lodge.xlsx"); wb.save(xout); print("xlsx (interno, com preços) ->", xout)
