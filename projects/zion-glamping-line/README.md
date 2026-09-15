@@ -9,6 +9,8 @@ Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da
 
 ## Documentos principais
 
+- **`ZION_PROJETO_ARQUITETONICO.pdf`** (6 MB, vetorial) e **`.html`** — Projeto arquitetônico como um projetista entrega: 24 pranchas por produto (PA-00 capa/índice/quadro de áreas/notas · PA-01 implantação 1:200 · PA-02 planta cotada · PA-03 layout · PA-04 cobertura · PA-05 forro e iluminação · PA-06 cortes A-A e B-B · PA-07 fachadas frontal e traseira · PA-08 fachadas laterais · PA-09 quadro de esquadrias · PA-10 planta estrutural · PA-11 detalhes construtivos · PA-12 isométrica, explodida, camadas e estrutura), uma por página A3 paisagem. `ZION_PROJETO_ARQUITETONICO_standalone.html` é a versão autônoma (tudo embutido, com hachuras).
+- **`cocoon/projeto/dxf/` e `zenith/projeto/dxf/`** — 21 arquivos DXF (AutoCAD 2010, metros, layers PAREDES / ESQUADRIAS / MOBILIARIO / ESTRUTURA / COBERTURA / DECK / FUNDACAO / COTAS / TEXTO / EIXOS): plantas cotada e de layout, cobertura, cortes, fachadas, planta estrutural e modelo 3D (3DFACE + polilinhas 3D) de cada produto.
 - **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Cocoon, depois Zenith): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
 - **`ZION_ORCAMENTO_SC_Cocoon_Zenith.xlsx`** — planilha com peças, conexões, BOM em 3 cenários, mão de obra, resumo do orçamento, escala e premissas de preço.
 
@@ -24,13 +26,15 @@ projects/zion-glamping-line/
 │   ├── desenhos/   02 planta humanizada · 03 planta técnica · 03b planta estrutural · 04 elevação frontal · 04b fachada traseira
 │   │               05 elevação lateral · 06 corte longitudinal · 07 corte transversal · 08 isométrica · 10 modelo explodido
 │   │               12 estrutura (isométrica) · 13 camadas construtivas (explodida)
+│   ├── projeto/    pranchas PA-00, PA-01, PA-04, PA-05, PA-08b, PA-09 (SVG) e dxf/ (ZC-*.dxf editáveis em CAD)
 │   ├── 3d/         zion-cocoon-3d.html (visualizador interativo Three.js) · zion-cocoon.glb
 │   └── renders/    renders externos (frontal, lateral, cauda, aérea, noite), internos (estar, cama, banho), estrutura, corte
 ├── zenith/         mesma estrutura
 ├── detalhes/       DET-01 a DET-11: cobertura, ancoragem, fundação, esquadrias, drenagem, elétrica, hidráulica,
 │                   climatização, arcos (Cocoon), mastros (Zenith)
 ├── tools/          geradores: geometry.py (fonte única da geometria), drawings_*.py, iso.py, details.py, bom.py,
-│                   build_viewer.py, render.js, build_dossier.py, export_pdf.js
+│                   build_viewer.py, render.js, build_dossier.py, export_pdf.js, pa_sheets.py, export_dxf.py,
+│                   build_projeto_arquitetonico.py
 └── assets/         fontes Aventa e Cormorant Garamond (identidade Zion)
 ```
 
@@ -79,6 +83,11 @@ python3 build_dossier.py     # Caderno Técnico HTML
 python3 build_product_book.py   # Product Book HTML + planilha XLSX
 NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js   # PDF do Caderno
 NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js ../ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf
+pip install ezdxf            # para os DXF
+python3 pa_sheets.py         # pranchas complementares do projeto arquitetônico (capa, implantação, cobertura, forro, fachada esq., esquadrias)
+python3 export_dxf.py        # DXF editáveis (plantas, cortes, fachadas, estrutura, 3D)
+python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline   # conjunto de pranchas HTML (impressão + autônomo)
+NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js ../ZION_PROJETO_ARQUITETONICO.html ../ZION_PROJETO_ARQUITETONICO.pdf
 ```
 
 Toda a geometria (planta, seções, arcos, cumes, layout) vem de `tools/geometry.py`. Alterar um parâmetro ali e regenerar atualiza desenhos, isométricas, modelo 3D, renders e listas de materiais de forma consistente.
