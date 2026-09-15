@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Geometria paramétrica dos produtos ZION COCOON e ZION ZENITH.
+Geometria paramétrica dos produtos ZION CASULO e ZION SAFARI.
 Fonte única de verdade para desenhos 2D (SVG), isométrica e modelo 3D (Three.js).
 Unidades: metros. Eixos: x = comprimento (0 = fachada frontal), y = largura (0 = eixo), z = altura (0 = piso acabado).
 """
@@ -22,10 +22,10 @@ def cyl(x, y, z1, z2, r, kind, name=""):
     return dict(x=x, y=y, z1=z1, z2=z2, r=r, kind=kind, name=name)
 
 # ==================================================================================
-# ZION COCOON
+# ZION CASULO
 # ==================================================================================
 class Cocoon:
-    NAME = "ZION COCOON"
+    NAME = "ZION CASULO"
     L = 9.6            # comprimento do piso (x = 0 ... 9,6)
     X_FRONT = 0.45     # posição do anel frontal (piso)
     X_GLASS = 0.9      # plano da fachada de vidro (piso)
@@ -271,10 +271,10 @@ class Cocoon:
 
 
 # ==================================================================================
-# ZION ZENITH
+# ZION SAFARI
 # ==================================================================================
 class Zenith:
-    NAME = "ZION ZENITH"
+    NAME = "ZION SAFARI"
     L = 9.5; W = 5.4            # corpo (externo)
     H_WALL = 2.75               # topo do painel de parede
     Z_EAVE = 2.9                # anel de beiral (topo da viga)
@@ -502,14 +502,70 @@ if __name__ == "__main__":
     import os, sys
     out = sys.argv[1] if len(sys.argv) > 1 else "."
     c, z = Cocoon(), Zenith()
-    print("COCOON piso interno m2:", round(c.floor_area(), 2), "membrana/vidro m2:", [round(v, 1) for v in c.membrane_area()])
-    print("COCOON arcos (m):", [round(v, 2) for v in c.arch_lengths()], "altura max:", round(c.top(c.XMAX), 2))
+    print("CASULO piso interno m2:", round(c.floor_area(), 2), "membrana/vidro m2:", [round(v, 1) for v in c.membrane_area()])
+    print("CASULO arcos (m):", [round(v, 2) for v in c.arch_lengths()], "altura max:", round(c.top(c.XMAX), 2))
     for x in [0.5, 1.0, 2, 3.2, 4, 5, 6.2, 7, 8, 8.5, 8.8]:
         print(f"  x={x}: a={c.a(x):.2f} b={c.b(x):.2f} top={c.top(x):.2f} floor_hw={c.floor_hw(x):.2f}")
-    print("ZENITH piso interno m2:", round(z.floor_area(), 2), "cobertura (sup, proj):", [round(v, 1) for v in z.roof_area()])
+    print("SAFARI piso interno m2:", round(z.floor_area(), 2), "cobertura (sup, proj):", [round(v, 1) for v in z.roof_area()])
     for p in z.PEAKS:
         print("  pico", p["name"], round(z.roof_z(p["x"], p["y"]), 2))
     print("  z(0,0)=", round(z.roof_z(0, 0), 2), " z(4,0)=", round(z.roof_z(4, 0), 2), " z(-2.4,0)=", round(z.roof_z(-2.4, 0), 2), " z(4,-3.7)=", round(z.roof_z(4, -3.7), 2))
     json.dump(c.export(), open(os.path.join(out, "cocoon_geometry.json"), "w"))
     json.dump(z.export(), open(os.path.join(out, "zenith_geometry.json"), "w"))
     print("json ok")
+
+
+# ==================================================================================
+# ZION LODGE (terceiro produto da linha: pavilhão octogonal com lanterna, unidade de entrada)
+# ==================================================================================
+class Lodge:
+    NAME = "ZION LODGE"
+    F = 6.8                       # distância entre faces do octógono (m)
+    N = 8
+    Z_EAVE = 2.7                  # anel de beiral (topo)
+    Z_LANTERN = 4.6               # base da lanterna (anel de compressão)
+    Z_TOP = 5.2                   # tampa da lanterna
+    R_LANTERN = 0.75              # raio do anel da lanterna
+    OVER = 0.9                    # beiral da membrana além dos pilares
+    DECK_D = 2.6                  # profundidade do deck frontal (3 faces)
+    SAIL = dict(z_post=2.4, reach=2.6)   # vela frontal sobre o deck
+
+    def side(self):
+        return self.F * math.tan(math.pi / self.N)
+
+    def r_corner(self):
+        return (self.F / 2) / math.cos(math.pi / self.N)
+
+    def vertices(self, r=None, rot=math.pi / 8):
+        """vértices do octógono (face 1 voltada para -x = frente)."""
+        r = r or self.r_corner()
+        return [(r * math.cos(rot + 2 * math.pi * k / self.N), r * math.sin(rot + 2 * math.pi * k / self.N)) for k in range(self.N)]
+
+    def floor_area(self):
+        return 2 * (1 + math.sqrt(2)) * self.side() ** 2
+
+    def deck_pts(self):
+        """deck em três faces frontais (faces 3, 4, 5 do octógono, lado -x)."""
+        V = self.vertices()
+        ro = self.r_corner() + self.DECK_D / math.cos(math.pi / self.N)
+        Vo = self.vertices(ro)
+        idx = [2, 3, 4, 5]
+        inner = [V[i] for i in idx]; outer = [Vo[i] for i in idx]
+        return inner + outer[::-1]
+
+    def deck_area(self):
+        pts = self.deck_pts(); a = 0
+        for i in range(len(pts)):
+            x1, y1 = pts[i]; x2, y2 = pts[(i + 1) % len(pts)]; a += x1 * y2 - x2 * y1
+        return abs(a) / 2
+
+    def roof_z(self, d):
+        """altura da membrana a uma distância radial d do centro (perfil cônico com curva de tensão)."""
+        r0, r1 = self.R_LANTERN, self.r_corner() + self.OVER
+        if d <= r0: return self.Z_LANTERN
+        t = (d - r0) / (r1 - r0)
+        z_edge = self.Z_EAVE - 0.35
+        return self.Z_LANTERN - (self.Z_LANTERN - z_edge) * (t ** 1.25)
+
+    def spec(self):
+        return dict(name=self.NAME, F=self.F, side=self.side(), floor_area=self.floor_area(), deck_area=self.deck_area(), z_eave=self.Z_EAVE, z_top=self.Z_TOP)

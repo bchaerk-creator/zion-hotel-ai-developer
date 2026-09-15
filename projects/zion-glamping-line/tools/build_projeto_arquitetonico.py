@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Monta o PROJETO ARQUITETÔNICO (conjunto de pranchas, uma por página A3 paisagem) de ZION COCOON e ZION ZENITH.
+"""Monta o PROJETO ARQUITETÔNICO (conjunto de pranchas, uma por página A3 paisagem) de ZION CASULO e ZION SAFARI.
 Reúne as pranchas PA-xx (pa_sheets.py) com os desenhos existentes (desenhos/, detalhes/) e lista os DXF (export_dxf.py).
 Saídas: ZION_PROJETO_ARQUITETONICO.html (links relativos, para PDF), ZION_PROJETO_ARQUITETONICO_standalone.html (--inline, tudo embutido).
 Uso: python3 build_projeto_arquitetonico.py [--inline]"""
@@ -9,8 +9,8 @@ from pa_sheets import SHEETS, AREAS, ESQUADRIAS, NOTAS
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ARTIFACT = "--artifact" in sys.argv   # versão sem esqueleto html/head/body (publicação como artefato)
 INLINE = "--inline" in sys.argv or ARTIFACT
-NAME = {"cocoon": "ZION COCOON", "zenith": "ZION ZENITH"}
-TAG = {"cocoon": "ZC", "zenith": "ZZ"}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
+TAG = {"cocoon": "ZC", "zenith": "ZS"}
 
 # sequência de pranchas: (código, título, escala, arquivo relativo, observação)
 def sheets(p):
@@ -82,7 +82,7 @@ def cover():
         dx += "".join(f'<li><code>{p}/projeto/dxf/{f}</code></li>' for f in dxf_list(p))
     return f'''<section class="sheet cover">
 <div class="coverl"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
-<h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION COCOON &amp; ZION ZENITH</h2>
+<h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO &amp; ZION SAFARI</h2>
 <p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos e vistas isométricas. Arquivos DXF editáveis em CAD anexos.</p>
 <dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{len(sheets("cocoon"))} por produto · {len(sheets("cocoon")) * 2} no total</dd></dl>
 <p class="warn">Pré-dimensionamento: bitolas, espessuras, fundações e form-finding da membrana a validar por engenheiros habilitados (ART/RRT) antes da fabricação.</p></div>
@@ -128,10 +128,10 @@ nav{top:env(safe-area-inset-top,0px)}
     for p in ("cocoon", "zenith"):
         for (code, t, sc, rel, note) in sheets(p): body += page(code, t, sc, rel, p, note)
     if ARTIFACT:
-        doc = f'<title>Projeto Arquitetônico Zion Cocoon &amp; Zenith</title><style>{css}</style><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}'
+        doc = f'<title>Projeto Arquitetônico Zion Casulo &amp; Safari</title><style>{css}</style><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}'
         out = sys.argv[sys.argv.index("--artifact") + 1] if len(sys.argv) > sys.argv.index("--artifact") + 1 else os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO_artifact.html")
     else:
-        doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Projeto Arquitetônico · Cocoon &amp; Zenith</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>{css}</style></head><body><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}</body></html>'
+        doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Projeto Arquitetônico · Casulo &amp; Safari</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>{css}</style></head><body><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}</body></html>'
         out = os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO" + ("_standalone" if INLINE else "") + ".html")
     open(out, "w", encoding="utf-8").write(doc)
     print(out, round(os.path.getsize(out) / 1e6, 1), "MB")

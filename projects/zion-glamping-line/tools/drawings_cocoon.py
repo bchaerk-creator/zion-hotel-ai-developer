@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Desenhos técnicos 2D do ZION COCOON: plantas, elevações e cortes (SVG)."""
+"""Desenhos técnicos 2D do ZION CASULO: plantas, elevações e cortes (SVG)."""
 import math, os
 from geometry import Cocoon
 from svgkit import *
@@ -81,7 +81,7 @@ def arch_plan(x):
 # ------------------------------------------------------------------ PLANTA
 def planta(human=True):
     sh = Sheet(1600, 1000, scale=78, ox=390, oy=520)
-    sh.header("Zion Cocoon · Planta baixa " + ("humanizada" if human else "técnica"),
+    sh.header("Zion Casulo · Planta baixa " + ("humanizada" if human else "técnica"),
               "Cabana biomórfica em casulo · 9,60 x 6,00 x 4,20 m · piso interno 45,6 m² + vestíbulo 2,4 m² = 48 m² · deck 29,9 m² · total 78 m²")
     outline, ring = shell_plan_pts()
     D = C.DECK
@@ -190,14 +190,14 @@ def planta(human=True):
         sh.text(-4.25, 0.0, "A", 12, weight=700, dy=4); sh.text(11.25, 0.0, "A", 12, weight=700, dy=4)
     sh.north(1500, 140, angle=-90)
     sh.scalebar(-3.7, -5.55, 5)
-    sh.title_block("ZION COCOON", "Planta baixa " + ("humanizada" if human else "técnica cotada"), "1:50 (A1) · cotas em metros", "02/27" if human else "03/27",
+    sh.title_block("ZION CASULO", "Planta baixa " + ("humanizada" if human else "técnica cotada"), "1:50 (A1) · cotas em metros", "02/27" if human else "03/27",
                    "Layout: vestíbulo, estar, suíte king, banho com banheira na cauda")
     return sh
 
 # ------------------------------------------------------------------ ELEVAÇÃO FRONTAL
 def elev_frontal():
     sh = Sheet(1600, 1000, scale=110, ox=800, oy=720, flip_x=True)
-    sh.header("Zion Cocoon · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · largura 6,00 m · altura 4,20 m")
+    sh.header("Zion Casulo · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · largura 6,00 m · altura 4,20 m")
     # solo e deck
     sh.rect(-6.5, -0.6, 6.5, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-6.5, -0.02, 6.5, -0.02, GREEN, 1.0)
@@ -244,7 +244,7 @@ def elev_frontal():
     sh.dim(-3.6, 0, -3.6, 2.4, -1.15, label="2,40 (porta)")
     sh.dim(3.6, -0.6, 3.6, 0, 0.5, label="0,60")
     sh.scalebar(6.3, -1.9, 4)
-    sh.title_block("ZION COCOON", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica em anel inclinado 8°, 8 arcos elípticos")
+    sh.title_block("ZION CASULO", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica em anel inclinado 8°, 8 arcos elípticos")
     return sh
 
 # ------------------------------------------------------------------ ELEVAÇÃO LATERAL
@@ -261,7 +261,7 @@ def bottom_profile():
 
 def elev_lateral():
     sh = Sheet(1600, 1000, scale=100, ox=470, oy=720)
-    sh.header("Zion Cocoon · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 9,75 m com lábio · deck 4,60 m")
+    sh.header("Zion Casulo · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 9,75 m com lábio · deck 4,60 m")
     # solo
     sh.rect(-4.0, -0.6, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
@@ -310,13 +310,13 @@ def elev_lateral():
     sh.dim(10.8, 0, 10.8, 4.2, 0.5, label="4,20")
     sh.dim(-4.2, -0.6, -4.2, 0, -0.4, label="0,60")
     sh.scalebar(-4.4, -2.5, 5)
-    sh.title_block("ZION COCOON", "Elevação lateral", "1:50 (A1)", "05/27", "Concha assimétrica: frente cheia, cauda afilada, 6 Janelas Olho")
+    sh.title_block("ZION CASULO", "Elevação lateral", "1:50 (A1)", "05/27", "Concha assimétrica: frente cheia, cauda afilada, 6 Janelas Olho")
     return sh
 
 # ------------------------------------------------------------------ CORTE LONGITUDINAL
 def corte_long():
     sh = Sheet(1600, 1000, scale=100, ox=470, oy=720)
-    sh.header("Zion Cocoon · Corte longitudinal A-A", "Plano y = 0 (eixo) · olhar para +y · envelope: membrana + câmara ventilada + isolamento + forro")
+    sh.header("Zion Casulo · Corte longitudinal A-A", "Plano y = 0 (eixo) · olhar para +y · envelope: membrana + câmara ventilada + isolamento + forro")
     sh.rect(-4.0, -0.9, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
     # estacas / vigas / piso
@@ -381,14 +381,14 @@ def corte_long():
     sh.dim(9.9, 0, 9.9, 2.4, 0.4, label="2,40 forro")
     sh.dim(-4.2, -0.9, -4.2, 0, -0.4, label="0,90 (máx.)")
     sh.scalebar(-4.4, -2.5, 5)
-    sh.title_block("ZION COCOON", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Envelope em 4 camadas, ático técnico sobre o banho, Espinha de Luz")
+    sh.title_block("ZION CASULO", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Envelope em 4 camadas, ático técnico sobre o banho, Espinha de Luz")
     return sh
 
 # ------------------------------------------------------------------ CORTE TRANSVERSAL
 def corte_transv():
     xc = 5.0
     sh = Sheet(1600, 1000, scale=120, ox=800, oy=720, flip_x=True)
-    sh.header("Zion Cocoon · Corte transversal B-B", f"Plano x = {fmt(xc)} (suíte) · olhar para +x (cabeceira e banho ao fundo) · escala 1:40")
+    sh.header("Zion Casulo · Corte transversal B-B", f"Plano x = {fmt(xc)} (suíte) · olhar para +x (cabeceira e banho ao fundo) · escala 1:40")
     sh.rect(-6.0, -0.9, 6.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-6.0, -0.02, 6.0, -0.02, GREEN, 1.0)
     for py in [-2.6, -1.3, 0.0, 1.3, 2.6]:
@@ -450,7 +450,7 @@ def corte_transv():
     sh.dim(-3.4, 0, -3.4, 2.1, -1.15, label="2,10 (porta)")
     sh.dim(3.5, -0.9, 3.5, 0, 0.55, label="0,90")
     sh.scalebar(5.8, -2.0, 4)
-    sh.title_block("ZION COCOON", "Corte transversal B-B", "1:40 (A1)", "07/27", "Seção elíptica com centro a 0,75 m: a concha abraça o piso")
+    sh.title_block("ZION CASULO", "Corte transversal B-B", "1:40 (A1)", "07/27", "Seção elíptica com centro a 0,75 m: a concha abraça o piso")
     return sh
 
 

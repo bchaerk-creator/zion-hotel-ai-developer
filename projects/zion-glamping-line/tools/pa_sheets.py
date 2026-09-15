@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Pranchas complementares do PROJETO ARQUITETÔNICO (padrão de projetista):
 PA-00 capa, índice, quadro de áreas e notas · PA-01 implantação · PA-04 planta de cobertura · PA-05 forro e iluminação
-· PA-08b fachada lateral esquerda · PA-09 quadro de esquadrias. Para ZION COCOON e ZION ZENITH."""
+· PA-08b fachada lateral esquerda · PA-09 quadro de esquadrias. Para ZION CASULO e ZION SAFARI."""
 import math, os
 import numpy as np
 from geometry import Cocoon, Zenith
@@ -11,7 +11,7 @@ from drawings_zenith import roof_outline_pts, contours, slats, ground
 
 C, Z = Cocoon(), Zenith()
 OUT = {"cocoon": os.path.join(os.path.dirname(__file__), "..", "cocoon", "projeto"), "zenith": os.path.join(os.path.dirname(__file__), "..", "zenith", "projeto")}
-NAME = {"cocoon": "ZION COCOON", "zenith": "ZION ZENITH"}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
 
 # ----------------------------------------------------------------------------- quadro de áreas
 def zone_area(x1, x2, n=200):
@@ -216,7 +216,7 @@ def cobertura(product):
     c = product == "cocoon"
     if c:
         sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
-        sh.header("Zion Cocoon · Planta de cobertura", "Membrana PVDF em 7 painéis entre arcos + tampas; Espinha de Luz; calhas ocultas nos rodapés; tubos de queda Ø75 nas extremidades")
+        sh.header("Zion Casulo · Planta de cobertura", "Membrana PVDF em 7 painéis entre arcos + tampas; Espinha de Luz; calhas ocultas nos rodapés; tubos de queda Ø75 nas extremidades")
         outline, ring = shell_plan_pts()
         sh.poly(outline, fill=MEMB, stroke=GREEN, sw=1.8)
         D = C.DECK; sh.rect(D["x1"], D["y1"], D["x2"], D["y2"], fill="none", stroke=GREEN, sw=0.8, dash="6 3")
@@ -255,7 +255,7 @@ def cobertura(product):
         sh.leader(2.2, -2.9, 1.0, -4.5, "Janelas Olho: recorte reforçado + clamp no anel E06", 10)
     else:
         sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
-        sh.header("Zion Zenith · Planta de cobertura", "Membrana PVDF de dois cumes · curvas de nível a cada 0,40 m · bordas em catenária · pingadeiras nos pontos baixos · calha oculta no anel de beiral")
+        sh.header("Zion Safari · Planta de cobertura", "Membrana PVDF de dois cumes · curvas de nível a cada 0,40 m · bordas em catenária · pingadeiras nos pontos baixos · calha oculta no anel de beiral")
         rb = Z.roof_bounds()
         sh.rect(rb[0], rb[2], rb[1], rb[3], fill=MEMB, stroke=GREEN, sw=1.8)
         sh.rect(0, -2.7, 9.5, 2.7, fill="none", stroke=GREEN, sw=1.0, dash="6 3")
@@ -381,7 +381,7 @@ def fachada_esquerda(product):
     c = product == "cocoon"
     if c:
         sh = Sheet(1600, 1000, scale=100, ox=1130, oy=720, flip_x=True)   # olhar para -y: frente à direita
-        sh.header("Zion Cocoon · Fachada lateral esquerda", "Vista do lado do café e do closet (olhar para -y, frente à direita) · Janelas Olho JO2, JO3 e JO5 · condensadora à esquerda")
+        sh.header("Zion Casulo · Fachada lateral esquerda", "Vista do lado do café e do closet (olhar para -y, frente à direita) · Janelas Olho JO2, JO3 e JO5 · condensadora à esquerda")
         sh.rect(-4.0, -0.6, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none"); sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
         for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]: sh.rect(px - 0.04, -0.6, px + 0.04, -0.2, fill=STEEL, stroke="none")
         sh.rect(-3.7, -0.2, 9.6, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9); sh.rect(-3.7, -0.05, 9.6, 0.0, fill=GREEN, stroke="none")
@@ -412,7 +412,7 @@ def fachada_esquerda(product):
         sh.scalebar(11.0, -2.5, 5)
     else:
         sh = Sheet(1600, 1000, scale=96, ox=1130, oy=730, flip_x=True)
-        sh.header("Zion Zenith · Fachada lateral esquerda", "Vista da passarela e dos painéis ripados (olhar para -y, frente à direita) · J1 janela do café · J2 fresta do closet · postes PE02 / PE06 / PE04")
+        sh.header("Zion Safari · Fachada lateral esquerda", "Vista da passarela e dos painéis ripados (olhar para -y, frente à direita) · J1 janela do café · J2 fresta do closet · postes PE02 / PE06 / PE04")
         ground(sh, -4.5, 12.0)
         for px in [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]: sh.rect(px - 0.04, -0.6, px + 0.04, -0.2, fill=STEEL, stroke="none")
         sh.rect(-3.0, -0.2, 9.5, -0.05, fill=WOOD2, stroke=GREEN, sw=0.9); sh.rect(-3.0, -0.05, 9.5, 0.0, fill=GREEN, stroke="none")

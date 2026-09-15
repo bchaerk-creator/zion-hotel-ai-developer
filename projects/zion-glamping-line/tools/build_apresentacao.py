@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Apresentação (deck 16:9) do PROJETO ARQUITETÔNICO ZION COCOON & ZION ZENITH no padrão de decks Zion Hotel Group
+"""Apresentação (deck 16:9) do PROJETO ARQUITETÔNICO ZION CASULO & ZION SAFARI no padrão de decks Zion Hotel Group
 (fundo preto, texto creme, Aventa, palavras em CAPS espaçadas). Gera ZION_PROJETO_ARQUITETONICO_Apresentacao.html;
 o PDF sai com export_pdf.js (uma página 1600 x 900 px por slide).
 Uso: python3 build_apresentacao.py"""
@@ -11,8 +11,8 @@ from pa_sheets import AREAS, ESQUADRIAS
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO_Apresentacao.html")
-NAME = {"cocoon": "ZION COCOON", "zenith": "ZION ZENITH"}
-SPLIT = {"cocoon": ("CO", "COON"), "zenith": ("ZE", "NITH")}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
+SPLIT = {"cocoon": ("CA", "SULO"), "zenith": ("SA", "FARI")}
 slides = []
 
 def money(v): return "R$ " + f"{v:,.0f}".replace(",", ".")
@@ -32,8 +32,8 @@ def capa():
 <div class="cover">
   <div class="eyebrow">ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
   <div class="split"><span>PROJETO</span><i></i><span>ARQUITETÔNICO</span></div>
-  <div class="sub">ZION COCOON &amp; ZION ZENITH</div>
-  <div class="tag">Estudo preliminar de duas unidades proprietárias de hospedagem · 48 pranchas · engenharia peça a peça · 21 arquivos CAD</div>
+  <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE</div>
+  <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · 48 pranchas · engenharia peça a peça · 21 arquivos CAD · conceito da terceira unidade</div>
 </div>''', "dark cover-slide", "CAPA")
 
 def linha():
@@ -43,17 +43,17 @@ def linha():
 <div class="photo tall">{img(f"{p}/renders/web/{p}_ext_front.jpg")}</div>
 <dl class="kv"><dt>Dimensões</dt><dd>{dims}</dd><dt>Altura</dt><dd>{alt}</dd><dt>Áreas</dt><dd>{areas}</dd></dl></div>'''
     slide(f'''<h2>A LINHA</h2>
-<p class="lede">Duas unidades proprietárias, o mesmo sistema construtivo: estrutura tubular em aço galvanizado, membrana PVDF tensionada, isolamento e vidro, sobre deck elevado em estacas helicoidais. Modulares, transportáveis e de baixo impacto.</p>
+<p class="lede">Três unidades proprietárias, o mesmo sistema construtivo: estrutura tubular em aço galvanizado, membrana PVDF tensionada, isolamento e vidro, sobre deck elevado em estacas helicoidais. Casulo e Safari em projeto arquitetônico completo; Lodge, a unidade de entrada, em estudo de conceito.</p>
 <div class="two">{col("cocoon", "9,60 x 6,00 m", "48 m² internos · deck 29,9 m² · 78 m²", "4,20 m na cumeeira", "Cabana biomórfica em casulo · 8 arcos elípticos · Espinha de Luz · 6 Janelas Olho")}
 {col("zenith", "9,50 x 5,40 m · cobertura 12,90 x 7,40 m", "48,4 m² internos · terraço 28 m² · 79,3 m²", "5,80 m e 4,60 m nos dois cumes", "Cabana escultural de dois cumes · mastros com coroas · Óculo do Zênite · Respiro")}</div>''', "dark", "A LINHA")
 
 def sistema():
     layers = ["Estacas helicoidais galvanizadas", "Grelha de vigas U 150 e cabeçotes ajustáveis", "Módulos de piso: vigotas, PIR 50 mm, compensado naval", "Piso de carvalho de engenharia · porcelanato no banho",
-              "Estrutura primária: arcos elípticos (Cocoon) · pilares, anel de beiral e mastros (Zenith)", "Terças, travamentos e cabos de contraventamento", "Perfil duplo keder de alumínio sobre a estrutura",
+              "Estrutura primária: arcos elípticos (Casulo) · pilares, anel de beiral e mastros (Safari)", "Terças, travamentos e cabos de contraventamento", "Perfil duplo keder de alumínio sobre a estrutura",
               "Membrana externa PVDF 1050 g/m² tipo III", "Câmara ventilada 60 mm", "Lã de PET 50 mm + manta refletiva", "Forro tensionado acústico classe M1", "Esquadrias de alumínio RPT bronze com vidro insulado low-e", "Deck de cumaru com fixação oculta e balizadores"]
     li = "".join(f'<li><span class="n">{i + 1:02d}</span>{esc(l)}</li>' for i, l in enumerate(layers))
     slide(f'''<div class="half left"><h2>ZION SHELL SYSTEM</h2><p class="lede">Treze camadas construtivas, do solo à luz. Fabricação em oficina, montagem em campo sem solda, parafusada classe 8.8.</p><ol class="layers">{li}</ol></div>
-<div class="half right photo">{img("cocoon/renders/web/cocoon_structure.jpg")}<div class="cap">Estrutura primária do Cocoon: 8 arcos elípticos Ø88,9 x 3,6 sobre trilhos de base</div></div>''', "dark", "SISTEMA CONSTRUTIVO")
+<div class="half right photo">{img("cocoon/renders/web/cocoon_structure.jpg")}<div class="cap">Estrutura primária do Casulo: 8 arcos elípticos Ø88,9 x 3,6 sobre trilhos de base</div></div>''', "dark", "SISTEMA CONSTRUTIVO")
 
 # ----------------------------------------------------------------------------- por produto
 def produto(p):
@@ -92,6 +92,18 @@ def produto(p):
     det = ("detalhes/DET-01_cobertura_cocoon.svg", "detalhes/DET-10_arcos_cocoon.svg") if p == "cocoon" else ("detalhes/DET-02_cobertura_zenith.svg", "detalhes/DET-11_mastros_zenith.svg")
     slide(f'''<h2>DETALHES CONSTRUTIVOS <small>PA-11 · cobertura em camadas · {"arcos e emendas" if p == "cocoon" else "mastros e coroas"} · 1:5 a 1:20</small></h2><div class="two-sheets">{sheet(det[0])}{sheet(det[1])}</div>''', "dark", NAME[p] + " · DETALHES")
     slide(f'''<h2>ISOMÉTRICA E MODELO EXPLODIDO <small>PA-12a · PA-12b</small></h2><div class="two-sheets">{sheet(f"{d}/08_isometrica.svg")}{sheet(f"{d}/10_modelo_explodido.svg")}</div>''', "dark", NAME[p] + " · ISOMÉTRICAS")
+
+def lodge():
+    from geometry import Lodge
+    Lg = Lodge()
+    slide(f'''<div class="divider"><div class="split"><span>ZION</span><i></i><span>LODGE</span></div><div class="sub">Pavilhão octogonal com Lanterna Zion · unidade de entrada · estudo de conceito</div></div>''', "dark cover-slide", "ZION LODGE")
+    pts = [("Planta", "octógono regular de 6,80 m entre faces (7,36 m entre vértices)"), ("Áreas", f"{fmt(Lg.floor_area())} m² internos · deck {fmt(Lg.deck_area())} m² em três faces · {fmt(Lg.floor_area() + Lg.deck_area())} m²"),
+           ("Alturas", "beiral 2,70 m · Lanterna Zion de 4,60 a 5,20 m"), ("Estrutura", "8 pilares Ø101,6 revestidos em madeira, anel de beiral, 8 caibros e anel de compressão"),
+           ("Fechamentos", "5 faces de vidro insulado · 3 faces opacas (banho e cabeceira) · porta de correr frontal"), ("Diferenciais", "luz zenital sobre a cama pela lanterna; vela de sombra independente sobre o deck; mesmo Zion Shell System")]
+    kv = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in pts)
+    slide(f'''<div class="wide">{sheet("lodge/desenhos/01_conceito.svg")}</div>
+<div class="side"><h3>CONCEITO</h3><div class="pa">FOLHA 01/LG · estudo de conceito R00</div><dl class="kv stack">{kv}</dl>
+<p class="note">Próxima etapa: desenvolver o Lodge no mesmo pipeline dos outros produtos (pranchas PA-00 a PA-12, engenharia peça a peça, DXF, orçamento SC).</p></div>''', "dark", "ZION LODGE · CONCEITO")
 
 # ----------------------------------------------------------------------------- fechamento
 def implantacao():
@@ -137,7 +149,7 @@ def proximos():
 def fim():
     slide('''<div class="closing"><div class="z">Z</div><div class="split"><span>DESENVOLVEMOS</span><i></i><span>DESTINOS</span></div>
 <div class="sub">ZION HOTEL GROUP INTERNATIONAL · ZION GLAMPING COLLECTION</div>
-<div class="tag">Projeto arquitetônico ZION COCOON &amp; ZION ZENITH · R00 · setembro de 2026 · pranchas, product book, planilha de orçamento e arquivos CAD no repositório</div></div>''', "dark cover-slide", "")
+<div class="tag">Projeto arquitetônico ZION CASULO · ZION SAFARI · conceito ZION LODGE · R00 · setembro de 2026 · pranchas, product book, planilha de orçamento e arquivos CAD no repositório</div></div>''', "dark cover-slide", "")
 
 CSS = """
 @font-face{font-family:'Aventa';src:url(assets/aventa.woff2) format('woff2');font-weight:100 900;font-display:swap}
@@ -160,7 +172,7 @@ h3{margin:0;font-weight:200;font-size:26px;letter-spacing:.3em;text-transform:up
 .foot span:nth-child(2){flex:1;text-align:center}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:56px} .col .pname{font-size:20px;letter-spacing:.3em;font-weight:300;margin-bottom:4px} .col .pfam{font-size:12px;letter-spacing:.12em;color:var(--sand);font-weight:300;margin-bottom:18px;line-height:1.7}
 .photo.tall{height:340px;overflow:hidden;margin-bottom:22px}
-.kv{display:grid;grid-template-columns:120px 1fr;gap:10px 18px;margin:0;font-size:14px;line-height:1.6;font-weight:300} .kv dt{color:var(--sand);letter-spacing:.2em;font-size:10px;text-transform:uppercase;padding-top:5px} .kv dd{margin:0}
+.kv{display:grid;grid-template-columns:120px 1fr;gap:10px 18px;margin:0;font-size:14px;line-height:1.6;font-weight:300} .kv.stack{grid-template-columns:1fr;gap:2px 0;font-size:12.5px} .kv.stack dt{margin-top:10px} .note{font-size:11.5px;line-height:1.6;color:var(--sand);font-weight:300;margin-top:22px;border-top:1px solid rgba(222,214,191,.3);padding-top:12px} .kv dt{color:var(--sand);letter-spacing:.2em;font-size:10px;text-transform:uppercase;padding-top:5px} .kv dd{margin:0}
 .half{position:absolute;top:64px;bottom:70px} .half.left{left:80px;width:640px} .half.right{left:780px;right:80px;overflow:hidden} .half.right .cap{position:absolute;left:0;right:0;bottom:0;padding:16px 20px;background:rgba(4,6,5,.7);font-size:11px;letter-spacing:.14em;color:var(--sand);font-weight:300}
 ol.layers,ol.next,ol.steps{list-style:none;margin:0;padding:0} ol.layers li{display:flex;gap:16px;font-size:13.5px;line-height:1.5;padding:7px 0;border-bottom:1px solid rgba(222,214,191,.16);font-weight:300} .n{color:var(--earth);font-weight:600;letter-spacing:.1em;font-size:11px;min-width:26px;padding-top:2px}
 ol.next li{display:grid;grid-template-columns:30px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid rgba(222,214,191,.16)} ol.next li b{font-weight:500;font-size:15px;letter-spacing:.04em} ol.next li p{grid-column:2;margin:0;font-size:12.5px;line-height:1.6;color:var(--sand);font-weight:300}
@@ -183,7 +195,7 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 def build():
     capa(); linha(); sistema()
     for p in ("cocoon", "zenith"): produto(p)
-    implantacao(); logistica(); orcamento(); proximos(); fim()
+    lodge(); implantacao(); logistica(); orcamento(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'

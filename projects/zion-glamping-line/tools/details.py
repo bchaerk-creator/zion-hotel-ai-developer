@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
 Gerador determinístico dos detalhes construtivos (SVG) da ZION GLAMPING COLLECTION.
-Produtos: ZION COCOON e ZION ZENITH. Fonte de dados: ESPECIFICACAO_TECNICA.md.
+Produtos: ZION CASULO e ZION SAFARI. Fonte de dados: ESPECIFICACAO_TECNICA.md.
 
 Uso:  python3 tools/details.py            (escreve os SVG em ../detalhes/)
 Dependências: biblioteca padrão + numpy.
@@ -438,7 +438,7 @@ COC = CocoonGeo()
 
 # ---------- plantas simplificadas (usadas em DET-06 a DET-09) ----------
 def cocoon_plan(sh, ox, oy, k, rooms=True, deck=True, furniture=True, labels=True):
-    """Planta do Cocoon: origem em (x=0, y=0) do projeto; k px/m; x para a direita, y para cima."""
+    """Planta do Casulo: origem em (x=0, y=0) do projeto; k px/m; x para a direita, y para cima."""
     X = lambda xm: ox + xm * k
     Y = lambda ym: oy - ym * k
     # contorno máximo (z = 0,75) e contorno do piso
@@ -541,10 +541,10 @@ def zenith_plan(sh, ox, oy, k, roof=True, rooms=True, furniture=True, labels=Tru
 
 
 # ==================================================================================
-# DET-01  Seção do envelope do COCOON no arco
+# DET-01  Seção do envelope do CASULO no arco
 # ==================================================================================
 def det01():
-    sh = Sheet("DET-01", "Seção do envelope no arco", "ZION COCOON", "1:5 (1 mm = 1,4 px)",
+    sh = Sheet("DET-01", "Seção do envelope no arco", "ZION CASULO", "1:5 (1 mm = 1,4 px)",
                "Corte longitudinal (plano x-z) perpendicular ao arco A3. Camadas de fora (acima) para dentro (abaixo).")
     k = 1.4
     t = Tr(120, 250, k)          # y em mm cresce para cima; profundidade = -mm
@@ -723,10 +723,10 @@ def det01():
 
 
 # ==================================================================================
-# DET-02  Cobertura do ZENITH: anel do cume (óculo) e beiral
+# DET-02  Cobertura do SAFARI: anel do cume (óculo) e beiral
 # ==================================================================================
 def det02():
-    sh = Sheet("DET-02", "Cobertura Zenith: cume e beiral", "ZION ZENITH", "1:10 (cume) / 1:8 (beiral)",
+    sh = Sheet("DET-02", "Cobertura Safari: cume e beiral", "ZION SAFARI", "1:10 (cume) / 1:8 (beiral)",
                "Seção vertical pelo mastro principal M1 e anel do Zênite; seção pelo anel de beiral sobre pilar.")
     # ---------------- Painel A: anel do cume ----------------
     sh.panel(60, 120, 840, 560, "Seção A  -  anel do Zênite Ø1200 com óculo de vidro", "escala 1:10 (1 mm = 0,34 px)")
@@ -781,7 +781,7 @@ def det02():
         # chapa-anel de alumínio 60 x 8 aparafusada na face externa + gaxeta EPDM
         sh.rect(X(xo + sgn * 5) - (8 * k if sgn < 0 else 0), Y(zr + 38), 8 * k, 60 * k, fill="url(#p-steel)", stroke=INK, sw=0.9)
         sh.rect(X(xo + sgn * 5) - (3 * k if sgn < 0 else 0) + (0 if sgn < 0 else 0), Y(zr + 38), 3 * k, 60 * k, fill=INK, stroke="none")
-        sh.bolt_side(X(xo + sgn * 30) - (0), Y(zr + 8), 45 * k, 4, vertical=False) if sgn > 0 else \
+        sh.bolt_side(X(xo + sgn * 30) - (0), Y(zr + 8), 45 * k, 4, vertical=False) if sgn > 0 else\
             sh.bolt_side(X(xo - 45), Y(zr + 8), 45 * k, 4, vertical=False)
         # membrana: sobe pela face externa, passa sobre o perfil arredondado e desce em 45°
         mem = [(X(xo + sgn * 15), Y(zr - 20)), (X(xo + sgn * 15), Y(zr + 55)),
@@ -986,9 +986,9 @@ def det02():
 # ==================================================================================
 def det03():
     sh = Sheet("DET-03", "Ancoragens", "COMUM", "1:5 / 1:20 / 1:2,5",
-               "(a) pé de arco do Cocoon no quadro do deck; (b) pé articulado e estai dos postes externos do Zenith; (c) bolsa de cabo de borda e chapa de canto.")
+               "(a) pé de arco do Casulo no quadro do deck; (b) pé articulado e estai dos postes externos do Safari; (c) bolsa de cabo de borda e chapa de canto.")
     # ---------------- (a) pé de arco ----------------
-    sh.panel(60, 120, 600, 560, "(a)  Pé de arco Cocoon sobre viga de borda", "1:5 (1 mm = 0,8 px)")
+    sh.panel(60, 120, 600, 560, "(a)  Pé de arco Casulo sobre viga de borda", "1:5 (1 mm = 0,8 px)")
     k = 0.8
     t = Tr(400, 470, k)    # x=0 eixo do pé do arco; y=0 topo do piso acabado. Exterior à esquerda.
     X, Y = t.x, t.y
@@ -1100,7 +1100,7 @@ def det03():
     sh.scale_bar(80, 660, k, 200, "200 mm")
 
     # ---------------- (b) pé do poste + estai ----------------
-    sh.panel(690, 120, 420, 560, "(b)  Poste externo Zenith: base e estai", "1:20 e 1:5")
+    sh.panel(690, 120, 420, 560, "(b)  Poste externo Safari: base e estai", "1:20 e 1:5")
     k2 = 0.12
     t2 = Tr(905, 560, k2)    # x=0 base do poste; y=0 nível do solo
     X2, Y2 = t2.x, t2.y
@@ -1393,7 +1393,7 @@ def det04():
         (3, "Cabeçote ajustável rosqueado M36, curso 150 mm, porca de travamento"),
         (4, "Chapa do cabeçote 150 x 150 x 8 mm com 4 furos para a viga U"),
         (5, "Viga U enrijecida 150 x 60 x 3,0 mm galvanizada Z275 (cortada nas estacas)"),
-        (6, "Viga U longitudinal (vista); malha 2,4 x 2,4 m (Cocoon) / 2,4 x 2,7 m (Zenith)"),
+        (6, "Viga U longitudinal (vista); malha 2,4 x 2,4 m (Casulo) / 2,4 x 2,7 m (Safari)"),
         (7, "Vigota de madeira tratada 50 x 150 mm @ 400 mm (pinus CCA-C ou eucalipto)"),
         (8, "Isolamento PIR 50 mm entre vigotas, encaixado"),
         (9, "Manta de fechamento inferior (respirável, anti-roedor) grampeada às vigotas"),
@@ -1424,7 +1424,7 @@ def lens_pts(cx, cy, hw, hh, n=1.5, m=64):
 
 
 def wall_layers(sh, X, Y, ang, x0, z0, L, sgn_out=-1, liner=True):
-    """Camadas do envelope do Cocoon inclinadas (ang rad da vertical), começando em (x0,z0) subindo L mm.
+    """Camadas do envelope do Casulo inclinadas (ang rad da vertical), começando em (x0,z0) subindo L mm.
     Exterior no lado sgn_out (x negativo = esquerda). Retorna função para offset."""
     ux, uz = math.sin(ang), math.cos(ang)        # ao longo da parede (para cima)
     nx, nz = sgn_out * math.cos(ang), -sgn_out * math.sin(ang)  # normal para fora
@@ -1441,7 +1441,7 @@ def wall_layers(sh, X, Y, ang, x0, z0, L, sgn_out=-1, liner=True):
 
 def det05():
     sh = Sheet("DET-05", "Esquadrias", "COMUM", "1:10 / 1:5 / 1:60",
-               "(a) Janela Olho do Cocoon; (b) fachada de vidro inclinada 8° do Cocoon; (c) fachada frontal do Zenith; (d) fresta no painel SIP.")
+               "(a) Janela Olho do Casulo; (b) fachada de vidro inclinada 8° do Casulo; (c) fachada frontal do Safari; (d) fresta no painel SIP.")
     C = sh.callout
     # ---------------- (a) Janela Olho ----------------
     sh.panel(60, 120, 700, 350, "(a)  Janela Olho 1600 x 950: seção vertical e elevação", "1:10 (1 mm = 0,22 px) / 1:40")
@@ -1509,8 +1509,8 @@ def det05():
     sh.dim_v(cx + 108, cy - 47.5, cy + 47.5, "950", ext=None, left=False, size=10)
     sh.text(cx, cy + 90, "elevação 1:40 (lente, n = 1,5)", size=9.5, anchor="middle", color=GOLD)
 
-    # ---------------- (b) fachada de vidro do Cocoon ----------------
-    sh.panel(790, 120, 750, 350, "(b)  Fachada de vidro Cocoon inclinada 8°: elevação e detalhes", "1:60 / 1:5")
+    # ---------------- (b) fachada de vidro do Casulo ----------------
+    sh.panel(790, 120, 750, 350, "(b)  Fachada de vidro Casulo inclinada 8°: elevação e detalhes", "1:60 / 1:5")
     ek = 0.065
     ex, ey = 990, 452
     pts = [(ex + p[0] * 1000 * ek, ey - p[1] * 1000 * ek) for p in COC.arch_pts(1.0, 100)]
@@ -1566,8 +1566,8 @@ def det05():
     sh.label(X6(0), Y6(-30), X6(-70), Y6(-52), "mola de piso 100 x 60", size=9.5, anchor="end")
     sh.label(X6(4), Y6(60), X6(30), Y6(90), "porta pivotante", size=9.5, anchor="start")
 
-    # ---------------- (c) fachada frontal do Zenith ----------------
-    sh.panel(60, 485, 700, 320, "(c)  Fachada frontal Zenith 5400 x 2750: 2 fixas + 2 de correr", "1:50 / 1:5")
+    # ---------------- (c) fachada frontal do Safari ----------------
+    sh.panel(60, 485, 700, 320, "(c)  Fachada frontal Safari 5400 x 2750: 2 fixas + 2 de correr", "1:50 / 1:5")
     fk = 0.075
     fx, fy = 300, 782
     sh.rect(fx - 2700 * fk, fy - 2750 * fk, 5400 * fk, 2750 * fk, fill=GLASS, stroke=INK, sw=1.4)
@@ -1700,8 +1700,8 @@ def det06():
     sh = Sheet("DET-06", "Drenagem pluvial", "COMUM", "1:100 (plantas) / 1:6 (seções)",
                "Escoamento da membrana, calhas ocultas, tubos de queda Ø75, pingadeiras e dispersão. Chuva de projeto 150 mm/h.")
     C = sh.callout
-    # ---------------- planta Cocoon ----------------
-    sh.panel(60, 120, 520, 470, "Planta  -  ZION COCOON", "1:100 (1 m = 40 px)")
+    # ---------------- planta Casulo ----------------
+    sh.panel(60, 120, 520, 470, "Planta  -  ZION CASULO", "1:100 (1 m = 40 px)")
     k = 40
     X, Y = cocoon_plan(sh, 200, 380, k, rooms=False, furniture=False, labels=False)
     sh.north(540, 170)
@@ -1736,8 +1736,8 @@ def det06():
     C(5, X(10.6), Y(0.5), X(9.9), Y(-3.2))
     sh.text(X(-2.9), Y(-4.35), "deck: ripas com folga 6 mm drenam livremente", size=9, color=GOLD)
 
-    # ---------------- planta Zenith ----------------
-    sh.panel(600, 120, 620, 470, "Planta  -  ZION ZENITH", "1:100 (1 m = 40 px)")
+    # ---------------- planta Safari ----------------
+    sh.panel(600, 120, 620, 470, "Planta  -  ZION SAFARI", "1:100 (1 m = 40 px)")
     X2, Y2 = zenith_plan(sh, 760, 372, k, rooms=False, furniture=False, labels=False)
     # setas radiais dos cumes
     for (px, py) in ((6.3, 0.4), (1.6, 1.6)):
@@ -1779,8 +1779,8 @@ def det06():
 
     # ---------------- seções das calhas 1:5 ----------------
     sh.panel(1240, 120, 300, 470, "Calha oculta 80 mm", "seções 1:6")
-    # (i) rodapé do Cocoon
-    sh.text(1252, 160, "no trilho de base (Cocoon)", size=9.5, color=GOLD)
+    # (i) rodapé do Casulo
+    sh.text(1252, 160, "no trilho de base (Casulo)", size=9.5, color=GOLD)
     kk = 0.4
     ta = Tr(1400, 300, kk)
     XA, YA = ta.x, ta.y
@@ -1802,8 +1802,8 @@ def det06():
     sh.text(XA(60), YA(50), "int.", size=9, color=GOLD)
     C(12, XA(-95), YA(50), XA(-200), YA(150))
     C(13, XA(-44), YA(89), XA(-70), YA(200))
-    # (ii) beiral do Zenith
-    sh.text(1252, 392, "no anel de beiral (Zenith)", size=9.5, color=GOLD)
+    # (ii) beiral do Safari
+    sh.text(1252, 392, "no anel de beiral (Safari)", size=9.5, color=GOLD)
     tb = Tr(1440, 505, kk)
     XB, YB = tb.x, tb.y
     sh.rect(XB(-50), YB(0), 100 * kk, 150 * kk, fill=BG, stroke=INK, sw=1.4)   # anel 150 x 100
@@ -1827,11 +1827,11 @@ def det06():
     # ---------------- tabela de vazões ----------------
     sh.text(60, 630, "VAZÕES DE PROJETO  (i = 150 mm/h; Q = A x i / 3600)", size=11, color=GOLD, ls="0.2em", weight=600)
     rows = [
-        ("Cocoon: concha completa", "45,5", "6,83", "1,90", "2 x Ø75 (extremidades)", "0,95"),
-        ("Cocoon: por lado (rodapé)", "22,8", "3,41", "0,95", "1 x Ø75 por lado", "0,95"),
-        ("Zenith: faixas laterais às calhas", "2 x 24,0", "2 x 3,60", "2 x 1,00", "Ø75 em 2 pilares", "1,00"),
-        ("Zenith: balanço frontal (catenária)", "17,8", "2,67", "0,74", "pingadeiras e canaleta", "-"),
-        ("Zenith: balanços laterais e fundos", "29,7", "4,46", "1,24", "pingadeiras e canaleta", "-"),
+        ("Casulo: concha completa", "45,5", "6,83", "1,90", "2 x Ø75 (extremidades)", "0,95"),
+        ("Casulo: por lado (rodapé)", "22,8", "3,41", "0,95", "1 x Ø75 por lado", "0,95"),
+        ("Safari: faixas laterais às calhas", "2 x 24,0", "2 x 3,60", "2 x 1,00", "Ø75 em 2 pilares", "1,00"),
+        ("Safari: balanço frontal (catenária)", "17,8", "2,67", "0,74", "pingadeiras e canaleta", "-"),
+        ("Safari: balanços laterais e fundos", "29,7", "4,46", "1,24", "pingadeiras e canaleta", "-"),
     ]
     sh.table(60, 655, ["Superfície", "A (m²)", "Q (m³/h)", "Q (L/s)", "Destino", "Q/tubo (L/s)"], rows,
              [230, 80, 90, 80, 190, 100], size=11, lh=19)
@@ -1898,8 +1898,8 @@ def det07():
                "Pontos, circuitos e caminhos dos cabos (piso técnico e atrás do forro). Diagrama unifilar com proteções.")
     C = sh.callout
     k = 44
-    # ---------------- planta Cocoon ----------------
-    sh.panel(60, 120, 640, 420, "Planta elétrica  -  ZION COCOON (220 V mono, QD 12 módulos, 6,5 kW)", "1:100")
+    # ---------------- planta Casulo ----------------
+    sh.panel(60, 120, 640, 420, "Planta elétrica  -  ZION CASULO (220 V mono, QD 12 módulos, 6,5 kW)", "1:100")
     X, Y = cocoon_plan(sh, 220, 330, k, deck=True)
     # quadro no ático técnico (x 6,3 a 8,8, z > 2,4) - projeção tracejada
     sh.rect(X(6.35), Y(1.9), 2.4 * k, 3.8 * k, fill="none", stroke=GOLD, sw=0.6, dash="3 2")
@@ -1961,8 +1961,8 @@ def det07():
     C(6, X(9.6), Y(2.55), X(8.7), Y(3.3))
     C(7, X(3.0), Y(1.9), X(2.6), Y(3.5))
 
-    # ---------------- planta Zenith ----------------
-    sh.panel(720, 120, 820, 420, "Planta elétrica  -  ZION ZENITH (220 V mono, QD 16 módulos, 8,0 kW)", "1:100")
+    # ---------------- planta Safari ----------------
+    sh.panel(720, 120, 820, 420, "Planta elétrica  -  ZION SAFARI (220 V mono, QD 16 módulos, 8,0 kW)", "1:100")
     X2, Y2 = zenith_plan(sh, 900, 330, k, roof=True)
     sh.rect(X2(6.6), Y2(2.5), 2.7 * k, 5.0 * k, fill="none", stroke=GOLD, sw=0.6, dash="3 2")
     sh.text(X2(8.0), Y2(3.0), "ÁTICO TÉCNICO (z 2,50 a 2,90)", size=7.5, anchor="middle", color=GOLD)
@@ -2014,7 +2014,7 @@ def det07():
     C(13, X2(10.25), Y2(-0.5), X2(11.2), Y2(0.3))
 
     # ---------------- diagrama unifilar ----------------
-    sh.panel(60, 560, 790, 300, "Diagrama unifilar (Cocoon / Zenith)", "sem escala")
+    sh.panel(60, 560, 790, 300, "Diagrama unifilar (Casulo / Safari)", "sem escala")
     x0, y0 = 80, 640
     sh.text(x0, y0 - 40, "rede 220 V, 60 Hz, F+N+PE", size=10, color=GOLD)
     sh.line(x0, y0, x0 + 40, y0, 1.2, INK)
@@ -2038,7 +2038,7 @@ def det07():
         ("C3  Tomadas gerais (estar, suíte) com USB", "20 A", "2,5 mm²", "B", False),
         ("C4  Iluminação LED 2700 K + drivers 24 V", "10 A", "1,5 mm²", "B", False),
         ("C5  Banho (tomadas, exaustor, piso radiante opc.)", "20 A", "2,5 mm²", "B + DR 30 mA", False),
-        ("C6  Hidromassagem 3 kW (Zenith)", "32 A", "6 mm²", "C + DR 30 mA", True),
+        ("C6  Hidromassagem 3 kW (Safari)", "32 A", "6 mm²", "C + DR 30 mA", True),
         ("C7  Deck / externo (balizadores, tomada IP66)", "10 A", "1,5 mm²", "B + DR 30 mA", False),
         ("C8  Reserva / solar 3 kWp + bateria (inversor híbrido)", "20 A", "4 mm²", "C", True),
     ]
@@ -2110,8 +2110,8 @@ def det08():
                "Água fria PEX 25, água quente, esgoto Ø40/50 ao coletor Ø100 (i = 2%), ventilação, tratamento e opção de águas cinzas.")
     C = sh.callout
     k = 44
-    # ---------------- planta Cocoon ----------------
-    sh.panel(60, 120, 560, 400, "Planta hidráulica  -  ZION COCOON", "1:100")
+    # ---------------- planta Casulo ----------------
+    sh.panel(60, 120, 560, 400, "Planta hidráulica  -  ZION CASULO", "1:100")
     X, Y = cocoon_plan(sh, 130, 320, k, deck=False)
     # entrada de água fria pela cauda -> registro + filtro -> aquecedor no ático (x 6,5..8,8)
     pipe(sh, [(X(10.4), Y(1.6)), (X(9.0), Y(1.6)), (X(8.3), Y(1.6))], "cold")
@@ -2148,8 +2148,8 @@ def det08():
     C(5, X(10.0), Y(0.6), X(10.9), Y(0.1))
     C(6, X(2.9), Y(2.3), X(2.0), Y(3.2))
 
-    # ---------------- planta Zenith ----------------
-    sh.panel(640, 120, 640, 400, "Planta hidráulica  -  ZION ZENITH", "1:100")
+    # ---------------- planta Safari ----------------
+    sh.panel(640, 120, 640, 400, "Planta hidráulica  -  ZION SAFARI", "1:100")
     X2, Y2 = zenith_plan(sh, 800, 320, k, roof=False)
     pipe(sh, [(X2(11.0), Y2(1.8)), (X2(9.5), Y2(1.8)), (X2(8.6), Y2(1.8))], "cold")
     valve(sh, X2(10.3), Y2(1.8)); sh.rect(X2(9.9) - 5, Y2(1.8) - 5, 10, 10, fill=BG, stroke=INK, sw=0.9); sh.text(X2(9.9), Y2(1.8) + 3, "F", size=7, anchor="middle")
@@ -2227,18 +2227,18 @@ def det08():
     sh.text(60, 560, "ESPECIFICAÇÕES", size=11, color=GOLD, ls="0.2em", weight=600)
     sh.texts(60, 582, [
         "Água fria: PEX Ø25 mm (entrada) e Ø20 nos ramais, em conduíte no piso técnico; registro geral, filtro Y e válvula redutora (3 bar).",
-        "Água quente: aquecedor a gás 23 L/min (Cocoon) / 30 L/min (Zenith) ou bomba de calor 200 L / 300 L no ático; PEX Ø20 isolado 9 mm.",
-        "Pressurização: reservatório 100 L + pressurizador 0,5 CV no ático (Cocoon) quando a rede for por gravidade; retorno de AQ opcional.",
+        "Água quente: aquecedor a gás 23 L/min (Casulo) / 30 L/min (Safari) ou bomba de calor 200 L / 300 L no ático; PEX Ø20 isolado 9 mm.",
+        "Pressurização: reservatório 100 L + pressurizador 0,5 CV no ático (Casulo) quando a rede for por gravidade; retorno de AQ opcional.",
         "Esgoto: ramais Ø40 (lavatório, chuveiro), Ø50 (banheira) e Ø100 (bacia) com sifões; coletor Ø100 PVC sob o deck, i = 2%, CI a cada 15 m.",
-        "Ventilação: coluna Ø50 até 0,30 m acima da cobertura (cauda do Cocoon / atrás do Respiro no Zenith), com terminal anti-inseto.",
+        "Ventilação: coluna Ø50 até 0,30 m acima da cobertura (cauda do Casulo / atrás do Respiro no Safari), com terminal anti-inseto.",
         "Tratamento: fossa séptica 1.500 L + filtro anaeróbio 1.000 L + sumidouro (NBR 7229) ou estação compacta de lodo ativado (4 pessoas).",
         "Águas cinzas (opcional): desvio de chuveiro, banheira e lavatório para tanque 500 L com filtro e cloração; reuso em irrigação.",
-        "Hidromassagem Zenith Ø1,90: skid com bomba 1 CV, filtro de cartucho, aquecedor elétrico 3 kW e ozônio; enchimento AF, esgoto ao coletor.",
+        "Hidromassagem Safari Ø1,90: skid com bomba 1 CV, filtro de cartucho, aquecedor elétrico 3 kW e ozônio; enchimento AF, esgoto ao coletor.",
     ], size=10, lh=15.5)
     items = [(1, "Entrada AF PEX 25 com registro e filtro"), (2, "Aquecedor no ático técnico"),
              (3, "Caixa de inspeção Ø300 no coletor Ø100"), (4, "Coluna de ventilação Ø50"),
              (5, "Desvio de águas cinzas (opcional)"), (6, "Ponto de água do minibar (estar)"),
-             (7, "Entrada AF Zenith pelos fundos"), (8, "Aquecedor 30 L/min ou BC 300 L (ático do banho)"),
+             (7, "Entrada AF Safari pelos fundos"), (8, "Aquecedor 30 L/min ou BC 300 L (ático do banho)"),
              (9, "Hidromassagem: skid próprio sob o terraço"), (10, "CI e saída do coletor pelos fundos"),
              (11, "Esgoto da Ilha do Café pela passarela"), (12, "Ducha externa na passarela")]
     sh.legend(60, 728, items, cols=3, colw=320, lh=15, size=9.2, title=None)
@@ -2269,8 +2269,8 @@ def det09():
         sh.pl(pts, 0.8, INK)
     def airflow(x1, y1, x2, y2, color=GOLD):
         sh.arrow(x1, y1, x2, y2, 1.0, color, head=6)
-    # ---------------- Cocoon planta ----------------
-    sh.panel(60, 120, 520, 330, "Planta  -  ZION COCOON (12.000 BTU inverter, dutado)", "1:100")
+    # ---------------- Casulo planta ----------------
+    sh.panel(60, 120, 520, 330, "Planta  -  ZION CASULO (12.000 BTU inverter, dutado)", "1:100")
     X, Y = cocoon_plan(sh, 120, 292, k, deck=False)
     sh.rect(X(6.6), Y(1.4), 1.0 * k, 0.6 * k, fill="url(#p-steel)", stroke=INK, sw=1.0)
     sh.text(X(7.1), Y(0.55), "EVAP", size=7, anchor="middle", color=GOLD)
@@ -2305,8 +2305,8 @@ def det09():
     C(4, X(9.65), Y(-0.6), X(10.5), Y(0.4))
     C(5, X(7.9), Y(0.9), X(9.8), Y(1.7))
 
-    # ---------------- Cocoon seção longitudinal ----------------
-    sh.panel(60, 470, 520, 300, "Seção longitudinal  -  COCOON (ventilação e ar)", "1:75 (1 m = 50 px)")
+    # ---------------- Casulo seção longitudinal ----------------
+    sh.panel(60, 470, 520, 300, "Seção longitudinal  -  CASULO (ventilação e ar)", "1:75 (1 m = 50 px)")
     ks = 50
     sx, sy = 95, 735
     SX = lambda xm: sx + xm * ks
@@ -2355,8 +2355,8 @@ def det09():
     C(6, SX(4.05), SY(4.2), SX(3.0), SY(4.3))
     C(7, SX(0.75), SY(0.8), SX(-0.5), SY(1.2))
 
-    # ---------------- Zenith planta ----------------
-    sh.panel(600, 120, 620, 330, "Planta  -  ZION ZENITH (18.000 BTU inverter, dutado)", "1:100")
+    # ---------------- Safari planta ----------------
+    sh.panel(600, 120, 620, 330, "Planta  -  ZION SAFARI (18.000 BTU inverter, dutado)", "1:100")
     X2, Y2 = zenith_plan(sh, 740, 292, k, roof=True)
     sh.rect(X2(7.4), Y2(0.9), 1.1 * k, 0.6 * k, fill="url(#p-steel)", stroke=INK, sw=1.0)
     sh.text(X2(7.95), Y2(0.05), "EVAP", size=7, anchor="middle", color=GOLD)
@@ -2396,8 +2396,8 @@ def det09():
     C(13, X2(1.6), Y2(1.3), X2(0.4), Y2(-0.6))
     C(14, X2(8.6), Y2(-1.9), X2(9.8), Y2(-3.0))
 
-    # ---------------- Zenith seção longitudinal ----------------
-    sh.panel(600, 470, 620, 300, "Seção longitudinal  -  ZENITH (ventilação e ar)", "≈ 1:95 (1 m = 40 px)")
+    # ---------------- Safari seção longitudinal ----------------
+    sh.panel(600, 470, 620, 300, "Seção longitudinal  -  SAFARI (ventilação e ar)", "≈ 1:95 (1 m = 40 px)")
     sx2, sy2 = 730, 758
     ks2 = 40
     SX2 = lambda xm: sx2 + xm * ks2
@@ -2468,20 +2468,20 @@ def det09():
         (16, "Óculo do Zênite: vidro duplo (cúpula + vidro interno), sem abertura"),
     ]
     sh.legend(1240, 140, items, cols=1, colw=300, lh=16.5, size=9.0)
-    sh.note(1250, 460, ["Notas", "Linhas frigorígenas isoladas 3/8 + 5/8 (Cocoon)", "e 1/2 + 3/4 (Zenith) em canaleta oculta.",
+    sh.note(1250, 460, ["Notas", "Linhas frigorígenas isoladas 3/8 + 5/8 (Casulo)", "e 1/2 + 3/4 (Safari) em canaleta oculta.",
                         "Dreno de condensado Ø20 com sifão à calha.", "Dutos flexíveis isolados Ø150/Ø200; velocidade",
                         "< 4 m/s; ruído nos difusores < 30 dB(A).", "Aquecimento: ciclo reverso (bomba de calor)",
                         "+ piso radiante elétrico opcional 150 W/m².", "Ventilação natural: câmara ventilada 60 mm,",
-                        "basculantes (Cocoon), Respiro (Zenith), frestas.", "Renovação mínima: 27 m³/h/pessoa (NBR 16401)."], size=9.2, w=300)
+                        "basculantes (Casulo), Respiro (Safari), frestas.", "Renovação mínima: 27 m³/h/pessoa (NBR 16401)."], size=9.2, w=300)
     sh.text(60, 800, "Legenda das setas:  dourada = ar de insuflamento / ventilação natural;  preta = retorno.  Dutos representados em cinza.", size=9.5, color=GOLD)
     sh.write("DET-09_climatizacao.svg")
 
 
 # ==================================================================================
-# DET-10  Sistema de arcos do COCOON
+# DET-10  Sistema de arcos do CASULO
 # ==================================================================================
 def det10():
-    sh = Sheet("DET-10", "Sistema de arcos", "ZION COCOON", "1:40 / 1:5 / sem escala",
+    sh = Sheet("DET-10", "Sistema de arcos", "ZION CASULO", "1:40 / 1:5 / sem escala",
                "Arco típico A3 em 3 segmentos com luvas internas, tabela dos 8 arcos, ligação das terças, presilha keder, contraventamento e anel frontal A0.")
     C = sh.callout
     # ---------------- Painel A: elevação do arco A3 ----------------
@@ -2698,10 +2698,10 @@ def det10():
 
 
 # ==================================================================================
-# DET-11  Mastros e coroas do ZENITH
+# DET-11  Mastros e coroas do SAFARI
 # ==================================================================================
 def det11():
-    sh = Sheet("DET-11", "Mastros e coroas", "ZION ZENITH", "1:45 / 1:5 / 1:40",
+    sh = Sheet("DET-11", "Mastros e coroas", "ZION SAFARI", "1:45 / 1:5 / 1:40",
                "Mastros M1 e M2 com bases articuladas, capitéis usinados, coroas de 3 braços, anéis de cume, anel de beiral parafusado e geometria dos postes estaiados.")
     C = sh.callout
     # ---------------- Painel A: elevações M1 e M2 ----------------

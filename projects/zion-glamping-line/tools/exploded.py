@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Isometricas explodidas (SVG) do ZION COCOON e do ZION ZENITH:
+"""Isometricas explodidas (SVG) do ZION CASULO e do ZION SAFARI:
  - 10_modelo_explodido.svg: modelo explodido da estrutura (paisagem 1600 x 1000)
  - 13_camadas_construtivas.svg: as 13 camadas construtivas em pilha explodida (retrato 1200 x 2000)
 Reutiliza geometry.py (geometria), svgkit.py (folha) e iso.py (cena com algoritmo do pintor)."""
@@ -58,7 +58,7 @@ def fit(layers, box, smax):
     oy = by0 + ((by1 - by0) - dv * s) / 2 - min(sy) * s
     return s, ox, oy
 
-# ------------------------------------------------------------------ malhas da concha (Cocoon)
+# ------------------------------------------------------------------ malhas da concha (Casulo)
 _SHELL = {}
 def shell_mesh(nu=40, nv=20):
     key = (nu, nv)
@@ -128,7 +128,7 @@ def floor_guide(sc, dz):
     fl = C.floor_outline(40)
     sc.polyline([(x, y, dz) for (x, y) in fl] + [(fl[0][0], fl[0][1], dz)], mix(EARTH, CREAM, 0.55), 0.6, "4 3")
 
-# ------------------------------------------------------------------ COCOON: componentes
+# ------------------------------------------------------------------ CASULO: componentes
 def c_piles(sc, dz):
     ground_plate(sc, -4.3, 10.2, -3.8, 3.8, -0.62 + dz)
     for (px, py) in cocoon_pile_grid():
@@ -309,7 +309,7 @@ def c_hydraulic(sc, dz):
     arrow3d(sc, [(10.4, 1.6, dz), (9.75, 1.6, dz)], COLD, 1.2)
     bump_from(sc, nf, nl)
 
-# ------------------------------------------------------------------ ZENITH: componentes
+# ------------------------------------------------------------------ SAFARI: componentes
 def z_piles(sc, dz):
     ground_plate(sc, -4.2, 12.3, -5.3, 5.3, -0.62 + dz)
     for (px, py) in zenith_pile_grid():
@@ -597,9 +597,9 @@ def label_positions(sc, layers, ymin, ymax, pitch):
 
 def modelo_explodido(product):
     coc = product == "cocoon"
-    name = "ZION COCOON" if coc else "ZION ZENITH"
+    name = "ZION CASULO" if coc else "ZION SAFARI"
     sh = Sheet(1600, 1000)
-    sh.header(("Zion Cocoon" if coc else "Zion Zenith") + " · Modelo explodido da estrutura",
+    sh.header(("Zion Casulo" if coc else "Zion Safari") + " · Modelo explodido da estrutura",
               "Isometrica explodida · grupos construtivos separados na vertical, da fundacao aos acabamentos · sem escala")
     if coc:
         dzs = [0.0, 1.3, 2.5, 4.0, 7.4, 10.8, 14.4, 18.0, 20.6]
@@ -646,9 +646,9 @@ def modelo_explodido(product):
 
 def camadas_construtivas(product):
     coc = product == "cocoon"
-    name = "ZION COCOON" if coc else "ZION ZENITH"
+    name = "ZION CASULO" if coc else "ZION SAFARI"
     sh = Sheet(1200, 2000)
-    sh.header(("Zion Cocoon" if coc else "Zion Zenith") + " · Camadas construtivas",
+    sh.header(("Zion Casulo" if coc else "Zion Safari") + " · Camadas construtivas",
               "Pilha explodida das 13 camadas, da fundacao ao acabamento interno · isometrica · sem escala")
     step = 3.0
     dzs = [0.0]

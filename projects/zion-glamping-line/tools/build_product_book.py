@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""ZION ARCHITECTURAL PRODUCT BOOK · gera o HTML (Cocoon primeiro, depois Zenith) e a planilha XLSX de orçamento.
+"""ZION ARCHITECTURAL PRODUCT BOOK · gera o HTML (Casulo primeiro, depois Safari) e a planilha XLSX de orçamento.
 Uso: python3 build_product_book.py [--inline]"""
 import os, sys, base64
 from geometry import Cocoon, Zenith
@@ -56,7 +56,7 @@ def membrane_spec():
  ["Proteção UV", "Laca PVDF (fluoretada) 100% em ambas as faces; bloqueio UV > 99%; retenção de cor > 90% em 10 anos", "ISO 4892 (envelhecimento acelerado)", "Certificado do fabricante da membrana"],
  ["Resistência mecânica", "Tração urdume/trama ≥ 4.200 / 4.000 N/5 cm; rasgo ≥ 600 / 550 N; 1.050 g/m² (tipo III)", "DIN 53354 / DIN 53363", "Laudo por lote"],
  ["Resistência ao vento", "Projeto para V0 = 45 m/s (NBR 6123); pré-tensão 2,5 kN/m; fator de segurança 5 sobre a ruptura em uso", "NBR 6123 + análise não linear de membrana", "Memória de cálculo do form-finding; tensiômetro na obra"],
- ["Resistência à chuva", "Inclinação mínima 12° em qualquer ponto (Cocoon: seção elíptica; Zenith: cumes a 5,80 e 4,60 m); sem bolsões", "Geometria", "Modelo 3D e teste de água"],
+ ["Resistência à chuva", "Inclinação mínima 12° em qualquer ponto (Casulo: seção elíptica; Safari: cumes a 5,80 e 4,60 m); sem bolsões", "Geometria", "Modelo 3D e teste de água"],
  ["Durabilidade", "Vida útil ≥ 15 anos (garantia) / 20 a 25 anos (esperada); estabilidade dimensional < 1%", "Garantia do fabricante", "Inspeção anual"],
  ["Fungos e algas", "Tratamento fungicida no revestimento e anti-wicking nos fios", "ISO 846", "Certificado"],
  ["Fogo", "Classe B1 (DIN 4102) / M2 (NF P92-507); autoextinguível", "DIN 4102", "Certificado"],
@@ -66,7 +66,7 @@ def membrane_spec():
 <h3>Sistema de fixação e tensionamento</h3>
 """
 
-COCOON_MEMBRANE_FIX = """
+CASULO_MEMBRANE_FIX = """
 <ol>
  <li><strong>Onde começa.</strong> A membrana é confeccionada em 7 painéis de vão (um por vão entre arcos) mais a tampa frontal (entre A0 e o vidro) e a tampa da cauda. Cada painel tem cordão keder Ø8 soldado por RF nas duas bordas longitudinais e bolsa com tubo Ø20 na borda inferior.</li>
  <li><strong>Como é fixada.</strong> Sobre cada arco vai um perfil duplo keder de alumínio (E01) preso por presilhas inox a cada 300 mm. Os painéis vizinhos deslizam cada um em um canal do mesmo perfil: a junta fica selada pelo próprio perfil, sem parafuso atravessando a membrana.</li>
@@ -75,7 +75,7 @@ COCOON_MEMBRANE_FIX = """
  <li><strong>Drenagem.</strong> A água escorre pela concha até a calha oculta do perfil E02 (80 x 60 mm) e sai por dois tubos de queda Ø75 nas extremidades (frente e cauda) até caixas de brita. A calha tem inclinação de 0,5% nos dois sentidos a partir do meio.</li>
  <li><strong>Arremates.</strong> Perfil de acabamento em alumínio bronze cobrindo o keder na frente; saias de EPDM nas passagens do respiro de cumeeira e do duto da condensadora; tampas de topo do keder com dreno.</li>
 </ol>"""
-ZENITH_MEMBRANE_FIX = """
+SAFARI_MEMBRANE_FIX = """
 <ol>
  <li><strong>Onde começa.</strong> Membrana em peça única (8 gomos radiais por cume soldados por RF, mais as faixas de beiral), com bolsa de cabo Ø32 nas quatro bordas e faixas de reforço duplas nos cantos e ao redor dos anéis.</li>
  <li><strong>Como é fixada.</strong> Nos cumes, a membrana é prensada entre o anel de aço (B03/B04) e o perfil de clamp de alumínio (E02) com EPDM e parafusos inox M10 a cada 150 mm. Nos cantos, a chapa de canto inox (D14) recebe o cabo de borda, a cinta de canto e o olhal do poste. Sobre o anel de beiral a membrana apenas passa, deslizando sobre o perfil arredondado E01.</li>
@@ -108,8 +108,8 @@ LAYERS = [
     ("01", "Fundação", "Transfere as cargas ao solo sem escavação: estacas helicoidais (ou sapatas pontuais) com cabeçotes ajustáveis que absorvem o desnível do terreno."),
     ("02", "Estrutura do deck", "Grelha de vigas U 150 x 60 galvanizadas: nivela a plataforma, engasta os arcos / pilares e leva as instalações no vazio de 200 mm."),
     ("03", "Piso e isolamento", "Módulos de vigotas com PIR 50 mm, manta inferior, compensado naval e piso de engenharia: barreira térmica e acústica contra o solo."),
-    ("04", "Estrutura metálica principal", "Pórticos elípticos (Cocoon) / mastros, coroas, pilares e anel de beiral (Zenith): esqueleto que dá forma e resiste ao vento."),
-    ("05", "Travamentos", "Terças, espinha e cabos em X (Cocoon) / postes, estais e cabo de borda (Zenith): impedem a ovalização e o tombamento e distribuem a tensão da membrana."),
+    ("04", "Estrutura metálica principal", "Pórticos elípticos (Casulo) / mastros, coroas, pilares e anel de beiral (Safari): esqueleto que dá forma e resiste ao vento."),
+    ("05", "Travamentos", "Terças, espinha e cabos em X (Casulo) / postes, estais e cabo de borda (Safari): impedem a ovalização e o tombamento e distribuem a tensão da membrana."),
     ("06", "Membrana externa", "PVDF 1050 g/m² tensionada: impermeabiliza, bloqueia UV, dá a forma final e enrijece a estrutura pela pré-tensão."),
     ("07", "Câmara de ventilação", "60 mm de ar em movimento entre a membrana e o isolamento: seca a condensação da face interna da membrana e retira o calor radiante no verão."),
     ("08", "Isolamento térmico", "Lã de PET 50 mm (25 kg/m³) apoiada em malha: R = 1,25 m²K/W; mantém o conforto na serra e no calor tropical."),
@@ -147,7 +147,7 @@ def budget_section(product):
         ["Mão de obra de fabricação (serralheiro, soldador)"] + [money(b["fab_labor"]) for b in B],
         ["Mão de obra de instalação (montadores, líder, carpinteiro, eletricista, encanador, vidraceiro, membranas, marceneiro, acabamento, engenheiro)"] + [money(b["site_labor"]) for b in B],
         ["Transporte (carreta fábrica-sítio até 300 km + última milha)"] + [money(b["transporte"]) for b in B],
-        ["Equipamentos (guincho, talha, andaime, cravação; munck no Zenith)"] + [money(b["equipamentos"]) for b in B],
+        ["Equipamentos (guincho, talha, andaime, cravação; munck no Safari)"] + [money(b["equipamentos"]) for b in B],
         ["Hospedagem e alimentação da equipe (5 pessoas)"] + [money(b["hospedagem"]) for b in B],
         [f"Custos indiretos ({fmt(B[0]['indiretos_pct'] * 100, 0)}%: gestão, EPI, ferramental, seguros, ART)"] + [money(b["indiretos"]) for b in B],
         ["Contingência"] + [f"{money(b['conting'])} ({fmt(b['conting_pct'] * 100, 0)}%)" for b in B],
@@ -183,19 +183,19 @@ def scale_section(product):
 # ============================================================================= VOLUMES
 def build_volume(vol, product):
     c = product == "cocoon"; G = C if c else Z
-    name = "ZION COCOON" if c else "ZION ZENITH"
+    name = "ZION CASULO" if c else "ZION SAFARI"
     bom_ = cocoon_bom() if c else zenith_bom()
     P = cocoon_parts() if c else zenith_parts(); CX = COCOON_CONNECTIONS if c else ZENITH_CONNECTIONS
     d = f"{product}/desenhos"; rd = f"{product}/renders"
     # 01 conceito
     if c:
         concept = f"""
-<p class="lead">Cabana orgânica premium em forma de casulo: uma concha contínua de membrana tensionada sobre oito pórticos elípticos, que se abre para a paisagem por um lábio inclinado e uma fachada de vidro de piso a cumeeira. Nada de escotilhas redondas nem túnel segmentado: a Cocoon é uma semente, cheia na frente e afilada na cauda, com uma Espinha de Luz na cumeeira e seis Janelas Olho em lente.</p>
+<p class="lead">Cabana orgânica premium em forma de casulo: uma concha contínua de membrana tensionada sobre oito pórticos elípticos, que se abre para a paisagem por um lábio inclinado e uma fachada de vidro de piso a cumeeira. Nada de escotilhas redondas nem túnel segmentado: a Casulo é uma semente, cheia na frente e afilada na cauda, com uma Espinha de Luz na cumeeira e seis Janelas Olho em lente.</p>
 {kv([("Comprimento do piso", "9,60 m (concha com lábio: 9,75 m)"), ("Largura máxima", "6,00 m (piso 5,86 m)"), ("Altura máxima", "4,20 m"), ("Área interna", f"{fmt(G.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck externo", "4,60 x 6,50 = 29,9 m²"), ("Área total", "78 m²"),
      ("Programa", "Lounge com chaise e minibar, suíte king, banho completo com banheira na cauda, opção de hot tub no deck"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 contêiner 40' HC"), ("Estrutura", "Aço carbono galvanizado a fogo: 8 pórticos elípticos + terças + espinha + trilhos de base")])}
 <h3>Inspiração e identidade proprietária</h3>
 <ul><li><strong>Casulo e concha:</strong> seção elíptica com centro a 0,75 m do piso, que abraça o chão e sobe sem quinas.</li><li><strong>Biomorfismo:</strong> planta em superelipse assimétrica (frente n = 4, cauda n = 3): a forma de uma semente, reconhecível em planta e em silhueta.</li><li><strong>Lábio frontal:</strong> anel de fachada inclinado 8°, avançando 0,60 m sobre o deck: beiral, sombra e a expressão de abertura.</li><li><strong>Espinha de Luz:</strong> claraboia contínua de 0,70 x 4,70 m sobre a cama e o estar.</li><li><strong>Janelas Olho:</strong> lentes 1,60 x 0,95 m com requadros profundos de madeira laminada.</li></ul>
-<p>As geometrias são definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code>; recomenda-se o registro de desenho industrial das duas formas e das marcas ZION COCOON e ZION ZENITH.</p>"""
+<p>As geometrias são definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code>; recomenda-se o registro de desenho industrial das duas formas e das marcas ZION CASULO e ZION SAFARI.</p>"""
     else:
         concept = f"""
 <p class="lead">Cabana arquitetônica de dois cumes assimétricos deslocados em diagonal: 5,80 m no Zênite, sobre a cama, e 4,60 m no Respiro, sobre o café. A membrana desce dos cumes a um anel de beiral e continua em balanço sobre o terraço, com bordas em catenária entre postes inclinados. Sob ela, um corpo de vidro e madeira de 9,50 x 5,40 m.</p>
@@ -255,8 +255,8 @@ def build_volume(vol, product):
     # 08 memorial descritivo
     mem = f"""
 <h3>Estrutura e envelope</h3>
-{kv([("Fundação", "Estacas helicoidais Ø76 x 3,6 com hélice Ø300, L 1,5 a 2,5 m, galvanizadas; cabeçotes ajustáveis; 3 modelos alternativos (ver abaixo)"), ("Deck e piso", "Grelha U 150 x 60 x 3,0 galvanizada Z275; vigotas 50 x 150 autoclavadas a cada 400 mm; PIR 50 mm; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato no banho; deck cumaru 20 x 140"), ("Estrutura primária", "Tubos ASTM A500 galvanizados a fogo + pintura a pó bronze nas peças aparentes; ligações parafusadas cl. 8.8"), ("Membrana", "PVDF 1050 g/m² tipo III, garantia 15 anos, classe B1, autolimpante"), ("Isolamento", "Câmara ventilada 60 mm + lã de PET 50 mm + manta refletiva; U ≈ 0,6 W/m²K"), ("Forro", "Tecido tensionado acústico Trevira CS cor areia; painéis de madeira nas zonas de destaque"), ("Vidros", "Insulado 6 lam + 12 Ar + 6 temp low-e (U 1,6; FS 0,40) em esquadrias de alumínio com ruptura térmica, bronze"), ("Portas", "Cocoon: pivotante de vidro 1,00 x 2,40; Zenith: 2 folhas de correr 1,35 x 2,75 + porta de correr do banho" ), ("Climatização", "Dutado inverter quente/frio no ático (12k Cocoon / 18k Zenith); difusores lineares; condensadora oculta; opção de piso radiante"), ("Ventilação", "Respiro de cumeeira e janelas basculantes (Cocoon) / chaminé do Respiro motorizada (Zenith); exaustor com recuperador"), ("Elétrica", "220 V, quadro no ático (12 / 16 módulos), DR, tomadas USB, LED 2700 K indireto; opção solar 3 kWp"), ("Hidráulica", "PEX Ø25/20; aquecedor a gás 23 / 30 L/min ou bomba de calor; esgoto Ø100 a fossa + filtro compactos; reúso de águas cinzas opcional")])}
-{membrane_spec()}{COCOON_MEMBRANE_FIX if c else ZENITH_MEMBRANE_FIX}
+{kv([("Fundação", "Estacas helicoidais Ø76 x 3,6 com hélice Ø300, L 1,5 a 2,5 m, galvanizadas; cabeçotes ajustáveis; 3 modelos alternativos (ver abaixo)"), ("Deck e piso", "Grelha U 150 x 60 x 3,0 galvanizada Z275; vigotas 50 x 150 autoclavadas a cada 400 mm; PIR 50 mm; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato no banho; deck cumaru 20 x 140"), ("Estrutura primária", "Tubos ASTM A500 galvanizados a fogo + pintura a pó bronze nas peças aparentes; ligações parafusadas cl. 8.8"), ("Membrana", "PVDF 1050 g/m² tipo III, garantia 15 anos, classe B1, autolimpante"), ("Isolamento", "Câmara ventilada 60 mm + lã de PET 50 mm + manta refletiva; U ≈ 0,6 W/m²K"), ("Forro", "Tecido tensionado acústico Trevira CS cor areia; painéis de madeira nas zonas de destaque"), ("Vidros", "Insulado 6 lam + 12 Ar + 6 temp low-e (U 1,6; FS 0,40) em esquadrias de alumínio com ruptura térmica, bronze"), ("Portas", "Casulo: pivotante de vidro 1,00 x 2,40; Safari: 2 folhas de correr 1,35 x 2,75 + porta de correr do banho" ), ("Climatização", "Dutado inverter quente/frio no ático (12k Casulo / 18k Safari); difusores lineares; condensadora oculta; opção de piso radiante"), ("Ventilação", "Respiro de cumeeira e janelas basculantes (Casulo) / chaminé do Respiro motorizada (Safari); exaustor com recuperador"), ("Elétrica", "220 V, quadro no ático (12 / 16 módulos), DR, tomadas USB, LED 2700 K indireto; opção solar 3 kWp"), ("Hidráulica", "PEX Ø25/20; aquecedor a gás 23 / 30 L/min ou bomba de calor; esgoto Ø100 a fossa + filtro compactos; reúso de águas cinzas opcional")])}
+{membrane_spec()}{CASULO_MEMBRANE_FIX if c else SAFARI_MEMBRANE_FIX}
 {two(fig("detalhes/DET-06_drenagem.svg", "DET-06 · Drenagem"), fig("detalhes/DET-05_esquadrias.svg", "DET-05 · Portas e janelas"))}
 <h3>Fundação e ancoragem: três modelos</h3>
 {foundation_models(product)}
@@ -319,10 +319,10 @@ def build_volume(vol, product):
 <ol>
  <li><strong>Cálculo estrutural com ART</strong> pela NBR 8800 (aço) e NBR 6123 (vento), com análise não linear da membrana (form-finding e carregamentos de vento e chuva) feita junto com o confeccionador da membrana.</li>
  <li><strong>Sondagem</strong> (SPT ou ensaio de torque de cravação) em cada sítio antes de definir comprimento e quantidade das estacas; teste de carga em 2 estacas por sítio.</li>
- <li><strong>Protótipo em escala real</strong> no Zion Bubble Glamping (Florianópolis) antes da série: validar o tensionamento, a estanqueidade das Janelas Olho e da Espinha de Luz (Cocoon) e do Óculo (Zenith), o conforto térmico de verão e inverno e o tempo real de montagem.</li>
+ <li><strong>Protótipo em escala real</strong> no Zion Bubble Glamping (Florianópolis) antes da série: validar o tensionamento, a estanqueidade das Janelas Olho e da Espinha de Luz (Casulo) e do Óculo (Safari), o conforto térmico de verão e inverno e o tempo real de montagem.</li>
  <li><strong>Ensaios</strong>: teste de água nos encontros, termografia do envelope, medição de pré-tensão, ruído do ar-condicionado dutado (meta < 30 dB(A) na cama).</li>
  <li><strong>Galvanização a fogo obrigatória</strong> em todo aço estrutural (litoral); inox A2/A4 nos cabos, esticadores e presilhas; pintura a pó apenas estética.</li>
- <li><strong>Segurança contra incêndio</strong>: membrana e forro classe B1/M1; detector de fumaça; extintor; rota de fuga pela fachada e pela porta do banho (Zenith: janela da banheira como saída alternativa).</li>
+ <li><strong>Segurança contra incêndio</strong>: membrana e forro classe B1/M1; detector de fumaça; extintor; rota de fuga pela fachada e pela porta do banho (Safari: janela da banheira como saída alternativa).</li>
  <li><strong>Acessibilidade</strong>: versão acessível com rampa no deck e banho adaptado (NBR 9050) prevista como variante do kit.</li>
  <li><strong>Manutenção</strong>: inspeção anual (pré-tensão, esticadores, selantes, drenos), lavagem bienal da membrana, troca da membrana prevista em 15 a 20 anos com a estrutura em uso.</li>
  <li><strong>Propriedade intelectual</strong>: registro de desenho industrial (INPI) das duas geometrias e das marcas; contratos de fabricação com cláusula de exclusividade dos gabaritos.</li>
@@ -383,10 +383,10 @@ tfoot td{font-weight:700;background:var(--paper)} table.kv th{width:32%}
 cover = """
 <section id="cover"><div class="cover">
  <div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
- <div class="splitword"><span>COCOON</span><span class="line"></span><span>ZENITH</span></div>
+ <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span></div>
  <h1>Sistema construtivo industrializado, modular e desmontável para duas cabanas exclusivas da Zion</h1>
- <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials, manual de montagem, orçamento em Santa Catarina, cronograma e análise de escala industrial. Primeiro a ZION COCOON, depois a ZION ZENITH.</p>
- <div class="meta"><span>VOLUME 1 · COCOON · VOLUME 2 · ZENITH</span><span>ZION HOTEL GROUP INTERNATIONAL · SET 2026</span></div>
+ <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials, manual de montagem, orçamento em Santa Catarina, cronograma e análise de escala industrial. Primeiro a ZION CASULO, depois a ZION SAFARI.</p>
+ <div class="meta"><span>VOLUME 1 · CASULO · VOLUME 2 · SAFARI</span><span>ZION HOTEL GROUP INTERNATIONAL · SET 2026</span></div>
 </div></section>
 <section id="intro"><span class="num">Como ler este caderno</span><h2>Um móvel premium de grande escala</h2>
 <p class="lead">Cada cabana é tratada como um produto industrial: um kit de peças codificadas, fabricadas em serralheria ou indústria, galvanizadas, pré-montadas em fábrica e embaladas em um contêiner. No terreno não há corte nem solda: só encaixes, parafusos e torque. O mesmo sistema (ZION SHELL SYSTEM) serve às duas cabanas, com componentes comuns de fundação, deck, membrana, isolamento, forro, vidros e instalações.</p>
@@ -400,7 +400,7 @@ cover = """
 nav = ""
 body = cover
 for vol in (1, 2):
-    pname = "ZION COCOON" if vol == 1 else "ZION ZENITH"
+    pname = "ZION CASULO" if vol == 1 else "ZION SAFARI"
     nav += f'<div class="vol">Volume {vol} · {pname}</div>'
     first = True
     for sid, v, num, title, html in SECTIONS:
@@ -411,7 +411,7 @@ for vol in (1, 2):
         body += f'<section id="{sid}">{head}<span class="num">{pname} · {num}</span><h2>{title}</h2>{html}</section>'
 
 HTML = f"""<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zion Architectural Product Book · Cocoon e Zenith</title><style>{CSS}</style></head>
+<title>Zion Architectural Product Book · Casulo e Safari</title><style>{CSS}</style></head>
 <body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div></body></html>"""
 out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_ARCHITECTURAL_PRODUCT_BOOK" + ("_standalone" if INLINE else "") + ".html")
 if INLINE:   # versão para publicação em página única (sem esqueleto html/head/body; título e estilo no topo)
@@ -433,7 +433,7 @@ if not INLINE and not WEB:
         for i, w in enumerate(widths or [18] * len(headers), start=1): ws.column_dimensions[get_column_letter(i)].width = w
         ws.freeze_panes = "A2"; return ws
     for product, P, CX in (("cocoon", cocoon_parts(), COCOON_CONNECTIONS), ("zenith", zenith_parts(), ZENITH_CONNECTIONS)):
-        tag = "Cocoon" if product == "cocoon" else "Zenith"
+        tag = "Casulo" if product == "cocoon" else "Safari"
         sheet(f"{tag} Peças", ["Código", "Nome", "Qtd", "Comp (m)", "Larg (mm)", "Alt (mm)", "Perfil", "Aço", "Esp (mm)", "Peso un (kg)", "Peso total (kg)", "Fabricação", "União", "Ordem", "Função"],
               [[p["cod"], p["nome"], p["qtd"], p["comp"], p["larg"], p["alt"], p["perfil"], p["aco"], p["esp"], p["peso_un"], p["peso_total"], p["fab"], p["uniao"], p["ordem"], p["funcao"]] for p in P],
               [9, 46, 6, 9, 9, 9, 34, 22, 8, 10, 11, 40, 46, 7, 40])
@@ -457,4 +457,4 @@ if not INLINE and not WEB:
               [[n] + [(lambda b: [b["mat_total"], b["fab_labor"] + b["site_labor"], b["transporte"] + b["equipamentos"] + b["hospedagem"], b["indiretos"] + b["conting"], b["nre"], b["total"], b["por_m2"]])(budget(product, 1, n)) for _ in [0]][0] for n in (1, 5, 10, 50)], [10, 16, 16, 20, 20, 18, 16, 12])
     sheet("Premissas de preço", ["Chave", "Insumo", "Un.", "Standard", "Fator Econômico", "Fator Premium", "Observação"], [[k] + list(v[:6]) for k, v in PRICES.items()], [14, 70, 6, 12, 12, 12, 50])
     sheet("Taxas de mão de obra", ["Função", "R$/h Standard", "Fator Econômico", "Fator Premium"], [list(v) for v in LABOR_RATES.values()], [50, 14, 14, 14])
-    xout = os.path.join(ROOT, "ZION_ORCAMENTO_SC_Cocoon_Zenith.xlsx"); wb.save(xout); print("xlsx ->", xout)
+    xout = os.path.join(ROOT, "ZION_ORCAMENTO_SC_Casulo_Safari.xlsx"); wb.save(xout); print("xlsx ->", xout)

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Desenhos complementares 2D (SVG): fachada traseira (04b) e planta estrutural (03b) do ZION COCOON e do ZION ZENITH.
+"""Desenhos complementares 2D (SVG): fachada traseira (04b) e planta estrutural (03b) do ZION CASULO e do ZION SAFARI.
 Importa a geometria de geometry.py e o estilo de svgkit.py / drawings_*.py; nao altera esses modulos."""
 import math, os
 import numpy as np
@@ -19,7 +19,7 @@ Z_PX = [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]
 Z_PY = [-2.6, -1.3, 0.0, 1.3, 2.6]
 
 def cocoon_pile_grid():
-    """estacas do Cocoon: malha 1,20 x 1,30 m recortada pelo deck e pelo contorno do piso."""
+    """estacas do Casulo: malha 1,20 x 1,30 m recortada pelo deck e pelo contorno do piso."""
     pts = []
     for px in C_PX:
         for py in C_PY:
@@ -117,11 +117,11 @@ def code_legend(sh, X, Y, items, size=9.5, pitch=21, wrap=None):
         sh.text_px(X + 62, y + 1.2, desc, size=size, anchor="start")
 
 # ==================================================================================
-# COCOON: fachada traseira
+# CASULO: fachada traseira
 # ==================================================================================
 def cocoon_fachada_traseira():
     sh = Sheet(1600, 1000, scale=100, ox=800, oy=720, flip_x=False)
-    sh.header("Zion Cocoon · Fachada traseira", "Vista da cauda (olhar para -x, +y a direita) · largura 6,00 m · altura 4,20 m · a cauda fecha em ponta a 1,10 m")
+    sh.header("Zion Casulo · Fachada traseira", "Vista da cauda (olhar para -x, +y a direita) · largura 6,00 m · altura 4,20 m · a cauda fecha em ponta a 1,10 m")
     # solo, estacas e quadro do piso
     sh.rect(-6.8, -0.6, 6.8, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-6.8, -0.02, 6.8, -0.02, GREEN, 1.0)
@@ -177,15 +177,15 @@ def cocoon_fachada_traseira():
     sh.dim(3.7, 0, 3.7, 1.1, 1.4, label="1,10 (ponta)")
     sh.dim(-3.7, -0.6, -3.7, 0, -0.4, label="0,60")
     sh.scalebar(-7.0, -2.0, 4)
-    sh.title_block("ZION COCOON", "Fachada traseira", "1:50 (A1)", "04b/27", "Cauda afilada: arco A7, quadro da cauda, olhos do banho, condensadora oculta")
+    sh.title_block("ZION CASULO", "Fachada traseira", "1:50 (A1)", "04b/27", "Cauda afilada: arco A7, quadro da cauda, olhos do banho, condensadora oculta")
     return sh
 
 # ==================================================================================
-# ZENITH: fachada traseira
+# SAFARI: fachada traseira
 # ==================================================================================
 def zenith_fachada_traseira():
     sh = Sheet(1600, 1000, scale=84, ox=800, oy=740, flip_x=False)
-    sh.header("Zion Zenith · Fachada traseira", "Vista dos fundos (olhar para -x, +y a direita) · painel ripado com a fresta da banheira · cobertura 7,40 m · cume 5,80 m")
+    sh.header("Zion Safari · Fachada traseira", "Vista dos fundos (olhar para -x, +y a direita) · painel ripado com a fresta da banheira · cobertura 7,40 m · cume 5,80 m")
     ground(sh, -7.5, 7.5)
     for py in Z_PY:
         sh.rect(py - 0.04, -0.6, py + 0.04, -0.2, fill=STEEL, stroke="none")
@@ -244,15 +244,15 @@ def zenith_fachada_traseira():
     sh.dim(4.3, 0, 4.3, 4.6, 0.45, label="4,60")
     sh.dim(4.3, 0, 4.3, 2.65, 0.95, label="2,65 (postes)")
     sh.scalebar(-7.6, -2.3, 4)
-    sh.title_block("ZION ZENITH", "Fachada traseira", "1:50 (A1)", "04b/27", "Painel ripado, fresta da banheira, tres postes e borda em catenaria")
+    sh.title_block("ZION SAFARI", "Fachada traseira", "1:50 (A1)", "04b/27", "Painel ripado, fresta da banheira, tres postes e borda em catenaria")
     return sh
 
 # ==================================================================================
-# COCOON: planta estrutural
+# CASULO: planta estrutural
 # ==================================================================================
 def cocoon_planta_estrutural():
     sh = Sheet(1600, 1000, scale=72, ox=440, oy=520)
-    sh.header("Zion Cocoon · Planta estrutural", "Fundacoes, quadro do piso, trilhos de base, arcos e travamentos · codigos conforme a lista de materiais")
+    sh.header("Zion Casulo · Planta estrutural", "Fundacoes, quadro do piso, trilhos de base, arcos e travamentos · codigos conforme a lista de materiais")
     D = C.DECK
     # contornos de referencia
     sh.rect(D["x1"], D["y1"], D["x2"], D["y2"], fill="none", stroke=GREEN, sw=0.9)
@@ -341,16 +341,16 @@ def cocoon_planta_estrutural():
     sh.text_px(1290, 495, f"Malha de estacas 1,20 x 1,30 m · {len(piles)} estacas sob o deck e o piso", size=9, fill=EARTH, anchor="start")
     sh.text_px(1290, 511, "Arcos: pes engastados nos trilhos A03/A04 via D01", size=9, fill=EARTH, anchor="start")
     sh.scalebar(-3.7, -5.55, 5)
-    sh.title_block("ZION COCOON", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
+    sh.title_block("ZION CASULO", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
                    "Estacas, quadro do piso U 150, trilhos curvos, 8 arcos, tercas e cabos")
     return sh
 
 # ==================================================================================
-# ZENITH: planta estrutural
+# SAFARI: planta estrutural
 # ==================================================================================
 def zenith_planta_estrutural():
     sh = Sheet(1600, 1000, scale=76, ox=400, oy=480)
-    sh.header("Zion Zenith · Planta estrutural", "Fundacoes, quadro do piso, pilares, anel de beiral, mastros, postes e estais · codigos conforme a lista de materiais")
+    sh.header("Zion Safari · Planta estrutural", "Fundacoes, quadro do piso, pilares, anel de beiral, mastros, postes e estais · codigos conforme a lista de materiais")
     D, Wk = Z.DECK, Z.WALK
     x0, x1, y0, y1 = Z.roof_bounds()
     # contornos de referencia
@@ -453,7 +453,7 @@ def zenith_planta_estrutural():
     sh.text_px(1362, 516, f"{len(grid)} estacas sob o piso + {len(tens)} de tracao", size=8.5, fill=EARTH, anchor="start")
     sh.text_px(1362, 532, "Estais Ø10 inox dos postes aos chumbadores EA", size=8.5, fill=EARTH, anchor="start")
     sh.scalebar(-3.0, -5.7, 5)
-    sh.title_block("ZION ZENITH", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
+    sh.title_block("ZION SAFARI", "Planta estrutural", "1:50 (A1) · cotas em metros", "03b/27",
                    "Estacas, quadro U 150, 10 pilares, anel de beiral, 2 mastros, 7 postes estaiados")
     return sh
 

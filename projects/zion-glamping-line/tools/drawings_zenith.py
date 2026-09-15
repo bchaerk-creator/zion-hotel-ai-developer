@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Desenhos técnicos 2D do ZION ZENITH: plantas, elevações e cortes (SVG)."""
+"""Desenhos técnicos 2D do ZION SAFARI: plantas, elevações e cortes (SVG)."""
 import math, os
 from geometry import Zenith
 from svgkit import *
@@ -58,7 +58,7 @@ def contours(sh, levels=(3.0, 3.4, 3.8, 4.2, 4.6, 5.0, 5.4), color=EARTH):
 # ------------------------------------------------------------------ PLANTA
 def planta(human=True):
     sh = Sheet(1600, 1000, scale=82, ox=390, oy=520)
-    sh.header("Zion Zenith · Planta baixa " + ("humanizada" if human else "técnica"),
+    sh.header("Zion Safari · Planta baixa " + ("humanizada" if human else "técnica"),
               "Cabana escultural de dois cumes · corpo 9,50 x 5,40 m · piso interno 48,4 m² · terraço 20,4 m² + passarela 7,6 m² · total 79,3 m²")
     D, Wk = Z.DECK, Z.WALK
     # deck e passarela
@@ -168,7 +168,7 @@ def planta(human=True):
         sh.text(-3.55, 0.4, "A", 12, weight=700, dy=4); sh.text(11.2, 0.4, "A", 12, weight=700, dy=4)
     sh.north(1500, 140, angle=-90)
     sh.scalebar(-3.0, -5.55, 5)
-    sh.title_block("ZION ZENITH", "Planta baixa " + ("humanizada" if human else "técnica cotada"), "1:50 (A1) · cotas em metros", "02/27" if human else "03/27",
+    sh.title_block("ZION SAFARI", "Planta baixa " + ("humanizada" if human else "técnica cotada"), "1:50 (A1) · cotas em metros", "02/27" if human else "03/27",
                    "Estar, suíte sob o Óculo, banho com banheira, terraço com hidromassagem")
     return sh
 
@@ -179,7 +179,7 @@ def ground(sh, x1, x2, depth=0.6):
 
 def elev_frontal():
     sh = Sheet(1600, 1000, scale=92, ox=800, oy=740, flip_x=True)
-    sh.header("Zion Zenith · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · cobertura 7,40 m · cume 5,80 m")
+    sh.header("Zion Safari · Elevação frontal", "Vista da fachada panorâmica (olhar para +x) · cobertura 7,40 m · cume 5,80 m")
     ground(sh, -6.5, 6.5)
     for py in [-2.6, -1.3, 0.0, 1.3, 2.6]:
         sh.rect(py - 0.04, -0.6, py + 0.04, -0.2, fill=STEEL, stroke="none")
@@ -225,12 +225,12 @@ def elev_frontal():
     sh.dim(-4.2, 0, -4.2, 2.75, -1.15, label="2,75")
     sh.dim(4.2, 0, 4.2, 4.6, 0.6, label="4,60")
     sh.scalebar(6.3, -2.2, 4)
-    sh.title_block("ZION ZENITH", "Elevação frontal", "1:50 (A1)", "04/27", "Silhueta assimétrica de dois cumes; fachada de vidro sob o beiral")
+    sh.title_block("ZION SAFARI", "Elevação frontal", "1:50 (A1)", "04/27", "Silhueta assimétrica de dois cumes; fachada de vidro sob o beiral")
     return sh
 
 def elev_lateral():
     sh = Sheet(1600, 1000, scale=96, ox=470, oy=730)
-    sh.header("Zion Zenith · Elevação lateral direita", "Vista do vidro da suíte (olhar para +y) · comprimento da cobertura 12,90 m")
+    sh.header("Zion Safari · Elevação lateral direita", "Vista do vidro da suíte (olhar para +y) · comprimento da cobertura 12,90 m")
     ground(sh, -4.5, 12.0)
     for px in [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]:
         sh.rect(px - 0.04, -0.6, px + 0.04, -0.2, fill=STEEL, stroke="none")
@@ -278,14 +278,14 @@ def elev_lateral():
     sh.dim(10.9, 0, 10.9, 2.9, 0.85, label="2,90 (beiral)")
     sh.dim(-3.9, -0.6, -3.9, 0, -0.5, label="0,60")
     sh.scalebar(-4.3, -2.4, 5)
-    sh.title_block("ZION ZENITH", "Elevação lateral", "1:50 (A1)", "05/27", "Dois cumes deslocados em diagonal: a silhueta muda a cada ângulo")
+    sh.title_block("ZION SAFARI", "Elevação lateral", "1:50 (A1)", "05/27", "Dois cumes deslocados em diagonal: a silhueta muda a cada ângulo")
     return sh
 
 # ------------------------------------------------------------------ CORTES
 def corte_long():
     yc = 0.4
     sh = Sheet(1600, 1000, scale=96, ox=470, oy=730)
-    sh.header("Zion Zenith · Corte longitudinal A-A", "Plano y = +0,40 (eixo do mastro principal) · olhar para +y · membrana externa, câmara, forro isolado")
+    sh.header("Zion Safari · Corte longitudinal A-A", "Plano y = +0,40 (eixo do mastro principal) · olhar para +y · membrana externa, câmara, forro isolado")
     ground(sh, -4.5, 12.0, 0.9)
     for px in [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]:
         sh.rect(px - 0.04, -0.9, px + 0.04, -0.22, fill=STEEL, stroke="none")
@@ -358,13 +358,13 @@ def corte_long():
     sh.dim(10.4, 0, 10.4, 2.75, 0.4, label="2,75")
     sh.dim(-3.9, -0.9, -3.9, 0, -0.5, label="0,90 (máx.)")
     sh.scalebar(-4.3, -2.5, 5)
-    sh.title_block("ZION ZENITH", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Mastro e coroa do Zênite, óculo sobre a cama, ático técnico")
+    sh.title_block("ZION SAFARI", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Mastro e coroa do Zênite, óculo sobre a cama, ático técnico")
     return sh
 
 def corte_transv():
     xc = 6.3
     sh = Sheet(1600, 1000, scale=92, ox=800, oy=740, flip_x=True)
-    sh.header("Zion Zenith · Corte transversal B-B", "Plano x = 6,30 (mastro principal) · olhar para +x (banho ao fundo) · escala 1:45")
+    sh.header("Zion Safari · Corte transversal B-B", "Plano x = 6,30 (mastro principal) · olhar para +x (banho ao fundo) · escala 1:45")
     ground(sh, -6.0, 6.0, 0.9)
     for py in [-2.6, -1.3, 0.0, 1.3, 2.6]:
         sh.rect(py - 0.04, -0.9, py + 0.04, -0.22, fill=STEEL, stroke="none")
@@ -420,7 +420,7 @@ def corte_transv():
     sh.dim(-4.1, 0, -4.1, 2.75, -1.1, label="2,75")
     sh.dim(4.3, -0.9, 4.3, 0, 0.5, label="0,90")
     sh.scalebar(5.8, -2.2, 4)
-    sh.title_block("ZION ZENITH", "Corte transversal B-B", "1:45 (A1)", "07/27", "Mastro, coroa e óculo; envelope de membrana + forro isolado")
+    sh.title_block("ZION SAFARI", "Corte transversal B-B", "1:45 (A1)", "07/27", "Mastro, coroa e óculo; envelope de membrana + forro isolado")
     return sh
 
 

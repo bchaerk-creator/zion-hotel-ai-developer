@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 build_viewer.py — gera os visualizadores 3D interativos (Three.js r128, HTML autocontido)
-dos produtos ZION COCOON e ZION ZENITH a partir de geometry.py (fonte única de verdade).
+dos produtos ZION CASULO e ZION SAFARI a partir de geometry.py (fonte única de verdade).
 
 Uso:
     python3 build_viewer.py [--out-json <dir>] [--cdn]
@@ -59,7 +59,7 @@ def centroid(V, f):
 
 
 # ----------------------------------------------------------------------------------
-# COCOON: dados extras derivados da geometria (sem alterar geometry.py)
+# CASULO: dados extras derivados da geometria (sem alterar geometry.py)
 # ----------------------------------------------------------------------------------
 def cocoon_shell_offset(c, offset, nu, nv, x_start):
     """malha da concha deslocada (forro interno) — só faces de membrana."""
@@ -167,7 +167,7 @@ def cocoon_data():
 
 
 # ----------------------------------------------------------------------------------
-# ZENITH: dados extras
+# SAFARI: dados extras
 # ----------------------------------------------------------------------------------
 def zenith_data():
     z = G.Zenith()
@@ -379,7 +379,7 @@ for (const k in M) if (M[k].color) M[k].color.convertSRGBToLinear();
 M.glass.userData.viewOpacity = M.glass.opacity;
 
 // ---------- helpers geométricos ----------
-const building = new THREE.Group(); building.name = MODEL === 'cocoon' ? 'ZION_COCOON' : 'ZION_ZENITH';
+const building = new THREE.Group(); building.name = MODEL === 'cocoon' ? 'ZION_CASULO' : 'ZION_SAFARI';
 const site = new THREE.Group(); site.name = 'site';
 scene.add(building); scene.add(site);
 
@@ -568,9 +568,9 @@ function steps(xEdge, y1, y2) { // dois degraus descendo do deck (z=0) ao terren
 }
 
 // =====================================================================================
-// ZION COCOON
+// ZION CASULO
 // =====================================================================================
-function buildCocoon() {
+function buildCasulo() {
   BODY_CENTER = [4.9, 0];
   const S = D.shell;
   const memb = indexedMesh(S.vertices, S.membrane, M.membrane); memb.name = 'membrana';
@@ -624,9 +624,9 @@ function buildCocoon() {
 }
 
 // =====================================================================================
-// ZION ZENITH
+// ZION SAFARI
 // =====================================================================================
-function buildZenith() {
+function buildSafari() {
   BODY_CENTER = [D.L / 2, 0];
   const R = D.roof;
   indexedMesh(R.vertices, R.faces, M.membrane).name = 'membrana';
@@ -720,7 +720,7 @@ function buildZenith() {
   buildSite(4.0, 0);
 }
 
-if (MODEL === 'cocoon') buildCocoon(); else buildZenith();
+if (MODEL === 'cocoon') buildCasulo(); else buildSafari();
 // depuração: #hide=estrutura,forro,membrana,mobiliario
 (function () { const h = /hide=([a-z_,]+)/i.exec(location.hash || ''); if (h) h[1].split(',').forEach(n => { const o = building.getObjectByName(n); if (o) o.visible = false; }); })();
 
@@ -738,7 +738,7 @@ if (HASH.env !== '0') {
 
 // ---------- modos: noite / estrutura / corte ----------
 const state = { night: false, structure: false, cut: false };
-const clipPlane = new THREE.Plane(new THREE.Vector3(0, 0, MODEL === 'zenith' ? -1 : 1), 0); // Cocoon mantém y <= 0 (chaise, bancada, chuveiro); Zenith mantém y >= 0 (mastros, closet, ilha do café)
+const clipPlane = new THREE.Plane(new THREE.Vector3(0, 0, MODEL === 'zenith' ? -1 : 1), 0); // Casulo mantém y <= 0 (chaise, bancada, chuveiro); Safari mantém y >= 0 (mastros, closet, ilha do café)
 const bMats = new Set(); building.traverse(o => { if (o.material) bMats.add(o.material); });
 function applyModes() {
   // noite
@@ -878,9 +878,9 @@ def main():
         print("aviso: tools/vendor/ incompleto; a usar cdnjs")
 
     models = [
-        ("cocoon", cocoon_data(), "ZION COCOON", "Cabana biomórfica em casulo · 48 m² internos + deck 30 m²",
+        ("cocoon", cocoon_data(), "ZION CASULO", "Cabana biomórfica em casulo · 48 m² internos + deck 30 m²",
          os.path.join(PROJECT, "cocoon", "3d", "zion-cocoon-3d.html")),
-        ("zenith", zenith_data(), "ZION ZENITH", "Cabana escultural de dois cumes · 48 m² internos + terraço 20 m²",
+        ("zenith", zenith_data(), "ZION SAFARI", "Cabana escultural de dois cumes · 48 m² internos + terraço 20 m²",
          os.path.join(PROJECT, "zenith", "3d", "zion-zenith-3d.html")),
     ]
     for model, data, title, subtitle, out_html in models:

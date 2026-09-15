@@ -63,7 +63,7 @@ def furniture_plan(msp, items):
             rect(msp, it["x1"], it["y1"], it["x2"], it["y2"], "MOBILIARIO")
             if it.get("name"): txt(msp, (it["x1"] + it["x2"]) / 2, (it["y1"] + it["y2"]) / 2, it["name"], h=0.07, layer="TEXTO")
 
-# ============================================================================ COCOON
+# ============================================================================ CASULO
 def cocoon_planta(msp, ox=0, oy=0, layout=True):
     floor = C.floor_outline(120)
     shell = [(x, -C.a(x)) for x in np.linspace(0.5, C.L, 120)] + [(x, C.a(x)) for x in np.linspace(C.L, 0.5, 120)]
@@ -85,7 +85,7 @@ def cocoon_planta(msp, ox=0, oy=0, layout=True):
         pl(msp, [(x, -3.9), (x, 3.9)], "EIXOS"); msp.add_circle((x, 4.15), 0.2, dxfattribs={"layer": "EIXOS"}); txt(msp, x, 4.15, f"A{i}", h=0.15)
     dim_h(msp, 0.45, 9.6, -3.6, -0.5, "9,60"); dim_h(msp, -3.7, 0.9, -3.6, -0.5, "4,60"); dim_v(msp, 10.2, -3.0, 3.0, 0.6, "6,00")
     for i in range(len(C.ARCH_X) - 1): dim_h(msp, C.ARCH_X[i], C.ARCH_X[i + 1], 3.6, 0.5)
-    title(msp, -3.7, 5.6, "ZION COCOON · PLANTA BAIXA" + (" (LAYOUT)" if layout else " (COTADA)") + " · escala 1:50 · unidades em metros")
+    title(msp, -3.7, 5.6, "ZION CASULO · PLANTA BAIXA" + (" (LAYOUT)" if layout else " (COTADA)") + " · escala 1:50 · unidades em metros")
 
 def cocoon_estrutura(msp):
     D = C.DECK
@@ -100,7 +100,7 @@ def cocoon_estrutura(msp):
     for i, (x, y) in enumerate(piles):
         msp.add_circle((x, y), 0.15, dxfattribs={"layer": "FUNDACAO"}); msp.add_circle((x, y), 0.04, dxfattribs={"layer": "FUNDACAO"}); txt(msp, x + 0.22, y + 0.2, f"F{i + 1:02d}", h=0.08)
     txt(msp, 3.0, -4.3, f"{len(piles)} estacas helicoidais Ø76 · hélice Ø300 · malha 1,20 x 1,30 m (pré-dimensionamento)", h=0.16)
-    title(msp, -3.7, 5.6, "ZION COCOON · PLANTA ESTRUTURAL (arcos, terças, trilhos, vigas de piso, estacas) · 1:50")
+    title(msp, -3.7, 5.6, "ZION CASULO · PLANTA ESTRUTURAL (arcos, terças, trilhos, vigas de piso, estacas) · 1:50")
 
 def cocoon_cobertura(msp):
     shell = [(x, -C.a(x)) for x in np.linspace(0.5, C.L, 120)] + [(x, C.a(x)) for x in np.linspace(C.L, 0.5, 120)]
@@ -111,7 +111,7 @@ def cocoon_cobertura(msp):
     for (qx, qy) in [(0.95, -2.75), (0.95, 2.75), (9.25, -1.2), (9.25, 1.2)]: msp.add_circle((qx, qy), 0.06, dxfattribs={"layer": "ESTRUTURA"}); txt(msp, qx, qy + 0.3, "TQ Ø75", h=0.1)
     D = C.DECK; rect(msp, D["x1"], D["y1"], D["x2"], D["y2"], "DECK")
     dim_h(msp, -0.15, 9.6, -3.9, -0.5, "9,75"); dim_v(msp, 10.2, -3.0, 3.0, 0.6, "6,00")
-    title(msp, -3.7, 5.6, "ZION COCOON · PLANTA DE COBERTURA · calha oculta no rodapé, TQ Ø75, Espinha de Luz · 1:50")
+    title(msp, -3.7, 5.6, "ZION CASULO · PLANTA DE COBERTURA · calha oculta no rodapé, TQ Ø75, Espinha de Luz · 1:50")
 
 def cocoon_corte_long(msp):
     xs = np.linspace(C.X_FRONT, C.L, 160)
@@ -127,7 +127,7 @@ def cocoon_corte_long(msp):
     for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]: pl(msp, [(px, -0.2), (px, -2.0)], "FUNDACAO")
     pl(msp, [(-4.5, -0.6), (11, -0.6)], "TEXTO")
     dim_h(msp, 0.45, 9.6, -2.3, -0.5, "9,60"); dim_v(msp, 10.5, 0, 4.2, 0.6, "4,20"); dim_v(msp, 10.5, 0, 2.45, 1.4, "2,45 (forro banho)")
-    title(msp, -3.7, 5.6, "ZION COCOON · CORTE LONGITUDINAL A-A · 1:50")
+    title(msp, -3.7, 5.6, "ZION CASULO · CORTE LONGITUDINAL A-A · 1:50")
 
 def cocoon_corte_transv(msp, xc=5.0):
     sec = C.section_local(xc, 80); pl(msp, sec, "COBERTURA")
@@ -142,7 +142,7 @@ def cocoon_corte_transv(msp, xc=5.0):
     if x1 <= xc <= x2: pl(msp, [(-ht * C.B_MAX, C.top(xc)), (ht * C.B_MAX, C.top(xc))], "ESQUADRIAS")
     pl(msp, [(-5, -0.6), (5, -0.6)], "TEXTO")
     dim_h(msp, -C.a(xc), C.a(xc), -2.3, -0.5); dim_v(msp, 4.0, 0, C.top(xc), 0.6)
-    title(msp, -4.5, 5.6, f"ZION COCOON · CORTE TRANSVERSAL B-B (x = {xc:.2f} m) · 1:50".replace(".", ","))
+    title(msp, -4.5, 5.6, f"ZION CASULO · CORTE TRANSVERSAL B-B (x = {xc:.2f} m) · 1:50".replace(".", ","))
 
 def cocoon_fachada_frontal(msp):
     ring = [(y, z) for (x, y, z) in C.front_ring(100)]; pl(msp, ring, "COBERTURA")
@@ -153,7 +153,7 @@ def cocoon_fachada_frontal(msp):
     D = C.DECK; rect(msp, D["y1"], -0.2, D["y2"], 0, "DECK"); pl(msp, [(-4.5, -0.6), (4.5, -0.6)], "TEXTO")
     for y in (-2.4, 0, 2.4): pl(msp, [(y, -0.2), (y, -2.0)], "FUNDACAO")
     dim_h(msp, -3.0, 3.0, -2.3, -0.5, "6,00"); dim_v(msp, 3.8, 0, 4.13, 0.6, "4,13")
-    title(msp, -4.5, 5.6, "ZION COCOON · FACHADA FRONTAL (vista de fora, y crescente para a esquerda) · 1:50")
+    title(msp, -4.5, 5.6, "ZION CASULO · FACHADA FRONTAL (vista de fora, y crescente para a esquerda) · 1:50")
 
 def cocoon_fachada_lateral(msp, side=-1):
     xs = np.linspace(C.X_FRONT, C.L, 160)
@@ -167,7 +167,7 @@ def cocoon_fachada_lateral(msp, side=-1):
     pl(msp, [(-3.7, -0.2), (9.6, -0.2), (9.6, 0), (-3.7, 0)], "DECK", close=True); pl(msp, [(-4.5, -0.6), (11, -0.6)], "TEXTO")
     for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]: pl(msp, [(px, -0.2), (px, -2.0)], "FUNDACAO")
     dim_h(msp, 0.45, 9.6, -2.3, -0.5, "9,60"); dim_h(msp, -3.7, 0.9, -2.3, -0.5, "4,60"); dim_v(msp, 10.5, 0, 4.2, 0.6, "4,20")
-    title(msp, -3.7, 5.6, "ZION COCOON · FACHADA LATERAL " + ("DIREITA (olhar para +y)" if side < 0 else "ESQUERDA (olhar para -y; espelhar ao plotar)") + " · 1:50")
+    title(msp, -3.7, 5.6, "ZION CASULO · FACHADA LATERAL " + ("DIREITA (olhar para +y)" if side < 0 else "ESQUERDA (olhar para -y; espelhar ao plotar)") + " · 1:50")
 
 def cocoon_3d(msp):
     m = C.shell_mesh(72, 36); V = m["vertices"]
@@ -187,7 +187,7 @@ def cocoon_3d(msp):
         for f in ((0, 1, 2, 3), (4, 5, 6, 7), (0, 1, 5, 4), (1, 2, 6, 5), (2, 3, 7, 6), (3, 0, 4, 7)):
             msp.add_3dface([P[i] for i in f], dxfattribs={"layer": "MOBILIARIO"})
 
-# ============================================================================ ZENITH
+# ============================================================================ SAFARI
 def zenith_planta(msp, layout=True):
     rb = Z.roof_bounds(); rect(msp, rb[0], rb[2], rb[1], rb[3], "COBERTURA_OCULTA")
     rect(msp, 0, -2.7, 9.5, 2.7, "PAREDES"); rect(msp, 0.1, -2.6, 9.4, 2.6, "PAREDES")
@@ -208,7 +208,7 @@ def zenith_planta(msp, layout=True):
     for k, y in enumerate((-2.7, 0, 2.7)): pl(msp, [(-3.5, y), (11.0, y)], "EIXOS"); msp.add_circle((-3.75, y), 0.2, dxfattribs={"layer": "EIXOS"}); txt(msp, -3.75, y, "ABC"[k], h=0.15)
     dim_h(msp, 0, 9.5, -3.7, -0.5, "9,50"); dim_h(msp, -3.0, 0, -3.7, -0.5, "3,00"); dim_v(msp, 10.7, -2.7, 2.7, 0.6, "5,40"); dim_v(msp, 10.7, 2.7, 3.5, 0.6, "0,80")
     for a, b in ((0, 3.2), (3.2, 6.4), (6.4, 9.5)): dim_h(msp, a, b, 3.7, 0.5)
-    title(msp, -3.0, 5.8, "ZION ZENITH · PLANTA BAIXA" + (" (LAYOUT)" if layout else " (COTADA)") + " · escala 1:50 · unidades em metros")
+    title(msp, -3.0, 5.8, "ZION SAFARI · PLANTA BAIXA" + (" (LAYOUT)" if layout else " (COTADA)") + " · escala 1:50 · unidades em metros")
 
 def zenith_estrutura(msp):
     rb = Z.roof_bounds(); rect(msp, rb[0], rb[2], rb[1], rb[3], "COBERTURA_OCULTA"); rect(msp, 0, -2.7, 9.5, 2.7, "ESTRUTURA")
@@ -226,7 +226,7 @@ def zenith_estrutura(msp):
     for i, (x, y) in enumerate(tens):
         msp.add_circle((x, y), 0.12, dxfattribs={"layer": "FUNDACAO"}); txt(msp, x, y - 0.3, f"FT{i + 1:02d}", h=0.08)
     txt(msp, 3.0, -4.9, f"{len(grid)} estacas helicoidais Ø76 sob o piso + {len(tens)} estacas de tração sob os postes (pré-dimensionamento)", h=0.16)
-    title(msp, -3.0, 5.8, "ZION ZENITH · PLANTA ESTRUTURAL (pilares, anel de beiral, mastros, postes estaiados, vigas, estacas) · 1:50")
+    title(msp, -3.0, 5.8, "ZION SAFARI · PLANTA ESTRUTURAL (pilares, anel de beiral, mastros, postes estaiados, vigas, estacas) · 1:50")
 
 def zenith_cobertura(msp):
     rb = Z.roof_bounds(); rect(msp, rb[0], rb[2], rb[1], rb[3], "COBERTURA"); rect(msp, 0, -2.7, 9.5, 2.7, "COBERTURA_OCULTA")
@@ -246,7 +246,7 @@ def zenith_cobertura(msp):
     for (x, y) in Z.posts(): msp.add_circle((x, y), 0.05, dxfattribs={"layer": "ESTRUTURA"})
     pl(msp, [(0, -2.78), (9.5, -2.78)], "ESTRUTURA"); pl(msp, [(0, 2.78), (9.5, 2.78)], "ESTRUTURA")
     dim_h(msp, x0, x1, y0 - 0.6, -0.5, "12,90"); dim_v(msp, x1 + 0.6, y0, y1, 0.6, "7,40")
-    title(msp, -3.0, 5.8, "ZION ZENITH · PLANTA DE COBERTURA · curvas de nível a cada 0,40 m · 1:50")
+    title(msp, -3.0, 5.8, "ZION SAFARI · PLANTA DE COBERTURA · curvas de nível a cada 0,40 m · 1:50")
 
 def zenith_corte_long(msp, y=0.4):
     x0, x1, y0, y1 = Z.roof_bounds()
@@ -260,7 +260,7 @@ def zenith_corte_long(msp, y=0.4):
     for px in [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]: pl(msp, [(px, -0.2), (px, -2.0)], "FUNDACAO")
     for px in (x0, 4.0, x1): pl(msp, [(px, -0.05), (px, Z.edge_height(px, y0))], "ESTRUTURA")
     dim_h(msp, 0, 9.5, -2.3, -0.5, "9,50"); dim_v(msp, 11.0, 0, 5.8, 0.6, "5,80"); dim_v(msp, 11.0, 0, 2.9, 1.4, "2,90")
-    title(msp, -3.0, 6.6, f"ZION ZENITH · CORTE LONGITUDINAL A-A (y = {y:.2f} m) · 1:50".replace(".", ","))
+    title(msp, -3.0, 6.6, f"ZION SAFARI · CORTE LONGITUDINAL A-A (y = {y:.2f} m) · 1:50".replace(".", ","))
 
 def zenith_corte_transv(msp, x=6.3):
     x0, x1, y0, y1 = Z.roof_bounds()
@@ -275,7 +275,7 @@ def zenith_corte_transv(msp, x=6.3):
     for py in (-2.7, -1.35, 0, 1.35, 2.7): pl(msp, [(py, -0.2), (py, -2.0)], "FUNDACAO")
     for py in (y0, y1): pl(msp, [(py, -0.05), (py, Z.edge_height(x if x in (x0, x1) else 4.0, py))], "ESTRUTURA")
     dim_h(msp, -2.7, 2.7, -2.3, -0.5, "5,40"); dim_v(msp, 4.5, 0, Z.roof_z(x, 0.4), 0.6)
-    title(msp, -4.5, 6.6, f"ZION ZENITH · CORTE TRANSVERSAL B-B (x = {x:.2f} m) · 1:50".replace(".", ","))
+    title(msp, -4.5, 6.6, f"ZION SAFARI · CORTE TRANSVERSAL B-B (x = {x:.2f} m) · 1:50".replace(".", ","))
 
 def zenith_fachada(msp, which):
     x0, x1, y0, y1 = Z.roof_bounds()
@@ -289,7 +289,7 @@ def zenith_fachada(msp, which):
         for py in (y0, y1): pl(msp, [(py, -0.05), (py, Z.edge_height(x0 if which == "frontal" else x1, py))], "ESTRUTURA")
         pl(msp, [(-3.5, -0.2), (3.5, -0.2), (3.5, 0), (-3.5, 0)], "DECK", close=True); pl(msp, [(-5, -0.6), (5, -0.6)], "TEXTO")
         dim_h(msp, -2.7, 2.7, -2.3, -0.5, "5,40"); dim_h(msp, y0, y1, -2.3, -1.1, "7,40"); dim_v(msp, 4.5, 0, 5.8, 0.6, "5,80")
-        title(msp, -4.5, 6.6, f"ZION ZENITH · FACHADA {which.upper()} · 1:50")
+        title(msp, -4.5, 6.6, f"ZION SAFARI · FACHADA {which.upper()} · 1:50")
     else:
         side = y0 if which == "direita" else y1
         sil = Z.silhouette_side(160); edge = [(x, Z.edge_height(x, side)) for x in np.linspace(x0, x1, 80)]
@@ -302,7 +302,7 @@ def zenith_fachada(msp, which):
         pl(msp, [(-3.0, -0.2), (9.5, -0.2), (9.5, 0), (-3.0, 0)], "DECK", close=True); pl(msp, [(-4.5, -0.6), (11.5, -0.6)], "TEXTO")
         for px in [-2.6, -0.2, 2.2, 4.6, 7.0, 9.4]: pl(msp, [(px, -0.2), (px, -2.0)], "FUNDACAO")
         dim_h(msp, 0, 9.5, -2.3, -0.5, "9,50"); dim_h(msp, x0, x1, -2.3, -1.1, "12,90"); dim_v(msp, 11.0, 0, 5.8, 0.6, "5,80")
-        title(msp, -3.0, 6.6, f"ZION ZENITH · FACHADA LATERAL {which.upper()}" + (" (olhar para -y; espelhar ao plotar)" if which == "esquerda" else " (olhar para +y)") + " · 1:50")
+        title(msp, -3.0, 6.6, f"ZION SAFARI · FACHADA LATERAL {which.upper()}" + (" (olhar para -y; espelhar ao plotar)" if which == "esquerda" else " (olhar para +y)") + " · 1:50")
 
 def zenith_3d(msp):
     m = Z.roof_mesh(56, 34); V = m["vertices"]
@@ -340,12 +340,12 @@ def build():
             save(os.path.join(d, "ZC-08a_fachada_lateral_direita.dxf"), cocoon_fachada_lateral, side=-1), save(os.path.join(d, "ZC-08b_fachada_lateral_esquerda.dxf"), cocoon_fachada_lateral, side=1),
             save(os.path.join(d, "ZC-10_planta_estrutural.dxf"), cocoon_estrutura), save(os.path.join(d, "ZC-3D_modelo.dxf"), cocoon_3d)]
     d = os.path.join(ROOT, "zenith", "projeto", "dxf"); os.makedirs(d, exist_ok=True)
-    out += [save(os.path.join(d, "ZZ-02_planta_baixa_cotada.dxf"), zenith_planta, layout=False), save(os.path.join(d, "ZZ-03_planta_layout.dxf"), zenith_planta, layout=True),
-            save(os.path.join(d, "ZZ-04_planta_cobertura.dxf"), zenith_cobertura), save(os.path.join(d, "ZZ-06a_corte_longitudinal.dxf"), zenith_corte_long),
-            save(os.path.join(d, "ZZ-06b_corte_transversal.dxf"), zenith_corte_transv), save(os.path.join(d, "ZZ-07a_fachada_frontal.dxf"), zenith_fachada, which="frontal"),
-            save(os.path.join(d, "ZZ-07b_fachada_traseira.dxf"), zenith_fachada, which="traseira"), save(os.path.join(d, "ZZ-08a_fachada_lateral_direita.dxf"), zenith_fachada, which="direita"),
-            save(os.path.join(d, "ZZ-08b_fachada_lateral_esquerda.dxf"), zenith_fachada, which="esquerda"), save(os.path.join(d, "ZZ-10_planta_estrutural.dxf"), zenith_estrutura),
-            save(os.path.join(d, "ZZ-3D_modelo.dxf"), zenith_3d)]
+    out += [save(os.path.join(d, "ZS-02_planta_baixa_cotada.dxf"), zenith_planta, layout=False), save(os.path.join(d, "ZS-03_planta_layout.dxf"), zenith_planta, layout=True),
+            save(os.path.join(d, "ZS-04_planta_cobertura.dxf"), zenith_cobertura), save(os.path.join(d, "ZS-06a_corte_longitudinal.dxf"), zenith_corte_long),
+            save(os.path.join(d, "ZS-06b_corte_transversal.dxf"), zenith_corte_transv), save(os.path.join(d, "ZS-07a_fachada_frontal.dxf"), zenith_fachada, which="frontal"),
+            save(os.path.join(d, "ZS-07b_fachada_traseira.dxf"), zenith_fachada, which="traseira"), save(os.path.join(d, "ZS-08a_fachada_lateral_direita.dxf"), zenith_fachada, which="direita"),
+            save(os.path.join(d, "ZS-08b_fachada_lateral_esquerda.dxf"), zenith_fachada, which="esquerda"), save(os.path.join(d, "ZS-10_planta_estrutural.dxf"), zenith_estrutura),
+            save(os.path.join(d, "ZS-3D_modelo.dxf"), zenith_3d)]
     for f in out: print(os.path.relpath(f, ROOT), round(os.path.getsize(f) / 1024), "kB")
 
 if __name__ == "__main__":

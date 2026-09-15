@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Gera o Caderno Técnico (HTML) com os 27 entregáveis dos produtos ZION COCOON e ZION ZENITH.
+"""Gera o Caderno Técnico (HTML) com os 27 entregáveis dos produtos ZION CASULO e ZION SAFARI.
 Uso: python3 build_dossier.py [--inline]   (--inline embute imagens como data URI para publicação em página única)"""
 import os, sys, base64, json, glob
 from geometry import Cocoon, Zenith
@@ -62,7 +62,7 @@ def section(num, title, html, product=""):
 cover = f"""
 <div class="cover">
   <div class="brand"><span class="z">ZION</span><span class="sub">GLAMPING COLLECTION</span></div>
-  <div class="splitword"><span>COCOON</span><span class="line"></span><span>ZENITH</span></div>
+  <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span></div>
   <h1>Uma nova linha de hospedagens de luxo em membrana tensionada, aço e vidro</h1>
   <p class="lead">Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da Zion para glampings, boutique hotels e destinos de natureza. Do casulo orgânico ao pico escultural: duas formas, uma plataforma industrial, um mesmo modo de habitar a paisagem.</p>
   <div class="meta"><span>CADERNO TÉCNICO · 27 ENTREGÁVEIS</span><span>ZION HOTEL GROUP INTERNATIONAL · SET 2026</span></div>
@@ -78,12 +78,12 @@ concept = f"""
 <p>Os dois produtos compartilham a mesma base industrial: estacas helicoidais e deck elevado em vigas galvanizadas, estrutura primária em tubos de aço carbono galvanizados a fogo, membrana arquitetônica PVDF tensionada por perfis keder ou anéis, câmara ventilada, isolamento em lã de PET reciclada com manta refletiva, forro tensionado acústico, vidros duplos low-e em esquadrias de alumínio com ruptura térmica e um ático técnico sobre o banho que concentra climatização, aquecimento de água e quadro elétrico. Isso significa um único catálogo de componentes, uma única equipe de montagem e estoque compartilhado entre destinos.</p>
 
 <div class="grid3">
-  <div class="card"><h4>Estrutura</h4><p>Pórticos elípticos (Cocoon) e mastros com coroa (Zenith), ambos com ligações parafusadas, segmentos de até 5,2 m e peso unitário abaixo de 80 kg por peça: montagem com guincho manual e talha, sem grua.</p></div>
+  <div class="card"><h4>Estrutura</h4><p>Pórticos elípticos (Casulo) e mastros com coroa (Safari), ambos com ligações parafusadas, segmentos de até 5,2 m e peso unitário abaixo de 80 kg por peça: montagem com guincho manual e talha, sem grua.</p></div>
   <div class="card"><h4>Envelope</h4><p>Quatro camadas: membrana PVDF 1050 g/m², câmara ventilada de 60 mm, lã PET 50 mm com refletiva e forro tensionado. U ≈ 0,6 W/m²K, NRC ≈ 0,6. Funciona na serra, no calor tropical e no litoral.</p></div>
   <div class="card"><h4>Fundação</h4><p>Estacas helicoidais Ø76 com hélice Ø300 e cabeçotes ajustáveis: absorvem terreno inclinado até 8% sem corte, são removíveis e deixam o solo intacto.</p></div>
 </div>
 
-<h3>ZION COCOON: a concha que se abre para a paisagem</h3>
+<h3>ZION CASULO: a concha que se abre para a paisagem</h3>
 <p>Uma cabana biomórfica em forma de casulo: planta em superelipse assimétrica (frente cheia, cauda afilada), seção elíptica com o centro a 0,75 m do piso, de modo que a concha abraça o chão em vez de simplesmente pousar sobre ele. Três gestos definem a identidade e a distinguem de qualquer produto de mercado:</p>
 <ul>
   <li><strong>Lábio frontal.</strong> O anel de fachada inclina-se 8° para fora e avança 0,60 m sobre o deck, formando o beiral e a expressão de casulo que se abre. A fachada de vidro fica recuada 0,45 m, inclinada no mesmo ângulo, como a proa de um barco.</li>
@@ -92,7 +92,7 @@ concept = f"""
 </ul>
 <p>Sensação buscada: proteção, silêncio, imersão. O interior segue o conceito <em>Zion New Luxury</em>: carvalho no piso, forro tensionado cor areia, marcenaria embutida na curva, iluminação indireta nos rodapés e nos requadros, e a banheira na cauda, o ponto mais íntimo do casulo.</p>
 
-<h3>ZION ZENITH: o ponto mais alto</h3>
+<h3>ZION SAFARI: o ponto mais alto</h3>
 <p>Uma cabana escultural de dois cumes de alturas diferentes (5,80 m e 4,60 m), deslocados em diagonal sobre um corpo de vidro e madeira. A silhueta nunca é simétrica: muda a cada ângulo, como uma cordilheira. A membrana desce dos cumes ao anel de beiral e continua em balanço de 2,40 m sobre o terraço, com bordas em catenária entre postes inclinados.</p>
 <ul>
   <li><strong>Óculo do Zênite.</strong> No cume principal, um anel de aço de 1,20 m sustentado por uma coroa de três braços libera o centro para uma cúpula de vidro. A cama fica exatamente sob ele: o zênite, literalmente, sobre o hóspede.</li>
@@ -103,8 +103,8 @@ concept = f"""
 <h3>Originalidade e propriedade</h3>
 <p>Os modelos de referência do mercado (túnel segmentado com escotilhas circulares; cobertura de dois picos simétricos sobre planta octogonal) serviram apenas como parâmetro construtivo e dimensional. As geometrias aqui desenvolvidas (superelipse assimétrica com lábio inclinado e espinha envidraçada; cumes assimétricos em diagonal com óculo e chaminé) são proprietárias, definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code> e passíveis de registro de desenho industrial.</p>
 
-{two(kv([("Produto", "ZION COCOON"), ("Piso", "9,60 x 5,86 m"), ("Concha", "9,75 x 6,00 x 4,20 m"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck", "29,9 m²"), ("Total", "78 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
-     kv([("Produto", "ZION ZENITH"), ("Corpo", "9,50 x 5,40 x 2,75 m"), ("Cumes", "5,80 m e 4,60 m"), ("Cobertura", "12,90 x 7,40 m (95,5 m² proj.)"), ("Piso interno", f"{fmt(Z.floor_area(), 1)} m²"), ("Terraço + passarela", "28,0 m²"), ("Total", "79,3 m²"), ("Peso embarcado", f"{fmt(BZ['total'], 0)} kg")]))}
+{two(kv([("Produto", "ZION CASULO"), ("Piso", "9,60 x 5,86 m"), ("Concha", "9,75 x 6,00 x 4,20 m"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck", "29,9 m²"), ("Total", "78 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
+     kv([("Produto", "ZION SAFARI"), ("Corpo", "9,50 x 5,40 x 2,75 m"), ("Cumes", "5,80 m e 4,60 m"), ("Cobertura", "12,90 x 7,40 m (95,5 m² proj.)"), ("Piso interno", f"{fmt(Z.floor_area(), 1)} m²"), ("Terraço + passarela", "28,0 m²"), ("Total", "79,3 m²"), ("Peso embarcado", f"{fmt(BZ['total'], 0)} kg")]))}
 """
 section("01", "Conceito arquitetônico", concept)
 
@@ -131,18 +131,18 @@ NOTES = {
   "07": "Corte no eixo do mastro principal: coroa, anel Ø1,20 e óculo; membrana, câmara e forro; anel de beiral sobre pilares; painéis SIP; passagem de 1,10 m ao banho; poste externo estaiado.",
   "08": "Volumetria a partir da frente e da lateral direita: cumes, balanços em catenária, fachada de vidro, terraço e hidromassagem."}}
 for num, title, fn in DRAW:
-    html = two(fig(f"cocoon/desenhos/{fn}", f"ZION COCOON · {title}") + f"<p class='note'>{NOTES['cocoon'][num]}</p>",
-               fig(f"zenith/desenhos/{fn}", f"ZION ZENITH · {title}") + f"<p class='note'>{NOTES['zenith'][num]}</p>")
+    html = two(fig(f"cocoon/desenhos/{fn}", f"ZION CASULO · {title}") + f"<p class='note'>{NOTES['cocoon'][num]}</p>",
+               fig(f"zenith/desenhos/{fn}", f"ZION SAFARI · {title}") + f"<p class='note'>{NOTES['zenith'][num]}</p>")
     section(num, title, html)
 
 # 09 modelo 3D ----------------------------------------------------------------
 m3d = f"""
 <p>Os modelos 3D são gerados a partir da mesma geometria paramétrica dos desenhos (<code>tools/geometry.py</code>) e entregues em dois formatos: visualizador interativo em HTML (Three.js, roda em qualquer navegador, com modos Exterior, Interior, Estrutura, Noite e Corte) e arquivo GLB (glTF binário) para importação em Rhino, SketchUp, Blender, Twinmotion, Lumion, Unreal ou visualização em realidade aumentada no celular.</p>
 {table(["Produto", "Visualizador interativo", "Modelo GLB", "Conteúdo"], [
- ["ZION COCOON", '<a href="cocoon/3d/zion-cocoon-3d.html">cocoon/3d/zion-cocoon-3d.html</a>', '<a href="cocoon/3d/zion-cocoon.glb">cocoon/3d/zion-cocoon.glb</a>', "Concha (membrana e vidros), 8 arcos, 7 terças, anel do lábio, fachada, Janelas Olho, deck, piso, parede do banho, mobiliário e equipamentos"],
- ["ZION ZENITH", '<a href="zenith/3d/zion-zenith-3d.html">zenith/3d/zion-zenith-3d.html</a>', '<a href="zenith/3d/zion-zenith.glb">zenith/3d/zion-zenith.glb</a>', "Membrana de dois cumes, forro, mastros e coroas, anel de beiral, pilares, postes e cabos, paredes de vidro e ripado, terraço, hidromassagem, mobiliário"]])}
-{two(fig("cocoon/renders/cocoon_structure.png", "ZION COCOON · modelo 3D em modo Estrutura (membrana translúcida)"), fig("zenith/renders/zenith_structure.png", "ZION ZENITH · modelo 3D em modo Estrutura"))}
-{two(fig("cocoon/renders/cocoon_section.png", "ZION COCOON · modelo 3D em modo Corte"), fig("zenith/renders/zenith_section.png", "ZION ZENITH · modelo 3D em modo Corte"))}
+ ["ZION CASULO", '<a href="cocoon/3d/zion-cocoon-3d.html">cocoon/3d/zion-cocoon-3d.html</a>', '<a href="cocoon/3d/zion-cocoon.glb">cocoon/3d/zion-cocoon.glb</a>', "Concha (membrana e vidros), 8 arcos, 7 terças, anel do lábio, fachada, Janelas Olho, deck, piso, parede do banho, mobiliário e equipamentos"],
+ ["ZION SAFARI", '<a href="zenith/3d/zion-zenith-3d.html">zenith/3d/zion-zenith-3d.html</a>', '<a href="zenith/3d/zion-zenith.glb">zenith/3d/zion-zenith.glb</a>', "Membrana de dois cumes, forro, mastros e coroas, anel de beiral, pilares, postes e cabos, paredes de vidro e ripado, terraço, hidromassagem, mobiliário"]])}
+{two(fig("cocoon/renders/cocoon_structure.png", "ZION CASULO · modelo 3D em modo Estrutura (membrana translúcida)"), fig("zenith/renders/zenith_structure.png", "ZION SAFARI · modelo 3D em modo Estrutura"))}
+{two(fig("cocoon/renders/cocoon_section.png", "ZION CASULO · modelo 3D em modo Corte"), fig("zenith/renders/zenith_section.png", "ZION SAFARI · modelo 3D em modo Corte"))}
 <p class="note">Para regenerar: <code>python3 tools/build_viewer.py</code> e <code>node tools/render.js</code>.</p>
 """
 section("09", "Modelo 3D", m3d)
@@ -150,19 +150,19 @@ section("09", "Modelo 3D", m3d)
 # 10-11 renders ---------------------------------------------------------------
 ext = f"""
 <p>Renderizações geradas a partir do modelo 3D paramétrico (visualização arquitetônica, não fotorrealista), coerentes com plantas, cortes e listas de materiais. Servem de base para a direção de arte das imagens finais de marketing.</p>
-{two(render_pair("cocoon", "ext_front", "ZION COCOON · vista frontal 3/4 com o lábio, a fachada de vidro e o deck"), render_pair("zenith", "ext_front", "ZION ZENITH · vista frontal 3/4 com os dois cumes sobre o terraço"))}
-{two(render_pair("cocoon", "ext_side", "ZION COCOON · lateral com as Janelas Olho"), render_pair("zenith", "ext_side", "ZION ZENITH · lateral com o vidro contínuo da suíte"))}
-{two(render_pair("cocoon", "ext_rear", "ZION COCOON · cauda"), render_pair("zenith", "ext_rear", "ZION ZENITH · fundos com os painéis ripados"))}
-{two(render_pair("cocoon", "ext_aerial", "ZION COCOON · vista aérea com a Espinha de Luz"), render_pair("zenith", "ext_aerial", "ZION ZENITH · vista aérea da membrana"))}
-{two(render_pair("cocoon", "night", "ZION COCOON · noite: a concha como lanterna"), render_pair("zenith", "night", "ZION ZENITH · noite: os cumes iluminados por dentro"))}
+{two(render_pair("cocoon", "ext_front", "ZION CASULO · vista frontal 3/4 com o lábio, a fachada de vidro e o deck"), render_pair("zenith", "ext_front", "ZION SAFARI · vista frontal 3/4 com os dois cumes sobre o terraço"))}
+{two(render_pair("cocoon", "ext_side", "ZION CASULO · lateral com as Janelas Olho"), render_pair("zenith", "ext_side", "ZION SAFARI · lateral com o vidro contínuo da suíte"))}
+{two(render_pair("cocoon", "ext_rear", "ZION CASULO · cauda"), render_pair("zenith", "ext_rear", "ZION SAFARI · fundos com os painéis ripados"))}
+{two(render_pair("cocoon", "ext_aerial", "ZION CASULO · vista aérea com a Espinha de Luz"), render_pair("zenith", "ext_aerial", "ZION SAFARI · vista aérea da membrana"))}
+{two(render_pair("cocoon", "night", "ZION CASULO · noite: a concha como lanterna"), render_pair("zenith", "night", "ZION SAFARI · noite: os cumes iluminados por dentro"))}
 """
 section("10", "Renderizações externas", ext)
 inn = f"""
-{two(render_pair("cocoon", "int_living", "ZION COCOON · estar olhando para a suíte e a Espinha de Luz"), render_pair("zenith", "int_living", "ZION ZENITH · estar olhando para a cama sob o Óculo"))}
-{two(render_pair("cocoon", "int_bed", "ZION COCOON · da cama para a fachada e o deck"), render_pair("zenith", "int_bed", "ZION ZENITH · da cama para a fachada e o terraço"))}
-{two(render_pair("cocoon", "int_bath", "ZION COCOON · banho com a banheira na cauda"), render_pair("zenith", "int_bath", "ZION ZENITH · banho com bancada dupla e banheira"))}
+{two(render_pair("cocoon", "int_living", "ZION CASULO · estar olhando para a suíte e a Espinha de Luz"), render_pair("zenith", "int_living", "ZION SAFARI · estar olhando para a cama sob o Óculo"))}
+{two(render_pair("cocoon", "int_bed", "ZION CASULO · da cama para a fachada e o deck"), render_pair("zenith", "int_bed", "ZION SAFARI · da cama para a fachada e o terraço"))}
+{two(render_pair("cocoon", "int_bath", "ZION CASULO · banho com a banheira na cauda"), render_pair("zenith", "int_bath", "ZION SAFARI · banho com bancada dupla e banheira"))}
 <h3>Direção de arte dos interiores (Zion New Luxury)</h3>
-{table(["Elemento", "ZION COCOON", "ZION ZENITH"], [
+{table(["Elemento", "ZION CASULO", "ZION SAFARI"], [
  ["Piso", "Carvalho de engenharia 14 mm, tom natural; porcelanato cinza-areia no banho", "Idem; deck cumaru no terraço"],
  ["Paredes e forro", "Forro tensionado cor areia seguindo a concha; painel ripado de carvalho na cabeceira", "Forro tensionado seguindo os cumes; painéis de madeira nas paredes fechadas; tecido nas laterais"],
  ["Marcenaria", "Embutida na curva: console café, armário baixo, criados", "Ilha do Café com totem do mastro, closet, bancada dupla"],
@@ -175,13 +175,13 @@ section("11", "Renderizações internas", inn)
 
 # 12 estrutura ----------------------------------------------------------------
 est = f"""
-{two(fig("cocoon/desenhos/12_estrutura_isometrica.svg", "ZION COCOON · estrutura metálica: anel do lábio, arcos, terças, espinha, cabos"), fig("zenith/desenhos/12_estrutura_isometrica.svg", "ZION ZENITH · estrutura metálica: mastros, coroas, anel de beiral, pilares, postes e cabos"))}
+{two(fig("cocoon/desenhos/12_estrutura_isometrica.svg", "ZION CASULO · estrutura metálica: anel do lábio, arcos, terças, espinha, cabos"), fig("zenith/desenhos/12_estrutura_isometrica.svg", "ZION SAFARI · estrutura metálica: mastros, coroas, anel de beiral, pilares, postes e cabos"))}
 <h3>Sistema estrutural</h3>
-{two("<h4>ZION COCOON</h4><p>Oito pórticos elípticos planos (A0 a A7), biengastados nos trilhos de base, travados por sete terças longitudinais e pela treliça da Espinha de Luz. A membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos resistem ao vento longitudinal. Uplift de projeto 1,3 kN/m² x 45 m² ≈ 60 kN em 16 pés de arco (≈ 4 kN cada). Peso do aço: " + fmt(BC['steel_kg'], 0) + " kg.</p>",
-     "<h4>ZION ZENITH</h4><p>Dois mastros a compressão (M1 45 kN de projeto) com coroas de três braços e anéis de cume; anel de beiral 150 x 100 comprimido pela membrana sobre dez pilares embutidos nos painéis SIP, que formam o diafragma rígido; sete postes externos inclinados e estaiados absorvem os cabos de borda. Uplift de projeto 1,3 kN/m² x 95 m² ≈ 125 kN, distribuído entre pilares, postes e 37 estacas. Peso do aço: " + fmt(BZ['steel_kg'], 0) + " kg.</p>")}
+{two("<h4>ZION CASULO</h4><p>Oito pórticos elípticos planos (A0 a A7), biengastados nos trilhos de base, travados por sete terças longitudinais e pela treliça da Espinha de Luz. A membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos resistem ao vento longitudinal. Uplift de projeto 1,3 kN/m² x 45 m² ≈ 60 kN em 16 pés de arco (≈ 4 kN cada). Peso do aço: " + fmt(BC['steel_kg'], 0) + " kg.</p>",
+     "<h4>ZION SAFARI</h4><p>Dois mastros a compressão (M1 45 kN de projeto) com coroas de três braços e anéis de cume; anel de beiral 150 x 100 comprimido pela membrana sobre dez pilares embutidos nos painéis SIP, que formam o diafragma rígido; sete postes externos inclinados e estaiados absorvem os cabos de borda. Uplift de projeto 1,3 kN/m² x 95 m² ≈ 125 kN, distribuído entre pilares, postes e 37 estacas. Peso do aço: " + fmt(BZ['steel_kg'], 0) + " kg.</p>")}
 <h3>Perfis e massas</h3>
-{two(table(["Código", "Componente", "Perfil", "Qtd", "Comp. (m)", "Massa (kg)"], [list(r) for r in BC["steel_rows"]], foot=["", "Total de aço ZION COCOON", "", "", "", fmt(BC["steel_kg"], 0)]),
-     table(["Código", "Componente", "Perfil", "Qtd", "Comp. (m)", "Massa (kg)"], [list(r) for r in BZ["steel_rows"]], foot=["", "Total de aço ZION ZENITH", "", "", "", fmt(BZ["steel_kg"], 0)]))}
+{two(table(["Código", "Componente", "Perfil", "Qtd", "Comp. (m)", "Massa (kg)"], [list(r) for r in BC["steel_rows"]], foot=["", "Total de aço ZION CASULO", "", "", "", fmt(BC["steel_kg"], 0)]),
+     table(["Código", "Componente", "Perfil", "Qtd", "Comp. (m)", "Massa (kg)"], [list(r) for r in BZ["steel_rows"]], foot=["", "Total de aço ZION SAFARI", "", "", "", fmt(BZ["steel_kg"], 0)]))}
 <h3>Premissas de cálculo (estudo preliminar)</h3>
 {table(["Parâmetro", "Valor", "Referência"], [
  ["Velocidade básica do vento V0", "45 m/s (categoria II, S1 = S3 = 1,0)", "NBR 6123"],
@@ -198,9 +198,9 @@ section("12", "Estudo da estrutura metálica", est)
 
 # 13 arcos / mastros ------------------------------------------------------------
 arcs = f"""
-{fig("detalhes/DET-10_arcos_cocoon.svg", "DET-10 · ZION COCOON · sistema de arcos elípticos, luvas, terças, keder e contraventamento")}
-{fig("detalhes/DET-11_mastros_zenith.svg", "DET-11 · ZION ZENITH · mastros, coroas, anéis de cume, anel de beiral e postes")}
-<h3>Arcos do ZION COCOON: geometria de fabricação</h3>
+{fig("detalhes/DET-10_arcos_cocoon.svg", "DET-10 · ZION CASULO · sistema de arcos elípticos, luvas, terças, keder e contraventamento")}
+{fig("detalhes/DET-11_mastros_zenith.svg", "DET-11 · ZION SAFARI · mastros, coroas, anéis de cume, anel de beiral e postes")}
+<h3>Arcos do ZION CASULO: geometria de fabricação</h3>
 {table(["Arco", "Posição x (m)", "Semi-eixo horiz. (m)", "Semi-eixo vert. (m)", "Topo (m)", "Desenvolvido (m)", "Segmentos"],
   [[f"A{i}", fmt(x), fmt(C.a(x)), fmt(C.b(x)), fmt(C.top(x)), fmt(l), "2 (anel inclinado)" if i == 0 else "3 + 2 luvas"] for i, (x, l) in enumerate(zip(C.ARCH_X, BC["arch_lengths"]))])}
 <p class="note">Todos os arcos partem da mesma família de elipses (centro a 0,75 m do piso), o que permite um único gabarito de calandra com ajuste de raio por segmento. Perfil Ø88,9 x 3,6 mm; o anel A0 usa Ø101,6 x 4,0 mm por receber a esquadria da fachada e o esforço do lábio em balanço.</p>
@@ -209,21 +209,21 @@ section("13", "Sistema de arcos e perfis estruturais", arcs)
 
 # 14-21 detalhes ----------------------------------------------------------------
 DET = [("14", "Detalhe do sistema de cobertura", ["DET-01_cobertura_cocoon.svg", "DET-02_cobertura_zenith.svg"],
-        "Camadas do envelope: membrana PVDF em perfil keder (Cocoon) ou anéis com clamp (Zenith), câmara ventilada de 60 mm, lã PET 50 mm com manta refletiva e forro tensionado. Inclinação mínima de 12°, autolimpeza pela laca PVDF, garantia de 15 anos da membrana, classe B1 ao fogo e tratamento anti-fungo. Respiro na cumeeira (Cocoon) e chaminé do cume secundário (Zenith) mantêm a câmara ventilada e controlam a condensação."),
+        "Camadas do envelope: membrana PVDF em perfil keder (Casulo) ou anéis com clamp (Safari), câmara ventilada de 60 mm, lã PET 50 mm com manta refletiva e forro tensionado. Inclinação mínima de 12°, autolimpeza pela laca PVDF, garantia de 15 anos da membrana, classe B1 ao fogo e tratamento anti-fungo. Respiro na cumeeira (Casulo) e chaminé do cume secundário (Safari) mantêm a câmara ventilada e controlam a condensação."),
        ("15", "Detalhe de ancoragem", ["DET-03_ancoragem.svg"],
         "Pés de arco com chapa 200 x 150 x 10 e 4 chumbadores M16 nas vigas U 150; trilhos de base com clamp de membrana e calha oculta; postes externos com base articulada e estai Ø10 a estacas de tração; bolsas de cabo de borda Ø12 com esticadores nos olhais dos postes. Toda a ancoragem é reversível: a unidade pode ser desmontada e realocada sem deixar concreto no terreno."),
        ("16", "Sistema de fundação", ["DET-04_fundacao.svg"],
         "Estacas helicoidais Ø76 mm com hélice Ø300 mm, comprimento de 1,5 a 2,5 m conforme o solo, capacidade de 25 a 40 kN à compressão e 15 a 25 kN à tração, cravadas por motor hidráulico portátil (sem escavação). Cabeçotes ajustáveis absorvem desníveis de até 8%; em terrenos mais inclinados, estacas mais longas e deck em balanço com guarda-corpo de cabos. Grelha de vigas U 150 x 60 galvanizadas, vigotas tratadas a cada 400 mm, PIR 50 mm, compensado naval e piso de engenharia."),
        ("17", "Detalhe de portas e janelas", ["DET-05_esquadrias.svg"],
-        "Janela Olho (Cocoon): requadro de madeira laminada de 220 mm que faz a transição da membrana curva ao vidro duplo plano, com duas unidades basculantes; fachada inclinada 8° em anel de alumínio curvo com porta pivotante 1,00 x 2,40; fachada do Zenith com quatro folhas (duas de correr) e trilho embutido no piso com dreno; janelas em painel SIP com rufos e pingadeiras. Vidros duplos 6 lam + 12 Ar + 6 temp low-e (U ≈ 1,6 W/m²K, FS 0,40)."),
+        "Janela Olho (Casulo): requadro de madeira laminada de 220 mm que faz a transição da membrana curva ao vidro duplo plano, com duas unidades basculantes; fachada inclinada 8° em anel de alumínio curvo com porta pivotante 1,00 x 2,40; fachada do Safari com quatro folhas (duas de correr) e trilho embutido no piso com dreno; janelas em painel SIP com rufos e pingadeiras. Vidros duplos 6 lam + 12 Ar + 6 temp low-e (U ≈ 1,6 W/m²K, FS 0,40)."),
        ("18", "Sistema de drenagem", ["DET-06_drenagem.svg"],
-        "A membrana escoa para as bordas: no Cocoon, para a calha oculta de 80 mm no rodapé da concha e dois tubos de queda Ø75 nas extremidades; no Zenith, para os pontos baixos das catenárias (pingadeiras sobre canaletas de brita) e para a calha oculta do anel de beiral com quedas dentro de dois pilares. Dimensionamento para 150 mm/h; destino em caixas de brita, dispersão ou cisterna de reúso."),
+        "A membrana escoa para as bordas: no Casulo, para a calha oculta de 80 mm no rodapé da concha e dois tubos de queda Ø75 nas extremidades; no Safari, para os pontos baixos das catenárias (pingadeiras sobre canaletas de brita) e para a calha oculta do anel de beiral com quedas dentro de dois pilares. Dimensionamento para 150 mm/h; destino em caixas de brita, dispersão ou cisterna de reúso."),
        ("19", "Sistema de instalação elétrica", ["DET-07_eletrica.svg"],
-        "Entrada 220 V, quadro no ático técnico (12 módulos no Cocoon, 16 no Zenith), circuitos separados para climatização, aquecimento de água, tomadas, iluminação e banho; hidromassagem em circuito próprio com DR 30 mA. Iluminação em fitas LED 2700 K nos rodapés, requadros e forro, sem pendentes; tomadas com USB nos criados e no estar; balizadores no deck. Opcional: kit solar 3 kWp com baterias de 10 kWh. Cabos passam no vazio do piso e atrás do forro."),
+        "Entrada 220 V, quadro no ático técnico (12 módulos no Casulo, 16 no Safari), circuitos separados para climatização, aquecimento de água, tomadas, iluminação e banho; hidromassagem em circuito próprio com DR 30 mA. Iluminação em fitas LED 2700 K nos rodapés, requadros e forro, sem pendentes; tomadas com USB nos criados e no estar; balizadores no deck. Opcional: kit solar 3 kWp com baterias de 10 kWh. Cabos passam no vazio do piso e atrás do forro."),
        ("20", "Sistema hidráulico", ["DET-08_hidraulica.svg"],
-        "Alimentação PEX Ø25 com registro geral e filtro; aquecedor a gás de passagem (23 ou 30 L/min) ou bomba de calor (200 ou 300 L) no ático; ramais quente/frio a bancada, chuveiro, banheira e bacia; esgoto Ø40/50 a coletor Ø100 sob o deck com 2% de declividade e ventilação; fossa séptica com filtro anaeróbio ou estação compacta; águas cinzas separáveis para irrigação. Hidromassagem do Zenith com filtro, bomba e aquecedor de 3 kW próprios."),
+        "Alimentação PEX Ø25 com registro geral e filtro; aquecedor a gás de passagem (23 ou 30 L/min) ou bomba de calor (200 ou 300 L) no ático; ramais quente/frio a bancada, chuveiro, banheira e bacia; esgoto Ø40/50 a coletor Ø100 sob o deck com 2% de declividade e ventilação; fossa séptica com filtro anaeróbio ou estação compacta; águas cinzas separáveis para irrigação. Hidromassagem do Safari com filtro, bomba e aquecedor de 3 kW próprios."),
        ("21", "Posicionamento de ar-condicionado e aquecimento", ["DET-09_climatizacao.svg"],
-        "Evaporadora dutada inverter no ático técnico sobre o banho (12k BTU no Cocoon, 18k no Zenith), difusores lineares na parede da cabeceira e no estar, retorno pelo forro do banho, condensadora atrás da unidade oculta por ripado. Operação em modo bomba de calor até -15 °C; piso radiante elétrico opcional no banho e na suíte; lareira a etanol opcional no Zenith. Ventilação natural pelas janelas basculantes, respiro de cumeeira e chaminé do Respiro; exaustor do banho com recuperação de calor.")]
+        "Evaporadora dutada inverter no ático técnico sobre o banho (12k BTU no Casulo, 18k no Safari), difusores lineares na parede da cabeceira e no estar, retorno pelo forro do banho, condensadora atrás da unidade oculta por ripado. Operação em modo bomba de calor até -15 °C; piso radiante elétrico opcional no banho e na suíte; lareira a etanol opcional no Safari. Ventilação natural pelas janelas basculantes, respiro de cumeeira e chaminé do Respiro; exaustor do banho com recuperação de calor.")]
 for num, title, files, text in DET:
     html = f"<p>{text}</p>" + "".join(fig(f"detalhes/{f}", f"{f.split('_')[0]} · {title}") for f in files)
     section(num, title, html)
@@ -236,25 +236,25 @@ def bom_tables(b):
     return out
 mat = f"""
 <p>Quantidades derivadas da geometria paramétrica (áreas de membrana, comprimentos de arcos, área de piso e deck) e das especificações da Seção 01. Valores preliminares para orçamento de fabricação; a lista definitiva sai do projeto executivo.</p>
-{two("<h3>ZION COCOON</h3>" + bom_tables(BC), "<h3>ZION ZENITH</h3>" + bom_tables(BZ))}
+{two("<h3>ZION CASULO</h3>" + bom_tables(BC), "<h3>ZION SAFARI</h3>" + bom_tables(BZ))}
 """
 section("22", "Lista preliminar de materiais", mat)
 
 # 23 componentes para fabricação --------------------------------------------------
 comp = f"""
 <p>Cada unidade é um kit de componentes codificados, fabricados industrialmente e pré-montados em bancada sempre que possível (módulos de piso e deck, painéis, quadros de instalações). O código identifica o produto (ZC / ZZ) e a família da peça.</p>
-<h3>ZION COCOON</h3>
+<h3>ZION CASULO</h3>
 {table(["Código", "Componente", "Especificação de fabricação", "Qtd", "Processo"], [list(p) for p in cocoon_parts()])}
-<h3>ZION ZENITH</h3>
+<h3>ZION SAFARI</h3>
 {table(["Código", "Componente", "Especificação de fabricação", "Qtd", "Processo"], [list(p) for p in zenith_parts()])}
 """
 section("23", "Lista de componentes para fabricação", comp)
 
 # 24 peso ------------------------------------------------------------------------
 peso = f"""
-{two("<h3>ZION COCOON</h3>" + table(["Grupo", "Massa (kg)", "%"], [[g, fmt(w, 0), fmt(100 * w / BC['total'], 1)] for g, w in BC["weights"]], foot=["Total embarcado", fmt(BC["total"], 0), "100"]),
-     "<h3>ZION ZENITH</h3>" + table(["Grupo", "Massa (kg)", "%"], [[g, fmt(w, 0), fmt(100 * w / BZ['total'], 1)] for g, w in BZ["weights"]], foot=["Total embarcado", fmt(BZ["total"], 0), "100"]))}
-{table(["Indicador", "ZION COCOON", "ZION ZENITH"], [
+{two("<h3>ZION CASULO</h3>" + table(["Grupo", "Massa (kg)", "%"], [[g, fmt(w, 0), fmt(100 * w / BC['total'], 1)] for g, w in BC["weights"]], foot=["Total embarcado", fmt(BC["total"], 0), "100"]),
+     "<h3>ZION SAFARI</h3>" + table(["Grupo", "Massa (kg)", "%"], [[g, fmt(w, 0), fmt(100 * w / BZ['total'], 1)] for g, w in BZ["weights"]], foot=["Total embarcado", fmt(BZ["total"], 0), "100"]))}
+{table(["Indicador", "ZION CASULO", "ZION SAFARI"], [
  ["Estrutura metálica de aço", f"{fmt(BC['steel_kg'], 0)} kg", f"{fmt(BZ['steel_kg'], 0)} kg"],
  ["Alumínio e perfis", f"{fmt(BC['alu_kg'], 0)} kg", f"{fmt(BZ['alu_kg'], 0)} kg"],
  ["Peça mais pesada a içar", "Segmento de arco A2 (≈ 30 kg) · anel A0 em 2 partes (≈ 50 kg cada)", "Mastro M1 (76 kg) · segmento do anel de beiral (≈ 71 kg)"],
@@ -268,10 +268,10 @@ section("24", "Estimativa de peso da estrutura", peso)
 def tr_table(t):
     return table(["Volume", "Dimensões", "m³", "kg"], [[d, dim, fmt(v, 1), fmt(k, 0)] for (d, dim, v, k) in t["items"]], foot=["Total", "", fmt(t["vol"], 1), fmt(t["kg"], 0)])
 transp = f"""
-<p>Cada unidade viaja em um contêiner 40' HC (76 m³, 26 t de carga útil) ou em uma carreta de 12 m com lona, em volumes paletizados de no máximo 5,2 m de comprimento. Nenhuma peça exige transporte especial; os arcos do Cocoon viajam em três segmentos e o anel de beiral do Zenith em seis. Última milha em terrenos naturais: caminhão 3/4 ou trator com carreta para os estrados, com transbordo manual (peças abaixo de 80 kg) ou mini-guindaste de 1 t.</p>
-{two("<h3>ZION COCOON</h3>" + tr_table(TC), "<h3>ZION ZENITH</h3>" + tr_table(TZ))}
+<p>Cada unidade viaja em um contêiner 40' HC (76 m³, 26 t de carga útil) ou em uma carreta de 12 m com lona, em volumes paletizados de no máximo 5,2 m de comprimento. Nenhuma peça exige transporte especial; os arcos do Casulo viajam em três segmentos e o anel de beiral do Safari em seis. Última milha em terrenos naturais: caminhão 3/4 ou trator com carreta para os estrados, com transbordo manual (peças abaixo de 80 kg) ou mini-guindaste de 1 t.</p>
+{two("<h3>ZION CASULO</h3>" + tr_table(TC), "<h3>ZION SAFARI</h3>" + tr_table(TZ))}
 {table(["Modal", "Capacidade", "Unidades por viagem", "Observação"], [
- ["Contêiner 40' HC (marítimo / rodoviário)", "76 m³ · 26 t", "1 unidade completa (Cocoon: 67% do volume; Zenith: 82%)", "Permite exportação e estoque em porto seco"],
+ ["Contêiner 40' HC (marítimo / rodoviário)", "76 m³ · 26 t", "1 unidade completa (Casulo: 67% do volume; Safari: 82%)", "Permite exportação e estoque em porto seco"],
  ["Carreta 12 m com lona", "≈ 90 m³ · 25 t", "1 unidade completa + 1 kit de estrutura extra", "Distribuição nacional"],
  ["Caminhão 3/4 (última milha)", "≈ 22 m³ · 3,5 t", "3 a 4 viagens por unidade", "Acesso a terrenos naturais"],
  ["Helicóptero (opcional, sítios remotos)", "carga externa 1,0 t", "8 a 12 ciclos", "Peças abaixo de 80 kg e estrados abaixo de 1 t"],
@@ -285,7 +285,7 @@ def steps(name):
     return table(["Etapa", "Fase", "Atividades", "Dias", "Equipe"], rows, foot=["", "Total", "", fmt(sum(s[2] for s in ASSEMBLY[name]), 1), "4 montadores + líder"])
 mont = f"""
 <p>A sequência foi desenhada para uma equipe de quatro montadores e um líder, sem grua: guincho manual de 1 t e talha para os mastros. Toda a montagem é a seco e reversível. Antes do embarque, a estrutura de cada unidade é pré-montada na fábrica para conferência de geometria e a membrana é ajustada sobre ela (fit test).</p>
-{two("<h3>ZION COCOON</h3>" + steps("cocoon"), "<h3>ZION ZENITH</h3>" + steps("zenith"))}
+{two("<h3>ZION CASULO</h3>" + steps("cocoon"), "<h3>ZION SAFARI</h3>" + steps("zenith"))}
 <h3>Pontos de controle de qualidade</h3>
 {table(["Fase", "Verificação", "Tolerância"], [
  ["Fundação", "Nível dos cabeçotes com nível a laser; torque de cravação registrado por estaca", "± 5 mm; torque mínimo conforme capacidade"],
@@ -306,7 +306,7 @@ def gantt(name):
         t += d
     return f'<div class="gantt">{bars}</div>'
 tempo = f"""
-{table(["Indicador", "ZION COCOON", "ZION ZENITH"], [
+{table(["Indicador", "ZION CASULO", "ZION SAFARI"], [
  ["Fabricação (após aprovação do executivo)", "6 a 8 semanas por unidade; 4 semanas em série a partir da 3ª unidade", "7 a 9 semanas; 5 semanas em série"],
  ["Transporte (fábrica ao sítio)", "1 a 5 dias nacional; 30 a 45 dias marítimo internacional", "Idem"],
  ["Instalação no sítio (dias úteis)", f"{fmt(sum(s[2] for s in ASSEMBLY['cocoon']), 0)} dias", f"{fmt(sum(s[2] for s in ASSEMBLY['zenith']), 0)} dias"],
@@ -315,7 +315,7 @@ tempo = f"""
  ["Em série (parque de 10 unidades, 2 equipes)", "≈ 9 semanas de instalação", "≈ 11 semanas de instalação"],
 ])}
 <h3>Cronograma de instalação</h3>
-{two("<h4>ZION COCOON · 12 dias úteis</h4>" + gantt("cocoon"), "<h4>ZION ZENITH · 15 dias úteis</h4>" + gantt("zenith"))}
+{two("<h4>ZION CASULO · 12 dias úteis</h4>" + gantt("cocoon"), "<h4>ZION SAFARI · 15 dias úteis</h4>" + gantt("zenith"))}
 <p class="note">Premissas: acesso de caminhão 3/4 ao sítio, energia provisória e água disponíveis, solo com capacidade para estacas helicoidais de 2,0 m, sem chuva contínua. Fundação e instalações externas (redes, fossa, acesso) correm em paralelo pela equipe do sítio.</p>
 """
 section("27", "Tempo estimado de instalação", tempo)
@@ -323,7 +323,7 @@ section("27", "Tempo estimado de instalação", tempo)
 # anexo: negócio ------------------------------------------------------------------
 biz = f"""
 <p>Os produtos foram desenhados para performar como ativo hoteleiro: fabricáveis em série, transportáveis, montáveis em duas semanas e operáveis com a mesma equipe de um boutique hotel. Ordens de grandeza para o estudo de viabilidade (a confirmar com cotação de fabricação e o Zion Score do destino):</p>
-{table(["Indicador", "ZION COCOON", "ZION ZENITH"], [
+{table(["Indicador", "ZION CASULO", "ZION SAFARI"], [
  ["Posicionamento", "Refúgio de casal, silêncio e imersão", "Suíte assinatura com terraço e hidromassagem"],
  ["Ocupação", "2 adultos", "2 adultos (+ 1 criança no sofá)"],
  ["ADR de referência", "R$ 1.200 a 1.800", "R$ 1.600 a 2.600"],
@@ -335,7 +335,7 @@ biz = f"""
 <h3>Próximos passos</h3>
 <ol>
  <li>Aprovação do conceito e das dimensões pela diretoria da Zion.</li>
- <li>Registro de desenho industrial das duas geometrias (INPI) e das marcas ZION COCOON e ZION ZENITH.</li>
+ <li>Registro de desenho industrial das duas geometrias (INPI) e das marcas ZION CASULO e ZION SAFARI.</li>
  <li>Projeto executivo: cálculo estrutural com ART, form-finding da membrana com o fabricante, detalhamento de esquadrias e instalações.</li>
  <li>Protótipo de cada produto no Zion Bubble Glamping (Florianópolis) para validação de montagem, conforto térmico e experiência do hóspede.</li>
  <li>Homologação de fornecedores (metalurgia, membrana, vidros, painéis) e precificação de série.</li>
@@ -419,12 +419,12 @@ for sid, num, title, html, _ in S:
 
 HTML = f"""<!DOCTYPE html>
 <html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Zion Cocoon e Zion Zenith · Caderno Técnico</title>
-<meta name="description" content="Projeto conceitual, arquitetônico e técnico das unidades de hospedagem ZION COCOON e ZION ZENITH da Zion Glamping Collection: 27 entregáveis.">
+<title>Zion Casulo e Zion Safari · Caderno Técnico</title>
+<meta name="description" content="Projeto conceitual, arquitetônico e técnico das unidades de hospedagem ZION CASULO e ZION SAFARI da Zion Glamping Collection: 27 entregáveis.">
 <style>{CSS}</style></head>
 <body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · CADERNO TÉCNICO</span>{nav}</nav><main>{body}</main></div></body></html>"""
 
-out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_COCOON_ZENITH_Caderno_Tecnico" + ("_standalone" if INLINE else "") + ".html")
+out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_CASULO_SAFARI_Caderno_Tecnico" + ("_standalone" if INLINE else "") + ".html")
 with open(out, "w", encoding="utf-8") as f:
     f.write(HTML)
 print("dossier ->", out, f"{os.path.getsize(out) / 1e6:.2f} MB")

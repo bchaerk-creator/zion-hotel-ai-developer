@@ -1,4 +1,6 @@
-# ZION COCOON e ZION ZENITH — Especificação Técnica de Referência
+# ZION CASULO, ZION SAFARI e ZION LODGE — Especificação Técnica de Referência
+
+> Nomes comerciais adotados em set/2026: **Zion Casulo** (antes Cocoon), **Zion Safari** (antes Zenith) e **Zion Lodge** (terceiro produto, em conceito).
 
 Documento-fonte compartilhado por todos os desenhos, modelos e listas do projeto.
 Sistema de coordenadas: x = comprimento (0 na fachada frontal), y = largura (0 no eixo), z = altura (0 no piso acabado). Unidades em metros salvo indicação.
@@ -13,7 +15,7 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 |---|---|---|
 | Fundação | Estacas helicoidais galvanizadas Ø76 mm, hélice Ø300 mm, L 1,5 a 2,5 m, capacidade 25 a 40 kN (compressão) / 15 a 25 kN (tração) | Sem movimentação de terra, removível, instalável com mini-escavadeira ou motor hidráulico portátil |
 | Cabeçote | Cabeçote ajustável rosqueado, curso 150 mm, chapa 150 x 150 x 8 mm | Absorve desnível de terreno até 8% sem corte |
-| Vigas de deck | Perfil U enrijecido 150 x 60 x 3,0 mm, galvanizado a fogo (Z275) | Malha 2,4 x 2,4 m (Cocoon) / 2,4 x 2,7 m (Zenith) |
+| Vigas de deck | Perfil U enrijecido 150 x 60 x 3,0 mm, galvanizado a fogo (Z275) | Malha 2,4 x 2,4 m (Casulo) / 2,4 x 2,7 m (Safari) |
 | Vigotas | Madeira tratada (pinus autoclavado CCA-C ou eucalipto) 50 x 150 mm a cada 400 mm ou perfil LSF 90 x 40 | Isolamento PIR 50 mm entre vigotas + manta de fechamento inferior |
 | Contrapiso | Compensado naval 18 mm + piso de engenharia (carvalho ou cumaru) 14 mm | Zona molhada: placa cimentícia 12 mm + impermeabilização + porcelanato |
 | Deck externo | Cumaru ou madeira termotratada 20 x 140 mm, fixação oculta, ripas com 6 mm de espaçamento | Guarda-corpo em cabo de aço inox e montantes de aço quando necessário |
@@ -28,7 +30,7 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 
 ---
 
-## 2. ZION COCOON — Cabana biomórfica em casulo
+## 2. ZION CASULO — Cabana biomórfica em casulo
 
 ### 2.1 Dimensões
 | Item | Valor |
@@ -87,7 +89,7 @@ Estabilidade: os arcos trabalham como pórticos elípticos biengastados no quadr
 
 ---
 
-## 3. ZION ZENITH — Cabana escultural de dois cumes
+## 3. ZION SAFARI — Cabana escultural de dois cumes
 
 ### 3.1 Dimensões
 | Item | Valor |
@@ -148,9 +150,20 @@ Estabilidade: o corpo em painéis SIP forma um diafragma rígido; o anel de beir
 
 ---
 
+## 3b. ZION LODGE — Pavilhão octogonal com lanterna (estudo de conceito)
+
+- **Planta**: octógono regular de 6,80 m entre faces (lado 2,82 m, 7,36 m entre vértices); área interna 38,3 m², banho 6,9 m² no segmento posterior (parede-corda a 1,55 m do centro).
+- **Deck**: três faces frontais, profundidade 2,60 m, 30,4 m²; vela de sombra em membrana independente sobre dois postes de 2,40 m.
+- **Alturas**: anel de beiral a 2,70 m; anel de compressão da Lanterna Zion (Ø1,50) a 4,60 m; vidro claro de 0,45 m; tampa ventilada a 5,20 m.
+- **Estrutura**: 8 pilares Ø101,6 x 4,0 revestidos em madeira; anel de beiral 150 x 100 x 4,0; 8 caibros radiais Ø76,1 x 3,6; anel de compressão da lanterna; contraventamento por cabos nas faces opacas. Pré-dimensionamento a validar.
+- **Envelope**: membrana PVDF 1050 g/m² em 8 gomos com keder; câmara ventilada 60 mm; lã de PET 50 mm; forro tensionado; beiral 0,90 m além dos pilares.
+- **Fechamentos**: cinco faces de vidro insulado (alumínio bronze RPT) com porta de correr 2,00 x 2,40 na face frontal; três faces em painel SIP + ripado (banho e cabeceira) com fresta alta sobre a banheira.
+- **Fundação**: cerca de 20 estacas helicoidais; deck e piso em vigas U 150.
+- **Identidade**: luz zenital sobre a cama (o mercado fecha o cume em ponta cega), vela de sombra independente, cinco faces de vidro. Não replica os lodges octogonais de catálogo: proporção, lanterna, deck em três faces e sistema de camadas são próprios.
+
 ## 4. Transporte e montagem (comum)
 
-| Etapa | Cocoon | Zenith |
+| Etapa | Casulo | Safari |
 |---|---|---|
 | Embalagem | 1 contêiner 40' HC (ou 1 carreta 12 m): 3 estrados de estrutura + 2 caixas de membrana/isolamento + 4 caixas de vidros + 2 paletes de piso + 1 palete de deck + 1 palete de instalações | 1 contêiner 40' HC: 2 estrados de estrutura + 8 painéis SIP + 3 caixas de membrana + 4 caixas de vidros + 3 paletes de piso/deck + 1 palete de instalações |
 | Peso total embarcado | ≈ 8,6 t (50,6 m³) | ≈ 10,8 t (62,6 m³) |

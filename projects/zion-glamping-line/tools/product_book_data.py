@@ -16,7 +16,7 @@ def r(v, n=0):
     return round(v, n) if n else int(round(v))
 
 # =============================================================================
-# 1. PEÇAS · ZION COCOON (ferro por ferro)
+# 1. PEÇAS · ZION CASULO (ferro por ferro)
 # =============================================================================
 def cocoon_parts():
     """Cada peça: cod, nome, qtd, comp (m), larg (mm), alt (mm), perfil, aco, esp (mm), peso_un (kg), fabricacao, uniao, ordem."""
@@ -186,15 +186,15 @@ PRICES = {
     "refletiva": ("Manta refletiva dupla face bolha 4 mm (R$/m²)", "m²", 17.0, 1.0, 1.0, ""),
     "malha": ("Malha inox / tela de apoio do isolamento (R$/m²)", "m²", 22.0, 0.8, 1.0, ""),
     "forro": ("Forro tensionado acústico Trevira CS instalado (R$/m²)", "m²", 265.0, 0.65, 1.3, "Econ.: tecido poliéster tensionado; Premium: acústico + painéis de madeira"),
-    "sip": ("Painel SIP 100 mm OSB/PIR/OSB (R$/m²)", "m²", 285.0, 0.9, 1.1, "Zenith"),
-    "cimenticia": ("Placa cimentícia 10 mm + membrana hidrófuga (R$/m²)", "m²", 96.0, 0.9, 1.05, "Zenith"),
+    "sip": ("Painel SIP 100 mm OSB/PIR/OSB (R$/m²)", "m²", 285.0, 0.9, 1.1, "Safari"),
+    "cimenticia": ("Placa cimentícia 10 mm + membrana hidrófuga (R$/m²)", "m²", 96.0, 0.9, 1.05, "Safari"),
     "ripado": ("Ripado de madeira termotratada 40 x 40 instalado (R$/m²)", "m²", 420.0, 0.7, 1.3, "Econ.: pinus autoclavado; Premium: cumaru"),
     "vidro_duplo": ("Vidro insulado 6 lam + 12 Ar + 6 temp low-e (R$/m²)", "m²", 920.0, 0.55, 1.25, "Econ.: laminado 8 mm simples"),
     "esquadria": ("Esquadria de alumínio com ruptura térmica, bronze, fabricada e instalada (R$/m² de vão)", "m²", 1480.0, 0.62, 1.45, "Econ.: linha 30 sem RPT; Premium: sistema europeu"),
     "porta_pivo": ("Porta pivotante de vidro 1,00 x 2,40 com pivô de piso (un)", "un", 9800.0, 0.7, 1.4, ""),
     "olho": ("Janela Olho: requadro laminado CNC + vidro duplo (un)", "un", 6900.0, 0.75, 1.3, "2 basculantes com ferragem"),
     "vidro_lam": ("Vidro laminado 8 + 8 mm para claraboia / óculo (R$/m²)", "m²", 1150.0, 0.85, 1.2, ""),
-    "cupula": ("Cúpula de vidro laminado curvo Ø1,20 + vidro interno (un)", "un", 14500.0, 0.6, 1.3, "Zenith; Econ.: acrílico"),
+    "cupula": ("Cúpula de vidro laminado curvo Ø1,20 + vidro interno (un)", "un", 14500.0, 0.6, 1.3, "Safari; Econ.: acrílico"),
     "cumaru": ("Deck cumaru 20 x 140 com fixação oculta (material, R$/m²)", "m²", 295.0, 0.65, 1.2, "Econ.: eucalipto autoclavado"),
     "vigota": ("Vigota pinus autoclavado 50 x 150 (R$/m)", "m", 23.0, 1.0, 1.15, ""),
     "pir": ("PIR 50 mm entre vigotas + manta inferior (R$/m²)", "m²", 82.0, 0.9, 1.0, ""),
@@ -207,15 +207,15 @@ PRICES = {
     "loucas": ("Louças e metais (bacia, cuba, torneiras, chuveiro, acessórios)", "cj", 15500.0, 0.55, 1.9, "Econ.: linha nacional; Premium: Deca/Docol linhas premium ou importados"),
     "banheira": ("Banheira freestanding 1,60 / 1,70 m", "un", 9200.0, 0.5, 2.1, "Premium: pedra composta"),
     "box": ("Box de vidro temperado 8 mm com perfil bronze", "un", 2600.0, 0.8, 1.3, ""),
-    "hidro": ("Hidromassagem Ø1,90 com filtro, bomba e aquecedor 3 kW (Zenith)", "un", 24000.0, 0.65, 1.7, ""),
+    "hidro": ("Hidromassagem Ø1,90 com filtro, bomba e aquecedor 3 kW (Safari)", "un", 24000.0, 0.65, 1.7, ""),
     "pex": ("Kit hidráulico PEX 25/20, esgoto, ventilação, registros, conexões", "cj", 7200.0, 0.85, 1.15, ""),
-    "aquecedor": ("Aquecedor a gás de passagem 23 L/min (Cocoon) / 30 L/min (Zenith)", "un", 4400.0, 0.75, 2.6, "Premium: bomba de calor 200/300 L"),
+    "aquecedor": ("Aquecedor a gás de passagem 23 L/min (Casulo) / 30 L/min (Safari)", "un", 4400.0, 0.75, 2.6, "Premium: bomba de calor 200/300 L"),
     "esgoto": ("Fossa séptica + filtro anaeróbio compactos (ou biodigestor)", "cj", 7400.0, 0.8, 1.6, "Premium: estação compacta com reúso"),
     "eletrica": ("Quadro, disjuntores, DR, cabos, eletrodutos, tomadas USB, interruptores", "cj", 9800.0, 0.8, 1.35, "Premium: automação de iluminação e cortinas"),
     "iluminacao": ("Iluminação: fitas LED 2700 K, perfis, drivers, luminárias, balizadores", "cj", 11800.0, 0.6, 1.6, ""),
-    "ac": ("Ar-condicionado dutado inverter 12k (Cocoon) / 18k (Zenith), instalado", "un", 12400.0, 0.7, 1.35, "Econ.: hi-wall 12k; Premium: dutado com controle por app + piso radiante"),
+    "ac": ("Ar-condicionado dutado inverter 12k (Casulo) / 18k (Safari), instalado", "un", 12400.0, 0.7, 1.35, "Econ.: hi-wall 12k; Premium: dutado com controle por app + piso radiante"),
     "exaustor": ("Exaustor com recuperador de calor + respiro / chaminé motorizada", "cj", 3900.0, 0.5, 1.4, ""),
-    "marcenaria": ("Marcenaria sob medida (console, armários, criados, cabeceira, bancada)", "cj", 39000.0, 0.6, 1.5, "Cocoon; Zenith 52.000 (closet, Ilha do Café, bancada dupla)"),
+    "marcenaria": ("Marcenaria sob medida (console, armários, criados, cabeceira, bancada)", "cj", 39000.0, 0.6, 1.5, "Casulo; Safari 52.000 (closet, Ilha do Café, bancada dupla)"),
     "mobiliario": ("Mobiliário solto (cama king + colchão, chaise, poltrona, mesas)", "cj", 22500.0, 0.55, 1.8, ""),
     "paineis": ("Painéis ripados internos / revestimentos (R$/m²)", "m²", 480.0, 0.6, 1.4, ""),
     "acab": ("Acabamentos: selantes, rodapés, cortinas, tapetes, enxoval de abertura", "cj", 13500.0, 0.6, 1.6, ""),
@@ -358,7 +358,7 @@ def budget(product, scen, n_units=1):
     prod_mat = sum(x[5] for x in rows if x[0][:2] in ("01", "02", "03", "04", "05", "06", "07", "08", "09", "17"))   # kit fabricado
     inst_mat = mat_total - prod_mat
     transporte = (9300 if product == "cocoon" else 10800) * (1 - sc["transport"]) * (1.0 if scen != 2 else 1.1)
-    equipamentos = (5200 if product == "cocoon" else 8600) * (1 - sc["equip"])   # guincho, talha, andaime, munck (Zenith)
+    equipamentos = (5200 if product == "cocoon" else 8600) * (1 - sc["equip"])   # guincho, talha, andaime, munck (Safari)
     hospedagem = (5 * (12 if product == "cocoon" else 15) * 185) * (1 - sc["site_labor"])
     indiretos_pct = sc["indiretos"]; conting_pct = sc["contingencia"] + (0.02 if scen == 0 else 0.0)
     nre = 240000 / n_units   # projeto executivo, cálculo, form-finding, gabaritos, protótipo (por produto)
@@ -393,9 +393,9 @@ def manual(product):
     step(1, "Preparação e marcação do terreno", "Líder + 2 montadores + topógrafo", "Estação total ou nível a laser, trena 30 m, estacas de madeira, linha, tinta de marcação", "Roçadeira, caminhonete",
          "4 h", "Erro de locação propaga para todas as etapas; raízes e rochas no eixo das estacas", ["Eixos x/y materializados com 2 referências fixas fora da obra", "Cota de referência (RN) definida", "Acesso do caminhão e área de estoque delimitados", "Interferências (raízes, rocha, rede) mapeadas"])
     step(2, "Instalação das fundações (estacas helicoidais)", "Operador de cravação + 2 montadores + líder", "Chaves de torque, nível, gabarito de posição", "Motor hidráulico de cravação (ou mini-escavadeira com cabeçote), gerador",
-         "1 dia" if c else "1,5 dia", "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{44 if c else 37} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", "Estacas de tração dos postes com olhal orientado (Zenith)"])
+         "1 dia" if c else "1,5 dia", "Torque abaixo do mínimo (solo fraco): alongar estaca ou reposicionar; desvio de prumo > 2%", ["Torque final de cada estaca registrado na planilha", f"{44 if c else 37} estacas posicionadas com ± 30 mm", "Cabeçotes nivelados a ± 5 mm com nível a laser", "Estacas de tração dos postes com olhal orientado (Safari)"])
     step(3, "Montagem da estrutura base (grelha de vigas U 150)", "4 montadores + líder", "Torquímetro 20-100 N·m, chaves combinadas 19 mm, furadeira, esquadro de 1 m, cordão", "Guincho manual 1 t ou 2 cavaletes",
-         "1 dia", "Esquadro fora: medir as duas diagonais; vigas com furos oblongos permitem ajuste", ["Diagonais iguais (± 10 mm)", "Todos os M12 com torque 45 N·m", "Vigas de borda curvas (Cocoon) / de borda do corpo (Zenith) conferidas com o gabarito de planta", "Cabeçotes travados com contraporca"])
+         "1 dia", "Esquadro fora: medir as duas diagonais; vigas com furos oblongos permitem ajuste", ["Diagonais iguais (± 10 mm)", "Todos os M12 com torque 45 N·m", "Vigas de borda curvas (Casulo) / de borda do corpo (Safari) conferidas com o gabarito de planta", "Cabeçotes travados com contraporca"])
     step(4, "Instalação das peças estruturais secundárias (módulos de piso e deck)", "4 montadores (2 carpinteiros)", "Parafusadeira, serra circular, nível", "Guincho manual",
          "1,5 dia", "Módulos molhados antes do fechamento: proteger com lona", [f"{18 if c else 16} módulos de piso nivelados", "PIR contínuo, manta inferior fechada", "Passagens de esgoto e PEX deixadas nas posições do projeto", "Deck com juntas de 6 mm alinhadas"])
     step(5, "Montagem dos arcos" if c else "Montagem de pilares, anel de beiral e mastros", "4 montadores + líder", "Torquímetro 50-250 N·m, chaves 19/24 mm, gabarito de luva, prumo, nível", "Guincho manual 1 t + tripé; escada / andaime tubular" if c else "Talha 1 t + tripé; munck opcional para M1",
@@ -413,13 +413,13 @@ def manual(product):
     step(10, "Instalação da membrana interna (forro tensionado)", "2 instaladores + 1 montador", "Espátulas de harpão, soprador térmico, nível", "Escada",
          "1 dia", "Forro tensionado antes das instalações elétricas: coordenar caixas e luminárias", ["Trilhos harpão fixados nos talões / cabos", "7 painéis tensionados sem ondulação" if c else "6 painéis seguindo os cumes, anéis internos fixados", "Aberturas de difusores e luminárias recortadas com anel"])
     step(11, "Instalação das portas e vidros", "Vidraceiro + 2 auxiliares", "Ventosas, calços, nível, silicone estrutural, pistola", "Cavaletes de vidro, carrinho de ventosa",
-         "1,5 dia" if c else "2 dias", "Vidro de 90 kg (fachada): mínimo 3 pessoas ou içador a vácuo", ["Anel de alumínio E07 sobre EPDM (Cocoon) / contramarcos (Zenith) no prumo", "Vidros calçados e selados; porta pivotante ajustada", "Janelas Olho com selante PU curado 24 h", "Vidros da espinha / óculo com teste de água"])
+         "1,5 dia" if c else "2 dias", "Vidro de 90 kg (fachada): mínimo 3 pessoas ou içador a vácuo", ["Anel de alumínio E07 sobre EPDM (Casulo) / contramarcos (Safari) no prumo", "Vidros calçados e selados; porta pivotante ajustada", "Janelas Olho com selante PU curado 24 h", "Vidros da espinha / óculo com teste de água"])
     step(12, "Instalações elétricas", "Eletricista + auxiliar", "Alicate de crimpagem, multímetro, testador de DR, furadeira", "",
          "1,5 dia", "Passagem de cabos pelo ático depois do forro: usar eletrodutos previstos", ["Quadro no ático com circuitos identificados", "DR testado; aterramento < 10 Ω", "Fitas LED com drivers acessíveis", "Condensadora alimentada e protegida"])
     step(13, "Instalações hidráulicas", "Encanador + auxiliar", "Ferramenta de crimpar PEX, nível, teste de pressão", "",
-         "1,5 dia", "Ponto de esgoto fora de posição no módulo de piso: conferir no passo 4", ["Teste de pressão 6 bar por 30 min sem queda", "Esgoto com 2% de declividade e ventilação", "Aquecedor ligado e regulado", "Hidromassagem cheia e testada (Zenith)"])
+         "1,5 dia", "Ponto de esgoto fora de posição no módulo de piso: conferir no passo 4", ["Teste de pressão 6 bar por 30 min sem queda", "Esgoto com 2% de declividade e ventilação", "Aquecedor ligado e regulado", "Hidromassagem cheia e testada (Safari)"])
     step(14, "Montagem do banheiro", "Encanador + montador + acabamento", "Nível, furadeira, pistola de silicone", "",
-         "1 dia", "Banheira pesada (Cocoon: entra pela porta antes da marcenaria)", ["Louças fixadas e vedadas", "Bancada nivelada", "Box e porta de correr regulados", "Rejuntes e silicones concluídos"])
+         "1 dia", "Banheira pesada (Casulo: entra pela porta antes da marcenaria)", ["Louças fixadas e vedadas", "Bancada nivelada", "Box e porta de correr regulados", "Rejuntes e silicones concluídos"])
     step(15, "Montagem dos móveis", "Marceneiro + auxiliar", "Parafusadeira, nível, calços", "",
          "1,5 dia", "Marcenaria embutida na curva: usar os gabaritos de fábrica", ["Console café, armário baixo, criados fixados" if c else "Closet, Ilha do Café (totem do mastro) e bancada dupla fixados", "Cama montada; cabeceira nivelada", "Portas e gavetas reguladas"])
     step(16, "Acabamentos", "Equipe de acabamento (2)", "Espátulas, lixas, aspirador, panos", "",

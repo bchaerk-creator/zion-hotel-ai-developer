@@ -1,21 +1,24 @@
-# ZION COCOON e ZION ZENITH · Linha de hospedagens glamping de luxo
+# ZION CASULO, ZION SAFARI e ZION LODGE · Linha de hospedagens glamping de luxo
 
-Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da Zion Glamping Collection (Zion Hotel Group International), desenvolvidos como unidades de hospedagem premium para glampings, boutique hotels e destinos de natureza.
+Projeto conceitual, arquitetônico e técnico de três produtos proprietários da Zion Glamping Collection (Zion Hotel Group International), desenvolvidos como unidades de hospedagem premium para glampings, boutique hotels e destinos de natureza.
 
 | Produto | Conceito | Dimensões | Área |
 |---|---|---|---|
-| **ZION COCOON** | Cabana biomórfica em casulo: superelipse assimétrica com lábio frontal inclinado, Espinha de Luz na cumeeira e seis Janelas Olho em lente | Piso 9,60 x 5,86 m · concha 9,75 x 6,00 x 4,20 m | 45,6 m² internos + vestíbulo 2,4 m² = 48 m² + deck 29,9 m² = 78 m² |
-| **ZION ZENITH** | Cabana escultural de dois cumes assimétricos em diagonal (5,80 e 4,60 m), Óculo do Zênite sobre a cama e chaminé do Respiro | Corpo 9,50 x 5,40 x 2,75 m · cobertura 12,90 x 7,40 m | 48,4 m² internos + terraço 20,4 m² + passarela 7,6 m² = 79,3 m² |
+| **ZION CASULO** | Cabana biomórfica em casulo: superelipse assimétrica com lábio frontal inclinado, Espinha de Luz na cumeeira e seis Janelas Olho em lente | Piso 9,60 x 5,86 m · concha 9,75 x 6,00 x 4,20 m | 45,6 m² internos + vestíbulo 2,4 m² = 48 m² + deck 29,9 m² = 78 m² |
+| **ZION SAFARI** | Cabana escultural de dois cumes assimétricos em diagonal (5,80 e 4,60 m), Óculo do Zênite sobre a cama e chaminé do Respiro | Corpo 9,50 x 5,40 x 2,75 m · cobertura 12,90 x 7,40 m | 48,4 m² internos + terraço 20,4 m² + passarela 7,6 m² = 79,3 m² |
+| **ZION LODGE** (conceito) | Pavilhão octogonal com Lanterna Zion (luz zenital sobre a cama), cinco faces de vidro, banho no segmento posterior e vela de sombra sobre o deck | Octógono 6,80 m entre faces · beiral 2,70 m · lanterna 5,20 m | 38,3 m² internos + deck 30,4 m² = 68,7 m² |
+
+Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion Safari** (código interno `zenith`, prefixo ZS) e **Zion Lodge** (`lodge`). As pastas e identificadores de código mantêm os nomes internos; títulos, carimbos e documentos usam os nomes comerciais. O Lodge está em estudo de conceito (`lodge/desenhos/01_conceito.svg`, gerado por `tools/lodge_concept.py`); o pipeline completo (pranchas, engenharia, DXF, orçamento) é a próxima etapa.
 
 ## Documentos principais
 
 - **`ZION_PROJETO_ARQUITETONICO.pdf`** (6 MB, vetorial) e **`.html`** — Projeto arquitetônico como um projetista entrega: 24 pranchas por produto (PA-00 capa/índice/quadro de áreas/notas · PA-01 implantação 1:200 · PA-02 planta cotada · PA-03 layout · PA-04 cobertura · PA-05 forro e iluminação · PA-06 cortes A-A e B-B · PA-07 fachadas frontal e traseira · PA-08 fachadas laterais · PA-09 quadro de esquadrias · PA-10 planta estrutural · PA-11 detalhes construtivos · PA-12 isométrica, explodida, camadas e estrutura), uma por página A3 paisagem. `ZION_PROJETO_ARQUITETONICO_standalone.html` é a versão autônoma (tudo embutido, com hachuras).
 - **`cocoon/projeto/dxf/` e `zenith/projeto/dxf/`** — 21 arquivos DXF (AutoCAD 2010, metros, layers PAREDES / ESQUADRIAS / MOBILIARIO / ESTRUTURA / COBERTURA / DECK / FUNDACAO / COTAS / TEXTO / EIXOS): plantas cotada e de layout, cobertura, cortes, fachadas, planta estrutural e modelo 3D (3DFACE + polilinhas 3D) de cada produto.
-- **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Cocoon, depois Zenith): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
-- **`ZION_ORCAMENTO_SC_Cocoon_Zenith.xlsx`** — planilha com peças, conexões, BOM em 3 cenários, mão de obra, resumo do orçamento, escala e premissas de preço.
+- **`ZION_ARCHITECTURAL_PRODUCT_BOOK.html`** e **`.pdf`** — Product Book industrial (Casulo, depois Safari): conceito, master plan, engenharia peça a peça, sistema de encaixe, camadas, memorial, BOM, manual de montagem em 17 passos, orçamento SC em 3 cenários, cronograma e escala industrial.
+- **`ZION_ORCAMENTO_SC_Casulo_Safari.xlsx`** — planilha com peças, conexões, BOM em 3 cenários, mão de obra, resumo do orçamento, escala e premissas de preço.
 
-- **`ZION_COCOON_ZENITH_Caderno_Tecnico.html`** — Caderno Técnico com os 27 entregáveis (abrir no navegador; referencia os desenhos e renders das pastas abaixo).
-- **`ZION_COCOON_ZENITH_Caderno_Tecnico.pdf`** — a mesma publicação em PDF (A4 paisagem).
+- **`ZION_CASULO_SAFARI_Caderno_Tecnico.html`** — Caderno Técnico com os 27 entregáveis (abrir no navegador; referencia os desenhos e renders das pastas abaixo).
+- **`ZION_CASULO_SAFARI_Caderno_Tecnico.pdf`** — a mesma publicação em PDF (A4 paisagem).
 - **`ESPECIFICACAO_TECNICA.md`** — especificação-fonte compartilhada (dimensões, materiais, estrutura, sistemas, transporte e montagem).
 
 ## Estrutura de pastas
@@ -31,7 +34,7 @@ projects/zion-glamping-line/
 │   └── renders/    renders externos (frontal, lateral, cauda, aérea, noite), internos (estar, cama, banho), estrutura, corte
 ├── zenith/         mesma estrutura
 ├── detalhes/       DET-01 a DET-11: cobertura, ancoragem, fundação, esquadrias, drenagem, elétrica, hidráulica,
-│                   climatização, arcos (Cocoon), mastros (Zenith)
+│                   climatização, arcos (Casulo), mastros (Safari)
 ├── tools/          geradores: geometry.py (fonte única da geometria), drawings_*.py, iso.py, details.py, bom.py,
 │                   build_viewer.py, render.js, build_dossier.py, export_pdf.js, pa_sheets.py, export_dxf.py,
 │                   build_projeto_arquitetonico.py
@@ -88,6 +91,7 @@ python3 pa_sheets.py         # pranchas complementares do projeto arquitetônico
 python3 export_dxf.py        # DXF editáveis (plantas, cortes, fachadas, estrutura, 3D)
 python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline   # conjunto de pranchas HTML (impressão + autônomo)
 NODE_PATH=/opt/node22/lib/node_modules node export_pdf.js ../ZION_PROJETO_ARQUITETONICO.html ../ZION_PROJETO_ARQUITETONICO.pdf
+bash regen.sh                # ou tudo de uma vez (inclui renders e PDFs)
 ```
 
 Toda a geometria (planta, seções, arcos, cumes, layout) vem de `tools/geometry.py`. Alterar um parâmetro ali e regenerar atualiza desenhos, isométricas, modelo 3D, renders e listas de materiais de forma consistente.

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-"""Isométricas sombreadas (algoritmo do pintor) e isométricas estruturais em SVG para Cocoon e Zenith."""
+"""Isométricas sombreadas (algoritmo do pintor) e isométricas estruturais em SVG para Casulo e Safari."""
 import math, os
 import numpy as np
 from geometry import Cocoon, Zenith
@@ -95,10 +95,10 @@ def ground_shadow(sc, cx, cy, rx, ry):
     d = " ".join(f"{p[0]:.1f},{p[1]:.1f}" for p in pts)
     sc.pre.append(f'<polygon points="{d}" fill="#DCCFBF" fill-opacity="0.55" stroke="none"/>')
 
-# ------------------------------------------------------------------ COCOON
+# ------------------------------------------------------------------ CASULO
 def cocoon_iso(structural=False):
     sh = Sheet(1600, 1000)
-    sh.header("Zion Cocoon · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
+    sh.header("Zion Casulo · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
               "Projeção isométrica a partir da frente e da lateral direita · sem escala" + (" · membrana a 15% para leitura dos arcos, terças e espinha" if structural else ""))
     sc = Scene(sh, 78, 760, 640)
     ground_shadow(sc, 3.6, 0, 7.6, 4.5)
@@ -163,14 +163,14 @@ def cocoon_iso(structural=False):
                  (3, "Espinha de Luz na cumeeira (4,70 m)"), (4, "6 Janelas Olho em lente com requadro de madeira"),
                  (5, "Deck frontal 4,60 x 6,50 m em cumaru"), (6, "Cauda afilada com a banheira e a condensadora oculta")]
         sh.legend(60, 760, items, size=12)
-    sh.title_block("ZION COCOON", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
+    sh.title_block("ZION CASULO", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
                    "Arcos, terças, espinha e contraventamento" if structural else "Volumetria do casulo com deck e fachada panorâmica")
     return sh
 
-# ------------------------------------------------------------------ ZENITH
+# ------------------------------------------------------------------ SAFARI
 def zenith_iso(structural=False):
     sh = Sheet(1600, 1000)
-    sh.header("Zion Zenith · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
+    sh.header("Zion Safari · " + ("Estudo da estrutura metálica (isométrica)" if structural else "Vista isométrica"),
               "Projeção isométrica a partir da frente e da lateral direita · sem escala" + (" · membrana a 15% para leitura de mastros, coroas, anel de beiral e postes" if structural else ""))
     sc = Scene(sh, 66, 780, 660)
     ground_shadow(sc, 4.2, 0.2, 8.2, 5.0)
@@ -249,7 +249,7 @@ def zenith_iso(structural=False):
                  (3, "Fachada de vidro 5,40 x 2,75 e vidro lateral da suíte"), (4, "Painéis ripados nas faces de serviço"),
                  (5, "Terraço 3,00 x 6,80 com hidromassagem e passarela lateral"), (6, "Óculo do Zênite sobre a cama; Respiro sobre o café")]
         sh.legend(60, 760, items, size=12)
-    sh.title_block("ZION ZENITH", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
+    sh.title_block("ZION SAFARI", "Estudo da estrutura metálica" if structural else "Vista isométrica", "sem escala", "12/27" if structural else "08/27",
                    "Mastros, coroas, anel de beiral, postes e cabos" if structural else "Volumetria dos dois cumes sobre o corpo de vidro e madeira")
     return sh
 
