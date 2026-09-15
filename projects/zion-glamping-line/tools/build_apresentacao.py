@@ -118,13 +118,14 @@ def lodge_family():
     slide(f'''<h2>FAMÍLIA LODGE · 24 E 28</h2><p class="lede">A mesma geometria paramétrica do Lodge 38 gera a unidade compacta para casal e a unidade alongada com terraço: o octógono muda de tamanho ou ganha um corpo reto entre duas lanternas, e o kit continua o mesmo.</p><div class="two">{cards}</div>''', "dark", "LODGE 24 · 28")
     rows = ""
     for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38"), ("lodge24", "ZION LODGE 24"), ("lodge28", "ZION LODGE 28")):
-        t = ffe.totals(code, 1); t0 = ffe.totals(code, 0); t2 = ffe.totals(code, 2)
-        rows += f'<tr><td>{name}</td><td class="num">{t["n_items"]}</td><td class="num">{money(t0["base"])}</td><td class="num">{money(t["base"])}</td><td class="num">{money(t2["base"])}</td><td class="num">{money(t["optional"])}</td></tr>'
+        t = ffe.totals(code, 1); R = ffe.rows(code, 1); byc = {}
+        for r in R: byc[r["cat"]] = byc.get(r["cat"], 0) + 1
+        rows += f'<tr><td>{name}</td><td class="num">{t["n_items"]}</td>' + "".join(f'<td class="num">{byc.get(c, 0)}</td>' for c in "MFEODB") + '</tr>'
     cats = "".join(f"<li><b>{c}</b>{d}</li>" for c, d in (("Mobiliário", "cama king, cabeceira, criados, sofá, chaise, poltronas, ilha do café, closet, bancada"), ("Luminárias e decoração", "arandelas, luminárias de piso e mesa, tapetes de lã, cortinas e blackout, arte e objetos"),
                                                         ("Equipamentos", "frigobar, cafeteira, cofre, som, fechadura digital, automação de cenas, lareira ecológica"), ("Enxoval e OS&E", "3 jogos de cama e banho, amenities, louças, mantas, acessórios, sinalização, segurança"), ("Deck e banho", "espreguiçadeiras, mesa e cadeiras, lanternas, ducha, acessórios em latão")))
     slide(f'''<h2>FF&amp;E · TUDO O QUE VAI DENTRO</h2><p class="lede">Além da construção, cada unidade recebe o FF&amp;E completo no padrão Zion New Luxury: materiais naturais, sem plástico aparente, sem pendentes, luz 2700 K. Lista item a item no Catálogo da Linha e na planilha ZION_FFE_Linha.xlsx.</p>
-<div class="two"><div><table class="budget"><tr><th>Unidade</th><th class="num">Itens</th><th class="num">Econômico</th><th class="num">Zion Standard</th><th class="num">Zion Premium</th><th class="num">Opcionais</th></tr>{rows}</table>
-<p class="note">Sem opcionais (hidromassagem, TV, fire pit, poltrona suspensa). Preços SC set/2026 postos em obra, a confirmar por cotação. O FF&amp;E substitui as verbas de mobiliário solto e enxoval do Product Book.</p></div>
+<div class="two"><div><table class="budget"><tr><th>Unidade</th><th class="num">Itens</th><th class="num">Mobiliário</th><th class="num">Luminárias</th><th class="num">Equipamentos</th><th class="num">Enxoval</th><th class="num">Deck</th><th class="num">Banho</th></tr>{rows}</table>
+<p class="note">Número de itens por categoria; lista item a item, com especificação, ambiente e quantidade, no Catálogo da Linha e na planilha de materiais e FF&amp;E.</p></div>
 <div><ol class="next">{cats}</ol></div></div>''', "dark", "FF&E")
 
 # ----------------------------------------------------------------------------- fechamento
@@ -141,21 +142,20 @@ def logistica():
     slide(f'''<h2>FABRICAÇÃO, TRANSPORTE E MONTAGEM</h2><p class="lede">Kit fabricado em oficina e montado como um móvel: peças codificadas, encaixes macho-fêmea, flanges e parafusos classe 8.8. Sem solda em campo.</p>
 <div class="two">{col("cocoon")}{col("zenith")}</div>''', "dark", "LOGÍSTICA")
 
-def orcamento():
-    head = '<tr><th></th><th class="num">Econômico</th><th class="num">Zion Standard</th><th class="num">Zion Premium</th></tr>'
-    def block(p):
-        B = [budget(p, s, 1) for s in range(3)]; B10 = budget(p, 1, 10)
-        return f'''<div class="col"><div class="pname">{NAME[p]}</div>
-<table class="budget">{head}
-<tr><td>Produção do kit (materiais + fabricação)</td>{"".join(f'<td class="num">{money(b["sub_prod"])}</td>' for b in B)}</tr>
-<tr><td>Instalação (materiais, mão de obra, transporte, equipamentos, hospedagem)</td>{"".join(f'<td class="num">{money(b["sub_inst"])}</td>' for b in B)}</tr>
-<tr><td>Indiretos + contingência</td>{"".join(f'<td class="num">{money(b["indiretos"] + b["conting"])}</td>' for b in B)}</tr>
-<tr><td>Engenharia e protótipo (NRE, 1 unidade)</td>{"".join(f'<td class="num">{money(b["nre"])}</td>' for b in B)}</tr>
-<tr class="tot"><td>Total por unidade</td>{"".join(f'<td class="num">{money(b["total"])}</td>' for b in B)}</tr>
-<tr><td>Custo por m² (área total)</td>{"".join(f'<td class="num">{money(b["por_m2"])}</td>' for b in B)}</tr>
-<tr class="tot"><td>Zion Standard em série de 10 unidades</td><td></td><td class="num">{money(B10["total"])}</td><td></td></tr></table></div>'''
-    slide(f'''<h2>ORÇAMENTO DE REFERÊNCIA · SANTA CATARINA</h2><p class="lede">Preços de referência set/2026 (materiais e mão de obra com encargos), a confirmar por cotação. Três cenários de acabamento; o NRE é diluído em série.</p>
-<div class="two">{block("cocoon")}{block("zenith")}</div>''', "dark", "ORÇAMENTO")
+def materiais_slide():
+    """materiais estimados por grupo (sem preços): resumo das quantidades principais."""
+    from product_book_data import bom_priced
+    cols = ""
+    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38")):
+        try: groups = bom_priced(code)
+        except Exception: continue
+        lis = ""
+        for g, items in groups:
+            top = items[0]
+            lis += f'<li><span class="n">{esc(g[:2])}</span>{esc(g[3:])}<em>{len(items)} itens</em></li>'
+        cols += f'<div class="col"><div class="pname">{name}</div><ol class="steps">{lis}</ol></div>'
+    slide(f'''<h2>MATERIAIS ESTIMADOS · 18 GRUPOS</h2><p class="lede">Lista de materiais com quantidades estimadas a partir da geometria, sem preços, organizada nos 18 grupos do kit de fábrica: base para cotação e para o pedido de fabricação. Quantidades completas no Product Book e na planilha de materiais.</p>
+<div class="three cols">{cols}</div>''', "dark", "MATERIAIS")
 
 def proximos():
     items = [("Cálculo estrutural com ART", "Verificação NBR 8800 / NBR 6123 (V0 = 45 m/s) das bitolas pré-dimensionadas; ligações e chapas."),
@@ -200,7 +200,7 @@ ol.layers,ol.next,ol.steps{list-style:none;margin:0;padding:0} ol.layers li{disp
 ol.next li{display:grid;grid-template-columns:30px 1fr;gap:4px 14px;padding:12px 0;border-bottom:1px solid rgba(222,214,191,.16)} ol.next li b{font-weight:500;font-size:15px;letter-spacing:.04em} ol.next li p{grid-column:2;margin:0;font-size:12.5px;line-height:1.6;color:var(--sand);font-weight:300}
 ol.next li b{display:block} ol.next li{display:block;font-size:12.5px;line-height:1.6;color:var(--sand);font-weight:300}
 .col .sheet{margin:10px 0 14px}
-.three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:520px} .three img{width:100%;height:100%;object-fit:cover;display:block}
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;height:520px} .three img{width:100%;height:100%;object-fit:cover;display:block} .three.cols{height:auto;gap:40px} .three.cols ol.steps li{font-size:11.5px;padding:4px 0}
 .caps3{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:12px;font-size:10.5px;letter-spacing:.24em;color:var(--sand);text-transform:uppercase;font-weight:300}
 .sheet{background:#FEF5F0;border:1px solid rgba(222,214,191,.35);line-height:0} .sheet svg{width:100%;height:auto;display:block}
 .one{height:730px;display:flex;justify-content:center} .one .sheet{height:100%;aspect-ratio:1.6;width:auto} .one .sheet svg{height:100%;width:auto}
@@ -219,7 +219,7 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 def build():
     capa(); linha(); sistema()
     for p in ("cocoon", "zenith", "lodge"): produto(p)
-    lodge_family(); implantacao(); logistica(); orcamento(); proximos(); fim()
+    lodge_family(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'

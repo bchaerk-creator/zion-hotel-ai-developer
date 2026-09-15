@@ -10,10 +10,11 @@ import ffe
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(ROOT, "ZION_CATALOGO_LINHA.html")
-XLS = os.path.join(ROOT, "ZION_FFE_Linha.xlsx")
+XLS = os.path.join(ROOT, "ZION_MATERIAIS_FFE_Linha.xlsx")
 C, Z = Cocoon(), Zenith()
 LG = {k: v() for k, v in LODGES.items()}
 SCEN = ["Econômico", "Zion Standard", "Zion Premium"]
+PRICES = False   # documentos para a fábrica: sem preços (só materiais e quantidades estimadas)
 
 def money(v): return "R$ " + f"{v:,.0f}".replace(",", ".")
 def fmt(v, n=1): return f"{v:,.{n}f}".replace(",", "X").replace(".", ",").replace("X", ".")
@@ -80,30 +81,30 @@ def foot(label): return f'<div class="foot"><span>ZION GLAMPING COLLECTION · CA
 
 def cover():
     return page(f'''<div class="cover"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
-<h1>CATÁLOGO<br>DA LINHA</h1><p class="lead">Cinco unidades proprietárias de hospedagem sobre o mesmo sistema construtivo, com projeto, engenharia, orçamento e FF&amp;E completo: tudo o que vai dentro de cada cabana.</p>
+<h1>CATÁLOGO<br>DA LINHA</h1><p class="lead">Cinco unidades proprietárias de hospedagem sobre o mesmo sistema construtivo: projeto, camadas, materiais estimados e FF&amp;E completo, tudo o que vai dentro de cada cabana.</p>
 <ul class="prods">{"".join(f"<li><b>{esc(p['name'])}</b><span>{esc(p['family'])} · {fmt(p['area_int'])} m² + {fmt(p['area_ext'])} m²</span></li>" for p in PRODUCTS)}</ul>
-<p class="warn">Preços de referência set/2026 (Santa Catarina), a confirmar por cotação. Pré-dimensionamento de engenharia a validar por profissionais habilitados.</p></div>''', "dark")
+<p class="warn">Documento técnico para fabricação e cotação, sem preços. Pré-dimensionamento de engenharia a validar por profissionais habilitados (ART/RRT).</p></div>''', "dark")
 
 def linha():
     rows = ""
     for p in PRODUCTS:
         tot, m2, t10, src = cost(p["code"]); f = ffe.totals(p["code"], 1)
         rows += f'''<tr><td><b>{esc(p["name"])}</b><br><small>{esc(p["family"])}</small></td><td>{esc(p["dims"])}</td><td class="num">{fmt(p["area_int"])}</td><td class="num">{fmt(p["area_ext"])}</td><td class="num">{fmt(p["area_int"] + p["area_ext"])}</td>
-<td>{esc(p["height"])}</td><td class="num">{p["days"]} d</td><td class="num">{money(tot) if tot else "—"}</td><td class="num">{money(f["base"])}</td><td class="num">{money((tot or 0) + f["base"]) if tot else "—"}</td><td><small>{esc(p["status"])}</small></td></tr>'''
+<td>{esc(p["height"])}</td><td>{esc(p["struct"])}</td><td class="num">{p["days"]} d</td><td class="num">{f["n_items"]} itens</td><td><small>{esc(p["status"])}</small></td></tr>'''
     return page(f'''<h2>A LINHA</h2><p class="lede">Zion Shell System em cinco formatos: do casulo biomórfico ao pavilhão compacto para casal. Mesmo kit parafusado, mesmas 13 camadas, mesma fábrica.</p>
-<div class="tw"><table><tr><th>Unidade</th><th>Dimensões</th><th class="num">Interna m²</th><th class="num">Deck m²</th><th class="num">Total m²</th><th>Altura</th><th class="num">Montagem</th><th class="num">Construção (Standard)</th><th class="num">FF&amp;E (Standard)</th><th class="num">Unidade pronta</th><th>Estágio</th></tr>{rows}</table></div>
-<p class="note">Construção = kit + instalação + indiretos + contingência + NRE de engenharia (1ª unidade; em série de 10 cai 30 a 35%). FF&amp;E = mobiliário, luminárias, equipamentos, enxoval e itens do deck no cenário Zion Standard, sem opcionais (hidromassagem, TV, fire pit). Lodge 24 e 28: construção por estimativa paramétrica a partir do Lodge 38 (custo sem NRE proporcional à área total^0,85 + NRE compartilhado de R$ 120 mil).</p>
+<div class="tw"><table><tr><th>Unidade</th><th>Dimensões</th><th class="num">Interna m²</th><th class="num">Deck m²</th><th class="num">Total m²</th><th>Altura</th><th>Estrutura</th><th class="num">Montagem</th><th class="num">FF&amp;E</th><th>Estágio</th></tr>{rows}</table></div>
+<p class="note">Montagem em campo com equipe de 4 montadores e 1 líder, sem grua. FF&amp;E = mobiliário, luminárias, equipamentos, enxoval e itens do deck (lista item a item nas páginas de cada unidade). Zion Casulo, Zion Safari e Zion Lodge 38 têm projeto arquitetônico e lista de materiais completos; Lodge 24 e 28 são variantes paramétricas em conceito.</p>
 <div class="strip5">{"".join(f'<figure>{img(p["hero"]) if p["hero"].endswith(".jpg") else sheet(p["hero"])}<figcaption>{esc(p["name"])}</figcaption></figure>' for p in PRODUCTS)}</div>''' + foot("A linha"))
 
 def product_pages(p):
     code = p["code"]; tot, m2, t10, src = cost(code); f = ffe.totals(code, 1)
     kv = [("Dimensões", p["dims"]), ("Área interna", fmt(p["area_int"]) + " m²"), ("Deck / terraço", fmt(p["area_ext"]) + " m²"), ("Área total", fmt(p["area_int"] + p["area_ext"]) + " m²"), ("Cobertura", p["roof"]),
-          ("Estrutura", p["struct"]), ("Hóspedes", p["guests"]), ("Montagem em campo", f"{p['days']} dias"), ("Construção (Zion Standard, 1ª unidade)", (money(tot) + f" · {money(m2)}/m²") if tot else "—"),
-          ("Construção em série de 10", money(t10) if t10 else "—"), ("FF&E (Zion Standard)", money(f["base"]) + (f" + opcionais {money(f['optional'])}" if f["optional"] else "")), ("Unidade pronta para operar", money(tot + f["base"]) if tot else "—")]
+          ("Estrutura", p["struct"]), ("Hóspedes", p["guests"]), ("Montagem em campo", f"{p['days']} dias"), ("Envelope", "membrana PVDF 1050 g/m² · câmara ventilada 60 mm · lã de PET 50 mm · forro tensionado"),
+          ("Fechamentos", "vidro insulado 6 lam + 12 Ar + 6 temp low-e em alumínio bronze RPT · painéis SIP + ripado"), ("Piso e deck", "carvalho de engenharia 14 mm · porcelanato no banho · deck de cumaru 20 x 140"), ("FF&E", f"{f['n_items']} itens (lista completa a seguir)")]
     hero = img(p["hero"], "hero") if p["hero"].endswith(".jpg") else sheet(p["hero"])
     pg1 = page(f'''<div class="ph"><div class="pname">{esc(p["name"])}</div><div class="pfam">{esc(p["family"])} · {esc(p["status"])}</div></div>
 <div class="two"><div>{hero}<div class="thumbs">{"".join(img(i) for i in p["imgs"])}</div></div>
-<div><p class="lede">{esc(p["program"])}</p><dl class="kv">{"".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in kv)}</dl><p class="src">{esc(src)}</p></div></div>''' + foot(p["name"]))
+<div><p class="lede">{esc(p["program"])}</p><dl class="kv">{"".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in kv)}</dl></div></div>''' + foot(p["name"]))
     sh = p["sheets"]
     if len(sh) >= 4:
         pg2 = page(f'''<h3>{esc(p["name"])} · DESENHOS</h3><div class="grid4">{"".join(sheet(s) for s in sh[:4])}</div>''' + foot(p["name"] + " · desenhos"))
@@ -114,39 +115,55 @@ def product_pages(p):
     for r in R: by.setdefault(r["cat_name"], []).append(r)
     trs = ""
     for cat, items in by.items():
-        sub = sum(r["total"] for r in items if not r["optional"])
-        trs += f'<tr class="cat"><td colspan="6">{esc(cat)}</td><td class="num">{money(sub)}</td></tr>'
+        trs += f'<tr class="cat"><td colspan="5">{esc(cat)} · {len(items)} itens</td></tr>'
         for r in items:
-            trs += f'<tr class="{"opt" if r["optional"] else ""}"><td>{r["code"]}</td><td>{esc(r["desc"])}{" <em>(opcional)</em>" if r["optional"] else ""}</td><td class="spec">{esc(r["spec"])}{(" · " + esc(r["obs"])) if r["obs"] else ""}</td><td>{esc(r["amb"])}</td><td class="num">{fmt(r["qty"], 1).rstrip("0").rstrip(",")} {r["un"]}</td><td class="num">{money(r["unit"])}</td><td class="num">{money(r["total"])}</td></tr>'
-    t0, t2 = ffe.totals(code, 0), ffe.totals(code, 2)
+            trs += f'<tr class="{"opt" if r["optional"] else ""}"><td>{r["code"]}</td><td>{esc(r["desc"])}{" <em>(opcional)</em>" if r["optional"] else ""}</td><td class="spec">{esc(r["spec"])}{(" · " + esc(r["obs"])) if r["obs"] else ""}</td><td>{esc(r["amb"])}</td><td class="num">{fmt(r["qty"], 1).rstrip("0").rstrip(",")} {r["un"]}</td></tr>'
     pg3 = page(f'''<h3>{esc(p["name"])} · FF&amp;E · TUDO O QUE VAI DENTRO</h3>
-<div class="tw"><table class="ffe"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Ambiente</th><th class="num">Qtd</th><th class="num">Unitário</th><th class="num">Total</th></tr>{trs}
-<tr class="tot"><td colspan="6">TOTAL FF&amp;E · Zion Standard (sem opcionais)</td><td class="num">{money(f["base"])}</td></tr>
-<tr class="tot2"><td colspan="6">Opcionais</td><td class="num">{money(f["optional"])}</td></tr>
-<tr class="tot2"><td colspan="6">Cenário Econômico (72%) · Zion Premium (135%)</td><td class="num">{money(t0["base"])} · {money(t2["base"])}</td></tr></table></div>''' + foot(p["name"] + " · FF&E"), "flow")
+<div class="tw"><table class="ffe"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Ambiente</th><th class="num">Qtd</th></tr>{trs}
+<tr class="tot"><td colspan="4">TOTAL · {f["n_items"]} itens · {fmt(f["n_units"], 0)} unidades (opcionais marcados)</td><td></td></tr></table></div>''' + foot(p["name"] + " · FF&E"), "flow")
     return pg1 + pg2 + pg3
 
 def catalogo_itens():
     trs = ""; cur = None
     for code, (desc, spec, un, price, cat) in sorted(ffe.ITEMS.items(), key=lambda kv: (kv[1][4], kv[0])):
-        if cat != cur: cur = cat; trs += f'<tr class="cat"><td colspan="5">{esc(ffe.CATS[cat])}</td></tr>'
-        trs += f'<tr><td>{code}</td><td>{esc(desc)}</td><td class="spec">{esc(spec)}</td><td>{un}</td><td class="num">{money(price)}</td></tr>'
-    return page(f'''<h3>CATÁLOGO DE ITENS FF&amp;E · ESPECIFICAÇÃO ZION NEW LUXURY</h3><p class="lede">Padrão único para toda a linha: materiais naturais (carvalho, linho, lã, latão escovado, pedra), sem plástico aparente, sem pendentes, luz 2700 K. Preços unitários de referência no cenário Zion Standard, postos em obra.</p>
-<div class="tw cols2"><table class="ffe small"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Un.</th><th class="num">Preço</th></tr>{trs}</table></div>''' + foot("Catálogo FF&E"), "flow")
+        if cat != cur: cur = cat; trs += f'<tr class="cat"><td colspan="4">{esc(ffe.CATS[cat])}</td></tr>'
+        trs += f'<tr><td>{code}</td><td>{esc(desc)}</td><td class="spec">{esc(spec)}</td><td>{un}</td></tr>'
+    return page(f'''<h3>CATÁLOGO DE ITENS FF&amp;E · ESPECIFICAÇÃO ZION NEW LUXURY</h3><p class="lede">Padrão único para toda a linha: materiais naturais (carvalho, linho, lã, latão escovado, pedra), sem plástico aparente, sem pendentes, luz 2700 K.</p>
+<div class="tw cols2"><table class="ffe small"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Un.</th></tr>{trs}</table></div>''' + foot("Catálogo FF&E"), "flow")
 
-def resumo():
-    rows = ""
-    for p in PRODUCTS:
-        tot, m2, t10, src = cost(p["code"]); f1 = ffe.totals(p["code"], 1); f0 = ffe.totals(p["code"], 0); f2 = ffe.totals(p["code"], 2)
-        rows += f'<tr><td><b>{esc(p["name"])}</b></td><td class="num">{money(tot) if tot else "—"}</td><td class="num">{money(f0["base"])}</td><td class="num">{money(f1["base"])}</td><td class="num">{money(f2["base"])}</td><td class="num">{money(f1["optional"])}</td><td class="num">{money(tot + f1["base"]) if tot else "—"}</td><td class="num">{money(t10 + f1["base"]) if t10 else "—"}</td></tr>'
-    return page(f'''<h2>RESUMO DE INVESTIMENTO POR UNIDADE</h2>
-<div class="tw"><table><tr><th>Unidade</th><th class="num">Construção Standard (1ª un.)</th><th class="num">FF&amp;E Econômico</th><th class="num">FF&amp;E Standard</th><th class="num">FF&amp;E Premium</th><th class="num">Opcionais</th><th class="num">Pronta (Standard, 1ª un.)</th><th class="num">Pronta (Standard, série de 10)</th></tr>{rows}</table></div>
-<div class="notes"><h4>PREMISSAS</h4><ol>
-<li>Construção: Product Book (Casulo, Safari, Lodge 38), cenário Zion Standard, preços SC set/2026 com encargos; inclui transporte, equipamentos, hospedagem de equipe, indiretos, contingência e NRE de engenharia (R$ 240 mil por produto na 1ª unidade).</li>
-<li>Lodge 24 e 28: estimativa paramétrica (custo do Lodge 38 sem NRE x (área total)^0,85 + NRE compartilhado de R$ 120 mil). Passam a orçamento peça a peça quando o projeto for detalhado.</li>
-<li>FF&amp;E: tudo o que vai dentro além da construção: mobiliário fixo e solto, luminárias decorativas, equipamentos, enxoval (3 jogos), amenities de abertura, deck e acessórios do banho. Louças, metais, ar-condicionado, iluminação embutida e marcenaria estrutural já estão na construção. O FF&amp;E detalhado substitui as verbas "mobiliário solto" e "acabamentos e enxoval de abertura" do Product Book (não somar em dobro).</li>
-<li>Cenários FF&amp;E: Econômico 72% (fornecedores nacionais de linha), Zion Standard 100% (peças de design e artesanato regional), Zion Premium 135% (peças assinadas e importadas). Opcionais: hidromassagem, TV, fire pit, poltrona suspensa, banheira externa.</li>
-<li>Não incluídos: terreno, infraestrutura do empreendimento (vias, redes, fossa coletiva), áreas comuns, projetos legais e licenças, capital de giro e pré-operacional.</li></ol></div>''' + foot("Resumo de investimento"))
+def materiais():
+    from product_book_data import bom_priced
+    pages = ""
+    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38")):
+        try: groups = bom_priced(code)
+        except Exception: continue
+        trs = ""
+        for g, items in groups:
+            trs += f'<tr class="cat"><td colspan="3">{esc(g)}</td></tr>'
+            for (desc, un, qtd, key) in items:
+                trs += f'<tr><td>{esc(desc)}</td><td>{esc(un)}</td><td class="num">{fmt(qtd, 1).rstrip("0").rstrip(",") if isinstance(qtd, float) else qtd}</td></tr>'
+        pages += page(f'''<h3>{name} · MATERIAIS ESTIMADOS (QUANTIDADES)</h3><p class="lede">Lista de materiais por grupo construtivo, com quantidades estimadas a partir da geometria do projeto (perdas e emendas incluídas onde indicado). Sem preços: a lista é a base para cotação junto aos fornecedores e para o kit de fábrica.</p>
+<div class="tw"><table class="ffe small"><tr><th>Material / componente</th><th>Un.</th><th class="num">Quantidade</th></tr>{trs}</table></div>''' + foot(name + " · materiais"), "flow")
+    return pages
+
+def camadas():
+    L = [("01", "Fundação", "Estacas helicoidais Ø76 galvanizadas, hélice Ø300, cabeçotes ajustáveis; alternativas A/B/C conforme sondagem"),
+         ("02", "Estrutura do deck e piso", "Grelha de vigas U 150 x 60 x 3,0 galvanizadas; módulos de piso com vigotas 50 x 150 tratadas (ou LSF Ue 150) a cada 400 mm"),
+         ("03", "Piso", "PIR 50 mm entre vigotas + manta; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato 60 x 120 antiderrapante sobre placa cimentícia no banho; deck de cumaru 20 x 140 com fixação oculta"),
+         ("04", "Estrutura metálica principal", "Casulo: 8 arcos elípticos Ø88,9 x 3,6 + anel frontal Ø101,6 · Safari: 2 mastros Ø139,7 x 4,5, 10 pilares, anel de beiral 150 x 100 · Lodge: 8 pilares Ø101,6 x 4,0 revestidos, anel de beiral 150 x 100, 8 caibros Ø76,1. Aço ASTM A500 galvanizado a fogo (NBR 6323), pintura a pó nas peças aparentes, parafusos classe 8.8"),
+         ("05", "Travamentos", "Terças Ø48,3 e cabos inox Ø8 em X (Casulo) · postes Ø76 estaiados e cabo de borda Ø12 (Safari) · anel de compressão da lanterna e cabos nas faces opacas (Lodge)"),
+         ("06", "Membrana externa", "Poliéster/PVC com laca PVDF 1050 g/m² tipo III, classe B1, garantia 15 anos; perfil duplo keder de alumínio; pré-tensão 2,5 kN/m"),
+         ("07", "Câmara de ventilação", "60 mm entre membrana e isolamento; entradas no rodapé/beiral e saída no respiro de cumeeira, chaminé ou lanterna"),
+         ("08", "Isolamento térmico", "Lã de PET 50 mm, 25 kg/m³, sobre malha de apoio"),
+         ("09", "Barreira de condensação", "Manta refletiva de alumínio (bolha) do lado da câmara, emendas fitadas"),
+         ("10", "Forro", "Forro tensionado acústico classe M1 (Trevira CS) ou painéis de madeira; forro plano no banho com ático técnico"),
+         ("11", "Fechamentos e esquadrias", "Vidro insulado 6 mm laminado + 12 mm argônio + 6 mm temperado low-e em alumínio bronze com ruptura de ponte térmica; painéis SIP 100 mm + ripado termotratado nas faces opacas; portas de correr e pivotante"),
+         ("12", "Instalações", "Elétrica 220 V com quadro no ático, fitas LED 2700 K; PEX Ø25 e esgoto Ø100 sob o deck; climatização dutada inverter com difusores lineares; exaustão com recuperador"),
+         ("13", "Acabamento e FF&E", "Marcenaria em carvalho, louças e metais, mobiliário, luminárias, enxoval e itens de deck conforme listas de FF&E")]
+    trs = "".join(f'<tr><td class="num">{n}</td><td><b>{esc(t)}</b></td><td class="spec">{esc(d)}</td></tr>' for n, t, d in L)
+    return page(f'''<h2>ZION SHELL SYSTEM · 13 CAMADAS E MATERIAIS</h2><p class="lede">A mesma sequência construtiva, do solo ao acabamento, nas três unidades. Cada camada é fabricada em oficina e montada em campo sem solda.</p>
+<div class="tw"><table class="ffe"><tr><th></th><th>Camada</th><th>Material e especificação</th></tr>{trs}</table></div>
+<p class="note">Pré-dimensionamento: bitolas, espessuras e fundações a validar por engenheiro habilitado (ART/RRT) antes da fabricação; form-finding da membrana com o fabricante.</p>''' + foot("Camadas e materiais"))
 
 CSS = """
 @font-face{font-family:'Aventa';src:url(assets/aventa.woff2) format('woff2');font-weight:100 900}
@@ -183,7 +200,7 @@ table.ffe.small{font-size:8px} .cols2{column-count:1}
 def build():
     body = cover() + linha()
     for p in PRODUCTS: body += product_pages(p)
-    body += catalogo_itens() + resumo()
+    body += camadas() + materiais() + catalogo_itens()
     doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Catálogo da Linha · Casulo, Safari e Lodge</title><style>{CSS}</style></head><body>{body}</body></html>'
     open(OUT, "w", encoding="utf-8").write(doc); print(OUT, round(os.path.getsize(OUT) / 1e6, 1), "MB")
     # ---- XLSX FF&E
@@ -198,16 +215,22 @@ def build():
         for r in rows: ws.append(r)
         for i, w in enumerate(widths): ws.column_dimensions[get_column_letter(i + 1)].width = w
         ws.freeze_panes = "A2"; return ws
-    ws_add("Resumo", ["Unidade", "Construção Standard (1ª un.)", "FF&E Econômico", "FF&E Standard", "FF&E Premium", "Opcionais (Standard)", "Pronta (Standard)", "Itens", "Fonte da construção"],
-           [[p["name"], cost(p["code"])[0], ffe.totals(p["code"], 0)["base"], ffe.totals(p["code"], 1)["base"], ffe.totals(p["code"], 2)["base"], ffe.totals(p["code"], 1)["optional"], (cost(p["code"])[0] or 0) + ffe.totals(p["code"], 1)["base"], ffe.totals(p["code"], 1)["n_items"], cost(p["code"])[3]] for p in PRODUCTS],
-           [22, 26, 18, 18, 18, 18, 18, 8, 44])
-    ws_add("Catálogo de itens", ["Código", "Categoria", "Item", "Especificação", "Unidade", "Preço Standard (R$)", "Econômico (R$)", "Premium (R$)"],
-           [[c, ffe.CATS[v[4]], v[0], v[1], v[2], v[3], round(v[3] * 0.72), round(v[3] * 1.35)] for c, v in sorted(ffe.ITEMS.items(), key=lambda kv: (kv[1][4], kv[0]))], [9, 22, 36, 70, 8, 18, 14, 14])
+    ws_add("Resumo", ["Unidade", "Família", "Área interna (m²)", "Deck (m²)", "Total (m²)", "Itens de FF&E", "Estágio"],
+           [[p["name"], p["family"], round(p["area_int"], 1), round(p["area_ext"], 1), round(p["area_int"] + p["area_ext"], 1), ffe.totals(p["code"], 1)["n_items"], p["status"]] for p in PRODUCTS], [22, 36, 16, 12, 12, 14, 60])
+    ws_add("Catálogo de itens", ["Código", "Categoria", "Item", "Especificação", "Unidade"],
+           [[c, ffe.CATS[v[4]], v[0], v[1], v[2]] for c, v in sorted(ffe.ITEMS.items(), key=lambda kv: (kv[1][4], kv[0]))], [9, 22, 36, 70, 8])
     for p in PRODUCTS:
         R = ffe.rows(p["code"], 1)
-        rows = [[r["code"], r["cat_name"], r["desc"], r["spec"], r["amb"], r["obs"], r["qty"], r["un"], r["unit"], r["total"], "opcional" if r["optional"] else ""] for r in R]
-        t = ffe.totals(p["code"], 1); rows += [[], ["", "", "TOTAL Zion Standard (sem opcionais)", "", "", "", "", "", "", t["base"], ""], ["", "", "Opcionais", "", "", "", "", "", "", t["optional"], ""]]
-        ws_add("FFE " + p["name"].replace("ZION ", ""), ["Código", "Categoria", "Item", "Especificação", "Ambiente", "Observação", "Qtd", "Un.", "Unitário (R$)", "Total (R$)", "Opcional"], rows, [9, 20, 34, 60, 16, 30, 7, 6, 14, 14, 10])
+        rows = [[r["code"], r["cat_name"], r["desc"], r["spec"], r["amb"], r["obs"], r["qty"], r["un"], "opcional" if r["optional"] else ""] for r in R]
+        ws_add("FFE " + p["name"].replace("ZION ", ""), ["Código", "Categoria", "Item", "Especificação", "Ambiente", "Observação", "Qtd", "Un.", "Opcional"], rows, [9, 20, 34, 60, 16, 30, 7, 6, 10])
+    try:
+        from product_book_data import bom_priced
+        for code, name in (("cocoon", "Casulo"), ("zenith", "Safari"), ("lodge", "Lodge 38")):
+            rows = []
+            for g, items in bom_priced(code):
+                for (desc, un, qtd, key) in items: rows.append([g, desc, un, qtd])
+            ws_add("Materiais " + name, ["Grupo", "Material / componente", "Un.", "Quantidade estimada"], rows, [26, 70, 8, 18])
+    except Exception: pass
     wb.save(XLS); print("xlsx ->", XLS)
 
 if __name__ == "__main__":

@@ -40,6 +40,8 @@ def sheets(p):
           ("PA-12c", "Camadas construtivas", "s/ escala", f"{d}/13_camadas_construtivas.svg", ""), ("PA-12d", "Estudo da estrutura metálica (isométrica)", "s/ escala", f"{d}/12_estrutura_isometrica.svg", "")]
     return S
 
+INDEX_EXTRA = [("PA-13", "Camadas construtivas e especificação de materiais", "s/ escala"), ("PA-14", "Quadro de materiais estimados (quantidades, sem preços)", "s/ escala")]
+
 def src(rel):
     p = os.path.join(ROOT, rel)
     if not os.path.exists(p): return None
@@ -74,10 +76,57 @@ def page(code, title, scale, rel, product, note=""):
 <div class="art">{img}</div>
 </section>'''
 
+LAYERS = {
+ "cocoon": [("01", "Fundação", "44 estacas helicoidais Ø76 galvanizadas, hélice Ø300, L 1,5 a 2,5 m, cabeçotes ajustáveis (malha 1,20 x 1,30 m)"), ("02", "Quadro do deck e piso", "Vigas U 150 x 60 x 3,0 galvanizadas; vigotas 50 x 150 tratadas a cada 400 mm; trilhos de base curvados 100 x 50 x 3,0"),
+            ("03", "Piso", "PIR 50 mm + manta; compensado naval 18 mm; carvalho de engenharia 14 mm; porcelanato 60 x 120 no banho; deck de cumaru 20 x 140"), ("04", "Estrutura principal", "Anel frontal A0 Ø101,6 x 4,0 inclinado 8°; 7 arcos elípticos B01-B07 Ø88,9 x 3,6 em 3 segmentos com luvas Ø76; quadro da cauda Ø60,3; aço ASTM A500 galvanizado a fogo + pó"),
+            ("05", "Travamentos", "7 terças Ø48,3 x 3,0 em trechos de 1,20 m; Espinha de Luz em treliça Ø42,4 / Ø26,9; cabos inox Ø8 em X com esticadores"), ("06", "Membrana externa", "PVDF 1050 g/m² tipo III em 7 painéis entre arcos + tampas, deslizada em perfil duplo keder de alumínio sobre cada arco; pré-tensão 2,5 kN/m"),
+            ("07", "Câmara de ventilação", "60 mm entre membrana e isolamento; entrada no rodapé, saída no respiro de cumeeira x 7,0 a 8,2"), ("08", "Isolamento", "Lã de PET 50 mm, 25 kg/m³, sobre malha"), ("09", "Barreira de condensação", "Manta refletiva de alumínio com emendas fitadas"),
+            ("10", "Forro", "Forro tensionado acústico classe M1 seguindo a concha; forro plano a 2,40 no banho com ático técnico"), ("11", "Fechamentos", "Fachada V1 em anel de alumínio curvo com 8 painéis de vidro insulado 6 lam + 12 Ar + 6 temp low-e; porta pivotante PV1 1,00 x 2,40; 6 Janelas Olho em requadro de madeira laminada 220 mm; Espinha de Luz em vidro laminado 8 + 8"),
+            ("12", "Instalações", "Quadro 220 V no ático; fitas LED 2700 K nos rodapés e requadros; PEX Ø25; esgoto Ø100 sob o deck; evaporadora dutada 12k BTU; exaustor com recuperador"), ("13", "Acabamento e FF&E", "Parede da cabeceira/banho em LSF + painel + ripado; marcenaria em carvalho; louças e metais; mobiliário, luminárias e enxoval conforme FF&E")],
+ "zenith": [("01", "Fundação", "30 estacas helicoidais Ø76 sob o piso + 7 estacas de tração sob os postes; cabeçotes ajustáveis"), ("02", "Quadro do deck e piso", "Vigas U 150 x 60 x 3,0; vigotas 50 x 150 a cada 400 mm; terraço e passarela em cumaru"),
+            ("03", "Piso", "PIR 50 mm + manta; compensado naval 18 mm; carvalho 14 mm; porcelanato 60 x 120 no banho; deck de cumaru 20 x 140"), ("04", "Estrutura principal", "2 mastros Ø139,7 x 4,5 com bases articuladas e coroas de 3 braços Ø48,3; 10 pilares Ø101,6; anel de beiral 150 x 100 x 4,0 em 4 segmentos parafusados; aço A500 galvanizado + pó"),
+            ("05", "Travamentos", "7 postes externos Ø76,1 x 3,6 inclinados 8° com estais Ø10 inox; cabo de borda Ø12 em bolsa; diafragma SIP"), ("06", "Membrana externa", "PVDF 1050 g/m² em gomos radiais soldados por RF; anéis de cume Ø1,20 e Ø0,70; i mín. 14° no vale; pré-tensão 2,5 kN/m"),
+            ("07", "Câmara de ventilação", "60 mm; saída pela chaminé do Respiro com veneziana motorizada"), ("08", "Isolamento", "Lã de PET 50 mm sobre malha"), ("09", "Barreira de condensação", "Manta refletiva de alumínio"),
+            ("10", "Forro", "Forro tensionado seguindo os cumes, a 0,30 m da membrana; forro plano a 2,50 no banho"), ("11", "Fechamentos", "Fachada de correr PC1 4 folhas 1,35 x 2,75 em vidro insulado low-e; 4 vidros laterais fixos VF1; painéis SIP 100 mm + ripado termotratado 40 x 40 nas faces opacas; janelas J1-J4; Óculo OC1 em cúpula de vidro laminado curvo"),
+            ("12", "Instalações", "Quadro no ático; LED no anel de beiral e rodapés; PEX; esgoto Ø100; evaporadora dutada 18k BTU; hidromassagem no terraço (opcional)"), ("13", "Acabamento e FF&E", "Parede da cabeceira com o mastro M1; totem do mastro M2 na Ilha do Café; marcenaria; louças e metais; FF&E")],
+ "lodge": [("01", "Fundação", "22 estacas helicoidais Ø76 (20 sob piso e deck + 2 sob os postes da vela), cabeçotes ajustáveis"), ("02", "Quadro do deck e piso", "Grelha de vigas U 150 x 60 x 3,0 com anel de borda octogonal; vigotas LSF Ue 150 x 40 x 1,25 (ou 50 x 150 tratadas); deck em três faces"),
+            ("03", "Piso", "PIR 50 mm + manta; compensado naval 18 mm; carvalho 14 mm; porcelanato no banho; deck de cumaru 20 x 140"), ("04", "Estrutura principal", "8 pilares Ø101,6 x 4,0 revestidos em madeira 44 mm; anel de beiral 150 x 100 x 4,0 em 8 segmentos; 8 caibros Ø76,1 x 3,6; anel de compressão da lanterna Ø60,3 x 3,0 calandrado; aço A500 galvanizado + pó"),
+            ("05", "Travamentos", "Cabos inox Ø8 em X nas 3 faces opacas; vela de sombra em 2 postes Ø76,1 x 3,6 com estais Ø8"), ("06", "Membrana externa", "PVDF 1050 g/m² em 8 gomos com keder sobre os caibros, beiral 0,90 m; tampa da lanterna Ø2,10; pré-tensão 2,5 kN/m"),
+            ("07", "Câmara de ventilação", "60 mm; saída pela veneziana da Lanterna Zion (efeito chaminé)"), ("08", "Isolamento", "Lã de PET 50 mm sobre malha, cônica"), ("09", "Barreira de condensação", "Manta refletiva de alumínio"),
+            ("10", "Forro", "Forro tensionado cônico com anel de LED na lanterna; forro plano a 2,40 no banho"), ("11", "Fechamentos", "5 faces de vidro insulado 6 lam + 12 Ar + 6 temp low-e em alumínio bronze RPT com porta de correr PC1 2,00 x 2,40; 3 faces em SIP 100 mm + ripado; fresta da banheira J1; lanterna LZ1 em vidro laminado curvo 8 + 8 h 0,45"),
+            ("12", "Instalações", "Quadro no ático; LED no anel de beiral, rodapés e lanterna; PEX; esgoto Ø100; evaporadora dutada 9k BTU"), ("13", "Acabamento e FF&E", "Parede-corda do banho em LSF + painel; marcenaria em carvalho; louças e metais; FF&E")],
+}
+
+def materials_pages(p):
+    """PA-13 camadas e materiais · PA-14 quantidades estimadas (sem preços)."""
+    if p not in LAYERS: return ""
+    try:
+        from product_book_data import bom_priced
+        groups = bom_priced(p)
+    except Exception:
+        groups = []
+    trs = "".join(f'<tr><td class="num">{n}</td><td><b>{html.escape(t)}</b></td><td>{html.escape(d)}</td></tr>' for n, t, d in LAYERS[p])
+    pg1 = f'''<section class="sheet doc" id="{p}-PA-13"><div class="strip"><span class="code">PA-13</span><span class="ttl">Camadas construtivas e especificação de materiais</span><span class="scl">s/ escala</span><span class="prod">{NAME[p]}</span></div>
+<div class="docbody"><table class="mat"><tr><th></th><th>Camada</th><th>Material e especificação</th></tr>{trs}</table>
+<p class="docnote">Aço ASTM A500 grau B galvanizado a fogo (NBR 6323); ligações parafusadas classe 8.8, sem solda em campo; vento V0 = 45 m/s (NBR 6123); verificação estrutural NBR 8800. Pré-dimensionamento a validar por engenheiro habilitado (ART/RRT); form-finding da membrana com o fabricante; fundação definitiva após sondagem.</p></div></section>'''
+    if not groups: return pg1
+    rows = ""
+    for g, items in groups:
+        rows += f'<tr class="grp"><td colspan="3">{html.escape(g)}</td></tr>'
+        for (desc, un, qtd, key) in items:
+            q = f"{qtd:,.1f}".replace(",", "X").replace(".", ",").replace("X", ".").rstrip("0").rstrip(",") if isinstance(qtd, float) else str(qtd)
+            rows += f'<tr><td>{html.escape(desc)}</td><td>{html.escape(un)}</td><td class="num">{q}</td></tr>'
+    pg2 = f'''<section class="sheet doc" id="{p}-PA-14"><div class="strip"><span class="code">PA-14</span><span class="ttl">Quadro de materiais estimados (quantidades)</span><span class="scl">s/ escala</span><span class="prod">{NAME[p]}</span></div>
+<div class="docbody cols"><table class="mat small"><tr><th>Material / componente</th><th>Un.</th><th class="num">Qtd</th></tr>{rows}</table></div>
+<p class="docnote">Quantidades estimadas a partir da geometria (perdas e emendas incluídas onde indicado), organizadas nos 18 grupos do kit de fábrica. Lista sem preços, para cotação e pedido de fabricação; peça a peça (código, dimensões, perfil, aço, espessura, peso, processo) no Product Book.</p></section>'''
+    return pg1 + pg2
+
 def cover():
     rows = ""
     for p in PRODUCTS:
         for (code, t, sc, rel, note) in sheets(p):
+            rows += f'<tr><td>{TAG[p]}-{code}</td><td>{html.escape(t)}</td><td>{sc}</td><td>{NAME[p]}</td></tr>'
+        for (code, t, sc) in INDEX_EXTRA:
             rows += f'<tr><td>{TAG[p]}-{code}</td><td>{html.escape(t)}</td><td>{sc}</td><td>{NAME[p]}</td></tr>'
     dx = ""
     for p in PRODUCTS:
@@ -85,7 +134,7 @@ def cover():
     return f'''<section class="sheet cover">
 <div class="coverl"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
 <h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO · ZION SAFARI · ZION LODGE</h2>
-<p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos e vistas isométricas. Arquivos DXF editáveis em CAD anexos.</p>
+<p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos, vistas isométricas, camadas construtivas e quadro de materiais estimados (sem preços). Arquivos DXF editáveis em CAD anexos.</p>
 <dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{" + ".join(str(len(sheets(p))) for p in PRODUCTS)} = {sum(len(sheets(p)) for p in PRODUCTS)} no total</dd></dl>
 <p class="warn">Pré-dimensionamento: bitolas, espessuras, fundações e form-finding da membrana a validar por engenheiros habilitados (ART/RRT) antes da fabricação.</p></div>
 <div class="coverr"><h3>ÍNDICE GERAL</h3><div class="tw"><table><tr><th>Prancha</th><th>Título</th><th>Escala</th><th>Produto</th></tr>{rows}</table></div>
@@ -107,6 +156,7 @@ nav a{color:var(--sand);text-decoration:none} nav b{letter-spacing:.3em}
 .strip .code{font-weight:800;color:var(--ink);letter-spacing:.1em;font-size:13px} .strip .ttl{font-weight:600;color:var(--ink);font-size:13px} .strip .prod{margin-left:auto;letter-spacing:.2em;font-size:10px}
 .art{flex:1;display:flex;align-items:center;justify-content:center;padding:2mm 6mm 5mm} .art img,.art svg{width:100%;height:auto;max-height:100%;display:block}
 .missing{border:1px dashed var(--earth);padding:20px;color:var(--earth)}
+.sheet.doc{padding-bottom:6mm} .docbody{padding:4mm 8mm 0;flex:1;overflow:hidden} .docbody.cols{column-count:2;column-gap:10mm} table.mat{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums} table.mat th{text-align:left;font-size:9px;letter-spacing:.14em;color:var(--earth);text-transform:uppercase;padding:2px 6px 6px;border-bottom:1px solid var(--earth)} table.mat td{padding:4px 6px;border-bottom:1px solid var(--sand);vertical-align:top;line-height:1.45} table.mat td.num{text-align:right;white-space:nowrap;color:var(--earth);font-weight:600} table.mat.small{font-size:9.5px} table.mat.small td{padding:2px 5px} table.mat tr.grp td{background:#F1EAE0;font-weight:600;letter-spacing:.1em;font-size:8.5px;text-transform:uppercase;color:var(--earth);break-after:avoid} table.mat tr{break-inside:avoid} .docnote{font-size:9.5px;color:var(--earth);padding:3mm 8mm 0;line-height:1.5}
 .cover{flex-direction:row;padding:0} .coverl{width:40%;background:var(--black);color:var(--cream);padding:18mm 14mm} .coverr{flex:1;padding:14mm 12mm;font-size:10px}
 .brand{font-size:44px;font-weight:800;letter-spacing:.4em} .sub{font-size:9px;letter-spacing:.3em;color:var(--sand);margin-bottom:26mm}
 .coverl h1{font-weight:300;font-size:34px;letter-spacing:.12em;line-height:1.15;margin:0 0 8mm} .coverl h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:26px;margin:0 0 8mm;color:var(--sand)}
@@ -129,6 +179,7 @@ nav{top:env(safe-area-inset-top,0px)}
     body = cover()
     for p in PRODUCTS:
         for (code, t, sc, rel, note) in sheets(p): body += page(code, t, sc, rel, p, note)
+        body += materials_pages(p)
     if ARTIFACT:
         doc = f'<title>Projeto Arquitetônico Zion Casulo &amp; Safari</title><style>{css}</style><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}'
         out = sys.argv[sys.argv.index("--artifact") + 1] if len(sys.argv) > sys.argv.index("--artifact") + 1 else os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO_artifact.html")
