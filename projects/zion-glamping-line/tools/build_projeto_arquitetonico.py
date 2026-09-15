@@ -7,7 +7,8 @@ import os, sys, base64, html
 from pa_sheets import SHEETS, AREAS, ESQUADRIAS, NOTAS
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-INLINE = "--inline" in sys.argv
+ARTIFACT = "--artifact" in sys.argv   # versão sem esqueleto html/head/body (publicação como artefato)
+INLINE = "--inline" in sys.argv or ARTIFACT
 NAME = {"cocoon": "ZION COCOON", "zenith": "ZION ZENITH"}
 TAG = {"cocoon": "ZC", "zenith": "ZZ"}
 
@@ -113,12 +114,25 @@ nav a{color:var(--sand);text-decoration:none} nav b{letter-spacing:.3em}
 .tw{max-height:180mm;overflow:hidden;column-count:2;column-gap:8mm;margin-bottom:6mm} .dxf{columns:2;font-size:8.5px;list-style:none;padding:0;margin:0;color:var(--earth)} .dxf li{margin:1px 0}
 @media print{@page{size:A3 landscape;margin:0} body{background:#fff} nav{display:none} .sheet{margin:0;box-shadow:none;width:420mm;height:297mm}}
 """
+    if ARTIFACT:
+        css += """
+body{padding-block:0 24px;padding-inline:16px}
+.sheet{width:100%;max-width:1400px;height:auto;aspect-ratio:420/297;margin:16px auto}
+.strip{padding:12px 16px 0;flex-wrap:wrap} .art{padding:4px 12px 12px}
+.cover{flex-direction:row} .coverl{padding:36px 28px} .coverr{padding:28px 24px;overflow:auto}
+@media (max-width:760px){.sheet{aspect-ratio:auto} .cover{flex-direction:column} .coverl{width:100%} .brand{font-size:32px} .coverl h1{font-size:26px} .tw{column-count:1;max-height:none} .dxf{columns:1}}
+nav{top:env(safe-area-inset-top,0px)}
+"""
     navs = "".join(f'<a href="#{p}-{c}">{TAG[p]}-{c}</a>' for p in ("cocoon", "zenith") for (c, *_r) in sheets(p))
     body = cover()
     for p in ("cocoon", "zenith"):
         for (code, t, sc, rel, note) in sheets(p): body += page(code, t, sc, rel, p, note)
-    doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Projeto Arquitetônico · Cocoon &amp; Zenith</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>{css}</style></head><body><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}</body></html>'
-    out = os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO" + ("_standalone" if INLINE else "") + ".html")
+    if ARTIFACT:
+        doc = f'<title>Projeto Arquitetônico Zion Cocoon &amp; Zenith</title><style>{css}</style><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}'
+        out = sys.argv[sys.argv.index("--artifact") + 1] if len(sys.argv) > sys.argv.index("--artifact") + 1 else os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO_artifact.html")
+    else:
+        doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Projeto Arquitetônico · Cocoon &amp; Zenith</title><meta name="viewport" content="width=device-width,initial-scale=1"><style>{css}</style></head><body><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}</body></html>'
+        out = os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO" + ("_standalone" if INLINE else "") + ".html")
     open(out, "w", encoding="utf-8").write(doc)
     print(out, round(os.path.getsize(out) / 1e6, 1), "MB")
 
