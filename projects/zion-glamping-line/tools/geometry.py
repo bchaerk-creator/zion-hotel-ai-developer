@@ -567,5 +567,97 @@ class Lodge:
         z_edge = self.Z_EAVE - 0.35
         return self.Z_LANTERN - (self.Z_LANTERN - z_edge) * (t ** 1.25)
 
+    # ---- fechamentos, layout, estrutura ----
+    GLASS_FACES = [(1, 2), (2, 3), (3, 4), (4, 5), (5, 6)]     # cinco faces de vidro (frente = face 3-4, voltada para -x)
+    WALL_FACES = [(6, 7), (7, 0), (0, 1)]                      # três faces opacas (banho e cabeceira)
+    X_PART = 1.55                                              # parede-corda do banho (x)
+    DOOR = dict(face=(3, 4), y1=-1.0, y2=1.0, h=2.4)           # porta de correr frontal 2,00 x 2,40
+    SAIL_POSTS = None
+
+    def walls(self):
+        V = self.vertices(); W = []
+        for (i, j) in self.GLASS_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="glass", name="Vidro insulado fixo / porta de correr" if (i, j) == (3, 4) else "Vidro insulado fixo"))
+        for (i, j) in self.WALL_FACES:
+            W.append(dict(p1=V[i], p2=V[j], z1=0, z2=self.Z_EAVE - 0.15, kind="wood", name="Painel SIP 100 mm + ripado"))
+        W.append(dict(p1=V[7], p2=V[0], z1=1.6, z2=2.2, kind="window", name="Fresta alta da banheira 1,60 x 0,60"))
+        yc = math.sqrt(self.r_corner() ** 2 - self.X_PART ** 2)
+        W.append(dict(p1=(self.X_PART, -yc), p2=(self.X_PART, yc), z1=0, z2=2.4, kind="partition", name="Parede-corda do banho (LSF + painel)"))
+        return W
+
+    def furniture(self):
+        F = []
+        F.append(box(self.X_PART, self.X_PART + 0.1, -2.6, 2.6, 0, 2.4, "wall", "Parede do banho"))
+        F.append(box(self.X_PART, self.X_PART + 0.1, -0.5, 0.4, 0, 2.1, "opening", "Porta de correr do banho"))
+        F.append(box(-0.55, 1.45, -0.97, 0.97, 0, 0.55, "bed", "Cama king 1,93 x 2,03"))
+        F.append(box(-0.55, 1.45, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
+        F.append(box(-0.55, 0.05, 1.1, 1.7, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(-0.55, 0.05, -1.7, -1.1, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(0.2, 1.9, 2.2, 2.95, 0, 0.9, "cabinet", "Café / minibar"))
+        F.append(box(0.2, 1.9, -2.95, -2.2, 0, 2.2, "cabinet", "Closet"))
+        F.append(box(-2.7, -1.5, -1.2, 1.2, 0, 0.8, "sofa", "Sofá 2,40"))
+        F.append(cyl(-1.15, 0.0, 0, 0.45, 0.3, "table", "Mesa lateral"))
+        F.append(box(-2.9, -1.9, 1.7, 2.5, 0, 0.75, "chair", "Poltrona"))
+        F.append(box(1.75, 2.45, 1.0, 2.4, 0, 0.85, "vanity", "Bancada 1,40"))
+        F.append(box(2.7, 3.4, 1.6, 2.3, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(2.4, 3.35, -1.6, -0.7, 0, 0.02, "shower", "Chuveiro 0,95 x 0,90"))
+        F.append(box(2.4, 2.43, -1.6, -0.7, 0, 2.1, "glass", "Vidro do box"))
+        F.append(box(1.8, 2.7, -2.5, -1.75, 0, 0.58, "tub", "Banheira 0,90 x 0,75 (sentar)"))
+        F.append(box(self.X_PART, 3.4, -2.6, 2.6, 2.4, 2.45, "ceiling", "Forro do banho / ático técnico"))
+        F.append(box(2.0, 3.0, -0.5, 0.5, 2.5, 2.7, "hvac", "Evaporadora dutada 9k BTU"))
+        F.append(box(4.3, 5.0, -2.2, -1.5, 0, 0.62, "condenser", "Condensadora"))
+        return F
+
+    def columns(self):
+        return self.vertices()
+
+    def sail_posts(self):
+        px = -self.r_corner() - self.SAIL["reach"]
+        return [(px, -1.8), (px, 1.8)]
+
+    def rafters(self):
+        """8 caibros radiais: do vértice (anel de beiral) ao anel da lanterna."""
+        out = []
+        for (x, y) in self.vertices():
+            ang = math.atan2(y, x)
+            out.append([(x, y, self.Z_EAVE), (self.R_LANTERN * math.cos(ang), self.R_LANTERN * math.sin(ang), self.Z_LANTERN)])
+        return out
+
+    def roof_mesh(self, nr=14, na=64):
+        """membrana cônica em 8 gomos: anel da lanterna -> beiral (polígono com balanço OVER)."""
+        verts, faces = [], []
+        ro = self.r_corner() + self.OVER / math.cos(math.pi / self.N)
+        for i in range(nr + 1):
+            t = i / nr
+            for j in range(na):
+                ang = 2 * math.pi * j / na
+                # raio da borda do octógono (com balanço) nessa direção
+                k = (ang - math.pi / 8) % (2 * math.pi / self.N) - math.pi / self.N
+                r_edge = ro * math.cos(math.pi / self.N) / math.cos(k)
+                r = self.R_LANTERN + (r_edge - self.R_LANTERN) * t
+                z = self.roof_z(r) if t < 1 else self.Z_EAVE - 0.35
+                verts.append((r * math.cos(ang), r * math.sin(ang), z))
+        for i in range(nr):
+            for j in range(na):
+                a0 = i * na + j; a1 = i * na + (j + 1) % na; b0 = a0 + na; b1 = a1 + na
+                faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+        return dict(vertices=verts, faces=faces)
+
+    def piles(self):
+        """estacas helicoidais sob piso e deck (malha ~2,4 x 1,7 m) + uma sob cada poste da vela."""
+        R = self.r_corner(); pts = []
+        for x in (-2.4, 0.0, 2.4):
+            for y in (-2.55, -0.85, 0.85, 2.55):
+                pts.append((x, y))
+        for (x, y) in ((-3.4, 0.0), (3.4, 0.0), (0.0, -3.4), (0.0, 3.4)): pts.append((x, y))
+        px = -R - self.DECK_D
+        for y in (-3.2, -1.1, 1.1, 3.2): pts.append((-4.7, y))
+        for y in (-1.8, 1.8): pts.append((px + 0.2, y))
+        return pts
+
     def spec(self):
         return dict(name=self.NAME, F=self.F, side=self.side(), floor_area=self.floor_area(), deck_area=self.deck_area(), z_eave=self.Z_EAVE, z_top=self.Z_TOP)
+
+    def export(self):
+        return dict(name=self.NAME, vertices=self.vertices(), walls=self.walls(), furniture=self.furniture(), rafters=self.rafters(), roof=self.roof_mesh(),
+                    deck=self.deck_pts(), sail_posts=self.sail_posts(), piles=self.piles(), lantern=dict(r=self.R_LANTERN, z1=self.Z_LANTERN, z2=self.Z_TOP), z_eave=self.Z_EAVE)

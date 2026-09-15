@@ -8,11 +8,21 @@ from build_projeto_arquitetonico import svg_inline
 from product_book_data import budget, cocoon_parts, zenith_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS
 from bom import cocoon_bom, zenith_bom, transport, ASSEMBLY
 from pa_sheets import AREAS, ESQUADRIAS
+import bom as _bom, product_book_data as _pbd
+BOM = {"cocoon": cocoon_bom, "zenith": zenith_bom, "lodge": getattr(_bom, "lodge_bom", lambda: dict(steel_kg=0, total=0))}
+PARTS = {"cocoon": cocoon_parts, "zenith": zenith_parts, "lodge": getattr(_pbd, "lodge_parts", lambda: [])}
+CONNS = {"cocoon": COCOON_CONNECTIONS, "zenith": ZENITH_CONNECTIONS, "lodge": getattr(_pbd, "LODGE_CONNECTIONS", [])}
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(ROOT, "ZION_PROJETO_ARQUITETONICO_Apresentacao.html")
-NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
-SPLIT = {"cocoon": ("CA", "SULO"), "zenith": ("SA", "FARI")}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI", "lodge": "ZION LODGE"}
+SPLIT = {"cocoon": ("CA", "SULO"), "zenith": ("SA", "FARI"), "lodge": ("LO", "DGE")}
+SUB = {"cocoon": "Cabana biomórfica em casulo", "zenith": "Cabana escultural de dois cumes", "lodge": "Pavilhão octogonal com Lanterna Zion"}
+CONCEPT = {"cocoon": "Uma concha assimétrica de oito arcos elípticos: frente cheia, aberta ao vale por um anel de vidro inclinado 8°, e cauda afilada que guarda o banho. A Espinha de Luz corre a cumeeira; seis Janelas Olho recortam a membrana como lentes.",
+           "zenith": "Dois cumes deslocados em diagonal, 5,80 m sobre a cama e 4,60 m sobre a Ilha do Café, erguidos por mastros com coroas de três braços. A membrana cai em catenárias até sete postes estaiados; o Óculo do Zênite abre o céu sobre o dormir.",
+           "lodge": "Um pavilhão octogonal de 6,80 m entre faces, com cinco faces de vidro e três opacas que guardam o banho. Oito caibros sobem do anel de beiral à Lanterna Zion, um anel de vidro que despeja luz zenital sobre a cama; uma vela de sombra independente prolonga o deck em três faces."}
+DETS = {"cocoon": ("detalhes/DET-01_cobertura_cocoon.svg", "detalhes/DET-10_arcos_cocoon.svg"), "zenith": ("detalhes/DET-02_cobertura_zenith.svg", "detalhes/DET-11_mastros_zenith.svg"), "lodge": ("detalhes/DET-12_lanterna_lodge.svg", "detalhes/DET-13_caibros_lodge.svg")}
+PILES = {"cocoon": "44", "zenith": "30 + 7", "lodge": "22"}
 slides = []
 
 def money(v): return "R$ " + f"{v:,.0f}".replace(",", ".")
@@ -20,7 +30,9 @@ def fmt(v, n=1): return f"{v:,.{n}f}".replace(",", "X").replace(".", ",").replac
 def img(rel, cls=""):
     rel = rel.replace("/renders/web/", "/renders/web/deck/")   # renders sem a interface do visualizador
     return f'<img class="{cls}" src="{rel}" alt="">'
-def sheet(rel, cls=""): return f'<div class="sheet {cls}">{svg_inline(rel)}</div>'
+def sheet(rel, cls=""):
+    if not os.path.exists(os.path.join(ROOT, rel)): return f'<div class="sheet missing">[{esc(rel)} não gerado]</div>'
+    return f'<div class="sheet {cls}">{svg_inline(rel)}</div>'
 def esc(s): return html.escape(s)
 
 def slide(body, cls="", label=""):
@@ -61,10 +73,8 @@ def produto(p):
     a, b = SPLIT[p]
     slide(f'''<div class="photo full">{img(f"{r}_ext_aerial.jpg")}</div><div class="overlay"></div>
 <div class="divider"><div class="split"><span>ZION</span><i></i><span>{a}{b}</span></div>
-<div class="sub">{"Cabana biomórfica em casulo" if p == "cocoon" else "Cabana escultural de dois cumes"}</div></div>''', "dark cover-slide", NAME[p])
-    concept = ("Uma concha assimétrica de oito arcos elípticos: frente cheia, aberta ao vale por um anel de vidro inclinado 8°, e cauda afilada que guarda o banho. A Espinha de Luz corre a cumeeira; seis Janelas Olho recortam a membrana como lentes."
-               if p == "cocoon" else
-               "Dois cumes deslocados em diagonal, 5,80 m sobre a cama e 4,60 m sobre a Ilha do Café, erguidos por mastros com coroas de três braços. A membrana cai em catenárias até sete postes estaiados; o Óculo do Zênite abre o céu sobre o dormir.")
+<div class="sub">{SUB[p]}</div></div>''', "dark cover-slide", NAME[p])
+    concept = CONCEPT[p]
     slide(f'''<h2>CONCEITO</h2><p class="lede">{concept}</p>
 <div class="three">{img(f"{r}_ext_front.jpg")}{img(f"{r}_ext_side.jpg")}{img(f"{r}_night.jpg")}</div>
 <div class="caps3"><span>Fachada frontal</span><span>Lateral</span><span>Noite</span></div>''', "dark", NAME[p] + " · CONCEITO")
@@ -85,12 +95,14 @@ def produto(p):
     slide(f'''<h2>COBERTURA E FORRO <small>PA-04 planta de cobertura · PA-05 forro refletido e iluminação · 1:50</small></h2><div class="two-sheets">{sheet(f"{j}/PA-04_planta_cobertura.svg")}{sheet(f"{j}/PA-05_forro_iluminacao.svg")}</div>''', "dark", NAME[p] + " · COBERTURA")
     E = ESQUADRIAS[p]
     slide(f'''<h2>QUADRO DE ESQUADRIAS <small>PA-09 · {len(E)} tipos · {sum(e[4] for e in E)} unidades · vidro insulado 6 lam + 12 Ar + 6 temp low-e</small></h2><div class="one">{sheet(f"{j}/PA-09_quadro_esquadrias.svg")}</div>''', "dark", NAME[p] + " · ESQUADRIAS")
-    bm = (cocoon_bom if p == "cocoon" else zenith_bom)(); parts = (cocoon_parts if p == "cocoon" else zenith_parts)(); conns = COCOON_CONNECTIONS if p == "cocoon" else ZENITH_CONNECTIONS
+    bm = BOM[p](); parts = PARTS[p](); conns = CONNS[p]
     slide(f'''<h2>ESTRUTURA <small>PA-10 planta estrutural · PA-12d estudo da estrutura metálica</small></h2>
 <div class="two-sheets">{sheet(f"{d}/03b_planta_estrutural.svg")}{sheet(f"{d}/12_estrutura_isometrica.svg")}</div>
-<div class="stats"><div><b>{bm["steel_kg"]:,}</b><span>kg de aço galvanizado</span></div><div><b>{len(parts)}</b><span>famílias de peças codificadas</span></div><div><b>{len(conns)}</b><span>tipos de conexão parafusada</span></div><div><b>{"44" if p == "cocoon" else "30 + 7"}</b><span>estacas helicoidais</span></div></div>'''.replace(",", "."), "dark", NAME[p] + " · ESTRUTURA")
-    det = ("detalhes/DET-01_cobertura_cocoon.svg", "detalhes/DET-10_arcos_cocoon.svg") if p == "cocoon" else ("detalhes/DET-02_cobertura_zenith.svg", "detalhes/DET-11_mastros_zenith.svg")
-    slide(f'''<h2>DETALHES CONSTRUTIVOS <small>PA-11 · cobertura em camadas · {"arcos e emendas" if p == "cocoon" else "mastros e coroas"} · 1:5 a 1:20</small></h2><div class="two-sheets">{sheet(det[0])}{sheet(det[1])}</div>''', "dark", NAME[p] + " · DETALHES")
+<div class="stats"><div><b>{bm["steel_kg"]:,}</b><span>kg de aço galvanizado</span></div><div><b>{len(parts)}</b><span>famílias de peças codificadas</span></div><div><b>{len(conns)}</b><span>tipos de conexão parafusada</span></div><div><b>{PILES[p]}</b><span>estacas helicoidais</span></div></div>'''.replace(",", "."), "dark", NAME[p] + " · ESTRUTURA")
+    det = DETS[p]
+    det_sub = {"cocoon": "cobertura em camadas · arcos e emendas", "zenith": "cobertura em camadas · mastros e coroas", "lodge": "lanterna · caibros e anel de beiral"}[p]
+    if os.path.exists(os.path.join(ROOT, det[0])):
+        slide(f'''<h2>DETALHES CONSTRUTIVOS <small>PA-11 · {det_sub} · 1:5 a 1:20</small></h2><div class="two-sheets">{sheet(det[0])}{sheet(det[1])}</div>''', "dark", NAME[p] + " · DETALHES")
     slide(f'''<h2>ISOMÉTRICA E MODELO EXPLODIDO <small>PA-12a · PA-12b</small></h2><div class="two-sheets">{sheet(f"{d}/08_isometrica.svg")}{sheet(f"{d}/10_modelo_explodido.svg")}</div>''', "dark", NAME[p] + " · ISOMÉTRICAS")
 
 def lodge():

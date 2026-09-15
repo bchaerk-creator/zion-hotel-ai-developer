@@ -9,8 +9,9 @@ from pa_sheets import SHEETS, AREAS, ESQUADRIAS, NOTAS
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 ARTIFACT = "--artifact" in sys.argv   # versão sem esqueleto html/head/body (publicação como artefato)
 INLINE = "--inline" in sys.argv or ARTIFACT
-NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI"}
-TAG = {"cocoon": "ZC", "zenith": "ZS"}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI", "lodge": "ZION LODGE"}
+TAG = {"cocoon": "ZC", "zenith": "ZS", "lodge": "ZL"}
+PRODUCTS = ("cocoon", "zenith", "lodge")
 
 # sequência de pranchas: (código, título, escala, arquivo relativo, observação)
 def sheets(p):
@@ -30,8 +31,9 @@ def sheets(p):
          ("PA-09", "Quadro de esquadrias", "1:50", f"{j}/PA-09_quadro_esquadrias.svg", "vistas, dimensões, especificação e localização"),
          ("PA-10", "Planta estrutural", "1:50", f"{d}/03b_planta_estrutural.svg", "eixos, arcos / pilares, vigas, estacas"),
          ]
-    dets = ["DET-01_cobertura_cocoon", "DET-10_arcos_cocoon"] if p == "cocoon" else ["DET-02_cobertura_zenith", "DET-11_mastros_zenith"]
+    dets = {"cocoon": ["DET-01_cobertura_cocoon", "DET-10_arcos_cocoon"], "zenith": ["DET-02_cobertura_zenith", "DET-11_mastros_zenith"], "lodge": ["DET-12_lanterna_lodge", "DET-13_caibros_lodge"]}[p]
     dets = [dets[0], "DET-03_ancoragem", "DET-04_fundacao", "DET-05_esquadrias", "DET-06_drenagem", dets[1]]
+    if p == "lodge": dets = [d for d in dets if os.path.exists(os.path.join(ROOT, "detalhes", d + ".svg"))]
     for k, f in enumerate(dets):
         S.append((f"PA-11{'abcdef'[k]}", "Detalhe construtivo " + f.split("_", 1)[0] + " · " + f.split("_", 1)[1].replace("_", " "), "1:5 a 1:20", f"{det}/{f}.svg", ""))
     S += [("PA-12a", "Vista isométrica", "s/ escala", f"{d}/08_isometrica.svg", ""), ("PA-12b", "Modelo explodido da estrutura", "s/ escala", f"{d}/10_modelo_explodido.svg", ""),
@@ -74,17 +76,17 @@ def page(code, title, scale, rel, product, note=""):
 
 def cover():
     rows = ""
-    for p in ("cocoon", "zenith"):
+    for p in PRODUCTS:
         for (code, t, sc, rel, note) in sheets(p):
             rows += f'<tr><td>{TAG[p]}-{code}</td><td>{html.escape(t)}</td><td>{sc}</td><td>{NAME[p]}</td></tr>'
     dx = ""
-    for p in ("cocoon", "zenith"):
+    for p in PRODUCTS:
         dx += "".join(f'<li><code>{p}/projeto/dxf/{f}</code></li>' for f in dxf_list(p))
     return f'''<section class="sheet cover">
 <div class="coverl"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
-<h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO &amp; ZION SAFARI</h2>
+<h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO · ZION SAFARI · ZION LODGE</h2>
 <p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos e vistas isométricas. Arquivos DXF editáveis em CAD anexos.</p>
-<dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{len(sheets("cocoon"))} por produto · {len(sheets("cocoon")) * 2} no total</dd></dl>
+<dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{" + ".join(str(len(sheets(p))) for p in PRODUCTS)} = {sum(len(sheets(p)) for p in PRODUCTS)} no total</dd></dl>
 <p class="warn">Pré-dimensionamento: bitolas, espessuras, fundações e form-finding da membrana a validar por engenheiros habilitados (ART/RRT) antes da fabricação.</p></div>
 <div class="coverr"><h3>ÍNDICE GERAL</h3><div class="tw"><table><tr><th>Prancha</th><th>Título</th><th>Escala</th><th>Produto</th></tr>{rows}</table></div>
 <h3>ARQUIVOS CAD (DXF, unidades em metros)</h3><ul class="dxf">{dx}</ul></div>
@@ -125,7 +127,7 @@ nav{top:env(safe-area-inset-top,0px)}
 """
     navs = "".join(f'<a href="#{p}-{c}">{TAG[p]}-{c}</a>' for p in ("cocoon", "zenith") for (c, *_r) in sheets(p))
     body = cover()
-    for p in ("cocoon", "zenith"):
+    for p in PRODUCTS:
         for (code, t, sc, rel, note) in sheets(p): body += page(code, t, sc, rel, p, note)
     if ARTIFACT:
         doc = f'<title>Projeto Arquitetônico Zion Casulo &amp; Safari</title><style>{css}</style><nav><b>ZION</b> Projeto arquitetônico · {navs}</nav>{body}'

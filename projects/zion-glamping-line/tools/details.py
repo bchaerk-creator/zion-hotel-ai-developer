@@ -2909,8 +2909,213 @@ def det11():
 
 
 # ==================================================================================
+def det12():
+    """ZION LODGE - Lanterna Zion: anel de compressão, vidro, tampa ventilada e ligação dos caibros."""
+    sh = Sheet("DET-12", "Lanterna Zion", "ZION LODGE", "1:4 / 1:15 / 1:2",
+               "Anel de compressão Ø1500, oito caibros radiais, vidro laminado curvo 450 mm, tampa ventilada e forro com anel de LED. Corte, planta do anel e ligação caibro-anel.")
+    C = sh.callout
+    # ---------------- Painel A: corte pela lanterna (1 mm = 0,25 px) ----------------
+    sh.panel(60, 120, 720, 580, "Corte pela lanterna  -  eixo vertical", "1:4 (1 mm = 0,25 px)")
+    k = 0.25
+    t = Tr(420, 560, k)     # origem: centro da lanterna, z = 4600 (anel) em y = 560
+    X, Y = t.x, t.y
+    sh.line(X(0), Y(-450), X(0), Y(900), 0.4, INK, dash="10 3 2 3")
+    # caibros chegando (dois, em corte, inclinação ~ 33°)
+    ang = math.radians(33)
+    for sg in (-1, 1):
+        x0, z0 = sg * 750, 0
+        x1, z1 = sg * (750 + 600 * math.cos(ang)), -600 * math.sin(ang)
+        sh.tube_seen(X(x0), Y(z0 - 40), X(x1), Y(z1 - 40), 76.1 * k, 1.0)
+        # membrana sobre o caibro -> bolsa no anel
+        sh.membrane([(X(x1), Y(z1 + 15)), (X(sg * 790), Y(15))], 3)
+    # anel de compressão Ø60,3 x 3,0 (dois cortes)
+    for sg in (-1, 1):
+        sh.tube_cut(X(sg * 750), Y(0), 30.15 * k, 3 * k)
+    # chapa de base do anel de vidro (alumínio RPT) e vidro curvo 8+8 (450 mm)
+    for sg in (-1, 1):
+        sh.rect(X(sg * 750 - 45), Y(60), 90 * k, 60 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)          # perfil base RPT
+        sh.glass(X(sg * 755), Y(60), X(sg * 755), Y(510), 8)                                                  # vidro laminado curvo
+        sh.rect(X(sg * 750 - 45), Y(570), 90 * k, 60 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)         # perfil de topo
+        # veneziana de ventilação (60 mm) e tela
+        for i in range(4):
+            sh.line(X(sg * 750 - 40), Y(585 + i * 14), X(sg * 750 + 40), Y(580 + i * 14), 0.8, INK)
+        sh.line(X(sg * 720), Y(575), X(sg * 720), Y(630), 0.5, INK, dash="2 2")
+    # tampa: anel de alumínio + membrana da tampa com beiral 250 mm
+    sh.rect(X(-1000), Y(660), 2000 * k, 30 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)
+    sh.membrane([(X(-1050), Y(640)), (X(-500), Y(720)), (X(0), Y(760)), (X(500), Y(720)), (X(1050), Y(640))], 3.5)
+    sh.line(X(-1050), Y(640), X(-1050), Y(600), 1.4, INK); sh.line(X(1050), Y(640), X(1050), Y(600), 1.4, INK)   # pingadeira
+    # forro tensionado e anel de LED (interno)
+    sh.rect(X(-820), Y(-70), 1640 * k, 40 * k, fill=BG, stroke=INK, sw=0.9)                                       # anel do forro
+    sh.rect(X(-800), Y(-60), 60 * k, 22 * k, fill=GOLD, stroke="none"); sh.rect(X(740), Y(-60), 60 * k, 22 * k, fill=GOLD, stroke="none")
+    for sg in (-1, 1):
+        sh.line(X(sg * 820), Y(-90), X(sg * 1300), Y(-90 - 480 * math.tan(math.radians(30))), 0.9, INK, dash="6 3")
+    sh.text(X(-1000), Y(-420), "forro tensionado", size=8.5, anchor="middle", color=GOLD)
+    # cotas
+    sh.dim_h(X(-750), X(750), Y(-330), "Ø1500 (anel)", ext=None, above=False, size=10)
+    sh.dim_v(X(1180), Y(60), Y(510), "0,45 vidro", ext=None, left=False, size=10)
+    sh.dim_v(X(1180), Y(510), Y(660), "0,15 vent.", ext=None, left=False, size=10)
+    sh.dim_v(X(-1180), Y(0), Y(760), "0,76", ext=None, left=True, size=10)
+    sh.dim_h(X(-1050), X(1050), Y(830), "Ø2100 (tampa)", ext=None, size=10)
+    sh.text(X(0), Y(-400), "z = +4,60 (anel)  ·  +5,20 (tampa)", size=9.5, anchor="middle", color=GOLD)
+    C(1, X(-750), Y(0), X(-1000), Y(-180))
+    C(2, X(-1150), Y(-290), X(-1250), Y(-420))
+    C(3, X(-760), Y(300), X(-1000), Y(360))
+    C(4, X(760), Y(600), X(1000), Y(500))
+    C(5, X(0), Y(760), X(300), Y(880))
+    C(6, X(-780), Y(-50), X(-550), Y(-230))
+    C(7, X(-1050), Y(620), X(-1250), Y(760))
+    C(8, X(1100), Y(-250), X(1250), Y(-420))
+    # ---------------- Painel B: planta do anel ----------------
+    sh.panel(820, 120, 720, 280, "Planta do anel de compressão  -  8 caibros", "1:15 (1 mm = 0,067 px)")
+    kb = 0.067; tb = Tr(1000, 275, kb); XB, YB = tb.x, tb.y
+    sh.circle(XB(0), YB(0), 750 * kb, fill="none", stroke=INK, sw=2.2)
+    sh.circle(XB(0), YB(0), 690 * kb, fill="none", stroke=INK, sw=0.8)
+    for i in range(8):
+        a = math.pi / 8 + i * math.pi / 4
+        x1, y1 = 720 * math.cos(a), 720 * math.sin(a); x2, y2 = 1900 * math.cos(a), 1900 * math.sin(a)
+        sh.tube_seen(XB(x1), YB(y1), XB(x2), YB(y2), 76.1 * kb, 0.8)
+        # chapa de gusset (aba) e 2 parafusos
+        gx, gy = 800 * math.cos(a), 800 * math.sin(a)
+        sh.circle(XB(gx), YB(gy), 3.2, fill=BG, stroke=INK, sw=0.7); sh.circle(XB(gx), YB(gy), 1.4, fill=INK, stroke="none")
+    sh.dim_h(XB(-750), XB(750), YB(-1000), "Ø1500", ext=None, above=False, size=9.5)
+    sh.text(XB(0), YB(-1250), "caibros a 45°, coincidentes com os vértices do octógono", size=9, anchor="middle", color=GOLD)
+    sh.texts(1250, 175, ["Anel Ø60,3 x 3,0 calandrado em 2 meias-luas,", "emendadas com luvas internas e 4 x M10.", "8 abas 80 x 60 x 8 soldadas (a = 4 mm)", "a 45°, furo Ø14 para M12 8.8."], size=9, lh=12.5)
+    # ---------------- Painel C: ligação caibro-anel ----------------
+    sh.panel(820, 420, 720, 280, "Ligação caibro - anel  -  cabeça articulada", "1:1,7 (1 mm = 0,6 px)")
+    kc = 0.6; tc = Tr(1000, 610, kc); XC, YC = tc.x, tc.y
+    sh.tube_cut(XC(0), YC(0), 30.15 * kc, 3 * kc)
+    sh.rect(XC(20), YC(30), 80 * kc, 60 * kc, fill="url(#p-steel)", stroke=INK, sw=0.8)                              # aba do anel
+    sh.circle(XC(60), YC(0), 7 * kc, fill=BG, stroke=INK, sw=0.8)                                                      # furo / pino M12
+    # cabeça do caibro: chapa dupla (garfo) + tubo
+    angc = math.radians(33)
+    sh.tube_seen(XC(110), YC(0), XC(110 + 380 * math.cos(angc)), YC(-380 * math.sin(angc)), 76.1 * kc, 1.0)
+    sh.pl([(XC(40), YC(-35)), (XC(40), YC(35)), (XC(125), YC(35)), (XC(125), YC(-35))], 0.9, INK, fill="url(#p-steel)", close=True)   # garfo (chapa 8 mm x2)
+    sh.bolt_side(XC(60), YC(0), 22 * kc, 12 * kc, vertical=False)
+    sh.membrane([(XC(-60), YC(45)), (XC(140), YC(50)), (XC(140 + 330 * math.cos(angc)), YC(50 - 330 * math.sin(angc)))], 3)
+    sh.rect(XC(-70), YC(52), 30 * kc, 14 * kc, fill="url(#p-steel)", stroke=INK, sw=0.7)   # perfil keder do anel
+    sh.dim_h(XC(0), XC(60), YC(-90), "60", ext=None, above=False, size=9)
+    sh.dim_h(XC(40), XC(125), YC(-120), "85", ext=None, above=False, size=9)
+    sh.texts(1330, 475, ["Garfo: 2 chapas 8 mm soldadas ao caibro,", "pino M12 8.8 com bucha de nylon: permite", "a rotação do caibro no form-finding e na", "tensão da membrana (ajuste de ± 3°).", "Perfil keder no anel recebe a bolsa da membrana;", "flashing de EPDM sela contra o perfil RPT."], size=9, lh=12.5)
+    C(9, XC(60), YC(0), XC(-20), YC(-160))
+    C(10, XC(-55), YC(59), XC(-120), YC(120))
+    sh.note(60, 728, ["LANTERNA: por que e como",
+                      "Luz zenital sobre a cama sem abrir a membrana a chuva: o vidro é vertical e a tampa ventilada",
+                      "faz o efeito chaminé (ar quente sai pela veneziana; tela contra insetos). O anel de compressão",
+                      "fecha o cone de 8 caibros: cada caibro comprime o anel com N ≈ 4 a 6 kN (pré-tensão 2,5 kN/m",
+                      "+ vento); Ø60,3 x 3,0 calandrado resiste com folga; verificar flambagem lateral do anel."], size=9, w=760)
+    items = [(1, "Anel de compressão Ø60,3 x 3,0 calandrado, Ø1500"), (2, "Caibro Ø76,1 x 3,6 galvanizado, 8 un."),
+             (3, "Vidro laminado curvo 8 + 8 mm em perfil RPT bronze"), (4, "Veneziana de alumínio 150 mm + tela mosquiteira"),
+             (5, "Tampa: anel de alumínio + membrana PVDF Ø2100"), (6, "Anel do forro tensionado com fita LED 2700 K"),
+             (7, "Pingadeira e beiral de 250 mm da tampa"), (8, "Forro tensionado + lã PET 50 mm (cônicos)"),
+             (9, "Pino M12 8.8 com bucha de nylon (articulação)"), (10, "Perfil keder + flashing EPDM no anel")]
+    sh.legend(850, 728, items, cols=2, colw=340, lh=15.5, size=9.0, title=None)
+    sh.write("DET-12_lanterna_lodge.svg")
+
+
+def det13():
+    """ZION LODGE - Nó do vértice: pilar, anel de beiral, pé do caibro, calha oculta; base do pilar; poste da vela."""
+    sh = Sheet("DET-13", "Caibros e anel de beiral", "ZION LODGE", "1:3,5 / 1:4,5 / 1:14",
+               "Nó do vértice do octógono (pilar Ø101,6 revestido, anel de beiral 150 x 100, pé do caibro, calha oculta e pingadeira), base do pilar sobre a viga U 150 e poste da vela de sombra.")
+    C = sh.callout
+    # ---------------- Painel A: nó do vértice (corte radial) ----------------
+    sh.panel(60, 120, 720, 580, "Nó do vértice  -  corte radial pelo pilar", "1:3,5 (1 mm = 0,3 px)")
+    k = 0.3; t = Tr(470, 300, k); X, Y = t.x, t.y     # origem: eixo do pilar, z = 2700 (topo do anel) em y = 300
+    # pilar Ø101,6 + revestimento de madeira 40 mm (interno) e ripado externo
+    sh.rect(X(-50.8), Y(0), 101.6 * k, 1300 * k, fill=BG, stroke=INK, sw=1.2)
+    sh.wood(X(-95), Y(0), 44 * k, 1300 * k, grain=False); sh.wood(X(51), Y(0), 44 * k, 1300 * k, grain=False)
+    sh.rect(X(-110), Y(0), 15 * k, 1300 * k, fill="url(#p-wood)", stroke=INK, sw=0.6); sh.rect(X(95), Y(0), 15 * k, 1300 * k, fill="url(#p-wood)", stroke=INK, sw=0.6)
+    # chapa de topo do pilar + anel de beiral 150 x 100 (em corte: 150 alto x 100 largo? aqui visto radialmente: 100 largo)
+    sh.rect(X(-110), Y(12), 220 * k, 12 * k, fill=INK, stroke="none")
+    sh.rect(X(-50), Y(162), 100 * k, 150 * k, fill=BG, stroke=INK, sw=1.4); sh.rect(X(-46), Y(158), 92 * k, 142 * k, fill="url(#p-steel)", stroke="none")
+    sh.bolt_side(X(-30), Y(12), 40 * k, 12 * k); sh.bolt_side(X(30), Y(12), 40 * k, 12 * k)
+    # pé do caibro: chapa dobrada sobre o anel + caibro Ø76 subindo para dentro (esquerda = interior)
+    ang = math.radians(33)
+    sh.rect(X(-70), Y(188), 140 * k, 13 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)     # chapa de assento 140 x 13
+    sh.pl([(X(-40), Y(175)), (X(-40), Y(260)), (X(-100), Y(260)), (X(-100), Y(175))], 0.9, INK, fill="url(#p-steel)", close=True)
+    sh.tube_seen(X(-70), Y(215), X(-70 - 520 * math.cos(ang)), Y(215 + 520 * math.sin(ang)), 76.1 * k, 1.0)
+    sh.bolt_side(X(-70), Y(240), 30 * k, 12 * k, vertical=False)
+    sh.bolt_side(X(20), Y(162), 30 * k, 16 * k); sh.bolt_side(X(-20), Y(162), 30 * k, 16 * k)
+    # membrana: keder externo no anel -> calha oculta -> pingadeira; membrana sobe pelo caibro
+    sh.membrane([(X(-70 - 520 * math.cos(ang)), Y(215 + 45 + 520 * math.sin(ang))), (X(-40), Y(300)), (X(90), Y(200)), (X(170), Y(150))], 3.5)
+    sh.rect(X(160), Y(170), 24 * k, 60 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)     # perfil keder de borda (alumínio)
+    # calha oculta 100 x 80 e pingadeira
+    sh.pl([(X(60), Y(150)), (X(60), Y(50)), (X(200), Y(50)), (X(200), Y(150))], 1.2, INK)
+    sh.rect(X(61), Y(50), 138 * k, 0, fill="none"); sh.line(X(200), Y(150), X(215), Y(120), 1.4, INK)
+    sh.text(X(130), Y(85), "calha 100 x 80", size=8.5, anchor="middle", color=GOLD)
+    sh.line(X(130), Y(50), X(130), Y(-300), 1.2, INK); sh.text(X(150), Y(-200), "TQ Ø75", size=8.5, color=GOLD)
+    # vidro da face (interno ao pilar, à esquerda) e forro
+    sh.glass(X(-130), Y(-1300), X(-130), Y(-150), 8)
+    sh.rect(X(-160), Y(0), 60 * k, 150 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)   # travessa RPT superior
+    sh.line(X(-700), Y(80 + 540 * math.tan(ang)), X(-160), Y(80), 0.9, INK, dash="6 3")
+    sh.text(X(-560), Y(30), "forro tensionado", size=8.5, anchor="middle", color=GOLD)
+    # cabo de contraventamento (nas faces opacas): olhal no nó
+    sh.cable(X(60), Y(-60), X(600), Y(-900), 1.4); sh.circle(X(60), Y(-60), 3, fill=BG, stroke=INK, sw=0.9)
+    # cotas
+    sh.dim_v(X(-300), Y(-1300), Y(0), "2,70 (anel)", ext=None, left=True, size=10)
+    sh.dim_v(X(310), Y(162), Y(312), "150", ext=None, left=False, size=9)
+    sh.dim_h(X(-50), X(50), Y(360), "100", ext=None, size=9)
+    sh.dim_h(X(-110), X(110), Y(-1400), "220 (com revestimento)", ext=None, above=False, size=9)
+    C(1, X(0), Y(-700), X(400), Y(-800))
+    C(2, X(0), Y(237), X(400), Y(420))
+    C(3, X(-70), Y(215), X(-330), Y(360))
+    C(4, X(-70 - 350 * math.cos(ang)), Y(215 + 350 * math.sin(ang)), X(-700), Y(300))
+    C(5, X(172), Y(200), X(400), Y(250))
+    C(6, X(130), Y(85), X(400), Y(60))
+    C(7, X(-95), Y(-400), X(-330), Y(-500))
+    C(8, X(330), Y(-480), X(500), Y(-600))
+    C(9, X(-130), Y(-800), X(-330), Y(-900))
+    # ---------------- Painel B: base do pilar ----------------
+    sh.panel(820, 120, 720, 280, "Base do pilar sobre a viga U 150 e o deck", "1:4,5 (1 mm = 0,22 px)")
+    kB = 0.22; tb = Tr(1150, 280, kB); XB, YB = tb.x, tb.y; k_ = k; k = kB
+    sh.rect(XB(-50.8), YB(600), 101.6 * k, 600 * k, fill=BG, stroke=INK, sw=1.2)
+    sh.wood(XB(-95), YB(600), 44 * k, 560 * k, grain=False); sh.wood(XB(51), YB(600), 44 * k, 560 * k, grain=False)
+    sh.rect(XB(-110), YB(12), 220 * k, 12 * k, fill=INK, stroke="none")                        # chapa de base 220 x 220 x 12
+    for sg in (-1, 1):
+        sh.pl([(XB(sg * 50.8), YB(12)), (XB(sg * 50.8), YB(120)), (XB(sg * 95), YB(12))], 0.8, INK, fill="url(#p-steel)", close=True)   # enrijecedores
+        sh.bolt_side(XB(sg * 85), YB(12), 60 * k, 16 * k)
+    sh.rect(XB(-400), YB(0), 800 * k, 20 * k, fill="url(#p-ply)", stroke=INK, sw=0.8)          # compensado / deck (z -20..0)
+    sh.rect(XB(-75), YB(-20), 150 * k, 150 * k, fill=BG, stroke=INK, sw=1.2); sh.rect(XB(-75), YB(-20), 150 * k, 3 * k, fill=INK, stroke="none")   # viga U 150 (corte)
+    sh.rect(XB(-75), YB(-23), 3 * k, 147 * k, fill=INK, stroke="none"); sh.rect(XB(72), YB(-23), 3 * k, 147 * k, fill=INK, stroke="none")
+    sh.rect(XB(-40), YB(-170), 80 * k, 230 * k, fill="url(#p-steel)", stroke=INK, sw=0.8)     # cabeçote da estaca (z -400..-170)
+    sh.rect(XB(-38), YB(-400), 76 * k, 80 * k, fill=BG, stroke=INK, sw=1.0)
+    sh.soil(XB(-400), YB(-170), 800 * k, 310 * k)
+    k = k_
+    sh.dim_v(XB(200), YB(-170), YB(-20), "150", ext=None, left=False, size=9)
+    sh.dim_h(XB(-110), XB(110), YB(-60), "220", ext=None, above=False, size=9)
+    sh.texts(1330, 175, ["Chapa de base 220 x 220 x 12 com 4 furos", "oblongos: 4 x M16 8.8 na mesa da viga U 150", "(reforço com chapa 150 x 150 x 8 sob a mesa).", "Estaca helicoidal Ø76 com cabeçote ajustável", "± 40 mm sob cada vértice."], size=9, lh=12.5)
+    C(10, XB(0), YB(6), XB(-250), YB(120))
+    C(11, XB(0), YB(-95), XB(-250), YB(-140))
+    C(12, XB(0), YB(-300), XB(-250), YB(-330))
+    # ---------------- Painel C: poste da vela ----------------
+    sh.panel(820, 420, 720, 280, "Poste da vela de sombra e cabos", "1:14 (1 mm = 0,07 px)")
+    kc = 0.07; tc = Tr(1050, 650, kc); XC, YC = tc.x, tc.y
+    sh.soil(XC(-1500), YC(-100), 4200 * kc, 500 * kc)
+    sh.rect(XC(-1200), YC(0), 3800 * kc, 100 * kc, fill="url(#p-ply)", stroke=INK, sw=0.8)   # deck
+    sh.tube_seen(XC(0), YC(0), XC(0), YC(2400), 76.1 * kc + 2, 1.0)
+    sh.rect(XC(-38), YC(-100), 76 * kc, 500 * kc, fill=BG, stroke=INK, sw=0.8)                    # estaca sob o poste
+    sh.membrane([(XC(-100), YC(2420)), (XC(2600), YC(2850))], 3)
+    sh.cable(XC(0), YC(2450), XC(-1100), YC(-100), 1.4); sh.turnbuckle(XC(-550), YC(1175), -66, 18, 6)
+    sh.cable(XC(20), YC(2450), XC(2600), YC(2750), 1.0)
+    sh.rect(XC(2560), YC(2900), 80 * kc, 300 * kc, fill="url(#p-steel)", stroke=INK, sw=0.8)   # olhal no anel de beiral frontal
+    sh.dim_v(XC(-1400), YC(0), YC(2400), "2,40", ext=None, left=True, size=9.5)
+    sh.dim_h(XC(0), XC(2600), YC(-450), "2,60", ext=None, above=False, size=9.5)
+    sh.texts(1330, 475, ["Poste Ø76,1 x 3,6, topo com olhal e", "manilha; vela em PVDF 750 g/m² com cabo", "de borda Ø8 inox; estai Ø8 a 45° para", "chumbador na estaca de tração (10 kN);", "cabo de crista Ø8 até olhal soldado no", "anel de beiral (T ≈ 4 kN, MBL 40 kN)."], size=9, lh=12.5)
+    C(13, XC(0), YC(1200), XC(300), YC(1500))
+    C(14, XC(-550), YC(1175), XC(-900), YC(1700))
+    items = [(1, "Pilar Ø101,6 x 4,0 galvanizado + revestimento de madeira 44 mm"), (2, "Anel de beiral 150 x 100 x 4,0, 8 segmentos parafusados"),
+             (3, "Pé do caibro: chapa de assento 140 x 13 + orelha, pino M12"), (4, "Caibro Ø76,1 x 3,6 a 33°"),
+             (5, "Perfil keder de borda + bolsa da membrana"), (6, "Calha oculta 100 x 80 no anel, TQ Ø75 pelo pilar (4 un.)"),
+             (7, "Ripado externo termotratado 15 x 40"), (8, "Cabo de contraventamento Ø8 nas 3 faces opacas"),
+             (9, "Vidro insulado 6 lam + 12 + 6 em travessa RPT"), (10, "Chapa de base 220 x 220 x 12 + 4 x M16"),
+             (11, "Viga U 150 x 60 x 3,0 galvanizada"), (12, "Cabeçote ajustável + estaca helicoidal Ø76"),
+             (13, "Poste da vela Ø76,1 x 3,6, 2,40 m"), (14, "Estai Ø8 inox com esticador")]
+    sh.legend(60, 728, items, cols=3, colw=330, lh=15.5, size=9.0, title=None)
+    sh.write("DET-13_caibros_lodge.svg")
+
+
+# ==================================================================================
 def main():
-    for fn in (det01, det02, det03, det04, det05, det06, det07, det08, det09, det10, det11):
+    for fn in (det01, det02, det03, det04, det05, det06, det07, det08, det09, det10, det11, det12, det13):
         fn()
 
 
