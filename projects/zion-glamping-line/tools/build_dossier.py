@@ -326,9 +326,7 @@ biz = f"""
 {table(["Indicador", "ZION CASULO", "ZION SAFARI"], [
  ["Posicionamento", "Refúgio de casal, silêncio e imersão", "Suíte assinatura com terraço e hidromassagem"],
  ["Ocupação", "2 adultos", "2 adultos (+ 1 criança no sofá)"],
- ["ADR de referência", "R$ 1.200 a 1.800", "R$ 1.600 a 2.600"],
- ["CAPEX orientativo por unidade (kit + interiores + instalação, sem infraestrutura do sítio; ver Product Book para o orçamento detalhado em 3 cenários)", "R$ 540 a 720 mil (Standard, em série)", "R$ 620 a 800 mil (Standard, em série)"],
- ["Payback orientativo (ocupação 55%, margem operacional 45%)", "4 a 5 anos", "4 a 5 anos"],
+ ["Materiais", "Lista de materiais estimados no Product Book e nas pranchas PA-13 e PA-14 do projeto arquitetônico", "Idem"],
  ["Vida útil", "Membrana 15 anos (substituível); estrutura 30+ anos", "Idem"],
  ["Escala", "Kit único, estoque de componentes comuns aos dois produtos, montagem por equipe treinada Zion", "Idem"],
 ])}
