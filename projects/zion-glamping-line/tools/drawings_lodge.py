@@ -75,8 +75,10 @@ def column(sh, u, z2=None, wood=True):
     if wood: sh.rect(u - 0.12, 0, u + 0.12, z2, fill=WOOD2, stroke=GREEN, sw=0.7)
     else: sh.rect(u - 0.05, 0, u + 0.05, z2, fill=STEEL, stroke="none")
 
-def eave_ring(sh, u1, u2):
-    sh.rect(u1, L.Z_EAVE - 0.15, u2, L.Z_EAVE, fill=STEEL, stroke=GREEN, sw=0.5)
+def eave_ring(sh, u1, u2, far=False):
+    sh.rect(u1, L.Z_EAVE - 0.15, u2, L.Z_EAVE, fill="#B9B7B0" if far else STEEL, stroke=GREEN, sw=0.5)
+    if far:
+        for u in (u1 + 0.12, u2 - 0.12): sh.rect(u - 0.075, L.Z_EAVE - 0.15, u + 0.075, L.Z_EAVE, fill=STEEL, stroke="none")
 
 def draw_furniture_lodge(sh, human):
     for f in L.furniture():
@@ -519,7 +521,7 @@ def corte_long():
     sh.rect(2.7, 0.0, 3.3, 0.42, fill="#FFFFFF", stroke=GREEN, sw=0.7)                   # bacia
     # pilares no plano (vértices 3 e 0, y = +1,41) e anel de beiral
     for xx in (-HF, HF): column(sh, xx)
-    eave_ring(sh, -HF - 0.12, HF + 0.12)
+    eave_ring(sh, -HF - 0.12, HF + 0.12, far=True)
     # paredes cortadas: PC1 (vidro) na frente, SIP + J1 no fundo, parede-corda do banho com a porta
     sh.rect(-HF - 0.03, 0, -HF + 0.03, PC1["h"], fill=GLASS, stroke=GREEN, sw=1.0)
     sh.rect(-HF - 0.03, PC1["h"], -HF + 0.03, L.Z_EAVE - 0.15, fill=GLASS, stroke=GREEN, sw=0.8)
@@ -544,7 +546,7 @@ def corte_long():
     sh.rect(1.45, 0.0, 1.5, 1.1, fill=WOOD, stroke=GREEN, sw=0.6)
     sh.rect(-2.7, 0.0, -1.5, 0.8, fill=SAND, stroke=GREEN, sw=0.8)
     sh.rect(-1.45, 0.0, -0.85, 0.45, fill=WOOD2, stroke=GREEN, sw=0.7)
-    person(sh, -4.7)
+    person(sh, -4.3)
     # rótulos
     Lu, Ru = -6.8, 5.3
     sh.leader(0.0, L.Z_TOP, 1.6, 5.85, "Lanterna Zion: anel de compressão Ø1,50, vidro claro 0,45 m, tampa ventilada", 12, anchor="start")
@@ -552,15 +554,16 @@ def corte_long():
     sh.leader(2.6, L.roof_z(2.6) - 0.25, Ru, 4.5, "Forro tensionado a 0,22 m da membrana", 12, anchor="end")
     sh.leader(2.2, L.Z_EAVE + (L.Z_LANTERN - L.Z_EAVE) * 0.45, Ru, 3.95, "Caibro C1 Ø76,1 (beiral -> lanterna)", 12, anchor="end")
     sh.leader(HF + 0.05, 2.62, Ru, 3.4, "Anel de beiral 150 x 100 a 2,70 m", 12, anchor="end")
-    sh.leader(2.5, 2.6, 4.6, 2.95, "Ático técnico: evaporadora 9k, aquecedor, quadro", 11, anchor="start")
+    sh.leader(2.5, 2.6, Ru, 1.75, "Ático técnico (AC, quadro)", 12, anchor="end")
     sh.leader(HF - 0.05, 1.9, Ru, 2.2, "J1 fresta 1,60 x 0,60 em corte", 12, anchor="end")
-    sh.leader(HF - 0.05, 0.8, Ru, 1.35, "Painel SIP 100 mm + ripado", 12, anchor="end")
-    sh.leader(L.X_PART + 0.05, 1.6, 0.2, 3.35, "Parede-corda do banho: o plano passa na porta de correr 0,90 x 2,10", 11, anchor="end")
+    sh.leader(HF - 0.05, 0.8, Ru, 1.3, "Painel SIP 100 mm + ripado", 12, anchor="end")
+    sh.text(2.45, 2.2, "porta de correr 0,90 x 2,10", 8.5, EARTH, dy=3)
+    sh.text(2.45, 1.95, "(o plano corta o vão)", 8.5, EARTH, dy=3)
     sh.leader(-HF - 0.03, 1.5, Lu, 3.4, "PC1 porta de correr em corte", 12, anchor="end")
     sh.leader(PX + 1.1, 2.6, Lu, 4.2, "Vela: postes Ø76 h 2,40 + cabo", 12, anchor="end")
     sh.leader(-HF, 2.2, Lu, 2.7, "Pilar P4 Ø101,6 + madeira", 12, anchor="end")
-    sh.leader(-4.2, -0.12, Lu, 1.3, "Deck cumaru · vigas U 150", 12, anchor="end")
-    sh.leader(-2.4, -0.55, Lu, 0.5, "Estacas Ø76, cabeçote ajustável", 12, anchor="end")
+    sh.leader(-5.5, -0.12, Lu, 1.3, "Deck cumaru · vigas U 150", 12, anchor="end")
+    sh.leader(-4.7, -0.55, Lu, 0.5, "Estacas Ø76, cabeçote ajustável", 12, anchor="end")
     sh.leader(0.4, 0.62, 0.0, 1.55, "Cama king sob a lanterna", 11, anchor="end")
     # cotas
     yb = -1.05
@@ -573,7 +576,7 @@ def corte_long():
     sh.dim(-7.5, 0, -7.5, PC1["h"], 0.0, label="2,40 (PC1)", size=10)
     sh.dim(-7.5, -0.9, -7.5, 0, 0.0, label="0,90 (máx.)", size=10)
     sh.scalebar(-8.3, -2.2, 5)
-    sh.title_block("ZION LODGE", "Corte longitudinal A-A", "1:50 (A1)", "06/LG", "Deck e vela, cama sob a lanterna, banho com ático técnico, envelope em 4 camadas")
+    sh.title_block("ZION LODGE", "Corte longitudinal A-A", "1:50 (A1)", "06/LG", "Deck e vela, cama sob a lanterna, banho com ático técnico, envelope em 4 camadas"[:70])
     return sh
 
 def corte_transv():
@@ -595,7 +598,7 @@ def corte_transv():
     sh.rect(-2.95, 0.0, -2.2, 2.2, fill=WOOD2, stroke=GREEN, sw=0.8, opacity=0.8)           # closet (vista)
     sh.text(-2.57, 1.1, "closet", 9, EARTH, rotate=-90)
     for yy in (-HF, HF): column(sh, yy)
-    eave_ring(sh, -HF - 0.12, HF + 0.12)
+    eave_ring(sh, -HF - 0.12, HF + 0.12, far=True)
     # vidros cortados (faces 1-2 e 5-6)
     for yy in (-HF, HF):
         sh.rect(yy - 0.03, 0, yy + 0.03, L.Z_EAVE - 0.15, fill=GLASS, stroke=GREEN, sw=1.0)
@@ -607,31 +610,31 @@ def corte_transv():
     sh.rect(-0.97, 0.0, 0.97, 0.35, fill=WOOD2, stroke=GREEN, sw=0.8); sh.rect(-0.97, 0.35, 0.97, 0.62, fill="#FFFFFF", stroke=GREEN, sw=0.8)
     sh.rect(-1.7, 0, -1.1, 0.5, fill=WOOD2, stroke=GREEN, sw=0.7); sh.rect(1.1, 0, 1.7, 0.5, fill=WOOD2, stroke=GREEN, sw=0.7)
     for y in (-3.2, 3.2): sh.circle(y, 0.12, 0.04, fill="#F2C14E", stroke="none")
-    person(sh, -1.95)
-    # rótulos (com flip_x, +y fica à esquerda)
+    person(sh, 1.95)
+    # rótulos (com flip_x, +y fica à esquerda): longos acima da cobertura, curtos nas faixas laterais
     Lu, Ru = 5.2, -5.2
     sh.leader(0.0, L.Z_TOP, 1.6, 5.85, "Lanterna Zion: luz zenital no centro geométrico, sobre a cama", 12, anchor="end")
     sh.leader(-2.0, L.roof_z(2.0), -3.2, 5.25, "Membrana PVDF em 8 gomos · câmara ventilada", 12, anchor="start")
-    sh.leader(2.4, L.roof_z(2.4) - 0.25, Lu, 4.5, "Forro tensionado + lã PET 50 mm", 12, anchor="end")
-    sh.leader(2.1, L.Z_EAVE + (L.Z_LANTERN - L.Z_EAVE) * 0.45, Lu, 3.95, "Caibro Ø76,1 x 3,6 (8 radiais)", 12, anchor="end")
+    sh.leader(2.4, L.roof_z(2.4) - 0.25, Lu, 4.5, "Forro + lã PET 50 mm", 12, anchor="end")
+    sh.leader(2.1, L.Z_EAVE + (L.Z_LANTERN - L.Z_EAVE) * 0.45, Lu, 3.95, "Caibro Ø76,1 (8 radiais)", 12, anchor="end")
     sh.leader(HF + 0.05, 2.62, Lu, 3.4, "Anel de beiral 150 x 100", 12, anchor="end")
-    sh.leader(HF, 1.5, Lu, 2.5, "VF1 vidro insulado em corte", 12, anchor="end")
-    sh.leader(2.57, 1.9, Lu, 1.7, "Café / minibar ao fundo", 12, anchor="end")
+    sh.leader(HF, 1.5, Lu, 2.5, "VF1 vidro insulado", 12, anchor="end")
+    sh.leader(2.57, 0.7, Lu, 1.7, "Café / minibar ao fundo", 12, anchor="end")
     sh.leader(3.2, 0.12, Lu, 0.8, "LED 2700 K no rodapé", 12, anchor="end")
-    sh.leader(-2.4, L.roof_z(2.4) - 0.25, Ru, 4.5, "Ático técnico sobre o banho", 12, anchor="start")
+    sh.leader(-0.5, 2.6, Ru, 4.5, "Ático técnico do banho", 12, anchor="start")
     sh.leader(-HF - 0.05, 2.62, Ru, 3.7, "Anel de beiral sobre P6", 12, anchor="start")
-    sh.leader(-2.57, 2.1, Ru, 2.9, "Closet 1,70 x 0,75 (h 2,20)", 12, anchor="start")
-    sh.leader(-0.05, 1.3, Ru, 2.1, "Porta de correr do banho 0,90 x 2,10", 12, anchor="start")
-    sh.leader(-1.5, 1.8, Ru, 1.3, "Parede-corda do banho (x 1,55)", 12, anchor="start")
-    sh.leader(-2.4, -0.55, Ru, 0.45, "Estacas Ø76 · quadro U 150", 12, anchor="start")
+    sh.leader(-2.57, 2.1, Ru, 2.9, "Closet 1,70 x 0,75", 12, anchor="start")
+    sh.leader(-0.05, 1.3, Ru, 2.1, "Porta do banho 0,90 x 2,10", 12, anchor="start")
+    sh.leader(-1.5, 1.8, Ru, 1.3, "Parede-corda do banho", 12, anchor="start")
+    sh.leader(-2.55, -0.55, Ru, 0.45, "Estacas Ø76 · quadro U 150", 12, anchor="start")
     sh.leader(0.4, 0.62, 1.3, 1.3, "Cama king 1,93 x 2,03", 11, anchor="end")
     # cotas
     yb = -1.05
     sh.dim(-HF, yb, HF, yb, -0.3, label="6,80 (entre faces)")
     sh.dim(-R_EDGE, yb, R_EDGE, yb, -0.85, label="8,60 (cobertura)")
-    sh.dim(6.4, 0, 6.4, L.Z_TOP, 0.0, label="5,20"); sh.dim(7.0, 0, 7.0, L.Z_EAVE, 0.0, label="2,70 (beiral)")
-    sh.dim(-6.4, 0, -6.4, L.Z_LANTERN, 0.0, label="4,60 (anel)"); sh.dim(-7.0, 0, -7.0, 2.4, 0.0, label="2,40 (forro do banho)")
-    sh.dim(-7.0, -0.9, -7.0, 0, 0.0, label="0,90", size=10)
+    sh.dim(6.6, 0, 6.6, L.Z_TOP, 0.0, label="5,20"); sh.dim(7.2, 0, 7.2, L.Z_EAVE, 0.0, label="2,70 (beiral)")
+    sh.dim(-7.2, 0, -7.2, L.Z_LANTERN, 0.0, label="4,60 (anel)"); sh.dim(-7.8, 0, -7.8, 2.4, 0.0, label="2,40 (forro do banho)")
+    sh.dim(-7.8, -0.9, -7.8, 0, 0.0, label="0,90", size=10)
     sh.scalebar(7.2, -2.2, 4)
     sh.title_block("ZION LODGE", "Corte transversal B-B", "1:45 (A1)", "07/LG", "Cama no centro geométrico sob a lanterna; parede do banho ao fundo")
     return sh
