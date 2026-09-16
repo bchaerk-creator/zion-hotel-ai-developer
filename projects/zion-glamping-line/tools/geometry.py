@@ -813,3 +813,183 @@ class Lodge28(Lodge):
 
 
 LODGES = {"lodge": Lodge, "lodge24": Lodge24, "lodge28": Lodge28}
+
+
+# ==================================================================================
+# ZION CÁPSULA
+# ==================================================================================
+class Capsule:
+    """Cápsula monocoque: seção em superelipse (3,20 x 3,20 m) extrudada em 8,40 m, com calota de vidro na frente (Visor)
+    e calota fechada atrás (compartimento técnico). Eixos: x = comprimento (0 = ponta do Visor), y = largura (0 = eixo),
+    z = altura (0 = piso interno acabado). A unidade viaja inteira e pousa sobre quatro pés telescópicos."""
+    NAME = "ZION CÁPSULA"; CODE = "capsule"; TAG = "ZK"
+    L = 8.40           # comprimento externo total
+    A = 1.60           # semi-largura externa (largura 3,20)
+    B = 1.60           # semi-altura externa (altura da casca 3,20)
+    ZC = 0.85          # centro da seção acima do piso interno
+    N = 3.2            # expoente da superelipse da seção (cantos cheios)
+    X_NOSE = 1.20      # comprimento da calota frontal (Visor)
+    X_TAIL = 0.90      # comprimento da calota traseira
+    N_END = 2.3        # expoente das calotas
+    SKIN = 0.14        # envelope: ACM 4 mm + PIR 60 mm + câmara 40 mm + compensado curvado 12 mm (+ anéis embutidos)
+    Z_GROUND = -1.05   # terreno em relação ao piso interno (0,42 m livres sob a barriga)
+    X_PART = 5.60      # parede do banho
+    X_TECH = 7.55      # início do compartimento técnico (calota traseira)
+    RINGS = [0.75 + 0.6 * i for i in range(12)]          # 12 anéis a cada 0,60 m
+    STRINGER_DEG = [90, 55, 125, 20, 160, -20, 200]       # 7 longarinas (ângulo a partir de +y, no plano da seção)
+    LIGHT_RING = (3.95, 4.40)                             # Anel de Luz: faixa de vidro sobre a cama (x1, x2)
+    LIGHT_ANG = math.radians(65)                          # meio-ângulo do anel a partir do zênite
+    PORTHOLES = [dict(name="Olho da suíte", x=3.35, side=-1, r=0.32, z=1.35),
+                 dict(name="Olho do banho", x=6.35, side=+1, r=0.26, z=1.60)]
+    VISOR_JOINTS = [-0.95, -0.45, 0.45, 0.95]             # juntas verticais dos 5 gomos de vidro curvo
+    DOOR = dict(y1=-0.45, y2=0.45, h=2.05)                # porta pivotante no gomo central do Visor
+    LEGS = [(1.5, -1.0), (1.5, 1.0), (6.9, -1.0), (6.9, 1.0)]
+    DECK = dict(x1=-2.4, x2=0.2, y1=-1.6, y2=1.6)         # 2,6 x 3,2 = 8,3 m²
+
+    # ---- perfil longitudinal ----
+    def s(self, x):
+        """fator de escala da seção (1 no corpo, 0 nas pontas)."""
+        if x < self.X_NOSE: return sef((self.X_NOSE - x) / self.X_NOSE, self.N_END)
+        if x > self.L - self.X_TAIL: return sef((x - (self.L - self.X_TAIL)) / self.X_TAIL, self.N_END)
+        return 1.0
+
+    def _pt(self, th, s, a, b):
+        c, sn = math.cos(th), math.sin(th)
+        y = a * s * math.copysign(abs(c) ** (2 / self.N), c)
+        z = self.ZC + b * s * math.copysign(abs(sn) ** (2 / self.N), sn)
+        return y, z
+
+    def section(self, x, n=48, inner=False):
+        """seção transversal em x: lista de (x, y, z) no sentido anti-horário a partir de +y (th = 0)."""
+        a, b = (self.A - self.SKIN, self.B - self.SKIN) if inner else (self.A, self.B)
+        s = self.s(x); out = []
+        for i in range(n):
+            th = 2 * math.pi * i / n
+            y, z = self._pt(th, s, a, b); out.append((x, y, z))
+        return out
+
+    def top(self, x): return self.ZC + self.B * self.s(x)
+    def bottom(self, x): return self.ZC - self.B * self.s(x)
+    def half_width(self, x): return self.A * self.s(x)
+
+    def hw_at(self, x, z, inner=True):
+        """meia-largura da seção na altura z (0 se fora)."""
+        a, b = (self.A - self.SKIN, self.B - self.SKIN) if inner else (self.A, self.B)
+        s = self.s(x)
+        if s <= 1e-6: return 0.0
+        u = abs(z - self.ZC) / (b * s)
+        if u >= 1: return 0.0
+        return a * s * (1 - u ** self.N) ** (1 / self.N)
+
+    def floor_hw(self, x): return self.hw_at(x, 0.0, inner=True)
+
+    def floor_range(self, hw_min=0.25):
+        xs = [i * 0.01 for i in range(int(self.L * 100) + 1)]
+        ok = [x for x in xs if self.floor_hw(x) >= hw_min]
+        return (ok[0], min(ok[-1], self.X_TECH)) if ok else (0, 0)
+
+    def floor_area(self):
+        x0, x1 = self.floor_range(); n = 400; a = 0.0
+        for i in range(n):
+            x = x0 + (x1 - x0) * (i + 0.5) / n; a += 2 * self.floor_hw(x) * (x1 - x0) / n
+        return a
+
+    def deck_area(self):
+        D = self.DECK; return (D["x2"] - D["x1"]) * (D["y2"] - D["y1"])
+
+    def floor_outline(self, n=60):
+        x0, x1 = self.floor_range(0.05)
+        top = [(x0 + (x1 - x0) * i / n, self.floor_hw(x0 + (x1 - x0) * i / n)) for i in range(n + 1)]
+        return top + [(x, -y) for x, y in top[::-1]]
+
+    def plan_outline(self, n=80):
+        pts = [(self.L * i / n, self.half_width(self.L * i / n)) for i in range(n + 1)]
+        return pts + [(x, -y) for x, y in pts[::-1]]
+
+    def profile(self, n=80):
+        """silhueta no plano y = 0: topo e barriga (x, z)."""
+        xs = [self.L * i / n for i in range(n + 1)]
+        return [(x, self.top(x)) for x in xs] + [(x, self.bottom(x)) for x in xs[::-1]]
+
+    # ---- regiões da casca ----
+    def region(self, x, th):
+        """'visor' (calota frontal de vidro), 'ring' (Anel de Luz), 'shell' (casca opaca)."""
+        z = self._pt(th, self.s(x), self.A, self.B)[1]
+        if x < self.X_NOSE - 0.02 and z > -0.02: return "visor"
+        x1, x2 = self.LIGHT_RING
+        if x1 <= x <= x2 and abs(((th - math.pi / 2 + math.pi) % (2 * math.pi)) - math.pi) <= self.LIGHT_ANG: return "ring"
+        return "shell"
+
+    def shell_mesh(self, nx=64, na=40):
+        """malha da casca por região: {regiao: (vertices, faces)}."""
+        xs = [0.01 + (self.L - 0.02) * i / nx for i in range(nx + 1)]
+        secs = [self.section(x, na) for x in xs]
+        verts = [p for sec in secs for p in sec]
+        out = {"visor": [], "ring": [], "shell": []}
+        for i in range(nx):
+            for j in range(na):
+                a, b = i * na + j, i * na + (j + 1) % na
+                c, d = (i + 1) * na + (j + 1) % na, (i + 1) * na + j
+                xm = (xs[i] + xs[i + 1]) / 2; thm = 2 * math.pi * (j + 0.5) / na
+                r = self.region(xm, thm); out[r].append((a, b, c)); out[r].append((a, c, d))
+        return {k: (verts, f) for k, f in out.items()}
+
+    def shell_area(self, region=None, nx=120, na=72):
+        """área da casca (m²) total ou por região."""
+        m = self.shell_mesh(nx, na); tot = 0.0
+        for k, (V, F) in m.items():
+            if region and k != region: continue
+            V = np.array(V)
+            for (a, b, c) in F:
+                tot += 0.5 * np.linalg.norm(np.cross(V[b] - V[a], V[c] - V[a]))
+        return tot
+
+    # ---- estrutura ----
+    def rings(self, n=48):
+        return [self.section(x, n, inner=False) for x in self.RINGS]
+
+    def ring_perimeter(self):
+        pts = self.section(self.RINGS[3], 96); return sum(math.dist(pts[i][1:], pts[(i + 1) % 96][1:]) for i in range(96))
+
+    def stringers(self):
+        out = []
+        for deg in self.STRINGER_DEG:
+            th = math.radians(deg)
+            out.append([(x, *self._pt(th, self.s(x), self.A - 0.05, self.B - 0.05)) for x in [self.RINGS[0] + (self.RINGS[-1] - self.RINGS[0]) * i / 30 for i in range(31)]])
+        return out
+
+    def chassis(self):
+        """vigas longitudinais U 150 e travessas U 100 do piso (x1, x2, y1, y2, z1, z2)."""
+        F = [box(0.55, 7.75, -1.05, -0.95, -0.22, -0.07, "beam", "Longarina U 150 direita"), box(0.55, 7.75, 0.95, 1.05, -0.22, -0.07, "beam", "Longarina U 150 esquerda")]
+        for x in self.RINGS:
+            hw = max(0.6, self.hw_at(x, -0.15, inner=True) - 0.05)
+            F.append(box(x - 0.04, x + 0.04, -hw, hw, -0.2, -0.08, "beam", "Travessa U 100"))
+        return F
+
+    def legs(self):
+        return [dict(x=x, y=y, z1=self.Z_GROUND, z2=self.ZC - self.B * (1 - (abs(y) / self.A) ** self.N) ** (1 / self.N) + 0.05, r=0.05) for (x, y) in self.LEGS]
+
+    # ---- programa ----
+    def furniture(self):
+        F = []
+        F.append(box(self.X_PART - 0.04, self.X_PART + 0.04, -1.4, 1.4, 0, 2.25, "wall", "Parede do banho"))
+        F.append(box(self.X_PART - 0.04, self.X_PART + 0.04, 0.25, 1.05, 0, 2.05, "opening", "Porta de correr 0,80"))
+        F.append(box(3.15, 5.13, -0.79, 0.79, 0, 0.52, "bed", "Cama queen 1,58 x 1,98"))
+        F.append(box(3.15, 5.13, -0.79, 0.79, 0.52, 0.58, "pillow", ""))
+        F.append(box(4.7, 5.1, 0.85, 1.25, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(4.7, 5.1, -1.25, -0.85, 0, 0.5, "table", "Criado-mudo"))
+        F.append(box(3.1, 4.4, 0.95, 1.35, 0, 2.0, "cabinet", "Closet 1,30 x 0,40"))
+        F.append(box(1.3, 2.9, -1.3, -0.5, 0, 0.45, "sofa", "Chaise de contemplação 1,60 x 0,80"))
+        F.append(box(1.25, 1.9, 0.6, 1.3, 0, 0.75, "chair", "Poltrona"))
+        F.append(box(1.95, 3.0, 0.85, 1.35, 0, 0.9, "cabinet", "Café / minibar 1,05 x 0,50"))
+        F.append(cyl(2.25, -0.05, 0, 0.45, 0.25, "table", "Mesa lateral"))
+        F.append(box(5.75, 6.95, 0.75, 1.3, 0, 0.85, "vanity", "Bancada 1,20 m"))
+        F.append(box(5.75, 6.4, -1.3, -0.72, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(6.6, 7.5, -1.3, -0.4, 0, 0.02, "shower", "Chuveiro 0,90 x 0,90"))
+        F.append(box(6.6, 6.63, -1.3, -0.4, 0, 2.0, "glass", ""))
+        F.append(box(self.X_TECH, 8.1, -0.9, 0.9, 0, 1.6, "hvac", "Compartimento técnico: boiler 80 L, quadro, evaporadora"))
+        return F
+
+    def export(self):
+        return dict(name=self.NAME, code=self.CODE, L=self.L, A=self.A, B=self.B, ZC=self.ZC, N=self.N, floor_area=self.floor_area(), deck_area=self.deck_area(),
+                    rings=self.RINGS, legs=self.LEGS, deck=self.DECK, light_ring=self.LIGHT_RING, furniture=self.furniture())

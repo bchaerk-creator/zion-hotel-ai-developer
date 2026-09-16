@@ -46,8 +46,18 @@ def dim_v(msp, x, y1, y2, off=0.6, txt_=None):
     d = msp.add_linear_dim(base=(x + off, y1), p1=(x, y1), p2=(x, y2), angle=90, dimstyle="ZION_M", dxfattribs={"layer": "COTAS"}, text=txt_ or "<>")
     d.render()
 
+def zion_mark(msp, x, y, size=0.6, layer="TEXTO"):
+    """símbolo Z da Zion (anel + Z) com canto inferior esquerdo em (x, y), lado 'size' m."""
+    from svgkit import zion_mark_lines
+    (cx, cy, r), z = zion_mark_lines(size)
+    msp.add_circle((x + cx, y + cy), r, dxfattribs={"layer": layer})
+    e = msp.add_hatch(color=7, dxfattribs={"layer": layer}); e.paths.add_polyline_path([(x + px, y + py) for px, py in z], is_closed=True)
+    pl(msp, [(x + px, y + py) for px, py in z], layer, close=True)
+
 def title(msp, x, y, s):
+    zion_mark(msp, x - 0.95, y - 0.35, 0.7)
     txt(msp, x, y, s, h=0.35, align=TextEntityAlignment.MIDDLE_LEFT)
+    txt(msp, x, y - 0.32, "ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL", h=0.13, align=TextEntityAlignment.MIDDLE_LEFT)
 
 def furniture_plan(msp, items):
     for it in items:

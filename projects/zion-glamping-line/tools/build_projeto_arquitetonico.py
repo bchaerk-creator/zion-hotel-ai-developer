@@ -4,6 +4,7 @@ Reúne as pranchas PA-xx (pa_sheets.py) com os desenhos existentes (desenhos/, d
 Saídas: ZION_PROJETO_ARQUITETONICO.html (links relativos, para PDF), ZION_PROJETO_ARQUITETONICO_standalone.html (--inline, tudo embutido).
 Uso: python3 build_projeto_arquitetonico.py [--inline]"""
 import os, sys, base64, html
+from svgkit import zion_mark_html
 from pa_sheets import SHEETS, AREAS, ESQUADRIAS, NOTAS
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -132,7 +133,7 @@ def cover():
     for p in PRODUCTS:
         dx += "".join(f'<li><code>{p}/projeto/dxf/{f}</code></li>' for f in dxf_list(p))
     return f'''<section class="sheet cover">
-<div class="coverl"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+<div class="coverl"><div class="brand">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
 <h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO · ZION SAFARI · ZION LODGE</h2>
 <p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos, vistas isométricas, camadas construtivas e quadro de materiais estimados (sem preços). Arquivos DXF editáveis em CAD anexos.</p>
 <dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{" + ".join(str(len(sheets(p))) for p in PRODUCTS)} = {sum(len(sheets(p)) for p in PRODUCTS)} no total</dd></dl>

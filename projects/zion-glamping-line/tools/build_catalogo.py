@@ -1,17 +1,19 @@
 # -*- coding: utf-8 -*-
-"""CATÁLOGO DA LINHA ZION GLAMPING COLLECTION: as cinco cabanas (Casulo, Safari, Lodge 38, Lodge 24, Lodge 28) com dados,
+"""CATÁLOGO DA LINHA ZION GLAMPING COLLECTION: as seis unidades (Casulo, Safari, Lodge 38, Lodge 24, Lodge 28, Cápsula) com dados,
 desenhos, imagens, FF&E completo (tudo o que vai dentro) e resumo de investimento. Gera ZION_CATALOGO_LINHA.html (A4 paisagem,
 SVG inline) e ZION_FFE_Linha.xlsx. PDF: node export_pdf.js ../ZION_CATALOGO_LINHA.html ../ZION_CATALOGO_LINHA.pdf
 Uso: python3 build_catalogo.py"""
 import os, html, math
+from svgkit import zion_mark_html
 from build_projeto_arquitetonico import svg_inline
-from geometry import Cocoon, Zenith, LODGES
+from geometry import Cocoon, Zenith, LODGES, Capsule
 import ffe
+from capsule import capsule_materials
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT = os.path.join(ROOT, "ZION_CATALOGO_LINHA.html")
 XLS = os.path.join(ROOT, "ZION_MATERIAIS_FFE_Linha.xlsx")
-C, Z = Cocoon(), Zenith()
+C, Z, CAP = Cocoon(), Zenith(), Capsule()
 LG = {k: v() for k, v in LODGES.items()}
 SCEN = ["Econômico", "Zion Standard", "Zion Premium"]
 PRICES = False   # documentos para a fábrica: sem preços (só materiais e quantidades estimadas)
@@ -36,7 +38,7 @@ def param_estimate(code):
     """estimativa paramétrica das variantes do Lodge a partir do Lodge 38 (custo sem NRE x (área total)^0,85 + NRE compartilhado de R$ 120 mil)."""
     if "lodge" not in BUD: return None, None
     b = BUD["lodge"]; base = b["total"] - b["nre"]; a0 = b["area_total"]
-    L = LG[code]; a = L.floor_area() + L.deck_area()
+    L = LG[code] if code in LG else CAP; a = L.floor_area() + L.deck_area()
     est = base * (a / a0) ** 0.85 + 120000
     return est, est / a
 
@@ -67,6 +69,11 @@ PRODUCTS = [
          program="Estar com sofá sob a lanterna 2 · suíte king sob a lanterna 1 · café/minibar e closet · banho no fundo · terraço de 17,5 m² em três faces com vela",
          beds="1 casal (king)", guests="2 + 1", struct="8 pilares Ø101,6 · anel de beiral · 10 caibros · 21 estacas", days=8,
          hero="lodge28/desenhos/08_isometrica.svg", imgs=[], sheets=["lodge28/desenhos/01_conceito.svg", "lodge28/desenhos/08_isometrica.svg"]),
+    dict(code="capsule", name="ZION CÁPSULA", family="Cápsula monocoque transportável", status="Estudo de conceito · materiais estimados por geometria",
+         dims="8,40 x 3,20 x 3,20 m · piso a 1,05 m do terreno", area_int=CAP.floor_area(), area_ext=CAP.deck_area(), roof="casca em alumínio composto sobre 12 anéis · Visor de vidro curvo · Anel de Luz", height="3,50 m (com pés)",
+         program="Chaise e poltrona junto ao Visor · café/minibar · suíte queen sob o Anel de Luz · closet · banho com chuveiro e Olho · compartimento técnico na cauda · deck frontal de 8,3 m²",
+         beds="1 casal (queen)", guests="2", struct="12 anéis 60 x 40 · 7 longarinas · chassi U 150 · 4 pés telescópicos · 8 estacas", days=1,
+         hero="capsule/desenhos/08_isometrica.svg", imgs=[], sheets=["capsule/desenhos/01_conceito.svg", "capsule/desenhos/08_isometrica.svg"]),
 ]
 
 def cost(code):
@@ -80,8 +87,8 @@ def page(body, cls=""): return f'<section class="page {cls}">{body}</section>'
 def foot(label): return f'<div class="foot"><span>ZION GLAMPING COLLECTION · CATÁLOGO DA LINHA</span><span>{esc(label)}</span><span>SET 2026</span></div>'
 
 def cover():
-    return page(f'''<div class="cover"><div class="brand">ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
-<h1>CATÁLOGO<br>DA LINHA</h1><p class="lead">Cinco unidades proprietárias de hospedagem sobre o mesmo sistema construtivo: projeto, camadas, materiais estimados e FF&amp;E completo, tudo o que vai dentro de cada cabana.</p>
+    return page(f'''<div class="cover"><div class="brand">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+<h1>CATÁLOGO<br>DA LINHA</h1><p class="lead">Seis unidades proprietárias de hospedagem sobre o mesmo sistema construtivo: projeto, camadas, materiais estimados e FF&amp;E completo, tudo o que vai dentro de cada cabana.</p>
 <ul class="prods">{"".join(f"<li><b>{esc(p['name'])}</b><span>{esc(p['family'])} · {fmt(p['area_int'])} m² + {fmt(p['area_ext'])} m²</span></li>" for p in PRODUCTS)}</ul>
 <p class="warn">Documento técnico para fabricação e cotação, sem preços. Pré-dimensionamento de engenharia a validar por profissionais habilitados (ART/RRT).</p></div>''', "dark")
 
@@ -91,9 +98,9 @@ def linha():
         tot, m2, t10, src = cost(p["code"]); f = ffe.totals(p["code"], 1)
         rows += f'''<tr><td><b>{esc(p["name"])}</b><br><small>{esc(p["family"])}</small></td><td>{esc(p["dims"])}</td><td class="num">{fmt(p["area_int"])}</td><td class="num">{fmt(p["area_ext"])}</td><td class="num">{fmt(p["area_int"] + p["area_ext"])}</td>
 <td>{esc(p["height"])}</td><td>{esc(p["struct"])}</td><td class="num">{p["days"]} d</td><td class="num">{f["n_items"]} itens</td><td><small>{esc(p["status"])}</small></td></tr>'''
-    return page(f'''<h2>A LINHA</h2><p class="lede">Zion Shell System em cinco formatos: do casulo biomórfico ao pavilhão compacto para casal. Mesmo kit parafusado, mesmas 13 camadas, mesma fábrica.</p>
+    return page(f'''<h2>A LINHA</h2><p class="lede">Zion Shell System em seis formatos: do casulo biomórfico ao pavilhão compacto para casal e à cápsula que chega pronta da fábrica. Mesmo kit parafusado, mesmas camadas, mesma fábrica.</p>
 <div class="tw"><table><tr><th>Unidade</th><th>Dimensões</th><th class="num">Interna m²</th><th class="num">Deck m²</th><th class="num">Total m²</th><th>Altura</th><th>Estrutura</th><th class="num">Montagem</th><th class="num">FF&amp;E</th><th>Estágio</th></tr>{rows}</table></div>
-<p class="note">Montagem em campo com equipe de 4 montadores e 1 líder, sem grua. FF&amp;E = mobiliário, luminárias, equipamentos, enxoval e itens do deck (lista item a item nas páginas de cada unidade). Zion Casulo, Zion Safari e Zion Lodge 38 têm projeto arquitetônico e lista de materiais completos; Lodge 24 e 28 são variantes paramétricas em conceito.</p>
+<p class="note">Montagem em campo com equipe de 4 montadores e 1 líder, sem grua. FF&amp;E = mobiliário, luminárias, equipamentos, enxoval e itens do deck (lista item a item nas páginas de cada unidade). Zion Casulo, Zion Safari e Zion Lodge 38 têm projeto arquitetônico e lista de materiais completos; Lodge 24 e 28 são variantes paramétricas em conceito; a Cápsula é um estudo de conceito com materiais estimados a partir da geometria (monta em fábrica e chega pronta: 1 dia de instalação).</p>
 <div class="strip5">{"".join(f'<figure>{img(p["hero"]) if p["hero"].endswith(".jpg") else sheet(p["hero"])}<figcaption>{esc(p["name"])}</figcaption></figure>' for p in PRODUCTS)}</div>''' + foot("A linha"))
 
 def product_pages(p):
@@ -134,8 +141,8 @@ def catalogo_itens():
 def materiais():
     from product_book_data import bom_priced
     pages = ""
-    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38")):
-        try: groups = bom_priced(code)
+    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38"), ("capsule", "ZION CÁPSULA")):
+        try: groups = capsule_materials() if code == "capsule" else bom_priced(code)
         except Exception: continue
         trs = ""
         for g, items in groups:
@@ -182,7 +189,7 @@ h2{margin:0 0 4mm;font-weight:200;font-size:26px;letter-spacing:.3em} h3{margin:
 .foot{position:absolute;left:14mm;right:14mm;bottom:6mm;display:flex;justify-content:space-between;font-size:7.5px;letter-spacing:.22em;color:var(--earth)}
 table{border-collapse:collapse;width:100%;font-size:9px;font-variant-numeric:tabular-nums} th{text-align:left;font-weight:600;font-size:7.5px;letter-spacing:.14em;color:var(--earth);text-transform:uppercase;padding:2px 5px 5px;border-bottom:1px solid var(--earth)} td{padding:4px 5px;border-bottom:1px solid var(--sand);vertical-align:top} .num{text-align:right;white-space:nowrap} small{color:var(--earth);font-size:8px}
 .note{font-size:8.5px;line-height:1.6;color:var(--earth);margin:4mm 0}
-.strip5{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;margin-top:3mm} .strip5 figure{margin:0} .strip5 img,.strip5 .sheet svg{width:100%;height:auto;display:block;aspect-ratio:1.6;object-fit:cover} .strip5 figcaption{font-size:8px;letter-spacing:.2em;margin-top:2mm;color:var(--earth)}
+.strip5{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm;margin-top:3mm} .strip5 figure{margin:0} .strip5 img,.strip5 .sheet svg{width:100%;height:auto;display:block;aspect-ratio:1.6;object-fit:cover} .strip5 figcaption{font-size:8px;letter-spacing:.2em;margin-top:2mm;color:var(--earth)}
 .ph{border-bottom:1px solid var(--ink);padding-bottom:3mm;margin-bottom:5mm} .pname{font-size:24px;font-weight:200;letter-spacing:.32em} .pfam{font-size:9px;letter-spacing:.16em;color:var(--earth);margin-top:3px}
 .two{display:grid;grid-template-columns:1.15fr 1fr;gap:8mm} img.hero{width:100%;height:auto;display:block} .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:3mm} .thumbs img{width:100%;height:auto;display:block}
 .kv{display:grid;grid-template-columns:auto 1fr;gap:4px 10px;margin:0;font-size:9.5px;line-height:1.5} .kv dt{color:var(--earth);font-size:7.5px;letter-spacing:.16em;text-transform:uppercase;padding-top:3px;white-space:nowrap} .kv dd{margin:0}
@@ -201,7 +208,7 @@ def build():
     body = cover() + linha()
     for p in PRODUCTS: body += product_pages(p)
     body += camadas() + materiais() + catalogo_itens()
-    doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Catálogo da Linha · Casulo, Safari e Lodge</title><style>{CSS}</style></head><body>{body}</body></html>'
+    doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · Catálogo da Linha · Casulo, Safari, Lodge e Cápsula</title><style>{CSS}</style></head><body>{body}</body></html>'
     open(OUT, "w", encoding="utf-8").write(doc); print(OUT, round(os.path.getsize(OUT) / 1e6, 1), "MB")
     # ---- XLSX FF&E
     from openpyxl import Workbook
@@ -225,9 +232,9 @@ def build():
         ws_add("FFE " + p["name"].replace("ZION ", ""), ["Código", "Categoria", "Item", "Especificação", "Ambiente", "Observação", "Qtd", "Un.", "Opcional"], rows, [9, 20, 34, 60, 16, 30, 7, 6, 10])
     try:
         from product_book_data import bom_priced
-        for code, name in (("cocoon", "Casulo"), ("zenith", "Safari"), ("lodge", "Lodge 38")):
+        for code, name in (("cocoon", "Casulo"), ("zenith", "Safari"), ("lodge", "Lodge 38"), ("capsule", "Cápsula")):
             rows = []
-            for g, items in bom_priced(code):
+            for g, items in (capsule_materials() if code == "capsule" else bom_priced(code)):
                 for (desc, un, qtd, key) in items: rows.append([g, desc, un, qtd])
             ws_add("Materiais " + name, ["Grupo", "Material / componente", "Un.", "Quantidade estimada"], rows, [26, 70, 8, 18])
     except Exception: pass

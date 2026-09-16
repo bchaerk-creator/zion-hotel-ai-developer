@@ -2,6 +2,7 @@
 """Gera o Caderno Técnico (HTML) com os 27 entregáveis dos produtos ZION CASULO e ZION SAFARI.
 Uso: python3 build_dossier.py [--inline]   (--inline embute imagens como data URI para publicação em página única)"""
 import os, sys, base64, json, glob
+from svgkit import zion_mark_html
 from geometry import Cocoon, Zenith
 from bom import cocoon_bom, zenith_bom, cocoon_parts, zenith_parts, transport, ASSEMBLY
 
@@ -61,7 +62,7 @@ def section(num, title, html, product=""):
 # 00 capa e manifesto ---------------------------------------------------------
 cover = f"""
 <div class="cover">
-  <div class="brand"><span class="z">ZION</span><span class="sub">GLAMPING COLLECTION</span></div>
+  <div class="brand"><span class="z">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</span><span class="sub">GLAMPING COLLECTION</span></div>
   <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span></div>
   <h1>Uma nova linha de hospedagens de luxo em membrana tensionada, aço e vidro</h1>
   <p class="lead">Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da Zion para glampings, boutique hotels e destinos de natureza. Do casulo orgânico ao pico escultural: duas formas, uma plataforma industrial, um mesmo modo de habitar a paisagem.</p>
@@ -420,7 +421,7 @@ HTML = f"""<!DOCTYPE html>
 <title>Zion Casulo e Zion Safari · Caderno Técnico</title>
 <meta name="description" content="Projeto conceitual, arquitetônico e técnico das unidades de hospedagem ZION CASULO e ZION SAFARI da Zion Glamping Collection: 27 entregáveis.">
 <style>{CSS}</style></head>
-<body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · CADERNO TÉCNICO</span>{nav}</nav><main>{body}</main></div></body></html>"""
+<body><div class="wrap"><nav><div class="z">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</div><span class="sub">GLAMPING COLLECTION · CADERNO TÉCNICO</span>{nav}</nav><main>{body}</main></div></body></html>"""
 
 out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_CASULO_SAFARI_Caderno_Tecnico" + ("_standalone" if INLINE else "") + ".html")
 with open(out, "w", encoding="utf-8") as f:

@@ -176,9 +176,21 @@ Estabilidade: o corpo em painéis SIP forma um diafragma rígido; o anel de beir
 
 Referências de mercado consideradas (lodges de catálogo de 23 m² e de 26 m² + terraço de 17 m²) apenas como faixa de área e programa; a geometria (lanterna, vela, proporções, deck em faces) é própria.
 
+### 3e. ZION CÁPSULA — Cápsula monocoque transportável (estudo de conceito)
+
+- **Casca**: seção em superelipse (expoente 3,2) de 3,20 x 3,20 m, extrudada em 8,40 m com calotas de 1,20 m (frente, Visor) e 0,90 m (cauda); centro da seção a 0,85 m do piso interno; pé-direito 2,31 m no eixo; piso a 1,05 m do terreno (0,42 m livres sob a barriga); topo a 3,50 m.
+- **Programa** (da frente para trás): Visor com porta pivotante PV1 0,90 x 2,05 no gomo central → estar 7,6 m² (chaise junto ao vidro, poltrona, mesa lateral, café/minibar 1,05 m) → suíte 6,9 m² (cama queen 1,58 x 1,98 com os pés para o Visor, criados suspensos, closet 1,30 x 0,40) → parede do banho com porta de correr 0,80 → banho 4,4 m² (bancada 1,20 m, bacia, chuveiro 0,90 x 0,90) → compartimento técnico de 0,85 m na calota traseira com acesso externo (boiler 80 L, quadro, evaporadora, reservatório). Área interna 19,9 m² + deck frontal 8,3 m² (2,60 x 3,20 m) = 28,2 m².
+- **Aberturas proprietárias**: Visor (calota frontal inteira em vidro laminado curvo 8+8 low-e, 5 gomos, 11,5 m²); Anel de Luz (faixa de vidro laminado curvo 6+6 de 0,45 m que contorna 130° da seção sobre a cama, 1,7 m², com abertura basculante para ventilação); dois Olhos Ø0,60 (suíte, transparente; banho, acidado) com grelhas de admissão.
+- **Estrutura**: monocoque em aço galvanizado a fogo: 12 anéis em tubo 60 x 40 x 3,0 calandrados a cada 0,60 m (perímetro 10,9 m); 7 longarinas 40 x 40 x 2,0; chassi do piso em duas longarinas U 150 x 50 x 3,0 e travessas U 100; 4 pés telescópicos Ø101,6 em Ø114,3 com curso de 0,40 m e placas 250 x 250 sobre estacas helicoidais Ø76; 4 olhais de içamento. Aço estimado ≈ 900 kg; peso total estimado 4,8 t mobiliada.
+- **Envelope (de fora para dentro)**: painel de alumínio composto 4 mm curvado (champanhe fosco) sobre perfis ômega · manta de estanqueidade e barreira de vapor · PIR 60 mm · câmara ventilada 40 mm · compensado naval curvado 12 mm com lâmina de carvalho aparente. Espessura total 140 mm.
+- **Piso**: OSB 18 mm + lã de PET 50 mm sobre o chassi; carvalho de engenharia 14 mm; porcelanato no banho.
+- **Instalações**: elétrica de 12 circuitos com LED perimetral 2700 K; PEX com boiler elétrico no técnico; split inverter 9.000 BTU dutado a partir do técnico; exaustor do banho.
+- **Transporte e instalação**: fabricada, mobiliada e testada em fábrica; viaja inteira em carreta (3,20 m de largura exige AET); descarga com guindaste de 12 t sobre os pés previamente nivelados; ligação de água, esgoto e energia por conexões rápidas no técnico; deck montado no sítio. Instalação em 1 dia.
+- **Identidade**: a referência de mercado (cápsulas com janela plana na ponta e caixa técnica interna) é substituída por uma calota inteira de vidro, o Anel de Luz sobre a cama, os Olhos da família Casulo e o compartimento técnico fora do ambiente do hóspede. Lista de materiais estimados em `tools/capsule.py` (`capsule_materials`).
+
 ## 3d. FF&E (tudo o que vai dentro)
 
-Base de dados em `tools/ffe.py`: catálogo de 55 itens em seis categorias (mobiliário, luminárias e decoração, equipamentos, enxoval e OS&E, deck e exterior, acessórios de banho) com especificação Zion New Luxury e preço de referência SC set/2026, e listas por unidade com quantidade, ambiente e observação. Totais no cenário Zion Standard, sem opcionais: Casulo R$ 138 mil · Safari R$ 198 mil · Lodge 38 R$ 139 mil · Lodge 24 R$ 110 mil · Lodge 28 R$ 129 mil (Econômico 72%, Premium 135%). O FF&E detalhado substitui as verbas de "mobiliário solto" e "acabamentos e enxoval de abertura" do Product Book.
+Base de dados em `tools/ffe.py`: catálogo de 56 itens em seis categorias (mobiliário, luminárias e decoração, equipamentos, enxoval e OS&E, deck e exterior, acessórios de banho) com especificação Zion New Luxury e preço de referência SC set/2026, e listas por unidade com quantidade, ambiente e observação. Totais no cenário Zion Standard, sem opcionais: Casulo R$ 138 mil · Safari R$ 198 mil · Lodge 38 R$ 139 mil · Lodge 24 R$ 110 mil · Lodge 28 R$ 129 mil · Cápsula ≈ R$ 105 mil (Econômico 72%, Premium 135%). O FF&E detalhado substitui as verbas de "mobiliário solto" e "acabamentos e enxoval de abertura" do Product Book.
 
 ## 4. Transporte e montagem (comum)
 

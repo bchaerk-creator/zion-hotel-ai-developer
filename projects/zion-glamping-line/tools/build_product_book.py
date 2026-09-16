@@ -3,6 +3,7 @@
 Uso: python3 build_product_book.py [--web] [--inline]
 Cada volume é montado por build_volume(vol, product) a partir do dicionário de configuração PRODUCTS[product]."""
 import os, sys, base64
+from svgkit import zion_mark_html
 from geometry import Cocoon, Zenith, Lodge
 from bom import cocoon_bom, zenith_bom, lodge_bom, ASSEMBLY
 from product_book_data import (cocoon_parts, zenith_parts, lodge_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS, LODGE_CONNECTIONS, PRICES, LABOR_RATES, labor_hours,
@@ -508,7 +509,7 @@ tfoot td{font-weight:700;background:var(--paper)} table.kv th{width:32%}
 
 cover = """
 <section id="cover"><div class="cover">
- <div class="z">ZION</div><span class="sub">GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
+ <div class="z">""" + zion_mark_html("0.95em", style="margin-right:.5em") + """ZION</div><span class="sub">GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
  <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span><span class="line"></span><span>LODGE 38</span></div>
  <h1>Sistema construtivo industrializado, modular e desmontável para três cabanas exclusivas da Zion</h1>
  <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials com quantidades estimadas, manual de montagem, recursos de fabricação, cronograma e análise de escala industrial. Primeiro a ZION CASULO, depois a ZION SAFARI e, por fim, a ZION LODGE 38.</p>

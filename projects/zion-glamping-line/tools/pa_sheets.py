@@ -142,6 +142,7 @@ def capa(product):
     sh = Sheet(1600, 1000, bg=CREAM)
     c = product == "cocoon"
     sh.add(f'<rect x="0" y="0" width="560" height="1000" fill="{BLACK}"/>')
+    sh.add(zion_mark(60, 36, 46, CREAM))
     sh.text_px(60, 120, "ZION", size=42, weight=800, spacing=0.4, fill=CREAM, anchor="start")
     sh.text_px(60, 146, "GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL", size=9.5, spacing=0.3, fill=SAND, anchor="start")
     sh.text_px(60, 300, "PROJETO", size=13, spacing=0.5, fill=SAND, anchor="start"); sh.text_px(60, 322, "ARQUITETÔNICO", size=13, spacing=0.5, fill=SAND, anchor="start")

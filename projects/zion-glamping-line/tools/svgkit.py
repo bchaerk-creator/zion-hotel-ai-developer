@@ -10,6 +10,34 @@ def fmt(v):
     """formata metros com vírgula: 9,00"""
     return f"{v:.2f}".replace(".", ",")
 
+# --- marca Zion (símbolo Z em anel) ---
+ZION_Z = "27,30 73,30 73,38.5 41,61.5 73,61.5 73,70 27,70 27,61.5 59,38.5 27,38.5"   # polígono do Z (caixa 100 x 100)
+
+def zion_mark(X, Y, size=32, color=GREEN, outline=False):
+    """símbolo Z da Zion em anel fino, canto superior esquerdo em (X, Y) px, lado 'size' px.
+    outline=True: versão wireframe (linha fina) para uso sobre fotografia."""
+    k = size / 100.0
+    if outline:
+        z = f'<polygon points="{ZION_Z}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>'
+    else:
+        z = f'<polygon points="{ZION_Z}" fill="{color}"/>'
+    return (f'<g transform="translate({X:.2f},{Y:.2f}) scale({k:.4f})">'
+            f'<circle cx="50" cy="50" r="46.5" fill="none" stroke="{color}" stroke-width="3.2"/>{z}</g>')
+
+def zion_mark_html(size="1em", color="currentColor", outline=False, style=""):
+    """o mesmo símbolo como <svg> inline para capas e cabeçalhos HTML (herda a cor do texto por padrão)."""
+    z = (f'<polygon points="{ZION_Z}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>' if outline
+         else f'<polygon points="{ZION_Z}" fill="{color}"/>')
+    return (f'<svg class="zmark" viewBox="0 0 100 100" width="{size}" height="{size}" style="vertical-align:-0.12em;{style}" aria-label="Zion">'
+            f'<circle cx="50" cy="50" r="46.5" fill="none" stroke="{color}" stroke-width="3.2"/>{z}</svg>')
+
+def zion_mark_lines(size=1.0):
+    """polilinhas do símbolo (caixa size x size, origem no canto inferior esquerdo, y para cima) para DXF: (circulo(cx, cy, r), poligono Z)."""
+    k = size / 100.0
+    z = [(float(a) * k, (100 - float(b)) * k) for a, b in (q.split(",") for q in ZION_Z.split())]
+    return (50 * k, 50 * k, 46.5 * k), z
+
+
 class Sheet:
     def __init__(self, w=1600, h=1000, scale=80.0, ox=120, oy=700, flip_y=True, bg=CREAM, flip_x=False):
         self.w, self.h, self.s, self.ox, self.oy, self.flip = w, h, scale, ox, oy, flip_y
@@ -119,8 +147,9 @@ class Sheet:
         self.add(f'<rect x="{X0}" y="{Y0}" width="{W}" height="{H}" fill="{CREAM}" stroke="{GREEN}" stroke-width="1.2"/>')
         self.add(f'<line x1="{X0 + 200}" y1="{Y0}" x2="{X0 + 200}" y2="{Y0 + H}" stroke="{GREEN}" stroke-width="0.8"/>')
         self.add(f'<line x1="{X0}" y1="{Y0 + 46}" x2="{X0 + W}" y2="{Y0 + 46}" stroke="{GREEN}" stroke-width="0.8"/>')
-        self.text_px(X0 + 100, Y0 + 24, "ZION", size=20, weight=800, spacing=0.35)
-        self.text_px(X0 + 100, Y0 + 38, "GLAMPING COLLECTION", size=8.5, weight=400, spacing=0.3, fill=EARTH)
+        self.add(zion_mark(X0 + 14, Y0 + 8, 32, GREEN))
+        self.text_px(X0 + 58, Y0 + 26, "ZION", size=19, weight=800, spacing=0.35, anchor="start")
+        self.text_px(X0 + 58, Y0 + 39, "GLAMPING COLLECTION", size=7.5, weight=400, spacing=0.28, fill=EARTH, anchor="start")
         self.text_px(X0 + 100, Y0 + 68, product, size=12, weight=700, spacing=0.2)
         self.text_px(X0 + 100, Y0 + 84, "ZION HOTEL GROUP INTERNATIONAL", size=7.5, spacing=0.2, fill=EARTH)
         self.text_px(X0 + 214, Y0 + 22, title.upper(), size=14, weight=700, spacing=0.12, anchor="start")
@@ -131,8 +160,9 @@ class Sheet:
         self.text_px(X0 + W - 14, Y0 + 84, date, size=8, fill=EARTH, spacing=0.15, anchor="end")
 
     def header(self, title, sub=""):
-        self.text_px(40, 46, title.upper(), size=22, weight=700, spacing=0.28, anchor="start")
-        if sub: self.text_px(40, 68, sub, size=12, fill=EARTH, anchor="start", spacing=0.08)
+        self.add(zion_mark(40, 22, 44, GREEN))
+        self.text_px(100, 46, title.upper(), size=22, weight=700, spacing=0.28, anchor="start")
+        if sub: self.text_px(100, 68, sub, size=12, fill=EARTH, anchor="start", spacing=0.08)
         self.add(f'<line x1="40" y1="82" x2="{self.w - 40}" y2="82" stroke="{GREEN}" stroke-width="0.6" opacity="0.5"/>')
 
     def north(self, X, Y, r=22, angle=0):

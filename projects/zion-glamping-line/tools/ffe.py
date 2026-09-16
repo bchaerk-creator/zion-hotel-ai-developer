@@ -25,6 +25,7 @@ ITEMS = {
     "M14": ("Mesa de refeições / trabalho", "Mesa 0,80 x 1,20 em carvalho + 2 cadeiras", "cj", 4800, "M"),
     "M15": ("Totem do mastro (Safari)", "Revestimento do mastro M2 em madeira com prateleiras e iluminação", "un", 3200, "M"),
     "M16": ("Ripado da cabeceira", "Painel ripado termotratado com fitas LED (parede da cabeceira)", "m²", 620, "M"),
+    "M17": ("Cama queen box + colchão", "Box 1,58 x 1,98 revestido em linho, colchão molas ensacadas 30 cm, pillow top (Cápsula)", "un", 8200, "M"),
     # ---- luminárias e decoração
     "F01": ("Arandela de leitura", "Arandela articulada em latão escovado, LED 2700 K dimerizável", "un", 890, "F"),
     "F02": ("Luminária de piso", "Luminária de piso em madeira e linho, 2700 K", "un", 1450, "F"),
@@ -115,6 +116,15 @@ LISTS = {
                 ("E01", 1, "Estar", ""), ("E02", 1, "Estar", ""), ("E03", 1, "Closet", ""), ("E04", 1, "Estar", ""), ("E06", 1, "Banho", ""), ("E10", 1, "Porta PC1", ""), ("E11", 1, "Ático", ""),
                 ("O01", 1, "Suíte", ""), ("O02", 1, "Banho", ""), ("O03", 1, "Banho", ""), ("O04", 1, "Café", ""), ("O05", 1, "Geral", ""), ("O06", 1, "Geral", ""), ("O07", 1, "Geral", ""), ("O08", 1, "Geral", ""),
                 ("D01", 1, "Terraço", ""), ("D02", 1, "Terraço", ""), ("D04", 1, "Terraço", ""), ("D05", 1, "Terraço", ""),
+                ("B01", 1, "Banho", ""), ("B03", 1, "Banho", "")],
+
+    "capsule": [("M17", 1, "Suíte", "sob o Anel de Luz, pés para o Visor"), ("M02", 1, "Suíte", "cabeceira curva na parede do banho"), ("M03", 2, "Suíte", ""),
+                ("M06", 1, "Estar", "chaise junto ao Visor"), ("M07", 1, "Estar", "poltrona"), ("M08", 1, "Estar", "mesa lateral"), ("M09", 1, "Estar", "café / minibar 1,05 m"), ("M10", 1, "Suíte", "closet 1,30 x 0,40"),
+                ("M12", 1, "Banho", "bancada 1,20 m"), ("M13", 1, "Banho", ""),
+                ("F01", 2, "Suíte", ""), ("F03", 1, "Estar", ""), ("F05", 1, "Suíte", ""), ("F06", 5.2, "Visor", "trilho curvo no arco do Visor"), ("F07", 1, "Anel de Luz", "tela motorizada curva"), ("F08", 1, "Geral", "curadoria reduzida"), ("F10", 1, "Geral", ""),
+                ("E01", 1, "Estar", ""), ("E02", 1, "Estar", ""), ("E03", 1, "Closet", ""), ("E04", 1, "Estar", ""), ("E06", 1, "Banho", ""), ("E10", 1, "Porta PV1", ""), ("E11", 1, "Técnico", ""),
+                ("O01", 1, "Suíte", ""), ("O02", 1, "Banho", ""), ("O03", 1, "Banho", ""), ("O04", 1, "Café", ""), ("O05", 1, "Geral", ""), ("O06", 1, "Geral", ""), ("O07", 1, "Geral", ""), ("O08", 1, "Geral", ""),
+                ("D02", 1, "Deck", "mesa e 2 cadeiras"), ("D04", 1, "Deck", ""),
                 ("B01", 1, "Banho", ""), ("B03", 1, "Banho", "")],
 }
 OPTIONAL = {"E05", "E07", "E12", "D03", "D06", "D07"}   # itens tratados como opcionais no total-base quando marcados "opcional"

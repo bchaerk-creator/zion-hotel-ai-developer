@@ -322,9 +322,11 @@ class Sheet:
     # ---------------- folha ----------------
     def header(self):
         self.rect(30, 30, W - 60, H - 60, fill="none", stroke=INK, sw=0.9)
-        self.text(60, 78, self.title, size=20, ls="0.25em", caps=True, weight=600)
+        from svgkit import zion_mark
+        self.add(zion_mark(58, 52, 44, INK))
+        self.text(116, 78, self.title, size=20, ls="0.25em", caps=True, weight=600)
         if self.subtitle:
-            self.text(60, 100, self.subtitle, size=13, color=GOLD)
+            self.text(116, 100, self.subtitle, size=13, color=GOLD)
         self.text(W - 60, 70, "ZION GLAMPING COLLECTION", size=11, anchor="end", color=GOLD, ls="0.25em", weight=600)
         self.text(W - 60, 90, "%s   |   %s" % (self.unit, self.num), size=12, anchor="end", color=INK, ls="0.1em")
 
@@ -334,7 +336,9 @@ class Sheet:
         self.line(x + 300, y, x + 300, y + h, 0.9, INK)
         self.line(x + 300, y + 45, x + w, y + 45, 0.9, INK)
         self.line(x + 410, y + 45, x + 410, y + h, 0.9, INK)
-        self.add('<text x="%.1f" y="%.1f" fill="%s" style="font-size:12px;letter-spacing:0.22em;font-weight:600;font-variant:small-caps">Zion Glamping Collection</text>' % (x + 14, y + 24, GOLD))
+        from svgkit import zion_mark
+        self.add(zion_mark(x + 12, y + 7, 30, INK))
+        self.add('<text x="%.1f" y="%.1f" fill="%s" style="font-size:12px;letter-spacing:0.22em;font-weight:600;font-variant:small-caps">Zion Glamping Collection</text>' % (x + 50, y + 24, GOLD))
         self.text(x + 14, y + 50, self.title, size=14, weight=600, caps=True)
         self.text(x + 14, y + 74, self.unit, size=11.5, color=GOLD, ls="0.15em")
         self.text(x + 312, y + 16, "ESCALA", size=9, color=GOLD, ls="0.15em")

@@ -4,6 +4,7 @@
 o PDF sai com export_pdf.js (uma página 1600 x 900 px por slide).
 Uso: python3 build_apresentacao.py"""
 import os, html
+from svgkit import zion_mark_html
 from build_projeto_arquitetonico import svg_inline
 from product_book_data import budget, cocoon_parts, zenith_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS
 from bom import cocoon_bom, zenith_bom, transport, ASSEMBLY
@@ -42,10 +43,11 @@ def slide(body, cls="", label=""):
 def capa():
     slide(f'''<div class="photo full">{img("cocoon/renders/web/cocoon_night.jpg")}</div><div class="overlay"></div>
 <div class="cover">
+  <div class="zbig">{zion_mark_html('64px', color='#FEF5F0', style='display:block;margin:0 auto 22px')}</div>
   <div class="eyebrow">ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
   <div class="split"><span>PROJETO</span><i></i><span>ARQUITETÔNICO</span></div>
-  <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE 38 · 24 · 28</div>
-  <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · pranchas, engenharia peça a peça, CAD, FF&amp;E e orçamento · cinco cabanas sobre o mesmo sistema</div>
+  <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE 38 · 24 · 28 · ZION CÁPSULA</div>
+  <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · pranchas, engenharia peça a peça, CAD, FF&amp;E e materiais · seis unidades sobre o mesmo sistema</div>
 </div>''', "dark cover-slide", "CAPA")
 
 def linha():
@@ -117,7 +119,7 @@ def lodge_family():
 <dl class="kv"><dt>Planta</dt><dd>{fmt(L.F)} m entre faces{" · 7,80 m de comprimento" if L.M else ""}</dd><dt>Áreas</dt><dd>{fmt(L.floor_area())} m² internos · deck {fmt(L.deck_area())} m² · {fmt(L.floor_area() + L.deck_area())} m²</dd><dt>Alturas</dt><dd>beiral {fmt(L.Z_EAVE)} m · lanterna {fmt(L.Z_TOP)} m</dd></dl></div>'''
     slide(f'''<h2>FAMÍLIA LODGE · 24 E 28</h2><p class="lede">A mesma geometria paramétrica do Lodge 38 gera a unidade compacta para casal e a unidade alongada com terraço: o octógono muda de tamanho ou ganha um corpo reto entre duas lanternas, e o kit continua o mesmo.</p><div class="two">{cards}</div>''', "dark", "LODGE 24 · 28")
     rows = ""
-    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38"), ("lodge24", "ZION LODGE 24"), ("lodge28", "ZION LODGE 28")):
+    for code, name in (("cocoon", "ZION CASULO"), ("zenith", "ZION SAFARI"), ("lodge", "ZION LODGE 38"), ("lodge24", "ZION LODGE 24"), ("lodge28", "ZION LODGE 28"), ("capsule", "ZION CÁPSULA")):
         t = ffe.totals(code, 1); R = ffe.rows(code, 1); byc = {}
         for r in R: byc[r["cat"]] = byc.get(r["cat"], 0) + 1
         rows += f'<tr><td>{name}</td><td class="num">{t["n_items"]}</td>' + "".join(f'<td class="num">{byc.get(c, 0)}</td>' for c in "MFEODB") + '</tr>'
@@ -127,6 +129,15 @@ def lodge_family():
 <div class="two"><div><table class="budget"><tr><th>Unidade</th><th class="num">Itens</th><th class="num">Mobiliário</th><th class="num">Luminárias</th><th class="num">Equipamentos</th><th class="num">Enxoval</th><th class="num">Deck</th><th class="num">Banho</th></tr>{rows}</table>
 <p class="note">Número de itens por categoria; lista item a item, com especificação, ambiente e quantidade, no Catálogo da Linha e na planilha de materiais e FF&amp;E.</p></div>
 <div><ol class="next">{cats}</ol></div></div>''', "dark", "FF&E")
+
+def capsula():
+    """Zion Cápsula: unidade compacta transportável (estudo de conceito)."""
+    from geometry import Capsule
+    K = Capsule()
+    slide(f'''<div class="divider"><div class="split"><span>ZION</span><i></i><span>CÁPSULA</span></div><div class="sub">Cápsula monocoque transportável · Visor, Anel de Luz e Olhos · estudo de conceito</div></div>''', "dark cover-slide", "ZION CÁPSULA")
+    slide(f'''<h2>ZION CÁPSULA <small>8,40 x 3,20 m · {fmt(K.floor_area())} m² internos · deck {fmt(K.deck_area())} m² · chega pronta da fábrica</small></h2>
+<p class="lede">Uma casca de alumínio composto sobre doze anéis de aço, com a calota frontal inteira em vidro curvo (Visor), uma faixa de vidro que contorna a seção sobre a cama (Anel de Luz) e dois Olhos laterais. Fabricada e mobiliada em fábrica, viaja inteira em carreta e pousa em quatro pés telescópicos sobre estacas: instalação em um dia.</p>
+<div class="two-sheets">{sheet("capsule/desenhos/01_conceito.svg")}{sheet("capsule/desenhos/08_isometrica.svg")}</div>''', "dark", "ZION CÁPSULA")
 
 # ----------------------------------------------------------------------------- fechamento
 def implantacao():
@@ -219,7 +230,7 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 def build():
     capa(); linha(); sistema()
     for p in ("cocoon", "zenith", "lodge"): produto(p)
-    lodge_family(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
+    lodge_family(); capsula(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'
