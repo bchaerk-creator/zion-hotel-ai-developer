@@ -82,11 +82,11 @@ AREAS = {
 ESQUADRIAS = {
     "cocoon": [("PV1", "Porta pivotante de vidro", 1.00, 2.40, 1, "Vidro insulado 6 lam + 12 + 6 temp low-e; pivô de piso; alumínio bronze RPT", "Fachada, à esquerda (y +0,60 a +1,60)"),
                ("V1", "Fachada panorâmica fixa (anel inclinado 8°)", 4.88, 4.13, 1, "8 painéis de vidro insulado entre 4 montantes e travessa a 2,40; anel de alumínio curvo", "Fachada frontal, x 0,90"),
-               ("JO1", "Janela Olho basculante", 1.60, 0.95, 2, "Lente em requadro de madeira laminada 220 mm; vidro insulado; ferragem basculante 15°", "Estar dir. (x 2,30) e suíte dir. (x 4,90)"),
-               ("JO2", "Janela Olho fixa", 1.60, 0.95, 1, "Idem, fixa", "Estar esq. (x 3,40)"),
-               ("JO3", "Janela Olho fixa", 1.40, 0.80, 1, "Idem, fixa", "Suíte esq. (x 5,70)"),
-               ("JO4", "Olho do banho fixo (alto)", 1.10, 0.60, 1, "Idem, vidro jateado", "Banho dir. (x 7,90), peitoril 1,60"),
-               ("JO5", "Olho da banheira fixo (baixo)", 0.90, 0.50, 1, "Idem, vidro jateado", "Cauda esq. (x 8,50), peitoril 1,15"),
+               ("JO1", "Janela Olho basculante", 0.95, 0.80, 2, "Lente em requadro de madeira laminada 220 mm, centrada no vão entre arcos; vidro insulado; ferragem basculante", "Estar dir. (x 2,25) e suíte dir. (x 4,65)"),
+               ("JO2", "Janela Olho fixa", 0.95, 0.80, 1, "Idem, fixa", "Estar esq. (x 3,45)"),
+               ("JO3", "Janela Olho fixa", 0.95, 0.80, 1, "Idem, fixa", "Suíte esq. (x 5,85)"),
+               ("JO4", "Olho do banho fixo (alto)", 0.80, 0.55, 1, "Idem, vidro jateado", "Banho dir. (x 8,20), peitoril 1,60"),
+               ("JO5", "Olho da banheira fixo (baixo)", 0.80, 0.55, 1, "Idem, vidro jateado", "Cauda esq. (x 8,20), peitoril 1,15"),
                ("CL1", "Espinha de Luz (claraboia)", 1.175, 0.70, 4, "Vidro laminado 8 + 8 mm sobre berços com EPDM; junta de silicone estrutural", "Cumeeira, x 1,90 a 6,60"),
                ("PC1", "Porta de correr do banho", 0.85, 2.10, 1, "Folha de madeira laminada com trilho superior embutido", "Parede da cabeceira, y +1,00 a +1,85")],
     "zenith": [("PC1", "Fachada de correr (2 fixas + 2 de correr)", 5.40, 2.75, 1, "4 folhas 1,35 x 2,75; vidro insulado low-e; trilho embutido no piso com dreno", "Fachada frontal, x 0"),
@@ -570,7 +570,7 @@ def fachada_esquerda(product):
         for t in C.bico_ties(): sh.poly([(x, z) for (x, y, z) in t], close=False, stroke=EARTH, sw=0.8, dash="3 2")
         x1, x2, _ = C.SPINE; spine = [(C.shear(x, C.top(x)), C.top(x)) for x in np.linspace(x1, x2, 30)]
         sh.poly(spine, close=False, stroke=GLASS, sw=6); sh.poly(spine, close=False, stroke=GREEN, sw=0.8)
-        labels = {"Olho estar (esq.)": "JO2 1,60 x 0,95", "Olho suíte (esq.)": "JO3 1,40 x 0,80", "Olho banheira (esq.)": "JO5 0,90 x 0,50"}
+        labels = {"Olho estar (esq.)": "JO2 0,95 x 0,80", "Olho suíte (esq.)": "JO3 0,95 x 0,80", "Olho banheira (esq.)": "JO5 0,80 x 0,55"}
         for w in C.WINDOWS:
             if w["tc"] < math.pi / 2: continue
             pts = [(x, z) for (x, y, z) in C.window_outline(w, 48)]

@@ -273,7 +273,7 @@ def elev_B(sh):
     for xv in [3.45 + i * 0.05 for i in range(21)]: sh.line(xv, 0.2, xv, 1.45, "#A8865E", 0.3)
     sh.rect(3.4, 1.47, 4.5, 1.5, fill=STONE, stroke=GREEN, sw=0.5)
     # Olhos esquerdos (JO2 x 3,40 · JO3 x 5,70)
-    for (xc, rx, ry, zc) in ((3.4, 0.8, 0.475, 1.5), (5.7, 0.7, 0.4, 1.45)):
+    for (xc, rx, ry, zc) in ((3.45, 0.47, 0.4, 1.5), (5.85, 0.47, 0.4, 1.45)):
         sh.add(f'<ellipse cx="{sh.X(xc):.1f}" cy="{sh.Y(zc):.1f}" rx="{rx * sh.s:.1f}" ry="{ry * sh.s:.1f}" fill="{GLASS}" stroke="{GREEN}" stroke-width="0.9"/>')
         sh.add(f'<ellipse cx="{sh.X(xc):.1f}" cy="{sh.Y(zc):.1f}" rx="{(rx + 0.11) * sh.s:.1f}" ry="{(ry + 0.11) * sh.s:.1f}" fill="none" stroke="{WOOD2}" stroke-width="5"/>')
     # cama e banco (em vista, lado esquerdo)
@@ -284,7 +284,7 @@ def elev_B(sh):
     sh.dim(1.2, -0.3, 3.2, -0.3, -0.35, label="2,00 · MA-01", size=9); sh.dim(3.4, -0.3, 4.5, -0.3, -0.35, label="1,10 · MA-02", size=9); sh.dim(0.9, -0.3, 6.6, -0.3, -0.95, label="5,70", size=9)
     sh.dim(7.0, 0, 7.0, 0.9, 0.0, label="0,90", size=9); sh.dim(7.0, 0, 7.0, 1.5, 0.5, label="1,50", size=9); sh.dim(7.0, 0, 7.0, 3.9, 1.0, label="3,90 · pé-direito no eixo", size=9)
     sh.leader(1.9, 1.45, 1.0, 2.6, "prateleira flutuante com LED e depurador", 8.5, anchor="end"); sh.leader(3.95, 1.0, 3.3, 2.6, "portas ripadas · cofre · cabideiro", 8.5, anchor="end")
-    sh.leader(3.4, 1.98, 4.6, 2.9, "Janela Olho JO2 1,60 x 0,95 · requadro madeira", 8.5); sh.leader(0.95, 2.6, 0.3, 3.2, "anel de vidro inclinado 8°", 8.5, anchor="end")
+    sh.leader(3.4, 1.98, 4.6, 2.9, "Janela Olho JO2 0,95 x 0,80 · requadro madeira", 8.5); sh.leader(0.95, 2.6, 0.3, 3.2, "anel de vidro inclinado 8°", 8.5, anchor="end")
 
 def elev_C(sh):
     """parede divisória, lado do banho (x = 6,70), olhar -x: eixo u = -y (bancada à esquerda)."""

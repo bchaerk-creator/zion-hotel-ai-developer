@@ -49,7 +49,7 @@ def cocoon_bom():
            ("Forro tensionado Trevira CS", "m²", r(memb * 0.95), r(memb * 0.95 * 0.3)),
            ("Painéis ripados internos (cabeceira, rodapés)", "m²", 14, 14 * 9)]
     front_glass = 0.8 * math.pi * (C.a(C.X_GLASS) - 0.06) * (C.b(C.X_GLASS) - 0.06)
-    lens = 3 * 1.2 + 0.9 + 2 * 0.55
+    lens = 4 * 0.6 + 2 * 0.35   # 4 lentes 0,95 x 0,80 + 2 de 0,80 x 0,55 (áreas elípticas)
     spine = 4.7 * 0.7
     glz = [("Fachada de vidro duplo 6 lam + 12 Ar + 6 temp low-e (anel inclinado)", "m²", r(front_glass, 1), r(front_glass * 30)),
            ("Porta pivotante 1,00 x 2,40 (incluída na fachada)", "un", 1, 65),
@@ -249,7 +249,7 @@ def cocoon_parts():
           ("ZC-IS", "Kit de isolamento", "Lã PET 50 mm em mantas pré-cortadas por vão + refletiva", 7, "Corte por gabarito"),
           ("ZC-FR", "Forro tensionado", "Trevira CS em 7 painéis com harpão perimetral", 7, "Costura + harpão"),
           ("ZC-FV", "Fachada de vidro", "Anel de alumínio 120 x 60 curvo + 4 montantes + travessa + 8 vidros duplos + porta pivotante 1,00 x 2,40", 1, "Esquadria sob medida"),
-          ("ZC-JO", "Janela Olho", "Requadro de madeira laminada 220 mm em lente 1,60 x 0,95 (ou 1,10 x 0,60), vidro duplo, 2 basculantes", 6, "Marcenaria CNC + esquadria"),
+          ("ZC-JO", "Janela Olho", "Requadro de madeira laminada 220 mm em lente 0,95 x 0,80 (ou 0,80 x 0,55), vidro duplo, 2 basculantes", 6, "Marcenaria CNC + esquadria"),
           ("ZC-VE", "Vidro da espinha", "Laminado 8 + 8 mm, 1.175 x 700 mm, bordas polidas", 4, "Vidraçaria"),
           ("ZC-PW", "Parede do banho", "Quadro LSF 90 mm + painel + porta de correr 0,85 x 2,10, pré-montada em 2 módulos", 1, "Pré-fabricação"),
           ("ZC-PL", "Módulo de piso", "Quadros de vigotas 2,4 x 1,2 m com PIR e compensado, 18 módulos", 18, "Pré-fabricação"),

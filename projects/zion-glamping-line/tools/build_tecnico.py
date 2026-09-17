@@ -142,7 +142,7 @@ CAMADAS = {
         ("Soleira com dreno e pingadeira", "—", "alumínio", "estanqueidade na base", "6,5 m", "dreno para fora do deck")],
     "ESQUADRIAS · JANELAS OLHO · exterior → interior": [
         ("Flange de membrana (bolsa costurada)", "—", "PVDF", "vedação da membrana ao requadro", "5,5 m/un", "cordão keder no requadro"),
-        ("Requadro em madeira laminada", "220 mm", "eucalipto laminado", "moldura e acabamento", "1 un", "elipse 1,60 x 0,95 em 4 segmentos colados"),
+        ("Requadro em madeira laminada", "220 mm", "eucalipto laminado", "moldura e acabamento", "1 un", "elipse 0,95 x 0,80 em 4 segmentos colados"),
         ("Vidro insulado (jateado no banho)", "24 mm", "idem fachada", "fechamento", "1 un", "colado em gaxeta EPDM"),
         ("Ferragem basculante 15° (JO1)", "—", "inox", "ventilação", "2 un", "limitador e trinco")]}
 

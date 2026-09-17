@@ -14,6 +14,7 @@ fi
 echo "== caderno técnico"; python3 build_dossier.py && python3 build_dossier.py --web && python3 build_dossier.py --inline
 echo "== product book"; python3 build_product_book.py && python3 build_product_book.py --web && python3 build_product_book.py --inline
 echo "== projeto arquitetônico + apresentação"; python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline && python3 build_apresentacao.py && python3 build_catalogo.py && python3 referencias.py && python3 build_brief.py && python3 build_conceito.py && python3 build_tecnico.py && python3 build_interiores.py
+echo "== lonas (padrões de corte) e lotes"; python3 lona.py && python3 build_lotes.py
 echo "== PDFs"
 node export_pdf.js ../_print_ZION_CASULO_SAFARI_Caderno_Tecnico.html ../ZION_CASULO_SAFARI_Caderno_Tecnico.pdf
 node export_pdf.js ../_print_ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf
@@ -25,6 +26,7 @@ node export_pdf.js ../00_BRIEFING/ZG-BRF-001_ZION_CABIN_DESIGN_BRIEF.html ../00_
 node export_pdf.js ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.html ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.pdf
 node export_pdf.js ../03_TECNICO/ZG-TEC-001_Documento_Tecnico.html ../03_TECNICO/ZG-TEC-001_Documento_Tecnico.pdf
 node export_pdf.js ../04_INTERIORES/ZC-INT-001_Projeto_Interiores_Casulo.html ../04_INTERIORES/ZC-INT-001_Projeto_Interiores_Casulo.pdf
+for f in ../06_LOTES/*.html; do node export_pdf.js "$f" "${f%.html}.pdf"; done
 python3 pdf_leve.py ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf ../ZION_ARCHITECTURAL_PRODUCT_BOOK_leve.pdf
 rm -f ../_print_*.html
 echo "== ok"

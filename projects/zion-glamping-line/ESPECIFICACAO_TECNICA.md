@@ -53,7 +53,7 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 - Bico: a membrana continua 2,40 m além do anel frontal, em balanço sobre o deck, com a ponta erguida a 4,42 m (cumeeira Ø114,3 x 4,0 engastada em A0 e A1, dois tubos de borda Ø60,3 curvados, costela Ø48,3 e dois tirantes Ø12 inox sob a membrana; ⚠️ VALIDAÇÃO OBRIGATÓRIA — ENGENHEIRO). O anel de fachada inclina-se 8° para fora e a fachada de vidro fica 0,45 m recuada, em plano igualmente inclinado.
 - Mini cozinha acoplada (MA-01, 2,00 m): geladeira 120 L sob bancada, forno elétrico compacto 45 L sob cooktop de indução de 2 bocas, cuba 0,40 x 0,35, air fryer em nicho, depurador slim; circuitos dedicados C13 (20 A) e C14 (16 A).
 - Espinha de Luz: claraboia contínua de 0,70 m de largura ao longo da cumeeira, de x = 1,90 a 6,60 (4 painéis facetados entre arcos), sobre o estar e a cama.
-- Janelas Olho: 6 janelas em forma de lente (superelipse n = 1,5), 1,60 x 0,95 m no estar e na suíte, 1,10 x 0,60 m no banho, com requadro profundo em madeira. Nenhuma janela circular: a lente é a assinatura do produto.
+- Janelas Olho: 6 janelas em forma de lente (superelipse n = 1,5), 0,95 x 0,80 m no estar e na suíte (centradas nos vãos entre arcos, x 2,25 · 3,45 · 4,65 · 5,85), 0,80 x 0,55 m no banho, com requadro profundo em madeira. Nenhuma janela circular: a lente é a assinatura do produto.
 
 ### 2.3 Layout interno (de frente para trás)
 | Zona | x (m) | Programa |

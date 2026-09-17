@@ -48,13 +48,15 @@ class Cocoon:
     DECK = dict(x1=-3.7, x2=0.9, y1=-3.25, y2=3.25)  # deck frontal 4,6 x 6,5 = 29,9 m²
 
     # Janelas "olho" (lente): xc, theta_c (rad), meio-comp (m), meio-ângulo (rad)
+    # REV 01: cada Olho centrado num vão entre arcos (1,20 m), para que o recorte da membrana não cruze o perfil keder
+    # do arco: lentes de 0,95 x 0,80 m (estar e suíte) e 0,80 x 0,55 m (banho e banheira).
     WINDOWS = [
-        dict(name="Olho estar (dir.)",   xc=2.3, tc=0.22,           lx=0.80, lt=0.15),
-        dict(name="Olho suíte (dir.)",   xc=4.9, tc=0.22,           lx=0.80, lt=0.15),
-        dict(name="Olho banho (dir.)",   xc=7.9, tc=0.50,           lx=0.55, lt=0.125),
-        dict(name="Olho estar (esq.)",   xc=3.4, tc=math.pi-0.22,   lx=0.80, lt=0.15),
-        dict(name="Olho suíte (esq.)",   xc=5.7, tc=math.pi-0.22,   lx=0.70, lt=0.135),
-        dict(name="Olho banheira (esq.)",xc=8.5, tc=math.pi-0.35,   lx=0.45, lt=0.115),
+        dict(name="Olho estar (dir.)",   xc=2.25, tc=0.22,          lx=0.47, lt=0.12),
+        dict(name="Olho suíte (dir.)",   xc=4.65, tc=0.22,          lx=0.47, lt=0.12),
+        dict(name="Olho banho (dir.)",   xc=8.20, tc=0.50,          lx=0.40, lt=0.11),
+        dict(name="Olho estar (esq.)",   xc=3.45, tc=math.pi-0.22,  lx=0.47, lt=0.12),
+        dict(name="Olho suíte (esq.)",   xc=5.85, tc=math.pi-0.22,  lx=0.47, lt=0.12),
+        dict(name="Olho banheira (esq.)",xc=8.20, tc=math.pi-0.35,  lx=0.40, lt=0.11),
     ]
 
     # ---- perfis ----
