@@ -11,31 +11,84 @@ def fmt(v):
     return f"{v:.2f}".replace(".", ",")
 
 # --- marca Zion (símbolo Z em anel) ---
-ZION_Z = "27,30 73,30 73,38.5 41,61.5 73,61.5 73,70 27,70 27,61.5 59,38.5 27,38.5"   # polígono do Z (caixa 100 x 100)
+# ---------------------------------------------------------------------------------- marca Zion
+# Vetores reconstruídos a partir dos arquivos oficiais do logo (símbolo e logotipo horizontal).
+# Símbolo: caixa 100 x 100. Três blocos: barra superior com corte diagonal, bloco direito com faixa diagonal, barra inferior.
+ZION_SYMBOL = [
+    "0,0 100,0 100,12.5 93.4,12.5 74.1,25.5 0,25.5",
+    "74.1,25.5 100,25.5 100,62.7 49.4,62.7 31.2,75 0,75",
+    "0,87.7 74.5,87.7 100,68.9 100,100 0,100",
+]
+ZION_Z = ZION_SYMBOL   # compatibilidade
+# Logotipo horizontal em coordenadas do arquivo original (px): ZION | HOTEL GROUP / INTERNATIONAL. Caixa: x 104..975, y 439..640.
+LOGO_VB = (104, 439, 872, 202)          # viewBox do logotipo completo
+WORD_VB = (104, 481, 386, 96)           # viewBox só da palavra ZION
+LOGO_RATIO = LOGO_VB[2] / LOGO_VB[3]    # largura / altura
+_ZION_Z_POLY = "135,481 216,481 216,496 122,562 215,562 215,576 104,576 104,559 194,496 135,496"
+_ZION_N_POLYS = ["369,481 383,481 383,576 369,576", "373,481 394,481 486,576 463,576", "474,508 489,508 489,576 474,576"]
+
+def zion_symbol_paths(color, outline=False):
+    if outline:
+        return "".join(f'<polygon points="{p}" fill="none" stroke="{color}" stroke-width="2.5" stroke-linejoin="miter"/>' for p in ZION_SYMBOL)
+    return "".join(f'<polygon points="{p}" fill="{color}"/>' for p in ZION_SYMBOL)
+
+def zion_word_paths(color):
+    """letras ZION (coordenadas do arquivo original)."""
+    return (f'<polygon points="{_ZION_Z_POLY}" fill="{color}"/><rect x="232" y="481" width="15" height="95" fill="{color}"/>'
+            f'<circle cx="308" cy="528.5" r="39.75" fill="none" stroke="{color}" stroke-width="15.5"/>'
+            + "".join(f'<polygon points="{p}" fill="{color}"/>' for p in _ZION_N_POLYS))
+
+def zion_logo_paths(color, tagline=True):
+    """logotipo horizontal completo: ZION | HOTEL GROUP / INTERNATIONAL."""
+    s = zion_word_paths(color)
+    if tagline:
+        st = f"font-family:{FONT};font-weight:300;font-size:48px;letter-spacing:0.02em"
+        s += (f'<rect x="542" y="439" width="2.2" height="201" fill="{color}"/>'
+              f'<text x="597" y="516" fill="{color}" style="{st}" textLength="339" lengthAdjust="spacingAndGlyphs">HOTEL GROUP</text>'
+              f'<text x="597" y="576" fill="{color}" style="{st}" textLength="378" lengthAdjust="spacingAndGlyphs">INTERNATIONAL</text>')
+    return s
 
 def zion_mark(X, Y, size=32, color=GREEN, outline=False):
-    """símbolo Z da Zion em anel fino, canto superior esquerdo em (X, Y) px, lado 'size' px.
-    outline=True: versão wireframe (linha fina) para uso sobre fotografia."""
+    """símbolo Zion com canto superior esquerdo em (X, Y) px e lado 'size' px (para pranchas SVG)."""
     k = size / 100.0
-    if outline:
-        z = f'<polygon points="{ZION_Z}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>'
-    else:
-        z = f'<polygon points="{ZION_Z}" fill="{color}"/>'
-    return (f'<g transform="translate({X:.2f},{Y:.2f}) scale({k:.4f})">'
-            f'<circle cx="50" cy="50" r="46.5" fill="none" stroke="{color}" stroke-width="3.2"/>{z}</g>')
+    return f'<g transform="translate({X:.2f},{Y:.2f}) scale({k:.4f})">{zion_symbol_paths(color, outline)}</g>'
+
+def zion_logo(X, Y, h, color=GREEN, tagline=True):
+    """logotipo horizontal com canto superior esquerdo em (X, Y) px e altura h px; largura = h * LOGO_RATIO (ou h * 4,02 sem tagline)."""
+    vx, vy, vw, vh = LOGO_VB if tagline else WORD_VB
+    k = h / vh
+    return f'<g transform="translate({X:.2f},{Y:.2f}) scale({k:.4f}) translate({-vx},{-vy})">{zion_logo_paths(color, tagline)}</g>'
+
+def zion_logo_width(h, tagline=True):
+    vx, vy, vw, vh = LOGO_VB if tagline else WORD_VB
+    return h * vw / vh
 
 def zion_mark_html(size="1em", color="currentColor", outline=False, style=""):
-    """o mesmo símbolo como <svg> inline para capas e cabeçalhos HTML (herda a cor do texto por padrão)."""
-    z = (f'<polygon points="{ZION_Z}" fill="none" stroke="{color}" stroke-width="3" stroke-linejoin="round"/>' if outline
-         else f'<polygon points="{ZION_Z}" fill="{color}"/>')
+    """símbolo como <svg> inline para HTML (herda a cor do texto por padrão)."""
     return (f'<svg class="zmark" viewBox="0 0 100 100" width="{size}" height="{size}" style="vertical-align:-0.12em;{style}" aria-label="Zion">'
-            f'<circle cx="50" cy="50" r="46.5" fill="none" stroke="{color}" stroke-width="3.2"/>{z}</svg>')
+            f'{zion_symbol_paths(color, outline)}</svg>')
+
+def zion_logo_html(h="1em", color="currentColor", tagline=True, style=""):
+    """logotipo horizontal como <svg> inline (altura h; largura proporcional)."""
+    vx, vy, vw, vh = LOGO_VB if tagline else WORD_VB
+    return (f'<svg class="zlogo" viewBox="{vx} {vy} {vw} {vh}" height="{h}" style="width:auto;display:inline-block;{style}" aria-label="Zion Hotel Group International">'
+            f'{zion_logo_paths(color, tagline)}</svg>')
+
+def zion_symbol_svg(size, color):
+    """documento SVG autônomo do símbolo (rasterização para renders)."""
+    return (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{size}" height="{size}">{zion_symbol_paths(color)}</svg>')
 
 def zion_mark_lines(size=1.0):
-    """polilinhas do símbolo (caixa size x size, origem no canto inferior esquerdo, y para cima) para DXF: (circulo(cx, cy, r), poligono Z)."""
+    """polígonos do símbolo (caixa size x size, origem no canto inferior esquerdo, y para cima) para DXF."""
     k = size / 100.0
-    z = [(float(a) * k, (100 - float(b)) * k) for a, b in (q.split(",") for q in ZION_Z.split())]
-    return (50 * k, 50 * k, 46.5 * k), z
+    return [[(float(a) * k, (100 - float(b)) * k) for a, b in (q.split(",") for q in p.split())] for p in ZION_SYMBOL]
+
+def zion_word_lines(h=1.0):
+    """polígonos das letras Z, I, N e (cx, cy, r_ext, r_int) do O, em metros, altura h, origem no canto inferior esquerdo, y para cima (DXF)."""
+    k = h / 96.0
+    def P(s): return [((float(a) - 104) * k, (577 - float(b)) * k) for a, b in (q.split(",") for q in s.split())]
+    polys = [P(_ZION_Z_POLY), P("232,481 247,481 247,576 232,576")] + [P(p) for p in _ZION_N_POLYS]
+    return polys, ((308 - 104) * k, (577 - 528.5) * k, 47.5 * k, 32 * k)
 
 
 class Sheet:
@@ -147,11 +200,10 @@ class Sheet:
         self.add(f'<rect x="{X0}" y="{Y0}" width="{W}" height="{H}" fill="{CREAM}" stroke="{GREEN}" stroke-width="1.2"/>')
         self.add(f'<line x1="{X0 + 200}" y1="{Y0}" x2="{X0 + 200}" y2="{Y0 + H}" stroke="{GREEN}" stroke-width="0.8"/>')
         self.add(f'<line x1="{X0}" y1="{Y0 + 46}" x2="{X0 + W}" y2="{Y0 + 46}" stroke="{GREEN}" stroke-width="0.8"/>')
-        self.add(zion_mark(X0 + 14, Y0 + 8, 32, GREEN))
-        self.text_px(X0 + 58, Y0 + 26, "ZION", size=19, weight=800, spacing=0.35, anchor="start")
-        self.text_px(X0 + 58, Y0 + 39, "GLAMPING COLLECTION", size=7.5, weight=400, spacing=0.28, fill=EARTH, anchor="start")
+        self.add(zion_mark(X0 + 14, Y0 + 9, 28, GREEN))
+        self.add(zion_logo(X0 + 54, Y0 + 11, 24, GREEN))
         self.text_px(X0 + 100, Y0 + 68, product, size=12, weight=700, spacing=0.2)
-        self.text_px(X0 + 100, Y0 + 84, "ZION HOTEL GROUP INTERNATIONAL", size=7.5, spacing=0.2, fill=EARTH)
+        self.text_px(X0 + 100, Y0 + 84, "ZION GLAMPING COLLECTION", size=7.5, spacing=0.2, fill=EARTH)
         self.text_px(X0 + 214, Y0 + 22, title.upper(), size=14, weight=700, spacing=0.12, anchor="start")
         self.text_px(X0 + 214, Y0 + 38, subtitle, size=10, fill=EARTH, anchor="start")
         self.text_px(X0 + 214, Y0 + 66, f"ESCALA {scale_txt}", size=10, spacing=0.15, anchor="start")

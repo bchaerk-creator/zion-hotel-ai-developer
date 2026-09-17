@@ -3,7 +3,7 @@
 Uso: python3 build_product_book.py [--web] [--inline]
 Cada volume é montado por build_volume(vol, product) a partir do dicionário de configuração PRODUCTS[product]."""
 import os, sys, base64
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 from geometry import Cocoon, Zenith, Lodge
 from bom import cocoon_bom, zenith_bom, lodge_bom, ASSEMBLY
 from product_book_data import (cocoon_parts, zenith_parts, lodge_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS, LODGE_CONNECTIONS, PRICES, LABOR_RATES, labor_hours,
@@ -221,11 +221,11 @@ def scale_section(product):
 # ============================================================================= CONCEITOS (seção 01 de cada volume)
 def cocoon_concept(G, bom_):
     return f"""
-<p class="lead">Cabana orgânica premium em forma de casulo: uma concha contínua de membrana tensionada sobre oito pórticos elípticos, que se abre para a paisagem por um lábio inclinado e uma fachada de vidro de piso a cumeeira. Nada de escotilhas redondas nem túnel segmentado: a Casulo é uma semente, cheia na frente e afilada na cauda, com uma Espinha de Luz na cumeeira e seis Janelas Olho em lente.</p>
-{kv([("Comprimento do piso", "9,60 m (concha com lábio: 9,75 m)"), ("Largura máxima", "6,00 m (piso 5,86 m)"), ("Altura máxima", "4,20 m"), ("Área interna", f"{fmt(G.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck externo", "4,60 x 6,50 = 29,9 m²"), ("Área total", "78 m²"),
-     ("Programa", "Lounge com chaise e minibar, suíte king, banho completo com banheira na cauda, opção de hot tub no deck"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 contêiner 40' HC"), ("Estrutura", "Aço carbono galvanizado a fogo: 8 pórticos elípticos + terças + espinha + trilhos de base")])}
+<p class="lead">Cabana orgânica premium em forma de casulo: uma concha contínua de membrana tensionada sobre oito pórticos elípticos, que se abre para a paisagem por um Bico em balanço sobre o deck e uma fachada de vidro de piso a cumeeira. Nada de escotilhas redondas nem túnel segmentado: a Casulo é uma semente, cheia na frente e afilada na cauda, com uma Espinha de Luz na cumeeira e seis Janelas Olho em lente.</p>
+{kv([("Comprimento do piso", "9,60 m (concha com o Bico: 12,15 m)"), ("Largura máxima", "6,00 m (piso 5,86 m)"), ("Altura máxima", "4,20 m (ponta do Bico 4,42 m)"), ("Área interna", f"{fmt(G.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck externo", "4,60 x 6,50 = 29,9 m²"), ("Área total", "78 m²"),
+     ("Programa", "Lounge com chaise e mini cozinha (indução 2 bocas, forno, geladeira, air fryer), suíte king, banho completo com banheira na cauda, deck sob o Bico, opção de hot tub"), ("Peso embarcado", f"{fmt(bom_['total'], 0)} kg · 1 contêiner 40' HC"), ("Estrutura", "Aço carbono galvanizado a fogo: 8 pórticos elípticos + terças + espinha + trilhos de base")])}
 <h3>Inspiração e identidade proprietária</h3>
-<ul><li><strong>Casulo e concha:</strong> seção elíptica com centro a 0,75 m do piso, que abraça o chão e sobe sem quinas.</li><li><strong>Biomorfismo:</strong> planta em superelipse assimétrica (frente n = 4, cauda n = 3): a forma de uma semente, reconhecível em planta e em silhueta.</li><li><strong>Lábio frontal:</strong> anel de fachada inclinado 8°, avançando 0,60 m sobre o deck: beiral, sombra e a expressão de abertura.</li><li><strong>Espinha de Luz:</strong> claraboia contínua de 0,70 x 4,70 m sobre a cama e o estar.</li><li><strong>Janelas Olho:</strong> lentes 1,60 x 0,95 m com requadros profundos de madeira laminada.</li></ul>
+<ul><li><strong>Casulo e concha:</strong> seção elíptica com centro a 0,75 m do piso, que abraça o chão e sobe sem quinas.</li><li><strong>Biomorfismo:</strong> planta em superelipse assimétrica (frente n = 4, cauda n = 3): a forma de uma semente, reconhecível em planta e em silhueta.</li><li><strong>Bico:</strong> a membrana continua 2,40 m além do anel frontal, em balanço sobre o deck, com a ponta erguida a 4,42 m: abrigo, sombra e a expressão de asa.</li><li><strong>Espinha de Luz:</strong> claraboia contínua de 0,70 x 4,70 m sobre a cama e o estar.</li><li><strong>Janelas Olho:</strong> lentes 1,60 x 0,95 m com requadros profundos de madeira laminada.</li></ul>
 <p>As geometrias são definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code>; recomenda-se o registro de desenho industrial das duas formas e das marcas ZION CASULO e ZION SAFARI.</p>"""
 
 def zenith_concept(G, bom_):
@@ -509,7 +509,7 @@ tfoot td{font-weight:700;background:var(--paper)} table.kv th{width:32%}
 
 cover = """
 <section id="cover"><div class="cover">
- <div class="z">""" + zion_mark_html("0.95em", style="margin-right:.5em") + """ZION</div><span class="sub">GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
+ <div class="z" style="display:flex;align-items:center">""" + zion_mark_html("13mm", style="margin-right:6mm") + zion_logo_html("13mm") + """</div><span class="sub">ZION GLAMPING COLLECTION · ARCHITECTURAL PRODUCT BOOK</span>
  <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span><span class="line"></span><span>LODGE 38</span></div>
  <h1>Sistema construtivo industrializado, modular e desmontável para três cabanas exclusivas da Zion</h1>
  <p class="lead">Master plan de produto: conceito, plantas, engenharia da estrutura metálica peça a peça, sistema de encaixe, camadas construtivas, memorial, Bill of Materials com quantidades estimadas, manual de montagem, recursos de fabricação, cronograma e análise de escala industrial. Primeiro a ZION CASULO, depois a ZION SAFARI e, por fim, a ZION LODGE 38.</p>
@@ -539,7 +539,7 @@ for vol, product in VOLUMES:
 
 HTML = f"""<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Zion Architectural Product Book · Casulo, Safari e Lodge 38</title><style>{CSS}</style></head>
-<body><div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div></body></html>"""
+<body><div class="wrap"><nav><div class="z">{zion_mark_html("0.95em", style="margin-right:.5em")}ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div></body></html>"""
 out = os.path.join(ROOT, ("_print_" if (WEB and not INLINE) else "") + "ZION_ARCHITECTURAL_PRODUCT_BOOK" + ("_standalone" if INLINE else "") + ".html")
 if INLINE:   # versão para publicação em página única (sem esqueleto html/head/body; título e estilo no topo)
     HTML = f"""<title>Zion Architectural Product Book</title>\n<style>{CSS}</style>\n<div class="wrap"><nav><div class="z">ZION</div><span class="sub">ARCHITECTURAL PRODUCT BOOK</span><a href="#cover"><b>00</b>Capa</a><a href="#intro"><b>00</b>Como ler</a>{nav}</nav><main>{body}</main></div>"""

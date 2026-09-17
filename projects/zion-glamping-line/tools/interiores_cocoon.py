@@ -15,11 +15,11 @@ DOC = "ZC-INT-001"
 
 # ---------------------------------------------------------------------------- programa de marcenaria acoplada (MA) e mobiliário solto (MS)
 MA = [
-    dict(cod="MA-01", nome="Ilha do Café / minibar", x1=1.20, x2=2.60, y1=2.15, y2=2.80, h=0.90, amb="Estar", ffe="M09 · E01 · E02",
-         desc="Gabinete acoplado à curva da concha (fundo recortado conforme a seção): frigobar 90 L embutido, gaveta de cápsulas, cuba Ø0,30 com torneira, tampo em quartzito 30 mm, prateleira flutuante 1,40 x 0,25 a 1,45 m com fita LED",
-         mat="Carvalho natural (portas ripadas) · quartzito · latão escovado"),
-    dict(cod="MA-02", nome="Armário baixo / closet embutido", x1=3.10, x2=4.50, y1=2.20, y2=2.85, h=1.50, amb="Estar / suíte", ffe="M10 · E03",
-         desc="Armário de 1,40 m com 2 portas ripadas, cabideiro 1,00 m, 3 prateleiras, gaveta e cofre; tampo em pedra com bandeja; tampo posterior inclinado acompanhando a concha",
+    dict(cod="MA-01", nome="Mini cozinha acoplada", x1=1.20, x2=3.20, y1=2.15, y2=2.80, h=0.90, amb="Estar", ffe="M18 · E13 · E14 · E15 · E16 · E17 · E02",
+         desc="Gabinete de 2,00 m acoplado à curva da concha (fundo recortado conforme a seção), em 4 módulos de 0,60 / 0,60 / 0,40 / 0,40: geladeira 120 L sob bancada · forno elétrico compacto 45 L sob o cooktop de indução 2 bocas · cuba 0,40 x 0,35 com torneira gourmet sobre gaveteiro · bancada de preparo com air fryer em nicho e lixeira embutida; tampo em quartzito 30 mm; prateleira flutuante 2,00 x 0,25 a 1,45 m com fita LED e depurador slim 60 cm (filtro de carvão) sob a prateleira; cafeteira e chaleira sobre o tampo",
+         mat="Carvalho natural (portas ripadas) · quartzito · latão escovado · inox"),
+    dict(cod="MA-02", nome="Armário baixo / closet embutido", x1=3.40, x2=4.50, y1=2.20, y2=2.85, h=1.50, amb="Estar / suíte", ffe="M10 · E03",
+         desc="Armário de 1,10 m com 2 portas ripadas, cabideiro 0,80 m, 3 prateleiras, gaveta e cofre; tampo em pedra com bandeja; tampo posterior inclinado acompanhando a concha",
          mat="Carvalho natural · ripado termotratado · quartzito"),
     dict(cod="MA-03", nome="Cabeceira acoplada com criados suspensos", x1=6.42, x2=6.60, y1=-1.55, y2=1.55, h=1.30, amb="Suíte", ffe="M02 · M03 · M16 · F01",
          desc="Painel curvo estofado em linho 2,60 x 1,30 m fixado à parede do banho, criados suspensos 0,60 x 0,50 a 0,15 m do piso (gaveta com toque), arandelas de leitura, USB e LED de retroiluminação; ripado termotratado da cabeceira até o forro (2,60 m)",
@@ -46,13 +46,13 @@ MS = [
     dict(cod="MS-03", nome="Chaise de contemplação", dims="1,60 x 0,80 x 0,45", amb="Estar", ffe="M06", pos="junto à fachada de vidro, lado direito"),
     dict(cod="MS-04", nome="Poltrona de leitura", dims="0,70 x 0,70 x 0,75", amb="Estar", ffe="M07", pos="sob o Olho do estar (dir.)"),
     dict(cod="MS-05", nome="Mesa lateral", dims="Ø0,56 x 0,45", amb="Estar", ffe="M08", pos="entre a chaise e a poltrona"),
-    dict(cod="MS-06", nome="Luminária de piso · de mesa", dims="—", amb="Estar", ffe="F02 · F03", pos="ao lado da poltrona · sobre MA-01"),
+    dict(cod="MS-06", nome="Luminária de piso · de mesa", dims="—", amb="Estar", ffe="F02 · F03", pos="ao lado da poltrona · sobre MA-02"),
     dict(cod="MS-07", nome="Tapetes de lã", dims="2,00 x 3,00 · 1,60 x 2,30", amb="Estar · suíte", ffe="F04 · F05", pos="sob a chaise/poltrona · sob a cama"),
     dict(cod="MS-08", nome="Lareira ecológica", dims="0,60 x 0,30 x 0,35", amb="Estar", ffe="E08", pos="sobre MA-02 (opcional)"),
     dict(cod="MS-09", nome="Banqueta e bandeja da banheira", dims="0,45 x 0,30 x 0,45", amb="Banho", ffe="B02", pos="ao lado da banheira"),
 ]
 ACAB = [("Vestíbulo", "cumaru 20 x 140 (deck)", "—", "membrana / vidro", "membrana", "—"),
-        ("Estar", "carvalho de engenharia 14 mm, réguas no sentido x", "ripado técnico 150 mm", "forro tensionado Trevira CS creme · ripado junto ao piso", "tensionado creme, Espinha de Luz", "MA-01 · MA-02"),
+        ("Estar", "carvalho de engenharia 14 mm, réguas no sentido x", "ripado técnico 150 mm", "forro tensionado Trevira CS creme · ripado junto ao piso · frontão em quartzito atrás do cooktop", "tensionado creme, Espinha de Luz", "MA-01 mini cozinha · MA-02"),
         ("Suíte", "carvalho de engenharia 14 mm", "ripado técnico 150 mm", "ripado termotratado na cabeceira", "tensionado creme", "MA-03"),
         ("Banho", "porcelanato 60 x 120 antiderrapante, paginação longitudinal", "porcelanato h 10 cm", "porcelanato na zona molhada · ripado nas demais", "forro naval pintado, 2,40 m", "MA-04 a MA-06"),
         ("Deck", "cumaru 20 x 140, réguas ⟂ à fachada", "—", "—", "—", "—")]
@@ -117,13 +117,16 @@ def in01():
         if m["cod"] in ("MA-07", "MA-08"): continue
         hatch_rect(sh, m["x1"], m["y1"], m["x2"], m["y2"])
     sh.rect(5.95, 1.05, 6.42, 1.55, fill=sh.pattern("wood"), stroke=GREEN, sw=0.8); sh.rect(5.95, -1.55, 6.42, -1.05, fill=sh.pattern("wood"), stroke=GREEN, sw=0.8)   # criados suspensos
-    sh.circle(2.15, 2.47, 0.15, fill="#FFFFFF", stroke=GREEN, sw=0.7)   # cuba do café
-    sh.rect(1.25, 2.2, 1.75, 2.75, fill="none", stroke=GREEN, sw=0.5, dash="2 2"); sh.text(1.5, 2.47, "FRIG.", 6.5, GREEN, dy=2)
+    # mini cozinha MA-01: geladeira | forno + cooktop | cuba | preparo + air fryer
+    sh.rect(1.25, 2.2, 1.75, 2.75, fill="none", stroke=GREEN, sw=0.5, dash="2 2"); sh.text(1.5, 2.47, "GELAD.", 6.5, GREEN, dy=2)
+    sh.rect(1.85, 2.3, 2.35, 2.72, fill="#FFFFFF", stroke=GREEN, sw=0.6); sh.circle(1.98, 2.51, 0.09, fill="none", stroke=GREEN, sw=0.6); sh.circle(2.22, 2.51, 0.11, fill="none", stroke=GREEN, sw=0.6); sh.text(2.1, 2.2, "cooktop / forno", 5.5, GREEN)
+    sh.rect(2.42, 2.3, 2.78, 2.65, fill="#FFFFFF", stroke=GREEN, sw=0.7); sh.text(2.6, 2.47, "cuba", 5.5, GREEN, dy=2)
+    sh.rect(2.85, 2.3, 3.15, 2.7, fill="none", stroke=GREEN, sw=0.5, dash="2 2"); sh.text(3.0, 2.47, "AIR FR.", 5.5, GREEN, dy=2)
     sh.circle(7.02, -1.3, 0.19, fill="#FFFFFF", stroke=GREEN, sw=0.8)   # cuba esculpida
     sh.rect(7.0, -0.3, 7.6, 0.3, fill="none", stroke=GREEN, sw=0.6, dash="3 2"); sh.text(7.3, 0.0, "MA-08", 6.5, GREEN, dy=2)
     sh.line(7.65, -1.75, 7.65, -0.8, GLASS, 4); sh.line(7.65, -1.75, 7.65, -0.8, GREEN, 0.8)
     # etiquetas
-    for m, (tx, ty) in zip([m for m in MA if m["cod"] not in ("MA-07", "MA-08")], [(1.9, 1.85), (3.8, 1.85), (6.9, 2.15), (6.4, -2.5), (8.9, 1.25), (7.9, 2.2)]):
+    for m, (tx, ty) in zip([m for m in MA if m["cod"] not in ("MA-07", "MA-08")], [(2.2, 1.85), (3.95, 1.85), (6.9, 2.15), (6.4, -2.5), (8.9, 1.25), (7.9, 2.2)]):
         tag(sh, tx, ty, m["cod"])
     for code, (tx, ty) in (("MS-01", (5.5, 0.0)), ("MS-02", (4.25, -1.0)), ("MS-03", (1.95, -2.55)), ("MS-04", (3.55, -2.55)), ("MS-05", (1.95, -0.55)), ("MS-09", (8.5, -0.9))):
         tag(sh, tx, ty, code)
@@ -131,7 +134,7 @@ def in01():
     for (x1, x2, y, lab) in ((1.0, 4.4, 0.55, "circulação 1,05"), (4.5, 6.4, 1.6, "passagem 0,60"), (4.5, 6.4, -1.6, "passagem 0,60")):
         sh.line(x1, y, x2, y, EARTH, 0.7, dash="6 3"); sh.text((x1 + x2) / 2, y + 0.12, lab, 7.5, EARTH)
     # cotas do mobiliário
-    sh.dim(1.2, 3.0, 2.6, 3.0, 0.3, label="1,40 · MA-01", size=9); sh.dim(3.1, 3.0, 4.5, 3.0, 0.3, label="1,40 · MA-02", size=9); sh.dim(2.6, 3.0, 3.1, 3.0, 0.3, label="0,50", size=9)
+    sh.dim(1.2, 3.0, 3.2, 3.0, 0.3, label="2,00 · MA-01", size=9); sh.dim(3.4, 3.0, 4.5, 3.0, 0.3, label="1,10 · MA-02", size=9); sh.dim(3.2, 3.0, 3.4, 3.0, 0.3, label="0,20", size=9)
     sh.dim(4.5, -3.3, 6.55, -3.3, -0.3, label="2,05 · cama", size=9); sh.dim(6.75, -2.05, 6.75, -0.55, 3.35, label="1,50 · MA-04", size=9)
     sh.dim(7.55, -3.3, 9.15, -3.3, -0.3, label="1,60 · banheira", size=9); sh.dim(1.15, -3.3, 2.75, -3.3, -0.3, label="1,60 · chaise", size=9)
     sh.dim(0.9, 3.4, 6.6, 3.4, 0.7, label="5,70 · estar + suíte"); sh.dim(6.6, 3.4, 9.4, 3.4, 0.7, label="2,80 · banho")
@@ -253,16 +256,22 @@ def elev_B(sh):
     sh.poly(poly, fill="#F6F1E8", stroke=GREEN, sw=1.4)
     sh.line(0.9, 0, C.shear(0.9, 3.9), 3.9, GREEN, 1.4)   # fachada inclinada
     sh.rect(0.9, 0, 6.6, 0.15, fill=WOOD2, stroke=GREEN, sw=0.5)   # rodapé técnico
-    # MA-01 ilha do café
-    sh.rect(1.2, 0.15, 2.6, 0.9, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.rect(1.2, 0.87, 2.6, 0.9, fill=STONE, stroke=GREEN, sw=0.5)
-    sh.rect(1.25, 0.15, 1.75, 0.85, fill="none", stroke=GREEN, sw=0.5, dash="2 2"); sh.text(1.5, 0.5, "frig.", 7, GREEN)
-    sh.line(1.8, 0.15, 1.8, 0.85, GREEN, 0.4); sh.line(2.2, 0.15, 2.2, 0.85, GREEN, 0.4); sh.line(1.8, 0.7, 2.6, 0.7, GREEN, 0.4)
-    sh.rect(1.2, 1.45, 2.6, 1.5, fill=WOOD2, stroke=GREEN, sw=0.6); sh.line(1.2, 1.45, 2.6, 1.45, "#FFF3C4", 3)
-    sh.circle(1.6, 1.15, 0.09, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.rect(2.05, 0.9, 2.35, 1.2, fill="none", stroke=GREEN, sw=0.5)   # xícaras / cafeteira
+    # MA-01 mini cozinha: geladeira | forno + cooktop | cuba sobre gaveteiro | preparo + air fryer, lixeira
+    sh.rect(1.2, 0.15, 3.2, 0.9, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.rect(1.2, 0.87, 3.2, 0.9, fill=STONE, stroke=GREEN, sw=0.5)
+    sh.rect(1.25, 0.15, 1.75, 0.85, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.text(1.5, 0.5, "geladeira 120 L", 6.5, GREEN)
+    sh.rect(1.85, 0.25, 2.35, 0.83, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.rect(1.9, 0.32, 2.3, 0.72, fill="none", stroke=GREEN, sw=0.4); sh.text(2.1, 0.5, "forno 45 L", 6.5, GREEN)
+    sh.rect(1.85, 0.9, 2.35, 0.93, fill=STEEL, stroke="none"); sh.text(2.1, 1.0, "cooktop indução 2 bocas", 6, GREEN)
+    sh.rect(2.42, 0.15, 2.78, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.line(2.42, 0.5, 2.78, 0.5, GREEN, 0.4); sh.text(2.6, 0.32, "gaveteiro", 6, GREEN)
+    sh.line(2.6, 0.9, 2.6, 1.15, BRASS, 2); sh.line(2.6, 1.15, 2.72, 1.15, BRASS, 2)
+    sh.rect(2.85, 0.15, 3.15, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.text(3.0, 0.5, "lixeira", 6, GREEN)
+    sh.rect(2.86, 0.9, 3.16, 1.22, fill="#E8E4DC", stroke=GREEN, sw=0.6); sh.text(3.01, 1.06, "air fryer", 6, GREEN)
+    sh.rect(1.2, 1.45, 3.2, 1.5, fill=WOOD2, stroke=GREEN, sw=0.6); sh.line(1.2, 1.45, 3.2, 1.45, "#FFF3C4", 3)
+    sh.rect(1.8, 1.36, 2.4, 1.45, fill="#D9D9D6", stroke=GREEN, sw=0.5); sh.text(2.1, 1.3, "depurador slim 60", 5.5, GREEN)
+    sh.rect(1.28, 0.9, 1.5, 1.14, fill="none", stroke=GREEN, sw=0.5); sh.circle(1.65, 1.05, 0.06, fill="#FFFFFF", stroke=GREEN, sw=0.5)   # cafeteira / chaleira
     # MA-02 armário
-    sh.rect(3.1, 0.15, 4.5, 1.5, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.line(3.8, 0.15, 3.8, 1.5, GREEN, 0.5)
-    for xv in [3.15 + i * 0.05 for i in range(27)]: sh.line(xv, 0.2, xv, 1.45, "#A8865E", 0.3)
-    sh.rect(3.1, 1.47, 4.5, 1.5, fill=STONE, stroke=GREEN, sw=0.5)
+    sh.rect(3.4, 0.15, 4.5, 1.5, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.line(3.95, 0.15, 3.95, 1.5, GREEN, 0.5)
+    for xv in [3.45 + i * 0.05 for i in range(21)]: sh.line(xv, 0.2, xv, 1.45, "#A8865E", 0.3)
+    sh.rect(3.4, 1.47, 4.5, 1.5, fill=STONE, stroke=GREEN, sw=0.5)
     # Olhos esquerdos (JO2 x 3,40 · JO3 x 5,70)
     for (xc, rx, ry, zc) in ((3.4, 0.8, 0.475, 1.5), (5.7, 0.7, 0.4, 1.45)):
         sh.add(f'<ellipse cx="{sh.X(xc):.1f}" cy="{sh.Y(zc):.1f}" rx="{rx * sh.s:.1f}" ry="{ry * sh.s:.1f}" fill="{GLASS}" stroke="{GREEN}" stroke-width="0.9"/>')
@@ -272,9 +281,9 @@ def elev_B(sh):
     sh.rect(5.95, 0.15, 6.42, 0.65, fill=sh.pattern("wood"), stroke=GREEN, sw=0.7); sh.rect(4.05, 0.15, 4.45, 0.45, fill=SAND, stroke=GREEN, sw=0.6)
     # forro / espinha
     sh.rect(1.9, 3.75, 6.6, 3.85, fill=GLASS, stroke=GREEN, sw=0.6); sh.text(4.2, 3.95, "Espinha de Luz 0,70 x 4,70 (no forro)", 7.5, GREEN)
-    sh.dim(1.2, -0.3, 2.6, -0.3, -0.35, label="1,40 · MA-01", size=9); sh.dim(3.1, -0.3, 4.5, -0.3, -0.35, label="1,40 · MA-02", size=9); sh.dim(0.9, -0.3, 6.6, -0.3, -0.95, label="5,70", size=9)
+    sh.dim(1.2, -0.3, 3.2, -0.3, -0.35, label="2,00 · MA-01", size=9); sh.dim(3.4, -0.3, 4.5, -0.3, -0.35, label="1,10 · MA-02", size=9); sh.dim(0.9, -0.3, 6.6, -0.3, -0.95, label="5,70", size=9)
     sh.dim(7.0, 0, 7.0, 0.9, 0.0, label="0,90", size=9); sh.dim(7.0, 0, 7.0, 1.5, 0.5, label="1,50", size=9); sh.dim(7.0, 0, 7.0, 3.9, 1.0, label="3,90 · pé-direito no eixo", size=9)
-    sh.leader(1.9, 1.45, 1.0, 2.6, "prateleira flutuante com LED", 8.5, anchor="end"); sh.leader(3.8, 1.0, 3.0, 2.6, "portas ripadas · cofre · cabideiro", 8.5, anchor="end")
+    sh.leader(1.9, 1.45, 1.0, 2.6, "prateleira flutuante com LED e depurador", 8.5, anchor="end"); sh.leader(3.95, 1.0, 3.3, 2.6, "portas ripadas · cofre · cabideiro", 8.5, anchor="end")
     sh.leader(3.4, 1.98, 4.6, 2.9, "Janela Olho JO2 1,60 x 0,95 · requadro madeira", 8.5); sh.leader(0.95, 2.6, 0.3, 3.2, "anel de vidro inclinado 8°", 8.5, anchor="end")
 
 def elev_C(sh):
@@ -318,18 +327,18 @@ def elev_D(sh):
     sh.rect(-2.2, 0.15, -1.6, 0.9, fill=sh.pattern("wood"), stroke=GREEN, sw=0.8); sh.rect(-2.2, 0.87, -1.6, 0.9, fill=STONE, stroke=GREEN, sw=0.5)
     sh.rect(-2.75, 0, 2.75, 0.15, fill=WOOD2, stroke=GREEN, sw=0.5)
     sh.dim(-2.75, -0.3, 2.75, -0.3, -0.35, label="5,50 · vão do anel de vidro no piso", size=9); sh.dim(3.2, 0, 3.2, 2.4, 0.0, label="2,40", size=9); sh.dim(3.2, 0, 3.2, 4.1, 0.5, label="4,10", size=9)
-    sh.leader(1.85, 0.3, 2.9, 1.6, "MS-03 chaise junto ao vidro", 8.5); sh.leader(-1.9, 0.5, -2.9, 1.6, "MA-01 ilha do café", 8.5, anchor="end")
+    sh.leader(1.85, 0.3, 2.9, 1.6, "MS-03 chaise junto ao vidro", 8.5); sh.leader(-1.9, 0.5, -2.9, 1.6, "MA-01 mini cozinha", 8.5, anchor="end")
     sh.leader(0.0, 3.9, 0.8, 3.5, "anel de alumínio bronze RPT", 8.5)
 
 def in03():
     sh = Sheet(1600, 1000, scale=95, ox=400, oy=520)
-    sh.header("Zion Casulo · Elevações internas A e B", "A · parede da cabeceira (olhar +x) · B · lateral esquerda: Ilha do Café, armário e Olhos (olhar +y) · 1:40")
+    sh.header("Zion Casulo · Elevações internas A e B", "A · parede da cabeceira (olhar +x) · B · lateral esquerda: mini cozinha, armário e Olhos (olhar +y) · 1:40")
     sh.text_px(400, 105, "ELEVAÇÃO A · CABECEIRA · x = 6,60", size=11, weight=700, spacing=0.25)
     elev_A(sh)
     sh.ox, sh.oy, sh.s = 830, 520, 95
     sh.text_px(1190, 105, "ELEVAÇÃO B · LATERAL ESQUERDA · y = +2,90", size=11, weight=700, spacing=0.25)
     elev_B(sh)
-    sh.title_block("ZION CASULO", "Elevações internas A e B", "1:40 (A1) · cotas em metros", "IN-03", "Cabeceira acoplada MA-03 · Ilha do Café MA-01 · armário MA-02")
+    sh.title_block("ZION CASULO", "Elevações internas A e B", "1:40 (A1) · cotas em metros", "IN-03", "Cabeceira acoplada MA-03 · mini cozinha MA-01 · armário MA-02")
     sh.save(os.path.join(OUT, "IN-03_elevacoes_A_B.svg"))
 
 def in04():
@@ -346,28 +355,34 @@ def in04():
 # ============================================================================ IN-05 detalhes da marcenaria acoplada
 def in05():
     sh = Sheet(1600, 1000, scale=150, ox=120, oy=380)
-    sh.header("Zion Casulo · Detalhes da marcenaria acoplada", "MA-01 Ilha do Café · MA-03 cabeceira e criados · MA-04 bancada do banho · MA-02 armário na curva · 1:20 e 1:10")
-    # ---- MA-01 corte (1:20)
-    sh.text_px(120, 105, "MA-01 · ILHA DO CAFÉ · CORTE 1:20", size=10, weight=700, spacing=0.2, anchor="start")
+    sh.header("Zion Casulo · Detalhes da marcenaria acoplada", "MA-01 mini cozinha · MA-03 cabeceira e criados · MA-04 bancada do banho · MA-02 armário na curva · 1:20 e 1:10")
+    # ---- MA-01 corte (1:20) no módulo do forno + cooktop
+    sh.text_px(120, 105, "MA-01 · MINI COZINHA · CORTE 1:20 (módulo forno + cooktop)", size=10, weight=700, spacing=0.2, anchor="start")
     sh.rect(0, 0.1, 0.65, 0.87, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.rect(-0.02, 0.87, 0.67, 0.90, fill=STONE, stroke=GREEN, sw=0.8)
-    sh.rect(0.05, 0.12, 0.55, 0.82, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.text(0.3, 0.5, "frigobar 90 L", 7, GREEN); sh.text(0.3, 0.4, "embutido, ventilado", 6.5, EARTH)
+    sh.rect(0.05, 0.25, 0.6, 0.83, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.text(0.32, 0.56, "forno elétrico 45 L", 7, GREEN); sh.text(0.32, 0.46, "nicho ventilado (grelha no rodapé)", 6.5, EARTH)
+    sh.rect(0.08, 0.9, 0.6, 0.94, fill=STEEL, stroke="none"); sh.text(0.34, 0.99, "cooktop de indução 2 bocas embutido no tampo", 6.5, GREEN)
+    sh.rect(0.1, 1.31, 0.62, 1.42, fill="#D9D9D6", stroke=GREEN, sw=0.5); sh.text(0.36, 1.27, "depurador slim 60 (carvão ativado)", 6, EARTH)
     sh.rect(0.08, 0.02, 0.52, 0.1, fill=WOOD2, stroke=GREEN, sw=0.5); sh.text(0.3, -0.08, "rodapé recuado 80 mm", 6.5, EARTH)
     # fundo recortado conforme a concha
     sec = [(y - 2.15, z) for (y, z) in _inner_yz(1.9) if 2.0 <= y <= 2.9 and z <= 1.7]
     sh.poly(sec, close=False, stroke=GREEN, sw=1.4); sh.text(0.62, 1.55, "concha (forro interno)", 7, GREEN, rotate=-80)
     sh.rect(0.35, 1.45, 0.6, 1.5, fill=WOOD2, stroke=GREEN, sw=0.6); sh.line(0.35, 1.45, 0.6, 1.45, "#FFF3C4", 3); sh.text(0.3, 1.58, "prateleira 250 mm + LED", 6.5, EARTH)
     sh.dim(0, -0.25, 0.65, -0.25, -0.15, label="0,65", size=8); sh.dim(0.9, 0.1, 0.9, 0.9, 0.0, label="0,90", size=8); sh.dim(0.9, 0.1, 0.9, 1.5, 0.35, label="1,50", size=8)
-    sh.leader(0.3, 0.885, -0.1, 1.15, "tampo quartzito 30 mm, borda reta", 7.5, anchor="end"); sh.leader(0.58, 0.5, 0.95, 0.6, "fundo recortado, fixado nos arcos A1-A2 por cantoneiras", 7.5)
+    sh.leader(0.3, 0.885, -0.1, 1.15, "tampo quartzito 30 mm, borda reta", 7.5, anchor="end"); sh.leader(0.62, 0.5, 0.95, 0.6, "fundo recortado, fixado nos arcos A1-A2 por cantoneiras", 7.5)
     # ---- MA-01 vista (1:20)
-    sh.ox, sh.oy = 520, 380
-    sh.text_px(520, 105, "MA-01 · VISTA FRONTAL 1:20", size=10, weight=700, spacing=0.2, anchor="start")
-    sh.rect(0, 0.1, 1.4, 0.87, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.rect(-0.02, 0.87, 1.42, 0.9, fill=STONE, stroke=GREEN, sw=0.8)
-    sh.rect(0.05, 0.12, 0.55, 0.85, fill="none", stroke=GREEN, sw=0.5, dash="2 2"); sh.text(0.3, 0.5, "frigobar", 7, GREEN)
-    sh.rect(0.6, 0.12, 1.0, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.line(0.6, 0.55, 1.0, 0.55, GREEN, 0.4); sh.text(0.8, 0.7, "gaveta cápsulas", 6.5, GREEN); sh.text(0.8, 0.33, "porta ripada", 6.5, GREEN)
-    sh.rect(1.05, 0.12, 1.35, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.text(1.2, 0.5, "lixeira", 6.5, GREEN)
-    sh.circle(0.95, 0.9, 0.15, fill="#FFFFFF", stroke=GREEN, sw=0.6); sh.line(0.95, 0.9, 0.95, 1.12, BRASS, 2)
-    sh.rect(0, 1.42, 1.4, 1.47, fill=WOOD2, stroke=GREEN, sw=0.6); sh.line(0, 1.42, 1.4, 1.42, "#FFF3C4", 3)
-    sh.dim(0, -0.25, 1.4, -0.25, -0.15, label="1,40", size=8); sh.dim(0, -0.25, 0.6, -0.25, 0.12, label="0,60", size=8); sh.dim(0.6, -0.25, 1.0, -0.25, 0.12, label="0,40", size=8)
+    sh.ox, sh.oy = 480, 380
+    sh.text_px(480, 105, "MA-01 · MINI COZINHA · VISTA FRONTAL 1:20", size=10, weight=700, spacing=0.2, anchor="start")
+    sh.rect(0, 0.1, 2.0, 0.87, fill=sh.pattern("wood"), stroke=GREEN, sw=0.9); sh.rect(-0.02, 0.87, 2.02, 0.9, fill=STONE, stroke=GREEN, sw=0.8)
+    sh.rect(0.03, 0.12, 0.57, 0.85, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.text(0.3, 0.55, "geladeira 120 L", 6.5, GREEN); sh.text(0.3, 0.42, "sob bancada, porta ripada", 6, EARTH)
+    sh.rect(0.63, 0.25, 1.17, 0.83, fill="#FFFFFF", stroke=GREEN, sw=0.5); sh.rect(0.68, 0.32, 1.12, 0.72, fill="none", stroke=GREEN, sw=0.4); sh.text(0.9, 0.55, "forno 45 L", 6.5, GREEN); sh.rect(0.63, 0.12, 1.17, 0.22, fill="none", stroke=GREEN, sw=0.4); sh.text(0.9, 0.15, "gaveta", 5.5, GREEN)
+    sh.rect(0.65, 0.9, 1.15, 0.93, fill=STEEL, stroke="none"); sh.text(0.9, 1.0, "cooktop 2 bocas", 6, GREEN)
+    sh.rect(1.22, 0.12, 1.58, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.line(1.22, 0.5, 1.58, 0.5, GREEN, 0.4); sh.text(1.4, 0.66, "gaveta", 6, GREEN); sh.text(1.4, 0.3, "gaveta", 6, GREEN)
+    sh.rect(1.24, 0.87, 1.56, 0.9, fill="#FFFFFF", stroke=GREEN, sw=0.6); sh.line(1.4, 0.9, 1.4, 1.15, BRASS, 2); sh.line(1.4, 1.15, 1.52, 1.15, BRASS, 2); sh.text(1.4, 0.8, "cuba 0,40 x 0,35", 5.5, GREEN)
+    sh.rect(1.63, 0.12, 1.97, 0.85, fill="none", stroke=GREEN, sw=0.5); sh.text(1.8, 0.5, "lixeira", 6, GREEN)
+    sh.rect(1.64, 0.9, 1.96, 1.22, fill="#E8E4DC", stroke=GREEN, sw=0.6); sh.text(1.8, 1.06, "air fryer", 6, GREEN)
+    sh.rect(0.6, 1.31, 1.2, 1.42, fill="#D9D9D6", stroke=GREEN, sw=0.5); sh.text(0.9, 1.27, "depurador", 5.5, EARTH)
+    sh.rect(0, 1.42, 2.0, 1.47, fill=WOOD2, stroke=GREEN, sw=0.6); sh.line(0, 1.42, 2.0, 1.42, "#FFF3C4", 3)
+    sh.dim(0, -0.25, 2.0, -0.25, -0.15, label="2,00", size=8); sh.dim(0, -0.25, 0.6, -0.25, 0.12, label="0,60", size=8); sh.dim(0.6, -0.25, 1.2, -0.25, 0.12, label="0,60", size=8); sh.dim(1.2, -0.25, 1.6, -0.25, 0.12, label="0,40", size=8); sh.dim(1.6, -0.25, 2.0, -0.25, 0.12, label="0,40", size=8)
     # ---- MA-03 cabeceira corte (1:10)
     sh.ox, sh.oy, sh.s = 1130, 420, 130
     sh.text_px(960, 105, "MA-03 · CABECEIRA E CRIADO SUSPENSO · CORTE 1:15", size=10, weight=700, spacing=0.2, anchor="start")
@@ -405,7 +420,7 @@ def in05():
     sh.text_px(X0, Y0, "NOTAS DE MARCENARIA ACOPLADA", size=10, weight=700, spacing=0.25, anchor="start")
     notes = ["Toda a marcenaria MA é fabricada em fábrica, montada e acabada antes do embarque; em campo só se nivela e se fixa.", "Fixação à estrutura: cantoneiras de aço galvanizado parafusadas aos arcos (nunca à membrana); fundos recortados com folga de 15 mm para a concha e fechados com perfil de EPDM.",
              "Madeira: carvalho natural em lâmina sobre MDF naval 18 mm; ripado termotratado 20 x 40; verniz PU fosco 2 demãos.", "Pedra: quartzito 30 mm, bordas retas polidas; cubas esculpidas com impermeabilização de fábrica.",
-             "Ferragens: dobradiças e corrediças com amortecimento; puxadores cava ou em latão escovado; fitas LED 2700 K IP20 (IP65 no banho) com perfil difusor.", "Elétrica embutida na marcenaria: tomadas e USB nos criados e na ilha; passagem pelo rodapé técnico MA-07.",
+             "Ferragens: dobradiças e corrediças com amortecimento; puxadores cava ou em latão escovado; fitas LED 2700 K IP20 (IP65 no banho) com perfil difusor.", "Elétrica embutida na marcenaria: cooktop (C13, 20 A) e forno (C14, 16 A) em circuitos dedicados, tomadas da mini cozinha (C5), USB nos criados; passagem pelo rodapé técnico MA-07; cuba com AF/AQ Ø20 e sifão Ø50.",
              "Tolerâncias: ± 3 mm nas dimensões; conferência com gabarito da seção da concha antes da fabricação (arcos A1 a A4)."]
     yy = Y0 + 18
     for n in notes:
@@ -416,7 +431,7 @@ def in05():
         lines.append(cur)
         for l in lines: sh.text_px(X0, yy, "· " + l if l is lines[0] else "  " + l, size=8.5, anchor="start"); yy += 12
         yy += 3
-    sh.title_block("ZION CASULO", "Detalhes da marcenaria acoplada", "1:20 / 1:10 (A1)", "IN-05", "MA-01 · MA-02 · MA-03 · MA-04")
+    sh.title_block("ZION CASULO", "Detalhes da marcenaria acoplada", "1:20 / 1:10 (A1)", "IN-05", "MA-01 mini cozinha · MA-02 · MA-03 · MA-04")
     sh.save(os.path.join(OUT, "IN-05_detalhes_marcenaria.svg"))
 
 # ============================================================================ IN-06 quadro de mobiliário

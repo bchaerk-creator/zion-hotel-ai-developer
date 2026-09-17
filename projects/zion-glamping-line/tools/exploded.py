@@ -163,7 +163,12 @@ def c_arches(sc, dz, faint=False, rails=True):
     for a in C.arches():
         sc.polyline(lift(a["pts"], dz), col, 1.3 if faint else 2.2)
     sc.polyline(lift(C.front_ring(60), dz), col, 1.5 if faint else 2.8)
+    bx = C.bico_export()
+    sc.polyline(lift(bx["ridge"], dz), col, 1.4 if faint else 2.6)
+    for e in bx["edges"]: sc.polyline(lift(e, dz), col, 1.2 if faint else 2.0)
     if faint: return
+    for rb in bx["ribs"]: sc.polyline(lift(rb, dz), "#6B6B6B", 1.3)
+    for t in bx["ties"]: sc.polyline(lift(t, dz), EARTH, 0.9, "4 3")
     # quadro da cauda: anel em x 9,30 + 3 barras ate a ponta
     ring = C.section_curve(9.3, 40)
     sc.polyline(lift(ring, dz), STEEL, 1.6)
@@ -201,6 +206,7 @@ def c_membrane(sc, dz, opacity=1.0, mark_glass=True):
     V = lift(m["vertices"], dz)
     sc.mesh(V, m["membrane"], MEMB, opacity)
     sc.mesh(V, m["glass"], shade(MEMB, 0.94) if mark_glass else MEMB, opacity)
+    bm = C.bico_mesh(24, 8); sc.mesh(lift(bm["vertices"], dz), bm["faces"], MEMB, opacity)
 
 def c_shell_scaled(sc, dz, f, color, opacity=1.0):
     V, F = shell_scaled(f)
@@ -649,9 +655,9 @@ def cocoon_exploded_layers(dzs):
         dict(layer(1, "Fundacao", "44 estacas helicoidais Ø76, helice Ø300, cabecote ajustavel", c_piles, C_BB_BASE, dzs[0]), anchor_pt=(10.2, -3.8, -0.62)),
         layer(2, "Quadro do deck", "Vigas U 150 x 60 x 3,0 galv. + vigotas 50 x 150; deck cumaru 4,60 x 6,50", lambda sc, dz: c_girders(sc, dz, True), C_BB_DECK, dzs[1]),
         layer(3, "Piso", "Compensado 18 mm + PIR 50 mm + carvalho 14 mm; parede do banho em x 6,60", lambda sc, dz: c_floor(sc, dz, True), C_BB_FLOOR, dzs[2]),
-        layer(4, "Arcos", "Anel A0 Ø101,6 + 7 arcos Ø88,9 x 3,6 + quadro da cauda; trilhos 100 x 50 e chapas D01", lambda sc, dz: c_arches(sc, dz), C_BB_SHELL, dzs[3]),
+        layer(4, "Arcos", "Anel A0 Ø101,6 + Bico em balanço (cumeeira Ø114,3, bordas Ø60,3) + 7 arcos Ø88,9 x 3,6 + quadro da cauda; trilhos 100 x 50 e chapas D01", lambda sc, dz: c_arches(sc, dz), C_BB_SHELL, dzs[3]),
         layer(5, "Travamentos", "7 tercas Ø48,3, Espinha de Luz (trelica 300 mm) e cabos em X Ø8 inox", c_bracing, C_BB_SHELL, dzs[4]),
-        layer(6, "Membrana externa", "PVDF 1050 g/m² tensionada (2,5 kN/m), 118 m², aberturas dos Olhos", lambda sc, dz: c_membrane(sc, dz), C_BB_SHELL, dzs[5]),
+        layer(6, "Membrana externa", "PVDF 1050 g/m² tensionada (2,5 kN/m), 118 m² + 8 m² do Bico, aberturas dos Olhos", lambda sc, dz: c_membrane(sc, dz), C_BB_SHELL, dzs[5]),
         layer(7, "Isolamento e forro", "Camara ventilada 60 mm, la PET 50 mm + manta refletiva, forro tensionado", lambda sc, dz: c_shell_scaled(sc, dz, 0.92, SAND2, 0.9), C_BB_SHELL, dzs[6]),
         layer(8, "Esquadrias", "Anel de vidro frontal com porta pivotante, 6 Olhos em lente, 4 paineis da Espinha", lambda sc, dz: c_windows(sc, dz), C_BB_SHELL, dzs[7]),
         layer(9, "Acabamentos", "Mobiliario fixo, banho com banheira na cauda, evaporadora e condensadora", c_finishes, C_BB_FURN, dzs[8]),
@@ -694,7 +700,7 @@ def cocoon_camadas_layers(dzs):
         dict(layer(1, "Fundacao", "44 estacas helicoidais Ø76", c_piles, C_BB_BASE, dzs[0], FUNC[1]), anchor_pt=(10.2, -3.8, -0.62)),
         layer(2, "Estrutura do deck", "Vigas U 150 x 60 x 3,0 + bordas", lambda sc, dz: c_girders(sc, dz, False), C_BB_DECK, dzs[1], FUNC[2]),
         layer(3, "Piso e isolamento", "Deck cumaru + piso interno isolado", lambda sc, dz: c_floor(sc, dz, False, True), (-4.6, 9.4, -3.25, 3.25, -0.1, 0.0), dzs[2], FUNC[3]),
-        layer(4, "Estrutura metalica principal", "Anel A0 + 7 arcos Ø88,9 + quadro da cauda", lambda sc, dz: c_arches(sc, dz), C_BB_SHELL, dzs[3], "Oito arcos elipticos sustentam a concha e ancoram nos trilhos"),
+        layer(4, "Estrutura metalica principal", "Anel A0 + Bico em balanço + 7 arcos Ø88,9 + quadro da cauda", lambda sc, dz: c_arches(sc, dz), C_BB_SHELL, dzs[3], "Oito arcos elipticos sustentam a concha e ancoram nos trilhos"),
         layer(5, "Travamentos", "Tercas Ø48,3, espinha e cabos em X", c_bracing, C_BB_SHELL, dzs[4], "Tercas, espinha e cabos em X impedem a ovalizacao"),
         layer(6, "Membrana externa", "PVDF 1050 g/m² tensionada", lambda sc, dz: c_membrane(sc, dz), C_BB_SHELL, dzs[5], FUNC[6]),
         layer(7, "Camara de ventilacao", "Lamina de ar 60 mm entre membrana e isolamento", c_chamber, C_BB_SHELL, dzs[6], FUNC[7]),

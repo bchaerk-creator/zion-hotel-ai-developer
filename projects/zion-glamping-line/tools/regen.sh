@@ -9,6 +9,7 @@ echo "== pranchas PA + DXF"; python3 pa_sheets.py && python3 lodge_family.py && 
 if [[ "$1" != "--no-render" ]]; then
   echo "== 3D + renders"; python3 build_viewer.py && node render.js
   echo "== renders web (1400 px) e deck (sem interface), com a marca Zion"; python3 brand_renders.py
+  echo "== vídeo de órbita 3D do Casulo"; node turntable.js --model cocoon --seconds 14
 fi
 echo "== caderno técnico"; python3 build_dossier.py && python3 build_dossier.py --web && python3 build_dossier.py --inline
 echo "== product book"; python3 build_product_book.py && python3 build_product_book.py --web && python3 build_product_book.py --inline

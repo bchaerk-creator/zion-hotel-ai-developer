@@ -9,7 +9,7 @@ Saída: 03_TECNICO/ZG-TEC-001_Documento_Tecnico.html · PDF via export_pdf.js"""
 import os, html, math
 from build_projeto_arquitetonico import svg_inline, sheets as pa_sheets_list, NAME, TAG, LAYERS
 from pa_sheets import AREAS, ESQUADRIAS, NOTAS
-from svgkit import zion_mark_html, Sheet, GREEN, EARTH, CREAM, STEEL, WOOD2, GLASS, fmt as mfmt
+from svgkit import zion_mark_html, zion_logo_html, Sheet, GREEN, EARTH, CREAM, STEEL, WOOD2, GLASS, fmt as mfmt
 import bom as B, product_book_data as P, ffe
 from geometry import Cocoon, Zenith, LODGES, Capsule
 from capsule import capsule_materials
@@ -53,7 +53,7 @@ GLASS_M2 = sum(w * hh * n for (_, _, w, hh, n, _, _) in ESQUADRIAS["cocoon"])
 
 # ============================================================================ 00 capa e índice
 def capa():
-    body = f'''<div class="coverbox"><div class="brand">{zion_mark_html("0.95em", color="#FEF5F0", style="margin-right:.5em")}ZION</div><div class="sub">GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</div>
+    body = f'''<div class="coverbox"><div class="brand">{zion_mark_html("13mm", color="#FEF5F0", style="margin-right:6mm")}{zion_logo_html("13mm", color="#FEF5F0")}</div><div class="sub">ZION GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</div>
 <h1>DOCUMENTO<br>TÉCNICO</h1><h3>{DOC} · {REV} · {DATE}</h3>
 <p class="lead">Projeto técnico conceitual da linha Zion Glamping Collection para desenvolvimento, orçamento e fabricação: piloto ZION CASULO detalhado (desenhos, camadas, estrutura, fundação, cobertura, instalações, materiais, quantitativo, BOM, pré-fabricação, manual de montagem, ferramentas, logística, orçamento em 18 grupos e checklists) e resumo técnico das outras cinco unidades.</p>
 <p class="rule">REGRA FUNDAMENTAL · Nenhuma especificação que dependa de cálculo estrutural ou norma foi inventada: onde há dependência, o item está marcado {WARN}. Este documento é um projeto técnico preliminar / executivo conceitual e não substitui ART, RRT, cálculo estrutural, projeto legal ou aprovação municipal. Sem preços: onde não há cotação real, {COTAR}.</p></div>'''
@@ -67,7 +67,7 @@ def indice():
 
 # ============================================================================ 01 ficha técnica
 def ficha():
-    U = [("ZION CASULO", "ZC", 48.0, 29.9, "2 + 1 · 1 king", "banheira + chuveiro", "café / minibar", "deck 29,9 m²", "hot tub opcional", "split 12k dutado", "boiler elétrico", "SIGNATURE*"),
+    U = [("ZION CASULO", "ZC", 48.0, 29.9, "2 + 1 · 1 king", "banheira + chuveiro", "mini cozinha: indução 2 bocas, forno, geladeira, air fryer", "deck 29,9 m² sob o Bico", "hot tub opcional", "split 12k dutado", "boiler elétrico", "SIGNATURE*"),
          ("ZION SAFARI", "ZS", 48.4, 28.0, "2 + 1 · 1 king", "bancada dupla + banheira", "Ilha do Café", "terraço + passarela", "hidromassagem", "split dutado", "boiler elétrico", "SIGNATURE*"),
          ("ZION LODGE 38", "ZL", LG["lodge"].floor_area(), LG["lodge"].deck_area(), "2 + 1 · 1 king", "banheira de sentar + chuveiro", "café / minibar", "deck 3 faces + vela", "fire pit opcional", "split dutado (ático)", "boiler elétrico", "PREMIUM*"),
          ("ZION LODGE 24", "ZL24", LG["lodge24"].floor_area(), LG["lodge24"].deck_area(), "2 · 1 king", "chuveiro", "café / minibar", "deck 1 face + vela", "não", "split de parede", "boiler elétrico", "STANDARD*"),
@@ -99,7 +99,7 @@ def exploded():
            ("04", "Estrutura das paredes", "anel A0, 7 arcos elípticos, trilhos de base, quadro da cauda (a concha é parede e cobertura)"), ("05", "Isolamento", "lã de PET 50 mm + manta refletiva, entre terças"), ("06", "Fechamento interno", "forro tensionado Trevira CS + painéis ripados"),
            ("07", "Fechamento externo", "membrana PVDF 1050 g/m² em 7 painéis com keder"), ("08", "Esquadrias", "anel de vidro V1, porta PV1, 6 Janelas Olho, Espinha de Luz CL1"), ("09", "Estrutura da cobertura", "terças Ø48,3 + treliça da espinha + cabos em X (mesma concha)"),
            ("10", "Isolamento da cobertura", "idem 05, contínuo"), ("11", "Cobertura", "idem 07, contínua; calha oculta no rodapé"), ("12", "Instalações", "kit elétrico (piso técnico + forro), kit hidráulico (PEX + esgoto), evaporadora no ático"),
-           ("13", "Deck", "15 módulos de cumaru sobre vigas U e estacas + escada"), ("14", "Mobiliário", "FF&E: cama, chaise, ilha do café, closet, bancada"), ("15", "Equipamentos", "climatização, boiler, frigobar, automação, louças e metais"), ("16", "Acabamentos", "pintura, selantes, pedra, latão, enxoval")]
+           ("13", "Deck", "15 módulos de cumaru sobre vigas U e estacas + escada"), ("14", "Mobiliário", "FF&E: cama, chaise, mini cozinha, closet, bancada"), ("15", "Equipamentos", "climatização, boiler, geladeira, cooktop, forno, air fryer, automação, louças e metais"), ("16", "Acabamentos", "pintura, selantes, pedra, latão, enxoval")]
     body = h("03 · EXPLODED VIEW · 16 CAMADAS", "a cabana como sistema modular montado de baixo para cima") + f'<div class="two"><div>{sheet("cocoon/desenhos/13_camadas_construtivas.svg")}</div><div>{table(["#", "Camada do método", "No Zion Casulo"], [[a, b, c] for a, b, c in L16], "small")}<p class="note">Na concha do Casulo as camadas 04/09, 05/10 e 07/11 são o mesmo sistema contínuo (não há distinção entre parede e cobertura). O modelo explodido da estrutura está em PA-12b e o das camadas em PA-12c.</p></div></div>'
     page(body, "03 · Exploded view", code="ZC-ARQ-003")
 
@@ -200,7 +200,7 @@ def cobertura():
 # ============================================================================ 08 hidráulica
 def hidraulica():
     pts = [["Lavatório", "AF Ø16 · AQ Ø16", "Ø40 · sifão", "misturador monocomando latão"], ["Bacia sanitária", "AF Ø16", "Ø100", "caixa acoplada dual flush"], ["Chuveiro", "AF Ø16 · AQ Ø16", "Ø50 · ralo linear", "ducha 250 mm + ducha manual"],
-           ["Banheira 1,60 x 0,76", "AF Ø20 · AQ Ø20", "Ø50", "misturador de banheira"], ["Ilha do Café", "AF Ø16 · AQ Ø16", "Ø40", "torneira gourmet, filtro"], ["Ducha externa / hot tub (opcional)", "AF Ø20 · AQ Ø20", "Ø50 (hot tub: bomba própria)", "registro externo"],
+           ["Banheira 1,60 x 0,76", "AF Ø20 · AQ Ø20", "Ø50", "misturador de banheira"], ["Mini cozinha (cuba 0,40 x 0,35)", "AF Ø20 · AQ Ø20", "Ø50 + caixa de gordura", "torneira gourmet, filtro, sifão"], ["Ducha externa / hot tub (opcional)", "AF Ø20 · AQ Ø20", "Ø50 (hot tub: bomba própria)", "registro externo"],
            ["Boiler elétrico 80 L", "AF Ø20 → AQ Ø20", "válvula de alívio Ø20", "no ático técnico, 2,5 kW"], ["Registro geral + filtro + redutor de pressão", "Ø25", "—", "caixa de inspeção externa na cauda"]]
     sist = [["Alimentação", "ramal PEX Ø25 do reservatório central pressurizado (premissa) · reserva 500 L por cabana (opcional, sob o deck)"], ["Pressão", "mínima 10 mca nos pontos; máxima 40 mca; redutor na entrada"],
             ["Água quente", "boiler elétrico 80 L (2,5 kW) no ático; recirculação não prevista (distâncias < 6 m); tubos AQ isolados"], ["Esgoto", "ramais Ø40/50 → coletor Ø100 i = 2 % → caixa de inspeção → biodigestor por grupo (premissa) → vala de infiltração"],
@@ -210,14 +210,16 @@ def hidraulica():
 
 # ============================================================================ 09 elétrica
 CIRC = [("C1", "Iluminação interna (fitas LED, arandelas, spots)", 320, 10, 1.5), ("C2", "Iluminação externa (deck, balizadores)", 150, 10, 1.5), ("C3", "Tomadas estar e suíte (TUG)", 1500, 16, 2.5), ("C4", "Tomadas banho (TUG, secador)", 1800, 16, 2.5),
-        ("C5", "Ilha do Café (cafeteira, chaleira, frigobar)", 2000, 20, 2.5), ("C6", "Climatização split inverter 12k BTU", 1300, 16, 2.5), ("C7", "Boiler elétrico 80 L", 2500, 20, 4.0), ("C8", "Automação, roteador, fechadura, sensores", 100, 10, 1.5),
-        ("C9", "Exaustor do banho + ventilação da câmara", 80, 10, 1.5), ("C10", "Blackout e telas motorizadas", 200, 10, 1.5), ("C11", "Reserva (hot tub 4 kW opcional, circuito dedicado)", 0, 25, 6.0), ("C12", "Reserva", 0, 16, 2.5)]
+        ("C5", "Mini cozinha: tomadas (geladeira 120 L, air fryer 1,5 kW, cafeteira, chaleira)", 2500, 20, 2.5), ("C6", "Climatização split inverter 12k BTU", 1300, 16, 2.5), ("C7", "Boiler elétrico 80 L", 2500, 20, 4.0), ("C8", "Automação, roteador, fechadura, sensores", 100, 10, 1.5),
+        ("C9", "Exaustor do banho + depurador da mini cozinha + ventilação da câmara", 180, 10, 1.5), ("C10", "Blackout e telas motorizadas", 200, 10, 1.5), ("C11", "Reserva (hot tub 4 kW opcional, circuito dedicado)", 0, 25, 6.0), ("C12", "Reserva", 0, 16, 2.5),
+        ("C13", "Cooktop de indução 2 bocas (TUE dedicada, 220 V)", 3500, 20, 4.0), ("C14", "Forno elétrico compacto 45 L (TUE dedicada)", 1800, 16, 2.5)]
 
 def eletrica():
     tot = sum(c[2] for c in CIRC); dem = tot * 0.6; I = dem / 220
     rows = [[c[0], c[1], c[2], f"{c[3]} A", f"{c[4]} mm²"] for c in CIRC]
-    rows.append(["", "<b>Carga instalada estimada</b>", tot, "", ""]); rows.append(["", "<b>Demanda estimada (fator 0,6)</b>", round(dem), f"{I:.0f} A a 220 V", "geral 40 A + DR 40 A 30 mA"])
-    uni = [["Alimentação", "220 V bifásico, 2F + N + T; ramal 3 x 10 mm² cobre até 40 m (queda ≤ 3 %) do quadro de distribuição do empreendimento"], ["Quadro", "QDC 12 a 16 circuitos no ático técnico, DPS classe II, DR geral 40 A 30 mA, disjuntores por circuito, barramento de terra"],
+    ger = 50 if I > 38 else 40
+    rows.append(["", "<b>Carga instalada estimada</b>", tot, "", ""]); rows.append(["", "<b>Demanda estimada (fator 0,6)</b>", round(dem), f"{I:.0f} A a 220 V", f"geral {ger} A + DR {ger} A 30 mA"])
+    uni = [["Alimentação", "220 V bifásico, 2F + N + T; ramal 3 x 16 mm² cobre até 40 m (queda ≤ 3 %) do quadro de distribuição do empreendimento (mini cozinha com cocção elétrica)"], ["Quadro", f"QDC 16 circuitos no ático técnico, DPS classe II, DR geral {ger} A 30 mA, disjuntores por circuito, barramento de terra; cooktop e forno em circuitos dedicados (TUE)"],
            ["Aterramento", "haste 2,4 m + malha nas estacas (aproveitamento das estacas helicoidais como eletrodo, a validar)"], ["Caminhos", "piso técnico (eletroduto corrugado Ø25 sob o compensado) e atrás do forro; caixas acessíveis nos rodapés"],
            ["Solar", "pré-instalação: eletroduto Ø32 até a cauda e espaço para string box / inversor; geração centralizada (premissa)"], ["Automação", "hub por cabana; cenas de luz; termostato; fechadura digital; sensores de presença e de abertura"]]
     page(h("09 · SISTEMA ELÉTRICO · CIRCUITOS, CARGAS E UNIFILAR CONCEITUAL", f"cargas estimadas por equipamento · {WARN}") + f'<div class="two"><div>{table(["Circ.", "Descrição", "#W", "Disjuntor", "Cabo"], rows, "small")}</div><div>{sheet("detalhes/DET-07_eletrica.svg")}{table(["Item", "Especificação preliminar"], uni, "small")}</div></div>', "09 · Elétrica", code="ZC-ELE-001")
@@ -252,7 +254,7 @@ def det14_gas():
 
 def gas():
     rel = det14_gas()
-    rows = [["Base da linha", "tudo elétrico: boiler, cocção (só cafeteira/chaleira), climatização por bomba de calor; nenhum equipamento a gás"], ["Quando usar GLP", "cocção em unidades Ultra Luxury, lareira a gás, boiler a gás em sítios sem rede elétrica robusta"],
+    rows = [["Base da linha", "tudo elétrico: boiler, cocção por indução (mini cozinha do Casulo: cooktop 2 bocas + forno elétrico), climatização por bomba de calor; nenhum equipamento a gás"], ["Quando usar GLP", "cocção em unidades Ultra Luxury, lareira a gás, boiler a gás em sítios sem rede elétrica robusta"],
             ["Localização", "abrigo externo encostado à cauda (lado técnico), ≥ 1,50 m de aberturas, ≥ 3,00 m da condensadora e de fontes de ignição, nunca sob o deck"], ["Quantidade", "2 x P-45 (boiler + cocção) ou 2 x P-13 (só cocção/lareira); rodízio de um cheio e um em uso"],
             ["Abrigo", "1,00 x 0,60 x 1,20 m, alvenaria leve ou chapa galvanizada, porta veneziana, ventilação permanente inferior e superior, piso nivelado não combustível, cobertura"], ["Tubulação", "cobre rígido Ø1/2\" (ou PEAL) em eletroduto dedicado até o ponto; regulador de 1º estágio no abrigo; registro geral e registro no ponto"],
             ["Equipamentos", "aquecedor de passagem 15 L/min (exaustão forçada, fora do banho) ou cooktop 2 bocas / lareira a gás com sistema de segurança"], ["Norma", f"NBR 13523 (central de GLP), NBR 15526 (rede interna), NBR 13103 (ambientes) · {WARN}"]]

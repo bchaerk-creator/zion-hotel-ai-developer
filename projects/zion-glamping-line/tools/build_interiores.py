@@ -4,7 +4,7 @@ quadros de marcenaria (MA), mobiliário solto (MS), acabamentos e a lista de FF&
 Saída: 04_INTERIORES/ZC-INT-001_Projeto_Interiores_Casulo.html · PDF via export_pdf.js"""
 import os, html
 from build_projeto_arquitetonico import svg_inline
-from svgkit import zion_mark_html, fmt as mfmt
+from svgkit import zion_mark_html, zion_logo_html, fmt as mfmt
 from interiores_cocoon import MA, MS, ACAB
 import ffe
 
@@ -30,14 +30,14 @@ def page(body, label, code="", cls=""):
 def h(t, sub=""): return f'<h2>{esc(t)}{f"<small>{esc(sub)}</small>" if sub else ""}</h2>'
 
 def capa():
-    pages.append(f'''<section class="page cover"><div class="coverbox"><div class="brand">{zion_mark_html("0.95em", color="#FEF5F0", style="margin-right:.5em")}ZION</div><div class="sub">GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</div>
+    pages.append(f'''<section class="page cover"><div class="coverbox"><div class="brand">{zion_mark_html("13mm", color="#FEF5F0", style="margin-right:6mm")}{zion_logo_html("13mm", color="#FEF5F0")}</div><div class="sub">ZION GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</div>
 <h1>PROJETO DE<br>INTERIORES</h1><h3>ZION CASULO · MARCENARIA ACOPLADA · {DOC} · {REV} · {DATE}</h3>
 <p class="lead">Plano arquitetônico de interiores do Zion Casulo com o mobiliário fixo já acoplado à concha e à parede do banho: planta de layout cotada, paginação de pisos, elevações internas, detalhes da marcenaria e quadros de mobiliário, acabamentos e FF&amp;E. A marcenaria acoplada (MA) é fabricada, montada e acabada em fábrica junto com a cabana; o mobiliário solto (MS) é o FF&amp;E entregue montado.</p>
 <p class="rule">Anexo do documento técnico ZG-TEC-001 (seção 25). Sem preços. Dimensões em metros; tolerância de fabricação ± 3 mm; conferência com o gabarito da seção da concha antes da produção.</p></div></section>''')
 
 def memorial():
     body = h("MEMORIAL DE INTERIORES", "conceito, regras de acoplamento, materiais e luz") + f'''<div class="two"><div>
-<p class="lede">O interior do Casulo é um único eixo: vestíbulo, estar, suíte e banho na cauda. A marcenaria acoplada faz a divisão dos ambientes sem paredes: a Ilha do Café e o armário baixo se encostam na curva da concha do lado esquerdo, a cabeceira estofada com criados suspensos se fixa à parede do banho, e a bancada em pedra ocupa o lado do banho da mesma parede. Tudo o que é fixo nasce na fábrica com a cabana; o que é solto (cama, chaise, poltrona, mesa lateral, luminárias, tapetes) é o FF&amp;E Zion New Luxury.</p>
+<p class="lede">O interior do Casulo é um único eixo: vestíbulo, estar, suíte e banho na cauda. A marcenaria acoplada faz a divisão dos ambientes sem paredes: a mini cozinha (geladeira, forno, cooktop de indução de 2 bocas, cuba e air fryer) e o armário baixo se encostam na curva da concha do lado esquerdo, a cabeceira estofada com criados suspensos se fixa à parede do banho, e a bancada em pedra ocupa o lado do banho da mesma parede. Tudo o que é fixo nasce na fábrica com a cabana; o que é solto (cama, chaise, poltrona, mesa lateral, luminárias, tapetes) é o FF&amp;E Zion New Luxury.</p>
 <h4>REGRAS DE ACOPLAMENTO</h4><ol class="num">
 <li>Fixação sempre à estrutura (arcos e trilhos de base) por cantoneiras galvanizadas; nunca à membrana nem ao forro.</li><li>Fundos e laterais recortados com o gabarito da seção da concha, folga de 15 mm fechada com perfil de EPDM.</li>
 <li>Rodapé técnico removível de 150 mm em todo o perímetro: eletrodutos, PEX e caixas de passagem acessíveis sem desmontar móveis.</li><li>Elétrica embutida na marcenaria (tomadas, USB, LED) com ponto de conexão no rodapé técnico.</li>

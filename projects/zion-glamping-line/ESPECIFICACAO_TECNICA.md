@@ -36,7 +36,7 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 | Item | Valor |
 |---|---|
 | Comprimento do piso | 9,60 m (x = 0 a 9,60) |
-| Comprimento total da concha com lábio frontal | 9,75 m |
+| Comprimento total da concha com o Bico em balanço | 12,15 m (Bico: 2,40 m além do anel frontal, ponta a 4,42 m) |
 | Largura máxima da concha | 6,00 m (em z = 0,75 m); 5,86 m no piso |
 | Altura máxima | 4,20 m (x = 3,40) |
 | Altura na fachada de vidro | 4,15 m; na cauda 1,10 m |
@@ -50,7 +50,8 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 ### 2.2 Forma
 - Planta em superelipse assimétrica: frente cheia (expoente 4,0) e cauda afilada (expoente 3,0), com largura máxima a 3,40 m da frente. Lê-se como semente ou casulo, nunca como elipse regular.
 - Seção transversal em elipse com centro a 0,75 m do piso: a concha "abraça" o piso, curvando-se para dentro na base.
-- Lábio frontal: o anel de fachada inclina-se 8° para fora (topo avança 0,60 m), criando o beiral protetor e a leitura de casulo que se abre para a paisagem. A fachada de vidro fica 0,45 m recuada, em plano igualmente inclinado.
+- Bico: a membrana continua 2,40 m além do anel frontal, em balanço sobre o deck, com a ponta erguida a 4,42 m (cumeeira Ø114,3 x 4,0 engastada em A0 e A1, dois tubos de borda Ø60,3 curvados, costela Ø48,3 e dois tirantes Ø12 inox sob a membrana; ⚠️ VALIDAÇÃO OBRIGATÓRIA — ENGENHEIRO). O anel de fachada inclina-se 8° para fora e a fachada de vidro fica 0,45 m recuada, em plano igualmente inclinado.
+- Mini cozinha acoplada (MA-01, 2,00 m): geladeira 120 L sob bancada, forno elétrico compacto 45 L sob cooktop de indução de 2 bocas, cuba 0,40 x 0,35, air fryer em nicho, depurador slim; circuitos dedicados C13 (20 A) e C14 (16 A).
 - Espinha de Luz: claraboia contínua de 0,70 m de largura ao longo da cumeeira, de x = 1,90 a 6,60 (4 painéis facetados entre arcos), sobre o estar e a cama.
 - Janelas Olho: 6 janelas em forma de lente (superelipse n = 1,5), 1,60 x 0,95 m no estar e na suíte, 1,10 x 0,60 m no banho, com requadro profundo em madeira. Nenhuma janela circular: a lente é a assinatura do produto.
 
@@ -69,6 +70,9 @@ Os dois produtos compartilham a mesma plataforma industrial, o que permite fabri
 |---|---|---|
 | Arcos elípticos A1 a A8 | Tubo Ø88,9 x 3,6 mm, calandrado em 3 segmentos (2 pernas + coroa), luvas internas Ø76 x 200 mm com 4 parafusos M12 | 8 arcos, comprimentos 10,8 / 11,6 / 11,7 / 11,6 / 11,4 / 10,8 / 9,8 / 7,9 m |
 | Anel frontal (lábio) A0 | Tubo Ø101,6 x 4,0 mm inclinado 8°, com perfil de vidro integrado | 1 |
+| Bico: cumeeira em balanço B09 | Tubo Ø114,3 x 4,0 mm curvado, engastado em A0 e A1, 2,40 m além do anel | 1 |
+| Bico: tubos de borda B10 | Tubo Ø60,3 x 3,0 mm curvado em 3D, da ponta ao anel A0 | 2 |
+| Bico: costela B11 e tirantes B12 | Ø48,3 x 3,0 curvado · cabo inox Ø12 com esticador | 1 + 2 |
 | Anel da fachada de vidro | Perfil de alumínio 120 x 60 mm curvo (calandrado) | 1 |
 | Terças longitudinais | Tubo Ø48,3 x 3,0 mm, 7 linhas, em segmentos de 1,20 m com ponteiras rosqueadas | 7 x 8,75 m = 61 m |
 | Espinha de Luz | Treliça plana 300 mm de altura em tubo Ø42,4 + diagonais Ø26,9, apoia os painéis de vidro | 4,7 m |

@@ -6,7 +6,7 @@ e operação hoteleira. A4 paisagem, tema escuro Zion, vetorial. Saída: 02_CONC
 PDF: node export_pdf.js ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.html ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.pdf"""
 import os, html
 from build_projeto_arquitetonico import svg_inline
-from svgkit import zion_mark_html, ZION_Z
+from svgkit import zion_mark_html, zion_logo_html, ZION_Z
 from geometry import Cocoon, Zenith, LODGES, Capsule
 import ffe
 
@@ -36,7 +36,7 @@ UNITS = [
          plan="cocoon/desenhos/02_planta_humanizada.svg", iso="cocoon/desenhos/08_isometrica.svg",
          concept="Uma concha assimétrica de oito arcos elípticos: frente cheia, aberta ao vale por um anel de vidro inclinado 8°, e cauda afilada que guarda o banho. A Espinha de Luz corre a cumeeira; seis Janelas Olho recortam a membrana como lentes. O hóspede entra pelo vestíbulo, atravessa o estar e dorme com a cabeça voltada para a cauda e os pés para a paisagem.",
          partido="Casulo e concha: uma forma que abraça o chão e sobe sem quinas, como uma semente pousada na clareira. A assimetria (frente n = 4, cauda n = 3) faz a cabana ter frente e costas, direção e abrigo.",
-         sig=["Espinha de Luz: clarabóia contínua de 4,70 m na cumeeira, sobre a cama e o estar", "Lábio frontal inclinado 8°: o anel de vidro avança 0,60 m sobre o deck e protege a fachada do sol alto", "Seis Janelas Olho: lentes elípticas de 1,60 x 0,95 m, recortadas na membrana, cada uma emoldurando um pedaço de mata", "Cauda com banheira: o banho ocupa a ponta afilada, sob um Olho, com vista privada"],
+         sig=["Espinha de Luz: clarabóia contínua de 4,70 m na cumeeira, sobre a cama e o estar", "Bico: a membrana continua 2,40 m além do anel frontal, em balanço sobre o deck, e a ponta se ergue a 4,42 m: uma pontinha que abriga o deck e dá ao casulo a expressão de asa", "Seis Janelas Olho: lentes elípticas de 1,60 x 0,95 m, recortadas na membrana, cada uma emoldurando um pedaço de mata", "Cauda com banheira: o banho ocupa a ponta afilada, sob um Olho, com vista privada"],
          func=dict(implantacao="Eixo longitudinal perpendicular à curva de nível, frente (vidro) para o vale ou para a mata aberta, cauda para a encosta. Deck de 29,9 m² no lado do sol da manhã.",
                    circulacao="Escada ou rampa → deck → vestíbulo (2,4 m²) → estar → suíte → banho na cauda. Um único eixo, sem corredores; a marcenaria baixa faz a divisão.",
                    luz="Fachada frontal inteira em vidro, Espinha de Luz na cumeeira e seis Olhos laterais: luz de três direções, sem ponto cego. Blackout motorizado no vidro frontal e telas nos Olhos.",
@@ -45,7 +45,7 @@ UNITS = [
                    vistas="A vista principal é a da fachada de vidro, enquadrada pelo anel inclinado; os Olhos oferecem seis recortes verticais da mata; a banheira tem o seu próprio Olho.",
                    acessos="Acesso de hóspedes pelo deck; acesso técnico pela cauda (tampa do ático, condensadora, hidráulica) sem entrar na unidade.",
                    manutencao="Membrana lavável, sem calha aparente (calha oculta no rodapé); vidros acessíveis do deck e do chão; ático técnico pela tampa da cauda; deck em cumaru com fixação oculta e réguas substituíveis.",
-                   operacao="Governança em 35 min: um eixo, banho na ponta, marcenaria fechada; enxoval em 3 jogos; frigobar e cofre embutidos; sensores de presença e fechadura digital para check-in sem recepção.")),
+                   operacao="Governança em 35 min: um eixo, banho na ponta, marcenaria fechada; enxoval em 3 jogos; mini cozinha (indução, forno, geladeira, air fryer) e cofre embutidos; sensores de presença e fechadura digital para check-in sem recepção.")),
     dict(code="zenith", tag="ZS", name="ZION SAFARI", fam="Cabana escultural de dois cumes", cat="SIGNATURE", area=48.4, ext=28.0, guests="2 + 1", bed="1 king",
          hero="zenith/renders/web/zenith_ext_front.jpg", imgs=["zenith/renders/web/zenith_night.jpg", "zenith/renders/web/zenith_int_living.jpg", "zenith/renders/web/zenith_int_bed.jpg", "zenith/renders/web/zenith_ext_aerial.jpg"],
          plan="zenith/desenhos/02_planta_humanizada.svg", iso="zenith/desenhos/08_isometrica.svg",
@@ -122,7 +122,7 @@ UNITS = [
 
 def cover():
     page(f'''<div class="photo full">{img("cocoon/renders/web/cocoon_night.jpg")}</div><div class="overlay"></div>
-<div class="cover">{zion_mark_html("56px", color="#FEF5F0", style="display:block;margin:0 auto 22px")}<div class="eyebrow">ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+<div class="cover">{zion_mark_html("56px", color="#FEF5F0", style="display:block;margin:0 auto 22px")}{zion_logo_html("46px", color="#FEF5F0", style="display:block;margin:0 auto 26px")}<div class="eyebrow">ZION GLAMPING COLLECTION</div>
 <div class="split"><span>CONCEITO</span><i></i><span>VISUAL</span></div>
 <div class="sub">DOCUMENTO CONCEITUAL E VISUAL DA LINHA · {DOC}</div>
 <div class="tag">Fase 02 do Cabin Design &amp; Engineering System · seis unidades proprietárias de hospedagem em natureza: Casulo, Safari, Lodge 38, Lodge 24, Lodge 28 e Cápsula · conceito, partido, linguagem, materialidade, experiência do hóspede, implantação e operação · {REV} · {DATE}</div></div>''', "dark coverpage", "CAPA")
@@ -173,7 +173,7 @@ def linguagem():
 
 def experiencia():
     steps = [("CHEGADA", "A trilha chega ao deck, nunca à porta. O hóspede vê a cabana inteira antes de entrar."), ("DECK", "Espreguiçadeiras, mesa, lanternas de deck: a primeira sala é do lado de fora."),
-             ("LIMIAR", "Porta de correr ou pivotante em vidro; fechadura digital; a luz de boas-vindas acende por cena."), ("ESTAR", "Chaise ou sofá voltado para o vidro; Ilha do Café ou minibar; nenhuma TV por padrão (opcional)."),
+             ("LIMIAR", "Porta de correr ou pivotante em vidro; fechadura digital; a luz de boas-vindas acende por cena."), ("ESTAR", "Chaise ou sofá voltado para o vidro; mini cozinha (Casulo) ou Ilha do Café / minibar; nenhuma TV por padrão (opcional)."),
              ("SUÍTE", "A cama é o centro: sob a Espinha, o Óculo, a Lanterna ou o Anel de Luz. Pés para a vista, cabeça para o abrigo."), ("BANHO", "Banheira ou chuveiro com a própria janela (Olho, fresta, Olho do banho); bancada em pedra, metais em latão."),
              ("NOITE", "Blackout motorizado, luz 2700 K a 10 %, som ambiente, céu pela clarabóia."), ("MANHÃ", "Luz rasante pelo vidro frontal, café na ilha, deck ao sol; check-out sem recepção.")]
     tl = "".join(f'<div class="step"><b>{i + 1:02d}</b><span>{esc(a)}</span><p>{esc(b)}</p></div>' for i, (a, b) in enumerate(steps))

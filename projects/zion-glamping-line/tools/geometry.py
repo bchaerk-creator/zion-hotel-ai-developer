@@ -134,6 +134,81 @@ class Cocoon:
             pts.append(self.section_point(x, th, 0.01))
         return pts
 
+    # ---- Bico: membrana em balanço sobre o deck (ponta erguida) ----
+    BICO = dict(E=2.40, TW=1.15, LIFT=0.30, P=0.85, RIDGE_OFF=-0.085)
+    # E = balanço da ponta além do anel frontal (m) · TW = meio-ângulo (rad) do anel coberto pelo bico
+    # LIFT = quanto a ponta se ergue acima do topo do anel (m) · P = expoente da borda (< 1 = ponta mais aguda)
+
+    def bico_ext(self, theta):
+        """avanço da membrana (m) além do anel frontal na direção -x, no ângulo theta do anel."""
+        d = abs(theta - math.pi / 2) / self.BICO["TW"]
+        return 0.0 if d >= 1.0 else self.BICO["E"] * (1.0 - d) ** self.BICO["P"]
+
+    def bico_point(self, theta, s, offset=0.0):
+        """ponto 3D do bico: theta no anel frontal, s de 0 (anel) a 1 (borda livre); offset normal aproximado (m)."""
+        x0, y0, z0 = self.section_point(self.X_FRONT, theta, offset)
+        e = self.bico_ext(theta); u = s * e / self.BICO["E"]
+        return (x0 - s * e, y0 * (1.0 + 0.02 * u), z0 + self.BICO["LIFT"] * u ** 1.5)
+
+    def bico_thetas(self, n=32):
+        tw = self.BICO["TW"]
+        return [math.pi / 2 - tw + 2 * tw * i / n for i in range(n + 1)]
+
+    def bico_edge(self, n=32, offset=0.0):
+        """borda livre do bico (curva 3D) da lateral direita à esquerda, passando pela ponta."""
+        return [self.bico_point(t, 1.0, offset) for t in self.bico_thetas(n)]
+
+    def bico_tip(self):
+        return self.bico_point(math.pi / 2, 1.0)
+
+    def bico_ridge(self, n=12, offset=None):
+        """cumeeira em balanço: de A1 ao anel frontal e daí à ponta (eixo do tubo, sob a membrana)."""
+        off = self.BICO["RIDGE_OFF"] if offset is None else offset
+        pts = [self.section_point(self.ARCH_X[1], math.pi / 2, off), self.section_point(self.X_FRONT, math.pi / 2, off)]
+        pts += [self.bico_point(math.pi / 2, i / n, off) for i in range(1, n + 1)]
+        return pts
+
+    def bico_ribs(self, fracs=(0.5,), n=24):
+        """costelas intermediárias do bico (tubos curvos entre as bordas), em frações do balanço."""
+        off = self.BICO["RIDGE_OFF"]
+        return [[self.bico_point(t, f, off) for t in self.bico_thetas(n)] for f in fracs]
+
+    def bico_ties(self):
+        """tirantes sob o bico: do ponto a 60 % da cumeeira até o anel frontal, a ±0,80 rad do topo."""
+        off = self.BICO["RIDGE_OFF"]
+        top = self.bico_point(math.pi / 2, 0.6, off)
+        return [[top, self.section_point(self.X_FRONT, math.pi / 2 + sgn * 0.8, off)] for sgn in (-1, 1)]
+
+    def bico_mesh(self, nu=32, nv=10):
+        verts, faces = [], []
+        ths = self.bico_thetas(nu)
+        for t in ths:
+            for j in range(nv + 1):
+                verts.append(self.bico_point(t, j / nv))
+        for i in range(nu):
+            for j in range(nv):
+                a0 = i * (nv + 1) + j; a1 = a0 + 1; b0 = a0 + (nv + 1); b1 = b0 + 1
+                faces.append((a0, b0, b1)); faces.append((a0, b1, a1))
+        return dict(vertices=verts, faces=faces)
+
+    def bico_area(self):
+        m = self.bico_mesh(48, 12); V = np.array(m["vertices"]); s = 0.0
+        for f in m["faces"]:
+            p, q, r = V[f[0]], V[f[1]], V[f[2]]
+            s += 0.5 * np.linalg.norm(np.cross(q - p, r - p))
+        return float(s)
+
+    def bico_tube_lengths(self):
+        """comprimentos (m): cumeeira (A1 → ponta), cada tubo de borda (ponta → anel), costela, cada tirante."""
+        def ln(pts):
+            P = np.array(pts); return float(np.sum(np.linalg.norm(np.diff(P, axis=0), axis=1)))
+        edge = self.bico_edge(48, self.BICO["RIDGE_OFF"]); half = edge[: len(edge) // 2 + 1]
+        return dict(ridge=ln(self.bico_ridge(24)), edge=ln(half), rib=ln(self.bico_ribs()[0]), tie=ln(self.bico_ties()[0]))
+
+    def bico_export(self):
+        return dict(mesh=self.bico_mesh(), edge=self.bico_edge(48), ridge=self.bico_ridge(16), ribs=self.bico_ribs(), ties=self.bico_ties(),
+                    tip=self.bico_tip(), edges=[self.bico_edge(48, self.BICO["RIDGE_OFF"])], E=self.BICO["E"], area=self.bico_area())
+
     # ---- malha da concha ----
     def shell_mesh(self, nu=88, nv=44):
         xs = [self.X_FRONT + (self.L - self.X_FRONT) * (i / nu) for i in range(nu + 1)]
@@ -204,8 +279,10 @@ class Cocoon:
         F.append(box(4.5, 6.55, -0.97, 0.97, 0.55, 0.62, "pillow", ""))
         F.append(box(5.95, 6.55, 1.05, 1.55, 0, 0.5, "table", "Criado-mudo"))
         F.append(box(5.95, 6.55, -1.55, -1.05, 0, 0.5, "table", "Criado-mudo"))
-        F.append(box(3.1, 4.5, 2.2, 2.85, 0, 1.5, "cabinet", "Armário baixo embutido (acoplado à concha)"))
-        F.append(box(1.2, 2.6, 2.15, 2.8, 0, 0.9, "cabinet", "Ilha do Café / minibar (acoplada à concha)"))
+        F.append(box(3.4, 4.5, 2.2, 2.85, 0, 1.5, "cabinet", "Armário baixo embutido (acoplado à concha)"))
+        F.append(box(1.2, 3.2, 2.15, 2.8, 0, 0.9, "cabinet", "Mini cozinha acoplada à concha: geladeira, forno, cooktop 2 bocas, cuba, air fryer"))
+        F.append(box(1.8, 2.4, 2.35, 2.8, 0.9, 0.92, "cooktop", "Cooktop de indução 2 bocas"))
+        F.append(box(2.85, 3.15, 2.3, 2.7, 0.9, 1.25, "appliance", "Air fryer"))
         F.append(box(1.15, 2.75, -2.25, -1.45, 0, 0.45, "sofa", "Chaise de contemplação"))
         F.append(box(3.2, 3.9, -2.25, -1.55, 0, 0.75, "chair", "Poltrona"))
         F.append(cyl(1.95, -0.95, 0, 0.45, 0.28, "table", "Mesa lateral"))
@@ -267,6 +344,7 @@ class Cocoon:
             windows=[dict(name=w["name"], pts=self.window_outline(w)) for w in self.WINDOWS],
             spine=self.SPINE,
             x_glass=self.X_GLASS, x_partition=self.X_PARTITION,
+            bico=self.bico_export(),
         )
 
 

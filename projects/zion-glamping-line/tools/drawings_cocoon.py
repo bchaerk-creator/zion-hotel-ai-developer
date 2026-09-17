@@ -78,11 +78,30 @@ def shell_plan_pts():
 def arch_plan(x):
     return [(px, py) for (px, py, pz) in C.section_curve(x, 40)]
 
+def bico_plan():
+    """projeção em planta do Bico (membrana em balanço sobre o deck): borda livre + trecho do anel frontal."""
+    edge = [(x, y) for (x, y, z) in C.bico_edge(48)]
+    ring = [(x, y) for (x, y, z) in [C.section_point(C.X_FRONT, t) for t in C.bico_thetas(48)]]
+    return edge + ring[::-1]
+
+def bico_side():
+    """silhueta lateral (x, z) do Bico: cumeeira do anel à ponta + borda livre de volta ao anel."""
+    ridge = [(x, z) for (x, y, z) in C.bico_ridge(16, 0.0)][1:]
+    edge = [(x, z) for (x, y, z) in C.bico_edge(48)]
+    half = edge[len(edge) // 2:]
+    return ridge + half[1:]
+
+def bico_front():
+    """silhueta frontal (y, z) do Bico."""
+    edge = [(y, z) for (x, y, z) in C.bico_edge(48)]
+    ring = [(y, z) for (x, y, z) in [C.section_point(C.X_FRONT, t) for t in C.bico_thetas(48)]]
+    return edge + ring[::-1]
+
 # ------------------------------------------------------------------ PLANTA
 def planta(human=True):
     sh = Sheet(1600, 1000, scale=78, ox=390, oy=520)
     sh.header("Zion Casulo · Planta baixa " + ("humanizada" if human else "técnica"),
-              "Cabana biomórfica em casulo · 9,60 x 6,00 x 4,20 m · piso interno 45,6 m² + vestíbulo 2,4 m² = 48 m² · deck 29,9 m² · total 78 m²")
+              "Cabana biomórfica em casulo · 9,60 x 6,00 x 4,20 m · bico em balanço 2,40 m · piso interno 45,6 m² + vestíbulo 2,4 m² = 48 m² · deck 29,9 m² · total 78 m²")
     outline, ring = shell_plan_pts()
     D = C.DECK
     # deck
@@ -90,8 +109,13 @@ def planta(human=True):
     # escada
     for i in range(3):
         sh.rect(D["x1"] - 0.3 * (i + 1), -1.2, D["x1"] - 0.3 * i, 1.2, fill=WOOD2 if human else "none", stroke=GREEN, sw=0.7)
-    # sombra da concha sobre o deck (projeção)
+    # sombra da concha sobre o deck (projeção) e o Bico em balanço
     sh.poly(outline, fill=MEMB if human else "none", stroke=GREEN, sw=1.6, opacity=1.0)
+    sh.poly(bico_plan(), fill=MEMB if human else "none", stroke=GREEN, sw=1.4, opacity=1.0)
+    sh.poly([(x, y) for (x, y, z) in C.bico_ridge(16)], close=False, stroke=EARTH, sw=0.8, dash="6 4", opacity=0.8)
+    if not human:
+        for e in C.bico_export()["edges"]: sh.poly([(x, y) for (x, y, z) in e], close=False, stroke=STEEL, sw=0.8, dash="6 4", opacity=0.8)
+        for t in C.bico_ties(): sh.poly([(x, y) for (x, y, z) in t], close=False, stroke=EARTH, sw=0.7, dash="2 2")
     # piso interno
     floor = C.floor_outline(100)
     sh.poly(floor, fill=sh.pattern("wood") if human else "none", stroke=GREEN, sw=0.9)
@@ -143,19 +167,20 @@ def planta(human=True):
         if a: sh.text(x, y, a, 10, EARTH, dy=10)
     if human:
         sh.text(2.05, -0.95, "", 8)
-        sh.leader(1.9, 2.5, 1.6, 3.6, "Ilha do Café / minibar 1,40 m, acoplada à concha", 11, anchor="end")
+        sh.leader(2.2, 2.5, 1.3, 3.95, "Mini cozinha 2,00 m: geladeira, forno, cooktop de indução 2 bocas, cuba, air fryer", 11, anchor="start")
         sh.leader(3.8, 2.5, 5.2, 3.6, "Armário baixo acoplado à curva", 11)
         sh.leader(4.9, -3.05, 4.5, -3.95, "Janelas Olho 1,60 x 0,95 (basculantes)", 11)
         sh.leader(4.3, 0.0, 4.8, -3.6, "Espinha de Luz 0,70 x 4,70 m", 11)
         sh.leader(8.3, 0.0, 9.4, 2.0, "Banheira na cauda 1,60 x 0,76", 11)
         sh.leader(0.95, 1.1, -1.6, 3.6, "Porta pivotante 1,00 x 2,40", 11, anchor="end")
         sh.leader(10.3, -0.05, 10.0, -2.7, "Condensadora oculta por ripado", 11)
-        sh.leader(0.2, -2.0, -0.9, -3.95, "Lábio frontal inclinado 8° (beiral)", 11)
+        sh.leader(-1.6, -1.2, -0.9, -3.95, "Bico: membrana em balanço 2,40 m sobre o deck, ponta a 4,42 m", 11)
         sh.leader(1.9, -1.85, 1.3, -3.65, "Chaise de contemplação", 11)
     # cotas gerais
     sh.dim(0.45, -3.55, 9.6, -3.55, -0.75, color=EARTH)
     sh.dim(-3.7, -3.55, 0.9, -3.55, -0.75, color=EARTH)
     sh.dim(-3.7, -3.55, 9.6, -3.55, -1.35, label="13,30 (deck + concha)", color=EARTH)
+    sh.dim(-2.55, 3.55, 0.45, 3.55, 0.75, label="3,00 (bico)", color=EARTH)
     sh.dim(10.9, -3.0, 10.9, 3.0, 0.55, label="6,00", color=EARTH)
     sh.dim(-4.1, -3.25, -4.1, 3.25, -0.4, label="6,50", color=EARTH)
     if not human:
@@ -228,6 +253,11 @@ def elev_frontal():
     sh.rect(-0.97, 0.62, 0.97, 1.0, fill="none", stroke=GREEN, sw=0.5, opacity=0.5)
     # espinha de luz no topo
     sh.rect(-0.35, C.top(C.XMAX) - 0.1, 0.35, C.top(C.XMAX) + 0.02, fill=GLASS, stroke=GREEN, sw=0.8)
+    # Bico em balanço (à frente do anel): silhueta vista de frente
+    sh.poly(bico_front(), fill=MEMB, stroke=GREEN, sw=1.6, opacity=0.94)
+    for e in C.bico_export()["edges"]: sh.poly([(y, z) for (x, y, z) in e], close=False, stroke=STEEL, sw=1.4, opacity=0.7)
+    tip = C.bico_tip(); sh.circle_px(0.0, tip[2], 2.5, fill=GREEN)
+    sh.leader(0.0, tip[2], 2.3, 5.35, "Bico: ponta a 4,42 m, 2,40 m em balanço sobre o deck", 12, anchor="end")
     # rótulo de material
     sh.leader(-2.6, 2.7, -4.2, 3.4, "Membrana PVDF 1050 g/m² tensionada", 12, anchor="start")
     sh.leader(-2.45, 1.4, -4.2, 2.2, "Anel do lábio Ø101,6 inclinado 8°", 12, anchor="start")
@@ -241,10 +271,11 @@ def elev_frontal():
     sh.dim(-2.44, -0.9, 2.44, -0.9, -0.9, label="4,88 (anel frontal)")
     sh.dim(-3.25, -0.9, 3.25, -0.9, -1.45, label="6,50 (deck)")
     sh.dim(-3.6, 0, -3.6, 4.2, -0.5, label="4,20")
+    sh.dim(3.6, 0, 3.6, 4.42, 1.1, label="4,42 (ponta do bico)")
     sh.dim(-3.6, 0, -3.6, 2.4, -1.15, label="2,40 (porta)")
     sh.dim(3.6, -0.6, 3.6, 0, 0.5, label="0,60")
     sh.scalebar(6.3, -1.9, 4)
-    sh.title_block("ZION CASULO", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica em anel inclinado 8°, 8 arcos elípticos")
+    sh.title_block("ZION CASULO", "Elevação frontal", "1:50 (A1)", "04/27", "Fachada panorâmica sob o Bico em balanço, 8 arcos elípticos")
     return sh
 
 # ------------------------------------------------------------------ ELEVAÇÃO LATERAL
@@ -261,7 +292,7 @@ def bottom_profile():
 
 def elev_lateral():
     sh = Sheet(1600, 1000, scale=100, ox=470, oy=720)
-    sh.header("Zion Casulo · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 9,75 m com lábio · deck 4,60 m")
+    sh.header("Zion Casulo · Elevação lateral direita", "Vista do lado das Janelas Olho (olhar para +y) · comprimento 12,15 m com o Bico · deck 4,60 m")
     # solo
     sh.rect(-4.0, -0.6, 11.0, -0.02, fill=sh.pattern("soil"), stroke="none")
     sh.line(-4.0, -0.02, 11.0, -0.02, GREEN, 1.0)
@@ -281,6 +312,10 @@ def elev_lateral():
     sh.line(0.45, 0, C.shear(0.45, 4.13), 4.13, GREEN, 2.0)
     # vidro da fachada (recuado)
     sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GLASS, 5); sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GREEN, 0.9)
+    # Bico em balanço sobre o deck (silhueta lateral) + tirantes
+    sh.poly(bico_side(), fill=MEMB, stroke=GREEN, sw=1.8)
+    for t in C.bico_ties(): sh.poly([(x, z) for (x, y, z) in t], close=False, stroke=EARTH, sw=0.8, dash="3 2")
+    sh.poly([(x, z) for (x, y, z) in C.bico_ridge(16)], close=False, stroke=STEEL, sw=1.2, dash="6 3", opacity=0.7)
     # espinha de luz
     x1, x2, _ = C.SPINE
     spine = [(C.shear(x, C.top(x)), C.top(x)) for x in [x1 + (x2 - x1) * i / 30 for i in range(31)]]
@@ -297,7 +332,8 @@ def elev_lateral():
         sh.line(xx, 0.0, xx, 1.3, WOOD2, 2.2)
     # legendas
     sh.leader(3.4, 4.2, 2.0, 4.85, "Cumeeira 4,20 m · Espinha de Luz 1,90 a 6,60", 12)
-    sh.leader(0.05, 3.5, -1.5, 4.3, "Lábio frontal: anel inclinado 8°, avanço 0,60 m", 12, anchor="end")
+    sh.leader(-1.9, 4.25, -2.6, 5.35, "Bico: cumeeira Ø114,3 em balanço 2,40 m, ponta erguida a 4,42 m, tubos de borda Ø60,3 e tirantes", 12, anchor="start")
+    sh.leader(-0.3, 3.2, -1.9, 2.4, "Borda livre em catenária: cobre metade do deck", 12, anchor="end")
     sh.leader(4.9, 1.5, 3.4, -1.15, "Janela Olho 1,60 x 0,95 com requadro de madeira 220 mm", 12, anchor="end")
     sh.leader(7.9, 2.0, 7.6, 3.9, "Olho do banho 1,10 x 0,60 (alto)", 12, anchor="end")
     sh.leader(9.55, 1.15, 8.7, 4.6, "Cauda: fecha em ponta a 1,10 m", 12, anchor="end")
@@ -305,12 +341,13 @@ def elev_lateral():
     sh.leader(6.4, 0.35, 6.9, -1.0, "Calha oculta no rodapé da concha, queda Ø75 nas extremidades", 12)
     # cotas
     sh.dim(0.45, -0.95, 9.6, -0.95, -0.35, label="9,60 (piso)")
-    sh.dim(-0.15, -0.95, 9.6, -0.95, -0.95, label="9,75 (concha com lábio)")
+    sh.dim(-2.55, -0.95, 9.6, -0.95, -0.95, label="12,15 (concha com o Bico)")
+    sh.dim(-2.55, 4.55, 0.45, 4.55, 0.25, label="3,00 (bico além do anel)", color=EARTH)
     sh.dim(-3.7, -0.95, 0.9, -0.95, -0.35, label="4,60 (deck)")
     sh.dim(10.8, 0, 10.8, 4.2, 0.5, label="4,20")
     sh.dim(-4.2, -0.6, -4.2, 0, -0.4, label="0,60")
     sh.scalebar(-4.4, -2.5, 5)
-    sh.title_block("ZION CASULO", "Elevação lateral", "1:50 (A1)", "05/27", "Concha assimétrica: frente cheia, cauda afilada, 6 Janelas Olho")
+    sh.title_block("ZION CASULO", "Elevação lateral", "1:50 (A1)", "05/27", "Concha assimétrica: Bico em balanço na frente, cauda afilada, 6 Janelas Olho")
     return sh
 
 # ------------------------------------------------------------------ CORTE LONGITUDINAL
@@ -332,6 +369,11 @@ def corte_long():
     sh.poly(top + inner[::-1], fill=sh.pattern("insul"), stroke=GREEN, sw=1.6)
     sh.poly(top, close=False, stroke=EARTH, sw=3)  # membrana externa
     sh.poly([p for p in bot if p[0] > 8.6], close=False, stroke=GREEN, sw=1.6)
+    # Bico em balanço (membrana + cumeeira + tirante, vistos no eixo)
+    sh.poly(bico_side(), fill=MEMB, stroke=GREEN, sw=1.2, opacity=0.6)
+    sh.poly([(x, z) for (x, y, z) in C.bico_ridge(16, 0.0)][1:], close=False, stroke=EARTH, sw=3)
+    sh.poly([(x, z) for (x, y, z) in C.bico_ridge(16)], close=False, stroke=STEEL, sw=3.5)
+    for t in C.bico_ties(): sh.poly([(x, z) for (x, y, z) in t], close=False, stroke=STEEL, sw=1.0, dash="3 2")
     # anel frontal e vidro
     sh.line(0.45, 0, C.shear(0.45, 4.13), 4.13, GREEN, 2.4)
     sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GLASS, 5); sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GREEN, 1.0)
@@ -368,7 +410,8 @@ def corte_long():
     sh.leader(6.65, 3.2, 7.4, 4.1, "Parede da cabeceira / banho até a concha", 12)
     sh.leader(7.5, 2.64, 9.6, 3.9, "Ático técnico: evaporadora 12k BTU, aquecedor, quadro", 12, anchor="end")
     sh.leader(6.56, 2.15, 5.4, 3.1, "Difusor linear na cabeceira", 12, anchor="end")
-    sh.leader(0.35, 3.2, -0.7, 3.9, "Anel A0 Ø101,6 · vidro recuado 0,45 m", 12, anchor="end")
+    sh.leader(0.35, 3.0, -0.7, 3.5, "Anel A0 Ø101,6 · vidro recuado 0,45 m", 12, anchor="end")
+    sh.leader(-1.5, 4.2, -2.3, 4.9, "Bico: cumeeira Ø114,3 x 4,0 engastada em A0-A1, balanço 2,40 m; 2 tirantes Ø12 ⚠️", 12, anchor="start")
     sh.leader(-1.0, -0.12, -3.9, 1.2, "Deck cumaru · vigas U 150 x 60 · PIR 50 mm", 12, anchor="start")
     sh.leader(8.3, 0.4, 9.9, 1.9, "Banheira na cauda sob o Olho baixo", 12, anchor="end")
     sh.leader(8.1, -0.5, 7.6, -1.5, "Estacas helicoidais Ø76 · cabeçote ajustável", 12, anchor="end")
@@ -377,11 +420,12 @@ def corte_long():
     sh.dim(6.6, -1.05, 9.4, -1.05, -0.35, label="2,80")
     sh.dim(0.45, -1.05, 0.9, -1.05, -0.35, label="0,45")
     sh.dim(-3.7, -1.05, 0.45, -1.05, -0.35, label="4,15")
+    sh.dim(-2.55, 5.25, 0.45, 5.25, 0.25, label="3,00 (bico)", color=EARTH)
     sh.dim(10.8, 0, 10.8, 4.2, 0.5, label="4,20")
     sh.dim(9.9, 0, 9.9, 2.4, 0.4, label="2,40 forro")
     sh.dim(-4.2, -0.9, -4.2, 0, -0.4, label="0,90 (máx.)")
     sh.scalebar(-4.4, -2.5, 5)
-    sh.title_block("ZION CASULO", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Envelope em 4 camadas, ático técnico sobre o banho, Espinha de Luz")
+    sh.title_block("ZION CASULO", "Corte longitudinal A-A", "1:50 (A1)", "06/27", "Bico em balanço, envelope em 4 camadas, ático técnico sobre o banho, Espinha de Luz")
     return sh
 
 # ------------------------------------------------------------------ CORTE TRANSVERSAL
@@ -440,7 +484,7 @@ def corte_transv():
     sh.leader(-2.85, 1.3, -4.0, 2.4, "Membrana · câmara 60 mm · lã PET 50 mm · forro", 12, anchor="start")
     sh.leader(yv - 0.1, zc, -4.0, 1.3, "Janela Olho basculante em corte", 12, anchor="start")
     sh.leader(2.6, 0.12, 4.0, 1.0, "Fita LED 2700 K no rodapé (indireta)", 12, anchor="end")
-    sh.leader(1.85, 1.5, 4.0, 2.2, "Armário baixo embutido na curva (h 1,50)", 12, anchor="end")
+    sh.leader(1.85, 1.5, 4.0, 2.2, "Armário baixo 1,10 m embutido na curva (h 1,50)", 12, anchor="end")
     sh.leader(0.0, 2.1, 1.2, 3.4, "Difusor linear do ar-condicionado", 12, anchor="end")
     sh.leader(2.85, 0.3, 4.0, 0.3, "Trilho de base 100 x 50 + calha oculta", 12, anchor="end")
     sh.leader(-0.8, -0.12, 2.4, -1.5, "Piso: carvalho 14 mm + compensado 18 mm + PIR 50 mm", 12, anchor="start")

@@ -2,7 +2,7 @@
 """Gera o Caderno Técnico (HTML) com os 27 entregáveis dos produtos ZION CASULO e ZION SAFARI.
 Uso: python3 build_dossier.py [--inline]   (--inline embute imagens como data URI para publicação em página única)"""
 import os, sys, base64, json, glob
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 from geometry import Cocoon, Zenith
 from bom import cocoon_bom, zenith_bom, cocoon_parts, zenith_parts, transport, ASSEMBLY
 
@@ -62,7 +62,7 @@ def section(num, title, html, product=""):
 # 00 capa e manifesto ---------------------------------------------------------
 cover = f"""
 <div class="cover">
-  <div class="brand"><span class="z">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</span><span class="sub">GLAMPING COLLECTION</span></div>
+  <div class="brand"><span class="z" style="display:flex;align-items:center">{zion_mark_html('13mm', style='margin-right:6mm')}{zion_logo_html('13mm')}</span><span class="sub">ZION GLAMPING COLLECTION</span></div>
   <div class="splitword"><span>CASULO</span><span class="line"></span><span>SAFARI</span></div>
   <h1>Uma nova linha de hospedagens de luxo em membrana tensionada, aço e vidro</h1>
   <p class="lead">Projeto conceitual, arquitetônico e técnico de dois produtos proprietários da Zion para glampings, boutique hotels e destinos de natureza. Do casulo orgânico ao pico escultural: duas formas, uma plataforma industrial, um mesmo modo de habitar a paisagem.</p>
@@ -87,7 +87,7 @@ concept = f"""
 <h3>ZION CASULO: a concha que se abre para a paisagem</h3>
 <p>Uma cabana biomórfica em forma de casulo: planta em superelipse assimétrica (frente cheia, cauda afilada), seção elíptica com o centro a 0,75 m do piso, de modo que a concha abraça o chão em vez de simplesmente pousar sobre ele. Três gestos definem a identidade e a distinguem de qualquer produto de mercado:</p>
 <ul>
-  <li><strong>Lábio frontal.</strong> O anel de fachada inclina-se 8° para fora e avança 0,60 m sobre o deck, formando o beiral e a expressão de casulo que se abre. A fachada de vidro fica recuada 0,45 m, inclinada no mesmo ângulo, como a proa de um barco.</li>
+  <li><strong>Bico.</strong> A membrana continua 2,40 m além do anel frontal, em balanço sobre o deck, com a ponta erguida a 4,42 m: cumeeira Ø114,3 engastada em A0 e A1, dois tubos de borda curvados, uma costela e dois tirantes sob a membrana. O anel de fachada inclina-se 8° e a fachada de vidro fica recuada 0,45 m, como a proa de um barco sob a asa.</li>
   <li><strong>Espinha de Luz.</strong> Uma claraboia contínua de 0,70 x 4,70 m ao longo da cumeeira, sobre o estar e a cama. Deitado, o hóspede vê a copa das árvores e o céu.</li>
   <li><strong>Janelas Olho.</strong> Seis janelas em lente, com requadros profundos de madeira laminada: nenhuma escotilha circular. A lente é a assinatura gráfica do produto e aparece também na comunicação da marca.</li>
 </ul>
@@ -102,9 +102,9 @@ concept = f"""
 </ul>
 
 <h3>Originalidade e propriedade</h3>
-<p>Os modelos de referência do mercado (túnel segmentado com escotilhas circulares; cobertura de dois picos simétricos sobre planta octogonal) serviram apenas como parâmetro construtivo e dimensional. As geometrias aqui desenvolvidas (superelipse assimétrica com lábio inclinado e espinha envidraçada; cumes assimétricos em diagonal com óculo e chaminé) são proprietárias, definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code> e passíveis de registro de desenho industrial.</p>
+<p>Os modelos de referência do mercado (túnel segmentado com escotilhas circulares; cobertura de dois picos simétricos sobre planta octogonal) serviram apenas como parâmetro construtivo e dimensional. As geometrias aqui desenvolvidas (superelipse assimétrica com Bico em balanço e espinha envidraçada; cumes assimétricos em diagonal com óculo e chaminé) são proprietárias, definidas por parâmetros numéricos no arquivo <code>tools/geometry.py</code> e passíveis de registro de desenho industrial.</p>
 
-{two(kv([("Produto", "ZION CASULO"), ("Piso", "9,60 x 5,86 m"), ("Concha", "9,75 x 6,00 x 4,20 m"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck", "29,9 m²"), ("Total", "78 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
+{two(kv([("Produto", "ZION CASULO"), ("Piso", "9,60 x 5,86 m"), ("Concha", "12,15 x 6,00 x 4,42 m (com o Bico em balanço de 2,40 m)"), ("Piso interno", f"{fmt(C.floor_area(), 1)} m² + vestíbulo 2,4 m² = 48 m²"), ("Deck", "29,9 m²"), ("Total", "78 m²"), ("Programa", "Estar, suíte king, banho com banheira"), ("Peso embarcado", f"{fmt(BC['total'], 0)} kg")]),
      kv([("Produto", "ZION SAFARI"), ("Corpo", "9,50 x 5,40 x 2,75 m"), ("Cumes", "5,80 m e 4,60 m"), ("Cobertura", "12,90 x 7,40 m (95,5 m² proj.)"), ("Piso interno", f"{fmt(Z.floor_area(), 1)} m²"), ("Terraço + passarela", "28,0 m²"), ("Total", "79,3 m²"), ("Peso embarcado", f"{fmt(BZ['total'], 0)} kg")]))}
 """
 section("01", "Conceito arquitetônico", concept)
@@ -116,13 +116,13 @@ DRAW = [("02", "Planta baixa humanizada", "02_planta_humanizada.svg"), ("03", "P
         ("08", "Vista isométrica", "08_isometrica.svg")]
 NOTES = {
  "cocoon": {
-  "02": "Sequência de intimidade crescente: vestíbulo coberto sob o lábio, estar com chaise voltada ao deck, suíte king com cabeceira na parede do banho e banho na cauda com banheira sob a Janela Olho baixa. Toda a marcenaria (console café, armário baixo, criados) é embutida na curva da concha, onde o pé-direito é menor.",
+  "02": "Sequência de intimidade crescente: deck abrigado sob o Bico, vestíbulo, estar com chaise voltada ao deck e mini cozinha (cooktop de indução 2 bocas, forno, geladeira, air fryer), suíte king com cabeceira na parede do banho e banho na cauda com banheira sob a Janela Olho baixa. Toda a marcenaria (mini cozinha, armário baixo, criados) é embutida na curva da concha, onde o pé-direito é menor.",
   "03": "Arcos A0 a A7 a cada 1,20 m (1,10 m na cauda). Malha de estacas 1,20 x 1,30 m (46 estacas). Larguras internas de 5,86 m na seção máxima e 4,80 m no banho. Cortes A-A (longitudinal, no eixo) e B-B (transversal, x = 5,00).",
-  "04": "A silhueta é a seção máxima (6,00 x 4,20 m); dentro dela, o anel do lábio (4,88 m) e a fachada de vidro com quatro montantes, travessa a 2,40 m e porta pivotante de 1,00 m. A Espinha de Luz aparece como aresta de vidro na cumeeira.",
+  "04": "A silhueta é a seção máxima (6,00 x 4,20 m) coroada pelo Bico (ponta a 4,42 m); dentro dela, o anel do lábio (4,88 m) e a fachada de vidro com quatro montantes, travessa a 2,40 m e porta pivotante de 1,00 m. A Espinha de Luz aparece como aresta de vidro na cumeeira.",
   "05": "A concha lê-se como semente: frente cheia e inclinada, cauda que fecha em ponta a 1,10 m. Três Janelas Olho por lado, com o Olho do banho mais alto por privacidade. A condensadora fica atrás da cauda, oculta por painel ripado.",
   "06": "Envelope em quatro camadas; parede do banho sobe até a concha e cria o ático técnico sobre o forro de 2,40 m (evaporadora dutada, aquecedor, quadro). Espinha de Luz de x 1,90 a 6,60 sobre o estar e a cama.",
   "07": "Seção elíptica com centro a 0,75 m: a concha curva-se para dentro na base. Arco Ø88,9 na camada ventilada, Janela Olho basculante em corte, armário embutido onde o pé-direito é de 1,50 m, difusor linear na cabeceira, fita LED nos rodapés.",
-  "08": "Volumetria a partir da frente e da lateral direita: lábio, fachada, Espinha de Luz, três Janelas Olho e deck com escada."},
+  "08": "Volumetria a partir da frente e da lateral direita: Bico em balanço sobre o deck, fachada, Espinha de Luz, três Janelas Olho e deck com escada."},
  "zenith": {
   "02": "Estar com sofá voltado à fachada e chaise no vidro lateral; Ilha do Café envolvendo o mastro secundário; suíte king sob o Óculo; closet de 2,00 m; banho de 15 m² com bancada dupla, chuveiro, bacia em nicho e banheira com fresta de vidro; terraço com hidromassagem sob o beiral e passarela lateral de chegada.",
   "03": "Corpo 9,50 x 5,40 com pilares a cada 3,20 m; cobertura 12,90 x 7,40 com curvas de nível da membrana a cada 0,40 m; cumes em (6,30; +0,40) e (1,60; +1,60); 30 estacas sob o piso e 7 de tração para os postes. Cortes A-A (y = +0,40, eixo do mastro) e B-B (x = 6,30).",
@@ -140,7 +140,7 @@ for num, title, fn in DRAW:
 m3d = f"""
 <p>Os modelos 3D são gerados a partir da mesma geometria paramétrica dos desenhos (<code>tools/geometry.py</code>) e entregues em dois formatos: visualizador interativo em HTML (Three.js, roda em qualquer navegador, com modos Exterior, Interior, Estrutura, Noite e Corte) e arquivo GLB (glTF binário) para importação em Rhino, SketchUp, Blender, Twinmotion, Lumion, Unreal ou visualização em realidade aumentada no celular.</p>
 {table(["Produto", "Visualizador interativo", "Modelo GLB", "Conteúdo"], [
- ["ZION CASULO", '<a href="cocoon/3d/zion-cocoon-3d.html">cocoon/3d/zion-cocoon-3d.html</a>', '<a href="cocoon/3d/zion-cocoon.glb">cocoon/3d/zion-cocoon.glb</a>', "Concha (membrana e vidros), 8 arcos, 7 terças, anel do lábio, fachada, Janelas Olho, deck, piso, parede do banho, mobiliário e equipamentos"],
+ ["ZION CASULO", '<a href="cocoon/3d/zion-cocoon-3d.html">cocoon/3d/zion-cocoon-3d.html</a>', '<a href="cocoon/3d/zion-cocoon.glb">cocoon/3d/zion-cocoon.glb</a>', "Concha (membrana e vidros), Bico em balanço, 8 arcos, 7 terças, anel do lábio, fachada, Janelas Olho, deck, piso, parede do banho, mobiliário e equipamentos"],
  ["ZION SAFARI", '<a href="zenith/3d/zion-zenith-3d.html">zenith/3d/zion-zenith-3d.html</a>', '<a href="zenith/3d/zion-zenith.glb">zenith/3d/zion-zenith.glb</a>', "Membrana de dois cumes, forro, mastros e coroas, anel de beiral, pilares, postes e cabos, paredes de vidro e ripado, terraço, hidromassagem, mobiliário"]])}
 {two(fig("cocoon/renders/cocoon_structure.png", "ZION CASULO · modelo 3D em modo Estrutura (membrana translúcida)"), fig("zenith/renders/zenith_structure.png", "ZION SAFARI · modelo 3D em modo Estrutura"))}
 {two(fig("cocoon/renders/cocoon_section.png", "ZION CASULO · modelo 3D em modo Corte"), fig("zenith/renders/zenith_section.png", "ZION SAFARI · modelo 3D em modo Corte"))}
@@ -151,7 +151,7 @@ section("09", "Modelo 3D", m3d)
 # 10-11 renders ---------------------------------------------------------------
 ext = f"""
 <p>Renderizações geradas a partir do modelo 3D paramétrico (visualização arquitetônica, não fotorrealista), coerentes com plantas, cortes e listas de materiais. Servem de base para a direção de arte das imagens finais de marketing.</p>
-{two(render_pair("cocoon", "ext_front", "ZION CASULO · vista frontal 3/4 com o lábio, a fachada de vidro e o deck"), render_pair("zenith", "ext_front", "ZION SAFARI · vista frontal 3/4 com os dois cumes sobre o terraço"))}
+{two(render_pair("cocoon", "ext_front", "ZION CASULO · vista frontal 3/4 com o Bico, a fachada de vidro e o deck"), render_pair("zenith", "ext_front", "ZION SAFARI · vista frontal 3/4 com os dois cumes sobre o terraço"))}
 {two(render_pair("cocoon", "ext_side", "ZION CASULO · lateral com as Janelas Olho"), render_pair("zenith", "ext_side", "ZION SAFARI · lateral com o vidro contínuo da suíte"))}
 {two(render_pair("cocoon", "ext_rear", "ZION CASULO · cauda"), render_pair("zenith", "ext_rear", "ZION SAFARI · fundos com os painéis ripados"))}
 {two(render_pair("cocoon", "ext_aerial", "ZION CASULO · vista aérea com a Espinha de Luz"), render_pair("zenith", "ext_aerial", "ZION SAFARI · vista aérea da membrana"))}
@@ -166,7 +166,7 @@ inn = f"""
 {table(["Elemento", "ZION CASULO", "ZION SAFARI"], [
  ["Piso", "Carvalho de engenharia 14 mm, tom natural; porcelanato cinza-areia no banho", "Idem; deck cumaru no terraço"],
  ["Paredes e forro", "Forro tensionado cor areia seguindo a concha; painel ripado de carvalho na cabeceira", "Forro tensionado seguindo os cumes; painéis de madeira nas paredes fechadas; tecido nas laterais"],
- ["Marcenaria", "Embutida na curva: console café, armário baixo, criados", "Ilha do Café com totem do mastro, closet, bancada dupla"],
+ ["Marcenaria", "Embutida na curva: mini cozinha 2,00 m (indução, forno, geladeira, air fryer), armário baixo, criados", "Ilha do Café com totem do mastro, closet, bancada dupla"],
  ["Iluminação", "Fita LED 2700 K nos rodapés e nos requadros das Janelas Olho; luz rasante na espinha; sem pendentes", "Fita LED no perímetro do forro e nos rodapés; arandelas nos criados; balizadores no terraço"],
  ["Tons", "Areia, cru, carvalho, bronze; lençóis brancos; cerâmica artesanal", "Areia, carvalho, bronze; pedra na bancada; têxteis em linho"],
  ["Texturas", "Membrana, tecido, madeira, pedra, linho", "Ripado, tecido, madeira, pedra, água"],
@@ -176,7 +176,7 @@ section("11", "Renderizações internas", inn)
 
 # 12 estrutura ----------------------------------------------------------------
 est = f"""
-{two(fig("cocoon/desenhos/12_estrutura_isometrica.svg", "ZION CASULO · estrutura metálica: anel do lábio, arcos, terças, espinha, cabos"), fig("zenith/desenhos/12_estrutura_isometrica.svg", "ZION SAFARI · estrutura metálica: mastros, coroas, anel de beiral, pilares, postes e cabos"))}
+{two(fig("cocoon/desenhos/12_estrutura_isometrica.svg", "ZION CASULO · estrutura metálica: Bico em balanço, anel do lábio, arcos, terças, espinha, cabos"), fig("zenith/desenhos/12_estrutura_isometrica.svg", "ZION SAFARI · estrutura metálica: mastros, coroas, anel de beiral, pilares, postes e cabos"))}
 <h3>Sistema estrutural</h3>
 {two("<h4>ZION CASULO</h4><p>Oito pórticos elípticos planos (A0 a A7), biengastados nos trilhos de base, travados por sete terças longitudinais e pela treliça da Espinha de Luz. A membrana tensionada (pré-tensão 2,5 kN/m) enrijece a concha contra ovalização; cabos em X nos vãos extremos resistem ao vento longitudinal. Uplift de projeto 1,3 kN/m² x 45 m² ≈ 60 kN em 16 pés de arco (≈ 4 kN cada). Peso do aço: " + fmt(BC['steel_kg'], 0) + " kg.</p>",
      "<h4>ZION SAFARI</h4><p>Dois mastros a compressão (M1 45 kN de projeto) com coroas de três braços e anéis de cume; anel de beiral 150 x 100 comprimido pela membrana sobre dez pilares embutidos nos painéis SIP, que formam o diafragma rígido; sete postes externos inclinados e estaiados absorvem os cabos de borda. Uplift de projeto 1,3 kN/m² x 95 m² ≈ 125 kN, distribuído entre pilares, postes e 37 estacas. Peso do aço: " + fmt(BZ['steel_kg'], 0) + " kg.</p>")}
@@ -204,7 +204,7 @@ arcs = f"""
 <h3>Arcos do ZION CASULO: geometria de fabricação</h3>
 {table(["Arco", "Posição x (m)", "Semi-eixo horiz. (m)", "Semi-eixo vert. (m)", "Topo (m)", "Desenvolvido (m)", "Segmentos"],
   [[f"A{i}", fmt(x), fmt(C.a(x)), fmt(C.b(x)), fmt(C.top(x)), fmt(l), "2 (anel inclinado)" if i == 0 else "3 + 2 luvas"] for i, (x, l) in enumerate(zip(C.ARCH_X, BC["arch_lengths"]))])}
-<p class="note">Todos os arcos partem da mesma família de elipses (centro a 0,75 m do piso), o que permite um único gabarito de calandra com ajuste de raio por segmento. Perfil Ø88,9 x 3,6 mm; o anel A0 usa Ø101,6 x 4,0 mm por receber a esquadria da fachada e o esforço do lábio em balanço.</p>
+<p class="note">Todos os arcos partem da mesma família de elipses (centro a 0,75 m do piso), o que permite um único gabarito de calandra com ajuste de raio por segmento. Perfil Ø88,9 x 3,6 mm; o anel A0 usa Ø101,6 x 4,0 mm por receber a esquadria da fachada e o engaste da cumeeira do Bico em balanço (⚠️ validação de engenharia).</p>
 """
 section("13", "Sistema de arcos e perfis estruturais", arcs)
 

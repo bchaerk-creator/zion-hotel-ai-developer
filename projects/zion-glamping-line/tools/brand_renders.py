@@ -1,18 +1,17 @@
 # -*- coding: utf-8 -*-
-"""Renders para web (1400 px) e para o deck (sem a interface do visualizador), com a marca Zion (símbolo Z) no canto inferior direito.
+"""Renders para web (1400 px) e para o deck (sem a interface do visualizador), com a marca Zion (símbolo oficial) no canto inferior direito.
 Parte sempre dos PNG originais em <produto>/renders/*.png, por isso pode ser rodado quantas vezes for preciso sem acumular marcas.
 Uso: python3 brand_renders.py [cocoon zenith lodge capsule ...]"""
 import glob, io, os, sys
 import pymupdf
 from PIL import Image
-from svgkit import ZION_Z
+from svgkit import zion_symbol_svg
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
 def mark_image(size, color):
     """símbolo Z rasterizado com fundo transparente (PIL RGBA)."""
-    svg = (f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="{size}" height="{size}">'
-           f'<circle cx="50" cy="50" r="46.5" fill="none" stroke="{color}" stroke-width="3.2"/><polygon points="{ZION_Z}" fill="{color}"/></svg>')
+    svg = zion_symbol_svg(size, color)
     doc = pymupdf.open(stream=svg.encode(), filetype="svg")
     pix = doc[0].get_pixmap(alpha=True, matrix=pymupdf.Matrix(1, 1))
     return Image.open(io.BytesIO(pix.tobytes("png"))).convert("RGBA")

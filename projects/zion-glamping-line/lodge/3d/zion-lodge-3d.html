@@ -3648,6 +3648,10 @@ function buildCasulo() {
   D.purlins_in.forEach(p => tube(p, 0.024, M.steel, false, 90, st));
   tube(D.front_ring, 0.05, M.steel, false, 96, st);
   D.spine_rails.forEach(p => tube(p, 0.021, M.steel, false, 40, st));
+  if (D.bico) { // Bico: membrana em balanço sobre o deck + cumeeira, bordas, costela e tirantes
+    const bm = indexedMesh(D.bico.mesh.vertices, D.bico.mesh.faces, M.membrane); bm.name = 'bico';
+    tube(D.bico.ridge, 0.057, M.steel, false, 48, st); D.bico.edges.forEach(e => tube(e, 0.03, M.steel, false, 72, st));
+    D.bico.ribs.forEach(r => tube(r, 0.024, M.steel, false, 48, st)); D.bico.ties.forEach(t => tube(t, 0.007, M.cable, false, 8, st)); }
   // fachada de vidro: polígono em leque + montantes + travessa + porta pivotante
   const ring = D.glass_ring, gp = D.glass_plane;
   { const cx = [0, 0, 0]; ring.forEach(p => { cx[0] += p[0] / ring.length; cx[1] += p[1] / ring.length; cx[2] += p[2] / ring.length; });
@@ -3975,7 +3979,7 @@ function setView(name) {
   document.getElementById('views').value = name;
   return true;
 }
-window.setView = setView;
+window.setView = setView; window.camera = camera; window.controls = controls;
 
 // UI
 const sel = document.getElementById('views');

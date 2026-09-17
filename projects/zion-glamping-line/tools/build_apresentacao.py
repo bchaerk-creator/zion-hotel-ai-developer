@@ -4,7 +4,7 @@
 o PDF sai com export_pdf.js (uma página 1600 x 900 px por slide).
 Uso: python3 build_apresentacao.py"""
 import os, html
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 from build_projeto_arquitetonico import svg_inline
 from product_book_data import budget, cocoon_parts, zenith_parts, COCOON_CONNECTIONS, ZENITH_CONNECTIONS
 from bom import cocoon_bom, zenith_bom, transport, ASSEMBLY
@@ -43,8 +43,8 @@ def slide(body, cls="", label=""):
 def capa():
     slide(f'''<div class="photo full">{img("cocoon/renders/web/cocoon_night.jpg")}</div><div class="overlay"></div>
 <div class="cover">
-  <div class="zbig">{zion_mark_html('64px', color='#FEF5F0', style='display:block;margin:0 auto 22px')}</div>
-  <div class="eyebrow">ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+  <div class="zbig">{zion_mark_html('64px', color='#FEF5F0', style='display:block;margin:0 auto 26px')}{zion_logo_html('54px', color='#FEF5F0', style='display:block;margin:0 auto 30px')}</div>
+  <div class="eyebrow">ZION GLAMPING COLLECTION</div>
   <div class="split"><span>PROJETO</span><i></i><span>ARQUITETÔNICO</span></div>
   <div class="sub">ZION CASULO · ZION SAFARI · ZION LODGE 38 · 24 · 28 · ZION CÁPSULA</div>
   <div class="tag">Estudo preliminar das unidades proprietárias de hospedagem · pranchas, engenharia peça a peça, CAD, FF&amp;E e materiais · seis unidades sobre o mesmo sistema</div>
@@ -124,7 +124,7 @@ def lodge_family():
         for r in R: byc[r["cat"]] = byc.get(r["cat"], 0) + 1
         rows += f'<tr><td>{name}</td><td class="num">{t["n_items"]}</td>' + "".join(f'<td class="num">{byc.get(c, 0)}</td>' for c in "MFEODB") + '</tr>'
     cats = "".join(f"<li><b>{c}</b>{d}</li>" for c, d in (("Mobiliário", "cama king, cabeceira, criados, sofá, chaise, poltronas, ilha do café, closet, bancada"), ("Luminárias e decoração", "arandelas, luminárias de piso e mesa, tapetes de lã, cortinas e blackout, arte e objetos"),
-                                                        ("Equipamentos", "frigobar, cafeteira, cofre, som, fechadura digital, automação de cenas, lareira ecológica"), ("Enxoval e OS&E", "3 jogos de cama e banho, amenities, louças, mantas, acessórios, sinalização, segurança"), ("Deck e banho", "espreguiçadeiras, mesa e cadeiras, lanternas, ducha, acessórios em latão")))
+                                                        ("Equipamentos", "mini cozinha do Casulo (indução, forno, geladeira, air fryer), cafeteira, cofre, som, fechadura digital, automação de cenas, lareira ecológica"), ("Enxoval e OS&E", "3 jogos de cama e banho, amenities, louças, mantas, acessórios, sinalização, segurança"), ("Deck e banho", "espreguiçadeiras, mesa e cadeiras, lanternas, ducha, acessórios em latão")))
     slide(f'''<h2>FF&amp;E · TUDO O QUE VAI DENTRO</h2><p class="lede">Além da construção, cada unidade recebe o FF&amp;E completo no padrão Zion New Luxury: materiais naturais, sem plástico aparente, sem pendentes, luz 2700 K. Lista item a item no Catálogo da Linha e na planilha ZION_FFE_Linha.xlsx.</p>
 <div class="two"><div><table class="budget"><tr><th>Unidade</th><th class="num">Itens</th><th class="num">Mobiliário</th><th class="num">Luminárias</th><th class="num">Equipamentos</th><th class="num">Enxoval</th><th class="num">Deck</th><th class="num">Banho</th></tr>{rows}</table>
 <p class="note">Número de itens por categoria; lista item a item, com especificação, ambiente e quantidade, no Catálogo da Linha e na planilha de materiais e FF&amp;E.</p></div>
@@ -189,7 +189,7 @@ def proximos():
 <div class="half right photo">{img("zenith/renders/web/zenith_night.jpg")}</div>''', "dark", "PRÓXIMOS PASSOS")
 
 def fim():
-    slide('''<div class="closing"><div class="z">Z</div><div class="split"><span>DESENVOLVEMOS</span><i></i><span>DESTINOS</span></div>
+    slide(f'''<div class="closing"><div class="z">{zion_mark_html('110px', color='#FEF5F0', style='display:block;margin:0 auto 40px')}</div><div class="split"><span>DESENVOLVEMOS</span><i></i><span>DESTINOS</span></div>
 <div class="sub">ZION HOTEL GROUP INTERNATIONAL · ZION GLAMPING COLLECTION</div>
 <div class="tag">Projeto arquitetônico ZION CASULO · ZION SAFARI · conceito ZION LODGE · R00 · setembro de 2026 · pranchas, product book, planilha de orçamento e arquivos CAD no repositório</div></div>''', "dark cover-slide", "")
 

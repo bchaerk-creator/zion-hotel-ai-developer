@@ -49,13 +49,26 @@ def dim_v(msp, x, y1, y2, off=0.6, txt_=None):
 def zion_mark(msp, x, y, size=0.6, layer="TEXTO"):
     """símbolo Z da Zion (anel + Z) com canto inferior esquerdo em (x, y), lado 'size' m."""
     from svgkit import zion_mark_lines
-    (cx, cy, r), z = zion_mark_lines(size)
-    msp.add_circle((x + cx, y + cy), r, dxfattribs={"layer": layer})
-    e = msp.add_hatch(color=7, dxfattribs={"layer": layer}); e.paths.add_polyline_path([(x + px, y + py) for px, py in z], is_closed=True)
-    pl(msp, [(x + px, y + py) for px, py in z], layer, close=True)
+    for z in zion_mark_lines(size):
+        e = msp.add_hatch(color=7, dxfattribs={"layer": layer}); e.paths.add_polyline_path([(x + px, y + py) for px, py in z], is_closed=True)
+        pl(msp, [(x + px, y + py) for px, py in z], layer, close=True)
+
+def zion_word(msp, x, y, h=0.3, layer="TEXTO"):
+    """logotipo ZION vetorizado (letras Z, I, O, N) com canto inferior esquerdo em (x, y), altura h m."""
+    from svgkit import zion_word_lines
+    polys, (cx, cy, re_, ri) = zion_word_lines(h)
+    for z in polys:
+        e = msp.add_hatch(color=7, dxfattribs={"layer": layer}); e.paths.add_polyline_path([(x + px, y + py) for px, py in z], is_closed=True)
+        pl(msp, [(x + px, y + py) for px, py in z], layer, close=True)
+    e = msp.add_hatch(color=7, dxfattribs={"layer": layer})
+    e.paths.add_edge_path().add_arc((x + cx, y + cy), re_, 0, 360)
+    e.paths.add_edge_path().add_arc((x + cx, y + cy), ri, 0, 360)
+    msp.add_circle((x + cx, y + cy), re_, dxfattribs={"layer": layer}); msp.add_circle((x + cx, y + cy), ri, dxfattribs={"layer": layer})
 
 def title(msp, x, y, s):
     zion_mark(msp, x - 0.95, y - 0.35, 0.7)
+    zion_word(msp, x - 2.6, y - 0.35, 0.3)
+    txt(msp, x - 1.5, y - 0.2, "HOTEL GROUP", h=0.09, align=TextEntityAlignment.MIDDLE_LEFT); txt(msp, x - 1.5, y - 0.32, "INTERNATIONAL", h=0.09, align=TextEntityAlignment.MIDDLE_LEFT)
     txt(msp, x, y, s, h=0.35, align=TextEntityAlignment.MIDDLE_LEFT)
     txt(msp, x, y - 0.32, "ZION GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL", h=0.13, align=TextEntityAlignment.MIDDLE_LEFT)
 
@@ -79,6 +92,7 @@ def cocoon_planta(msp, ox=0, oy=0, layout=True):
     shell = [(x, -C.a(x)) for x in np.linspace(0.5, C.L, 120)] + [(x, C.a(x)) for x in np.linspace(C.L, 0.5, 120)]
     ring = [(x, y) for (x, y, z) in C.front_ring(80)]
     pl(msp, shell, "COBERTURA_OCULTA", close=True); pl(msp, ring, "COBERTURA")
+    pl(msp, [(x, y) for (x, y, z) in C.bico_edge(48)], "COBERTURA_OCULTA"); pl(msp, [(x, y) for (x, y, z) in C.bico_ridge(16)], "COBERTURA_OCULTA")
     pl(msp, floor, "PAREDES", close=True)
     glass = [(x, y) for (x, y, z) in C.glass_ring(80) if z < 0.05]
     pl(msp, [(C.shear(C.X_GLASS, 0), -C.floor_hw(C.X_GLASS)), (C.shear(C.X_GLASS, 0), C.floor_hw(C.X_GLASS))], "ESQUADRIAS")
@@ -115,6 +129,9 @@ def cocoon_estrutura(msp):
 def cocoon_cobertura(msp):
     shell = [(x, -C.a(x)) for x in np.linspace(0.5, C.L, 120)] + [(x, C.a(x)) for x in np.linspace(C.L, 0.5, 120)]
     pl(msp, shell, "COBERTURA", close=True); pl(msp, [(x, y) for (x, y, z) in C.front_ring(80)], "COBERTURA")
+    pl(msp, [(x, y) for (x, y, z) in C.bico_edge(48)], "COBERTURA"); pl(msp, [(x, y) for (x, y, z) in C.bico_ridge(16)], "ESTRUTURA")
+    for e in C.bico_export()["edges"]: pl(msp, [(x, y) for (x, y, z) in e], "ESTRUTURA")
+    txt(msp, -1.5, 2.9, "BICO: membrana em balanço 2,40 m · cumeeira Ø114,3 · bordas Ø60,3 · 2 tirantes Ø12", h=0.12)
     for x in C.ARCH_X: pl(msp, [(px, py) for (px, py, pz) in C.section_curve(x, 60)], "COBERTURA_OCULTA")
     x1, x2, ht = C.SPINE; hw = ht * C.B_MAX; rect(msp, C.shear(x1, 4.15), -hw, C.shear(x2, 4.15), hw, "ESQUADRIAS")
     for s in (1, -1): pl(msp, [(x, s * (C.floor_hw(x) + 0.08)) for x in np.linspace(0.9, 9.3, 60)], "ESTRUTURA")
@@ -156,6 +173,7 @@ def cocoon_corte_transv(msp, xc=5.0):
 
 def cocoon_fachada_frontal(msp):
     ring = [(y, z) for (x, y, z) in C.front_ring(100)]; pl(msp, ring, "COBERTURA")
+    pl(msp, [(y, z) for (x, y, z) in C.bico_edge(48)], "COBERTURA")
     glass = [(y, z) for (x, y, z) in C.glass_ring(100)]; pl(msp, glass, "ESQUADRIAS")
     for yy in (-1.6, -0.5, 0.5, 1.6):
         zt = C.ZC + (C.b(C.X_GLASS) - 0.06) * math.sqrt(max(0, 1 - (yy / (C.a(C.X_GLASS) - 0.06)) ** 2)); pl(msp, [(yy, 0), (yy, zt)], "ESQUADRIAS")
@@ -169,6 +187,9 @@ def cocoon_fachada_lateral(msp, side=-1):
     xs = np.linspace(C.X_FRONT, C.L, 160)
     top = [(C.shear(x, C.top(x)), C.top(x)) for x in xs]; bot = [(C.shear(x, 0), 0) for x in xs]
     pl(msp, top + bot[::-1], "COBERTURA", close=True)
+    pl(msp, [(x, z) for (x, y, z) in C.bico_ridge(16, 0.0)][1:], "COBERTURA"); edge = [(x, z) for (x, y, z) in C.bico_edge(48)]; pl(msp, edge[len(edge) // 2:], "COBERTURA")
+    pl(msp, [(x, z) for (x, y, z) in C.bico_ridge(16)], "ESTRUTURA")
+    for t in C.bico_ties(): pl(msp, [(x, z) for (x, y, z) in t], "ESTRUTURA")
     pl(msp, [(C.shear(C.X_FRONT, 0), 0), (C.shear(C.X_FRONT, 4.13), 4.13)], "ESTRUTURA")
     for w in C.WINDOWS:
         if (w["tc"] < math.pi / 2) != (side < 0): continue
@@ -176,7 +197,7 @@ def cocoon_fachada_lateral(msp, side=-1):
     x1, x2, _ = C.SPINE; pl(msp, [(C.shear(x, C.top(x)), C.top(x)) for x in np.linspace(x1, x2, 30)], "ESQUADRIAS")
     pl(msp, [(-3.7, -0.2), (9.6, -0.2), (9.6, 0), (-3.7, 0)], "DECK", close=True); pl(msp, [(-4.5, -0.6), (11, -0.6)], "TEXTO")
     for px in [-3.3, -1.1, 0.9, 2.1, 3.3, 4.5, 5.7, 6.9, 8.1, 9.0]: pl(msp, [(px, -0.2), (px, -2.0)], "FUNDACAO")
-    dim_h(msp, 0.45, 9.6, -2.3, -0.5, "9,60"); dim_h(msp, -3.7, 0.9, -2.3, -0.5, "4,60"); dim_v(msp, 10.5, 0, 4.2, 0.6, "4,20")
+    dim_h(msp, 0.45, 9.6, -2.3, -0.5, "9,60"); dim_h(msp, -3.7, 0.9, -2.3, -0.5, "4,60"); dim_v(msp, 10.5, 0, 4.2, 0.6, "4,20"); dim_h(msp, -2.55, 0.45, 4.8, 0.5, "3,00 (bico)")
     title(msp, -3.7, 5.6, "ZION CASULO · FACHADA LATERAL " + ("DIREITA (olhar para +y)" if side < 0 else "ESQUERDA (olhar para -y; espelhar ao plotar)") + " · 1:50")
 
 def cocoon_3d(msp):
@@ -185,6 +206,11 @@ def cocoon_3d(msp):
         for f in m[key]:
             a, b, c = V[f[0]], V[f[1]], V[f[2]]
             msp.add_3dface([a, b, c, c], dxfattribs={"layer": layer})
+    bm = C.bico_mesh(24, 8); BV = bm["vertices"]
+    for f in bm["faces"]:
+        a, b, c = BV[f[0]], BV[f[1]], BV[f[2]]; msp.add_3dface([a, b, c, c], dxfattribs={"layer": "MEMBRANA_3D"})
+    bx = C.bico_export(); msp.add_polyline3d(bx["ridge"], dxfattribs={"layer": "ACO_3D"})
+    for e in bx["edges"] + bx["ribs"] + bx["ties"]: msp.add_polyline3d(e, dxfattribs={"layer": "ACO_3D"})
     for a in C.arches(): msp.add_polyline3d(a["pts"], dxfattribs={"layer": "ACO_3D"})
     for p in C.purlins(40): msp.add_polyline3d(p, dxfattribs={"layer": "ACO_3D"})
     msp.add_polyline3d(C.front_ring(80), dxfattribs={"layer": "ACO_3D"}); msp.add_polyline3d(C.glass_ring(80), dxfattribs={"layer": "VIDRO_3D"})

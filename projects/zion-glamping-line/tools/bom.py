@@ -17,10 +17,16 @@ def r(v, n=0):
 def cocoon_bom():
     L = C.arch_lengths()
     memb, glass = C.membrane_area()
+    bico = C.bico_area(); BT = C.bico_tube_lengths()
+    memb = memb + bico
     floor = C.floor_area() + 2.4
     deck = (C.DECK["x2"] - C.DECK["x1"]) * (C.DECK["y2"] - C.DECK["y1"])
     steel = [
         ("A0", "Anel frontal inclinado 8°", "Ø101,6 x 4,0", 1, L[0], KG["Ø101,6 x 4,0"]),
+        ("BC", "Bico: cumeeira em balanço (A1 → ponta), engastada em A0 e A1", "Ø114,3 x 4,0", 1, BT["ridge"], KG["Ø114,3 x 4,0"]),
+        ("BB", "Bico: tubos de borda curvados (ponta → anel A0)", "Ø60,3 x 3,0", 2, 2 * BT["edge"], KG["Ø60,3 x 3,0"]),
+        ("BR", "Bico: costela intermediária curvada", "Ø48,3 x 3,0", 1, BT["rib"], KG["Ø48,3 x 3,0"]),
+        ("BT", "Bico: tirantes Ø12 inox + esticadores", "cabo", 2, 2 * BT["tie"], 0.7),
         ("A1-A7", "Arcos elípticos (3 segmentos cada)", "Ø88,9 x 3,6", 7, sum(L[1:]), KG["Ø88,9 x 3,6"]),
         ("T1-T7", "Terças longitudinais em trechos de 1,20 m", "Ø48,3 x 3,0", 7, 7 * 8.75, KG["Ø48,3 x 3,0"]),
         ("EL", "Espinha de Luz: banzos + diagonais", "Ø42,4 x 3,0 / Ø26,9 x 2,6", 1, 4.7 * 2 + 9.0, 2.4),
@@ -75,7 +81,7 @@ def cocoon_bom():
     weights = [(g, sum(x[3] for x in rows)) for g, rows in groups]
     total = sum(w for _, w in weights)
     return dict(steel_rows=steel_rows, steel_kg=steel_kg, alu_rows=alu_rows, alu_kg=alu_kg, groups=groups, weights=weights, total=total,
-                memb=memb, glass=glass, floor=floor, deck=deck, arch_lengths=L, front_glass=front_glass)
+                memb=memb, glass=glass, floor=floor, deck=deck, arch_lengths=L, front_glass=front_glass, bico=bico, bico_tubes=BT)
 
 def zenith_bom():
     roof_s, roof_p = Z.roof_area()

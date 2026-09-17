@@ -115,6 +115,14 @@ def cocoon_iso(structural=False):
     op = 0.15 if structural else 1.0
     sc.mesh(m["vertices"], m["membrane"], "#EDE6D6", op)
     sc.mesh(m["vertices"], m["glass"], "#9FB7C2", 0.45 if not structural else 0.15)
+    # Bico em balanço sobre o deck (membrana + cumeeira + bordas + costela + tirantes)
+    bm = C.bico_mesh(24, 8); sc.mesh(bm["vertices"], bm["faces"], "#EDE6D6", op)
+    bx = C.bico_export()
+    sc.polyline(bx["ridge"], "#3A3B3A", 2.6 if structural else 1.6)
+    for e in bx["edges"]: sc.polyline(e, "#3A3B3A", 2.0 if structural else 1.4)
+    if structural:
+        for rb in bx["ribs"]: sc.polyline(rb, "#6B6B6B", 1.3)
+        for t in bx["ties"]: sc.polyline(t, "#8B714E", 0.9, "4 3")
     # fachada de vidro (leque)
     gr = C.glass_ring(48)
     cen = np.mean(np.array(gr), axis=0)
@@ -153,13 +161,13 @@ def cocoon_iso(structural=False):
     sc.render()
     # legenda
     if structural:
-        items = [(1, "Anel frontal A0 Ø101,6 x 4,0 inclinado 8° (lábio)"), (2, "Arcos elípticos A1 a A7 Ø88,9 x 3,6 mm, 3 segmentos com luvas"),
+        items = [(1, "Anel A0 Ø101,6 + Bico: cumeeira Ø114,3 em balanço 2,40 m, bordas Ø60,3, costela, 2 tirantes"), (2, "Arcos elípticos A1 a A7 Ø88,9 x 3,6 mm, 3 segmentos com luvas"),
                  (3, "7 terças longitudinais Ø48,3 x 3,0 em trechos de 1,20 m"), (4, "Espinha de Luz: treliça plana 300 mm sob 4 painéis de vidro"),
                  (5, "Cabos em X Ø8 inox nos vãos A0-A1 e A5-A6"), (6, "Trilhos de base 100 x 50 x 3 curvados, chumbados ao piso"),
                  (7, "Quadro da cauda Ø60,3 + 3 barras"), (8, "Peso da estrutura metálica: ≈ 1.140 kg de aço + 200 kg de alumínio")]
         sh.legend(60, 720, items, size=12)
     else:
-        items = [(1, "Concha em membrana PVDF tensionada sobre 8 arcos elípticos"), (2, "Lábio frontal inclinado 8° protegendo a fachada de vidro"),
+        items = [(1, "Concha em membrana PVDF tensionada sobre 8 arcos elípticos"), (2, "Bico: membrana em balanço 2,40 m sobre o deck, ponta erguida a 4,42 m"),
                  (3, "Espinha de Luz na cumeeira (4,70 m)"), (4, "6 Janelas Olho em lente com requadro de madeira"),
                  (5, "Deck frontal 4,60 x 6,50 m em cumaru"), (6, "Cauda afilada com a banheira e a condensadora oculta")]
         sh.legend(60, 760, items, size=12)

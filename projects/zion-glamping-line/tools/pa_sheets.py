@@ -6,6 +6,8 @@ import math, os
 import numpy as np
 from geometry import Cocoon, Zenith, Lodge
 from svgkit import *
+from svgkit import zion_logo
+from drawings_cocoon import bico_plan, bico_side
 from drawings_cocoon import shell_plan_pts, arch_plan, top_profile, bottom_profile
 from drawings_zenith import roof_outline_pts, contours, slats, ground
 
@@ -142,9 +144,9 @@ def capa(product):
     sh = Sheet(1600, 1000, bg=CREAM)
     c = product == "cocoon"
     sh.add(f'<rect x="0" y="0" width="560" height="1000" fill="{BLACK}"/>')
-    sh.add(zion_mark(60, 36, 46, CREAM))
-    sh.text_px(60, 120, "ZION", size=42, weight=800, spacing=0.4, fill=CREAM, anchor="start")
-    sh.text_px(60, 146, "GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL", size=9.5, spacing=0.3, fill=SAND, anchor="start")
+    sh.add(zion_mark(60, 40, 56, CREAM))
+    sh.add(zion_logo(60, 118, 52, CREAM))
+    sh.text_px(60, 196, "ZION GLAMPING COLLECTION", size=9.5, spacing=0.3, fill=SAND, anchor="start")
     sh.text_px(60, 300, "PROJETO", size=13, spacing=0.5, fill=SAND, anchor="start"); sh.text_px(60, 322, "ARQUITETÔNICO", size=13, spacing=0.5, fill=SAND, anchor="start")
     sh.text_px(60, 420, NAME[product], size=46, weight=200, spacing=0.12, fill=CREAM, anchor="start")
     sub = {"cocoon": "Cabana biomórfica em casulo", "zenith": "Cabana escultural de dois cumes", "lodge": "Pavilhão octogonal com Lanterna Zion"}[product]
@@ -299,6 +301,11 @@ def cobertura(product):
         sh.header("Zion Casulo · Planta de cobertura", "Membrana PVDF em 7 painéis entre arcos + tampas; Espinha de Luz; calhas ocultas nos rodapés; tubos de queda Ø75 nas extremidades")
         outline, ring = shell_plan_pts()
         sh.poly(outline, fill=MEMB, stroke=GREEN, sw=1.8)
+        sh.poly(bico_plan(), fill=MEMB, stroke=GREEN, sw=1.6)
+        bx = C.bico_export(); sh.poly([(x, y) for (x, y, z) in bx["ridge"]], close=False, stroke=STEEL, sw=1.2, dash="6 3")
+        for e in bx["edges"] + bx["ribs"]: sh.poly([(x, y) for (x, y, z) in e], close=False, stroke=STEEL, sw=0.9, dash="6 3")
+        for t in bx["ties"]: sh.poly([(x, y) for (x, y, z) in t], close=False, stroke=EARTH, sw=0.7, dash="2 2")
+        sh.text(-1.3, 0.35, "BICO · membrana em balanço 2,40 m", 8.5, GREEN, spacing=0.08); sh.text(-1.3, 0.1, "cumeeira Ø114,3 · bordas Ø60,3 · costela · 2 tirantes", 7.5, EARTH)
         D = C.DECK; sh.rect(D["x1"], D["y1"], D["x2"], D["y2"], fill="none", stroke=GREEN, sw=0.8, dash="6 3")
         for i, x in enumerate(C.ARCH_X):
             pts = arch_plan(x); sh.poly(pts, close=False, stroke=GREEN, sw=0.9, dash="2 3")
@@ -323,13 +330,13 @@ def cobertura(product):
         for (qx, qy) in [(0.95, -2.75), (0.95, 2.75), (9.25, -1.2), (9.25, 1.2)]:
             sh.circle(qx, qy, 0.12, fill="#4E6E8B", stroke="none"); sh.text(qx + (0.25 if qx < 5 else -0.25), qy + 0.3, "TQ Ø75", 8, "#4E6E8B", anchor="start" if qx < 5 else "end")
         # lábio / anel frontal
-        sh.poly(ring, close=False, stroke=GREEN, sw=2.2); sh.text(-0.2, -2.6, "lábio frontal: anel A0 inclinado 8°, beiral 0,60 m", 9, GREEN, anchor="start", rotate=-90)
+        sh.poly(ring, close=False, stroke=GREEN, sw=2.2); sh.text(0.15, -2.6, "anel A0 inclinado 8° · engaste da cumeeira do Bico", 9, GREEN, anchor="start", rotate=-90)
         sh.text(9.0, 3.6, "cauda: tampa cônica de membrana presa no quadro B08", 9, GREEN, anchor="end")
         for w in C.WINDOWS:
             side = -1 if w["tc"] < math.pi / 2 else 1
             pts = [(C.shear(x, 1.6), side * (C.a(x) + 0.03)) for x in np.linspace(w["xc"] - w["lx"], w["xc"] + w["lx"], 8)]
             sh.poly(pts, close=False, stroke=GLASS, sw=5); sh.poly(pts, close=False, stroke=GREEN, sw=0.8)
-        sh.dim(0.45, -3.9, 9.6, -3.9, -0.5, label="9,15 (projeção da concha)"); sh.dim(-0.15, -3.9, 9.6, -3.9, -1.1, label="9,75 (com lábio)")
+        sh.dim(0.45, -3.9, 9.6, -3.9, -0.5, label="9,15 (projeção da concha)"); sh.dim(-2.55, -3.9, 9.6, -3.9, -1.1, label="12,15 (com o Bico)")
         sh.dim(10.3, -3.0, 10.3, 3.0, 0.6, label="6,00"); sh.dim(C.shear(x1, 4.15), 3.6, C.shear(x2, 4.15), 3.6, 0.5, label="4,70 (espinha)")
         sh.leader(0.5, 2.3, -1.6, 4.5, "membrana PVDF 1050 g/m² · painéis deslizados em perfil duplo keder sobre cada arco", 10, anchor="start")
         sh.leader(2.2, -2.9, 1.0, -4.5, "Janelas Olho: recorte reforçado + clamp no anel E06", 10)
@@ -559,6 +566,8 @@ def fachada_esquerda(product):
         for x in C.ARCH_X[1:]: sh.line(C.shear(x, 0), 0, C.shear(x, C.top(x)), C.top(x), EARTH, 0.6, dash="4 4", opacity=0.6)
         sh.line(0.45, 0, C.shear(0.45, 4.13), 4.13, GREEN, 2.0)
         sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GLASS, 5); sh.line(0.9, 0, C.shear(0.9, 4.15), 4.15, GREEN, 0.9)
+        sh.poly(bico_side(), fill=MEMB, stroke=GREEN, sw=1.8)
+        for t in C.bico_ties(): sh.poly([(x, z) for (x, y, z) in t], close=False, stroke=EARTH, sw=0.8, dash="3 2")
         x1, x2, _ = C.SPINE; spine = [(C.shear(x, C.top(x)), C.top(x)) for x in np.linspace(x1, x2, 30)]
         sh.poly(spine, close=False, stroke=GLASS, sw=6); sh.poly(spine, close=False, stroke=GREEN, sw=0.8)
         labels = {"Olho estar (esq.)": "JO2 1,60 x 0,95", "Olho suíte (esq.)": "JO3 1,40 x 0,80", "Olho banheira (esq.)": "JO5 0,90 x 0,50"}
@@ -572,10 +581,10 @@ def fachada_esquerda(product):
         sh.rect(9.95, 0.0, 10.7, 0.62, fill="#E5E1D8", stroke=GREEN, sw=0.8)
         for xx in [10.0 + 0.12 * i for i in range(6)]: sh.line(xx, 0.0, xx, 1.3, WOOD2, 2.2)
         sh.leader(3.4, 4.2, 4.6, 4.85, "cumeeira 4,20 · Espinha de Luz CL1", 12, anchor="end")
-        sh.leader(0.05, 3.5, 1.6, 4.4, "lábio frontal A0 · PV1 e V1 na fachada", 12, anchor="end")
+        sh.leader(0.05, 3.5, 1.6, 4.4, "anel A0 · PV1 e V1 na fachada · Bico em balanço acima", 12, anchor="end")
         sh.leader(10.4, 0.8, 9.8, 2.6, "painel ripado da condensadora", 12, anchor="start")
         sh.leader(6.4, 0.35, 6.9, -1.0, "calha oculta no rodapé · TQ Ø75 nas extremidades", 12, anchor="end")
-        sh.dim(0.45, -0.95, 9.6, -0.95, -0.35, label="9,60 (piso)"); sh.dim(-3.7, -0.95, 0.9, -0.95, -0.35, label="4,60 (deck)"); sh.dim(-0.15, -0.95, 9.6, -0.95, -0.95, label="9,75 (concha com lábio)")
+        sh.dim(0.45, -0.95, 9.6, -0.95, -0.35, label="9,60 (piso)"); sh.dim(-3.7, -0.95, 0.9, -0.95, -0.35, label="4,60 (deck)"); sh.dim(-2.55, -0.95, 9.6, -0.95, -0.95, label="12,15 (concha com o Bico)")
         sh.dim(11.0, 0, 11.0, 4.2, -0.4, label="4,20"); sh.dim(-4.1, -0.6, -4.1, 0, 0.3, label="0,60")
         sh.text(-4.4, 4.5, "+4,20", 10, EARTH, anchor="end"); sh.text(-4.4, 0.12, "+0,00", 10, EARTH, anchor="end"); sh.text(-4.4, -0.5, "-0,60", 10, EARTH, anchor="end")
         sh.scalebar(11.0, -2.5, 5)

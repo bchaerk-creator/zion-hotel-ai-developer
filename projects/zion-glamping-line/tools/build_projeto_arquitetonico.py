@@ -4,7 +4,7 @@ Reúne as pranchas PA-xx (pa_sheets.py) com os desenhos existentes (desenhos/, d
 Saídas: ZION_PROJETO_ARQUITETONICO.html (links relativos, para PDF), ZION_PROJETO_ARQUITETONICO_standalone.html (--inline, tudo embutido).
 Uso: python3 build_projeto_arquitetonico.py [--inline]"""
 import os, sys, base64, html
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 from pa_sheets import SHEETS, AREAS, ESQUADRIAS, NOTAS
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
@@ -133,7 +133,7 @@ def cover():
     for p in PRODUCTS:
         dx += "".join(f'<li><code>{p}/projeto/dxf/{f}</code></li>' for f in dxf_list(p))
     return f'''<section class="sheet cover">
-<div class="coverl"><div class="brand">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+<div class="coverl"><div class="brand">{zion_mark_html('13mm', style='margin-right:6mm')}{zion_logo_html('13mm')}</div><div class="sub">ZION GLAMPING COLLECTION</div>
 <h1>PROJETO<br>ARQUITETÔNICO</h1><h2>ZION CASULO · ZION SAFARI · ZION LODGE</h2>
 <p class="lead">Conjunto de pranchas de estudo preliminar / anteprojeto de produto industrializado: implantação, plantas cotadas e de layout, cobertura, forro e iluminação, cortes, fachadas, quadro de esquadrias, planta estrutural, detalhes construtivos, vistas isométricas, camadas construtivas e quadro de materiais estimados (sem preços). Arquivos DXF editáveis em CAD anexos.</p>
 <dl><dt>Proprietário</dt><dd>Zion Hotel Group International Ltda</dd><dt>Fase</dt><dd>Estudo preliminar / anteprojeto · R00 · setembro de 2026</dd><dt>Formato</dt><dd>Pranchas A1 (impressão A3 em escala reduzida 1:2 → 1:100 e 1:400)</dd><dt>Pranchas</dt><dd>{" + ".join(str(len(sheets(p))) for p in PRODUCTS)} = {sum(len(sheets(p)) for p in PRODUCTS)} no total</dd></dl>
@@ -159,7 +159,7 @@ nav a{color:var(--sand);text-decoration:none} nav b{letter-spacing:.3em}
 .missing{border:1px dashed var(--earth);padding:20px;color:var(--earth)}
 .sheet.doc{padding-bottom:6mm} .docbody{padding:4mm 8mm 0;flex:1;overflow:hidden} .docbody.cols{column-count:2;column-gap:10mm} table.mat{border-collapse:collapse;width:100%;font-size:11px;font-variant-numeric:tabular-nums} table.mat th{text-align:left;font-size:9px;letter-spacing:.14em;color:var(--earth);text-transform:uppercase;padding:2px 6px 6px;border-bottom:1px solid var(--earth)} table.mat td{padding:4px 6px;border-bottom:1px solid var(--sand);vertical-align:top;line-height:1.45} table.mat td.num{text-align:right;white-space:nowrap;color:var(--earth);font-weight:600} table.mat.small{font-size:9.5px} table.mat.small td{padding:2px 5px} table.mat tr.grp td{background:#F1EAE0;font-weight:600;letter-spacing:.1em;font-size:8.5px;text-transform:uppercase;color:var(--earth);break-after:avoid} table.mat tr{break-inside:avoid} .docnote{font-size:9.5px;color:var(--earth);padding:3mm 8mm 0;line-height:1.5}
 .cover{flex-direction:row;padding:0} .coverl{width:40%;background:var(--black);color:var(--cream);padding:18mm 14mm} .coverr{flex:1;padding:14mm 12mm;font-size:10px}
-.brand{font-size:44px;font-weight:800;letter-spacing:.4em} .sub{font-size:9px;letter-spacing:.3em;color:var(--sand);margin-bottom:26mm}
+.brand{display:flex;align-items:center} .sub{font-size:9px;letter-spacing:.3em;color:var(--sand);margin-bottom:26mm}
 .coverl h1{font-weight:300;font-size:34px;letter-spacing:.12em;line-height:1.15;margin:0 0 8mm} .coverl h2{font-family:'Cormorant Garamond',Georgia,serif;font-weight:400;font-size:26px;margin:0 0 8mm;color:var(--sand)}
 .lead{font-size:11.5px;line-height:1.5;color:var(--sand)} dl{display:grid;grid-template-columns:auto 1fr;gap:4px 12px;font-size:11px;margin:8mm 0} dt{color:var(--earth);letter-spacing:.15em;font-size:9px;text-transform:uppercase}
 .warn{font-size:10px;color:var(--sand);border-top:1px solid var(--earth);padding-top:4mm;margin-top:10mm}

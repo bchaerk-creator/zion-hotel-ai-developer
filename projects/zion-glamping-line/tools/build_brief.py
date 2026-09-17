@@ -3,7 +3,7 @@
 Suporta: títulos #/##/###, parágrafos, listas com '-', listas numeradas, tabelas |a|b|, **negrito**, *itálico*, `código`.
 Uso: python3 build_brief.py 00_BRIEFING/ZG-BRF-001_ZION_CABIN_DESIGN_BRIEF.md"""
 import html, os, re, sys
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 
@@ -60,7 +60,7 @@ def build(path):
     md = open(path, encoding="utf-8").read(); title, body = md_to_html(md)
     code = os.path.basename(path).split("_")[0]
     doc = f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>{html.escape(title)}</title><style>{CSS}</style></head><body>
-<div class="brand">{zion_mark_html('30px', color='#1B2117')}<span>ZION<span class="sub">GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</span></span></div>
+<div class="brand">{zion_mark_html('30px', color='#1B2117')}<span>{zion_logo_html('30px', color='#1B2117')}<span class="sub">ZION GLAMPING COLLECTION · CABIN DESIGN &amp; ENGINEERING SYSTEM</span></span></div>
 {body}
 <div class="foot"><span>ZION GLAMPING · {html.escape(code)}</span><span>{html.escape(title)}</span><span>UNIDADE: MM · 2026</span></div></body></html>"""
     out = os.path.splitext(path)[0] + ".html"; open(out, "w", encoding="utf-8").write(doc); print("html ->", out); return out

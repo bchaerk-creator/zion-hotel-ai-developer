@@ -25,6 +25,7 @@ ITEMS = {
     "M14": ("Mesa de refeições / trabalho", "Mesa 0,80 x 1,20 em carvalho + 2 cadeiras", "cj", 4800, "M"),
     "M15": ("Totem do mastro (Safari)", "Revestimento do mastro M2 em madeira com prateleiras e iluminação", "un", 3200, "M"),
     "M16": ("Ripado da cabeceira", "Painel ripado termotratado com fitas LED (parede da cabeceira)", "m²", 620, "M"),
+    "M18": ("Mini cozinha acoplada", "Marcenaria sob medida 2,00 m acoplada à concha: tampo em quartzito, cuba, módulos para geladeira, forno, gaveteiro e lixeira, prateleira com LED (Casulo)", "un", 11800, "M"),
     "M17": ("Cama queen box + colchão", "Box 1,58 x 1,98 revestido em linho, colchão molas ensacadas 30 cm, pillow top (Cápsula)", "un", 8200, "M"),
     # ---- luminárias e decoração
     "F01": ("Arandela de leitura", "Arandela articulada em latão escovado, LED 2700 K dimerizável", "un", 890, "F"),
@@ -50,6 +51,11 @@ ITEMS = {
     "E10": ("Fechadura eletrônica", "Fechadura digital com cartão/senha na porta principal", "un", 1800, "E"),
     "E11": ("Termostato e automação de cenas", "Central de automação (cenas de luz, cortinas, clima, som)", "un", 4200, "E"),
     "E12": ("Ventilador de teto (opcional)", "Ventilador de teto DC silencioso com LED, na lanterna / cume", "un", 2400, "E"),
+    "E13": ("Cooktop de indução 2 bocas", "Cooktop de indução 2 zonas, 30 x 52 cm, 3,5 kW, 220 V, embutido no tampo", "un", 1900, "E"),
+    "E14": ("Forno elétrico compacto", "Forno elétrico de embutir 45 L, 60 cm, 1,8 kW, porta de vidro duplo, 220 V", "un", 2600, "E"),
+    "E15": ("Air fryer", "Fritadeira sem óleo 5 L, 1,5 kW, em nicho ventilado sobre o tampo", "un", 900, "E"),
+    "E16": ("Geladeira sob bancada", "Refrigerador 120 L sob bancada com congelador, classe A, silencioso (< 40 dB), porta com painel ripado", "un", 3400, "E"),
+    "E17": ("Depurador de ar slim", "Depurador 60 cm com filtro de carvão ativado, 2 velocidades, LED, recirculação", "un", 1100, "E"),
     # ---- enxoval e OS&E (por unidade, 2 jogos + reserva)
     "O01": ("Enxoval de cama", "3 jogos: lençóis 400 fios algodão egípcio, edredom, duvet, protetor, 6 travesseiros", "cj", 5200, "O"),
     "O02": ("Enxoval de banho", "3 jogos: toalhas de banho/rosto/piso 600 g/m², roupões, chinelos", "cj", 2800, "O"),
@@ -59,6 +65,7 @@ ITEMS = {
     "O06": ("Cabides, lixeiras, acessórios", "Cabides de madeira, lixeiras, cesto de roupa, kit de costura, guarda-chuva", "cj", 950, "O"),
     "O07": ("Sinalização e papelaria Zion", "Placas, diretório de serviços, QR de automação, cartões", "cj", 700, "O"),
     "O08": ("Kit de segurança", "Extintor, detector de fumaça, lanterna, kit primeiros socorros", "cj", 850, "O"),
+    "O09": ("Utensílios de cozinha", "Jogo de panelas para indução, frigideira, tábua, facas, utensílios, escorredor, potes", "cj", 1400, "O"),
     # ---- deck e exterior
     "D01": ("Espreguiçadeiras", "Par de espreguiçadeiras em madeira teca e corda náutica, almofadas outdoor", "par", 6400, "D"),
     "D02": ("Mesa e cadeiras de deck", "Mesa redonda Ø0,80 + 2 cadeiras em madeira e corda náutica", "cj", 4900, "D"),
@@ -78,11 +85,11 @@ CATS = {"M": "Mobiliário", "F": "Luminárias e decoração", "E": "Equipamentos
 # listas por produto: (código, quantidade, ambiente, observação)
 LISTS = {
     "cocoon": [("M01", 1, "Suíte", ""), ("M02", 1, "Suíte", "cabeceira curva sob a Espinha de Luz"), ("M03", 2, "Suíte", ""), ("M11", 1, "Suíte", ""), ("M16", 12, "Suíte / banho", "parede da cabeceira"),
-               ("M06", 1, "Estar", "junto à fachada de vidro"), ("M07", 1, "Estar", ""), ("M08", 1, "Estar", "mesa lateral Ø0,56"), ("M09", 1, "Estar", "café / minibar 1,40 m"), ("M10", 1, "Estar", "armário baixo embutido 1,40 m"),
+               ("M06", 1, "Estar", "junto à fachada de vidro"), ("M07", 1, "Estar", ""), ("M08", 1, "Estar", "mesa lateral Ø0,56"), ("M18", 1, "Estar", "mini cozinha 2,00 m"), ("M10", 1, "Estar", "armário baixo embutido 1,10 m"),
                ("M12", 1, "Banho", "bancada 1,50 m"), ("M13", 1, "Banho", ""),
                ("F01", 2, "Suíte", ""), ("F02", 1, "Estar", ""), ("F03", 1, "Estar", ""), ("F04", 1, "Estar", ""), ("F05", 1, "Suíte", ""), ("F06", 6.5, "Fachada", "6,50 m de fachada de vidro"), ("F07", 1, "Espinha de Luz", "tela de sombreamento 0,70 x 4,70"), ("F08", 1, "Geral", ""), ("F10", 1, "Geral", ""),
-               ("E01", 1, "Estar", ""), ("E02", 1, "Estar", ""), ("E03", 1, "Armário", ""), ("E04", 1, "Estar", ""), ("E06", 1, "Banho", ""), ("E08", 1, "Estar", ""), ("E10", 1, "Porta PV1", ""), ("E11", 1, "Ático técnico", ""),
-               ("O01", 1, "Suíte", ""), ("O02", 1, "Banho", ""), ("O03", 1, "Banho", ""), ("O04", 1, "Café", ""), ("O05", 1, "Geral", ""), ("O06", 1, "Geral", ""), ("O07", 1, "Geral", ""), ("O08", 1, "Geral", ""),
+               ("E16", 1, "Mini cozinha", "sob bancada"), ("E13", 1, "Mini cozinha", "circuito dedicado C13"), ("E14", 1, "Mini cozinha", "circuito dedicado C14"), ("E15", 1, "Mini cozinha", ""), ("E17", 1, "Mini cozinha", ""), ("E02", 1, "Mini cozinha", ""), ("E03", 1, "Armário", ""), ("E04", 1, "Estar", ""), ("E06", 1, "Banho", ""), ("E08", 1, "Estar", ""), ("E10", 1, "Porta PV1", ""), ("E11", 1, "Ático técnico", ""),
+               ("O01", 1, "Suíte", ""), ("O02", 1, "Banho", ""), ("O03", 1, "Banho", ""), ("O04", 1, "Mini cozinha", ""), ("O09", 1, "Mini cozinha", ""), ("O05", 1, "Geral", ""), ("O06", 1, "Geral", ""), ("O07", 1, "Geral", ""), ("O08", 1, "Geral", ""),
                ("D01", 1, "Deck", ""), ("D02", 1, "Deck", ""), ("D04", 1, "Deck", ""), ("D05", 1, "Deck", ""), ("E07", 1, "Deck", "opcional: hot tub Ø1,90 no deck"),
                ("B01", 1, "Banho", ""), ("B02", 1, "Banho", "banheira 1,60"), ("B03", 1, "Banho", "")],
     "zenith": [("M01", 1, "Suíte", "sob o Óculo do Zênite"), ("M02", 1, "Suíte", "parede da cabeceira"), ("M03", 2, "Suíte", ""), ("M11", 1, "Suíte", ""), ("M16", 16, "Cabeceira / banho", ""),

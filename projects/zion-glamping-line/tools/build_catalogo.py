@@ -4,7 +4,7 @@ desenhos, imagens, FF&E completo (tudo o que vai dentro) e resumo de investiment
 SVG inline) e ZION_FFE_Linha.xlsx. PDF: node export_pdf.js ../ZION_CATALOGO_LINHA.html ../ZION_CATALOGO_LINHA.pdf
 Uso: python3 build_catalogo.py"""
 import os, html, math
-from svgkit import zion_mark_html
+from svgkit import zion_mark_html, zion_logo_html
 from build_projeto_arquitetonico import svg_inline
 from geometry import Cocoon, Zenith, LODGES, Capsule
 import ffe
@@ -44,8 +44,8 @@ def param_estimate(code):
 
 PRODUCTS = [
     dict(code="cocoon", name="ZION CASULO", family="Cabana biomórfica em casulo", status="Projeto arquitetônico completo · engenharia peça a peça · DXF",
-         dims="9,60 x 6,00 x 4,20 m", area_int=48.0, area_ext=29.9, roof="concha de membrana sobre 8 arcos elípticos", height="4,20 m", program="Lounge com chaise e minibar · suíte king sob a Espinha de Luz · banho com banheira na cauda · deck de 29,9 m² (hot tub opcional)",
-         beds="1 casal (king)", guests="2 + 1 (chaise-cama opcional)", struct="8 arcos elípticos Ø88,9 · anel frontal inclinado 8° · trilhos de base · 44 estacas", days=12,
+         dims="9,60 x 6,00 x 4,20 m · Bico 2,40 m", area_int=48.0, area_ext=29.9, roof="concha de membrana sobre 8 arcos elípticos", height="4,20 m", program="Lounge com chaise e mini cozinha (cooktop de indução 2 bocas, forno, geladeira, air fryer) · suíte king sob a Espinha de Luz · banho com banheira na cauda · deck de 29,9 m² abrigado pelo Bico (hot tub opcional)",
+         beds="1 casal (king)", guests="2 + 1 (chaise-cama opcional)", struct="8 arcos elípticos Ø88,9 · anel frontal inclinado 8° · Bico em balanço (cumeeira Ø114,3) · trilhos de base · 44 estacas", days=12,
          hero="cocoon/renders/web/cocoon_ext_front.jpg", imgs=["cocoon/renders/web/cocoon_night.jpg", "cocoon/renders/web/cocoon_int_living.jpg", "cocoon/renders/web/cocoon_int_bed.jpg"],
          sheets=["cocoon/desenhos/02_planta_humanizada.svg", "cocoon/desenhos/06_corte_longitudinal.svg", "cocoon/desenhos/04_elevacao_frontal.svg", "cocoon/desenhos/08_isometrica.svg"]),
     dict(code="zenith", name="ZION SAFARI", family="Cabana escultural de dois cumes", status="Projeto arquitetônico completo · engenharia peça a peça · DXF",
@@ -87,7 +87,7 @@ def page(body, cls=""): return f'<section class="page {cls}">{body}</section>'
 def foot(label): return f'<div class="foot"><span>ZION GLAMPING COLLECTION · CATÁLOGO DA LINHA</span><span>{esc(label)}</span><span>SET 2026</span></div>'
 
 def cover():
-    return page(f'''<div class="cover"><div class="brand">{zion_mark_html('0.95em', style='margin-right:.5em')}ZION</div><div class="sub">GLAMPING COLLECTION · ZION HOTEL GROUP INTERNATIONAL</div>
+    return page(f'''<div class="cover"><div class="brand">{zion_mark_html('16mm', style='margin-right:7mm')}{zion_logo_html('16mm')}</div><div class="sub">ZION GLAMPING COLLECTION</div>
 <h1>CATÁLOGO<br>DA LINHA</h1><p class="lead">Seis unidades proprietárias de hospedagem sobre o mesmo sistema construtivo: projeto, camadas, materiais estimados e FF&amp;E completo, tudo o que vai dentro de cada cabana.</p>
 <ul class="prods">{"".join(f"<li><b>{esc(p['name'])}</b><span>{esc(p['family'])} · {fmt(p['area_int'])} m² + {fmt(p['area_ext'])} m²</span></li>" for p in PRODUCTS)}</ul>
 <p class="warn">Documento técnico para fabricação e cotação, sem preços. Pré-dimensionamento de engenharia a validar por profissionais habilitados (ART/RRT).</p></div>''', "dark")
@@ -186,7 +186,7 @@ CSS = """
 .page{position:relative;width:297mm;height:210mm;margin:8mm auto;background:var(--cream);padding:12mm 14mm 14mm;overflow:hidden;page-break-after:always;break-after:page}
 .page.dark{background:var(--black);color:var(--cream)}
 .cover{height:100%;display:flex;flex-direction:column;justify-content:center;padding:0 10mm}
-.brand{font-size:56px;font-weight:800;letter-spacing:.4em} .sub{font-size:10px;letter-spacing:.32em;color:var(--sand);margin:6px 0 22mm}
+.brand{display:flex;align-items:center} .sub{font-size:10px;letter-spacing:.32em;color:var(--sand);margin:6px 0 22mm}
 .cover h1{font-weight:200;font-size:44px;letter-spacing:.3em;line-height:1.1;margin:0 0 8mm} .cover .lead{font-size:13px;line-height:1.8;color:var(--sand);max-width:150mm;font-weight:300}
 .prods{list-style:none;padding:0;margin:8mm 0;display:grid;grid-template-columns:repeat(5,1fr);gap:6mm} .prods li{border-top:1px solid var(--earth);padding-top:4mm;font-size:10px;color:var(--sand);line-height:1.5} .prods b{display:block;color:var(--cream);letter-spacing:.14em;font-size:11px;margin-bottom:3px;font-weight:600}
 .warn{font-size:9px;color:var(--sand);letter-spacing:.06em;margin-top:6mm}
