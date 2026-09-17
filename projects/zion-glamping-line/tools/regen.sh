@@ -19,7 +19,7 @@ node export_pdf.js ../_print_ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHIT
 node export_pdf.js ../ZION_PROJETO_ARQUITETONICO.html ../ZION_PROJETO_ARQUITETONICO.pdf
 node export_pdf.js ../ZION_PROJETO_ARQUITETONICO_Apresentacao.html ../ZION_PROJETO_ARQUITETONICO_Apresentacao.pdf
 node export_pdf.js ../ZION_CATALOGO_LINHA.html ../ZION_CATALOGO_LINHA.pdf
-node export_pdf.js ../interno/ZION_REFERENCIA_NOMASTRA_H28.html ../interno/ZION_REFERENCIA_NOMASTRA_H28.pdf
+node export_pdf.js ../interno/ZION_REFERENCIAS_NOMASTRA_H23_H28.html ../interno/ZION_REFERENCIAS_NOMASTRA_H23_H28.pdf
 python3 pdf_leve.py ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf ../ZION_ARCHITECTURAL_PRODUCT_BOOK_leve.pdf
 rm -f ../_print_*.html
 echo "== ok"

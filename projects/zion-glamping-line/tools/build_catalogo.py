@@ -128,11 +128,12 @@ def product_pages(p):
     pg3 = page(f'''<h3>{esc(p["name"])} · FF&amp;E · TUDO O QUE VAI DENTRO</h3>
 <div class="tw"><table class="ffe"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Ambiente</th><th class="num">Qtd</th></tr>{trs}
 <tr class="tot"><td colspan="4">TOTAL · {f["n_items"]} itens · {fmt(f["n_units"], 0)} unidades (opcionais marcados)</td><td></td></tr></table></div>''' + foot(p["name"] + " · FF&E"), "flow")
-    if code == "lodge28":
-        from referencias import comparativo, H28
-        trs = "".join(f"<tr><th>{esc(a)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo())
-        pg3 += page(f'''<h3>ZION LODGE 28 · REFERÊNCIA DE MERCADO</h3><p class="lede">Cotação de fornecedor recebida em {esc(H28["data"])} para o lodge {esc(H28["modelo"])} de {esc(H28["tamanho"])} ({esc(H28["area"])} internos, terraço {esc(H28["terraco"])}, cume {esc(H28["altura"])}, beiral {esc(H28["beiral"])}), usada como faixa de área e programa. O comparativo abaixo mostra, item a item, o que a Zion Lodge 28 muda em relação ao produto de catálogo. Sem preços: a referência comercial fica no arquivo interno.</p>
-<div class="tw"><table class="ffe small ref"><tr><th>Item</th><th>Referência de mercado H28</th><th>ZION LODGE 28</th></tr>{trs}</table></div>''' + foot("Lodge 28 · referência de mercado"), "flow")
+    from referencias import REFS, comparativo, ref
+    if code in REFS:
+        R = ref(code)
+        trs = "".join(f"<tr><th>{esc(a)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo(code))
+        pg3 += page(f'''<h3>{esc(p["name"])} · REFERÊNCIA DE MERCADO</h3><p class="lede">Cotação de fornecedor recebida em {esc(R["data"])} para o lodge {esc(R["modelo"])} de {esc(R["tamanho"])} ({esc(R["area"])} internos, {esc(R["terraco"])}, cume {esc(R["altura"])}, beiral {esc(R["beiral"])}), usada como faixa de área e programa. O comparativo abaixo mostra, item a item, o que a {esc(p["name"].title())} muda em relação ao produto de catálogo. Sem preços: a referência comercial fica no arquivo interno.</p>
+<div class="tw"><table class="ffe small ref"><tr><th>Item</th><th>Referência de mercado {esc(R["modelo"])}</th><th>{esc(p["name"])}</th></tr>{trs}</table></div>''' + foot(p["name"].title() + " · referência de mercado"), "flow")
     return pg1 + pg2 + pg3
 
 def catalogo_itens():

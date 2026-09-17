@@ -130,12 +130,14 @@ def lodge_family():
 <p class="note">Número de itens por categoria; lista item a item, com especificação, ambiente e quantidade, no Catálogo da Linha e na planilha de materiais e FF&amp;E.</p></div>
 <div><ol class="next">{cats}</ol></div></div>''', "dark", "FF&E")
 
-def referencia_h28():
-    """Lodge 28 x referência de mercado (cotação NOMASTRA H28), sem preços."""
-    from referencias import comparativo, H28
-    rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo()[:11])
-    slide(f'''<h2>LODGE 28 × REFERÊNCIA DE MERCADO <small>cotação de fornecedor de {esc(H28["data"])} · lodge {esc(H28["modelo"])} {esc(H28["tamanho"])} · {esc(H28["area"])} + terraço {esc(H28["terraco"])} · sem preços</small></h2>
-<table class="budget ref3"><tr><th>Item</th><th>Referência H28</th><th>ZION LODGE 28</th></tr>{rows}</table>''', "dark", "LODGE 28 · REFERÊNCIA")
+def referencias_mercado():
+    """Lodge 24 x H23 e Lodge 28 x H28 (cotações NOMASTRA), sem preços."""
+    from referencias import REFS, comparativo, ref
+    for code, name in (("lodge24", "LODGE 24"), ("lodge28", "LODGE 28")):
+        R = ref(code)
+        rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo(code)[:11])
+        slide(f'''<h2>{name} × REFERÊNCIA DE MERCADO <small>cotação de fornecedor de {esc(R["data"])} · lodge {esc(R["modelo"])} {esc(R["tamanho"])} · {esc(R["area"])} · {esc(R["terraco"])} · sem preços</small></h2>
+<table class="budget ref3"><tr><th>Item</th><th>Referência {esc(R["modelo"])}</th><th>ZION {name}</th></tr>{rows}</table>''', "dark", f"{name} · REFERÊNCIA")
 
 def capsula():
     """Zion Cápsula: unidade compacta transportável (estudo de conceito)."""
@@ -238,7 +240,7 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 def build():
     capa(); linha(); sistema()
     for p in ("cocoon", "zenith", "lodge"): produto(p)
-    lodge_family(); referencia_h28(); capsula(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
+    lodge_family(); referencias_mercado(); capsula(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'
