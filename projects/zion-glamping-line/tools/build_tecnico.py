@@ -443,6 +443,15 @@ def linha():
          table(["Sistema comum", "Especificação da linha"], [[t, d] for t, d in [("Estrutura", "aço ASTM A500 galvanizado a fogo, kit parafusado 8.8, sem solda em campo"), ("Fundação", "estacas helicoidais Ø76 + cabeçotes ajustáveis; deck e piso em vigas U 150"), ("Envelope", "membrana PVDF 1050 g/m² (B1) + câmara ventilada 60 mm + lã de PET 50 mm + forro tensionado M1 (Cápsula: ACM 4 mm + PIR 60 mm + compensado curvado)"),
                                                                                   ("Vidros", "insulado 6 lam + 12 Ar + 6 temp low-e, alumínio bronze RPT (Cápsula: laminado curvo 8+8)"), ("Piso e deck", "carvalho de engenharia 14 mm, porcelanato no banho, deck de cumaru 20 x 140"), ("Instalações", "PEX Ø25/20/16, esgoto Ø100, QDC 12 a 16 circuitos, split inverter dutado, boiler elétrico"), ("FF&E", "catálogo de 56 itens Zion New Luxury; listas por unidade em ffe.py")]], "small"), "24 · Resumo da linha", code="ZG-TEC-024")
 
+# ============================================================================ 25 interiores (anexo ZC-INT-001)
+def interiores():
+    from interiores_cocoon import MA, MS
+    rows = [[f"<b>{m['cod']}</b>", m["nome"], m["amb"], m["ffe"], m["mat"]] for m in MA]
+    page(h("25 · INTERIORES · MARCENARIA ACOPLADA (ANEXO ZC-INT-001)", "mobiliário fixo fabricado com a cabana · pranchas IN-01 a IN-06 nas páginas seguintes; documento completo em 04_INTERIORES") +
+         f'<div class="two"><div>{table(["Cód.", "Peça acoplada", "Ambiente", "FF&E", "Materiais"], rows, "small")}<p class="note">Regras: fixação só à estrutura (arcos e trilhos), fundos recortados pelo gabarito da seção, rodapé técnico removível, elétrica embutida, peças ≤ 1,40 m para o contêiner e a porta PV1. Mobiliário solto (MS-01 a MS-09) é FF&amp;E.</p></div><div>{sheet("cocoon/interiores/IN-01_planta_interiores.svg")}</div></div>', "25 · Interiores (anexo)", code="ZC-INT-001")
+    for code, t, sc, rel in (("IN-02", "Paginação de pisos e acabamentos", "1:50", "cocoon/interiores/IN-02_pisos_acabamentos.svg"), ("IN-03", "Elevações internas A e B", "1:40", "cocoon/interiores/IN-03_elevacoes_A_B.svg"), ("IN-04", "Elevações internas C e D", "1:40", "cocoon/interiores/IN-04_elevacoes_C_D.svg"), ("IN-05", "Detalhes da marcenaria acoplada", "1:20 / 1:15", "cocoon/interiores/IN-05_detalhes_marcenaria.svg"), ("IN-06", "Quadro de mobiliário e marcenaria", "s/ escala", "cocoon/interiores/IN-06_quadro_mobiliario.svg")):
+        sheet_page(rel, f"ZC-INT · {code}", t, sc, "ZION CASULO")
+
 # ============================================================================ CSS e build
 CSS = """
 @font-face{font-family:'Aventa';src:url(../assets/aventa.woff2) format('woff2');font-weight:100 900;font-display:swap}
@@ -477,7 +486,7 @@ def build():
     global pages
     capa(); pages.append(None)   # reserva o índice
     ficha_html = ficha(); page(ficha_html, "01 · Ficha técnica", code="ZG-TEC-001")
-    desenhos(); exploded(); camadas(); estrutura(); fundacao(); cobertura(); hidraulica(); eletrica(); gas(); climatizacao(); isolamento(); materiais(); quantitativo(); bom_page(); prefab(); manual(); ferramentas(); logistica(); orcamento(); checklist_obra(); rfq(); validacao(); linha()
+    desenhos(); exploded(); camadas(); estrutura(); fundacao(); cobertura(); hidraulica(); eletrica(); gas(); climatizacao(); isolamento(); materiais(); quantitativo(); bom_page(); prefab(); manual(); ferramentas(); logistica(); orcamento(); checklist_obra(); rfq(); validacao(); interiores(); linha()
     idx = f'<section class="page flow"><div class="head"><span>ZION GLAMPING · {DOC} · {REV}</span><span>ZG-TEC-000</span><span>ÍNDICE</span></div>{indice()}<div class="foot"><span>ZION GLAMPING COLLECTION · DOCUMENTO TÉCNICO · SEM PREÇOS</span><span></span><span>{DATE} · 02</span></div></section>'
     pages[1] = idx
     doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {DOC} · Documento Técnico</title><style>{CSS}</style></head><body>{"".join(pages)}</body></html>'

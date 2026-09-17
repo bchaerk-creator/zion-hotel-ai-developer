@@ -143,8 +143,8 @@ def planta(human=True):
         if a: sh.text(x, y, a, 10, EARTH, dy=10)
     if human:
         sh.text(2.05, -0.95, "", 8)
-        sh.leader(1.9, 1.9, 1.6, 3.6, "Console café / minibar 1,40 m", 11, anchor="end")
-        sh.leader(3.8, 1.9, 5.2, 3.6, "Armário baixo embutido na curva", 11)
+        sh.leader(1.9, 2.5, 1.6, 3.6, "Ilha do Café / minibar 1,40 m, acoplada à concha", 11, anchor="end")
+        sh.leader(3.8, 2.5, 5.2, 3.6, "Armário baixo acoplado à curva", 11)
         sh.leader(4.9, -3.05, 4.5, -3.95, "Janelas Olho 1,60 x 0,95 (basculantes)", 11)
         sh.leader(4.3, 0.0, 4.8, -3.6, "Espinha de Luz 0,70 x 4,70 m", 11)
         sh.leader(8.3, 0.0, 9.4, 2.0, "Banheira na cauda 1,60 x 0,76", 11)
