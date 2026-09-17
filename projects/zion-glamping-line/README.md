@@ -15,6 +15,10 @@ Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion
 
 **Marca.** O símbolo Z da Zion (anel + Z, `svgkit.zion_mark`) aparece em todos os desenhos: cabeçalho e carimbo de cada folha SVG e detalhe, capa PA-00, títulos dos DXF, capas dos documentos e canto inferior direito dos renders (`tools/brand_renders.py`).
 
+## Método de trabalho (Cabin Design & Engineering System)
+
+O projeto segue o master prompt arquivado em `00_BRIEFING/MASTER_PROMPT.md`, resumido em `CLAUDE.md` (regras do projeto): 12 fases, pacote final em 23 pastas, códigos `<modelo>-<disciplina>-<nnn>`, revisões REV 00 a REV 04, avisos `⚠️ VALIDAÇÃO OBRIGATÓRIA — ENGENHEIRO/ARQUITETO` e `PREÇO A COTAR`. A Fase 01 está em **`00_BRIEFING/ZG-BRF-001_ZION_CABIN_DESIGN_BRIEF.md`** (`.pdf`): ficha técnica das seis unidades, informações necessárias, mapa das 23 pastas contra o que já existe e as 15 perguntas objetivas que destravam as fases seguintes.
+
 ## Documentos principais
 
 > **Documentos sem preços.** Todos os HTML/PDF desta pasta são documentos técnicos para a fábrica e para cotação: projeto arquitetônico, camadas, especificação e quantidades estimadas de materiais e FF&E, sem valores. As referências de preço ficam apenas nos arquivos internos da pasta `interno/`.
