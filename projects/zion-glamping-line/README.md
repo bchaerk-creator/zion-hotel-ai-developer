@@ -19,6 +19,11 @@ Nomes comerciais: **Zion Casulo** (código interno `cocoon`, prefixo ZC), **Zion
 
 O projeto segue o master prompt arquivado em `00_BRIEFING/MASTER_PROMPT.md`, resumido em `CLAUDE.md` (regras do projeto): 12 fases, pacote final em 23 pastas, códigos `<modelo>-<disciplina>-<nnn>`, revisões REV 00 a REV 04, avisos `⚠️ VALIDAÇÃO OBRIGATÓRIA — ENGENHEIRO/ARQUITETO` e `PREÇO A COTAR`. A Fase 01 está em **`00_BRIEFING/ZG-BRF-001_ZION_CABIN_DESIGN_BRIEF.md`** (`.pdf`): ficha técnica das seis unidades, informações necessárias, mapa das 23 pastas contra o que já existe e as 15 perguntas objetivas que destravam as fases seguintes.
 
+A Fase 02 e o documento técnico estão em:
+
+- **`02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.pdf`** (`.html`, `tools/build_conceito.py`) — documento conceitual e visual da linha: manifesto, partido, linguagem e materialidade, experiência do hóspede, e para cada unidade a volumetria e o funcionamento (implantação, circulação, luz, ventilação, privacidade, vistas, acessos, manutenção, operação), implantação, operação e categorias. 20 páginas A4 paisagem.
+- **`03_TECNICO/ZG-TEC-001_Documento_Tecnico.pdf`** (`.html`, `tools/build_tecnico.py`) — documento técnico com o Casulo como piloto: ficha técnica, as 24 pranchas, exploded view em 16 camadas, camadas construtivas por elemento, estrutura (comparativo, malha, peças, conexões), fundação, cobertura, hidráulica, elétrica (cargas e unifilar), gás (DET-14 abrigo GLP), climatização (carga térmica preliminar), isolamento, material takeoff, quantitativo mestre com perdas, BOM, pré-fabricação, manual em 15 etapas, ferramentas, transportation pack, orçamento em 18 grupos (PREÇO A COTAR), checklists de obra e de validação, anexo RFQ e resumo da linha. Sem preços.
+
 ## Documentos principais
 
 > **Documentos sem preços.** Todos os HTML/PDF desta pasta são documentos técnicos para a fábrica e para cotação: projeto arquitetônico, camadas, especificação e quantidades estimadas de materiais e FF&E, sem valores. As referências de preço ficam apenas nos arquivos internos da pasta `interno/`.
