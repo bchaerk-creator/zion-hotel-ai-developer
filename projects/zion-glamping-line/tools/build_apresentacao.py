@@ -130,6 +130,13 @@ def lodge_family():
 <p class="note">Número de itens por categoria; lista item a item, com especificação, ambiente e quantidade, no Catálogo da Linha e na planilha de materiais e FF&amp;E.</p></div>
 <div><ol class="next">{cats}</ol></div></div>''', "dark", "FF&E")
 
+def referencia_h28():
+    """Lodge 28 x referência de mercado (cotação NOMASTRA H28), sem preços."""
+    from referencias import comparativo, H28
+    rows = "".join(f"<tr><td><b>{esc(a)}</b></td><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo()[:11])
+    slide(f'''<h2>LODGE 28 × REFERÊNCIA DE MERCADO <small>cotação de fornecedor de {esc(H28["data"])} · lodge {esc(H28["modelo"])} {esc(H28["tamanho"])} · {esc(H28["area"])} + terraço {esc(H28["terraco"])} · sem preços</small></h2>
+<table class="budget ref3"><tr><th>Item</th><th>Referência H28</th><th>ZION LODGE 28</th></tr>{rows}</table>''', "dark", "LODGE 28 · REFERÊNCIA")
+
 def capsula():
     """Zion Cápsula: unidade compacta transportável (estudo de conceito)."""
     from geometry import Capsule
@@ -223,6 +230,7 @@ table.areas td:first-child{color:var(--earth);font-weight:600;font-size:10px;let
 .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:22px} .stats div{border-top:1px solid var(--sand);padding-top:12px} .stats b{display:block;font-size:34px;font-weight:200;letter-spacing:.06em;font-variant-numeric:tabular-nums} .stats span{font-size:11px;letter-spacing:.18em;color:var(--sand);text-transform:uppercase;font-weight:300}
 .stats.small{grid-template-columns:repeat(3,1fr);margin:14px 0 20px} .stats.small b{font-size:28px}
 ol.steps li{display:grid;grid-template-columns:30px 1fr auto;gap:12px;font-size:12.5px;padding:6px 0;border-bottom:1px solid rgba(222,214,191,.14);font-weight:300;align-items:baseline} ol.steps em{font-style:normal;color:var(--sand);font-size:11px;letter-spacing:.08em;white-space:nowrap}
+table.ref3{font-size:11px} table.ref3 td,table.ref3 th{padding:4px 8px;vertical-align:top} table.ref3 td:first-child{width:12%} table.ref3 td:nth-child(2){width:40%}
 table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 @media print{@page{size:1600px 900px;margin:0} body{background:var(--black)} .slide{margin:0}}
 """
@@ -230,7 +238,7 @@ table.budget td:first-child{color:var(--cream)} table.budget{font-size:12px}
 def build():
     capa(); linha(); sistema()
     for p in ("cocoon", "zenith", "lodge"): produto(p)
-    lodge_family(); capsula(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
+    lodge_family(); referencia_h28(); capsula(); implantacao(); logistica(); materiais_slide(); proximos(); fim()
     N = len(slides); out = []
     for i, (body, cls, label) in enumerate(slides):
         foot = "" if i in (0, N - 1) else f'<div class="foot"><span>APRESENTAÇÃO · PROJETO ARQUITETÔNICO</span><span>ZION HOTEL · GROUP INTERNATIONAL{" · " + esc(label) if label else ""}</span><span>2026 · {i + 1:02d} / {N:02d}</span></div>'

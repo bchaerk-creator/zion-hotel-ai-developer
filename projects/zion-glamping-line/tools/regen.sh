@@ -12,13 +12,14 @@ if [[ "$1" != "--no-render" ]]; then
 fi
 echo "== caderno técnico"; python3 build_dossier.py && python3 build_dossier.py --web && python3 build_dossier.py --inline
 echo "== product book"; python3 build_product_book.py && python3 build_product_book.py --web && python3 build_product_book.py --inline
-echo "== projeto arquitetônico + apresentação"; python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline && python3 build_apresentacao.py && python3 build_catalogo.py
+echo "== projeto arquitetônico + apresentação"; python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline && python3 build_apresentacao.py && python3 build_catalogo.py && python3 referencias.py
 echo "== PDFs"
 node export_pdf.js ../_print_ZION_CASULO_SAFARI_Caderno_Tecnico.html ../ZION_CASULO_SAFARI_Caderno_Tecnico.pdf
 node export_pdf.js ../_print_ZION_ARCHITECTURAL_PRODUCT_BOOK.html ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf
 node export_pdf.js ../ZION_PROJETO_ARQUITETONICO.html ../ZION_PROJETO_ARQUITETONICO.pdf
 node export_pdf.js ../ZION_PROJETO_ARQUITETONICO_Apresentacao.html ../ZION_PROJETO_ARQUITETONICO_Apresentacao.pdf
 node export_pdf.js ../ZION_CATALOGO_LINHA.html ../ZION_CATALOGO_LINHA.pdf
+node export_pdf.js ../interno/ZION_REFERENCIA_NOMASTRA_H28.html ../interno/ZION_REFERENCIA_NOMASTRA_H28.pdf
 python3 pdf_leve.py ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf ../ZION_ARCHITECTURAL_PRODUCT_BOOK_leve.pdf
 rm -f ../_print_*.html
 echo "== ok"

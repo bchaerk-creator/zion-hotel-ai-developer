@@ -176,6 +176,8 @@ Estabilidade: o corpo em painéis SIP forma um diafragma rígido; o anel de beir
 
 Referências de mercado consideradas (lodges de catálogo de 23 m² e de 26 m² + terraço de 17 m²) apenas como faixa de área e programa; a geometria (lanterna, vela, proporções, deck em faces) é própria.
 
+**Referência de mercado documentada (Lodge 28).** Cotação do fornecedor NOMASTRA (Guangzhou) de 1/mai/2025 para o lodge H28 de 3,80 x 7,80 m: 26 m² internos, terraço 18 m², cume 5,0 m, beiral 2,6 m, 2 portas e 2 janelas; estrutura em tubo 80 x 80 com pintura dupla e revestimento de alumínio, membrana PVDF 1050 g/m² com segunda camada em PVC 850 g/m², paredes em compósito de cimento espumado 80 mm (100 mm no total), vidro duplo 5 + 20 A + 5, forro em painel de fibra de bambu; opcionais: deck de 50 m², piso SPC, módulo de banho 2,6 x 1,5 m, instalações pré-lançadas, cortinas e mobiliário; EXW, 15 a 20 dias úteis, montagem por conta do comprador. O comparativo técnico item a item (sem preços) está no catálogo e na apresentação (`tools/referencias.py`); a cotação original e a análise de custo posto ficam em `interno/referencias/` e `interno/ZION_REFERENCIA_NOMASTRA_H28.*`.
+
 ### 3e. ZION CÁPSULA — Cápsula monocoque transportável (estudo de conceito)
 
 - **Casca**: seção em superelipse (expoente 3,2) de 3,20 x 3,20 m, extrudada em 8,40 m com calotas de 1,20 m (frente, Visor) e 0,90 m (cauda); centro da seção a 0,85 m do piso interno; pé-direito 2,31 m no eixo; piso a 1,05 m do terreno (0,42 m livres sob a barriga); topo a 3,50 m.

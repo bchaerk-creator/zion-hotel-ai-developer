@@ -128,6 +128,11 @@ def product_pages(p):
     pg3 = page(f'''<h3>{esc(p["name"])} · FF&amp;E · TUDO O QUE VAI DENTRO</h3>
 <div class="tw"><table class="ffe"><tr><th>Cód.</th><th>Item</th><th>Especificação</th><th>Ambiente</th><th class="num">Qtd</th></tr>{trs}
 <tr class="tot"><td colspan="4">TOTAL · {f["n_items"]} itens · {fmt(f["n_units"], 0)} unidades (opcionais marcados)</td><td></td></tr></table></div>''' + foot(p["name"] + " · FF&E"), "flow")
+    if code == "lodge28":
+        from referencias import comparativo, H28
+        trs = "".join(f"<tr><th>{esc(a)}</th><td>{esc(b)}</td><td>{esc(c)}</td></tr>" for a, b, c in comparativo())
+        pg3 += page(f'''<h3>ZION LODGE 28 · REFERÊNCIA DE MERCADO</h3><p class="lede">Cotação de fornecedor recebida em {esc(H28["data"])} para o lodge {esc(H28["modelo"])} de {esc(H28["tamanho"])} ({esc(H28["area"])} internos, terraço {esc(H28["terraco"])}, cume {esc(H28["altura"])}, beiral {esc(H28["beiral"])}), usada como faixa de área e programa. O comparativo abaixo mostra, item a item, o que a Zion Lodge 28 muda em relação ao produto de catálogo. Sem preços: a referência comercial fica no arquivo interno.</p>
+<div class="tw"><table class="ffe small ref"><tr><th>Item</th><th>Referência de mercado H28</th><th>ZION LODGE 28</th></tr>{trs}</table></div>''' + foot("Lodge 28 · referência de mercado"), "flow")
     return pg1 + pg2 + pg3
 
 def catalogo_itens():
@@ -189,6 +194,7 @@ h2{margin:0 0 4mm;font-weight:200;font-size:26px;letter-spacing:.3em} h3{margin:
 .foot{position:absolute;left:14mm;right:14mm;bottom:6mm;display:flex;justify-content:space-between;font-size:7.5px;letter-spacing:.22em;color:var(--earth)}
 table{border-collapse:collapse;width:100%;font-size:9px;font-variant-numeric:tabular-nums} th{text-align:left;font-weight:600;font-size:7.5px;letter-spacing:.14em;color:var(--earth);text-transform:uppercase;padding:2px 5px 5px;border-bottom:1px solid var(--earth)} td{padding:4px 5px;border-bottom:1px solid var(--sand);vertical-align:top} .num{text-align:right;white-space:nowrap} small{color:var(--earth);font-size:8px}
 .note{font-size:8.5px;line-height:1.6;color:var(--earth);margin:4mm 0}
+table.ref th{width:14%} table.ref td{width:43%}
 .strip5{display:grid;grid-template-columns:repeat(6,1fr);gap:3mm;margin-top:3mm} .strip5 figure{margin:0} .strip5 img,.strip5 .sheet svg{width:100%;height:auto;display:block;aspect-ratio:1.6;object-fit:cover} .strip5 figcaption{font-size:8px;letter-spacing:.2em;margin-top:2mm;color:var(--earth)}
 .ph{border-bottom:1px solid var(--ink);padding-bottom:3mm;margin-bottom:5mm} .pname{font-size:24px;font-weight:200;letter-spacing:.32em} .pfam{font-size:9px;letter-spacing:.16em;color:var(--earth);margin-top:3px}
 .two{display:grid;grid-template-columns:1.15fr 1fr;gap:8mm} img.hero{width:100%;height:auto;display:block} .thumbs{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm;margin-top:3mm} .thumbs img{width:100%;height:auto;display:block}
