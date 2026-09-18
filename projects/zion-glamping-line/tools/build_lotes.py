@@ -470,6 +470,146 @@ def one_pager():
     D.pages.append(f'<section class="page">{body}</section>')
     return f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · One-pager</title><style>{CSS}{ONE_CSS}</style></head><body>{D.pages[0]}</body></html>'
 
+
+# =============================================================================== one-pager de cotação por modelo
+ONE_M_CSS = """
+.om{padding:8mm 11mm 7mm;font-size:7.6px;line-height:1.45} .om .top{display:flex;justify-content:space-between;align-items:flex-end;border-bottom:1.2px solid var(--ink);padding-bottom:5px;margin-bottom:6px}
+.om h1{margin:0;font-size:24px;font-weight:200;letter-spacing:.22em;line-height:1} .om .tag{font-size:7.5px;letter-spacing:.28em;color:var(--earth);margin-top:4px}
+.om .grid{display:grid;grid-template-columns:78mm 1fr;gap:8px;margin-bottom:6px} .om .hero img{width:100%;height:52mm;object-fit:cover;display:block;border:1px solid var(--sand)} .om .hero .svgbox{height:52mm;overflow:hidden;background:#F3EDE0;border:1px solid var(--sand)} .om .hero .svgbox svg{width:100%;height:auto;margin-top:-3mm}
+.om .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:4px} .om .stats div{border-top:2px solid var(--ink);padding-top:3px} .om .stats b{display:block;font-size:11.5px;font-weight:600;letter-spacing:.02em;line-height:1.1} .om .stats span{display:block;font-size:6.6px;letter-spacing:.14em;color:var(--earth);text-transform:uppercase;margin-top:1px}
+.om .claim{margin:5px 0 0;font-size:8px;line-height:1.5}
+.om .lots{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin-bottom:6px} .om .lots>div{border:1px solid var(--sand);background:#FBF6EE;padding:5px 6px 6px} .om .lots b.t{display:block;font-size:8px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:3px;margin-bottom:3px} .om .lots em{display:block;font-style:normal;font-size:6.6px;letter-spacing:.1em;color:var(--earth);margin-bottom:3px}
+.om .lots ul{margin:0 0 3px;padding-left:9px} .om .lots li{margin:0 0 1px} .om .lots .doc{font-size:6.6px;color:var(--earth);letter-spacing:.06em;margin-top:3px;border-top:1px dotted var(--sand);padding-top:2px}
+.om .bottom{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:10px} .om .bottom>div{min-width:0} .om .bottom b{display:block;font-size:7.6px;letter-spacing:.18em;margin-bottom:2px} .om ul.omu,.om ol.oml{margin:0;padding-left:10px;list-style:disc;display:block} .om ol.oml{list-style:decimal} .om .omu li,.om .oml li{display:list-item;margin:0 0 2px;text-align:left}
+.om .foot1{position:absolute;left:11mm;right:11mm;bottom:4mm;display:flex;justify-content:space-between;font-size:6.3px;letter-spacing:.2em;color:var(--earth)}
+"""
+def model_numbers(m):
+    M = MODELS[m]; parts = M["parts"]()
+    steel = sum(p["peso_total"] for p in parts if isinstance(p["peso_total"], (int, float)) and p["cod"][0] in M["struct_prefix"])
+    base = sum(p["peso_total"] for p in parts if isinstance(p["peso_total"], (int, float)) and M["base_prefix"] and p["cod"][0] in M["base_prefix"])
+    pats = lona.dedupe(lona.PATTERNS[m]())
+    ext = sum(p.area * p.qty for p in pats if p.group != "interna"); inn = sum(p.area * p.qty for p in pats if p.group == "interna")
+    n_ext = sum(p.qty for p in pats if p.group != "interna"); n_inn = sum(p.qty for p in pats if p.group == "interna")
+    glass = sum(w * hh * nn for (_, _, w, hh, nn, _, _) in M["esq"]); n_esq = sum(nn for (_, _, _, _, nn, _, _) in M["esq"])
+    piles = len(M["piles"]())
+    tr = M["transport"](); tr = tr["items"] if isinstance(tr, dict) else tr
+    kg = sum(t[3] for t in tr); m3 = sum(t[2] for t in tr)
+    n_ffe = len(ffe.rows(m, 1)); n_struct = len([p for p in parts if p["cod"][0] in M["struct_prefix"]])
+    return dict(steel=steel, base=base, ext=ext, inn=inn, n_ext=n_ext, n_inn=n_inn, glass=glass, n_esq=n_esq, piles=piles, kg=kg, m3=m3, vols=len(tr), n_ffe=n_ffe, n_struct=n_struct)
+
+def one_pager_model(m):
+    M = MODELS[m]; tag = M["tag"]; N = model_numbers(m); code = f"{tag}-ONE-001"
+    pic = f'<div class="svgbox">{svg_inline(M["hero"])}</div>' if M["hero"].endswith(".svg") else img(M["hero"])
+    rigid = m == "capsule"
+    L2 = {"cocoon": ["9 arcos elípticos calandrados Ø60,3 + Espinha e longarinas", "Bico: cumeeira Ø114,3, bordas Ø60,3, costela Ø48,3, 2 tirantes Ø12", "Chapas de base, luvas, talões, parafusos 8.8 galv."],
+          "zenith": ["2 mastros em tramos (5,80 / 4,60 m) com coroas", "Pilares, anel de beiral, postes externos", "Cabos inox, esticadores, chapas e luvas"],
+          "lodge": ["8 pilares + anel de beiral em 8 segmentos", "8 caibros + Lanterna Zion (anel superior e montantes)", "Postes da vela, chapas, luvas, parafusos"],
+          "capsule": ["12 anéis calandrados Ø3,20 m + 7 longarinas", "Chassi de piso e 4 pés telescópicos", "Aros do Visor e do Anel de Luz, olhais de içamento"]}[m]
+    L3 = {"cocoon": [f"Lona externa PVDF tipo II: {N['n_ext']} painéis = {fmt(N['ext'], 0)} m² (P0 Bico, P1 a P8)", f"Forro Trevira CS: {N['n_inn']} painéis = {fmt(N['inn'], 0)} m²", "Keder duplo nos arcos, bolsas de tubo, clamps, cabos", f"Vidros: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m² (fachada, Espinha, 6 Olhos, porta)"],
+          "zenith": [f"Cobertura tensionada: {N['n_ext']} faixas soldadas = {fmt(N['ext'], 0)} m²", f"Forro: {N['n_inn']} painéis = {fmt(N['inn'], 0)} m²", "Bolsa de cabo na borda, clamps nos cumes", f"Vidros e fechamentos: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m²"],
+          "lodge": [f"Cobertura em {N['n_ext']} gomos iguais = {fmt(N['ext'], 0)} m²", f"Forro em gomos: {fmt(N['inn'], 0)} m²", "Clamp da lanterna, bolsa de cabo no beiral", f"Vidros: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m²"],
+          "capsule": [f"Painéis de ACM curvado: {N['n_ext']} = {fmt(N['ext'], 0)} m²", f"Compensado curvado interno: {fmt(N['inn'], 0)} m²", "PIR 60 mm + barreira de vapor", f"Visor e Anel de Luz em vidro curvo laminado: {fmt(N['glass'], 1)} m²"]}[m]
+    L1 = {"cocoon": [f"{N['piles']} estacas helicoidais Ø76 com cabeçote ajustável", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso isolado {fmt(M['area_int'], 0)} m² + deck cumaru {fmt(M['area_ext'], 0)} m²", "Água/esgoto/elétrica (geral 50 A), boiler, condensadora"],
+          "zenith": [f"{N['piles']} estacas helicoidais com cabeçote", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso {fmt(M['area_int'], 0)} m² + terraço {fmt(M['area_ext'], 0)} m²", "Instalações completas"],
+          "lodge": [f"{N['piles']} estacas helicoidais com cabeçote", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso octogonal {fmt(M['area_int'], 0)} m² + deck em 3 faces {fmt(M['area_ext'], 0)} m²", "Instalações completas"],
+          "capsule": ["4 estacas helicoidais ou 4 sapatas pré-moldadas", "4 pés telescópicos Ø101,6 (curso 0,40 m)", f"Deck acoplado {fmt(M['area_ext'], 1)} m² + escada", "Engates rápidos de água, esgoto e energia"]}[m]
+    L4 = {"cocoon": [f"{len(MA)} peças de marcenaria acoplada (MA-01 mini cozinha 2,00 m a MA-08)", f"{N['n_ffe']} itens de FF&E (mobiliário, luminárias, têxteis, equipamentos)", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "zenith": ["Marcenaria acoplada ao totem do mastro e closet em L", f"{N['n_ffe']} itens de FF&E", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "lodge": ["Parede-cabeceira ripada, closet e café nas faces opacas", f"{N['n_ffe']} itens de FF&E", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "capsule": ["Marcenaria curva acoplada aos anéis (cama, banco, bancada, banho)", f"{N['n_ffe']} itens de FF&E", "Instalado em oficina antes do transporte"]}[m]
+    forn = {1: "Empreiteiro de estacas helicoidais + montadores + eletricista / encanador", 2: "Serralheria com calandra de tubos, solda MIG/TIG e galvanizador parceiro", 3: ("Fabricante de ACM curvado + vidraceiro de vidro curvo" if rigid else "Confeccionista de lonas / tendas (solda HF) + vidraceiro"), 4: "Marcenaria + fornecedores de FF&E"}
+    steel_txt = f"≈ {fmt(N['steel'], 0)} kg de aço galv. em {N['n_struct']} tipos de peça" if N["steel"] else "casco monocoque: ver lista K01 em diante no lote 2"
+    lots = ""
+    for n, items, extra in ((1, L1, ""), (2, L2, f"<li><b>{steel_txt}</b></li>"), (3, L3, ""), (4, L4, "")):
+        lots += f'<div><b class="t">LOTE {n} · {esc(LOTS[n][0])}</b><em>{esc(forn[n])}</em><ul>{extra}{"".join(f"<li>{esc(i)}</li>" for i in items)}</ul><div class="doc">Documento completo: {tag}-LOT{n}-001 (PDF)</div></div>'
+    stats = [(esc(M["dims"].split(" · ")[0]), "dimensões"), (f"{fmt(M['area_int'], 0)} + {fmt(M['area_ext'], 0)} m²", "interno + deck"), (f"{fmt(N['steel'] + N['base'], 0) if N['steel'] else '≈ 4.200'} kg", "aço galvanizado" if N["steel"] else "casco completo"), (f"{fmt(N['ext'] + N['inn'], 0)} m²", "ACM + interno" if rigid else "lona + forro"), (f"{fmt(N['glass'], 1)} m²", "vidro"),
+             (f"{N['piles']}", "estacas"), (f"{M['days']} dias", "montagem"), (f"{N['vols']} vol · {fmt(N['m3'], 0)} m³", "transporte"), (f"{fmt(N['kg'] / 1000, 1)} t", "peso total"), (esc(M["guests"]), "hóspedes")]
+    st = "".join(f"<div><b>{a}</b><span>{b}</span></div>" for a, b in stats)
+    claim = f'{esc(M["family"])}: estrutura tubular em aço galvanizado a fogo, {"casco em ACM curvado" if rigid else "lona PVDF tensionada"}, vidro e madeira sobre deck em estacas helicoidais. Tudo chega em kit numerado (peças ≤ 4,80 m, ≤ 120 kg), sem concreto, sem solda em campo e sem guindaste{"; a Cápsula viaja inteira em prancha e exige acesso de caminhão a 30 m do pouso" if rigid else ""}. Este one-pager resume o que cotar em cada lote; o documento completo de cada lote traz listas peça a peça, padrões de corte, detalhes e o RFQ.'
+    top = f'<div class="top"><div><div style="display:flex;align-items:center;gap:5mm;margin-bottom:5px">{zion_mark_html("8mm", color="#1B2117")}{zion_logo_html("8mm", color="#1B2117")}</div><h1>{esc(M["name"])}</h1><div class="tag">{esc(M["family"]).upper()} · ONE-PAGER DE COTAÇÃO · {code} · {REV} · {DATE}</div></div><div style="text-align:right;font-size:7px;line-height:1.6;letter-spacing:.1em;color:var(--earth)">4 LOTES · 4 FORNECEDORES<br>KIT NUMERADO PARA MONTANHA<br>SEM CONCRETO · SEM SOLDA EM CAMPO · SEM GUINDASTE<br>COTAÇÃO SEM PREÇOS DE REFERÊNCIA</div></div>'
+    como = "<ol class=\"oml\">" + "".join(f"<li>{i}</li>" for i in ["Cotação por item e total, com prazo de fabricação, validade de 30 dias e impostos destacados; frete até Florianópolis / SC ou ponto de transbordo indicado.", "Lote 2: preço por kg e por peça, com calandra, solda, galvanização a fogo (NBR 6323) e pintura destacadas; informar raio mínimo da calandra e galvanizador.", "Lote 3: lona por m² confeccionado (por painel) + perfis e cabos por metro + instalação por dia de equipe; vidros por pano e esquadrias por unidade, com medição na estrutura montada.", "Lotes 1 e 4: estacas por ponto + cravação; grelha por kg; deck por m²; marcenaria por peça; FF&E por item."]) + "</ol>"
+    envia = "<ul class=\"omu\">" + "".join(f"<li>{i}</li>" for i in ["Documento completo do lote (PDF) com escopo, interfaces, listas e RFQ", "DXF das peças e tabela de geometria dos arcos / caibros / anéis (lote 2)", "Padrões de corte DXF + XLSX e pranchas LN-01 a LN-90 (lote 3)", "Quadro de esquadrias e detalhes DET-01 a DET-13", "Modelo 3D (GLB) e visualizador"]) + "</ul>"
+    regras = "<ul class=\"omu\">" + "".join(f"<li>{i}</li>" for i in ["Fit test em fábrica de um pórtico / anel completo antes de galvanizar; inspeção Zion antes da expedição", "Tolerâncias: retas ± 2 mm · calandradas ± 5 mm no gabarito · topo montado ± 15 mm", "Lona: compensação e padronagem pelo confeccionista (laudo biaxial); sem rugas após tensionar; teste de água", f"Alvo: projeto executivo 3 sem · fabricação 6 sem · fundação 3 sem (paralelo) · montagem {M['days']} dias", WARN]) + "</ul>"
+    body = f'<div class="om">{top}<div class="grid"><div class="hero">{pic}</div><div><div class="stats">{st}</div><p class="claim">{claim}</p></div></div><div class="lots">{lots}</div><div class="bottom"><div><b>COMO COTAR</b>{como}</div><div><b>A ZION ENVIA</b>{envia}</div><div><b>REGRAS E PRAZOS</b>{regras}</div></div><div class="foot1"><span>ZION HOTEL GROUP INTERNATIONAL · ZION GLAMPING COLLECTION · ZION GLAMPING STORE</span><span>PROJETO PRELIMINAR · SEM PREÇOS · TODA ESPECIFICAÇÃO ESTRUTURAL SUJEITA A VALIDAÇÃO DE ENGENHEIRO (ART)</span><span>{code}</span></div></div>'
+    return f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {code} · One-pager de cotação</title><style>{CSS}{ONE_M_CSS}</style></head><body><section class="page">{body}</section></body></html>'
+
+# =============================================================================== teaser de cotação por modelo (multipágina)
+TEASER_CSS = """
+.tz .stats{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin:6px 0 10px} .tz .stats div{border-top:2px solid var(--ink);padding-top:5px} .tz .stats b{display:block;font-size:17px;font-weight:600;line-height:1.1} .tz .stats span{display:block;font-size:7.5px;letter-spacing:.16em;color:var(--earth);text-transform:uppercase;margin-top:2px}
+.tz .lots{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:4px 0 10px} .tz .lots>div{border:1px solid var(--sand);background:#FBF6EE;padding:8px 9px 9px;font-size:9px;line-height:1.5} .tz .lots b.t{display:block;font-size:10px;letter-spacing:.18em;border-bottom:1px solid var(--ink);padding-bottom:4px;margin-bottom:5px} .tz .lots em{display:block;font-style:normal;font-size:8px;letter-spacing:.08em;color:var(--earth);margin-bottom:5px}
+.tz .lots ul{margin:0 0 4px;padding-left:11px} .tz .lots li{margin:0 0 2px} .tz .lots .doc{font-size:7.8px;color:var(--earth);letter-spacing:.06em;margin-top:5px;border-top:1px dotted var(--sand);padding-top:3px}
+.tz .claim{font-size:10.5px;line-height:1.6;margin:0 0 6px} .tz .three{display:grid;grid-template-columns:1.25fr 1fr 1fr;gap:14px;font-size:9.2px;line-height:1.5} .tz .three>div{min-width:0} .tz .three b{display:block;font-size:9px;letter-spacing:.18em;margin-bottom:4px}
+.tz ul.omu,.tz ol.oml{margin:0;padding-left:12px;list-style:disc;display:block} .tz ol.oml{list-style:decimal} .tz .omu li,.tz .oml li{display:list-item;margin:0 0 3px;text-align:left}
+.tz .renders{display:grid;grid-template-columns:1fr 1fr;gap:8px} .tz .renders img{width:100%;height:78mm;object-fit:cover;display:block;border:1px solid var(--sand)} .tz .renders figcaption{font-size:7.5px;letter-spacing:.18em;color:var(--earth);margin:3px 0 0;text-transform:uppercase}
+.page.cover .heroimg{position:absolute;right:0;top:0;bottom:0;width:58%;object-fit:cover;opacity:.92} .page.cover .heroimg.svgbox{background:#F3EDE0;display:flex;align-items:center;justify-content:center;overflow:hidden} .page.cover .heroimg.svgbox svg{width:100%;height:auto} .page.cover .coverbox.left{width:44%;padding:18mm 16mm}
+"""
+def teaser_model(m):
+    M = MODELS[m]; tag = M["tag"]; N = model_numbers(m); code = f"{tag}-ONE-001"; rigid = m == "capsule"
+    D = Doc(code, "TEASER DE COTAÇÃO", m)
+    # capa com render
+    hero = f'<div class="heroimg svgbox">{svg_inline(M["hero"])}</div>' if M["hero"].endswith(".svg") else f'<img class="heroimg" src="../{M["hero"].replace("/renders/web/", "/renders/web/deck/")}" alt="">'
+    D.pages.append(f'''<section class="page cover">{hero}<div class="coverbox left"><div class="brand">{zion_mark_html("13mm", color="#FEF5F0", style="margin-right:6mm")}{zion_logo_html("13mm", color="#FEF5F0")}</div><div class="sub">ZION GLAMPING COLLECTION · ZION GLAMPING STORE</div>
+<h1>{esc(M["name"]).replace("ZION ", "ZION<br>")}</h1><h3>{esc(M["family"]).upper()} · TEASER DE COTAÇÃO · {code} · {REV} · {DATE}</h3>
+<p class="lead">{esc(M["dims"])} · {fmt(M["area_int"], 0)} m² internos + {fmt(M["area_ext"], 0)} m² de deck · {esc(M["guests"])} hóspedes · montagem em {M["days"]} dias. Kit numerado em 4 lotes: deck e infra · estrutura metálica · lonas, revestimentos e vidros · mobílias. Este teaser mostra o projeto (plantas, cortes, camadas, estrutura, lona, esquadrias) e o que cotar em cada lote.</p>
+<p class="rule">Sem preços. Projeto preliminar; toda especificação estrutural sujeita a validação de engenheiro (ART). Os documentos completos de cada lote ({tag}-LOT1 a LOT4-001) acompanham este teaser com listas peça a peça, padrões de corte DXF e RFQ.</p></div></section>''')
+    # números e lotes
+    L2 = {"cocoon": ["9 arcos elípticos calandrados Ø60,3 + Espinha e longarinas", "Bico: cumeeira Ø114,3, bordas Ø60,3, costela Ø48,3, 2 tirantes Ø12", "Chapas de base, luvas, talões, parafusos 8.8 galvanizados"],
+          "zenith": ["2 mastros em tramos (5,80 / 4,60 m) com coroas", "Pilares, anel de beiral, postes externos", "Cabos inox, esticadores, chapas e luvas"],
+          "lodge": ["8 pilares + anel de beiral em 8 segmentos", "8 caibros + Lanterna Zion (anel superior e montantes)", "Postes da vela, chapas, luvas, parafusos"],
+          "capsule": ["12 anéis calandrados Ø3,20 m + 7 longarinas", "Chassi de piso e 4 pés telescópicos", "Aros do Visor e do Anel de Luz, olhais de içamento"]}[m]
+    L3 = {"cocoon": [f"Lona externa PVDF tipo II: {N['n_ext']} painéis = {fmt(N['ext'], 0)} m² (P0 Bico, P1 a P8)", f"Forro Trevira CS: {N['n_inn']} painéis = {fmt(N['inn'], 0)} m²", "Keder duplo nos arcos, bolsas de tubo, clamps, cabos", f"Vidros: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m² (fachada, Espinha, 6 Olhos, porta)"],
+          "zenith": [f"Cobertura tensionada: {N['n_ext']} faixas soldadas = {fmt(N['ext'], 0)} m²", f"Forro: {N['n_inn']} painéis = {fmt(N['inn'], 0)} m²", "Bolsa de cabo na borda, clamps nos cumes", f"Vidros e fechamentos: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m²"],
+          "lodge": [f"Cobertura em {N['n_ext']} gomos iguais = {fmt(N['ext'], 0)} m²", f"Forro em gomos: {fmt(N['inn'], 0)} m²", "Clamp da lanterna, bolsa de cabo no beiral", f"Vidros: {N['n_esq']} esquadrias = {fmt(N['glass'], 1)} m²"],
+          "capsule": [f"Painéis de ACM curvado: {N['n_ext']} = {fmt(N['ext'], 0)} m²", f"Compensado curvado interno: {fmt(N['inn'], 0)} m²", "PIR 60 mm + barreira de vapor", f"Visor e Anel de Luz em vidro curvo laminado: {fmt(N['glass'], 1)} m²"]}[m]
+    L1 = {"cocoon": [f"{N['piles']} estacas helicoidais Ø76 com cabeçote ajustável", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso isolado {fmt(M['area_int'], 0)} m² + deck cumaru {fmt(M['area_ext'], 0)} m²", "Água / esgoto / elétrica (geral 50 A), boiler, condensadora"],
+          "zenith": [f"{N['piles']} estacas helicoidais com cabeçote", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso {fmt(M['area_int'], 0)} m² + terraço {fmt(M['area_ext'], 0)} m²", "Instalações completas"],
+          "lodge": [f"{N['piles']} estacas helicoidais com cabeçote", f"Grelha U 150 x 60 galv.: ≈ {fmt(N['base'], 0)} kg", f"Piso octogonal {fmt(M['area_int'], 0)} m² + deck em 3 faces {fmt(M['area_ext'], 0)} m²", "Instalações completas"],
+          "capsule": ["4 estacas helicoidais ou 4 sapatas pré-moldadas", "4 pés telescópicos Ø101,6 (curso 0,40 m)", f"Deck acoplado {fmt(M['area_ext'], 1)} m² + escada", "Engates rápidos de água, esgoto e energia"]}[m]
+    L4 = {"cocoon": [f"{len(MA)} peças de marcenaria acoplada (MA-01 mini cozinha 2,00 m a MA-08)", f"{N['n_ffe']} itens de FF&E (mobiliário, luminárias, têxteis, equipamentos)", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "zenith": ["Marcenaria acoplada ao totem do mastro e closet em L", f"{N['n_ffe']} itens de FF&E", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "lodge": ["Parede-cabeceira ripada, closet e café nas faces opacas", f"{N['n_ffe']} itens de FF&E", "Módulos ≤ 0,95 x 2,10 m e ≤ 60 kg"],
+          "capsule": ["Marcenaria curva acoplada aos anéis (cama, banco, bancada, banho)", f"{N['n_ffe']} itens de FF&E", "Instalado em oficina antes do transporte"]}[m]
+    forn = {1: "Empreiteiro de estacas helicoidais + montadores + eletricista / encanador", 2: "Serralheria com calandra de tubos, solda MIG/TIG e galvanizador parceiro", 3: ("Fabricante de ACM curvado + vidraceiro de vidro curvo" if rigid else "Confeccionista de lonas / tendas (solda HF) + vidraceiro"), 4: "Marcenaria + fornecedores de FF&E"}
+    steel_txt = f"≈ {fmt(N['steel'], 0)} kg de aço galvanizado em {N['n_struct']} tipos de peça" if N["steel"] else "casco monocoque: lista K01 em diante no lote 2"
+    lots = ""
+    for n, items, extra in ((1, L1, ""), (2, L2, f"<li><b>{steel_txt}</b></li>"), (3, L3, ""), (4, L4, "")):
+        lots += f'<div><b class="t">LOTE {n} · {esc(LOTS[n][0])}</b><em>{esc(forn[n])}</em><ul>{extra}{"".join(f"<li>{esc(i)}</li>" for i in items)}</ul><div class="doc">Documento completo: {tag}-LOT{n}-001 (PDF)</div></div>'
+    stats = [(esc(M["dims"].split(" · ")[0]), "dimensões"), (f"{fmt(M['area_int'], 0)} + {fmt(M['area_ext'], 0)} m²", "interno + deck"), (f"{fmt(N['steel'] + N['base'], 0) if N['steel'] else '≈ 4.200'} kg", "aço galvanizado" if N["steel"] else "casco completo"), (f"{fmt(N['ext'] + N['inn'], 0)} m²", "ACM + interno" if rigid else "lona + forro"), (f"{fmt(N['glass'], 1)} m²", "vidro"),
+             (f"{N['piles']}", "estacas"), (f"{M['days']} dias", "montagem"), (f"{N['vols']} vol · {fmt(N['m3'], 0)} m³", "transporte"), (f"{fmt(N['kg'] / 1000, 1)} t", "peso total"), (esc(M["guests"]), "hóspedes")]
+    st = "".join(f"<div><b>{a}</b><span>{b}</span></div>" for a, b in stats)
+    claim = f'{esc(M["family"])}: estrutura tubular em aço galvanizado a fogo, {"casco em ACM curvado" if rigid else "lona PVDF tensionada"}, vidro e madeira sobre deck em estacas helicoidais. Tudo chega em kit numerado (peças ≤ 4,80 m, ≤ 120 kg), sem concreto, sem solda em campo e sem guindaste{"; a Cápsula viaja inteira em prancha e exige acesso de caminhão a 30 m do pouso" if rigid else ""}.'
+    sub = M["name"] + " · " + M["family"] + " · " + M["dims"]
+    D.page('<div class="tz">' + h("EM NÚMEROS · O QUE CADA LOTE COTA", sub) + '<div class="stats">' + st + '</div><p class="claim">' + claim + '</p><div class="lots">' + lots + '</div></div>', "Números e lotes", code=f"{code}-01")
+    # renders
+    if not M["hero"].endswith(".svg"):
+        base = M["hero"].rsplit("/", 1)[0]; pre = m
+        figs = "".join(f'<figure style="margin:0">{img(f"{base}/{pre}_{v}.jpg")}<figcaption>{c}</figcaption></figure>' for v, c in (("ext_front", "Fachada e deck"), ("ext_side", "Lateral"), ("night", "Noite"), ("int_living", "Interior · estar")))
+        D.page(f'<div class="tz">{h("RENDERS", "modelo 3D paramétrico do projeto · materiais e luz de estudo")}<div class="renders">{figs}</div></div>', "Renders", code=f"{code}-02")
+    # pranchas
+    sheets = {"cocoon": [("02_planta_humanizada", "Planta humanizada"), ("06_corte_longitudinal", "Corte longitudinal"), ("04_elevacao_frontal", "Elevação frontal com o Bico"), ("13_camadas_construtivas", "Camadas construtivas (lote 3)"), ("12_estrutura_isometrica", "Estrutura metálica (lote 2)"), ("10_modelo_explodido", "Modelo explodido: os 4 lotes")],
+              "zenith": [("02_planta_humanizada", "Planta humanizada"), ("06_corte_longitudinal", "Corte longitudinal"), ("04_elevacao_frontal", "Elevação frontal"), ("13_camadas_construtivas", "Camadas construtivas (lote 3)"), ("12_estrutura_isometrica", "Estrutura metálica (lote 2)"), ("10_modelo_explodido", "Modelo explodido: os 4 lotes")],
+              "lodge": [("02_planta_humanizada", "Planta humanizada"), ("06_corte_longitudinal", "Corte longitudinal"), ("04_elevacao_frontal", "Elevação frontal"), ("13_camadas_construtivas", "Camadas construtivas (lote 3)"), ("12_estrutura_isometrica", "Estrutura metálica (lote 2)"), ("10_modelo_explodido", "Modelo explodido: os 4 lotes")],
+              "capsule": [("01_conceito", "Prancha de conceito"), ("08_isometrica", "Isométrica")]}[m]
+    k = 3
+    for f, t in sheets:
+        D.sheet_page(f"{m}/desenhos/{f}.svg", f"{code}-{k:02d}", t, "ver prancha", M["name"]); k += 1
+    det = {"cocoon": "detalhes/DET-10_arcos_cocoon.svg", "zenith": "detalhes/DET-11_mastros_zenith.svg", "lodge": "detalhes/DET-12_lanterna_lodge.svg", "capsule": None}[m]
+    if det: D.sheet_page(det, f"{code}-{k:02d}", "Detalhe da estrutura para o serralheiro (lote 2)", "ver prancha", M["name"]); k += 1
+    D.sheet_page(f"{m}/lona/LN-01_mapa_paineis.svg", f"{code}-{k:02d}", "Mapa de painéis da lona (lote 3) · padrões de corte em DXF", "ver prancha", M["name"]); k += 1
+    if not rigid: D.sheet_page(f"{m}/projeto/PA-09_quadro_esquadrias.svg", f"{code}-{k:02d}", "Quadro de esquadrias e vidros (lote 3)", "ver prancha", M["name"]); k += 1
+    D.sheet_page("detalhes/DET-04_fundacao.svg", f"{code}-{k:02d}", "Fundação em estacas helicoidais (lote 1)", "ver prancha", M["name"]); k += 1
+    # como cotar
+    como = "<ol class=\"oml\">" + "".join(f"<li>{i}</li>" for i in ["Cotação por item e total, com prazo de fabricação, validade de 30 dias e impostos destacados; frete até Florianópolis / SC ou ponto de transbordo indicado.", "Lote 2: preço por kg e por peça, com calandra, solda, galvanização a fogo (NBR 6323) e pintura destacadas; informar raio mínimo da calandra e galvanizador.", "Lote 3: lona por m² confeccionado (por painel) + perfis e cabos por metro + instalação por dia de equipe; vidros por pano e esquadrias por unidade, com medição na estrutura montada.", "Lotes 1 e 4: estacas por ponto + cravação; grelha por kg; deck por m²; marcenaria por peça; FF&E por item.", "Amostra antes da série: um arco calandrado (lote 2) e um painel soldado com keder (lote 3)."]) + "</ol>"
+    envia = "<ul class=\"omu\">" + "".join(f"<li>{i}</li>" for i in ["Documento completo do lote (PDF) com escopo, interfaces, listas peça a peça e RFQ", "DXF das peças e tabela de geometria dos arcos / caibros / anéis (lote 2)", "Padrões de corte DXF + XLSX e pranchas LN-01 a LN-90 (lote 3)", "Quadro de esquadrias e detalhes DET-01 a DET-13", "Modelo 3D (GLB) e visualizador no navegador"]) + "</ul>"
+    regras = "<ul class=\"omu\">" + "".join(f"<li>{i}</li>" for i in ["Fit test em fábrica de um pórtico / anel completo antes de galvanizar; inspeção Zion antes da expedição", "Tolerâncias: retas ± 2 mm · calandradas ± 5 mm no gabarito · topo montado ± 15 mm", "Lona: compensação e padronagem pelo confeccionista (laudo biaxial); sem rugas após tensionar; teste de água", f"Alvo: projeto executivo 3 sem · fabricação 6 sem · fundação 3 sem (paralelo) · montagem {M['days']} dias", WARN]) + "</ul>"
+    D.page(f'<div class="tz">{h("COMO COTAR · O QUE A ZION ENVIA · REGRAS", "retorno em 10 dias · validade 30 dias · sem preços de referência")}<div class="three"><div><b>COMO COTAR</b>{como}</div><div><b>A ZION ENVIA</b>{envia}</div><div><b>REGRAS E PRAZOS</b>{regras}</div></div></div>', "Como cotar", code=f"{code}-{k:02d}")
+    return f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {code} · Teaser de cotação</title><style>{CSS}{TEASER_CSS}</style></head><body>{"".join(D.pages)}</body></html>'
+
+def build_one_pagers():
+    for m in MODELS:
+        path = os.path.join(OUT_DIR, f"{MODELS[m]['tag']}-ONE-001_Teaser_Cotacao.html"); open(path, "w", encoding="utf-8").write(teaser_model(m)); print(os.path.relpath(path, ROOT))
+
+
 CSS = BASE_CSS + """
 .cols4{columns:4;column-gap:12px} .cols4 h4{margin-top:2px;break-after:avoid}
 .gantt{margin:6px 0 10px;font-size:7.5px} .gantt .gh{display:flex;margin-left:38%;width:60%;border-bottom:1px solid var(--sand)} .gantt .gh i{flex:1;font-style:normal;color:var(--earth);font-size:7px;text-align:left}
@@ -490,6 +630,7 @@ def build():
     doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · ZG-MP-001 · Master Plan</title><style>{CSS}</style></head><body>{allpages[0]}{idx}{"".join(allpages[1:])}</body></html>'
     path = os.path.join(OUT_DIR, "ZG-MP-001_Master_Plan.html"); open(path, "w", encoding="utf-8").write(doc); print(os.path.relpath(path, ROOT), len(allpages) + 1, "páginas", round(os.path.getsize(path) / 1e6, 1), "MB")
     path = os.path.join(OUT_DIR, "ZG-ONE-001_One_Pager.html"); open(path, "w", encoding="utf-8").write(one_pager()); print(os.path.relpath(path, ROOT))
+    build_one_pagers()
 
 if __name__ == "__main__":
-    build()
+    build_one_pagers() if "--one" in sys.argv else build()
