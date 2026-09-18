@@ -85,8 +85,8 @@ def cocoon_shell_offset(c, offset, nu, nv, x_start):
     return dict(vertices=verts, faces=faces)
 
 
-def cocoon_data():
-    c = G.Cocoon()
+def cocoon_data(cls=None):
+    c = (cls or G.Cocoon)()
     d = c.export()
     # forro interno (tecido tensionado) 12 cm para dentro da membrana, do plano de vidro à cauda
     LINER = -0.17   # câmara ventilada 60 mm + isolamento 50 mm + forro tensionado
@@ -1103,7 +1103,7 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--out-json", default=None, help="pasta para os JSON de geometria (padrão: $ZION_SCRATCH ou ./build)")
     ap.add_argument("--cdn", action="store_true", help="usar cdnjs em vez de embutir tools/vendor/*.js")
-    ap.add_argument("--model", default=None, choices=["cocoon", "zenith", "lodge"], help="gerar só este produto (padrão: todos)")
+    ap.add_argument("--model", default=None, choices=["cocoon", "zenith", "lodge", "cocoon_s"], help="gerar só este produto (padrão: todos)")
     args = ap.parse_args()
     out_json = args.out_json or os.environ.get("ZION_SCRATCH") or os.path.join(HERE, "build")
     os.makedirs(out_json, exist_ok=True)
@@ -1119,6 +1119,8 @@ def main():
          os.path.join(PROJECT, "zenith", "3d", "zion-zenith-3d.html")),
         ("lodge", lodge_data(), "ZION LODGE", "Pavilhão octogonal com Lanterna Zion · 38 m² internos + deck 30 m²",
          os.path.join(PROJECT, "lodge", "3d", "zion-lodge-3d.html")),
+        ("cocoon_s", cocoon_data(G.CocoonSensorial), "ZION CASULO SENSORIAL", "Variante: cinturão transparente, cama com dossel, cozinha atrás · 48 m² + deck 30 m²",
+         os.path.join(PROJECT, "cocoon_s", "3d", "zion-cocoon-sensorial-3d.html")),
     ]
     for model, data, title, subtitle, out_html in models:
         if args.model and model != args.model:
@@ -1127,7 +1129,7 @@ def main():
         with open(jpath, "w", encoding="utf-8") as fh:
             json.dump(rnd(data), fh, separators=(",", ":"), sort_keys=True, ensure_ascii=False)
         os.makedirs(os.path.dirname(out_html), exist_ok=True)
-        html = build_html(model, data, title, subtitle, cdn)
+        html = build_html("cocoon" if model == "cocoon_s" else model, data, title, subtitle, cdn)
         with open(out_html, "w", encoding="utf-8") as fh:
             fh.write(html)
         print("%-40s %7.0f kB   (json %s, %.0f kB)" % (os.path.relpath(out_html, PROJECT), len(html.encode("utf-8")) / 1024, os.path.basename(jpath), os.path.getsize(jpath) / 1024))

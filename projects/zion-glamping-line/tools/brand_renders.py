@@ -41,4 +41,4 @@ def build(products):
         print(p, len(src), "renders com marca")
 
 if __name__ == "__main__":
-    build(sys.argv[1:] or ["cocoon", "zenith", "lodge", "capsule"])
+    build(sys.argv[1:] or ["cocoon", "zenith", "lodge", "capsule", "cocoon_s"])

@@ -350,6 +350,80 @@ class Cocoon:
         )
 
 
+
+# ==================================================================================
+# ZION CASULO SENSORIAL (variante: cinturão transparente, cama com dossel olhando o vidro, cozinha atrás)
+# ==================================================================================
+class CocoonSensorial(Cocoon):
+    """Variante do Casulo: mesma concha, arcos, Bico e banho. Muda o que se vê e onde se dorme:
+    - cinturão transparente (PVC cristal / ETFE) nos vãos P3 e P4 (x 2,85 a 5,25), dos dois lados, do trilho de base a z 1,85,
+      com tela mosquiteira e cortina de voile + blackout por dentro; abre por zíper na base;
+    - cama king com dossel no meio do cinturão (x 2,60 a 4,65), pés para a fachada de vidro e o Bico;
+    - lounge de chão sob o Bico (x 0,90 a 2,40); mini cozinha em L atrás, encostada à parede do banho; closet à direita."""
+    NAME = "ZION CASULO SENSORIAL"
+    CLEAR = dict(x1=2.85, x2=5.25, z=1.85)
+    WINDOWS = [
+        dict(name="Olho estar (dir.)",   xc=2.25, tc=0.22,          lx=0.47, lt=0.12),
+        dict(name="Olho banho (dir.)",   xc=8.20, tc=0.50,          lx=0.40, lt=0.11),
+        dict(name="Olho banheira (esq.)",xc=8.20, tc=math.pi-0.35,  lx=0.40, lt=0.11),
+    ]
+
+    def in_clear(self, x, theta):
+        c = self.CLEAR
+        if not (c["x1"] <= x <= c["x2"]): return False
+        z = self.ZC + self.b(x) * math.sin(theta)
+        return z <= c["z"]
+
+    def in_window(self, x, theta):
+        return super().in_window(x, theta) or self.in_clear(x, theta)
+
+    def clear_area(self):
+        """área do cinturão transparente (m²), somando os dois lados."""
+        m = self.shell_mesh(60, 30); V = np.array(m["vertices"]); s = 0.0
+        xs = [self.X_FRONT + (self.L - self.X_FRONT) * (i / 60) for i in range(61)]
+        for f in m["glass"]:
+            p, q, r = V[f[0]], V[f[1]], V[f[2]]; cx = (p[0] + q[0] + r[0]) / 3; cz = (p[2] + q[2] + r[2]) / 3
+            if self.CLEAR["x1"] - 0.3 <= cx <= self.CLEAR["x2"] + 0.3 and cz <= self.CLEAR["z"] + 0.05:
+                s += 0.5 * np.linalg.norm(np.cross(q - p, r - p))
+        return float(s)
+
+    def furniture(self):
+        F = []
+        F.append(box(6.6, 6.7, -2.8, 2.8, 0, 2.6, "wall", "Parede do banho"))
+        F.append(box(6.6, 6.7, 1.0, 1.85, 0, 2.1, "opening", "Porta de correr"))
+        # lounge de chão sob o Bico
+        F.append(box(1.0, 2.0, -2.0, -0.9, 0, 0.32, "sofa", "Futon / almofadas de chão"))
+        F.append(box(1.0, 2.0, 0.3, 1.4, 0, 0.32, "sofa", "Futon / almofadas de chão"))
+        F.append(cyl(1.7, -0.3, 0, 0.32, 0.33, "table", "Mesa baixa de tronco"))
+        F.append(box(1.35, 2.15, 1.75, 2.55, 0.45, 1.2, "chair", "Cadeira suspensa de rattan"))
+        # suíte: tablado, cama com dossel, criados
+        F.append(box(2.4, 4.85, -1.25, 1.25, 0, 0.15, "table", "Tablado de madeira 0,15"))
+        F.append(box(2.6, 4.63, -0.97, 0.97, 0.15, 0.7, "bed", "Cama king com dossel (pés para o vidro)"))
+        F.append(box(2.6, 4.63, -0.97, 0.97, 0.7, 0.77, "pillow", ""))
+        for (x, y) in ((2.5, -1.15), (2.5, 1.15), (4.75, -1.15), (4.75, 1.15)):
+            F.append(cyl(x, y, 0.15, 2.4, 0.045, "table", "Coluna do dossel (teca)"))
+        F.append(box(2.46, 4.79, -1.19, -1.11, 2.36, 2.4, "cabinet", "Quadro do dossel")); F.append(box(2.46, 4.79, 1.11, 1.19, 2.36, 2.4, "cabinet", "Quadro do dossel"))
+        F.append(box(2.46, 2.54, -1.19, 1.19, 2.36, 2.4, "cabinet", "Quadro do dossel")); F.append(box(4.71, 4.79, -1.19, 1.19, 2.36, 2.4, "cabinet", "Quadro do dossel"))
+        F.append(box(2.5, 4.75, -1.17, -1.13, 0.2, 2.35, "glass", "Véu de voile (lateral)")); F.append(box(2.5, 4.75, 1.13, 1.17, 0.2, 2.35, "glass", "Véu de voile (lateral)"))
+        F.append(box(4.85, 5.35, 1.0, 1.5, 0, 0.5, "table", "Criado-mudo")); F.append(box(4.85, 5.35, -1.5, -1.0, 0, 0.5, "table", "Criado-mudo"))
+        # mini cozinha em L, encostada à parede do banho (lado esquerdo)
+        F.append(box(5.25, 6.6, 2.15, 2.8, 0, 0.9, "cabinet", "Mini cozinha em L: geladeira + forno / cooktop (lado da concha)"))
+        F.append(box(5.95, 6.6, 1.85, 2.15, 0, 0.9, "cabinet", "Mini cozinha em L: cuba + preparo (lado da parede)"))
+        F.append(box(5.85, 6.45, 2.35, 2.8, 0.9, 0.92, "cooktop", "Cooktop de indução 2 bocas"))
+        F.append(box(6.2, 6.5, 1.9, 2.15, 0.9, 1.25, "appliance", "Air fryer"))
+        # closet à direita, contra a parede do banho
+        F.append(box(5.4, 6.5, -2.85, -2.2, 0, 1.5, "cabinet", "Closet 1,10 m (acoplado à concha)"))
+        # banho (igual ao Casulo)
+        F.append(box(6.75, 7.3, -2.05, -0.55, 0, 0.85, "vanity", "Bancada 1,50 m"))
+        F.append(box(7.4, 8.1, 0.95, 1.7, 0, 0.42, "wc", "Bacia sanitária"))
+        F.append(box(7.65, 8.6, -1.75, -0.8, 0, 0.02, "shower", "Chuveiro 0,95 x 0,95"))
+        F.append(box(7.65, 7.68, -1.75, -0.8, 0, 2.1, "glass", ""))
+        F.append(box(7.55, 9.15, -0.38, 0.38, 0, 0.58, "tub", "Banheira 1,60 x 0,76"))
+        F.append(box(6.7, 9.35, -2.3, 2.3, 2.4, 2.45, "ceiling", "Forro do banho / ático técnico"))
+        F.append(box(7.0, 8.0, -0.6, 0.4, 2.5, 2.78, "hvac", "Evaporadora dutada 12k BTU"))
+        F.append(box(9.95, 10.7, -0.45, 0.35, 0.0, 0.62, "condenser", "Condensadora"))
+        return F
+
 # ==================================================================================
 # ZION SAFARI
 # ==================================================================================

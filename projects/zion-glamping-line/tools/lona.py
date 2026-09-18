@@ -13,7 +13,7 @@ Saídas por modelo (<modelo>/lona/):
 Uso: python3 lona.py [cocoon zenith lodge capsule]"""
 import math, os, sys
 import numpy as np
-from geometry import Cocoon, Zenith, Lodge, Capsule
+from geometry import Cocoon, Zenith, Lodge, Capsule, CocoonSensorial
 from svgkit import *
 from svgkit import zion_mark, zion_logo
 
@@ -28,6 +28,8 @@ KINDS = {  # tipo de borda -> (cor, largura, legenda)
     "solda": ("#C2734A", 1.6, "SOLDA HF · emenda de fábrica, sobreposição 40 mm"),
     "livre": ("#8B714E", 1.2, "BORDA LIVRE · bainha dupla 30 mm"),
     "junta": ("#3A3B3A", 2.0, "JUNTA · perfil H de alumínio com EPDM (revestimento rígido)"),
+    "cristal": ("#4E8BB8", 3.0, "SOLDA HF LONA-CRISTAL · emenda de 40 mm entre a lona opaca e o PVC cristal (linha da terça)"),
+    "ziper": ("#C2734A", 3.0, "ZÍPER · zíper YKK #10 duplo na base do cristal (parede que abre) + keder Ø13 no trilho"),
 }
 
 
@@ -126,8 +128,8 @@ def signature(pat, holes=True):
 
 
 # =============================================================================== CASULO
-def cocoon_patterns():
-    C = Cocoon(); pats = []
+def cocoon_patterns(C=None):
+    C = C or Cocoon(); pats = []
     N = 64
     HT = C.SPINE[2]; SX1, SX2 = C.SPINE[0], C.SPINE[1]
 
@@ -164,14 +166,29 @@ def cocoon_patterns():
         full = overlap and SX1 <= xa + 1e-6 and SX2 >= xb - 1e-6
         tail = k == 8
         if full:   # dividido pela Espinha de Luz em duas peças (direita / esquerda)
+            clear = getattr(C, "CLEAR", None)
+            clear = clear if clear and clear["x1"] - 1e-6 <= xa and xb <= clear["x2"] + 1e-6 else None
             for side, (u0, u1) in (("D", (0.0, ua)), ("E", (ub, 1.0))):
-                outline = path_uv(L2, R2, [(u0, 0), (u1, 0), (u1, 1), (u0, 1)])
-                p = Pattern(f"P{k}{side}", f"Painel P{k}{side} · entre A{k - 1} (x {xa:.2f}) e A{k} (x {xb:.2f}) · lado {'direito' if side == 'D' else 'esquerdo'} da Espinha", "cocoon", "externa", L2, R2, outline)
-                p.edges = [("keder", path_uv(L2, R2, [(u0, 0), (u1, 0)])[:41]), ("keder", path_uv(L2, R2, [(u0, 1), (u1, 1)])[:41]),
-                           ("clamp", [uv2d(L2, R2, u1 if side == "D" else u0, v) for v in (0, 1)]),
-                           ("keder_base", [uv2d(L2, R2, u0 if side == "D" else u1, v) for v in (0, 1)])]
-                add_windows(p, xa, xb, L2, R2, u0, u1)
-                pats.append(p)
+                pieces = [(f"P{k}{side}", u0, u1, "externa", None)]
+                if clear:   # cinturão transparente: cristal do trilho de base até z = CLEAR.z; lona acima
+                    zc = clear["z"]; t0, t1 = C.theta_range(xm); b = C.b(xm)
+                    th = math.asin(min(1.0, max(-1.0, (zc - C.ZC) / b)))
+                    uz = (th - t0) / (t1 - t0) if side == "D" else ((math.pi - th) - t0) / (t1 - t0)
+                    pieces = [(f"T{k}{side}", u0, uz, "externa", "cristal"), (f"P{k}{side}", uz, u1, "externa", None)] if side == "D" else [(f"P{k}{side}", u0, uz, "externa", None), (f"T{k}{side}", uz, u1, "externa", "cristal")]
+                for pid, ua_, ub_, grp, kind in pieces:
+                    outline = path_uv(L2, R2, [(ua_, 0), (ub_, 0), (ub_, 1), (ua_, 1)])
+                    lab = "CRISTAL (PVC transparente 0,7 mm) · cinturão sensorial" if kind else f"lado {'direito' if side == 'D' else 'esquerdo'} da Espinha"
+                    p = Pattern(pid, f"Painel {pid} · entre A{k - 1} (x {xa:.2f}) e A{k} (x {xb:.2f}) · {lab}", "cocoon", grp, L2, R2, outline)
+                    base_u = ua_ if side == "D" else ub_; top_u = ub_ if side == "D" else ua_
+                    p.edges = [("keder", path_uv(L2, R2, [(ua_, 0), (ub_, 0)])[:41]), ("keder", path_uv(L2, R2, [(ua_, 1), (ub_, 1)])[:41])]
+                    if kind:
+                        p.edges += [("ziper", [uv2d(L2, R2, base_u, v) for v in (0, 1)]), ("cristal", [uv2d(L2, R2, top_u, v) for v in (0, 1)])]
+                        p.material = "PVC cristal 0,7 mm (ou ETFE 250 µm em 2 folhas) soldado por HF à lona; keder Ø10 nas laterais; zíper na base"
+                        p.notes.append("Camadas por dentro (não fazem parte deste painel): tela mosquiteira fixa no trilho de harpão e cortina de voile + blackout em trilho curvo.")
+                    else:
+                        p.edges += [("clamp", [uv2d(L2, R2, top_u, v) for v in (0, 1)]), ("cristal" if clear else "keder_base", [uv2d(L2, R2, base_u, v) for v in (0, 1)])]
+                    add_windows(p, xa, xb, L2, R2, ua_, ub_)
+                    pats.append(p)
             continue
         if overlap:  # entalhe parcial da Espinha
             vs = (max(SX1, xa) - xa) / (xb - xa) if SX1 > xa else (min(SX2, xb) - xa) / (xb - xa)
@@ -205,6 +222,7 @@ def cocoon_patterns():
     p.notes.append("Bordas laterais (θ = π/2 ± 1,15) coincidem com o encontro da borda livre com o anel: reforço triangular 300 mm e olhal do tirante.")
     pats.append(p)
     for q in pats:
+        if q.material: continue
         q.material = "PVDF tipo II 1050 g/m² (poliéster de alta tenacidade, PVC + laca PVDF), cor creme Zion, tratamento anti-fungo, M2 / classe B"
         q.notes.append("Sobras: keder 45 mm; bolsa de base 60 mm; recortes com anel de reforço soldado de 150 mm em PVC 900 g/m².")
     # ---- forro interno (F1..F8): superfície a -0,17 m, do vidro (x 0,90) ao quadro da cauda, acima do rodapé (z ≥ 0,15)
@@ -359,9 +377,9 @@ def capsule_patterns():
     return pats
 
 
-PATTERNS = {"cocoon": cocoon_patterns, "zenith": zenith_patterns, "lodge": lodge_patterns, "capsule": capsule_patterns}
-TAG = {"cocoon": "ZC", "zenith": "ZS", "lodge": "ZL", "capsule": "ZK"}
-NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI", "lodge": "ZION LODGE 38", "capsule": "ZION CÁPSULA"}
+PATTERNS = {"cocoon": cocoon_patterns, "zenith": zenith_patterns, "lodge": lodge_patterns, "capsule": capsule_patterns, "cocoon_s": lambda: cocoon_patterns(CocoonSensorial())}
+TAG = {"cocoon": "ZC", "zenith": "ZS", "lodge": "ZL", "capsule": "ZK", "cocoon_s": "ZCS"}
+NAME = {"cocoon": "ZION CASULO", "zenith": "ZION SAFARI", "lodge": "ZION LODGE 38", "capsule": "ZION CÁPSULA", "cocoon_s": "ZION CASULO SENSORIAL"}
 GRP = {"externa": "LONA EXTERNA", "interna": "FORRO / REVESTIMENTO INTERNO", "revestimento": "REVESTIMENTO EXTERNO"}
 
 
@@ -487,8 +505,8 @@ def map_sheet(model, pats, folder):
     sh = Sheet(1600, 1000)
     ext = [p for p in pats if p.group != "interna"]; inn = [p for p in pats if p.group == "interna"]
     sh.header(f"{NAME[model].title()} · Mapa dos painéis de lona e revestimento", f"{len(ext)} padrões externos · {len(inn)} padrões internos · costuras sobre a estrutura · códigos usados nas pranchas LN e no DXF")
-    if model == "cocoon":
-        C = Cocoon(); sh.s, sh.ox, sh.oy = 72, 420, 560
+    if model.startswith("cocoon"):
+        C = CocoonSensorial() if model == "cocoon_s" else Cocoon(); sh.s, sh.ox, sh.oy = 72, 420, 560
         from drawings_cocoon import top_profile, bottom_profile, bico_side
         top = top_profile(); bot = bottom_profile(); sh.poly(top + bot[::-1], fill="#F3EDE0", stroke=GREEN, sw=1.4); sh.poly(bico_side(), fill="#F3EDE0", stroke=GREEN, sw=1.4)
         for i, x in enumerate(C.ARCH_X): sh.line(C.shear(x, 0), 0, C.shear(x, C.top(x)), C.top(x), "#1B2117", 2.2); sh.text(C.shear(x, C.top(x)), C.top(x) + 0.25, f"A{i}", 10, GREEN, weight=700)
@@ -502,6 +520,9 @@ def map_sheet(model, pats, folder):
         for w in C.WINDOWS:
             if w["tc"] > math.pi / 2: continue
             sh.poly([(x, z) for (x, y, z) in C.window_outline(w, 40)], fill=CREAM, stroke=GREEN, sw=0.8, dash="3 2")
+        if hasattr(C, "CLEAR"):
+            cl = C.CLEAR; sh.poly([(C.shear(cl["x1"], 0), 0), (C.shear(cl["x2"], 0), 0), (C.shear(cl["x2"], cl["z"]), cl["z"]), (C.shear(cl["x1"], cl["z"]), cl["z"])], fill="#BFD8E8", stroke="#4E8BB8", sw=1.4, opacity=0.9)
+            sh.text((cl["x1"] + cl["x2"]) / 2, 1.3, "T3 / T4 · CRISTAL (zíper na base)", 9, "#2F5F80", weight=700)
         sh.line(-4, 0, 11, 0, GREEN, 1.0); sh.text(3.5, -0.45, "trilho de base 100 x 50 com perfil de arremate E02 (keder Ø13 + calha)", 9, "#4E6E8B")
         sh.text(5.0, -1.0, "Vista lateral direita · costuras sobre os arcos A0 a A7 (perfil duplo keder) · painéis externos P0 a P8 · forros F1 a F8 (harpão)", 10, GREEN)
     elif model == "zenith":
@@ -633,7 +654,8 @@ def fix_sheet(model, folder):
     for i, (t, fn) in enumerate(ps):
         X0, Y0 = 60 + (i % 3) * 500, 110 + (i // 3) * 350
         panel(X0, Y0, t, fn); note(X0, Y0, NOTES[i])
-    notes = {"cocoon": "Casulo: painéis P1 a P8 no keder dos arcos (1) e nas bolsas de base (2); Bico P0 no keder do A0 e na bolsa do tubo de borda (3), presilhas na cumeeira e na costela; Espinha e Olhos em clamp (4); forro F1 a F8 em harpão (5).",
+    notes = {"cocoon_s": "Casulo Sensorial: como o Casulo, mais o cinturão transparente T3/T4: PVC cristal soldado por HF à lona na linha da terça (z 1,85), keder nos arcos, zíper #10 na base para abrir a parede; por dentro, tela mosquiteira no harpão e cortina de voile + blackout em trilho curvo.",
+             "cocoon": "Casulo: painéis P1 a P8 no keder dos arcos (1) e nas bolsas de base (2); Bico P0 no keder do A0 e na bolsa do tubo de borda (3), presilhas na cumeeira e na costela; Espinha e Olhos em clamp (4); forro F1 a F8 em harpão (5).",
              "zenith": "Safari: peça única içada pelos anéis dos cumes e presa nos clamps (4); perímetro em bolsa de cabo Ø12 (6) com chapas de canto nos 7 postes; forro F1 a F4 em harpão (5) nos trilhos suspensos.",
              "lodge": "Lodge: peça única de 8 gomos içada pelo anel da lanterna (clamp 4, perfil I02), passada sobre o anel de beiral (perfil de borda I01) e tensionada pela bolsa de cabo Ø10 (6); presilhas nos caibros; forro em harpão (5).",
              "capsule": "Cápsula: revestimento rígido (ACM) em perfis H de alumínio com EPDM nos anéis; sem lona tensionada. Este quadro vale para a vela e para o forro têxtil opcional."}[model]
@@ -655,7 +677,7 @@ def export_dxf(model, pats, path):
     for p in pats:
         msp.add_lwpolyline([(x + ox, y) for x, y in p.outline], close=True, dxfattribs={"layer": "CONTORNO"})
         for kind, pts in p.edges:
-            lay = {"keder": "KEDER", "keder_base": "KEDER", "harpao": "KEDER", "bolsa_tubo": "BOLSA", "cabo": "BOLSA", "clamp": "CLAMP", "junta": "CLAMP", "solda": "LINHA", "livre": "LINHA"}[kind]
+            lay = {"keder": "KEDER", "keder_base": "KEDER", "harpao": "KEDER", "bolsa_tubo": "BOLSA", "cabo": "BOLSA", "clamp": "CLAMP", "junta": "CLAMP", "solda": "LINHA", "livre": "LINHA", "cristal": "LINHA", "ziper": "KEDER"}[kind]
             msp.add_lwpolyline([(x + ox, y) for x, y in pts], dxfattribs={"layer": lay})
         for lab, pts, kind in p.holes:
             msp.add_lwpolyline([(x + ox, y) for x, y in pts], close=True, dxfattribs={"layer": "RECORTE"})
