@@ -45,7 +45,7 @@ NÃO COMECE VENDENDO. A ordem é: fazer parar → gerar curiosidade → criar um
 
 | Card | Função | O leitor pensa | Composição sugerida |
 |---|---|---|---|
-| 1 | ATENÇÃO | "O que é isso?" | imagem + headline monumental |
+| 1 | ATENÇÃO | "O que é isso?" | Bruno dando entrevista + headline monumental |
 | 2 | CURIOSIDADE | "Como assim?" | tipografia dominante |
 | 3 | LACUNA | "Interessante..." | fotografia + frase curta |
 | 4 | AUTORIDADE | "Quem está falando?" | Bruno em retrato editorial |
@@ -59,6 +59,8 @@ NÃO COMECE VENDENDO. A ordem é: fazer parar → gerar curiosidade → criar um
 Nunca repetir exatamente o mesmo layout.
 
 ## 6. Card 1
+
+REGRA FIXA: a fotografia do card 1 é sempre o Bruno dando entrevista (imprensa, podcast, evento, bastidor de gravação), com microfone ou contexto de entrevista visível. Nunca retrato posado, nunca paisagem, nunca produto.
 
 É o mais importante: precisa interromper o scroll. Não explique, não entregue a resposta, crie tensão intelectual. Frases curtas, poucas palavras, muito espaço negativo, tipografia enorme, uma fotografia forte. Exemplos de tom: "Quase ninguém está percebendo isso." · "Existe uma nova forma de viajar." · "Por que grandes investidores estão olhando para a natureza?"
 
@@ -130,7 +132,7 @@ Depois, a especificação de design em JSON no formato do renderizador (`scripts
 }
 ```
 
-Regras da especificação: entre 6 e 10 cards; o layout `press` (foto de entrevista, evento ou imprensa como prova de autoridade) só existe com fotografia real fornecida, nomeando apenas o veículo visível ou informado; layouts não se repetem em sequência; `image.src` só recebe caminhos de fotografias reais fornecidas (caso contrário `null`, com o `brief` descrevendo a foto a inserir); `stats` e `meta.facts` só com dados fornecidos.
+Regras da especificação: entre 6 e 10 cards; o card 1 usa sempre uma fotografia real do Bruno dando entrevista; toda fotografia passa pelo tratamento editorial (`scripts/editorial_carousel/grade.py`) antes de entrar no card; o layout `press` (foto de entrevista, evento ou imprensa como prova de autoridade) só existe com fotografia real fornecida, nomeando apenas o veículo visível ou informado; layouts não se repetem em sequência; `image.src` só recebe caminhos de fotografias reais fornecidas (caso contrário `null`, com o `brief` descrevendo a foto a inserir); `stats` e `meta.facts` só com dados fornecidos.
 
 ## 16. Qualidade final (revisão silenciosa antes de entregar)
 

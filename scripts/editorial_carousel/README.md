@@ -7,6 +7,7 @@ de revista internacional de luxo. Três peças:
 |---|---|---|
 | Diretor Editorial | `src/prompts/editorial_carousel.py` | System prompt: essência da marca, arquitetura psicológica dos cards, regras de copy, fotografia, autoridade do Bruno e formato de entrega |
 | Template | `scripts/editorial_carousel/template.html.j2` | 10 layouts editoriais em 1080×1350 (4:5, formato nativo do carrossel do Instagram) |
+| Tratamento | `scripts/editorial_carousel/grade.py` | Gradação editorial consistente para toda fotografia fornecida (Pillow) |
 | Renderizador | `scripts/editorial_carousel/render.py` | Lê a especificação JSON, monta o HTML autocontido e captura cada card em JPG via Playwright |
 
 ## Fluxo
@@ -15,7 +16,10 @@ de revista internacional de luxo. Três peças:
    ideia central, gatilho principal, gatilhos secundários, headline do card 1,
    estrutura completa dos cards e a especificação JSON.
 2. A especificação é salva em `scripts/editorial_carousel/carrosseis/NNN-slug.json`.
-3. Fotografias reais entram em `image.src` (caminho relativo ao JSON). Sem foto,
+3. Toda foto passa pelo tratamento editorial antes de entrar no card:
+   `python scripts/editorial_carousel/grade.py original.jpg carrosseis/assets/nome.jpg --height 1350`
+   (contraste, dessaturação leve, tom quente, vinheta; `--crop l,t,r,b` recorta).
+   Fotografias reais entram em `image.src` (caminho relativo ao JSON). Sem foto,
    o card renderiza um slot editorial marcado **"Fotografia real a inserir"** com
    o briefing da imagem, para que nada seja publicado sem a foto verdadeira.
 4. Renderizar:
@@ -33,7 +37,7 @@ Opções: `--out pasta`, `--quality 90`, `--scale 2` (2160×2700), `--no-capture
 
 | # | Função | Layout | O leitor pensa |
 |---|---|---|---|
-| 1 | Atenção | `cover` | "O que é isso?" |
+| 1 | Atenção | `cover` (sempre Bruno dando entrevista) | "O que é isso?" |
 | 2 | Curiosidade | `typographic` | "Como assim?" |
 | 3 | Lacuna | `photo-quote` | "Interessante..." |
 | 4 | Autoridade | `portrait` | "Quem está falando?" |
@@ -91,6 +95,6 @@ mesmo layout nunca se repete em sequência. O renderizador valida isso.
 ## Exemplo publicado
 
 `docs/editorial/001-alem-da-hospedagem/` contém o preview e os 10 cards da
-Edição 01. Os cards 4, 6 e 10 já usam fotografias reais do Bruno (retrato e
-entrevista à CNN Brasil) e o símbolo Z; os slots restantes aguardam fotos da
-Bubble e de paisagem, em `carrosseis/assets/`.
+Edição 01. Capa com o Bruno em entrevista, retrato no card 4, CNN Brasil no
+card 6, jardim no card 3 e o símbolo Z no card 10; só o card 8 aguarda o
+interior da Bubble. Assets tratados em `carrosseis/assets/`.
