@@ -104,8 +104,21 @@
   .slot .veil { position: absolute; inset: 0; }
   .veil.bottom { background: linear-gradient(180deg, rgba(4,6,5,0.10) 0%, rgba(4,6,5,0.30) 45%, rgba(4,6,5,0.88) 100%); }
   .veil.full { background: rgba(4,6,5,0.52); }
+  .veil.portrait { background: linear-gradient(180deg, rgba(4,6,5,0) 0%, rgba(4,6,5,0) 62%, rgba(4,6,5,0.78) 100%); }
+  .veil.top { background: linear-gradient(180deg, rgba(4,6,5,0.62) 0%, rgba(4,6,5,0.28) 12%, rgba(4,6,5,0) 26%); }
   .veil.soft { background: linear-gradient(180deg, rgba(4,6,5,0.35) 0%, rgba(4,6,5,0.05) 50%, rgba(4,6,5,0.35) 100%); }
   .veil.side { background: linear-gradient(90deg, rgba(4,6,5,0.0) 55%, rgba(4,6,5,0.85) 100%); }
+  .veil.press { background: linear-gradient(180deg, rgba(4,6,5,0.18) 0%, rgba(4,6,5,0.08) 38%, rgba(4,6,5,0.62) 62%, rgba(4,6,5,0.94) 100%); }
+
+  /* ---------- 6b. PRESS (prova de imprensa) ---------- */
+  .l-press .slot { inset: 0; }
+  .l-press .text { position: absolute; left: var(--pad); right: var(--pad); bottom: 150px; z-index: 3; }
+  .l-press .kicker { margin-bottom: 36px; }
+  .l-press h2 { font-size: 64px; line-height: 1.12; max-width: 900px; }
+  .l-press .sub { margin-top: 30px; font-family: var(--serif); font-style: italic; font-size: 32px; line-height: 1.3; color: var(--sand); }
+  .l-press .body { margin-top: 26px; font-size: 22px; line-height: 1.55; max-width: 760px; opacity: 0.85; }
+  .l-press .credit { right: 28px; bottom: 150px; }
+
   .credit {
     position: absolute; font-family: var(--grotesk); font-weight: 400; font-size: 12px;
     letter-spacing: 0.22em; text-transform: uppercase; color: var(--sand); opacity: 0.6;
@@ -207,6 +220,7 @@
   .l-cta .handle { font-size: 20px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; color: var(--cream); }
   .l-cta .brand { margin-top: 26px; font-size: 14px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--sand); opacity: 0.75; line-height: 2; }
   .l-cta .mark { width: 34px; height: 34px; border: 1px solid var(--gold); transform: rotate(45deg); margin-bottom: 64px; opacity: 0.85; }
+  .l-cta .logo { height: 54px; margin-bottom: 64px; filter: invert(1) brightness(0.96); mix-blend-mode: screen; }
 </style>
 </head>
 <body>
@@ -222,12 +236,13 @@
   {%- macro slot(c, veil) -%}
   <div class="slot">
     {%- if c.image and c.image.data -%}
-    <img src="{{ c.image.data }}" alt="">
+    <img src="{{ c.image.data }}" alt="" style="object-position: {{ c.image.position or '50% 50%' }};{% if c.image.scale %} transform: scale({{ c.image.scale }}); transform-origin: {{ c.image.position or '50% 50%' }};{% endif %}">
     {%- else -%}
     {{ topo | safe }}
     <div class="brief"><b>Fotografia real a inserir</b><br>{{ (c.image.brief if c.image else 'imagem') }}</div>
     {%- endif -%}
     {%- if veil %}<div class="veil {{ veil }}"></div>{% endif -%}
+    <div class="veil top"></div>
   </div>
   {%- if c.image and c.image.credit %}<div class="credit">{{ c.image.credit }}</div>{% endif -%}
   {%- endmacro -%}
@@ -264,7 +279,7 @@
     </div>
 
   {%- elif c.layout == 'portrait' -%}
-    {{ slot(c, 'soft') }}
+    {{ slot(c, 'portrait') }}
     <div class="col">
       {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
       <div class="name">{{ (c.meta.name_html if c.meta and c.meta.name_html else c.headline_html) | safe }}</div>
@@ -303,6 +318,15 @@
       {% if c.body %}<div class="body">{{ c.body_html | safe }}</div>{% endif %}
     </div>
 
+  {%- elif c.layout == 'press' -%}
+    {{ slot(c, 'press') }}
+    <div class="text">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+      {% if c.body %}<div class="body">{{ c.body_html | safe }}</div>{% endif %}
+    </div>
+
   {%- elif c.layout == 'manifesto' -%}
     <div class="text">
       {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
@@ -337,7 +361,7 @@
 
   {%- elif c.layout == 'cta' -%}
     <div class="text">
-      <div class="mark"></div>
+      {% if spec.brand.logo_data %}<img class="logo" src="{{ spec.brand.logo_data }}" alt="">{% else %}<div class="mark"></div>{% endif %}
       {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
       <h2>{{ c.headline_html | safe }}</h2>
       {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}

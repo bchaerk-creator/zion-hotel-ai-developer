@@ -34,7 +34,7 @@ def test_prompt_exported():
     assert "Playfair Display" in PROMPT_EDITORIAL_CAROUSEL
     assert "Hanken Grotesk" in PROMPT_EDITORIAL_CAROUSEL
     assert len(CARD_FUNCTIONS) == 10
-    assert len(CARD_LAYOUTS) == 10
+    assert len(CARD_LAYOUTS) == 11
 
 
 def test_layouts_match_between_prompt_and_renderer(render):
@@ -76,6 +76,7 @@ def test_validate_minimal_spec(render):
         (lambda c: c[:1] + [{"layout": "portrait", "headline": "x"}] + c[1:], "exige 'meta'"),
         (lambda c: c[:1] + [{"layout": "insight", "headline": "x"}] + c[1:], "exige 'stats'"),
         (lambda c: c[:1] + [{"layout": "positioning", "headline": "x"}] + c[1:], "exige 'items'"),
+        (lambda c: c[:1] + [{"layout": "press", "headline": "x", "image": {"brief": "x"}}] + c[1:], "exige fotografia real"),
     ],
 )
 def test_validate_rejects_bad_specs(render, mutation, message):

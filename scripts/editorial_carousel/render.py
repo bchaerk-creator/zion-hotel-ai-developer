@@ -45,6 +45,7 @@ LAYOUTS = {
     "portrait",
     "insight",
     "destination",
+    "press",
     "manifesto",
     "emotional",
     "positioning",
@@ -129,6 +130,14 @@ def load_spec(spec_path: Path) -> dict:
     spec.setdefault("edition", "Edição 01")
     spec.setdefault("date_label", "")
     spec.setdefault("theme", spec["slug"])
+    brand.setdefault("logo_data", None)
+    if brand.get("logo"):
+        logo = Path(brand["logo"])
+        if not logo.is_absolute():
+            logo = (spec_path.parent / logo).resolve()
+        if not logo.exists():
+            raise SpecError(f"Logo não encontrado: {brand['logo']}")
+        brand["logo_data"] = data_uri(logo)
 
     for card in spec["cards"]:
         for key in ("kicker", "headline", "subhead", "body", "footnote", "pause", "function"):
@@ -143,7 +152,7 @@ def load_spec(spec_path: Path) -> dict:
             card["meta"].setdefault("facts", [])
             card["meta"]["name_html"] = rich_text(card["meta"]["name"])
         if card["image"] is not None:
-            for key in ("src", "brief", "credit", "data"):
+            for key in ("src", "brief", "credit", "data", "position", "scale"):
                 card["image"].setdefault(key, None)
         card["headline_html"] = rich_text(card.get("headline"))
         card["subhead_html"] = rich_text(card.get("subhead"))
@@ -182,6 +191,8 @@ def validate_spec(spec: dict) -> None:
             raise SpecError(f"Card {i}: layout 'portrait' exige 'meta' (name, role, facts).")
         if layout == "insight" and not card.get("stats") and not card.get("body"):
             raise SpecError(f"Card {i}: layout 'insight' exige 'stats' ou 'body'.")
+        if layout == "press" and not (card.get("image") or {}).get("src"):
+            raise SpecError(f"Card {i}: layout 'press' exige fotografia real em image.src.")
         if layout == "positioning" and not card.get("items"):
             raise SpecError(f"Card {i}: layout 'positioning' exige 'items'.")
 

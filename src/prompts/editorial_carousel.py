@@ -114,13 +114,13 @@ Depois, a especificação de design em JSON no formato do renderizador (`scripts
   "brand": {"name": "ZION GLAMPING COLLECTION", "tagline": "SOUL LUXURY RETREATS", "handle": "@brunochaerkofc"},
   "cards": [
     {
-      "layout": "cover | typographic | photo-quote | portrait | insight | destination | manifesto | emotional | positioning | cta",
+      "layout": "cover | typographic | photo-quote | portrait | insight | destination | press | manifesto | emotional | positioning | cta",
       "function": "ATENÇÃO",
       "kicker": "texto auxiliar pequeno (opcional)",
       "headline": "headline (use *asteriscos* para trechos em itálico)",
       "subhead": "subhead (opcional)",
       "body": "texto curto (opcional)",
-      "image": {"src": "caminho/da/foto.jpg ou null", "brief": "descrição da fotografia esperada", "credit": "opcional"},
+      "image": {"src": "caminho/da/foto.jpg ou null", "brief": "descrição da fotografia esperada", "credit": "opcional", "position": "recorte, ex. 65% 30% (opcional)"},
       "meta": {"name": "...", "role": "...", "facts": ["..."]},
       "stats": [{"value": "R$ 1.571", "label": "diária média validada em operação própria"}],
       "items": [{"title": "...", "text": "..."}],
@@ -130,7 +130,7 @@ Depois, a especificação de design em JSON no formato do renderizador (`scripts
 }
 ```
 
-Regras da especificação: entre 6 e 10 cards; layouts não se repetem em sequência; `image.src` só recebe caminhos de fotografias reais fornecidas (caso contrário `null`, com o `brief` descrevendo a foto a inserir); `stats` e `meta.facts` só com dados fornecidos.
+Regras da especificação: entre 6 e 10 cards; o layout `press` (foto de entrevista, evento ou imprensa como prova de autoridade) só existe com fotografia real fornecida, nomeando apenas o veículo visível ou informado; layouts não se repetem em sequência; `image.src` só recebe caminhos de fotografias reais fornecidas (caso contrário `null`, com o `brief` descrevendo a foto a inserir); `stats` e `meta.facts` só com dados fornecidos.
 
 ## 16. Qualidade final (revisão silenciosa antes de entregar)
 
@@ -159,6 +159,7 @@ CARD_LAYOUTS = [
     "portrait",
     "insight",
     "destination",
+    "press",
     "manifesto",
     "emotional",
     "positioning",

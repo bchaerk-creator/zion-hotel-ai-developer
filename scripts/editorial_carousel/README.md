@@ -38,13 +38,13 @@ Opções: `--out pasta`, `--quality 90`, `--scale 2` (2160×2700), `--no-capture
 | 3 | Lacuna | `photo-quote` | "Interessante..." |
 | 4 | Autoridade | `portrait` | "Quem está falando?" |
 | 5 | Insight | `insight` | "Agora entendi." |
-| 6 | Prova / exemplo | `destination` | "Isso faz sentido." |
+| 6 | Prova / exemplo | `destination` ou `press` | "Isso faz sentido." |
 | 7 | Visão | `manifesto` | "Eu nunca tinha pensado assim." |
 | 8 | Desejo | `emotional` | "Quero saber mais." |
 | 9 | Posicionamento | `positioning` | "Essa empresa realmente atua nisso." |
 | 10 | CTA | `cta` | "Vou acompanhar / conhecer / entrar em contato." |
 
-Entre 6 e 10 cards. O primeiro é sempre `cover`, o último sempre `cta`, e o
+`press` é a prova de imprensa (entrevista, evento, veículo) e só renderiza com fotografia real. Entre 6 e 10 cards. O primeiro é sempre `cover`, o último sempre `cta`, e o
 mesmo layout nunca se repete em sequência. O renderizador valida isso.
 
 ## Identidade
@@ -64,7 +64,7 @@ mesmo layout nunca se repete em sequência. O renderizador valida isso.
   "edition": "Edição 01",
   "date_label": "MMXXVI",
   "theme": "...",
-  "brand": {"name": "ZION GLAMPING COLLECTION", "tagline": "SOUL LUXURY RETREATS", "handle": "@brunochaerkofc"},
+  "brand": {"name": "ZION GLAMPING COLLECTION", "tagline": "SOUL LUXURY RETREATS", "handle": "@brunochaerkofc", "logo": "assets/zion-z.png"},
   "cards": [
     {
       "layout": "cover",
@@ -75,7 +75,7 @@ mesmo layout nunca se repete em sequência. O renderizador valida isso.
       "body": "...",
       "footnote": "...",
       "pause": "pausa",
-      "image": {"src": null, "brief": "descrição da foto", "credit": "opcional"},
+      "image": {"src": "assets/foto.jpg", "brief": "descrição da foto", "credit": "opcional", "position": "65% 30%"},
       "meta": {"name": "Bruno\nChaerk", "role": "Founder · CEO · Zion Hotel Group International", "facts": ["..."]},
       "stats": [{"value": "R$ 1.571", "label": "..."}],
       "items": [{"title": "...", "text": "..."}]
@@ -91,5 +91,6 @@ mesmo layout nunca se repete em sequência. O renderizador valida isso.
 ## Exemplo publicado
 
 `docs/editorial/001-alem-da-hospedagem/` contém o preview e os 10 cards da
-Edição 01, renderizados com slots de fotografia (as fotos reais da Zion e do
-Bruno ainda precisam ser inseridas via `image.src`).
+Edição 01. Os cards 4, 6 e 10 já usam fotografias reais do Bruno (retrato e
+entrevista à CNN Brasil) e o símbolo Z; os slots restantes aguardam fotos da
+Bubble e de paisagem, em `carrosseis/assets/`.
