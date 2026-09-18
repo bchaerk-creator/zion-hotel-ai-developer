@@ -585,6 +585,13 @@ def teaser_model(m):
         base = M["hero"].rsplit("/", 1)[0]; pre = m
         figs = "".join(f'<figure style="margin:0">{img(f"{base}/{pre}_{v}.jpg")}<figcaption>{c}</figcaption></figure>' for v, c in (("ext_front", "Fachada e deck"), ("ext_side", "Lateral"), ("night", "Noite"), ("int_living", "Interior · estar")))
         D.page(f'<div class="tz">{h("RENDERS", "modelo 3D paramétrico do projeto · materiais e luz de estudo")}<div class="renders">{figs}</div></div>', "Renders", code=f"{code}-02")
+    # referências reais (fotos de mercado em <modelo>/referencias/)
+    refdir = os.path.join(ROOT, m, "referencias")
+    refs = sorted(f for f in os.listdir(refdir) if f.lower().endswith((".jpg", ".jpeg", ".png"))) if os.path.isdir(refdir) else []
+    if refs:
+        caps = {"zenith": "Pavilhão tensionado com cume e beiral em balanço sobre a encosta, deck em aço e madeira, piscina de borda, quarto aberto para a mata: a experiência que o Zion Safari entrega, com estrutura em kit e lona PVDF."}
+        figs = "".join(f'<figure style="margin:0"><img src="../{m}/referencias/{f}" alt=""><figcaption>REFERÊNCIA DE MERCADO {i + 1:02d}</figcaption></figure>' for i, f in enumerate(refs[:4]))
+        D.page(f'<div class="tz">{h("REFERÊNCIAS REAIS", "fotos de mercado que mostram a experiência-alvo · não são produto Zion · uso interno de direção de projeto")}<div class="renders">{figs}</div><p class="claim" style="margin-top:8px">{esc(caps.get(m, ""))}</p></div>', "Referências reais", code=f"{code}-02b")
     # pranchas
     sheets = {"cocoon": [("02_planta_humanizada", "Planta humanizada"), ("06_corte_longitudinal", "Corte longitudinal"), ("04_elevacao_frontal", "Elevação frontal com o Bico"), ("13_camadas_construtivas", "Camadas construtivas (lote 3)"), ("12_estrutura_isometrica", "Estrutura metálica (lote 2)"), ("10_modelo_explodido", "Modelo explodido: os 4 lotes")],
               "zenith": [("02_planta_humanizada", "Planta humanizada"), ("06_corte_longitudinal", "Corte longitudinal"), ("04_elevacao_frontal", "Elevação frontal"), ("13_camadas_construtivas", "Camadas construtivas (lote 3)"), ("12_estrutura_isometrica", "Estrutura metálica (lote 2)"), ("10_modelo_explodido", "Modelo explodido: os 4 lotes")],
