@@ -128,3 +128,9 @@ Toda a geometria (planta, seções, arcos, cumes, layout) vem de `tools/geometry
 ## Estado do projeto
 
 Estudo preliminar / projeto conceitual. Antes da fabricação: cálculo estrutural com ART, form-finding da membrana com o fabricante, projeto executivo de esquadrias e instalações, protótipo no Zion Bubble Glamping. Ver Caderno, anexo A.
+
+## 08_MOBILIARIO · ZION NEW LUXURY FURNITURE COLLECTION
+
+- `ZG-FFE-001_Zion_Furniture_Design_System.html/.pdf`: DNA, moodboard, paleta, materiais, texturas, assinatura Zion (Arco, Pé, Amarração, Friso, Véu), linguagens de pés, curvas, ferragens, tecidos e luminárias, sistema de acabamentos, ZION CORE / DESTINATION DNA, tiers Essential / Signature / Icon, coleção de 46 peças.
+- `ZG-FFE-002_Zion_Canopy_Bed.html/.pdf` + `cama/FB-01..08.svg`: peça hero (conceito, story, 3 conceitos, render, dimensões, materiais, desenho técnico, detalhes, explodido, BOM, fabricação, montagem, manutenção). Custo estimado só em `interno/`.
+- `referencias/`: fotos oficiais das Bubbles usadas na análise. Ferramentas: `tools/furniture_common.py`, `tools/furniture_system.py`, `tools/furniture_bed.py`.
