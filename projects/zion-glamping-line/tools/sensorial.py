@@ -177,13 +177,13 @@ def build_doc():
     sheet_page("cocoon_s/desenhos/05_elevacao_lateral_sensorial.svg", "VS-02", "Elevação lateral com o cinturão transparente", "1:50")
     sheet_page("cocoon_s/desenhos/07_corte_cinturao.svg", "VS-03", "Corte transversal pelo cinturão: as três camadas e o dossel", "1:40")
     sheet_page("cocoon_s/desenhos/08_isometrica_sensorial.svg", "VS-04", "Isométrica da variante", "s/ escala")
-    # renders comparativos
-    body = h("RENDERS · CASULO E CASULO SENSORIAL LADO A LADO", "modelo 3D da variante (cocoon_s/3d) · mesma câmera nas duas versões")
-    body += '<div class="two">'
-    for v, lab in (("ext_front", "Exterior frontal"), ("ext_side", "Exterior lateral"), ("int_bed", "Interior · suíte"), ("int_living", "Interior · estar / lounge")):
-        body += f'<div><h4>{lab.upper()} · CASULO</h4>{img(f"cocoon/renders/web/cocoon_{v}.jpg")}</div><div><h4>{lab.upper()} · SENSORIAL</h4>{img(f"cocoon_s/renders/web/cocoon_s_{v}.jpg")}</div>'
-    body += '</div>'
-    page(body, "Renders comparativos", "flow", code="ZC-ARQ-002-R")
+    # renders comparativos (2 páginas, 2 x 2)
+    for title, views in (("EXTERIOR", (("ext_front", "Exterior frontal"), ("ext_side", "Exterior lateral"))), ("INTERIOR", (("int_bed", "Interior · suíte"), ("int_living", "Interior · estar / lounge")))):
+        body = h(f"RENDERS {title} · CASULO E CASULO SENSORIAL LADO A LADO", "modelo 3D da variante (cocoon_s/3d) · mesma câmera nas duas versões") + '<div class="grid2">'
+        for v, lab in views:
+            body += f'<div><h4>{lab.upper()} · CASULO</h4>{img(f"cocoon/renders/web/cocoon_{v}.jpg")}</div><div><h4>{lab.upper()} · SENSORIAL</h4>{img(f"cocoon_s/renders/web/cocoon_s_{v}.jpg")}</div>'
+        body += '</div>'
+        page(body, f"Renders comparativos · {title.lower()}", code="ZC-ARQ-002-R")
     # lona
     body = h("LONA · O QUE MUDA NO LOTE 3", f"{len(T)} padrões de cristal (T) substituem a parte baixa dos painéis P3 e P4 · costura HF lona / cristal na terça T5 · zíper na base · mapa e padrões em cocoon_s/lona/")
     rows = [(p.id, p.qty, fmt(p.w, 2) + " x " + fmt(p.h, 2), fmt(p.area, 2), esc(p.material[:110])) for p in pats if p.id[0] in "TP" and p.id[1] in "34"]
@@ -207,7 +207,7 @@ def build_doc():
     body += table(["Lote", "Casulo", "Sensorial: o que muda"], [("1 · Deck e infra", "igual", "pontos de água / esgoto da cozinha passam para a parede do banho (mesma parede molhada: mais simples); circuito da cortina motorizada"), ("2 · Estrutura", "igual", "talões para o trilho curvo da cortina e para a cadeira suspensa (arco A1); cantoneiras da cozinha em A5 / A6 em vez de A1 / A2"), ("3 · Lonas e vidros", "P3D/E, P4D/E em lona", "T3D/E, T4D/E em cristal soldado; zíperes; tela mosquiteira; trilhos curvos de cortina; 3 Olhos a menos"), ("4 · Mobílias", "New Luxury", "coleção Bali (dossel, tablado, rattan, futons, voile, juta) ou New Luxury; mesma marcenaria acoplada")], "small")
     body += f'<h4>PRÓXIMOS PASSOS</h4><ol class="num"><li>Aprovar a variante como produto (Casulo Sensorial) ou como opção de configuração do Casulo.</li><li>Balanço térmico e escolha entre PVC cristal e ETFE duplo por região (frio de montanha: ETFE). {WARN}</li><li>Detalhar o dossel (fixação no tablado, carga da cadeira suspensa) e o trilho curvo da cortina.</li><li>Gerar IN-01 a IN-06 da variante e os lotes 3 e 4 específicos.</li><li>Render fotorrealista (imagem → vídeo) com a coleção Bali para o material comercial.</li></ol>'
     page(body, "Impactos e próximos passos", code="ZC-ARQ-002-N")
-    doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {DOC} · Casulo Sensorial</title><style>{BASE_CSS}</style></head><body>{"".join(pages)}</body></html>'
+    doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {DOC} · Casulo Sensorial</title><style>{BASE_CSS} .page img{{width:100%;height:auto;display:block;border:1px solid var(--sand)}} .grid2{{display:grid;grid-template-columns:1fr 1fr;gap:10px 14px}} .grid2 h4{{margin:4px 0}}</style></head><body>{"".join(pages)}</body></html>'
     out = os.path.join(DOC_DIR, "ZC-ARQ-002_Casulo_Sensorial.html"); open(out, "w", encoding="utf-8").write(doc)
     print(out, len(pages), "páginas")
 
