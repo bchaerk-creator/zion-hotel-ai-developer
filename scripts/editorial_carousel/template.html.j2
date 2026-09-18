@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>{{ spec.brand.name }} · {{ spec.edition }} · {{ spec.theme }}</title>
+<style>
+  @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 400; src: url('{{ fonts["playfair-regular"] }}') format('woff2'); }
+  @font-face { font-family: 'Playfair Display'; font-style: normal; font-weight: 500; src: url('{{ fonts["playfair-medium"] }}') format('woff2'); }
+  @font-face { font-family: 'Playfair Display'; font-style: italic; font-weight: 400; src: url('{{ fonts["playfair-italic"] }}') format('woff2'); }
+  @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 300; src: url('{{ fonts["hanken-light"] }}') format('woff2'); }
+  @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 400; src: url('{{ fonts["hanken-regular"] }}') format('woff2'); }
+  @font-face { font-family: 'Hanken Grotesk'; font-style: normal; font-weight: 500; src: url('{{ fonts["hanken-medium"] }}') format('woff2'); }
+  @font-face { font-family: 'Hanken Grotesk'; font-style: italic; font-weight: 300; src: url('{{ fonts["hanken-light-italic"] }}') format('woff2'); }
+
+  :root {
+    --black: #040605;
+    --ink: #0B0D0A;
+    --moss: #1B2117;
+    --moss-deep: #12160F;
+    --cream: #FEF5F0;
+    --warm: #F3ECE1;
+    --sand: #DED6BF;
+    --earth: #8B714E;
+    --gold: #B39A6C;
+    --line-dark: rgba(222, 214, 191, 0.28);
+    --line-light: rgba(11, 13, 10, 0.18);
+    --serif: 'Playfair Display', Georgia, serif;
+    --grotesk: 'Hanken Grotesk', 'Helvetica Neue', Arial, sans-serif;
+    --pad: 72px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #141414; }
+  body { font-family: var(--grotesk); -webkit-font-smoothing: antialiased; text-rendering: geometricPrecision; }
+
+  .sheet { display: flex; flex-direction: column; gap: 48px; padding: 48px; width: max-content; }
+
+  /* ---------- CARD BASE ---------- */
+  .card {
+    position: relative;
+    width: 1080px;
+    height: 1350px;
+    overflow: hidden;
+    background: var(--black);
+    color: var(--cream);
+    font-weight: 300;
+  }
+  .card.light { background: var(--warm); color: var(--ink); }
+  .card.moss { background: var(--moss); color: var(--cream); }
+
+  /* editorial chrome: masthead + folio */
+  .masthead, .folio {
+    position: absolute; left: var(--pad); right: var(--pad);
+    display: flex; justify-content: space-between; align-items: baseline;
+    font-family: var(--grotesk); font-weight: 500; font-size: 15px;
+    letter-spacing: 0.26em; text-transform: uppercase; z-index: 5;
+    color: var(--sand);
+  }
+  .card.light .masthead, .card.light .folio { color: var(--earth); }
+  .masthead { top: 60px; }
+  .folio { bottom: 60px; }
+  .folio .num { font-family: var(--serif); font-weight: 400; font-size: 20px; letter-spacing: 0.08em; text-transform: none; }
+  .folio .num span { opacity: 0.55; }
+  .masthead .tag { font-style: normal; opacity: 0.85; }
+
+  .kicker {
+    font-family: var(--grotesk); font-weight: 500; font-size: 16px;
+    letter-spacing: 0.32em; text-transform: uppercase; color: var(--sand);
+  }
+  .card.light .kicker { color: var(--earth); }
+  .kicker::before { content: ""; display: inline-block; width: 36px; height: 1px; background: currentColor; vertical-align: middle; margin-right: 18px; opacity: 0.7; }
+
+  h1, h2, .display { font-family: var(--serif); font-weight: 400; letter-spacing: -0.005em; }
+  em { font-style: italic; font-weight: 400; }
+  .serif-italic { font-family: var(--serif); font-style: italic; font-weight: 400; }
+
+  .body {
+    font-family: var(--grotesk); font-weight: 300; font-size: 27px; line-height: 1.55;
+    color: var(--cream); max-width: 720px;
+  }
+  .card.light .body { color: var(--ink); }
+  .body.muted { opacity: 0.78; }
+
+  .rule { height: 1px; background: var(--line-dark); }
+  .card.light .rule { background: var(--line-light); }
+  .rule.gold { background: var(--gold); opacity: 0.7; }
+
+  .footnote {
+    font-family: var(--grotesk); font-weight: 300; font-style: italic; font-size: 15px;
+    line-height: 1.5; letter-spacing: 0.02em; color: var(--sand); opacity: 0.7; max-width: 640px;
+  }
+  .card.light .footnote { color: var(--earth); opacity: 0.9; }
+
+  /* ---------- IMAGE SLOT ---------- */
+  .slot { position: absolute; overflow: hidden; background: var(--moss-deep); }
+  .slot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .slot .topo { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.55; }
+  .slot .brief {
+    position: absolute; left: 28px; top: 116px; right: 28px;
+    font-family: var(--grotesk); font-weight: 400; font-size: 13px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--sand); opacity: 0.45; line-height: 1.6;
+  }
+  .slot .brief b { font-weight: 500; opacity: 1; }
+  .slot .veil { position: absolute; inset: 0; }
+  .veil.bottom { background: linear-gradient(180deg, rgba(4,6,5,0.10) 0%, rgba(4,6,5,0.30) 45%, rgba(4,6,5,0.88) 100%); }
+  .veil.full { background: rgba(4,6,5,0.52); }
+  .veil.soft { background: linear-gradient(180deg, rgba(4,6,5,0.35) 0%, rgba(4,6,5,0.05) 50%, rgba(4,6,5,0.35) 100%); }
+  .veil.side { background: linear-gradient(90deg, rgba(4,6,5,0.0) 55%, rgba(4,6,5,0.85) 100%); }
+  .credit {
+    position: absolute; font-family: var(--grotesk); font-weight: 400; font-size: 12px;
+    letter-spacing: 0.22em; text-transform: uppercase; color: var(--sand); opacity: 0.6;
+    writing-mode: vertical-rl; transform: rotate(180deg);
+  }
+
+  /* ---------- 1. COVER ---------- */
+  .l-cover .slot { inset: 0; }
+  .l-cover .text { position: absolute; left: var(--pad); right: var(--pad); bottom: 150px; z-index: 3; }
+  .l-cover .kicker { margin-bottom: 44px; }
+  .l-cover h1 { font-size: 104px; line-height: 1.02; max-width: 940px; }
+  .l-cover .sub { margin-top: 40px; font-family: var(--serif); font-style: italic; font-size: 30px; line-height: 1.35; color: var(--sand); max-width: 760px; }
+  .l-cover .credit { right: 28px; bottom: 150px; }
+
+  /* ---------- 2. TYPOGRAPHIC ---------- */
+  .l-typographic .text { position: absolute; left: var(--pad); right: var(--pad); top: 250px; bottom: 170px; display: flex; flex-direction: column; justify-content: space-between; }
+  .l-typographic .line-a { font-family: var(--serif); font-size: 118px; line-height: 1.02; }
+  .l-typographic .line-b { font-family: var(--serif); font-style: italic; font-size: 118px; line-height: 1.02; }
+  .l-typographic .pause { display: flex; align-items: center; gap: 22px; margin: 64px 0; color: var(--earth); font-size: 15px; letter-spacing: 0.34em; text-transform: uppercase; font-weight: 500; }
+  .l-typographic .pause .rule { flex: 1; }
+  .l-typographic .body { margin-top: 20px; }
+
+  /* ---------- 3. PHOTO + QUOTE ---------- */
+  .l-photo-quote .slot { left: 0; right: 0; top: 0; height: 800px; }
+  .l-photo-quote .text { position: absolute; left: var(--pad); right: var(--pad); top: 862px; bottom: 140px; display: flex; flex-direction: column; justify-content: flex-start; }
+  .l-photo-quote h2 { font-size: 66px; line-height: 1.12; }
+  .l-photo-quote .sub { margin-top: 26px; font-family: var(--serif); font-style: italic; font-size: 34px; line-height: 1.3; color: var(--sand); }
+  .l-photo-quote .kicker { position: absolute; left: var(--pad); top: 730px; z-index: 3; }
+  .l-photo-quote .credit { right: 28px; top: 120px; }
+
+  /* ---------- 4. PORTRAIT (autoridade) ---------- */
+  .l-portrait .slot { left: 0; top: 0; bottom: 0; width: 520px; }
+  .l-portrait .col { position: absolute; left: 592px; right: var(--pad); top: 150px; bottom: 140px; display: flex; flex-direction: column; }
+  .l-portrait .kicker { margin-bottom: 46px; }
+  .l-portrait .name { font-family: var(--serif); font-size: 72px; line-height: 1.02; }
+  .l-portrait .role { margin-top: 26px; font-size: 16px; letter-spacing: 0.26em; text-transform: uppercase; font-weight: 500; color: var(--sand); line-height: 1.8; }
+  .l-portrait .rule { margin: 44px 0 36px; }
+  .l-portrait .body { font-size: 24px; line-height: 1.6; }
+  .l-portrait .facts { margin-top: 40px; display: flex; flex-direction: column; gap: 18px; }
+  .l-portrait .fact { display: grid; grid-template-columns: 16px 1fr; gap: 16px; align-items: baseline; font-size: 17px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--sand); font-weight: 400; line-height: 1.5; }
+  .l-portrait .fact::before { content: ""; width: 16px; height: 1px; background: var(--gold); transform: translateY(-6px); }
+  .l-portrait .quote { margin-top: auto; font-family: var(--serif); font-style: italic; font-size: 30px; line-height: 1.35; color: var(--cream); }
+  .l-portrait .credit { left: 22px; bottom: 150px; }
+
+  /* ---------- 5. INSIGHT (dados) ---------- */
+  .l-insight .text { position: absolute; left: var(--pad); right: var(--pad); top: 170px; bottom: 150px; display: flex; flex-direction: column; }
+  .l-insight .kicker { margin-bottom: 52px; }
+  .l-insight h2 { font-size: 86px; line-height: 1.06; max-width: 900px; }
+  .l-insight .sub { margin-top: 26px; font-family: var(--serif); font-style: italic; font-size: 36px; line-height: 1.3; color: var(--sand); }
+  .l-insight .stats { margin-top: auto; display: grid; grid-template-columns: max-content 1fr; gap: 0 72px; border-top: 1px solid var(--line-dark); padding-top: 40px; }
+  .l-insight .stat .value { font-family: var(--serif); font-size: 136px; line-height: 1; letter-spacing: -0.02em; white-space: nowrap; }
+  .l-insight .stat .label { margin-top: 24px; font-size: 17px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--sand); line-height: 1.7; font-weight: 500; max-width: 400px; }
+  .l-insight .stats.single { grid-template-columns: 1fr; }
+  .l-insight .footnote { margin-top: 44px; }
+
+  /* ---------- 6. DESTINATION ---------- */
+  .l-destination .slot { left: 0; right: 0; top: 0; height: 900px; }
+  .l-destination .caption { position: absolute; left: 0; right: 0; top: 900px; bottom: 0; background: var(--warm); color: var(--ink); padding: 60px var(--pad) 0; }
+  .l-destination .caption .kicker { color: var(--earth); margin-bottom: 26px; }
+  .l-destination .caption h2 { font-size: 54px; line-height: 1.1; color: var(--ink); }
+  .l-destination .caption .body { margin-top: 22px; font-size: 22px; line-height: 1.5; color: var(--ink); max-width: 880px; }
+  .l-destination .folio { color: var(--earth); }
+  .l-destination .credit { right: 28px; top: 120px; }
+
+  /* ---------- 7. MANIFESTO ---------- */
+  .l-manifesto .text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 64px; }
+  .l-manifesto .kicker { margin-bottom: 70px; }
+  .l-manifesto .kicker::before { display: none; }
+  .l-manifesto .vrule { width: 1px; height: 90px; background: var(--gold); opacity: 0.8; margin-bottom: 64px; }
+  .l-manifesto h2 { font-size: 68px; line-height: 1.18; }
+  .l-manifesto .sub { margin-top: 56px; font-size: 22px; letter-spacing: 0.04em; line-height: 1.6; color: var(--sand); max-width: 700px; font-weight: 300; }
+
+  /* ---------- 8. EMOTIONAL ---------- */
+  .l-emotional .slot { inset: 0; }
+  .l-emotional .text { position: absolute; left: var(--pad); right: var(--pad); top: 50%; transform: translateY(-40%); text-align: center; z-index: 3; }
+  .l-emotional h2 { font-size: 92px; line-height: 1.06; font-style: italic; }
+  .l-emotional .sub { margin-top: 44px; font-size: 18px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--sand); font-weight: 500; }
+  .l-emotional .credit { right: 28px; bottom: 150px; }
+
+  /* ---------- 9. POSITIONING ---------- */
+  .l-positioning .text { position: absolute; left: var(--pad); right: var(--pad); top: 170px; bottom: 150px; display: flex; flex-direction: column; }
+  .l-positioning .kicker { margin-bottom: 44px; }
+  .l-positioning h2 { font-size: 80px; line-height: 1.06; }
+  .l-positioning .items { margin-top: 70px; display: flex; flex-direction: column; }
+  .l-positioning .item { display: grid; grid-template-columns: 120px 1fr; gap: 24px; padding: 34px 0; border-top: 1px solid var(--line-light); }
+  .l-positioning .item:last-child { border-bottom: 1px solid var(--line-light); }
+  .l-positioning .item .n { font-family: var(--serif); font-size: 30px; color: var(--earth); letter-spacing: 0.06em; }
+  .l-positioning .item .t { font-family: var(--serif); font-size: 36px; line-height: 1.15; }
+  .l-positioning .item .d { margin-top: 12px; font-size: 21px; line-height: 1.5; font-weight: 300; color: var(--ink); opacity: 0.8; max-width: 720px; }
+  .l-positioning .tail { margin-top: auto; font-family: var(--serif); font-style: italic; font-size: 30px; line-height: 1.35; color: var(--earth); }
+
+  /* ---------- 10. CTA ---------- */
+  .l-cta .text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 96px; }
+  .l-cta .kicker { margin-bottom: 60px; }
+  .l-cta .kicker::before { display: none; }
+  .l-cta h2 { font-size: 86px; line-height: 1.1; }
+  .l-cta .sub { margin-top: 46px; font-family: var(--serif); font-style: italic; font-size: 32px; line-height: 1.35; color: var(--sand); }
+  .l-cta .rule { width: 80px; margin: 70px auto 46px; }
+  .l-cta .handle { font-size: 20px; letter-spacing: 0.3em; text-transform: uppercase; font-weight: 500; color: var(--cream); }
+  .l-cta .brand { margin-top: 26px; font-size: 14px; letter-spacing: 0.34em; text-transform: uppercase; color: var(--sand); opacity: 0.75; line-height: 2; }
+  .l-cta .mark { width: 34px; height: 34px; border: 1px solid var(--gold); transform: rotate(45deg); margin-bottom: 64px; opacity: 0.85; }
+</style>
+</head>
+<body>
+<div class="sheet">
+{%- set total = spec.cards | length -%}
+{%- for c in spec.cards -%}
+{%- set n = loop.index -%}
+{%- set light = c.layout in ['typographic', 'positioning'] -%}
+{%- set moss = c.layout == 'insight' -%}
+<section class="card l-{{ c.layout }}{% if light %} light{% elif moss %} moss{% endif %}" data-card="{{ '%02d' % n }}" data-function="{{ c.function }}">
+
+  {#- ---------- image slot macro ---------- -#}
+  {%- macro slot(c, veil) -%}
+  <div class="slot">
+    {%- if c.image and c.image.data -%}
+    <img src="{{ c.image.data }}" alt="">
+    {%- else -%}
+    {{ topo | safe }}
+    <div class="brief"><b>Fotografia real a inserir</b><br>{{ (c.image.brief if c.image else 'imagem') }}</div>
+    {%- endif -%}
+    {%- if veil %}<div class="veil {{ veil }}"></div>{% endif -%}
+  </div>
+  {%- if c.image and c.image.credit %}<div class="credit">{{ c.image.credit }}</div>{% endif -%}
+  {%- endmacro -%}
+
+  {%- if c.layout == 'cover' -%}
+    {{ slot(c, 'bottom') }}
+    <div class="text">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h1>{{ c.headline_html | safe }}</h1>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'typographic' -%}
+    <div class="text">
+      <div>
+        {% if c.kicker %}<div class="kicker" style="margin-bottom:60px">{{ c.kicker }}</div>{% endif %}
+        <div class="line-a">{{ c.headline_html | safe }}</div>
+        <div class="pause"><div class="rule"></div><span>{{ c.pause or 'pausa' }}</span><div class="rule"></div></div>
+        <div class="line-b">{{ c.subhead_html | safe }}</div>
+      </div>
+      <div>
+        {% if c.body %}<div class="body muted">{{ c.body_html | safe }}</div>{% endif %}
+        {% if c.footnote %}<div class="footnote" style="margin-top:28px">{{ c.footnote }}</div>{% endif %}
+      </div>
+    </div>
+
+  {%- elif c.layout == 'photo-quote' -%}
+    {{ slot(c, 'bottom') }}
+    {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+    <div class="text">
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+      {% if c.body %}<div class="body muted" style="margin-top:30px;font-size:23px">{{ c.body_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'portrait' -%}
+    {{ slot(c, 'soft') }}
+    <div class="col">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <div class="name">{{ (c.meta.name_html if c.meta and c.meta.name_html else c.headline_html) | safe }}</div>
+      {% if c.meta and c.meta.role %}<div class="role">{{ c.meta.role | replace('·', '<br>') | safe }}</div>{% endif %}
+      <div class="rule"></div>
+      {% if c.body %}<div class="body">{{ c.body_html | safe }}</div>{% endif %}
+      {% if c.meta and c.meta.facts %}
+      <div class="facts">
+        {% for f in c.meta.facts %}<div class="fact">{{ f }}</div>{% endfor %}
+      </div>
+      {% endif %}
+      {% if c.subhead %}<div class="quote">{{ c.subhead_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'insight' -%}
+    <div class="text">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+      {% if c.body %}<div class="body muted" style="margin-top:36px;font-size:24px">{{ c.body_html | safe }}</div>{% endif %}
+      {% if c.stats %}
+      <div class="stats{% if c.stats | length == 1 %} single{% endif %}">
+        {% for s in c.stats %}
+        <div class="stat"><div class="value">{{ s.value }}</div><div class="label">{{ s.label }}</div></div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if c.footnote %}<div class="footnote">{{ c.footnote }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'destination' -%}
+    {{ slot(c, 'soft') }}
+    <div class="caption">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.body %}<div class="body">{{ c.body_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'manifesto' -%}
+    <div class="text">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <div class="vrule"></div>
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'emotional' -%}
+    {{ slot(c, 'full') }}
+    <div class="text">
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'positioning' -%}
+    <div class="text">
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c['items'] %}
+      <div class="items">
+        {% for it in c['items'] %}
+        <div class="item">
+          <div class="n">{{ ['I','II','III','IV','V','VI'][loop.index0] }}</div>
+          <div><div class="t">{{ it.title }}</div>{% if it.text %}<div class="d">{{ it.text }}</div>{% endif %}</div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+      {% if c.subhead %}<div class="tail">{{ c.subhead_html | safe }}</div>{% endif %}
+    </div>
+
+  {%- elif c.layout == 'cta' -%}
+    <div class="text">
+      <div class="mark"></div>
+      {% if c.kicker %}<div class="kicker">{{ c.kicker }}</div>{% endif %}
+      <h2>{{ c.headline_html | safe }}</h2>
+      {% if c.subhead %}<div class="sub">{{ c.subhead_html | safe }}</div>{% endif %}
+      <div class="rule gold"></div>
+      <div class="handle">{{ spec.brand.handle }}</div>
+      <div class="brand">{{ spec.brand.name }}<br>{{ spec.brand.tagline }}</div>
+    </div>
+  {%- endif -%}
+
+  <div class="masthead"><span>{{ spec.brand.name }}</span><span class="tag">{{ spec.brand.tagline }}</span></div>
+  <div class="folio"><span class="num">{{ '%02d' % n }} <span>/ {{ '%02d' % total }}</span></span><span>{{ spec.edition }}{% if spec.date_label %} · {{ spec.date_label }}{% endif %}</span></div>
+</section>
+{%- endfor -%}
+</div>
+</body>
+</html>

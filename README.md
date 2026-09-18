@@ -34,8 +34,10 @@ zion-hotel-ai-developer/
 │   ├── prompts/          # System prompts especializados por etapa
 │   ├── config/           # Configurações do sistema
 │   └── main.py           # Orquestrador principal
+├── scripts/
+│   └── editorial_carousel/  # Carrossel editorial: template, renderizador e especificações
 ├── tests/                # Testes unitários e de integração
-├── docs/                 # Documentação técnica e de uso
+├── docs/                 # Documentação técnica, site institucional e carrosséis publicados
 ├── data/
 │   └── templates/        # Templates de relatórios e apresentações
 ├── scripts/              # Scripts auxiliares
@@ -99,6 +101,18 @@ zion-hotel-ai-developer/
 - Validação de aderência à tese original
 - Coordenação com stakeholders
 - Relatórios de governança periódicos
+
+---
+
+## Carrossel Editorial
+
+Sistema de comunicação da Zion Glamping Collection (Soul Luxury Retreats): transforma um tema em um carrossel com aparência de revista internacional de luxo. O Diretor Editorial (`src/prompts/editorial_carousel.py`) entrega conceito, gatilhos e a estrutura card a card; o renderizador (`scripts/editorial_carousel/render.py`) gera os cards 1080×1350 em Playfair Display e Hanken Grotesk.
+
+```bash
+python scripts/editorial_carousel/render.py scripts/editorial_carousel/carrosseis/001-alem-da-hospedagem.json
+```
+
+Documentação completa em `scripts/editorial_carousel/README.md`. Exemplo publicado em `docs/editorial/001-alem-da-hospedagem/`.
 
 ---
 
