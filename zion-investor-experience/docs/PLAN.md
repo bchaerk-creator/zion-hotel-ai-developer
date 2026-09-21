@@ -286,7 +286,9 @@ Fotos provisórias: 13 imagens extraídas do próprio guia de marca, salvas em p
 nomes de MASTER 13.4 pelo conteúdo. São JPEGs de PDF, entre 438 e 1920 px de largura. Substituir
 pelos originais em alta assim que chegarem, mesmos nomes. Em 21/09 chegaram os originais de aerea_mata, aerea_zenital, bubble_deck e bubble_jacuzzi, mais
 uma aérea larga da araucária salva como aerea_araucaria.jpg, usada no capítulo Brasil. O hero voltou
-para aerea_mata.jpg. Urubici usa jacuzzi_mata.jpg.
+para aerea_mata.jpg. Urubici usa jacuzzi_mata.jpg. Florianópolis chegou em originais: flo_bubbles.jpg
+no case, flo_interior.jpg no Mercado, flo_zenital.jpg e flo_piscina.jpg reservadas para a edição de
+investidores (One Destination e opcional de piscina), bubble_frontal.jpg atualizada.
 
 ## Próximo passo
 

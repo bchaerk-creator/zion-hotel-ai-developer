@@ -20,7 +20,7 @@ export function Mercado() {
               </li>
             ))}
           </ul>
-          <Photo photo={photo("interior_ceu")} className="md:self-start" />
+          <Photo photo={photo("flo_interior")} className="md:self-start" />
         </div>
         <div className="bloco">
           <p className="t-label mb-8">Números de mercado, aguardando fonte oficial</p>
