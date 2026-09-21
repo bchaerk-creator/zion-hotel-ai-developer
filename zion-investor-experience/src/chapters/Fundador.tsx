@@ -2,6 +2,8 @@ import { Chapter, ChapterLabel } from "@/components/Chapter";
 import { Statement } from "@/components/Statement";
 import { Chain } from "@/components/Chain";
 import { company } from "@/lib/data";
+import { Photo } from "@/components/Photo";
+import { photo } from "@/lib/photos";
 
 export function Fundador() {
   const { founder, method } = company;
@@ -10,11 +12,7 @@ export function Fundador() {
       <div className="wrap chapter">
         <ChapterLabel number="04" title="O fundador" />
         <div className="grid gap-12 md:grid-cols-[2fr_3fr] md:gap-[6vw]">
-          <div className="relative aspect-[4/5] bg-moss">
-            <div className="absolute inset-0 flex items-end p-5">
-              <p className="t-source !no-underline text-sand/70">Retrato a fornecer: {founder.name}</p>
-            </div>
-          </div>
+          <Photo photo={photo("bruno_chaerk")} className="!aspect-[4/5]" />
           <div className="self-end">
             <Statement as="p" text={founder.name} />
             <p className="t-subtitle mt-4 text-sand">{founder.role}</p>

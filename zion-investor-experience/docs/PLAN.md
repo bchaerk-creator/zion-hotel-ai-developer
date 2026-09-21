@@ -222,7 +222,7 @@ Bloqueia a Fase 1 de "ler igual aos protótipos":
 
 1. docs/brief.md, docs/territorio.md, docs/prototype-public.html e docs/prototype-investor.html não estão no repositório. Sem eles, os textos de apoio e as frases de cada Statement serão escritos a partir do MASTER e precisam de conferência contra o protótipo.
 2. As 14 fotos de MASTER 13.4 em docs/photos/. Sem elas o build usa placeholders escuros nas mesmas proporções.
-3. Retrato de Bruno Chaerk e vídeo de drone. O hero fica com aerea_mata.jpg até o vídeo chegar.
+3. Vídeo de drone para o hero. O retrato de Bruno Chaerk chegou em 21/09 e está em public/photos/bruno_chaerk.jpg, com bruno_chaerk_2.jpg como alternativa.
 
 Não bloqueia, mas fica marcado no site:
 

@@ -7,7 +7,7 @@ bubble_deck.jpg, bubble_jacuzzi.jpg, interior_ceu.jpg, jacuzzi_mata.jpg,
 jacuzzi_zenital.jpg, flo_noturna.jpg, flo_casal_deck.jpg, flo_casal_roupao.jpg,
 flo_piscina.jpg, flo_deck_mata.jpg.
 
-Pendentes: retrato de Bruno Chaerk e vídeo de drone para o hero.
+Pendente: vídeo de drone para o hero. Retratos de Bruno Chaerk: bruno_chaerk.jpg (com o globo) e bruno_chaerk_2.jpg.
 Os originais não entram no build. O pipeline de imagem gera AVIF e WebP em public/.
 
 Estado em 21/09/2026: public/photos tem versões provisórias extraídas do Branding Guideline
