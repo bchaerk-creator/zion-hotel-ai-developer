@@ -20,6 +20,8 @@ Cores: paleta oficial do Branding Guideline Zion (decisão do fundador em 21/09/
 Camel #A68C5D é o dourado, Bone e Isabelline são os cremes, Liveleaf #A9CAA3 é o verde
 suave de respiro. Um único bloco dourado. Cormorant Garamond 300 e DM Sans.
 Grafismo permitido: o traço fino do globo do guia de marca, em hero e fechamento.
+Marca: sempre pelo componente Logo (public/brand: monogram, wordmark, lockup), nunca
+como texto. Wordmark no cabeçalho, lockup no rodapé, monograma no favicon.
 Sem cantos arredondados, sem sombras, sem gradientes decorativos, sem ícones,
 sem emoji, sem cartões idênticos em série.
 

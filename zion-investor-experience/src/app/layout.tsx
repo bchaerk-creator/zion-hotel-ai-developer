@@ -24,6 +24,7 @@ export const metadata: Metadata = {
     title: "Zion Hotel Group International",
     description: "Desenvolvemos destinos. Criamos ativos. Estruturamos capital.",
     images: ["/og.jpg"],
+    siteName: "Zion Hotel Group International",
     locale: "pt_BR",
     type: "website",
   },
