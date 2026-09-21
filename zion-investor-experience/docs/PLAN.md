@@ -290,6 +290,26 @@ para aerea_mata.jpg. Urubici usa jacuzzi_mata.jpg. Florianópolis chegou em orig
 no case, flo_interior.jpg no Mercado, flo_zenital.jpg e flo_piscina.jpg reservadas para a edição de
 investidores (One Destination e opcional de piscina), bubble_frontal.jpg atualizada.
 
+## Estado da edição para investidores, 21 de setembro de 2026
+
+Construída em src/app/investor/page.tsx com os 21 capítulos do mapa: os 13 públicos reutilizados como
+estão (a Introdução recebe a linha "Edição para investidores. Uso confidencial, após NDA." e o Acesso vira
+o capítulo 21, "Próximo passo") mais O programa, Uma sede, CAPEX, Forecast, A captação, O retorno, Zion e
+valor e Documentos. Data room em /investor/documents, por enquanto só a lista: download direto e registro
+de acesso são a Fase 3. Página com noindex.
+
+Os dados investorOnly entram por src/lib/data-investor.ts, que só a rota /investor importa, e o módulo
+falha no build se algum arquivo perder a marca investorOnly. O HTML público continua sem yield, TIR,
+múltiplo, ciclo, rodada ou CAPEX.
+
+Bloqueio da Fase 1: componente InvestorGate compara o SHA-256 do código digitado com
+NEXT_PUBLIC_INVESTOR_CODE_HASH, definido no build via scripts/access-code.mjs. Limite: como o site é
+estático, o conteúdo está no código-fonte da página; ver README. Proteção real por senha do host até a
+Fase 3.
+
+Conferido em 1440px e 360px sem rolagem horizontal. Correção estrutural: itens de grade recebem
+min-width: 0 para as tabelas largas rolarem no próprio contêiner.
+
 ## Próximo passo
 
 Com o plano aprovado, a Fase 1 segue nesta ordem: scaffold do Next.js com tokens e fontes,

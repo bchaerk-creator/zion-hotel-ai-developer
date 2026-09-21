@@ -8,9 +8,9 @@ import { Photo } from "./Photo";
 import { Globe } from "./Globe";
 
 type Cta = { label: string; href: string };
-type Props = { photo: PhotoRef; eyebrow: string; lines: [string, string, string, string]; primary: Cta; secondary: Cta };
+type Props = { photo: PhotoRef; eyebrow: string; topline?: string; lines: [string, string, string, string]; primary: Cta; secondary: Cta };
 
-export function HeroPhoto({ photo, eyebrow, lines, primary, secondary }: Props) {
+export function HeroPhoto({ photo, eyebrow, topline, lines, primary, secondary }: Props) {
   const reduce = useReducedMotion();
   return (
     <div className="relative min-h-[100svh] overflow-hidden tone-dark">
@@ -19,6 +19,7 @@ export function HeroPhoto({ photo, eyebrow, lines, primary, secondary }: Props) 
       </motion.div>
       <Globe />
       <div className="wrap relative flex min-h-[100svh] flex-col justify-end pb-[10vh] pt-32">
+        {topline && <p className="t-label mb-3">{topline}</p>}
         <p className="t-table mb-6 text-sand">{eyebrow}</p>
         <h1 className="t-hero text-cream">
           {lines.map((line, i) => (

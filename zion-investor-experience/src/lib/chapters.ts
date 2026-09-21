@@ -21,3 +21,19 @@ export const publicChapters: ChapterMeta[] = [
 ];
 
 export const PUBLIC_TOTAL = 13;
+
+/** Edição para investidores, indicador "/ 21". Capítulos 00 a 12 iguais à pública. */
+export const investorChapters: ChapterMeta[] = [
+  ...publicChapters.slice(0, 13),
+  { id: "programa", number: "13", title: "O programa", bg: "black" },
+  { id: "sede", number: "14", title: "Uma sede", bg: "cream" },
+  { id: "capex", number: "15", title: "CAPEX", bg: "black" },
+  { id: "forecast", number: "16", title: "Forecast", bg: "black" },
+  { id: "captacao", number: "17", title: "A captação", bg: "moss" },
+  { id: "retorno", number: "18", title: "O retorno", bg: "black" },
+  { id: "valor", number: "19", title: "Zion e valor", bg: "cream" },
+  { id: "documentos", number: "20", title: "Documentos", bg: "black" },
+  { id: "acesso", number: "21", title: "Próximo passo", bg: "moss" },
+];
+
+export const INVESTOR_TOTAL = 21;
