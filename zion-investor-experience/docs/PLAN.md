@@ -250,6 +250,19 @@ Decisões que precisam de resposta antes da Fase 2 e 3, não da Fase 1:
 
 ---
 
+## Estado da Fase 1, 21 de setembro de 2026
+
+Edição pública construída em português, em src/app/page.tsx, com os 14 capítulos do mapa acima,
+Header com indicador e fio de progresso, formulário de acesso em /acesso, rodapé jurídico e build
+estático em out/. Conferido em 1440px e 360px, sem rolagem horizontal, com e sem prefers-reduced-motion.
+O HTML gerado não contém yield, TIR, múltiplo, ciclo, payback, rede de hotéis nem R$ 11,2 mi.
+
+Ajustes feitos em relação ao plano:
+- O bloco dourado mostra só módulos e suítes. A linha de hectares por cenário era um cálculo derivado e saiu.
+- O hero reduz para clamp(34px, 11vw, 48px) abaixo de 480px, porque "HOSPITALIDADE" não cabe em 48px.
+- A classe de espaçamento entre blocos chama-se `.bloco`, para não colidir com a utilidade `block` do Tailwind.
+- O formulário guarda o pedido no navegador e confirma. A gravação no CRM é a Fase 2.
+
 ## Próximo passo
 
 Com o plano aprovado, a Fase 1 segue nesta ordem: scaffold do Next.js com tokens e fontes,
