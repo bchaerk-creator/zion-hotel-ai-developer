@@ -1,4 +1,4 @@
-export type Bg = "black" | "moss" | "cream" | "gold" | "photo";
+export type Bg = "black" | "moss" | "cream" | "leaf" | "gold" | "photo";
 
 export type ChapterMeta = { id: string; number: string; title: string; bg: Bg };
 
@@ -13,7 +13,7 @@ export const publicChapters: ChapterMeta[] = [
   { id: "destinos", number: "06", title: "Destinos", bg: "photo" },
   { id: "ecossistema", number: "07", title: "Ecossistema", bg: "black" },
   { id: "land-bank", number: "08", title: "Land bank", bg: "black" },
-  { id: "desenvolvimento", number: "09", title: "Desenvolvimento", bg: "cream" },
+  { id: "desenvolvimento", number: "09", title: "Desenvolvimento", bg: "leaf" },
   { id: "capital", number: "10", title: "O capital", bg: "black" },
   { id: "estrutura", number: "11", title: "Estrutura jurídica", bg: "cream" },
   { id: "visao", number: "12", title: "A visão", bg: "black" },

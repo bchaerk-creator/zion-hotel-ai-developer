@@ -3,13 +3,17 @@ import { Statement } from "@/components/Statement";
 import { Photo } from "@/components/Photo";
 import { company } from "@/lib/data";
 import { photo } from "@/lib/photos";
+import { Globe } from "@/components/Globe";
 
 export function Visao() {
   return (
     <Chapter id="visao" number="12" title="A visão" bg="black">
-      <div className="wrap chapter">
-        <ChapterLabel number="12" title="A visão" />
-        <Statement text={company.message} />
+      <div className="relative overflow-hidden">
+        <Globe />
+        <div className="wrap chapter relative">
+          <ChapterLabel number="12" title="A visão" />
+          <Statement text={company.message} />
+        </div>
       </div>
       <div className="relative min-h-[90svh]">
         <Photo photo={photo("flo_noturna")} veil="phrase" fill />

@@ -36,7 +36,7 @@ export function DataTable({ columns, rows, caption, sourceId, status = "validate
                 style={{ borderColor: "var(--line)" }}
               >
                 {columns.map((c) => (
-                  <td key={c.key} className={`py-3 pr-6 align-top ${c.align === "right" ? "text-right tabular-nums" : ""}`}>
+                  <td key={c.key} className={`py-3 pr-6 align-top ${c.align === "right" ? "text-right tabular-nums whitespace-nowrap" : ""}`}>
                     {r[c.key]}
                   </td>
                 ))}

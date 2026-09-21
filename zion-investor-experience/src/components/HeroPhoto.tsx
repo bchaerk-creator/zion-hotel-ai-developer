@@ -5,6 +5,7 @@ import Link from "next/link";
 import type { PhotoRef } from "@/lib/photos";
 import { heroLine, heroPhoto } from "@/lib/motion";
 import { Photo } from "./Photo";
+import { Globe } from "./Globe";
 
 type Cta = { label: string; href: string };
 type Props = { photo: PhotoRef; eyebrow: string; lines: [string, string, string, string]; primary: Cta; secondary: Cta };
@@ -16,6 +17,7 @@ export function HeroPhoto({ photo, eyebrow, lines, primary, secondary }: Props) 
       <motion.div className="absolute inset-0" {...heroPhoto(!!reduce)}>
         <Photo photo={photo} veil="hero" fill priority />
       </motion.div>
+      <Globe />
       <div className="wrap relative flex min-h-[100svh] flex-col justify-end pb-[10vh] pt-32">
         <p className="t-table mb-6 text-sand">{eyebrow}</p>
         <h1 className="t-hero text-cream">

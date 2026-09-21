@@ -263,6 +263,30 @@ Ajustes feitos em relação ao plano:
 - A classe de espaçamento entre blocos chama-se `.bloco`, para não colidir com a utilidade `block` do Tailwind.
 - O formulário guarda o pedido no navegador e confirma. A gravação no CRM é a Fase 2.
 
+## Direção visual, revisão de 21 de setembro de 2026
+
+O fundador pediu "muito verde, luxo natural" e entregou o Branding Guideline Zion Glamping
+Collection 2023-2024. Aplicado:
+
+| Token | Antes, MASTER 13.2 | Agora, guia de marca |
+|---|---|---|
+| black | #040605 | #1A2103, luxnature profundo |
+| moss | #1B2117 | #212804, Luxnature |
+| leaf | não existia | #A9CAA3, Liveleaf, fundo do capítulo Desenvolvimento |
+| cream | #FEF5F0 | #FDF8F2, Isabelline |
+| sand | #DED6BF | #E8DDCD, Bone |
+| gold | #8B714E | #A68C5D, Camel |
+| ink | #16190F | #212804, texto verde sobre creme |
+
+Véus das fotos em verde, logo ZION em Camel, traço do globo do guia no hero e na visão.
+Tipografia segue MASTER 13.3: o guia de 2023 usa Playfair Display e Hanken Grotesk, mas o
+master de 2026 é a decisão mais recente e proíbe trocar.
+
+Fotos provisórias: 13 imagens extraídas do próprio guia de marca, salvas em public/photos com os
+nomes de MASTER 13.4 pelo conteúdo. São JPEGs de PDF, entre 438 e 1920 px de largura. Substituir
+pelos originais em alta assim que chegarem, mesmos nomes. O hero usa bubble_deck.jpg, a única com
+resolução para tela cheia, até a aérea original chegar. Urubici usa jacuzzi_mata.jpg.
+
 ## Próximo passo
 
 Com o plano aprovado, a Fase 1 segue nesta ordem: scaffold do Next.js com tokens e fontes,

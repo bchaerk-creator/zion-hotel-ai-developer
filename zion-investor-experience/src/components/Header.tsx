@@ -45,7 +45,7 @@ export function Header({ total, initial, accessHref }: Props) {
         <div className="h-full bg-gold" style={{ width: `${progress * 100}%` }} />
       </div>
       <div className="wrap flex h-16 items-center justify-between gap-6">
-        <Link href="/" className="font-serif text-[22px] font-normal tracking-[0.18em] text-cream">
+        <Link href="/" className="font-serif text-[22px] font-normal tracking-[0.18em] text-gold">
           ZION
         </Link>
         <div className="flex items-baseline gap-4">

@@ -4,9 +4,9 @@ type Veil = "none" | "hero" | "phrase" | "block";
 
 const veilStyle: Record<Veil, string | undefined> = {
   none: undefined,
-  hero: "linear-gradient(180deg, rgba(4,6,5,.55) 0%, rgba(4,6,5,.92) 100%)",
-  phrase: "linear-gradient(180deg, rgba(4,6,5,.2) 0%, rgba(4,6,5,.85) 100%)",
-  block: "rgba(4,6,5,.75)",
+  hero: "linear-gradient(180deg, rgba(26,33,3,.5) 0%, rgba(26,33,3,.9) 100%)",
+  phrase: "linear-gradient(180deg, rgba(26,33,3,.2) 0%, rgba(26,33,3,.85) 100%)",
+  block: "rgba(26,33,3,.74)",
 };
 
 type Props = { photo: PhotoRef; veil?: Veil; className?: string; fill?: boolean; priority?: boolean };

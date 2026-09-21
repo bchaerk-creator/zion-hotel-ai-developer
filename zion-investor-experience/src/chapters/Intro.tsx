@@ -6,7 +6,7 @@ export function Intro() {
   return (
     <section id="intro" data-chapter="00" data-title="Introdução">
       <HeroPhoto
-        photo={photo("aerea_mata")}
+        photo={photo("bubble_deck")}
         eyebrow={company.tagline}
         lines={["O futuro da", "hospitalidade", "está sendo construído", "na natureza."]}
         primary={{ label: "Explorar a oportunidade", href: "#oportunidade" }}

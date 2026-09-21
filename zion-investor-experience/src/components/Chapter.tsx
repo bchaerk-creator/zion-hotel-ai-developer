@@ -5,6 +5,7 @@ const bgClass: Record<Bg, string> = {
   black: "bg-black tone-dark",
   moss: "bg-moss tone-dark",
   cream: "bg-cream tone-light",
+  leaf: "bg-leaf tone-light",
   gold: "bg-gold tone-dark",
   photo: "bg-black tone-dark",
 };

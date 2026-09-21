@@ -14,8 +14,12 @@ decisões e identidade visual. Os protótipos em docs/ são a referência aprova
 - Textos sem travessão longo. Nunca "rede de hotéis". Nunca "payback".
 
 ## Identidade
-Tokens, tipografia, fotografia, movimento e componentes: MASTER seção 13.
-Preto domina. Um único bloco dourado. Cormorant Garamond 300 e DM Sans.
+Tipografia, fotografia, movimento e componentes: MASTER seção 13.
+Cores: paleta oficial do Branding Guideline Zion (decisão do fundador em 21/09/2026,
+"muito verde, luxo natural"), no lugar dos hex de MASTER 13.2. Luxnature #212804 domina,
+Camel #A68C5D é o dourado, Bone e Isabelline são os cremes, Liveleaf #A9CAA3 é o verde
+suave de respiro. Um único bloco dourado. Cormorant Garamond 300 e DM Sans.
+Grafismo permitido: o traço fino do globo do guia de marca, em hero e fechamento.
 Sem cantos arredondados, sem sombras, sem gradientes decorativos, sem ícones,
 sem emoji, sem cartões idênticos em série.
 

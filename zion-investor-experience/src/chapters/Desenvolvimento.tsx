@@ -7,7 +7,7 @@ import { photo } from "@/lib/photos";
 
 export function Desenvolvimento() {
   return (
-    <Chapter id="desenvolvimento" number="09" title="Desenvolvimento" bg="cream">
+    <Chapter id="desenvolvimento" number="09" title="Desenvolvimento" bg="leaf">
       <div className="wrap chapter">
         <ChapterLabel number="09" title="Desenvolvimento" />
         <Statement text="Território vira projeto." support="Fundação pontual, estrutura modular, baixa densidade. A implantação respeita a clareira e pode ser desfeita." />

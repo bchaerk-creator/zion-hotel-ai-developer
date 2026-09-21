@@ -1,17 +1,22 @@
 @import "tailwindcss";
 
-/* Tokens de MASTER 13.2 */
+/*
+ * Tokens. Paleta oficial do Branding Guideline Zion (página 20):
+ * Luxnature #212804, Bistre #261501, Bone #E8DDCD, Liveleaf #A9CAA3,
+ * Camel #A68C5D, Isabelline #FDF8F2. O verde domina no lugar do preto.
+ */
 @theme {
-  --color-black: #040605;
-  --color-moss: #1b2117;
-  --color-cream: #fef5f0;
-  --color-sand: #ded6bf;
-  --color-gold: #8b714e;
-  --color-ink: #16190f;
-  --color-muted-dark: rgba(222, 214, 191, 0.64);
-  --color-muted-light: rgba(22, 25, 15, 0.62);
-  --color-line-dark: rgba(222, 214, 191, 0.16);
-  --color-line-light: rgba(22, 25, 15, 0.14);
+  --color-black: #1a2103;   /* luxnature profundo, fundo dominante */
+  --color-moss: #212804;    /* luxnature, fundo de prova, operação e acesso */
+  --color-leaf: #a9caa3;    /* liveleaf, verde suave, respiro botânico */
+  --color-cream: #fdf8f2;   /* isabelline */
+  --color-sand: #e8ddcd;    /* bone */
+  --color-gold: #a68c5d;    /* camel */
+  --color-ink: #212804;     /* texto sobre creme e sobre liveleaf */
+  --color-muted-dark: rgba(232, 221, 205, 0.64);
+  --color-muted-light: rgba(33, 40, 4, 0.62);
+  --color-line-dark: rgba(232, 221, 205, 0.16);
+  --color-line-light: rgba(33, 40, 4, 0.16);
 
   --font-serif: var(--font-cormorant), "Cormorant Garamond", Georgia, serif;
   --font-sans: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
@@ -200,4 +205,15 @@ body {
   --fg-2: var(--color-ink);
   --muted: var(--color-muted-light);
   --line: var(--color-line-light);
+}
+
+/* Grafismo do globo, traço fino do guia de marca */
+.globe {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: var(--color-sand);
+  opacity: 0.16;
 }
