@@ -284,8 +284,9 @@ master de 2026 é a decisão mais recente e proíbe trocar.
 
 Fotos provisórias: 13 imagens extraídas do próprio guia de marca, salvas em public/photos com os
 nomes de MASTER 13.4 pelo conteúdo. São JPEGs de PDF, entre 438 e 1920 px de largura. Substituir
-pelos originais em alta assim que chegarem, mesmos nomes. O hero usa bubble_deck.jpg, a única com
-resolução para tela cheia, até a aérea original chegar. Urubici usa jacuzzi_mata.jpg.
+pelos originais em alta assim que chegarem, mesmos nomes. Em 21/09 chegaram os originais de aerea_mata, aerea_zenital, bubble_deck e bubble_jacuzzi, mais
+uma aérea larga da araucária salva como aerea_araucaria.jpg, usada no capítulo Brasil. O hero voltou
+para aerea_mata.jpg. Urubici usa jacuzzi_mata.jpg.
 
 ## Próximo passo
 

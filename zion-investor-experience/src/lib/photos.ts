@@ -17,6 +17,7 @@ export const photos = {
   flo_casal_roupao: { file: "flo_casal_roupao.jpg", alt: "Casal de roupão diante da bubble" },
   flo_piscina: { file: "flo_piscina.jpg", alt: "Piscina com bandeja flutuante" },
   flo_deck_mata: { file: "flo_deck_mata.jpg", alt: "Deck na mata, Florianópolis" },
+  aerea_araucaria: { file: "aerea_araucaria.jpg", alt: "Mata de araucárias vista de drone, com a bubble ao fundo" },
   bruno_chaerk: { file: "bruno_chaerk.jpg", alt: "Bruno Chaerk, Founder e CEO da Zion, segurando um globo" },
   bruno_chaerk_2: { file: "bruno_chaerk_2.jpg", alt: "Bruno Chaerk, Founder e CEO da Zion, retrato" },
 } as const;

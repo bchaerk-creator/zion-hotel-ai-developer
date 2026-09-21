@@ -21,7 +21,7 @@ export function Brasil() {
         </div>
       </div>
       <div className="relative min-h-[80svh] tone-dark text-cream">
-        <Photo photo={photo("bubble_frontal")} veil="phrase" fill />
+        <Photo photo={photo("aerea_araucaria")} veil="phrase" fill />
         <div className="wrap relative flex min-h-[80svh] flex-col justify-end pb-[12vh] pt-[12vh]">
           <Statement text="Natureza, litoral, cultura e montanha." support="Quatro corredores. Um único padrão de produto, operação e marca." />
         </div>
