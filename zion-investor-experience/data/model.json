@@ -1,0 +1,71 @@
+{
+  "sourceId": "model-2026",
+  "units": 12,
+  "assumptions": [
+    { "id": "variable-cost", "label": "Custo variável", "value": "27,1% da receita bruta" },
+    { "id": "fnb", "label": "F&B", "value": "12% da receita de hospedagem" },
+    { "id": "fixed-cost", "label": "Custo fixo operacional", "value": "R$ 386 mil (6 unidades) e R$ 550 mil (12 unidades)" },
+    { "id": "land-rent", "label": "Aluguel do terreno", "value": "R$ 1.000 por unidade ao mês mais 3% da receita bruta" },
+    { "id": "operator", "label": "Operadora", "value": "Parcela fixa de R$ 56.800 (6 un., R$ 789 por unidade ao mês) ou R$ 85.200 (12 un., R$ 592) mais comissão sobre hospedagem de 3,5% até 50% de ocupação, 4,5% de 50% a 70%, 5,0% acima de 70%" },
+    { "id": "royalty", "label": "Royalty de marca", "value": "R$ 1.500 ao mês mais 5% da receita de hospedagem" },
+    { "id": "collection", "label": "Zion Collection", "value": "Sem fee" },
+    { "id": "ffe", "label": "Fundo de FF&E", "value": "3% da receita bruta" },
+    { "id": "taxes", "label": "Tributos", "value": "6%, Simples Nacional", "note": "Sujeito a parecer sobre elegibilidade" },
+    { "id": "ramp", "label": "Maturação", "value": "Ocupação sobe 1,2 ponto ao ano até o quinto ano. Diária sobe 1,5% ao ano acima da inflação" }
+  ],
+  "staffing": {
+    "plans": [
+      { "units": 6, "roles": ["Gerente", "Subgerente", "2 camareiras", "Manutenção"], "monthlyPayroll": 14100, "annualPayrollWithCharges": 284256, "peakDailies": 100, "annualFixedCost": 386256 },
+      { "units": 12, "roles": ["Gerente", "Subgerente", "2 camareiras", "Camareira de relevo", "Manutenção"], "monthlyPayroll": 17100, "annualPayrollWithCharges": 344736, "peakDailies": 160, "annualFixedCost": 549536 }
+    ],
+    "rule": "Uma camareira arruma até 3 unidades por dia. O quadro fixo cobre a média, a diarista cobre o domingo."
+  },
+  "year1": {
+    "scope": "Sede de 12 unidades, ano 1",
+    "scenarios": [
+      { "id": "conservative", "label": "Conservador", "occupancy": "45%", "grossRevenue": 3208992, "ebitda": 1200057, "ebitdaMargin": "37,4%", "netIncome": 911578, "yieldOnCapital": "17,3%", "multiple7y": "1,48x", "capitalReturnCycle": "5,0 anos" },
+      { "id": "base", "label": "Base", "occupancy": "60%", "grossRevenue": 4562208, "ebitda": 2004810, "ebitdaMargin": "43,9%", "netIncome": 1594212, "yieldOnCapital": "30,2%", "multiple7y": "2,44x", "capitalReturnCycle": "3,1 anos" },
+      { "id": "optimistic", "label": "Otimista", "occupancy": "75%", "grossRevenue": 6074935, "ebitda": 2904180, "ebitdaMargin": "47,8%", "netIncome": 2357819, "yieldOnCapital": "44,7%", "multiple7y": "3,51x", "capitalReturnCycle": "2,2 anos" }
+    ],
+    "warning": "Yield, múltiplo e ciclo de retorno só na edição para investidores. Sempre com o conservador ao lado do base."
+  },
+  "forecast": {
+    "unit": "R$ milhões",
+    "format": "ocupação · receita bruta · EBITDA · lucro líquido",
+    "scenarios": [
+      { "id": "conservative", "label": "Conservador", "rows": [
+        { "year": 1, "occupancy": "45,0%", "grossRevenue": 3.21, "ebitda": 1.20, "netIncome": 0.91 },
+        { "year": 2, "occupancy": "46,2%", "grossRevenue": 3.34, "ebitda": 1.28, "netIncome": 0.98 },
+        { "year": 3, "occupancy": "47,4%", "grossRevenue": 3.48, "ebitda": 1.37, "netIncome": 1.06 },
+        { "year": 4, "occupancy": "48,6%", "grossRevenue": 3.62, "ebitda": 1.46, "netIncome": 1.13 },
+        { "year": 5, "occupancy": "49,8%", "grossRevenue": 3.76, "ebitda": 1.55, "netIncome": 1.21 },
+        { "year": 6, "occupancy": "49,8%", "grossRevenue": 3.82, "ebitda": 1.58, "netIncome": 1.24 },
+        { "year": 7, "occupancy": "49,8%", "grossRevenue": 3.88, "ebitda": 1.62, "netIncome": 1.27 }
+      ] },
+      { "id": "base", "label": "Base", "rows": [
+        { "year": 1, "occupancy": "60,0%", "grossRevenue": 4.56, "ebitda": 2.00, "netIncome": 1.59 },
+        { "year": 2, "occupancy": "61,2%", "grossRevenue": 4.72, "ebitda": 2.10, "netIncome": 1.68 },
+        { "year": 3, "occupancy": "62,4%", "grossRevenue": 4.89, "ebitda": 2.20, "netIncome": 1.76 },
+        { "year": 4, "occupancy": "63,6%", "grossRevenue": 5.06, "ebitda": 2.31, "netIncome": 1.85 },
+        { "year": 5, "occupancy": "64,8%", "grossRevenue": 5.23, "ebitda": 2.41, "netIncome": 1.94 },
+        { "year": 6, "occupancy": "64,8%", "grossRevenue": 5.31, "ebitda": 2.46, "netIncome": 1.98 },
+        { "year": 7, "occupancy": "64,8%", "grossRevenue": 5.39, "ebitda": 2.51, "netIncome": 2.03 }
+      ] },
+      { "id": "optimistic", "label": "Otimista", "rows": [
+        { "year": 1, "occupancy": "75,0%", "grossRevenue": 6.07, "ebitda": 2.90, "netIncome": 2.36 },
+        { "year": 2, "occupancy": "76,2%", "grossRevenue": 6.26, "ebitda": 3.02, "netIncome": 2.46 },
+        { "year": 3, "occupancy": "77,4%", "grossRevenue": 6.45, "ebitda": 3.14, "netIncome": 2.56 },
+        { "year": 4, "occupancy": "78,6%", "grossRevenue": 6.65, "ebitda": 3.26, "netIncome": 2.66 },
+        { "year": 5, "occupancy": "79,8%", "grossRevenue": 6.86, "ebitda": 3.38, "netIncome": 2.77 },
+        { "year": 6, "occupancy": "79,8%", "grossRevenue": 6.96, "ebitda": 3.45, "netIncome": 2.82 },
+        { "year": 7, "occupancy": "79,8%", "grossRevenue": 7.06, "ebitda": 3.51, "netIncome": 2.87 }
+      ] }
+    ],
+    "warning": "O cenário otimista projeta margem acima da que as operações entregam hoje. Serve para medir potencial, nunca como meta."
+  },
+  "configuration": {
+    "recommendation": "12 unidades nos destinos com demanda o ano inteiro e mercado emissor a menos de 3 horas. 6 unidades nos demais, com expansão depois de validar.",
+    "caveat": "Seis unidades no cenário conservador não devolvem o capital em 7 anos."
+  },
+  "investorOnly": true
+}

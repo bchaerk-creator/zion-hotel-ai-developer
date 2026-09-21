@@ -1,0 +1,19 @@
+{
+  "sourceId": "program-model",
+  "programCapex": { "id": "program-capex", "value": "R$ 121,5 mi", "label": "CAPEX do programa", "context": "23 sedes com 12 unidades cada", "sourceId": "program-model", "period": "2026 a 2031", "status": "estimate" },
+  "cashNeed": [
+    { "scenario": "base", "label": "Base", "peak": "R$ 51,7 mi", "peakYear": 2029, "backToZero": 2032 },
+    { "scenario": "conservative", "label": "Conservador", "peak": "R$ 75,5 mi", "peakYear": 2030, "backToZero": 2035 }
+  ],
+  "round": { "value": "R$ 75 mi", "sizedBy": "Dimensionada pelo cenário conservador", "selfFinancingShare": "Autofinanciamento cobre 57% no cenário base" },
+  "tranches": [
+    { "id": "A", "value": "R$ 25 mi", "milestone": "No fechamento. Financia as ondas 1 e 2." },
+    { "id": "B", "value": "R$ 25 mi", "milestone": "Quando a onda 1 opera no plano." },
+    { "id": "C", "value": "R$ 25 mi", "milestone": "Quando a onda 2 atinge o mesmo critério." }
+  ],
+  "terms": {
+    "gracePerSite": "Carência efetiva de 12 a 18 meses por sede.",
+    "distribution": "Distribuição trimestral, após reter um trimestre de custo fixo."
+  },
+  "investorOnly": true
+}

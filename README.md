@@ -182,3 +182,9 @@ Florianópolis (SC) · Barcelona (ESP)
 ---
 
 > *"Transformamos seu terreno em um destino turístico. Estruturamos seu projeto para captar investimentos."*
+
+---
+
+## Investor Experience
+
+A experiência digital para investidores da Zion vive em [`zion-investor-experience/`](zion-investor-experience/), um projeto separado com sua própria fonte única de números (`docs/MASTER.md`), dados em `data/` e plano por fase em `docs/PLAN.md`. A pasta `docs/` da raiz continua sendo o site institucional publicado no GitHub Pages.

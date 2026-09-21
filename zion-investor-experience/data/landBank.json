@@ -1,0 +1,52 @@
+{
+  "sourceId": "crm-2026-08-29",
+  "asOf": "2026-08-29",
+  "total": { "id": "land-total", "value": "6.521 ha", "label": "Hectares mapeados", "context": "Piso documentado, em quatro camadas", "sourceId": "crm-2026-08-29", "period": "29/08/2026", "status": "validated" },
+  "layers": [
+    { "id": "operation", "label": "Operação", "hectares": null, "share": null, "note": "A documentar" },
+    { "id": "projects", "label": "Projetos", "hectares": 8.35, "share": "0,13%" },
+    { "id": "assets", "label": "Ativos em avaliação", "hectares": 5658.73, "share": "86,8%" },
+    { "id": "landbank", "label": "Land bank de proprietários", "hectares": 854.01, "share": "13,1%" }
+  ],
+  "regions": [
+    { "id": "nordeste", "label": "Nordeste", "hectares": 5788.95 },
+    { "id": "sul", "label": "Sul", "hectares": 381.00 },
+    { "id": "sudeste", "label": "Sudeste", "hectares": 263.35 },
+    { "id": "norte", "label": "Norte", "hectares": 52.24 },
+    { "id": "centro-oeste", "label": "Centro-Oeste", "hectares": 35.55 }
+  ],
+  "regionReading": "O Nordeste concentra a escala, o Sul o relacionamento.",
+  "indicators": [
+    { "id": "contacts", "value": "1.144", "label": "Contatos", "sourceId": "crm-2026-08-29", "period": "29/08/2026", "status": "validated" },
+    { "id": "declared-areas", "value": "273", "label": "Áreas declaradas", "sourceId": "crm-2026-08-29", "period": "29/08/2026", "status": "validated" },
+    { "id": "areas-2ha", "value": "144", "label": "Com 2 ha ou mais", "sourceId": "crm-2026-08-29", "period": "29/08/2026", "status": "validated" },
+    { "id": "areas-5ha", "value": "91", "label": "Com 5 ha ou mais", "sourceId": "crm-2026-08-29", "period": "29/08/2026", "status": "validated" }
+  ],
+  "pipeline": ["Identificar", "Qualificar", "Visitar", "Estruturar", "Captar", "Implantar", "Operar"],
+  "opportunities": [
+    { "id": "paraty-reset", "name": "Paraty Sítio Reset", "state": "RJ", "hectares": 6.35, "status": "development", "statusLabel": "Em desenvolvimento", "facts": [ { "label": "Área", "value": "6,35 ha" }, { "label": "Alvará", "value": "12 unidades" } ] },
+    { "id": "milagres", "name": "Milagres", "state": "AL", "hectares": 2, "status": "development", "statusLabel": "Em desenvolvimento", "facts": [ { "label": "Área", "value": "2 ha" }, { "label": "Programa", "value": "160 apartamentos" } ] },
+    { "id": "brotas-park", "name": "Brotas Park", "state": "SP", "hectares": null, "status": "fundraising", "statusLabel": "Em estruturação de captação", "facts": [] },
+    { "id": "viure", "name": "Viure", "state": "", "hectares": null, "status": "analysis", "statusLabel": "Em análise", "facts": [] },
+    { "id": "touros", "name": "Principado de Touros", "state": "RN", "hectares": 4400, "status": "analysis-formalizing", "statusLabel": "Em análise, vínculo em formalização", "facts": [ { "label": "Área", "value": "4.400 ha" } ] },
+    { "id": "itubera", "name": "Ituberá", "state": "BA", "hectares": 931.73, "status": "analysis-formalizing", "statusLabel": "Em análise, vínculo em formalização", "facts": [ { "label": "Área", "value": "931,73 ha" } ] },
+    { "id": "pititinga", "name": "Pititinga", "state": "RN", "hectares": 322, "status": "analysis-formalizing", "statusLabel": "Em análise, vínculo em formalização", "facts": [ { "label": "Área", "value": "322 ha" } ] },
+    { "id": "nisia-floresta", "name": "Nísia Floresta", "state": "RN", "hectares": 5, "status": "analysis-formalizing", "statusLabel": "Em análise, vínculo em formalização", "facts": [ { "label": "Área", "value": "5 ha" } ] }
+  ],
+  "module": {
+    "suites": 12,
+    "hectares": 6.35,
+    "origin": "Padrão originado em Paraty Sítio Reset: 12 unidades em 6,35 ha.",
+    "capacity": [
+      { "modules": 13, "suites": 156 },
+      { "modules": 28, "suites": 336 },
+      { "modules": 57, "suites": 684 }
+    ],
+    "note": "Sempre como capacidade, nunca como retorno."
+  },
+  "rules": [
+    "Nunca nomes de proprietários.",
+    "Nunca hectares da Zion. São hectares mapeados.",
+    "Zoneamento, licença e restrição ambiental citados pelo documento de origem."
+  ]
+}

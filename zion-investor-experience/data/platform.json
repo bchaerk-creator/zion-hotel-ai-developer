@@ -1,0 +1,92 @@
+{
+  "companies": [
+    { "id": "holding", "name": "Zion Hotel Group International", "role": "Holding. Detém marca, sub-bandeiras e método", "remuneration": "Royalty de marca", "takesInvestors": "never" },
+    { "id": "collection", "name": "Zion Collection", "role": "Veículo de expansão e capital. Coordena e orquestra a rede, implanta, consolida e distribui resultado", "remuneration": "Não cobra fee. A estrutura é bancada pelo resultado consolidado antes da distribuição", "takesInvestors": "yes" },
+    { "id": "management", "name": "Zion Hotel Management", "role": "Operadora. Padrão, revenue management, distribuição, gente", "remuneration": "Fee fixo mais comissão por performance", "takesInvestors": "no" },
+    { "id": "store", "name": "Zion Glamping Store", "role": "Plataforma de produto. Bubbles, cabanas, lodges, módulos", "remuneration": "Venda a preço de tabela publicado", "takesInvestors": "no" },
+    { "id": "spe", "name": "SPE por destino", "role": "Um veículo por sede, resultado segregado", "remuneration": "Lucro da operação", "takesInvestors": "per-structure" }
+  ],
+  "outsidePerimeter": [
+    { "name": "Chaerk Hotel Management", "site": "Urubici" },
+    { "name": "Mediterrâneo Empreendimentos Turísticos", "site": "Florianópolis" }
+  ],
+  "outsidePerimeterNote": "Sociedades próprias com outros sócios. Calibram o modelo, não são ativos adquiridos.",
+  "capitalModel": {
+    "name": "Asset light puro",
+    "principles": [
+      "O investidor financia 100% do CAPEX e detém 100% da SPE.",
+      "A Zion não aporta produto em espécie e não participa do lucro da SPE.",
+      "A Zion é remunerada por produto, taxa de desenvolvimento, taxa de implantação, operadora e royalty.",
+      "Transparência total sobre a remuneração da Zion. O custo de fabricação da Store é reservado."
+    ]
+  },
+  "exclusivity": "A Collection e as SPEs compram exclusivamente da Store e contratam exclusivamente a Management. A Store vende também para terceiros, com meta acima de 15% da receita, para manter preço de mercado comparável e defender a operação entre partes relacionadas.",
+  "remunerationPerSite": {
+    "scope": "Sede de 12 unidades, cenário base",
+    "sourceId": "model-2026",
+    "fees": [
+      { "id": "store-units", "label": "Unidades, Glamping Store", "value": 1668000, "nature": "one-off" },
+      { "id": "development-fee", "label": "Taxa de desenvolvimento", "value": 120000, "nature": "one-off" },
+      { "id": "implementation-fee", "label": "Taxa de implantação", "value": 120000, "nature": "one-off" },
+      { "id": "management-fee", "label": "Operação, Hotel Management", "value": 268503, "nature": "annual" },
+      { "id": "royalty", "label": "Royalty de marca", "value": 221670, "nature": "annual" },
+      { "id": "collection", "label": "Zion Collection", "value": 0, "nature": "none" }
+    ],
+    "note": "Operação e marca somam cerca de 10,7% da receita bruta da sede."
+  },
+  "valuation": {
+    "method": "Fluxo descontado a 15%",
+    "sourceId": "internal-valuation",
+    "status": "estimate",
+    "arms": [
+      { "id": "brand-method", "label": "Marca e método", "today": "R$ 29,7 mi", "maturity": "R$ 52 a 73 mi" },
+      { "id": "management", "label": "Hotel Management", "today": "R$ 35,1 mi", "maturity": "R$ 41 a 62 mi" },
+      { "id": "store", "label": "Glamping Store", "today": "R$ 7,4 mi", "maturity": "R$ 2 a 3 mi" },
+      { "id": "collection", "label": "Zion Collection", "today": "R$ 132 mi líquidos", "maturity": "R$ 246 a 328 mi" },
+      { "id": "platform", "label": "Plataforma", "today": null, "maturity": "R$ 342 a 466 mi" }
+    ],
+    "note": "Estimativa interna, não laudo."
+  },
+  "organization": {
+    "cluster": [
+      { "id": "expansion", "label": "Expansão e Projetos", "annualCost": 420000, "allocation": { "collection": 80, "store": 20, "management": 0 } },
+      { "id": "real-estate", "label": "Real Estate e Território", "annualCost": 300000, "allocation": { "collection": 100, "store": 0, "management": 0 } },
+      { "id": "revenue", "label": "Revenue Management", "annualCost": 300000, "allocation": { "collection": 0, "store": 0, "management": 100 } },
+      { "id": "marketing", "label": "Marketing e Marca", "annualCost": 300000, "allocation": { "collection": 30, "store": 20, "management": 50 } },
+      { "id": "commercial", "label": "Comercial", "annualCost": 330000, "allocation": { "collection": 60, "store": 40, "management": 0 } },
+      { "id": "finance", "label": "Financeiro e Controladoria", "annualCost": 360000, "allocation": { "collection": 50, "store": 20, "management": 30 } },
+      { "id": "legal", "label": "Jurídico e Societário", "annualCost": 330000, "allocation": { "collection": 60, "store": 20, "management": 20 } }
+    ],
+    "matureTotal": 2340000,
+    "costByPhase": [
+      { "sitesUpTo": 8, "cost": 1440000 },
+      { "sitesUpTo": 16, "cost": 2420000 },
+      { "sitesUpTo": 23, "cost": 3660000 }
+    ],
+    "principle": "Internalizar o que é vantagem: território, tarifa, marca, formação. Terceirizar conformidade: folha, contábil, auditoria."
+  },
+  "management": {
+    "margins": [
+      { "sites": 4, "margin": "42,1%" },
+      { "sites": 12, "margin": "64,8%" },
+      { "sites": 23, "margin": "73,4%" }
+    ],
+    "governance": [
+      "A tarifa é decidida pela operadora.",
+      "A equipe local é contratada pela SPE.",
+      "A Academia Zion forma gerentes uma onda antes da abertura.",
+      "É o braço que mais escala."
+    ]
+  },
+  "store": {
+    "revenuePerSite": 1668000,
+    "programRevenue": 38400000,
+    "principle": "Vende produto, nunca método.",
+    "thirdPartyTarget": "Acima de 15% da receita"
+  },
+  "reserved": [
+    "Terreno como garantia real: instrumento de exceção. Não entra no site.",
+    "Sócio articulador de capital: 6% sobre venda externa originada, fee de captação sobre capital desembolsado, entrada na SPE como qualquer investidor, nunca equity na holding. Não entra no site.",
+    "Custo de fabricação da Store: reservado."
+  ]
+}

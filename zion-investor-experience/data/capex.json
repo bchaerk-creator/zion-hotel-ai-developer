@@ -1,0 +1,45 @@
+{
+  "sourceId": "capex-sheet",
+  "units": 12,
+  "currency": "BRL",
+  "blocks": [
+    { "id": "product", "label": "Produto Bubble Suite, 6 Standard a R$ 129 mil e 6 Premium a R$ 149 mil", "total": 1668000, "perUnit": 139000 },
+    { "id": "deck", "label": "Deck e fundação", "total": 558264, "perUnit": 46522 },
+    { "id": "electrical", "label": "Instalação elétrica", "total": 246504, "perUnit": 20542 },
+    { "id": "hydraulic", "label": "Instalação hidráulica", "total": 217560, "perUnit": 18130 },
+    { "id": "bathroom", "label": "Banheiro, jacuzzi e sistema sanitário", "total": 318990, "perUnit": 26583 },
+    { "id": "assembly", "label": "Implantação e montagem", "total": 231540, "perUnit": 19295 },
+    { "id": "ffe", "label": "Mobiliário, equipamentos e enxoval", "total": 310980, "perUnit": 25915 },
+    { "id": "common-infra", "label": "Infraestrutura comum da sede", "total": 323194, "perUnit": 26933 },
+    { "id": "pre-opening", "label": "Pré-opening", "total": 145344, "perUnit": 12112 },
+    { "id": "flooring", "label": "Piso interno laminado ou vinílico", "total": 47186, "perUnit": 3932, "note": "Linha deduzida da diferença entre a soma dos blocos e o subtotal oficial. Confirmar na planilha de origem." }
+  ],
+  "implementationSubtotal": 4067562,
+  "contingency": { "rate": "8%", "value": 325405 },
+  "workingCapital": { "perUnit": 25000, "value": 300000 },
+  "implementationTotal": { "value": 4692967, "perUnit": 391081 },
+  "fees": { "label": "Taxas de desenvolvimento e implantação", "value": 240000 },
+  "siteWorks": {
+    "selectedTier": "tier-2",
+    "value": 340000,
+    "tiers": [
+      { "id": "tier-1", "label": "Tier 1", "value": 160000 },
+      { "id": "tier-2", "label": "Tier 2", "value": 340000 },
+      { "id": "tier-3", "label": "Tier 3", "value": 680000 }
+    ]
+  },
+  "allIn": { "value": 5272967, "perUnit": 439414 },
+  "perKeyBySize": [
+    { "units": 3, "value": 430743 },
+    { "units": 6, "value": 405086 },
+    { "units": 12, "value": 391081 }
+  ],
+  "marketReference": { "label": "Hotelaria de alvenaria, custo por chave", "range": "R$ 900 mil a R$ 1,6 mi", "buildTime": "18 a 30 meses de obra", "sourceId": "market-reference", "status": "pending" },
+  "optionals": [
+    { "id": "private-pool", "label": "Piscina privativa", "perUnit": 35000 }
+  ],
+  "pending": [
+    "Confirmar a linha de piso interno na planilha de origem."
+  ],
+  "investorOnly": true
+}
