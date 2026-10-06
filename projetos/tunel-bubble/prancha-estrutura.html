@@ -1,0 +1,398 @@
+<title>Túnel da Bubble</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: prancha técnica — painel de medidas à esquerda, 4 vistas em grade, tabelas de corte abaixo */
+:root{
+  --paper:#f3f5f4; --sheet:#fbfcfb; --ink:#1d2a33; --muted:#5d6b73; --rule:#c9d1cf;
+  --arc:#1d2a33; --top:#c2410c; --side:#0f766e; --floor:#6d28d9; --dim:#b42318; --ghost:#9aa7ab; --fit:#8a6d1f;
+  --display:"IBM Plex Sans Condensed","Arial Narrow",Arial,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,Consolas,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#11171b; --sheet:#172026; --ink:#e3ebee; --muted:#9aaab2; --rule:#2c3a42;
+  --arc:#e3ebee; --top:#fb923c; --side:#2dd4bf; --floor:#a78bfa; --dim:#f87171; --ghost:#55656d; --fit:#e0b84a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#11171b; --sheet:#172026; --ink:#e3ebee; --muted:#9aaab2; --rule:#2c3a42;
+  --arc:#e3ebee; --top:#fb923c; --side:#2dd4bf; --floor:#a78bfa; --dim:#f87171; --ghost:#55656d; --fit:#e0b84a; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--display);font-size:15px;line-height:1.5}
+.wrap{max-width:1280px;margin:0 auto;padding-inline:20px;padding-block:28px 60px}
+header{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:12px;border-bottom:2px solid var(--ink);padding-bottom:12px;margin-bottom:22px}
+h1{font-size:clamp(26px,4vw,38px);line-height:1.05;margin:0;font-weight:700;letter-spacing:-.01em;text-wrap:balance}
+.sub{color:var(--muted);margin:4px 0 0;max-width:68ch}
+.stamp{font-family:var(--mono);font-size:12px;color:var(--muted);text-align:right;line-height:1.6}
+.grid{display:grid;grid-template-columns:290px 1fr;gap:22px;align-items:start}
+@media (max-width:900px){.grid{grid-template-columns:1fr}}
+.panel{background:var(--sheet);border:1px solid var(--rule);padding:18px;position:sticky;top:calc(env(safe-area-inset-top,0px) + 12px)}
+@media (max-width:900px){.panel{position:static}}
+.panel h2,.sec h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;margin:0 0 12px;color:var(--muted);font-weight:600}
+.field{display:grid;grid-template-columns:1fr 118px;gap:4px 10px;align-items:center;margin-bottom:12px}
+.field label{font-weight:500;font-size:14px}
+.field small{grid-column:1/-1;color:var(--muted);font-size:12px;line-height:1.35}
+.field input,.field select{font-family:var(--mono);font-size:14px;padding:6px 8px;border:1px solid var(--rule);background:var(--paper);color:var(--ink);width:100%;border-radius:2px}
+.field input:focus-visible,.field select:focus-visible,button:focus-visible{outline:2px solid var(--top);outline-offset:1px}
+button{font-family:var(--display);font-size:13px;font-weight:600;background:transparent;color:var(--ink);border:1px solid var(--ink);padding:7px 12px;cursor:pointer;border-radius:2px}
+button:hover{background:var(--ink);color:var(--sheet)}
+.warn{font-size:12px;color:var(--dim);min-height:1em;margin:6px 0 0}
+.key{display:grid;gap:6px;margin-top:16px;padding-top:14px;border-top:1px solid var(--rule);font-size:13px}
+.key span{display:flex;gap:8px;align-items:center}
+.key i{display:inline-block;width:22px;height:4px;flex:none}
+.views{display:grid;grid-template-columns:1fr 1fr;gap:16px;min-width:0}
+@media (max-width:700px){.views{grid-template-columns:1fr}}
+figure{margin:0;background:var(--sheet);border:1px solid var(--rule);display:flex;flex-direction:column;min-width:0}
+figcaption{display:flex;justify-content:space-between;gap:8px;padding:8px 12px;border-bottom:1px solid var(--rule);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:.06em}
+figcaption em{font-style:normal;font-family:var(--mono);font-weight:400;color:var(--muted);text-transform:none;letter-spacing:0}
+figure svg{width:100%;height:auto;display:block;padding:6px}
+svg text{fill:var(--ink);font-family:var(--mono)}
+svg .lbl{fill:var(--muted)}
+svg .dimt{fill:var(--dim)}
+.sec{margin-top:26px;min-width:0}
+.cols{display:grid;grid-template-columns:1.3fr 1fr;gap:16px}
+@media (max-width:900px){.cols{grid-template-columns:1fr}}
+.card{background:var(--sheet);border:1px solid var(--rule);padding:16px;min-width:0}
+.tbl{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:6px 8px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);font-weight:600}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.code{font-family:var(--mono);font-weight:500}
+.sw{display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:middle}
+.tot td{font-weight:600;border-top:2px solid var(--ink)}
+ol.steps{margin:0;padding-left:22px;display:grid;gap:8px;max-width:72ch}
+ul.notes{margin:0;padding-left:18px;display:grid;gap:6px;color:var(--ink);max-width:72ch}
+.gab{max-height:420px;overflow:auto}
+.detail{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+@media (max-width:800px){.detail{grid-template-columns:1fr}}
+@media (prefers-reduced-motion:no-preference){figure svg{transition:opacity .2s}}
+</style>
+
+<div class="wrap">
+<header>
+  <div>
+    <h1>Túnel da Bubble · Estrutura tubular</h1>
+    <p class="sub">Dois arcos em ferradura (um em cada bubble), ligados por 5 barras: 2 no piso, 2 nas laterais e 1 no topo. A base do arco é aberta e achatada para chumbar no chão. Mude as medidas ao lado e todas as vistas e a lista de corte se recalculam.</p>
+  </div>
+  <div class="stamp">ZION · GLAMPING BUBBLE<br>Prancha 01/01 · medidas em mm<br>Rev. A · 06/10/2026</div>
+</header>
+
+<div class="grid">
+  <aside class="panel" aria-label="Medidas do túnel">
+    <h2>Medidas</h2>
+    <div class="field"><label for="W">Largura máx. (W)</label><input id="W" type="number" step="10" min="600" max="3000"><small>Maior abertura do arco, medida na altura do centro da curva.</small></div>
+    <div class="field"><label for="H">Altura (H)</label><input id="H" type="number" step="10" min="1200" max="3500"><small>Do piso até o topo do arco. Passagem de pessoas: mínimo 2000.</small></div>
+    <div class="field"><label for="B">Abertura no piso (B)</label><input id="B" type="number" step="10" min="300"><small>Distância entre os dois pés do arco. Igual a W = meio-arco puro; menor que W = ferradura.</small></div>
+    <div class="field"><label for="L">Comprimento (L)</label><input id="L" type="number" step="10" min="300" max="6000"><small>Distância entre os eixos dos dois arcos.</small></div>
+    <div class="field"><label for="hs">Altura barras laterais</label><input id="hs" type="number" step="10"><small>Altura do T lateral, onde entram as barras das laterais.</small></div>
+    <div class="field"><label for="Da">Tubo do arco</label><select id="Da"><option value="25.4">Ø 1" (25,4)</option><option value="31.75">Ø 1¼" (31,75)</option><option value="19.05">Ø ¾" (19,05)</option></select></div>
+    <div class="field"><label for="Db">Tubo das barras</label><select id="Db"><option value="19.05">Ø ¾" (19,05)</option><option value="25.4">Ø 1" (25,4)</option><option value="15.87">Ø ⅝" (15,87)</option></select></div>
+    <button id="reset" type="button">Voltar ao padrão</button>
+    <p class="warn" id="warn" role="status"></p>
+    <div class="key">
+      <span><i style="background:var(--arc)"></i>Arcos (A) — 2 un.</span>
+      <span><i style="background:var(--top)"></i>Barra do topo (B1) — 1 un.</span>
+      <span><i style="background:var(--side)"></i>Barras laterais (B2) — 2 un.</span>
+      <span><i style="background:var(--floor)"></i>Barras de piso (B3) — 2 un.</span>
+      <span><i style="background:var(--fit)"></i>Conexões T e pés</span>
+    </div>
+  </aside>
+
+  <main style="min-width:0">
+    <div class="views">
+      <figure><figcaption>Vista frontal do arco <em>olhando de dentro da bubble</em></figcaption><svg id="vFront" role="img" aria-label="Vista frontal do arco com cotas"></svg></figure>
+      <figure><figcaption>Perspectiva <em>estrutura completa</em></figcaption><svg id="vIso" role="img" aria-label="Perspectiva da estrutura"></svg></figure>
+      <figure><figcaption>Vista lateral <em>ligação entre bubbles</em></figcaption><svg id="vSide" role="img" aria-label="Vista lateral"></svg></figure>
+      <figure><figcaption>Planta <em>vista de cima</em></figcaption><svg id="vTop" role="img" aria-label="Vista superior"></svg></figure>
+    </div>
+
+    <section class="sec">
+      <h2>Detalhes das conexões</h2>
+      <div class="detail">
+        <figure><figcaption>C1 · T lateral / T topo</figcaption><svg viewBox="0 0 240 170" role="img" aria-label="Detalhe da conexão T">
+          <rect x="20" y="62" width="200" height="30" fill="none" stroke="var(--arc)" stroke-width="2" stroke-dasharray="5 4"/>
+          <rect x="80" y="56" width="80" height="42" fill="var(--sheet)" stroke="var(--fit)" stroke-width="3"/>
+          <rect x="107" y="8" width="26" height="50" fill="var(--sheet)" stroke="var(--fit)" stroke-width="3"/>
+          <circle cx="98" cy="88" r="3.5" fill="var(--fit)"/><circle cx="142" cy="88" r="3.5" fill="var(--fit)"/><circle cx="120" cy="22" r="3.5" fill="var(--fit)"/>
+          <text x="6" y="116" font-size="10" class="lbl">arco passa por dentro (luva)</text>
+          <text x="6" y="132" font-size="10" class="lbl">rebite/parafuso 3/16" cada lado</text>
+          <text x="138" y="30" font-size="10" class="lbl">derivação</text>
+          <text x="138" y="42" font-size="10" class="lbl">p/ barra</text>
+          <text x="6" y="158" font-size="10" class="dimt">corpo 100 mm · derivação 60 mm</text>
+        </svg></figure>
+        <figure><figcaption>C2 · Pé do arco</figcaption><svg viewBox="0 0 240 170" role="img" aria-label="Detalhe do pé do arco">
+          <path d="M120 10 Q118 60 112 112" fill="none" stroke="var(--arc)" stroke-width="10"/>
+          <rect x="102" y="96" width="22" height="26" fill="var(--sheet)" stroke="var(--fit)" stroke-width="3"/>
+          <rect x="124" y="104" width="70" height="12" fill="var(--sheet)" stroke="var(--fit)" stroke-width="2.5"/>
+          <rect x="60" y="122" width="110" height="8" fill="var(--fit)"/>
+          <line x1="20" y1="130" x2="220" y2="130" stroke="var(--muted)" stroke-width="1.5"/>
+          <line x1="76" y1="122" x2="76" y2="150" stroke="var(--ink)" stroke-width="3"/><line x1="154" y1="122" x2="154" y2="150" stroke="var(--ink)" stroke-width="3"/>
+          <text x="152" y="98" font-size="10" class="lbl">barra de piso</text>
+          <text x="6" y="164" font-size="10" class="dimt">chapa 120×120×4,75 · 2 chumbadores 3/8"</text>
+        </svg></figure>
+        <figure><figcaption>C3 · Emenda da barra</figcaption><svg viewBox="0 0 240 170" role="img" aria-label="Detalhe do encaixe da barra">
+          <rect x="20" y="66" width="80" height="26" fill="var(--sheet)" stroke="var(--fit)" stroke-width="3"/>
+          <rect x="86" y="62" width="140" height="34" fill="none" stroke="var(--side)" stroke-width="3"/>
+          <line x1="86" y1="62" x2="86" y2="96" stroke="var(--side)" stroke-width="5"/>
+          <circle cx="104" cy="79" r="4" fill="var(--fit)"/>
+          <text x="20" y="54" font-size="10" class="lbl">derivação do T</text>
+          <text x="140" y="54" font-size="10" class="lbl">barra (luva)</text>
+          <text x="6" y="124" font-size="10" class="lbl">barra veste a derivação 40 mm</text>
+          <text x="6" y="140" font-size="10" class="lbl">1 parafuso trava, permite desmontar</text>
+        </svg></figure>
+      </div>
+    </section>
+
+    <section class="sec cols">
+      <div class="card">
+        <h2>Lista de corte e materiais</h2>
+        <div class="tbl"><table id="cut"></table></div>
+      </div>
+      <div class="card">
+        <h2>Gabarito do arco (traçar 1:1 no chão)</h2>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:13px">Risque uma linha de centro no piso da oficina. Em cada altura, marque a meia-largura para cada lado e una os pontos. Dobre o tubo até encostar no traçado.</p>
+        <div class="tbl gab"><table id="gab"></table></div>
+      </div>
+    </section>
+
+    <section class="sec cols">
+      <div class="card">
+        <h2>Sequência de montagem</h2>
+        <ol class="steps">
+          <li>Calandrar os 8 segmentos de arco conferindo no gabarito 1:1. Os dois arcos precisam ficar idênticos.</li>
+          <li>Montar cada arco no chão: pé → T lateral → T topo → T lateral → pé. Rebitar ou parafusar as luvas.</li>
+          <li>Posicionar os dois arcos de pé, um encostado em cada boca de bubble, com a distância L entre eixos.</li>
+          <li>Encaixar primeiro a barra do topo (B1). Ela trava a distância e deixa o conjunto em pé.</li>
+          <li>Encaixar as barras laterais (B2) e depois as de piso (B3). Conferir o esquadro medindo as duas diagonais da planta.</li>
+          <li>Com diagonais iguais, chumbar as chapas dos pés no deck ou piso.</li>
+          <li>Vestir a capa de lona do túnel e fechar os zíperes nas duas bubbles.</li>
+        </ol>
+      </div>
+      <div class="card">
+        <h2>Observações de projeto</h2>
+        <ul class="notes">
+          <li>Meça a boca de túnel da bubble antes de cortar: W e H do arco devem ficar 20 a 40 mm menores que a abertura do tecido, para a lona vestir sem forçar a costura.</li>
+          <li>O formato é uma elipse cortada na base. Isso deixa o arco mais alto que largo, como nas fotos, e fecha um pouco nos pés.</li>
+          <li>Os comprimentos de corte descontam 10 mm por ponta dentro de cada T. Confirme com a peça real do fornecedor antes de cortar a série.</li>
+          <li>Aço carbono com pintura eletrostática branca, ou alumínio 6063 para ficar mais leve. Em área externa, use rebites e parafusos inox: as fotos já mostram ferrugem nos parafusos atuais.</li>
+          <li>Em região de vento forte, adicione um X de cabo de aço entre as barras laterais e as de piso.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function(){
+  const DEF={W:1400,H:2100,B:1150,L:1500,hs:1150,Da:25.4,Db:19.05};
+  const ids=["W","H","B","L","hs","Da","Db"];
+  let s={...DEF};
+  try{const sv=JSON.parse(localStorage.getItem("tunel-bubble")||"null");if(sv)s={...DEF,...sv};}catch(e){}
+  const $=id=>document.getElementById(id);
+  const f0=v=>Math.round(v).toLocaleString("pt-BR");
+  const f2=(v,d=2)=>v.toLocaleString("pt-BR",{minimumFractionDigits:d,maximumFractionDigits:d});
+  const NS="http://www.w3.org/2000/svg";
+
+  function geom(s){
+    const a=s.W/2, k=Math.sqrt(Math.max(0,1-(s.B/s.W)**2)), b=s.H/(1+k), hc=k*b;
+    const t0=-Math.asin(k), t1=Math.PI-t0;
+    const ts=Math.asin(Math.max(-1,Math.min(1,(s.hs-hc)/b)));
+    const pt=t=>({x:a*Math.cos(t),y:hc+b*Math.sin(t)});
+    const len=(ta,tb)=>{const n=400,h=(tb-ta)/n;let sum=0;const g=t=>Math.hypot(a*Math.sin(t),b*Math.cos(t));
+      for(let i=0;i<=n;i++){const w=i===0||i===n?1:(i%2?4:2);sum+=w*g(ta+i*h);}return sum*h/3;};
+    const segFoot=len(t0,ts), segTop=len(ts,Math.PI/2);
+    return {a,b,hc,k,t0,t1,ts,xs:pt(ts).x,pt,segFoot,segTop,arc:2*(segFoot+segTop)};
+  }
+  function el(svg,tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;svg.appendChild(e);return e;}
+  function poly(svg,pts,attrs){return el(svg,"polyline",{points:pts.map(p=>p[0].toFixed(1)+","+p[1].toFixed(1)).join(" "),fill:"none",...attrs});}
+  function clear(svg){while(svg.firstChild)svg.removeChild(svg.firstChild);}
+  const FS=62;
+  function dimH(svg,x1,x2,y,yRef,label){ // horizontal dimension at screen y; extension from yRef
+    const c="var(--dim)";
+    el(svg,"line",{x1,y1:yRef,x2:x1,y2:y+(y>yRef?25:-25),stroke:c,"stroke-width":3,opacity:.55});
+    el(svg,"line",{x1:x2,y1:yRef,x2:x2,y2:y+(y>yRef?25:-25),stroke:c,"stroke-width":3,opacity:.55});
+    el(svg,"line",{x1,y1:y,x2,y2:y,stroke:c,"stroke-width":4});
+    [x1,x2].forEach(x=>el(svg,"line",{x1:x-18,y1:y+18,x2:x+18,y2:y-18,stroke:c,"stroke-width":5}));
+    el(svg,"text",{x:(x1+x2)/2,y:y-16,"text-anchor":"middle","font-size":FS,class:"dimt"},label);
+  }
+  function dimV(svg,y1,y2,x,xRef,label){
+    const c="var(--dim)";
+    el(svg,"line",{x1:xRef,y1,x2:x+(x>xRef?25:-25),y2:y1,stroke:c,"stroke-width":3,opacity:.55});
+    el(svg,"line",{x1:xRef,y1:y2,x2:x+(x>xRef?25:-25),y2:y2,stroke:c,"stroke-width":3,opacity:.55});
+    el(svg,"line",{x1:x,y1,x2:x,y2,stroke:c,"stroke-width":4});
+    [y1,y2].forEach(y=>el(svg,"line",{x1:x-18,y1:y+18,x2:x+18,y2:y-18,stroke:c,"stroke-width":5}));
+    const t=el(svg,"text",{x:x-16,y:(y1+y2)/2,"text-anchor":"middle","font-size":FS,class:"dimt",transform:`rotate(-90 ${x-16} ${(y1+y2)/2})`},label);
+  }
+  function fitRect(svg,x,y,ang,len,th){
+    el(svg,"rect",{x:x-len/2,y:y-th/2,width:len,height:th,fill:"var(--sheet)",stroke:"var(--fit)","stroke-width":6,transform:`rotate(${ang} ${x} ${y})`});
+  }
+  function arcPts(g,n=160){const out=[];for(let i=0;i<=n;i++){const t=g.t0+(g.t1-g.t0)*i/n;const p=g.pt(t);out.push([p.x,-p.y]);}return out;}
+
+  function drawFront(g){
+    const svg=$("vFront");clear(svg);
+    const a=g.a, pad=330, minX=-a-pad-60, w=2*a+2*pad+120, top=-s.H-200, h=s.H+200+330;
+    svg.setAttribute("viewBox",`${minX} ${top} ${w} ${h}`);
+    // piso
+    el(svg,"line",{x1:minX+40,y1:0,x2:minX+w-40,y2:0,stroke:"var(--muted)","stroke-width":5});
+    for(let x=minX+60;x<minX+w-60;x+=70)el(svg,"line",{x1:x,y1:6,x2:x-40,y2:46,stroke:"var(--ghost)","stroke-width":3});
+    // eixo
+    el(svg,"line",{x1:0,y1:30,x2:0,y2:-s.H-120,stroke:"var(--ghost)","stroke-width":3,"stroke-dasharray":"40 12 8 12"});
+    el(svg,"line",{x1:-a-60,y1:-g.hc,x2:a+60,y2:-g.hc,stroke:"var(--ghost)","stroke-width":3,"stroke-dasharray":"40 12 8 12"});
+    // arco em escala real do tubo
+    poly(svg,arcPts(g),{stroke:"var(--arc)","stroke-width":Math.max(s.Da,14),"stroke-linecap":"butt"});
+    // pés
+    [[-s.B/2],[s.B/2]].forEach(([x])=>{el(svg,"rect",{x:x-60,y:-5,width:120,height:10,fill:"var(--fit)"});});
+    // T laterais e topo
+    const tang=t=>{const dx=-g.a*Math.sin(t),dy=g.b*Math.cos(t);return Math.atan2(-dy,dx)*180/Math.PI;};
+    fitRect(svg,g.xs,-s.hs,tang(g.ts),100,s.Da+16);
+    fitRect(svg,-g.xs,-s.hs,-tang(g.ts),100,s.Da+16);
+    fitRect(svg,0,-s.H,0,100,s.Da+16);
+    // barras em corte
+    const r=Math.max(s.Db/2,10)+4;
+    el(svg,"circle",{cx:0,cy:-s.H,r,fill:"var(--top)"});
+    el(svg,"circle",{cx:g.xs,cy:-s.hs,r,fill:"var(--side)"});el(svg,"circle",{cx:-g.xs,cy:-s.hs,r,fill:"var(--side)"});
+    el(svg,"circle",{cx:s.B/2,cy:-r-10,r,fill:"var(--floor)"});el(svg,"circle",{cx:-s.B/2,cy:-r-10,r,fill:"var(--floor)"});
+    // cotas
+    dimH(svg,-a,a,-g.hc-(g.hc>250?0:0)-0,-g.hc,"");
+    // W cota acima do centro p/ não colidir: redesenha texto
+    svg.lastChild.remove();
+    el(svg,"text",{x:0,y:-g.hc-18,"text-anchor":"middle","font-size":FS,class:"dimt"},"W "+f0(s.W));
+    dimH(svg,-s.B/2,s.B/2,170,0,"B "+f0(s.B));
+    svg.lastChild.setAttribute("y",250);
+    dimV(svg,0,-s.H,-a-200,-a,"H "+f0(s.H));
+    dimV(svg,0,-s.hs,a+200,g.xs,"");
+    svg.lastChild.remove();
+    el(svg,"text",{x:a+260,y:-s.hs/2,"text-anchor":"middle","font-size":FS,class:"dimt",transform:`rotate(-90 ${a+260} ${-s.hs/2})`},"hs "+f0(s.hs));
+    el(svg,"text",{x:g.xs+40,y:-s.hs-60,"font-size":52,class:"lbl"},"T");
+    el(svg,"text",{x:60,y:-s.H-50,"font-size":52,class:"lbl"},"T topo");
+    el(svg,"text",{x:-s.B/2-100,y:-40,"font-size":52,"text-anchor":"end",class:"lbl"},"pé");
+  }
+
+  function drawSide(g){
+    const svg=$("vSide");clear(svg);
+    const L=s.L, ext=700, minX=-ext, w=L+2*ext, top=-s.H-220, h=s.H+220+260;
+    svg.setAttribute("viewBox",`${minX} ${top} ${w} ${h}`);
+    el(svg,"line",{x1:minX+20,y1:0,x2:minX+w-20,y2:0,stroke:"var(--muted)","stroke-width":5});
+    // bubbles sugeridas
+    const R=Math.max(s.H*1.1,2000);
+    el(svg,"path",{d:`M ${-40} ${-s.H-60} A ${R} ${R} 0 0 0 ${-40-R*0.32} 0`,fill:"none",stroke:"var(--ghost)","stroke-width":6,"stroke-dasharray":"30 18"});
+    el(svg,"path",{d:`M ${L+40} ${-s.H-60} A ${R} ${R} 0 0 1 ${L+40+R*0.32} 0`,fill:"none",stroke:"var(--ghost)","stroke-width":6,"stroke-dasharray":"30 18"});
+    el(svg,"text",{x:-ext+40,y:-s.H/2,"font-size":58,class:"lbl"},"Bubble A");
+    el(svg,"text",{x:L+ext-40,y:-s.H/2,"font-size":58,"text-anchor":"end",class:"lbl"},"Bubble B");
+    // arcos de perfil
+    [0,L].forEach(z=>{el(svg,"rect",{x:z-s.Da/2,y:-s.H,width:s.Da,height:s.H,fill:"var(--arc)"});
+      fitRect(svg,z,-s.H,90,100,s.Da+16);fitRect(svg,z,-s.hs,90,100,s.Da+16);
+      el(svg,"rect",{x:z-60,y:-5,width:120,height:10,fill:"var(--fit)"});});
+    const sw=Math.max(s.Db,14);
+    el(svg,"line",{x1:0,y1:-s.H,x2:L,y2:-s.H,stroke:"var(--top)","stroke-width":sw});
+    el(svg,"line",{x1:0,y1:-s.hs,x2:L,y2:-s.hs,stroke:"var(--side)","stroke-width":sw});
+    el(svg,"line",{x1:0,y1:-sw/2-10,x2:L,y2:-sw/2-10,stroke:"var(--floor)","stroke-width":sw});
+    dimH(svg,0,L,170,0,"");svg.lastChild.remove();
+    el(svg,"text",{x:L/2,y:250,"text-anchor":"middle","font-size":FS,class:"dimt"},"L "+f0(L)+" (eixo a eixo)");
+    el(svg,"text",{x:L/2,y:-s.H-40,"text-anchor":"middle","font-size":52,class:"lbl"},"B1");
+    el(svg,"text",{x:L/2,y:-s.hs-40,"text-anchor":"middle","font-size":52,class:"lbl"},"B2 (×2)");
+    el(svg,"text",{x:L/2,y:-80,"text-anchor":"middle","font-size":52,class:"lbl"},"B3 (×2)");
+  }
+
+  function drawTop(g){
+    const svg=$("vTop");clear(svg);
+    const L=s.L, a=g.a, minX=-380, w=L+760, top=-a-260, h=2*a+260+330;
+    svg.setAttribute("viewBox",`${minX} ${top} ${w} ${h}`);
+    const sw=Math.max(s.Db,14);
+    // barras
+    [[0,"var(--top)"],[g.xs,"var(--side)"],[-g.xs,"var(--side)"],[s.B/2,"var(--floor)"],[-s.B/2,"var(--floor)"]].forEach(([x,c])=>
+      el(svg,"line",{x1:0,y1:x,x2:L,y2:x,stroke:c,"stroke-width":sw,...(c==="var(--floor)"?{"stroke-dasharray":"50 20"}:{})}));
+    // arcos vistos de cima
+    [0,L].forEach(z=>{el(svg,"rect",{x:z-s.Da/2,y:-a,width:s.Da,height:2*a,fill:"var(--arc)"});
+      fitRect(svg,z,0,0,100,s.Da+16);fitRect(svg,z,g.xs,0,100,s.Da+16);fitRect(svg,z,-g.xs,0,100,s.Da+16);});
+    // diagonais de esquadro
+    el(svg,"line",{x1:0,y1:-s.B/2,x2:L,y2:s.B/2,stroke:"var(--ghost)","stroke-width":3,"stroke-dasharray":"20 14"});
+    el(svg,"line",{x1:0,y1:s.B/2,x2:L,y2:-s.B/2,stroke:"var(--ghost)","stroke-width":3,"stroke-dasharray":"20 14"});
+    const diag=Math.hypot(L,s.B);
+    el(svg,"text",{x:L/2,y:-40,"text-anchor":"middle","font-size":48,class:"lbl"},"diagonal piso "+f0(diag));
+    dimH(svg,0,L,a+170,a,"");svg.lastChild.remove();
+    el(svg,"text",{x:L/2,y:a+250,"text-anchor":"middle","font-size":FS,class:"dimt"},"L "+f0(L));
+    dimV(svg,a,-a,-200,-s.Da,"");svg.lastChild.remove();
+    el(svg,"text",{x:-260,y:0,"text-anchor":"middle","font-size":FS,class:"dimt",transform:"rotate(-90 -260 0)"},"W "+f0(s.W));
+    dimV(svg,s.B/2,-s.B/2,L+200,L+s.Da,"");svg.lastChild.remove();
+    el(svg,"text",{x:L+260,y:0,"text-anchor":"middle","font-size":FS,class:"dimt",transform:`rotate(-90 ${L+260} 0)`},"B "+f0(s.B));
+  }
+
+  function drawIso(g){
+    const svg=$("vIso");clear(svg);
+    const ph=50*Math.PI/180, al=20*Math.PI/180;
+    const P=(x,y,z)=>{const xr=x*Math.cos(ph)+z*Math.sin(ph), zr=-x*Math.sin(ph)+z*Math.cos(ph);return [xr,-(y*Math.cos(al)-zr*Math.sin(al))];};
+    const arc3=z=>{const o=[];for(let i=0;i<=120;i++){const t=g.t0+(g.t1-g.t0)*i/120;const p=g.pt(t);o.push(P(p.x,p.y,z));}return o;};
+    const all=[...arc3(0),...arc3(s.L)];
+    const xs=all.map(p=>p[0]),ys=all.map(p=>p[1]);
+    const mx=Math.min(...xs)-200,Mx=Math.max(...xs)+200,my=Math.min(...ys)-200,My=Math.max(...ys)+200;
+    svg.setAttribute("viewBox",`${mx} ${my} ${Mx-mx} ${My-my}`);
+    // sombra de piso
+    const fl=[P(-g.a,0,-150),P(g.a,0,-150),P(g.a,0,s.L+150),P(-g.a,0,s.L+150)];
+    el(svg,"polygon",{points:fl.map(p=>p.join(",")).join(" "),fill:"var(--rule)",opacity:.5});
+    const sw=Math.max(s.Da,16), bw=Math.max(s.Db,13);
+    const bar=(x,y,c)=>{const p1=P(x,y,0),p2=P(x,y,s.L);el(svg,"line",{x1:p1[0],y1:p1[1],x2:p2[0],y2:p2[1],stroke:c,"stroke-width":bw,"stroke-linecap":"round"});};
+    // arco de trás primeiro
+    poly(svg,arc3(s.L),{stroke:"var(--arc)","stroke-width":sw,opacity:.9});
+    bar(-s.B/2,15,"var(--floor)");bar(s.B/2,15,"var(--floor)");
+    bar(-g.xs,s.hs,"var(--side)");bar(g.xs,s.hs,"var(--side)");bar(0,s.H,"var(--top)");
+    poly(svg,arc3(0),{stroke:"var(--arc)","stroke-width":sw});
+    [[0,s.H],[g.xs,s.hs],[-g.xs,s.hs]].forEach(([x,y])=>[0,s.L].forEach(z=>{const p=P(x,y,z);el(svg,"circle",{cx:p[0],cy:p[1],r:sw*0.95,fill:"var(--fit)"});}));
+    [[-s.B/2],[s.B/2]].forEach(([x])=>[0,s.L].forEach(z=>{const p=P(x,0,z);el(svg,"circle",{cx:p[0],cy:p[1],r:sw*0.9,fill:"var(--fit)"});}));
+    const lab=(x,y,z,t)=>{const p=P(x,y,z);el(svg,"text",{x:p[0],y:p[1],"font-size":60,class:"lbl"},t);};
+    lab(0,s.H+90,s.L/2,"B1 topo");lab(g.xs+90,s.hs,s.L/2,"B2");lab(s.B/2+90,-60,s.L/2,"B3");
+    lab(-g.a-40,s.H*0.55,0,"A");
+  }
+
+  function tables(g){
+    const cutT=10; // mm por ponta dentro de T
+    const foot=g.segFoot-cutT, topp=g.segTop-2*cutT;
+    const bar=s.L-s.Da-40;
+    const kgm=d=>Math.PI*(d/1000-0.0012)*0.0012*7850;
+    const arcM=2*(2*foot+2*topp)/1000, barM=5*bar/1000;
+    const rows=[
+      ["A1","var(--arc)","Arco — trecho pé até T lateral",4,foot,s.Da],
+      ["A2","var(--arc)","Arco — trecho T lateral até T topo",4,topp,s.Da],
+      ["B1","var(--top)","Barra do topo",1,bar,s.Db],
+      ["B2","var(--side)","Barras laterais",2,bar,s.Db],
+      ["B3","var(--floor)","Barras de piso",2,bar,s.Db],
+    ];
+    const dn=d=>({"25.4":'1"',"31.75":'1¼"',"19.05":'¾"',"15.87":'⅝"'})[String(d)]||d;
+    let h=`<thead><tr><th>Cód.</th><th>Peça</th><th class="n">Qtd</th><th class="n">Corte (mm)</th><th class="n">Tubo</th></tr></thead><tbody>`;
+    rows.forEach(r=>{h+=`<tr><td class="code"><span class="sw" style="background:${r[1]}"></span>${r[0]}</td><td>${r[2]}${r[0].startsWith("A")?" <span style='color:var(--muted)'>(curvo)</span>":""}</td><td class="n">${r[3]}</td><td class="n">${f0(r[4])}</td><td class="n">Ø ${dn(r[5])}</td></tr>`;});
+    h+=`<tr><td class="code">C1</td><td>Conexão T (luva com derivação 90°) — 2 no topo + 4 laterais</td><td class="n">6</td><td class="n">—</td><td class="n">Ø ${dn(s.Da)}</td></tr>`;
+    h+=`<tr><td class="code">C2</td><td>Pé com chapa 120×120×4,75 e derivação p/ barra de piso</td><td class="n">4</td><td class="n">—</td><td class="n">—</td></tr>`;
+    h+=`<tr><td class="code">—</td><td>Rebites/parafusos inox 3/16" · chumbadores 3/8"</td><td class="n">~30 · 8</td><td class="n">—</td><td class="n">—</td></tr>`;
+    const totKg=arcM*kgm(s.Da)+barM*kgm(s.Db);
+    h+=`<tr class="tot"><td></td><td>Tubo arco ${f2(arcM)} m + tubo barras ${f2(barM)} m · aço #18 aprox. ${f2(totKg,1)} kg</td><td class="n"></td><td class="n">${f2(arcM+barM)} m</td><td class="n">${Math.ceil(arcM/6)+Math.ceil(barM/6)} br. 6 m</td></tr></tbody>`;
+    $("cut").innerHTML=h;
+    let gtab=`<thead><tr><th class="n">Altura y</th><th class="n">Meia-largura x</th><th class="n">Largura total</th></tr></thead><tbody>`;
+    const ys=[];for(let y=0;y<s.H;y+=100)ys.push(y);ys.push(s.H);
+    ys.forEach(y=>{const x=g.a*Math.sqrt(Math.max(0,1-((y-g.hc)/g.b)**2));
+      const mark=Math.abs(y-Math.round(g.hc/100)*100)<1?" style='font-weight:600'":"";
+      gtab+=`<tr${mark}><td class="n">${f0(y)}</td><td class="n">${f0(x)}</td><td class="n">${f0(2*x)}</td></tr>`;});
+    gtab+=`</tbody>`;
+    $("gab").innerHTML=gtab;
+  }
+
+  function sanitize(){
+    const w=[];
+    if(s.B>s.W){s.B=s.W;w.push("B não pode passar de W; ajustei B = W.");}
+    if(s.B<300){s.B=300;}
+    if(s.hs<250){s.hs=250;w.push("Barras laterais muito baixas; mínimo 250.");}
+    if(s.hs>s.H-300){s.hs=s.H-300;w.push("Barras laterais muito perto do topo; máximo H − 300.");}
+    if(s.H<2000)w.push("Altura abaixo de 2000 mm: adulto vai precisar abaixar.");
+    $("warn").textContent=w.join(" ");
+  }
+  function render(){
+    sanitize();
+    ids.forEach(id=>{if(document.activeElement!==$(id))$(id).value=s[id];});
+    const g=geom(s);
+    drawFront(g);drawSide(g);drawTop(g);drawIso(g);tables(g);
+    try{localStorage.setItem("tunel-bubble",JSON.stringify(s));}catch(e){}
+  }
+  ids.forEach(id=>$(id).addEventListener("change",()=>{const v=parseFloat($(id).value);if(!isNaN(v)){s[id]=v;render();}}));
+  ids.forEach(id=>$(id).addEventListener("input",()=>{const v=parseFloat($(id).value);if(!isNaN(v)&&v>0&&$(id).tagName==="INPUT"&&v>=100){s[id]=v;const keep=document.activeElement;render();}}));
+  $("reset").addEventListener("click",()=>{s={...DEF};ids.forEach(id=>$(id).value=s[id]);render();});
+  render();
+})();
+</script>

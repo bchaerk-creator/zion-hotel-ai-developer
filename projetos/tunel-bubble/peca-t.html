@@ -1,0 +1,139 @@
+<!doctype html><meta charset="utf-8">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans+Condensed:wght@400;600;700&display=swap">
+<style>
+body{margin:0;background:#fbfcfb}
+#sheet{width:1600px;height:1130px;background:#fbfcfb}
+text{font-family:"IBM Plex Mono",monospace;fill:#1d2a33}
+.h{font-family:"IBM Plex Sans Condensed",Arial,sans-serif;font-weight:700}
+.t{font-family:"IBM Plex Sans Condensed",Arial,sans-serif;font-weight:600;letter-spacing:.06em}
+.d{fill:#b42318}.m{fill:#5d6b73}
+</style>
+<svg id="sheet" viewBox="0 0 1600 1130" xmlns="http://www.w3.org/2000/svg">
+<defs>
+ <pattern id="hat" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="10" stroke="#1d2a33" stroke-width="2"/></pattern>
+ <linearGradient id="cyl" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#d9dfdd"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#aab4b1"/></linearGradient>
+ <linearGradient id="cylv" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#d9dfdd"/><stop offset=".35" stop-color="#ffffff"/><stop offset="1" stop-color="#aab4b1"/></linearGradient>
+ <marker id="ar" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="9" markerHeight="9" orient="auto-start-reverse"><path d="M0 0L10 5L0 10z" fill="#b42318"/></marker>
+</defs>
+<rect x="14" y="14" width="1572" height="1102" fill="none" stroke="#1d2a33" stroke-width="3"/>
+<text x="40" y="70" class="h" font-size="40">Peça C1 · Conexão T do arco</text>
+<text x="40" y="102" class="m" font-size="17">Luva em T: o tubo do arco atravessa o corpo; a barra longitudinal veste a derivação. Usada 6× (2 no topo, 4 nas laterais).</text>
+<line x1="40" y1="122" x2="1560" y2="122" stroke="#1d2a33" stroke-width="2"/>
+
+<!-- ===== VISTA FRONTAL escala 4:1 (1mm = 4px) ===== -->
+<text x="40" y="165" class="t" font-size="18">VISTA FRONTAL · ESC. 4:1</text>
+<g transform="translate(150,490)">
+ <!-- arco fantasma -->
+ <rect x="-90" y="-51" width="580" height="102" fill="none" stroke="#9aa7ab" stroke-width="2" stroke-dasharray="14 8"/>
+ <text x="-80" y="80" class="m" font-size="14">tubo do arco Ø1" (fantasma)</text>
+ <!-- corpo 100 x Ø28,6 -->
+ <rect x="0" y="-57" width="400" height="114" fill="url(#cyl)" stroke="#1d2a33" stroke-width="3"/>
+ <!-- derivação 60 x Ø15,87 -->
+ <rect x="168" y="-297" width="64" height="240" fill="url(#cylv)" stroke="#1d2a33" stroke-width="3"/>
+ <!-- solda -->
+ <path d="M160 -57 Q168 -70 168 -82 L168 -57Z M240 -57 Q232 -70 232 -82 L232 -57Z" fill="#8a6d1f"/>
+ <!-- eixos -->
+ <line x1="-110" y1="0" x2="510" y2="0" stroke="#9aa7ab" stroke-width="1.5" stroke-dasharray="30 8 6 8"/>
+ <line x1="200" y1="-320" x2="200" y2="80" stroke="#9aa7ab" stroke-width="1.5" stroke-dasharray="30 8 6 8"/>
+ <!-- furos rebite -->
+ <circle cx="80" cy="0" r="10" fill="#fbfcfb" stroke="#1d2a33" stroke-width="3"/>
+ <circle cx="320" cy="0" r="10" fill="#fbfcfb" stroke="#1d2a33" stroke-width="3"/>
+ <circle cx="200" cy="-217" r="10" fill="#fbfcfb" stroke="#1d2a33" stroke-width="3"/>
+ <!-- cotas -->
+ <line x1="0" y1="80" x2="0" y2="150" stroke="#b42318" stroke-width="1.2"/><line x1="400" y1="80" x2="400" y2="150" stroke="#b42318" stroke-width="1.2"/>
+ <line x1="0" y1="140" x2="400" y2="140" stroke="#b42318" stroke-width="1.8" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="200" y="132" text-anchor="middle" class="d" font-size="20">100</text>
+ <line x1="0" y1="110" x2="80" y2="110" stroke="#b42318" stroke-width="1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="40" y="104" text-anchor="middle" class="d" font-size="16">20</text>
+ <line x1="320" y1="110" x2="400" y2="110" stroke="#b42318" stroke-width="1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="360" y="104" text-anchor="middle" class="d" font-size="16">20</text>
+ <line x1="420" y1="-57" x2="470" y2="-57" stroke="#b42318" stroke-width="1.2"/><line x1="420" y1="57" x2="470" y2="57" stroke="#b42318" stroke-width="1.2"/>
+ <line x1="460" y1="-57" x2="460" y2="57" stroke="#b42318" stroke-width="1.8" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="478" y="6" class="d" font-size="18">Ø28,6</text>
+ <line x1="250" y1="-297" x2="330" y2="-297" stroke="#b42318" stroke-width="1.2"/>
+ <line x1="310" y1="-297" x2="310" y2="-57" stroke="#b42318" stroke-width="1.8" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="322" y="-170" class="d" font-size="20">60</text>
+ <line x1="168" y1="-320" x2="232" y2="-320" stroke="#b42318" stroke-width="1.8" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="200" y="-330" text-anchor="middle" class="d" font-size="18">Ø15,87 (⅝")</text>
+ <line x1="120" y1="-217" x2="168" y2="-217" stroke="#b42318" stroke-width="1.2"/>
+ <line x1="130" y1="-297" x2="130" y2="-217" stroke="#b42318" stroke-width="1.5" marker-start="url(#ar)" marker-end="url(#ar)"/>
+ <text x="118" y="-250" text-anchor="end" class="d" font-size="16">20</text>
+ <!-- notas -->
+ <line x1="80" y1="0" x2="20" y2="-110" stroke="#5d6b73" stroke-width="1.2"/>
+ <text x="-80" y="-118" class="m" font-size="14">furo Ø5 p/ rebite 3/16"</text>
+ <text x="-80" y="-100" class="m" font-size="14">(passante, 2× no corpo)</text>
+ <line x1="236" y1="-70" x2="300" y2="-20" stroke="#5d6b73" stroke-width="1.2"/>
+ <text x="258" y="-8" class="m" font-size="14"></text>
+ <text x="-80" y="-170" class="m" font-size="14">solda MIG contínua</text>
+ <line x1="60" y1="-166" x2="165" y2="-70" stroke="#5d6b73" stroke-width="1.2"/>
+</g>
+
+<!-- ===== CORTE A-A ===== -->
+<text x="740" y="160" class="t" font-size="18">CORTE A-A · ESC. 4:1</text>
+<g transform="translate(880,490)">
+ <circle cx="0" cy="0" r="57" fill="url(#hat)" stroke="#1d2a33" stroke-width="3"/>
+ <circle cx="0" cy="0" r="52.4" fill="#fbfcfb" stroke="#1d2a33" stroke-width="2"/>
+ <circle cx="0" cy="0" r="50.8" fill="none" stroke="#9aa7ab" stroke-width="2" stroke-dasharray="10 6"/>
+ <rect x="-32" y="-297" width="64" height="244" fill="url(#cylv)" stroke="#1d2a33" stroke-width="3"/>
+ <line x1="0" y1="-320" x2="0" y2="80" stroke="#9aa7ab" stroke-width="1.5" stroke-dasharray="30 8 6 8"/>
+ <line x1="-80" y1="0" x2="80" y2="0" stroke="#9aa7ab" stroke-width="1.5" stroke-dasharray="30 8 6 8"/>
+ <text x="76" y="-24" class="m" font-size="14">parede 1,2</text>
+ <line x1="72" y1="-30" x2="40" y2="-40" stroke="#5d6b73" stroke-width="1.2"/>
+ <text x="76" y="48" class="m" font-size="14">folga 0,8</text>
+ <line x1="72" y1="42" x2="38" y2="34" stroke="#5d6b73" stroke-width="1.2"/>
+ <text x="-120" y="120" class="m" font-size="14">diâmetro interno 26,2</text>
+</g>
+
+<!-- ===== PERSPECTIVA ===== -->
+<text x="1130" y="160" class="t" font-size="18">PERSPECTIVA</text>
+<g transform="translate(1340,470)">
+ <!-- corpo cilindro inclinado -->
+ <path d="M-200 -10 L120 -110 A30 60 -17 0 1 150 10 L-170 110 Z" fill="url(#cyl)" stroke="#1d2a33" stroke-width="3"/>
+ <ellipse cx="-185" cy="50" rx="30" ry="60" transform="rotate(-17 -185 50)" fill="#e7ecea" stroke="#1d2a33" stroke-width="3"/>
+ <ellipse cx="-185" cy="50" rx="22" ry="48" transform="rotate(-17 -185 50)" fill="#3a4a53"/>
+ <!-- derivação -->
+ <path d="M-40 -14 L-40 -230 L20 -248 L20 -32 Z" fill="url(#cylv)" stroke="#1d2a33" stroke-width="3"/>
+ <ellipse cx="-10" cy="-239" rx="31" ry="14" transform="rotate(-17 -10 -239)" fill="#e7ecea" stroke="#1d2a33" stroke-width="3"/>
+ <ellipse cx="-10" cy="-239" rx="22" ry="9" transform="rotate(-17 -10 -239)" fill="#3a4a53"/>
+ <circle cx="-10" cy="-170" r="7" fill="#8a6d1f"/>
+ <circle cx="-120" cy="40" r="7" fill="#8a6d1f"/><circle cx="90" cy="-25" r="7" fill="#8a6d1f"/>
+ <text x="-230" y="170" class="m" font-size="14">↑ entra o arco Ø1"</text>
+ <text x="40" y="-250" class="m" font-size="14">← veste a barra ¾"</text>
+</g>
+
+<!-- ===== MONTAGEM no conjunto ===== -->
+<line x1="40" y1="720" x2="1560" y2="720" stroke="#c9d1cf" stroke-width="2"/>
+<text x="40" y="758" class="t" font-size="18">COMO ENCAIXA NO TÚNEL</text>
+<g transform="translate(60,800)">
+ <path d="M0 250 Q260 60 620 40" fill="none" stroke="#1d2a33" stroke-width="22" stroke-linecap="round"/>
+ <rect x="300" y="44" width="110" height="46" rx="3" fill="url(#cyl)" stroke="#1d2a33" stroke-width="3" transform="rotate(-12 355 67)"/>
+ <rect x="342" y="-30" width="28" height="80" fill="url(#cylv)" stroke="#1d2a33" stroke-width="2.5" transform="rotate(-12 355 67)"/>
+ <text x="330" y="200" class="m" font-size="15">o arco passa por dentro do corpo do T</text>
+ <text x="330" y="222" class="m" font-size="15">e é travado com 2 rebites</text>
+</g>
+<g transform="translate(780,900)">
+ <rect x="0" y="70" width="140" height="40" fill="url(#cyl)" stroke="#1d2a33" stroke-width="3"/>
+ <rect x="56" y="10" width="28" height="60" fill="url(#cylv)" stroke="#1d2a33" stroke-width="2.5"/>
+ <rect x="50" y="-150" width="40" height="190" fill="none" stroke="#0f766e" stroke-width="4"/>
+ <circle cx="70" cy="25" r="5" fill="#8a6d1f"/>
+ <text x="110" y="-100" class="m" font-size="15">barra longitudinal ¾" (B1/B2)</text>
+ <text x="110" y="-80" class="m" font-size="15">desce sobre a derivação 40 mm</text>
+ <text x="110" y="-60" class="m" font-size="15">e é travada com 1 parafuso</text>
+</g>
+
+<!-- ===== TABELA ===== -->
+<g transform="translate(1180,790)" font-size="15">
+ <text x="0" y="0" class="t" font-size="16">ESPECIFICAÇÃO</text>
+ <text x="0" y="32">Corpo ........ tubo Ø28,6 × 1,2 × 100</text>
+ <text x="0" y="58">Derivação .... tubo Ø15,87 × 1,2 × 60</text>
+ <text x="0" y="84">Ângulo ....... 90° no meio do corpo</text>
+ <text x="0" y="110">Furos ........ 3× Ø5 a 20 mm das pontas</text>
+ <text x="0" y="136">Fixação ...... rebite/parafuso inox 3/16"</text>
+ <text x="0" y="162">Material ..... aço carbono, solda MIG</text>
+ <text x="0" y="188">Acabamento ... pintura eletrostática</text>
+ <text x="0" y="214">Quantidade ... 6 peças por túnel</text>
+ <text x="0" y="254" class="m" font-size="13">Confirme o Ø interno com o tubo do arco real:</text>
+ <text x="0" y="272" class="m" font-size="13">o arco precisa deslizar sem folga excessiva.</text>
+</g>
+<text x="1560" y="1100" text-anchor="end" class="m" font-size="13">ZION · Túnel Bubble · Peça C1 · medidas em mm · Rev. A</text>
+</svg>
