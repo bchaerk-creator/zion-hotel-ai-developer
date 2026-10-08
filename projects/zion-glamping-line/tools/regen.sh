@@ -14,7 +14,7 @@ fi
 echo "== caderno técnico"; python3 build_dossier.py && python3 build_dossier.py --web && python3 build_dossier.py --inline
 echo "== product book"; python3 build_product_book.py && python3 build_product_book.py --web && python3 build_product_book.py --inline
 echo "== projeto arquitetônico + apresentação"; python3 build_projeto_arquitetonico.py && python3 build_projeto_arquitetonico.py --inline && python3 build_apresentacao.py && python3 build_catalogo.py && python3 referencias.py && python3 build_brief.py && python3 build_conceito.py && python3 build_tecnico.py && python3 build_interiores.py
-echo "== lonas (padrões de corte) e lotes"; python3 lona.py && python3 build_lotes.py && python3 build_fornecedores.py
+echo "== lonas (padrões de corte) e lotes"; python3 lona.py && python3 build_lotes.py && python3 build_fornecedores.py && python3 build_camadas.py
 echo "== mobiliário"; python3 furniture_system.py && python3 furniture_bed.py
 echo "== variante Casulo Sensorial"; python3 sensorial.py
 echo "== PDFs"
