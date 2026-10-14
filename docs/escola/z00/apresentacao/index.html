@@ -1,0 +1,661 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light">
+<title>Z00 · Apresentação da Aula</title>
+<meta name="description" content="Apresentação da aula Z00 · O Universo dos Negócios de Hospedagem. Mentoria Zion 360°.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:"Aventa";src:url("../../../assets/fonts/aventa.woff2") format("woff2");font-weight:100 900;font-display:swap}
+:root{--paper:#FEF5F0;--ink:#0A0A0A;--gold:#C9A84C;--moss:#1B2117;--rule:rgba(10,10,10,.15);--soft:#FFF8F3;--ink2:rgba(10,10,10,.66)}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:#0d100b;overflow:hidden}
+body{font-family:"Aventa",system-ui,-apple-system,"Segoe UI",sans-serif;color:var(--ink);font-variant-numeric:lining-nums}
+.stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+.deck{position:relative;width:1600px;height:900px;transform-origin:center center;flex:0 0 auto}
+.slide{position:absolute;inset:0;background:var(--paper);padding:84px 110px 96px;display:none;overflow:hidden}
+.slide.on{display:block}
+.slide.dark{background:var(--moss);color:var(--paper)}
+.slide .kick{font-size:20px;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);font-weight:700}
+.slide h1{font:700 104px/1.0 "Playfair Display",serif;margin:30px 0 26px;letter-spacing:-.01em;max-width:13ch}
+.slide h2{font:700 66px/1.06 "Playfair Display",serif;margin:18px 0 28px;letter-spacing:-.01em;max-width:22ch}
+.slide h1 em,.slide h2 em{font-weight:400;font-style:italic;color:var(--moss)}
+.slide.dark h1 em,.slide.dark h2 em{color:var(--gold)}
+.slide p,.slide li{font-size:30px;line-height:1.45}
+.slide .deckline{font:italic 500 36px/1.4 "Playfair Display",serif;color:var(--moss);max-width:34ch}
+.slide.dark .deckline{color:var(--paper);opacity:.9}
+.slide .rule{width:96px;height:3px;background:var(--gold);margin:28px 0}
+.giant{position:absolute;right:-40px;top:-120px;font:900 620px/1 "Playfair Display",serif;opacity:.06;pointer-events:none;user-select:none}
+.slide.dark .giant{color:var(--paper)}
+.quote{font:italic 500 64px/1.22 "Playfair Display",serif;color:var(--moss);max-width:24ch;position:relative;padding-top:34px}
+.quote::before{content:"";position:absolute;top:0;left:0;width:64px;height:3px;background:var(--gold)}
+.slide.dark .quote{color:var(--paper)}
+.cite{font-size:18px;letter-spacing:.2em;text-transform:uppercase;color:var(--ink2);margin-top:28px}
+.slide.dark .cite{color:var(--gold)}
+.cols{display:grid;gap:36px}
+.c2{grid-template-columns:1fr 1fr}.c3{grid-template-columns:repeat(3,1fr)}.c4{grid-template-columns:repeat(4,1fr)}
+.card{background:var(--soft);border:1px solid var(--rule);padding:28px 30px}
+.slide.dark .card{background:rgba(254,245,240,.06);border-color:rgba(254,245,240,.18)}
+.card .n{font:900 64px/1 "Playfair Display",serif;color:var(--gold)}
+.card h3{font:700 32px/1.15 "Playfair Display",serif;margin:12px 0 10px}
+.card p{font-size:23px;line-height:1.45;margin:0}
+.lab{font-size:16px;letter-spacing:.24em;text-transform:uppercase;font-weight:700;color:var(--gold)}
+ul.dash{list-style:none;padding:0;margin:0}
+ul.dash li{padding-left:40px;position:relative;margin:.38em 0}
+ul.dash li::before{content:"—";position:absolute;left:0;color:var(--gold);font-weight:700}
+table{border-collapse:collapse;width:100%;font-size:24px;line-height:1.35}
+th,td{text-align:left;padding:14px 16px;border-bottom:1px solid var(--rule);vertical-align:top}
+th{font-size:15px;letter-spacing:.2em;text-transform:uppercase;border-bottom:3px solid var(--ink)}
+td:first-child{font-weight:700}
+.box{background:rgba(201,168,76,.10);border-left:5px solid var(--gold);padding:24px 30px}
+.box.moss{background:rgba(27,33,23,.06);border-left-color:var(--moss)}
+.big{font:700 120px/1 "Playfair Display",serif;color:var(--gold)}
+.foot{position:absolute;left:110px;right:110px;bottom:34px;display:flex;justify-content:space-between;font-size:15px;letter-spacing:.22em;text-transform:uppercase;color:var(--ink2)}
+.slide.dark .foot{color:rgba(254,245,240,.55)}
+.dots{color:var(--gold);letter-spacing:.18em}
+svg text{font-family:"Aventa",sans-serif}
+/* chrome */
+.bar{position:fixed;left:0;bottom:0;height:4px;background:var(--gold);transition:width .2s}
+.ui{position:fixed;right:14px;top:12px;display:flex;gap:8px;z-index:5;opacity:.35;transition:opacity .2s}.ui:hover,.ui:focus-within{opacity:1}
+.ui button{font:700 12px "Aventa",sans-serif;letter-spacing:.14em;text-transform:uppercase;background:rgba(27,33,23,.9);color:#FEF5F0;border:1px solid rgba(201,168,76,.6);padding:9px 12px;cursor:pointer}
+.ui button:focus-visible{outline:2px solid var(--gold)}
+.notes-panel{position:fixed;left:0;right:0;bottom:0;max-height:42vh;overflow:auto;background:#FEF5F0;border-top:3px solid var(--gold);padding:16px 20px 54px;font:16px/1.6 "Aventa",sans-serif;display:none;z-index:4}
+.notes-panel.on{display:block}
+.notes-panel b{font:700 12px "Aventa",sans-serif;letter-spacing:.2em;text-transform:uppercase;color:#8C6E1F}
+aside.notes{display:none}
+.help{position:fixed;left:14px;bottom:14px;font:12px "Aventa",sans-serif;color:rgba(254,245,240,.55);letter-spacing:.08em;z-index:3}
+@media (max-width:700px){.help{display:none}}
+@media print{
+  @page{size:1600px 900px;margin:0}
+  html,body{overflow:visible;background:none;height:auto}
+  .stage{position:static;display:block}
+  .deck{transform:none!important;width:1600px;height:auto}
+  .slide{position:relative;display:block!important;width:1600px;height:900px;page-break-after:always;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .ui,.bar,.notes-panel,.help{display:none!important}
+}
+</style>
+</head>
+<body>
+<div class="stage" id="stage"><div class="deck" id="deck">
+
+<!-- ===================== ABERTURA ===================== -->
+<section class="slide dark" data-t="0:00">
+  <div class="giant">00</div>
+  <div class="kick">Zion Hospitality Business School · Mentoria Zion 360°</div>
+  <h1>O Universo dos Negócios de <em>Hospedagem</em></h1>
+  <div class="deckline">Aula Z00 · Base do Método Zion 360°</div>
+  <div class="rule"></div>
+  <p style="font-size:22px;letter-spacing:.2em;text-transform:uppercase;opacity:.75">Da Ideia ao Negócio. Da Hospedagem ao Destino.</p>
+  <div class="foot"><span>A Escola do Hoteleiro</span><span>Z00 · 60 min</span></div>
+  <aside class="notes">[0:00 · 1 min] Boas-vindas. Esta é a primeira aula da Mentoria Zion 360°. Antes de falar de obra, de preço ou de investimento, vamos olhar para o universo inteiro dos negócios de hospedagem. Ao fim desta aula, cada um vai sair com uma primeira decisão: qual é o seu ponto de partida, qual é a sua jornada e quais formatos combinam com os seus recursos. Peça que cada aluno tenha papel ou o e-book aberto no Capítulo 8, porque vamos fazer um exercício no final.</aside>
+</section>
+
+<section class="slide" data-t="1:00">
+  <div class="kick">Pergunta de abertura</div>
+  <h2>O seu imóvel é um imóvel <em>ou um negócio?</em></h2>
+  <div class="cols c2" style="margin-top:40px">
+    <div class="card"><div class="lab">Se você ainda não começou</div><p style="margin-top:12px">O que existe hoje: uma ideia, um terreno, um imóvel, um dinheiro guardado. O que falta para virar negócio?</p></div>
+    <div class="card"><div class="lab">Se você já hospeda</div><p style="margin-top:12px">Você tem um negócio ou um emprego que mora dentro do seu imóvel? Ele funcionaria trinta dias sem você?</p></div>
+  </div>
+  <div class="foot"><span>Abertura</span><span>02 / 40</span></div>
+  <aside class="notes">[1:00 · 2 min] Faça a pergunta e peça que cada pessoa responda mentalmente, ou no chat. Não corrija ninguém agora. A ideia é que cada um perceba que está diante de uma decisão de negócio, e não apenas de um imóvel. Para quem já opera, a pergunta dos trinta dias costuma incomodar: se a resposta é não, a operação ainda depende do dono. Diga que vamos voltar a essa pergunta no fim da aula, quando cada um escolher a sua jornada.</aside>
+</section>
+
+<section class="slide" data-t="3:00">
+  <div class="kick">Quem conduz</div>
+  <h2>Mais de vinte anos de hotelaria, <em>hoje na serra catarinense.</em></h2>
+  <div class="cols c2" style="margin-top:20px;align-items:start">
+    <ul class="dash">
+      <li>Hotelaria internacional, com passagens por Meliá, Barceló e Wyndham, na Espanha e nas ilhas Canárias e Baleares</li>
+      <li>Fundador da Zion e autor do Método Zion 360°</li>
+      <li>A Zion opera bolhas transparentes dentro de uma mata de araucária, em Urubici, e também em Florianópolis</li>
+    </ul>
+    <div class="box moss"><div class="lab" style="color:var(--moss)">Como a Zion começou</div><p style="font:italic 500 32px/1.4 'Playfair Display',serif;margin-top:12px">«Primeiro compreendemos o lugar. Depois desenhamos a experiência. Somente então estruturamos o restante do negócio.»</p></div>
+  </div>
+  <div class="foot"><span>Abertura</span><span>03 / 40</span></div>
+  <aside class="notes">[3:00 · 1 min] Apresentação breve. O ponto não é currículo, é credencial de método: a mesma ordem que você vai aprender foi a que a Zion usou. Leia a frase do Manual devagar. Ela resume a aula inteira: lugar, experiência e só depois o resto. Evite números da operação; o foco é o aluno.</aside>
+</section>
+
+<section class="slide" data-t="4:00">
+  <div class="kick">Ao fim desta aula</div>
+  <h2>Você vai sair <em>sabendo</em></h2>
+  <div class="cols c3" style="margin-top:10px">
+    <div class="card"><div class="n">1</div><h3>Distinguir</h3><p>imóvel, negócio e destino, e as duas receitas de um negócio de hospedagem.</p></div>
+    <div class="card"><div class="n">2</div><h3>Comparar</h3><p>os oito formatos e as quatro portas de entrada no setor.</p></div>
+    <div class="card"><div class="n">3</div><h3>Ler</h3><p>diária, ocupação e RevPAR juntos, e a sazonalidade.</p></div>
+    <div class="card"><div class="n">4</div><h3>Diferenciar</h3><p>pelo motivo, com o momento assinatura.</p></div>
+    <div class="card"><div class="n">5</div><h3>Evitar</h3><p>os erros que mais custam e as decisões fora de ordem.</p></div>
+    <div class="card"><div class="n">6</div><h3>Decidir</h3><p>o seu ponto de partida, a sua jornada e dois formatos possíveis.</p></div>
+  </div>
+  <div class="foot"><span>Abertura</span><span>04 / 40</span></div>
+  <aside class="notes">[4:00 · 1 min] Apresente os seis objetivos rapidamente. Destaque o sexto: a aula termina com uma decisão escrita, não com informação. Lembre a frase do Panorama: conhecimento útil tem data de uso. Se o que estamos estudando não muda nenhuma decisão das próximas quatro semanas, estamos na etapa errada.</aside>
+</section>
+
+<section class="slide" data-t="5:00">
+  <div class="kick">Uma mentoria, duas jornadas</div>
+  <h2>Em qual delas <em>você está?</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="n">A</div><h3>Quero começar</h3><p>Tenho terreno, imóvel, capital ou ideia, e ainda não hospedo ninguém.</p><p style="margin-top:14px"><b>Resultado:</b> Plano de Estruturação do Negócio de Hospedagem.</p></div>
+    <div class="card"><div class="n">B</div><h3>Quero crescer</h3><p>Já opero cabanas, chalés, Airbnb, pousada ou pequeno hotel.</p><p style="margin-top:14px"><b>Resultado:</b> Plano de Profissionalização e Crescimento da Hospedagem.</p></div>
+  </div>
+  <div class="foot"><span>Abertura</span><span>05 / 40</span></div>
+  <aside class="notes">[5:00 · 1 min] Explique que a mentoria é uma só e usa o mesmo método. O que muda é a prioridade. Em cada bloco da aula, vou mostrar a aplicação para a Jornada A e para a Jornada B. Peça que cada um marque provisoriamente a sua jornada; ela será confirmada no exercício final.</aside>
+</section>
+
+<!-- ===================== BLOCO 1 ===================== -->
+<section class="slide dark" data-t="6:00">
+  <div class="giant">01</div>
+  <div class="kick">Bloco 1 · Fundamentos</div>
+  <h1>Alugar não é <em>hospedar.</em></h1>
+  <div class="deckline">Um imóvel pode ficar parado, ser alugado ou virar um negócio.</div>
+  <div class="foot"><span>E-book · Capítulo 01</span><span>06 / 40</span></div>
+  <aside class="notes">[6:00 · 30 s] Abertura do primeiro bloco. São três coisas diferentes, com riscos e resultados diferentes. Este bloco muda a pergunta que você faz sobre o seu imóvel ou a sua operação.</aside>
+</section>
+
+<section class="slide" data-t="6:30">
+  <div class="kick">A diferença</div>
+  <h2>Quem aluga entrega um espaço. <em>Quem hospeda entrega uma estadia.</em></h2>
+  <div class="cols c4" style="margin-top:30px">
+    <div class="card"><div class="lab">1</div><h3>A reserva</h3><p>precisa ser conquistada, todas as semanas.</p></div>
+    <div class="card"><div class="lab">2</div><h3>A chegada</h3><p>precisa funcionar, mesmo à noite e com chuva.</p></div>
+    <div class="card"><div class="lab">3</div><h3>A noite</h3><p>precisa ser lembrada.</p></div>
+    <div class="card"><div class="lab">4</div><h3>A avaliação</h3><p>decide a próxima venda.</p></div>
+  </div>
+  <div class="foot"><span>Bloco 1</span><span>07 / 40</span></div>
+  <aside class="notes">[6:30 · 1 min 30 s] Explique cada um dos quatro momentos. Alugar é entregar metros quadrados por mês. Hospedar é uma sequência de entregas que se repete a cada reserva, e qualquer falha aparece na avaliação. A mudança de pergunta: deixar de perguntar quanto rende o imóvel e passar a perguntar que negócio esse lugar sustenta, e para quem.</aside>
+</section>
+
+<section class="slide" data-t="8:00">
+  <div class="kick">Três coisas diferentes</div>
+  <h2>Imóvel, negócio <em>e destino</em></h2>
+  <table>
+    <thead><tr><th></th><th>Imóvel</th><th>Negócio de hospedagem</th><th>Destino</th></tr></thead>
+    <tbody>
+      <tr><td>O que vende</td><td>Metros quadrados por mês</td><td>Noites, com serviço</td><td>Uma razão para viajar até ali</td></tr>
+      <tr><td>O que decide o preço</td><td>Localização e tamanho</td><td>Demanda, canal, experiência, avaliação</td><td>Desejo pelo lugar e pela marca</td></tr>
+      <tr><td>Quem trabalha</td><td>Quase ninguém</td><td>Uma operação, todos os dias</td><td>Uma operação com padrão e marca</td></tr>
+      <tr><td>Risco principal</td><td>Vacância</td><td>Calendário vazio e margem baixa</td><td>Promessa que a operação não entrega</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span>Bloco 1</span><span>08 / 40</span></div>
+  <aside class="notes">[8:00 · 1 min 30 s] Leia a tabela por linhas, não por colunas. O ponto principal está na linha "quem trabalha": o negócio de hospedagem exige uma operação todos os dias. O destino exige isso e mais: uma promessa clara que a operação consegue cumprir. Pergunte: em qual coluna você está hoje, e em qual quer estar?</aside>
+</section>
+
+<section class="slide" data-t="9:30">
+  <div class="kick">Três ofícios</div>
+  <h2>Desenvolver, administrar <em>e operar</em></h2>
+  <div class="cols c3">
+    <div class="card"><div class="n">D</div><h3>Desenvolver</h3><p>Decidir o que construir ou transformar, onde, para quem e com que dinheiro.</p></div>
+    <div class="card"><div class="n">G</div><h3>Administrar</h3><p>Comandar o negócio pelos números: preço, canais, custos, pessoas, metas.</p></div>
+    <div class="card"><div class="n">O</div><h3>Operar</h3><p>Entregar o padrão todos os dias: chegada, limpeza, atendimento, manutenção.</p></div>
+  </div>
+  <div class="box" style="margin-top:36px"><p style="margin:0">«A ignorância operacional é contratável e a desordem decisória não é.» <span style="font-size:18px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink2)">· A Ordem das Coisas</span></p></div>
+  <div class="foot"><span>Bloco 1</span><span>09 / 40</span></div>
+  <aside class="notes">[9:30 · 1 min 30 s] São três ofícios diferentes, e a maior parte das pessoas mistura os três. Quem está começando costuma pular o desenvolvimento e ir direto para a obra. Quem já opera costuma ficar preso na operação e não administra. Leia a frase da Ordem das Coisas: você pode contratar quem sabe operar; o que não dá para contratar é a ordem das suas decisões.</aside>
+</section>
+
+<section class="slide" data-t="11:00">
+  <div class="kick">Duas receitas</div>
+  <h2>Operacional e <em>patrimonial</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">Receita operacional</div><h3>Diárias e serviços</h3><p>Mês a mês. Precisa pagar a operação e sobrar.</p></div>
+    <div class="card"><div class="lab">Receita patrimonial</div><h3>O valor que se constrói</h3><p>Uso turístico, destino e negócio vendável valorizam o ativo ao longo do tempo.</p></div>
+  </div>
+  <div class="quote" style="font-size:44px;margin-top:40px">A primeira receita precisa fechar sozinha; a segunda é o que transforma um negócio sustentável em um bom investimento.</div>
+  <div class="cite">A Ordem das Coisas</div>
+  <div class="foot"><span>Bloco 1</span><span>10 / 40</span></div>
+  <aside class="notes">[11:00 · 1 min] Regra de ouro: nunca justifique uma operação que dá prejuízo com a valorização futura do imóvel. Para a Jornada A, isso muda o projeto desde o início. Para a Jornada B, é um teste honesto: a sua operação fecha sozinha hoje?</aside>
+</section>
+
+<section class="slide" data-t="12:00">
+  <div class="kick">A cadeia de valor</div>
+  <h2>Cada noite vendida é o fim de <em>uma sequência</em></h2>
+  <svg viewBox="0 0 1380 380" style="width:100%;margin-top:10px" role="img" aria-label="Cadeia: lugar e produto, capital e obra, marca e experiência, canais e preço, gestão e operação, hóspede que volta">
+    <g font-size="26" text-anchor="middle">
+      <g fill="#FFF8F3" stroke="#0A0A0A" stroke-opacity=".25"><rect x="0" y="60" width="190" height="150"/><rect x="238" y="60" width="190" height="150"/><rect x="476" y="60" width="190" height="150"/><rect x="714" y="60" width="190" height="150"/><rect x="952" y="60" width="190" height="150"/><rect x="1190" y="60" width="190" height="150" fill="#1B2117"/></g>
+      <g fill="#C9A84C"><path d="M196 135 h32 l-10 -8 m10 8 l-10 8" stroke="#C9A84C" stroke-width="3" fill="none"/><path d="M434 135 h32 l-10 -8 m10 8 l-10 8" stroke="#C9A84C" stroke-width="3" fill="none"/><path d="M672 135 h32 l-10 -8 m10 8 l-10 8" stroke="#C9A84C" stroke-width="3" fill="none"/><path d="M910 135 h32 l-10 -8 m10 8 l-10 8" stroke="#C9A84C" stroke-width="3" fill="none"/><path d="M1148 135 h32 l-10 -8 m10 8 l-10 8" stroke="#C9A84C" stroke-width="3" fill="none"/></g>
+      <g fill="#C9A84C" font-size="20" font-weight="700" letter-spacing="3"><text x="95" y="100">D</text><text x="333" y="100">F · E</text><text x="571" y="100">M</text><text x="809" y="100">L</text><text x="1047" y="100">G · O</text><text x="1285" y="100">RESULTADO</text></g>
+      <g fill="#0A0A0A" font-weight="600"><text x="95" y="145">Lugar e</text><text x="95" y="178">produto</text><text x="333" y="145">Capital e</text><text x="333" y="178">obra</text><text x="571" y="145">Marca e</text><text x="571" y="178">experiência</text><text x="809" y="145">Canais</text><text x="809" y="178">e preço</text><text x="1047" y="145">Gestão e</text><text x="1047" y="178">operação</text></g>
+      <g fill="#FEF5F0" font-weight="600"><text x="1285" y="145">Hóspede que</text><text x="1285" y="178">volta e indica</text></g>
+      <path d="M1285 220 V300 H95 V220" fill="none" stroke="#1B2117" stroke-width="2" stroke-dasharray="8 8"/>
+      <text x="690" y="350" font-family="Playfair Display, serif" font-style="italic" fill="#1B2117" font-size="28">As avaliações voltam para o início e corrigem o produto.</text>
+    </g>
+  </svg>
+  <div class="foot"><span>Bloco 1</span><span>11 / 40</span></div>
+  <aside class="notes">[12:00 · 1 min 30 s] Percorra a cadeia da esquerda para a direita e mostre as letras dos pilares do método acima de cada elo. Se um elo falha, o resultado cai, mesmo que os outros estejam perfeitos. Jornada A: percorra a cadeia na ordem; o erro clássico é começar pela obra. Jornada B: descubra qual elo está quebrado; consertar um elo costuma ser mais barato do que aumentar o número de unidades.</aside>
+</section>
+
+<!-- ===================== BLOCO 2 ===================== -->
+<section class="slide dark" data-t="13:30">
+  <div class="giant">02</div>
+  <div class="kick">Bloco 2 · O universo</div>
+  <h1>Os modelos de <em>hospedagem.</em></h1>
+  <div class="deckline">Não existe formato melhor. Existe o formato certo para um lugar, um hóspede, um capital e um dono.</div>
+  <div class="foot"><span>E-book · Capítulo 02</span><span>12 / 40</span></div>
+  <aside class="notes">[13:30 · 30 s] Abertura do segundo bloco. Vamos passar pelos oito formatos principais e entender o que cada um exige.</aside>
+</section>
+
+<section class="slide" data-t="14:00">
+  <div class="kick">Por onde todo mundo começa</div>
+  <div class="quote">Não existe terreno bom. Existe terreno bom para alguma coisa.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <p style="margin-top:46px;max-width:40ch">Quase todo mundo começa copiando alguém: o domo do Instagram, a pousada de uma viagem, o vizinho que aluga por temporada. Copiar não é o problema. O problema é copiar sem saber o que o formato exige.</p>
+  <div class="foot"><span>Bloco 2</span><span>13 / 40</span></div>
+  <aside class="notes">[14:00 · 1 min] Pergunte quem já se inspirou em um lugar que viu nas redes. Normal. O que vamos fazer agora é olhar para cada formato pelo que ele exige em capital, em operação, em dedicação do dono e em lugar.</aside>
+</section>
+
+<section class="slide" data-t="15:00">
+  <div class="kick">Oito formatos</div>
+  <h2>O mapa do <em>universo</em></h2>
+  <div class="cols c4" style="gap:22px">
+    <div class="card"><div class="lab">01</div><h3>Hospedagem simples e temporada</h3><p>Casa, chalé, apartamento</p></div>
+    <div class="card"><div class="lab">02</div><h3>Cabanas e chalés</h3><p>Duas a seis unidades</p></div>
+    <div class="card"><div class="lab">03</div><h3>Glamping</h3><p>Domo, bolha, tenda, lodge</p></div>
+    <div class="card"><div class="lab">04</div><h3>Pousada</h3><p>Café, área comum, equipe</p></div>
+    <div class="card"><div class="lab">05</div><h3>Hotel boutique</h3><p>Poucos quartos, identidade forte</p></div>
+    <div class="card"><div class="lab">06</div><h3>Eco-lodge e wellness</h3><p>Natureza ou cuidado no centro</p></div>
+    <div class="card"><div class="lab">07</div><h3>Hotel-fazenda, hotel, resort</h3><p>Vende o dia inteiro</p></div>
+    <div class="card"><div class="lab">08</div><h3>Híbridos e uso misto</h3><p>Várias receitas juntas</p></div>
+  </div>
+  <div class="foot"><span>Bloco 2</span><span>14 / 40</span></div>
+  <aside class="notes">[15:00 · 1 min] Visão geral. Os formatos vão do mais simples (um imóvel de temporada) ao mais complexo (hotel-fazenda, resort e híbridos). Nos próximos slides, agrupamos os formatos em três pares para comparar.</aside>
+</section>
+
+<section class="slide" data-t="16:00">
+  <div class="kick">Leitura qualitativa do método</div>
+  <h2>Investimento × <em>complexidade</em></h2>
+  <svg viewBox="0 0 1380 560" style="width:100%" role="img" aria-label="Gráfico qualitativo de investimento por complexidade operacional dos oito formatos">
+    <g font-size="22">
+      <line x1="120" y1="490" x2="1340" y2="490" stroke="#0A0A0A"/><line x1="120" y1="490" x2="120" y2="20" stroke="#0A0A0A"/>
+      <text x="730" y="540" text-anchor="middle" font-size="18" letter-spacing="3" fill="#555">COMPLEXIDADE OPERACIONAL →</text>
+      <text x="40" y="260" text-anchor="middle" font-size="18" letter-spacing="3" fill="#555" transform="rotate(-90 40 260)">INVESTIMENTO →</text>
+      <g fill="#C9A84C"><circle cx="220" cy="440" r="16"/><circle cx="460" cy="320" r="16"/><circle cx="700" cy="300" r="16"/><circle cx="940" cy="200" r="16"/><circle cx="940" cy="90" r="16"/><circle cx="1310" cy="200" r="16"/><circle cx="1310" cy="80" r="16"/><circle cx="1310" cy="140" r="12" fill="#1B2117"/></g>
+      <g fill="#0A0A0A" font-weight="600"><text x="245" y="447">Temporada</text><text x="485" y="327">Cabanas e chalés</text><text x="725" y="307">Glamping</text><text x="915" y="207" text-anchor="end">Pousada</text><text x="915" y="97" text-anchor="end">Hotel boutique</text><text x="1286" y="207" text-anchor="end">Eco-lodge e wellness</text><text x="1286" y="87" text-anchor="end">Hotel-fazenda e resort</text><text x="1286" y="147" text-anchor="end" fill="#1B2117">Híbridos</text></g>
+    </g>
+  </svg>
+  <div class="foot"><span>Bloco 2 · escalas qualitativas, não dados de mercado</span><span>15 / 40</span></div>
+  <aside class="notes">[16:00 · 1 min 30 s] Deixe claro que este gráfico é uma leitura qualitativa do método, para comparar formatos entre si, e não um dado de mercado. Quanto mais para a direita, mais operação; quanto mais para cima, mais capital. Peça que cada um localize onde está o formato que tem em mente e pergunte: o seu capital e o seu tempo estão nessa altura?</aside>
+</section>
+
+<section class="slide" data-t="17:30">
+  <div class="kick">Formatos 01 e 02</div>
+  <h2>Temporada e <em>cabanas</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">Hospedagem simples e temporada</div><p style="margin-top:12px;font-family:'Playfair Display',serif;font-style:italic">«Uma casa, um chalé, um apartamento de temporada. É por onde a maioria entra. Custo baixo, operação simples, e a maior concorrência do mercado.»</p></div>
+    <div class="card"><div class="lab">Cabanas e chalés</div><p style="margin-top:12px;font-family:'Playfair Display',serif;font-style:italic">«Duas a seis unidades independentes. Ganham por privacidade e integração com a natureza. A operação já exige padrão: se cada cabana entrega uma coisa diferente, a avaliação cai.»</p></div>
+  </div>
+  <div class="foot"><span>Bloco 2 · Panorama do Desenvolvimento Hoteleiro</span><span>16 / 40</span></div>
+  <aside class="notes">[17:30 · 1 min 30 s] Temporada: entrada mais barata e mais rápida, mas é onde há mais concorrência; ganha quem combina localização, fotos, avaliação e preço. Cabanas e chalés: o primeiro formato em que padrão vira obrigação. Se cada unidade entrega uma experiência diferente, as avaliações caem. Jornada B: muitos de vocês estão aqui; o próximo salto costuma ser padrão, não mais unidades.</aside>
+</section>
+
+<section class="slide" data-t="19:00">
+  <div class="kick">Formatos 03 e 06</div>
+  <h2>Glamping e <em>wellness</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">Glamping</div><p style="margin-top:12px;font-family:'Playfair Display',serif;font-style:italic">«Domo, bolha, tenda safári, lodge. Vende a experiência de dormir dentro da paisagem. É o formato em que a vista vale mais, porque a parede é transparente ou quase.»</p></div>
+    <div class="card"><div class="lab">Eco-lodge e wellness</div><p style="margin-top:12px;font-family:'Playfair Display',serif;font-style:italic">«A natureza ou o cuidado como centro da experiência. Diária mais alta, hóspede mais exigente, e uma operação que precisa entregar o que a marca promete.»</p></div>
+  </div>
+  <div class="foot"><span>Bloco 2 · Panorama do Desenvolvimento Hoteleiro</span><span>17 / 40</span></div>
+  <aside class="notes">[19:00 · 1 min 30 s] Os dois formatos com maior potencial de diferenciação, e os mais dependentes do lugar. No glamping, a paisagem é o produto. No wellness, a promessa é o produto, e a operação precisa cumprir. Alerta: são formatos que parecem simples nas fotos e são exigentes na operação.</aside>
+</section>
+
+<section class="slide" data-t="20:30">
+  <div class="kick">Formatos 04, 05, 07 e 08</div>
+  <h2>Quando a operação <em>vira empresa</em></h2>
+  <div class="cols c4" style="gap:22px">
+    <div class="card"><h3>Pousada</h3><p>«a primeira tipologia em que gente é o maior custo.»</p></div>
+    <div class="card"><h3>Hotel boutique</h3><p>Poucos quartos, design e serviço próximo. Vende personalidade, não tamanho.</p></div>
+    <div class="card"><h3>Hotel-fazenda, hotel e resort</h3><p>«vende o dia inteiro, não só a noite.» A estrutura societária pesa mais que a arquitetura.</p></div>
+    <div class="card"><h3>Híbridos</h3><p>«Mais fontes de receita, e também mais coisas para dar errado ao mesmo tempo.»</p></div>
+  </div>
+  <div class="foot"><span>Bloco 2</span><span>18 / 40</span></div>
+  <aside class="notes">[20:30 · 1 min 30 s] A partir da pousada, a hospedagem deixa de ser um imóvel com serviço e vira uma empresa com equipe fixa, processos e gestão. O hotel boutique exige padrão de hotel em escala pequena. Hotel-fazenda e resort vendem o dia inteiro e trazem estruturas societárias complexas. Híbridos multiplicam receitas e riscos ao mesmo tempo.</aside>
+</section>
+
+<section class="slide" data-t="22:00">
+  <div class="kick">O lugar escolhe o formato</div>
+  <div class="quote" style="font-size:54px">Não é o gosto que escolhe a tipologia: é o lugar.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="cols c2" style="margin-top:46px">
+    <div class="box"><p style="margin:0">Uma bolha transparente na caatinga, sem sombra, com quarenta graus, <b>não é experiência: é forno.</b></p></div>
+    <div class="box"><p style="margin:0">A mesma bolha na serra, com frio e névoa, <b>vende o ano inteiro.</b></p></div>
+  </div>
+  <div class="foot"><span>Bloco 2</span><span>19 / 40</span></div>
+  <aside class="notes">[22:00 · 1 min] O mesmo produto pode ser um sucesso ou um fracasso dependendo do clima, do bioma e da paisagem. Na Mata Atlântica de altitude, por exemplo, o frio é atrativo, não obstáculo. O e-book traz a leitura dos seis biomas. Pergunta para a turma: o que o seu lugar tem que nenhum outro tem?</aside>
+</section>
+
+<section class="slide dark" data-t="23:00">
+  <div class="kick">Caso Zion · Urubici</div>
+  <h2>Bolhas transparentes dentro de uma <em>mata de araucária</em></h2>
+  <div class="quote" style="font-size:46px;margin-top:30px">Primeiro compreendemos o lugar. Depois desenhamos a experiência. Somente então estruturamos o restante do negócio.</div>
+  <div class="cite">Manual Oficial do Método Zion 360°</div>
+  <div class="foot"><span>Bloco 2</span><span>20 / 40</span></div>
+  <aside class="notes">[23:00 · 1 min] Conte a lógica do caso sem números: a serra catarinense, o frio, a névoa e a mata de araucária pediam um produto que colocasse o hóspede dentro da paisagem. A bolha transparente não foi escolhida por moda; foi escolhida pelo lugar. Esse é o padrão que vamos repetir em todos os projetos.</aside>
+</section>
+
+<section class="slide" data-t="24:00">
+  <div class="kick">Três decisões que parecem uma só</div>
+  <h2>"Quero abrir uma pousada" <em>são três decisões</em></h2>
+  <table>
+    <thead><tr><th>Decisão</th><th>Pergunta</th><th>Alternativas</th></tr></thead>
+    <tbody>
+      <tr><td>O que se constrói</td><td>Qual formato o lugar e o mercado sustentam?</td><td>Os oito formatos</td></tr>
+      <tr><td>Quem opera</td><td>Quem faz funcionar todos os dias?</td><td>Você, contrato de gestão, franquia ou bandeira, arrendamento, pool de locação</td></tr>
+      <tr><td>De quem é o dinheiro</td><td>Como o investimento é pago?</td><td>Próprio, sócio investidor, condo-hotel, multipropriedade, pré-venda ou permuta</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:22px;color:var(--ink2);margin-top:22px">Modelos de capital mais complexos têm regras jurídicas próprias e são tratados nos pilares Financiar e Implantar, com assessoria especializada.</p>
+  <div class="foot"><span>Bloco 2</span><span>21 / 40</span></div>
+  <aside class="notes">[24:00 · 1 min 30 s] Quase todo mundo trata essas três decisões como uma só. Cada uma tem alternativas. Operar você mesmo funciona bem até três ou quatro unidades. A franquia compra demanda pronta e paga em taxa e em liberdade. Sobre o dinheiro, deixe claro: aqui é só apresentação; condo-hotel, multipropriedade e captação têm regras e exigem profissional habilitado.</aside>
+</section>
+
+<!-- ===================== BLOCO 3 ===================== -->
+<section class="slide dark" data-t="25:30">
+  <div class="giant">03</div>
+  <div class="kick">Bloco 3 · Como entrar</div>
+  <h1>As quatro portas <em>de entrada.</em></h1>
+  <div class="deckline">Você não precisa construir um hotel para viver de hospedagem.</div>
+  <div class="foot"><span>E-book · Capítulo 03</span><span>22 / 40</span></div>
+  <aside class="notes">[25:30 · 30 s] Este é o bloco que mais surpreende quem está começando. Para quem já opera, as mesmas portas servem para crescer sem construir.</aside>
+</section>
+
+<section class="slide" data-t="26:00">
+  <div class="kick">Mapa das Quatro Portas™</div>
+  <h2>Quatro caminhos, <em>quatro riscos</em></h2>
+  <table>
+    <thead><tr><th>Porta</th><th>Capital</th><th>Prazo até abrir</th><th>Patrimônio</th><th>Risco</th></tr></thead>
+    <tbody>
+      <tr><td>1 · Construir</td><td>O maior</td><td>12 a 24 meses</td><td>Sim</td><td>O maior</td></tr>
+      <tr><td>2 · Comprar pronto</td><td>Alto</td><td>2 a 8 meses</td><td>Sim</td><td>Médio</td></tr>
+      <tr><td>3 · Alugar para hospedar</td><td>Adequação e reserva</td><td>4 a 12 semanas</td><td>Não</td><td>Médio-baixo</td></tr>
+      <tr><td>4 · Administrar o de outro</td><td>Baixo</td><td>2 a 6 semanas</td><td>Não</td><td>O menor</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span>Bloco 3 · Jornada do COMO, Etapa 01</span><span>23 / 40</span></div>
+  <aside class="notes">[26:00 · 2 min] Explique cada porta. Na Porta 3, o contrato de aluguel costuma ser de trinta a sessenta meses. Na Porta 4, a remuneração do administrador fica tipicamente entre 15% e 25% da receita, conforme o contrato. Construir e comprar criam patrimônio; alugar e administrar criam caixa e experiência. Nenhuma porta é certa para todos. Jornada B: a segunda unidade pode entrar pela Porta 3 ou 4, sem obra.</aside>
+</section>
+
+<section class="slide" data-t="28:00">
+  <div class="kick">Conta de Construir™</div>
+  <h2>A obra é só <em>uma das sete linhas</em></h2>
+  <div class="cols c2" style="align-items:start">
+    <table style="font-size:23px">
+      <thead><tr><th>Linha</th><th>Faixa</th></tr></thead>
+      <tbody>
+        <tr><td>Terreno</td><td>15–30%</td></tr><tr><td>Infraestrutura de sítio</td><td>8–25%</td></tr><tr><td>Projeto e licenciamento</td><td>4–8%</td></tr><tr><td>Obra</td><td>40–60%</td></tr><tr><td>Mobiliário, enxoval, equipamento</td><td>10–18%</td></tr><tr><td>Capital de giro</td><td>5–12%</td></tr><tr><td>Contingência</td><td>15–20%</td></tr>
+      </tbody>
+    </table>
+    <div class="box moss"><div class="lab" style="color:var(--moss)">Exemplo da fonte · ilustrativo</div><p style="margin-top:12px">Duas cabanas num terreno de 3.000 metros quadrados: a obra custou <b>R$ 380 mil</b>, mas o investimento total chegou a <b>R$ 1,065 milhão</b>.</p><p>A obra foi só <b>36%</b> do número.</p></div>
+  </div>
+  <div class="foot"><span>Bloco 3 · Jornada do COMO, Etapa 01</span><span>24 / 40</span></div>
+  <aside class="notes">[28:00 · 2 min] O erro mais comum de quem constrói é orçar só a obra. A Conta de Construir mostra as sete linhas do investimento e as faixas de referência da fonte. No exemplo ilustrativo, a obra de 380 mil virou um investimento total de 1,065 milhão. Pergunte: o seu orçamento tem as sete linhas? Tem contingência? Tem capital de giro?</aside>
+</section>
+
+<section class="slide" data-t="30:00">
+  <div class="kick">O que você tem de verdade</div>
+  <h2>Capital, risco, <em>tempo e competência</em></h2>
+  <div class="cols c2" style="gap:26px">
+    <div class="card"><div class="lab">Capital Real Disponível™</div><p style="margin-top:10px">O saldo menos quatro subtrações: reserva pessoal de 6 a 12 meses, dívidas caras, compromissos dos próximos 24 meses e capital de giro.</p></div>
+    <div class="card"><div class="lab">Teste de Risco Suportável™</div><p style="margin-top:10px">Se perder tudo, a vida muda? Você se sustenta por 24 meses? Tem 20% de aporte?</p></div>
+    <div class="card"><div class="lab">Agenda Real por Semana™</div><p style="margin-top:10px">Só contam as horas livres em horário de hóspede. Administrar: 4 a 8 h por imóvel. Operar unidades próprias: 10 a 20 h.</p></div>
+    <div class="card"><div class="lab">Mapa de Competência™</div><p style="margin-top:10px">Oito frentes, da hospitalidade à obra. Em cada uma: faço, aprendo ou contrato.</p></div>
+  </div>
+  <div class="foot"><span>Bloco 3 · Jornada do COMO, Etapa 01</span><span>25 / 40</span></div>
+  <aside class="notes">[30:00 · 2 min 30 s] Estes quatro instrumentos vêm da Jornada do COMO. Eles respondem com honestidade o que você tem: o dinheiro que pode realmente usar, o risco que pode suportar, as horas que tem de verdade e o que sabe fazer. O Comparador das Quatro Portas aplica esses quatro filtros nessa ordem: capital, risco, tempo e competência. Muita gente descobre que a porta certa para começar não é a que imaginava.</aside>
+</section>
+
+<section class="slide" data-t="32:30">
+  <div class="kick">Exemplo ilustrativo · Jornada do COMO</div>
+  <h2>Duas pessoas, cerca de R$ 250 mil, <em>dois caminhos</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">Primeira pessoa · construiu</div><p style="margin-top:10px">Terreno de R$ 120 mil, obra orçada em R$ 200 mil, gasto de R$ 310 mil. Abriu 22 meses depois. Primeiro mês positivo: mês 31.</p></div>
+    <div class="card"><div class="lab">Segunda pessoa · alugou</div><p style="margin-top:10px">Alugou uma casa por cinco anos e investiu R$ 71 mil. Abriu em sete semanas, caixa positivo no 6º mês, segunda casa no 14º.</p></div>
+  </div>
+  <div class="box" style="margin-top:30px"><p style="margin:0">«No mês trinta, a primeira tinha duas cabanas e uma dívida. A segunda tinha três casas, nenhuma dívida, e nenhum imóvel.»</p></div>
+  <div class="foot"><span>Bloco 3 · números ilustrativos</span><span>26 / 40</span></div>
+  <aside class="notes">[32:30 · 2 min] Conte a história devagar. Os números são ilustrativos, da Jornada do COMO. A lição não é que alugar é melhor do que construir. A primeira pessoa construiu patrimônio; a segunda construiu caixa e experiência. O erro é escolher sem comparar. Pergunte à turma: com o seu capital real, qual das quatro portas passaria nos quatro filtros?</aside>
+</section>
+
+<!-- ===================== BLOCO 4 ===================== -->
+<section class="slide dark" data-t="34:30">
+  <div class="giant">04</div>
+  <div class="kick">Bloco 4 · Mercado</div>
+  <h1>Como a hospedagem <em>é vendida.</em></h1>
+  <div class="deckline">Uma noite que não foi vendida hoje não pode ser vendida amanhã.</div>
+  <div class="foot"><span>E-book · Capítulo 04</span><span>27 / 40</span></div>
+  <aside class="notes">[34:30 · 30 s] Hospedagem é um produto perecível. Toda a lógica comercial nasce daí.</aside>
+</section>
+
+<section class="slide" data-t="35:00">
+  <div class="kick">Canais</div>
+  <h2>Onde a sua hospedagem <em>é vendida</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">OTAs</div><h3>Alcance imediato</h3><p>Plataformas como Airbnb e Booking. Cobram comissão por reserva, e o contato do hóspede fica com elas.</p></div>
+    <div class="card"><div class="lab">Venda direta</div><h3>Relacionamento</h3><p>Site com motor de reservas, WhatsApp, redes e base de hóspedes. Sem comissão, mas exige marca e atendimento.</p></div>
+  </div>
+  <div class="quote" style="font-size:42px;margin-top:40px">Estar em todos os canais não é distribuição. É dependência dividida.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="foot"><span>Bloco 4</span><span>28 / 40</span></div>
+  <aside class="notes">[35:00 · 2 min] Explique as ferramentas por trás dos canais sem citar marcas: o PMS organiza reservas e hóspedes, o channel manager sincroniza disponibilidade e preço entre canais, o motor de reservas vende no site, e a paridade tarifária mantém o mesmo preço para a mesma condição. Quem vende só por OTA não tem base de hóspedes e paga comissão de novo em cada estadia. E quem entra em todas as OTAs sem channel manager colhe overbooking, cancelamento e nota baixa.</aside>
+</section>
+
+<section class="slide" data-t="37:00">
+  <div class="kick">Três números</div>
+  <h2>Diária, ocupação <em>e RevPAR</em></h2>
+  <div class="cols c3">
+    <div class="card"><div class="lab">Diária média (ADR)</div><p style="margin-top:12px">Receita de hospedagem ÷ noites vendidas</p></div>
+    <div class="card"><div class="lab">Ocupação</div><p style="margin-top:12px">Noites vendidas ÷ noites disponíveis</p></div>
+    <div class="card"><div class="lab">RevPAR</div><p style="margin-top:12px">Receita de hospedagem ÷ noites disponíveis<br><b>= diária × ocupação</b></p></div>
+  </div>
+  <div class="box" style="margin-top:36px"><p style="margin:0">«ADR, RevPAR e ocupação só dizem alguma coisa lidos juntos: ocupação alta com diária baixa é trabalho sem lucro.»</p></div>
+  <div class="foot"><span>Bloco 4</span><span>29 / 40</span></div>
+  <aside class="notes">[37:00 · 1 min 30 s] Defina os três números com calma. O RevPAR mostra quanto cada unidade disponível rende de verdade, porque junta preço e ocupação num só número. No próximo slide, uma conta feita ao vivo.</aside>
+</section>
+
+<section class="slide" data-t="38:30">
+  <div class="kick">Exemplo resolvido · números ilustrativos</div>
+  <h2>Quatro cabanas, <em>um mês de 30 dias</em></h2>
+  <p style="margin:0 0 20px">4 × 30 = <b>120 noites disponíveis</b></p>
+  <table>
+    <thead><tr><th></th><th>Diária</th><th>Ocupação</th><th>Noites vendidas</th><th>Receita</th><th>RevPAR</th></tr></thead>
+    <tbody>
+      <tr><td>Cenário 1</td><td>R$ 600</td><td>50%</td><td>60</td><td>R$ 36.000</td><td>R$ 300</td></tr>
+      <tr><td>Cenário 2 · com desconto</td><td>R$ 420</td><td>70%</td><td>84</td><td>R$ 35.280</td><td>R$ 294</td></tr>
+    </tbody>
+  </table>
+  <div class="quote" style="font-size:44px;margin-top:40px">Ocupação é vaidade, margem é sobrevivência.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="foot"><span>Bloco 4</span><span>30 / 40</span></div>
+  <aside class="notes">[38:30 · 2 min 30 s] Demonstração prática. Faça a conta na frente da turma, linha a linha. Cenário 1: 600 vezes 60 noites, 36 mil reais, dividido por 120 noites disponíveis, RevPAR de 300. Cenário 2: o calendário fica mais cheio, mas a receita cai para 35.280 e o RevPAR para 294, com 24 noites a mais de limpeza, lavanderia, energia e desgaste. Lembre: desconto em diária vira a tabela nova; condição não. Prefira estadia mínima, pacote ou pagamento antecipado.</aside>
+</section>
+
+<section class="slide" data-t="41:00">
+  <div class="kick">Custo e tempo</div>
+  <h2>Custo por diária <em>e sazonalidade</em></h2>
+  <div class="cols c2">
+    <div class="card"><div class="lab">Custo por diária</div><p style="margin-top:12px">Custo mensal ÷ noites que você realmente vende. Se ele está acima da sua diária, cada reserva aumenta o prejuízo.</p></div>
+    <div class="card"><div class="lab">Sazonalidade</div><p style="margin-top:12px">«A sazonalidade é o número que mais engana, e só aparece comparando períodos.» Quem lota só em janeiro e julho precisa de caixa para atravessar a baixa.</p></div>
+  </div>
+  <div class="box moss" style="margin-top:34px"><p style="margin:0">A baixa temporada é onde o ano se decide.</p></div>
+  <div class="foot"><span>Bloco 4</span><span>31 / 40</span></div>
+  <aside class="notes">[41:00 · 1 min 30 s] Dois números que quase ninguém calcula no início. O custo por diária mostra se o preço paga a conta. A sazonalidade mostra se o caixa aguenta o ano. Dois destinos com a mesma média anual podem ser negócios completamente diferentes. Jornada B: calcule o seu RevPAR mês a mês nos últimos doze meses e o seu custo por diária.</aside>
+</section>
+
+<section class="slide" data-t="42:30">
+  <div class="kick">Demonstração · a medida de demanda mais barata que existe</div>
+  <h2>Leia o calendário <em>dos concorrentes</em></h2>
+  <div class="cols c4" style="gap:22px;margin-top:10px">
+    <div class="card"><div class="n">1</div><h3>Escolha</h3><p>dez concorrentes do seu destino e formato.</p></div>
+    <div class="card"><div class="n">2</div><h3>Abra</h3><p>os calendários nos canais de reserva, mês a mês, para os próximos seis meses.</p></div>
+    <div class="card"><div class="n">3</div><h3>Conte</h3><p>as noites já bloqueadas e anote as diárias.</p></div>
+    <div class="card"><div class="n">4</div><h3>Compare</h3><p>quem cobra mais e enche mais. «Preço alto com calendário vazio não é benchmark, é aviso.»</p></div>
+  </div>
+  <div class="foot"><span>Bloco 4 · Panorama do Desenvolvimento Hoteleiro</span><span>32 / 40</span></div>
+  <aside class="notes">[42:30 · 2 min 30 s] Se possível, faça a demonstração ao vivo: abra um canal de reservas, escolha um destino e mostre como contar as noites bloqueadas nos próximos meses. Explique que é uma leitura aproximada, porque algumas datas podem estar bloqueadas pelo próprio anfitrião, mas é a medida de demanda mais barata que existe. A diária não se escolhe; se descobre. Esta será a primeira tarefa prática da Jornada A.</aside>
+</section>
+
+<!-- ===================== BLOCO 5 ===================== -->
+<section class="slide dark" data-t="45:00">
+  <div class="giant">05</div>
+  <div class="kick">Bloco 5 · Marca e experiência</div>
+  <h1>O hóspede não compara quartos. <em>Compara motivos.</em></h1>
+  <div class="foot"><span>E-book · Capítulo 05</span><span>33 / 40</span></div>
+  <aside class="notes">[45:00 · 30 s] No mesmo destino, no mesmo mês, quase sempre existe alguém cobrando o dobro e com o calendário mais cheio. O que essa pessoa tem não é preço: é um motivo escrito pelo qual alguém a escolhe.</aside>
+</section>
+
+<section class="slide" data-t="45:30">
+  <div class="kick">O momento assinatura</div>
+  <h2>Uma coisa que <em>só acontece ali</em></h2>
+  <div class="quote" style="font-size:46px">Uma coisa que só acontece ali e que o hóspede vai fotografar. Sem isso, o produto compete por preço desde o primeiro dia.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="cols c3" style="margin-top:40px;gap:22px">
+    <div class="box"><p style="margin:0;font-size:24px">A vista ao acordar</p></div>
+    <div class="box"><p style="margin:0;font-size:24px">O ofurô na névoa</p></div>
+    <div class="box"><p style="margin:0;font-size:24px">A lareira acesa na chegada</p></div>
+  </div>
+  <div class="foot"><span>Bloco 5</span><span>34 / 40</span></div>
+  <aside class="notes">[45:30 · 2 min] O momento assinatura nasce do lugar, não do catálogo. O erro é escolher a tipologia pelo Instagram: o domo que você viu já está no catálogo de todo mundo. Peça que cada aluno pense em um momento que só o lugar dele pode oferecer. Lembre a ideia de luxo natural da Zion: luxo é o que é raro, silêncio, privacidade, natureza preservada, tempo e cuidado.</aside>
+</section>
+
+<section class="slide" data-t="47:30">
+  <div class="kick">Avaliações</div>
+  <div class="quote">As dez primeiras avaliações valem mais que o primeiro ano de anúncio.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="cols c2" style="margin-top:46px">
+    <div class="box"><p style="margin:0">«Estrutura ruim se reforma em meses; nota ruim se recupera em anos.»</p></div>
+    <div class="box moss"><p style="margin:0">Abrir com a operação meio pronta para não perder a alta temporada costuma custar mais do que perder a alta temporada.</p></div>
+  </div>
+  <div class="foot"><span>Bloco 5</span><span>35 / 40</span></div>
+  <aside class="notes">[47:30 · 2 min] A avaliação é a prova pública de que a promessa foi cumprida. Jornada A: não abra antes de a operação estar pronta. Jornada B: leia as suas últimas 30 avaliações e as dos três melhores concorrentes; a sua diferenciação real está escrita ali, no que os hóspedes elogiam e no que criticam.</aside>
+</section>
+
+<!-- ===================== BLOCO 6 ===================== -->
+<section class="slide" data-t="49:30">
+  <div class="kick">Bloco 6 · Os cinco pontos de partida</div>
+  <h2>Começar pelo lugar errado <em>custa um ano</em></h2>
+  <table style="font-size:22px">
+    <thead><tr><th>Ponto</th><th>Leitura do método</th><th>Jornada</th></tr></thead>
+    <tbody>
+      <tr><td>01 · Só a ideia</td><td>O risco é comprar antes de aprender a ler.</td><td>A</td></tr>
+      <tr><td>02 · Terreno na mira</td><td>Maior alavancagem: o que você descobre agora muda o preço que paga.</td><td>A</td></tr>
+      <tr><td>03 · Terreno comprado</td><td>A leitura agora escolhe o uso, não o terreno.</td><td>A</td></tr>
+      <tr><td>04 · Já construí</td><td>O problema agora é fazer o negócio dar dinheiro.</td><td>B</td></tr>
+      <tr><td>05 · Já opero</td><td>Calendário vazio e inconsistência na entrega.</td><td>B</td></tr>
+    </tbody>
+  </table>
+  <div class="foot"><span>Bloco 6 · Panorama do Desenvolvimento Hoteleiro</span><span>36 / 40</span></div>
+  <aside class="notes">[49:30 · 2 min] Peça que cada um se localize em um dos cinco pontos. Os cinco têm caminho; o que muda é por onde se começa. Volte à pergunta dos trinta dias da abertura: se a operação não funciona sem você, a prioridade é profissionalizar, e a jornada é a B.</aside>
+</section>
+
+<section class="slide" data-t="51:30">
+  <div class="kick">Armadilhas</div>
+  <h2>Os erros que mais custam <em>e as decisões fora de ordem</em></h2>
+  <div class="cols c2" style="align-items:start">
+    <div><div class="lab">Os cinco erros</div><ul class="dash" style="margin-top:12px"><li style="font-size:25px">Comprar pelo preço</li><li style="font-size:25px">Chamar o arquiteto antes da leitura</li><li style="font-size:25px">Achar que ocupação alta é o normal</li><li style="font-size:25px">Esquecer a infraestrutura invisível</li><li style="font-size:25px">Construir antes de medir a demanda</li></ul></div>
+    <div><div class="lab">As cinco inversões</div><ul class="dash" style="margin-top:12px"><li style="font-size:25px">Produto antes de mercado</li><li style="font-size:25px">Obra antes de modelagem</li><li style="font-size:25px">Preço antes de posicionamento</li><li style="font-size:25px">Canal antes de marca</li><li style="font-size:25px">Expansão antes de governança</li></ul></div>
+  </div>
+  <div class="box" style="margin-top:24px"><p style="margin:0;font-size:24px">Dos cinco erros, só um é definitivo: comprar a terra errada. A mesma decisão custa de três a dez vezes mais quando é tomada fora de ordem.</p></div>
+  <div class="foot"><span>Bloco 6 · Panorama e A Ordem das Coisas</span><span>37 / 40</span></div>
+  <aside class="notes">[51:30 · 2 min] Os cinco erros vêm do Panorama; as cinco inversões, de A Ordem das Coisas. Mostre que quase todo negócio de hospedagem que trava fez alguma coisa fora de ordem. Para cada inversão, diga a ordem certa: primeiro a demanda, depois o formato; primeiro a conta, depois a obra; primeiro o motivo, depois o preço; primeiro a marca, depois os canais; primeiro a gestão, depois a segunda unidade.</aside>
+</section>
+
+<!-- ===================== BLOCO 7 ===================== -->
+<section class="slide" data-t="53:30">
+  <div class="kick">Bloco 7 · O Método Zion 360°</div>
+  <h2>Base e <em>sete pilares</em></h2>
+  <div class="box moss" style="margin-bottom:24px"><p style="margin:0;font-size:26px"><b>Base:</b> Z00 Universo · Z01 Da propriedade ao negócio · Z02 Começar com os recursos que você tem</p></div>
+  <div class="cols" style="grid-template-columns:repeat(7,1fr);gap:14px">
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">D</div><p style="font-size:20px">Desenvolver</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">F</div><p style="font-size:20px">Financiar</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">E</div><p style="font-size:20px">Implantar</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">M</div><p style="font-size:20px">Marca e Experiência</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">L</div><p style="font-size:20px">Vender</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">G</div><p style="font-size:20px">Gerir</p></div>
+    <div class="card" style="padding:20px"><div class="n" style="font-size:56px">O</div><p style="font-size:20px">Operar</p></div>
+  </div>
+  <p style="font-size:24px;margin-top:26px">Cada pilar tem um Marco Zero e seis módulos. Cinquenta e duas unidades no total.</p>
+  <div class="foot"><span>Bloco 7 · E-book Capítulo 07</span><span>38 / 40</span></div>
+  <aside class="notes">[53:30 · 2 min] Apresente a estrutura. A base é comum às duas jornadas. Depois, os sete pilares seguem a cadeia de valor que vimos no início. Jornada A percorre D, F e E em profundidade e usa M e L para o lançamento. Jornada B aprofunda M, L, G e O e usa F para rentabilidade e expansão. Uma regra vale para todos: estruturar para captar, não captar para estruturar. A Zion não promete crédito, sócios ou investidores; promete método para chegar a essas conversas preparado.</aside>
+</section>
+
+<!-- ===================== ENCERRAMENTO ===================== -->
+<section class="slide" data-t="55:30">
+  <div class="kick">Exercício · E-book, Capítulo 08</div>
+  <h2>O seu Mapa dos Modelos <em>de Hospedagem</em></h2>
+  <div class="cols c2" style="align-items:start">
+    <ul class="dash" style="font-size:26px">
+      <li>Qual é o seu ponto de partida?</li>
+      <li>A sua jornada é a A ou a B? Por quê?</li>
+      <li>Quais recursos você tem hoje?</li>
+      <li>Dois formatos possíveis, com três critérios cada</li>
+      <li>O seu momento assinatura, em uma frase</li>
+      <li>Três decisões para os próximos 30 dias</li>
+    </ul>
+    <div class="box"><div class="lab">Ferramenta</div><p style="margin-top:10px">No Capítulo 8 do e-book, informe capital, tempo, experiência, lugar e ambição. A ferramenta ordena os oito formatos e explica por quê.</p></div>
+  </div>
+  <div class="foot"><span>Encerramento</span><span>39 / 40</span></div>
+  <aside class="notes">[55:30 · 3 min] Dê três minutos para que cada aluno responda pelo menos as três primeiras perguntas. Em turma ao vivo, peça que duas pessoas, uma de cada jornada, compartilhem o ponto de partida e os dois formatos escolhidos. Mostre rapidamente a ferramenta do Capítulo 8: ela não calcula retorno, só compara formatos com os recursos informados.</aside>
+</section>
+
+<section class="slide dark" data-t="58:30">
+  <div class="kick">Síntese</div>
+  <div class="quote" style="font-size:58px">Terreno parado quase nunca é falta de dinheiro. É falta de ordem.</div>
+  <div class="cite">Panorama do Desenvolvimento Hoteleiro</div>
+  <div class="cols c2" style="margin-top:50px">
+    <div class="card"><div class="lab">Entregue</div><p style="margin-top:10px">O Mapa dos Modelos preenchido e o checklist do Capítulo 8.</p></div>
+    <div class="card"><div class="lab">Próxima aula · Z01</div><p style="margin-top:10px">Da Propriedade ao Negócio de Hospedagem: o Diagnóstico de Potencial do seu imóvel, terreno ou operação.</p></div>
+  </div>
+  <div class="foot"><span>Zion Hospitality Business School</span><span>40 / 40</span></div>
+  <aside class="notes">[58:30 · 1 min 30 s] Feche com a síntese: o universo é amplo, mas a ordem é sempre a mesma. Lugar, mercado, produto, conta e só depois obra e canais. Peça a entrega do Mapa dos Modelos antes da próxima aula, porque ele é o ponto de partida do Diagnóstico de Potencial do Z01. Agradeça e abra para perguntas se houver tempo.</aside>
+</section>
+
+</div></div>
+
+<div class="notes-panel" id="notes" aria-live="polite"></div>
+<div class="bar" id="bar"></div>
+<div class="help">← → navegar · N notas · F tela cheia</div>
+<div class="ui">
+  <button type="button" id="bPrev" aria-label="Slide anterior">←</button>
+  <button type="button" id="bNotes">Notas</button>
+  <button type="button" id="bNext" aria-label="Próximo slide">→</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll(".slide"));
+  var deck=document.getElementById("deck"), notes=document.getElementById("notes"), bar=document.getElementById("bar");
+  var i=0;
+  var h=parseInt((location.hash||"").replace("#",""),10); if(h>=1&&h<=slides.length) i=h-1;
+  function fit(){var s=Math.min(window.innerWidth/1600,window.innerHeight/900);deck.style.transform="scale("+s+")";}
+  function show(n){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle("on",k===i);});
+    var a=slides[i].querySelector("aside.notes");
+    notes.innerHTML="<b>Slide "+(i+1)+" de "+slides.length+" · roteiro</b><br>"+(a?a.innerHTML:"");
+    bar.style.width=((i+1)/slides.length*100)+"%";
+    try{history.replaceState(null,"","#"+(i+1));}catch(e){}
+  }
+  document.addEventListener("keydown",function(e){
+    if(["ArrowRight","PageDown"," ","Enter"].indexOf(e.key)>-1){e.preventDefault();show(i+1);}
+    else if(["ArrowLeft","PageUp","Backspace"].indexOf(e.key)>-1){e.preventDefault();show(i-1);}
+    else if(e.key==="Home"){show(0);} else if(e.key==="End"){show(slides.length-1);}
+    else if(e.key==="n"||e.key==="N"){notes.classList.toggle("on");}
+    else if(e.key==="f"||e.key==="F"){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen();}}
+  });
+  document.getElementById("bPrev").onclick=function(){show(i-1);};
+  document.getElementById("bNext").onclick=function(){show(i+1);};
+  document.getElementById("bNotes").onclick=function(){notes.classList.toggle("on");};
+  var x0=null;
+  document.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40)show(dx<0?i+1:i-1);x0=null;},{passive:true});
+  window.addEventListener("resize",fit);
+  fit(); show(i);
+})();
+</script>
+</body>
+</html>
