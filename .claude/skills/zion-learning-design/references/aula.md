@@ -28,3 +28,6 @@ Abertura de bloco (escuro com numeral) · comparação lado a lado (tabela com b
 - 1600 × 900 escalado ao viewport; setas, espaço, toque e botões; tecla F para tela cheia; `#n` na URL abre o slide n.
 - Impressão em PDF com um slide por página.
 - Sem fotos reais quando não há material aprovado; use ícones em linha e diagramas.
+
+## Curiosidade, Reflexão e Dica (obrigatório em todo bloco)
+Cada bloco da aula tem uma faixa com três cartões (classe `trio`) no slide de abertura do bloco: uma curiosidade para despertar a atenção, uma reflexão em forma de pergunta para a turma e uma dica prática como tarefa da semana. Nos slides com a faixa, o numeral grande do fundo é ocultado para não haver texto sobreposto.

@@ -72,3 +72,10 @@ Outros componentes:
 
 ## Entrega
 Escreva cada fragmento no arquivo indicado no seu pedido. Depois valide: o HTML é bem formado (tags fechadas), sem <style>/<script>, sem travessões fora de citações literais (grep por "—"), contagem de palavras do texto visível (ex.: python3 -c com re.sub de tags) dentro de ±10% da meta. Responda com: arquivo(s), contagem de palavras, lista de frameworks ™/® usados com a fonte, e qualquer dúvida de conteúdo.
+
+## Curiosidade, Reflexão e Dica (obrigatório em todo capítulo)
+Logo antes do exercício final de cada capítulo, inclua um bloco com três notas curtas (de 1 a 3 frases cada):
+
+<div class="trio"><div><div class="label">Curiosidade</div><p>Fato surpreendente ligado ao tema, extraído das fontes ou de pesquisa com referência.</p></div><div class="r"><div class="label">Reflexão</div><p>Pergunta que leva o leitor ao próprio caso.</p></div><div class="d"><div class="label">Dica</div><p>Ação prática e concreta para a semana.</p></div></div>
+
+A curiosidade nunca traz dado sem fonte. Fatos de pesquisa têm autor e ano.
