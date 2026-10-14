@@ -177,6 +177,7 @@ h1,h2,h3,h4,h5,.word,.big,.quote,.deckline,.deck,.pull,.num,.giant,.dropcap::fir
 .trio p{font-size:15px;line-height:1.55;text-align:left!important;margin:0 0 .7em}
 @media print{.body .trio{column-span:all;break-inside:avoid}}
 @media (max-width:560px){.chapter .num{font-size:140px;opacity:.04}}
+@media print{.chapter .num{display:none}.body>.tag,.body>h2,.body>.deck,.body>.rule-gold,.body>.box:first-of-type,.body>h3{column-span:all}.body>h2{max-width:none}}
 
 details{margin:.2em 0 1em}
 details summary{cursor:pointer;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:var(--moss)}
