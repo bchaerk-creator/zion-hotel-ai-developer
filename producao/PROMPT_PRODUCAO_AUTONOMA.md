@@ -160,9 +160,31 @@ Ele está ausente: não faça perguntas que bloqueiem o trabalho. Assuma o padr�
 
 - Português do Brasil, conversa de café com um amigo inteligente: profissional, direto e natural.
 - Sem jargão corporativo e sem travessões.
-- Identidade Zion: Playfair Display e Aventa, cores #1B2117, #FEF5F0, #C9A84C e #0A0A0A.
 - Duas jornadas em todo módulo.
 - Sem neuromitos.
+
+### Identidade visual Zion (pedido expresso de Bruno, 14/10/2026)
+
+Todo e-book e toda aula têm que parecer da mesma coleção do Z00: bonitos, sóbrios, elegantes e coerentes entre si.
+
+- Antes de diagramar, leia as skills `zion-editorial-ebook` e `zion-brand` (ou `zion-brand-system`), se estiverem disponíveis, e o CSS do Z00.
+- Reaproveite o CSS do Z00 sem inventar estilos novos. Mantenha:
+  - a paleta: verde musgo #1B2117, papel #FEF5F0, dourado #C9A84C e tinta #0A0A0A;
+  - as fontes Playfair Display e Aventa, embutidas;
+  - a capa verde musgo com numeral gigante e itálico dourado;
+  - as aberturas de capítulo, as caixas, as citações e os diagramas no mesmo traço.
+- O dourado é usado com parcimônia. Nada de cores, gradientes ou ícones fora da paleta.
+- Diagramas próprios, limpos e legíveis, sem texto sobreposto. No máximo duas fotos de página inteira por volume, e nunca uma imagem gerada apresentada como foto real da Zion.
+- Antes de publicar, compare lado a lado uma página e um slide do módulo novo com o Z00. Se destoar, corrija.
+
+### Aulas totalmente tutoriais e didáticas
+
+- A aula ensina passo a passo, como um tutor ao lado do aluno, e não como uma palestra.
+- Cada conceito vem com um visual: gráfico, comparação, mapa mental ou fórmula.
+- Use um exemplo resolvido, revelado passo a passo, e depois deixe o aluno fazer o seu.
+- Faça previsões com revelação, quiz relâmpago e exercício.
+- Termine com uma tarefa concreta ligada ao entregável.
+- Os slides trazem gatilhos curtos. A explicação completa fica nas notas do apresentador, com tempo marcado.
 
 ## 11. Nunca
 
