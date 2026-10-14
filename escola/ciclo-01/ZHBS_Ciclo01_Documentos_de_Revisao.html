@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa Mestre ZHBS</title>
+<meta name="description" content="Ciclo 1 da Zion Hospitality Business School: auditoria e cinco documentos para revisão de Bruno Chaerk.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --musgo:#1B2117; --off:#FEF5F0; --ouro:#C9A84C; --preto:#0A0A0A;
+  --bg:#FEF5F0; --surface:#FFFFFF; --surface-2:#F6ECE4; --ink:#1B2117; --ink-2:#4A5244; --line:#E4D8CC;
+  --accent:#8C6E1F; --accent-strong:#C9A84C; --chip:#EFE4D7;
+  --ok:#2F6B3A; --warn:#8A5A00; --bad:#9B2C2C; --info:#2D5577;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#121610; --surface:#1B2117; --surface-2:#232A1E; --ink:#FEF5F0; --ink-2:#C9C2B8; --line:#343D2D;
+    --accent:#C9A84C; --accent-strong:#C9A84C; --chip:#2A3224;
+    --ok:#7CC48A; --warn:#E3B04B; --bad:#E58A8A; --info:#8DB6DA;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#121610; --surface:#1B2117; --surface-2:#232A1E; --ink:#FEF5F0; --ink-2:#C9C2B8; --line:#343D2D;
+  --accent:#C9A84C; --accent-strong:#C9A84C; --chip:#2A3224;
+  --ok:#7CC48A; --warn:#E3B04B; --bad:#E58A8A; --info:#8DB6DA;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.6 Inter,system-ui,sans-serif}
+h1,h2,h3,h4{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;line-height:1.15;margin:0 0 .5em}
+h1{font-size:clamp(2.2rem,6vw,3.6rem)}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-top:1.6em}
+h3{font-size:1.45rem;margin-top:1.4em}
+h4{font-size:1.15rem;margin-top:1.1em}
+p,li{max-width:76ch;overflow-wrap:anywhere}
+code{overflow-wrap:anywhere}
+a{color:var(--accent)}
+small,.muted{color:var(--ink-2)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+header.hero{background:var(--musgo);color:var(--off);padding:56px 0 40px;border-bottom:3px solid var(--ouro)}
+.hero .kicker{letter-spacing:.22em;text-transform:uppercase;font-size:.75rem;color:var(--ouro);font-weight:600}
+.hero h1{color:var(--off);margin:.3em 0 .2em}
+.hero p{color:#E8DED4;max-width:70ch}
+.hero .meta{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:18px;font-size:.85rem;color:#D8CEC2}
+.hero .meta b{color:var(--ouro);font-weight:600}
+nav.tabs{position:sticky;top:0;z-index:5;background:var(--surface);border-bottom:1px solid var(--line)}
+nav.tabs .wrap{display:flex;gap:4px;overflow-x:auto;scrollbar-width:thin}
+nav.tabs button{flex:0 0 auto;border:0;background:none;color:var(--ink-2);font:600 .85rem Inter,sans-serif;padding:14px 12px;border-bottom:2px solid transparent;cursor:pointer;white-space:nowrap}
+nav.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--accent-strong)}
+nav.tabs button:focus-visible{outline:2px solid var(--accent-strong);outline-offset:-2px}
+main{padding:24px 0 80px}
+section.doc{display:none}
+section.doc.active{display:block}
+.doc-head{border-bottom:1px solid var(--line);padding-bottom:14px;margin-bottom:8px}
+.doc-head .num{font:600 .75rem Inter;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;margin:14px 0}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.g3{grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.note{border-left:3px solid var(--accent-strong);background:var(--surface-2);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+.alert{border-left:3px solid var(--bad);background:var(--surface-2);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0}
+.chip{display:inline-block;background:var(--chip);color:var(--ink);border-radius:999px;padding:2px 10px;font-size:.75rem;font-weight:600;margin:2px 4px 2px 0;white-space:nowrap}
+.chip.p1{background:var(--musgo);color:var(--ouro)}
+.chip.p2{background:var(--ouro);color:var(--preto)}
+.cls{font-weight:600;font-size:.8rem}
+.cls.aproveitar{color:var(--ok)}.cls.atualizar{color:var(--info)}.cls.complementar{color:var(--warn)}.cls.refazer{color:var(--bad)}.cls.nl{color:var(--bad)}.cls.nao{color:var(--ink-2)}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;font-size:.85rem}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-bottom:1px solid var(--line)}
+th{background:var(--surface-2);font-weight:600;position:sticky;top:0}
+td.code{font-weight:700;font-family:"Cormorant Garamond",serif;font-size:1.05rem;white-space:nowrap}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.filters button,.filters select,.filters input{font:500 .85rem Inter;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:7px 12px;cursor:pointer}
+.filters input{border-radius:8px;cursor:text;min-width:200px;flex:1 1 200px}
+.filters button[aria-pressed="true"]{background:var(--musgo);color:var(--ouro);border-color:var(--musgo)}
+.mods{display:grid;gap:12px}
+.mod{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:14px 16px}
+.mod header{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 10px;margin-bottom:6px}
+.mod .c{font:700 1.35rem "Cormorant Garamond",serif;color:var(--accent)}
+.mod .n{font:600 1.05rem Inter}
+.mod dl{display:grid;grid-template-columns:150px 1fr;gap:4px 12px;margin:8px 0 0;font-size:.88rem}
+.mod dt{color:var(--ink-2);font-weight:600}
+.mod dd{margin:0}
+@media (max-width:640px){.mod dl{grid-template-columns:1fr}.mod dt{margin-top:6px}}
+.pill-row{display:flex;flex-wrap:wrap;gap:6px}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}
+.kpi div{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.kpi b{display:block;font:700 1.9rem "Cormorant Garamond",serif;color:var(--accent)}
+.kpi span{font-size:.8rem;color:var(--ink-2)}
+svg text{font-family:Inter,sans-serif}
+.map svg{width:100%;height:auto;display:block}
+ol.toc{padding-left:1.3em}
+ol.toc li{margin:.35em 0}
+.timeline{border-left:2px solid var(--accent-strong);margin:10px 0 10px 6px;padding-left:18px}
+.timeline .t{margin:0 0 14px;position:relative}
+.timeline .t::before{content:"";position:absolute;left:-25px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--ouro);border:2px solid var(--surface)}
+.timeline .t b{display:block}
+.decisions li{margin:.5em 0}
+footer{border-top:1px solid var(--line);padding:24px 0;color:var(--ink-2);font-size:.85rem}
+.print-only{display:none}
+@media print{nav.tabs{display:none}section.doc{display:block!important;page-break-before:always}}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="wrap">
+    <div class="kicker">Zion Hospitality Business School · A Escola do Hoteleiro</div>
+    <h1>Ciclo 1 · Auditoria e Mapa Mestre</h1>
+    <p>Cinco documentos para revisão de Bruno Chaerk: Mapa Mestre, Matriz das 52 unidades, Plano de Produção, Estrutura do Z00 e Modelo Operacional da Mentoria. Antes deles, a auditoria dos materiais existentes.</p>
+    <div class="meta">
+      <span><b>Método</b> Zion 360°</span>
+      <span><b>Produto</b> Mentoria Zion 360° | Negócios de Hospedagem</span>
+      <span><b>Versão</b> Work 1.0 · rascunho para aprovação</span>
+      <span><b>Data</b> 14/10/2026</span>
+      <span><b>Status</b> nada publicado · nenhum sistema alterado</span>
+    </div>
+  </div>
+</header>
+
+<nav class="tabs" aria-label="Documentos">
+  <div class="wrap" role="tablist">
+    <button role="tab" data-t="aud" aria-selected="true">0 · Auditoria</button>
+    <button role="tab" data-t="d1" aria-selected="false">1 · Mapa Mestre</button>
+    <button role="tab" data-t="d2" aria-selected="false">2 · Matriz 52</button>
+    <button role="tab" data-t="d3" aria-selected="false">3 · Plano de Produção</button>
+    <button role="tab" data-t="d4" aria-selected="false">4 · Estrutura Z00</button>
+    <button role="tab" data-t="d5" aria-selected="false">5 · Modelo da Mentoria</button>
+    <button role="tab" data-t="dec" aria-selected="false">Decisões pendentes</button>
+  </div>
+</nav>
+
+<main class="wrap">
+
+<!-- ================= AUDITORIA ================= -->
+<section class="doc active" id="aud" role="tabpanel">
+  <div class="doc-head"><div class="num">Ciclo 1 · Auditoria</div><h2 style="margin-top:.2em">O que já existe e o que fazer com cada material</h2></div>
+
+  <div class="kpi">
+    <div><b>50</b><span>registros no Airtable (Z00 + 49 códigos D/F/E/M/L/G/O)</span></div>
+    <div><b>57</b><span>fontes já inventariadas no Airtable (14/10)</span></div>
+    <div><b>25</b><span>dessas fontes marcadas "não localizado"</span></div>
+    <div><b>0</b><span>materiais aprovados até hoje</span></div>
+    <div><b>11</b><span>achados novos nesta auditoria (fora do inventário)</span></div>
+  </div>
+
+  <h3>Onde procurei (somente leitura)</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">Airtable · app2BCgAMPRqaaeRp</h4><p>Tabela <b>Módulos</b> (50 registros, todos na etapa "1 · Auditoria", exceto D01 em "2 · Plano do módulo") e tabela <b>Fontes existentes</b> (57 registros). Nada foi alterado.</p></div>
+    <div class="card"><h4 style="margin-top:0">Google Drive</h4><p>Volumes 01 a 07 do Método 360°, as 10 Etapas da Jornada do COMO, Panorama, A Ordem das Coisas, manuscritos de julho, Manual Oficial do Método e documentos institucionais.</p></div>
+    <div class="card"><h4 style="margin-top:0">ClickMax · Bruno's Workspace</h4><p>Conexão confirmada (papel: owner). O inventário registra o curso "Fundação Zion · Os 3 Entregáveis" com Marco Zero e Pilar 01 completos. Nenhuma ação foi executada.</p></div>
+    <div class="card"><h4 style="margin-top:0">Notion, Dropbox e GitHub</h4><p>Notion: a Bíblia Operacional Zion (manuais e cerca de 45 vídeos da operação real). Dropbox: um vídeo de 2024. GitHub: site institucional e o agente "Zion Score" (nota de 0 a 10 para o território).</p></div>
+  </div>
+
+  <div class="alert"><b>Divergências entre o registro existente e este Super Prompt.</b> O Airtable usa a marca "Zion Hotel Academy", chama os pilares de "trilhas", tem 50 módulos (só Z00 na base) e uma meta de 80 páginas por e-book. O Super Prompt pede "Zion Hospitality Business School", 3 módulos de base (52 unidades) e e-books de cerca de 30 páginas. Não alterei nenhum registro: a reconciliação está na aba <i>Decisões pendentes</i>. O plano do D01, que já foi enviado e aguarda cinco decisões, prevê 80 páginas e precisa ser reescalonado.</div>
+
+  <h3>Classificação dos materiais</h3>
+  <div class="filters" id="audFilters"></div>
+  <div class="table-wrap"><table id="audTable"><thead><tr><th>Material</th><th>Linha</th><th>Local</th><th>Págs.</th><th>Classificação</th><th>Usar em</th><th>Observação</th></tr></thead><tbody></tbody></table></div>
+  <p class="muted"><small>Legenda: <span class="cls aproveitar">Aproveitar</span> usar quase como está · <span class="cls atualizar">Atualizar</span> condensar ou reescrever para o novo padrão · <span class="cls complementar">Complementar</span> é base parcial e faltam temas · <span class="cls refazer">Refazer</span> não ensina, precisa ser refeito · <span class="cls nl">Não localizado</span> registrado, mas o arquivo não foi encontrado · <span class="cls nao">Não lido</span> localizado, mas não analisado nesta rodada.</small></p>
+
+  <h3>Leitura geral</h3>
+  <ul>
+    <li><b>Há muito material, e quase todo é longo demais para o novo padrão.</b> Os volumes têm de 156 a 215 páginas e as Etapas da Jornada, de 80 a 112. O trabalho principal é <b>condensar e reorganizar</b>, não escrever do zero.</li>
+    <li><b>A Jornada do COMO é a melhor base didática para a mentoria.</b> A linguagem é acessível e voltada à execução, e já traz ferramentas (viabilidade, briefing de uma página, Plano de 90 dias, manual mínimo de 14 documentos).</li>
+    <li><b>A Bíblia Operacional (Notion) é o maior ativo para a Jornada B e o pilar OPERAR.</b> Ela documenta a operação real, mas não está no inventário. Para usá-la como caso, preciso da sua autorização.</li>
+    <li><b>Os decks do Gamma (HM 1 a 10) precisam ser refeitos.</b> O diagnóstico de 13/10 concluiu que eles resumem o sumário e não ensinam.</li>
+    <li><b>Lacunas sem fonte:</b> F00, F05 (crédito), E02 (equipe técnica), E04 (incorporação), M05 (ambientação e wellness), L00, G00, G05, M00. Os temas regulatórios (CVM, multipropriedade, crédito oficial) exigem pesquisa em fonte oficial.</li>
+    <li><b>Risco imediato:</b> o PDF do Panorama linkado no ClickMax é privado, então o aluno vê "solicitar acesso". Corrigir isso exige sua autorização.</li>
+  </ul>
+</section>
+
+<!-- ================= DOC 1 ================= -->
+<section class="doc" id="d1" role="tabpanel">
+  <div class="doc-head"><div class="num">Documento 1</div><h2 style="margin-top:.2em">Mapa Mestre da Zion Hospitality Business School</h2></div>
+
+  <h3>1. Arquitetura institucional</h3>
+  <div class="grid g3">
+    <div class="card"><small class="muted">Grupo</small><h4 style="margin:.2em 0">Zion Hotel Group International</h4><p>É o grupo controlador. A escola é uma das suas unidades, ao lado do desenvolvimento, da gestão e da operação.</p></div>
+    <div class="card"><small class="muted">Instituição</small><h4 style="margin:.2em 0">Zion Hospitality Business School</h4><p>Assinatura: <b>A Escola do Hoteleiro</b>. Instituição educacional permanente.</p></div>
+    <div class="card"><small class="muted">Metodologia</small><h4 style="margin:.2em 0">Método Zion 360°</h4><p>Base comum de todas as formações: 3 módulos de base e 7 pilares.</p></div>
+    <div class="card"><small class="muted">Primeiro produto</small><h4 style="margin:.2em 0">Mentoria Zion 360° | Negócios de Hospedagem</h4><p><i>Da Ideia ao Negócio. Da Hospedagem ao Destino.</i></p></div>
+    <div class="card"><small class="muted">Futuras formações (fora do escopo atual)</small><h4 style="margin:.2em 0">Portfólio da escola</h4><p>Incorporação imobiliária turística, desenvolvimento hoteleiro, multipropriedade, gestão hoteleira e investimentos. Cada uma reaproveita os pilares do método.</p></div>
+    <div class="card"><small class="muted">Fundador</small><h4 style="margin:.2em 0">Bruno Chaerk</h4><p>Autor do método, mentor do piloto e aprovador de cada etapa.</p></div>
+  </div>
+
+  <h3>2. Mapa visual da escola</h3>
+  <div class="card map">
+    <svg viewBox="0 0 1000 720" role="img" aria-label="Mapa mental: no centro o Método Zion 360°, ao redor a base Z00 a Z02 e os sete pilares com seus códigos">
+      <defs><style>
+        .ln{stroke:var(--accent-strong);stroke-width:1.5;opacity:.55}
+        .nd{fill:var(--surface);stroke:var(--accent-strong);stroke-width:1.5}
+        .ndb{fill:var(--musgo);stroke:var(--ouro);stroke-width:2}
+        .tt{fill:var(--ink);font-weight:700;font-size:17px}
+        .ts{fill:var(--ink-2);font-size:12.5px}
+        .tb{fill:var(--off);font-weight:700;font-size:17px}
+        .tbs{fill:var(--ouro);font-size:12.5px}
+      </style></defs>
+      <g>
+        <line class="ln" x1="500" y1="360" x2="500" y2="100"/><line class="ln" x1="500" y1="360" x2="684" y2="176"/>
+        <line class="ln" x1="500" y1="360" x2="760" y2="360"/><line class="ln" x1="500" y1="360" x2="684" y2="544"/>
+        <line class="ln" x1="500" y1="360" x2="500" y2="620"/><line class="ln" x1="500" y1="360" x2="316" y2="544"/>
+        <line class="ln" x1="500" y1="360" x2="240" y2="360"/><line class="ln" x1="500" y1="360" x2="316" y2="176"/>
+      </g>
+      <circle cx="500" cy="360" r="100" class="ndb"/>
+      <text x="500" y="340" text-anchor="middle" class="tbs">ZION HOSPITALITY</text>
+      <text x="500" y="358" text-anchor="middle" class="tbs">BUSINESS SCHOOL</text>
+      <text x="500" y="388" text-anchor="middle" class="tb">Método Zion 360°</text>
+      <!-- nodes -->
+      <g><rect x="405" y="64" width="190" height="72" rx="10" class="ndb"/><text x="500" y="94" text-anchor="middle" class="tb">BASE</text><text x="500" y="118" text-anchor="middle" class="tbs">Z00 · Z01 · Z02</text></g>
+      <g><rect x="589" y="140" width="190" height="72" rx="10" class="nd"/><text x="684" y="170" text-anchor="middle" class="tt">D · DESENVOLVER</text><text x="684" y="194" text-anchor="middle" class="ts">D00 a D06</text></g>
+      <g><rect x="665" y="324" width="190" height="72" rx="10" class="nd"/><text x="760" y="354" text-anchor="middle" class="tt">F · FINANCIAR</text><text x="760" y="378" text-anchor="middle" class="ts">F00 a F06</text></g>
+      <g><rect x="589" y="508" width="190" height="72" rx="10" class="nd"/><text x="684" y="538" text-anchor="middle" class="tt">E · IMPLANTAR</text><text x="684" y="562" text-anchor="middle" class="ts">E00 a E06</text></g>
+      <g><rect x="385" y="584" width="230" height="72" rx="10" class="nd"/><text x="500" y="614" text-anchor="middle" class="tt">M · MARCA E EXPERIÊNCIA</text><text x="500" y="638" text-anchor="middle" class="ts">M00 a M06</text></g>
+      <g><rect x="221" y="508" width="190" height="72" rx="10" class="nd"/><text x="316" y="538" text-anchor="middle" class="tt">L · VENDER</text><text x="316" y="562" text-anchor="middle" class="ts">L00 a L06</text></g>
+      <g><rect x="145" y="324" width="190" height="72" rx="10" class="nd"/><text x="240" y="354" text-anchor="middle" class="tt">G · GERIR</text><text x="240" y="378" text-anchor="middle" class="ts">G00 a G06</text></g>
+      <g><rect x="221" y="140" width="190" height="72" rx="10" class="nd"/><text x="316" y="170" text-anchor="middle" class="tt">O · OPERAR</text><text x="316" y="194" text-anchor="middle" class="ts">O00 a O06</text></g>
+      <!-- journeys -->
+      <g><rect x="12" y="20" width="250" height="78" rx="10" class="nd"/><text x="137" y="50" text-anchor="middle" class="tt">JORNADA A · Quero começar</text><text x="137" y="74" text-anchor="middle" class="ts">Plano de Estruturação do Negócio</text></g>
+      <g><rect x="738" y="20" width="250" height="78" rx="10" class="nd"/><text x="863" y="50" text-anchor="middle" class="tt">JORNADA B · Quero crescer</text><text x="863" y="74" text-anchor="middle" class="ts">Plano de Profissionalização</text></g>
+      <g><rect x="12" y="630" width="300" height="78" rx="10" class="nd"/><text x="162" y="660" text-anchor="middle" class="tt">8 entregáveis por módulo</text><text x="162" y="684" text-anchor="middle" class="ts">E-book · Slides · Roteiro · Workbook · Ferramenta</text></g>
+      <g><rect x="688" y="630" width="300" height="78" rx="10" class="nd"/><text x="838" y="660" text-anchor="middle" class="tt">Saída da mentoria</text><text x="838" y="684" text-anchor="middle" class="ts">Plano individual + Dossiê final</text></g>
+    </svg>
+  </div>
+
+  <h3>3. Metodologia: Método Zion 360°</h3>
+  <p>O método organiza as decisões de um negócio de hospedagem em uma sequência. Primeiro se entende o universo e o próprio ponto de partida (base). Depois se percorrem sete pilares, cada um aberto por um <b>Marco Zero</b> e seguido de seis módulos especializados. O sexto módulo de cada pilar fecha com uma <b>entrega final</b>. A filosofia vem do Manual Oficial do Método: <i>pensar como Developer antes de agir como construtor</i>.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Pilar</th><th>Pergunta que responde</th><th>Entrega final do pilar</th><th>Trilha no Airtable</th></tr></thead>
+    <tbody>
+      <tr><td class="code">Base</td><td>Que negócio é este, de onde eu parto e com que recursos?</td><td>Mapa dos Modelos · Diagnóstico do Imóvel · Plano Inicial</td><td>00 · Geral</td></tr>
+      <tr><td class="code">D · Desenvolver</td><td>O que construir ou transformar, onde e para quem?</td><td>Dossiê de Desenvolvimento Zion</td><td>01 · Desenvolvimento Hoteleiro</td></tr>
+      <tr><td class="code">F · Financiar</td><td>Quanto custa, quanto rende e como pagar?</td><td>Business Plan Financeiro e Dossiê de Bancabilidade</td><td>02 · Inteligência Financeira</td></tr>
+      <tr><td class="code">E · Implantar</td><td>Como tirar do papel com segurança técnica e legal?</td><td>Plano Mestre de Implantação Zion</td><td>03 · Desenvolvimento Técnico</td></tr>
+      <tr><td class="code">M · Marca e Experiência</td><td>Por que o hóspede vai escolher e lembrar de você?</td><td>Brandbook Zion aplicado</td><td>04 · Identidade, Marca e Experiência</td></tr>
+      <tr><td class="code">L · Vender</td><td>Como encher, a que preço e por quais canais?</td><td>Máquina Comercial e Plano de Aceleração de 90 Dias</td><td>05 · Marketing, Lançamento e Vendas</td></tr>
+      <tr><td class="code">G · Gerir</td><td>Como o dono comanda o negócio pelos números?</td><td>Sistema de Gestão Hoteleira Zion</td><td>06 · Gestão Hoteleira</td></tr>
+      <tr><td class="code">O · Operar</td><td>Como entregar o padrão todos os dias sem depender do dono?</td><td>Manual Operacional Hoteleiro Zion</td><td>07 · Operação Hoteleira</td></tr>
+    </tbody></table></div>
+  <p class="muted"><small>A ordem dos pilares e os 49 códigos foram mantidos exatamente como estão no Airtable. A única mudança proposta é o nome de exibição (verbo de ação no lugar do nome da trilha). Essa mudança aguarda sua aprovação.</small></p>
+
+  <h3>4. As duas jornadas</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">Jornada A · Quero começar</h4><p><b>Para quem:</b> quem tem terreno, imóvel, capital ou ideia e ainda não opera.</p><p><b>Ênfase:</b> Base completa, D, F e E em profundidade; M e L para o lançamento; G e O em visão de desenho.</p><p><b>Resultado:</b> Plano de Estruturação do Negócio de Hospedagem.</p></div>
+    <div class="card"><h4 style="margin-top:0">Jornada B · Quero crescer</h4><p><b>Para quem:</b> quem já opera cabanas, chalés, Airbnb, pousada ou pequeno hotel.</p><p><b>Ênfase:</b> Base (diagnóstico do ativo existente), M, L, G e O em profundidade; F para rentabilidade e expansão; D e E para ampliação ou retrofit.</p><p><b>Resultado:</b> Plano de Profissionalização e Crescimento da Hospedagem.</p></div>
+  </div>
+  <div class="note">Uma única formação. Cada módulo traz uma seção "Aplicação na Jornada A" e outra "Aplicação na Jornada B", e o workbook tem exercícios marcados A, B ou A+B. A matriz (Documento 2) indica a jornada prioritária de cada unidade.</div>
+
+  <h3>5. Produtos da escola</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Produto</th><th>Estado</th><th>Usa</th></tr></thead>
+    <tbody>
+      <tr><td><b>Biblioteca Zion 360°</b> (52 unidades × 8 entregáveis)</td><td>Em construção; começa pela base</td><td>Todas as formações</td></tr>
+      <tr><td><b>Mentoria Zion 360° | Negócios de Hospedagem</b></td><td>Piloto em desenho (Documento 5)</td><td>Base + pilares por prioridade</td></tr>
+      <tr><td>Curso gratuito "Fundação Zion" (ClickMax)</td><td>Existe, não aprovado</td><td>Pode virar porta de entrada para Z00</td></tr>
+      <tr><td>Futuras formações (incorporação, multipropriedade, gestão, investimentos)</td><td>Fora do escopo agora</td><td>Pilares D, E, F e G em profundidade</td></tr>
+    </tbody></table></div>
+
+  <h3>6. Entregáveis por módulo especializado</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Código</th><th>Entregável</th><th>Padrão</th><th>Formato</th></tr></thead>
+    <tbody>
+      <tr><td class="code">A</td><td>E-book (fonte mestre)</td><td>~30 páginas, exemplos, caso, exercícios, diagramas, checklists, referências verificáveis, aplicação A e B</td><td>HTML + CSS, layout editorial, exportável em PDF</td></tr>
+      <tr><td class="code">B</td><td>Apresentação</td><td>15 a 20 slides tutoriais, sem copiar o e-book</td><td>HTML (ou Gamma, se você preferir)</td></tr>
+      <tr><td class="code">C</td><td>Roteiro da aula</td><td>20 a 35 min, narração, sequência de slides, demonstrações e transições</td><td>Documento</td></tr>
+      <tr><td class="code">D</td><td>Workbook</td><td>3 a 6 páginas, campos preenchíveis, plano de ação</td><td>HTML com formulário ou PDF preenchível</td></tr>
+      <tr><td class="code">E</td><td>Ferramenta</td><td>Uma ferramenta principal por módulo</td><td>Planilha, calculadora HTML, template ou matriz</td></tr>
+      <tr><td class="code">F</td><td>Avaliação</td><td>5 perguntas + 1 atividade aplicada + critérios objetivos</td><td>Documento / formulário</td></tr>
+      <tr><td class="code">G</td><td>Kit NotebookLM</td><td>Fonte aprovada, links, prompts (áudio, vídeo, mapa mental, quiz, flashcards, guia)</td><td>Pacote de instruções; criação manual</td></tr>
+      <tr><td class="code">H</td><td>Resumo executivo</td><td>1 página: conceitos, decisões, checklist e próxima atividade</td><td>HTML / PDF</td></tr>
+    </tbody></table></div>
+  <p class="muted"><small>Para os Marcos Zero proponho uma versão reduzida: e-book de cerca de 15 páginas, 10 a 12 slides e workbook de 2 a 3 páginas. Essa redução aguarda sua aprovação.</small></p>
+</section>
+
+<!-- ================= DOC 2 ================= -->
+<section class="doc" id="d2" role="tabpanel">
+  <div class="doc-head"><div class="num">Documento 2</div><h2 style="margin-top:.2em">Matriz das 52 unidades</h2>
+  <p>Os 49 códigos e títulos vêm do Airtable sem alteração. Z01 e Z02 são novos, e o título do Z00 é a proposta atual. A coluna "existente/faltante" resume a auditoria. Prioridades: <span class="chip p1">P1</span> base, produzir agora · <span class="chip p2">P2</span> núcleo do piloto (primeiros 3 meses) · <span class="chip">P3</span> aprofundamento · <span class="chip">P4</span> avançado ou regulatório (pesquisa jurídica antes).</p></div>
+  <div class="filters" id="pilarFilters"></div>
+  <div class="filters"><input id="q" type="search" placeholder="Buscar código, tema ou ferramenta" aria-label="Buscar na matriz">
+    <select id="jf" aria-label="Filtrar por jornada"><option value="">Todas as jornadas</option><option value="A">Prioritário Jornada A</option><option value="B">Prioritário Jornada B</option></select>
+    <select id="pf" aria-label="Filtrar por prioridade"><option value="">Todas as prioridades</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option></select></div>
+  <p class="muted" id="count"></p>
+  <div class="mods" id="mods"></div>
+</section>
+
+<!-- ================= DOC 3 ================= -->
+<section class="doc" id="d3" role="tabpanel">
+  <div class="doc-head"><div class="num">Documento 3</div><h2 style="margin-top:.2em">Plano de Produção</h2></div>
+
+  <h3>1. Ciclo de produção por módulo</h3>
+  <div class="timeline">
+    <div class="t"><b>Etapa 1 · Plano editorial</b>Objetivos, sumário, exemplos, fontes, ferramenta e exercício. <i>Bruno aprova o plano.</i></div>
+    <div class="t"><b>Etapa 2 · E-book (fonte mestre)</b>Redação, diagramas, caso e referências, em HTML. <i>Bruno aprova o e-book.</i></div>
+    <div class="t"><b>Etapa 3 · Derivados</b>Slides, roteiro, workbook, ferramenta, avaliação, kit NotebookLM e resumo, todos derivados do e-book aprovado.</div>
+    <div class="t"><b>Etapa 4 · Auditoria de qualidade</b>Checklist do item 5 abaixo, aplicada a cada arquivo.</div>
+    <div class="t"><b>Etapa 5 · Aprovação do pacote</b>Lista de arquivos, revisões feitas e pendências. <i>Bruno aprova o pacote.</i></div>
+    <div class="t"><b>Etapa 6 · Hospedagem e links</b>Somente após autorização específica.</div>
+    <div class="t"><b>Etapa 7 · ClickMax</b>Somente após autorização explícita, com evidências registradas.</div>
+  </div>
+
+  <h3>2. Ordem de execução e ondas</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Onda</th><th>Unidades</th><th>Por quê</th><th>Pré-requisito</th></tr></thead>
+    <tbody>
+      <tr><td class="code">0</td><td>Documentos 1 a 5 deste ciclo</td><td>Fixar a estrutura antes de produzir</td><td>Sua aprovação</td></tr>
+      <tr><td class="code">1</td><td>Z00 → Z01 → Z02</td><td>Base comum das duas jornadas; primeiros encontros do piloto</td><td>Onda 0</td></tr>
+      <tr><td class="code">2</td><td>Marcos Zero D00, F00, E00, M00, L00, G00, O00</td><td>Curtos, abrem cada pilar e dão ao aluno o mapa completo cedo</td><td>Z00</td></tr>
+      <tr><td class="code">3</td><td>Núcleo do piloto: D01, D02, D03, F01, F02, F03, E01, M01, M04, L01, L02, L05, G04, O03</td><td>Cobrem as decisões dos meses 1 a 3 nas duas jornadas</td><td>Z01, Z02 e Marcos Zero</td></tr>
+      <tr><td class="code">4</td><td>Aprofundamento P3 (24 unidades)</td><td>Meses 4 a 6 do piloto e a biblioteca completa</td><td>Onda 3</td></tr>
+      <tr><td class="code">5</td><td>Avançados P4: D06, F06, E04</td><td>Exigem verificação jurídica e regulatória (CVM, incorporação, due diligence)</td><td>Pesquisa em fonte oficial e revisão jurídica</td></tr>
+    </tbody></table></div>
+
+  <h3>3. Dependências críticas</h3>
+  <ul>
+    <li><b>Z01 → D01 → E01:</b> Z01 faz a triagem do imóvel, D01 lê a aptidão do território e E01 faz o diagnóstico fundiário e ambiental. É preciso fechar os cortes de conteúdo entre os três antes de escrever Z01. O plano de D01 já enviado propõe um corte, mas com 80 páginas.</li>
+    <li><b>Z02 → F00 → F01/F03 → F05/F06:</b> Z02 apresenta os caminhos de capital em linguagem simples, sem prometer crédito ou investidor. O detalhamento técnico fica no pilar F.</li>
+    <li><b>F02 ↔ G04 ↔ F04:</b> há cerca de 411 páginas de sobreposição na origem (Vol. 13, HM 9 e planilha). Decidir: F trata da projeção (antes de operar) e G, do fechamento mensal (operando).</li>
+    <li><b>M04 ↔ O02:</b> M04 desenha a experiência e O02 a executa no balcão.</li>
+    <li><b>Arquivos não localizados:</b> 25 fontes, entre elas os Vols. 08 a 21, os PDFs HM 1 a 10 e a planilha de 9 abas. Elas bloqueiam o aproveitamento em 27 módulos (marcados no Airtable), mas nenhum da Onda 1.</li>
+  </ul>
+
+  <h3>4. Reaproveitamento por fonte</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Fonte</th><th>Alimenta</th><th>Como</th></tr></thead>
+    <tbody>
+      <tr><td>Panorama do Desenvolvimento Hoteleiro + deck Marco Zero</td><td>Z00, D00</td><td>Diagnóstico dos cinco pontos de partida e mapa de trilhas, reescritos para 7 pilares e 2 jornadas</td></tr>
+      <tr><td>Manual Oficial do Método Zion 360°</td><td>Z00 (Parte 6), voz editorial de toda a coleção</td><td>Origem do método, Developer Hoteleiro e os cinco compromissos</td></tr>
+      <tr><td>A Ordem das Coisas</td><td>Z00, D00</td><td>Abertura de consciência: a sequência certa das decisões</td></tr>
+      <tr><td>Jornada do COMO · Etapas 01 e 02</td><td>Z00, Z01, Z02, D02, F03</td><td>"Se é para mim", "Se dá certo aqui" e a planilha de viabilidade</td></tr>
+      <tr><td>Vol. 01 Território</td><td>Z01, D01, E01</td><td>Critérios de aptidão, APP/RL/CAR e declividade, condensados</td></tr>
+      <tr><td>Vols. 04 Estratégia e 05 Investimento</td><td>Z02, D04, F00 a F03, F06</td><td>Permuta, arrendamento, SCP, CAPEX item a item e capital de giro</td></tr>
+      <tr><td>Agente "Zion Score" (repositório GitHub)</td><td>Z01 (ferramenta)</td><td>Lógica de nota de 0 a 10 (vocação, concorrência, riscos) adaptada em planilha de diagnóstico</td></tr>
+      <tr><td>Bíblia Operacional Zion (Notion)</td><td>O00 a O06, M04, L04, G00</td><td>Casos e POPs reais, <b>se você autorizar</b></td></tr>
+      <tr><td>Curso Fundação (ClickMax)</td><td>Z00 (aula e formulário)</td><td>Formulário "Onde você está hoje" vira o autodiagnóstico de jornada</td></tr>
+    </tbody></table></div>
+
+  <h3>5. Padrões de qualidade (checklist do Ciclo 5)</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">Conteúdo</h4><ul><li>Toda afirmação legal, regulatória ou estatística tem fonte verificável e data de consulta</li><li>Nenhuma promessa de crédito, investidor, retorno ou aprovação</li><li>Fórmulas conferidas com um caso numérico resolvido</li><li>Exemplos fictícios identificados como ilustrativos</li><li>Seções "Aplicação na Jornada A" e "Aplicação na Jornada B"</li><li>Linguagem acessível: termos técnicos explicados na primeira ocorrência</li></ul></div>
+    <div class="card"><h4 style="margin-top:0">Forma</h4><ul><li>Ortografia (Acordo Ortográfico vigente), sem anglicismos desnecessários</li><li>Paleta, tipografia e cabeçalho Zion; imagens geradas nunca apresentadas como fotos reais</li><li>Leitura em celular a 360 px sem rolagem horizontal; contraste AA</li><li>Links internos e sumário clicável testados</li><li>Nome de arquivo: <code>ZHBS_[código]_[entregável]_v[versão].html</code></li><li>Registro no Airtable, só após sua autorização</li></ul></div>
+  </div>
+
+  <h3>6. Cronograma sugerido</h3>
+  <p class="muted">Estimativa com uma rodada de aprovação por semana por módulo. As datas dependem do seu tempo de revisão.</p>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Semana</th><th>Período</th><th>Produção</th><th>Sua aprovação</th></tr></thead>
+    <tbody>
+      <tr><td>S1</td><td>14 a 20/10</td><td>Ciclo 1 (este pacote)</td><td>Documentos 1 a 5 e decisões pendentes</td></tr>
+      <tr><td>S2</td><td>21 a 27/10</td><td>Plano editorial Z00 detalhado + e-book Z00</td><td>E-book Z00</td></tr>
+      <tr><td>S3</td><td>28/10 a 03/11</td><td>Derivados Z00 (7 entregáveis) + auditoria de qualidade</td><td>Pacote Z00</td></tr>
+      <tr><td>S4 e S5</td><td>04 a 17/11</td><td>Z01 completo (plano, e-book, derivados)</td><td>Plano, e-book e pacote Z01</td></tr>
+      <tr><td>S6 e S7</td><td>18/11 a 01/12</td><td>Z02 completo</td><td>Plano, e-book e pacote Z02</td></tr>
+      <tr><td>S8 a S11</td><td>02 a 29/12</td><td>Onda 2: sete Marcos Zero (formato reduzido)</td><td>Pacotes semanais</td></tr>
+      <tr><td>S12 em diante</td><td>a partir de jan/2027</td><td>Onda 3: núcleo do piloto, cerca de 1 a 2 módulos por semana</td><td>Pacotes semanais</td></tr>
+    </tbody></table></div>
+  <div class="note"><b>Marco para o piloto:</b> com a base e os Marcos Zero aprovados (fim de dezembro), o piloto pode começar em janeiro. Os módulos da Onda 3 seriam liberados no ritmo dos encontros, com um módulo de antecedência.</div>
+</section>
+
+<!-- ================= DOC 4 ================= -->
+<section class="doc" id="d4" role="tabpanel">
+  <div class="doc-head"><div class="num">Documento 4</div><h2 style="margin-top:.2em">Estrutura do Z00 · O Universo dos Negócios de Hospedagem</h2>
+  <p><b>Objetivo:</b> apresentar o universo dos negócios de hospedagem (tipos de produto, canais de venda, experiência, diferenciação e oportunidades) e ajudar o aluno a se localizar nele. <b>Entregável principal:</b> Mapa dos Modelos de Hospedagem.</p></div>
+
+  <h3>Objetivos de aprendizagem</h3>
+  <ol>
+    <li>Distinguir imóvel, negócio de hospedagem e destino.</li>
+    <li>Reconhecer os principais modelos (temporada/Airbnb, cabanas e chalés, glamping, pousada, hotel boutique, wellness/retiro e híbridos) e comparar escala, complexidade e perfil de hóspede.</li>
+    <li>Entender como a hospedagem é vendida (canais, diária, ocupação) em nível introdutório.</li>
+    <li>Identificar fontes de diferenciação pela experiência.</li>
+    <li>Escolher a própria jornada (A ou B) e posicionar o próprio caso no Mapa dos Modelos.</li>
+  </ol>
+
+  <h3>A · Sumário do e-book (~30 páginas)</h3>
+  <ol class="toc">
+    <li><b>Abertura</b> (2 pp): carta de Bruno Chaerk; como usar este e-book; as duas jornadas</li>
+    <li><b>Parte 1 · O que é um negócio de hospedagem</b> (4 pp): alugar não é hospedar; imóvel, negócio e destino; a cadeia de valor da hospedagem (diagrama)</li>
+    <li><b>Parte 2 · Os modelos de hospedagem</b> (8 pp): uma ficha por modelo (temporada/Airbnb, cabanas e chalés, glamping, pousada, hotel boutique, wellness e retiro, híbridos) com escala típica, complexidade operacional, perfil de hóspede, canais e principais riscos. Os dados são comparativos qualitativos; números só com fonte.</li>
+    <li><b>Parte 3 · Como a hospedagem é vendida</b> (4 pp): canais diretos e OTAs; diária média, ocupação e receita por unidade em linguagem simples; sazonalidade (exemplo resolvido)</li>
+    <li><b>Parte 4 · Experiência e diferenciação</b> (4 pp): produto, experiência e marca; luxo natural; os tipos de diferenciação; o que o hóspede lembra</li>
+    <li><b>Parte 5 · Oportunidades e armadilhas</b> (3 pp): tendências com fonte verificável; os erros mais comuns de quem começa e de quem cresce</li>
+    <li><b>Parte 6 · O Método Zion 360°</b> (3 pp): pensar como Developer; base e sete pilares; o mapa da formação; como cada jornada percorre os pilares</li>
+    <li><b>Parte 7 · Seu Mapa dos Modelos de Hospedagem</b> (2 pp): exercício guiado, checklist, próxima atividade (Z01)</li>
+    <li><b>Referências e glossário</b> (1 p)</li>
+  </ol>
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">Estudos de caso propostos</h4><ul><li><b>Caso real:</b> Zion Bubble Glamping (Urubici, SC): da ideia ao destino. <i>Depende da sua autorização e dos dados que podem ser divulgados.</i></li><li><b>Caso ilustrativo A:</b> família com terreno rural na serra decide entre cabanas e glamping (fictício, identificado como tal).</li><li><b>Caso ilustrativo B:</b> anfitrião com 3 imóveis no Airbnb profissionaliza a operação (fictício).</li></ul></div>
+    <div class="card"><h4 style="margin-top:0">Referências a verificar na produção</h4><ul><li>Lei nº 11.771/2008 (Política Nacional de Turismo) e o Cadastur</li><li>Lei nº 8.245/1991, art. 48 (locação para temporada)</li><li>Sistema Brasileiro de Classificação de Meios de Hospedagem (SBClass)</li><li>Dados de demanda: Ministério do Turismo e IBGE</li><li>Políticas públicas das plataformas (Airbnb, Booking)</li></ul><p class="muted"><small>Cada referência será conferida na fonte oficial, com data de consulta, antes de entrar no texto.</small></p></div>
+  </div>
+
+  <h3>Plano dos oito entregáveis do Z00</h3>
+  <div class="mods">
+    <div class="mod"><header><span class="c">A</span><span class="n">E-book</span></header><p>~30 páginas em HTML e CSS, com sumário clicável, 5 diagramas (cadeia de valor, mapa dos modelos, canais, pirâmide da diferenciação, mapa do método), 3 casos, 4 boxes "Aplicação A/B", 2 checklists e exercício final. Fontes: Panorama, Manual Oficial, A Ordem das Coisas e Jornada Etapa 01.</p></div>
+    <div class="mod"><header><span class="c">B</span><span class="n">Apresentação · 18 slides</span></header><ol><li>Capa</li><li>Pergunta de abertura: imóvel ou negócio?</li><li>Imóvel × negócio × destino</li><li>Cadeia de valor da hospedagem</li><li>Os sete modelos em uma tela</li><li>Comparativo: escala × complexidade</li><li>Glamping e wellness: o que muda</li><li>Temporada/Airbnb: o que muda</li><li>Como a hospedagem é vendida</li><li>Exemplo resolvido: diária, ocupação e receita</li><li>Experiência: o que o hóspede lembra</li><li>Os tipos de diferenciação</li><li>Erros comuns (Jornada A e Jornada B)</li><li>O Método Zion 360°: base + 7 pilares</li><li>Jornada A × Jornada B</li><li>Exercício: seu Mapa dos Modelos</li><li>Reflexão</li><li>Síntese e próximo passo (Z01)</li></ol></div>
+    <div class="mod"><header><span class="c">C</span><span class="n">Roteiro da aula · ~28 min</span></header><p>Abertura com pergunta (2 min) · Parte 1 (4) · Modelos (8, com demonstração do comparativo) · Venda (4, conta feita na tela) · Experiência (4) · Método e jornadas (3) · Exercício guiado com pausa (2) · Encerramento e chamada para Z01 (1). Narração completa, indicação de slide por bloco e frases de transição.</p></div>
+    <div class="mod"><header><span class="c">D</span><span class="n">Workbook · 5 páginas</span></header><ol><li>Onde estou hoje (autodiagnóstico de jornada A/B, 8 perguntas)</li><li>Meus recursos (terreno, imóvel, capital, tempo, rede)</li><li>Mapa dos Modelos: marcar 2 ou 3 modelos possíveis e justificar</li><li>Minha diferenciação em uma frase (rascunho)</li><li>Plano de ação: 3 decisões para os próximos 30 dias</li></ol></div>
+    <div class="mod"><header><span class="c">E</span><span class="n">Ferramenta · Mapa dos Modelos de Hospedagem</span></header><p>Matriz em HTML e planilha. O aluno informa recursos, perfil e objetivo, e a ferramenta compara os 7 modelos em 6 critérios (investimento relativo, complexidade operacional, prazo até a primeira receita, dependência de localização, potencial de diferenciação e exigência de dedicação do dono). Pesos ajustáveis, resultado em ranking com explicação, sem números de retorno.</p></div>
+    <div class="mod"><header><span class="c">F</span><span class="n">Avaliação</span></header><p><b>Perguntas (rascunho):</b> 1) Qual a diferença entre alugar um imóvel e operar um negócio de hospedagem? 2) Cite dois modelos e um risco típico de cada. 3) O que é ocupação e por que ela sozinha não mede resultado? 4) Dê um exemplo de diferenciação pela experiência que não depende de obra. 5) Em qual jornada você está e por quê? <b>Atividade:</b> entregar o Mapa dos Modelos preenchido com 2 modelos priorizados. <b>Critérios:</b> coerência entre recursos e modelo (40%), justificativa com pelo menos 3 critérios (30%), identificação de riscos (20%), clareza (10%).</p></div>
+    <div class="mod"><header><span class="c">G</span><span class="n">Kit NotebookLM</span></header><p>Fonte: e-book Z00 aprovado em PDF e um link opcional para o resumo executivo. Prompts prontos para resumo em áudio (formato conversa, 8 a 10 min, voltado para quem está começando), resumo em vídeo (quando disponível na conta), mapa mental, quiz de 10 questões, 20 flashcards e guia de estudo. Instruções passo a passo, porque a criação é manual: nenhum recurso será declarado criado sem confirmação.</p></div>
+    <div class="mod"><header><span class="c">H</span><span class="n">Resumo executivo · 1 página</span></header><p>Os 5 conceitos essenciais, as 3 decisões do módulo, o checklist "estou pronto para o Z01?" e a próxima atividade.</p></div>
+  </div>
+  <div class="note">Este é o esboço do <b>Ciclo 3 (plano editorial)</b> do Z00. Com a sua aprovação, detalho o plano final (fontes conferidas e corte com Z01) e começo o e-book.</div>
+</section>
+
+<!-- ================= DOC 5 ================= -->
+<section class="doc" id="d5" role="tabpanel">
+  <div class="doc-head"><div class="num">Documento 5</div><h2 style="margin-top:.2em">Modelo Operacional da Mentoria</h2>
+  <p>Três formatos comparados por carga do mentor, complexidade e adequação ao piloto. <b>Não há preços neste documento.</b> As horas são estimativas para 6 meses e servem de base para a sua validação financeira.</p></div>
+
+  <div class="table-wrap"><table>
+    <thead><tr><th>Critério</th><th>Individual</th><th>Grupo</th><th>Híbrida online</th></tr></thead>
+    <tbody>
+      <tr><td><b>Como funciona</b></td><td>Encontros 1:1, plano totalmente personalizado</td><td>Encontros coletivos com a turma, mesma sequência para todos</td><td>Biblioteca + encontros coletivos + sessões individuais + suporte estruturado</td></tr>
+      <tr><td><b>Participantes</b></td><td>1 por contrato</td><td>8 a 20</td><td>5 a 10 (piloto)</td></tr>
+      <tr><td><b>Encontros</b></td><td>12 sessões 1:1 de 1h30</td><td>12 coletivos de 2h</td><td>12 coletivos de 2h + 4 individuais de 1h por aluno</td></tr>
+      <tr><td><b>Horas do mentor por participante</b></td><td>~56 h (18 h sessão + 12 h preparo + 26 h suporte)</td><td>~7 a 13 h (rateio)</td><td>~16 a 28 h (rateio + individuais)</td></tr>
+      <tr><td><b>Horas totais do mentor em 6 meses</b></td><td>~280 h para 5 clientes</td><td>~110 a 160 h por turma</td><td>~140 a 180 h para 5 a 10 alunos (≈ 6 a 7 h/semana)</td></tr>
+      <tr><td><b>Dependência da biblioteca</b></td><td>Baixa</td><td>Alta</td><td>Alta (a biblioteca libera o tempo dos encontros para aplicação)</td></tr>
+      <tr><td><b>Personalização</b></td><td>Máxima</td><td>Baixa</td><td>Média-alta (plano individual + 4 sessões)</td></tr>
+      <tr><td><b>Complexidade operacional</b></td><td>Baixa (agenda) e alta (escala)</td><td>Média</td><td>Média-alta: agenda, biblioteca, correção, dossiês</td></tr>
+      <tr><td><b>Escalabilidade</b></td><td>Baixa (limitada às horas de Bruno)</td><td>Alta</td><td>Média; escala ao formar facilitadores</td></tr>
+      <tr><td><b>Riscos</b></td><td>Esgota a agenda do fundador; difícil padronizar</td><td>Abandono; jornadas A e B misturadas</td><td>Exige a biblioteca pronta no ritmo dos encontros</td></tr>
+      <tr><td><b>Aprendizado para a escola</b></td><td>Pouco reutilizável</td><td>Valida conteúdo, pouco o resultado individual</td><td>Valida conteúdo, ferramentas e resultado (dossiês)</td></tr>
+    </tbody></table></div>
+
+  <h3>Detalhamento das horas · Híbrida (hipótese do piloto)</h3>
+  <div class="table-wrap"><table>
+    <thead><tr><th>Atividade</th><th>Cálculo</th><th>5 alunos</th><th>10 alunos</th></tr></thead>
+    <tbody>
+      <tr><td>Encontros coletivos</td><td>12 × 2 h</td><td>24 h</td><td>24 h</td></tr>
+      <tr><td>Preparo dos encontros</td><td>12 × 2 h</td><td>24 h</td><td>24 h</td></tr>
+      <tr><td>Sessões individuais</td><td>4 × 1 h × alunos</td><td>20 h</td><td>40 h</td></tr>
+      <tr><td>Preparo das individuais</td><td>4 × 0,5 h × alunos</td><td>10 h</td><td>20 h</td></tr>
+      <tr><td>Revisão de entregas e dossiê final</td><td>~4 h × alunos</td><td>20 h</td><td>40 h</td></tr>
+      <tr><td>Suporte assíncrono estruturado</td><td>~1,5 h/semana × 26</td><td>39 h</td><td>39 h</td></tr>
+      <tr><td><b>Total</b></td><td></td><td><b>~137 h</b></td><td><b>~187 h</b></td></tr>
+    </tbody></table></div>
+  <p class="muted"><small>Não inclui a produção da biblioteca, a captação de alunos nem o suporte técnico da plataforma. O suporte assíncrono pode ser parcialmente delegado a um assistente com FAQ e ao kit NotebookLM.</small></p>
+
+  <h3>Desenho proposto do piloto (a validar)</h3>
+  <div class="grid g2">
+    <div class="card"><h4 style="margin-top:0">12 encontros coletivos (quinzenais)</h4><ol><li>Z00: universo e escolha de jornada</li><li>Z01: diagnóstico do imóvel ou da operação</li><li>Z02: recursos e alternativas de capital</li><li>D: território, mercado e produto</li><li>F: CAPEX, receitas e custos</li><li>F: viabilidade e cenários</li><li>E (A) / retrofit e ampliação (B)</li><li>M: posicionamento e experiência</li><li>L: canais, preço e lançamento</li><li>G: gestão pelos números</li><li>O: padrão operacional</li><li>Apresentação dos planos e dossiês</li></ol></div>
+    <div class="card"><h4 style="margin-top:0">4 sessões individuais</h4><ol><li><b>Mês 1:</b> diagnóstico e plano individual</li><li><b>Mês 2 ou 3:</b> revisão do diagnóstico e da viabilidade</li><li><b>Mês 4 ou 5:</b> revisão de marca, comercial e gestão</li><li><b>Mês 6:</b> revisão do dossiê final</li></ol><h4>Entregas do aluno</h4><ul><li>Plano individual (mês 1)</li><li>Ferramentas preenchidas por módulo</li><li>Dossiê final: Plano de Estruturação (A) ou Plano de Profissionalização e Crescimento (B)</li></ul></div>
+  </div>
+  <div class="note"><b>Recomendação:</b> fazer o piloto no formato híbrido com 5 a 8 participantes. É o formato que valida ao mesmo tempo o conteúdo, as ferramentas e o resultado individual, com carga compatível (cerca de 6 a 7 h/semana). Os encontros 7 a 11 podem ter 20 minutos finais divididos por jornada. Preço, critérios de admissão e contrato ficam para depois da validação financeira.</div>
+</section>
+
+<!-- ================= DECISÕES ================= -->
+<section class="doc" id="dec" role="tabpanel">
+  <div class="doc-head"><div class="num">Ciclo 6 · Aprovação</div><h2 style="margin-top:.2em">Decisões pendentes para Bruno</h2></div>
+  <h3>Registro deste ciclo</h3>
+  <ul>
+    <li><b>Produzido:</b> este arquivo (auditoria + 5 documentos), sem publicação.</li>
+    <li><b>Revisado:</b> 50 registros de módulos e 57 fontes no Airtable, arquivos do Drive, Notion, Dropbox, workspace do ClickMax (só a identificação) e repositório GitHub.</li>
+    <li><b>Não alterado:</b> Airtable, Drive, ClickMax, Notion e arquivos originais.</li>
+  </ul>
+  <h3>Decisões, em ordem de impacto</h3>
+  <ol class="decisions">
+    <li><b>Marca nos registros:</b> substituir "Zion Hotel Academy" por "Zion Hospitality Business School" no Airtable e nos materiais novos?</li>
+    <li><b>Base com 3 módulos:</b> renomear o Z00 para "O Universo dos Negócios de Hospedagem" e criar os registros Z01 e Z02 (total de 52)? O escopo antigo do Z00 (boas-vindas, trilhas, Land Bank) seria distribuído entre o Z00 novo e o D06.</li>
+    <li><b>Tamanho dos e-books:</b> adotar ~30 páginas (Marcos Zero com ~15) no lugar da meta de 80 do Airtable? Isso também reescalona o plano do D01 já enviado, que aguarda 5 decisões.</li>
+    <li><b>Nomes dos pilares:</b> exibir "D · Desenvolver" etc. e manter os nomes de trilha no Airtable como subtítulo?</li>
+    <li><b>Prioridades e ondas</b> da Matriz (Documento 2) e do Plano de Produção (Documento 3).</li>
+    <li><b>Casos reais:</b> posso usar a Zion Bubble Glamping (Urubici) e a Bíblia Operacional do Notion como casos? Quais dados podem ser divulgados?</li>
+    <li><b>Arquivos não localizados:</b> onde estão os Vols. 08 a 21, os PDFs HM 1 a 10 e a planilha de 9 abas? Se você indicar a pasta, incluo na próxima rodada.</li>
+    <li><b>Panorama privado no ClickMax:</b> autoriza ajustar a permissão do PDF (ou trocar o link) agora, antes da hospedagem própria?</li>
+    <li><b>Formato da ferramenta:</b> Google Sheets, planilha Excel ou calculadora HTML (ou HTML + planilha)?</li>
+    <li><b>Formato do piloto:</b> híbrido com 5 a 8 participantes, conforme o Documento 5?</li>
+    <li><b>Registro no Airtable:</b> depois das aprovações, posso atualizar o Airtable (Z00, Z01, Z02, metas, prioridades e etapa)?</li>
+  </ol>
+  <div class="note"><b>Próximo passo, após sua aprovação:</b> plano editorial final do Z00 (Ciclo 3) e, aprovado este, o e-book Z00.</div>
+</section>
+</main>
+
+<footer><div class="wrap">Zion Hospitality Business School · A Escola do Hoteleiro · Método Zion 360° · Documento interno de revisão · v Work 1.0 · 14/10/2026</div></footer>
+
+<script>
+const PILARES={Base:"Base",D:"D · Desenvolver",F:"F · Financiar",E:"E · Implantar",M:"M · Marca e Experiência",L:"L · Vender",G:"G · Gerir",O:"O · Operar"};
+// [código, nome, pilar, jornada, prioridade, reuso, competência, problema resolvido, resultado, exercício, ferramenta, dependências, existente, faltante]
+const M=[
+["Z00","O Universo dos Negócios de Hospedagem","Base","A+B","P1","Complementar","Ler o mercado de hospedagem e situar o próprio projeto","O aluno não conhece os modelos, como se vendem e onde ele se encaixa","Mapa dos Modelos de Hospedagem + escolha de jornada","Posicionar o próprio caso no mapa e priorizar 2 modelos","Mapa dos Modelos de Hospedagem (matriz comparativa)","—","Panorama, deck Marco Zero, Manual Oficial, Ordem das Coisas, formulário Fundação","Fichas dos 7 modelos, canais, jornadas A/B"],
+["Z01","Da Propriedade ao Negócio de Hospedagem","Base","A+B","P1","Complementar","Avaliar o potencial de um terreno ou imóvel","Investir sem saber se o imóvel tem vocação para hospedagem","Diagnóstico de Potencial do Imóvel ou Terreno","Aplicar o diagnóstico ao próprio imóvel (A) ou à operação atual (B)","Diagnóstico de Potencial com nota ponderada (base: Zion Score)","Z00","Vol. 01, Jornada 01 e 02, agente Zion Score","Versão para imóvel já em operação; corte com D01/E01"],
+["Z02","Como Começar com os Recursos que Você Tem","Base","A+B","P1","Complementar","Escolher um caminho de estruturação compatível com o capital disponível","Paralisia por falta de capital ou aposta grande demais","Plano Inicial de Desenvolvimento e Alternativas de Capital","Montar 3 cenários (enxuto, faseado, com parceiro) e escolher um","Calculadora de Faseamento e Alternativas de Capital","Z00, Z01","Vol. 04 (permuta, arrendamento, SCP), Vol. 05, planilha da Jornada 02","Linguagem acessível, faseamento, alertas de não promessa"],
+["D00","Marco Zero: A Jornada do Desenvolvedor Hoteleiro","D","A","P2","Complementar","Entender as etapas do desenvolvimento e seus participantes","Fazer as coisas fora de ordem","Linha do tempo do próprio projeto","Localizar o projeto na sequência e listar as 3 próximas decisões","Mapa de Etapas do Desenvolvimento","Z00","Panorama, A Ordem das Coisas, sequência de 11 estágios","Prazos recalibrados para o Brasil"],
+["D01","Território e Localização","D","A","P2","Atualizar","Ler a vocação turística e a aptidão do território","Escolher local por afeto, não por vocação","Leitura de Aptidão Territorial","Roteiro de visita de campo ao território","Matriz de Aptidão Territorial","Z01, D00","Vol. 01 (164 pp) e plano D01 já enviado","Reescalonar de 80 para ~30 pp; corte com E01"],
+["D02","Mercado e Demanda","D","A+B","P2","Atualizar","Dimensionar demanda e concorrência","Projetar ocupação sem evidência","Estudo de Mercado Simplificado","Levantar 10 concorrentes, diárias e ocupação nos calendários abertos","Planilha de Benchmarking Competitivo","D01","Vol. 02 (161 pp), deck tutorial, Jornada 02","Condensação"],
+["D03","Produto Hoteleiro e Diversificação","D","A+B","P2","Atualizar","Escolher tipologia, escala e mix de produto","Produto que não conversa com o mercado","Definição de Produto (tipologia, unidades, padrão)","Comparar 3 tipologias para o mesmo caso; B: novas receitas","Matriz de Decisão de Tipologia","D02","Vol. 03, Jornada 03","Retrofit, híbridos, diversificação em operação existente"],
+["D04","Modelos de Negócio e Monetização","D","A+B","P3","Complementar","Escolher o modelo de exploração","Confundir propriedade, investimento e operação","Modelo de negócio escolhido e justificado","Avaliar operação própria, arrendamento, gestão e licenciamento","Comparador de Modelos de Negócio","D03, Z02","Vol. 04; Vol. 17 (não localizado)","Condo-hotel, multipropriedade, clubes e assinaturas (verificação regulatória)"],
+["D05","Conceito, Posicionamento e Masterplan","D","A","P3","Complementar","Traduzir a estratégia em conceito e programa","Arquiteto sem briefing; projeto sem conceito","Briefing de Conceito e Programa de Necessidades","Escrever o briefing de 1 página para o arquiteto","Template de Briefing + Programa de Necessidades","D03","Vol. 03, Briefing de Uma Página (Jornada 03)","Programa de necessidades e implantação preliminar"],
+["D06","Estruturação Jurídica, Societária e Land Bank","D","A","P4","Complementar","Estruturar juridicamente o projeto e os sócios","Sociedade e documentação frágeis","Dossiê de Desenvolvimento Zion (entrega final)","Montar a matriz documental do projeto","Matriz Documental + Checklist de Due Diligence","D01 a D05, E01","Vol. 04; Vol. 19 (não localizado)","Due diligence, elegibilidade Land Bank; revisão jurídica"],
+["F00","Marco Zero: A Jornada do Capital Hoteleiro","F","A+B","P2","Refazer","Dominar o vocabulário de capital, risco e retorno","Decidir sem entender o custo do dinheiro","Inventário de Recursos e Fontes de Capital","Inventariar dinheiro, terreno, crédito e rede","Inventário de Recursos","Z02","Introdução do Vol. 05","Texto novo"],
+["F01","CAPEX e Necessidade de Capital","F","A","P2","Atualizar","Orçar o investimento completo","Orçamento que esquece FF&E, contingência e capital de giro","Orçamento de CAPEX com cronograma de desembolso","Montar o CAPEX por unidade","Planilha de CAPEX e Cronograma de Desembolso","D03, D05","Vol. 05","FF&E/OS&E, pré-operação, contingência"],
+["F02","Receitas, Custos e Modelos de Rentabilidade","F","A+B","P2","Complementar","Entender de onde vem e para onde vai o dinheiro","Não saber o custo de cada diária","DRE simplificada por unidade","Calcular custo por diária e ponto de equilíbrio","Calculadora de Custo por Diária + DRE Simplificada","D02","Jornada 09; Vols. 10 e 13 (não localizados)","Receita imobiliária, recorrência"],
+["F03","Viabilidade e Análise de Investimentos","F","A+B","P2","Complementar","Testar se o projeto se paga","Investir sem cenários","Estudo de Viabilidade com 3 cenários","Calcular payback, TIR e VPL com sensibilidade","Modelo de Viabilidade","F01, F02","Planilha da Jornada 02, Vol. 05","TIR, VPL, sensibilidade com fórmulas verificadas"],
+["F04","Planejamento Financeiro, KPIs e Valuation","F","B","P3","Atualizar","Planejar o ano e medir valor","Operar sem orçamento nem metas","Budget anual + painel de KPIs","Montar o budget do próximo ano","Budget & Forecast + Dashboard de KPIs","F02, F03","HM 9, planilha 9 abas, Vol. 20 (não localizados)","Corte com G04"],
+["F05","Crédito, Bancabilidade e Garantias","F","A+B","P3","Refazer","Preparar-se para conversar com bancos","Pedir crédito sem dossiê","Dossiê de crédito preliminar","Autoavaliar a capacidade de pagamento","Checklist de Bancabilidade + Calculadora de capacidade de pagamento","F03","Nenhuma","Tudo; fonte oficial (BNDES, Fungetur); nunca prometer aprovação"],
+["F06","Sócios, Fundos e Captação de Investimentos","F","A","P4","Atualizar","Estruturar a entrada de sócios e investidores","Captar sem governança ou fora da regra","Business Plan Financeiro e Dossiê de Investimento (entrega final)","Montar o índice do data room","Template de Data Room e Pitch","F03, D06","Vols. 18 e 19 (não localizados), Vol. 05","Análise regulatória (CVM)"],
+["E00","Marco Zero: Da Terra à Implantação","E","A","P2","Refazer","Enxergar as etapas técnicas e seus riscos","Começar a obra sem roteiro","Linha do tempo de implantação","Marcar riscos em cada etapa do projeto","Linha do Tempo de Implantação","D00","Jornada 04","Texto novo, curto"],
+["E01","Diagnóstico Fundiário, Urbanístico e Ambiental","E","A","P2","Complementar","Verificar documentação e restrições do imóvel","Descobrir impedimento legal depois de investir","Checklist de Diagnóstico Fundiário e Ambiental","Levantar matrícula, CAR e zoneamento do imóvel","Checklist de Documentos e Consultas a Órgãos","Z01, D01","Vol. 01","Matrícula, titularidade, topografia, esferas federal/estadual/municipal"],
+["E02","Equipe Técnica e Contratações","E","A","P3","Refazer","Saber quem contratar, quando e com que escopo","Contratar profissional errado ou sem escopo","Matriz de contratação de profissionais","Definir escopo e responsabilidades do primeiro profissional","Matriz de Profissionais (escopo, ART/RRT)","E00","Jornada 04 (só obra)","Tudo"],
+["E03","Projetos, Licenciamento e Aprovações","E","A","P3","Atualizar","Planejar projetos e aprovações","Obra parada por falta de alvará","Roteiro de aprovações do projeto","Mapear os órgãos e documentos do próprio caso","Cronograma de Licenciamento","E01, E02","Vol. 06, Jornada 04","Separar urbano/rural e pequeno/grande porte"],
+["E04","Incorporação Imobiliária Turística","E","A","P4","Refazer","Distinguir os modelos imobiliários turísticos","Vender unidades sem enquadramento legal","Quadro comparativo de modelos (educativo)","Classificar 3 casos nos modelos corretos","Matriz Comparativa Jurídica e Operacional","D04, D06","Nenhuma","Tudo; legislação vigente verificada"],
+["E05","Infraestrutura, Construção e Gestão de Obras","E","A","P3","Atualizar","Controlar custo, prazo e qualidade da obra","Obra que estoura orçamento e prazo","Cronograma físico-financeiro","Montar o cronograma da primeira fase","Cronograma Físico-Financeiro + Controle de Medições","F01, E03","Vol. 06, Jornada 04","Condensação"],
+["E06","Montagem, Comissionamento e Entrega","E","A","P3","Complementar","Entregar a unidade pronta para operar","Abrir com itens faltando","Plano Mestre de Implantação Zion (entrega final)","Checklist de enxoval e equipamentos de uma unidade","Checklist FF&E/OS&E e Aceite","E05","HM 4, HM 10 (não localizados)","FF&E/OS&E, testes, aceite técnico"],
+["M00","Marco Zero: Marca como Ativo Hoteleiro","M","A+B","P2","Refazer","Ver a marca como ativo de valor","Tratar marca como logotipo","Diagnóstico de marca","Avaliar a marca atual ou pretendida","Autodiagnóstico de Marca","Z00","Abertura do Vol. 08 (não localizado)","Texto novo"],
+["M01","Estratégia e Posicionamento","M","A+B","P2","Complementar","Definir posicionamento e promessa","Ser igual aos concorrentes","Declaração de posicionamento e promessa em uma frase","Escrever e testar a promessa com 3 hóspedes potenciais","Canvas de Posicionamento","D02, M00","Jornada 05; Vol. 08 (não localizado)","Consolidação"],
+["M02","Naming, Narrativa e Storytelling","M","A+B","P3","Complementar","Criar nome, narrativa e tom de voz","Nome indisponível ou genérico","Nome + narrativa + tom de voz","Gerar e filtrar 10 nomes","Roteiro de Naming + Checklist de Verificação","M01","Jornada 05","Storytelling e arquétipo"],
+["M03","Identidade Visual","M","A+B","P3","Complementar","Orientar o sistema visual","Identidade improvisada","Brief de identidade visual + plano das 20 fotos","Montar o brief para o designer","Brief de Identidade + Checklist Fotográfico","M02","Jornada 05","Sistema visual completo"],
+["M04","Design da Experiência do Hóspede","M","A+B","P2","Atualizar","Desenhar a jornada do hóspede","Experiência que depende do improviso","Mapa da Jornada do Hóspede (12 momentos)","Mapear os 4 momentos que decidem a avaliação","Blueprint de Experiência","M01","HM 6 (não localizado), deck HM 6, Bíblia Operacional (Notion)","Corte com O02"],
+["M05","Arquitetura, Ambientação e Wellness","M","A+B","P3","Refazer","Usar o espaço como experiência","Ambiente bonito, mas sem sensação","Diretrizes de ambientação e wellness","Auditoria sensorial de uma unidade","Checklist Sensorial (luz, som, materiais)","D05, M04","Nenhuma","Tudo"],
+["M06","Brandbook, Reputação e Reposicionamento","M","B","P3","Complementar","Gerir marca e reputação ao longo do tempo","Avaliações que derrubam a venda","Brandbook Zion aplicado (entrega final)","Analisar as últimas 30 avaliações","Painel de Reputação + Template de Brandbook","M01 a M05","Jornada 06; Vol. 08 (não localizado)","Reposicionamento de empreendimento existente"],
+["L00","Marco Zero: O Ecossistema Comercial Hoteleiro","L","A+B","P2","Refazer","Enxergar o sistema comercial completo","Vender só por um canal e sem método","Diagnóstico comercial","Mapear canais, marketing, preço e tecnologia atuais","Diagnóstico Comercial","Z00","Nenhuma","Texto novo"],
+["L01","Estratégia Comercial e Go-to-Market","L","A+B","P2","Atualizar","Planejar a entrada no mercado","Abrir sem plano de vendas","Plano de Go-to-Market","Definir público, oferta e canais de entrada","Plano de Go-to-Market","M01, L00","Vol. 07, Jornada 06","Condensação"],
+["L02","Distribuição e Canais de Venda","L","A+B","P2","Atualizar","Equilibrar venda direta e OTAs","Comissão alta e dependência de uma plataforma","Mix de canais-alvo com custo de aquisição","Calcular o custo real de cada canal","Calculadora de Custo por Canal","L01","Vol. 09 (não localizado)","Localizar fonte"],
+["L03","Tecnologia Comercial: PMS, Channel Manager e Reservas","L","B","P3","Complementar","Escolher a tecnologia certa","Overbooking e controle manual","Matriz de escolha de tecnologia","Pontuar 3 soluções pelos critérios do módulo","Matriz de Seleção de Tecnologia (sem indicar fornecedor)","L02","HM 10 (não localizado)","Atualização"],
+["L04","CRM, Funis e Automação","L","B","P3","Complementar","Construir relacionamento e recorrência","Hóspede que não volta","Funil e régua de relacionamento","Desenhar a régua pós-estadia","Template de Funil + Régua de Mensagens (LGPD)","L02","Jornada 07; Vol. 11 (não localizado); scripts no Notion","Funis e automação"],
+["L05","Marketing Digital, Revenue e Sazonalidade","L","A+B","P2","Atualizar","Definir preço por temporada e demanda","Preço fixo o ano inteiro","Calendário de preços por temporada","Montar o calendário dos próximos 6 meses","Calculadora de Tarifa + Calendário de Sazonalidade","F02, L02","Jornada 08; Vol. 10 e HM 3 (não localizados); deck HM 3","Consolidar três fontes"],
+["L06","Lançamento, Aceleração e Expansão Comercial","L","A+B","P3","Atualizar","Acelerar a ocupação após abrir","Começo lento que consome o caixa","Plano de Aceleração de 90 Dias (entrega final)","Montar o plano de 90 dias","Plano de 90 Dias (cronograma)","L01 a L05","Vol. 07, Jornada 07","Condensação"],
+["G00","Marco Zero: A Mentalidade do Gestor","G","B","P2","Refazer","Separar gerir de operar","Dono preso na operação","Autodiagnóstico da agenda do dono","Registrar uma semana de uso do tempo","Matriz de Uso do Tempo do Gestor","Z00","Abertura do HM 1 (não localizado)","Texto novo"],
+["G01","Governança, Cultura e Liderança","G","B","P3","Atualizar","Instituir rituais e alçadas","Decisões sem critério","Rituais de gestão e alçadas","Desenhar a reunião semanal","Calendário de Rituais + Matriz de Alçadas","G00","HM 1, HM 2, Vol. 14 (não localizados); decks","Consolidar"],
+["G02","Gestão de Pessoas","G","B","P3","Complementar","Recrutar, integrar e reter","Rotatividade alta","Plano de pessoas","Escrever a descrição de uma função","Kit de Recrutamento e Integração","G01, O01","HM 1 e HM 5 (não localizados); onboarding no Notion","Folha e encargos (verificação trabalhista)"],
+["G03","Administração, Compras e Controladoria","G","B","P3","Complementar","Controlar compras e custos por área","Custo que cresce sem dono","Centros de custo e rotina de compras","Classificar os gastos do último mês","Plano de Contas + Controle de Compras","F02","Vol. 12 (não localizado); estoque no Notion","Controladoria e centros de custo"],
+["G04","Gestão Financeira Hoteleira","G","B","P2","Atualizar","Fechar o mês e gerir o caixa","Não saber se está lucrando","Fechamento mensal (DRE e fluxo de caixa)","Fechar o último mês com a planilha","Planilha de Fluxo de Caixa e DRE Mensal","F02, G03","Jornada 09; Vol. 13, HM 9 e planilha (não localizados)","Corte com F04"],
+["G05","Gestão dos Departamentos","G","B","P3","Refazer","Organizar as áreas e suas interfaces","Tudo passa pelo dono","Organograma e indicadores por área","Desenhar o organograma-alvo","Organograma + Painel por Departamento","G01, O00","Nenhuma","Tudo, incluindo 'a central'"],
+["G06","Performance, Qualidade e Crescimento","G","B","P3","Complementar","Medir, melhorar e crescer","Crescer sem base","Sistema de Gestão Hoteleira Zion (entrega final)","Escolher os 7 indicadores do painel","Dashboard de Indicadores","G01 a G05","Vols. 14 a 16 (não localizados)","Consolidação"],
+["O00","Marco Zero: Arquitetura da Operação","O","B","P2","Atualizar","Ver a operação como sistema","Operação feita de improvisos","Mapa dos subsistemas da operação","Mapear os processos da própria operação","Mapa de Processos","Z00","HM 4 (não localizado), deck HM 4, Bíblia Operacional (Notion)","Versão Marco Zero"],
+["O01","Staffing, Cargos e Escalas","O","B","P3","Atualizar","Dimensionar a equipe","Equipe a mais ou a menos","Quadro de pessoal e escala","Montar a escala de uma semana de alta","Calculadora de Dimensionamento + Escala","O00","HM 5 (não localizado), deck HM 5","Localizar fonte"],
+["O02","Recepção, Reservas e Atendimento","O","B","P3","Atualizar","Padronizar atendimento e reservas","Atendimento que varia com a pessoa","Padrões e scripts de atendimento","Reescrever 3 scripts de atendimento","Scripts + Checklist de Check-in/Check-out","M04","HM 6 (não localizado); scripts e check-in no Notion","Corte com M04"],
+["O03","Governança e Housekeeping","O","B","P2","Atualizar","Garantir o padrão de limpeza e virada","A principal reclamação do hóspede","Padrão de limpeza e checklist de virada","Cronometrar e padronizar uma virada","Checklist de Virada e Enxoval","O00","HM 7 (não localizado); Manual de Governança e Limpeza (Notion)","Condensação"],
+["O04","Alimentos e Bebidas","O","B","P3","Atualizar","Estruturar A&B com controle de custo","A&B que dá prejuízo","Cardápio com ficha técnica e CMV","Montar a ficha técnica de 3 itens","Ficha Técnica + Calculadora de CMV","F02","HM 8 (não localizado), deck; cardápio no Notion","Não afirmar norma sanitária"],
+["O05","Manutenção, Segurança e Suprimentos","O","B","P3","Complementar","Prevenir falhas e emergências","Quebra em plena ocupação","Plano de manutenção preventiva","Montar o calendário preventivo","Plano de Manutenção + Protocolo de Emergência","O00","HM 7, Vol. 12 (não localizados); Manual Técnico (Notion)","Consolidação"],
+["O06","POPs, Treinamento e Auditoria Operacional","O","B","P3","Complementar","Documentar e treinar a operação","Operação que depende do dono","Manual Operacional Hoteleiro Zion (entrega final)","Escrever o primeiro POP","Template de POP + Checklist de Auditoria","O01 a O05","Jornada 10; Bíblia Operacional (Notion)","Consolidação"]
+];
+const A=[
+["Panorama do Desenvolvimento Hoteleiro","Avulso / Marco Zero","Drive",120,"Complementar","Z00, D00","PDF privado já linkado no ClickMax: o aluno não acessa."],
+["Aula Marco Zero · Panorama (deck)","Avulso / Marco Zero","Gamma",73,"Atualizar","Z00","Link de exportação pode expirar."],
+["A Ordem das Coisas","Avulso / Marco Zero","Drive","","Aproveitar","Z00, D00","Produto de consciência; boa abertura."],
+["Manual Oficial do Método Zion 360°","Metodologia","Drive (Doc, jul/26)","","Aproveitar","Z00, voz editorial","Não consta no inventário do Airtable. Centrado no Developer; ampliar para a Jornada B."],
+["Fundação Zion · Os 3 Entregáveis","Curso","ClickMax","","Atualizar","Z00, D01","Marco Zero + Pilar 01 completos; Pilares 02 a 04 sem aulas."],
+["Vol. 01 · Território","Método 360° · Trilha A","Drive",164,"Atualizar","Z01, D01, E01","Referência editorial da coleção. Condensar."],
+["Vol. 02 · Mercado","Método 360° · Trilha A","Drive",161,"Atualizar","D02",""],
+["Aula Vol. 02 · Mercado (deck tutorial)","Método 360° · Trilha A","Gamma","","Aproveitar","D02","Modelo de deck que ensina."],
+["Vol. 03 · Produto","Método 360° · Trilha A","Drive",156,"Atualizar","D03, D05",""],
+["Vol. 04 · Estratégia","Método 360° · Trilha A","Drive",212,"Atualizar","Z02, D04, D06","SPE, SCP, holding, permuta."],
+["Vol. 05 · Investimento","Método 360° · Trilha A","Drive",213,"Atualizar","Z02, F00, F01, F03, F06","CAPEX, capital de giro, modelo financeiro."],
+["Vol. 06 · Implantação","Método 360° · Trilha A","Drive",213,"Atualizar","E03, E05",""],
+["Vol. 07 · Lançamento","Método 360° · Trilha A","Drive",199,"Atualizar","L01, L06",""],
+["Vols. 08 a 14 (Marca, Distribuição, Preço, Captação, Compras, Finanças, Governança)","Método 360° · Trilha B","—","~200 cada","Não localizado","M, L, F02, G","Registrados como produzidos; PDFs não estão no Drive."],
+["Vols. 15 a 21 (Segunda unidade, Portfólio, Licenciamento, Captação estruturada, Governança societária, Valuation, Saída)","Método 360° · Trilha C","—","~170 cada","Não localizado","G06, D04, F06, D06, F04","Vol. 21 Saída sem módulo correspondente."],
+["Jornada · Etapa 01 · Se é para mim","Jornada do COMO","Drive",112,"Aproveitar","Z00, Z02","Sem módulo vinculado no Airtable; proposta: base."],
+["Jornada · Etapa 02 · Se dá certo aqui","Jornada do COMO","Drive",94,"Aproveitar","Z01, D02, F03","Planilha de viabilidade, payback, 3 cenários."],
+["Jornada · Etapa 03 · O que fazer no lugar","Jornada do COMO","Drive",89,"Aproveitar","D03, D05",""],
+["Jornada · Etapa 04 · Tirar do papel","Jornada do COMO","Drive",92,"Aproveitar","E00, E02, E03, E05",""],
+["Jornada · Etapa 05 · Criar uma marca","Jornada do COMO","Drive",80,"Aproveitar","M01, M02, M03",""],
+["Jornada · Etapa 06 · Colocar no ar","Jornada do COMO","Drive",83,"Aproveitar","L01, M06",""],
+["Jornada · Etapa 07 · Como eu encho","Jornada do COMO","Drive",85,"Aproveitar","L04, L06","Plano de Noventa Dias."],
+["Jornada · Etapa 08 · Como eu cobro certo","Jornada do COMO","Drive",82,"Aproveitar","L05",""],
+["Jornada · Etapa 09 · Como sei se estou lucrando","Jornada do COMO","Drive",86,"Aproveitar","F02, G04",""],
+["Jornada · Etapa 10 · Como eu saio da operação","Jornada do COMO","Drive",89,"Aproveitar","O06, G00","Manual mínimo de 14 documentos."],
+["HM 1 a HM 10 (Cultura a Tecnologia) · PDFs","Hospitality Management","—","158 a 200","Não localizado","G, O, L03, L05, E06",""],
+["HM 1 a HM 10 · decks","Hospitality Management","Gamma","","Refazer","G, O, M04, L05","Resumem o sumário, não ensinam (diagnóstico 13/10)."],
+["Planilha · Sistema Financeiro da Operação (9 abas)","Hospitality Management","—","","Não localizado","F04, G04","938 fórmulas; números ilustrativos."],
+["Bíblia Operacional Zion (manuais + ~45 vídeos)","Operação real","Notion","","Aproveitar","O00 a O06, M04, L04, G02","Achado novo. Uso como caso depende de autorização."],
+["Brand Standards · Identidade Zion","Marca","Notion","","Atualizar","Identidade visual da escola","Achado novo. Paleta Cream/Gold difere da paleta da escola; conferir."],
+["Manuscritos 'EBOOK ZION 360' (7 docs, jul/26)","Método 360° · versões anteriores","Drive (Docs)","","Atualizar","Só para conferência","Achado novo. Superados pelos PDFs de out/26."],
+["A01 Território (3 PDFs duplicados, 'Zion Hotel Academy')","Método 360° · versões anteriores","Drive","120","Atualizar","—","Achado novo. Duplicatas; não usar como fonte."],
+["Manual de Formação Conceitual e Comercial Zion (nov/25)","Institucional","Drive (Doc)","","Não lido","A avaliar","Achado novo."],
+["Zion Série 1 · Vol. 1 e Vol. 2 (jun/26)","Série anterior","Drive (Docs)","","Não lido","A avaliar","Achado novo."],
+["ZION INTELLIGENCE™ (jun/26)","Institucional","Drive (Doc)","","Não lido","A avaliar","Achado novo."],
+["Agente Zion Score + site institucional","Tecnologia","GitHub","","Aproveitar","Z01 (ferramenta)","Achado novo. Lógica de nota de 0 a 10 para o território."],
+["Valuation, contratos sociais, governança societária","Institucional sensível","Drive","","Não lido","—","Não usar em material de aluno sem autorização."],
+["V1_Zion (vídeo, 2024)","Vídeo","Dropbox","","Não lido","A avaliar","Achado novo."]
+];
+const clsKey=c=>({"Aproveitar":"aproveitar","Atualizar":"atualizar","Complementar":"complementar","Refazer":"refazer","Não localizado":"nl","Não lido":"nao"}[c]||"");
+const esc=s=>String(s).replace(/[&<>]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+// Auditoria
+let audF="";
+function renderAud(){
+  const tb=document.querySelector("#audTable tbody");
+  tb.innerHTML=A.filter(r=>!audF||r[4]===audF).map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td><td><span class="cls ${clsKey(r[4])}">${esc(r[4])}</span></td><td>${esc(r[5])}</td><td>${esc(r[6])}</td></tr>`).join("");
+}
+(function(){
+  const f=document.getElementById("audFilters");
+  ["","Aproveitar","Atualizar","Complementar","Refazer","Não localizado","Não lido"].forEach(c=>{
+    const b=document.createElement("button");b.textContent=c||"Todos";b.setAttribute("aria-pressed",c===""?"true":"false");
+    b.onclick=()=>{audF=c;f.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");renderAud();};
+    f.appendChild(b);
+  });
+  renderAud();
+})();
+// Matriz
+let pil="";
+function renderM(){
+  const q=document.getElementById("q").value.trim().toLowerCase(), j=document.getElementById("jf").value, p=document.getElementById("pf").value;
+  const rows=M.filter(r=>(!pil||r[2]===pil)&&(!p||r[4]===p)&&(!j||r[3].includes(j))&&(!q||r.join(" ").toLowerCase().includes(q)));
+  document.getElementById("count").textContent=`${rows.length} de ${M.length} unidades`;
+  document.getElementById("mods").innerHTML=rows.map(r=>`<article class="mod">
+    <header><span class="c">${r[0]}</span><span class="n">${esc(r[1])}</span></header>
+    <div class="pill-row"><span class="chip">${PILARES[r[2]]}</span><span class="chip ${r[4].toLowerCase()}">${r[4]}</span><span class="chip">Jornada ${r[3]}</span><span class="chip"><span class="cls ${clsKey(r[5])}">${r[5]}</span></span></div>
+    <dl>
+      <dt>Competência</dt><dd>${esc(r[6])}</dd>
+      <dt>Problema resolvido</dt><dd>${esc(r[7])}</dd>
+      <dt>Resultado</dt><dd>${esc(r[8])}</dd>
+      <dt>Exercício principal</dt><dd>${esc(r[9])}</dd>
+      <dt>Ferramenta</dt><dd>${esc(r[10])}</dd>
+      <dt>Dependências</dt><dd>${esc(r[11])}</dd>
+      <dt>Material existente</dt><dd>${esc(r[12])}</dd>
+      <dt>Material faltante</dt><dd>${esc(r[13])}</dd>
+    </dl></article>`).join("");
+}
+(function(){
+  const f=document.getElementById("pilarFilters");
+  [["","Todos"],["Base","Base"],["D","D"],["F","F"],["E","E"],["M","M"],["L","L"],["G","G"],["O","O"]].forEach(([k,l])=>{
+    const b=document.createElement("button");b.textContent=k?PILARES[k]:l;b.setAttribute("aria-pressed",k===""?"true":"false");
+    b.onclick=()=>{pil=k;f.querySelectorAll("button").forEach(x=>x.setAttribute("aria-pressed","false"));b.setAttribute("aria-pressed","true");renderM();};
+    f.appendChild(b);
+  });
+  ["q","jf","pf"].forEach(id=>document.getElementById(id).addEventListener("input",renderM));
+  renderM();
+})();
+// Tabs
+const tabs=document.querySelectorAll('nav.tabs button');
+function show(id){
+  tabs.forEach(t=>t.setAttribute("aria-selected",t.dataset.t===id?"true":"false"));
+  document.querySelectorAll("section.doc").forEach(s=>s.classList.toggle("active",s.id===id));
+  try{history.replaceState(null,"","#"+id)}catch(e){}
+  window.scrollTo({top:document.querySelector("nav.tabs").offsetTop,behavior:"smooth"});
+}
+tabs.forEach(t=>t.addEventListener("click",()=>show(t.dataset.t)));
+const h=location.hash.slice(1); if(h&&document.getElementById(h)) show(h);
+</script>
+</body>
+</html>
