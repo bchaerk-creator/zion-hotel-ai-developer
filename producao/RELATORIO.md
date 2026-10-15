@@ -40,3 +40,20 @@ Leitura para Bruno: cada entrada abaixo é um módulo produzido pela tarefa agen
   3. Usar a edição do projeto do Volume 05 (com trechos de rascunho) para faseamento, pré-venda, permuta e multipropriedade.
   4. Corrigir nas fontes os erros listados acima, e no Z00 o R$ 28 mil da Porta 4.
   5. Extensão: 142 páginas, acima das ~120.
+
+## 15/10/2026 · D00 · Marco Zero: A Jornada do Desenvolvedor de Hospedagem · pronto para revisão
+- **E-book:** 87 páginas A4, cerca de 17 mil palavras (meta do plano); abertura, 7 capítulos, glossário, fontes e aviso legal. Ferramenta do Marco Zero do Desenvolvimento (jornada, ponto de partida, quatro decisões com "ainda não sei", nota de evidência 0 a 3 em D01 a D06, seis condições do portão, Dez Sinais Vermelhos, teste dos 30 dias na Jornada B; devolve veredito Go, Go condicionado ou No-Go, prontidão de 0 a 18, módulo mais fraco, índice do Dossiê com o estado de cada bloco e plano de seis semanas), caderno salvo só no navegador, autoavaliação com 5 perguntas e rubrica 40/30/20/10.
+- **Aula:** 40 slides, 60 minutos, 7 blocos com Curiosidade, Reflexão e Dica; quizzes nos slides 10, 19, 28 e 38; previsão "qual inversão?" no slide 15; exemplo resolvido do portão de Marina revelado linha a linha no slide 27; média de 40 palavras por slide (máximo 54).
+- **Links:** e-book https://bchaerk-creator.github.io/zion-hotel-ai-developer/escola/d00/ · aula https://bchaerk-creator.github.io/zion-hotel-ai-developer/escola/d00/apresentacao/ · prévias em escola/d00-previa/. Resposta das páginas: não verificada (proxy 403).
+- **ClickMax (desativado):** módulo e3047b2b-dac1-41d8-b639-d65914f0a4d4 (posição 4); aula e-book effe3d82-2c73-470a-a941-33ba8fe2dbb6; aula apresentação 3c5e49e4-e95a-4cbe-a260-09877d91ddea. Nasceram ativas, desativadas na hora; conferido enabled=false e startAutomatically=false.
+- **Airtable:** o registro D00 já existia (recsROPsGXlFhOic8, título "Marco Zero: A Jornada do Desenvolvedor Hoteleiro"); não foi alterado.
+- **Revisão:** 192 citações do e-book e 114 da aula conferidas por script (todas literais); ™ e ® conferidos; somas dos personagens conferidas. Corrigido: contradição bloqueante entre a regra "resposta sem documento conta como pendente" e os exemplos (adotada a regra "aprovada = verificação feita, ainda que com estimativa"); notas de Marina e Rafael divergentes nos caps. 1, 2, 3 e 4; terreno de Rafael (é o próprio, não do vizinho); mercado de Rafael passou a amarelo no semáforo; Figura 5.2 atribuía o teste dos 30 dias à "Trilha B do Panorama" (é A Ordem das Coisas); remissão a profissional no CAR, APP e reserva legal; 13 repetições entre capítulos; corte de cerca de 2.100 palavras (de 92 para 87 páginas). A aula foi sincronizada com o e-book revisado.
+- **Lacunas de fonte:** "Dossiê de Desenvolvimento Zion" não existe nas fontes (estrutura emprestada dos dez blocos do Dossiê de Viabilidade Territorial™, Volume 01, edição do projeto); "land bank" e "retrofit" não aparecem; duas matrizes Go / No-Go diferentes (Volume 04 do Drive, seis condições eliminatórias; Volume 02 do projeto, semáforo de cinco dimensões); o Manual põe o posicionamento antes do produto, as demais fontes depois; Trilha C é Operação no Panorama e Expansão em outra fonte. A "sequência profissional de 11 estágios" (HVS, Al Tamimi) citada no registro do Airtable não foi usada, por não ser fonte Zion.
+- **Decisões para Bruno:**
+  1. Nome e estrutura do Dossiê de Desenvolvimento Zion (dez blocos do Volume 01).
+  2. Regra do portão: aprovada com estimativa (nota 2) conta como aprovada; só a nota 3 fecha um bloco do Dossiê.
+  3. Usar as duas matrizes Go / No-Go (eliminatória e semáforo) ou unificar o nome nas fontes.
+  4. Escala de evidência 0 a 3 (elaboração do D00) como padrão dos módulos D01 a D06.
+  5. Título: fila e e-book dizem "Desenvolvedor de Hospedagem"; o Airtable diz "Desenvolvedor Hoteleiro".
+  6. Extensão: 87 páginas para 17 mil palavras, acima das 60 a 80 previstas para Marco Zero; dá para enxugar mais se preferir.
+  7. Cap. 6 ficou com um só pull quote depois dos cortes (padrão pede dois).
