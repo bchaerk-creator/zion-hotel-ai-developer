@@ -94,3 +94,8 @@ Leitura para Bruno: cada entrada abaixo é um módulo produzido pela tarefa agen
   6. Casos da Zion no Volume 02 (Bubble, "o projeto que não foi feito", biografia) ficaram de fora. Liberar algum?
   7. Corrigir nas fontes os erros de conta listados acima.
   8. Extensão: 136 páginas, acima das ~120 (o registro do Airtable previa 80).
+
+## 15/10/2026 · Alerta: GitHub Pages desligado
+- A API do GitHub informa has_pages=false para o repositório: nenhum link escola/... abre (inclui o Z00, cujas aulas estão ATIVAS no ClickMax).
+- Para ligar: GitHub, repositório zion-hotel-ai-developer, Settings, Pages, Source "Deploy from a branch", Branch main, pasta /docs, Save. Os links passam a funcionar em poucos minutos.
+- As execuções agendadas não conseguem ligar o Pages (sem permissão de administrador pela API).
