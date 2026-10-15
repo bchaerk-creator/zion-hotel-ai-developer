@@ -183,3 +183,8 @@ Leitura para Bruno: cada entrada abaixo é um módulo produzido pela tarefa agen
   8. Ordem no ClickMax: o F00 está na posição 10, antes do D06 (que ainda não tinha módulo). Reordenar quando o D06 entrar.
   9. Extensão: 96 páginas, acima dos 60 a 80 de um Marco Zero.
   10. GitHub Pages: links não verificados daqui (proxy 403); conferir se o Pages está ligado.
+
+## 15/10/2026 · Ativação no ClickMax por pedido de Bruno
+- Bruno pediu para deixar tudo ativo no ClickMax ("ainda não configurei nada"). Ativadas as 18 aulas desativadas de Z01, Z02, D00, D01, D02, D03, D04, D05 e F00 (as duas do Z00 já estavam ativas): 20 aulas com enabled=true. Nenhuma matrícula, mensagem ou oferta criada.
+- Alerta: a API do GitHub mostra has_pages=false; os links das aulas só abrem depois de ligar o GitHub Pages (Settings, Pages, Deploy from a branch, main, /docs).
+- A regra da tarefa agendada continua criando aulas novas desativadas até Bruno pedir a mudança.
