@@ -114,7 +114,7 @@ Curso "Mentoria Zion 360° | Negócios de Hospedagem", id `6ce56665-eacd-4513-b8
 3. Crie duas aulas do tipo `external_link`, no mesmo formato das aulas do Z00:
    - `1 · E-book: <Título>`, com o link do e-book e uma descrição do conteúdo;
    - `2 · Aula: <Título> (apresentação)`, com o link da aula e uma descrição.
-4. **Deixe as duas aulas desativadas.** Se nascerem ativas, desative na hora com `lesson_toggle_enabled` e confira com `lesson_list` que `enabled` está `false`.
+4. **Deixe as duas aulas desativadas e com `startAutomatically` em `false`, igual ao Z00.** Se nascerem ativas, desative na hora com `lesson_toggle_enabled` e confira com `lesson_list` que `enabled` está `false`.
 5. **Proibido:**
    - ativar aulas;
    - criar matrículas;
