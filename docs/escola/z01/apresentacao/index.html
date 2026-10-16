@@ -108,6 +108,68 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
 .hl{background:rgba(201,168,76,.18)}
 .blank{display:inline-block;min-width:420px;border-bottom:3px solid var(--gold);height:1em;vertical-align:baseline}
 </style>
+<style>
+.v3 h1{font-size:84px;line-height:1.05;max-width:18ch}
+.v3 h2{font-family:"Playfair Display",serif;font-size:62px;line-height:1.1;margin:0 0 14px;max-width:24ch}
+.v3 .sub{font-size:28px;opacity:.75;margin:0 0 34px}
+.v3 .lead{font-size:34px;line-height:1.45;max-width:30ch;opacity:.9}
+.ops{display:grid;gap:26px;grid-template-columns:repeat(var(--n,3),1fr)}
+.op{border:2px solid rgba(201,168,76,.55);border-radius:22px;padding:30px 26px;text-align:center;cursor:pointer;background:rgba(201,168,76,.05);transition:transform .15s,background .2s,border-color .2s;user-select:none}
+.op:hover{transform:translateY(-4px)}
+.op svg{width:96px;height:96px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.op .t{font-size:32px;font-weight:700;line-height:1.2}
+.op .L{display:inline-block;font:900 26px/1 "Playfair Display",serif;color:#C9A84C;margin-bottom:10px}
+.op.sim{background:rgba(70,140,80,.22);border-color:#4f9a5a}
+.op.nao{background:rgba(170,60,50,.18);border-color:#b0493d;opacity:.8}
+.op.marc{background:rgba(201,168,76,.25);border-color:#C9A84C}
+.fb{min-height:110px;margin-top:30px;font-size:31px;line-height:1.4;max-width:46ch;border-left:5px solid #C9A84C;padding:6px 0 6px 24px;opacity:0;transition:opacity .25s}
+.fb.on{opacity:1}
+.fb b{color:#C9A84C}
+.flow{display:flex;align-items:center;gap:18px;margin-top:30px}
+.flow .st{flex:1;text-align:center;border-radius:22px;padding:30px 14px;background:rgba(201,168,76,.08);border:2px solid rgba(201,168,76,.5)}
+.flow .st svg{width:90px;height:90px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.flow .st .n{font:900 30px/1 "Playfair Display",serif;color:#C9A84C}
+.flow .st .t{font-size:30px;font-weight:700;margin-top:10px}
+.flow .st .d{font-size:22px;opacity:.75;margin-top:6px}
+.flow .ar{font-size:54px;color:#C9A84C}
+.flow .st.last{opacity:.55;border-style:dashed}
+.cnt{font-size:30px;margin-top:26px}
+.cnt b{color:#C9A84C;font-size:40px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.calc label{display:block;font-size:26px;opacity:.8;margin:0 0 6px}
+.calc input{width:100%;font-size:40px;padding:12px 18px;border-radius:14px;border:2px solid #C9A84C;background:rgba(255,255,255,.06);color:inherit;margin-bottom:22px;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:14px;margin-bottom:26px}
+.btns button{font-size:24px;padding:12px 22px;border-radius:40px;border:2px solid #C9A84C;background:transparent;color:inherit;cursor:pointer}
+.btns button.on{background:#C9A84C;color:#1B2117}
+.res .l{display:flex;justify-content:space-between;font-size:36px;padding:14px 0;border-bottom:1px solid rgba(201,168,76,.35);font-variant-numeric:tabular-nums}
+.res .big{font-size:56px;font-weight:800}
+.res .pos{color:#5fae6a}.res .neg{color:#d0604f}
+.res .msg{font-size:28px;margin-top:20px;line-height:1.4}
+.sem{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.sem .c{border-radius:22px;padding:30px;font-size:27px;line-height:1.45}
+.sem .c h3{font-size:34px;margin:0 0 14px;display:flex;align-items:center;gap:14px}
+.sem .c h3 i{width:30px;height:30px;border-radius:50%;display:inline-block}
+.sem .g{background:rgba(79,154,90,.16)} .sem .g i{background:#4f9a5a}
+.sem .y{background:rgba(201,168,76,.16)} .sem .y i{background:#C9A84C}
+.sem .r{background:rgba(176,73,61,.16)} .sem .r i{background:#b0493d}
+.vf .row{display:flex;align-items:center;gap:24px;font-size:32px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.3)}
+.vf .row .s{flex:1}
+.vf button{font-size:24px;padding:10px 22px;border-radius:40px;border:2px solid #C9A84C;background:transparent;color:inherit;cursor:pointer}
+.vf .row.ok .s:after{content:"  ✓ certo";color:#5fae6a;font-weight:700}
+.vf .row.err .s:after{content:"  ✗ pense de novo";color:#d0604f;font-weight:700}
+.vf .ex{font-size:24px;opacity:.75;flex-basis:100%}
+.ilus{font-size:22px;opacity:.65;margin-top:18px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tile{text-align:center;padding:24px;border-radius:20px;background:rgba(201,168,76,.08)}
+.tile svg{width:80px;height:80px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.tile .t{font-size:27px;font-weight:700;margin-top:8px;line-height:1.25}
+.tile .d{font-size:21px;opacity:.75;margin-top:6px;line-height:1.35}
+.v3.dark h1.sec{font-size:96px}
+.v3 .regra{font-family:"Playfair Display",serif;font-size:66px;line-height:1.15;max-width:22ch}
+.v3 .regra em{color:#C9A84C;font-style:normal}
+.v3 .ops[style*="--n:4"] .t{font-size:28px}
+.v3 .ops[data-modo=marcar] .op{padding:18px 20px}.v3 .ops[data-modo=marcar] svg{width:64px;height:64px;margin-bottom:6px}.v3 .ops[data-modo=marcar]{gap:18px}.v3 .cnt{margin-top:18px}
+</style>
 </head>
 <body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -132,527 +194,229 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
 
 <div class="stage" id="stage"><div class="deck" id="deck">
 
-<section class="slide dark">
-  <div class="kick">Mentoria Zion 360°</div>
-  <h1 style="font-size:92px;max-width:15ch">Da Propriedade ao Negócio de <em>Hospedagem</em></h1>
-  <div class="deckline">Aula Z01 · Abertura e diagnóstico</div>
-<div class="trio"><div><b>Curiosidade</b>Em Urubici, «muita gente acreditava que o diferencial seria a estrutura. Não era.»</div><div class="r"><b>Reflexão</b>Que nota mudaria se o lugar fosse de um desconhecido?</div><div class="d"><b>Dica</b>«Se faltar alguma informação, escreva não sei: é informação igual.»</div></div>
-  <div class="foot"><span>A Escola do Hoteleiro</span><span>01 / 40</span></div>
-  <aside class="notes">[0:00 · 1 min] Boas-vindas ao Z01. No Z00 a turma abriu o mapa; hoje o mapa é aplicado ao caso de cada um. O objetivo da aula é sair com o roteiro do Diagnóstico de Potencial do Imóvel ou Terreno e uma decisão provisória escrita: seguir, ajustar ou parar. Explique o formato: o slide traz só gatilhos; a explicação vem da conversa. Haverá previsões, quatro quizzes relâmpago e exercícios curtos. Peça papel, caneta e o Mapa dos Modelos do Z00 à mão. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
+<section class="slide v3 dark">
+<div class="kick">Aula Z01 · Base</div><h1>Seu lugar pode virar um <em>negócio de hospedagem</em>?</h1>
+<p class="lead">Em 40 telas você vai ler o seu lugar, descobrir para quem ele serve, fazer a conta e sair com uma decisão.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>01 / 40</span></div>
+<aside class="notes">Oi, tudo bem? Esta é a aula do Z01. Ela é feita para você participar: tocar nas opções, marcar o que o seu lugar tem e fazer a conta. Pega papel e caneta, e pensa no seu terreno, imóvel ou operação o tempo todo.</aside>
+</section>
+<section class="slide v3">
+<h2>Como esta aula funciona</h2><p class="sub">Quatro tipos de tela.</p><div class="tiles" style="grid-template-columns:repeat(4,1fr)"><div class="tile"><svg><use href="#i-star"/></svg><div class="t">Toque</div><div class="d">escolha uma opção e veja se acertou</div></div><div class="tile"><svg><use href="#i-eye"/></svg><div class="t">Marque</div><div class="d">o que o seu lugar já tem</div></div><div class="tile"><svg><use href="#i-chart"/></svg><div class="t">Calcule</div><div class="d">troque os números pelos seus</div></div><div class="tile"><svg><use href="#i-key"/></svg><div class="t">Decida</div><div class="d">seguir, ajustar ou parar</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>02 / 40</span></div>
+<aside class="notes">Quando aparecer uma pergunta, pense antes de tocar. Errar aqui é bom: é aqui que você aprende, e não depois, com dinheiro de verdade.</aside>
+</section>
+<section class="slide v3">
+<h2>Revisão: o que um negócio de hospedagem vende?</h2><p class="sub">Do módulo anterior. Responda de memória.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> Terreno se vende uma vez. O negócio vende todo mês."><div class="L">A</div><br><svg><use href="#i-doc"/></svg><div class="t">O terreno</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Gente pagando para dormir ali, com serviço, todo mês."><div class="L">B</div><br><svg><use href="#i-bed"/></svg><div class="t">Noites com serviço</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> A obra é custo, não é o que o hóspede compra."><div class="L">C</div><br><svg><use href="#i-tool"/></svg><div class="t">A obra pronta</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>03 / 40</span></div>
+<aside class="notes">Revisão rápida do Z00. Lembrar sem olhar é o que fixa.</aside>
+</section>
+<section class="slide v3">
+<h2>Revisão: qual destas é entrar no negócio sem construir?</h2><p class="sub">Toque na opção certa.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Isso é construir.</b> Existem outras portas."><div class="L">A</div><br><svg><use href="#i-house"/></svg><div class="t">Fazer chalés no terreno</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Alugar para hospedar, comprar pronto ou administrar o de outro são portas sem obra."><div class="L">B</div><br><svg><use href="#i-key"/></svg><div class="t">Alugar um imóvel para hospedar</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> Esperar não é uma porta de entrada."><div class="L">C</div><br><svg><use href="#i-cal"/></svg><div class="t">Esperar o terreno valorizar</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>04 / 40</span></div>
+<aside class="notes">No Z00 vimos as quatro portas: construir, comprar pronto, alugar para hospedar e administrar o de outro.</aside>
+</section>
+<section class="slide v3">
+<h2>Em qual situação você está?</h2><p class="sub">Escolha a sua.</p><div class="ops" data-modo="todas" style="--n:2"><div class="op" data-ok="1" data-fb="<b>Quero começar:</b> você vai olhar o terreno ou o imóvel que ainda não recebe hóspedes."><div class="L">A</div><br><svg><use href="#i-pin"/></svg><div class="t">Quero começar</div></div><div class="op" data-ok="1" data-fb="<b>Quero crescer:</b> você vai olhar a operação que já existe e onde o dinheiro escapa."><div class="L">B</div><br><svg><use href="#i-chart"/></svg><div class="t">Quero crescer</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>05 / 40</span></div>
+<aside class="notes">As duas situações fazem esta aula. Só muda o que você vai analisar.</aside>
+</section>
+<section class="slide v3">
+<h2>O caminho de hoje</h2><p class="sub">A obra é o último passo, nunca o primeiro.</p><div class="flow"><div class="st"><div class="n">1</div><svg><use href="#i-pin"/></svg><div class="t">O lugar</div><div class="d">o que ele permite</div></div><div class="ar">→</div><div class="st"><div class="n">2</div><svg><use href="#i-user"/></svg><div class="t">O hóspede</div><div class="d">quem vem e quanto paga</div></div><div class="ar">→</div><div class="st"><div class="n">3</div><svg><use href="#i-chart"/></svg><div class="t">A conta</div><div class="d">sobra dinheiro?</div></div><div class="ar">→</div><div class="st"><div class="n">4</div><svg><use href="#i-key"/></svg><div class="t">A decisão</div><div class="d">seguir, ajustar ou parar</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>06 / 40</span></div>
+<aside class="notes">Esse é o mapa da aula. Cada parte responde uma pergunta. No fim, você decide.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 2 de 7</div><h1 class="sec">Terreno não é negócio</h1><p class="lead">O que muda quando você olha o lugar como dono de hospedagem.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>07 / 40</span></div>
+<aside class="notes">Primeira ideia importante da aula.</aside>
+</section>
+<section class="slide v3">
+<h2>Três jeitos de ver o mesmo lugar</h2><p class="sub">Da escritura ao dinheiro entrando.</p><div class="flow"><div class="st"><div class="n">1</div><svg><use href="#i-doc"/></svg><div class="t">Terreno</div><div class="d">o chão: tamanho, escritura, preço</div></div><div class="ar">→</div><div class="st"><div class="n">2</div><svg><use href="#i-tree"/></svg><div class="t">Território</div><div class="d">o entorno: natureza, clima, acesso, procura</div></div><div class="ar">→</div><div class="st"><div class="n">3</div><svg><use href="#i-bed"/></svg><div class="t">Negócio</div><div class="d">gente pagando para dormir, todo mês</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>08 / 40</span></div>
+<aside class="notes">O terreno é o chão. O território é tudo em volta: natureza, clima, acesso, quem procura a região. O negócio é quando alguém paga para dormir ali, todo mês, e sobra dinheiro.</aside>
+</section>
+<section class="slide v3">
+<h2>O que faz o hóspede pagar?</h2><p class="sub">Toque na que mais pesa.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> O hóspede nem vê a escritura."><div class="L">A</div><br><svg><use href="#i-doc"/></svg><div class="t">O tamanho do terreno</div></div><div class="op" data-ok="0" data-fb="<b>Ajuda, mas sozinha não basta.</b> Vista linda com acesso ruim afasta muita gente."><div class="L">B</div><br><svg><use href="#i-eye"/></svg><div class="t">Só a vista bonita</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Ele paga pelo que vive ali e por conseguir chegar."><div class="L">C</div><br><svg><use href="#i-star"/></svg><div class="t">A experiência e chegar fácil</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>09 / 40</span></div>
+<aside class="notes">Beleza ajuda. Mas o que enche a agenda é experiência e acesso.</aside>
+</section>
+<section class="slide v3">
+<h2>Qual é a pergunta certa?</h2><p class="sub">Antes de qualquer gasto.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Parece prudente, mas já decidiu construir.</b> E se a melhor resposta for não construir?"><div class="L">A</div><br><svg><use href="#i-tool"/></svg><div class="t">Quanto custa construir aqui?</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Essa pergunta aceita o "não" e abre outras opções."><div class="L">B</div><br><svg><use href="#i-star"/></svg><div class="t">Vale a pena construir aqui? E o quê?</div></div><div class="op" data-ok="0" data-fb="<b>Importante, mas é outra conversa.</b> Valor de venda não diz se o negócio funciona."><div class="L">C</div><br><svg><use href="#i-doc"/></svg><div class="t">Quanto vale o meu terreno?</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>10 / 40</span></div>
+<aside class="notes">A pergunta "quanto custa construir" parece prudente, mas já escondeu uma decisão: a de que construir é o caminho.</aside>
+</section>
+<section class="slide v3">
+<h2>Três respostas possíveis</h2><p class="sub">Toda análise termina em uma delas.</p>
+<div class="sem"><div class="c g"><h3><i></i>Seguir</h3>O lugar, o hóspede e a conta fecham. Próximo passo: planejar.</div>
+<div class="c y"><h3><i></i>Ajustar</h3>Fecha com mudanças: tamanho, tipo de hospedagem, preço ou custo.</div>
+<div class="c r"><h3><i></i>Parar e resolver</h3>Tem algo que trava. Resolver antes de gastar.</div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>11 / 40</span></div>
+<aside class="notes">Parar não é fracasso. Parar na hora certa protege o seu dinheiro.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 3 de 7</div><h1 class="sec">Ler o lugar</h1><p class="lead">O que o hóspede vai sentir quando chegar.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>12 / 40</span></div>
+<aside class="notes">Agora a gente olha o lugar com olho de hóspede.</aside>
+</section>
+<section class="slide v3">
+<h2>O que o seu lugar já tem?</h2><p class="sub">Toque em cada item que o seu lugar oferece.</p><div class="ops" data-modo="marcar" style="--n:3"><div class="op"><svg><use href="#i-pin"/></svg><div class="t">Acesso fácil o ano todo</div></div><div class="op"><svg><use href="#i-eye"/></svg><div class="t">Vista ou paisagem especial</div></div><div class="op"><svg><use href="#i-sun"/></svg><div class="t">Sol de manhã e à tarde</div></div><div class="op"><svg><use href="#i-drop"/></svg><div class="t">Água e luz</div></div><div class="op"><svg><use href="#i-key"/></svg><div class="t">Internet e sinal de celular</div></div><div class="op"><svg><use href="#i-tree"/></svg><div class="t">Silêncio e natureza</div></div></div><div class="cnt">Seu lugar tem <b class="num-m">0</b> de 6.</div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>13 / 40</span></div>
+<aside class="notes">Marque só o que tem de verdade. O que faltar vira tarefa ou sinal de alerta.</aside>
+</section>
+<section class="slide v3">
+<h2>Quando visitar o lugar?</h2><p class="sub">Para conhecer de verdade.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Engana.</b> É o melhor horário. O hóspede vai estar lá de manhã cedo e à noite."><div class="L">A</div><br><svg><use href="#i-sun"/></svg><div class="t">Ao meio-dia, com sol</div></div><div class="op" data-ok="0" data-fb="<b>Incompleto.</b> Dia de semana mostra barulho de obra, trânsito, movimento."><div class="L">B</div><br><svg><use href="#i-cal"/></svg><div class="t">Só no fim de semana</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Duas visitas mostram sol, frio, umidade, barulho e vista de verdade."><div class="L">C</div><br><svg><use href="#i-eye"/></svg><div class="t">Às 7h e às 17h</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>14 / 40</span></div>
+<aside class="notes">Um lugar muda muito ao longo do dia.</aside>
+</section>
+<section class="slide v3">
+<h2>O que anotar na visita</h2><p class="sub">Quatro perguntas.</p><div class="tiles" style="grid-template-columns:repeat(4,1fr)"><div class="tile"><svg><use href="#i-pin"/></svg><div class="t">Como se chega?</div><div class="d">estrada, distância, carro comum passa?</div></div><div class="tile"><svg><use href="#i-eye"/></svg><div class="t">O que se vê e ouve?</div><div class="d">vista, barulho, vizinhos</div></div><div class="tile"><svg><use href="#i-drop"/></svg><div class="t">Tem o básico?</div><div class="d">água, luz, internet, sinal</div></div><div class="tile"><svg><use href="#i-alert"/></svg><div class="t">O que nunca vai ter?</div><div class="d">escreva em uma linha</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>15 / 40</span></div>
+<aside class="notes">A última é a mais importante: o que este lugar nunca vai conseguir oferecer. Isso evita sonho caro.</aside>
+</section>
+<section class="slide v3">
+<h2>Qual destes enche mais a agenda?</h2><p class="sub">Mesmo tamanho, mesmo preço de compra.</p><div class="ops" data-modo="certo" style="--n:2"><div class="op" data-ok="0" data-fb="<b>Depende muito.</b> Com chuva e criança no carro, muita gente desiste."><div class="L">A</div><br><svg><use href="#i-eye"/></svg><div class="t">Vista linda, 40 min de estrada de terra</div></div><div class="op" data-ok="1" data-fb="<b>Geralmente este.</b> Já tem gente indo para a região toda semana."><div class="L">B</div><br><svg><use href="#i-pin"/></svg><div class="t">Vista simples, 10 min de um destino turístico</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>16 / 40</span></div>
+<aside class="notes">Não existe resposta absoluta, mas acesso e procura costumam pesar mais que a vista sozinha.</aside>
+</section>
+<section class="slide v3">
+<h2>Verdadeiro ou falso? O lugar</h2><p class="sub">Toque na sua resposta.</p><div class="vf"><div class="row" data-r="f"><span class="s">Terreno grande é sempre um bom negócio.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="f"><span class="s">Uma visita no melhor horário basta.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="v"><span class="s">Falta de água e luz pode virar custo alto.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="v"><span class="s">Acesso difícil afasta hóspede.</span><button data-a="v">V</button><button data-a="f">F</button></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>17 / 40</span></div>
+<aside class="notes">Revisão da parte 3.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 4 de 7</div><h1 class="sec">Para quem é o seu lugar?</h1><p class="lead">Todo lugar tem uma vocação.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>18 / 40</span></div>
+<aside class="notes">Quem tenta agradar todo mundo não encanta ninguém.</aside>
+</section>
+<section class="slide v3">
+<h2>Quem é o seu hóspede principal?</h2><p class="sub">Escolha um.</p><div class="ops" data-modo="todas" style="--n:4"><div class="op" data-ok="1" data-fb="<b>Casal</b> quer privacidade, cama muito boa, banheira ou lareira e vista."><div class="L">A</div><br><svg><use href="#i-bed"/></svg><div class="t">Casal</div></div><div class="op" data-ok="1" data-fb="<b>Família</b> precisa de espaço, cozinha, área para criança e segurança."><div class="L">B</div><br><svg><use href="#i-house"/></svg><div class="t">Família</div></div><div class="op" data-ok="1" data-fb="<b>Aventura</b> pede trilhas, passeios e estrutura simples e resistente."><div class="L">C</div><br><svg><use href="#i-tree"/></svg><div class="t">Natureza e aventura</div></div><div class="op" data-ok="1" data-fb="<b>Quem trabalha de longe</b> precisa de internet forte, mesa boa e silêncio."><div class="L">D</div><br><svg><use href="#i-doc"/></svg><div class="t">Trabalhar de longe</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>19 / 40</span></div>
+<aside class="notes">Qualquer escolha está certa, desde que seja uma principal.</aside>
+</section>
+<section class="slide v3">
+<h2>O que cada um valoriza</h2><p class="sub">Isso decide tamanho, decoração e preço.</p><div class="tiles" style="grid-template-columns:repeat(4,1fr)"><div class="tile"><svg><use href="#i-bed"/></svg><div class="t">Casal</div><div class="d">unidade pequena, diária mais alta</div></div><div class="tile"><svg><use href="#i-house"/></svg><div class="t">Família</div><div class="d">unidade maior, mais pessoas</div></div><div class="tile"><svg><use href="#i-tree"/></svg><div class="t">Aventura</div><div class="d">o lugar é a atração</div></div><div class="tile"><svg><use href="#i-doc"/></svg><div class="t">Trabalho</div><div class="d">fica mais dias, fora de temporada</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>20 / 40</span></div>
+<aside class="notes">Repare como cada público muda o produto inteiro.</aside>
+</section>
+<section class="slide v3">
+<h2>Para quem o seu lugar deve ser?</h2><p class="sub">Toque na melhor regra.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> Produto para todos não encanta ninguém e cobra menos."><div class="L">A</div><br><svg><use href="#i-user"/></svg><div class="t">Para todo mundo</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Foco, com uma segunda opção que combine."><div class="L">B</div><br><svg><use href="#i-star"/></svg><div class="t">Um principal e no máximo um complementar</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> Quem paga mais só vem se o lugar for feito para ele."><div class="L">C</div><br><svg><use href="#i-chart"/></svg><div class="t">Para quem pagar mais</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>21 / 40</span></div>
+<aside class="notes">Uma vocação principal e, no máximo, uma complementar.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Regra da vocação</div><p class="regra">Uma vocação <em>principal</em>. No máximo uma <em>complementar</em>.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>22 / 40</span></div>
+<aside class="notes">Escreva agora: qual é a principal do seu lugar?</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 5 de 7</div><h1 class="sec">Quem vai dormir aí?</h1><p class="lead">E quanto essa pessoa paga.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>23 / 40</span></div>
+<aside class="notes">A pesquisa mais barata que existe.</aside>
+</section>
+<section class="slide v3">
+<h2>Como você descobre o preço da diária?</h2><p class="sub">Toque na opção certa.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> Preço de vontade costuma deixar a agenda vazia."><div class="L">A</div><br><svg><use href="#i-brain"/></svg><div class="t">O que eu acho justo</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> O hóspede não paga a sua obra; ele compara."><div class="L">B</div><br><svg><use href="#i-tool"/></svg><div class="t">O que eu gastei na obra</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> O preço da diária não se inventa. Se descobre."><div class="L">C</div><br><svg><use href="#i-camera"/></svg><div class="t">Olhando 10 lugares parecidos perto</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>24 / 40</span></div>
+<aside class="notes">Meia hora no celular.</aside>
+</section>
+<section class="slide v3">
+<h2>A pesquisa em 4 passos</h2><p class="sub">Faça hoje, no celular.</p><div class="flow"><div class="st"><div class="n">1</div><svg><use href="#i-camera"/></svg><div class="t">Abra</div><div class="d">Airbnb e Booking</div></div><div class="ar">→</div><div class="st"><div class="n">2</div><svg><use href="#i-pin"/></svg><div class="t">Ache 10</div><div class="d">parecidos e perto</div></div><div class="ar">→</div><div class="st"><div class="n">3</div><svg><use href="#i-doc"/></svg><div class="t">Anote</div><div class="d">o preço da diária</div></div><div class="ar">→</div><div class="st"><div class="n">4</div><svg><use href="#i-cal"/></svg><div class="t">Veja</div><div class="d">se a agenda está cheia</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>25 / 40</span></div>
+<aside class="notes">Anote a menor diária, a mais comum e a maior. E quantos estão com a agenda cheia.</aside>
+</section>
+<section class="slide v3">
+<h2>Os mais caros estão com a agenda vazia. O que isso diz?</h2><p class="sub">Pense antes de tocar.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Ao contrário.</b> O mercado está dizendo que ali é caro demais."><div class="L">A</div><br><svg><use href="#i-star"/></svg><div class="t">Que posso cobrar mais</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Agenda vazia também é informação."><div class="L">B</div><br><svg><use href="#i-chart"/></svg><div class="t">Que o teto de preço da região está abaixo deles</div></div><div class="op" data-ok="0" data-fb="<b>Diz muito.</b> Agenda vazia é o sinal mais claro do mercado."><div class="L">C</div><br><svg><use href="#i-alert"/></svg><div class="t">Nada</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>26 / 40</span></div>
+<aside class="notes">Repare sempre na agenda, não só no preço.</aside>
+</section>
+<section class="slide v3">
+<h2>A região só enche no feriado. O que isso significa?</h2><p class="sub">Toque na resposta.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> Só em poucos dias do ano."><div class="L">A</div><br><svg><use href="#i-cal"/></svg><div class="t">Que vou lotar sempre</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> A conta precisa aguentar os meses fracos."><div class="L">B</div><br><svg><use href="#i-chart"/></svg><div class="t">Que terei muitos meses fracos</div></div><div class="op" data-ok="0" data-fb="<b>Importa muito.</b> Muda toda a conta."><div class="L">C</div><br><svg><use href="#i-star"/></svg><div class="t">Que não importa</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>27 / 40</span></div>
+<aside class="notes">Isso nos leva direto para a conta.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 6 de 7</div><h1 class="sec">A conta numa folha só</h1><p class="lead">Diária, noites, custos e sobra.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>28 / 40</span></div>
+<aside class="notes">Agora o número.</aside>
+</section>
+<section class="slide v3">
+<h2>A conta inteira em uma linha</h2><p class="sub">Simples assim.</p><div class="flow"><div class="st"><div class="n">1</div><div class="t">Diária</div><div class="d">R$ por noite</div></div><div class="ar">→</div><div class="st"><div class="n">2</div><div class="t">× noites</div><div class="d">vendidas no mês</div></div><div class="ar">→</div><div class="st"><div class="n">3</div><div class="t">− custos</div><div class="d">do mês</div></div><div class="ar">→</div><div class="st"><div class="n">4</div><div class="t">= sobra</div><div class="d">o que o negócio deixa</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>29 / 40</span></div>
+<aside class="notes">Diária vezes noites vendidas dá o que entra. Tire os custos. O que sobra é o que o negócio deixa.</aside>
+</section>
+<section class="slide v3">
+<h2>Quais destes são custos do mês?</h2><p class="sub">Toque em todos que entram na conta.</p><div class="ops" data-modo="marcar" style="--n:3"><div class="op"><svg><use href="#i-house"/></svg><div class="t">Limpeza e lavanderia</div></div><div class="op"><svg><use href="#i-drop"/></svg><div class="t">Água e luz</div></div><div class="op"><svg><use href="#i-key"/></svg><div class="t">Internet</div></div><div class="op"><svg><use href="#i-chart"/></svg><div class="t">Taxa do Airbnb ou Booking</div></div><div class="op"><svg><use href="#i-tool"/></svg><div class="t">Manutenção</div></div><div class="op"><svg><use href="#i-doc"/></svg><div class="t">Reserva para consertos</div></div></div><div class="cnt">Você marcou <b class="num-m">0</b> de 6.</div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>30 / 40</span></div>
+<aside class="notes">Todos entram. O mais esquecido é a reserva para consertos e reposição.</aside>
+</section>
+<section class="slide v3">
+<h2>Faça a sua conta</h2><p class="sub">Troque os números pelos seus. Depois toque em "Mês fraco".</p>
+<div class="calc" data-calc><div>
+<div class="btns"><button data-n="8">Mês fraco</button><button data-n="15" class="on">Mês normal</button><button data-n="22">Mês bom</button></div>
+<label>Diária (R$)</label><input type="number" data-k="d" value="400">
+<label>Noites vendidas no mês</label><input type="number" data-k="n" value="15">
+<label>Custos do mês (R$)</label><input type="number" data-k="c" value="3500"></div>
+<div class="res"><div class="l"><span>Entra no mês</span><span data-o="e">R$ 6.000</span></div>
+<div class="l"><span>Custos</span><span data-o="c">R$ 3.500</span></div>
+<div class="l big"><span>Sobra</span><span data-o="s" class="pos">R$ 2.500</span></div>
+<div class="msg" data-o="m"></div></div></div>
+<p class="ilus">Números de exemplo, só para ilustrar. Use os da sua pesquisa.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>31 / 40</span></div>
+<aside class="notes">Toque em Mês fraco. Com 8 noites a conta fica negativa. A conta tem que aguentar o mês fraco.</aside>
+</section>
+<section class="slide v3">
+<h2>Quantas noites para não perder dinheiro?</h2><p class="sub">Custos de R$ 3.500 e diária de R$ 400 (exemplo).</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Pouco.</b> 6 × 400 = R$ 2.400. Ainda falta."><div class="L">A</div><br><svg><use href="#i-cal"/></svg><div class="t">6 noites</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> 3.500 ÷ 400 = 8,75. Arredonde para cima: 9 noites."><div class="L">B</div><br><svg><use href="#i-chart"/></svg><div class="t">9 noites</div></div><div class="op" data-ok="0" data-fb="<b>Mais que o necessário.</b> Com 15 já sobra dinheiro."><div class="L">C</div><br><svg><use href="#i-star"/></svg><div class="t">15 noites</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>32 / 40</span></div>
+<aside class="notes">É o ponto de equilíbrio: custos divididos pela diária.</aside>
+</section>
+<section class="slide v3">
+<h2>Fecha no mês bom, falta no mês fraco. E agora?</h2><p class="sub">Toque na melhor saída.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> O mês fraco vai chegar."><div class="L">A</div><br><svg><use href="#i-star"/></svg><div class="t">Está tudo certo</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> A conta tem que fechar no ano, não só no mês bom."><div class="L">B</div><br><svg><use href="#i-key"/></svg><div class="t">Guardar reserva ou ajustar custo e preço</div></div><div class="op" data-ok="0" data-fb="<b>Calma.</b> Muitas vezes um ajuste resolve."><div class="L">C</div><br><svg><use href="#i-alert"/></svg><div class="t">Desistir</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>33 / 40</span></div>
+<aside class="notes">Faça sempre a conta em três meses: fraco, normal e bom.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Parte 7 de 7</div><h1 class="sec">O que pode travar</h1><p class="lead">E a sua decisão.</p>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>34 / 40</span></div>
+<aside class="notes">Antes de gastar com obra.</aside>
+</section>
+<section class="slide v3">
+<h2>Sinal verde, amarelo ou vermelho?</h2><p class="sub">Olhe estes sinais antes de gastar.</p>
+<div class="sem"><div class="c g"><h3><i></i>Siga</h3>Documentos em dia, acesso fácil, vizinhos parecidos com agenda cheia.</div>
+<div class="c y"><h3><i></i>Ajuste</h3>Falta internet ou água, preço da região abaixo do esperado, só enche no feriado.</div>
+<div class="c r"><h3><i></i>Pare e resolva</h3>Problema na escritura, área que não pode construir, sem acesso, ninguém enche a agenda.</div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>35 / 40</span></div>
+<aside class="notes">Vermelho não é fim: é resolver antes. Às vezes a saída é mudar o tamanho, o tipo ou arrendar.</aside>
+</section>
+<section class="slide v3">
+<h2>Apareceu um problema na escritura. O que fazer?</h2><p class="sub">Toque na resposta.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Perigoso.</b> O problema fica mais caro depois da obra."><div class="L">A</div><br><svg><use href="#i-tool"/></svg><div class="t">Começar a obra e resolver depois</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Documento primeiro, obra depois."><div class="L">B</div><br><svg><use href="#i-doc"/></svg><div class="t">Resolver antes de gastar com obra</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> Documento com pendência pode travar financiamento e venda."><div class="L">C</div><br><svg><use href="#i-eye"/></svg><div class="t">Ignorar</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>36 / 40</span></div>
+<aside class="notes">Peça sempre a documentação antes de qualquer gasto.</aside>
+</section>
+<section class="slide v3">
+<h2>Já opera: agenda cheia, mas não sobra dinheiro. Onde olhar primeiro?</h2><p class="sub">Para quem quer crescer.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não resolve.</b> A agenda já está cheia."><div class="L">A</div><br><svg><use href="#i-camera"/></svg><div class="t">Fazer mais propaganda</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Se enche e não sobra, o problema está no preço ou no custo."><div class="L">B</div><br><svg><use href="#i-chart"/></svg><div class="t">Custos e preço da diária</div></div><div class="op" data-ok="0" data-fb="<b>Cuidado.</b> Crescer um negócio que não sobra multiplica o problema."><div class="L">C</div><br><svg><use href="#i-house"/></svg><div class="t">Construir mais unidades</div></div></div><div class="fb"></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>37 / 40</span></div>
+<aside class="notes">Um lugar pode ter capacidade e não produzir; outro pode produzir e não render. Descubra qual é o seu.</aside>
+</section>
+<section class="slide v3">
+<h2>Verdadeiro ou falso? Revisão final</h2><p class="sub">Toque na sua resposta.</p><div class="vf"><div class="row" data-r="v"><span class="s">O preço se descobre olhando os vizinhos parecidos.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="f"><span class="s">Se a conta fecha no mês bom, está tudo certo.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="v"><span class="s">Parar na hora certa protege o seu dinheiro.</span><button data-a="v">V</button><button data-a="f">F</button></div><div class="row" data-r="f"><span class="s">Construir mais resolve quando não sobra dinheiro.</span><button data-a="v">V</button><button data-a="f">F</button></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>38 / 40</span></div>
+<aside class="notes">Cada erro mostra o que vale rever.</aside>
+</section>
+<section class="slide v3">
+<h2>O que você leva desta aula</h2><p class="sub">Quatro ideias.</p><div class="tiles" style="grid-template-columns:repeat(4,1fr)"><div class="tile"><svg><use href="#i-pin"/></svg><div class="t">Primeiro o lugar</div><div class="d">depois a obra</div></div><div class="tile"><svg><use href="#i-user"/></svg><div class="t">Um hóspede principal</div><div class="d">e no máximo um complementar</div></div><div class="tile"><svg><use href="#i-camera"/></svg><div class="t">O preço se descobre</div><div class="d">10 vizinhos parecidos</div></div><div class="tile"><svg><use href="#i-chart"/></svg><div class="t">A conta fecha</div><div class="d">até no mês fraco</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>39 / 40</span></div>
+<aside class="notes">Se lembrar só disso, a aula valeu.</aside>
+</section>
+<section class="slide v3 dark">
+<div class="kick">Sua tarefa desta semana</div><h2>Preencha o seu Diagnóstico</h2><p class="sub">Está no capítulo 8 do e-book.</p>
+<div class="flow"><div class="st"><div class="n">1</div><div class="t">Marque</div><div class="d">o que o lugar tem</div></div><div class="ar">→</div>
+<div class="st"><div class="n">2</div><div class="t">Pesquise</div><div class="d">10 vizinhos parecidos</div></div><div class="ar">→</div>
+<div class="st"><div class="n">3</div><div class="t">Calcule</div><div class="d">mês fraco, normal e bom</div></div><div class="ar">→</div>
+<div class="st"><div class="n">4</div><div class="t">Decida</div><div class="d">seguir, ajustar ou parar</div></div></div>
+<div class="foot"><span>Zion Hospitality Business · Aula Z01</span><span>40 / 40</span></div>
+<aside class="notes">Se não souber algo, escreva "não sei": também é informação. Te vejo na próxima aula.</aside>
 </section>
 
-<section class="slide">
-  <span class="ask">Sem consultar</span>
-  <div class="kick">Revisão do Z00</div>
-  <h2>Três perguntas <em>de memória</em></h2>
-  <div class="grid g3">
-    <div class="tile"><div class="big">1</div><h3>Imóvel, negócio, destino</h3><div class="w">O que cada um vende?</div><div class="answer f" style="margin-top:16px;font-size:22px">um bem · noites com serviço · <b>razão para viajar</b></div></div>
-    <div class="tile"><div class="big">2</div><h3>RevPAR</h3><div class="w">Qual é a fórmula?</div><div class="answer f" style="margin-top:16px;font-size:22px"><b>diária média × ocupação</b></div></div>
-    <div class="tile"><div class="big">3</div><h3>Quatro portas</h3><div class="w">Quais são?</div><div class="answer f" style="margin-top:16px;font-size:22px">construir · comprar pronto · alugar para hospedar · <b>administrar o de outro</b></div></div>
-  </div>
-  <div class="foot"><span>Abertura · revisão espaçada</span><span>02 / 40</span></div>
-  <aside class="notes">[1:00 · 3 min] Revisão espaçada do Z00. Leia uma pergunta por vez, dê vinte segundos para cada pessoa escrever a resposta sem consultar e só então revele. Pergunta 1: um mesmo lugar pode ser imóvel (um bem que se vende ou se aluga), negócio de hospedagem (uma operação que vende noites com serviço) ou destino (uma razão para viajar até ali). Pergunte o que muda no cliente de um nível para o outro. Pergunta 2: RevPAR é a receita de hospedagem dividida pelas noites disponíveis, o mesmo que diária média vezes ocupação; ele mostra as noites vazias que a ocupação sozinha esconde. Pergunta 3: o Mapa das Quatro Portas™: construir, comprar pronto, alugar para hospedar e administrar o de outro. Errar aqui não é problema: tentar lembrar fixa mais do que reler.</aside>
-</section>
 
-<section class="slide">
-  <div class="kick">Mapa da aula</div>
-  <h2>O caminho <em>de hoje</em></h2>
-  <svg viewBox="0 0 1380 560" style="width:100%" role="img" aria-label="Mapa mental da aula com sete blocos ao redor do centro">
-    <g stroke="#C9A84C" stroke-width="2" opacity=".7"><line x1="690" y1="280" x2="250" y2="90"/><line x1="690" y1="280" x2="690" y2="60"/><line x1="690" y1="280" x2="1130" y2="90"/><line x1="690" y1="280" x2="1180" y2="300"/><line x1="690" y1="280" x2="1060" y2="490"/><line x1="690" y1="280" x2="320" y2="490"/><line x1="690" y1="280" x2="200" y2="300"/></g>
-    <circle cx="690" cy="280" r="115" fill="#1B2117"/>
-    <text x="690" y="268" text-anchor="middle" fill="#C9A84C" font-size="20" letter-spacing="3" font-weight="700">SEU LUGAR</text>
-    <text x="690" y="304" text-anchor="middle" fill="#FEF5F0" font-size="23" font-family="Playfair Display, serif" font-style="italic">decisão escrita</text>
-    <g font-size="24" text-anchor="middle" font-weight="700">
-      <g><rect x="130" y="50" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="250" y="85">1 · Abertura</text><text x="250" y="114" font-size="17" font-weight="400" fill="#555">A ou B</text></g>
-      <g><rect x="570" y="20" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="690" y="55">2 · Terreno</text><text x="690" y="84" font-size="17" font-weight="400" fill="#555">≠ território</text></g>
-      <g><rect x="1010" y="50" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1130" y="85">3 · Ler o lugar</text><text x="1130" y="114" font-size="17" font-weight="400" fill="#555">DNA e visita</text></g>
-      <g><rect x="1060" y="260" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1180" y="295">4 · Vocação</text><text x="1180" y="324" font-size="17" font-weight="400" fill="#555">para que nasceu</text></g>
-      <g><rect x="940" y="450" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1060" y="485">5 · Mercado</text><text x="1060" y="514" font-size="17" font-weight="400" fill="#555">quem dorme ali</text></g>
-      <g><rect x="200" y="450" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="320" y="485">6 · A conta</text><text x="320" y="514" font-size="17" font-weight="400" fill="#555">em uma folha</text></g>
-      <g><rect x="80" y="260" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="200" y="295">7 · O que trava</text><text x="200" y="324" font-size="17" font-weight="400" fill="#555">e o Diagnóstico</text></g>
-    </g>
-  </svg>
-  <div class="foot"><span>Abertura</span><span>03 / 40</span></div>
-  <aside class="notes">[4:00 · 1 min] Apresente o mapa mental e os sete objetivos do e-book: explicar terreno, território e negócio; ler o lugar pelo Zion Score™ e pelo DNA do Território™; escolher uma vocação principal e, no máximo, uma complementar; fazer a conta em uma folha em três cenários; reconhecer os sinais de não seguir; na Jornada B, achar o elo mais fraco pela Pirâmide da Rentabilidade Territorial™ e pelo Espelho do Travamento™; e produzir o Diagnóstico com uma decisão escrita. No centro está o lugar de cada aluno, porque tudo será aplicado ao caso real, e a saída é uma decisão escrita. Os blocos seguem a ordem em que as decisões precisam ser tomadas: primeiro o lugar, depois o mercado, depois a conta, depois os riscos. Frase do e-book: quem inverte essa ordem costuma pagar a diferença em obra. Diga que este mesmo mapa volta no fim da aula, como revisão.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Responda agora</span>
-  <div class="kick">Duas jornadas</div>
-  <h2>O que <em>você</em> vai diagnosticar?</h2>
-  <div class="grid g2">
-    <div class="tile"><div class="big">A</div><h3>Quero começar</h3><div class="w">terreno ou imóvel sem hóspedes</div></div>
-    <div class="tile"><div class="big">B</div><h3>Quero crescer</h3><div class="w">a operação que já existe</div></div>
-  </div>
-  <div class="answer f" style="margin-top:28px">«Um tem capacidade e não produz. <b>O outro produz e não rende.</b>»</div>
-  <div class="foot"><span>Abertura · A Ordem das Coisas</span><span>04 / 40</span></div>
-  <aside class="notes">[5:00 · 2 min] Diagnóstico inicial. Peça que cada pessoa escreva A ou B e uma linha sobre o objeto do diagnóstico: o terreno, o imóvel ou a operação. Jornada A: o objeto é o terreno ou o imóvel que ainda não hospeda ninguém; os capítulos 2, 5 e 6 pedem mais. Jornada B: o objeto é a operação que já existe; o capítulo 7 foi escrito para ela, mas os anteriores explicam por que algumas correções não funcionaram. Revele a frase de A Ordem das Coisas: o diagnóstico é parecido, o remédio muda. Quem já opera e pensa numa nova unidade lê como Jornada B e usa a leitura A só para a unidade nova. Regra do e-book: resolva primeiro o que já custa dinheiro hoje.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 2 · Terreno, território, negócio</div>
-  <p style="font-size:34px;margin-top:26px;color:rgba(254,245,240,.6);text-decoration:line-through">"Quanto custa construir aqui?"</p>
-  <h2 class="f" style="font-size:80px;max-width:20ch">Vale a pena construir aqui, <em>e o quê?</em></h2>
-<div class="trio"><div><b>Curiosidade</b>Valor futuro: «a dimensão mais negligenciada».</div><div class="r"><b>Reflexão</b>Você compraria a sua propriedade hoje?</div><div class="d"><b>Dica</b>Dê as notas do VTP™ e peça mais duas opiniões.</div></div>
-  <div class="foot"><span>E-book · Capítulo 01</span><span>05 / 40</span></div>
-  <aside class="notes">[7:00 · 1 min] Mostre só a pergunta riscada e pergunte à turma se ela parece prudente. Parece, mas já traz uma decisão escondida: a de que construir é o caminho. Clique para revelar a pergunta certa, do Volume 01 · Território. Ela tem duas metades: "vale a pena" admite o não, que é a resposta mais barata quando chega cedo; "e o quê" coloca o produto depois da leitura do lugar. Frase da fonte: responder isso antes da primeira escavação economiza anos e, com frequência, o capital inteiro. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <div class="kick">Três níveis do mesmo lugar</div>
-  <h2>Terreno → território → <em>negócio</em></h2>
-  <svg viewBox="0 0 1380 430" style="width:100%" role="img" aria-label="Três caixas: terreno, território e negócio de hospedagem, com o que cada um é e a pergunta de cada um">
-    <g font-weight="700">
-      <rect x="0" y="20" width="400" height="320" fill="#FFF8F3" stroke="#0A0A0A" stroke-opacity=".2"/>
-      <rect x="490" y="20" width="400" height="320" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/>
-      <rect x="980" y="20" width="400" height="320" fill="#1B2117"/>
-      <g font-size="16" letter-spacing="3" fill="#8C6E1F"><text x="30" y="62">O CHÃO</text><text x="520" y="62">O SISTEMA</text><text x="1010" y="62" fill="#C9A84C">A OPERAÇÃO</text></g>
-      <g font-size="40" font-family="Playfair Display, serif"><text x="30" y="116">Terreno</text><text x="520" y="116">Território</text><text x="1010" y="116" fill="#C9A84C">Negócio</text></g>
-      <g font-size="23" font-weight="400" fill="#444"><text x="30" y="162">ativo físico</text><text x="30" y="196">metros, hectares, matrícula</text><text x="520" y="162">sistema vivo</text><text x="520" y="196">natureza, clima, cultura,</text><text x="520" y="228">acesso, mercado, futuro</text><text x="1010" y="162" fill="#FEF5F0">vende noites</text><text x="1010" y="196" fill="#FEF5F0">diária, ocupação, custo, sobra</text></g>
-      <g font-size="27" font-style="italic" font-family="Playfair Display, serif"><text x="30" y="306">Quanto custa?</text><text x="520" y="306">O que ele sustenta?</text><text x="1010" y="306" fill="#C9A84C">Vale a pena, e o quê?</text></g>
-      <g stroke="#C9A84C" stroke-width="5" fill="none"><path d="M410 180h70M470 170l10 10-10 10M900 180h70M960 170l10 10-10 10"/></g>
-      <text x="690" y="400" text-anchor="middle" font-size="24" font-weight="400" font-style="italic" font-family="Playfair Display, serif" fill="#1B2117">leitura, conta e decisão</text>
-    </g>
-  </svg>
-  <div class="foot"><span>Bloco 2 · Manual Oficial e Volume 01</span><span>06 / 40</span></div>
-  <aside class="notes">[8:00 · 1 min 30 s] Para o Manual Oficial do Método Zion 360°, o terreno é um ativo físico: mede-se em metros quadrados, hectares e matrícula. O território é um sistema vivo, com características naturais, culturais, econômicas, sociais e emocionais. O negócio de hospedagem é a operação que vende noites e vive de diária, ocupação, custo e sobra. Frase do Manual: um Developer nunca compra apenas um terreno; ele investe em um território. Exemplo do Volume 01: duas propriedades de dez hectares, iguais nas fotos, podem valer várias vezes uma a outra, porque é a soma de natureza, acesso, mercado, infraestrutura, legislação e demanda que cria preço de diária. Para a Jornada B: um imóvel com quartos ainda não é um negócio; o que o transforma em ativo é a informação organizada sobre ele.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Qual coluna é você?</span>
-  <div class="kick">As duas cabeças</div>
-  <h2>Comprador × <em>quem desenvolve</em></h2>
-  <table>
-    <thead><tr><th>Comprador</th><th>Quem desenvolve</th></tr></thead>
-    <tbody>
-      <tr><td>Pergunta o preço do hectare</td><td>Pergunta o metro construtível real</td></tr>
-            <tr><td>Chama o arquiteto primeiro</td><td>Chama quando sabe o que cabe</td></tr>
-    </tbody>
-  </table>
-  <div class="answer f" style="margin-top:26px">«O comprador decide e depois descobre. <b>Quem desenvolve descobre e depois decide.</b>»</div>
-  <div class="foot"><span>Bloco 2 · Volume 01, Tabela 1.1</span><span>07 / 40</span></div>
-  <aside class="notes">[9:30 · 1 min 30 s] Leia a coluna da esquerda e peça que cada um marque quantas linhas já fez. Depois leia a da direita. Developer, nas fontes da Zion, é quem transforma um lugar em negócio: lê o território, mede o mercado, decide o produto e só então investe. Não é cargo nem tamanho de empresa; serve a um sítio de dois hectares e a um hotel. Outras linhas da tabela no e-book: descontar APP, reserva legal, declividade e recuos da área total; ler o plano diretor e o CAR antes de conversar com o corretor; descobrir o que pode fazer antes de decidir se compra. Revele a frase. Nenhuma linha da direita exige muito dinheiro; exige ordem. E o Panorama lembra: dos cinco erros que mais custam, só um é definitivo, comprar a terra errada.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Preço × valor · ilustrativo</div>
-  <h2>Dois hotéis iguais: R$&nbsp;900 e R$&nbsp;2.500. <em>Em 100 noites?</em></h2>
-  <div class="row" style="align-items:center;gap:26px;margin-top:20px">
-    <div class="tile" style="flex:1;text-align:center"><div class="lab">Por noite</div><div class="word" style="font-size:54px;margin-top:8px">2.500 − 900</div><div class="w">= R$&nbsp;1.600</div></div>
-    <div class="word" style="font-size:70px;color:var(--gold)">×</div>
-    <div class="tile" style="flex:1;text-align:center"><div class="lab">Noites vendidas</div><div class="word" style="font-size:54px;margin-top:8px">100</div><div class="w">mesmo quarto</div></div>
-    <div class="word" style="font-size:70px;color:var(--gold)">=</div>
-    <div class="tile f" style="flex:1;text-align:center;background:var(--moss);color:var(--paper)"><div class="lab">A mais</div><div class="word" style="font-size:54px;margin-top:8px;color:var(--gold)">R$&nbsp;160.000</div><div class="w" style="color:rgba(254,245,240,.8)">sem um tijolo de diferença</div></div>
-  </div>
-  <div class="foot"><span>Bloco 2 · Volume 01 · números didáticos</span><span>08 / 40</span></div>
-  <aside class="notes">[11:00 · 1 min 30 s] Pergunta de previsão: dois hotéis iguais, um cobra 900 e outro 2.500 reais. Quanto o segundo fatura a mais em cem noites vendidas? Colha palpites, depois revele. A conta é do e-book: 2.500 menos 900 dá 1.600 reais por noite, cerca de 2,8 vezes; em cem noites, 160 mil reais a mais, sem um tijolo de diferença. Nada disso foi pago na obra; foi pago, ou não, na escolha do lugar. Frases do Volume 01: preço é o que você paga hoje; valor é o que aquele lugar continua produzindo durante vinte anos. E: o solo não gera receita; a experiência que nasce sobre ele gera. Números didáticos, sem valor de referência para nenhum destino.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Valor Territorial Percebido™ · VTP™</div>
-  <h2>Mesmo preço. <em>Qual vale o preço?</em></h2>
-  <div class="grid" style="grid-template-columns:1.7fr 1fr;gap:34px;align-items:start">
-    <svg viewBox="0 0 1100 425" style="width:100%" role="img" aria-label="Notas do VTP™ de dois terrenos ilustrativos nas cinco dimensões">
-      <text x="0" y="62" font-size="30" font-weight="700">Natural</text>
-      <rect x="250" y="26" width="720" height="28" fill="#1B2117"/><text x="982" y="50" font-size="26" font-weight="700">9</text>
-      <rect x="250" y="58" width="720" height="28" fill="#C9A84C"/><text x="982" y="82" font-size="26" font-weight="700">9</text>
-      <text x="0" y="136" font-size="30" font-weight="700">Experiência</text>
-      <rect x="250" y="100" width="640" height="28" fill="#1B2117"/><text x="902" y="124" font-size="26" font-weight="700">8</text>
-      <rect x="250" y="132" width="640" height="28" fill="#C9A84C"/><text x="902" y="156" font-size="26" font-weight="700">8</text>
-      <text x="0" y="210" font-size="30" font-weight="700">Mercado</text>
-      <rect x="250" y="174" width="640" height="28" fill="#1B2117"/><text x="902" y="198" font-size="26" font-weight="700">8</text>
-      <rect x="250" y="206" width="240" height="28" fill="#C9A84C"/><text x="502" y="230" font-size="26" font-weight="700">3</text>
-      <text x="0" y="284" font-size="30" font-weight="700">Operacional</text>
-      <rect x="250" y="248" width="560" height="28" fill="#1B2117"/><text x="822" y="272" font-size="26" font-weight="700">7</text>
-      <rect x="250" y="280" width="160" height="28" fill="#9B2C2C"/><text x="422" y="304" font-size="26" font-weight="700">2</text>
-      <text x="0" y="358" font-size="30" font-weight="700">Futuro</text>
-      <rect x="250" y="322" width="640" height="28" fill="#1B2117"/><text x="902" y="346" font-size="26" font-weight="700">8</text>
-      <rect x="250" y="354" width="320" height="28" fill="#C9A84C"/><text x="582" y="378" font-size="26" font-weight="700">4</text>
-      <g font-size="24" fill="#555"><rect x="250" y="400" width="20" height="18" fill="#1B2117"/><text x="280" y="417">A · média 8,0</text><rect x="560" y="400" width="20" height="18" fill="#C9A84C"/><text x="590" y="417">B · média 5,2</text></g>
-    </svg>
-    <div>
-      <div class="tile"><div class="lab">Os dois</div><div class="word" style="font-size:34px;margin-top:8px">10 ha · R$&nbsp;2 milhões</div></div>
-      <div class="answer f" style="margin-top:20px">A menor nota é <b>o teto, não a média</b>.</div>
-    </div>
-  </div>
-  <div class="foot"><span>Bloco 2 · médias do Volume 01, notas ilustrativas</span><span>09 / 40</span></div>
-  <aside class="notes">[12:30 · 2 min] O VTP™ mede a capacidade de um território gerar valor econômico pelas experiências que permite entregar, em cinco dimensões de zero a dez: natural, experiência, mercado, operacional e futuro. Natural e futuro você não muda; as outras três melhoram com projeto, parceria e investimento. Pergunta de previsão: os dois terrenos custam dois milhões por dez hectares; qual vale o preço? Deixe votar. Revele a regra: a menor nota é o teto. A soma do A é 40, média 8,0, e o teto é 7. A do B é 26, média 5,2, com operacional em 2 e mercado em 3, algo que nenhum projeto de arquitetura resolve sozinho. Os dois empatam em natureza, que é o que aparece na foto. As médias são do Volume 01; as notas por dimensão foram criadas pelo e-book. Conclusão da fonte: o B não é ruim, é outro projeto; pagar por ele o preço do A é que seria o erro. Nota alta sem evidência é entusiasmo.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Quiz relâmpago · 1 min</span>
-  <div class="kick">Bloco 2</div>
-  <h2>Dois terrenos com VTP™ médio 7,0. <em>Qual é mais arriscado?</em></h2>
-  <div class="grid g2" style="gap:20px"><div class="tile opt"><span class="L">A</span><span>O de notas entre 6 e 8</span></div><div class="tile opt"><span class="tag f">correta</span><span class="L">B</span><span>O que tem uma nota 2</span></div><div class="tile opt"><span class="L">C</span><span>Nenhum: a média é igual</span></div><div class="tile opt"><span class="L">D</span><span>O de nota natural mais alta</span></div></div>
-  <div class="answer f" style="margin-top:24px"><b>B.</b> A menor nota é o teto.</div>
-  <div class="foot"><span>Bloco 2 · revisão</span><span>10 / 40</span></div>
-  <aside class="notes">[14:30 · 1 min 30 s] Quiz relâmpago. Leia a pergunta: dois terrenos têm VTP™ médio 7,0; um tem notas entre 6 e 8, o outro tem uma nota 2. Qual é mais arriscado? Dê vinte segundos e peça que a turma responda pela letra antes de revelar. Feedback por alternativa. A: errada; notas sem destaque não limitam, e o equilíbrio entre 6 e 8 é justamente o mais seguro. B: correta; a menor nota é o teto do projeto, e a média esconde o ponto fraco. C: errada; é o erro que o método quer evitar, porque a média esconde a dimensão que trava. D: errada; natureza alta é o que aparece na foto, mas não compensa a dimensão que trava. Frase do Volume 01: investir mais onde você já é bom raramente muda o resultado; corrigir a menor quase sempre muda.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 3 · Ler o lugar</div>
-  <h1 style="font-size:96px">Todo território <em>fala.</em></h1>
-<div class="trio"><div><b>Curiosidade</b>Grave um minuto de áudio em cinco pontos: o silêncio aparece.</div><div class="r"><b>Reflexão</b>O que o seu lugar nunca vai sustentar?</div><div class="d"><b>Dica</b>Visite às 7h e às 17h, de preferência depois de chuva.</div></div>
-  <div class="foot"><span>E-book · Capítulo 02</span><span>11 / 40</span></div>
-  <aside class="notes">[16:00 · 30 s] Abertura do bloco. Frase do Volume 01: na maioria das vezes o terreno não era ruim; ninguém soube lê-lo. Muita gente compra um terreno achando que encontrou a oportunidade perfeita e meses depois descobre que a energia não suporta a carga, o acesso fecha na chuva ou a lei impede construir justamente onde estava a melhor vista. Frase do Manual Oficial: a maioria das pessoas visita uma propriedade procurando respostas; o Developer visita procurando perguntas. O Panorama dá o padrão: não é visita, é levantamento, e termina num documento. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <div class="kick">DNA do Território™</div>
-  <h2>Cinco elementos, <em>uma frase cada</em></h2>
-  <div class="grid" style="grid-template-columns:repeat(5,1fr);gap:18px">
-    <div class="tile"><svg class="ic"><use href="#i-tree"/></svg><h3>Natureza</h3><div class="w">o que não pode ser construído</div></div>
-    <div class="tile"><svg class="ic"><use href="#i-sun"/></svg><h3>Clima</h3><div class="w">matéria-prima, não risco</div></div>
-    <div class="tile"><svg class="ic"><use href="#i-house"/></svg><h3>Cultura</h3><div class="w">o que a região já é</div></div>
-    <div class="tile"><svg class="ic"><use href="#i-pin"/></svg><h3>Acesso</h3><div class="w">como se chega na pior época</div></div>
-    <div class="tile"><svg class="ic"><use href="#i-eye"/></svg><h3>Emoção</h3><div class="w">os primeiros cinco minutos</div></div>
-  </div>
-  <div class="answer f" style="margin-top:28px">Sem adjetivo. <b>Um lidera</b>; dois ficam secundários.</div>
-  <div class="foot"><span>Bloco 3 · Volume 01</span><span>12 / 40</span></div>
-  <aside class="notes">[16:30 · 1 min 30 s] O DNA do Território™ tem cinco elementos, e os cinco precisam ser escritos antes de qualquer desenho. Natureza: o que existe ali e nenhum concorrente copia. Clima: cada condição abre um tipo de experiência e fecha outro. Cultura: o que dá autenticidade e impede o projeto de parecer importado. Acesso: acesso ruim não impede o projeto, mas muda o produto e o preço. Emoção: se o lugar não desperta emoção, vai precisar comprar atenção com desconto pelo resto da vida. Como escrever: um dia inteiro no terreno, uma frase por elemento, sem adjetivo; se precisar de parágrafo, ainda não entendeu o elemento. Exemplo do e-book: "natureza exuberante, clima agradável" não pode ser conferido; "um córrego que se ouve de todas as clareiras" pode. Revele a decisão que fecha a leitura.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Matriz da Localização Estratégica™ · ilustrativo</div>
-  <h2>Médias parecidas. <em>Qual você escolhe?</em></h2>
-  <table class="tight" style="font-size:24px">
-    <thead><tr><th></th><th class="n">Conectividade</th><th class="n">Emissor</th><th class="n">Ecossistema</th><th class="n">Competitividade</th><th class="n">Crescimento</th><th class="n hl">Singularidade</th><th class="n">Média</th></tr></thead>
-    <tbody>
-      <tr><td>A · perto da cidade</td><td class="n">7</td><td class="n">6</td><td class="n">8</td><td class="n">6</td><td class="n">7</td><td class="n hl no" style="font-weight:700">3</td><td class="n">6,17</td></tr>
-      <tr><td>B · diante do cânion</td><td class="n">5</td><td class="n">6</td><td class="n">6</td><td class="n">6</td><td class="n">5</td><td class="n hl ok" style="font-weight:700">8</td><td class="n">6,00</td></tr>
-    </tbody>
-  </table>
-  <div class="grid g2" style="margin-top:24px"><div class="answer f">A vence na média e <b>vai disputar hóspede pelo preço</b>.</div><div class="answer f">A singularidade «<b>não se compra com investimento depois</b>».</div></div>
-  <div class="foot"><span>Bloco 3 · Volume 01 · números ilustrativos</span><span>13 / 40</span></div>
-  <aside class="notes">[18:00 · 2 min] Seis fatores, cada um com nota de zero a dez e, mais importante, uma evidência: conectividade, mercado emissor, ecossistema turístico, competitividade, crescimento e singularidade. Regra de leitura do Volume 01: some as seis notas e divida por seis; depois olhe separadamente a singularidade, porque, se ela estiver baixa, o projeto vai competir por preço, e nenhuma das outras cinco compensa isso. Conta: A soma 37, média 6,17; B soma 36, média 6,00. Pergunte qual escolheriam antes de revelar. B tem acesso pior, que muda produto e preço, mas tem o fator que não se compra depois. Decisão da fonte: esta localização sustenta um produto premium, um produto de volume, ou nenhum dos dois? Mencione a pergunta dos três dias: um visitante teria motivo para ficar três dias na região sem se repetir? Se não, o desafio não está no terreno.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Matriz Hídrica Zion™ · exemplo ilustrativo</div>
-  <h2>A mesma nascente. <em>Fecha doze unidades?</em></h2>
-  <svg viewBox="0 0 1380 330" style="width:100%" role="img" aria-label="Barras: vazão no mês seco de 3.600 litros por dia, consumo de seis unidades 2.880 e de doze unidades 5.760">
-    <g font-size="24" font-weight="700">
-      <text x="0" y="58">Água no mês seco</text><rect x="400" y="30" width="540" height="44" fill="#1B2117"/><text x="960" y="62">3.600 L/dia</text>
-      <text x="0" y="148">6 unidades</text><rect x="400" y="120" width="432" height="44" fill="#C9A84C"/><text x="420" y="152">2.880 L/dia · fecha</text>
-      <g class="f"><text x="0" y="238">12 unidades</text><rect x="400" y="210" width="864" height="44" fill="#9B2C2C"/><text x="1244" y="242" text-anchor="end" fill="#fff">5.760 L/dia</text><line x1="940" y1="20" x2="940" y2="270" stroke="#0A0A0A" stroke-dasharray="6 6"/><text x="400" y="310" font-size="22" fill="#9B2C2C">não fecha</text></g>
-    </g>
-  </svg>
-  <div class="answer f" style="margin-top:6px">Em janeiro a vazão era de 43.200 L/dia. «<b>Meça antes de desenhar, nunca depois.</b>»</div>
-  <div class="foot"><span>Bloco 3 · consumo hipotético, com margem de 20%</span><span>14 / 40</span></div>
-  <aside class="notes">[20:00 · 1 min 30 s] Conte a medição: um balde de 10 litros enche em 20 segundos no verão, 0,5 litro por segundo, 43.200 litros por dia. No mês seco leva 240 segundos: 150 litros por hora, 3.600 por dia. Seis unidades com dois hóspedes e consumo hipotético de 200 litros por pessoa: 2.400 litros, ou 2.880 com margem hipotética de 20%; sobram 720. Pergunta de previsão: e a fase dois, com doze unidades? Revele: 4.800 litros, ou 5.760 com margem. Não fecha. Quem mediu só em janeiro aprovaria as doze. O número real de consumo vem do projetista hidráulico. A Matriz Hídrica Zion™ tem seis fatores: disponibilidade, qualidade e paisagem se apuram com medição; experiência, sustentabilidade e proteção são decisões de projeto. Ter um rio na propriedade não significa poder captar: a autorização vem do órgão estadual, com profissional habilitado.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Quantas você responde?</span>
-  <div class="kick">Antes de assinar</div>
-  <h2>Nove perguntas, <em>zero consultor</em></h2>
-  <div class="grid g3" style="gap:14px"><div class="tile" style="padding:16px 20px"><span class="lab">1</span><div class="word" style="font-size:29px;margin-top:4px">O que só ele tem?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">2</span><div class="word" style="font-size:29px;margin-top:4px">A estrada é de quem?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">3</span><div class="word" style="font-size:29px;margin-top:4px">Energia: a que distância?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">4</span><div class="word" style="font-size:29px;margin-top:4px">Água: você pode usar?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">5</span><div class="word" style="font-size:29px;margin-top:4px">Quanto é intocável?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">6</span><div class="word" style="font-size:29px;margin-top:4px">O plano diretor permite?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">7</span><div class="word" style="font-size:29px;margin-top:4px">Quem é o vizinho?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">8</span><div class="word" style="font-size:29px;margin-top:4px">O hóspede fica seguro?</div></div><div class="tile" style="padding:16px 20px"><span class="lab">9</span><div class="word" style="font-size:29px;margin-top:4px">Onde a 1ª unidade?</div></div></div>
-  <div class="foot"><span>Bloco 3 · Panorama · temas legais: confirme com profissional habilitado</span><span>15 / 40</span></div>
-  <aside class="notes">[21:30 · 1 min 30 s] Peça que cada aluno conte quantas das nove perguntas consegue responder hoje, com evidência. Frase do Panorama: nenhuma exige consultor e nenhuma custa dinheiro. Onde responder: o que este lugar tem (se a resposta for que é bonito, não serve), duas horas de caminhada; a estrada, matrícula mais visita em dia de chuva; energia, a concessionária informa de graça; água, órgão estadual de recursos hídricos; área intocável, CAR no SICAR, consulta pública e gratuita; plano diretor, site da prefeitura, uma hora; vizinho, conversa; segurança, testar sinal e cronometrar até o hospital; primeira unidade, ir às 7h e voltar às 17h. Frase: isolamento vende até a hora em que alguém passa mal. Nível introdutório: as regras variam por estado, município e bioma; confirme com advogado, engenheiro, topógrafo, consultor ambiental e prefeitura. O que ficar em "não sei" vira tarefa.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Escreva · 1 min</span>
-  <div class="kick">Checklist da visita ao terreno</div>
-  <h2>Às 7h e às 17h, <em>no mesmo dia</em></h2>
-  <svg viewBox="0 0 1380 220" style="width:100%" role="img" aria-label="Linha do dia da visita em seis etapas"><line x1="110" y1="70" x2="1270" y2="70" stroke="#C9A84C" stroke-width="4"/><circle cx="110" cy="70" r="34" fill="#FFF8F3" stroke="#1B2117" stroke-width="3"/><text x="110" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#0A0A0A">1</text><text x="110" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">ANTES</text><text x="110" y="174" text-anchor="middle" font-size="21">matrícula · CAR</text><text x="110" y="204" text-anchor="middle" font-size="21">zona</text><circle cx="342" cy="70" r="34" fill="#FFF8F3" stroke="#1B2117" stroke-width="3"/><text x="342" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#0A0A0A">2</text><text x="342" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">7H</text><text x="342" y="174" text-anchor="middle" font-size="21">estrada · sol</text><text x="342" y="204" text-anchor="middle" font-size="21">vento</text><circle cx="574" cy="70" r="34" fill="#FFF8F3" stroke="#1B2117" stroke-width="3"/><text x="574" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#0A0A0A">3</text><text x="574" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">ANDANDO</text><text x="574" y="174" text-anchor="middle" font-size="21">fundo · vista</text><text x="574" y="204" text-anchor="middle" font-size="21">água · sinal</text><circle cx="806" cy="70" r="34" fill="#FFF8F3" stroke="#1B2117" stroke-width="3"/><text x="806" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#0A0A0A">4</text><text x="806" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">INFRA</text><text x="806" y="174" text-anchor="middle" font-size="21">poste · tensão</text><text x="806" y="204" text-anchor="middle" font-size="21">nascente</text><circle cx="1038" cy="70" r="34" fill="#FFF8F3" stroke="#1B2117" stroke-width="3"/><text x="1038" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#0A0A0A">5</text><text x="1038" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">17H</text><text x="1038" y="174" text-anchor="middle" font-size="21">pôr do sol</text><text x="1038" y="204" text-anchor="middle" font-size="21">vizinho</text><circle cx="1270" cy="70" r="34" fill="#1B2117" stroke="#1B2117" stroke-width="3"/><text x="1270" y="78" text-anchor="middle" font-size="20" font-weight="700" fill="#C9A84C">6</text><text x="1270" y="140" text-anchor="middle" font-size="20" font-weight="700" letter-spacing="2" fill="#8C6E1F">FECHO</text><text x="1270" y="174" text-anchor="middle" font-size="21">uma linha</text><text x="1270" y="204" text-anchor="middle" font-size="21">escrita no local</text></svg>
-  <div class="tile" style="margin-top:22px;background:var(--moss);color:var(--paper)"><div class="lab">Fecho da visita</div><div class="word" style="font-size:38px;margin-top:10px">«Em uma linha, o que este lugar nunca vai sustentar:» <span class="blank"></span></div></div>
-  <div class="foot"><span>Bloco 3 · Panorama do Desenvolvimento Hoteleiro</span><span>16 / 40</span></div>
-  <aside class="notes">[23:00 · 1 min 30 s] Percorra a linha do dia. Antes de sair: matrícula em mãos, CAR consultado, zona do plano diretor anotada. Na chegada às 7h: cronometrar do aeroporto, fotografar a estrada, o nascer do sol e de onde vem o vento. Andando: ir até o fundo da área, achar a melhor vista, ver onde a água corre, medir o sinal em três pontos. Infraestrutura: poste mais próximo, tensão, nascente ou poço. Às 17h: pôr do sol, voltar à melhor vista, conversar com um vizinho. Frase do Panorama: preencha no lugar, não de memória, porque o que se anota em casa já passou pelo filtro do desejo. Exercício de um minuto: cada aluno escreve a linha para o próprio lugar. A frase é negativa de propósito: o desejo puxa para o sim. Exemplo de linha boa: este lugar nunca vai sustentar silêncio no lado da estrada. Jornada B: visite o seu lugar como se fosse a primeira vez e leia o que os hóspedes fotografam e do que reclamam.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Compradora fictícia · ilustrativo</div>
-  <h2>Domingo de sol, deck no vale. <em>E às 7h e 17h?</em></h2>
-  <div class="grid g3">
-    <div class="tile f"><svg class="ic"><use href="#i-pin"/></svg><h3>7h, após chuva</h3><div class="w">estrada lenta, pela terra do vizinho, sem servidão</div></div>
-    <div class="tile f"><svg class="ic"><use href="#i-tree"/></svg><h3>17h</h3><div class="w">vento inutiliza o deck</div></div>
-    <div class="tile f"><svg class="ic"><use href="#i-user"/></svg><h3>O vizinho</h3><div class="w">serraria aos sábados</div></div>
-  </div>
-  <div class="answer f" style="margin-top:24px">Mudou o projeto, <b>não o terreno.</b></div>
-  <div class="foot"><span>Bloco 3 · e-book, Capítulo 02</span><span>17 / 40</span></div>
-  <aside class="notes">[24:30 · 1 min 30 s] Conte a história do e-book: uma compradora fictícia visitou um terreno de serra num domingo de sol e saiu decidida a fazer cabanas com deck para o vale. Pergunta de previsão: o que a volta com o checklist pode ter mostrado? Colha duas ou três hipóteses e revele uma por clique. Às 7h, depois de chuva, o último trecho levou o triplo do tempo e passava pela terra do vizinho, sem servidão na matrícula. Às 17h, o vento do vale tornava o deck inutilizável. O vizinho contou de uma serraria que trabalha aos sábados. A linha final dela: este lugar nunca vai sustentar fim de semana no lado norte. Ela levou o acesso a um advogado antes de qualquer sinal e deslocou o projeto para o lado protegido pelo bosque. A decisão melhorou antes de custar dinheiro.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Quiz relâmpago · 1 min</span>
-  <div class="kick">Bloco 3</div>
-  <h2>Quando medir a vazão <em>para decidir?</em></h2>
-  <div class="grid g2" style="gap:20px"><div class="tile opt"><span class="L">A</span><span>No mês mais chuvoso</span></div><div class="tile opt"><span class="L">B</span><span>Em janeiro, com mais hóspedes</span></div><div class="tile opt"><span class="tag f">correta</span><span class="L">C</span><span>No mês mais seco</span></div><div class="tile opt"><span class="L">D</span><span>Em qualquer mês, três vezes</span></div></div>
-  <div class="answer f" style="margin-top:24px"><b>C.</b> A água precisa fechar no pior mês.</div>
-  <div class="foot"><span>Bloco 3 · revisão</span><span>18 / 40</span></div>
-  <aside class="notes">[26:00 · 1 min 30 s] Quiz relâmpago. Dê vinte segundos e peça a letra antes de revelar. A: errada; a vazão do mês chuvoso superestima a água, foi o erro de quem aprovaria as doze unidades. B: errada; janeiro é pico de hóspedes, mas não é o pior momento da nascente; no exemplo, janeiro dava 43.200 litros e o mês seco, 3.600. C: correta; a fonte diz vazão medida no mês mais seco, não no mais chuvoso, e para o projeto completo, não só para a primeira fase. D: errada; as três medições são do método (balde graduado, cronômetro, três medições), mas no mês errado não servem para decidir. Feche com a frase do Volume 01: a água abastece a operação e, quando bem compreendida, abastece também o encantamento.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 4 · A vocação do lugar</div>
-  <h1 style="font-size:92px;max-width:15ch">Nenhum território nasceu <em>para tudo.</em></h1>
-<div class="trio"><div><b>Curiosidade</b>A bolha na caatinga, «sem sombra, com quarenta graus, não é experiência, é forno».</div><div class="r"><b>Reflexão</b>O que no seu lugar um concorrente não copiaria?</div><div class="d"><b>Dica</b>Veja o que os hóspedes da região fotografam.</div></div>
-  <div class="foot"><span>E-book · Capítulo 03</span><span>19 / 40</span></div>
-  <aside class="notes">[27:30 · 30 s] Todo dono de terra já ouviu que o terreno dele dá para tudo: pousada, cabana, glamping, casamento. Parece elogio; é um alerta. Frase do Volume 01: nenhum território nasceu para tudo; descobrir para o que ele nasceu é a decisão mais barata e mais determinante do projeto. Mais barata porque custa visitas e conversas; mais determinante porque tudo o que vem depois, da arquitetura ao preço, vai obedecer a ela. O Manual Oficial lista copiar modelos de sucesso entre os erros que comprometem grandes projetos. Complete a curiosidade com o Panorama: a mesma bolha na serra, com frio e névoa, vende o ano inteiro. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão · uma palavra</span>
-  <div class="kick">Mapa de Vocação Turística™</div>
-  <h2>Sete vocações, <em>escolha uma</em></h2>
-  <svg viewBox="0 0 1380 520" style="width:100%;height:470px" role="img" aria-label="Mapa mental com as sete vocações ao redor do território"><g stroke="#C9A84C" stroke-width="2" opacity=".7"><line x1="690" y1="280" x2="690" y2="60"/><line x1="690" y1="280" x2="1060" y2="120"/><line x1="690" y1="280" x2="1170" y2="300"/><line x1="690" y1="280" x2="960" y2="470"/><line x1="690" y1="280" x2="420" y2="470"/><line x1="690" y1="280" x2="210" y2="300"/><line x1="690" y1="280" x2="320" y2="120"/></g><circle cx="690" cy="280" r="118" fill="#1B2117"/><text x="690" y="262" text-anchor="middle" fill="#C9A84C" font-size="19" letter-spacing="3" font-weight="700">TERRITÓRIO</text><text x="690" y="298" text-anchor="middle" fill="#FEF5F0" font-size="22" font-family="Playfair Display, serif" font-style="italic">1 principal</text><text x="690" y="328" text-anchor="middle" fill="#FEF5F0" font-size="22" font-family="Playfair Display, serif" font-style="italic">+ 1 complementar</text><g text-anchor="middle"><rect x="570" y="20" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="690" y="55" font-size="24" font-weight="700">Contemplação</text><text x="690" y="85" font-size="17" fill="#555">silêncio · vista</text></g><g text-anchor="middle"><rect x="940" y="80" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1060" y="115" font-size="24" font-weight="700">Aventura</text><text x="1060" y="145" font-size="17" fill="#555">trilha · rio</text></g><g text-anchor="middle"><rect x="1050" y="260" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1170" y="295" font-size="24" font-weight="700">Bem-estar</text><text x="1170" y="325" font-size="17" fill="#555">ar puro · água</text></g><g text-anchor="middle"><rect x="840" y="430" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="960" y="465" font-size="24" font-weight="700">Gastronomia</text><text x="960" y="495" font-size="17" fill="#555">queijo · vinho</text></g><g text-anchor="middle"><rect x="300" y="430" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="420" y="465" font-size="24" font-weight="700">Cultura</text><text x="420" y="495" font-size="17" fill="#555">história · festa</text></g><g text-anchor="middle"><rect x="90" y="260" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="210" y="295" font-size="24" font-weight="700">Exclusividade</text><text x="210" y="325" font-size="17" fill="#555">privacidade · área</text></g><g text-anchor="middle"><rect x="200" y="80" width="240" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="320" y="115" font-size="24" font-weight="700">Transformação</text><text x="320" y="145" font-size="17" fill="#555">desconexão</text></g></svg>
-  <div class="answer f" style="margin-top:4px">«Empreendimento que tenta ser as sete <b>não é percebido como nenhuma</b>.»</div>
-  <div class="foot"><span>Bloco 4 · Volume 01</span><span>20 / 40</span></div>
-  <aside class="notes">[28:00 · 1 min 30 s] Antes de mostrar o mapa, peça a previsão: que palavra única explica por que alguém viajaria até o seu lugar? Cada um escreve. Depois apresente as sete vocações do Volume 01: contemplação, aventura, bem-estar, gastronomia, cultura, exclusividade e transformação. Regra central: todo território tende a ter uma vocação predominante e, no máximo, uma complementar, e ela vai aparecer em tudo: arquitetura, roteiro, cardápio, comunicação e preço. A vocação escolhe quem vem e em que dia chega: contemplação enche o meio de semana; gastronomia, o fim de semana. Isso já é calendário. Pergunte quem escreveu uma palavra que está no mapa. Revele a frase.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Exercício · qual seria a sua?</span>
-  <div class="kick">Exemplo ilustrativo · sítio de serra</div>
-  <h2>Uma principal, <em>uma complementar</em></h2>
-  <div class="grid" style="grid-template-columns:1.25fr 1fr;gap:34px;align-items:center">
-    <svg viewBox="0 0 860 380" style="width:100%" role="img" aria-label="Notas de força das sete vocações de um sítio de serra fictício"><text x="0" y="40" font-size="23" font-weight="700">Contemplação</text><rect x="210" y="18" width="540" height="30" fill="#1B2117"/><text x="762" y="42" font-size="21" font-weight="700">9</text><text x="0" y="92" font-size="23" font-weight="700">Gastronomia</text><rect x="210" y="70" width="420" height="30" fill="#C9A84C"/><text x="642" y="94" font-size="21" font-weight="700">7</text><text x="0" y="144" font-size="23" font-weight="700">Bem-estar</text><rect x="210" y="122" width="360" height="30" fill="#D9CDBE"/><text x="582" y="146" font-size="21" font-weight="700">6</text><text x="0" y="196" font-size="23" font-weight="700">Exclusividade</text><rect x="210" y="174" width="300" height="30" fill="#D9CDBE"/><text x="522" y="198" font-size="21" font-weight="700">5</text><text x="0" y="248" font-size="23" font-weight="700">Aventura</text><rect x="210" y="226" width="240" height="30" fill="#D9CDBE"/><text x="462" y="250" font-size="21" font-weight="700">4</text><text x="0" y="300" font-size="23" font-weight="700">Transformação</text><rect x="210" y="278" width="240" height="30" fill="#D9CDBE"/><text x="462" y="302" font-size="21" font-weight="700">4</text><text x="0" y="352" font-size="23" font-weight="700">Cultura</text><rect x="210" y="330" width="180" height="30" fill="#D9CDBE"/><text x="402" y="354" font-size="21" font-weight="700">3</text></svg>
-    <div>
-      <div class="tile f"><div class="lab">Principal</div><div class="word">Contemplação</div><div class="w">vista, neblina, silêncio · 5 meses</div></div>
-      <div class="tile f" style="margin-top:16px"><div class="lab">Complementar</div><div class="word">Gastronomia</div><div class="w">12 − 5 = 7 meses a cobrir</div></div>
-    </div>
-  </div>
-  <div class="foot"><span>Bloco 4 · notas e evidências fictícias</span><span>21 / 40</span></div>
-  <aside class="notes">[29:30 · 1 min 30 s] Exemplo ilustrativo do e-book: sítio de serra com mata, córrego, vista para o vale e produtores de queijo e vinho por perto. Na cidade, o dono ouviu que as pessoas sobem para ver a neblina e comer bem; nas fotos dos comparáveis, repetiam-se varanda, lareira e mesa posta. Os seis passos do Volume 01: listar o que o visitante vem fazer, ver o que os hóspedes fotografam, cruzar com os seis elementos (bioma, clima, água, sol, vento e geografia; a vocação tem que ser sustentada por pelo menos três, ou é desejo), eliminar o que o território não sustenta, escolher uma principal e uma complementar com evidência e testar contra a sazonalidade. Peça à turma que diga qual seria a complementar antes de revelar. A contemplação com frio e neblina enche cinco meses; restam sete para a complementar sustentar com mesa, roteiro de produtor e pacote de casal no meio da semana. Jornada B: os meses que enchem são os da sua vocação principal; os que não enchem pedem a complementar. Exemplo do e-book: quatro cabanas, março com 30 de 120 noites (25%); dois retiros de meio de semana, de três noites, somam 24 noites e levam março a 54 de 120 (45%), sem obra.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Em que nível está a sua?</span>
-  <div class="kick">Teoria das Vistas Premium™</div>
-  <h2>A vista é <em>um ativo</em></h2>
-  <svg viewBox="0 0 1380 390" style="width:100%" role="img" aria-label="Escada de cinco níveis de vista, de funcional a transformadora"><rect x="0" y="260" width="262" height="120" fill="#FFF8F3" stroke="#0A0A0A" stroke-opacity=".2"/><text x="18" y="294" font-size="16" letter-spacing="3" font-weight="700" fill="#8C6E1F">NÍVEL 1</text><text x="18" y="332" font-size="27" font-weight="700" fill="#0A0A0A">Funcional</text><text x="18" y="364" font-size="19" fill="#555">não emociona</text><rect x="278" y="200" width="262" height="180" fill="#FFF8F3" stroke="#0A0A0A" stroke-opacity=".2"/><text x="296" y="234" font-size="16" letter-spacing="3" font-weight="700" fill="#8C6E1F">NÍVEL 2</text><text x="296" y="272" font-size="27" font-weight="700" fill="#0A0A0A">Agradável</text><text x="296" y="304" font-size="19" fill="#555">nada marcante</text><rect x="556" y="140" width="262" height="240" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="574" y="174" font-size="16" letter-spacing="3" font-weight="700" fill="#8C6E1F">NÍVEL 3</text><text x="574" y="212" font-size="27" font-weight="700" fill="#0A0A0A">Memorável</text><text x="574" y="244" font-size="19" fill="#555">surge a contemplação</text><rect x="834" y="80" width="262" height="300" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="852" y="114" font-size="16" letter-spacing="3" font-weight="700" fill="#8C6E1F">NÍVEL 4</text><text x="852" y="152" font-size="27" font-weight="700" fill="#0A0A0A">Icônica</text><text x="852" y="184" font-size="19" fill="#555">quase vende sozinha</text><rect x="1112" y="20" width="262" height="360" fill="#1B2117" stroke="#0A0A0A" stroke-opacity=".2"/><text x="1130" y="54" font-size="16" letter-spacing="3" font-weight="700" fill="#C9A84C">NÍVEL 5</text><text x="1130" y="92" font-size="27" font-weight="700" fill="#C9A84C">Transformadora</text><text x="1130" y="124" font-size="19" fill="#FEF5F0">extremamente rara</text></svg>
-  <div class="answer f" style="margin-top:22px">«Em muitos casos, <b>faturar mais depende de construir menos</b>.»</div>
-  <div class="foot"><span>Bloco 4 · Volume 01 e Jornada do COMO</span><span>22 / 40</span></div>
-  <aside class="notes">[31:00 · 1 min 30 s] A vista é o que menos se corrige depois. Jornada do COMO: acabamento melhora, mobiliário troca, hidromassagem se instala; vista não. Percorra a escada: funcional atende a luz e a ventilação, mas não desperta emoção; agradável tem beleza, mas nada marcante; memorável, com montanhas, vales, mar ou grandes horizontes, é onde surge a contemplação; icônica é aquela em que o território praticamente vende o empreendimento sozinho; transformadora é extremamente rara e é o nível máximo de valor territorial. Peça que cada um classifique a melhor vista do seu lugar. Revele a frase: construir na frente da paisagem destrói o ativo que justificaria a diária. Exercício do Volume 01: fotografe todos os pontos, escolha três e veja qual tem o melhor nascer e pôr do sol e qual fica bonito nas quatro estações. A paisagem que vende é quase nunca a do meio-dia.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 5 · Existe mercado?</div>
-  <h1 style="font-size:96px">Beleza é condição, <em>não garantia.</em></h1>
-  <div class="deckline">«Lugar extraordinário sem mercado é patrimônio pessoal, não negócio.»</div>
-<div class="trio"><div><b>Curiosidade</b>Num destino de lazer brasileiro, cerca de 53% das noites do ano são meio de semana de baixa.</div><div class="r"><b>Reflexão</b>Quem cobra mais e enche mais? Por quê?</div><div class="d"><b>Dica</b>Liste os comparáveis e date cada linha.</div></div>
-  <div class="foot"><span>E-book · Capítulo 04</span><span>23 / 40</span></div>
-  <aside class="notes">[32:30 · 30 s] Quase todo projeto começa com uma paisagem; a emoção responde só metade da pergunta. A outra metade está nas pessoas que viajam, ou não, até o lugar. Manual Oficial: existem territórios extraordinários que permanecem vazios, e destinos aparentemente simples que operam com alta ocupação durante todo o ano. A Ordem das Coisas chama mercado de a decisão que a maioria pula e que determina o teto de todas as outras. A curiosidade vem da ponderação da Jornada do COMO, Etapa 02. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Onde está o seu lugar?</span>
-  <div class="kick">Território × demanda</div>
-  <h2>Quando caminham <em>juntos</em></h2>
-  <svg viewBox="0 0 1380 450" style="width:100%" role="img" aria-label="Matriz dois por dois: força do território por força da demanda">
-    <g font-weight="700" text-anchor="middle">
-      <rect x="190" y="10" width="580" height="190" fill="#C9A84C" fill-opacity=".14"/><rect x="790" y="10" width="580" height="190" fill="#1B2117"/>
-      <rect x="190" y="220" width="580" height="190" fill="#9B2C2C" fill-opacity=".1"/><rect x="790" y="220" width="580" height="190" fill="#1B2117" fill-opacity=".12"/>
-      <text x="480" y="95" font-size="30">Bela ideia</text><text x="480" y="132" font-size="20" font-weight="400" fill="#555">patrimônio pessoal</text>
-      <text x="1080" y="95" font-size="30" fill="#C9A84C">Negócio sustentável</text><text x="1080" y="132" font-size="20" font-weight="400" fill="#FEF5F0">o quadrante a buscar</text>
-      <text x="480" y="305" font-size="30">Hobby caro</text><text x="480" y="342" font-size="20" font-weight="400" fill="#555">desejo sem demanda</text>
-      <text x="1080" y="305" font-size="30">Simples e cheio</text><text x="1080" y="342" font-size="20" font-weight="400" fill="#555">sem singularidade, disputa preço</text>
-      <g font-size="17" letter-spacing="2" fill="#555"><text x="95" y="110">TERRITÓRIO</text><text x="95" y="135">EXTRAORDINÁRIO</text><text x="95" y="320">TERRITÓRIO</text><text x="95" y="345">COMUM</text><text x="480" y="442">DEMANDA FRACA</text><text x="1080" y="442">DEMANDA FORTE</text></g>
-    </g>
-  </svg>
-  <div class="answer f" style="margin-top:10px">«Mercado vazio pode indicar <b>ausência de demanda, não oportunidade</b>.»</div>
-  <div class="foot"><span>Bloco 5 · Volume 01, Panorama e Manual</span><span>24 / 40</span></div>
-  <aside class="notes">[33:00 · 1 min 30 s] A matriz cruza a força do território, lida nos blocos 3 e 4, com a força da demanda, que este bloco ensina a medir. Pergunte em que quadrante cada um acha que está, e com que evidência. O quadrante de baixo, à direita, não é ruim: muita hospedagem simples vive bem ali, mas com singularidade baixa o projeto vai competir por preço. Apresente a Matriz de Demanda Inteligente™ do Volume 01 com seis fatores: fluxo turístico, mercado emissor, perfil do visitante, tempo de permanência, capacidade de consumo e tendências futuras. Volume não é tudo: empreendimentos premium dependem muito mais da qualidade da demanda do que do seu volume. Revele a frase sobre concorrência: concorrência saudável indica demanda consolidada. E o território não escolhe o seu cliente: você escolhe entre os públicos que já viajam para lá.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Oito comparáveis · ilustrativo</div>
-  <h2>Média ou mediana: <em>qual conta a verdade?</em></h2>
-  <svg viewBox="0 0 1380 320" style="width:100%" role="img" aria-label="Diárias de oito cabanas comparáveis com noites bloqueadas, média e mediana"><rect x="260" y="40" width="240" height="150" fill="#1B2117" fill-opacity=".12"/><text x="380" y="30" text-anchor="middle" font-size="17" font-weight="700" fill="#1B2117" letter-spacing="2">FAIXA QUE ENCHE</text><line x1="80" y1="150" x2="1320" y2="150" stroke="#0A0A0A"/><circle cx="140" cy="150" r="14" fill="#1B2117"/><text x="140" y="186" text-anchor="middle" font-size="19" font-weight="700">420</text><text x="140" y="118" text-anchor="middle" font-size="18" fill="#555">10/30</text><circle cx="200" cy="150" r="14" fill="#1B2117"/><text x="200" y="186" text-anchor="middle" font-size="19" font-weight="700">450</text><text x="200" y="118" text-anchor="middle" font-size="18" fill="#555">13/30</text><circle cx="260" cy="150" r="14" fill="#1B2117"/><text x="260" y="186" text-anchor="middle" font-size="19" font-weight="700">480</text><text x="260" y="118" text-anchor="middle" font-size="18" fill="#555">14/30</text><circle cx="340" cy="150" r="14" fill="#1B2117"/><text x="340" y="186" text-anchor="middle" font-size="19" font-weight="700">520</text><text x="340" y="118" text-anchor="middle" font-size="18" fill="#555">15/30</text><circle cx="400" cy="150" r="14" fill="#1B2117"/><text x="400" y="186" text-anchor="middle" font-size="19" font-weight="700">550</text><text x="400" y="118" text-anchor="middle" font-size="18" fill="#555">14/30</text><circle cx="500" cy="150" r="14" fill="#1B2117"/><text x="500" y="186" text-anchor="middle" font-size="19" font-weight="700">600</text><text x="500" y="118" text-anchor="middle" font-size="18" fill="#555">12/30</text><circle cx="680" cy="150" r="14" fill="#1B2117"/><text x="680" y="186" text-anchor="middle" font-size="19" font-weight="700">690</text><text x="680" y="118" text-anchor="middle" font-size="18" fill="#555">7/30</text><circle cx="1200" cy="150" r="14" fill="#9B2C2C"/><text x="1200" y="186" text-anchor="middle" font-size="19" font-weight="700">950</text><text x="1200" y="118" text-anchor="middle" font-size="18" fill="#9B2C2C">4/30</text><g class="f"><line x1="370" y1="200" x2="370" y2="232" stroke="#1B2117" stroke-width="3"/><text x="370" y="256" text-anchor="middle" font-size="20" font-weight="700" fill="#1B2117">mediana R$&nbsp;535</text><line x1="465" y1="200" x2="465" y2="286" stroke="#9B2C2C" stroke-width="3"/><text x="520" y="306" text-anchor="middle" font-size="20" font-weight="700" fill="#9B2C2C">média R$&nbsp;582,50</text></g><text x="1320" y="236" text-anchor="end" font-size="16" fill="#555">diária de meio de semana · noites vendidas em 30</text></svg>
-  <div class="answer f" style="margin-top:10px">A mediana. «<b>Preço alto com calendário vazio não é benchmark, é aviso.</b>»</div>
-  <div class="foot"><span>Bloco 5 · Panorama e Jornada do COMO, Etapa 02</span><span>25 / 40</span></div>
-  <aside class="notes">[34:30 · 2 min] Método do Pilar 02 do Panorama: dez hospedagens parecidas num raio de trinta minutos, com tipo, unidades, diária de semana e de fim de semana e data da consulta. Frase-chave: a diária não se escolhe, se descobre. No exemplo, oito cabanas de casal fictícias; acima de cada ponto, as noites bloqueadas em setembro, mês fechado. Pergunta de previsão: a média e a mediana são diferentes; qual descreve melhor o destino? Revele: a soma das diárias é 4.660, média de 582,50; a mediana é a média do quarto e do quinto valor, 520 e 550, ou 535. A Villa Alto, de 950 reais, puxou a média 47,50 acima da mediana e vendeu 4 noites em 30. A faixa de 480 a 600 bloqueou 55 de 120 noites, 45,8%; os dois mais caros, 11 de 60, 18,3%. Regra da Etapa 02 para ocupação: conte o mês que acabou de passar; o calendário futuro é sinal de procura. Se a estimativa der acima de 70%, refaça a conta. Jornada B: ponha a sua diária média e a ocupação dos três últimos meses fechados ao lado da mediana dos comparáveis. Diária e ocupação abaixo: produto ou visibilidade. Diária abaixo e ocupação acima: é o que o mercado paga e você não cobra. Diária acima e ocupação abaixo: preço acima do valor percebido.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão · qual entra na folha?</span>
-  <div class="kick">Ilustrativo</div>
-  <h2>O anúncio <em>não é o ano</em></h2>
-  <div class="grid g2">
-    <div class="tile"><div class="lab">Diária</div><div class="row" style="gap:30px;margin-top:12px;align-items:flex-end"><div><div class="w">anúncio de julho</div><div class="word" style="font-size:52px">R$&nbsp;1.000</div></div><div class="f"><div class="w">ponderada do ano</div><div class="word" style="font-size:52px;color:var(--green)">R$&nbsp;649,30</div></div></div><div class="answer f" style="margin-top:18px;font-size:24px"><b>35% menor</b></div></div>
-    <div class="tile"><div class="lab">Ocupação</div><div class="row" style="gap:30px;margin-top:12px;align-items:flex-end"><div><div class="w">média dos 3 patamares</div><div class="word" style="font-size:52px">57%</div></div><div class="f"><div class="w">média dos 12 meses</div><div class="word" style="font-size:52px;color:var(--green)">52%</div></div></div><div class="answer f" style="margin-top:18px;font-size:24px"><b>5 pontos a menos</b></div></div>
-  </div>
-  <div class="foot"><span>Bloco 5 · Jornada do COMO, Etapa 02</span><span>26 / 40</span></div>
-  <aside class="notes">[36:30 · 1 min 30 s] Pergunta de previsão: qual número entra na folha de viabilidade, o da esquerda ou o da direita de cada quadro? Revele em ordem. Diária: a Pesquisa de Diária em uma Tarde™ usa quatro datas (fim de semana e meio de semana, na alta e na baixa) e pondera pelo peso de cada tipo de noite no ano, cerca de 12%, 18%, 17% e 53%. Conta: 0,12 × 1.000 + 0,18 × 700 + 0,17 × 720 + 0,53 × 530 = 649,30. A diária real ficou 35% menor; quem usasse mil reais superestimaria a receita em cerca de 54%. Frase da Etapa 02: é como calcular o faturamento de um restaurante pelo movimento de sábado à noite. Ocupação: alta de 82% em três meses, média de 52% em três, baixa de 37% em seis: 246 + 156 + 222 = 624, dividido por 12, 52%. A média dos três patamares daria 57%. Regra da fonte: some os doze percentuais e divida por doze.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Quiz relâmpago · 1 min</span>
-  <div class="kick">Calcule · 30 segundos</div>
-  <h2>Alta 80% em 3 meses, média 50% em 3, baixa 30% em 6. <em>Ocupação anual?</em></h2>
-  <div class="grid g2" style="gap:20px"><div class="tile opt"><span class="tag f">correta</span><span class="L">A</span><span>47,5%</span></div><div class="tile opt"><span class="L">B</span><span>53,3%</span></div><div class="tile opt"><span class="L">C</span><span>50,0%</span></div><div class="tile opt"><span class="L">D</span><span>55,0%</span></div></div>
-  <div class="answer f" style="margin-top:24px"><b>A.</b> (3 × 80 + 3 × 50 + 6 × 30) ÷ 12 = 570 ÷ 12 = 47,5%.</div>
-  <div class="foot"><span>Bloco 5 · revisão · números ilustrativos</span><span>27 / 40</span></div>
-  <aside class="notes">[38:00 · 1 min 30 s] Quiz relâmpago com cálculo. Dê trinta segundos para cada um calcular no papel. Revele a correta e a conta. A: correta; 240 + 150 + 180 = 570, dividido por 12 meses, 47,5%. B: errada; 53,3% é a média simples dos três patamares, (80 + 50 + 30) ÷ 3, o erro que a Etapa 02 proíbe, porque a baixa dura seis meses e pesa o dobro. C: errada; 50% é a média do patamar médio, tomada como se representasse o ano. D: errada; 55% é a média entre a alta e a baixa, que ignora quantos meses cada uma dura. A média simples superestimaria em quase seis pontos, e esse erro vai direto para a receita da folha.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 6 · A conta em uma folha</div>
-  <h1 style="font-size:96px">Diária, ocupação, <em>custo e sobra.</em></h1>
-  <div class="deckline">«Essa conta leva uma tarde.»</div>
-<div class="trio"><div><b>Curiosidade</b>Na maior parte dos casos, a receita imaginada é o dobro da calculada.</div><div class="r"><b>Reflexão</b>Se o conservador desse prejuízo, que alavanca você mexeria?</div><div class="d"><b>Dica</b>Preencha a folha à mão e anote a quem perguntar.</div></div>
-  <div class="foot"><span>E-book · Capítulo 05</span><span>28 / 40</span></div>
-  <aside class="notes">[39:30 · 30 s] Jornada do COMO: quatro números decidem se o lugar funciona: quanto ele cobra, quanto ele enche, quanto custa operar e quanto você vai investir. Hoje trabalhamos os três primeiros; o investimento fica para o Z02 e o pilar Financiar. A conta não exige especialista nem software. Conte o caso do casal da fonte: a conta deles tinha quatro erros, e nenhum era de matemática; eram premissas: diária e ocupação da alta usadas como média do ano, o primeiro ano tratado como maduro e margem sem comissão, lavanderia, manutenção e custo fixo. A curiosidade completa: e a margem imaginada fica vinte pontos acima. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Quatro cabanas · ilustrativo</div>
-  <h2>R$&nbsp;30 mil por mês, R$&nbsp;15 mil de fixo. <em>Folgado?</em></h2>
-  <div class="grid g4" style="gap:18px">
-    <div class="tile"><div class="lab">Diária do ano</div><div class="word" style="margin-top:8px">R$&nbsp;500</div><div class="w">ocupação 50%</div></div>
-    <div class="tile"><div class="lab">Sai da receita</div><div class="word" style="margin-top:8px">3% + 10%</div><div class="w">cancelamento · impostos</div></div>
-    <div class="tile"><div class="lab">Custo variável</div><div class="word" style="margin-top:8px">R$&nbsp;150</div><div class="w">por noite vendida</div></div>
-    <div class="tile"><div class="lab">Custo fixo</div><div class="word" style="margin-top:8px">R$&nbsp;15.000</div><div class="w">por mês</div></div>
-  </div>
-  <div class="answer f" style="margin-top:26px">Mês de 30 dias: 60 noites × R$&nbsp;500 = R$&nbsp;30.000. <b>Quanto sobra?</b></div>
-  <div class="foot"><span>Bloco 6 · Jornada do COMO, Etapa 02 · números didáticos · impostos: confirme com o contador</span><span>29 / 40</span></div>
-  <aside class="notes">[40:00 · 1 min 30 s] Apresente as premissas, todas ilustrativas e redondas, do e-book. Diária média do ano de 500 reais (não a do fim de semana de alta) e ocupação média anual de 50%. Cancelamento e cortesias de 3% da receita; impostos de 10% sobre a receita líquida (o percentual real depende do enquadramento: confirme com o contador). Comissão do canal de 12% mais taxa de pagamento de 3%, 75 reais por noite; limpeza, lavanderia, amenities, café e energia da unidade ocupada, outros 75: custo variável de 150 por noite. Custo fixo de 15 mil por mês, já com pró-labore de 3 mil e reserva de reposição de 1.200, sem aluguel. Pergunta de previsão: 30 mil de receita no mês contra 15 mil de fixo parece folgado? Deixe votar e revele a intuição. Frase da fonte: cada hóspede que entra custa dinheiro antes de dar lucro.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Calcule junto</span>
-  <div class="kick">Folha de Viabilidade Zion™ · ilustrativo</div>
-  <h2>1.460 noites, <em>730 vendidas</em></h2>
-  <table class="tight">
-    <thead><tr><th>Bloco</th><th>Cálculo</th><th class="n">No ano</th></tr></thead>
-    <tbody><tr class="f"><td>1 · Receita</td><td>730 noites × R$&nbsp;500</td><td class="n">R$&nbsp;365.000</td></tr><tr class="f"><td>(−) Cancelamento</td><td>365.000 × 3%</td><td class="n">− R$&nbsp;10.950</td></tr><tr class="f"><td>(=) Receita líquida</td><td>365.000 − 10.950</td><td class="n">R$&nbsp;354.050</td></tr><tr class="f"><td>2 · (−) Impostos</td><td>354.050 × 10%</td><td class="n">− R$&nbsp;35.405</td></tr><tr class="f"><td>3 · (−) Variáveis</td><td>730 × R$&nbsp;150</td><td class="n">− R$&nbsp;109.500</td></tr><tr class="f"><td>4 · (−) Fixos</td><td>12 × R$&nbsp;15.000</td><td class="n">− R$&nbsp;180.000</td></tr><tr class="f tot"><td>5 · Sobra</td><td>resultado operacional</td><td class="n">R$&nbsp;29.145</td></tr></tbody>
-  </table>
-  <div class="answer f" style="margin-top:16px">Margem <b>8,2%</b>: abaixo de 10%, <b>não fecha como está.</b></div>
-  <div class="foot"><span>Bloco 6 · exemplo resolvido · números ilustrativos</span><span>30 / 40</span></div>
-  <aside class="notes">[41:30 · 2 min 30 s] Exemplo resolvido, revelado linha por linha. Faça cada conta em voz alta antes de clicar. Noites disponíveis: 4 cabanas × 365 = 1.460; vendidas: 1.460 × 50% = 730. Bloco 1: 730 × 500 = 365 mil. Cancelamento e cortesias: 3%, menos 10.950; receita líquida de 354.050. Bloco 2: impostos de 10% sobre a líquida, menos 35.405. Bloco 3: 730 noites × 150, menos 109.500. Bloco 4: 12 × 15 mil, menos 180 mil. Bloco 5: 354.050 − 35.405 − 109.500 − 180.000 = 29.145. Bloco 6: margem de 8,2%. Régua da Etapa 02: acima de 30%, boa para pequeno porte; de 20% a 30%, viável com pouca folga; de 10% a 20%, apertado; abaixo de 10%, o modelo não fecha como está. Não fechar não é desistir: é mudar algo antes de gastar. O custo fixo sozinho consome 51% da receita líquida. Frase da Jornada do COMO, Etapa 02: quando a conta não fecha, a conta está certa, e descobrir agora custa uma tarde.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Ponto de equilíbrio</div>
-  <h2>Empata com 35,2%. <em>A folha deu 8,2%. Por quê?</em></h2>
-  <div class="grid g2">
-    <div class="tile"><div class="lab">Fórmula simples</div><div class="word" style="font-size:34px;margin-top:10px">180.000 ÷ (500 − 150)</div><div class="w" style="margin-top:8px">514 noites · <b>35,2%</b></div></div>
-    <div class="tile f" style="background:var(--moss);color:var(--paper)"><div class="lab">Com impostos e cancelamento</div><div class="word" style="font-size:34px;margin-top:10px;color:var(--gold)">500 × 0,97 × 0,90 − 150</div><div class="w" style="margin-top:8px;color:rgba(254,245,240,.85)">628 noites · <b>43,0%</b></div></div>
-  </div>
-  <div class="answer f" style="margin-top:26px">Folga de 7 pontos, abaixo de 10: <b>apertado.</b></div>
-  <div class="foot"><span>Bloco 6 · Jornada do COMO, Etapas 02 e 03</span><span>31 / 40</span></div>
-  <aside class="notes">[44:00 · 2 min] A fórmula das fontes: noites para empatar no ano = custo fixo anual dividido pelo que cada noite deixa, a diária menos o custo variável. 500 − 150 = 350; 180 mil ÷ 350 = 514 noites, cerca de 43 por mês; 514,3 ÷ 1.460 = 35,2%. O destino entrega 50%: quase quinze pontos de folga. Pergunta de previsão: então por que a folha mostrou só 8,2% de margem? Dê um minuto. Revele: a fórmula supõe que a diária chega inteira ao caixa. Não chega: saem 3% de cancelamento e, do resto, 10% de impostos. Margem efetiva: 500 × 0,97 = 485; × 0,90 = 436,50; − 150 = 286,50. 180 mil ÷ 286,50 = 628 noites, cerca de 52 por mês; 628,3 ÷ 1.460 = 43,0%. Conferência: (730 − 628,27) × 286,50 dá cerca de 29.145, o resultado da folha. A Etapa 02 chama de margem de segurança a distância até a ocupação do destino; menos de dez pontos é apertado.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Qual precisa funcionar?</span>
-  <div class="kick">Teste dos Três Cenários™ · ilustrativo</div>
-  <h2>Três cenários, <em>não um</em></h2>
-  <svg viewBox="0 0 1380 525" style="width:100%;height:455px" role="img" aria-label="Resultado operacional anual nos três cenários"><rect x="140" y="345" width="260" height="97" fill="#9B2C2C"/><text x="270" y="329" text-anchor="middle" font-size="28" font-weight="700" fill="#9B2C2C">− R$&nbsp;33.796</text><text x="270" y="485" text-anchor="middle" font-size="20" letter-spacing="3" font-weight="700" fill="#8C6E1F">CONSERVADOR</text><text x="270" y="515" text-anchor="middle" font-size="21" fill="#555">R$&nbsp;450 · 40% · −13,3%</text><rect x="560" y="262" width="260" height="83" fill="#C9A84C"/><text x="690" y="248" text-anchor="middle" font-size="28" font-weight="700">R$&nbsp;29.145</text><text x="690" y="485" text-anchor="middle" font-size="20" letter-spacing="3" font-weight="700" fill="#8C6E1F">BASE</text><text x="690" y="515" text-anchor="middle" font-size="21" fill="#555">R$&nbsp;500 · 50% · 8,2%</text><rect x="980" y="85" width="260" height="260" fill="#1B2117"/><text x="1110" y="71" text-anchor="middle" font-size="28" font-weight="700">R$&nbsp;90.865</text><text x="1110" y="485" text-anchor="middle" font-size="20" letter-spacing="3" font-weight="700" fill="#8C6E1F">OTIMISTA</text><text x="1110" y="515" text-anchor="middle" font-size="21" fill="#555">R$&nbsp;550 · 57,5% · 20,3%</text><line x1="60" y1="345" x2="1320" y2="345" stroke="#0A0A0A" stroke-width="2"/></svg>
-  <div class="answer f" style="margin-top:6px">«Se o conservador não paga as contas, <b>o projeto ainda não está pronto</b>.»</div>
-  <div class="foot"><span>Bloco 6 · Jornada do COMO, Etapa 02, e Panorama</span><span>32 / 40</span></div>
-  <aside class="notes">[46:00 · 1 min 30 s] O Panorama pede três cenários, mudando só ocupação e diária. Teste dos Três Cenários™: conservador com diária 10% abaixo e ocupação 20% abaixo; otimista com diária 10% acima e ocupação 15% acima. A assimetria é proposital: em hospedagem nova, os desvios para baixo costumam ser maiores. Cuidado: 20% é relativo; 50 × 0,80 = 40%, não 30%. A comissão acompanha a diária: 142,50 por noite no conservador e 157,50 no otimista. Resultados: conservador 584 noites, receita de 262.800, sobra de menos 33.796; base 29.145; otimista 839,5 noites, 461.725 de receita, 90.865 de sobra. Pergunte qual cenário precisa funcionar. Leitura da Etapa 02: conservador muito negativo significa que o projeto depende de tudo dar certo, o que raramente acontece; mude alguma coisa antes. O equilíbrio do conservador é 49,2%, acima dos 40% que ele supõe. Barras em escala.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Mexa em uma alavanca</span>
-  <div class="kick">Conta do Mínimo Viável™ · ilustrativo</div>
-  <h2>Quantas cabanas <em>pagam a estrutura?</em></h2>
-  <div class="grid g2">
-    <div class="tile"><div class="lab">Unidades para empatar</div><div class="word" style="font-size:36px;margin-top:10px">628,3 ÷ 182,5 = 3,4</div><div class="w" style="margin-top:8px">182,5 noites por cabana</div></div>
-    <div class="tile f"><div class="lab">Fixo de R$&nbsp;12.000</div><div class="word" style="font-size:36px;margin-top:10px">base: R$&nbsp;65.145</div><div class="w" style="margin-top:8px">margem 18,4%</div></div>
-  </div>
-  <div class="answer f" style="margin-top:24px">«Menos do que você quer <b>e mais do que paga a operação</b>: esse é o ponto.»</div>
-  <div class="foot"><span>Bloco 6 · Jornada do COMO e Panorama</span><span>33 / 40</span></div>
-  <aside class="notes">[47:30 · 1 min 30 s] A conta ao contrário: quantas unidades esse custo fixo exige? O fixo quase não muda com o número de unidades. Cada unidade vende 182,5 noites por ano; pela fórmula da fonte, 514,3 ÷ 182,5 = 2,8 unidades só para empatar; com impostos e cancelamento, 628,3 ÷ 182,5 = 3,4. Pergunte à turma qual alavanca mexeria: mais unidades, diária maior por posicionamento, custo fixo menor ou outro destino. Revele o teste do e-book: com fixo de 12 mil por mês, o ano economiza 36 mil em todos os cenários; conservador passa a 2.204, base a 65.145 (margem de 18,4%), otimista a 126.865; o equilíbrio cai para 502,6 noites, 34,4%, e a folga sobe para 15,6 pontos. Se o corte é possível, só a lista de custos de cada um responde; o exemplo mostra onde mexer, não promete resultado. Jornada B: reconstrua a folha dos últimos doze meses com números realizados; caixa não é lucro.</aside>
-</section>
-
-<section class="slide dark">
-  <div class="kick">Bloco 7 · O que trava e o Diagnóstico</div>
-  <h1 style="font-size:96px">Procure o motivo <em>para não seguir.</em></h1>
-<div class="trio"><div><b>Curiosidade</b>As seis subtrações da matrícula à área construtível real levam «cerca de duas horas».</div><div class="r"><b>Reflexão</b>Que pendência você evita verificar?</div><div class="d"><b>Dica</b>Peça a matrícula e faça a consulta de uso na prefeitura.</div></div>
-  <div class="foot"><span>E-book · Capítulos 06 a 08</span><span>34 / 40</span></div>
-  <aside class="notes">[49:00 · 30 s] Os blocos anteriores perguntaram o que o lugar oferece; este pergunta o que pode impedir. Frase do Volume 01 sobre due diligence: o objetivo não é encontrar motivos para comprar; é descobrir se existe algum motivo para não comprar. O comprador acredita; o developer verifica. A Due Diligence Territorial tem oito pilares: situação jurídica, ambiental, urbanística, infraestrutura, geologia e solo, mercado, viabilidade financeira e riscos estratégicos. Nível introdutório: o e-book ensina a chegar a advogado, engenheiro, topógrafo, consultor ambiental e prefeitura com as perguntas certas, não os substitui. Curiosidade, reflexão e dica: use a curiosidade para despertar a atenção, faça a reflexão como pergunta para a turma e proponha a dica como tarefa da semana.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão</span>
-  <div class="kick">Da matrícula à área útil · ilustrativo</div>
-  <h2>10 ha por R$&nbsp;1 milhão. <em>Quanto custa o hectare útil?</em></h2>
-  <svg viewBox="0 0 1380 250" style="width:100%" role="img" aria-label="Barras: 10 hectares na matrícula, 3 depois de APP e reserva legal, 1,5 de área útil">
-    <g font-size="23" font-weight="700">
-      <text x="0" y="48">Matrícula</text><rect x="260" y="20" width="1000" height="40" fill="#D9CDBE"/><text x="1270" y="48" text-anchor="end" font-size="21">10 ha · R$&nbsp;100 mil/ha</text>
-      <g class="f"><text x="0" y="128">− APP e reserva legal</text><rect x="260" y="100" width="300" height="40" fill="#C9A84C"/><text x="580" y="128" font-size="21">3 ha · R$&nbsp;333 mil/ha</text></g>
-      <g class="f"><text x="0" y="208">− outras subtrações</text><rect x="260" y="180" width="150" height="40" fill="#1B2117"/><text x="430" y="208" font-size="21" fill="#9B2C2C">1,5 ha · R$&nbsp;667 mil/ha</text></g>
-    </g>
-  </svg>
-  <div class="row f" style="margin-top:14px;gap:10px;flex-wrap:wrap;align-items:center"><span class="lab" style="margin-right:8px">Cinco saídas</span><span class="chip">Comprar</span><span class="chip">Parceria com o dono</span><span class="chip">Permuta</span><span class="chip">Arrendar</span><span class="chip">Não fazer</span></div>
-  <div class="foot"><span>Bloco 7 · Panorama e Volume 01 · confirme com profissional habilitado</span><span>35 / 40</span></div>
-  <aside class="notes">[49:30 · 1 min 30 s] Frase do Panorama: um terreno de dez hectares com sete de APP e reserva legal é, na prática, um terreno de três; o preço, porém, foi pago pelos dez. APP é área de preservação permanente, como margens de rio; reserva legal é a parte rural mantida com vegetação nativa; as duas aparecem no CAR, consulta pública e gratuita. Pergunta de previsão: quanto custa o hectare que você realmente usa? Revele: 1 milhão ÷ 3 = cerca de 333 mil, 3,3 vezes o anúncio. O Volume 01 lista mais subtrações: declividade, recuos e faixas de domínio, taxa de ocupação da zona e área de serviço e circulação. No exemplo ilustrativo, sobra 1,5 hectare: cerca de 667 mil por hectare, quase sete vezes. Esses números não têm relação com percentuais legais; confirme com profissional habilitado. Revele as cinco saídas do Panorama: só comprar imobiliza o capital da terra. Parceria e permuta dependem de uma leitura séria do território, com advogado e contador. Adiamento legítimo tem razão nomeada, condição verificável e data: eu retomo quando...</aside>
-</section>
-
-<section class="slide">
-  <span class="ask ex">Quiz relâmpago · 1 min</span>
-  <div class="kick">Revisão espaçada · Bloco 6</div>
-  <h2>Base de 60%. <em>E o conservador?</em></h2>
-  <div class="grid g2" style="gap:20px"><div class="tile opt"><span class="L">A</span><span>40%: vinte pontos a menos</span></div><div class="tile opt"><span class="L">B</span><span>54%: 10% abaixo</span></div><div class="tile opt"><span class="L">C</span><span>51%: 15% abaixo</span></div><div class="tile opt"><span class="tag f">correta</span><span class="L">D</span><span>48%: 60 × 0,80</span></div></div>
-  <div class="answer f" style="margin-top:24px"><b>D.</b> Os 20% são relativos: 60 × 0,80 = 48%.</div>
-  <div class="foot"><span>Bloco 7 · revisão intercalada</span><span>36 / 40</span></div>
-  <aside class="notes">[51:00 · 1 min 30 s] Quiz relâmpago, retomando o bloco 6 depois de um intervalo: lembrar com espaçamento fixa mais. Peça a letra antes de revelar. A: errada; é o erro clássico de ler os 20% como pontos percentuais; com base de 50%, o mesmo erro daria 30% em vez de 40%. B: errada; os 10% valem para a diária no conservador, não para a ocupação. C: errada; 15% é a variação do otimista, para cima, não do conservador. D: correta; 60 × 0,80 = 48%. A assimetria é proposital: o conservador se afasta mais que o otimista, porque em hospedagem nova os desvios para baixo costumam ser maiores.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão · Jornada B</span>
-  <div class="kick">Pirâmide da Rentabilidade Territorial™ · ilustrativo</div>
-  <h2>Quer construir dois chalés. <em>Onde começa?</em></h2>
-  <div class="grid" style="grid-template-columns:1.7fr 1fr;gap:30px;align-items:center">
-    <svg viewBox="0 0 1120 390" style="width:100%" role="img" aria-label="Pirâmide com cinco níveis e notas de uma pousada fictícia"><rect x="330" y="10" width="460" height="66" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="560" y="53" text-anchor="middle" font-size="30" font-weight="700">Marca · 5</text><rect x="250" y="86" width="620" height="66" fill="#FFF8F3" stroke="#0A0A0A" stroke-opacity=".2"/><text x="560" y="129" text-anchor="middle" font-size="30" font-weight="700">Operação · 4</text><rect x="170" y="162" width="780" height="66" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="560" y="205" text-anchor="middle" font-size="30" font-weight="700">Mercado · 6</text><rect x="90" y="238" width="940" height="66" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="560" y="281" text-anchor="middle" font-size="30" font-weight="700">Produto · 7</text><rect x="10" y="314" width="1100" height="66" fill="#F1E6D6" stroke="#0A0A0A" stroke-opacity=".2"/><text x="560" y="357" text-anchor="middle" font-size="30" font-weight="700">Território · 8</text><g class="f"><rect x="250" y="86" width="620" height="66" fill="none" stroke="#9B2C2C" stroke-width="6"/><text x="890" y="129" font-size="26" font-weight="700" fill="#9B2C2C">elo mais fraco</text></g></svg>
-    <div><div class="mini">Média 6,0: esconde o teto.</div><div class="answer f" style="margin-top:14px"><b>Ajustar, não construir:</b> primeiro o número do mês (G6).</div></div>
-  </div>
-  <div class="foot"><span>Bloco 7 · Volume 01, A Ordem das Coisas e Panorama</span><span>37 / 40</span></div>
-  <aside class="notes">[52:30 · 1 min 30 s] Caso fictício do e-book para a Jornada B: pousada de seis quartos, três anos de operação, 420 mil por ano em hospedagem; o dono quer construir dois chalés. Notas da Pirâmide, da base ao topo: território 8, produto 7, mercado 6, operação 4 (tudo passa pelo dono, sem fechamento mensal), marca 5 (quase tudo chega por OTA). Soma 30, média 6,0. Pergunta de previsão: por onde ele deveria começar? Revele: a média esconde o elo mais fraco, a operação. No Espelho do Travamento™ ele marca baixei a diária e não encheu, não consigo me ausentar e não sei se estou lucrando; nenhuma decisão pendente é construir. Custo invisível: um concorrente comparável fatura 504 mil; 84 mil por ano, 252 mil em três anos. Construir levaria o elo fraco para oito unidades: é o quinto erro do Manual, crescer antes da hora. Regra do Panorama: resolva primeiro o que já custa dinheiro hoje, começando pelo pilar que dá um número: o G6, Administração e Finanças, que aparece no slide.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Previsão · decida</span>
-  <div class="kick">Zion Score™ · soma de 10 notas</div>
-  <h2>Marina: 68 pontos. <em>Qual a decisão?</em></h2>
-  <svg viewBox="0 0 1380 200" style="width:100%" role="img" aria-label="Régua do Zion Score™ de 0 a 100 com faixas parar, ajustar e seguir">
-    <g font-weight="700" text-anchor="middle">
-      <rect x="40" y="60" width="780" height="56" fill="#9B2C2C" fill-opacity=".85"/><rect x="820" y="60" width="260" height="56" fill="#C9A84C"/><rect x="1080" y="60" width="260" height="56" fill="#1B2117"/>
-      <text x="430" y="97" font-size="24" fill="#fff">PARAR · abaixo de 60</text><text x="950" y="97" font-size="24">AJUSTAR · 60 a 79</text><text x="1210" y="97" font-size="24" fill="#fff">SEGUIR · 80+</text>
-      <text x="690" y="160" font-size="20" font-weight="400" fill="#555">seguir exige também conservador positivo e até dois alertas</text>
-      <path d="M912 40l12 18 12-18z" fill="#0A0A0A"/><text x="924" y="30" font-size="22">Marina · 68</text>
-      <g class="f"><path d="M1094 40l12 18 12-18z" fill="#0A0A0A"/><text x="1106" y="30" font-size="22">Rafael · 82</text></g>
-    </g>
-  </svg>
-  <div class="answer f" style="margin-top:12px"><b>Ajustar:</b> soma 68, conservador de − R$&nbsp;3.728 por mês e três alertas.</div>
-  <div class="foot"><span>Bloco 7 · Volume 01 e e-book, Capítulo 08 · ilustrativo</span><span>38 / 40</span></div>
-  <aside class="notes">[54:00 · 1 min 30 s] O Zion Score™ do Volume 01 tem dez pilares com nota de zero a dez: localização estratégica, potencial natural, vocação turística, infraestrutura, mercado, sustentabilidade, viabilidade econômica, potencial de marca, potencial de expansão e legado. No Z01, as faixas da fonte se aplicam à soma, de 0 a 100: premissa do módulo. Regra de decisão, verificada nesta ordem: soma menor que 60 ou base negativo, parar; soma de 60 a 79, conservador zero ou negativo ou três alertas ou mais, ajustar; nenhuma das anteriores, seguir. Marina, terreno herdado na serra: soma 68; cinco cabanas, diária de 600, conservador de 48 noites por mês a 540 reais, sobra mensal de menos 3.728; alertas de energia, área intocável e plano diretor. Pergunte a decisão antes de revelar. Ajustar não é desistir das cabanas. Revele Rafael, Jornada B: soma 82, conservador positivo com folga de três noites, um alerta: seguir, que não é construir o quinto chalé; é levar ao Z02 um crescimento sem obra. Nada disso é promessa de resultado.</aside>
-</section>
-
-<section class="slide">
-  <span class="ask">Lembre antes de ver</span>
-  <div class="kick">Revisão</div>
-  <h2>Uma regra <em>por bloco</em></h2>
-  <svg viewBox="0 0 1380 560" style="width:100%" role="img" aria-label="Mapa mental da aula com a regra de cada bloco"><g stroke="#C9A84C" stroke-width="2" opacity=".7"><line x1="690" y1="280" x2="250" y2="90"/><line x1="690" y1="280" x2="690" y2="60"/><line x1="690" y1="280" x2="1130" y2="90"/><line x1="690" y1="280" x2="1180" y2="300"/><line x1="690" y1="280" x2="1060" y2="490"/><line x1="690" y1="280" x2="320" y2="490"/><line x1="690" y1="280" x2="200" y2="300"/></g><circle cx="690" cy="280" r="115" fill="#1B2117"/><text x="690" y="268" text-anchor="middle" fill="#C9A84C" font-size="20" letter-spacing="3" font-weight="700">SEU LUGAR</text><text x="690" y="304" text-anchor="middle" fill="#FEF5F0" font-size="23" font-family="Playfair Display, serif" font-style="italic">decisão escrita</text><g text-anchor="middle"><rect x="120" y="50" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="250" y="85" font-size="24" font-weight="700">1 · Abertura</text><text class="f" x="250" y="115" font-size="17" fill="#8C6E1F" font-weight="700">A: terreno · B: operação</text></g><g text-anchor="middle"><rect x="560" y="20" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="690" y="55" font-size="24" font-weight="700">2 · Terreno</text><text class="f" x="690" y="85" font-size="17" fill="#8C6E1F" font-weight="700">a menor nota é o teto</text></g><g text-anchor="middle"><rect x="1000" y="50" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1130" y="85" font-size="24" font-weight="700">3 · Ler o lugar</text><text class="f" x="1130" y="115" font-size="17" fill="#8C6E1F" font-weight="700">levantamento, não visita</text></g><g text-anchor="middle"><rect x="1050" y="260" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1180" y="295" font-size="24" font-weight="700">4 · Vocação</text><text class="f" x="1180" y="325" font-size="17" fill="#8C6E1F" font-weight="700">1 principal + 1 complementar</text></g><g text-anchor="middle"><rect x="930" y="450" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="1060" y="485" font-size="24" font-weight="700">5 · Mercado</text><text class="f" x="1060" y="515" font-size="17" fill="#8C6E1F" font-weight="700">mediana e mês fechado</text></g><g text-anchor="middle"><rect x="190" y="450" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="320" y="485" font-size="24" font-weight="700">6 · A conta</text><text class="f" x="320" y="515" font-size="17" fill="#8C6E1F" font-weight="700">o conservador precisa fechar</text></g><g text-anchor="middle"><rect x="70" y="260" width="260" height="80" fill="#FFF8F3" stroke="#C9A84C"/><text x="200" y="295" font-size="24" font-weight="700">7 · O que trava</text><text class="f" x="200" y="325" font-size="17" fill="#8C6E1F" font-weight="700">parar também é método</text></g></svg>
-  <div class="foot"><span>Revisão · retenção</span><span>39 / 40</span></div>
-  <aside class="notes">[55:30 · 1 min 30 s] Volte ao mapa do slide 3. Antes de cada clique, peça que a turma diga a regra do bloco de memória; só então revele. 1: Jornada A diagnostica o terreno ou o imóvel; Jornada B, a operação. 2: a menor nota é o teto, não a média, no VTP™ e na Pirâmide. 3: ler o lugar é levantamento, não visita, e termina em um documento. 4: uma vocação principal e, no máximo, uma complementar. 5: a diária se descobre nos comparáveis; mediana e mês fechado; ocupação anual pela média dos doze meses. 6: três cenários, e o conservador é o que precisa funcionar. 7: parar é um resultado legítimo do método, não um fracasso dele.</aside>
-</section>
-
-<section class="slide dark">
-  <span class="ask" style="background:var(--gold);color:var(--ink)">Exercício final · antes do Z02</span>
-  <div class="kick">Diagnóstico de Potencial do Imóvel ou Terreno</div>
-  <h2>Quatro blocos, <em>uma decisão escrita</em></h2>
-  <div class="grid g4" style="gap:18px">
-    <div class="tile"><div class="big">1</div><h3>Território</h3><div class="w">10 notas com evidência</div></div>
-    <div class="tile"><div class="big">2</div><h3>Vocação</h3><div class="w">principal e complementar</div></div>
-    <div class="tile"><div class="big">3</div><h3>Conta</h3><div class="w">três cenários</div></div>
-    <div class="tile"><div class="big">4</div><h3>Alertas</h3><div class="w">pendências</div></div>
-  </div>
-  <div class="row" style="margin-top:30px;gap:16px;align-items:center;flex-wrap:wrap"><div class="chip">Seguir · ajustar · parar</div><div class="chip">Ferramenta: Capítulo 8</div><div class="chip">Z02 · Como Começar com os Recursos que Você Tem</div></div>
-  <div class="foot"><span>Zion Hospitality Business School</span><span>40 / 40</span></div>
-  <aside class="notes">[57:00 · 3 min] Feche com o exercício que transforma a aula em entregável. Peça que cada aluno abra o Capítulo 8 do e-book e preencha a ferramenta Diagnóstico de Potencial do Imóvel ou Terreno: bloco 1, as dez notas do Zion Score™ com evidência para as notas acima de sete; bloco 2, a vocação principal e a complementar; bloco 3, a conta em uma folha em três cenários, com o ponto de equilíbrio (cuidado: na ferramenta, comissão, taxa, cancelamento e impostos entram juntos no percentual; não conte a comissão duas vezes); bloco 4, os sinais de alerta. Nenhum campo vem preenchido, porque nenhum número padrão seria verdadeiro para o caso de cada um. Depois, o Caderno do Z01 e a decisão escrita. Entrega ao mentor em PDF. Rubrica: coerência entre notas, conta e decisão, 40%; justificativa, 30%; identificação de riscos, 20%; clareza e próximos passos, 10%. Agora, em dois minutos, cada um escreve a decisão provisória e o que falta saber para confirmá-la. Chamada para o Z02: o Diagnóstico vira o Plano Inicial, com investimento, alternativas de capital e a porta que cabe nos recursos de cada um. A decisão é sugestão do método, não promessa de resultado; a decisão final continua sendo de cada um.</aside>
-</section>
 
 </div></div>
 
@@ -699,6 +463,36 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
   document.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){dx<0?next():prev();}x0=null;},{passive:true});
   window.addEventListener("resize",fit);
   fit(); show(i,false);
+})();
+</script>
+<script>
+(function(){
+function stop(e){e.stopPropagation();}
+document.querySelectorAll('.ops').forEach(function(g){
+  var modo=g.getAttribute('data-modo'), fb=g.parentNode.querySelector('.fb');
+  g.querySelectorAll('.op').forEach(function(o){
+    o.addEventListener('click',function(e){stop(e);
+      if(modo==='marcar'){o.classList.toggle('marc');var c=g.parentNode.querySelector('.num-m');if(c)c.textContent=g.querySelectorAll('.op.marc').length;return;}
+      g.querySelectorAll('.op').forEach(function(x){x.classList.remove('sim','nao','marc');});
+      if(modo==='todas'){o.classList.add('marc');}else{o.classList.add(o.getAttribute('data-ok')==='1'?'sim':'nao');}
+      if(fb){fb.innerHTML=o.getAttribute('data-fb');fb.classList.add('on');}
+    });
+  });
+});
+document.querySelectorAll('[data-calc]').forEach(function(c){
+  function v(k){return parseFloat(c.querySelector('[data-k='+k+']').value)||0;}
+  function f(x){return 'R$ '+Math.round(x).toLocaleString('pt-BR');}
+  function up(){var e=v('d')*v('n'),cs=v('c'),s=e-cs;
+    c.querySelector('[data-o=e]').textContent=f(e);c.querySelector('[data-o=c]').textContent=f(cs);
+    var so=c.querySelector('[data-o=s]');so.textContent=(s<0?'− ':'')+f(Math.abs(s));so.className=s<0?'neg':'pos';
+    c.querySelector('[data-o=m]').textContent=s<0?'Faltou dinheiro neste mês. Você vai precisar de reserva para os meses fracos.':'Sobrou dinheiro. Agora teste um mês fraco.';}
+  c.querySelectorAll('input').forEach(function(i){i.addEventListener('input',up);['click','keydown','keyup','touchstart'].forEach(function(ev){i.addEventListener(ev,stop);});});
+  c.querySelectorAll('.btns button').forEach(function(b){b.addEventListener('click',function(e){stop(e);c.querySelectorAll('.btns button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');c.querySelector('[data-k=n]').value=b.getAttribute('data-n');up();});});
+  up();
+});
+document.querySelectorAll('.vf .row').forEach(function(r){
+  r.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(e){stop(e);r.classList.remove('ok','err');r.classList.add(b.getAttribute('data-a')===r.getAttribute('data-r')?'ok':'err');});});
+});
 })();
 </script>
 </body>
