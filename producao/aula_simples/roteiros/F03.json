@@ -1,0 +1,159 @@
+{
+  "codigo": "F03",
+  "titulo": "Viabilidade e Análise de Investimentos",
+  "slides": [
+    {"tipo": "capa", "kicker": "Aula F03 · Financiar", "titulo": "Vale a pena <em>colocar</em> esse dinheiro?", "lead": "Em 40 telas você vai ver quanto rende o que você pôs, quando o dinheiro volta, quanto o projeto aguenta e sair com uma decisão escrita.", "notas": "Oi, tudo bem? Esta é a aula do F03. No módulo anterior você descobriu quanto sobra. Hoje a pergunta é outra: vale a pena colocar esse dinheiro? Pega papel e caneta e pensa no seu projeto o tempo todo."},
+    {"tipo": "cartoes", "titulo": "Como esta aula funciona", "sub": "Quatro tipos de tela.", "itens": [
+      {"icone": "eye", "titulo": "Toque", "texto": "escolha uma opção e veja se acertou"},
+      {"icone": "doc", "titulo": "Marque", "texto": "o que você já tem escrito"},
+      {"icone": "chart", "titulo": "Calcule", "texto": "troque os números pelos seus"},
+      {"icone": "key", "titulo": "Decida", "texto": "avançar, ajustar ou redesenhar"}], "notas": "Pense antes de tocar. Errar aqui é barato. Errar depois, com a obra feita, é caro."},
+    {"tipo": "escolha", "pergunta": "Revisão: o que conta como sobra de verdade?", "sub": "Do módulo anterior. Responda de memória.", "opcoes": [
+      {"icone": "sun", "texto": "Tudo o que entra no mês", "certa": false, "feedback": "<b>Não.</b> Isso é o que entra. Ainda faltam todos os custos."},
+      {"icone": "key", "texto": "Sobra depois da retirada e da reserva", "certa": true, "feedback": "<b>Isso!</b> Primeiro paga o seu trabalho e guarda para consertos. O que fica depois disso é sobra de verdade."},
+      {"icone": "cal", "texto": "O que sobra no mês de feriado", "certa": false, "feedback": "<b>Não.</b> Um mês bom não é o ano. A sobra se mede no ano inteiro."}], "notas": "Revisão rápida do F02. A sua retirada e a reserva para consertos entram no custo. Sem elas, a sobra parece maior do que é."},
+    {"tipo": "escolha", "pergunta": "Revisão: como costuma ser o primeiro ano?", "sub": "Toque na opção certa.", "opcoes": [
+      {"icone": "house", "texto": "Igual aos outros anos", "certa": false, "feedback": "<b>Não.</b> No começo pouca gente conhece o lugar. A procura demora a chegar."},
+      {"icone": "alert", "texto": "Mais fraco, a procura demora", "certa": true, "feedback": "<b>Isso!</b> O primeiro ano pode até fechar no vermelho. Por isso existe o dinheiro de reserva para começar."},
+      {"icone": "star", "texto": "O melhor de todos, pela novidade", "certa": false, "feedback": "<b>Não.</b> Novidade não enche agenda sozinha. Conte com um começo mais lento."}], "notas": "Guarde isso: o primeiro ano mais fraco vai pesar muito na conta de hoje."},
+    {"tipo": "escolha", "todas_certas": true, "pergunta": "Em qual situação você está?", "sub": "Escolha a sua.", "opcoes": [
+      {"icone": "pin", "texto": "Quero começar", "feedback": "<b>Quero começar:</b> você vai julgar o projeto inteiro, do dinheiro que sai até ele voltar."},
+      {"icone": "chart", "texto": "Quero crescer", "feedback": "<b>Quero crescer:</b> você vai julgar só o próximo investimento, como uma reforma ou uma unidade nova."}], "notas": "As duas situações fazem esta aula. Quem já opera olha só o que muda com o investimento novo."},
+    {"tipo": "fluxo", "titulo": "O caminho de hoje", "sub": "Da sensação de que vale a pena até uma decisão escrita.", "passos": [
+      {"icone": "chart", "titulo": "Retorno", "texto": "quanto rende o que você pôs"},
+      {"icone": "cal", "titulo": "Tempo", "texto": "quando o dinheiro volta"},
+      {"icone": "eye", "titulo": "Comparar", "texto": "rende mais que outra opção?"},
+      {"icone": "alert", "titulo": "Aguentar", "texto": "e se der errado?"},
+      {"icone": "key", "titulo": "Decidir", "texto": "avançar, ajustar ou redesenhar"}], "notas": "Esse é o mapa da aula. Cada parte responde uma pergunta. No fim, você decide."},
+
+    {"tipo": "secao", "kicker": "Parte 1 de 5", "titulo": "Sobrar não é render", "lead": "A sobra só faz sentido ao lado do dinheiro que você colocou.", "notas": "Primeira ideia importante: lucro e retorno são coisas diferentes."},
+    {"tipo": "escolha", "pergunta": "Sobram R$ 35 mil por ano. Isso é bom?", "sub": "Exemplo. Toque na melhor resposta.", "opcoes": [
+      {"icone": "star", "texto": "Sim, se sobrou está bom", "certa": false, "feedback": "<b>Ainda não dá para saber.</b> Sobra só faz sentido ao lado do dinheiro que foi posto."},
+      {"icone": "brain", "texto": "Depende de quanto foi preciso pôr", "certa": true, "feedback": "<b>Isso!</b> Sobre R$ 100 mil é uma coisa. Sobre R$ 1 milhão e duzentos mil é outra bem diferente."},
+      {"icone": "alert", "texto": "Não, é muito pouco", "certa": false, "feedback": "<b>Também não dá para saber.</b> Falta saber quanto custou montar tudo."}], "notas": "Sobrar 35 mil pode ser ótimo ou péssimo. Depende do tamanho do dinheiro que você colocou para essa sobra existir."},
+    {"tipo": "fluxo", "titulo": "O retorno em uma linha", "sub": "A primeira conta, antes de qualquer outra.", "passos": [
+      {"icone": "key", "titulo": "Sobra do ano", "texto": "depois da retirada e da reserva"},
+      {"icone": "tool", "titulo": "÷ quanto custou", "texto": "montar tudo, sem o terreno"},
+      {"icone": "chart", "titulo": "= retorno", "texto": "em porcentagem ao ano"}], "notas": "Retorno é a sobra dividida pelo investimento. O terreno que já é seu fica de fora dessa conta e vai numa caixa separada."},
+    {"tipo": "escolha", "pergunta": "Montar custou R$ 1 milhão. Sobram R$ 30 mil por ano. Quanto rende?", "sub": "Exemplo. Faça a conta de cabeça.", "opcoes": [
+      {"icone": "sun", "texto": "30% ao ano", "certa": false, "feedback": "<b>Não.</b> 30 mil dividido por 1 milhão dá 0,03. Isso é 3%."},
+      {"icone": "chart", "texto": "3% ao ano", "certa": true, "feedback": "<b>Isso!</b> 30.000 ÷ 1.000.000 = 3% ao ano. Agora pense: o que esse dinheiro faria em outro lugar?"},
+      {"icone": "star", "texto": "10% ao ano", "certa": false, "feedback": "<b>Não.</b> Para render 10%, precisariam sobrar R$ 100 mil por ano."}], "notas": "Quando a conta é honesta, ela às vezes incomoda. Melhor descobrir agora, numa tarde, do que depois da obra."},
+    {"tipo": "escolha", "pergunta": "Qual sobra entra nessa conta?", "sub": "Toque na opção certa.", "opcoes": [
+      {"icone": "user", "texto": "A sobra antes da sua retirada", "certa": false, "feedback": "<b>Não.</b> Sem a sua retirada, parte do que parece lucro é o seu salário disfarçado."},
+      {"icone": "tool", "texto": "A sobra antes da reserva para consertos", "certa": false, "feedback": "<b>Engana.</b> Um dia o telhado precisa ser trocado. A reserva para consertos é custo de verdade, pago mais tarde."},
+      {"icone": "key", "texto": "A sobra depois das duas", "certa": true, "feedback": "<b>Isso!</b> É o que o negócio deixa de verdade, antes de imposto e de dívida, que vêm em outros módulos."}], "notas": "Se alguém te mostrar um retorno bonito, pergunte: onde está a reserva para consertos? Onde está a retirada do dono?"},
+    {"tipo": "escolha", "pergunta": "Rende pouco, mas o terreno vai valorizar. Resolve?", "sub": "Pense antes de tocar.", "opcoes": [
+      {"icone": "chart", "texto": "Sim, a valorização compensa tudo", "certa": false, "feedback": "<b>Cuidado.</b> Projeto que só fecha com valorização futura é aposta com custo de operação."},
+      {"icone": "house", "texto": "A hospedagem precisa fechar sozinha", "certa": true, "feedback": "<b>Isso!</b> A valorização é real, mas entra à parte e declarada. A hospedagem paga as contas do mês."},
+      {"icone": "alert", "texto": "Não importa quanto rende", "certa": false, "feedback": "<b>Importa muito.</b> Dinheiro posto sem retorno é dinheiro parado com trabalho e risco."}], "notas": "Com imóvel próprio existem duas fontes de retorno: a hospedagem e o patrimônio. A primeira precisa fechar sozinha. A segunda é o que transforma um negócio sustentável num bom investimento."},
+    {"tipo": "marcar", "titulo": "O que você já tem para fazer a conta?", "sub": "Toque em cada item que você já tem escrito.", "contador": "Você tem X de N.", "itens": [
+      {"icone": "tool", "texto": "Quanto custa montar tudo"},
+      {"icone": "key", "texto": "A sobra de um ano normal"},
+      {"icone": "cal", "texto": "O resultado do primeiro ano"},
+      {"icone": "drop", "texto": "O dinheiro de reserva para começar"},
+      {"icone": "eye", "texto": "Prova do preço e da procura"},
+      {"icone": "pin", "texto": "Onde mais esse dinheiro poderia estar"}], "notas": "O que faltar, escreva não sei. Uma linha com não sei vale mais que um número inventado. Os cinco primeiros vêm dos módulos anteriores."},
+
+    {"tipo": "secao", "kicker": "Parte 2 de 5", "titulo": "Quando o dinheiro volta?", "lead": "A pergunta mais humana de quem coloca dinheiro.", "notas": "O dinheiro saiu da poupança, da venda de outro bem, do bolso de alguém. Quando ele volta?"},
+    {"tipo": "escolha", "pergunta": "Como descobrir quando o dinheiro volta?", "sub": "Toque na opção certa.", "opcoes": [
+      {"icone": "tool", "texto": "Dividir o custo pela sobra normal", "certa": false, "feedback": "<b>Só funciona se todos os anos forem iguais.</b> E o primeiro ano costuma ser mais fraco."},
+      {"icone": "cal", "texto": "Somar ano a ano até passar", "certa": true, "feedback": "<b>Isso!</b> Some a sobra de cada ano, contando o primeiro, até a soma passar o que você pôs."},
+      {"icone": "eye", "texto": "Esperar para ver", "certa": false, "feedback": "<b>Não.</b> Quem põe dinheiro quer a resposta antes de pôr."}], "notas": "Somar ano a ano é o jeito certo. A divisão simples esquece o primeiro ano fraco e dá uma resposta mais bonita que a real."},
+    {"tipo": "fluxo", "titulo": "A conta do tempo, ano a ano", "sub": "A soma começa muito negativa e vai subindo.", "passos": [
+      {"icone": "tool", "titulo": "Ano zero", "texto": "o dinheiro sai: montar tudo"},
+      {"icone": "alert", "titulo": "Ano 1", "texto": "começo fraco, pode até perder"},
+      {"icone": "chart", "titulo": "Anos normais", "texto": "a sobra vai somando"},
+      {"icone": "star", "titulo": "O ano da volta", "texto": "quando a soma passa de zero"}], "notas": "Escreva o seu fluxo assim: o ano zero com o que você gasta para montar, o primeiro ano fraco e os anos normais. Some e veja quando passa de zero."},
+    {"tipo": "escolha", "pergunta": "Custou R$ 300 mil. O ano 1 empata. Depois sobram R$ 50 mil por ano. Quando volta?", "sub": "Exemplo. Conte os anos.", "opcoes": [
+      {"icone": "cal", "texto": "Em 6 anos", "certa": false, "feedback": "<b>Quase.</b> O primeiro ano não somou nada. São 6 anos de sobra depois dele."},
+      {"icone": "star", "texto": "Em 7 anos", "certa": true, "feedback": "<b>Isso!</b> O ano 1 empata. Do ano 2 ao 7 são 6 × 50 mil = 300 mil."},
+      {"icone": "sun", "texto": "Em 3 anos", "certa": false, "feedback": "<b>Não.</b> Em 3 anos de sobra seriam só R$ 150 mil."}], "notas": "Viu como o primeiro ano muda a resposta? Por isso a gente soma ano a ano, e não divide."},
+    {"tipo": "cartoes", "titulo": "Uma régua para o tempo de volta", "sub": "Para hospedagem pequena, com o dono operando.", "itens": [
+      {"icone": "star", "titulo": "Até 5 anos", "texto": "muito bom"},
+      {"icone": "key", "titulo": "De 5 a 8", "texto": "bom"},
+      {"icone": "alert", "titulo": "De 8 a 12", "texto": "aceitável só se o imóvel valorizar bem"},
+      {"icone": "doc", "titulo": "Mais de 12", "texto": "só com razão escrita: patrimônio, uso próprio ou projeto de vida"}], "notas": "Não existe tempo de volta bom ou ruim em abstrato. Ele precisa ser comparado com as suas alternativas. Projeto de vida é razão legítima, desde que escrita."},
+    {"tipo": "vf", "titulo": "Verdadeiro ou falso? Retorno e tempo", "frases": [
+      {"frase": "Sobrar dinheiro todo ano é sempre um bom retorno.", "verdadeiro": false},
+      {"frase": "A sua retirada entra no custo antes da conta.", "verdadeiro": true},
+      {"frase": "O primeiro ano entra na conta do tempo de volta.", "verdadeiro": true},
+      {"frase": "A valorização do terreno deve fechar a conta sozinha.", "verdadeiro": false}], "notas": "Revisão das partes 1 e 2. Cada erro mostra o que vale rever."},
+
+    {"tipo": "secao", "kicker": "Parte 3 de 5", "titulo": "Rende mais que outra opção?", "lead": "O dinheiro de hoje vale mais que o de amanhã.", "notas": "Agora a pergunta que o tempo de volta não responde."},
+    {"tipo": "escolha", "pergunta": "R$ 100 hoje ou R$ 100 daqui a um ano?", "sub": "Toque na sua escolha.", "opcoes": [
+      {"icone": "cal", "texto": "Tanto faz", "certa": false, "feedback": "<b>Não.</b> O dinheiro de hoje pode render em outro lugar durante o ano. Esperar tem custo."},
+      {"icone": "key", "texto": "Hoje", "certa": true, "feedback": "<b>Isso!</b> Por isso um real que volta no ano 9 vale menos que um real que volta no ano 2."},
+      {"icone": "sun", "texto": "Daqui a um ano", "certa": false, "feedback": "<b>Não.</b> Ninguém escolhe esperar pelo mesmo valor. Esperar tem custo."}], "notas": "O tempo de volta trata o real do ano 9 igual ao real de hoje. Não é igual. Quanto mais longe o dinheiro volta, menos ele vale hoje."},
+    {"tipo": "escolha", "pergunta": "Com o que comparar o seu projeto?", "sub": "Toque na melhor resposta.", "opcoes": [
+      {"icone": "house", "texto": "Com nada: se sobra, está bom", "certa": false, "feedback": "<b>Não.</b> O mesmo dinheiro poderia render em outro lugar, sem obra e sem trabalho."},
+      {"icone": "brain", "texto": "Com o que o dinheiro renderia fora", "certa": true, "feedback": "<b>Isso!</b> E o projeto precisa render mais que isso, porque tem muito mais risco e muito mais trabalho."},
+      {"icone": "user", "texto": "Com o vizinho que fatura mais", "certa": false, "feedback": "<b>Não.</b> Faturar mais não diz quanto ele pôs nem quanto sobra."}], "notas": "O que o dinheiro renderia em outro lugar, mais um extra pelo risco, é a sua taxa de comparação. No e-book os exemplos usam 10% ao ano, só para ilustrar."},
+    {"tipo": "regra", "kicker": "Regra de ouro", "texto": "Escreva a sua taxa de comparação <em>antes</em> da conta. E não mude depois.", "escuro": true, "notas": "Quem escolhe a taxa depois de ver o resultado está escolhendo a resposta. Escreva com data, antes de calcular."},
+    {"tipo": "cartoes", "titulo": "Três perguntas de quem põe dinheiro", "sub": "Nenhuma decide sozinha.", "itens": [
+      {"icone": "cal", "titulo": "Quando volta?", "texto": "o tempo de volta"},
+      {"icone": "chart", "titulo": "Cria riqueza?", "texto": "depois de pagar o custo do dinheiro, sobra valor?"},
+      {"icone": "star", "titulo": "Rende mais?", "texto": "mais que a sua taxa de comparação?"}], "notas": "Projeto bom responde bem às três. O tempo de volta não vê o que acontece depois que o dinheiro volta. As outras duas veem."},
+    {"tipo": "escolha", "pergunta": "A conta só fica boa se você vender o negócio no fim. O que isso diz?", "sub": "Pense antes de tocar.", "opcoes": [
+      {"icone": "star", "texto": "Que está ótimo", "certa": false, "feedback": "<b>Não.</b> Todo o valor está vindo da venda, que é incerta."},
+      {"icone": "alert", "texto": "Que depende da venda: ajustar e declarar", "certa": true, "feedback": "<b>Isso!</b> Mostre sempre a conta sem a venda e com a venda, lado a lado. E escreva que depende dela."},
+      {"icone": "sun", "texto": "Que a venda não importa", "certa": false, "feedback": "<b>Importa.</b> Ela é a diferença entre criar valor e não criar."}], "notas": "Custar não é valer. Um negócio vale pelo que ele gera. Se ele gera pouco, pode valer bem menos do que custou para montar."},
+
+    {"tipo": "secao", "kicker": "Parte 4 de 5", "titulo": "Quanto o projeto aguenta?", "lead": "A projeção diz quanto rende. O teste diz quanto aguenta.", "notas": "Nenhuma premissa vai se confirmar exatamente. A diária oscila, a ocupação demora, a obra pode custar mais."},
+    {"tipo": "fluxo", "titulo": "Três cenários", "sub": "Mude a diária e a ocupação juntas.", "passos": [
+      {"icone": "alert", "titulo": "Pessimista", "texto": "diária 10% menor e ocupação 20% menor"},
+      {"icone": "house", "titulo": "Normal", "texto": "o que você defende com prova"},
+      {"icone": "sun", "titulo": "Otimista", "texto": "diária 10% maior e ocupação 15% maior: é teto, não meta"}], "notas": "Faça a conta nos três. O otimista é o teto, nunca a meta. E cenário que só mexe na ocupação não é teste de verdade."},
+    {"tipo": "calculadora", "titulo": "O pessimista paga as contas?", "sub": "Toque em Pessimista. Depois troque pelos seus números.", "campos": {"d": {"rotulo": "Diária (R$)", "valor": 400}, "n": {"rotulo": "Noites vendidas no mês", "valor": 15}, "c": {"rotulo": "Custos do mês com a sua retirada (R$)", "valor": 5000}}, "botoes": [{"texto": "Pessimista", "valor": 12}, {"texto": "Normal", "valor": 15, "ativo": true}, {"texto": "Otimista", "valor": 17}], "aviso": "Números de exemplo, só para ilustrar. No pessimista, baixe também a diária em 10%.", "notas": "Toque em Pessimista. Com 12 noites já falta dinheiro. Agora baixe a diária para 360 e veja o tamanho do buraco."},
+    {"tipo": "escolha", "pergunta": "O pessimista não paga as contas. E agora?", "sub": "Toque na melhor saída.", "opcoes": [
+      {"icone": "star", "texto": "Seguir, o normal fecha", "certa": false, "feedback": "<b>Não.</b> Se o pessimista não paga as contas, o projeto ainda não está pronto."},
+      {"icone": "tool", "texto": "Mudar a premissa antes de gastar", "certa": true, "feedback": "<b>Isso!</b> Mude tamanho, preço, custo ou faça por fases. Depois refaça a conta."},
+      {"icone": "alert", "texto": "Desistir na hora", "certa": false, "feedback": "<b>Calma.</b> Muitas vezes um ajuste resolve. Teste antes de decidir."}], "notas": "Mudar a premissa não é mexer na planilha até fechar. É mudar o projeto: tamanho, preço, custo ou fazer em fases, com a primeira pagando a segunda."},
+    {"tipo": "marcar", "titulo": "Você sabe responder?", "sub": "Toque em cada pergunta que você já responde com número.", "contador": "Você respondeu X de N.", "itens": [
+      {"icone": "alert", "texto": "E se a receita cair 30% por um ano?"},
+      {"icone": "tool", "texto": "E se a obra custar 25% a mais?"},
+      {"icone": "cal", "texto": "E se abrir 6 meses depois?"},
+      {"icone": "chart", "texto": "Até onde a ocupação pode cair?"},
+      {"icone": "brain", "texto": "O que precisa ser verdade para dar certo?"},
+      {"icone": "doc", "texto": "Qual é o plano se acontecer?"}], "notas": "As três primeiras são as perguntas duras que alguém vai fazer na primeira reunião. Cada uma precisa de uma conta e de um plano."},
+    {"tipo": "escolha", "pergunta": "Na conta do caixa mês a mês, qual mês decide?", "sub": "Toque na opção certa.", "opcoes": [
+      {"icone": "sun", "texto": "O mês de maior sobra", "certa": false, "feedback": "<b>Não.</b> O mês bom não quebra ninguém. O perigo está no mês apertado."},
+      {"icone": "drop", "texto": "O mês de menor saldo", "certa": true, "feedback": "<b>Isso!</b> Nesse mês ainda deve sobrar pelo menos 10% do custo de montar, mesmo com o imprevisto da obra gasto."},
+      {"icone": "cal", "texto": "O último mês", "certa": false, "feedback": "<b>Não.</b> O ponto mais baixo costuma vir antes, no fim do primeiro ano."}], "notas": "Desenhe o caixa mês a mês, do dia em que o dinheiro entra até três anos depois. Decida pelo ponto mais baixo, não pela média."},
+    {"tipo": "vf", "titulo": "Verdadeiro ou falso? Comparar e aguentar", "frases": [
+      {"frase": "R$ 100 hoje valem mais que R$ 100 daqui a um ano.", "verdadeiro": true},
+      {"frase": "Posso trocar a taxa depois de ver o resultado.", "verdadeiro": false},
+      {"frase": "O otimista é a meta do projeto.", "verdadeiro": false},
+      {"frase": "O preço da diária é o que mais mexe no resultado.", "verdadeiro": true}], "notas": "Na ordem, o que mais mexe no resultado é a diária, depois a ocupação, o custo fixo e o custo de montar."},
+
+    {"tipo": "secao", "kicker": "Parte 5 de 5", "titulo": "A decisão", "lead": "Avançar, ajustar ou redesenhar. Por escrito.", "notas": "Até aqui você mediu. Agora você julga."},
+    {"tipo": "semaforo", "titulo": "Qual é a sua decisão?", "sub": "Olhe o ano normal, o pessimista, o tempo de volta, o valor e a folga no caixa.", "verde": {"titulo": "Avançar", "texto": "Tudo passa. Siga para os próximos módulos, com assessoria."}, "amarelo": {"titulo": "Ajustar", "texto": "Fecha com mudança: reserva maior, mais folga no caixa, ou depende da venda e você declara."}, "vermelho": {"titulo": "Redesenhar", "texto": "O ano normal não paga, volta em mais de 12 anos, ou não cria valor nem com a venda."}, "notas": "Basta um vermelho para redesenhar. Avançar não é captar amanhã. É seguir para os próximos módulos, com advogado e contador do lado."},
+    {"tipo": "escolha", "pergunta": "Nenhum desenho fecha com prova. O que fazer?", "sub": "Toque na melhor resposta.", "opcoes": [
+      {"icone": "tool", "texto": "Fazer assim mesmo", "certa": false, "feedback": "<b>Não.</b> Pergunte a você: investiria o seu próprio dinheiro nesse resultado?"},
+      {"icone": "doc", "texto": "Arquivar ou adiar, por escrito", "certa": true, "feedback": "<b>Isso!</b> Decidir não fazer é um resultado tão válido quanto o outro. Descobrir agora custa uma tarde, não uma obra."},
+      {"icone": "chart", "texto": "Mexer nos números até fechar", "certa": false, "feedback": "<b>Não.</b> Número sem prova não muda a realidade. Mude o projeto, não a planilha."}], "notas": "Arquivar depois de uma análise honesta não é fracasso. É proteger o seu dinheiro."},
+    {"tipo": "escolha", "pergunta": "Você já opera e quer reformar. O que entra na conta?", "sub": "Para quem quer crescer.", "opcoes": [
+      {"icone": "house", "texto": "A operação inteira", "certa": false, "feedback": "<b>Não.</b> O que é igual com ou sem a reforma se cancela."},
+      {"icone": "key", "texto": "Só o que muda com a reforma", "certa": true, "feedback": "<b>Isso!</b> Receita a mais, custo a mais, reserva a mais e o valor da reforma. Só isso."},
+      {"icone": "doc", "texto": "O que você já gastou antes", "certa": false, "feedback": "<b>Não.</b> O que já foi gasto não volta. Não entra na decisão nova."}], "notas": "Quem já opera tem uma vantagem: números de verdade. Dado real vale mais que estimativa. O risco fica só na premissa nova, como a diária depois da reforma."},
+    {"tipo": "escolha", "pergunta": "Como pagar a reforma com segurança?", "sub": "Toque na melhor resposta.", "opcoes": [
+      {"icone": "drop", "texto": "Com o dinheiro do dia a dia", "certa": false, "feedback": "<b>Perigoso.</b> Pagar obra com o caixa da operação é uma causa clássica de caixa apertado."},
+      {"icone": "eye", "texto": "Testar em uma unidade, pagar com reserva", "certa": true, "feedback": "<b>Isso!</b> Reforme uma, venda e meça. Se a diária subir, siga, pagando com a reserva do mês."},
+      {"icone": "alert", "texto": "Com o maior empréstimo possível", "certa": false, "feedback": "<b>Não.</b> Empréstimo vem depois, em outro módulo, e só se a conta já fechar."}], "notas": "Se houver dois investimentos na mesa, faça primeiro o que volta mais rápido e com menos risco. O outro espera a prova do primeiro."},
+    {"tipo": "vf", "titulo": "Verdadeiro ou falso? Revisão final", "frases": [
+      {"frase": "Arquivar o projeto pode ser a decisão certa.", "verdadeiro": true},
+      {"frase": "O que já gastei entra na conta da decisão nova.", "verdadeiro": false},
+      {"frase": "Um sinal vermelho já pede redesenhar.", "verdadeiro": true},
+      {"frase": "Se o otimista fecha, posso seguir.", "verdadeiro": false}], "notas": "Cada erro mostra o que vale rever no e-book."},
+    {"tipo": "cartoes", "titulo": "O que você leva desta aula", "sub": "Quatro ideias.", "itens": [
+      {"icone": "chart", "titulo": "Sobrar não é render", "texto": "compare com o que você pôs"},
+      {"icone": "cal", "titulo": "Some ano a ano", "texto": "o primeiro ano conta"},
+      {"icone": "alert", "titulo": "Teste o pessimista", "texto": "e o mês mais apertado"},
+      {"icone": "key", "titulo": "Decida por escrito", "texto": "avançar, ajustar, redesenhar ou arquivar"}], "notas": "Se lembrar só disso, a aula valeu."},
+    {"tipo": "tarefa", "titulo": "Preencha o seu Estudo de Viabilidade", "sub": "Está no capítulo 8 do e-book.", "passos": [
+      {"titulo": "Escreva", "texto": "a sua taxa de comparação, antes da conta"},
+      {"titulo": "Some", "texto": "ano a ano até o dinheiro voltar"},
+      {"titulo": "Teste", "texto": "o pessimista e as perguntas duras"},
+      {"titulo": "Decida", "texto": "e escreva a frase da decisão"}], "notas": "Se a frase não fechar a seu favor, o estudo cumpriu o papel dele. Te vejo na próxima aula."}
+  ]
+}
