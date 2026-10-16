@@ -1,0 +1,83 @@
+
+
+
+
+</div></div>
+
+<div class="notes-panel" id="notes" aria-live="polite"></div>
+<div class="bar" id="bar"></div>
+<div class="help">← → avançar · N notas · F tela cheia</div>
+<div class="ui">
+  <button type="button" id="bPrev" aria-label="Voltar">←</button>
+  <button type="button" id="bNotes">Notas</button>
+  <button type="button" id="bNext" aria-label="Avançar">→</button>
+</div>
+
+<script>
+(function(){
+  var slides=[].slice.call(document.querySelectorAll(".slide"));
+  var deck=document.getElementById("deck"), notes=document.getElementById("notes"), bar=document.getElementById("bar");
+  var i=0;
+  var h=parseInt((location.hash||"").replace("#",""),10); if(h>=1&&h<=slides.length) i=h-1;
+  function fit(){var s=Math.min(window.innerWidth/1600,window.innerHeight/900);deck.style.transform="scale("+s+")";}
+  function frags(k){return [].slice.call(slides[k].querySelectorAll(".f"));}
+  function show(n,revealAll){
+    i=Math.max(0,Math.min(slides.length-1,n));
+    slides.forEach(function(s,k){s.classList.toggle("on",k===i);});
+    frags(i).forEach(function(f){f.classList.toggle("v",!!revealAll);});
+    var a=slides[i].querySelector("aside.notes");
+    notes.innerHTML="<b>Slide "+(i+1)+" de "+slides.length+" · roteiro</b><br>"+(a?a.innerHTML:"");
+    bar.style.width=((i+1)/slides.length*100)+"%";
+    try{history.replaceState(null,"","#"+(i+1));}catch(e){}
+  }
+  function next(){var hidden=frags(i).filter(function(f){return !f.classList.contains("v");});if(hidden.length){hidden[0].classList.add("v");}else{show(i+1,false);}}
+  function prev(){var vis=frags(i).filter(function(f){return f.classList.contains("v");});if(vis.length){vis[vis.length-1].classList.remove("v");}else if(i>0){show(i-1,true);}}
+  document.addEventListener("keydown",function(e){
+    if(["ArrowRight","PageDown"," ","Enter"].indexOf(e.key)>-1){e.preventDefault();next();}
+    else if(["ArrowLeft","PageUp","Backspace"].indexOf(e.key)>-1){e.preventDefault();prev();}
+    else if(e.key==="Home"){show(0);} else if(e.key==="End"){show(slides.length-1,true);}
+    else if(e.key==="n"||e.key==="N"){notes.classList.toggle("on");}
+    else if(e.key==="f"||e.key==="F"){if(!document.fullscreenElement){document.documentElement.requestFullscreen&&document.documentElement.requestFullscreen();}else{document.exitFullscreen();}}
+  });
+  document.getElementById("bPrev").onclick=prev;
+  document.getElementById("bNext").onclick=next;
+  document.getElementById("bNotes").onclick=function(){notes.classList.toggle("on");};
+  var x0=null;
+  document.addEventListener("touchstart",function(e){x0=e.touches[0].clientX;},{passive:true});
+  document.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){dx<0?next():prev();}x0=null;},{passive:true});
+  window.addEventListener("resize",fit);
+  fit(); show(i,false);
+})();
+</script>
+<script>
+(function(){
+function stop(e){e.stopPropagation();}
+document.querySelectorAll('.ops').forEach(function(g){
+  var modo=g.getAttribute('data-modo'), fb=g.parentNode.querySelector('.fb');
+  g.querySelectorAll('.op').forEach(function(o){
+    o.addEventListener('click',function(e){stop(e);
+      if(modo==='marcar'){o.classList.toggle('marc');var c=g.parentNode.querySelector('.num-m');if(c)c.textContent=g.querySelectorAll('.op.marc').length;return;}
+      g.querySelectorAll('.op').forEach(function(x){x.classList.remove('sim','nao','marc');});
+      if(modo==='todas'){o.classList.add('marc');}else{o.classList.add(o.getAttribute('data-ok')==='1'?'sim':'nao');}
+      if(fb){fb.innerHTML=o.getAttribute('data-fb');fb.classList.add('on');}
+    });
+  });
+});
+document.querySelectorAll('[data-calc]').forEach(function(c){
+  function v(k){return parseFloat(c.querySelector('[data-k='+k+']').value)||0;}
+  function f(x){return 'R$ '+Math.round(x).toLocaleString('pt-BR');}
+  function up(){var e=v('d')*v('n'),cs=v('c'),s=e-cs;
+    c.querySelector('[data-o=e]').textContent=f(e);c.querySelector('[data-o=c]').textContent=f(cs);
+    var so=c.querySelector('[data-o=s]');so.textContent=(s<0?'− ':'')+f(Math.abs(s));so.className=s<0?'neg':'pos';
+    c.querySelector('[data-o=m]').textContent=s<0?'Faltou dinheiro neste mês. Você vai precisar de reserva para os meses fracos.':'Sobrou dinheiro. Agora teste um mês fraco.';}
+  c.querySelectorAll('input').forEach(function(i){i.addEventListener('input',up);['click','keydown','keyup','touchstart'].forEach(function(ev){i.addEventListener(ev,stop);});});
+  c.querySelectorAll('.btns button').forEach(function(b){b.addEventListener('click',function(e){stop(e);c.querySelectorAll('.btns button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');c.querySelector('[data-k=n]').value=b.getAttribute('data-n');up();});});
+  up();
+});
+document.querySelectorAll('.vf .row').forEach(function(r){
+  r.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(e){stop(e);r.classList.remove('ok','err');r.classList.add(b.getAttribute('data-a')===r.getAttribute('data-r')?'ok':'err');});});
+});
+})();
+</script>
+</body>
+</html>
