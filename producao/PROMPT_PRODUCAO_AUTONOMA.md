@@ -1,15 +1,15 @@
 # PROMPT DE PRODUÇÃO AUTÔNOMA · Mentoria Zion 360° | Negócios de Hospedagem
 
-Zion Hospitality Business School · versão 1 · 14/10/2026 · autorizado por Bruno Chaerk
+Zion Hospitality Business School · versão 2 · 16/10/2026 · autorizado por Bruno Chaerk (v2: aulas ativas com o GitHub Pages ligado, capa do módulo, duas execuções por hora)
 Este prompt roda como tarefa agendada. Cada execução começa do zero, sem memória da anterior: todo o estado está neste repositório, na pasta `producao/`.
 
 ---
 
 ## 1. Missão de cada execução
 
-Produzir **um módulo completo** da mentoria, do plano à aula publicada como link desativado no ClickMax, no mesmo padrão do Z00 aprovado. Depois, registrar tudo e parar. A próxima execução pega o módulo seguinte.
+Produzir **um módulo completo** da mentoria, do plano à aula publicada no ClickMax, no mesmo padrão do Z00 aprovado. Depois, registrar tudo e parar. A próxima execução pega o módulo seguinte.
 
-Bruno autorizou a produção contínua de todos os módulos sem esperar aprovação etapa por etapa. A aprovação dele passa a acontecer **depois**, revisando o que estiver pronto. Por isso, nada chega a aluno: as aulas entram no ClickMax **desativadas**, e só ele as ativa.
+Bruno autorizou a produção contínua de todos os módulos sem esperar aprovação etapa por etapa. A aprovação dele passa a acontecer **depois**, revisando o que estiver pronto. Em 16/10/2026 Bruno mandou ativar as aulas: elas entram **ativas**, mas só quando o GitHub Pages estiver ligado (senão o aluno abre um link quebrado). Veja a seção 6.
 
 ## 2. Preparação (sempre, no início)
 
@@ -114,14 +114,17 @@ Curso "Mentoria Zion 360° | Negócios de Hospedagem", id `6ce56665-eacd-4513-b8
 3. Crie duas aulas do tipo `external_link`, no mesmo formato das aulas do Z00:
    - `1 · E-book: <Título>`, com o link do e-book e uma descrição do conteúdo;
    - `2 · Aula: <Título> (apresentação)`, com o link da aula e uma descrição.
-4. **Deixe as duas aulas desativadas e com `startAutomatically` em `false`, igual ao Z00.** Se nascerem ativas, desative na hora com `lesson_toggle_enabled` e confira com `lesson_list` que `enabled` está `false`.
-5. **Proibido:**
-   - ativar aulas;
+4. **Ativação (ordem de Bruno, 16/10/2026).** Antes de decidir, confira se o GitHub Pages do repositório está ligado: `mcp__github__search_repositories` com `query: "repo:bchaerk-creator/zion-hotel-ai-developer"` e `minimal_output: false`, campo `has_pages`.
+   - `has_pages` igual a `true`: deixe as duas aulas **ativas** (`enabled` true) e com `startAutomatically` em `false`. Na mesma execução, ative também todas as aulas desativadas dos módulos com status `pronto_para_revisao` em `fila.json` (campo `clickmax`) e do Z00, e registre no relatório.
+   - `has_pages` igual a `false`: deixe as duas aulas **desativadas** (se nascerem ativas, desative na hora com `lesson_toggle_enabled`) e avise Bruno que é preciso ligar o Pages (Settings → Pages → Branch `main`, pasta `/docs`).
+   - Confira com `lesson_list` o estado final e registre `enabled` em `fila.json`.
+5. **Capa do módulo.** As capas gráficas dos 52 módulos já estão em `docs/escola/capas/` (`<codigo>-h.png` 1280 × 720 e `<codigo>-v.png` 800 × 1200, geradas por `producao/ferramentas/gerar_capas.py`). Ao criar o módulo, ou logo depois com `module_update`, preencha `coverUrl` com `https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/capas/<codigo-minusculo>-h.png` e `coverUrlVertical` com o `-v.png`. Nunca use foto gerada como se fosse foto real da Zion.
+6. **Proibido:**
    - criar matrículas;
    - enviar mensagens ou e-mails;
    - criar ofertas, produtos ou páginas de venda;
    - mexer no Z00 ou em qualquer conteúdo existente.
-6. Registre os IDs do módulo e das aulas em `fila.json`, no campo `clickmax`.
+7. Registre os IDs do módulo e das aulas em `fila.json`, no campo `clickmax`.
 
 ## 7. Airtable (base app2BCgAMPRqaaeRp, tabela Módulos tblm49Y9mYnrYPY5r), opcional
 
@@ -151,7 +154,7 @@ Se houver um registro com o mesmo código, atualize só os campos de status, lin
 Ao final de cada execução, envie uma mensagem curta em português, sem travessões, com:
 - o módulo concluído;
 - os dois links;
-- "aulas criadas desativadas no ClickMax";
+- se as aulas ficaram ativas ou desativadas no ClickMax (e por quê);
 - as decisões pendentes.
 
 Ele está ausente: não faça perguntas que bloqueiem o trabalho. Assuma o padrão mais razoável, registre a premissa no plano e no relatório e siga.
@@ -188,7 +191,8 @@ Todo e-book e toda aula têm que parecer da mesma coleção do Z00: bonitos, só
 
 ## 11. Nunca
 
-- Publicar aula ativa ou liberar conteúdo a aluno.
+- Ativar aula com o GitHub Pages desligado (link quebrado para o aluno).
+- Criar matrícula, enviar mensagem a aluno ou criar oferta.
 - Inventar fonte, número, caso ou citação.
 - Commitar texto bruto das fontes no repositório público.
 - Sobrescrever o Z00 ou os módulos marcados como `aprovado`.
