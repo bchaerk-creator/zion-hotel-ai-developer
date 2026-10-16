@@ -109,25 +109,60 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
 .blank{display:inline-block;min-width:420px;border-bottom:3px solid var(--gold);height:1em;vertical-align:baseline}
 </style>
 <style>
-.simple h1{font-size:84px;line-height:1.05;max-width:18ch}
-.simple h2{font-family:"Playfair Display",serif;font-size:64px;line-height:1.1;margin:0 0 36px;max-width:22ch}
-.simple p.lead{font-size:34px;line-height:1.45;max-width:30ch;opacity:.9}
-.simple ul.s{list-style:none;padding:0;margin:0;font-size:36px;line-height:1.5}
-.simple ul.s li{margin:0 0 22px;padding-left:56px;position:relative}
-.simple ul.s li:before{content:"";position:absolute;left:0;top:18px;width:28px;height:4px;background:#C9A84C}
-.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:20px}
-.box{border:2px solid #C9A84C;border-radius:18px;padding:36px;font-size:32px;line-height:1.4}
-.box b{display:block;font-size:40px;margin-bottom:12px;color:#C9A84C}
-.conta{font-size:40px;line-height:1.7;font-variant-numeric:tabular-nums}
-.conta .l{display:flex;justify-content:space-between;max-width:900px;border-bottom:1px solid rgba(201,168,76,.35)}
-.conta .tot{font-weight:700;color:#C9A84C}
-.ilus{font-size:24px;opacity:.7;margin-top:24px}
-.fala{font-size:30px;font-style:italic;opacity:.85;margin-top:30px;max-width:34ch}
-.passo{font-size:24px;letter-spacing:.12em;text-transform:uppercase;color:#C9A84C;margin:26px 0 8px}
-.simple .q{font-family:"Playfair Display",serif;font-size:58px;line-height:1.15;max-width:24ch;margin:0 0 10px}
-.simple .ex{font-size:32px;line-height:1.45;max-width:36ch}
-.simple .ded{font-size:38px;line-height:1.35;font-weight:700;max-width:30ch}
-.simple .why{font-size:30px;line-height:1.45;max-width:38ch;border-left:4px solid #C9A84C;padding-left:24px;opacity:.92}
+.v3 h1{font-size:84px;line-height:1.05;max-width:18ch}
+.v3 h2{font-family:"Playfair Display",serif;font-size:62px;line-height:1.1;margin:0 0 14px;max-width:24ch}
+.v3 .sub{font-size:28px;opacity:.75;margin:0 0 34px}
+.v3 .lead{font-size:34px;line-height:1.45;max-width:30ch;opacity:.9}
+.ops{display:grid;gap:26px;grid-template-columns:repeat(var(--n,3),1fr)}
+.op{border:2px solid rgba(201,168,76,.55);border-radius:22px;padding:30px 26px;text-align:center;cursor:pointer;background:rgba(201,168,76,.05);transition:transform .15s,background .2s,border-color .2s;user-select:none}
+.op:hover{transform:translateY(-4px)}
+.op svg{width:96px;height:96px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round;margin-bottom:14px}
+.op .t{font-size:32px;font-weight:700;line-height:1.2}
+.op .L{display:inline-block;font:900 26px/1 "Playfair Display",serif;color:#C9A84C;margin-bottom:10px}
+.op.sim{background:rgba(70,140,80,.22);border-color:#4f9a5a}
+.op.nao{background:rgba(170,60,50,.18);border-color:#b0493d;opacity:.8}
+.op.marc{background:rgba(201,168,76,.25);border-color:#C9A84C}
+.fb{min-height:110px;margin-top:30px;font-size:31px;line-height:1.4;max-width:46ch;border-left:5px solid #C9A84C;padding:6px 0 6px 24px;opacity:0;transition:opacity .25s}
+.fb.on{opacity:1}
+.fb b{color:#C9A84C}
+.flow{display:flex;align-items:center;gap:18px;margin-top:30px}
+.flow .st{flex:1;text-align:center;border-radius:22px;padding:30px 14px;background:rgba(201,168,76,.08);border:2px solid rgba(201,168,76,.5)}
+.flow .st svg{width:90px;height:90px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.flow .st .n{font:900 30px/1 "Playfair Display",serif;color:#C9A84C}
+.flow .st .t{font-size:30px;font-weight:700;margin-top:10px}
+.flow .st .d{font-size:22px;opacity:.75;margin-top:6px}
+.flow .ar{font-size:54px;color:#C9A84C}
+.flow .st.last{opacity:.55;border-style:dashed}
+.cnt{font-size:30px;margin-top:26px}
+.cnt b{color:#C9A84C;font-size:40px}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:start}
+.calc label{display:block;font-size:26px;opacity:.8;margin:0 0 6px}
+.calc input{width:100%;font-size:40px;padding:12px 18px;border-radius:14px;border:2px solid #C9A84C;background:rgba(255,255,255,.06);color:inherit;margin-bottom:22px;font-variant-numeric:tabular-nums}
+.btns{display:flex;gap:14px;margin-bottom:26px}
+.btns button{font-size:24px;padding:12px 22px;border-radius:40px;border:2px solid #C9A84C;background:transparent;color:inherit;cursor:pointer}
+.btns button.on{background:#C9A84C;color:#1B2117}
+.res .l{display:flex;justify-content:space-between;font-size:36px;padding:14px 0;border-bottom:1px solid rgba(201,168,76,.35);font-variant-numeric:tabular-nums}
+.res .big{font-size:56px;font-weight:800}
+.res .pos{color:#5fae6a}.res .neg{color:#d0604f}
+.res .msg{font-size:28px;margin-top:20px;line-height:1.4}
+.sem{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+.sem .c{border-radius:22px;padding:30px;font-size:27px;line-height:1.45}
+.sem .c h3{font-size:34px;margin:0 0 14px;display:flex;align-items:center;gap:14px}
+.sem .c h3 i{width:30px;height:30px;border-radius:50%;display:inline-block}
+.sem .g{background:rgba(79,154,90,.16)} .sem .g i{background:#4f9a5a}
+.sem .y{background:rgba(201,168,76,.16)} .sem .y i{background:#C9A84C}
+.sem .r{background:rgba(176,73,61,.16)} .sem .r i{background:#b0493d}
+.vf .row{display:flex;align-items:center;gap:24px;font-size:32px;padding:18px 0;border-bottom:1px solid rgba(201,168,76,.3)}
+.vf .row .s{flex:1}
+.vf button{font-size:24px;padding:10px 22px;border-radius:40px;border:2px solid #C9A84C;background:transparent;color:inherit;cursor:pointer}
+.vf .row.ok .s:after{content:"  ✓ certo";color:#5fae6a;font-weight:700}
+.vf .row.err .s:after{content:"  ✗ pense de novo";color:#d0604f;font-weight:700}
+.vf .ex{font-size:24px;opacity:.75;flex-basis:100%}
+.ilus{font-size:22px;opacity:.65;margin-top:18px}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.tile{text-align:center;padding:24px;border-radius:20px;background:rgba(201,168,76,.08)}
+.tile svg{width:80px;height:80px;stroke:#C9A84C;fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.tile .t{font-size:27px;font-weight:700;margin-top:8px;line-height:1.25}
 </style>
 </head>
 <body>
@@ -153,100 +188,107 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
 
 <div class="stage" id="stage"><div class="deck" id="deck">
 
-<section class="slide simple dark">
+<section class="slide v3 dark">
 <div class="kick">Aula 1 · Base</div>
 <h1>Seu terreno pode virar um <em>negócio de hospedagem</em>?</h1>
-<p class="lead">Hoje você não vai decorar nada. Vai responder perguntas sobre o seu lugar e chegar sozinho à sua decisão.</p>
+<p class="lead">Toque nas opções, faça as contas e descubra a resposta para o seu lugar.</p>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>01 / 12</span></div>
-<aside class="notes">Oi, tudo bem? Esta aula funciona assim: eu te faço uma pergunta, te mostro um exemplo de verdade, e você mesmo tira a conclusão. No final você vai ter uma decisão escrita sobre o seu lugar. Pega papel e caneta.</aside>
+<aside class="notes">Nesta aula você participa o tempo todo: escolhe opções, marca o que o seu lugar tem e faz a conta. Pega papel e caneta.</aside>
 </section>
-<section class="slide simple">
-<h2>Como esta aula funciona</h2>
-<ul class="s"><li><b>Pergunta:</b> eu pergunto, você pensa antes de ver a resposta.</li><li><b>Exemplo:</b> um caso real, do dia a dia.</li><li><b>Conclusão:</b> o que dá para tirar dali.</li><li><b>Por quê:</b> o que isso muda no seu dinheiro.</li></ul>
+<section class="slide v3">
+<h2>Você tem um terreno. Por onde começa?</h2><p class="sub">Toque na opção que você escolheria.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Ainda não.</b> Projeto antes de conhecer o lugar pode desenhar algo que não pode ser construído ali."><div class="L">A</div><br><svg><use href="#i-doc"/></svg><div class="t">Contratar o projeto do arquiteto</div></div><div class="op" data-ok="0" data-fb="<b>Ainda não.</b> Orçar a obra antes de saber se alguém vai pagar para dormir ali é gastar no escuro."><div class="L">B</div><br><svg><use href="#i-tool"/></svg><div class="t">Pedir orçamento da obra</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Primeiro o lugar e o mercado, depois a obra. É barato e evita o erro mais caro."><div class="L">C</div><br><svg><use href="#i-eye"/></svg><div class="t">Estudar o lugar e quem dormiria ali</div></div></div><div class="fb"></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>02 / 12</span></div>
-<aside class="notes">Toda vez que aparecer uma pergunta, pausa o vídeo e responde no papel. Não precisa acertar. O que importa é você pensar no seu caso antes de ver o exemplo. É assim que a gente aprende de verdade.</aside>
+<aside class="notes">Deixa o aluno escolher. A maioria escolhe o projeto ou a obra. Mostre que a ordem certa começa pelo lugar e pelo mercado, que custa quase nada.</aside>
 </section>
-<section class="slide simple">
-<h2>Em qual situação você está?</h2>
-<div class="two"><div class="box"><b>Quero começar</b>Tenho um terreno ou um imóvel parado e ainda não recebo hóspedes.</div>
-<div class="box"><b>Quero crescer</b>Já recebo hóspedes, mas quero ganhar mais ou abrir outra unidade.</div></div>
+<section class="slide v3">
+<h2>A ordem certa</h2><p class="sub">A obra é o último passo, não o primeiro.</p>
+<div class="flow"><div class="st"><div class="n">1</div><svg><use href="#i-pin"/></svg><div class="t">O lugar</div><div class="d">o que ele permite</div></div><div class="ar">→</div>
+<div class="st"><div class="n">2</div><svg><use href="#i-user"/></svg><div class="t">O hóspede</div><div class="d">quem vem e quanto paga</div></div><div class="ar">→</div>
+<div class="st"><div class="n">3</div><svg><use href="#i-chart"/></svg><div class="t">A conta</div><div class="d">sobra dinheiro?</div></div><div class="ar">→</div>
+<div class="st last"><div class="n">4</div><svg><use href="#i-house"/></svg><div class="t">A obra</div><div class="d">só se 1, 2 e 3 fecharem</div></div></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>03 / 12</span></div>
-<aside class="notes">Anota qual é o seu caso. Vou dar exemplos dos dois lados: a Marina, que herdou um terreno na serra e não sabe o que fazer com ele, e o Rafael, que já tem quatro chalés e quer abrir mais dois. São personagens de exemplo, mas as situações são as que eu vejo todo mês.</aside>
+<aside class="notes">Esse é o mapa da aula inteira. Cada passo responde uma pergunta. Se algum passo não fecha, você não vai para a obra.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">Se você tivesse um terreno hoje, qual seria a primeira coisa que faria?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">A Marina herdou um terreno bonito na serra. A primeira coisa que ela fez foi chamar um arquiteto para desenhar três chalés. O projeto ficou lindo. Só depois ela descobriu que metade do terreno era área que não podia ser construída.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">Quem começa pela obra descobre os problemas quando já gastou.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">Um projeto pago para o terreno errado é dinheiro jogado fora. Olhar o lugar primeiro custa quase nada e pode evitar o maior erro da sua vida de investidor.</div></div>
+<section class="slide v3">
+<h2>O que faz o hóspede pagar?</h2><p class="sub">Toque na que mais pesa.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> O hóspede nem vê a escritura. Hectare não enche agenda."><div class="L">A</div><br><svg><use href="#i-doc"/></svg><div class="t">O tamanho do terreno</div></div><div class="op" data-ok="0" data-fb="<b>Ajuda, mas sozinha não basta.</b> Vista linda a 40 minutos de estrada de terra afasta muita gente."><div class="L">B</div><br><svg><use href="#i-eye"/></svg><div class="t">Só a vista bonita</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Ele paga pelo que vive ali e por conseguir chegar sem sofrimento."><div class="L">C</div><br><svg><use href="#i-star"/></svg><div class="t">A experiência e a facilidade de chegar</div></div></div><div class="fb"></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>04 / 12</span></div>
-<aside class="notes">Pausa e responde: o que você faria primeiro? A maioria fala: projeto, orçamento de obra. É natural. Agora olha o que aconteceu com a Marina. Ela não fez nada de errado por maldade, só fez na ordem errada. E qual é a conclusão? Quem começa pela obra descobre os problemas quando já pagou por eles.</aside>
+<aside class="notes">Reforce: terreno é o chão; negócio é gente pagando para dormir ali todo mês.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">Terreno bonito é a mesma coisa que negócio bom?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">Dois terrenos de mesmo tamanho. Um tem vista linda, mas fica a 40 minutos de estrada de terra. O outro tem vista simples, mas fica a 10 minutos de um destino que já recebe turistas todo fim de semana.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">Terreno é o chão. Negócio é gente pagando para dormir ali, todo mês.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">O hóspede não paga pela escritura, paga pela experiência e pela facilidade de chegar. Se você avaliar só a beleza, pode escolher o lugar que nunca vai encher.</div></div>
+<section class="slide v3">
+<h2>O que o seu lugar já tem?</h2><p class="sub">Toque em cada item que o seu lugar já oferece.</p>
+<div class="ops chk" data-modo="marcar" style="--n:3">
+<div class="op"><svg><use href="#i-pin"/></svg><div class="t">Acesso fácil o ano todo</div></div>
+<div class="op"><svg><use href="#i-eye"/></svg><div class="t">Vista ou paisagem especial</div></div>
+<div class="op"><svg><use href="#i-sun"/></svg><div class="t">Sol de manhã e no fim da tarde</div></div>
+<div class="op"><svg><use href="#i-drop"/></svg><div class="t">Água e luz</div></div>
+<div class="op"><svg><use href="#i-key"/></svg><div class="t">Internet e sinal de celular</div></div>
+<div class="op"><svg><use href="#i-tree"/></svg><div class="t">Silêncio e natureza</div></div></div>
+<div class="cnt">Seu lugar tem <b class="num-m">0</b> de 6.</div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>05 / 12</span></div>
-<aside class="notes">Qual dos dois você escolheria? Muita gente vai na vista. Mas pensa como hóspede: você dirigiria 40 minutos de terra com chuva, com criança no carro? A conclusão é que beleza ajuda, mas o que paga as contas é alguém querer e conseguir chegar.</aside>
+<aside class="notes">Peça para visitar o lugar às 7h e às 17h antes de marcar. O que faltar vira lista de tarefas ou sinal de alerta.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">Você conhece o seu lugar às 7 da manhã e às 5 da tarde?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">O Rafael visitou um terreno ao meio-dia, com sol. Comprou. Depois descobriu que às 5 da tarde o sol some atrás do morro e o vale fica úmido e frio. O pôr do sol, que era o grande atrativo, não aparece de lá.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">Um lugar muda muito ao longo do dia. Só uma visita engana.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">O que o hóspede vai ver, sentir e ouvir decide se ele volta e se ele recomenda. Duas visitas, em horários diferentes, mostram o lugar de verdade.</div></div>
+<section class="slide v3">
+<h2>Para quem é o seu lugar?</h2><p class="sub">Escolha uma opção principal.</p><div class="ops" data-modo="todas" style="--n:4"><div class="op" data-ok="1" data-fb="<b>Casal</b> valoriza privacidade, cama muito boa, banheira ou lareira e vista. Unidade pequena, diária mais alta."><div class="L">A</div><br><svg><use href="#i-bed"/></svg><div class="t">Casal</div></div><div class="op" data-ok="1" data-fb="<b>Família</b> precisa de espaço, cozinha, área para criança e segurança. Unidade maior, mais pessoas por diária."><div class="L">B</div><br><svg><use href="#i-house"/></svg><div class="t">Família</div></div><div class="op" data-ok="1" data-fb="<b>Aventura</b> pede trilhas, passeios e estrutura simples e resistente. O lugar é a atração."><div class="L">C</div><br><svg><use href="#i-tree"/></svg><div class="t">Aventura e natureza</div></div><div class="op" data-ok="1" data-fb="<b>Quem trabalha de longe</b> precisa de internet forte, mesa boa e silêncio. Fica mais dias e viaja fora de temporada."><div class="L">D</div><br><svg><use href="#i-doc"/></svg><div class="t">Trabalhar de longe</div></div></div><div class="fb"></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>06 / 12</span></div>
-<aside class="notes">Quando você vai visitar um lugar, normalmente vai no melhor horário, não é? Pois o hóspede vai estar lá de manhã cedo e no fim do dia. Na visita, anota: como se chega, o que se vê e ouve, e se tem água, luz e internet. E escreve numa linha o que esse lugar nunca vai conseguir oferecer.</aside>
+<aside class="notes">Qualquer escolha está certa, desde que seja uma só. Quem tenta agradar todo mundo não encanta ninguém e cobra menos.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">Quem vai dormir no seu lugar: casal, família ou grupo de amigos?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">Um chalé pequeno na serra, com banheira e lareira, encanta o casal que quer fugir da rotina. Para uma família com três crianças, é apertado e sem lugar para brincar.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">Todo lugar tem uma vocação. Escolha uma principal.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">Quem tenta agradar todo mundo faz um produto que não encanta ninguém, e cobra menos por isso. Saber para quem é o seu lugar decide o tamanho, a decoração e o preço.</div></div>
+<section class="slide v3">
+<h2>Como você descobre o preço da diária?</h2><p class="sub">Toque na opção certa.</p><div class="ops" data-modo="certo" style="--n:3"><div class="op" data-ok="0" data-fb="<b>Não.</b> O mercado não sabe o que você acha. Preço de vontade costuma deixar a agenda vazia."><div class="L">A</div><br><svg><use href="#i-brain"/></svg><div class="t">O que eu acho justo</div></div><div class="op" data-ok="0" data-fb="<b>Não.</b> O hóspede não paga a sua obra. Ele compara com os vizinhos."><div class="L">B</div><br><svg><use href="#i-tool"/></svg><div class="t">O que eu gastei na obra</div></div><div class="op" data-ok="1" data-fb="<b>Isso!</b> Abra o Airbnb e o Booking, ache 10 parecidos, anote preço e se a agenda está cheia. O preço se descobre."><div class="L">C</div><br><svg><use href="#i-camera"/></svg><div class="t">Olhando 10 lugares parecidos perto do meu</div></div></div><div class="fb"></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>07 / 12</span></div>
-<aside class="notes">Pensa no seu lugar e responde: quem é o hóspede ideal? Não vale responder todo mundo. A conclusão é que todo lugar tem uma vocação, uma coisa que ele faz melhor que os outros. E quando você escolhe uma, fica mais fácil decidir todo o resto.</aside>
+<aside class="notes">Meia hora no celular. Atenção ao detalhe: se os mais caros estão vazios, isso também é informação.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">Quanto você cobraria pela diária? De onde veio esse número?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">A Marina achava que podia cobrar R$ 800, porque "o lugar é especial". Pesquisou 10 lugares parecidos perto dela no Airbnb: a maioria cobrava entre R$ 350 e R$ 450, e os mais caros estavam com a agenda vazia.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">O preço da diária não se inventa. Se descobre, olhando o mercado.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">Todo o seu plano depende do preço. Se ele estiver inventado, toda a conta que vem depois está errada, e você só vai descobrir quando o dinheiro não fechar.</div></div>
+<section class="slide v3">
+<h2>Faça a sua conta</h2><p class="sub">Troque os números pelos seus. Depois teste um mês fraco.</p>
+<div class="calc" data-calc><div>
+<div class="btns"><button data-n="8">Mês fraco</button><button data-n="15" class="on">Mês normal</button><button data-n="22">Mês bom</button></div>
+<label>Diária (R$)</label><input type="number" data-k="d" value="400">
+<label>Noites vendidas no mês</label><input type="number" data-k="n" value="15">
+<label>Custos do mês (R$)</label><input type="number" data-k="c" value="3500"></div>
+<div class="res"><div class="l"><span>Entra no mês</span><span data-o="e">R$ 6.000</span></div>
+<div class="l"><span>Custos</span><span data-o="c">R$ 3.500</span></div>
+<div class="l big"><span>Sobra</span><span data-o="s" class="pos">R$ 2.500</span></div>
+<div class="msg" data-o="m"></div></div></div>
+<p class="ilus">Números de exemplo, só para ilustrar. Use os da sua pesquisa.</p>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>08 / 12</span></div>
-<aside class="notes">Pausa e anota o seu número. Agora pensa: de onde ele veio? Da sua vontade ou do mercado? A pesquisa da Marina levou meia hora no celular. A conclusão é que o preço se descobre. E repara num detalhe: os mais caros estavam vazios. Isso também é informação.</aside>
+<aside class="notes">Peça para o aluno tocar em "Mês fraco". Com 8 noites a conta fica negativa. Conclusão: a conta tem que fechar até no mês fraco, ou você precisa de reserva para ele.</aside>
 </section>
-<section class="slide simple">
-<h2>A conta numa folha só</h2>
-<div class="conta"><div class="l"><span>Diária</span><span>R$ 400</span></div>
-<div class="l"><span>× noites vendidas no mês</span><span>15</span></div>
-<div class="l"><span>= entra no mês</span><span>R$ 6.000</span></div>
-<div class="l"><span>− custos do mês</span><span>R$ 3.500</span></div>
-<div class="l tot"><span>= sobra</span><span>R$ 2.500</span></div></div>
-<div class="f"><div class="passo">Agora pense</div><div class="ex">E se em vez de 15 noites você vender 8, num mês fraco? Ainda sobra?</div></div>
-<p class="ilus">Exemplo ilustrativo. Use os números da sua pesquisa.</p>
+<section class="slide v3">
+<h2>Sinal verde, amarelo ou vermelho?</h2><p class="sub">Antes de gastar com obra, olhe estes sinais.</p>
+<div class="sem"><div class="c g"><h3><i></i>Siga</h3>Documentos em dia, acesso fácil, vizinhos parecidos com agenda cheia.</div>
+<div class="c y"><h3><i></i>Ajuste</h3>Falta internet ou água, preço da região mais baixo do que você pensava, só enche no feriado.</div>
+<div class="c r"><h3><i></i>Pare e resolva</h3>Problema na escritura, área que não pode construir, sem acesso, ninguém na região enche a agenda.</div></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>09 / 12</span></div>
-<aside class="notes">Agora a conta, bem simples. Diária vezes as noites vendidas dá o que entra. Tira os custos: limpeza, luz, internet, taxas do Airbnb, manutenção. O que sobra é o que o negócio deixa. Agora faz o exercício: e se for um mês fraco, com 8 noites? Entram R$ 3.200 e os custos continuam R$ 3.500. Não sobra, falta. A conclusão é que você precisa fazer a conta em três meses diferentes: fraco, normal e bom. Esses números são só um exemplo.</aside>
+<aside class="notes">Vermelho não é fim, é "resolva antes". Muitas vezes há saída: mudar o tamanho, mudar o tipo de hospedagem ou arrendar.</aside>
 </section>
-<section class="slide simple">
-<div class="passo">Pergunta</div><div class="q">O que faria você desistir de um terreno?</div>
-<div class="f"><div class="passo">Exemplo</div><div class="ex">O Rafael quase comprou um terreno barato para o segundo empreendimento. Antes de assinar, pediu os documentos: a escritura tinha uma pendência de herança e a estrada de acesso passava por um vizinho que não autorizava.</div></div>
-<div class="f"><div class="passo">O que a gente conclui</div><div class="ded">Parar na hora certa não é fracasso. É o que protege o seu dinheiro.</div></div>
-<div class="f"><div class="passo">Por que isso importa</div><div class="why">Problema com documento, área que não pode construir, acesso ou falta de procura na região não somem depois da obra. Eles só ficam mais caros.</div></div>
+<section class="slide v3">
+<h2>Verdadeiro ou falso?</h2><p class="sub">Toque na sua resposta.</p>
+<div class="vf">
+<div class="row" data-r="f"><span class="s">Terreno grande é sempre um bom negócio.</span><button data-a="v">V</button><button data-a="f">F</button></div>
+<div class="row" data-r="v"><span class="s">O preço se descobre olhando os vizinhos parecidos.</span><button data-a="v">V</button><button data-a="f">F</button></div>
+<div class="row" data-r="f"><span class="s">Se a conta fecha no mês bom, está tudo certo.</span><button data-a="v">V</button><button data-a="f">F</button></div>
+<div class="row" data-r="v"><span class="s">Parar na hora certa protege o seu dinheiro.</span><button data-a="v">V</button><button data-a="f">F</button></div></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>10 / 12</span></div>
-<aside class="notes">Anota o que te faria desistir. Agora olha o caso do Rafael: o terreno era barato justamente por isso. A conclusão é que parar no momento certo é uma decisão inteligente. E muitas vezes tem saída: resolver o documento antes, mudar o tamanho do projeto, ou até arrendar.</aside>
+<aside class="notes">Revisão rápida. Cada erro mostra o que vale a pena rever na aula.</aside>
 </section>
-<section class="slide simple">
-<h2>O que você descobriu hoje</h2>
-<ul class="s"><li>Primeiro o lugar, depois a obra.</li><li>Negócio é gente querendo e conseguindo chegar.</li><li>Todo lugar tem uma vocação.</li><li>O preço se descobre.</li><li>A conta tem que fechar até no mês fraco.</li></ul>
+<section class="slide v3">
+<h2>O que você leva desta aula</h2><p class="sub">&nbsp;</p>
+<div class="tiles"><div class="tile"><svg><use href="#i-pin"/></svg><div class="t">Primeiro o lugar, depois a obra</div></div>
+<div class="tile"><svg><use href="#i-user"/></svg><div class="t">Um hóspede principal</div></div>
+<div class="tile"><svg><use href="#i-camera"/></svg><div class="t">Preço se descobre</div></div>
+<div class="tile"><svg><use href="#i-chart"/></svg><div class="t">A conta fecha até no mês fraco</div></div></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>11 / 12</span></div>
-<aside class="notes">Repara que fui eu que perguntei, mas foi você que chegou a essas conclusões. Lê de novo cada uma e pensa: no meu lugar, isso já está resolvido ou ainda não?</aside>
+<aside class="notes">Quatro ideias. Se o aluno lembrar só disso, a aula valeu.</aside>
 </section>
-<section class="slide simple dark">
+<section class="slide v3 dark">
 <div class="kick">Sua tarefa desta semana</div>
 <h2>Preencha o seu Diagnóstico</h2>
-<ul class="s"><li>Responda cada pergunta desta aula sobre o <b>seu</b> lugar.</li><li>Faça a conta em três meses: fraco, normal e bom.</li><li>Escreva sua decisão: <b>seguir</b>, <b>ajustar</b> ou <b>parar</b>, e o porquê.</li></ul>
+<div class="flow"><div class="st"><div class="n">1</div><div class="t">Marque</div><div class="d">o que o lugar tem</div></div><div class="ar">→</div>
+<div class="st"><div class="n">2</div><div class="t">Pesquise</div><div class="d">10 vizinhos parecidos</div></div><div class="ar">→</div>
+<div class="st"><div class="n">3</div><div class="t">Calcule</div><div class="d">mês fraco, normal e bom</div></div><div class="ar">→</div>
+<div class="st"><div class="n">4</div><div class="t">Decida</div><div class="d">seguir, ajustar ou parar</div></div></div>
 <div class="foot"><span>Zion Hospitality Business · Academia de Negócios de Hospedagem</span><span>12 / 12</span></div>
-<aside class="notes">Sua tarefa é preencher o Diagnóstico, que está logo abaixo desta aula. Não precisa ser perfeito. Se não souber alguma coisa, escreve "não sei", isso também é informação. E escreve o porquê da sua decisão, em uma frase. Te vejo na próxima aula.</aside>
+<aside class="notes">O Diagnóstico está logo abaixo desta aula. Se não souber algo, escreva "não sei": também é informação.</aside>
 </section>
-
 
 
 </div></div>
@@ -294,6 +336,36 @@ tr.tot td{border-top:3px solid var(--ink);font-weight:700}
   document.addEventListener("touchend",function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0;if(Math.abs(dx)>40){dx<0?next():prev();}x0=null;},{passive:true});
   window.addEventListener("resize",fit);
   fit(); show(i,false);
+})();
+</script>
+<script>
+(function(){
+function stop(e){e.stopPropagation();}
+document.querySelectorAll('.ops').forEach(function(g){
+  var modo=g.getAttribute('data-modo'), fb=g.parentNode.querySelector('.fb');
+  g.querySelectorAll('.op').forEach(function(o){
+    o.addEventListener('click',function(e){stop(e);
+      if(modo==='marcar'){o.classList.toggle('marc');var c=g.parentNode.querySelector('.num-m');if(c)c.textContent=g.querySelectorAll('.op.marc').length;return;}
+      g.querySelectorAll('.op').forEach(function(x){x.classList.remove('sim','nao','marc');});
+      if(modo==='todas'){o.classList.add('marc');}else{o.classList.add(o.getAttribute('data-ok')==='1'?'sim':'nao');}
+      if(fb){fb.innerHTML=o.getAttribute('data-fb');fb.classList.add('on');}
+    });
+  });
+});
+document.querySelectorAll('[data-calc]').forEach(function(c){
+  function v(k){return parseFloat(c.querySelector('[data-k='+k+']').value)||0;}
+  function f(x){return 'R$ '+Math.round(x).toLocaleString('pt-BR');}
+  function up(){var e=v('d')*v('n'),cs=v('c'),s=e-cs;
+    c.querySelector('[data-o=e]').textContent=f(e);c.querySelector('[data-o=c]').textContent=f(cs);
+    var so=c.querySelector('[data-o=s]');so.textContent=(s<0?'− ':'')+f(Math.abs(s));so.className=s<0?'neg':'pos';
+    c.querySelector('[data-o=m]').textContent=s<0?'Faltou dinheiro neste mês. Você vai precisar de reserva para os meses fracos.':'Sobrou dinheiro. Agora teste um mês fraco.';}
+  c.querySelectorAll('input').forEach(function(i){i.addEventListener('input',up);['click','keydown','keyup','touchstart'].forEach(function(ev){i.addEventListener(ev,stop);});});
+  c.querySelectorAll('.btns button').forEach(function(b){b.addEventListener('click',function(e){stop(e);c.querySelectorAll('.btns button').forEach(function(x){x.classList.remove('on');});b.classList.add('on');c.querySelector('[data-k=n]').value=b.getAttribute('data-n');up();});});
+  up();
+});
+document.querySelectorAll('.vf .row').forEach(function(r){
+  r.querySelectorAll('button').forEach(function(b){b.addEventListener('click',function(e){stop(e);r.classList.remove('ok','err');r.classList.add(b.getAttribute('data-a')===r.getAttribute('data-r')?'ok':'err');});});
+});
 })();
 </script>
 </body>
