@@ -1,0 +1,1066 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marco Zero · Aula</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:'Aventa';src:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/aventa.woff2) format('woff2');font-weight:100 900;font-display:swap}
+:root{
+  --bg:#FEF5F0; --card:#FFFFFF; --ink:#1B2117; --ink2:rgba(27,33,23,.68); --rule:rgba(27,33,23,.12);
+  --moss:#1B2117; --moss2:#232B1E; --black:#040605; --gold:#9B8160; --gold2:#DED6BF; --earth:#8B714E; --earthT:#6B5536;
+  --green:#2F6B3A; --greenS:#E6EEE1; --red:#9B2C2C; --redS:#F6E4E1; --goldS:#F1E8DA; --ivory:#FEF5F0;
+  --serif:'Playfair Display',Georgia,serif; --sans:'Aventa','DM Sans','Figtree',system-ui,-apple-system,Segoe UI,Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0B0F0A; --card:#161D14; --ink:#FEF5F0; --ink2:rgba(254,245,240,.7); --rule:rgba(254,245,240,.14);
+  --greenS:#1C2D1C; --redS:#3A1E1C; --goldS:#2E2A20; --green:#8CC795; --red:#E59487; --earthT:#DED6BF;
+}}
+:root[data-theme="dark"]{
+  --bg:#0B0F0A; --card:#161D14; --ink:#FEF5F0; --ink2:rgba(254,245,240,.7); --rule:rgba(254,245,240,.14);
+  --greenS:#1C2D1C; --redS:#3A1E1C; --goldS:#2E2A20; --green:#8CC795; --red:#E59487; --earthT:#DED6BF;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:18px;line-height:1.5;-webkit-font-smoothing:antialiased;overflow:hidden}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+b,strong{font-weight:700}
+
+/* ---------- moldura ---------- */
+.top{position:fixed;inset:0 0 auto 0;z-index:20;display:flex;align-items:center;gap:12px;padding:12px 20px;background:linear-gradient(var(--bg) 70%,transparent)}
+.top.on-dark{background:linear-gradient(rgba(14,21,16,.9) 60%,transparent);color:var(--ivory)}
+.logo{display:block;width:108px;height:25px;background:currentColor;-webkit-mask:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/logo.png) left center/contain no-repeat;mask:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/logo.png) left center/contain no-repeat;flex:0 0 auto}
+.sym{display:block;width:64px;height:64px;background:var(--gold);-webkit-mask:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/sym.png) center/contain no-repeat;mask:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/sym.png) center/contain no-repeat;margin-bottom:26px}
+.brand{display:flex;align-items:center;gap:10px}
+.brand small{font-size:11px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;opacity:.7;white-space:nowrap}
+.chip{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:99px;background:var(--goldS);color:var(--earthT);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:46vw}
+.top.on-dark .chip{background:rgba(201,168,76,.18);color:var(--gold2)}
+.sp{flex:1}
+.cnt{font-size:13px;font-weight:600;opacity:.7;white-space:nowrap}
+.mapb{font-size:13px;font-weight:700;padding:6px 12px;border:1px solid var(--rule);border-radius:99px}
+.top.on-dark .mapb{border-color:rgba(255,255,255,.25)}
+.bar{position:fixed;left:0;right:0;bottom:0;height:4px;background:var(--rule);z-index:21}
+.bar i{display:block;height:100%;width:0;background:var(--gold);transition:width .35s}
+.nav{position:fixed;bottom:18px;right:20px;z-index:22;display:flex;gap:8px}
+.nav button{width:48px;height:48px;border-radius:50%;background:var(--moss);color:var(--ivory);font-size:22px;display:grid;place-items:center;box-shadow:0 4px 14px rgba(0,0,0,.18)}
+.nav button:disabled{opacity:.3;cursor:default}
+body.dk .nav button:not(.nx){background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.3)}
+.nav .nx{background:var(--gold);color:var(--moss)}
+
+/* ---------- slides ---------- */
+.deck{position:fixed;inset:0}
+.s{position:absolute;inset:0;display:none;overflow-y:auto;padding:84px 24px 96px}
+.s.on{display:block}
+.w{max-width:1040px;margin:0 auto;min-height:100%;display:flex;flex-direction:column;justify-content:center}
+.s.dark{background:var(--moss);color:var(--ivory)}
+.s.photo{color:#fff;background:#000}
+.s.photo .bgi{position:absolute;inset:0;background-size:cover;background-position:center;opacity:.5}
+.s.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,5,.75),rgba(4,6,5,.15));pointer-events:none}
+.s.photo .w{z-index:1}
+.s.photo .w{position:relative}
+.r{opacity:0;transform:translateY(14px)}
+.s.on .r{animation:up .55s cubic-bezier(.2,.7,.2,1) forwards}
+.s.on .r:nth-child(2){animation-delay:.08s}.s.on .r:nth-child(3){animation-delay:.16s}.s.on .r:nth-child(4){animation-delay:.24s}.s.on .r:nth-child(5){animation-delay:.32s}.s.on .r:nth-child(6){animation-delay:.4s}.s.on .r:nth-child(n+7){animation-delay:.48s}
+@keyframes up{to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.r{opacity:1;transform:none}.s.on .r{animation:none}}
+
+.kick{font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+.s:not(.dark):not(.photo) .kick{color:var(--earth)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .s:not(.dark):not(.photo) .kick{color:var(--gold)}}
+:root[data-theme="dark"] .s:not(.dark):not(.photo) .kick{color:var(--gold)}
+.kick{letter-spacing:.32em!important}
+h1{font-family:var(--sans)!important;font-weight:900!important;text-transform:uppercase;letter-spacing:.08em!important}
+h2,.big{font-family:var(--sans)!important;font-weight:800!important;letter-spacing:-.01em}
+.big em,h2 em{font-family:var(--serif);font-weight:600}
+.s.dark{background:var(--black)!important}
+h1{font-family:var(--serif);font-weight:700;font-size:clamp(40px,7vw,84px);line-height:1.02;letter-spacing:-.01em}
+h2{font-family:var(--serif);font-weight:700;font-size:clamp(30px,4.4vw,52px);line-height:1.08;margin-bottom:18px}
+h3{font-size:20px;font-weight:800;margin-bottom:6px}
+.lead{font-size:clamp(18px,2vw,23px);color:var(--ink2);max-width:760px}
+.dark .lead,.photo .lead{color:rgba(247,241,230,.82)}
+.big{font-family:var(--serif);font-size:clamp(34px,5.6vw,68px);line-height:1.08;font-weight:700}
+.big em{font-style:italic;color:var(--gold2)}
+.mt{margin-top:22px}.mt2{margin-top:36px}
+
+/* gatilho */
+.trig{display:inline-flex;align-items:center;gap:8px;font-size:13px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);background:var(--gold);padding:6px 12px;border-radius:99px;margin-bottom:22px;align-self:flex-start}
+.trig::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--moss);animation:pulse 1.4s infinite}
+@keyframes pulse{50%{opacity:.25}}
+.vid{display:inline-flex;gap:8px;align-items:center;margin-top:28px;font-size:14px;font-weight:700;color:var(--gold2);align-self:flex-start;border:1px solid rgba(231,207,138,.4);padding:8px 14px;border-radius:99px}
+
+/* listas */
+.bul{list-style:none;display:grid;gap:12px;margin-top:8px}
+.bul li{display:flex;gap:12px;align-items:flex-start;font-size:clamp(17px,1.8vw,21px)}
+.bul li::before{content:"";flex:0 0 22px;height:22px;margin-top:3px;border-radius:50%;background:var(--gold) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4 8-9' fill='none' stroke='%230E1510' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat}
+.bul.x li::before{background:var(--red) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M7 7l10 10M17 7L7 17' fill='none' stroke='%23fff' stroke-width='3' stroke-linecap='round'/%3E%3C/svg%3E") center/12px no-repeat}
+.num{list-style:none;counter-reset:n;display:grid;gap:12px}
+.num li{counter-increment:n;display:flex;gap:14px;align-items:flex-start;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;font-size:18px}
+.num li::before{content:counter(n,decimal-leading-zero);font-family:var(--serif);font-weight:700;color:var(--gold);font-size:24px;line-height:1;min-width:34px}
+.dark .num li{background:var(--moss2);border-color:rgba(255,255,255,.08)}
+
+/* cards */
+.g{display:grid;gap:14px}
+.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}.g4{grid-template-columns:repeat(4,1fr)}
+@media (max-width:820px){.g3,.g4{grid-template-columns:repeat(2,1fr)}}
+@media (max-width:560px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.c{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:20px}
+.c p{color:var(--ink2);font-size:16.5px}
+.c .tag{font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--earth);margin-bottom:8px}
+.dark .c{background:var(--moss2);border-color:rgba(255,255,255,.08)}
+.dark .c p{color:rgba(247,241,230,.72)}
+.dark .c .tag{color:var(--gold)}
+.c.hl{border:2px solid var(--gold)}
+.c.ok{background:var(--greenS);border-color:transparent}
+.c.no{background:var(--redS);border-color:transparent}
+.c .q{font-family:var(--serif);font-style:italic;font-size:19px;margin:6px 0 8px;color:var(--ink)}
+
+/* por que / como */
+.pc{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+@media (max-width:640px){.pc{grid-template-columns:1fr}}
+.pq,.cm{border-radius:18px;padding:20px 22px}
+.pq{background:var(--goldS)}
+.cm{background:var(--greenS)}
+.pq h3::before{content:"Por quê? "}
+.cm h3::before{content:"Como? "}
+.pq h3,.cm h3{font-size:14px;letter-spacing:.12em;text-transform:uppercase}
+.pq h3{color:var(--earthT)}.cm h3{color:var(--green)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .pq h3{color:var(--gold2)}}
+:root[data-theme="dark"] .pq h3{color:var(--gold2)}
+.pq p,.cm p,.pq li,.cm li{font-size:17px}
+.cm ol{padding-left:20px;display:grid;gap:4px}
+
+/* citação */
+.quote{font-family:var(--serif);font-style:italic;font-size:clamp(24px,3.4vw,40px);line-height:1.2;border-left:4px solid var(--gold);padding-left:22px}
+.src{font-size:14px;font-weight:600;opacity:.65;margin-top:12px;padding-left:26px}
+
+/* exemplo */
+.ex{border:2px dashed var(--gold);border-radius:18px;padding:18px 20px;background:var(--card)}
+.ex .lab{display:inline-block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;background:var(--gold);color:var(--moss);padding:3px 8px;border-radius:6px;margin-bottom:10px}
+.ex .row{display:flex;justify-content:space-between;gap:12px;border-bottom:1px solid var(--rule);padding:8px 0;font-size:17px}
+.ex .row:last-child{border:0}
+.ex .row b{font-variant-numeric:tabular-nums}
+
+/* comparação lado a lado */
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:14px;align-items:stretch}
+.vs .mid{display:grid;place-items:center;font-family:var(--serif);font-style:italic;font-size:22px;color:var(--gold)}
+@media (max-width:640px){.vs{grid-template-columns:1fr}.vs .mid{padding:0}}
+
+/* ciclo */
+.loop{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;margin-top:10px}
+@media (max-width:820px){.loop{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:420px){.loop{grid-template-columns:repeat(2,1fr)}}
+.step{background:var(--card);border:1px solid var(--rule);border-radius:16px;padding:14px;text-align:center;position:relative}
+.step .n{font-family:var(--serif);font-weight:700;color:var(--gold);font-size:26px}
+.step b{display:block;font-size:17px}
+.step span{display:block;font-size:14px;color:var(--ink2);margin-top:4px}
+.back{margin-top:14px;font-size:15px;font-weight:600;color:var(--green);display:flex;gap:8px;align-items:center}
+
+/* linha do tempo das portas */
+.tl{display:grid;gap:12px;margin-top:6px}
+.tl .ln{display:grid;grid-template-columns:200px 1fr;gap:14px;align-items:center}
+@media (max-width:560px){.tl .ln{grid-template-columns:1fr;gap:4px}}
+.tl .nm{font-weight:700;font-size:16px}
+.tl .tr{height:34px;background:var(--rule);border-radius:10px;position:relative;overflow:hidden}
+.tl .tr i{position:absolute;left:0;top:0;bottom:0;border-radius:10px;background:var(--gold);width:0;transition:width 1s cubic-bezier(.2,.7,.2,1)}
+.tl .tr em{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-style:normal;font-size:14px;font-weight:700;color:var(--moss);white-space:nowrap}
+
+/* quiz */
+.quiz{display:grid;gap:10px;margin-top:10px}
+.op{text-align:left;background:var(--card);border:2px solid var(--rule);border-radius:14px;padding:14px 16px;font-size:17.5px;display:flex;gap:12px;align-items:flex-start;transition:border-color .2s,background .2s}
+.op .L{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:14px;background:var(--goldS);color:var(--earthT)}
+.op:hover{border-color:var(--gold)}
+.op.good{border-color:var(--green);background:var(--greenS)}
+.op.bad{border-color:var(--red);background:var(--redS)}
+.fb{min-height:24px;margin-top:12px;font-size:17px;font-weight:600}
+.fb.good{color:var(--green)}.fb.bad{color:var(--red)}
+.dark .op{background:var(--moss2);border-color:rgba(255,255,255,.12)}
+
+/* calculadora */
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+@media (max-width:720px){.calc{grid-template-columns:1fr}}
+.fld{display:grid;gap:6px;margin-bottom:14px}
+.fld label{font-size:15px;font-weight:700;display:flex;justify-content:space-between}
+.fld label output{font-variant-numeric:tabular-nums;color:var(--earth)}
+input[type=range]{width:100%;accent-color:var(--gold);height:28px}
+.res{display:grid;gap:10px}
+.res .k{background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:12px 16px;display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.res .k span{font-size:15px;color:var(--ink2)}
+.res .k b{font-family:var(--serif);font-size:26px;font-variant-numeric:tabular-nums}
+.res .k.main{background:var(--moss);color:var(--ivory);border:0}
+.res .k.main span{color:rgba(247,241,230,.7)}
+.res .k.main b{color:var(--gold2)}
+
+/* escada */
+.ladder{display:grid;gap:10px}
+.rung{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;gap:8px}
+.rung div{border-radius:12px;padding:12px 14px;font-size:16.5px}
+.rung .a{background:var(--greenS)}
+.rung .b{background:var(--card);border:1px solid var(--rule)}
+.rung .ar{text-align:center;color:var(--gold);font-size:22px;font-weight:800;padding:0}
+.rung small{display:block;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;opacity:.6}
+@media (max-width:560px){.rung{grid-template-columns:1fr}.rung .ar{transform:rotate(90deg)}}
+
+/* semanas */
+.weeks{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px}
+.wk{background:var(--moss2);border-radius:12px;padding:10px 12px;font-size:13.5px;line-height:1.3;color:rgba(247,241,230,.85)}
+.wk b{display:block;color:var(--gold);font-size:12px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:3px}
+.wk.now{background:var(--gold);color:var(--moss)}
+.wk.now b{color:var(--moss)}
+
+/* checklist interativo */
+.chk{display:grid;gap:10px}
+.chk label{display:flex;gap:12px;align-items:flex-start;background:var(--card);border:1px solid var(--rule);border-radius:14px;padding:14px 16px;font-size:17.5px;cursor:pointer}
+.chk input{width:22px;height:22px;accent-color:var(--green);margin-top:2px;flex:0 0 22px}
+.dark .chk label{background:var(--moss2);border-color:rgba(255,255,255,.1)}
+
+/* mapa */
+.map{position:fixed;inset:0;z-index:40;background:rgba(14,21,16,.6);display:none;align-items:flex-start;justify-content:center;padding:64px 16px 16px;overflow:auto}
+.map.on{display:flex}
+.map .in{background:var(--bg);color:var(--ink);border-radius:20px;max-width:760px;width:100%;padding:22px}
+.map h4{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--earth);margin:16px 0 8px}
+.map h4:first-of-type{margin-top:4px}
+.map a{display:flex;gap:10px;padding:8px 10px;border-radius:10px;color:inherit;text-decoration:none;font-size:15.5px}
+.map a:hover,.map a.cur{background:var(--goldS)}
+.map a span{opacity:.5;font-variant-numeric:tabular-nums;min-width:22px}
+.close{float:right;font-size:14px;font-weight:700;border:1px solid var(--rule);border-radius:99px;padding:6px 12px}
+.hint{position:fixed;left:20px;bottom:30px;z-index:22;font-size:13px;opacity:.55}
+@media (max-width:640px){.hint{display:none}.brand{display:none}body{font-size:17px}.s{padding:72px 16px 92px}}
+.small{font-size:14px;color:var(--ink2)}
+.dark .small,.photo .small{color:rgba(247,241,230,.65)}
+.task{background:var(--card);border:2px solid var(--gold);border-radius:20px;padding:22px}
+.s.cad{background:linear-gradient(180deg,var(--goldS),var(--bg) 60%)}
+.qa{background:var(--card);border:1px solid var(--rule);border-radius:18px;padding:16px 18px;margin-top:14px}
+.ql{font-weight:700;font-size:18px;margin-bottom:10px}
+.picks{display:flex;flex-wrap:wrap;gap:8px}
+.pick,.sg{border:1.5px solid var(--rule);border-radius:99px;padding:8px 14px;font-size:15.5px;font-weight:600;background:var(--bg);transition:all .15s}
+.pick:hover,.sg:hover{border-color:var(--gold)}
+.pick.on{background:var(--earth);color:#fff;border-color:var(--earth)}
+.pick.on::before{content:"✓ "}
+textarea,.act input{width:100%;font:inherit;font-size:16.5px;color:var(--ink);background:var(--bg);border:1.5px solid var(--rule);border-radius:12px;padding:10px 12px;resize:vertical}
+textarea:focus,.act input:focus{outline:none;border-color:var(--gold)}
+.saved{margin-top:12px;font-size:14px;font-weight:600;color:var(--green)}
+.sug{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:14px 0}
+.sg{font-size:14px;font-weight:500;background:var(--card)}
+.acts{display:grid;gap:10px}
+.act{display:grid;grid-template-columns:34px 1fr 200px;gap:8px;align-items:center}
+@media (max-width:600px){.act{grid-template-columns:34px 1fr}.act input+input{grid-column:2}}
+.an{width:34px;height:34px;border-radius:50%;background:var(--gold);color:var(--black);display:grid;place-items:center;font-weight:800}
+.dossie{background:var(--card);border:1px solid var(--rule);border-radius:20px;padding:6px 20px}
+.dossie .dr{display:grid;grid-template-columns:200px 1fr;gap:14px;padding:12px 0;border-bottom:1px solid var(--rule);font-size:16px}
+.dossie .dr:last-child{border:0}
+.dossie .dk{font-size:12px;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:var(--earth);padding-top:3px}
+.dossie .em{color:var(--ink2);font-style:italic}
+@media (max-width:600px){.dossie .dr{grid-template-columns:1fr;gap:2px}}
+.score{display:flex;gap:6px;flex-wrap:wrap}
+.score span{font-size:13px;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--goldS)}
+.score span.ok{background:var(--greenS);color:var(--green)}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.bt{display:inline-block;text-decoration:none;font-weight:700;font-size:16px;padding:12px 18px;border-radius:99px;border:1.5px solid var(--rule);color:inherit}
+.bt.main{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.rev{margin-top:16px;max-width:560px}
+.map a .ck{margin-left:auto;color:var(--green);font-weight:800}
+.pdh{display:none}
+@page{size:A4 landscape;margin:10mm}
+@media print{
+  html,body{overflow:visible!important;height:auto!important;background:#fff!important}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .top,.nav,.bar,.hint,.map,.btns,.vid,.nextl{display:none!important}
+  .deck{position:static}
+  .s{display:block!important;position:relative!important;inset:auto!important;overflow:visible!important;height:180mm;padding:12mm 14mm!important;page-break-after:always;break-after:page}
+  .w{min-height:0}
+  .r{opacity:1!important;transform:none!important;animation:none!important}
+  .tl .tr i{transition:none}
+  body.pd .s{display:none!important}
+  body.pd #dossieS{display:block!important;height:auto;background:#fff!important;color:#1B2117}
+  body.pd #dossieS h2{font-size:22px;margin-bottom:8px}
+  body.pd .dossie .dr{padding:5px 0;font-size:11.5px;grid-template-columns:150px 1fr}
+  body.pd .dossie .dk{font-size:9px}
+  body.pd #dossieS .small{display:none}
+  body.pd .pdh{display:flex;align-items:center;gap:12px;margin-bottom:10px;color:#1B2117}
+}
+
+/* ---------- v3: linha do tempo e pontos ---------- */
+.w.wide{max-width:1240px}
+.tline{display:grid;grid-template-columns:repeat(7,1fr);gap:8px;position:relative}
+.tline::before{content:"";position:absolute;left:0;right:0;top:46px;height:2px;background:linear-gradient(90deg,var(--gold),var(--earth))}
+.fcol{display:flex;flex-direction:column;gap:6px}
+.fh{font-weight:800;font-size:14px;line-height:1.2;min-height:40px;margin-bottom:12px}
+.fh small{display:block;font-size:10.5px;letter-spacing:.2em;text-transform:uppercase;color:var(--earth)}
+.node{display:flex;gap:8px;align-items:center;text-align:left;background:var(--card);border:1px solid var(--rule);border-radius:12px;padding:8px 9px;font-size:13.5px;line-height:1.2;transition:transform .15s,border-color .15s}
+.node:hover{transform:translateY(-2px);border-color:var(--gold)}
+.node b{flex:0 0 28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--moss);color:var(--ivory);font-size:12px}
+.node.ok b{background:var(--green)}.node.and b{background:var(--gold);color:var(--black)}.node.no b{background:var(--red)}
+@media (max-width:900px){.tline{grid-template-columns:repeat(2,1fr)}.tline::before{display:none}.fh{min-height:0;margin-bottom:4px}}
+@media (max-width:420px){.tline{grid-template-columns:1fr}}
+.jgrid{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:20px;max-width:900px}
+.jgrid .tag{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold2);margin-bottom:6px}
+.jgrid p{color:rgba(254,245,240,.85);font-size:17px}
+@media (max-width:640px){.jgrid{grid-template-columns:1fr}}
+.tline{grid-template-columns:repeat(6,1fr)!important}
+@media (max-width:900px){.tline{grid-template-columns:repeat(2,1fr)!important}}
+@media (max-width:420px){.tline{grid-template-columns:1fr!important}}
+.fpts{list-style:none;display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.fpts li{border:1px solid rgba(254,245,240,.3);border-radius:99px;padding:6px 12px;font-size:15px}
+.fpts li b{color:var(--gold2);margin-right:4px}
+.rail{display:flex;gap:4px;margin-bottom:18px;flex-wrap:wrap}
+.rail i{width:22px;height:6px;border-radius:3px;background:var(--rule)}
+.rail i.past{background:var(--gold2)}
+.rail i.cur{background:var(--earth);width:40px}
+.pn{display:inline-block;font-weight:900;color:var(--earth);margin-right:14px}
+.pq2{font-family:var(--serif);font-style:italic;font-size:clamp(20px,2.6vw,30px);color:var(--ink2);margin:-6px 0 18px}
+.bul.sm li{font-size:16px}.bul.sm li::before{flex-basis:18px;height:18px;background-size:11px}
+.c.why{background:var(--goldS);border-color:transparent}
+.c.why p{color:var(--ink)}
+.c.out{background:var(--moss);color:var(--ivory);border-color:transparent}
+.c.out .tag{color:var(--gold2)}
+.c.out p{color:var(--ivory)}
+.me{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:16px;font-weight:700;font-size:15px}
+.picks.st .pick[data-v="ok"].on{background:var(--green);border-color:var(--green)}
+.picks.st .pick[data-v="and"].on{background:var(--gold);border-color:var(--gold);color:var(--black)}
+.picks.st .pick[data-v="no"].on{background:var(--red);border-color:var(--red)}
+.nextp{margin-top:14px;font-size:16px;color:var(--ink2)}
+.nextp b{color:var(--earth)}
+.chain,.slots{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.ch{border:1.5px solid var(--rule);border-radius:99px;padding:10px 16px;font-weight:700;background:var(--card)}
+.ch:disabled{opacity:.25}
+.slots span{border-radius:99px;padding:10px 14px;font-weight:700;background:var(--greenS);color:var(--green)}
+.slots span.bad{background:var(--redS);color:var(--red)}
+.dmap{display:grid;grid-template-columns:repeat(21,1fr);gap:4px;margin-bottom:14px}
+.dmap i{height:34px;border-radius:7px;background:var(--rule);display:grid;place-items:center;font-style:normal;font-size:11px;font-weight:800;color:var(--ink2)}
+.dmap i.ok{background:var(--green);color:#fff}.dmap i.and{background:var(--gold);color:var(--black)}.dmap i.no{background:var(--red);color:#fff}
+.dmap i.first{outline:3px solid var(--earth);outline-offset:2px}
+@media (max-width:640px){.dmap{grid-template-columns:repeat(11,1fr)}}
+.leg{display:flex;flex-wrap:wrap;gap:14px;font-size:13px;color:var(--ink2);margin:-6px 0 12px}
+.leg span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;background:var(--rule)}
+.leg .ok::before{background:var(--green)}.leg .and::before{background:var(--gold)}.leg .no::before{background:var(--red)}
+@media print{body.pd .dmap i{height:22px}}
+</style>
+</head>
+<body>
+<header class="top" id="top">
+  <div class="brand"><span class="logo" role="img" aria-label="Zion"></span><small>Hospitality Business</small></div>
+  <div class="chip" id="chip">Marco Zero</div>
+  <div class="sp"></div>
+  <div class="cnt" id="cnt">1 / 1</div>
+  <button class="mapb" id="pdfb" aria-label="Baixar a aula em PDF">PDF</button>
+  <button class="mapb" id="mapb" aria-label="Ver todas as telas">Mapa</button>
+</header>
+
+<main class="deck" id="deck">
+
+<section class="s photo" data-b="Abertura">
+  <div class="bgi" style="background-image:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/aerial.jpg)"></div>
+  <div class="w">
+    <span class="sym r"></span>
+    <div class="kick r">Tema 0 · Marco Zero</div>
+    <h1 class="r">O mapa do<br>negócio inteiro</h1>
+    <p class="lead r mt">O panorama dos negócios de hospedagem: os 21 pontos de um desenvolvimento hoteleiro, na ordem em que eles acontecem.</p>
+    <p class="small r mt2">Zion Hospitality Business · a academia de negócios de hospedagem · com Bruno Chaerk</p>
+  </div>
+</section>
+
+<section class="s photo" data-b="Abertura">
+  <div class="bgi" style="background-image:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/night.jpg)"></div>
+  <div class="w">
+    <div class="trig r">Antes de tudo</div>
+    <p class="big r">Quem disse que você precisa <em>construir um hotel</em> para ganhar dinheiro com hospedagem?</p>
+    <div class="vid r">▶ Vídeo de abertura · até 3:50</div>
+  </div>
+</section>
+
+<section class="s dark" data-b="Abertura">
+  <div class="w">
+    <div class="kick r">A nossa promessa</div>
+    <p class="big r">Nós vamos te ensinar o <em>passo a passo</em> de um desenvolvimento hoteleiro.</p>
+    <ul class="bul mt2 r">
+      <li>Ponto 1, território. Ponto 2, mercado. Ponto 3, produto. E assim por diante.</li>
+      <li>Um processo leva ao outro. Cada ponto entrega o que o próximo precisa.</li>
+      <li>São 6 jornadas e 21 pontos. Um ponto por semana.</li>
+      <li>Antes de cada jornada, você vê o mapa dela inteira: o que vai aprender e por que cada passo vem naquela ordem.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="s " data-b="Abertura">
+  <div class="w wide">
+    <div class="kick r">A linha do tempo</div>
+    <h2 class="r">Do terreno ao calendário cheio: 6 jornadas</h2>
+    <div class="tline r"><div class="fcol"><div class="fh"><small>Jornada 1</small>Desenvolvimento</div><button class="node" data-go="p1"><b>01</b><span>Território</span></button><button class="node" data-go="p2"><b>02</b><span>Mercado</span></button><button class="node" data-go="p3"><b>03</b><span>Produto</span></button><button class="node" data-go="p4"><b>04</b><span>Modelo de negócio</span></button></div><div class="fcol"><div class="fh"><small>Jornada 2</small>Captação e investimento</div><button class="node" data-go="p5"><b>05</b><span>Quanto custa abrir</span></button><button class="node" data-go="p6"><b>06</b><span>Quanto custa manter</span></button><button class="node" data-go="p7"><b>07</b><span>Viabilidade</span></button><button class="node" data-go="p8"><b>08</b><span>Captação</span></button><button class="node" data-go="p9"><b>09</b><span>Jurídico e incorporação</span></button><button class="node" data-go="p10"><b>10</b><span>Projeto e obra</span></button></div><div class="fcol"><div class="fh"><small>Jornada 3</small>Identidade, estruturação e gestão</div><button class="node" data-go="p11"><b>11</b><span>Marca e identidade</span></button><button class="node" data-go="p12"><b>12</b><span>Sistemas</span></button><button class="node" data-go="p13"><b>13</b><span>Gestão</span></button></div><div class="fcol"><div class="fh"><small>Jornada 4</small>Estruturação da operação</div><button class="node" data-go="p14"><b>14</b><span>Departamentos e equipe</span></button><button class="node" data-go="p15"><b>15</b><span>Padrões e processos</span></button><button class="node" data-go="p16"><b>16</b><span>Serviços</span></button></div><div class="fcol"><div class="fh"><small>Jornada 5</small>Operação</div><button class="node" data-go="p17"><b>17</b><span>Jornada do hóspede</span></button><button class="node" data-go="p18"><b>18</b><span>Experiência e avaliações</span></button></div><div class="fcol"><div class="fh"><small>Jornada 6</small>Aceleração de vendas</div><button class="node" data-go="p19"><b>19</b><span>Canais de venda</span></button><button class="node" data-go="p20"><b>20</b><span>Marketing e CRM</span></button><button class="node" data-go="p21"><b>21</b><span>Preço e sazonalidade</span></button></div></div>
+    <p class="small r mt">Toque em qualquer ponto para ver o que ele decide. As setas seguem a ordem.</p>
+  </div>
+</section>
+
+<section class="s " data-b="Abertura">
+  <div class="w">
+    <div class="kick r">Por que nessa ordem?</div>
+    <h2 class="r">A mesma decisão custa de <em>3 a 10 vezes mais</em> fora de ordem.</h2>
+    <p class="lead r">Porque fora de ordem ela é corrigida com concreto, e não com papel.</p>
+    <div class="ladder r mt">
+      <div class="rung"><div class="a"><small>Primeiro</small>Mercado · ponto 2</div><div class="ar">→</div><div class="b"><small>Depois</small>Produto · ponto 3</div></div>
+      <div class="rung"><div class="a"><small>Primeiro</small>A conta · pontos 5 a 7</div><div class="ar">→</div><div class="b"><small>Depois</small>A obra · ponto 10</div></div>
+      <div class="rung"><div class="a"><small>Primeiro</small>Marca · ponto 11</div><div class="ar">→</div><div class="b"><small>Depois</small>Canal · ponto 19</div></div>
+      <div class="rung"><div class="a"><small>Primeiro</small>Padrão · ponto 15</div><div class="ar">→</div><div class="b"><small>Depois</small>Serviços · ponto 16</div></div>
+    </div>
+    <p class="small r mt">Fonte: A Ordem das Coisas. "Ordem é informação, e informação se adquire em semanas, e não custa capital."</p>
+  </div>
+</section>
+
+<section class="s " data-b="Abertura">
+  <div class="w">
+    <div class="kick r">Em qual destas duas você está?</div>
+    <h2 class="r">A linha é a mesma. O ponto de entrada muda.</h2>
+    <div class="quiz r" data-free="1" data-key="jornada">
+      <button class="op" data-ok="1" data-fb="Você começa no ponto 1 e segue a linha inteira, sem pular."><span class="L">A</span><span><b>Quero começar.</b> Tenho terreno, imóvel, dinheiro ou uma ideia, e ainda não recebo hóspedes.</span></button>
+      <button class="op" data-ok="1" data-fb="Você já vive as jornadas 5 e 6 todos os dias. Vai passar pela linha marcando o que já resolveu, e o primeiro ponto em aberto mostra onde o seu negócio trava."><span class="L">B</span><span><b>Já opero e quero crescer.</b> Recebo hóspedes e quero que sobre mais, com menos trabalho meu.</span></button>
+    </div>
+    <div class="fb"></div>
+    <div class="cm r mt"><h3></h3><p>Em cada ponto desta aula você marca: <b>já resolvi</b>, <b>em andamento</b> ou <b>ainda não</b>. No final, a aula monta o seu diagnóstico e mostra por onde começar.</p></div>
+  </div>
+</section>
+
+<section class="s photo" data-b="Jornada 1 · Desenvolvimento">
+  <div class="bgi" style="background-image:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/sky.jpg)"></div>
+  <div class="w">
+    <div class="trig r">Jornada 1 de 6</div>
+    <p class="big r">Desenvolvimento</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">O que dá para fazer no meu terreno, e para quem?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>É aqui que se evita o erro mais caro do setor: construir o produto errado, no lugar errado. Tudo o que vem depois depende destas respostas.</p></div>
+      <div><div class="tag">Você sai com</div><p>O conceito do seu negócio: lugar, hóspede, produto e porta de entrada.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>01</b> Território</li><li><b>02</b> Mercado</li><li><b>03</b> Produto</li><li><b>04</b> Modelo de negócio</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 1 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 1 · Desenvolvimento" id="p1">
+  <div class="w">
+    <div class="rail r" data-n="1"></div>
+    <div class="kick r">Ponto 01 de 21 · Jornada 1</div>
+    <h2 class="r"><span class="pn">01</span>Território</h2>
+    <p class="pq2 r">O que o meu terreno permite?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Acesso, água, energia e esgoto</li><li>Regras do lugar: zoneamento e restrições ambientais</li><li>O que só existe ali: vista, clima, natureza</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>É o único erro sem conserto. "Produto se muda, preço se ajusta, operação se melhora. Terreno sem vocação permanece sem vocação."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A leitura do território: o que dá e o que não dá para fazer ali.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s1"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 02 · Mercado</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 1 · Desenvolvimento" id="p2">
+  <div class="w">
+    <div class="rail r" data-n="2"></div>
+    <div class="kick r">Ponto 02 de 21 · Jornada 1</div>
+    <h2 class="r"><span class="pn">02</span>Mercado</h2>
+    <p class="pq2 r">Quem viria até aqui, quando, e quem já disputa esse hóspede?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Quem é o seu hóspede e de onde ele vem</li><li>Em que meses ele viaja</li><li>Quem são os concorrentes, quanto cobram e como são avaliados</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Produto antes de mercado é a primeira inversão. "Existe gente querendo dormir ali? Isso se mede, não se supõe."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O mapa da procura e dos concorrentes.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s2"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 03 · Produto</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 1 · Desenvolvimento" id="p3">
+  <div class="w">
+    <div class="rail r" data-n="3"></div>
+    <div class="kick r">Ponto 03 de 21 · Jornada 1</div>
+    <h2 class="r"><span class="pn">03</span>Produto</h2>
+    <p class="pq2 r">O que construir, quantas unidades, e o que o hóspede vai lembrar?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>O formato: cabana, glamping, pousada, entre os 8</li><li>Quantas unidades, e em quantas fases</li><li>O momento assinatura: aquilo que só acontece ali</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Agora o produto tem critério: nasce do lugar (ponto 1) e de quem vai pagar (ponto 2), e não do catálogo ou do Instagram.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O conceito do produto.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s3"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 04 · Modelo de negócio</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 1 · Desenvolvimento" id="p4">
+  <div class="w">
+    <div class="rail r" data-n="4"></div>
+    <div class="kick r">Ponto 04 de 21 · Jornada 1</div>
+    <h2 class="r"><span class="pn">04</span>Modelo de negócio</h2>
+    <p class="pq2 r">Como esse produto vira dinheiro, e por qual porta eu entro?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>A porta: construir, comprar pronto, alugar ou administrar</li><li>As receitas: diária, serviços, experiências</li><li>Quem vai operar</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Cada porta muda o capital, o risco e o tempo até o primeiro real. "Quem acha que só existe a porta 1 desiste por não ter o capital dela."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O modelo escolhido. Fecha a jornada do desenvolvimento.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s4"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 05 · Quanto custa abrir</b></div>
+  </div>
+</section>
+
+<section class="s dark" data-b="Jornada 2 · Captação e investimento">
+  <div class="w">
+    <div class="trig r">Jornada 2 de 6</div>
+    <p class="big r">Captação e investimento</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">Quanto custa, vale a pena, e de onde vem o dinheiro?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>Só depois de saber o que fazer dá para orçar. E só com a conta fechada dá para captar e construir.</p></div>
+      <div><div class="tag">Você sai com</div><p>O estudo de viabilidade, o plano de capital e a unidade pronta.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>05</b> Quanto custa abrir</li><li><b>06</b> Quanto custa manter</li><li><b>07</b> Viabilidade</li><li><b>08</b> Captação</li><li><b>09</b> Jurídico e incorporação</li><li><b>10</b> Projeto e obra</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 2 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p5">
+  <div class="w">
+    <div class="rail r" data-n="5"></div>
+    <div class="kick r">Ponto 05 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">05</span>Quanto custa abrir</h2>
+    <p class="pq2 r">Qual é o investimento total?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Terreno e infraestrutura</li><li>Projeto, licenças e obra</li><li>Móveis, enxoval, capital de giro e reserva para imprevistos</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Só agora existe um produto para orçar. E a obra é só de 40% a 60% da conta: quem orça pela primeira vez esquece o resto.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O orçamento completo de abertura (CAPEX).</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s5"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 06 · Quanto custa manter</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p6">
+  <div class="w">
+    <div class="rail r" data-n="6"></div>
+    <div class="kick r">Ponto 06 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">06</span>Quanto custa manter</h2>
+    <p class="pq2 r">Quanto custa o negócio aberto, todo mês?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Custo fixo do mês</li><li>Custo de cada noite vendida: limpeza, lavanderia, taxas</li><li>O custo por diária: a linha abaixo da qual vender dá prejuízo</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>"Abaixo disso, vender dá prejuízo, e muita gente não sabe onde fica essa linha." Sem ela não dá para saber se o negócio fecha.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O custo mensal e o custo por diária (OPEX).</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s6"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 07 · Viabilidade</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p7">
+  <div class="w">
+    <div class="rail r" data-n="7"></div>
+    <div class="kick r">Ponto 07 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">07</span>Viabilidade</h2>
+    <p class="pq2 r">Vale a pena?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Receita com a ocupação realista do seu destino</li><li>Resultado do mês depois dos custos</li><li>Em quanto tempo o investimento volta</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Obra antes da conta é uma das 5 inversões. Regra do método: "a primeira receita precisa fechar sozinha".</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O estudo de viabilidade: sim, não, ou ajustar o produto.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s7"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 08 · Captação</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p8">
+  <div class="w">
+    <div class="rail r" data-n="8"></div>
+    <div class="kick r">Ponto 08 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">08</span>Captação</h2>
+    <p class="pq2 r">De onde vem o dinheiro?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Capital próprio</li><li>Banco e linhas de crédito</li><li>Sócio ou investidor</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Estruturar para captar: com o estudo do ponto 7 na mão, você deixa de ser uma intenção e vira um ativo que dá para avaliar.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O plano de capital.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s8"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 09 · Jurídico e incorporação</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p9">
+  <div class="w">
+    <div class="rail r" data-n="9"></div>
+    <div class="kick r">Ponto 09 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">09</span>Jurídico e incorporação</h2>
+    <p class="pq2 r">Entrou um sócio ou vou vender unidades. Como fica no papel?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>A empresa e o tipo de sociedade</li><li>As regras entre os sócios</li><li>Se faz sentido vender unidades, e como</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Antes de assinar o primeiro contrato da obra, quem é dono de quê e de onde vem o dinheiro da obra precisam estar claros. Sempre com advogado e contador.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A estrutura societária e o modelo de incorporação, se houver.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s9"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 10 · Projeto e obra</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 2 · Captação e investimento" id="p10">
+  <div class="w">
+    <div class="rail r" data-n="10"></div>
+    <div class="kick r">Ponto 10 de 21 · Jornada 2</div>
+    <h2 class="r"><span class="pn">10</span>Projeto e obra</h2>
+    <p class="pq2 r">Com quem eu conto, e como isso vira realidade?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Arquiteto e engenheiro</li><li>Fornecedores, orçamentos e cronograma</li><li>Obra, montagem, enxoval e teste antes de abrir</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Chamar o arquiteto antes da leitura do lugar é um dos 5 erros. Aqui ele chega com briefing e com o dinheiro definido, e a infraestrutura invisível já está na conta.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A unidade pronta. Fecha a jornada de captação e investimento.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s10"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 11 · Marca e identidade</b></div>
+  </div>
+</section>
+
+<section class="s photo" data-b="Jornada 3 · Identidade, estruturação e gestão">
+  <div class="bgi" style="background-image:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/bed.jpg)"></div>
+  <div class="w">
+    <div class="trig r">Jornada 3 de 6</div>
+    <p class="big r">Identidade, estruturação e gestão</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">Por que alguém escolheria você, e como você controla o negócio?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>Começa ainda durante a obra: marca, sistemas e números prontos antes da primeira reserva.</p></div>
+      <div><div class="tag">Você sai com</div><p>Marca, sistemas ligados e o painel de números do mês.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>11</b> Marca e identidade</li><li><b>12</b> Sistemas</li><li><b>13</b> Gestão</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 3 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 3 · Identidade, estruturação e gestão" id="p11">
+  <div class="w">
+    <div class="rail r" data-n="11"></div>
+    <div class="kick r">Ponto 11 de 21 · Jornada 3</div>
+    <h2 class="r"><span class="pn">11</span>Marca e identidade</h2>
+    <p class="pq2 r">Por que alguém escolheria você, e não o do lado?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>A promessa: o motivo escrito</li><li>Nome e identidade visual</li><li>Fotos e textos</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Canal antes de marca é uma das 5 inversões. "Sem motivo declarado, a comparação volta para preço." Começa ainda durante a obra.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A marca: a promessa que faz alguém escolher antes de chegar.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s11"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 12 · Sistemas</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 3 · Identidade, estruturação e gestão" id="p12">
+  <div class="w">
+    <div class="rail r" data-n="12"></div>
+    <div class="kick r">Ponto 12 de 21 · Jornada 3</div>
+    <h2 class="r"><span class="pn">12</span>Sistemas</h2>
+    <p class="pq2 r">Que ferramentas eu preciso para vender e controlar sem erro?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Site e motor de reservas</li><li>PMS: o caderno central das reservas</li><li>Channel manager: o fio que liga todos os canais</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Sem eles, basta um esquecimento para vender a mesma noite duas vezes. "Nada disso é difícil. Tudo isso é constante."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A estrutura de venda e controle ligada.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s12"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 13 · Gestão</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 3 · Identidade, estruturação e gestão" id="p13">
+  <div class="w">
+    <div class="rail r" data-n="13"></div>
+    <div class="kick r">Ponto 13 de 21 · Jornada 3</div>
+    <h2 class="r"><span class="pn">13</span>Gestão</h2>
+    <p class="pq2 r">Como eu sei se o negócio está dando certo?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Diária média, ocupação e RevPAR</li><li>Custo por diária e resultado do mês</li><li>Quem olha esses números, e quando</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>"Ocupação é vaidade, margem é sobrevivência." Com os sistemas do ponto 12 ligados, os números saem prontos. Sem eles, você só descobre o problema na baixa temporada.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O painel de números do mês. Fecha a jornada de identidade e gestão.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s13"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 14 · Departamentos e equipe</b></div>
+  </div>
+</section>
+
+<section class="s dark" data-b="Jornada 4 · Estruturação da operação">
+  <div class="w">
+    <div class="trig r">Jornada 4 de 6</div>
+    <p class="big r">Estruturação da operação</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">Quem faz o quê, e como se entrega sempre igual?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>Antes de receber hóspedes, a operação precisa estar desenhada no papel, e não na cabeça do dono.</p></div>
+      <div><div class="tag">Você sai com</div><p>Equipe, padrões escritos e o cardápio de serviços.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>14</b> Departamentos e equipe</li><li><b>15</b> Padrões e processos</li><li><b>16</b> Serviços</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 4 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 4 · Estruturação da operação" id="p14">
+  <div class="w">
+    <div class="rail r" data-n="14"></div>
+    <div class="kick r">Ponto 14 de 21 · Jornada 4</div>
+    <h2 class="r"><span class="pn">14</span>Departamentos e equipe</h2>
+    <p class="pq2 r">Quem faz o quê?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Os departamentos: recepção, limpeza, manutenção e, se houver, cozinha</li><li>Quantas pessoas, e em que escala</li><li>O que você faz, o que delega e o que contrata</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Até 3 ou 4 unidades dá para operar sozinho. Depois, "ou você contrata gente e vira gestor, ou o negócio para de crescer no tamanho da sua semana".</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O desenho da equipe e da escala.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s14"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 15 · Padrões e processos</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 4 · Estruturação da operação" id="p15">
+  <div class="w">
+    <div class="rail r" data-n="15"></div>
+    <div class="kick r">Ponto 15 de 21 · Jornada 4</div>
+    <h2 class="r"><span class="pn">15</span>Padrões e processos</h2>
+    <p class="pq2 r">Como entregar sempre igual?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>O padrão escrito de cada rotina</li><li>Checklists de chegada, limpeza e saída</li><li>Quem confere, e como</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Entregar bem num mês e mal no outro derruba a nota, e a diária cai atrás dela. E "uma operação que depende do dono não é vendável: é um emprego".</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O manual de padrões da operação.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s15"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 16 · Serviços</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 4 · Estruturação da operação" id="p16">
+  <div class="w">
+    <div class="rail r" data-n="16"></div>
+    <div class="kick r">Ponto 16 de 21 · Jornada 4</div>
+    <h2 class="r"><span class="pn">16</span>Serviços</h2>
+    <p class="pq2 r">Quais serviços eu ofereço, e quando não oferecer?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Café e alimentação</li><li>Experiências ligadas ao lugar</li><li>O que não colocar ainda</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Primeiro a hospedagem entregando com padrão (ponto 15), depois os serviços. "Dois negócios medianos não somam um negócio bom."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O cardápio de serviços. Fecha a jornada da estruturação da operação.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s16"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 17 · Jornada do hóspede</b></div>
+  </div>
+</section>
+
+<section class="s photo" data-b="Jornada 5 · Operação">
+  <div class="bgi" style="background-image:url(https://raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/main/docs/escola/marco-zero/assets/wide.jpg)"></div>
+  <div class="w">
+    <div class="trig r">Jornada 5 de 6</div>
+    <p class="big r">Operação</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">O que acontece da reserva ao retorno do hóspede?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>Com a estrutura pronta, a operação é a entrega de todos os dias. É ela que gera as avaliações que vão vender a próxima noite.</p></div>
+      <div><div class="tag">Você sai com</div><p>O roteiro da estadia e a rotina de avaliações.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>17</b> Jornada do hóspede</li><li><b>18</b> Experiência e avaliações</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 5 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 5 · Operação" id="p17">
+  <div class="w">
+    <div class="rail r" data-n="17"></div>
+    <div class="kick r">Ponto 17 de 21 · Jornada 5</div>
+    <h2 class="r"><span class="pn">17</span>Jornada do hóspede</h2>
+    <p class="pq2 r">O que acontece da reserva ao retorno?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Os 6 momentos: reserva, chegada, a noite, saída, avaliação, retorno</li><li>O que o hóspede vive em cada um</li><li>Quem da equipe cuida de cada um</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Cada estadia bem entregue ajuda a vender a próxima, e cada falha também se espalha. "A avaliação de hoje é a vitrine de amanhã."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O roteiro da estadia.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s17"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 18 · Experiência e avaliações</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 5 · Operação" id="p18">
+  <div class="w">
+    <div class="rail r" data-n="18"></div>
+    <div class="kick r">Ponto 18 de 21 · Jornada 5</div>
+    <h2 class="r"><span class="pn">18</span>Experiência e avaliações</h2>
+    <p class="pq2 r">Como fazer o hóspede lembrar, voltar e indicar?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>O momento assinatura acontecendo de verdade</li><li>Pedir e responder avaliações</li><li>Corrigir o que aparece nelas</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>A marca promete, a experiência entrega e o produto sustenta. "Quando a marca promete mais do que a experiência entrega, a avaliação cobra."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>A rotina de avaliações. Fecha a jornada da operação.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s18"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 19 · Canais de venda</b></div>
+  </div>
+</section>
+
+<section class="s dark" data-b="Jornada 6 · Aceleração de vendas">
+  <div class="w">
+    <div class="trig r">Jornada 6 de 6</div>
+    <p class="big r">Aceleração de vendas</p>
+    <p class="pq2 r" style="color:var(--gold2);margin-top:10px">Como encher o calendário o ano inteiro, sem baixar a diária?</p>
+    <div class="jgrid r">
+      <div><div class="tag">Por que esta jornada vem aqui</div><p>Acelerar vendas com a operação falhando só espalha a falha. Por isso ela vem por último, sobre uma base que aguenta.</p></div>
+      <div><div class="tag">Você sai com</div><p>Canais, base de clientes e o calendário de preços do ano.</p></div>
+    </div>
+    <ul class="fpts r"><li><b>19</b> Canais de venda</li><li><b>20</b> Marketing e CRM</li><li><b>21</b> Preço e sazonalidade</li></ul>
+    <div class="vid r">▶ Vídeo da jornada 6 · até 3:50</div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 6 · Aceleração de vendas" id="p19">
+  <div class="w">
+    <div class="rail r" data-n="19"></div>
+    <div class="kick r">Ponto 19 de 21 · Jornada 6</div>
+    <h2 class="r"><span class="pn">19</span>Canais de venda</h2>
+    <p class="pq2 r">Onde eu vou vender?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Plataformas: Airbnb, Booking e similares</li><li>Venda direta: site, WhatsApp, base própria</li><li>Quanto sobra em cada canal</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>Com a operação entregando igual, a visibilidade trabalha a favor. "Estar em todos os canais não é distribuição. É dependência dividida."</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O mapa de canais e quanto cada um deixa no caixa.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s19"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 20 · Marketing e CRM</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 6 · Aceleração de vendas" id="p20">
+  <div class="w">
+    <div class="rail r" data-n="20"></div>
+    <div class="kick r">Ponto 20 de 21 · Jornada 6</div>
+    <h2 class="r"><span class="pn">20</span>Marketing e CRM</h2>
+    <p class="pq2 r">Como as pessoas me encontram, e como eu não perco nenhuma?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Conteúdo, anúncios e o perfil no Google</li><li>Atendimento rápido no WhatsApp</li><li>CRM e a base de quem já veio, para vender de novo</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>"Seguidor não é contato." A base de hóspedes com autorização é o ativo de marketing mais barato que uma hospedagem pode ter.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O fluxo de procura e a base própria de clientes.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s20"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 21 · Preço e sazonalidade</b></div>
+  </div>
+</section>
+
+<section class="s pt" data-b="Jornada 6 · Aceleração de vendas" id="p21">
+  <div class="w">
+    <div class="rail r" data-n="21"></div>
+    <div class="kick r">Ponto 21 de 21 · Jornada 6</div>
+    <h2 class="r"><span class="pn">21</span>Preço e sazonalidade</h2>
+    <p class="pq2 r">Como manter o calendário cheio o ano todo, sem baixar a diária?</p>
+    <div class="g g3 r">
+      <div class="c"><div class="tag">O que você decide</div><ul class="bul sm"><li>Calendário de preços por época</li><li>Condição em vez de desconto</li><li>Pacotes e públicos para a baixa temporada</li></ul></div>
+      <div class="c why"><div class="tag">Por que agora</div><p>"Calendário vazio quase nunca se resolve com desconto." É o último ponto porque usa tudo o que veio antes: custo, canais, marca e operação.</p></div>
+      <div class="c out"><div class="tag">O que você entrega</div><p><b>O calendário de preços do ano. E o ciclo recomeça: o que você aprende volta para o ponto 1.</b></p></div>
+    </div>
+    <div class="me r"><span>No seu caso:</span><div class="picks st" data-key="s21"><button class="pick" data-v="ok">Já resolvi</button><button class="pick" data-v="and">Em andamento</button><button class="pick" data-v="no">Ainda não</button></div></div>
+    <div class="nextp r">Isso leva ao <b>→ Ponto 01 · o ciclo recomeça</b></div>
+  </div>
+</section>
+
+<section class="s " data-b="Fechamento">
+  <div class="w">
+    <div class="kick r">Teste da corrente</div>
+    <h2 class="r">Coloque as 6 jornadas na ordem certa</h2>
+    <p class="lead r">Sem olhar para trás. Toque uma por uma, da primeira à última.</p>
+    <div class="chain r" id="chain"><button class="ch" data-i="1">Desenvolvimento</button><button class="ch" data-i="2">Captação e investimento</button><button class="ch" data-i="3">Identidade, estruturação e gestão</button><button class="ch" data-i="4">Estruturação da operação</button><button class="ch" data-i="5">Operação</button><button class="ch" data-i="6">Aceleração de vendas</button></div>
+    <div class="slots r" id="slots"></div>
+    <div class="fb" id="chfb"></div>
+    <button class="bt r" id="chreset" style="align-self:flex-start;margin-top:10px">Recomeçar</button>
+  </div>
+</section>
+
+<section class="s " data-b="Fechamento">
+  <div class="w">
+    <div class="kick r">Combinado claro</div>
+    <h2 class="r">O que a Zion promete, e o que não promete</h2>
+    <div class="vs r">
+      <div class="c ok"><div class="tag">Promete</div><ul class="bul"><li>Método: a ordem das decisões e o critério de cada uma</li><li>Ferramentas e entregas sobre o seu caso</li><li>Preparo para conversar com banco, sócio, arquiteto ou operadora</li></ul></div>
+      <div class="mid">·</div>
+      <div class="c no"><div class="tag">Não promete</div><ul class="bul x"><li>Crédito, financiamento, sócios ou investidores</li><li>Retorno, ocupação ou valorização</li><li>Substituir advogado, contador, engenheiro ou arquiteto</li></ul></div>
+    </div>
+    <p class="lead r mt">"Nenhum método garante resultado, e quem garante está vendendo." O que a ordem certa faz é eliminar o erro mais caro do setor: o erro de sequência.</p>
+  </div>
+</section>
+
+<section class="s cad" data-b="Fechamento">
+  <div class="w">
+    <div class="kick r">Seu plano de ação · 7 dias</div>
+    <h2 class="r">3 passos pequenos, com <em>dia marcado</em>.</h2>
+    <p class="lead r">Comece pelo seu primeiro ponto em aberto. Escolha uma sugestão ou escreva a sua.</p>
+    <div class="sug r" id="sug"></div>
+    <div class="acts r">
+      <div class="act"><span class="an">1</span><input data-key="a1" maxlength="120" placeholder="O que eu vou fazer"><input data-key="d1" maxlength="40" placeholder="Quando (ex.: terça, 19h)"></div>
+      <div class="act"><span class="an">2</span><input data-key="a2" maxlength="120" placeholder="O que eu vou fazer"><input data-key="d2" maxlength="40" placeholder="Quando"></div>
+      <div class="act"><span class="an">3</span><input data-key="a3" maxlength="120" placeholder="O que eu vou fazer"><input data-key="d3" maxlength="40" placeholder="Quando"></div>
+    </div>
+  </div>
+</section>
+
+<section class="s " data-b="Fechamento" id="dossieS">
+  <div class="w">
+    <div class="pdh"><span class="logo"></span><b>Hospitality Business · Diagnóstico do aluno</b></div>
+    <div class="kick r">Seu diagnóstico · Marco Zero</div>
+    <h2 class="r">Onde o seu negócio está na linha</h2>
+    <div class="dmap r" id="dmap"></div>
+    <div class="dossie r" id="dossie"></div>
+    <div class="btns r">
+      <button class="bt main" id="dpdf">Baixar meu diagnóstico em PDF</button>
+      <button class="bt" id="dcopy">Copiar como texto</button>
+    </div>
+    <p class="small r mt">Leve para o encontro ao vivo. É o ponto de partida do seu diagnóstico com o Bruno.</p>
+  </div>
+</section>
+
+<section class="s dark" data-b="Fechamento">
+  <div class="w">
+    <div class="kick r">Faça as 6 jornadas com a gente</div>
+    <p class="big r">Do terreno ao <em>negócio que funciona</em>.</p>
+    <div class="g g4 r mt">
+      <div class="c"><div class="tag">21 semanas</div><p>Um ponto por semana, na ordem da linha, aplicado no seu caso.</p></div>
+      <div class="c"><div class="tag">Ao vivo</div><p>Encontro toda semana e o grupo da turma.</p></div>
+      <div class="c"><div class="tag">Até 10 pessoas</div><p>Turma pequena, para dar tempo de olhar cada projeto.</p></div>
+      <div class="c"><div class="tag">Com o Bruno</div><p>3 sessões individuais: início, meio e aprovação do seu plano.</p></div>
+    </div>
+    <div class="btns r" style="margin-top:26px">
+      <a class="bt main" href="#" id="ctal">Quero o meu diagnóstico gratuito →</a>
+      <a class="bt" href="#" id="nextl" style="color:var(--ivory);border-color:rgba(254,245,240,.3)">Já sou aluno: ir para o Ponto 01</a>
+    </div>
+    <p class="small r mt">Leve o seu diagnóstico desta aula para a conversa. É por ele que a gente começa.</p>
+  </div>
+</section>
+
+</main>
+
+<div class="map" id="map"><div class="in"><button class="close" id="close">Fechar</button><div id="mapl"></div></div></div>
+<nav class="nav"><button id="pv" aria-label="Anterior">‹</button><button id="nx" class="nx" aria-label="Próxima">›</button></nav>
+<div class="hint">← → para navegar</div>
+<div class="bar"><i id="bar"></i></div>
+<script>
+(function(){
+  var NOMES=["Território", "Mercado", "Produto", "Modelo de negócio", "Quanto custa abrir", "Quanto custa manter", "Viabilidade", "Captação", "Jurídico e incorporação", "Projeto e obra", "Marca e identidade", "Sistemas", "Gestão", "Departamentos e equipe", "Padrões e processos", "Serviços", "Jornada do hóspede", "Experiência e avaliações", "Canais de venda", "Marketing e CRM", "Preço e sazonalidade"], FASES=["Desenvolvimento", "Captação e investimento", "Identidade, estruturação e gestão", "Estruturação da operação", "Operação", "Aceleração de vendas"], SUG={"1": ["Andar pelo terreno e listar 3 coisas que só existem ali", "Anotar como chegam água, energia e acesso", "Pedir na prefeitura o zoneamento do terreno"], "2": ["Pesquisar 5 hospedagens da região e anotar diária e avaliação", "Descobrir a ocupação média do meu destino por estação", "Escrever quem seria o meu hóspede ideal"], "3": ["Escrever o meu momento assinatura em uma frase", "Escolher 2 formatos que combinam com o lugar", "Definir quantas unidades na primeira fase"], "4": ["Responder por escrito: Como esse produto vira dinheiro, e por qual porta eu entro?", "Listar o que eu já sei e o que falta sobre modelo de negócio", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "5": ["Responder por escrito: Qual é o investimento total?", "Listar o que eu já sei e o que falta sobre quanto custa abrir", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "6": ["Responder por escrito: Quanto custa o negócio aberto, todo mês?", "Listar o que eu já sei e o que falta sobre quanto custa manter", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "7": ["Responder por escrito: Vale a pena?", "Listar o que eu já sei e o que falta sobre viabilidade", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "8": ["Responder por escrito: De onde vem o dinheiro?", "Listar o que eu já sei e o que falta sobre captação", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "9": ["Responder por escrito: Entrou um sócio ou vou vender unidades. Como fica no papel?", "Listar o que eu já sei e o que falta sobre jurídico e incorporação", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "10": ["Responder por escrito: Com quem eu conto, e como isso vira realidade?", "Listar o que eu já sei e o que falta sobre projeto e obra", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "11": ["Responder por escrito: Por que alguém escolheria você, e não o do lado?", "Listar o que eu já sei e o que falta sobre marca e identidade", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "12": ["Responder por escrito: Que ferramentas eu preciso para vender e controlar sem erro?", "Listar o que eu já sei e o que falta sobre sistemas", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "13": ["Responder por escrito: Como eu sei se o negócio está dando certo?", "Listar o que eu já sei e o que falta sobre gestão", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "14": ["Responder por escrito: Quem faz o quê?", "Listar o que eu já sei e o que falta sobre departamentos e equipe", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "15": ["Responder por escrito: Como entregar sempre igual?", "Listar o que eu já sei e o que falta sobre padrões e processos", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "16": ["Responder por escrito: Quais serviços eu ofereço, e quando não oferecer?", "Listar o que eu já sei e o que falta sobre serviços", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "17": ["Responder por escrito: O que acontece da reserva ao retorno?", "Listar o que eu já sei e o que falta sobre jornada do hóspede", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "18": ["Responder por escrito: Como fazer o hóspede lembrar, voltar e indicar?", "Listar o que eu já sei e o que falta sobre experiência e avaliações", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "19": ["Responder por escrito: Onde eu vou vender?", "Listar o que eu já sei e o que falta sobre canais de venda", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "20": ["Responder por escrito: Como as pessoas me encontram, e como eu não perco nenhuma?", "Listar o que eu já sei e o que falta sobre marketing e crm", "Reler o capítulo do e-book do Marco Zero sobre este assunto"], "21": ["Responder por escrito: Como manter o calendário cheio o ano todo, sem baixar a diária?", "Listar o que eu já sei e o que falta sobre preço e sazonalidade", "Reler o capítulo do e-book do Marco Zero sobre este assunto"]};
+  var S=[].slice.call(document.querySelectorAll('.s')),i=0,top=document.getElementById('top');
+  var KEY='zion_mz_v3',D={};
+  try{D=JSON.parse(localStorage.getItem(KEY)||'{}')||{}}catch(e){D={}}
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(D))}catch(e){}}
+  function go(n){
+    n=Math.max(0,Math.min(S.length-1,n));
+    S[i].classList.remove('on');i=n;var s=S[i];s.classList.add('on');s.scrollTop=0;
+    document.getElementById('chip').textContent=s.dataset.b;
+    document.getElementById('cnt').textContent=(i+1)+' / '+S.length;
+    document.getElementById('bar').style.width=((i+1)/S.length*100)+'%';
+    document.getElementById('pv').disabled=i===0;document.getElementById('nx').disabled=i===S.length-1;
+    var dk=s.classList.contains('dark')||s.classList.contains('photo');top.classList.toggle('on-dark',dk);document.body.classList.toggle('dk',dk);
+    if(s.id==='dossieS')renderD();
+    try{history.replaceState(null,'','#'+(i+1))}catch(e){}
+  }
+  function idx(id){for(var k=0;k<S.length;k++)if(S[k].id===id)return k;return 0}
+  document.getElementById('nx').onclick=function(){go(i+1)};
+  document.getElementById('pv').onclick=function(){go(i-1)};
+  document.addEventListener('keydown',function(e){
+    if(/INPUT|TEXTAREA/.test(e.target.tagName))return;
+    if(e.key==='ArrowRight'||e.key==='PageDown'){e.preventDefault();go(i+1)}
+    if(e.key==='ArrowLeft'||e.key==='PageUp'){e.preventDefault();go(i-1)}
+    if(e.key==='Escape')map.classList.remove('on');
+  });
+  var x0=null,y0=null;
+  document.addEventListener('touchstart',function(e){if(e.target.closest('input,textarea'))return;x0=e.touches[0].clientX;y0=e.touches[0].clientY},{passive:true});
+  document.addEventListener('touchend',function(e){if(x0===null)return;var dx=e.changedTouches[0].clientX-x0,dy=e.changedTouches[0].clientY-y0;if(Math.abs(dx)>60&&Math.abs(dx)>Math.abs(dy)*1.5)go(i+(dx<0?1:-1));x0=null},{passive:true});
+  document.querySelectorAll('[data-go]').forEach(function(b){b.addEventListener('click',function(){go(idx(b.dataset.go))})});
+
+  /* trilho de 21 pontos */
+  document.querySelectorAll('.rail').forEach(function(r){var n=+r.dataset.n,h='';for(var k=1;k<=21;k++)h+='<i class="'+(k<n?'past':k===n?'cur':'')+'"></i>';r.innerHTML=h});
+
+  /* mapa */
+  var map=document.getElementById('map'),ml=document.getElementById('mapl');
+  document.getElementById('mapb').onclick=function(){
+    var h='',last='';
+    S.forEach(function(s,k){
+      if(s.dataset.b!==last){last=s.dataset.b;h+='<h4>'+last+'</h4>'}
+      var t=s.querySelector('h1,h2,.big');var tx=t?t.textContent.trim():'';if(tx.length>70)tx=tx.slice(0,68)+'…';
+      var st=s.id&&D['s'+s.id.slice(1)];
+      h+='<a href="#'+(k+1)+'" data-k="'+k+'" class="'+(k===i?'cur':'')+'"><span>'+(k+1)+'</span>'+tx+(st?'<em class="ck">'+({ok:'✓',and:'◐',no:'○'})[st]+'</em>':'')+'</a>';
+    });
+    ml.innerHTML=h;map.classList.add('on');
+  };
+  ml.addEventListener('click',function(e){var a=e.target.closest('a');if(!a)return;e.preventDefault();map.classList.remove('on');go(+a.dataset.k)});
+  document.getElementById('close').onclick=function(){map.classList.remove('on')};
+  map.addEventListener('click',function(e){if(e.target===map)map.classList.remove('on')});
+
+  /* teste de entrada */
+  document.querySelectorAll('.quiz').forEach(function(q){
+    var fb=q.parentNode.querySelector('.fb');
+    q.addEventListener('click',function(e){var b=e.target.closest('.op');if(!b)return;
+      q.querySelectorAll('.op').forEach(function(o){o.classList.remove('good','bad')});b.classList.add('good');
+      fb.className='fb good';fb.textContent=b.dataset.fb;
+      if(q.dataset.key==='jornada'){D.jornada=b.querySelector('b').textContent.replace('.','');save()}
+    });
+    if(q.dataset.key==='jornada'&&D.jornada){q.querySelectorAll('.op').forEach(function(o){if(o.querySelector('b').textContent.indexOf(D.jornada)===0){o.classList.add('good');fb.className='fb good';fb.textContent=o.dataset.fb}})}
+  });
+
+  /* status de cada ponto */
+  function paintNodes(){document.querySelectorAll('.node').forEach(function(nd){var n=nd.dataset.go.slice(1);nd.classList.remove('ok','and','no');if(D['s'+n])nd.classList.add(D['s'+n])})}
+  document.querySelectorAll('.picks').forEach(function(p){
+    var k=p.dataset.key;
+    function paint(){p.querySelectorAll('.pick').forEach(function(b){b.classList.toggle('on',D[k]===b.dataset.v)})}
+    p.addEventListener('click',function(e){var b=e.target.closest('.pick');if(!b)return;D[k]=(D[k]===b.dataset.v?'':b.dataset.v);save();paint();paintNodes()});
+    paint();
+  });
+  paintNodes();
+
+  /* teste da corrente */
+  var chain=document.getElementById('chain'),slots=document.getElementById('slots'),chfb=document.getElementById('chfb'),seq=[];
+  (function shuffle(){var a=[].slice.call(chain.children);for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1));chain.appendChild(a[j]);a.splice(j,1)}})();
+  chain.addEventListener('click',function(e){var b=e.target.closest('.ch');if(!b||b.disabled)return;
+    var want=seq.length+1,ok=+b.dataset.i===want;seq.push(+b.dataset.i);b.disabled=true;
+    var sp=document.createElement('span');sp.textContent=seq.length+'. '+b.textContent;if(!ok)sp.className='bad';slots.appendChild(sp);
+    if(!ok){chfb.className='fb bad';chfb.textContent='A jornada '+want+' é "'+FASES[want-1]+'". O que ela entrega é o que a seguinte precisa.'}
+    else{chfb.className='fb good';chfb.textContent=seq.length===6?'Corrente completa. Você já enxerga a ordem do negócio inteiro.':'Certo. Próxima.'}
+    if(seq.length===6){var acertos=0;seq.forEach(function(v,k){if(v===k+1)acertos++});D.corrente=acertos;save()}
+  });
+  document.getElementById('chreset').onclick=function(){seq=[];slots.innerHTML='';chfb.textContent='';chain.querySelectorAll('.ch').forEach(function(b){b.disabled=false})};
+
+  /* primeiro ponto em aberto */
+  function first(){for(var n=1;n<=21;n++){if(D['s'+n]!=='ok')return n}return 0}
+
+  /* plano de ação */
+  var sugEl=document.getElementById('sug');
+  function paintSug(){var f=first()||1,list=SUG[f]||[];sugEl.innerHTML='<span class="small">Sugestões para o ponto '+('0'+f).slice(-2)+' · '+NOMES[f-1]+':</span>'+list.map(function(x){return '<button class="sg">'+x+'</button>'}).join('')}
+  paintSug();
+  document.querySelectorAll('input[data-key]').forEach(function(el){el.value=D[el.dataset.key]||'';el.addEventListener('input',function(){D[el.dataset.key]=el.value;save()})});
+  var lastFocus=null;
+  document.querySelectorAll('.act input[data-key^="a"]').forEach(function(el){el.addEventListener('focus',function(){lastFocus=el})});
+  sugEl.addEventListener('click',function(e){var b=e.target.closest('.sg');if(!b)return;
+    var el=lastFocus&&!lastFocus.value?lastFocus:null;
+    if(!el){var all=document.querySelectorAll('.act input[data-key^="a"]');for(var j=0;j<all.length;j++){if(!all[j].value){el=all[j];break}}}
+    if(!el)return;el.value=b.textContent;D[el.dataset.key]=el.value;save();
+    var w=document.querySelector('[data-key="d'+el.dataset.key.slice(1)+'"]');if(w)w.focus();
+  });
+  var obs=new MutationObserver(function(){if(sugEl.closest('.s').classList.contains('on'))paintSug()});
+  obs.observe(sugEl.closest('.s'),{attributes:true,attributeFilter:['class']});
+
+  /* diagnóstico */
+  function esc(s){return String(s||'').replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+  function rows(){
+    var f=first(),c={ok:0,and:0,no:0,x:0};
+    for(var n=1;n<=21;n++){var v=D['s'+n];c[v||'x']++}
+    var pl=[1,2,3].map(function(n){return D['a'+n]?'<div>'+n+'. '+esc(D['a'+n])+(D['d'+n]?' <b>· '+esc(D['d'+n])+'</b>':'')+'</div>':''}).join('')||'<span class="em">monte o seu plano na tela anterior</span>';
+    return [
+      ['Jornada',D.jornada?esc(D.jornada):'<span class="em">sem resposta</span>'],
+      ['Pontos resolvidos',c.ok+' de 21 · em andamento: '+c.and+' · ainda não: '+c.no+(c.x?' · sem marcar: '+c.x:'')],
+      ['Comece por aqui',f?('Ponto '+('0'+f).slice(-2)+' · '+NOMES[f-1]+'. É o primeiro ponto em aberto da sua linha. Os seguintes dependem dele.'):'Todos os pontos marcados como resolvidos.'],
+      ['Teste da corrente',D.corrente!=null?D.corrente+' de 6 jornadas na ordem certa':'<span class="em">não feito</span>'],
+      ['Plano de 7 dias',pl],
+      ['Próximo passo','Ponto 01 · Território, na Jornada 1 · Desenvolvimento.']
+    ];
+  }
+  function renderD(){
+    var h='';for(var n=1;n<=21;n++){var v=D['s'+n]||'';h+='<i class="'+v+(n===first()?' first':'')+'" title="'+NOMES[n-1]+'">'+n+'</i>'}
+    document.getElementById('dmap').innerHTML=h;
+    var el=document.getElementById('dossie');
+    el.innerHTML='<div class="leg"><span class="ok">já resolvi</span><span class="and">em andamento</span><span class="no">ainda não</span><span>sem marcar</span></div>'+rows().map(function(r){return '<div class="dr"><div class="dk">'+r[0]+'</div><div>'+r[1]+'</div></div>'}).join('');
+  }
+  function printIt(only){document.body.classList.toggle('pd',!!only);if(only)renderD();try{window.print()}catch(e){alert('Use o menu do navegador: Imprimir e depois Salvar como PDF.')}setTimeout(function(){document.body.classList.remove('pd')},500)}
+  document.getElementById('dpdf').onclick=function(){printIt(true)};
+  document.getElementById('pdfb').onclick=function(){printIt(false)};
+  document.getElementById('dcopy').onclick=function(){
+    var st={ok:'✓',and:'◐',no:'○'},lin='';for(var n=1;n<=21;n++)lin+=(st[D['s'+n]]||'·')+' '+('0'+n).slice(-2)+' '+NOMES[n-1]+'\n';
+    var tx='Diagnóstico · Marco Zero · Zion Hospitality Business\n\n'+lin+'\n'+rows().map(function(r){var d=document.createElement('div');d.innerHTML=r[1].replace(/<\/div>/g,'\n');return r[0]+': '+d.textContent.trim()}).join('\n');
+    var b=this;function ok(){b.textContent='Copiado ✓';setTimeout(function(){b.textContent='Copiar como texto'},1800)}
+    function fallback(){var a=document.createElement('textarea');a.value=tx;document.body.appendChild(a);a.select();try{document.execCommand('copy');ok()}catch(e){}a.remove()}
+    try{navigator.clipboard.writeText(tx).then(ok,fallback)}catch(e){fallback()}
+  };
+  var NEXT='',CTA='';var nl=document.getElementById('nextl');if(NEXT)nl.href=NEXT;else nl.addEventListener('click',function(e){e.preventDefault();nl.textContent='Ponto 01 · em breve'});
+  var cl=document.getElementById('ctal');if(CTA)cl.href=CTA;else cl.addEventListener('click',function(e){e.preventDefault();cl.textContent='Link do agendamento · em breve'});
+
+  var h=parseInt((location.hash||'').slice(1),10);S[0].classList.add('on');go(h>0?h-1:0);
+})();
+</script>
+</body>
+</html>
