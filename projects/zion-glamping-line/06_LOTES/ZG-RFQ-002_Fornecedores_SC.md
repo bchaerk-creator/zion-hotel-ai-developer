@@ -1,6 +1,19 @@
-# ZG-RFQ-002 · FORNECEDORES PARA COTAÇÃO · Florianópolis e região · REV 00 — PROSPECÇÃO · 18/09/2026
+# ZG-RFQ-002 · FORNECEDORES PARA COTAÇÃO · Florianópolis e região · REV 01 — PROSPECÇÃO · 17/10/2026
 
 Lista de prospecção (pesquisa web, nenhuma empresa contatada). Prioridade A / B / C. Sem preços. Confirmar contatos no site antes do RFQ.
+
+## LOTE 1 · STEEL FRAME · CONSTRUTORAS LOCAIS E FÁBRICA DE KIT (handoff Cabanas Zion 16/10)
+
+_Para a grelha, módulos de piso e deck do lote 1 e para a linha Cabin em LSF; construtora local para o protótipo, fábrica de kit (Nexin) para a série. Perguntar: já fizeram hospedagem ou glamping; fabricariam com a marca Zion._
+
+| Empresa | Cidade / abrangência | O que faz · por que interessa | Site / fonte | Lote | Prior. |
+|---|---|---|---|---|---|
+| **Semente Construções** | Palhoça (Av. Nelson Baltazar Schutz, 750, Aririu) · atende Grande Florianópolis e Serra (Urubici) | Projeto, arquitetura e obra em steel frame; cita modular. Construtora local: serve para o protótipo e para a grelha / piso do lote 1. (48) 99139-0078 · contato@sementeconstrucoes.com | sementeconstrucoes.com | 1 · 2 | A |
+| **SteelTek** | Florianópolis | Construção a seco, mais de 20 anos em SC. (48) 9936-7028 · steeltekframe@gmail.com | steeltek.com.br | 1 | A |
+| **Certech** | Florianópolis | Steel frame e drywall, obras residenciais e comerciais. (48) 99146-1241 · certechst01@gmail.com | certechst.com.br | 1 | B |
+| **Prime Steel** | Bombinhas · atende Florianópolis | Steel frame, shingle, isolamento. (47) 9201-1382 | primesteelsc.com.br | 1 | B |
+| **Nexin Steel** | Joinville | Fábrica de kit LSF: projeto arquitetônico e estrutural, peças numeradas, caderno de montagem; modelos de 18 a 50 m². Candidata a fabricar kit com a marca Zion (linha Cabin) e a grelha / módulos de piso em série. | cabanas.nexinsteel.com.br | 1 | A |
+| **Polisteel** | Caçador | Construtora LSF com engenharia própria. (49) 99922-0041 · polisteel@polisteel.com.br | polisteel.com.br | 1 | B |
 
 ## LOTE 2 · SERRALHERIAS E ESTRUTURAS METÁLICAS (GRANDE FLORIANÓPOLIS E SC)
 
@@ -53,6 +66,8 @@ _Precisa ter: mesa de corte (ideal CNC) e solda de alta frequência (HF) ou sold
 
 | Empresa | Cidade / abrangência | O que faz · por que interessa | Site / fonte | Lote | Prior. |
 |---|---|---|---|---|---|
+| **Tendas Catarinense** | Palhoça (BR 282, nº 140, Aririú) · mesmo bairro da Semente | Fabricação própria, venda e locação, sob medida, atende o Brasil todo; foco hoje em evento. Perguntar: tenda montada o ano inteiro, qual lona, durabilidade, protótipo a partir de planta nossa. (48) 3242-9360 · (48) 3023-0524 | tendascatarinense.com.br | 3 | A |
+| **Sol e Mar Toldos e Coberturas** | São José (R. José Víctor da Rosa, 749, Barreiros · desde 1986) | Lona tensionada e lonas especiais; fábrica própria com estrutura, vulcanização e corte; projeto técnico e instalação. (48) 99174-7966 · contato@solemartoldos.com.br | solemartoldos.com.br | 3 | A |
 | **SC Lonas** | Grande Florianópolis (desde 2009) | Toldos e coberturas sob medida; fabrica tendas piramidais 5 x 5, 6 x 6 e 10 x 10 em lona. Perfil de confeccionista com corte e solda de lona: candidata à lona externa e ao forro (com padrões DXF da Zion). | sclonas.com.br · @_sclonas | 3 | A |
 | **Primeira Linha Toldos** | Florianópolis · atende toda a Grande Florianópolis | Fabricação e instalação de todos os tipos de toldos, coberturas e sombreamentos. | primeiralinhatoldos.com.br | 3 | A |
 | **Zandoná Coberturas** | Palhoça · atende Florianópolis, São José, Biguaçu, Gov. Celso Ramos, Santo Amaro e Tijucas | Toldos, coberturas e pergolados há mais de 20 anos. | zandonacoberturas.com.br | 3 | A |
@@ -60,7 +75,7 @@ _Precisa ter: mesa de corte (ideal CNC) e solda de alta frequência (HF) ou sold
 | **Classe-A Toldos e Coberturas** | Palhoça (Rua Adelino Martins, 20 · Bela Vista) | Fabrica, vende e instala coberturas em lona e policarbonato e pergolados. | @classeatoldos · anunciepalhoca.com.br | 3 | B |
 | **SM Tendas e Coberturas** | Grande Florianópolis | Tendas com calhas, ferragem alumínio, lona branca blackout ou lona cristal (transparente): referência para os painéis de cristal da variante Sensorial. | smtendasecoberturas.com.br | 3 | B |
 | **Toldos 2001 / Tradição Toldos** | Palhoça | Toldos, coberturas e cortinas há mais de 30 anos na Grande Florianópolis. | facebook.com (Tradição Toldos) | 3 | B |
-| **Metal Toldos e Coberturas** | Barreiros · São José | Toldos e coberturas · (48) 3246-2798 (listagem GoldLinks). | goldlinks.com.br | 3 | B |
+| **Metal Toldos e Coberturas** | Barreiros · São José | Só cadastro em lista de empresas, a confirmar. (48) 3246-2798 | goldlinks.com.br | 3 | C |
 | **Tendas Catarinense · Tendas Palhoça** | Palhoça | Tendas para eventos (venda / locação); confirmar fabricação própria. | facebook.com | 3 | C |
 | **Lonasville** | SC (confirmar cidade) | Lonas, toldos, capas, tendas, coberturas e acessórios. | lonasville.com.br | 3 | C |
 | **Tendas Amaral** | Itajaí · atende Joinville, Balneário Camboriú, Florianópolis | Tendas para eventos (locação); confirmar oficina de lona. | tendasamaral.com.br | 3 | C |

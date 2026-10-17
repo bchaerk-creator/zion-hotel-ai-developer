@@ -134,3 +134,7 @@ Estudo preliminar / projeto conceitual. Antes da fabricação: cálculo estrutur
 - `ZG-FFE-001_Zion_Furniture_Design_System.html/.pdf`: DNA, moodboard, paleta, materiais, texturas, assinatura Zion (Arco, Pé, Amarração, Friso, Véu), linguagens de pés, curvas, ferragens, tecidos e luminárias, sistema de acabamentos, ZION CORE / DESTINATION DNA, tiers Essential / Signature / Icon, coleção de 46 peças.
 - `ZG-FFE-002_Zion_Canopy_Bed.html/.pdf` + `cama/FB-01..08.svg`: peça hero (conceito, story, 3 conceitos, render, dimensões, materiais, desenho técnico, detalhes, explodido, BOM, fabricação, montagem, manutenção). Custo estimado só em `interno/`.
 - `referencias/`: fotos oficiais das Bubbles usadas na análise. Ferramentas: `tools/furniture_common.py`, `tools/furniture_system.py`, `tools/furniture_bed.py`.
+
+## Linha Cabin (LSF) e handoff 16/10/2026
+
+- `00_BRIEFING/HANDOFF_Cabanas_Zion_2026-10-16.md`: handoff da conversa paralela sobre a Zion Glamping Store (Bubble, Safari, Cabin 28/32/45 em light steel frame), regras do projeto, plantas publicadas, fornecedores de steel frame e lona da Grande Florianópolis, próximos passos. Os fornecedores entraram em `06_LOTES/ZG-RFQ-002` (REV 01) e no CRM de cotações.

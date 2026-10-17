@@ -9,7 +9,7 @@ from svgkit import zion_mark_html, zion_logo_html
 
 ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 OUT_DIR = os.path.join(ROOT, "06_LOTES"); os.makedirs(OUT_DIR, exist_ok=True)
-DOC = "ZG-RFQ-002"; REV = "REV 00 — PROSPECÇÃO"; DATE = "18/09/2026"
+DOC = "ZG-RFQ-002"; REV = "REV 01 — PROSPECÇÃO"; DATE = "17/10/2026"
 def esc(s): return html.escape(str(s))
 
 # (empresa, cidade, o que faz / por que interessa, site ou fonte, lote, prioridade)
@@ -23,6 +23,14 @@ SERRALHERIAS = [
     ("RC Serralheria Ferro e Inox", "Grande Florianópolis", "35 anos de serralheria em ferro e inox (listagem Guia Fácil). Confirmar porte e calandra.", "guiafacil.com (Serralherias · Florianópolis)", "2", "C"),
     ("Serralheria Lucas", "São José", "Estruturas metálicas, portões, escadas (listagem). Confirmar porte.", "guiafacil.com (Serralherias · Florianópolis)", "2", "C"),
     ("Guild Industrial", "Florianópolis", "Corte a laser, dobra de chapas e perfis, projetos especiais. Alternativa para chapas e conectores de precisão.", "guildindustrial.com.br", "2", "B"),
+]
+STEELFRAME = [
+    ("Semente Construções", "Palhoça (Av. Nelson Baltazar Schutz, 750, Aririu) · atende Grande Florianópolis e Serra (Urubici)", "Projeto, arquitetura e obra em steel frame; cita modular. Construtora local: serve para o protótipo e para a grelha / piso do lote 1. (48) 99139-0078 · contato@sementeconstrucoes.com", "sementeconstrucoes.com", "1 · 2", "A"),
+    ("SteelTek", "Florianópolis", "Construção a seco, mais de 20 anos em SC. (48) 9936-7028 · steeltekframe@gmail.com", "steeltek.com.br", "1", "A"),
+    ("Certech", "Florianópolis", "Steel frame e drywall, obras residenciais e comerciais. (48) 99146-1241 · certechst01@gmail.com", "certechst.com.br", "1", "B"),
+    ("Prime Steel", "Bombinhas · atende Florianópolis", "Steel frame, shingle, isolamento. (47) 9201-1382", "primesteelsc.com.br", "1", "B"),
+    ("Nexin Steel", "Joinville", "Fábrica de kit LSF: projeto arquitetônico e estrutural, peças numeradas, caderno de montagem; modelos de 18 a 50 m². Candidata a fabricar kit com a marca Zion (linha Cabin) e a grelha / módulos de piso em série.", "cabanas.nexinsteel.com.br", "1", "A"),
+    ("Polisteel", "Caçador", "Construtora LSF com engenharia própria. (49) 99922-0041 · polisteel@polisteel.com.br", "polisteel.com.br", "1", "B"),
 ]
 CALANDRA = [
     ("RPS Indústrias", "Sorocaba / SP · atende Santa Catarina", "Serviço de calandragem de tubos e perfis (inclusive perfis W). Opção se nenhuma serralheria local tiver calandra de tubos Ø60,3 com raio variável: calandrar em SP e soldar / montar em SC.", "rpsindustrias.com.br", "2", "B"),
@@ -39,6 +47,8 @@ TUBOS = [
     ("Golin Tubos", "Santa Catarina", "Tubos de aço quadrado, retangular e redondo, industrial e galvanizado; peças e serviços.", "golin.com.br", "2", "C"),
 ]
 LONAS_LOCAL = [
+    ("Tendas Catarinense", "Palhoça (BR 282, nº 140, Aririú) · mesmo bairro da Semente", "Fabricação própria, venda e locação, sob medida, atende o Brasil todo; foco hoje em evento. Perguntar: tenda montada o ano inteiro, qual lona, durabilidade, protótipo a partir de planta nossa. (48) 3242-9360 · (48) 3023-0524", "tendascatarinense.com.br", "3", "A"),
+    ("Sol e Mar Toldos e Coberturas", "São José (R. José Víctor da Rosa, 749, Barreiros · desde 1986)", "Lona tensionada e lonas especiais; fábrica própria com estrutura, vulcanização e corte; projeto técnico e instalação. (48) 99174-7966 · contato@solemartoldos.com.br", "solemartoldos.com.br", "3", "A"),
     ("SC Lonas", "Grande Florianópolis (desde 2009)", "Toldos e coberturas sob medida; fabrica tendas piramidais 5 x 5, 6 x 6 e 10 x 10 em lona. Perfil de confeccionista com corte e solda de lona: candidata à lona externa e ao forro (com padrões DXF da Zion).", "sclonas.com.br · @_sclonas", "3", "A"),
     ("Primeira Linha Toldos", "Florianópolis · atende toda a Grande Florianópolis", "Fabricação e instalação de todos os tipos de toldos, coberturas e sombreamentos.", "primeiralinhatoldos.com.br", "3", "A"),
     ("Zandoná Coberturas", "Palhoça · atende Florianópolis, São José, Biguaçu, Gov. Celso Ramos, Santo Amaro e Tijucas", "Toldos, coberturas e pergolados há mais de 20 anos.", "zandonacoberturas.com.br", "3", "A"),
@@ -46,7 +56,7 @@ LONAS_LOCAL = [
     ("Classe-A Toldos e Coberturas", "Palhoça (Rua Adelino Martins, 20 · Bela Vista)", "Fabrica, vende e instala coberturas em lona e policarbonato e pergolados.", "@classeatoldos · anunciepalhoca.com.br", "3", "B"),
     ("SM Tendas e Coberturas", "Grande Florianópolis", "Tendas com calhas, ferragem alumínio, lona branca blackout ou lona cristal (transparente): referência para os painéis de cristal da variante Sensorial.", "smtendasecoberturas.com.br", "3", "B"),
     ("Toldos 2001 / Tradição Toldos", "Palhoça", "Toldos, coberturas e cortinas há mais de 30 anos na Grande Florianópolis.", "facebook.com (Tradição Toldos)", "3", "B"),
-    ("Metal Toldos e Coberturas", "Barreiros · São José", "Toldos e coberturas · (48) 3246-2798 (listagem GoldLinks).", "goldlinks.com.br", "3", "B"),
+    ("Metal Toldos e Coberturas", "Barreiros · São José", "Só cadastro em lista de empresas, a confirmar. (48) 3246-2798", "goldlinks.com.br", "3", "C"),
     ("Tendas Catarinense · Tendas Palhoça", "Palhoça", "Tendas para eventos (venda / locação); confirmar fabricação própria.", "facebook.com", "3", "C"),
     ("Lonasville", "SC (confirmar cidade)", "Lonas, toldos, capas, tendas, coberturas e acessórios.", "lonasville.com.br", "3", "C"),
     ("Tendas Amaral", "Itajaí · atende Joinville, Balneário Camboriú, Florianópolis", "Tendas para eventos (locação); confirmar oficina de lona.", "tendasamaral.com.br", "3", "C"),
@@ -81,7 +91,8 @@ VIDRO = [
     ("Vidraçaria Almeida", "Florianópolis", "Vidraçaria e esquadrias de alumínio.", "vidracariaalmeida.com.br", "3", "C"),
     ("Lâmina Glass", "Grande Florianópolis", "Vidros e espelhos sob medida.", "laminaglass.com.br", "3", "C"),
 ]
-GROUPS = [("LOTE 2 · SERRALHERIAS E ESTRUTURAS METÁLICAS (GRANDE FLORIANÓPOLIS E SC)", SERRALHERIAS, "Precisa ter: calandra de tubos (Ø48,3 a Ø114,3, raio variável) ou parceiro; solda MIG/TIG qualificada; galvanizador parceiro; espaço para fit test de um pórtico (6 x 4,5 m)."),
+GROUPS = [("LOTE 1 · STEEL FRAME · CONSTRUTORAS LOCAIS E FÁBRICA DE KIT (handoff Cabanas Zion 16/10)", STEELFRAME, "Para a grelha, módulos de piso e deck do lote 1 e para a linha Cabin em LSF; construtora local para o protótipo, fábrica de kit (Nexin) para a série. Perguntar: já fizeram hospedagem ou glamping; fabricariam com a marca Zion."),
+          ("LOTE 2 · SERRALHERIAS E ESTRUTURAS METÁLICAS (GRANDE FLORIANÓPOLIS E SC)", SERRALHERIAS, "Precisa ter: calandra de tubos (Ø48,3 a Ø114,3, raio variável) ou parceiro; solda MIG/TIG qualificada; galvanizador parceiro; espaço para fit test de um pórtico (6 x 4,5 m)."),
           ("CALANDRAGEM TERCEIRIZADA (SE FALTAR CALANDRA LOCAL)", CALANDRA, "Calandrar os 9 arcos do Casulo (tabela de geometria ZC-EST-002) fora e soldar / montar em SC; conferir no gabarito ± 5 mm."),
           ("GALVANIZAÇÃO A FOGO (NBR 6323)", GALVANIZACAO, "Peças ≤ 4,80 m (cuba); furos de respiro nos tubos; certificado por lote. Galvanizar depois do fit test."),
           ("TUBOS E PERFIS (MATÉRIA-PRIMA DO SERRALHEIRO)", TUBOS, "ASTM A500 Gr. B / NBR 8261; certificado do aço; Ø60,3 x 3,6 · Ø48,3 x 3,2 · Ø114,3 x 4,5 · U 150 x 60 x 3,0."),
@@ -125,7 +136,7 @@ def build():
            "sclonas.com.br", "primeiralinhatoldos.com.br", "zandonacoberturas.com.br", "tendasfloripa.com.br", "instagram.com/classeatoldos", "smtendasecoberturas.com.br", "telelistas.net/sc/palhoca/toldos", "goldlinks.com.br (Metal Toldos e Coberturas)", "lonasville.com.br", "tendasamaral.com.br", "tendaforteeventos.com",
            "alucober.com.br (Mercado Público de Florianópolis)", "estruturas.arq.br (Pistelli Pelz)", "formatto.ind.br", "tensomembrana.com.br", "artflexcoberturas.com.br", "saltus.com.br", "tensorestruturas.com", "topflex.com.br", "camptendas.com.br", "fabricadastendas.com.br", "domebambu.com.br", "jrtendas.com.br", "sansuy.com.br", "cipatex.com.br", "tensoflex.com.br/revendedores-tensoflex",
            "flpesquadrias.com.br", "versatilesquadrias.com.br", "grupoimperialesquadrias.com", "vidracariaalmeida.com.br", "laminaglass.com.br"]
-    page('<h2>FONTES E PRÓXIMOS PASSOS<small>pesquisa web de 18/09/2026 · ligar antes de enviar</small></h2><div class="two"><div><h4>FONTES CONSULTADAS</h4><ul class="chk">' + "".join(f"<li class=mono>{esc(s)}</li>" for s in src) + '</ul></div><div><h4>PRÓXIMOS PASSOS</h4><ol class="num"><li>Ligar para as empresas de prioridade A e aplicar a triagem da página anterior; anotar telefone, e-mail e responsável.</li><li>Enviar o one-pager de cotação + documento do lote + DXF; agendar visita à oficina (calandra, mesa de solda HF).</li><li>Pedir 1 peça-amostra: um arco A3 calandrado (lote 2) e um painel P2 soldado com keder (lote 3) antes da série.</li><li>Registrar cotações em interno/ e escolher fornecedor do protótipo do Casulo.</li><li>Atualizar esta lista (REV 01) com os contatos confirmados e os descartados.</li></ol><h4>REVISÃO</h4><table class="t small"><tr><th>Rev</th><th>Data</th><th>Descrição</th></tr><tr><td>00</td><td>' + DATE + '</td><td>Lista de prospecção inicial (web); nenhuma empresa contatada</td></tr></table></div></div>', "Fontes e próximos passos", code=f"{DOC}-99")
+    page('<h2>FONTES E PRÓXIMOS PASSOS<small>pesquisa web de 18/09/2026 · ligar antes de enviar</small></h2><div class="two"><div><h4>FONTES CONSULTADAS</h4><ul class="chk">' + "".join(f"<li class=mono>{esc(s)}</li>" for s in src) + '</ul></div><div><h4>PRÓXIMOS PASSOS</h4><ol class="num"><li>Ligar para as empresas de prioridade A e aplicar a triagem da página anterior; anotar telefone, e-mail e responsável.</li><li>Enviar o one-pager de cotação + documento do lote + DXF; agendar visita à oficina (calandra, mesa de solda HF).</li><li>Pedir 1 peça-amostra: um arco A3 calandrado (lote 2) e um painel P2 soldado com keder (lote 3) antes da série.</li><li>Registrar cotações em interno/ e escolher fornecedor do protótipo do Casulo.</li><li>Atualizar esta lista (REV 01) com os contatos confirmados e os descartados.</li></ol><h4>REVISÃO</h4><table class="t small"><tr><th>Rev</th><th>Data</th><th>Descrição</th></tr><tr><td>00</td><td>18/09/2026</td><td>Lista de prospecção inicial (web); nenhuma empresa contatada</td></tr><tr><td>01</td><td>' + DATE + '</td><td>Steel frame (6 empresas) e lona (Tendas Catarinense, Sol e Mar) do handoff Cabanas Zion 16/10, com telefones</td></tr></table></div></div>', "Fontes e próximos passos", code=f"{DOC}-99")
     css = BASE_CSS + " .mono{font-family:'DM Mono',Menlo,monospace;font-size:6.6px} .pr{display:inline-block;width:12px;height:12px;line-height:12px;border-radius:50%;text-align:center;font-size:7px;font-weight:700;color:#FEF5F0;background:#8B714E} .pr.A{background:#1B2117} .pr.C{background:#B8AE97}"
     doc = f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>ZION · {DOC} · Fornecedores SC</title><style>{css}</style></head><body>{"".join(pages)}</body></html>'
     path = os.path.join(OUT_DIR, f"{DOC}_Fornecedores_SC.html"); open(path, "w", encoding="utf-8").write(doc); print(os.path.relpath(path, ROOT), len(pages), "páginas")
