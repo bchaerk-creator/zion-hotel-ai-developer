@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow"><script>(()=>{let e="projeto-de-bruno-25763216",c="/1uWXm-w6h9E47b5i8p6rY",t=window;if(!t.cxs){function s(e,...c){t._cx?t._cx.callMethod.apply(t._cx,[e,...c]):t.cxs.queue.push([e,...c])}s.queue=[],t.cxs=s;{let t=encodeURIComponent,s=document,n=`https://api.clickmax.io/sdk/script.js?ps=${t(e)}&pg=${t(c)}`,i="script",p=s.createElement(i);p.async=!0,p.src=n;let o=s.getElementsByTagName(i)[0];o.parentNode.insertBefore(p,o)}}cxs("init",e,c)})();cxs("track","page_view");</script><noscript><img height="1" width="1" style="display:none" src="https://api.clickmax.io/tr/projeto-de-bruno-25763216?ty=page_view&pg=%2F1uWXm-w6h9E47b5i8p6rY&pl=%7B%22noscript%22%3A1%7D"/></noscript>
+<title>Transforme seu Terreno</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: página de venda curta, uma coluna larga, a régua das 6 jornadas como peça central. */
+:root{
+  --bg:#FBF7F1;--sand:#F2EADF;--card:#FFFFFF;--ink:#1E2A22;--mute:#67665C;--line:#E3D9CB;
+  --green:#22402F;--deep:#16261C;--gold:#B8963F;--gold2:#E0BE5E;--on-dark:#FBF7F1;--on-dark-mute:rgba(251,247,241,.74);--red:#9A3B2B;
+  --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;--red:#E08A77;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;--red:#E08A77;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.55 var(--f-body);margin:0}
+img{display:block;max-width:100%;height:auto}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.w{max-width:1080px;margin:0 auto}
+section{padding-block:68px}
+.k{font:600 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,40px);line-height:1.12;margin:12px 0 12px;max-width:24ch}
+h3{font-size:20px;line-height:1.22}
+.lead{color:var(--mute);max-width:58ch;margin:0}
+.dark{background:var(--deep);color:var(--on-dark)}.dark .lead{color:var(--on-dark-mute)}.dark .k{color:var(--gold2)}
+.sandbg{background:var(--sand)}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;font:500 16px/1.2 var(--f-body);padding:16px 26px;border-radius:999px;text-decoration:none;background:var(--gold2);color:#1E2A22;border:1px solid transparent}
+.btn.line{background:transparent;color:var(--green);border-color:var(--green)}
+.btn.ghost{background:transparent;color:var(--on-dark);border-color:rgba(251,247,241,.5)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.todo{background:#FFF3C4;color:#5A4500;font:600 12px/1.3 var(--f-body);padding:2px 6px;border-radius:4px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;background:var(--deep);color:var(--on-dark)}
+.hero .tx{display:grid;align-content:center;gap:18px;padding-block:64px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:clamp(24px,5vw,56px)}
+.hero .in{max-width:560px;margin-left:auto;width:100%;display:grid;gap:18px}
+.when{display:inline-flex;gap:10px;align-items:center;flex-wrap:wrap;font-size:14px;color:var(--on-dark)}
+.when b{background:var(--gold2);color:#1E2A22;font-weight:600;padding:6px 12px;border-radius:999px}
+.hero h1{font-size:clamp(32px,4.4vw,52px);line-height:1.06}
+.hero p{margin:0;color:var(--on-dark-mute);font-size:18px}
+.hooks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.hooks li{display:grid;grid-template-columns:20px 1fr;gap:8px;font-size:16px;color:var(--on-dark)}
+.hooks li::before{content:"✓";color:var(--gold2);font-weight:600}
+.price{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
+.price strong{font:400 44px/1 var(--f-disp);color:var(--gold2);font-variant-numeric:tabular-nums}
+.price span{font-size:14px;color:var(--on-dark-mute)}
+.hero .ph{position:relative;min-height:340px;overflow:hidden}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%}
+
+/* para quem */
+.who{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:28px}
+.who div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:6px}
+.who b{font:400 italic 20px/1.3 var(--f-disp)}
+.who span{color:var(--mute);font-size:15px}
+
+/* régua */
+.rule{margin-top:34px;display:grid;grid-template-columns:repeat(6,1fr);border-top:2px solid var(--gold);}
+.rule .j{padding:16px 14px 0 0;display:grid;gap:6px;align-content:start;min-width:0;position:relative}
+.rule .j::before{content:"";position:absolute;top:-7px;left:0;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.rule .j small{font:600 11px/1 var(--f-body);letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.rule .j b{font-weight:500;font-size:16px;line-height:1.25}
+.rule .j span{font-size:13px;color:var(--mute)}
+.rule .j em{font-style:normal;font-size:12px;color:var(--mute);font-variant-numeric:tabular-nums}
+
+.ideas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:40px}
+.idea{border-left:2px solid var(--gold);padding:4px 0 4px 18px;display:grid;gap:6px}
+.idea q{font:400 italic 21px/1.35 var(--f-disp);quotes:"\201C" "\201D"}
+.idea span{color:var(--mute);font-size:15px}
+
+/* entrega */
+.get{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.gi{display:grid;grid-template-columns:42px 1fr;gap:14px;align-items:start;background:rgba(251,247,241,.06);border:1px solid rgba(251,247,241,.14);border-radius:14px;padding:18px}
+.gi .n{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--gold2);color:#1E2A22;font-weight:600}
+.gi b{display:block;font-weight:500;font-size:17px;margin-bottom:2px}
+.gi span{color:var(--on-dark-mute);font-size:15px}
+.bonus{margin-top:22px;border:1px dashed var(--gold2);border-radius:14px;padding:18px 20px;display:grid;gap:4px}
+.bonus b{color:var(--gold2);font-weight:500}
+.bonus span{color:var(--on-dark-mute);font-size:15px}
+
+/* prova */
+.proof{display:grid;grid-template-columns:.9fr 1.1fr;gap:36px;align-items:center}
+.strip{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.strip figure{margin:0;display:grid;gap:6px}
+.strip img{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:10px}
+.strip figcaption{font-size:12px;color:var(--mute)}
+.facts{list-style:none;padding:0;margin:18px 0 22px;display:grid;gap:10px}
+.facts li{border-left:2px solid var(--gold);padding-left:12px}
+
+/* faq + final */
+.faq{max-width:760px;display:grid;gap:10px;margin-top:20px}
+.faq details{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.faq summary{cursor:pointer;font-weight:500}
+.faq p{margin:10px 0 0;color:var(--mute)}
+.final .in{display:grid;gap:16px;justify-items:start}
+.fine{font-size:13px;color:var(--on-dark-mute);margin:0;max-width:62ch}
+.sticky{position:fixed;left:0;right:0;bottom:0;z-index:20;background:var(--deep);border-top:1px solid rgba(251,247,241,.16);display:none;padding-block:10px calc(10px + env(safe-area-inset-bottom,0px))}
+.sticky .in{display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--on-dark)}
+.sticky small{color:var(--on-dark-mute);display:block}
+
+@media (max-width:900px){
+  .hero{grid-template-columns:1fr}.hero .ph{min-height:300px;order:-1}.hero .in{margin-left:0}
+  .who,.get,.ideas,.proof{grid-template-columns:1fr}
+  .rule{grid-template-columns:1fr;border-top:0;border-left:2px solid var(--gold);gap:18px}
+  .rule .j{padding:0 0 0 18px}.rule .j::before{top:4px;left:-7px}
+  .sticky{display:block} body{padding-bottom:76px}
+}
+@media (prefers-reduced-motion:no-preference){.hero h1{animation:rise .8s ease-out both}@keyframes rise{from{transform:translateY(10px);opacity:.4}to{transform:none;opacity:1}}}
+</style>
+</head><body>
+
+<header class="hero">
+  <div class="tx">
+    <div class="in">
+      <div class="when"><b>Aula gravada</b>7 pílulas de até 3 minutos · acesso imediato</div>
+      <h1>Transforme seu terreno em um negócio de hospedagem.</h1>
+      <p>Nesta aula, o Bruno Chaerk mostra a linha inteira de um negócio de hospedagem: 6 jornadas e 21 pontos, na ordem certa. Para quem vai desenvolver e para quem já opera.</p>
+      <ul class="hooks">
+        <li>Aprenda o passo a passo para captar recursos e desenvolver em cima da sua área</li>
+        <li>Aprenda a ter parceiros no seu projeto, inclusive a própria Zion</li>
+        <li>Conheça a Bubble Zion: o preço das cabanas e como fazer uma parceria</li>
+        <li>Aprenda a encher o seu calendário que está vazio</li>
+        <li>Otimize a sua operação</li>
+        <li>Pague menos comissão para Booking e Airbnb e faça as suas reservas diretas</li>
+      </ul>
+      <div class="price"><strong>R$ 47</strong><span>pagamento único · acesso na hora pela área do aluno</span></div>
+      <div><a class="btn" href="LINK_ASAAS_AULA_47" data-todo="link do Asaas de R$ 47">Quero acessar a aula</a></div>
+    </div>
+  </div>
+  <div class="ph"><img src="img/aula/bruno-palco-v.jpg" alt="Bruno Chaerk falando em um palco"></div>
+</header>
+
+<section>
+  <div class="g w">
+    <div class="k">Você se vê em alguma destas?</div>
+    <h2>As dores que mais chegam até a Zion.</h2>
+    <div class="who">
+      <div><b>"Tenho um terreno maravilhoso, mas não tenho dinheiro para desenvolver."</b><span>A aula mostra por que o banco, o sócio e o investidor olham para o projeto estruturado, e não para o terreno.</span></div>
+      <div><b>"Tenho o dinheiro, mas não sei o que fazer nem qual o melhor modelo."</b><span>Você vê as quatro portas de entrada na hospedagem e o que o seu terreno pede, antes de escolher o produto.</span></div>
+      <div><b>"Quero investimento, mas não sei como captar."</b><span>Você entende o que o investidor, o sócio e o banco precisam ver antes de colocar dinheiro, e em que ordem preparar isso.</span></div>
+      <div><b>"Quero a Zion como parceira, mas não sei como fazer."</b><span>Você vê como a Zion avalia parcerias: cabanas, gestão e operação, ou a bandeira Zion Collection. Sempre a partir de um projeto estruturado.</span></div>
+      <div><b>"Quero uma Bubble da Zion. Quanto custa? Dá para fazer parceria?"</b><span>Você conhece a Bubble por dentro, o que ela pede no terreno, os preços de referência da Zion Glamping Store e os caminhos de parceria.</span></div>
+      <div><b>"Já opero e o calendário está vazio."</b><span>Você descobre o gargalo: operação, canais, preço ou reserva direta, e para de depender só de Booking e Airbnb.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="sandbg">
+  <div class="g w">
+    <div class="k">O que você vai ver na aula</div>
+    <h2>A linha inteira, do terreno à venda.</h2>
+    <p class="lead">Cada ponto entrega o que o próximo precisa. Em cada pílula você marca, ponto a ponto, o que já resolveu, o que está em andamento e o que ainda não começou.</p>
+    <div class="rule">
+      <div class="j"><small>Jornada 1</small><b>Desenvolvimento</b><span>Território, mercado, produto e modelo de negócio.</span><em>pontos 1 a 4</em></div>
+      <div class="j"><small>Jornada 2</small><b>Captação e investimento</b><span>Quanto custa abrir e manter, viabilidade, captação, jurídico e obra.</span><em>pontos 5 a 10</em></div>
+      <div class="j"><small>Jornada 3</small><b>Identidade e gestão</b><span>Marca, sistemas e os números que importam.</span><em>pontos 11 a 13</em></div>
+      <div class="j"><small>Jornada 4</small><b>Estruturação da operação</b><span>Equipe, padrões e serviços.</span><em>pontos 14 a 16</em></div>
+      <div class="j"><small>Jornada 5</small><b>Operação</b><span>Jornada do hóspede, experiência e avaliações.</span><em>pontos 17 e 18</em></div>
+      <div class="j"><small>Jornada 6</small><b>Aceleração de vendas</b><span>Canais, marketing e preço o ano inteiro.</span><em>pontos 19 a 21</em></div>
+    </div>
+    <div class="ideas">
+      <div class="idea"><q>A mesma decisão custa de três a dez vezes mais quando é tomada fora de ordem.</q><span>Fora de ordem, você corrige com concreto, e não com papel.</span></div>
+      <div class="idea"><q>Ocupação é vaidade, margem é sobrevivência.</q><span>Os números que dizem se o negócio para de pé.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="dark">
+  <div class="g w">
+    <div class="k">O que você recebe</div>
+    <h2>Por R$ 47, o mapa completo do seu negócio, com bônus.</h2>
+    <div class="get">
+      <div class="gi"><div class="n">1</div><div><b>7 pílulas gravadas com o Bruno</b><span>Uma para cada parte da linha, com até 3 minutos cada. Assista no celular, no seu tempo.</span></div></div>
+      <div class="gi"><div class="n">2</div><div><b>Área do aluno da Zion</b><span>Acesso na hora, com o mesmo ambiente onde a mentoria completa acontece.</span></div></div>
+      <div class="gi"><div class="n">3</div><div><b>Assistente de IA</b><span>Tirou uma dúvida no meio da aula? O assistente da Zion responde ali mesmo.</span></div></div>
+      <div class="gi"><div class="n">4</div><div><b>O teste da corrente</b><span>Os 21 pontos em uma lista para você marcar onde o seu projeto está.</span></div></div>
+    </div>
+    <div class="bonus" style="margin-bottom:12px"><b>Bônus: e-books da Zion</b><span>Junto com a aula, você recebe na área do aluno os e-books da Zion sobre território, mercado, produto, investimento e glamping, para estudar no seu ritmo. <span class="todo">CONFIRMAR LISTA DE E-BOOKS</span></span></div>
+    <div class="bonus" style="margin-bottom:12px"><b>Toda quinta, às 20h: aula ao vivo grátis</b><span>Depois das pílulas, leve as suas dúvidas para a aula ao vivo com o Bruno, toda quinta-feira às 20h (Brasília).</span></div>
+    <div class="bonus"><b>Seus R$ 47 viram crédito</b><span>Se depois da aula você decidir entrar na Turma Fundadores do Hub Zion, o valor da aula é descontado da sua inscrição. Válido até 27/11.</span></div>
+    <div style="margin-top:26px"><a class="btn" href="LINK_ASAAS_AULA_47">Quero acessar a aula por R$ 47</a></div>
+  </div>
+</section>
+
+<section>
+  <div class="g w proof">
+    <div>
+      <div class="k">Quem dá a aula</div>
+      <h2>Bruno Chaerk, fundador da Zion.</h2>
+      <ul class="facts">
+        <li>Mais de 20 anos de hotelaria internacional, com Meliá, Barceló e Wyndham</li>
+        <li>Operações próprias de glamping em Urubici, desde 2020, e Florianópolis, desde 2024</li>
+        <li>Nota 9,6 no Booking e 265 mil seguidores no @zionbubble</li>
+      </ul>
+      <a class="btn line" href="resultados.html">Ver os resultados da Zion</a>
+    </div>
+    <div class="strip">
+      <figure><img src="img/aula/obra-01-deck-estrutura.jpg" alt="Deck de madeira sobre pilares durante a obra em Florianópolis"><figcaption>A obra</figcaption></figure>
+      <figure><img src="img/aula/obra-04-deck-bolhas-fundo.jpg" alt="Deck pronto com as bolhas embaladas ao fundo"><figcaption>A chegada das bolhas</figcaption></figure>
+      <figure><img src="img/aula/floripa-bolhas-deck.jpg" alt="Bolhas montadas recebendo hóspedes"><figcaption>Hoje</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<section class="sandbg">
+  <div class="g w">
+    <div class="k">Dúvidas</div>
+    <h2>Antes de garantir a vaga</h2>
+    <div class="faq">
+      <details><summary>Preciso já ter um terreno?</summary><p>Não. A aula mostra as quatro portas de entrada na hospedagem: construir, comprar pronto, alugar para hospedar e administrar o imóvel de outra pessoa.</p></details>
+      <details><summary>Serve para quem já opera?</summary><p>Serve. As jornadas 3 a 6 tratam de marca, gestão, operação e vendas. É onde está o gargalo de quem já opera e não enche o calendário.</p></details>
+      <details><summary>Como eu acesso a aula?</summary><p>Logo depois do pagamento, você recebe por e-mail o acesso à área do aluno da Zion. As 7 pílulas já estão lá.</p></details>
+      <details><summary>Quanto tempo eu tenho de acesso?</summary><p><span class="todo">DEFINIR PRAZO DE ACESSO</span></p></details>
+      <details><summary>E a aula ao vivo?</summary><p>Toda quinta-feira, às 20h (Brasília), o Bruno dá uma aula ao vivo gratuita. Quem compra esta aula chega lá sabendo onde o próprio projeto está.</p></details>
+      <details><summary>E se eu me arrepender?</summary><p>Você pode pedir o reembolso em até 7 dias depois da compra.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="dark final">
+  <div class="g w in">
+    <div class="when"><b>Aula gravada · R$ 47</b>acesso imediato</div>
+    <h2>Saiba onde o seu projeto está na linha, antes de gastar o primeiro real em obra.</h2>
+    <a class="btn" href="LINK_ASAAS_AULA_47">Quero acessar a aula por R$ 47</a>
+    <p class="fine">A aula é educacional. A Zion não promete renda, retorno, crédito ou sociedade. Resultados dependem de cada projeto, do lugar, do investimento e da execução.</p>
+  </div>
+</section>
+
+<div class="sticky"><div class="g in"><div><b>Transforme seu terreno · R$ 47</b><small>7 pílulas · acesso imediato</small></div><a class="btn" href="LINK_ASAAS_AULA_47" style="padding:12px 18px;font-size:15px">Acessar aula</a></div></div>
+
+
+
+</body></html>
