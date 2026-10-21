@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="robots" content="noindex,nofollow">
+<title>Hub Zion · Clube</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500;600&display=swap">
+<style>
+:root{
+  --bg:#FBF7F1;--sand:#F2EADF;--card:#FFFFFF;--ink:#1E2A22;--mute:#67665C;--line:#E3D9CB;
+  --green:#22402F;--deep:#16261C;--gold:#B8963F;--gold2:#E0BE5E;--on-dark:#FBF7F1;--on-dark-mute:rgba(251,247,241,.74);--ok:#2F6B47;--red:#9A3B2B;
+  --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;--ok:#8FC2A2;--red:#E08A77;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;--ok:#8FC2A2;--red:#E08A77;color-scheme:dark}
+*{box-sizing:border-box}[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--f-body)}
+img{display:block;max-width:100%}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.w{max-width:1100px;margin:0 auto}
+section{padding-block:64px}
+.k{font:600 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;text-wrap:balance;margin:0}
+h2{font-size:clamp(28px,4vw,42px);line-height:1.12;margin:12px 0 10px;max-width:22ch}
+h3{font-size:20px;line-height:1.22}
+.lead{color:var(--mute);max-width:56ch;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;text-align:center;font:500 15px/1.2 var(--f-body);padding:15px 22px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;background:var(--gold2);color:#1E2A22}
+.btn.ghost{background:transparent;color:var(--on-dark);border-color:rgba(251,247,241,.5)}
+.btn.dk{background:var(--green);color:var(--bg)}
+.btn.line{background:transparent;color:var(--green);border-color:var(--green)}
+.btn.full{width:100%}
+.ctas{display:flex;gap:10px;flex-wrap:wrap}
+.dark{background:var(--deep);color:var(--on-dark)}.dark .lead{color:var(--on-dark-mute)}.dark .k{color:var(--gold2)}.dark h2{color:var(--on-dark)}
+.sandbg{background:var(--sand)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:min(84vh,760px);background:var(--deep);color:var(--on-dark)}
+.hero .tx{display:grid;align-content:center;padding-block:56px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:clamp(24px,5vw,64px)}
+.hero .in{display:grid;gap:18px;max-width:520px;margin-left:auto;width:100%}
+.hero h1{font-size:clamp(32px,4.2vw,54px);line-height:1.06}
+.hero p{margin:0;color:var(--on-dark-mute);font-size:17px}
+.hero .ph{position:relative;overflow:hidden;min-height:300px}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.stats{display:flex;gap:20px;flex-wrap:wrap;font-size:13px;color:var(--on-dark-mute)}
+.stats b{display:block;font:400 22px/1 var(--f-disp);color:var(--on-dark);margin-bottom:4px}
+
+.convite{display:grid;grid-template-columns:1fr 1fr;background:var(--sand);padding-block:0}
+.convite .foto{position:relative;min-height:480px;overflow:hidden;background:#E9E9E7}
+.convite .foto img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:60% 22%}
+.convite .tx{display:grid;align-content:center;padding-block:48px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:clamp(24px,5vw,64px)}
+.convite .in{display:grid;gap:16px;max-width:480px;margin-left:auto;width:100%}
+.convite blockquote{margin:0;font:italic 400 clamp(22px,2.4vw,30px)/1.3 var(--f-disp)}
+.convite .ass{font-size:13px;color:var(--mute)}.convite .ass b{display:block;color:var(--ink);font-weight:500;font-size:15px}
+
+.chips{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:26px}
+.chip{all:unset;box-sizing:border-box;cursor:pointer;display:grid;grid-template-columns:44px 1fr;gap:10px;align-items:center;background:var(--card);border:1.5px solid var(--line);border-radius:14px;padding:14px;min-height:76px;font-size:15px;line-height:1.3;color:var(--ink)}
+.chip .em{width:44px;height:44px;border-radius:12px;background:var(--sand);display:grid;place-items:center;font-size:22px}
+.chip[aria-selected="true"]{border-color:var(--gold);box-shadow:0 0 0 3px rgba(184,150,63,.18)}
+.chip[aria-selected="true"] .em{background:var(--gold2)}
+.chip:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.painel{margin-top:16px;background:var(--deep);color:var(--on-dark);border-radius:20px;padding:26px;display:grid;gap:20px;scroll-margin-top:16px}
+.painel .topo{display:grid;gap:8px}
+.painel .topo .k{color:var(--gold2)}
+.painel h3{font-size:clamp(22px,2.6vw,30px);color:var(--on-dark)}
+.painel .dor{margin:0;color:var(--on-dark-mute)}
+.fases{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.fase{border:1px solid rgba(251,247,241,.18);border-radius:14px;padding:16px;display:grid;gap:6px;align-content:start;background:rgba(251,247,241,.04)}
+.fase .m{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+.fase b{font:400 18px/1.25 var(--f-disp)}
+.fase span{font-size:14px;color:var(--on-dark-mute)}
+.tags{display:flex;gap:8px;flex-wrap:wrap}
+.tag{font-size:12px;border:1px solid rgba(224,190,94,.6);color:var(--gold2);border-radius:999px;padding:6px 11px}
+
+.swipe{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(250px,1fr);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:8px;margin-top:24px}
+.cr{scroll-snap-align:start;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:10px;align-content:start}
+.cr .de{color:var(--mute);text-decoration:line-through;text-decoration-color:var(--red);font-size:15px}
+.cr .pr{font:400 20px/1.3 var(--f-disp)}
+.cr .x{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
+.cr .v{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok);margin-top:4px}
+.dica{font-size:12px;color:var(--mute);margin:6px 0 0}
+.destaque{margin-top:22px;display:grid;gap:12px}
+.destaque .frase{font:italic 400 clamp(22px,2.8vw,30px)/1.25 var(--f-disp);color:var(--green);border-left:3px solid var(--gold);padding-left:16px;max-width:30ch}
+.proj{display:grid;grid-template-columns:1fr auto 1.6fr;gap:12px;align-items:stretch}
+.proj>div{border-radius:16px;padding:18px;display:grid;gap:4px;align-content:start}
+.proj small{font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+.proj b{font:400 19px/1.25 var(--f-disp)}
+.proj span{font-size:14px;color:var(--mute)}
+.proj .pa{border:1px dashed var(--line);background:var(--card)}
+.proj .pa small{color:var(--mute)}
+.proj .ph2{background:var(--deep);color:var(--on-dark)}
+.proj .ph2 small{color:var(--gold2)}
+.proj .ph2 span{color:var(--on-dark-mute)}
+.proj .seta{align-self:center;font-size:26px;color:var(--gold);padding:0}
+@media (max-width:900px){.proj{grid-template-columns:1fr}.proj .seta{justify-self:center;transform:rotate(90deg)}}
+
+.met{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}
+.met .col{border-radius:16px;padding:20px;display:grid;gap:10px;align-content:start}
+.met .old{background:rgba(154,59,43,.07);border:1px dashed rgba(154,59,43,.45)}
+.met .new{background:rgba(47,107,71,.08);border:1px solid rgba(47,107,71,.45)}
+.met h3{font-size:18px}
+.met ol{margin:0;padding:0;list-style:none;display:grid;gap:8px}
+.met li{display:flex;gap:10px;align-items:center;font-size:15px}
+.met li i{font-style:normal;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-size:13px;flex:none}
+.met .old li i{background:rgba(154,59,43,.15);color:var(--red)}
+.met .new li i{background:rgba(47,107,71,.18);color:var(--ok)}
+.met .res{font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:10px;margin:0}
+
+.meses{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-top:26px}
+.mes{all:unset;box-sizing:border-box;cursor:pointer;text-align:center;border-radius:12px;padding:12px 4px;border:1.5px solid rgba(251,247,241,.2);display:grid;gap:4px;color:var(--on-dark)}
+.mes small{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--on-dark-mute)}
+.mes b{font:400 26px/1 var(--f-disp)}
+.mes[aria-selected="true"]{background:var(--gold2);color:#1E2A22;border-color:var(--gold2)}
+.mes[aria-selected="true"] small{color:#1E2A22}
+.mes.feito{border-color:rgba(224,190,94,.6)}
+.mes:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.barra{height:4px;border-radius:4px;background:rgba(251,247,241,.15);margin-top:12px;overflow:hidden}
+.barra i{display:block;height:100%;width:16.6%;background:var(--gold2);transition:width .3s}
+.mesbox{margin-top:16px;border:1px solid rgba(224,190,94,.4);border-radius:18px;padding:24px;display:grid;grid-template-columns:1.2fr 1fr;gap:22px}
+.mesbox h3{font-size:clamp(22px,2.6vw,30px);color:var(--on-dark);margin-top:8px}
+.mesbox .perg{font:italic 400 18px/1.3 var(--f-disp);color:var(--gold2);margin:6px 0 0}
+.mesbox ul{margin:16px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.mesbox li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:15px;color:var(--on-dark-mute)}
+.mesbox li::before{content:"";width:9px;height:9px;border:1.5px solid var(--gold2);transform:rotate(45deg);margin-top:6px}
+.entrega{background:rgba(224,190,94,.12);border-radius:14px;padding:16px;display:grid;gap:6px;align-content:start}
+.entrega small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.entrega b{font:400 19px/1.25 var(--f-disp)}
+.entrega span{font-size:13px;color:var(--on-dark-mute)}
+.nav{display:flex;justify-content:space-between;gap:10px;margin-top:14px}
+.nav button{all:unset;cursor:pointer;font-size:14px;color:var(--gold2);padding:8px 2px}
+.semanas{margin-top:22px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.semanas div{border-radius:12px;padding:12px;background:rgba(251,247,241,.06);font-size:13px;color:var(--on-dark-mute)}
+.semanas b{display:block;color:var(--on-dark);font-weight:500;font-size:14px}
+
+.why.sem4{grid-template-columns:repeat(4,1fr)}
+.mods{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px}
+.mods span{font-size:12px;border-radius:8px;padding:5px 9px;background:rgba(251,247,241,.08);color:var(--on-dark)}
+.mods span i{font-style:normal;color:var(--gold2);margin-right:5px}
+.tabs{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
+.tab{all:unset;box-sizing:border-box;cursor:pointer;flex:none;scroll-snap-align:start;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:11px 16px;font-size:14px;font-weight:500;color:var(--ink);display:flex;gap:8px;align-items:center}
+.tab .dot{width:10px;height:10px;border-radius:50%}
+.tab[aria-selected="true"]{background:var(--green);color:var(--bg);border-color:var(--green)}
+.tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tbox{margin-top:14px;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:24px;display:grid;grid-template-columns:1fr 1.3fr;gap:24px}
+.tbox .k{display:block}
+.tbox h3{font-size:clamp(22px,2.6vw,30px);margin-top:8px}
+.tbox .perg{font:italic 400 18px/1.35 var(--f-disp);color:var(--gold);margin:8px 0 0}
+.tbox .fim{margin-top:16px;border-radius:14px;padding:16px;background:var(--sand);display:grid;gap:4px}
+.tbox .fim small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.tbox .fim b{font:400 19px/1.25 var(--f-disp)}
+.tbox .nota{font-size:12px;color:var(--mute);margin:10px 0 0}
+.lista{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.lista li{display:grid;grid-template-columns:46px 1fr;gap:10px;padding:11px 0;border-bottom:1px solid var(--line);align-items:start}
+.lista .cod{font:600 12px/1 var(--f-body);letter-spacing:.06em;border-radius:8px;padding:7px 0;text-align:center;background:var(--sand);color:var(--green)}
+.lista b{display:block;font-weight:500;font-size:15px;line-height:1.3}
+.lista span{display:block;font-size:13px;color:var(--mute);margin-top:2px}
+.tros{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:24px;align-items:start}
+.tro{all:unset;box-sizing:border-box;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:16px;padding:20px;display:grid;gap:8px;align-content:start;color:var(--ink)}
+.tro .n{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--sand);font:400 18px/1 var(--f-disp);color:var(--gold)}
+.tro h3{font-size:19px}
+.tro .mais{font-size:14px;color:var(--mute)}
+.tro .abre{font-size:13px;color:var(--green)}
+.tro[aria-expanded="true"]{border-color:var(--gold)}
+.tro[aria-expanded="true"] .n{background:var(--gold2);color:#1E2A22}
+.tro:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.aviso{font-size:12px;color:var(--mute);margin:12px 0 0}
+
+.tut{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:12px;margin-top:24px}
+.tut>div{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:6px;align-content:start}
+.tut small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.tut b{font:400 20px/1.2 var(--f-disp)}
+.tut span{font-size:14px;color:var(--mute)}
+.tut .e{font-size:26px;color:inherit}
+.tut .tb{background:var(--deep);border-color:var(--deep);color:var(--on-dark);grid-template-columns:96px 1fr;gap:16px;align-items:center}
+.tut .tb img{width:96px;height:120px;object-fit:cover;object-position:60% 20%;border-radius:12px}
+.tut .tb>div{display:grid;gap:6px}
+.tut .tb small{color:var(--gold2)}.tut .tb span{color:var(--on-dark-mute)}
+.vs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+.vs>div{border-radius:16px;padding:18px}
+.vs small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.vs ul{margin:10px 0 0;padding:0;list-style:none;display:grid;gap:6px;font-size:15px}
+.vc{border:1px dashed var(--line);color:var(--mute)}.vc small{color:var(--red)}.vc li{text-decoration:line-through;text-decoration-color:rgba(154,59,43,.5)}
+.vh{background:rgba(47,107,71,.08);border:1px solid rgba(47,107,71,.45)}.vh small{color:var(--ok)}
+.espelho{display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:center;margin-top:18px}
+.cal{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;display:grid;gap:10px}
+.calh{font:500 13px/1 var(--f-body);letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.dias{display:grid;grid-template-columns:repeat(7,1fr);gap:5px}
+.dias i{aspect-ratio:1;border-radius:6px;background:var(--sand);border:1px solid var(--line)}
+.dias i.r{background:var(--gold);border-color:var(--gold)}
+.calf{font-size:13px;color:var(--red);font-weight:500}
+@media (max-width:900px){.espelho{grid-template-columns:1fr}.cal{max-width:300px}}
+.membro.porvc{border:1px solid var(--line)}
+.membro.porvc .selo{background:var(--sand);color:var(--green)}
+.lb{margin-top:16px;background:var(--deep);color:var(--on-dark);border-radius:20px;padding:24px;display:grid;grid-template-columns:1fr 1.3fr;gap:22px;align-items:center}
+.lbt h3{color:var(--on-dark);font-size:clamp(24px,2.8vw,32px);margin-top:8px}
+.lbt p{margin:8px 0 0;color:var(--on-dark-mute);font-size:15px}
+.lbs{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.lbs div{border:1px solid rgba(224,190,94,.45);border-radius:12px;padding:10px 12px;font-size:14px;display:flex;gap:8px;align-items:center}
+.lbs b{font:400 20px/1 var(--f-disp);color:var(--gold2)}
+.lbs i{font-style:normal;color:var(--gold2)}
+@media (max-width:900px){.lb{grid-template-columns:1fr}.lbs{flex-direction:column;align-items:stretch}.lbs i{transform:rotate(90deg);text-align:center}}
+.ganchos{display:grid;gap:8px}
+.ganchos a{display:flex;justify-content:space-between;gap:12px;align-items:center;text-decoration:none;color:var(--on-dark);border:1px solid rgba(251,247,241,.25);border-radius:12px;padding:12px 14px;font-size:15px;background:rgba(251,247,241,.05)}
+.ganchos a span{color:var(--gold2)}
+.dores{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:24px}
+.dores>div{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;display:grid;gap:12px;align-content:start}
+.dores small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.dores h3{font-size:clamp(21px,2.4vw,26px)}
+.dores ul{margin:0;padding:0;list-style:none;display:grid;gap:7px}
+.dores li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:15px;color:var(--mute)}
+.dores li::before{content:"×";color:var(--red);font-weight:600}
+.dores .cal{max-width:260px;padding:12px}
+.terr{display:flex;gap:10px;align-items:center;font-size:30px;background:var(--sand);border-radius:14px;padding:14px;max-width:260px}
+.terr .vz{width:44px;height:44px;border:2px dashed var(--gold);border-radius:10px;display:grid;place-items:center;font:500 22px/1 var(--f-body);color:var(--gold)}
+.redencao{margin-top:16px;background:var(--deep);color:var(--on-dark);border-radius:18px;padding:22px}
+.redencao p{margin:0;font:400 clamp(19px,2.2vw,24px)/1.35 var(--f-disp)}
+@media (max-width:900px){.dores{grid-template-columns:1fr}}
+.aulas{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.au{background:var(--deep);color:var(--on-dark);border-radius:16px;padding:18px;display:grid;grid-template-columns:44px 1fr;gap:14px;align-items:start}
+.au .n2{width:44px;height:44px;border-radius:50%;background:var(--gold2);color:#1E2A22;display:grid;place-items:center;font:400 20px/1 var(--f-disp)}
+.au small{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold2)}
+.au b{display:block;font:400 19px/1.25 var(--f-disp);margin-top:6px}
+.au span{display:block;font-size:14px;color:var(--on-dark-mute);margin-top:4px}
+.pv{display:flex;justify-content:space-between;gap:10px;align-items:center;text-decoration:none;background:rgba(47,107,71,.1);border:1px solid rgba(47,107,71,.4);color:var(--ok);border-radius:12px;padding:12px 14px;font-size:14px;font-weight:500}
+@media (max-width:900px){.aulas{grid-template-columns:1fr}}
+.cmp3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin-top:24px}
+.c3{border-radius:18px;padding:20px;display:grid;gap:8px;align-content:start}
+.c3 small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.c3 b{font:400 30px/1.1 var(--f-disp)}
+.c3 span{font-size:14px}
+.c3.so{border:1px dashed rgba(154,59,43,.5);background:rgba(154,59,43,.05)}.c3.so small{color:var(--red)}.c3.so span{color:var(--mute)}
+.c3.sep{background:var(--card);border:1px solid var(--line)}.c3.sep small{color:var(--mute)}.c3.sep span{color:var(--mute)}
+.c3.hub{background:var(--deep);color:var(--on-dark)}.c3.hub small{color:var(--gold2)}.c3.hub b{color:var(--gold2)}.c3.hub span{color:var(--on-dark-mute)}
+.pend2{color:var(--red)!important}
+.tabw{overflow-x:auto;margin-top:16px;border:1px solid var(--line);border-radius:16px;background:var(--card)}
+.stack{width:100%;border-collapse:collapse;font-size:14px}
+@media (max-width:420px){.stack{font-size:13px}.stack td,.stack th{padding:10px 8px}}
+.stack th{text-align:left;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute);font-weight:600;padding:12px 14px;border-bottom:1px solid var(--line)}
+.stack td{padding:11px 14px;border-bottom:1px solid var(--line)}
+.stack tbody tr:last-child td{border-bottom:1px solid var(--line)}
+.stack .av{display:block;font-size:12px;color:var(--mute);margin-top:2px}
+.stack tfoot td{font-weight:600;padding:13px 14px}
+.stack tfoot .tot{color:var(--red)!important;text-decoration:line-through;text-decoration-thickness:1px}
+.stack tfoot .hubrow td{background:var(--deep);color:var(--gold2)!important;font:400 18px/1.2 var(--f-disp)}
+.stack td:last-child{color:var(--ok);font-weight:500}
+.selo.lanc{background:rgba(154,59,43,.12);color:var(--red)}
+@media (max-width:900px){.cmp3{grid-template-columns:1fr}}
+.balcao{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.bc{border-radius:16px;padding:18px;display:grid;gap:6px;align-content:start}
+.bc small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-weight:600}
+.bc b{font:400 19px/1.25 var(--f-disp)}
+.bc ul{margin:4px 0 0;padding:0 0 0 18px;display:grid;gap:4px;font-size:14px;color:var(--mute)}
+.bc.fora{background:var(--card);border:1px solid var(--line)}.bc.fora small{color:var(--gold)}
+.bc.dentro{background:var(--sand);border:1px solid var(--line)}.bc.dentro small{color:var(--green)}
+.obj{margin-top:16px;background:var(--card);border:1px solid var(--gold);border-radius:16px;padding:16px;display:grid;gap:10px}
+.objt{font:400 18px/1.3 var(--f-disp)}
+.objc{display:flex;flex-wrap:wrap;gap:8px}
+.objc span{font-size:14px;background:var(--sand);border-radius:999px;padding:7px 12px}
+.passos{display:grid;grid-template-columns:repeat(5,1fr);gap:8px;margin-top:12px}
+.ps{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:4px;align-content:start}
+.ps i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--sand);color:var(--gold);display:grid;place-items:center;font:400 15px/1 var(--f-disp)}
+.ps b{font-size:15px;font-weight:500}.ps span{font-size:13px;color:var(--mute)}
+.ps.forte{background:var(--deep);border-color:var(--deep)}.ps.forte b{color:var(--gold2)}.ps.forte span{color:var(--on-dark-mute)}.ps.forte i{background:var(--gold2);color:#1E2A22}
+.perg2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px}
+.perg2>div{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;display:grid;grid-template-columns:36px 1fr;gap:10px;align-items:center}
+.perg2 span{font-size:26px}.perg2 b{font:italic 400 19px/1.3 var(--f-disp)}
+.resp{margin-top:12px;background:var(--deep);color:var(--on-dark-mute);border-radius:16px;padding:18px;font-size:15px}
+.resp b{color:var(--gold2);font-weight:500}
+@media (max-width:900px){.balcao,.perg2{grid-template-columns:1fr}.passos{grid-template-columns:1fr 1fr}.ps.forte{grid-column:1/-1}}
+.loja{margin-top:20px;display:flex;align-items:center;justify-content:space-between;gap:16px;text-decoration:none;color:var(--ink);background:var(--card);border:1.5px solid var(--gold);border-radius:18px;padding:18px 20px}
+.loja .lj{display:grid;gap:4px}
+.loja small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.loja b{font:400 22px/1.2 var(--f-disp)}
+.loja .lj span{font-size:14px;color:var(--mute)}
+.loja .seta2{font-size:26px;color:var(--gold)}
+.pilares4{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}
+.p4{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;gap:8px;align-content:start}
+.p4 .e{font-size:28px}
+.p4 small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.p4 b{font:400 22px/1.2 var(--f-disp)}
+.p4 ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:7px}
+.p4 li{display:grid;grid-template-columns:18px 1fr;gap:8px;font-size:15px;color:var(--mute)}
+.p4 li::before{content:"";width:10px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg);margin-top:7px}
+.p4.destq{background:var(--deep);border-color:var(--deep);color:var(--on-dark)}
+.p4.destq small{color:var(--gold2)}
+.p4.destq li{color:var(--on-dark-mute)}
+.p4.destq li::before{border-color:var(--gold2)}
+.p4 .obs{font-size:12px;color:var(--on-dark-mute);border-top:1px solid rgba(251,247,241,.15);padding-top:8px;margin-top:4px}
+.icones{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:14px}
+.ic{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px;display:grid;gap:6px;align-content:start}
+.ic .e{font-size:24px}
+.ic b{font-size:15px;font-weight:500}
+.ic span{font-size:13px;color:var(--mute)}
+
+.oferta{display:grid;grid-template-columns:1.1fr .9fr;gap:16px;margin-top:24px;align-items:start}
+.membro{background:var(--card);border:2px solid var(--gold);border-radius:20px;padding:26px;display:grid;gap:14px}
+.membro .selo{justify-self:start;font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(184,150,63,.14);color:var(--gold);border-radius:999px;padding:6px 10px}
+.pp .vm{font:400 48px/1 var(--f-disp)}
+.pp .vm small{font:400 17px/1 var(--f-body);color:var(--mute)}
+.pp .ad{display:block;font-size:14px;color:var(--mute);margin-top:8px}
+.pp .pend{display:block;font-size:12px;color:var(--red);margin-top:4px}
+.membro ul{list-style:none;margin:0;padding:0;display:grid;gap:8px;font-size:15px}
+.membro li{display:grid;grid-template-columns:18px 1fr;gap:8px}
+.membro li::before{content:"";width:10px;height:6px;border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg);margin-top:7px}
+.ups{display:grid;gap:12px}
+.up{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:20px;display:grid;gap:10px}
+.up b{font:400 19px/1.25 var(--f-disp)}.up p{margin:0;font-size:14px;color:var(--mute)}
+.why{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:16px}
+.why div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;font-size:13px;color:var(--mute)}
+.why b{display:block;color:var(--ink);font-weight:500;font-size:14px;margin-bottom:2px}
+
+.faq{margin-top:20px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:16px 0}
+.faq summary{cursor:pointer;font:400 18px/1.3 var(--f-disp);list-style:none;display:flex;justify-content:space-between;gap:14px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--gold)}
+.faq details[open] summary::after{content:"×"}
+.faq p{margin:10px 0 0;color:var(--mute);font-size:15px}
+footer{padding-block:24px 96px;font-size:12px;color:var(--mute);border-top:1px solid var(--line)}
+.float{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 8px 24px rgba(0,0,0,.2)}
+
+@media (max-width:900px){
+  section{padding-block:48px}
+  .hero,.convite{grid-template-columns:1fr;min-height:0}
+  .hero .ph{order:-1;aspect-ratio:4/3;min-height:0}
+  .convite .foto{order:-1;min-height:0;aspect-ratio:4/5;max-height:62vh}
+  .hero .tx,.convite .tx{padding-block:32px 40px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .hero .in,.convite .in{margin-left:0}
+  .chips{grid-template-columns:1fr 1fr}
+  .fases,.met,.tros,.oferta,.why,.mesbox,.tbox{grid-template-columns:1fr}
+  .tbox{padding:20px;gap:18px}
+  .why.sem4{grid-template-columns:1fr 1fr}
+  .icones,.semanas{grid-template-columns:1fr 1fr}
+  .pilares4,.tut,.vs{grid-template-columns:1fr}
+  .meses{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}.mes{grid-template-columns:auto auto;justify-content:center;align-items:baseline;gap:6px;padding:10px 4px}.mes b{font-size:20px}
+  .painel{padding:20px}
+}
+@media (max-width:420px){.chip{grid-template-columns:36px 1fr;font-size:14px;padding:12px;gap:8px}.chip .em{width:36px;height:36px;font-size:18px}.mes small{font-size:10px;letter-spacing:.1em}}
+</style>
+</head><body style="margin:0">
+<header class="hero">
+  <div class="tx"><div class="in">
+    <div class="k" style="color:var(--gold2)">Hub Zion · Clube de Desenvolvedores Hoteleiros</div>
+    <h1>Transforme seu terreno em um destino turístico com o Método Zion.</h1>
+    <p>Ensinamos o passo a passo para faturar alto em hospedagem, com o Bruno como tutor do seu projeto.</p>
+    <div class="ganchos"><a href="#dores">Tem um terreno parado e não tem capital para desenvolver? <span>→</span></a><a href="#dores">Já opera e o calendário está vazio? <span>→</span></a></div>
+    <div class="ctas"><a class="btn" href="#momento">Qual é o meu caminho?</a></div>
+    <div class="stats"><div><b>R$ 33 mil</b>em um mês, numa cabana Zion<sup>1</sup></div><div><b>9,6</b>no Booking</div><div><b>20 anos</b>de hotelaria</div></div>
+    <p style="font-size:11px;margin:0;opacity:.7">1. Resultado da operação Zion Bubble Glamping, não promessa. Cada projeto tem o seu número, e o método mostra qual é o seu.</p>
+  </div></div>
+  <div class="ph"><img src="../assets/hub/hero.webp" alt="Cabana Bubble Zion com hidromassagem no deck, cercada de mata" fetchpriority="high"></div>
+</header>
+
+<section class="g" id="dores">
+  <div class="w">
+    <div class="k">Você se vê em alguma destas?</div>
+    <h2>As duas histórias que mais chegam até a Zion.</h2>
+    <div class="dores">
+      <div class="dor1">
+        <small>Quem vai desenvolver</small>
+        <div class="terr" aria-hidden="true"><span>🌳</span><span>🌳</span><span class="vz">?</span><span>🌳</span></div>
+        <h3>Tem o terreno. Não tem o capital.</h3>
+        <ul><li>A área está parada há anos</li><li>Sonha com um parceiro ou sócio que invista nela</li><li>Não sabe por onde começar sem errar</li></ul>
+        <a class="pv" href="#momento">Para você: estruturar o projeto e prepará-lo para parceiro ou investidor <span>→</span></a>
+      </div>
+      <div class="dor2">
+        <small>Quem já opera</small>
+        <div class="cal" aria-hidden="true"><div class="calh">Outubro</div><div class="dias"><i></i><i></i><i></i><i></i><i class="r"></i><i class="r"></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="r"></i><i class="r"></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i class="r"></i><i></i><i></i><i></i></div><div class="calf">5 noites vendidas</div></div>
+        <h3>Construiu a cabana antes de estudar o mercado. Hoje, o calendário está vazio.</h3>
+        <ul><li>Ninguém ensinou gestão: tudo passa por você</li><li>Enche no feriado e esvazia no resto do mês</li><li>Se construir mais uma sozinho, constrói mais do mesmo</li></ul>
+        <a class="pv" href="#momento">Para você: aprender a faturar alto e acelerar as suas vendas. O seu calendário não precisa ficar vazio <span>→</span></a>
+      </div>
+    </div>
+    <div class="redencao"><p>Foi por causa dessas duas dores que a Zion criou o método: para você estruturar de um jeito inteligente desde o começo, e não descobrir o erro depois da obra pronta.</p></div>
+    <div class="k" style="margin-top:44px">O que trava esse mercado</div>
+    <h2 style="max-width:24ch">Existe mais dinheiro no mercado do que projetos bem estruturados para receber esse capital.</h2>
+    <p style="margin:0 0 8px;font:italic 400 clamp(19px,2.2vw,24px)/1.3 var(--f-disp);color:var(--green)">Não é falta de terreno. É decidir fora de ordem.</p>
+    <p class="lead">O dinheiro existe. O que falta é estratégia para captar esse dinheiro e fazer do seu terreno um sucesso.</p>
+    <div class="destaque">
+      <div class="proj">
+        <div class="pa"><small>Não é só isto</small><b>Projeto arquitetônico</b><span>Planta, fachada, obra</span></div>
+        <div class="seta" aria-hidden="true">→</div>
+        <div class="ph2"><small>É isto</small><b>Estruturação de um projeto hoteleiro</b><span>Território, mercado, produto, modelo, conta, capital, jurídico, marca, gestão e operação. A arquitetura é uma parte.</span></div>
+      </div>
+    </div>
+    <div class="balcao">
+      <div class="bc fora"><small>Do balcão para fora</small><b>O que o hóspede vê e quer consumir</b><ul><li>O que a demanda está pedindo</li><li>Sazonalidade da região</li><li>Preço médio que o mercado paga</li></ul></div>
+      <div class="bc dentro"><small>Do balcão para dentro</small><b>O que é melhor para você construir e operar</b><ul><li>Melhor custo-benefício para construir</li><li>Mais fácil de operar</li><li>Menos dor de cabeça e menos obra</li></ul></div>
+    </div>
+    <p class="dica" style="margin-bottom:8px">A gente te ajuda a enxergar os dois lados e a lançar o produto certo no mercado.</p>
+    <div class="swipe" tabindex="0" aria-label="Crenças e realidades, arraste para o lado">
+      <div class="cr"><span class="x">O que dizem</span><span class="de">Preciso ter todo o capital antes.</span><span class="v">A realidade</span><span class="pr">Projeto estruturado é o que atrai capital e parceiro.</span></div>
+      <div class="cr"><span class="x">O que dizem</span><span class="de">É só construir e anunciar.</span><span class="v">A realidade</span><span class="pr">Calendário cheio se desenha antes da obra.</span></div>
+      <div class="cr"><span class="x">O que dizem</span><span class="de">Isso é para quem é do ramo.</span><span class="v">A realidade</span><span class="pr">Quem desenvolve não precisa operar. Precisa decidir na ordem certa.</span></div>
+      <div class="cr"><span class="x">O que dizem</span><span class="de">Sozinho eu resolvo.</span><span class="v">A realidade</span><span class="pr">Sozinho, cada erro se paga duas vezes.</span></div>
+      <div class="cr"><span class="x">O que dizem</span><span class="de">Já opero, então já sei vender.</span><span class="v">A realidade</span><span class="pr">Vender pelo Airbnb e pelo Booking não é o mesmo que controlar preço e canal.</span></div>
+    </div>
+    <p class="dica">Arraste para o lado →</p>
+    <div class="met">
+      <div class="col old"><h3>O caminho comum</h3><ol><li><i>1</i>Desenho</li><li><i>2</i>Orçamento</li><li><i>3</i>Correr atrás de dinheiro</li></ol><p class="res">Produto sem mercado, obra sem lastro.</p></div>
+      <div class="col new"><h3>O Método Zion</h3><ol><li><i>1</i>Mercado</li><li><i>2</i>Conta</li><li><i>3</i>Estrutura</li><li><i>4</i>Masterplan</li></ol><p class="res">Projeto que dá para apresentar.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="g" id="momento">
+  <div class="w">
+    <div class="k">Qual é o seu momento?</div>
+    <h2>Toque na frase que mais se parece com você.</h2>
+    <div class="chips" role="tablist" aria-label="Escolha o seu momento" id="chips"></div>
+    <div class="painel" id="painel" role="tabpanel" aria-live="polite"></div>
+  </div>
+</section>
+
+<section class="convite" aria-label="Convite do Bruno Chaerk">
+  <div class="tx"><div class="in">
+    <div class="k">Um convite do Bruno</div>
+    <blockquote>"Quem disse que você precisa construir um grande hotel para ganhar dinheiro com hospedagem?"</blockquote>
+    <p style="margin:0;font-size:17px;color:var(--mute)">Antes de gastar um real com qualquer tipo de obra, vamos desenhar uma estratégia que se adapte à sua realidade e ao seu projeto.</p>
+    <div class="ass"><b>Bruno Chaerk</b>Fundador do Zion Hotel Group</div>
+    <a class="btn dk" href="https://api.clickmax.io/forms/COT5Zt5-unq4qnbdWGIATdRE" target="_blank" rel="noopener">Fazer o Zion Score grátis</a>
+  </div></div>
+  <div class="foto"><img src="../assets/hub/bruno.webp" alt="Bruno Chaerk, fundador da Zion Hotel Group" loading="lazy"></div>
+</section>
+
+
+
+<section class="g dark" id="jornada">
+  <div class="w">
+    <div class="k">O projeto em 6 meses · 6 jornadas</div>
+    <h2>Do terreno ao projeto apresentável. Toque em cada jornada.</h2>
+    <div class="meses" role="tablist" aria-label="Jornadas do projeto" id="meses"></div>
+    <div class="barra" aria-hidden="true"><i id="barra"></i></div>
+    <div class="mesbox" id="mesbox" role="tabpanel" aria-live="polite"></div>
+    <div class="nav"><button type="button" id="ant">← Jornada anterior</button><button type="button" id="prox">Próxima jornada →</button></div>
+  </div>
+</section>
+
+<section class="g sandbg" id="tutoria">
+  <div class="w">
+    <div class="k">Você não estuda sozinho</div>
+    <h2>O Bruno é o tutor do seu projeto.</h2>
+    <p class="lead">Material na estante não tira projeto do papel. O que tira é alguém olhando o seu terreno, a sua conta e as suas decisões, semana a semana.</p>
+    <div class="tut">
+      <div class="tb"><img src="../assets/hub/bruno.webp" alt="Bruno Chaerk" loading="lazy"><div><small>Tutor do projeto</small><b>Bruno Chaerk</b><span>Conduz as mentorias ao vivo e as sessões. Olha o seu caso, não um caso genérico.</span></div></div>
+      <div class="tc"><span class="e" aria-hidden="true">🧭</span><small>Especialistas ao seu lado</small><b>Equipe Zion</b><span>Arquitetura, viabilidade, revenue, marca e operação. Cada entrega passa por quem faz isso no dia a dia.</span></div>
+      <div class="tc"><span class="e" aria-hidden="true">📡</span><small>2 vezes por semana</small><b>Mentorias ao vivo</b><span>Você leva o seu caso, ouve o dos outros e sai com a próxima decisão.</span></div>
+      <div class="tc"><span class="e" aria-hidden="true">👥</span><small>Sempre</small><b>Comunidade</b><span>Quem está no mesmo caminho, trocando o que funcionou na prática.</span></div>
+    </div>
+    <div class="obj"><span class="objt">Não é um curso. É uma estruturação feita junto até um destes objetivos:</span><div class="objc"><span>📅 Calendário cheio</span><span>📈 Faturamento alto</span><span>🤝 Parceiro investidor</span><span>🏡 A Zion como parceira</span></div></div>
+    <div class="passos">
+      <div class="ps"><i>1</i><b>Identificar</b><span>O produto certo, dos dois lados do balcão</span></div>
+      <div class="ps"><i>2</i><b>Lançar</b><span>O produto no mercado</span></div>
+      <div class="ps"><i>3</i><b>Plano de gestão</b><span>Como vai ser vendido ao público</span></div>
+      <div class="ps"><i>4</i><b>Manualizar</b><span>A operação, para rodar com padrão</span></div>
+      <div class="ps forte"><i>5</i><b>Acelerar vendas</b><span>O mais importante: calendário cheio</span></div>
+    </div>
+    <div class="vs">
+      <div class="vc"><small>Um curso</small><ul><li>Você assiste</li><li>Decide sozinho</li><li>Descobre o erro na obra</li></ul></div>
+      <div class="vh"><small>O Hub Zion</small><ul><li>Você aplica tudo no seu terreno</li><li>Alguém revisa cada decisão</li><li>O erro aparece no papel, antes da obra</li></ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="g" id="trilhas">
+  <div class="w">
+    <div class="k">O que você constrói, frente por frente</div>
+    <h2>Cinco frentes do seu projeto. Cada uma termina com uma entrega pronta.</h2>
+    <div class="tabs" role="tablist" aria-label="Frentes do projeto" id="tabs"></div>
+    <div class="tbox" id="tbox" role="tabpanel" aria-live="polite"></div>
+    <div class="aulas">
+      <div class="au"><span class="n2">1</span><div><small>Toda semana · ao vivo</small><b>Mentoria de Desenvolvimento</b><span>Terreno, mercado, produto, conta, capital e jurídico.</span></div></div>
+      <div class="au"><span class="n2">2</span><div><small>Toda semana · ao vivo</small><b>Mentoria de Gestão, Operação e Vendas</b><span>Equipe, rotina, preço, canais e calendário cheio.</span></div></div>
+    </div>
+    <p class="dica">Duas mentorias ao vivo por semana, com espaço para o seu caso. Todas ficam gravadas, então você não perde nenhuma.</p>
+  </div>
+</section>
+
+<section class="g sandbg" id="trofeus">
+  <div class="w">
+    <div class="k">Onde a jornada pode levar</div>
+    <h2>Essa porta não abre para terreno. Abre para projeto.</h2>
+    <div class="tros">
+      <button type="button" class="tro" aria-expanded="false"><span class="n">I</span><h3>Fazer do seu jeito, com segurança</h3><span class="mais" hidden>Você implanta sozinho, com o método e cada decisão na ordem certa.</span><span class="abre">Ver mais +</span></button>
+      <button type="button" class="tro" aria-expanded="false"><span class="n">II</span><h3>Ter a Zion como parceira</h3><span class="mais" hidden>Projetos estruturados podem ser avaliados para parceria: cabanas da Zion Glamping Store, gestão e operação, ou a bandeira Zion Collection.</span><span class="abre">Ver mais +</span></button>
+      <button type="button" class="tro" aria-expanded="false"><span class="n">III</span><h3>Chegar à mesa de investidores</h3><span class="mais" hidden>Projetos prontos entram no Land Bank Zion, a vitrine que a Zion apresenta à sua rede de parceiros e investidores.</span><span class="abre">Ver mais +</span></button>
+    </div>
+    <p class="aviso">Nenhum caminho é garantido: cada projeto é avaliado individualmente. O método entrega um projeto pronto para ser avaliado.</p>
+  </div>
+</section>
+
+<section class="g">
+  <div class="w">
+    <div class="k">O que o membro recebe</div>
+    <h2>Você não entra num curso. Entra num círculo.</h2>
+    <p class="lead">Um lugar onde o seu projeto é visto por quem desenvolve, opera e investe em hospedagem.</p>
+    <div class="pilares4">
+      <div class="p4 destq"><span class="e" aria-hidden="true">🤝</span><small>Oportunidades</small><b>A mesa onde os projetos encontram capital</b><ul><li>Acesso à rede de investidores de turismo da Zion</li><li>Possibilidade de ter a Zion como parceira</li><li>Seu projeto na vitrine do Land Bank Zion</li></ul><span class="obs">Oportunidade, não promessa: cada projeto é avaliado individualmente.</span></div>
+      <div class="p4"><span class="e" aria-hidden="true">👥</span><small>Comunidade</small><b>Gente que já passou por onde você está</b><ul><li>Troca com desenvolvedores, anfitriões e operadores</li><li>Duas mentorias ao vivo por semana para levar o seu caso</li><li>Conexões com fornecedores e parceiros do setor</li></ul></div>
+      <div class="p4"><span class="e" aria-hidden="true">♟️</span><small>Conhecimento</small><b>Entender o jogo inteiro</b><ul><li>Desenvolvimento, capital, gestão, operação e vendas</li><li>O método que a Zion usa nas próprias sedes</li><li>Biblioteca gravada para consultar sempre</li></ul></div>
+      <div class="p4"><span class="e" aria-hidden="true">🏔️</span><small>Posição</small><b>Ser a referência da sua região</b><ul><li>Falar a língua do banco, do investidor e da prefeitura</li><li>Decidir com dados, não com achismo</li><li>Certificado de Desenvolvedor Hoteleiro Zion</li></ul></div>
+    </div>
+    <div class="k" style="margin-top:28px">E as ferramentas para fazer acontecer</div>
+    <div class="icones">
+      <div class="ic"><span class="e" aria-hidden="true">🎓</span><b>5 frentes de trabalho</b><span>Desenvolvimento, Capital, Gestão, Operação e Vendas</span></div>
+      <div class="ic"><span class="e" aria-hidden="true">📡</span><b>Biblioteca gravada</b><span>Todas as mentorias e materiais</span></div>
+      <div class="ic"><span class="e" aria-hidden="true">🧮</span><b>Simulador</b><span>Investimento, payback, TIR e VPL</span></div>
+      <div class="ic"><span class="e" aria-hidden="true">🧰</span><b>Kit Developer</b><span>Contratos, checklists e pitch deck</span></div>
+      <div class="ic"><span class="e" aria-hidden="true">🤝</span><b>Sessão com o Bruno</b><span>Boas-vindas em grupo</span></div>
+      <div class="ic"><span class="e" aria-hidden="true">📁</span><b>Dossiê final</b><span>E certificado de desenvolvedor</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="g" id="comparar">
+  <div class="w">
+    <div class="k">Faça a conta</div>
+    <h2>Quanto custa chegar ao mesmo projeto por outro caminho?</h2>
+    <div class="cmp3">
+      <div class="c3 so"><small>Sozinho</small><b>Tentativa e erro</b><span>Não tem boleto, mas tem conta: o erro aparece na obra, no modelo errado ou no calendário vazio. E na obra ele custa mais que qualquer mentoria.</span></div>
+      <div class="c3 sep"><small>Contratando cada serviço</small><b>até R$ 120 mil</b><span>Cada estudo com um profissional diferente, sem ninguém amarrando tudo.</span></div>
+      <div class="c3 hub"><small>Dentro do Hub Zion</small><b>6x R$ 549</b><span>Tudo amarrado no mesmo método, com o Bruno como tutor e a equipe revisando cada entrega.</span></div>
+    </div>
+    <div class="tabw"><table class="stack">
+      <thead><tr><th>O que um projeto hoteleiro precisa</th><th>No Hub</th></tr></thead>
+      <tbody>
+        <tr><td>Diagnóstico de território</td><td>✓ Jornada 2</td></tr>
+        <tr><td>Estudo de mercado e demanda</td><td>✓ Jornada 2</td></tr>
+        <tr><td>Conceito, produto e masterplan</td><td>✓ Jornada 3</td></tr>
+        <tr><td>Estudo de viabilidade</td><td>✓ Jornada 4</td></tr>
+        <tr><td>Estrutura de capital, crédito e captação</td><td>✓ Jornada 5</td></tr>
+        <tr><td>Estrutura jurídica e societária</td><td>✓ Jornada 5</td></tr>
+        <tr><td>Plano de vendas e de gestão</td><td>✓ Mentorias semanais</td></tr>
+        <tr><td>Sessões estratégicas com o Bruno <span class="av">avulsa: R$ 1.200 cada</span></td><td>✓ Incluídas</td></tr>
+      </tbody>
+      <tfoot><tr><td>Contratando tudo separado</td><td class="tot">até R$ 120 mil</td></tr><tr class="hubrow"><td>Dentro do Hub Zion</td><td>6x R$ 549</td></tr></tfoot>
+    </table></div>
+    <p class="dica">Valores de referência da Zion para contratação avulsa dos serviços de estruturação.</p>
+  </div>
+</section>
+
+<section class="g sandbg" id="planos">
+  <div class="w">
+    <div class="k">Turma Fundadores · 6 meses</div>
+    <h2>Dois jeitos de chegar ao mesmo lugar.</h2>
+    <p class="lead">Você faz com a gente, ou a Zion faz por você. Os dois terminam no Land Bank Zion.</p>
+    <div class="oferta">
+      <div class="membro">
+        <div style="display:flex;gap:8px;flex-wrap:wrap"><span class="selo">Faça com a Zion</span><span class="selo lanc">Oferta de lançamento · até 27/11, Black Friday</span></div>
+        <b style="font:400 22px/1.2 var(--f-disp)">Turma do Hub Zion</b>
+        <div class="pp"><span class="vm">6x R$ 549</span><span class="ad">R$ 3.294 no cartão · turma de 6 meses, com começo e fim</span><span class="pend">Início da turma: [data a definir]</span></div>
+        <ul><li>Bruno como tutor do seu projeto</li><li>Equipe Zion acompanhando cada entrega</li><li>2 mentorias ao vivo por semana, todas gravadas</li><li>Comunidade, simulador e Kit Developer</li><li>Seu projeto preparado para o Land Bank</li></ul>
+        <a class="btn dk full" href="#planos" aria-disabled="true">Quero entrar na turma</a>
+        <a class="btn line full" href="https://calendly.com/contato-zionglampingcollection/1h" target="_blank" rel="noopener">Conversar antes com a equipe</a>
+      </div>
+      <div class="membro porvc">
+        <span class="selo">A Zion faz por você</span>
+        <b style="font:400 22px/1.2 var(--f-disp)">Estruturação pela equipe Zion</b>
+        <p style="margin:0;color:var(--mute);font-size:15px">Para quem tem um projeto maior, ou prefere entregar a estruturação para quem faz isso todo dia.</p>
+        <ul><li>A equipe Zion estrutura o projeto com você</li><li>Viabilidade, modelo, capital e masterplan</li><li>Possibilidade de parceria com a Zion</li><li>Entrada direta no Land Bank</li></ul>
+        <div class="pp"><span class="ad">Proposta sob medida, depois de uma conversa</span></div>
+        <a class="btn line full" href="https://calendly.com/contato-zionglampingcollection/1h" target="_blank" rel="noopener">Agendar conversa</a>
+      </div>
+    </div>
+    <div class="lb">
+      <div class="lbt"><span class="k" style="color:var(--gold2)">O destino dos dois caminhos</span><h3>Land Bank Zion</h3><p>Seu projeto estruturado e toda a due diligence organizada num só lugar, prontos para serem apresentados a investidores e à própria Zion.</p></div>
+      <div class="lbs"><div><b>1</b>Turma</div><i aria-hidden="true">→</i><div><b>2</b>Projeto estruturado</div><i aria-hidden="true">→</i><div><b>3</b>Land Bank</div><i aria-hidden="true">→</i><div><b>4</b>Mesa de investimento</div></div>
+    </div>
+    <div class="why">
+      <div><b>6 meses</b>Uma turma com começo, meio e fim. Seis jornadas até o projeto apresentável.</div>
+      <div><b>Depois · R$ 270/mês</b>Mantém você no clube e no Land Bank Zion, com o seu projeto à vista de investidores e da Zion.</div>
+      <div><b>Sem promessa</b>Cada projeto é avaliado individualmente para parceria ou investimento.</div>
+    </div>
+  </div>
+</section>
+
+<section class="g">
+  <div class="w">
+    <div class="k">Perguntas frequentes</div>
+    <h2>Antes de entrar.</h2>
+    <div class="faq">
+      <details><summary>O Hub é só para quem tem terreno?</summary><p>Não. Também é para quem já opera pousada, chalé, glamping ou Airbnb, e para quem quer entrar no setor.</p></details>
+      <details><summary>Não tenho capital. Faz sentido?</summary><p>Faz. Primeiro você descobre quanto o projeto precisa e quais caminhos existem. Projeto estruturado é o que conversa com capital.</p></details>
+      <details><summary>Vou ter alguém acompanhando o meu projeto?</summary><p>Sim. O Bruno é o tutor do seu projeto e a equipe Zion acompanha cada entrega da jornada. Você não fica sozinho com o material.</p></details>
+      <details><summary>E se eu perder a mentoria ao vivo?</summary><p>Não perde. Todas as mentorias são gravadas ao vivo e ficam na biblioteca. A dúvida você leva para a próxima mentoria ou para a comunidade.</p></details>
+      <details><summary>A Zion vai trazer investidor ou ser minha sócia?</summary><p>Pode ser um dos caminhos, não uma promessa. Cada projeto é avaliado individualmente.</p></details>
+      <details><summary>Quanto custa e por quanto tempo?</summary><p>A turma dura 6 meses e custa 6x de R$ 549 no cartão (R$ 3.294). Depois da turma, quem quiser continuar no clube e no Land Bank Zion paga R$ 270 por mês.</p></details>
+      <details><summary>O que é o Land Bank Zion?</summary><p>É onde ficam os projetos estruturados pelos membros, com a due diligence organizada. A Zion e a sua rede de investidores conhecem esses projetos para possíveis parcerias. Não é promessa de investimento: cada projeto é avaliado individualmente.</p></details>
+      <details><summary>Vocês garantem resultado?</summary><p>Não prometemos resultado financeiro. O Hub entrega método, ferramentas e acompanhamento.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="g sandbg" id="bolha">
+  <div class="w">
+    <div class="k">E a bolha no meu terreno?</div>
+    <h2>É possível. Mas começa por quem você é e pelo seu terreno.</h2>
+    <p class="lead">A Zion tem soluções e parcerias com modelos de cabana testados na própria operação, da Bubble a outros formatos. Só que essa possibilidade só fica completa quando a gente sabe quem você é e como o seu terreno está estruturado.</p>
+    <div class="perg2">
+      <div><span aria-hidden="true">💸</span><b>Você colocaria dinheiro no terreno de um terceiro?</b></div>
+      <div><span aria-hidden="true">🤝</span><b>Seria sócio de alguém que não tem um projeto?</b></div>
+    </div>
+    <div class="resp"><b>Nem a Zion, nem um investidor.</b> Projeto não é só arquitetura: é estrutura jurídica e societária, estudo de mercado, produto, sazonalidade, preço médio da região e o modelo de cabana que a demanda pede. É isso que a turma constrói com você.</div>
+    <div class="ctas" style="margin-top:16px"><a class="btn dk" href="https://api.clickmax.io/forms/COT5Zt5-unq4qnbdWGIATdRE" target="_blank" rel="noopener">Começar pelo Zion Score grátis</a><a class="btn line" href="#planos">Ver a turma</a></div>
+    <a class="loja" href="store.html" target="_blank" rel="noopener"><span class="lj"><small>Zion Glamping Store</small><b>Conheça os nossos produtos</b><span>Bubble Suite, Suite Premium e Cápsula, com fichas técnicas e preços.</span></span><span class="seta2" aria-hidden="true">→</span></a>
+  </div>
+</section>
+
+<section class="g dark">
+  <div class="w" style="display:grid;gap:16px">
+    <h2>O seu terreno já existe. Agora falta a ordem.</h2>
+    <div class="ctas"><a class="btn" href="https://api.clickmax.io/forms/COT5Zt5-unq4qnbdWGIATdRE" target="_blank" rel="noopener">Fazer o Zion Score grátis</a><a class="btn ghost" href="#planos">Entrar na turma</a></div>
+  </div>
+</section>
+<footer class="g"><div class="w">Zion Hotel Group International · Florianópolis, SC · WhatsApp <span style="user-select:all">+55 48 6137-1061</span><br>Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade.</div></footer>
+<a class="btn dk float" href="https://api.clickmax.io/forms/COT5Zt5-unq4qnbdWGIATdRE" target="_blank" rel="noopener">Zion Score grátis</a>
+
+<script>
+(function(){
+  const QUIZ='https://api.clickmax.io/forms/COT5Zt5-unq4qnbdWGIATdRE';
+  const CAL='https://calendly.com/contato-zionglampingcollection/1h';
+  const M=[
+    {e:'🏡',t:'Já tenho uma pousada e quero colocar mais cabanas',dor:'Você já opera e quer crescer, mas não sabe quantas unidades, qual modelo nem quanto custa.',tr:'Frentes Desenvolvimento · Gestão',f:[['Jornada 1','Leitura da operação','Ocupação, diária e espaço disponível.'],['Jornada 2–3','A expansão na ponta do lápis','Quantas unidades e qual modelo se pagam.'],['Jornada 4–6','Implantar sem parar a operação','Cronograma por fases e venda da novidade.']],tro:'Troféus I e II'},
+    {e:'🧭',t:'Quero saber o melhor modelo para o meu terreno',dor:'Glamping, chalé, bolha, pousada? Cada pessoa diz uma coisa e você não quer errar no formato.',tr:'Frente Desenvolvimento',f:[['Jornada 1','O que o lugar pede','Leitura do território e do mercado da região.'],['Jornada 2–3','Comparar modelos','Simulador com formatos lado a lado.'],['Jornada 4–6','Decidir e estruturar','Modelo escolhido, conta fechada e masterplan.']],tro:'Troféu I · Autonomia'},
+    {e:'🤝',t:'Tenho uma área grande e quero atrair um investidor',dor:'A área é boa demais para ficar parada. Você quer que alguém com capital olhe para ela.',tr:'Frente Desenvolvimento · Land Bank',f:[['Jornada 1–2','Tese do território','O que a área permite e qual a vocação dela.'],['Jornada 3–4','Números e estrutura','Viabilidade, fases e modelo de parceria.'],['Jornada 5–6','Vitrine Land Bank','Projeto pronto para avaliação da rede Zion.']],tro:'Troféu III · Mesa do investidor'},
+    {e:'💰',t:'Tenho o terreno, mas não tenho o capital',dor:'A área você tem. Falta saber quanto o projeto precisa e de onde o dinheiro pode vir.',tr:'Frentes Desenvolvimento · Capital',f:[['Jornada 1–2','Quanto o projeto precisa','Investimento por fases, do mínimo ao ideal.'],['Jornada 3–4','Caminhos de capital','Fases, parceiro, garantia e estrutura jurídica.'],['Jornada 5–6','Projeto pronto para negociar','Dossiê para apresentar a parceiro ou banco.']],tro:'Troféus II e III'},
+    {e:'🌳',t:'Tenho um terreno parado e não sei por onde começar',dor:'O terreno está aí há anos. Você sente o potencial, mas trava toda vez que tenta começar.',tr:'Frente Desenvolvimento',f:[['Jornada 1–2','Ler o seu lugar','Território, acesso, água e o que a região pede.'],['Jornada 3–4','Achar o modelo certo','Chalé, cabana, bolha ou pousada.'],['Jornada 5–6','Projeto apresentável','Dossiê pronto para decidir, buscar parceiro ou capital.']],tro:'Troféus I, II e III'},
+    {e:'📅',t:'Já opero, mas o calendário está vazio',dor:'Enche no feriado e esvazia no meio de semana. A conta aperta no fim do mês.',tr:'Frentes Vendas · Gestão',f:[['Jornada 1','Diagnóstico de vendas','Canais, preço e onde a reserva se perde.'],['Jornada 2–4','Calendário de ano inteiro','Produto para a baixa e venda direta.'],['Jornada 5–6','Rotina de vendas','Preço, canais e indicadores no controle.']],tro:'Troféu I · Autonomia'},
+    {e:'⚙️',t:'Quero profissionalizar a minha operação',dor:'Tudo passa por você. Sem padrão, sem equipe preparada, sem folga.',tr:'Frentes Operação · Gestão',f:[['Jornada 1–2','Mapa da operação','Jornada do hóspede e gargalos.'],['Jornada 3–4','Padrões e equipe','Checklists, rotinas e funções.'],['Jornada 5–6','Manual da casa','Operação que funciona sem depender de você em tudo.']],tro:'Troféus I e II'},
+    {e:'🔑',t:'Quero entrar no mundo do Airbnb',dor:'Você tem um imóvel ou quer começar e não sabe como transformar isso em negócio.',tr:'Frentes Gestão · Vendas',f:[['Jornada 1','O imóvel certo','Localização, público e formato.'],['Jornada 2–3','Montar e anunciar','Experiência, fotos e preço.'],['Jornada 4–6','Operar e crescer','Avaliações, calendário e próxima unidade.']],tro:'Troféu I · Autonomia'}
+  ];
+  const chips=document.getElementById('chips'),painel=document.getElementById('painel');
+  M.forEach((m,i)=>{const b=document.createElement('button');b.type='button';b.className='chip';b.setAttribute('role','tab');b.setAttribute('aria-selected','false');b.innerHTML='<span class="em" aria-hidden="true">'+m.e+'</span><span>'+m.t+'</span>';b.addEventListener('click',()=>sel(i,true));chips.appendChild(b)});
+  function sel(i,scroll){
+    [...chips.children].forEach((c,j)=>c.setAttribute('aria-selected',String(i===j)));
+    const m=M[i];
+    painel.innerHTML='<div class="topo"><span class="k">O seu caminho no Hub</span><h3>'+m.t+'</h3><p class="dor">'+m.dor+'</p></div>'+
+      '<div class="fases">'+m.f.map(f=>'<div class="fase"><span class="m">'+f[0]+'</span><b>'+f[1]+'</b><span>'+f[2]+'</span></div>').join('')+'</div>'+
+      '<div class="tags"><span class="tag">'+m.tr+'</span><span class="tag">'+m.tro+'</span></div>'+
+      '<div class="ctas"><a class="btn" href="'+QUIZ+'" target="_blank" rel="noopener">Começar pelo Zion Score grátis</a><a class="btn ghost" href="'+CAL+'" target="_blank" rel="noopener">Conversar com a equipe</a></div>';
+    if(scroll&&window.matchMedia('(max-width:900px)').matches)painel.scrollIntoView({behavior:'smooth',block:'start'});
+  }
+  sel(0,false);
+
+  const J=[
+    {t:'Ponto de partida',q:'Onde você está e por onde começa?',faz:['Zion Score completo e sessão de boas-vindas com o Bruno','O universo dos negócios de hospedagem','O Marco Zero do seu projeto e do seu capital'],mods:[['Z00','Universo da hospedagem'],['D00','Marco Zero do Desenvolvedor'],['F00','Marco Zero do Capital']],ent:'Marco Zero do Desenvolvimento',d:'O que está a favor, o que pode barrar e por onde começar.'},
+    {t:'Território e mercado',q:'O que este lugar pede e quem vem até ele?',faz:['Água, sol, vento, vista e vocação do terreno','Comparáveis, ocupação e faixa de diária da região','Quem vem, quando vem e o que o mercado exige'],mods:[['D01','Território e Localização'],['D02','Mercado e Demanda']],ent:'Diagnóstico de Território',d:'E o Estudo de Mercado da sua região.'},
+    {t:'Produto, modelo e masterplan',q:'O que construir, sob qual modelo e em que fases?',faz:['O produto de hospedagem certo para o lugar','Quem opera e quem fica com que parte da receita','Conceito, posicionamento e masterplan faseado'],mods:[['D03','Produto de Hospedagem'],['D04','Modelos de Negócio'],['D05','Conceito e Masterplan']],ent:'Conceito e Masterplan Faseado',d:'Com o modelo de negócio definido.'},
+    {t:'A conta do projeto',q:'Quanto custa, quanto rende e a conta fecha?',faz:['CAPEX e necessidade de capital','Receitas, custos e rentabilidade','Viabilidade: payback, TIR e VPL no simulador'],mods:[['F01','CAPEX'],['F02','Receitas e Custos'],['F03','Viabilidade']],ent:'Estudo de Viabilidade',d:'Com os números do seu projeto.'},
+    {t:'Capital e jurídico',q:'De onde vem o dinheiro e quem é dono do quê?',faz:['Plano financeiro, indicadores e valor do negócio','Crédito, bancabilidade e garantias','Sócios, fundos, estrutura societária e Land Bank'],mods:[['F04','Planejamento e Valuation'],['F05','Crédito e Garantias'],['F06','Sócios e Captação'],['D06','Jurídico e Land Bank']],ent:'Dossiê de Bancabilidade',d:'A pasta que um banco ou investidor lê sem refazer a sua conta.'},
+    {t:'Projeto apresentável',q:'Pronto para decidir, lançar e apresentar?',faz:['Fechamento do Dossiê de Desenvolvimento','Primeiros passos de gestão, operação e vendas','Avaliação para os troféus'],mods:[['G','Gestão'],['O','Operação'],['L','Vendas']],ent:'Dossiê de Desenvolvimento Zion',d:'E o certificado de Desenvolvedor Hoteleiro Zion.'}
+  ];
+  const meses=document.getElementById('meses'),box=document.getElementById('mesbox'),barra=document.getElementById('barra'),ant=document.getElementById('ant'),prox=document.getElementById('prox');let atual=0;
+  J.forEach((j,i)=>{const b=document.createElement('button');b.type='button';b.className='mes';b.setAttribute('role','tab');b.setAttribute('aria-label','Jornada '+(i+1)+': '+j.t);b.innerHTML='<small>Jornada</small><b>'+(i+1)+'</b>';b.addEventListener('click',()=>mes(i));meses.appendChild(b)});
+  function mes(i){atual=i;[...meses.children].forEach((c,k)=>{c.setAttribute('aria-selected',String(k===i));c.classList.toggle('feito',k<i)});
+    const j=J[i];barra.style.width=((i+1)/6*100)+'%';
+    box.innerHTML='<div><span class="k">Jornada '+(i+1)+' de 6</span><h3>'+j.t+'</h3><p class="perg">'+j.q+'</p><ul>'+j.faz.map(x=>'<li>'+x+'</li>').join('')+'</ul><div class="mods">'+j.mods.map(x=>'<span><i>'+x[0]+'</i>'+x[1]+'</span>').join('')+'</div></div>'+
+      '<div class="entrega"><small>Você leva pronto</small><b>'+j.ent+'</b><span>'+j.d+'</span></div>';
+    ant.style.visibility=i?'visible':'hidden';prox.textContent=i<5?'Próxima jornada →':'Ver o acompanhamento →';}
+  ant.addEventListener('click',()=>mes(Math.max(0,atual-1)));
+  prox.addEventListener('click',()=>{if(atual<5)mes(atual+1);else document.getElementById('tutoria').scrollIntoView({behavior:'smooth'})});
+  mes(0);
+
+
+  const T=[
+    {n:'Desenvolvimento',c:'#B8963F',q:'Onde, para quem, o quê, sob qual modelo e com qual direito sobre a terra?',fim:'Dossiê de Desenvolvimento Zion',m:[['D00','Marco Zero do Desenvolvedor','Marco Zero do Desenvolvimento'],['D01','Território e Localização','Diagnóstico de Território'],['D02','Mercado e Demanda','Estudo de Mercado'],['D03','Produto de Hospedagem','Conceito de Produto'],['D04','Modelos de Negócio','Modelo de Negócio'],['D05','Conceito, Posicionamento e Masterplan','Conceito e Masterplan Faseado'],['D06','Jurídico, Societário e Land Bank','Dossiê de Desenvolvimento Zion']]},
+    {n:'Capital e Captação',c:'#2F6B47',q:'Quanto custa, quanto rende e como pagar?',fim:'Business Plan Financeiro e Dossiê de Bancabilidade',m:[['F00','Marco Zero do Capital','Marco Zero do Capital'],['F01','CAPEX e Necessidade de Capital','Mapa do CAPEX'],['F02','Receitas, Custos e Rentabilidade','Modelo de Receitas e Custos'],['F03','Viabilidade e Análise de Investimentos','Estudo de Viabilidade'],['F04','Planejamento Financeiro, KPIs e Valuation','Plano Financeiro e Painel de Indicadores'],['F05','Crédito, Bancabilidade e Garantias','Mapa de Crédito e Garantias'],['F06','Sócios, Fundos e Captação','Pasta de captação fechada']]},
+    {n:'Gestão',c:'#5B6E8C',q:'Como passar de anfitrião a gestor?',fim:'Sistema de Gestão Hoteleira Zion',lib:1,m:[['G00','A Mentalidade do Gestor'],['G01','Governança, Cultura e Liderança'],['G02','Gestão de Pessoas'],['G03','Administração, Compras e Controle de Custos'],['G04','Fechamento Financeiro e Gestão Financeira'],['G05','Organização das Áreas'],['G06','Indicadores, Qualidade e Crescimento']]},
+    {n:'Operação',c:'#8A5A44',q:'Como entregar a experiência prometida todos os dias?',fim:'Manual Operacional Hoteleiro Zion',lib:1,m:[['O00','Arquitetura da Operação'],['O01','Equipe, Cargos e Escalas'],['O02','Recepção, Reservas e Atendimento'],['O03','Limpeza, Arrumação e Lavanderia'],['O04','Alimentos e Bebidas'],['O05','Manutenção, Segurança e Suprimentos'],['O06','Procedimentos (POPs), Treinamento e Auditoria']]},
+    {n:'Vendas',c:'#A3485A',q:'Como encher o calendário com diária saudável?',fim:'Máquina Comercial e Plano de Aceleração de 90 Dias',lib:1,m:[['L00','O Ecossistema Comercial'],['L01','Estratégia Comercial e Go-to-Market'],['L02','Distribuição e Canais de Venda'],['L03','PMS, Channel Manager e Motor de Reservas'],['L04','CRM, Funis e Relacionamento com o Hóspede'],['L05','Marketing Digital, Preço e Sazonalidade'],['L06','Lançamento, Aceleração e Expansão Comercial']]}
+  ];
+  const tabs=document.getElementById('tabs'),tbox=document.getElementById('tbox');
+  T.forEach((t,i)=>{const b=document.createElement('button');b.type='button';b.className='tab';b.setAttribute('role','tab');b.innerHTML='<span class="dot" style="background:'+t.c+'"></span>'+t.n;b.addEventListener('click',()=>tri(i));tabs.appendChild(b)});
+  function tri(i){[...tabs.children].forEach((c,k)=>c.setAttribute('aria-selected',String(k===i)));const t=T[i];
+    tbox.innerHTML='<div><span class="k">Frente · '+t.m.length+' módulos</span><h3>'+t.n+'</h3><p class="perg">'+t.q+'</p><div class="fim"><small>Você sai com</small><b>'+t.fim+'</b></div>'+(t.lib?'<p class="nota">Módulos liberados ao longo da turma.</p>':'')+'</div>'+
+      '<ul class="lista">'+t.m.map(x=>'<li><span class="cod" style="color:'+t.c+'">'+x[0]+'</span><div><b>'+x[1]+'</b>'+(x[2]?'<span>Entrega: '+x[2]+'</span>':'')+'</div></li>').join('')+'</ul>';}
+  tri(0);
+  document.querySelectorAll('.tro').forEach(t=>t.addEventListener('click',()=>{const o=t.getAttribute('aria-expanded')==='true';t.setAttribute('aria-expanded',String(!o));t.querySelector('.mais').hidden=o;t.querySelector('.abre').textContent=o?'Ver mais +':'Fechar ×'}));
+})();
+</script>
+</body></html>
