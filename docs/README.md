@@ -16,6 +16,9 @@ Mais o **ecossistema** completo: Zion Bubble Glamping, Zion Advisory, Zion Hospi
 ### `development.html` · `management.html` · `collection.html` — modalidades
 Páginas internas dedicadas, uma por modalidade, no mesmo padrão visual: hero próprio, "para quem é", processo/pilares detalhados, entregas em grade e CTA segmentado. Interligadas pela navegação e pelos botões "Explorar a Modalidade" da home.
 
+### `capital.html` — Zion Capital (cardápio de projetos)
+Marketplace de investimentos: carousel de projetos com filtros por modalidade, cards no Padrão Zion de Análise (destino, modalidade, captação, ticket, retorno, estrutura, viabilidade), tabela comparativa das ofertas e disclaimer legal. Para adicionar um projeto, editar o array `PROJETOS` no script da página.
+
 ### `bruno.html` — Bruno Chaerk (founder)
 Página pessoal one-page: espelhamento, colapso de crença, método, resultados, ecossistema e educação. Interligada ao site do grupo pela navegação.
 
