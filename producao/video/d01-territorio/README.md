@@ -11,13 +11,13 @@ fade de 0,5 s entre slides, fala em -16 LUFS com pico de -1,5 dB, sem música.
     `node render_deck.js <pasta-com-project> <pasta-das-imagens>`, que gera `slides/01.png` a `60.png`;
   - ou `aula2-territorio.pdf` (Google Slides › Arquivo › Fazer download › PDF) e `python3 aula.py slides aula2-territorio.pdf`.
 - `demo-ferramenta.mp4` (opcional): gravação da ferramenta "Leitura do seu terreno" com Urubici. Entra no slide 48.
-- Para a voz do Bruno: variável `ELEVENLABS_API_KEY` no ambiente e o ID da voz. Sem ela, usa a voz grátis `pt-BR-AntonioNeural`.
+- Voz: por padrão o Kokoro, modelo aberto que roda nesta máquina (`pip install kokoro-onnx soundfile`; baixa o modelo na primeira vez). Vozes: `pm_alex`, `pm_santa`, `pf_dora`. Opcional: `--motor elevenlabs` com `ELEVENLABS_API_KEY`.
 
 ## Passo a passo
 ```bash
 node render_deck.js <deck> <imagens>          # ou: python3 aula.py slides aula2-territorio.pdf
-python3 aula.py narrar --teste [--voz ID]     # só o slide 1: ouça e aprove antes de seguir
-python3 aula.py narrar [--voz ID]             # os outros 59 (pula os que já existem; --refazer regrava)
+python3 aula.py narrar --teste --voz pm_alex  # só o slide 1: ouça e aprove antes de seguir
+python3 aula.py narrar --voz pm_alex          # os outros 59 (pula os que já existem; --refazer regrava)
 python3 aula.py montar                        # gera tudo em saida/
 ```
 

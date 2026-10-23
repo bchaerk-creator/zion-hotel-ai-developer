@@ -7,8 +7,9 @@ Etapas (rode na pasta da aula):
   python3 aula.py narrar                           # audio/NN.mp3 para todos os slides
   python3 aula.py montar                           # clipes, blocos, vídeo completo, .srt e relatório
 
-Voz: com ELEVENLABS_API_KEY e --voz <id> usa ElevenLabs (multilíngue, estabilidade 0,5,
-similaridade 0,8). Sem chave, usa edge-tts com pt-BR-AntonioNeural a -5%.
+Voz: --motor kokoro (padrão) usa o Kokoro-82M aberto, rodando nesta máquina, voz --voz pm_alex
+(ou pm_santa, pf_dora); na primeira vez baixa o modelo para modelos/. --motor elevenlabs usa
+ELEVENLABS_API_KEY e --voz <id>. --motor edge usa edge-tts pt-BR-AntonioNeural a -5%.
 Se existir demo-ferramenta.mp4, ela entra no slide 48.
 """
 import argparse, json, os, re, subprocess, sys, textwrap, urllib.request
@@ -79,20 +80,62 @@ def falar_edge(texto, destino):
     asyncio.run(edge_tts.Communicate(texto, 'pt-BR-AntonioNeural', rate='-5%').save(str(destino)))
 
 
+KOKORO = 'https://github.com/k2-fsa/sherpa-onnx/releases/download/tts-models/kokoro-multi-lang-v1_0.tar.bz2'
+VOZES_KOKORO = ('af_alloy af_aoede af_bella af_heart af_jessica af_kore af_nicole af_nova af_river af_sarah af_sky '
+                'am_adam am_echo am_eric am_fenrir am_liam am_michael am_onyx am_puck am_santa bf_alice bf_emma '
+                'bf_isabella bf_lily bm_daniel bm_fable bm_george bm_lewis ef_dora em_alex ff_siwis hf_alpha hf_beta '
+                'hm_omega hm_psi if_sara im_nicola jf_alpha jf_gongitsune jf_nezumi jf_tebukuro jm_kumo pf_dora '
+                'pm_alex pm_santa zf_xiaobei zf_xiaoni zf_xiaoxiao zf_xiaoyi zm_yunjian zm_yunxi zm_yunxia '
+                'zm_yunyang em_santa').split()
+
+
+def kokoro():
+    """Carrega o Kokoro-82M (pip install kokoro-onnx soundfile); baixa o modelo na primeira vez."""
+    import numpy as np
+    from kokoro_onnx import Kokoro
+    pasta = AQUI / 'modelos'
+    modelo = pasta / 'kokoro-multi-lang-v1_0'
+    if not (modelo / 'model.onnx').exists():
+        pasta.mkdir(exist_ok=True)
+        print('baixando o modelo Kokoro (cerca de 350 MB)...')
+        subprocess.run(f"curl -sSL '{KOKORO}' | tar xj -C '{pasta}'", shell=True, check=True)
+    vozes = pasta / 'kokoro-vozes.npz'
+    if not vozes.exists():
+        v = np.fromfile(modelo / 'voices.bin', dtype=np.float32).reshape(len(VOZES_KOKORO), 510, 1, 256)
+        np.savez(vozes, **{n: v[i] for i, n in enumerate(VOZES_KOKORO)})
+    return Kokoro(str(modelo / 'model.onnx'), str(vozes))
+
+
+def falar_kokoro(motor, texto, voz, velocidade, destino):
+    import soundfile as sf
+    audio, taxa = motor.create(texto, voice=voz, speed=velocidade, lang='pt-br')
+    wav = destino.with_suffix('.wav')
+    sf.write(wav, audio, taxa)
+    sh('ffmpeg', '-y', '-loglevel', 'error', '-i', wav, '-b:a', '192k', destino)
+    wav.unlink()
+
+
 def cmd_narrar(a):
     pasta = AQUI / 'audio'
     pasta.mkdir(exist_ok=True)
-    usar_eleven = bool(os.environ.get('ELEVENLABS_API_KEY'))
-    if usar_eleven and not a.voz:
-        sys.exit('ELEVENLABS_API_KEY existe: informe o ID da voz com --voz <id>.')
+    if a.motor == 'elevenlabs' and not (os.environ.get('ELEVENLABS_API_KEY') and a.voz):
+        sys.exit('ElevenLabs precisa de ELEVENLABS_API_KEY no ambiente e do ID da voz em --voz <id>.')
+    voz = a.voz or 'pm_alex'
+    motor = kokoro() if a.motor == 'kokoro' else None
     alvo = [s for s in roteiro() if not a.teste or s['n'] == 1]
     for s in alvo:
         destino = pasta / f"{s['n']:02d}.mp3"
         if destino.exists() and not a.refazer:
             continue
-        (falar_elevenlabs(s['texto'], a.voz, destino) if usar_eleven else falar_edge(s['texto'], destino))
+        if a.motor == 'kokoro':
+            falar_kokoro(motor, s['texto'], voz, a.velocidade, destino)
+        elif a.motor == 'elevenlabs':
+            falar_elevenlabs(s['texto'], a.voz, destino)
+        else:
+            falar_edge(s['texto'], destino)
         print(f"{destino.name}  {duracao(destino):6.1f} s  {s['titulo']}")
-    print('voz:', f'ElevenLabs {a.voz}' if usar_eleven else 'edge-tts pt-BR-AntonioNeural -5%')
+    print('voz:', {'kokoro': f'Kokoro {voz} velocidade {a.velocidade}', 'elevenlabs': f'ElevenLabs {a.voz}',
+                   'edge': 'edge-tts pt-BR-AntonioNeural -5%'}[a.motor])
 
 
 # ---------- 3. montagem ----------
@@ -253,6 +296,8 @@ if __name__ == '__main__':
     sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('slides'); p.add_argument('pdf'); p.set_defaults(f=cmd_slides)
     p = sub.add_parser('narrar'); p.add_argument('--voz'); p.add_argument('--teste', action='store_true')
+    p.add_argument('--motor', choices=['kokoro', 'elevenlabs', 'edge'], default='kokoro')
+    p.add_argument('--velocidade', type=float, default=1.0)
     p.add_argument('--refazer', action='store_true'); p.set_defaults(f=cmd_narrar)
     p = sub.add_parser('montar'); p.set_defaults(f=cmd_montar)
     a = ap.parse_args()
