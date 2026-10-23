@@ -6,13 +6,16 @@ Segue o prompt de produção do Bruno (23/10/2026): uma imagem por slide, narra�
 fade de 0,5 s entre slides, fala em -16 LUFS com pico de -1,5 dB, sem música.
 
 ## O que precisa estar nesta pasta
-- `aula2-territorio.pdf`: no Google Slides, Arquivo › Fazer download › PDF.
+- Os slides, de um destes dois jeitos:
+  - a apresentação no Claude (tipo Slides): baixe `project/` e as imagens `/_blob/` e rode
+    `node render_deck.js <pasta-com-project> <pasta-das-imagens>`, que gera `slides/01.png` a `60.png`;
+  - ou `aula2-territorio.pdf` (Google Slides › Arquivo › Fazer download › PDF) e `python3 aula.py slides aula2-territorio.pdf`.
 - `demo-ferramenta.mp4` (opcional): gravação da ferramenta "Leitura do seu terreno" com Urubici. Entra no slide 48.
 - Para a voz do Bruno: variável `ELEVENLABS_API_KEY` no ambiente e o ID da voz. Sem ela, usa a voz grátis `pt-BR-AntonioNeural`.
 
 ## Passo a passo
 ```bash
-python3 aula.py slides aula2-territorio.pdf   # confere que saíram 60 imagens
+node render_deck.js <deck> <imagens>          # ou: python3 aula.py slides aula2-territorio.pdf
 python3 aula.py narrar --teste [--voz ID]     # só o slide 1: ouça e aprove antes de seguir
 python3 aula.py narrar [--voz ID]             # os outros 59 (pula os que já existem; --refazer regrava)
 python3 aula.py montar                        # gera tudo em saida/
