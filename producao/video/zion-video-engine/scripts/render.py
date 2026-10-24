@@ -14,7 +14,8 @@ from comum import RAIZ, args_aula, chromium_path
 
 
 def extra(ap):
-    ap.add_argument('--template', default='aula_16x9.html')
+    ap.add_argument('--template', default='aula.html')
+    ap.add_argument('--formato', default='16x9', choices=['16x9', '9x16'])
     ap.add_argument('--tempos', default='')
     ap.add_argument('--inicio', type=int, default=0)
     ap.add_argument('--fim', type=int, default=None)
@@ -42,14 +43,15 @@ def main():
     flags = [] if a.gpu else ['--use-angle=swiftshader', '--enable-unsafe-swiftshader']
     with sync_playwright() as p:
         nav = p.chromium.launch(executable_path=chromium_path(), args=flags)
-        pg = nav.new_page(viewport={'width': 1920, 'height': 1080})
+        w, h = (1920, 1080) if a.formato == '16x9' else (1080, 1920)
+        pg = nav.new_page(viewport={'width': w, 'height': h})
         pg.on('console', lambda m: print('[página]', m.text) if m.type == 'error' else None)
-        pg.goto(f'http://127.0.0.1:{a.porta}/templates/{a.template}?lesson={a.lesson}')
+        pg.goto(f'http://127.0.0.1:{a.porta}/templates/{a.template}?lesson={a.lesson}&formato={a.formato}')
         pg.wait_for_function('window.render && window.pronto')
         pg.evaluate('window.pronto')
         for t, f in alvo:
             pg.evaluate('([t, f]) => window.render(t, f)', [t, f])
-            nome = out / (f't{t:07.2f}.jpg' if a.tempos else f'{f:05d}.jpg')
+            nome = out / (f'{a.formato}-t{t:07.2f}.jpg' if a.tempos else f'{f:05d}.jpg')
             pg.screenshot(path=str(nome), type='jpeg', quality=92)
             if a.tempos:
                 print(nome)

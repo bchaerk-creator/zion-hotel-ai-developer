@@ -24,7 +24,7 @@ Precisa de ffmpeg com libx264 e rubberband.
 ```bash
 python3 scripts/logos.py                                  # logo_cream.png e logo_green.png
 python3 scripts/matte.py  --lesson p01-a01 --mesa 0.66    # fg/*.webp e anchors.json
-python3 scripts/render.py --lesson p01-a01 --tempos 1,5,9 # folha de contato
+python3 scripts/render.py --lesson p01-a01 --tempos 1,5,9 [--formato 9x16]  # folha de contato
 python3 scripts/render.py --lesson p01-a01                # todos os quadros em out/
 ```
 Na máquina do Bruno, `render.py --gpu` usa a placa de vídeo; rode vários processos com
@@ -33,6 +33,10 @@ Na máquina do Bruno, `render.py --gpu` usa a placa de vídeo; rode vários proc
 ## O que existe hoje
 - `scripts/comum.py`: caminhos relativos e o argumento `--lesson`.
 - `scripts/logos.py`, `scripts/matte.py`, `scripts/render.py`.
-- `templates/aula_16x9.html`: aula da área de membros (apresentador à direita, painel 3D à esquerda,
-  chips, legenda, barra "Pilar 0X · Aula 0Y de 10", crédito, marca d'água, cartão de pausa).
+- `templates/aula.html`: aula no estilo do Reel de referência, em 16:9 (`--formato 16x9`, área de membros)
+  ou 9:16 (`--formato 9x16`, teaser). Modos em `timeline.cenas`: `apresentador` (tela cheia com selo de
+  título e `zoom`), `painel` (tela dividida com cena 3D e chips) e `cheia` (ilustração ocupa tudo, legenda
+  vira pílula escura, marca troca para a versão verde). Cenas 3D: `bolha` e `score` (medidor do Zion Score
+  com as 7 dimensões ligadas por linhas). Ambiente atrás do apresentador: `timeline.ambiente` (foto real).
+- `assets/ambientes/serra.webp`: foto real de unidade Zion usada como ambiente padrão.
 - `lessons/teste/timeline.json`: exemplo do formato.
