@@ -14,7 +14,7 @@ CHROMIUM = '/opt/pw-browsers/chromium-1243/chrome-linux64/chrome'
 
 ap = argparse.ArgumentParser()
 ap.add_argument('cena'); ap.add_argument('--tempos', default=''); ap.add_argument('--saida', default='')
-ap.add_argument('--porta', type=int, default=8811); ap.add_argument('--fps', type=int, default=30)
+ap.add_argument('--audio', default='narracao.wav'); ap.add_argument('--porta', type=int, default=8811); ap.add_argument('--fps', type=int, default=30)
 a = ap.parse_args()
 
 
@@ -47,7 +47,7 @@ srv.shutdown()
 if not a.tempos:
     saida = AQUI / (a.saida or Path(a.cena).stem + '.mp4')
     subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-framerate', str(a.fps), '-i', str(quadros / '%05d.png'),
-                    '-i', str(AQUI / 'narracao.wav'), '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-c:v', 'libx264', '-crf', '19',
+                    '-i', str(AQUI / a.audio), '-af', 'loudnorm=I=-16:TP=-1.5:LRA=11', '-c:v', 'libx264', '-crf', '19',
                     '-preset', 'medium', '-pix_fmt', 'yuv420p', '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
                     '-shortest', '-movflags', '+faststart', str(saida)], check=True)
     print(saida)
