@@ -22,7 +22,7 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--black);fon
 #rec .canto{position:absolute;width:90px;height:90px;border-color:rgba(255,255,255,.85);border-style:solid}
 #rec .rotulo{position:absolute;top:96px;font:700 30px Aventa;color:#fff;letter-spacing:3px}
 #rec .ponto{display:inline-block;width:20px;height:20px;border-radius:50%;background:#e23b2e;margin-right:14px;vertical-align:-1px}
-#gancho{left:90px;top:1080px;width:900px;font:900 108px/1.04 Aventa;color:#fff;text-transform:uppercase;letter-spacing:-1px}
+#gancho{left:90px;top:980px;width:900px;font:900 92px/1.05 Aventa;color:#fff;text-transform:uppercase;letter-spacing:-1px}
 #gancho .k{color:var(--ouro)}
 #gancho .cursor{display:inline-block;width:8px;height:96px;background:#fff;vertical-align:-10px;margin-left:6px}
 #assina{left:0;width:1080px;top:1660px;text-align:center;color:rgba(255,255,255,.75);font:700 24px Aventa;letter-spacing:6px}
@@ -208,7 +208,7 @@ function gancho(t) {
     const ini = p.t - .05, fim = j < pal.length - 1 ? pal[j + 1].t - .05 : F[1 + O].b;
     const n = Math.floor(p.p.length * prog(t, ini, fim));
     if (n <= 0) return;
-    const ouro = /marco|zero/i.test(p.p);
+    const ouro = /método|zion/i.test(p.p);
     html += (html ? ' ' : '') + `<span class="${ouro ? 'k' : ''}">${p.p.slice(0, n)}</span>`;
   });
   const piscar = Math.floor(t * 3) % 2 === 0;
