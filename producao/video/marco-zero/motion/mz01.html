@@ -70,14 +70,14 @@ html,body{width:1080px;height:1920px;overflow:hidden;background:var(--black);fon
     <div class="rotulo" style="left:110px"><span class="ponto"></span>REC</div>
     <div class="rotulo" id="tc" style="right:110px"></div>
     <div id="gancho" class="abs"></div>
-    <div id="assina" class="abs">BRUNO CHAERK · ZION HOSPITALITY BUSINESS<img src="../../zion-video-engine/assets/logos/logo_cream.png" alt=""></div>
+    <div id="assina" class="abs">ZION HOTEL GROUP · MÉTODO ZION<img src="../../zion-video-engine/assets/logos/logo_cream.png" alt=""></div>
   </div>
   <div id="flash" class="abs"></div>
 </div>
 <script type="module">
 import * as THREE from 'three';
 import * as topojson from 'topojson-client';
-const T = await (await fetch('tempos.json')).json();
+const T = await (await fetch('mz01.json')).json();
 const world = await (await fetch('../../zion-video-engine/node_modules/world-atlas/countries-110m.json')).json();
 const $ = id => document.getElementById(id);
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -93,13 +93,15 @@ const quando = (i, prefixo, n = 0) => {
   return (ps[n] || ps[0]).t;
 };
 const F = T.frases;
+// frases de abertura antes de "Seja bem-vindo": O é quantas sobram além de uma
+const O = F.findIndex(f => /^Seja bem-vindo/.test(f.frase)) - 1;
 const C = {
-  terreno: quando(2, 'terreno'), destino: quando(2, 'destino'), projeto: quando(2, 'projeto'), sucesso: quando(2, 'sucesso'),
-  macro: quando(3, 'macro'), negocio: quando(3, 'negócio'), diagnostico: quando(3, 'diagnóstico'), caminho: quando(3, 'caminho'),
-  papel: quando(4, 'papel'), assistir: quando(4, 'assistir'),
+  terreno: quando(2 + O, 'terreno'), destino: quando(2 + O, 'destino'), projeto: quando(2 + O, 'projeto'), sucesso: quando(2 + O, 'sucesso'),
+  macro: quando(3 + O, 'macro'), negocio: quando(3 + O, 'negócio'), diagnostico: quando(3 + O, 'diagnóstico'), caminho: quando(3 + O, 'caminho'),
+  papel: quando(4 + O, 'papel'), assistir: quando(4 + O, 'assistir'),
 };
 // cenas: gancho REC até o fim da frase 2; terreno; mapa; ficha; caderno
-const S = { recFim: F[1].b + .15, terra: [F[1].b + .15, C.macro - .1], mapa: [C.macro - .1, C.caminho - .15],
+const S = { recFim: F[1 + O].b + .15, terra: [F[1 + O].b + .15, C.macro - .1], mapa: [C.macro - .1, C.caminho - .15],
   ficha: [C.caminho - .15, C.papel - .25], caderno: [C.papel - .25, T.total] };
 
 // ---------- legenda em pílula: grupos de até 4 palavras ----------
@@ -201,18 +203,18 @@ function gancho(t) {
   const ms = Math.floor(t * 30) % 30, s = Math.floor(t);
   $('tc').textContent = `00:00:${String(s).padStart(2, '0')}:${String(ms).padStart(2, '0')}`;
   // as palavras da frase 2 aparecem letra por letra, no tempo de cada palavra; "Marco Zero" em dourado
-  const pal = F[1].palavras; let html = '';
+  const pal = F[1 + O].palavras; let html = '';
   pal.forEach((p, j) => {
-    const ini = p.t - .05, fim = j < pal.length - 1 ? pal[j + 1].t - .05 : F[1].b;
+    const ini = p.t - .05, fim = j < pal.length - 1 ? pal[j + 1].t - .05 : F[1 + O].b;
     const n = Math.floor(p.p.length * prog(t, ini, fim));
     if (n <= 0) return;
     const ouro = /marco|zero/i.test(p.p);
     html += (html ? ' ' : '') + `<span class="${ouro ? 'k' : ''}">${p.p.slice(0, n)}</span>`;
   });
   const piscar = Math.floor(t * 3) % 2 === 0;
-  $('gancho').innerHTML = html + (t < F[1].b + .1 && piscar ? '<span class="cursor"></span>' : '');
+  $('gancho').innerHTML = html + (t < F[1 + O].b + .1 && piscar ? '<span class="cursor"></span>' : '');
   // na frase 1, o nome aparece em cima do gancho
-  if (t < F[1].a) $('gancho').innerHTML = `<span style="font-size:64px;font-weight:700;text-transform:none;letter-spacing:0">${F[0].palavras.filter(p => p.t <= t).map(p => p.p).join(' ')}</span>`;
+  if (t < F[1 + O].a) $('gancho').innerHTML = `<span style="font-size:64px;font-weight:700;text-transform:none;letter-spacing:0">${F.slice(0, 1 + O).flatMap(f => f.palavras).filter(p => p.t <= t).map(p => p.p).join(' ')}</span>`;
   $('rec').style.opacity = 1 - prog(t, S.recFim - .12, S.recFim + .05);
 }
 

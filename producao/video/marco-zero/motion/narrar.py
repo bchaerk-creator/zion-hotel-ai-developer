@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Narra frases com o Kokoro (pm_alex) e grava o áudio e os tempos de cada frase e palavra.
-Uso: python3 narrar.py <saida-sem-extensao> "frase 1" "frase 2" ...  ->  <saida>.wav e <saida>.json
+Uso: python3 narrar.py [--velocidade 0.9] <saida-sem-extensao> "frase 1" "frase 2" ...  ->  <saida>.wav e <saida>.json
 """
 import json, re, sys
 from pathlib import Path
@@ -9,12 +9,16 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[2] / 'd01-territorio'))
 import aula  # noqa: E402
 
 aula.AQUI = Path(__file__).resolve().parents[2] / 'd01-territorio'
-saida, frases = sys.argv[1], sys.argv[2:]
+args = sys.argv[1:]
+velocidade = 1.0
+if args[0] == '--velocidade':
+    velocidade, args = float(args[1]), args[2:]
+saida, frases = args[0], args[1:]
 k = aula.kokoro()
 sr, gap, t = 24000, 0.22, 0.5
 partes, tempos = [np.zeros(int(t * sr), np.float32)], []
 for f in frases:
-    a, _ = k.create(f, voice='pm_alex', speed=1.0, lang='pt-br')
+    a, _ = k.create(f, voice='pm_alex', speed=velocidade, lang='pt-br')
     idx = np.where(np.abs(a) > 0.01)[0]
     a = a[max(0, idx[0] - 240): idx[-1] + 480]
     d = len(a) / sr
