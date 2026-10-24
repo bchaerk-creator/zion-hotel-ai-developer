@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Marco Zero Motion</title>
+<!--
+  Marco Zero · vídeo 1 · versão animada sem o Bruno na tela (prova da página 01), 1080x1920.
+  As figuras entram e saem nos tempos das palavras (tempos.json, gerado junto com a narração).
+  window.seek(t) desenha o quadro do instante t; gravar.py grava quadro a quadro.
+-->
+<style>
+@font-face{font-family:Aventa;src:url(../../zion-video-engine/assets/fonts/aventa.woff2) format('woff2');font-weight:100 900}
+:root{--black:#040605;--moss:#1B2117;--verde:#16261C;--cream:#FEF5F0;--painel:#F4EEE6;--sand:#DED6BF;--earth:#8B714E;--gold:#C9A96E;--ouro:#E0BE5E}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1080px;height:1920px;overflow:hidden;background:var(--black);font-family:Aventa,sans-serif}
+#palco{position:relative;width:1080px;height:1920px;overflow:hidden;background:var(--painel)}
+.abs{position:absolute}
+#fundo{inset:0;background:radial-gradient(900px 1200px at 50% 45%,#fbf7f0,#efe8dc 70%,#e6dccb)}
+#cena{left:0;top:0;width:1080px;height:1920px}
+/* gancho REC */
+#rec{inset:0;background:radial-gradient(800px 1300px at 50% 40%,#2a2f2b,#0b0d0c 75%)}
+#rec .canto{position:absolute;width:90px;height:90px;border-color:rgba(255,255,255,.85);border-style:solid}
+#rec .rotulo{position:absolute;top:96px;font:700 30px Aventa;color:#fff;letter-spacing:3px}
+#rec .ponto{display:inline-block;width:20px;height:20px;border-radius:50%;background:#e23b2e;margin-right:14px;vertical-align:-1px}
+#gancho{left:90px;top:1080px;width:900px;font:900 108px/1.04 Aventa;color:#fff;text-transform:uppercase;letter-spacing:-1px}
+#gancho .k{color:var(--ouro)}
+#gancho .cursor{display:inline-block;width:8px;height:96px;background:#fff;vertical-align:-10px;margin-left:6px}
+#assina{left:0;width:1080px;top:1660px;text-align:center;color:rgba(255,255,255,.75);font:700 24px Aventa;letter-spacing:6px}
+#assina img{display:block;margin:22px auto 0;width:200px;opacity:.9}
+#flash{inset:0;background:#fff;pointer-events:none}
+/* elementos da cena */
+#marca{left:56px;top:70px;width:170px}
+#selo{left:56px;top:150px;padding:10px 16px;background:rgba(22,38,28,.85);color:var(--ouro);font:700 26px Aventa;border-radius:8px}
+.chip{position:absolute;display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:#fff;color:var(--moss);
+  font:700 34px Aventa;box-shadow:0 14px 34px rgba(27,33,23,.18);white-space:nowrap;transform-origin:left center}
+.chip::before{content:"";width:16px;height:16px;border-radius:50%;background:var(--gold)}
+.chip.escuro{background:var(--moss);color:var(--cream)}
+#titulo{left:0;width:1080px;top:250px;text-align:center}
+#titulo span{display:inline-block;padding:16px 34px;border-radius:999px;background:var(--moss);color:var(--cream);font:700 38px Aventa}
+#titulo span::before{content:"";display:inline-block;width:14px;height:14px;border-radius:50%;background:var(--ouro);margin-right:14px;vertical-align:4px}
+#ficha{left:110px;top:520px;width:860px;padding:56px 56px 40px;background:#fff;border-radius:34px;box-shadow:0 30px 70px rgba(27,33,23,.18)}
+#ficha h2{font:800 50px Aventa;color:var(--moss);margin-bottom:10px}
+#ficha small{display:block;font:700 22px Aventa;letter-spacing:6px;color:var(--earth);text-transform:uppercase;margin-bottom:34px}
+.item{display:flex;align-items:center;gap:26px;padding:24px 0;border-top:2px solid #EFE8DC;font:600 36px Aventa;color:var(--moss)}
+.item b{flex:none;width:58px;height:58px;border-radius:50%;border:3px solid var(--sand);display:grid;place-items:center;font:800 30px Aventa;color:#fff}
+.item.ok b{background:var(--gold);border-color:var(--gold)}
+#caderno{left:140px;top:560px;width:800px;height:900px}
+#legenda{left:0;width:1080px;top:1560px;text-align:center}
+#legenda span{display:inline-block;padding:14px 34px;border-radius:999px;background:rgba(4,6,5,.9);color:#fff;font:700 54px Aventa;transform-origin:center}
+</style>
+<script type="importmap">{"imports":{"three":"../../zion-video-engine/node_modules/three/build/three.module.js",
+ "topojson-client":"../../zion-video-engine/node_modules/topojson-client/src/index.js"}}</script>
+</head>
+<body>
+<div id="palco">
+  <div id="fundo" class="abs"></div>
+  <canvas id="cena" class="abs" width="1080" height="1920"></canvas>
+  <img id="marca" class="abs" src="../../zion-video-engine/assets/logos/logo_green.png" alt="">
+  <div id="selo" class="abs">Marco Zero · 1 de 14</div>
+  <div id="titulo" class="abs"><span></span></div>
+  <div id="chips" class="abs"></div>
+  <div id="ficha" class="abs"></div>
+  <svg id="caderno" class="abs" viewBox="0 0 800 900"></svg>
+  <div id="legenda" class="abs"><span></span></div>
+  <div id="rec" class="abs">
+    <div class="canto" style="left:60px;top:60px;border-width:5px 0 0 5px"></div>
+    <div class="canto" style="right:60px;top:60px;border-width:5px 5px 0 0"></div>
+    <div class="canto" style="left:60px;bottom:60px;border-width:0 0 5px 5px"></div>
+    <div class="canto" style="right:60px;bottom:60px;border-width:0 5px 5px 0"></div>
+    <div class="rotulo" style="left:110px"><span class="ponto"></span>REC</div>
+    <div class="rotulo" id="tc" style="right:110px"></div>
+    <div id="gancho" class="abs"></div>
+    <div id="assina" class="abs">BRUNO CHAERK · ZION HOSPITALITY BUSINESS<img src="../../zion-video-engine/assets/logos/logo_cream.png" alt=""></div>
+  </div>
+  <div id="flash" class="abs"></div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+import * as topojson from 'topojson-client';
+const T = await (await fetch('tempos.json')).json();
+const world = await (await fetch('../../zion-video-engine/node_modules/world-atlas/countries-110m.json')).json();
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const sai = x => 1 - Math.pow(1 - x, 3);
+const mola = (t, t0) => { const x = Math.max(0, t - t0); return x === 0 ? 0 : 1 - Math.exp(-7 * x) * Math.cos(9 * x); };
+const janela = (t, a, b, fi = .35, fo = .35) => sai(prog(t, a, a + fi)) * (1 - ease(prog(t, b - fo, b)));
+
+// tempo de uma palavra: frase i, primeira palavra que começa com o prefixo (a partir da ocorrência n)
+const quando = (i, prefixo, n = 0) => {
+  const ps = T.frases[i].palavras.filter(p => p.p.toLowerCase().replace(/[^\wà-ú]/g, '').startsWith(prefixo));
+  return (ps[n] || ps[0]).t;
+};
+const F = T.frases;
+const C = {
+  terreno: quando(2, 'terreno'), destino: quando(2, 'destino'), projeto: quando(2, 'projeto'), sucesso: quando(2, 'sucesso'),
+  macro: quando(3, 'macro'), negocio: quando(3, 'negócio'), diagnostico: quando(3, 'diagnóstico'), caminho: quando(3, 'caminho'),
+  papel: quando(4, 'papel'), assistir: quando(4, 'assistir'),
+};
+// cenas: gancho REC até o fim da frase 2; terreno; mapa; ficha; caderno
+const S = { recFim: F[1].b + .15, terra: [F[1].b + .15, C.macro - .1], mapa: [C.macro - .1, C.caminho - .15],
+  ficha: [C.caminho - .15, C.papel - .25], caderno: [C.papel - .25, T.total] };
+
+// ---------- legenda em pílula: grupos de até 4 palavras ----------
+const grupos = [];
+F.forEach(f => {
+  let g = [];
+  f.palavras.forEach((p, j) => {
+    g.push(p);
+    const fimFrase = j === f.palavras.length - 1;
+    if (g.length === 4 || /[,.?!:]$/.test(p.p) || fimFrase) {
+      const prox = fimFrase ? f.b : f.palavras[j + 1].t;
+      grupos.push({ a: g[0].t, b: prox, txt: g.map(x => x.p).join(' ') }); g = [];
+    }
+  });
+});
+
+// ---------- 3D ----------
+const r3 = new THREE.WebGLRenderer({ canvas: $('cena'), antialias: true, alpha: true, preserveDrawingBuffer: true });
+r3.setSize(1080, 1920, false); r3.setClearColor(0x000000, 0);
+const cena = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(30, 1080 / 1920, .1, 200);
+cena.add(new THREE.HemisphereLight(0xFEF5F0, 0x8B714E, 1.15));
+const sol = new THREE.DirectionalLight(0xffffff, 1.5); sol.position.set(5, 9, 6); cena.add(sol);
+const mat = (c, r = .8) => new THREE.MeshStandardMaterial({ color: c, roughness: r });
+
+// terreno: disco de grama, lote marcado, árvores, montanhas, bolhas
+const terra = new THREE.Group(); cena.add(terra);
+const disco = new THREE.Mesh(new THREE.CylinderGeometry(4, 4, .35, 72), mat(0x4E7A3A)); disco.position.y = -.18; terra.add(disco);
+const borda = new THREE.Mesh(new THREE.CylinderGeometry(4.02, 4.02, .36, 72, 1, true), mat(0x6B5A3E)); borda.position.y = -.18; terra.add(borda);
+const lote = new THREE.Mesh(new THREE.PlaneGeometry(3.2, 2.2), new THREE.MeshStandardMaterial({ color: 0xC9A96E, transparent: true, opacity: .0 }));
+lote.rotation.x = -Math.PI / 2; lote.position.y = .005; terra.add(lote);
+const loteLinha = new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.PlaneGeometry(3.2, 2.2)), new THREE.LineBasicMaterial({ color: 0xE0BE5E }));
+loteLinha.rotation.x = -Math.PI / 2; loteLinha.position.y = .01; terra.add(loteLinha);
+const arvores = [[-3, -1.2], [-2.6, 1.4], [-3.2, .2], [2.9, -1.5], [3.1, .6], [2.4, 2.1], [-1.2, -3], [.9, -3.2], [-.3, 3.2], [1.8, 2.9]].map(([x, z], i) => {
+  const g = new THREE.Group();
+  const tronco = new THREE.Mesh(new THREE.CylinderGeometry(.06, .08, .3, 8), mat(0x6B4F2E)); tronco.position.y = .15; g.add(tronco);
+  [0, 1, 2].forEach(k => { const c = new THREE.Mesh(new THREE.ConeGeometry(.42 - k * .1, .6, 10), mat(0x1F4A2A)); c.position.y = .45 + k * .3; g.add(c); });
+  g.position.set(x, 0, z); terra.add(g); return g;
+});
+const montes = [[-2.3, -3.4, 1.3], [1.4, -3.6, 1.6]].map(([x, z, h]) => {
+  const m = new THREE.Mesh(new THREE.ConeGeometry(1.3, h, 6), mat(0x8B714E)); m.position.set(x, h / 2, z); terra.add(m); return m;
+});
+const bolhas = [[-.8, -.2], [.9, .3], [0, .9]].map(([x, z]) => {
+  const g = new THREE.Group();
+  const deck = new THREE.Mesh(new THREE.CylinderGeometry(.55, .55, .08, 32), mat(0x8B714E)); deck.position.y = .04; g.add(deck);
+  const d = new THREE.Mesh(new THREE.SphereGeometry(.48, 40, 20, 0, Math.PI * 2, 0, Math.PI / 2),
+    new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: .45, roughness: .05 }));
+  d.position.y = .08; g.add(d);
+  const aro = new THREE.Mesh(new THREE.TorusGeometry(.48, .015, 8, 48), mat(0xC9A96E)); aro.rotation.x = Math.PI / 2; aro.position.y = .09; g.add(aro);
+  const cama = new THREE.Mesh(new THREE.BoxGeometry(.4, .1, .28), mat(0xFEF5F0)); cama.position.y = .16; g.add(cama);
+  g.position.set(x, 0, z); terra.add(g); return g;
+});
+
+// mapa do Brasil extrudado (world-atlas, id 076)
+const mapa = new THREE.Group(); cena.add(mapa);
+{
+  const br = topojson.feature(world, world.objects.countries).features.find(f => f.id === '076');
+  const polys = br.geometry.type === 'Polygon' ? [br.geometry.coordinates] : br.geometry.coordinates;
+  const P = ([lon, lat]) => new THREE.Vector2((lon + 53) * .11, (lat + 14) * .11);
+  polys.forEach(poly => {
+    const s = new THREE.Shape(poly[0].map(P));
+    const g = new THREE.ExtrudeGeometry(s, { depth: .35, bevelEnabled: true, bevelThickness: .05, bevelSize: .04, bevelSegments: 2 });
+    const topo = new THREE.Mesh(g, [mat(0xF2EBDD, .7), mat(0x8B714E, .7)]);
+    topo.rotation.x = -Math.PI / 2; mapa.add(topo);
+  });
+}
+
+function camTerra(t) {
+  const [a, b] = S.terra, k = prog(t, a, b), giro = -.5 + k * .9;
+  cam.fov = 30; cam.position.set(Math.sin(giro) * 21, 12 - k * 1.5, Math.cos(giro) * 21); cam.lookAt(0, -.6, 0);
+}
+
+function render3D(t) {
+  const emTerra = t >= S.terra[0] - .1 && t < S.terra[1] + .5, emMapa = t >= S.mapa[0] && t < S.mapa[1] + .4;
+  terra.visible = emTerra; mapa.visible = emMapa;
+  if (emTerra) {
+    camTerra(Math.min(t, S.terra[1]));
+    const sTerra = clamp(mola(t, S.terra[0]), 0, 1.1) * (1 - ease(prog(t, S.terra[1] - .1, S.terra[1] + .4)));
+    terra.scale.setScalar(Math.max(.001, sTerra)); terra.position.y = -1.6;
+    const lt = sai(prog(t, C.terreno - .2, C.terreno + .4)); lote.material.opacity = .35 * lt; loteLinha.material.opacity = lt; loteLinha.material.transparent = true;
+    arvores.forEach((g, i) => g.scale.setScalar(Math.max(.001, clamp(mola(t, C.destino - .15 + i * .06), 0, 1.15))));
+    montes.forEach((m, i) => m.scale.setScalar(Math.max(.001, clamp(mola(t, C.destino + .1 + i * .12), 0, 1.1))));
+    bolhas.forEach((g, i) => { const s = clamp(mola(t, C.projeto - .1 + i * .18), 0, 1.15); g.scale.setScalar(Math.max(.001, s)); g.position.y = (1 - clamp(s)) * 1.2; });
+  }
+  if (emMapa) {
+    const [a, b] = S.mapa, k = prog(t, a, b);
+    cam.fov = 30; cam.position.set(0, 19 - k * 1.5, 10 - k * 1.2); cam.lookAt(0, 0, -.2);
+    const s = clamp(mola(t, a), 0, 1.08) * (1 - ease(prog(t, b - .1, b + .35)));
+    mapa.scale.setScalar(Math.max(.001, s)); mapa.rotation.y = Math.sin(t * .4) * .08; mapa.position.set(0, 0, .6);
+  }
+  r3.setScissorTest(false); r3.clear(); r3.render(cena, cam);
+}
+
+// ---------- camadas de interface ----------
+function gancho(t) {
+  const vis = t < S.recFim + .05;
+  $('rec').style.display = vis ? 'block' : 'none';
+  if (!vis) return;
+  const ms = Math.floor(t * 30) % 30, s = Math.floor(t);
+  $('tc').textContent = `00:00:${String(s).padStart(2, '0')}:${String(ms).padStart(2, '0')}`;
+  // as palavras da frase 2 aparecem letra por letra, no tempo de cada palavra; "Marco Zero" em dourado
+  const pal = F[1].palavras; let html = '';
+  pal.forEach((p, j) => {
+    const ini = p.t - .05, fim = j < pal.length - 1 ? pal[j + 1].t - .05 : F[1].b;
+    const n = Math.floor(p.p.length * prog(t, ini, fim));
+    if (n <= 0) return;
+    const ouro = /marco|zero/i.test(p.p);
+    html += (html ? ' ' : '') + `<span class="${ouro ? 'k' : ''}">${p.p.slice(0, n)}</span>`;
+  });
+  const piscar = Math.floor(t * 3) % 2 === 0;
+  $('gancho').innerHTML = html + (t < F[1].b + .1 && piscar ? '<span class="cursor"></span>' : '');
+  // na frase 1, o nome aparece em cima do gancho
+  if (t < F[1].a) $('gancho').innerHTML = `<span style="font-size:64px;font-weight:700;text-transform:none;letter-spacing:0">${F[0].palavras.filter(p => p.t <= t).map(p => p.p).join(' ')}</span>`;
+  $('rec').style.opacity = 1 - prog(t, S.recFim - .12, S.recFim + .05);
+}
+
+function chips(t) {
+  const box = $('chips'); box.innerHTML = '';
+  const lista = [
+    { txt: 'Seu terreno', x: 120, y: 520, a: C.terreno - .1, b: S.terra[1] },
+    { txt: 'Destino turístico', x: 560, y: 640, a: C.destino, b: S.terra[1] },
+    { txt: 'Projeto de hospedagem', x: 150, y: 1260, a: C.projeto, b: S.terra[1] },
+    { txt: 'de sucesso', x: 640, y: 1360, a: C.sucesso, b: S.terra[1], escuro: true },
+    { txt: 'Ler o terreno', x: 90, y: 560, a: C.macro + .4, b: S.mapa[1] },
+    { txt: 'Desenhar o negócio', x: 520, y: 700, a: C.macro + .8, b: S.mapa[1] },
+    { txt: 'Estruturar o capital', x: 100, y: 1290, a: C.negocio - .1, b: S.mapa[1] },
+    { txt: 'Lançar', x: 700, y: 1380, a: C.negocio + .3, b: S.mapa[1], escuro: true },
+  ];
+  for (const c of lista) {
+    if (t < c.a || t > c.b + .3) continue;
+    const s = clamp(mola(t, c.a), 0, 1.15), saida = 1 - ease(prog(t, c.b - .1, c.b + .25));
+    const el = document.createElement('div'); el.className = 'chip' + (c.escuro ? ' escuro' : ''); el.textContent = c.txt;
+    Object.assign(el.style, { left: c.x + 'px', top: c.y + 'px', opacity: Math.min(1, s * 3) * saida, transform: `scale(${.6 + .4 * s})` });
+    box.appendChild(el);
+  }
+}
+
+function titulo(t) {
+  const blocos = [
+    { a: S.terra[0] + .1, b: S.terra[1], txt: 'O seu terreno pode ser mais' },
+    { a: S.mapa[0] + .1, b: S.mapa[1], txt: 'A visão macro: a Ordem Zion' },
+  ];
+  const c = blocos.find(x => t >= x.a && t < x.b + .3), el = $('titulo');
+  el.style.opacity = c ? janela(t, c.a, c.b + .3) : 0;
+  if (c) el.querySelector('span').textContent = c.txt;
+}
+
+const ITENS = ['A sua letra', 'As 5 perguntas do investidor', 'Quanto a espera já custou', 'Terra A ou terra B', 'A sua etapa da Ordem Zion'];
+function ficha(t) {
+  const [a, b] = S.ficha, el = $('ficha'), v = janela(t, a, b + .3, .4, .35);
+  el.style.display = v > 0 ? 'block' : 'none'; if (v <= 0) return;
+  el.style.opacity = v; el.style.transform = `translateY(${(1 - sai(prog(t, a, a + .5))) * 120}px)`;
+  const passo = Math.min(.55, Math.max(.3, (b - a - 1.2) / ITENS.length));
+  el.innerHTML = `<small>Montado ao longo da série</small><h2>Seu diagnóstico prévio</h2>` +
+    ITENS.map((txt, i) => {
+      const ti = a + .5 + i * passo, ok = t > ti + .25, ap = clamp((t - ti) / .25);
+      return `<div class="item ${ok ? 'ok' : ''}" style="opacity:${ap};transform:translateX(${(1 - ap) * 40}px)"><b>${ok ? '✓' : ''}</b>${txt}</div>`;
+    }).join('');
+}
+
+function caderno(t) {
+  const [a] = S.caderno, el = $('caderno'), v = sai(prog(t, a, a + .4)) * (1 - prog(t, T.total - .5, T.total));
+  el.style.opacity = v; if (v <= 0) { el.innerHTML = ''; return; }
+  el.style.transform = `translateY(${(1 - sai(prog(t, a, a + .5))) * 100}px) rotate(-3deg)`;
+  const escrita = prog(t, C.papel - .1, C.assistir);
+  const linhas = [0, 1, 2, 3].map(i => {
+    const k = clamp(escrita * 4 - i), y = 360 + i * 110;
+    if (k <= 0) return '';
+    return `<line x1="120" y1="${y}" x2="${120 + 520 * k}" y2="${y}" stroke="#1B2117" stroke-width="10" stroke-linecap="round"/>`;
+  }).join('');
+  const pk = clamp(escrita * 4 - Math.floor(clamp(escrita * 4, 0, 3.99))), li = Math.floor(clamp(escrita * 4, 0, 3.99));
+  const px = 120 + 520 * pk, py = 360 + li * 110;
+  el.innerHTML = `<rect x="40" y="40" width="720" height="820" rx="36" fill="#FFFFFF" stroke="#DED6BF" stroke-width="4"/>
+    ${[...Array(9).keys()].map(i => `<circle cx="40" cy="${110 + i * 85}" r="16" fill="#DED6BF"/>`).join('')}
+    <text x="120" y="230" font-family="Aventa" font-weight="800" font-size="56" fill="#1B2117">Meu terreno</text>
+    <line x1="120" y1="262" x2="420" y2="262" stroke="#C9A96E" stroke-width="8" stroke-linecap="round"/>
+    ${linhas}
+    <g transform="translate(${px},${py}) rotate(35)"><rect x="-14" y="-200" width="28" height="190" rx="8" fill="#C9A96E"/>
+      <polygon points="-14,-10 14,-10 0,22" fill="#1B2117"/><rect x="-14" y="-200" width="28" height="30" rx="8" fill="#1B2117"/></g>`;
+}
+
+function legenda(t) {
+  const g = grupos.find(x => t >= x.a && t < x.b), el = $('legenda');
+  const vis = g && t > S.recFim;
+  el.style.opacity = vis ? 1 : 0; if (!vis) return;
+  const sp = el.querySelector('span'); sp.textContent = g.txt;
+  sp.style.transform = `scale(${.9 + .1 * sai(prog(t, g.a, g.a + .15))})`;
+}
+
+window.seek = t => {
+  render3D(t); gancho(t); chips(t); titulo(t); ficha(t); caderno(t); legenda(t);
+  $('selo').style.opacity = t > S.recFim ? 1 - prog(t, S.recFim + 3.5, S.recFim + 4) : 0;
+  $('marca').style.opacity = t > S.recFim ? 1 : 0;
+  $('flash').style.opacity = Math.max(0, 1 - Math.abs(t - S.recFim) / .18) * .95;
+};
+window.DURACAO = T.total;
+window.pronto = document.fonts.ready;
+</script>
+</body>
+</html>
