@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aula Zion 16x9</title>
+<!--
+  Template da aula na área de membros (1920x1080, 30 fps).
+  Carregado por render.py como templates/aula_16x9.html?lesson=<id>.
+  Lê lessons/<id>/timeline.json e anchors.json, mostra fg/NNNNN.webp.
+  window.render(t, frame) monta o quadro do instante t; window.SFX guarda os eventos de som.
+-->
+<style>
+@font-face{font-family:Aventa;src:url(../assets/fonts/aventa.woff2) format('woff2');font-weight:100 900}
+:root{--black:#040605;--moss:#1B2117;--cream:#FEF5F0;--sand:#DED6BF;--earth:#8B714E;--gold:#C9A96E;--painel:#F4EEE6}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px;overflow:hidden;background:var(--black);font-family:Aventa,sans-serif}
+#palco{position:relative;width:1920px;height:1080px;overflow:hidden;
+  background:radial-gradient(1200px 900px at 72% 40%,#2a3324 0%,var(--moss) 45%,var(--black) 100%)}
+#brilho{position:absolute;width:900px;height:900px;border-radius:50%;left:930px;top:120px;
+  background:radial-gradient(circle,rgba(201,169,110,.20),rgba(201,169,110,0) 65%)}
+#bruno{position:absolute;transform-origin:50% 0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 6%,#000 94%,transparent 100%),linear-gradient(to bottom,#000 80%,transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
+#painel{position:absolute;left:80px;top:150px;width:760px;height:760px;border-radius:28px;background:var(--painel);
+  overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.45)}
+#cena{position:absolute;left:0;top:0;width:760px;height:760px}
+#rotulo{position:absolute;left:48px;top:40px;font-weight:800;font-size:30px;color:var(--moss);letter-spacing:.5px}
+#rotulo small{display:block;font-weight:700;font-size:20px;letter-spacing:5px;color:var(--earth);text-transform:uppercase;margin-bottom:8px}
+#progresso{position:absolute;left:80px;top:56px;display:flex;align-items:center;gap:22px}
+#progresso b{font-weight:700;font-size:22px;letter-spacing:5px;color:var(--sand);text-transform:uppercase}
+#segs{display:flex;gap:8px}#segs i{display:block;width:44px;height:6px;border-radius:3px;background:rgba(222,214,191,.25)}
+#segs i.feito{background:var(--sand)}#segs i.agora{background:var(--gold)}
+#marca{position:absolute;right:72px;top:46px;width:190px;opacity:.85}
+#credito{position:absolute;left:900px;top:690px;padding:22px 34px;border-left:5px solid var(--gold);
+  background:rgba(4,6,5,.72);color:var(--cream)}
+#credito b{display:block;font-weight:900;font-size:38px}#credito span{font-weight:700;font-size:24px;color:var(--sand)}
+#legenda{position:absolute;left:880px;width:1000px;top:930px;text-align:center;font-weight:700;font-size:66px;color:#fff;
+  text-shadow:0 4px 18px rgba(0,0,0,.85),0 2px 4px rgba(0,0,0,.9)}
+.chip{position:absolute;display:flex;align-items:center;gap:14px;padding:16px 28px;border-radius:999px;background:#fff;
+  color:var(--moss);font-weight:700;font-size:30px;box-shadow:0 12px 30px rgba(0,0,0,.25);white-space:nowrap}
+.chip::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--gold)}
+#pausa{position:absolute;inset:0;background:rgba(4,6,5,.86);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:34px;color:var(--cream)}
+#pausa small{font-weight:700;font-size:26px;letter-spacing:8px;color:var(--gold);text-transform:uppercase}
+#pausa h2{font-weight:900;font-size:76px;line-height:1.08;text-align:center;max-width:1400px}
+#pausa p{font-weight:700;font-size:30px;color:var(--sand)}
+#pausa .barra{width:520px;height:8px;border-radius:4px;background:rgba(222,214,191,.2);overflow:hidden}
+#pausa .barra i{display:block;height:100%;background:var(--gold)}
+</style>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js"}}</script>
+</head>
+<body>
+<div id="palco">
+  <div id="brilho"></div>
+  <img id="bruno" alt="">
+  <div id="painel"><canvas id="cena" width="760" height="760"></canvas><div id="rotulo"></div></div>
+  <div id="progresso"><b></b><div id="segs"></div></div>
+  <img id="marca" src="../assets/logos/logo_cream.png" alt="">
+  <div id="credito"></div>
+  <div id="legenda"></div>
+  <div id="chips"></div>
+  <div id="pausa"></div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+const aula = new URLSearchParams(location.search).get('lesson');
+const base = `../lessons/${aula}/`;
+const TL = await (await fetch(base + 'timeline.json')).json();
+const ANC = await (await fetch(base + 'anchors.json')).json();
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => 1 - Math.pow(1 - x, 3);
+const pop = (t, t0) => { const x = Math.max(0, t - t0); return x === 0 ? 0 : 1 - Math.exp(-7 * x) * Math.cos(9 * x); };
+window.SFX = [];
+const som = (tipo, t0) => { if (!SFX.some(s => s.tipo === tipo && Math.abs(s.t - t0) < 1e-3)) SFX.push({ tipo, t: t0 }); };
+
+// progresso da trilha
+$('progresso').querySelector('b').textContent = `Pilar ${TL.pilar} · Aula ${TL.aula} de ${TL.total_aulas}`;
+for (let i = 1; i <= TL.total_aulas; i++) {
+  const s = document.createElement('i');
+  s.className = i < +TL.aula ? 'feito' : i === +TL.aula ? 'agora' : '';
+  $('segs').appendChild(s);
+}
+$('credito').innerHTML = `<b>Bruno Chaerk</b><span>Fundador &amp; CEO · Zion Hotel Group · @brunochaerkofc</span>`;
+
+// ---- cena 3D: bolha de glamping no deck, árvores e montanha ----
+const r3 = new THREE.WebGLRenderer({ canvas: $('cena'), antialias: true, preserveDrawingBuffer: true });
+r3.setClearColor(0xF4EEE6, 1);
+const cena = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+cena.add(new THREE.HemisphereLight(0xFEF5F0, 0x8B714E, 1.1));
+const sol = new THREE.DirectionalLight(0xffffff, 1.4); sol.position.set(4, 6, 3); cena.add(sol);
+const grupo = new THREE.Group(); cena.add(grupo);
+const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: .8 });
+const chao = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, .18, 64), mat(0xDED6BF)); chao.position.y = -.09; grupo.add(chao);
+const deck = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, .12, 48), mat(0x8B714E)); deck.position.y = .06; grupo.add(deck);
+const bolha = new THREE.Mesh(new THREE.SphereGeometry(1.05, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2),
+  new THREE.MeshPhysicalMaterial({ color: 0xffffff, transmission: .6, transparent: true, opacity: .55, roughness: .05, metalness: 0 }));
+bolha.position.y = .12; grupo.add(bolha);
+const aro = new THREE.Mesh(new THREE.TorusGeometry(1.05, .025, 12, 96), mat(0xC9A96E)); aro.rotation.x = Math.PI / 2; aro.position.y = .13; grupo.add(aro);
+const cama = new THREE.Mesh(new THREE.BoxGeometry(.9, .22, .6), mat(0xFEF5F0)); cama.position.set(0, .24, -.1); grupo.add(cama);
+[[-2.2, -.6], [-1.9, .9], [2.1, -1], [2.4, .5], [-.4, -2.3]].forEach(([x, z], i) => {
+  const a = new THREE.Mesh(new THREE.ConeGeometry(.32, 1.1 + (i % 2) * .4, 18), mat(0x1B2117));
+  a.position.set(x, .55 + (i % 2) * .2, z); grupo.add(a);
+});
+const mont = new THREE.Mesh(new THREE.ConeGeometry(1.4, 2.0, 5), mat(0x8B714E)); mont.position.set(-1.6, .9, -2.4); grupo.add(mont);
+
+function cena3D(t) {
+  const giro = 0.5 + t * 0.12, z = 9.6 - 1.2 * ease(prog(t, 0, 3));
+  cam.position.set(Math.sin(giro) * z, 4.2, Math.cos(giro) * z); cam.lookAt(0, .2, 0);
+  r3.render(cena, cam);
+}
+
+// ---- apresentador: posiciona pela âncora da cabeça ----
+function apresentador(frame) {
+  const a = ANC[Math.min(frame, ANC.length - 1)];
+  const el = $('bruno');
+  const src = `${base}fg/${String(a.f).padStart(5, '0')}.webp`;
+  if (el.getAttribute('src') !== src) el.setAttribute('src', src);
+  const escala = 1180 / a.h;                    // altura do apresentador no palco
+  const alvoTopo = 170, alvoX = 1390;           // topo da cabeça e centro na metade direita
+  el.style.width = a.w * escala + 'px';
+  el.style.left = (alvoX - a.cx * escala) + 'px';
+  el.style.top = (alvoTopo - a.top * escala) + 'px';
+}
+
+function legenda(t) {
+  const c = TL.caps.find(c => t >= c.a && t < c.b);
+  const el = $('legenda');
+  el.textContent = c ? c.txt : '';
+  el.style.transform = c ? `scale(${0.92 + 0.08 * ease(prog(t, c.a, c.a + .18))})` : '';
+}
+
+function chips(t) {
+  const box = $('chips'); box.innerHTML = '';
+  for (const ch of TL.chips) {
+    if (t < ch.a || t > ch.b) continue;
+    som('pop', ch.a);
+    const el = document.createElement('div'); el.className = 'chip'; el.textContent = ch.txt;
+    const s = clamp(pop(t, ch.a), 0, 1.2), sai = 1 - prog(t, ch.b - .25, ch.b);
+    el.style.left = ch.x + 'px'; el.style.top = ch.y + 'px';
+    el.style.opacity = Math.min(1, s * 3) * sai; el.style.transform = `scale(${0.6 + 0.4 * s})`;
+    box.appendChild(el);
+  }
+}
+
+function pausa(t) {
+  const p = TL.pausas.find(p => t >= p.a && t < p.b), el = $('pausa');
+  if (!p) { el.style.display = 'none'; return; }
+  som('whoosh_in', p.a);
+  el.style.display = 'flex'; el.style.opacity = ease(prog(t, p.a, p.a + .3)) * (1 - prog(t, p.b - .3, p.b));
+  el.innerHTML = `<small>Pause o vídeo e responda</small><h2>${p.pergunta}</h2><p>Anote no seu caderno antes de seguir.</p>
+    <div class="barra"><i style="width:${100 * prog(t, p.a, p.b)}%"></i></div>`;
+}
+
+window.render = (t, frame) => {
+  apresentador(frame);
+  cena3D(t);
+  $('rotulo').innerHTML = `<small>${TL.painel.kicker}</small>${TL.painel.titulo}`;
+  const cr = prog(t, .3, .8) * (1 - prog(t, TL.credito_ate - .4, TL.credito_ate));
+  $('credito').style.opacity = cr; $('credito').style.transform = `translateX(${(1 - ease(prog(t, .3, .8))) * -40}px)`;
+  legenda(t); chips(t); pausa(t);
+  return document.getElementById('bruno').decode().catch(() => {});
+};
+window.pronto = document.fonts.ready;
+</script>
+</body>
+</html>
