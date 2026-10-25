@@ -3,13 +3,15 @@
 
   python3 a1.py narrar [--videos 1-7] [--teste] [--velocidade 0.9]   # audio/PP.mp3 com o Kokoro (voz pm_alex)
   python3 a1.py montar [--videos 1-7]                                # vídeos, verticais, legendas e relatório
+  python3 a1.py narrar --motor heygen --teste                        # página 01 com a voz do HeyGen (HEYGEN_API_KEY)
+  python3 a1.py tudo                                                 # HeyGen nas 51 páginas e remonta tudo
 
 Slides: pdftoppm -png -r 150 -scale-to-x 1920 -scale-to-y 1080 slides.pdf slides/p
 Regras: página = áudio + 0,8 s; [PAUSA] +5 s com "pause e anote"; [FOTO] zoom de 100% a 104%;
 fade de 0,4 s; selo "Aula 1 · Marco Zero · N de 7" até 4 s; "Próximo vídeo" nos 2 s finais (menos no 7);
 fala em -16 LUFS / -1,5 dBTP; nenhum vídeo passa de 7:00 (se passar, avisa, não corta).
 """
-import argparse, json, re, sys
+import argparse, json, os, re, sys
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
@@ -71,11 +73,51 @@ def faixa(txt):
     return list(range(int(a), int(b or a) + 1))
 
 
+VOZ_HEYGEN = '7d5dfb068b534baa996aef0ab3468a8d'
+
+
+def heygen(caminho, corpo):
+    import urllib.request, urllib.error
+    req = urllib.request.Request('https://api.heygen.com' + caminho, data=json.dumps(corpo).encode(), method='POST',
+                                 headers={'X-Api-Key': os.environ['HEYGEN_API_KEY'], 'Content-Type': 'application/json',
+                                          'Accept': 'application/json'})
+    try:
+        with urllib.request.urlopen(req, timeout=180) as r:
+            return json.load(r)
+    except urllib.error.HTTPError as e:
+        return {'erro': e.code, 'corpo': e.read().decode(errors='replace')[:400]}
+
+
+def falar_heygen(texto, voz_id, destino):
+    """HeyGen: tenta a API de fala atual (v3) e cai para a antiga (v1); baixa o áudio e grava em mp3."""
+    import urllib.request
+    texto = falado(texto)
+    tentativas = [('/v3/voices/speech', {'text': texto, 'voice_id': voz_id}),
+                  ('/v1/audio/text_to_speech', {'text': texto, 'voice_id': voz_id})]
+    erros = []
+    for caminho, corpo in tentativas:
+        r = heygen(caminho, corpo)
+        url = (r.get('data') or {}).get('audio_url') or r.get('audio_url')
+        if url:
+            bruto = destino.with_suffix('.heygen')
+            urllib.request.urlretrieve(url, bruto)
+            sh('ffmpeg', '-y', '-loglevel', 'error', '-i', bruto, '-ar', '48000', '-b:a', '192k', destino)
+            bruto.unlink()
+            return
+        erros.append(f'{caminho}: {r}')
+    sys.exit('HeyGen não devolveu áudio.\n' + '\n'.join(erros))
+
+
 def cmd_narrar(a):
     pasta = AQUI / 'audio'
     pasta.mkdir(exist_ok=True)
-    aula.AQUI = AQUI.parent / 'd01-territorio'  # o modelo Kokoro já baixado fica lá em modelos/
-    motor = aula.kokoro()
+    if a.motor == 'heygen':
+        voz_id = a.voz if a.voz != 'pm_alex' else os.environ.get('HEYGEN_VOICE_ID') or VOZ_HEYGEN
+        if not os.environ.get('HEYGEN_API_KEY'):
+            sys.exit('Falta a variável HEYGEN_API_KEY nas configurações do ambiente.')
+    else:
+        aula.AQUI = AQUI.parent / 'd01-territorio'  # o modelo Kokoro já baixado fica lá em modelos/
+        motor = aula.kokoro()
     for v in roteiro():
         if v['n'] not in faixa(a.videos):
             continue
@@ -85,7 +127,10 @@ def cmd_narrar(a):
             destino = pasta / f"{pg['p']:02d}.mp3"
             if destino.exists() and not a.refazer:
                 continue
-            falar(motor, pg['texto'], a.voz, a.velocidade, destino)
+            if a.motor == 'heygen':
+                falar_heygen(pg['texto'], voz_id, destino)
+            else:
+                falar(motor, pg['texto'], a.voz, a.velocidade, destino)
             print(f"{destino.name} {duracao(destino):6.1f} s  vídeo {v['n']} · {pg['nome']}")
 
 
@@ -239,7 +284,12 @@ if __name__ == '__main__':
     sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('narrar'); p.add_argument('--videos', default=''); p.add_argument('--voz', default='pm_alex')
     p.add_argument('--velocidade', type=float, default=0.85)
+    p.add_argument('--motor', choices=['kokoro', 'heygen'], default='kokoro')
     p.add_argument('--teste', action='store_true'); p.add_argument('--refazer', action='store_true'); p.set_defaults(f=cmd_narrar)
     p = sub.add_parser('montar'); p.add_argument('--videos', default=''); p.set_defaults(f=cmd_montar)
+    p = sub.add_parser('tudo', help='narra de novo (HeyGen) e remonta os 7 vídeos')
+    p.add_argument('--videos', default=''); p.add_argument('--voz', default='pm_alex')
+    p.set_defaults(f=lambda a: (cmd_narrar(argparse.Namespace(videos=a.videos, voz=a.voz, velocidade=1.0, motor='heygen',
+                                                              teste=False, refazer=True)), cmd_montar(a)))
     a = ap.parse_args()
     a.f(a)
