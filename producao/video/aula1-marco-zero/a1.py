@@ -127,7 +127,8 @@ def falar_google(texto, destino):
     import urllib.parse, urllib.request
     trab = destino.parent / f'.{destino.stem}'
     trab.mkdir(exist_ok=True)
-    lista = []
+    lista, tempos, t0 = [], [], 0.0
+    originais = trechos(texto)
     for i, (t, pausa) in enumerate(trechos(falado(texto))):
         mp3 = trab / f'{i:03d}.mp3'
         url = 'https://translate.googleapis.com/translate_tts?' + urllib.parse.urlencode(
@@ -138,6 +139,10 @@ def falar_google(texto, destino):
            f'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,'
            f'areverse,apad=pad_dur={pausa}', '-ar', '24000', '-ac', '1', wav)
         lista.append(f"file '{wav.name}'")
+        d = duracao(wav)
+        tempos.append({'a': round(t0, 3), 'b': round(t0 + d - pausa, 3), 'texto': originais[i][0]})
+        t0 += d
+    destino.with_suffix('.json').write_text(json.dumps(tempos, ensure_ascii=False, indent=1), encoding='utf-8')
     (trab / 'lista.txt').write_text('\n'.join(lista))
     sh('ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', trab / 'lista.txt', '-b:a', '192k', destino)
     for f in trab.iterdir():
