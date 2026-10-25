@@ -50,6 +50,20 @@ def falado(texto):
     return re.sub(r'\b(' + '|'.join(PRONUNCIA) + r')\b', lambda m: PRONUNCIA[m.group(1)], texto)
 
 
+def falar(motor, texto, voz, velocidade, destino, respiro=0.45):
+    """Uma frase por vez, com um respiro entre elas: a fala fica mais calma sem arrastar as palavras."""
+    import numpy as np, soundfile as sf
+    partes = []
+    for frase in re.split(r'(?<=[.?!])\s+', texto):
+        audio, taxa = motor.create(falado(frase), voice=voz, speed=velocidade, lang='pt-br')
+        idx = np.where(np.abs(audio) > 0.01)[0]
+        partes += [audio[max(0, idx[0] - 240): idx[-1] + 600], np.zeros(int(respiro * taxa), np.float32)]
+    wav = destino.with_suffix('.wav')
+    sf.write(wav, np.concatenate(partes[:-1]), taxa)
+    sh('ffmpeg', '-y', '-loglevel', 'error', '-i', wav, '-b:a', '192k', destino)
+    wav.unlink()
+
+
 def faixa(txt):
     if not txt:
         return list(range(1, 8))
@@ -71,7 +85,7 @@ def cmd_narrar(a):
             destino = pasta / f"{pg['p']:02d}.mp3"
             if destino.exists() and not a.refazer:
                 continue
-            aula.falar_kokoro(motor, falado(pg['texto']), a.voz, a.velocidade, destino)
+            falar(motor, pg['texto'], a.voz, a.velocidade, destino)
             print(f"{destino.name} {duracao(destino):6.1f} s  vídeo {v['n']} · {pg['nome']}")
 
 
@@ -224,7 +238,7 @@ if __name__ == '__main__':
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('narrar'); p.add_argument('--videos', default=''); p.add_argument('--voz', default='pm_alex')
-    p.add_argument('--velocidade', type=float, default=0.9)
+    p.add_argument('--velocidade', type=float, default=0.85)
     p.add_argument('--teste', action='store_true'); p.add_argument('--refazer', action='store_true'); p.set_defaults(f=cmd_narrar)
     p = sub.add_parser('montar'); p.add_argument('--videos', default=''); p.set_defaults(f=cmd_montar)
     a = ap.parse_args()
