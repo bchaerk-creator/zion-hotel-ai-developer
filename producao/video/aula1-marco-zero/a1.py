@@ -108,10 +108,49 @@ def falar_heygen(texto, voz_id, destino):
     sys.exit('HeyGen não devolveu áudio.\n' + '\n'.join(erros))
 
 
+def trechos(texto, limite=190):
+    """Corta em frases e, se preciso, em vírgulas, sem passar do limite de caracteres por pedido."""
+    saida = []
+    for frase in re.split(r'(?<=[.?!])\s+', texto):
+        partes, atual = re.split(r'(?<=[,;:])\s+', frase), ''
+        for parte in partes:
+            if atual and len(atual) + len(parte) + 1 > limite:
+                saida.append((atual, 0.12)); atual = parte
+            else:
+                atual = f'{atual} {parte}'.strip()
+        saida.append((atual, 0.38))
+    return saida
+
+
+def falar_google(texto, destino):
+    """Voz do Google em pt-BR, trecho a trecho, com respiros entre frases."""
+    import urllib.parse, urllib.request
+    trab = destino.parent / f'.{destino.stem}'
+    trab.mkdir(exist_ok=True)
+    lista = []
+    for i, (t, pausa) in enumerate(trechos(falado(texto))):
+        mp3 = trab / f'{i:03d}.mp3'
+        url = 'https://translate.googleapis.com/translate_tts?' + urllib.parse.urlencode(
+            {'client': 'gtx', 'ie': 'UTF-8', 'tl': 'pt-BR', 'q': t})
+        mp3.write_bytes(urllib.request.urlopen(url, timeout=60).read())
+        wav = trab / f'{i:03d}.wav'
+        sh('ffmpeg', '-y', '-loglevel', 'error', '-i', mp3, '-af',
+           f'silenceremove=start_periods=1:start_threshold=-45dB,areverse,silenceremove=start_periods=1:start_threshold=-45dB,'
+           f'areverse,apad=pad_dur={pausa}', '-ar', '24000', '-ac', '1', wav)
+        lista.append(f"file '{wav.name}'")
+    (trab / 'lista.txt').write_text('\n'.join(lista))
+    sh('ffmpeg', '-y', '-loglevel', 'error', '-f', 'concat', '-safe', '0', '-i', trab / 'lista.txt', '-b:a', '192k', destino)
+    for f in trab.iterdir():
+        f.unlink()
+    trab.rmdir()
+
+
 def cmd_narrar(a):
     pasta = AQUI / 'audio'
     pasta.mkdir(exist_ok=True)
-    if a.motor == 'heygen':
+    if a.motor == 'google':
+        pass
+    elif a.motor == 'heygen':
         voz_id = a.voz if a.voz != 'pm_alex' else os.environ.get('HEYGEN_VOICE_ID') or VOZ_HEYGEN
         if not os.environ.get('HEYGEN_API_KEY'):
             sys.exit('Falta a variável HEYGEN_API_KEY nas configurações do ambiente.')
@@ -127,7 +166,9 @@ def cmd_narrar(a):
             destino = pasta / f"{pg['p']:02d}.mp3"
             if destino.exists() and not a.refazer:
                 continue
-            if a.motor == 'heygen':
+            if a.motor == 'google':
+                falar_google(pg['texto'], destino)
+            elif a.motor == 'heygen':
                 falar_heygen(pg['texto'], voz_id, destino)
             else:
                 falar(motor, pg['texto'], a.voz, a.velocidade, destino)
@@ -284,7 +325,7 @@ if __name__ == '__main__':
     sub = ap.add_subparsers(dest='cmd', required=True)
     p = sub.add_parser('narrar'); p.add_argument('--videos', default=''); p.add_argument('--voz', default='pm_alex')
     p.add_argument('--velocidade', type=float, default=0.85)
-    p.add_argument('--motor', choices=['kokoro', 'heygen'], default='kokoro')
+    p.add_argument('--motor', choices=['google', 'kokoro', 'heygen'], default='google')
     p.add_argument('--teste', action='store_true'); p.add_argument('--refazer', action='store_true'); p.set_defaults(f=cmd_narrar)
     p = sub.add_parser('montar'); p.add_argument('--videos', default=''); p.set_defaults(f=cmd_montar)
     p = sub.add_parser('tudo', help='narra de novo (HeyGen) e remonta os 7 vídeos')
