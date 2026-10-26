@@ -13,7 +13,28 @@ AQUI = Path(__file__).resolve().parent
 import base64, os
 # Voz: com GOOGLE_TTS_API_KEY no ambiente usa o Google Cloud (GOOGLE_TTS_VOICE, padrão pt-BR-Chirp3-HD-Charon);
 # sem chave, o Kokoro pm_alex (0,85, frase a frase). VOZ_MOTOR força um deles: 'nuvem', 'kokoro' ou 'google'.
-MOTOR = os.environ.get('VOZ_MOTOR') or ('nuvem' if os.environ.get('GOOGLE_TTS_API_KEY') else 'kokoro')
+MOTOR = os.environ.get('VOZ_MOTOR') or ('nuvem' if os.environ.get('GOOGLE_TTS_API_KEY') else 'antonio')
+VOZ_ANTONIO, RITMO_ANTONIO = 'pt-BR-AntonioNeural', '-5%'  # a voz escolhida pelo Bruno (edge-tts, pede speech.platform.bing.com)
+
+
+def antonio(texto, destino):
+    """Microsoft Antonio pelo edge-tts. Devolve o início e o fim de cada palavra, em segundos, medidos pelo serviço."""
+    import asyncio, edge_tts
+    audio, marcas = bytearray(), []
+
+    async def falar():
+        c = edge_tts.Communicate(texto, VOZ_ANTONIO, rate=RITMO_ANTONIO, boundary='WordBoundary',
+                                proxy=os.environ.get('HTTPS_PROXY') or os.environ.get('https_proxy'))
+        async for parte in c.stream():
+            if parte['type'] == 'audio':
+                audio.extend(parte['data'])
+            elif parte['type'] == 'WordBoundary':
+                marcas.append((parte['offset'] / 1e7, (parte['offset'] + parte['duration']) / 1e7, parte['text']))
+    asyncio.run(falar())
+    mp3 = destino.with_suffix('.mp3')
+    mp3.write_bytes(bytes(audio))
+    sh('ffmpeg', '-y', '-loglevel', 'error', '-i', mp3, '-ar', '24000', '-ac', '1', destino)
+    return marcas
 VOZ_NUVEM = os.environ.get('GOOGLE_TTS_VOICE', 'pt-BR-Chirp3-HD-Charon')
 
 
@@ -55,7 +76,7 @@ def falado(t):
 
 def trechos(texto):
     """Google: frases e vírgulas (trecho curto, tempo de palavra mais preciso). Kokoro: frase inteira, com respiro."""
-    if MOTOR in ('kokoro', 'nuvem'):
+    if MOTOR in ('kokoro', 'nuvem', 'antonio'):
         return [(f, 0.45 if MOTOR == 'kokoro' else 0.3) for f in re.split(r'(?<=[.?!])\s+', texto.strip())]
     saida = []
     for frase in re.split(r'(?<=[.?!])\s+', texto.strip()):
@@ -82,7 +103,10 @@ def main(vid):
         for texto, pausa in trechos(fala['texto']):
             k += 1
             wav = trab / f'{k:03d}.wav'
-            if MOTOR == 'nuvem':
+            marcas = None
+            if MOTOR == 'antonio':
+                marcas = antonio(falado(texto), wav)
+            elif MOTOR == 'nuvem':
                 bruto = trab / f'{k:03d}-nuvem.wav'
                 nuvem(falado(texto), bruto)
                 sh('ffmpeg', '-y', '-loglevel', 'error', '-i', bruto, '-af',
@@ -103,11 +127,15 @@ def main(vid):
                    'silenceremove=start_periods=1:start_threshold=-45dB,areverse', '-ar', '24000', '-ac', '1', wav)
             d = duracao(wav)
             pal = texto.split()
-            peso = [len(plano(p)) + 1.5 for p in pal]
-            acc = 0
-            for p, w in zip(pal, peso):
-                palavras.append({'p': p, 'a': round(t + d * acc / sum(peso), 3), 'b': round(t + d * (acc + w) / sum(peso), 3)})
-                acc += w
+            if marcas and len(marcas) == len(pal):  # tempo medido pelo serviço, palavra por palavra
+                for p, (ma, mb, _) in zip(pal, marcas):
+                    palavras.append({'p': p, 'a': round(t + ma, 3), 'b': round(t + mb, 3)})
+            else:  # tempo estimado pelo peso das letras
+                peso = [len(plano(p)) + 1.5 for p in pal]
+                acc = 0
+                for p, w in zip(pal, peso):
+                    palavras.append({'p': p, 'a': round(t + d * acc / sum(peso), 3), 'b': round(t + d * (acc + w) / sum(peso), 3)})
+                    acc += w
             lista.append(f"file '{wav.name}'")
             t += d
             depois = pausa
