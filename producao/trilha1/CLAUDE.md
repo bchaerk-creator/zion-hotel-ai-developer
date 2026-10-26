@@ -3,6 +3,7 @@
 Você vai produzir, a partir desta pasta, tudo o que falta da Trilha 1 "Transforme seu terreno em um destino turístico de sucesso", de Bruno Chaerk (Zion Hotel Group International): os vídeos animados de cada aula, as ferramentas da trilha e o pacote final para o Bruno subir no ClickMax. Fale sempre em português do Brasil, sem travessão.
 
 ## Regras que valem para tudo
+- **A voz é sempre a da Zion, nunca a do Bruno** (pedido do Bruno em 26/10/2026). Narração em "nós, da Zion" ("Olá! Nós somos da Zion, e esta é..."); nada de "aqui é o Bruno Chaerk" nem primeira pessoa do singular (eu, meu, comigo, te espero). O Bruno aparece só em terceira pessoa, como "o nosso fundador, Bruno Chaerk". Vale para aulas, pitch e qualquer vídeo. Falas do aluno entre aspas ou em pergunta ("o meu terreno é apto?") ficam como estão.
 - **Nada sai desta pasta sem aprovação expressa do Bruno.** Não publique, não suba para YouTube, Vimeo, ClickMax, Lovable ou qualquer hospedagem, não envie e-mail nem mensagem, não crie conta e não ligue domínio sem ele dizer "pode" naquela ação.
 - Não altere os textos dos roteiros, dos e-books nem das apresentações. Se achar um erro, anote em `saida/PENDENCIAS.md` e siga.
 - Chaves de API: só em variáveis de ambiente que o Bruno cria no terminal ou no serviço de hospedagem. Nunca peça a chave na conversa e nunca grave em arquivo.
