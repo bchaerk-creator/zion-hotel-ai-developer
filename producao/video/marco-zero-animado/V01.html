@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Marco Zero · V01 Abertura</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  #t1 { left: 120px; top: 300px; width: 1000px; }
+  .pilha { left: 120px; top: 330px; display: flex; flex-direction: column; gap: 34px; }
+  .pilha div { font-family: 'Playfair Display', serif; font-size: 76px; color: var(--creme); padding-left: 34px;
+               border-left: 5px solid var(--ouro); }
+  .pontos { left: 240px; right: 240px; top: 640px; height: 160px; }
+  .pontos .trilho { position: absolute; left: 0; right: 0; top: 40px; height: 3px; background: rgba(245,241,232,.35);
+                    transform-origin: 0 50%; }
+  .pontos .p { position: absolute; top: 24px; width: 34px; height: 34px; margin-left: -17px; border-radius: 50%;
+               background: var(--verde); border: 3px solid rgba(245,241,232,.6); }
+  .pontos .p.aceso { background: var(--ouro); border-color: var(--ouro); box-shadow: 0 0 30px rgba(224,190,94,.8); }
+  .pontos .nome { position: absolute; top: 84px; right: -60px; width: 120px; text-align: center; font-size: 34px;
+                  font-weight: 600; color: var(--ouro); }
+  .pontos .q { position: absolute; top: -150px; left: 0; font-family: 'Playfair Display', serif; font-size: 64px;
+               color: var(--creme); white-space: nowrap; }
+  #t2 { left: 120px; top: 360px; width: 900px; }
+  #linha { left: 120px; top: 560px; width: 760px; height: 4px; background: var(--ouro); transform-origin: 0 50%; }
+  #t2b { left: 120px; top: 330px; width: 980px; }
+  #t3 { left: 120px; top: 150px; width: 1680px; }
+  #cards { left: 120px; right: 120px; top: 380px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
+  #cards .card { height: 300px; box-sizing: border-box; }
+  #cards .card b { font-size: 56px; }
+  #cards .card span { font-size: 31px; margin-top: 18px; }
+</style>
+</head>
+<body>
+<div id="cena">
+  <div id="selo"></div>
+  <div id="barra"></div>
+</div>
+<script src="assets/gsap.min.js"></script>
+<script src="base.js"></script>
+<script>
+iniciar('V01', tl => {
+  const f1 = FALA(1), f2 = FALA(2), f3 = FALA(3);
+  const ent = (n, t, d = {}) => tl.fromTo(n, { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: E, ...d }, t);
+  const sai = (n, t) => tl.to(n, { autoAlpha: 0, y: -20, duration: 0.5, ease: 'power2.in' }, t);
+
+  // FALA 1 · foto aérea, título, três rótulos, linha de cinco pontos
+  const fim1 = f2.a - 0.4;
+  const a1 = foto('15-aerea-araucarias-urubici', { lado: 'esq', zoom: [1, 1.08] });
+  mover(tl, a1, 0, fim1 + 0.6);
+  tl.fromTo(a1, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0);
+  const t1 = el(`<div class="titulo" id="t1">${rico('Transforme seu terreno em um *destino turístico de sucesso*')}</div>`);
+  ent(t1, W(1, 'Marco Zero'));
+  const pilha = el(`<div class="pilha"><div>O setor</div><div>A sua dor</div><div>A jornada</div></div>`);
+  const [r1, r2, r3] = pilha.children;
+  tl.to(t1, { autoAlpha: 0.0, duration: 0.6 }, W(1, 'o setor') - 0.3);
+  ent(r1, W(1, 'o setor'), { x: -40, y: 0 });
+  ent(r2, W(1, 'o que trouxe você'), { x: -40, y: 0 });
+  ent(r3, W(1, 'a jornada'), { x: -40, y: 0 });
+  const tObra = W(1, 'a obra é o último passo');
+  sai(pilha, W(1, 'começa pela obra') - 0.2);
+  const pts = el(`<div class="pontos"><div class="q">Quase todo mundo começa pela obra.</div><div class="trilho"></div>
+      ${[0, 25, 50, 75, 100].map((x, i) => `<div class="p${i === 4 ? ' aceso' : ''}" style="left:${x}%"></div>`).join('')}
+      <div class="nome">Obra</div></div>`);
+  ent(pts.querySelector('.q'), W(1, 'começa pela obra'));
+  tl.fromTo(pts.querySelector('.trilho'), { scaleX: 0 }, { scaleX: 1, duration: 0.9, ease: E }, W(1, 'começa pela obra') + 0.2);
+  pts.querySelectorAll('.p').forEach((p, i) => tl.fromTo(p, { scale: 0 }, { scale: 1, duration: 0.5, ease: 'back.out(2)' },
+                                                         W(1, 'começa pela obra') + 0.3 + i * 0.12));
+  tl.set(pts.querySelectorAll('.p')[4], { className: 'p' }, 0);
+  tl.set(pts.querySelectorAll('.p')[4], { className: 'p aceso' }, tObra + 0.5);
+  ent(pts.querySelector('.nome'), tObra + 0.5);
+  tl.to([a1, pts, t1], { autoAlpha: 0, duration: 0.5 }, fim1);
+
+  // FALA 2 · visão, caminho, abençoar vidas
+  const a2 = foto('04-hospede-olhando-serra-deck', { lado: 'esq', zoom: [1.08, 1], x: [0, 0] });
+  tl.fromTo(a2, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, fim1);
+  mover(tl, a2, fim1, W(2, 'abençoar vidas') + 0.6);
+  const t2 = el(`<div class="titulo" id="t2">${rico('Tudo começa de uma *visão*')}</div>`);
+  ent(t2, W(2, 'Tudo começa'));
+  const linha = el(`<div id="linha"></div>`);
+  tl.fromTo(linha, { scaleX: 0, autoAlpha: 1 }, { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, W(2, 'existe um caminho'));
+  const tAb = W(2, 'abençoar vidas');
+  const a3 = foto('18-casal-hospedes', { lado: 'esq', zoom: [1, 1.07] });
+  tl.fromTo(a3, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.7 }, tAb);
+  mover(tl, a3, tAb, f3.a);
+  tl.to([t2, linha], { autoAlpha: 0, duration: 0.4 }, tAb - 0.1);
+  const t2b = el(`<div class="titulo" id="t2b">${rico('Para abençoar vidas. *E para expandir o setor.*')}</div>`);
+  ent(t2b, tAb + 0.15);
+  tl.to([a2, a3, t2b], { autoAlpha: 0, duration: 0.5 }, f3.a - 0.4);
+
+  // FALA 3 · cinco perguntas e a pausa
+  const t3 = el(`<div class="titulo" id="t3">${rico('Antes de *investir*')}</div>`);
+  ent(t3, f3.a);
+  const itens = [['Visão', 'O que vai construir?', 'Visão'], ['Demanda', 'Existe mercado?', 'Demanda'],
+                 ['Tempo', 'Em quanto tempo?', 'Tempo'], ['Modo', 'Com que conhecimento?', 'Modo'],
+                 ['Resultado', 'O que te devolve?', 'resultado']];
+  const cards = el(`<div id="cards">${itens.map(([n, q]) => `<div class="card"><b>${n}</b><span>${q}</span></div>`).join('')}</div>`);
+  [...cards.children].forEach((c, i) => ent(c, W(3, itens[i][2], f3.a + 1)));
+  const tq = W(3, 'qual das cinco');
+  tl.to(cards.children, { scale: 1.05, borderColor: '#E0BE5E', duration: 0.35, ease: 'power2.out', yoyo: true, repeat: 1 }, tq);
+  pausa(tl, f3.b + 0.3, f3.pausa);
+  tl.to([t3, cards], { autoAlpha: 0, duration: 0.6 }, DADOS.total - 0.9);
+});
+</script>
+</body>
+</html>
