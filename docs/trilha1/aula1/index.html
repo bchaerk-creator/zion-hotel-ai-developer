@@ -1,0 +1,1238 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha do Território</title>
+<meta name="description" content="Ferramenta da Aula 1 da Trilha 1 da Mentoria Zion: Território e destino. Você responde uma pergunta por vez e sai com a Ficha do Território, a página 1 do Dossiê do seu projeto, em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:8px}
+.campo-num input{flex:1;min-width:0;font-size:1.25rem;font-weight:600}
+.campo-num .un{display:flex;align-items:center;padding:0 12px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn-p[disabled],.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:10px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.marina{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.marina h3{color:var(--dourado-escuro)}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.fonte{margin-top:16px}
+.fonte legend{font-weight:600;padding:0;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:10px;padding:10px 14px;margin:12px 0;font-size:.92rem}
+.resumo-mini div{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--linha);padding:5px 0}
+.resumo-mini div:last-child{border:0}
+.resumo-mini b{text-align:right}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.45rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.conta{border-bottom:1px solid var(--linha);padding:10px 0}
+.conta:last-child{border:0}
+.conta b{display:block}
+.conta p{margin:2px 0 0;color:var(--texto-2);font-size:.95rem}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-sem{background:#F3EEDF;border-color:var(--dourado-escuro);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+td.n{text-align:center;font-weight:700;white-space:nowrap}
+.nota-0,.nota-1{color:var(--critico)}
+.soma{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap}
+.soma strong{font-family:"Playfair Display",Georgia,serif;font-size:2rem}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(4,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Mentoria Zion</div><div class="etiqueta">Trilha 1 · Aula 1<br>Território e destino</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script>
+/* =====================================================================
+   Zion Exercícios · Trilha 1 · Etapa 1 · Aula 1 · Território e destino
+   Um arquivo só. Sem framework. Nada é enviado: ZION_WEBHOOK_URL vazia.
+   ===================================================================== */
+"use strict";
+const ZION_WEBHOOK_URL = "";
+/** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". O build.js copia esta linha de _fonte/base.html. */
+const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
+const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
+const CHAVE = "zion-t1-aula1"; // chave comum da Trilha 1: zion-t1-aula1 a zion-t1-aula6
+const CHAVE_ANTIGA = "zion-etapa1-territorio-v1"; // lida uma vez, para quem começou antes da troca
+
+/* ---------------------------------------------------------------------
+   1. As contas. Reescrita em JS de kit-code/ferramentas/ts/util.ts e
+      ts/t1-a02.ts (calculadoras["1-2"]). Mesma lógica, mesmos textos,
+      mesmo arredondamento. Conferida com os testes do TS (testes/).
+   --------------------------------------------------------------------- */
+const ZionCalc = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else {
+      const pontos = (s.match(/\./g) || []).length;
+      if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  const num = (r, id) => paraNumero(r[id]);
+  function escolha(r, id) {
+    const v = r[id];
+    if (v === "nao_sei") return "nao_sei";
+    if (typeof v === "number") return String(v);
+    if (typeof v !== "string") return null;
+    const t = v.trim();
+    return t === "" ? null : t;
+  }
+  function lista(r, id, permitidos) {
+    const v = r[id];
+    let arr = [];
+    if (Array.isArray(v)) arr = v.map((x) => String(x).trim());
+    else if (typeof v === "string" && v !== "nao_sei" && v.trim() !== "") arr = v.split(/[,;\n]/).map((x) => x.trim());
+    else if (typeof v === "number") arr = [String(v)];
+    arr = arr.filter((x) => x !== "" && x !== "nao_sei");
+    if (permitidos) arr = arr.filter((x) => permitidos.includes(x));
+    return Array.from(new Set(arr));
+  }
+  function ok(...xs) { return xs.every((x) => typeof x === "number" && Number.isFinite(x)); }
+  function div(a, b) {
+    if (!ok(a, b) || b === 0) return null;
+    const q = a / b;
+    return Number.isFinite(q) ? q : null;
+  }
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas);
+    const y = Math.abs(x) * f;
+    const r = Math.round(y + 1e-7) / f;
+    const res = x < 0 ? -r : r;
+    return Object.is(res, -0) ? 0 : res;
+  }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) {
+    const r = arred(x, casas);
+    const neg = r < 0;
+    const [i, d] = Math.abs(r).toFixed(casas).split(".");
+    return (neg ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : "");
+  }
+  function fmtN(x, casasMax = 2) {
+    const s = fmtNum(x, casasMax);
+    if (!s.includes(",")) return s;
+    return s.replace(/,?0+$/, "");
+  }
+  function brl(x) {
+    const r = arred(x, 2);
+    return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2);
+  }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) {
+    if (itens.length === 0) return "";
+    if (itens.length === 1) return itens[0];
+    return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+  }
+  const limpaNumero = (x, casas) => (Number.isFinite(x) ? arred(x, casas) : null);
+  const limpaTexto = (s) => s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2013/g, "-");
+  function limpaDetalhe(v, casas) {
+    if (typeof v === "number") return limpaNumero(v, casas);
+    if (typeof v === "string") return limpaTexto(v);
+    if (Array.isArray(v)) return v.map(limpaTexto);
+    return v;
+  }
+  function fechar(c, casas = 2) {
+    const out = {
+      id: c.id,
+      rotulo: limpaTexto(c.rotulo),
+      valor: typeof c.valor === "number" ? limpaNumero(c.valor, casas) : typeof c.valor === "string" ? limpaTexto(c.valor) : c.valor,
+      texto: limpaTexto(c.texto),
+    };
+    if (c.alerta) out.alerta = c.alerta;
+    if (c.detalhes) {
+      out.detalhes = {};
+      for (const [k, v] of Object.entries(c.detalhes)) out.detalhes[k] = limpaDetalhe(v, 4);
+    }
+    return out;
+  }
+
+  const SUBS = [["sub_preservacao", "preservação"], ["sub_reserva_legal", "reserva legal"], ["sub_encosta", "encosta forte"], ["sub_recuos", "recuos e faixas"], ["sub_servico", "área de serviço"]];
+  const LIMITES = [["limite_fisico", "físico"], ["limite_infra", "de infraestrutura"], ["limite_experiencia", "de experiência"], ["limite_mercado", "de mercado"]];
+  const DOCS = [["matricula", "matrícula atualizada"], ["car", "CAR"], ["zoneamento", "zoneamento"], ["consulta_previa", "consulta prévia"]];
+  const CAMPOS_NS = ["sub_preservacao", "sub_reserva_legal", "sub_encosta", "sub_recuos", "sub_servico", "preco_terreno", "investimento_total", "limite_fisico", "limite_infra", "limite_experiencia", "limite_mercado", "caminho_leitura"];
+  const m2 = (x) => `${fmtN(x, 2)} m²`;
+
+  function calcular(r) {
+    const calculos = [];
+    // 1. area_usavel
+    const areaMat = num(r, "area_matricula");
+    const subsFaltando = SUBS.filter(([id]) => num(r, id) === null).map(([, n]) => n);
+    const somaSubs = SUBS.reduce((s, [id]) => s + (num(r, id) ?? 0), 0);
+    const areaUsavel = areaMat !== null && areaMat > 0 ? areaMat - somaSubs : null;
+    const provisoria = subsFaltando.length > 0;
+    {
+      let t, alerta;
+      if (areaUsavel === null) {
+        t = "Falta a área da matrícula: sem ela não dá para subtrair nada.";
+      } else {
+        t = `Área que você pode usar: ${m2(areaMat)} da matrícula menos ${m2(somaSubs)} de subtrações = ${m2(areaUsavel)}.`;
+        if (provisoria) t += ` No máximo e provisória: ${juntar(subsFaltando)} em Não sei entrou como zero. Cada Não sei vira tarefa.`;
+        if (areaUsavel <= 0) {
+          t += " As subtrações passam da área da matrícula: confira os números com o CAR e o topógrafo.";
+          alerta = "critico";
+        }
+      }
+      calculos.push({ id: "area_usavel", rotulo: "Área que você pode usar", valor: areaUsavel, texto: t, alerta, detalhes: { subtracoes_m2: somaSubs, provisoria, em_nao_sei: subsFaltando } });
+    }
+    const usavelPos = areaUsavel !== null && areaUsavel > 0 ? areaUsavel : null;
+    // 2. pct_usavel
+    const pctUsavel = div(usavelPos, areaMat);
+    calculos.push({
+      id: "pct_usavel", rotulo: "Quanto da matrícula vira negócio", valor: pctUsavel === null ? null : pctUsavel * 100,
+      texto: pctUsavel === null ? "Sem a área usável, a porcentagem fica em branco." : `${fmtPct(pctUsavel)} da matrícula vira negócio${provisoria ? " (no máximo, provisório)" : ""}.`,
+    });
+    // capacidade (calculada antes; mostrada na ordem do JSON)
+    const lims = LIMITES.map(([id, nome]) => ({ id, nome, v: num(r, id) }));
+    const conhecidos = lims.filter((l) => l.v !== null);
+    const faltamLim = lims.filter((l) => l.v === null);
+    const capacidade = conhecidos.length ? Math.min(...conhecidos.map((l) => l.v)) : null;
+    const mandam = capacidade === null ? [] : conhecidos.filter((l) => l.v === capacidade);
+    // 3. tres_precos
+    const preco = num(r, "preco_terreno");
+    const pM2Total = div(preco, areaMat);
+    const pM2Usavel = div(preco, usavelPos);
+    const pUnidade = div(preco, capacidade);
+    {
+      let t;
+      if (preco === null) t = "Falta o valor do terreno: os três preços ficam em branco.";
+      else {
+        const partes = [
+          pM2Total !== null ? `${brl(pM2Total)} por m² total` : "por m² total em branco",
+          pM2Usavel !== null ? `${brl(pM2Usavel)} por m² que você pode usar` : "por m² usável em branco (falta a área usável)",
+          pUnidade !== null ? `${brl(pUnidade)} por unidade possível` : "por unidade em branco (falta a capacidade)",
+        ];
+        t = `O mesmo terreno de ${brl(preco)}: ${partes.join("; ")}. O preço por m² usável é o número da negociação; o preço por unidade conversa com o investimento.`;
+      }
+      calculos.push({ id: "tres_precos", rotulo: "Os três preços do terreno", valor: pM2Usavel, texto: t, detalhes: { preco_m2_total: pM2Total, preco_m2_usavel: pM2Usavel, preco_por_unidade: pUnidade } });
+    }
+    // 4. capacidade
+    {
+      let t;
+      if (capacidade === null) t = "Nenhum dos quatro limites foi preenchido: a capacidade fica em branco. O de mercado se mede na Aula 3.";
+      else {
+        t = `O lugar aguenta ${fmtN(capacidade)} unidades: é o menor dos limites. Quem manda é o limite ${juntar(mandam.map((l) => l.nome))}.`;
+        if (faltamLim.length) {
+          t += ` Provisória: falta o limite ${juntar(faltamLim.map((l) => l.nome))}.`;
+          if (faltamLim.some((l) => l.id === "limite_mercado")) t += " O de mercado, medir na Aula 3.";
+        }
+      }
+      calculos.push({ id: "capacidade", rotulo: "Quantas unidades o lugar aguenta, e qual limite manda", valor: capacidade, texto: t, detalhes: { limite_que_manda: mandam.map((l) => l.id), provisoria: faltamLim.length > 0, limites_faltando: faltamLim.map((l) => l.id) } });
+    }
+    // 5. ilusao_preco
+    const fisico = num(r, "limite_fisico");
+    const ilusao = div(fisico, capacidade);
+    calculos.push({
+      id: "ilusao_preco", rotulo: "Quanto o terreno parece mais barato se contar pelo que cabe", valor: ilusao,
+      texto: ilusao === null ? "Falta o limite físico ou a capacidade para comparar." : `Contar pelo limite físico (${fmtN(fisico)} unidades) em vez da capacidade (${fmtN(capacidade)}) faz o terreno parecer ${fmtN(ilusao, 2)} vezes mais barato do que é.`,
+    });
+    // 6. peso_terreno
+    const invest = num(r, "investimento_total");
+    const peso = div(preco, invest);
+    {
+      let t, alerta;
+      const regra = "Regra de bolso: até 10% fora do alerta; de 10% a 20% sensível; acima de 20% alerta aceso.";
+      if (peso === null) t = `Peso a calcular: falta ${preco === null ? "o valor do terreno" : "o investimento total"}. ${regra}`;
+      else if (peso > 0.2) { t = `O terreno pesa ${fmtPct(peso)} do investimento total: alerta aceso. ${regra}`; alerta = "critico"; }
+      else if (peso > 0.1) { t = `O terreno pesa ${fmtPct(peso)} do investimento total: zona da regra de bolso, sensível. ${regra}`; alerta = "atencao"; }
+      else { t = `O terreno pesa ${fmtPct(peso)} do investimento total: fora do alerta. ${regra}`; alerta = "ok"; }
+      calculos.push({ id: "peso_terreno", rotulo: "Quanto o terreno pesa no investimento total", valor: peso === null ? null : peso * 100, texto: t, alerta });
+    }
+    // 7. documentos_faltando
+    const temDocs = lista(r, "documentos", DOCS.map(([v]) => v));
+    const faltamDocs = DOCS.filter(([v]) => !temDocs.includes(v));
+    calculos.push({
+      id: "documentos_faltando", rotulo: "Documentos que faltam",
+      valor: faltamDocs.length ? faltamDocs.map(([, n]) => n).join(", ") : "nenhum",
+      texto: faltamDocs.length ? `Faltam ${faltamDocs.length} de 4 documentos: ${juntar(faltamDocs.map(([, n]) => n))}.` : "Os quatro documentos estão na mão.",
+      alerta: faltamDocs.some(([v]) => v === "matricula" || v === "car") ? "atencao" : faltamDocs.length ? undefined : "ok",
+      detalhes: { faltam: faltamDocs.map(([v]) => v) },
+    });
+    // 8. conta_nao_sei
+    const ns = CAMPOS_NS.filter((id) => falta(r[id]));
+    calculos.push({
+      id: "conta_nao_sei", rotulo: "Quantos Não sei", valor: ns.length,
+      texto: ns.length ? `${ns.length} Não sei (ou em branco). Cada um vira uma tarefa: em leitura de terreno, não saber custa igual a estar errado.` : "Nenhum Não sei.",
+      detalhes: { campos: ns },
+    });
+    // 9. veredito_sugerido
+    const caminho = escolha(r, "caminho_leitura");
+    const faltaMatCar = faltamDocs.some(([v]) => v === "matricula" || v === "car");
+    let v, motivo;
+    if (caminho === "trocar") {
+      v = "pausar"; motivo = "Caminho \"trocar de terreno\": existe um limite que não se resolve. Muda-se o terreno, não o projeto.";
+    } else if (caminho === "renegociar" || (peso !== null && peso > 0.2)) {
+      v = "ajustar";
+      motivo = caminho === "renegociar" ? "Caminho \"renegociar\": o terreno pesa demais no investimento." : `O terreno pesa ${fmtPct(peso)} do investimento, acima de 20% pela regra de bolso.`;
+    } else if (peso === null || caminho === "investigar" || ns.length > 0 || faltaMatCar) {
+      v = "testar";
+      const m = [];
+      if (caminho === "investigar") m.push("o caminho é investigar antes");
+      if (ns.length > 0) m.push(`há ${ns.length} Não sei`);
+      if (faltaMatCar) m.push("falta matrícula ou CAR");
+      if (peso === null && ns.length === 0) m.push("o peso do terreno está em branco");
+      motivo = `Testar: ${juntar(m)}. Não desenha nem põe dinheiro antes de medir.`;
+    } else {
+      v = "avancar";
+      motivo = "Caminho \"seguir\": área usável com fonte, os quatro limites preenchidos e o peso do terreno fora do alerta.";
+    }
+    calculos.push({ id: "veredito_sugerido", rotulo: "Veredito sugerido pela página", valor: v, texto: motivo });
+    return { calculos: calculos.map((c) => fechar(c)), veredito_sugerido: v, motivo_veredito: motivo };
+  }
+  return { calcular, paraNumero, falta, fmtN, brl, fmtPct, juntar, arred };
+})();
+
+/* ---------------------------------------------------------------------
+   2. As perguntas (campos de território de aula-02.json; o limite de
+      mercado fica de fora: ele se mede na Aula 2, Mercado e demanda).
+   --------------------------------------------------------------------- */
+const FONTES = [
+  { v: "doc", nota: 3, rot: "De um documento ou de uma medida (matrícula, CAR, topógrafo, prefeitura, concessionária)" },
+  { v: "prof", nota: 2, rot: "Um profissional me falou, mas ainda não tenho no papel" },
+  { v: "est", nota: 1, rot: "É estimativa minha, do vendedor ou do corretor" },
+];
+
+const QUESTOES = [
+  {
+    id: "area_matricula", tipo: "numero", unidade: "m²", nota: true, aceitaNS: false, curto: "Área da matrícula",
+    pergunta: "Qual é o tamanho do seu terreno, do jeito que está escrito na matrícula?",
+    explica: "A matrícula é o registro do imóvel no cartório. Escreva em metros quadrados (m²). Um hectare tem 10.000 m²: se a matrícula diz 5 hectares, escreva 50.000.",
+    porque: "É o ponto de partida de todas as contas. Mas é só o número do papel: nas próximas telas você vai tirar dele os pedaços que não podem virar negócio. Quem negocia pelo papel paga pelo metro que nunca vai usar.",
+    onde: "<p>Na <b>matrícula atualizada</b>, que se pede no <b>cartório de registro de imóveis</b> da cidade do terreno. Ela mostra a área, os vizinhos, os donos e os ônus (algo que pesa sobre o imóvel, como hipoteca ou penhora).</p>",
+    marina: "A matrícula da Marina diz 50.000 m² (5 hectares).",
+    ondeCurto: "pedir a matrícula atualizada no cartório de registro de imóveis",
+  },
+  {
+    id: "sub_preservacao", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Área de preservação",
+    pergunta: "Quanto do terreno é área de preservação?",
+    explica: "São os pedaços que a natureza protege: a margem de rio ou riacho, o entorno de nascente, o topo de morro. Eles não entram na conta do que você pode construir.",
+    porque: "Nenhuma dessas áreas aparece numa visita de sábado de sol. E cada metro dela sai da área que vira negócio. Se você não sabe, marque Não sei: a conta segue, e isso vira uma tarefa da semana.",
+    onde: "<p>No mapa do <b>CAR, o Cadastro Ambiental Rural</b>: o registro público que mostra no mapa a preservação e a reserva legal do imóvel rural. Ele fica no sistema do Cadastro Ambiental Rural. Quem confirma no seu caso é o <b>técnico ambiental</b>, não o vendedor nem o olho.</p>",
+    marina: "Na Marina, o riacho e a nascente tiram 12.000 m².",
+    ondeCurto: "conferir no mapa do CAR, com o técnico ambiental",
+  },
+  {
+    id: "sub_reserva_legal", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Reserva legal",
+    pergunta: "Quanto do terreno é reserva legal?",
+    explica: "Reserva legal é a parte da mata nativa que precisa ficar de pé no imóvel rural. O percentual varia por bioma (o tipo de natureza do lugar: serra, litoral, campo, mata, cerrado) e por região.",
+    porque: "É mais um pedaço que sai da conta. Como o percentual muda de lugar para lugar, ninguém deve chutar: o número certo está no papel.",
+    onde: "<p>Também no <b>CAR</b>, desenhada no mapa. Quem confirma é o <b>técnico ambiental</b>.</p>",
+    marina: "Na Marina, a reserva legal tira 10.000 m².",
+    ondeCurto: "conferir no mapa do CAR, com o técnico ambiental",
+  },
+  {
+    id: "sub_encosta", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Encosta forte",
+    pergunta: "Quanto do terreno é encosta forte, muito inclinada?",
+    explica: "Encosta forte é a parte do terreno tão inclinada que construir fica caro e limitado.",
+    porque: "Acima de 30% de inclinação, a encosta é área cara e limitada, com contenção e drenagem. Acima de 45 graus, é área de preservação permanente e não entra na sua conta de construção. São duas medidas diferentes, uma em porcentagem e outra em graus. Confira o seu caso com o topógrafo.",
+    onde: "<p>Quem mede é o <b>topógrafo</b>, com o levantamento das curvas de nível. Não decida pelo olho. Se ainda não tem o levantamento, marque Não sei.</p>",
+    marina: "Na Marina, a encosta forte tira 8.000 m².",
+    ondeCurto: "pedir ao topógrafo o levantamento com curvas de nível",
+  },
+  {
+    id: "sub_recuos", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Recuos e faixas",
+    pergunta: "Quanto do terreno fica em recuos e faixas?",
+    explica: "Recuo é a distância obrigatória que a construção precisa manter da divisa com o vizinho, da estrada e da rede elétrica. Essa faixa fica livre.",
+    porque: "Parece pouco, mas soma: uma faixa ao longo de cada divisa e da estrada sai da área que você pode usar.",
+    onde: "<p>A <b>prefeitura</b> informa os recuos da sua zona (no plano diretor e no zoneamento). A <b>concessionária de energia</b> informa a faixa da rede elétrica.</p>",
+    marina: "Na Marina, os recuos e faixas tiram 1.500 m².",
+    ondeCurto: "perguntar os recuos à prefeitura e a faixa da rede à concessionária",
+  },
+  {
+    id: "sub_servico", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Área de serviço",
+    pergunta: "Quanto do terreno o projeto vai precisar para serviço?",
+    explica: "Área de serviço é o que o empreendimento ocupa fora das unidades: o acesso, o estacionamento, o reservatório de água, o tratamento de esgoto.",
+    porque: "Hóspede não dorme no estacionamento, mas ele precisa existir. Quem esquece essa área enche o terreno de unidades no papel e descobre na obra que faltou espaço.",
+    onde: "<p>Nesta etapa, é uma estimativa sua, pensando no que o projeto vai precisar. Mais adiante, o desenho do arquiteto confirma.</p>",
+    marina: "A Marina reservou 3.500 m² para serviço. Total que sai: 35.000 m². Sobram 15.000 m², 30% da matrícula.",
+    ondeCurto: "estimar com o arquiteto o que acesso, estacionamento, reservatório e esgoto ocupam",
+  },
+  {
+    id: "preco_terreno", tipo: "moeda", unidade: "R$", nota: true, aceitaNS: true, curto: "Valor do terreno",
+    pergunta: "Quanto vale o terreno?",
+    explica: "Se você vai comprar, é o preço pedido. Se o terreno já é seu, é o valor dele hoje. Terreno que já é seu também entra na conta: é dinheiro seu que está sendo colocado no negócio.",
+    porque: "Com esse número a ferramenta mostra os três preços do mesmo terreno: por m² total, por m² que você pode usar e por unidade possível. Um terreno de quinhentos mil pode ser caríssimo, e um de três milhões pode ser barato: depende do negócio que ele permite.",
+    onde: "<p>No anúncio ou na proposta do vendedor, se vai comprar. Se já é seu, use o valor pelo qual você o venderia hoje. Escreva só números, por exemplo 600.000.</p>",
+    marina: "A Marina comprou o terreno por R$ 600.000.",
+    ondeCurto: "confirmar o preço pedido ou o valor de hoje",
+  },
+  {
+    id: "investimento_total", tipo: "moeda", unidade: "R$", nota: true, aceitaNS: true, curto: "Investimento total imaginado",
+    pergunta: "Quanto você imagina investir no total?",
+    explica: "Investimento total é o terreno, mais o que se gasta para construir e equipar, mais o capital de giro do começo (o dinheiro para manter a operação nos primeiros meses).",
+    porque: "Existe uma regra de bolso, que é alerta e não é lei: em hospedagem de experiência, quando o terreno passa de algo entre 10% e 20% do investimento total, o empreendimento fica sensível. Sem este número, o peso do terreno fica a calcular.",
+    onde: "<p>Nesta etapa, é a sua estimativa. Se ainda não tem ideia, marque Não sei: a conta completa do investimento vem mais adiante na trilha.</p>",
+    marina: "A Marina imagina investir R$ 2.220.000 no total. O terreno pesa 27% disso, e a regra de bolso acendeu.",
+    ondeCurto: "fazer uma primeira estimativa de terreno, obra, equipamento e capital de giro",
+  },
+  {
+    id: "limite_fisico", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite físico",
+    pergunta: "Quantas unidades cabem na área que você pode usar, com espaço entre elas e caminhos?",
+    explica: "Unidade é cada chalé, cabana, bolha ou quarto que você vende. Aqui a pergunta é só de espaço: quantas cabem com afastamento e circulação.",
+    porque: "É o primeiro dos quatro limites do lugar. Caber não é a mesma coisa que aguentar: o espaço é só um dos limites, e quem manda é sempre o menor deles.",
+    onde: "<p>Ande o terreno, ou marque no mapa do CAR, deixando espaço entre as unidades e para os caminhos. Depois, o arquiteto confirma.</p>",
+    marina: "No terreno da Marina cabem 12 unidades com afastamento.",
+    ondeCurto: "marcar no mapa as unidades com afastamento e caminhos, e pedir ao arquiteto para conferir",
+  },
+  {
+    id: "limite_infra", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite de infraestrutura",
+    pergunta: "Para quantas unidades dá água, energia e esgoto?",
+    explica: "Infraestrutura é o que faz a unidade funcionar: água, luz e esgoto. A água se mede no mês mais seco do ano.",
+    porque: "Energia e esgoto são destruidores silenciosos de orçamento: o sistema que serve uma casa não serve cinco cabanas cheias no feriado. E construa menos unidades, nunca menos infraestrutura: puxar energia, água e esgoto duas vezes custa muito mais.",
+    onde: "<ul><li><b>Água:</b> no mês mais seco, meça com balde e cronômetro quantos litros a fonte entrega por hora. Litros por hora × 24, menos 20% de reserva, menos o consumo da equipe e das áreas comuns, dividido pelo consumo de cada unidade por dia. Ter água não é poder usar: a captação costuma pedir outorga, e o técnico diz se precisa.</li><li><b>Energia:</b> peça à concessionária, por escrito, a distância até o poste e a tensão disponível.</li><li><b>Esgoto:</b> projetista habilitado e órgão ambiental, para a ocupação de pico.</li></ul>",
+    marina: "Na Marina, a infraestrutura dá para 10 unidades.",
+    ondeCurto: "ligar para a concessionária (distância até o poste e tensão) e medir a água no mês mais seco",
+  },
+  {
+    id: "limite_experiencia", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite de experiência",
+    pergunta: "A partir de quantas unidades um hóspede começa a ver ou ouvir o outro?",
+    explica: "É o limite da experiência: quantas unidades cabem sem que a vista, o silêncio e a privacidade de um hóspede atrapalhem os outros.",
+    porque: "A unidade que, para caber, tomou o ponto da melhor vista ou ficou perto o bastante para ouvir a vizinha derruba a diária de todas as outras. Às vezes a melhor decisão é construir menos.",
+    onde: "<p>Só você descobre, andando o terreno. Faça duas visitas no mesmo dia, às 7h e às 17h: anote e fotografe o sol, o vento, o silêncio e a vista mais forte. Depois conte.</p>",
+    marina: "Na Marina, a partir de 7 unidades um hóspede vê ou ouve o outro.",
+    ondeCurto: "fazer as duas visitas, às 7h e às 17h, com fotos, e contar",
+  },
+  {
+    id: "documentos", tipo: "multipla", nota: false, aceitaNS: false, curto: "Documentos na mão",
+    pergunta: "Quais destes documentos você já tem na mão?",
+    explica: "Marque só o que está com você, em papel ou em arquivo. Pode não marcar nenhum: é uma resposta honesta.",
+    opcoes: [
+      { v: "matricula", rot: "Matrícula atualizada" },
+      { v: "car", rot: "CAR com o mapa" },
+      { v: "zoneamento", rot: "Zona confirmada: permite hospedagem" },
+      { v: "consulta_previa", rot: "Consulta prévia protocolada" },
+    ],
+    porque: "Quem compra acredita. Quem desenvolve verifica. O que trava um empreendimento não se vê andando no terreno: se vê lendo papel. Quanto mais cedo o risco aparece, mais barato é resolver.",
+    onde: "<ul><li><b>Matrícula atualizada:</b> cartório de registro de imóveis.</li><li><b>CAR:</b> sistema do Cadastro Ambiental Rural.</li><li><b>Plano diretor e zoneamento:</b> prefeitura. Dizem se hospedagem é permitida naquela zona, e com quais regras.</li><li><b>Consulta prévia protocolada:</b> prefeitura. É a pergunta por escrito sobre o que você quer fazer. Quase ninguém faz, e é ela que troca o \"acho que pode\" pelo \"a prefeitura respondeu que pode\".</li></ul>",
+    marina: "A Marina tem a matrícula atualizada e o CAR.",
+  },
+  {
+    id: "caminho_leitura", tipo: "escolha", nota: false, aceitaNS: true, curto: "Caminho escolhido",
+    pergunta: "Pelo que você viu até aqui, qual caminho faz sentido hoje?",
+    explica: "Olhe o resumo das suas contas logo abaixo e escolha com honestidade. A pergunta mais importante: se este terreno não fosse seu, você o compraria hoje, depois desta leitura?",
+    opcoes: [
+      { v: "seguir", rot: "Seguir: está tudo verificado e a conta cabe" },
+      { v: "renegociar", rot: "Renegociar: o terreno pesa demais" },
+      { v: "investigar", rot: "Investigar antes: ainda tenho Não sei que importa" },
+      { v: "trocar", rot: "Trocar de terreno: tem um limite que não se resolve" },
+    ],
+    porque: "Depois da leitura do terreno existem quatro caminhos. Escolher um, por escrito, impede que a decisão seja tomada pelo entusiasmo. A ferramenta compara a sua escolha com as contas e pode sugerir um caminho mais cauteloso.",
+    onde: "<p>No resumo abaixo, que a ferramenta montou com as suas respostas. \"Depois a gente resolve\" é a crença mais cara: quase tudo o que se ignora antes da compra custa muito mais depois.</p>",
+    marina: "A Marina escolheu investigar antes: ela ainda não mediu o mercado.",
+    ondeCurto: "reler as contas e escolher um caminho",
+  },
+];
+const ITENS_NOTA = QUESTOES.filter((q) => q.nota);
+const NOTA_MAX = ITENS_NOTA.length * 3;
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+/* ---------------------------------------------------------------------
+   3. Estado e localStorage (sempre com try/catch)
+   --------------------------------------------------------------------- */
+function estadoVazio() {
+  return { perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, passo: -1, criterio: null, compromisso: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  try {
+    const raw = window.localStorage.getItem(CHAVE) || window.localStorage.getItem(CHAVE_ANTIGA);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (!d || typeof d !== "object" || !d.perfil) return null;
+    return Object.assign(estadoVazio(), d);
+  } catch (e) { return null; }
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() {
+  try { window.localStorage.removeItem(CHAVE); window.localStorage.removeItem(CHAVE_ANTIGA); } catch (e) {}
+}
+
+/* ---------------------------------------------------------------------
+   4. Leitura: contas, nota, alertas, ponto frágil, leitura, compromisso
+   --------------------------------------------------------------------- */
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const { fmtN, brl, fmtPct, juntar, paraNumero } = ZionCalc;
+const ehNS = (v) => v === "nao_sei";
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const calc = (res, id) => res.calculos.find((c) => c.id === id);
+/** Textos da calculadora com a numeração nova da trilha (o mercado agora é a Aula 2). */
+const textoTela = (t) => t.replace(/O de mercado, medir na Aula 3\./g, "O de mercado se mede na Aula 2, Mercado e demanda.").replace(/O de mercado se mede na Aula 3\./g, "O de mercado se mede na Aula 2, Mercado e demanda.");
+
+function respostasParaCalculo() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas) r[q.id] = S.respostas[q.id];
+  return r;
+}
+
+function notaItem(q) {
+  const v = S.respostas[q.id];
+  if (v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = FONTES.find((x) => x.v === S.fontes[q.id]);
+  return f ? f.nota : 1;
+}
+
+function hojeISO(desloc = 0) {
+  const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc);
+  return d.toISOString().slice(0, 10);
+}
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+const LEITURAS = {
+  avancar: { rot: "Seguir", sub: "Território lido: siga para a Aula 2 e meça o mercado." },
+  testar: { rot: "Investigar antes", sub: "Ainda há o que medir antes de desenhar ou pôr dinheiro." },
+  ajustar: { rot: "Ajustar: renegociar", sub: "A conta do terreno precisa mudar antes de seguir." },
+  pausar: { rot: "Pausar: trocar de terreno", sub: "Muda-se o terreno, não o projeto." },
+};
+
+function ler() {
+  const r = respostasParaCalculo();
+  const res = ZionCalc.calcular(r);
+  const area = calc(res, "area_usavel"), cap = calc(res, "capacidade"), peso = calc(res, "peso_terreno"), docs = calc(res, "documentos_faltando");
+  const faltam = docs.detalhes.faltam;
+  const faltaMatCar = faltam.includes("matricula") || faltam.includes("car");
+  // Não sei do aluno (o limite de mercado não é perguntado nesta aula)
+  const nsAluno = QUESTOES.filter((q) => q.aceitaNS && (ehNS(S.respostas[q.id]) || S.respostas[q.id] === undefined || S.respostas[q.id] === ""));
+  const caminho = S.respostas.caminho_leitura;
+  const pesoV = peso.valor; // em pontos
+  // Notas por item
+  const notas = ITENS_NOTA.map((q) => ({ q, nota: notaItem(q) }));
+  const soma = notas.reduce((s, x) => s + x.nota, 0);
+
+  // Leitura: o veredito da calculadora 1-2. Única leitura a mais: quando o único
+  // motivo de "testar" é o limite de mercado (que esta aula não pergunta), a leitura
+  // do território é "seguir" para a Aula 2, onde o mercado é medido.
+  let v = res.veredito_sugerido, motivo = res.motivo_veredito;
+  if (v === "testar" && caminho !== "investigar" && nsAluno.length === 0 && !faltaMatCar && pesoV !== null) {
+    v = "avancar";
+    motivo = "Território lido: área usável com fonte, matrícula e CAR na mão, três limites preenchidos e o peso do terreno fora do alerta. Falta só o limite de mercado, que se mede na Aula 2. Até lá, não desenha nem põe dinheiro.";
+  } else if (v === "testar") {
+    const m = [];
+    if (caminho === "investigar") m.push("você escolheu investigar antes");
+    if (nsAluno.length) m.push(`há ${nsAluno.length} Não sei nas suas respostas`);
+    if (faltaMatCar) m.push("falta a matrícula ou o CAR na mão");
+    if (pesoV === null && !nsAluno.length) m.push("o peso do terreno está em branco");
+    motivo = `Investigar antes: ${juntar(m)}. E o limite de mercado ainda se mede na Aula 2. Não desenha nem põe dinheiro antes de medir.`;
+  }
+
+  // Alertas: críticos e Não sei primeiro
+  const alertas = [];
+  if (caminho === "trocar") alertas.push({ t: "critico", tit: "Crítico", txt: "Você escolheu trocar de terreno: existe um limite que não se resolve." });
+  if (area.alerta === "critico") alertas.push({ t: "critico", tit: "Crítico", txt: area.texto });
+  if (peso.alerta === "critico") alertas.push({ t: "critico", tit: "Crítico", txt: peso.texto });
+  for (const q of nsAluno) alertas.push({ t: "ns", tit: "Não sei · vale zero", txt: `${q.curto}: vira tarefa. Onde conseguir: ${q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: é estimativa. Nota sem documento ou medida que prove não vale. Para confirmar: ${x.q.ondeCurto}.` });
+  if (peso.alerta === "atencao") alertas.push({ t: "atencao", tit: "Atenção", txt: peso.texto });
+  if (faltam.length) alertas.push({ t: "atencao", tit: "Atenção", txt: docs.texto + (faltaMatCar ? " Sem matrícula e CAR, a área que você pode usar ainda não tem fonte." : "") });
+  alertas.push({ t: "info", tit: "Para a próxima aula", txt: "O limite de mercado (quantas unidades o destino compra) não entra nesta aula. Ele se mede na Aula 2, Mercado e demanda, e pode mudar a capacidade." });
+
+  // Ponto mais frágil (o que, se continuar assim, mais pesa na decisão)
+  let fragil;
+  const nsIds = nsAluno.map((q) => q.id);
+  const ordemNS = ["sub_preservacao", "sub_reserva_legal", "limite_infra", "sub_encosta", "preco_terreno", "limite_experiencia", "limite_fisico", "sub_recuos", "investimento_total", "sub_servico", "caminho_leitura"];
+  if (caminho === "trocar") fragil = "Existe um limite que não se resolve neste terreno. Antes de qualquer outra conta, escreva qual é e quem confirmou.";
+  else if (area.alerta === "critico") fragil = "As subtrações passam da área da matrícula. Algum número está errado ou o terreno não comporta o projeto: confira com o CAR e o topógrafo.";
+  else if (peso.alerta === "critico") fragil = `O terreno pesa ${fmtN(pesoV, 1)}% do investimento total, acima de 20% pela regra de bolso. Ou o lugar tem algo que justifica pesar mais, e o mercado paga por isso, ou a conta do terreno precisa mudar.`;
+  else if (faltaMatCar) fragil = "Falta a matrícula atualizada ou o CAR na mão. Sem eles, a área que você pode usar é palpite, e todas as contas daqui para frente se apoiam nela.";
+  else if (nsIds.length) {
+    const id = ordemNS.find((x) => nsIds.includes(x)) || nsIds[0];
+    fragil = `${Q(id).curto} ainda é Não sei. Enquanto for, a conta que depende dele fica provisória. Próximo passo: ${Q(id).ondeCurto}.`;
+  } else if (notas.some((x) => x.nota === 1)) {
+    const x = notas.find((y) => y.nota === 1);
+    fragil = `${x.q.curto} é estimativa sem fonte. Nota sem evidência não vale: ${x.q.ondeCurto}.`;
+  } else if (peso.alerta === "atencao") fragil = `O terreno pesa ${fmtN(pesoV, 1)}% do investimento total, na zona sensível da regra de bolso (de 10% a 20%).`;
+  else {
+    const manda = (cap.detalhes.limite_que_manda || []).map((id) => Q(id) ? Q(id).curto.toLowerCase() : id);
+    fragil = `A capacidade ainda depende do limite de mercado, que se mede na Aula 2. Hoje quem manda é o ${juntar(manda) || "menor limite"}.`;
+  }
+
+  // Sugestões para o aluno editar
+  let criterioSug;
+  if (peso.alerta === "critico" || caminho === "renegociar") criterioSug = "Se o produto não sustentar uma diária acima da média da região, então o peso do terreno não se justifica: pauso e renegocio, ou troco de terreno.";
+  else if (faltaMatCar || nsIds.some((x) => x.startsWith("sub_"))) criterioSug = "Se a matrícula ou o CAR mostrarem que a área que posso usar não comporta o projeto, então pauso e renegocio, ou troco de terreno.";
+  else if (nsIds.includes("limite_infra")) criterioSug = "Se a concessionária ou a medição da água mostrarem que a infraestrutura não se resolve a um custo que o projeto aguenta, então troco de terreno.";
+  else criterioSug = "Se a consulta prévia mostrar que a zona não permite hospedagem, então troco de terreno.";
+
+  let comp;
+  const nome = S.perfil.nome || "Eu";
+  if (faltaMatCar) comp = { acao: "Pegar a matrícula atualizada e o mapa do CAR e fazer as subtrações com eles.", evidencia: "Os dois documentos salvos, com as áreas marcadas e a área que posso usar escrita." };
+  else if (nsIds.includes("limite_infra")) comp = { acao: "Ligar para a concessionária e anotar a distância até o poste e a tensão disponível.", evidencia: "A resposta anotada, com data e nome de quem atendeu." };
+  else if (nsIds.includes("limite_experiencia")) comp = { acao: "Fazer as duas visitas ao terreno no mesmo dia, às 7h e às 17h.", evidencia: "As fotos e as anotações de sol, vento, silêncio e vista, e a contagem de unidades." };
+  else if (faltam.includes("consulta_previa")) comp = { acao: "Protocolar a consulta prévia na prefeitura sobre o que quero fazer no terreno.", evidencia: "O número do protocolo." };
+  else comp = { acao: "Ligar para a concessionária e anotar a distância até o poste e a tensão disponível.", evidencia: "A resposta anotada, com data e nome de quem atendeu." };
+  comp.responsavel = nome; comp.prazo = hojeISO(7);
+
+  return { res, notas, soma, alertas, fragil, v, motivo, criterioSug, comp, nsAluno, faltam };
+}
+
+/* ---------------------------------------------------------------------
+   5. Envio (desligado): só monta o JSON. Nada vai para lugar nenhum
+      enquanto ZION_WEBHOOK_URL estiver vazia.
+   --------------------------------------------------------------------- */
+function montarPayload(L) {
+  L = L || ler();
+  return {
+    email: S.perfil.email, nome: S.perfil.nome, etapa: "etapa-1",
+    nota: L.soma, leitura: L.v, ponto_fragil: L.fragil,
+    respostas: Object.assign({}, respostasParaCalculo(), { fontes: Object.assign({}, S.fontes), cidade: S.perfil.cidade, uf: S.perfil.uf, criterio_para_parar: S.criterio, compromisso_7_dias: S.compromisso }),
+    calculos: L.res.calculos,
+  };
+}
+async function enviarParaZion(payload) {
+  if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
+  try {
+    const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    return { enviado: r.ok };
+  } catch (e) { return { enviado: false, erro: String(e) }; }
+}
+
+const MENTOR_AULA_ID = "t1-aula-1";
+const mentorRotulo = (k) => (LEITURAS[k] ? LEITURAS[k].rot : k);
+const mentorAtualizarResumo = (L) => { S.resumo = resumoParaDossie(L); };
+/* ---------------------------------------------------------------------
+   Mentor virtual (o mesmo bloco nas seis ferramentas da Trilha 1).
+   Só chama a rede quando o aluno toca no botão e FEEDBACK_URL está preenchida.
+   Para testes, window.ZION_FEEDBACK_URL (se existir) toma o lugar da constante.
+   --------------------------------------------------------------------- */
+const MENTOR_TEMPO_MS = 90000;
+const MENTOR_AVISO = "O mentor nunca é mais otimista que as contas.";
+const MENTOR_PESO = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+const MENTOR_MAPA = { avancar: "avancar", seguir: "avancar", testar: "testar", investigar: "testar", ajustar: "ajustar", renegociar: "ajustar", pausar: "pausar", trocar: "pausar" };
+const MENTOR_COR_PDF = { verde: [22, 38, 28], ok: [31, 90, 51], verm: [155, 44, 31], ouro: [122, 94, 18], cinza: [70, 86, 75] };
+/** A leitura no vocabulário do mentor: avancar, testar, ajustar ou pausar (aceita também seguir, investigar, renegociar e trocar). */
+function vereditoParaMentor(v) {
+  const k = String(v || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/[^a-z]/)[0];
+  return MENTOR_MAPA[k] || null;
+}
+function urlDoMentor() {
+  try { const u = window.ZION_FEEDBACK_URL; if (typeof u === "string" && u.trim()) return u.trim(); } catch (e) {}
+  return FEEDBACK_URL;
+}
+/** A leitura do mentor vale enquanto as respostas e a leitura da ferramenta forem as mesmas. */
+const assinaturaMentor = (L) => JSON.stringify([respostasParaCalculo(), L.v]);
+const mentorValido = (L) => !!(S.mentor && S.mentor.resultado && S.mentor.assinatura === assinaturaMentor(L));
+/** O que vai para o resumo salvo (campo mentor), ou null. */
+const mentorDoResumo = (L) => (mentorValido(L) ? Object.assign({ data: S.mentor.data }, S.mentor.resultado) : null);
+
+function corpoDoPedidoMentor(L) {
+  const calculos = {};
+  for (const c of L.res.calculos) calculos[c.id] = { rotulo: c.rotulo, valor: c.valor === undefined ? null : c.valor, texto: c.texto, alerta: c.alerta || null };
+  calculos.leitura_da_ferramenta = { veredito: L.v, motivo: L.motivo, ponto_fragil: L.fragil, nota: L.soma, nota_maxima: NOTA_MAX, alertas: L.alertas.map((a) => ({ tipo: a.t, texto: a.txt })) };
+  return { aula: MENTOR_AULA_ID, nome: S.perfil.nome, email: S.perfil.email, respostas: montarPayload(L).respostas, calculos, veredito_ferramenta: vereditoParaMentor(L.v) || "testar" };
+}
+function normalizarMentor(x, L) {
+  if (!x || typeof x !== "object") return null;
+  const txt = (v) => (typeof v === "string" ? v.trim() : "");
+  const lista = (v) => (Array.isArray(v) ? v.map(txt).filter(Boolean) : []);
+  const resumo = txt(x.resumo);
+  if (!resumo) return null;
+  const pa = x.proxima_acao && typeof x.proxima_acao === "object" ? x.proxima_acao : {};
+  const ferr = vereditoParaMentor(L.v) || "testar";
+  const doMentor = vereditoParaMentor(x.veredito);
+  // Nunca mais otimista que as contas: fica a mais cautelosa entre a do mentor e a da ferramenta.
+  const v = doMentor && MENTOR_PESO[doMentor] >= MENTOR_PESO[ferr] ? doMentor : ferr;
+  return {
+    resumo, pontos_fortes: lista(x.pontos_fortes), ponto_fragil: txt(x.ponto_fragil), veredito: v, veredito_rot: mentorRotulo(v),
+    criterio_para_parar: txt(x.criterio_para_parar),
+    proxima_acao: { acao: txt(pa.acao), responsavel: txt(pa.responsavel), prazo: txt(pa.prazo), evidencia: txt(pa.evidencia) },
+    perguntas_em_aberto: lista(x.perguntas_em_aberto),
+  };
+}
+async function pedirMentor(L) {
+  const url = urlDoMentor();
+  if (!url) return { erro: "Disponível em breve." };
+  const ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  const relogio = setTimeout(() => { if (ctrl) ctrl.abort(); }, MENTOR_TEMPO_MS);
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpoDoPedidoMentor(L)), signal: ctrl ? ctrl.signal : undefined });
+    let d = null;
+    try { d = await r.json(); } catch (e) { d = null; }
+    const erroServ = d && typeof d.erro === "string" ? d.erro.trim() : "";
+    if (r.status === 429) return { erro: erroServ || "O mentor recebeu muitos pedidos agora. Espere alguns minutos e tente de novo." };
+    if (!r.ok) return { erro: (r.status < 500 && erroServ) || "O mentor virtual não respondeu agora. Tente de novo daqui a pouco." };
+    const m = normalizarMentor(d && d.resultado, L);
+    if (!m) return { erro: erroServ || "O mentor virtual não conseguiu ler as suas respostas agora. Tente de novo daqui a pouco." };
+    return { resultado: m };
+  } catch (e) {
+    return { erro: e && e.name === "AbortError" ? "O mentor demorou mais de 90 segundos para responder. Tente de novo daqui a pouco." : "Não foi possível falar com o mentor virtual. Confira a conexão com a internet e tente de novo." };
+  } finally { clearTimeout(relogio); }
+}
+function htmlMentorResultado(m) {
+  const lst = (a, vazio) => (a.length ? `<ul>${a.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${vazio}</p>`);
+  const pa = m.proxima_acao;
+  return `<div id="mentor-resultado">
+    <div class="caixa porque"><h3>Resumo</h3><p>${esc(m.resumo)}</p></div>
+    <div class="caixa onde"><h3>Pontos fortes</h3>${lst(m.pontos_fortes, "Nenhum apontado.")}</div>
+    <div class="fragil" style="margin-top:14px"><b>Ponto frágil</b><br>${esc(m.ponto_fragil || "Em branco")}</div>
+    <div class="leitura" id="mentor-leitura" style="margin-top:14px"><div class="eyebrow" style="color:var(--creme)">Leitura do mentor</div><div class="rot">${esc(m.veredito_rot)}</div><p><b>${esc(MENTOR_AVISO)}</b></p></div>
+    <div class="caixa porque"><h3>Critério para parar</h3><p>${esc(m.criterio_para_parar || "Em branco")}</p></div>
+    <div class="caixa porque"><h3>Próxima ação</h3><ul><li><b>Ação:</b> ${esc(pa.acao || "Em branco")}</li><li><b>Responsável:</b> ${esc(pa.responsavel || "Em branco")}</li><li><b>Prazo:</b> ${esc(dataBR(pa.prazo) || "Em branco")}</li><li><b>Evidência:</b> ${esc(pa.evidencia || "Em branco")}</li></ul></div>
+    <div class="caixa onde"><h3>Perguntas em aberto</h3>${lst(m.perguntas_em_aberto, "Nenhuma.")}</div>
+    <p class="dica" style="margin-top:10px">A leitura do mentor complementa as contas e a leitura acima, não as substitui. Ela entra no seu PDF.</p>
+  </div>`;
+}
+function htmlSecaoMentor(L) {
+  let corpo;
+  if (!urlDoMentor()) corpo = `<p id="mentor-estado"><b>Disponível em breve.</b></p><button type="button" class="btn btn-s" id="mentor-pedir" disabled>Pedir a leitura do mentor virtual</button>`;
+  else if (mentorValido(L)) corpo = htmlMentorResultado(S.mentor.resultado);
+  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas e as contas.</p>
+    <button type="button" class="btn btn-s" id="mentor-pedir">Pedir a leitura do mentor virtual</button>
+    <div id="mentor-estado" role="status" aria-live="polite"></div>`;
+  return `<section class="bloco" id="b-mentor"><h2>O mentor virtual</h2><div id="mentor-corpo">${corpo}</div></section>`;
+}
+function ligarMentor(L) {
+  const b = document.getElementById("mentor-pedir");
+  if (!b || b.disabled) return;
+  b.onclick = async () => {
+    const st = document.getElementById("mentor-estado");
+    b.disabled = true;
+    st.innerHTML = `<p class="dica" style="margin-top:10px"><b>Lendo as suas respostas...</b> Pode levar até um minuto e meio.</p>`;
+    const r = await pedirMentor(L);
+    if (r.resultado) {
+      S.mentor = { resultado: r.resultado, assinatura: assinaturaMentor(L), data: hojeISO() };
+      mentorAtualizarResumo(L);
+      salvar();
+      const c = document.getElementById("mentor-corpo");
+      if (c) c.innerHTML = htmlMentorResultado(r.resultado);
+    } else {
+      b.disabled = false;
+      st.innerHTML = `<div class="alerta a-atencao" id="mentor-erro"><b>O mentor não respondeu</b>${esc(r.erro)} O resto da página continua funcionando: o PDF sai normalmente, sem a leitura do mentor.</div>`;
+    }
+  };
+}
+/** As caixas da leitura do mentor no PDF: [rótulo, texto, cor]. */
+function mentorParaPDF(m) {
+  const pa = m.proxima_acao || {};
+  const itens = (a, vazio) => (a && a.length ? a.map((x) => "- " + x).join("\n") : vazio);
+  return [
+    ["Resumo", m.resumo, "verde"],
+    ["Pontos fortes", itens(m.pontos_fortes, "Nenhum apontado."), "ok"],
+    ["Ponto frágil", m.ponto_fragil || "Em branco", "verm"],
+    ["Leitura do mentor", `${m.veredito_rot}. ${MENTOR_AVISO}`, "verde"],
+    ["Critério para parar", m.criterio_para_parar || "Em branco", "ouro"],
+    ["Próxima ação", [`Ação: ${pa.acao || "Em branco"}`, `Responsável: ${pa.responsavel || "Em branco"}`, `Prazo: ${dataBR(pa.prazo) || "Em branco"}`, `Evidência: ${pa.evidencia || "Em branco"}`].join("\n"), "verde"],
+    ["Perguntas em aberto", itens(m.perguntas_em_aberto, "Nenhuma."), "cinza"],
+  ].map(([r, t, c]) => [r, t, MENTOR_COR_PDF[c]]);
+}
+
+/* ---------------------------------------------------------------------
+   6. Telas
+   --------------------------------------------------------------------- */
+const app = document.getElementById("app");
+document.getElementById("rodape").textContent = RODAPE;
+
+function render() {
+  if (S.passo < 0) return telaAbertura();
+  if (S.passo >= QUESTOES.length) return telaResultado();
+  return telaPergunta(S.passo);
+}
+function irPara(p) { S.passo = p; salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+
+function telaAbertura() {
+  const salvo = carregar();
+  const temSalvo = salvo && (Object.keys(salvo.respostas || {}).length > 0);
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Etapa 1 · Aula 1 · Território e destino</div>
+    <h1 tabindex="-1">A sua Ficha do Território</h1>
+    <p class="lead">Em cerca de dez minutos você monta a página 1 do Dossiê do seu projeto: o que o seu terreno permite de verdade.</p>
+    <div class="tres">
+      <div><b>Por que</b>Quem negocia pelo número do papel paga pelo metro que nunca vai usar, e descobre o que trava depois da obra, quando custa caro.</div>
+      <div><b>Como</b>Uma pergunta por tela, em linguagem simples, com onde conseguir cada informação. Onde não souber, marque Não sei: vira tarefa, não vergonha.</div>
+      <div><b>Para que</b>Você sai com a Ficha do Território em PDF: a área que pode usar, quantas unidades o lugar aguenta, os alertas e o seu próximo passo.</div>
+    </div>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta ficha.</b><br>As suas respostas ficaram salvas neste aparelho. <div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <form id="f-abertura" novalidate>
+      <label for="nome">O seu nome</label>
+      <input type="text" id="nome" autocomplete="name" value="${esc(S.perfil.nome)}" required>
+      <label for="email">O seu e-mail</label>
+      <input type="email" id="email" autocomplete="email" inputmode="email" value="${esc(S.perfil.email)}" required>
+      <label for="cidade">Cidade do terreno</label>
+      <input type="text" id="cidade" autocomplete="address-level2" value="${esc(S.perfil.cidade)}" required>
+      <label for="uf">Estado do terreno</label>
+      <select id="uf" required><option value="">Escolha o estado</option>${UFS.map((u) => `<option ${S.perfil.uf === u ? "selected" : ""}>${u}</option>`).join("")}</select>
+      <div class="erro" id="erro-abertura" role="alert"></div>
+      <div class="nav"><button class="btn btn-p" type="submit" id="comecar">Começar</button></div>
+      <p class="dica">As respostas ficam salvas só neste aparelho, para você poder parar e voltar. Nada é enviado sem você pedir.</p>
+    </form>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { S = salvo; const p = Math.min(Math.max(S.passo, 0), QUESTOES.length); render2(p); };
+    document.getElementById("zerar").onclick = () => { apagar(); S = estadoVazio(); render(); };
+  }
+  document.getElementById("f-abertura").onsubmit = (e) => {
+    e.preventDefault();
+    const p = { nome: val("nome"), email: val("email"), cidade: val("cidade"), uf: document.getElementById("uf").value };
+    let erro = "";
+    if (!p.nome) erro = "Escreva o seu nome.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)) erro = "Confira o e-mail.";
+    else if (!p.cidade) erro = "Escreva a cidade do terreno.";
+    else if (!p.uf) erro = "Escolha o estado do terreno.";
+    document.getElementById("erro-abertura").textContent = erro;
+    if (erro) return;
+    if (temSalvo && salvo) { S = salvo; }
+    S.perfil = p;
+    irPara(S.passo >= 0 ? Math.min(S.passo, QUESTOES.length) : 0);
+  };
+}
+function render2(p) { S.passo = p < 0 ? 0 : p; salvar(); render(); }
+const val = (id) => document.getElementById(id).value.trim();
+
+function telaPergunta(i) {
+  const q = QUESTOES[i];
+  const total = QUESTOES.length;
+  const v = S.respostas[q.id];
+  const ns = ehNS(v);
+  let campo = "";
+  if (q.tipo === "numero" || q.tipo === "moeda") {
+    campo = `
+      <label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <div class="campo-num">
+        ${q.tipo === "moeda" ? `<span class="un">R$</span>` : ""}
+        <input type="text" id="resp" inputmode="decimal" autocomplete="off" placeholder="${q.tipo === "moeda" ? "Ex.: 600.000" : "Digite o número"}" value="${ns || v === undefined ? "" : esc(v)}" ${ns ? "disabled" : ""}>
+        ${q.tipo !== "moeda" ? `<span class="un">${esc(q.unidade)}</span>` : ""}
+      </div>
+      ${q.aceitaNS ? `<button type="button" class="btn btn-ns" id="ns" aria-pressed="${ns}">${ns ? "Marcado: Não sei (toque para desfazer)" : "Não sei"}</button>` : ""}
+      <fieldset class="fonte" id="fs-fonte" ${ns ? "hidden" : ""}>
+        <legend>De onde veio esse número?</legend>
+        <div class="opcoes">${FONTES.map((f) => `<label class="op"><input type="radio" name="fonte" value="${f.v}" ${S.fontes[q.id] === f.v ? "checked" : ""}><span>${esc(f.rot)}</span></label>`).join("")}</div>
+      </fieldset>`;
+  } else if (q.tipo === "multipla") {
+    const marcados = Array.isArray(v) ? v : [];
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="checkbox" name="m" value="${o.v}" ${marcados.includes(o.v) ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>`;
+  } else if (q.tipo === "escolha") {
+    campo = `${resumoMini()}<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="radio" name="e" value="${o.v}" ${v === o.v ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>
+      ${q.aceitaNS ? `<button type="button" class="btn btn-ns" id="ns" aria-pressed="${ns}">${ns ? "Marcado: Não sei (toque para desfazer)" : "Não sei"}</button>` : ""}`;
+  }
+  app.innerHTML = `
+  <div class="progresso" aria-label="Progresso">
+    <div class="txt"><span>Pergunta ${i + 1} de ${total}</span><span>${Math.round((i / total) * 100)}%</span></div>
+    <div class="barra"><i style="width:${(i / total) * 100}%"></i></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">${i < 6 ? "Da matrícula à área que você pode usar" : i < 8 ? "Os preços do terreno" : i < 11 ? "O que o lugar aguenta" : i < 12 ? "O que pode travar" : "A sua leitura"}</div>
+    <h1 class="pergunta" tabindex="-1">${esc(q.pergunta)}</h1>
+    <p class="explica">${esc(q.explica)}</p>
+    <form id="f-q" novalidate>
+      ${campo}
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(q.porque)}</p></div>
+      <div class="caixa onde"><h3>Onde conseguir essa informação</h3>${q.onde}</div>
+      <div class="caixa marina"><h3>Exemplo ilustrativo · Marina</h3><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>
+      <div class="nav"><button type="button" class="btn btn-s" id="voltar">Voltar</button><button type="submit" class="btn btn-p" id="avancar">${i === total - 1 ? "Ver a minha ficha" : "Avançar"}</button></div>
+    </form>
+  </div>`;
+
+  const f = document.getElementById("f-q");
+  const inp = document.getElementById("resp");
+  const nsBtn = document.getElementById("ns");
+  if (inp) inp.addEventListener("input", () => { S.respostas[q.id] = inp.value; salvar(); });
+  f.querySelectorAll("input[name=fonte]").forEach((r) => r.addEventListener("change", () => { S.fontes[q.id] = r.value; salvar(); }));
+  f.querySelectorAll("input[name=m]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = [...f.querySelectorAll("input[name=m]:checked")].map((x) => x.value); salvar(); }));
+  f.querySelectorAll("input[name=e]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = c.value; salvar(); if (nsBtn) { nsBtn.setAttribute("aria-pressed", "false"); nsBtn.textContent = "Não sei"; } }));
+  if (nsBtn) nsBtn.onclick = () => {
+    if (ehNS(S.respostas[q.id])) { delete S.respostas[q.id]; } else { S.respostas[q.id] = "nao_sei"; delete S.fontes[q.id]; }
+    salvar(); telaPergunta(i);
+  };
+  document.getElementById("voltar").onclick = () => irPara(i - 1);
+  f.onsubmit = (e) => {
+    e.preventDefault();
+    const erro = validar(q);
+    document.getElementById("erro").textContent = erro;
+    if (erro) return;
+    if (q.tipo === "multipla" && !Array.isArray(S.respostas[q.id])) S.respostas[q.id] = [];
+    irPara(i + 1);
+  };
+  if (inp && !ns && window.matchMedia("(min-width:720px)").matches) inp.focus({ preventScroll: true });
+}
+
+function validar(q) {
+  const v = S.respostas[q.id];
+  if (q.tipo === "numero" || q.tipo === "moeda") {
+    if (ehNS(v)) return "";
+    const n = paraNumero(v);
+    if (n === null) return q.aceitaNS ? "Escreva um número (só dígitos, pode usar ponto para milhar) ou toque em Não sei." : "Escreva um número, só dígitos (pode usar ponto para milhar).";
+    if (n < 0) return "O número não pode ser negativo.";
+    if (q.id === "area_matricula" && n <= 0) return "A área da matrícula precisa ser maior que zero.";
+    if (!S.fontes[q.id]) return "Diga de onde veio esse número: é isso que separa dado de palpite.";
+    return "";
+  }
+  if (q.tipo === "escolha" && (v === undefined || v === "")) return "Escolha um caminho ou toque em Não sei.";
+  return "";
+}
+
+function resumoMini() {
+  const L = ler();
+  const a = calc(L.res, "area_usavel"), c = calc(L.res, "capacidade"), p = calc(L.res, "peso_terreno");
+  return `<div class="resumo-mini" aria-label="Resumo das suas contas até aqui">
+    <div><span>Área que você pode usar</span><b>${a.valor === null ? "em branco" : fmtN(a.valor) + " m²" + (a.detalhes.provisoria ? " (provisória)" : "")}</b></div>
+    <div><span>Unidades que o lugar aguenta</span><b>${c.valor === null ? "em branco" : fmtN(c.valor) + " (sem o mercado)"}</b></div>
+    <div><span>Peso do terreno no investimento</span><b>${p.valor === null ? "a calcular" : fmtN(p.valor, 1) + "%"}</b></div>
+    <div><span>Documentos que faltam</span><b>${L.faltam.length} de 4</b></div>
+    <div><span>Não sei até aqui</span><b>${L.nsAluno.filter((q) => q.id !== "caminho_leitura").length}</b></div>
+  </div>`;
+}
+
+function respostaTexto(q) {
+  const v = S.respostas[q.id];
+  if (ehNS(v)) return "Não sei";
+  if (q.tipo === "multipla") { const a = Array.isArray(v) ? v : []; return a.length ? q.opcoes.filter((o) => a.includes(o.v)).map((o) => o.rot).join("; ") : "Nenhum"; }
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o ? o.rot : "Em branco"; }
+  const n = paraNumero(v);
+  if (n === null) return "Em branco";
+  return q.tipo === "moeda" ? brl(n) : `${fmtN(n)} ${q.unidade}`;
+}
+const fonteTexto = (q) => { const f = FONTES.find((x) => x.v === S.fontes[q.id]); return ehNS(S.respostas[q.id]) ? "" : f ? ["Documento ou medida", "Profissional, sem papel", "Estimativa"][FONTES.indexOf(f)] : ""; };
+
+/** O resumo que a Aula 1 deixa salvo para o Dossiê do Produto, lido pela ferramenta da Aula 6. */
+function resumoParaDossie(L) {
+  const g = (id) => calc(L.res, id), leit = LEITURAS[L.v];
+  const a = g("area_usavel"), pc = g("pct_usavel"), c = g("capacidade"), p = g("peso_terreno");
+  return {
+    aula: 1, tema: "Território e destino", ficha: "Ficha do Território", v: L.v, rot: leit.rot, sub: leit.sub, motivo: L.motivo, fragil: L.fragil,
+    soma: L.soma, max: NOTA_MAX, nCriticos: L.alertas.filter((x) => x.t === "critico").length, nNS: L.nsAluno.length,
+    numeros: [
+      ["Área que você pode usar", a.valor === null ? "em branco" : fmtN(a.valor) + " m²"],
+      ["Da matrícula que vira negócio", pc.valor === null ? "em branco" : fmtN(pc.valor, 1) + "%"],
+      ["Unidades que o lugar aguenta", c.valor === null ? "em branco" : fmtN(c.valor)],
+      ["Peso do terreno no investimento", p.valor === null ? "a calcular" : fmtN(p.valor, 1) + "%"],
+    ],
+    criterio: S.criterio, compromisso: S.compromisso, data: hojeISO(),
+    dados: { area_usavel: a.valor, area_matricula: paraNumero(S.respostas.area_matricula), capacidade: c.valor },
+    mentor: mentorDoResumo(L),
+  };
+}
+
+function telaResultado() {
+  const L = ler();
+  if (S.criterio === null) S.criterio = L.criterioSug;
+  if (!S.compromisso) S.compromisso = Object.assign({}, L.comp);
+  S.resumo = resumoParaDossie(L);
+  salvar();
+  const res = L.res;
+  const a = calc(res, "area_usavel"), pc = calc(res, "pct_usavel"), tp = calc(res, "tres_precos"), c = calc(res, "capacidade"), il = calc(res, "ilusao_preco"), p = calc(res, "peso_terreno"), d = calc(res, "documentos_faltando");
+  const big = (rot, valor) => `<div class="num"><small>${rot}</small><strong>${valor}</strong></div>`;
+  const leit = LEITURAS[L.v];
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Página 1 do Dossiê · Etapa 1 · Aula 1</div>
+    <h1 tabindex="-1">Ficha do Território</h1>
+    <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
+    <div class="numeros">
+      ${big("Área que você pode usar", a.valor === null ? "em branco" : fmtN(a.valor) + " m²")}
+      ${big("Da matrícula que vira negócio", pc.valor === null ? "em branco" : fmtN(pc.valor, 1) + "%")}
+      ${big("Unidades que o lugar aguenta", c.valor === null ? "em branco" : fmtN(c.valor))}
+      ${big("Peso do terreno no investimento", p.valor === null ? "a calcular" : fmtN(p.valor, 1) + "%")}
+    </div>
+
+    <section class="bloco" id="b-alertas"><h2>Primeiro, os alertas</h2>
+      <p class="dica">Primeiro os alertas, depois a soma, depois a decisão. Todo Não sei vale zero e vira tarefa.</p>
+      ${L.alertas.map((x) => `<div class="alerta a-${x.t === "ns" ? "ns" : x.t}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("")}
+    </section>
+
+    <section class="bloco" id="b-contas"><h2>As contas</h2>
+      ${[a, pc, tp, c, il, p, d].map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(textoTela(x.texto))}</p></div>`).join("")}
+      <p class="dica">As contas usam só as suas respostas. Os números do seu terreno precisam ser confirmados com os profissionais indicados.</p>
+    </section>
+
+    <section class="bloco" id="b-nota"><h2>A nota por item</h2>
+      <p class="dica">0 = Não sei · 1 = estimativa sem fonte · 2 = um profissional falou, sem papel · 3 = documento ou medida. Toda nota zero ou um é alerta.</p>
+      <table><thead><tr><th>Item</th><th>Resposta</th><th>Nota</th></tr></thead><tbody>
+      ${L.notas.map((x) => `<tr><td>${esc(x.q.curto)}</td><td>${esc(respostaTexto(x.q))}${fonteTexto(x.q) ? `<br><span class="dica">${esc(fonteTexto(x.q))}</span>` : ""}</td><td class="n nota-${x.nota}">${x.nota}</td></tr>`).join("")}
+      </tbody></table>
+      <div class="soma"><strong id="soma">${L.soma} de ${NOTA_MAX}</strong><span class="dica">Não existe nota de corte. A soma mostra quanto da sua leitura já tem fonte; os alertas acima pesam mais do que ela.</span></div>
+    </section>
+
+    <section class="bloco"><h2>O ponto mais frágil</h2><div class="fragil" id="fragil">${esc(L.fragil)}</div></section>
+
+    <section class="bloco"><h2>A leitura</h2>
+      <div class="leitura" id="leitura"><div class="eyebrow" style="color:var(--creme)">Leitura do método</div><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
+      ${S.respostas.caminho_leitura && S.respostas.caminho_leitura !== "nao_sei" ? `<p class="dica" style="margin-top:8px">O caminho que você escolheu: ${esc(respostaTexto(Q("caminho_leitura")))}. A leitura pode ser mais cautelosa que a sua escolha, nunca mais otimista.</p>` : ""}
+      ${L.v === "avancar" ? `<p class="dica">Terreno com território lido e mercado medido pode entrar no Land Bank Zion, a vitrine de terrenos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""}
+    </section>
+
+    ${htmlSecaoMentor(L)}
+
+    <section class="bloco"><h2>O seu critério para parar</h2>
+      <p class="dica">O fato que mudaria a sua decisão, escrito antes, para você não decidir pelo entusiasmo. Molde: "Se [o fato], então [pauso e renegocio / troco de terreno]." Deixamos uma sugestão: reescreva com as suas palavras.</p>
+      <label for="criterio" class="sr">Critério para parar</label>
+      <textarea id="criterio">${esc(S.criterio)}</textarea>
+    </section>
+
+    <section class="bloco"><h2>O seu Compromisso de 7 dias</h2>
+      <p class="dica">Uma ação só, a que mais tira Não sei. Nenhuma precisa de profissional pago ainda.</p>
+      <label for="c-acao">Ação</label><textarea id="c-acao" style="min-height:72px">${esc(S.compromisso.acao)}</textarea>
+      <label for="c-resp">Responsável</label><input type="text" id="c-resp" value="${esc(S.compromisso.responsavel)}">
+      <label for="c-prazo">Prazo</label><input type="date" id="c-prazo" value="${esc(S.compromisso.prazo)}">
+      <label for="c-evid">Evidência (o que você vai ter na mão)</label><textarea id="c-evid" style="min-height:72px">${esc(S.compromisso.evidencia)}</textarea>
+    </section>
+
+    <div class="acoes">
+      <button class="btn btn-ouro" id="pdf">Baixar a minha Ficha do Território (PDF)</button>
+      <button class="btn btn-s" id="editar">Revisar as respostas</button>
+      <button class="btn btn-s" id="recomecar">Começar outra ficha</button>
+    </div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+  </div>`;
+  const liga = (id, fn) => document.getElementById(id).addEventListener("input", (e) => { fn(e.target.value); S.resumo = resumoParaDossie(L); salvar(); });
+  liga("criterio", (x) => (S.criterio = x));
+  liga("c-acao", (x) => (S.compromisso.acao = x));
+  liga("c-resp", (x) => (S.compromisso.responsavel = x));
+  liga("c-prazo", (x) => (S.compromisso.prazo = x));
+  liga("c-evid", (x) => (S.compromisso.evidencia = x));
+  ligarMentor(L);
+  document.getElementById("editar").onclick = () => irPara(0);
+  document.getElementById("recomecar").onclick = () => { if (confirm("Apagar as respostas deste aparelho e começar outra ficha?")) { apagar(); S = estadoVazio(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try { gerarPDF(L); enviarParaZion(montarPayload(L)); document.getElementById("erro-pdf").textContent = ""; }
+    catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+}
+
+/* ---------------------------------------------------------------------
+   7. PDF A4 com jsPDF (fonte padrão Helvetica / Times)
+   --------------------------------------------------------------------- */
+function gerarPDF(L) {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  // A fonte padrão do jsPDF não desenha o "²": no PDF, m² vira m2.
+  const pt = (t) => String(t ?? "").replace(/²/g, "2");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const W = 210, H = 297, M = 18, CW = W - 2 * M;
+  const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], CINZA = [70, 86, 75], VERM = [155, 44, 31];
+  let y = 0;
+  const fundo = () => { doc.setFillColor(...CREME); doc.rect(0, 0, W, H, "F"); doc.setFillColor(...VERDE); doc.rect(0, 0, W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, W, 0.8, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...CREME); doc.text("Zion · Mentoria Zion · Ficha do Território", M, 8); doc.text(`${S.perfil.nome}`.slice(0, 50), W - M, 8, { align: "right" }); y = 22; };
+  const novaPagina = () => { doc.addPage(); fundo(); };
+  const cabe = (h) => { if (y + h > H - 22) novaPagina(); };
+  const titulo = (t) => { cabe(34); y += 4; doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(t, M, y); y += 2.5; doc.setDrawColor(...OURO); doc.setLineWidth(0.7); doc.line(M, y, M + 40, y); y += 6; };
+  const par = (t, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.cor || VERDE));
+    const linhas = doc.splitTextToSize(String(t), o.w || CW);
+    const lh = (o.size || 10) * 0.45;
+    for (const l of linhas) { cabe(lh + 1); doc.text(l, o.x || M, y); y += lh; }
+    y += o.after ?? 2;
+  };
+  const caixa = (rot, t, cor) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    const linhas = doc.splitTextToSize(String(t), CW - 10);
+    const h = linhas.length * 4.3 + 10;
+    cabe(h + 2);
+    doc.setFillColor(255, 253, 248); doc.setDrawColor(...cor); doc.setLineWidth(0.3); doc.roundedRect(M, y, CW, h, 2, 2, "FD");
+    doc.setFillColor(...cor); doc.rect(M, y, 1.6, h, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...cor); doc.text(rot.toUpperCase(), M + 5, y + 5);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...VERDE);
+    linhas.forEach((l, k) => doc.text(l, M + 5, y + 9.5 + k * 4.3));
+    y += h + 3;
+  };
+  const linhaTabela = (cols, larg, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 9);
+    const partes = cols.map((c, k) => doc.splitTextToSize(String(c), larg[k] - 3));
+    const h = Math.max(...partes.map((p) => p.length)) * 4 + 3;
+    cabe(h);
+    if (o.fill) { doc.setFillColor(...o.fill); doc.rect(M, y - 3.6, CW, h, "F"); }
+    let x = M;
+    partes.forEach((p, k) => { doc.setTextColor(...((o.cores && o.cores[k]) || o.cor || VERDE)); p.forEach((l, j) => doc.text(l, x + 1.5, y + j * 4, k === partes.length - 1 && o.ultimaCentro ? { align: "center" } : undefined)); x += larg[k]; });
+    y += h; doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(M, y - 3.4, M + CW, y - 3.4);
+  };
+
+  // Capa
+  doc.setFillColor(...VERDE); doc.rect(0, 0, W, H, "F");
+  doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, W - 20, H - 20);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO);
+  doc.text("TRILHA 1 · AULA 1 · ETAPA 1", M + 4, 48);
+  doc.setFont("times", "bold"); doc.setFontSize(34); doc.setTextColor(...CREME);
+  doc.text("Ficha do", M + 4, 72); doc.text("Território", M + 4, 86);
+  doc.setFillColor(...OURO); doc.rect(M + 4, 93, 50, 1.2, "F");
+  doc.setFont("helvetica", "normal"); doc.setFontSize(12); doc.setTextColor(...CREME);
+  doc.text("Página 1 do Dossiê do projeto · Território e destino", M + 4, 104);
+  doc.setFontSize(10); doc.setTextColor(220, 214, 200);
+  doc.text(doc.splitTextToSize("Metodologia Zion de Desenvolvimento de Negócios de Hospedagem", CW - 8), M + 4, 111);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ALUNO", M + 4, 200);
+  doc.setFont("times", "bold"); doc.setFontSize(22); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", CW - 8), M + 4, 210);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(220, 214, 200);
+  doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}`, M + 4, 222);
+  doc.text(`Gerada em ${dataBR(hojeISO())}`, M + 4, 229);
+  doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, CW - 8), M + 4, H - 26);
+
+  // Página de resultado
+  novaPagina();
+  titulo("O resumo");
+  const res = L.res, g = (id) => calc(res, id);
+  const box = [
+    ["Área que pode usar", g("area_usavel").valor === null ? "em branco" : fmtN(g("area_usavel").valor) + " m²"],
+    ["Da matrícula", g("pct_usavel").valor === null ? "em branco" : fmtN(g("pct_usavel").valor, 1) + "%"],
+    ["Unidades que aguenta", g("capacidade").valor === null ? "em branco" : fmtN(g("capacidade").valor)],
+    ["Peso do terreno", g("peso_terreno").valor === null ? "a calcular" : fmtN(g("peso_terreno").valor, 1) + "%"],
+  ];
+  const bw = (CW - 9) / 4;
+  box.forEach(([r, v], k) => { const x = M + k * (bw + 3); doc.setFillColor(...VERDE); doc.roundedRect(x, y, bw, 22, 2, 2, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...CREME); doc.text(r, x + 3, y + 6); doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.setTextColor(...OURO); doc.text(doc.splitTextToSize(v, bw - 5)[0], x + 3, y + 16); });
+  y += 30;
+  const leit = LEITURAS[L.v];
+  caixa("A leitura", `${leit.rot}. ${leit.sub} ${L.motivo}`, VERDE);
+  caixa("O ponto mais frágil", L.fragil, VERM);
+  y += 3;
+  par(`Nota: ${L.soma} de ${NOTA_MAX}. Não existe nota de corte: primeiro os alertas, depois a soma, depois a decisão.`, { bold: true, after: 4 });
+  const mentor = mentorDoResumo(L);
+  if (mentor) { titulo("Leitura do mentor virtual"); mentorParaPDF(mentor).forEach(([r, t, c]) => caixa(r, t, c)); y += 2; }
+
+  titulo("Os alertas");
+  const corA = { critico: VERM, ns: [122, 83, 0], sem: [122, 94, 18], atencao: [150, 110, 20], info: [31, 90, 51] };
+  L.alertas.forEach((x) => caixa(x.tit, x.txt, corA[x.t] || VERDE));
+
+  titulo("As contas");
+  ["area_usavel", "pct_usavel", "tres_precos", "capacidade", "ilusao_preco", "peso_terreno", "documentos_faltando"].forEach((id) => { const c = g(id); par(c.rotulo, { bold: true, after: 0.5 }); par(textoTela(c.texto), { cor: CINZA, size: 9.5, after: 3 }); });
+
+  titulo("As suas respostas");
+  const larg = [52, 92, 30];
+  linhaTabela(["Pergunta", "Resposta e fonte", "Nota"], larg, { bold: true, size: 8, cor: CINZA });
+  QUESTOES.forEach((q) => {
+    const nota = q.nota ? String(notaItem(q)) : "";
+    const fonte = fonteTexto(q);
+    linhaTabela([q.curto, respostaTexto(q) + (fonte ? ` (${fonte})` : ""), nota], larg, { cores: [VERDE, VERDE, nota === "0" || nota === "1" ? VERM : VERDE] });
+  });
+  y += 2;
+  par(`Soma: ${L.soma} de ${NOTA_MAX}. Escala por item: 0 = Não sei; 1 = estimativa sem fonte; 2 = um profissional falou, sem papel; 3 = documento ou medida.`, { size: 8.5, cor: CINZA, after: 4 });
+
+  titulo("O critério para parar");
+  caixa("Escrito antes, para não decidir pelo entusiasmo", S.criterio || "Em branco", [122, 94, 18]);
+
+  titulo("O Compromisso de 7 dias");
+  const cp = S.compromisso || {};
+  [["Ação", cp.acao], ["Responsável", cp.responsavel], ["Prazo", dataBR(cp.prazo)], ["Evidência", cp.evidencia]].forEach(([r, v]) => linhaTabela([r, v || "Em branco"], [40, CW - 40], {}));
+  y += 4;
+  par("A Marina, citada nas explicações, é um exemplo ilustrativo: os números dela ensinam a conta e não dizem quanto vale o seu terreno. Temas jurídicos, ambientais e urbanísticos aparecem em nível introdutório: quem confirma no seu caso é o advogado, o técnico ambiental, o topógrafo, a concessionária e a prefeitura.", { size: 8, cor: CINZA });
+
+  // Rodapé obrigatório em todas as páginas
+  const n = doc.getNumberOfPages();
+  for (let k = 1; k <= n; k++) {
+    doc.setPage(k);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5);
+    doc.setTextColor(...(k === 1 ? [220, 214, 200] : CINZA));
+    if (k > 1) { doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(M, H - 16, W - M, H - 16); doc.text(doc.splitTextToSize(RODAPE, CW - 14), M, H - 12); }
+    doc.text(`${k}/${n}`, W - M, H - 12, { align: "right" });
+  }
+  const arq = "Ficha-do-Territorio-" + (S.perfil.nome || "aluno").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+  doc.save(arq);
+  return arq;
+}
+
+/* ---------------------------------------------------------------------
+   8. Início
+   --------------------------------------------------------------------- */
+window.ZionCalc = ZionCalc;
+window.ZionApp = { ler, montarPayload, enviarParaZion, resumoParaDossie, vereditoParaMentor, corpoDoPedidoMentor, get estado() { return S; } };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) S.perfil = Object.assign(S.perfil, salvo.perfil);
+  render();
+})();
+</script>
+</body>
+</html>

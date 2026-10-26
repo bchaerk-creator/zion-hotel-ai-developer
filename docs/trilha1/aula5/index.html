@@ -1,0 +1,1396 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O Masterplan</title>
+<meta name="description" content="Ferramenta da Aula 5 da Trilha 1 da Mentoria Zion: Masterplan. Você responde uma pergunta por vez e sai com O Masterplan, a página 5 do Dossiê do Produto, em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:8px}
+.campo-num input{flex:1;min-width:0;font-size:1.25rem;font-weight:600}
+.campo-num .un{display:flex;align-items:center;padding:0 12px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn-p[disabled],.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:10px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.marina{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.marina h3{color:var(--dourado-escuro)}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.9rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.fonte{margin-top:16px}
+.fonte legend{font-weight:600;padding:0;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.conta{border-bottom:1px solid var(--linha);padding:10px 0}
+.conta:last-child{border:0}
+.conta b{display:block}
+.conta p{margin:2px 0 0;color:var(--texto-2);font-size:.95rem;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-sem{background:#F3EEDF;border-color:var(--dourado-escuro);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+td.n,th.n{text-align:center;font-weight:700;width:3.2em}
+.nota-0,.nota-1{color:var(--critico)}
+.soma{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap}
+.soma strong{font-family:"Playfair Display",Georgia,serif;font-size:2rem}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.pag{border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.pag .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pag .cab b{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.s-avancar{background:var(--ok-bg);color:var(--ok)}
+.s-ajustar{background:var(--atencao-bg);color:var(--atencao)}
+.s-testar{background:#FFF0D0;color:#6B4600}
+.s-pausar{background:var(--critico-bg);color:var(--critico)}
+.s-pendente{background:var(--creme-2);color:var(--texto-2)}
+.pag p{margin:6px 0 0;font-size:.93rem;color:var(--texto-2);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(4,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Aula 5<br>Masterplan</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script>
+/* =====================================================================
+   Zion Exercícios · Trilha 1 · Trilha 1 · Aula 5 · Masterplan
+   Um arquivo só, gerado por _fonte/build.js. Sem framework.
+   Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
+   ===================================================================== */
+"use strict";
+const ZION_WEBHOOK_URL = "";
+/** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". Para ligar, preencha e rode node _fonte/build.js. */
+const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
+const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
+/** Chaves do navegador, iguais em todas as ferramentas da Trilha 1: zion-t1-aula1 a zion-t1-aula6. */
+const PREFIXO = "zion-t1-aula";
+const AULAS = [
+  { n: 1, tema: "Território e destino", ficha: "Ficha do Território" },
+  { n: 2, tema: "Mercado e demanda", ficha: "Ficha do Mercado" },
+  { n: 3, tema: "Produto e tipologias", ficha: "Ficha do Produto" },
+  { n: 4, tema: "Modelo de negócio", ficha: "O Modelo de Negócio" },
+  { n: 5, tema: "Masterplan", ficha: "O Masterplan" },
+  { n: 6, tema: "Estudo de massas e Dossiê do Produto", ficha: "Estudo de massas e briefing" },
+];
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+const PESO_V = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+/** O mais cauteloso: pausar > testar > ajustar > avançar. */
+const maisCauteloso = (...vs) => vs.filter((v) => v in PESO_V).reduce((a, b) => (PESO_V[b] > PESO_V[a] ? b : a), "avancar");
+
+/* ---------------------------------------------------------------------
+   1. Apoio: leitura e formatação pt-BR (as mesmas regras de kit-code/ferramentas/ts/util.ts)
+   --------------------------------------------------------------------- */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, fmtPct, juntar, div };
+})();
+const { fmtN, brl, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+/** Lê o que o aluno salvou em outra ferramenta da Trilha 1 (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDaAula = (n) => carregarChave(PREFIXO + n);
+/** Os números que outra aula deixou no resumo (resumo.dados), ou null. */
+const dadosDaAula = (n) => { const d = salvoDaAula(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+/** As respostas que o aluno deu em outra aula, ou null. */
+const respostasDaAula = (n) => { const d = salvoDaAula(n); return d && d.respostas ? d.respostas : null; };
+const fontesDaAula = (n) => { const d = salvoDaAula(n); return d && d.fontes ? d.fontes : {}; };
+
+/* =====================================================================
+   2. A aula (perguntas, contas e regras da leitura)
+   ===================================================================== */
+var Calc_06 = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // ../kit-code/ferramentas/ts/t1-a06.ts
+  var t1_a06_exports = {};
+  __export(t1_a06_exports, {
+    calcular: () => calcular
+  });
+
+  // ../kit-code/ferramentas/ts/util.ts
+  function falta(v) {
+    if (v === void 0 || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    const temVirgula = s.includes(",");
+    if (temVirgula) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else {
+      const pontos = (s.match(/\./g) || []).length;
+      if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function num(r, id) {
+    return paraNumero(r[id]);
+  }
+  function escolha(r, id) {
+    const v = r[id];
+    if (v === "nao_sei") return "nao_sei";
+    if (typeof v === "number") return String(v);
+    if (typeof v !== "string") return null;
+    const t = v.trim();
+    return t === "" ? null : t;
+  }
+  function lista(r, id, permitidos) {
+    const v = r[id];
+    let arr = [];
+    if (Array.isArray(v)) arr = v.map((x) => String(x).trim());
+    else if (typeof v === "string" && v !== "nao_sei" && v.trim() !== "") arr = v.split(/[,;\n]/).map((x) => x.trim());
+    else if (typeof v === "number") arr = [String(v)];
+    arr = arr.filter((x) => x !== "" && x !== "nao_sei");
+    if (permitidos) arr = arr.filter((x) => permitidos.includes(x));
+    return Array.from(new Set(arr));
+  }
+  function ok(...xs) {
+    return xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  }
+  function div(a, b) {
+    if (!ok(a, b) || b === 0) return null;
+    const q = a / b;
+    return Number.isFinite(q) ? q : null;
+  }
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas);
+    const y = Math.abs(x) * f;
+    const r = Math.round(y + 1e-7) / f;
+    const res = x < 0 ? -r : r;
+    return Object.is(res, -0) ? 0 : res;
+  }
+  function agrupar(inteiro) {
+    return inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+  function fmtNum(x, casas = 2) {
+    const r = arred(x, casas);
+    const neg = r < 0;
+    const [i, d] = Math.abs(r).toFixed(casas).split(".");
+    return (neg ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : "");
+  }
+  function fmtN(x, casasMax = 2) {
+    const s = fmtNum(x, casasMax);
+    if (!s.includes(",")) return s;
+    return s.replace(/,?0+$/, "");
+  }
+  function fmtPct(frac, casas = 1) {
+    return fmtNum(frac * 100, casas) + "%";
+  }
+  function juntar(itens) {
+    if (itens.length === 0) return "";
+    if (itens.length === 1) return itens[0];
+    return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+  }
+  function limpaNumero(x, casas) {
+    return Number.isFinite(x) ? arred(x, casas) : null;
+  }
+  function limpaTexto(s) {
+    return s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2013/g, "-");
+  }
+  function limpaDetalhe(v, casas) {
+    if (typeof v === "number") return limpaNumero(v, casas);
+    if (typeof v === "string") return limpaTexto(v);
+    if (Array.isArray(v)) return v.map(limpaTexto);
+    return v;
+  }
+  function fechar(c, casas = 2) {
+    const out = {
+      id: c.id,
+      rotulo: limpaTexto(c.rotulo),
+      valor: typeof c.valor === "number" ? limpaNumero(c.valor, casas) : typeof c.valor === "string" ? limpaTexto(c.valor) : c.valor,
+      texto: limpaTexto(c.texto)
+    };
+    if (c.alerta) out.alerta = c.alerta;
+    if (c.detalhes) {
+      out.detalhes = {};
+      for (const [k, v] of Object.entries(c.detalhes)) out.detalhes[k] = limpaDetalhe(v, 4);
+    }
+    return out;
+  }
+
+  // ../kit-code/ferramentas/ts/t1-a06.ts
+  var GESTOS = [
+    ["marcado", "marcado no desenho"],
+    ["fotografado", "terreno fotografado com data"],
+    ["clausula", "cláusula pedida ao advogado"]
+  ];
+  var APOIO = [
+    ["rouparia_lavanderia", "rouparia e lavanderia"],
+    ["deposito", "depósito seco"],
+    ["residuo", "resíduo com acesso externo"],
+    ["copa_vestiario", "copa e vestiário da equipe"],
+    ["estac_servico", "estacionamento de serviço"],
+    ["oficina", "oficina e ferramentas"],
+    ["gas_reservatorio", "abrigo de gás e reservatório"]
+  ];
+  var GATILHO = ["demanda", "caixa", "maturidade"];
+  function calcular(r) {
+    const calculos = [];
+    const u = num(r, "unidades_fase1"), afu = num(r, "area_fechada_unidade"), apoio = num(r, "area_apoio");
+    const total = u !== null && afu !== null && apoio !== null ? u * afu + apoio : null;
+    const pApoio = div(apoio, total);
+    {
+      let t, alerta;
+      const regua = "Régua: entre 15% e 25% da área fechada.";
+      if (pApoio === null) t = `Falta ${apoio === null ? "a área de apoio" : "unidades ou área fechada por unidade"}. ${regua}`;
+      else {
+        t = `Apoio de ${fmtN(apoio)} m² sobre ${fmtN(total)} m² de área fechada: ${fmtPct(pApoio)}. `;
+        if (pApoio < 0.15) {
+          t += "Abaixo de 15%: o apoio vai faltar e virar puxadinho.";
+          alerta = "critico";
+        } else if (pApoio > 0.25) {
+          t += "Acima de 25%: conferir a base.";
+          alerta = "atencao";
+        } else {
+          t += "Dentro da faixa de 15% a 25%.";
+          alerta = "ok";
+        }
+      }
+      calculos.push({ id: "pct_apoio", rotulo: "Área de apoio sobre a área fechada", valor: pApoio === null ? null : pApoio * 100, texto: t, alerta, detalhes: { area_fechada_total_m2: total } });
+    }
+    const rede = num(r, "rede_para"), completo = num(r, "unidades_projeto_completo");
+    const redeAlerta = rede !== null && completo !== null ? rede < completo : null;
+    calculos.push({
+      id: "rede_vs_projeto",
+      rotulo: "Rede contra o projeto completo",
+      valor: redeAlerta,
+      texto: redeAlerta === null ? "Falta para quantas unidades a rede está dimensionada ou quantas tem o projeto completo." : redeAlerta ? `Alerta: rede para ${fmtN(rede)} unidades e projeto completo de ${fmtN(completo)}. A fase dois vai reabrir vala e refazer caminho com hóspede ao lado.` : `A rede atende as ${fmtN(completo)} unidades do projeto completo.`,
+      alerta: redeAlerta ? "critico" : redeAlerta === false ? "ok" : void 0
+    });
+    const g = lista(r, "tres_gestos", GESTOS.map(([v2]) => v2));
+    const gFaltam = GESTOS.filter(([v2]) => !g.includes(v2));
+    calculos.push({
+      id: "gestos",
+      rotulo: "Gestos do nunca",
+      valor: gFaltam.length ? gFaltam.map(([, n]) => n).join(", ") : "nenhum",
+      texto: gFaltam.length ? `Falta: ${juntar(gFaltam.map(([, n]) => n))}. Faltando qualquer um, preservar ainda é só intenção.` : "Os três gestos do nunca estão feitos.",
+      alerta: gFaltam.length ? "atencao" : "ok",
+      detalhes: { faltam: gFaltam.map(([v2]) => v2) }
+    });
+    const res = lista(r, "apoio_resolvido", APOIO.map(([v2]) => v2));
+    const esq = APOIO.filter(([v2]) => !res.includes(v2));
+    calculos.push({
+      id: "esquecidos",
+      rotulo: "Itens de apoio sem decisão",
+      valor: esq.length,
+      texto: esq.length ? `${esq.length} de 7 itens de apoio ainda sem decisão: ${juntar(esq.map(([, n]) => n))}.` : "Os sete itens de apoio têm lugar ou foram deixados de fora por decisão.",
+      alerta: esq.length ? "atencao" : "ok",
+      detalhes: { faltam: esq.map(([v2]) => v2) }
+    });
+    const esc = lista(r, "gatilho_escrito", GATILHO).length;
+    calculos.push({
+      id: "gatilho",
+      rotulo: "Condições do gatilho escritas",
+      valor: esc,
+      texto: esc < 3 ? `${esc} de 3 condições do gatilho escritas. Menos de 3: uma ou duas não bastam.` : "As três condições do gatilho da fase dois estão escritas.",
+      alerta: esc < 3 ? "atencao" : "ok"
+    });
+    const consulta = escolha(r, "consulta_previa");
+    const caminhos = escolha(r, "caminhos");
+    const dia = escolha(r, "dia_simulado");
+    const estacas = escolha(r, "caminhada_estacas");
+    const cond = num(r, "condicionantes");
+    let v, motivo;
+    if (consulta === "tira") {
+      v = "pausar";
+      motivo = "A consulta prévia ou o mapa ambiental tiraram as unidades do ponto que sustenta a promessa: pausa e volta ao produto.";
+    } else if (caminhos === "cruzam" || pApoio !== null && pApoio < 0.15 || redeAlerta === true) {
+      v = "ajustar";
+      const m = [caminhos === "cruzam" && "os caminhos se cruzam", pApoio !== null && pApoio < 0.15 && "o apoio ficou abaixo de 15%", redeAlerta && "a rede foi feita só para a fase um"].filter(Boolean);
+      motivo = `Ajustar: ${juntar(m)}.`;
+    } else if (dia !== "sim" || estacas !== "sim" || caminhos !== "nao_cruzam" || cond === null || cond === 0 || pApoio === null || redeAlerta === null || consulta === null || consulta === "nao_sei") {
+      v = "testar";
+      const m = [
+        dia !== "sim" && "o dia de troca de hóspede simulado no papel",
+        estacas !== "sim" && "a caminhada com estacas",
+        caminhos !== "nao_cruzam" && "desenhar os dois caminhos",
+        (cond === null || cond === 0) && "as condicionantes numeradas no briefing",
+        pApoio === null && "a área de apoio",
+        redeAlerta === null && "a rede contra o projeto completo",
+        (consulta === null || consulta === "nao_sei") && "a situação da consulta prévia"
+      ].filter(Boolean);
+      motivo = `Testar: falta pôr à prova ${juntar(m)}.`;
+    } else {
+      v = "avancar";
+      motivo = "O apoio está na faixa, os caminhos não se cruzam, a rede é para o projeto completo e o briefing tem as condicionantes. Leva o briefing ao arquiteto, com as pendências nomeadas.";
+    }
+    calculos.push({ id: "veredito_sugerido", rotulo: "Veredito sugerido pela página", valor: v, texto: motivo });
+    return { calculos: calculos.map((c) => fechar(c)), veredito_sugerido: v, motivo_veredito: motivo };
+  }
+  return __toCommonJS(t1_a06_exports);
+})();
+
+/* Aula 5 · Masterplan. Campos: kit-code/ferramentas/aula-06.json, só os do masterplan (onde nunca, programa,
+   onde fica e quando). As condicionantes e a consulta prévia ficam para a Aula 6, junto com o briefing.
+   Contas: calculadoras["1-6"] (kit-code/ferramentas/ts/t1-a06.ts), embutida sem mudança (Calc_06).
+   A leitura é a regra do veredito do 1-6 sem as duas linhas do briefing (ver leitura abaixo). */
+const contaMult = (v) => (Array.isArray(v) ? v.length : 0);
+const AULA = {
+  n: 5,
+  etapa: "aula-5",
+  calcular: (r) => Calc_06.calcular(r),
+  FONTES: [
+    { v: "medida", nota: 3, rot: "Tenho por escrito ou medi (planta, lista do programa, resposta por escrito)", curto: "Documento, medida ou lista" },
+    { v: "falado", nota: 2, rot: "Um profissional me indicou, mas ainda não tenho no papel", curto: "Profissional falou, sem papel" },
+    { v: "estimativa", nota: 1, rot: "É estimativa minha", curto: "Estimativa" },
+  ],
+  escalaNota: "0 = Não sei ou ainda não feito · 1 = estimativa, ou um só gesto ou condição · 2 = um profissional falou, ou dois de três · 3 = documento, medida, desenho ou teste feito.",
+  abertura: {
+    titulo: "O seu Masterplan",
+    lead: "Você monta a página 5 do Dossiê do Produto: o que nunca será construído, o que precisa existir, onde fica cada coisa e quando entra a fase dois.",
+    porque: "Quando o desenho chega antes das decisões, ele toma as decisões, e decide pelo que é mais barato de construir. Antes do projeto, corrigir custa papel; depois da obra, custa obra.",
+    como: "Uma pergunta por tela, em linguagem simples. Nesta etapa o masterplan é orientativo: são as suas decisões, com os motivos escritos, para conversar com o arquiteto depois.",
+    paraque: "Você sai com O Masterplan em PDF: o nunca, o apoio, os dois caminhos, a rede e o gatilho da fase dois, com alertas e o próximo passo.",
+    dica: "Tenha à mão o mapa do terreno e as suas Fichas do Território e do Produto.",
+  },
+  QUESTOES: [
+    {
+      id: "zonas_nunca", tipo: "texto", aceitaNS: true, curto: "Onde nunca construir", bloco: "Movimento 1 · Onde nunca",
+      pergunta: "O que nunca será construído no seu terreno, zona por zona, e por quê?",
+      explica: "Escreva cada zona e o motivo ao lado: lei (o que a lei protege) ou produto (o que a sua promessa precisa).",
+      porque: "Antes de decidir onde construir, decida onde jamais vai construir. É a decisão mais barata do masterplan, e a única que não se desfaz depois. O masterplan pode preservar além da lei, nunca aquém. E a área livre também é produto.",
+      onde: "<p>Volte ao terreno com o mapa da Aula 1 na mão. As áreas que a lei protege (preservação, reserva legal) estão no <b>CAR</b> e se confirmam com o <b>técnico ambiental</b>. As do produto, só você decide.</p>",
+      marina: "A preservação do riacho e da nascente (12.000 m²) e a reserva legal (10.000 m²), por lei. Por produto: o bosque que segura o vento da tarde, o bosque do caminho e a crista, que só recebe um deck leve.",
+      ondeCurto: "pintar de vermelho no mapa o que nunca será construído, com o motivo ao lado",
+    },
+    {
+      id: "tres_gestos", tipo: "multipla", curto: "Os três gestos do nunca", bloco: "Movimento 1 · Onde nunca",
+      pergunta: "O seu \"nunca\" já tem quais gestos?",
+      explica: "Deixar uma mancha em branco no desenho não protege nada. Marque só o que já está feito.",
+      opcoes: [
+        { v: "marcado", rot: "Marcado no desenho" },
+        { v: "fotografado", rot: "Terreno fotografado com data" },
+        { v: "clausula", rot: "Cláusula pedida ao advogado" },
+      ],
+      porque: "O nunca só existe com três gestos: marcar no desenho, para ninguém usar na correria da obra; fotografar com data e localização, o registro mais barato e o único que não se refaz; e pôr em contrato, porque desenho não segura retroescavadeira.",
+      onde: "<p>O desenho e as fotos são seus. A cláusula é redigida pelo <b>advogado</b>: você só decide o que ela protege.</p>",
+      marina: "A Marina escreveu \"nunca será construído\" sobre cada zona, fotografou o terreno com data e levou a cláusula ao advogado.",
+      ondeCurto: "marcar o nunca no desenho, fotografar o terreno com data e pedir a cláusula ao advogado",
+      nota: (r) => contaMult(r.tres_gestos),
+      semEvidencia: "só um dos três gestos. Sem os três, preservar é só intenção.",
+      zeroTexto: "nenhum dos três gestos feito ainda.",
+    },
+    {
+      id: "unidades_fase1", tipo: "numero", unidade: "unidades", aceitaNS: false, positivo: true, curto: "Unidades na fase um", bloco: "Movimento 2 · O que precisa existir",
+      pergunta: "Quantas unidades entram na fase um?",
+      explica: "É o número da sua Ficha do Produto e do seu Modelo de Negócio.",
+      porque: "Com ele e com a área de cada unidade sai a área fechada, a base da régua do apoio.",
+      onde: "<p>No seu Modelo de Negócio (Aula 4) ou na Ficha do Produto (Aula 3).</p>",
+      marina: "3 cabanas na fase um.",
+      ondeCurto: "rever no Modelo de Negócio quantas unidades tem a fase um",
+      veio: () => { const d = dadosDaAula(4); if (d && typeof d.unidades_fase1 === "number") return { valor: String(d.unidades_fase1), de: "Aula 4 (unidades na fase um)" }; const p = dadosDaAula(3); return p && typeof p.unidades_abertura === "number" ? { valor: String(p.unidades_abertura), de: "Aula 3 (unidades na primeira fase)" } : null; },
+    },
+    {
+      id: "area_fechada_unidade", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: false, positivo: true, curto: "Área fechada de cada unidade", bloco: "Movimento 2 · O que precisa existir",
+      pergunta: "Qual é a área fechada de cada unidade?",
+      explica: "Área fechada é só o interior da unidade. O deck aberto fica fora.",
+      porque: "A régua do apoio usa como base a área fechada: o interior das unidades mais o apoio construído. A fonte não diz o que entra na área total, então a trilha escreve a base.",
+      onde: "<p>Na sua Ficha do Produto (Aula 3), em área interna da unidade.</p>",
+      marina: "38 m² fechados por cabana. Três cabanas: 3 × 38 = 114 m².",
+      ondeCurto: "rever na Ficha do Produto a área interna da unidade",
+      veio: () => { const d = dadosDaAula(3); return d && typeof d.area_interna === "number" ? { valor: fmtN(d.area_interna, 2), de: "Aula 3 (área interna da unidade)" } : null; },
+    },
+    {
+      id: "area_apoio", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área de apoio da fase um", bloco: "Movimento 2 · O que precisa existir",
+      pergunta: "Quanto de área de apoio você vai construir na fase um?",
+      explica: "Apoio é o que o hóspede não vê e a operação precisa: rouparia, depósito, área de resíduo, copa e vestiário da equipe. Some tudo, em m².",
+      porque: "Ninguém se apaixona por uma rouparia. Reserve entre 15% e 25% da área fechada para apoio: quem reserva pouco descobre depois, e a solução vira contêiner atrás da mata ou puxadinho. O apoio é o que não pode ser faseado.",
+      onde: "<p>No seu <b>programa de necessidades</b>: a lista de tudo o que o empreendimento precisa ter, um ambiente por linha, com função, quem usa, quando e área estimada.</p>",
+      marina: "Rouparia e depósito de enxoval 12 m², depósito seco 6 m², resíduo com acesso externo 4 m², copa e vestiário 8 m²: 30 m². Sobre 114 + 30 = 144 m², dá 20,8%, dentro da faixa.",
+      ondeCurto: "listar o programa de apoio ambiente por ambiente e somar os m²",
+    },
+    {
+      id: "apoio_resolvido", tipo: "multipla", curto: "Itens de apoio resolvidos", bloco: "Movimento 2 · O que precisa existir",
+      pergunta: "Da lista do que quase sempre falta, o que já está resolvido?",
+      explica: "Resolvido é ter lugar no desenho ou ter sido deixado de fora por decisão escrita. Pode não marcar nenhum.",
+      opcoes: [
+        { v: "rouparia_lavanderia", rot: "Rouparia e lavanderia" },
+        { v: "deposito", rot: "Depósito seco" },
+        { v: "residuo", rot: "Resíduo com acesso externo" },
+        { v: "copa_vestiario", rot: "Copa e vestiário da equipe" },
+        { v: "estac_servico", rot: "Estacionamento de serviço" },
+        { v: "oficina", rot: "Oficina e ferramentas" },
+        { v: "gas_reservatorio", rot: "Abrigo de gás e reservatório" },
+      ],
+      porque: "Deixar de fora pode, por decisão escrita. Esquecer, não. Abrigo de gás e reservatório têm norma própria: quem diz onde ficam é o profissional habilitado.",
+      onde: "<p>No seu programa de necessidades, item por item.</p>",
+      marina: "Os sete estão resolvidos. A lavanderia é terceirizada, por decisão: três cabanas não justificam ponto de água, esgoto e carga elétrica para lavar enxoval.",
+    },
+    {
+      id: "dia_simulado", tipo: "escolha", curto: "Dia de troca simulado", bloco: "Movimento 2 · O que precisa existir",
+      pergunta: "Você simulou no papel um dia de troca de hóspede?",
+      explica: "Simular é escrever, hora por hora, um dia em que um hóspede sai e outro chega: chegada, limpeza, fornecedor, resíduo, refeição da equipe.",
+      opcoes: [
+        { v: "sim", rot: "Sim, e anotei o que faltou" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "É o passo que mais revela: cada hora do dia mostra um ambiente que faltava no programa.",
+      onde: "<p>Numa folha, com o seu programa ao lado.</p>",
+      marina: "Às 13h a van da lavanderia chega. Onde para? O programa tinha vaga de hóspede e nenhuma de serviço: virou uma linha do programa.",
+      ondeCurto: "simular no papel, hora por hora, um dia de troca de hóspede",
+      nota: (r) => (r.dia_simulado === "sim" ? 3 : 0),
+      zeroTexto: "o dia de troca ainda não foi simulado.",
+    },
+    {
+      id: "caminhos", tipo: "escolha", curto: "Caminho do hóspede e do serviço", bloco: "Movimento 3 · Onde fica e quando",
+      pergunta: "O caminho do hóspede e o do serviço se cruzam em algum ponto visível?",
+      explica: "Desenhe os dois no mapa, cada um com uma cor.",
+      opcoes: [
+        { v: "nao_cruzam", rot: "Não se cruzam" },
+        { v: "cruzam", rot: "Cruzam em algum ponto" },
+        { v: "nao_desenhei", rot: "Ainda não desenhei" },
+      ],
+      porque: "A operação precisa existir, mas praticamente invisível. E o estacionamento colado na unidade é conveniente por dois minutos e ruim pelo resto da estadia.",
+      onde: "<p>No mapa do terreno, com duas canetas de cores diferentes.</p>",
+      marina: "O caminho do hóspede sai do estacionamento na clareira e segue cerca de 120 m pela mata. O serviço chega por trás das cabanas, do lado oposto à vista. Não se cruzam.",
+      ondeCurto: "desenhar no mapa os dois caminhos, em duas cores",
+      nota: (r) => (r.caminhos === "nao_cruzam" || r.caminhos === "cruzam" ? 3 : 0),
+      zeroTexto: "os dois caminhos ainda não foram desenhados.",
+    },
+    {
+      id: "caminhada_estacas", tipo: "escolha", curto: "Caminhada com estacas", bloco: "Movimento 3 · Onde fica e quando",
+      pergunta: "Você marcou as unidades com estacas e caminhou de manhã e no fim da tarde?",
+      explica: "Estacas e barbante no lugar de cada unidade, e uma volta às sete da manhã e outra às cinco da tarde.",
+      opcoes: [
+        { v: "sim", rot: "Sim" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "Custa quatro estacas e mostra o que a planta esconde. A planta de uma unidade se corrige em duas semanas; a posição dela se corrige nunca.",
+      onde: "<p>No terreno, com estacas, barbante e o celular para fotografar.</p>",
+      marina: "Da janela lateral da cabana 3 a Marina via o deck da 2. A cabana 3 desceu uns 15 m, e a 2 sumiu atrás das árvores. Custo da correção: quatro estacas.",
+      ondeCurto: "marcar as unidades com estacas e caminhar às 7h e às 17h, com foto",
+      nota: (r) => (r.caminhada_estacas === "sim" ? 3 : 0),
+      zeroTexto: "a posição das unidades ainda não foi conferida a pé.",
+    },
+    {
+      id: "unidades_projeto_completo", tipo: "numero", unidade: "unidades", aceitaNS: true, curto: "Unidades no projeto completo", bloco: "Movimento 3 · Onde fica e quando",
+      pergunta: "Quantas unidades tem o projeto completo, somando todas as fases?",
+      explica: "A fase um mais o que fica reservado para depois.",
+      porque: "O masterplan desenha o terreno no tempo: a reserva da fase dois fica marcada desde já, protegida de virar estacionamento ou canteiro.",
+      onde: "<p>Na sua Ficha do Mercado (quantas cabem agora) e na sua decisão de quantas desenhar para depois.</p>",
+      marina: "5 unidades no projeto completo: 3 agora, a 4ª e a 5ª reservadas na mesma linha.",
+      ondeCurto: "decidir quantas unidades o projeto completo terá, somando as fases",
+    },
+    {
+      id: "rede_para", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Rede dimensionada para", bloco: "Movimento 3 · Onde fica e quando",
+      pergunta: "Para quantas unidades a rede está dimensionada?",
+      explica: "Rede é a infraestrutura que liga tudo: água, energia, esgoto (efluente) e acesso.",
+      porque: "Construa menos unidades, nunca menos infraestrutura. Fazer a rede só para a fase um poupa agora e sai mais caro somadas as duas fases: na fase dois você reabre vala e troca o que ficou pequeno, com hóspede dormindo ao lado.",
+      onde: "<p>Peça ao <b>projetista</b> e à <b>concessionária</b>, por escrito, água, efluente e energia para o projeto completo.</p>",
+      marina: "A rede da Marina é para 5 já na fase um, com duto vazio sob tudo o que vai ser construído.",
+      ondeCurto: "pedir ao projetista e à concessionária, por escrito, a rede para o projeto completo",
+    },
+    {
+      id: "gatilho_escrito", tipo: "multipla", curto: "Gatilho da fase dois", bloco: "Movimento 3 · Onde fica e quando",
+      pergunta: "O seu gatilho da fase dois: quais condições já estão escritas?",
+      explica: "Gatilho é o que precisa acontecer para a fase dois começar. Não é depois de um feriado cheio. Pode não marcar nenhuma.",
+      opcoes: [
+        { v: "demanda", rot: "Demanda: 12 meses de dado real, com o número escrito antes" },
+        { v: "caixa", rot: "Caixa: a parte própria da fase dois e 3 meses de custo fixo" },
+        { v: "maturidade", rot: "Maturidade: processos escritos, equipe estável, avaliações em dia" },
+      ],
+      porque: "As três condições do Gatilho de Expansão Zion precisam acender juntas: uma ou duas não bastam. E se as três não acenderem em 24 meses, revise produto ou preço, em vez de esperar mais. Os números da demanda e do caixa vêm da Trilha 2.",
+      onde: "<p>Escreva as três numa folha, com data. O número de cada uma se fecha depois, com a conta da Trilha 2.</p>",
+      marina: "A Marina escreveu as três condições.",
+      ondeCurto: "escrever as três condições do gatilho, com data",
+      nota: (r) => contaMult(r.gatilho_escrito),
+      semEvidencia: "só uma das três condições escrita. Uma ou duas não bastam.",
+      zeroTexto: "nenhuma condição do gatilho escrita ainda.",
+    },
+  ],
+  /* Regra do veredito do calculadoras["1-6"], na mesma ordem, sem as duas linhas que dependem do briefing
+     (condicionantes e consulta prévia), que só são perguntadas na Aula 6. Pendência para o Bruno no LEIA-ME. */
+  leitura(c) {
+    const r = c.r;
+    const u = paraNumero(r.unidades_fase1), afu = paraNumero(r.area_fechada_unidade), apoio = paraNumero(r.area_apoio);
+    const total = u !== null && afu !== null && apoio !== null ? u * afu + apoio : null;
+    const pApoio = Z.div(apoio, total);
+    const rede = paraNumero(r.rede_para), completo = paraNumero(r.unidades_projeto_completo);
+    const redeAlerta = rede !== null && completo !== null ? rede < completo : null;
+    if (r.caminhos === "cruzam" || (pApoio !== null && pApoio < 0.15) || redeAlerta === true) {
+      const m = [r.caminhos === "cruzam" && "os caminhos se cruzam", pApoio !== null && pApoio < 0.15 && "o apoio ficou abaixo de 15%", redeAlerta && "a rede foi feita só para a fase um"].filter(Boolean);
+      return { v: "ajustar", motivo: `Ajustar: ${juntar(m)}.` };
+    }
+    if (r.dia_simulado !== "sim" || r.caminhada_estacas !== "sim" || r.caminhos !== "nao_cruzam" || pApoio === null || redeAlerta === null) {
+      const m = [
+        r.dia_simulado !== "sim" && "o dia de troca de hóspede simulado no papel",
+        r.caminhada_estacas !== "sim" && "a caminhada com estacas",
+        r.caminhos !== "nao_cruzam" && "desenhar os dois caminhos",
+        pApoio === null && "a área de apoio",
+        redeAlerta === null && "a rede contra o projeto completo",
+      ].filter(Boolean);
+      return { v: "testar", motivo: `Testar: falta pôr à prova ${juntar(m)}.` };
+    }
+    return { v: "avancar", motivo: "O apoio está na faixa, os caminhos não se cruzam, a rede é para o projeto completo e a posição das unidades foi conferida no papel e no chão. O estudo de massas, as condicionantes e a consulta prévia vêm na Aula 6." };
+  },
+  LEITURAS: {
+    avancar: { rot: "Avançar para o estudo de massas", sub: "O terreno está decidido no papel: siga para a Aula 6, Estudo de massas e Dossiê do Produto." },
+    testar: { rot: "Testar no papel e no chão", sub: "Falta pôr à prova o dia simulado, a caminhada com estacas, os dois caminhos ou a rede." },
+    ajustar: { rot: "Ajustar o desenho", sub: "Mude o desenho antes de chamar o arquiteto: corrigir agora custa papel." },
+    pausar: { rot: "Pausar e voltar ao produto", sub: "Sem o ponto que sustenta a promessa, volte ao produto." },
+  },
+  numeros(L) {
+    const g = (id) => calc(L.res, id);
+    const pa = g("pct_apoio"), es = g("esquecidos"), ga = g("gatilho");
+    const rede = paraNumero(L.r.rede_para), comp = paraNumero(L.r.unidades_projeto_completo);
+    return [
+      ["Apoio sobre a área fechada", pa.valor === null ? "em branco" : fmtN(pa.valor, 1) + "%"],
+      ["Rede para o projeto completo", rede === null || comp === null ? "em branco" : `${fmtN(rede)} de ${fmtN(comp)}`],
+      ["Itens de apoio sem decisão", `${es.valor} de 7`],
+      ["Gatilho da fase dois", `${ga.valor} de 3`],
+    ];
+  },
+  dados: (L) => ({ unidades_fase1: paraNumero(L.r.unidades_fase1), area_fechada_unidade: paraNumero(L.r.area_fechada_unidade), area_apoio: paraNumero(L.r.area_apoio), unidades_projeto_completo: paraNumero(L.r.unidades_projeto_completo) }),
+  // O veredito do 1-6 pede condicionantes e consulta prévia, que esta aula não pergunta: o texto dele não aparece aqui.
+  contas: ["pct_apoio", "rede_vs_projeto", "gestos", "esquecidos", "gatilho"],
+  fragil(c) {
+    const r = c.r, g = c.g;
+    const pa = g("pct_apoio"), rv = g("rede_vs_projeto"), ge = g("gestos"), es = g("esquecidos"), ga = g("gatilho");
+    if (r.caminhos === "cruzam") return "O caminho do hóspede e o do serviço se cruzam. A operação precisa existir, mas praticamente invisível: redesenhe em duas cores antes de chamar o arquiteto.";
+    if (pa.alerta === "critico") return `O apoio ficou em ${fmtN(pa.valor, 1)}% da área fechada, abaixo de 15%: vai faltar e virar puxadinho. O apoio é o que não pode ser faseado.`;
+    if (rv.valor === true) return rv.texto + " Construa menos unidades, nunca menos infraestrutura.";
+    if (c.nsIds.includes("zonas_nunca")) return "Ainda não está escrito o que nunca será construído. É a primeira decisão do masterplan, e a mais barata: comece por ela.";
+    if (r.caminhos === "nao_desenhei") return "Os dois caminhos, do hóspede e do serviço, ainda não foram desenhados. É o desenho que mostra se a operação fica invisível.";
+    if (r.caminhada_estacas !== "sim") return "A posição das unidades ainda não foi conferida a pé, com estacas, de manhã e no fim da tarde: a planta esconde o que o chão mostra.";
+    if (r.dia_simulado !== "sim") return "O dia de troca de hóspede ainda não foi simulado no papel: cada hora revela um ambiente que falta.";
+    const id = ["area_apoio", "rede_para", "unidades_projeto_completo"].find((x) => c.nsIds.includes(x));
+    if (id) return `${Q(id).curto} ainda é Não sei. Próximo passo: ${Q(id).ondeCurto}.`;
+    if ((ge.detalhes.faltam || []).length) return ge.texto;
+    if (es.valor > 0) return es.texto + " Deixar de fora pode, por decisão escrita; esquecer, não.";
+    if (ga.valor < 3) return ga.texto;
+    const n1 = c.notas.find((x) => x.nota === 1);
+    if (n1) return `${n1.q.curto}: ${n1.q.semEvidencia || "é estimativa."} Para confirmar: ${n1.q.ondeCurto}.`;
+    return "O masterplan está no papel. Falta o estudo de massas, as condicionantes do briefing e a consulta prévia: é a Aula 6.";
+  },
+  criterio: () => "Se a consulta prévia ou o mapa ambiental tirarem as unidades do ponto que sustenta a minha promessa, eu pauso e volto ao produto antes do projeto executivo.",
+  moldeCriterio: "Molde: \"Se a consulta prévia ou o mapa ambiental tirarem as unidades de [o ponto que sustenta a promessa], eu pauso e volto ao produto antes do projeto executivo.\"",
+  compromisso(c) {
+    const r = c.r;
+    if (c.nsIds.includes("zonas_nunca") || contaMult(r.tres_gestos) < 2) return { acao: "Pintar de vermelho, no mapa do terreno, tudo o que nunca será construído, com o motivo ao lado (lei ou produto), e fotografar o terreno com data.", evidencia: "O mapa do nunca e as fotos com data." };
+    if (r.caminhada_estacas !== "sim") return { acao: "Marcar as unidades com estacas e barbante e caminhar às sete da manhã e às cinco da tarde, com foto.", evidencia: "As fotos das duas caminhadas, com data, e o que mudou de lugar." };
+    if (r.dia_simulado !== "sim") return { acao: "Simular no papel, hora por hora, um dia de troca de hóspede e anotar cada ambiente que faltou.", evidencia: "A folha do dia simulado, com o que faltou." };
+    return { acao: "Pedir à concessionária, por escrito, o ponto e a tensão de energia para o projeto completo.", evidencia: "A resposta por escrito, com data." };
+  },
+  dicaCompromisso: "Nenhuma precisa de arquiteto contratado ainda.",
+  depoisLeitura: () => `<p class="dica" style="margin-top:8px">O masterplan desta aula é orientativo: uma estimativa para começar a construir números, que se conversa com o arquiteto e se desenha com profissional habilitado.</p>`,
+  botaoPDF: "Baixar o meu Masterplan (PDF)",
+  capaTitulo: ["O", "Masterplan"],
+  arquivoPDF: "Masterplan",
+  notaFinalPDF: "A Marina, citada nas explicações, é um exemplo ilustrativo: os números dela ensinam a conta e não dizem nada sobre o seu terreno. O masterplan é orientativo, não é projeto. Preservação, reserva legal, abrigo de gás, contratos e licenças aparecem em nível introdutório: quem confirma no seu caso é o arquiteto, o engenheiro, o técnico ambiental, o advogado e a prefeitura.",
+};
+
+
+/* =====================================================================
+   3. O núcleo comum: estado, telas, nota, alertas e PDF
+   ===================================================================== */
+const CHAVE = PREFIXO + AULA.n;
+const QUESTOES = AULA.QUESTOES;
+const META = AULAS[AULA.n - 1];
+const PROX = AULAS[AULA.n] || null;
+const FONTES_PADRAO = AULA.FONTES;
+
+function estadoVazio() {
+  return { versao: 1, aula: AULA.n, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, extra: {}, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.perfil) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.extra = Object.assign({}, d.extra || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+/** Perfil já preenchido em outra aula (para o aluno não digitar de novo). */
+function perfilDeOutraAula() {
+  let melhor = null;
+  for (const a of AULAS) {
+    if (a.n === AULA.n) continue;
+    const d = salvoDaAula(a.n);
+    if (d && d.perfil && d.perfil.nome && (!melhor || String(d.atualizado || "") > String(melhor.atualizado || ""))) melhor = d;
+  }
+  return melhor ? melhor.perfil : null;
+}
+
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const calc = (res, id) => res.calculos.find((c) => c.id === id);
+const fontesDe = (q) => q.fontes || FONTES_PADRAO;
+const ITENS_NOTA = QUESTOES.filter((q) => q.nota);
+const NOTA_MAX = ITENS_NOTA.length * 3;
+
+function respostasParaCalculo() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas) r[q.id] = S.respostas[q.id];
+  return r;
+}
+function notaItem(q) {
+  const v = S.respostas[q.id];
+  if (typeof q.nota === "function") return Math.max(0, Math.min(3, q.nota(S.respostas, S.fontes) || 0));
+  if (v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]);
+  return f ? f.nota : 1;
+}
+const nsDoAluno = () => QUESTOES.filter((q) => q.aceitaNS && ehNS(S.respostas[q.id]));
+
+function ler() {
+  const r = respostasParaCalculo();
+  const res = AULA.calcular(r);
+  const notas = ITENS_NOTA.map((q) => ({ q, nota: notaItem(q) }));
+  const soma = notas.reduce((s, x) => s + x.nota, 0);
+  const nsAluno = nsDoAluno();
+  const ctx = { r, res, notas, soma, nsAluno, nsIds: nsAluno.map((q) => q.id), g: (id) => calc(res, id), nome: S.perfil.nome || "Eu", S };
+  const lt = AULA.leitura ? AULA.leitura(ctx) : { v: res.veredito_sugerido, motivo: res.motivo_veredito };
+  ctx.v = lt.v; ctx.motivo = lt.motivo;
+  // Alertas: críticos primeiro, depois os Não sei, as notas 1 e os de atenção
+  const alertas = [];
+  for (const a of (AULA.alertasAntes ? AULA.alertasAntes(ctx) : [])) alertas.push(a);
+  const ocultar = AULA.alertaOculto || [];
+  for (const c of res.calculos) if (c.alerta === "critico" && c.id !== "veredito_sugerido" && !ocultar.includes(c.id)) alertas.push({ t: "critico", tit: "Crítico", txt: AULA.textoTela ? AULA.textoTela(c.texto) : c.texto });
+  for (const q of nsAluno) alertas.push({ t: "ns", tit: "Não sei · vale zero", txt: `${q.curto}: vira tarefa. Onde conseguir: ${q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: ${x.q.semEvidencia || "é estimativa. Nota sem documento ou medida que prove não vale."} Para confirmar: ${x.q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 0 && !ehNS(S.respostas[x.q.id]) && x.q.zeroTexto) alertas.push({ t: "sem", tit: "Nota 0 · ainda não feito", txt: `${x.q.curto}: ${x.q.zeroTexto} Para resolver: ${x.q.ondeCurto}.` });
+  for (const c of res.calculos) if (c.alerta === "atencao" && !ocultar.includes(c.id)) alertas.push({ t: "atencao", tit: "Atenção", txt: AULA.textoTela ? AULA.textoTela(c.texto) : c.texto });
+  for (const a of (AULA.alertasDepois ? AULA.alertasDepois(ctx) : [])) alertas.push(a);
+  ctx.alertas = alertas;
+  const fragil = AULA.fragil(ctx);
+  const criterioSug = AULA.criterio(ctx);
+  const comp = Object.assign({}, AULA.compromisso(ctx));
+  comp.responsavel = comp.responsavel || S.perfil.nome || "Eu"; comp.prazo = hojeISO(7);
+  return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx };
+}
+
+/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido na Aula 6). */
+function montarResumo(L) {
+  const lt = AULA.LEITURAS[L.v];
+  return {
+    aula: AULA.n, tema: META.tema, ficha: META.ficha, v: L.v, rot: lt.rot, sub: lt.sub, motivo: L.motivo, fragil: L.fragil,
+    soma: L.soma, max: NOTA_MAX, numeros: AULA.numeros(L), nCriticos: L.alertas.filter((a) => a.t === "critico").length,
+    nNS: L.nsAluno.length, criterio: S.criterio, compromisso: S.compromisso, data: hojeISO(),
+    dados: AULA.dados ? AULA.dados(L) : {},
+    mentor: mentorDoResumo(L),
+  };
+}
+
+/* ---------------------------------------------------------------------
+   4. Envio (desligado): só monta o JSON
+   --------------------------------------------------------------------- */
+function montarPayload(L) {
+  L = L || ler();
+  return {
+    email: S.perfil.email, nome: S.perfil.nome, etapa: AULA.etapa,
+    nota: L.soma, leitura: L.v, ponto_fragil: L.fragil,
+    respostas: Object.assign({}, respostasParaCalculo(), { fontes: Object.assign({}, S.fontes), cidade: S.perfil.cidade, uf: S.perfil.uf, criterio_para_parar: S.criterio, compromisso_7_dias: S.compromisso }, AULA.payloadExtra ? AULA.payloadExtra(L) : {}),
+    calculos: L.res.calculos,
+  };
+}
+async function enviarParaZion(payload) {
+  if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
+  try { const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); return { enviado: r.ok }; }
+  catch (e) { return { enviado: false, erro: String(e) }; }
+}
+
+const MENTOR_AULA_ID = "t1-aula-" + AULA.n;
+const mentorRotulo = (k) => (AULA.LEITURAS[k] ? AULA.LEITURAS[k].rot : k);
+const mentorAtualizarResumo = (L) => { S.resumo = montarResumo(L); };
+/* ---------------------------------------------------------------------
+   Mentor virtual (o mesmo bloco nas seis ferramentas da Trilha 1).
+   Só chama a rede quando o aluno toca no botão e FEEDBACK_URL está preenchida.
+   Para testes, window.ZION_FEEDBACK_URL (se existir) toma o lugar da constante.
+   --------------------------------------------------------------------- */
+const MENTOR_TEMPO_MS = 90000;
+const MENTOR_AVISO = "O mentor nunca é mais otimista que as contas.";
+const MENTOR_PESO = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+const MENTOR_MAPA = { avancar: "avancar", seguir: "avancar", testar: "testar", investigar: "testar", ajustar: "ajustar", renegociar: "ajustar", pausar: "pausar", trocar: "pausar" };
+const MENTOR_COR_PDF = { verde: [22, 38, 28], ok: [31, 90, 51], verm: [155, 44, 31], ouro: [122, 94, 18], cinza: [70, 86, 75] };
+/** A leitura no vocabulário do mentor: avancar, testar, ajustar ou pausar (aceita também seguir, investigar, renegociar e trocar). */
+function vereditoParaMentor(v) {
+  const k = String(v || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/[^a-z]/)[0];
+  return MENTOR_MAPA[k] || null;
+}
+function urlDoMentor() {
+  try { const u = window.ZION_FEEDBACK_URL; if (typeof u === "string" && u.trim()) return u.trim(); } catch (e) {}
+  return FEEDBACK_URL;
+}
+/** A leitura do mentor vale enquanto as respostas e a leitura da ferramenta forem as mesmas. */
+const assinaturaMentor = (L) => JSON.stringify([respostasParaCalculo(), L.v]);
+const mentorValido = (L) => !!(S.mentor && S.mentor.resultado && S.mentor.assinatura === assinaturaMentor(L));
+/** O que vai para o resumo salvo (campo mentor), ou null. */
+const mentorDoResumo = (L) => (mentorValido(L) ? Object.assign({ data: S.mentor.data }, S.mentor.resultado) : null);
+
+function corpoDoPedidoMentor(L) {
+  const calculos = {};
+  for (const c of L.res.calculos) calculos[c.id] = { rotulo: c.rotulo, valor: c.valor === undefined ? null : c.valor, texto: c.texto, alerta: c.alerta || null };
+  calculos.leitura_da_ferramenta = { veredito: L.v, motivo: L.motivo, ponto_fragil: L.fragil, nota: L.soma, nota_maxima: NOTA_MAX, alertas: L.alertas.map((a) => ({ tipo: a.t, texto: a.txt })) };
+  return { aula: MENTOR_AULA_ID, nome: S.perfil.nome, email: S.perfil.email, respostas: montarPayload(L).respostas, calculos, veredito_ferramenta: vereditoParaMentor(L.v) || "testar" };
+}
+function normalizarMentor(x, L) {
+  if (!x || typeof x !== "object") return null;
+  const txt = (v) => (typeof v === "string" ? v.trim() : "");
+  const lista = (v) => (Array.isArray(v) ? v.map(txt).filter(Boolean) : []);
+  const resumo = txt(x.resumo);
+  if (!resumo) return null;
+  const pa = x.proxima_acao && typeof x.proxima_acao === "object" ? x.proxima_acao : {};
+  const ferr = vereditoParaMentor(L.v) || "testar";
+  const doMentor = vereditoParaMentor(x.veredito);
+  // Nunca mais otimista que as contas: fica a mais cautelosa entre a do mentor e a da ferramenta.
+  const v = doMentor && MENTOR_PESO[doMentor] >= MENTOR_PESO[ferr] ? doMentor : ferr;
+  return {
+    resumo, pontos_fortes: lista(x.pontos_fortes), ponto_fragil: txt(x.ponto_fragil), veredito: v, veredito_rot: mentorRotulo(v),
+    criterio_para_parar: txt(x.criterio_para_parar),
+    proxima_acao: { acao: txt(pa.acao), responsavel: txt(pa.responsavel), prazo: txt(pa.prazo), evidencia: txt(pa.evidencia) },
+    perguntas_em_aberto: lista(x.perguntas_em_aberto),
+  };
+}
+async function pedirMentor(L) {
+  const url = urlDoMentor();
+  if (!url) return { erro: "Disponível em breve." };
+  const ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  const relogio = setTimeout(() => { if (ctrl) ctrl.abort(); }, MENTOR_TEMPO_MS);
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpoDoPedidoMentor(L)), signal: ctrl ? ctrl.signal : undefined });
+    let d = null;
+    try { d = await r.json(); } catch (e) { d = null; }
+    const erroServ = d && typeof d.erro === "string" ? d.erro.trim() : "";
+    if (r.status === 429) return { erro: erroServ || "O mentor recebeu muitos pedidos agora. Espere alguns minutos e tente de novo." };
+    if (!r.ok) return { erro: (r.status < 500 && erroServ) || "O mentor virtual não respondeu agora. Tente de novo daqui a pouco." };
+    const m = normalizarMentor(d && d.resultado, L);
+    if (!m) return { erro: erroServ || "O mentor virtual não conseguiu ler as suas respostas agora. Tente de novo daqui a pouco." };
+    return { resultado: m };
+  } catch (e) {
+    return { erro: e && e.name === "AbortError" ? "O mentor demorou mais de 90 segundos para responder. Tente de novo daqui a pouco." : "Não foi possível falar com o mentor virtual. Confira a conexão com a internet e tente de novo." };
+  } finally { clearTimeout(relogio); }
+}
+function htmlMentorResultado(m) {
+  const lst = (a, vazio) => (a.length ? `<ul>${a.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${vazio}</p>`);
+  const pa = m.proxima_acao;
+  return `<div id="mentor-resultado">
+    <div class="caixa porque"><h3>Resumo</h3><p>${esc(m.resumo)}</p></div>
+    <div class="caixa onde"><h3>Pontos fortes</h3>${lst(m.pontos_fortes, "Nenhum apontado.")}</div>
+    <div class="fragil" style="margin-top:14px"><b>Ponto frágil</b><br>${esc(m.ponto_fragil || "Em branco")}</div>
+    <div class="leitura" id="mentor-leitura" style="margin-top:14px"><div class="eyebrow" style="color:var(--creme)">Leitura do mentor</div><div class="rot">${esc(m.veredito_rot)}</div><p><b>${esc(MENTOR_AVISO)}</b></p></div>
+    <div class="caixa porque"><h3>Critério para parar</h3><p>${esc(m.criterio_para_parar || "Em branco")}</p></div>
+    <div class="caixa porque"><h3>Próxima ação</h3><ul><li><b>Ação:</b> ${esc(pa.acao || "Em branco")}</li><li><b>Responsável:</b> ${esc(pa.responsavel || "Em branco")}</li><li><b>Prazo:</b> ${esc(dataBR(pa.prazo) || "Em branco")}</li><li><b>Evidência:</b> ${esc(pa.evidencia || "Em branco")}</li></ul></div>
+    <div class="caixa onde"><h3>Perguntas em aberto</h3>${lst(m.perguntas_em_aberto, "Nenhuma.")}</div>
+    <p class="dica" style="margin-top:10px">A leitura do mentor complementa as contas e a leitura acima, não as substitui. Ela entra no seu PDF.</p>
+  </div>`;
+}
+function htmlSecaoMentor(L) {
+  let corpo;
+  if (!urlDoMentor()) corpo = `<p id="mentor-estado"><b>Disponível em breve.</b></p><button type="button" class="btn btn-s" id="mentor-pedir" disabled>Pedir a leitura do mentor virtual</button>`;
+  else if (mentorValido(L)) corpo = htmlMentorResultado(S.mentor.resultado);
+  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas e as contas.</p>
+    <button type="button" class="btn btn-s" id="mentor-pedir">Pedir a leitura do mentor virtual</button>
+    <div id="mentor-estado" role="status" aria-live="polite"></div>`;
+  return `<section class="bloco" id="b-mentor"><h2>O mentor virtual</h2><div id="mentor-corpo">${corpo}</div></section>`;
+}
+function ligarMentor(L) {
+  const b = document.getElementById("mentor-pedir");
+  if (!b || b.disabled) return;
+  b.onclick = async () => {
+    const st = document.getElementById("mentor-estado");
+    b.disabled = true;
+    st.innerHTML = `<p class="dica" style="margin-top:10px"><b>Lendo as suas respostas...</b> Pode levar até um minuto e meio.</p>`;
+    const r = await pedirMentor(L);
+    if (r.resultado) {
+      S.mentor = { resultado: r.resultado, assinatura: assinaturaMentor(L), data: hojeISO() };
+      mentorAtualizarResumo(L);
+      salvar();
+      const c = document.getElementById("mentor-corpo");
+      if (c) c.innerHTML = htmlMentorResultado(r.resultado);
+    } else {
+      b.disabled = false;
+      st.innerHTML = `<div class="alerta a-atencao" id="mentor-erro"><b>O mentor não respondeu</b>${esc(r.erro)} O resto da página continua funcionando: o PDF sai normalmente, sem a leitura do mentor.</div>`;
+    }
+  };
+}
+/** As caixas da leitura do mentor no PDF: [rótulo, texto, cor]. */
+function mentorParaPDF(m) {
+  const pa = m.proxima_acao || {};
+  const itens = (a, vazio) => (a && a.length ? a.map((x) => "- " + x).join("\n") : vazio);
+  return [
+    ["Resumo", m.resumo, "verde"],
+    ["Pontos fortes", itens(m.pontos_fortes, "Nenhum apontado."), "ok"],
+    ["Ponto frágil", m.ponto_fragil || "Em branco", "verm"],
+    ["Leitura do mentor", `${m.veredito_rot}. ${MENTOR_AVISO}`, "verde"],
+    ["Critério para parar", m.criterio_para_parar || "Em branco", "ouro"],
+    ["Próxima ação", [`Ação: ${pa.acao || "Em branco"}`, `Responsável: ${pa.responsavel || "Em branco"}`, `Prazo: ${dataBR(pa.prazo) || "Em branco"}`, `Evidência: ${pa.evidencia || "Em branco"}`].join("\n"), "verde"],
+    ["Perguntas em aberto", itens(m.perguntas_em_aberto, "Nenhuma."), "cinza"],
+  ].map(([r, t, c]) => [r, t, MENTOR_COR_PDF[c]]);
+}
+
+/* ---------------------------------------------------------------------
+   5. Telas
+   --------------------------------------------------------------------- */
+const app = document.getElementById("app");
+document.getElementById("rodape").textContent = RODAPE;
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+function render() {
+  if (S.passo < 0) return telaAbertura();
+  if (S.passo >= QUESTOES.length) return telaResultado();
+  return telaPergunta(S.passo);
+}
+function irPara(p) { S.passo = p; salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+const val = (id) => document.getElementById(id).value.trim();
+
+function telaAbertura() {
+  const salvo = carregar();
+  const temSalvo = salvo && Object.keys(salvo.respostas || {}).length > 0;
+  if (!S.perfil.nome) { const p = perfilDeOutraAula(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Trilha 1 · Aula ${AULA.n} · ${esc(META.tema)}</div>
+    <h1 tabindex="-1">${esc(AULA.abertura.titulo)}</h1>
+    <p class="lead">${esc(AULA.abertura.lead)}</p>
+    <div class="tres">
+      <div><b>Por que</b>${esc(AULA.abertura.porque)}</div>
+      <div><b>Como</b>${esc(AULA.abertura.como)}</div>
+      <div><b>Para que</b>${esc(AULA.abertura.paraque)}</div>
+    </div>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta página.</b><br>As suas respostas ficaram salvas neste aparelho. <div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <form id="f-abertura" novalidate>
+      <label for="nome">O seu nome</label>
+      <input type="text" id="nome" autocomplete="name" value="${esc(S.perfil.nome)}" required>
+      <label for="email">O seu e-mail</label>
+      <input type="email" id="email" autocomplete="email" inputmode="email" value="${esc(S.perfil.email)}" required>
+      <label for="cidade">Cidade do terreno</label>
+      <input type="text" id="cidade" autocomplete="address-level2" value="${esc(S.perfil.cidade)}" required>
+      <label for="uf">Estado do terreno</label>
+      <select id="uf" required><option value="">Escolha o estado</option>${UFS.map((u) => `<option ${S.perfil.uf === u ? "selected" : ""}>${u}</option>`).join("")}</select>
+      <div class="erro" id="erro-abertura" role="alert"></div>
+      <div class="nav"><button class="btn btn-p" type="submit" id="comecar">Começar</button></div>
+      <p class="dica">As respostas ficam salvas só neste aparelho, para você poder parar e voltar. Nada é enviado sem você pedir.${AULA.abertura.dica ? " " + esc(AULA.abertura.dica) : ""}</p>
+    </form>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { S = salvo; S.passo = Math.min(Math.max(S.passo, 0), QUESTOES.length); salvar(); render(); };
+    document.getElementById("zerar").onclick = () => { apagar(); S = estadoVazio(); render(); };
+  }
+  document.getElementById("f-abertura").onsubmit = (e) => {
+    e.preventDefault();
+    const p = { nome: val("nome"), email: val("email"), cidade: val("cidade"), uf: document.getElementById("uf").value };
+    let erro = "";
+    if (!p.nome) erro = "Escreva o seu nome.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)) erro = "Confira o e-mail.";
+    else if (!p.cidade) erro = "Escreva a cidade do terreno.";
+    else if (!p.uf) erro = "Escolha o estado do terreno.";
+    document.getElementById("erro-abertura").textContent = erro;
+    if (erro) return;
+    if (temSalvo && salvo) S = salvo;
+    S.perfil = p;
+    irPara(S.passo >= 0 ? Math.min(S.passo, QUESTOES.length) : 0);
+  };
+}
+
+/** Traz a resposta de uma aula anterior, uma vez só, para o aluno conferir. */
+function aplicarVeio(q) {
+  if (!q.veio || S.veio[q.id] !== undefined || S.respostas[q.id] !== undefined) return;
+  let x = null;
+  try { x = q.veio(); } catch (e) { x = null; }
+  S.veio[q.id] = x ? x.de : null;
+  if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") {
+    S.respostas[q.id] = x.valor;
+    if (x.fonte) S.fontes[q.id] = x.fonte;
+  }
+  salvar();
+}
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+const botaoNS = (ns) => `<button type="button" class="btn btn-ns" id="ns" aria-pressed="${ns}">${ns ? "Marcado: Não sei (toque para desfazer)" : "Não sei"}</button>`;
+
+function telaPergunta(i) {
+  const q = QUESTOES[i];
+  aplicarVeio(q);
+  const total = QUESTOES.length;
+  const v = S.respostas[q.id];
+  const ns = ehNS(v);
+  let campo = "";
+  if (ehNumerico(q)) {
+    const pre = q.tipo === "moeda" ? `<span class="un">R$</span>` : "";
+    const pos = q.tipo === "percentual" ? `<span class="un">%</span>` : q.tipo === "numero" && q.unidade ? `<span class="un">${esc(q.unidade)}</span>` : "";
+    campo = `
+      <label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <div class="campo-num">${pre}
+        <input type="text" id="resp" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || (q.tipo === "moeda" ? "Ex.: 600" : "Digite o número"))}" value="${ns || v === undefined ? "" : esc(v)}" ${ns ? "disabled" : ""}>
+        ${pos}
+      </div>
+      ${q.aceitaNS ? botaoNS(ns) : ""}
+      ${q.nota === "fonte" ? `<fieldset class="fonte" id="fs-fonte" ${ns ? "hidden" : ""}>
+        <legend>De onde veio esse número?</legend>
+        <div class="opcoes">${fontesDe(q).map((f) => `<label class="op"><input type="radio" name="fonte" value="${f.v}" ${S.fontes[q.id] === f.v ? "checked" : ""}><span>${esc(f.rot)}</span></label>`).join("")}</div>
+      </fieldset>` : ""}`;
+  } else if (q.tipo === "texto") {
+    campo = `<label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <textarea id="resp" placeholder="${esc(q.placeholder || "Escreva com as suas palavras")}" ${ns ? "disabled" : ""}>${ns || v === undefined ? "" : esc(v)}</textarea>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  } else if (q.tipo === "multipla") {
+    const marcados = Array.isArray(v) ? v : [];
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="checkbox" name="m" value="${o.v}" ${marcados.includes(o.v) ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>`;
+  } else if (q.tipo === "escolha") {
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="radio" name="e" value="${o.v}" ${v === o.v ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  }
+  const veio = S.veio[q.id] && S.respostas[q.id] !== undefined && !ns ? `<div class="veio">Trouxemos esta resposta da ${esc(S.veio[q.id])}. Confira e corrija se mudou.</div>` : "";
+  app.innerHTML = `
+  <div class="progresso" aria-label="Progresso">
+    <div class="txt"><span>Pergunta ${i + 1} de ${total}</span><span>${Math.round((i / total) * 100)}%</span></div>
+    <div class="barra"><i style="width:${(i / total) * 100}%"></i></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">${esc(q.bloco || META.tema)}</div>
+    <h1 class="pergunta" tabindex="-1">${esc(q.pergunta)}</h1>
+    <p class="explica">${esc(q.explica)}</p>
+    <form id="f-q" novalidate>
+      ${campo}
+      ${veio}
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(q.porque)}</p></div>
+      <div class="caixa onde"><h3>Onde conseguir essa informação</h3>${q.onde}</div>
+      <div class="caixa marina"><h3>Exemplo ilustrativo · Marina</h3><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>
+      <div class="nav"><button type="button" class="btn btn-s" id="voltar">Voltar</button><button type="submit" class="btn btn-p" id="avancar">${i === total - 1 ? "Ver a minha página" : "Avançar"}</button></div>
+    </form>
+  </div>`;
+
+  const f = document.getElementById("f-q");
+  const inp = document.getElementById("resp");
+  const nsBtn = document.getElementById("ns");
+  if (inp) inp.addEventListener("input", () => { S.respostas[q.id] = inp.value; salvar(); });
+  f.querySelectorAll("input[name=fonte]").forEach((r) => r.addEventListener("change", () => { S.fontes[q.id] = r.value; salvar(); }));
+  f.querySelectorAll("input[name=m]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = [...f.querySelectorAll("input[name=m]:checked")].map((x) => x.value); salvar(); }));
+  f.querySelectorAll("input[name=e]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = c.value; salvar(); if (nsBtn) { nsBtn.setAttribute("aria-pressed", "false"); nsBtn.textContent = "Não sei"; } }));
+  if (nsBtn) nsBtn.onclick = () => {
+    if (ehNS(S.respostas[q.id])) { delete S.respostas[q.id]; } else { S.respostas[q.id] = "nao_sei"; delete S.fontes[q.id]; }
+    salvar(); telaPergunta(i);
+  };
+  document.getElementById("voltar").onclick = () => irPara(i - 1);
+  f.onsubmit = (e) => {
+    e.preventDefault();
+    const erro = validar(q);
+    document.getElementById("erro").textContent = erro;
+    if (erro) return;
+    if (q.tipo === "multipla" && !Array.isArray(S.respostas[q.id])) S.respostas[q.id] = [];
+    if (q.tipo === "texto" && S.respostas[q.id] === undefined) S.respostas[q.id] = "";
+    irPara(i + 1);
+  };
+  if (inp && !ns && window.matchMedia("(min-width:720px)").matches) inp.focus({ preventScroll: true });
+}
+
+function validar(q) {
+  const v = S.respostas[q.id];
+  if (ehNumerico(q)) {
+    if (ehNS(v)) return "";
+    const n = paraNumero(v);
+    if (n === null) return q.aceitaNS ? "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal) ou toque em Não sei." : "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal).";
+    if (n < 0) return "O número não pode ser negativo.";
+    if (q.min !== undefined && n < q.min) return `O número precisa ser pelo menos ${fmtN(q.min)}.`;
+    if (q.max !== undefined && n > q.max) return `O número não pode passar de ${fmtN(q.max)}.`;
+    if (q.positivo && n <= 0) return "O número precisa ser maior que zero.";
+    if (q.nota === "fonte" && !S.fontes[q.id]) return "Diga de onde veio esse número: é isso que separa dado de palpite.";
+    return "";
+  }
+  if (q.tipo === "texto") {
+    if (ehNS(v) || q.opcional) return "";
+    if (v === undefined || String(v).trim() === "") return q.aceitaNS ? "Escreva a sua resposta ou toque em Não sei." : "Escreva a sua resposta.";
+    return "";
+  }
+  if (q.tipo === "escolha" && (v === undefined || v === "")) return q.aceitaNS ? "Escolha uma opção ou toque em Não sei." : "Escolha uma opção.";
+  return "";
+}
+
+function respostaTexto(q) {
+  const v = S.respostas[q.id];
+  if (ehNS(v)) return "Não sei";
+  if (q.tipo === "multipla") { const a = Array.isArray(v) ? v : []; return a.length ? q.opcoes.filter((o) => a.includes(o.v)).map((o) => o.rot).join("; ") : "Nenhum"; }
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o ? o.rot : "Em branco"; }
+  if (q.tipo === "texto") { const t = typeof v === "string" ? v.trim() : ""; return t || "Em branco"; }
+  const n = paraNumero(v);
+  if (n === null) return "Em branco";
+  if (q.tipo === "moeda") return brl(n);
+  if (q.tipo === "percentual") return fmtN(n, 2) + "%";
+  return `${fmtN(n, 2)}${q.unidade ? " " + q.unidade : ""}`;
+}
+const fonteTexto = (q) => { if (q.nota !== "fonte" || ehNS(S.respostas[q.id])) return ""; const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]); return f ? f.curto : ""; };
+
+function telaResultado() {
+  const L = ler();
+  if (S.criterio === null) S.criterio = L.criterioSug;
+  if (!S.compromisso) S.compromisso = Object.assign({}, L.comp);
+  S.resumo = montarResumo(L);
+  salvar();
+  const leit = AULA.LEITURAS[L.v];
+  const big = (rot, valor) => `<div class="num"><small>${esc(rot)}</small><strong>${esc(valor)}</strong></div>`;
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter(Boolean);
+  const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Página ${AULA.n} do Dossiê do Produto · Trilha 1 · Aula ${AULA.n}</div>
+    <h1 tabindex="-1">${esc(META.ficha)}</h1>
+    <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
+    <div class="numeros">${AULA.numeros(L).map(([r, v]) => big(r, v)).join("")}</div>
+
+    <section class="bloco" id="b-alertas"><h2>Primeiro, os alertas</h2>
+      <p class="dica">Primeiro os alertas, depois a soma, depois a decisão. Todo Não sei vale zero e vira tarefa.</p>
+      ${L.alertas.length ? L.alertas.map((x) => `<div class="alerta a-${x.t}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("") : `<div class="alerta a-info"><b>Sem alertas</b>Nenhum alerta nesta página. Mesmo assim, leia as contas antes de decidir.</div>`}
+    </section>
+
+    <section class="bloco" id="b-contas"><h2>As contas e as leituras</h2>
+      ${contas.map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(tt(x.texto))}</p></div>`).join("")}
+      ${(AULA.contasExtra ? AULA.contasExtra(L) : []).map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(x.texto)}</p></div>`).join("")}
+      <p class="dica">As contas usam só as suas respostas. Os números do seu caso precisam ser confirmados com quem é indicado em cada pergunta.</p>
+    </section>
+
+    ${ITENS_NOTA.length ? `<section class="bloco" id="b-nota"><h2>A nota por item</h2>
+      <p class="dica">${esc(AULA.escalaNota)} Toda nota zero ou um é alerta.</p>
+      <table><thead><tr><th>Item</th><th>Resposta</th><th class="n">Nota</th></tr></thead><tbody>
+      ${L.notas.map((x) => `<tr><td>${esc(x.q.curto)}</td><td>${esc(respostaTexto(x.q))}${fonteTexto(x.q) ? `<br><span class="dica">${esc(fonteTexto(x.q))}</span>` : ""}</td><td class="n nota-${x.nota}">${x.nota}</td></tr>`).join("")}
+      </tbody></table>
+      <div class="soma"><strong id="soma">${L.soma} de ${NOTA_MAX}</strong><span class="dica">Não existe nota de corte. A soma mostra quanto da sua leitura já tem fonte; os alertas acima pesam mais do que ela.</span></div>
+    </section>` : ""}
+
+    <section class="bloco"><h2>O ponto mais frágil</h2><div class="fragil" id="fragil">${esc(L.fragil)}</div></section>
+
+    <section class="bloco"><h2>A leitura</h2>
+      <div class="leitura" id="leitura"><div class="eyebrow" style="color:var(--creme)">Leitura do método</div><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
+      ${AULA.depoisLeitura ? AULA.depoisLeitura(L) : ""}
+    </section>
+
+    ${htmlSecaoMentor(L)}
+
+    <section class="bloco"><h2>O seu critério para parar</h2>
+      <p class="dica">O fato que mudaria a sua decisão, escrito antes, para você não decidir pelo entusiasmo. ${esc(AULA.moldeCriterio)} Deixamos uma sugestão: reescreva com as suas palavras.</p>
+      <label for="criterio" class="sr">Critério para parar</label>
+      <textarea id="criterio">${esc(S.criterio)}</textarea>
+    </section>
+
+    <section class="bloco"><h2>O seu Compromisso de 7 dias</h2>
+      <p class="dica">Uma ação só, a que mais tira Não sei. ${esc(AULA.dicaCompromisso || "")}</p>
+      <label for="c-acao">Ação</label><textarea id="c-acao" style="min-height:72px">${esc(S.compromisso.acao)}</textarea>
+      <label for="c-resp">Responsável</label><input type="text" id="c-resp" value="${esc(S.compromisso.responsavel)}">
+      <label for="c-prazo">Prazo</label><input type="date" id="c-prazo" value="${esc(S.compromisso.prazo)}">
+      <label for="c-evid">Evidência (o que você vai ter na mão)</label><textarea id="c-evid" style="min-height:72px">${esc(S.compromisso.evidencia)}</textarea>
+    </section>
+
+    ${AULA.secaoFinal ? AULA.secaoFinal(L) : ""}
+
+    <div class="acoes">
+      <button class="btn btn-ouro" id="pdf">${esc(AULA.botaoPDF)}</button>
+      <button class="btn btn-s" id="editar">Revisar as respostas</button>
+      <button class="btn btn-s" id="recomecar">Começar outra página</button>
+      ${PROX ? `<a class="btn btn-p" id="proxima" href="../aula${PROX.n}/index.html">Seguir para a Aula ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
+    </div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+  </div>`;
+  const liga = (id, fn) => document.getElementById(id).addEventListener("input", (e) => { fn(e.target.value); S.resumo = montarResumo(L); salvar(); });
+  liga("criterio", (x) => (S.criterio = x));
+  liga("c-acao", (x) => (S.compromisso.acao = x));
+  liga("c-resp", (x) => (S.compromisso.responsavel = x));
+  liga("c-prazo", (x) => (S.compromisso.prazo = x));
+  liga("c-evid", (x) => (S.compromisso.evidencia = x));
+  if (AULA.ligarFinal) AULA.ligarFinal(L);
+  ligarMentor(L);
+  document.getElementById("editar").onclick = () => irPara(0);
+  document.getElementById("recomecar").onclick = () => { if (confirm("Apagar as respostas desta página neste aparelho e começar de novo?")) { apagar(); S = estadoVazio(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try { (AULA.gerarPDF || gerarFichaPDF)(L); enviarParaZion(montarPayload(L)); document.getElementById("erro-pdf").textContent = ""; }
+    catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+}
+
+/* ---------------------------------------------------------------------
+   6. PDF A4 com jsPDF (fonte padrão Helvetica / Times)
+   --------------------------------------------------------------------- */
+const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], CINZA = [70, 86, 75], VERM = [155, 44, 31];
+const COR_ALERTA = { critico: VERM, ns: [122, 83, 0], sem: [122, 94, 18], atencao: [150, 110, 20], info: [31, 90, 51] };
+const COR_V = { avancar: [31, 90, 51], ajustar: [122, 83, 0], testar: [150, 110, 20], pausar: VERM, pendente: CINZA };
+
+function criarPDF(cabecalho) {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  // A fonte padrão do jsPDF só desenha o alfabeto latino básico: m² vira m2 e as aspas curvas viram retas.
+  const pt = (t) => String(t ?? "").replace(/²/g, "2").replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/\u2026/g, "...").replace(/[\u2013\u2014]/g, "-").replace(/\u2265/g, ">=").replace(/\u2264/g, "<=").replace(/\u2192/g, "->");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const P = { doc, W: 210, H: 297, M: 18, y: 0 };
+  P.CW = P.W - 2 * P.M;
+  P.fundo = () => { doc.setFillColor(...CREME); doc.rect(0, 0, P.W, P.H, "F"); doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, P.W, 0.8, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...CREME); doc.text(cabecalho, P.M, 8); doc.text(`${S.perfil.nome}`.slice(0, 50), P.W - P.M, 8, { align: "right" }); P.y = 22; };
+  P.novaPagina = () => { doc.addPage(); P.fundo(); };
+  P.cabe = (h) => { if (P.y + h > P.H - 22) P.novaPagina(); };
+  P.titulo = (t) => { P.cabe(34); P.y += 4; doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(t, P.M, P.y); P.y += 2.5; doc.setDrawColor(...OURO); doc.setLineWidth(0.7); doc.line(P.M, P.y, P.M + 40, P.y); P.y += 6; };
+  P.par = (t, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.cor || VERDE));
+    const linhas = doc.splitTextToSize(String(t), o.w || P.CW);
+    const lh = (o.size || 10) * 0.45;
+    for (const l of linhas) { P.cabe(lh + 1); doc.text(l, o.x || P.M, P.y); P.y += lh; }
+    P.y += o.after ?? 2;
+  };
+  P.caixa = (rot, t, cor) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    let linhas = doc.splitTextToSize(String(t), P.CW - 10);
+    const max = Math.floor((P.H - 22 - 22 - 12) / 4.3);
+    while (linhas.length) {
+      const parte = linhas.slice(0, max); linhas = linhas.slice(max);
+      const h = parte.length * 4.3 + 10;
+      P.cabe(h + 2);
+      doc.setFillColor(255, 253, 248); doc.setDrawColor(...cor); doc.setLineWidth(0.3); doc.roundedRect(P.M, P.y, P.CW, h, 2, 2, "FD");
+      doc.setFillColor(...cor); doc.rect(P.M, P.y, 1.6, h, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...cor); doc.text(rot.toUpperCase(), P.M + 5, P.y + 5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...VERDE);
+      parte.forEach((l, k) => doc.text(l, P.M + 5, P.y + 9.5 + k * 4.3));
+      P.y += h + 3;
+    }
+  };
+  P.linhaTabela = (cols, larg, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 9);
+    const partes = cols.map((c, k) => doc.splitTextToSize(String(c), larg[k] - 3));
+    const h = Math.max(...partes.map((p) => p.length)) * 4 + 3;
+    P.cabe(Math.min(h, 60));
+    let x = P.M;
+    partes.forEach((p, k) => { doc.setTextColor(...((o.cores && o.cores[k]) || o.cor || VERDE)); p.forEach((l, j) => doc.text(l, x + 1.5, P.y + j * 4)); x += larg[k]; });
+    P.y += h; doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.y - 3.4, P.M + P.CW, P.y - 3.4);
+  };
+  P.caixasNumeros = (box) => {
+    const n = box.length, bw = (P.CW - 3 * (n - 1)) / n;
+    P.cabe(26);
+    box.forEach(([r, v], k) => { const x = P.M + k * (bw + 3); doc.setFillColor(...VERDE); doc.roundedRect(x, P.y, bw, 22, 2, 2, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(r, bw - 5).slice(0, 2), x + 3, P.y + 5); doc.setFont("helvetica", "bold"); doc.setFontSize(11.5); doc.setTextColor(...OURO); doc.text(doc.splitTextToSize(String(v), bw - 5)[0], x + 3, P.y + 17); });
+    P.y += 30;
+  };
+  P.capa = (sobre, l1, l2, sub, extra) => {
+    doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, P.H, "F");
+    doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, P.W - 20, P.H - 20);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text(sobre, P.M + 4, 48);
+    doc.setFont("times", "bold"); doc.setFontSize(32); doc.setTextColor(...CREME); doc.text(l1, P.M + 4, 72); if (l2) doc.text(l2, P.M + 4, 86);
+    doc.setFillColor(...OURO); doc.rect(P.M + 4, 93, 50, 1.2, "F");
+    doc.setFont("helvetica", "normal"); doc.setFontSize(12); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(sub, P.CW - 8), P.M + 4, 104);
+    doc.setFontSize(10); doc.setTextColor(220, 214, 200); doc.text(doc.splitTextToSize("Metodologia Zion de Desenvolvimento de Negócios de Hospedagem", P.CW - 8), P.M + 4, 117);
+    if (extra) extra(doc);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ALUNO", P.M + 4, 200);
+    doc.setFont("times", "bold"); doc.setFontSize(22); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", P.CW - 8), P.M + 4, 210);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(220, 214, 200);
+    doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}`, P.M + 4, 222);
+    doc.text(`Gerada em ${dataBR(hojeISO())}`, P.M + 4, 229);
+    doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, P.CW - 8), P.M + 4, P.H - 26);
+  };
+  P.fechar = (nomeArquivo) => {
+    const n = doc.getNumberOfPages();
+    for (let k = 1; k <= n; k++) {
+      doc.setPage(k);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5);
+      doc.setTextColor(...(k === 1 ? [220, 214, 200] : CINZA));
+      if (k > 1) { doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.H - 16, P.W - P.M, P.H - 16); doc.text(doc.splitTextToSize(RODAPE, P.CW - 14), P.M, P.H - 12); }
+      doc.text(`${k}/${n}`, P.W - P.M, P.H - 12, { align: "right" });
+    }
+    const arq = nomeArquivo + "-" + (S.perfil.nome || "aluno").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+    doc.save(arq);
+    return arq;
+  };
+  return P;
+}
+
+/** O corpo da página desta aula no PDF (usado na ficha e no Dossiê da Aula 6). */
+function corpoDaPaginaPDF(P, L) {
+  const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
+  P.titulo("O resumo");
+  P.caixasNumeros(AULA.numeros(L));
+  const leit = AULA.LEITURAS[L.v];
+  P.caixa("A leitura", `${leit.rot}. ${leit.sub} ${L.motivo}`, VERDE);
+  P.caixa("O ponto mais frágil", L.fragil, VERM);
+  P.y += 2;
+  if (ITENS_NOTA.length) P.par(`Nota: ${L.soma} de ${NOTA_MAX}. Não existe nota de corte: primeiro os alertas, depois a soma, depois a decisão.`, { bold: true, after: 4 });
+  const mentor = mentorDoResumo(L);
+  if (mentor) { P.titulo("Leitura do mentor virtual"); mentorParaPDF(mentor).forEach(([r, t, c]) => P.caixa(r, t, c)); P.y += 2; }
+  P.titulo("Os alertas");
+  if (L.alertas.length) L.alertas.forEach((x) => P.caixa(x.tit, x.txt, COR_ALERTA[x.t] || VERDE));
+  else P.par("Nenhum alerta nesta página.", { cor: CINZA });
+  P.titulo("As contas e as leituras");
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter(Boolean);
+  contas.concat(AULA.contasExtra ? AULA.contasExtra(L) : []).forEach((c) => { P.par(c.rotulo, { bold: true, after: 0.5 }); P.par(tt(c.texto), { cor: CINZA, size: 9.5, after: 3 }); });
+  P.titulo("As suas respostas");
+  const larg = [50, 100, 24];
+  P.linhaTabela(["Pergunta", "Resposta e fonte", "Nota"], larg, { bold: true, size: 8, cor: CINZA });
+  QUESTOES.forEach((q) => {
+    const nota = q.nota ? String(notaItem(q)) : "";
+    const fonte = fonteTexto(q);
+    P.linhaTabela([q.curto, respostaTexto(q) + (fonte ? ` (${fonte})` : ""), nota], larg, { cores: [VERDE, VERDE, nota === "0" || nota === "1" ? VERM : VERDE] });
+  });
+  P.y += 2;
+  if (ITENS_NOTA.length) P.par(`Soma: ${L.soma} de ${NOTA_MAX}. ${AULA.escalaNota}`, { size: 8.5, cor: CINZA, after: 4 });
+  P.titulo("O critério para parar");
+  P.caixa("Escrito antes, para não decidir pelo entusiasmo", S.criterio || "Em branco", [122, 94, 18]);
+  P.titulo("O Compromisso de 7 dias");
+  const cp = S.compromisso || {};
+  [["Ação", cp.acao], ["Responsável", cp.responsavel], ["Prazo", dataBR(cp.prazo)], ["Evidência", cp.evidencia]].forEach(([r, v]) => P.linhaTabela([r, v || "Em branco"], [40, P.CW - 40], {}));
+  P.y += 4;
+}
+
+function gerarFichaPDF(L) {
+  const P = criarPDF(`Zion · Mentoria Zion · ${META.ficha}`);
+  const [l1, l2] = AULA.capaTitulo;
+  P.capa(`TRILHA 1 · AULA ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê do Produto · ${META.tema}`);
+  P.novaPagina();
+  corpoDaPaginaPDF(P, L);
+  P.par(AULA.notaFinalPDF, { size: 8, cor: CINZA });
+  return P.fechar(AULA.arquivoPDF);
+}
+
+/* ---------------------------------------------------------------------
+   7. Início
+   --------------------------------------------------------------------- */
+window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoParaMentor, corpoDoPedidoMentor, get estado() { return S; }, AULA };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) S.perfil = Object.assign(S.perfil, salvo.perfil);
+  render();
+})();
+</script>
+</body>
+</html>

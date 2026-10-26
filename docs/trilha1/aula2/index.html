@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ficha do Mercado</title>
+<meta name="description" content="Ferramenta da Aula 2 da Trilha 1 da Mentoria Zion: Mercado e demanda. Você responde uma pergunta por vez e sai com a Ficha do Mercado, a página 2 do Dossiê do Produto, em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:8px}
+.campo-num input{flex:1;min-width:0;font-size:1.25rem;font-weight:600}
+.campo-num .un{display:flex;align-items:center;padding:0 12px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn-p[disabled],.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:10px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.marina{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.marina h3{color:var(--dourado-escuro)}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.9rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.fonte{margin-top:16px}
+.fonte legend{font-weight:600;padding:0;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.conta{border-bottom:1px solid var(--linha);padding:10px 0}
+.conta:last-child{border:0}
+.conta b{display:block}
+.conta p{margin:2px 0 0;color:var(--texto-2);font-size:.95rem;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-sem{background:#F3EEDF;border-color:var(--dourado-escuro);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+td.n,th.n{text-align:center;font-weight:700;width:3.2em}
+.nota-0,.nota-1{color:var(--critico)}
+.soma{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap}
+.soma strong{font-family:"Playfair Display",Georgia,serif;font-size:2rem}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.pag{border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.pag .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pag .cab b{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.s-avancar{background:var(--ok-bg);color:var(--ok)}
+.s-ajustar{background:var(--atencao-bg);color:var(--atencao)}
+.s-testar{background:#FFF0D0;color:#6B4600}
+.s-pausar{background:var(--critico-bg);color:var(--critico)}
+.s-pendente{background:var(--creme-2);color:var(--texto-2)}
+.pag p{margin:6px 0 0;font-size:.93rem;color:var(--texto-2);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(4,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Aula 2<br>Mercado e demanda</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script>
+/* =====================================================================
+   Zion Exercícios · Trilha 1 · Trilha 1 · Aula 2 · Mercado e demanda
+   Um arquivo só, gerado por _fonte/build.js. Sem framework.
+   Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
+   ===================================================================== */
+"use strict";
+const ZION_WEBHOOK_URL = "";
+/** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". Para ligar, preencha e rode node _fonte/build.js. */
+const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
+const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
+/** Chaves do navegador, iguais em todas as ferramentas da Trilha 1: zion-t1-aula1 a zion-t1-aula6. */
+const PREFIXO = "zion-t1-aula";
+const AULAS = [
+  { n: 1, tema: "Território e destino", ficha: "Ficha do Território" },
+  { n: 2, tema: "Mercado e demanda", ficha: "Ficha do Mercado" },
+  { n: 3, tema: "Produto e tipologias", ficha: "Ficha do Produto" },
+  { n: 4, tema: "Modelo de negócio", ficha: "O Modelo de Negócio" },
+  { n: 5, tema: "Masterplan", ficha: "O Masterplan" },
+  { n: 6, tema: "Estudo de massas e Dossiê do Produto", ficha: "Estudo de massas e briefing" },
+];
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+const PESO_V = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+/** O mais cauteloso: pausar > testar > ajustar > avançar. */
+const maisCauteloso = (...vs) => vs.filter((v) => v in PESO_V).reduce((a, b) => (PESO_V[b] > PESO_V[a] ? b : a), "avancar");
+
+/* ---------------------------------------------------------------------
+   1. Apoio: leitura e formatação pt-BR (as mesmas regras de kit-code/ferramentas/ts/util.ts)
+   --------------------------------------------------------------------- */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, fmtPct, juntar, div };
+})();
+const { fmtN, brl, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+/** Lê o que o aluno salvou em outra ferramenta da Trilha 1 (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDaAula = (n) => carregarChave(PREFIXO + n);
+/** Os números que outra aula deixou no resumo (resumo.dados), ou null. */
+const dadosDaAula = (n) => { const d = salvoDaAula(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+/** As respostas que o aluno deu em outra aula, ou null. */
+const respostasDaAula = (n) => { const d = salvoDaAula(n); return d && d.respostas ? d.respostas : null; };
+const fontesDaAula = (n) => { const d = salvoDaAula(n); return d && d.fontes ? d.fontes : {}; };
+
+/* =====================================================================
+   2. A aula (perguntas, contas e regras da leitura)
+   ===================================================================== */
+var Calc_03 = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // ../kit-code/ferramentas/ts/t1-a03.ts
+  var t1_a03_exports = {};
+  __export(t1_a03_exports, {
+    calcular: () => calcular
+  });
+
+  // ../kit-code/ferramentas/ts/util.ts
+  function falta(v) {
+    if (v === void 0 || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    const temVirgula = s.includes(",");
+    if (temVirgula) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else {
+      const pontos = (s.match(/\./g) || []).length;
+      if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function num(r, id) {
+    return paraNumero(r[id]);
+  }
+  function pct(r, id) {
+    const n = num(r, id);
+    return n === null ? null : n / 100;
+  }
+  function ok(...xs) {
+    return xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  }
+  function div(a, b) {
+    if (!ok(a, b) || b === 0) return null;
+    const q = a / b;
+    return Number.isFinite(q) ? q : null;
+  }
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas);
+    const y = Math.abs(x) * f;
+    const r = Math.round(y + 1e-7) / f;
+    const res = x < 0 ? -r : r;
+    return Object.is(res, -0) ? 0 : res;
+  }
+  function pisoSeguro(x) {
+    return Math.floor(x + 1e-9);
+  }
+  function agrupar(inteiro) {
+    return inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+  function fmtNum(x, casas = 2) {
+    const r = arred(x, casas);
+    const neg = r < 0;
+    const [i, d] = Math.abs(r).toFixed(casas).split(".");
+    return (neg ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : "");
+  }
+  function fmtN(x, casasMax = 2) {
+    const s = fmtNum(x, casasMax);
+    if (!s.includes(",")) return s;
+    return s.replace(/,?0+$/, "");
+  }
+  function brl(x) {
+    const r = arred(x, 2);
+    return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2);
+  }
+  function fmtPct(frac, casas = 1) {
+    return fmtNum(frac * 100, casas) + "%";
+  }
+  function juntar(itens) {
+    if (itens.length === 0) return "";
+    if (itens.length === 1) return itens[0];
+    return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+  }
+  function limpaNumero(x, casas) {
+    return Number.isFinite(x) ? arred(x, casas) : null;
+  }
+  function limpaTexto(s) {
+    return s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2013/g, "-");
+  }
+  function limpaDetalhe(v, casas) {
+    if (typeof v === "number") return limpaNumero(v, casas);
+    if (typeof v === "string") return limpaTexto(v);
+    if (Array.isArray(v)) return v.map(limpaTexto);
+    return v;
+  }
+  function fechar(c, casas = 2) {
+    const out = {
+      id: c.id,
+      rotulo: limpaTexto(c.rotulo),
+      valor: typeof c.valor === "number" ? limpaNumero(c.valor, casas) : typeof c.valor === "string" ? limpaTexto(c.valor) : c.valor,
+      texto: limpaTexto(c.texto)
+    };
+    if (c.alerta) out.alerta = c.alerta;
+    if (c.detalhes) {
+      out.detalhes = {};
+      for (const [k, v] of Object.entries(c.detalhes)) out.detalhes[k] = limpaDetalhe(v, 4);
+    }
+    return out;
+  }
+
+  // ../kit-code/ferramentas/ts/t1-a03.ts
+  var REGUA_OCUP = "Régua: 35% a 40% vende só nos fins de semana; 50% a 60% com fins de semana, feriados e datas; 65% a 85% só com procura extraordinária comprovada.";
+  function faixaOcupacao(o) {
+    if (o < 0.35) return "abaixo de 35%, abaixo da primeira faixa da régua";
+    if (o <= 0.4) return "na faixa de 35% a 40%: vende só nos fins de semana";
+    if (o < 0.5) return "entre faixas; a mais próxima abaixo é 35% a 40%, vende só nos fins de semana";
+    if (o <= 0.6) return "na faixa de 50% a 60%: fins de semana, feriados e datas";
+    if (o < 0.65) return "entre faixas; a mais próxima abaixo é 50% a 60%, fins de semana, feriados e datas";
+    if (o <= 0.85) return "na faixa de 65% a 85%: só com procura extraordinária comprovada";
+    return "acima de 85%; a faixa mais próxima abaixo é 65% a 85%, só com procura extraordinária comprovada";
+  }
+  function calcular(r) {
+    var _a, _b;
+    const calculos = [];
+    const oF = pct(r, "ocup_fds"), oS = pct(r, "ocup_semana");
+    const dF = num(r, "diaria_fds"), dS = num(r, "diaria_semana");
+    let diariaMedia = null;
+    {
+      if (oF === null || oS === null || dF === null || dS === null) {
+        const f = [oF === null && "ocupação de sexta e sábado", oS === null && "ocupação de domingo a quinta", dF === null && "diária do fim de semana", dS === null && "diária de domingo a quinta"].filter(Boolean);
+        calculos.push({ id: "conta_semana", rotulo: "A conta da semana", valor: null, texto: `Para a conta da semana falta ${juntar(f)}.` });
+      } else {
+        const noites = 2 * oF + 5 * oS;
+        const receita = 2 * oF * dF + 5 * oS * dS;
+        const ocupJanela = noites / 7;
+        diariaMedia = div(receita, noites);
+        const porNoite = receita / 7;
+        calculos.push({
+          id: "conta_semana",
+          rotulo: "A conta da semana",
+          valor: diariaMedia,
+          texto: diariaMedia === null ? "Nenhuma noite vendida na semana: a diária média fica em branco." : `Numa semana típica, uma unidade vende ${fmtN(noites, 2)} noites e entra ${brl(receita)}. Ocupação da janela: ${fmtPct(ocupJanela)}. Diária média de verdade (o que entra dividido pelas noites vendidas): ${brl(diariaMedia)}. Por noite disponível: ${brl(porNoite)}.`,
+          detalhes: { noites_semana: noites, receita_semana: receita, ocup_janela_pct: ocupJanela * 100, diaria_media: diariaMedia, por_noite_disponivel: porNoite }
+        });
+      }
+    }
+    const razao = div(oF, oS);
+    calculos.push({
+      id: "fds_vs_semana",
+      rotulo: "Quantas vezes o fim de semana enche mais",
+      valor: razao,
+      texto: razao === null ? "Falta a ocupação do fim de semana ou da semana (ou a da semana é zero)." : `O fim de semana enche ${fmtN(razao, 1)} vezes mais que a semana.`
+    });
+    const amp = num(r, "amplitude");
+    {
+      let t, alerta;
+      if (amp === null) t = "Falta a amplitude: diária mais cara dividida pela mais barata do raio.";
+      else if (amp > 3) {
+        t = `Amplitude de ${fmtN(amp, 2)}: acima de 3, o destino paga pela diferença.`;
+        alerta = "ok";
+      } else if (amp < 2) {
+        t = `Amplitude de ${fmtN(amp, 2)}: abaixo de 2, a briga é de preço.`;
+        alerta = "atencao";
+      } else t = `Amplitude de ${fmtN(amp, 2)}. Entre 2 e 3 a fonte não traz leitura: fica só o número.`;
+      calculos.push({ id: "regua_amplitude", rotulo: "Leitura da amplitude", valor: amp, texto: t, alerta });
+    }
+    const mA = num(r, "meses_alta"), mF = num(r, "meses_fraco");
+    const oA = pct(r, "ocup_alta"), oFr = pct(r, "ocup_fraco"), oM = pct(r, "ocup_media");
+    let ocupAno = null;
+    {
+      let t;
+      let alerta;
+      const mM = mA !== null && mF !== null ? 12 - mA - mF : null;
+      if (mA === null || mF === null) t = "Falta quantos meses de alta e quantos fracos.";
+      else if (mM < 0 || mA < 0 || mF < 0) t = "Meses de alta mais meses fracos passam de 12: confira.";
+      else {
+        const precisa = [[mA, oA, "ocupação da alta"], [mM, oM, "ocupação dos meses médios"], [mF, oFr, "ocupação dos meses fracos"]];
+        const f = precisa.filter(([m, o]) => m > 0 && o === null).map(([, , n]) => n);
+        if (f.length) t = `Para a média do ano falta ${juntar(f)}.`;
+        else {
+          ocupAno = (mA * (oA != null ? oA : 0) + mM * (oM != null ? oM : 0) + mF * (oFr != null ? oFr : 0)) / 12;
+          t = `Ocupação média do ano: ${fmtPct(ocupAno)}, ${faixaOcupacao(ocupAno)}. ${REGUA_OCUP}`;
+          alerta = ocupAno >= 0.65 - 1e-12 ? "atencao" : "ok";
+        }
+      }
+      calculos.push({ id: "ocup_ano", rotulo: "Ocupação média do ano", valor: ocupAno === null ? null : ocupAno * 100, texto: t, alerta, detalhes: { meses_medios: mM } });
+    }
+    const erro = ocupAno !== null && oA !== null ? div(oA, ocupAno) : null;
+    calculos.push({
+      id: "erro_mes_cheio",
+      rotulo: "Quanto a conta sairia maior usando o mês mais cheio",
+      valor: erro === null ? null : (erro - 1) * 100,
+      texto: erro === null ? "Falta a ocupação da alta ou a média do ano." : `Quem usa a ocupação da alta no lugar da média do ano faz uma conta ${fmtPct(erro - 1)} maior do que o ano entrega.`,
+      alerta: erro !== null && erro - 1 > 0 ? "atencao" : void 0
+    });
+    const rbu = ocupAno !== null && diariaMedia !== null ? ocupAno * 365 * diariaMedia : null;
+    calculos.push({
+      id: "receita_bruta_unidade",
+      rotulo: "Receita bruta por unidade no ano (não é retorno)",
+      valor: rbu,
+      texto: rbu === null ? "Falta a ocupação do ano ou a diária média." : `Receita bruta por unidade no ano: ${brl(rbu)} (${fmtN(ocupAno * 365, 1)} noites a ${brl(diariaMedia)}). Não é retorno: ainda saem impostos, comissões, custos e a retirada do dono.`
+    });
+    const mfu = oFr !== null && diariaMedia !== null ? 30 * oFr * diariaMedia : null;
+    calculos.push({
+      id: "mes_fraco_unidade",
+      rotulo: "Quanto entra num mês fraco, por unidade",
+      valor: mfu,
+      texto: mfu === null ? "Falta a ocupação dos meses fracos ou a diária média." : `Num mês fraco entra cerca de ${brl(mfu)} por unidade, antes de qualquer custo.`
+    });
+    const comp = num(r, "unidades_comparaveis");
+    const crescNS = falta(r["crescimento_ate_abrir"]);
+    const obraNS = falta(r["unidades_em_obra"]);
+    const cresc = (_a = pct(r, "crescimento_ate_abrir")) != null ? _a : 0;
+    const emObra = (_b = num(r, "unidades_em_obra")) != null ? _b : 0;
+    let cabem = null;
+    {
+      if (comp === null || ocupAno === null || ocupAno <= 0) {
+        calculos.push({ id: "absorcao", rotulo: "Quantas unidades o mercado aguenta agora", valor: null, texto: `Para a absorção falta ${comp === null ? "quantas unidades somam os comparáveis" : "a ocupação média do ano"}.` });
+      } else {
+        const noitesHoje = comp * 365 * ocupAno;
+        const mais = noitesHoje * cresc;
+        const menos = emObra * 365 * ocupAno;
+        const sobra = mais - menos;
+        const porUnidade = 365 * ocupAno;
+        cabem = Math.max(0, pisoSeguro(sobra / porUnidade));
+        const marcas = [crescNS && "sem a série (crescimento entrou como zero)", obraNS && "sem os alvarás (unidades em obra entraram como zero)"].filter(Boolean);
+        calculos.push({
+          id: "absorcao",
+          rotulo: "Quantas unidades o mercado aguenta agora",
+          valor: cabem,
+          texto: `Os comparáveis vendem ${fmtN(noitesHoje, 0)} noites hoje. Até você abrir, a procura cresce ${fmtN(mais, 0)} noites e as unidades em obra levam ${fmtN(menos, 0)}. Sobram ${fmtN(sobra, 0)} noites para quem entra; cada unidade precisa de ${fmtN(porUnidade, 1)}. Cabem ${cabem} agora.` + (marcas.length ? ` Conta ${juntar(marcas)}.` : ""),
+          alerta: cabem < 1 ? "critico" : void 0,
+          detalhes: { noites_hoje: noitesHoje, mais, menos, sobra, noites_por_unidade: porUnidade, cabem_agora: cabem, sem_serie: crescNS, sem_alvaras: obraNS }
+        });
+      }
+    }
+    const alerta65 = ocupAno === null ? null : ocupAno >= 0.65 - 1e-12;
+    calculos.push({
+      id: "checa_regua",
+      rotulo: "Prova exigida acima de 65%",
+      valor: alerta65,
+      texto: alerta65 === null ? "Sem a média do ano, não dá para checar a régua." : alerta65 ? `Alerta: ${fmtPct(ocupAno)} no ano exige prova de procura extraordinária.` : "Abaixo de 65%: não exige prova de procura extraordinária.",
+      alerta: alerta65 ? "critico" : alerta65 === false ? "ok" : void 0
+    });
+    const pretendidas = num(r, "unidades_pretendidas");
+    let v, motivo;
+    if (cabem !== null && cabem < 1 && !crescNS && !obraNS) {
+      v = "pausar";
+      motivo = "A sobra do destino não cabe nem uma unidade: não existe procura para o que se quer fazer ali.";
+    } else if (cabem === null || ocupAno === null || alerta65 || crescNS || obraNS) {
+      v = "testar";
+      const m = [];
+      if (cabem === null || ocupAno === null) m.push("falta dado para a média do ano ou a absorção");
+      if (alerta65) m.push("a ocupação do ano passou de 65% sem prova de procura extraordinária");
+      if (crescNS) m.push("falta a série de visitantes");
+      if (obraNS) m.push("faltam os alvarás");
+      motivo = `Testar: ${juntar(m)}.`;
+    } else if (pretendidas === null) {
+      v = "testar";
+      motivo = "Testar: falta quantas unidades você pensava em abrir para comparar com o que cabe.";
+    } else if (cabem < pretendidas) {
+      v = "ajustar";
+      motivo = `Cabem ${cabem} agora, menos que as ${fmtN(pretendidas)} pretendidas: desenha a infraestrutura para o total e abre com as que cabem.`;
+    } else {
+      v = "avancar";
+      motivo = "Seguir com condições: o mercado aguenta as unidades pretendidas, desde que se entregue o que o topo da faixa entrega.";
+    }
+    calculos.push({ id: "veredito_sugerido", rotulo: "Veredito sugerido pela página", valor: v, texto: motivo });
+    return { calculos: calculos.map((c) => fechar(c)), veredito_sugerido: v, motivo_veredito: motivo };
+  }
+  return __toCommonJS(t1_a03_exports);
+})();
+
+/* Aula 2 · Mercado e demanda. Campos e regras: kit-code/ferramentas/aula-03.json.
+   Contas: calculadoras["1-3"] (kit-code/ferramentas/ts/t1-a03.ts), embutida sem mudança (Calc_03). */
+const AULA = {
+  n: 2,
+  etapa: "aula-2",
+  // Única mudança sobre o TS: a régua da amplitude vale "3 ou mais" (no TS, "acima de 3" deixava 3,0 sem leitura).
+  // Pedido do coordenador; pendência para o Bruno no LEIA-ME. A absorção já é a da fonte no TS (sobra = procura nova
+  // menos o que está em obra; Marina 2.996 - 2.497 = 499 noites, cabem 3): o TS corrigiu a fórmula do aula-03.json.
+  calcular(r) {
+    const res = Calc_03.calcular(r);
+    const c = res.calculos.find((x) => x.id === "regua_amplitude");
+    if (typeof c.valor === "number" && c.valor >= 3 && c.valor <= 3) {
+      c.texto = `Amplitude de ${fmtN(c.valor, 2)}: 3 ou mais, o destino paga pela diferença.`;
+      c.alerta = "ok";
+    } else if (typeof c.valor === "number" && c.valor > 3) {
+      c.texto = `Amplitude de ${fmtN(c.valor, 2)}: 3 ou mais, o destino paga pela diferença.`;
+    }
+    return res;
+  },
+  FONTES: [
+    { v: "medida", nota: 3, rot: "Contei ou medi eu mesmo (anúncios, calendários, avaliações), ou tenho por escrito (série oficial, alvará)", curto: "Contagem, medida ou documento" },
+    { v: "falado", nota: 2, rot: "Alguém da região me falou (dono, secretaria, corretor), mas não tenho no papel", curto: "Alguém falou, sem papel" },
+    { v: "estimativa", nota: 1, rot: "É estimativa minha ou de uma ferramenta de dados de mercado", curto: "Estimativa" },
+  ],
+  escalaNota: "0 = Não sei · 1 = estimativa · 2 = alguém falou, sem papel · 3 = contagem, medida ou documento.",
+  abertura: {
+    titulo: "A sua Ficha do Mercado",
+    lead: "Você monta a página 2 do Dossiê do Produto: quanto a sua região paga, quanto enche ao longo do ano e quantas unidades o destino ainda compra.",
+    porque: "Quem confia no \"aqui enche oitenta por cento\" ou no mês mais cheio faz a conta sair muito maior do que o ano entrega, e constrói unidade que o mercado não compra.",
+    como: "Uma pergunta por tela, em linguagem simples, com onde conseguir cada número. Onde não souber, marque Não sei: vira tarefa, não vergonha.",
+    paraque: "Você sai com a Ficha do Mercado em PDF: a diária média de verdade, a ocupação do ano, quantas unidades cabem agora, os alertas e o seu próximo passo.",
+    dica: "Tenha à mão a sua lista de comparáveis e os calendários que você leu.",
+  },
+  QUESTOES: [
+    {
+      id: "unidades_comparaveis", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Unidades dos comparáveis",
+      bloco: "Quem vende o mesmo que você",
+      pergunta: "Quantas unidades somam os seus comparáveis?",
+      explica: "Comparável é quem vende o mesmo que você: mesmo porte, mesma proposta, mesmo motivo de viagem e faixa de preço até 30% acima ou abaixo da sua, a até 30 minutos de carro. Some as unidades (chalés, cabanas, quartos) de todos eles.",
+      porque: "É a base da conta de quantas unidades o destino ainda compra. O seu concorrente é quem vende o mesmo motivo de viagem, na mesma faixa de preço: a concorrência acontece na cabeça do cliente, não no mapa. Quem compara com três anúncios mede o concorrente errado.",
+      onde: "<p>No <b>Airbnb</b> e no <b>Booking</b>: marque o seu ponto no mapa, filtre de 30% abaixo a 30% acima do preço que você imagina cobrar e anote os anúncios a até 30 minutos de carro (cronometrados, não em quilômetros). Tire os repetidos e quem não passa nos quatro filtros. A meta é ficar com 10 a 20 comparáveis. Faça à mão, respeitando as regras de cada plataforma e sem copiar dado pessoal de hóspede.</p>",
+      marina: "A Marina imagina cobrar de R$ 500 a R$ 700, então buscou de R$ 350 a R$ 910. Achou 31 anúncios, tirou 4 repetidos e 7 que não passam nos filtros: sobraram 20 comparáveis, que somam 96 unidades.",
+      ondeCurto: "montar a lista de 10 a 20 comparáveis no Airbnb e no Booking, no raio de 30 minutos",
+    },
+    {
+      id: "ocup_fds", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação de sexta e sábado",
+      bloco: "Quanto enche e quanto paga",
+      pergunta: "Nos calendários dos comparáveis, quanto de sexta e sábado já está ocupado?",
+      explica: "Ocupação é a parte das noites que já foi vendida. Olhe o calendário de cada comparável do dia 30 ao dia 90 a partir de hoje e conte só as sextas e os sábados ocupados. Escreva em porcentagem.",
+      porque: "Sexta e sábado vendem muito diferente de domingo a quinta. Pergunte a um dono quanto enche e quase todos dizem setenta, oitenta por cento: a pessoa lembra dos fins de semana cheios e esquece as terças vazias. O calendário costuma contar outra história.",
+      onde: "<ul><li>No calendário de cada anúncio, do dia 30 ao dia 90: longe das reservas de última hora.</li><li>Dia ocupado nem sempre é reserva: pode ser o dono usando, manutenção ou estadia mínima.</li><li>Pese pelas unidades, não pelos anúncios: um lugar com dez cabanas pesa mais que um com uma.</li><li>Leia de novo 30 dias depois.</li></ul>",
+      marina: "Pesando pelas unidades, as sextas e os sábados dos comparáveis da Marina estavam 78% ocupados.",
+      ondeCurto: "ler o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados",
+    },
+    {
+      id: "ocup_semana", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação de domingo a quinta",
+      bloco: "Quanto enche e quanto paga",
+      pergunta: "E de domingo a quinta, quanto está ocupado?",
+      explica: "Mesma janela, do dia 30 ao dia 90, agora só os dias de domingo a quinta. Pese pelas unidades.",
+      porque: "É o meio de semana que costuma ficar vazio. Junto com a ocupação do fim de semana, ele dá a conta da semana: quantas noites uma unidade vende de verdade em sete dias.",
+      onde: "<p>Nos mesmos calendários da pergunta anterior, com as mesmas três regras: do dia 30 ao 90, dia ocupado nem sempre é reserva, e o peso é pelas unidades.</p>",
+      marina: "De domingo a quinta, 26% das noites estavam ocupadas. O fim de semana enche três vezes mais que a semana.",
+      ondeCurto: "ler o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados",
+    },
+    {
+      id: "diaria_fds", tipo: "moeda", nota: "fonte", aceitaNS: true, curto: "Diária do meio no fim de semana", placeholder: "Ex.: 700",
+      bloco: "Quanto enche e quanto paga",
+      pergunta: "Qual é a diária do meio no fim de semana, entre os que vendem exatamente o mesmo que você?",
+      explica: "Diária é o preço de uma noite. A do meio (a mediana) é a que fica no meio quando você põe os preços em ordem, do mais barato ao mais caro.",
+      porque: "A diária não se escolhe. Se descobre: o mercado da sua região já está pagando alguma coisa. A do meio não se deixa puxar por um preço muito alto ou muito baixo.",
+      onde: "<p>Nos anúncios dos comparáveis que vendem exatamente o mesmo que você (mesma unidade, mesmo público), no preço de sexta e sábado. Ponha em ordem e pegue o do meio.</p>",
+      marina: "Entre os sete comparáveis que vendem o mesmo que ela (cabana para casal, com vista e silêncio), a diária do meio no fim de semana é R$ 700.",
+      ondeCurto: "anotar o preço de fim de semana dos comparáveis que vendem o mesmo e pegar o do meio",
+    },
+    {
+      id: "diaria_semana", tipo: "moeda", nota: "fonte", aceitaNS: true, curto: "Diária do meio de domingo a quinta", placeholder: "Ex.: 580",
+      bloco: "Quanto enche e quanto paga",
+      pergunta: "E de domingo a quinta, qual é a diária do meio?",
+      explica: "A mediana dos mesmos comparáveis, agora no preço de domingo a quinta.",
+      porque: "Com as duas diárias e as duas ocupações sai a diária média de verdade: o que entra dividido pelas noites vendidas. Não é a média simples dos dois preços, porque o fim de semana vende mais noites e pesa mais.",
+      onde: "<p>Nos mesmos anúncios, no preço de domingo a quinta. Ponha em ordem e pegue o do meio.</p>",
+      marina: "De domingo a quinta, a diária do meio é R$ 580. A semana de uma cabana: 2,86 noites vendidas e R$ 1.846. Diária média: 1.846 ÷ 2,86 = R$ 645.",
+      ondeCurto: "anotar o preço de domingo a quinta dos comparáveis que vendem o mesmo e pegar o do meio",
+    },
+    {
+      id: "amplitude", tipo: "numero", unidade: "vezes", nota: "fonte", aceitaNS: true, curto: "Amplitude de preço da região", placeholder: "Ex.: 3,03",
+      bloco: "Quanto enche e quanto paga",
+      pergunta: "Quantas vezes a diária mais cara do seu raio é maior que a mais barata?",
+      explica: "Divida a diária de fim de semana mais cara do seu raio pela mais barata. Por exemplo: R$ 1.150 dividido por R$ 380 dá 3,03.",
+      porque: "É uma régua rápida. Com 3 ou mais, o destino paga pela diferença, e existe espaço para quem entrega mais. Abaixo de 2, a briga é de preço.",
+      onde: "<p>Na mesma busca dos comparáveis, no fim de semana, dentro do raio de 30 minutos. Leia também o que os hóspedes elogiam no mais caro e o que reclamam no mais barato: anúncio é promessa, avaliação é entrega.</p>",
+      marina: "No raio da Marina, as diárias vão de R$ 380 a R$ 1.150: 1.150 ÷ 380 = 3,03. O destino paga pela diferença.",
+      ondeCurto: "dividir a diária mais cara do raio pela mais barata, no fim de semana",
+    },
+    {
+      id: "meses_alta", tipo: "numero", unidade: "meses", nota: "fonte", aceitaNS: true, min: 0, max: 12, curto: "Meses de alta",
+      bloco: "A curva do ano",
+      pergunta: "Quantos meses de alta a sua região tem no ano?",
+      explica: "Alta é a temporada em que a procura sobe. Conte quantos meses, de 0 a 12.",
+      porque: "A janela de noventa dias que você leu pode ter caído num mês bom ou ruim. A temporada que todo mundo repete é opinião; a curva do ano é dado. É com ela que se faz a média do ano.",
+      onde: "<p>Na <b>série de visitantes</b> da região, que se pede à <b>secretaria de turismo</b>, e em conversas na cidade (donos de pousada, comércio). Se a série não existir, use as conversas e diga de onde veio.</p>",
+      marina: "Na região da Marina, a alta é o inverno: 3 meses.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo e conversar com quem trabalha na cidade",
+    },
+    {
+      id: "ocup_alta", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação na alta",
+      bloco: "A curva do ano",
+      pergunta: "Quanto os comparáveis enchem nos meses de alta?",
+      explica: "A ocupação média dos meses de alta, em porcentagem.",
+      porque: "É o número mais lembrado e o mais perigoso: usar a ocupação da alta como se fosse a do ano inteiro faz a conta sair muito maior do que o ano entrega.",
+      onde: "<p>Na série de visitantes, nos calendários dos comparáveis lidos nessa época e nas conversas com quem já opera na região.</p>",
+      marina: "Nos 3 meses de inverno, os comparáveis enchem 64%.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo e ler os calendários na alta",
+    },
+    {
+      id: "meses_fraco", tipo: "numero", unidade: "meses", nota: "fonte", aceitaNS: true, min: 0, max: 12, curto: "Meses fracos",
+      bloco: "A curva do ano",
+      pergunta: "Quantos meses fracos a sua região tem no ano?",
+      explica: "Mês fraco é o que quase não vende. Os meses que sobram, nem alta nem fracos, são os médios.",
+      porque: "O mês fraco é o que testa o caixa. E guarde esta frase: mês fraco pede produto, não desconto. Calendário vazio quase nunca se resolve baixando o preço.",
+      onde: "<p>Na mesma série de visitantes e nas mesmas conversas da cidade.</p>",
+      marina: "A Marina contou 5 meses fracos. Sobram 4 meses médios.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo e conversar com quem trabalha na cidade",
+    },
+    {
+      id: "ocup_fraco", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação nos meses fracos",
+      bloco: "A curva do ano",
+      pergunta: "Quanto os comparáveis enchem nos meses fracos?",
+      explica: "A ocupação média dos meses fracos, em porcentagem.",
+      porque: "Com ela a ferramenta mostra quanto entra num mês fraco, por unidade, antes de qualquer custo. Se o seu custo do mês passar disso, falta caixa: essa conta se fecha na Trilha 2.",
+      onde: "<p>Na série de visitantes, nos calendários lidos no mês fraco e nas conversas com quem já opera na região.</p>",
+      marina: "Nos meses fracos, 22%. Num mês fraco entra cerca de R$ 4.260 por cabana, antes de qualquer custo.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo e ler os calendários no mês fraco",
+    },
+    {
+      id: "ocup_media", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação nos meses médios",
+      bloco: "A curva do ano",
+      pergunta: "E nos meses médios, quanto os comparáveis enchem?",
+      explica: "Os meses médios são os que sobram depois da alta e dos fracos. Escreva a ocupação média deles, em porcentagem.",
+      porque: "Com os três períodos sai a média do ano, feita pelos 12 meses (meses vezes ocupação, dividido por 12), e não pela média simples das três estações, que erra para cima.",
+      onde: "<p>Na série de visitantes e nos calendários dos comparáveis.</p>",
+      marina: "Nos 4 meses médios, 40%. Média do ano: (3 × 64 + 4 × 40 + 5 × 22) ÷ 12 = 462 ÷ 12 = 38,5%. A média simples dos três números daria 42%.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo",
+    },
+    {
+      id: "crescimento_ate_abrir", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 1000, curto: "Crescimento da procura até abrir",
+      bloco: "Quantas unidades o destino compra",
+      pergunta: "Quanto a procura pela região deve crescer, no total, até você abrir?",
+      explica: "É o crescimento somado de agora até a abertura. Por exemplo, 7% ao ano por 3 anos: 1,07 × 1,07 × 1,07 = 1,225, ou seja, 22,5% no total.",
+      porque: "É de onde vêm as noites novas que o destino vai comprar. A pergunta não é quantas unidades você quer, é quantas o destino compra sem você tirar cliente de ninguém. Se a série não existe, marque Não sei: a conta entra pelo lado prudente (crescimento zero) e fica marcada como sem a série.",
+      onde: "<p>Na <b>série de visitantes</b> da <b>secretaria de turismo</b>. Se ela não existir para a sua cidade, marque Não sei, e o calendário dos comparáveis vira a fonte principal.</p>",
+      marina: "Na região da Marina, a procura cresce 7% ao ano e ela abre em 3 anos: 22,5% no total.",
+      ondeCurto: "pedir a série de visitantes à secretaria de turismo",
+    },
+    {
+      id: "unidades_em_obra", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Unidades em obra ou licença",
+      bloco: "Quantas unidades o destino compra",
+      pergunta: "Quantas unidades de hospedagem estão em obra ou em licença na região?",
+      explica: "São as unidades que vão abrir antes de você, ou junto, e disputar o mesmo hóspede.",
+      porque: "Elas levam uma parte das noites novas. Quem esquece a obra do vizinho conta duas vezes o mesmo hóspede. Se não souber, marque Não sei: a conta segue, marcada como sem os alvarás.",
+      onde: "<p>Peça à <b>prefeitura</b> os alvarás de novos empreendimentos de hospedagem na região. Conversas na cidade ajudam a achar quem está construindo.</p>",
+      marina: "Na região da Marina, 18 unidades estão em obra ou em licença.",
+      ondeCurto: "pedir à prefeitura os alvarás de novos empreendimentos de hospedagem",
+    },
+    {
+      id: "unidades_pretendidas", tipo: "numero", unidade: "unidades", nota: false, aceitaNS: true, curto: "Unidades que você pensava abrir",
+      bloco: "Quantas unidades o destino compra",
+      pergunta: "Quantas unidades você pensava em abrir?",
+      explica: "O número que você tinha em mente antes desta conta. Pode ser o que saiu da capacidade da sua Ficha do Território.",
+      porque: "A ferramenta compara esse número com quantas unidades o mercado aguenta agora. Unidade que o mercado não compra custa obra, mobília e manutenção sem trazer receita.",
+      onde: "<p>Na sua Ficha do Território (Aula 1), na capacidade: quantas unidades o lugar aguenta. Lá, o limite de mercado ainda estava em aberto: é aqui que ele se mede.</p>",
+      marina: "A Marina pensava em 5 unidades.",
+      ondeCurto: "rever a capacidade da sua Ficha do Território",
+      veio: () => { const d = dadosDaAula(1); return d && typeof d.capacidade === "number" ? { valor: String(d.capacidade), de: "Aula 1 (capacidade do lugar, ainda sem o limite de mercado)" } : null; },
+    },
+  ],
+  LEITURAS: {
+    avancar: { rot: "Seguir com condições", sub: "O mercado aguenta as unidades pretendidas, desde que você entregue o que o topo da faixa entrega." },
+    testar: { rot: "Testar: medir o que falta", sub: "A medida ainda depende de dado que falta, ou a ocupação do ano pede prova." },
+    ajustar: { rot: "Ajustar: mudar alguma coisa", sub: "Mude o número de unidades, o produto ou o público antes de desenhar." },
+    pausar: { rot: "Pausar: rever público e produto", sub: "Não existe procura para o que se quer fazer ali." },
+  },
+  numeros(L) {
+    const g = (id) => calc(L.res, id);
+    const cs = g("conta_semana"), oa = g("ocup_ano"), ab = g("absorcao"), fv = g("fds_vs_semana");
+    return [
+      ["Diária média de verdade", cs.valor === null ? "em branco" : brl(cs.valor)],
+      ["Ocupação média do ano", oa.valor === null ? "em branco" : fmtN(oa.valor, 1) + "%"],
+      ["Unidades que cabem agora", ab.valor === null ? "em branco" : fmtN(ab.valor)],
+      ["Fim de semana contra a semana", fv.valor === null ? "em branco" : fmtN(fv.valor, 1) + " vezes"],
+    ];
+  },
+  dados(L) {
+    const g = (id) => calc(L.res, id);
+    return { diaria_media: g("conta_semana").valor, ocup_ano: g("ocup_ano").valor, cabem: g("absorcao").valor };
+  },
+  alertasDepois: () => [{ t: "info", tit: "Para conferir", txt: "Ferramentas de dados de mercado trabalham com estimativas: confira sempre alguns comparáveis à mão. Receita bruta não é retorno: impostos, comissões e custos entram na Trilha 2." }],
+  fragil(c) {
+    const ab = c.g("absorcao"), cr = c.g("checa_regua"), amp = c.g("regua_amplitude");
+    const pret = paraNumero(c.r.unidades_pretendidas);
+    if (ab.alerta === "critico" && !ab.detalhes.sem_serie && !ab.detalhes.sem_alvaras) return "A sobra do destino não cabe nem uma unidade: hoje não existe procura para o que se quer fazer ali. Reveja público e produto antes de desenhar.";
+    if (cr.valor === true) return `A ocupação do ano deu ${fmtN(c.g("ocup_ano").valor, 1)}%, acima de 65%. Que prova você tem de procura extraordinária? Sem ela, a conta não passa de testar.`;
+    const ordem = ["ocup_fds", "ocup_semana", "diaria_fds", "diaria_semana", "meses_alta", "meses_fraco", "ocup_alta", "ocup_media", "ocup_fraco", "unidades_comparaveis", "crescimento_ate_abrir", "unidades_em_obra", "amplitude", "unidades_pretendidas"];
+    const id = ordem.find((x) => c.nsIds.includes(x));
+    if (id) return `${Q(id).curto} ainda é Não sei. Enquanto for, a conta que depende dele fica em branco ou provisória. Próximo passo: ${Q(id).ondeCurto}.`;
+    const n1 = c.notas.find((x) => x.nota === 1);
+    if (n1) return `${n1.q.curto} é estimativa sem fonte. Nota sem evidência não vale: ${n1.q.ondeCurto}.`;
+    if (ab.valor !== null && pret !== null && ab.valor < pret) return `Cabem ${fmtN(ab.valor)} unidades agora, menos que as ${fmtN(pret)} que você pensava. Desenhe a infraestrutura para o total e abra com as que cabem: as outras entram quando o mercado provar.`;
+    if (amp.alerta === "atencao") return "A amplitude da região está abaixo de 2: a briga é de preço. O produto vai precisar de um motivo claro para não cair na disputa pelo mais barato.";
+    return "O mercado aguenta as unidades pretendidas desde que você entregue o que o topo da faixa entrega. Essa condição vai para a Aula 3, Produto e tipologias.";
+  },
+  criterio(c) {
+    const ab = c.g("absorcao");
+    const pret = paraNumero(c.r.unidades_pretendidas);
+    if (ab.valor !== null && ab.detalhes) {
+      const abre = pret !== null ? Math.max(1, Math.min(ab.valor, pret)) : Math.max(1, ab.valor);
+      const noites = abre * ab.detalhes.noites_por_unidade;
+      return `Se a releitura dos calendários em 30 dias, ou a série de visitantes, mostrar que a sobra do destino não cabe nem as ${fmtN(noites, 0)} noites das ${fmtN(abre)} unidades de abertura, eu pauso e revejo público e produto antes de desenhar.`;
+    }
+    return "Se a releitura dos calendários em 30 dias, ou a série de visitantes, mostrar que a sobra do destino não cabe nem as noites das unidades que eu pretendo abrir, eu pauso e revejo público e produto antes de desenhar.";
+  },
+  moldeCriterio: "Molde: \"Se a releitura dos calendários em 30 dias, ou a série de visitantes, mostrar que [o fato], eu pauso e revejo público e produto antes de desenhar.\"",
+  compromisso(c) {
+    const cal = ["unidades_comparaveis", "ocup_fds", "ocup_semana", "diaria_fds", "diaria_semana", "amplitude"];
+    if (cal.some((x) => c.nsIds.includes(x)) || c.notas.some((x) => cal.includes(x.q.id) && x.nota < 3))
+      return { acao: "Ler o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados, e fazer a conta da semana.", evidencia: "A folha com as noites ocupadas e os três números: ocupação, diária média e amplitude." };
+    if (["crescimento_ate_abrir", "unidades_em_obra", "meses_alta", "meses_fraco", "ocup_alta", "ocup_fraco", "ocup_media"].some((x) => c.nsIds.includes(x)) || c.notas.some((x) => x.nota < 3))
+      return { acao: "Pedir a série de visitantes à secretaria de turismo e os alvarás de novos empreendimentos à prefeitura.", evidencia: "O pedido feito, com data, ou a resposta por escrito." };
+    return { acao: "Ler de novo, 30 dias depois, o calendário dos mesmos comparáveis e refazer a conta da semana.", evidencia: "A segunda leitura, com data, ao lado da primeira." };
+  },
+  dicaCompromisso: "Nenhuma precisa de profissional pago.",
+  depoisLeitura: (L) => (L.v === "avancar" ? `<p class="dica" style="margin-top:8px">Terreno com território lido e mercado medido pode entrar no Land Bank Zion, a vitrine de projetos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""),
+  botaoPDF: "Baixar a minha Ficha do Mercado (PDF)",
+  capaTitulo: ["Ficha do", "Mercado"],
+  arquivoPDF: "Ficha-do-Mercado",
+  notaFinalPDF: "A Marina, citada nas explicações, é um exemplo ilustrativo: os números dela ensinam a conta e não dizem nada sobre o seu mercado. A régua de ocupação é referência para conferir a conta, não promessa de ocupação. Receita bruta não é retorno: ainda saem impostos, comissões, custos e a retirada do dono.",
+};
+
+
+/* =====================================================================
+   3. O núcleo comum: estado, telas, nota, alertas e PDF
+   ===================================================================== */
+const CHAVE = PREFIXO + AULA.n;
+const QUESTOES = AULA.QUESTOES;
+const META = AULAS[AULA.n - 1];
+const PROX = AULAS[AULA.n] || null;
+const FONTES_PADRAO = AULA.FONTES;
+
+function estadoVazio() {
+  return { versao: 1, aula: AULA.n, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, extra: {}, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.perfil) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.extra = Object.assign({}, d.extra || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+/** Perfil já preenchido em outra aula (para o aluno não digitar de novo). */
+function perfilDeOutraAula() {
+  let melhor = null;
+  for (const a of AULAS) {
+    if (a.n === AULA.n) continue;
+    const d = salvoDaAula(a.n);
+    if (d && d.perfil && d.perfil.nome && (!melhor || String(d.atualizado || "") > String(melhor.atualizado || ""))) melhor = d;
+  }
+  return melhor ? melhor.perfil : null;
+}
+
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const calc = (res, id) => res.calculos.find((c) => c.id === id);
+const fontesDe = (q) => q.fontes || FONTES_PADRAO;
+const ITENS_NOTA = QUESTOES.filter((q) => q.nota);
+const NOTA_MAX = ITENS_NOTA.length * 3;
+
+function respostasParaCalculo() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas) r[q.id] = S.respostas[q.id];
+  return r;
+}
+function notaItem(q) {
+  const v = S.respostas[q.id];
+  if (typeof q.nota === "function") return Math.max(0, Math.min(3, q.nota(S.respostas, S.fontes) || 0));
+  if (v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]);
+  return f ? f.nota : 1;
+}
+const nsDoAluno = () => QUESTOES.filter((q) => q.aceitaNS && ehNS(S.respostas[q.id]));
+
+function ler() {
+  const r = respostasParaCalculo();
+  const res = AULA.calcular(r);
+  const notas = ITENS_NOTA.map((q) => ({ q, nota: notaItem(q) }));
+  const soma = notas.reduce((s, x) => s + x.nota, 0);
+  const nsAluno = nsDoAluno();
+  const ctx = { r, res, notas, soma, nsAluno, nsIds: nsAluno.map((q) => q.id), g: (id) => calc(res, id), nome: S.perfil.nome || "Eu", S };
+  const lt = AULA.leitura ? AULA.leitura(ctx) : { v: res.veredito_sugerido, motivo: res.motivo_veredito };
+  ctx.v = lt.v; ctx.motivo = lt.motivo;
+  // Alertas: críticos primeiro, depois os Não sei, as notas 1 e os de atenção
+  const alertas = [];
+  for (const a of (AULA.alertasAntes ? AULA.alertasAntes(ctx) : [])) alertas.push(a);
+  const ocultar = AULA.alertaOculto || [];
+  for (const c of res.calculos) if (c.alerta === "critico" && c.id !== "veredito_sugerido" && !ocultar.includes(c.id)) alertas.push({ t: "critico", tit: "Crítico", txt: AULA.textoTela ? AULA.textoTela(c.texto) : c.texto });
+  for (const q of nsAluno) alertas.push({ t: "ns", tit: "Não sei · vale zero", txt: `${q.curto}: vira tarefa. Onde conseguir: ${q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: ${x.q.semEvidencia || "é estimativa. Nota sem documento ou medida que prove não vale."} Para confirmar: ${x.q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 0 && !ehNS(S.respostas[x.q.id]) && x.q.zeroTexto) alertas.push({ t: "sem", tit: "Nota 0 · ainda não feito", txt: `${x.q.curto}: ${x.q.zeroTexto} Para resolver: ${x.q.ondeCurto}.` });
+  for (const c of res.calculos) if (c.alerta === "atencao" && !ocultar.includes(c.id)) alertas.push({ t: "atencao", tit: "Atenção", txt: AULA.textoTela ? AULA.textoTela(c.texto) : c.texto });
+  for (const a of (AULA.alertasDepois ? AULA.alertasDepois(ctx) : [])) alertas.push(a);
+  ctx.alertas = alertas;
+  const fragil = AULA.fragil(ctx);
+  const criterioSug = AULA.criterio(ctx);
+  const comp = Object.assign({}, AULA.compromisso(ctx));
+  comp.responsavel = comp.responsavel || S.perfil.nome || "Eu"; comp.prazo = hojeISO(7);
+  return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx };
+}
+
+/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido na Aula 6). */
+function montarResumo(L) {
+  const lt = AULA.LEITURAS[L.v];
+  return {
+    aula: AULA.n, tema: META.tema, ficha: META.ficha, v: L.v, rot: lt.rot, sub: lt.sub, motivo: L.motivo, fragil: L.fragil,
+    soma: L.soma, max: NOTA_MAX, numeros: AULA.numeros(L), nCriticos: L.alertas.filter((a) => a.t === "critico").length,
+    nNS: L.nsAluno.length, criterio: S.criterio, compromisso: S.compromisso, data: hojeISO(),
+    dados: AULA.dados ? AULA.dados(L) : {},
+    mentor: mentorDoResumo(L),
+  };
+}
+
+/* ---------------------------------------------------------------------
+   4. Envio (desligado): só monta o JSON
+   --------------------------------------------------------------------- */
+function montarPayload(L) {
+  L = L || ler();
+  return {
+    email: S.perfil.email, nome: S.perfil.nome, etapa: AULA.etapa,
+    nota: L.soma, leitura: L.v, ponto_fragil: L.fragil,
+    respostas: Object.assign({}, respostasParaCalculo(), { fontes: Object.assign({}, S.fontes), cidade: S.perfil.cidade, uf: S.perfil.uf, criterio_para_parar: S.criterio, compromisso_7_dias: S.compromisso }, AULA.payloadExtra ? AULA.payloadExtra(L) : {}),
+    calculos: L.res.calculos,
+  };
+}
+async function enviarParaZion(payload) {
+  if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
+  try { const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); return { enviado: r.ok }; }
+  catch (e) { return { enviado: false, erro: String(e) }; }
+}
+
+const MENTOR_AULA_ID = "t1-aula-" + AULA.n;
+const mentorRotulo = (k) => (AULA.LEITURAS[k] ? AULA.LEITURAS[k].rot : k);
+const mentorAtualizarResumo = (L) => { S.resumo = montarResumo(L); };
+/* ---------------------------------------------------------------------
+   Mentor virtual (o mesmo bloco nas seis ferramentas da Trilha 1).
+   Só chama a rede quando o aluno toca no botão e FEEDBACK_URL está preenchida.
+   Para testes, window.ZION_FEEDBACK_URL (se existir) toma o lugar da constante.
+   --------------------------------------------------------------------- */
+const MENTOR_TEMPO_MS = 90000;
+const MENTOR_AVISO = "O mentor nunca é mais otimista que as contas.";
+const MENTOR_PESO = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+const MENTOR_MAPA = { avancar: "avancar", seguir: "avancar", testar: "testar", investigar: "testar", ajustar: "ajustar", renegociar: "ajustar", pausar: "pausar", trocar: "pausar" };
+const MENTOR_COR_PDF = { verde: [22, 38, 28], ok: [31, 90, 51], verm: [155, 44, 31], ouro: [122, 94, 18], cinza: [70, 86, 75] };
+/** A leitura no vocabulário do mentor: avancar, testar, ajustar ou pausar (aceita também seguir, investigar, renegociar e trocar). */
+function vereditoParaMentor(v) {
+  const k = String(v || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/[^a-z]/)[0];
+  return MENTOR_MAPA[k] || null;
+}
+function urlDoMentor() {
+  try { const u = window.ZION_FEEDBACK_URL; if (typeof u === "string" && u.trim()) return u.trim(); } catch (e) {}
+  return FEEDBACK_URL;
+}
+/** A leitura do mentor vale enquanto as respostas e a leitura da ferramenta forem as mesmas. */
+const assinaturaMentor = (L) => JSON.stringify([respostasParaCalculo(), L.v]);
+const mentorValido = (L) => !!(S.mentor && S.mentor.resultado && S.mentor.assinatura === assinaturaMentor(L));
+/** O que vai para o resumo salvo (campo mentor), ou null. */
+const mentorDoResumo = (L) => (mentorValido(L) ? Object.assign({ data: S.mentor.data }, S.mentor.resultado) : null);
+
+function corpoDoPedidoMentor(L) {
+  const calculos = {};
+  for (const c of L.res.calculos) calculos[c.id] = { rotulo: c.rotulo, valor: c.valor === undefined ? null : c.valor, texto: c.texto, alerta: c.alerta || null };
+  calculos.leitura_da_ferramenta = { veredito: L.v, motivo: L.motivo, ponto_fragil: L.fragil, nota: L.soma, nota_maxima: NOTA_MAX, alertas: L.alertas.map((a) => ({ tipo: a.t, texto: a.txt })) };
+  return { aula: MENTOR_AULA_ID, nome: S.perfil.nome, email: S.perfil.email, respostas: montarPayload(L).respostas, calculos, veredito_ferramenta: vereditoParaMentor(L.v) || "testar" };
+}
+function normalizarMentor(x, L) {
+  if (!x || typeof x !== "object") return null;
+  const txt = (v) => (typeof v === "string" ? v.trim() : "");
+  const lista = (v) => (Array.isArray(v) ? v.map(txt).filter(Boolean) : []);
+  const resumo = txt(x.resumo);
+  if (!resumo) return null;
+  const pa = x.proxima_acao && typeof x.proxima_acao === "object" ? x.proxima_acao : {};
+  const ferr = vereditoParaMentor(L.v) || "testar";
+  const doMentor = vereditoParaMentor(x.veredito);
+  // Nunca mais otimista que as contas: fica a mais cautelosa entre a do mentor e a da ferramenta.
+  const v = doMentor && MENTOR_PESO[doMentor] >= MENTOR_PESO[ferr] ? doMentor : ferr;
+  return {
+    resumo, pontos_fortes: lista(x.pontos_fortes), ponto_fragil: txt(x.ponto_fragil), veredito: v, veredito_rot: mentorRotulo(v),
+    criterio_para_parar: txt(x.criterio_para_parar),
+    proxima_acao: { acao: txt(pa.acao), responsavel: txt(pa.responsavel), prazo: txt(pa.prazo), evidencia: txt(pa.evidencia) },
+    perguntas_em_aberto: lista(x.perguntas_em_aberto),
+  };
+}
+async function pedirMentor(L) {
+  const url = urlDoMentor();
+  if (!url) return { erro: "Disponível em breve." };
+  const ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  const relogio = setTimeout(() => { if (ctrl) ctrl.abort(); }, MENTOR_TEMPO_MS);
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpoDoPedidoMentor(L)), signal: ctrl ? ctrl.signal : undefined });
+    let d = null;
+    try { d = await r.json(); } catch (e) { d = null; }
+    const erroServ = d && typeof d.erro === "string" ? d.erro.trim() : "";
+    if (r.status === 429) return { erro: erroServ || "O mentor recebeu muitos pedidos agora. Espere alguns minutos e tente de novo." };
+    if (!r.ok) return { erro: (r.status < 500 && erroServ) || "O mentor virtual não respondeu agora. Tente de novo daqui a pouco." };
+    const m = normalizarMentor(d && d.resultado, L);
+    if (!m) return { erro: erroServ || "O mentor virtual não conseguiu ler as suas respostas agora. Tente de novo daqui a pouco." };
+    return { resultado: m };
+  } catch (e) {
+    return { erro: e && e.name === "AbortError" ? "O mentor demorou mais de 90 segundos para responder. Tente de novo daqui a pouco." : "Não foi possível falar com o mentor virtual. Confira a conexão com a internet e tente de novo." };
+  } finally { clearTimeout(relogio); }
+}
+function htmlMentorResultado(m) {
+  const lst = (a, vazio) => (a.length ? `<ul>${a.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${vazio}</p>`);
+  const pa = m.proxima_acao;
+  return `<div id="mentor-resultado">
+    <div class="caixa porque"><h3>Resumo</h3><p>${esc(m.resumo)}</p></div>
+    <div class="caixa onde"><h3>Pontos fortes</h3>${lst(m.pontos_fortes, "Nenhum apontado.")}</div>
+    <div class="fragil" style="margin-top:14px"><b>Ponto frágil</b><br>${esc(m.ponto_fragil || "Em branco")}</div>
+    <div class="leitura" id="mentor-leitura" style="margin-top:14px"><div class="eyebrow" style="color:var(--creme)">Leitura do mentor</div><div class="rot">${esc(m.veredito_rot)}</div><p><b>${esc(MENTOR_AVISO)}</b></p></div>
+    <div class="caixa porque"><h3>Critério para parar</h3><p>${esc(m.criterio_para_parar || "Em branco")}</p></div>
+    <div class="caixa porque"><h3>Próxima ação</h3><ul><li><b>Ação:</b> ${esc(pa.acao || "Em branco")}</li><li><b>Responsável:</b> ${esc(pa.responsavel || "Em branco")}</li><li><b>Prazo:</b> ${esc(dataBR(pa.prazo) || "Em branco")}</li><li><b>Evidência:</b> ${esc(pa.evidencia || "Em branco")}</li></ul></div>
+    <div class="caixa onde"><h3>Perguntas em aberto</h3>${lst(m.perguntas_em_aberto, "Nenhuma.")}</div>
+    <p class="dica" style="margin-top:10px">A leitura do mentor complementa as contas e a leitura acima, não as substitui. Ela entra no seu PDF.</p>
+  </div>`;
+}
+function htmlSecaoMentor(L) {
+  let corpo;
+  if (!urlDoMentor()) corpo = `<p id="mentor-estado"><b>Disponível em breve.</b></p><button type="button" class="btn btn-s" id="mentor-pedir" disabled>Pedir a leitura do mentor virtual</button>`;
+  else if (mentorValido(L)) corpo = htmlMentorResultado(S.mentor.resultado);
+  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas e as contas.</p>
+    <button type="button" class="btn btn-s" id="mentor-pedir">Pedir a leitura do mentor virtual</button>
+    <div id="mentor-estado" role="status" aria-live="polite"></div>`;
+  return `<section class="bloco" id="b-mentor"><h2>O mentor virtual</h2><div id="mentor-corpo">${corpo}</div></section>`;
+}
+function ligarMentor(L) {
+  const b = document.getElementById("mentor-pedir");
+  if (!b || b.disabled) return;
+  b.onclick = async () => {
+    const st = document.getElementById("mentor-estado");
+    b.disabled = true;
+    st.innerHTML = `<p class="dica" style="margin-top:10px"><b>Lendo as suas respostas...</b> Pode levar até um minuto e meio.</p>`;
+    const r = await pedirMentor(L);
+    if (r.resultado) {
+      S.mentor = { resultado: r.resultado, assinatura: assinaturaMentor(L), data: hojeISO() };
+      mentorAtualizarResumo(L);
+      salvar();
+      const c = document.getElementById("mentor-corpo");
+      if (c) c.innerHTML = htmlMentorResultado(r.resultado);
+    } else {
+      b.disabled = false;
+      st.innerHTML = `<div class="alerta a-atencao" id="mentor-erro"><b>O mentor não respondeu</b>${esc(r.erro)} O resto da página continua funcionando: o PDF sai normalmente, sem a leitura do mentor.</div>`;
+    }
+  };
+}
+/** As caixas da leitura do mentor no PDF: [rótulo, texto, cor]. */
+function mentorParaPDF(m) {
+  const pa = m.proxima_acao || {};
+  const itens = (a, vazio) => (a && a.length ? a.map((x) => "- " + x).join("\n") : vazio);
+  return [
+    ["Resumo", m.resumo, "verde"],
+    ["Pontos fortes", itens(m.pontos_fortes, "Nenhum apontado."), "ok"],
+    ["Ponto frágil", m.ponto_fragil || "Em branco", "verm"],
+    ["Leitura do mentor", `${m.veredito_rot}. ${MENTOR_AVISO}`, "verde"],
+    ["Critério para parar", m.criterio_para_parar || "Em branco", "ouro"],
+    ["Próxima ação", [`Ação: ${pa.acao || "Em branco"}`, `Responsável: ${pa.responsavel || "Em branco"}`, `Prazo: ${dataBR(pa.prazo) || "Em branco"}`, `Evidência: ${pa.evidencia || "Em branco"}`].join("\n"), "verde"],
+    ["Perguntas em aberto", itens(m.perguntas_em_aberto, "Nenhuma."), "cinza"],
+  ].map(([r, t, c]) => [r, t, MENTOR_COR_PDF[c]]);
+}
+
+/* ---------------------------------------------------------------------
+   5. Telas
+   --------------------------------------------------------------------- */
+const app = document.getElementById("app");
+document.getElementById("rodape").textContent = RODAPE;
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+function render() {
+  if (S.passo < 0) return telaAbertura();
+  if (S.passo >= QUESTOES.length) return telaResultado();
+  return telaPergunta(S.passo);
+}
+function irPara(p) { S.passo = p; salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+const val = (id) => document.getElementById(id).value.trim();
+
+function telaAbertura() {
+  const salvo = carregar();
+  const temSalvo = salvo && Object.keys(salvo.respostas || {}).length > 0;
+  if (!S.perfil.nome) { const p = perfilDeOutraAula(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Trilha 1 · Aula ${AULA.n} · ${esc(META.tema)}</div>
+    <h1 tabindex="-1">${esc(AULA.abertura.titulo)}</h1>
+    <p class="lead">${esc(AULA.abertura.lead)}</p>
+    <div class="tres">
+      <div><b>Por que</b>${esc(AULA.abertura.porque)}</div>
+      <div><b>Como</b>${esc(AULA.abertura.como)}</div>
+      <div><b>Para que</b>${esc(AULA.abertura.paraque)}</div>
+    </div>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta página.</b><br>As suas respostas ficaram salvas neste aparelho. <div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <form id="f-abertura" novalidate>
+      <label for="nome">O seu nome</label>
+      <input type="text" id="nome" autocomplete="name" value="${esc(S.perfil.nome)}" required>
+      <label for="email">O seu e-mail</label>
+      <input type="email" id="email" autocomplete="email" inputmode="email" value="${esc(S.perfil.email)}" required>
+      <label for="cidade">Cidade do terreno</label>
+      <input type="text" id="cidade" autocomplete="address-level2" value="${esc(S.perfil.cidade)}" required>
+      <label for="uf">Estado do terreno</label>
+      <select id="uf" required><option value="">Escolha o estado</option>${UFS.map((u) => `<option ${S.perfil.uf === u ? "selected" : ""}>${u}</option>`).join("")}</select>
+      <div class="erro" id="erro-abertura" role="alert"></div>
+      <div class="nav"><button class="btn btn-p" type="submit" id="comecar">Começar</button></div>
+      <p class="dica">As respostas ficam salvas só neste aparelho, para você poder parar e voltar. Nada é enviado sem você pedir.${AULA.abertura.dica ? " " + esc(AULA.abertura.dica) : ""}</p>
+    </form>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { S = salvo; S.passo = Math.min(Math.max(S.passo, 0), QUESTOES.length); salvar(); render(); };
+    document.getElementById("zerar").onclick = () => { apagar(); S = estadoVazio(); render(); };
+  }
+  document.getElementById("f-abertura").onsubmit = (e) => {
+    e.preventDefault();
+    const p = { nome: val("nome"), email: val("email"), cidade: val("cidade"), uf: document.getElementById("uf").value };
+    let erro = "";
+    if (!p.nome) erro = "Escreva o seu nome.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)) erro = "Confira o e-mail.";
+    else if (!p.cidade) erro = "Escreva a cidade do terreno.";
+    else if (!p.uf) erro = "Escolha o estado do terreno.";
+    document.getElementById("erro-abertura").textContent = erro;
+    if (erro) return;
+    if (temSalvo && salvo) S = salvo;
+    S.perfil = p;
+    irPara(S.passo >= 0 ? Math.min(S.passo, QUESTOES.length) : 0);
+  };
+}
+
+/** Traz a resposta de uma aula anterior, uma vez só, para o aluno conferir. */
+function aplicarVeio(q) {
+  if (!q.veio || S.veio[q.id] !== undefined || S.respostas[q.id] !== undefined) return;
+  let x = null;
+  try { x = q.veio(); } catch (e) { x = null; }
+  S.veio[q.id] = x ? x.de : null;
+  if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") {
+    S.respostas[q.id] = x.valor;
+    if (x.fonte) S.fontes[q.id] = x.fonte;
+  }
+  salvar();
+}
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+const botaoNS = (ns) => `<button type="button" class="btn btn-ns" id="ns" aria-pressed="${ns}">${ns ? "Marcado: Não sei (toque para desfazer)" : "Não sei"}</button>`;
+
+function telaPergunta(i) {
+  const q = QUESTOES[i];
+  aplicarVeio(q);
+  const total = QUESTOES.length;
+  const v = S.respostas[q.id];
+  const ns = ehNS(v);
+  let campo = "";
+  if (ehNumerico(q)) {
+    const pre = q.tipo === "moeda" ? `<span class="un">R$</span>` : "";
+    const pos = q.tipo === "percentual" ? `<span class="un">%</span>` : q.tipo === "numero" && q.unidade ? `<span class="un">${esc(q.unidade)}</span>` : "";
+    campo = `
+      <label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <div class="campo-num">${pre}
+        <input type="text" id="resp" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || (q.tipo === "moeda" ? "Ex.: 600" : "Digite o número"))}" value="${ns || v === undefined ? "" : esc(v)}" ${ns ? "disabled" : ""}>
+        ${pos}
+      </div>
+      ${q.aceitaNS ? botaoNS(ns) : ""}
+      ${q.nota === "fonte" ? `<fieldset class="fonte" id="fs-fonte" ${ns ? "hidden" : ""}>
+        <legend>De onde veio esse número?</legend>
+        <div class="opcoes">${fontesDe(q).map((f) => `<label class="op"><input type="radio" name="fonte" value="${f.v}" ${S.fontes[q.id] === f.v ? "checked" : ""}><span>${esc(f.rot)}</span></label>`).join("")}</div>
+      </fieldset>` : ""}`;
+  } else if (q.tipo === "texto") {
+    campo = `<label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <textarea id="resp" placeholder="${esc(q.placeholder || "Escreva com as suas palavras")}" ${ns ? "disabled" : ""}>${ns || v === undefined ? "" : esc(v)}</textarea>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  } else if (q.tipo === "multipla") {
+    const marcados = Array.isArray(v) ? v : [];
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="checkbox" name="m" value="${o.v}" ${marcados.includes(o.v) ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>`;
+  } else if (q.tipo === "escolha") {
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="radio" name="e" value="${o.v}" ${v === o.v ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  }
+  const veio = S.veio[q.id] && S.respostas[q.id] !== undefined && !ns ? `<div class="veio">Trouxemos esta resposta da ${esc(S.veio[q.id])}. Confira e corrija se mudou.</div>` : "";
+  app.innerHTML = `
+  <div class="progresso" aria-label="Progresso">
+    <div class="txt"><span>Pergunta ${i + 1} de ${total}</span><span>${Math.round((i / total) * 100)}%</span></div>
+    <div class="barra"><i style="width:${(i / total) * 100}%"></i></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">${esc(q.bloco || META.tema)}</div>
+    <h1 class="pergunta" tabindex="-1">${esc(q.pergunta)}</h1>
+    <p class="explica">${esc(q.explica)}</p>
+    <form id="f-q" novalidate>
+      ${campo}
+      ${veio}
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(q.porque)}</p></div>
+      <div class="caixa onde"><h3>Onde conseguir essa informação</h3>${q.onde}</div>
+      <div class="caixa marina"><h3>Exemplo ilustrativo · Marina</h3><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>
+      <div class="nav"><button type="button" class="btn btn-s" id="voltar">Voltar</button><button type="submit" class="btn btn-p" id="avancar">${i === total - 1 ? "Ver a minha página" : "Avançar"}</button></div>
+    </form>
+  </div>`;
+
+  const f = document.getElementById("f-q");
+  const inp = document.getElementById("resp");
+  const nsBtn = document.getElementById("ns");
+  if (inp) inp.addEventListener("input", () => { S.respostas[q.id] = inp.value; salvar(); });
+  f.querySelectorAll("input[name=fonte]").forEach((r) => r.addEventListener("change", () => { S.fontes[q.id] = r.value; salvar(); }));
+  f.querySelectorAll("input[name=m]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = [...f.querySelectorAll("input[name=m]:checked")].map((x) => x.value); salvar(); }));
+  f.querySelectorAll("input[name=e]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = c.value; salvar(); if (nsBtn) { nsBtn.setAttribute("aria-pressed", "false"); nsBtn.textContent = "Não sei"; } }));
+  if (nsBtn) nsBtn.onclick = () => {
+    if (ehNS(S.respostas[q.id])) { delete S.respostas[q.id]; } else { S.respostas[q.id] = "nao_sei"; delete S.fontes[q.id]; }
+    salvar(); telaPergunta(i);
+  };
+  document.getElementById("voltar").onclick = () => irPara(i - 1);
+  f.onsubmit = (e) => {
+    e.preventDefault();
+    const erro = validar(q);
+    document.getElementById("erro").textContent = erro;
+    if (erro) return;
+    if (q.tipo === "multipla" && !Array.isArray(S.respostas[q.id])) S.respostas[q.id] = [];
+    if (q.tipo === "texto" && S.respostas[q.id] === undefined) S.respostas[q.id] = "";
+    irPara(i + 1);
+  };
+  if (inp && !ns && window.matchMedia("(min-width:720px)").matches) inp.focus({ preventScroll: true });
+}
+
+function validar(q) {
+  const v = S.respostas[q.id];
+  if (ehNumerico(q)) {
+    if (ehNS(v)) return "";
+    const n = paraNumero(v);
+    if (n === null) return q.aceitaNS ? "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal) ou toque em Não sei." : "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal).";
+    if (n < 0) return "O número não pode ser negativo.";
+    if (q.min !== undefined && n < q.min) return `O número precisa ser pelo menos ${fmtN(q.min)}.`;
+    if (q.max !== undefined && n > q.max) return `O número não pode passar de ${fmtN(q.max)}.`;
+    if (q.positivo && n <= 0) return "O número precisa ser maior que zero.";
+    if (q.nota === "fonte" && !S.fontes[q.id]) return "Diga de onde veio esse número: é isso que separa dado de palpite.";
+    return "";
+  }
+  if (q.tipo === "texto") {
+    if (ehNS(v) || q.opcional) return "";
+    if (v === undefined || String(v).trim() === "") return q.aceitaNS ? "Escreva a sua resposta ou toque em Não sei." : "Escreva a sua resposta.";
+    return "";
+  }
+  if (q.tipo === "escolha" && (v === undefined || v === "")) return q.aceitaNS ? "Escolha uma opção ou toque em Não sei." : "Escolha uma opção.";
+  return "";
+}
+
+function respostaTexto(q) {
+  const v = S.respostas[q.id];
+  if (ehNS(v)) return "Não sei";
+  if (q.tipo === "multipla") { const a = Array.isArray(v) ? v : []; return a.length ? q.opcoes.filter((o) => a.includes(o.v)).map((o) => o.rot).join("; ") : "Nenhum"; }
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o ? o.rot : "Em branco"; }
+  if (q.tipo === "texto") { const t = typeof v === "string" ? v.trim() : ""; return t || "Em branco"; }
+  const n = paraNumero(v);
+  if (n === null) return "Em branco";
+  if (q.tipo === "moeda") return brl(n);
+  if (q.tipo === "percentual") return fmtN(n, 2) + "%";
+  return `${fmtN(n, 2)}${q.unidade ? " " + q.unidade : ""}`;
+}
+const fonteTexto = (q) => { if (q.nota !== "fonte" || ehNS(S.respostas[q.id])) return ""; const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]); return f ? f.curto : ""; };
+
+function telaResultado() {
+  const L = ler();
+  if (S.criterio === null) S.criterio = L.criterioSug;
+  if (!S.compromisso) S.compromisso = Object.assign({}, L.comp);
+  S.resumo = montarResumo(L);
+  salvar();
+  const leit = AULA.LEITURAS[L.v];
+  const big = (rot, valor) => `<div class="num"><small>${esc(rot)}</small><strong>${esc(valor)}</strong></div>`;
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter(Boolean);
+  const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Página ${AULA.n} do Dossiê do Produto · Trilha 1 · Aula ${AULA.n}</div>
+    <h1 tabindex="-1">${esc(META.ficha)}</h1>
+    <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
+    <div class="numeros">${AULA.numeros(L).map(([r, v]) => big(r, v)).join("")}</div>
+
+    <section class="bloco" id="b-alertas"><h2>Primeiro, os alertas</h2>
+      <p class="dica">Primeiro os alertas, depois a soma, depois a decisão. Todo Não sei vale zero e vira tarefa.</p>
+      ${L.alertas.length ? L.alertas.map((x) => `<div class="alerta a-${x.t}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("") : `<div class="alerta a-info"><b>Sem alertas</b>Nenhum alerta nesta página. Mesmo assim, leia as contas antes de decidir.</div>`}
+    </section>
+
+    <section class="bloco" id="b-contas"><h2>As contas e as leituras</h2>
+      ${contas.map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(tt(x.texto))}</p></div>`).join("")}
+      ${(AULA.contasExtra ? AULA.contasExtra(L) : []).map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(x.texto)}</p></div>`).join("")}
+      <p class="dica">As contas usam só as suas respostas. Os números do seu caso precisam ser confirmados com quem é indicado em cada pergunta.</p>
+    </section>
+
+    ${ITENS_NOTA.length ? `<section class="bloco" id="b-nota"><h2>A nota por item</h2>
+      <p class="dica">${esc(AULA.escalaNota)} Toda nota zero ou um é alerta.</p>
+      <table><thead><tr><th>Item</th><th>Resposta</th><th class="n">Nota</th></tr></thead><tbody>
+      ${L.notas.map((x) => `<tr><td>${esc(x.q.curto)}</td><td>${esc(respostaTexto(x.q))}${fonteTexto(x.q) ? `<br><span class="dica">${esc(fonteTexto(x.q))}</span>` : ""}</td><td class="n nota-${x.nota}">${x.nota}</td></tr>`).join("")}
+      </tbody></table>
+      <div class="soma"><strong id="soma">${L.soma} de ${NOTA_MAX}</strong><span class="dica">Não existe nota de corte. A soma mostra quanto da sua leitura já tem fonte; os alertas acima pesam mais do que ela.</span></div>
+    </section>` : ""}
+
+    <section class="bloco"><h2>O ponto mais frágil</h2><div class="fragil" id="fragil">${esc(L.fragil)}</div></section>
+
+    <section class="bloco"><h2>A leitura</h2>
+      <div class="leitura" id="leitura"><div class="eyebrow" style="color:var(--creme)">Leitura do método</div><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
+      ${AULA.depoisLeitura ? AULA.depoisLeitura(L) : ""}
+    </section>
+
+    ${htmlSecaoMentor(L)}
+
+    <section class="bloco"><h2>O seu critério para parar</h2>
+      <p class="dica">O fato que mudaria a sua decisão, escrito antes, para você não decidir pelo entusiasmo. ${esc(AULA.moldeCriterio)} Deixamos uma sugestão: reescreva com as suas palavras.</p>
+      <label for="criterio" class="sr">Critério para parar</label>
+      <textarea id="criterio">${esc(S.criterio)}</textarea>
+    </section>
+
+    <section class="bloco"><h2>O seu Compromisso de 7 dias</h2>
+      <p class="dica">Uma ação só, a que mais tira Não sei. ${esc(AULA.dicaCompromisso || "")}</p>
+      <label for="c-acao">Ação</label><textarea id="c-acao" style="min-height:72px">${esc(S.compromisso.acao)}</textarea>
+      <label for="c-resp">Responsável</label><input type="text" id="c-resp" value="${esc(S.compromisso.responsavel)}">
+      <label for="c-prazo">Prazo</label><input type="date" id="c-prazo" value="${esc(S.compromisso.prazo)}">
+      <label for="c-evid">Evidência (o que você vai ter na mão)</label><textarea id="c-evid" style="min-height:72px">${esc(S.compromisso.evidencia)}</textarea>
+    </section>
+
+    ${AULA.secaoFinal ? AULA.secaoFinal(L) : ""}
+
+    <div class="acoes">
+      <button class="btn btn-ouro" id="pdf">${esc(AULA.botaoPDF)}</button>
+      <button class="btn btn-s" id="editar">Revisar as respostas</button>
+      <button class="btn btn-s" id="recomecar">Começar outra página</button>
+      ${PROX ? `<a class="btn btn-p" id="proxima" href="../aula${PROX.n}/index.html">Seguir para a Aula ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
+    </div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+  </div>`;
+  const liga = (id, fn) => document.getElementById(id).addEventListener("input", (e) => { fn(e.target.value); S.resumo = montarResumo(L); salvar(); });
+  liga("criterio", (x) => (S.criterio = x));
+  liga("c-acao", (x) => (S.compromisso.acao = x));
+  liga("c-resp", (x) => (S.compromisso.responsavel = x));
+  liga("c-prazo", (x) => (S.compromisso.prazo = x));
+  liga("c-evid", (x) => (S.compromisso.evidencia = x));
+  if (AULA.ligarFinal) AULA.ligarFinal(L);
+  ligarMentor(L);
+  document.getElementById("editar").onclick = () => irPara(0);
+  document.getElementById("recomecar").onclick = () => { if (confirm("Apagar as respostas desta página neste aparelho e começar de novo?")) { apagar(); S = estadoVazio(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try { (AULA.gerarPDF || gerarFichaPDF)(L); enviarParaZion(montarPayload(L)); document.getElementById("erro-pdf").textContent = ""; }
+    catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+}
+
+/* ---------------------------------------------------------------------
+   6. PDF A4 com jsPDF (fonte padrão Helvetica / Times)
+   --------------------------------------------------------------------- */
+const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], CINZA = [70, 86, 75], VERM = [155, 44, 31];
+const COR_ALERTA = { critico: VERM, ns: [122, 83, 0], sem: [122, 94, 18], atencao: [150, 110, 20], info: [31, 90, 51] };
+const COR_V = { avancar: [31, 90, 51], ajustar: [122, 83, 0], testar: [150, 110, 20], pausar: VERM, pendente: CINZA };
+
+function criarPDF(cabecalho) {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  // A fonte padrão do jsPDF só desenha o alfabeto latino básico: m² vira m2 e as aspas curvas viram retas.
+  const pt = (t) => String(t ?? "").replace(/²/g, "2").replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/\u2026/g, "...").replace(/[\u2013\u2014]/g, "-").replace(/\u2265/g, ">=").replace(/\u2264/g, "<=").replace(/\u2192/g, "->");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const P = { doc, W: 210, H: 297, M: 18, y: 0 };
+  P.CW = P.W - 2 * P.M;
+  P.fundo = () => { doc.setFillColor(...CREME); doc.rect(0, 0, P.W, P.H, "F"); doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, P.W, 0.8, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...CREME); doc.text(cabecalho, P.M, 8); doc.text(`${S.perfil.nome}`.slice(0, 50), P.W - P.M, 8, { align: "right" }); P.y = 22; };
+  P.novaPagina = () => { doc.addPage(); P.fundo(); };
+  P.cabe = (h) => { if (P.y + h > P.H - 22) P.novaPagina(); };
+  P.titulo = (t) => { P.cabe(34); P.y += 4; doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(t, P.M, P.y); P.y += 2.5; doc.setDrawColor(...OURO); doc.setLineWidth(0.7); doc.line(P.M, P.y, P.M + 40, P.y); P.y += 6; };
+  P.par = (t, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.cor || VERDE));
+    const linhas = doc.splitTextToSize(String(t), o.w || P.CW);
+    const lh = (o.size || 10) * 0.45;
+    for (const l of linhas) { P.cabe(lh + 1); doc.text(l, o.x || P.M, P.y); P.y += lh; }
+    P.y += o.after ?? 2;
+  };
+  P.caixa = (rot, t, cor) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    let linhas = doc.splitTextToSize(String(t), P.CW - 10);
+    const max = Math.floor((P.H - 22 - 22 - 12) / 4.3);
+    while (linhas.length) {
+      const parte = linhas.slice(0, max); linhas = linhas.slice(max);
+      const h = parte.length * 4.3 + 10;
+      P.cabe(h + 2);
+      doc.setFillColor(255, 253, 248); doc.setDrawColor(...cor); doc.setLineWidth(0.3); doc.roundedRect(P.M, P.y, P.CW, h, 2, 2, "FD");
+      doc.setFillColor(...cor); doc.rect(P.M, P.y, 1.6, h, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...cor); doc.text(rot.toUpperCase(), P.M + 5, P.y + 5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...VERDE);
+      parte.forEach((l, k) => doc.text(l, P.M + 5, P.y + 9.5 + k * 4.3));
+      P.y += h + 3;
+    }
+  };
+  P.linhaTabela = (cols, larg, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 9);
+    const partes = cols.map((c, k) => doc.splitTextToSize(String(c), larg[k] - 3));
+    const h = Math.max(...partes.map((p) => p.length)) * 4 + 3;
+    P.cabe(Math.min(h, 60));
+    let x = P.M;
+    partes.forEach((p, k) => { doc.setTextColor(...((o.cores && o.cores[k]) || o.cor || VERDE)); p.forEach((l, j) => doc.text(l, x + 1.5, P.y + j * 4)); x += larg[k]; });
+    P.y += h; doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.y - 3.4, P.M + P.CW, P.y - 3.4);
+  };
+  P.caixasNumeros = (box) => {
+    const n = box.length, bw = (P.CW - 3 * (n - 1)) / n;
+    P.cabe(26);
+    box.forEach(([r, v], k) => { const x = P.M + k * (bw + 3); doc.setFillColor(...VERDE); doc.roundedRect(x, P.y, bw, 22, 2, 2, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(r, bw - 5).slice(0, 2), x + 3, P.y + 5); doc.setFont("helvetica", "bold"); doc.setFontSize(11.5); doc.setTextColor(...OURO); doc.text(doc.splitTextToSize(String(v), bw - 5)[0], x + 3, P.y + 17); });
+    P.y += 30;
+  };
+  P.capa = (sobre, l1, l2, sub, extra) => {
+    doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, P.H, "F");
+    doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, P.W - 20, P.H - 20);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text(sobre, P.M + 4, 48);
+    doc.setFont("times", "bold"); doc.setFontSize(32); doc.setTextColor(...CREME); doc.text(l1, P.M + 4, 72); if (l2) doc.text(l2, P.M + 4, 86);
+    doc.setFillColor(...OURO); doc.rect(P.M + 4, 93, 50, 1.2, "F");
+    doc.setFont("helvetica", "normal"); doc.setFontSize(12); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(sub, P.CW - 8), P.M + 4, 104);
+    doc.setFontSize(10); doc.setTextColor(220, 214, 200); doc.text(doc.splitTextToSize("Metodologia Zion de Desenvolvimento de Negócios de Hospedagem", P.CW - 8), P.M + 4, 117);
+    if (extra) extra(doc);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ALUNO", P.M + 4, 200);
+    doc.setFont("times", "bold"); doc.setFontSize(22); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", P.CW - 8), P.M + 4, 210);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(220, 214, 200);
+    doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}`, P.M + 4, 222);
+    doc.text(`Gerada em ${dataBR(hojeISO())}`, P.M + 4, 229);
+    doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, P.CW - 8), P.M + 4, P.H - 26);
+  };
+  P.fechar = (nomeArquivo) => {
+    const n = doc.getNumberOfPages();
+    for (let k = 1; k <= n; k++) {
+      doc.setPage(k);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5);
+      doc.setTextColor(...(k === 1 ? [220, 214, 200] : CINZA));
+      if (k > 1) { doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.H - 16, P.W - P.M, P.H - 16); doc.text(doc.splitTextToSize(RODAPE, P.CW - 14), P.M, P.H - 12); }
+      doc.text(`${k}/${n}`, P.W - P.M, P.H - 12, { align: "right" });
+    }
+    const arq = nomeArquivo + "-" + (S.perfil.nome || "aluno").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+    doc.save(arq);
+    return arq;
+  };
+  return P;
+}
+
+/** O corpo da página desta aula no PDF (usado na ficha e no Dossiê da Aula 6). */
+function corpoDaPaginaPDF(P, L) {
+  const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
+  P.titulo("O resumo");
+  P.caixasNumeros(AULA.numeros(L));
+  const leit = AULA.LEITURAS[L.v];
+  P.caixa("A leitura", `${leit.rot}. ${leit.sub} ${L.motivo}`, VERDE);
+  P.caixa("O ponto mais frágil", L.fragil, VERM);
+  P.y += 2;
+  if (ITENS_NOTA.length) P.par(`Nota: ${L.soma} de ${NOTA_MAX}. Não existe nota de corte: primeiro os alertas, depois a soma, depois a decisão.`, { bold: true, after: 4 });
+  const mentor = mentorDoResumo(L);
+  if (mentor) { P.titulo("Leitura do mentor virtual"); mentorParaPDF(mentor).forEach(([r, t, c]) => P.caixa(r, t, c)); P.y += 2; }
+  P.titulo("Os alertas");
+  if (L.alertas.length) L.alertas.forEach((x) => P.caixa(x.tit, x.txt, COR_ALERTA[x.t] || VERDE));
+  else P.par("Nenhum alerta nesta página.", { cor: CINZA });
+  P.titulo("As contas e as leituras");
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter(Boolean);
+  contas.concat(AULA.contasExtra ? AULA.contasExtra(L) : []).forEach((c) => { P.par(c.rotulo, { bold: true, after: 0.5 }); P.par(tt(c.texto), { cor: CINZA, size: 9.5, after: 3 }); });
+  P.titulo("As suas respostas");
+  const larg = [50, 100, 24];
+  P.linhaTabela(["Pergunta", "Resposta e fonte", "Nota"], larg, { bold: true, size: 8, cor: CINZA });
+  QUESTOES.forEach((q) => {
+    const nota = q.nota ? String(notaItem(q)) : "";
+    const fonte = fonteTexto(q);
+    P.linhaTabela([q.curto, respostaTexto(q) + (fonte ? ` (${fonte})` : ""), nota], larg, { cores: [VERDE, VERDE, nota === "0" || nota === "1" ? VERM : VERDE] });
+  });
+  P.y += 2;
+  if (ITENS_NOTA.length) P.par(`Soma: ${L.soma} de ${NOTA_MAX}. ${AULA.escalaNota}`, { size: 8.5, cor: CINZA, after: 4 });
+  P.titulo("O critério para parar");
+  P.caixa("Escrito antes, para não decidir pelo entusiasmo", S.criterio || "Em branco", [122, 94, 18]);
+  P.titulo("O Compromisso de 7 dias");
+  const cp = S.compromisso || {};
+  [["Ação", cp.acao], ["Responsável", cp.responsavel], ["Prazo", dataBR(cp.prazo)], ["Evidência", cp.evidencia]].forEach(([r, v]) => P.linhaTabela([r, v || "Em branco"], [40, P.CW - 40], {}));
+  P.y += 4;
+}
+
+function gerarFichaPDF(L) {
+  const P = criarPDF(`Zion · Mentoria Zion · ${META.ficha}`);
+  const [l1, l2] = AULA.capaTitulo;
+  P.capa(`TRILHA 1 · AULA ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê do Produto · ${META.tema}`);
+  P.novaPagina();
+  corpoDaPaginaPDF(P, L);
+  P.par(AULA.notaFinalPDF, { size: 8, cor: CINZA });
+  return P.fechar(AULA.arquivoPDF);
+}
+
+/* ---------------------------------------------------------------------
+   7. Início
+   --------------------------------------------------------------------- */
+window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoParaMentor, corpoDoPedidoMentor, get estado() { return S; }, AULA };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) S.perfil = Object.assign(S.perfil, salvo.perfil);
+  render();
+})();
+</script>
+</body>
+</html>
