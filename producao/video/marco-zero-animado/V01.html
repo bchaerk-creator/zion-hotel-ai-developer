@@ -19,9 +19,9 @@
                   font-weight: 600; color: var(--ouro); }
   .pontos .q { position: absolute; top: -150px; left: 0; font-family: 'Playfair Display', serif; font-size: 64px;
                color: var(--creme); white-space: nowrap; }
-  #t2 { left: 120px; top: 360px; width: 900px; }
-  #linha { left: 120px; top: 560px; width: 760px; height: 4px; background: var(--ouro); transform-origin: 0 50%; }
-  #t2b { left: 120px; top: 330px; width: 980px; }
+  #t2 { right: 120px; top: 360px; width: 760px; text-align: right; }
+  #linha { right: 120px; top: 600px; width: 760px; height: 4px; background: var(--ouro); transform-origin: 0 50%; }
+  #t2b { right: 120px; top: 330px; width: 820px; text-align: right; }
   #t3 { left: 120px; top: 150px; width: 1680px; }
   #cards { left: 120px; right: 120px; top: 380px; display: grid; grid-template-columns: repeat(5, 1fr); gap: 24px; }
   #cards .card { height: 300px; box-sizing: border-box; }
@@ -70,7 +70,7 @@ iniciar('V01', tl => {
   tl.to([a1, pts, t1], { autoAlpha: 0, duration: 0.5 }, fim1);
 
   // FALA 2 · visão, caminho, abençoar vidas
-  const a2 = foto('04-hospede-olhando-serra-deck', { lado: 'esq', zoom: [1.08, 1], x: [0, 0] });
+  const a2 = foto('04-hospede-olhando-serra-deck', { lado: 'dir', zoom: [1.08, 1], pos: '50% 72%' });
   tl.fromTo(a2, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, fim1);
   mover(tl, a2, fim1, W(2, 'abençoar vidas') + 0.6);
   const t2 = el(`<div class="titulo" id="t2">${rico('Tudo começa de uma *visão*')}</div>`);
@@ -78,7 +78,7 @@ iniciar('V01', tl => {
   const linha = el(`<div id="linha"></div>`);
   tl.fromTo(linha, { scaleX: 0, autoAlpha: 1 }, { scaleX: 1, duration: 1.4, ease: 'power2.inOut' }, W(2, 'existe um caminho'));
   const tAb = W(2, 'abençoar vidas');
-  const a3 = foto('18-casal-hospedes', { lado: 'esq', zoom: [1, 1.07] });
+  const a3 = foto('18-casal-hospedes', { lado: 'dir', zoom: [1, 1.07], pos: '50% 55%' });
   tl.fromTo(a3, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.7 }, tAb);
   mover(tl, a3, tAb, f3.a);
   tl.to([t2, linha], { autoAlpha: 0, duration: 0.4 }, tAb - 0.1);

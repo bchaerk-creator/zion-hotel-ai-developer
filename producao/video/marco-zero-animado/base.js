@@ -33,9 +33,9 @@ function el(html, css = {}, pai = document.querySelector('#cena')) {
 }
 
 // foto em tela cheia com movimento lento; o degradê verde fica por baixo do texto
-function foto(arq, { lado = 'esq', zoom = [1, 1.08], x = [0, 0] } = {}) {
+function foto(arq, { lado = 'esq', zoom = [1, 1.08], x = [0, 0], pos = '50% 50%' } = {}) {
   const f = el(`<div class="foto"><img src="fotos/${arq}.jpg" alt=""><div class="degrade ${lado}"></div></div>`);
-  f.querySelector('img').style.transform = `scale(${zoom[0]})`;
+  Object.assign(f.querySelector('img').style, { transform: `scale(${zoom[0]})`, objectPosition: pos, transformOrigin: pos });
   f.zoom = zoom; f.x = x;
   return f;
 }
