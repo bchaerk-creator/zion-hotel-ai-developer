@@ -8,7 +8,7 @@ const plano = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').repl
 
 let DADOS;
 function W(nf, frase, depois = 0) {
-  const f = DADOS.falas[nf - 1], alvo = plano(frase);
+  const f = DADOS.falas[nf - 1], alvo = frase.split(/\s+/).map(w => plano(w).join('')).filter(Boolean);
   const pal = f.palavras.map(p => plano(p.p).join(''));
   for (let i = 0; i < pal.length; i++) {
     if (f.palavras[i].a < depois) continue;
