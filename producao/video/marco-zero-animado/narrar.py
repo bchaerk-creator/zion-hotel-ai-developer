@@ -3,14 +3,26 @@
 
   python3 narrar.py V01        ->  audio/V01.wav e audio/V01.json
 
-Voz: Google pt-BR, um pedido por trecho (frase ou vírgula). O tempo de cada trecho é exato; dentro do trecho,
+Voz: Kokoro pm_alex (0,85), frase a frase; ou Google pt-BR, um pedido por trecho. O tempo de cada trecho é exato; dentro do trecho,
 cada palavra recebe o tempo pelo peso das letras. Com audio/V01.m4a (a voz do Bruno), use alinhar.py no lugar.
 """
 import json, re, subprocess, sys, unicodedata, urllib.parse, urllib.request
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
-PRONUNCIA = {'Zion': 'Záion', 'Bubble': 'Bâbol'}  # só a voz; a legenda mantém o texto
+MOTOR = 'kokoro'  # a voz aprovada pelo Bruno: Kokoro pm_alex, 0,85, frase a frase. 'google' fica como alternativa.
+PRONUNCIA = {'Zion': 'Záion', 'Group': 'Grúpi', 'Bubble': 'Bâbol'}
+_K = None
+
+
+def kokoro():
+    global _K
+    if _K is None:
+        sys.path.insert(0, str(AQUI.parent / 'd01-territorio'))
+        import aula
+        aula.AQUI = AQUI.parent / 'd01-territorio'
+        _K = aula.kokoro()
+    return _K  # só a voz; a legenda mantém o texto
 INICIO, ENTRE_FALAS, FIM = 0.6, 0.8, 1.5
 
 
@@ -28,7 +40,9 @@ def falado(t):
 
 
 def trechos(texto):
-    """Frases e, dentro delas, vírgulas e dois-pontos: trecho curto deixa o tempo de cada palavra mais preciso."""
+    """Google: frases e vírgulas (trecho curto, tempo de palavra mais preciso). Kokoro: frase inteira, com respiro."""
+    if MOTOR == 'kokoro':
+        return [(f, 0.45) for f in re.split(r'(?<=[.?!])\s+', texto.strip())]
     saida = []
     for frase in re.split(r'(?<=[.?!])\s+', texto.strip()):
         partes = re.split(r'(?<=[,;:])\s+', frase)
@@ -53,13 +67,20 @@ def main(vid):
         palavras, ini = [], t
         for texto, pausa in trechos(fala['texto']):
             k += 1
-            mp3, wav = trab / f'{k:03d}.mp3', trab / f'{k:03d}.wav'
-            url = 'https://translate.googleapis.com/translate_tts?' + urllib.parse.urlencode(
-                {'client': 'gtx', 'ie': 'UTF-8', 'tl': 'pt-BR', 'q': falado(texto)})
-            mp3.write_bytes(urllib.request.urlopen(url, timeout=60).read())
-            sh('ffmpeg', '-y', '-loglevel', 'error', '-i', mp3, '-af',
-               'silenceremove=start_periods=1:start_threshold=-45dB,areverse,'
-               'silenceremove=start_periods=1:start_threshold=-45dB,areverse', '-ar', '24000', '-ac', '1', wav)
+            wav = trab / f'{k:03d}.wav'
+            if MOTOR == 'kokoro':
+                import numpy as np, soundfile as sf
+                audio, taxa = kokoro().create(falado(texto), voice='pm_alex', speed=0.85, lang='pt-br')
+                idx = np.where(np.abs(audio) > 0.01)[0]
+                sf.write(wav, audio[max(0, idx[0] - 240): idx[-1] + 600], taxa)
+            else:
+                mp3 = trab / f'{k:03d}.mp3'
+                url = 'https://translate.googleapis.com/translate_tts?' + urllib.parse.urlencode(
+                    {'client': 'gtx', 'ie': 'UTF-8', 'tl': 'pt-BR', 'q': falado(texto)})
+                mp3.write_bytes(urllib.request.urlopen(url, timeout=60).read())
+                sh('ffmpeg', '-y', '-loglevel', 'error', '-i', mp3, '-af',
+                   'silenceremove=start_periods=1:start_threshold=-45dB,areverse,'
+                   'silenceremove=start_periods=1:start_threshold=-45dB,areverse', '-ar', '24000', '-ac', '1', wav)
             d = duracao(wav)
             pal = texto.split()
             peso = [len(plano(p)) + 1.5 for p in pal]
