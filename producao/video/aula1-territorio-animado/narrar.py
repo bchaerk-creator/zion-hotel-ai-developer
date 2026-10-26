@@ -10,7 +10,21 @@ import json, re, subprocess, sys, unicodedata, urllib.parse, urllib.request
 from pathlib import Path
 
 AQUI = Path(__file__).resolve().parent
-MOTOR = 'kokoro'  # a voz aprovada pelo Bruno: Kokoro pm_alex, 0,85, frase a frase. 'google' fica como alternativa.
+import base64, os
+# Voz: com GOOGLE_TTS_API_KEY no ambiente usa o Google Cloud (GOOGLE_TTS_VOICE, padrão pt-BR-Chirp3-HD-Charon);
+# sem chave, o Kokoro pm_alex (0,85, frase a frase). VOZ_MOTOR força um deles: 'nuvem', 'kokoro' ou 'google'.
+MOTOR = os.environ.get('VOZ_MOTOR') or ('nuvem' if os.environ.get('GOOGLE_TTS_API_KEY') else 'kokoro')
+VOZ_NUVEM = os.environ.get('GOOGLE_TTS_VOICE', 'pt-BR-Chirp3-HD-Charon')
+
+
+def nuvem(texto, destino):
+    corpo = json.dumps({'input': {'text': texto}, 'voice': {'languageCode': 'pt-BR', 'name': VOZ_NUVEM},
+                        'audioConfig': {'audioEncoding': 'LINEAR16', 'sampleRateHertz': 24000}}).encode()
+    req = urllib.request.Request('https://texttospeech.googleapis.com/v1/text:synthesize', data=corpo, method='POST',
+                                 headers={'Content-Type': 'application/json',
+                                          'X-Goog-Api-Key': os.environ['GOOGLE_TTS_API_KEY']})
+    with urllib.request.urlopen(req, timeout=120) as r:
+        destino.write_bytes(base64.b64decode(json.load(r)['audioContent']))
 PRONUNCIA = {'Zion': 'Záion', 'Group': 'Grúpi', 'Bubble': 'Bâbol'}
 _K = None
 
@@ -41,8 +55,8 @@ def falado(t):
 
 def trechos(texto):
     """Google: frases e vírgulas (trecho curto, tempo de palavra mais preciso). Kokoro: frase inteira, com respiro."""
-    if MOTOR == 'kokoro':
-        return [(f, 0.45) for f in re.split(r'(?<=[.?!])\s+', texto.strip())]
+    if MOTOR in ('kokoro', 'nuvem'):
+        return [(f, 0.45 if MOTOR == 'kokoro' else 0.3) for f in re.split(r'(?<=[.?!])\s+', texto.strip())]
     saida = []
     for frase in re.split(r'(?<=[.?!])\s+', texto.strip()):
         partes = re.split(r'(?<=[,;:])\s+', frase)
@@ -68,7 +82,13 @@ def main(vid):
         for texto, pausa in trechos(fala['texto']):
             k += 1
             wav = trab / f'{k:03d}.wav'
-            if MOTOR == 'kokoro':
+            if MOTOR == 'nuvem':
+                bruto = trab / f'{k:03d}-nuvem.wav'
+                nuvem(falado(texto), bruto)
+                sh('ffmpeg', '-y', '-loglevel', 'error', '-i', bruto, '-af',
+                   'silenceremove=start_periods=1:start_threshold=-50dB,areverse,'
+                   'silenceremove=start_periods=1:start_threshold=-50dB,areverse', '-ar', '24000', '-ac', '1', wav)
+            elif MOTOR == 'kokoro':
                 import numpy as np, soundfile as sf
                 audio, taxa = kokoro().create(falado(texto), voice='pm_alex', speed=0.85, lang='pt-br')
                 idx = np.where(np.abs(audio) > 0.01)[0]
