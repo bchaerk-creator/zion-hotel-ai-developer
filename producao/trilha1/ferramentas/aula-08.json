@@ -1,0 +1,242 @@
+{
+  "id": "t1-a08",
+  "slug": "1-8",
+  "nome_curto": "receitas",
+  "titulo": "Receitas e custos · Quanto entra, quanto sobra",
+  "aula": 8,
+  "objetivo": "Você sai sabendo quanto cada noite vendida deixa, quanto sobra no ano normal, quais meses não fecham e em que ocupação a conta empata.",
+  "campos": [
+    {
+      "id": "unidades",
+      "rotulo": "Unidades",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "unidades"
+    },
+    {
+      "id": "diaria_media",
+      "rotulo": "Diária média, com fonte (R$)",
+      "tipo": "moeda",
+      "ajuda": "A da Aula 3, pelas noites vendidas, nunca a do fim de semana de alta. Exemplo: R$ 645.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "meses_alta",
+      "rotulo": "Meses de alta",
+      "tipo": "numero",
+      "ajuda": "Da curva da Aula 3. Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "meses",
+      "minimo": 0,
+      "maximo": 12
+    },
+    {
+      "id": "ocup_alta",
+      "rotulo": "Ocupação na alta",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 64%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "meses_vale",
+      "rotulo": "Meses de vale (os fracos)",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 5. Os que sobram são os médios.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "meses",
+      "minimo": 0,
+      "maximo": 12
+    },
+    {
+      "id": "ocup_vale",
+      "rotulo": "Ocupação no vale",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 22%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "ocup_media",
+      "rotulo": "Ocupação nos meses médios",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 40%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "deducoes_pct",
+      "rotulo": "Impostos, comissões e cancelamento",
+      "tipo": "percentual",
+      "ajuda": "Até o contador responder, use a convenção da escola: 17%. Exemplo: 17%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "variavel_noite",
+      "rotulo": "O que cada noite consome, fora a limpeza (R$ por noite)",
+      "tipo": "moeda",
+      "ajuda": "Enxoval do dia, amenidades, energia e água da unidade ocupada, café. Exemplo: R$ 60. Se não sabe, marque Não sei.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "limpeza_estadia",
+      "rotulo": "Limpeza completa, troca e lavanderia, por estadia (R$)",
+      "tipo": "moeda",
+      "ajuda": "Por estadia, não por noite. Exemplo: R$ 120.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "estadia_media",
+      "rotulo": "Estadia média (noites)",
+      "tipo": "numero",
+      "ajuda": "Hipótese até o calendário mostrar a real. Exemplo: 2 noites.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "noites"
+    },
+    {
+      "id": "fixos_operacionais_mes",
+      "rotulo": "Fixos operacionais do mês (R$)",
+      "tipo": "moeda",
+      "ajuda": "Folha e encargos, energia comum, internet, contador, seguro, manutenção, taxas, marketing. Exemplo: R$ 10.500.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "retirada_mes",
+      "rotulo": "O custo do seu trabalho por mês (R$)",
+      "tipo": "moeda",
+      "ajuda": "Horas por semana × custo por hora de contratar alguém × 4,33. Exemplo: 8 × 40 × 4,33 = R$ 1.400.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "reserva_pct",
+      "rotulo": "Reserva de reposição, % da receita bruta",
+      "tipo": "percentual",
+      "ajuda": "Escolha entre 3% e 5%. Exemplo: 5%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    }
+  ],
+  "calculos": [
+    {
+      "id": "noites",
+      "nome": "Noites por mês e no ano",
+      "formula": "meses_medios = 12 - meses_alta - meses_vale; noites_mes_alta = unidades × 30 × ocup_alta; noites_mes_media = unidades × 30 × ocup_media; noites_mes_vale = unidades × 30 × ocup_vale; noites_ano = meses_alta × noites_mes_alta + meses_medios × noites_mes_media + meses_vale × noites_mes_vale; ocup_ano = noites_ano / (unidades × 360)",
+      "saida": "noites, %",
+      "fonte": "E-book Aula 8, cap. 4 (convenção de meses de 30 dias; Marina: 415,8 noites, 38,5%)"
+    },
+    {
+      "id": "receita",
+      "nome": "Receita bruta e real",
+      "formula": "receita_bruta = noites_ano × diaria_media; receita_real = receita_bruta × (1 - deducoes_pct)",
+      "saida": "R$",
+      "fonte": "E-book Aula 8, cap. 4 (Marina: R$ 268.191 e R$ 222.598,53)"
+    },
+    {
+      "id": "variavel_por_noite",
+      "nome": "Custo variável por noite vendida",
+      "formula": "variavel_total = variavel_noite + limpeza_estadia / estadia_media + 1% × diaria_media",
+      "saida": "R$",
+      "se_nao_sei": "Item em Não sei: a conta fica \"em branco\" e a página pede o orçamento; não usar número da Marina sem marcar \"provisório\".",
+      "fonte": "E-book Aula 8, cap. 5 (limpeza por estadia; quebra de 1%; Marina: 60 + 60 + 6,45 = R$ 126,45)"
+    },
+    {
+      "id": "contribuicao_noite",
+      "nome": "Quanto cada noite vendida deixa",
+      "formula": "contribuicao_noite = diaria_media × (1 - deducoes_pct) - variavel_total",
+      "saida": "R$",
+      "fonte": "E-book Aula 8, cap. 3 (conta de uma linha; Marina: R$ 408,90)"
+    },
+    {
+      "id": "fixo_completo",
+      "nome": "Fixo completo do mês",
+      "formula": "reserva_mes = reserva_pct × receita_bruta / 12; fixo_completo_mes = fixos_operacionais_mes + retirada_mes + reserva_mes",
+      "saida": "R$",
+      "leitura": "Reserva fora de 3% a 5%: avisar.",
+      "fonte": "E-book Aula 8, cap. 5 (Marina: 10.500 + 1.400 + 1.100 = R$ 13.000)"
+    },
+    {
+      "id": "cascata",
+      "nome": "A cascata do ano de regime",
+      "formula": "margem_contrib = noites_ano × contribuicao_noite; resultado_operacional = margem_contrib - 12 × (fixos_operacionais_mes + retirada_mes); depois_reserva = resultado_operacional - 12 × reserva_mes; margem = depois_reserva / receita_bruta",
+      "saida": "R$, %",
+      "leitura": "Acima de 30%: boa. 20% a 30%: viável. 10% a 20%: apertada. Abaixo de 10%: o modelo não fecha (Jornada do COMO, Etapa 02).",
+      "fonte": "E-book Aula 8, cap. 6 (Marina: R$ 27.220,62 e R$ 14.020,62, 5,2%)"
+    },
+    {
+      "id": "mes_a_mes",
+      "nome": "Resultado de cada estação e os meses que não fecham",
+      "formula": "resultado_mes_X = noites_mes_X × contribuicao_noite - fixo_completo_mes (X = alta, média, vale); falta_vale = meses_vale × resultado_mes_vale (se negativo)",
+      "saida": "R$",
+      "fonte": "E-book Aula 8, cap. 6 (Marina: vale de -R$ 4.903,78 por mês, -R$ 24.518,90 nos cinco)"
+    },
+    {
+      "id": "equilibrio",
+      "nome": "Ponto de equilíbrio e folga",
+      "formula": "noites_equilibrio_ano = 12 × fixo_completo_mes / contribuicao_noite; ocup_equilibrio = noites_equilibrio_ano / (unidades × 360); folga_pontos = ocup_ano - ocup_equilibrio",
+      "saida": "noites, %, pontos",
+      "leitura": "Folga abaixo de 10 pontos: projeto apertado.",
+      "fonte": "E-book Aula 8, cap. 6 (Ponto de Equilíbrio Zion; Marina: 35,3%, folga de 3,2 pontos)"
+    },
+    {
+      "id": "custo_por_diaria",
+      "nome": "Custo por diária vendida",
+      "formula": "custo_X = variavel_total + fixo_completo_mes / noites_mes_X (alta, média, vale); custo_ano = variavel_total + 12 × fixo_completo_mes / noites_ano",
+      "saida": "R$",
+      "fonte": "E-book Aula 8, cap. 6 (Custo por Diária Vendida, Jornada do COMO)"
+    },
+    {
+      "id": "diaria_criterio",
+      "nome": "Diária mínima para a margem chegar a 10%",
+      "formula": "parte_fixa = variavel_noite + limpeza_estadia / estadia_media; diaria_10 = (12 × fixo_completo_mes / noites_ano + parte_fixa) / (1 - deducoes_pct - 1% - 10%)",
+      "saida": "R$",
+      "leitura": "É a diária que o teste de preço precisa mostrar para sair de \"não fecha\".",
+      "fonte": "E-book Aula 8, cap. 7 (conferência dos R$ 688 da Marina: 0,72 × d - 120 = 375,18)"
+    },
+    {
+      "id": "taxa_que_empata",
+      "nome": "Taxa de gestão que só empata (se a proposta assumir o seu trabalho)",
+      "formula": "taxa_empata = 12 × retirada_mes / receita_bruta",
+      "saida": "%",
+      "leitura": "Não é taxa de mercado: é a régua para ler propostas escritas.",
+      "fonte": "E-book Aula 8, cap. 6 (Marina: 6,3% da receita bruta)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se margem < 0 e folga_pontos < 0 entao 'pausar'; senao se margem < 10% entao 'testar'; senao se margem < 20% ou folga_pontos < 10 entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 8, cap. 6 (régua da margem e da folga) e cap. 7 (veredito da Marina: testa, a 5,2%)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Margem depois da reserva de 20% ou mais (viável ou boa) e folga de 10 pontos ou mais.",
+    "testar": "Margem abaixo de 10%, pela régua o modelo não fecha com a diária de hoje: antes da obra, testa se o produto sustenta uma diária acima da média (é o caso da Marina).",
+    "ajustar": "Margem de 10% a 20% (apertada) ou folga abaixo de 10 pontos: mexer no fixo, no produto ou no número de unidades antes de seguir.",
+    "pausar": "A operação não paga nem o fixo na ocupação esperada (resultado negativo e ocupação abaixo do equilíbrio): pausa e volta ao produto ou ao fixo antes de assinar a obra.",
+    "criterio_para_parar": "Molde da Marina: se o teste não mostrar diária média de pelo menos a diária mínima para 10% de margem (na Marina, cerca de R$ 688), a margem fica abaixo de 10% e, pela régua, o modelo não fecha; pausa e volta ao produto ou ao fixo, antes de assinar a obra.",
+    "fonte": "E-book Aula 8, caps. 6 e 7; auditoria-aula-8-receitas.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 8 da Trilha 1 da Mentoria Zion (Receitas, custos e projeção), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 7 · Modelo de Receitas e Custos\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Cinco palavras que não são sinônimas: faturamento, receita real, margem de contribuição, lucro (resultado) e caixa. Caixa não é lucro.\n- Cascata em seis degraus (cada custo tem um degrau só): 1 receita bruta; 2 menos impostos sobre a receita, comissões e cancelamento = receita real; 3 menos o que cada noite consome = margem de contribuição; 4 menos o fixo do mês com o trabalho de quem opera = resultado operacional; 5 menos taxa de gestão, aluguel, marca, se houver = EBITDA; 6 menos a reserva de reposição = o que sobra depois do desgaste. Juros e imposto sobre o lucro ficam abaixo, com o contador.\n- Receita = diária média × ocupação × unidades × dias, mês a mês pelo calendário de sazonalidade. Declare a convenção de dias (a escola usa meses de 30 dias). Nunca use a diária de fim de semana de alta nem a ocupação da alta.\n- Convenção da escola para deduções: 15% de impostos e comissões mais 2% de cancelamento, total 17%, até ter o número do contador e do extrato. A quebra de 1% é custo variável. Por isso a conta de uma linha usa 0,82: contribuição por noite = diária × 0,82 menos o que a noite consome. Qual imposto incide e com que alíquota, só o contador define.\n- Outras receitas (serviços além da diária) são upside, não fundação: ficam fora da base.\n- Custo variável é o que só sai porque a noite foi vendida. A limpeza se calcula por estadia, dividida pela estadia média. A comissão não entra duas vezes.\n- Lista de Custos Fixos (Jornada do COMO): doze linhas, e três quase nunca entram: a reserva, o pró-labore e a manutenção preventiva. O trabalho do dono é custo: horas por semana × custo por hora de contratar alguém × 4,33. A reserva de reposição é de 3% a 5% da receita; reserva e depreciação nunca se somam.\n- Régua da margem no ano de regime, depois de impostos e da reserva (Jornada do COMO, Etapa 02): acima de 30% boa para pequeno porte; de 20% a 30% viável; de 10% a 20% apertada; abaixo de 10% o modelo não fecha. Abaixo de 10%, as saídas da fonte: mais unidades, diária maior por posicionamento, fixo menor ou outro destino. \"Quando a conta não fecha, a conta está certa.\" Não compare com a régua de EBITDA da hotelaria tradicional.\n- Ponto de equilíbrio = fixo completo ÷ contribuição por noite; ocupação de equilíbrio = noites de equilíbrio ÷ noites possíveis. Folga = ocupação esperada menos a de equilíbrio; menos de 10 pontos é projeto apertado.\n- Custo por diária vendida = variável por noite + fixo do período ÷ noites vendidas. Acima dele a venda contribui para tudo; entre o variável e ele, paga parte do fixo; abaixo do variável, destrói valor. Em mês de baixa o custo por diária está no pico.\n- A diária é a alavanca de maior efeito: cada real a mais vira R$ 0,82 de margem em todas as noites. Mas diária sem produto é só desejo: o próximo passo é um teste, não uma obra.\n- Taxa que empata uma proposta de gestão = o que ela substitui ÷ receita bruta. Não existe faixa de taxa de gestão nas fontes; peça propostas por escrito.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". A régua da margem decide a leitura; a folga confirma o risco. Se a margem está abaixo de 10% e a diária usada é a do mercado, o veredito é testar o preço do produto, nunca avançar para a obra. Não sugira desconto para encher meses fracos: a fonte manda produto e preço, não desconto.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se o teste de preço não mostrar diária média de pelo menos R$ [calculos.diaria_criterio], a minha margem fica abaixo de 10% e o modelo não fecha: eu pauso e volto ao produto ou ao fixo antes de assinar a obra.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nEscrever a frase do resultado, com a cascata dos seis degraus e o equilíbrio por trás: \"No ano de regime, a operação gera R$ X de resultado operacional, R$ Y depois da reserva, com equilíbrio em Z% de ocupação contra W% esperados.\" Responsável: o aluno, não o contador. Prazo: 7 dias, antes da Aula 9. Evidência: a folha impressa, com data, ao lado do palpite inicial. Se já existe, troque por: pedir orçamento escrito das três maiores linhas do fixo, começando pela equipe; ou mostrar a conta ao contador e anotar o imposto sobre a receita que ele indicar, com a data.\n\nONDE A ZION ENTRA (só se couber, uma frase, sem promessa):\nSó se o aluno estiver comparando com gestão profissional: a Zion Hotel Management é um dos caminhos e a Zion avalia cada caso; a proposta precisa dizer quanto vende a mais, por escrito.\n\nUse os valores de \"calculos\" com duas casas quando forem reais. Se o aluno usou a convenção de 17%, lembre em uma frase que o imposto real é do contador.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 7 · Modelo de Receitas e Custos",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-8-receitas.md",
+    "/home/claude/mz-trilha/ebook-08-receitas.txt"
+  ],
+  "pendente_bruno": [
+    "Correspondência da régua da margem com os quatro vereditos (abaixo de 10% = testar; 10% a 20% = ajustar; 20% ou mais com folga de 10 pontos = avançar): leitura da página a partir da Marina, a confirmar.",
+    "Custos ilustrativos herdados do e-book F02 (R$ 60 por noite, R$ 120 por estadia, fixos de R$ 10.500): usar como exemplo ou deixar \"em branco\" (auditoria Aula 8, item 2). A página não preenche nada por padrão.",
+    "Veredito \"testa\" a 5,2% e critério de cerca de R$ 688 (item 6)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}
