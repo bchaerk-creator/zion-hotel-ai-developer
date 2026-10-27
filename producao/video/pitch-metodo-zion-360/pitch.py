@@ -76,7 +76,7 @@ def legendas_ass(palavras, destino, rodape=None):
               '[V4+ Styles]',
               'Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, BorderStyle, '
               'Outline, Shadow, Alignment, MarginL, MarginR, MarginV',
-              'Style: L,Inter SemiBold,44,&H00E8F1F5,&H00000000,&HB01C2616,0,0,3,14,0,2,200,200,70',
+              'Style: L,Inter SemiBold,44,&H00E8F1F5,&H401C2616,&H401C2616,0,0,3,16,0,2,200,200,70',  # caixa (estilo 3): a cor vem do contorno
               'Style: R,Inter,22,&H00BCCFD9,&H00000000,&H00000000,0,0,1,0,0,2,160,160,28', '',
               '[Events]', 'Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text']
     blocos, atual = [], []
