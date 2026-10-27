@@ -1,0 +1,369 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Diagnóstico prévio</title>
+<meta name="description" content="Ferramenta do Marco Zero da Trilha 1 do Método Zion 360°: em uns seis minutos você vê onde está, o seu ponto mais frágil e a primeira ação para os próximos sete dias.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:8px}
+.campo-num input{flex:1;min-width:0;font-size:1.25rem;font-weight:600}
+.campo-num .un{display:flex;align-items:center;padding:0 12px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn-p[disabled],.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:10px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.marina{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.marina h3{color:var(--dourado-escuro)}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.9rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.fonte{margin-top:16px}
+.fonte legend{font-weight:600;padding:0;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.conta{border-bottom:1px solid var(--linha);padding:10px 0}
+.conta:last-child{border:0}
+.conta b{display:block}
+.conta p{margin:2px 0 0;color:var(--texto-2);font-size:.95rem;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-sem{background:#F3EEDF;border-color:var(--dourado-escuro);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+td.n,th.n{text-align:center;font-weight:700;width:3.2em}
+.nota-0,.nota-1{color:var(--critico)}
+.soma{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap}
+.soma strong{font-family:"Playfair Display",Georgia,serif;font-size:2rem}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.pag{border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.pag .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pag .cab b{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.s-avancar{background:var(--ok-bg);color:var(--ok)}
+.s-ajustar{background:var(--atencao-bg);color:var(--atencao)}
+.s-testar{background:#FFF0D0;color:#6B4600}
+.s-pausar{background:var(--critico-bg);color:var(--critico)}
+.s-pendente{background:var(--creme-2);color:var(--texto-2)}
+.pag p{margin:6px 0 0;font-size:.93rem;color:var(--texto-2);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(4,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Método Zion 360°</div><div class="etiqueta">Trilha 1 · Marco Zero<br>Diagnóstico prévio</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.<br>Do terreno ao negócio que funciona.</footer>
+<script>
+const CHAVE = "zion-t1-marco-zero";
+const AULA1 = "../aula1/";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nomeAnterior = () => { for (let n = 1; n <= 7; n++) { try { const x = JSON.parse(localStorage.getItem("zion-t1-aula" + n)); if (x && x.nome) return x.nome; } catch (e) {} } return ""; };
+
+const SITUACOES = [
+  { v: "terreno", r: "Tenho um terreno e ainda não hospedo ninguém" },
+  { v: "ideia", r: "Tenho uma ideia, ou o capital, e ainda não tenho o terreno" },
+  { v: "opero", r: "Já opero uma hospedagem e quero crescer" },
+];
+const DORES = [
+  { v: 1, r: "Tenho o terreno e não tenho o capital", leitura: "É o milionário descapitalizado. Se você tem a terra e a matrícula, já tem mais da metade do caminho. O plano é a isca: sem ele, o sócio, o banco ou o investidor não vem." },
+  { v: 2, r: "Tenho o capital e não sei o que fazer", leitura: "Quem só construiu e ficou com o calendário vazio não errou por falta de dinheiro. Errou por decidir fora de ordem." },
+  { v: 3, r: "Preciso estruturar para entrar com um sócio, um banco ou um investidor", leitura: "Qual o melhor produto, quanto custa, quanto retorna e em quanto tempo: é isso que eles vão perguntar. A meta é responder com número." },
+  { v: 4, r: "Preciso de clareza para decidir", leitura: "Esse é o grande objetivo desta trilha. Não é a Zion que decide por você. É você, com os números na mão." },
+];
+const CINCO = [
+  { id: "visao", r: "Visão", p: "O que você vai construir?" },
+  { id: "demanda", r: "Demanda", p: "Existe mercado para isso?" },
+  { id: "tempo", r: "Tempo", p: "Em quanto tempo?" },
+  { id: "modo", r: "Modo", p: "Com que conhecimento e estratégia?" },
+  { id: "resultado", r: "Resultado", p: "O que isso te devolve?" },
+];
+const AULAS = [
+  { n: 1, etapa: "Ler o lugar", t: "Território e destino", p: "Sei o que o meu terreno permite", s: "A matrícula atualizada, o CAR, a zona da prefeitura e o acesso.", acao: "Pedir a matrícula atualizada no cartório e o CAR, e fazer as subtrações da área. Se já tem os dois, pedir à concessionária, por escrito, a distância até o poste e a tensão." },
+  { n: 2, etapa: "Ler o lugar", t: "Mercado e demanda", p: "Sei quem paga, quanto e quando na minha região", s: "Os comparáveis, a diária, a ocupação e a curva do ano.", acao: "Montar a lista de 10 a 20 comparáveis no Airbnb e no Booking, no raio de 30 minutos." },
+  { n: 3, etapa: "Desenhar o produto", t: "Produto e tipologias", p: "Sei o que vou vender e para quem", s: "O público, a experiência, a promessa e a unidade.", acao: "Ler cem avaliações de cinco comparáveis e contar quem veio." },
+  { n: 4, etapa: "Desenhar o produto", t: "Modelo de negócio", p: "Sei se é venda ou renda, e quem vai operar", s: "Alugar, hospedar ou vender, e quem cuida do dia a dia.", acao: "Responder, com quem vive com você, se você quer estar dentro da operação." },
+  { n: 5, etapa: "Desenhar o terreno", t: "Masterplan", p: "Tenho o terreno inteiro no papel", s: "Onde nunca construir, o que precisa existir e onde fica cada coisa.", acao: "Pintar de vermelho no mapa o que nunca será construído, com o motivo ao lado." },
+  { n: 6, etapa: "Desenhar o terreno", t: "Estudo de massas", p: "Sei o que cabe de verdade, pela lei e pelo mercado", s: "Os índices da zona, o que se vende e o que não se vende.", acao: "Pedir à prefeitura, por escrito, a zona e os índices do terreno." },
+  { n: 7, etapa: "Desenhar o terreno", t: "Briefing e Dossiê do Produto", p: "Tenho o briefing do arquiteto e o nome, a promessa e o conceito do empreendimento", s: "O que entregar ao arquiteto, e a identidade mínima: nome, promessa e conceito visual.", acao: "Escrever em uma linha a promessa do empreendimento: para quem, qual experiência e por que ali." },
+];
+const NIV5 = [{ v: 2, r: "Com número" }, { v: 1, r: "Tenho uma ideia" }, { v: 0, r: "Não sei" }];
+const NIVJ = [{ v: 2, r: "Já tenho" }, { v: 1, r: "Em parte" }, { v: 0, r: "Não sei" }];
+
+const TELAS = ["abertura", "situacao", "dor", "cinco", "jornada", "resultado"];
+let S = ler() || { tela: 0, nome: nomeAnterior(), email: "", cidade: "", situacao: "", dor: "", cinco: {}, jornada: {} };
+/* O diagnóstico aprofunda o Raio-X do Terreno: o que o Raio-X já respondeu não é perguntado de novo.
+   Lê o Raio-X salvo neste navegador (mesmo domínio) ou os parâmetros do link: ?sit=terreno&dor=1&nome=...&cid=... */
+function importarRaioX() {
+  let rx = null;
+  try { const x = JSON.parse(localStorage.getItem("zion-raiox")); if (x && x.r && x.r.situacao) rx = { sit: x.r.situacao, dor: x.r.dor, nome: x.r.contato && x.r.contato.nome, mail: x.r.contato && x.r.contato.mail, cid: x.r.local }; } catch (e) {}
+  try { const q = new URLSearchParams(location.search); if (q.get("sit")) rx = { sit: q.get("sit"), dor: q.get("dor"), nome: q.get("nome"), mail: "", cid: q.get("cid") }; } catch (e) {}
+  if (!rx || !["terreno", "ideia", "opero"].includes(rx.sit)) return;
+  if (!S.situacao) S.situacao = rx.sit;
+  if (!S.dor && ["1", "2", "3", "4"].includes(String(rx.dor))) S.dor = String(rx.dor);
+  if (!S.dor && rx.sit === "opero") S.dor = "4";
+  if (!S.nome && rx.nome) S.nome = String(rx.nome).slice(0, 80);
+  if (!S.email && rx.mail) S.email = String(rx.mail).slice(0, 120);
+  if (!S.cidade && rx.cid) S.cidade = String(rx.cid).slice(0, 120);
+  S.doRaioX = true; S.dorRaioX = String(rx.dor || "");
+}
+importarRaioX();
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Pergunta ${i} de ${tot}</span><span>Uns seis minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(ok, rot) {
+  return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai" ${ok ? "" : "disabled"}>${rot || "Avançar"}</button></div>`;
+}
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = !S.doRaioX && (S.situacao || S.dor);
+    const doRx = S.doRaioX && S.situacao && S.dor ? `<div class="retomar"><b>O seu Raio-X do Terreno já respondeu a sua situação e a sua dor.</b> Aqui a gente não pergunta de novo: vamos direto ao que aprofunda, as cinco perguntas antes de investir e a jornada.</div>` : "";
+    h += `<div class="card"><div class="eyebrow">Marco Zero · Faça agora</div><h1>O seu diagnóstico prévio</h1>
+    <p class="lead">Em uns seis minutos, você vê onde está hoje, o seu ponto mais frágil e a primeira ação para os próximos sete dias.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Quase todo mundo começa pela obra, e a obra é o último passo. Quem sabe onde está não começa pela obra.</div>
+    <div><b>Como vamos fazer</b>${S.doRaioX && S.situacao && S.dor ? "Duas telas: as cinco perguntas antes de investir e a jornada dos sete pilares." : "Quatro telas: a sua situação, a sua dor, as cinco perguntas antes de investir e a jornada."} Onde não souber, marque Não sei: também é diagnóstico.</div>
+    <div><b>Para que serve</b>Você sai sabendo por qual pilar começar e com uma ação de sete dias, em PDF. Junto com o Raio-X, é a página zero do seu Dossiê.</div></div>
+    ${doRx}
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="cidade">Cidade e estado do terreno ou da ideia</label><input type="text" id="cidade" value="${esc(S.cidade)}" placeholder="Ex.: a cidade e a sigla do estado">
+    <p class="dica" style="margin-top:10px">As respostas ficam só neste aparelho. Nada é enviado.</p>
+    <div class="nav"><button class="btn btn-p" id="vai">Começar</button></div></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "cidade"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(proximaVazia())); gravar(); render(); };
+    document.getElementById("vai").onclick = () => { S.tela = S.doRaioX && S.situacao && S.dor ? TELAS.indexOf(proximaVazia()) : 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "situacao") {
+    h += `<div class="card"><div class="eyebrow">A sua situação</div><h2 class="pergunta">Qual destas frases mais parece com você hoje?</h2>
+    <p class="explica">Escolha uma. Esta trilha serve para um terreno, uma ideia ou um empreendimento que já existe.</p>
+    <div class="opcoes">${SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    ${nav(!!S.situacao)}</div>`;
+    app.innerHTML = h;
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); document.getElementById("vai").disabled = false; });
+  }
+  if (t === "dor") {
+    h += `<div class="card"><div class="eyebrow">As quatro dores</div><h2 class="pergunta">O que te trouxe até aqui?</h2>
+    <p class="explica">Pode ser mais de uma, mas escolha a que mais pesa hoje.</p>
+    <div class="opcoes">${DORES.map((o) => `<label class="op"><input type="radio" name="dor" value="${o.v}" ${String(S.dor) === String(o.v) ? "checked" : ""}><span><b>Dor ${o.v}.</b> ${o.r}</span></label>`).join("")}</div>
+    ${nav(!!S.dor)}</div>`;
+    app.innerHTML = h;
+    app.querySelectorAll("input[name=dor]").forEach((x) => x.onchange = () => { S.dor = x.value; gravar(); document.getElementById("vai").disabled = false; });
+  }
+  if (t === "cinco") {
+    h += `<div class="card"><div class="eyebrow">Antes de investir um real</div><h2 class="pergunta">Quais destas cinco perguntas você já responde?</h2>
+    <p class="explica">"Com número" é quando você tem a resposta por escrito ou com conta. "Tenho uma ideia" é quando você imagina, mas ainda não conferiu.</p>
+    <div class="grade">${CINCO.map((c) => `<div class="item"><b>${c.r}</b><small>${c.p}</small><div class="trio" role="radiogroup" aria-label="${c.r}">${NIV5.map((o) => `<label><input type="radio" name="c-${c.id}" value="${o.v}" ${S.cinco[c.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    ${nav(CINCO.every((c) => S.cinco[c.id] != null))}</div>`;
+    app.innerHTML = h;
+    CINCO.forEach((c) => app.querySelectorAll(`input[name=c-${c.id}]`).forEach((x) => x.onchange = () => { S.cinco[c.id] = +x.value; gravar(); document.getElementById("vai").disabled = !CINCO.every((k) => S.cinco[k.id] != null); }));
+  }
+  if (t === "jornada") {
+    h += `<div class="card"><div class="eyebrow">A jornada · 3 etapas e 7 pilares</div><h2 class="pergunta">Onde você está na jornada?</h2>
+    <p class="explica">Cada pilar responde uma pergunta. Marque o que você já tem hoje, com papel ou com conta.</p>
+    <div class="grade">${AULAS.map((a) => `<div class="item"><b>Pilar ${a.n} · ${a.p}</b><small>${a.s}</small><div class="trio" role="radiogroup" aria-label="Pilar ${a.n}">${NIVJ.map((o) => `<label><input type="radio" name="j-${a.n}" value="${o.v}" ${S.jornada[a.n] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    ${nav(AULAS.every((a) => S.jornada[a.n] != null), "Ver o meu diagnóstico")}</div>`;
+    app.innerHTML = h;
+    AULAS.forEach((a) => app.querySelectorAll(`input[name=j-${a.n}]`).forEach((x) => x.onchange = () => { S.jornada[a.n] = +x.value; gravar(); document.getElementById("vai").disabled = !AULAS.every((k) => S.jornada[k.n] != null); }));
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  const v = document.getElementById("volta"), f = document.getElementById("vai");
+  if (v) v.onclick = () => { if (t === "cinco" && S.doRaioX && S.situacao && S.dor) { S.tela = 0; gravar(); render(); window.scrollTo(0, 0); } else ir(-1); };
+  if (f) f.onclick = () => ir(1);
+}
+function proximaVazia() {
+  if (!S.situacao) return "situacao";
+  if (!S.dor) return "dor";
+  if (!CINCO.every((c) => S.cinco[c.id] != null)) return "cinco";
+  if (!AULAS.every((a) => S.jornada[a.n] != null)) return "jornada";
+  return "resultado";
+}
+
+function calcular() {
+  const comNumero = CINCO.filter((c) => S.cinco[c.id] === 2).length;
+  const naoSei5 = CINCO.filter((c) => S.cinco[c.id] === 0);
+  const prontas = AULAS.filter((a) => S.jornada[a.n] === 2).length;
+  const inicio = AULAS.find((a) => S.jornada[a.n] !== 2) || null;
+  const fragilJ = AULAS.find((a) => S.jornada[a.n] === 0) || AULAS.find((a) => S.jornada[a.n] === 1) || null;
+  const dor = DORES.find((d) => String(d.v) === String(S.dor));
+  return { comNumero, naoSei5, prontas, inicio, fragilJ, dor };
+}
+function textoFragil(r) {
+  if (r.fragilJ && S.jornada[r.fragilJ.n] === 0) return `Pilar ${r.fragilJ.n} · ${r.fragilJ.p}: você marcou Não sei. ${r.fragilJ.s}`;
+  if (r.fragilJ) return `Pilar ${r.fragilJ.n} · ${r.fragilJ.p}: você tem só em parte. ${r.fragilJ.s}`;
+  if (r.naoSei5.length) return `${r.naoSei5[0].r}: ${r.naoSei5[0].p} Você marcou Não sei.`;
+  return "Nenhum Não sei na jornada. Confira se cada resposta tem papel ou conta por trás.";
+}
+function resultado() {
+  const r = calcular();
+  const ondeTxt = r.inicio ? `Comece pelo Pilar ${r.inicio.n} · ${r.inicio.t}` : "O seu produto já está desenhado";
+  const ondeSub = r.inicio ? `Na etapa ${r.inicio.etapa}. ${r.inicio.n === 1 ? "É o começo da trilha: a gente lê de fora para dentro." : "Os pilares antes dele você já tem. Vale abrir as fichas deles para conferir."}` : "O próximo passo é a Trilha 2 · Gestão: viabilidade, estrutura jurídica e captação.";
+  const acao = r.inicio ? r.inicio.acao : "Juntar as páginas que você já tem num lugar só, para conferir cada uma com papel ou conta.";
+  const dr = S.dorRaioX;
+  const opTrilha = dr === "6" ? "a Trilha 3 · Operação, para dar padrão à casa" : dr === "7" ? "esta trilha, para desenhar o novo produto com a sua operação como vantagem" : "a Trilha 4 · Aceleração de vendas, para encher o calendário";
+  const opera = S.situacao === "opero" ? `<div class="alerta a-info"><b>Você já opera</b>Pelo que você contou, o seu caminho principal é ${opTrilha}. A Trilha 1 serve para quando você quer desenhar um produto novo ou expandir.</div>` : "";
+  return `<div class="card"><div class="eyebrow">O seu diagnóstico prévio${S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">${ondeTxt}</div><p>${ondeSub}</p></div>
+  <div class="numeros"><div class="num"><small>Das cinco perguntas antes de investir, com número</small><strong>${r.comNumero} de 5</strong></div><div class="num"><small>Das sete páginas do Dossiê do Produto, já tenho</small><strong>${r.prontas} de 7</strong></div></div>
+  ${opera}
+  <section class="bloco"><h2>A sua jornada</h2><div class="jornada">${AULAS.map((a) => `<div class="passo ${r.inicio && r.inicio.n === a.n ? "aqui" : S.jornada[a.n] === 2 ? "ok" : S.jornada[a.n] === 1 ? "meio" : ""}"><i>${a.n}</i><span>${a.etapa} · Pilar ${a.n} · ${a.t}${r.inicio && r.inicio.n === a.n ? " · você começa aqui" : ""}</span></div>`).join("")}</div></section>
+  <section class="bloco"><h2>O seu ponto mais frágil</h2><div class="fragil">${esc(textoFragil(r))}</div></section>
+  <section class="bloco"><h2>A sua dor</h2><p><b>Dor ${r.dor.v}. ${r.dor.r}.</b> ${r.dor.leitura}</p></section>
+  <section class="bloco"><h2>A sua primeira ação de 7 dias</h2><p>Uma ação só, a que mais tira Não sei.</p>
+  <label for="acao">Ação</label><textarea id="acao">${esc(S.acao != null ? S.acao : acao)}</textarea>
+  <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar o meu diagnóstico em PDF</button>
+  <a class="btn btn-p" href="../aula${Math.min(r.inicio ? r.inicio.n : 7, 6)}/">Abrir a ferramenta do Pilar ${r.inicio ? r.inicio.n : 7}</a>
+  <button class="btn btn-s" id="refaz">Refazer o diagnóstico</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); };
+  document.getElementById("prazo").oninput = (e) => { S.prazo = e.target.value; gravar(); };
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = gerarPDF;
+}
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = calcular();
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const rodape = () => { d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.", M, 288, { maxWidth: CW }); };
+  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(s, CW); if (y + ls.length * size * 0.42 > 275) { rodape(); d.addPage(); y = 20; } d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("MÉTODO ZION 360° · TRILHA 1 · MARCO ZERO", M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text("O seu diagnóstico prévio", M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text([S.nome, S.cidade, new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · "), M, 35);
+  y = 54;
+  txt("Onde você está", 9, [122, 94, 18], true);
+  txt(r.inicio ? `Comece pelo Pilar ${r.inicio.n} · ${r.inicio.t} (etapa ${r.inicio.etapa.toLowerCase()}).` : "O seu produto já está desenhado. O próximo passo é a Trilha 2 · Gestão.", 13, null, true);
+  txt(`Das cinco perguntas antes de investir, você responde ${r.comNumero} com número. Das sete páginas do Dossiê do Produto, você já tem ${r.prontas}.`, 10);
+  y += 2; txt("As cinco perguntas", 9, [122, 94, 18], true);
+  CINCO.forEach((c) => txt(`${c.r} (${c.p}): ${NIV5.find((o) => o.v === S.cinco[c.id]).r}`, 10));
+  y += 2; txt("A jornada", 9, [122, 94, 18], true);
+  AULAS.forEach((a) => txt(`Pilar ${a.n} · ${a.p}: ${NIVJ.find((o) => o.v === S.jornada[a.n]).r}`, 10));
+  y += 2; txt("O seu ponto mais frágil", 9, [122, 94, 18], true); txt(textoFragil(r), 10);
+  y += 2; txt("A sua dor", 9, [122, 94, 18], true); txt(`Dor ${r.dor.v}. ${r.dor.r}. ${r.dor.leitura}`, 10);
+  y += 2; txt("A sua primeira ação de 7 dias", 9, [122, 94, 18], true);
+  txt(S.acao != null ? S.acao : (r.inicio ? r.inicio.acao : ""), 11, null, true);
+  if (S.prazo) txt("Até " + S.prazo.split("-").reverse().join("/"), 10);
+  y += 4; txt(`Próximo passo: abra a ferramenta do Pilar ${r.inicio ? r.inicio.n : 7}. Do terreno ao negócio que funciona.`, 10);
+  rodape();
+  d.save("diagnostico-previo-marco-zero.pdf");
+}
+render();
+</script>
+</body>
+</html>
