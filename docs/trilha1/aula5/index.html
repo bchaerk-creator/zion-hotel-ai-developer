@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O Masterplan</title>
-<meta name="description" content="Ferramenta da Aula 5 da Trilha 1 da Mentoria Zion: Masterplan. Você responde uma pergunta por vez e sai com O Masterplan, a página 5 do Dossiê do Produto, em PDF.">
+<meta name="description" content="Ferramenta do Pilar 5 da Trilha 1 da Mentoria Zion: Masterplan. Você responde uma pergunta por vez e sai com O Masterplan, a página 5 do Dossiê do Produto, em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -133,13 +133,13 @@ td.n,th.n{text-align:center;font-weight:700;width:3.2em}
 </style>
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Aula 5<br>Masterplan</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 5<br>Masterplan</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion Exercícios · Trilha 1 · Trilha 1 · Aula 5 · Masterplan
+   Zion Exercícios · Trilha 1 · Trilha 1 · Pilar 5 · Masterplan
    Um arquivo só, gerado por _fonte/build.js. Sem framework.
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    ===================================================================== */
@@ -465,8 +465,8 @@ var Calc_06 = (() => {
   return __toCommonJS(t1_a06_exports);
 })();
 
-/* Aula 5 · Masterplan. Campos: kit-code/ferramentas/aula-06.json, só os do masterplan (onde nunca, programa,
-   onde fica e quando). As condicionantes e a consulta prévia ficam para a Aula 6, junto com o briefing.
+/* Pilar 5 · Masterplan. Campos: kit-code/ferramentas/aula-06.json, só os do masterplan (onde nunca, programa,
+   onde fica e quando). As condicionantes e a consulta prévia ficam para o Pilar 6, junto com o briefing.
    Contas: calculadoras["1-6"] (kit-code/ferramentas/ts/t1-a06.ts), embutida sem mudança (Calc_06).
    A leitura é a regra do veredito do 1-6 sem as duas linhas do briefing (ver leitura abaixo). */
 const contaMult = (v) => (Array.isArray(v) ? v.length : 0);
@@ -494,7 +494,7 @@ const AULA = {
       pergunta: "O que nunca será construído no seu terreno, zona por zona, e por quê?",
       explica: "Escreva cada zona e o motivo ao lado: lei (o que a lei protege) ou produto (o que a sua promessa precisa).",
       porque: "Antes de decidir onde construir, decida onde jamais vai construir. É a decisão mais barata do masterplan, e a única que não se desfaz depois. O masterplan pode preservar além da lei, nunca aquém. E a área livre também é produto.",
-      onde: "<p>Volte ao terreno com o mapa da Aula 1 na mão. As áreas que a lei protege (preservação, reserva legal) estão no <b>CAR</b> e se confirmam com o <b>técnico ambiental</b>. As do produto, só você decide.</p>",
+      onde: "<p>Volte ao terreno com o mapa do Pilar 1 na mão. As áreas que a lei protege (preservação, reserva legal) estão no <b>CAR</b> e se confirmam com o <b>técnico ambiental</b>. As do produto, só você decide.</p>",
       marina: "A preservação do riacho e da nascente (12.000 m²) e a reserva legal (10.000 m²), por lei. Por produto: o bosque que segura o vento da tarde, o bosque do caminho e a crista, que só recebe um deck leve.",
       ondeCurto: "pintar de vermelho no mapa o que nunca será construído, com o motivo ao lado",
     },
@@ -520,20 +520,20 @@ const AULA = {
       pergunta: "Quantas unidades entram na fase um?",
       explica: "É o número da sua Ficha do Produto e do seu Modelo de Negócio.",
       porque: "Com ele e com a área de cada unidade sai a área fechada, a base da régua do apoio.",
-      onde: "<p>No seu Modelo de Negócio (Aula 4) ou na Ficha do Produto (Aula 3).</p>",
+      onde: "<p>No seu Modelo de Negócio (Pilar 4) ou na Ficha do Produto (Pilar 3).</p>",
       marina: "3 cabanas na fase um.",
       ondeCurto: "rever no Modelo de Negócio quantas unidades tem a fase um",
-      veio: () => { const d = dadosDaAula(4); if (d && typeof d.unidades_fase1 === "number") return { valor: String(d.unidades_fase1), de: "Aula 4 (unidades na fase um)" }; const p = dadosDaAula(3); return p && typeof p.unidades_abertura === "number" ? { valor: String(p.unidades_abertura), de: "Aula 3 (unidades na primeira fase)" } : null; },
+      veio: () => { const d = dadosDaAula(4); if (d && typeof d.unidades_fase1 === "number") return { valor: String(d.unidades_fase1), de: "Pilar 4 (unidades na fase um)" }; const p = dadosDaAula(3); return p && typeof p.unidades_abertura === "number" ? { valor: String(p.unidades_abertura), de: "Pilar 3 (unidades na primeira fase)" } : null; },
     },
     {
       id: "area_fechada_unidade", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: false, positivo: true, curto: "Área fechada de cada unidade", bloco: "Movimento 2 · O que precisa existir",
       pergunta: "Qual é a área fechada de cada unidade?",
       explica: "Área fechada é só o interior da unidade. O deck aberto fica fora.",
       porque: "A régua do apoio usa como base a área fechada: o interior das unidades mais o apoio construído. A fonte não diz o que entra na área total, então a trilha escreve a base.",
-      onde: "<p>Na sua Ficha do Produto (Aula 3), em área interna da unidade.</p>",
+      onde: "<p>Na sua Ficha do Produto (Pilar 3), em área interna da unidade.</p>",
       marina: "38 m² fechados por cabana. Três cabanas: 3 × 38 = 114 m².",
       ondeCurto: "rever na Ficha do Produto a área interna da unidade",
-      veio: () => { const d = dadosDaAula(3); return d && typeof d.area_interna === "number" ? { valor: fmtN(d.area_interna, 2), de: "Aula 3 (área interna da unidade)" } : null; },
+      veio: () => { const d = dadosDaAula(3); return d && typeof d.area_interna === "number" ? { valor: fmtN(d.area_interna, 2), de: "Pilar 3 (área interna da unidade)" } : null; },
     },
     {
       id: "area_apoio", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área de apoio da fase um", bloco: "Movimento 2 · O que precisa existir",
@@ -644,7 +644,7 @@ const AULA = {
     },
   ],
   /* Regra do veredito do calculadoras["1-6"], na mesma ordem, sem as duas linhas que dependem do briefing
-     (condicionantes e consulta prévia), que só são perguntadas na Aula 6. Pendência para o Bruno no LEIA-ME. */
+     (condicionantes e consulta prévia), que só são perguntadas no Pilar 6. Pendência para o Bruno no LEIA-ME. */
   leitura(c) {
     const r = c.r;
     const u = paraNumero(r.unidades_fase1), afu = paraNumero(r.area_fechada_unidade), apoio = paraNumero(r.area_apoio);
@@ -666,10 +666,10 @@ const AULA = {
       ].filter(Boolean);
       return { v: "testar", motivo: `Testar: falta pôr à prova ${juntar(m)}.` };
     }
-    return { v: "avancar", motivo: "O apoio está na faixa, os caminhos não se cruzam, a rede é para o projeto completo e a posição das unidades foi conferida no papel e no chão. O estudo de massas, as condicionantes e a consulta prévia vêm na Aula 6." };
+    return { v: "avancar", motivo: "O apoio está na faixa, os caminhos não se cruzam, a rede é para o projeto completo e a posição das unidades foi conferida no papel e no chão. O estudo de massas, as condicionantes e a consulta prévia vêm no Pilar 6." };
   },
   LEITURAS: {
-    avancar: { rot: "Avançar para o estudo de massas", sub: "O terreno está decidido no papel: siga para a Aula 6, Estudo de massas e Dossiê do Produto." },
+    avancar: { rot: "Avançar para o estudo de massas", sub: "O terreno está decidido no papel: siga para o Pilar 6, Estudo de massas e Dossiê do Produto." },
     testar: { rot: "Testar no papel e no chão", sub: "Falta pôr à prova o dia simulado, a caminhada com estacas, os dois caminhos ou a rede." },
     ajustar: { rot: "Ajustar o desenho", sub: "Mude o desenho antes de chamar o arquiteto: corrigir agora custa papel." },
     pausar: { rot: "Pausar e voltar ao produto", sub: "Sem o ponto que sustenta a promessa, volte ao produto." },
@@ -705,7 +705,7 @@ const AULA = {
     if (ga.valor < 3) return ga.texto;
     const n1 = c.notas.find((x) => x.nota === 1);
     if (n1) return `${n1.q.curto}: ${n1.q.semEvidencia || "é estimativa."} Para confirmar: ${n1.q.ondeCurto}.`;
-    return "O masterplan está no papel. Falta o estudo de massas, as condicionantes do briefing e a consulta prévia: é a Aula 6.";
+    return "O masterplan está no papel. Falta o estudo de massas, as condicionantes do briefing e a consulta prévia: é o Pilar 6.";
   },
   criterio: () => "Se a consulta prévia ou o mapa ambiental tirarem as unidades do ponto que sustenta a minha promessa, eu pauso e volto ao produto antes do projeto executivo.",
   moldeCriterio: "Molde: \"Se a consulta prévia ou o mapa ambiental tirarem as unidades de [o ponto que sustenta a promessa], eu pauso e volto ao produto antes do projeto executivo.\"",
@@ -717,7 +717,7 @@ const AULA = {
     return { acao: "Pedir à concessionária, por escrito, o ponto e a tensão de energia para o projeto completo.", evidencia: "A resposta por escrito, com data." };
   },
   dicaCompromisso: "Nenhuma precisa de arquiteto contratado ainda.",
-  depoisLeitura: () => `<p class="dica" style="margin-top:8px">O masterplan desta aula é orientativo: uma estimativa para começar a construir números, que se conversa com o arquiteto e se desenha com profissional habilitado.</p>`,
+  depoisLeitura: () => `<p class="dica" style="margin-top:8px">O masterplan deste pilar é orientativo: uma estimativa para começar a construir números, que se conversa com o arquiteto e se desenha com profissional habilitado.</p>`,
   botaoPDF: "Baixar o meu Masterplan (PDF)",
   capaTitulo: ["O", "Masterplan"],
   arquivoPDF: "Masterplan",
@@ -808,7 +808,7 @@ function ler() {
   return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx };
 }
 
-/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido na Aula 6). */
+/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido no Pilar 6). */
 function montarResumo(L) {
   const lt = AULA.LEITURAS[L.v];
   return {
@@ -1336,7 +1336,7 @@ function criarPDF(cabecalho) {
   return P;
 }
 
-/** O corpo da página desta aula no PDF (usado na ficha e no Dossiê da Aula 6). */
+/** O corpo da página deste pilar no PDF (usado na ficha e no Dossiê do Pilar 6). */
 function corpoDaPaginaPDF(P, L) {
   const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
   P.titulo("O resumo");
