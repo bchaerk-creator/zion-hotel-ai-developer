@@ -162,7 +162,7 @@ def cmd_montar(a):
         sh('ffmpeg', '-y', '-loglevel', 'error', *entradas, '-filter_complex', ';'.join(filtros), '-map', vv, '-map', aa,
            '-c:v', 'libx264', '-crf', '17', '-preset', 'medium', '-pix_fmt', 'yuv420p', '-c:a', 'pcm_s16le', bruto)
         ass = trab / f"pitch{v['n']}.ass"
-        srt = legendas_ass(palavras, ass, rodape=(total - 4.0, total) if v['n'] == 2 else None)
+        srt = legendas_ass(palavras, ass)  # o rodapé legal já está no slide 30
         titulo = v['titulo'].split('·')[1].strip()
         nome = f"{hoje} - Pitch Bloco {v['n']} - {titulo} - Zion"
         final = saida / f'{nome}.mp4'
