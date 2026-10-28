@@ -1,17 +1,17 @@
-<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="pt-BR"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <title>Zion Glamping Store</title>
+<script>document.documentElement.lang="pt-BR"</script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <meta name="description" content="Bubble Zion: a suíte contemplativa noturna para hospedar dentro da natureza, sem obra, em até 90 dias.">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Outfit:wght@300;400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
 :root{
   --bg:#FBF7F1;--sand:#F2EADF;--card:#FFFFFF;--ink:#1E2A22;--mute:#67665C;--line:#E3D9CB;
   --green:#22402F;--deep:#16261C;--gold:#B8963F;--gold2:#E0BE5E;--on-dark:#FBF7F1;--on-dark-mute:rgba(251,247,241,.74);
   --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
 }
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;color-scheme:dark}}
-:root[data-theme="dark"]{--bg:#121814;--sand:#19211C;--card:#1C2520;--ink:#EEE8DD;--mute:#A9A598;--line:#2F3B33;--green:#9CCBAE;--gold:#D9B865;color-scheme:dark}
+
+
 *{box-sizing:border-box}
 [hidden]{display:none!important}
 body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-body)}
@@ -79,8 +79,8 @@ h3{font-size:24px;line-height:1.2}
 
 /* obra */
 :root{--sky:#EAF1EE;--soil:#CDB89A;--grass:#6F8F5E;--concrete:#A9A59C;--wood:#C89A63;--wood-d:#8A6238;--power:#C8A12E;--water:#3D7FB0;--sewer:#7A5A3A;--glass:rgba(220,236,240,.55);--bubble:#7FA3B0;--membrane:#EFE6D8}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--sky:#1D2A26;--soil:#4A3E30;--concrete:#77736B;--glass:rgba(160,200,210,.18)}}
-:root[data-theme="dark"]{--sky:#1D2A26;--soil:#4A3E30;--concrete:#77736B;--glass:rgba(160,200,210,.18)}
+
+
 .obra{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;margin-top:36px;align-items:start}
 .etapas{display:grid;gap:6px}
 .etapas button{all:unset;cursor:pointer;display:grid;grid-template-columns:34px 1fr;align-items:center;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:15px;color:var(--ink)}
@@ -403,17 +403,119 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 .path .btn{justify-self:start;margin-top:6px}
 .soft{font-size:15px;color:var(--on-dark-mute)}.soft a{color:var(--gold2)}
 @media (max-width:760px){.sitf,.paths2,.paths2.p3{grid-template-columns:1fr}}
+
+/* ===== Tema Raio-X: verde-escuro, papel e dourado ===== */
+:root{--bg:#0E1A13;--sand:#13231A;--card:#1B2E22;--ink:#F5F1E8;--mute:#A9B3A5;--line:rgba(245,241,232,.14);
+  --green:#E0BE5E;--deep:#16261C;--gold:#E0BE5E;--gold2:#E0BE5E;--on-dark:#F5F1E8;--on-dark-mute:#C9C4B6;
+  --paper:#F5F1E8;--paper2:#E6DFCF;--ink2:#16261C;
+  --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.7,.1,1);color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body)}
+h1,h2,h3{font-weight:500}
+h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;max-width:22ch}
+h2 em,h3 em{color:var(--gold)}
+.k{font:500 11px/1 var(--f-mono);letter-spacing:.18em;color:var(--gold)}
+.lead,.fine{color:var(--on-dark-mute)}
+section{padding-block:96px}
+.sandbg{background:var(--sand)}
+.dark{background:var(--deep)}
+.btn{border-radius:999px;font:600 15px/1 var(--f-body);min-height:48px;padding:14px 24px;background:linear-gradient(180deg,#E0BE5E,#CFA94A);color:#16261C;box-shadow:0 18px 40px -18px rgba(224,190,94,.55)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:rgba(245,241,232,.4);box-shadow:none}
+.btn.dark{background:var(--paper);color:#16261C;box-shadow:none}
+.col,.mod,.nums div,.dur3>div,.cuid>div,.entorno figure,.exp>div,.fac>div,.vers article,.dentro article,.balcao article,.sl.light,.pout>div,.tp,.box,form,.ok,.obj2 details,.orc ul,.ffe,.sim,.cena,.chips span,.etapas button{border-radius:20px;border-color:var(--line)}
+.col.nao,.limpa li,.quatro div,.pin,.simR>div,.vsx .vh{background:#16261C}
+.tp:hover{border-color:var(--gold)}
+.tp.tpc{background:var(--gold);border-color:var(--gold);color:#16261C}.tp.tpc span{color:#3A3A2E}
+.etapas button[aria-selected="true"],.niveis button[aria-selected="true"]{background:var(--gold);color:#16261C;border-color:var(--gold)}
+.etapas button[aria-selected="true"] i{color:#16261C}
+.dots button[aria-current="true"]{background:var(--gold)}
+.mod .area,.nums b,.pout b,.preco b,.sl .num{color:var(--gold)}
+.pout .hl{background:var(--gold);border-color:var(--gold)}.pout .hl small,.pout .hl span{color:#3A3A2E}.pout .hl b{color:#16261C}
+.vsx span:last-child{color:var(--ink)}.vsx .vh span:last-child{color:var(--gold)}
+.f input,.f select,.f textarea,.sitf input,.pin input{background:#0E1A13;color:var(--ink);border-color:rgba(245,241,232,.22);border-radius:12px}
+.manif{color:var(--gold)}
+.promo{background:var(--gold);color:#16261C}
+.promo .btn.dark{background:#16261C;color:var(--paper)}
+.sl.dark,.sl.green{background:#16261C}
+footer{color:var(--mute)}
+.wa{background:var(--gold)!important;color:#16261C!important}
+/* hero no estilo do Raio-X */
+.zx{position:relative;min-height:min(100svh,920px);overflow:hidden;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);background:var(--bg)}
+.zx-photo{position:relative;grid-column:2;grid-row:1;overflow:hidden}
+.zx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 9s var(--ease)}
+.zx.go .zx-photo img{transform:scale(1)}
+.zx-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(14,26,19,.55) 22%,rgba(14,26,19,0) 55%),linear-gradient(0deg,rgba(14,26,19,.75) 0%,rgba(14,26,19,0) 35%)}
+.zx-giant{position:absolute;z-index:1;left:0;right:0;top:9svh;text-align:center;font:italic 400 clamp(96px,19vw,330px)/.9 var(--f-disp);color:transparent;-webkit-text-stroke:1px rgba(224,190,94,.22);pointer-events:none;user-select:none;opacity:0;transition:opacity 2.4s var(--ease)}
+.zx.go .zx-giant{opacity:1}
+.zx-nav{position:absolute;z-index:3;left:0;right:0;top:0;padding-block:22px}
+.zx-navin{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.zx-brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.22em;font-size:13px;color:var(--ink)}
+.zx-brand span{font:500 11px var(--f-mono);letter-spacing:.16em;color:var(--mute)}
+.zx-brand i{display:block;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E0BE5E 0 30%,#B08D3A 31% 52%,transparent 53%),#223A2B;box-shadow:0 0 0 1px var(--line)}
+.zx-links{display:flex;gap:24px;font:500 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.zx-links a{color:var(--mute);text-decoration:none}.zx-links a:hover{color:var(--ink)}
+.zx-pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;padding:12px 20px;font:600 15px var(--f-body);text-decoration:none;min-height:48px}
+.zx-pill-dark{background:var(--paper);color:#16261C}
+.zx-pill-gold{background:linear-gradient(180deg,#E0BE5E,#CFA94A);color:#16261C;padding:10px 12px 10px 24px;box-shadow:0 18px 40px -18px rgba(224,190,94,.6)}
+.zx-arr{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#16261C;color:#E0BE5E;font-size:16px}
+.zx-link{color:var(--ink);text-underline-offset:5px;text-decoration-color:rgba(245,241,232,.4);font-weight:500}
+.zx-copy{position:relative;z-index:2;grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding-block:140px 110px}
+.zx-in{max-width:560px;display:flex;flex-direction:column;gap:22px;margin-left:auto;margin-right:clamp(0px,4vw,60px)}
+.zx-eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font:500 11px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;margin:0}
+.zx-eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.zx h1{font:500 clamp(40px,4.8vw,70px)/1 var(--f-disp);margin:0;color:var(--ink);max-width:16ch}
+.zx h1 em{color:var(--gold);font-style:italic}
+.zx-lede{color:var(--paper2);font-size:17px;max-width:470px;margin:0}
+.zx-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.zx-trust{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--mute);font-size:13px}.zx-trust b{color:var(--ink);font-weight:600}
+.zx-strip{position:absolute;z-index:3;left:0;right:0;bottom:0;padding-block:18px;border-top:1px solid var(--line);background:linear-gradient(0deg,rgba(14,26,19,.85),rgba(14,26,19,0))}
+.zx-strip .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute);font:500 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.zx-strip em{font:italic 400 15px var(--f-disp);letter-spacing:0;text-transform:none;color:var(--ink)}
+.rv{opacity:0;transform:translateY(18px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.zx.on .rv{opacity:1;transform:none;filter:none}
+@media (max-width:900px){
+  .zx-links{display:none}
+  .zx{display:flex;flex-direction:column}
+  .zx-photo{position:absolute;inset:0 0 auto 0;height:58svh}
+  .zx-photo::after{background:linear-gradient(0deg,var(--bg) 2%,rgba(14,26,19,.4) 45%,rgba(14,26,19,.2))}
+  .zx-giant{font-size:24vw;top:16svh}
+  .zx-copy{padding-block:44svh 100px}
+  .zx-in{margin:0}
+  .zx-brand span{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rv,.zx-giant,.zx-photo img{transition:none!important}}
+
+.ic:empty,summary span:empty{display:inline-block;width:9px;height:9px;transform:rotate(45deg);border:1px solid var(--gold);font-size:0;flex:none;margin-right:10px}
+/* Raio-X system: kickers, h2 em, icons, scroll reveal */
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)!important;display:flex;gap:10px;align-items:baseline}
+.k b{color:var(--gold);font-weight:500}
+h2 em{color:var(--gold);font-style:italic}
+i.num{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gold)}
+i.dot{display:inline-block;width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold);flex:none;vertical-align:middle;margin-right:4px}
+.js-up .up{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js-up .up.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js-up .up{opacity:1;transform:none;transition:none}}
 </style>
 
-<header class="hero">
-  <div class="tx"><div class="tx-in">
-    <div class="k" style="color:var(--gold2)">Zion Glamping Store</div>
-    <h1>Transforme seu terreno em um destino turístico com os produtos da Zion.</h1>
-    <p>Zion Glamping Store: cabanas premium de glamping testadas nas operações da própria Zion. Para hospedar dentro da natureza, sem obra pesada.</p>
-    <div class="ctas"><a class="btn" href="#produtos">Ver os produtos</a><a class="btn ghost" href="#orcamento">Receber orçamento</a></div>
-    <div class="prova"><span>Operada pela Zion desde <b>2020</b></span><span>Booking <b>9,6</b></span><span>Airbnb <b>5/5 Superhost</b></span><span>Expedia <b>10</b></span><span>Google <b>4,7</b></span></div>
+<header class="zx" id="topo">
+  <nav class="g zx-nav rv" style="--d:0"><div class="w zx-navin">
+    <div class="zx-brand"><i aria-hidden="true"></i>ZION <span>Glamping Store</span></div>
+    <div class="zx-links"><a href="#produtos">Os números</a><a href="#obra">Como implantar</a><a href="#clima">Clima</a><a href="#modelos">Os modelos</a></div>
+    <a class="zx-pill zx-pill-dark" href="/raio-x">Fazer o Raio-X</a>
+  </div></nav>
+  <div class="zx-giant" aria-hidden="true">bubble</div>
+  <div class="zx-photo"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Cabana Bubble Zion com hidromassagem no deck, cercada de mata" fetchpriority="high"></div>
+  <div class="zx-copy g"><div class="zx-in">
+    <p class="zx-eyebrow rv" style="--d:1">Zion Glamping Store · Método Zion 360°</p>
+    <h1 class="rv" style="--d:2">Transforme seu terreno em um destino turístico <em>com os produtos da Zion.</em></h1>
+    <p class="zx-lede rv" style="--d:3">Cabanas premium de glamping testadas nas operações da própria Zion. Para hospedar dentro da natureza, sem obra pesada.</p>
+    <div class="zx-ctas rv" style="--d:4">
+      <a class="zx-pill zx-pill-gold" href="#orcamento">Receber o valor e a condição <span class="zx-arr" aria-hidden="true">→</span></a>
+      <a class="zx-link" href="#entender">Entender a Bubble antes</a>
+    </div>
+    <div class="zx-trust rv" style="--d:5"><span>Operada pela Zion desde <b>2020</b></span><span>Booking <b>9,6</b></span><span>Airbnb <b>5/5 Superhost</b></span><span>Expedia <b>10</b></span><span>Google <b>4,7</b></span></div>
   </div></div>
-  <div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Cabana Bubble Zion com hidromassagem no deck, cercada de mata" fetchpriority="high"></div>
+  <div class="zx-strip g rv" style="--d:6"><div class="w"><span>Do terreno <em>ao negócio que funciona</em></span><span>Condição exclusiva até 30/11</span></div></div>
 </header>
 
 <section class="g promo" aria-label="Condição exclusiva">
@@ -425,9 +527,9 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="assuntos" aria-label="Assuntos da página">
   <div class="w">
-    <div class="k">Tudo sobre a Bubble Zion</div>
+    <div class="k"><b>01</b> Tudo sobre a Bubble Zion</div>
     <h2>Clique e saiba mais sobre cada assunto.</h2>
-    <nav class="tps"><a class="tp" href="#glamping"><i aria-hidden="true">🌿</i><b>O que é o glamping</b><span>Acampar com luxo, e por que o hóspede escolhe</span></a><a class="tp" href="#mercado"><i aria-hidden="true">📈</i><b>O mercado</b><span>Um setor que cresce no mundo inteiro</span></a><a class="tp" href="#produtos"><i aria-hidden="true">💰</i><b>O faturamento da sua bolha</b><span>A conta de uma única cabana, passo a passo</span></a><a class="tp" href="#mata"><i aria-hidden="true">🌳</i><b>Onde implantar a Bubble</b><span>A área de mata onde uma casa não entraria</span></a><a class="tp" href="#obra"><i aria-hidden="true">🛠️</i><b>Como implantar</b><span>O que você prepara e como a bolha chega</span></a><a class="tp" href="#hospede"><i aria-hidden="true">✨</i><b>Como o hóspede vive a bolha</b><span>De dia o entorno, à noite o céu</span></a><a class="tp" href="#dentro"><i aria-hidden="true">🛏️</i><b>As instalações internas</b><span>O que vai dentro da bolha, Suite e Premium</span></a><a class="tp" href="#anexos"><i aria-hidden="true">🪵</i><b>As instalações externas</b><span>Deck, banheiro, lounge, cozinha e experiências</span></a><a class="tp" href="#clima"><i aria-hidden="true">☀️</i><b>Clima e capa blackout</b><span>Calor, frio e a transparência</span></a><a class="tp" href="#durabilidade"><i aria-hidden="true">⏳</i><b>Durabilidade e limpeza</b><span>Quanto dura, resistência e cuidados</span></a><a class="tp" href="#modelos"><i aria-hidden="true">📐</i><b>Os modelos</b><span>Suite e Suite Premium, plantas e medidas</span></a><a class="tp tpc" href="#orcamento"><i aria-hidden="true">📩</i><b>Receber a condição</b><span>O valor e a condição até 30/11 no seu WhatsApp</span></a></nav>
+    <nav class="tps"><a class="tp" href="#glamping"><i aria-hidden="true" class="num">01</i><b>O que é o glamping</b><span>Acampar com luxo, e por que o hóspede escolhe</span></a><a class="tp" href="#mercado"><i aria-hidden="true" class="num">02</i><b>O mercado</b><span>Um setor que cresce no mundo inteiro</span></a><a class="tp" href="#produtos"><i aria-hidden="true" class="num">03</i><b>O faturamento da sua bolha</b><span>A conta de uma única cabana, passo a passo</span></a><a class="tp" href="#mata"><i aria-hidden="true" class="num">04</i><b>Onde implantar a Bubble</b><span>A área de mata onde uma casa não entraria</span></a><a class="tp" href="#obra"><i aria-hidden="true" class="num">05</i><b>Como implantar</b><span>O que você prepara e como a bolha chega</span></a><a class="tp" href="#hospede"><i aria-hidden="true" class="num">06</i><b>Como o hóspede vive a bolha</b><span>De dia o entorno, à noite o céu</span></a><a class="tp" href="#dentro"><i aria-hidden="true" class="num">07</i><b>As instalações internas</b><span>O que vai dentro da bolha, Suite e Premium</span></a><a class="tp" href="#anexos"><i aria-hidden="true" class="num">08</i><b>As instalações externas</b><span>Deck, banheiro, lounge, cozinha e experiências</span></a><a class="tp" href="#clima"><i aria-hidden="true" class="num">09</i><b>Clima e capa blackout</b><span>Calor, frio e a transparência</span></a><a class="tp" href="#durabilidade"><i aria-hidden="true" class="num">10</i><b>Durabilidade e limpeza</b><span>Quanto dura, resistência e cuidados</span></a><a class="tp" href="#modelos"><i aria-hidden="true" class="num">11</i><b>Os modelos</b><span>Suite e Suite Premium, plantas e medidas</span></a><a class="tp tpc" href="#orcamento"><i aria-hidden="true" class="dot"></i><b>Receber a condição</b><span>O valor e a condição até 30/11 no seu WhatsApp</span></a></nav>
   </div>
 </section>
 
@@ -436,16 +538,16 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
     <div class="glx">
       <figure class="glfoto"><img class="g1" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede.webp" alt="Casal de mãos dadas caminhando no deck, ao lado das Bubbles da Zion" loading="lazy"><img class="g2" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede2.webp" alt="Hóspede sentada no deck, em frente à Bubble, no fim da tarde" loading="lazy"><img class="g3" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede3.webp" alt="Hóspede comemorando na banheira ao ar livre, de frente para a mata" loading="lazy"><figcaption>Hóspedes nas Bubbles da Zion.</figcaption></figure>
       <div class="gltx">
-        <div class="k">Você sabe o que é o glamping?</div>
+        <div class="k"><b>02</b> Você sabe o que é o glamping?</div>
         <h2>É acampar com luxo.</h2>
         <p class="lead">Lembra da última vez que você dormiu olhando as estrelas? Glamping é isso, sem abrir mão de nada. Do lado de fora, a natureza inteira. Do lado de dentro, uma cama de verdade, banho quente, climatização e alguém cuidando de você.</p>
         <p class="lead">O nome junta duas palavras em inglês, <em>glamorous</em> e <em>camping</em>. Mas o que o hóspede leva para casa não é o nome. É a noite que ele vai contar para todo mundo.</p>
       </div>
     </div>
     <div class="exp">
-      <div><span aria-hidden="true">🌄</span><b>De dia</b><p>Trilha, rio, mirante. O hóspede vive o lugar, sem pressa.</p></div>
-      <div><span aria-hidden="true">🔥</span><b>Ao entardecer</b><p>Banho quente, um chá no deck e o silêncio do mato.</p></div>
-      <div><span aria-hidden="true">✨</span><b>À noite</b><p>Deita na cama e o teto é o céu. É aí que ele entende por que veio.</p></div>
+      <div><span aria-hidden="true"></span><b>De dia</b><p>Trilha, rio, mirante. O hóspede vive o lugar, sem pressa.</p></div>
+      <div><span aria-hidden="true"></span><b>Ao entardecer</b><p>Banho quente, um chá no deck e o silêncio do mato.</p></div>
+      <div><span aria-hidden="true"></span><b>À noite</b><p>Deita na cama e o teto é o céu. É aí que ele entende por que veio.</p></div>
     </div>
     <div class="chips mods" style="margin-top:22px"><span>Cabanas</span><span>Bolhas</span><span>Domos</span><span>Tendas safári</span><span>Casas na árvore</span><span>Cápsulas</span></div>
     <details class="histd"><summary>Um pouco de história</summary>
@@ -460,8 +562,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg" id="mercado">
   <div class="w">
-    <div class="k">A tendência do glamping</div>
-    <h2>Um mercado que cresce no mundo inteiro. E uma oportunidade de negócio.</h2>
+    <div class="k"><b>03</b> A tendência do glamping</div>
+    <h2>Um mercado que cresce no mundo inteiro. <em>E uma oportunidade de negócio.</em></h2>
     <p class="lead">Os números de quem estuda o setor, para você entender por que o glamping deixou de ser moda e virou categoria da hotelaria.</p>
     <div class="carr">
       <div class="trk" id="trk" tabindex="0" aria-label="Carrossel: tendências do mercado de glamping"><article class="sl dark" aria-roledescription="slide" aria-label="1 de 7"><small class="sk">01 · O mercado</small><h3>O glamping deve mais que dobrar de tamanho até 2033.</h3><div class="sb"><div class="bars"><div style="--h:48%"><b>US$ 3,79 bi</b><span>2025</span></div><div style="--h:100%"><b>US$ 7,87 bi</b><span>2033</span></div></div><p class="big2">+9,5% ao ano, de 2026 a 2033</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl light" aria-roledescription="slide" aria-label="2 de 7"><small class="sk">02 · Quem compra</small><h3>A nova geração já é o centro desse mercado.</h3><div class="sb"><p class="num">43,9%</p><p>da receita global do glamping em 2025 veio de hóspedes de 18 a 32 anos. Eles procuram natureza, conforto e uma experiência que vale contar.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl light" aria-roledescription="slide" aria-label="3 de 7"><small class="sk">03 · E não só os jovens</small><h3>O público de 33 a 50 anos cresce ainda mais rápido.</h3><div class="sb"><p class="num">+10,2%<small> ao ano</small></p><p>de crescimento projetado entre 2026 e 2033. É o público de casais, escapadas premium e bem-estar, exatamente quem se hospeda numa Bubble.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl photo" aria-roledescription="slide" aria-label="4 de 7"><small class="sk">04 · O formato</small><h3>Cabanas e pods puxam o glamping.</h3><div class="sb"><p class="num">43%<small> ou mais</small></p><p>da receita global do glamping em 2025 veio de cabanas e pods, o formato da Bubble.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl dark" aria-roledescription="slide" aria-label="5 de 7"><small class="sk">05 · A diária</small><h3>O hóspede de glamping está pagando mais, e ficando mais.</h3><div class="sb"><div class="trio"><div><b>US$ 251</b><span>diária média em 2025</span></div><div><b>+21%</b><span>na diária, de 2023 a 2025</span></div><div><b>2,7 noites</b><span>de estadia média em 2025 (2,2 em 2024)</span></div></div></div><p class="src">Fonte: Glamping Show Americas 2025, apresentado pela Cairn Consulting Group (EUA).</p></article><article class="sl light" aria-roledescription="slide" aria-label="6 de 7"><small class="sk">06 · O negócio</small><h3>O negócio não termina na diária.</h3><div class="sb"><div class="quatro"><div><b>Hospedagem</b><span>diárias e pacotes premium</span></div><div><b>Gastronomia</b><span>café, jantar, cesta, experiências</span></div><div><b>Bem-estar</b><span>ofurô, massagem, retiros</span></div><div><b>Experiências</b><span>trilhas, passeios, datas especiais</span></div></div><p>Na Zion, a cabana chega perto de R$ 400 mil por ano somando hospedagem e os demais serviços. O desenho do negócio importa tanto quanto a cabana.</p></div></article><article class="sl green" aria-roledescription="slide" aria-label="7 de 7"><small class="sk">07 · A oportunidade</small><h3>Mercado crescendo não é garantia de resultado.</h3><div class="sb"><p>Crescer exige terreno certo, produto certo, conta que fecha e operação bem feita. Quem estrutura o projeto antes de construir chega na frente na sua região.</p><a class="btn" href="/raio-x">Faça o Raio-X do Terreno, grátis</a></div></article></div>
@@ -485,8 +587,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg" id="produtos">
   <div class="w">
-    <div class="k">Conheça os nossos produtos e conceitos</div>
-    <h2>Uma única cabana. Quase R$ 400 mil por ano.</h2>
+    <div class="k"><b>04</b> Conheça os nossos produtos e conceitos</div>
+    <h2>Uma única cabana. <em>Quase R$ 400 mil por ano.</em></h2>
     <p class="lead">Antes de vender a Bubble, a gente opera a Bubble. Na operação da Zion, uma única cabana chegou perto de R$ 400 mil em um ano, somando hospedagem e os demais serviços. Conheça um pouco da nossa operação e dos nossos números.</p>
     <div class="nums">
       <div><b>~R$ 400 mil</b><span>por cabana, em um ano, entre hospedagem e serviços</span></div>
@@ -501,8 +603,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="entender">
   <div class="w">
-    <div class="k">Bubble Zion</div>
-    <h2>A Bubble é uma cabana premium de glamping. E é exatamente por isso que ela funciona.</h2>
+    <div class="k"><b>05</b> Bubble Zion</div>
+    <h2>A Bubble é uma cabana premium de glamping. <em>E é exatamente por isso que ela funciona.</em></h2>
     <p class="lead">Quem chega achando que vai comprar uma casa se frustra. Quem entende o que ela é encontra o jeito mais rápido de colocar hóspede dentro da natureza.</p>
     <div class="duas">
       <div class="col"><h3>O que a Bubble é</h3><ul>
@@ -525,8 +627,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
   <div class="w mata">
     <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mata.webp" alt="Vista aérea de uma Bubble Zion sobre deck, no meio da mata de araucárias" loading="lazy">
     <div>
-      <div class="k">Onde a Bubble mora</div>
-      <h2>Sabe aquela área de mata no seu terreno, onde jamais entraria uma construção?</h2>
+      <div class="k"><b>06</b> Onde a Bubble mora</div>
+      <h2>Sabe aquela área de mata no seu terreno, <em>onde jamais entraria uma construção?</em></h2>
       <p class="lead">É o lugar perfeito para a Bubble. A encosta, o meio das árvores, o ponto com a melhor vista. Onde uma edificação seria cara, demorada ou impossível, a bolha chega sobre um deck de madeira.</p>
       <div class="diver"><b>Não vem substituir. Vem diversificar.</b><span>A Bubble não substitui a sua pousada, o seu chalé ou o seu Airbnb. Ela soma um produto novo ao que você já tem, num pedaço do terreno que hoje não gera nada.</span></div>
     </div>
@@ -535,7 +637,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg">
   <div class="w">
-    <div class="k">A facilidade da Bubble</div>
+    <div class="k"><b>07</b> A facilidade da Bubble</div>
     <h2>Simples como montar uma barraca.</h2>
     <div class="fac">
       <div><i>1</i><b>Deck de madeira</b><span>A base onde a bolha fica.</span></div>
@@ -550,8 +652,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
   <div class="w noite">
     <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/noite.webp" alt="Interior da Bubble iluminado à noite, com céu estrelado" loading="lazy">
     <div>
-      <div class="k">Como o hóspede vive a Bubble</div>
-      <h2>O mesmo comportamento de um dia de camping, com outro nível de conforto.</h2>
+      <div class="k"><b>08</b> Como o hóspede vive a Bubble</div>
+      <h2>O mesmo comportamento de um dia de camping, <em>com outro nível de conforto.</em></h2>
       <p class="lead">No camping, a pessoa passa o dia do lado de fora e à noite se recolhe na barraca. Na Bubble é igual. A diferença é que a noite vira o ponto alto: céu aberto, silêncio, natureza à volta. Por isso a procura pela bolha é tão alta.</p>
       <ol class="passos">
         <li><em>De dia</em><span>Vive o entorno: trilha, rio, mirante, a região.</span></li>
@@ -569,15 +671,15 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 <section class="g" id="anexos">
   <div class="w anexos">
     <div>
-      <div class="k">Os anexos do deck</div>
-      <h2>A bolha é o centro. Você constrói os anexos ao redor.</h2>
+      <div class="k"><b>09</b> Os anexos do deck</div>
+      <h2>A bolha é o centro. <em>Você constrói os anexos ao redor.</em></h2>
       <p class="lead">A bolha fica no centro do deck de madeira, e ao redor dela você constrói os anexos que fazem a contemplação acontecer. Eles não fazem parte da bolha: você constrói no seu ritmo, com a nossa orientação.</p>
       <div class="chips"><span>Lounge de descanso</span><span>Banheiro</span><span>Cozinha gourmet</span><span>Área chill out</span><span>Área de convivência</span><span>Área de contemplação</span></div>
     </div>
     <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/deck.webp" alt="Vista aérea de um deck Zion com bolhas, anexos e piscina" loading="lazy">
   </div>
   <div class="w" style="margin-top:56px">
-    <div class="k">Experiências e anexos ao redor do deck</div>
+    <div class="k"><b>10</b> Experiências e anexos ao redor do deck</div>
     <h3 class="h3x">Como complementar o entorno onde o hóspede vive o dia.</h3>
     <blockquote class="manif">O hóspede não busca paredes. Ele busca experiências, busca viver o entorno, busca desacelerar.</blockquote>
     <p class="lead">Essa é a grande vantagem do glamping: descanso de verdade, contemplação e desaceleração. É um conceito que cresce no mundo inteiro. A noite é da bolha. O dia é do entorno. São os anexos e as pequenas experiências ao redor do deck que dão sombra, banho, comida e descanso, e que fazem o hóspede querer ficar mais uma noite. Comece por um ou dois, e cresça no seu ritmo.</p>
@@ -588,8 +690,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg" id="versoes">
   <div class="w">
-    <div class="k">A versão que você quer operar</div>
-    <h2>Banheiro dentro da bolha, ou os anexos do lado de fora.</h2>
+    <div class="k"><b>11</b> A versão que você quer operar</div>
+    <h2>Banheiro dentro da bolha, <em>ou os anexos do lado de fora.</em></h2>
     <p class="lead">As duas funcionam. A escolha depende do seu público, do seu terreno e da experiência que você quer entregar.</p>
     <div class="vers">
       <article><div class="vi">
@@ -604,29 +706,29 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="dentro">
   <div class="w">
-    <div class="k">A bolha chega vazia</div>
-    <h2>Você não vai mobiliar uma casa. São poucas peças que fazem a experiência.</h2>
+    <div class="k"><b>12</b> A bolha chega vazia</div>
+    <h2>Você não vai mobiliar uma casa. <em>São poucas peças que fazem a experiência.</em></h2>
     <p class="lead">Aqui a experiência é minimalista. O protagonista é o lado de fora: a mata, a vista, o céu. O lado de dentro existe para dar conforto e comodidade. Esta é a nossa recomendação.</p>
     <div class="dentro">
       <article>
         <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/dentro-suite.webp" alt="Interior de uma Bubble Suite com cama de dossel, luneta e mesa" loading="lazy">
         <div><small class="tag">Bubble Suite</small><h3>O essencial, bem escolhido</h3>
         <ul class="itens">
-          <li><i aria-hidden="true">🛏️</i>Cama do céu, com dossel</li>
-          <li><i aria-hidden="true">🕯️</i>Duas mesinhas de cabeceira</li>
-          <li><i aria-hidden="true">☕</i>Mesa redonda com duas cadeiras</li>
-          <li><i aria-hidden="true">🧊</i>Frigobar</li>
-          <li><i aria-hidden="true">🚿</i>Lavabo ou banheiro</li>
+          <li><i aria-hidden="true" class="dot"></i>Cama do céu, com dossel</li>
+          <li><i aria-hidden="true" class="dot"></i>Duas mesinhas de cabeceira</li>
+          <li><i aria-hidden="true" class="dot"></i>Mesa redonda com duas cadeiras</li>
+          <li><i aria-hidden="true" class="dot"></i>Frigobar</li>
+          <li><i aria-hidden="true" class="dot"></i>Lavabo ou banheiro</li>
         </ul></div>
       </article>
       <article>
         <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/dentro-premium.webp" alt="Interior de uma Bubble Suite Premium com banheira no ambiente central" loading="lazy">
         <div><small class="tag">Bubble Suite Premium</small><h3>Tudo da Suite, com uma banheira</h3>
         <ul class="itens">
-          <li><i aria-hidden="true">🛏️</i>Cama do céu, mesinhas, mesa e cadeiras</li>
-          <li><i aria-hidden="true">🧊</i>Frigobar</li>
-          <li><i aria-hidden="true">🛁</i>Banheira no ambiente central</li>
-          <li><i aria-hidden="true">🚿</i>Lavabo ou banheiro</li>
+          <li><i aria-hidden="true" class="dot"></i>Cama do céu, mesinhas, mesa e cadeiras</li>
+          <li><i aria-hidden="true" class="dot"></i>Frigobar</li>
+          <li><i aria-hidden="true" class="dot"></i>Banheira no ambiente central</li>
+          <li><i aria-hidden="true" class="dot"></i>Lavabo ou banheiro</li>
         </ul></div>
       </article>
     </div>
@@ -636,7 +738,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g dark" id="clima">
   <div class="w">
-    <div class="k">O clima e a capa blackout</div>
+    <div class="k"><b>13</b> O clima e a capa blackout</div>
     <h2>O hóspede vem porque a bolha é transparente.</h2>
     <div class="clima1">
       <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/transparente.webp" alt="Bubble Zion transparente sobre o deck, no meio da mata, com a cama de dossel à vista" loading="lazy">
@@ -661,7 +763,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
         <rect x="250" y="34" width="345" height="58" rx="12" fill="#16261C" opacity=".88"/>
         <text x="422" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="17" fill="#FBF7F1" font-weight="600">capa fechada · dias de sol</text>
         <text x="110" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="15" fill="#5A4500">manhã aberta</text>
-        <text x="830" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="15" fill="#FBF7F1">noite: o céu ✦</text>
+        <text x="830" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="15" fill="#FBF7F1">noite: o céu </text>
         <g font-family="Outfit,system-ui,sans-serif" font-size="14" fill="currentColor" text-anchor="middle">
           <text x="20" y="118">6h</text><text x="250" y="118">10h</text><text x="595" y="118">16h</text><text x="710" y="118">18h</text><text x="940" y="118">22h</text>
         </g>
@@ -669,14 +771,14 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
       </svg>
     </div>
     <div class="regras">
-      <div><b>☀️ Dia de sol</b><span>Capa fechada mais ou menos das 10h às 16h, o horário de blackout.</span></div>
-      <div><b>☁️ Dia nublado</b><span>Sem raio solar forte, a capa nem precisa ser fechada.</span></div>
-      <div><b>🌙 À noite</b><span>Capa aberta. O hóspede dorme olhando as estrelas.</span></div>
-      <div><b>🌿 Os anexos</b><span>São a sombra do dia: lounge de descanso, banho e convivência ao redor do deck.</span></div>
+      <div><b>Dia de sol</b><span>Capa fechada mais ou menos das 10h às 16h, o horário de blackout.</span></div>
+      <div><b>Dia nublado</b><span>Sem raio solar forte, a capa nem precisa ser fechada.</span></div>
+      <div><b>À noite</b><span>Capa aberta. O hóspede dorme olhando as estrelas.</span></div>
+      <div><b>Os anexos</b><span>São a sombra do dia: lounge de descanso, banho e convivência ao redor do deck.</span></div>
     </div>
 
     <div class="carro">
-      <div class="ic" aria-hidden="true">🚗</div>
+      <div class="ic" aria-hidden="true"></div>
       <div><b>Pense num carro com o ar-condicionado ligado e o seu braço no sol.</b><span>Você está fresco lá dentro, mas o raio de sol entra e esquenta. Na bolha é igual. Por isso o ar-condicionado, que normalmente fica na cabeceira da cama e deixa a climatização perfeita, trabalha junto com a capa: o ar refresca, a capa segura o sol.</span></div>
     </div>
 
@@ -690,14 +792,14 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="durabilidade">
   <div class="w">
-    <div class="k">Durabilidade, resistência e limpeza</div>
-    <h2>Quanto dura uma bolha? A resposta começa assim: a bolha é uma barraca.</h2>
+    <div class="k"><b>14</b> Durabilidade, resistência e limpeza</div>
+    <h2>Quanto dura uma bolha? A resposta começa assim: <em>a bolha é uma barraca.</em></h2>
     <p class="lead">É a pergunta que todo mundo faz. A bolha tem a durabilidade de uma barraca, não de uma casa. E é assim que ela deve ser pensada: um veículo de hospedagem, que trabalha, se desgasta e um dia é trocado.</p>
 
     <div class="dur3">
-      <div><span class="ic" aria-hidden="true">⏳</span><b>Durabilidade</b><p>As bolhas da Zion operam há 5 anos com total perfeição. Por segurança, a Zion planeja a troca a cada 5 anos. O fabricante indica durabilidade mínima de 7 anos, com uso correto e manutenção preventiva.</p></div>
-      <div><span class="ic" aria-hidden="true">⛈️</span><b>Resistência</b><p>Em 5 anos, as nossas bolhas passaram por chuva, vento, granizo e até neve. Suportaram tudo com tranquilidade. O tecido é PVC de 580 g/m², testado com ventos de até 120 km/h.</p></div>
-      <div><span class="ic" aria-hidden="true">🧽</span><b>Limpeza</b><p>Manutenção simples, como limpar um vidro: mangueira, água e sabão, e uma escova ou esponja com vara extensora.</p></div>
+      <div><span class="ic" aria-hidden="true"></span><b>Durabilidade</b><p>As bolhas da Zion operam há 5 anos com total perfeição. Por segurança, a Zion planeja a troca a cada 5 anos. O fabricante indica durabilidade mínima de 7 anos, com uso correto e manutenção preventiva.</p></div>
+      <div><span class="ic" aria-hidden="true"></span><b>Resistência</b><p>Em 5 anos, as nossas bolhas passaram por chuva, vento, granizo e até neve. Suportaram tudo com tranquilidade. O tecido é PVC de 580 g/m², testado com ventos de até 120 km/h.</p></div>
+      <div><span class="ic" aria-hidden="true"></span><b>Limpeza</b><p>Manutenção simples, como limpar um vidro: mangueira, água e sabão, e uma escova ou esponja com vara extensora.</p></div>
     </div>
 
     <h3 class="sub">O exercício do pneu</h3>
@@ -719,10 +821,10 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
     <h3 class="sub">Os cuidados ao redor da bolha</h3>
     <div class="cuid">
-      <div><i aria-hidden="true">🌳</i><b>Poda preventiva</b><span>Mantenha os galhos longe da cúpula. Escolha um lugar com poda feita ao redor.</span></div>
-      <div><i aria-hidden="true">🧭</i><b>Área livre</b><span>Deixe o entorno do deck limpo, sem nada encostado no tecido.</span></div>
-      <div><i aria-hidden="true">🤲</i><b>Cuidado extremo</b><span>Ela é uma barraca. Trate com o cuidado de quem cuida do seu principal produto.</span></div>
-      <div><i aria-hidden="true">🛠️</i><b>Pequenos reparos</b><span>Um remendo de tempos em tempos faz parte. Garantia de até 2 anos na bolha e 4 anos na turbina.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Poda preventiva</b><span>Mantenha os galhos longe da cúpula. Escolha um lugar com poda feita ao redor.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Área livre</b><span>Deixe o entorno do deck limpo, sem nada encostado no tecido.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Cuidado extremo</b><span>Ela é uma barraca. Trate com o cuidado de quem cuida do seu principal produto.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Pequenos reparos</b><span>Um remendo de tempos em tempos faz parte. Garantia de até 2 anos na bolha e 4 anos na turbina.</span></div>
     </div>
 
     <h3 class="sub">Como limpar a bolha, passo a passo</h3>
@@ -751,7 +853,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg" id="obra">
   <div class="w">
-    <div class="k">Antes de qualquer cabana da Zion</div>
+    <div class="k"><b>15</b> Antes de qualquer cabana da Zion</div>
     <h2>O que você precisa fazer antes de colocar qualquer cabana da Zion.</h2>
     <p class="lead">Seja uma bolha ou outra cabana, a base é sempre a mesma: sapatas e pilares, o deck de madeira e a luz e a água chegando até ele. A Zion entrega a orientação do deck e um projeto arquitetônico básico; a obra do deck, da infraestrutura e dos anexos fica com você.</p>
     <h3 style="margin-top:34px">Como a sua implantação acontece, etapa por etapa.</h3>
@@ -818,7 +920,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 </section>
 <section class="g" id="montagem">
   <div class="w">
-    <div class="k">Como a bolha chega</div>
+    <div class="k"><b>16</b> Como a bolha chega</div>
     <h2>Como a bolha chega no seu empreendimento.</h2>
     <p class="lead">Com o deck e as instalações prontos, a bolha chega dobrada e embalada, com tudo o que ela precisa para ficar de pé. Veja os passos simples. A montagem é simples como a de uma barraca, e segue uma ordem: primeiro os ferros, depois os parafusos, por último a turbina. Acompanhe na planta da Bubble Suite, vista de cima.</p>
     <div class="obra">
@@ -847,7 +949,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g">
   <div class="w">
-    <div class="k">Do balcão para fora e do balcão para dentro</div>
+    <div class="k"><b>17</b> Do balcão para fora e do balcão para dentro</div>
     <h2>Duas formas de olhar para a mesma bolha.</h2>
     <div class="balcao">
       <article><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/vista.webp" alt="Hóspede na banheira do deck olhando o vale e as montanhas" loading="lazy"><div><small class="tag">Do balcão para fora · o hóspede</small><h3>Um lugar paradisíaco, com uma vista que nenhuma casa teria.</h3><p>O hóspede acorda no meio da mata, toma banho olhando o vale e dorme debaixo do céu. É uma experiência imersiva, diferente de tudo o que ele já viveu. Ninguém esquece a primeira noite dentro de uma bolha.</p></div></article>
@@ -867,7 +969,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g dark">
   <div class="w">
-    <div class="k">Onde ela entra</div>
+    <div class="k"><b>18</b> Onde ela entra</div>
     <h2>Ela chega onde a construção não chega.</h2>
     <ul class="lista">
       <li><b>Até 90 dias</b><span>Com deck, energia e água prontos, a unidade pode começar a operar.</span></li>
@@ -883,7 +985,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="modelos">
   <div class="w">
-    <div class="k">Fichas técnicas</div>
+    <div class="k"><b>19</b> Fichas técnicas</div>
     <h2>Os modelos</h2>
     <div class="modelos">
       <article class="mod">
@@ -918,7 +1020,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg">
   <div class="w">
-    <div class="k">Características técnicas</div>
+    <div class="k"><b>20</b> Características técnicas</div>
     <p class="frase">Os detalhes criam a perfeição, e a perfeição não é somente um detalhe.</p>
     <ul class="tec">
       <li>Turbina ultra silenciosa com regulador de potência e filtro anti-mosquito, com 4 anos de garantia.</li>
@@ -940,8 +1042,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" id="projeto">
   <div class="w">
-    <div class="k">Monte o seu projeto</div>
-    <h2>O que a Zion entrega, e o que você prepara antes da bolha chegar.</h2>
+    <div class="k"><b>21</b> Monte o seu projeto</div>
+    <h2>O que a Zion entrega, <em>e o que você prepara antes da bolha chegar.</em></h2>
     <div class="ent">
       <div class="z"><small>A Zion entrega</small><b>A bolha, vazia</b><ul><li>Bolha com turbina e capa de proteção solar</li><li>Orientação do deck e projeto arquitetônico básico</li><li>Você estrutura o interior como quiser</li></ul></div>
       <div class="v"><small>Você prepara</small><b>A base para ela operar</b><ul><li>Deck de madeira de 50 a 150 m²</li><li>Instalação de luz</li><li>Água e esgoto ou fossa</li><li>Os equipamentos de dentro (FF&amp;E)</li></ul></div>
@@ -949,14 +1051,14 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
     <h3 style="margin-top:44px">Antes de decidir, responda para você mesmo</h3>
     <div class="obj2">
-      <details><summary><span>👥</span>Para quem você quer trabalhar?</summary><p>Você quer oferecer serviços (café, experiências, atendimento) ou quer uma hospedagem autônoma, com check-in sem contato? Isso muda o que construir e como operar.</p></details>
-      <details><summary><span>🛁</span>Banheiro dentro ou fora da bolha?</summary><p>Os dois são possíveis. Dentro, mais conforto. Fora, num anexo do deck, mais espaço livre na bolha e uma experiência de banho diferente.</p></details>
-      <details><summary><span>🪵</span>O que construir no deck?</summary><p>Ao redor da bolha você pode anexar cozinha gourmet, área chill out, área de convivência, banheiro, piscina ou jacuzzi. Comece por um produto mínimo bem feito e cresça depois.</p></details>
-      <details><summary><span>🌡️</span>E o calor e o frio?</summary><p>A bolha tem uma capa de proteção solar removível, com tecido que reflete UV e infravermelho e reduz em até 20 °C a temperatura interna. Ela também funciona como blackout. Na Zion, a climatização é feita com ar-condicionado inverter quente e frio.</p></details>
-      <details><summary><span>⚡</span>E se faltar energia?</summary><p>A bolha fica de pé com uma turbina elétrica de 140 W, que consome pouco. Para quedas de energia, como em qualquer hospedagem em área rural, há três caminhos: um no-break, como o de computador; um sistema de energia com baterias de lítio, de parceiro da Zion, que aguenta várias horas; ou um pequeno gerador. Ninguém fica sem segurança.</p></details>
-      <details><summary><span>⏳</span>Quanto tempo ela dura?</summary><p>O fabricante indica durabilidade mínima de 7 anos com manutenção preventiva, e nas operações da Zion as bolhas passam de 5 anos. Pense nela como um veículo de hospedagem: de tempos em tempos pede manutenção, um remendo ou até a troca. Quem já é cliente tem condições especiais da Zion para a próxima.</p></details>
-      <details><summary><span>🔁</span>E daqui a alguns anos?</summary><p>O mesmo deck recebe outro tipo de cabana no futuro. Essa é a ideia do glamping: hoje é uma cabana, amanhã pode ser outra, sem recomeçar a obra.</p></details>
-      <details><summary><span>⛰️</span>Onde ela entra?</summary><p>Em áreas de baixo impacto ambiental, terrenos íngremes e lugares com vista. Ela contempla a paisagem e o céu à noite. Em área de preservação, depende do licenciamento e é analisado caso a caso, com profissional habilitado.</p></details>
+      <details><summary><span></span>Para quem você quer trabalhar?</summary><p>Você quer oferecer serviços (café, experiências, atendimento) ou quer uma hospedagem autônoma, com check-in sem contato? Isso muda o que construir e como operar.</p></details>
+      <details><summary><span></span>Banheiro dentro ou fora da bolha?</summary><p>Os dois são possíveis. Dentro, mais conforto. Fora, num anexo do deck, mais espaço livre na bolha e uma experiência de banho diferente.</p></details>
+      <details><summary><span></span>O que construir no deck?</summary><p>Ao redor da bolha você pode anexar cozinha gourmet, área chill out, área de convivência, banheiro, piscina ou jacuzzi. Comece por um produto mínimo bem feito e cresça depois.</p></details>
+      <details><summary><span></span>E o calor e o frio?</summary><p>A bolha tem uma capa de proteção solar removível, com tecido que reflete UV e infravermelho e reduz em até 20 °C a temperatura interna. Ela também funciona como blackout. Na Zion, a climatização é feita com ar-condicionado inverter quente e frio.</p></details>
+      <details><summary><span></span>E se faltar energia?</summary><p>A bolha fica de pé com uma turbina elétrica de 140 W, que consome pouco. Para quedas de energia, como em qualquer hospedagem em área rural, há três caminhos: um no-break, como o de computador; um sistema de energia com baterias de lítio, de parceiro da Zion, que aguenta várias horas; ou um pequeno gerador. Ninguém fica sem segurança.</p></details>
+      <details><summary><span></span>Quanto tempo ela dura?</summary><p>O fabricante indica durabilidade mínima de 7 anos com manutenção preventiva, e nas operações da Zion as bolhas passam de 5 anos. Pense nela como um veículo de hospedagem: de tempos em tempos pede manutenção, um remendo ou até a troca. Quem já é cliente tem condições especiais da Zion para a próxima.</p></details>
+      <details><summary><span></span>E daqui a alguns anos?</summary><p>O mesmo deck recebe outro tipo de cabana no futuro. Essa é a ideia do glamping: hoje é uma cabana, amanhã pode ser outra, sem recomeçar a obra.</p></details>
+      <details><summary><span></span>Onde ela entra?</summary><p>Em áreas de baixo impacto ambiental, terrenos íngremes e lugares com vista. Ela contempla a paisagem e o céu à noite. Em área de preservação, depende do licenciamento e é analisado caso a caso, com profissional habilitado.</p></details>
     </div>
 
     <h3 style="margin-top:44px">O que entra na conta além da bolha</h3>
@@ -992,7 +1094,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g">
   <div class="w">
-    <div class="k">As dúvidas sobre a Bubble</div>
+    <div class="k"><b>22</b> As dúvidas sobre a Bubble</div>
     <h2>O que perguntam antes de comprar</h2>
     <div class="faq">
       <details><summary>A Bubble é uma casa?</summary><p>Não. É uma cabana premium de glamping, totalmente removível. Quem procura um imóvel ou patrimônio não está no produto certo.</p></details>
@@ -1011,8 +1113,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g dark" id="capsula">
   <div class="w">
-    <div class="k">Zion Cápsula · em breve</div>
-    <h2>Para quem quer chegar e operar: a cápsula vem pronta.</h2>
+    <div class="k"><b>23</b> Zion Cápsula · em breve</div>
+    <h2>Para quem quer chegar e operar: <em>a cápsula vem pronta.</em></h2>
     <p class="lead">A Cápsula Zion chega montada e mobiliada. É o outro lado da facilidade: menos decisão no começo, mais rapidez para abrir.</p>
     <div class="vs2">
       <div><small>Bubble Zion</small><ul><li>Cabana premium de glamping, removível</li><li>Vem só a bolha, sem móveis</li><li>Você monta o deck, a luz e a água</li><li>Você escolhe o padrão de equipamento</li></ul></div>
@@ -1024,8 +1126,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g sandbg">
   <div class="w">
-    <div class="k">Como funciona a compra</div>
-    <h2>Do terreno à bolha instalada, em cinco passos.</h2>
+    <div class="k"><b>24</b> Como funciona a compra</div>
+    <h2>Do terreno à bolha instalada, <em>em cinco passos.</em></h2>
     <ol class="compra">
       <li>Você conta onde fica o terreno e quantas unidades imagina.</li>
       <li>A Zion envia a proposta da bolha.</li>
@@ -1039,7 +1141,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g" aria-label="Raio-X do Terreno" style="padding-block:40px;background:var(--sand)">
   <div class="w" style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between">
-    <div style="max-width:62ch"><div class="k">Antes do preço</div><h3 style="font-size:26px;margin:10px 0 6px">Ainda não sabe se o seu terreno está pronto para uma Bubble?</h3><p class="lead" style="margin:0">Faça o Raio-X do Terreno, grátis. Em poucos minutos você vê o que o seu terreno já tem, o que falta e por onde começar.</p></div>
+    <div style="max-width:62ch"><div class="k"><b>25</b> Antes do preço</div><h3 style="font-size:26px;margin:10px 0 6px">Ainda não sabe se o seu terreno está pronto para uma Bubble?</h3><p class="lead" style="margin:0">Faça o Raio-X do Terreno, grátis. Em poucos minutos você vê o que o seu terreno já tem, o que falta e por onde começar.</p></div>
     <a class="btn dark" href="/raio-x">Fazer o Raio-X do Terreno</a>
   </div>
 </section>
@@ -1047,7 +1149,7 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 <section class="g dark" id="orcamento">
   <div class="w formwrap">
     <div>
-      <div class="k">Orçamento</div>
+      <div class="k"><b>26</b> Orçamento</div>
       <h2>Receba o valor e a condição exclusiva da sua Bubble.</h2>
       <p class="lead">Preencha em 1 minuto. Conforme a sua situação, você recebe no WhatsApp o valor da bolha e a condição até 30/11, ou o caminho certo para o seu projeto. A Zaya, da equipe Zion, segue o atendimento por lá.</p>
     </div>
@@ -1084,8 +1186,8 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 
 <section class="g dark" id="situacao" hidden>
   <div class="w">
-    <div class="k">Antes da bolha, o empreendimento</div>
-    <h2>O seu caminho, antes da bolha.</h2>
+    <div class="k"><b>27</b> Antes da bolha, o empreendimento</div>
+    <h2>O seu caminho, <em>antes da bolha.</em></h2>
     <p class="lead">A Bubble é o começo do sonho. Mas para ter um sócio, receber investimento ou ter a Zion como parceira, o seu empreendimento precisa estar estruturado: o lugar, o público, a conta e quem vai operar.</p>
     <div class="sitr" id="sitR" hidden>
       <p class="msg" id="sMsg"></p>
@@ -1174,4 +1276,6 @@ html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
 })();
 </script>
 
+<script>(function(){var h=document.getElementById('topo');if(!h)return;requestAnimationFrame(function(){h.classList.add('go')});var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(function(){h.classList.add('on')},r?0:1400);setTimeout(function(){h.classList.add('on')},4000)})();</script>
+<script>(function(){var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(r||!('IntersectionObserver' in window))return;document.documentElement.classList.add('js-up');var els=[];document.querySelectorAll('main section .w > *, body > section .w > *').forEach(function(e,i){if(e.closest('#orcamento form'))return;e.classList.add('up');var p=e.parentNode;e.style.setProperty('--d',Math.min([].indexOf.call(p.children,e),5));els.push(e)});var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},12000)})();</script>
 </body></html>

@@ -290,6 +290,8 @@ var CONFIG={
   pacote:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20o%20pacote%20com%20as%204%20trilhas%20%28R%24%20890%29.',
   mentoria:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20agendar%20uma%20conversa%20sobre%20a%20mentoria%20em%20grupo%20ou%20individual.',
   lista:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20entrar%20na%20lista%20de%20espera%20das%20Trilhas%203%20e%204.',
+  agenda:'https://calendly.com/contato-zionglampingcollection/1h', /* Sessão Zero com o Bruno (Calendly) */
+  zap:'https://wa.me/554861371061?text=',
   precoTrilha:'R$ 270',
   precoPacote:'R$ 890'
 };
@@ -385,10 +387,43 @@ var CONFIG={
     if(r.matricula==='sim') return ['Você tem a terra e o papel','A matrícula em seu nome é mais da metade do caminho. O que falta é o plano: o que o terreno permite, quem paga e quanto custa.','Comece pela Trilha 1 · Desenvolvimento, e siga para a Trilha 2 · Gestão, onde entram o custo, o retorno e o caminho do capital.'];
     return ['Você tem a terra, e falta o papel','Antes de qualquer obra, a matrícula precisa estar em ordem. É a primeira coisa que um sócio, um banco ou a Zion vão olhar.','Comece pela Trilha 1 · Desenvolvimento. A Aula 1 mostra, item por item, os papéis do terreno e quem verifica cada um.'];
   }
+  var QQ=[
+    {id:'como',q:'Para estruturar o seu empreendimento, como você prefere aprender?',o:[['online','Sozinho, no meu ritmo, com as aulas e as ferramentas online'],['grupo','Em grupo, com encontros ao vivo com o Bruno'],['indiv','Individual, com o meu empreendimento analisado de perto'],['zion','Quero que a Zion estruture por mim']]},
+    {id:'invest',q:'Quanto você está disposto a investir em conhecimento para fazer isso do jeito certo?',h:'Uma referência: o conhecimento costuma ser a menor linha do investimento de um empreendimento, e a que mais evita erro caro.',o:[['a','Até R$ 300'],['b','De R$ 300 a R$ 3.500, podendo parcelar'],['c','De R$ 3.500 a R$ 15.000'],['d','Acima de R$ 15.000, ou quero a Zion estruturando por mim']]},
+    {id:'decide',q:'Você decide esse investimento sozinho?',o:[['sim','Sim, decido sozinho'],['junto','Decido junto com sócio, cônjuge ou família']]}
+  ];
+  function quali(){var q=S.q||{};return QQ.every(function(x){return q[x.id]})}
+  function qualHTML(){
+    var q=S.q||{},n=0;QQ.forEach(function(x){if(q[x.id])n++});
+    var x=QQ.filter(function(y){return !q[y.id]})[0];
+    var h='<div class="nx hi" id="qual"><span class="mono">Último passo · '+(n+1)+' de 3</span><h4>Antes de te mostrar o caminho certo</h4><p>Cada pessoa chega num momento diferente. Responda rápido para a gente te indicar o formato que combina com você.</p>';
+    h+='<p class="q" style="margin-top:14px;font-family:var(--serif);font-size:22px;color:var(--paper)">'+x.q+'</p>'+(x.h?'<p class="small">'+x.h+'</p>':'');
+    h+='<div class="opts" style="display:grid;gap:10px;margin-top:12px">';
+    x.o.forEach(function(o){h+='<button type="button" class="pill btn-s qopt" data-k="'+x.id+'" data-v="'+o[0]+'" style="justify-content:flex-start;text-align:left;width:100%">'+o[1]+'</button>'});
+    return h+'</div></div>';
+  }
+  function resumo(r){
+    var q=S.q||{},c=r.contato||{},lab=function(id,v){var x=QQ.filter(function(y){return y.id===id})[0];var o=x&&x.o.filter(function(p){return p[0]===v})[0];return o?o[1]:''};
+    return 'Oi! Fiz o Raio-X do Terreno'+(c.nome?' ('+c.nome+')':'')+'. Leitura: '+leitura(r)[0]+'. Prefiro: '+lab('como',q.como)+'. Investimento em conhecimento: '+lab('invest',q.invest)+'. '+(q.decide==='junto'?'Decido junto com outra pessoa.':'Decido sozinho.');
+  }
+  function agendaURL(r){var c=r.contato||{},p=[];if(c.nome)p.push('name='+encodeURIComponent(c.nome));if(c.mail)p.push('email='+encodeURIComponent(c.mail));return CONFIG.agenda+(p.length?'?'+p.join('&'):'')}
+  function ofertaHTML(r){
+    var q=S.q,inv=q.invest,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r));
+    var nota=junto?'<p class="small" style="margin-top:8px">Como você decide junto com outra pessoa, traga quem decide com você para a conversa.</p>':'';
+    var o;
+    if(inv==='a') o={t:'Para você · Trilha 1 online',h:'Comece pelo passo a passo, no seu ritmo',p:'As aulas da Trilha 1 · Desenvolvimento, uma ferramenta em cada pilar e o seu Dossiê em PDF. Totalmente online.',price:CONFIG.precoTrilha,cta:'Quero começar pela Trilha 1',link:CONFIG.zap+encodeURIComponent(resumo(r)+' Quero começar pela Trilha 1 online (R$ 270).')};
+    else if(inv==='b') o={t:'Para você · Mentoria em grupo',h:'Estruture o seu empreendimento com a turma e com o Bruno',p:'Encontros ao vivo toda semana, as aulas e as ferramentas, e o seu Dossiê revisado. O primeiro passo é uma Sessão Zero gratuita com a equipe Zion, para olhar o seu caso.',cta:'Agendar a minha Sessão Zero',link:agendaURL(r)};
+    else if(inv==='c') o={t:'Para você · Mentoria individual',h:'O seu empreendimento analisado de perto, com o Bruno',p:'Acompanhamento individual do terreno ao Dossiê pronto para levar a um sócio, a um investidor ou à Zion. O primeiro passo é uma Sessão Zero gratuita.',cta:'Agendar a minha Sessão Zero',link:agendaURL(r)};
+    else o={t:'Para você · A Zion estrutura por você',h:'A equipe Zion estrutura o seu empreendimento',p:'Para quem quer o desenvolvimento conduzido pela Zion, sob proposta. Tudo começa por uma conversa sobre o seu terreno.',cta:'Agendar a conversa',link:agendaURL(r)};
+    var h='<div class="nexts"><div class="nx hi"><span class="mono">'+o.t+'</span><h4>'+o.h+'</h4><p>'+o.p+'</p>'+(o.price?'<div class="row"><span class="price">'+o.price+'</span><span class="small">a Trilha 1 · Desenvolvimento</span></div>':'')+'<div class="row"><a class="pill pill-gold" href="'+o.link+'" target="_blank" rel="noopener">'+o.cta+' <span class="arr" aria-hidden="true">→</span></a>'+(inv!=='a'?'<a class="link-u" href="'+z+'" target="_blank" rel="noopener">Prefiro falar no WhatsApp</a>':'')+'</div>'+nota+'<p class="small" style="margin-top:8px">Cada empreendimento é avaliado individualmente. Não é promessa de renda, retorno, crédito ou sociedade.</p></div></div>';
+    return h;
+  }
   function result(){
     var r=S.r,L=leitura(r),nome=(r.contato&&r.contato.nome||'').split(' ')[0];
     var h='<div class="prog mono"><span>Resultado</span><span>Raio-X do Terreno</span></div><div class="bar"><i style="width:100%"></i></div>';
     h+='<div class="res-top"><p class="mono">'+(nome?esc(nome)+', este é o seu Raio-X inicial':'O seu Raio-X inicial')+'</p><h3>'+L[0]+'</h3><p>'+L[1]+'</p><p style="margin-top:10px;color:var(--paper)"><b>Por onde começar:</b> '+L[2]+'</p></div>';
+    if(!quali()) { h+=qualHTML(); h+='<div class="navf"><button class="pill btn-s" id="redo">Refazer o Raio-X</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>'; return h; }
+    h+=ofertaHTML(r);
     var T={n:'Trilha 1 · Desenvolvimento',link:CONFIG.trilha1,cta:'Começar pela Trilha 1',txt:'Captar dinheiro, ter um sócio, ter a Zion como parceira ou fazer sozinho com segurança.'};
     if(r.situacao==='opero'&&r.dor==='6') T={n:'Trilha 3 · Operação',link:CONFIG.lista,cta:'Entrar na lista da Trilha 3',txt:'A Trilha 3 abre em breve. Na lista, você é avisado primeiro.'};
     else if(r.situacao==='opero'&&r.dor!=='7') T={n:'Trilha 4 · Aceleração de vendas',link:CONFIG.lista,cta:'Entrar na lista da Trilha 4',txt:'A Trilha 4 abre em breve. Na lista, você é avisado primeiro.'};
@@ -404,7 +439,8 @@ h+='<div class="nx"><span class="mono">O seu caminho · 4 trilhas</span><h4>Voc�
     h+='</div><div class="navf"><button class="pill btn-s" id="redo">Refazer o Raio-X</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
     return h;
   }
-  function bindRes(){document.getElementById('redo').onclick=function(){S.i=0;save();render()}}
+  function bindRes(){document.getElementById('redo').onclick=function(){S.i=0;S.q={};save();render()};
+    [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
   render();
 })();
 /* Vídeo do hero */
