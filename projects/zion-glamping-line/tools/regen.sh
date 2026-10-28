@@ -28,7 +28,8 @@ node export_pdf.js ../00_BRIEFING/ZG-BRF-001_ZION_CABIN_DESIGN_BRIEF.html ../00_
 node export_pdf.js ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.html ../02_CONCEITO/ZG-ARQ-001_Documento_Conceitual_Visual.pdf
 node export_pdf.js ../03_TECNICO/ZG-TEC-001_Documento_Tecnico.html ../03_TECNICO/ZG-TEC-001_Documento_Tecnico.pdf
 node export_pdf.js ../04_INTERIORES/ZC-INT-001_Projeto_Interiores_Casulo.html ../04_INTERIORES/ZC-INT-001_Projeto_Interiores_Casulo.pdf
-for f in ../06_LOTES/*.html ../07_VARIANTES/*.html ../08_MOBILIARIO/*.html; do node export_pdf.js "$f" "${f%.html}.pdf"; done
+python3 build_cabin28.py
+for f in ../06_LOTES/*.html ../07_VARIANTES/*.html ../08_MOBILIARIO/*.html ../09_CABIN/*.html; do node export_pdf.js "$f" "${f%.html}.pdf"; done
 python3 pdf_leve.py ../ZION_ARCHITECTURAL_PRODUCT_BOOK.pdf ../ZION_ARCHITECTURAL_PRODUCT_BOOK_leve.pdf
 rm -f ../_print_*.html
 echo "== ok"

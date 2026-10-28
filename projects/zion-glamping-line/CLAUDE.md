@@ -22,7 +22,7 @@ Ao fim de cada fase, checar inconsistências antes de avançar. Regra de ouro: "
 amanhã, ela entende o que fabricar, pergunta o que falta e devolve orçamento?" Se não, o projeto não está concluído.
 
 ## Códigos e revisões
-Prefixo por modelo: ZC Casulo · ZS Safari · ZL Lodge 38 · ZL24 · ZL28 · ZK Cápsula (ZG = linha / documentos comuns).
+Prefixo por modelo: ZC Casulo · ZS Safari · ZL Lodge 38 · ZL24 · ZL28 · ZK Cápsula · CB28 Cabin 28 LSF (ZG = linha / documentos comuns).
 Disciplinas: ARQ · EST · FUN · COB · HID · ELE · GAS · CLI · ISO · MAT · BOM · QTD · ORC · FAB · LOG · MONT · CHK · RFQ · VAL.
 Formato: `<modelo>-<disciplina>-<nnn>` (ex.: ZC-ARQ-001). Os códigos de prancha PA-nn e DXF já existentes ficam como
 alias no índice; novos documentos usam o formato acima.
