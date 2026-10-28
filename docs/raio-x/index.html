@@ -187,6 +187,11 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
 .road .ok b{color:var(--gold)}
 .road div{min-width:0}
 @media (max-width:900px){.road{grid-template-columns:repeat(2,1fr)}.play{top:30svh;left:50%;max-width:calc(100% - 32px)}}
+
+.zlogo{display:block;width:30px;height:30px;color:#E6DFCF;flex:none}
+.zword{font-family:'Inter',system-ui,sans-serif;font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.06em;color:#E6DFCF;text-transform:uppercase}
+.zword b{font-weight:700;letter-spacing:.06em}
+.brand,.zx-brand{gap:12px}
 </style>
 <meta name="description" content="Raio-X do Terreno: em poucos minutos, veja em que ponto o seu terreno está, o que falta e por onde começar. Grátis, da Zion Hotel Group.">
 </head>
@@ -195,7 +200,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
 
 <header class="hero" id="hero">
   <nav class="gut rv" style="--d:0"><div class="wrap">
-    <div class="brand"><i aria-hidden="true"></i>ZION</div>
+    <a class="brand" href="https://zionhotelgroup.com" style="text-decoration:none"><svg class="zlogo" viewBox="0 0 424 423" aria-hidden="true" focusable="false"><g fill="currentColor"><polygon points="0,0 424,0 424,53 397,53 318,106 0,106"/><polygon points="318,106 424,106 424,264 212,264 132,317 0,317"/><polygon points="0,370 317,370 424,291 424,423 0,423"/></g></svg><span class="zword"><b>ZION</b> HOTEL GROUP<br>INTERNATIONAL</span></a>
     <div class="navlinks mono"><a href="#caminhos">Caminhos</a><a href="#raiox">Raio-X</a><a href="#quem">Quem somos</a></div>
     <a class="pill pill-dark" href="#raiox">Fazer o Raio-X</a>
   </div></nav>

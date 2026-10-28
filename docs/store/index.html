@@ -495,11 +495,18 @@ i.dot{display:inline-block;width:7px;height:7px;transform:rotate(45deg);border:1
 .js-up .up{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
 .js-up .up.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.js-up .up{opacity:1;transform:none;transition:none}}
+
+.zlogo{display:block;width:30px;height:30px;color:#E6DFCF;flex:none}
+.zword{font-family:'Inter',system-ui,sans-serif;font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.06em;color:#E6DFCF;text-transform:uppercase}
+.zword b{font-weight:700;letter-spacing:.06em}
+.brand,.zx-brand{gap:12px}
+.zx-brand .zword{font:400 11px/1.2 'Inter',system-ui,sans-serif;letter-spacing:.06em;color:#E6DFCF}
+@media (max-width:900px){.zx-brand .zword{display:block}}
 </style>
 
 <header class="zx" id="topo">
   <nav class="g zx-nav rv" style="--d:0"><div class="w zx-navin">
-    <div class="zx-brand"><i aria-hidden="true"></i>ZION <span>Glamping Store</span></div>
+    <a class="zx-brand" href="https://zionhotelgroup.com" style="text-decoration:none"><svg class="zlogo" viewBox="0 0 424 423" aria-hidden="true" focusable="false"><g fill="currentColor"><polygon points="0,0 424,0 424,53 397,53 318,106 0,106"/><polygon points="318,106 424,106 424,264 212,264 132,317 0,317"/><polygon points="0,370 317,370 424,291 424,423 0,423"/></g></svg><span class="zword"><b>ZION</b> HOTEL GROUP<br>INTERNATIONAL</span><span>· Glamping Store</span></a>
     <div class="zx-links"><a href="#produtos">Os números</a><a href="#obra">Como implantar</a><a href="#clima">Clima</a><a href="#modelos">Os modelos</a></div>
     <a class="zx-pill zx-pill-dark" href="/raio-x">Fazer o Raio-X</a>
   </div></nav>
