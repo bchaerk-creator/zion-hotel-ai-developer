@@ -147,6 +147,21 @@ td.n,th.n{text-align:center;font-weight:700;width:3.2em}
 .passo.meio i{background:#B98A1C;color:#fff}
 .passo.aqui{background:var(--verde);color:var(--creme)}
 .passo.aqui i{background:var(--dourado);color:var(--verde)}
+.caminhos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:12px}
+.cam{border-radius:16px;padding:18px;display:grid;gap:8px;align-content:start}
+.cam small{font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;font-weight:700}
+.cam h3{margin:0;font-size:1.25rem;line-height:1.25}
+.cam p{margin:0}
+.cam ul{margin:2px 0 4px;padding-left:18px;display:grid;gap:4px}
+.cam .btn{justify-self:start;margin-top:6px}
+.cam.prod{background:var(--creme);border:1.5px solid var(--linha)}
+.cam.prod small{color:#7A5E12}
+.cam.ment{background:var(--verde);color:var(--creme)}
+.cam.ment small{color:var(--dourado)}
+.cam.ment .btn{background:var(--dourado);color:var(--verde);border-color:var(--dourado)}
+.cam .fino{font-size:.8rem;opacity:.8}
+.virada{border-left:4px solid var(--dourado);padding:6px 0 6px 14px;margin:6px 0 2px;font-size:1.05rem}
+@media (max-width:720px){.caminhos{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -306,6 +321,36 @@ function textoFragil(r) {
   if (r.naoSei5.length) return `${r.naoSei5[0].r}: ${r.naoSei5[0].p} Você marcou Não sei.`;
   return "Nenhum Não sei na jornada. Confira se cada resposta tem papel ou conta por trás.";
 }
+const WA = "https://wa.me/554861371061?text=";
+const STORE = "https://www.zionhotelgroup.com/store";
+const MENT = {
+  "1": { t: "Transformar o seu terreno em um empreendimento que um sócio, um banco ou a Zion consiga avaliar", b: ["O Bruno e a equipe Zion olham o seu caso de perto, pilar por pilar", "Você monta o Dossiê no padrão que quem coloca dinheiro lê", "É por um empreendimento estruturado que a Zion começa a avaliar uma parceria"] },
+  "2": { t: "Decidir certo antes de gastar o primeiro real", b: ["O Bruno revisa as suas decisões antes de virar obra", "Você evita o erro mais caro do setor: construir fora de ordem", "Cada pilar sai com número, e não com opinião"] },
+  "3": { t: "Chegar ao sócio, ao banco ou ao investidor com resposta e com número", b: ["O seu Dossiê revisado pela equipe Zion, página por página", "As perguntas que eles vão fazer, respondidas antes da reunião", "É por um empreendimento estruturado que a Zion começa a avaliar uma parceria"] },
+  "4": { t: "Ter clareza para decidir, com alguém que já fez isso muitas vezes", b: ["Sessões com o Bruno sobre o seu terreno, e não sobre um caso genérico", "As decisões na ordem certa, sem pular etapa", "Você decide com os números na mão"] },
+};
+function caminhos(r) {
+  const dor = String(S.dor || "4"), m = MENT[dor] || MENT["4"];
+  const pronto = S.situacao === "opero" || r.prontas >= 5;
+  const resumo = `Diagnóstico prévio: começo pelo Pilar ${r.inicio ? r.inicio.n : 7}, tenho ${r.prontas} de 7 páginas do Dossiê e ${r.comNumero} de 5 perguntas com número. Dor: ${r.dor ? r.dor.r : ""}.`;
+  const msgM = WA + encodeURIComponent(`Oi! Sou ${S.nome || "aluno da Trilha 1"}${S.cidade ? ", de " + S.cidade : ""}. Fiz o diagnóstico do Marco Zero e quero saber da mentoria em grupo ou individual com o Bruno. ${resumo}`);
+  const prodTit = pronto ? "O seu terreno já pode olhar para o produto" : "Conheça o produto agora, para desenhar o terreno em volta dele";
+  const prodTxt = pronto
+    ? "Pelo que você respondeu, o seu empreendimento já tem base para escolher o que instalar. A Bubble é a cabana premium que a Zion opera desde 2020: chega onde a construção não chega e, com o deck e as instalações prontos, pode começar a operar em até 90 dias."
+    : "Ainda não é hora de comprar, e tudo bem. Mas quem conhece o produto desde o começo desenha o deck, a luz e a água no lugar certo e não refaz nada. A Bubble é a cabana premium que a Zion opera desde 2020, com 9,6 no Booking.";
+  return `<section class="bloco"><h2>Os seus próximos passos com a Zion</h2>
+  <p class="virada">Você já sabe onde está. Agora a pergunta é: vai fazer sozinho, no seu tempo, ou vai fazer com quem já fez?</p>
+  <div class="caminhos">
+    <div class="cam ment"><small>Com a Zion, de perto · mentoria</small><h3>${m.t}</h3>
+      <ul>${m.b.map((x) => `<li>${x}</li>`).join("")}</ul>
+      <p>Em grupo ou individual, com o Bruno Chaerk. As vagas são poucas por turma, porque cada caso é olhado de perto.</p>
+      <a class="btn" href="${msgM}" target="_blank" rel="noopener">Quero conversar sobre a mentoria</a>
+      <p class="fino">A conversa é sem compromisso. A Zion não promete sócio, crédito ou retorno: ela ajuda você a estruturar para chegar lá.</p></div>
+    <div class="cam prod"><small>O produto · Zion Glamping Store</small><h3>${prodTit}</h3><p>${prodTxt}</p>
+      <ul><li>Suite e Suite Premium, com fichas técnicas e plantas</li><li>O valor e a condição exclusiva chegam no seu WhatsApp</li><li>Junto, a estimativa do empreendimento completo</li></ul>
+      <a class="btn btn-ouro" href="${STORE}" target="_blank" rel="noopener">${pronto ? "Ver a Bubble e receber a condição" : "Conhecer a Bubble"}</a></div>
+  </div></section>`;
+}
 function resultado() {
   const r = calcular();
   const ondeTxt = r.inicio ? `Comece pelo Pilar ${r.inicio.n} · ${r.inicio.t}` : "O seu produto já está desenhado";
@@ -324,6 +369,7 @@ function resultado() {
   <section class="bloco"><h2>A sua primeira ação de 7 dias</h2><p>Uma ação só, a que mais tira Não sei.</p>
   <label for="acao">Ação</label><textarea id="acao">${esc(S.acao != null ? S.acao : acao)}</textarea>
   <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  ${caminhos(r)}
   <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar o meu diagnóstico em PDF</button>
   <a class="btn btn-p" href="../aula${Math.min(r.inicio ? r.inicio.n : 7, 6)}/">Abrir a ferramenta do Pilar ${r.inicio ? r.inicio.n : 7}</a>
   <button class="btn btn-s" id="refaz">Refazer o diagnóstico</button></div>
@@ -360,6 +406,9 @@ function gerarPDF() {
   txt(S.acao != null ? S.acao : (r.inicio ? r.inicio.acao : ""), 11, null, true);
   if (S.prazo) txt("Até " + S.prazo.split("-").reverse().join("/"), 10);
   y += 4; txt(`Próximo passo: abra a ferramenta do Pilar ${r.inicio ? r.inicio.n : 7}. Do terreno ao negócio que funciona.`, 10);
+  y += 2; txt("Os seus próximos passos com a Zion", 9, [122, 94, 18], true);
+  txt("Mentoria em grupo ou individual com o Bruno Chaerk: fale com a Zion no WhatsApp +55 48 6137-1061.", 10);
+  txt("A Bubble Zion e a condição exclusiva: www.zionhotelgroup.com/store", 10);
   rodape();
   d.save("diagnostico-previo-marco-zero.pdf");
 }
