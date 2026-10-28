@@ -417,9 +417,9 @@ var CONFIG={
   function buyHTML(){
     var t=CONFIG.checkoutTrilha||CONFIG.trilha1, c=CONFIG.checkoutCombo||CONFIG.pacote;
     return '<div class="buy" style="display:grid;gap:12px;margin-top:14px">'+
-      '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Trilha 1 · Desenvolvimento · <b>'+CONFIG.precoTrilha+'</b></span><span class="arr" aria-hidden="true">→</span></a>'+
-      '<a class="pill pill-dark" href="'+c+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Pacote das 4 trilhas · <b>'+CONFIG.precoPacote+'</b></span><span aria-hidden="true">→</span></a>'+
-      '<p class="small">Pagamento seguro. A Trilha 1 abre na hora, na sua área de membros. No pacote, as Trilhas 2, 3 e 4 entram na sua área de membros conforme forem lançadas.</p></div>';
+      '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Trilha 1 · Desenvolvimento · <b>12x de R$ 22,50</b></span><span class="arr" aria-hidden="true">→</span></a>'+
+      '<a class="pill pill-dark" href="'+c+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Pacote das 4 trilhas · <b>12x de R$ 74,17</b></span><span aria-hidden="true">→</span></a>'+
+      '<p class="small">No cartão em 12x, ou à vista: Trilha 1 por R$ 270 e pacote por R$ 890. Pagamento seguro. A Trilha 1 abre na hora, na sua área de membros. No pacote, as Trilhas 2, 3 e 4 entram na sua área de membros conforme forem lançadas.</p></div>';
   }
   function ofertaHTML(r){
     var q=S.q,inv=q.invest,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r));
