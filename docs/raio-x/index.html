@@ -295,8 +295,8 @@ var CONFIG={
   pacote:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20o%20pacote%20com%20as%204%20trilhas%20%28R%24%20890%29.',
   mentoria:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20agendar%20uma%20conversa%20sobre%20a%20mentoria%20em%20grupo%20ou%20individual.',
   lista:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20entrar%20na%20lista%20de%20espera%20das%20Trilhas%203%20e%204.',
-  checkoutTrilha:'', /* link de pagamento da Trilha 1 (R$ 270) */
-  checkoutCombo:'', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
+  checkoutTrilha:'https://www.asaas.com/000/c/zrhq4rk88iyta3id', /* link de pagamento da Trilha 1 (R$ 270) */
+  checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   agenda:'https://calendly.com/contato-zionglampingcollection/1h', /* Sessão Zero com o Bruno (Calendly) */
   zap:'https://wa.me/554861371061?text=',
   precoTrilha:'R$ 270',
@@ -395,41 +395,50 @@ var CONFIG={
     return ['Você tem a terra, e falta o papel','Antes de qualquer obra, a matrícula precisa estar em ordem. É a primeira coisa que um sócio, um banco ou a Zion vão olhar.','Comece pela Trilha 1 · Desenvolvimento. A Aula 1 mostra, item por item, os papéis do terreno e quem verifica cada um.'];
   }
   var QQ=[
-    {id:'como',q:'Para estruturar o seu empreendimento, como você prefere aprender?',o:[['online','Sozinho, no meu ritmo, com as aulas e as ferramentas online'],['grupo','Em grupo, com encontros ao vivo com o Bruno'],['indiv','Individual, com o meu empreendimento analisado de perto'],['zion','Quero que a Zion estruture por mim']]},
-    {id:'invest',q:'Quanto você está disposto a investir em conhecimento para fazer isso do jeito certo?',h:'Uma referência: o conhecimento costuma ser a menor linha do investimento de um empreendimento, e a que mais evita erro caro.',o:[['a','Até R$ 300'],['b','De R$ 300 a R$ 3.500, podendo parcelar'],['c','De R$ 3.500 a R$ 15.000'],['d','Acima de R$ 15.000, ou quero a Zion estruturando por mim']]},
-    {id:'decide',q:'Você decide esse investimento sozinho?',o:[['sim','Sim, decido sozinho'],['junto','Decido junto com sócio, cônjuge ou família']]}
+    {id:'trava',q:'O que mais te segura hoje para tirar esse projeto do papel?',o:[['ordem','Não sei por onde começar'],['medo','Tenho medo de investir e errar'],['capital','Não sei como pagar a obra'],['terreno','Não sei se o meu terreno serve'],['tempo','Me falta tempo para cuidar disso']]},
+    {id:'tentou',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',o:[['nao','Ainda não'],['valeu','Sim, e me ajudou'],['naoresolveu','Sim, e não resolveu o que eu precisava']]},
+    {id:'quando',q:'Quando você quer tomar uma decisão sobre esse projeto?',o:[['ja','Nos próximos 30 dias'],['seis','Nos próximos 6 meses'],['pesq','Ainda estou pesquisando']]},
+    {id:'decide',q:'Quem decide esse projeto?',o:[['sim','Eu decido sozinho'],['junto','Decido com sócio, cônjuge ou família']]},
+    {id:'como',q:'Como você prefere avançar?',o:[['perto','Com alguém olhando o meu caso de perto'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas']]}
   ];
+  var TRAVA={ordem:'Não saber por onde começar é falta de ordem, não de capacidade. O diagnóstico mostra a ordem certa para o seu caso.',medo:'O medo de errar diminui quando a decisão vem antes da obra. No diagnóstico, você vê onde está o risco do seu projeto.',capital:'Terreno não atrai capital. Projeto atrai. No diagnóstico, você vê o que falta para o seu projeto ser levado a sério por um sócio, um banco ou um investidor.',terreno:'É exatamente por aí que o diagnóstico começa: o que o seu terreno permite, e o que pode travar.',tempo:'Com a ordem certa, cada hora conta. O diagnóstico mostra o primeiro passo, para você não perder tempo com o que não importa agora.'};
   function quali(){var q=S.q||{};return QQ.every(function(x){return q[x.id]})}
   function qualHTML(){
     var q=S.q||{},n=0;QQ.forEach(function(x){if(q[x.id])n++});
     var x=QQ.filter(function(y){return !q[y.id]})[0];
-    var h='<div class="nx hi" id="qual"><span class="mono">Último passo · '+(n+1)+' de 3</span><h4>Antes de te mostrar o caminho certo</h4><p>Cada pessoa chega num momento diferente. Responda rápido para a gente te indicar o formato que combina com você.</p>';
+    var h='<div class="nx hi" id="qual"><span class="mono">Último passo · '+(n+1)+' de '+QQ.length+'</span><h4>Antes de te mostrar o próximo passo</h4><p>Cada pessoa chega num momento diferente. Responda rápido: leva menos de um minuto.</p>';
     h+='<p class="q" style="margin-top:14px;font-family:var(--serif);font-size:22px;color:var(--paper)">'+x.q+'</p>'+(x.h?'<p class="small">'+x.h+'</p>':'');
     h+='<div class="opts" style="display:grid;gap:10px;margin-top:12px">';
     x.o.forEach(function(o){h+='<button type="button" class="pill btn-s qopt" data-k="'+x.id+'" data-v="'+o[0]+'" style="justify-content:flex-start;text-align:left;width:100%">'+o[1]+'</button>'});
     return h+'</div></div>';
   }
+  function lab(id,v){var x=QQ.filter(function(y){return y.id===id})[0];var o=x&&x.o.filter(function(p){return p[0]===v})[0];return o?o[1]:''}
   function resumo(r){
-    var q=S.q||{},c=r.contato||{},lab=function(id,v){var x=QQ.filter(function(y){return y.id===id})[0];var o=x&&x.o.filter(function(p){return p[0]===v})[0];return o?o[1]:''};
-    return 'Oi! Fiz o Raio-X do Terreno'+(c.nome?' ('+c.nome+')':'')+'. Leitura: '+leitura(r)[0]+'. Prefiro: '+lab('como',q.como)+'. Investimento em conhecimento: '+lab('invest',q.invest)+'. '+(q.decide==='junto'?'Decido junto com outra pessoa.':'Decido sozinho.');
+    var q=S.q||{},c=r.contato||{};
+    return 'Oi! Fiz o Raio-X do Terreno'+(c.nome?' ('+c.nome+')':'')+'. Leitura: '+leitura(r)[0]+'. O que me segura: '+lab('trava',q.trava)+'. Decisão: '+lab('quando',q.quando)+'. '+lab('decide',q.decide)+'. Prefiro: '+lab('como',q.como)+'.';
   }
   function agendaURL(r){var c=r.contato||{},p=[];if(c.nome)p.push('name='+encodeURIComponent(c.nome));if(c.mail)p.push('email='+encodeURIComponent(c.mail));return CONFIG.agenda+(p.length?'?'+p.join('&'):'')}
-  function buyHTML(){
-    var t=CONFIG.checkoutTrilha||CONFIG.trilha1, c=CONFIG.checkoutCombo||CONFIG.pacote;
+  function buyHTML(m){
+    var g=m?'pill-dark':'pill-gold',t=CONFIG.checkoutTrilha||CONFIG.trilha1, c=CONFIG.checkoutCombo||CONFIG.pacote;
     return '<div class="buy" style="display:grid;gap:12px;margin-top:14px">'+
-      '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Trilha 1 · Desenvolvimento · <b>até 12x de R$ 22,50</b></span><span class="arr" aria-hidden="true">→</span></a>'+
+      '<a class="pill '+g+'" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Trilha 1 · Desenvolvimento · <b>até 12x de R$ 22,50</b></span><span class="arr" aria-hidden="true">→</span></a>'+
       '<a class="pill pill-dark" href="'+c+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Pacote das 4 trilhas · <b>até 12x de R$ 74,17</b></span><span aria-hidden="true">→</span></a>'+
       '<p class="small">À vista: Trilha 1 R$ 270 · pacote R$ 890. Pagamento seguro. A Trilha 1 abre na hora, na sua área de membros. No pacote, as Trilhas 2, 3 e 4 entram na sua área de membros conforme forem lançadas.</p></div>';
   }
+  function trilhaDe(r){
+    if(r.situacao==='opero'&&r.dor==='6') return {t1:false,n:'Trilha 3 · Operação'};
+    if(r.situacao==='opero'&&r.dor!=='7') return {t1:false,n:'Trilha 4 · Aceleração de vendas'};
+    return {t1:true,n:'Trilha 1 · Desenvolvimento'};
+  }
   function ofertaHTML(r){
-    var q=S.q,inv=q.invest,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r));
-    var nota=junto?'<p class="small" style="margin-top:8px">Como você decide junto com outra pessoa, traga quem decide com você para a conversa.</p>':'';
-    var o;
-    if(inv==='a') o={t:'Para você · As trilhas online',h:'Comece pelo passo a passo, no seu ritmo',p:'As aulas da Trilha 1 · Desenvolvimento, uma ferramenta em cada pilar e o seu Dossiê em PDF. Totalmente online.',buy:true};
-    else if(inv==='b') o={t:'Para você · Mentoria em grupo',h:'Estruture o seu empreendimento com a turma e com o Bruno',p:'Encontros ao vivo toda semana, as aulas e as ferramentas, e o seu Dossiê revisado. O primeiro passo é uma Sessão Zero gratuita com a equipe Zion, para olhar o seu caso.',cta:'Agendar a minha Sessão Zero',link:agendaURL(r)};
-    else if(inv==='c') o={t:'Para você · Mentoria individual',h:'O seu empreendimento analisado de perto, com o Bruno',p:'Acompanhamento individual do terreno ao Dossiê pronto para levar a um sócio, a um investidor ou à Zion. O primeiro passo é uma Sessão Zero gratuita.',cta:'Agendar a minha Sessão Zero',link:agendaURL(r)};
-    else o={t:'Para você · A Zion estrutura por você',h:'A equipe Zion estrutura o seu empreendimento',p:'Para quem quer o desenvolvimento conduzido pela Zion, sob proposta. Tudo começa por uma conversa sobre o seu terreno.',cta:'Agendar a conversa',link:agendaURL(r)};
-    var h='<div class="nexts"><div class="nx hi"><span class="mono">'+o.t+'</span><h4>'+o.h+'</h4><p>'+o.p+'</p>'+(o.buy?buyHTML()+'<div class="row"><a class="link-u" href="'+z+'" target="_blank" rel="noopener">Tenho uma dúvida antes de comprar</a></div>':'<div class="row"><a class="pill pill-gold" href="'+o.link+'" target="_blank" rel="noopener">'+o.cta+' <span class="arr" aria-hidden="true">→</span></a><a class="link-u" href="'+z+'" target="_blank" rel="noopener">Prefiro falar no WhatsApp</a></div>')+nota+'<p class="small" style="margin-top:8px">Cada empreendimento é avaliado individualmente. Não é promessa de renda, retorno, crédito ou sociedade.</p></div></div>';
+    var q=S.q,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r)),T=trilhaDe(r);
+    var sozinho=q.como==='sozinho'&&q.quando==='pesq';
+    var nota=junto?'<p class="small" style="margin-top:8px">Como você decide junto com outra pessoa, traga quem decide com você para a conversa. A decisão fica mais fácil quando os dois ouvem o mesmo diagnóstico.</p>':'';
+    var diag='<div class="nx hi"><span class="mono">O próximo passo · Diagnóstico personalizado</span><h4>Faça o diagnóstico do seu projeto com o Bruno, antes de tomar qualquer decisão</h4><p>'+(TRAVA[q.trava]||'')+'</p><p style="margin-top:8px">Uma conversa online de 45 minutos sobre o seu Raio-X, o seu terreno e o seu momento. Você sai com o resultado do diagnóstico e o caminho recomendado para o seu caso.</p><div class="row"><a class="pill pill-gold" href="'+agendaURL(r)+'" target="_blank" rel="noopener">Agendar o meu diagnóstico <span class="arr" aria-hidden="true">→</span></a><a class="link-u" href="'+z+'" target="_blank" rel="noopener">Prefiro falar no WhatsApp</a></div>'+nota+'</div>';
+    var down;
+    if(T.t1) down='<div class="nx'+(sozinho?' hi':'')+'"><span class="mono">'+(sozinho?'Para você · No seu ritmo':'Prefere começar sozinho agora?')+'</span><h4>'+(sozinho?'Comece pelo passo a passo, no seu ritmo':'A Trilha 1 · Desenvolvimento, online')+'</h4><p>As aulas da Trilha 1, um e-book e uma ferramenta em cada pilar, e o seu Dossiê em PDF. Totalmente online.</p>'+buyHTML(!sozinho)+'</div>';
+    else down='<div class="nx"><span class="mono">Prefere começar sozinho?</span><h4>'+T.n+'</h4><p>Esta trilha abre em breve. Na lista, você é avisado primeiro.</p><div class="row"><a class="link-u" href="'+CONFIG.lista+'" target="_blank" rel="noopener">Entrar na lista da '+T.n.split(' · ')[0]+' →</a></div></div>';
+    var h='<div class="nexts">'+(sozinho?down+diag.replace(' hi"','"'):diag+down)+'</div><p class="small" style="margin-top:8px">Cada empreendimento é avaliado individualmente. Não é promessa de renda, retorno, crédito ou sociedade.</p>';
     return h;
   }
   function result(){
@@ -438,18 +447,11 @@ var CONFIG={
     h+='<div class="res-top"><p class="mono">'+(nome?esc(nome)+', este é o seu Raio-X inicial':'O seu Raio-X inicial')+'</p><h3>'+L[0]+'</h3><p>'+L[1]+'</p><p style="margin-top:10px;color:var(--paper)"><b>Por onde começar:</b> '+L[2]+'</p></div>';
     if(!quali()) { h+=qualHTML(); h+='<div class="navf"><button class="pill btn-s" id="redo">Refazer o Raio-X</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>'; return h; }
     h+=ofertaHTML(r);
-    var T={n:'Trilha 1 · Desenvolvimento',link:CONFIG.trilha1,cta:'Começar pela Trilha 1',txt:'Captar dinheiro, ter um sócio, ter a Zion como parceira ou fazer sozinho com segurança.'};
-    if(r.situacao==='opero'&&r.dor==='6') T={n:'Trilha 3 · Operação',link:CONFIG.lista,cta:'Entrar na lista da Trilha 3',txt:'A Trilha 3 abre em breve. Na lista, você é avisado primeiro.'};
-    else if(r.situacao==='opero'&&r.dor!=='7') T={n:'Trilha 4 · Aceleração de vendas',link:CONFIG.lista,cta:'Entrar na lista da Trilha 4',txt:'A Trilha 4 abre em breve. Na lista, você é avisado primeiro.'};
     var pronto=(r.definido==='sim')&&(r.situacao==='opero'||r.matricula==='sim');
-    var lojaHi='<div class="nx hi"><span class="mono">Passo 1 · Os produtos</span><h4>O seu terreno está pronto para os produtos</h4><p>'+(r.situacao==='opero'?'Você já opera e sabe o que quer instalar.':'Matrícula em ordem e empreendimento definido.')+' Veja a Bubble Suite, a Suite Premium e as fichas técnicas, e receba o valor e a condição exclusiva no WhatsApp.</p><div class="row"><a class="pill pill-gold" href="'+CONFIG.store+'" target="_blank" rel="noopener">Abrir a Glamping Store ↗</a></div></div>';
-    var lojaRef='<div class="nx"><span class="mono">Para depois · Os produtos</span><h4>Preços de referência, para quando o seu empreendimento estiver pronto</h4><p>O erro mais caro é começar pela obra. Veja a Bubble e as fichas técnicas para ter a referência, e compre quando o empreendimento estiver definido.</p><div class="row"><a class="link-u" href="'+CONFIG.store+'" target="_blank" rel="noopener">Ver a Glamping Store ↗</a></div></div>';
     h+='<div class="nexts">';
-    if(pronto) h+=lojaHi;
-h+='<div class="nx"><span class="mono">O seu caminho · 4 trilhas</span><h4>Você já fez a primeira página</h4><p>O Raio-X é a página zero do seu Dossiê. As próximas se desbloqueiam nas trilhas.</p><div class="road"><div class="ok"><b>✓</b>Raio-X</div><div><b>1</b>Desenvolvimento</div><div><b>2</b>Gestão e viabilidade</div><div><b>3</b>Operação</div><div><b>4</b>Aceleração de vendas</div></div></div>';
-    if((S.q||{}).invest!=='a') h+='<div class="nx hi"><span class="mono">'+(pronto?'Passo 2':'Passo 1')+' · O passo a passo</span><h4>'+(r.situacao==='opero'?'O passo a passo para a sua hospedagem':(pronto?'Estruture o investimento antes de comprar':'Comece pelo passo a passo'))+'</h4><p>'+T.txt+' Totalmente online, com uma ferramenta em cada aula e o seu Dossiê em PDF.</p>'+(T.link===CONFIG.trilha1?buyHTML():'<div class="row"><a class="pill pill-gold" href="'+T.link+'">'+T.cta+' <span class="arr" aria-hidden="true">→</span></a></div>')+'</div>';
-    if(!pronto) h+=lojaRef;
-    h+='<div class="nx"><span class="mono">'+(pronto?'Passo 3':'Passo 2')+' · Com a gente, de perto</span><h4>Mentoria em grupo ou individual</h4><p>Para quem quer o empreendimento analisado de perto, com o Bruno.</p><div class="row"><a class="link-u" href="'+CONFIG.mentoria+'">Saiba mais e agende uma conversa →</a></div></div>';
+    h+='<div class="nx"><span class="mono">O seu caminho · 4 trilhas</span><h4>Você já fez a primeira página</h4><p>O Raio-X é a página zero do seu Dossiê. As próximas se desbloqueiam nas trilhas.</p><div class="road"><div class="ok"><b>✓</b>Raio-X</div><div><b>1</b>Desenvolvimento</div><div><b>2</b>Gestão e viabilidade</div><div><b>3</b>Operação</div><div><b>4</b>Aceleração de vendas</div></div></div>';
+    if(pronto) h+='<div class="nx"><span class="mono">Os produtos</span><h4>O seu terreno está pronto para os produtos</h4><p>'+(r.situacao==='opero'?'Você já opera e sabe o que quer instalar.':'Matrícula em ordem e empreendimento definido.')+' Veja a Bubble Suite, a Suite Premium e as fichas técnicas, e receba o valor e a condição exclusiva no WhatsApp.</p><div class="row"><a class="link-u" href="'+CONFIG.store+'" target="_blank" rel="noopener">Abrir a Glamping Store ↗</a></div></div>';
+    else h+='<div class="nx"><span class="mono">Para depois · Os produtos</span><h4>Preços de referência, para quando o seu empreendimento estiver pronto</h4><p>O erro mais caro é começar pela obra. Veja a Bubble e as fichas técnicas para ter a referência, e compre quando o empreendimento estiver definido.</p><div class="row"><a class="link-u" href="'+CONFIG.store+'" target="_blank" rel="noopener">Ver a Glamping Store ↗</a></div></div>';
     h+='</div><div class="navf"><button class="pill btn-s" id="redo">Refazer o Raio-X</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
     return h;
   }
