@@ -20,6 +20,8 @@ O que mais trava a venda hoje:
 
 ## 1. Correções urgentes (promessas quebradas)
 
+> **Situação em 29/10:** 1.1 e 1.2 já estavam resolvidos na `main` (links do Asaas e trailer publicado). 1.3 e 1.5 foram corrigidos no commit `5d0f6fd`. Falta conferir 1.4 no site publicado.
+
 | # | Página | Problema | Correção |
 |---|---|---|---|
 | 1.1 | Raio-X | `checkoutTrilha` e `checkoutCombo` estão vazios no `CONFIG`, então os botões "Trilha 1 · R$ 270" e "Pacote · R$ 890" abrem o WhatsApp. Logo abaixo, o texto diz **"Pagamento seguro. A Trilha 1 abre na hora"**. Quem clica para pagar cai numa conversa. | Colocar os links de pagamento no `CONFIG`. Enquanto não existirem, trocar o texto por "Você recebe o link de pagamento no WhatsApp". |
