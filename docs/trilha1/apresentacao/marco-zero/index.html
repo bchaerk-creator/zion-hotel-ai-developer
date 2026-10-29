@@ -1,0 +1,834 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Marco Zero · A visão de toda a jornada · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.lado img.ilus.v{object-fit:contain;width:auto;max-width:100%;max-height:780px;justify-self:center;border-radius:22px}
+.fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fotos figure{margin:0;position:relative;border-radius:16px;overflow:hidden;height:300px}
+.fotos img{width:100%;height:100%;object-fit:cover;display:block}
+.fotos figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;font-size:22px;font-weight:600;color:#fff;background:linear-gradient(0deg,rgba(11,19,14,.88),rgba(11,19,14,0))}
+.fotos.mini figure{height:250px}
+.fotos.mini figcaption{font-size:20px}
+.sim label b.nv{font-variant-numeric:tabular-nums;color:var(--ouro2);font-size:28px;font-weight:700}
+.esc .sim label b.nv{color:var(--ouro)}
+.pq .fr .tag{font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.esc .pq .fr .tag{color:var(--ouro)}
+.tipos{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.tipos .card{padding:24px 24px;gap:8px}
+.tipos .card h3{font-size:32px}
+.tipos .card p{font-size:22px;line-height:1.4}
+.tipos .card.gl{border:2px solid var(--ouro)}
+.num3{display:flex;flex-direction:column;gap:18px}
+.num3 .eq{display:grid;grid-template-columns:400px 1fr;gap:26px;align-items:center;padding:18px 26px;border-radius:16px;background:#fff;border:1px solid rgba(22,38,28,.08)}
+.num3 .eq b{font-family:var(--serif);font-size:52px;font-weight:500;color:var(--ouro2);line-height:1}
+.num3 .eq span{font-size:30px;line-height:1.35}
+.partes .card h3{font-size:36px}
+.partes .card p{font-size:25px}
+.partes .card.on{border:3px solid var(--ouro)}
+.mz-painel .ctl{gap:12px}
+.mz-painel label{font-size:22px;gap:2px 14px}
+.mz-painel label b.nv{font-size:22px}
+.mz-painel input[type=range]{height:26px}
+.mz-painel .res{padding:26px 30px;gap:10px}
+.mz-painel .linha{font-size:23px;padding-bottom:8px}
+.mz-painel .linha b{text-align:right}
+.mz-painel .linha.tot{font-size:28px}
+.mz-painel .aviso{font-size:21px}
+.mz-painel h4{margin:0 0 4px;font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro)}
+.degraus{width:100%;height:230px;display:block}
+.degraus text{font:600 18px Inter,Arial,sans-serif;fill:#D9D3C4}
+.legenda{display:flex;gap:22px;flex-wrap:wrap;font-size:20px;color:#D9D3C4}
+.legenda i{display:inline-block;width:18px;height:18px;border-radius:4px;margin-right:8px;vertical-align:-3px}
+</style>
+<script>
+/* Simuladores do Marco Zero.
+   mz: o diagnóstico prévio, com a mesma lógica da ferramenta do Marco Zero (cinco perguntas em três níveis; a jornada em três níveis;
+       começa pelo primeiro pilar que ainda não está "Já tenho"; o ponto mais frágil é o primeiro "Não sei", depois o primeiro "Em parte").
+       Os sete pilares seguem a estrutura nova do curso (e-book do Marco Zero, capítulo 07).
+   escada: a capacidade é o menor dos quatro limites (e-book do Pilar 1). Exemplo ilustrativo da Marina: 12, 10, 7 e 5 dão 5;
+       ela abre com 3 e desenha para 5 (e-book do Pilar 2); as cabanas 4 e 5 esperam o gatilho (Pilar 5). Conferido: min(12,10,7,5) = 5; 5 − 3 = 2. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+(function(){
+  const N5 = ['Não sei','Tenho uma ideia','Com número'];
+  const NJ = ['Não sei','Em parte','Já tenho'];
+  const CINCO = [
+    {id:'visao', r:'Visão', p:'o que você vai construir?'},
+    {id:'demanda', r:'Demanda', p:'existe mercado para isso?'},
+    {id:'tempo', r:'Tempo', p:'em quanto tempo?'},
+    {id:'modo', r:'Modo', p:'com que conhecimento e estratégia?'},
+    {id:'resultado', r:'Resultado', p:'o que isso te devolve?'}
+  ];
+  const PIL = [
+    {n:1, t:'Território e destino'}, {n:2, t:'Mercado e demanda'}, {n:3, t:'Produto e tipologias'},
+    {n:4, t:'Modelo de negócio'}, {n:5, t:'Masterplan faseado'}, {n:6, t:'Pré-viabilidade'}, {n:7, t:'Capital e Dossiê'}
+  ];
+  const DORES = ['Tenho o terreno e não tenho o capital','Tenho o capital e não sei o que fazer','Preciso estruturar para um sócio, um banco ou um investidor','Preciso de clareza para decidir'];
+  ZD.sims.mz = function(v){
+    const r = {};
+    CINCO.forEach(c => r['l_' + c.id] = N5[v[c.id]] || '');
+    PIL.forEach(p => r['j' + p.n] = NJ[v['p' + p.n]] || '');
+    const com = CINCO.filter(c => v[c.id] === 2).length;
+    const nao = CINCO.filter(c => v[c.id] === 0);
+    const ideia = CINCO.filter(c => v[c.id] === 1);
+    const falta = nao[0] || ideia[0];
+    r.comNumero = com + ' de 5';
+    r.pctCinco = com / 5 * 100;
+    r.falta = falta ? falta.r + ': ' + falta.p : 'Nenhuma: confira o papel ou a conta de cada uma';
+    const prontas = PIL.filter(p => v['p' + p.n] === 2).length;
+    r.prontas = prontas + ' de 7';
+    r.pctJ = prontas / 7 * 100;
+    const ini = PIL.find(p => v['p' + p.n] !== 2);
+    r.inicio = ini ? 'Pilar ' + ini.n + ' · ' + ini.t : 'Revisar as sete páginas';
+    const fr = PIL.find(p => v['p' + p.n] === 0) || PIL.find(p => v['p' + p.n] === 1);
+    r.fragil = fr ? 'Pilar ' + fr.n + ' · ' + (v['p' + fr.n] === 0 ? 'Não sei' : 'Em parte') : (falta && v[falta.id] === 0 ? falta.r + ' · Não sei' : 'Nenhum Não sei');
+    r.dorTxt = 'Dor ' + v.dor + ' · ' + (DORES[v.dor - 1] || '');
+    if (com === 5) r._aviso = ['ok', '<b>Cinco com número.</b> Confira se cada resposta tem papel ou conta por trás.'];
+    else if (com >= 3) r._aviso = ['ok', '<b>' + com + ' de 5 com número.</b> Falta pouco: a que mais te falta é o seu primeiro estudo.'];
+    else r._aviso = ['at', '<b>' + com + ' de 5 com número.</b> É o ponto de partida mais comum. Os sete pilares existem para transformar "não sei" em número.'];
+    return r;
+  };
+  const NOMES = {fis:'o limite físico', inf:'a infraestrutura', exp:'a experiência', mer:'o mercado'};
+  ZD.sims.escada = function(v){
+    const cap = Math.min(v.fis, v.inf, v.exp, v.mer);
+    const manda = Object.keys(NOMES).filter(k => v[k] === cap).map(k => NOMES[k]).join(' e ');
+    const r = {cap, f1: v.f1, manda: 'Manda ' + manda, depois: Math.max(0, cap - v.f1), excesso: Math.max(0, v.f1 - cap)};
+    if (v.f1 > cap) r._aviso = ['er', '<b>Acima do menor dos quatro limites.</b> Fazer mais do que o lugar aguenta é construir unidade que fica vazia.'];
+    else if (v.f1 <= 3) r._aviso = ['ok', '<b>Fruta baixa.</b> Uma, duas ou três unidades para testar o mercado e a operação. As próximas esperam o gatilho: demanda, caixa e maturidade.'];
+    else r._aviso = ['at', '<b>Cabe, mas começa alto.</b> A Zion recomenda de menos a mais: o que você testa antes de construir tudo?'];
+    return r;
+  };
+  ZD.desenha.escada = function(sim, r, v){
+    const svg = sim.querySelector('svg.degraus'); if (!svg) return;
+    const M = Math.max(v.fis, v.inf, v.exp, v.mer, v.f1);
+    const W = 1000, H = 300, base = 262, larg = W / M, hmax = 230;
+    let h = '<line x1="0" y1="' + base + '" x2="' + W + '" y2="' + base + '" stroke="#C9A84C" stroke-width="2"/>';
+    for (let i = 1; i <= M; i++){
+      const hh = 16 + (hmax - 16) * i / M, x = (i - 1) * larg + 4, w = larg - 8, y = base - hh;
+      let cor, extra = '';
+      if (i <= v.f1 && i <= r.cap) cor = '#C9A84C';
+      else if (i <= v.f1) cor = '#B5452F';
+      else if (i <= r.cap) { cor = 'rgba(201,168,76,.18)'; extra = ' stroke="#C9A84C" stroke-width="3" stroke-dasharray="8 6"'; }
+      else cor = 'rgba(255,255,255,.08)';
+      h += '<rect x="' + x + '" y="' + y + '" width="' + w + '" height="' + hh + '" rx="5" fill="' + cor + '"' + extra + '/>';
+      if (M <= 14 || i % 2 === 1 || i === M) h += '<text x="' + (x + w / 2) + '" y="' + (H - 6) + '" text-anchor="middle">' + i + '</text>';
+    }
+    const xc = r.cap * larg;
+    h += '<line x1="' + xc + '" y1="6" x2="' + xc + '" y2="' + base + '" stroke="#F5F1E8" stroke-width="3" stroke-dasharray="4 6"/>';
+    h += '<text x="' + Math.min(Math.max(xc - 8, 120), W - 4) + '" y="22" text-anchor="end" style="fill:#F5F1E8">capacidade ' + r.cap + '</text>';
+    svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
+  };
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-marco-zero" data-titulo="Marco Zero · A visão de toda a jornada">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/cd21b66b22.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Marco Zero</p>
+  <h1>Marco Zero<br><i>A visão de toda a jornada</i></h1>
+  <p class="lead" style="max-width:1050px">Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso. Antes do primeiro pilar, a vista de cima.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "Nós somos da Zion, e este é o Marco Zero do curso Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso. Não é um curso sobre construir: é sobre transformar um terreno, uma ideia ou um empreendimento que já existe em um negócio de hospedagem de sucesso." Peça papel e caneta. Avise que hoje tem pergunta para responder no chat, quiz e dois simuladores ao vivo.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">Antes de construir</span><p class="q">O papel suporta <i>qualquer projeto.</i></p></div>
+    <div class="gq f"><span class="num">01</span><span class="rot">Pilar 1 · Território e destino</span><p class="q media">O seu terreno suporta o que está <i>no papel?</i></p></div>
+    <div class="gq f"><span class="num">02</span><span class="rot">Pilar 2 · Mercado e demanda</span><p class="q">O que está no terreno tem <i>demanda?</i></p></div>
+    <div class="gq f"><span class="num">03</span><span class="rot">Pilares 3 e 4 · Produto e modelo</span><p class="q">Para quem <i>vamos vender?</i></p></div>
+    <div class="gq f"><span class="num">04</span><span class="rot">Pilar 5 · Masterplan faseado</span><p class="q">O que cabe e o que entra <i>na fase um?</i></p></div>
+    <div class="gq f"><span class="num">05</span><span class="rot">Pilar 6 · Pré-viabilidade</span><p class="q media">O retorno está alinhado com <i>a minha perspectiva?</i></p></div>
+    <div class="gq f"><span class="num">06</span><span class="rot">Pilar 6 · Os três cenários</span><p class="q">E se der errado? <i>Como mitigar?</i></p></div>
+    <div class="gq f"><span class="num">07</span><span class="rot">Pilar 7 · Capital e Dossiê</span><p class="q">Como <i>estruturar</i> isso?</p></div>
+    <div class="gq f"><span class="num">08</span><span class="rot">Pilares 4 e 7 · A decisão</span><p class="q media">Qual é o melhor caminho? <i>Qual estratégia?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> As perguntas da jornada, uma por clique, cada uma com o pilar que a responde. Leia devagar e deixe cada pergunta no ar uns segundos antes de clicar. "O papel aceita qualquer desenho. O que este curso faz é responder, na ordem, as perguntas que o papel não responde." Ao final: "É exatamente isso que um sócio, um banco ou a Zion perguntam. E a Zion avalia cada caso."</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">O Marco Zero em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>O setor de hospedagem por inteiro, as quatro dores e a jornada: quatro etapas e sete pilares.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>Quase todo mundo começa pela obra. E a obra é o último passo.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página zero do seu Dossiê: o seu diagnóstico prévio, com a etapa por onde começar.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "Quem começa pelo fim descobre no meio do caminho o que faltou, quando já não dá para voltar." Bloco 1: a visão, quem somos, a síndrome do terrenista e o setor. Bloco 2: as dores, do pequeno para o grande, a jornada e o diagnóstico. No fim, o Faça agora.</aside>
+</section>
+
+<!-- 3 · PERGUNTA-GATILHO -->
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="A pergunta de hoje">
+  <p class="k">Antes de tudo, uma pergunta</p>
+  <h2 style="max-width:1100px">O que te trouxe <i>até aqui?</i></h2>
+  <ul class="lista" style="max-width:1050px;font-size:38px">
+    <li class="f">O terreno parado</li>
+    <li class="f">O capital sem destino</li>
+    <li class="f">Um sócio para convencer</li>
+    <li class="f">A dúvida de qual caminho seguir</li>
+  </ul>
+  <p class="sm f" style="max-width:1000px">Guarde a sua resposta. Ela volta no bloco 2.</p>
+  <aside><b>3 min · pergunta-gatilho.</b> Faça a pergunta antes de revelar. Peça que respondam no chat com uma palavra. Depois revele as quatro situações, uma por clique, e leia algumas respostas em voz alta. "Pode ser mais de uma. Guarde: a gente volta nela nas quatro dores."</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · A visão">
+  <p class="k">Bloco 1</p>
+  <h2>A visão, quem somos <i>e o setor de hospedagem</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>As grandes redes estruturam tudo antes de construir. O nosso método nasceu dessa lição.</div>
+    <div class="f"><b>Reflexão</b>Se você começasse amanhã, qual seria o seu primeiro gasto?</div>
+    <div class="f"><b>Dica</b>Tenha papel e caneta. Três respostas suas voltam no diagnóstico do fim.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na reflexão, peça que escrevam o primeiro gasto que imaginam. Quase sempre a resposta é a obra. Guarde esse papel: no fim do Marco Zero, a jornada mostra quanto vem antes dela.</aside>
+</section>
+
+<!-- 5 · VISÃO E PROPÓSITO -->
+<section class="s foto" data-bg="../fotos/ec697bc679.jpg" data-bloco="Bloco 1 · A visão e o propósito">
+  <p class="k">Tudo começa assim</p>
+  <h2 style="max-width:1150px">Tudo começa <i>de uma visão</i></h2>
+  <p class="lead" style="max-width:1050px">Existe um caminho, que outras pessoas já trilharam, erraram e refizeram.</p>
+  <ul class="lista" style="max-width:1100px;font-size:32px">
+    <li class="f">Faltava a leitura de como fazer, quanto gastar e quanto retorna. Por isso nós, da Zion, criamos esta mentoria.</li>
+    <li class="f">E para abençoar vidas e expandir o setor: que você prospere com o que tem nas mãos, e que quem se hospeda encontre descanso e natureza.</li>
+  </ul>
+  <aside><b>2 min.</b> "Se você está aqui, alguma coisa acendeu: um produto que você viu, um terreno parado, uma ideia. Isso não é distante." Clique para a carência: "Uma série de proprietários de áreas, e de pessoas que querem entrar no setor, não tinham a visão, o diagnóstico de como fazer, quanto iam gastar e quanto iam retornar." Último clique: o propósito, dos dois lados.</aside>
+</section>
+
+<!-- 6 · CINCO PERGUNTAS -->
+<section class="s" data-bloco="Bloco 1 · A visão e o propósito">
+  <p class="k">Antes de investir um real</p>
+  <h2>Cinco perguntas. <i>Clique em cada uma.</i></h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);min-height:280px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Visão</h3><span class="dica">Virar</span></div><div class="vs"><b>Quer saber</b><p>O que você vai construir?</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Demanda</h3><span class="dica">Virar</span></div><div class="vs"><b>Quer saber</b><p>Existe mercado para isso?</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Tempo</h3><span class="dica">Virar</span></div><div class="vs"><b>Quer saber</b><p>Em quanto tempo?</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Modo</h3><span class="dica">Virar</span></div><div class="vs"><b>Quer saber</b><p>Com que conhecimento e estratégia?</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Resultado</h3><span class="dica">Virar</span></div><div class="vs"><b>Quer saber</b><p>O que isso te devolve?</p></div></div></div>
+  </div>
+  <p class="citacao f" style="font-size:50px">Não basta ter uma visão. Tem que estar preparado.</p>
+  <aside><b>3 min.</b> Cada clique vira uma pergunta. Antes de virar, pergunte à turma o que ela acha que cada palavra quer saber. No fim: "Pausa e anota: das cinco, qual mais te falta hoje?" No próximo slide, a turma equaliza ao vivo.</aside>
+</section>
+
+<!-- 7 · SIMULADOR · AS CINCO PERGUNTAS -->
+<section class="s esc" data-bloco="Bloco 1 · A visão e o propósito">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize as cinco perguntas</p><span class="selo">Diagnóstico · não é nota</span></div>
+  <h2 style="font-size:64px">Quantas você já <i>responde com número?</i></h2>
+  <div class="sim" data-sim="mz">
+    <div class="ctl" style="gap:18px">
+      <label>Visão <b class="nv" data-r="l_visao"></b><input type="range" name="visao" min="0" max="2" step="1" value="0"><small>O que você vai construir?</small></label>
+      <label>Demanda <b class="nv" data-r="l_demanda"></b><input type="range" name="demanda" min="0" max="2" step="1" value="0"><small>Existe mercado para isso?</small></label>
+      <label>Tempo <b class="nv" data-r="l_tempo"></b><input type="range" name="tempo" min="0" max="2" step="1" value="0"><small>Em quanto tempo?</small></label>
+      <label>Modo <b class="nv" data-r="l_modo"></b><input type="range" name="modo" min="0" max="2" step="1" value="0"><small>Com que conhecimento e estratégia?</small></label>
+      <label>Resultado <b class="nv" data-r="l_resultado"></b><input type="range" name="resultado" min="0" max="2" step="1" value="0"><small>O que isso te devolve?</small></label>
+    </div>
+    <div class="res">
+      <div class="linha tot"><span>Com número</span><b data-r="comNumero"></b></div>
+      <div class="barra"><i data-bar="pctCinco"></i></div>
+      <div class="linha"><span>A que mais te falta</span></div>
+      <p style="font-size:30px;line-height:1.35;color:var(--ouro)" data-r="falta"></p>
+      <div class="aviso" data-aviso></div>
+      <p class="sm">"Com número" é quando a resposta está por escrito ou com conta. "Tenho uma ideia" é quando você imagina, mas ainda não conferiu.</p>
+      <button class="reset">Zerar as respostas</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Cada régua tem três posições: Não sei, Tenho uma ideia, Com número. Peça um voluntário no chat e equalize as cinco com as respostas dele. Mostre como a "que mais te falta" muda: é o primeiro "Não sei", e se não houver, o primeiro "Tenho uma ideia". É a mesma lógica da ferramenta do Faça agora. Tecla R ou o botão zeram. Estas respostas seguem para o painel do bloco 2.</aside>
+</section>
+
+<!-- 8 · QUEM SOMOS -->
+<section class="s" data-bloco="Bloco 1 · Quem somos">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">Quem somos</p>
+      <h2 style="font-size:72px">O que a gente ensina, <i>a gente opera</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Mais de vinte anos de hotelaria internacional: Meliá, Barceló e Wyndham, na Espanha, nas Canárias e nas Baleares.</li>
+        <li class="f">A Zion no mercado nacional de hospedagem desde 2020.</li>
+        <li class="f">O fundador, Bruno Chaerk, é embaixador e palestrante do Clube de Negócios Hotéis e Resorts.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="../fotos/2b967f345d.jpg" alt="Bruno Chaerk palestrando">
+  </div>
+  <aside><b>2 min.</b> "Você vai seguir um método. Vale saber de onde ele vem e quem o testou primeiro." O Clube reúne donos de hotéis, resorts e pousadas, incorporadores e investidores. "O método nasceu de operação, não de teoria."</aside>
+</section>
+
+<!-- 9 · FASES · LINHA DO TEMPO -->
+<section class="s" data-bloco="Bloco 1 · Quem somos">
+  <p class="k">A linha do tempo · clique em cada fase</p>
+  <h2 style="font-size:64px">Como o método <i>nasceu</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Europa · vinte anos</span><div class="fx"><div><h4>O que foi</h4><p>Hotéis de 307 a mais de 1.100 quartos, rebrandings e a reconversão de um destino inteiro, do turismo de excesso ao lifestyle e luxo.</p></div><div><h4>A lição</h4><p>As grandes redes estruturam tudo antes de construir. E um destino inteiro muda de patamar quando existe um plano.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>2020 · a primeira sede</span><div class="fx"><div><h4>O que foi</h4><p>Um terreno vazio na serra, sem luz, sem água, sem internet. Nasceu o Zion Bubble Glamping, com as primeiras suítes bolha do Brasil.</p></div><div><h4>A lição</h4><p>Mesmo com o dinheiro, vieram os contratempos. Foi fazendo do zero que o caminho virou método: primeiro fizemos, depois documentamos.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>2024 · a segunda sede</span><div class="fx"><div><h4>O que foi</h4><p>A segunda sede, num clima tropical, em outro bioma.</p></div><div><h4>Por quê</h4><p>Para validar o modelo em outro bioma. Duas sedes, dois biomas, a mesma marca.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Hoje · a holding</span><div class="fx"><div><h4>O que é</h4><p>A Zion Hotel Group International, com quatro braços, estruturando projetos pelo Brasil.</p></div><div><h4>Por que importa para você</h4><p>Tudo o que você aprende aqui vem de modelos testados e de operações próprias da Zion.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada fase: o que foi e o que ela ensinou.</p></div>
+  </div>
+  <aside><b>3 min.</b> Cada clique abre a próxima fase. Na Europa: na Catalunha, mais de 10 anos, um hotel Meliá de 307 quartos e o rebranding do Dolce by Wyndham; nas Canárias, a reconversão e o rebranding da Barceló para Occidental, mais de 1.100 quartos; nas Baleares, com a Meliá, a reconversão de um destino inteiro: INNSiDE, ME e Sol House, 1.096 quartos. Não diga nomes de cidade brasileira: "na serra" e "no litoral" bastam.</aside>
+</section>
+
+<!-- 10 · OPERAÇÕES -->
+<section class="s esc" data-bloco="Bloco 1 · Quem somos">
+  <p class="k">As operações da Zion · Zion Bubble Glamping</p>
+  <h2 style="font-size:62px">Duas sedes, dois biomas, <i>a mesma marca</i></h2>
+  <div class="fotos">
+    <figure class="f"><img src="../fotos/97720fb183.jpg" alt=""><figcaption>Na serra · a mata de araucárias</figcaption></figure>
+    <figure class="f"><img src="../fotos/db90b57ddd.jpg" alt=""><figcaption>À noite</figcaption></figure>
+    <figure class="f"><img src="../fotos/c4b7d4ee48.jpg" alt=""><figcaption>O deck na floresta</figcaption></figure>
+    <figure class="f"><img src="../fotos/997f8112bb.jpg" alt=""><figcaption>No litoral · a piscina entre as bolhas</figcaption></figure>
+    <figure class="f"><img src="../fotos/81a062a470.jpg" alt=""><figcaption>Por dentro</figcaption></figure>
+    <figure class="f"><img src="../fotos/f7ddae0c6d.jpg" alt=""><figcaption>Vista de cima</figcaption></figure>
+  </div>
+  <aside><b>1 min.</b> Revele as fotos enquanto fala. "Tudo o que a gente ensina aqui, a gente faz nas nossas sedes, todos os dias." Só fotos reais da Zion neste slide.</aside>
+</section>
+
+<!-- 11 · QUATRO BRAÇOS -->
+<section class="s" data-bloco="Bloco 1 · Quem somos">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Zion Hotel Group International</p>
+      <h2 style="font-size:68px">Quatro braços, <i>um só caminho</i></h2>
+      <ul class="lista" style="font-size:30px;gap:16px">
+        <li class="f"><span><b>Desenvolvimento:</b> estrutura empreendimentos, do território à captação.</span></li>
+        <li class="f"><span><b>Produtos:</b> a Zion Glamping Store, inclusive a Bubble.</span></li>
+        <li class="f"><span><b>Gestão hoteleira:</b> estrutura a operação e opera.</span></li>
+        <li class="f"><span><b>Educação:</b> o Método Zion, que começa agora.</span></li>
+      </ul>
+      <p class="sm f">Vinte e três destinos mapeados para a expansão. O nosso papel não é o do arquiteto nem o do engenheiro: é desenvolver, estruturar e ofertar.</p>
+    </div>
+    <img class="ilus v" src="../fotos/5ea2ce3fc1.jpg" alt="Um tronco com quatro braços: desenvolvimento, produtos, gestão hoteleira e educação">
+  </div>
+  <aside><b>2 min.</b> Um braço por clique. Nos 23 destinos, sem prometer parceria nem investimento: os destinos dependem de terreno, licenciamento e contrato, e a Zion avalia cada caso. "Você, estando aqui, já faz parte desse movimento."</aside>
+</section>
+
+<!-- 12 · TESE -->
+<section class="s esc" data-bloco="Bloco 1 · Quem somos">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:34px">
+      <p class="k">A tese da Zion</p>
+      <p class="citacao" style="font-size:60px">Existe dinheiro. O que não existe são <i>empreendimentos bem estruturados.</i></p>
+      <p class="lead f">Não falta terreno, não falta dinheiro: falta estratégia.</p>
+    </div>
+    <img class="ilus v" src="../fotos/59bb43ec35.jpg" alt="Um terreno e uma pilha de dinheiro ligados pelo plano">
+  </div>
+  <aside><b>1 min.</b> Pausa. Deixe a frase respirar. "Falta uma linha de entendimento: o que fazer, quando fazer, por que fazer e quanto retorna. É isso que este curso te dá." O desenho: o terreno e o dinheiro parados, e o plano que liga os dois.</aside>
+</section>
+
+<!-- 13 · SÍNDROME DO TERRENISTA -->
+<section class="s" data-bloco="Bloco 1 · A síndrome do terrenista">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">A síndrome do terrenista</p>
+      <h2 style="font-size:72px">"A minha terra <i>é única."</i> E ela é.</h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Só que o Brasil é commodity: o que mais tem aqui é terra. E terra sem plano.</li>
+        <li class="f">O terrenista espera um empresário de helicóptero, com uma mala de dinheiro: "achei o seu terreno".</li>
+        <li class="f">Isso não vai acontecer. Sabe por quê? Porque não existe um plano.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="../fotos/e77ad113ee.jpg" alt="Helicóptero com uma mala de dinheiro sobre o terreno, riscado">
+  </div>
+  <aside><b>3 min · espelhamento.</b> Antes do segundo clique, pergunte: "quem aqui já pensou que um dia alguém ia aparecer querendo o seu terreno?" Peça um sim no chat. "O que vai diferenciar você não é ter a terra. É ter uma terra com plano."</aside>
+</section>
+
+<!-- 14 · O QUE É TER UM PLANO -->
+<section class="s" data-bloco="Bloco 1 · A síndrome do terrenista">
+  <p class="k">Plano não é só projeto arquitetônico</p>
+  <h2 style="font-size:68px">Um plano completo tem <i>três partes</i></h2>
+  <div class="grid g3" style="min-height:250px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Projeto</h3><span class="dica">O que responde?</span></div><div class="vs"><b>Responde</b><p>O que vai ser construído.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Execução</h3><span class="dica">O que responde?</span></div><div class="vs"><b>Responde</b><p>O que fazer, em que ordem, com quem.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Viabilidade</h3><span class="dica">O que responde?</span></div><div class="vs"><b>Responde</b><p>Quanto custa, quanto entra e quando volta.</p></div></div></div>
+  </div>
+  <p class="lead f" style="max-width:1550px">Às vezes o empresário do helicóptero é você mesmo: tem a terra e o dinheiro. O que falta é conhecimento.</p>
+  <p class="sm f" style="font-size:30px">E o risco? Sempre existe. A pergunta certa é: o que eu faço para ficar menos arriscado? O risco se mitiga com plano.</p>
+  <aside><b>3 min.</b> Pergunte antes de cada cartão: "o que essa parte responde?" Depois: "Você tem a terra, tem o dinheiro, mas não sabe quanto vai gastar nem quanto vai voltar." No risco, nunca diga risco zero: risco zero não existe.</aside>
+</section>
+
+<!-- 15 · TENDÊNCIAS -->
+<section class="s" data-bloco="Bloco 1 · O setor de hospedagem">
+  <div class="lado" style="grid-template-columns:1.3fr .7fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Para onde o hóspede está indo</p>
+      <h2 style="font-size:68px">As pessoas pagam pelo que <i>vivem</i></h2>
+      <div class="num3">
+        <div class="eq f"><b>US$ 2,1 tri</b><span>A economia da experiência até 2032</span></div>
+        <div class="eq f"><b>73%</b><span>Dos viajantes considerariam atividades calmas na natureza</span></div>
+        <div class="eq f"><b>10,6% ao ano</b><span>O crescimento estimado do glamping no mundo</span></div>
+      </div>
+      <p class="sm f">Projeção não é garantia: mostra a direção. Fontes: Bloomberg (2024), citado por Empower; Booking.com, Travel Predictions 2026; IMARC Group, Glamping Market Report 2025-2034.</p>
+    </div>
+    <img class="ilus" src="../fotos/901904223c.jpg" alt="Hóspede descansando numa rede suspensa sobre a mata" style="max-height:780px">
+  </div>
+  <aside><b>2 min.</b> Revele os três números, um por clique. "As pessoas pagam cada vez mais pelo que vivem, não pelo que recebem." Antes de qualquer decisão, a gente olha o mercado: quem decide sem olhar o mercado decide pelo que acha.</aside>
+</section>
+
+<!-- 16 · ALUGAR, HOSPEDAR OU VENDER -->
+<section class="s" data-bloco="Bloco 1 · O setor de hospedagem">
+  <p class="k">O Airbnb transformou quem tinha uma casa em anfitrião</p>
+  <h2 style="font-size:64px">O que você vai fazer <i>com o seu imóvel?</i></h2>
+  <div class="grid g4" style="min-height:290px">
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Renda</span><h3>Alugar por temporada</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você aluga o imóvel, por até 90 dias, sem serviço de hotel.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Renda</span><h3>Hospedar</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você hospeda, com serviço, e cobra diária.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Venda</span><h3>Vender unidades</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você vende cada apartamento ou chalé.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Venda</span><h3>Vender frações</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>É a multipropriedade: você vende tempo de uso.</p></div></div></div>
+  </div>
+  <p class="lead f">Cada caminho tem a sua conta, a sua lei e o seu jeito de operar.</p>
+  <p class="sm f">Fontes: Lei 8.245/1991, art. 48 (temporada, até 90 dias); Lei 11.771/2008, art. 23 (meios de hospedagem).</p>
+  <aside><b>3 min.</b> "Hoje qualquer pessoa pode operar hospedagem. Isso abriu uma porta enorme, mas trouxe uma decisão que quase ninguém toma com clareza." Vire um cartão por clique. Renda: você fica com o imóvel. Venda: você vende. O modelo de negócio se decide no Pilar 4. Tema jurídico em nível introdutório: quem confirma o seu caso é o advogado, o contador e a prefeitura.</aside>
+</section>
+
+<!-- 17 · QUIZ RELÂMPAGO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">Aluguel por temporada e hospedagem são a mesma coisa?</p>
+    <div class="ops">
+      <button class="op">Sim, os dois cobram por noite</button>
+      <button class="op" data-certa>Não: no aluguel por temporada não há serviço de hotel, e a lei e a conta são outras</button>
+      <button class="op">Depende do tamanho do imóvel</button>
+    </div>
+    <p class="exp">Saber o nome certo muda a conta, a lei e o jeito de operar. O enquadramento do seu caso, quem confirma é o advogado, o contador e a prefeitura.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat. Clique na alternativa que alguém escolheu ou avance para revelar a certa e a explicação.</aside>
+</section>
+
+<!-- 18 · OS JEITOS DE HOSPEDAR -->
+<section class="s" data-bloco="Bloco 1 · O setor de hospedagem">
+  <p class="k">O mapa da hospedagem</p>
+  <h2 style="font-size:64px">Muitos jeitos <i>de hospedar</i></h2>
+  <div class="tipos">
+    <div class="card"><h3>Hotel</h3><p>Recepção e diária, com ou sem alimentação.</p></div>
+    <div class="card"><h3>Resort</h3><p>Hotel com lazer, bem-estar e natureza no próprio lugar.</p></div>
+    <div class="card"><h3>Hotel fazenda</h3><p>No campo, com a vivência da roça.</p></div>
+    <div class="card"><h3>Pousada</h3><p>Até 30 unidades, com recepção e alimentação.</p></div>
+    <div class="card"><h3>Cama e café</h3><p>Na casa do dono, até 3 unidades, com café.</p></div>
+    <div class="card"><h3>Flat</h3><p>Unidade com cozinha, num prédio com serviço de hotel.</p></div>
+    <div class="card"><h3>Hotel histórico</h3><p>Num prédio preservado.</p></div>
+    <div class="card"><h3>Hotel de estrada</h3><p>Para quem está de passagem.</p></div>
+    <div class="card"><h3>Temporada</h3><p>Casa ou chalé alugado, sem serviço de hotel.</p></div>
+    <div class="card gl"><h3>Glamping</h3><p>Conforto de hotel com a natureza como experiência.</p></div>
+  </div>
+  <p class="sm f">Fontes: Portaria MTur 100/2011, art. 7º; Lei 8.245/1991, art. 48. Hotel de estrada, temporada e glamping não são tipos da Portaria.</p>
+  <aside><b>2 min.</b> Pergunte no chat: "qual destes é o seu, ou o que você imagina?" Leia duas ou três respostas. "Saber o nome certo do seu negócio muda a conta, a lei e a operação." O glamping está em destaque porque é o que a gente vive.</aside>
+</section>
+
+<!-- 19 · GLAMPING -->
+<section class="s" data-bloco="Bloco 1 · O setor de hospedagem">
+  <div class="lado" style="grid-template-columns:1fr 1fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Vamos falar do que a gente vive</p>
+      <h2 style="font-size:70px">Glamping <i>não é a bolha</i></h2>
+      <ul class="lista" style="font-size:30px;gap:18px">
+        <li class="f">Glamour com camping: nasceu das barracas. A bolha é uma das estruturas.</li>
+        <li class="f">O chalé só alugado, sem serviço, não é glamping: está mais para aluguel por temporada.</li>
+        <li class="f">E glamping não é propriedade: é barraca, de luxo. Serve para renda e para testar o destino.</li>
+      </ul>
+    </div>
+    <div class="fotos mini" style="grid-template-columns:1fr 1fr">
+      <figure class="f"><img src="../fotos/1d7fb0dfe0.jpg" alt=""><figcaption>Na praia</figcaption></figure>
+      <figure class="f"><img src="../fotos/fd4aa81247.jpg" alt=""><figcaption>Na selva</figcaption></figure>
+      <figure class="f"><img src="../fotos/925209a3b7.jpg" alt=""><figcaption>No deserto</figcaption></figure>
+      <figure class="f"><img src="../fotos/d091d95991.jpg" alt=""><figcaption>Um ofurô na floresta</figcaption></figure>
+    </div>
+  </div>
+  <aside><b>3 min.</b> "Muita gente acha que glamping é a bolha. A bolha é uma das estruturas possíveis." Revele as fotos: "na praia, na selva, no deserto, num ofurô no meio da floresta. A estrutura muda, o conceito é o mesmo: hospedar com conforto dentro da natureza." Sobre propriedade: quando a conversa é vender como imóvel, a conversa é construção; isso volta no Pilar 4, e o enquadramento quem confirma é o advogado e a prefeitura. Fotos de empreendimentos de terceiros.</aside>
+</section>
+
+<!-- 20 · O HÓSPEDE COMPRA O QUÊ -->
+<section class="s" data-bloco="Bloco 1 · Pare e pense">
+  <p class="k">Pare e pense · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">O hóspede de hoje compra o quê?</p>
+    <div class="ops">
+      <button class="op">Paredes e uma cama</button>
+      <button class="op">O menor preço</button>
+      <button class="op">Uma experiência ou um motivo para viajar</button>
+      <button class="op" data-certa>Qualquer uma delas: depende do que você escolhe para o seu negócio</button>
+    </div>
+    <p class="exp">Todas são válidas: existe hóspede para cada uma. A pergunta é qual você escolhe, porque é essa decisão que define o produto, o preço e o tipo de hóspede que vai chegar até você.</p>
+  </div>
+  <aside><b>2 min.</b> Peça a letra no chat e espere uns 10 segundos. A maioria marca C. Revele a D com calma: não existe resposta errada entre as três primeiras, existe a escolha. O produto se decide no Pilar 3.</aside>
+</section>
+
+<!-- 21 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 4 minutos</p>
+  <h2>Três linhas <i>no seu papel</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Escreva em uma linha o que você quer construir.</span></div>
+      <div class="passo f"><b>2</b><span>Das cinco perguntas, marque quais você responde com número.</span></div>
+      <div class="passo f"><b>3</b><span>Escreva o nome certo do seu negócio: alugar, hospedar ou vender, e o jeito de hospedar.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="4"><span class="tempo">4:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Guarde a folha: ela volta no diagnóstico do fim.</p>
+    </div>
+  </div>
+  <aside><b>4 min · prática.</b> Clique em Começar no cronômetro. Enquanto a turma escreve, leia perguntas do chat. Ao terminar: "quem descobriu que o nome do seu negócio não era o que imaginava?" Encerre o bloco 1: a visão, quem somos, a síndrome do terrenista e o setor.</aside>
+</section>
+
+<!-- 22 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · As dores e a jornada">
+  <p class="k">Bloco 2</p>
+  <h2>As dores, a jornada <i>e o seu diagnóstico</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Grande parte de quem chega até nós já construiu, e ficou com o calendário vazio.</div>
+    <div class="f"><b>Reflexão</b>Lembra da pergunta do começo? O que te trouxe até aqui?</div>
+    <div class="f"><b>Dica</b>Pode ser mais de uma dor. Anote a que mais pesa hoje.</div>
+  </div>
+  <aside><b>1 min.</b> Retome: no bloco 1, a visão, quem somos, a síndrome do terrenista e o setor. Agora a pergunta mais importante do Marco Zero, a jornada inteira e o seu diagnóstico.</aside>
+</section>
+
+<!-- 23 · AS QUATRO DORES -->
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Pare e anote</p>
+      <h2 style="font-size:76px">Qual é a <i>sua</i> dor?</h2>
+      <ul class="lista num" style="font-size:34px">
+        <li class="f">Tenho o terreno e não tenho o capital</li>
+        <li class="f">Tenho o capital e não sei o que fazer</li>
+        <li class="f">Preciso estruturar para entrar com um sócio, um banco ou um investidor</li>
+        <li class="f">Preciso de clareza para decidir</li>
+      </ul>
+      <p class="sm f">Pode ser mais de uma. Quem não dá nome à própria dor compra a solução errada.</p>
+    </div>
+    <img class="ilus v" src="../fotos/a1ec8c9f6d.jpg" alt="As quatro dores, numeradas">
+  </div>
+  <aside><b>3 min.</b> Revele as quatro, uma por clique. Peça o número no chat. Faça uma contagem rápida em voz alta: "quantos 1? quantos 2?" Quem já opera: a dor dele costuma ser a 4, e o caminho dele passa também pela gestão e pela operação.</aside>
+</section>
+
+<!-- 24 · DOR 1 -->
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Dor 1 · o milionário descapitalizado</p>
+      <h2 style="font-size:72px">Tenho a terra. <i>Não tenho o capital.</i></h2>
+      <p class="lead f">Milhões em terra e nenhum dinheiro para desenvolver.</p>
+      <p class="citacao f" style="font-size:52px">Linha sem isca não traz peixe. <i>O plano é a isca.</i></p>
+      <p class="sm f">Sem um empreendimento estruturado, o sócio, o banco ou o investidor não vem.</p>
+    </div>
+    <img class="ilus v" src="../fotos/36d1ecdecd.jpg" alt="Pescaria: anzol sem isca e anzol com o plano como isca">
+  </div>
+  <aside><b>2 min.</b> "Se você tem a terra e a matrícula, já tem mais da metade do caminho." Diga isso só na voz, sem prometer capital, sócio ou crédito. Lembre do helicóptero: ele não vem buscar terra, vem buscar plano.</aside>
+</section>
+
+<!-- 25 · DOR 2 -->
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Dor 2</p>
+      <h2 style="font-size:72px">Tenho o capital <i>e não sei o que fazer</i></h2>
+      <p class="lead f">Ouviu que todo mundo estava ganhando dinheiro com chalé. Comprou, construiu, e o calendário ficou vazio.</p>
+      <p class="citacao f" style="font-size:50px">Não errou por falta de dinheiro. Errou por <i>decidir fora de ordem.</i></p>
+      <p class="sm f">Uma decisão tomada fora de ordem custa o dobro.</p>
+    </div>
+    <img class="ilus v" src="../fotos/48391afbdb.jpg" alt="Chalés iguais; um deles com o calendário vazio">
+  </div>
+  <aside><b>2 min · espelhamento.</b> "Grande parte de quem chega até nós, da Zion, já construiu. Gastou trezentos, quatrocentos mil reais no terreno, mais a construção, e o calendário ficou vazio." Valores só na voz. "Aprender a ordem custa muito menos do que um erro de obra."</aside>
+</section>
+
+<!-- 26 · DOR 3 -->
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <p class="k">Dor 3 · "tenho uns amigos que querem fazer comigo"</p>
+  <h2 style="font-size:64px">Eles sempre fazem <i>as mesmas perguntas</i></h2>
+  <div class="grid g4" style="min-height:270px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Qual o melhor produto?</h3><span class="dica">Onde se responde?</span></div><div class="vs"><b>No curso</b><p>Pilar 3 · Produto e tipologias: o que eu vendo, e para quem.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Quanto custa?</h3><span class="dica">Onde se responde?</span></div><div class="vs"><b>No curso</b><p>Pilar 6 · Pré-viabilidade: quanto custa abrir a porta.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Quanto retorna?</h3><span class="dica">Onde se responde?</span></div><div class="vs"><b>No curso</b><p>Pilar 6 · os três cenários. Receita bruta não é lucro.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Em quanto tempo?</h3><span class="dica">Onde se responde?</span></div><div class="vs"><b>No curso</b><p>Pilar 6 · o tempo de volta do dinheiro.</p></div></div></div>
+  </div>
+  <p class="lead f">Quantas você responde hoje, com número?</p>
+  <aside><b>3 min · pare e conte.</b> Leia as quatro perguntas. Peça que contem nos dedos quantas respondem com número, e digam o número no chat. Vire os cartões clicando neles, na ordem da conversa. O último clique da sequência revela a pergunta final. Conteúdo educacional: não é recomendação de investimento.</aside>
+</section>
+
+<!-- 27 · DOR 4 -->
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">Dor 4</p>
+      <h2 style="font-size:76px">Preciso de clareza <i>para decidir</i></h2>
+      <p class="lead f">Qual modelo, qual produto, quanto investir, sozinho ou com alguém. Esse é o grande objetivo deste curso.</p>
+      <p class="citacao f" style="font-size:50px">Não é a Zion que decide por você. É você, <i>com os números na mão.</i></p>
+    </div>
+    <img class="ilus v" src="../fotos/44a3a3e8b5.jpg" alt="A neblina se dissipa; uma balança com quanto custa e quanto retorna">
+  </div>
+  <aside><b>1 min.</b> Feche as dores. "Anote a sua. Ela entra no diagnóstico do fim." Transição: "e se eu te disser que você não precisa de um grande hotel para começar?"</aside>
+</section>
+
+<!-- 28 · FRUTA BAIXA -->
+<section class="s" data-bloco="Bloco 2 · Do pequeno para o grande">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Você não precisa de um grande hotel para começar</p>
+      <h2 style="font-size:76px">Fruta alta, <i>fruta baixa</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">A fruta alta: o sonho grande, o resort de cinquenta quartos.</li>
+        <li class="f">A fruta baixa: uma, duas ou três unidades, para testar o mercado e a operação.</li>
+      </ul>
+      <p class="citacao f" style="font-size:48px">De menos a mais. A fruta baixa ajuda a pagar <i>a escada até a fruta alta.</i></p>
+    </div>
+    <img class="ilus v" src="../fotos/aaede60b77.jpg" alt="Árvore com a fruta baixa, uma bolha, e a fruta alta, um resort, ligadas por uma escada">
+  </div>
+  <aside><b>2 min.</b> "O sonho grande paralisa quem não tem por onde começar. Nós, da Zion, recomendamos sempre de menos a mais." Pergunte: "qual é a fruta baixa do seu terreno?"</aside>
+</section>
+
+<!-- 29 · CASO REAL -->
+<section class="s" data-bloco="Bloco 2 · Do pequeno para o grande">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Um caso real</p>
+      <h2 style="font-size:76px">Rodrigo <i>e Priscila</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">A primeira ideia: derrubar tudo e construir dez casas.</li>
+        <li class="f">Mas o diferencial estava na natureza do lugar. Os chalés vieram pouco a pouco.</li>
+        <li class="f">A pousadinha para surfistas virou um negócio de luxo natural, com padrão, marca e diferenciação.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="../fotos/cbced4f214.jpg" alt="Uma casinha na natureza; a ideia de dez casas, riscada; chalés pouco a pouco">
+  </div>
+  <aside><b>2 min.</b> Conte o caso: eles fizeram a leitura do território e configuraram cada chalé para a experiência que o cliente queria ter. A Zion reformulou com eles da estrutura à marca e aos padrões de hotelaria: antes, lençóis e toalhas coloridos, sem padrão; hoje, um padrão. Sem citar o bairro nem a cidade, e sem números de ocupação ou rentabilidade.</aside>
+</section>
+
+<!-- 30 · A ESCADA DA MARINA · RESOLVIDA -->
+<section class="s" data-bloco="Bloco 2 · Do pequeno para o grande">
+  <span class="selo">Exemplo ilustrativo · a Marina, que nos acompanha nos sete pilares</span>
+  <div class="quiz passo">
+    <p class="q" style="font-size:46px">No terreno da Marina, o limite físico permite 12 unidades, a água 10, a experiência 7 e o mercado 5. Quantas ela faz?</p>
+    <div class="ops" style="grid-template-columns:repeat(3,1fr)"><button class="op">12</button><button class="op">8, a média</button><button class="op" data-certa>5</button></div>
+    <p class="exp" style="font-size:24px;padding:14px 22px">Cinco, pelo mercado. A capacidade é sempre o menor dos quatro limites, não a média.</p>
+  </div>
+  <div class="conta" style="font-size:30px">
+    <div class="eq f"><span>Capacidade · o menor de 12, 10, 7 e 5</span><span>5 cabanas</span></div>
+    <div class="eq f"><span>Fase um · o mercado compra, mas não cinco agora</span><span>3 cabanas</span></div>
+    <div class="eq tot f" data-foco><span>Fase dois · esperam o gatilho: demanda, caixa e maturidade</span><span>+ 2</span></div>
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> Apresente a Marina: um exemplo ilustrativo que acompanha o curso inteiro, com três cabanas de glamping para casal. Letra no chat, revele, depois a conta linha a linha. min(12, 10, 7, 5) = 5; 5 − 3 = 2. Cada número vem de um pilar: os limites no Pilar 1, o mercado no Pilar 2, o gatilho no Pilar 5. "Construa menos unidades, nunca menos infraestrutura": a rede dela já nasce para cinco.</aside>
+</section>
+
+<!-- 31 · SIMULADOR · A ESCADA -->
+<section class="s esc" data-bloco="Bloco 2 · Do pequeno para o grande" style="gap:24px">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a escada de começar pequeno</p><span class="selo">Exemplo ilustrativo</span></div>
+  <h2 style="font-size:56px">Quantas o lugar aguenta, <i>e quantas primeiro</i></h2>
+  <div class="sim" data-sim="escada" style="grid-template-columns:.8fr 1.2fr;gap:44px">
+    <div class="ctl" style="gap:10px">
+      <label>Limite físico <output data-for="fis"></output><input type="range" name="fis" min="1" max="20" step="1" value="12"></label>
+      <label>Limite de infraestrutura, a água <output data-for="inf"></output><input type="range" name="inf" min="1" max="20" step="1" value="10"></label>
+      <label>Limite de experiência <output data-for="exp"></output><input type="range" name="exp" min="1" max="20" step="1" value="7"></label>
+      <label>Limite de mercado <output data-for="mer"></output><input type="range" name="mer" min="1" max="20" step="1" value="5"></label>
+      <label style="color:var(--ouro)">Unidades na fase um <output data-for="f1"></output><input type="range" name="f1" min="1" max="20" step="1" value="3"></label>
+    </div>
+    <div class="res" style="gap:12px">
+      <svg class="degraus" viewBox="0 0 1000 300" preserveAspectRatio="none"></svg>
+      <div class="legenda"><span><i style="background:#C9A84C"></i>fase um</span><span><i style="background:rgba(201,168,76,.18);border:2px dashed #C9A84C"></i>espera o gatilho</span><span><i style="background:#B5452F"></i>acima da capacidade</span><span><i style="background:rgba(255,255,255,.15)"></i>cabe, mas o lugar não aguenta</span></div>
+      <div class="linha tot"><span>Capacidade, o menor dos quatro</span><b data-r="cap"></b></div>
+      <div class="linha"><span data-r="manda"></span><span>Depois, com gatilho: <b data-r="depois"></b></span></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo da Marina: 12, 10, 7 e 5 dão capacidade 5; fase um com 3; ficam 2 para depois. Mexa ao vivo: "e se o mercado aguentasse 9?" (manda a experiência, 7). "E se ela abrisse com 8?" (vermelho: unidade que fica vazia). "E com 5?" (cabe, mas começa alto). Peça que um aluno diga os quatro limites do terreno dele; se não souber, é exatamente o que o Pilar 1 e o Pilar 2 respondem. Tecla R volta ao exemplo.</aside>
+</section>
+
+<!-- 32 · PARETO -->
+<section class="s" data-bloco="Bloco 2 · Do pequeno para o grande">
+  <p class="k">A regra de Pareto</p>
+  <h2 style="font-size:64px">Poucas decisões fazem <i>quase todo o resultado</i></h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);min-height:260px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Onde?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 1</b><p>Território e destino.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Para quem?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilares 2 e 3</b><p>Mercado e demanda; Produto e tipologias.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O quê?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 3</b><p>Produto e tipologias.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Em qual modelo?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 4</b><p>Modelo de negócio.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Com qual conta?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilares 6 e 7</b><p>Pré-viabilidade; Capital e Dossiê.</p></div></div></div>
+  </div>
+  <p class="lead f">Todas vêm antes da obra.</p>
+  <p class="sm f">Princípio de Pareto: uma regra prática de prioridade, não uma conta exata.</p>
+  <aside><b>2 min.</b> "Mais ou menos vinte por cento das decisões respondem por oitenta por cento do resultado." Antes de virar cada cartão, pergunte: "em que pilar você acha que isso se decide?" Ponte para a jornada: "antes de decidir o que fazer, vem o como fazer, na ordem."</aside>
+</section>
+
+<!-- 33 · FASES · A JORNADA -->
+<section class="s" data-bloco="Bloco 2 · A jornada">
+  <p class="k">Do terreno ao Dossiê de Desenvolvimento · clique em cada etapa</p>
+  <h2 style="font-size:60px">Quatro etapas, sete pilares, <i>na ordem</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Ler o lugar<br>Pilares 1 e 2</span><div class="fx"><div><h4>O que responde</h4><p><b>Território e destino:</b> o que o meu terreno permite? <b>Mercado e demanda:</b> quem paga, quanto e quando?</p></div><div><h4>Por que primeiro</h4><p>Não existe terreno bom: existe terreno bom para alguma coisa. Quem constrói pelo que acha abre bonito e opera vazio.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Desenhar o produto<br>Pilares 3 e 4</span><div class="fx"><div><h4>O que responde</h4><p><b>Produto e tipologias:</b> o que eu vendo, e para quem? <b>Modelo de negócio:</b> como o projeto ganha dinheiro, renda ou venda?</p></div><div><h4>Por que agora</h4><p>Quem desenha antes de decidir o produto paga duas vezes. E trocar de modelo depois da obra custa caro.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Desenhar o terreno<br>Pilar 5</span><div class="fx"><div><h4>O que responde</h4><p><b>Masterplan faseado:</b> onde fica cada coisa, o que cabe e o que entra na fase um?</p></div><div><h4>Por que só agora</h4><p>Quando o desenho chega antes das decisões, ele decide por você. E sem a lista do que vai ser construído, ninguém consegue orçar.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Fechar a conta<br>Pilares 6 e 7</span><div class="fx"><div><h4>O que responde</h4><p><b>Pré-viabilidade:</b> o negócio se paga? <b>Capital e Dossiê:</b> como pagar, com quem, e avançar, ajustar ou parar?</p></div><div><h4>Por que por último</h4><p>Faturamento não é lucro. E terreno parado quase nunca é falta de dinheiro: é falta de ordem.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada etapa: o que ela responde e por que vem nessa ordem.</p></div>
+  </div>
+  <p class="sm f">Cada pilar fecha com um Faça agora e uma página do Dossiê. No fim: sete páginas e uma decisão escrita, avançar, ajustar ou parar.</p>
+  <aside><b>5 min · o mapa do curso.</b> O ponto de partida: um terreno, uma ideia ou um empreendimento que já existe. O destino: o Dossiê de Desenvolvimento, um projeto escrito que você mesmo, um banco, um sócio, um investidor ou a Zion conseguem avaliar. Abra uma etapa por clique e leia o porquê. As páginas: 1 Ficha do Território, 2 Ficha do Mercado, 3 Ficha do Produto, 4 Modelo de Negócio, 5 Masterplan faseado, 6 Pré-viabilidade, 7 Capital e decisão. Você está no Marco Zero, a página zero.</aside>
+</section>
+
+<!-- 34 · QUATRO PARTES -->
+<section class="s" data-bloco="Bloco 2 · A jornada">
+  <p class="k">O Método Zion 360°, na ordem de um projeto real</p>
+  <h2 style="font-size:64px">O produto é só <i>uma das partes</i></h2>
+  <div class="grid g4 partes">
+    <div class="card on f"><span class="n">1</span><h3>Desenvolvimento</h3><p>Este curso. Do terreno ao Dossiê de Desenvolvimento, com a decisão.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Gestão</h3><p>O Dossiê vira estrutura: contratos, sociedade, licenças e a conta com cotações.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Operação hoteleira</h3><p>Da obra à operação que funciona: implantação, pessoas e o manual dos serviços.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Aceleração de vendas</h3><p>Para o calendário encher: marca, canais, preço e reserva direta.</p></div>
+  </div>
+  <p class="lead f">Cada parte tem sete pilares. Juntas, formam o Plano Mestre do seu empreendimento.</p>
+  <aside><b>2 min.</b> "Um negócio de hospedagem tem muitas partes, e o produto é só uma delas. Um dos requisitos, não todo o contexto." Este curso é a primeira parte, de Desenvolvimento. As outras vêm na ordem em que um empreendimento de verdade acontece.</aside>
+</section>
+
+<!-- 35 · PAINEL COMPLETO · O DIAGNÓSTICO PRÉVIO -->
+<section class="s esc mz-painel" data-bloco="Bloco 2 · O seu diagnóstico">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · o diagnóstico prévio em uma tela</p><span class="selo">Diagnóstico · não é nota</span></div>
+  <div class="sim" data-sim="mz" style="grid-template-columns:.95fr .95fr 1.1fr;gap:36px">
+    <div class="ctl">
+      <h4>A sua dor</h4>
+      <label>Dor <output data-for="dor"></output><input type="range" name="dor" min="1" max="4" step="1" value="1"></label>
+      <h4 style="margin-top:8px">As cinco perguntas</h4>
+      <label>Visão <b class="nv" data-r="l_visao"></b><input type="range" name="visao" min="0" max="2" step="1" value="0"></label>
+      <label>Demanda <b class="nv" data-r="l_demanda"></b><input type="range" name="demanda" min="0" max="2" step="1" value="0"></label>
+      <label>Tempo <b class="nv" data-r="l_tempo"></b><input type="range" name="tempo" min="0" max="2" step="1" value="0"></label>
+      <label>Modo <b class="nv" data-r="l_modo"></b><input type="range" name="modo" min="0" max="2" step="1" value="0"></label>
+      <label>Resultado <b class="nv" data-r="l_resultado"></b><input type="range" name="resultado" min="0" max="2" step="1" value="0"></label>
+    </div>
+    <div class="ctl">
+      <h4>A jornada · o que você já tem</h4>
+      <label>1 · Território <b class="nv" data-r="j1"></b><input type="range" name="p1" min="0" max="2" step="1" value="0"></label>
+      <label>2 · Mercado <b class="nv" data-r="j2"></b><input type="range" name="p2" min="0" max="2" step="1" value="0"></label>
+      <label>3 · Produto <b class="nv" data-r="j3"></b><input type="range" name="p3" min="0" max="2" step="1" value="0"></label>
+      <label>4 · Modelo de negócio <b class="nv" data-r="j4"></b><input type="range" name="p4" min="0" max="2" step="1" value="0"></label>
+      <label>5 · Masterplan faseado <b class="nv" data-r="j5"></b><input type="range" name="p5" min="0" max="2" step="1" value="0"></label>
+      <label>6 · Pré-viabilidade <b class="nv" data-r="j6"></b><input type="range" name="p6" min="0" max="2" step="1" value="0"></label>
+      <label>7 · Capital e Dossiê <b class="nv" data-r="j7"></b><input type="range" name="p7" min="0" max="2" step="1" value="0"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span data-r="dorTxt" style="color:#D9D3C4"></span></div>
+      <div class="linha"><span>Perguntas com número</span><b data-r="comNumero"></b></div>
+      <div class="barra"><i data-bar="pctCinco"></i></div>
+      <div class="linha"><span>Páginas que você já tem</span><b data-r="prontas"></b></div>
+      <div class="barra"><i data-bar="pctJ"></i></div>
+      <div class="linha tot" style="flex-direction:column;gap:4px"><span>Comece pelo</span><b data-r="inicio"></b></div>
+      <div class="linha"><span>Ponto mais frágil</span><b data-r="fragil"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Zerar as respostas</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração do Marco Zero.</b> Este painel é o Faça agora em uma tela. As cinco perguntas vêm do slide 7 com o que a turma já marcou. Peça um voluntário: a dor (1 a 4), as cinco perguntas e, de cada pilar, Já tenho, Em parte ou Não sei. "Comece pelo" é o primeiro pilar que ainda não está Já tenho; o ponto mais frágil é o primeiro Não sei, e se não houver, o primeiro Em parte. "Não sei também é diagnóstico." É uma leitura de onde você está, não uma nota nem uma promessa.</aside>
+</section>
+
+<!-- 36 · TRÊS CAMINHOS -->
+<section class="s" data-bloco="Bloco 2 · O seu diagnóstico">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Com o Dossiê pronto</p>
+      <h2 style="font-size:68px">Três caminhos <i>se abrem</i></h2>
+      <ul class="lista num" style="font-size:32px">
+        <li class="f">Fazer sozinho, usando o Dossiê como régua.</li>
+        <li class="f">Levar a um banco, a um sócio ou a um investidor.</li>
+        <li class="f">Conversar com a Zion. A Zion avalia cada caso.</li>
+      </ul>
+      <p class="sm f">Land Bank Zion: uma lista de terrenos com o Dossiê feito. Estar na lista quer dizer que o projeto pode ser olhado. Não quer dizer que será escolhido, financiado ou vendido, nem que terá sócio.</p>
+    </div>
+    <img class="ilus v" src="../fotos/23be6a431d.jpg" alt="Do empreendimento estruturado saem três portas">
+  </div>
+  <aside><b>2 min.</b> "Cada página do Dossiê deixa o seu projeto mais fácil de ler para quem pode avaliá-lo." Sem promessa de sócio, crédito, investimento ou venda. Qualquer decisão sobre o seu terreno, inclusive usá-lo como garantia, quem confirma é o advogado, o contador e o banco.</aside>
+</section>
+
+<!-- 37 · LIÇÃO DO BLOCO 2 -->
+<section class="s esc" data-bloco="Bloco 2 · Faça você">
+  <p class="k">Antes do Faça agora · 4 minutos</p>
+  <h2>A sua dor, a sua fruta baixa <i>e a sua etapa</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Escreva a sua dor com nome, e o número dela.</span></div>
+      <div class="passo f"><b>2</b><span>Escreva a sua fruta baixa: quantas unidades você testaria primeiro, e por quê.</span></div>
+      <div class="passo f"><b>3</b><span>Marque a etapa onde você está hoje: ler o lugar, desenhar o produto, desenhar o terreno ou fechar a conta.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="4"><span class="tempo">4:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Junto com as três linhas do bloco 1, você já respondeu quase todo o diagnóstico.</p>
+    </div>
+  </div>
+  <aside><b>4 min · prática.</b> Ligue o cronômetro. Ao terminar: "quem escreveu uma fruta baixa de uma, duas ou três unidades?" e "quem marcou ler o lugar?" A maioria começa pela etapa 1, e está certo.</aside>
+</section>
+
+<!-- 38 · REVISÃO 1 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o último passo de um empreendimento de hospedagem?</p>
+    <div class="ops"><button class="op">Escolher o terreno</button><button class="op">Fazer o masterplan</button><button class="op" data-certa>A obra</button></div>
+    <p class="exp">Quase todo mundo começa pela obra, e a obra é o último passo. Antes dela vêm o território, o mercado, o produto, o modelo, o masterplan e a conta.</p>
+  </div>
+  <aside><b>1 min · prática de recuperação.</b> Letra no chat, espere uns 10 segundos, revele.</aside>
+</section>
+
+<!-- 39 · REVISÃO 2 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">O que faz o sócio, o banco ou o investidor chegar?</p>
+    <div class="ops"><button class="op">Ter um terreno bonito</button><button class="op" data-certa>Ter um plano completo: projeto, execução e viabilidade</button><button class="op">Esperar o momento certo</button></div>
+    <p class="exp">O plano é a isca. Terra sem plano não atrai ninguém, e nem um plano completo é garantia de sócio ou de crédito.</p>
+  </div>
+  <aside><b>1 min.</b> Ligue com a síndrome do terrenista e com a dor 1.</aside>
+</section>
+
+<!-- 40 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página zero do seu Dossiê</p>
+  <h2>O seu <i>diagnóstico prévio</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: a sua situação, a sua dor e as cinco perguntas antes de investir.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Marque a jornada.</strong> De cada pilar: já tenho, em parte ou não sei. "Não sei" também é diagnóstico.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF:</strong> por qual pilar começar, o ponto mais frágil e a primeira ação de 7 dias.</span></div>
+      <div class="crono f" data-min="6"><span class="tempo">6:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/marco-zero/"></div>
+      <span class="url">Na área de membros: Faça agora · O seu diagnóstico prévio</span>
+    </div>
+  </div>
+  <aside><b>6 min · prática.</b> Peça que abram pelo QR ou pela área de membros. Ligue o cronômetro: são uns seis minutos, e a turma já respondeu quase tudo hoje. As respostas ficam só no aparelho de cada um. Quem terminar escreve no chat por qual pilar começa.</aside>
+</section>
+
+<!-- 41 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Marco Zero em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:15px">
+    <li class="f">Tudo começa de uma visão, mas visão sem plano fica no sonho.</li>
+    <li class="f">Não falta terreno, não falta dinheiro: falta estratégia. O plano é a isca.</li>
+    <li class="f">Alugar, hospedar e vender são negócios diferentes, com contas e leis diferentes.</li>
+    <li class="f">Quem não dá nome à própria dor compra a solução errada.</li>
+    <li class="f">De menos a mais: a capacidade é o menor dos quatro limites, e a fruta baixa vem primeiro.</li>
+    <li class="f">Quatro etapas, sete pilares, uma decisão escrita. A obra é o último passo.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa da aula: o que, por quê e o resultado. Pergunte: "qual dessas frases você vai levar para o seu terreno?"</aside>
+</section>
+
+<!-- 42 · PONTE -->
+<section class="s foto" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 1</p>
+  <h2 style="max-width:1150px">Território <i>e destino</i></h2>
+  <p class="lead" style="max-width:1050px">O checklist do seu terreno: o destino em volta, a chegada do hóspede, o chão, a água, a energia, a área que sobra e os papéis. Item por item, onde verificar e com quem.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, lucro, retorno, ocupação, crédito, sociedade ou venda. A Zion avalia cada caso. A Marina é um exemplo ilustrativo. Projeções de mercado mostram uma direção, não garantem resultado. Temas jurídicos aparecem em nível introdutório: quem confirma no seu caso é o advogado, o contador ou a prefeitura.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Marco Zero. No Pilar 1, o território: o que o seu terreno permite." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

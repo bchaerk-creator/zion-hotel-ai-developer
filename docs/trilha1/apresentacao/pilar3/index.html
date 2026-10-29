@@ -1,0 +1,807 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 3 · Produto e tipologias · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.tab-sm table.t{font-size:26px}
+.tab-sm table.t td{padding:13px 16px}
+.faixa{display:flex;height:64px;border-radius:14px;overflow:hidden;font-size:20px;font-weight:700}
+.faixa>div{display:flex;align-items:center;justify-content:center;color:#fff}
+.faixa .a{background:#8B9188}.faixa .b{background:var(--ok)}
+.faixa-esc{display:flex;justify-content:space-between;font-size:20px;color:#BFB8A8}
+.painel-sim .ctl{gap:12px}
+.painel-sim label{font-size:21px}
+.painel-sim label output{font-size:23px}
+.painel-sim input[type=range]{height:26px}
+.painel-sim .res{padding:24px 30px;gap:9px}
+.painel-sim .linha{font-size:23px;padding-bottom:7px}
+.painel-sim .linha.tot{font-size:28px}
+.painel-sim .aviso{font-size:21px;padding:10px 16px}
+.s>.selo{align-self:flex-start}
+.sec-t{font-size:18px;letter-spacing:4px;text-transform:uppercase;color:var(--ouro);margin-top:6px}
+/* frase ao vivo */
+.fv{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.fv .campos{display:flex;flex-direction:column;gap:18px}
+.fv label{display:flex;flex-direction:column;gap:6px;font-size:22px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--ouro)}
+.fv input[type=text]{font:inherit;font-size:24px;letter-spacing:0;text-transform:none;font-weight:400;padding:14px 18px;border-radius:12px;border:2px solid rgba(255,255,255,.2);background:rgba(255,255,255,.08);color:var(--creme)}
+.fv input[type=text]:focus{outline:none;border-color:var(--ouro)}
+.fv .bts{display:flex;gap:12px;flex-wrap:wrap}
+.fv .bts button{font:inherit;font-size:20px;font-weight:600;padding:10px 16px;border-radius:10px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.fv .saida{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:22px;padding:32px 36px;display:flex;flex-direction:column;gap:18px}
+.fv .frase{font-family:var(--serif);font-style:italic;font-size:38px;line-height:1.3;min-height:150px}
+.fv .frase mark{background:rgba(181,69,47,.55);color:#fff;padding:0 6px;border-radius:6px}
+.fv .chk{display:flex;gap:14px;font-size:25px;line-height:1.35;align-items:baseline}
+.fv .chk i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;transform:translateY(4px)}
+.fv .chk.ok i{background:var(--ok);color:#fff}.fv .chk.er i{background:var(--erro);color:#fff}
+/* cinco segundos */
+.cinco{display:grid;grid-template-columns:1.1fr .9fr;gap:52px;align-items:center}
+.cinco .tela{position:relative;height:560px;border-radius:22px;overflow:hidden;background:var(--verde2);display:flex;align-items:center;justify-content:center;text-align:center;padding:40px}
+.cinco .tela .img{position:absolute;inset:0;background-size:cover;background-position:center;opacity:0;transition:opacity .3s}
+.cinco .tela.mostra .img{opacity:1}
+.cinco .tela .cont{position:absolute;right:24px;top:20px;font-family:var(--serif);font-size:90px;color:#fff;text-shadow:0 2px 18px rgba(0,0,0,.6);display:none}
+.cinco .tela.mostra .cont{display:block}
+.cinco .tela .msg{position:relative;font-family:var(--serif);font-size:44px;line-height:1.25;color:var(--creme)}
+.cinco .tela.mostra .msg{display:none}
+.cinco .ir5{font:inherit;font-size:24px;font-weight:700;padding:16px 26px;border-radius:12px;border:2px solid var(--ouro);background:var(--ouro);color:var(--verde);cursor:pointer;align-self:flex-start}
+</style>
+<script>
+/* Pilar 3 · Produto e tipologias. Contas da Marina (exemplo ilustrativo), conferidas em Python:
+   preço: 1,56 × 780 + 1,30 × 640 = 2.048,80 em 2,86 noites = 716,36; 716,36 ÷ 645 = 1,11 (cerca de 11% acima).
+   semana: 4 × 580 = 2.320; × 0,80 = 1.856; ÷ 4 = 464. unidade: 38 + 16 = 54 m² (dentro dos 60 m² do Pilar 1). */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+const nf1 = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:1,maximumFractionDigits:1});
+const nf2 = new Intl.NumberFormat('pt-BR',{minimumFractionDigits:2,maximumFractionDigits:2});
+const brl2 = x => 'R$ ' + nf2.format(x);
+function faixaArea(a){
+  if (a >= 22 && a <= 30) return 'Suíte de casal (22 a 30 m²)';
+  if (a >= 32 && a <= 45) return 'Cabana de casal com sala (32 a 45 m²)';
+  if (a >= 60 && a <= 85) return 'Familiar de dois quartos (60 a 85 m²)';
+  return 'Fora das faixas de referência';
+}
+function lePreco(df){
+  if (df >= 1150) return ['er','<b>No topo absoluto:</b> sem as provas de quem já está lá, é aposta.'];
+  if (df > 700) return ['ok','<b>Metade de cima da faixa:</b> com o que o topo entrega, é decisão. Ainda é hipótese, nota 1.'];
+  return ['at','<b>Até o meio do fim de semana (R$ 700):</b> o preço ainda não cobra pelo que o produto entrega a mais.'];
+}
+ZD.sims.p3 = function(v){
+  const nf = 2 * v.of / 100, ns = 5 * v.os / 100, noites = nf + ns;
+  const semana = nf * v.df + ns * v.ds;
+  const media = noites > 0 ? semana / noites : 0;
+  const q = media / 645 - 1;
+  const cheia = v.n4 * v.med, est = cheia * (1 - v.desc / 100), porNoite = est / v.n4;
+  const chao = v.area + v.deck;
+  const p = Math.round(v.un * 2 / 3);
+  const mix = v.un <= 4 ? 'Tudo igual. O segundo público entra por produto e preço' : p + ' para o principal e ' + (v.un - p) + ' para o de meio de semana';
+  return {
+    nf: nf2.format(nf), ns: nf2.format(ns), noites: nf2.format(noites),
+    semana: brl2(semana), media: brl2(media),
+    acima: nf1.format(Math.abs(q * 100)) + '% ' + (q >= 0 ? 'acima' : 'abaixo'),
+    pont: (v.df - 380) / (1150 - 380) * 100,
+    avisoPreco: lePreco(v.df),
+    cheia: brl2(cheia), est: brl2(est), porNoite: brl2(porNoite), desconto: brl2(cheia - est),
+    avisoSemana: ['at', 'Vendida como estadia, com nome próprio, só nos meses fracos. Os ' + brl2(porNoite) + ' por noite <b>nunca vão para a tabela</b>.'],
+    chao, faixa: faixaArea(v.area), mix,
+    avisoChao: chao > 60 ? ['at', '<b>' + chao + ' m² de chão:</b> passa dos 60 m² por cabana usados no Pilar 1. A ocupação do terreno precisa ser refeita.'] : ['ok', '<b>' + chao + ' m² de chão:</b> dentro dos 60 m² por cabana usados no Pilar 1.']
+  };
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar3" data-titulo="Pilar 3 · Produto e tipologias">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/ec697bc679.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 2 · Desenhar o produto</p>
+  <h1>Pilar 3<br><i>Produto e tipologias</i></h1>
+  <p class="lead" style="max-width:1000px">O que exatamente você vai vender, e para quem.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "Nos dois pilares anteriores nós lemos o lugar: o terreno e o mercado. Hoje começa a segunda etapa, desenhar o produto." Peça papel e caneta. Avise que hoje tem frase escrita ao vivo, um teste de cinco segundos e simulador na tela.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/ec697bc679.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">O terreno suporta. O mercado existe.</span><p class="q">Agora, o que você <i>vai vender?</i></p></div>
+    <div class="gq f"><span class="rot">A pergunta do Pilar 3</span><p class="q">Para quem <i>vamos vender?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho. "Antes de construir qualquer coisa, a pergunta é para quem você vai vender. O produto nasce dessa resposta, não da planta." Peça no chat uma frase: para quem é o seu projeto?</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Esta aula em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>Para quem você vende, o que essa pessoa vive, a sua promessa e, só no fim, a unidade.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>Quem escolhe pelo catálogo vende a parte mais fácil de copiar. E quem desenha antes de decidir paga duas vezes.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 3 do seu Dossiê: a Ficha do Produto.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "O território limita, o mercado paga, o produto decide." Bloco 1: o que é produto. Bloco 2: para quem e o que ele vive. Bloco 3: a promessa, a unidade e o preço. No fim, o Faça agora. "Uma semana escrevendo custa menos que uma obra corrigindo."</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Pilar 2</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Uma cabana vendeu R$ 1.846 em 2,86 noites. Qual é a diária média?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>R$ 645: o que entra dividido pelas noites vendidas, e não a média simples dos preços.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Quantas cabanas a Marina abre?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Três agora, com a infraestrutura desenhada para cinco. Esse número não muda neste pilar.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O mês fraco pede o quê?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Produto: um motivo para vir naquela época. Quase nunca desconto.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então vire. 1.846 ÷ 2,86 = 645. Três cabanas pedem 416 noites e cabem; quatro pedem 555 e não cabem. A Marina é o nosso exemplo ilustrativo: três cabanas de glamping para casal, diária média de R$ 645 e 38,5% de ocupação.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">Bloco 1</p>
+  <h2>O hóspede <i>não paga pela cama</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Uma cabana de 50 m² custa de 60% a 90% mais para construir que uma de 25 m². E cobra, tipicamente, só de 20% a 35% mais.</div>
+    <div class="f"><b>Reflexão</b>Se tirarmos a arquitetura, a decoração e os equipamentos, a sua ideia continua fazendo sentido?</div>
+    <div class="f"><b>Dica</b>Abra a pasta de fotos salvas no celular. Hoje elas viram referência de estilo, não decisão.</div>
+  </div>
+  <aside><b>1 min.</b> As proporções da curiosidade são da Jornada do COMO, Etapa 03, e não são preço de obra. A reflexão é a pergunta do Volume 03: deixe a turma pensar uns segundos antes de seguir.</aside>
+</section>
+
+<!-- 5 · CENA -->
+<section class="s foto" data-bg="../fotos/05fd6a8625.jpg" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">A cena que se repete</p>
+  <h2>Fotos salvas e a mesma dúvida: <i>qual delas?</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">Uma cabana com vidro do chão ao teto. Um domo na mata. Um chalé com lareira.</li>
+    <li class="f">A imagem parece uma decisão.</li>
+    <li class="f">Não é. É uma estrutura <i>procurando um motivo.</i></li>
+  </ul>
+  <aside><b>2 min.</b> "O terreno está lido, o mercado está medido, e no celular tem uma pasta de fotos. Se é isso, fique tranquilo: não é falta de coragem nem de gosto." A foto continua valendo como referência de estilo, para o Pilar 5, do masterplan. Não como decisão.</aside>
+</section>
+
+<!-- 6 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o erro mais caro deste ponto do projeto?</p>
+    <div class="ops">
+      <button class="op">Cobrar pouco</button>
+      <button class="op" data-certa>Começar pela estrutura</button>
+      <button class="op">Fazer poucas unidades</button>
+      <button class="op">Demorar para começar a obra</button>
+    </div>
+    <p class="exp">A estrutura é a parte mais fácil de comprar e a mais fácil de copiar. Quando o produto não está escrito, a planta decide por você, e costuma decidir pelo que é mais barato de construir.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Clique na alternativa que alguém escolheu (fica vermelha se errada) ou avance para revelar a certa e a explicação.</aside>
+</section>
+
+<!-- 7 · TRÊS ERROS DE ORDEM -->
+<section class="s" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">Os três erros de ordem</p>
+  <h2>Clique em cada um: <i>o que acontece?</i></h2>
+  <div class="grid g3" style="min-height:320px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Começar pela estrutura</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>O produto sai do catálogo do fornecedor e vira a parte mais fácil de copiar.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Começar pela planta</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>O arquiteto entrega um desenho bom para um programa que ninguém definiu.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Começar pela referência</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>Copia-se um lugar admirado, sem o território que o sustentava e sem o público que pagava.</p></div></div></div>
+  </div>
+  <p class="lead f">Ninguém começa errado por preguiça. Começa porque o caminho errado é mais divertido.</p>
+  <aside><b>3 min.</b> Pergunte qual deles a turma já viveu. Vire na ordem da conversa. "A culpa não é do arquiteto: ele faz o melhor que pode com o que recebe. O problema é a ordem. Ele entra no Pilar 5, com a sua Ficha do Produto na mão." O último clique revela a frase.</aside>
+</section>
+
+<!-- 8 · 72 HORAS -->
+<section class="s esc" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">O que é produto</p>
+  <p class="citacao">O hóspede não paga pela cama. Paga pela história <i>que vai contar.</i></p>
+  <p class="lead f">Produto é tudo o que a pessoa vive, das 72 horas antes da chegada às 72 horas depois da saída. A unidade é só uma parte.</p>
+  <aside><b>2 min.</b> Produto inclui como a pessoa descobre você, como reserva, como chega, o que vê primeiro, o que come, o que faz no segundo dia, o que leva embora e o que conta quando volta. "Uma cabana impecável com chegada confusa e nada para fazer no segundo dia é produto mal resolvido."</aside>
+</section>
+
+<!-- 9 · QUATRO NÍVEIS -->
+<section class="s" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">Os quatro níveis do que se vende</p>
+  <h2>Do mais fácil ao <i>mais difícil de copiar</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Commodity</span><div class="fx"><div><h4>O que é</h4><p>Um lugar para dormir.</p></div><div><h4>Compete por</h4><p>Preço e disponibilidade.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Produto</span><div class="fx"><div><h4>O que é</h4><p>Um quarto com itens.</p></div><div><h4>Compete por</h4><p>Lista de itens, que o vizinho copia em um mês.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Serviço</span><div class="fx"><div><h4>O que é</h4><p>Alguém cuidando.</p></div><div><h4>Compete por</h4><p>Simpatia, que depende de quem está trabalhando naquele dia.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Experiência</span><div class="fx"><div><h4>O que é</h4><p>Momentos projetados, que deixam uma lembrança específica.</p></div><div><h4>Compete por</h4><p>Nada: não se copia sem o território. Só ela sustenta a diária no topo da faixa.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada nível: o que é e por que ele compete.</p></div>
+  </div>
+  <aside><b>3 min.</b> Cada clique abre um nível. A experiência vira preço quando é rara, quando se sente com o corpo, quando cabe numa frase para um amigo e quando dá uma boa foto, porque a foto do hóspede traz o próximo. "Quem paga diária alta não procura onde dormir."</aside>
+</section>
+
+<!-- 10 · DUAS CABANAS -->
+<section class="s" data-bloco="Bloco 1 · O que é produto">
+  <p class="k">Mesmo destino, mesma estrutura</p>
+  <h2>Duas cabanas <i>iguais por dentro</i></h2>
+  <table class="t">
+    <tr><th>Cabana A</th><th>Cabana B</th></tr>
+    <tr class="f"><td>Ficou onde era mais fácil construir</td><td>Foi virada para o vale</td></tr>
+    <tr class="f"><td>Vista parcial, estrada ao fundo</td><td>A cama olha o nascente</td></tr>
+    <tr class="f"><td>Deck mínimo</td><td>Deck um pouco maior</td></tr>
+    <tr class="f"><td>Só a chave na porta</td><td>Café na porta ao amanhecer</td></tr>
+  </table>
+  <p class="lead f">A cabana B cobra mais, e quase nada do que a diferencia é obra.</p>
+  <aside><b>2 min.</b> Pergunte antes de revelar a frase: "qual cobra mais, e quanto disso é obra?" Virar a unidade para o vale é decisão no papel. O café na porta, diz o Volume 03, custa a logística de uma cesta e quinze minutos de alguém.</aside>
+</section>
+
+<!-- 11 · O CAMINHO -->
+<section class="s" data-bloco="Bloco 1 · A ordem">
+  <p class="k">A ordem importa, e é proposital</p>
+  <h2>Quatro perguntas. <i>A estrutura vem por último.</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Para quem?</span><div class="fx"><div><h4>O que responde</h4><p>O público que paga mais, e quem fica de fora.</p></div><div><h4>Por quê</h4><p>Para desenhar para quem paga mais, sem tentar agradar todo mundo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>O que ele vive?</span><div class="fx"><div><h4>O que responde</h4><p>O momento, o segundo dia e a semana.</p></div><div><h4>Por quê</h4><p>Para ter um motivo para a diária e para a segunda noite.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Por que só aqui?</span><div class="fx"><div><h4>O que responde</h4><p>A promessa em uma frase, com três provas.</p></div><div><h4>Por quê</h4><p>Para ser lembrado e não caber no vizinho.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Em que ele dorme?</span><div class="fx"><div><h4>O que responde</h4><p>Só agora: o tipo, o tamanho e os itens da unidade.</p></div><div><h4>Por quê</h4><p>Para chamar o arquiteto e os fornecedores com o produto decidido.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada pergunta: o que ela responde e por que vem nessa ordem.</p></div>
+  </div>
+  <aside><b>3 min.</b> As três primeiras são as pontas do Triângulo do Posicionamento: quem, o quê e por quê, com a promessa central no meio. A quarta é a consequência delas. "Nessa ordem você gasta uma semana escrevendo. Na ordem contrária, costuma gastar uma obra corrigindo." Os blocos 2 e 3 seguem essa ordem.</aside>
+</section>
+
+<!-- 12 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>As sete perguntas <i>antes do desenho</i></h2>
+  <div class="exe" style="grid-template-columns:1.35fr .65fr">
+    <ol class="lista num" style="font-size:28px;gap:12px">
+      <li class="f">Que transformação eu quero proporcionar?</li>
+      <li class="f">Quem vai viver essa experiência?</li>
+      <li class="f">Que emoção eu quero despertar?</li>
+      <li class="f">Que lembrança eu quero deixar?</li>
+      <li class="f">Por que esse produto deve existir?</li>
+      <li class="f">O que o torna impossível de comparar?</li>
+      <li class="f">Como eu quero que ele seja lembrado daqui a vinte anos?</li>
+    </ol>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Não procure a resposta bonita. Procure a verdadeira. Onde não souber, escreva "não sei".</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Revele as sete e ligue o cronômetro. As perguntas 2, 4 e 6 viram, no bloco 3, as três partes da frase. Quem ainda não hospeda responde pensando no terreno do Pilar 1. Quem já opera responde pelo que o hóspede vive hoje, e compara com o que o anúncio diz.</aside>
+</section>
+
+<!-- 13 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · Para quem e o que vive">
+  <p class="k">Bloco 2</p>
+  <h2>Para quem paga mais, <i>e o que ele vive</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>No topo da faixa, só uma das quatro coisas mais elogiadas é um item que se compra.</div>
+    <div class="f"><b>Reflexão</b>Se você só pudesse escrever o anúncio para um público, qual seria?</div>
+    <div class="f"><b>Dica</b>Tenha à mão as cem avaliações que você leu no Pilar 2. O seu público vem delas, não da sua vontade.</div>
+  </div>
+  <aside><b>1 min.</b> "A cabana não sumiu. Ela só foi para o lugar dela, no fim da fila." Agora as duas primeiras pontas do triângulo: para quem, e o que essa pessoa vive.</aside>
+</section>
+
+<!-- 14 · DE ONDE A MARINA PARTE -->
+<section class="s" data-bloco="Bloco 2 · Para quem">
+  <span class="selo">Exemplo ilustrativo · o que a Marina mediu no Pilar 2</span>
+  <h2 style="font-size:66px">O destino paga <i>pela diferença?</i></h2>
+  <div class="grid g2 tab-sm" style="gap:52px;align-items:start">
+    <div class="conta" style="font-size:28px">
+      <div class="eq f"><span>Fim de semana a 30 minutos</span><span>R$ 380 a R$ 1.150</span></div>
+      <div class="eq f"><span>Amplitude · 1.150 ÷ 380</span><span>3,0</span></div>
+      <div class="eq f"><span>Meio dos 7 comparáveis</span><span>R$ 580 · R$ 700</span></div>
+      <div class="eq tot f" data-foco><span>Acima de 3</span><span>o destino paga pela diferença</span></div>
+    </div>
+    <table class="t f">
+      <tr><th>O topo entrega</th><th>Tipo</th></tr>
+      <tr><td>Vista do vale</td><td>Lugar</td></tr>
+      <tr><td>Ninguém à vista</td><td>Lugar e desenho</td></tr>
+      <tr><td>Banheira na varanda</td><td>Item que se compra</td></tr>
+      <tr><td>"A casa só para nós", em 11 de 100</td><td>Privacidade</td></tr>
+    </table>
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> 1.150 ÷ 380 = 3,03. Os comparáveis são os que vendem o mesmo motivo de viagem, na mesma faixa, a até 30 minutos. Meio de semana R$ 580, fim de semana R$ 700. Depois a tabela: "anúncio é promessa; avaliação é entrega". Só uma das quatro é item que se compra. Por isso copiar a banheira do vizinho, sozinha, não leva ninguém ao topo. A pergunta deixa de ser "quanto cobrar" e vira "entregar o quê, e para quem".</aside>
+</section>
+
+<!-- 15 · ESCOLHER O PÚBLICO -->
+<section class="s" data-bloco="Bloco 2 · Para quem">
+  <p class="k">Escolha o público · clique em cada um</p>
+  <h2>O que cada público <i>pede do produto</i></h2>
+  <div class="grid g4" style="min-height:270px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Casal</h3><span class="dica">O que pede</span></div><div class="vs"><b>Pede</b><p>Privacidade, vista, lareira, silêncio. Paga bem por diferenciação.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Família</h3><span class="dica">O que pede</span></div><div class="vs"><b>Pede</b><p>Espaço, cozinha, área segura.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Grupo de amigos</h3><span class="dica">O que pede</span></div><div class="vs"><b>Pede</b><p>Área comum, capacidade, custo por pessoa.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Trabalho e estadia longa</h3><span class="dica">O que pede</span></div><div class="vs"><b>Pede</b><p>Internet, mesa, previsibilidade.</p></div></div></div>
+  </div>
+  <ul class="lista" style="font-size:30px;gap:12px">
+    <li class="f"><span><b>Marina, principal:</b> o casal que vem descansar. 68 de 100 avaliações eram de casais.</span></li>
+    <li class="f"><span><b>De domingo a quinta:</b> quem trabalha tranquilo. A semana dela enche a 26%.</span></li>
+    <li class="f"><span><b>Fica de fora</b> quem quebra a promessa: eventos com som, grupos, criança pequena, quem fica uma noite.</span></li>
+  </ul>
+  <aside><b>4 min · escolha ao vivo.</b> Pergunte: "para quem a Marina desenha?" Vire os cartões na ordem que a turma pedir. Não vale "casais e famílias": isso é meio Brasil, não é público. Um principal e um de meio de semana; três é demais (Jornada do COMO, Etapa 03). 58% dos hóspedes dela vêm de até duas horas de estrada. Quem fica de fora: não é gosto pessoal, é coerência. O hóspede de uma noite não vive a manhã, o centro do produto. "Não é desenhado para" é decisão de produto e de comunicação: regra formal de aceitação de hóspede, quem confirma é o advogado. Pergunta extra para o chat: a promessa clara ajuda a vender a terça de inverno? Sim: quem viaja numa terça de inverno procura justamente silêncio. Sem promessa de ocupação.</aside>
+</section>
+
+<!-- 17 · MOMENTO ASSINATURA -->
+<section class="s" data-bloco="Bloco 2 · O que ele vive">
+  <p class="k">O momento assinatura · falhou em um, sai da lista</p>
+  <h2>O hóspede esquece o quarto. <i>Não esquece o momento.</i></h2>
+  <div class="grid g4" style="min-height:300px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Só existe aqui</h3><span class="dica">O teste</span></div><div class="vs"><b>O teste</b><p>Se dá para copiar a vinte minutos dali, é atributo, não assinatura.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Acontece sem você</h3><span class="dica">O teste</span></div><div class="vs"><b>O teste</b><p>Se depende do humor de alguém naquele dia, não é produto, é sorte.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Cabe numa frase</h3><span class="dica">O teste</span></div><div class="vs"><b>O teste</b><p>Se o hóspede não consegue contar, você perde o canal.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Dá foto</h3><span class="dica">O teste</span></div><div class="vs"><b>O teste</b><p>A foto do hóspede traz o próximo.</p></div></div></div>
+  </div>
+  <p class="lead f">Um só, e bem feito: quando tudo é especial, nada é lembrado.</p>
+  <aside><b>3 min.</b> Momento assinatura: o instante da estadia que concentra a lembrança, escolhido, construído, testado e repetido. Costuma morar nas transições de luz, no primeiro contato com o elemento raro do lugar, numa entrega inesperada, como o café na porta, e no silêncio medido. Cuidado: o momento que o hóspede só descobre ao chegar melhora a avaliação, mas não vende diária. Ele precisa estar no anúncio.</aside>
+</section>
+
+<!-- 18 · QUIZ MOMENTO -->
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">Qual destes é um bom momento assinatura?</p>
+    <div class="ops">
+      <button class="op">Wi-fi rápido em todas as unidades</button>
+      <button class="op">O pôr do sol, que todos os vizinhos também têm</button>
+      <button class="op" data-certa>O primeiro raio de sol entrando pela janela da cama, que só aquela encosta recebe</button>
+    </div>
+    <p class="exp">Wi-fi é item esperado, não momento. O pôr do sol que todos têm é atributo. O terceiro só existe ali, acontece sem ninguém, cabe numa frase e dá foto.</p>
+  </div>
+  <aside><b>1 min.</b> Peça que justifiquem pelos quatro requisitos.</aside>
+</section>
+
+<!-- 19 · O MOMENTO DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · O que ele vive">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <span class="selo" style="align-self:flex-start">Exemplo ilustrativo</span>
+      <h2 style="font-size:62px">O vale às sete, <i>da cama</i></h2>
+      <ul class="lista" style="font-size:28px;gap:12px">
+        <li class="f">Só existe aqui? Sim: a meia encosta e o nascente.</li>
+        <li class="f">Sem presença? Sim, se a cesta térmica estiver na varanda antes das sete.</li>
+        <li class="f">Numa frase: "Acordamos vendo o vale, tomando café na varanda."</li>
+        <li class="f">Dá foto? Sim.</li>
+      </ul>
+      <p class="sm f"><b>O ponto fraco:</b> a neblina é clima. O momento de todo dia é o vale às sete. A neblina é a versão de gala.</p>
+    </div>
+    <img class="fig f" src="figuras/13-todo-dia.svg" alt="O mesmo vale limpo, todo dia, e com neblina, versão de gala" style="max-height:780px;border-radius:18px">
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> A Marina viu a neblina subir do vale na visita das sete da manhã, que aprendemos no Pilar 1. Quem prepara a cesta, e a que horas, é decisão do modelo de negócio, no Pilar 4. Ela anota um "não sei": em quantas manhãs do ano a neblina aparece? Isso vira tarefa da semana.</aside>
+</section>
+
+<!-- 20 · SEGUNDO DIA -->
+<section class="s" data-bloco="Bloco 2 · O que ele vive">
+  <p class="k">Permanência é conteúdo</p>
+  <h2 style="font-size:64px">"O que eu faço lá <i>no sábado inteiro?"</i></h2>
+  <img class="fig" src="figuras/31-estadia.svg" alt="Linha do tempo da estadia, do dia 1 ao dia 3, com as três camadas e os três roteiros" style="max-height:400px;align-self:center">
+  <div class="grid g3" style="gap:22px">
+    <div class="card f" style="padding:22px 26px"><p><b>Marina, dentro sem custo:</b> a trilha até a crista, o deck, a fogueira, o céu.</p></div>
+    <div class="card f" style="padding:22px 26px"><p><b>Dentro, com preço visível:</b> massagem sob demanda; a tábua de queijos da família vizinha.</p></div>
+    <div class="card f" style="padding:22px 26px"><p><b>Fora, a até 30 minutos:</b> a lista do Pilar 1. Onde não sabe, "não sei".</p></div>
+  </div>
+  <aside><b>3 min.</b> Permanência curta quase nunca é preço: é falta de resposta para a pergunta que o hóspede faz antes de reservar. A terceira camada é a mais esquecida e a mais barata: um mapa bem feito do entorno vale mais que meia dúzia de equipamentos. Três roteiros prontos, com horário: dia de sol, dia cheio e dia de chuva. O de chuva quase ninguém tem. Item com preço sem preço visível e sem agenda não é vendido: é oferecido e esquecido.</aside>
+</section>
+
+<!-- 21 · PRODUTO DA SEMANA -->
+<section class="s" data-bloco="Bloco 2 · A semana">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>Mês fraco pede produto, <i>não desconto</i></h2>
+  <div class="conta" style="max-width:1400px">
+    <div class="eq f"><span>Quatro noites de domingo a quinta · 4 × R$ 580</span><span>R$ 2.320</span></div>
+    <div class="eq f"><span>A estadia, com nome próprio · 2.320 × 0,80</span><span>R$ 1.856</span></div>
+    <div class="eq tot f" data-foco><span>Por noite · 1.856 ÷ 4</span><span>R$ 464, que nunca vão para a tabela</span></div>
+  </div>
+  <p class="sm f">Para quem trabalha tranquilo: mesa voltada para o vale, cozinha compacta e internet por satélite. Nenhum desses itens é obra. É hipótese até o calendário mostrar procura.</p>
+  <aside><b>3 min.</b> R$ 580 é a mediana de semana do Pilar 2. 1.856 ÷ 2.320 = 0,80. "Se você conseguir descrever o produto em uma frase que não contenha a palavra desconto, ele está pronto" (Volume 02). Se a estadia virar uma diária de R$ 464 na tabela, o hóspede aprende que a cabana vale isso, e recuperar o preço leva anos. Quanto cada noite dessa estadia deixa depois dos custos se calcula mais adiante, contra a cabana vazia, que paga o mesmo custo fixo.</aside>
+</section>
+
+<!-- 22 · SIMULADOR · A ESTADIA -->
+<section class="s esc" data-bloco="Bloco 2 · A semana">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a estadia da semana</p><span class="selo">Exemplo ilustrativo · hipótese, não promessa</span></div>
+  <h2 style="font-size:62px">Uma estadia <i>com nome próprio</i></h2>
+  <div class="sim" data-sim="p3">
+    <div class="ctl">
+      <label>Noites da estadia, de domingo a quinta <output data-for="n4"></output><input type="range" name="n4" min="2" max="5" step="1" value="4"></label>
+      <label>Diária de semana de referência <output data-for="med" data-fmt="brl"></output><input type="range" name="med" min="300" max="1000" step="10" value="580"><small>A mediana de semana dos comparáveis da Marina, no Pilar 2</small></label>
+      <label>Quanto a estadia sai abaixo <output data-for="desc" data-fmt="pct0"></output><input type="range" name="desc" min="0" max="50" step="5" value="20"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>As noites pela diária de referência</span><b data-r="cheia"></b></div>
+      <div class="linha tot"><span>A estadia</span><b data-r="est"></b></div>
+      <div class="linha"><span>Por noite, só para conferir</span><b data-r="porNoite"></b></div>
+      <div class="aviso" data-aviso="avisoSemana"></div>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>3 min · simulador.</b> Comece no exemplo: 4 × 580 = 2.320; com 20% abaixo, R$ 1.856; R$ 464 por noite. Mexa ao vivo: "e se fossem três noites?", "e se a sua mediana de semana for R$ 450?". Tecla R volta ao exemplo. Reforce o aviso: a estadia é vendida como estadia, só nos meses fracos. Os 20% são a hipótese da Marina, não uma regra.</aside>
+</section>
+
+<!-- 23 · LIÇÃO DO BLOCO 2 -->
+<section class="s esc" data-bloco="Bloco 2 · Faça você">
+  <p class="k">Antes do bloco 3 · 6 minutos</p>
+  <h2>O seu quem <i>e o seu momento</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>O seu público principal, com o motivo da viagem, e o de domingo a quinta.</span></div>
+      <div class="passo f"><b>2</b><span>Quem fica de fora, com o motivo de cada um.</span></div>
+      <div class="passo f"><b>3</b><span>Cinco candidatos a momento assinatura. Passe pelos quatro requisitos e fique com um.</span></div>
+      <div class="passo f"><b>4</b><span>O seu segundo dia, nas três camadas.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="6"><span class="tempo">6:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">É a primeira linha da sua Ficha do Produto.</p>
+    </div>
+  </div>
+  <aside><b>6 min · prática.</b> Ligue o cronômetro. Quem já opera: procure o momento nas fotos e nas avaliações dos hóspedes antes de criar outro. Muitas vezes ele já existe e o anúncio não fala dele. Ao fim: "quem quer ler o seu momento em voz alta para a turma testar os quatro requisitos?"</aside>
+</section>
+
+<!-- 24 · BLOCO 3 -->
+<section class="s esc bloco" data-num="3" data-bloco="Bloco 3 · A promessa e a unidade">
+  <p class="k">Bloco 3</p>
+  <h2>A promessa, a unidade <i>e o preço</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Depois de vinte anúncios de hospedagem na serra, tente lembrar de um. Muitos têm estrutura. Poucos têm promessa.</div>
+    <div class="f"><b>Reflexão</b>Se o vizinho trocar o nome dele pelo seu na sua frase, ela continua verdadeira?</div>
+    <div class="f"><b>Dica</b>Escreva dez versões da frase em trinta minutos, sem editar. Depois corte.</div>
+  </div>
+  <aside><b>1 min.</b> A terceira ponta do triângulo: por que só aqui. E, só depois dela, a unidade.</aside>
+</section>
+
+<!-- 25 · DNA -->
+<section class="s" data-bloco="Bloco 3 · A promessa">
+  <div class="lado" style="grid-template-columns:1.15fr .85fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">De onde vem o "por que só aqui"</p>
+      <h2 style="font-size:66px">O DNA <i>do destino</i></h2>
+      <span class="selo f" style="align-self:flex-start">Exemplo ilustrativo · o DNA da Marina</span>
+      <ul class="lista" style="font-size:30px;gap:12px">
+        <li class="f">Natureza: a mata e o vale.</li>
+        <li class="f">Clima: o frio e a neblina da manhã.</li>
+        <li class="f">Sabores: o queijo da família vizinha.</li>
+        <li class="f">Emoção: o silêncio a dois.</li>
+        <li class="f">Cultura, história e futuro: "não sei". Viraram tarefa.</li>
+      </ul>
+    </div>
+    <img class="fig" src="figuras/15-dna.svg" alt="As sete fontes do DNA do destino em volta de por que só aqui" style="max-height:800px;border-radius:18px">
+  </div>
+  <aside><b>3 min.</b> Sete fontes: natureza, cultura, história, clima, sabores, emoção e futuro. Quase ninguém olha para todas. "Não sei não é falha: é a lista do que você ainda precisa descobrir." O atalho pelo negativo: o que este lugar nunca vai sustentar? A Marina escreveu: "Este lugar nunca vai sustentar movimento." Essa frase não vai para o anúncio, mas estreita o para quem e aponta o por que só aqui.</aside>
+</section>
+
+<!-- 26 · FRASE EM TRÊS PARTES -->
+<section class="s" data-bloco="Bloco 3 · A promessa">
+  <p class="k">Uma frase que um estranho consiga repetir</p>
+  <h2>A frase <i>em três partes</i></h2>
+  <table class="t">
+    <tr><th>Parte</th><th>A exigência</th><th>De onde vem</th></tr>
+    <tr class="f"><td>O que se vive</td><td>Concreto, com verbo, sem adjetivo</td><td>O momento assinatura</td></tr>
+    <tr class="f"><td>Para quem</td><td>O público, com o motivo da viagem</td><td>O seu quem</td></tr>
+    <tr class="f" data-foco><td><b>Por que só aqui</b></td><td><b>Uma evidência do território</b></td><td>O DNA e o Pilar 1</td></tr>
+  </table>
+  <p class="lead f">A lista negra: <s>único</s>, <s>incrível</s>, <s>exclusivo</s>, <s>inesquecível</s>, <s>encantador</s>, <s>premium</s>.</p>
+  <aside><b>3 min.</b> A terceira parte é a que protege: sem ela, qualquer concorrente diz a mesma coisa. Não "casais", mas casais que viajam para quê. "Dormir ouvindo um riacho é concreto. Experiência única não é nada." Se a frase morre sem as seis palavras, é porque não tinha conteúdo.</aside>
+</section>
+
+<!-- 27 · FRASE AO VIVO -->
+<section class="s esc" data-bloco="Bloco 3 · A promessa">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · escreva a frase de um aluno</p><span class="selo">A tela confere as três partes e a lista negra</span></div>
+  <div class="fv" data-sem-clique>
+    <div class="campos">
+      <label>1 · O que se vive<input type="text" data-parte="1" value="Acordar com o vale entrando pela janela"></label>
+      <label>2 · Para quem<input type="text" data-parte="2" value="para casais que precisam de silêncio"></label>
+      <label>3 · Por que só aqui<input type="text" data-parte="3" value="num lugar onde a cama olha o nascente e nada mais se move"></label>
+      <div class="bts"><button data-ex="1">Versão 1 da Marina</button><button data-ex="2">Versão 2</button><button data-ex="3">Versão 3</button><button data-ex="b">Frase de anúncio</button><button data-ex="0">Limpar</button></div>
+    </div>
+    <div class="saida">
+      <p class="frase"></p>
+      <div class="chk" data-c="partes"><i></i><span></span></div>
+      <div class="chk" data-c="negra"><i></i><span></span></div>
+      <div class="chk" data-c="estrutura"><i></i><span></span></div>
+    </div>
+  </div>
+  <aside><b>5 min · ao vivo.</b> Mostre os exemplos pelos botões: a versão 1 começa pela estrutura e não tem o por que só aqui; a "frase de anúncio" cai na lista negra. Depois peça a frase de um aluno no chat, cole nas três caixas e leia a conferência. A tela só confere a forma: se a frase cabe no vizinho, só o teste do vizinho diz. As palavras são procuradas também no plural e no feminino.</aside>
+</section>
+
+<!-- 28 · A MARINA REESCREVE -->
+<section class="s" data-bloco="Bloco 3 · A promessa">
+  <span class="selo">Exemplo ilustrativo · a Marina reescreve até passar</span>
+  <h2 style="font-size:64px">Três versões, <i>e a promessa</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Versão 1</span><div class="fx"><div><h4>A frase</h4><p>"Cabanas de madeira com vista para o vale, para quem quer descansar."</p></div><div><h4>Por que reprova</h4><p>Começa pela estrutura. Lida para cinco pessoas, três devolvem "uma cabana bonita com vista". E "quem quer descansar" é todo mundo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Versão 2</span><div class="fx"><div><h4>A frase</h4><p>"Ver a neblina subir do vale da cama, para casais que buscam descanso, na meia encosta voltada para o nascente."</p></div><div><h4>Por que ainda não</h4><p>O vizinho com vista pode dizer o mesmo sem mentir, a neblina é clima e "descanso" é abstração.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Versão 3</span><div class="fx"><div><h4>A frase</h4><p>"Acordar com o vale entrando pela janela, para casais que precisam de silêncio, num lugar onde a cama olha o nascente e nada mais se move."</p></div><div><h4>Por que passa</h4><p>A frase pelo negativo virou desenho: cabanas afastadas, nenhuma janela vê outra unidade. O vizinho não diz isso sem mentir.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>A promessa</span><div class="fx"><div><h4>Em uma linha</h4><p>"Aqui a manhã é sua: você acorda com o vale e ninguém atravessa a sua vista."</p></div><div><h4>As três provas</h4><p>A cama virada para o nascente, na meia encosta. Nenhuma janela enxerga outra unidade. O vale às sete, da cama, com o café na varanda.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada versão: a frase e o porquê.</p></div>
+  </div>
+  <aside><b>4 min.</b> A versão 3 tem um preço, e é bom que tenha: "nada mais se move" obriga a afastar as cabanas e esconder carro e apoio; "casais que precisam de silêncio" deixa de fora grupo e evento. "Frase que não custa nada não decide nada." Promessa sem prova é publicidade, e o hóspede percebe na primeira estadia. Faltando prova: reduza a promessa ou aumente o produto. Nome, tom e identidade da marca ficam para a trilha de Aceleração de vendas.</aside>
+</section>
+
+<!-- 29 · CINCO SEGUNDOS -->
+<section class="s" data-bloco="Bloco 3 · Os dois testes">
+  <p class="k">Dois testes que não custam nada</p>
+  <div class="cinco" data-sem-clique>
+    <div class="tela" data-foto="../fotos/d3a55d6d89.jpg"><div class="img"></div><span class="cont">5</span><p class="msg">Olhe a foto por cinco segundos. Depois responda no chat: <i>que experiência você imagina viver aqui?</i></p></div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <h2 style="font-size:60px">O teste dos <i>cinco segundos</i></h2>
+      <button class="ir5">Mostrar a foto por 5 segundos</button>
+      <p class="sm">Reprova quando cada pessoa imagina uma coisa diferente: a comunicação ainda é genérica.</p>
+      <p class="lead f" style="font-size:32px"><b>E o teste do vizinho:</b> troque o seu nome pelo dos três concorrentes mais próximos. Se a frase continuar verdadeira para algum, reescreva o "por que só aqui".</p>
+    </div>
+  </div>
+  <aside><b>4 min · ao vivo.</b> Clique no botão: a foto aparece por cinco segundos e some. Peça no chat, sem combinar, "que experiência você imagina viver aqui?". Leia algumas respostas: parecidas ou cada uma numa direção? No seu terreno, sem obra, use a foto do terreno no horário do momento, não um desenho, com cinco pessoas que nunca estiveram lá. "Se a frase couber no concorrente, ela não é sua."</aside>
+</section>
+
+<!-- 30 · A BUBBLE ERA O MEIO -->
+<section class="s foto" data-bg="../fotos/db90b57ddd.jpg" data-bloco="Bloco 3 · A unidade">
+  <p class="k">Agora sim, a estrutura · o que aprendemos na Zion</p>
+  <p class="citacao" style="max-width:1150px">A Bubble era o meio. <i>Não era o produto.</i></p>
+  <p class="lead f" style="max-width:1050px">O teste de trocar a estrutura: leia a sua frase trocando cabana por domo. Se ela continua verdadeira, o diferencial é o território. Se morre, é a estrutura. E estrutura qualquer um compra.</p>
+  <aside><b>2 min.</b> "Muita gente olha para a Zion e acha que o produto é a Bubble. O produto era o que acontece dentro dela: a noite na mata, a neblina, o céu. Os nossos hóspedes quase nunca postam primeiro a acomodação. Postam a paisagem." A frase da Marina nem fala de cabana. Toda década tem uma tipologia que vira moda: funciona enquanto é rara, e para quando vira a terceira igual na estrada.</aside>
+</section>
+
+<!-- 31 · TRÊS FILTROS -->
+<section class="s" data-bloco="Bloco 3 · A unidade">
+  <p class="k">Tipologia é negócio, não estética · a tipologia se escolhe cortando</p>
+  <h2 style="font-size:64px">Três filtros, <i>nesta ordem</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Terreno</span><div class="fx"><div><h4>A pergunta</h4><p>O declive, o acesso, o solo e a distância da rede permitem? O dado está no Pilar 1.</p></div><div><h4>Na Marina</h4><p>Saem a alvenaria (acesso e declive), a tenda (inverno frio, úmido, com vento) e o contêiner (caminhão e guindaste). A escavada fica em suspenso, sem estudo do solo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Capital</span><div class="fx"><div><h4>A pergunta</h4><p>O que custa cada unidade cabe no que você tem? Em ordem de grandeza: médio contra alto, rápido contra lento.</p></div><div><h4>Na Marina</h4><p>Sai a casa inteira, no capital e no público, que é casal.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Público</span><div class="fx"><div><h4>A pergunta</h4><p>O seu público procura isso? Família com criança pequena e cabana toda de vidro raramente combinam.</p></div><div><h4>Na Marina</h4><p>Passam nos três a cabana de madeira e a estrutura modular transparente. Sobraram duas.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Desempate</span><div class="fx"><div><h4>As verificações</h4><p>Quantos comparáveis já usam, o teste de trocar a estrutura e três orçamentos com a mesma especificação.</p></div><div><h4>Na Marina</h4><p>Cabana de madeira, com grande abertura para o vale. A modular pede controle térmico de todo dia no frio úmido. Fica como alternativa.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada filtro: a pergunta e o que saiu na Marina.</p></div>
+  </div>
+  <aside><b>4 min · exemplo resolvido.</b> Cada tipologia tem outro capital, outro prazo de obra, outra manutenção e outro público; entre a mais rápida e a mais lenta, a diferença de prazo pode passar de um ano. Glamping nasceu das barracas: glamour com camping. Não é propriedade, é barraca, e não é a bolha: a bolha é só uma estrutura possível. Se sobrarem mais de três, algum filtro foi frouxo; se não sobrar nenhuma, o conceito muda antes da estrutura. No seu terreno, a resposta pode ser a outra.</aside>
+</section>
+
+<!-- 32 · TAMANHO E MIX -->
+<section class="s" data-bloco="Bloco 3 · A unidade">
+  <div class="lado tab-sm" style="grid-template-columns:1.2fr .8fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <p class="k">O tamanho sai do uso, não do orçamento</p>
+      <table class="t">
+        <tr><th>Tipo de unidade</th><th>Área interna</th></tr>
+        <tr><td>Suíte de casal</td><td>22 a 30 m², mais deck</td></tr>
+        <tr><td>Cabana de casal com sala</td><td>32 a 45 m²</td></tr>
+        <tr><td>Familiar de dois quartos</td><td>60 a 85 m²</td></tr>
+      </table>
+      <div class="conta" style="font-size:28px">
+        <div class="eq tot f"><span>Marina · 38 m² + 16 m² de deck</span><span>54 m², para 2</span></div>
+      </div>
+      <p class="sm f"><b>O mix:</b> com quatro unidades ou menos, tudo igual. A Marina abre com três cabanas iguais.</p>
+    </div>
+    <img class="fig" src="figuras/22-tamanho.svg" alt="A planta pelo uso e as faixas de área" style="max-height:800px;border-radius:18px">
+  </div>
+  <aside><b>3 min.</b> Faixas da Jornada do COMO, Etapa 03. Deck ou varanda privativa: 10 a 20 m², custando cerca de um terço do metro interno. 38 + 16 = 54 m² de chão, dentro dos 60 m² por cabana do Pilar 1. "Metro quadrado a mais não vira diária a mais; banheira com vista vira." O hóspede percebe o pé-direito, a varanda e a separação entre dormir e estar; corredor ele não percebe. Mix: acima de quatro, o ponto de partida é dois terços para o principal e um terço para o de meio de semana. Uma unidade diferente, sozinha, tende a ficar vazia.</aside>
+</section>
+
+<!-- 33 · O QUE ENTRA -->
+<section class="s" data-bloco="Bloco 3 · A unidade">
+  <p class="k">O que entra e o que fica de fora · clique em cada tipo</p>
+  <h2>Três tipos <i>de item</i></h2>
+  <div class="grid g3" style="min-height:300px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Movem a diária</h3><span class="dica">Decisão</span></div><div class="vs"><b>Escolher dentro do orçamento</b><p>Banheira com vista, lareira em destino frio, vista privativa. O hóspede paga a mais, e eles aparecem no anúncio.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Esperados</h3><span class="dica">Decisão</span></div><div class="vs"><b>Obrigatórios. Nunca cortar</b><p>Chuveiro com pressão, acústica, água quente, cama boa, blackout, internet. A ausência derruba a avaliação.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Ninguém nota</h3><span class="dica">Decisão</span></div><div class="vs"><b>É onde está a economia</b><p>Acabamento caro na área de serviço, automação sofisticada, metro em corredor.</p></div></div></div>
+  </div>
+  <p class="sm f">Marina: entram banheira no deck e lareira. Ficam de fora piscina, restaurante próprio, spa com salas e recepção construída.</p>
+  <aside><b>3 min.</b> Fonte: Jornada do COMO, Etapa 03. O item só move a diária se a concorrência não o tiver toda: confira contra o topo dos comparáveis. Pressão de chuveiro e isolamento acústico são os dois mais citados em avaliações negativas, e os dois se decidem no projeto: na planta custam pouco, depois custam quebrar parede. Restaurante é outro negócio, com equipe, estoque e licença próprios; licença de alimentos e eventos varia por município, quem confirma é a prefeitura ou um profissional habilitado.</aside>
+</section>
+
+<!-- 34 · QUIZ CORTE -->
+<section class="s" data-bloco="Bloco 3 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">O orçamento apertou. De onde você corta?</p>
+    <div class="ops">
+      <button class="op">Do chuveiro com pressão</button>
+      <button class="op">Do isolamento acústico</button>
+      <button class="op" data-certa>Do acabamento caro na área de serviço</button>
+    </div>
+    <p class="exp">Corte do que ninguém nota, nunca do que é esperado. O hóspede nunca entra na área de serviço, mas toma banho e ouve o vizinho.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 35 · O PREÇO -->
+<section class="s" data-bloco="Bloco 3 · O preço">
+  <span class="selo">Exemplo ilustrativo · hipótese, nota 1</span>
+  <h2>Preço é consequência <i>do produto</i></h2>
+  <div class="conta" style="max-width:1450px;font-size:32px">
+    <div class="eq f"><span>Sexta e sábado · 1,56 noite × R$ 780</span><span>R$ 1.216,80</span></div>
+    <div class="eq f"><span>Domingo a quinta · 1,30 noite × R$ 640</span><span>R$ 832,00</span></div>
+    <div class="eq f"><span>A semana, em 2,86 noites vendidas</span><span>R$ 2.048,80</span></div>
+    <div class="eq tot f" data-foco><span>Diária média pretendida · 2.048,80 ÷ 2,86</span><span>cerca de R$ 716</span></div>
+  </div>
+  <p class="sm f">Contra os R$ 645 da região: 716 ÷ 645 = 1,11, cerca de 11% acima. Não é promessa de diária nem de ocupação.</p>
+  <aside><b>3 min · exemplo resolvido.</b> A ocupação é a que a Marina mediu no Pilar 2: 78% de 2 noites = 1,56; 26% de 5 noites = 1,30. Conferência: 716,36 × 2,86 = 2.048,79. R$ 780 fica acima do meio do fim de semana (R$ 700) e bem abaixo do topo (R$ 1.150). "Mirar o topo absoluto, sem as provas de quem já está lá, é aposta. Mirar a metade de cima, com o que o topo entrega, é decisão." Nota 1 na escala de evidência: opinião, até o anúncio e a reserva responderem.</aside>
+</section>
+
+<!-- 36 · SIMULADOR · O PREÇO -->
+<section class="s esc" data-bloco="Bloco 3 · O preço">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a hipótese de preço</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:60px">Onde a sua diária <i>fica na faixa?</i></h2>
+  <div class="sim" data-sim="p3">
+    <div class="ctl">
+      <label>Diária de sexta e sábado <output data-for="df" data-fmt="brl"></output><input type="range" name="df" min="300" max="1500" step="10" value="780"></label>
+      <label>Diária de domingo a quinta <output data-for="ds" data-fmt="brl"></output><input type="range" name="ds" min="300" max="1200" step="10" value="640"></label>
+      <label>Ocupação de sexta e sábado <output data-for="of" data-fmt="pct0"></output><input type="range" name="of" min="10" max="100" step="1" value="78"><small>A Marina mediu 78% no fim de semana e 26% na semana</small></label>
+      <label>Ocupação de domingo a quinta <output data-for="os" data-fmt="pct0"></output><input type="range" name="os" min="5" max="80" step="1" value="26"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>A semana de uma cabana</span><b data-r="semana"></b></div>
+      <div class="linha"><span>Noites vendidas na semana</span><b data-r="noites"></b></div>
+      <div class="linha tot"><span>Diária média pretendida</span><b data-r="media"></b></div>
+      <div class="linha"><span>Contra os R$ 645 da região</span><b data-r="acima"></b></div>
+      <p class="sec-t">O fim de semana na faixa da região</p>
+      <div class="ponteiro"><i data-ponteiro="pont"></i></div>
+      <div class="faixa"><div class="a" style="flex:320">R$ 380 · até o meio</div><div class="b" style="flex:450">metade de cima · R$ 700 a R$ 1.150</div></div>
+      <div class="aviso" data-aviso="avisoPreco"></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> No exemplo: R$ 2.048,80 na semana, 2,86 noites, cerca de R$ 716, 11,1% acima da região. Leve o fim de semana a R$ 1.150 e mostre o aviso: topo absoluto sem provas é aposta. Depois peça a um aluno a faixa dele e a hipótese. Lembre: a hipótese supõe a mesma ocupação medida; só o anúncio e a reserva confirmam.</aside>
+</section>
+
+<!-- 37 · PAINEL COMPLETO -->
+<section class="s esc painel-sim" data-bloco="Bloco 3 · A ficha inteira">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a unidade, a semana e o preço em uma tela</p><span class="selo">Exemplo ilustrativo</span></div>
+  <div class="sim" data-sim="p3" style="grid-template-columns:.9fr 1.1fr;gap:44px">
+    <div class="ctl">
+      <label>Área interna da unidade <output data-for="area" data-fmt="m2"></output><input type="range" name="area" min="15" max="100" step="1" value="38"></label>
+      <label>Deck <output data-for="deck" data-fmt="m2"></output><input type="range" name="deck" min="0" max="40" step="1" value="16"></label>
+      <label>Unidades na abertura <output data-for="un"></output><input type="range" name="un" min="1" max="12" step="1" value="3"></label>
+      <label>Diária de sexta e sábado <output data-for="df" data-fmt="brl"></output><input type="range" name="df" min="300" max="1500" step="10" value="780"></label>
+      <label>Diária de domingo a quinta <output data-for="ds" data-fmt="brl"></output><input type="range" name="ds" min="300" max="1200" step="10" value="640"></label>
+      <label>Estadia da semana: quanto sai abaixo <output data-for="desc" data-fmt="pct0"></output><input type="range" name="desc" min="0" max="50" step="5" value="20"></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>A unidade</span><b data-r="faixa"></b></div>
+      <div class="aviso" data-aviso="avisoChao"></div>
+      <div class="linha"><span>O mix</span><b data-r="mix" style="text-align:right;max-width:480px"></b></div>
+      <div class="linha"><span>A estadia de domingo a quinta</span><b data-r="est"></b></div>
+      <div class="linha tot"><span>Diária média pretendida</span><b data-r="media"></b></div>
+      <div class="linha"><span>Contra os R$ 645 da região</span><b data-r="acima"></b></div>
+      <div class="ponteiro" style="height:30px"><i data-ponteiro="pont"></i></div>
+      <div class="faixa" style="height:44px;font-size:17px"><div class="a" style="flex:320">até o meio</div><div class="b" style="flex:450">metade de cima</div></div>
+      <div class="aviso" data-aviso="avisoPreco"></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> Marina: cabana de casal com sala (38 m²), 54 m² de chão, dentro dos 60 m²; três unidades, tudo igual; estadia de R$ 1.856; diária média pretendida cerca de R$ 716. Mexa: "e se a unidade tivesse 50 m² e 25 de deck?" (passa dos 60 m² do Pilar 1); "e se abrisse com seis?" (quatro e dois). Peça os números de um aluno. Tudo aqui é hipótese até o anúncio e a reserva, e o custo de cada item se calcula no Pilar 6.</aside>
+</section>
+
+<!-- 38 · OS 27% E O VEREDITO -->
+<section class="s esc" data-bloco="Bloco 3 · O veredito">
+  <span class="selo">Exemplo ilustrativo · o veredito da página 3</span>
+  <h2 style="font-size:64px">O produto era a condição. <i>Não é a garantia.</i></h2>
+  <ul class="lista" style="font-size:31px;gap:16px">
+    <li class="f">Os 27% do Pilar 1: com a diária média da região, não pagava. Agora existe um produto que entrega o que o topo entrega.</li>
+    <li class="f">Se isso paga o terreno, quem responde é a conta, no Pilar 6.</li>
+    <li class="f">Veredito: avança. Em teste: o preço, nota 1.</li>
+    <li class="f">Critério para parar: se a frase cair no teste do vizinho ou no dos cinco segundos, volta ao DNA antes de chamar o arquiteto.</li>
+  </ul>
+  <aside><b>3 min.</b> Toda página do Dossiê termina com um veredito (avançar, testar, ajustar ou pausar) e o critério que mudaria a decisão. Pendências da Marina: quem opera (Pilar 4), o custo de cada item e se o produto paga o terreno (Pilar 6). "Um render dá sensação de progresso; é a folha que mostra que alguém pensou antes de gastar."</aside>
+</section>
+
+<!-- 39 · REVISÃO 1 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Três frases para o mesmo terreno. Qual é só da Marina?</p>
+    <div class="ops" style="grid-template-columns:1fr">
+      <button class="op">Cabanas de madeira com vista para o vale, para quem quer descansar.</button>
+      <button class="op">O refúgio mais exclusivo da serra, para quem merece uma pausa inesquecível.</button>
+      <button class="op" data-certa>Acordar com o vale entrando pela janela, para casais que precisam de silêncio, onde a cama olha o nascente e nada mais se move.</button>
+    </div>
+    <p class="exp">A primeira começa pela estrutura. A segunda tem duas palavras da lista negra. Só a terceira tem as três partes.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 40 · REVISÃO 2 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Sobraram cinco tipologias depois dos três filtros. O que isso indica?</p>
+    <div class="ops"><button class="op">Que o terreno é ótimo</button><button class="op" data-certa>Que algum filtro ficou frouxo</button></div>
+    <p class="exp">Os três filtros juntos costumam deixar duas opções. Mais de três: aperte um filtro. Nenhuma: o conceito muda antes da estrutura.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 41 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 3 do seu Dossiê</p>
+  <h2>A sua <i>Ficha do Produto</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: o público, o momento, a frase, as provas, a unidade e o preço. Onde não souber, "não sei" vira tarefa.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Teste.</strong> A ferramenta procura a lista negra e conta as provas. O teste do vizinho e o dos cinco segundos são com você.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/aula3/"></div>
+      <span class="url">Na área de membros: "Faça agora · A sua Ficha do Produto"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros e ligue o cronômetro. O compromisso de 7 dias: dez versões da frase, ficar com uma e passar no teste do vizinho. Responsável: você, não o arquiteto. Apoio: às sete da manhã, fotografar de onde a cama vai ficar e fazer o teste dos cinco segundos com cinco pessoas; e escrever a especificação de uma página da tipologia que sobrou, o pedido dos três orçamentos.</aside>
+</section>
+
+<!-- 42 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 3 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:15px">
+    <li class="f">Produto é o que a pessoa vive. Só a experiência sustenta o topo da faixa.</li>
+    <li class="f">Um público principal e um de meio de semana. Fica de fora quem quebra a promessa.</li>
+    <li class="f">Um momento assinatura, um segundo dia e um produto da semana, sem desconto.</li>
+    <li class="f">A frase em três partes, sem a lista negra, com três provas e dois testes.</li>
+    <li class="f">A unidade por último: três filtros, tamanho pelo uso, corte do que ninguém nota.</li>
+    <li class="f">Preço é consequência do produto, e nesta fase é hipótese.</li>
+  </ul>
+  <aside><b>2 min.</b> Se só der para fazer uma coisa: a frase em três partes, trocando o seu nome pelo dos três vizinhos. Ela puxa as outras decisões. Pergunte: "qual dessas frases você leva para o seu terreno?"</aside>
+</section>
+
+<!-- 43 · PONTE -->
+<section class="s foto" data-bg="../fotos/901904223c.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 4</p>
+  <h2 style="max-width:1150px">Modelo <i>de negócio</i></h2>
+  <p class="lead" style="max-width:1050px">Quem prepara a cesta do café às sete? Operar, contratar gestão, vender unidades ou fazer parceria: quem opera, e como o negócio ganha dinheiro.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e os números servem para ensinar o raciocínio. Preço pretendido e momento assinatura são hipóteses até serem testados. Não é oferta de investimento nem promessa de renda, retorno, ocupação, diária, crédito ou sociedade. Licenças, alimentos, eventos e regras de aceitação de hóspedes pedem profissional habilitado.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 3. Você sabe para quem vende, o que essa pessoa vive, a sua promessa e a unidade. No Pilar 4, quem opera e como o negócio ganha dinheiro." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+<script>
+/* Interações próprias do Pilar 3: a frase ao vivo e o teste dos cinco segundos. */
+(function(){
+  const NEGRA = [['único',/\bunic(o|a|os|as)\b/],['incrível',/\bincrive(l|is)\b/],['exclusivo',/\bexclusiv(o|a|os|as)\b/],['inesquecível',/\binesquecive(l|is)\b/],['encantador',/\bencantador(a|as|es)?\b/],['premium',/\bpremiums?\b/]];
+  const ESTR = /^(cabanas?|chales?|domos?|bolhas?|bubbles?|suites?|tendas?|conteiner(es)?|containers?|glampings?|hospedage(m|ns)|pousadas?|estruturas?)\b/;
+  const sem = s => s.normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase();
+  const escH = s => s.replace(/[&<>"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const EX = {
+    '1':['Cabanas de madeira com vista para o vale','para quem quer descansar',''],
+    '2':['Ver a neblina subir do vale da cama','para casais que buscam descanso','na meia encosta voltada para o nascente'],
+    '3':['Acordar com o vale entrando pela janela','para casais que precisam de silêncio','num lugar onde a cama olha o nascente e nada mais se move'],
+    'b':['O refúgio mais exclusivo da serra','para quem merece uma pausa inesquecível',''],
+    '0':['','','']
+  };
+  document.querySelectorAll('.fv').forEach(fv=>{
+    const ins = Array.from(fv.querySelectorAll('input[data-parte]'));
+    const frase = fv.querySelector('.frase');
+    const chk = (c, ok, txt) => { const el = fv.querySelector('[data-c="'+c+'"]'); el.className = 'chk ' + (ok ? 'ok' : 'er'); el.querySelector('i').textContent = ok ? '✓' : '!'; el.querySelector('span').innerHTML = txt; };
+    function confere(){
+      const p = ins.map(i=>i.value.trim());
+      const tudo = p.filter(Boolean).join(', ');
+      const achadas = NEGRA.filter(([,re])=>re.test(sem(tudo))).map(([w])=>w);
+      let h = escH(tudo);
+      h = h.replace(/[^\s,.;:!?]+/g, w => NEGRA.some(([,re])=>re.test(sem(w))) ? '<mark>'+w+'</mark>' : w);
+      frase.innerHTML = tudo ? h + '.' : '<span style="opacity:.5">A frase aparece aqui.</span>';
+      const faltam = ['o que se vive','para quem','por que só aqui'].filter((n,j)=>!p[j]);
+      chk('partes', !faltam.length, faltam.length ? 'Falta: ' + faltam.join(', ') + (p[2] ? '.' : '. A terceira parte é a que protege do vizinho.') : 'As três partes estão escritas.');
+      chk('negra', !achadas.length, achadas.length ? 'Lista negra: ' + achadas.join(', ') + '. Sem elas, a frase ainda diz algo?' : 'Nenhuma palavra da lista negra.');
+      const est = ESTR.test(sem(p[0]));
+      chk('estrutura', !est, est ? 'Começa pela estrutura: a parte que qualquer um compra.' : 'Não começa pela estrutura.');
+    }
+    ins.forEach(i=>i.addEventListener('input', confere));
+    fv.querySelectorAll('[data-ex]').forEach(b=>b.addEventListener('click', e=>{ e.stopPropagation(); EX[b.dataset.ex].forEach((t,j)=>ins[j].value = t); confere(); }));
+    fv.addEventListener('click', e=>e.stopPropagation());
+    confere();
+  });
+  document.querySelectorAll('.cinco').forEach(c=>{
+    const tela = c.querySelector('.tela'), img = tela.querySelector('.img'), cont = tela.querySelector('.cont'), msg = tela.querySelector('.msg'), bt = c.querySelector('.ir5');
+    img.style.backgroundImage = 'url(' + tela.dataset.foto + ')';
+    const inicial = msg.innerHTML; let t = null;
+    bt.addEventListener('click', e=>{
+      e.stopPropagation(); clearInterval(t); let n = 5; cont.textContent = n; tela.classList.add('mostra');
+      t = setInterval(()=>{ n--; if (n > 0) { cont.textContent = n; return; } clearInterval(t); tela.classList.remove('mostra');
+        msg.innerHTML = 'Que experiência você imagina viver aqui?<br><span style="font-size:30px;color:#BFB8A8">Escreva no chat, sem combinar com ninguém.</span>'; bt.textContent = 'Mostrar de novo'; }, 1000);
+    });
+    c.addEventListener('click', e=>e.stopPropagation());
+    tela.dataset.inicial = inicial;
+  });
+})();
+</script>
+</body>
+</html>

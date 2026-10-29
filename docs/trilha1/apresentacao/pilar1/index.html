@@ -1,0 +1,805 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 1 · Território e destino · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.barra-area{width:100%;height:190px;display:block}
+.barra-area text{font:600 19px Inter,Arial,sans-serif}
+.lims{width:100%;height:330px;display:block}
+.lims text{font:600 22px Inter,Arial,sans-serif}
+.lado img.fig{width:100%;max-height:720px;border-radius:22px}
+.seis .pq{min-height:230px}
+.seis .pq .fr h3{font-size:34px}
+.seis .pq .vs p{font-size:27px}
+.dupla .pq{min-height:330px}
+.dupla .pq .fr h3{font-size:38px}
+.limites .pq{min-height:250px}
+.limites .pq .fr h3{font-size:38px}
+.limites .pq .fr p{font-size:24px;line-height:1.4;color:var(--cinza)}
+.limites .pq .vs p{font-size:25px}
+.docs .card{padding:28px 28px;gap:10px}
+.docs .card h3{font-size:32px}
+.docs .card p{font-size:23px}
+.docs .card .onde{font-size:19px;letter-spacing:2px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.fases.cinco .bt span{font-size:23px;max-width:220px}
+.fases .painel{min-height:270px}
+.fases .painel p{font-size:27px}
+.painel-sim .ctl{gap:8px}
+.painel-sim label{font-size:21px;gap:2px 14px}
+.painel-sim label output{font-size:23px}
+.painel-sim input[type=range]{height:28px}
+.painel-sim .res{padding:24px 30px;gap:9px}
+.painel-sim .linha{font-size:23px;padding-bottom:7px}
+.painel-sim .linha.tot{font-size:28px}
+.painel-sim .aviso{font-size:21px;padding:10px 16px}
+.cmp .sim label{font-size:24px}
+.sim .linha i.dot{display:inline-block;width:16px;height:16px;border-radius:4px;margin-right:12px;vertical-align:-1px}
+.exe .lado-qr img.fig{max-height:380px;border-radius:18px}
+</style>
+<script>
+/* Simuladores do Pilar 1: o exemplo ilustrativo da Marina.
+   Conferido em Python: 50.000 − (12.000 + 10.000 + 8.000 + 1.500 + 3.500) = 15.000 m² (30%);
+   R$ 600 mil: R$ 12 por m² total, R$ 40 por m² usável, R$ 120 mil por unidade (5); pelo físico (12) R$ 50 mil, 2,4 vezes;
+   peso 600.000 ÷ 2.220.000 = 27,0%; água 250 L/h: 6.000, 4.800, 2.800, ÷ 500 = 5,6, ou seja 5 unidades inteiras. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+const NOMES_LIM = {fis:'físico', infra:'de infraestrutura', exp:'de experiência', merc:'de mercado'};
+const CURTO = {fis:'o físico', infra:'a infraestrutura', exp:'a experiência', merc:'o mercado'};
+function m2(x){ return Math.round(x).toLocaleString('pt-BR') + ' m²'; }
+function leituraPeso(p){
+  if (!isFinite(p)) return ['er','Falta o investimento total para medir o peso.'];
+  if (p > 20) return ['er','<b>Acima de 20%: alerta aceso.</b> Não é para desistir: são duas perguntas. O que o lugar tem que justifica? E a região paga uma diária acima da média?'];
+  if (p > 10) return ['at','<b>De 10% a 20%: sensível.</b> Zona da regra de bolso. Acompanhe.'];
+  return ['ok','<b>Até 10%: fora do alerta</b> pela regra de bolso.'];
+}
+ZD.sims.p1 = function(v){
+  const subs = v.pres + v.res + v.enc + v.rec + v.serv;
+  const usavel = v.mat - subs;
+  const pct = v.mat > 0 ? usavel / v.mat * 100 : 0;
+  const L = {fis:v.fis, infra:v.infra, exp:v.exp, merc:v.merc};
+  const cap = Math.min(v.fis, v.infra, v.exp, v.merc);
+  const mandam = Object.keys(L).filter(k => L[k] === cap);
+  const manda = 'manda ' + mandam.map(k => CURTO[k]).join(' e ');
+  const pTot = v.preco / v.mat, pUs = usavel > 0 ? v.preco / usavel : 'sem área usável', pUn = v.preco / cap, pFis = v.preco / v.fis;
+  const ilusao = v.fis / cap;
+  const peso = v.preco / v.invest * 100;
+  let avisoArea;
+  if (usavel <= 0) avisoArea = ['er','<b>As subtrações passam da matrícula.</b> Confira os números com o CAR e o topógrafo.'];
+  else if (pct < 50) avisoArea = ['at','Só <b>' + pct.toLocaleString('pt-BR',{maximumFractionDigits:1}) + '%</b> da matrícula vira negócio. Quem negocia pelo papel paga pelo metro que nunca vai usar.'];
+  else avisoArea = ['ok','<b>' + pct.toLocaleString('pt-BR',{maximumFractionDigits:1}) + '%</b> da matrícula vira negócio. Quem confirma cada número: CAR, topógrafo e prefeitura.'];
+  let avisoLim;
+  if (mandam.includes('merc')) avisoLim = ['at','<b>Quem manda é o mercado:</b> falta demanda, não terreno. E esse número ainda é estimativa: o Pilar 2 mede.'];
+  else if (mandam.includes('infra')) avisoLim = ['at','<b>Quem manda é a infraestrutura:</b> é o primeiro orçamento a pedir. Construa menos unidades, nunca menos infraestrutura.'];
+  else avisoLim = ['ok','<b>Quem manda é o limite ' + mandam.map(k=>NOMES_LIM[k]).join(' e ') + '.</b> A capacidade é sempre o menor dos quatro.'];
+  let leitura, avisoLeitura;
+  if (usavel <= 0) { leitura = 'Pausar'; avisoLeitura = ['er','<b>Pausar:</b> a área não fecha. Muda-se o terreno, não o projeto.']; }
+  else if (peso > 20) { leitura = 'Ajustar'; avisoLeitura = ['er','<b>Ajustar:</b> o terreno pesa mais de 20%. Renegociar ou investigar antes de desenhar.']; }
+  else { leitura = 'Testar'; avisoLeitura = ['at','<b>Testar:</b> o limite de mercado ainda é estimativa. Medir no Pilar 2 antes de pôr dinheiro.']; }
+  return {subs, usavel, pct, cap, manda, pTot, pUs, pUn, pFis, ilusao, peso, leitura,
+    ponteiroPeso: Math.min(Math.max(peso,0), 40) / 40 * 100,
+    _aviso: avisoArea, avisoLim, avisoPeso: leituraPeso(peso), avisoLeitura};
+};
+ZD.desenha.p1 = function(sim, r, v){
+  const b = sim.querySelector('svg.barra-area');
+  if (b){
+    const W = 800, y = 18, h = 92, total = Math.max(v.mat, r.subs, 1);
+    const seg = [['APP', v.pres, '#7FA08A'], ['Reserva', v.res, '#A9BFA6'], ['Encosta', v.enc, '#C76B2E'], ['Recuos', v.rec, '#B9A06A'], ['Serviço', v.serv, '#8B9188']];
+    let x = 0, h1 = '';
+    seg.forEach(([n, a, c]) => { const w = a / total * W; h1 += '<rect x="'+x+'" y="'+y+'" width="'+Math.max(0,w)+'" height="'+h+'" fill="'+c+'"/>'; if (w > 70) h1 += '<text x="'+(x+w/2)+'" y="'+(y+h/2+7)+'" text-anchor="middle" fill="#16261C">'+n+'</text>'; x += w; });
+    const wu = Math.max(0, r.usavel) / total * W;
+    h1 += '<rect x="'+x+'" y="'+y+'" width="'+wu+'" height="'+h+'" fill="#C9A84C"/>';
+    if (wu > 90) h1 += '<text x="'+(x+wu/2)+'" y="'+(y+h/2+7)+'" text-anchor="middle" fill="#16261C" style="font-weight:800">usável</text>';
+    h1 += '<rect x="0" y="'+y+'" width="'+W+'" height="'+h+'" fill="none" stroke="#F5F1E8" stroke-opacity=".35"/>';
+    h1 += '<text x="0" y="'+(y+h+44)+'" fill="#D9D3C4">0</text><text x="'+W+'" y="'+(y+h+44)+'" text-anchor="end" fill="#D9D3C4">'+m2(v.mat)+' na matrícula</text>';
+    b.setAttribute('viewBox','0 0 '+W+' 170'); b.innerHTML = h1;
+  }
+  const l = sim.querySelector('svg.lims');
+  if (l){
+    const W = 800, H = 330, base = 270, max = Math.max(v.fis, v.infra, v.exp, v.merc, 1), esc = 220 / max;
+    const it = [['Físico', v.fis], ['Infra', v.infra], ['Experiência', v.exp], ['Mercado', v.merc]];
+    let h2 = '';
+    it.forEach(([n, a], j) => {
+      const x = 40 + j * 190, hh = a * esc, menor = a === r.cap;
+      h2 += '<rect x="'+x+'" y="'+(base-hh)+'" width="130" height="'+hh+'" rx="8" fill="'+(menor?'#C9A84C':'rgba(255,255,255,.12)')+'" stroke="'+(menor?'#C9A84C':'rgba(255,255,255,.35)')+'"/>';
+      h2 += '<text x="'+(x+65)+'" y="'+(base-hh-12)+'" text-anchor="middle" fill="'+(menor?'#C9A84C':'#F5F1E8')+'" style="font-size:30px;font-weight:800">'+a+'</text>';
+      h2 += '<text x="'+(x+65)+'" y="'+(base+36)+'" text-anchor="middle" fill="'+(menor?'#C9A84C':'#D9D3C4')+'">'+n+'</text>';
+    });
+    const yc = base - r.cap * esc;
+    h2 += '<line x1="20" x2="'+(W-10)+'" y1="'+yc+'" y2="'+yc+'" stroke="#C9A84C" stroke-width="3" stroke-dasharray="10 8"/>';
+    l.setAttribute('viewBox','0 0 '+W+' '+H); l.innerHTML = h2;
+  }
+};
+ZD.sims.agua = function(v){
+  const dia = v.vz * 24, reserva = dia * (1 - v.rs / 100), liq = reserva - v.eq;
+  const bruto = liq / v.cons, un = Math.max(0, Math.floor(bruto + 1e-9));
+  let a;
+  if (liq <= 0) a = ['er','<b>A fonte não cobre nem a equipe e as áreas comuns.</b> Antes de desenhar, resolva a água.'];
+  else if (un < 1) a = ['er','<b>Não dá água nem para uma unidade.</b>'];
+  else a = [un >= 5 ? 'ok' : 'at','<b>Dá água para ' + un + (un === 1 ? ' unidade' : ' unidades') + '.</b> Com ' + (un + 1) + ', já falta. E ter água não é poder usar: pode precisar de outorga.'];
+  return {dia, reserva, liq, bruto: Math.max(0, bruto), un, _aviso: a};
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar1" data-titulo="Pilar 1 · Território e destino">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 1 · Ler o lugar</p>
+  <h1>Pilar 1<br><i>Território e destino</i></h1>
+  <p class="lead" style="max-width:1000px">O que o seu terreno permite, antes de desenhar qualquer coisa.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "No Marco Zero nós vimos a jornada inteira. Agora começa o passo a passo, e ele começa por uma pergunta só: o meu terreno é apto para o que eu quero fazer?" Peça papel, caneta e, se tiver, a matrícula do terreno por perto. Avise que vai ter simulador ao vivo: os números mexem na tela. Ninguém precisa saber nada de construção nem de hotelaria para acompanhar.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">Antes de qualquer desenho</span><p class="q">O papel suporta <i>qualquer projeto.</i></p></div>
+    <div class="gq f"><span class="rot">A pergunta do Pilar 1</span><p class="q media">O seu terreno suporta o que está <i>no papel?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho. "Qualquer projeto cabe no papel. A pergunta é se o seu terreno aguenta o que está nele: a área usável, a água, a energia, o acesso e o que a lei deixa." Peça respostas no chat antes de seguir.</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Este pilar em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>Ler o destino, a área que você pode usar, quanto o lugar aguenta e o que pode travar.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>O que se ignora antes da compra custa muito mais caro depois, quando já não dá para mudar o tamanho nem o lugar.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 1 do seu Dossiê: a Ficha do Território, gerada na ferramenta com os seus números.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "A pergunta de hoje é a primeira que um sócio, o banco ou um investidor vão te fazer. Se o investidor for você mesmo, a pergunta é a mesma." Bloco 1: o lugar, de fora para dentro. Bloco 2: quanto cabe e quanto aguenta. Bloco 3: o que pode travar. No fim, o Faça agora gera a sua Ficha.</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Marco Zero</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Qual é o último passo de um empreendimento de hospedagem?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>A obra. Antes dela vêm o território, o mercado, o produto, o modelo e o masterplan.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O que faz o sócio, o banco ou o investidor chegar?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Um plano completo: projeto, execução e viabilidade. O plano é a isca.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Quais são as cinco perguntas antes de investir um real?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Visão, demanda, tempo, modo e resultado.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então clique para virar. "Hoje começa a primeira etapa, Ler o lugar. E ela começa pelo chão: pelo seu terreno."</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · Ler o lugar">
+  <p class="k">Bloco 1</p>
+  <h2>O destino <i>antes do terreno</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Muita gente achava que o diferencial da Zion era a Bubble. Não era. Era o território.</div>
+    <div class="f"><b>Reflexão</b>Para que o seu terreno serve hoje? Escreva em uma linha. No fim, compare com o que as contas mostrarem.</div>
+    <div class="f"><b>Dica</b>Onde não souber, escreva "não sei". Cada "não sei" vira uma tarefa da semana, e não uma vergonha.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na reflexão, peça que escrevam a linha no papel antes de continuar. Essa linha volta no fim da aula.</aside>
+</section>
+
+<!-- 5 · A CENA -->
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Bloco 1 · Ler o lugar">
+  <p class="k">A cena que mais se repete</p>
+  <h2>Um sábado <i>de sol</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">A vista é linda, o preço parece bom. A pessoa compra, ou decide construir.</li>
+    <li class="f">Meses depois: a energia que não aguenta, a estrada que fecha na chuva, a área que não pode ser construída.</li>
+    <li class="f"><span>Quase nunca o terreno era ruim. <i>Ninguém leu o terreno antes.</i></span></li>
+  </ul>
+  <aside><b>2 min.</b> Conte a cena com calma. "E se você se reconheceu nela, saiba de uma coisa: não é falta de coragem nem de gosto. Ninguém te ensinou a ordem. A paixão chegou primeiro, e a leitura chegou tarde, quando já custava caro. É isso que nós vamos fazer hoje: ler antes."</aside>
+</section>
+
+<!-- 6 · A TROCA DE PERGUNTA -->
+<section class="s" data-bloco="Bloco 1 · Ler o lugar">
+  <p class="k">A troca de pergunta</p>
+  <h2>O mesmo terreno, <i>duas perguntas</i></h2>
+  <table class="t" style="font-size:36px">
+    <tr><th>Quem compra pergunta</th><th>Quem desenvolve pergunta</th></tr>
+    <tr class="f"><td>Quanto custa o terreno?</td><td><b>Quanto dele vira negócio?</b></td></tr>
+    <tr class="f"><td>Quantas unidades cabem?</td><td><b>Quantas o lugar aguenta?</b></td></tr>
+    <tr class="f"><td>O vendedor disse que pode?</td><td><b>A prefeitura respondeu, por escrito, que pode?</b></td></tr>
+    <tr class="f"><td>O terreno é lindo?</td><td><b>Ele é bom para quê?</b></td></tr>
+  </table>
+  <aside><b>3 min.</b> Antes, uma palavra que vai aparecer a aula inteira: unidade. Unidade é cada cabana, chalé ou quarto que você vai oferecer ao hóspede. Revele linha a linha. "Developer é a palavra que se usa lá fora para quem faz a ponte entre a terra, o projeto e o dinheiro. No Brasil essa profissão quase não tem nome, mas a forma de pensar é o que você aprende aqui." Quem ainda não hospeda faz com o terreno que tem ou que está olhando; quem já opera, com o terreno da expansão.</aside>
+</section>
+
+<!-- 7 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · Ler o lugar">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">Um terreno com vista incrível e acesso ruim. Qual é a primeira pergunta de quem desenvolve?</p>
+    <div class="ops">
+      <button class="op">Quanto ele custa?</button>
+      <button class="op">Quantos chalés eu consigo construir?</button>
+      <button class="op" data-certa>Esse lugar é bom para quê, e o acesso permite isso?</button>
+    </div>
+    <p class="exp">A vista é um ponto forte, mas o acesso pode limitar o tipo de hóspede, o número de unidades e o custo da obra. Antes de contar unidades ou discutir preço, quem desenvolve descobre para que aquele lugar serve.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Clique na alternativa que alguém escolheu (fica vermelha se errada) ou avance para revelar a certa e a explicação.</aside>
+</section>
+
+<!-- 8 · FASES · O CAMINHO -->
+<section class="s" data-bloco="Bloco 1 · O caminho do pilar">
+  <p class="k">De fora para dentro · uma etapa por vez</p>
+  <h2>O caminho até a <i>Ficha do Território</i></h2>
+  <div class="fases cinco passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>O destino</span><div class="fx"><div><h4>O que se faz</h4><p>A natureza do lugar, seis perguntas, o cronômetro do hóspede, o teste dos três dias e a frase do lugar.</p></div><div><h4>Por quê</h4><p>Ninguém compra a diária sem antes escolher o destino. Um terreno ótimo num lugar aonde ninguém vai fica parado.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Quanto cabe</span><div class="fx"><div><h4>O que se faz</h4><p>Tirar da matrícula, uma por uma, as partes que não podem ser usadas. E olhar o preço do terreno de três jeitos.</p></div><div><h4>Por quê</h4><p>Quem negocia pela área do papel paga pelo metro que nunca vai usar.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Quanto aguenta</span><div class="fx"><div><h4>O que se faz</h4><p>Medir quatro limites, um por vez. Vale o menor.</p></div><div><h4>Por quê</h4><p>A unidade que, para caber, tomou a melhor vista ou ficou perto o bastante para ouvir a vizinha derruba a diária de todas as outras.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>O que pode travar</span><div class="fx"><div><h4>O que se faz</h4><p>Quatro documentos, quase sempre públicos, e três conversas.</p></div><div><h4>Por quê</h4><p>A zona que não permite hospedagem, a estrada que não é sua, a dívida que vem junto: quase tudo o que se ignora antes custa muito mais caro depois.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>A Ficha</span><div class="fx"><div><h4>O que se faz</h4><p>Tudo vira uma página: os números, os alertas, a leitura e o critério para parar.</p></div><div><h4>Por quê</h4><p>Sem uma página que junte tudo, a decisão volta a ser tomada pelo entusiasmo. E quem avalia compra o que está escrito e tem fonte.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada etapa: o que se faz e por quê.</p></div>
+  </div>
+  <aside><b>4 min · as fases e os porquês.</b> Cada clique abre a próxima etapa. "A ordem é de fora para dentro: primeiro o lugar, depois o lote." As etapas 1 a 4 são os blocos de hoje; a 5 é o Faça agora. Você também pode clicar direto numa etapa se alguém perguntar.</aside>
+</section>
+
+<!-- 9 · O DESTINO E O BIOMA -->
+<section class="s esc" data-bloco="Bloco 1 · O destino">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">Localização, localização, localização</p>
+      <h2 style="font-size:70px">A frase está certa, <i>mas incompleta</i></h2>
+      <ul class="lista" style="font-size:33px">
+        <li class="f">O hóspede escolhe primeiro o destino. Só depois procura onde dormir.</li>
+        <li class="f">A primeira pergunta: em que natureza o seu terreno está? Serra, litoral, campo, cerrado, mata. Isso é o bioma.</li>
+        <li class="f">O bioma decide o clima, a vegetação que fica de pé, parte das regras ambientais, os materiais e a experiência que o hóspede vem buscar.</li>
+      </ul>
+    </div>
+    <img class="fig" src="figuras/02-bioma.svg" alt="Os biomas em volta do seu terreno: serra, litoral, campo, cerrado e mata">
+  </div>
+  <aside><b>3 min.</b> "Pense em como você mesmo viaja: primeiro decide vou para a serra, ou vou para a praia. Só depois procura a pousada. Com o seu hóspede é igual." Frio de serra, mar de litoral e silêncio de campo vendem coisas diferentes. Pergunte no chat: qual é o bioma do seu terreno?</aside>
+</section>
+
+<!-- 10 · SEIS PERGUNTAS -->
+<section class="s" data-bloco="Bloco 1 · O destino">
+  <p class="k">Seis perguntas sobre o lugar, e não sobre o lote</p>
+  <h2 style="font-size:66px">Clique em cada uma: <i>o que ela revela?</i></h2>
+  <div class="grid g3 seis">
+    <div class="pq"><div class="in"><div class="fr"><h3>Como se chega?</h3><span class="dica">Virar</span></div><div class="vs"><b>Revela</b><p>O acesso físico e o legal.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>De onde vem quem paga?</h3><span class="dica">Virar</span></div><div class="vs"><b>Revela</b><p>A distância e o tempo de viagem do seu hóspede.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Tem motivo para ficar?</h3><span class="dica">Virar</span></div><div class="vs"><b>Revela</b><p>Quantas noites cada reserva pode ter.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Quem já está lá?</h3><span class="dica">Virar</span></div><div class="vs"><b>Revela</b><p>Se você vai disputar preço ou experiência.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>A região está crescendo?</h3><span class="dica">Virar</span></div><div class="vs"><b>Revela</b><p>Se o destino sobe ou desce.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>O que só existe aqui?</h3><span class="dica">A mais importante</span></div><div class="vs"><b>Revela</b><p>Se você entra brigando pelo preço do vizinho, ou cobrando pelo que só você tem.</p></div></div></div>
+  </div>
+  <aside><b>3 min.</b> Leia a pergunta, peça um palpite, vire o cartão clicando nele. Deixe a sexta por último: "é ela que decide se você entra no mercado brigando pelo preço do vizinho, ou cobrando pelo que só você tem."</aside>
+</section>
+
+<!-- 11 · ACESSO -->
+<section class="s" data-bloco="Bloco 1 · O destino">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">O cronômetro do hóspede</p>
+      <h2 style="font-size:70px">O acesso tem <i>duas metades</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f"><span><b>Físico:</b> do aeroporto ou da cidade de onde ele vem até a porta, com o cronômetro ligado. Num dia de chuva. Passa carro comum? E à noite?</span></li>
+        <li class="f"><span><b>Legal:</b> a estrada é pública? Se passa pelo terreno de outra pessoa, existe servidão de passagem, registrada em cartório?</span></li>
+        <li class="f"><span>O vizinho deixar passar "de boca" não é servidão. Quem confirma é a matrícula, com um advogado.</span></li>
+      </ul>
+    </div>
+    <img class="fig" src="figuras/10-acesso-legal.svg" alt="A estrada pública passa pelo terreno do vizinho até o seu terreno: de quem é a estrada?">
+  </div>
+  <aside><b>3 min.</b> Servidão de passagem é a passagem por terreno de outra pessoa, registrada em cartório. "Guarde essa pergunta: no Bloco 3 nós contamos um terreno que a Zion recusou por causa dela." O cronômetro custa um dia de estrada: guarde o tempo, a data e o tipo de dia, sol ou chuva.</aside>
+</section>
+
+<!-- 12 · QUIZ RELÂMPAGO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q" style="font-size:50px">O terreno fica a 40 minutos de um destino famoso. A estrada final passa pelo terreno de um vizinho que "sempre deixou passar". O que vem primeiro?</p>
+    <div class="ops">
+      <button class="op">Calcular quantas unidades cabem</button>
+      <button class="op" data-certa>Confirmar o acesso legal: existe servidão registrada na matrícula?</button>
+      <button class="op">Pedir orçamento de obra</button>
+    </div>
+    <p class="exp">Acordo de boca não é servidão. Se o acesso legal não existe, todo o resto pode travar. Quem confirma é a matrícula, com um advogado.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 13 · TRÊS DIAS -->
+<section class="s foto" data-bg="../fotos/901904223c.jpg" data-bloco="Bloco 1 · O destino">
+  <p class="k">O teste dos três dias</p>
+  <h2 style="max-width:1150px">Teria motivo para ficar <i>três dias</i> na região?</h2>
+  <ul class="lista" style="max-width:1100px;font-size:34px">
+    <li class="f">Abra o mapa e marque, num raio de 150 km: aeroportos, estradas, parques, cachoeiras, mirantes, restaurantes, cidades turísticas e eventos.</li>
+    <li class="f">Mais motivo para ficar é mais noites por reserva: a mesma limpeza e a mesma recepção servem para mais noites.</li>
+  </ul>
+  <p class="lead f" style="max-width:1050px">Se a resposta for não, talvez o desafio não esteja no terreno. Esteja na localização.</p>
+  <aside><b>2 min.</b> Peça que alguém diga no chat três motivos para ficar na região dele. Mais noites por reserva é menos troca de hóspede. Esse teste, o cronômetro e a frase do lugar não viram número agora: são a base do produto, no Pilar 3. Guarde no celular.</aside>
+</section>
+
+<!-- 14 · SOL, VENTO E VISTA -->
+<section class="s" data-bloco="Bloco 1 · O lugar por dentro">
+  <p class="k">Um exercício de campo</p>
+  <h2 style="font-size:70px">Sol, vento e vista <i>não aparecem na planta</i></h2>
+  <div class="grid g2" style="gap:64px;align-items:start">
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <h3>Duas visitas no mesmo dia</h3>
+      <ul class="lista" style="font-size:30px;gap:16px">
+        <li class="f">Às 7h e às 17h, com o celular.</li>
+        <li class="f">Fotografe onde nasce e onde se põe o sol, de onde vem o vento, onde a água escorre, onde existe silêncio.</li>
+        <li class="f">O deck lindo que fica vazio por causa do vento aparece no primeiro inverno.</li>
+      </ul>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <h3>Os cinco degraus da vista</h3>
+      <ul class="lista num" style="font-size:28px;gap:14px">
+        <li class="f"><span><b>Funcional.</b> Ilumina e ventila, e ninguém lembra.</span></li>
+        <li class="f"><span><b>Agradável.</b> Tem verde, mas sem protagonista.</span></li>
+        <li class="f"><span><b>Memorável.</b> A conversa para para olhar.</span></li>
+        <li class="f"><span><b>Icônica.</b> Um cartão-postal.</span></li>
+        <li class="f"><span><b>Transformadora.</b> Muda o estado de quem olha.</span></li>
+      </ul>
+    </div>
+  </div>
+  <aside><b>3 min.</b> No fim do dia de visitas, a pergunta: onde fica a primeira unidade, com qual vista, a que hora, e para onde aponta a cama? Dê uma nota de 1 a 5 para a vista do seu terreno. "Às vezes a melhor decisão é construir menos: preservar os poucos pontos com vista de verdade, para que cada hóspede sinta que a vista é só dele."</aside>
+</section>
+
+<!-- 15 · TREZENTOS METROS -->
+<section class="s foto" data-bg="../fotos/97720fb183.jpg" data-bloco="Bloco 1 · Caso Zion">
+  <p class="k">Caso Zion · a nossa primeira sede</p>
+  <h2>Trezentos metros <i>adiante</i></h2>
+  <ul class="lista" style="max-width:1100px;font-size:34px">
+    <li class="f">O lugar óbvio para as unidades era perto da entrada: mais barato, mais lógico.</li>
+    <li class="f">Andando o terreno: silêncio, vista aberta para o vale, mais luz no inverno, e os bosques fazendo o papel de quebra-vento.</li>
+  </ul>
+  <p class="citacao f" style="font-size:52px;max-width:1150px">As árvores ficaram onde estavam. Quem decidiu foi o terreno, não <i>o arquiteto.</i></p>
+  <aside><b>2 min.</b> Conte na voz da Zion. "Na nossa primeira sede, na serra, muita gente tratava o frio como problema. Nós fizemos dele o protagonista: neblina, geada, céu estrelado. A Bubble não esconde o território, ela mostra." Isso é vocação: o que o lugar faz melhor do que os outros por perto.</aside>
+</section>
+
+<!-- 16 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>A frase <i>do seu lugar</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>O bioma do seu terreno.</span></div>
+      <div class="passo f"><b>2</b><span>Três motivos para ficar três dias, num raio de 150 km.</span></div>
+      <div class="passo f"><b>3</b><span>Uma vocação principal e uma complementar: contemplação, aventura, bem-estar, gastronomia, cultura, exclusividade ou transformação.</span></div>
+      <div class="passo f"><b>4</b><span>Complete, sem adjetivo: "o meu terreno é o único lugar onde uma pessoa pode..."</span></div>
+    </div>
+    <div class="lado-qr">
+      <img class="fig" src="figuras/06-vocacao.svg" alt="O meu terreno é o único lugar onde uma pessoa pode: sem adjetivo, o que se vê, o que se sente">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar. Exemplo de frase: "dormir vendo a neblina atravessar as araucárias". Concreta, sem adjetivo, e não serve para qualquer hotel. "Se a sua frase servir para qualquer outro hotel, ela ainda não é a sua." Quem tenta ser tudo vira mais um. No fim, leia duas ou três frases do chat.</aside>
+</section>
+
+<!-- 17 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · Quanto cabe, quanto aguenta">
+  <p class="k">Bloco 2</p>
+  <h2>Quanto cabe <i>e quanto aguenta</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>No exemplo da Marina, cinco hectares no papel viram um hectare e meio na prática.</div>
+    <div class="f"><b>Reflexão</b>Quanto da sua matrícula você acha que pode usar? Escreva o palpite agora.</div>
+    <div class="f"><b>Dica</b>Matrícula velha esconde surpresa. Por isso a palavra é sempre "atualizada".</div>
+  </div>
+  <aside><b>1 min.</b> "Agora, o terreno por dentro. E aqui está a conta que quase ninguém faz na visita." Peça o palpite por escrito. A Marina é o nosso exemplo ilustrativo, não é uma pessoa real: um terreno de cinco hectares na serra, comprado por R$ 600 mil.</aside>
+</section>
+
+<!-- 18 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 2 · Quanto cabe">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">A matrícula diz 5 hectares, 50.000 m². Quanto disso costuma sobrar para construir?</p>
+    <div class="ops">
+      <button class="op">5 hectares, a área toda</button>
+      <button class="op">3,5 hectares</button>
+      <button class="op" data-certa>1,5 hectare</button>
+    </div>
+    <p class="exp">No exemplo ilustrativo da Marina, sobram 15.000 m²: 1,5 hectare, 30% da matrícula. Não é regra, é o resultado das subtrações daquele terreno. O seu número só aparece com os documentos do seu.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Um hectare é um quadrado de cem por cem metros, dez mil metros quadrados. Letra no chat antes de revelar.</aside>
+</section>
+
+<!-- 19 · AS SUBTRAÇÕES -->
+<section class="s" data-bloco="Bloco 2 · Quanto cabe">
+  <p class="k">Entre o papel e o negócio</p>
+  <h2 style="font-size:70px">As subtrações, <i>uma por uma</i></h2>
+  <table class="t" style="font-size:28px">
+    <tr><th>O que sai</th><th>O que é</th><th>Quem confirma</th></tr>
+    <tr class="f"><td><b>Área de preservação, APP</b></td><td>A faixa protegida na margem de rio, em volta de nascente e no topo de morro</td><td>Técnico ambiental, CAR</td></tr>
+    <tr class="f"><td><b>Reserva legal</b></td><td>A parte do imóvel rural que fica com mata nativa; o percentual varia por bioma e região</td><td>CAR e técnico ambiental</td></tr>
+    <tr class="f"><td><b>Encosta forte</b></td><td>A parte muito inclinada, cara e limitada para construir</td><td>Topógrafo</td></tr>
+    <tr class="f"><td><b>Recuos e faixas</b></td><td>A distância obrigatória da divisa, da estrada e da rede elétrica</td><td>Prefeitura e concessionária</td></tr>
+    <tr class="f"><td><b>Área de serviço</b></td><td>Acesso, estacionamento, reservatório, esgoto</td><td>O seu desenho</td></tr>
+  </table>
+  <aside><b>3 min.</b> Quatro palavras: a matrícula é o registro do terreno no cartório de registro de imóveis, a certidão de nascimento dele: área, donos e se tem hipoteca ou penhora. APP é a área de preservação permanente. Reserva legal é a parte que fica com mata nativa. E o CAR, Cadastro Ambiental Rural, é o mapa público dessas áreas: a consulta é pública e gratuita, em car.gov.br. Concessionária é a empresa de energia, a que manda a conta de luz. Topógrafo é quem mede e desenha as subidas do terreno. "Não somos nós que dizemos o número do seu terreno. Quem confirma é o CAR, o topógrafo e a prefeitura."</aside>
+</section>
+
+<!-- 20 · A CONTA DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · Quanto cabe">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2 style="font-size:66px">A Marina e <i>os cinco hectares</i></h2>
+  <div class="conta" style="max-width:1400px;font-size:32px;gap:10px">
+    <div class="eq f"><span>Área da matrícula</span><span>50.000 m²</span></div>
+    <div class="eq f"><span>− Área de preservação, no riacho e na nascente</span><span>12.000 m²</span></div>
+    <div class="eq f"><span>− Reserva legal</span><span>10.000 m²</span></div>
+    <div class="eq f"><span>− Encosta forte</span><span>8.000 m²</span></div>
+    <div class="eq f"><span>− Recuos e faixas · − Área de serviço</span><span>1.500 + 3.500 m²</span></div>
+    <div class="eq tot f" data-foco><span>Sobra para usar · 50.000 − 35.000</span><span>15.000 m² · 30%</span></div>
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> Revele linha a linha. 12.000 + 10.000 + 8.000 + 1.500 + 3.500 = 35.000 m² que saem. 50.000 − 35.000 = 15.000 m². 15.000 ÷ 50.000 = 30%. "E esse número vai para a mesa de negociação, com os mapas na tela. Muitas vezes o vendedor nunca fez essa conta."</aside>
+</section>
+
+<!-- 21 · SIMULADOR · A BARRA QUE ENCOLHE -->
+<section class="s esc" data-bloco="Bloco 2 · Quanto cabe">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize as subtrações</p><span class="selo">Exemplo ilustrativo · a Marina</span></div>
+  <h2 style="font-size:62px">A barra <i>que encolhe</i></h2>
+  <div class="sim" data-sim="p1" style="gap:48px">
+    <div class="ctl" style="gap:12px">
+      <label>Área da matrícula <output data-for="mat" data-fmt="m2"></output><input type="range" name="mat" min="5000" max="200000" step="500" value="50000"></label>
+      <label>Área de preservação, APP <output data-for="pres" data-fmt="m2"></output><input type="range" name="pres" min="0" max="60000" step="500" value="12000"></label>
+      <label>Reserva legal <output data-for="res" data-fmt="m2"></output><input type="range" name="res" min="0" max="60000" step="500" value="10000"></label>
+      <label>Encosta forte <output data-for="enc" data-fmt="m2"></output><input type="range" name="enc" min="0" max="60000" step="500" value="8000"></label>
+      <label>Recuos e faixas <output data-for="rec" data-fmt="m2"></output><input type="range" name="rec" min="0" max="20000" step="500" value="1500"></label>
+      <label>Área de serviço <output data-for="serv" data-fmt="m2"></output><input type="range" name="serv" min="0" max="20000" step="500" value="3500"></label>
+    </div>
+    <div class="res">
+      <svg class="barra-area" viewBox="0 0 800 170"></svg>
+      <div class="linha"><span>Sai da conta</span><b data-r="subs" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Área que você pode usar</span><b data-r="usavel" data-fmt="m2"></b></div>
+      <div class="linha"><span>Quanto da matrícula vira negócio</span><b data-r="pct" data-fmt="pct"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo: 15.000 m², 30%. Mexa ao vivo: "e se a reserva legal fosse maior?", "e se a encosta fosse o dobro?". Peça a área da matrícula de um aluno e coloque. Tecla R ou o botão voltam ao exemplo. Os mesmos números seguem para os próximos simuladores: a área usável muda o preço por m² e a Ficha.</aside>
+</section>
+
+<!-- 22 · ENCOSTA E TAXA -->
+<section class="s" data-bloco="Bloco 2 · Quanto cabe">
+  <p class="k">Dois cuidados · pergunte antes de virar</p>
+  <h2 style="font-size:70px">Um subtrai do mapa. <i>O outro põe um teto.</i></h2>
+  <div class="grid g2 dupla">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Encosta é tudo igual?</h3><p class="sm">Toda inclinação sai da conta?</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Não</b><p>Acima de 30% de inclinação é área cara e limitada: contenção e drenagem. Acima de 45 graus é área de preservação permanente e sai da conta. Quem mede é o topógrafo.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>A taxa de ocupação</h3><p class="sm">Ela tira pedaço do mapa?</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Não, põe um teto</b><p>É quanto do terreno pode ser coberto por construção. Se a zona da Marina permitisse 10%, o teto seria de 5.000 m² construídos. Quem diz o número é o plano diretor.</p></div></div></div>
+  </div>
+  <aside><b>3 min.</b> 30% de inclinação: a cada 10 metros andando para a frente, o chão sobe 3 metros. 45 graus é bem mais íngreme: sobe um metro a cada metro andado. São duas medidas diferentes, uma em porcentagem, outra em graus. "Não decida pelo olho." Na Marina, a taxa de ocupação não manda: o teto de 5.000 m² fica muito acima do que cinco cabanas ocupam. Num terreno pequeno, ou numa zona com regras mais duras, ela pode ser o limite. Regras de encosta e de zona: quem confirma é o topógrafo, o técnico ambiental e a prefeitura.</aside>
+</section>
+
+<!-- 23 · TRÊS PREÇOS -->
+<section class="s" data-bloco="Bloco 2 · Quanto cabe">
+  <span class="selo">Exemplo ilustrativo · terreno de R$ 600 mil</span>
+  <h2 style="font-size:70px">O mesmo terreno, <i>três preços</i></h2>
+  <table class="t" style="font-size:31px">
+    <tr><th>Jeito de olhar</th><th>Conta</th><th>Resultado</th><th>Para que serve</th></tr>
+    <tr class="f"><td>Por m² total</td><td>600.000 ÷ 50.000</td><td class="v">R$ 12 por m²</td><td>O do anúncio, e o que menos informa</td></tr>
+    <tr class="f"><td>Por m² que você pode usar</td><td>600.000 ÷ 15.000</td><td class="v">R$ 40 por m²</td><td>O número da negociação</td></tr>
+    <tr class="f"><td>Por unidade possível</td><td>600.000 ÷ 5</td><td class="v">R$ 120 mil</td><td>O que conversa com o investimento</td></tr>
+  </table>
+  <p class="lead f">Mais de três vezes mais caro olhando só o que se usa. Quem negocia pelo papel paga pelo metro que nunca vai usar.</p>
+  <aside><b>3 min.</b> "Um terreno de quinhentos mil pode ser caríssimo, e um de três milhões pode ser barato. A pergunta não é se o terreno está caro. É se o preço cabe no negócio que ele permite." As cinco unidades ainda são estimativa: daqui a pouco nós vemos de onde elas vêm.</aside>
+</section>
+
+<!-- 24 · O PESO DO TERRENO -->
+<section class="s" data-bloco="Bloco 2 · A pergunta dos 27%">
+  <span class="selo">Exemplo ilustrativo · regra de bolso, não lei</span>
+  <h2 style="font-size:62px">O peso do terreno <i>no investimento total</i></h2>
+  <div class="conta f" data-foco style="max-width:1500px;font-size:32px">
+    <div class="eq tot"><span>R$ 600.000 ÷ R$ 2.220.000 que a Marina imagina investir</span><span>27%</span></div>
+  </div>
+  <div class="quiz passo">
+    <p class="q" style="font-size:46px">Passou de 20%. A Marina deve desistir?</p>
+    <div class="ops">
+      <button class="op">Sim, passou de 20%</button>
+      <button class="op" data-certa>Não necessariamente: acendeu um alerta, e ela fica com duas perguntas</button>
+      <button class="op">Não, terreno nunca pesa demais</button>
+    </div>
+    <p class="exp">O que o lugar tem que justifica pesar mais? E a região paga uma diária acima da média pelo que ela quer vender? A primeira se responde no território. A segunda, no Pilar 2.</p>
+  </div>
+  <aside><b>3 min.</b> Primeiro a palavra: investimento total é tudo o que sai do bolso antes de o negócio andar sozinho. O terreno, mais construir e equipar, mais o capital de giro, o dinheiro que segura as contas dos primeiros meses. A regra de bolso: em hospedagem de experiência, quando o terreno passa de algo entre 10% e 20% do investimento total, o empreendimento fica sensível. E o terreno que já é seu também entra, pelo valor dele: é capital que você está colocando no negócio. 600.000 ÷ 2.220.000 = 0,27.</aside>
+</section>
+
+<!-- 25 · SIMULADOR · OS 27% -->
+<section class="s esc cmp" data-bloco="Bloco 2 · A pergunta dos 27%">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · o preço e o peso</p><span class="selo">Exemplo ilustrativo · não é avaliação</span></div>
+  <h2 style="font-size:60px">Quanto o terreno <i>pesa no projeto?</i></h2>
+  <div class="sim" data-sim="p1" style="grid-template-columns:.85fr 1.15fr;gap:48px">
+    <div class="ctl">
+      <label>Valor do terreno <output data-for="preco" data-fmt="brl"></output><input type="range" name="preco" min="50000" max="3000000" step="10000" value="600000"><small>Pedido, ou o valor do terreno se já é seu</small></label>
+      <label>Investimento total que imagina <output data-for="invest" data-fmt="brl"></output><input type="range" name="invest" min="300000" max="6000000" step="10000" value="2220000"><small>Terreno, mais construir e equipar, mais o capital de giro</small></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Por m² total</span><b data-r="pTot" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por m² que pode usar</span><b data-r="pUs" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por unidade possível</span><b data-r="pUn" data-fmt="brl"></b></div>
+      <div class="linha tot"><span>Peso no investimento</span><b data-r="peso" data-fmt="pct"></b></div>
+      <div class="ponteiro"><i data-ponteiro="ponteiroPeso"></i></div>
+      <div class="regua" style="height:50px;font-size:18px"><div class="r1" style="flex:10">até 10%</div><div class="r3" style="flex:10">10 a 20% · sensível</div><div class="r4" style="flex:20">acima de 20% · alerta</div></div>
+      <div class="aviso" data-aviso="avisoPeso"></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina: R$ 12, R$ 40 e R$ 120 mil por unidade; peso 27%, alerta aceso. Mexa: "e se ela renegociar para R$ 400 mil?" (peso cai para 18%, ainda sensível). "E se o terreno já fosse dela?" Continua entrando, pelo valor. A régua vai até 40% na tela. Lembre: é regra de bolso, alerta e não lei. Não é avaliação de terreno.</aside>
+</section>
+
+<!-- 26 · OS QUATRO LIMITES -->
+<section class="s" data-bloco="Bloco 2 · Quanto aguenta">
+  <p class="citacao" style="font-size:50px">Não existe terreno bom. Existe terreno bom <i>para alguma coisa.</i></p>
+  <div class="grid g4 limites">
+    <div class="pq"><div class="in"><div class="fr"><h3>Físico</h3><p>Quanto a área comporta, com afastamento e caminhos?</p><span class="dica">Como se descobre</span></div><div class="vs"><b>Como</b><p>No mapa da área que você pode usar. O afastamento é decisão de produto: escreva o número e o porquê.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Infraestrutura</h3><p>Água no mês mais seco, energia que chega, esgoto que dá para tratar?</p><span class="dica">Como se descobre</span></div><div class="vs"><b>Como</b><p>A conta da água, a concessionária e o projetista. Vale o menor dos três.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Experiência</h3><p>A partir de quantas unidades um hóspede vê ou ouve o outro?</p><span class="dica">Como se descobre</span></div><div class="vs"><b>Como</b><p>Andando o terreno, com estacas ou fitas marcando cada unidade.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Mercado</h3><p>Quantas noites o destino compra naquela faixa de preço?</p><span class="dica">Como se descobre</span></div><div class="vs"><b>Como</b><p>No Pilar 2, Mercado e demanda. Por enquanto, estimativa.</p></div></div></div>
+  </div>
+  <p class="lead f">A capacidade é o menor dos quatro. Não é a média. Muito menos o maior.</p>
+  <aside><b>3 min.</b> Esta é a régua do pilar. Ela tira o elogio fácil, o "terreno é lindo", e a condenação apressada, o "aqui não dá nada". Capacidade de carga é quanto o lugar aguenta: pense na lotação de um barco, não é quantas pessoas cabem em pé, é quantas ele leva com segurança. Vire os cartões clicando neles. O último clique da sequência revela a frase final. Na nossa primeira sede, nenhuma Bubble atrapalha a vista da outra: isso foi decisão, não sorte.</aside>
+</section>
+
+<!-- 27 · QUIZ LIMITES -->
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">Na Marina, o limite físico permite 12 unidades, a infraestrutura 10, a experiência 7 e o mercado 5. Quantas ela faz?</p>
+    <div class="ops">
+      <button class="op">12, porque cabem</button>
+      <button class="op">8,5, a média</button>
+      <button class="op" data-certa>5, o menor</button>
+    </div>
+    <p class="exp">Cinco, pelo mercado. A capacidade é sempre o menor dos quatro. E o cinco ainda é estimativa: no Pilar 2 a Marina mede, e o número pode mudar.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat. "Fazer mais do que o mercado compra é construir unidade que fica vazia."</aside>
+</section>
+
+<!-- 28 · SIMULADOR · LIMITES -->
+<section class="s esc" data-bloco="Bloco 2 · Quanto aguenta">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · os quatro limites</p><span class="selo">Exemplo ilustrativo · a Marina</span></div>
+  <h2 style="font-size:60px">Caber não é a mesma coisa <i>que aguentar</i></h2>
+  <div class="sim" data-sim="p1" style="grid-template-columns:.8fr 1.2fr;gap:44px">
+    <div class="ctl" style="gap:14px">
+      <label>Limite físico <output data-for="fis"></output><input type="range" name="fis" min="1" max="30" step="1" value="12"></label>
+      <label>Limite de infraestrutura <output data-for="infra"></output><input type="range" name="infra" min="1" max="30" step="1" value="10"></label>
+      <label>Limite de experiência <output data-for="exp"></output><input type="range" name="exp" min="1" max="30" step="1" value="7"></label>
+      <label>Limite de mercado <output data-for="merc"></output><input type="range" name="merc" min="1" max="30" step="1" value="5"><small>Estimativa até o Pilar 2</small></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res" style="gap:10px">
+      <svg class="lims" viewBox="0 0 800 330"></svg>
+      <div class="linha tot"><span>O lugar aguenta</span><b><span data-r="cap"></span> unidades</b></div>
+      <div class="linha"><span>Terreno por unidade possível</span><b data-r="pUn" data-fmt="brl"></b></div>
+      <div class="linha"><span>Contando pelo físico, parece <b data-r="ilusao" data-fmt="dec1"></b> vezes mais barato</span><b data-r="pFis" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso="avisoLim"></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina: 5 unidades, quem manda é o mercado. R$ 120 mil por unidade (600.000 ÷ 5). Pelo físico, 12 unidades, daria R$ 50 mil: o terreno pareceria 2,4 vezes mais barato do que é (120 ÷ 50). Mexa: suba o mercado para 9 e mostre que quem manda vira a experiência. Desça a infraestrutura para 4: "é o primeiro orçamento a pedir". Para quem pensa em fases: construa menos unidades, nunca menos infraestrutura. Puxar energia, água e esgoto duas vezes custa muito mais do que dimensionar certo uma vez.</aside>
+</section>
+
+<!-- 29 · SIMULADOR · ÁGUA -->
+<section class="s" data-bloco="Bloco 2 · Quanto aguenta">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · no mês mais seco</p><span class="selo">Exemplo ilustrativo</span></div>
+  <h2 style="font-size:60px">A conta <i>da água</i></h2>
+  <div class="sim" data-sim="agua" style="grid-template-columns:.85fr 1.15fr;gap:48px">
+    <div class="ctl" style="gap:16px">
+      <label>A fonte entrega, por hora <output data-for="vz"></output><input type="range" name="vz" min="50" max="1500" step="10" value="250"><small>litros por hora, medidos três vezes, em dias diferentes</small></label>
+      <label>Reserva técnica <output data-for="rs" data-fmt="pct0"></output><input type="range" name="rs" min="0" max="40" step="5" value="20"></label>
+      <label>Equipe e áreas comuns, por dia <output data-for="eq"></output><input type="range" name="eq" min="0" max="6000" step="100" value="2000"><small>litros por dia</small></label>
+      <label>Consumo de cada unidade, por dia <output data-for="cons"></output><input type="range" name="cons" min="200" max="1000" step="50" value="500"><small>litros por dia</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>1 · Litros por dia, × 24</span><b data-r="dia"></b></div>
+      <div class="linha"><span>2 · Menos a reserva técnica</span><b data-r="reserva"></b></div>
+      <div class="linha"><span>3 · Menos equipe e áreas comuns</span><b data-r="liq"></b></div>
+      <div class="linha"><span>4 · Dividido pelo consumo de cada unidade</span><b data-r="bruto" data-fmt="dec1"></b></div>
+      <div class="linha tot"><span>Unidades com água</span><b data-r="un"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Exemplo: 500 litros por dia por unidade e 2.000 para a equipe e as áreas comuns, só para o exemplo. Fonte de 250 L/h: 6.000, menos 20% = 4.800, menos 2.000 = 2.800, ÷ 500 = 5,6: cinco unidades. Com a sexta, já falta. Agora suba para 900 L/h: 21.600, 17.280, 15.280, ÷ 500 = 30 unidades. Para medir: 10 litros em 40 segundos são 900 litros por hora (10 × 3.600 ÷ 40). Medir em mês de chuva dá um número que não serve para decidir. E ter água não é poder usar: tirar água de rio, nascente ou poço costuma pedir outorga, a autorização do órgão de recursos hídricos, caso a caso. Quem mede a vazão com confiança é o técnico.</aside>
+</section>
+
+<!-- 30 · LIÇÃO DO BLOCO 2 -->
+<section class="s esc" data-bloco="Bloco 2 · Faça você">
+  <p class="k">Vitória rápida · 5 minutos</p>
+  <h2>As subtrações <i>do seu terreno</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>A área da matrícula, em m².</span></div>
+      <div class="passo f"><b>2</b><span>Cada subtração, com quem confirma. Onde não souber, "não sei".</span></div>
+      <div class="passo f"><b>3</b><span>A área que sobra, e quanto ela é da matrícula.</span></div>
+      <div class="passo f"><b>4</b><span>Os três preços e o peso no investimento que você imagina.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Compare com o palpite que você escreveu no começo do bloco.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Ligue o cronômetro. "Em cinco minutos você tem o primeiro número que é seu, e não do anúncio." Ao terminar: quem descobriu que usa menos da metade da matrícula? Quem tem mais "não sei" do que número? Esses "não sei" são a tarefa da semana.</aside>
+</section>
+
+<!-- 31 · BLOCO 3 -->
+<section class="s esc bloco" data-num="3" data-bloco="Bloco 3 · O que pode travar">
+  <p class="k">Bloco 3</p>
+  <h2>Quem compra acredita. <i>Quem desenvolve verifica.</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Quase ninguém faz a consulta prévia. E é ela que troca o "acho que pode" pelo "a prefeitura respondeu".</div>
+    <div class="f"><b>Reflexão</b>O objetivo não é achar motivo para comprar. É descobrir se existe algum motivo para não comprar.</div>
+    <div class="f"><b>Dica</b>Você não faz tudo. Você sabe quem faz, e o que pedir a cada um.</div>
+  </div>
+  <aside><b>1 min.</b> "O que trava o empreendimento não se vê andando no terreno. Se vê lendo papel." Nós, da Zion, não somos advogados e não vamos dizer a lei do seu município. Vamos dizer o que pedir, a quem pedir e o que conferir no que voltar. Quem confirma é o advogado, o técnico ambiental, o topógrafo e a prefeitura.</aside>
+</section>
+
+<!-- 32 · QUATRO DOCUMENTOS -->
+<section class="s" data-bloco="Bloco 3 · O que pode travar">
+  <p class="k">Antes da primeira visita séria</p>
+  <h2 style="font-size:70px">Quatro documentos, <i>quase sempre públicos</i></h2>
+  <div class="grid g4 docs">
+    <div class="card f"><span class="n">1</span><h3>Matrícula atualizada</h3><span class="onde">Cartório de registro de imóveis</span><p>Área, vizinhos, anotações e ônus, como hipoteca ou penhora.</p></div>
+    <div class="card f"><span class="n">2</span><h3>CAR</h3><span class="onde">car.gov.br</span><p>Preservação e reserva legal desenhadas no mapa.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Plano diretor e zoneamento</h3><span class="onde">Prefeitura</span><p>Se hospedagem é permitida naquela zona, e com quais regras.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Consulta prévia</h3><span class="onde">Prefeitura, protocolada</span><p>A resposta da prefeitura, por escrito, sobre o que você quer fazer.</p></div>
+  </div>
+  <aside><b>3 min.</b> Plano diretor é a lei da cidade que organiza o que pode ser feito em cada lugar, como o regulamento do condomínio, só que da cidade inteira. Zoneamento é a divisão da cidade em zonas: numa pode hospedagem, na do lado talvez não. Muitas prefeituras deixam o plano diretor no site. Ônus é algo que pesa sobre o imóvel. "Quase ninguém faz a última. E é ela que transforma o acho que pode em a prefeitura respondeu que pode."</aside>
+</section>
+
+<!-- 33 · FASES · CONSULTA PRÉVIA -->
+<section class="s" data-bloco="Bloco 3 · A consulta prévia">
+  <p class="k">O documento que quase ninguém pede</p>
+  <h2 style="font-size:70px">A consulta prévia, <i>passo a passo</i></h2>
+  <div class="fases cinco passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Pergunte onde se protocola</span><div class="fx"><div><h4>O que fazer</h4><p>Ligue ou vá à prefeitura e pergunte onde se protocola uma consulta prévia de uso do solo. Em geral, na secretaria de urbanismo.</p></div><div><h4>Por quê</h4><p>O prazo e o custo variam de prefeitura para prefeitura. Pergunte os dois quando ligar.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Descreva em poucas linhas</span><div class="fx"><div><h4>O que fazer</h4><p>Por exemplo: "hospedagem com cinco cabanas para casais".</p></div><div><h4>Por quê</h4><p>É isso que a prefeitura vai responder. E ela diz quais documentos acompanham o pedido.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Protocole</span><div class="fx"><div><h4>O que fazer</h4><p>Entregue o pedido e receba um número de protocolo.</p></div><div><h4>Por quê</h4><p>Esse número prova que você perguntou.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Espere por escrito</span><div class="fx"><div><h4>O que fazer</h4><p>Espere a resposta escrita da prefeitura.</p></div><div><h4>Por quê</h4><p>Resposta de balcão, de boca, não protege ninguém e pode mudar com a gestão.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Guarde no Dossiê</span><div class="fx"><div><h4>O que fazer</h4><p>Guarde o número do protocolo e a resposta.</p></div><div><h4>Por quê</h4><p>É o que troca o "acho que pode" pelo "a prefeitura respondeu que pode".</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada passo: o que fazer e por quê.</p></div>
+  </div>
+  <aside><b>4 min · as fases e os porquês.</b> Cada clique abre o próximo passo. Protocolar é entregar o pedido e receber um número que prova que você perguntou. Temas de zona e licença em nível introdutório: quem confirma no seu caso é a prefeitura e, se houver dúvida, o advogado.</aside>
+</section>
+
+<!-- 34 · TRÊS CONVERSAS -->
+<section class="s" data-bloco="Bloco 3 · O que pode travar">
+  <p class="k">Leve esta lista antes de assinar</p>
+  <h2 style="font-size:70px">O que pedir <i>a cada um</i></h2>
+  <div class="grid g4 docs">
+    <div class="card f"><h3>Ao advogado</h3><p>A cadeia de donos, as certidões, penhoras e hipotecas, processos, inventário, posse e o direito de passagem.</p></div>
+    <div class="card f"><h3>Ao topógrafo e ao técnico ambiental</h3><p>O levantamento com curvas de nível, a preservação e a reserva no mapa, nascentes, encostas e área que alaga.</p></div>
+    <div class="card f"><h3>À prefeitura</h3><p>A zona, os usos permitidos, a taxa de ocupação, os recuos, a altura e a consulta prévia por escrito.</p></div>
+    <div class="card f"><h3>Às concessionárias e ao engenheiro</h3><p>Energia, água e esgoto: a distância até o poste e a tensão, por escrito.</p></div>
+  </div>
+  <p class="lead f">Chegar sabendo o que pedir muda o preço e o prazo do profissional.</p>
+  <aside><b>3 min.</b> Cadeia de donos é quem foi dono antes de quem. Curvas de nível são as linhas do mapa que mostram as subidas. Tensão é a força da energia que chega pelo poste: você não precisa saber o número certo, precisa pedir por escrito e levar ao seu eletricista ou engenheiro. Se o terreno tem encosta ou área que alaga, também o geotécnico, que estuda se o chão aguenta a construção. "Ele não precisa adivinhar o que você quer."</aside>
+</section>
+
+<!-- 35 · O TERRENO QUE RECUSAMOS -->
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Bloco 3 · Caso Zion">
+  <p class="k">Caso Zion · o terreno que recusamos</p>
+  <h2 style="max-width:1150px">Paisagem extraordinária <i>e bom preço</i></h2>
+  <ul class="lista" style="max-width:1100px;font-size:34px">
+    <li class="f">Na investigação: a estrada principal passava por uma área cuja passagem dependia da autorização de outra pessoa.</li>
+    <li class="f">Foi difícil, mas desistimos. Depois surgiram conflitos que travaram o desenvolvimento naquele lugar.</li>
+  </ul>
+  <p class="citacao f" style="font-size:50px;max-width:1150px">A melhor decisão daquele empreendimento foi <i>não comprar.</i></p>
+  <aside><b>2 min.</b> "Lembra do acesso legal, do Bloco 1? Foi por causa dele." Saber dizer não também faz parte da profissão. E a crença mais cara de todas: "depois a gente resolve". Depois resolvemos o acesso, depois achamos cliente, depois buscamos investidor. Quanto mais cedo o risco aparece, mais barato é resolver.</aside>
+</section>
+
+<!-- 36 · PAINEL COMPLETO -->
+<section class="s esc painel-sim" data-bloco="A Ficha da Marina">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a Ficha do Território em uma tela</p><span class="selo">Exemplo ilustrativo · a Marina</span></div>
+  <div class="sim" data-sim="p1" style="grid-template-columns:.9fr 1.1fr;gap:44px">
+    <div class="ctl">
+      <label>Área da matrícula <output data-for="mat" data-fmt="m2"></output><input type="range" name="mat" min="5000" max="200000" step="500" value="50000"></label>
+      <label>Área de preservação, APP <output data-for="pres" data-fmt="m2"></output><input type="range" name="pres" min="0" max="60000" step="500" value="12000"></label>
+      <label>Reserva legal <output data-for="res" data-fmt="m2"></output><input type="range" name="res" min="0" max="60000" step="500" value="10000"></label>
+      <label>Encosta forte <output data-for="enc" data-fmt="m2"></output><input type="range" name="enc" min="0" max="60000" step="500" value="8000"></label>
+      <label>Valor do terreno <output data-for="preco" data-fmt="brl"></output><input type="range" name="preco" min="50000" max="3000000" step="10000" value="600000"></label>
+      <label>Investimento total que imagina <output data-for="invest" data-fmt="brl"></output><input type="range" name="invest" min="300000" max="6000000" step="10000" value="2220000"></label>
+      <label>Limite físico <output data-for="fis"></output><input type="range" name="fis" min="1" max="30" step="1" value="12"></label>
+      <label>Limite de mercado, estimado <output data-for="merc"></output><input type="range" name="merc" min="1" max="30" step="1" value="5"></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Área que pode usar</span><b><span data-r="usavel" data-fmt="m2"></span> · <span data-r="pct" data-fmt="pct"></span></b></div>
+      <div class="linha"><span>Os três preços</span><b><span data-r="pTot" data-fmt="brl"></span> · <span data-r="pUs" data-fmt="brl"></span> · <span data-r="pUn" data-fmt="brl"></span></b></div>
+      <div class="linha"><span>Capacidade, provisória</span><b><span data-r="cap"></span> · <span data-r="manda"></span></b></div>
+      <div class="linha tot"><span>Peso do terreno</span><b data-r="peso" data-fmt="pct"></b></div>
+      <div class="ponteiro"><i data-ponteiro="ponteiroPeso"></i></div>
+      <div class="regua" style="height:40px;font-size:16px"><div class="r1" style="flex:10">até 10%</div><div class="r3" style="flex:10">10 a 20%</div><div class="r4" style="flex:20">acima de 20%</div></div>
+      <div class="linha tot" style="margin-top:6px"><span>Leitura sugerida</span><b data-r="leitura"></b></div>
+      <div class="aviso" data-aviso="avisoLeitura"></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> Este painel é a Ficha da Marina, como a ferramenta gera: 15.000 m², 30%; R$ 12, R$ 40 e R$ 120 mil por unidade; capacidade 5, provisória, quem manda é o mercado; peso 27%, alerta aceso; leitura: ajustar. Faltam dois documentos: a zona confirmada e a consulta prévia. Peça os números de um aluno e equalize ao vivo. A leitura aqui é só pelo peso e pela área: a ferramenta também olha os documentos e os "não sei". Recuos, serviço, infraestrutura e experiência seguem com o valor dos outros slides. Não é avaliação nem promessa: é uma leitura de método.</aside>
+</section>
+
+<!-- 37 · FASES · A LEITURA -->
+<section class="s" data-bloco="A Ficha da Marina">
+  <p class="k">Primeiro os alertas, depois o resto, depois a decisão</p>
+  <h2 style="font-size:66px">A leitura: <i>seguir, ajustar ou pausar</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Seguir</span><div class="fx"><div><h4>Quando</h4><p>Está tudo verificado, com documento, e a conta cabe.</p></div><div><h4>Por quê</h4><p>Sem alerta aceso, o próximo passo é medir o mercado com o território já lido.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Ajustar</span><div class="fx"><div><h4>Quando</h4><p>Dá para continuar, mas algo muda antes: o preço do terreno, ou um "não sei" que importa.</p></div><div><h4>A Marina</h4><p>Ajusta. O terreno pesa 27% e o mercado ainda é estimativa. Não desenha nem põe dinheiro novo antes de medir. Leva para a negociação os R$ 40 por m², não os R$ 12.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Pausar</span><div class="fx"><div><h4>Quando</h4><p>Existe um limite que não se resolve.</p></div><div><h4>Por quê</h4><p>Muda-se o terreno, não o projeto.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada leitura: quando, e por quê.</p></div>
+  </div>
+  <p class="sm f" style="font-size:28px"><b>O critério para parar da Marina:</b> se o Pilar 2 mostrar que a região não paga uma diária acima da média pelo que ela quer vender, os 27% não se justificam. Ela pausa e renegocia, ou troca de terreno.</p>
+  <aside><b>3 min.</b> Toda Ficha termina com uma linha que quase ninguém escreve: o critério para parar, o fato que mudaria a decisão, escrito antes, para não decidir pelo entusiasmo depois. Ele se escreve assim: "Se [o fato], então [eu pauso e renegocio, ou troco de terreno]." Um alerta aceso se lê antes de qualquer número bom.</aside>
+</section>
+
+<!-- 38 · REVISÃO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">O vendedor garante que pode construir pousada ali. Basta?</p>
+    <div class="ops">
+      <button class="op">Basta, ele conhece a região</button>
+      <button class="op">Basta se ele colocar no contrato</button>
+      <button class="op" data-certa>Não basta: quem garante é a prefeitura, por escrito, na consulta prévia</button>
+    </div>
+    <p class="exp">O vendedor não é seu inimigo, mas o interesse dele é vender. O seu é saber. A palavra do vendedor é o começo da investigação, não o fim.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Terreno de R$ 600 mil, 50.000 m² na matrícula, 15.000 m² que pode usar. Qual é o preço da negociação?</p>
+    <div class="ops">
+      <button class="op">R$ 12 por m²</button>
+      <button class="op" data-certa>R$ 40 por m²</button>
+      <button class="op">R$ 600 mil</button>
+    </div>
+    <p class="exp">600.000 ÷ 15.000 = R$ 40 por m² que pode usar. O R$ 12 é o preço do papel, e o que menos informa.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 40 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 1 do seu Dossiê</p>
+  <h2>A sua <i>Ficha do Território</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> A área da matrícula, cada subtração, o valor do terreno, quanto imagina investir, os limites e os documentos. "Não sei" vale zero e vira tarefa.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Leia.</strong> Os alertas primeiro, depois o resto, depois o caminho.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe a Ficha em PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/aula1/"></div>
+      <span class="url" style="word-break:normal">Na área de membros: Pilar 1, aula "Faça agora · A sua Ficha do Território"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros. Tenham por perto a matrícula, o mapa do CAR e o que mediram no terreno; quem não tem, responde mesmo assim, com "não sei". Leva cerca de dez minutos. Ligue o cronômetro. Quem terminar escreve no chat a área que pode usar e a leitura que saiu.</aside>
+</section>
+
+<!-- 41 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 1 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:15px">
+    <li class="f">Não existe terreno bom. Existe terreno bom para alguma coisa.</li>
+    <li class="f">O hóspede escolhe primeiro o destino. O acesso tem duas metades: a física e a legal.</li>
+    <li class="f">Da matrícula à área que você pode usar: cada subtração tem quem confirma.</li>
+    <li class="f">Olhe o preço por m² que você pode usar e por unidade. E o peso do terreno no investimento.</li>
+    <li class="f">A capacidade é o menor de quatro limites. Construa menos unidades, nunca menos infraestrutura.</li>
+    <li class="f">Quem compra acredita, quem desenvolve verifica. Em 7 dias: a matrícula atualizada e o CAR, com as subtrações feitas.</li>
+  </ul>
+  <aside><b>2 min.</b> O compromisso de 7 dias tem quem faz, até quando e a evidência: o arquivo da matrícula, o mapa do CAR e a área que pode usar na Ficha. Se os dois já estão na mão, como a Marina: ligar para a concessionária e pedir por escrito a distância até o poste e a tensão, com a data e o nome de quem respondeu. Nenhuma dessas tarefas precisa de profissional pago ainda. Volte à frase do começo: "para que o seu terreno serve?" Mudou?</aside>
+</section>
+
+<!-- 42 · PONTE -->
+<section class="s foto" data-bg="../fotos/db90b57ddd.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 2</p>
+  <h2 style="max-width:1150px">Mercado <i>e demanda</i></h2>
+  <p class="lead" style="max-width:1050px">Quem paga, quanto e em que época. A região paga pelo que a Marina quer vender, e quantas unidades o destino compra? É essa resposta que diz se os 27% do terreno se justificam.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas. Temas jurídicos, ambientais e urbanísticos aparecem em nível introdutório: quem confirma no seu caso é o advogado, o técnico ambiental, o topógrafo e a prefeitura. Não é avaliação de terreno nem oferta de investimento, e não é promessa de renda, lucro, retorno, ocupação, crédito ou sociedade.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 1. Agora você sabe o que o seu terreno permite. No Pilar 2, quem paga por ele." Antes do próximo encontro: a Ficha do Território gerada na ferramenta. Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

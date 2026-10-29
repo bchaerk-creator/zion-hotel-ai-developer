@@ -54,7 +54,7 @@ slides.forEach(s => {
   }
   if (!s.querySelector('.topo') && !s.classList.contains('sem-topo')) {
     const t = document.createElement('div'); t.className = 'topo';
-    const esc = s.classList.contains('esc') || s.classList.contains('foto');
+    const esc = s.classList.contains('esc') || s.classList.contains('foto') || s.classList.contains('gigante');
     t.innerHTML = '<span>' + (s.dataset.bloco || document.body.dataset.titulo || '') + '</span><img alt="Zion" src="' + (esc ? ZD.logoClaro : ZD.logoEscuro) + '">';
     s.prepend(t);
   }

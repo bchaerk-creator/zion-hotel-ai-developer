@@ -202,3 +202,15 @@ body.zd-apr{overflow:auto;background:#0b130e;color:#F5F1E8}
 .zd-apr-notas{font-size:22px;line-height:1.6;overflow:auto;padding-right:8px}
 .zd-apr-notas h4{color:var(--ouro);letter-spacing:3px;text-transform:uppercase;font-size:13px;margin:0 0 8px}
 @media print{html,body{overflow:visible;background:#fff}.zd-vp{position:static;display:block}.zd-stage{transform:none!important}.s{display:flex!important;position:relative;page-break-after:always;width:1920px;height:1080px}.zd-ui,.zd-bar,.zd-notas{display:none}.f{opacity:1;transform:none}}
+/* GATILHO: pergunta gigante (uma por clique, a anterior sai) */
+.s.gigante{background:var(--verde);color:var(--creme);justify-content:center}
+.s.gigante .bg::after{background:rgba(11,19,14,.82)}
+.troca{position:relative;min-height:720px}
+.troca>.gq{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:34px}
+.troca>.gq.vis:has(~ .gq.vis){opacity:0;transform:translateY(-40px)}
+.gq .q{font-family:var(--serif);font-weight:500;font-size:150px;line-height:1.04;letter-spacing:-1px;max-width:1660px;text-wrap:balance}
+.gq .q i{color:var(--ouro)}
+.gq .q.media{font-size:118px}
+.gq .rot{font-size:24px;letter-spacing:6px;text-transform:uppercase;font-weight:600;color:var(--ouro)}
+.gq .num{font-family:var(--serif);font-size:30px;color:var(--ouro)}
+.zd-imprimir .troca>.gq{position:static}
