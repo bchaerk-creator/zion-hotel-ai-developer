@@ -1,0 +1,1691 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>O seu Masterplan faseado</title>
+<meta name="description" content="Faça agora do Pilar 5 da Trilha 1: Masterplan faseado. Uma pergunta por tela, um simulador para equalizar unidades, áreas e índices e a página 5 do Dossiê de Desenvolvimento em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:8px}
+.campo-num input{flex:1;min-width:0;font-size:1.25rem;font-weight:600}
+.campo-num .un{display:flex;align-items:center;padding:0 12px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn-p[disabled],.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:10px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.marina{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.marina h3{color:var(--dourado-escuro)}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:10px;font-size:.9rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.fonte{margin-top:16px}
+.fonte legend{font-weight:600;padding:0;margin-bottom:6px}
+fieldset{border:0;padding:0;margin:0;min-width:0}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.conta{border-bottom:1px solid var(--linha);padding:10px 0}
+.conta:last-child{border:0}
+.conta b{display:block}
+.conta p{margin:2px 0 0;color:var(--texto-2);font-size:.95rem;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-sem{background:#F3EEDF;border-color:var(--dourado-escuro);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.92rem;table-layout:fixed}
+th,td{text-align:left;padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+td.n,th.n{text-align:center;font-weight:700;width:3.2em}
+.nota-0,.nota-1{color:var(--critico)}
+.soma{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap}
+.soma strong{font-family:"Playfair Display",Georgia,serif;font-size:2rem}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.pag{border:1px solid var(--linha);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.pag .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pag .cab b{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em}
+.s-avancar{background:var(--ok-bg);color:var(--ok)}
+.s-ajustar{background:var(--atencao-bg);color:var(--atencao)}
+.s-testar{background:#FFF0D0;color:#6B4600}
+.s-pausar{background:var(--critico-bg);color:var(--critico)}
+.s-pendente{background:var(--creme-2);color:var(--texto-2)}
+.pag p{margin:6px 0 0;font-size:.93rem;color:var(--texto-2);overflow-wrap:anywhere}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(4,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+}
+
+/* ---- Simulador: equalizar os números ---- */
+.sim{background:#F1F5EF;border:2px solid var(--verde);border-radius:var(--raio);padding:16px 14px;margin-top:18px}
+.sim h2{border:0;padding:0;margin-bottom:4px}
+.sim .dica{margin-bottom:8px}
+.sl{border-top:1px solid #C9D8C6;padding:12px 0 10px}
+.sl:first-of-type{border-top:0}
+.sl .top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;flex-wrap:wrap}
+.sl label{margin:0;font-size:.95rem}
+.sl .orig{font-size:.8rem;color:var(--texto-2)}
+.sl .orig.mudou{color:var(--atencao);font-weight:700}
+.sl .linha{display:flex;align-items:center;gap:10px;margin-top:6px}
+.sl input[type=range]{flex:1;min-width:0;height:36px;accent-color:var(--verde);margin:0}
+.sl .num-in{width:7.2em;flex:none;display:flex;align-items:center;gap:4px}
+.sl .num-in input{width:100%;font:inherit;font-weight:700;font-size:1rem;padding:8px 8px;min-height:44px;border:1.5px solid #B9AE95;border-radius:10px;background:#fff;color:var(--texto);text-align:right}
+.sl .num-in span{font-size:.85rem;font-weight:600;color:var(--texto-2)}
+.sl.desligado input[type=range]{opacity:.55}
+.sl .aviso{font-size:.8rem;color:var(--atencao);margin-top:4px}
+.painel{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
+.painel div{background:#fff;border:1px solid #C9D8C6;border-radius:10px;padding:8px 10px;min-width:0}
+.painel small{display:block;font-size:.72rem;color:var(--texto-2);line-height:1.25}
+.painel b{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.12rem;line-height:1.2;overflow-wrap:anywhere}
+.painel .v-avancar b{color:var(--ok)} .painel .v-ajustar b,.painel .v-testar b{color:var(--atencao)} .painel .v-pausar b{color:var(--critico)}
+.selo-sim{display:inline-block;background:var(--atencao-bg);color:var(--atencao);border:1px solid #E7C980;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;margin:6px 0 0}
+.sim .acoes-sim{display:flex;gap:10px;flex-wrap:wrap;margin-top:12px}
+.sim .acoes-sim .btn{flex:1}
+/* Barras dos cenários e do terreno */
+.barras{margin:10px 0 4px}
+.barra-c{margin:10px 0}
+.barra-c .rot{display:flex;justify-content:space-between;gap:8px;font-size:.88rem;flex-wrap:wrap}
+.barra-c .rot b{font-weight:700}
+.barra-c .trilho{height:22px;background:var(--creme-2);border-radius:6px;overflow:hidden;margin-top:4px}
+.barra-c .trilho i{display:block;height:100%;background:var(--verde);border-radius:6px;transition:width .2s}
+.barra-c.fraco .trilho i{background:var(--dourado-escuro)}
+.barra-c .sub{font-size:.8rem;color:var(--texto-2);margin-top:2px}
+.terreno{display:flex;height:34px;border-radius:8px;overflow:hidden;border:1px solid var(--linha);margin:10px 0 6px}
+.terreno span{display:block;height:100%}
+.t-nunca{background:#C9A9A2}.t-fora{background:var(--creme-2)}.t-usavel{background:#BFD3BF}.t-ocupa{background:var(--verde)}
+.legenda{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.8rem;color:var(--texto-2)}
+.legenda i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+.sinal{display:flex;gap:10px;align-items:flex-start;border-bottom:1px solid var(--linha);padding:9px 0;font-size:.93rem}
+.sinal:last-child{border:0}
+.sinal .st{flex:none;font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.04em;border-radius:99px;padding:3px 8px;min-width:6.4em;text-align:center}
+.st-aceso{background:var(--critico-bg);color:var(--critico)}
+.st-apagado{background:var(--ok-bg);color:var(--ok)}
+.st-conferir{background:var(--atencao-bg);color:var(--atencao)}
+.sinal p{margin:0;overflow-wrap:anywhere}
+.sinal small{display:block;color:var(--texto-2)}
+.tab-c td,.tab-c th{font-size:.88rem}
+@media (min-width:720px){
+  .painel{grid-template-columns:repeat(4,1fr)}
+  .sim{padding:20px 22px}
+}
+@media print{.topo,.nav,.acoes,.sim{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 5<br>Masterplan faseado</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script>
+/* =====================================================================
+   Zion · Trilha 1 · ferramentas "Faça agora" (Pilares 4 a 7)
+   Um arquivo só, montado por _fonte/build.js. Sem framework, sem servidor.
+   Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
+   ===================================================================== */
+"use strict";
+const ZION_WEBHOOK_URL = "";
+/** Endereço do mentor virtual (o mesmo das ferramentas dos Pilares 1 a 3). Vazia: a seção mostra "Disponível em breve". */
+const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
+const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.";
+const CURSO = "Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso";
+const SUBTITULO = "Aprenda o passo a passo com o Método Zion.";
+/** Link do topo e do botão final (a lista das ferramentas na área de membros). */
+const LINK_INICIO = "../index.html";
+/** As páginas do Dossiê de Desenvolvimento e onde cada ferramenta guarda as respostas neste aparelho.
+    Os Pilares 1 a 3 mantêm as chaves que já usam (zion-t1-aula1 a 3); do Pilar 4 em diante, zion-t1-pilarN. */
+const PILARES = [
+  { n: 0, tema: "Marco Zero", pagina: "Diagnóstico prévio", chave: "zion-t1-marco-zero" },
+  { n: 1, tema: "Território e destino", pagina: "Ficha do Território", chave: "zion-t1-aula1" },
+  { n: 2, tema: "Mercado e demanda", pagina: "Ficha do Mercado", chave: "zion-t1-aula2" },
+  { n: 3, tema: "Produto e tipologias", pagina: "Ficha do Produto", chave: "zion-t1-aula3" },
+  { n: 4, tema: "Modelo de negócio", pagina: "Modelo de Negócio", chave: "zion-t1-pilar4" },
+  { n: 5, tema: "Masterplan faseado", pagina: "Masterplan faseado", chave: "zion-t1-pilar5" },
+  { n: 6, tema: "Pré-viabilidade", pagina: "Pré-viabilidade", chave: "zion-t1-pilar6" },
+  { n: 7, tema: "Capital e Dossiê", pagina: "Capital e decisão", chave: "zion-t1-pilar7" },
+];
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+
+/* ---------------------------------------------------------------------
+   1. Apoio: leitura e formatação pt-BR (as mesmas regras das ferramentas dos Pilares 1 a 3)
+   --------------------------------------------------------------------- */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  /** Reais sem centavos, para números grandes de referência. */
+  function brl0(x) { const r = arred(x, 0); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 0); }
+  /** "cerca de R$ 272 mil", como os roteiros falam. */
+  function brlMil(x) { if (Math.abs(x) >= 1e6) return "R$ " + fmtN(x / 1e6, 2) + " milhões"; if (Math.abs(x) >= 1000) return "R$ " + fmtNum(x / 1000, 0) + " mil"; return brl0(x); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  const ok = (...xs) => xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, brl0, brlMil, fmtPct, juntar, div, ok };
+})();
+const { fmtN, brl, brl0, brlMil, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+/** Lê o que o aluno salvou em outra ferramenta da Trilha 1 (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDoPilar = (n) => { const p = PILARES.find((x) => x.n === n); return p ? carregarChave(p.chave) : null; };
+/** Os números que outro pilar deixou no resumo (resumo.dados), ou null. */
+const dadosDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+const respostasDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.respostas ? d.respostas : null; };
+
+/* =====================================================================
+   2. O Pilar 5 · Masterplan faseado (perguntas, contas e regras da leitura)
+   Fontes: e-book do Pilar 5 (ebooks-p4-p7/ebook-p5-masterplan-faseado.txt), roteiro do Pilar 5,
+   harmonia/CLICKMAX-textos.md seção 3, contas/contas_p5.py e a ferramenta antiga da Aula 5
+   (t1v2/ferramentas/aula5), que esta substitui. Só contas de área: custo é o Pilar 6.
+   ===================================================================== */
+const lst = (v) => (Array.isArray(v) ? v : []);
+const N5 = (r, id) => paraNumero(r[id]);
+const GESTOS = [["marcado", "marcar no desenho"], ["fotografado", "fotografar com data"], ["clausula", "pedir a cláusula ao advogado"]];
+const APOIO = [
+  ["rouparia_lavanderia", "rouparia e lavanderia"], ["deposito", "depósito seco"], ["residuo", "lixo com acesso por fora"],
+  ["copa_vestiario", "copa e vestiário da equipe"], ["estac_servico", "estacionamento de serviço"], ["oficina", "oficina e ferramentas"], ["gas_reservatorio", "abrigo de gás e reservatório"],
+];
+const GATILHO = [["demanda", "demanda"], ["caixa", "caixa"], ["maturidade", "maturidade"]];
+const ESCOPO = [["entra", "Entra"], ["espera", "Espera"], ["nunca", "Nunca"]];
+const m2 = (x) => fmtN(x, 1) + " m²";
+
+function calcular5(r) {
+  const C = [];
+  const push = (c) => C.push(c);
+  const mat = N5(r, "area_matricula"), us = N5(r, "area_usavel"), nun = N5(r, "area_nunca");
+  const u1 = N5(r, "unidades_fase1"), uc = N5(r, "unidades_projeto_completo"), af = N5(r, "area_fechada_unidade"), dk = N5(r, "area_deck_unidade");
+  const ap1 = N5(r, "area_apoio"), apcR = N5(r, "apoio_completo");
+  const deck = dk === null ? 0 : dk;
+  const apc = apcR !== null ? apcR : ap1; // sem resposta: o apoio da fase um fica igual no projeto completo
+  const A = {};
+  // Hospedagem, apoio e área fechada, fase um e projeto completo
+  A.hosp1 = Z.ok(u1, af) ? u1 * af : null;
+  A.hospC = Z.ok(uc, af) ? uc * af : null;
+  A.fech1 = Z.ok(A.hosp1, ap1) ? A.hosp1 + ap1 : null;
+  A.fechC = Z.ok(A.hospC, apc) ? A.hospC + apc : null;
+  A.p1 = Z.div(ap1, A.fech1);
+  A.pC = Z.div(apc, A.fechC);
+  A.chao1 = Z.ok(u1, af, ap1) ? u1 * (af + deck) + ap1 : null;
+  A.chaoC = Z.ok(uc, af, apc) ? uc * (af + deck) + apc : null;
+  A.minC = A.hospC !== null ? 0.15 * A.hospC / 0.85 : null;
+  // 1. O terreno
+  {
+    let t, alerta;
+    if (mat === null || us === null) t = `Falta ${juntar([mat === null && "a área da matrícula", us === null && "a área que você pode usar"].filter(Boolean))}.`;
+    else {
+      t = `Da matrícula de ${m2(mat)}, você pode usar ${m2(us)}: ${fmtPct(us / mat)}.`;
+      if (nun !== null) t += ` O nunca que você mediu soma ${m2(nun)}, ${fmtPct(nun / mat)} da matrícula.`;
+      if (us > mat) { t += " A área usável não pode passar da matrícula: confira os dois números."; alerta = "critico"; }
+      else if (nun !== null && nun + us > mat * 1.001) { t += " O nunca somado à área usável passa da matrícula: confira se uma parte do nunca já ficou fora da área usável no Pilar 1."; alerta = "atencao"; }
+    }
+    push({ id: "terreno", rotulo: "O terreno: matrícula, área usável e o nunca", valor: us, texto: t, alerta });
+  }
+  {
+    const g = lst(r.tres_gestos), falt = GESTOS.filter(([v]) => !g.includes(v));
+    push({ id: "gestos", rotulo: "Os três gestos do nunca", valor: g.length, alerta: falt.length ? "atencao" : undefined, texto: falt.length ? `Falta ${juntar(falt.map(([, n]) => n))}. Uma mancha em branco no desenho não segura uma máquina: sem os três gestos, preservar ainda é só intenção.` : "Os três gestos do nunca estão feitos: marcado, fotografado com data e com a cláusula pedida ao advogado." });
+  }
+  // 2. O apoio
+  {
+    let t, alerta;
+    if (A.p1 === null) t = `Falta ${ap1 === null ? "a área de apoio" : "unidades ou área fechada por unidade"}. A régua: o apoio entre 15% e 25% da área fechada.`;
+    else {
+      t = `Fase um: ${fmtN(u1)} × ${m2(af)} = ${m2(A.hosp1)} de hospedagem, mais ${m2(ap1)} de apoio = ${m2(A.fech1)} de área fechada. Apoio: ${fmtPct(A.p1)}. `;
+      if (A.p1 < 0.15) { t += "Abaixo de 15%: o apoio vai faltar no dia a dia e virar puxadinho."; alerta = "critico"; }
+      else if (A.p1 > 0.25) { t += "Acima de 25%: confira se a conta foi feita com a base certa (só a área fechada, sem o deck)."; alerta = "atencao"; }
+      else t += "Dentro da faixa de 15% a 25%.";
+    }
+    push({ id: "apoio1", rotulo: "O apoio na fase um", valor: A.p1 === null ? null : A.p1 * 100, texto: t, alerta });
+  }
+  if (A.pC !== null && uc !== null && uc !== u1) {
+    let t = `Projeto completo: ${fmtN(uc)} × ${m2(af)} = ${m2(A.hospC)}, mais ${m2(apc)} de apoio${apcR === null ? " (o mesmo da fase um, porque você não respondeu o apoio do projeto completo)" : ""} = ${m2(A.fechC)}. Apoio: ${fmtPct(A.pC)}.`, alerta;
+    if (A.pC < 0.15) { t += ` Abaixo de 15%. O mínimo para ${fmtN(uc)} unidades é 0,15 × ${m2(A.hospC)} ÷ 0,85 = cerca de ${m2(A.minC)}. Prepare a ampliação já na fase um: a base e os pontos de água e energia no lugar.`; alerta = "atencao"; }
+    else t += " Dentro da faixa.";
+    push({ id: "apoioC", rotulo: "O apoio no projeto completo", valor: A.pC * 100, texto: t, alerta });
+  }
+  {
+    const res = lst(r.apoio_resolvido), esq = APOIO.filter(([v]) => !res.includes(v));
+    push({ id: "esquecidos", rotulo: "O que quase sempre falta", valor: esq.length, alerta: esq.length ? "atencao" : undefined, texto: esq.length ? `${esq.length} de 7 itens ainda sem lugar nem decisão: ${juntar(esq.map(([, n]) => n))}. Deixar de fora pode, por decisão escrita. Esquecer, não.${esq.some(([v]) => v === "gas_reservatorio") ? " Abrigo de gás e reservatório têm regras próprias: quem diz onde ficam é o profissional habilitado." : ""}` : "Os sete itens têm lugar no programa ou foram deixados de fora por decisão escrita." });
+  }
+  // 3. A ocupação do terreno e o que cabe
+  {
+    let t;
+    if (A.chaoC === null) t = "Falta unidades do projeto completo, área por unidade ou apoio para saber quanto do chão o desenho ocupa.";
+    else {
+      t = `Desenho completo: ${fmtN(uc)} × (${m2(af)} fechados + ${m2(deck)} de deck) + ${m2(apc)} de apoio = ${m2(A.chaoC)} de chão coberto.`;
+      if (us !== null) t += ` Sobre a área que você pode usar: ${fmtPct(A.chaoC / us, 2)}.`;
+      if (mat !== null) t += ` Sobre a matrícula: ${fmtPct(A.chaoC / mat, 2)}.`;
+      t += " Caminhos, estacionamento e convivência ao ar livre ficam fora desta conta e entram no orçamento como linhas próprias. A área livre também é produto.";
+    }
+    const alerta = A.chaoC !== null && us !== null && A.chaoC > us ? "critico" : undefined;
+    if (alerta) t += " O desenho ocupa mais do que a área que você pode usar: ele não cabe.";
+    push({ id: "ocupacao", rotulo: "Quanto do terreno o desenho ocupa", valor: A.chaoC, texto: t, alerta });
+  }
+  const tx = N5(r, "taxa_ocupacao"), co = N5(r, "coef_aproveitamento");
+  A.tetoTO = Z.ok(tx, mat) ? tx / 100 * mat : null;
+  A.tetoCA = Z.ok(co, mat) ? co * mat : null;
+  {
+    let t = "", alerta;
+    if (A.tetoTO === null && A.tetoCA === null) t = "Sem os índices da sua zona, o teto da prefeitura ainda é Não sei. Peça por escrito: taxa de ocupação, coeficiente de aproveitamento, permeabilidade, recuos e altura máxima.";
+    else {
+      if (A.tetoTO !== null) { t += `Taxa de ocupação de ${fmtN(tx, 1)}% sobre ${m2(mat)}: teto de ${m2(A.tetoTO)} de chão coberto, contra ${A.chaoC === null ? "um desenho ainda sem número" : m2(A.chaoC) + " do seu desenho completo"}. `; if (A.chaoC !== null && A.chaoC > A.tetoTO) { alerta = "critico"; t += "Passa do teto: o desenho precisa diminuir. "; } }
+      if (A.tetoCA !== null) { t += `Coeficiente de aproveitamento ${fmtN(co, 2)}: teto de ${m2(A.tetoCA)} somando os andares, contra ${A.fechC === null ? "uma área ainda sem número" : m2(A.fechC) + " de área fechada no projeto completo"}. `; if (A.fechC !== null && A.fechC > A.tetoCA) { alerta = "critico"; t += "Passa do teto. "; } }
+      t += "O índice é um teto, não uma meta, e o chão nem sempre cabe: encosta, recuos, distância entre unidades e o seu nunca também tiram volume. Quem lê o que entra na conta é o arquiteto, com a prefeitura.";
+    }
+    push({ id: "indices", rotulo: "O que a prefeitura permite", valor: A.tetoTO, texto: t, alerta });
+  }
+  if (r.quem_manda && !ehNS(r.quem_manda)) push({ id: "quem_manda", rotulo: "Quem manda no número de unidades", valor: r.quem_manda, texto: { mercado: "O mercado: o número de unidades sai do que o Pilar 2 mediu, e não do que o índice permite.", indice: "O índice da prefeitura: ele é o limite do seu desenho. Peça os números por escrito e entregue ao arquiteto.", chao: "O chão: encosta, preservação, recuos ou a distância entre unidades limitam o desenho antes do índice." }[r.quem_manda] });
+  // 4. O que se vende
+  if (A.fech1 !== null) {
+    const ef1 = A.hosp1 / A.fech1, efC = A.fechC ? A.hospC / A.fechC : null;
+    A.ef1 = ef1; A.efC = efC;
+    push({ id: "vendavel", rotulo: "O que se vende: vendável e não vendável", valor: ef1 * 100, texto: `Fase um: ${m2(A.hosp1)} vendáveis${dk !== null ? ` (mais ${m2(u1 * dk)} de deck privativo)` : ""} em ${m2(A.fech1)} fechados: eficiência de ${fmtPct(ef1)}.${efC !== null && uc !== u1 ? ` Projeto completo: ${m2(A.hospC)} em ${m2(A.fechC)}: ${fmtPct(efC)}.` : ""} Eficiência alta não é negócio bom: em unidades espalhadas, quase todo o não vendável é chão, caminho e vaga. Quem diz se o negócio fecha é a conta do Pilar 6.` });
+  }
+  // 5. A fase um
+  {
+    const rede = N5(r, "rede_para");
+    const curta = rede !== null && uc !== null ? rede < uc : null;
+    A.redeCurta = curta;
+    push({ id: "rede", rotulo: "A rede contra o projeto completo", valor: curta, alerta: curta ? "critico" : undefined, texto: curta === null ? "Falta para quantas unidades a rede está dimensionada, ou quantas tem o projeto completo." : curta ? `Rede para ${fmtN(rede)} unidades e projeto completo de ${fmtN(uc)}. Na fase dois você reabre vala e troca o que ficou pequeno, com hóspede dormindo ao lado. Construa menos unidades, nunca menos infraestrutura.` : `A rede atende as ${fmtN(uc)} unidades do projeto completo já na fase um. Peça um duto vazio sob tudo o que vai ser construído. Quem diz o tamanho é o projetista, e a energia, a concessionária, por escrito.` });
+  }
+  if (uc !== null && u1 !== null && uc > u1) push({ id: "reserva", rotulo: "A reserva da fase dois", valor: r.reserva || null, alerta: r.reserva === "sim" ? undefined : "atencao", texto: r.reserva === "sim" ? `A área de ${fmtN(uc - u1)} ${uc - u1 === 1 ? "unidade" : "unidades"} da fase dois está marcada com estacas e placa, e o canteiro tem lugar próprio.` : `A área de ${fmtN(uc - u1)} ${uc - u1 === 1 ? "unidade" : "unidades"} da fase dois ainda não está protegida. O inimigo dela é virar estacionamento, depósito ou canteiro: estacas, placa e o canteiro decidido em outro lugar.` });
+  {
+    const e = lst(r.escopo), f = ESCOPO.filter(([v]) => !e.includes(v));
+    push({ id: "escopo", rotulo: "O escopo congelado da fase um", valor: e.length, alerta: f.length ? "atencao" : undefined, texto: f.length ? `Falta a lista ${juntar(f.map(([, n]) => '"' + n + '"'))}. Sem as três listas somadas, assinadas e datadas, a fase um cresce sozinha, uma boa ideia por semana. A coluna Entra é o que vai ser orçado no Pilar 6.` : "As três listas (entra, espera e nunca) estão escritas, somadas, assinadas e datadas. A coluna Entra é o que vai ser orçado no Pilar 6." });
+  }
+  {
+    const g = lst(r.gatilho_escrito).length;
+    push({ id: "gatilho", rotulo: "O gatilho da fase dois", valor: g, alerta: g < 3 ? "atencao" : undefined, texto: g < 3 ? `${g} de 3 condições escritas. Demanda, caixa e maturidade precisam acender juntas: uma ou duas não bastam. Os números de demanda e de caixa você fecha no Pilar 6.` : "As três condições estão escritas: demanda, caixa e maturidade, que precisam acender juntas. Se não acenderem em 24 meses, revise o produto ou o preço, em vez de esperar mais. Os números você fecha no Pilar 6." });
+  }
+  return { calculos: C, A };
+}
+
+const AULA = {
+  n: 5,
+  etapa: "pilar-5",
+  mentorId: "t1-aula-5",
+  proximo: { n: 6, tema: "Pré-viabilidade", url: "../pilar6/index.html" },
+  calcular: (r) => calcular5(r),
+  FONTES: [
+    { v: "medida", nota: 3, rot: "Tenho por escrito ou medi (matrícula, CAR, planta, lista do programa, resposta por escrito)", curto: "Documento, medida ou lista" },
+    { v: "falado", nota: 2, rot: "Um profissional me indicou, mas ainda não tenho no papel", curto: "Profissional falou, sem papel" },
+    { v: "estimativa", nota: 1, rot: "É estimativa minha", curto: "Estimativa" },
+  ],
+  escalaNota: "0 = Não sei ou ainda não feito · 1 = estimativa, ou um só gesto ou condição · 2 = um profissional falou, ou dois de três · 3 = documento, medida, desenho ou teste feito.",
+  abertura: {
+    titulo: "O seu Masterplan faseado",
+    lead: "Você monta a página 5 do seu Dossiê de Desenvolvimento: o terreno inteiro no papel. Onde nunca construir, o que precisa existir, onde fica cada coisa, o que cabe, o que se vende e o que entra na fase um.",
+    porque: "O desenho de uma cabana se corrige em semanas. O lugar dela no terreno não se corrige nunca. Antes do projeto, corrigir custa papel; depois da obra, custa outra obra.",
+    como: "Perguntas curtas, uma por tela. O masterplan desta etapa é orientativo: as suas decisões, com os motivos escritos, para conversar com o arquiteto. Onde não souber, marque Não sei: vira tarefa da semana. No fim, você equaliza unidades, áreas e índices num simulador.",
+    paraque: "Você sai com o Masterplan faseado em PDF: a ocupação do terreno, a conta do apoio, o vendável, a rede, o gatilho da fase dois, os alertas e o próximo passo.",
+    dica: "Tenha à mão o mapa do terreno com o nunca em vermelho, a sua lista do programa e as suas Fichas do Território e do Produto.",
+  },
+  QUESTOES: [
+    {
+      id: "area_matricula", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, positivo: true, curto: "Área da matrícula", bloco: "O terreno", placeholder: "Ex.: 50.000",
+      pergunta: "Qual é a área total da matrícula do terreno?",
+      explica: "A área que está escrita na matrícula do cartório, em metros quadrados. Um hectare tem 10.000 m².",
+      porque: "É a base de todas as contas de área: quanto do terreno é nunca, quanto você pode usar e quanto o desenho ocupa. É também sobre ela que a prefeitura aplica os índices.",
+      onde: "<p>Na matrícula atualizada do cartório de registro de imóveis, que você pediu no Pilar 1.</p>",
+      marina: "50.000 m² na matrícula.",
+      ondeCurto: "pedir a matrícula atualizada no cartório",
+      veio: () => { const d = dadosDoPilar(1); return d && typeof d.area_matricula === "number" ? { valor: fmtN(d.area_matricula, 2), fonte: "medida", de: "Ficha do Território (área da matrícula)" } : null; },
+    },
+    {
+      id: "area_usavel", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, positivo: true, curto: "Área que você pode usar", bloco: "O terreno", placeholder: "Ex.: 15.000",
+      pergunta: "Quanto dessa área você pode usar?",
+      explica: "É o que sobrou depois das subtrações do Pilar 1: preservação, reserva legal, encosta forte, faixas da estrada e da rede elétrica.",
+      porque: "A ocupação do terreno se mede sobre ela. Quem desenha sobre a matrícula inteira ocupa, no papel, a nascente e a encosta.",
+      onde: "<p>Na sua Ficha do Território (Pilar 1), em área que você pode usar. Quem confirma a preservação e a reserva legal é o técnico ambiental, com o CAR.</p>",
+      marina: "15.000 m² que ela pode usar, na meia encosta.",
+      ondeCurto: "refazer as subtrações da área na Ficha do Território",
+      veio: () => { const d = dadosDoPilar(1); return d && typeof d.area_usavel === "number" ? { valor: fmtN(d.area_usavel, 2), fonte: "medida", de: "Ficha do Território (área que você pode usar)" } : null; },
+    },
+    {
+      id: "zonas_nunca", tipo: "texto", aceitaNS: true, curto: "Onde nunca construir", bloco: "Passo 1 · Onde nunca",
+      pergunta: "O que nunca será construído no seu terreno, zona por zona, e por quê?",
+      explica: "Escreva cada zona e o motivo ao lado: lei (o que a lei protege) ou produto (o que a sua promessa precisa). Uma por linha.",
+      porque: "Antes de decidir onde construir, decida onde jamais vai construir. É a decisão mais barata do masterplan, e a única que não se desfaz depois. O masterplan pode preservar além da lei, nunca aquém. E o melhor ponto de vista fica só para as unidades, nunca para a caixa d'água.",
+      onde: "<p>Volte ao terreno com o mapa e uma caneta vermelha. A área de preservação e a reserva legal estão no <b>CAR</b> e se confirmam com o <b>técnico ambiental</b>. As do produto, só você decide.</p>",
+      marina: "A preservação do riacho e da nascente e a reserva legal, por lei. Por produto: o bosque que segura o vento da tarde, o bosque do caminho e a crista, que só recebe um deck leve para o fim de tarde.",
+      ondeCurto: "pintar de vermelho no mapa o que nunca será construído, com o motivo ao lado",
+    },
+    {
+      id: "area_nunca", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área do nunca", bloco: "Passo 1 · Onde nunca", placeholder: "Ex.: 22.000",
+      pergunta: "Quanto mede o seu nunca, somando as zonas que você conseguiu medir?",
+      explica: "Some em metros quadrados as zonas que já têm medida. As que ainda não têm (um bosque, uma crista) continuam valendo no desenho.",
+      porque: "Com ela, a ferramenta desenha a faixa do seu terreno: o nunca, a área usável e o que o desenho ocupa. Ela mostra, de um olhar, que a área quase nunca é o limite.",
+      onde: "<p>No CAR e no mapa do técnico ambiental, para as zonas da lei. As de produto, medidas a passo ou no mapa, são estimativa.</p>",
+      marina: "22.000 m²: a preservação do riacho e da nascente, 12.000 m², e a reserva legal, 10.000 m². Os bosques e a crista não foram medidos.",
+      ondeCurto: "pedir o mapa do CAR ao técnico ambiental e somar as zonas do nunca",
+    },
+    {
+      id: "tres_gestos", tipo: "multipla", curto: "Os três gestos do nunca", bloco: "Passo 1 · Onde nunca",
+      pergunta: "O seu nunca já tem quais gestos?",
+      explica: "Deixar uma mancha em branco no desenho não protege nada. Marque só o que já está feito.",
+      opcoes: [
+        { v: "marcado", rot: "Marcado: \"nunca será construído\" escrito sobre cada zona" },
+        { v: "fotografado", rot: "Fotografado: o terreno inteiro, com data e localização" },
+        { v: "clausula", rot: "Cláusula pedida ao advogado, para a empreiteira assinar" },
+      ],
+      porque: "Na correria da obra, o espaço vazio vira lugar de guardar material, de manobrar caminhão, de fazer o atalho. Desenho não segura retroescavadeira.",
+      onde: "<p>O desenho e as fotos são seus. A cláusula é redigida pelo <b>advogado</b>: você só decide o que ela protege.</p>",
+      marina: "Os três: escreveu \"nunca será construído\" sobre cada zona, fotografou o terreno com data e levou a cláusula ao advogado.",
+      ondeCurto: "marcar o nunca no desenho, fotografar o terreno com data e pedir a cláusula ao advogado",
+      nota: (r) => lst(r.tres_gestos).length,
+      semEvidencia: "só um dos três gestos. Sem os três, preservar é só intenção.",
+      zeroTexto: "nenhum dos três gestos feito ainda.",
+    },
+    {
+      id: "unidades_fase1", tipo: "numero", unidade: "unidades", aceitaNS: false, positivo: true, curto: "Unidades na fase um", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Quantas unidades entram na fase um?",
+      explica: "É o número do seu Modelo de Negócio e da sua Ficha do Produto.",
+      porque: "Com ele e com a área de cada unidade sai a área fechada da fase um, a base da régua do apoio.",
+      onde: "<p>No seu Modelo de Negócio (Pilar 4) ou na Ficha do Produto (Pilar 3).</p>",
+      marina: "3 cabanas na fase um.",
+      ondeCurto: "rever no Modelo de Negócio quantas unidades tem a fase um",
+      veio: () => { const d = dadosDoPilar(4); if (d && typeof d.unidades_fase1 === "number") return { valor: String(d.unidades_fase1), de: "página Modelo de Negócio (unidades na fase um)" }; const p = dadosDoPilar(3); return p && typeof p.unidades_abertura === "number" ? { valor: String(p.unidades_abertura), de: "Ficha do Produto (unidades na primeira fase)" } : null; },
+    },
+    {
+      id: "unidades_projeto_completo", tipo: "numero", unidade: "unidades", aceitaNS: true, positivo: true, curto: "Unidades no projeto completo", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Quantas unidades tem o projeto completo, somando todas as fases?",
+      explica: "A fase um mais o que fica reservado para depois. O projeto completo é o desenho com todas as fases.",
+      porque: "O masterplan desenha o terreno no tempo: a rede, o apoio e a reserva da fase dois são pensados para o projeto completo desde já.",
+      onde: "<p>Na sua Ficha do Mercado (quantas cabem agora) e na sua decisão de quantas desenhar para depois.</p>",
+      marina: "5 unidades: 3 agora, a 4ª e a 5ª reservadas na mesma linha.",
+      ondeCurto: "decidir quantas unidades o projeto completo terá, somando as fases",
+      validar: (n, r) => { const u = paraNumero(r.unidades_fase1); return u !== null && n < u ? "O projeto completo não pode ter menos unidades que a fase um." : ""; },
+    },
+    {
+      id: "area_fechada_unidade", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: false, positivo: true, curto: "Área fechada de cada unidade", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Qual é a área fechada de cada unidade?",
+      explica: "Área fechada é a de dentro, com parede e telhado. O deck aberto fica fora.",
+      porque: "A régua do apoio usa como base a área fechada: o interior das unidades mais o apoio construído. É também a área vendável de cada unidade.",
+      onde: "<p>Na sua Ficha do Produto (Pilar 3), em área interna da unidade.</p>",
+      marina: "38 m² fechados por cabana. Três cabanas: 3 × 38 = 114 m².",
+      ondeCurto: "rever na Ficha do Produto a área interna da unidade",
+      veio: () => { const d = dadosDoPilar(3); return d && typeof d.area_interna === "number" ? { valor: fmtN(d.area_interna, 2), fonte: "medida", de: "Ficha do Produto (área interna da unidade)" } : null; },
+    },
+    {
+      id: "area_deck_unidade", tipo: "numero", unidade: "m²", aceitaNS: true, curto: "Deck de cada unidade", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 16",
+      pergunta: "E o deck ou a varanda aberta de cada unidade, quantos metros quadrados?",
+      explica: "Fica fora da área fechada e da régua do apoio, mas ocupa chão. Se não tiver deck, escreva 0.",
+      porque: "Entra na conta de quanto do terreno o desenho ocupa, e na lista do que se vende: cada unidade vende a diária com o deck junto.",
+      onde: "<p>Na planta simples da unidade, da Ficha do Produto.</p>",
+      marina: "16 m² de deck por cabana: 38 + 16 = 54 m² de chão por cabana.",
+      ondeCurto: "pedir a planta simples da unidade com o deck",
+    },
+    {
+      id: "area_apoio", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área de apoio da fase um", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 30",
+      pergunta: "Quanto de área de apoio você vai construir na fase um?",
+      explica: "Apoio é o que o hóspede não vê e a operação precisa: rouparia, depósito seco, lixo com acesso por fora, copa e vestiário da equipe. Some tudo, em m².",
+      porque: "Ninguém se apaixona por uma rouparia. Reserve entre 15% e 25% da área fechada para apoio: quem reserva pouco descobre depois, e a solução vira contêiner atrás da mata ou puxadinho. O apoio é o que não pode ser deixado para depois.",
+      onde: "<p>No seu <b>programa</b>: a lista de tudo o que o empreendimento precisa ter, em quatro áreas (hospedagem, convivência, apoio e infraestrutura), um ambiente por linha, com quem usa, quando e o tamanho estimado.</p>",
+      marina: "Rouparia 12 m², depósito seco 6 m², lixo com acesso por fora 4 m², copa e vestiário 8 m²: 30 m². Sobre 114 + 30 = 144 m², dá 20,8%, dentro da faixa.",
+      ondeCurto: "listar o programa de apoio ambiente por ambiente e somar os m²",
+    },
+    {
+      id: "apoio_completo", tipo: "numero", unidade: "m²", aceitaNS: true, curto: "Apoio no projeto completo", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 34",
+      mostrar: (r) => { const a = paraNumero(r.unidades_fase1), b = paraNumero(r.unidades_projeto_completo); return a !== null && b !== null && b > a; },
+      pergunta: "E no projeto completo, para quanto o apoio vai crescer?",
+      explica: "Com mais unidades, o mesmo apoio pode ficar abaixo de 15%. Escreva a área do apoio já ampliado, em m².",
+      porque: "O apoio não fica para depois: a fase um constrói o que precisa e prepara a ampliação, com a base e os pontos de água e energia no lugar.",
+      onde: "<p>Faça a conta: o mínimo é 0,15 × (unidades do projeto completo × área fechada) ÷ 0,85.</p>",
+      marina: "Com cinco cabanas, os mesmos 30 m² dariam 13,6%, abaixo do piso. O mínimo é cerca de 33,5 m²: ela prepara a ampliação para 34 m², que dá 15,2%.",
+      ondeCurto: "fazer a conta do apoio mínimo para o projeto completo",
+    },
+    {
+      id: "apoio_resolvido", tipo: "multipla", curto: "O que quase sempre falta", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Da lista do que quase sempre falta, o que já está resolvido?",
+      explica: "Resolvido é ter lugar no programa ou ter sido deixado de fora por decisão escrita, com o motivo. Pode não marcar nenhum.",
+      opcoes: APOIO.map(([v, rot]) => ({ v, rot: rot.charAt(0).toUpperCase() + rot.slice(1) })),
+      porque: "Deixar de fora pode, por decisão escrita. Esquecer, não: esquecer um item na lista custa cerca de dez vezes mais do que incluí-lo agora. Abrigo de gás e reservatório têm regras próprias de segurança: quem diz onde ficam é o profissional habilitado.",
+      onde: "<p>No seu programa, item por item.</p>",
+      marina: "Cinco resolvidos. A lavanderia é terceirizada, por decisão. Ficaram sem decisão a oficina e as ferramentas, e o abrigo de gás: ela decide com o profissional.",
+    },
+    {
+      id: "dia_simulado", tipo: "escolha", curto: "Dia de troca simulado", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Você simulou no papel um dia de troca de hóspede?",
+      explica: "Simular é seguir, hora por hora, o dia em que um hóspede sai e outro chega: a cesta do café, a limpeza, o lençol, o lixo e a chegada.",
+      opcoes: [
+        { v: "sim", rot: "Sim, e anotei o que faltou" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "É o passo que mais revela: cada hora do dia mostra um ambiente que faltava no programa.",
+      onde: "<p>Numa folha, com o seu programa ao lado e, de preferência, com quem vai operar de verdade.</p>",
+      marina: "À uma da tarde chega a van do lençol. Onde ela para? O programa tinha vaga de hóspede e nenhuma de serviço. Agora tem.",
+      ondeCurto: "simular no papel, hora por hora, um dia de troca de hóspede",
+      nota: (r) => (r.dia_simulado === "sim" ? 3 : 0),
+      zeroTexto: "o dia de troca ainda não foi simulado.",
+    },
+    {
+      id: "caminhos", tipo: "escolha", curto: "Caminho do hóspede e do serviço", bloco: "Passo 3 · Onde fica cada coisa",
+      pergunta: "O caminho do hóspede e o do serviço se cruzam em algum ponto visível?",
+      explica: "Desenhe os dois no mapa, cada um com uma cor, e circule cada ponto em que eles se cruzam ou se veem.",
+      opcoes: [
+        { v: "nao_cruzam", rot: "Não se cruzam" },
+        { v: "cruzam", rot: "Cruzam em algum ponto" },
+        { v: "nao_desenhei", rot: "Ainda não desenhei" },
+      ],
+      porque: "A operação precisa existir, mas praticamente invisível. E o estacionamento colado na cabana é conveniente por dois minutos e ruim pelo resto da estadia.",
+      onde: "<p>No mapa do terreno, com duas canetas de cores diferentes. A ordem que contraria o instinto: primeiro o nunca, depois os pontos de vista para as unidades, o caminho do hóspede, as unidades, a convivência, o apoio com acesso próprio e, por último, a infraestrutura pesada.</p>",
+      marina: "O caminho do hóspede sai do estacionamento na clareira e segue cerca de 120 m pela mata. O serviço chega por trás das cabanas, do lado oposto à vista. Não se cruzam.",
+      ondeCurto: "desenhar no mapa os dois caminhos, em duas cores",
+      nota: (r) => (r.caminhos === "nao_cruzam" || r.caminhos === "cruzam" ? 3 : 0),
+      zeroTexto: "os dois caminhos ainda não foram desenhados.",
+    },
+    {
+      id: "caminhada_estacas", tipo: "escolha", curto: "Caminhada com estacas", bloco: "Passo 3 · Onde fica cada coisa",
+      pergunta: "Você marcou as unidades com estacas e caminhou às sete da manhã e às cinco da tarde?",
+      explica: "Quatro estacas e barbante no lugar de cada unidade. Fique onde seriam a cama e a janela e pergunte: daqui eu vejo outra cabana? Vejo o carro? Ouço o caminho de serviço?",
+      opcoes: [
+        { v: "sim", rot: "Sim" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "A planta de uma unidade se corrige em duas semanas. A posição dela se corrige nunca. A caminhada custa quatro estacas e mostra o que o papel esconde.",
+      onde: "<p>No terreno, com estacas, barbante e o celular para fotografar, com data.</p>",
+      marina: "Da janela lateral da cabana 3 ela via o deck da 2. A cabana 3 desceu uns 15 m, e a 2 sumiu atrás das árvores. Custo da correção: quatro estacas.",
+      ondeCurto: "marcar as unidades com estacas e caminhar às 7h e às 17h, com foto",
+      nota: (r) => (r.caminhada_estacas === "sim" ? 3 : 0),
+      zeroTexto: "a posição das unidades ainda não foi conferida a pé.",
+    },
+    {
+      id: "taxa_ocupacao", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Taxa de ocupação da zona", bloco: "Passo 4 · O que cabe", placeholder: "Ex.: 10",
+      pergunta: "Qual é a taxa de ocupação da zona do seu terreno?",
+      explica: "Taxa de ocupação é quanto do terreno pode ser coberto por construção: a parte do chão que pode ter telhado. Escreva em porcentagem.",
+      porque: "O plano diretor põe números no seu lote. O índice é um teto, não uma meta, e o chão nem sempre cabe. Você não calcula: pede o número à prefeitura e entrega ao arquiteto.",
+      onde: "<p>Na prefeitura, em geral na secretaria de urbanismo, <b>por escrito</b>, com data e o nome de quem respondeu. Se você fez a consulta prévia do Pilar 1, a resposta já diz a zona.</p>",
+      marina: "Ainda esperando a resposta por escrito: Não sei. Para ensinar a conta, o e-book imagina 10% de 50.000 m² = 5.000 m², contra os 304 m² do desenho completo dela.",
+      ondeCurto: "pedir à prefeitura, por escrito, os índices da zona do terreno",
+    },
+    {
+      id: "coef_aproveitamento", tipo: "numero", unidade: "vezes", nota: "fonte", aceitaNS: true, curto: "Coeficiente de aproveitamento", bloco: "Passo 4 · O que cabe", placeholder: "Ex.: 0,5",
+      pergunta: "E o coeficiente de aproveitamento da zona?",
+      explica: "É quanto se pode construir somando as áreas de todos os andares, em vezes a área do terreno. Um coeficiente de 0,5 num terreno de 1.000 m² permite 500 m² somando os andares.",
+      porque: "O coeficiente conta andares; a taxa de ocupação conta chão. Nem toda área construída entra na conta: quem diz o que fica de fora é cada cidade, e quem lê isso no seu caso é o arquiteto, com a prefeitura.",
+      onde: "<p>Na mesma resposta por escrito da prefeitura.</p>",
+      marina: "Também Não sei, até a resposta da prefeitura.",
+      ondeCurto: "pedir à prefeitura, por escrito, os índices da zona do terreno",
+    },
+    {
+      id: "quem_manda", tipo: "escolha", aceitaNS: true, curto: "Quem manda no número de unidades", bloco: "Passo 4 · O que cabe",
+      pergunta: "Quem manda no seu número de unidades: o índice, o chão ou o mercado?",
+      explica: "O índice é o teto da prefeitura. O chão é o que a encosta, a preservação, os recuos e a distância entre unidades deixam. O mercado é o que o Pilar 2 mediu.",
+      opcoes: [
+        { v: "mercado", rot: "O mercado: cabe mais do que o mercado compra" },
+        { v: "chao", rot: "O chão: o terreno real limita antes do índice" },
+        { v: "indice", rot: "O índice da prefeitura" },
+      ],
+      porque: "Por isso o estudo de massas vem depois do nunca e do programa. Primeiro você tira o que não se toca. Depois vê o volume que sobra.",
+      onde: "<p>Compare o seu desenho com os índices por escrito, com o que tira volume no campo e com a Ficha do Mercado.</p>",
+      marina: "O mercado: cinco cabanas cabem com folga na meia encosta. O limite dela é o mercado e a promessa do silêncio.",
+      ondeCurto: "comparar o desenho com os índices, o chão e a Ficha do Mercado",
+    },
+    {
+      id: "limite_promessa", tipo: "escolha", aceitaNS: true, curto: "Limite que tira a promessa", bloco: "Passo 4 · O que cabe",
+      pergunta: "Algum limite do território, da lei ou do chão tira as unidades do ponto que sustenta a sua promessa?",
+      explica: "Uma consulta prévia, um índice, o mapa ambiental ou a encosta que empurram as unidades para longe da vista, do silêncio ou do que você vende.",
+      opcoes: [
+        { v: "nao", rot: "Não: pelo que sei hoje, as unidades ficam no ponto da promessa" },
+        { v: "tira", rot: "Sim: algum limite tira as unidades desse ponto" },
+      ],
+      porque: "Se a promessa depende de um ponto do terreno e a lei ou o chão não deixam construir ali, o problema não é de desenho: é de produto.",
+      onde: "<p>Na consulta prévia do Pilar 1, nos índices da prefeitura e no mapa do técnico ambiental.</p>",
+      marina: "Não, pelo que ela sabe hoje: as cabanas ficam na meia encosta virada para o nascente.",
+      ondeCurto: "conferir a consulta prévia, os índices e o mapa ambiental contra o ponto da promessa",
+    },
+    {
+      id: "rede_para", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Rede dimensionada para", bloco: "Passo 6 · A fase um",
+      pergunta: "Para quantas unidades a rede vai ser dimensionada?",
+      explica: "Rede é o que fica enterrado: água, energia, tratamento do esgoto e o caminho de acesso. Dimensionar é decidir o tamanho.",
+      porque: "Construa menos unidades, nunca menos infraestrutura. A rede feita só para a fase um poupa agora e sai mais cara somadas as duas fases: na fase dois você reabre vala com hóspede dormindo ao lado.",
+      onde: "<p>Peça ao <b>projetista</b> e à <b>concessionária</b>, por escrito, água, esgoto e energia para o projeto completo, com um duto vazio para passar cabo depois.</p>",
+      marina: "Para 5, já na fase um, com duto vazio sob tudo o que vai ser construído.",
+      ondeCurto: "pedir ao projetista e à concessionária, por escrito, a rede para o projeto completo",
+    },
+    {
+      id: "reserva", tipo: "escolha", curto: "Reserva da fase dois", bloco: "Passo 6 · A fase um",
+      mostrar: (r) => { const a = paraNumero(r.unidades_fase1), b = paraNumero(r.unidades_projeto_completo); return a !== null && b !== null && b > a; },
+      pergunta: "A área da fase dois está protegida?",
+      explica: "Protegida é marcada com estacas e placa, com o canteiro da obra da fase um decidido em outro lugar.",
+      opcoes: [
+        { v: "sim", rot: "Sim: estacas, placa e canteiro em outro lugar" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "A reserva tem um inimigo concreto: virar estacionamento, depósito ou canteiro, primeiro provisório e depois permanente.",
+      onde: "<p>No terreno, e no desenho, com a rota da obra da fase dois longe do caminho do hóspede.</p>",
+      marina: "Estacas e placa na área da 4ª e da 5ª cabanas, e o canteiro da fase um na clareira do acesso.",
+      ondeCurto: "marcar a reserva com estacas e placa e decidir onde fica o canteiro",
+      nota: (r) => (r.reserva === "sim" ? 3 : 0),
+      zeroTexto: "a área da fase dois ainda não está protegida.",
+    },
+    {
+      id: "escopo", tipo: "multipla", curto: "Escopo congelado", bloco: "Passo 6 · A fase um",
+      pergunta: "O escopo da fase um está congelado? Quais listas já estão escritas?",
+      explica: "Escopo é o que está combinado que vai ser feito. Marque as listas que já estão escritas, somadas, assinadas e datadas.",
+      opcoes: [
+        { v: "entra", rot: "Entra: o que vai ser construído na fase um, com a área de cada item" },
+        { v: "espera", rot: "Espera: o que tem lugar no desenho, mas só entra com o gatilho" },
+        { v: "nunca", rot: "Nunca: o que não entra, de propósito, com o motivo" },
+      ],
+      porque: "A fase um cresce por boas ideias, uma por semana, cada uma pequena e razoável. Três coisas nunca esperam: o apoio, o conforto que só se nota quando falta e os dutos. E a coluna Entra é o que vai ser orçado no Pilar 6.",
+      onde: "<p>Numa folha, com data e assinatura. É o Escopo Congelado Zion.</p>",
+      marina: "As três listas escritas. Nunca: piscina, restaurante, recepção construída, automação, eventos com som e grupos.",
+      ondeCurto: "escrever as listas entra, espera e nunca, com data e assinatura",
+      nota: (r) => lst(r.escopo).length,
+      semEvidencia: "só uma das três listas.",
+      zeroTexto: "nenhuma lista do escopo escrita ainda.",
+    },
+    {
+      id: "gatilho_escrito", tipo: "multipla", curto: "Gatilho da fase dois", bloco: "Passo 6 · A fase um",
+      pergunta: "O seu gatilho da fase dois: quais condições já estão escritas?",
+      explica: "Gatilho é o conjunto de condições, escritas antes, que autorizam a fase dois. Não é depois de um feriado cheio. Pode não marcar nenhuma.",
+      opcoes: [
+        { v: "demanda", rot: "Demanda: doze meses de reservas reais, com o número escrito antes" },
+        { v: "caixa", rot: "Caixa: a sua parte da fase dois e três meses de custo fixo guardados" },
+        { v: "maturidade", rot: "Maturidade: processos escritos, equipe estável, avaliações em dia" },
+      ],
+      porque: "As três condições do Gatilho de Expansão Zion precisam acender juntas. Um feriado lotado é um dado, não doze meses. E se as três não acenderem em vinte e quatro meses, revise o produto ou o preço.",
+      onde: "<p>Escreva as três numa folha, com data. Os números da demanda e do caixa você fecha no Pilar 6.</p>",
+      marina: "As três condições escritas. Os números de demanda e de caixa ficam como pendência com nome, para o Pilar 6.",
+      ondeCurto: "escrever as três condições do gatilho, com data",
+      nota: (r) => lst(r.gatilho_escrito).length,
+      semEvidencia: "só uma das três condições escrita. Uma ou duas não bastam.",
+      zeroTexto: "nenhuma condição do gatilho escrita ainda.",
+    },
+  ],
+  /** Os quatro vereditos do e-book do Pilar 5, capítulo 9, nesta ordem: pausar, ajustar, testar, avançar. */
+  leitura(c) {
+    const r = c.r, A = c.res.A;
+    if (r.limite_promessa === "tira") return { v: "pausar", motivo: "Um limite do território, da lei ou do chão tira as unidades do ponto que sustenta a promessa: volte ao produto antes de contratar o projeto." };
+    const us = paraNumero(r.area_usavel);
+    const m = [];
+    if (r.caminhos === "cruzam") m.push("os caminhos do hóspede e do serviço se cruzam");
+    if (A.p1 !== null && A.p1 < 0.15) m.push("o apoio da fase um ficou abaixo de 15%");
+    if (A.redeCurta === true) m.push("a rede foi feita só para a fase um");
+    if (A.chaoC !== null && us !== null && A.chaoC > us) m.push("o desenho ocupa mais do que a área que você pode usar");
+    if (A.chaoC !== null && A.tetoTO !== null && A.chaoC > A.tetoTO) m.push("o desenho passa do teto da taxa de ocupação");
+    if (A.fechC !== null && A.tetoCA !== null && A.fechC > A.tetoCA) m.push("a área construída passa do coeficiente de aproveitamento");
+    if (m.length) return { v: "ajustar", motivo: `Ajustar o desenho: ${juntar(m)}. Corrigir agora custa papel.` };
+    const t = [];
+    if (r.dia_simulado !== "sim") t.push("o dia de troca de hóspede simulado no papel");
+    if (r.caminhada_estacas !== "sim") t.push("a caminhada com estacas");
+    if (r.caminhos !== "nao_cruzam") t.push("os dois caminhos desenhados em duas cores");
+    if (A.p1 === null) t.push("a área de apoio");
+    if (A.redeCurta === null) t.push("a rede contra o projeto completo");
+    if (A.tetoTO === null && A.tetoCA === null && r.quem_manda !== "mercado") t.push("os índices da prefeitura, por escrito");
+    if (!r.limite_promessa || ehNS(r.limite_promessa)) t.push("se algum limite tira as unidades do ponto da promessa");
+    if (t.length) return { v: "testar", motivo: `Testar no papel e no chão. Ainda falta: ${juntar(t)}.` };
+    return { v: "avancar", motivo: "O nunca está escrito, o apoio está na faixa, os caminhos não se cruzam, a posição foi conferida a pé e a rede é para o projeto completo. Siga para o Pilar 6 com as pendências nomeadas." };
+  },
+  LEITURAS: {
+    avancar: { rot: "Avançar para a pré-viabilidade", sub: "O terreno está decidido no papel: siga para o Pilar 6, com as pendências nomeadas." },
+    testar: { rot: "Testar no papel e no chão", sub: "Falta pôr à prova o dia simulado, a caminhada com estacas, os dois caminhos, a rede ou os índices." },
+    ajustar: { rot: "Ajustar o desenho", sub: "Mude o desenho antes de chamar o arquiteto: corrigir agora custa papel." },
+    pausar: { rot: "Pausar e voltar ao produto", sub: "Sem o ponto que sustenta a promessa, volte ao produto." },
+  },
+  numeros(L) {
+    const A = L.res.A, us = paraNumero(L.r.area_usavel);
+    const rede = paraNumero(L.r.rede_para), uc = paraNumero(L.r.unidades_projeto_completo);
+    return [
+      ["Ocupação do terreno (projeto completo)", A.chaoC === null ? "em branco" : us ? fmtN(100 * A.chaoC / us, 2) + "% do usável" : m2(A.chaoC)],
+      ["Apoio na fase um", A.p1 === null ? "em branco" : fmtN(100 * A.p1, 1) + "%"],
+      ["Rede para o projeto completo", rede === null || uc === null ? "em branco" : `${fmtN(rede)} de ${fmtN(uc)}`],
+      ["Gatilho da fase dois", `${lst(L.r.gatilho_escrito).length} de 3`],
+    ];
+  },
+  painel(L) {
+    const A = L.res.A, us = paraNumero(L.r.area_usavel);
+    return [
+      ["Chão do desenho completo", A.chaoC === null ? "em branco" : m2(A.chaoC)],
+      ["Sobre a área usável", A.chaoC === null || !us ? "em branco" : fmtN(100 * A.chaoC / us, 2) + "%"],
+      ["Apoio: fase um · completo", A.p1 === null ? "em branco" : `${fmtN(100 * A.p1, 1)}% · ${A.pC === null ? "?" : fmtN(100 * A.pC, 1) + "%"}`],
+    ];
+  },
+  simDica: "Aqui você testa o desenho: unidades por fase, área de cada unidade, o apoio e os índices da prefeitura. A ocupação do terreno e os alertas mudam na hora.",
+  SIM: [
+    { id: "unidades_fase1", rot: "Unidades na fase um", min: 1, max: 30, passo: 1, un: "unidades", casas: 0, padrao: 3 },
+    { id: "unidades_projeto_completo", rot: "Unidades no projeto completo", min: 1, max: 60, passo: 1, un: "unidades", casas: 0, padrao: 5 },
+    { id: "area_fechada_unidade", rot: "Área fechada de cada unidade", min: 10, max: 200, passo: 1, un: "m²", casas: 1, padrao: 38 },
+    { id: "area_deck_unidade", rot: "Deck de cada unidade", min: 0, max: 80, passo: 1, un: "m²", casas: 1, padrao: 16 },
+    { id: "area_apoio", rot: "Apoio na fase um", min: 0, max: 200, passo: 1, un: "m²", casas: 1, padrao: 30 },
+    { id: "apoio_completo", rot: "Apoio no projeto completo", min: 0, max: 300, passo: 1, un: "m²", casas: 1, padrao: 34, semNumero: "Sem número: a conta usa o apoio da fase um." },
+    { id: "taxa_ocupacao", rot: "Taxa de ocupação da zona", min: 1, max: 100, passo: 0.5, un: "%", casas: 1, padrao: 10, semNumero: "Sem o número da prefeitura. Mova para testar um índice imaginado: não é o da sua zona." },
+    { id: "coef_aproveitamento", rot: "Coeficiente de aproveitamento", min: 0.05, max: 4, passo: 0.05, un: "vezes", casas: 2, padrao: 1, semNumero: "Sem o número da prefeitura. Mova para testar um índice imaginado." },
+  ],
+  blocosVivos(L) {
+    const r = L.r, A = L.res.A;
+    const mat = paraNumero(r.area_matricula), us = paraNumero(r.area_usavel), nun = paraNumero(r.area_nunca);
+    let h = `<section class="bloco" id="b-terreno"><h2>O terreno inteiro no papel</h2>`;
+    if (mat && us !== null && us <= mat) {
+      const fN = nun !== null ? Math.min(nun, mat - us) / mat : 0;
+      const fO = A.chaoC !== null ? Math.min(A.chaoC, us) / mat : 0;
+      const fU = us / mat - fO, fF = Math.max(0, 1 - us / mat - fN);
+      const w = (f) => (f > 0 ? Math.max(f * 100, 0.8).toFixed(2) : "0");
+      h += `<p class="dica">A matrícula inteira, ${esc(m2(mat))}. A faixa verde-escura é o chão do desenho completo; ela quase some, e é esse o ponto: a área quase nunca é o limite.</p>
+        <div class="terreno" role="img" aria-label="Faixa da matrícula: nunca, fora da área usável, área usável livre e chão ocupado"><span class="t-nunca" style="width:${w(fN)}%"></span><span class="t-fora" style="width:${w(fF)}%"></span><span class="t-usavel" style="width:${w(fU)}%"></span><span class="t-ocupa" style="width:${w(fO)}%"></span></div>
+        <div class="legenda"><span><i class="t-nunca"></i>Nunca medido${nun !== null ? " · " + esc(m2(nun)) : ""}</span><span><i class="t-fora"></i>Outras áreas fora do uso</span><span><i class="t-usavel"></i>Usável livre</span><span><i class="t-ocupa"></i>Chão do desenho${A.chaoC !== null ? " · " + esc(m2(A.chaoC)) : ""}</span></div>`;
+      if (A.chaoC !== null) {
+        const tetos = [["Chão do desenho completo", A.chaoC], ["Teto da taxa de ocupação" + (paraNumero(r.taxa_ocupacao) === null ? "" : ""), A.tetoTO], ["Área que você pode usar", us]].filter(([, v]) => v !== null);
+        const max = Math.max(...tetos.map(([, v]) => v));
+        h += `<div class="barras" style="margin-top:14px">` + tetos.map(([rot, v], k) => `<div class="barra-c${k === 0 ? " fraco" : ""}"><div class="rot"><b>${esc(rot)}</b><span>${esc(m2(v))}</span></div><div class="trilho"><i style="width:${Math.max(100 * v / max, 0.8).toFixed(2)}%"></i></div></div>`).join("") + `</div>`;
+      }
+    } else h += `<p class="dica">Com a área da matrícula e a área que você pode usar, a ferramenta desenha aqui a faixa do terreno.</p>`;
+    h += `</section>`;
+    const u1 = paraNumero(r.unidades_fase1), uc = paraNumero(r.unidades_projeto_completo), dk = paraNumero(r.area_deck_unidade);
+    const cel = (x, f) => (x === null || x === undefined ? "em branco" : f(x));
+    h += `<section class="bloco" id="b-fases"><h2>Fase um e projeto completo</h2>
+      <table class="tab-c"><thead><tr><th></th><th>Fase um</th><th>Completo</th></tr></thead><tbody>
+      <tr><td>Unidades</td><td>${cel(u1, fmtN)}</td><td>${cel(uc, fmtN)}</td></tr>
+      <tr><td>Hospedagem (vendável)</td><td>${cel(A.hosp1, m2)}</td><td>${cel(A.hospC, m2)}</td></tr>
+      <tr><td>Apoio</td><td>${cel(paraNumero(r.area_apoio), m2)}</td><td>${cel(A.fechC !== null && A.hospC !== null ? A.fechC - A.hospC : null, m2)}</td></tr>
+      <tr><td>Área fechada</td><td>${cel(A.fech1, m2)}</td><td>${cel(A.fechC, m2)}</td></tr>
+      <tr><td><b>Apoio sobre a área fechada</b></td><td><b>${cel(A.p1, (x) => fmtPct(x))}</b></td><td><b>${cel(A.pC, (x) => fmtPct(x))}</b></td></tr>
+      <tr><td>Deck</td><td>${cel(dk !== null && u1 !== null ? dk * u1 : null, m2)}</td><td>${cel(dk !== null && uc !== null ? dk * uc : null, m2)}</td></tr>
+      <tr><td>Chão coberto</td><td>${cel(A.chao1, m2)}</td><td>${cel(A.chaoC, m2)}</td></tr>
+      <tr><td>Eficiência (vendável ÷ fechada)</td><td>${cel(A.ef1, (x) => fmtPct(x))}</td><td>${cel(A.efC, (x) => fmtPct(x))}</td></tr>
+      </tbody></table><p class="dica">A régua do apoio: entre 15% e 25% da área fechada (a de dentro, com parede e telhado; o deck fica fora). Eficiência alta não é negócio bom: quem diz se fecha é o Pilar 6.</p></section>`;
+    return h;
+  },
+  pdfExtra(P, L) {
+    const r = L.r, A = L.res.A;
+    const mat = paraNumero(r.area_matricula), us = paraNumero(r.area_usavel), nun = paraNumero(r.area_nunca);
+    P.titulo("O terreno inteiro no papel");
+    if (mat && us !== null && us <= mat) {
+      const fN = nun !== null ? Math.min(nun, mat - us) / mat : 0;
+      const fO = A.chaoC !== null ? Math.min(A.chaoC, us) / mat : 0;
+      const fU = us / mat - fO, fF = Math.max(0, 1 - us / mat - fN);
+      P.par(`A matrícula inteira, ${m2(mat)}. A área que você pode usar, ${m2(us)}.`, { size: 9, cor: CINZA, after: 2 });
+      P.faixa([[fN, ROSA, `Nunca medido${nun !== null ? " · " + m2(nun) : ""}`], [fF, AREIA, "Outras áreas fora do uso"], [fU, MUSGO, "Usável livre"], [Math.max(fO, 0.004), VERDE, `Chão do desenho${A.chaoC !== null ? " · " + m2(A.chaoC) : ""}`]]);
+      if (A.chaoC !== null) {
+        const it = [["Chão do desenho completo", A.chaoC, m2(A.chaoC), OURO_E]];
+        if (A.tetoTO !== null) it.push(["Teto da taxa de ocupação", A.tetoTO, m2(A.tetoTO), VERDE]);
+        it.push(["Área que você pode usar", us, m2(us), VERDE]);
+        P.barras(it, Math.max(...it.map((x) => x[1])));
+      }
+    }
+    P.titulo("Fase um e projeto completo");
+    const u1 = paraNumero(r.unidades_fase1), uc = paraNumero(r.unidades_projeto_completo), dk = paraNumero(r.area_deck_unidade);
+    const cel = (x, f) => (x === null || x === undefined ? "em branco" : f(x));
+    const lg = [74, 50, 50];
+    P.linhaTabela(["", "Fase um", "Projeto completo"], lg, { bold: true, size: 8, cor: CINZA });
+    [["Unidades", cel(u1, fmtN), cel(uc, fmtN)], ["Hospedagem (vendável)", cel(A.hosp1, m2), cel(A.hospC, m2)], ["Apoio", cel(paraNumero(r.area_apoio), m2), cel(A.fechC !== null && A.hospC !== null ? A.fechC - A.hospC : null, m2)], ["Área fechada", cel(A.fech1, m2), cel(A.fechC, m2)], ["Apoio sobre a área fechada", cel(A.p1, (x) => fmtPct(x)), cel(A.pC, (x) => fmtPct(x))], ["Deck", cel(dk !== null && u1 !== null ? dk * u1 : null, m2), cel(dk !== null && uc !== null ? dk * uc : null, m2)], ["Chão coberto", cel(A.chao1, m2), cel(A.chaoC, m2)], ["Eficiência (vendável / fechada)", cel(A.ef1, (x) => fmtPct(x)), cel(A.efC, (x) => fmtPct(x))]].forEach((l) => P.linhaTabela(l, lg, {}));
+    P.y += 2;
+    P.par("A régua do apoio: entre 15% e 25% da área fechada (deck fora). Só contas de área: o custo de cada linha é o Pilar 6.", { size: 8.5, cor: CINZA, after: 3 });
+  },
+  dados(L) {
+    const r = L.r, A = L.res.A, n = (id) => paraNumero(r[id]);
+    return {
+      area_matricula: n("area_matricula"), area_usavel: n("area_usavel"), area_nunca: n("area_nunca"),
+      unidades_fase1: n("unidades_fase1"), unidades_projeto_completo: n("unidades_projeto_completo"), area_fechada_unidade: n("area_fechada_unidade"), area_deck_unidade: n("area_deck_unidade"),
+      area_apoio: n("area_apoio"), apoio_completo: n("apoio_completo"), area_fechada_fase1: A.fech1, area_fechada_completo: A.fechC,
+      pct_apoio_fase1: A.p1 === null ? null : Z.arred(A.p1 * 100, 2), pct_apoio_completo: A.pC === null ? null : Z.arred(A.pC * 100, 2),
+      chao_fase1: A.chao1, chao_completo: A.chaoC, pct_ocupacao_usavel: A.chaoC !== null && n("area_usavel") ? Z.arred(100 * A.chaoC / n("area_usavel"), 3) : null,
+      vendavel_fase1: A.hosp1, vendavel_completo: A.hospC, rede_para: n("rede_para"), taxa_ocupacao: n("taxa_ocupacao"), coef_aproveitamento: n("coef_aproveitamento"),
+      escopo: lst(r.escopo), gatilho: lst(r.gatilho_escrito),
+    };
+  },
+  alertasDepois: () => [{ t: "info", tit: "Para conferir", txt: "O masterplan desta etapa é orientativo: não é projeto. Preservação, reserva legal, índices, abrigo de gás, redes, contratos e licenças aparecem em nível introdutório: quem confirma no seu caso é o arquiteto, o engenheiro, o técnico ambiental, o advogado, a concessionária e a prefeitura." }],
+  contas: ["terreno", "gestos", "apoio1", "apoioC", "esquecidos", "ocupacao", "indices", "quem_manda", "vendavel", "rede", "reserva", "escopo", "gatilho"],
+  fragil(c) {
+    const r = c.r, A = c.res.A, g = c.g;
+    if (c.v === "pausar") return "Um limite do território, da lei ou do chão tira as unidades do ponto que sustenta a promessa. Sem aquela linha do terreno, a promessa não se sustenta: volte ao produto.";
+    if (r.caminhos === "cruzam") return "O caminho do hóspede e o do serviço se cruzam. A operação precisa existir, mas praticamente invisível: redesenhe em duas cores antes de chamar o arquiteto.";
+    if (A.p1 !== null && A.p1 < 0.15) return `O apoio ficou em ${fmtN(100 * A.p1, 1)}% da área fechada, abaixo de 15%: vai faltar e virar puxadinho. O apoio é o que não pode ser deixado para depois.`;
+    if (A.redeCurta === true) return g("rede").texto;
+    if (g("ocupacao").alerta === "critico" || g("indices").alerta === "critico") return "O desenho não cabe: passa da área que você pode usar ou do teto da prefeitura. Diminua as unidades ou a área antes de chamar o arquiteto.";
+    if (c.nsIds.includes("zonas_nunca")) return "Ainda não está escrito o que nunca será construído. É a primeira decisão do masterplan, e a mais barata: comece por ela.";
+    if (r.caminhada_estacas !== "sim") return "A posição das unidades ainda não foi conferida a pé, com estacas, às sete e às cinco: a planta esconde o que o chão mostra.";
+    if (r.caminhos === "nao_desenhei") return "Os dois caminhos, do hóspede e do serviço, ainda não foram desenhados. É o desenho que mostra se a operação fica invisível.";
+    if (r.dia_simulado !== "sim") return "O dia de troca de hóspede ainda não foi simulado no papel: cada hora revela um ambiente que falta.";
+    const id = ["area_apoio", "rede_para", "unidades_projeto_completo", "area_usavel", "area_matricula", "limite_promessa"].find((x) => c.nsIds.includes(x));
+    if (id) return `${Q(id).curto} ainda é Não sei. Próximo passo: ${Q(id).ondeCurto}.`;
+    if (lst(r.tres_gestos).length < 3) return g("gestos").texto;
+    if (A.pC !== null && A.pC < 0.15) return g("apoioC").texto;
+    if (g("esquecidos").valor > 0) return g("esquecidos").texto;
+    if (A.tetoTO === null && A.tetoCA === null) return "Os índices da prefeitura ainda não chegaram por escrito. Pelo seu desenho, quem manda é o mercado; mesmo assim, o número da zona precisa estar no papel antes do arquiteto.";
+    if (lst(r.gatilho_escrito).length < 3) return g("gatilho").texto;
+    return "O terreno está no papel. Falta o custo de cada linha do escopo e os números do gatilho: é a conta do Pilar 6.";
+  },
+  criterio: () => "Se a consulta prévia, os índices da prefeitura ou o mapa ambiental tirarem as unidades do ponto que sustenta a minha promessa, eu pauso e volto ao produto antes de contratar o projeto detalhado.",
+  moldeCriterio: "Molde: \"Se [o fato], então eu pauso e [o que eu faço].\"",
+  compromisso(c) {
+    const r = c.r;
+    if (c.nsIds.includes("zonas_nunca") || lst(r.tres_gestos).length < 2) return { acao: "Pintar de vermelho, no mapa do terreno, tudo o que nunca será construído, com o motivo ao lado (lei ou produto), e fotografar o terreno com data.", evidencia: "O mapa do nunca e as fotos com data." };
+    if (r.caminhada_estacas !== "sim") return { acao: "Marcar as unidades com estacas e barbante e caminhar às sete da manhã e às cinco da tarde.", evidencia: "As fotos de cada ponto, com data, e as respostas desta ferramenta atualizadas." };
+    if (r.dia_simulado !== "sim") return { acao: "Simular no papel, hora por hora, um dia de troca de hóspede e anotar cada ambiente que faltou.", evidencia: "A folha do dia simulado, com o que faltou." };
+    if (paraNumero(r.taxa_ocupacao) === null && paraNumero(r.coef_aproveitamento) === null && r.quem_manda !== "mercado") return { acao: "Pedir à prefeitura, por escrito, os índices da zona do terreno.", evidencia: "O protocolo do pedido, com a data." };
+    return { acao: "Pedir à concessionária, por escrito, o ponto e a tensão de energia para o projeto completo.", evidencia: "A resposta por escrito, com a data e o nome de quem respondeu." };
+  },
+  dicaCompromisso: "Prazo: sete dias, antes do Pilar 6. Nenhuma precisa de arquiteto contratado ainda.",
+  depoisLeitura: () => `<p class="dica" style="margin-top:8px">O masterplan não substitui o arquiteto: muda a conversa com ele. O desenho fino, as aprovações e o projeto detalhado são dele. As regras continuam suas. Um projeto assim é o que um sócio, um banco ou a Zion conseguem avaliar. E a Zion avalia cada caso.</p>`,
+  botaoPDF: "Baixar o meu Masterplan faseado (PDF)",
+  capaTitulo: ["Masterplan", "faseado"],
+  arquivoPDF: "Masterplan-faseado",
+  notaFinalPDF: "A Marina, citada nas explicações, é um exemplo ilustrativo: os números dela ensinam a conta e não dizem nada sobre o seu terreno. O masterplan é orientativo, não é projeto, e as contas desta página são só de área. Preservação, reserva legal, índices, abrigo de gás, redes, contratos e licenças aparecem em nível introdutório: quem confirma no seu caso é o arquiteto, o engenheiro, o técnico ambiental, o advogado, a concessionária e a prefeitura.",
+};
+
+/* =====================================================================
+   3. O núcleo comum: estado, telas, nota, alertas, simulador e PDF
+   (o mesmo padrão das ferramentas dos Pilares 1 a 3, com o simulador novo)
+   ===================================================================== */
+const META = PILARES.find((p) => p.n === AULA.n);
+const CHAVE = META.chave;
+const QUESTOES = AULA.QUESTOES;
+const FONTES_PADRAO = AULA.FONTES;
+
+function estadoVazio() {
+  return { versao: 1, pilar: AULA.n, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, sim: { valores: {}, data: null }, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.perfil) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.sim = Object.assign({ valores: {}, data: null }, d.sim || {});
+  e.sim.valores = Object.assign({}, (d.sim && d.sim.valores) || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+/** Perfil já preenchido em outra ferramenta da trilha (para o aluno não digitar de novo). */
+function perfilDeOutraFerramenta() {
+  let melhor = null;
+  for (const p of PILARES) {
+    if (p.n === AULA.n) continue;
+    const d = carregarChave(p.chave);
+    if (!d) continue;
+    const perfil = d.perfil && d.perfil.nome ? d.perfil : d.nome ? { nome: d.nome || "", email: d.email || "", cidade: d.cidade || "", uf: d.uf || "" } : null;
+    if (perfil && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { perfil, at: d.atualizado };
+  }
+  return melhor ? melhor.perfil : null;
+}
+
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const calc = (res, id) => res.calculos.find((c) => c.id === id) || { id, rotulo: "", valor: null, texto: "", detalhes: {} };
+const fontesDe = (q) => q.fontes || FONTES_PADRAO;
+/** Perguntas que valem para as respostas de agora (algumas só aparecem se o aluno pensa em vender, por exemplo). */
+const visivel = (q, r) => !q.mostrar || !!q.mostrar(r || S.respostas);
+const qsVisiveis = () => QUESTOES.filter((q) => visivel(q));
+const itensNota = () => qsVisiveis().filter((q) => q.nota);
+const notaMax = () => itensNota().length * 3;
+
+/** As respostas do aluno, só das perguntas que valem. */
+function respostasBase() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas && visivel(q)) r[q.id] = S.respostas[q.id];
+  return r;
+}
+
+/* ---------------------------------------------------------------------
+   O simulador: o aluno equaliza os números e vê o efeito na hora.
+   S.sim.valores guarda só o que ele moveu. "Voltar ao meu número" apaga tudo.
+   --------------------------------------------------------------------- */
+const simAtivos = () => (AULA.SIM || []).filter((s) => { const q = Q(s.id); return (!q || visivel(q)) && (!s.mostrar || s.mostrar(S.respostas)); });
+function simBase(s) { const v = S.respostas[s.id]; return v === undefined || ehNS(v) ? null : paraNumero(v); }
+function simValor(s) { return Object.prototype.hasOwnProperty.call(S.sim.valores, s.id) ? S.sim.valores[s.id] : simBase(s); }
+function simMudancas() {
+  return simAtivos().filter((s) => Object.prototype.hasOwnProperty.call(S.sim.valores, s.id) && S.sim.valores[s.id] !== simBase(s)).map((s) => ({ s, de: simBase(s), para: S.sim.valores[s.id] }));
+}
+const simAjustado = () => simMudancas().length > 0;
+function fmtSim(s, x) {
+  if (x === null || x === undefined) return "sem número";
+  if (s.un === "R$") return brl0(x);
+  if (s.un === "%") return fmtN(x, 1) + "%";
+  return fmtN(x, s.casas ?? 2) + (s.un ? " " + s.un : "");
+}
+/** As respostas que entram nas contas: as do aluno, com o que ele mexeu no simulador por cima. */
+function respostasEfetivas() {
+  const r = respostasBase();
+  for (const m of simMudancas()) r[m.s.id] = m.para;
+  return r;
+}
+
+function notaItem(q) {
+  const v = S.respostas[q.id];
+  if (typeof q.nota === "function") return Math.max(0, Math.min(3, q.nota(S.respostas, S.fontes) || 0));
+  if (v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]);
+  return f ? f.nota : 1;
+}
+const nsDoAluno = () => qsVisiveis().filter((q) => q.aceitaNS && ehNS(S.respostas[q.id]));
+
+function ler() {
+  const r = respostasEfetivas();
+  const res = AULA.calcular(r, S);
+  const notas = itensNota().map((q) => ({ q, nota: notaItem(q) }));
+  const soma = notas.reduce((s, x) => s + x.nota, 0);
+  const nsAluno = nsDoAluno();
+  const ctx = { r, res, notas, soma, nsAluno, nsIds: nsAluno.map((q) => q.id), g: (id) => calc(res, id), nome: S.perfil.nome || "Eu", S, ajustado: simAjustado() };
+  const lt = AULA.leitura(ctx);
+  ctx.v = lt.v; ctx.motivo = lt.motivo;
+  const alertas = [];
+  for (const a of (AULA.alertasAntes ? AULA.alertasAntes(ctx) : [])) alertas.push(a);
+  for (const c of res.calculos) if (c.alerta === "critico") alertas.push({ t: "critico", tit: "Crítico", txt: c.texto });
+  for (const q of nsAluno) alertas.push({ t: "ns", tit: "Não sei · vale zero", txt: `${q.curto}: vira tarefa da semana. Onde conseguir: ${q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: ${x.q.semEvidencia || "é estimativa. Nota sem documento ou medida que prove não vale."} Para confirmar: ${x.q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 0 && !ehNS(S.respostas[x.q.id]) && x.q.zeroTexto) alertas.push({ t: "sem", tit: "Nota 0 · ainda não feito", txt: `${x.q.curto}: ${x.q.zeroTexto} Para resolver: ${x.q.ondeCurto}.` });
+  for (const c of res.calculos) if (c.alerta === "atencao") alertas.push({ t: "atencao", tit: "Atenção", txt: c.texto });
+  for (const a of (AULA.alertasDepois ? AULA.alertasDepois(ctx) : [])) alertas.push(a);
+  ctx.alertas = alertas;
+  const fragil = AULA.fragil(ctx);
+  const criterioSug = AULA.criterio(ctx);
+  const comp = Object.assign({}, AULA.compromisso(ctx));
+  comp.responsavel = comp.responsavel || S.perfil.nome || "Eu"; comp.prazo = hojeISO(7);
+  return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx, ajustado: ctx.ajustado };
+}
+
+/** O resumo que esta ferramenta deixa salvo para as próximas (o Pilar 7 monta o Dossiê completo com ele). */
+function montarResumo(L) {
+  const lt = AULA.LEITURAS[L.v];
+  return {
+    pilar: AULA.n, aula: AULA.n, tema: META.tema, pagina: META.pagina, ficha: META.pagina, v: L.v, rot: lt.rot, sub: lt.sub, motivo: L.motivo, fragil: L.fragil,
+    soma: L.soma, max: notaMax(), numeros: AULA.numeros(L), nCriticos: L.alertas.filter((a) => a.t === "critico").length,
+    nNS: L.nsAluno.length, criterio: S.criterio, compromisso: S.compromisso, data: hojeISO(),
+    dados: AULA.dados ? AULA.dados(L) : {},
+    simulador: { ajustado: L.ajustado, data: S.sim.data, mudou: simMudancas().map((m) => ({ id: m.s.id, rotulo: m.s.rot, respondeu: m.de, na_tela: m.para })) },
+    mentor: mentorDoResumo(L),
+  };
+}
+
+/* ---------------------------------------------------------------------
+   4. Envio (desligado): só monta o JSON
+   --------------------------------------------------------------------- */
+function montarPayload(L) {
+  L = L || ler();
+  return {
+    email: S.perfil.email, nome: S.perfil.nome, etapa: AULA.etapa,
+    nota: L.soma, leitura: L.v, ponto_fragil: L.fragil,
+    respostas: Object.assign({}, respostasBase(), { fontes: Object.assign({}, S.fontes), cidade: S.perfil.cidade, uf: S.perfil.uf, criterio_para_parar: S.criterio, compromisso_7_dias: S.compromisso, simulador: montarResumo(L).simulador }),
+    calculos: L.res.calculos,
+  };
+}
+async function enviarParaZion(payload) {
+  if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
+  try { const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); return { enviado: r.ok }; }
+  catch (e) { return { enviado: false, erro: String(e) }; }
+}
+
+/* ---------------------------------------------------------------------
+   Mentor virtual (o mesmo bloco das ferramentas dos Pilares 1 a 3).
+   Só chama a rede quando o aluno toca no botão e FEEDBACK_URL está preenchida.
+   Para testes, window.ZION_FEEDBACK_URL (se existir) toma o lugar da constante.
+   --------------------------------------------------------------------- */
+const MENTOR_AULA_ID = AULA.mentorId;
+const mentorRotulo = (k) => (AULA.LEITURAS[k] ? AULA.LEITURAS[k].rot : k);
+const MENTOR_TEMPO_MS = 90000;
+const MENTOR_AVISO = "O mentor nunca é mais otimista que as contas.";
+const MENTOR_PESO = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+const MENTOR_MAPA = { avancar: "avancar", seguir: "avancar", testar: "testar", investigar: "testar", ajustar: "ajustar", renegociar: "ajustar", pausar: "pausar", trocar: "pausar" };
+const MENTOR_COR_PDF = { verde: [22, 38, 28], ok: [31, 90, 51], verm: [155, 44, 31], ouro: [122, 94, 18], cinza: [70, 86, 75] };
+function vereditoParaMentor(v) {
+  const k = String(v || "").normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLowerCase().trim().split(/[^a-z]/)[0];
+  return MENTOR_MAPA[k] || null;
+}
+function urlDoMentor() {
+  try { const u = window.ZION_FEEDBACK_URL; if (typeof u === "string" && u.trim()) return u.trim(); } catch (e) {}
+  return FEEDBACK_URL;
+}
+/** A leitura do mentor vale enquanto as respostas (com o simulador) e a leitura da ferramenta forem as mesmas. */
+const assinaturaMentor = (L) => JSON.stringify([respostasEfetivas(), L.v]);
+const mentorValido = (L) => !!(S.mentor && S.mentor.resultado && S.mentor.assinatura === assinaturaMentor(L));
+const mentorDoResumo = (L) => (mentorValido(L) ? Object.assign({ data: S.mentor.data }, S.mentor.resultado) : null);
+
+function corpoDoPedidoMentor(L) {
+  const calculos = {};
+  for (const c of L.res.calculos) calculos[c.id] = { rotulo: c.rotulo, valor: c.valor === undefined ? null : c.valor, texto: c.texto, alerta: c.alerta || null };
+  calculos.leitura_da_ferramenta = { veredito: L.v, motivo: L.motivo, ponto_fragil: L.fragil, nota: L.soma, nota_maxima: notaMax(), alertas: L.alertas.map((a) => ({ tipo: a.t, texto: a.txt })) };
+  return { aula: MENTOR_AULA_ID, nome: S.perfil.nome, email: S.perfil.email, respostas: montarPayload(L).respostas, calculos, veredito_ferramenta: vereditoParaMentor(L.v) || "testar" };
+}
+function normalizarMentor(x, L) {
+  if (!x || typeof x !== "object") return null;
+  const txt = (v) => (typeof v === "string" ? v.trim() : "");
+  const lista = (v) => (Array.isArray(v) ? v.map(txt).filter(Boolean) : []);
+  const resumo = txt(x.resumo);
+  if (!resumo) return null;
+  const pa = x.proxima_acao && typeof x.proxima_acao === "object" ? x.proxima_acao : {};
+  const ferr = vereditoParaMentor(L.v) || "testar";
+  const doMentor = vereditoParaMentor(x.veredito);
+  const v = doMentor && MENTOR_PESO[doMentor] >= MENTOR_PESO[ferr] ? doMentor : ferr;
+  return {
+    resumo, pontos_fortes: lista(x.pontos_fortes), ponto_fragil: txt(x.ponto_fragil), veredito: v, veredito_rot: mentorRotulo(v),
+    criterio_para_parar: txt(x.criterio_para_parar),
+    proxima_acao: { acao: txt(pa.acao), responsavel: txt(pa.responsavel), prazo: txt(pa.prazo), evidencia: txt(pa.evidencia) },
+    perguntas_em_aberto: lista(x.perguntas_em_aberto),
+  };
+}
+async function pedirMentor(L) {
+  const url = urlDoMentor();
+  if (!url) return { erro: "Disponível em breve." };
+  const ctrl = typeof AbortController === "function" ? new AbortController() : null;
+  const relogio = setTimeout(() => { if (ctrl) ctrl.abort(); }, MENTOR_TEMPO_MS);
+  try {
+    const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpoDoPedidoMentor(L)), signal: ctrl ? ctrl.signal : undefined });
+    let d = null;
+    try { d = await r.json(); } catch (e) { d = null; }
+    const erroServ = d && typeof d.erro === "string" ? d.erro.trim() : "";
+    if (r.status === 429) return { erro: erroServ || "O mentor recebeu muitos pedidos agora. Espere alguns minutos e tente de novo." };
+    if (!r.ok) return { erro: (r.status < 500 && erroServ) || "O mentor virtual não respondeu agora. Tente de novo daqui a pouco." };
+    const m = normalizarMentor(d && d.resultado, L);
+    if (!m) return { erro: erroServ || "O mentor virtual não conseguiu ler as suas respostas agora. Tente de novo daqui a pouco." };
+    return { resultado: m };
+  } catch (e) {
+    return { erro: e && e.name === "AbortError" ? "O mentor demorou mais de 90 segundos para responder. Tente de novo daqui a pouco." : "Não foi possível falar com o mentor virtual. Confira a conexão com a internet e tente de novo." };
+  } finally { clearTimeout(relogio); }
+}
+function htmlMentorResultado(m) {
+  const lst = (a, vazio) => (a.length ? `<ul>${a.map((x) => `<li>${esc(x)}</li>`).join("")}</ul>` : `<p>${vazio}</p>`);
+  const pa = m.proxima_acao;
+  return `<div id="mentor-resultado">
+    <div class="caixa porque"><h3>Resumo</h3><p>${esc(m.resumo)}</p></div>
+    <div class="caixa onde"><h3>Pontos fortes</h3>${lst(m.pontos_fortes, "Nenhum apontado.")}</div>
+    <div class="fragil" style="margin-top:14px"><b>Ponto frágil</b><br>${esc(m.ponto_fragil || "Em branco")}</div>
+    <div class="leitura" id="mentor-leitura" style="margin-top:14px"><div class="eyebrow" style="color:var(--creme)">Leitura do mentor</div><div class="rot">${esc(m.veredito_rot)}</div><p><b>${esc(MENTOR_AVISO)}</b></p></div>
+    <div class="caixa porque"><h3>Critério para parar</h3><p>${esc(m.criterio_para_parar || "Em branco")}</p></div>
+    <div class="caixa porque"><h3>Próxima ação</h3><ul><li><b>Ação:</b> ${esc(pa.acao || "Em branco")}</li><li><b>Responsável:</b> ${esc(pa.responsavel || "Em branco")}</li><li><b>Prazo:</b> ${esc(dataBR(pa.prazo) || "Em branco")}</li><li><b>Evidência:</b> ${esc(pa.evidencia || "Em branco")}</li></ul></div>
+    <div class="caixa onde"><h3>Perguntas em aberto</h3>${lst(m.perguntas_em_aberto, "Nenhuma.")}</div>
+    <p class="dica" style="margin-top:10px">A leitura do mentor complementa as contas e a leitura acima, não as substitui. Ela entra no seu PDF enquanto os números na tela forem os mesmos.</p>
+  </div>`;
+}
+function htmlSecaoMentor(L) {
+  let corpo;
+  if (!urlDoMentor()) corpo = `<p id="mentor-estado"><b>Disponível em breve.</b></p><button type="button" class="btn btn-s" id="mentor-pedir" disabled>Pedir a leitura do mentor virtual</button>`;
+  else if (mentorValido(L)) corpo = htmlMentorResultado(S.mentor.resultado);
+  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas, os números do simulador e as contas.${S.mentor && S.mentor.resultado ? " Você mexeu nos números depois da última leitura: peça de novo para ela valer para a tela de agora." : ""}</p>
+    <button type="button" class="btn btn-s" id="mentor-pedir">Pedir a leitura do mentor virtual</button>
+    <div id="mentor-estado" role="status" aria-live="polite"></div>`;
+  return `<section class="bloco" id="b-mentor"><h2>O mentor virtual</h2><div id="mentor-corpo">${corpo}</div></section>`;
+}
+function ligarMentor() {
+  const b = document.getElementById("mentor-pedir");
+  if (!b || b.disabled) return;
+  b.onclick = async () => {
+    const L = ler();
+    const st = document.getElementById("mentor-estado");
+    b.disabled = true;
+    st.innerHTML = `<p class="dica" style="margin-top:10px"><b>Lendo as suas respostas...</b> Pode levar até um minuto e meio.</p>`;
+    const r = await pedirMentor(L);
+    if (r.resultado) {
+      S.mentor = { resultado: r.resultado, assinatura: assinaturaMentor(L), data: hojeISO() };
+      S.resumo = montarResumo(L);
+      salvar();
+      const c = document.getElementById("mentor-corpo");
+      if (c) c.innerHTML = htmlMentorResultado(r.resultado);
+    } else {
+      b.disabled = false;
+      st.innerHTML = `<div class="alerta a-atencao" id="mentor-erro"><b>O mentor não respondeu</b>${esc(r.erro)} O resto da página continua funcionando: o PDF sai normalmente, sem a leitura do mentor.</div>`;
+    }
+  };
+}
+function mentorParaPDF(m) {
+  const pa = m.proxima_acao || {};
+  const itens = (a, vazio) => (a && a.length ? a.map((x) => "- " + x).join("\n") : vazio);
+  return [
+    ["Resumo", m.resumo, "verde"],
+    ["Pontos fortes", itens(m.pontos_fortes, "Nenhum apontado."), "ok"],
+    ["Ponto frágil", m.ponto_fragil || "Em branco", "verm"],
+    ["Leitura do mentor", `${m.veredito_rot}. ${MENTOR_AVISO}`, "verde"],
+    ["Critério para parar", m.criterio_para_parar || "Em branco", "ouro"],
+    ["Próxima ação", [`Ação: ${pa.acao || "Em branco"}`, `Responsável: ${pa.responsavel || "Em branco"}`, `Prazo: ${dataBR(pa.prazo) || "Em branco"}`, `Evidência: ${pa.evidencia || "Em branco"}`].join("\n"), "verde"],
+    ["Perguntas em aberto", itens(m.perguntas_em_aberto, "Nenhuma."), "cinza"],
+  ].map(([r, t, c]) => [r, t, MENTOR_COR_PDF[c]]);
+}
+
+/* ---------------------------------------------------------------------
+   5. Telas
+   --------------------------------------------------------------------- */
+const app = document.getElementById("app");
+document.getElementById("rodape").textContent = RODAPE;
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+/** Leva o passo para a próxima pergunta que vale (para frente) ou a anterior (para trás). */
+function ajustarPasso(p, dir) {
+  if (p < 0) return -1;
+  if (p >= QUESTOES.length) return QUESTOES.length;
+  let i = p;
+  while (i >= 0 && i < QUESTOES.length && !visivel(QUESTOES[i])) i += dir;
+  if (i < 0) return -1;
+  return Math.min(i, QUESTOES.length);
+}
+function render() {
+  if (S.passo < 0) return telaAbertura();
+  S.passo = ajustarPasso(S.passo, 1);
+  if (S.passo >= QUESTOES.length) return telaResultado();
+  return telaPergunta(S.passo);
+}
+function irPara(p, dir = 1) { S.passo = ajustarPasso(p, dir); salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+const val = (id) => document.getElementById(id).value.trim();
+
+function telaAbertura() {
+  const salvo = carregar();
+  const temSalvo = salvo && Object.keys(salvo.respostas || {}).length > 0;
+  if (!S.perfil.nome) { const p = perfilDeOutraFerramenta(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Trilha 1 · Pilar ${AULA.n} · ${esc(META.tema)}</div>
+    <h1 tabindex="-1">${esc(AULA.abertura.titulo)}</h1>
+    <p class="lead">${esc(AULA.abertura.lead)}</p>
+    <div class="tres">
+      <div><b>Por que</b>${esc(AULA.abertura.porque)}</div>
+      <div><b>Como</b>${esc(AULA.abertura.como)}</div>
+      <div><b>Para que</b>${esc(AULA.abertura.paraque)}</div>
+    </div>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta página.</b><br>As suas respostas ficaram salvas neste aparelho. <div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <form id="f-abertura" novalidate>
+      <label for="nome">O seu nome</label>
+      <input type="text" id="nome" autocomplete="name" value="${esc(S.perfil.nome)}" required>
+      <label for="email">O seu e-mail</label>
+      <input type="email" id="email" autocomplete="email" inputmode="email" value="${esc(S.perfil.email)}" required>
+      <label for="cidade">Cidade do terreno</label>
+      <input type="text" id="cidade" autocomplete="address-level2" value="${esc(S.perfil.cidade)}" required>
+      <label for="uf">Estado do terreno</label>
+      <select id="uf" required><option value="">Escolha o estado</option>${UFS.map((u) => `<option ${S.perfil.uf === u ? "selected" : ""}>${u}</option>`).join("")}</select>
+      <div class="erro" id="erro-abertura" role="alert"></div>
+      <div class="nav"><button class="btn btn-p" type="submit" id="comecar">Começar</button></div>
+      <p class="dica">As respostas ficam salvas só neste aparelho, para você poder parar e voltar. Nada é enviado sem você pedir.${AULA.abertura.dica ? " " + esc(AULA.abertura.dica) : ""}</p>
+    </form>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { S = salvo; S.passo = Math.min(Math.max(S.passo, 0), QUESTOES.length); salvar(); render(); };
+    document.getElementById("zerar").onclick = () => { apagar(); S = estadoVazio(); render(); };
+  }
+  document.getElementById("f-abertura").onsubmit = (e) => {
+    e.preventDefault();
+    const p = { nome: val("nome"), email: val("email"), cidade: val("cidade"), uf: document.getElementById("uf").value };
+    let erro = "";
+    if (!p.nome) erro = "Escreva o seu nome.";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)) erro = "Confira o e-mail.";
+    else if (!p.cidade) erro = "Escreva a cidade do terreno.";
+    else if (!p.uf) erro = "Escolha o estado do terreno.";
+    document.getElementById("erro-abertura").textContent = erro;
+    if (erro) return;
+    if (temSalvo && salvo) S = salvo;
+    S.perfil = p;
+    irPara(S.passo >= 0 ? Math.min(S.passo, QUESTOES.length) : 0);
+  };
+}
+
+/** Traz a resposta de um pilar anterior, uma vez só, para o aluno conferir. */
+function aplicarVeio(q) {
+  if (!q.veio || S.veio[q.id] !== undefined || S.respostas[q.id] !== undefined) return;
+  let x = null;
+  try { x = q.veio(); } catch (e) { x = null; }
+  S.veio[q.id] = x ? x.de : null;
+  if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") {
+    S.respostas[q.id] = x.valor;
+    if (x.fonte) S.fontes[q.id] = x.fonte;
+  }
+  salvar();
+}
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+const botaoNS = (ns) => `<button type="button" class="btn btn-ns" id="ns" aria-pressed="${ns}">${ns ? "Marcado: Não sei (toque para desfazer)" : "Não sei"}</button>`;
+
+function telaPergunta(i) {
+  const q = QUESTOES[i];
+  aplicarVeio(q);
+  const vis = qsVisiveis();
+  const total = vis.length;
+  const pos = vis.indexOf(q);
+  const v = S.respostas[q.id];
+  const ns = ehNS(v);
+  let campo = "";
+  if (ehNumerico(q)) {
+    const pre = q.tipo === "moeda" ? `<span class="un">R$</span>` : "";
+    const pos2 = q.tipo === "percentual" ? `<span class="un">%</span>` : q.tipo === "numero" && q.unidade ? `<span class="un">${esc(q.unidade)}</span>` : "";
+    campo = `
+      <label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <div class="campo-num">${pre}
+        <input type="text" id="resp" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || (q.tipo === "moeda" ? "Ex.: 600" : "Digite o número"))}" value="${ns || v === undefined ? "" : esc(v)}" ${ns ? "disabled" : ""}>
+        ${pos2}
+      </div>
+      ${q.aceitaNS ? botaoNS(ns) : ""}
+      ${q.nota === "fonte" ? `<fieldset class="fonte" id="fs-fonte" ${ns ? "hidden" : ""}>
+        <legend>De onde veio esse número?</legend>
+        <div class="opcoes">${fontesDe(q).map((f) => `<label class="op"><input type="radio" name="fonte" value="${f.v}" ${S.fontes[q.id] === f.v ? "checked" : ""}><span>${esc(f.rot)}</span></label>`).join("")}</div>
+      </fieldset>` : ""}`;
+  } else if (q.tipo === "texto") {
+    campo = `<label for="resp" class="sr">${esc(q.pergunta)}</label>
+      <textarea id="resp" placeholder="${esc(q.placeholder || "Escreva com as suas palavras")}" ${ns ? "disabled" : ""}>${ns || v === undefined ? "" : esc(v)}</textarea>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  } else if (q.tipo === "multipla") {
+    const marcados = Array.isArray(v) ? v : [];
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="checkbox" name="m" value="${o.v}" ${marcados.includes(o.v) ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>`;
+  } else if (q.tipo === "escolha") {
+    campo = `<fieldset><legend class="sr">${esc(q.pergunta)}</legend><div class="opcoes">${q.opcoes.map((o) => `<label class="op"><input type="radio" name="e" value="${o.v}" ${v === o.v ? "checked" : ""}><span>${esc(o.rot)}</span></label>`).join("")}</div></fieldset>
+      ${q.aceitaNS ? botaoNS(ns) : ""}`;
+  }
+  const veio = S.veio[q.id] && S.respostas[q.id] !== undefined && !ns ? `<div class="veio">Trouxemos esta resposta da ${esc(S.veio[q.id])}. Confira e corrija se mudou.</div>` : "";
+  const ultima = pos === total - 1;
+  app.innerHTML = `
+  <div class="progresso" aria-label="Progresso">
+    <div class="txt"><span>Pergunta ${pos + 1} de ${total}</span><span>${Math.round((pos / total) * 100)}%</span></div>
+    <div class="barra"><i style="width:${(pos / total) * 100}%"></i></div>
+  </div>
+  <div class="card">
+    <div class="eyebrow">${esc(q.bloco || META.tema)}</div>
+    <h1 class="pergunta" tabindex="-1">${esc(q.pergunta)}</h1>
+    <p class="explica">${esc(q.explica)}</p>
+    <form id="f-q" novalidate>
+      ${campo}
+      ${veio}
+      <div class="erro" id="erro" role="alert"></div>
+      <div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(q.porque)}</p></div>
+      <div class="caixa onde"><h3>Onde conseguir essa informação</h3>${q.onde}</div>
+      <div class="caixa marina"><h3>Exemplo ilustrativo · Marina</h3><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>
+      <div class="nav"><button type="button" class="btn btn-s" id="voltar">Voltar</button><button type="submit" class="btn btn-p" id="avancar">${ultima ? "Ver a minha página" : "Avançar"}</button></div>
+    </form>
+  </div>`;
+
+  const f = document.getElementById("f-q");
+  const inp = document.getElementById("resp");
+  const nsBtn = document.getElementById("ns");
+  if (inp) inp.addEventListener("input", () => { S.respostas[q.id] = inp.value; salvar(); });
+  f.querySelectorAll("input[name=fonte]").forEach((r) => r.addEventListener("change", () => { S.fontes[q.id] = r.value; salvar(); }));
+  f.querySelectorAll("input[name=m]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = [...f.querySelectorAll("input[name=m]:checked")].map((x) => x.value); salvar(); }));
+  f.querySelectorAll("input[name=e]").forEach((c) => c.addEventListener("change", () => { S.respostas[q.id] = c.value; salvar(); if (nsBtn) { nsBtn.setAttribute("aria-pressed", "false"); nsBtn.textContent = "Não sei"; } }));
+  if (nsBtn) nsBtn.onclick = () => {
+    if (ehNS(S.respostas[q.id])) { delete S.respostas[q.id]; } else { S.respostas[q.id] = "nao_sei"; delete S.fontes[q.id]; }
+    salvar(); telaPergunta(i);
+  };
+  document.getElementById("voltar").onclick = () => irPara(i - 1, -1);
+  f.onsubmit = (e) => {
+    e.preventDefault();
+    const erro = validar(q);
+    document.getElementById("erro").textContent = erro;
+    if (erro) return;
+    if (q.tipo === "multipla" && !Array.isArray(S.respostas[q.id])) S.respostas[q.id] = [];
+    if (q.tipo === "texto" && S.respostas[q.id] === undefined) S.respostas[q.id] = "";
+    // Uma resposta nova vale mais do que um ajuste antigo do simulador.
+    if (Object.prototype.hasOwnProperty.call(S.sim.valores, q.id)) delete S.sim.valores[q.id];
+    irPara(i + 1, 1);
+  };
+  if (inp && !ns && window.matchMedia("(min-width:720px)").matches) inp.focus({ preventScroll: true });
+}
+
+function validar(q) {
+  const v = S.respostas[q.id];
+  if (ehNumerico(q)) {
+    if (ehNS(v)) return "";
+    const n = paraNumero(v);
+    if (n === null) return q.aceitaNS ? "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal) ou toque em Não sei." : "Escreva um número (só dígitos, pode usar ponto para milhar e vírgula para decimal).";
+    if (n < 0) return "O número não pode ser negativo.";
+    if (q.min !== undefined && n < q.min) return `O número precisa ser pelo menos ${fmtN(q.min)}.`;
+    if (q.max !== undefined && n > q.max) return `O número não pode passar de ${fmtN(q.max)}.`;
+    if (q.positivo && n <= 0) return "O número precisa ser maior que zero.";
+    if (q.validar) { const e = q.validar(n, S.respostas); if (e) return e; }
+    if (q.nota === "fonte" && !S.fontes[q.id]) return "Diga de onde veio esse número: é isso que separa dado de palpite.";
+    return "";
+  }
+  if (q.tipo === "texto") {
+    if (ehNS(v) || q.opcional) return "";
+    if (v === undefined || String(v).trim() === "") return q.aceitaNS ? "Escreva a sua resposta ou toque em Não sei." : "Escreva a sua resposta.";
+    return "";
+  }
+  if (q.tipo === "escolha" && (v === undefined || v === "")) return q.aceitaNS ? "Escolha uma opção ou toque em Não sei." : "Escolha uma opção.";
+  return "";
+}
+
+function respostaTexto(q) {
+  const v = S.respostas[q.id];
+  if (ehNS(v)) return "Não sei";
+  if (q.tipo === "multipla") { const a = Array.isArray(v) ? v : []; return a.length ? q.opcoes.filter((o) => a.includes(o.v)).map((o) => o.rot).join("; ") : "Nenhum"; }
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o ? o.rot : "Em branco"; }
+  if (q.tipo === "texto") { const t = typeof v === "string" ? v.trim() : ""; return t || "Em branco"; }
+  const n = paraNumero(v);
+  if (n === null) return "Em branco";
+  if (q.tipo === "moeda") return brl(n);
+  if (q.tipo === "percentual") return fmtN(n, 2) + "%";
+  return `${fmtN(n, 2)}${q.unidade ? " " + q.unidade : ""}`;
+}
+const fonteTexto = (q) => { if (q.nota !== "fonte" || ehNS(S.respostas[q.id])) return ""; const f = fontesDe(q).find((x) => x.v === S.fontes[q.id]); return f ? f.curto : ""; };
+
+/* ---- O simulador na tela ---- */
+const rotOrig = (s, base, mudou) => (base === null ? (mudou ? "Testando um número · você não respondeu" : "Você não respondeu este número") : mudou ? "Ajustado · você respondeu " + fmtSim(s, base) : "A sua resposta: " + fmtSim(s, base));
+function htmlSimulador(L) {
+  const sims = simAtivos();
+  if (!sims.length) return "";
+  const linhas = sims.map((s) => {
+    const base = simBase(s), atual = simValor(s);
+    const semNum = atual === null;
+    const x = semNum ? (s.padrao ?? s.min) : Math.min(Math.max(atual, s.min), s.max);
+    const mudou = Object.prototype.hasOwnProperty.call(S.sim.valores, s.id) && S.sim.valores[s.id] !== base;
+    return `<div class="sl${semNum ? " desligado" : ""}" data-id="${s.id}">
+      <div class="top"><label for="sl-${s.id}">${esc(s.rot)}</label><span class="orig${mudou ? " mudou" : ""}" id="or-${s.id}">${esc(rotOrig(s, base, mudou))}</span></div>
+      <div class="linha">
+        <input type="range" id="sl-${s.id}" min="${s.min}" max="${s.max}" step="${s.passo}" value="${x}" aria-describedby="or-${s.id}">
+        <div class="num-in">${s.un === "R$" ? "<span>R$</span>" : ""}<input type="text" inputmode="decimal" id="nu-${s.id}" aria-label="${esc(s.rot)}, número" value="${semNum ? "" : esc(fmtN(atual, s.casas ?? 2))}" placeholder="${semNum ? "vazio" : ""}">${s.un && s.un !== "R$" ? `<span>${esc(s.un)}</span>` : ""}</div>
+      </div>
+      ${semNum && s.semNumero ? `<div class="aviso">${esc(s.semNumero)}</div>` : ""}
+    </div>`;
+  }).join("");
+  return `<section class="sim" id="b-sim" aria-labelledby="t-sim">
+    <h2 id="t-sim">Equalize os seus números</h2>
+    <p class="dica">${esc(AULA.simDica)} Mova os controles ou digite: as contas, os alertas e a leitura abaixo mudam na hora. O PDF sai com o que estiver na tela.</p>
+    ${linhas}
+    <div id="sim-painel">${htmlPainel(L)}</div>
+    <div class="acoes-sim"><button type="button" class="btn btn-s" id="sim-voltar" ${L.ajustado ? "" : "disabled"}>Voltar ao meu número</button></div>
+  </section>`;
+}
+function htmlPainel(L) {
+  const itens = AULA.painel(L);
+  const lt = AULA.LEITURAS[L.v];
+  return `<div class="painel" aria-live="polite">${itens.map(([r, v]) => `<div><small>${esc(r)}</small><b>${esc(v)}</b></div>`).join("")}<div class="v-${L.v}"><small>Leitura do método</small><b>${esc(NOME_V[L.v])}</b></div></div>
+    ${L.ajustado ? `<span class="selo-sim" id="selo-sim">Ajustado no simulador · ${esc(dataBR(S.sim.data || hojeISO()))}</span>` : `<span class="dica" id="selo-sim">Números das suas respostas, sem ajuste.</span>`}
+    <span class="sr">${esc(lt.rot)}</span>`;
+}
+
+function htmlVivo(L) {
+  const leit = AULA.LEITURAS[L.v];
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter((c) => c && c.texto);
+  const nMax = notaMax();
+  return `
+    <div class="numeros">${AULA.numeros(L).map(([r, v]) => `<div class="num"><small>${esc(r)}</small><strong>${esc(v)}</strong></div>`).join("")}</div>
+    ${AULA.blocosVivos ? AULA.blocosVivos(L) : ""}
+    <section class="bloco" id="b-alertas"><h2>Primeiro, os alertas</h2>
+      <p class="dica">Primeiro os alertas, depois a soma, depois a decisão. Todo Não sei vale zero e vira tarefa da semana.</p>
+      ${L.alertas.length ? L.alertas.map((x) => `<div class="alerta a-${x.t}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("") : `<div class="alerta a-info"><b>Sem alertas</b>Nenhum alerta nesta página. Mesmo assim, leia as contas antes de decidir.</div>`}
+    </section>
+    <section class="bloco" id="b-contas"><h2>As contas e as leituras</h2>
+      ${contas.map((x) => `<div class="conta"><b>${esc(x.rotulo)}</b><p>${esc(x.texto)}</p></div>`).join("")}
+      <p class="dica">As contas usam só as suas respostas e o que você ajustou no simulador. Toda conta é de referência: receita bruta não é lucro, e os números do seu caso precisam ser confirmados com quem é indicado em cada pergunta.</p>
+    </section>
+    ${nMax ? `<section class="bloco" id="b-nota"><h2>A nota por item</h2>
+      <p class="dica">${esc(AULA.escalaNota)} Toda nota zero ou um é alerta. A nota mede as suas respostas, não o simulador.</p>
+      <table><thead><tr><th>Item</th><th>Resposta</th><th class="n">Nota</th></tr></thead><tbody>
+      ${L.notas.map((x) => `<tr><td>${esc(x.q.curto)}</td><td>${esc(respostaTexto(x.q))}${fonteTexto(x.q) ? `<br><span class="dica">${esc(fonteTexto(x.q))}</span>` : ""}</td><td class="n nota-${x.nota}">${x.nota}</td></tr>`).join("")}
+      </tbody></table>
+      <div class="soma"><strong id="soma">${L.soma} de ${nMax}</strong><span class="dica">Não existe nota de corte. A soma mostra quanto da sua leitura já tem fonte; os alertas acima pesam mais do que ela.</span></div>
+    </section>` : ""}
+    <section class="bloco"><h2>O ponto mais frágil</h2><div class="fragil" id="fragil">${esc(L.fragil)}</div></section>
+    <section class="bloco"><h2>A leitura</h2>
+      <div class="leitura" id="leitura"><div class="eyebrow" style="color:var(--creme)">Leitura do método${L.ajustado ? " · com o simulador" : ""}</div><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
+      ${AULA.depoisLeitura ? AULA.depoisLeitura(L) : ""}
+    </section>
+    ${htmlSecaoMentor(L)}`;
+}
+
+function telaResultado() {
+  const L = ler();
+  if (S.criterio === null) S.criterio = L.criterioSug;
+  if (!S.compromisso) S.compromisso = Object.assign({}, L.comp);
+  S.resumo = montarResumo(L);
+  salvar();
+  app.innerHTML = `
+  <div class="card">
+    <div class="eyebrow">Página ${AULA.n} do Dossiê de Desenvolvimento · Trilha 1 · Pilar ${AULA.n}</div>
+    <h1 tabindex="-1">${esc(META.pagina)}</h1>
+    <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
+    ${htmlSimulador(L)}
+    <div id="vivo">${htmlVivo(L)}</div>
+
+    <section class="bloco"><h2>O seu critério para parar</h2>
+      <p class="dica">O fato que mudaria a sua decisão, escrito antes, para você não decidir pelo entusiasmo. ${esc(AULA.moldeCriterio)} Deixamos uma sugestão: reescreva com as suas palavras.</p>
+      <label for="criterio" class="sr">Critério para parar</label>
+      <textarea id="criterio">${esc(S.criterio)}</textarea>
+    </section>
+
+    <section class="bloco"><h2>O seu Compromisso de 7 dias</h2>
+      <p class="dica">Uma ação só, a que mais tira Não sei. ${esc(AULA.dicaCompromisso || "")}</p>
+      <label for="c-acao">Ação</label><textarea id="c-acao" style="min-height:72px">${esc(S.compromisso.acao)}</textarea>
+      <label for="c-resp">Responsável</label><input type="text" id="c-resp" value="${esc(S.compromisso.responsavel)}">
+      <label for="c-prazo">Prazo</label><input type="date" id="c-prazo" value="${esc(S.compromisso.prazo)}">
+      <label for="c-evid">Evidência (o que você vai ter na mão)</label><textarea id="c-evid" style="min-height:72px">${esc(S.compromisso.evidencia)}</textarea>
+    </section>
+
+    <div class="acoes">
+      <button class="btn btn-ouro" id="pdf">${esc(AULA.botaoPDF)}</button>
+      <button class="btn btn-s" id="editar">Revisar as respostas</button>
+      <button class="btn btn-s" id="recomecar">Começar outra página</button>
+      ${AULA.proximo ? `<a class="btn btn-p" id="proxima" href="${esc(AULA.proximo.url)}">Seguir para o Pilar ${AULA.proximo.n}: ${esc(AULA.proximo.tema)}</a>` : `<a class="btn btn-p" href="${esc(LINK_INICIO)}">Ver as ferramentas da trilha</a>`}
+    </div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+  </div>`;
+  const liga = (id, fn) => document.getElementById(id).addEventListener("input", (e) => { fn(e.target.value); S.resumo = montarResumo(ler()); salvar(); });
+  liga("criterio", (x) => (S.criterio = x));
+  liga("c-acao", (x) => (S.compromisso.acao = x));
+  liga("c-resp", (x) => (S.compromisso.responsavel = x));
+  liga("c-prazo", (x) => (S.compromisso.prazo = x));
+  liga("c-evid", (x) => (S.compromisso.evidencia = x));
+  ligarSimulador();
+  ligarMentor();
+  document.getElementById("editar").onclick = () => irPara(0);
+  document.getElementById("recomecar").onclick = () => { if (confirm("Apagar as respostas desta página neste aparelho e começar de novo?")) { apagar(); S = estadoVazio(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try { const L2 = ler(); gerarFichaPDF(L2); enviarParaZion(montarPayload(L2)); document.getElementById("erro-pdf").textContent = ""; }
+    catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+}
+
+/** Atualiza só o que depende dos números: os controles continuam onde o dedo está. */
+function atualizarVivo() {
+  const L = ler();
+  S.resumo = montarResumo(L);
+  salvar();
+  document.getElementById("vivo").innerHTML = htmlVivo(L);
+  document.getElementById("sim-painel").innerHTML = htmlPainel(L);
+  for (const s of simAtivos()) {
+    const o = document.getElementById("or-" + s.id); if (!o) continue;
+    const base = simBase(s);
+    const mudou = Object.prototype.hasOwnProperty.call(S.sim.valores, s.id) && S.sim.valores[s.id] !== base;
+    o.className = "orig" + (mudou ? " mudou" : "");
+    o.textContent = rotOrig(s, base, mudou);
+    const box = o.closest(".sl"); if (box) box.classList.toggle("desligado", simValor(s) === null);
+  }
+  const bv = document.getElementById("sim-voltar"); if (bv) bv.disabled = !L.ajustado;
+  ligarMentor();
+}
+function ligarSimulador() {
+  const sims = simAtivos();
+  for (const s of sims) {
+    const r = document.getElementById("sl-" + s.id), n = document.getElementById("nu-" + s.id);
+    if (!r || !n) continue;
+    const gravar = (x) => { S.sim.valores[s.id] = x; S.sim.data = hojeISO(); atualizarVivo(); };
+    r.addEventListener("input", () => { const x = Z.arred(Number(r.value), s.casas ?? 2); n.value = fmtN(x, s.casas ?? 2); n.placeholder = ""; gravar(x); });
+    n.addEventListener("input", () => {
+      const x = paraNumero(n.value);
+      if (x === null || x < 0) return;
+      if (s.maxDigitado !== undefined && x > s.maxDigitado) return;
+      r.value = String(Math.min(Math.max(x, s.min), s.max));
+      gravar(Z.arred(x, s.casas ?? 2));
+    });
+  }
+  const bv = document.getElementById("sim-voltar");
+  if (bv) bv.onclick = () => {
+    S.sim = { valores: {}, data: null };
+    for (const s of sims) {
+      const r = document.getElementById("sl-" + s.id), n = document.getElementById("nu-" + s.id);
+      const b = simBase(s);
+      if (r) r.value = String(b === null ? (s.padrao ?? s.min) : Math.min(Math.max(b, s.min), s.max));
+      if (n) { n.value = b === null ? "" : fmtN(b, s.casas ?? 2); n.placeholder = b === null ? "vazio" : ""; }
+    }
+    atualizarVivo();
+  };
+}
+
+/* ---------------------------------------------------------------------
+   6. PDF A4 com jsPDF (fonte padrão Helvetica / Times)
+   --------------------------------------------------------------------- */
+const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], OURO_E = [122, 94, 18], CINZA = [70, 86, 75], VERM = [155, 44, 31], AREIA = [235, 228, 212], MUSGO = [191, 211, 191], ROSA = [201, 169, 162];
+const COR_ALERTA = { critico: VERM, ns: [122, 83, 0], sem: [122, 94, 18], atencao: [150, 110, 20], info: [31, 90, 51] };
+
+function criarPDF(cabecalho) {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  // A fonte padrão do jsPDF só desenha o alfabeto latino básico: m² vira m2 e as aspas curvas viram retas.
+  const pt = (t) => String(t ?? "").replace(/²/g, "2").replace(/[\u201C\u201D]/g, '"').replace(/[\u2018\u2019]/g, "'").replace(/\u2026/g, "...").replace(/[\u2013\u2014]/g, "-").replace(/\u2265/g, ">=").replace(/\u2264/g, "<=").replace(/\u2192/g, "->").replace(/\u00d7/g, "x").replace(/\u2212/g, "-");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const P = { doc, W: 210, H: 297, M: 18, y: 0 };
+  P.CW = P.W - 2 * P.M;
+  P.fundo = () => { doc.setFillColor(...CREME); doc.rect(0, 0, P.W, P.H, "F"); doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, P.W, 0.8, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...CREME); doc.text(cabecalho, P.M, 8); doc.text(`${S.perfil.nome}`.slice(0, 50), P.W - P.M, 8, { align: "right" }); P.y = 22; };
+  P.novaPagina = () => { doc.addPage(); P.fundo(); };
+  P.cabe = (h) => { if (P.y + h > P.H - 22) P.novaPagina(); };
+  P.titulo = (t) => { P.cabe(34); P.y += 4; doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(t, P.M, P.y); P.y += 2.5; doc.setDrawColor(...OURO); doc.setLineWidth(0.7); doc.line(P.M, P.y, P.M + 40, P.y); P.y += 6; };
+  P.par = (t, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 10); doc.setTextColor(...(o.cor || VERDE));
+    const linhas = doc.splitTextToSize(String(t), o.w || P.CW);
+    const lh = (o.size || 10) * 0.45;
+    for (const l of linhas) { P.cabe(lh + 1); doc.text(l, o.x || P.M, P.y); P.y += lh; }
+    P.y += o.after ?? 2;
+  };
+  P.caixa = (rot, t, cor) => {
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9.5);
+    let linhas = doc.splitTextToSize(String(t), P.CW - 10);
+    const max = Math.floor((P.H - 22 - 22 - 12) / 4.3);
+    while (linhas.length) {
+      const parte = linhas.slice(0, max); linhas = linhas.slice(max);
+      const h = parte.length * 4.3 + 10;
+      P.cabe(h + 2);
+      doc.setFillColor(255, 253, 248); doc.setDrawColor(...cor); doc.setLineWidth(0.3); doc.roundedRect(P.M, P.y, P.CW, h, 2, 2, "FD");
+      doc.setFillColor(...cor); doc.rect(P.M, P.y, 1.6, h, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...cor); doc.text(rot.toUpperCase(), P.M + 5, P.y + 5);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(9.5); doc.setTextColor(...VERDE);
+      parte.forEach((l, k) => doc.text(l, P.M + 5, P.y + 9.5 + k * 4.3));
+      P.y += h + 3;
+    }
+  };
+  P.linhaTabela = (cols, larg, o = {}) => {
+    doc.setFont("helvetica", o.bold ? "bold" : "normal"); doc.setFontSize(o.size || 9);
+    const partes = cols.map((c, k) => doc.splitTextToSize(String(c), larg[k] - 3));
+    const h = Math.max(...partes.map((p) => p.length)) * 4 + 3;
+    P.cabe(Math.min(h, 60));
+    if (o.fundo) { doc.setFillColor(...o.fundo); doc.rect(P.M, P.y - 3.4, P.CW, h, "F"); }
+    let x = P.M;
+    partes.forEach((p, k) => { doc.setTextColor(...((o.cores && o.cores[k]) || o.cor || VERDE)); p.forEach((l, j) => doc.text(l, x + 1.5, P.y + j * 4)); x += larg[k]; });
+    P.y += h; doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.y - 3.4, P.M + P.CW, P.y - 3.4);
+  };
+  P.caixasNumeros = (box) => {
+    const n = box.length, bw = (P.CW - 3 * (n - 1)) / n;
+    P.cabe(26);
+    box.forEach(([r, v], k) => { const x = P.M + k * (bw + 3); doc.setFillColor(...VERDE); doc.roundedRect(x, P.y, bw, 22, 2, 2, "F"); doc.setFont("helvetica", "normal"); doc.setFontSize(7); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(r, bw - 5).slice(0, 2), x + 3, P.y + 5); doc.setFont("helvetica", "bold"); doc.setFontSize(11.5); doc.setTextColor(...OURO); doc.text(doc.splitTextToSize(String(v), bw - 5)[0], x + 3, P.y + 17); });
+    P.y += 30;
+  };
+  /** Barras horizontais: [[rótulo, valor, texto do valor, cor]] contra um máximo. */
+  P.barras = (itens, max) => {
+    const rotW = 58, area = P.CW - rotW - 34;
+    for (const [rot, v, txt, cor] of itens) {
+      P.cabe(11);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...VERDE);
+      doc.text(doc.splitTextToSize(rot, rotW - 3).slice(0, 2), P.M, P.y + 3.5);
+      doc.setFillColor(...AREIA); doc.roundedRect(P.M + rotW, P.y, area, 6, 1.2, 1.2, "F");
+      const w = max > 0 && v > 0 ? Math.max(1.5, Math.min(1, v / max) * area) : 0;
+      if (w) { doc.setFillColor(...(cor || VERDE)); doc.roundedRect(P.M + rotW, P.y, w, 6, 1.2, 1.2, "F"); }
+      doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.text(txt, P.M + rotW + area + 2, P.y + 4.3);
+      P.y += 10;
+    }
+    P.y += 2;
+  };
+  /** Uma faixa dividida em partes: [[fração, cor, rótulo]], com legenda embaixo. */
+  P.faixa = (partes, altura = 10) => {
+    P.cabe(altura + 16);
+    let x = P.M;
+    doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.rect(P.M, P.y, P.CW, altura);
+    for (const [f, cor] of partes) { const w = Math.max(0, f) * P.CW; if (w > 0) { doc.setFillColor(...cor); doc.rect(x, P.y, Math.max(w, 0.6), altura, "F"); } x += w; }
+    P.y += altura + 4;
+    let lx = P.M;
+    doc.setFontSize(7.5);
+    for (const [, cor, rot] of partes) { if (!rot) continue; const tw = doc.getTextWidth(rot) + 9; if (lx + tw > P.M + P.CW) { lx = P.M; P.y += 4.5; } doc.setFillColor(...cor); doc.rect(lx, P.y - 2.6, 3, 3, "F"); doc.setFont("helvetica", "normal"); doc.setTextColor(...CINZA); doc.text(rot, lx + 4.2, P.y); lx += tw; }
+    P.y += 6;
+  };
+  P.capa = (sobre, l1, l2, sub, extra) => {
+    doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, P.H, "F");
+    doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, P.W - 20, P.H - 20);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text(sobre, P.M + 4, 48);
+    doc.setFont("times", "bold"); doc.setFontSize(32); doc.setTextColor(...CREME); doc.text(l1, P.M + 4, 72); if (l2) doc.text(l2, P.M + 4, 86);
+    doc.setFillColor(...OURO); doc.rect(P.M + 4, 93, 50, 1.2, "F");
+    doc.setFont("helvetica", "normal"); doc.setFontSize(12); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(sub, P.CW - 8), P.M + 4, 104);
+    doc.setFontSize(10); doc.setTextColor(220, 214, 200); doc.text(doc.splitTextToSize(CURSO, P.CW - 8), P.M + 4, 117); doc.text(SUBTITULO, P.M + 4, 122.5);
+    if (extra) extra(doc);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ALUNO", P.M + 4, 200);
+    doc.setFont("times", "bold"); doc.setFontSize(22); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", P.CW - 8), P.M + 4, 210);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(220, 214, 200);
+    doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}`, P.M + 4, 222);
+    doc.text(`Gerada em ${dataBR(hojeISO())}`, P.M + 4, 229);
+    doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, P.CW - 8), P.M + 4, P.H - 26);
+  };
+  P.fechar = (nomeArquivo) => {
+    const n = doc.getNumberOfPages();
+    for (let k = 1; k <= n; k++) {
+      doc.setPage(k);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5);
+      doc.setTextColor(...(k === 1 ? [220, 214, 200] : CINZA));
+      if (k > 1) { doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(P.M, P.H - 16, P.W - P.M, P.H - 16); doc.text(doc.splitTextToSize(RODAPE, P.CW - 14), P.M, P.H - 12); }
+      doc.text(`${k}/${n}`, P.W - P.M, P.H - 12, { align: "right" });
+    }
+    const arq = nomeArquivo + "-" + (S.perfil.nome || "aluno").normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + (simAjustado() ? "-ajustado" : "") + ".pdf";
+    window.__ultimoPDF = { arq, paginas: n, doc };
+    doc.save(arq);
+    return arq;
+  };
+  return P;
+}
+
+/** O corpo da página deste pilar no PDF (usado aqui e, depois, no Dossiê completo do Pilar 7). */
+function corpoDaPaginaPDF(P, L) {
+  P.titulo("O resumo");
+  P.caixasNumeros(AULA.numeros(L));
+  const mud = simMudancas();
+  if (mud.length) P.caixa(`Ajustado no simulador em ${dataBR(S.sim.data || hojeISO())}`, "Esta página saiu com os números que estavam na tela, e não só com as respostas. O que mudou:\n" + mud.map((m) => `- ${m.s.rot}: ${m.de === null ? "você não respondeu (Não sei)" : "você respondeu " + fmtSim(m.s, m.de)}; na tela, ${fmtSim(m.s, m.para)}`).join("\n") + "\nOs números ajustados são uma simulação de referência: não são medida nem promessa.", [150, 110, 20]);
+  else P.par(`Números das suas respostas, sem ajuste no simulador. Gerada em ${dataBR(hojeISO())}.`, { size: 8.5, cor: CINZA, after: 3 });
+  const leit = AULA.LEITURAS[L.v];
+  P.caixa("A leitura" + (L.ajustado ? " (com o simulador)" : ""), `${leit.rot}. ${leit.sub} ${L.motivo}`, VERDE);
+  P.caixa("O ponto mais frágil", L.fragil, VERM);
+  if (AULA.pdfExtra) AULA.pdfExtra(P, L);
+  P.y += 2;
+  if (notaMax()) P.par(`Nota: ${L.soma} de ${notaMax()}. Não existe nota de corte: primeiro os alertas, depois a soma, depois a decisão.`, { bold: true, after: 4 });
+  const mentor = mentorDoResumo(L);
+  if (mentor) { P.titulo("Leitura do mentor virtual"); mentorParaPDF(mentor).forEach(([r, t, c]) => P.caixa(r, t, c)); P.y += 2; }
+  P.titulo("Os alertas");
+  if (L.alertas.length) L.alertas.forEach((x) => P.caixa(x.tit, x.txt, COR_ALERTA[x.t] || VERDE));
+  else P.par("Nenhum alerta nesta página.", { cor: CINZA });
+  P.titulo("As contas e as leituras");
+  const contas = (AULA.contas || L.res.calculos.filter((c) => c.id !== "veredito_sugerido").map((c) => c.id)).map((id) => calc(L.res, id)).filter((c) => c && c.texto);
+  contas.forEach((c) => { P.par(c.rotulo, { bold: true, after: 0.5 }); P.par(c.texto, { cor: CINZA, size: 9.5, after: 3 }); });
+  P.titulo("As suas respostas");
+  const larg = [50, 100, 24];
+  P.linhaTabela(["Pergunta", "Resposta e fonte", "Nota"], larg, { bold: true, size: 8, cor: CINZA });
+  qsVisiveis().forEach((q) => {
+    const nota = q.nota ? String(notaItem(q)) : "";
+    const fonte = fonteTexto(q);
+    P.linhaTabela([q.curto, respostaTexto(q) + (fonte ? ` (${fonte})` : ""), nota], larg, { cores: [VERDE, VERDE, nota === "0" || nota === "1" ? VERM : VERDE] });
+  });
+  P.y += 2;
+  if (notaMax()) P.par(`Soma: ${L.soma} de ${notaMax()}. ${AULA.escalaNota}`, { size: 8.5, cor: CINZA, after: 4 });
+  P.titulo("O critério para parar");
+  P.caixa("Escrito antes, para não decidir pelo entusiasmo", S.criterio || "Em branco", OURO_E);
+  P.titulo("O Compromisso de 7 dias");
+  const cp = S.compromisso || {};
+  [["Ação", cp.acao], ["Responsável", cp.responsavel], ["Prazo", dataBR(cp.prazo)], ["Evidência", cp.evidencia]].forEach(([r, v]) => P.linhaTabela([r, v || "Em branco"], [40, P.CW - 40], {}));
+  P.y += 4;
+}
+
+function gerarFichaPDF(L) {
+  const P = criarPDF(`Zion · Trilha 1 · Pilar ${AULA.n} · ${META.pagina}`);
+  const [l1, l2] = AULA.capaTitulo;
+  P.capa(`TRILHA 1 · PILAR ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê de Desenvolvimento`, (doc) => {
+    if (L.ajustado) { doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...OURO); doc.text(`AJUSTADO NO SIMULADOR EM ${dataBR(S.sim.data || hojeISO())}`, P.M + 4, 140); }
+  });
+  P.novaPagina();
+  corpoDaPaginaPDF(P, L);
+  P.par(AULA.notaFinalPDF, { size: 8, cor: CINZA });
+  return P.fechar(AULA.arquivoPDF);
+}
+
+/* ---------------------------------------------------------------------
+   7. Início
+   --------------------------------------------------------------------- */
+window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoParaMentor, corpoDoPedidoMentor, simMudancas, get estado() { return S; }, AULA };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) S.perfil = Object.assign(S.perfil, salvo.perfil);
+  render();
+})();
+
+</script>
+</body>
+</html>
