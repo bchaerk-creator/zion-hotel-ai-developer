@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ficha do Mercado</title>
-<meta name="description" content="Ferramenta da Aula 2 da Trilha 1 da Mentoria Zion: Mercado e demanda. Você responde uma pergunta por vez e sai com a Ficha do Mercado, a página 2 do Dossiê do Produto, em PDF.">
+<meta name="description" content="Ferramenta do Pilar 2 da Trilha 1 da Mentoria Zion: Mercado e demanda. Você responde uma pergunta por vez e sai com a Ficha do Mercado, a página 2 do Dossiê do Produto, em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -131,20 +131,27 @@ td.n,th.n{text-align:center;font-weight:700;width:3.2em}
 }
 @media print{.topo,.nav,.acoes{display:none}}
 </style>
+<!-- Start of Clickmax SDK Code -->
+<script>
+(()=>{let e="projeto-de-bruno-25763216",c="/unhOi71GXmgmacScw68RG",t=window;if(!t.cxs){function s(e,...c){t._cx?t._cx.callMethod.apply(t._cx,[e,...c]):t.cxs.queue.push([e,...c])}s.queue=[],t.cxs=s;{let t=encodeURIComponent,s=document,n=`https://api.clickmax.io/sdk/script.js?ps=${t(e)}&pg=${t(c)}`,i="script",p=s.createElement(i);p.async=!0,p.src=n;let o=s.getElementsByTagName(i)[0];o.parentNode.insertBefore(p,o)}}cxs("init",e,c)})();
+cxs('track', 'page_view');
+</script>
+<noscript><img height="1" width="1" style="display: none" src="https://api.clickmax.io/tr/projeto-de-bruno-25763216?ty=page_view&pg=%2FunhOi71GXmgmacScw68RG&pl=%7B%22noscript%22%3A1%7D"/></noscript>
+<!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Aula 2<br>Mercado e demanda</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 2<br>Mercado e demanda</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion Exercícios · Trilha 1 · Trilha 1 · Aula 2 · Mercado e demanda
+   Zion Exercícios · Trilha 1 · Trilha 1 · Pilar 2 · Mercado e demanda
    Um arquivo só, gerado por _fonte/build.js. Sem framework.
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    ===================================================================== */
 "use strict";
-const ZION_WEBHOOK_URL = "";
+const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". Para ligar, preencha e rode node _fonte/build.js. */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
 const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
@@ -509,7 +516,7 @@ var Calc_03 = (() => {
   return __toCommonJS(t1_a03_exports);
 })();
 
-/* Aula 2 · Mercado e demanda. Campos e regras: kit-code/ferramentas/aula-03.json.
+/* Pilar 2 · Mercado e demanda. Campos e regras: kit-code/ferramentas/aula-03.json.
    Contas: calculadoras["1-3"] (kit-code/ferramentas/ts/t1-a03.ts), embutida sem mudança (Calc_03). */
 const AULA = {
   n: 2,
@@ -679,10 +686,10 @@ const AULA = {
       pergunta: "Quantas unidades você pensava em abrir?",
       explica: "O número que você tinha em mente antes desta conta. Pode ser o que saiu da capacidade da sua Ficha do Território.",
       porque: "A ferramenta compara esse número com quantas unidades o mercado aguenta agora. Unidade que o mercado não compra custa obra, mobília e manutenção sem trazer receita.",
-      onde: "<p>Na sua Ficha do Território (Aula 1), na capacidade: quantas unidades o lugar aguenta. Lá, o limite de mercado ainda estava em aberto: é aqui que ele se mede.</p>",
+      onde: "<p>Na sua Ficha do Território (Pilar 1), na capacidade: quantas unidades o lugar aguenta. Lá, o limite de mercado ainda estava em aberto: é aqui que ele se mede.</p>",
       marina: "A Marina pensava em 5 unidades.",
       ondeCurto: "rever a capacidade da sua Ficha do Território",
-      veio: () => { const d = dadosDaAula(1); return d && typeof d.capacidade === "number" ? { valor: String(d.capacidade), de: "Aula 1 (capacidade do lugar, ainda sem o limite de mercado)" } : null; },
+      veio: () => { const d = dadosDaAula(1); return d && typeof d.capacidade === "number" ? { valor: String(d.capacidade), de: "Pilar 1 (capacidade do lugar, ainda sem o limite de mercado)" } : null; },
     },
   ],
   LEITURAS: {
@@ -718,7 +725,7 @@ const AULA = {
     if (n1) return `${n1.q.curto} é estimativa sem fonte. Nota sem evidência não vale: ${n1.q.ondeCurto}.`;
     if (ab.valor !== null && pret !== null && ab.valor < pret) return `Cabem ${fmtN(ab.valor)} unidades agora, menos que as ${fmtN(pret)} que você pensava. Desenhe a infraestrutura para o total e abra com as que cabem: as outras entram quando o mercado provar.`;
     if (amp.alerta === "atencao") return "A amplitude da região está abaixo de 2: a briga é de preço. O produto vai precisar de um motivo claro para não cair na disputa pelo mais barato.";
-    return "O mercado aguenta as unidades pretendidas desde que você entregue o que o topo da faixa entrega. Essa condição vai para a Aula 3, Produto e tipologias.";
+    return "O mercado aguenta as unidades pretendidas desde que você entregue o que o topo da faixa entrega. Essa condição vai para o Pilar 3, Produto e tipologias.";
   },
   criterio(c) {
     const ab = c.g("absorcao");
@@ -831,7 +838,7 @@ function ler() {
   return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx };
 }
 
-/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido na Aula 6). */
+/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido no Pilar 6). */
 function montarResumo(L) {
   const lt = AULA.LEITURAS[L.v];
   return {
@@ -855,10 +862,27 @@ function montarPayload(L) {
     calculos: L.res.calculos,
   };
 }
+/* Zion · CRM: guarda a página do Dossiê (Lovable) e registra o aluno no ClickMax. Nunca trava a ferramenta. */
+const ZION_PAGINA = "t1-aula-2";
+function zionEmailOk(e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(e || "").trim()); }
+function zionLead(nome, email) {
+  try {
+    if (!zionEmailOk(email)) return;
+    const f = document.getElementById("zx-lead"); if (!f) return;
+    f.querySelector('[data-cx-field="name"]').value = String(nome || "").slice(0, 200);
+    f.querySelector('[data-cx-field="email"]').value = String(email).trim();
+    if (f.requestSubmit) f.requestSubmit(); else f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  } catch (e) { console.log("[Zion] lead não enviado", e); }
+}
 async function enviarParaZion(payload) {
+  payload = payload || {};
+  zionLead(payload.nome, payload.email);
   if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
-  try { const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); return { enviado: r.ok }; }
-  catch (e) { return { enviado: false, erro: String(e) }; }
+  try {
+    const corpo = { pagina: ZION_PAGINA, email: zionEmailOk(payload.email) ? String(payload.email).trim() : "", nome: String(payload.nome || "").slice(0, 200), payload: payload };
+    const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
+    return { enviado: r.ok };
+  } catch (e) { return { enviado: false, erro: String(e) }; }
 }
 
 const MENTOR_AULA_ID = "t1-aula-" + AULA.n;
@@ -1359,7 +1383,7 @@ function criarPDF(cabecalho) {
   return P;
 }
 
-/** O corpo da página desta aula no PDF (usado na ficha e no Dossiê da Aula 6). */
+/** O corpo da página deste pilar no PDF (usado na ficha e no Dossiê do Pilar 6). */
 function corpoDaPaginaPDF(P, L) {
   const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
   P.titulo("O resumo");
@@ -1415,5 +1439,8 @@ window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoPar
   render();
 })();
 </script>
+<!-- Zion · lead no ClickMax quando o aluno baixa a página do Dossiê -->
+<iframe name="zx-sink" title="envio" hidden style="display:none"></iframe>
+<form id="zx-lead" data-cx-ingest-form data-cx-nostyles target="zx-sink" action="about:blank" hidden style="display:none"><input data-cx-field="name" type="text"><input data-cx-field="email" type="email"><input data-cx-field="website" type="text" hidden></form>
 </body>
 </html>

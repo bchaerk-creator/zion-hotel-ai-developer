@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ficha do Território</title>
-<meta name="description" content="Ferramenta da Aula 1 da Trilha 1 da Mentoria Zion: Território e destino. Você responde uma pergunta por vez e sai com a Ficha do Território, a página 1 do Dossiê do seu projeto, em PDF.">
+<meta name="description" content="Ferramenta do Pilar 1 da Trilha 1 da Mentoria Zion: Território e destino. Você responde uma pergunta por vez e sai com a Ficha do Território, a página 1 do Dossiê do seu projeto, em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -123,19 +123,26 @@ td.n{text-align:center;font-weight:700;white-space:nowrap}
 }
 @media print{.topo,.nav,.acoes{display:none}}
 </style>
+<!-- Start of Clickmax SDK Code -->
+<script>
+(()=>{let e="projeto-de-bruno-25763216",c="/Bn0dSOZjNll8FzL98z2lU",t=window;if(!t.cxs){function s(e,...c){t._cx?t._cx.callMethod.apply(t._cx,[e,...c]):t.cxs.queue.push([e,...c])}s.queue=[],t.cxs=s;{let t=encodeURIComponent,s=document,n=`https://api.clickmax.io/sdk/script.js?ps=${t(e)}&pg=${t(c)}`,i="script",p=s.createElement(i);p.async=!0,p.src=n;let o=s.getElementsByTagName(i)[0];o.parentNode.insertBefore(p,o)}}cxs("init",e,c)})();
+cxs('track', 'page_view');
+</script>
+<noscript><img height="1" width="1" style="display: none" src="https://api.clickmax.io/tr/projeto-de-bruno-25763216?ty=page_view&pg=%2FBn0dSOZjNll8FzL98z2lU&pl=%7B%22noscript%22%3A1%7D"/></noscript>
+<!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Mentoria Zion</div><div class="etiqueta">Trilha 1 · Aula 1<br>Território e destino</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Mentoria Zion</div><div class="etiqueta">Trilha 1 · Pilar 1<br>Território e destino</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion Exercícios · Trilha 1 · Etapa 1 · Aula 1 · Território e destino
+   Zion Exercícios · Trilha 1 · Etapa 1 · Pilar 1 · Território e destino
    Um arquivo só. Sem framework. Nada é enviado: ZION_WEBHOOK_URL vazia.
    ===================================================================== */
 "use strict";
-const ZION_WEBHOOK_URL = "";
+const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". O build.js copia esta linha de _fonte/base.html. */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
 const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
@@ -311,12 +318,12 @@ const ZionCalc = (function () {
     // 4. capacidade
     {
       let t;
-      if (capacidade === null) t = "Nenhum dos quatro limites foi preenchido: a capacidade fica em branco. O de mercado se mede na Aula 3.";
+      if (capacidade === null) t = "Nenhum dos quatro limites foi preenchido: a capacidade fica em branco. O de mercado se mede no Pilar 2, Mercado e demanda.";
       else {
         t = `O lugar aguenta ${fmtN(capacidade)} unidades: é o menor dos limites. Quem manda é o limite ${juntar(mandam.map((l) => l.nome))}.`;
         if (faltamLim.length) {
           t += ` Provisória: falta o limite ${juntar(faltamLim.map((l) => l.nome))}.`;
-          if (faltamLim.some((l) => l.id === "limite_mercado")) t += " O de mercado, medir na Aula 3.";
+          if (faltamLim.some((l) => l.id === "limite_mercado")) t += " O de mercado se mede no Pilar 2, Mercado e demanda.";
         }
       }
       calculos.push({ id: "capacidade", rotulo: "Quantas unidades o lugar aguenta, e qual limite manda", valor: capacidade, texto: t, detalhes: { limite_que_manda: mandam.map((l) => l.id), provisoria: faltamLim.length > 0, limites_faltando: faltamLim.map((l) => l.id) } });
@@ -386,7 +393,7 @@ const ZionCalc = (function () {
 
 /* ---------------------------------------------------------------------
    2. As perguntas (campos de território de aula-02.json; o limite de
-      mercado fica de fora: ele se mede na Aula 2, Mercado e demanda).
+      mercado fica de fora: ele se mede no Pilar 2, Mercado e demanda).
    --------------------------------------------------------------------- */
 const FONTES = [
   { v: "doc", nota: 3, rot: "De um documento ou de uma medida (matrícula, CAR, topógrafo, prefeitura, concessionária)" },
@@ -560,8 +567,8 @@ const { fmtN, brl, fmtPct, juntar, paraNumero } = ZionCalc;
 const ehNS = (v) => v === "nao_sei";
 const Q = (id) => QUESTOES.find((q) => q.id === id);
 const calc = (res, id) => res.calculos.find((c) => c.id === id);
-/** Textos da calculadora com a numeração nova da trilha (o mercado agora é a Aula 2). */
-const textoTela = (t) => t.replace(/O de mercado, medir na Aula 3\./g, "O de mercado se mede na Aula 2, Mercado e demanda.").replace(/O de mercado se mede na Aula 3\./g, "O de mercado se mede na Aula 2, Mercado e demanda.");
+/** Textos da calculadora com a numeração nova da trilha (o mercado agora é o Pilar 2). */
+const textoTela = (t) => t.replace(/O de mercado, medir no Pilar 3\./g, "O de mercado se mede no Pilar 2, Mercado e demanda.").replace(/O de mercado se mede no Pilar 3\./g, "O de mercado se mede no Pilar 2, Mercado e demanda.");
 
 function respostasParaCalculo() {
   const r = {};
@@ -583,7 +590,7 @@ function hojeISO(desloc = 0) {
 const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
 
 const LEITURAS = {
-  avancar: { rot: "Seguir", sub: "Território lido: siga para a Aula 2 e meça o mercado." },
+  avancar: { rot: "Seguir", sub: "Território lido: siga para o Pilar 2 e meça o mercado." },
   testar: { rot: "Investigar antes", sub: "Ainda há o que medir antes de desenhar ou pôr dinheiro." },
   ajustar: { rot: "Ajustar: renegociar", sub: "A conta do terreno precisa mudar antes de seguir." },
   pausar: { rot: "Pausar: trocar de terreno", sub: "Muda-se o terreno, não o projeto." },
@@ -595,7 +602,7 @@ function ler() {
   const area = calc(res, "area_usavel"), cap = calc(res, "capacidade"), peso = calc(res, "peso_terreno"), docs = calc(res, "documentos_faltando");
   const faltam = docs.detalhes.faltam;
   const faltaMatCar = faltam.includes("matricula") || faltam.includes("car");
-  // Não sei do aluno (o limite de mercado não é perguntado nesta aula)
+  // Não sei do aluno (o limite de mercado não é perguntado neste pilar)
   const nsAluno = QUESTOES.filter((q) => q.aceitaNS && (ehNS(S.respostas[q.id]) || S.respostas[q.id] === undefined || S.respostas[q.id] === ""));
   const caminho = S.respostas.caminho_leitura;
   const pesoV = peso.valor; // em pontos
@@ -605,18 +612,18 @@ function ler() {
 
   // Leitura: o veredito da calculadora 1-2. Única leitura a mais: quando o único
   // motivo de "testar" é o limite de mercado (que esta aula não pergunta), a leitura
-  // do território é "seguir" para a Aula 2, onde o mercado é medido.
+  // do território é "seguir" para o Pilar 2, onde o mercado é medido.
   let v = res.veredito_sugerido, motivo = res.motivo_veredito;
   if (v === "testar" && caminho !== "investigar" && nsAluno.length === 0 && !faltaMatCar && pesoV !== null) {
     v = "avancar";
-    motivo = "Território lido: área usável com fonte, matrícula e CAR na mão, três limites preenchidos e o peso do terreno fora do alerta. Falta só o limite de mercado, que se mede na Aula 2. Até lá, não desenha nem põe dinheiro.";
+    motivo = "Território lido: área usável com fonte, matrícula e CAR na mão, três limites preenchidos e o peso do terreno fora do alerta. Falta só o limite de mercado, que se mede no Pilar 2. Até lá, não desenha nem põe dinheiro.";
   } else if (v === "testar") {
     const m = [];
     if (caminho === "investigar") m.push("você escolheu investigar antes");
     if (nsAluno.length) m.push(`há ${nsAluno.length} Não sei nas suas respostas`);
     if (faltaMatCar) m.push("falta a matrícula ou o CAR na mão");
     if (pesoV === null && !nsAluno.length) m.push("o peso do terreno está em branco");
-    motivo = `Investigar antes: ${juntar(m)}. E o limite de mercado ainda se mede na Aula 2. Não desenha nem põe dinheiro antes de medir.`;
+    motivo = `Investigar antes: ${juntar(m)}. E o limite de mercado ainda se mede no Pilar 2. Não desenha nem põe dinheiro antes de medir.`;
   }
 
   // Alertas: críticos e Não sei primeiro
@@ -628,7 +635,7 @@ function ler() {
   for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: é estimativa. Nota sem documento ou medida que prove não vale. Para confirmar: ${x.q.ondeCurto}.` });
   if (peso.alerta === "atencao") alertas.push({ t: "atencao", tit: "Atenção", txt: peso.texto });
   if (faltam.length) alertas.push({ t: "atencao", tit: "Atenção", txt: docs.texto + (faltaMatCar ? " Sem matrícula e CAR, a área que você pode usar ainda não tem fonte." : "") });
-  alertas.push({ t: "info", tit: "Para a próxima aula", txt: "O limite de mercado (quantas unidades o destino compra) não entra nesta aula. Ele se mede na Aula 2, Mercado e demanda, e pode mudar a capacidade." });
+  alertas.push({ t: "info", tit: "Para a próxima aula", txt: "O limite de mercado (quantas unidades o destino compra) não entra neste pilar. Ele se mede no Pilar 2, Mercado e demanda, e pode mudar a capacidade." });
 
   // Ponto mais frágil (o que, se continuar assim, mais pesa na decisão)
   let fragil;
@@ -647,7 +654,7 @@ function ler() {
   } else if (peso.alerta === "atencao") fragil = `O terreno pesa ${fmtN(pesoV, 1)}% do investimento total, na zona sensível da regra de bolso (de 10% a 20%).`;
   else {
     const manda = (cap.detalhes.limite_que_manda || []).map((id) => Q(id) ? Q(id).curto.toLowerCase() : id);
-    fragil = `A capacidade ainda depende do limite de mercado, que se mede na Aula 2. Hoje quem manda é o ${juntar(manda) || "menor limite"}.`;
+    fragil = `A capacidade ainda depende do limite de mercado, que se mede no Pilar 2. Hoje quem manda é o ${juntar(manda) || "menor limite"}.`;
   }
 
   // Sugestões para o aluno editar
@@ -682,10 +689,25 @@ function montarPayload(L) {
     calculos: L.res.calculos,
   };
 }
+/* Zion · CRM: guarda a página do Dossiê (Lovable) e registra o aluno no ClickMax. Nunca trava a ferramenta. */
+const ZION_PAGINA = "t1-aula-1";
+function zionEmailOk(e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(e || "").trim()); }
+function zionLead(nome, email) {
+  try {
+    if (!zionEmailOk(email)) return;
+    const f = document.getElementById("zx-lead"); if (!f) return;
+    f.querySelector('[data-cx-field="name"]').value = String(nome || "").slice(0, 200);
+    f.querySelector('[data-cx-field="email"]').value = String(email).trim();
+    if (f.requestSubmit) f.requestSubmit(); else f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  } catch (e) { console.log("[Zion] lead não enviado", e); }
+}
 async function enviarParaZion(payload) {
+  payload = payload || {};
+  zionLead(payload.nome, payload.email);
   if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
   try {
-    const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) });
+    const corpo = { pagina: ZION_PAGINA, email: zionEmailOk(payload.email) ? String(payload.email).trim() : "", nome: String(payload.nome || "").slice(0, 200), payload: payload };
+    const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
     return { enviado: r.ok };
   } catch (e) { return { enviado: false, erro: String(e) }; }
 }
@@ -837,7 +859,7 @@ function telaAbertura() {
   const temSalvo = salvo && (Object.keys(salvo.respostas || {}).length > 0);
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Etapa 1 · Aula 1 · Território e destino</div>
+    <div class="eyebrow">Etapa 1 · Pilar 1 · Território e destino</div>
     <h1 tabindex="-1">A sua Ficha do Território</h1>
     <p class="lead">Em cerca de dez minutos você monta a página 1 do Dossiê do seu projeto: o que o seu terreno permite de verdade.</p>
     <div class="tres">
@@ -988,7 +1010,7 @@ function respostaTexto(q) {
 }
 const fonteTexto = (q) => { const f = FONTES.find((x) => x.v === S.fontes[q.id]); return ehNS(S.respostas[q.id]) ? "" : f ? ["Documento ou medida", "Profissional, sem papel", "Estimativa"][FONTES.indexOf(f)] : ""; };
 
-/** O resumo que a Aula 1 deixa salvo para o Dossiê do Produto, lido pela ferramenta da Aula 6. */
+/** O resumo que o Pilar 1 deixa salvo para o Dossiê do Produto, lido pela ferramenta do Pilar 6. */
 function resumoParaDossie(L) {
   const g = (id) => calc(L.res, id), leit = LEITURAS[L.v];
   const a = g("area_usavel"), pc = g("pct_usavel"), c = g("capacidade"), p = g("peso_terreno");
@@ -1019,7 +1041,7 @@ function telaResultado() {
   const leit = LEITURAS[L.v];
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Página 1 do Dossiê · Etapa 1 · Aula 1</div>
+    <div class="eyebrow">Página 1 do Dossiê · Etapa 1 · Pilar 1</div>
     <h1 tabindex="-1">Ficha do Território</h1>
     <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
     <div class="numeros">
@@ -1234,5 +1256,8 @@ window.ZionApp = { ler, montarPayload, enviarParaZion, resumoParaDossie, veredit
   render();
 })();
 </script>
+<!-- Zion · lead no ClickMax quando o aluno baixa a página do Dossiê -->
+<iframe name="zx-sink" title="envio" hidden style="display:none"></iframe>
+<form id="zx-lead" data-cx-ingest-form data-cx-nostyles target="zx-sink" action="about:blank" hidden style="display:none"><input data-cx-field="name" type="text"><input data-cx-field="email" type="email"><input data-cx-field="website" type="text" hidden></form>
 </body>
 </html>

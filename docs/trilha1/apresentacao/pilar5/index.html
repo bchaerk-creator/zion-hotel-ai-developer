@@ -1,0 +1,780 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 5 · Masterplan faseado · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.faixa{display:flex;height:70px;border-radius:14px;overflow:hidden;border:1px solid rgba(22,38,28,.15)}
+.faixa span{display:block;height:100%;transition:width .3s}
+.t-nunca{background:#C9A9A2}.t-fora{background:#D8D0BF}.t-usavel{background:#BFD3BF}.t-ocupa{background:#16261C}
+.esc .t-ocupa{background:var(--ouro)}
+.leg{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:21px;color:var(--cinza)}
+.esc .leg{color:#BFB8A8}
+.leg i{display:inline-block;width:20px;height:20px;border-radius:4px;margin-right:8px;vertical-align:-3px}
+.leg b{font-variant-numeric:tabular-nums}
+.sim select{grid-column:1/-1;font:inherit;font-size:22px;padding:10px 14px;border-radius:10px;border:2px solid var(--ouro);background:#fff;color:var(--tinta)}
+.compacto .ctl{gap:14px}
+.compacto label{font-size:21px}
+.compacto label output{font-size:23px}
+.compacto input[type=range]{height:28px}
+.compacto .res{padding:24px 30px;gap:9px}
+.compacto .linha{font-size:23px;padding-bottom:8px}
+.compacto .linha.tot{font-size:29px}
+.compacto .aviso{font-size:21px}
+.painel5 .ctl{display:grid;grid-template-columns:1fr 1fr;gap:12px 30px}
+.painel5 label small{font-size:17px}
+.reg5{display:flex;height:44px;border-radius:10px;overflow:hidden;font-size:17px;font-weight:700}
+.reg5>div{display:flex;align-items:center;justify-content:center;color:#fff}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.dupla .quiz .q{font-size:40px}
+.dupla .quiz .ops{grid-template-columns:1fr}
+.dupla .quiz .op{font-size:25px;padding:18px 22px}
+.dupla .quiz .exp{font-size:23px}
+.pq.mini{min-height:230px}
+.pq.mini .fr h3{font-size:31px}
+.pq.mini .vs p{font-size:24px}
+.pq.mini .fr,.pq.mini .vs{padding:24px 26px}
+</style>
+<script>
+/* Simulador do Pilar 5: a ocupação do terreno, o apoio e os alertas do masterplan (exemplo ilustrativo).
+   Mesmas regras da ferramenta "Faça agora · O seu Masterplan faseado" (calcular5) e do e-book do Pilar 5.
+   Marina, conferido em Python: fase um 114 + 30 = 144 m², apoio 20,8%; completo 190 + 34 = 224 m², apoio 15,2%;
+   chão 5 × (38 + 16) + 34 = 304 m² = 2,03% da usável e 0,61% da matrícula; eficiência 79,2% e 84,8%; teto imaginado 5.000 m². */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function juntar(a){ return a.length < 2 ? (a[0]||'') : a.slice(0,-1).join(', ') + ' e ' + a[a.length-1]; }
+ZD.sims.p5 = function(v){
+  const uc = Math.max(v.uc, v.u1);
+  const hosp1 = v.u1 * v.af, fech1 = hosp1 + v.ap1, hospC = uc * v.af, fechC = hospC + v.apc;
+  const p1 = fech1 > 0 ? v.ap1 / fech1 * 100 : 0, pC = fechC > 0 ? v.apc / fechC * 100 : 0;
+  const chao1 = v.u1 * (v.af + v.dk) + v.ap1, chaoC = uc * (v.af + v.dk) + v.apc;
+  const minC = 0.15 * hospC / 0.85, tetoTO = v.tx / 100 * v.mat;
+  const ef1 = fech1 > 0 ? hosp1 / fech1 * 100 : 0, efC = fechC > 0 ? hospC / fechC * 100 : 0;
+  const redeCurta = v.rede < uc, cruzam = +v.cam === 1;
+  /* o terreno */
+  let avTerreno;
+  if (v.us > v.mat) avTerreno = ['er','A área usável não pode passar da matrícula: <b>confira os dois números</b>.'];
+  else if (v.nun + v.us > v.mat * 1.001) avTerreno = ['at','O nunca somado à área usável passa da matrícula: confira se parte do nunca já ficou fora da área usável no Pilar 1.'];
+  else avTerreno = ['ok','Matrícula, usável e nunca conferem entre si.'];
+  /* a ocupação */
+  const avOcup = chaoC > v.us
+    ? ['er','<b>O desenho ocupa mais do que a área que você pode usar:</b> ele não cabe.']
+    : ['ok','<b>Cabe com folga.</b> A área livre também é produto: quem manda no número, aqui, é o mercado e a promessa.'];
+  /* o apoio */
+  const avApoio1 = p1 < 15 ? ['er','<b>Abaixo de 15%:</b> o apoio vai faltar no dia a dia e virar puxadinho.']
+    : p1 > 25 ? ['at','<b>Acima de 25%:</b> confira se a conta usou a base certa, só a área fechada, sem o deck.']
+    : ['ok','<b>Dentro da faixa de 15% a 25%.</b>'];
+  const avApoioC = uc === v.u1 ? ['ok','O projeto completo tem as mesmas unidades da fase um.']
+    : pC < 15 ? ['at','<b>Projeto completo abaixo de 15%.</b> Mínimo: 0,15 × ' + Math.round(hospC) + ' ÷ 0,85 = cerca de ' + minC.toFixed(1).replace('.', ',') + ' m². Prepare a ampliação já na fase um.']
+    : ['ok','<b>Projeto completo dentro da faixa.</b> A ampliação fica preparada já na fase um: a base e os pontos de água e energia.'];
+  /* leitura geral, na ordem da ferramenta */
+  const m = [];
+  if (v.uc < v.u1) m.push('o projeto completo tem menos unidades que a fase um');
+  if (v.us > v.mat) m.push('a área usável passa da matrícula');
+  if (cruzam) m.push('os caminhos do hóspede e do serviço se cruzam');
+  if (p1 < 15) m.push('o apoio da fase um ficou abaixo de 15%');
+  if (redeCurta) m.push('a rede foi feita só para ' + v.rede + (v.rede === 1 ? ' unidade' : ' unidades'));
+  if (chaoC > v.us) m.push('o desenho ocupa mais do que a área usável');
+  if (chaoC > tetoTO) m.push('o desenho passa do teto da taxa de ocupação');
+  const a = [];
+  if (p1 > 25) a.push('o apoio da fase um passou de 25%');
+  if (uc > v.u1 && pC < 15) a.push('o apoio do projeto completo ficou abaixo de 15%');
+  let _aviso;
+  if (m.length) _aviso = ['er','<b>Ajustar o desenho:</b> ' + juntar(m) + '. Corrigir agora custa papel.'];
+  else if (a.length) _aviso = ['at','<b>Atenção:</b> ' + juntar(a) + '.'];
+  else _aviso = ['ok','<b>Sem alerta no desenho:</b> cabe na área usável e abaixo do teto, o apoio está na faixa, a rede é para o projeto completo e os caminhos não se cruzam.'];
+  return {hosp1, fech1, p1, hospC, fechC, pC, minC, chao1, chaoC, tetoTO, ef1, efC,
+    pUs: v.us > 0 ? chaoC / v.us * 100 : 0, pMat: v.mat > 0 ? chaoC / v.mat * 100 : 0,
+    apcM: v.apc, reserva: uc - v.u1, deck1: v.u1 * v.dk, deckC: uc * v.dk,
+    redeTxt: 'para ' + v.rede + ' de ' + uc + (uc === 1 ? ' unidade' : ' unidades'),
+    camTxt: cruzam ? 'cruzam' : 'não se cruzam',
+    pont1: Math.min(p1, 40) / 40 * 100, pontC: Math.min(pC, 40) / 40 * 100,
+    avTerreno, avOcup, avApoio1, avApoioC, _aviso};
+};
+ZD.desenha.p5 = function(sim, r, v){
+  const f = sim.querySelector('.faixa'); if (!f || !(v.mat > 0)) return;
+  const us = Math.min(v.us, v.mat);
+  const fN = Math.min(v.nun, v.mat - us) / v.mat, fO = Math.min(r.chaoC, us) / v.mat;
+  const fU = us / v.mat - fO, fF = Math.max(0, 1 - us / v.mat - fN);
+  const w = x => (x > 0 ? Math.max(x * 100, 0.8) : 0) + '%';
+  const s = f.querySelectorAll('span');
+  s[0].style.width = w(fN); s[1].style.width = w(fF); s[2].style.width = w(fU); s[3].style.width = w(fO);
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar5" data-titulo="Pilar 5 · Masterplan faseado">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 3 · Desenhar o terreno</p>
+  <h1>Pilar 5<br><i>Masterplan faseado</i></h1>
+  <p class="lead" style="max-width:1000px">O terreno inteiro no papel, no tempo, antes de chamar quem desenha.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "Nos pilares anteriores vocês leram o terreno, mediram o mercado, decidiram o produto e escolheram o modelo. Já têm quatro páginas do Dossiê. Hoje a gente põe tudo isso no chão." Peça o mapa do terreno (pode ser um desenho à mão), uma caneta vermelha e uma de outra cor. Avise: hoje não tem conta de dinheiro, só de área, em metros quadrados.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/1c46550f59.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">Antes de desenhar</span><p class="q">O papel suporta <i>qualquer projeto.</i></p></div>
+    <div class="gq f"><span class="rot">A pergunta do Pilar 5</span><p class="q">O terreno suporta o que está <i>no papel?</i></p></div>
+    <div class="gq f"><span class="rot">E a pergunta que decide</span><p class="q">O que entra <i>na fase um?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho, uma por clique. "No papel tudo cabe. No terreno, existe o nunca, o caminho, o apoio e a rede. E nem tudo entra agora: a fase um é o que começa a girar primeiro."</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Esta aula em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>Onde nunca construir, o que precisa existir, onde fica cada coisa, o que cabe, o que se vende e o que entra na fase um.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>A planta se corrige em semanas. A posição, nunca. E sem a lista do que vai ser construído, ninguém consegue orçar.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 5 do seu Dossiê: o Masterplan faseado, com alertas, veredito e critério para parar.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "A pergunta de hoje é a que o arquiteto, o banco, um sócio ou um investidor vão fazer agora: o que se constrói, onde fica cada coisa e o que entra primeiro. E se o investidor for você mesmo, a pergunta é a mesma." Bloco 1: onde nunca e o que precisa existir. Bloco 2: onde fica, o que cabe, o que se vende e a fase um. No fim, o Faça agora.</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Pilar 4</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Qual é o cem por cento de três cabanas?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>3 × 365 = 1.095 noites no ano.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Em que cenário você confia?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>No mais fraco.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>A obra custa tudo. O que a venda paga?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Só a área vendável. Hoje você vai separar as duas no seu desenho.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então clique para virar. A Marina segue como exemplo ilustrativo: terreno com 50.000 m² na matrícula e 15.000 m² que ela pode usar, abre com três cabanas de glamping para casal e desenha tudo para cinco.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · Onde nunca e o que existe">
+  <p class="k">Bloco 1</p>
+  <h2>Onde nunca construir <i>e o que precisa existir</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>No desenho completo da Marina, as cinco cabanas e o apoio ocupam cerca de 2% da área que ela pode usar.</div>
+    <div class="f"><b>Reflexão</b>Se o arquiteto recebesse hoje só o seu terreno e uma foto, o que ele decidiria por você?</div>
+    <div class="f"><b>Dica</b>Tenha à mão o mapa do terreno e uma caneta vermelha. Hoje você marca antes de desenhar.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na reflexão, peça que escrevam a resposta no papel. A curiosidade volta no simulador: a área quase nunca é o limite.</aside>
+</section>
+
+<!-- 5 · CENA -->
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Bloco 1 · Onde nunca e o que existe">
+  <p class="k">A cena que se repete</p>
+  <h2>O desenho chegou <i>antes das decisões</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">"Me manda o terreno que eu faço um estudo." Uma semana depois, um desenho lindo.</li>
+    <li class="f">As cabanas perto da entrada. A caixa d'água no ponto plano, de onde se vê o vale.</li>
+    <li class="f">E onde fica a rouparia? Por onde passa a limpeza? Onde a van para?</li>
+  </ul>
+  <aside><b>2 min.</b> Conte a cena com calma: o desenho chega no celular, à noite, e alguma coisa incomoda. "Não é falta de gosto nem de olho. Ninguém entregou ao arquiteto o que você já decidiu: o lugar, o mercado, o produto e o modelo. Ele desenhou o melhor que podia com o que recebeu: um terreno e uma foto." Rouparia é a sala onde se guardam os lençóis e as toalhas.</aside>
+</section>
+
+<!-- 6 · A CRENÇA E A ESCADA -->
+<section class="s" data-bloco="Bloco 1 · Onde nunca e o que existe">
+  <p class="k">A crença: "eu não entendo de projeto, o arquiteto resolve"</p>
+  <h2>Ele resolve <i>o que recebe</i></h2>
+  <div class="regua" style="font-size:25px;height:130px">
+    <div class="r1 f" style="flex:3;padding:0 14px;text-align:center">Antes do projeto · papel</div>
+    <div class="r2 f" style="flex:4;padding:0 14px;text-align:center">Depois do projeto detalhado · refazer, e pagar de novo</div>
+    <div class="r3 f" style="flex:3;padding:0 14px;text-align:center">Depois da obra · outra obra</div>
+    <div class="r4 f" style="flex:3;padding:0 14px;text-align:center">Depois de abrir · quase não se corrige</div>
+  </div>
+  <p class="citacao f" style="font-size:52px">A planta de uma unidade se corrige em duas semanas. A posição dela se corrige nunca.</p>
+  <aside><b>3 min.</b> "Quando ninguém escreveu os critérios, sobra um só: o mais barato de construir. O ponto plano, perto da estrada, onde o caminhão chega." Revele os quatro degraus da escada do custo de corrigir. "Este pilar trabalha no único degrau em que corrigir custa papel." Planta é a cabana vista de cima; posição é o lugar dela no terreno. Do Volume 03 do método: arquiteto bom com briefing ruim entrega projeto bonito e inoperável, e a culpa não é dele. Briefing é o documento que você entrega ao arquiteto com o que quer, o que não pode mudar e por quê.</aside>
+</section>
+
+<!-- 7 · QUATRO ERROS -->
+<section class="s" data-bloco="Bloco 1 · Onde nunca e o que existe">
+  <p class="k">Os quatro erros de quem constrói sem plano</p>
+  <h2>Clique em cada um: <i>como ele aparece?</i></h2>
+  <div class="grid g4" style="min-height:330px">
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:36px">Não prever expansão</h3><span class="dica">Virar</span></div><div class="vs"><b>Aparece</b><p>A quarta cabana não tem lugar, ou estraga a vista das três primeiras.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:36px">Misturar hóspede e serviço</h3><span class="dica">Virar</span></div><div class="vs"><b>Aparece</b><p>O carrinho de lençol passa na frente do deck ao entardecer.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:36px">Ignorar sol e vento</h3><span class="dica">Virar</span></div><div class="vs"><b>Aparece</b><p>O deck com vista e vento fica vazio.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:36px">Planejar só a inauguração</h3><span class="dica">Virar</span></div><div class="vs"><b>Aparece</b><p>O resto cresce em puxadinhos.</p></div></div></div>
+  </div>
+  <p class="lead f">E o custo invisível: infraestrutura no melhor ponto de vista é o desperdício mais caro que existe.</p>
+  <aside><b>3 min.</b> Pergunte qual desses já apareceu no desenho de alguém. Vire os cartões clicando neles, na ordem da conversa. Puxadinho é a construção improvisada depois, sem plano. O último clique revela a frase do Volume 01: o ponto mais bonito costuma ser o mais plano, e o plano atrai a caixa d'água, o estacionamento e o depósito. Esse custo aparece em cada foto que o hóspede deixa de tirar.</aside>
+</section>
+
+<!-- 8 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · Onde nunca e o que existe">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">Você esqueceu a rouparia na lista. Incluir depois da obra custa...</p>
+    <div class="ops">
+      <button class="op">O mesmo que incluir agora</button>
+      <button class="op">Um pouco mais</button>
+      <button class="op" data-certa>Cerca de dez vezes mais</button>
+    </div>
+    <p class="exp">Segundo o Volume 03 do método, cerca de dez vezes mais. Depois da obra não é só a sala: é ponto de água, esgoto, energia e um caminho novo no meio do que já existe. A lista escrita custa uma semana.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Você pode clicar na alternativa que alguém escolheu (fica vermelha se errada) ou avançar para revelar a certa e a explicação.</aside>
+</section>
+
+<!-- 9 · O QUE É MASTERPLAN -->
+<section class="s esc" data-bloco="Bloco 1 · O masterplan">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Masterplan quer dizer plano mestre</p>
+      <h2 style="font-size:70px">O terreno inteiro, <i>no tempo</i></h2>
+      <ul class="lista num" style="font-size:32px;gap:14px">
+        <li class="f">O que nunca será construído</li>
+        <li class="f">A fase um, o que abre primeiro</li>
+        <li class="f">A reserva da fase dois</li>
+        <li class="f">O apoio</li>
+        <li class="f">A rede de água, energia e esgoto</li>
+      </ul>
+      <p class="sm f">Nesta etapa, orientativo: um rascunho à mão, sem escala, com as decisões e os motivos escritos. O desenho fino é do arquiteto. As regras são suas.</p>
+    </div>
+    <img class="fig" src="figuras/02-camadas.svg" alt="As cinco camadas do masterplan: nunca, fase um, reserva, apoio e rede" style="max-height:780px;justify-self:center">
+  </div>
+  <aside><b>3 min.</b> "Não é a planta de uma cabana. É o mapa do empreendimento todo." Do Volume 03: o masterplan não é apenas uma planta, também não é um projeto arquitetônico; ele organiza relações. Natureza e construção: o que se preserva, o que se mostra, o que se esconde. Hóspede e equipe: quem passa por onde. Hoje e depois: a fase um e o lugar do que vem. "Nenhuma dessas relações exige saber desenhar. Todas exigem decidir." Fase é cada etapa da construção.</aside>
+</section>
+
+<!-- 10 · O MODELO MUDA O DESENHO -->
+<section class="s" data-bloco="Bloco 1 · O masterplan">
+  <p class="k">Ele nasce do modelo do Pilar 4</p>
+  <h2>Cada modelo faz uma pergunta <i>diferente ao terreno</i></h2>
+  <table class="t">
+    <tr><th>Modelo</th><th>O que se vende</th><th>O que o masterplan precisa mostrar</th></tr>
+    <tr class="f"><td>Venda de unidades</td><td>A unidade</td><td>Quantas cabem e a área de cada uma</td></tr>
+    <tr class="f"><td>Multipropriedade</td><td>A fração de tempo</td><td>Quantas cabem: as frações saem delas</td></tr>
+    <tr class="f"><td>Renda, o da Marina</td><td>A diária</td><td>Quantas vendem noites, e o apoio para operar</td></tr>
+  </table>
+  <p class="citacao f" style="font-size:48px">Ninguém orça um terreno. Orça-se a lista que sai do masterplan.</p>
+  <aside><b>3 min.</b> "Alguém diz: quero fazer uma multipropriedade. A primeira pergunta não é como vai ficar. É: o terreno suporta? Quantas unidades? O que o plano diretor diz?" Na renda, você fica com as cabanas e vende noites; por isso o apoio pesa tanto no desenho da Marina. Pergunte: "vocês vão pedir orçamento a três construtores. O que mandar?" Resposta: a lista que sai do masterplan, com a área de cada item. Sem ela, três preços de três obras diferentes, sem comparação.</aside>
+</section>
+
+<!-- 11 · FASES · OS SEIS PASSOS -->
+<section class="s" data-bloco="Bloco 1 · O masterplan">
+  <p class="k">Do "nunca" à fase um</p>
+  <h2 style="font-size:66px">Os seis passos, <i>e o porquê de cada um</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Onde nunca</span><div class="fx"><div><h4>A pergunta</h4><p>O que nunca será construído, e por quê?</p></div><div><h4>Por quê</h4><p>O que dá valor ao lugar some na primeira semana de obra se ninguém marcou antes. O bosque derrubado não volta.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>O que precisa existir</span><div class="fx"><div><h4>A pergunta</h4><p>Qual é o programa, inclusive o apoio?</p></div><div><h4>Por quê</h4><p>Quem reserva pouco espaço para o apoio descobre com hóspede na casa, e a solução vira puxadinho.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Onde fica cada coisa</span><div class="fx"><div><h4>A pergunta</h4><p>Onde ficam as unidades, os caminhos e o apoio?</p></div><div><h4>Por quê</h4><p>O lugar decide o que o hóspede vê ao chegar, ouve à noite e fotografa de manhã. E erro de posição não se corrige.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>O que cabe</span><div class="fx"><div><h4>A pergunta</h4><p>O que a lei e o chão permitem?</p></div><div><h4>Por quê</h4><p>O desenho que ignora os limites da prefeitura volta reprovado, e projeto refeito custa o projeto.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>O que se vende</span><div class="fx"><div><h4>A pergunta</h4><p>Quanto do desenho gera receita?</p></div><div><h4>Por quê</h4><p>A área que ninguém paga separado também é obra, mobília, equipe e manutenção.</p></div></div></button>
+      <button class="bt"><span class="bol">6</span><span>A fase um</span><div class="fx"><div><h4>A pergunta</h4><p>O que entra agora, o que espera e o que autoriza a fase dois?</p></div><div><h4>Por quê</h4><p>Rede feita só para a fase um sai mais cara no total. E sem gatilho escrito, a fase dois começa no entusiasmo de um feriado bom.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada passo: a pergunta e por que ela vem nessa ordem.</p></div>
+  </div>
+  <aside><b>4 min.</b> Cada clique abre o próximo passo, com a pergunta e o porquê. A ordem do método, do Volume 03: conceito, programa, jornada, briefing, projeto. O conceito vocês já têm dos Pilares 3 e 4. O arquiteto é o quinto passo, e sai muito melhor quando os quatro primeiros chegam prontos. Os passos 1 e 2 são deste bloco; os passos 3 a 6, do bloco 2.</aside>
+</section>
+
+<!-- 12 · ONDE NUNCA -->
+<section class="s esc" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <p class="k">Passo 1 · O método começa pelo contrário</p>
+  <p class="citacao" style="font-size:58px">Antes de decidir onde construir, decidimos onde <i>jamais construiremos.</i></p>
+  <div class="grid g2">
+    <div class="card f"><h3>Lei</h3><p>A área de preservação, como a margem do rio e a volta da nascente, e a reserva legal, a parte do imóvel rural com mata nativa. Quem confirma é o técnico ambiental, com o CAR.</p></div>
+    <div class="card f"><h3>Produto</h3><p>O que a lei não pede, mas é o que você vende: o bosque que segura o vento, a vista, a crista. Derrubado, não volta.</p></div>
+  </div>
+  <p class="lead f">Preserve além da lei, nunca aquém. E o melhor ponto de vista fica só para as unidades.</p>
+  <aside><b>3 min.</b> Pergunte antes de revelar: "no mapa, o que se marca primeiro: as cabanas, o estacionamento ou o que nunca será construído?" A frase é do Método Zion de Master Planning. "Essa inversão é a diferença entre ocupar um terreno e desenvolver um lugar." O passo começa voltando ao terreno com o mapa e uma caneta vermelha, de manhã e no fim da tarde. Pinte primeiro o que a lei protege, depois o que o produto precisa, e escreva ao lado de cada zona uma palavra: lei ou produto. CAR é o Cadastro Ambiental Rural. Leva uns dez minutos no papel, mais a caminhada.</aside>
+</section>
+
+<!-- 13 · TRÊS GESTOS -->
+<section class="s" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <p class="k">Uma mancha em branco no desenho não segura uma máquina</p>
+  <h2>O "nunca" só existe <i>com três gestos</i></h2>
+  <div class="grid g3" style="min-height:330px">
+    <div class="pq passo"><div class="in"><div class="fr"><span class="n" style="font-family:var(--serif);font-size:56px;color:var(--ouro2)">1</span><h3>Marcar</h3><p class="sm">"Nunca será construído" sobre cada zona</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Por quê</b><p>Para ninguém usar o espaço vazio na correria da obra: guardar material, manobrar caminhão, fazer o atalho.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="n" style="font-family:var(--serif);font-size:56px;color:var(--ouro2)">2</span><h3>Fotografar</h3><p class="sm">O terreno inteiro, com data e localização</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Por quê</b><p>É o registro mais barato, e o único que não se refaz depois da primeira máquina.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="n" style="font-family:var(--serif);font-size:56px;color:var(--ouro2)">3</span><h3>Pôr em contrato</h3><p class="sm">Uma cláusula que toda empreiteira assina</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Por quê</b><p>Desenho não segura retroescavadeira. Quem redige a cláusula é o advogado: você decide o que ela protege.</p></div></div></div>
+  </div>
+  <aside><b>3 min.</b> Cada clique vira o próximo gesto. Cláusula é um item escrito dentro do contrato; empreiteira é a empresa que faz a obra. A foto com data e localização o celular já faz: basta deixar a localização ligada na câmera. Pergunte: "quantos desses três vocês já fizeram?"</aside>
+</section>
+
+<!-- 14 · O NUNCA DA MARINA -->
+<section class="s" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <span class="selo">Exemplo ilustrativo</span>
+  <h2 style="font-size:70px">O "nunca" <i>da Marina</i></h2>
+  <table class="t">
+    <tr><th>Zona</th><th>Motivo</th></tr>
+    <tr class="f"><td>A área de preservação do riacho e da nascente · 12.000 m²</td><td>Lei</td></tr>
+    <tr class="f"><td>A reserva legal · 10.000 m²</td><td>Lei</td></tr>
+    <tr class="f"><td>O bosque acima da meia encosta, que segura o vento da tarde</td><td>Produto</td></tr>
+    <tr class="f"><td>O bosque do caminho, que faz a chegada desacelerar</td><td>Produto</td></tr>
+    <tr class="f"><td>A crista: só um deck leve para o fim de tarde</td><td>Produto</td></tr>
+  </table>
+  <p class="lead f">Marcado, fotografado com data, cláusula levada ao advogado. A área livre também é produto.</p>
+  <aside><b>2 min · exemplo resolvido.</b> Revele linha a linha. "Repare que os dois bosques não são exigência de lei. São exigência do produto. O bosque que segura o vento é parte da manhã que a Marina vende." Crista é a parte mais alta do terreno; meia encosta, o meio da subida. No Pilar 1 vocês ouviram a tentação mais cara: cabem doze, então faça doze. Aqui a mesma regra: não se ocupa o terreno inteiro. A área livre entrega o silêncio, a vista sem vizinho e a sensação de estar sozinho.</aside>
+</section>
+
+<!-- 15 · SIMULADOR · OCUPAÇÃO -->
+<section class="s compacto" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize o terreno</p><span class="selo">Exemplo ilustrativo · em m², sem escala</span></div>
+  <h2 style="font-size:58px">Quanto do terreno <i>o desenho ocupa</i></h2>
+  <div class="sim" data-sim="p5" style="grid-template-columns:.85fr 1.15fr;gap:46px">
+    <div class="ctl">
+      <label>Área da matrícula <output data-for="mat" data-fmt="m2"></output><input type="range" name="mat" min="5000" max="200000" step="1000" value="50000"></label>
+      <label>Área que você pode usar <output data-for="us" data-fmt="m2"></output><input type="range" name="us" min="1000" max="100000" step="500" value="15000"><small>Do Pilar 1: o que sobra depois dos limites</small></label>
+      <label>O nunca medido <output data-for="nun" data-fmt="m2"></output><input type="range" name="nun" min="0" max="100000" step="500" value="22000"></label>
+      <label>Unidades no projeto completo <output data-for="uc"></output><input type="range" name="uc" min="1" max="20" step="1" value="5"></label>
+      <label>Área fechada por unidade <output data-for="af" data-fmt="m2"></output><input type="range" name="af" min="15" max="120" step="1" value="38"></label>
+      <label>Deck por unidade <output data-for="dk" data-fmt="m2"></output><input type="range" name="dk" min="0" max="60" step="1" value="16"></label>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:18px">
+      <div class="faixa"><span class="t-nunca"></span><span class="t-fora"></span><span class="t-usavel"></span><span class="t-ocupa"></span></div>
+      <div class="leg"><span><i class="t-nunca"></i>Nunca medido</span><span><i class="t-fora"></i>Outras áreas fora do uso</span><span><i class="t-usavel"></i>Usável livre</span><span><i class="t-ocupa"></i>Chão do desenho</span></div>
+      <div class="res">
+        <div class="linha"><span>Apoio do projeto completo</span><b data-r="apcM" data-fmt="m2"></b></div>
+        <div class="linha tot"><span>Chão do desenho completo</span><b data-r="chaoC" data-fmt="m2"></b></div>
+        <div class="linha"><span>Sobre a área que você pode usar</span><b data-r="pUs" data-fmt="pct"></b></div>
+        <div class="linha"><span>Sobre a matrícula inteira</span><b data-r="pMat" data-fmt="pct"></b></div>
+        <div class="aviso" data-aviso="avOcup"></div>
+        <div class="aviso" data-aviso="avTerreno"></div>
+        <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+      </div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina, resolvido: cada cabana 38 m² fechados + 16 m² de deck = 54 m²; cinco cabanas, 5 × 54 = 270 m²; mais 34 m² de apoio do desenho completo = 304 m². 304 ÷ 15.000 = cerca de 2% da área usável; 304 ÷ 50.000 = 0,6% da matrícula. A faixa escura quase some: esse é o ponto. "A área nunca foi o limite da Marina. O limite é o mercado que ela mediu no Pilar 2 e o silêncio que ela vende." Mexa ao vivo: "e se fossem 20 unidades de 80 m²?" Caminhos, estacionamento e convivência ao ar livre ficam fora desta conta e entram no orçamento como linhas próprias. Tecla R volta ao exemplo.</aside>
+</section>
+
+<!-- 16 · PROGRAMA -->
+<section class="s" data-bloco="Bloco 1 · Passo 2 · O que existe">
+  <p class="k">Passo 2 · O programa de necessidades</p>
+  <h2>Tudo o que precisa existir, <i>em quatro áreas</i></h2>
+  <div class="grid g4">
+    <div class="card f"><span class="n">1</span><h3>Hospedagem</h3><p>As unidades e tudo dentro delas.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Convivência</h3><p>Chegada, área comum, deck, fogueira, mesa.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Apoio</h3><p>Lavanderia, rouparia, depósito, copa, vestiário, lixo, oficina.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Infraestrutura</h3><p>Acesso, estacionamento, água, esgoto, energia, gás, internet, chuva.</p></div>
+  </div>
+  <p class="lead f">Um ambiente por linha: para que serve, quem usa, quando, o tamanho e de que precisa estar perto ou longe.</p>
+  <aside><b>3 min.</b> Programa é a lista completa, por área, com a função de cada item. É dele que sai o número de cabanas e de áreas que vão para o orçamento. Copa é a pequena cozinha da equipe; vestiário, onde a equipe troca de roupa. O esgoto que sai das cabanas tem um nome técnico: efluente. "A última coluna, perto ou longe, é a mais importante: ela muda o desenho no bloco 2. A rouparia perto da vaga da van; o lixo longe da vista." O tamanho, por enquanto, é estimativa; quem fecha é o arquiteto.</aside>
+</section>
+
+<!-- 17 · FOTO · A PROMESSA -->
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Bloco 1 · Passo 2 · O que existe">
+  <p class="k">Ninguém se apaixona por uma rouparia</p>
+  <p class="citacao" style="max-width:1150px;font-size:56px">Aqui a manhã é sua: você acorda com o vale e <i>ninguém atravessa a sua vista.</i></p>
+  <p class="lead f" style="max-width:1050px">A promessa da Marina vira regra de desenho: tudo o que a pessoa local faz precisa de lugar, de caminho e de horário fora da vista do hóspede.</p>
+  <aside><b>2 min.</b> A foto de divulgação mostra a cama e o vale, não onde o lençol sujo espera nem por onde sai o lixo. E é isso que decide se a promessa acontece numa terça-feira comum, com a pessoa local sozinha. No Pilar 4, a Marina decidiu operar a fase um com uma pessoa local, que faz a limpeza, a manutenção leve e deixa a cesta do café na varanda antes das sete. A promessa vem do Pilar 3.</aside>
+</section>
+
+<!-- 18 · O APOIO DA MARINA -->
+<section class="s" data-bloco="Bloco 1 · Passo 2 · O que existe">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2 style="font-size:66px">A regra do apoio: <i>de 15% a 25% da área fechada</i></h2>
+  <div class="conta" style="max-width:1450px;font-size:33px">
+    <div class="eq f"><span>Hospedagem · 3 cabanas × 38 m² fechados (o deck fica fora)</span><span>114 m²</span></div>
+    <div class="eq f"><span>Apoio · rouparia 12 + depósito seco 6 + lixo 4 + copa e vestiário 8</span><span>30 m²</span></div>
+    <div class="eq f"><span>Área fechada total · 114 + 30</span><span>144 m²</span></div>
+    <div class="eq tot f" data-foco><span>O apoio pesa · 30 ÷ 144</span><span>20,8% · dentro da faixa</span></div>
+  </div>
+  <p class="sm f">Área fechada: o interior com parede e telhado, das unidades e do apoio. Ponto de partida do Volume 03.</p>
+  <aside><b>3 min · exemplo resolvido.</b> Revele linha a linha. 30 ÷ 144 = 0,208; conferência: 144 × 0,208 = cerca de 30. Por que 15% a 25%? Abaixo do piso, o apoio falta no dia a dia e vira puxadinho. Muito acima do teto, vale conferir se a conta usou a base certa. Depósito seco é onde fica o que não pode molhar: papel higiênico, produtos de limpeza, itens da cesta do café. Escreva sempre a base que você usou.</aside>
+</section>
+
+<!-- 19 · SIMULADOR · APOIO -->
+<section class="s esc compacto" data-bloco="Bloco 1 · Passo 2 · O que existe">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize o apoio</p><span class="selo">Exemplo ilustrativo</span></div>
+  <h2 style="font-size:58px">E quando forem <i>cinco cabanas?</i></h2>
+  <div class="sim" data-sim="p5" style="grid-template-columns:.85fr 1.15fr;gap:46px">
+    <div class="ctl">
+      <label>Unidades na fase um <output data-for="u1"></output><input type="range" name="u1" min="1" max="12" step="1" value="3"></label>
+      <label>Área fechada por unidade <output data-for="af" data-fmt="m2"></output><input type="range" name="af" min="15" max="120" step="1" value="38"></label>
+      <label>Apoio na fase um <output data-for="ap1" data-fmt="m2"></output><input type="range" name="ap1" min="0" max="120" step="1" value="30"></label>
+      <label>Unidades no projeto completo <output data-for="uc"></output><input type="range" name="uc" min="1" max="20" step="1" value="5"></label>
+      <label>Apoio no projeto completo <output data-for="apc" data-fmt="m2"></output><input type="range" name="apc" min="0" max="200" step="1" value="34"><small>Teste 30: com cinco cabanas, o mesmo apoio fica abaixo do piso</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Fase um · área fechada</span><b data-r="fech1" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Apoio na fase um</span><b data-r="p1" data-fmt="pct"></b></div>
+      <div class="ponteiro" style="height:34px"><i data-ponteiro="pont1"></i></div>
+      <div class="reg5"><div style="flex:15;background:var(--erro)">abaixo de 15%</div><div style="flex:10;background:var(--ok)">15% a 25%</div><div style="flex:15;background:var(--alerta)">acima de 25%</div></div>
+      <div class="aviso" data-aviso="avApoio1"></div>
+      <div class="linha"><span>Projeto completo · área fechada</span><b data-r="fechC" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Apoio no projeto completo</span><b data-r="pC" data-fmt="pct"></b></div>
+      <div class="aviso" data-aviso="avApoioC"></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo: fase um 20,8%; projeto completo 190 + 34 = 224 m², 15,2%. Agora puxe o apoio do projeto completo para 30: 30 ÷ 220 = 13,6%, abaixo do piso. O mínimo para cinco é 0,15 × 190 ÷ 0,85 = cerca de 33,5 m². "O apoio é o que não pode ser deixado para depois. A Marina constrói os 30 m² e prepara, já na fase um, a ampliação para 34 m², com a base de concreto e os pontos de água e energia no lugar." Peça os números de um aluno e equalize.</aside>
+</section>
+
+<!-- 20 · OS ESQUECIDOS -->
+<section class="s" data-bloco="Bloco 1 · Passo 2 · O que existe">
+  <p class="k">A lista do que quase sempre falta · clique em cada um</p>
+  <h2 style="font-size:60px">Deixar de fora pode. <i>Esquecer, não.</i></h2>
+  <div class="grid g4">
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Rouparia e lavanderia</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Lençol limpo e sujo separados, e lavar, ou decidir terceirizar.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Depósito seco</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Guardar o que não pode molhar.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Lixo com acesso por fora</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>O lixo sai sem passar pelo caminho do hóspede.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Copa e vestiário da equipe</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Onde a equipe come, troca de roupa e descansa.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Estacionamento de serviço</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Onde param a van, o fornecedor e quem trabalha.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Oficina e ferramentas</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Onde fica o que a manutenção usa.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Abrigo de gás e reservatório</h3><span class="dica">Para que serve</span></div><div class="vs"><b>Serve para</b><p>Onde ficam o gás e a caixa d'água. Quem diz onde e como é o profissional habilitado.</p></div></div></div>
+    <div class="card f" style="justify-content:center"><p style="font-size:26px">Para cada item: tem lugar no programa, ou ficou de fora por <b>decisão escrita</b>, com o motivo.</p></div>
+  </div>
+  <aside><b>3 min.</b> Vire os cartões clicando, conforme a turma pergunta. Na Marina, a lavanderia é terceirizada, por decisão: três cabanas, com as cerca de 422 noites vendidas no cenário que ela mediu, não justificam ponto de água, esgoto e energia para lavar roupa; com cinco, a conta é refeita. Ficaram sem decisão a oficina e o abrigo de gás: ela decide com o profissional. Abrigo de gás e reservatório têm regras próprias de segurança: quem confirma é o engenheiro ou o projetista. O último clique revela o cartão da regra.</aside>
+</section>
+
+<!-- 21 · FASES · DIA DE TROCA -->
+<section class="s" data-bloco="Bloco 1 · Passo 2 · O dia simulado">
+  <span class="selo">Exemplo ilustrativo · horários hipotéticos</span>
+  <h2 style="font-size:64px">Um dia de troca de hóspede, <i>hora a hora</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">7h</span><span>Antes das sete</span><div class="fx"><div><h4>O que acontece</h4><p>A cesta do café vai para a varanda.</p></div><div><h4>O que isso exige</h4><p>Copa, com bancada e geladeira, e caminho de serviço por trás da cabana, do lado oposto à vista.</p></div></div></button>
+      <button class="bt"><span class="bol">11h</span><span>Saída e limpeza</span><div class="fx"><div><h4>O que acontece</h4><p>O casal sai. A limpeza começa.</p></div><div><h4>O que isso exige</h4><p>Rouparia, com limpo e sujo separados.</p></div></div></button>
+      <button class="bt"><span class="bol">13h</span><span>A van do lençol</span><div class="fx"><div><h4>O que acontece</h4><p>A van troca o lençol e a toalha. Onde ela para?</p></div><div><h4>O que isso exige</h4><p>Uma vaga de serviço. <b>Faltava.</b> Agora é uma linha do programa, colada na rouparia, ao ar livre.</p></div></div></button>
+      <button class="bt"><span class="bol">14h</span><span>O lixo sai</span><div class="fx"><div><h4>O que acontece</h4><p>O lixo da troca sai.</p></div><div><h4>O que isso exige</h4><p>Um abrigo com acesso por fora, sem passar pelo caminho do hóspede.</p></div></div></button>
+      <button class="bt"><span class="bol">15h</span><span>Chega o novo casal</span><div class="fx"><div><h4>O que acontece</h4><p>O novo casal chega.</p></div><div><h4>O que isso exige</h4><p>Estacionamento e o caminho pela mata até a cabana.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada hora: o que acontece e o que isso exige.</p></div>
+  </div>
+  <aside><b>4 min.</b> "O passo que mais revela é simular, no papel, o dia mais trabalhoso: aquele em que um hóspede sai e outro chega." Clique hora a hora. Pare nas 13h: "o programa tinha vagas de hóspede e nenhuma de serviço". A vaga entra sem mudar os 30 m² de apoio. O programa também tem a lista do que não entra: na Marina, recepção construída (o check-in digital resolve a chegada), restaurante (é outro negócio), área de eventos (quebra a promessa do silêncio), piscina (a banheira no deck já faz o hóspede pagar mais pela diária), spa com salas e automação.</aside>
+</section>
+
+<!-- 22 · QUIZ BLOCO 1 -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">Três cabanas de 38 m² fechados e 30 m² de apoio. Quanto o apoio pesa na área fechada?</p>
+    <div class="ops">
+      <button class="op">10%</button>
+      <button class="op" data-certa>20,8%</button>
+      <button class="op">30%</button>
+      <button class="op">26,3%, sobre as cabanas</button>
+    </div>
+    <p class="exp">30 ÷ (114 + 30) = 30 ÷ 144 = 20,8%, dentro da faixa de 15% a 25%. A base é a área fechada inteira, com o apoio dentro.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele. A quarta opção é o erro comum: dividir 30 por 114, esquecendo o apoio na base.</aside>
+</section>
+
+<!-- 23 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>O seu "nunca" <i>e o seu programa</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Pinte de vermelho o que nunca será construído, com o motivo: lei ou produto.</span></div>
+      <div class="passo f"><b>2</b><span>Faça as quatro listas do programa: hospedagem, convivência, apoio e infraestrutura.</span></div>
+      <div class="passo f"><b>3</b><span>A conta do apoio: apoio ÷ (hospedagem + apoio). Está entre 15% e 25%?</span></div>
+      <div class="passo f"><b>4</b><span>Simule o seu dia de troca. O que faltou?</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Onde não souber, escreva "não sei" e quem vai responder.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar no cronômetro. Enquanto a turma escreve, leia perguntas do chat. Se alguém não sabe onde passa a área de preservação: "escreva não sei e peça o mapa ao técnico ambiental." Ao terminar: "quem descobriu um ambiente que não tinha lugar?"</aside>
+</section>
+
+<!-- 24 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · Onde fica, o que cabe, a fase um">
+  <p class="k">Bloco 2</p>
+  <h2>Onde fica, o que cabe, o que se vende <i>e a fase um</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Na Marina, a correção de posição mais importante custou quatro estacas.</div>
+    <div class="f"><b>Reflexão</b>Se a prefeitura deixa construir muito mais do que você vai construir, quem manda no seu número de unidades?</div>
+    <div class="f"><b>Dica</b>Vá ao terreno às sete da manhã e às cinco da tarde. O papel não mostra o que o chão mostra.</div>
+  </div>
+  <aside><b>1 min.</b> Retome: no bloco 1, onde nunca e o que precisa existir. Agora, onde fica cada coisa, o que cabe de verdade, o que se vende e o que entra na fase um.</aside>
+</section>
+
+<!-- 25 · DUAS CORES -->
+<section class="s" data-bloco="Bloco 2 · Passo 3 · Onde fica">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Passo 3 · Implantação</p>
+      <h2 style="font-size:68px">Hóspede e serviço <i>em duas cores</i></h2>
+      <ul class="lista num" style="font-size:31px;gap:16px">
+        <li class="f">A lápis, sobre o "nunca": cabanas, estacionamento e apoio.</li>
+        <li class="f">Numa cor, o caminho do hóspede: do carro à cabana, e à convivência.</li>
+        <li class="f">Na outra, o serviço: do apoio à porta de trás, a van e o lixo.</li>
+        <li class="f">Circule cada ponto em que as cores se cruzam ou se veem.</li>
+      </ul>
+    </div>
+    <img class="fig" src="figuras/18-duas-cores.svg" alt="Caminho do hóspede e caminho do serviço em duas cores, com o ponto de cruzamento circulado" style="max-height:780px;justify-self:center;border-radius:18px">
+  </div>
+  <aside><b>3 min.</b> Implantação é a decisão de onde fica cada coisa. "Cada círculo é um problema para resolver agora, no papel. A operação precisa existir, mas praticamente invisível." Pergunte: "o serviço passa na frente do deck, mas só às onze da manhã. Pode?" Não: às onze alguém está no deck; o desenho se ajusta agora. E o carro: estacionamento colado na cabana é conveniente por dois minutos e ruim pelo resto da estadia. A mala se resolve com um caminho firme.</aside>
+</section>
+
+<!-- 26 · A ORDEM -->
+<section class="s" data-bloco="Bloco 2 · Passo 3 · Onde fica">
+  <span class="selo">Exemplo ilustrativo · distâncias aproximadas</span>
+  <h2 style="font-size:62px">A ordem que <i>contraria o instinto</i></h2>
+  <table class="t" style="font-size:27px">
+    <tr><th>Ordem</th><th>O quê</th><th>Onde, na Marina</th></tr>
+    <tr class="f"><td>1</td><td>O que não recebe nada</td><td>O "nunca" do passo 1</td></tr>
+    <tr class="f"><td>2</td><td>Os melhores pontos de vista</td><td>A meia encosta virada para o nascente do sol, só para cabanas</td></tr>
+    <tr class="f"><td>3</td><td>O caminho do hóspede</td><td>Estacionamento na clareira e cerca de 120 m pela mata</td></tr>
+    <tr class="f"><td>4</td><td>As unidades</td><td>Três cabanas, cama virada para o nascente, cerca de 40 m entre elas</td></tr>
+    <tr class="f"><td>5</td><td>A convivência</td><td>O deck da crista, a uns 200 m: próximo, não colado</td></tr>
+    <tr class="f"><td>6</td><td>O apoio</td><td>Junto ao acesso, com entrada própria</td></tr>
+    <tr class="f"><td>7</td><td>A infraestrutura pesada</td><td>Reservatório e esgoto abaixo do acesso, fora da vista</td></tr>
+  </table>
+  <aside><b>3 min.</b> Revele linha a linha. O instinto começa pelo ponto plano perto da estrada. O Volume 03 manda o contrário: primeiro o que não recebe nada, por último a infraestrutura pesada. "Nascente" tem dois sentidos: a nascente do riacho é onde a água brota; o nascente do sol é o lado onde o sol nasce, o leste. Cama virada para o nascente: o hóspede acorda olhando o sol nascer.</aside>
+</section>
+
+<!-- 27 · ESTACAS -->
+<section class="s esc" data-bloco="Bloco 2 · Passo 3 · Onde fica">
+  <p class="k">No papel, tudo parece caber. O chão é que confirma.</p>
+  <h2 style="font-size:66px">A caminhada <i>com estacas</i></h2>
+  <div class="grid g2" style="gap:50px;align-items:center">
+    <ul class="lista num" style="font-size:30px;gap:16px">
+      <li class="f">Quatro estacas e barbante: o contorno de cada cabana, no tamanho real.</li>
+      <li class="f">Às sete da manhã e às cinco da tarde, em pé onde seriam a cama e a janela.</li>
+      <li class="f">Daqui eu vejo outra cabana? O carro? Ouço o serviço? O sol entra onde eu quero?</li>
+      <li class="f">Foto de cada ponto, com data. Incomodou? Mova as estacas e repita.</li>
+    </ul>
+    <div class="f" style="display:flex;flex-direction:column;gap:18px">
+      <img class="fig" src="figuras/31-estacas-marina.svg" alt="A cabana 3 via o deck da 2 no papel; a pé, desceu cerca de 15 metros" style="border-radius:16px">
+      <p class="lead">Na Marina, a cabana 3 via o deck da 2. Desceu uns 15 m. <b style="color:var(--ouro)">Custo: quatro estacas.</b></p>
+    </div>
+  </div>
+  <aside><b>3 min.</b> Estaca é um pedaço de madeira fincado no chão para marcar um ponto. A história da Marina: no papel, tudo passou; da janela lateral da cabana 3 ela via o deck da 2, porque o terreno caía mais ali do que o desenho mostrava. A cabana 3 desceu uns 15 m, e a 2 sumiu atrás de árvores que já existiam. A pergunta do método: depois da implantação, o terreno continua tão bonito quanto antes? Se sim, a construção revelou o território, em vez de competir com ele.</aside>
+</section>
+
+<!-- 28 · ESTUDO DE MASSAS E ÍNDICES -->
+<section class="s" data-bloco="Bloco 2 · Passo 4 · O que cabe">
+  <p class="k">Passo 4 · O estudo de massas: caixas de papelão sobre a planta</p>
+  <h2 style="font-size:64px">O que a <i>prefeitura permite</i></h2>
+  <table class="t" style="font-size:28px">
+    <tr><th>Índice do plano diretor</th><th>Em palavras simples</th></tr>
+    <tr class="f"><td>Taxa de ocupação</td><td>A parte do chão que pode ter telhado</td></tr>
+    <tr class="f"><td>Coeficiente de aproveitamento</td><td>A soma de todos os andares</td></tr>
+    <tr class="f"><td>Taxa de permeabilidade</td><td>A parte que não pode ser cimentada</td></tr>
+    <tr class="f"><td>Recuos e altura máxima</td><td>O espaço livre em volta, e o teto</td></tr>
+  </table>
+  <p class="lead f">Você não calcula. Pede à prefeitura, por escrito, e entrega ao arquiteto.</p>
+  <aside><b>3 min.</b> Estudo de massas é o teste do volume que cabe no terreno, antes de desenhar cada unidade. Massa, aqui, é volume. O plano diretor, do Pilar 1, é a lei da cidade que organiza o que pode ser feito em cada lugar, como o regulamento de um condomínio, só que da cidade inteira. Nível introdutório: quem diz o número é o seu município. O coeficiente conta andares; a taxa de ocupação conta chão. Nem toda área entra no coeficiente: existe a computável e a não computável, e quem lê isso no seu caso é o arquiteto, com a prefeitura. Peça a zona, os cinco números, a resposta com data e o nome de quem respondeu, e pergunte prazo e custo.</aside>
+</section>
+
+<!-- 29 · TETO E CHÃO -->
+<section class="s" data-bloco="Bloco 2 · Passo 4 · O que cabe">
+  <span class="selo">Exemplo ilustrativo e exemplo do guia</span>
+  <h2 style="font-size:62px">O índice é um teto. <i>O chão nem sempre cabe.</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:31px">
+    <div class="eq f"><span>Marina · uma regra imaginada de 10% sobre 50.000 m²</span><span>teto de 5.000 m²</span></div>
+    <div class="eq tot f" data-foco><span>O desenho completo dela ocupa</span><span>304 m²</span></div>
+    <div class="eq f"><span>Guia · 15 m de frente, recuos de 3 m em cada lado · 15 − 3 − 3</span><span>9 m para construir</span></div>
+    <div class="eq f"><span>A mesma frente, regra de 7,2 m em cada lado · 15 − 14,4</span><span>0,6 m: não cabe</span></div>
+  </div>
+  <p class="lead f">Na Marina, quem manda não é o índice. É o mercado, que no Pilar 2 disse: cabem três agora, e cinco no desenho.</p>
+  <aside><b>3 min.</b> A taxa de 10% é imaginada para ensinar a conta: a da Marina ainda está como "não sei", esperando a resposta por escrito. "O índice é um teto, não uma meta. Quando ele está longe, quem manda é outro limite: o mercado, a experiência do hóspede ou o que cabe no chão." O exemplo do recuo é do Guia de Estudo de Viabilidade da Sienge, 2025: muitas vezes a área permitida numericamente não é exequível volumetricamente. Em português de amigo: a conta da prefeitura pode dizer sim, e o chão pode dizer não. No campo, quem tira volume é a encosta forte (topógrafo), a preservação e a reserva legal (técnico ambiental), os recuos da estrada e da divisa (prefeitura), a distância entre unidades e o "nunca" de produto (você). Por isso o estudo de massas vem depois do "nunca", nunca antes.</aside>
+</section>
+
+<!-- 30 · VENDÁVEL -->
+<section class="s esc" data-bloco="Bloco 2 · Passo 5 · O que se vende">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Passo 5 · As duas áreas de qualquer empreendimento</p>
+      <h2 style="font-size:64px">Só a vendável gera receita. <i>A não vendável também custa.</i></h2>
+      <div class="quiz passo">
+        <p class="q" style="font-size:40px">O estacionamento, o caminho pela mata e o deck da crista da Marina são área...</p>
+        <div class="ops">
+          <button class="op">Vendável, porque o hóspede usa</button>
+          <button class="op" data-certa>Não vendável: fazem parte e custam</button>
+        </div>
+        <p class="exp">Ninguém paga por eles separado: entram no orçamento, não na receita. A não vendável precisa ser a menor que entregue a promessa, e nunca menor que isso.</p>
+      </div>
+    </div>
+    <img class="fig" src="figuras/10-vendavel.svg" alt="No chalé, o não vendável é chão; no resort, vira prédio" style="max-height:800px;justify-self:center">
+  </div>
+  <aside><b>3 min.</b> Vendável é a unidade, vendida pela diária na renda, pela fração na multipropriedade ou inteira na venda. Num empreendimento de venda ela se chama área privativa, e é a que entra no VGV do Pilar 4. A regra do Pilar 4 de volta: a obra custa tudo, a venda só paga a área vendável. Na figura: no chalé pequeno o não vendável é chão, caminho e vaga; no resort vira prédio, com obra, mobília, equipe e manutenção. Quanto maior o empreendimento, mais pesa o que não se vende.</aside>
+</section>
+
+<!-- 31 · EFICIÊNCIA -->
+<section class="s" data-bloco="Bloco 2 · Passo 5 · O que se vende">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2 style="font-size:62px">De cada 100 m² construídos, <i>quantos geram receita?</i></h2>
+  <div class="conta" style="max-width:1450px;font-size:32px">
+    <div class="eq f"><span>Fase um · 114 m² vendáveis em 144 m² fechados</span><span>cerca de 79%</span></div>
+    <div class="eq f"><span>Projeto completo · 190 m² em 224 m²</span><span>cerca de 85%</span></div>
+    <div class="eq tot f" data-foco><span>A outra face da regra do apoio · 100% − 20,8%</span><span>79,2%</span></div>
+  </div>
+  <div class="quiz passo">
+    <p class="q" style="font-size:42px">Eficiência de 79% quer dizer que o negócio fecha?</p>
+    <div class="ops"><button class="op">Sim, passou dos 60%</button><button class="op" data-certa>Não: quem diz é a conta do Pilar 6</button></div>
+    <p class="exp">Em chalés espalhados, quase todo o não vendável é chão, e o percentual sai alto. A régua de 60% do guia da Sienge é para prédios. E eficiência alta demais pode ser apoio de menos.</p>
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> Eficiência é a área vendável dividida pela área construída total. 114 ÷ 144 = 0,792; 190 ÷ 224 = 0,848. Os decks privativos, 48 m² na fase um e 80 m² no completo, ficam fora da base, mas entram na lista do que se vende, porque cada cabana vende a diária com o deck junto. O não vendável que não é prédio (estacionamento, vaga de serviço, caminho, deck da crista, reservatório, esgoto) entra no orçamento como linha própria, no Pilar 6.</aside>
+</section>
+
+<!-- 32 · A REDE -->
+<section class="s esc" data-bloco="Bloco 2 · Passo 6 · A fase um">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Passo 6 · A fase um</p>
+      <p class="citacao" style="font-size:58px">Construa menos unidades, <i>nunca menos infraestrutura.</i></p>
+      <ul class="lista" style="font-size:30px;gap:14px">
+        <li class="f">Água, energia, esgoto e acesso dimensionados para as cinco, já na fase um.</li>
+        <li class="f">O duto vazio: um tubo enterrado, para passar cabo depois sem abrir o chão.</li>
+        <li class="f">Senão, na fase dois, você reabre vala com hóspede dormindo ao lado.</li>
+      </ul>
+    </div>
+    <img class="fig" src="figuras/24-rede.svg" alt="A rede de água, energia e esgoto nasce para todas as unidades, com duto vazio" style="max-height:800px;justify-self:center">
+  </div>
+  <aside><b>3 min.</b> Do Volume 03: dimensionar energia, água, esgoto e acesso para o projeto completo, não para a fase um, é a decisão mais cara de refazer. Dimensionar é decidir o tamanho: a grossura do cano, a força do cabo, o tamanho do tratamento de esgoto. Vala é o buraco comprido para passar cano e cabo. Fazer só para três poupa agora e sai mais caro somadas as duas fases. Quem diz o tamanho certo é o projetista; a energia disponível, a concessionária, por escrito. O seu papel é pedir que tudo seja dimensionado para o projeto completo.</aside>
+</section>
+
+<!-- 33 · RESERVA E ESCOPO -->
+<section class="s" data-bloco="Bloco 2 · Passo 6 · A fase um">
+  <span class="selo">Exemplo ilustrativo · escopo congelado da fase um da Marina</span>
+  <h2 style="font-size:58px">Três listas, <i>somadas, assinadas e datadas</i></h2>
+  <div class="grid g3" style="min-height:360px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Entra</h3><p class="sm">O que vai ser construído na fase um</p><span class="dica">Clique para a lista da Marina</span></div><div class="vs"><b>Na Marina</b><p style="font-size:24px">3 cabanas de 38 m² + 16 m² de deck, com banheira e lareira; apoio de 30 m², ampliação preparada; rede para cinco, com duto vazio; estacionamento, vaga de serviço, caminho e deck leve da crista.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Espera</h3><p class="sm">Tem lugar no desenho, mas só entra com o gatilho</p><span class="dica">Clique para a lista da Marina</span></div><div class="vs"><b>Na Marina</b><p style="font-size:24px">Cabanas 4 e 5, só com o gatilho; o cabo da iluminação do caminho (o duto entra); paisagismo de enfeite; ideias que surgirem na obra.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Nunca</h3><p class="sm">O que não entra, de propósito, com o motivo</p><span class="dica">Clique para a lista da Marina</span></div><div class="vs"><b>Na Marina</b><p style="font-size:24px">Piscina e restaurante; recepção construída; automação; eventos com som e grupos.</p></div></div></div>
+  </div>
+  <p class="lead f" style="font-size:34px">A reserva da fase dois: estacas e placa, e o canteiro decidido em outro lugar.</p>
+  <aside><b>3 min.</b> Escopo é o que está combinado que vai ser feito. A fase um cresce por boas ideias, uma por semana, cada uma pequena e razoável: o Escopo Congelado Zion, do Volume 04, impede isso. Três coisas nunca esperam: o apoio, o conforto que só se nota quando falta e os dutos. A coluna Entra é exatamente o que vai ser orçado no Pilar 6. A reserva é a área guardada para a fase dois; o inimigo dela é virar estacionamento, depósito ou canteiro, o lugar da obra onde ficam material e máquinas. A Marina põe estacas e placa na área da 4ª e da 5ª cabanas e decide o canteiro na clareira do acesso. A obra da fase dois tem rota própria, que não cruza o caminho do hóspede.</aside>
+</section>
+
+<!-- 34 · FASES · GATILHO -->
+<section class="s esc" data-bloco="Bloco 2 · Passo 6 · O gatilho">
+  <p class="k">Quando começa a fase dois? Não depois de um feriado cheio.</p>
+  <h2 style="font-size:62px">O gatilho: três condições <i>que acendem juntas</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Demanda</span><div class="fx"><div><h4>O que quer dizer</h4><p>Doze meses de dado real de reservas, com o número que você quer ver escrito antes.</p></div><div><h4>Por quê</h4><p>Um feriado lotado é um dado, não doze meses.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Caixa</span><div class="fx"><div><h4>O que quer dizer</h4><p>O dinheiro da sua parte da fase dois, mais uma reserva de três meses de custo fixo.</p></div><div><h4>Por quê</h4><p>Obra nova acontece com hóspede na casa: o custo fixo continua todo mês, cheio ou vazio.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Maturidade</span><div class="fx"><div><h4>O que quer dizer</h4><p>Processos escritos, equipe estável, avaliações em dia.</p></div><div><h4>Por quê</h4><p>Uma ou duas condições acesas não bastam. Se as três não acenderem em 24 meses, revise o produto ou o preço, em vez de esperar mais.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada condição: o que quer dizer e por quê.</p></div>
+  </div>
+  <aside><b>3 min.</b> Gatilho é o conjunto de condições, escritas antes, que autorizam a fase dois: o Gatilho de Expansão Zion, do Volume 04. Custo fixo é o que se paga todo mês: salário, energia, internet, manutenção. Os números exatos da demanda e do caixa a Marina fecha no Pilar 6, quando fizer as contas: por enquanto, ficam como pendência com nome. "O gatilho escrito antes protege você do entusiasmo de um fim de semana bom."</aside>
+</section>
+
+<!-- 35 · PAINEL COMPLETO -->
+<section class="s esc compacto painel5" data-bloco="Bloco 2 · O masterplan inteiro">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · o masterplan inteiro em uma tela</p><span class="selo">Exemplo ilustrativo · em m²</span></div>
+  <div class="sim" data-sim="p5" style="grid-template-columns:1.12fr .88fr;gap:40px">
+    <div class="ctl">
+      <label>Matrícula <output data-for="mat" data-fmt="m2"></output><input type="range" name="mat" min="5000" max="200000" step="1000" value="50000"></label>
+      <label>Área usável <output data-for="us" data-fmt="m2"></output><input type="range" name="us" min="1000" max="100000" step="500" value="15000"></label>
+      <label>Unidades na fase um <output data-for="u1"></output><input type="range" name="u1" min="1" max="12" step="1" value="3"></label>
+      <label>No projeto completo <output data-for="uc"></output><input type="range" name="uc" min="1" max="20" step="1" value="5"></label>
+      <label>Área fechada por unidade <output data-for="af" data-fmt="m2"></output><input type="range" name="af" min="15" max="120" step="1" value="38"></label>
+      <label>Deck por unidade <output data-for="dk" data-fmt="m2"></output><input type="range" name="dk" min="0" max="60" step="1" value="16"></label>
+      <label>Apoio na fase um <output data-for="ap1" data-fmt="m2"></output><input type="range" name="ap1" min="0" max="120" step="1" value="30"></label>
+      <label>Apoio no completo <output data-for="apc" data-fmt="m2"></output><input type="range" name="apc" min="0" max="200" step="1" value="34"></label>
+      <label>Rede dimensionada para <output data-for="rede"></output><input type="range" name="rede" min="1" max="20" step="1" value="5"><small>unidades</small></label>
+      <label>Taxa de ocupação <output data-for="tx" data-fmt="pct0"></output><input type="range" name="tx" min="1" max="100" step="1" value="10"><small>imaginada: não é a da sua zona</small></label>
+      <label style="grid-column:1/-1">Caminhos do hóspede e do serviço<select name="cam"><option value="0" selected>Não se cruzam em nenhum ponto visível</option><option value="1">Cruzam em algum ponto</option></select></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Chão do desenho completo</span><b data-r="chaoC" data-fmt="m2"></b></div>
+      <div class="linha"><span>Sobre a área usável</span><b data-r="pUs" data-fmt="pct"></b></div>
+      <div class="linha"><span>Teto da taxa de ocupação</span><b data-r="tetoTO" data-fmt="m2"></b></div>
+      <div class="linha"><span>Apoio · fase um e completo</span><span><b data-r="p1" data-fmt="pct"></b> · <b data-r="pC" data-fmt="pct"></b></span></div>
+      <div class="linha"><span>Vendável na fase um</span><b data-r="ef1" data-fmt="pct"></b></div>
+      <div class="linha"><span>Rede</span><b data-r="redeTxt"></b></div>
+      <div class="linha"><span>Reserva da fase dois</span><span><b data-r="reserva"></b> unid.</span></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> Este painel junta os alertas da ferramenta. Marina: 304 m² de chão, cerca de 2% da área usável; teto imaginado de 5.000 m²; apoio de 20,8% e 15,2%; 79,2% vendável na fase um; rede para 5 de 5; reserva de duas unidades; sem alerta. Agora quebre ao vivo, um de cada vez: rede para 3 (a rede foi feita só para a fase um); caminhos que cruzam; apoio de 15 m² na fase um; taxa de 0,5%... A leitura muda para "ajustar o desenho". Tecla R volta ao exemplo. Peça um aluno com números e equalize. É uma conta de área, orientativa: não é projeto.</aside>
+</section>
+
+<!-- 36 · A PÁGINA DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · A Marina, resolvida">
+  <span class="selo">Exemplo ilustrativo · a página 5 do Dossiê da Marina</span>
+  <h2 style="font-size:58px">O Masterplan faseado <i>da Marina</i></h2>
+  <table class="t" style="font-size:24px">
+    <tr><th>Item</th><th>O que saiu</th></tr>
+    <tr class="f"><td>O "nunca"</td><td>Preservação 12.000 m² e reserva legal 10.000 m² (lei); dois bosques e a crista (produto); três gestos feitos</td></tr>
+    <tr class="f"><td>Fase um e apoio</td><td>3 cabanas de 38 m² + 16 m² de deck; apoio de 30 m², 20,8% de 144 m²</td></tr>
+    <tr class="f"><td>Sem decisão</td><td>Oficina e ferramentas; abrigo de gás</td></tr>
+    <tr class="f"><td>Dia, caminhos e estacas</td><td>Faltava a vaga de serviço, que entrou; caminhos não se cruzam; a cabana 3 desceu uns 15 m</td></tr>
+    <tr class="f"><td>O que cabe e o vendável</td><td>304 m² contra o teto imaginado de 5.000 m²; 114 de 144 m² e 190 de 224 m²</td></tr>
+    <tr class="f"><td>Rede e gatilho</td><td>Rede para 5 já na fase um; três condições escritas, números pendentes para o Pilar 6</td></tr>
+  </table>
+  <aside><b>3 min · exemplo resolvido.</b> "Esta é a página da Marina como a ferramenta vai gerar. A sua sai com as suas respostas." Revele linha a linha e ligue cada uma ao passo do método. Repare: "sem decisão" não é erro; é pendência com nome. Os índices da prefeitura ainda estão como "não sei": a taxa de 10% é imaginada, só para ensinar a conta.</aside>
+</section>
+
+<!-- 37 · FASES · VEREDITOS -->
+<section class="s" data-bloco="Bloco 2 · O veredito">
+  <p class="k">Alerta primeiro, resto depois, decisão por último</p>
+  <h2 style="font-size:62px">Os quatro vereditos <i>desta página</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Avançar</span><div class="fx"><div><h4>Quando</h4><p>O "nunca" está escrito, o apoio está na faixa, os caminhos não se cruzam e a rede é para o projeto completo.</p></div><div><h4>E depois</h4><p>Segue para o Pilar 6 com as pendências nomeadas. É o veredito da Marina.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Testar</span><div class="fx"><div><h4>Quando</h4><p>Falta pôr à prova: o dia simulado, a caminhada com estacas, as duas cores ou os índices da prefeitura.</p></div><div><h4>E depois</h4><p>Teste no papel e no chão antes de chamar o arquiteto.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Ajustar</span><div class="fx"><div><h4>Quando</h4><p>Os caminhos se cruzam, o apoio ficou abaixo de 15% ou a rede foi feita só para a fase um.</p></div><div><h4>E depois</h4><p>Mude o desenho agora: corrigir custa papel.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Pausar</span><div class="fx"><div><h4>Quando</h4><p>Um limite do território, da lei ou do chão tira as unidades do ponto que sustenta a promessa.</p></div><div><h4>E depois</h4><p>Volte ao produto antes de contratar o projeto detalhado.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada veredito: quando ele vale e o que vem depois.</p></div>
+  </div>
+  <p class="sm f">Critério para parar da Marina: "Se a consulta prévia, os índices ou o mapa ambiental tirarem as cabanas da meia encosta virada para o nascente, eu pauso e volto ao produto."</p>
+  <aside><b>3 min.</b> Toda página do Dossiê termina com o critério para parar: o fato que mudaria a decisão, escrito antes, para não decidir pelo entusiasmo depois. Forma: "Se [o fato], então eu pauso e [o que eu faço]." A Marina completa: "...antes de contratar o projeto detalhado. Sem aquela linha, a promessa não se sustenta." A consulta prévia, do Pilar 1, é a pergunta protocolada na prefeitura e respondida por escrito. As pendências dela: decidir a oficina e o abrigo de gás com o profissional, receber os índices por escrito, e o custo de cada linha e os números do gatilho no Pilar 6.</aside>
+</section>
+
+<!-- 38 · REVISÃO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="dupla">
+    <div class="quiz passo">
+      <p class="q">Um feriado lotou as três cabanas. É hora da fase dois?</p>
+      <div class="ops"><button class="op">Sim, a demanda apareceu</button><button class="op" data-certa>Não: demanda, caixa e maturidade, juntas</button></div>
+      <p class="exp">Um feriado é um dado, não doze meses. E ainda faltariam o caixa e a maturidade.</p>
+    </div>
+    <div class="quiz passo">
+      <p class="q">A prefeitura permite 5.000 m² e você vai ocupar 304 m². O índice é...</p>
+      <div class="ops"><button class="op">Uma meta a alcançar</button><button class="op" data-certa>Um teto: outro limite manda no número</button></div>
+      <p class="exp">Na Marina, quem manda é o mercado e a promessa do silêncio.</p>
+    </div>
+  </div>
+  <aside><b>2 min.</b> Uma pergunta de cada vez: letra no chat, depois clique para revelar. Se der tempo, pergunte também: "quais são os três gestos do nunca?" (marcar, fotografar, pôr em contrato) e "a rede se faz para quantas unidades?" (para o projeto completo, já na fase um).</aside>
+</section>
+
+<!-- 39 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 5 do seu Dossiê</p>
+  <h2>O seu <i>Masterplan faseado</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: o "nunca" e os três gestos, as unidades, o apoio, o dia simulado, os caminhos, as estacas, a rede e o gatilho. Onde não souber, "não sei" vira tarefa da semana.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Leia na ordem:</strong> os alertas, o veredito e o critério para parar.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/pilar5/"></div>
+      <span class="url">Na área de membros: aula "Faça agora · O seu Masterplan faseado"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros e tenham por perto o mapa com o "nunca", a lista do programa, as fotos da caminhada e a resposta da prefeitura. Quem não tem, responde mesmo assim. Ligue o cronômetro. "Não sei vale zero, mas cada não sei vira uma tarefa com nome." Quem terminar escreve no chat o veredito e o percentual do apoio. Compromisso de 7 dias, o essencial: marcar as unidades com estacas e caminhar às sete e às cinco. Se já fez: pedir os índices à prefeitura, ou a energia para o projeto completo à concessionária, por escrito.</aside>
+</section>
+
+<!-- 40 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 5 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:15px">
+    <li class="f">Masterplan é o terreno inteiro no tempo. Nesta etapa, orientativo. Sem ele, não existe orçamento.</li>
+    <li class="f">Antes de onde construir, onde jamais construir: lei ou produto, com três gestos.</li>
+    <li class="f">O programa tem quatro áreas. O apoio fica entre 15% e 25% da área fechada.</li>
+    <li class="f">Hóspede e serviço em duas cores. A posição se confere a pé, com estacas.</li>
+    <li class="f">O índice é teto, e o chão nem sempre cabe. Só a área vendável gera receita.</li>
+    <li class="f">Menos unidades, nunca menos infraestrutura. A fase dois espera o gatilho.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa da aula: o que, por quê e o resultado. Pergunte: "qual dessas frases muda o seu desenho a partir de amanhã?" Se só fizerem uma coisa deste pilar: a caminhada com estacas, às sete e às cinco. É a única correção que custa quatro estacas, e não uma obra.</aside>
+</section>
+
+<!-- 41 · PONTE -->
+<section class="s foto" data-bg="../fotos/c4b7d4ee48.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 6</p>
+  <h2 style="max-width:1150px">Pré-<i>viabilidade</i></h2>
+  <p class="lead" style="max-width:1050px">Quanto custa o projeto inteiro, quanto entra, quanto sobra e em quanto tempo volta. Pôr o terreno inteiro no papel antes de chamar quem desenha é o que um sócio, um banco ou a Zion conseguem avaliar. E a Zion avalia cada caso.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e o masterplan desta aula é orientativo. Não é projeto, laudo nem parecer, não é oferta de investimento e não é promessa de renda, retorno, ocupação, crédito, aprovação de licença ou sociedade. Preservação, índices e redes, quem confirma é o profissional habilitado, a concessionária e a prefeitura.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 5. Agora você tem o terreno inteiro no papel. Falta a pergunta que todo mundo faz primeiro, e que só agora tem resposta honesta: quanto custa. É o Pilar 6." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

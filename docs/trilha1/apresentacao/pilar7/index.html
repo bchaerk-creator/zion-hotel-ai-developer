@@ -1,0 +1,732 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 7 · Capital e Dossiê · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.sim select{grid-column:1/-1;font:inherit;font-size:26px;font-weight:600;padding:10px 16px;border-radius:12px;border:2px solid var(--ouro);background:#fff;color:var(--tinta);cursor:pointer}
+.esc .sim select{background:var(--verde2);color:var(--creme)}
+.sim .ctl2{display:grid;grid-template-columns:1fr 1fr;gap:16px 34px}
+.compacto label{font-size:22px;gap:4px 14px}
+.compacto label output{font-size:24px}
+.compacto label small{font-size:18px}
+.compacto input[type=range]{height:30px}
+.compacto .res{padding:26px 30px;gap:10px}
+.compacto .linha{font-size:24px;padding-bottom:8px}
+.compacto .linha.tot{font-size:30px}
+.perg label{font-size:28px;font-weight:600;line-height:1.35}
+.perg label small{font-size:20px}
+.frase{font-family:var(--serif);font-style:italic;font-size:26px;line-height:1.4;color:#E9DFC4}
+table.t.p{font-size:25px}
+table.t.p td{padding:12px 16px}
+.seis .pq{min-height:236px}
+.seis .pq .fr h3{font-size:36px}
+.seis .pq .vs p{font-size:26px}
+.cinco{display:grid;grid-template-columns:repeat(5,1fr);gap:20px}
+.cinco .card{padding:28px 26px}
+.cinco .card h3{font-size:34px}
+.cinco .card p{font-size:24px}
+</style>
+<script>
+/* Simulador do Pilar 7: o capital da Marina (exemplo ilustrativo), a partir do Pilar 6 na base simplificada da Zion.
+   Conferido com pilar6/contas_pilar6.py e com o e-book do Pilar 7:
+   oito linhas R$ 649.741,80 + giro R$ 40.787,38 = R$ 690.529,18 (o pedido antes das linhas 5 e 6);
+   resultado no conservador R$ 108.766,35 (R$ 9.063,86 por mês); critério 8 x 108.766,35 = R$ 870.130,80;
+   a R$ 50 mil cada: 13,8, ou 14 pessoas; participação ilustrativa de quem pusesse tudo, com o terreno de R$ 600 mil como aporte: 53,5%. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+ZD.sims.p7 = function(v){
+  const sim = (v.q1 || 0) + (v.q2 || 0) + (v.q3 || 0);
+  const uni = v.un * v.pronta, res = uni * v.res / 100, oito = uni + v.lic + res;
+  const rec = v.un * 365 * 0.385 * v.diaria, resultado = rec * 0.40, giro = rec * 0.60 * v.meses / 12;
+  const total = oito + v.infra + giro;
+  const antes = oito + v.infra + v.terr + giro;
+  const fora = Math.max(0, antes + v.busca - v.poe);
+  const pessoasDec = fora / v.cota, pessoas = Math.ceil(pessoasDec - 1e-9);
+  const dela = v.aporte + Math.min(v.poe, antes + v.busca);
+  const partFora = (fora + dela) > 0 ? fora / (fora + dela) * 100 : 0;
+  const inv8 = 8 * resultado, folga = inv8 - total;
+  const br = n => 'R$ ' + Math.round(n).toLocaleString('pt-BR');
+  const branco = n => n > 0 ? br(n) : 'em branco';
+  const mil = Math.round(fora / 10000) * 10;
+  return {
+    simTxt: sim + ' de 3 sim',
+    uni, res, oito, giro, total, antes, fora, mes: resultado / 12, resultado, inv8, folga,
+    infraTxt: v.infra > 0 ? br(v.infra) : 'em branco, a cotar',
+    terrTxt: v.terr > 0 ? br(v.terr) : 'já é dela · zero',
+    resTxt: 'já nas oito linhas · soma zero',
+    buscaTxt: branco(v.busca), poeTxt: v.poe > 0 ? '− ' + br(v.poe) : 'em branco',
+    pessoasDec, pessoasTxt: pessoas + (pessoas === 1 ? ' pessoa' : ' pessoas'),
+    partFora, partDela: 100 - partFora,
+    frase: '"Preciso de até cerca de R$ ' + mil.toLocaleString('pt-BR') + ' mil para a fase um' + (v.poe > 0 ? '' : ', menos o que eu ponho') + ', liberados em marcos: licença emitida, unidades entregues, abertura."',
+    _aviso: sim === 3
+      ? ['ok', '<b>Três sim:</b> aí falta capital, e o caminho é buscar com a conta na mão.']
+      : ['er', '<b>' + (3 - sim) + (3 - sim === 1 ? ' não' : ' nãos') + ':</b> não falta capital. Falta a decisão que vem antes dele.'],
+    avDec: sim < 3
+      ? ['er', '<b>Um não:</b> antes de qualquer fonte, volte às páginas que respondem a pergunta.']
+      : total > inv8
+        ? ['at', '<b>Acima do critério:</b> o conservador passa de 8 anos. Volta à conta antes de assinar e ajusta o tamanho, o produto ou a fase.']
+        : ['ok', '<b>Dentro do critério:</b> avançar com a fase um, trocando cada referência por cotação escrita.'],
+    avPart: partFora > 50
+      ? ['er', '<b>Mais da metade:</b> ela ficaria minoria, com o terreno dentro. O dinheiro chegaria. O controle iria embora.']
+      : ['at', '<b>Uma parte:</b> quem põe dinheiro leva resultado, decisão, informação e saída. Não existe percentual universal.']
+  };
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar7" data-titulo="Pilar 7 · Capital e Dossiê">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 4 · Fechar a conta</p>
+  <h1>Pilar 7<br><i>Capital e Dossiê</i></h1>
+  <p class="lead" style="max-width:1050px">De onde vem o dinheiro, com quem, e a decisão.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas ao último pilar do curso. "Hoje vem a pergunta que quase todo mundo faz primeiro, e que só agora tem resposta honesta: de onde vem o dinheiro, e com quem." Peça papel e caneta. Avise que a aula tem simulador ao vivo e que no fim cada um sai com o Dossiê completo, as sete páginas.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/c4b7d4ee48.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">A pergunta do Pilar 7</span><p class="q">Como <i>estruturar</i> isso?</p></div>
+    <div class="gq f"><span class="rot">Com quem, e de onde vem o capital</span><p class="q">Qual é o <i>melhor caminho?</i></p></div>
+    <div class="gq f"><span class="rot">E a decisão</span><p class="q">Avançar, ajustar <i>ou parar?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho, uma por clique. "Não confunda precisar de dinheiro com precisar de um sócio. Primeiro a estrutura e o pedido exato, depois o caminho: sozinho, banco ou investidor, ou conversar com a Zion. E a Zion avalia cada caso."</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Esta aula em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>As três perguntas do capital, o número exato do pedido, as seis fontes, dinheiro ou sócio, e a decisão.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>O dinheiro muda de quem é o risco. Não muda a conta.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 7, Capital e decisão, e o seu Dossiê de Desenvolvimento completo, com as sete páginas.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. Bloco 1: de onde vem o capital, e com quem. Bloco 2: o Dossiê completo, a decisão (avançar, ajustar ou parar) e os três caminhos. No fim, o Faça agora. "Um Dossiê bonito convence quem já quer acreditar. Um defensável aguenta a pergunta difícil."</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Pilar 6</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Qual cenário precisa funcionar?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>O conservador.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O que fica fora da folha de oito linhas, e dentro da conta?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>O capital de giro. O terreno fica fora da conta, mas não é de graça.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Na Marina, em quanto tempo o dinheiro volta no conservador?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Pouco mais de seis anos, com a referência da Zion. Uma conta a trocar por cotação.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então vire. A Marina é o nosso exemplo ilustrativo: três cabanas de glamping para casal, diária de mercado de R$ 645, terreno dela, uma pessoa local operando a fase um. Os números dela vêm do Pilar 6.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · O capital">
+  <p class="k">Bloco 1</p>
+  <h2>De onde vem o capital, <i>e com quem</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Quem tem dinheiro faz três perguntas antes de qualquer outra: quanto, para quê e quando.</div>
+    <div class="f"><b>Reflexão</b>Se o dinheiro aparecesse amanhã, o que você faria na primeira semana?</div>
+    <div class="f"><b>Dica</b>Escreva agora o número que você pediria, e a quem, com a data. No fim, compare.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na dica, peça que escrevam o palpite no papel antes de seguir: o número redondo que vem à cabeça, a quem pediriam, e o que mais têm medo de perder. Ele volta no fim do bloco.</aside>
+</section>
+
+<!-- 5 · CENA -->
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Bloco 1 · O capital">
+  <p class="k">A cena que se repete</p>
+  <h2>"Quanto <i>você precisa?"</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">Num café com o gerente do banco, alguém pergunta com simpatia.</li>
+    <li class="f">Sai um número redondo: "um milhão, mais ou menos".</li>
+    <li class="f">"Para quê, exatamente, e quando?" Você tem o número da obra. <i>Não tem o do pedido.</i></li>
+  </ul>
+  <aside><b>2 min.</b> Conte a cena com calma, pode ser também um almoço de família. "Se você se reconheceu, está tudo bem. O silêncio na mesa é a informação chegando antes da obra, o melhor momento para ela chegar." O número redondo mostra que a conta não foi feita.</aside>
+</section>
+
+<!-- 6 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · O capital">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">Se alguém pusesse amanhã todo o dinheiro na mesa da Marina, o projeto dela estaria pronto?</p>
+    <div class="ops">
+      <button class="op">Sim: o que faltava era o dinheiro</button>
+      <button class="op" data-certa>Ainda não: a conta fecha, mas é de referência, sem cotação escrita</button>
+    </div>
+    <p class="exp">O conservador dela volta em pouco mais de seis anos com a referência da Zion. Mas nenhuma linha tem cotação escrita, e a infraestrutura comum do terreno ainda não foi orçada.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Clique na alternativa que alguém escolheu (fica vermelha se errada) ou avance para revelar. A crença por trás da cena: "o que falta é dinheiro". Ela trata o capital como o começo, e não como a consequência.</aside>
+</section>
+
+<!-- 7 · O QUE O DINHEIRO MUDA -->
+<section class="s" data-bloco="Bloco 1 · O capital">
+  <p class="k">Dinheiro de fora, antes e depois</p>
+  <h2>O dinheiro muda de quem é o risco. <i>Não muda a conta.</i></h2>
+  <table class="t">
+    <tr><th>O dinheiro muda</th><th>O dinheiro não muda</th></tr>
+    <tr class="f"><td>De quem é o risco</td><td>Se a conta fecha no conservador</td></tr>
+    <tr class="f"><td>Quem decide junto com você</td><td>A diária que o produto sustenta</td></tr>
+    <tr class="f"><td>O que você deve, e a quem</td><td>O que o mercado compra</td></tr>
+    <tr class="f"><td>A velocidade da obra</td><td>O tempo de volta, se a operação não deixa margem</td></tr>
+  </table>
+  <p class="lead f" style="color:var(--tinta)">Terreno parado quase nunca é falta de dinheiro. <b>É falta de ordem.</b></p>
+  <aside><b>3 min.</b> Revele linha a linha. Depois a tese do curso. Lembre a pescaria do Marco Zero: linha sem isca não traz peixe; o plano é a isca. "Quem chega a este pilar com as seis páginas do Dossiê já tem a ordem. Agora falta usá-la para conversar sobre dinheiro."</aside>
+</section>
+
+<!-- 8 · SIMULADOR · AS TRÊS PERGUNTAS -->
+<section class="s esc perg" data-bloco="Bloco 1 · As três perguntas">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · três perguntas de sim ou não</p><span class="selo">Exemplo ilustrativo · a Marina responde</span></div>
+  <h2 style="font-size:60px">Antes de quem tem dinheiro, <i>três perguntas</i></h2>
+  <div class="sim" data-sim="p7" style="grid-template-columns:1.25fr .75fr;gap:48px">
+    <div class="ctl" style="gap:20px">
+      <label>1 · Se o dinheiro aparecesse amanhã, eu sei o que construir, quantas unidades e para quem?<select name="q1"><option value="1">Sim</option><option value="0">Não</option></select><small>Onde se responde: Pilares 3, 4 e 5</small></label>
+      <label>2 · Eu sei a diária que o meu produto sustenta, com dado, e não com palpite?<select name="q2"><option value="1">Sim</option><option value="0">Não</option></select><small>Onde se responde: Pilares 2 e 3</small></label>
+      <label>3 · Eu sei em quanto tempo o dinheiro volta, nos três cenários?<select name="q3"><option value="1">Sim</option><option value="0">Não</option></select><small>Onde se responde: Pilar 6</small></label>
+    </div>
+    <div class="res" style="align-self:center">
+      <div class="linha tot"><span>Resposta</span><b data-r="simTxt"></b></div>
+      <div class="aviso" data-aviso></div>
+      <p class="sm" style="color:#BFB8A8">Um sim sem documento ao lado vale um não.</p>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> A Marina: o que construir, sim (três cabanas de glamping para casal, desenhadas para cinco, escopo da fase um congelado); a diária, sim (a do mercado, R$ 645, medida no Pilar 2; a do produto, as primeiras reservas confirmam); o tempo de volta, sim (pouco mais de seis anos no conservador). Três sim: falta capital, para a fase um e só para ela. Agora troque uma resposta para "Não" e mostre o aviso. Peça que cada um responda as suas três no chat. Tecla R volta ao exemplo.</aside>
+</section>
+
+<!-- 9 · A RÉGUA DO PEDIDO -->
+<section class="s" data-bloco="Bloco 1 · O pedido">
+  <p class="k">Nada de número redondo</p>
+  <h2>O pedido, <i>linha por linha</i></h2>
+  <table class="t p">
+    <tr><th>Linha</th><th>O que entra</th><th>O cuidado</th></tr>
+    <tr class="f"><td>1 · O investimento da fase um</td><td>As oito linhas do Pilar 6</td><td>Cotação velha se refaz</td></tr>
+    <tr class="f"><td>2 · O terreno, se ainda não pago</td><td>O que falta pagar dele</td><td>Se já é seu, zero, escrito</td></tr>
+    <tr class="f"><td>3 · O capital de giro</td><td>O do Pilar 6</td><td>No mínimo três meses de custo</td></tr>
+    <tr class="f"><td>4 · A reserva do imprevisto</td><td>De 10% a 15% do investimento</td><td>Se já está nas oito linhas, não some de novo</td></tr>
+    <tr class="f"><td>5 · O custo de buscar o dinheiro</td><td>Advogado, laudos, estruturação, registro</td><td>A linha que mais some dos pedidos</td></tr>
+    <tr class="f"><td>6 · Menos o que você põe</td><td>Só o que já está contratado</td><td>O que é só esperado não entra</td></tr>
+  </table>
+  <aside><b>3 min.</b> "Pedir pouco parece modesto. É o contrário: pedir de menos é o erro mais caro, porque a segunda rodada acontece com a obra parada, e a outra parte sabe que você não tem alternativa." O resultado da régua é o que falta de fora: esse número exato vai no pedido. Fonte: Volume 05 · Investimento, em linguagem de padaria.</aside>
+</section>
+
+<!-- 10 · O NÚMERO DA MARINA -->
+<section class="s" data-bloco="Bloco 1 · O pedido">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>O pedido <i>da Marina, hoje</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>1 · Oito linhas: 577.038 + 15.000 + reserva de 57.703,80</span><span>R$ 649.742</span></div>
+    <div class="eq f"><span>2 · Terreno: já é dela</span><span>zero</span></div>
+    <div class="eq f"><span>3 · Giro: três meses de custo</span><span>R$ 40.787</span></div>
+    <div class="eq f"><span>4 · Reserva: já está nas oito linhas</span><span>soma zero</span></div>
+    <div class="eq tot f" data-foco><span>Antes das duas últimas linhas</span><span>R$ 690.529</span></div>
+    <div class="eq f"><span>5 e 6 · Custo de buscar o dinheiro e o que ela põe</span><span>em branco</span></div>
+  </div>
+  <p class="sm f">Tudo pela referência da Zion, sem cotação e sem a infraestrutura comum do terreno, que só pode aumentar a conta.</p>
+  <aside><b>3 min · exemplo resolvido.</b> 3 × 192.346 = 577.038; reserva de 10% = 57.703,80; com as licenças, 649.741,80. Mais o giro de 40.787,38: R$ 690.529,18, cerca de R$ 690 mil. Conferência: 3 × 192.346 × 1,10 + 15.000 + 40.787,38 = 690.529,18. As linhas 5 e 6 em branco: o limite de perda da Marina nunca foi escrito. Ela sabe a ordem de grandeza, e quase o número. Por isso, antes de pedir, ela cota.</aside>
+</section>
+
+<!-- 11 · SIMULADOR · O PEDIDO EXATO -->
+<section class="s esc compacto" data-bloco="Bloco 1 · O pedido">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize o pedido</p><span class="selo">Exemplo ilustrativo · valores orientativos</span></div>
+  <h2 style="font-size:58px">O número exato, <i>e não um redondo</i></h2>
+  <div class="sim" data-sim="p7" style="grid-template-columns:1.1fr .9fr;gap:44px">
+    <div class="ctl ctl2">
+      <label>Unidades na fase um <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+      <label>Unidade pronta <output data-for="pronta" data-fmt="brl"></output><input type="range" name="pronta" min="120000" max="320000" step="1" value="192346"></label>
+      <label>Licenças e projetos <output data-for="lic" data-fmt="brl"></output><input type="range" name="lic" min="0" max="80000" step="1000" value="15000"></label>
+      <label>Reserva do imprevisto <output data-for="res" data-fmt="pct0"></output><input type="range" name="res" min="10" max="15" step="1" value="10"></label>
+      <label>Giro, em meses de custo <output data-for="meses"></output><input type="range" name="meses" min="3" max="6" step="1" value="3"></label>
+      <label>Terreno ainda a pagar <output data-for="terr" data-fmt="brl"></output><input type="range" name="terr" min="0" max="600000" step="10000" value="0"></label>
+      <label>Custo de buscar o dinheiro <output data-for="busca" data-fmt="brl"></output><input type="range" name="busca" min="0" max="60000" step="1000" value="0"><small>Advogado, laudos, estruturação, registro</small></label>
+      <label>O que você põe, contratado <output data-for="poe" data-fmt="brl"></output><input type="range" name="poe" min="0" max="690000" step="10000" value="0"><small>O que é só esperado não entra</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>1 · Oito linhas</span><b data-r="oito" data-fmt="brl"></b></div>
+      <div class="linha"><span>2 · Terreno</span><b data-r="terrTxt"></b></div>
+      <div class="linha"><span>3 · Giro</span><b data-r="giro" data-fmt="brl"></b></div>
+      <div class="linha"><span>4 · Reserva</span><b data-r="resTxt"></b></div>
+      <div class="linha"><span>5 · Buscar o dinheiro</span><b data-r="buscaTxt"></b></div>
+      <div class="linha"><span>6 · O que você põe</span><b data-r="poeTxt"></b></div>
+      <div class="linha tot"><span>O que falta de fora</span><b data-r="fora" data-fmt="brl"></b></div>
+      <p class="frase" data-r="frase"></p>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>5 min · simulador.</b> Comece na Marina: R$ 690.529, cerca de R$ 690 mil, com as linhas 5 e 6 em branco. Mexa ao vivo: "e se ela puser R$ 100 mil, contratados?"; "e se o custo de buscar o dinheiro for R$ 20 mil?"; "e se o terreno ainda tivesse uma parte a pagar?". A frase do pedido se reescreve sozinha. O giro usa a operação do conservador do Pilar 6 (38,5%, R$ 645, margem de referência de 40%). Tecla R volta ao exemplo. Os mesmos números seguem para o simulador do sócio e para o painel.</aside>
+</section>
+
+<!-- 12 · CONTRATADO, NÃO ESPERADO -->
+<section class="s" data-bloco="Bloco 1 · O pedido">
+  <p class="k">A última linha só tira o que existe</p>
+  <h2>Contratado, <i>não esperado</i></h2>
+  <div class="grid g2" style="min-height:250px">
+    <div class="pq passo" style="min-height:250px"><div class="in"><div class="fr"><h3 style="font-size:36px">A promessa do parente, o carro que vai ser vendido, a herança que não saiu</h3><span class="dica">Entram?</span></div><div class="vs"><b>Não entram</b><p>São premissa: vão para a lista de riscos, com nome e data.</p></div></div></div>
+    <div class="pq passo" style="min-height:250px"><div class="in"><div class="fr"><h3 style="font-size:36px">Marco verificável</h3><span class="dica">O que é?</span></div><div class="vs"><b>O que é</b><p>O que um terceiro confere com documento: licença emitida, medição assinada, fotos datadas. O dinheiro sai a cada marco.</p></div></div></div>
+  </div>
+  <p class="citacao f" style="font-size:44px">Preciso de X para a fase um, assim distribuído, liberado em tantos <i>marcos verificáveis.</i></p>
+  <aside><b>3 min.</b> Vire os dois cartões. "E cada real tem uma finalidade: misturar é pagar obra com o giro, ou gastar na fase dois o que foi pedido para a fase um." A frase é o molde do Volume 05. Liberar em marcos protege os dois lados. A frase da Marina já tem a forma; o X exato sai quando as cotações e o limite de perda chegarem.</aside>
+</section>
+
+<!-- 13 · AS SEIS FONTES -->
+<section class="s" data-bloco="Bloco 1 · As seis fontes">
+  <p class="k">Em linguagem de padaria · clique em cada uma</p>
+  <h2 style="font-size:66px">Cada dinheiro <i>cobra um preço diferente</i></h2>
+  <div class="grid g3 seis">
+    <div class="pq"><div class="in"><div class="fr"><h3>1 · Recurso próprio</h3><p class="sm">Pede: nada</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Toda a concentração do risco em você.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>2 · Banco</h3><p class="sm">Pede: garantia e uma operação que pague a parcela</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Juro, carência curta e, às vezes, aval.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>3 · Investidor</h3><p class="sm">Pede: a tese e quem conduz</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Uma parte do negócio e das decisões.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>4 · Sócio</h3><p class="sm">Pede: uma relação de longo prazo</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Resultado, decisão, informação e saída.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>5 · Pré-venda</h3><p class="sm">Só no modelo de venda. Pede: projeto aprovado e estrutura legal</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Uma obrigação com cara de caixa. Pré-venda não é receita.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>6 · Parceria com quem opera</h3><p class="sm">Pede: um contrato com papéis claros</p><span class="dica">O que cobra?</span></div><div class="vs"><b>Cobra</b><p>Parte do resultado, pela operação.</p></div></div></div>
+  </div>
+  <aside><b>4 min.</b> "Quase todo mundo conhece duas portas, banco e sócio, e bate nas duas. Existem mais, e nenhuma é melhor em abstrato. Todas pedem os mesmos números; o que muda é o que cada uma cobra." Vire na ordem que a turma pedir. Pré-venda: sem histórico de operação, você estaria vendendo uma renda que ainda não existe; venda na planta, multipropriedade e condo-hotel são temas regulados, só com advogado e contador. Parceria com quem opera: às vezes o que falta não é dinheiro, é quem saiba operar, e essa é a primeira pergunta de qualquer banco ou investidor. Nenhuma fonte é garantida.</aside>
+</section>
+
+<!-- 14 · RECURSO PRÓPRIO -->
+<section class="s esc" data-bloco="Bloco 1 · As seis fontes">
+  <p class="k">1 · Recurso próprio · o mais rápido</p>
+  <p class="citacao" style="font-size:58px">A pergunta certa não é quanto você tem, é quanto você pode perder <i>sem comprometer a sua vida.</i></p>
+  <p class="lead f">Esse é o seu <b>limite de perda</b>. Escreve-se antes, em casa, com quem divide a vida com você.</p>
+  <p class="sm f">Dinheiro da família, só com contrato escrito, como se fosse de um desconhecido: prazo, remuneração, atraso, e se o projeto não sair.</p>
+  <aside><b>2 min.</b> Pausa na citação (Volume 05 · Investimento). Recurso próprio não se mede pelo saldo da conta. "É legítimo adiar quando o dinheiro que seria usado é dinheiro de sobrevivência." O limite de perda é a ação essencial deste pilar: ele decide se você faz sozinho, quanto pede e o que aceita ceder.</aside>
+</section>
+
+<!-- 15 · BANCO, GARANTIA E AVAL -->
+<section class="s" data-bloco="Bloco 1 · As seis fontes">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">2 · O banco olha o fluxo e o ativo</p><span class="selo">Exemplo ilustrativo</span></div>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>O que a operação da Marina deixa no conservador, no ano</span><span>R$ 108.766</span></div>
+    <div class="eq tot f"><span>Por mês, antes de qualquer parcela · ÷ 12</span><span>cerca de R$ 9.064</span></div>
+  </div>
+  <div class="grid g2" style="min-height:240px">
+    <div class="pq passo" style="min-height:240px"><div class="in"><div class="fr"><h3 style="font-size:38px">"A garantia é o meu terreno"</h3><span class="dica">O que quer dizer?</span></div><div class="vs"><b>Garantia real</b><p>Um bem que responde pela dívida. Se der errado, o terreno responde. Você está disposto?</p></div></div></div>
+    <div class="pq passo" style="min-height:240px"><div class="in"><div class="fr"><h3 style="font-size:38px">Aval pessoal</h3><span class="dica">O que põe em risco?</span></div><div class="vs"><b>Mais pesado</b><p>Sem aval, o pior é perder o que foi investido. Com aval, o pior cenário alcança a sua casa.</p></div></div></div>
+  </div>
+  <aside><b>3 min.</b> É desse fluxo que sairia a parcela, e ela não pode comer o fluxo inteiro: o mês fraco e o primeiro ano ficam abaixo da média. O ativo ela tem: o terreno. O fluxo ainda é projeção, até a operação existir. O aperto costuma ser a carência: a obra não gera caixa e o banco quer receber logo. Duas fontes podem pedir o mesmo terreno: confira antes de assinar a segunda. Linha, taxa, prazo e cada garantia, quem confirma é o banco, o advogado e o contador.</aside>
+</section>
+
+<!-- 16 · O QUE CADA REAL COBRA -->
+<section class="s" data-bloco="Bloco 1 · As seis fontes">
+  <p class="k">Compare pelo preço inteiro, e não só pela taxa</p>
+  <h2>Todo dinheiro <i>cobra cinco coisas</i></h2>
+  <div class="cinco">
+    <div class="card f"><h3>Juro</h3><p>Em reais, e não em taxa.</p></div>
+    <div class="card f"><h3>Participação</h3><p>A parte que você cede.</p></div>
+    <div class="card f"><h3>Garantia</h3><p>O que responde se der errado.</p></div>
+    <div class="card f"><h3>Tempo</h3><p>Os meses até o dinheiro estar na conta.</p></div>
+    <div class="card f"><h3>Liberdade</h3><p>O que você deixa de decidir sozinho.</p></div>
+  </div>
+  <p class="lead f">Em projeto pequeno e faseado, duas ou três fontes pequenas costumam ser mais viáveis do que uma grande.</p>
+  <aside><b>2 min.</b> Revele as cinco. Exemplo comum: o grupo da família ou de amigos, cada um com uma parte. Funciona, e muita gente começa assim, mas com a conta exata e contrato escrito com cada um. O simulador do bloco mostra quantas pessoas seriam na Marina.</aside>
+</section>
+
+<!-- 17 · QUIZ JURO ZERO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 1 de 2</p>
+  <div class="quiz passo">
+    <p class="q">O investidor não cobra juro. Então ele é o dinheiro mais barato?</p>
+    <div class="ops">
+      <button class="op">Sim: juro zero</button>
+      <button class="op" data-certa>Não: ele cobra em participação, decisão e saída</button>
+    </div>
+    <p class="exp">Juro zero não é dinheiro de graça. O barato cobra juros. O caro cobra participação. E o errado cobra o projeto inteiro.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele. O investidor normalmente não pede o seu patrimônio como garantia: ele compra a possibilidade de crescer, como a quarta e a quinta cabanas da Marina, e a capacidade de quem executa.</aside>
+</section>
+
+<!-- 18 · O QUE FALTA DE VERDADE -->
+<section class="s" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <p class="k">Não confunda precisar de dinheiro com precisar de um sócio</p>
+  <h2 style="font-size:70px">O que te falta <i>de verdade?</i></h2>
+  <table class="t p">
+    <tr><th>O que falta</th><th>A alternativa a estudar primeiro</th></tr>
+    <tr class="f"><td>Dinheiro para investir</td><td>Recurso próprio, financiamento ou investidor</td></tr>
+    <tr class="f"><td>Mão para uma tarefa específica</td><td>Contratar um profissional</td></tr>
+    <tr class="f"><td>Conhecimento especializado</td><td>Uma consultoria ou um profissional especializado</td></tr>
+    <tr class="f"><td>Acesso a um mercado</td><td>Uma parceria comercial</td></tr>
+    <tr class="f"><td>Gestão e decisões estratégicas</td><td><b>Talvez</b> um sócio, com competências que você não tem</td></tr>
+    <tr class="f"><td>Expansão imobiliária grande</td><td>Incorporação, financiamento ou parceria estruturada</td></tr>
+  </table>
+  <aside><b>3 min.</b> Antes de revelar cada alternativa, pergunte à turma. "Repare: só uma linha termina em sócio, e mesmo ela começa com talvez. Muita gente entrega uma parte do negócio para resolver um problema que um contrato, um empréstimo ou um profissional resolveriam."</aside>
+</section>
+
+<!-- 19 · TRÊS TIPOS DE SÓCIO -->
+<section class="s" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <p class="k">Os três são legítimos</p>
+  <h2>Três sócios <i>diferentes</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que traz dinheiro</h3><p>Traz capital. Espera retorno conforme o combinado: empréstimo, participação ou outra estrutura.</p></div>
+    <div class="card f"><span class="n">2</span><h3>O que opera</h3><p>Traz gestão e execução no dia a dia. Espera participar das decisões e do resultado.</p></div>
+    <div class="card f"><span class="n">3</span><h3>O que abre portas</h3><p>Traz contatos, mercado e conhecimento que você não tem. Espera participação pelo valor que gera.</p></div>
+  </div>
+  <p class="lead f">Terra, trabalho e conhecimento também valem como aporte. Não existe percentual universal.</p>
+  <aside><b>3 min.</b> O problema começa quando você precisa de um e escolhe outro: o sócio do dinheiro que quer opinar na operação, o sócio operador que não tem tempo, o sócio das portas que nunca abre nenhuma. Aporte é a contribuição de cada um: o terreno da Marina é aporte. Formas possíveis, em nível introdutório: remuneração pela gestão, participação pela contribuição efetiva, participação por metas, remuneração variável por resultado, contrato de parceria. Pesa o que cada um põe, o risco, a responsabilidade e a dedicação. Como escrever, quem confirma é o advogado e o contador.</aside>
+</section>
+
+<!-- 20 · AS SEIS PERGUNTAS ANTES DE DIVIDIR -->
+<section class="s" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <p class="k">Seis perguntas antes de dividir o negócio</p>
+  <div class="grid g2" style="gap:20px 60px">
+    <ul class="lista num" style="font-size:32px;gap:18px">
+      <li class="f">Eu preciso de capital, ou de um parceiro?</li>
+      <li class="f">Dá para contratar alguém para resolver isso?</li>
+      <li class="f">Essa pessoa traz o que eu não tenho?</li>
+    </ul>
+    <ul class="lista num" style="font-size:32px;gap:18px;counter-reset:n 3">
+      <li class="f">Queremos a mesma coisa, no mesmo prazo?</li>
+      <li class="f">Quem decide o quê está escrito?</li>
+      <li class="f">O que ela traz vale a parte que eu entrego?</li>
+    </ul>
+  </div>
+  <p class="lead f" style="color:var(--tinta)">O sócio leva quatro coisas que não se desfazem sem comprar de volta: <b>resultado, decisão, informação e saída.</b></p>
+  <p class="citacao f" style="font-size:52px">Escolha o sócio pela década, <i>não pelo cheque.</i></p>
+  <aside><b>3 min.</b> A regra por trás das seis: uma sociedade precisa criar valor para o negócio. Não se oferece participação só porque alguém tem dinheiro, faz uma tarefa ou promete contatos. Quando entra alguém de fora, a governança mínima: acordo de sócios escrito antes de começar, relatório mensal, conta e contabilidade só do projeto, uma reunião anual. Quem confirma como escrever é o advogado e o contador.</aside>
+</section>
+
+<!-- 21 · QUIZ AMIGO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 2 de 2</p>
+  <div class="quiz passo">
+    <p class="q">Um amigo oferece cuidar das redes sociais do projeto em troca de 20% do negócio. O que perguntar primeiro?</p>
+    <div class="ops">
+      <button class="op">Se ele é bom de rede social</button>
+      <button class="op" data-certa>Se dá para contratar alguém para essa tarefa, e se o que ele traz vale a parte que você entrega</button>
+    </div>
+    <p class="exp">Uma tarefa específica quase sempre se resolve contratando. Sociedade é para quem traz o que você não tem e não consegue contratar, e por muitos anos.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 22 · SIMULADOR · INVESTIDOR OU VÁRIAS PESSOAS -->
+<section class="s esc compacto" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · conta para ver o tamanho</p><span class="selo">Exemplo ilustrativo · não é proposta</span></div>
+  <h2 style="font-size:58px">Se a Marina buscasse tudo <i>de fora, hoje</i></h2>
+  <div class="sim" data-sim="p7" style="grid-template-columns:.85fr 1.15fr;gap:44px">
+    <div class="ctl">
+      <label>Valor do terreno, se um laudo confirmar <output data-for="aporte" data-fmt="brl"></output><input type="range" name="aporte" min="0" max="1500000" step="10000" value="600000"><small>O aporte dela no projeto</small></label>
+      <label>O que ela põe em dinheiro, contratado <output data-for="poe" data-fmt="brl"></output><input type="range" name="poe" min="0" max="690000" step="10000" value="0"></label>
+      <label>No grupo da família ou de amigos, quanto cada um põe <output data-for="cota" data-fmt="brl"></output><input type="range" name="cota" min="10000" max="200000" step="5000" value="50000"></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>O que falta de fora</span><b data-r="fora" data-fmt="brl"></b></div>
+      <div class="linha"><span>Um investidor só: a parte de quem pusesse o dinheiro</span><b data-r="partFora" data-fmt="pct"></b></div>
+      <div class="barra"><i data-bar="partFora"></i></div>
+      <div class="linha"><span>A parte da Marina, com o terreno dentro</span><b data-r="partDela" data-fmt="pct"></b></div>
+      <div class="aviso" data-aviso="avPart"></div>
+      <div class="linha"><span>Várias pessoas: o que falta ÷ a cota</span><b data-r="pessoasDec" data-fmt="dec1"></b></div>
+      <div class="linha tot"><span>Pessoas, cada uma com contrato</span><b data-r="pessoasTxt"></b></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> A hipótese: o terreno, R$ 600 mil se um laudo confirmar, é a única contribuição dela. 690.529,18 ÷ (690.529,18 + 600.000) = 53,5%. Quem pusesse o dinheiro ficaria com mais da metade de um projeto que ainda não tem um mês de operação, com o terreno dela dentro. A R$ 50 mil cada: 690.529,18 ÷ 50.000 = 13,8, ou 14 pessoas, cada uma com contrato escrito: o que recebe, quando, e o que acontece se der errado. Mexa no que ela põe e mostre a parte mudar. É conta para ver o tamanho, não proposta nem oferta de sociedade.</aside>
+</section>
+
+<!-- 23 · A MARINA E O SÓCIO -->
+<section class="s" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <span class="selo">Exemplo ilustrativo</span>
+  <h2>O que falta à Marina, <i>de verdade</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>Dinheiro</span><span>Sim, para a fase um</span></div>
+    <div class="eq f"><span>Quem opera</span><span>Não falta: uma pessoa local</span></div>
+    <div class="eq f"><span>Conhecimento</span><span>Um pouco, na obra: arquiteto e engenheiro, contratados</span></div>
+    <div class="eq f"><span>Mercado</span><span>Não falta: o produto está escrito</span></div>
+    <div class="eq f"><span>Gestão e decisão</span><span>Não falta: ela quer decidir</span></div>
+    <div class="eq tot f" data-foco><span>A decisão</span><span>Ela procura dinheiro, não sócio</span></div>
+  </div>
+  <aside><b>2 min.</b> Começa pelo que é dela, o limite de perda, e pelas fontes que não pedem uma parte do negócio. Se um dia precisar de sócio, sabe de que tipo, e o que perguntar. Pergunte à turma: "e a sua tabela, o que te falta de verdade?"</aside>
+</section>
+
+<!-- 24 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>O seu capital <i>no papel</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Responda as três perguntas, com o documento de cada sim.</span></div>
+      <div class="passo f"><b>2</b><span>Escreva quanto você pode perder sem comprometer a sua vida.</span></div>
+      <div class="passo f"><b>3</b><span>Marque cada uma das seis fontes: disponível, possível ou fora.</span></div>
+      <div class="passo f"><b>4</b><span>Anote o que te falta de verdade, e se isso pede um sócio.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Compare com o palpite que você escreveu no começo.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar. "Fora também é informação." Enquanto escrevem, leia o chat. Ao terminar: "quem descobriu que o que falta não é dinheiro?" Antes de qualquer conversa, cada um escreve, só para si: o que aceita ceder, o seu piso e a sua melhor alternativa. Na reunião, a cabeça negocia; o papel lembra.</aside>
+</section>
+
+<!-- 25 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">Bloco 2</p>
+  <h2>O Dossiê <i>e a decisão</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Uma decisão bem tomada e não registrada, seis meses depois, parece decisão por impulso.</div>
+    <div class="f"><b>Reflexão</b>Qual página do seu Dossiê ainda está só na sua cabeça?</div>
+    <div class="f"><b>Dica</b>Leia a coluna "depende de" de cima para baixo. O que se repete é a sua maior lacuna.</div>
+  </div>
+  <aside><b>1 min.</b> Retome: no bloco 1, de onde vem o capital e com quem. Agora, as sete páginas juntas, a decisão e os três caminhos.</aside>
+</section>
+
+<!-- 26 · SETE PÁGINAS -->
+<section class="s" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">O Dossiê de Desenvolvimento</p>
+  <h2 style="font-size:70px">Sete páginas, <i>uma pasta</i></h2>
+  <table class="t p">
+    <tr><th>Página</th><th>O que responde</th></tr>
+    <tr class="f"><td>1 · Ficha do Território</td><td>O que o terreno permite</td></tr>
+    <tr class="f"><td>2 · Ficha do Mercado</td><td>Quem paga, quanto e quando, e quantas unidades cabem</td></tr>
+    <tr class="f"><td>3 · Ficha do Produto</td><td>O que você vende, e para quem</td></tr>
+    <tr class="f"><td>4 · Modelo de Negócio</td><td>Renda, venda ou híbrido, a conta do cem por cento e quem opera</td></tr>
+    <tr class="f"><td>5 · Masterplan faseado</td><td>O terreno inteiro no tempo, e a fase um</td></tr>
+    <tr class="f"><td>6 · Pré-viabilidade</td><td>Quanto custa, quanto sobra, os cenários e o tempo de volta</td></tr>
+    <tr class="f" data-foco><td><b>7 · Capital e decisão</b></td><td><b>De onde vem o dinheiro, com quem, e a decisão</b></td></tr>
+  </table>
+  <aside><b>2 min.</b> Uma página por pilar. Você fez seis; a sétima fecha hoje. Pergunte: "quais das seis estão no papel, com data e fonte, e quais estão só na cabeça?"</aside>
+</section>
+
+<!-- 27 · BONITO OU DEFENSÁVEL -->
+<section class="s" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">A diferença não está na apresentação</p>
+  <h2>Bonito <i>ou defensável?</i></h2>
+  <div class="grid g2" style="min-height:280px">
+    <div class="pq passo" style="min-height:280px"><div class="in"><div class="fr"><h3>Um Dossiê bonito</h3><span class="dica">Convence quem?</span></div><div class="vs"><b>Convence</b><p>Quem já quer acreditar.</p></div></div></div>
+    <div class="pq passo" style="min-height:280px"><div class="in"><div class="fr"><h3>Um Dossiê defensável</h3><span class="dica">Aguenta o quê?</span></div><div class="vs"><b>Aguenta</b><p>A pergunta de quem não tem interesse nenhum em acreditar: o banco, o investidor, o sócio desconfiado. E você, daqui a seis meses.</p></div></div></div>
+  </div>
+  <p class="citacao f" style="font-size:50px">O que não foi escrito não existe <i>na hora da pergunta.</i></p>
+  <aside><b>2 min.</b> A diferença está em cada decisão ter uma evidência atrás dela, registrada no momento em que foi tomada. Para quem olha de fora, inclusive você mesmo, decisão com boa informação e sem registro não se distingue de decisão por impulso. "E o momento da pergunta difícil nunca é escolhido por você."</aside>
+</section>
+
+<!-- 28 · FASES · AS QUATRO PERGUNTAS -->
+<section class="s" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">Uma página está pronta quando responde às quatro</p>
+  <h2 style="font-size:66px">As quatro perguntas <i>de cada página</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Está completa?</span><div class="fx"><div><h4>O que conta como resposta</h4><p>Escrita, com a fonte e a data de cada número. "Em branco" declarado conta.</p></div><div><h4>Por quê</h4><p>O que não foi escrito não existe na hora da pergunta.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Qual é o veredito?</span><div class="fx"><div><h4>O que conta como resposta</h4><p>Uma palavra, escrita.</p></div><div><h4>Por quê</h4><p>Sem decisão escrita, o projeto é decidido pelo entusiasmo, pelo cansaço ou pela pressa de alguém.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>O que faria você parar?</span><div class="fx"><div><h4>O que conta como resposta</h4><p>O fato que mudaria a decisão, escrito antes.</p></div><div><h4>Por quê</h4><p>Toda decisão sem critério para mudar vira teimosia.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Qual é a maior lacuna?</span><div class="fx"><div><h4>O que conta como resposta</h4><p>A linha que mais falta, quem resolve e até quando.</p></div><div><h4>Por quê</h4><p>Uma linha em branco, declarada, mostra que você sabe onde está. Um número redondo sem fonte cai na primeira pergunta: "de onde saiu isso?"</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada pergunta: o que conta como resposta, e por quê.</p></div>
+  </div>
+  <aside><b>4 min.</b> Cada clique abre a próxima pergunta com o porquê. Peça que passem uma página do próprio Dossiê pelas quatro, em voz alta no chat. "Uma linha em branco, declarada, vale. Um número redondo sem fonte, não."</aside>
+</section>
+
+<!-- 29 · AS SETE PÁGINAS DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · O Dossiê">
+  <span class="selo">Exemplo ilustrativo · o Dossiê da Marina lado a lado</span>
+  <table class="t p" style="font-size:24px">
+    <tr><th>Página</th><th>Veredito</th><th>Depende de</th></tr>
+    <tr class="f"><td>1 · Território</td><td>Testa</td><td>Uma diária acima da média da região</td></tr>
+    <tr class="f"><td>2 · Mercado</td><td>Ajusta: abre com 3, desenha para 5</td><td>Entregar o que o topo da faixa entrega</td></tr>
+    <tr class="f"><td>3 · Produto</td><td>Avança, com o preço em teste</td><td>A hipótese de cerca de R$ 716, a testar</td></tr>
+    <tr class="f"><td>4 · Modelo de negócio</td><td>Avança: renda, no degrau fácil</td><td>O cenário mais fraco pagar os custos</td></tr>
+    <tr class="f"><td>5 · Masterplan faseado</td><td>Avança</td><td>Os índices da prefeitura e o mapa ambiental</td></tr>
+    <tr class="f"><td>6 · Pré-viabilidade</td><td>Avança: pouco mais de seis anos</td><td>As cotações e a infraestrutura comum caberem em cerca de R$ 870 mil</td></tr>
+    <tr class="f"><td>7 · Capital e decisão</td><td>A decidir hoje</td><td>As cotações e o limite de perda</td></tr>
+  </table>
+  <p class="lead f" style="font-size:34px">Leia a última coluna de cima para baixo. <i>O que se repete?</i></p>
+  <aside><b>3 min.</b> Revele linha a linha. Depois pergunte o que se repete. Duas coisas: a diária e o custo cotado. Próximo slide responde.</aside>
+</section>
+
+<!-- 30 · O NÚMERO QUE SE REPETE -->
+<section class="s esc" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">O achado do Dossiê completo</p>
+  <p class="big">R$ 645</p>
+  <p class="lead" style="max-width:1400px">A conta inteira se apoia na diária que a Marina mediu no mercado. Com ela, o cenário mais fraco fecha.</p>
+  <p class="lead f" style="max-width:1400px">A hipótese do produto, cerca de R$ 716, vira folga, não condição. <i>O que a pasta ainda não tem é o custo cotado.</i></p>
+  <aside><b>2 min.</b> O território quer uma diária acima da média; o produto propôs cerca de R$ 716; o modelo depende de o cenário mais fraco pagar os custos; a pré-viabilidade mostra que, com a referência da Zion, ele paga com a diária do mercado. Por isso a maior lacuna da Marina cabe numa linha: o custo cotado.</aside>
+</section>
+
+<!-- 31 · A PÁGINA MAIS FRACA -->
+<section class="s" data-bloco="Bloco 2 · O Dossiê">
+  <p class="k">Três regras de leitura</p>
+  <h2 style="font-size:64px">O projeto anda na velocidade <i>da página mais fraca</i></h2>
+  <div class="quiz passo">
+    <p class="q" style="font-size:46px">Num projeto qualquer, seis páginas avançam e uma diz parar. O que ele faz?</p>
+    <div class="ops">
+      <button class="op">Avança: seis contra uma</button>
+      <button class="op" data-certa>Para, ou ajusta, até resolver a que manda parar</button>
+    </div>
+    <p class="exp">Não é votação. Seis páginas boas não compram a que manda parar. Entre dois critérios, fique com o mais exigente, com a razão escrita: na Marina, R$ 645, e não a hipótese de R$ 716.</p>
+  </div>
+  <aside><b>2 min.</b> Se a página que trava é o território, nada do que vem depois se sustenta. Cada página protege contra um jeito de o projeto falhar. O veredito do projeto é o da página mais restritiva ainda não resolvida.</aside>
+</section>
+
+<!-- 32 · FASES · A DECISÃO -->
+<section class="s esc" data-bloco="Bloco 2 · A decisão">
+  <p class="k">A decisão do projeto, escrita</p>
+  <h2 style="font-size:66px">Avançar, ajustar <i>ou parar</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Avançar</span><div class="fx"><div><h4>Quando</h4><p>As páginas sustentam o próximo passo, e você sabe qual é.</p></div><div><h4>Por quê</h4><p>Toda decisão vem com o critério que a mudaria: "Se [o fato], então [eu avanço, ajusto ou paro]." É a frase que impede você de decidir pelo entusiasmo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Ajustar</span><div class="fx"><div><h4>Quando</h4><p>O projeto tem futuro, mas uma página pede mudança antes: no tamanho, no produto, no preço ou na fase.</p></div><div><h4>Por quê</h4><p>"Testar" mora aqui: testar o preço é ajustar antes de gastar.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Parar</span><div class="fx"><div><h4>Quando</h4><p>A conta não fecha neste desenho, ou o risco não cabe na sua vida. "Pausar" vira parar por enquanto.</p></div><div><h4>Por que não é fracasso</h4><p>Você descobriu no papel o que muita gente descobre com a obra pronta e o calendário vazio. Gastou caderno e algumas semanas, não uma obra.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada palavra: quando, e por quê.</p></div>
+  </div>
+  <aside><b>4 min.</b> Três palavras. "Decidir não fazer, com evidência, é um resultado válido. E o Dossiê continua seu: território lido, mercado medido, produto escrito, conta feita." Entre dois critérios, fique com o mais exigente, com a razão escrita.</aside>
+</section>
+
+<!-- 33 · A DECISÃO DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · A decisão">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>A decisão <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>Investimento da fase um, com o giro, pela referência da Zion</span><span>R$ 690.529</span></div>
+    <div class="eq f"><span>Critério: 8 anos × R$ 108.766 no conservador</span><span>R$ 870.131</span></div>
+    <div class="eq tot f" data-foco><span>Avançar · folga para cotações e infraestrutura comum</span><span>cerca de R$ 180 mil</span></div>
+  </div>
+  <p class="citacao f" style="font-size:40px">O meu projeto está pronto para o próximo passo, e eu sei qual é: trocar a referência por cotação. Se o custo cotado passar de cerca de R$ 870 mil, <i>eu volto à conta antes de assinar.</i></p>
+  <aside><b>3 min.</b> 8 × 108.766,35 = 870.130,80; menos 690.529,18 = 179.601,62. O próximo passo: trocar cada referência por cotação escrita e orçar a infraestrutura comum do terreno. O critério completo: se o investimento total passar de cerca de R$ 870 mil, ou a lista de custos levar o conservador acima de 8 anos, ela volta à conta e ajusta o tamanho, o produto ou a fase. A quarta e a quinta cabanas esperam o gatilho da fase dois. "A frase não promete nada. Ela diz o que falta e o que acontece em cada resposta."</aside>
+</section>
+
+<!-- 34 · FASES · OS 90 DIAS -->
+<section class="s" data-bloco="Bloco 2 · A decisão">
+  <p class="k">A decisão vira plano · cada fase tem um verbo</p>
+  <h2 style="font-size:66px">Os próximos <i>90 dias</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Dias 1 a 30 · Entender</span><div class="fx"><div><h4>O que entra</h4><p>As lacunas que só pedem medir: documentos, limite de perda, o que falta saber do mercado e do hóspede.</p></div><div><h4>Na Marina</h4><p>Escreve o limite de perda, recebe os índices da prefeitura e o mapa ambiental, pede as cotações com o escopo anexado.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Dias 31 a 60 · Validar</span><div class="fx"><div><h4>O que entra</h4><p>As cotações das maiores linhas, o teste do preço e os cenários refeitos com os números novos.</p></div><div><h4>Na Marina</h4><p>Cotações da unidade, das ligações e da mobília, o orçamento da infraestrutura comum e a lista de custos com o contador.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Dias 61 a 90 · Decidir</span><div class="fx"><div><h4>O que entra</h4><p>Comparar alternativas, revisar riscos e decidir a fase um, o orçamento, a reserva e a fonte do dinheiro.</p></div><div><h4>Na Marina</h4><p>Refaz a página 6 com os números cotados. Até cerca de R$ 870 mil: decide a obra e a fonte. Acima: ajusta.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada fase: o que entra, e o que a Marina faz.</p></div>
+  </div>
+  <p class="sm f">Uma regra vale para todo mundo: o cronograma da obra só depois das verificações técnicas e legais.</p>
+  <aside><b>3 min.</b> Por que nessa ordem: primeiro o que só pede medir, porque cada lacuna medida troca um "não sei" por um dado; depois a cotação, que é a que fecha o número; só então a decisão. Se ela quiser confirmar a diária antes de abrir, recebendo dinheiro de hóspede antecipado, quem confirma como fazer é o advogado e o contador.</aside>
+</section>
+
+<!-- 35 · FASES · OS TRÊS CAMINHOS -->
+<section class="s esc" data-bloco="Bloco 2 · Os três caminhos">
+  <p class="k">Com o Dossiê na mão · o caminho segue a decisão</p>
+  <h2 style="font-size:66px">Três caminhos. <i>Nenhum é melhor por definição.</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Fazer sozinho, com o Dossiê</span><div class="fx"><div><h4>Quem lê primeiro</h4><p>Você, sozinho ou com a família: o limite de perda e o conservador.</p></div><div><h4>Por quê</h4><p>Se o investidor é você mesmo, quem precisa das respostas primeiro é você. O Dossiê vira a régua de cada gasto.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Banco ou investidor</span><div class="fx"><div><h4>Quem lê primeiro</h4><p>O banco lê a garantia e se a operação paga a parcela. O investidor lê a tese e quem conduz.</p></div><div><h4>Por quê</h4><p>As páginas são as mesmas; muda a que cada um lê primeiro. Nenhum dos dois é garantido: cada um avalia o seu caso.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Conversar com a Zion</span><div class="fx"><div><h4>O que é</h4><p>Uma reunião com o nosso fundador, Bruno Chaerk, ou o pedido para entrar na lista do Land Bank Zion, de terrenos com o Dossiê feito.</p></div><div><h4>Leia antes</h4><p>São caminhos possíveis, não promessas. Estar na lista não garante investimento, venda ou sociedade. A Zion avalia cada caso.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada caminho: quem lê primeiro, e por quê.</p></div>
+  </div>
+  <aside><b>4 min.</b> No caminho 1, se a decisão é na mesa da cozinha, a pasta faz o mesmo papel que faria no banco: troca o "acho que dá" por uma folha que todos leem. O caminho 3 serve a projetos maiores, ou a quem quer um olhar de fora. O caminho da Marina: primeiro o 1, para cotar e escrever o limite de perda; depois, com a pasta conferida, o 2 ou o 3. Se a sua decisão é ajustar ou parar, o caminho quase sempre é o 1, por enquanto.</aside>
+</section>
+
+<!-- 36 · O QUE CADA MESA LÊ PRIMEIRO -->
+<section class="s" data-bloco="Bloco 2 · Os três caminhos">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">As páginas são as mesmas</p>
+      <h2 style="font-size:60px">O que cada mesa <i>lê primeiro</i></h2>
+      <table class="t p">
+        <tr><th>Mesa</th><th>Lê primeiro</th></tr>
+        <tr class="f"><td>Você e a família</td><td>O limite de perda e o conservador</td></tr>
+        <tr class="f"><td>O sócio ou o grupo</td><td>O contrato e as regras de convivência</td></tr>
+        <tr class="f"><td>O banco</td><td>A garantia, e se a operação paga a parcela</td></tr>
+        <tr class="f"><td>O investidor</td><td>A tese e quem conduz</td></tr>
+      </table>
+      <p class="sm f">Quem desenvolve faz a conferência antes, a <i>due diligence</i>, e chega com a pasta pronta: o que tem, com data, e o que falta, com quem resolve.</p>
+    </div>
+    <img class="ilus" src="../fotos/23be6a431d.jpg" alt="Do empreendimento estruturado saem três portas: fazer sozinho; sócio, banco ou investidor; apresentar para a Zion" style="max-height:700px;object-fit:contain;background:#ECE5D6">
+  </div>
+  <aside><b>3 min.</b> A pasta antes de qualquer conversa de capital: do terreno (matrícula com ônus, certidões, CAR, zoneamento, consulta prévia por escrito, acesso legal); do negócio (produto, modelo, masterplan, escopo da fase um); da conta (oito linhas com data de cada cotação, receita, giro, o pedido linha por linha); da estrutura (quem é dono de quê, contratos escritos). Você não confere tudo sozinho, sabe quem confere: advogado e cartório, técnico ambiental e prefeitura, avaliador, fornecedores, contador. "Quem põe dinheiro não compra opinião. Compra confiança." Tudo o que ainda não está provado, quem põe dinheiro desconta do seu lado.</aside>
+</section>
+
+<!-- 37 · PAINEL COMPLETO -->
+<section class="s esc compacto" data-bloco="Bloco 2 · O capital inteiro">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · o capital e a decisão em uma tela</p><span class="selo">Exemplo ilustrativo · não é proposta</span></div>
+  <div class="sim" data-sim="p7" style="grid-template-columns:.9fr 1.1fr;gap:44px">
+    <div class="ctl">
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+      <label>Unidade pronta <output data-for="pronta" data-fmt="brl"></output><input type="range" name="pronta" min="120000" max="320000" step="1" value="192346"></label>
+      <label>Infraestrutura comum, cotada <output data-for="infra" data-fmt="brl"></output><input type="range" name="infra" min="0" max="400000" step="10000" value="0"><small>Na Marina, ainda em branco: só pode aumentar a conta</small></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="300" max="1500" step="5" value="645"></label>
+      <label>O que ela põe, contratado <output data-for="poe" data-fmt="brl"></output><input type="range" name="poe" min="0" max="690000" step="10000" value="0"></label>
+      <label>Custo de buscar o dinheiro <output data-for="busca" data-fmt="brl"></output><input type="range" name="busca" min="0" max="60000" step="1000" value="0"></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Investimento da fase, com o giro</span><b data-r="total" data-fmt="brl"></b></div>
+      <div class="linha"><span>Critério: 8 anos do conservador</span><b data-r="inv8" data-fmt="brl"></b></div>
+      <div class="linha"><span>Folga para as cotações</span><b data-r="folga" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso="avDec"></div>
+      <div class="linha tot"><span>O pedido: o que falta de fora</span><b data-r="fora" data-fmt="brl"></b></div>
+      <div class="linha"><span>Fluxo do mês, antes de parcela</span><b data-r="mes" data-fmt="brl"></b></div>
+      <div class="linha"><span>A R$ 50 mil por pessoa</span><b data-r="pessoasTxt"></b></div>
+      <div class="linha"><span>Um investidor só, com o terreno como aporte</span><b data-r="partFora" data-fmt="pct"></b></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> Este painel junta as três perguntas (que vêm do slide delas), o pedido, as fontes e o critério. Marina: R$ 690.529 de investimento; critério R$ 870.131; folga cerca de R$ 180 mil; dentro do critério, avançar. Fluxo de cerca de R$ 9.064 por mês antes de parcela; 14 pessoas a R$ 50 mil; 53,5% para um investidor só. Mexa ao vivo: infraestrutura comum de R$ 200 mil (a folga cai para perto de zero); diária de R$ 580 (o critério cai e o aviso muda). A linha "a R$ 50 mil por pessoa" usa a cota do simulador do sócio. Peça um aluno com números e equalize. É conta de referência, não proposta, oferta de investimento nem promessa de crédito.</aside>
+</section>
+
+<!-- 38 · REVISÃO 1 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Duas das três perguntas do capital são sim e uma é não. O que falta?</p>
+    <div class="ops"><button class="op">Capital</button><button class="op" data-certa>A decisão que vem antes do capital</button><button class="op">Um sócio</button><button class="op">Um banco</button></div>
+    <p class="exp">Um não basta. Não falta capital: falta a decisão anterior a ele.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 39 · REVISÃO 2 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Um terreno entrou na lista do Land Bank Zion. O que isso garante?</p>
+    <div class="ops"><button class="op">Investimento</button><button class="op">Venda</button><button class="op">Sociedade</button><button class="op" data-certa>Nenhuma das três: a Zion avalia cada caso</button></div>
+    <p class="exp">A lista reúne terrenos com o Dossiê feito. Estar nela quer dizer que o projeto pode ser olhado, não que será escolhido, financiado ou vendido.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 40 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 7 e o Dossiê completo</p>
+  <h2>O seu Dossiê <i>de Desenvolvimento</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: as três do capital, o limite de perda, as fontes, o que falta, a decisão e o caminho. "Não sei" vira tarefa da semana.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Leia o retorno</strong> do mentor de IA da Zion sobre as suas respostas.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o PDF</strong> com as sete páginas. Não feche o curso sem o Dossiê na mão.</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/pilar7/"></div>
+      <span class="url">Na área de membros: aula "Faça agora · O seu Dossiê de Desenvolvimento"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros. Ligue o cronômetro. Quem terminar escreve no chat a sua decisão em uma palavra e o critério que a mudaria. O compromisso de 7 dias, em ordem de importância: 1, o essencial, escrever o limite de perda com quem divide a vida com você, assinado e datado pelos dois; 2, a tabela das sete páginas e a página mais fraca; 3, a ferramenta respondida, com o PDF; 4, os documentos da pasta, com o que tem e o que falta. Nenhuma precisa de banco nem de investidor.</aside>
+</section>
+
+<!-- 41 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 7 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:15px">
+    <li class="f">Terreno parado quase nunca é falta de dinheiro. É falta de ordem.</li>
+    <li class="f">Três perguntas de sim ou não vêm antes do dinheiro. O pedido é um número exato.</li>
+    <li class="f">Seis fontes, seis preços. Recurso próprio se mede pelo limite de perda.</li>
+    <li class="f">Não confunda precisar de dinheiro com precisar de um sócio. Escolha pela década.</li>
+    <li class="f">Sete páginas, quatro perguntas cada. O projeto anda na velocidade da mais fraca.</li>
+    <li class="f">Avançar, ajustar ou parar, com o critério que mudaria a decisão. Parar não é fracasso.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa da aula. "Se você só fizer uma coisa deste pilar, escreva o seu limite de perda, com quem divide a vida com você. Ele não precisa de banco, investidor nem profissional pago: precisa de uma conversa honesta em casa." Pergunte: "qual dessas frases você vai levar?"</aside>
+</section>
+
+<!-- 42 · FIM -->
+<section class="s foto" data-bg="../fotos/901904223c.jpg" data-bloco="Fim do curso">
+  <p class="k">Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso</p>
+  <h2 style="max-width:1300px;font-size:64px">Você começou com um terreno e uma dúvida. <i>Termina com sete páginas e uma decisão.</i></h2>
+  <p class="lead" style="max-width:1150px;font-size:34px">Se a sua decisão é ajustar ou parar, o próximo passo é a sua maior lacuna. Com o Dossiê pronto: sozinho, banco ou investidor, ou uma conversa com a Zion. A Zion avalia cada caso.</p>
+  <p class="sm" style="max-width:1300px;margin-top:10px;font-size:22px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas, na base de referência da Zion. Não é oferta de investimento nem recomendação de financiamento, sociedade ou fonte de capital, e não é promessa de renda, retorno, ocupação, crédito, investidor, sócio, venda ou entrada no Land Bank Zion. Garantias, aval, sociedade, contratos e impostos: quem confirma no seu caso é o advogado, o contador e o banco.</p>
+  <aside><b>2 min.</b> Encerramento do curso. "Terreno parado quase nunca é falta de dinheiro. É falta de ordem. E agora a ordem é sua." Para quem quiser seguir, a Zion tem as próximas formações: Gestão, para transformar o Dossiê em estrutura (contratos, sociedade, licenças e a conta com cotações); Operação hoteleira, da obra à operação que funciona; e Aceleração de vendas, para o calendário encher. Mas, sendo honesto: se a decisão hoje é ajustar ou parar, o próximo passo não é outra formação, é a maior lacuna. Do terreno ao negócio que funciona. Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

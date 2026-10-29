@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 4 · Modelo de negócio · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.cen{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cen>div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:24px 26px;display:flex;flex-direction:column;gap:8px}
+.cen h4{margin:0;font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro)}
+.cen .v{font-family:var(--serif);font-size:52px;line-height:1.1}
+.cen .l{font-size:22px;color:#BFB8A8}
+.cen .barra{margin-top:6px}
+.fases.tres .painel{grid-template-columns:repeat(3,1fr);gap:36px}
+.fases.tres .painel p{font-size:27px}
+.fases.seis .bt span{font-size:23px;max-width:230px}
+.fases.seis .bt .bol{width:72px;height:72px;font-size:34px}
+.fases.seis .linha::before{top:34px}
+.pq.mini .vs p{font-size:24px;line-height:1.4}
+.pq.mini .fr h3{font-size:36px}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.duas .card h3{font-size:36px}
+.balcao{display:grid;grid-template-columns:1fr 90px 1fr;gap:0;align-items:stretch}
+.balcao .card{min-height:250px}
+.balcao .meio{display:flex;align-items:center;justify-content:center}
+.balcao .meio i{display:block;width:10px;height:100%;background:var(--ouro);border-radius:5px}
+.p4 .col{display:flex;flex-direction:column;gap:14px}
+.p4 .col h4{margin:0;font-size:20px;letter-spacing:4px;text-transform:uppercase;color:var(--ouro)}
+.p4 label{font-size:21px}
+.p4 label output{font-size:24px}
+.p4 input[type=range]{height:28px}
+.p4 .res{padding:20px 26px;gap:8px}
+.p4 .linha{font-size:23px;padding-bottom:6px}
+.p4 .linha.tot{font-size:28px}
+.p4 .aviso{font-size:20px;padding:10px 14px}
+.sim .res .aviso{margin-top:4px}
+table.t.marina td{font-size:27px;padding:11px 16px}
+table.t.marina td:first-child{color:var(--ouro2);font-weight:600;width:34%}
+.sete{columns:2;column-gap:56px;font-size:28px;line-height:1.4;margin:0;padding-left:40px}
+.sete li{margin-bottom:12px;break-inside:avoid}
+</style>
+<script>
+/* Simuladores do Pilar 4 (exemplos ilustrativos), conferidos em Python:
+   Marina: 3 × 365 = 1.095 noites; 38,5% → 421,575 noites × R$ 645 = R$ 271.915,88; 50% → R$ 353.137,50; 65% → R$ 459.078,75.
+   Dez cabanas: 10 × R$ 350.000 = R$ 3.500.000 de VGV; com o alerta de 30%, R$ 1.050.000 de custo de vender e R$ 2.450.000 antes da obra.
+   Multipropriedade: 51 × R$ 30.000 = R$ 1.530.000 por unidade.
+   Fração ilustrativa: 600 × 7 × 8 = R$ 33.600; 4 × 51 = 204 frações; VGV teórico R$ 6.854.400; 30% = R$ 2.056.320; sobra R$ 4.798.080. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+ZD.sims.p4 = function(v){
+  const f = (x, k) => (window.ZD.fmt ? ZD.fmt(x, k) : String(x));
+  const cem = v.un * 365;
+  const n1 = cem * v.ocup / 100, n2 = cem * v.oc2 / 100, n3 = cem * v.oc3 / 100;
+  const rec1 = n1 * v.diaria, rec2 = n2 * v.diaria, rec3 = n3 * v.diaria;
+  const mx = Math.max(rec1, rec2, rec3, 1);
+  const qtd = v.uv * v.fr, vgv = qtd * v.preco, custo = vgv * v.pct / 100, sobra = vgv - custo;
+  let aviso;
+  if (v.ocup > 65) aviso = ['er', 'O cenário mais fraco passou de 65%: <b>só com procura extraordinária comprovada</b>, ano após ano. Use a média do ano, nunca o mês mais cheio.'];
+  else if (v.ocup > 40) aviso = ['at', 'Passou da faixa de só fins de semana (35% a 40%). Até ter doze meses de dado real, <b>o número em que você confia fica no mais fraco.</b>'];
+  else if (v.oc2 < v.ocup || v.oc3 < v.oc2) aviso = ['at', 'Os cenários estão fora de ordem: o mais fraco embaixo, a procura forte em cima.'];
+  else aviso = ['ok', 'O número em que você confia: <b>' + f(rec1, 'mil') + '</b>, o do cenário mais fraco. Receita bruta, não lucro.'];
+  let avisoV;
+  if (v.fr > 52) avisoV = ['er', '<b>Mais de 52 frações não cabem no ano:</b> na multipropriedade, cada fração tem no mínimo sete dias.'];
+  else if (v.fr > 1 && v.pct < 30) avisoV = ['at', 'Custo de vender abaixo do <b>alerta de 30%</b> do VGV, sem proposta comercial por escrito.'];
+  else avisoV = ['ok', '<b>VGV não é lucro:</b> pressupõe vender tudo, pelo preço da tabela. Ainda saem a obra inteira, os impostos e o terreno.'];
+  return {cem, n1, n2, n3, rec1, rec2, rec3, porUn: rec1 / v.un, mes: rec1 / 12,
+    b1: rec1 / mx * 100, b2: rec2 / mx * 100, b3: rec3 / mx * 100,
+    qtd, vgv, custo, sobra, pctSobra: 100 - v.pct, forma: v.fr > 1 ? 'multipropriedade, ' + v.fr + ' frações por unidade' : 'venda por unidade',
+    _aviso: aviso, avisoV};
+};
+ZD.sims.fra = function(v){
+  const frac = v.diaria * v.dias * v.anos, ano = v.diaria * v.dias;
+  const total = v.cab * v.fr, vgv = total * frac, custo = vgv * v.pct / 100, sobra = vgv - custo;
+  let aviso;
+  if (v.fr * v.dias > 365) aviso = ['er', '<b>' + v.fr + ' frações de ' + v.dias + ' dias somam ' + (v.fr * v.dias) + ' dias:</b> não cabem no ano.'];
+  else if (v.pct < 30) aviso = ['at', 'Custo de vender abaixo do <b>alerta de 30%</b> do VGV, sem proposta comercial por escrito.'];
+  else aviso = ['ok', '<b>Economia de hospedagem não é lucro</b>, nem avaliação, nem preço de venda. Mude o prazo e o número muda junto.'];
+  return {frac, ano, total, vgv, custo, sobra, pctSobra: 100 - v.pct, _aviso: aviso};
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar4" data-titulo="Pilar 4 · Modelo de negócio">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/f7ddae0c6d.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 2 · Desenhar o produto</p>
+  <h1>Pilar 4<br><i>Modelo de negócio</i></h1>
+  <p class="lead" style="max-width:1000px">Renda, venda ou os dois. Como o seu projeto ganha dinheiro.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "Nos pilares anteriores você leu o terreno, mediu o mercado e decidiu o produto. Hoje a pergunta é outra: como esse projeto ganha dinheiro." Peça papel, caneta e calculadora. Avise que a aula tem mapa clicável e simulador ao vivo.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/f7ddae0c6d.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">Antes de construir</span><p class="q">Para quem <i>vamos vender?</i></p></div>
+    <div class="gq f"><span class="rot">A pergunta do Pilar 4</span><p class="q media">Qual é o melhor caminho? <i>Qual estratégia?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho. "Não existe modelo melhor nem pior: existe o caminho que combina com o seu terreno, o seu dinheiro e o seu momento. Dá lucro ou dá trabalho? No curto, no médio e no longo prazo?"</aside>
+</section>
+
+
+<!-- 2 · MAPA DA AULA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Esta aula em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>O mapa de todos os modelos, a estrutura da renda e a estrutura da venda, com a primeira conta de cada um.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>O modelo muda quando o dinheiro volta, quanto capital existe antes e que obrigação você assume.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 4 do seu Dossiê, O Modelo de Negócio: renda, venda ou híbrido, com a conta feita.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. Bloco 1: em que negócio você está e o mapa dos modelos, do balcão para dentro e do balcão para fora. Bloco 2: estruturar a renda e a venda, fazer as contas e decidir. No fim, o Faça agora. "Quem não escolhe acaba num caminho por acidente, e trocar depois da obra custa caro."</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Pilar 3</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Quais são as três partes da frase do conceito?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>O que se vive, para quem e por que só aqui.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Que nível do que se vende sustenta diária no topo da faixa?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>A experiência, com momentos projetados.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>A hipótese de preço da Marina, cerca de R$ 716, já é promessa?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Não: é hipótese até o anúncio e a reserva responderem. Hoje a conta usa a diária média da região, R$ 645.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então vire. A Marina é o nosso exemplo ilustrativo: três cabanas de glamping para casal, de 38 m² com deck, 38,5% de ocupação e diária média de R$ 645. A conta se faz com o que já tem prova.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · O mapa dos modelos">
+  <p class="k">Bloco 1</p>
+  <h2>Em que negócio você está, <i>e o mapa inteiro</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Com o glamping, nós gastamos muito menos, operamos mais e hospedamos mais do que na pousada e no hotel tradicional.</div>
+    <div class="f"><b>Reflexão</b>Você escolheu o seu modelo pelo que é fácil construir, ou por quem vai comprar?</div>
+    <div class="f"><b>Dica</b>Leia cada modelo duas vezes: do balcão para dentro e do balcão para fora.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na curiosidade: é o que o nosso modelo testado mostrou, não uma regra para todo terreno. Na reflexão, peça que escrevam a resposta no papel. Ela volta no slide do balcão.</aside>
+</section>
+
+<!-- 5 · COMO GANHA DINHEIRO -->
+<section class="s" data-bloco="Bloco 1 · Onde você está">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">A pergunta deste pilar</p>
+      <h2 style="font-size:76px">Como esse projeto <i>ganha dinheiro?</i></h2>
+      <ul class="lista" style="font-size:34px">
+        <li class="f"><span><b>Renda:</b> hospedar e receber pela diária. O dinheiro volta aos poucos.</span></li>
+        <li class="f"><span><b>Venda:</b> construir para vender as unidades. Volta mais cedo, com obrigação.</span></li>
+      </ul>
+    </div>
+    <img class="ilus fig" src="figuras/03-venda-ou-renda.svg" alt="O imóvel no topo e o caminho que se divide entre renda e venda" style="max-height:760px">
+  </div>
+  <aside><b>2 min.</b> "Existem dois jeitos. Hospedar, e receber pela diária: é o modelo de renda. Ou construir para vender as unidades: é o modelo de venda. Nenhum é melhor por definição." É a primeira pergunta que um sócio, o banco ou um investidor vão fazer. Se o investidor for você mesmo, a pergunta é a mesma.</aside>
+</section>
+
+<!-- 6 · ALUGAR, HOSPEDAR OU VENDER -->
+<section class="s esc" data-bloco="Bloco 1 · Onde você está">
+  <div class="lado" style="grid-template-columns:1.15fr .85fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Três coisas diferentes</p>
+      <h2 style="font-size:68px">Alugar, hospedar <i>ou vender</i></h2>
+      <ul class="lista num" style="font-size:31px">
+        <li class="f"><span><b>Alugar:</b> entrega o imóvel por até 90 dias, e quem aluga cuida de si.</span></li>
+        <li class="f"><span><b>Hospedar:</b> recebe a pessoa, com serviço, e cobra diária.</span></li>
+        <li class="f"><span><b>Vender:</b> passa o imóvel, ou o tempo de uso dele, a outra pessoa.</span></li>
+      </ul>
+      <p class="lead f" style="font-size:32px">O teste: tem café, limpeza durante a estadia ou alguém para receber? Então você hospeda.</p>
+    </div>
+    <img class="ilus fig" src="figuras/02-alugar-hospedar.svg" alt="Aluguel por temporada ou hospedagem com serviço" style="max-height:780px">
+  </div>
+  <aside><b>3 min.</b> Revele uma linha por clique. A locação para temporada aparece na Lei do Inquilinato (Lei 8.245/1991, art. 48); os meios de hospedagem, na Lei Geral do Turismo (Lei 11.771/2008, art. 23). "Qual regra vale no seu caso, quem confirma é o advogado e o contador." Muita gente que se diz pousada está, na prática, no aluguel por temporada.</aside>
+</section>
+
+<!-- 7 · QUIZ CHALÉ -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 1 de 2</p>
+  <div class="quiz passo">
+    <p class="q">Um chalé alugado no fim de semana, sem café, sem limpeza durante a estadia e sem ninguém para receber, é o quê?</p>
+    <div class="ops">
+      <button class="op">Hospedagem</button>
+      <button class="op" data-certa>Aluguel por temporada</button>
+      <button class="op">Multipropriedade</button>
+      <button class="op">Condo-hotel</button>
+    </div>
+    <p class="exp">Quem só entrega o imóvel, sem serviço, não hospeda: aluga. Isso muda a conta, a regra e a operação. Se amanhã entrar uma cesta de café, a conversa com o contador muda.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat. Clique na alternativa que alguém escolheu ou avance para revelar.</aside>
+</section>
+
+<!-- 8 · O QUE O MODELO MUDA -->
+<section class="s" data-bloco="Bloco 1 · Onde você está">
+  <p class="k">Renda ou venda · clique em cada um</p>
+  <h2>O que o modelo <i>muda</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Quando o dinheiro volta</h3><span class="dica">Renda ou venda?</span></div><div class="vs"><b>Na renda · na venda</b><p>Aos poucos, diária por diária. Na venda, mais cedo, venda por venda.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Quanto capital existe antes</h3><span class="dica">Renda ou venda?</span></div><div class="vs"><b>Na renda · na venda</b><p>A obra da fase um e o fôlego até a operação andar. Na venda: projeto, aprovações, registro e a estrutura de venda.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Que obrigação você assume</h3><span class="dica">Renda ou venda?</span></div><div class="vs"><b>Na renda · na venda</b><p>Com o hóspede, a cada estadia. Na venda, com quem comprou, por muitos anos.</p></div></div></div>
+  </div>
+  <p class="citacao f" style="font-size:50px">Primeiro nasce o negócio. <i>Depois nasce o investimento.</i></p>
+  <aside><b>3 min.</b> Pergunte antes de virar cada cartão. Repare no capital: muita gente escolhe a venda porque acha que ela dispensa dinheiro. Não dispensa. Ela muda o momento em que o dinheiro é preciso. A frase do fim volta em todo o pilar, como uma régua: quem compra uma unidade compra parte de um negócio que precisa funcionar.</aside>
+</section>
+
+<!-- 9 · O BALCÃO -->
+<section class="s esc" data-bloco="Bloco 1 · O balcão">
+  <p class="k">Não existe modelo melhor nem pior</p>
+  <h2 style="font-size:72px">Do balcão para dentro, <i>do balcão para fora</i></h2>
+  <div class="balcao">
+    <div class="card f"><h3>Do balcão para dentro</h3><p>O lado do dono: o que construir, quanto capital, quanto trabalho de operar e quanto tempo até o primeiro hóspede.</p></div>
+    <div class="meio f"><i></i></div>
+    <div class="card f"><h3>Do balcão para fora</h3><p>O lado do cliente: quem compra, o que ele quer hoje e por que escolheria o seu lugar.</p></div>
+  </div>
+  <p class="lead f" style="font-size:36px">O que é fácil para você é do balcão para dentro. <b style="color:var(--ouro)">O que vende é do balcão para fora.</b></p>
+  <aside><b>3 min.</b> "Pense na recepção de um hotel. Existe um balcão. Atrás dele, o que o hóspede não vê: a obra, as contas, a equipe, a rotina, a lavanderia. Na frente, o hóspede, com o que quer e o motivo de ter escolhido aquele lugar." Existem modelos adaptados a cada terreno, a cada dono e a cada momento, e existem estratégias. A mensagem mais importante: não adianta construir sem saber para quem você vai vender. Volte à reflexão do bloco: quem escolheu pelo que é fácil está olhando só para dentro.</aside>
+</section>
+
+<!-- 10 · MAPA · RENDA -->
+<section class="s" data-bloco="Bloco 1 · O mapa · Renda">
+  <p class="k">O mapa · lado da renda · você fica com o imóvel</p>
+  <h2 style="font-size:68px">Os modelos de renda, <i>do mais leve ao mais pesado</i></h2>
+  <div class="fases">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Aluguel por temporada</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Nada a construir, se a casa já existe. Operação leve: chave e limpeza, sem serviço. É imóvel.</p></div><div><h4>Do balcão para fora</h4><p>Família ou grupo que quer a casa inteira: privacidade, cozinha e autonomia.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Glamping</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Estruturas leves, base e infraestrutura. O menor capital do mapa e o tempo mais curto. Não é imóvel.</p></div><div><h4>Do balcão para fora</h4><p>O casal que quer natureza com conforto: uma experiência diferente, que vale a foto.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Chalés e cabanas construídos</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Obra de cada unidade, capital médio, operação enxuta. Obra e aprovação antes do hóspede. É construção.</p></div><div><h4>Do balcão para fora</h4><p>Casal ou família que quer natureza e conforto de casa: silêncio, vista, estadia mais longa.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Pousada</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Obra maior, áreas comuns e a cozinha do café. Equipe fixa e rotina de serviço todos os dias.</p></div><div><h4>Do balcão para fora</h4><p>Quem quer ser recebido: café, atendimento pessoal e acolhimento.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Hotel boutique e resort</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Obra grande, restaurante, lazer e eventos. O maior capital, vinte e quatro horas, equipe grande.</p></div><div><h4>Do balcão para fora</h4><p>Famílias, grupos, eventos e empresas: tudo no mesmo lugar, sem sair do hotel.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada modelo: as duas leituras, dentro e fora.</p></div>
+  </div>
+  <aside><b>4 min · mapa clicável.</b> Clique no modelo que a turma pedir, na ordem da conversa. Comparação simples, sem escala. O que está do balcão para fora é a nossa leitura, para conferir no seu mercado, e não um dado. Repare se é imóvel ou não: vai decidir, lá na frente, o que se pode vender.</aside>
+</section>
+
+<!-- 11 · MAPA · VENDA -->
+<section class="s" data-bloco="Bloco 1 · O mapa · Venda">
+  <p class="k">O mapa · lado da venda · você constrói e vende</p>
+  <h2 style="font-size:68px">Os modelos de venda, <i>do simples ao regulado</i></h2>
+  <div class="fases">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Venda de unidades</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>Projeto aprovado, obra ou infraestrutura e registro antes de vender. Depois, cuidar do conjunto.</p></div><div><h4>Do balcão para fora</h4><p>Quem quer uma segunda casa, num lugar que já ama: ser dono e usar quando quiser.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Multipropriedade</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>A unidade construída, a estrutura jurídica e a comercial. Vender muitas frações e administrar por anos.</p></div><div><h4>Do balcão para fora</h4><p>Quem quer usar algumas semanas por ano: um padrão melhor, dividindo o custo.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Timeshare</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>A unidade e um contrato bem feito. Gerir o uso de cada comprador enquanto o contrato durar.</p></div><div><h4>Do balcão para fora</h4><p>Quem quer garantir as férias: o direito de usar, sem comprar imóvel.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Condo-hotel</span><div class="fx"><div><h4>Do balcão para dentro</h4><p>As unidades, um operador hoteleiro e, na oferta pública, as regras da CVM. O mais regulado.</p></div><div><h4>Do balcão para fora</h4><p>Quem quer ser dono de uma unidade sem operar: alguém opera e divide o resultado.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Todos vendem algo construído, ou o direito de usar algo construído.</p></div>
+  </div>
+  <aside><b>3 min · mapa clicável.</b> Nível introdutório. Aqui basta reconhecer cada um. Venda de lotes, incorporação, multipropriedade, timeshare e condo-hotel têm regras próprias: "advogado, contador, cartório e prefeitura desde o começo". A frase que está no painel vira regra daqui a pouco, no glamping.</aside>
+</section>
+
+<!-- 12 · QUIZ BALCÃO -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 2 de 2</p>
+  <div class="quiz passo">
+    <p class="q">Um dono escolhe a multipropriedade porque "é a que mais soma VGV". De que lado do balcão ele está olhando?</p>
+    <div class="ops">
+      <button class="op">Do balcão para fora</button>
+      <button class="op" data-certa>Do balcão para dentro: falta saber quem compra as frações, e por quê</button>
+    </div>
+    <p class="exp">O número bonito é do balcão para dentro. Do balcão para fora, a pergunta é quem vai comprar cada fração, o que quer e por que escolheria o seu lugar.</p>
+  </div>
+  <aside><b>1 min.</b> Quem se hospeda num fim de semana nem sempre compra uma semana por ano. Comprador é outra pessoa, com outros motivos.</aside>
+</section>
+
+<!-- 13 · NOVOS MODELOS -->
+<section class="s esc" data-bloco="Bloco 1 · O mapa · Novos modelos">
+  <p class="k">O mapa · os novos modelos · onde a Zion também está</p>
+  <h2 style="font-size:64px">Menos uma cama, <i>mais o que a pessoa vive</i></h2>
+  <div class="fases seis">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Novo luxo e luxo natural</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Tempo e experiência. Luxo não é mármore: é espaço, privacidade, natureza e tempo.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Projeto e serviço caprichados em cada detalhe, e um terreno com algo único para mostrar.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Wellness e bem-estar</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Saúde e cuidado de si: sair melhor do que chegou.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Parceiro técnico (terapeuta, educador físico, nutricionista) e uma programação.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Glamping retreat</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Experiência e propósito: grupos com programa, ioga, imersão, encontro de empresa.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Espaço coletivo, facilitador parceiro e calendário de eventos. Regras para eventos dependem do município.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Recovery e silêncio</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Silêncio e descanso: recuperar do cansaço e desconectar.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Regras de silêncio, distância entre unidades e equipe treinada para proteger isso.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Medical retreat</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Saúde, com um programa acompanhado por profissionais.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Equipe de saúde habilitada, parceria com clínica e licenças específicas.</p></div></div></button>
+      <button class="bt"><span class="bol">6</span><span>Longevidade e senior living</span><div class="fx"><div><h4>Do balcão para fora · compra</h4><p>Propósito, comunidade e segurança, em estadias longas ou moradia com serviço.</p></div><div><h4>Do balcão para dentro · exige</h4><p>Acessibilidade, equipe de cuidado e regras próprias de moradia e de saúde.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada um. Em saúde, quem confirma é o profissional e o órgão competente.</p></div>
+  </div>
+  <aside><b>4 min · mapa clicável.</b> Quanto mais o modelo encosta na saúde, mais exige do balcão para dentro. "Nós ensinamos a pensar o modelo. Não ensinamos a praticar saúde." Detalhe: muitos cabem dentro do luxo natural e do glamping. Um glamping de poucas unidades pode receber um retiro de silêncio num mês e um programa de bem-estar no outro. O nicho pode ser uma camada que se acrescenta quando o lugar já funciona.</aside>
+</section>
+
+<!-- 14 · ECONOMIA DA ATENÇÃO -->
+<section class="s" data-bloco="Bloco 1 · A economia da atenção">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Por que esses modelos chamam atenção</p>
+      <h2 style="font-size:72px">A economia <i>da atenção</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Todo mundo disputa a atenção das pessoas, a cada rolagem de tela.</li>
+        <li class="f">Na nossa leitura, natureza, experiência e bem-estar estão no desejo das novas gerações.</li>
+        <li class="f">Por isso tendem a ser mais fáceis de comunicar e de vender.</li>
+      </ul>
+      <p class="selo f" style="align-self:flex-start">Tende, não garante. A conta continua valendo.</p>
+    </div>
+    <img class="ilus" src="../fotos/901904223c.jpg" alt="Hóspede descansando numa rede suspensa sobre a mata">
+  </div>
+  <aside><b>2 min.</b> "Quem é visto é lembrado, e quem é lembrado é escolhido." Uma bolha iluminada à noite, uma rede sobre a mata: isso se comunica sozinho, e o hóspede que posta vira um canal que você não paga. Mas a atenção abre a porta. O que fecha a conta continua sendo o dos Pilares 2 e 3: demanda medida, produto claro e preço certo.</aside>
+</section>
+
+<!-- 15 · DÁ LUCRO OU DÁ TRABALHO -->
+<section class="s" data-bloco="Bloco 1 · Dá lucro ou dá trabalho?">
+  <p class="k">A segunda lente · leitura qualitativa, sem números</p>
+  <h2 style="font-size:66px">Dá lucro ou dá trabalho? <i>E no tempo?</i></h2>
+  <div class="fases tres seis">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Aluguel por temporada</span><div class="fx"><div><h4>Curto prazo</h4><p>Pouco trabalho, se a casa existe. A receita começa logo.</p></div><div><h4>Médio prazo</h4><p>Disputa com casas parecidas, muitas vezes pelo preço.</p></div><div><h4>Longo prazo</h4><p>A casa continua sua, com a manutenção.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Glamping</span><div class="fx"><div><h4>Curto prazo</h4><p>Monta rápido. A receita começa cedo.</p></div><div><h4>Médio prazo</h4><p>O destino se prova, ou não. A estrutura leve pede manutenção e troca de peças.</p></div><div><h4>Longo prazo</h4><p>Não vira imóvel para vender. Serve de ponte para o que se constrói.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Chalés construídos</span><div class="fx"><div><h4>Curto prazo</h4><p>Obra e aprovação antes do primeiro hóspede.</p></div><div><h4>Médio prazo</h4><p>Operação enxuta, receita pelas diárias.</p></div><div><h4>Longo prazo</h4><p>É imóvel: pode, um dia, entrar numa conversa de venda.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Venda de unidades</span><div class="fx"><div><h4>Curto prazo</h4><p>Projeto, aprovação, registro e o caixa antes da primeira venda.</p></div><div><h4>Médio prazo</h4><p>Vender cada unidade.</p></div><div><h4>Longo prazo</h4><p>A obrigação com quem comprou.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Multipropriedade e timeshare</span><div class="fx"><div><h4>Curto prazo</h4><p>Estrutura jurídica e comercial.</p></div><div><h4>Médio prazo</h4><p>Vender muitas frações: o difícil é vender.</p></div><div><h4>Longo prazo</h4><p>Administrar o calendário e os donos por muitos anos.</p></div></div></button>
+      <button class="bt"><span class="bol">6</span><span>Novos modelos</span><div class="fx"><div><h4>Curto prazo</h4><p>Parceiro técnico e licenças antes de abrir.</p></div><div><h4>Médio prazo</h4><p>Programa e equipe especializada todo mês.</p></div><div><h4>Longo prazo</h4><p>Um nicho com nome, se o público responder.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique num modelo. Depois, a pergunta: compensa ou não compensa?</p></div>
+  </div>
+  <aside><b>3 min.</b> Um modelo pode dar muito trabalho no começo e pouco depois; outro parece fácil e vira uma obrigação de muitos anos. "Compensa é quando o resultado que o modelo pode dar paga o trabalho que ele dá, no prazo que você tem e com a vida que você quer." Não há resposta universal: o que não compensa para quem quer sossego aos sessenta pode compensar para um dono jovem com equipe. "Dá lucro" é lente, não promessa. A conta inteira vem no Pilar 6.</aside>
+</section>
+
+<!-- 16 · GLAMPING NÃO É PROPRIEDADE -->
+<section class="s foto" data-bg="../fotos/9f117bde58.jpg" data-bloco="Bloco 1 · A regra">
+  <p class="k">A regra que muita gente esquece</p>
+  <p class="citacao" style="max-width:1150px">Glamping não é propriedade. <i>É barraca.</i> Uma barraca de luxo.</p>
+  <ul class="lista" style="max-width:1100px;font-size:32px">
+    <li class="f">Desburocratiza: menos obra, menos capital, mais rapidez. As licenças dependem do município.</li>
+    <li class="f">Serve para renda e para testar o destino. Não se vende como imóvel.</li>
+    <li class="f">Quando a conversa é propriedade, a conversa é construção.</li>
+  </ul>
+  <aside><b>2 min.</b> Isso não diminui o glamping: mostra para que ele serve melhor. Ninguém vende uma barraca como imóvel, mas é com ela que você descobre, com hóspede de verdade, se o destino vale a pena. Quando é construção (chalés, casas, unidades), outros modelos ficam viáveis: venda de unidades, multipropriedade, condo-hotel. O enquadramento do seu caso, quem confirma é o advogado e a prefeitura.</aside>
+</section>
+
+<!-- 17 · ESTRATÉGIA EM FASES -->
+<section class="s" data-bloco="Bloco 1 · A estratégia">
+  <p class="k">Se não existe modelo melhor, existe ordem melhor</p>
+  <h2 style="font-size:68px">A estratégia <i>para começar e para terminar</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Testar</span><div class="fx"><div><h4>O que acontece</h4><p>Poucas unidades de glamping, operação enxuta, menos capital.</p></div><div><h4>Por quê</h4><p>Descobrir com hóspede de verdade se o destino funciona: se chegam, pagam, voltam e recomendam.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Amadurecer</span><div class="fx"><div><h4>O que acontece</h4><p>Track record, o histórico comprovado de pelo menos um ano, e recorrência, o hóspede que volta.</p></div><div><h4>Por quê</h4><p>Sem perceber, você monta uma base de pessoas que conhecem o lugar e gostam dele.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Construir</span><div class="fx"><div><h4>O que acontece</h4><p>Chalés, casas, unidades, multipropriedade, com advogado e contador desde o primeiro desenho.</p></div><div><h4>Por quê</h4><p>Você já sabe para quem vai vender, porque essa pessoa já dormiu no seu terreno.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Cada fase só começa com os números da anterior.</p></div>
+  </div>
+  <p class="lead f" style="font-size:34px">O seu hóspede de hoje <i>pode ser</i> o comprador de amanhã. Pode ser, não vai ser.</p>
+  <aside><b>3 min.</b> Na nossa leitura, o glamping é o melhor teste de destino, sem competidor: nenhum outro produto chega tão rápido, com tão pouco, ao hóspede de verdade. Nenhuma fase garante a seguinte, mas nessa ordem você constrói em cima de prova, e não de promessa. É o caminho híbrido, com nome e com ordem. A Marina, no mapa: glamping, renda, degrau fácil, Fase 1. Sócio e capital, no Pilar 7.</aside>
+</section>
+
+<!-- 18 · QUAL MODELO COMBINA -->
+<section class="s esc" data-bloco="Bloco 1 · O seu caso">
+  <p class="k">O mapa aplicado · ponto de partida, não receita</p>
+  <h2 style="font-size:66px">Qual modelo combina <i>com o seu caso?</i></h2>
+  <div class="fases tres">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Pouco capital</span><div class="fx"><div><h4>Comece</h4><p>Glamping em poucas unidades. Ou aluguel por temporada, se a casa já existe.</p></div><div><h4>Depois</h4><p>Crescer com o caixa da operação e com números reais.</p></div><div><h4>Cuidado</h4><p>Não construir antes de testar.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Tem terreno e quer testar</span><div class="fx"><div><h4>Comece</h4><p>Glamping, para testar o destino.</p></div><div><h4>Depois</h4><p>Se o destino responder: chalés ou pousada. Depois, o imobiliário.</p></div><div><h4>Cuidado</h4><p>Licença no município, e não vender bolha como imóvel.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Tem capital e quer renda</span><div class="fx"><div><h4>Comece</h4><p>Chalés ou pousada, no degrau que você consegue operar bem.</p></div><div><h4>Depois</h4><p>Hotel boutique ou resort, só com equipe e com prova.</p></div><div><h4>Cuidado</h4><p>Capital não substitui demanda.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Quer vender</span><div class="fx"><div><h4>Comece</h4><p>Um produto de renda que prove o destino, no caminho híbrido.</p></div><div><h4>Depois</h4><p>Venda de unidades ou multipropriedade, para quem já conhece o lugar.</p></div><div><h4>Cuidado</h4><p>Comprador não é hóspede. Advogado e contador desde o primeiro desenho.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Propósito e nicho</span><div class="fx"><div><h4>Comece</h4><p>Luxo natural, ou glamping com programa de bem-estar ou de retiro.</p></div><div><h4>Depois</h4><p>Nichos mais exigentes, com parceiro técnico.</p></div><div><h4>Cuidado</h4><p>Em saúde, quem confirma é o profissional e o órgão competente.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Peça no chat: qual é o seu perfil? Clique nele.</p></div>
+  </div>
+  <aside><b>3 min · interação.</b> Peça que cada um escreva o número do seu perfil no chat. Clique no mais votado primeiro. Se alguém ficou entre dois, leia os dois. Projetos grandes, no degrau do resort ou com muitas unidades para vender, existem e funcionam, mas pedem outra conversa, com outra equipe. A Zion avalia cada caso.</aside>
+</section>
+
+<!-- 19 · LIÇÃO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>O meu lugar <i>no mapa</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Escreva em que negócio você está: alugo, hospedo ou vendo, e por quê.</span></div>
+      <div class="passo f"><b>2</b><span>Marque o seu perfil e o modelo por onde você começa.</span></div>
+      <div class="passo f"><b>3</b><span>As duas leituras: o que construir e operar; quem compra e por quê.</span></div>
+      <div class="passo f"><b>4</b><span>Onde você gostaria de terminar, e em quantas fases.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Se a resposta do passo 3 for "eu acho que alguém vai querer", você ainda está do balcão para dentro.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar. Quem já opera tem o que a fase dois pede: hóspedes, avaliações e números. Peça que escreva quantos hóspedes voltaram no último ano. Ao terminar: "quem descobriu que estava olhando só para dentro?"</aside>
+</section>
+
+<!-- 20 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · Estruturar e decidir">
+  <p class="k">Bloco 2</p>
+  <h2>A renda, a venda <i>e a sua decisão</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>No começo da multipropriedade no Brasil, vender chegou a custar cerca de 30% do VGV, segundo levantamento publicado pela Panrotas.</div>
+    <div class="f"><b>Reflexão</b>O seu projeto fica de pé no cenário mais fraco, ou só no mês mais cheio?</div>
+    <div class="f"><b>Dica</b>Comece no tamanho que você consegue fazer bem, prove o negócio e suba depois.</div>
+  </div>
+  <aside><b>1 min.</b> "No bloco 1 você achou o seu lugar no mapa. Agora, estruturar: a escada da renda, a conta do cem por cento, os três cenários, os seis passos da venda e a conta do VGV. E no fim, a decisão."</aside>
+</section>
+
+<!-- 21 · ESCADA DE RENDA -->
+<section class="s" data-bloco="Bloco 2 · O modelo de renda">
+  <p class="k">Nem todo produto de renda dá o mesmo trabalho</p>
+  <h2 style="font-size:68px">A escada de <i>três degraus</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Fácil · chalé, cabana, glamping</span><div class="fx"><div><h4>O que pede</h4><p>Poucas unidades. Chave entregue ou automática, limpeza, manutenção leve.</p></div><div><h4>Na fase um</h4><p>Quase sempre faz sentido: é onde se prova o negócio. Começa mais rápido e pede menos capital.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Médio · pousada, glamping com serviço</span><div class="fx"><div><h4>O que pede</h4><p>Equipe fixa, licença de hospedagem e rotina de serviço todos os dias, inclusive na terça de chuva.</p></div><div><h4>Na fase um</h4><p>Quando o serviço é parte da promessa e alguém sabe operá-lo.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Complicado · hotel boutique, resort</span><div class="fx"><div><h4>O que pede</h4><p>Operação de vinte e quatro horas, equipe grande, capital alto e mais tempo até ficar de pé.</p></div><div><h4>Na fase um</h4><p>Raramente. É projeto para reunião com especialista, não para fase um pequena.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Cada degrau acima pede mais equipe, licença, capital e tempo.</p></div>
+  </div>
+  <p class="lead f" style="font-size:34px">A fruta baixa, que você alcança sem escada, quase sempre está no degrau fácil.</p>
+  <aside><b>3 min.</b> Nenhum degrau é melhor por definição. A pergunta não é qual dá mais dinheiro: é qual você consegue estruturar e operar bem na fase um. Restaurante, sozinho, já é outro negócio dentro do seu. A Marina: três cabanas para casal com um só serviço, o café na cesta deixado na varanda antes das sete. É hospedagem, degrau fácil. Se um dia quiser café servido e recepção, sobe um degrau, com outra conta.</aside>
+</section>
+
+<!-- 22 · A CONTA DO CEM POR CENTO -->
+<section class="s" data-bloco="Bloco 2 · A conta da renda">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>A conta <i>do cem por cento</i></h2>
+  <div class="conta" style="max-width:1450px">
+    <div class="eq f"><span>1 · O cem por cento · 3 cabanas × 365 noites</span><span>1.095 noites</span></div>
+    <div class="eq f"><span>2 · As noites vendidas · 1.095 × 38,5%</span><span>cerca de 422</span></div>
+    <div class="eq f"><span>3 · × a diária média da região, R$ 645</span><span>R$ 271.916</span></div>
+    <div class="eq tot f" data-foco><span>Receita bruta da Marina no ano</span><span>cerca de R$ 272 mil</span></div>
+  </div>
+  <p class="lead f">Receita bruta é tudo o que entra, antes das contas. Não é lucro e não é retorno.</p>
+  <aside><b>3 min · exemplo resolvido.</b> 1.095 × 0,385 = 421,575 noites; × 645 = R$ 271.915,88. Conferência: por cabana, 365 × 38,5% × 645 = cerca de R$ 90.640; vezes três, os mesmos R$ 272 mil do Pilar 2. Duas escolhas: a ocupação é a média do ano, não a do mês mais cheio; a diária é a média da região, R$ 645, e não os cerca de R$ 716 pretendidos, que ainda são hipótese.</aside>
+</section>
+
+<!-- 23 · SIMULADOR · CEM POR CENTO -->
+<section class="s esc" data-bloco="Bloco 2 · A conta da renda">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a renda</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:64px">Unidades × 365 × ocupação <i>× diária</i></h2>
+  <div class="sim" data-sim="p4">
+    <div class="ctl">
+      <label>Unidades na fase um <output data-for="un"></output><input type="range" name="un" min="1" max="20" step="1" value="3"></label>
+      <label>Ocupação média do ano <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="85" step="0.5" value="38.5"><small>A Marina mediu 38,5%: só fins de semana. Média do ano, nunca o mês mais cheio.</small></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="200" max="2000" step="5" value="645"><small>A média da região, não a pretendida.</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>O cem por cento</span><b data-r="cem"></b></div>
+      <div class="linha"><span>Noites vendidas no ano</span><b data-r="n1" data-fmt="dec1"></b></div>
+      <div class="linha tot"><span>Receita bruta no ano</span><b data-r="rec1" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por unidade</span><b data-r="porUn" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por mês, em média</span><b data-r="mes" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso></div>
+      <p class="sm" style="color:#BFB8A8">Antes de custos fixos, variáveis, impostos e comissões.</p>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo da Marina: 1.095 noites, 421,6 vendidas, R$ 271.916. Mexa ao vivo: "e se fossem cinco cabanas?", "e se a ocupação fosse 64%, a do mês de julho do vizinho?" (o aviso acende). Peça que um aluno diga no chat as unidades, a ocupação e a diária que mediu no Pilar 2, e coloque os números dele. Tecla R volta ao exemplo. Os mesmos números seguem para o slide dos cenários e para o painel completo.</aside>
+</section>
+
+<!-- 24 · SIMULADOR · TRÊS CENÁRIOS -->
+<section class="s esc" data-bloco="Bloco 2 · Os três cenários">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · nunca faça um número só</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:60px">Três cenários. <i>Você confia no mais fraco.</i></h2>
+  <div class="sim" data-sim="p4" style="grid-template-columns:.75fr 1.25fr;gap:44px">
+    <div class="ctl" style="gap:18px">
+      <label>Só fins de semana · 35% a 40% <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="85" step="0.5" value="38.5"></label>
+      <label>Fins de semana e feriados · 50% a 60% <output data-for="oc2" data-fmt="pct"></output><input type="range" name="oc2" min="15" max="85" step="0.5" value="50"></label>
+      <label>Procura forte · 65% a 85% <output data-for="oc3" data-fmt="pct"></output><input type="range" name="oc3" min="15" max="85" step="0.5" value="65"></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="200" max="2000" step="5" value="645"></label>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="cen">
+      <div><h4>Só fins de semana</h4><span class="l">Noites vendidas</span><span data-r="n1" data-fmt="dec1"></span><span class="l">Receita bruta</span><span class="v" data-r="rec1" data-fmt="mil"></span><div class="barra"><i data-bar="b1"></i></div><span class="l" style="color:#E9B47A">O número em que você confia</span></div>
+      <div><h4>Com feriados</h4><span class="l">Noites vendidas</span><span data-r="n2" data-fmt="dec1"></span><span class="l">Receita bruta</span><span class="v" data-r="rec2" data-fmt="mil"></span><div class="barra"><i data-bar="b2"></i></div><span class="l">Só com prova no calendário</span></div>
+      <div><h4>Procura forte</h4><span class="l">Noites vendidas</span><span data-r="n3" data-fmt="dec1"></span><span class="l">Receita bruta</span><span class="v" data-r="rec3" data-fmt="mil"></span><div class="barra"><i data-bar="b3"></i></div><span class="l" style="color:#E9B47A">Teto de conversa, não meta</span></div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina, R$ 645 nos três: cerca de R$ 272 mil (38,5%, o que ela mediu), R$ 353 mil (50%, ainda sem prova no calendário dela) e R$ 459 mil (65%, sem procura extraordinária comprovada é só teto de conversa). "Se o projeto só fecha no cenário de procura forte, ele não fecha." A régua é a que usamos desde o Marco Zero. Unidades vêm do slide anterior.</aside>
+</section>
+
+<!-- 25 · RECEITA BRUTA NÃO É LUCRO -->
+<section class="s" data-bloco="Bloco 2 · A conta da renda">
+  <p class="k">O que ainda sai da receita · clique em cada um</p>
+  <h2>Receita bruta <i>não é lucro</i></h2>
+  <div class="grid g3" style="min-height:300px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Custos fixos</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>O que você paga todo mês, cheio ou vazio: salário, energia mínima, internet, manutenção.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Custos variáveis</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>O que só existe quando alguém se hospeda: lavanderia, cesta do café, comissão do aplicativo.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Custo de cada noite vendida</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>O variável dividido pelas noites: quanto custa, de verdade, cada noite que entra.</p></div></div></div>
+  </div>
+  <p class="citacao f" style="font-size:56px">Ocupação é vaidade. <i>Margem é sobrevivência.</i></p>
+  <aside><b>2 min.</b> Vire os cartões clicando neles. "Um calendário cheio com diária baixa pode dar menos do que um calendário pela metade com a diária certa." Por isso este pilar para na receita bruta. A conta de cada custo, e com o investimento, vem no Pilar 6.</aside>
+</section>
+
+<!-- 26 · QUIZ JULHO -->
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 1 de 2</p>
+  <div class="quiz passo">
+    <p class="q">Em julho, as cabanas de um vizinho ficaram 64% ocupadas. Que ocupação você usa na conta do ano?</p>
+    <div class="ops">
+      <button class="op">64%, porque é o dado real do vizinho</button>
+      <button class="op" data-certa>A média do ano, com o cenário mais fraco como o número em que você confia</button>
+    </div>
+    <p class="exp">O mês mais cheio engana. No exemplo da Marina, usar o mês mais cheio daria cerca de 66% a mais do que o ano entrega.</p>
+  </div>
+  <aside><b>1 min.</b> Se quiser, volte ao simulador e ponha 64%: o aviso acende.</aside>
+</section>
+
+<!-- 27 · QUEM OPERA -->
+<section class="s" data-bloco="Bloco 2 · Quem opera">
+  <p class="k">No modelo de renda, alguém opera todos os dias</p>
+  <h2>Quem opera <i>a fase um?</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Você</h3><p>Pede tempo em noite, fim de semana e feriado, que é quando o hóspede está lá.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Uma pessoa contratada</h3><p>Pede a rotina escrita, para que outra pessoa consiga repetir.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Uma empresa de gestão</h3><p>Pede proposta por escrito, com o que ela faz e quanto cobra.</p></div>
+  </div>
+  <p class="lead f"><span class="selo" style="font-size:16px;vertical-align:middle">Exemplo ilustrativo</span> A Marina opera com uma pessoa local, com a rotina escrita. Ela fica com o preço e o produto.</p>
+  <aside><b>2 min.</b> É a primeira pergunta que um sócio ou um investidor vai fazer. Como operar, você aprende na trilha de Operação; aqui basta decidir quem. A pessoa local da Marina faz a limpeza, a manutenção leve e deixa a cesta na varanda antes das sete.</aside>
+</section>
+
+<!-- 28 · LIÇÃO BLOCO 2 -->
+<section class="s esc" data-bloco="Bloco 2 · Faça você">
+  <p class="k">Antes da venda · 5 minutos</p>
+  <h2>A sua conta <i>do cem por cento</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>O seu degrau na fase um, e o item que empurra o produto para cima.</span></div>
+      <div class="passo f"><b>2</b><span>O seu cem por cento: unidades × 365.</span></div>
+      <div class="passo f"><b>3</b><span>Os três cenários, com a diária média que você mediu no Pilar 2.</span></div>
+      <div class="passo f"><b>4</b><span>O número em que você confia, e quem opera a fase um.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Não mediu ainda? Escreva "não sei": a conta espera, e o "não sei" vira tarefa.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Ligue o cronômetro. Quem já opera troca a régua pelos números de doze meses: soma as noites vendidas do ano e divide pelo cem por cento. Ao terminar, peça a receita do cenário mais fraco no chat e coloque um caso no simulador.</aside>
+</section>
+
+<!-- 29 · SEIS PASSOS DA VENDA -->
+<section class="s" data-bloco="Bloco 2 · O modelo de venda">
+  <p class="k">Como estruturar um projeto para vender · nível introdutório</p>
+  <h2 style="font-size:68px">Os seis passos, <i>nesta ordem</i></h2>
+  <div class="fases passo seis">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>O que é vendável</span><div class="fx"><div><h4>O que é</h4><p>Separar a área vendável, as unidades, da não vendável: portão, caminho, recepção, lazer, rouparia.</p></div><div><h4>Por quê</h4><p>A obra custa tudo. A venda só paga a área vendável.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>A forma de vender</span><div class="fx"><div><h4>O que é</h4><p>Uma escada: por unidade, multipropriedade, timeshare e condo-hotel.</p></div><div><h4>Por quê</h4><p>Cada forma tem regra própria, e sobe em complexidade.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>A conta da venda</span><div class="fx"><div><h4>O que é</h4><p>O VGV, menos a obra inteira, menos o custo de vender.</p></div><div><h4>Por quê</h4><p>O que sobra é o que o projeto entrega. VGV não é lucro.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>A obrigação que fica</span><div class="fx"><div><h4>O que é</h4><p>Escrever quem opera o conjunto e como presta contas a quem comprou.</p></div><div><h4>Por quê</h4><p>Quem compra espera prestação de contas e previsibilidade por muitos anos.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>O caixa antes</span><div class="fx"><div><h4>O que é</h4><p>Projeto, aprovações, registro, estrutura de venda e garantias, antes da primeira venda.</p></div><div><h4>Por quê</h4><p>Vender na planta não dispensa capital inicial. A venda pode ajudar a pagar, mas alguém paga primeiro.</p></div></div></button>
+      <button class="bt"><span class="bol">6</span><span>Os profissionais</span><div class="fx"><div><h4>O que é</h4><p>Advogado e contador desde o primeiro desenho. Antes, para desenhar junto.</p></div><div><h4>Por quê</h4><p>Sinal vermelho: estruturar sozinho, com contrato da internet. A venda acompanha você por anos.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Cada clique abre o próximo passo, com o porquê.</p></div>
+  </div>
+  <aside><b>4 min.</b> Tema regulado: aqui você aprende os nomes e a lógica para reconhecer cada caminho numa conversa, não estrutura nenhuma venda. No passo 1: por isso o masterplan do Pilar 5 vai mostrar quanto é vendável de verdade. No passo 4: "se você não consegue escrever essas duas linhas, ainda não existe o que vender". A regra dos seis: primeiro nasce o negócio. Numa fase um pequena, vender raramente faz sentido.</aside>
+</section>
+
+<!-- 30 · FORMAS DE VENDER -->
+<section class="s esc" data-bloco="Bloco 2 · O modelo de venda">
+  <p class="k">Passo 2 · a escada das formas de vender · clique em cada uma</p>
+  <h2 style="font-size:66px">Da mais simples <i>à mais complicada</i></h2>
+  <div class="grid g4" style="min-height:400px">
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Venda por unidade</h3><span class="dica">O que pede</span></div><div class="vs"><b>Lei 4.591/1964</b><p>Cada comprador leva uma unidade inteira. Na planta, só depois do registro da incorporação no cartório.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Multipropriedade</h3><span class="dica">O que pede</span></div><div class="vs"><b>Lei 13.777/2018</b><p>Cotas de tempo de uma mesma unidade, de no mínimo sete dias, cada uma com matrícula própria.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Timeshare</h3><span class="dica">O que pede</span></div><div class="vs"><b>Decreto 7.381/2010</b><p>O direito de usar por um tempo, por contrato. Quem compra tem o uso, não a propriedade.</p></div></div></div>
+    <div class="pq mini"><div class="in"><div class="fr"><h3>Condo-hotel</h3><span class="dica">O que pede</span></div><div class="vs"><b>Resolução CVM 86/2022</b><p>A unidade e parte do resultado do hotel. Oferta pública passa pela CVM: registro, prospecto e estudo de viabilidade.</p></div></div></div>
+  </div>
+  <p class="sm f">Qual cabe no seu caso, e como, quem confirma é o advogado e o contador.</p>
+  <aside><b>3 min.</b> Vire os cartões clicando neles, na ordem que a conversa pedir. Cuidado com as palavras parecidas: copropriedade fracionada, programas de direito de uso e timeshare não são necessariamente a mesma coisa que a multipropriedade brasileira. Antes de copiar um modelo de fora, confira com o advogado.</aside>
+</section>
+
+<!-- 31 · SIMULADOR · VGV -->
+<section class="s" data-bloco="Bloco 2 · A conta da venda">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · passo 3 · a conta da venda</p><span class="selo">Exemplo ilustrativo · não é a Marina</span></div>
+  <h2 style="font-size:60px">VGV, menos o custo de vender, <i>antes da obra</i></h2>
+  <div class="sim" data-sim="p4">
+    <div class="ctl" style="gap:20px">
+      <label>Unidades para vender <output data-for="uv"></output><input type="range" name="uv" min="1" max="40" step="1" value="10"></label>
+      <label>Frações por unidade <output data-for="fr"></output><input type="range" name="fr" min="1" max="60" step="1" value="1"><small>1 = venda por unidade. Na multipropriedade, muitos vendem 51.</small></label>
+      <label>Preço da unidade ou da fração <output data-for="preco" data-fmt="brl"></output><input type="range" name="preco" min="10000" max="1500000" step="5000" value="350000"></label>
+      <label>Custo de vender <output data-for="pct" data-fmt="pct0"></output><input type="range" name="pct" min="0" max="50" step="1" value="30"><small>Use 30% como alerta, não como regra.</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>O que se vende</span><b data-r="qtd"></b></div>
+      <div class="linha tot"><span>VGV, se tudo for vendido</span><b data-r="vgv" data-fmt="brl"></b></div>
+      <div class="linha"><span>Custo de vender</span><b data-r="custo" data-fmt="brl"></b></div>
+      <div class="barra"><i data-bar="pctSobra"></i></div>
+      <div class="linha"><span>Antes da obra e do terreno</span><b data-r="sobra" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso="avisoV"></div>
+      <button class="reset">Voltar ao exemplo</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> O exemplo de dez cabanas: 10 × R$ 350 mil = R$ 3,5 milhões de VGV. VGV é o valor geral de vendas: tudo o que o projeto vende, somado. Agora a multipropriedade: ponha 1 unidade, 51 frações e R$ 30 mil. Dá R$ 1.530.000 numa unidade só. Parece muito mais. "Mas vender cota custa caro": no começo da multipropriedade, o custo de marketing e venda chegou a cerca de 30% do VGV, segundo levantamento publicado pela Panrotas, e ainda existe a administração do condomínio, todo ano. Baixe o custo para 20% com frações: o aviso acende. Lembre: a obra inteira inclui a área não vendável.</aside>
+</section>
+
+<!-- 32 · QUIZ VGV -->
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 2 de 2</p>
+  <div class="quiz passo">
+    <p class="q">O VGV de um projeto deu R$ 3,5 milhões. Quanto o dono ganha?</p>
+    <div class="ops">
+      <button class="op">R$ 3,5 milhões</button>
+      <button class="op" data-certa>Ainda não dá para saber: falta tirar a obra inteira, o custo de vender, os impostos e o terreno</button>
+    </div>
+    <p class="exp">VGV é o preço de tabela de tudo, se tudo for vendido. O que o projeto entrega é o que sobra depois da obra inteira e do custo de vender.</p>
+  </div>
+  <aside><b>1 min.</b> E tudo isso pressupõe que todas as unidades foram vendidas.</aside>
+</section>
+
+<!-- 33 · SIMULADOR · FRAÇÃO -->
+<section class="s esc" data-bloco="Bloco 2 · Multipropriedade">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · multipropriedade em linguagem de padaria</p><span class="selo">Exemplo ilustrativo · não é avaliação</span></div>
+  <h2 style="font-size:58px">Como o comprador <i>enxerga a fração</i></h2>
+  <div class="sim" data-sim="fra" style="grid-template-columns:.95fr 1.05fr;gap:44px">
+    <div class="ctl" style="gap:16px">
+      <label>Diária de uma hospedagem parecida <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="200" max="2000" step="10" value="600"></label>
+      <label>Dias de uso por ano <output data-for="dias"></output><input type="range" name="dias" min="7" max="28" step="7" value="7"><small>No mínimo sete dias por fração.</small></label>
+      <label>Prazo de referência, em anos <output data-for="anos"></output><input type="range" name="anos" min="1" max="15" step="1" value="8"></label>
+      <label>Cabanas <output data-for="cab"></output><input type="range" name="cab" min="1" max="12" step="1" value="4"></label>
+      <label>Frações por cabana <output data-for="fr"></output><input type="range" name="fr" min="1" max="52" step="1" value="51"><small>Uma semana do ano guardada para a manutenção.</small></label>
+      <label>Custo de vender <output data-for="pct" data-fmt="pct0"></output><input type="range" name="pct" min="0" max="50" step="1" value="30"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Economia de hospedagem no ano</span><b data-r="ano" data-fmt="brl"></b></div>
+      <div class="linha tot"><span>Preço ilustrativo da fração</span><b data-r="frac" data-fmt="brl"></b></div>
+      <div class="linha"><span>Frações no total</span><b data-r="total"></b></div>
+      <div class="linha"><span>VGV teórico</span><b data-r="vgv" data-fmt="brl"></b></div>
+      <div class="linha"><span>Custo de vender</span><b data-r="custo" data-fmt="brl"></b></div>
+      <div class="linha"><span>Antes da obra e de todos os custos</span><b data-r="sobra" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso></div>
+      <button class="reset">Voltar ao exemplo</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> A imagem: uma cabana que uma família usa duas semanas por ano e paga sozinha; agora, vinte e cinco famílias dividindo a mesma cabana, cada uma com as suas semanas escritas e registradas. A conta: 600 × 7 = R$ 4.200 por ano; × 8 anos = R$ 33.600 por fração. Quatro cabanas × 51 = 204 frações; VGV teórico R$ 6.854.400; custo de vender no alerta de 30%, R$ 2.056.320; sobra R$ 4.798.080, antes da obra inteira, do terreno, dos projetos, dos impostos, da administração e de qualquer financiamento. Mude o prazo para 5 anos e o preço cai junto. Experimente 26 frações de 14 dias: cabe. 51 de 14: não cabe, o aviso acende.</aside>
+</section>
+
+<!-- 34 · O DIFÍCIL É VENDER -->
+<section class="s" data-bloco="Bloco 2 · Multipropriedade">
+  <p class="k">204 frações são 204 contratos</p>
+  <h2 style="font-size:66px">O difícil não é construir. <i>É vender.</i></h2>
+  <ol class="sete">
+    <li class="f">Quem são os compradores?</li>
+    <li class="f">Existe demanda real na região?</li>
+    <li class="f">Qual é o perfil financeiro desse público?</li>
+    <li class="f">Como os compradores serão alcançados?</li>
+    <li class="f">Quanto vai custar conquistar cada comprador?</li>
+    <li class="f">Qual é a capacidade comercial necessária?</li>
+    <li class="f">Como serão tratados cancelamentos e desistências?</li>
+  </ol>
+  <p class="lead f" style="font-size:32px">Mais de duas em "não sei"? A multipropriedade não é a sua fase um.</p>
+  <aside><b>3 min.</b> Revele uma pergunta por clique e pergunte quem já sabe responder. Na 1: hóspede e comprador são pessoas diferentes. Na 5: é aqui que nascem os 30% do custo de vender. Na 7: distrato é quando o comprador desiste depois de assinar, e ele vai acontecer. A multipropriedade pode ser estudada, mas não deve ser conclusão automática: compare com renda, venda por unidade, financiamento ou parceria. A Marina passou pelo checklist: "não sei" em quem compraria e no custo de conquistar cada comprador, e a operação dela ainda não existe. Guardou o checklist no Dossiê.</aside>
+</section>
+
+<!-- 35 · RENDA, VENDA OU HÍBRIDO -->
+<section class="s esc" data-bloco="Bloco 2 · A decisão">
+  <p class="k">A decisão · três caminhos</p>
+  <h2 style="font-size:68px">Renda, venda <i>ou híbrido</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Renda</span><div class="fx"><div><h4>O que é</h4><p>Você fica com o imóvel e o dinheiro volta pelas diárias.</p></div><div><h4>Quando faz sentido</h4><p>Fase um pequena, degrau fácil, quem quer construir um negócio que fica.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Venda</span><div class="fx"><div><h4>O que é</h4><p>Você estrutura o projeto para vender, com a forma e a conta que acabou de ver.</p></div><div><h4>Quando faz sentido</h4><p>Demanda de compradores comprovada, equipe comercial e profissionais desde o primeiro desenho.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Híbrido</span><div class="fx"><div><h4>O que é</h4><p>Opera a fase um, prova com doze meses de números reais e depois estrutura a venda de uma parte ou da fase dois.</p></div><div><h4>Quando faz sentido</h4><p>Quem quer as duas coisas, na ordem certa.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Cada clique abre um caminho: o que é e quando faz sentido.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:44px">Quem vende com doze meses de números reais vende um negócio, <i>não uma promessa.</i></p>
+  <aside><b>3 min.</b> O híbrido é a regra "primeiro nasce o negócio" ao pé da letra, e é a estratégia em fases do bloco 1, agora com nome. Peça no chat: renda, venda ou híbrido? Só a primeira impressão; a decisão escrita vai para o Faça agora.</aside>
+</section>
+
+<!-- 36 · A MARINA RESOLVIDA -->
+<section class="s" data-bloco="Bloco 2 · O exemplo resolvido">
+  <span class="selo">Exemplo ilustrativo · o Modelo de Negócio da Marina</span>
+  <h2 style="font-size:60px">A página 4 da Marina, <i>linha a linha</i></h2>
+  <table class="t marina">
+    <tr class="f"><td>Alugar, hospedar ou vender</td><td>Hospedar: tem serviço, o café na cesta</td></tr>
+    <tr class="f"><td>No mapa e o degrau</td><td>Glamping, renda, degrau fácil: a Fase 1, testar</td></tr>
+    <tr class="f"><td>O cem por cento</td><td>3 × 365 = 1.095 noites</td></tr>
+    <tr class="f"><td>Os três cenários</td><td>Cerca de R$ 272 mil, R$ 353 mil e R$ 459 mil de receita bruta</td></tr>
+    <tr class="f"><td>O número em que confia</td><td>Cerca de R$ 272 mil, o do cenário mais fraco</td></tr>
+    <tr class="f"><td>Quem opera a fase um</td><td>Uma pessoa local, com a rotina escrita</td></tr>
+    <tr class="f"><td>Venda e multipropriedade</td><td>Não na fase um. Checklist guardado, duas linhas em "não sei"</td></tr>
+    <tr class="f" data-foco><td>Veredito</td><td><b>Avança</b> com renda, no degrau fácil, para o masterplan do Pilar 5</td></tr>
+  </table>
+  <aside><b>3 min · exemplo resolvido.</b> Revele linha a linha. Critério para parar, escrito antes: "Se, no Pilar 6, a conta do cenário mais fraco não pagar os custos do ano, eu não aumento a ocupação no papel: volto ao produto e ao preço antes de chamar o arquiteto." Pendências: quanto sai da receita e quanto custa construir, nos Pilares 6 e 7. Se um dia pensar em vender, vende com os números reais da operação, e com advogado e contador desde o começo.</aside>
+</section>
+
+<!-- 37 · PAINEL COMPLETO -->
+<section class="s esc" data-bloco="Bloco 2 · O modelo inteiro">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · o modelo inteiro em uma tela</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <div class="sim p4" data-sim="p4" style="grid-template-columns:1fr 1fr;gap:48px">
+    <div class="col">
+      <h4>Renda · você fica com o imóvel</h4>
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="20" step="1" value="3"></label>
+      <label>Ocupação, cenário mais fraco <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="85" step="0.5" value="38.5"></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="200" max="2000" step="5" value="645"></label>
+      <div class="res">
+        <div class="linha"><span>O cem por cento</span><b data-r="cem"></b></div>
+        <div class="linha"><span>Com feriados · procura forte</span><b><span data-r="rec2" data-fmt="mil"></span> · <span data-r="rec3" data-fmt="mil"></span></b></div>
+        <div class="linha tot"><span>O número em que você confia</span><b data-r="rec1" data-fmt="brl"></b></div>
+        <div class="aviso" data-aviso></div>
+      </div>
+    </div>
+    <div class="col">
+      <h4>Venda · você constrói e vende</h4>
+      <label>Unidades para vender <output data-for="uv"></output><input type="range" name="uv" min="1" max="40" step="1" value="10"></label>
+      <label>Frações por unidade <output data-for="fr"></output><input type="range" name="fr" min="1" max="60" step="1" value="1"></label>
+      <label>Preço da unidade ou da fração <output data-for="preco" data-fmt="brl"></output><input type="range" name="preco" min="10000" max="1500000" step="5000" value="350000"></label>
+      <label>Custo de vender <output data-for="pct" data-fmt="pct0"></output><input type="range" name="pct" min="0" max="50" step="1" value="30"></label>
+      <div class="res">
+        <div class="linha"><span>VGV, se tudo for vendido</span><b data-r="vgv" data-fmt="brl"></b></div>
+        <div class="linha tot"><span>Antes da obra inteira</span><b data-r="sobra" data-fmt="brl"></b></div>
+        <div class="aviso" data-aviso="avisoV"></div>
+      </div>
+      <div><button class="reset">Voltar aos exemplos</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> À esquerda, a Marina: 1.095 noites; R$ 353 mil e R$ 459 mil nos cenários de cima; R$ 271.916 no mais fraco. À direita, o exemplo de dez cabanas: R$ 3,5 milhões de VGV e R$ 2,45 milhões antes da obra, com o alerta de 30%. Peça um aluno que pensa em vender e equalize os dois lados com os números dele. São contas de referência: receita bruta e VGV não são lucro, e nada aqui é promessa. A conta inteira, com custos e investimento, vem no Pilar 6.</aside>
+</section>
+
+<!-- 38 · REVISÃO 1 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Quatro cabanas. Qual é o cem por cento?</p>
+    <div class="ops"><button class="op">365 noites</button><button class="op" data-certa>1.460 noites</button><button class="op">4 noites</button><button class="op">Depende da ocupação</button></div>
+    <p class="exp">4 × 365 = 1.460 noites: todas as noites que existem no ano. A ocupação entra depois.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o melhor modelo de hospedagem?</p>
+    <div class="ops"><button class="op">O resort, porque tem a maior diária</button><button class="op">O glamping, sempre</button><button class="op" data-certa>Nenhum por definição: existe o modelo certo para cada terreno, dono e momento</button><button class="op">A multipropriedade, porque soma mais VGV</button></div>
+    <p class="exp">Não existe modelo melhor nem pior. Existe o modelo adaptado ao seu caso, e a ordem certa para passar de um ao outro.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 40 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 4 do seu Dossiê</p>
+  <h2>O seu <i>Modelo de Negócio</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: o negócio, o lugar no mapa, o degrau, o cem por cento e quem opera. Se pensa em vender: o vendável, a forma e o VGV.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Equalize no simulador</strong> e veja os sinais vermelhos de cada forma de vender.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/pilar4/"></div>
+      <span class="url">Na área de membros: aula "Faça agora · O seu Modelo de Negócio"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros e ligue o cronômetro. Onde não souber, "não sei" vira tarefa da semana. Compromisso de 7 dias: a página 4 em PDF, com o número em que confia escrito, antes do Pilar 5. Quem terminar, escreve no chat a decisão (renda, venda ou híbrido) e o veredito.</aside>
+</section>
+
+<!-- 41 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 4 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:14px">
+    <li class="f">Alugar, hospedar e vender são três coisas diferentes. Tem serviço, você hospeda.</li>
+    <li class="f">Não existe modelo melhor. Leia cada um do balcão para dentro e do balcão para fora.</li>
+    <li class="f">Glamping não é propriedade: serve para renda e para testar o destino.</li>
+    <li class="f">A fruta baixa costuma estar no degrau fácil. Cem por cento × ocupação × diária, em três cenários: confie no mais fraco.</li>
+    <li class="f">Venda em seis passos. VGV menos a obra e o custo de vender; e o difícil é vender.</li>
+    <li class="f">Renda, venda ou híbrido: primeiro nasce o negócio, depois nasce o investimento.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa da aula: o que, por quê e o resultado. Pergunte: "qual dessas frases muda a sua decisão?"</aside>
+</section>
+
+<!-- 42 · PONTE -->
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 5</p>
+  <h2 style="max-width:1150px">Masterplan <i>faseado</i></h2>
+  <p class="lead" style="max-width:1050px">O terreno inteiro no papel: onde você nunca vai construir, o que cabe de verdade, quanto é vendável e o que entra na fase um. Um projeto assim é o que um sócio, um banco ou a Zion conseguem avaliar. E a Zion avalia cada caso.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina, o projeto de dez cabanas e o exemplo de quatro cabanas em multipropriedade são exemplos ilustrativos, e as contas são ilustrativas. Receita bruta e VGV não são lucro. Não é oferta de investimento nem avaliação imobiliária, e não é promessa de renda, retorno, ocupação, venda, crédito ou sociedade. Temas jurídicos em nível introdutório: quem confirma é o advogado, o contador, o cartório e a prefeitura.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 4. Agora você sabe como o seu projeto ganha dinheiro. No Pilar 5, o masterplan faseado." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

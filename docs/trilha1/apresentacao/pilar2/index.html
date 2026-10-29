@@ -1,0 +1,813 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 2 · Mercado e demanda · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+img.fig{border-radius:22px}
+.lado img.fig{max-height:720px;justify-self:center}
+.curva{width:100%;height:250px}
+.curva text{font:600 20px Inter,Arial,sans-serif}
+.cabem{width:100%;height:130px}
+.cabem text{font:600 20px Inter,Arial,sans-serif}
+.roc{display:flex;height:46px;border-radius:10px;overflow:hidden;font-size:16px;font-weight:700}
+.roc>div{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden}
+.roc .g{background:#6B7268}.roc .a{background:var(--ok)}.roc .b{background:#9A8A3A}.roc .c{background:var(--alerta)}.roc .d{background:var(--erro)}
+.regua.amp .r0{background:#8B9188}
+.barras{display:flex;flex-direction:column;gap:12px;font-size:28px}
+.barras .b{display:grid;grid-template-columns:260px 1fr 70px;gap:18px;align-items:center}
+.barras .b i{display:block;height:34px;border-radius:8px;background:var(--ouro)}
+.barras .b.cin i{background:#B9B3A4}
+.barras .b span:last-child{font-weight:700;text-align:right;font-variant-numeric:tabular-nums}
+.sim.duas .ctl{display:grid;grid-template-columns:1fr 1fr;gap:18px 36px}
+.painel-sim .ctl{gap:12px 30px}
+.painel-sim label{font-size:19px;gap:2px 12px}
+.painel-sim label output{font-size:22px}
+.painel-sim input[type=range]{height:26px}
+.painel-sim .res{padding:24px 30px;gap:9px}
+.painel-sim .linha{font-size:23px;padding-bottom:7px}
+.painel-sim .linha.tot{font-size:28px}
+.painel-sim .aviso{font-size:21px}
+.sim-semana .res .linha{font-size:27px}
+</style>
+<script>
+/* Simuladores do Pilar 2: o exemplo da Marina (exemplo ilustrativo).
+   Conferido em Python: semana 2,86 noites, R$ 1.846, ocupação 40,9%, diária média R$ 645,45, por noite R$ 264;
+   curva 462 / 12 = 38,5%; por cabana R$ 90.703 (média) e R$ 150.778 (inverno o ano todo), 66% a mais; mês fraco R$ 4.260;
+   absorção 13.315 + 2.996 - 2.497 = 499 noites, 138,7 por cabana, cabem 3; receita das 3 com R$ 645: R$ 271.916. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function faixaOcup(o){
+  if (o >= 65) return ['er','<b>'+fmtP(o)+' no ano:</b> faixa de 65% a 85%, só com procura extraordinária, comprovada pelo mercado. Que prova você tem?'];
+  if (o > 60) return ['at','<b>'+fmtP(o)+':</b> entre faixas, acima de 50% a 60%. Confira se os feriados aparecem no calendário dos comparáveis.'];
+  if (o >= 50) return ['ok','<b>'+fmtP(o)+':</b> faixa de 50% a 60%, fins de semana, feriados, festas e datas festivas.'];
+  if (o > 40) return ['ok','<b>'+fmtP(o)+':</b> entre faixas. A mais próxima abaixo é 35% a 40%, só fins de semana.'];
+  if (o >= 35) return ['ok','<b>'+fmtP(o)+':</b> faixa de 35% a 40%, quem vende só nos fins de semana.'];
+  return ['at','<b>'+fmtP(o)+':</b> abaixo da primeira faixa da régua. Olhe o mês fraco com atenção.'];
+}
+function fmtP(o){ return (Math.round(o*10)/10).toLocaleString('pt-BR') + '%'; }
+ZD.sims.p2 = function(v){
+  /* a semana */
+  const nF = 2 * v.ofds / 100, nS = 5 * v.osem / 100, noites = nF + nS;
+  const entra = nF * v.dfds + nS * v.dsem;
+  const diaria = noites > 0 ? entra / noites : 0;
+  /* a curva */
+  const mm = Math.max(0, 12 - v.ma - v.mf);
+  const soma = v.ma * v.oa + mm * v.om + v.mf * v.of;
+  const ocAno = soma / 12;
+  const grupos = [v.ma > 0 && v.oa, mm > 0 && v.om, v.mf > 0 && v.of].filter(x => x !== false);
+  const simples = grupos.length ? grupos.reduce((a, b) => a + b, 0) / grupos.length : 0;
+  const porUn = ocAno / 100 * 365 * diaria, porUnCheio = v.oa / 100 * 365 * diaria;
+  /* quantas cabem: a ocupação do ano arredondada para baixo, como no e-book (38,5% vira cerca de 38%) */
+  const oc = Math.floor(ocAno + 1e-9) / 100;
+  const hoje = v.comp * 365 * oc, fator = Math.pow(1 + v.cresc / 100, v.anos);
+  const mais = hoje * (fator - 1), menos = v.obra * 365 * oc, sobraR = mais - menos;
+  const precisa = 365 * oc;
+  const cabem = precisa > 0 ? Math.max(0, Math.floor(sobraR / precisa + 1e-9)) : 0;
+  let ved;
+  if (cabem < 1) ved = ['er','<b>Pausar.</b> A sobra do destino não cabe nem uma unidade: não existe procura para o que se quer fazer ali, hoje.'];
+  else if (ocAno >= 65) ved = ['at','<b>Testar.</b> A média do ano passou de 65% sem prova de procura extraordinária.'];
+  else if (cabem < v.pret) ved = ['at','<b>Ajustar.</b> Cabem '+cabem+' agora, menos que as '+v.pret+' pretendidas: desenha a infraestrutura para '+v.pret+' e abre com '+cabem+'.'];
+  else ved = ['ok','<b>Avançar, com condições.</b> O mercado aguenta as '+v.pret+' pretendidas, se você entregar o que o topo da faixa entrega.'];
+  return {
+    nF, nS, noites, entra, ocJan: noites / 7 * 100, diaria, porNoite: entra / 7, razao: v.osem > 0 ? v.ofds / v.osem : 0,
+    mediaPrecos: (v.dfds + v.dsem) / 2, mm, soma, ocAno, simples, erroSimples: simples - ocAno,
+    porUn, porUnCheio, aMais: ocAno > 0 ? (v.oa / ocAno - 1) * 100 : 0,
+    fracoNoites: 30 * v.of / 100, fracoR: 30 * v.of / 100 * diaria,
+    pont: Math.min(100, ocAno), _aviso: faixaOcup(ocAno),
+    ocUsada: oc * 100, hoje: Math.round(hoje), mais: Math.round(mais), menos: Math.round(menos), sobra: Math.floor(sobraR + 1e-9),
+    precisa, cabem, pedeC: cabem * precisa, pedeC1: (cabem + 1) * precisa, cabemTxt: String(cabem), c1Txt: String(cabem + 1),
+    recCabem: cabem * porUn, ved
+  };
+};
+ZD.desenha.p2 = function(sim, r, v){
+  const sv = sim.querySelector('svg.curva');
+  if (sv){
+    const W = 1200, H = 250, base = 210, esc = 1.9, larg = W / 12;
+    const cores = [], ocs = [];
+    for (let i = 0; i < v.ma; i++){ cores.push('#C9A84C'); ocs.push(v.oa); }
+    for (let i = 0; i < r.mm; i++){ cores.push('#8B9188'); ocs.push(v.om); }
+    for (let i = 0; i < v.mf; i++){ cores.push('#B5452F'); ocs.push(v.of); }
+    let h = '';
+    ocs.forEach((o, i) => {
+      const hh = Math.max(2, o * esc);
+      h += '<rect x="'+(i*larg+10)+'" y="'+(base-hh)+'" width="'+(larg-20)+'" height="'+hh+'" rx="6" fill="'+cores[i]+'"/>';
+      h += '<text x="'+(i*larg+larg/2)+'" y="'+(H-12)+'" text-anchor="middle" fill="#BFB8A8">'+(i+1)+'</text>';
+    });
+    const y = base - r.ocAno * esc;
+    h += '<line x1="0" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="#F5F1E8" stroke-width="3" stroke-dasharray="10 8"/>';
+    h += '<text x="'+(W-6)+'" y="'+(y-10)+'" text-anchor="end" fill="#F5F1E8">média do ano '+fmtP(r.ocAno)+'</text>';
+    sv.setAttribute('viewBox','0 0 '+W+' '+H); sv.innerHTML = h;
+  }
+  const sc = sim.querySelector('svg.cabem');
+  if (sc){
+    const W = 1500, H = 130, n = Math.max(v.pret, r.cabem + 1);
+    const tot = Math.max(r.sobra, n * r.precisa, 1), k = (W - 20) / tot;
+    let h = '<rect x="10" y="20" width="'+Math.max(0, r.sobra * k)+'" height="44" rx="8" fill="#C9A84C"/>';
+    h += '<text x="16" y="'+(56)+'" fill="#16261C">sobra '+r.sobra.toLocaleString('pt-BR')+' noites</text>';
+    for (let i = 1; i <= n; i++){
+      const x = 10 + i * r.precisa * k, cabe = i * r.precisa <= r.sobra + 1e-9;
+      h += '<line x1="'+x+'" x2="'+x+'" y1="10" y2="80" stroke="'+(cabe ? '#3E8E5A' : '#B5452F')+'" stroke-width="4"/>';
+      h += '<text x="'+x+'" y="110" text-anchor="middle" fill="'+(cabe ? '#3E8E5A' : '#B5452F')+'">'+i+'</text>';
+    }
+    sc.setAttribute('viewBox','0 0 '+W+' '+H); sc.innerHTML = h;
+  }
+};
+/* Receita bruta direta: unidades × ocupação × diária (a mesma conta do Pilar 6: R$ 271.916) */
+ZD.sims.rec = function(v){
+  const possiveis = v.un * 365, vendidas = possiveis * v.ocup / 100, receita = vendidas * v.diaria;
+  const cheio = possiveis * v.cheio / 100 * v.diaria;
+  return {possiveis, vendidas, receita, porUn: receita / v.un, cheio, aMais: v.ocup > 0 ? (v.cheio / v.ocup - 1) * 100 : 0,
+    pont: Math.min(100, v.ocup), _aviso: faixaOcup(v.ocup)};
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar2" data-titulo="Pilar 2 · Mercado e demanda">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 1 · Ler o lugar</p>
+  <h1>Pilar 2<br><i>Mercado e demanda</i></h1>
+  <p class="lead" style="max-width:1000px">Quem paga, quanto e quando. Com dado, e não com palpite.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "No Pilar 1 nós lemos o chão. Hoje a pergunta muda de lado: é sobre gente. Quem vai pagar, quanto, e em que época do ano." Peça papel, caneta, calculadora e o celular por perto. Avise que a aula tem simuladores ao vivo: os números vão mexer na tela.</aside>
+</section>
+<!-- GATILHO · perguntas gigantes -->
+<section class="s gigante" data-bg="../fotos/5e32d61171.jpg" data-bloco="A pergunta">
+  <div class="troca">
+    <div class="gq vis"><span class="rot">O que você já sabe</span><p class="q">O terreno suporta. <i>E agora?</i></p></div>
+    <div class="gq f"><span class="rot">A pergunta do Pilar 2</span><p class="q">O que está no terreno tem <i>demanda?</i></p></div>
+  </div>
+  <aside><b>Gatilho · 2 min.</b> Pergunta-gatilho. "Um terreno que suporta o projeto ainda não é um negócio. Alguém precisa querer dormir ali, pagar e voltar." Peça no chat: quem você acha que paga para dormir na sua região?</aside>
+</section>
+
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa do pilar">
+  <p class="k">Este pilar em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>Quem vende o mesmo que você, a diária de verdade, a curva do ano, quem paga e quantas unidades cabem.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>Quem constrói pelo que acha abre bonito e opera vazio. Depois da obra, já não dá para mudar tamanho nem preço.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 2 do seu Dossiê: a Ficha do Mercado, com veredito.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "A Ordem Zion começa por ler o lugar, e ler o lugar tem duas metades que andam juntas: o território diz o que pode ser feito, o mercado diz o que vende. Uma sem a outra não fecha." Bloco 1: quem vende e quanto paga. Bloco 2: quando vem, quem paga e quantas cabem. No fim, o Faça agora.</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas do <i>Pilar 1</i></h2>
+  <div class="grid g3" style="min-height:360px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>A matrícula diz 50.000 m². Quanto sobrou para usar no exemplo?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>15.000 m², depois das subtrações. É essa área que entra nas contas.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Físico 12, água 10, experiência 7, mercado 5. Quantas unidades?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Cinco, sempre o menor. E esse cinco do mercado era estimativa. Hoje ele vira medida.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O terreno pesa 27% do investimento. Que pergunta ficou para hoje?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>O produto sustenta uma diária acima da média da região?</p></div></div></div>
+  </div>
+  <aside><b>2 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então vire. A Marina é o nosso exemplo ilustrativo: três a cinco cabanas de glamping para casal, num terreno de 50.000 m² na matrícula e 15.000 m² usáveis. A pergunta dos 27% volta no fim deste pilar, respondida.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · Quem vende e quanto paga">
+  <p class="k">Bloco 1</p>
+  <h2>Quem vende o mesmo que você, <i>e quanto o lugar já paga</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Dez quilômetros de serra ou de estrada de terra podem ser quarenta minutos de carro.</div>
+    <div class="f"><b>Reflexão</b>Se o seu empreendimento não existisse, para onde o seu hóspede iria?</div>
+    <div class="f"><b>Dica</b>A parte que é sua cabe numa tarde: celular, duas plataformas, um cronômetro e uma folha.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na reflexão, peça que escrevam a resposta no papel. "Às vezes a resposta não é o vizinho. É outra serra, outra praia. O seu concorrente pode ser um destino inteiro." A frase é do Método Zion 360°, Volume 2, Mercado.</aside>
+</section>
+
+<!-- 5 · CENA -->
+<section class="s" data-bloco="Bloco 1 · Quem vende e quanto paga">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">Onde quase todo mundo está</p>
+      <h2 style="font-size:72px">Um preço na cabeça e <i>"aqui enche bastante"</i></h2>
+      <ul class="lista" style="font-size:34px">
+        <li class="f"><span>O terreno está lido. Já tem um preço que você imagina cobrar.</span></li>
+        <li class="f"><span>E uma dúvida que ninguém fala em voz alta: <i>e se ninguém vier na terça?</i></span></li>
+      </ul>
+      <p class="lead f" style="font-size:36px">Não é falta de coragem. É falta de medida.</p>
+    </div>
+    <img class="ilus" src="../fotos/48391afbdb.jpg" alt="Chalés iguais, um deles com o calendário vazio" style="max-height:720px;object-fit:contain">
+  </div>
+  <aside><b>2 min.</b> "O erro mais caro deste ponto é construir pelo que você acha que o hóspede quer. O projeto abre bonito e opera vazio. O dono descobre o mercado depois da obra, quando já não dá para mudar o tamanho, o tipo de unidade nem o preço. Em hotelaria, mercado vem antes do projeto. Sempre."</aside>
+</section>
+
+<!-- 6 · QUEM ACHA, QUEM MEDE -->
+<section class="s" data-bloco="Bloco 1 · Quem vende e quanto paga">
+  <p class="k">A troca de pergunta</p>
+  <h2>Quem acha pergunta. <i>Quem mede pergunta outra coisa.</i></h2>
+  <table class="t" style="font-size:34px">
+    <tr><th>Quem acha pergunta</th><th>Quem mede pergunta</th></tr>
+    <tr class="f"><td>Quanto eu vou cobrar?</td><td>Quanto este lugar já paga, e por quem?</td></tr>
+    <tr class="f"><td>Tem muita gente que vem aqui?</td><td>Quantas noites vendem, na média do ano?</td></tr>
+    <tr class="f"><td>Tem concorrente?</td><td>Para onde o meu hóspede iria, se eu não existisse?</td></tr>
+    <tr class="f"><td>Quantas unidades eu quero?</td><td>Quantas unidades o mercado aguenta?</td></tr>
+  </table>
+  <aside><b>2 min.</b> Revele linha a linha. Pergunte no chat qual pergunta da esquerda a pessoa já fez. "Essa é a pergunta que um investidor, um sócio ou o banco vão te fazer: quem paga, quanto e quando. E se o investidor for você mesmo, a pergunta é a mesma."</aside>
+</section>
+
+<!-- 7 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">Uma pousada de 12 quartos a R$ 280 e um glamping de 6 unidades a R$ 1.200, na mesma rua. São comparáveis?</p>
+    <div class="ops">
+      <button class="op">Sim, estão na mesma rua</button>
+      <button class="op" data-certa>Não: porte, proposta e faixa de preço são diferentes</button>
+    </div>
+    <p class="exp">Comparável não é vizinho. É quem vende o mesmo motivo de viagem, na mesma faixa de preço. A concorrência acontece na cabeça do cliente, não no mapa.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Clique na alternativa que alguém escolheu ou avance para revelar a certa. Comparável é quem o seu hóspede escolheria no seu lugar.</aside>
+</section>
+
+<!-- 8 · QUATRO FILTROS -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <div class="lado" style="grid-template-columns:1.15fr .85fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Para entrar na sua lista</p>
+      <h2 style="font-size:72px">Os quatro <i>filtros</i></h2>
+      <ul class="lista num" style="font-size:32px">
+        <li class="f">Mesmo porte: poucas unidades com poucas unidades</li>
+        <li class="f">Mesma proposta: cabana para casal com cabana para casal</li>
+        <li class="f">Mesmo motivo de viagem: descanso, aventura, romance</li>
+        <li class="f">Mesma faixa de preço: até 30% acima ou abaixo do que você imagina cobrar</li>
+      </ul>
+      <p class="sm f">Na dúvida, inclua, e marque se ele é muito ou pouco parecido.</p>
+    </div>
+    <img class="fig" src="figuras/02-filtros.svg" alt="Funil com os quatro filtros: porte, proposta, motivo da viagem e faixa de preço">
+  </div>
+  <aside><b>2 min.</b> Um filtro por clique. "Comparar com o concorrente errado erra toda conta que vem depois." Sinal vermelho: comparar cinco cabanas com um hotel de cem quartos.</aside>
+</section>
+
+<!-- 9 · RAIO -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">O raio da pesquisa</p>
+      <h2 style="font-size:72px">Perto no mapa, <i>longe no relógio</i></h2>
+      <p class="lead f" style="font-size:36px">30 minutos de carro, cronometrados. Não em quilômetros.</p>
+      <p class="lead f" style="font-size:36px">O hóspede pensa em tempo, não em distância.</p>
+    </div>
+    <img class="fig" src="figuras/03-raio-30-min.svg" alt="Raio de 30 minutos de carro que segue as estradas, e não um círculo em quilômetros">
+  </div>
+  <aside><b>1 min.</b> Meça no mapa do celular e, nos casos duvidosos, no carro, com o cronômetro. Sinal vermelho: um raio medido em quilômetros, em linha reta.</aside>
+</section>
+
+<!-- 10 · FASES · A BUSCA DE UMA TARDE -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <p class="k">A busca de uma tarde · cinco passos</p>
+  <h2 style="font-size:64px">O que fazer, <i>e por quê</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Marque o seu ponto</span><div class="fx"><div><h4>O que fazer</h4><p>Abra o Airbnb e o Booking e marque o seu ponto no mapa.</p></div><div><h4>Por quê</h4><p>Cada plataforma mostra um conjunto diferente. Buscar numa só deixa comparáveis de fora.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Filtre a faixa</span><div class="fx"><div><h4>O que fazer</h4><p>De 30% abaixo a 30% acima do preço que você imagina: o mais baixo × 0,7 e o mais alto × 1,3.</p></div><div><h4>Por quê</h4><p>Fora da faixa, o hóspede é outro.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Anote todos no raio</span><div class="fx"><div><h4>O que fazer</h4><p>Todos os anúncios a até 30 minutos de carro.</p></div><div><h4>Por quê</h4><p>Primeiro se anota tudo. Os cortes vêm depois, com critério, e não no olho.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Tire os repetidos</span><div class="fx"><div><h4>O que fazer</h4><p>Risque quem aparece nas duas plataformas.</p></div><div><h4>Por quê</h4><p>Muita pousada anuncia nas duas. Contada duas vezes, ela infla o mercado.</p></div></div></button>
+      <button class="bt"><span class="bol">5</span><span>Passe os filtros</span><div class="fx"><div><h4>O que fazer</h4><p>Tire quem não passa nos quatro filtros. A meta: de 10 a 20 comparáveis.</p></div><div><h4>Por quê</h4><p>Sobra só quem o seu hóspede escolheria no seu lugar. E conte unidades, não anúncios.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada passo para ver o que fazer e por quê.</p></div>
+  </div>
+  <aside><b>3 min.</b> Cada clique abre o próximo passo com o porquê. Reforce: faça à mão, respeitando as regras de cada plataforma, e sem copiar nenhum dado pessoal de hóspede. Uma pousada de oito quartos é um anúncio e oito unidades.</aside>
+</section>
+
+<!-- 11 · LISTA DA MARINA -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>A lista <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1450px">
+    <div class="eq f"><span>Ela imagina R$ 500 a R$ 700. A busca: 500 × 0,7 e 700 × 1,3</span><span>R$ 350 a R$ 910</span></div>
+    <div class="eq f"><span>Encontrados no raio e na faixa</span><span>31 anúncios</span></div>
+    <div class="eq f"><span>Repetidos nas duas plataformas</span><span>menos 4</span></div>
+    <div class="eq f"><span>Vizinhos que não passam nos filtros</span><span>menos 7</span></div>
+    <div class="eq tot f" data-foco><span>Comparáveis que ficam</span><span>20, com 96 unidades</span></div>
+  </div>
+  <p class="sm f">Sete deles vendem exatamente o mesmo que ela: cabana para casal, com vista e silêncio.</p>
+  <aside><b>2 min · exemplo resolvido.</b> Revele linha a linha. 31 − 4 − 7 = 20 comparáveis, que somam 96 unidades. "Esse 96 é o tamanho do mercado que já existe. Ele volta no fim do pilar, na conta de quantas cabem." Os sete que vendem exatamente o mesmo dão as diárias do meio, daqui a pouco.</aside>
+</section>
+
+<!-- 12 · O QUE ANOTAR -->
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <p class="k">O que anotar de cada um</p>
+  <h2>Seis itens. <i>Os três últimos quase ninguém anota.</i></h2>
+  <div class="grid g3" style="gap:22px">
+    <div class="card f" style="padding:26px 30px"><h3 style="font-size:34px">Nome e link</h3><p>Para voltar depois.</p></div>
+    <div class="card f" style="padding:26px 30px"><h3 style="font-size:34px">Tipo e unidades</h3><p>O porte.</p></div>
+    <div class="card f" style="padding:26px 30px"><h3 style="font-size:34px">Diária de semana e de fim de semana</h3><p>Separadas: o preço real.</p></div>
+    <div class="card f" style="padding:26px 30px"><h3 style="font-size:34px">Quantas avaliações</h3><p>Mostra quanto ele vende.</p></div>
+    <div class="card f" style="padding:26px 30px" data-foco><h3 style="font-size:34px">Data da primeira avaliação</h3><p>Mais ou menos quando abriu.</p></div>
+    <div class="card f" style="padding:26px 30px"><h3 style="font-size:34px">A promessa em uma frase</h3><p>O que ele diz que entrega.</p></div>
+  </div>
+  <aside><b>2 min.</b> "A data da primeira avaliação conta uma história: se metade dos comparáveis abriu nos últimos dois anos, o lugar está atraindo gente, e também concorrência. Só lembre que ali só aparece quem sobreviveu." Sinal vermelho: copiar nome ou dado pessoal de hóspede.</aside>
+</section>
+
+<!-- 13 · CALENDÁRIO -->
+<section class="s" data-bloco="Bloco 1 · Quanto paga">
+  <p class="k">O dono diz 80%. O calendário costuma contar outra história.</p>
+  <h2>A diária não se escolhe. <i>Se descobre.</i></h2>
+  <div class="grid g3" style="min-height:300px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Olhe do dia 30 ao dia 90</h3><span class="dica">Por quê?</span></div><div class="vs"><b>Por quê</b><p>Longe das reservas de última hora, que ainda vão mudar. E leia de novo 30 dias depois.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Separe sexta e sábado de domingo a quinta</h3><span class="dica">Por quê?</span></div><div class="vs"><b>Por quê</b><p>Eles vendem muito diferente. Uma média só esconde o meio de semana vazio, onde mora a oportunidade.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Dia ocupado nem sempre é reserva</h3><span class="dica">Por quê?</span></div><div class="vs"><b>Por quê</b><p>Pode ser o dono usando, manutenção ou estadia mínima.</p></div></div></div>
+  </div>
+  <aside><b>2 min.</b> "Pergunte a um dono quanto enche e quase todos vão dizer setenta, oitenta por cento. Ninguém mente de propósito: a pessoa lembra dos fins de semana cheios e esquece as terças vazias." Vire os cartões clicando neles. Fonte da frase do título: Panorama do Desenvolvimento Hoteleiro.</aside>
+</section>
+
+<!-- 14 · O PESO -->
+<section class="s esc" data-bloco="Bloco 1 · Quanto paga">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Na hora da média</p>
+      <h2 style="font-size:68px">Pese pelas unidades, <i>não pelos anúncios</i></h2>
+      <div class="conta" style="font-size:32px">
+        <div class="eq f"><span>1 cabana a 100% e 10 cabanas a 20%</span><span></span></div>
+        <div class="eq f"><span>Média dos dois anúncios</span><span>60%</span></div>
+        <div class="eq tot f" data-foco><span>Pelas 11 cabanas: (1 × 100 + 10 × 20) ÷ 11</span><span>27%</span></div>
+      </div>
+    </div>
+    <img class="fig" src="figuras/11-peso-unidades.svg" alt="Balança: uma cabana a 100% contra dez cabanas a 20%">
+  </div>
+  <aside><b>2 min.</b> "Um lugar com dez cabanas vende dez vezes mais noites que um com uma, e pesa mais." Sinal vermelho: a média simples dos anúncios. A região parece muito mais cheia do que está.</aside>
+</section>
+
+<!-- 15 · A SEMANA DA MARINA -->
+<section class="s" data-bloco="Bloco 1 · Quanto paga">
+  <span class="selo">Exemplo ilustrativo · a semana típica de uma cabana</span>
+  <h2>A conta da semana, <i>noite por noite</i></h2>
+  <table class="t" style="font-size:32px">
+    <tr><th>Dias</th><th>Noites</th><th>Ocupação</th><th>Vendidas</th><th>Diária do meio</th><th>Entra</th></tr>
+    <tr class="f"><td>Sexta e sábado</td><td class="v">2</td><td class="v">78%</td><td class="v">1,56</td><td class="v">R$ 700</td><td class="v">R$ 1.092</td></tr>
+    <tr class="f"><td>Domingo a quinta</td><td class="v">5</td><td class="v">26%</td><td class="v">1,30</td><td class="v">R$ 580</td><td class="v">R$ 754</td></tr>
+    <tr class="f"><td><b>Semana</b></td><td class="v">7</td><td></td><td class="v">2,86</td><td></td><td class="v">R$ 1.846</td></tr>
+  </table>
+  <div class="grid g3 f" style="gap:22px">
+    <div class="card" style="padding:22px 30px"><p>Ocupação · 2,86 ÷ 7</p><h3>40,9%</h3></div>
+    <div class="card" style="padding:22px 30px"><p>Diária média · 1.846 ÷ 2,86</p><h3>R$ 645</h3></div>
+    <div class="card" style="padding:22px 30px"><p>Por noite disponível · 1.846 ÷ 7</p><h3>R$ 264</h3></div>
+  </div>
+  <aside><b>3 min · exemplo resolvido.</b> Pesando pelas unidades, sexta e sábado estavam 78% ocupados, domingo a quinta 26%: o fim de semana enche três vezes mais (78 ÷ 26 = 3). As diárias de R$ 700 e R$ 580 são a mediana, o valor do meio, dos sete comparáveis que vendem o mesmo que a Marina. 2 × 0,78 = 1,56 noites × 700 = 1.092; 5 × 0,26 = 1,30 × 580 = 754. Diária média: o que entra dividido pelas noites vendidas.</aside>
+</section>
+
+<!-- 16 · SIMULADOR · A SEMANA -->
+<section class="s esc" data-bloco="Bloco 1 · Quanto paga">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a semana</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:60px">A diária média <i>de verdade</i></h2>
+  <div class="sim sim-semana" data-sim="p2">
+    <div class="ctl">
+      <label>Ocupação de sexta e sábado <output data-for="ofds" data-fmt="pct0"></output><input type="range" name="ofds" min="0" max="100" step="1" value="78"></label>
+      <label>Ocupação de domingo a quinta <output data-for="osem" data-fmt="pct0"></output><input type="range" name="osem" min="0" max="100" step="1" value="26"></label>
+      <label>Diária do meio, fim de semana <output data-for="dfds" data-fmt="brl"></output><input type="range" name="dfds" min="200" max="2000" step="10" value="700"></label>
+      <label>Diária do meio, domingo a quinta <output data-for="dsem" data-fmt="brl"></output><input type="range" name="dsem" min="200" max="2000" step="10" value="580"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Noites vendidas na semana</span><b data-r="noites" data-fmt="dec2"></b></div>
+      <div class="linha"><span>O que entra na semana</span><b data-r="entra" data-fmt="brl"></b></div>
+      <div class="linha"><span>Ocupação da janela</span><b data-r="ocJan" data-fmt="pct"></b></div>
+      <div class="linha tot"><span>Diária média de verdade</span><b data-r="diaria" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por noite disponível</span><b data-r="porNoite" data-fmt="brl"></b></div>
+      <div class="linha"><span>Média simples dos dois preços, o atalho errado</span><b data-r="mediaPrecos" data-fmt="brl"></b></div>
+      <div class="linha"><span>O fim de semana enche quantas vezes mais</span><b data-r="razao" data-fmt="dec1"></b></div>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo: 2,86 noites, R$ 1.846, 40,9%, diária média R$ 645, R$ 264 por noite disponível. Mexa ao vivo: "e se o fim de semana fosse R$ 1.200?" A média simples dispara e se afasta da diária média, porque o fim de semana vende mais noites e pesa mais. Peça os números de um aluno no chat e coloque. Esta diária média segue para a curva do ano, no bloco 2. Tecla R volta ao exemplo.</aside>
+</section>
+
+<!-- 17 · QUIZ 640 -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">"A diária média é (580 + 700) ÷ 2 = R$ 640." Erro ou acerto?</p>
+    <div class="ops">
+      <button class="op">Acerto</button>
+      <button class="op" data-certa>Erro: o fim de semana vende mais noites e pesa mais</button>
+    </div>
+    <p class="exp">O fim de semana vende três vezes mais noites. Aqui a diferença é pequena. Onde o fim de semana é muito mais caro, a média simples engana bastante.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele. Se quiser, volte um slide e mostre no simulador: fim de semana a R$ 1.200.</aside>
+</section>
+
+<!-- 18 · AMPLITUDE E TOPO -->
+<section class="s" data-bloco="Bloco 1 · Quanto paga">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">A régua da faixa de preço</p>
+      <h2 style="font-size:60px">O seu destino <i>paga por qualidade?</i></h2>
+      <p class="sm">A diária mais cara do raio dividida pela mais barata: a amplitude.</p>
+      <div class="regua amp" style="height:96px;font-size:24px">
+        <div class="r4 f" style="flex:2">Abaixo de 2 · briga de preço</div>
+        <div class="r0 f" style="flex:1">2 a 3</div>
+        <div class="r1 f" style="flex:2">Acima de 3 · paga pela diferença</div>
+      </div>
+      <div class="conta f" style="font-size:30px"><div class="eq tot"><span>Marina, no fim de semana · 1.150 ÷ 380</span><span>3,0</span></div></div>
+      <p class="lead f" style="font-size:34px">Anúncio é promessa. <i>Avaliação é entrega.</i></p>
+    </div>
+    <img class="fig" src="figuras/15-topo.svg" alt="Os três mais caros entregam vista, isolamento, banheira e café; preço alto com calendário vazio é aviso">
+  </div>
+  <aside><b>2 min.</b> Acima de 3, existe espaço para quem entrega mais; abaixo de 2, todos entregam quase o mesmo e a briga é de preço. Marina: de R$ 380 a R$ 1.150, amplitude 3,0, o destino começa a pagar pela diferença. Depois leia o que os hóspedes elogiam no mais caro (no exemplo: vista do vale, isolamento, banheira na varanda) e o que reclamam no mais barato. Toda reclamação repetida é uma oportunidade. Sinal vermelho: preço alto com calendário vazio. Não é exemplo, é aviso.</aside>
+</section>
+
+<!-- 19 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>A sua busca, <i>no papel</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Escreva o preço que você imagina, e a faixa da busca: × 0,7 e × 1,3.</span></div>
+      <div class="passo f"><b>2</b><span>Escreva os seus quatro filtros: porte, proposta, motivo e preço.</span></div>
+      <div class="passo f"><b>3</b><span>Abra uma plataforma e anote os três primeiros comparáveis, com a data da primeira avaliação.</span></div>
+      <div class="passo f"><b>4</b><span>Onde não souber, escreva "não sei". Vira tarefa da semana.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">A lista completa, de 10 a 20, é a vitória rápida deste pilar.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar no cronômetro. Enquanto a turma escreve, leia perguntas do chat. Ao terminar: "quem achou um comparável que não esperava? E quem descobriu que o vizinho não é comparável?"</aside>
+</section>
+
+<!-- 20 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · Quando, quem e quantas">
+  <p class="k">Bloco 2</p>
+  <h2>Quando vem, quem paga <i>e quantas cabem</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Usar o mês mais cheio deixa a conta 66% maior do que o ano entrega.</div>
+    <div class="f"><b>Reflexão</b>Em que mês o seu calendário ficaria mais vazio? E o que traria alguém naquela época?</div>
+    <div class="f"><b>Dica</b>Peça à secretaria de turismo a série de visitantes, mês a mês. Nem toda cidade tem.</div>
+  </div>
+  <aside><b>1 min.</b> Retome: no bloco 1, quem vende e quanto o lugar paga. Agora, em que época, para quem, e quantas unidades o destino compra.</aside>
+</section>
+
+<!-- 21 · RÉGUA DE OCUPAÇÃO -->
+<section class="s" data-bloco="Bloco 2 · A curva do ano">
+  <p class="k">Quanto um lugar costuma encher na média do ano</p>
+  <h2>A régua <i>de ocupação</i></h2>
+  <div class="regua" style="font-size:26px;height:130px">
+    <div class="r1 f">35% a 40% · só fins de semana</div>
+    <div class="r2 f">50% a 60% · com feriados e datas festivas</div>
+    <div class="r3 f">65% a 85% · só com procura extraordinária, comprovada</div>
+  </div>
+  <p class="citacao f" style="font-size:52px">Use a ocupação e a diária médias do ano. <i>Nunca o mês mais cheio.</i></p>
+  <p class="sm f">A régua é referência para conferir a sua conta, não promessa de ocupação.</p>
+  <aside><b>2 min.</b> Revele as três faixas. "A temporada que todo mundo repete é opinião. A curva do ano é dado. E a janela de noventa dias que você mediu pode ter caído num mês bom ou ruim. Para decidir, você precisa do ano inteiro." Se a sua média passar de 65%, a pergunta é: que prova eu tenho?</aside>
+</section>
+
+<!-- 22 · A CURVA DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · A curva do ano">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>A curva <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1400px">
+    <div class="eq f"><span>Alta, no inverno · 3 meses × 64</span><span>192</span></div>
+    <div class="eq f"><span>Meses médios · 4 meses × 40</span><span>160</span></div>
+    <div class="eq f"><span>Mês fraco · 5 meses × 22</span><span>110</span></div>
+    <div class="eq tot f" data-foco><span>Soma 462 ÷ 12 meses</span><span>38,5%</span></div>
+  </div>
+  <p class="lead f">A média simples das três estações, (64 + 40 + 22) ÷ 3 = 42%, erraria para cima.</p>
+  <aside><b>3 min · exemplo resolvido.</b> A Marina montou a curva com a série de visitantes da região e conversas na cidade. A média simples erra porque dá aos três meses de inverno o mesmo peso dos cinco meses fracos. 38,5% está na faixa de quem vende só no fim de semana, e isso bate com o calendário: o fim de semana enchendo três vezes mais que a semana. As duas medidas contam a mesma história.</aside>
+</section>
+
+<!-- 23 · SIMULADOR · A CURVA -->
+<section class="s esc" data-bloco="Bloco 2 · A curva do ano">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize o ano</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <div class="sim duas" data-sim="p2" style="grid-template-columns:1fr;gap:18px">
+    <svg class="curva" viewBox="0 0 1200 250" preserveAspectRatio="none"></svg>
+    <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start">
+      <div class="ctl" style="gap:10px 30px">
+        <label>Meses de alta <output data-for="ma"></output><input type="range" name="ma" min="0" max="6" step="1" value="3"></label>
+        <label>Ocupação na alta <output data-for="oa" data-fmt="pct0"></output><input type="range" name="oa" min="0" max="100" step="1" value="64"></label>
+        <label>Meses fracos <output data-for="mf"></output><input type="range" name="mf" min="0" max="6" step="1" value="5"></label>
+        <label>Ocupação no mês fraco <output data-for="of" data-fmt="pct0"></output><input type="range" name="of" min="0" max="100" step="1" value="22"></label>
+        <label style="grid-column:1/-1">Ocupação dos meses médios, que são os que sobram <output data-for="om" data-fmt="pct0"></output><input type="range" name="om" min="0" max="100" step="1" value="40"></label>
+      </div>
+      <div class="res" style="padding:24px 30px;gap:9px">
+        <div class="linha tot"><span>Média do ano</span><b data-r="ocAno" data-fmt="pct"></b></div>
+        <div class="ponteiro" style="height:30px"><i data-ponteiro="pont"></i></div>
+        <div class="roc"><div class="g" style="flex:35">abaixo</div><div class="a" style="flex:5">35</div><div class="g" style="flex:10"></div><div class="b" style="flex:10">50 a 60</div><div class="g" style="flex:5"></div><div class="c" style="flex:20">65 a 85</div><div class="d" style="flex:15"></div></div>
+        <div class="aviso" data-aviso style="font-size:21px"></div>
+        <div class="linha" style="font-size:23px"><span>Média simples das estações</span><b data-r="simples" data-fmt="pct"></b></div>
+        <div class="linha" style="font-size:23px"><span>Por cabana no ano, receita bruta</span><b data-r="porUn" data-fmt="brl"></b></div>
+        <div class="linha" style="font-size:23px"><span>Com a alta o ano todo · <b data-r="aMais" data-fmt="pct0"></b> a mais</span><b data-r="porUnCheio" data-fmt="brl"></b></div>
+        <div class="linha" style="font-size:23px"><span>Num mês fraco, por cabana</span><b data-r="fracoR" data-fmt="brl"></b></div>
+        <div><button class="reset">Voltar ao exemplo</button> <span class="ajustado">Ajustado ao vivo</span></div>
+      </div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> As barras são os doze meses, em grupos (dourado alta, cinza médios, vermelho fraco); a linha branca é a média do ano. Marina: 38,5%; média simples 42%. Por cabana, com a diária média de R$ 645 da semana: R$ 90.703 de receita bruta no ano (140,5 noites); com a alta o ano todo, R$ 150.778 (233,6 noites), 66% a mais do que o ano entrega. Mês fraco: 30 × 22% = 6,6 noites, cerca de R$ 4.260 por cabana. "Se o seu custo do mês passar disso, falta caixa. Essa conta se fecha no Pilar 6." Mexa: "e se a alta tivesse 85%?" Mostre o ponteiro passando de 65%: exige prova.</aside>
+</section>
+
+<!-- 24 · MÊS FRACO -->
+<section class="s esc" data-bloco="Bloco 2 · A curva do ano">
+  <p class="k">O mês fraco existe e precisa caber</p>
+  <div class="quiz passo">
+    <p class="q">O mês fraco está vazio. O que vem primeiro?</p>
+    <div class="ops">
+      <button class="op">Baixar a diária até encher</button>
+      <button class="op" data-certa>Criar um motivo para vir naquela época</button>
+    </div>
+    <p class="exp">Mês fraco pede produto, não desconto: um motivo para vir naquela época e um público que viaja no meio da semana. Quem vende a terça vende o que o vizinho não vende.</p>
+  </div>
+  <aside><b>2 min.</b> Letra no chat. "Calendário vazio quase nunca se resolve com desconto. E a semana vazia é a maior chance que existe." É um pedido que vai para o Pilar 3, o produto.</aside>
+</section>
+
+<!-- 25 · SIMULADOR · RECEITA BRUTA -->
+<section class="s" data-bloco="Bloco 2 · A conta do ano">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · coloque os seus números</p><span class="selo">Exemplo ilustrativo · receita bruta não é lucro</span></div>
+  <h2 style="font-size:60px">Unidades × ocupação × diária <i>= receita bruta</i></h2>
+  <div class="sim" data-sim="rec">
+    <div class="ctl">
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="20" step="1" value="3"></label>
+      <label>Ocupação média do ano <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="10" max="90" step="0.5" value="38.5"><small>A curva da Marina: 38,5%</small></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="200" max="2000" step="5" value="645"></label>
+      <label>Ocupação do mês mais cheio <output data-for="cheio" data-fmt="pct"></output><input type="range" name="cheio" min="10" max="95" step="0.5" value="64"><small>Só para comparar: o erro do mês cheio</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Noites possíveis no ano</span><b data-r="possiveis"></b></div>
+      <div class="linha"><span>Noites vendidas</span><b data-r="vendidas" data-fmt="dec1"></b></div>
+      <div class="linha tot"><span>Receita bruta no ano</span><b data-r="receita" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por unidade, cerca de</span><b data-r="porUn" data-fmt="mil"></b></div>
+      <div class="ponteiro" style="height:30px"><i data-ponteiro="pont"></i></div>
+      <div class="roc"><div class="g" style="flex:35">abaixo</div><div class="a" style="flex:5">35</div><div class="g" style="flex:10"></div><div class="b" style="flex:10">50 a 60</div><div class="g" style="flex:5"></div><div class="c" style="flex:20">65 a 85</div><div class="d" style="flex:15"></div></div>
+      <div class="aviso" data-aviso></div>
+      <div class="linha"><span>Com o mês cheio · <b data-r="aMais" data-fmt="pct0"></b> a mais</span><b data-r="cheio" data-fmt="brl"></b></div>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina, três cabanas: 1.095 noites possíveis, 421,6 vendidas, cerca de R$ 272 mil de receita bruta no ano, cerca de R$ 91 mil por cabana. É a mesma conta que volta no Pilar 6. Com a ocupação do mês mais cheio, 66% a mais, uma conta que o ano não entrega. Peça no chat a ocupação e a diária de um aluno e equalize. "Receita bruta não é lucro nem retorno: ainda saem impostos, comissões das plataformas, os custos de operar e a retirada do dono. Isso fecha no Pilar 6, com o seu contador."</aside>
+</section>
+
+<!-- 26 · CEM AVALIAÇÕES -->
+<section class="s" data-bloco="Bloco 2 · Quem paga">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <span class="selo" style="align-self:flex-start">Exemplo ilustrativo · 100 avaliações de 5 comparáveis</span>
+      <h2 style="font-size:64px">"Casais e famílias" <i>não é um público</i></h2>
+      <div class="barras">
+        <div class="b f"><span>Casais</span><i style="width:100%"></i><span>68</span></div>
+        <div class="b cin f"><span>Famílias</span><i style="width:20.6%"></i><span>14</span></div>
+        <div class="b cin f"><span>Amigos</span><i style="width:10.3%"></i><span>7</span></div>
+        <div class="b cin f"><span>Sozinhos ou a trabalho</span><i style="width:5.9%"></i><span>4</span></div>
+        <div class="b cin f"><span>Não dizem</span><i style="width:10.3%"></i><span>7</span></div>
+      </div>
+      <p class="lead f" style="font-size:34px">Em 11 das 100: <i>"a casa só para nós"</i>. É o motivo da viagem falando.</p>
+    </div>
+    <img class="ilus" src="../fotos/ec697bc679.jpg" alt="Casal de hóspedes descansando no glamping">
+  </div>
+  <aside><b>2 min.</b> "Casais e famílias é meio Brasil. Público é quem vem, por qual motivo, de onde e por quantas noites." Como medir: cinco comparáveis, de preferência os que vendem o mesmo que você, vinte avaliações recentes de cada. São cem. Anote as frases que se repetem, sem nome de ninguém. Você não escolhe o público do zero: escolhe entre os que já viajam para lá.</aside>
+</section>
+
+<!-- 27 · ORIGEM -->
+<section class="s" data-bloco="Bloco 2 · Quem paga">
+  <span class="selo">Exemplo ilustrativo · origem do hóspede</span>
+  <h2>De onde vem, <i>em horas de estrada</i></h2>
+  <table class="t" style="font-size:34px">
+    <tr><th>Distância</th><th>Hóspedes</th><th>O que muda</th></tr>
+    <tr class="f"><td>Até 2 horas</td><td class="v">58%</td><td>Vem no fim de semana e decide em cima da hora</td></tr>
+    <tr class="f"><td>De 2 a 5 horas</td><td class="v">30%</td><td>Planeja mais e fica mais</td></tr>
+    <tr class="f"><td>Mais de 5 horas ou voo</td><td class="v">12%</td><td>Fica mais noites</td></tr>
+  </table>
+  <div class="quiz passo">
+    <p class="q" style="font-size:44px">O que explica melhor o que o hóspede compra?</p>
+    <div class="ops" style="grid-template-columns:repeat(3,1fr)"><button class="op">A renda</button><button class="op">A cidade de onde vem</button><button class="op" data-certa>O motivo da viagem</button></div>
+    <p class="exp">A mesma pessoa compra coisas diferentes quando vem comemorar, descansar ou trabalhar.</p>
+  </div>
+  <aside><b>2 min.</b> Revele as três linhas, depois a pergunta. A origem sai das avaliações e de três conversas curtas: no restaurante, no posto e com um guia. Sinal vermelho: depender de uma única cidade emissora.</aside>
+</section>
+
+<!-- 28 · DOIS PÚBLICOS -->
+<section class="s" data-bloco="Bloco 2 · Quem paga">
+  <p class="k">Escreva três linhas</p>
+  <h2>Dois públicos, <i>e quem fica de fora</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Fim de semana</h3><p>Por exemplo, o casal que vem de até duas horas para descansar.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Meio de semana</h3><p>Quem pode vir de terça a quinta, e por quê. É ele que ajuda a encher as cinco noites.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Quem fica de fora</h3><p>Por escrito. Quem tenta agradar todo mundo vira mais um.</p></div>
+  </div>
+  <p class="lead f">E se a média é de duas noites: o que o hóspede faz no segundo dia?</p>
+  <aside><b>2 min.</b> "Mais motivo para ficar é mais noites por reserva, e mais noites é mais receita com o mesmo custo de limpeza e de recepção." O público é a base do produto, no Pilar 3.</aside>
+</section>
+
+<!-- 29 · QUANTAS CABEM -->
+<section class="s esc" data-bloco="Bloco 2 · Quantas cabem">
+  <p class="k">Absorção</p>
+  <p class="citacao">Não é quantas você quer. É quantas <i>o destino compra.</i></p>
+  <p class="lead f">Quantas unidades novas o destino consegue encher, sem você tirar hóspede de ninguém.</p>
+  <aside><b>1 min.</b> Pausa. "No Pilar 1, a Marina estimou cinco unidades pelo mercado. Agora ela mede." A conta tem três partes: o que já se vende, o que cresce e o que já está chegando.</aside>
+</section>
+
+<!-- 30 · FASES · A CONTA DA ABSORÇÃO -->
+<section class="s" data-bloco="Bloco 2 · Quantas cabem">
+  <p class="k">A conta em quatro passos</p>
+  <h2 style="font-size:64px">De onde vêm <i>as noites novas</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>O que já se vende</span><div class="fx"><div><h4>A conta</h4><p>As unidades da sua lista × 365 × a ocupação média do ano.</p></div><div><h4>Por quê</h4><p>Essas noites já têm dono: são dos comparáveis. Quem entra disputa só o que é novo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>O que a procura cresce</span><div class="fx"><div><h4>A conta</h4><p>O crescimento por ano, até você abrir, um ano em cima do outro. Sete por cento por três anos: 22,5%.</p></div><div><h4>Por quê</h4><p>É desse crescimento que vêm as noites novas. Sem a série de visitantes, escreva "não sei" e conte zero, o lado prudente.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>O que já está chegando</span><div class="fx"><div><h4>A conta</h4><p>As unidades em obra ou em licença × 365 × a ocupação do ano. Peça os alvarás na prefeitura.</p></div><div><h4>Por quê</h4><p>Elas abrem antes de você e levam parte da procura nova. Estude o mercado do dia em que você abre.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Quantas cabem</span><div class="fx"><div><h4>A conta</h4><p>A sobra dividida pelas noites que cada unidade precisa para ficar na média.</p></div><div><h4>Por quê</h4><p>Unidade que o mercado não compra custa obra, mobília e manutenção sem trazer receita.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada passo: a conta e o porquê.</p></div>
+  </div>
+  <aside><b>2 min.</b> Um passo por clique. Alvará é a autorização da prefeitura para construir; hospedagem em área rural costuma aparecer antes no órgão ambiental. Repare também nas placas de obra. Sinal vermelho: inventar o crescimento.</aside>
+</section>
+
+<!-- 31 · A ABSORÇÃO DA MARINA -->
+<section class="s" data-bloco="Bloco 2 · Quantas cabem">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>As noites <i>que sobram</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>Os 96 comparáveis vendem hoje · 96 × 365 × 38%</span><span>13.315 noites</span></div>
+    <div class="eq f"><span>A procura cresce 7% ao ano e ela abre em 3 anos · mais 22,5%</span><span>mais 2.996</span></div>
+    <div class="eq f"><span>18 unidades em obra ou licença · 18 × 365 × 38%</span><span>menos 2.497</span></div>
+    <div class="eq tot f" data-foco><span>Sobra para quem entra</span><span>499 noites</span></div>
+    <div class="eq f"><span>Cada cabana precisa · 365 × 38%</span><span>138,7 noites</span></div>
+  </div>
+  <p class="lead f">499 ÷ 138,7 = 3,6. Três pedem 416 noites: cabem. Quatro pedem 555: não cabem.</p>
+  <aside><b>3 min · exemplo resolvido.</b> 1,07 × 1,07 × 1,07 = 1,225, mais 22,5%: 13.315 × 0,225 ≈ 2.996. A ocupação usada é a média do ano, cerca de 38%. A conta certa é a procura nova menos o que já está em obra: 2.996 − 2.497 = 499. "Eram cinco por estimativa. Medido, são três agora. Medir não diminui o projeto: evita que ele nasça com duas unidades vazias."</aside>
+</section>
+
+<!-- 32 · SIMULADOR · QUANTAS CABEM -->
+<section class="s esc" data-bloco="Bloco 2 · Quantas cabem">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · quantas o destino compra</p><span class="selo">Exemplo ilustrativo</span></div>
+  <div class="sim duas" data-sim="p2" style="grid-template-columns:1fr;gap:16px">
+    <svg class="cabem" viewBox="0 0 1500 130" preserveAspectRatio="none"></svg>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start">
+      <div class="ctl" style="gap:14px 30px">
+        <label>Unidades dos comparáveis <output data-for="comp"></output><input type="range" name="comp" min="10" max="300" step="1" value="96"></label>
+        <label>Em obra ou licença <output data-for="obra"></output><input type="range" name="obra" min="0" max="80" step="1" value="18"></label>
+        <label>Crescimento da procura por ano <output data-for="cresc" data-fmt="pct"></output><input type="range" name="cresc" min="0" max="15" step="0.5" value="7"></label>
+        <label>Anos até você abrir <output data-for="anos"></output><input type="range" name="anos" min="1" max="5" step="1" value="3"></label>
+        <label style="grid-column:1/-1">Unidades que você pensava abrir <output data-for="pret"></output><input type="range" name="pret" min="1" max="12" step="1" value="5"></label>
+      </div>
+      <div class="res" style="padding:24px 30px;gap:9px">
+        <div class="linha" style="font-size:24px"><span>Ocupação do ano usada, da curva</span><b data-r="ocUsada" data-fmt="pct0"></b></div>
+        <div class="linha" style="font-size:24px"><span>Vendem hoje, já têm dono</span><b data-r="hoje"></b></div>
+        <div class="linha" style="font-size:24px"><span>Procura nova até abrir</span><b data-r="mais"></b></div>
+        <div class="linha" style="font-size:24px"><span>Levam as que estão em obra</span><b data-r="menos"></b></div>
+        <div class="linha" style="font-size:24px"><span>Sobra / cada unidade precisa</span><span><b data-r="sobra"></b> / <b data-r="precisa" data-fmt="dec1"></b></span></div>
+        <div class="linha tot"><span>Cabem agora</span><b data-r="cabemTxt"></b></div>
+        <div class="aviso" data-aviso="ved" style="font-size:22px"></div>
+        <div><button class="reset">Voltar ao exemplo</button> <span class="ajustado">Ajustado ao vivo</span></div>
+      </div>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> A barra dourada é a sobra; cada risco é uma cabana a mais, verde se cabe, vermelho se não cabe. Marina: 13.315, mais 2.996, menos 2.497, sobram 499; cada cabana precisa de 138,7; cabem 3; ela pensava em 5: ajustar. Mexa: "e se a prefeitura mostrar 20 unidades em obra?" (cabe 1; com 21, nenhuma). "E se não houver série de visitantes?" Crescimento em zero: a tela mostra pausar, mas quando o zero é um "não sei", o veredito honesto é testar até ter o dado. A ferramenta do Faça agora faz essa distinção. A ocupação usada vem da curva, arredondada para baixo, como no e-book (cerca de 38%).</aside>
+</section>
+
+<!-- 33 · FASES · O VEREDITO -->
+<section class="s" data-bloco="Bloco 2 · O veredito">
+  <p class="k">Toda página do Dossiê termina com uma palavra</p>
+  <h2 style="font-size:64px">O veredito, <i>e o porquê de cada um</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Avançar</span><div class="fx"><div><h4>Quando</h4><p>O mercado aguenta o que você queria.</p></div><div><h4>Por quê</h4><p>Mesmo assim, com condições: entregar o que o topo da faixa entrega.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Testar</span><div class="fx"><div><h4>Quando</h4><p>Falta um dado, como a série de visitantes ou os alvarás, ou a média passou de 65% sem prova.</p></div><div><h4>Por quê</h4><p>Decidir sem o dado é voltar a achar. O "não sei" vira tarefa com nome.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Ajustar</span><div class="fx"><div><h4>Quando</h4><p>Cabem menos unidades do que você queria. É o mais comum.</p></div><div><h4>Por quê</h4><p>Desenha a infraestrutura para o total e abre com o que o mercado aguenta.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Pausar</span><div class="fx"><div><h4>Quando</h4><p>Não cabe nem uma: não existe procura para o que você quer fazer ali.</p></div><div><h4>Por quê</h4><p>A decisão mais lucrativa de um developer pode ser desistir de um projeto.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada veredito: quando e por quê.</p></div>
+  </div>
+  <p class="sm f">E o critério para parar, escrito antes, para você não decidir pelo entusiasmo.</p>
+  <aside><b>2 min.</b> Um veredito por clique. O último clique mostra a linha do critério para parar: o fato que mudaria a sua decisão, escrito antes.</aside>
+</section>
+
+<!-- 34 · VEREDITO DA MARINA E OS 27% -->
+<section class="s foto" data-bg="../fotos/30cbcf90dc.jpg" data-bloco="Bloco 2 · O veredito">
+  <span class="selo" style="align-self:flex-start">Exemplo ilustrativo</span>
+  <h2 style="max-width:1150px">A Marina <i>ajusta</i></h2>
+  <ul class="lista" style="max-width:1150px;font-size:32px">
+    <li class="f">Abre com 3 cabanas e desenha a infraestrutura para 5.</li>
+    <li class="f">Condição: entregar o que o topo entrega. Vista, isolamento e um motivo para vir no meio da semana.</li>
+    <li class="f">E os 27%? Com a diária média da região, não. O que dá chance é o topo da faixa.</li>
+    <li class="f">Critério para parar: se a sobra não couber nem as 416 noites de 3 cabanas, ela pausa e revê público e produto.</li>
+  </ul>
+  <aside><b>2 min.</b> Pendências: a série de visitantes e os alvarás, e o produto, no Pilar 3. Sobre os 27%: com três cabanas na primeira fase, o terreno pesa ainda mais. O mercado deu a ela o veredito de seguir com condições, e as condições são o próximo pilar. O critério completo: se a leitura dos calendários, 30 dias depois, ou a série de visitantes mostrar que a sobra não cabe nem as 416 noites, ela pausa.</aside>
+</section>
+
+<!-- 35 · PAINEL COMPLETO -->
+<section class="s esc painel-sim" data-bloco="Bloco 2 · A Ficha inteira">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a Ficha do Mercado em uma tela</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <div class="sim duas" data-sim="p2" style="grid-template-columns:1.15fr .85fr;gap:40px">
+    <div class="ctl">
+      <label>Sexta e sábado <output data-for="ofds" data-fmt="pct0"></output><input type="range" name="ofds" min="0" max="100" step="1" value="78"></label>
+      <label>Domingo a quinta <output data-for="osem" data-fmt="pct0"></output><input type="range" name="osem" min="0" max="100" step="1" value="26"></label>
+      <label>Diária fim de semana <output data-for="dfds" data-fmt="brl"></output><input type="range" name="dfds" min="200" max="2000" step="10" value="700"></label>
+      <label>Diária domingo a quinta <output data-for="dsem" data-fmt="brl"></output><input type="range" name="dsem" min="200" max="2000" step="10" value="580"></label>
+      <label>Meses de alta <output data-for="ma"></output><input type="range" name="ma" min="0" max="6" step="1" value="3"></label>
+      <label>Ocupação na alta <output data-for="oa" data-fmt="pct0"></output><input type="range" name="oa" min="0" max="100" step="1" value="64"></label>
+      <label>Meses fracos <output data-for="mf"></output><input type="range" name="mf" min="0" max="6" step="1" value="5"></label>
+      <label>Ocupação no fraco <output data-for="of" data-fmt="pct0"></output><input type="range" name="of" min="0" max="100" step="1" value="22"></label>
+      <label>Ocupação dos médios <output data-for="om" data-fmt="pct0"></output><input type="range" name="om" min="0" max="100" step="1" value="40"></label>
+      <label>Unidades dos comparáveis <output data-for="comp"></output><input type="range" name="comp" min="10" max="300" step="1" value="96"></label>
+      <label>Em obra ou licença <output data-for="obra"></output><input type="range" name="obra" min="0" max="80" step="1" value="18"></label>
+      <label>Crescimento por ano <output data-for="cresc" data-fmt="pct"></output><input type="range" name="cresc" min="0" max="15" step="0.5" value="7"></label>
+      <label>Unidades pretendidas <output data-for="pret"></output><input type="range" name="pret" min="1" max="12" step="1" value="5"></label>
+      <div style="align-self:end"><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Diária média</span><b data-r="diaria" data-fmt="brl"></b></div>
+      <div class="linha"><span>Ocupação média do ano</span><b data-r="ocAno" data-fmt="pct"></b></div>
+      <div class="ponteiro" style="height:26px"><i data-ponteiro="pont"></i></div>
+      <div class="roc" style="height:36px;font-size:14px"><div class="g" style="flex:35">abaixo</div><div class="a" style="flex:5">35</div><div class="g" style="flex:10"></div><div class="b" style="flex:10">50 a 60</div><div class="g" style="flex:5"></div><div class="c" style="flex:20">65 a 85</div><div class="d" style="flex:15"></div></div>
+      <div class="linha"><span>Receita bruta por unidade no ano</span><b data-r="porUn" data-fmt="brl"></b></div>
+      <div class="linha"><span>Num mês fraco, por unidade</span><b data-r="fracoR" data-fmt="brl"></b></div>
+      <div class="linha"><span>Noites que sobram no destino</span><b data-r="sobra"></b></div>
+      <div class="linha tot"><span>Cabem agora</span><b data-r="cabemTxt"></b></div>
+      <div class="linha"><span>Receita bruta das que cabem</span><b data-r="recCabem" data-fmt="mil"></b></div>
+      <div class="aviso" data-aviso="ved"></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração do pilar.</b> Este painel junta a semana, a curva e a absorção. Marina: diária média R$ 645, 38,5% no ano, R$ 90.703 por cabana, R$ 4.260 num mês fraco, 499 noites que sobram, cabem 3, cerca de R$ 272 mil de receita bruta das três. Veredito: ajustar. Peça um aluno com números e equalize ao vivo. Lembre sempre: receita bruta não é lucro, e a régua não é promessa de ocupação.</aside>
+</section>
+
+<!-- 36 · LIÇÃO DO BLOCO 2 · COMPROMISSO -->
+<section class="s esc" data-bloco="Bloco 2 · Faça você">
+  <p class="k">Antes do Faça agora · 5 minutos</p>
+  <h2>O seu compromisso <i>de 7 dias</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Ação:</strong> ler cinco calendários, do dia 30 ao 90, com sexta e sábado separados, e fazer a conta da semana.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Responsável e prazo:</strong> você, com o celular, em sete dias, antes do Pilar 3.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Evidência:</strong> a folha com as noites ocupadas e os três números: ocupação, diária média e amplitude.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Se sobrar tempo: 100 avaliações, a série de visitantes e os alvarás.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Peça que escrevam o compromisso no papel, com data. "Se você só fizer uma coisa deste pilar, faça esta: ela dá a ocupação e a diária média de verdade, alimenta a conta de quantas cabem e decide o seu veredito. É o que separa quem acha de quem mede." Tarefas de apoio: ler 100 avaliações e contar quem veio e por quê; pedir a série de visitantes à secretaria de turismo e os alvarás à prefeitura.</aside>
+</section>
+
+<!-- 37 · REVISÃO 1 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Três meses a 64%, quatro a 40% e cinco a 22%. Qual a média do ano?</p>
+    <div class="ops"><button class="op">42%</button><button class="op" data-certa>38,5%</button><button class="op">64%</button><button class="op">40,9%</button></div>
+    <p class="exp">(3 × 64 + 4 × 40 + 5 × 22) ÷ 12 = 462 ÷ 12 = 38,5%. Os 40,9% são da janela da semana, não do ano.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+
+<!-- 38 · REVISÃO 2 -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Ninguém hospeda na minha região. É oportunidade?</p>
+    <div class="ops"><button class="op">Sim, mercado sem concorrente</button><button class="op" data-certa>Não necessariamente: pode ser falta de procura</button></div>
+    <p class="exp">A ausência de concorrentes pode significar ausência de procura. Antes de comemorar, descubra por que ninguém está lá: onde dorme quem visita, e por que os projetos que tentaram pararam.</p>
+  </div>
+  <aside><b>1 min.</b> Pergunte a quem visita o atrativo onde ele dorme, veja as hospedagens a até uma hora, e procure os projetos que tentaram e pararam. O motivo de cada um vira um risco.</aside>
+</section>
+
+<!-- 39 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 2 do seu Dossiê</p>
+  <h2>A sua <i>Ficha do Mercado</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: comparáveis, a semana, a amplitude, a curva do ano, o que cresce e o que está em obra. Onde não souber, "não sei" vira tarefa.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Leia as contas.</strong> A diária média, a média do ano na régua, quantas cabem e o veredito sugerido.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/aula2/"></div>
+      <span class="url">Na área de membros: Faça agora · A sua Ficha do Mercado</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros. Ligue o cronômetro. Circule pelas dúvidas do chat. Quem terminar escreve no chat a média do ano, a faixa da régua e quantas unidades cabem. As respostas ficam salvas só no navegador de cada um: para guardar, baixar o PDF.</aside>
+</section>
+
+<!-- 40 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 2 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:32px;gap:16px">
+    <li class="f">Comparável não é vizinho: quatro filtros e 30 minutos de carro.</li>
+    <li class="f">A diária não se escolhe, se descobre: o que entra dividido pelas noites vendidas.</li>
+    <li class="f">Média do ano, nunca o mês mais cheio. A régua confere, não promete.</li>
+    <li class="f">Mês fraco pede produto, não desconto.</li>
+    <li class="f">"Casais e famílias" não é um público: o motivo da viagem explica mais.</li>
+    <li class="f">Não é quantas você quer: é quantas o destino compra.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa: o que, por quê e o resultado. "O investidor não compra opinião. Compra confiança. Quem diz 'aqui enche oitenta por cento' perde para quem mostra a curva do ano: 38,5%." Pergunte: "qual dessas frases você vai levar para o seu terreno?"</aside>
+</section>
+
+<!-- 41 · PONTE -->
+<section class="s foto" data-bg="../fotos/ec1fb6022f.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 3</p>
+  <h2 style="max-width:1150px">Produto <i>e tipologias</i></h2>
+  <p class="lead" style="max-width:1050px">O produto que o topo da faixa paga: o que entregar, para quem, e um motivo para vir no meio da semana. Mercado medido troca opinião por número, e um projeto assim é o que um sócio, um banco ou a Zion conseguem avaliar. A Zion avalia cada caso.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e os números são ilustrativos; os da sua região precisam ser medidos por você. Ferramentas de dados de mercado trabalham com estimativas: confira alguns comparáveis à mão. Não é oferta de investimento, e não é promessa de renda, lucro, retorno, ocupação, crédito ou sociedade.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 2. No Pilar 3, o produto." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>

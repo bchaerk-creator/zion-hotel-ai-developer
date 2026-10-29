@@ -1,0 +1,1288 @@
+<!doctype html><html lang="pt-BR"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Zion Glamping Store</title>
+<script>document.documentElement.lang="pt-BR"</script>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Bubble Zion: a suíte contemplativa noturna para hospedar dentro da natureza, sem obra, em até 90 dias.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  --bg:#FBF7F1;--sand:#F2EADF;--card:#FFFFFF;--ink:#1E2A22;--mute:#67665C;--line:#E3D9CB;
+  --green:#22402F;--deep:#16261C;--gold:#B8963F;--gold2:#E0BE5E;--on-dark:#FBF7F1;--on-dark-mute:rgba(251,247,241,.74);
+  --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--f-body)}
+img{display:block;max-width:100%}
+.g{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.w{max-width:1120px;margin:0 auto}
+section{padding-block:88px}
+.k{font:500 11px/1 var(--f-body);letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+h1,h2,h3{font-family:var(--f-disp);font-weight:400;text-wrap:balance;margin:0}
+h2{font-size:clamp(30px,4vw,44px);line-height:1.12;margin:14px 0 16px;max-width:24ch}
+h3{font-size:24px;line-height:1.2}
+.lead{color:var(--mute);max-width:62ch;margin:0}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:500 15px/1 var(--f-body);padding:16px 26px;border-radius:999px;border:1px solid transparent;cursor:pointer;text-decoration:none;background:var(--gold2);color:#1E2A22}
+.btn.ghost{background:transparent;color:var(--on-dark);border-color:rgba(251,247,241,.5)}
+.btn.dark{background:var(--green);color:var(--bg)}
+.dark{background:var(--deep);color:var(--on-dark)}
+.dark .lead{color:var(--on-dark-mute)}
+.dark .k{color:var(--gold2)}
+.sandbg{background:var(--sand)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:min(88vh,820px);background:var(--deep);color:var(--on-dark)}
+.hero .ph{position:relative;min-height:320px;overflow:hidden}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero .tx{display:grid;align-content:center;gap:22px;padding-block:72px;padding-left:max(24px,env(safe-area-inset-left,0px));padding-right:clamp(24px,5vw,72px)}
+.hero .tx-in{display:grid;gap:22px;max-width:540px;margin-left:auto;width:100%}
+.hero h1{font-size:clamp(34px,4.4vw,58px);line-height:1.06;max-width:15ch}
+.hero p{margin:0;max-width:46ch;color:var(--on-dark-mute);font-size:18px}
+@media (max-width:820px){.hero{grid-template-columns:1fr;min-height:0}.hero .ph{order:-1;aspect-ratio:4/3;min-height:0}.hero .tx{padding-block:40px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}.hero .tx-in{margin-left:0}}
+.ctas{display:flex;gap:12px;flex-wrap:wrap}
+.prova{display:flex;flex-wrap:wrap;gap:10px 26px;font-size:13px;color:var(--on-dark-mute);margin-top:8px}
+.prova b{color:var(--on-dark);font-weight:500}
+
+/* glamping */
+.hist{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:40px;border-top:1px solid var(--line)}
+.hist div{padding:22px 22px 0 0;border-right:1px solid var(--line);margin-right:22px}
+.hist div:last-child{border-right:0;margin-right:0}
+.hist .ano{font:400 30px/1 var(--f-disp);color:var(--gold);display:block;margin-bottom:12px}
+.hist p{margin:0;font-size:15px;color:var(--mute)}
+.chips.mods{grid-template-columns:repeat(6,1fr)}
+@media (max-width:900px){.hist{grid-template-columns:1fr 1fr;gap:24px}.hist div{border-right:0;margin-right:0;padding-right:0}.chips.mods{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:560px){.hist{grid-template-columns:1fr}.chips.mods{grid-template-columns:1fr 1fr}}
+
+/* é / não é */
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.col{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:30px;min-width:0}
+.col.nao{background:var(--sand)}
+.col ul{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:14px}
+.col li{padding-left:22px;position:relative}
+.col li::before{content:"";position:absolute;left:0;top:.75em;width:10px;height:1px;background:var(--gold)}
+.col.nao li::before{width:9px;height:9px;top:.45em;background:none;border:1px solid var(--mute);transform:rotate(45deg)}
+
+/* noite */
+.noite{display:grid;grid-template-columns:1.05fr 1fr;gap:56px;align-items:center}
+.noite img{border-radius:12px;aspect-ratio:4/5;object-fit:cover;width:100%}
+.passos{list-style:none;margin:30px 0 0;padding:0;border-top:1px solid rgba(251,247,241,.16)}
+.passos li{display:grid;grid-template-columns:120px 1fr;gap:14px;padding:16px 0;border-bottom:1px solid rgba(251,247,241,.16)}
+.passos em{font-style:normal;color:var(--gold2);font-size:13px;letter-spacing:.12em;text-transform:uppercase;padding-top:3px}
+
+/* anexos */
+.anexos{display:grid;grid-template-columns:1.2fr 1fr;gap:48px;align-items:center}
+.anexos img{border-radius:12px;width:100%}
+.chips{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.chips span{border:1px solid var(--line);border-radius:10px;padding:14px 16px;font-family:var(--f-disp);font-size:19px;background:var(--card)}
+
+/* obra */
+:root{--sky:#EAF1EE;--soil:#CDB89A;--grass:#6F8F5E;--concrete:#A9A59C;--wood:#C89A63;--wood-d:#8A6238;--power:#C8A12E;--water:#3D7FB0;--sewer:#7A5A3A;--glass:rgba(220,236,240,.55);--bubble:#7FA3B0;--membrane:#EFE6D8}
+
+
+.obra{display:grid;grid-template-columns:260px minmax(0,1fr);gap:24px;margin-top:36px;align-items:start}
+.etapas{display:grid;gap:6px}
+.etapas button{all:unset;cursor:pointer;display:grid;grid-template-columns:34px 1fr;align-items:center;padding:12px 14px;border-radius:10px;border:1px solid var(--line);background:var(--card);font-size:15px;color:var(--ink)}
+.etapas button i{font-style:normal;font-family:var(--f-disp);color:var(--gold);font-size:18px}
+.etapas button[aria-selected="true"]{background:var(--green);color:var(--bg);border-color:var(--green)}
+.etapas button[aria-selected="true"] i{color:var(--gold2)}
+.etapas button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.cena{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;min-width:0}
+.cena svg{display:block;width:100%;height:auto}
+.mplan{background:#FBF7F1;padding:10px}
+.cena svg g[class^="e"],.cena .rot g{transition:opacity .35s}
+.legenda{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:6px}
+.legenda p{margin:0;color:var(--mute)}
+@media (max-width:820px){.obra{grid-template-columns:1fr}.etapas{grid-template-columns:repeat(4,minmax(0,1fr))}.etapas button{grid-template-columns:1fr;gap:2px;font-size:13px;padding:10px}}
+@media (max-width:480px){.etapas{grid-template-columns:repeat(2,minmax(0,1fr))}}
+
+/* balcão */
+.balcao{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px}
+.balcao article{border-radius:12px;overflow:hidden;background:var(--card);border:1px solid var(--line);display:grid;min-width:0}
+.balcao img{aspect-ratio:16/10;object-fit:cover;object-position:center 75%;width:100%}
+.balcao div{padding:26px;display:grid;gap:10px}
+.balcao p{margin:0;color:var(--mute)}
+
+/* onde entra */
+.lista{list-style:none;margin:32px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:rgba(251,247,241,.16);border:1px solid rgba(251,247,241,.16);border-radius:12px;overflow:hidden}
+.lista li{background:var(--deep);padding:26px;display:grid;gap:8px}
+.lista b{font:400 22px/1.2 var(--f-disp);color:var(--on-dark)}
+.lista span{color:var(--on-dark-mute);font-size:15px}
+.nota{font-size:13px;color:var(--on-dark-mute);margin:20px 0 0;max-width:70ch}
+
+/* modelos */
+.modelos{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px}
+.mod{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;gap:18px;min-width:0}
+.mod .topo{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center}
+.mod .topo img{border-radius:50%;aspect-ratio:1;object-fit:cover;width:100%}
+.mod .area{font:400 46px/1 var(--f-disp)}
+.mod .area small{display:block;font:400 13px/1.4 var(--f-body);color:var(--mute);margin-top:6px}
+.mod p{margin:0;color:var(--mute);font-size:15px}
+.ficha{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.ficha li{display:grid;grid-template-columns:150px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.ficha em{font-style:normal;color:var(--mute);font-size:13px}
+.planta{border:1px solid var(--line);border-radius:10px;background:#fff;padding:10px}
+.mod details summary{cursor:pointer;font-size:14px;color:var(--green);list-style:none}
+.mod details summary::before{content:"+ "}
+.mod details[open] summary::before{content:"− "}
+.capsula{margin-top:20px;border:1px dashed var(--gold);border-radius:14px;padding:24px 28px;display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.selo{font:500 11px/1 var(--f-body);letter-spacing:.14em;text-transform:uppercase;background:rgba(184,150,63,.16);color:var(--gold);padding:7px 10px;border-radius:999px}
+
+/* técnica */
+.frase{font:italic 400 clamp(24px,3vw,32px)/1.3 var(--f-disp);max-width:30ch;margin:16px 0 0}
+.tec{list-style:none;margin:36px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+.tec li{padding:14px 0 14px 26px;border-bottom:1px solid var(--line);position:relative;font-size:15px}
+.tec li::before{content:"";position:absolute;left:2px;top:22px;width:9px;height:9px;border:1px solid var(--gold);transform:rotate(45deg)}
+.fine{font-size:14px;color:var(--mute);margin:22px 0 0;max-width:72ch}
+
+/* compra */
+.compra{list-style:none;margin:32px 0 0;padding:0;counter-reset:c;display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+.compra li{counter-increment:c;border-top:1px solid var(--gold);padding-top:16px;font-size:15px}
+.compra li::before{content:counter(c,decimal-leading-zero);display:block;font:400 30px/1 var(--f-disp);color:var(--gold);margin-bottom:12px}
+.box{margin-top:36px;border-radius:12px;padding:26px 28px;background:var(--card);border:1px solid var(--line);display:grid;gap:8px}
+
+/* form */
+.formwrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:48px;align-items:start}
+form{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:28px;display:grid;grid-template-columns:1fr 1fr;gap:14px 18px;color:var(--ink)}
+.full{grid-column:1/-1}
+.f{display:grid;gap:6px;font-size:14px;min-width:0}
+.f input,.f select,.f textarea{font:400 16px/1.4 var(--f-body);padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--ink);width:100%;min-width:0}
+.f input:focus,.f select:focus,.f textarea:focus{outline:2px solid var(--gold);outline-offset:1px}
+.ck{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:13px;color:var(--mute)}
+.erro{color:#B4442F;font-size:14px;margin:0}
+.ok{background:var(--card);border:1px solid var(--gold);border-radius:14px;padding:28px;display:grid;gap:12px;color:var(--ink)}
+
+/* faq */
+.faq{margin-top:28px;border-top:1px solid var(--line)}
+.faq details{border-bottom:1px solid var(--line);padding:18px 0}
+.faq summary{cursor:pointer;font:400 21px/1.3 var(--f-disp);list-style:none;display:flex;justify-content:space-between;gap:16px}
+.faq summary::after{content:"+";color:var(--gold)}
+.faq details[open] summary::after{content:"×"}
+.faq p{margin:12px 0 0;color:var(--mute);max-width:70ch}
+
+.final{text-align:left;display:grid;gap:18px}
+footer{padding-block:28px;font-size:13px;color:var(--mute);border-top:1px solid var(--line)}
+.wa{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:5;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+
+@media (max-width:900px){
+  section{padding-block:64px}
+  .duas,.noite,.anexos,.balcao,.modelos,.formwrap,.tec{grid-template-columns:1fr}
+  .noite{gap:32px}.noite img{aspect-ratio:4/3}
+  .lista{grid-template-columns:1fr}
+  .compra{grid-template-columns:1fr 1fr}
+}
+@media (max-width:560px){
+  form{grid-template-columns:1fr;padding:20px}
+  .mod{padding:20px}.mod .topo{grid-template-columns:96px 1fr}.mod .area{font-size:36px}
+  .ficha li{grid-template-columns:1fr;gap:2px}
+  .passos li{grid-template-columns:1fr;gap:4px}
+  .chips{grid-template-columns:1fr}
+  .compra{grid-template-columns:1fr}
+  .col{padding:22px}
+}
+.preco{display:grid;gap:2px;border-top:1px solid var(--line);padding-top:12px}
+.preco small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+.preco b{font:400 28px/1.1 var(--f-disp,Georgia,serif);color:var(--green)}
+.preco span{font-size:13px;color:var(--mute)}
+.glx{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:36px;align-items:center}
+.glfoto{margin:0;position:relative;display:grid;grid-template-columns:1.25fr 1fr;grid-template-rows:1fr 1fr;gap:10px;aspect-ratio:1/1.05}
+.glfoto img{display:block;width:100%;height:100%;object-fit:cover;border-radius:16px;box-shadow:0 16px 40px rgba(20,30,22,.16)}
+.glfoto .g1{grid-row:1/3}
+.glfoto figcaption{position:absolute;left:12px;bottom:12px;padding:6px 10px;border-radius:8px;color:#FBF7F1;font-size:12px;background:rgba(10,18,12,.6)}
+@media (max-width:820px){.glx{grid-template-columns:1fr;gap:22px}.glfoto{aspect-ratio:1/1}}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:30px}
+.nums div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:6px;min-width:0}
+.nums b{font:400 clamp(26px,3.2vw,38px)/1.05 var(--f-disp);color:var(--green)}
+.nums span{font-size:14px;color:var(--mute)}
+.mata{display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:center}
+.mata img{width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover}
+.diver{margin-top:22px;border-left:3px solid var(--gold);padding:6px 0 6px 18px;display:grid;gap:6px}
+.diver b{font:400 22px/1.2 var(--f-disp)}.diver span{color:var(--mute)}
+.tag{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.vsx{margin-top:18px;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--card)}
+.vsx>div{display:grid;grid-template-columns:150px 1fr 1fr;gap:16px;padding:16px 20px;border-top:1px solid var(--line)}
+.vsx>div:first-child{border-top:0}
+.vsx .vh{background:var(--sand);font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.vsx .vh span:last-child{color:var(--green);font-weight:600}
+.vsx span{color:var(--mute);font-size:15px;min-width:0}.vsx span:last-child{color:var(--ink)}
+.vers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.vers article,.dentro article{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:26px;display:grid;gap:8px;min-width:0}
+.vers p{margin:0;color:var(--mute)}
+.vi{background:#F2EADF;border-radius:10px;padding:14px}.vi svg{display:block;width:100%;height:auto;max-height:150px}
+.dentro{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:32px}
+.dentro article{padding:0;overflow:hidden;grid-template-rows:auto 1fr}
+.dentro img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.dentro article>div{padding:24px;display:grid;gap:8px;align-content:start}
+.itens{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:10px}
+.itens li{display:flex;gap:12px;align-items:center}.itens i{font-style:normal;font-size:20px;width:28px;text-align:center}
+@media (max-width:820px){.nums{grid-template-columns:1fr 1fr}.mata,.vers,.dentro{grid-template-columns:1fr;gap:22px}.vsx>div{grid-template-columns:1fr;gap:4px}.vsx .vh{display:none}.vsx span:nth-child(2)::before{content:"Casa: ";font-weight:600}.vsx span:nth-child(3)::before{content:"Bubble: ";font-weight:600;color:var(--green)}}
+.clima1{display:grid;grid-template-columns:1.1fr 1fr;gap:36px;align-items:center;margin-top:28px}
+.clima1 img{width:100%;border-radius:16px;aspect-ratio:4/3;object-fit:cover}
+.clima1 .lead+.lead{margin-top:16px}
+#clima .lead{color:var(--on-dark-mute)}
+.sub{margin-top:52px}
+.capas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:20px}
+.capas figure{margin:0;background:rgba(251,247,241,.06);border:1px solid rgba(251,247,241,.16);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.ren{background:#FBF7F1;padding:14px;display:flex;align-items:center;justify-content:center;height:210px;box-sizing:border-box}.ren img{max-height:180px;width:auto;max-width:100%;object-fit:contain}
+.capas figcaption{padding:18px;display:grid;gap:6px}
+.capas i{font-style:normal;width:28px;height:28px;border-radius:50%;background:var(--gold2);color:#16261C;display:grid;place-items:center;font-weight:700}
+.capas b,.regras b,.carro b,.val b{font:400 20px/1.25 var(--f-disp);color:var(--on-dark)}
+.capas span,.regras span,.carro span,.val span{color:var(--on-dark-mute);font-size:15px}
+.dia{margin-top:18px;color:var(--on-dark-mute)}.dia svg{width:100%;height:auto;display:block}
+.regras{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:14px}
+.regras div,.carro,.val{background:rgba(251,247,241,.06);border:1px solid rgba(251,247,241,.16);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start;min-width:0}
+.carro{margin-top:30px;grid-template-columns:auto 1fr;gap:18px;align-items:center;border-color:var(--gold2)}
+.carro .ic{font-size:40px}.carro>div:last-child{display:grid;gap:8px}
+.lugares{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}.lugares figure{aspect-ratio:3/4}
+.mundo{display:grid;grid-template-columns:1fr;gap:16px;margin-top:20px;align-items:stretch}
+.mundo figure{margin:0;position:relative;border-radius:14px;overflow:hidden}.mundo img{width:100%;height:100%;max-height:420px;object-fit:cover;display:block}
+.mundo figcaption{position:absolute;left:10px;bottom:10px;background:rgba(10,18,12,.65);color:#FBF7F1;font-size:13px;padding:5px 10px;border-radius:8px}
+.val{align-content:center}.val b{font-size:44px;color:var(--gold2)}
+@media (max-width:820px){.clima1,.capas,.mundo{grid-template-columns:1fr}.lugares{grid-template-columns:1fr 1fr}.regras{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.regras{grid-template-columns:1fr}.carro{grid-template-columns:1fr}}
+.comport{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:20px}
+.comport figure{margin:0;position:relative;border-radius:14px;overflow:hidden}
+.comport img{display:block;width:100%;aspect-ratio:4/5;object-fit:cover}
+.comport figcaption{position:absolute;left:0;right:0;bottom:0;padding:36px 14px 12px;color:#FBF7F1;font-size:15px;background:linear-gradient(transparent,rgba(10,18,12,.8));display:grid;gap:2px}
+.comport small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E0BE5E}
+@media (max-width:820px){.comport{grid-template-columns:1fr 1fr}}
+.manif{margin:18px 0 18px;padding:4px 0 4px 20px;border-left:3px solid var(--gold);font:400 clamp(22px,2.4vw,30px)/1.3 var(--f-disp);color:var(--green);max-width:40ch;text-wrap:balance}
+.h3x{font:400 clamp(24px,2.6vw,32px)/1.2 var(--f-disp);margin:8px 0 12px;text-wrap:balance}
+.entorno{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.entorno figure{margin:0;background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column}
+.entorno figure:first-child{grid-column:span 2}
+.entorno img{display:block;width:100%;aspect-ratio:4/3;object-fit:cover}
+.entorno figure:first-child img{aspect-ratio:8/3;object-position:center 35%}
+.entorno figcaption{padding:14px 16px 16px;display:grid;gap:4px}
+.entorno small{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.entorno b{font:400 19px/1.2 var(--f-disp)}.entorno span{font-size:14px;color:var(--mute)}
+@media (max-width:820px){.entorno{grid-template-columns:1fr 1fr}.entorno figure:first-child img{aspect-ratio:16/9}}
+.carr{margin-top:30px}
+.trk{display:grid;grid-auto-flow:column;grid-auto-columns:min(400px,84%);gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:6px;scrollbar-width:none}
+.trk::-webkit-scrollbar{display:none}
+.sl{scroll-snap-align:start;border-radius:18px;padding:28px;min-height:470px;display:flex;flex-direction:column;gap:14px;background:var(--card);border:1px solid var(--line);color:var(--ink);min-width:0}
+.sl h3{font:400 26px/1.2 var(--f-disp);margin:0;text-wrap:balance}
+.sl .sk{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.sl .sb{flex:1;display:grid;gap:12px;align-content:start}.sl p{margin:0;color:var(--mute)}
+.sl .src{font-size:12px;opacity:.85}
+.sl .num{font:600 64px/1 var(--f-disp);color:var(--green)}.sl .num small{font-size:22px}
+.sl.dark,.sl.photo,.sl.green{border-color:transparent;color:#FBF7F1}
+.sl.dark{background:#16261C}.sl.green{background:#22402F}
+.sl.photo{background:linear-gradient(rgba(10,18,12,.55),rgba(10,18,12,.85)),url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mata.webp) center/cover}
+.sl.dark p,.sl.photo p,.sl.green p{color:rgba(251,247,241,.8)}
+.sl.dark .num,.sl.photo .num,.sl.green .num{color:#E0BE5E}
+.bars{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:end;height:190px}
+.bars div{height:var(--h);background:#FBF7F1;border-radius:12px 12px 4px 4px;display:flex;flex-direction:column;justify-content:space-between;padding:10px;color:#16261C}
+.bars b{font-size:16px}.bars span{font-size:13px;color:#67665C}
+.big2{font:400 22px/1.2 var(--f-disp);color:#E0BE5E!important}
+.trio{display:grid;gap:12px}.trio div{border-top:1px solid rgba(251,247,241,.18);padding-top:10px;display:grid}
+.trio b{font:600 34px/1.1 var(--f-disp);color:#E0BE5E}.trio span{font-size:14px;color:rgba(251,247,241,.8)}
+.quatro{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quatro div{background:var(--sand);border-radius:10px;padding:12px;display:grid;gap:2px}
+.quatro b{font:400 18px var(--f-disp)}.quatro span{font-size:13px;color:var(--mute)}
+.sl .btn{align-self:flex-start;background:#E0BE5E;color:#16261C;border-color:#E0BE5E}
+.cnav{display:flex;align-items:center;gap:14px;margin-top:16px}
+.cnav>button{all:unset;cursor:pointer;width:42px;height:42px;border-radius:50%;border:1px solid var(--line);background:var(--card);display:grid;place-items:center;font-size:18px;color:var(--ink)}
+.cnav>button:focus-visible,.dots button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.dots{display:flex;gap:8px}.dots button{all:unset;cursor:pointer;width:9px;height:9px;border-radius:50%;background:var(--line)}
+.dots button[aria-current="true"]{background:var(--green);width:22px;border-radius:6px}
+.dur3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:30px}
+.dur3>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;display:grid;gap:8px;align-content:start}
+.dur3 .ic{font-size:30px}.dur3 b{font:400 22px/1.2 var(--f-disp)}.dur3 p{margin:0;color:var(--mute);font-size:15px}
+.pneu{display:grid;grid-template-columns:1fr 1.2fr;gap:16px;margin-top:22px}
+.pin{display:grid;grid-template-columns:1fr 1fr;gap:12px;background:var(--sand);border-radius:14px;padding:20px}
+.pin label{display:grid;gap:6px;font-size:13px;color:var(--mute)}
+.pin input{font:500 18px var(--f-body);padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--card);color:var(--ink);width:100%;box-sizing:border-box;min-width:0}
+.pout{display:grid;gap:10px}
+.pout>div{border:1px solid var(--line);border-radius:14px;padding:16px 18px;display:grid;gap:2px;background:var(--card)}
+.pout small{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute)}
+.pout b{font:600 28px/1.15 var(--f-disp);color:var(--green)}.pout span{font-size:14px;color:var(--mute)}
+.pout .hl{background:var(--green);border-color:var(--green)}.pout .hl small,.pout .hl span{color:rgba(251,247,241,.8)}.pout .hl b{color:#E0BE5E}
+.cuid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:18px}
+.cuid>div{border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start;background:var(--card)}
+.cuid i{font-style:normal;font-size:26px}.cuid b{font:400 19px/1.2 var(--f-disp)}.cuid span{font-size:14px;color:var(--mute)}
+.limpa{list-style:none;counter-reset:l;margin:18px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.limpa li{counter-increment:l;background:var(--sand);border-radius:14px;padding:18px;display:grid;gap:6px;align-content:start;position:relative}
+.limpa li::before{content:counter(l);width:30px;height:30px;border-radius:50%;background:var(--green);color:var(--bg);display:grid;place-items:center;font-weight:700}
+.limpa b{font:400 19px/1.2 var(--f-disp)}.limpa span{font-size:14px;color:var(--mute)}
+.estac{margin-top:14px;border-left:3px solid var(--gold);padding:6px 0 6px 18px;display:grid;gap:4px;max-width:70ch}.estac span{color:var(--mute)}
+@media (max-width:820px){.dur3,.pneu{grid-template-columns:1fr}.cuid,.limpa{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.pin,.cuid,.limpa{grid-template-columns:1fr}}
+.tps{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:26px}
+.tp{display:grid;gap:4px;align-content:start;padding:18px;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--ink);text-decoration:none;transition:transform .15s,border-color .15s}
+.tp:hover{transform:translateY(-2px);border-color:var(--gold)}
+.tp:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.tp i{font-style:normal;font-size:24px}.tp b{font:400 19px/1.2 var(--f-disp)}.tp span{font-size:13px;color:var(--mute)}
+.tp.tpc{background:var(--green);border-color:var(--green);color:var(--bg)}.tp.tpc span{color:rgba(251,247,241,.8)}
+html{scroll-behavior:smooth}section[id]{scroll-margin-top:12px}
+@media (max-width:820px){.tps{grid-template-columns:1fr 1fr}.tp{padding:14px}.tp b{font-size:17px}}
+.exp{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.exp>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:4px}
+.exp span{font-size:26px}.exp b{font:400 20px/1.2 var(--f-disp)}.exp p{margin:0;font-size:15px;color:var(--mute)}
+.histd{margin-top:22px}.histd summary{cursor:pointer;color:var(--green);font-size:15px}
+.fac{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.fac>div{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:20px;display:grid;gap:6px}
+.fac i{font-style:normal;width:34px;height:34px;border-radius:50%;background:var(--gold2);color:#1E2A22;display:grid;place-items:center;font:400 18px/1 var(--f-disp)}
+.fac b{font:400 21px/1.2 var(--f-disp)}.fac span{font-size:15px;color:var(--mute)}
+.padrao{margin-top:14px;border-left:3px solid var(--gold);padding:6px 0 6px 16px;max-width:62ch}
+.vs2{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.vs2>div{border:1px solid rgba(251,247,241,.2);border-radius:14px;padding:20px}
+.vs2 .cp{border-color:var(--gold2);background:rgba(224,190,94,.08)}
+.vs2 small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+.vs2 ul{margin:10px 0 0;padding-left:18px;display:grid;gap:6px;color:var(--on-dark-mute)}
+@media (max-width:820px){.exp,.fac,.vs2{grid-template-columns:1fr}}
+.ent{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:26px}
+.ent>div{border-radius:16px;padding:22px;display:grid;gap:6px;align-content:start}
+.ent small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.ent b{font:400 22px/1.2 var(--f-disp)}
+.ent ul{margin:6px 0 0;padding-left:18px;display:grid;gap:6px;font-size:15px}
+.ent .z{background:var(--deep);color:var(--on-dark)}.ent .z small{color:var(--gold2)}.ent .z ul{color:var(--on-dark-mute)}
+.ent .v{background:var(--sand);border:1px solid var(--line)}.ent .v small{color:var(--green)}.ent .v ul{color:var(--mute)}
+.obj2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}
+.obj2 details{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.obj2 summary{cursor:pointer;list-style:none;display:flex;gap:10px;align-items:center;font:400 18px/1.3 var(--f-disp)}
+.obj2 summary::-webkit-details-marker{display:none}
+.obj2 summary::after{content:"+";margin-left:auto;color:var(--gold)}
+.obj2 details[open] summary::after{content:"×"}
+.obj2 summary span{font-size:22px}
+.obj2 p{margin:10px 0 0;font-size:15px;color:var(--mute)}
+.niveis{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.niveis button{all:unset;cursor:pointer;border:1.5px solid var(--line);background:var(--card);border-radius:999px;padding:11px 16px;font-size:14px;font-weight:500;color:var(--ink)}
+.niveis button[aria-selected="true"]{background:var(--green);color:var(--bg);border-color:var(--green)}
+.niveis button:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.orc{margin-top:12px;display:grid;grid-template-columns:1.3fr 1fr;gap:14px;align-items:stretch}
+.orc ul{list-style:none;margin:0;padding:6px 18px;background:var(--card);border:1px solid var(--line);border-radius:16px}
+.orc li{display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:15px}
+.orc li:last-child{border-bottom:0}
+.orc li b{font-weight:500;white-space:nowrap}
+.orc li.off{opacity:.35}
+.orcT{background:var(--deep);color:var(--on-dark);border-radius:16px;padding:22px;display:grid;gap:6px;align-content:center}
+.orcT small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+.orcT b{font:400 40px/1.05 var(--f-disp);color:var(--gold2)}
+.orcT span{font-size:13px;color:var(--on-dark-mute)}
+.ffe{margin-top:12px;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:16px 18px}
+.ffe summary{cursor:pointer;color:var(--green);font-weight:500}
+.ffel{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.ffel span{background:var(--sand);border-radius:999px;padding:6px 12px;font-size:14px}
+.caps2{margin-top:12px;border:1px dashed var(--gold);border-radius:14px;padding:14px 18px;font-size:15px}
+.caps2 a{color:var(--green);font-weight:500}
+.sim{margin-top:16px;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;display:grid;grid-template-columns:1fr 1fr;gap:16px 24px}
+.sim label{display:grid;gap:6px;font-size:14px;color:var(--mute)}
+.sim output{font:400 22px/1 var(--f-disp);color:var(--ink)}
+.sim input[type=range]{width:100%;accent-color:var(--green)}
+.simR{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.simR>div{background:var(--sand);border-radius:14px;padding:16px;display:grid;gap:4px}
+.simR small{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--mute)}
+.simR b{font:400 26px/1.1 var(--f-disp)}
+.simR .pb{background:var(--deep)}.simR .pb small{color:var(--gold2)}.simR .pb b{color:var(--gold2)}
+.sim .fine{grid-column:1/-1;margin:0}
+@media (max-width:820px){.ent,.obj2,.orc,.sim,.simR{grid-template-columns:1fr}}
+.promo{background:var(--gold2);color:#1E2A22;padding-block:22px}
+.promo .w{display:flex;flex-wrap:wrap;gap:14px 28px;align-items:center;justify-content:space-between}
+.promo b{font:400 clamp(22px,3vw,30px)/1.15 var(--f-disp)}
+.promo p{margin:4px 0 0;font-size:15px}
+.promo .px{display:flex;gap:10px;flex-wrap:wrap}
+.promo .px span{background:#1E2A22;color:#FBF7F1;border-radius:14px;padding:10px 16px;font-size:14px;line-height:1.25}
+.promo .px span strong{display:block;font:400 24px/1.1 var(--f-disp);color:#E0BE5E}
+.preco s{color:var(--mute);font-size:14px}
+.preco .cond{display:inline-block;margin-top:4px;font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:var(--gold2);color:#1E2A22;border-radius:999px;padding:4px 10px;justify-self:start}
+.sit{display:grid;gap:10px;margin:22px 0}
+.sit button{all:unset;box-sizing:border-box;cursor:pointer;display:block;width:100%;background:rgba(251,247,241,.06);border:1.5px solid rgba(251,247,241,.22);border-radius:14px;padding:16px 18px;font-size:17px;line-height:1.35;color:var(--on-dark)}
+.sit button:hover{border-color:var(--gold2)}
+.sit button:focus-visible{outline:2px solid var(--gold2);outline-offset:2px}
+.sit button.on{border-color:var(--gold2);background:rgba(224,190,94,.14)}
+.sitf{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:6px}
+.sitf input{font:inherit;font-size:16px;width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid rgba(251,247,241,.3);background:rgba(251,247,241,.08);color:var(--on-dark)}
+.sitr{margin-top:22px;display:grid;gap:14px}
+.sitr .msg{font-size:18px;color:var(--on-dark);max-width:66ch}
+.paths2{display:grid;grid-template-columns:1fr 1fr;gap:14px}.paths2.p3{grid-template-columns:repeat(3,minmax(0,1fr))}
+.path{background:rgba(251,247,241,.06);border:1px solid rgba(251,247,241,.18);border-radius:18px;padding:20px;display:grid;gap:8px;align-content:start}
+.path small{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold2)}
+.path h3{color:var(--on-dark)}
+.path p{margin:0;color:var(--on-dark-mute);font-size:15.5px}
+.path .btn{justify-self:start;margin-top:6px}
+.soft{font-size:15px;color:var(--on-dark-mute)}.soft a{color:var(--gold2)}
+@media (max-width:760px){.sitf,.paths2,.paths2.p3{grid-template-columns:1fr}}
+
+/* ===== Tema Raio-X: verde-escuro, papel e dourado ===== */
+:root{--bg:#0E1A13;--sand:#13231A;--card:#1B2E22;--ink:#F5F1E8;--mute:#A9B3A5;--line:rgba(245,241,232,.14);
+  --green:#E0BE5E;--deep:#16261C;--gold:#E0BE5E;--gold2:#E0BE5E;--on-dark:#F5F1E8;--on-dark-mute:#C9C4B6;
+  --paper:#F5F1E8;--paper2:#E6DFCF;--ink2:#16261C;
+  --f-disp:"Playfair Display",Georgia,"Times New Roman",serif;--f-body:"Inter",system-ui,-apple-system,"Segoe UI",Arial,sans-serif;--f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --ease:cubic-bezier(.2,.7,.1,1);color-scheme:dark}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.6 var(--f-body)}
+h1,h2,h3{font-weight:500}
+h2{font-size:clamp(32px,4.4vw,56px);line-height:1.04;max-width:22ch}
+h2 em,h3 em{color:var(--gold)}
+.k{font:500 11px/1 var(--f-mono);letter-spacing:.18em;color:var(--gold)}
+.lead,.fine{color:var(--on-dark-mute)}
+section{padding-block:96px}
+.sandbg{background:var(--sand)}
+.dark{background:var(--deep)}
+.btn{border-radius:999px;font:600 15px/1 var(--f-body);min-height:48px;padding:14px 24px;background:linear-gradient(180deg,#E0BE5E,#CFA94A);color:#16261C;box-shadow:0 18px 40px -18px rgba(224,190,94,.55)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:rgba(245,241,232,.4);box-shadow:none}
+.btn.dark{background:var(--paper);color:#16261C;box-shadow:none}
+.col,.mod,.nums div,.dur3>div,.cuid>div,.entorno figure,.exp>div,.fac>div,.vers article,.dentro article,.balcao article,.sl.light,.pout>div,.tp,.box,form,.ok,.obj2 details,.orc ul,.ffe,.sim,.cena,.chips span,.etapas button{border-radius:20px;border-color:var(--line)}
+.col.nao,.limpa li,.quatro div,.pin,.simR>div,.vsx .vh{background:#16261C}
+.tp:hover{border-color:var(--gold)}
+.tp.tpc{background:var(--gold);border-color:var(--gold);color:#16261C}.tp.tpc span{color:#3A3A2E}
+.etapas button[aria-selected="true"],.niveis button[aria-selected="true"]{background:var(--gold);color:#16261C;border-color:var(--gold)}
+.etapas button[aria-selected="true"] i{color:#16261C}
+.dots button[aria-current="true"]{background:var(--gold)}
+.mod .area,.nums b,.pout b,.preco b,.sl .num{color:var(--gold)}
+.pout .hl{background:var(--gold);border-color:var(--gold)}.pout .hl small,.pout .hl span{color:#3A3A2E}.pout .hl b{color:#16261C}
+.vsx span:last-child{color:var(--ink)}.vsx .vh span:last-child{color:var(--gold)}
+.f input,.f select,.f textarea,.sitf input,.pin input{background:#0E1A13;color:var(--ink);border-color:rgba(245,241,232,.22);border-radius:12px}
+.manif{color:var(--gold)}
+.promo{background:var(--gold);color:#16261C}
+.promo .btn.dark{background:#16261C;color:var(--paper)}
+.sl.dark,.sl.green{background:#16261C}
+footer{color:var(--mute)}
+.wa{background:var(--gold)!important;color:#16261C!important}
+/* hero no estilo do Raio-X */
+.zx{position:relative;min-height:min(100svh,920px);overflow:hidden;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);background:var(--bg)}
+.zx-photo{position:relative;grid-column:2;grid-row:1;overflow:hidden}
+.zx-photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.1);transition:transform 9s var(--ease)}
+.zx.go .zx-photo img{transform:scale(1)}
+.zx-photo::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--bg) 0%,rgba(14,26,19,.55) 22%,rgba(14,26,19,0) 55%),linear-gradient(0deg,rgba(14,26,19,.75) 0%,rgba(14,26,19,0) 35%)}
+.zx-giant{position:absolute;z-index:1;left:0;right:0;top:9svh;text-align:center;font:italic 400 clamp(96px,19vw,330px)/.9 var(--f-disp);color:transparent;-webkit-text-stroke:1px rgba(224,190,94,.22);pointer-events:none;user-select:none;opacity:0;transition:opacity 2.4s var(--ease)}
+.zx.go .zx-giant{opacity:1}
+.zx-nav{position:absolute;z-index:3;left:0;right:0;top:0;padding-block:22px}
+.zx-navin{display:flex;align-items:center;justify-content:space-between;gap:16px}
+.zx-brand{display:flex;align-items:center;gap:12px;font-weight:700;letter-spacing:.22em;font-size:13px;color:var(--ink)}
+.zx-brand span{font:500 11px var(--f-mono);letter-spacing:.16em;color:var(--mute)}
+.zx-brand i{display:block;width:26px;height:26px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#E0BE5E 0 30%,#B08D3A 31% 52%,transparent 53%),#223A2B;box-shadow:0 0 0 1px var(--line)}
+.zx-links{display:flex;gap:24px;font:500 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.zx-links a{color:var(--mute);text-decoration:none}.zx-links a:hover{color:var(--ink)}
+.zx-pill{display:inline-flex;align-items:center;gap:12px;border-radius:999px;padding:12px 20px;font:600 15px var(--f-body);text-decoration:none;min-height:48px}
+.zx-pill-dark{background:var(--paper);color:#16261C}
+.zx-pill-gold{background:linear-gradient(180deg,#E0BE5E,#CFA94A);color:#16261C;padding:10px 12px 10px 24px;box-shadow:0 18px 40px -18px rgba(224,190,94,.6)}
+.zx-arr{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;background:#16261C;color:#E0BE5E;font-size:16px}
+.zx-link{color:var(--ink);text-underline-offset:5px;text-decoration-color:rgba(245,241,232,.4);font-weight:500}
+.zx-copy{position:relative;z-index:2;grid-column:1;grid-row:1;display:flex;flex-direction:column;justify-content:center;padding-block:140px 110px}
+.zx-in{max-width:560px;display:flex;flex-direction:column;gap:22px;margin-left:auto;margin-right:clamp(0px,4vw,60px)}
+.zx-eyebrow{display:flex;align-items:center;gap:12px;color:var(--gold);font:500 11px var(--f-mono);letter-spacing:.18em;text-transform:uppercase;margin:0}
+.zx-eyebrow::before{content:"";width:28px;height:1px;background:var(--gold)}
+.zx h1{font:500 clamp(40px,4.8vw,70px)/1 var(--f-disp);margin:0;color:var(--ink);max-width:16ch}
+.zx h1 em{color:var(--gold);font-style:italic}
+.zx-lede{color:var(--paper2);font-size:17px;max-width:470px;margin:0}
+.zx-ctas{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
+.zx-trust{display:flex;flex-wrap:wrap;gap:8px 20px;color:var(--mute);font-size:13px}.zx-trust b{color:var(--ink);font-weight:600}
+.zx-strip{position:absolute;z-index:3;left:0;right:0;bottom:0;padding-block:18px;border-top:1px solid var(--line);background:linear-gradient(0deg,rgba(14,26,19,.85),rgba(14,26,19,0))}
+.zx-strip .w{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;color:var(--mute);font:500 11px var(--f-mono);letter-spacing:.16em;text-transform:uppercase}
+.zx-strip em{font:italic 400 15px var(--f-disp);letter-spacing:0;text-transform:none;color:var(--ink)}
+.rv{opacity:0;transform:translateY(18px);filter:blur(6px);transition:opacity .9s var(--ease),transform .9s var(--ease),filter .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.zx.on .rv{opacity:1;transform:none;filter:none}
+@media (max-width:900px){
+  .zx-links{display:none}
+  .zx{display:flex;flex-direction:column}
+  .zx-photo{position:absolute;inset:0 0 auto 0;height:58svh}
+  .zx-photo::after{background:linear-gradient(0deg,var(--bg) 2%,rgba(14,26,19,.4) 45%,rgba(14,26,19,.2))}
+  .zx-giant{font-size:24vw;top:16svh}
+  .zx-copy{padding-block:44svh 100px}
+  .zx-in{margin:0}
+  .zx-brand span{display:none}
+}
+@media (prefers-reduced-motion:reduce){.rv,.zx-giant,.zx-photo img{transition:none!important}}
+
+.ic:empty,summary span:empty{display:inline-block;width:9px;height:9px;transform:rotate(45deg);border:1px solid var(--gold);font-size:0;flex:none;margin-right:10px}
+/* Raio-X system: kickers, h2 em, icons, scroll reveal */
+.k{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted)!important;display:flex;gap:10px;align-items:baseline}
+.k b{color:var(--gold);font-weight:500}
+h2 em{color:var(--gold);font-style:italic}
+i.num{font-style:normal;font-family:var(--mono);font-size:12px;letter-spacing:.14em;color:var(--gold)}
+i.dot{display:inline-block;width:7px;height:7px;transform:rotate(45deg);border:1px solid var(--gold);flex:none;vertical-align:middle;margin-right:4px}
+.js-up .up{opacity:0;transform:translateY(28px);transition:opacity .9s var(--ease),transform .9s var(--ease);transition-delay:calc(var(--d,0) * 90ms)}
+.js-up .up.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.js-up .up{opacity:1;transform:none;transition:none}}
+
+.zlogo{display:block;width:30px;height:30px;color:#E6DFCF;flex:none}
+.zword{font-family:'Inter',system-ui,sans-serif;font-weight:400;font-size:11px;line-height:1.2;letter-spacing:.06em;color:#E6DFCF;text-transform:uppercase}
+.zword b{font-weight:700;letter-spacing:.06em}
+.brand,.zx-brand{gap:12px}
+.zx-brand .zword{font:400 11px/1.2 'Inter',system-ui,sans-serif;letter-spacing:.06em;color:#E6DFCF}
+@media (max-width:900px){.zx-brand .zword{display:block}}
+</style>
+
+<header class="zx" id="topo">
+  <nav class="g zx-nav rv" style="--d:0"><div class="w zx-navin">
+    <a class="zx-brand" href="https://zionhotelgroup.com" style="text-decoration:none"><svg class="zlogo" viewBox="0 0 424 423" aria-hidden="true" focusable="false"><g fill="currentColor"><polygon points="0,0 424,0 424,53 397,53 318,106 0,106"/><polygon points="318,106 424,106 424,264 212,264 132,317 0,317"/><polygon points="0,370 317,370 424,291 424,423 0,423"/></g></svg><span class="zword"><b>ZION</b> HOTEL GROUP<br>INTERNATIONAL</span><span>· Glamping Store</span></a>
+    <div class="zx-links"><a href="#produtos">Os números</a><a href="#obra">Como implantar</a><a href="#clima">Clima</a><a href="#modelos">Os modelos</a></div>
+    <a class="zx-pill zx-pill-dark" href="/raio-x">Fazer o Raio-X</a>
+  </div></nav>
+  <div class="zx-giant" aria-hidden="true">bubble</div>
+  <div class="zx-photo"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Cabana Bubble Zion com hidromassagem no deck, cercada de mata" fetchpriority="high"></div>
+  <div class="zx-copy g"><div class="zx-in">
+    <p class="zx-eyebrow rv" style="--d:1">Zion Glamping Store · Método Zion 360°</p>
+    <h1 class="rv" style="--d:2">Transforme seu terreno em um destino turístico <em>com os produtos da Zion.</em></h1>
+    <p class="zx-lede rv" style="--d:3">Cabanas premium de glamping testadas nas operações da própria Zion. Para hospedar dentro da natureza, sem obra pesada.</p>
+    <div class="zx-ctas rv" style="--d:4">
+      <a class="zx-pill zx-pill-gold" href="#orcamento">Receber o valor e a condição <span class="zx-arr" aria-hidden="true">→</span></a>
+      <a class="zx-link" href="#entender">Entender a Bubble antes</a>
+    </div>
+    <div class="zx-trust rv" style="--d:5"><span>Operada pela Zion desde <b>2020</b></span><span>Booking <b>9,6</b></span><span>Airbnb <b>5/5 Superhost</b></span><span>Expedia <b>10</b></span><span>Google <b>4,7</b></span></div>
+  </div></div>
+  <div class="zx-strip g rv" style="--d:6"><div class="w"><span>Do terreno <em>ao negócio que funciona</em></span><span>Condição exclusiva até 30/11</span></div></div>
+</header>
+
+<section class="g promo" aria-label="Condição exclusiva">
+  <div class="w">
+    <div><b>Condição exclusiva das Bubbles Zion, só até 30 de novembro.</b><p>Preço especial à vista, para quem fechar o pedido da bolha até 30/11/2026. Preencha o formulário e receba o valor e a condição no seu WhatsApp em 1 minuto.</p></div>
+    <a class="btn dark" href="#orcamento">Quero a condição</a>
+  </div>
+</section>
+
+<section class="g" id="assuntos" aria-label="Assuntos da página">
+  <div class="w">
+    <div class="k"><b>01</b> Tudo sobre a Bubble Zion</div>
+    <h2>Clique e saiba mais sobre cada assunto.</h2>
+    <nav class="tps"><a class="tp" href="#glamping"><i aria-hidden="true" class="num">01</i><b>O que é o glamping</b><span>Acampar com luxo, e por que o hóspede escolhe</span></a><a class="tp" href="#mercado"><i aria-hidden="true" class="num">02</i><b>O mercado</b><span>Um setor que cresce no mundo inteiro</span></a><a class="tp" href="#produtos"><i aria-hidden="true" class="num">03</i><b>O faturamento da sua bolha</b><span>A conta de uma única cabana, passo a passo</span></a><a class="tp" href="#mata"><i aria-hidden="true" class="num">04</i><b>Onde implantar a Bubble</b><span>A área de mata onde uma casa não entraria</span></a><a class="tp" href="#obra"><i aria-hidden="true" class="num">05</i><b>Como implantar</b><span>O que você prepara e como a bolha chega</span></a><a class="tp" href="#hospede"><i aria-hidden="true" class="num">06</i><b>Como o hóspede vive a bolha</b><span>De dia o entorno, à noite o céu</span></a><a class="tp" href="#dentro"><i aria-hidden="true" class="num">07</i><b>As instalações internas</b><span>O que vai dentro da bolha, Suite e Premium</span></a><a class="tp" href="#anexos"><i aria-hidden="true" class="num">08</i><b>As instalações externas</b><span>Deck, banheiro, lounge, cozinha e experiências</span></a><a class="tp" href="#clima"><i aria-hidden="true" class="num">09</i><b>Clima e capa blackout</b><span>Calor, frio e a transparência</span></a><a class="tp" href="#durabilidade"><i aria-hidden="true" class="num">10</i><b>Durabilidade e limpeza</b><span>Quanto dura, resistência e cuidados</span></a><a class="tp" href="#modelos"><i aria-hidden="true" class="num">11</i><b>Os modelos</b><span>Suite e Suite Premium, plantas e medidas</span></a><a class="tp tpc" href="#orcamento"><i aria-hidden="true" class="dot"></i><b>Receber a condição</b><span>O valor e a condição até 30/11 no seu WhatsApp</span></a></nav>
+  </div>
+</section>
+
+<section class="g" id="glamping">
+  <div class="w">
+    <div class="glx">
+      <figure class="glfoto"><img class="g1" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede.webp" alt="Casal de mãos dadas caminhando no deck, ao lado das Bubbles da Zion" loading="lazy"><img class="g2" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede2.webp" alt="Hóspede sentada no deck, em frente à Bubble, no fim da tarde" loading="lazy"><img class="g3" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede3.webp" alt="Hóspede comemorando na banheira ao ar livre, de frente para a mata" loading="lazy"><figcaption>Hóspedes nas Bubbles da Zion.</figcaption></figure>
+      <div class="gltx">
+        <div class="k"><b>02</b> Você sabe o que é o glamping?</div>
+        <h2>É acampar com luxo.</h2>
+        <p class="lead">Lembra da última vez que você dormiu olhando as estrelas? Glamping é isso, sem abrir mão de nada. Do lado de fora, a natureza inteira. Do lado de dentro, uma cama de verdade, banho quente, climatização e alguém cuidando de você.</p>
+        <p class="lead">O nome junta duas palavras em inglês, <em>glamorous</em> e <em>camping</em>. Mas o que o hóspede leva para casa não é o nome. É a noite que ele vai contar para todo mundo.</p>
+      </div>
+    </div>
+    <div class="exp">
+      <div><span aria-hidden="true"></span><b>De dia</b><p>Trilha, rio, mirante. O hóspede vive o lugar, sem pressa.</p></div>
+      <div><span aria-hidden="true"></span><b>Ao entardecer</b><p>Banho quente, um chá no deck e o silêncio do mato.</p></div>
+      <div><span aria-hidden="true"></span><b>À noite</b><p>Deita na cama e o teto é o céu. É aí que ele entende por que veio.</p></div>
+    </div>
+    <div class="chips mods" style="margin-top:22px"><span>Cabanas</span><span>Bolhas</span><span>Domos</span><span>Tendas safári</span><span>Casas na árvore</span><span>Cápsulas</span></div>
+    <details class="histd"><summary>Um pouco de história</summary>
+    <div class="hist">
+      <div><span class="ano">1520</span><p>No Campo do Pano de Ouro, na França, o encontro entre os reis da Inglaterra e da França reuniu cerca de 2.800 tendas e pavilhões.</p></div>
+      <div><span class="ano">Anos 1920</span><p>Os safáris na África viram moda: acampar no mato com o conforto de um hotel.</p></div>
+      <div><span class="ano">2005</span><p>A palavra "glamping" aparece pela primeira vez, no Reino Unido.</p></div>
+      <div><span class="ano">2016</span><p>"Glamping" entra no dicionário Oxford e vira categoria da hotelaria.</p></div>
+    </div></details>
+  </div>
+</section>
+
+<section class="g sandbg" id="mercado">
+  <div class="w">
+    <div class="k"><b>03</b> A tendência do glamping</div>
+    <h2>Um mercado que cresce no mundo inteiro. <em>E uma oportunidade de negócio.</em></h2>
+    <p class="lead">Os números de quem estuda o setor, para você entender por que o glamping deixou de ser moda e virou categoria da hotelaria.</p>
+    <div class="carr">
+      <div class="trk" id="trk" tabindex="0" aria-label="Carrossel: tendências do mercado de glamping"><article class="sl dark" aria-roledescription="slide" aria-label="1 de 7"><small class="sk">01 · O mercado</small><h3>O glamping deve mais que dobrar de tamanho até 2033.</h3><div class="sb"><div class="bars"><div style="--h:48%"><b>US$ 3,79 bi</b><span>2025</span></div><div style="--h:100%"><b>US$ 7,87 bi</b><span>2033</span></div></div><p class="big2">+9,5% ao ano, de 2026 a 2033</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl light" aria-roledescription="slide" aria-label="2 de 7"><small class="sk">02 · Quem compra</small><h3>A nova geração já é o centro desse mercado.</h3><div class="sb"><p class="num">43,9%</p><p>da receita global do glamping em 2025 veio de hóspedes de 18 a 32 anos. Eles procuram natureza, conforto e uma experiência que vale contar.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl light" aria-roledescription="slide" aria-label="3 de 7"><small class="sk">03 · E não só os jovens</small><h3>O público de 33 a 50 anos cresce ainda mais rápido.</h3><div class="sb"><p class="num">+10,2%<small> ao ano</small></p><p>de crescimento projetado entre 2026 e 2033. É o público de casais, escapadas premium e bem-estar, exatamente quem se hospeda numa Bubble.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl photo" aria-roledescription="slide" aria-label="4 de 7"><small class="sk">04 · O formato</small><h3>Cabanas e pods puxam o glamping.</h3><div class="sb"><p class="num">43%<small> ou mais</small></p><p>da receita global do glamping em 2025 veio de cabanas e pods, o formato da Bubble.</p></div><p class="src">Fonte: Grand View Research, Glamping Market Report (dados globais).</p></article><article class="sl dark" aria-roledescription="slide" aria-label="5 de 7"><small class="sk">05 · A diária</small><h3>O hóspede de glamping está pagando mais, e ficando mais.</h3><div class="sb"><div class="trio"><div><b>US$ 251</b><span>diária média em 2025</span></div><div><b>+21%</b><span>na diária, de 2023 a 2025</span></div><div><b>2,7 noites</b><span>de estadia média em 2025 (2,2 em 2024)</span></div></div></div><p class="src">Fonte: Glamping Show Americas 2025, apresentado pela Cairn Consulting Group (EUA).</p></article><article class="sl light" aria-roledescription="slide" aria-label="6 de 7"><small class="sk">06 · O negócio</small><h3>O negócio não termina na diária.</h3><div class="sb"><div class="quatro"><div><b>Hospedagem</b><span>diárias e pacotes premium</span></div><div><b>Gastronomia</b><span>café, jantar, cesta, experiências</span></div><div><b>Bem-estar</b><span>ofurô, massagem, retiros</span></div><div><b>Experiências</b><span>trilhas, passeios, datas especiais</span></div></div><p>Na Zion, a cabana chega perto de R$ 400 mil por ano somando hospedagem e os demais serviços. O desenho do negócio importa tanto quanto a cabana.</p></div></article><article class="sl green" aria-roledescription="slide" aria-label="7 de 7"><small class="sk">07 · A oportunidade</small><h3>Mercado crescendo não é garantia de resultado.</h3><div class="sb"><p>Crescer exige terreno certo, produto certo, conta que fecha e operação bem feita. Quem estrutura o projeto antes de construir chega na frente na sua região.</p><a class="btn" href="/raio-x">Faça o Raio-X do Terreno, grátis</a></div></article></div>
+      <div class="cnav"><button type="button" id="cPrev" aria-label="Anterior">←</button><div class="dots" id="dots"></div><button type="button" id="cNext" aria-label="Próximo">→</button></div>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const t=document.getElementById('trk'),sl=[...t.children],d=document.getElementById('dots');
+  sl.forEach((s,i)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Ir para o card '+(i+1));b.onclick=()=>t.scrollTo({left:s.offsetLeft-t.offsetLeft,behavior:'smooth'});d.appendChild(b)});
+  function cur(){let k=0,m=1e9;sl.forEach((s,i)=>{const v=Math.abs(s.offsetLeft-t.offsetLeft-t.scrollLeft);if(v<m){m=v;k=i}});return k}
+  function upd(){const k=cur();[...d.children].forEach((b,i)=>b.setAttribute('aria-current',String(i===k)))}
+  t.addEventListener('scroll',()=>requestAnimationFrame(upd));
+  function go(n){const k=Math.max(0,Math.min(sl.length-1,cur()+n));t.scrollTo({left:sl[k].offsetLeft-t.offsetLeft,behavior:'smooth'})}
+  document.getElementById('cPrev').onclick=()=>go(-1);document.getElementById('cNext').onclick=()=>go(1);
+  t.addEventListener('keydown',e=>{if(e.key==='ArrowRight')go(1);if(e.key==='ArrowLeft')go(-1)});
+  upd();
+})();
+</script>
+
+<section class="g sandbg" id="produtos">
+  <div class="w">
+    <div class="k"><b>04</b> Conheça os nossos produtos e conceitos</div>
+    <h2>Uma única cabana. <em>Quase R$ 400 mil por ano.</em></h2>
+    <p class="lead">Antes de vender a Bubble, a gente opera a Bubble. Na operação da Zion, uma única cabana chegou perto de R$ 400 mil em um ano, somando hospedagem e os demais serviços. Conheça um pouco da nossa operação e dos nossos números.</p>
+    <div class="nums">
+      <div><b>~R$ 400 mil</b><span>por cabana, em um ano, entre hospedagem e serviços</span></div>
+      <div><b>60%</b><span>de ocupação média, base de 5 anos de operação</span></div>
+      <div><b>R$ 1.571</b><span>de diária média validada</span></div>
+      <div><b>9,6</b><span>no Booking · 5/5 Superhost no Airbnb · 10 na Expedia</span></div>
+    </div>
+    <p class="fine">Números da operação da própria Zion. Não são promessa de resultado: cada projeto tem o seu número, que depende do destino, do produto e da operação.</p>
+    <div class="ctas" style="margin-top:22px"><a class="btn dark" href="#entender">Conheça a Bubble Zion</a><a class="btn dark" style="background:transparent;color:var(--green);border-color:var(--green)" href="#capsula">Cápsula Zion</a></div>
+  </div>
+</section>
+
+<section class="g" id="entender">
+  <div class="w">
+    <div class="k"><b>05</b> Bubble Zion</div>
+    <h2>A Bubble é uma cabana premium de glamping. <em>E é exatamente por isso que ela funciona.</em></h2>
+    <p class="lead">Quem chega achando que vai comprar uma casa se frustra. Quem entende o que ela é encontra o jeito mais rápido de colocar hóspede dentro da natureza.</p>
+    <div class="duas">
+      <div class="col"><h3>O que a Bubble é</h3><ul>
+        <li>Uma cabana premium de glamping, totalmente removível e de uso fácil.</li>
+        <li>Um veículo de hospedagem, pensado para receber hóspedes.</li>
+        <li>Uma estrutura leve que se integra à natureza.</li>
+        <li>Uma suíte contemplativa noturna: o hóspede vive o entorno de dia e se recolhe nela à noite.</li>
+      </ul></div>
+      <div class="col nao"><h3>O que a Bubble não é</h3><ul>
+        <li>Não é uma casa nem uma construção.</li>
+        <li>Não é patrimônio imobiliário. Quem quer um imóvel não está no produto certo.</li>
+        <li>Não vem mobiliada: a Zion vende somente a bolha.</li>
+        <li>Não inclui deck, energia, água ou esgoto. Isso você prepara, com a nossa orientação.</li>
+      </ul></div>
+    </div>
+  </div>
+</section>
+
+<section class="g sandbg" id="mata">
+  <div class="w mata">
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mata.webp" alt="Vista aérea de uma Bubble Zion sobre deck, no meio da mata de araucárias" loading="lazy">
+    <div>
+      <div class="k"><b>06</b> Onde a Bubble mora</div>
+      <h2>Sabe aquela área de mata no seu terreno, <em>onde jamais entraria uma construção?</em></h2>
+      <p class="lead">É o lugar perfeito para a Bubble. A encosta, o meio das árvores, o ponto com a melhor vista. Onde uma edificação seria cara, demorada ou impossível, a bolha chega sobre um deck de madeira.</p>
+      <div class="diver"><b>Não vem substituir. Vem diversificar.</b><span>A Bubble não substitui a sua pousada, o seu chalé ou o seu Airbnb. Ela soma um produto novo ao que você já tem, num pedaço do terreno que hoje não gera nada.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="g sandbg">
+  <div class="w">
+    <div class="k"><b>07</b> A facilidade da Bubble</div>
+    <h2>Simples como montar uma barraca.</h2>
+    <div class="fac">
+      <div><i>1</i><b>Deck de madeira</b><span>A base onde a bolha fica.</span></div>
+      <div><i>2</i><b>Luz e água</b><span>Energia, água e esgoto até o deck.</span></div>
+      <div><i>3</i><b>Começar a operar</b><span>A bolha chega, é instalada e você já pode receber hóspedes.</span></div>
+    </div>
+    <div class="padrao"><b>O padrão é você quem escolhe.</b> Mais equipada ou mais simples: depende da tipologia do seu projeto e de para quem você quer trabalhar.</div>
+  </div>
+</section>
+
+<section class="g dark" id="hospede">
+  <div class="w noite">
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/noite.webp" alt="Interior da Bubble iluminado à noite, com céu estrelado" loading="lazy">
+    <div>
+      <div class="k"><b>08</b> Como o hóspede vive a Bubble</div>
+      <h2>O mesmo comportamento de um dia de camping, <em>com outro nível de conforto.</em></h2>
+      <p class="lead">No camping, a pessoa passa o dia do lado de fora e à noite se recolhe na barraca. Na Bubble é igual. A diferença é que a noite vira o ponto alto: céu aberto, silêncio, natureza à volta. Por isso a procura pela bolha é tão alta.</p>
+      <ol class="passos">
+        <li><em>De dia</em><span>Vive o entorno: trilha, rio, mirante, a região.</span></li>
+        <li><em>Ao entardecer</em><span>Os anexos do deck: banho, chá, cozinha, contemplação.</span></li>
+        <li><em>À noite</em><span>Se recolhe na bolha e dorme olhando o céu.</span></li>
+      </ol>
+    </div>
+  </div>
+  <div class="w">
+    <h3 class="sub" style="color:var(--on-dark)">Assim o hóspede vive a Bubble na Zion</h3>
+    <div class="comport"><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-cafe.webp" alt="Casal de roupão tomando café da manhã no deck, entre folhagens" loading="lazy"><figcaption><small>Manhã</small>Café de roupão, sem pressa</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-frutas.webp" alt="Cesta de frutas e flores boiando na piscina" loading="lazy"><figcaption><small>Manhã</small>O café que boia na piscina</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-yoga.webp" alt="Hóspede com tapete de yoga caminhando no deck, ao lado da bolha" loading="lazy"><figcaption><small>Dia</small>Yoga e piscina, do lado de fora</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-banheira.webp" alt="Banheira dentro da Bubble com vista para a piscina e as palmeiras" loading="lazy"><figcaption><small>Dia</small>Banho com vista para o jardim</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-sol.webp" alt="Hóspede dentro da bolha aproveitando o sol do fim de tarde" loading="lazy"><figcaption><small>Entardecer</small>O sol do fim de tarde, de dentro da bolha</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/c-quarto.webp" alt="Quarto da Bubble com cama de dossel, iluminado pela luz da tarde" loading="lazy"><figcaption><small>Entardecer</small>O quarto pronto para a noite</figcaption></figure></div>
+  </div>
+</section>
+
+<section class="g" id="anexos">
+  <div class="w anexos">
+    <div>
+      <div class="k"><b>09</b> Os anexos do deck</div>
+      <h2>A bolha é o centro. <em>Você constrói os anexos ao redor.</em></h2>
+      <p class="lead">A bolha fica no centro do deck de madeira, e ao redor dela você constrói os anexos que fazem a contemplação acontecer. Eles não fazem parte da bolha: você constrói no seu ritmo, com a nossa orientação.</p>
+      <div class="chips"><span>Lounge de descanso</span><span>Banheiro</span><span>Cozinha gourmet</span><span>Área chill out</span><span>Área de convivência</span><span>Área de contemplação</span></div>
+    </div>
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/deck.webp" alt="Vista aérea de um deck Zion com bolhas, anexos e piscina" loading="lazy">
+  </div>
+  <div class="w" style="margin-top:56px">
+    <div class="k"><b>10</b> Experiências e anexos ao redor do deck</div>
+    <h3 class="h3x">Como complementar o entorno onde o hóspede vive o dia.</h3>
+    <blockquote class="manif">O hóspede não busca paredes. Ele busca experiências, busca viver o entorno, busca desacelerar.</blockquote>
+    <p class="lead">Essa é a grande vantagem do glamping: descanso de verdade, contemplação e desaceleração. É um conceito que cresce no mundo inteiro. A noite é da bolha. O dia é do entorno. São os anexos e as pequenas experiências ao redor do deck que dão sombra, banho, comida e descanso, e que fazem o hóspede querer ficar mais uma noite. Comece por um ou dois, e cresça no seu ritmo.</p>
+    <div class="entorno"><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-ducha.webp" alt="Ducha ao ar livre no meio da mata, sobre deck de madeira" loading="lazy"><figcaption><small>Banheiro fora</small><b>Ducha ao ar livre</b><span>O banho vira experiência: água caindo, a mata em volta.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-ofuro.webp" alt="Ofurô de madeira e cama de contemplação no deck, com o nascer do sol sobre o vale" loading="lazy"><figcaption><small>Contemplação</small><b>Ofurô e cama ao ar livre</b><span>O nascer do sol visto de dentro da água quente.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-rede.webp" alt="Rede de fibra natural com almofadas entre folhagens tropicais" loading="lazy"><figcaption><small>Lounge de descanso</small><b>A rede na sombra</b><span>O lugar da tarde: sombra, leitura e cochilo.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-cozinha.webp" alt="Cozinha gourmet externa de madeira rústica, sobre deck" loading="lazy"><figcaption><small>Cozinha gourmet</small><b>Cozinha ao ar livre</b><span>Cozinhar junto, com a natureza como parede.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-cafe.webp" alt="Casal tomando café da manhã servido numa bandeja na piscina, de frente para a floresta" loading="lazy"><figcaption><small>Serviço</small><b>Café que boia</b><span>Um serviço simples que o hóspede fotografa e compartilha.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-trilha.webp" alt="Mulher sorrindo numa trilha na mata, com um maço de lavanda" loading="lazy"><figcaption><small>Entorno</small><b>Trilhas e jardim</b><span>Caminho, horta, flores: o terreno vira passeio.</span></figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/x-pe.webp" alt="Pés descalços sobre a raiz de uma árvore, na luz da manhã" loading="lazy"><figcaption><small>Bem-estar</small><b>Pé no chão</b><span>Aterramento, yoga, silêncio. O luxo é o tempo.</span></figcaption></figure></div>
+    <p class="fine">Imagens de referência e inspiração, de outros lugares. Não são fotos das operações da Zion.</p>
+  </div>
+</section>
+
+<section class="g sandbg" id="versoes">
+  <div class="w">
+    <div class="k"><b>11</b> A versão que você quer operar</div>
+    <h2>Banheiro dentro da bolha, <em>ou os anexos do lado de fora.</em></h2>
+    <p class="lead">As duas funcionam. A escolha depende do seu público, do seu terreno e da experiência que você quer entregar.</p>
+    <div class="vers">
+      <article><div class="vi">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><rect x="4" y="96" width="192" height="12" rx="3" fill="#C89A63"/><path d="M40 96 A60 60 0 0 1 160 96Z" fill="rgba(127,163,176,.25)" stroke="#7FA3B0" stroke-width="3"/><rect x="62" y="74" width="40" height="22" rx="3" fill="#EFE6D8" stroke="#8A6238"/><rect x="114" y="66" width="26" height="30" rx="3" fill="#FFFFFF" stroke="#3D7FB0" stroke-width="2"/><text x="127" y="62" font-size="10" text-anchor="middle" fill="#3D7FB0" font-family="sans-serif">banho</text></svg>
+      </div><small class="tag">Opção 1</small><h3>Banheiro dentro</h3><p>Tudo no mesmo ambiente. Mais praticidade e conforto para o hóspede, e menos obra no deck.</p></article>
+      <article><div class="vi">
+        <svg viewBox="0 0 200 120" aria-hidden="true"><rect x="4" y="96" width="192" height="12" rx="3" fill="#C89A63"/><path d="M20 96 A52 52 0 0 1 124 96Z" fill="rgba(127,163,176,.25)" stroke="#7FA3B0" stroke-width="3"/><rect x="44" y="76" width="40" height="20" rx="3" fill="#EFE6D8" stroke="#8A6238"/><rect x="140" y="56" width="50" height="40" rx="3" fill="#E7D3B4" stroke="#8A6238" stroke-width="2"/><text x="165" y="50" font-size="10" text-anchor="middle" fill="#8A6238" font-family="sans-serif">anexo</text></svg>
+      </div><small class="tag">Opção 2</small><h3>Anexos fora</h3><p>Banheiro, lounge de descanso ou cozinha gourmet ao redor do deck. Mais espaço livre dentro da bolha e um banho ao ar livre, integrado à natureza.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="g" id="dentro">
+  <div class="w">
+    <div class="k"><b>12</b> A bolha chega vazia</div>
+    <h2>Você não vai mobiliar uma casa. <em>São poucas peças que fazem a experiência.</em></h2>
+    <p class="lead">Aqui a experiência é minimalista. O protagonista é o lado de fora: a mata, a vista, o céu. O lado de dentro existe para dar conforto e comodidade. Esta é a nossa recomendação.</p>
+    <div class="dentro">
+      <article>
+        <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/dentro-suite.webp" alt="Interior de uma Bubble Suite com cama de dossel, luneta e mesa" loading="lazy">
+        <div><small class="tag">Bubble Suite</small><h3>O essencial, bem escolhido</h3>
+        <ul class="itens">
+          <li><i aria-hidden="true" class="dot"></i>Cama do céu, com dossel</li>
+          <li><i aria-hidden="true" class="dot"></i>Duas mesinhas de cabeceira</li>
+          <li><i aria-hidden="true" class="dot"></i>Mesa redonda com duas cadeiras</li>
+          <li><i aria-hidden="true" class="dot"></i>Frigobar</li>
+          <li><i aria-hidden="true" class="dot"></i>Lavabo ou banheiro</li>
+        </ul></div>
+      </article>
+      <article>
+        <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/dentro-premium.webp" alt="Interior de uma Bubble Suite Premium com banheira no ambiente central" loading="lazy">
+        <div><small class="tag">Bubble Suite Premium</small><h3>Tudo da Suite, com uma banheira</h3>
+        <ul class="itens">
+          <li><i aria-hidden="true" class="dot"></i>Cama do céu, mesinhas, mesa e cadeiras</li>
+          <li><i aria-hidden="true" class="dot"></i>Frigobar</li>
+          <li><i aria-hidden="true" class="dot"></i>Banheira no ambiente central</li>
+          <li><i aria-hidden="true" class="dot"></i>Lavabo ou banheiro</li>
+        </ul></div>
+      </article>
+    </div>
+    <p class="fine">O padrão, mais equipado ou mais simples, é você quem escolhe, conforme o público com quem quer trabalhar.</p>
+  </div>
+</section>
+
+<section class="g dark" id="clima">
+  <div class="w">
+    <div class="k"><b>13</b> O clima e a capa blackout</div>
+    <h2>O hóspede vem porque a bolha é transparente.</h2>
+    <div class="clima1">
+      <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/transparente.webp" alt="Bubble Zion transparente sobre o deck, no meio da mata, com a cama de dossel à vista" loading="lazy">
+      <div>
+        <p class="lead">Esse é o maior benefício da bolha, e é por ele que o hóspede escolhe dormir nela: deitar na cama e ver o céu. Por isso a pergunta certa não é "e o sol?", e sim "como eu controlo o sol?". A resposta é simples: uma capa blackout.</p>
+        <p class="lead">Lembre que a bolha não é uma casa. Ela é uma suíte contemplativa noturna. De dia o hóspede vive o lado de fora. À noite ele se recolhe nela, e é aí que a transparência faz a mágica.</p>
+      </div>
+    </div>
+
+    <h3 class="sub">A capa: fácil de colocar, fácil de tirar</h3>
+    <div class="capas">
+      <figure><div class="ren"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/capa2.webp" alt="Ilustração 3D das capas blackout separadas da bolha" loading="lazy"></div><figcaption><i>1</i><b>Fica amarrada na lateral</b><span>A capa blackout vem presa na lateral da bolha, pronta para usar.</span></figcaption></figure>
+      <figure><div class="ren"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/capa1.webp" alt="Ilustração 3D da capa sendo puxada sobre a esfera do quarto" loading="lazy"></div><figcaption><i>2</i><b>Puxa do outro lado, com uma corda</b><span>Sem ferramenta. O próprio hóspede gosta de fazer: é a história do acampamento.</span></figcaption></figure>
+      <figure><div class="ren"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/capa3.webp" alt="Ilustração 3D da bolha coberta pelas capas blackout" loading="lazy"></div><figcaption><i>3</i><b>Bolha protegida</b><span>Tecido que reflete UV e infravermelho, reduz em até 20 °C a temperatura interna e funciona como blackout.</span></figcaption></figure>
+    </div>
+
+    <h3 class="sub">Quando usar a capa</h3>
+    <div class="dia" role="img" aria-label="Linha do dia: em dias de sol, a capa fica fechada das 10h às 16h; à noite a bolha fica aberta para o céu">
+      <svg viewBox="0 0 960 150" aria-hidden="true">
+        <defs><linearGradient id="ceuG" x1="0" x2="1"><stop offset="0" stop-color="#F6D9A0"/><stop offset=".55" stop-color="#F3C463"/><stop offset=".78" stop-color="#C98C5A"/><stop offset="1" stop-color="#1D2A44"/></linearGradient></defs>
+        <rect x="20" y="40" width="920" height="46" rx="23" fill="url(#ceuG)"/>
+        <rect x="250" y="34" width="345" height="58" rx="12" fill="#16261C" opacity=".88"/>
+        <text x="422" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="17" fill="#FBF7F1" font-weight="600">capa fechada · dias de sol</text>
+        <text x="110" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="15" fill="#5A4500">manhã aberta</text>
+        <text x="830" y="70" text-anchor="middle" font-family="Outfit,system-ui,sans-serif" font-size="15" fill="#FBF7F1">noite: o céu </text>
+        <g font-family="Outfit,system-ui,sans-serif" font-size="14" fill="currentColor" text-anchor="middle">
+          <text x="20" y="118">6h</text><text x="250" y="118">10h</text><text x="595" y="118">16h</text><text x="710" y="118">18h</text><text x="940" y="118">22h</text>
+        </g>
+        <circle cx="422" cy="18" r="10" fill="#F3C463"/>
+      </svg>
+    </div>
+    <div class="regras">
+      <div><b>Dia de sol</b><span>Capa fechada mais ou menos das 10h às 16h, o horário de blackout.</span></div>
+      <div><b>Dia nublado</b><span>Sem raio solar forte, a capa nem precisa ser fechada.</span></div>
+      <div><b>À noite</b><span>Capa aberta. O hóspede dorme olhando as estrelas.</span></div>
+      <div><b>Os anexos</b><span>São a sombra do dia: lounge de descanso, banho e convivência ao redor do deck.</span></div>
+    </div>
+
+    <div class="carro">
+      <div class="ic" aria-hidden="true"></div>
+      <div><b>Pense num carro com o ar-condicionado ligado e o seu braço no sol.</b><span>Você está fresco lá dentro, mas o raio de sol entra e esquenta. Na bolha é igual. Por isso o ar-condicionado, que normalmente fica na cabeceira da cama e deixa a climatização perfeita, trabalha junto com a capa: o ar refresca, a capa segura o sol.</span></div>
+    </div>
+
+    <h3 class="sub">Bolhas em lugares de calor, pelo mundo</h3>
+    <div class="mundo">
+      <div class="lugares"><figure><img style="object-position:center 85%" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/maldivas.webp" alt="Bolha transparente numa praia das Maldivas, sob a Via Láctea" loading="lazy"><figcaption>Maldivas · sob a Via Láctea</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mal2.webp" alt="Bolhas iluminadas sobre deck na areia das Maldivas, ao pôr do sol" loading="lazy"><figcaption>Maldivas · pôr do sol no deck</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mal3.webp" alt="Bolha transparente na praia das Maldivas, de frente para o mar" loading="lazy"><figcaption>Maldivas · pé na areia</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/tai1.webp" alt="Bolhas transparentes na mata da Tailândia, com elefantes passando em frente" loading="lazy"><figcaption>Tailândia · entre elefantes</figcaption></figure><figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/tai2.webp" alt="Bolhas sobre deck elevado na floresta tropical da Tailândia, com elefantes" loading="lazy"><figcaption>Tailândia · floresta tropical</figcaption></figure></div>
+      <div class="val"><b>5 anos</b><span>operando bolhas na Zion. Quem valida o produto é o hóspede, e o sol não aparece como reclamação nas avaliações: 9,6 no Booking, 5/5 Superhost no Airbnb, 10 na Expedia.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="g" id="durabilidade">
+  <div class="w">
+    <div class="k"><b>14</b> Durabilidade, resistência e limpeza</div>
+    <h2>Quanto dura uma bolha? A resposta começa assim: <em>a bolha é uma barraca.</em></h2>
+    <p class="lead">É a pergunta que todo mundo faz. A bolha tem a durabilidade de uma barraca, não de uma casa. E é assim que ela deve ser pensada: um veículo de hospedagem, que trabalha, se desgasta e um dia é trocado.</p>
+
+    <div class="dur3">
+      <div><span class="ic" aria-hidden="true"></span><b>Durabilidade</b><p>As bolhas da Zion operam há 5 anos com total perfeição. Por segurança, a Zion planeja a troca a cada 5 anos. O fabricante indica durabilidade mínima de 7 anos, com uso correto e manutenção preventiva.</p></div>
+      <div><span class="ic" aria-hidden="true"></span><b>Resistência</b><p>Em 5 anos, as nossas bolhas passaram por chuva, vento, granizo e até neve. Suportaram tudo com tranquilidade. O tecido é PVC de 580 g/m², testado com ventos de até 120 km/h.</p></div>
+      <div><span class="ic" aria-hidden="true"></span><b>Limpeza</b><p>Manutenção simples, como limpar um vidro: mangueira, água e sabão, e uma escova ou esponja com vara extensora.</p></div>
+    </div>
+
+    <h3 class="sub">O exercício do pneu</h3>
+    <p class="lead">Ninguém pergunta quanto tempo dura um pneu. Pergunta quantos quilômetros ele rodou. Na bolha é igual: a pergunta certa é quantas noites ela vendeu até a troca. Não é uma regra, é o exercício que a Zion faz.</p>
+    <div class="pneu">
+      <form id="pneuF" class="pin" onsubmit="return false">
+        <label>Diária média (R$)<input type="number" id="pD" value="1571" min="0" step="1" inputmode="numeric"></label>
+        <label>Ocupação média (%)<input type="number" id="pO" value="60" min="0" max="100" step="5" inputmode="numeric"></label>
+        <label>Anos até a troca<input type="number" id="pA" value="5" min="1" max="10" step="1" inputmode="numeric"></label>
+        <label>Custo da bolha nova (R$, exemplo)<input type="number" id="pT" value="100000" min="0" step="1000" inputmode="numeric"></label>
+      </form>
+      <div class="pout" aria-live="polite">
+        <div><small>Noites vendidas até a troca</small><b id="rN"></b><span>os "quilômetros" da sua bolha</span></div>
+        <div><small>Faturamento de hospedagem no período</small><b id="rF"></b></div>
+        <div class="hl"><small>Custo da troca por noite vendida</small><b id="rC"></b><span id="rP"></span></div>
+      </div>
+    </div>
+    <p class="fine">Exercício ilustrativo, com a base da operação Zion (diária de R$ 1.571 e 60% de ocupação) e um valor de exemplo para a bolha nova. Use o valor do seu orçamento. Não é promessa de resultado: cada projeto tem o seu número.</p>
+
+    <h3 class="sub">Os cuidados ao redor da bolha</h3>
+    <div class="cuid">
+      <div><i aria-hidden="true" class="dot"></i><b>Poda preventiva</b><span>Mantenha os galhos longe da cúpula. Escolha um lugar com poda feita ao redor.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Área livre</b><span>Deixe o entorno do deck limpo, sem nada encostado no tecido.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Cuidado extremo</b><span>Ela é uma barraca. Trate com o cuidado de quem cuida do seu principal produto.</span></div>
+      <div><i aria-hidden="true" class="dot"></i><b>Pequenos reparos</b><span>Um remendo de tempos em tempos faz parte. Garantia de até 2 anos na bolha e 4 anos na turbina.</span></div>
+    </div>
+
+    <h3 class="sub">Como limpar a bolha, passo a passo</h3>
+    <ol class="limpa">
+      <li><b>Molhe a cúpula</b><span>Com a mangueira, de cima para baixo, para tirar o pó solto.</span></li>
+      <li><b>Água e sabão</b><span>Prepare um balde com água e sabão.</span></li>
+      <li><b>Escova ou esponja na vara extensora</b><span>Passe com calma por toda a cúpula, sem precisar subir em nada.</span></li>
+      <li><b>Enxágue</b><span>Mangueira de novo, até sair todo o sabão. Pronto, como limpar um vidro.</span></li>
+    </ol>
+    <div class="estac">
+      <b>Quando limpar?</b>
+      <span>Não precisa ser todo dia. Há épocas em que se limpa mais, como a primavera, quando o pólen e o pó vêm com mais força. No resto do ano, limpe conforme a necessidade.</span>
+    </div>
+  </div>
+</section>
+<script>
+(function(){
+  const $=id=>document.getElementById(id);const br=n=>n.toLocaleString('pt-BR',{maximumFractionDigits:0});
+  function calc(){const d=+$('pD').value||0,o=Math.min(100,+$('pO').value||0)/100,a=+$('pA').value||0,t=+$('pT').value||0;
+    const n=Math.round(365*o*a),f=n*d,c=n?t/n:0;
+    $('rN').textContent=br(n)+' noites';$('rF').textContent='R$ '+br(f);$('rC').textContent=n?'R$ '+br(c):'-';
+    $('rP').textContent=(n&&d)?'cerca de '+(c/d*100).toLocaleString('pt-BR',{maximumFractionDigits:1})+'% de cada diária':'';}
+  ['pD','pO','pA','pT'].forEach(i=>$(i).addEventListener('input',calc));calc();
+})();
+</script>
+
+<section class="g sandbg" id="obra">
+  <div class="w">
+    <div class="k"><b>15</b> Antes de qualquer cabana da Zion</div>
+    <h2>O que você precisa fazer antes de colocar qualquer cabana da Zion.</h2>
+    <p class="lead">Seja uma bolha ou outra cabana, a base é sempre a mesma: sapatas e pilares, o deck de madeira e a luz e a água chegando até ele. A Zion entrega a orientação do deck e um projeto arquitetônico básico; a obra do deck, da infraestrutura e dos anexos fica com você.</p>
+    <h3 style="margin-top:34px">Como a sua implantação acontece, etapa por etapa.</h3>
+    <p class="lead" style="margin-top:6px"><b>Clique em cada etapa e veja o processo.</b></p>
+    <div class="obra">
+      <div class="etapas" role="tablist" aria-label="Etapas da implantação">
+        <button role="tab" data-e="1" aria-selected="true"><i>01</i>Sapatas e pilares</button>
+        <button role="tab" data-e="2" aria-selected="false"><i>02</i>Estrutura do deck</button>
+        <button role="tab" data-e="3" aria-selected="false"><i>03</i>Piso do deck</button>
+        <button role="tab" data-e="4" aria-selected="false"><i>04</i>Energia, água e esgoto</button>
+        <button role="tab" data-e="5" aria-selected="false"><i>05</i>A bolha no centro</button>
+        <button role="tab" data-e="6" aria-selected="false"><i>06</i>Os anexos ao redor</button>
+      </div>
+      <div class="cena">
+        <svg viewBox="0 90 800 330" role="img" aria-labelledby="obraT" id="obraSvg">
+          <title id="obraT">Ilustração das etapas: sapatas, estrutura, piso do deck, infraestrutura, bolha e anexos</title>
+          <rect x="0" y="0" width="800" height="330" fill="var(--sky)"/>
+          <rect x="0" y="330" width="800" height="90" fill="var(--soil)"/>
+          <line x1="0" y1="330" x2="800" y2="330" stroke="var(--grass)" stroke-width="6"/>
+          <g class="e1">
+            <g fill="var(--concrete)"><rect x="160" y="336" width="44" height="22" rx="2"/><rect x="278" y="336" width="44" height="22" rx="2"/><rect x="398" y="336" width="44" height="22" rx="2"/><rect x="518" y="336" width="44" height="22" rx="2"/><rect x="636" y="336" width="44" height="22" rx="2"/></g>
+            <g fill="var(--wood-d)"><rect x="176" y="268" width="12" height="70"/><rect x="294" y="268" width="12" height="70"/><rect x="414" y="268" width="12" height="70"/><rect x="534" y="268" width="12" height="70"/><rect x="652" y="268" width="12" height="70"/></g>
+          </g>
+          <g class="e2"><rect x="160" y="258" width="520" height="12" fill="var(--wood-d)"/><g stroke="var(--wood-d)" stroke-width="3"><line x1="230" y1="258" x2="230" y2="270"/><line x1="350" y1="258" x2="350" y2="270"/><line x1="470" y1="258" x2="470" y2="270"/><line x1="590" y1="258" x2="590" y2="270"/></g></g>
+          <g class="e3"><rect x="148" y="248" width="544" height="11" rx="2" fill="var(--wood)"/><g stroke="var(--wood-d)" stroke-width="1" opacity=".5"><line x1="200" y1="248" x2="200" y2="259"/><line x1="260" y1="248" x2="260" y2="259"/><line x1="320" y1="248" x2="320" y2="259"/><line x1="380" y1="248" x2="380" y2="259"/><line x1="440" y1="248" x2="440" y2="259"/><line x1="500" y1="248" x2="500" y2="259"/><line x1="560" y1="248" x2="560" y2="259"/><line x1="620" y1="248" x2="620" y2="259"/></g></g>
+          <g class="e4" fill="none" stroke-width="4" stroke-linecap="round">
+            <path d="M0 352 H196 V262" stroke="var(--power)" stroke-dasharray="10 6"/>
+            <path d="M0 366 H210 V262" stroke="var(--water)"/>
+            <path d="M650 262 V378 H742" stroke="var(--sewer)"/>
+            <rect x="742" y="362" width="44" height="36" rx="3" fill="var(--concrete)" stroke="none"/>
+          </g>
+          <g class="e5">
+            <path d="M300 248 A132 132 0 0 1 564 248 Z" fill="var(--glass)" stroke="var(--bubble)" stroke-width="3"/>
+            <path d="M268 248 V214 A26 26 0 0 1 320 214 V248 Z" fill="var(--membrane)" stroke="var(--bubble)" stroke-width="2"/>
+            <rect x="392" y="222" width="80" height="18" rx="3" fill="var(--membrane)"/><rect x="392" y="212" width="80" height="12" rx="3" fill="#fff" opacity=".9"/>
+          </g>
+          <g class="e6">
+            <g fill="var(--wood-d)"><rect x="172" y="176" width="6" height="72"/><rect x="240" y="176" width="6" height="72"/></g>
+            <rect x="164" y="170" width="90" height="8" fill="var(--wood)"/>
+            <rect x="186" y="230" width="38" height="18" rx="3" fill="var(--membrane)"/>
+            <rect x="598" y="176" width="86" height="72" rx="4" fill="var(--wood)" stroke="var(--wood-d)" stroke-width="2"/>
+            <rect x="634" y="200" width="20" height="48" fill="var(--wood-d)"/>
+            <rect x="26" y="248" width="124" height="11" rx="2" fill="var(--wood)"/>
+            <g fill="var(--wood-d)"><rect x="36" y="186" width="5" height="62"/><rect x="134" y="186" width="5" height="62"/></g>
+            <path d="M28 188 L88 168 L148 188 Z" fill="var(--wood-d)"/>
+            <rect x="48" y="224" width="80" height="24" rx="2" fill="var(--membrane)" stroke="var(--wood-d)" stroke-width="2"/>
+            <rect x="58" y="218" width="16" height="6" rx="1" fill="var(--concrete)"/><rect x="96" y="216" width="22" height="8" rx="2" fill="var(--water)" opacity=".6"/>
+            <circle cx="726" cy="300" r="22" fill="var(--grass)"/>
+          </g>
+          <g class="rot" font-family="Outfit,system-ui,sans-serif" font-size="13" fill="var(--ink)">
+            <g class="r1"><text x="160" y="400">sapata de concreto</text><text x="430" y="290">pilar</text></g>
+            <g class="r2"><text x="300" y="300">vigas e barrotes</text></g>
+            <g class="r3"><text x="300" y="238">piso de madeira</text></g>
+            <g class="r4"><text x="14" y="344" fill="var(--power)">energia</text><text x="14" y="388" fill="var(--water)">água</text><text x="690" y="412">esgoto ou fossa</text></g>
+            <g class="r5"><text x="400" y="108" text-anchor="middle">a bolha, no centro do deck</text></g>
+            <g class="r6"><text x="58" y="156">cozinha</text><text x="180" y="160">lounge</text><text x="600" y="160">banheiro</text></g>
+          </g>
+        </svg>
+        <div class="legenda" aria-live="polite"><h3 id="eTit"></h3><p id="eTxt"></p></div>
+      </div>
+    </div>
+    <p class="fine">Ilustração para entender a ordem da obra. Medidas, materiais e o tipo de fundação vêm do projeto básico Zion e de profissional habilitado para o seu terreno.</p>
+  </div>
+</section>
+<section class="g" id="montagem">
+  <div class="w">
+    <div class="k"><b>16</b> Como a bolha chega</div>
+    <h2>Como a bolha chega no seu empreendimento.</h2>
+    <p class="lead">Com o deck e as instalações prontos, a bolha chega dobrada e embalada, com tudo o que ela precisa para ficar de pé. Veja os passos simples. A montagem é simples como a de uma barraca, e segue uma ordem: primeiro os ferros, depois os parafusos, por último a turbina. Acompanhe na planta da Bubble Suite, vista de cima.</p>
+    <div class="obra">
+      <div class="etapas" role="tablist" aria-label="Passos da montagem da bolha"><button role="tab" data-m="1" aria-selected="true"><i>01</i>A entrega</button><button role="tab" data-m="2" aria-selected="false"><i>02</i>Marcar a posição no deck</button><button role="tab" data-m="3" aria-selected="false"><i>03</i>Abrir a bolha</button><button role="tab" data-m="4" aria-selected="false"><i>04</i>Primeiro os ferros</button><button role="tab" data-m="5" aria-selected="false"><i>05</i>Depois os parafusos</button><button role="tab" data-m="6" aria-selected="false"><i>06</i>A turbina, na parte de trás</button><button role="tab" data-m="7" aria-selected="false"><i>07</i>Inflar</button><button role="tab" data-m="8" aria-selected="false"><i>08</i>Capa, testes e pronto</button></div>
+      <div class="cena">
+        <div class="mplan"><div class="mfig" data-m="1"><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-25" y="20" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><path d="M55,85 q70,-50 140,0 l20,110 q-90,30 -180,0 z" fill="#E0BE5E" stroke="#22402F" stroke-width="5"/><path d="M95,70 q30,-30 60,0" fill="none" stroke="#22402F" stroke-width="5"/><text x="125" y="248" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">A bolha, dobrada</text><rect x="310" y="20" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><rect x="400" y="75" width="120" height="100" rx="16" fill="#FBF7F1" stroke="#22402F" stroke-width="5"/><circle cx="460" cy="125" r="34" fill="none" stroke="#22402F" stroke-width="5"/><line x1="460" y1="125" x2="490.0" y2="125.0" stroke="#22402F" stroke-width="5"/><line x1="460" y1="125" x2="445.0" y2="150.98076211353316" stroke="#22402F" stroke-width="5"/><line x1="460" y1="125" x2="445.0" y2="99.01923788646684" stroke="#22402F" stroke-width="5"/><text x="460" y="248" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Turbina 140 W</text><rect x="645" y="20" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><path d="M715,185 v-60 a80,80 0 0 1 160,0 v60" fill="none" stroke="#C9A84C" stroke-width="12"/><path d="M740,185 v-50 a55,55 0 0 1 110,0 v50" fill="none" stroke="#C9A84C" stroke-width="8"/><text x="795" y="248" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Arcos de ferro</text><rect x="-25" y="320" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><rect x="80" y="355" width="90" height="140" rx="6" fill="#FBF7F1" stroke="#22402F" stroke-width="5"/><circle cx="150" cy="425" r="7" fill="#22402F"/><text x="125" y="548" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Portas com chave</text><rect x="310" y="320" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><path d="M370,475 a90,90 0 0 1 180,0 z" fill="#8B714E" opacity=".75" stroke="#22402F" stroke-width="5"/><text x="460" y="548" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Capa solar</text><rect x="645" y="320" width="300" height="260" rx="22" fill="#F2EADF" stroke="#E3D9CB" stroke-width="3"/><g transform="translate(735,385)"><rect x="-6" y="0" width="12" height="70" fill="#22402F"/><rect x="-16" y="-8" width="32" height="12" rx="3" fill="#22402F"/></g><g transform="translate(775,385)"><rect x="-6" y="0" width="12" height="70" fill="#22402F"/><rect x="-16" y="-8" width="32" height="12" rx="3" fill="#22402F"/></g><g transform="translate(815,385)"><rect x="-6" y="0" width="12" height="70" fill="#22402F"/><rect x="-16" y="-8" width="32" height="12" rx="3" fill="#22402F"/></g><g transform="translate(855,385)"><rect x="-6" y="0" width="12" height="70" fill="#22402F"/><rect x="-16" y="-8" width="32" height="12" rx="3" fill="#22402F"/></g><text x="795" y="548" text-anchor="middle" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Peças de fixação</text></svg></div><div class="mfig" data-m="2" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="0.35"/><circle cx="418" cy="275" r="205" fill="none" stroke="#22402F" stroke-width="5" stroke-dasharray="14 10"/><circle cx="118" cy="148" r="135" fill="none" stroke="#22402F" stroke-width="5" stroke-dasharray="14 10"/><g><rect x="242" y="534" width="365.44000000000005" height="40" rx="8" fill="#FBF7F1" stroke="#22402F" stroke-width="2"/><text x="250" y="562" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#22402F">Marque a posição no deck</text></g></svg></div><div class="mfig" data-m="3" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><g><rect x="262" y="534" width="380.00000000000006" height="40" rx="8" fill="#FBF7F1" stroke="#22402F" stroke-width="2"/><text x="270" y="562" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#22402F">Abra a bolha sobre o deck</text></g></svg></div><div class="mfig" data-m="4" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><polygon points="555,95 712,40 775,222 620,275" fill="#C9A84C" fill-opacity=".35" stroke="#C9A84C" stroke-width="12" stroke-linejoin="round"/><g><rect x="552" y="304" width="365.44000000000005" height="40" rx="8" fill="#FBF7F1" stroke="#C9A84C" stroke-width="2"/><text x="560" y="332" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#C9A84C">1º os ferros: arco duplo</text></g></svg></div><div class="mfig" data-m="5" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><circle cx="225" cy="205" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="271" cy="133" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="341" cy="85" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="425" cy="70" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="508" cy="91" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="575" cy="143" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="621" cy="304" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="592" cy="384" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="533" cy="445" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="454" cy="477" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="368" cy="474" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="292" cy="437" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="237" cy="371" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="186" cy="265" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="118" cy="283" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="51" cy="265" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="1" cy="216" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="-17" cy="148" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="1" cy="80" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="50" cy="31" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="118" cy="13" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="186" cy="31" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="594" cy="81" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="673" cy="54" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="728" cy="86" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="759" cy="176" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="736" cy="235" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="659" cy="262" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="604" cy="230" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><circle cx="571" cy="140" r="11" fill="#9A3B2E" stroke="#FBF7F1" stroke-width="3"/><g><rect x="242" y="534" width="423.68000000000006" height="40" rx="8" fill="#FBF7F1" stroke="#9A3B2E" stroke-width="2"/><text x="250" y="562" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#9A3B2E">2º os parafusos no perímetro</text></g></svg></div><div class="mfig" data-m="6" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><rect x="368" y="-60" width="100" height="70" rx="12" fill="#22402F"/><circle cx="418" cy="-25" r="22" fill="none" stroke="#FBF7F1" stroke-width="5"/><path d="M418,10 L418,78" stroke="#22402F" stroke-width="10" stroke-dasharray="4 8"/><g><rect x="492" y="-24" width="378.88000000000005" height="38" rx="8" fill="#FBF7F1" stroke="#22402F" stroke-width="2"/><text x="500" y="2" font-family="Helvetica,Arial" font-size="24" font-weight="700" fill="#22402F">Turbina atrás (a confirmar)</text></g></svg></div><div class="mfig" data-m="7" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><defs><marker id="ar" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="4" markerHeight="4" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#22402F"/></marker></defs><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><line x1="553" y1="275" x2="613" y2="275" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="513" y1="370" x2="556" y2="413" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="418" y1="410" x2="418" y2="470" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="323" y1="370" x2="280" y2="413" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="283" y1="275" x2="223" y2="275" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="323" y1="180" x2="280" y2="137" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="418" y1="140" x2="418" y2="80" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><line x1="513" y1="180" x2="556" y2="137" stroke="#22402F" stroke-width="8" marker-end="url(#ar)"/><g><rect x="292" y="534" width="438.24000000000007" height="40" rx="8" fill="#FBF7F1" stroke="#22402F" stroke-width="2"/><text x="300" y="562" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#22402F">Liga a turbina: a bolha infla</text></g></svg></div><div class="mfig" data-m="8" hidden><svg viewBox="-60 -60 1020 700" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="-40" y="-30" width="980" height="620" fill="none" stroke="#8B714E" stroke-width="6" stroke-dasharray="18 10" rx="14"/><image href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta-top.webp" x="0" y="0" width="900" height="580" opacity="1.0"/><path d="M213,275 a205,205 0 0 1 410,0" fill="#8B714E" fill-opacity=".55" stroke="#8B714E" stroke-width="6"/><g><rect x="252" y="534" width="409.12000000000006" height="40" rx="8" fill="#FBF7F1" stroke="#22402F" stroke-width="2"/><text x="260" y="562" font-family="Helvetica,Arial" font-size="26" font-weight="700" fill="#22402F">Capa solar, testes e pronto</text></g></svg></div></div>
+        <div class="legenda" aria-live="polite"><h3 id="mTit"></h3><p id="mTxt"></p></div>
+      </div>
+    </div>
+    <p class="fine">Ilustração sobre a planta da Bubble Suite para entender a ordem da montagem. Cada bolha chega com o manual de instalação da Zion, que traz as medidas, as peças e os detalhes do seu modelo.</p>
+  </div>
+</section>
+<script>
+(function(){
+  const M=[["A entrega", "A bolha chega dobrada e embalada, com a turbina, os arcos de ferro da entrada, as portas de alumínio com chave, a capa de proteção solar, as peças de fixação e o manual."], ["Marcar a posição no deck", "Com o deck pronto e nivelado, marque onde a bolha vai ficar, com a entrada para o lado combinado no projeto e a parte de trás perto do ponto de energia."], ["Abrir a bolha", "Tire a bolha da embalagem e abra sobre o deck, no lugar marcado."], ["Primeiro os ferros", "Monte o arco duplo de ferro lacado do módulo de entrada e encaixe as portas. É ele que dá forma e firmeza à entrada."], ["Depois os parafusos", "Fixe a bolha no piso do deck com parafusos por todo o perímetro, para ela ficar firme mesmo com vento."], ["A turbina, na parte de trás", "Posicione a turbina na parte de trás, protegida da chuva. Ligue à entrada de ar pressurizado com difusor e ao ponto de energia."], ["Inflar", "Ligue a turbina: a bolha infla e toma a forma. Confira o tensionamento, as portas e a vedação."], ["Capa, testes e pronto", "Coloque a capa de proteção solar, teste turbina, portas, climatização e energia de reserva. A bolha está pronta para o primeiro hóspede."]];
+  const sec=document.getElementById('montagem');
+  function passo(n){
+    sec.querySelectorAll('.mfig').forEach(f=>f.hidden=Number(f.dataset.m)!==n);
+    sec.querySelectorAll('.etapas button').forEach(b=>b.setAttribute('aria-selected',String(Number(b.dataset.m)===n)));
+    document.getElementById('mTit').textContent=M[n-1][0];document.getElementById('mTxt').textContent=M[n-1][1];
+  }
+  sec.querySelectorAll('.etapas button').forEach(b=>b.addEventListener('click',()=>passo(Number(b.dataset.m))));
+  passo(1);
+})();
+</script>
+
+<section class="g">
+  <div class="w">
+    <div class="k"><b>17</b> Do balcão para fora e do balcão para dentro</div>
+    <h2>Duas formas de olhar para a mesma bolha.</h2>
+    <div class="balcao">
+      <article><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/vista.webp" alt="Hóspede na banheira do deck olhando o vale e as montanhas" loading="lazy"><div><small class="tag">Do balcão para fora · o hóspede</small><h3>Um lugar paradisíaco, com uma vista que nenhuma casa teria.</h3><p>O hóspede acorda no meio da mata, toma banho olhando o vale e dorme debaixo do céu. É uma experiência imersiva, diferente de tudo o que ele já viveu. Ninguém esquece a primeira noite dentro de uma bolha.</p></div></article>
+      <article><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/dentro.webp" alt="Quarto montado dentro da Bubble" loading="lazy"><div><small class="tag">Do balcão para dentro · quem opera</small><h3>Um veículo de hospedagem, sem a dor da obra.</h3><p>Hoje o maior problema de quem constrói é a mão de obra: cara, demorada e difícil de achar. A Bubble chega como solução. Estrutura leve, implantação rápida, pouca obra e um produto que já nasce desejado.</p></div></article>
+    </div>
+    <h3 style="margin-top:48px">Por que uma Bubble, e não uma casa</h3>
+    <div class="vsx" role="table" aria-label="Comparação entre construir uma casa e instalar uma Bubble">
+      <div class="vh" role="row"><span role="columnheader"></span><span role="columnheader">Construir uma casa</span><span role="columnheader">Instalar uma Bubble</span></div>
+      <div role="row"><b role="rowheader">Mão de obra</b><span role="cell">Pedreiro, mestre de obras, acabamento. Cara e difícil de achar.</span><span role="cell">Deck, luz e água. A bolha monta em poucos passos, com manual.</span></div>
+      <div role="row"><b role="rowheader">Prazo</b><span role="cell">Meses ou anos de obra.</span><span role="cell">Com o deck e as instalações prontos, até 90 dias para operar.</span></div>
+      <div role="row"><b role="rowheader">Terreno</b><span role="cell">Precisa de terreno plano, fundação e acesso para obra.</span><span role="cell">Entra na encosta, na mata e no acesso difícil, sobre sapatas e pilares.</span></div>
+      <div role="row"><b role="rowheader">Vista</b><span role="cell">A parede limita o que o hóspede vê.</span><span role="cell">O hóspede vê o céu e a mata da cama.</span></div>
+      <div role="row"><b role="rowheader">Futuro</b><span role="cell">Fica onde está.</span><span role="cell">Removível. E o deck fica, pronto para receber outra cabana.</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="g dark">
+  <div class="w">
+    <div class="k"><b>18</b> Onde ela entra</div>
+    <h2>Ela chega onde a construção não chega.</h2>
+    <ul class="lista">
+      <li><b>Até 90 dias</b><span>Com deck, energia e água prontos, a unidade pode começar a operar.</span></li>
+      <li><b>Sem obra pesada</b><span>Foge da obra e da mão de obra pesada de uma edificação.</span></li>
+      <li><b>Terreno difícil</b><span>Chega em lugares íngremes e de acesso difícil.</span></li>
+      <li><b>Estrutura leve</b><span>Sem fundação profunda, instalada sobre deck de madeira.</span></li>
+      <li><b>Removível</b><span>Pode ser desmontada e realocada.</span></li>
+      <li><b>Clima do Brasil</b><span>Projetada para o calor do Nordeste e o frio do Sul.</span></li>
+    </ul>
+    <p class="nota">Cada terreno tem as suas regras. Licenciamento, zoneamento e áreas protegidas são analisados caso a caso, com profissional habilitado.</p>
+  </div>
+</section>
+
+<section class="g" id="modelos">
+  <div class="w">
+    <div class="k"><b>19</b> Fichas técnicas</div>
+    <h2>Os modelos</h2>
+    <div class="modelos">
+      <article class="mod">
+        <div class="topo"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-foto.webp" alt="Bubble Suite vista de cima, sobre deck de madeira" loading="lazy"><div><h3>Suite</h3><div class="area">27,6 m²<small>superfície total</small></div></div></div>
+        <p>Uma acomodação compacta que permite um ambiente envolvente de naturalidade, conforto e inovação, transformando um quarto singular em um espaço de experiência única.</p>
+        <ul class="ficha">
+          <li><em>Superfície útil interior</em>22,8 m²</li>
+          <li><em>Ambientes</em>3: entrada, quarto, espaço multifunção</li>
+          <li><em>Dimensões externas</em>9,22 m x 5,14 m · altura 3,50 m</li>
+          <li><em>Consumo</em>turbina 140 W · climatização 400 a 3.155 W</li>
+        </ul>
+        <details><summary>Ver planta e cortes</summary><img class="planta" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/suite-planta.webp" alt="Planta e cortes da Bubble Suite, 922 x 514 cm, altura 350 cm" loading="lazy" style="margin-top:12px"></details>
+        <div class="preco"><small>A bolha · condição até 30/11</small><b>Preço especial à vista</b><span class="cond">Condição exclusiva</span><span>Vem vazia. Deck, instalações e móveis à parte. O valor chega no seu WhatsApp, com a estimativa do projeto completo. <a href="#projeto">Ver o que mais entra na conta</a></span></div>
+        <a class="btn dark" href="#orcamento" data-modelo="Suite">Quero o orçamento da Suite</a>
+      </article>
+      <article class="mod">
+        <div class="topo"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/premium-foto.webp" alt="Bubble Suite Premium vista de cima, na mata" loading="lazy"><div><h3>Suite Premium</h3><div class="area">40,1 m²<small>superfície total</small></div></div></div>
+        <p>Uma acomodação espaçosa que entrega um ambiente amplo e envolvente de naturalidade, conforto e inovação, transformando um quarto singular em um espaço de experiência única.</p>
+        <ul class="ficha">
+          <li><em>Superfície útil interior</em>32,8 m²</li>
+          <li><em>Ambientes</em>4: entrada, quarto, sala, espaço multifunção</li>
+          <li><em>Dimensões externas</em>10,65 m x 5,86 m · altura 3,50 m</li>
+          <li><em>Consumo</em>turbina 140 W · climatização 670 a 5.655 W</li>
+        </ul>
+        <details><summary>Ver planta e cortes</summary><img class="planta" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/premium-planta.webp" alt="Planta e cortes da Bubble Suite Premium, 1065 x 586 cm, altura 350 cm" loading="lazy" style="margin-top:12px"></details>
+        <div class="preco"><small>A bolha · condição até 30/11</small><b>Preço especial à vista</b><span class="cond">Condição exclusiva</span><span>Vem vazia. Deck, instalações e móveis à parte. O valor chega no seu WhatsApp, com a estimativa do projeto completo. <a href="#projeto">Ver o que mais entra na conta</a></span></div>
+        <a class="btn dark" href="#orcamento" data-modelo="Suite Premium">Quero o orçamento da Suite Premium</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="g sandbg">
+  <div class="w">
+    <div class="k"><b>20</b> Características técnicas</div>
+    <p class="frase">Os detalhes criam a perfeição, e a perfeição não é somente um detalhe.</p>
+    <ul class="tec">
+      <li>Turbina ultra silenciosa com regulador de potência e filtro anti-mosquito, com 4 anos de garantia.</li>
+      <li>Módulo de entrada com estrutura em arco duplo de ferro lacado e fixação perimetral.</li>
+      <li>Portas de alumínio lacado, com chave na porta exterior.</li>
+      <li>Entrada de ar pressurizado com difusor.</li>
+      <li>Tecido de PVC pretensado de 580 g/m², resistência ao fogo B-s2,d0 (Euroclasses) e Classe A (ASTM E83), 100% de bloqueio UV (UPF 50+) e acabamento em PVDF que repele a sujeira.</li>
+      <li>Tecido de PVC transparente com tratamento UV (0,5 mm), alta transparência e resistência ao fogo M2.</li>
+      <li>Capa de proteção solar extraível, com tecido refletor de UV e infravermelho que reduz em até 20 °C a temperatura interior.</li>
+      <li>Costuras soldadas por alta frequência em 90% da bolha e costura de fio duplo com reforço nos 10% restantes.</li>
+      <li>Cálculos de engenharia e testes reais com ventos de até 120 km/h. Controle de qualidade individual por bolha.</li>
+      <li>Lavável, seguindo as instruções e os produtos recomendados pelo fabricante.</li>
+      <li>Garantia global de até 2 anos para defeito de fabricação ou de material.</li>
+      <li>Durabilidade mínima de 7 anos seguindo os protocolos de uso correto e manutenção preventiva periódica.</li>
+    </ul>
+    <p class="fine">Na operação da Zion, a climatização é feita com ar-condicionado inverter quente e frio e lençol térmico, e o piso é laminado. Esses itens não fazem parte da bolha: entram na estimativa que enviamos junto com a proposta.</p>
+  </div>
+</section>
+
+<section class="g" id="projeto">
+  <div class="w">
+    <div class="k"><b>21</b> Monte o seu projeto</div>
+    <h2>O que a Zion entrega, <em>e o que você prepara antes da bolha chegar.</em></h2>
+    <div class="ent">
+      <div class="z"><small>A Zion entrega</small><b>A bolha, vazia</b><ul><li>Bolha com turbina e capa de proteção solar</li><li>Orientação do deck e projeto arquitetônico básico</li><li>Você estrutura o interior como quiser</li></ul></div>
+      <div class="v"><small>Você prepara</small><b>A base para ela operar</b><ul><li>Deck de madeira de 50 a 150 m²</li><li>Instalação de luz</li><li>Água e esgoto ou fossa</li><li>Os equipamentos de dentro (FF&amp;E)</li></ul></div>
+    </div>
+
+    <h3 style="margin-top:44px">Antes de decidir, responda para você mesmo</h3>
+    <div class="obj2">
+      <details><summary><span></span>Para quem você quer trabalhar?</summary><p>Você quer oferecer serviços (café, experiências, atendimento) ou quer uma hospedagem autônoma, com check-in sem contato? Isso muda o que construir e como operar.</p></details>
+      <details><summary><span></span>Banheiro dentro ou fora da bolha?</summary><p>Os dois são possíveis. Dentro, mais conforto. Fora, num anexo do deck, mais espaço livre na bolha e uma experiência de banho diferente.</p></details>
+      <details><summary><span></span>O que construir no deck?</summary><p>Ao redor da bolha você pode anexar cozinha gourmet, área chill out, área de convivência, banheiro, piscina ou jacuzzi. Comece por um produto mínimo bem feito e cresça depois.</p></details>
+      <details><summary><span></span>E o calor e o frio?</summary><p>A bolha tem uma capa de proteção solar removível, com tecido que reflete UV e infravermelho e reduz em até 20 °C a temperatura interna. Ela também funciona como blackout. Na Zion, a climatização é feita com ar-condicionado inverter quente e frio.</p></details>
+      <details><summary><span></span>E se faltar energia?</summary><p>A bolha fica de pé com uma turbina elétrica de 140 W, que consome pouco. Para quedas de energia, como em qualquer hospedagem em área rural, há três caminhos: um no-break, como o de computador; um sistema de energia com baterias de lítio, de parceiro da Zion, que aguenta várias horas; ou um pequeno gerador. Ninguém fica sem segurança.</p></details>
+      <details><summary><span></span>Quanto tempo ela dura?</summary><p>O fabricante indica durabilidade mínima de 7 anos com manutenção preventiva, e nas operações da Zion as bolhas passam de 5 anos. Pense nela como um veículo de hospedagem: de tempos em tempos pede manutenção, um remendo ou até a troca. Quem já é cliente tem condições especiais da Zion para a próxima.</p></details>
+      <details><summary><span></span>E daqui a alguns anos?</summary><p>O mesmo deck recebe outro tipo de cabana no futuro. Essa é a ideia do glamping: hoje é uma cabana, amanhã pode ser outra, sem recomeçar a obra.</p></details>
+      <details><summary><span></span>Onde ela entra?</summary><p>Em áreas de baixo impacto ambiental, terrenos íngremes e lugares com vista. Ela contempla a paisagem e o céu à noite. Em área de preservação, depende do licenciamento e é analisado caso a caso, com profissional habilitado.</p></details>
+    </div>
+
+    <h3 style="margin-top:44px">O que entra na conta além da bolha</h3>
+    <p class="lead" style="margin-top:8px">De forma orientativa, para uma unidade. O valor da bolha chega com o seu orçamento.</p>
+    <div class="niveis" role="tablist" id="niveis">
+      <button type="button" role="tab" data-n="1" aria-selected="false">Infraestrutura</button>
+      <button type="button" role="tab" data-n="2" aria-selected="true">Infraestrutura + interior</button>
+    </div>
+    <div class="orc">
+      <ul id="orcItens"></ul>
+      <div class="orcT"><small>Total orientativo, além da bolha</small><b id="orcTot"></b><span>Valores aproximados para uma unidade. O seu orçamento depende do terreno, da região e do padrão que você escolher.</span></div>
+    </div>
+    <details class="ffe"><summary>O que recomendamos dentro da bolha (FF&amp;E e OS&amp;E)</summary>
+      <div class="ffel"><span>Cama box com colchão</span><span>Duas mesas de cabeceira</span><span>Abajures</span><span>Mesa e duas cadeiras</span><span>Armário</span><span>Biombo ou parede divisória</span><span>Lavabo</span><span>Enxoval completo</span><span>Decoração</span><span>Piso laminado ou vinílico</span></div>
+      <p class="fine">Na Zion, mobiliário, equipamentos e enxoval somam cerca de R$ 25.915 por unidade, e o piso interno cerca de R$ 3.931.</p>
+    </details>
+    <div class="caps2"><b>Prefere chegar e operar?</b> A Cápsula Zion vem pronta e mobiliada. <a href="#capsula">Ver a Cápsula →</a></div>
+
+    <h3 style="margin-top:44px">Exercício: quanto a sua cabana poderia faturar</h3>
+    <p class="lead" style="margin-top:8px">Com o case da Zion como ponto de partida. Mude os números para o seu caso.</p>
+    <div class="sim">
+      <label>Ocupação <output id="oOut">60%</output><input type="range" id="occ" min="20" max="90" step="1" value="60"></label>
+      <label>Diária média <output id="dOut">R$ 1.571</output><input type="range" id="dia" min="400" max="3000" step="1" value="1571"></label>
+      <label>Margem operacional <output id="mOut">40%</output><input type="range" id="mar" min="10" max="60" step="1" value="40"></label>
+      <div class="simR">
+        <div><small>Faturamento por ano</small><b id="rFat"></b></div>
+        <div><small>Resultado operacional por ano</small><b id="rRes"></b></div>
+      </div>
+      <p class="fine">Exercício ilustrativo, não é promessa de resultado. Os 60% de ocupação e a diária de R$ 1.571 vêm do case da Zion. A margem já desconta custos, impostos e comissões de forma simplificada. O seu número depende do destino, do produto e da operação. É isso que o Método Zion 360° estuda com você.</p>
+    </div>
+  </div>
+</section>
+
+<section class="g">
+  <div class="w">
+    <div class="k"><b>22</b> As dúvidas sobre a Bubble</div>
+    <h2>O que perguntam antes de comprar</h2>
+    <div class="faq">
+      <details><summary>A Bubble é uma casa?</summary><p>Não. É uma cabana premium de glamping, totalmente removível. Quem procura um imóvel ou patrimônio não está no produto certo.</p></details>
+      <details><summary>Vem mobiliada?</summary><p>Não. A Zion vende somente a bolha. Móveis, climatização e piso ficam por sua conta, e entram na estimativa que enviamos com a proposta.</p></details>
+      <details><summary>Quem monta?</summary><p>O próprio cliente instala a bolha no deck de madeira, seguindo a nossa orientação.</p></details>
+      <details><summary>O que preciso preparar?</summary><p>O deck, a energia, a água e o esgoto ou fossa. Enviamos a orientação do deck e um projeto arquitetônico básico.</p></details>
+      <details><summary>Em quanto tempo opero?</summary><p>Com o deck e as instalações prontos, a operação pode começar em até 90 dias.</p></details>
+      <details><summary>Aguenta vento e chuva?</summary><p>A bolha passou por cálculos de engenharia e testes reais com ventos de até 120 km/h, e o tecido tem proteção UV e resistência ao fogo certificadas.</p></details>
+      <details><summary>Quanto tempo dura?</summary><p>O fabricante indica durabilidade mínima de 7 anos, com manutenção preventiva, e nas operações da Zion as bolhas passam de 5 anos. A garantia global é de até 2 anos para defeitos de fabricação ou de material, e a turbina tem 4 anos.</p></details>
+      <details><summary>E se faltar energia?</summary><p>A turbina tem 140 W. Para quedas de energia: no-break, sistema de baterias de lítio de parceiro da Zion, que aguenta várias horas, ou um pequeno gerador, como qualquer hospedagem em área rural.</p></details>
+      <details><summary>Posso instalar em área de preservação?</summary><p>Depende do terreno, do município e do licenciamento. Isso é analisado caso a caso, com profissional habilitado. A nossa equipe pode olhar o seu caso.</p></details>
+      <details><summary>Quanto custa?</summary><p>O valor depende do modelo, da quantidade de unidades e da forma de pagamento. Até 30 de novembro existe uma condição exclusiva à vista. Preencha o formulário e você recebe no WhatsApp o valor da bolha e uma estimativa do projeto completo, com deck, instalações e equipamentos.</p></details>
+    </div>
+  </div>
+</section>
+
+<section class="g dark" id="capsula">
+  <div class="w">
+    <div class="k"><b>23</b> Zion Cápsula · em breve</div>
+    <h2>Para quem quer chegar e operar: <em>a cápsula vem pronta.</em></h2>
+    <p class="lead">A Cápsula Zion chega montada e mobiliada. É o outro lado da facilidade: menos decisão no começo, mais rapidez para abrir.</p>
+    <div class="vs2">
+      <div><small>Bubble Zion</small><ul><li>Cabana premium de glamping, removível</li><li>Vem só a bolha, sem móveis</li><li>Você monta o deck, a luz e a água</li><li>Você escolhe o padrão de equipamento</li></ul></div>
+      <div class="cp"><small>Cápsula Zion</small><ul><li>Chega pronta</li><li>Vem mobiliada</li><li>Menos obra e menos decisões no começo</li><li>Valor sob consulta</li></ul></div>
+    </div>
+    <div class="ctas" style="margin-top:20px"><a class="btn" href="https://wa.me/554861371061?text=Oi!%20Quero%20ser%20avisado%20quando%20a%20C%C3%A1psula%20Zion%20estiver%20dispon%C3%ADvel." target="_blank" rel="noopener">Quero ser avisado da Cápsula</a></div>
+  </div>
+</section>
+
+<section class="g sandbg">
+  <div class="w">
+    <div class="k"><b>24</b> Como funciona a compra</div>
+    <h2>Do terreno à bolha instalada, <em>em cinco passos.</em></h2>
+    <ol class="compra">
+      <li>Você conta onde fica o terreno e quantas unidades imagina.</li>
+      <li>A Zion envia a proposta da bolha.</li>
+      <li>Você recebe a orientação do deck e um projeto arquitetônico básico e simplificado.</li>
+      <li>Você prepara o deck, a energia, a água e o esgoto.</li>
+      <li>A bolha chega e é instalada no deck.</li>
+    </ol>
+    <div class="box"><h3>Quanto você vai investir além da bolha</h3><p class="lead" style="margin:0">Junto com a proposta, enviamos uma estimativa do que você vai gastar com deck, instalações e anexos, para você decidir com a conta inteira na mão.</p></div>
+  </div>
+</section>
+
+<section class="g" aria-label="Raio-X do Terreno" style="padding-block:40px;background:var(--sand)">
+  <div class="w" style="display:flex;flex-wrap:wrap;gap:16px 28px;align-items:center;justify-content:space-between">
+    <div style="max-width:62ch"><div class="k"><b>25</b> Antes do preço</div><h3 style="font-size:26px;margin:10px 0 6px">Ainda não sabe se o seu terreno está pronto para uma Bubble?</h3><p class="lead" style="margin:0">Faça o Raio-X do Terreno, grátis. Em poucos minutos você vê o que o seu terreno já tem, o que falta e por onde começar.</p></div>
+    <a class="btn dark" href="/raio-x">Fazer o Raio-X do Terreno</a>
+  </div>
+</section>
+
+<section class="g dark" id="orcamento">
+  <div class="w formwrap">
+    <div>
+      <div class="k"><b>26</b> Orçamento</div>
+      <h2>Receba o valor e a condição exclusiva da sua Bubble.</h2>
+      <p class="lead">Preencha em 1 minuto. Conforme a sua situação, você recebe no WhatsApp o valor da bolha e a condição até 30/11, ou o caminho certo para o seu projeto. A Zaya, da equipe Zion, segue o atendimento por lá.</p>
+    </div>
+    <div id="formbox">
+      <form id="form" novalidate>
+        <label class="f full">Qual é a sua situação hoje? *<select name="situacao" required><option value="">Selecione</option><option>Tenho terreno, capital e estrutura: quero a Bubble</option><option>Tenho o terreno e não tenho o capital</option><option>Tenho o terreno e o capital, mas não sei por onde começar</option><option>Quero a Zion como parceira</option><option>Quero receber investimento no meu terreno</option><option>Ainda estou pesquisando</option></select></label>
+        <label class="f">Nome *<input name="nome" required maxlength="100" autocomplete="name"></label>
+        <label class="f">WhatsApp com DDD *<input name="tel" required inputmode="tel" autocomplete="tel" placeholder="(48) 99999-9999"></label>
+        <label class="f full">E-mail *<input name="email" type="email" required maxlength="255" autocomplete="email"></label>
+        <label class="f">Cidade do terreno *<input name="cidade" required maxlength="100"></label>
+        <label class="f">Estado *<select name="uf" required><option value="">Selecione</option></select></label>
+        <label class="f">Modelo de interesse *<select name="modelo" required><option value="">Selecione</option><option>Suite</option><option>Suite Premium</option><option>Ainda não sei</option></select></label>
+        <label class="f">Quantas unidades *<select name="un" required><option value="">Selecione</option><option>1</option><option>2 a 3</option><option>4 a 6</option><option>Mais de 6</option></select></label>
+        <label class="f">Como está o terreno *<select name="terreno" required><option value="">Selecione</option><option>Já tenho o terreno</option><option>Estou negociando</option><option>Ainda não tenho</option></select></label>
+        <label class="f">Tem energia e água? *<select name="infra" required><option value="">Selecione</option><option>Sim</option><option>Parcialmente</option><option>Não</option><option>Não sei</option></select></label>
+        <label class="f full">Quando pretende começar *<select name="prazo" required><option value="">Selecione</option><option>Em até 3 meses</option><option>3 a 6 meses</option><option>6 a 12 meses</option><option>Ainda sem data</option></select></label>
+        <label class="f full">Mensagem (opcional)<textarea name="msg" rows="3" maxlength="1000"></textarea></label>
+        <label class="ck full"><input type="checkbox" name="lgpd" required> Autorizo a Zion Hotel Group a entrar em contato pelo WhatsApp e e-mail sobre este orçamento, conforme a LGPD.</label>
+        <p class="erro full" id="erro" role="alert" hidden></p>
+        <button class="btn full" type="submit" style="background:var(--green);color:var(--bg)">Receber orçamento no WhatsApp</button>
+      </form>
+      <div class="ok" id="ok" hidden>
+        <h3>Pedido pronto.</h3>
+        <p style="margin:0;color:var(--mute)">Toque no botão para abrir o WhatsApp com o seu pedido. A Zaya responde por lá.</p>
+        <a class="btn" id="walink" href="#" target="_blank" rel="noopener">Abrir o WhatsApp</a>
+        <p style="margin:0;font-size:14px;color:var(--mute)">Se preferir, chame no número <span style="user-select:all">+55 48 6137-1061</span>.</p>
+        <p style="margin:6px 0 0;font-size:15px">Enquanto a Zaya prepara o seu orçamento: <a href="/aula-marco-zero" style="color:var(--green);font-weight:500">veja o passo a passo para transformar o seu terreno em um negócio de hospedagem</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<section class="g dark" id="situacao" hidden>
+  <div class="w">
+    <div class="k"><b>27</b> Antes da bolha, o empreendimento</div>
+    <h2>O seu caminho, <em>antes da bolha.</em></h2>
+    <p class="lead">A Bubble é o começo do sonho. Mas para ter um sócio, receber investimento ou ter a Zion como parceira, o seu empreendimento precisa estar estruturado: o lugar, o público, a conta e quem vai operar.</p>
+    <div class="sitr" id="sitR" hidden>
+      <p class="msg" id="sMsg"></p>
+      <div class="paths2 p3">
+        <div class="path"><small>Passo 1 · grátis</small><h3>Raio-X do Terreno</h3><p>Em poucos minutos, você vê em que ponto o seu terreno está, o que falta e por onde começar. No fim, recebe o caminho certo para o seu caso.</p><a class="btn" href="/raio-x">Fazer o Raio-X do Terreno</a></div>
+        <div class="path"><small>Fazer com a Zion</small><h3>Trilha 1 · Desenvolvimento</h3><p>O passo a passo online do Método Zion 360° de Desenvolvimento de Hospedagens: sete pilares, uma ferramenta em cada um e o seu Dossiê do Produto em PDF, para apresentar a um banco, a um sócio, a um investidor ou à Zion. R$ 270.</p><a class="btn ghost" id="pCom" href="https://wa.me/554861371061?text=Oi%21%20Vi%20a%20Glamping%20Store%20e%20quero%20come%C3%A7ar%20pela%20Trilha%201%20%C2%B7%20Desenvolvimento%20do%20M%C3%A9todo%20Zion%20360%C2%B0." target="_blank" rel="noopener">Quero começar pela Trilha 1</a></div>
+        <div class="path"><small>A Zion faz por você</small><h3>Estruturação pela equipe Zion</h3><p>Prefere não fazer sozinho? A equipe Zion estrutura o empreendimento do seu terreno para você: estudo do lugar, modelo, conta e o material para apresentar a parceiros e investidores. Condições conforme o caso.</p><a class="btn ghost" id="pPor" href="#" target="_blank" rel="noopener">Falar com a equipe Zion</a></div>
+      </div>
+      <p class="soft">A Zion avalia parcerias e apresentações a investidores a partir de empreendimentos estruturados, e não garante sócio, crédito ou retorno.</p>
+    </div>
+  </div>
+</section>
+
+<footer class="g"><div class="w">Zion Hotel Group · Zion Glamping Store · operações de hospedagem por todo o Brasil</div></footer>
+<a class="btn wa" href="#orcamento" style="background:var(--green);color:var(--bg)">Orçamento</a>
+
+<script>
+(function(){
+  const ET={1:['Sapatas e pilares','Bases de concreto pontuais e pilares de apoio. Sem fundação corrida: o terreno fica como está, mesmo em encosta.'],
+    2:['Estrutura do deck','Vigas e barrotes nivelados sobre os pilares. É o que deixa o deck firme e plano, mesmo com o terreno inclinado.'],
+    3:['Piso do deck','As tábuas de madeira fecham o deck. É sobre ele que a bolha vai ser instalada.'],
+    4:['Energia, água e esgoto','A infraestrutura chega até o deck: ponto de energia para a turbina e a climatização, água e o esgoto ou fossa, conforme o projeto.'],
+    5:['A bolha no centro','A bolha chega e é instalada no centro do deck. Com a infraestrutura pronta, a unidade pode começar a operar.'],
+    6:['Os anexos ao redor','Ao redor da bolha você constrói os anexos: o lounge de descanso, a cozinha, o banheiro e a área de contemplação. A cozinha fica fora da bolha, num anexo do deck. No seu ritmo.']};
+  const svg=document.getElementById('obraSvg');
+  function etapa(n){
+    for(let i=1;i<=6;i++){const g=svg.querySelector('.e'+i);g.style.opacity=i<=n?1:0;const r=svg.querySelector('.r'+i);r.style.opacity=i===n?1:0}
+    document.querySelectorAll('#obra .etapas button').forEach(b=>b.setAttribute('aria-selected',String(Number(b.dataset.e)===n)));
+    document.getElementById('eTit').textContent=ET[n][0];document.getElementById('eTxt').textContent=ET[n][1];
+  }
+  document.querySelectorAll('#obra .etapas button').forEach(b=>b.addEventListener('click',()=>etapa(Number(b.dataset.e))));
+  etapa(1);
+  const UFS="AC AL AP AM BA CE DF ES GO MA MT MS MG PA PB PR PE PI RJ RN RS RO RR SC SP SE TO".split(" ");
+  const f=document.getElementById('form');
+  UFS.forEach(u=>{const o=document.createElement('option');o.textContent=u;f.uf.appendChild(o)});
+  document.querySelectorAll('[data-modelo]').forEach(a=>a.addEventListener('click',()=>{f.modelo.value=a.dataset.modelo}));
+  f.tel.addEventListener('input',()=>{const d=f.tel.value.replace(/\D/g,'').slice(0,11);let v=d;
+    if(d.length>2)v='('+d.slice(0,2)+') '+d.slice(2);if(d.length>6)v='('+d.slice(0,2)+') '+d.slice(2,d.length>10?7:6)+'-'+d.slice(d.length>10?7:6);f.tel.value=v});
+  f.addEventListener('submit',e=>{
+    e.preventDefault();const er=document.getElementById('erro');
+    const req=['situacao','nome','tel','email','cidade','uf','modelo','un','terreno','infra','prazo'];
+    const falta=req.find(n=>!f[n].value.trim());
+    if(falta){er.textContent='Preencha todos os campos com *.';er.hidden=false;f[falta].focus();return}
+    if(f.tel.value.replace(/\D/g,'').length<10){er.textContent='Informe o WhatsApp com DDD.';er.hidden=false;f.tel.focus();return}
+    if(!/^\S+@\S+\.\S+$/.test(f.email.value)){er.textContent='Confira o e-mail.';er.hidden=false;f.email.focus();return}
+    if(!f.lgpd.checked){er.textContent='Marque a autorização para continuar.';er.hidden=false;return}
+    er.hidden=true;
+    const L=['Oi, Zaya! Quero o valor e a condição da Bubble Zion.','Situação: '+f.situacao.value,'Nome: '+f.nome.value.trim(),'Modelo: '+f.modelo.value,'Unidades: '+f.un.value,
+      'Terreno em: '+f.cidade.value.trim()+'/'+f.uf.value+' ('+f.terreno.value+')','Energia e água: '+f.infra.value,'Quando: '+f.prazo.value];
+    if(f.msg.value.trim())L.push(f.msg.value.trim());
+    const url='https://wa.me/554861371061?text='+encodeURIComponent(L.join('\n'));
+    try{const q=new URLSearchParams(location.search),u={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(k=>{if(q.get(k))u[k]=q.get(k).slice(0,200)});
+      fetch('/api/public/store-lead',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,body:JSON.stringify(Object.assign({nome:f.nome.value.trim(),telefone:f.tel.value.trim(),email:f.email.value.trim(),cidade:f.cidade.value.trim(),uf:f.uf.value,modelo:f.modelo.value,unidades:f.un.value,terreno:f.terreno.value,infra:f.infra.value,prazo:f.prazo.value,mensagem:('Situação: '+f.situacao.value+(f.msg.value.trim()?' · '+f.msg.value.trim():'')).slice(0,1000),consentimento:true,site:''},u))}).catch(function(){})}catch(_){}
+    document.getElementById('walink').href=url;
+    try{if(window.cxs){const t=f.tel.value.replace(/\D/g,'');window.cxs('lead',{name:f.nome.value.trim(),email:f.email.value.trim(),telephone:(t.length<=11?'55':'')+t,customFields:{club_situacao:'Glamping Store · '+f.situacao.value,club_cidade:f.cidade.value.trim()+'/'+f.uf.value}},function(){},{elementId:'store-orcamento'})}}catch(_){}
+    f.hidden=true;document.getElementById('ok').hidden=false;
+    const sv=f.situacao.value;
+    if(sv!==SIT_BOLHA){const sr=document.getElementById('situacao');sr.hidden=false;
+      document.getElementById('sMsg').textContent=(MSG[sv]||MSG['Ainda estou pesquisando'])+' Você pode começar assim:';
+      document.getElementById('pPor').href='https://wa.me/554861371061?text='+encodeURIComponent('Oi! Sou '+f.nome.value.trim()+'. Vi a Glamping Store e quero que a Zion estruture o projeto do meu terreno. Minha situação: '+sv+'.');
+      document.getElementById('sitR').hidden=false;}
+  });
+
+  const MSG={
+      'Tenho o terreno e não tenho o capital':'O seu terreno é o seu ativo mais forte. Quem coloca dinheiro olha o projeto, não o terreno: com o projeto estruturado, você pode buscar banco, sócio, investidor ou uma parceria com a Zion.',
+      'Tenho o terreno e o capital, mas não sei por onde começar':'Você já tem o que a maioria não tem. O risco agora é escolher o modelo pelo gosto e não pela conta. Estruturar antes protege o seu dinheiro.',
+      'Tenho o terreno e o capital, e quero a Zion como parceira':'A Zion avalia parcerias com donos de terreno nas cabanas, na gestão e operação ou na Zion Collection. Toda avaliação começa por um projeto estruturado.',
+      'Quero a Zion como parceira':'A Zion avalia parcerias com donos de terreno nas cabanas, na gestão e operação ou na Zion Collection. Toda avaliação começa por um projeto estruturado, e nenhuma parceria é garantida.',
+      'Ainda estou pesquisando':'Pesquisar é o passo certo. Antes de gastar com a bolha, entenda a ordem: o lugar, o público, a conta e quem vai operar.',
+      'Quero receber investimento no meu terreno':'Investidor não compra terreno, compra projeto: viabilidade, garantia, contrato e quem vai operar. Com o projeto estruturado, a conversa muda de pedido para proposta.'};
+  const SIT_BOLHA='Tenho terreno, capital e estrutura: quero a Bubble';
+  const brl=v=>'R$ '+Math.round(v).toLocaleString('pt-BR');
+  const IT=[['Deck de madeira, a partir de 50 m² × R$ 250/m²',12500,1],['Instalação de luz',10000,1],['Água e esgoto ou fossa',8500,1],['Mobiliário, equipamentos e enxoval',25915,2],['Piso interno laminado ou vinílico',3931,2]];
+  const ul=document.getElementById('orcItens');
+  IT.forEach(x=>{const li=document.createElement('li');li.innerHTML='<span>'+x[0]+'</span><b>'+brl(x[1])+'</b>';ul.appendChild(li)});
+  function nivel(n){document.querySelectorAll('#niveis button').forEach(b=>b.setAttribute('aria-selected',String(Number(b.dataset.n)===n)));
+    let t=0;[...ul.children].forEach((li,i)=>{const on=IT[i][2]<=n;li.classList.toggle('off',!on);if(on)t+=IT[i][1]});
+    document.getElementById('orcTot').textContent='cerca de '+brl(t);}
+  document.querySelectorAll('#niveis button').forEach(b=>b.addEventListener('click',()=>nivel(Number(b.dataset.n))));
+  nivel(2);
+  const $=id=>document.getElementById(id);
+  function sim(){const o=+$('occ').value,d=+$('dia').value,m=+$('mar').value;
+    $('oOut').textContent=o+'%';$('dOut').textContent=brl(d);$('mOut').textContent=m+'%';
+    const fat=365*o/100*d,res=fat*m/100;$('rFat').textContent=brl(fat);$('rRes').textContent=brl(res);}
+  ['occ','dia','mar'].forEach(id=>$(id).addEventListener('input',sim));sim();
+})();
+</script>
+
+<script>(function(){var h=document.getElementById('topo');if(!h)return;requestAnimationFrame(function(){h.classList.add('go')});var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(function(){h.classList.add('on')},r?0:1400);setTimeout(function(){h.classList.add('on')},4000)})();</script>
+<script>(function(){var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(r||!('IntersectionObserver' in window))return;document.documentElement.classList.add('js-up');var els=[];document.querySelectorAll('main section .w > *, body > section .w > *').forEach(function(e,i){if(e.closest('#orcamento form'))return;e.classList.add('up');var p=e.parentNode;e.style.setProperty('--d',Math.min([].indexOf.call(p.children,e),5));els.push(e)});var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},12000)})();</script>
+</body></html>
