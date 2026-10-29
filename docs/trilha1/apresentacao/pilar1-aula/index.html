@@ -1,0 +1,1812 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 1 · Território e destino</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.figs{display:flex;gap:24px;justify-content:center}
+.figs img{height:600px;width:auto;border-radius:18px;box-shadow:0 2px 0 rgba(22,38,28,.06)}
+.lado .figs img{height:640px}
+.lado .figs:not(.um) img{height:470px}
+.lado:has(.figs:not(.um)){grid-template-columns:1.15fr .85fr;gap:48px}
+.docs2 .card{padding:24px 30px;gap:8px}.docs2 .card h3{font-size:34px}.docs2 .card p{font-size:23px}.docs2 .card .n{font-size:40px}.docs2 .sv{font-size:20px!important;padding:8px 14px}
+.lado.l2{grid-template-columns:1fr 1fr}
+.fig-larga{width:100%;max-height:420px;object-fit:contain;border-radius:18px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:12px;padding:10px 16px;font-size:20px}
+.resumo-mini div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(22,38,28,.12);padding:6px 0}
+.resumo-mini div:last-child{border:0}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* resultado */
+.rs{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;min-height:0;height:830px}
+.rs-esq,.rs-dir{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding-right:8px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nums div{background:var(--verde);color:var(--creme);border-radius:16px;padding:18px 22px}
+.nums small{display:block;font-size:18px;opacity:.85}
+.nums strong{display:block;font-family:var(--serif);font-size:48px;color:var(--ouro);line-height:1.15}
+.leit{background:var(--verde);color:var(--creme);border:3px solid var(--ouro);border-radius:18px;padding:20px 24px;font-size:21px;line-height:1.45}
+.leit .rot{font-family:var(--serif);font-size:42px;color:var(--ouro)}
+.al{border-radius:12px;padding:12px 16px;font-size:19px;line-height:1.45;border-left:6px solid}
+.al b{display:block;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.al.critico{background:#F8E3DE;border-color:var(--erro);color:#4A140D}
+.al.ns,.al.tarefa{background:#FBEFD2;border-color:#7A5300;color:#3F2B00}
+.al.sem,.al.atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.al.info,.al.ok{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+.rs h3{font-size:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:17px;padding:6px 12px;border-radius:99px;background:#E1EFE3;color:#173F25;font-weight:600}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:14px;font:700 34px var(--sans);padding:26px 46px;border-radius:999px;background:var(--ouro);color:var(--verde);text-decoration:none;border:0;cursor:pointer;min-height:72px}
+.btn-g:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.lado.l2,.trio,.exe,.anote,.perfil,.rs,.nums{grid-template-columns:1fr!important;gap:12px}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .figs{flex-wrap:wrap;gap:10px} .figs img,.lado .figs img{height:auto;width:calc(50% - 5px);max-width:260px;border-radius:12px}
+  .figs.um img{width:70%}
+  .fig-larga{max-height:220px}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td{padding:8px 6px}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.rs>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .resumo-mini{font-size:14px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .rs{height:auto} .rs-esq,.rs-dir{overflow:visible;padding:0}
+  .nums strong{font-size:26px} .nums small{font-size:12px} .nums div{padding:12px 14px}
+  .leit{font-size:15px;padding:14px} .leit .rot{font-size:24px}
+  .al{font-size:14px;padding:10px 12px} .al b{font-size:11px} .rs h3{font-size:19px} .chips span{font-size:13px}
+  .btn-g{font-size:18px;padding:16px 22px;width:100%;min-height:56px}
+  .anote{font-size:15px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+</style>
+<script>
+/* Pilar 1 · aula principal em slides. A Marina é um exemplo ilustrativo.
+   Cronômetro da Marina (texto falado do vídeo do Bloco 1): sol 110 + 20 + 5 = 135 min = 2 h 15;
+   chuva 120 + 35 + 15 = 170 min = 2 h 50; o asfalto mudou 10 min, o fim mudou 15 + 10 = 25 min. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function hm(min){ min = Math.round(min); const h = Math.floor(min/60), m = min % 60; return h ? h + ' h' + (m ? ' ' + String(m).padStart(2,'0') + ' min' : '') : m + ' min'; }
+ZD.sims.crono = function(v){
+  const sol = v.asf_s + v.ter_s + v.viz_s, chuva = v.asf_c + v.ter_c + v.viz_c;
+  const dAsf = v.asf_c - v.asf_s, dFim = (v.ter_c - v.ter_s) + (v.viz_c - v.viz_s);
+  let a;
+  if (dFim > dAsf) a = ['at', '<b>O asfalto mudou ' + hm(dAsf) + '. O fim mudou ' + hm(dFim) + '.</b> Os últimos quilômetros decidem a chegada.'];
+  else a = ['ok', 'O asfalto mudou ' + hm(dAsf) + ' e o fim mudou ' + hm(dFim) + '. Refaça o caminho na chuva e à noite antes de confiar nesse número.'];
+  return {sol: hm(sol), chuva: hm(chuva), dAsf: hm(dAsf), dFim: hm(dFim), _aviso: a};
+};
+function m2(x){ return Math.round(x).toLocaleString('pt-BR') + ' m²'; }
+ZD.sims.area = function(v){
+  const subs = v.pres + v.res + v.enc + v.rec + v.serv;
+  const usavel = v.mat - subs;
+  const pct = v.mat > 0 ? Math.max(0, usavel) / v.mat * 100 : 0;
+  let a;
+  if (usavel <= 0) a = ['er','<b>As subtrações passam da matrícula.</b> Confira os números com o CAR e o topógrafo.'];
+  else if (subs === 0) a = ['at','Nenhuma subtração ainda. Responda as perguntas das subtrações, ou mexa nas barras, e veja o terreno encolher.'];
+  else a = [pct < 50 ? 'at' : 'ok', '<b>' + pct.toLocaleString('pt-BR',{maximumFractionDigits:1}) + '%</b> da matrícula vira negócio. Quem negocia pela área do papel paga pelo metro que nunca vai usar.'];
+  return {subs, usavel: Math.max(0, usavel), pct, _aviso: a};
+};
+ZD.desenha.area = function(sim, r, v){
+  const b = sim.querySelector('svg.barra-area'); if (!b) return;
+  const W = 800, y = 18, h = 92, total = Math.max(v.mat, r.subs, 1);
+  const seg = [['APP', v.pres, '#7FA08A'], ['Reserva', v.res, '#A9BFA6'], ['Encosta', v.enc, '#C76B2E'], ['Recuos', v.rec, '#B9A06A'], ['Serviço', v.serv, '#8B9188']];
+  let x = 0, s = '';
+  seg.forEach(([n, a, c]) => { const w = a / total * W; s += '<rect x="'+x+'" y="'+y+'" width="'+Math.max(0,w)+'" height="'+h+'" fill="'+c+'"/>'; if (w > 70) s += '<text x="'+(x+w/2)+'" y="'+(y+h/2+7)+'" text-anchor="middle" fill="#16261C" style="font:600 19px Inter,Arial,sans-serif">'+n+'</text>'; x += w; });
+  const wu = Math.max(0, r.usavel) / total * W;
+  s += '<rect x="'+x+'" y="'+y+'" width="'+wu+'" height="'+h+'" fill="#C9A84C"/>';
+  if (wu > 90) s += '<text x="'+(x+wu/2)+'" y="'+(y+h/2+7)+'" text-anchor="middle" fill="#16261C" style="font:800 19px Inter,Arial,sans-serif">usável</text>';
+  s += '<rect x="0" y="'+y+'" width="'+W+'" height="'+h+'" fill="none" stroke="#F5F1E8" stroke-opacity=".35"/>';
+  s += '<text x="0" y="'+(y+h+44)+'" fill="#D9D3C4" style="font:600 19px Inter,Arial,sans-serif">0</text><text x="'+W+'" y="'+(y+h+44)+'" text-anchor="end" fill="#D9D3C4" style="font:600 19px Inter,Arial,sans-serif">'+m2(v.mat)+' na matrícula</text>';
+  b.setAttribute('viewBox','0 0 '+W+' 170'); b.innerHTML = s;
+};
+</script>
+</head>
+<body data-deck="t1-pilar1-aula" data-titulo="Pilar 1 · Território e destino">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 1 · Ler o lugar</p>
+  <h1>Pilar 1<br><i>Território e destino</i></h1>
+  <p class="lead" style="max-width:1050px">O checklist do seu terreno: o que olhar, por que importa, como verificar e qual é o sinal vermelho.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a sua Ficha</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Uns dez minutos no total. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com a Ficha</h3><p>No fim, a sua Ficha do Território em PDF: a página 1 do Dossiê do seu empreendimento.</p></div>
+  </div>
+  <p class="sv" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Dica</b><span>Tenha papel e caneta e o seu terreno aberto no mapa. Se tiver a matrícula por perto, melhor. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · O destino e a chegada">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · O destino e a chegada</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/qn7x6vO1Phw?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 1 · Bloco 1 · O destino e a chegada" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/qn7x6vO1Phw" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O checklist">
+  <p class="k">De fora para dentro</p>
+  <h2>Seis paradas, <i>quatro perguntas em cada</i></h2>
+  <div class="grid g2" style="gap:64px;align-items:start">
+    <ol class="lista num" style="font-size:32px;gap:14px">
+      <li class="f"><span><b>O destino</b>, o lugar em volta</span></li>
+      <li class="f"><span><b>A chegada</b>, como o hóspede chega até você</span></li>
+      <li class="f"><span><b>O chão</b></span></li>
+      <li class="f"><span><b>A água e a energia</b></span></li>
+      <li class="f"><span><b>A área que sobra</b></span></li>
+      <li class="f"><span><b>Os papéis</b></span></li>
+    </ol>
+    <div class="grid g2 f" style="gap:16px">
+      <div class="card"><h3>O que olhar</h3></div>
+      <div class="card"><h3>Por que importa</h3></div>
+      <div class="card"><h3>Como verificar</h3></div>
+      <div class="card" style="border:3px solid var(--erro)"><h3>Sinal vermelho</h3><p>O que manda parar e investigar.</p></div>
+    </div>
+  </div>
+  <p class="lead f">O que não se verifica antes da compra custa muito mais caro depois da obra. Onde não souber, "não sei": é tarefa da semana.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · O destino">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Parada 1 · O destino</p>
+      <h2>Em que natureza <i>o seu terreno está?</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">O hóspede escolhe primeiro o lugar, e só depois a hospedagem.</li>
+        <li class="f">Serra, litoral, campo, cerrado, mata. Isso define o clima, as regras e a experiência que você pode vender.</li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Precisar desmatar para existir.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/02-bioma.svg" alt="Os biomas em volta do seu terreno: serra, litoral, campo, cerrado e mata"></div>
+  </div>
+</section>
+<section class="s q" data-q="bioma" data-bloco="Bloco 1 · O destino"></section>
+<section class="s q" data-q="desmatar" data-bloco="Bloco 1 · O destino"></section>
+
+<section class="s" data-bloco="Bloco 1 · O destino">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">O que atrai gente</p>
+      <h2>Num raio de <i>30 minutos, 1 hora e 2 horas</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Cachoeira, mirante, restaurante, evento.</li>
+        <li class="f">A pergunta é simples: existe motivo para alguém ficar três dias aqui?</li>
+        <li class="f">Se não existe nada para fazer além do terreno, o desafio está na localização.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img src="figuras/03-atrativos.svg" alt="Círculos de 30 minutos, 1 hora e 2 horas em volta do terreno, com cachoeira, mirante, restaurante, parque e evento, e os dias 1, 2 e 3"></div>
+  </div>
+</section>
+<section class="s q" data-q="tres_dias" data-bloco="Bloco 1 · O destino"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · A vocação">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">A vocação</p>
+      <h2>"O meu terreno é o único lugar onde <i>uma pessoa pode...</i>"</h2>
+      <p class="lead f">Se a sua frase serve para qualquer hotel, como "lugar lindo" ou "vista incrível", ela ainda não é vocação.</p>
+    </div>
+    <div class="figs um"><img src="figuras/06-vocacao.svg" alt="O meu terreno é o único lugar onde uma pessoa pode: sem adjetivo, o que se vê, o que se sente"></div>
+  </div>
+</section>
+<section class="s q" data-q="frase" data-bloco="Bloco 1 · A vocação"></section>
+
+<section class="s" data-bloco="Bloco 1 · De onde vem quem paga">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">De onde vem quem paga</p>
+      <h2>Quais cidades mandam turista <i>para a sua região?</i></h2>
+      <ul class="lista" style="font-size:30px">
+        <li class="f">A que distância, e com que frequência. Se depende de uma cidade só, é risco.</li>
+        <li class="f">Quem já hospeda perto de você: quantos são, o que estão construindo, se a região está crescendo.</li>
+        <li class="f">Crescimento confirmado em cartório e na prefeitura é estratégia. Boato é aposta.</li>
+      </ul>
+    </div>
+    <div class="figs"><img src="figuras/04-emissor.svg" alt="Três cidades emissoras ligadas ao seu terreno: de onde, a que distância, com que frequência"><img src="figuras/05-regiao.svg" alt="Quem já hospeda perto, obra confirmada ou boato"></div>
+  </div>
+</section>
+<section class="s q" data-q="cidades" data-bloco="Bloco 1 · De onde vem quem paga"></section>
+<section class="s q" data-q="crescimento" data-bloco="Bloco 1 · De onde vem quem paga"></section>
+
+<section class="s" data-bloco="Bloco 1 · A chegada">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Parada 2 · A chegada do hóspede</p>
+      <h2>A parte que <i>mais gente esquece</i></h2>
+      <ul class="lista" style="font-size:30px">
+        <li class="f">Ele vem de avião, de carro ou dos dois? Quanto maior o volume que você quer, mais fácil a chegada precisa ser.</li>
+        <li class="f">Não meça a distância em linha reta no mapa. Meça o tempo: o hóspede decide pelo tempo.</li>
+        <li class="f">Ligue o cronômetro e faça o caminho, trecho por trecho.</li>
+      </ul>
+    </div>
+    <div class="figs"><img src="figuras/07-como-chega.svg" alt="Do aeroporto ao terreno: carro comum, o ano todo?"><img src="figuras/08-distancia.svg" alt="A linha reta riscada e o caminho real, trecho por trecho, com um cronômetro"></div>
+  </div>
+</section>
+<section class="s q" data-q="como_chega" data-bloco="Bloco 1 · A chegada"></section>
+
+<section class="s" data-bloco="Bloco 1 · A chegada">
+  <span class="selo">Exemplo ilustrativo · a Marina · para ensinar a conta</span>
+  <h2>O cronômetro <i>da Marina</i></h2>
+  <table class="t" style="font-size:32px">
+    <tr><th>Trecho</th><th>No sol</th><th>Na chuva</th></tr>
+    <tr class="f"><td>Do aeroporto até sair do asfalto</td><td class="v">1 h 50 min</td><td class="v">2 h</td></tr>
+    <tr class="f"><td>Estrada de terra, 8 km</td><td class="v">20 min</td><td class="v">35 min</td></tr>
+    <tr class="f"><td>O trecho do vizinho</td><td class="v">5 min</td><td class="v">15 min</td></tr>
+    <tr class="f"><td><b>No total</b></td><td class="v">2 h 15 min</td><td class="v">2 h 50 min</td></tr>
+  </table>
+  <p class="lead f">O asfalto mudou dez minutos. O fim mudou vinte e cinco. <b>Os últimos quilômetros decidem a chegada.</b></p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A chegada">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · o cronômetro trecho por trecho</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:60px">Onde o tempo <i>muda na chuva?</i></h2>
+  <div class="sim" data-sim="crono" style="grid-template-columns:1fr 1fr;gap:48px">
+    <div class="ctl" style="gap:10px">
+      <label>Até sair do asfalto, no sol <output data-for="asf_s"></output><input type="range" name="asf_s" min="10" max="300" step="5" value="110"><small>minutos</small></label>
+      <label>Até sair do asfalto, na chuva <output data-for="asf_c"></output><input type="range" name="asf_c" min="10" max="300" step="5" value="120"></label>
+      <label>Estrada de terra, no sol <output data-for="ter_s"></output><input type="range" name="ter_s" min="0" max="120" step="5" value="20"></label>
+      <label>Estrada de terra, na chuva <output data-for="ter_c"></output><input type="range" name="ter_c" min="0" max="120" step="5" value="35"></label>
+      <label>Trecho do vizinho, no sol <output data-for="viz_s"></output><input type="range" name="viz_s" min="0" max="60" step="5" value="5"></label>
+      <label>Trecho do vizinho, na chuva <output data-for="viz_c"></output><input type="range" name="viz_c" min="0" max="60" step="5" value="15"></label>
+    </div>
+    <div class="res">
+      <div class="linha tot"><span>Total no sol</span><b data-r="sol"></b></div>
+      <div class="linha tot"><span>Total na chuva</span><b data-r="chuva"></b></div>
+      <div class="linha"><span>Quanto o asfalto mudou</span><b data-r="dAsf"></b></div>
+      <div class="linha"><span>Quanto o fim mudou</span><b data-r="dFim"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="tempo_sol" data-bloco="Bloco 1 · A chegada"></section>
+<section class="s q" data-q="tempo_chuva" data-bloco="Bloco 1 · A chegada"></section>
+
+<section class="s" data-bloco="Bloco 1 · A chegada">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Refaça o caminho na chuva e à noite</p>
+      <h2>O hóspede da pior semana <i>também avalia</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Terra, subida, barro, iluminação, placa.</li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Trecho que fecha ou patina na chuva.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/09-chuva.svg" alt="Asfalto, terra, subida e placa à noite: os últimos quilômetros decidem"></div>
+  </div>
+</section>
+<section class="s q" data-q="trecho_chuva" data-bloco="Bloco 1 · A chegada"></section>
+
+<section class="s" data-bloco="Bloco 1 · O acesso legal">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">De quem é a estrada?</p>
+      <h2>Pública, ou passa pelo <i>terreno do vizinho?</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">"O vizinho sempre deixou passar" é acordo de boca. E acordo de boca não é acesso.</li>
+        <li class="f">Acesso é via pública ou servidão registrada no cartório.</li>
+        <li class="f">Quem confirma é o advogado.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img src="figuras/10-acesso-legal.svg" alt="A estrada pública, o terreno do vizinho e o seu terreno, com o cartório: de quem é a estrada?"></div>
+  </div>
+</section>
+<section class="s q" data-q="estrada" data-bloco="Bloco 1 · O acesso legal"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q" style="font-size:50px">A estrada final passa pelo terreno de um vizinho que "sempre deixou passar". Isso é acesso?</p>
+    <div class="ops">
+      <button class="op">Sim, se ele sempre deixou, está garantido</button>
+      <button class="op" data-certa>Não: acesso é via pública ou servidão registrada no cartório</button>
+      <button class="op">Sim, basta um acordo de boca com o vizinho</button>
+    </div>
+    <p class="exp">Acordo de boca não é acesso. Acesso é via pública ou servidão registrada no cartório, e quem confirma é o advogado.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Sinal e segurança">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">O sinal e a segurança</p>
+      <h2>Teste o celular <i>em três pontos</i></h2>
+      <ul class="lista" style="font-size:30px">
+        <li class="f">Na porteira, no meio e onde vão ficar as unidades. E pergunte aos provedores de internet.</li>
+        <li class="f">Sem sinal onde o hóspede dorme, a segurança e a operação ficam no escuro.</li>
+        <li class="f">Quanto tempo até o hospital, no sol e na chuva? O trecho a pé tem luz?</li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Ambulância que não passa na chuva.</span></p>
+    </div>
+    <div class="figs"><img src="figuras/11-sinal.svg" alt="Teste em três pontos: porteira, meio e unidades"><img src="figuras/12-seguranca.svg" alt="Do terreno ao hospital, no sol e na chuva, e o trecho a pé iluminado"></div>
+  </div>
+</section>
+<section class="s q" data-q="sinal" data-bloco="Bloco 1 · Sinal e segurança"></section>
+<section class="s q" data-q="ambulancia" data-bloco="Bloco 1 · Sinal e segurança"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · A chegada decide">
+  <p class="k">Com a chegada medida, você decide</p>
+  <h2>O que a sua chegada <i>pede?</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Longa e difícil</h3><p>Pede produto premium, para poucos, que pagam pela distância.</p></div>
+    <div class="card f"><h3>Fácil</h3><p>Permite volume.</p></div>
+    <div class="card f"><h3>Nenhum dos dois</h3><p>Às vezes a resposta é essa. Isso também é resposta, e é barata se vier agora.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="chegada_pede" data-bloco="Bloco 1 · A chegada decide"></section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · anote</p>
+  <h2>O seu destino <i>e a sua chegada</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">Você vai usar tudo isso no Pilar 3, quando desenhar o produto. Onde aparece "não sei", é tarefa da semana.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · O chão, a área e os papéis">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · O chão, a área e os papéis</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/mDREG59Nkr4?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 1 · Bloco 2 · O chão, a área e os papéis" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/mDREG59Nkr4" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O chão">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Parada 3 · O chão</p>
+      <h2>O relevo <i>e o solo</i></h2>
+      <ul class="lista" style="font-size:29px">
+        <li class="f">Inclinação de 30% é subir três metros a cada dez para a frente. Acima disso a obra fica cara e limitada, e às vezes é proibida.</li>
+        <li class="f">Quem mede é o topógrafo, com as curvas de nível. Não decida pelo olho.</li>
+        <li class="f">Veja para onde a água da chuva escorre e onde alaga. A sondagem fura o chão para ver o que tem embaixo, e quem faz é o geotécnico.</li>
+      </ul>
+      <p class="sv f"><b>O mais pulado</b><span>A sondagem é o item mais pulado, e o que mais estoura a obra.</span></p>
+    </div>
+    <div class="figs"><img src="figuras/13-relevo.svg" alt="Corte do terreno: 10 metros para a frente e 3 metros para cima é 30%; de cima, as curvas de nível"><img src="figuras/14-solo.svg" alt="Onde alaga e a sondagem: onde a água passa, não se constrói"></div>
+  </div>
+</section>
+<section class="s q" data-q="sondagem" data-bloco="Bloco 2 · O chão"></section>
+
+<section class="s" data-bloco="Bloco 2 · O clima e a vista">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Cada mês do ano, não só o fim de semana de sol</p>
+      <h2>O clima, o sol <i>e a vista</i></h2>
+      <ul class="lista" style="font-size:28px">
+        <li class="f">Chuva, frio, neblina, geada e o mês mais seco, que vai definir a sua água. A série do instituto de meteorologia ajuda.</li>
+        <li class="f">Visite às 7h e às 17h, no mesmo dia: onde nasce e onde se põe o sol, de onde vem o vento.</li>
+        <li class="f">Dê nota de um a cinco para a vista em cada ponto, de funcional a transformadora. Vista não se compra depois da obra.</li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Unidade na sombra do morro.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/15-sol-vento.svg" alt="O caminho do sol às 7h e às 17h, a sombra do morro e o vento"></div>
+  </div>
+</section>
+<section class="s q" data-q="vista" data-bloco="Bloco 2 · O clima e a vista"></section>
+
+<section class="s" data-bloco="Bloco 2 · O vizinho">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">E conheça o vizinho</p>
+      <h2>O silêncio é do lugar, <i>não seu</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">Pocilga, serraria, estrada de caminhão.</li>
+        <li class="f">Volte também à noite.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img src="figuras/16-vizinhanca.svg" alt="A divisa, a serraria e a estrada de caminhão perto das unidades: volte à noite"></div>
+  </div>
+</section>
+<section class="s q" data-q="vizinho" data-bloco="Bloco 2 · O vizinho"></section>
+
+<section class="s" data-bloco="Bloco 2 · Água, energia e esgoto">
+  <p class="k">Parada 4 · A infraestrutura</p>
+  <h2>Água, energia <i>e esgoto</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Água</h3><p>Tem água no mês seco, e você pode usar? Meça a vazão com balde e cronômetro, três vezes, em dias diferentes, no mês mais seco. Ter água não é poder usar: o uso depende de autorização, e quem orienta é o técnico ambiental.</p></div>
+    <div class="card f"><h3>Energia</h3><p>A que distância está o poste, e que tensão chega? Peça à concessionária por escrito.</p><p class="sv" style="font-size:22px"><b>Sinal vermelho</b><span>Resposta só de boca.</span></p></div>
+    <div class="card f"><h3>Esgoto</h3><p>Dimensione para o feriado cheio, com tudo ocupado.</p><p style="font-family:var(--serif);font-size:34px;color:var(--ouro2)">Menos unidades, sim. Menos infraestrutura, nunca.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="agua" data-bloco="Bloco 2 · Água, energia e esgoto"></section>
+<section class="s q" data-q="energia" data-bloco="Bloco 2 · Água, energia e esgoto"></section>
+
+<section class="s" data-bloco="Bloco 2 · A área que sobra">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>A conta que <i>quase ninguém faz</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <div class="conta" style="font-size:32px;gap:10px">
+      <div class="eq f"><span>Área da matrícula</span><span>50.000 m²</span></div>
+      <div class="eq f"><span>− Área de preservação, reserva legal, encosta forte, recuos e área de serviço</span><span></span></div>
+      <div class="eq tot f" data-foco><span>Sobram</span><span>15.000 m²</span></div>
+    </div>
+    <img class="fig-larga f" src="figuras/32-area-util.svg" alt="Da matrícula de 50.000 m² saem APP, encosta forte, reserva legal, recuos e serviço: sobram 15.000 m², 30%">
+  </div>
+  <p class="lead f">Só 30% vira negócio. Agora é a sua vez: a matrícula e cada subtração, uma por tela.</p>
+</section>
+<section class="s q" data-q="area_matricula" data-bloco="Bloco 2 · A área que sobra"></section>
+<section class="s q" data-q="sub_preservacao" data-bloco="Bloco 2 · A área que sobra"></section>
+<section class="s q" data-q="sub_reserva_legal" data-bloco="Bloco 2 · A área que sobra"></section>
+<section class="s q" data-q="sub_encosta" data-bloco="Bloco 2 · A área que sobra"></section>
+<section class="s q" data-q="sub_recuos" data-bloco="Bloco 2 · A área que sobra"></section>
+<section class="s q" data-q="sub_servico" data-bloco="Bloco 2 · A área que sobra"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · A área que sobra" id="s-barra">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · o seu terreno</p><span class="selo">Com as suas respostas</span></div>
+  <h2 style="font-size:60px">A barra <i>que encolhe</i></h2>
+  <div class="sim" data-sim="area" style="gap:48px">
+    <div class="ctl" style="gap:10px">
+      <label>Área da matrícula <output data-for="mat" data-fmt="m2"></output><input type="range" name="mat" min="1000" max="200000" step="500" value="50000"></label>
+      <label>Área de preservação, APP <output data-for="pres" data-fmt="m2"></output><input type="range" name="pres" min="0" max="100000" step="500" value="0"></label>
+      <label>Reserva legal <output data-for="res" data-fmt="m2"></output><input type="range" name="res" min="0" max="100000" step="500" value="0"></label>
+      <label>Encosta forte <output data-for="enc" data-fmt="m2"></output><input type="range" name="enc" min="0" max="100000" step="500" value="0"></label>
+      <label>Recuos e faixas <output data-for="rec" data-fmt="m2"></output><input type="range" name="rec" min="0" max="50000" step="500" value="0"></label>
+      <label>Área de serviço <output data-for="serv" data-fmt="m2"></output><input type="range" name="serv" min="0" max="50000" step="500" value="0"></label>
+    </div>
+    <div class="res">
+      <svg class="barra-area" viewBox="0 0 800 170" style="width:100%;height:190px;display:block"></svg>
+      <div class="linha"><span>Sai da conta</span><b data-r="subs" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Área que você pode usar</span><b data-r="usavel" data-fmt="m2"></b></div>
+      <div class="linha"><span>Quanto da matrícula vira negócio</span><b data-r="pct" data-fmt="pct"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="btn-s2" id="meus-numeros">Voltar aos meus números</button></div>
+      <p class="sm" style="font-size:20px">As barras aqui são para testar. O que vai para a Ficha são as suas respostas.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Os três preços">
+  <span class="selo">Exemplo ilustrativo · terreno de R$ 600 mil</span>
+  <h2>O mesmo terreno, <i>três preços</i></h2>
+  <table class="t" style="font-size:32px">
+    <tr><th>Jeito de olhar</th><th>Conta</th><th>Resultado</th></tr>
+    <tr class="f"><td>Pelo papel</td><td>600.000 ÷ 50.000</td><td class="v">R$ 12 o m²</td></tr>
+    <tr class="f"><td>Pelo que se pode usar</td><td>600.000 ÷ 15.000</td><td class="v">R$ 40 o m²</td></tr>
+    <tr class="f"><td>Por unidade, se couberem cinco</td><td>600.000 ÷ 5</td><td class="v">R$ 120 mil</td></tr>
+  </table>
+  <p class="lead f">Quem negocia pela área do papel paga pelo metro que nunca vai usar.</p>
+</section>
+<section class="s q" data-q="preco_terreno" data-bloco="Bloco 2 · Os três preços"></section>
+<section class="s q" data-q="investimento_total" data-bloco="Bloco 2 · Os três preços"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quantas unidades cabem">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <p class="k">E quantas unidades cabem?</p>
+      <h2>Quatro limites. <i>Quem manda é o menor.</i></h2>
+      <ul class="lista num" style="font-size:28px;gap:12px">
+        <li class="f"><span><b>Físico:</b> com afastamento entre as unidades.</span></li>
+        <li class="f"><span><b>Infraestrutura:</b> água, energia e esgoto.</span></li>
+        <li class="f"><span><b>Experiência:</b> a partir de quantas um hóspede vê ou ouve o outro.</span></li>
+        <li class="f"><span><b>Mercado:</b> você mede na próxima aula, no Pilar 2.</span></li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Projetar só pelo que cabe.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/20-quatro-limites.svg" alt="Quatro barras, físico, infraestrutura, experiência e mercado: manda o menor"></div>
+  </div>
+</section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Dos quatro limites, qual decide quantas unidades o lugar aguenta?</p>
+    <div class="ops">
+      <button class="op">O maior, porque é o que cabe</button>
+      <button class="op">A média dos quatro</button>
+      <button class="op" data-certa>O menor</button>
+    </div>
+    <p class="exp">Quem manda é sempre o menor. Projetar só pelo que cabe é sinal vermelho.</p>
+  </div>
+</section>
+<section class="s q" data-q="limite_fisico" data-bloco="Bloco 2 · Quantas unidades cabem"></section>
+<section class="s q" data-q="limite_infra" data-bloco="Bloco 2 · Quantas unidades cabem"></section>
+<section class="s q" data-q="limite_experiencia" data-bloco="Bloco 2 · Quantas unidades cabem"></section>
+
+<section class="s" data-bloco="Bloco 2 · Os papéis">
+  <p class="k">Parada 6 · Os papéis</p>
+  <h2 style="font-size:64px">O que trava não se vê andando: <i>se vê lendo papel</i></h2>
+  <div class="grid g2 docs2" style="gap:22px 32px">
+    <div class="card f"><span class="n">1</span><h3>A matrícula</h3><p>No cartório de registro de imóveis. Diz quem é dono e o que pesa sobre o terreno: área, vizinhos, ônus, penhora, herança. Peça a atualizada.</p></div>
+    <div class="card f"><span class="n">2</span><h3>O CAR</h3><p>O cadastro ambiental: mostra a área de preservação e a reserva legal, a parte intocável. É gratuito e público.</p></div>
+    <div class="card f"><span class="n">3</span><h3>A zona</h3><p>No plano diretor da prefeitura: se ali pode hospedagem, quanto pode ocupar, os recuos e a altura.</p><p class="sv" style="font-size:22px"><b>Sinal vermelho</b><span>Projeto que depende de mudar a zona.</span></p></div>
+    <div class="card f"><span class="n">4</span><h3>A consulta prévia</h3><p>Você pergunta à prefeitura, por escrito, se o que quer fazer é permitido, e ela responde por escrito. "Acho que pode" no balcão não protege ninguém.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="documentos" data-bloco="Bloco 2 · Os papéis"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quem verifica">
+  <p class="k">Você não faz tudo</p>
+  <h2>Você sabe <i>quem faz</i></h2>
+  <img class="fig-larga" style="max-height:520px" src="figuras/33-quem-verifica.svg" alt="Advogado e técnico ambiental: comece aqui. Depois topógrafo, geotécnico, concessionárias e prefeitura">
+  <p class="lead f">Comece pelo advogado e pelo técnico ambiental. Depois o topógrafo, o geotécnico, as concessionárias e a prefeitura. Cada um fecha uma parte do seu checklist.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · O checklist do território">
+  <p class="k">No fim</p>
+  <h2>O checklist <i>do território</i></h2>
+  <div class="grid g3" style="gap:20px">
+    <div class="card f"><h3>Seis caixas</h3><p>Destino, chegada, chão, infraestrutura, área e papéis.</p></div>
+    <div class="card f"><h3>Cada caixa marcada</h3><p>Com documento, fato, opinião ou "não sei".</p></div>
+    <div class="card f"><h3>Compromisso de 7 dias</h3><p>Pedir a matrícula atualizada e o CAR, e fazer as subtrações. Se já tem os dois, pedir à concessionária, por escrito, a distância até o poste e a tensão.</p></div>
+  </div>
+  <p class="lead f">Quem faz, até quando, e a evidência na mão.</p>
+</section>
+<section class="s q" data-q="caminho_leitura" data-bloco="A sua leitura"></section>
+
+<section class="s" data-bloco="A sua Ficha">
+  <p class="k">Para a Ficha sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Nada é enviado nesta aula: a ferramenta da Ficha usa o seu e-mail só quando você pedir o mentor de IA ou baixar o PDF.</p>
+</section>
+
+<section class="s" data-bloco="O seu resultado" id="s-resultado">
+  <div class="rs" data-sem-clique id="rs"></div>
+</section>
+
+<section class="s esc" data-bloco="Gere a sua Ficha" id="s-gerar">
+  <p class="k">Último passo</p>
+  <h2>Gere a sua <i>Ficha do Território</i></h2>
+  <div class="exe" style="grid-template-columns:1.2fr .8fr">
+    <div class="passos">
+      <div class="passo"><b>1</b><span>Toque no botão. A ferramenta da Ficha abre <strong>com as suas respostas</strong>.</span></div>
+      <div class="passo"><b>2</b><span>Se ela abrir na tela inicial, toque em <strong>"Continuar de onde parei"</strong>. Você cai direto na sua Ficha e ainda pode revisar as respostas.</span></div>
+      <div class="passo"><b>3</b><span>Peça a leitura do mentor de IA, escreva o seu critério para parar e o compromisso de 7 dias, e <strong>baixe o PDF</strong>.</span></div>
+    </div>
+    <div class="lado-qr" style="gap:22px" data-sem-clique>
+      <a class="btn-g" id="abrir-ficha" href="#" target="_blank" rel="noopener">Abrir a minha Ficha</a>
+      <p class="sm" id="gerar-st" style="text-align:center"></p>
+      <p class="sm" style="text-align:center">Use o mesmo aparelho e o mesmo navegador desta aula: as respostas ficam guardadas aqui.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/db90b57ddd.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 2</p>
+  <h2 style="max-width:1150px">Mercado <i>e demanda</i></h2>
+  <p class="lead" style="max-width:1050px">Quem vende o mesmo que você, a diária e a ocupação de verdade, a curva do ano, quem paga e por quê, e quantas unidades o destino compra. Só siga com a Ficha do Território na mão.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas. Temas jurídicos, ambientais e urbanísticos aparecem em nível introdutório: quem confirma no seu caso é o advogado, o contador ou a prefeitura, e também o técnico ambiental e o topógrafo. Não é avaliação de terreno nem oferta de investimento, e não é promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Parte copiada da ferramenta Faça agora do Pilar 1 (aula1/index.html):
+   as contas (ZionCalc), as perguntas (QUESTOES), o estado e a leitura.
+   Mesmo formato de gravação: chave "zion-t1-aula1".
+   =================================================================== */
+const CHAVE = "zion-t1-aula1";
+const CHAVE_ANTIGA = "zion-etapa1-territorio-v1";
+// [copiado da ferramenta, sem mudar a lógica]
+const ZionCalc = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else {
+      const pontos = (s.match(/\./g) || []).length;
+      if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  const num = (r, id) => paraNumero(r[id]);
+  function escolha(r, id) {
+    const v = r[id];
+    if (v === "nao_sei") return "nao_sei";
+    if (typeof v === "number") return String(v);
+    if (typeof v !== "string") return null;
+    const t = v.trim();
+    return t === "" ? null : t;
+  }
+  function lista(r, id, permitidos) {
+    const v = r[id];
+    let arr = [];
+    if (Array.isArray(v)) arr = v.map((x) => String(x).trim());
+    else if (typeof v === "string" && v !== "nao_sei" && v.trim() !== "") arr = v.split(/[,;\n]/).map((x) => x.trim());
+    else if (typeof v === "number") arr = [String(v)];
+    arr = arr.filter((x) => x !== "" && x !== "nao_sei");
+    if (permitidos) arr = arr.filter((x) => permitidos.includes(x));
+    return Array.from(new Set(arr));
+  }
+  function ok(...xs) { return xs.every((x) => typeof x === "number" && Number.isFinite(x)); }
+  function div(a, b) {
+    if (!ok(a, b) || b === 0) return null;
+    const q = a / b;
+    return Number.isFinite(q) ? q : null;
+  }
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas);
+    const y = Math.abs(x) * f;
+    const r = Math.round(y + 1e-7) / f;
+    const res = x < 0 ? -r : r;
+    return Object.is(res, -0) ? 0 : res;
+  }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) {
+    const r = arred(x, casas);
+    const neg = r < 0;
+    const [i, d] = Math.abs(r).toFixed(casas).split(".");
+    return (neg ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : "");
+  }
+  function fmtN(x, casasMax = 2) {
+    const s = fmtNum(x, casasMax);
+    if (!s.includes(",")) return s;
+    return s.replace(/,?0+$/, "");
+  }
+  function brl(x) {
+    const r = arred(x, 2);
+    return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2);
+  }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) {
+    if (itens.length === 0) return "";
+    if (itens.length === 1) return itens[0];
+    return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+  }
+  const limpaNumero = (x, casas) => (Number.isFinite(x) ? arred(x, casas) : null);
+  const limpaTexto = (s) => s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2013/g, "-");
+  function limpaDetalhe(v, casas) {
+    if (typeof v === "number") return limpaNumero(v, casas);
+    if (typeof v === "string") return limpaTexto(v);
+    if (Array.isArray(v)) return v.map(limpaTexto);
+    return v;
+  }
+  function fechar(c, casas = 2) {
+    const out = {
+      id: c.id,
+      rotulo: limpaTexto(c.rotulo),
+      valor: typeof c.valor === "number" ? limpaNumero(c.valor, casas) : typeof c.valor === "string" ? limpaTexto(c.valor) : c.valor,
+      texto: limpaTexto(c.texto),
+    };
+    if (c.alerta) out.alerta = c.alerta;
+    if (c.detalhes) {
+      out.detalhes = {};
+      for (const [k, v] of Object.entries(c.detalhes)) out.detalhes[k] = limpaDetalhe(v, 4);
+    }
+    return out;
+  }
+
+  const SUBS = [["sub_preservacao", "preservação"], ["sub_reserva_legal", "reserva legal"], ["sub_encosta", "encosta forte"], ["sub_recuos", "recuos e faixas"], ["sub_servico", "área de serviço"]];
+  const LIMITES = [["limite_fisico", "físico"], ["limite_infra", "de infraestrutura"], ["limite_experiencia", "de experiência"], ["limite_mercado", "de mercado"]];
+  const DOCS = [["matricula", "matrícula atualizada"], ["car", "CAR"], ["zoneamento", "zoneamento"], ["consulta_previa", "consulta prévia"]];
+  const CAMPOS_NS = ["sub_preservacao", "sub_reserva_legal", "sub_encosta", "sub_recuos", "sub_servico", "preco_terreno", "investimento_total", "limite_fisico", "limite_infra", "limite_experiencia", "limite_mercado", "caminho_leitura"];
+  const m2 = (x) => `${fmtN(x, 2)} m²`;
+
+  function calcular(r) {
+    const calculos = [];
+    // 1. area_usavel
+    const areaMat = num(r, "area_matricula");
+    const subsFaltando = SUBS.filter(([id]) => num(r, id) === null).map(([, n]) => n);
+    const somaSubs = SUBS.reduce((s, [id]) => s + (num(r, id) ?? 0), 0);
+    const areaUsavel = areaMat !== null && areaMat > 0 ? areaMat - somaSubs : null;
+    const provisoria = subsFaltando.length > 0;
+    {
+      let t, alerta;
+      if (areaUsavel === null) {
+        t = "Falta a área da matrícula: sem ela não dá para subtrair nada.";
+      } else {
+        t = `Área que você pode usar: ${m2(areaMat)} da matrícula menos ${m2(somaSubs)} de subtrações = ${m2(areaUsavel)}.`;
+        if (provisoria) t += ` No máximo e provisória: ${juntar(subsFaltando)} em Não sei entrou como zero. Cada Não sei vira tarefa.`;
+        if (areaUsavel <= 0) {
+          t += " As subtrações passam da área da matrícula: confira os números com o CAR e o topógrafo.";
+          alerta = "critico";
+        }
+      }
+      calculos.push({ id: "area_usavel", rotulo: "Área que você pode usar", valor: areaUsavel, texto: t, alerta, detalhes: { subtracoes_m2: somaSubs, provisoria, em_nao_sei: subsFaltando } });
+    }
+    const usavelPos = areaUsavel !== null && areaUsavel > 0 ? areaUsavel : null;
+    // 2. pct_usavel
+    const pctUsavel = div(usavelPos, areaMat);
+    calculos.push({
+      id: "pct_usavel", rotulo: "Quanto da matrícula vira negócio", valor: pctUsavel === null ? null : pctUsavel * 100,
+      texto: pctUsavel === null ? "Sem a área usável, a porcentagem fica em branco." : `${fmtPct(pctUsavel)} da matrícula vira negócio${provisoria ? " (no máximo, provisório)" : ""}.`,
+    });
+    // capacidade (calculada antes; mostrada na ordem do JSON)
+    const lims = LIMITES.map(([id, nome]) => ({ id, nome, v: num(r, id) }));
+    const conhecidos = lims.filter((l) => l.v !== null);
+    const faltamLim = lims.filter((l) => l.v === null);
+    const capacidade = conhecidos.length ? Math.min(...conhecidos.map((l) => l.v)) : null;
+    const mandam = capacidade === null ? [] : conhecidos.filter((l) => l.v === capacidade);
+    // 3. tres_precos
+    const preco = num(r, "preco_terreno");
+    const pM2Total = div(preco, areaMat);
+    const pM2Usavel = div(preco, usavelPos);
+    const pUnidade = div(preco, capacidade);
+    {
+      let t;
+      if (preco === null) t = "Falta o valor do terreno: os três preços ficam em branco.";
+      else {
+        const partes = [
+          pM2Total !== null ? `${brl(pM2Total)} por m² total` : "por m² total em branco",
+          pM2Usavel !== null ? `${brl(pM2Usavel)} por m² que você pode usar` : "por m² usável em branco (falta a área usável)",
+          pUnidade !== null ? `${brl(pUnidade)} por unidade possível` : "por unidade em branco (falta a capacidade)",
+        ];
+        t = `O mesmo terreno de ${brl(preco)}: ${partes.join("; ")}. O preço por m² usável é o número da negociação; o preço por unidade conversa com o investimento.`;
+      }
+      calculos.push({ id: "tres_precos", rotulo: "Os três preços do terreno", valor: pM2Usavel, texto: t, detalhes: { preco_m2_total: pM2Total, preco_m2_usavel: pM2Usavel, preco_por_unidade: pUnidade } });
+    }
+    // 4. capacidade
+    {
+      let t;
+      if (capacidade === null) t = "Nenhum dos quatro limites foi preenchido: a capacidade fica em branco. O de mercado se mede no Pilar 2, Mercado e demanda.";
+      else {
+        t = `O lugar aguenta ${fmtN(capacidade)} unidades: é o menor dos limites. Quem manda é o limite ${juntar(mandam.map((l) => l.nome))}.`;
+        if (faltamLim.length) {
+          t += ` Provisória: falta o limite ${juntar(faltamLim.map((l) => l.nome))}.`;
+          if (faltamLim.some((l) => l.id === "limite_mercado")) t += " O de mercado se mede no Pilar 2, Mercado e demanda.";
+        }
+      }
+      calculos.push({ id: "capacidade", rotulo: "Quantas unidades o lugar aguenta, e qual limite manda", valor: capacidade, texto: t, detalhes: { limite_que_manda: mandam.map((l) => l.id), provisoria: faltamLim.length > 0, limites_faltando: faltamLim.map((l) => l.id) } });
+    }
+    // 5. ilusao_preco
+    const fisico = num(r, "limite_fisico");
+    const ilusao = div(fisico, capacidade);
+    calculos.push({
+      id: "ilusao_preco", rotulo: "Quanto o terreno parece mais barato se contar pelo que cabe", valor: ilusao,
+      texto: ilusao === null ? "Falta o limite físico ou a capacidade para comparar." : `Contar pelo limite físico (${fmtN(fisico)} unidades) em vez da capacidade (${fmtN(capacidade)}) faz o terreno parecer ${fmtN(ilusao, 2)} vezes mais barato do que é.`,
+    });
+    // 6. peso_terreno
+    const invest = num(r, "investimento_total");
+    const peso = div(preco, invest);
+    {
+      let t, alerta;
+      const regra = "Regra de bolso: até 10% fora do alerta; de 10% a 20% sensível; acima de 20% alerta aceso.";
+      if (peso === null) t = `Peso a calcular: falta ${preco === null ? "o valor do terreno" : "o investimento total"}. ${regra}`;
+      else if (peso > 0.2) { t = `O terreno pesa ${fmtPct(peso)} do investimento total: alerta aceso. ${regra}`; alerta = "critico"; }
+      else if (peso > 0.1) { t = `O terreno pesa ${fmtPct(peso)} do investimento total: zona da regra de bolso, sensível. ${regra}`; alerta = "atencao"; }
+      else { t = `O terreno pesa ${fmtPct(peso)} do investimento total: fora do alerta. ${regra}`; alerta = "ok"; }
+      calculos.push({ id: "peso_terreno", rotulo: "Quanto o terreno pesa no investimento total", valor: peso === null ? null : peso * 100, texto: t, alerta });
+    }
+    // 7. documentos_faltando
+    const temDocs = lista(r, "documentos", DOCS.map(([v]) => v));
+    const faltamDocs = DOCS.filter(([v]) => !temDocs.includes(v));
+    calculos.push({
+      id: "documentos_faltando", rotulo: "Documentos que faltam",
+      valor: faltamDocs.length ? faltamDocs.map(([, n]) => n).join(", ") : "nenhum",
+      texto: faltamDocs.length ? `Faltam ${faltamDocs.length} de 4 documentos: ${juntar(faltamDocs.map(([, n]) => n))}.` : "Os quatro documentos estão na mão.",
+      alerta: faltamDocs.some(([v]) => v === "matricula" || v === "car") ? "atencao" : faltamDocs.length ? undefined : "ok",
+      detalhes: { faltam: faltamDocs.map(([v]) => v) },
+    });
+    // 8. conta_nao_sei
+    const ns = CAMPOS_NS.filter((id) => falta(r[id]));
+    calculos.push({
+      id: "conta_nao_sei", rotulo: "Quantos Não sei", valor: ns.length,
+      texto: ns.length ? `${ns.length} Não sei (ou em branco). Cada um vira uma tarefa: em leitura de terreno, não saber custa igual a estar errado.` : "Nenhum Não sei.",
+      detalhes: { campos: ns },
+    });
+    // 9. veredito_sugerido
+    const caminho = escolha(r, "caminho_leitura");
+    const faltaMatCar = faltamDocs.some(([v]) => v === "matricula" || v === "car");
+    let v, motivo;
+    if (caminho === "trocar") {
+      v = "pausar"; motivo = "Caminho \"trocar de terreno\": existe um limite que não se resolve. Muda-se o terreno, não o projeto.";
+    } else if (caminho === "renegociar" || (peso !== null && peso > 0.2)) {
+      v = "ajustar";
+      motivo = caminho === "renegociar" ? "Caminho \"renegociar\": o terreno pesa demais no investimento." : `O terreno pesa ${fmtPct(peso)} do investimento, acima de 20% pela regra de bolso.`;
+    } else if (peso === null || caminho === "investigar" || ns.length > 0 || faltaMatCar) {
+      v = "testar";
+      const m = [];
+      if (caminho === "investigar") m.push("o caminho é investigar antes");
+      if (ns.length > 0) m.push(`há ${ns.length} Não sei`);
+      if (faltaMatCar) m.push("falta matrícula ou CAR");
+      if (peso === null && ns.length === 0) m.push("o peso do terreno está em branco");
+      motivo = `Testar: ${juntar(m)}. Não desenha nem põe dinheiro antes de medir.`;
+    } else {
+      v = "avancar";
+      motivo = "Caminho \"seguir\": área usável com fonte, os quatro limites preenchidos e o peso do terreno fora do alerta.";
+    }
+    calculos.push({ id: "veredito_sugerido", rotulo: "Veredito sugerido pela página", valor: v, texto: motivo });
+    return { calculos: calculos.map((c) => fechar(c)), veredito_sugerido: v, motivo_veredito: motivo };
+  }
+  return { calcular, paraNumero, falta, fmtN, brl, fmtPct, juntar, arred };
+})();
+const FONTES = [
+  { v: "doc", nota: 3, rot: "De um documento ou de uma medida (matrícula, CAR, topógrafo, prefeitura, concessionária)" },
+  { v: "prof", nota: 2, rot: "Um profissional me falou, mas ainda não tenho no papel" },
+  { v: "est", nota: 1, rot: "É estimativa minha, do vendedor ou do corretor" },
+];
+
+const QUESTOES = [
+  {
+    id: "area_matricula", tipo: "numero", unidade: "m²", nota: true, aceitaNS: false, curto: "Área da matrícula",
+    pergunta: "Qual é o tamanho do seu terreno, do jeito que está escrito na matrícula?",
+    explica: "A matrícula é o registro do imóvel no cartório. Escreva em metros quadrados (m²). Um hectare tem 10.000 m²: se a matrícula diz 5 hectares, escreva 50.000.",
+    porque: "É o ponto de partida de todas as contas. Mas é só o número do papel: nas próximas telas você vai tirar dele os pedaços que não podem virar negócio. Quem negocia pelo papel paga pelo metro que nunca vai usar.",
+    onde: "<p>Na <b>matrícula atualizada</b>, que se pede no <b>cartório de registro de imóveis</b> da cidade do terreno. Ela mostra a área, os vizinhos, os donos e os ônus (algo que pesa sobre o imóvel, como hipoteca ou penhora).</p>",
+    marina: "A matrícula da Marina diz 50.000 m² (5 hectares).",
+    ondeCurto: "pedir a matrícula atualizada no cartório de registro de imóveis",
+  },
+  {
+    id: "sub_preservacao", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Área de preservação",
+    pergunta: "Quanto do terreno é área de preservação?",
+    explica: "São os pedaços que a natureza protege: a margem de rio ou riacho, o entorno de nascente, o topo de morro. Eles não entram na conta do que você pode construir.",
+    porque: "Nenhuma dessas áreas aparece numa visita de sábado de sol. E cada metro dela sai da área que vira negócio. Se você não sabe, marque Não sei: a conta segue, e isso vira uma tarefa da semana.",
+    onde: "<p>No mapa do <b>CAR, o Cadastro Ambiental Rural</b>: o registro público que mostra no mapa a preservação e a reserva legal do imóvel rural. Ele fica no sistema do Cadastro Ambiental Rural. Quem confirma no seu caso é o <b>técnico ambiental</b>, não o vendedor nem o olho.</p>",
+    marina: "Na Marina, o riacho e a nascente tiram 12.000 m².",
+    ondeCurto: "conferir no mapa do CAR, com o técnico ambiental",
+  },
+  {
+    id: "sub_reserva_legal", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Reserva legal",
+    pergunta: "Quanto do terreno é reserva legal?",
+    explica: "Reserva legal é a parte da mata nativa que precisa ficar de pé no imóvel rural. O percentual varia por bioma (o tipo de natureza do lugar: serra, litoral, campo, mata, cerrado) e por região.",
+    porque: "É mais um pedaço que sai da conta. Como o percentual muda de lugar para lugar, ninguém deve chutar: o número certo está no papel.",
+    onde: "<p>Também no <b>CAR</b>, desenhada no mapa. Quem confirma é o <b>técnico ambiental</b>.</p>",
+    marina: "Na Marina, a reserva legal tira 10.000 m².",
+    ondeCurto: "conferir no mapa do CAR, com o técnico ambiental",
+  },
+  {
+    id: "sub_encosta", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Encosta forte",
+    pergunta: "Quanto do terreno é encosta forte, muito inclinada?",
+    explica: "Encosta forte é a parte do terreno tão inclinada que construir fica caro e limitado.",
+    porque: "Acima de 30% de inclinação, a encosta é área cara e limitada, com contenção e drenagem. Acima de 45 graus, é área de preservação permanente e não entra na sua conta de construção. São duas medidas diferentes, uma em porcentagem e outra em graus. Confira o seu caso com o topógrafo.",
+    onde: "<p>Quem mede é o <b>topógrafo</b>, com o levantamento das curvas de nível. Não decida pelo olho. Se ainda não tem o levantamento, marque Não sei.</p>",
+    marina: "Na Marina, a encosta forte tira 8.000 m².",
+    ondeCurto: "pedir ao topógrafo o levantamento com curvas de nível",
+  },
+  {
+    id: "sub_recuos", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Recuos e faixas",
+    pergunta: "Quanto do terreno fica em recuos e faixas?",
+    explica: "Recuo é a distância obrigatória que a construção precisa manter da divisa com o vizinho, da estrada e da rede elétrica. Essa faixa fica livre.",
+    porque: "Parece pouco, mas soma: uma faixa ao longo de cada divisa e da estrada sai da área que você pode usar.",
+    onde: "<p>A <b>prefeitura</b> informa os recuos da sua zona (no plano diretor e no zoneamento). A <b>concessionária de energia</b> informa a faixa da rede elétrica.</p>",
+    marina: "Na Marina, os recuos e faixas tiram 1.500 m².",
+    ondeCurto: "perguntar os recuos à prefeitura e a faixa da rede à concessionária",
+  },
+  {
+    id: "sub_servico", tipo: "numero", unidade: "m²", nota: true, aceitaNS: true, curto: "Área de serviço",
+    pergunta: "Quanto do terreno o projeto vai precisar para serviço?",
+    explica: "Área de serviço é o que o empreendimento ocupa fora das unidades: o acesso, o estacionamento, o reservatório de água, o tratamento de esgoto.",
+    porque: "Hóspede não dorme no estacionamento, mas ele precisa existir. Quem esquece essa área enche o terreno de unidades no papel e descobre na obra que faltou espaço.",
+    onde: "<p>Nesta etapa, é uma estimativa sua, pensando no que o projeto vai precisar. Mais adiante, o desenho do arquiteto confirma.</p>",
+    marina: "A Marina reservou 3.500 m² para serviço. Total que sai: 35.000 m². Sobram 15.000 m², 30% da matrícula.",
+    ondeCurto: "estimar com o arquiteto o que acesso, estacionamento, reservatório e esgoto ocupam",
+  },
+  {
+    id: "preco_terreno", tipo: "moeda", unidade: "R$", nota: true, aceitaNS: true, curto: "Valor do terreno",
+    pergunta: "Quanto vale o terreno?",
+    explica: "Se você vai comprar, é o preço pedido. Se o terreno já é seu, é o valor dele hoje. Terreno que já é seu também entra na conta: é dinheiro seu que está sendo colocado no negócio.",
+    porque: "Com esse número a ferramenta mostra os três preços do mesmo terreno: por m² total, por m² que você pode usar e por unidade possível. Um terreno de quinhentos mil pode ser caríssimo, e um de três milhões pode ser barato: depende do negócio que ele permite.",
+    onde: "<p>No anúncio ou na proposta do vendedor, se vai comprar. Se já é seu, use o valor pelo qual você o venderia hoje. Escreva só números, por exemplo 600.000.</p>",
+    marina: "A Marina comprou o terreno por R$ 600.000.",
+    ondeCurto: "confirmar o preço pedido ou o valor de hoje",
+  },
+  {
+    id: "investimento_total", tipo: "moeda", unidade: "R$", nota: true, aceitaNS: true, curto: "Investimento total imaginado",
+    pergunta: "Quanto você imagina investir no total?",
+    explica: "Investimento total é o terreno, mais o que se gasta para construir e equipar, mais o capital de giro do começo (o dinheiro para manter a operação nos primeiros meses).",
+    porque: "Existe uma regra de bolso, que é alerta e não é lei: em hospedagem de experiência, quando o terreno passa de algo entre 10% e 20% do investimento total, o empreendimento fica sensível. Sem este número, o peso do terreno fica a calcular.",
+    onde: "<p>Nesta etapa, é a sua estimativa. Se ainda não tem ideia, marque Não sei: a conta completa do investimento vem mais adiante na trilha.</p>",
+    marina: "A Marina imagina investir R$ 2.220.000 no total. O terreno pesa 27% disso, e a regra de bolso acendeu.",
+    ondeCurto: "fazer uma primeira estimativa de terreno, obra, equipamento e capital de giro",
+  },
+  {
+    id: "limite_fisico", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite físico",
+    pergunta: "Quantas unidades cabem na área que você pode usar, com espaço entre elas e caminhos?",
+    explica: "Unidade é cada chalé, cabana, bolha ou quarto que você vende. Aqui a pergunta é só de espaço: quantas cabem com afastamento e circulação.",
+    porque: "É o primeiro dos quatro limites do lugar. Caber não é a mesma coisa que aguentar: o espaço é só um dos limites, e quem manda é sempre o menor deles.",
+    onde: "<p>Ande o terreno, ou marque no mapa do CAR, deixando espaço entre as unidades e para os caminhos. Depois, o arquiteto confirma.</p>",
+    marina: "No terreno da Marina cabem 12 unidades com afastamento.",
+    ondeCurto: "marcar no mapa as unidades com afastamento e caminhos, e pedir ao arquiteto para conferir",
+  },
+  {
+    id: "limite_infra", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite de infraestrutura",
+    pergunta: "Para quantas unidades dá água, energia e esgoto?",
+    explica: "Infraestrutura é o que faz a unidade funcionar: água, luz e esgoto. A água se mede no mês mais seco do ano.",
+    porque: "Energia e esgoto são destruidores silenciosos de orçamento: o sistema que serve uma casa não serve cinco cabanas cheias no feriado. E construa menos unidades, nunca menos infraestrutura: puxar energia, água e esgoto duas vezes custa muito mais.",
+    onde: "<ul><li><b>Água:</b> no mês mais seco, meça com balde e cronômetro quantos litros a fonte entrega por hora. Litros por hora × 24, menos 20% de reserva, menos o consumo da equipe e das áreas comuns, dividido pelo consumo de cada unidade por dia. Ter água não é poder usar: a captação costuma pedir outorga, e o técnico diz se precisa.</li><li><b>Energia:</b> peça à concessionária, por escrito, a distância até o poste e a tensão disponível.</li><li><b>Esgoto:</b> projetista habilitado e órgão ambiental, para a ocupação de pico.</li></ul>",
+    marina: "Na Marina, a infraestrutura dá para 10 unidades.",
+    ondeCurto: "ligar para a concessionária (distância até o poste e tensão) e medir a água no mês mais seco",
+  },
+  {
+    id: "limite_experiencia", tipo: "numero", unidade: "unidades", nota: true, aceitaNS: true, curto: "Limite de experiência",
+    pergunta: "A partir de quantas unidades um hóspede começa a ver ou ouvir o outro?",
+    explica: "É o limite da experiência: quantas unidades cabem sem que a vista, o silêncio e a privacidade de um hóspede atrapalhem os outros.",
+    porque: "A unidade que, para caber, tomou o ponto da melhor vista ou ficou perto o bastante para ouvir a vizinha derruba a diária de todas as outras. Às vezes a melhor decisão é construir menos.",
+    onde: "<p>Só você descobre, andando o terreno. Faça duas visitas no mesmo dia, às 7h e às 17h: anote e fotografe o sol, o vento, o silêncio e a vista mais forte. Depois conte.</p>",
+    marina: "Na Marina, a partir de 7 unidades um hóspede vê ou ouve o outro.",
+    ondeCurto: "fazer as duas visitas, às 7h e às 17h, com fotos, e contar",
+  },
+  {
+    id: "documentos", tipo: "multipla", nota: false, aceitaNS: false, curto: "Documentos na mão",
+    pergunta: "Quais destes documentos você já tem na mão?",
+    explica: "Marque só o que está com você, em papel ou em arquivo. Pode não marcar nenhum: é uma resposta honesta.",
+    opcoes: [
+      { v: "matricula", rot: "Matrícula atualizada" },
+      { v: "car", rot: "CAR com o mapa" },
+      { v: "zoneamento", rot: "Zona confirmada: permite hospedagem" },
+      { v: "consulta_previa", rot: "Consulta prévia protocolada" },
+    ],
+    porque: "Quem compra acredita. Quem desenvolve verifica. O que trava um empreendimento não se vê andando no terreno: se vê lendo papel. Quanto mais cedo o risco aparece, mais barato é resolver.",
+    onde: "<ul><li><b>Matrícula atualizada:</b> cartório de registro de imóveis.</li><li><b>CAR:</b> sistema do Cadastro Ambiental Rural.</li><li><b>Plano diretor e zoneamento:</b> prefeitura. Dizem se hospedagem é permitida naquela zona, e com quais regras.</li><li><b>Consulta prévia protocolada:</b> prefeitura. É a pergunta por escrito sobre o que você quer fazer. Quase ninguém faz, e é ela que troca o \"acho que pode\" pelo \"a prefeitura respondeu que pode\".</li></ul>",
+    marina: "A Marina tem a matrícula atualizada e o CAR.",
+  },
+  {
+    id: "caminho_leitura", tipo: "escolha", nota: false, aceitaNS: true, curto: "Caminho escolhido",
+    pergunta: "Pelo que você viu até aqui, qual caminho faz sentido hoje?",
+    explica: "Olhe o resumo das suas contas logo abaixo e escolha com honestidade. A pergunta mais importante: se este terreno não fosse seu, você o compraria hoje, depois desta leitura?",
+    opcoes: [
+      { v: "seguir", rot: "Seguir: está tudo verificado e a conta cabe" },
+      { v: "renegociar", rot: "Renegociar: o terreno pesa demais" },
+      { v: "investigar", rot: "Investigar antes: ainda tenho Não sei que importa" },
+      { v: "trocar", rot: "Trocar de terreno: tem um limite que não se resolve" },
+    ],
+    porque: "Depois da leitura do terreno existem quatro caminhos. Escolher um, por escrito, impede que a decisão seja tomada pelo entusiasmo. A ferramenta compara a sua escolha com as contas e pode sugerir um caminho mais cauteloso.",
+    onde: "<p>No resumo abaixo, que a ferramenta montou com as suas respostas. \"Depois a gente resolve\" é a crença mais cara: quase tudo o que se ignora antes da compra custa muito mais depois.</p>",
+    marina: "A Marina escolheu investigar antes: ela ainda não mediu o mercado.",
+    ondeCurto: "reler as contas e escolher um caminho",
+  },
+];
+const ITENS_NOTA = QUESTOES.filter((q) => q.nota);
+const NOTA_MAX = ITENS_NOTA.length * 3;
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+function estadoVazio() {
+  return { perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, passo: -1, criterio: null, compromisso: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  try {
+    const raw = window.localStorage.getItem(CHAVE) || window.localStorage.getItem(CHAVE_ANTIGA);
+    if (!raw) return null;
+    const d = JSON.parse(raw);
+    if (!d || typeof d !== "object" || !d.perfil) return null;
+    return Object.assign(estadoVazio(), d);
+  } catch (e) { return null; }
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() {
+  try { window.localStorage.removeItem(CHAVE); window.localStorage.removeItem(CHAVE_ANTIGA); } catch (e) {}
+}
+
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const { fmtN, brl, fmtPct, juntar, paraNumero } = ZionCalc;
+const ehNS = (v) => v === "nao_sei";
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const calc = (res, id) => res.calculos.find((c) => c.id === id);
+/** Textos da calculadora com a numeração nova da trilha (o mercado agora é o Pilar 2). */
+const textoTela = (t) => t.replace(/O de mercado, medir no Pilar 3\./g, "O de mercado se mede no Pilar 2, Mercado e demanda.").replace(/O de mercado se mede no Pilar 3\./g, "O de mercado se mede no Pilar 2, Mercado e demanda.");
+
+function respostasParaCalculo() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas) r[q.id] = S.respostas[q.id];
+  return r;
+}
+
+function notaItem(q) {
+  const v = S.respostas[q.id];
+  if (v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = FONTES.find((x) => x.v === S.fontes[q.id]);
+  return f ? f.nota : 1;
+}
+
+function hojeISO(desloc = 0) {
+  const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc);
+  return d.toISOString().slice(0, 10);
+}
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+const LEITURAS = {
+  avancar: { rot: "Seguir", sub: "Território lido: siga para o Pilar 2 e meça o mercado." },
+  testar: { rot: "Investigar antes", sub: "Ainda há o que medir antes de desenhar ou pôr dinheiro." },
+  ajustar: { rot: "Ajustar: renegociar", sub: "A conta do terreno precisa mudar antes de seguir." },
+  pausar: { rot: "Pausar: trocar de terreno", sub: "Muda-se o terreno, não o projeto." },
+};
+
+function ler() {
+  const r = respostasParaCalculo();
+  const res = ZionCalc.calcular(r);
+  const area = calc(res, "area_usavel"), cap = calc(res, "capacidade"), peso = calc(res, "peso_terreno"), docs = calc(res, "documentos_faltando");
+  const faltam = docs.detalhes.faltam;
+  const faltaMatCar = faltam.includes("matricula") || faltam.includes("car");
+  // Não sei do aluno (o limite de mercado não é perguntado neste pilar)
+  const nsAluno = QUESTOES.filter((q) => q.aceitaNS && (ehNS(S.respostas[q.id]) || S.respostas[q.id] === undefined || S.respostas[q.id] === ""));
+  const caminho = S.respostas.caminho_leitura;
+  const pesoV = peso.valor; // em pontos
+  // Notas por item
+  const notas = ITENS_NOTA.map((q) => ({ q, nota: notaItem(q) }));
+  const soma = notas.reduce((s, x) => s + x.nota, 0);
+
+  // Leitura: o veredito da calculadora 1-2. Única leitura a mais: quando o único
+  // motivo de "testar" é o limite de mercado (que esta aula não pergunta), a leitura
+  // do território é "seguir" para o Pilar 2, onde o mercado é medido.
+  let v = res.veredito_sugerido, motivo = res.motivo_veredito;
+  if (v === "testar" && caminho !== "investigar" && nsAluno.length === 0 && !faltaMatCar && pesoV !== null) {
+    v = "avancar";
+    motivo = "Território lido: área usável com fonte, matrícula e CAR na mão, três limites preenchidos e o peso do terreno fora do alerta. Falta só o limite de mercado, que se mede no Pilar 2. Até lá, não desenha nem põe dinheiro.";
+  } else if (v === "testar") {
+    const m = [];
+    if (caminho === "investigar") m.push("você escolheu investigar antes");
+    if (nsAluno.length) m.push(`há ${nsAluno.length} Não sei nas suas respostas`);
+    if (faltaMatCar) m.push("falta a matrícula ou o CAR na mão");
+    if (pesoV === null && !nsAluno.length) m.push("o peso do terreno está em branco");
+    motivo = `Investigar antes: ${juntar(m)}. E o limite de mercado ainda se mede no Pilar 2. Não desenha nem põe dinheiro antes de medir.`;
+  }
+
+  // Alertas: críticos e Não sei primeiro
+  const alertas = [];
+  if (caminho === "trocar") alertas.push({ t: "critico", tit: "Crítico", txt: "Você escolheu trocar de terreno: existe um limite que não se resolve." });
+  if (area.alerta === "critico") alertas.push({ t: "critico", tit: "Crítico", txt: area.texto });
+  if (peso.alerta === "critico") alertas.push({ t: "critico", tit: "Crítico", txt: peso.texto });
+  for (const q of nsAluno) alertas.push({ t: "ns", tit: "Não sei · vale zero", txt: `${q.curto}: vira tarefa. Onde conseguir: ${q.ondeCurto}.` });
+  for (const x of notas) if (x.nota === 1) alertas.push({ t: "sem", tit: "Nota 1 · sem evidência", txt: `${x.q.curto}: é estimativa. Nota sem documento ou medida que prove não vale. Para confirmar: ${x.q.ondeCurto}.` });
+  if (peso.alerta === "atencao") alertas.push({ t: "atencao", tit: "Atenção", txt: peso.texto });
+  if (faltam.length) alertas.push({ t: "atencao", tit: "Atenção", txt: docs.texto + (faltaMatCar ? " Sem matrícula e CAR, a área que você pode usar ainda não tem fonte." : "") });
+  alertas.push({ t: "info", tit: "Para a próxima aula", txt: "O limite de mercado (quantas unidades o destino compra) não entra neste pilar. Ele se mede no Pilar 2, Mercado e demanda, e pode mudar a capacidade." });
+
+  // Ponto mais frágil (o que, se continuar assim, mais pesa na decisão)
+  let fragil;
+  const nsIds = nsAluno.map((q) => q.id);
+  const ordemNS = ["sub_preservacao", "sub_reserva_legal", "limite_infra", "sub_encosta", "preco_terreno", "limite_experiencia", "limite_fisico", "sub_recuos", "investimento_total", "sub_servico", "caminho_leitura"];
+  if (caminho === "trocar") fragil = "Existe um limite que não se resolve neste terreno. Antes de qualquer outra conta, escreva qual é e quem confirmou.";
+  else if (area.alerta === "critico") fragil = "As subtrações passam da área da matrícula. Algum número está errado ou o terreno não comporta o projeto: confira com o CAR e o topógrafo.";
+  else if (peso.alerta === "critico") fragil = `O terreno pesa ${fmtN(pesoV, 1)}% do investimento total, acima de 20% pela regra de bolso. Ou o lugar tem algo que justifica pesar mais, e o mercado paga por isso, ou a conta do terreno precisa mudar.`;
+  else if (faltaMatCar) fragil = "Falta a matrícula atualizada ou o CAR na mão. Sem eles, a área que você pode usar é palpite, e todas as contas daqui para frente se apoiam nela.";
+  else if (nsIds.length) {
+    const id = ordemNS.find((x) => nsIds.includes(x)) || nsIds[0];
+    fragil = `${Q(id).curto} ainda é Não sei. Enquanto for, a conta que depende dele fica provisória. Próximo passo: ${Q(id).ondeCurto}.`;
+  } else if (notas.some((x) => x.nota === 1)) {
+    const x = notas.find((y) => y.nota === 1);
+    fragil = `${x.q.curto} é estimativa sem fonte. Nota sem evidência não vale: ${x.q.ondeCurto}.`;
+  } else if (peso.alerta === "atencao") fragil = `O terreno pesa ${fmtN(pesoV, 1)}% do investimento total, na zona sensível da regra de bolso (de 10% a 20%).`;
+  else {
+    const manda = (cap.detalhes.limite_que_manda || []).map((id) => Q(id) ? Q(id).curto.toLowerCase() : id);
+    fragil = `A capacidade ainda depende do limite de mercado, que se mede no Pilar 2. Hoje quem manda é o ${juntar(manda) || "menor limite"}.`;
+  }
+
+  // Sugestões para o aluno editar
+  let criterioSug;
+  if (peso.alerta === "critico" || caminho === "renegociar") criterioSug = "Se o produto não sustentar uma diária acima da média da região, então o peso do terreno não se justifica: pauso e renegocio, ou troco de terreno.";
+  else if (faltaMatCar || nsIds.some((x) => x.startsWith("sub_"))) criterioSug = "Se a matrícula ou o CAR mostrarem que a área que posso usar não comporta o projeto, então pauso e renegocio, ou troco de terreno.";
+  else if (nsIds.includes("limite_infra")) criterioSug = "Se a concessionária ou a medição da água mostrarem que a infraestrutura não se resolve a um custo que o projeto aguenta, então troco de terreno.";
+  else criterioSug = "Se a consulta prévia mostrar que a zona não permite hospedagem, então troco de terreno.";
+
+  let comp;
+  const nome = S.perfil.nome || "Eu";
+  if (faltaMatCar) comp = { acao: "Pegar a matrícula atualizada e o mapa do CAR e fazer as subtrações com eles.", evidencia: "Os dois documentos salvos, com as áreas marcadas e a área que posso usar escrita." };
+  else if (nsIds.includes("limite_infra")) comp = { acao: "Ligar para a concessionária e anotar a distância até o poste e a tensão disponível.", evidencia: "A resposta anotada, com data e nome de quem atendeu." };
+  else if (nsIds.includes("limite_experiencia")) comp = { acao: "Fazer as duas visitas ao terreno no mesmo dia, às 7h e às 17h.", evidencia: "As fotos e as anotações de sol, vento, silêncio e vista, e a contagem de unidades." };
+  else if (faltam.includes("consulta_previa")) comp = { acao: "Protocolar a consulta prévia na prefeitura sobre o que quero fazer no terreno.", evidencia: "O número do protocolo." };
+  else comp = { acao: "Ligar para a concessionária e anotar a distância até o poste e a tensão disponível.", evidencia: "A resposta anotada, com data e nome de quem atendeu." };
+  comp.responsavel = nome; comp.prazo = hojeISO(7);
+
+  return { res, notas, soma, alertas, fragil, v, motivo, criterioSug, comp, nsAluno, faltam };
+}
+
+/* ===================================================================
+   Aula principal do Pilar 1: perguntas dentro dos slides.
+   Grava no MESMO estado da ferramenta (S, chave zion-t1-aula1):
+   S.perfil, S.respostas, S.fontes e S.passo no formato dela.
+   As perguntas do destino e da chegada (que a ferramenta não tem)
+   ficam em S.destino, um campo a mais que a ferramenta preserva.
+   =================================================================== */
+const AULA = (function () {
+  const PROD = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/aula1/";
+  function urlFerramenta() {
+    try {
+      if (location.protocol === "file:") {
+        const f = new URLSearchParams(location.search).get("ferramenta");
+        if (f && /^file:\/\//.test(f)) return f;
+      }
+    } catch (e) {}
+    return PROD;
+  }
+
+  /* ---------- ajustes de texto da ferramenta para ficar igual ao vídeo ---------- */
+  const OVR = {
+    area_matricula: { cita: "No vídeo, a Marina tem 50.000 m² na matrícula.", marina: "A Marina tem 50.000 m² na matrícula." },
+    sub_preservacao: { cita: "No vídeo: tire a área de preservação, a reserva legal, a encosta forte, os recuos e a área de serviço.", marina: null },
+    sub_reserva_legal: { cita: "No vídeo, vimos que o CAR mostra a área de preservação e a reserva legal, a parte intocável.", marina: null },
+    sub_encosta: { cita: "No vídeo, vimos que inclinação de 30% é subir três metros a cada dez para a frente.", marina: null,
+      porque: "Inclinação de 30% é subir três metros a cada dez para a frente. Acima disso a obra fica cara e limitada, e às vezes é proibida. Não decida pelo olho." },
+    sub_recuos: { cita: "No vídeo, os recuos são mais uma subtração da conta da Marina. A zona da prefeitura diz quais são.", marina: null },
+    sub_servico: { cita: "No vídeo, depois das cinco subtrações, a Marina fica com 15.000 m²: só 30% vira negócio.",
+      marina: "Somadas as cinco subtrações, a Marina fica com 15.000 m² dos 50.000 m² da matrícula: só 30% vira negócio." },
+    preco_terreno: { cita: "No vídeo, o terreno da Marina vale R$ 600 mil: R$ 12 o m² pelo papel e R$ 40 pelo que se pode usar.",
+      porque: "Com esse número aparecem os três preços do mesmo terreno: por m² total, por m² que você pode usar e por unidade possível. Quem negocia pela área do papel paga pelo metro que nunca vai usar.",
+      marina: "O terreno da Marina vale R$ 600.000: R$ 12 o m² pelo papel, R$ 40 pelo que se pode usar e R$ 120 mil por unidade, se couberem cinco." },
+    investimento_total: { cita: null, marina: null,
+      onde: "<p>Nesta etapa, é a sua estimativa. Se ainda não tem ideia, marque Não sei: a conta completa do investimento vem mais adiante, em outro pilar.</p>" },
+    limite_fisico: { cita: "No vídeo: o limite físico, com afastamento entre as unidades.", marina: null },
+    limite_infra: { cita: "No vídeo: o limite de infraestrutura é água, energia e esgoto. Menos unidades, sim. Menos infraestrutura, nunca.", marina: null,
+      porque: "O esgoto se dimensiona para o feriado cheio, com tudo ocupado, e a água pelo mês mais seco. Menos unidades, sim. Menos infraestrutura, nunca.",
+      onde: "<ul><li><b>Água:</b> meça a vazão com balde e cronômetro, três vezes, em dias diferentes, no mês mais seco. Ter água não é poder usar: o uso depende de autorização, e quem orienta é o técnico ambiental.</li><li><b>Energia:</b> peça à concessionária, por escrito, a distância até o poste e a tensão.</li><li><b>Esgoto:</b> dimensione para o feriado cheio, com tudo ocupado.</li></ul>" },
+    limite_experiencia: { cita: "No vídeo: o limite de experiência é a partir de quantas unidades um hóspede vê ou ouve o outro.", marina: null },
+    documentos: { cita: "No vídeo, vimos que o que trava não se vê andando: se vê lendo papel.", marina: null },
+    caminho_leitura: { cita: null, marina: null },
+  };
+  for (const id in OVR) { const q = Q(id); if (q) Object.assign(q, OVR[id]); }
+
+  /* ---------- perguntas do destino e da chegada (e do chão), do texto falado ---------- */
+  const T = (rot, cls, txt) => ({ rot, fb: [cls, txt] });
+  const DQ = {
+    bioma: { tipo: "escolha", curto: "A natureza do terreno",
+      cita: "No vídeo, vimos que a natureza define o clima, as regras e a experiência que você pode vender.",
+      pergunta: "Em que natureza o seu terreno está?", explica: "Olhe o terreno e a região em volta no mapa.",
+      opcoes: { serra: T("Serra"), litoral: T("Litoral"), campo: T("Campo"), cerrado: T("Cerrado"), mata: T("Mata") },
+      fbTodas: ["ok", "Anotado. O hóspede escolhe primeiro o lugar e só depois a hospedagem."],
+      ns: "Não sei", ondeCurto: "olhar no mapa o terreno e a região em volta",
+      porque: "O hóspede escolhe primeiro o lugar e só depois a hospedagem. A natureza do terreno define o clima, as regras e a experiência que você pode vender." },
+    desmatar: { tipo: "escolha", curto: "Desmatamento",
+      cita: "No vídeo, o sinal vermelho do destino é precisar desmatar para existir.",
+      pergunta: "Para o seu projeto existir, vai ser preciso desmatar?", explica: "Pense nas unidades, nos caminhos e na área de serviço.",
+      opcoes: { nao: T("Não: dá para fazer sem derrubar mata", "ok", "Bom sinal. Guarde essa resposta: ela pesa nas regras e na experiência."),
+        sim: T("Sim, vai precisar desmatar", "er", "Sinal vermelho: precisar desmatar para existir. Pare e investigue antes de seguir.") },
+      ns: "Ainda não sei", ondeCurto: "conferir com o técnico ambiental se o projeto precisa desmatar",
+      porque: "É o sinal vermelho do destino: aquele que manda parar e investigar." },
+    tres_dias: { tipo: "escolha", curto: "Motivo para ficar três dias",
+      cita: "No vídeo, vimos o que atrai gente num raio de 30 minutos, 1 hora e 2 horas.",
+      pergunta: "Existe motivo para alguém ficar três dias na sua região?", explica: "Cachoeira, mirante, restaurante, evento: num raio de 30 minutos, 1 hora e 2 horas.",
+      opcoes: { sim: T("Sim: tem o que fazer em volta", "ok", "Ótimo. Anote os atrativos e o tempo até cada um."),
+        pouco: T("Pouco: um ou dois atrativos", "at", "Anote cada um, com o tempo até lá. E faça a pergunta de novo: dá para ficar três dias?"),
+        nada: T("Não: não existe nada para fazer além do terreno", "er", "Então o desafio está na localização, e não no terreno.") },
+      ns: "Não sei", ondeCurto: "marcar no mapa o que atrai gente num raio de 30 minutos, 1 hora e 2 horas",
+      porque: "Se não existe nada para fazer além do terreno, o desafio está na localização." },
+    frase: { tipo: "texto", curto: "A frase da vocação",
+      cita: "No vídeo: se a sua frase serve para qualquer hotel, ela ainda não é vocação.",
+      pergunta: "Complete: o meu terreno é o único lugar onde uma pessoa pode...", explica: "Sem adjetivo. O que se vê e o que se sente aí, e em nenhum outro lugar.",
+      ns: "Ainda não sei", ondeCurto: "escrever a frase da vocação depois de andar o terreno",
+      porque: "Se a sua frase serve para qualquer hotel, como \"lugar lindo\" ou \"vista incrível\", ela ainda não é vocação." },
+    cidades: { tipo: "escolha", curto: "Cidades que mandam turista",
+      cita: "No vídeo: se depende de uma cidade só, é risco.",
+      pergunta: "Quantas cidades mandam turista para a sua região?", explica: "Pense em de onde vem quem paga: a que distância e com que frequência.",
+      opcoes: { uma: T("Uma só", "at", "Depender de uma cidade só é risco. Anote a distância e com que frequência esse turista vem."),
+        poucas: T("Duas ou três", "ok", "Anote cada uma: a que distância e com que frequência."),
+        varias: T("Várias", "ok", "Anote as principais: a que distância e com que frequência.") },
+      ns: "Não sei", ondeCurto: "descobrir quais cidades mandam turista para a região, a que distância e com que frequência",
+      porque: "Revela de onde vem quem paga. Se depende de uma cidade só, é risco." },
+    crescimento: { tipo: "escolha", curto: "Crescimento da região",
+      cita: "No vídeo: crescimento confirmado em cartório e na prefeitura é estratégia. Boato é aposta.",
+      pergunta: "A sua região está crescendo? De onde vem essa informação?", explica: "Quem já hospeda perto de você, quantos são e o que estão construindo.",
+      opcoes: { conf: T("Está, e confirmei em cartório e na prefeitura", "ok", "Crescimento confirmado é estratégia."),
+        boato: T("Ouvi dizer que está, mas não confirmei", "at", "Por enquanto é boato, e boato é aposta. Confirme em cartório e na prefeitura."),
+        nao: T("Não está crescendo", "in", "Anotado. Quem já hospeda perto e o que estão construindo também contam essa história.") },
+      ns: "Não sei", ondeCurto: "confirmar em cartório e na prefeitura se a região cresce e quem já hospeda perto",
+      porque: "Crescimento confirmado em cartório e na prefeitura é estratégia. Boato é aposta." },
+    como_chega: { tipo: "escolha", curto: "Como o hóspede chega",
+      cita: "No vídeo: quanto maior o volume que você quer, mais fácil a chegada precisa ser.",
+      pergunta: "Como o seu hóspede chega?", explica: "A chegada do hóspede é a parte que mais gente esquece.",
+      opcoes: { aviao: T("De avião"), carro: T("De carro"), dois: T("Dos dois") },
+      fbTodas: ["in", "Quanto maior o volume que você quer, mais fácil a chegada precisa ser. Agora, o tempo."],
+      ns: "Não sei", ondeCurto: "descobrir como o hóspede chega: de avião, de carro ou dos dois",
+      porque: "Quanto maior o volume que você quer, mais fácil a chegada precisa ser." },
+    tempo_sol: { tipo: "numero", unidade: "min", curto: "Tempo do caminho no sol",
+      cita: "No vídeo, a Marina leva 2 h 15 no sol e 2 h 50 na chuva.",
+      pergunta: "Quanto tempo leva o caminho até a porteira, num dia de sol?", explica: "Do aeroporto ou da cidade de onde vem o hóspede, trecho por trecho. Escreva em minutos: 2 h 15 são 135.",
+      ns: "Ainda não medi", ondeCurto: "fazer o caminho com o cronômetro ligado, trecho por trecho",
+      porque: "Não meça a distância em linha reta no mapa. Meça o tempo: o hóspede decide pelo tempo." },
+    tempo_chuva: { tipo: "numero", unidade: "min", curto: "Tempo do caminho na chuva",
+      cita: "No vídeo, o asfalto mudou dez minutos e o fim mudou vinte e cinco.",
+      pergunta: "E num dia de chuva, quanto tempo leva?", explica: "O mesmo caminho, na chuva. Em minutos.",
+      ns: "Ainda não medi", ondeCurto: "refazer o caminho na chuva com o cronômetro ligado",
+      porque: "Os últimos quilômetros decidem a chegada. O hóspede da pior semana também avalia." },
+    trecho_chuva: { tipo: "escolha", curto: "Trecho que fecha na chuva",
+      cita: "No vídeo, o sinal vermelho da chegada é trecho que fecha ou patina na chuva.",
+      pergunta: "Na chuva, algum trecho fecha ou patina?", explica: "Terra, subida, barro, iluminação, placa.",
+      opcoes: { nao: T("Não: já fiz o caminho na chuva e passa", "ok", "Bom sinal. Refaça também à noite: iluminação e placa."),
+        sim: T("Sim, tem trecho que fecha ou patina", "er", "Sinal vermelho: trecho que fecha ou patina na chuva. O hóspede da pior semana também avalia.") },
+      ns: "Ainda não fiz o caminho na chuva", ondeCurto: "refazer o caminho na chuva e à noite",
+      porque: "O hóspede da pior semana também avalia." },
+    estrada: { tipo: "escolha", curto: "De quem é a estrada",
+      cita: "No vídeo: acordo de boca não é acesso. Acesso é via pública ou servidão registrada no cartório.",
+      pergunta: "De quem é a estrada até o seu terreno?", explica: "Ela é pública, ou passa pelo terreno do vizinho?",
+      opcoes: { publica: T("É pública até a porteira", "ok", "Via pública é acesso. Quem confirma é o advogado."),
+        servidao: T("Passa pelo vizinho, com servidão registrada no cartório", "ok", "Servidão registrada é acesso. Quem confirma é o advogado."),
+        boca: T("Passa pelo vizinho, que sempre deixou passar", "er", "Isso é acordo de boca, e acordo de boca não é acesso. Leve ao advogado antes de qualquer outro passo.") },
+      ns: "Não sei", ondeCurto: "perguntar ao advogado de quem é a estrada e se existe servidão registrada",
+      porque: "\"O vizinho sempre deixou passar\" é acordo de boca, e acordo de boca não é acesso. Quem confirma é o advogado." },
+    sinal: { tipo: "multi", curto: "Sinal de celular",
+      cita: "No vídeo: teste o celular em três pontos, na porteira, no meio e onde vão ficar as unidades.",
+      pergunta: "Onde o celular tem sinal?", explica: "Marque cada ponto onde você testou e tem sinal.",
+      opcoes: { porteira: T("Na porteira"), meio: T("No meio"), unidades: T("Onde vão ficar as unidades") },
+      nenhum: "Em nenhum dos três", ns: "Ainda não testei", ondeCurto: "testar o celular na porteira, no meio e onde vão ficar as unidades, e perguntar aos provedores de internet",
+      porque: "Sem sinal onde o hóspede dorme, a segurança e a operação ficam no escuro. Pergunte também aos provedores de internet." },
+    ambulancia: { tipo: "escolha", curto: "Ambulância na chuva",
+      cita: "No vídeo, o sinal vermelho da segurança é ambulância que não passa na chuva.",
+      pergunta: "Uma ambulância chega até o terreno num dia de chuva?", explica: "E quanto tempo leva até o hospital, no sol e na chuva? O trecho a pé tem luz?",
+      opcoes: { sim: T("Sim, passa na chuva", "ok", "Anote também o tempo até o hospital, no sol e na chuva, e se o trecho a pé tem luz."),
+        nao: T("Não passa na chuva", "er", "Sinal vermelho: ambulância que não passa na chuva.") },
+      ns: "Não sei", ondeCurto: "medir o tempo até o hospital, no sol e na chuva, e ver se a ambulância passa",
+      porque: "Ambulância que não passa na chuva é sinal vermelho." },
+    chegada_pede: { tipo: "escolha", curto: "O que a chegada pede",
+      cita: "No vídeo: com a chegada medida, você decide.",
+      pergunta: "Com a sua chegada medida, o que ela pede?", explica: "Longa e difícil, fácil, ou nenhum dos dois.",
+      opcoes: { premium: T("Longa e difícil: produto premium, para poucos", "in", "Para poucos, que pagam pela distância. Você vai usar isso no Pilar 3."),
+        volume: T("Fácil: permite volume", "in", "Chegada fácil permite volume. Você vai usar isso no Pilar 3."),
+        nenhum: T("Nenhum dos dois", "at", "Isso também é resposta, e é barata se vier agora.") },
+      ns: "Ainda não medi a chegada", ondeCurto: "medir a chegada, no sol e na chuva, antes de decidir o produto",
+      porque: "Chegada longa e difícil pede produto premium, para poucos, que pagam pela distância. Chegada fácil permite volume." },
+    sondagem: { tipo: "escolha", curto: "Sondagem do solo",
+      cita: "No vídeo: a sondagem é o item mais pulado, e o que mais estoura a obra.",
+      pergunta: "A sondagem do solo já foi feita?", explica: "A sondagem é o teste que fura o chão para ver o que tem embaixo. Quem faz é o geotécnico.",
+      opcoes: { sim: T("Sim, com o geotécnico", "ok", "Guarde o laudo. E veja também para onde a água da chuva escorre e onde alaga."),
+        nao: T("Ainda não", "at", "É o item mais pulado, e o que mais estoura a obra. Quem faz é o geotécnico.") },
+      ns: "Não sei", ondeCurto: "pedir a sondagem ao geotécnico e ver para onde a água escorre e onde alaga",
+      porque: "É o item mais pulado, e o que mais estoura a obra." },
+    vista: { tipo: "escolha", curto: "A nota da vista",
+      cita: "No vídeo: dê nota de um a cinco para a vista, de funcional a transformadora.",
+      pergunta: "Que nota você dá para a vista mais forte do terreno?", explica: "Visite às 7h e às 17h, no mesmo dia, e dê nota em cada ponto.",
+      opcoes: { "1": T("1 · Funcional"), "2": T("2 · Agradável"), "3": T("3 · Memorável"), "4": T("4 · Icônica"), "5": T("5 · Transformadora") },
+      fbTodas: ["in", "Anotado. Vista não se compra depois da obra. E unidade na sombra do morro é sinal vermelho."],
+      ns: "Ainda não fiz as visitas", ondeCurto: "visitar às 7h e às 17h, no mesmo dia, e dar nota à vista de cada ponto",
+      porque: "Vista não se compra depois da obra." },
+    vizinho: { tipo: "escolha", curto: "O vizinho",
+      cita: "No vídeo: o silêncio é do lugar, não seu.",
+      pergunta: "Tem vizinho que tira o silêncio, como pocilga, serraria ou estrada de caminhão?", explica: "Conheça o vizinho. E volte também à noite.",
+      opcoes: { nao: T("Não, e voltei também à noite", "ok", "Bom sinal. O silêncio é do lugar."),
+        sim: T("Sim, tem", "at", "Anotado. O silêncio é do lugar, não seu: isso entra na leitura do terreno.") },
+      ns: "Ainda não fui à noite", ondeCurto: "conhecer o vizinho e voltar ao terreno à noite",
+      porque: "O silêncio é do lugar, não seu." },
+    agua: { tipo: "escolha", curto: "A água no mês seco",
+      cita: "No vídeo: tem água no mês seco, e você pode usar?",
+      pergunta: "Você já mediu a água no mês mais seco?", explica: "A vazão se mede com balde e cronômetro.",
+      opcoes: { sim: T("Sim: três vezes, em dias diferentes, no mês mais seco", "ok", "E ter água não é poder usar: o uso depende de autorização, e quem orienta é o técnico ambiental."),
+        parcial: T("Medi, mas não no mês seco, ou só uma vez", "at", "Meça três vezes, em dias diferentes, no mês mais seco. É ele que vai definir a sua água.") },
+      ns: "Ainda não medi", ondeCurto: "medir a vazão com balde e cronômetro, três vezes, no mês mais seco",
+      porque: "O mês mais seco vai definir a sua água. E ter água não é poder usar." },
+    energia: { tipo: "escolha", curto: "Resposta da concessionária",
+      cita: "No vídeo: resposta só de boca é sinal vermelho.",
+      pergunta: "A concessionária já respondeu a distância até o poste e a tensão?", explica: "Peça à concessionária por escrito.",
+      opcoes: { escrito: T("Sim, por escrito", "ok", "Guarde a resposta, com a data."),
+        boca: T("Só de boca", "er", "Sinal vermelho: resposta só de boca. Peça por escrito.") },
+      ns: "Ainda não perguntei", ondeCurto: "pedir à concessionária, por escrito, a distância até o poste e a tensão",
+      porque: "Resposta só de boca é sinal vermelho." },
+  };
+
+  /* ---------- estado ---------- */
+  function garantir() { if (!S.destino || typeof S.destino !== "object") S.destino = {}; if (!S.perfil) S.perfil = { nome: "", email: "", cidade: "", uf: "" }; }
+  const ehNSv = (v) => v === "nao_sei";
+  function completaT(q) {
+    const v = S.respostas[q.id];
+    if (q.tipo === "numero" || q.tipo === "moeda") {
+      if (ehNSv(v)) return true;
+      const n = paraNumero(v);
+      if (n === null || n < 0 || (q.id === "area_matricula" && n <= 0)) return false;
+      return !!S.fontes[q.id];
+    }
+    if (q.tipo === "multipla") return Array.isArray(v);
+    if (q.tipo === "escolha") return v !== undefined && v !== "";
+    return false;
+  }
+  function completaD(id) {
+    const d = DQ[id], v = S.destino[id];
+    if (v === undefined || v === "") return false;
+    if (ehNSv(v)) return true;
+    if (d.tipo === "numero") { const n = paraNumero(v); return n !== null && n >= 0; }
+    if (d.tipo === "texto") return String(v).trim().length > 0;
+    if (d.tipo === "multi") return Array.isArray(v);
+    return true;
+  }
+  const completa = (id) => (DQ[id] ? completaD(id) : completaT(Q(id)));
+  function calcPasso() { const i = QUESTOES.findIndex((q) => !completaT(q)); return i < 0 ? QUESTOES.length : i; }
+  function gravar() {
+    garantir();
+    S.passo = calcPasso();
+    salvar();
+  }
+
+  /* ---------- montagem dos slides de pergunta ---------- */
+  const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+  const IDS = slidesQ.map((s) => s.dataset.q);
+  const TOTAL = IDS.length;
+
+  function opcaoHTML(v, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+  function campoHTML(id) {
+    const d = DQ[id];
+    if (d) {
+      if (d.tipo === "escolha") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot)).join("")}${opcaoHTML("nao_sei", d.ns, "ns")}</div>`;
+      if (d.tipo === "multi") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot, "multi")).join("")}${opcaoHTML("__nenhum", d.nenhum, "multi")}${opcaoHTML("nao_sei", d.ns, "ns")}</div>`;
+      if (d.tipo === "numero") return `<div class="cn"><input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="Digite o número" aria-label="${esc(d.pergunta)}"><span class="un">${esc(d.unidade)}</span></div>${opcaoHTML("nao_sei", d.ns, "ns")}`;
+      if (d.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="Escreva aqui, sem adjetivo" aria-label="${esc(d.pergunta)}"></textarea>${opcaoHTML("nao_sei", d.ns, "ns")}`;
+    }
+    const q = Q(id);
+    if (q.tipo === "numero" || q.tipo === "moeda") {
+      return `<div class="cn">${q.tipo === "moeda" ? '<span class="un">R$</span>' : ""}<input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${q.tipo === "moeda" ? "Ex.: 600.000" : "Digite o número"}" aria-label="${esc(q.pergunta)}">${q.tipo !== "moeda" ? `<span class="un">${esc(q.unidade)}</span>` : ""}</div>
+        ${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}
+        <div class="fonte-bx"><span class="rot-r">De onde veio esse número?</span>${FONTES.map((f) => `<button type="button" class="opc peq" data-fonte="${f.v}" aria-pressed="false"><span class="mk"></span><span>${esc(f.rot)}</span></button>`).join("")}</div>`;
+    }
+    if (q.tipo === "multipla") return `<div class="ops2">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot, "multi")).join("")}${opcaoHTML("__nenhum", "Ainda não tenho nenhum", "multi")}</div>`;
+    if (q.tipo === "escolha") return `<div class="resumo-mini" data-resumo></div><div class="ops2">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot)).join("")}${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}</div>`;
+    return "";
+  }
+  function montar(sl, n) {
+    const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+    const onde = d ? (d.ondeCurto ? `<p>Para descobrir: ${esc(d.ondeCurto)}.</p>` : "") : q.onde;
+    sl.innerHTML = `<div class="pg" data-sem-clique>
+      <div class="pg-txt">
+        <p class="k">Agora é com você · <b>pergunta ${n} de ${TOTAL}</b></p>
+        <h2>${esc(q.pergunta)}</h2>
+        ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+        <p class="expl">${esc(q.explica)}</p>
+      </div>
+      <div class="pg-dir">
+        <span class="rot-r">A sua resposta</span>
+        ${campoHTML(id)}
+        <div class="fb" role="status" aria-live="polite"></div>
+        <p class="st"></p>
+      </div>
+      <div class="pg-info">
+        <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+        ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+        ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>` : ""}
+      </div>
+    </div>`;
+    ligar(sl, id);
+  }
+
+  /* ---------- feedback imediato ---------- */
+  const fmtM2 = (x) => fmtN(x) + " m²";
+  function feedback(id) {
+    const d = DQ[id];
+    if (d) {
+      const v = S.destino[id];
+      if (v === undefined || v === "") return null;
+      if (ehNSv(v)) return ["at", "<b>Tarefa da semana</b>" + esc(d.ondeCurto[0].toUpperCase() + d.ondeCurto.slice(1)) + ". Não sei não é vergonha: é tarefa da semana."];
+      if (d.tipo === "escolha") { const o = d.opcoes[v]; const f = (o && o.fb && o.fb[0]) ? o.fb : d.fbTodas; return f ? [f[0], esc(f[1])] : null; }
+      if (d.tipo === "multi") {
+        if (!Array.isArray(v)) return null;
+        if (!v.includes("unidades")) return ["er", "<b>Sinal vermelho</b>Sem sinal onde o hóspede dorme, a segurança e a operação ficam no escuro. Pergunte aos provedores de internet."];
+        if (v.length < 3) return ["at", "Tem sinal onde o hóspede dorme. Anote onde falta e o que os provedores de internet responderam."];
+        return ["ok", "Sinal nos três pontos. Anote também o que os provedores de internet responderam."];
+      }
+      if (d.tipo === "numero") {
+        const n = paraNumero(v); if (n === null) return null;
+        let t = "Anotado: " + hm(n) + ".";
+        if (id === "tempo_chuva") { const s = paraNumero(S.destino.tempo_sol); if (s !== null) { const df = n - s; t = "Na chuva, " + hm(n) + (df > 0 ? ": " + hm(df) + " a mais que no sol. Onde está a diferença? Quase sempre nos últimos quilômetros." : "."); } }
+        return ["in", esc(t)];
+      }
+      if (d.tipo === "texto") {
+        const t = String(v).trim(); if (t.length < 3) return null;
+        if (/\b(lind[oa]s?|incr[ií]ve(l|is))\b/i.test(t)) return ["at", "<b>Ainda não é vocação</b>\"Lindo\" e \"incrível\" servem para qualquer hotel. Troque o adjetivo pelo que a pessoa vê, sente ou faz aí."];
+        return ["ok", "Agora o teste: essa frase serviria para qualquer outro hotel? Se sim, ela ainda não é a sua."];
+      }
+      return null;
+    }
+    const q = Q(id), v = S.respostas[id];
+    if (v === undefined || v === "") return null;
+    if (ehNSv(v)) return ["at", "<b>Tarefa da semana</b>" + esc((q.ondeCurto || "").replace(/^./, (c) => c.toUpperCase())) + ". Na Ficha, este Não sei vale zero e vira tarefa."];
+    const L = ler(), c = (k) => calc(L.res, k);
+    if (q.tipo === "numero" || q.tipo === "moeda") {
+      if (paraNumero(v) === null) return null;
+      if (id === "area_matricula") return ["in", "Ponto de partida: " + esc(fmtM2(paraNumero(v))) + ". Agora, uma por tela, as partes que não viram negócio."];
+      if (id.startsWith("sub_")) {
+        const a = c("area_usavel"), pc = c("pct_usavel");
+        if (a.valor === null) return ["in", "Anotado. Falta a área da matrícula para fazer a conta."];
+        if (a.valor <= 0) return ["er", "<b>As subtrações passam da matrícula</b>Confira os números com o CAR e o topógrafo."];
+        return [pc.valor < 50 ? "at" : "ok", "Até aqui: " + esc(fmtM2(paraNumero(S.respostas.area_matricula))) + " menos " + esc(fmtM2(a.detalhes.subtracoes_m2)) + " = <b style=\"display:inline;font-size:inherit;letter-spacing:0;text-transform:none\">" + esc(fmtM2(a.valor)) + "</b>, " + esc(fmtN(pc.valor, 1)) + "% da matrícula."];
+      }
+      if (id === "preco_terreno") {
+        const tp = c("tres_precos").detalhes;
+        const p = [];
+        if (tp.preco_m2_total !== null) p.push("pelo papel, " + brl(tp.preco_m2_total) + " o m²");
+        if (tp.preco_m2_usavel !== null) p.push("pelo que você pode usar, " + brl(tp.preco_m2_usavel) + " o m²");
+        return ["in", esc("Os seus preços: " + (p.length ? juntar(p) : "falta a área para dividir") + ". O preço por unidade aparece depois dos limites.")];
+      }
+      if (id === "investimento_total") { const p = c("peso_terreno"); return [p.alerta === "critico" ? "er" : p.alerta === "atencao" ? "at" : p.alerta === "ok" ? "ok" : "in", esc(p.texto)]; }
+      if (id.startsWith("limite_")) { const cp = c("capacidade"); return ["in", esc(textoTela(cp.texto))]; }
+    }
+    if (q.tipo === "multipla") { const dc = c("documentos_faltando"); return [dc.alerta === "atencao" ? "at" : dc.alerta === "ok" ? "ok" : "in", esc(dc.texto)]; }
+    if (q.tipo === "escolha") { const lt = LEITURAS[L.v]; return ["in", "<b>Leitura das suas contas hoje: " + esc(lt.rot) + "</b>" + esc(L.motivo) + " A leitura pode ser mais cautelosa que a sua escolha, nunca mais otimista."]; }
+    return null;
+  }
+
+  /* ---------- pintar uma pergunta a partir do estado ---------- */
+  function pintar(sl) {
+    const id = sl.dataset.q, d = DQ[id];
+    const v = d ? S.destino[id] : S.respostas[id];
+    const ns = ehNSv(v);
+    sl.querySelectorAll(".opc[data-v]").forEach((b) => {
+      const bv = b.dataset.v;
+      let on;
+      if (bv === "nao_sei") on = ns;
+      else if (bv === "__nenhum") on = Array.isArray(v) && v.length === 0;
+      else if (b.classList.contains("multi")) on = Array.isArray(v) && v.includes(bv);
+      else on = v === bv;
+      b.setAttribute("aria-pressed", String(!!on));
+    });
+    const inp = sl.querySelector(".resp");
+    if (inp) {
+      if (document.activeElement !== inp) inp.value = ns || v === undefined ? "" : String(v);
+      inp.disabled = ns;
+    }
+    const fx = sl.querySelector(".fonte-bx");
+    if (fx) { fx.hidden = ns; fx.querySelectorAll("[data-fonte]").forEach((b) => b.setAttribute("aria-pressed", String(S.fontes[id] === b.dataset.fonte))); }
+    const rm = sl.querySelector("[data-resumo]");
+    if (rm) rm.innerHTML = resumoMiniAula();
+    const fb = sl.querySelector(".fb"), f = feedback(id);
+    if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+    const st = sl.querySelector(".st");
+    let t = "";
+    if (!d && (Q(id).tipo === "numero" || Q(id).tipo === "moeda") && v !== undefined && v !== "" && !ns) {
+      const n = paraNumero(v);
+      if (n === null) t = "Escreva só o número, por exemplo 50.000.";
+      else if (n < 0) t = "O número não pode ser negativo.";
+      else if (!S.fontes[id]) t = "Falta dizer de onde veio esse número: é isso que separa dado de palpite.";
+      else t = "Salvo neste aparelho.";
+    } else if (d && d.tipo === "numero" && v !== undefined && v !== "" && !ns && paraNumero(v) === null) t = "Escreva só o número de minutos, por exemplo 135.";
+    else if (completa(id)) t = "Salvo neste aparelho.";
+    st.textContent = t;
+  }
+  function resumoMiniAula() {
+    const L = ler();
+    const a = calc(L.res, "area_usavel"), c = calc(L.res, "capacidade"), p = calc(L.res, "peso_terreno");
+    return `<div><span>Área que você pode usar</span><b>${a.valor === null ? "em branco" : esc(fmtN(a.valor)) + " m²" + (a.detalhes.provisoria ? " (provisória)" : "")}</b></div>
+      <div><span>Unidades que o lugar aguenta</span><b>${c.valor === null ? "em branco" : esc(fmtN(c.valor)) + " (sem o mercado)"}</b></div>
+      <div><span>Peso do terreno no investimento</span><b>${p.valor === null ? "a calcular" : esc(fmtN(p.valor, 1)) + "%"}</b></div>
+      <div><span>Documentos que faltam</span><b>${L.faltam.length} de 4</b></div>`;
+  }
+
+  /* ---------- eventos de cada pergunta (grava na hora) ---------- */
+  function ligar(sl, id) {
+    const d = DQ[id];
+    const alvo = () => (d ? S.destino : S.respostas);
+    sl.addEventListener("click", (e) => {
+      const b = e.target.closest(".opc");
+      if (!b || !sl.contains(b)) return;
+      e.stopPropagation();
+      garantir();
+      const R = alvo();
+      if (b.dataset.fonte) { if (!ehNSv(R[id])) S.fontes[id] = b.dataset.fonte; }
+      else {
+        const bv = b.dataset.v, multi = b.classList.contains("multi");
+        if (bv === "nao_sei") { if (ehNSv(R[id])) delete R[id]; else { R[id] = "nao_sei"; if (!d) delete S.fontes[id]; } }
+        else if (bv === "__nenhum") R[id] = [];
+        else if (multi) { const a = Array.isArray(R[id]) ? R[id].slice() : []; const k = a.indexOf(bv); if (k >= 0) a.splice(k, 1); else a.push(bv); R[id] = a; }
+        else R[id] = bv;
+      }
+      gravar(); pintar(sl); atualizaNav();
+    });
+    const inp = sl.querySelector(".resp");
+    if (inp) inp.addEventListener("input", () => { garantir(); alvo()[id] = inp.value; gravar(); pintar(sl); atualizaNav(); });
+  }
+
+  /* ---------- perfil ---------- */
+  function ligarPerfil() {
+    const uf = document.getElementById("p-uf");
+    uf.insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+    const campos = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(campos)) {
+      const x = document.getElementById(el);
+      x.addEventListener(el === "p-uf" ? "change" : "input", () => { garantir(); S.perfil[k] = x.value.trim(); gravar(); });
+    }
+  }
+  function pintarPerfil() {
+    const map = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(map)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; }
+  }
+
+  /* ---------- resumo do bloco 1 ---------- */
+  function txtD(id) {
+    const d = DQ[id], v = S.destino[id];
+    if (v === undefined || v === "") return "em branco";
+    if (ehNSv(v)) return "não sei";
+    if (d.tipo === "numero") { const n = paraNumero(v); return n === null ? "em branco" : hm(n); }
+    if (d.tipo === "multi") return Array.isArray(v) ? (v.length ? v.map((x) => d.opcoes[x] ? d.opcoes[x].rot.toLowerCase() : x).join(", ") : "nenhum ponto") : "em branco";
+    if (d.tipo === "texto") return String(v).trim();
+    return d.opcoes[v] ? d.opcoes[v].rot : String(v);
+  }
+  function pintarAnote() {
+    const el = document.getElementById("anote"); if (!el) return;
+    const linhas = [["A frase da vocação", "frase"], ["Natureza do terreno", "bioma"], ["Motivo para ficar três dias", "tres_dias"], ["O caminho no sol", "tempo_sol"], ["O caminho na chuva", "tempo_chuva"], ["De quem é a estrada", "estrada"], ["Sinal nos três pontos", "sinal"], ["O que a chegada pede", "chegada_pede"]];
+    el.innerHTML = linhas.map(([r, id]) => `<div><span>${esc(r)}</span><b>${esc(txtD(id))}</b></div>`).join("");
+  }
+
+  /* ---------- resultado (a mesma leitura da ferramenta) ---------- */
+  function renderResultado() {
+    const el = document.getElementById("rs"); if (!el) return;
+    garantir();
+    const L = ler(), res = L.res, c = (k) => calc(res, k);
+    const a = c("area_usavel"), pc = c("pct_usavel"), cp = c("capacidade"), p = c("peso_terreno");
+    const leit = LEITURAS[L.v];
+    const big = (r, v) => `<div><small>${esc(r)}</small><strong>${esc(v)}</strong></div>`;
+    const sinaisD = [], atencaoD = [], tarefasD = [], okD = [];
+    for (const id of Object.keys(DQ)) {
+      const v = S.destino[id], d = DQ[id];
+      if (v === undefined || v === "" || ehNSv(v)) { tarefasD.push(d); continue; }
+      const f = feedback(id); if (!f) continue;
+      const txt = f[1].replace(/<b>.*?<\/b>/, "").replace(/^Sinal vermelho: /, "");
+      if (f[0] === "er") sinaisD.push(`${esc(d.curto)}: ${txt}`);
+      else if (f[0] === "at") atencaoD.push(`${esc(d.curto)}: ${txt}`);
+      else if (f[0] === "ok") okD.push(d.curto);
+    }
+    const okT = L.notas.filter((x) => x.nota === 3).map((x) => x.q.curto + ": documento");
+    const temDocs = (Array.isArray(S.respostas.documentos) ? S.respostas.documentos : []).map((v) => (Q("documentos").opcoes.find((o) => o.v === v) || {}).rot).filter(Boolean);
+    const nResp = IDS.filter(completa).length;
+    const tituloAl = { critico: "Crítico", ns: "Não sei · vale zero", sem: "Nota 1 · sem evidência", atencao: "Atenção", info: "Para a próxima aula" };
+    el.innerHTML = `<div class="rs-esq">
+        <p class="k">${nResp} de ${TOTAL} perguntas respondidas</p>
+        <h2 style="font-size:58px">A sua Ficha, <i>em uma tela</i></h2>
+        <div class="nums">
+          ${big("Área que você pode usar", a.valor === null ? "em branco" : fmtN(a.valor) + " m²")}
+          ${big("Da matrícula que vira negócio", pc.valor === null ? "em branco" : fmtN(pc.valor, 1) + "%")}
+          ${big("Unidades que o lugar aguenta", cp.valor === null ? "em branco" : fmtN(cp.valor))}
+          ${big("Peso do terreno no investimento", p.valor === null ? "a calcular" : fmtN(p.valor, 1) + "%")}
+        </div>
+        <div class="leit"><span class="rot-r" style="color:var(--creme)">Leitura do método</span><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
+        <div class="al info"><b>O ponto mais frágil</b>${esc(L.fragil)}</div>
+        <p class="sm" style="font-size:19px">Leitura do método, não promessa. A mesma conta da ferramenta da Ficha, com as suas respostas. Os números do seu terreno precisam ser confirmados com os profissionais indicados.</p>
+      </div>
+      <div class="rs-dir">
+        <h3>Primeiro, os alertas</h3>
+        ${sinaisD.map((t) => `<div class="al critico"><b>Sinal vermelho · destino, chegada e chão</b>${t}</div>`).join("")}
+        ${L.alertas.filter((x) => x.t === "critico").map((x) => `<div class="al critico"><b>${tituloAl.critico}</b>${esc(x.txt)}</div>`).join("")}
+        ${atencaoD.map((t) => `<div class="al atencao"><b>Atenção</b>${t}</div>`).join("")}
+        ${L.alertas.filter((x) => x.t === "sem" || x.t === "atencao").map((x) => `<div class="al ${x.t}"><b>${tituloAl[x.t]}</b>${esc(x.txt)}</div>`).join("")}
+        <h3>As tarefas da semana</h3>
+        ${L.alertas.filter((x) => x.t === "ns").map((x) => `<div class="al ns"><b>Não sei · vira tarefa</b>${esc(x.txt)}</div>`).join("")}
+        ${tarefasD.map((d) => `<div class="al tarefa"><b>Não sei · vira tarefa</b>${esc(d.curto)}: ${esc(d.ondeCurto)}.</div>`).join("")}
+        ${!L.alertas.some((x) => x.t === "ns") && !tarefasD.length ? `<div class="al ok"><b>Nenhum Não sei</b>Todas as perguntas têm resposta.</div>` : ""}
+        <h3>O que já está ok</h3>
+        <div class="chips">${okD.concat(okT).concat(temDocs.map((x) => "Na mão: " + x)).map((x) => `<span>${esc(x)}</span>`).join("") || `<span style="background:var(--creme2);color:var(--cinza)">Ainda nada confirmado com documento</span>`}</div>
+        ${L.alertas.filter((x) => x.t === "info").map((x) => `<div class="al info"><b>${tituloAl.info}</b>${esc(x.txt)}</div>`).join("")}
+      </div>`;
+  }
+
+  function pintarGerar() {
+    const a = document.getElementById("abrir-ficha"), st = document.getElementById("gerar-st");
+    if (!a) return;
+    a.href = urlFerramenta();
+    const feitas = QUESTOES.filter(completaT).length;
+    const semPerfil = !S.perfil.nome || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(S.perfil.email || "") || !S.perfil.cidade || !S.perfil.uf;
+    st.innerHTML = `${feitas} de ${QUESTOES.length} perguntas da Ficha respondidas.` + (feitas < QUESTOES.length ? " A ferramenta abre na primeira que falta." : " A ferramenta abre direto na sua Ficha.") + (semPerfil ? " <b>Falta o seu nome, e-mail, cidade ou estado:</b> volte um slide ou preencha na ferramenta." : "");
+  }
+
+  /* ---------- simulador da área com os números do aluno ---------- */
+  const MAPA_AREA = { mat: "area_matricula", pres: "sub_preservacao", res: "sub_reserva_legal", enc: "sub_encosta", rec: "sub_recuos", serv: "sub_servico" };
+  function meusNumeros() {
+    if (!ZD.estado || !ZD.estado.area) return;
+    const sim = document.querySelector('.sim[data-sim="area"]');
+    for (const [k, id] of Object.entries(MAPA_AREA)) {
+      const n = paraNumero(S.respostas[id]);
+      const val = n === null ? (k === "mat" ? 50000 : 0) : n;
+      ZD.estado.area[k] = String(val);
+      const inp = sim.querySelector(`input[name="${k}"]`);
+      if (inp && val > +inp.max) inp.max = String(Math.ceil(val * 1.2 / 500) * 500);
+    }
+    document.querySelectorAll('.sim[data-sim="area"]').forEach((s) => s._calc && s._calc());
+  }
+
+  /* ---------- navegação, teclado e toque ---------- */
+  const slides = Array.from(document.querySelectorAll(".s"));
+  function atualizaNav() {
+    const n = IDS.filter(completa).length;
+    document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${TOTAL}`;
+    document.getElementById("n-bar").style.width = (n / TOTAL * 100) + "%";
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+    document.getElementById("n-ant").disabled = i <= 0;
+    document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+  }
+  function pausaVideos(sl) {
+    if (!sl) return;
+    sl.querySelectorAll("iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+  }
+  let atual = -1, prontoMotor = false;
+  function aoTrocarSlide() {
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    if (i < 0 || i === atual) return;
+    const ant = slides[atual];
+    atual = i;
+    pausaVideos(ant);
+    const sl = slides[i];
+    if (sl.dataset.q) pintar(sl);
+    if (sl.querySelector("#anote")) pintarAnote();
+    if (sl.id === "s-resultado") renderResultado();
+    if (sl.id === "s-gerar") pintarGerar();
+    if (sl.id === "s-barra") meusNumeros();
+    if (sl.querySelector(".perfil")) pintarPerfil();
+    if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+    if (prontoMotor) { garantir(); S.slideAula = i; gravar(); }
+    atualizaNav();
+  }
+  const obs = new MutationObserver(aoTrocarSlide);
+  slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+  // teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta
+  document.addEventListener("keydown", (e) => {
+    const t = e.target;
+    if (!t || !t.matches) return;
+    if (t.matches("input, textarea, select, [contenteditable]")) {
+      e.stopPropagation();
+      if (e.key === "Enter" && t.matches("input") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+      return;
+    }
+    if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+  });
+  // arrastar a barra do simulador ou rolar um campo não troca de slide
+  document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .sim, .vid, .pg-dir")) e.stopPropagation(); }, { passive: true });
+  window.addEventListener("storage", (e) => {
+    if (e.key !== CHAVE) return;
+    const d = carregar(); if (!d) return;
+    S = d; garantir();
+    slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+  });
+
+  /* ---------- início ---------- */
+  const salvo = carregar();
+  if (salvo) S = salvo;
+  garantir();
+  slidesQ.forEach((sl, k) => montar(sl, k + 1));
+  slidesQ.forEach(pintar);
+  ligarPerfil(); pintarPerfil();
+  document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+  document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+  document.getElementById("meus-numeros").addEventListener("click", (e) => { e.stopPropagation(); meusNumeros(); });
+  document.getElementById("abrir-ficha").addEventListener("click", () => { gravar(); });
+
+  function escalaAula() {
+    const st = document.querySelector(".zd-stage");
+    const h = Math.max(200, innerHeight - 61);
+    const k = Math.min(innerWidth / 1920, h / 1080);
+    st.style.transform = "scale(" + k + ")";
+  }
+  function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3200); }
+
+  return {
+    depoisDoMotor() {
+      addEventListener("resize", escalaAula); escalaAula();
+      prontoMotor = true;
+      const temHash = /^#\d/.test(location.hash);
+      if (!temHash && typeof S.slideAula === "number" && S.slideAula > 0 && S.slideAula < slides.length) {
+        ZD.vai(S.slideAula);
+        toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+      }
+      aoTrocarSlide(); atualizaNav();
+    },
+    DQ, IDS, completa, calcPasso, renderResultado,
+  };
+})();
+
+</script>
+<script src="../_motor/deck.js"></script>
+<script>AULA.depoisDoMotor();</script>
+</body>
+</html>
