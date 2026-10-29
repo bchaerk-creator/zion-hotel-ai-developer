@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O seu Masterplan faseado</title>
-<meta name="description" content="Faça agora do Pilar 5 da Trilha 1: Masterplan faseado. Uma pergunta por tela, um simulador para equalizar unidades, áreas e índices e a página 5 do Dossiê de Desenvolvimento em PDF.">
+<meta name="description" content="Faça agora do Pilar 5 do Método Zion: Masterplan faseado. Uma pergunta por tela, um simulador para equalizar unidades, áreas e índices e a página 5 do Dossiê de Desenvolvimento em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -193,13 +193,13 @@ cxs('track', 'page_view');
 <!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 5<br>Masterplan faseado</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 5<br>Masterplan faseado</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion · Trilha 1 · ferramentas "Faça agora" (Pilares 4 a 7)
+   Zion · ferramentas "Faça agora" (Pilares 4 a 7)
    Um arquivo só, montado por _fonte/build.js. Sem framework, sem servidor.
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    ===================================================================== */
@@ -1189,7 +1189,7 @@ function telaAbertura() {
   if (!S.perfil.nome) { const p = perfilDeOutraFerramenta(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Trilha 1 · Pilar ${AULA.n} · ${esc(META.tema)}</div>
+    <div class="eyebrow">Pilar ${AULA.n} · ${esc(META.tema)}</div>
     <h1 tabindex="-1">${esc(AULA.abertura.titulo)}</h1>
     <p class="lead">${esc(AULA.abertura.lead)}</p>
     <div class="tres">
@@ -1439,7 +1439,7 @@ function telaResultado() {
   salvar();
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Página ${AULA.n} do Dossiê de Desenvolvimento · Trilha 1 · Pilar ${AULA.n}</div>
+    <div class="eyebrow">Página ${AULA.n} do Dossiê de Desenvolvimento · Pilar ${AULA.n}</div>
     <h1 tabindex="-1">${esc(META.pagina)}</h1>
     <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
     ${htmlSimulador(L)}
@@ -1689,9 +1689,9 @@ function corpoDaPaginaPDF(P, L) {
 }
 
 function gerarFichaPDF(L) {
-  const P = criarPDF(`Zion · Trilha 1 · Pilar ${AULA.n} · ${META.pagina}`);
+  const P = criarPDF(`Zion · Pilar ${AULA.n} · ${META.pagina}`);
   const [l1, l2] = AULA.capaTitulo;
-  P.capa(`TRILHA 1 · PILAR ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê de Desenvolvimento`, (doc) => {
+  P.capa(`PILAR ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê de Desenvolvimento`, (doc) => {
     if (L.ajustado) { doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...OURO); doc.text(`AJUSTADO NO SIMULADOR EM ${dataBR(S.sim.data || hojeISO())}`, P.M + 4, 140); }
   });
   P.novaPagina();

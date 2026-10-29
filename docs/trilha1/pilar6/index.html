@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>A sua Pré-viabilidade</title>
-<meta name="description" content="Faça agora do Pilar 6 da Trilha 1: Pré-viabilidade. Uma pergunta por tela: as oito linhas do investimento, o giro e o terreno, a receita e a margem, os três cenários e o tempo de volta. No fim, você equaliza os números e baixa a página 6 do seu Dossiê de Desenvolvimento em PDF.">
+<meta name="description" content="Faça agora do Pilar 6 do Método Zion: Pré-viabilidade. Uma pergunta por tela: as oito linhas do investimento, o giro e o terreno, a receita e a margem, os três cenários e o tempo de volta. No fim, você equaliza os números e baixa a página 6 do seu Dossiê de Desenvolvimento em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -184,13 +184,13 @@ cxs('track', 'page_view');
 <!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 6<br>Pré-viabilidade</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 6<br>Pré-viabilidade</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion · Trilha 1 · Pilar 6 · Pré-viabilidade · "Faça agora · A sua Pré-viabilidade"
+   Zion · Pilar 6 · Pré-viabilidade · "Faça agora · A sua Pré-viabilidade"
    Um arquivo só, sem framework, sem servidor. Mesmo padrão das ferramentas dos Pilares 1 a 3.
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    As contas seguem pilar6/contas_pilar6.py (base simplificada da Zion, 28/10/2026).
@@ -1035,7 +1035,7 @@ function telaAbertura() {
   if (!S.perfil.nome) { const p = perfilDeOutraPagina(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Trilha 1 · Pilar 6 · Faça agora</div>
+    <div class="eyebrow">Pilar 6 · Faça agora</div>
     <h1 tabindex="-1">${esc(ABERTURA.titulo)}</h1>
     <p class="lead">${esc(ABERTURA.lead)}</p>
     <div class="tres">
@@ -1285,7 +1285,7 @@ function telaResultado() {
   const base = paramsDasRespostas();
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Página 6 do Dossiê de Desenvolvimento · Trilha 1 · Pilar 6</div>
+    <div class="eyebrow">Página 6 do Dossiê de Desenvolvimento · Pilar 6</div>
     <h1 tabindex="-1">A sua Pré-viabilidade</h1>
     <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
     <section class="bloco" id="b-painel" aria-live="polite"></section>
@@ -1508,7 +1508,7 @@ function criarPDF(cabecalho) {
 function gerarFichaPDF(L) {
   const P = criarPDF("Zion · Dossiê de Desenvolvimento · Página 6 · Pré-viabilidade");
   const aj = L.P.ajustado;
-  P.capa("TRILHA 1 · PILAR 6 · PRÉ-VIABILIDADE", "A sua", "Pré-viabilidade", "Página 6 do Dossiê de Desenvolvimento · O negócio se paga?", (doc) => {
+  P.capa("PILAR 6 · PRÉ-VIABILIDADE", "A sua", "Pré-viabilidade", "Página 6 do Dossiê de Desenvolvimento · O negócio se paga?", (doc) => {
     if (!aj) return;
     doc.setFillColor(...OURO); doc.roundedRect(P.M + 4, 132, 92, 9, 2, 2, "F");
     doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...VERDE); doc.text(`AJUSTADO NO SIMULADOR · ${dataBR(hojeISO())}`, P.M + 7, 138);

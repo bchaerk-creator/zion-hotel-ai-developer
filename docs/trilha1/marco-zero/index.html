@@ -421,7 +421,7 @@ function gerarPDF() {
   const W = 210, M = 18, CW = W - 2 * M; let y = 0;
   const rodape = () => { d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.", M, 288, { maxWidth: CW }); };
   const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(s, CW); if (y + ls.length * size * 0.42 > 275) { rodape(); d.addPage(); y = 20; } d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
-  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("MÉTODO ZION 360° · TRILHA 1 · MARCO ZERO", M, 14);
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("MÉTODO ZION · MARCO ZERO", M, 14);
   d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text("O seu diagnóstico prévio", M, 26);
   d.setFont("helvetica", "normal"); d.setFontSize(10); d.text([S.nome, S.cidade, new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · "), M, 35);
   y = 54;

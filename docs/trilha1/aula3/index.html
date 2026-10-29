@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ficha do Produto</title>
-<meta name="description" content="Ferramenta do Pilar 3 da Trilha 1 da Mentoria Zion: Produto e tipologias. Você responde uma pergunta por vez e sai com a Ficha do Produto, a página 3 do Dossiê do Produto, em PDF.">
+<meta name="description" content="Ferramenta do Pilar 3 do Método Zion: Produto e tipologias. Você responde uma pergunta por vez e sai com a Ficha do Produto, a página 3 do Dossiê de Desenvolvimento, em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -140,13 +140,13 @@ cxs('track', 'page_view');
 <!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Mentoria Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 3<br>Produto e tipologias</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 3<br>Produto e tipologias</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion Exercícios · Trilha 1 · Trilha 1 · Pilar 3 · Produto e tipologias
+   Zion · Faça agora · Pilar 3 · Produto e tipologias
    Um arquivo só, gerado por _fonte/build.js. Sem framework.
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    ===================================================================== */
@@ -155,15 +155,15 @@ const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". Para ligar, preencha e rode node _fonte/build.js. */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
 const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
-/** Chaves do navegador, iguais em todas as ferramentas da Trilha 1: zion-t1-aula1 a zion-t1-aula6. */
+/** Chaves do navegador, iguais em todas as ferramentas do Método Zion: zion-t1-aula1 a zion-t1-aula6. */
 const PREFIXO = "zion-t1-aula";
 const AULAS = [
   { n: 1, tema: "Território e destino", ficha: "Ficha do Território" },
   { n: 2, tema: "Mercado e demanda", ficha: "Ficha do Mercado" },
   { n: 3, tema: "Produto e tipologias", ficha: "Ficha do Produto" },
   { n: 4, tema: "Modelo de negócio", ficha: "O Modelo de Negócio" },
-  { n: 5, tema: "Masterplan", ficha: "O Masterplan" },
-  { n: 6, tema: "Estudo de massas e Dossiê do Produto", ficha: "Estudo de massas e briefing" },
+  { n: 5, tema: "Masterplan faseado", ficha: "O Masterplan faseado" },
+  { n: 6, tema: "Pré-viabilidade", ficha: "A Pré-viabilidade" },
 ];
 const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
 const PESO_V = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
@@ -496,7 +496,7 @@ const AULA = {
   escalaNota: "0 = Não sei ou ainda não feito · 1 = estimativa ou hipótese · 2 = um profissional falou, ou só parte das provas · 3 = documento, medida, conta ou teste feito.",
   abertura: {
     titulo: "A sua Ficha do Produto",
-    lead: "Você monta a página 3 do Dossiê do Produto: para quem você vende, o que essa pessoa vive, a frase da sua promessa e a unidade que sobra nos três filtros.",
+    lead: "Você monta a página 3 do Dossiê de Desenvolvimento: para quem você vende, o que essa pessoa vive, a frase da sua promessa e a unidade que sobra nos três filtros.",
     porque: "Quem começa pela estrutura bonita compra o que qualquer um compra. Se a frase do seu produto cabe no vizinho, ela não é sua, e a diária vai para a briga de preço.",
     como: "Uma pergunta por tela, em linguagem simples. Algumas pedem um teste que não custa nada: o do vizinho e o dos cinco segundos. Onde não souber, marque Não sei.",
     paraque: "Você sai com a Ficha do Produto em PDF: público, momento assinatura, a frase em três partes, as provas, a unidade e a hipótese de preço, com alertas e o próximo passo.",
@@ -815,7 +815,7 @@ function ler() {
   return { res, r, notas, soma, alertas, fragil, v: lt.v, motivo: lt.motivo, criterioSug, comp, nsAluno, ctx };
 }
 
-/** O resumo que esta aula deixa salvo para o Dossiê do Produto (lido no Pilar 6). */
+/** O resumo que esta aula deixa salvo para o Dossiê de Desenvolvimento (lido no Pilar 6). */
 function montarResumo(L) {
   const lt = AULA.LEITURAS[L.v];
   return {
@@ -1012,7 +1012,7 @@ function telaAbertura() {
   if (!S.perfil.nome) { const p = perfilDeOutraAula(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Trilha 1 · Aula ${AULA.n} · ${esc(META.tema)}</div>
+    <div class="eyebrow">Pilar ${AULA.n} · ${esc(META.tema)}</div>
     <h1 tabindex="-1">${esc(AULA.abertura.titulo)}</h1>
     <p class="lead">${esc(AULA.abertura.lead)}</p>
     <div class="tres">
@@ -1195,7 +1195,7 @@ function telaResultado() {
   const tt = (t) => (AULA.textoTela ? AULA.textoTela(t) : t);
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Página ${AULA.n} do Dossiê do Produto · Trilha 1 · Aula ${AULA.n}</div>
+    <div class="eyebrow">Página ${AULA.n} do Dossiê de Desenvolvimento · Pilar ${AULA.n}</div>
     <h1 tabindex="-1">${esc(META.ficha)}</h1>
     <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
     <div class="numeros">${AULA.numeros(L).map(([r, v]) => big(r, v)).join("")}</div>
@@ -1399,7 +1399,7 @@ function corpoDaPaginaPDF(P, L) {
 function gerarFichaPDF(L) {
   const P = criarPDF(`Zion · Mentoria Zion · ${META.ficha}`);
   const [l1, l2] = AULA.capaTitulo;
-  P.capa(`TRILHA 1 · AULA ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê do Produto · ${META.tema}`);
+  P.capa(`PILAR ${AULA.n} · ${META.tema.toUpperCase()}`, l1, l2, `Página ${AULA.n} do Dossiê de Desenvolvimento · ${META.tema}`);
   P.novaPagina();
   corpoDaPaginaPDF(P, L);
   P.par(AULA.notaFinalPDF, { size: 8, cor: CINZA });

@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Ficha do Território</title>
-<meta name="description" content="Ferramenta do Pilar 1 da Trilha 1 da Mentoria Zion: Território e destino. Você responde uma pergunta por vez e sai com a Ficha do Território, a página 1 do Dossiê do seu projeto, em PDF.">
+<meta name="description" content="Ferramenta do Pilar 1 do Método Zion: Território e destino. Você responde uma pergunta por vez e sai com a Ficha do Território, a página 1 do Dossiê do seu projeto, em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -132,13 +132,13 @@ cxs('track', 'page_view');
 <!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Mentoria Zion</div><div class="etiqueta">Trilha 1 · Pilar 1<br>Território e destino</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Método Zion</div><div class="etiqueta">Pilar 1<br>Território e destino</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion Exercícios · Trilha 1 · Etapa 1 · Pilar 1 · Território e destino
+   Zion · Faça agora · Etapa 1 · Pilar 1 · Território e destino
    Um arquivo só. Sem framework. Nada é enviado: ZION_WEBHOOK_URL vazia.
    ===================================================================== */
 "use strict";
@@ -146,7 +146,7 @@ const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (app da Lovable). Vazia: a seção mostra "Disponível em breve". O build.js copia esta linha de _fonte/base.html. */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
 const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.";
-const CHAVE = "zion-t1-aula1"; // chave comum da Trilha 1: zion-t1-aula1 a zion-t1-aula6
+const CHAVE = "zion-t1-aula1"; // chave comum do Método Zion: zion-t1-aula1 a zion-t1-aula6
 const CHAVE_ANTIGA = "zion-etapa1-territorio-v1"; // lida uma vez, para quem começou antes da troca
 
 /* ---------------------------------------------------------------------
@@ -1010,7 +1010,7 @@ function respostaTexto(q) {
 }
 const fonteTexto = (q) => { const f = FONTES.find((x) => x.v === S.fontes[q.id]); return ehNS(S.respostas[q.id]) ? "" : f ? ["Documento ou medida", "Profissional, sem papel", "Estimativa"][FONTES.indexOf(f)] : ""; };
 
-/** O resumo que o Pilar 1 deixa salvo para o Dossiê do Produto, lido pela ferramenta do Pilar 6. */
+/** O resumo que o Pilar 1 deixa salvo para o Dossiê de Desenvolvimento, lido pela ferramenta do Pilar 6. */
 function resumoParaDossie(L) {
   const g = (id) => calc(L.res, id), leit = LEITURAS[L.v];
   const a = g("area_usavel"), pc = g("pct_usavel"), c = g("capacidade"), p = g("peso_terreno");
@@ -1168,7 +1168,7 @@ function gerarPDF(L) {
   doc.setFillColor(...VERDE); doc.rect(0, 0, W, H, "F");
   doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, W - 20, H - 20);
   doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO);
-  doc.text("TRILHA 1 · AULA 1 · ETAPA 1", M + 4, 48);
+  doc.text("PILAR 1 · ETAPA 1 · LER O LUGAR", M + 4, 48);
   doc.setFont("times", "bold"); doc.setFontSize(34); doc.setTextColor(...CREME);
   doc.text("Ficha do", M + 4, 72); doc.text("Território", M + 4, 86);
   doc.setFillColor(...OURO); doc.rect(M + 4, 93, 50, 1.2, "F");

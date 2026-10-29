@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>O seu Dossiê de Desenvolvimento</title>
-<meta name="description" content="Faça agora do Pilar 7 da Trilha 1: Capital e Dossiê. Uma pergunta por tela: as três perguntas do capital, o pedido, o limite de perda, as seis fontes, o que te falta de verdade, as sete páginas, a decisão e o caminho. No fim, você baixa o seu Dossiê de Desenvolvimento completo em PDF.">
+<meta name="description" content="Faça agora do Pilar 7 do Método Zion: Capital e Dossiê. Uma pergunta por tela: as três perguntas do capital, o pedido, o limite de perda, as seis fontes, o que te falta de verdade, as sete páginas, a decisão e o caminho. No fim, você baixa o seu Dossiê de Desenvolvimento completo em PDF.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
@@ -210,13 +210,13 @@ cxs('track', 'page_view');
 <!-- End of Clickmax SDK Code -->
 </head>
 <body>
-<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 7<br>Capital e Dossiê</div></div></header>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 7<br>Capital e Dossiê</div></div></header>
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
 <script>
 /* =====================================================================
-   Zion · Trilha 1 · Pilar 7 · Capital e Dossiê · "Faça agora · O seu Dossiê de Desenvolvimento"
+   Zion · Pilar 7 · Capital e Dossiê · "Faça agora · O seu Dossiê de Desenvolvimento"
    Um arquivo só, sem framework, sem servidor. Mesmo padrão das ferramentas dos Pilares 1 a 6.
    Lê o que as outras ferramentas salvaram NESTE aparelho (Marco Zero e Pilares 1 a 6) e monta o
    Dossiê de Desenvolvimento completo em um PDF. O que não existir aparece como "a fazer".
@@ -1026,13 +1026,13 @@ function telaAbertura() {
   const pags = lerPaginas();
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Trilha 1 · Pilar 7 · Faça agora</div>
+    <div class="eyebrow">Pilar 7 · Faça agora</div>
     <h1 tabindex="-1">O seu Dossiê de Desenvolvimento</h1>
     <p class="lead">Você fecha a página 7, Capital e decisão, e junta as sete páginas num Dossiê só, em PDF: de onde vem o capital, com quem, e a sua decisão de avançar, ajustar ou parar.</p>
     <div class="tres">
       <div><b>Por que</b>Terreno parado quase nunca é falta de dinheiro. É falta de ordem. O dinheiro muda de quem é o risco; não muda a conta.</div>
       <div><b>Como</b>Uma pergunta por tela. A ferramenta lê o que as outras ferramentas salvaram neste aparelho. Onde não souber, marque Não sei: vira tarefa da semana.</div>
-      <div><b>Para que</b>Você sai da Trilha 1 com o Dossiê de Desenvolvimento completo em PDF: as sete páginas, a decisão escrita e o caminho.</div>
+      <div><b>Para que</b>Você sai do curso com o Dossiê de Desenvolvimento completo em PDF: as sete páginas, a decisão escrita e o caminho.</div>
     </div>
     <div class="ctx"><h3>O que este aparelho já tem do seu Dossiê</h3><div class="pags">${pags.map((p) => `<div class="pag"><div class="cab"><b>${p.n} · ${esc(p.nome)}</b>${selo(p)}</div></div>`).join("")}</div>
       <p class="dica" style="margin-top:8px">O que estiver a fazer aparece assim no PDF. Se você fez uma página em outro aparelho, abra a ferramenta dela aqui e gere de novo.</p></div>
@@ -1220,7 +1220,7 @@ function telaResultado() {
   const no = S.extra.noventa;
   app.innerHTML = `
   <div class="card">
-    <div class="eyebrow">Página 7 do Dossiê de Desenvolvimento · Trilha 1 · Pilar 7</div>
+    <div class="eyebrow">Página 7 do Dossiê de Desenvolvimento · Pilar 7</div>
     <h1 tabindex="-1">O seu Dossiê de Desenvolvimento</h1>
     <p class="lead">${esc(S.perfil.nome)} · ${esc(S.perfil.cidade)}${S.perfil.uf ? "/" + esc(S.perfil.uf) : ""} · ${dataBR(hojeISO())}</p>
     <section class="bloco" id="b-painel" aria-live="polite"></section>
@@ -1255,7 +1255,7 @@ function telaResultado() {
       <button class="btn btn-ouro" id="pdf">Baixar o meu Dossiê de Desenvolvimento completo (PDF)</button>
       <button class="btn btn-s" id="editar">Revisar as respostas</button>
       <button class="btn btn-s" id="recomecar">Começar de novo esta página</button>
-      <a class="btn btn-p" href="../index.html">Ver as ferramentas da Trilha 1</a>
+      <a class="btn btn-p" href="../index.html">Ver as ferramentas do curso</a>
     </div>
     <div class="erro" id="erro-pdf" role="alert"></div>
   </div>`;
@@ -1460,7 +1460,7 @@ function paginaSalvaPDF(P, p) {
 function gerarDossiePDF(L) {
   const P = criarPDF("Zion · Dossiê de Desenvolvimento");
   const feitas = L.pags.filter((p) => p.n >= 1 && p.status === "feita").length + 1;
-  P.capa("TRILHA 1 · O DOSSIÊ COMPLETO", "Dossiê de", "Desenvolvimento", `As sete páginas, uma por pilar, e a decisão: ${NOME_D[L.d].toLowerCase()}. ${feitas} de 7 páginas prontas neste aparelho.`, (doc) => {
+  P.capa("MÉTODO ZION · O DOSSIÊ COMPLETO", "Dossiê de", "Desenvolvimento", `As sete páginas, uma por pilar, e a decisão: ${NOME_D[L.d].toLowerCase()}. ${feitas} de 7 páginas prontas neste aparelho.`, (doc) => {
     if (!L.P.ajustado) return;
     doc.setFillColor(...OURO); doc.roundedRect(P.M + 4, 138, 108, 9, 2, 2, "F");
     doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...VERDE); doc.text(`PÁGINA 7 AJUSTADA NO SIMULADOR · ${dataBR(hojeISO())}`, P.M + 7, 144);
