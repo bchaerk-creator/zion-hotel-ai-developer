@@ -1,0 +1,1703 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 4 · Modelo de negócio</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.sv.verde{background:#EEF3EC;color:#173F25;border-color:var(--ok)}.sv.verde b{color:var(--ok)}
+.esc .sv.verde{background:rgba(62,142,90,.22);color:#F5F1E8}.esc .sv.verde b{color:#BFE3C9}
+.lado img.fig2{width:100%;max-height:800px;object-fit:contain;border-radius:22px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+.balcao{display:grid;grid-template-columns:1fr 90px 1fr;align-items:stretch}
+.balcao .card{min-height:250px}
+.balcao .meio{display:flex;align-items:center;justify-content:center}
+.balcao .meio i{display:block;width:10px;height:100%;background:var(--ouro);border-radius:5px}
+.sete{font-size:28px}
+table.t.mapa td{font-size:25px;padding:12px 16px;line-height:1.35}
+table.t.mapa td:first-child{font-weight:700;width:26%}
+.cen3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cen3>div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);border-radius:18px;padding:24px 26px;display:flex;flex-direction:column;gap:6px}
+.cen3>div.fraco{border:3px solid var(--ouro)}
+.cen3 h4{margin:0;font-size:19px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro)}
+.cen3 .v{font-family:var(--serif);font-size:54px;line-height:1.1;color:#F5F1E8}
+.cen3 .l{font-size:21px;color:#BFB8A8}
+.cen3 .conf{font-size:20px;font-weight:700;color:#E9B47A}
+.vazio-cen{font-size:30px;line-height:1.45;color:#D9D3C4;max-width:1500px}
+.sim .btns{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:50px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.pg textarea:disabled{background:var(--creme2);opacity:.6}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:24px;line-height:1.3;text-align:left;padding:13px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:64px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.ops2.longo .opc{font-size:21px;min-height:54px;padding:10px 16px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 14px;font-size:19px}
+.fora-msg{display:none;flex-direction:column;gap:22px;max-width:1300px}
+.s.q.fora .pg{display:none}
+.s.q.fora .fora-msg{display:flex}
+.fora-msg h2{font-size:56px}
+.fora-msg p{font-size:30px;line-height:1.45;color:var(--cinza)}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.anote b{text-align:right}
+/* diagnóstico */
+.s.diag{padding:100px 80px 70px;gap:14px}
+.diag-txt{font-size:28px;line-height:1.4;max-width:1700px;margin:0}
+.diag-box{width:1760px;height:770px;border-radius:18px;overflow:hidden;background:#F5F1E8;border:2px solid var(--ouro);position:relative;flex:none}
+.diag-box iframe{position:absolute;left:0;top:0;width:1760px;height:770px;border:0;transform-origin:0 0;background:#F5F1E8}
+.diag-pe{display:flex;justify-content:space-between;gap:20px;font-size:21px;color:#D9D3C4;margin:0;max-width:1760px;width:100%}
+.diag-pe a{color:var(--ouro);font-weight:600;font-size:19px;opacity:.85}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button:disabled{opacity:.4;cursor:default}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px!important} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.trio,.exe,.anote,.perfil,.cen3,.balcao{grid-template-columns:1fr!important;gap:12px}
+  .balcao .meio{display:none} .balcao .card{min-height:0}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .lado img.fig2,.lado img.ilus{max-height:300px;object-fit:contain}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td,table.t.mapa td{padding:8px 6px;font-size:14px!important}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .fases .linha{flex-wrap:wrap;gap:10px} .fases .linha::before{display:none} .fases .bt{flex:1 1 30%} .fases .bt .bol{width:44px;height:44px;font-size:20px} .fases .bt span{font-size:13px}
+  .fases .painel{grid-template-columns:1fr;gap:10px;padding:14px 16px;min-height:0} .fases .painel p{font-size:15px} .fases .painel h4{font-size:11px} .fases .painel .vazio{font-size:15px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .cen3 .v{font-size:28px} .cen3 h4{font-size:12px} .cen3 .l,.cen3 .conf{font-size:13px} .cen3>div{padding:14px 16px} .vazio-cen{font-size:16px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq,.ops2.longo .opc{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px} .veio{font-size:13px}
+  .fora-msg h2{font-size:24px!important} .fora-msg p{font-size:16px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .anote{font-size:15px}
+  .s.diag{padding:50px 12px 90px;gap:10px}
+  .diag-txt{font-size:16px}
+  .diag-box{width:100%;height:70vh;height:70dvh;border-radius:12px}
+  .diag-box iframe{position:static;width:100%!important;height:100%!important;transform:none!important}
+  .diag-pe{font-size:13px;flex-direction:column;gap:6px} .diag-pe a{font-size:14px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+</style>
+<script>
+/* Pilar 4 · aula principal em slides. A Marina é um exemplo ilustrativo.
+   Números da Marina que o vídeo do Bloco 1 fala: 3 cabanas, 3 × 365 = 1.095 noites; 38,5% → cerca de 422 noites
+   (421,575); × R$ 645 = R$ 271.915,88, cerca de R$ 272 mil de receita bruta.
+   Exemplos do Bloco 2 (não são a Marina): 10 × R$ 350.000 = R$ 3.500.000 de VGV; 51 × R$ 30.000 = R$ 1.530.000. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+ZD.sims.cem = function(v){
+  const cem = v.un * 365, n = cem * v.ocup / 100, rec = n * v.diaria;
+  let a;
+  if (v.ocup > 65) a = ['er', 'Acima de 65%: <b>só com procura extraordinária comprovada</b>, ano após ano. Use a média do ano, nunca o mês mais cheio.'];
+  else if (v.ocup > 40) a = ['at', 'Acima da faixa de só fins de semana. <b>O número em que você confia é o do cenário mais fraco.</b>'];
+  else a = ['ok', '<b>Receita bruta é tudo o que entra, antes das contas.</b> Não é lucro e não é retorno.'];
+  return {cem, n, rec, _aviso: a};
+};
+ZD.sims.vgv = function(v){
+  const qtd = v.uv * v.fr, vgv = qtd * v.preco, custo = vgv * v.pct / 100, sobra = vgv - custo;
+  let a;
+  if (v.fr > 52) a = ['er', '<b>Mais de 52 cotas não cabem no ano:</b> na multipropriedade, cada cota é de no mínimo sete dias.'];
+  else if (v.fr > 1 && v.pct < 30) a = ['at', 'Custo de vender abaixo de 30% do VGV. <b>Use 30% como alerta</b> até ter proposta comercial por escrito.'];
+  else a = ['ok', '<b>VGV não é lucro.</b> Ainda sai a obra inteira, com a área não vendável. E tudo isso pressupõe vender tudo.'];
+  return {qtd: (window.ZD.fmt ? ZD.fmt(qtd) : qtd) + (v.fr > 1 ? ' cotas' : (qtd === 1 ? ' unidade' : ' unidades')), vgv, custo, sobra, pctSobra: 100 - v.pct, _aviso: a};
+};
+</script>
+</head>
+<body data-deck="t1-pilar4-aula" data-titulo="Pilar 4 · Modelo de negócio">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/f7ddae0c6d.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 2 · Desenhar o produto</p>
+  <h1>Pilar 4<br><i>Modelo de negócio</i></h1>
+  <p class="lead" style="max-width:1100px">Renda, venda ou os dois. Você sai sabendo como o seu projeto ganha dinheiro, e com a página 4 do seu Dossiê: o Modelo de Negócio.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a página 4</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco: o modelo de renda e o modelo de venda. E um vídeo extra, o mapa dos modelos.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com o PDF</h3><p>No fim, a ferramenta abre aqui dentro, já com as suas respostas. Você gera o Modelo de Negócio em PDF: a página 4 do Dossiê.</p></div>
+  </div>
+  <p class="sv verde"><b>Dica</b><span>Tenha à mão a sua Ficha do Mercado (Pilar 2) e a sua Ficha do Produto (Pilar 3), e uma calculadora. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<!-- ============ RETOMADA ============ -->
+<section class="s esc" data-bloco="Retomada · Pilar 3">
+  <p class="k">Antes de começar · sem voltar às páginas</p>
+  <h2>Três perguntas <i>do Pilar 3</i></h2>
+  <p class="lead" style="max-width:1300px">No Pilar 3 você decidiu o produto: o que vende, e para quem. Responda de cabeça. Lembrar sem olhar é o que fixa.</p>
+</section>
+<section class="s q" data-q="r_estrutura" data-bloco="Retomada · Pilar 3"></section>
+<section class="s q" data-q="r_momento" data-bloco="Retomada · Pilar 3"></section>
+<section class="s q" data-q="r_preco" data-bloco="Retomada · Pilar 3"></section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · O modelo de renda">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · O modelo de renda, do degrau fácil ao complicado</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/qGSK5aWB0XQ?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 4 · Bloco 1 · O modelo de renda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/qGSK5aWB0XQ" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Como ganha dinheiro">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">A pergunta deste pilar</p>
+      <h2 style="font-size:74px">Como esse projeto <i>ganha dinheiro?</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f"><span><b>Renda:</b> hospedar, e receber pela diária.</span></li>
+        <li class="f"><span><b>Venda:</b> construir para vender as unidades.</span></li>
+      </ul>
+      <p class="lead f" style="font-size:30px">O modelo muda tudo o que vem depois: quando o dinheiro volta, quanto capital você precisa e que tipo de obrigação você assume.</p>
+    </div>
+    <img class="fig2" src="figuras/03-venda-ou-renda.svg" alt="O imóvel no topo e o caminho que se divide entre renda e venda">
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · Alugar ou hospedar">
+  <div class="lado" style="grid-template-columns:1.15fr .85fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Uma distinção que muita gente pula</p>
+      <h2 style="font-size:70px">Alugar <i>ou hospedar</i></h2>
+      <ul class="lista num" style="font-size:31px">
+        <li class="f"><span><b>Aluguel por temporada:</b> entregar o imóvel por um tempo, até noventa dias, e quem aluga cuida de si.</span></li>
+        <li class="f"><span><b>Hospedagem:</b> receber a pessoa, com serviço, e cobrar diária.</span></li>
+      </ul>
+      <p class="lead f" style="font-size:31px">O seu produto tem café, limpeza durante a estadia ou alguém para receber? <b style="color:var(--ouro)">Então você hospeda.</b></p>
+      <p class="sm f">Qual regra vale no seu caso, quem confirma é o advogado e o contador.</p>
+    </div>
+    <img class="fig2" src="figuras/02-alugar-hospedar.svg" alt="Aluguel por temporada ou hospedagem com serviço">
+  </div>
+</section>
+<section class="s q" data-q="negocio" data-bloco="Bloco 1 · Alugar ou hospedar"></section>
+<section class="s q" data-q="servicos" data-bloco="Bloco 1 · Alugar ou hospedar"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Um chalé alugado no fim de semana, sem café, sem limpeza durante a estadia e sem ninguém para receber, é o quê?</p>
+    <div class="ops">
+      <button class="op">Hospedagem</button>
+      <button class="op" data-certa>Aluguel por temporada</button>
+      <button class="op">Multipropriedade</button>
+    </div>
+    <p class="exp">Sem serviço, quem entrega o imóvel aluga, e quem aluga cuida de si. Se tiver café, limpeza durante a estadia ou alguém para receber, é hospedagem.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O modelo de renda">
+  <p class="k">O modelo de renda</p>
+  <h2>Você constrói, fica com o imóvel <i>e o dinheiro volta aos poucos</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Pelas diárias</h3><p>O dinheiro volta aos poucos, diária por diária.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Todo mês</h3><p>A operação precisa fechar todo mês.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Uma escada</h3><p>Nem todo produto de renda dá o mesmo trabalho. Pense numa escada com três degraus.</p></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A escada de três degraus">
+  <p class="k">A escada da renda</p>
+  <h2>Fácil, médio <i>e complicado</i></h2>
+  <div class="grid g3" style="align-items:stretch">
+    <div class="card f"><span class="n">1</span><h3>Fácil</h3><p>Chalé ou cabana no estilo Airbnb, e o glamping, com bolha, domo ou cabana, em poucas unidades. A chave é entregue ou automática, e o resto é a limpeza. Começa mais rápido e pede menos capital.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Médio</h3><p>A pousada, ou o glamping com serviço: café da manhã, recepção, experiências. Equipe fixa, licença de hospedagem e uma rotina de serviço todos os dias.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Complicado</h3><p>O hotel boutique ou o resort, com restaurante, spa e eventos. Operação de vinte e quatro horas, equipe grande, capital alto e mais tempo até ficar de pé.</p></div>
+  </div>
+  <p class="lead f" style="font-size:30px">O degrau fácil é o que a Zion conhece por dentro: já operamos pousada e hotel tradicional, e com o glamping gastamos muito menos, operamos mais e hospedamos mais.</p>
+</section>
+
+<section class="s foto" data-bg="../fotos/9f117bde58.jpg" data-bloco="Bloco 1 · A escada de três degraus">
+  <p class="k">Nenhum degrau é melhor por definição</p>
+  <p class="citacao" style="max-width:1300px">Qual degrau você consegue estruturar e <i>operar bem na fase um?</i></p>
+  <ul class="lista" style="max-width:1200px;font-size:34px">
+    <li class="f">A fruta baixa quase sempre está no degrau fácil.</li>
+    <li class="f">Você começa no tamanho que consegue fazer bem, prova o negócio e sobe depois.</li>
+  </ul>
+</section>
+<section class="s q" data-q="degrau" data-bloco="Bloco 1 · A escada de três degraus"></section>
+<section class="s q" data-q="consegue_operar" data-bloco="Bloco 1 · A escada de três degraus"></section>
+
+<section class="s" data-bloco="Bloco 1 · A conta do cem por cento">
+  <p class="k">A conta de padaria da renda</p>
+  <h2>Comece pelo <i>cem por cento</i></h2>
+  <div class="conta" style="max-width:1450px;font-size:36px">
+    <div class="eq f"><span>Unidades × 365 noites</span><span>o cem por cento</span></div>
+    <div class="eq f"><span>× a ocupação que você mediu no Pilar 2</span><span>as noites vendidas</span></div>
+    <div class="eq f"><span>× a diária média que você mediu no Pilar 2</span><span>a receita bruta</span></div>
+  </div>
+  <p class="lead f">O cem por cento são todas as noites que existem no ano.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A conta do cem por cento">
+  <span class="selo">Exemplo ilustrativo · a Marina · para ensinar a conta</span>
+  <h2>A conta <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1450px">
+    <div class="eq f"><span>O cem por cento · 3 cabanas × 365 noites</span><span>1.095 noites</span></div>
+    <div class="eq f"><span>As noites vendidas · com 38,5% de ocupação</span><span>cerca de 422</span></div>
+    <div class="eq f"><span>× R$ 645 de diária média</span><span></span></div>
+    <div class="eq tot f" data-foco><span>Receita bruta no ano</span><span>cerca de R$ 272 mil</span></div>
+  </div>
+  <p class="lead f">Receita bruta é tudo o que entra, antes das contas. <b>Não é lucro e não é retorno.</b></p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A conta do cem por cento" id="s-sim-cem">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a conta do cem por cento</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:62px">Unidades × 365 × ocupação <i>× diária</i></h2>
+  <div class="sim" data-sim="cem">
+    <div class="ctl">
+      <label>Unidades na fase um <output data-for="un"></output><input type="range" name="un" min="1" max="30" step="1" value="3"></label>
+      <label>Ocupação média do ano <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="10" max="85" step="0.5" value="38.5"><small>A média do ano, nunca o mês mais cheio.</small></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="100" max="3000" step="5" value="645"><small>A que você mediu, não a que pretende cobrar.</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>O cem por cento, em noites</span><b data-r="cem"></b></div>
+      <div class="linha"><span>Noites vendidas no ano</span><b data-r="n"></b></div>
+      <div class="linha tot"><span>Receita bruta no ano</span><b data-r="rec" data-fmt="mil"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div class="btns"><button class="reset">Voltar ao exemplo da Marina</button><button class="btn-s2" id="meus-cem" style="display:none">Usar os meus números</button><span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · faça a conta de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Quatro cabanas. Qual é o cem por cento?</p>
+    <div class="ops"><button class="op">365 noites</button><button class="op" data-certa>1.460 noites</button><button class="op">Depende da ocupação</button></div>
+    <p class="exp">4 × 365 = 1.460 noites: todas as noites que existem no ano. A ocupação entra depois.</p>
+  </div>
+</section>
+<section class="s q" data-q="unidades_fase1" data-bloco="Bloco 1 · A conta do cem por cento"></section>
+<section class="s q" data-q="ocupacao" data-bloco="Bloco 1 · A conta do cem por cento"></section>
+<section class="s q" data-q="diaria" data-bloco="Bloco 1 · A conta do cem por cento"></section>
+
+<section class="s" data-bloco="Bloco 1 · Os três cenários">
+  <p class="k">Nunca faça um número só</p>
+  <h2>Três cenários. <i>Você confia no mais fraco.</i></h2>
+  <div class="grid g3">
+    <div class="card f" style="border:3px solid var(--ouro)"><span class="n">1</span><h3>Só fins de semana</h3><p>O número em que você confia.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Fins de semana e feriados</h3><p>Mostra até onde o projeto pode ir.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Procura forte</h3><p>Também mostra até onde pode ir. Não decide se o projeto fica de pé.</p></div>
+  </div>
+  <p class="sm f">Na ferramenta, a régua dos três cenários é a mesma do Marco Zero: 35% a 40%, 50% a 60% e 65% a 85% de ocupação média do ano. A sua medida entra no cenário em que ela cabe.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · Os seus três cenários" id="s-cenarios">
+  <p class="k">Com as suas respostas · receita bruta no ano</p>
+  <h2>Os seus <i>três cenários</i></h2>
+  <div id="cen-meus"></div>
+  <p class="sm" style="color:#BFB8A8">Conta de referência, não promessa. Receita bruta não é lucro: ainda saem os custos, os impostos e as comissões.</p>
+</section>
+<section class="s q" data-q="fica_de_pe" data-bloco="Bloco 1 · Os três cenários"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Dos três cenários, qual é o número em que você confia?</p>
+    <div class="ops"><button class="op">O de procura forte, porque mostra o potencial</button><button class="op">A média dos três</button><button class="op" data-certa>O do cenário mais fraco</button></div>
+    <p class="exp">O número em que você confia é o do cenário mais fraco. Os outros dois mostram até onde o projeto pode ir se o mercado ajudar.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Receita bruta não é lucro">
+  <p class="k">O que ainda sai da receita</p>
+  <h2>Receita bruta <i>não é lucro</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Custos fixos</h3><p>O que você paga todo mês, cheio ou vazio.</p></div>
+    <div class="card f"><h3>Custos variáveis</h3><p>O que só existe quando alguém se hospeda.</p></div>
+    <div class="card f"><h3>O custo de cada noite vendida</h3><p>Quanto custa, de verdade, cada noite que entra.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:56px">Ocupação é vaidade. <i>Margem é sobrevivência.</i></p>
+  <p class="sm f">A conta inteira, com o investimento, você faz no Pilar 6.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quem opera">
+  <p class="k">No modelo de renda, alguém precisa operar todos os dias</p>
+  <h2>Quem opera <i>a fase um?</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Você</h3><p>Pede tempo em noite, fim de semana e feriado, que é quando o hóspede está lá.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Uma pessoa contratada</h3><p>Pede a rotina escrita, para que outra pessoa consiga repetir.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Uma empresa de gestão</h3><p>Pede proposta por escrito, com o que ela faz e quanto cobra.</p></div>
+  </div>
+  <p class="lead f">Como operar fica para outro momento. Aqui basta decidir quem, porque é a primeira pergunta que um investidor vai fazer.</p>
+</section>
+<section class="s q" data-q="quem_opera" data-bloco="Bloco 1 · Quem opera"></section>
+
+<section class="s" data-bloco="Bloco 1 · A Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>A Marina <i>escolhe renda</i></h2>
+  <table class="t" style="font-size:31px">
+    <tr class="f"><td>O degrau</td><td>Fácil: três cabanas de madeira para casal</td></tr>
+    <tr class="f"><td>O serviço</td><td>Um serviço simples, o café na cesta</td></tr>
+    <tr class="f"><td>Alugar ou hospedar</td><td>Hospedagem, porque tem serviço</td></tr>
+    <tr class="f"><td>A conta</td><td>1.095 noites, cerca de 422 vendidas, cerca de R$ 272 mil de receita bruta</td></tr>
+    <tr class="f"><td>Quem opera a fase um</td><td>Uma pessoa local</td></tr>
+  </table>
+</section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · anote</p>
+  <h2>O seu <i>modelo de renda</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">Onde aparece "não sei", é tarefa da semana. A conta inteira, com os custos, você faz no Pilar 6.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · O modelo de venda">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · O modelo de venda</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/1BctLUfQfcg?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 4 · Bloco 2 · O modelo de venda" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/1BctLUfQfcg" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O modelo de venda">
+  <p class="k">No modelo de venda, você constrói para vender</p>
+  <h2>O dinheiro volta mais cedo. <i>A obrigação fica.</i></h2>
+  <ol class="lista num" style="font-size:32px;gap:14px;columns:2;column-gap:80px;display:block">
+    <li class="f" style="margin-bottom:18px"><span><b>O que é vendável</b></span></li>
+    <li class="f" style="margin-bottom:18px"><span><b>A forma de vender</b></span></li>
+    <li class="f" style="margin-bottom:18px"><span><b>A conta da venda</b></span></li>
+    <li class="f" style="margin-bottom:18px"><span><b>A obrigação que fica</b></span></li>
+    <li class="f" style="margin-bottom:18px"><span><b>O caixa</b></span></li>
+    <li class="f" style="margin-bottom:18px"><span><b>Os profissionais</b></span></li>
+  </ol>
+  <p class="lead f">São seis passos. Em troca de o dinheiro voltar na venda, você assume uma obrigação com quem compra.</p>
+</section>
+<section class="s q" data-q="pensa_vender" data-bloco="Bloco 2 · O modelo de venda"></section>
+
+<section class="s" data-bloco="Bloco 2 · Passo 1 · O que é vendável">
+  <p class="k">Passo 1</p>
+  <h2>O que é <i>vendável</i></h2>
+  <div class="grid g2">
+    <div class="card f" style="border:3px solid var(--ouro)"><h3>Área vendável</h3><p>As unidades.</p></div>
+    <div class="card f"><h3>Área não vendável</h3><p>Áreas comuns, circulação, lazer e serviço.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:54px">A obra custa tudo. <i>A venda só paga a área vendável.</i></p>
+  <p class="sm f">Por isso, no Pilar 5, o desenho do terreno vai mostrar quanto é vendável de verdade.</p>
+</section>
+<section class="s q" data-q="unidades_venda" data-bloco="Bloco 2 · Passo 1 · O que é vendável"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · Passo 2 · A forma de vender">
+  <p class="k">Passo 2 · a forma de vender também é uma escada</p>
+  <h2>Da mais simples <i>à mais complicada</i></h2>
+  <div class="grid g4" style="gap:22px">
+    <div class="card f"><span class="n">1</span><h3>Venda por unidade</h3><p>Cada comprador leva uma unidade inteira. Vender na planta, só depois do registro da incorporação no cartório.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Multipropriedade</h3><p>Cotas de tempo de uma mesma unidade, de no mínimo sete dias por ano, cada uma com matrícula própria. Existe uma lei só para isso, desde 2018.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Timeshare</h3><p>O direito de usar por um tempo, por contrato. Quem compra tem o uso, não a propriedade.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Condo-hotel</h3><p>A unidade junto com uma parte do resultado do hotel. Oferta pública passa pela CVM, com registro, prospecto e estudo de viabilidade.</p></div>
+  </div>
+  <p class="sm f">Qual cabe no seu caso, e como, quem confirma é o advogado, o contador e o cartório.</p>
+</section>
+<section class="s q" data-q="forma_venda" data-bloco="Bloco 2 · Passo 2 · A forma de vender"></section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">No timeshare, o que a pessoa compra?</p>
+    <div class="ops"><button class="op">Uma unidade inteira, com matrícula</button><button class="op" data-certa>O direito de usar por um tempo, por contrato</button><button class="op">Uma parte do resultado do hotel</button></div>
+    <p class="exp">No timeshare, quem compra tem o uso, não a propriedade. A unidade com parte do resultado do hotel é o condo-hotel.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Passo 3 · A conta da venda">
+  <span class="selo">Exemplos ilustrativos · não são a Marina</span>
+  <h2>Passo 3 · a conta <i>da venda</i></h2>
+  <div class="grid g2" style="gap:40px;align-items:start">
+    <div class="conta" style="font-size:30px">
+      <div class="eq f"><span>Dez cabanas × R$ 350 mil</span><span>R$ 3,5 milhões de VGV</span></div>
+      <div class="eq f"><span>Uma unidade × 51 cotas de R$ 30 mil</span><span>R$ 1.530.000</span></div>
+    </div>
+    <ul class="lista" style="font-size:28px">
+      <li class="f">VGV é o valor geral de vendas: tudo o que o projeto vende, somado.</li>
+      <li class="f">A cota parece muito mais. Mas vender cota custa caro: segundo um levantamento de mercado, no começo da multipropriedade no Brasil, o custo de marketing e venda chegou a cerca de 30% do VGV.</li>
+      <li class="f">E ainda existe a administração do condomínio, todos os anos.</li>
+    </ul>
+  </div>
+  <p class="citacao f" style="font-size:44px">VGV, menos a obra inteira, menos o custo de vender. <i>O que sobra é o que o projeto entrega.</i></p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · Passo 3 · A conta da venda" id="s-sim-vgv">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a conta da venda</p><span class="selo">Exemplo ilustrativo · não é avaliação</span></div>
+  <h2 style="font-size:58px">VGV, menos o custo de vender, <i>antes da obra</i></h2>
+  <div class="sim" data-sim="vgv">
+    <div class="ctl" style="gap:18px">
+      <label>Unidades para vender <output data-for="uv"></output><input type="range" name="uv" min="1" max="40" step="1" value="10"></label>
+      <label>Cotas por unidade <output data-for="fr"></output><input type="range" name="fr" min="1" max="60" step="1" value="1"><small>1 = venda por unidade. Na multipropriedade, cada cota tem no mínimo sete dias.</small></label>
+      <label>Preço da unidade ou da cota <output data-for="preco" data-fmt="brl"></output><input type="range" name="preco" min="10000" max="1500000" step="5000" value="350000"></label>
+      <label>Custo de vender <output data-for="pct" data-fmt="pct0"></output><input type="range" name="pct" min="0" max="50" step="1" value="30"><small>Use 30% como alerta, não como regra.</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>O que se vende</span><b data-r="qtd"></b></div>
+      <div class="linha tot"><span>VGV, se tudo for vendido</span><b data-r="vgv" data-fmt="brl"></b></div>
+      <div class="linha"><span>Custo de vender</span><b data-r="custo" data-fmt="brl"></b></div>
+      <div class="barra"><i data-bar="pctSobra"></i></div>
+      <div class="linha"><span>Antes da obra inteira</span><b data-r="sobra" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div class="btns"><button class="reset">Dez cabanas</button><button class="btn-s2" id="ex-multi">Uma unidade em 51 cotas</button><span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="fracoes" data-bloco="Bloco 2 · Passo 3 · A conta da venda"></section>
+<section class="s q" data-q="preco_venda" data-bloco="Bloco 2 · Passo 3 · A conta da venda"></section>
+<section class="s q" data-q="custo_vender" data-bloco="Bloco 2 · Passo 3 · A conta da venda"></section>
+
+<section class="s" data-bloco="Bloco 2 · Passos 4, 5 e 6">
+  <p class="k">O que vem com a venda</p>
+  <h2>A obrigação, o caixa <i>e os profissionais</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">4</span><h3>A obrigação que fica</h3><p>Quem compra não compra um quarto para cuidar. Compra uma parte do resultado da operação e espera prestação de contas e previsibilidade por muitos anos. Escreva quem opera o conjunto e como presta contas.</p></div>
+    <div class="card f"><span class="n">5</span><h3>O caixa</h3><p>Vender na planta não dispensa capital inicial. O projeto, as aprovações, o registro e as garantias vêm antes da primeira venda. Esse dinheiro precisa existir antes.</p></div>
+    <div class="card f"><span class="n">6</span><h3>Os profissionais</h3><p>Nenhuma forma de venda se estrutura sem advogado e contador, desde o primeiro desenho.</p></div>
+  </div>
+  <p class="sv f"><b>Sinal vermelho</b><span>Estruturar qualquer forma de venda sozinho.</span></p>
+</section>
+<section class="s q" data-q="passos_venda" data-bloco="Bloco 2 · Passos 4, 5 e 6"></section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Vender na planta dispensa o capital inicial?</p>
+    <div class="ops"><button class="op">Sim: a venda paga tudo desde o começo</button><button class="op" data-certa>Não: projeto, aprovações, registro e garantias vêm antes da primeira venda</button></div>
+    <p class="exp">Esse dinheiro precisa existir antes. A venda pode ajudar depois, mas alguém paga primeiro.</p>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Bloco 2 · A regra da Zion">
+  <p class="k">A regra que vale para os seis passos</p>
+  <p class="citacao" style="max-width:1200px">Primeiro nasce o negócio. <i>Depois nasce o investimento.</i></p>
+  <p class="lead" style="max-width:1100px">Numa fase um pequena, vender raramente faz sentido.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A decisão">
+  <p class="k">A decisão · três caminhos</p>
+  <h2>Renda, venda <i>ou híbrido</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Renda</h3><p>Você fica com o imóvel e o dinheiro volta pelas diárias.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Venda</h3><p>Você estrutura o projeto para vender, com a forma e a conta que acabou de ver.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Híbrido</h3><p>Você opera a fase um, prova o negócio com números reais e, depois, estrutura a venda de uma parte ou da fase dois.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:44px">Quem vende com doze meses de números reais na mão vende um negócio, <i>não uma promessa.</i></p>
+</section>
+<section class="s q" data-q="decisao" data-bloco="Bloco 2 · A decisão"></section>
+
+<section class="s" data-bloco="Bloco 2 · A Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>A Marina: renda, <i>no degrau fácil, na fase um</i></h2>
+  <p class="caixa-txt f">Se um dia pensar em vender, vai vender com os números reais da operação, e com advogado e contador desde o começo.</p>
+  <p class="sv verde f"><b>Agora você</b><span>Escolher o modelo antes de gastar: é isso que esta página do Dossiê registra.</span></p>
+</section>
+
+<!-- ============ APROFUNDAMENTO · O MAPA DOS MODELOS ============ -->
+<section class="s esc" data-bloco="Aprofundamento · O mapa dos modelos">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo extra · aprofundamento · O mapa dos modelos</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/MRs-mCXvBsY?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 4 · Vídeo extra · O mapa dos modelos" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Qual é o melhor modelo? Assista e depois avance.</span><a href="https://youtu.be/MRs-mCXvBsY" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Aprofundamento · O balcão">
+  <p class="k">Não existe modelo melhor nem pior</p>
+  <h2 style="font-size:70px">Do balcão para dentro, <i>do balcão para fora</i></h2>
+  <div class="balcao">
+    <div class="card f"><h3>Do balcão para dentro</h3><p>O lado do dono: o que você precisa construir, o capital, o trabalho de operar e o tempo.</p></div>
+    <div class="meio f"><i></i></div>
+    <div class="card f"><h3>Do balcão para fora</h3><p>O lado do cliente: quem compra, o que ele quer hoje e por que procura.</p></div>
+  </div>
+  <p class="lead f" style="font-size:34px">Não adianta construir sem saber para quem você vai vender. <b style="color:var(--ouro)">O que vende é do balcão para fora.</b></p>
+</section>
+
+<section class="s" data-bloco="Aprofundamento · O mapa">
+  <p class="k">O mapa · renda e venda</p>
+  <h2 style="font-size:58px">Cada modelo, <i>lido dos dois lados</i></h2>
+  <table class="t mapa">
+    <tr><th>Modelo</th><th>Do balcão para dentro</th><th>Do balcão para fora</th></tr>
+    <tr class="f"><td>Aluguel por temporada</td><td>Pouco a construir, se a casa já existe</td><td>A família que quer privacidade</td></tr>
+    <tr class="f"><td>Glamping</td><td>O menor capital e o caminho mais rápido</td><td>O casal que quer natureza com conforto</td></tr>
+    <tr class="f"><td>Chalés construídos · pousada</td><td>Obra e aprovação · equipe fixa</td><td>Quem quer ser recebido, na pousada</td></tr>
+    <tr class="f"><td>Hotel e resort</td><td>O maior capital</td><td>Quem quer tudo no mesmo lugar</td></tr>
+    <tr class="f"><td>Venda de unidades · multipropriedade</td><td>Construir e vender, com regra própria</td><td>Quem quer ser dono · quem quer usar algumas semanas por ano</td></tr>
+    <tr class="f"><td>Timeshare · condo-hotel</td><td>O direito de usar · um operador que divide o resultado</td><td>Quem quer o uso · quem quer a unidade sem operar</td></tr>
+  </table>
+  <p class="sm f">Cada forma de venda tem regra própria: advogado, contador e cartório desde o começo.</p>
+</section>
+
+<section class="s esc" data-bloco="Aprofundamento · Os novos modelos">
+  <p class="k">Um terceiro grupo, onde a Zion também está</p>
+  <h2 style="font-size:62px">Os novos modelos <i>e a economia da atenção</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:start">
+    <ul class="lista" style="font-size:29px">
+      <li class="f">O novo luxo, que não é mármore: é espaço, natureza e tempo. O wellness. O glamping retreat. Recovery e silêncio. O medical retreat. O senior living.</li>
+      <li class="f">Do balcão para fora, o hóspede compra tempo, silêncio, saúde, experiência e propósito. Do balcão para dentro, cada um exige mais.</li>
+      <li class="f">Em saúde, quem confirma é o profissional e o órgão competente.</li>
+    </ul>
+    <ul class="lista" style="font-size:29px">
+      <li class="f">Todo mundo disputa a atenção das pessoas nas redes.</li>
+      <li class="f">Na nossa leitura, natureza, experiência e bem-estar estão no desejo das novas gerações, e por isso <i>tendem</i> a ser mais fáceis de comunicar e de vender.</li>
+      <li class="f">Tendem. A conta continua valendo, e a conta inteira vem no Pilar 6.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/901904223c.jpg" data-bloco="Aprofundamento · A regra do glamping">
+  <p class="k">A regra que muita gente esquece</p>
+  <p class="citacao" style="max-width:1150px">Glamping não é propriedade. <i>É barraca.</i></p>
+  <ul class="lista" style="max-width:1150px;font-size:32px">
+    <li class="f">Desburocratiza: menos obra, menos capital, mais rapidez. As licenças sempre dependem do município.</li>
+    <li class="f">Serve para renda e para testar. Não se vende como imóvel.</li>
+    <li class="f">Quando a conversa é propriedade, a conversa é construção.</li>
+  </ul>
+</section>
+<section class="s" data-bloco="Aprofundamento · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Dá para vender bolhas de glamping como imóvel, em cotas?</p>
+    <div class="ops"><button class="op">Sim, como qualquer chalé</button><button class="op" data-certa>Não: glamping é barraca. Quando a conversa é propriedade, a conversa é construção</button></div>
+    <p class="exp">O glamping serve para renda e para testar o destino. Não se vende como imóvel.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Aprofundamento · A estratégia">
+  <p class="k">Se não existe modelo melhor, existe estratégia</p>
+  <h2>A estratégia <i>da Zion</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Testar</h3><p>Começar pelo produto mais rápido e mais barato: o glamping. Na nossa leitura, é o melhor teste de destino.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Amadurecer</h3><p>Histórico, avaliações e hóspedes que voltam.</p></div>
+    <div class="card f"><span class="n">3</span><h3>O imobiliário</h3><p>Esse público pode passar a comprar a multipropriedade, as casas, as unidades. Você já sabe para quem vai vender.</p></div>
+  </div>
+  <p class="lead f">O seu hóspede de hoje <i>pode ser</i> o comprador de amanhã. Pode ser, não vai ser. Nessa ordem, você constrói em cima de prova, e não de promessa.</p>
+</section>
+<section class="s q" data-q="perfil" data-bloco="Aprofundamento · O seu caso"></section>
+<section class="s q" data-q="modelo_mapa" data-bloco="Aprofundamento · O seu caso"></section>
+<section class="s q" data-q="balcao_fora" data-bloco="Aprofundamento · O seu caso"></section>
+<section class="s q" data-q="duas_leituras" data-bloco="Aprofundamento · O seu caso"></section>
+<section class="s" data-bloco="Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o melhor modelo de hospedagem?</p>
+    <div class="ops"><button class="op">O resort, porque tem a maior diária</button><button class="op">A multipropriedade, porque soma mais VGV</button><button class="op" data-certa>Nenhum por definição: existe o modelo certo para cada terreno, dono e momento</button></div>
+    <p class="exp">Não existe modelo melhor nem pior. Existem modelos adaptados a cada terreno, a cada dono e a cada momento. E existem estratégias.</p>
+  </div>
+</section>
+
+<!-- ============ RESUMO ============ -->
+<section class="s" data-bloco="Resumo">
+  <p class="k">O Pilar 4 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:31px;gap:16px">
+    <li class="f">Alugar, hospedar e vender são coisas diferentes: tem serviço, você hospeda.</li>
+    <li class="f">Na renda, comece no degrau que você consegue operar bem. A fruta baixa quase sempre está no degrau fácil.</li>
+    <li class="f">Unidades × 365 × ocupação × diária, em três cenários: você confia no mais fraco, e receita bruta não é lucro.</li>
+    <li class="f">Na venda, o dinheiro volta mais cedo, mas o caixa vem antes e a obrigação com quem compra fica por muitos anos.</li>
+    <li class="f">Renda, venda ou híbrido: primeiro nasce o negócio, depois nasce o investimento.</li>
+  </ul>
+</section>
+
+<!-- ============ DIAGNÓSTICO ============ -->
+<section class="s" data-bloco="A sua página 4">
+  <p class="k">Para o PDF sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Nada é enviado nesta aula: a ferramenta usa o seu e-mail só quando você pedir o mentor de IA, baixar o PDF ou enviar para o Land Bank.</p>
+</section>
+
+<section class="s esc diag" data-bloco="Diagnóstico · Modelo de Negócio" id="s-diag">
+  <p class="diag-txt">As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 4 do seu Dossiê. No fim, envie para o Land Bank da Zion.</p>
+  <div class="diag-box" data-sem-clique><iframe id="diag" data-sem-clique title="Faça agora · O seu Modelo de Negócio" data-src="../../pilar4/"></iframe></div>
+  <p class="diag-pe" data-sem-clique><span id="diag-st"></span><a href="../../pilar4/" target="_blank" rel="noopener">Abrir em tela cheia</a></p>
+</section>
+
+<section class="s foto" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 5</p>
+  <h2 style="max-width:1150px">Masterplan <i>faseado</i></h2>
+  <p class="lead" style="max-width:1100px">O terreno inteiro no papel: o que cabe de verdade, quanto é vendável e o que entra na fase um.</p>
+  <p class="sv verde" style="max-width:1100px"><b>Lembrete</b><span>Salve o PDF na pasta Meu Dossiê.</span></p>
+  <p class="sm" style="max-width:1150px;margin-top:24px">Conteúdo educacional. A Marina, o projeto de dez cabanas e a unidade em 51 cotas são exemplos ilustrativos, e as contas são ilustrativas. Receita bruta e VGV não são lucro. Não é oferta de investimento nem avaliação imobiliária, e não é promessa de renda, retorno, ocupação, venda, crédito, compra ou sociedade. A Zion avalia cada caso. Temas jurídicos em nível introdutório: quem confirma é o advogado, o contador ou o cartório, o órgão ambiental ou a prefeitura.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Parte copiada da ferramenta Faça agora do Pilar 4 (pilar4/index.html):
+   o apoio de leitura e formatação, as tabelas do modelo e as perguntas (QUESTOES).
+   Mesmo formato de gravação: chave "zion-t1-pilar4".
+   =================================================================== */
+// [copiado da ferramenta, sem mudar a lógica]
+const PILARES = [
+  { n: 0, tema: "Marco Zero", pagina: "Diagnóstico prévio", chave: "zion-t1-marco-zero" },
+  { n: 1, tema: "Território e destino", pagina: "Ficha do Território", chave: "zion-t1-aula1" },
+  { n: 2, tema: "Mercado e demanda", pagina: "Ficha do Mercado", chave: "zion-t1-aula2" },
+  { n: 3, tema: "Produto e tipologias", pagina: "Ficha do Produto", chave: "zion-t1-aula3" },
+  { n: 4, tema: "Modelo de negócio", pagina: "Modelo de Negócio", chave: "zion-t1-pilar4" },
+  { n: 5, tema: "Masterplan faseado", pagina: "Masterplan faseado", chave: "zion-t1-pilar5" },
+  { n: 6, tema: "Pré-viabilidade", pagina: "Pré-viabilidade", chave: "zion-t1-pilar6" },
+  { n: 7, tema: "Capital e Dossiê", pagina: "Capital e decisão", chave: "zion-t1-pilar7" },
+];
+/* ---------------------------------------------------------------------
+   1. Apoio: leitura e formatação pt-BR (as mesmas regras das ferramentas dos Pilares 1 a 3)
+   --------------------------------------------------------------------- */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  /** Reais sem centavos, para números grandes de referência. */
+  function brl0(x) { const r = arred(x, 0); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 0); }
+  /** "cerca de R$ 272 mil", como os roteiros falam. */
+  function brlMil(x) { if (Math.abs(x) >= 1e6) return "R$ " + fmtN(x / 1e6, 2) + " milhões"; if (Math.abs(x) >= 1000) return "R$ " + fmtNum(x / 1000, 0) + " mil"; return brl0(x); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  const ok = (...xs) => xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, brl0, brlMil, fmtPct, juntar, div, ok };
+})();
+const { fmtN, brl, brl0, brlMil, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+/** Lê o que o aluno salvou em outra ferramenta do Método Zion (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDoPilar = (n) => { const p = PILARES.find((x) => x.n === n); return p ? carregarChave(p.chave) : null; };
+/** Os números que outro pilar deixou no resumo (resumo.dados), ou null. */
+const dadosDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+const respostasDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.respostas ? d.respostas : null; };
+const RS = (x) => paraNumero(x);
+const lst = (v) => (Array.isArray(v) ? v : []);
+const MAPA = [
+  { v: "aluguel", rot: "Aluguel por temporada (casa ou chalé que já existe, sem serviço)", curto: "aluguel por temporada", lado: "renda", degrau: "facil" },
+  { v: "glamping", rot: "Glamping (bolha, domo, tenda ou cabana leve)", curto: "glamping", lado: "renda", degrau: "facil", leve: true },
+  { v: "chales", rot: "Chalés e cabanas construídos", curto: "chalés e cabanas construídos", lado: "renda", degrau: "facil" },
+  { v: "pousada", rot: "Pousada", curto: "pousada", lado: "renda", degrau: "medio" },
+  { v: "resort", rot: "Hotel boutique ou resort", curto: "hotel boutique ou resort", lado: "renda", degrau: "complicado" },
+  { v: "novos", rot: "Um dos novos modelos (luxo natural, wellness, retiro, recovery, medical retreat, senior living)", curto: "um dos novos modelos", lado: "renda", degrau: null },
+  { v: "venda_unidades", rot: "Venda de unidades (casas, cabanas ou lotes com projeto)", curto: "venda de unidades", lado: "venda" },
+  { v: "multipropriedade", rot: "Multipropriedade (frações de tempo de uso)", curto: "multipropriedade", lado: "venda" },
+  { v: "timeshare", rot: "Timeshare (direito de uso, por contrato)", curto: "timeshare", lado: "venda" },
+  { v: "condo", rot: "Condo-hotel", curto: "condo-hotel", lado: "venda" },
+];
+const PERFIS = [
+  { v: "pouco_capital", rot: "Tenho pouco capital", comeco: "glamping em poucas unidades, ou aluguel por temporada, se a casa já existe", depois: "crescer com o caixa da operação e com números reais", cuidado: "não construir antes de testar" },
+  { v: "testar", rot: "Tenho o terreno e quero testar o destino", comeco: "glamping, para testar o destino", depois: "se o destino responder, chalés construídos ou pousada; depois, o imobiliário", cuidado: "licença no município, e não vender bolha como imóvel" },
+  { v: "capital_renda", rot: "Tenho capital e quero renda", comeco: "chalés construídos ou pousada, no degrau que você consegue operar bem", depois: "hotel boutique ou resort, só com equipe e com prova", cuidado: "capital não substitui demanda: saiba para quem vai vender antes de construir" },
+  { v: "quer_vender", rot: "Quero vender", comeco: "um produto de renda que prove o destino, no caminho híbrido", depois: "venda de unidades ou multipropriedade, para quem já conhece o lugar", cuidado: "comprador não é hóspede; advogado e contador desde o primeiro desenho" },
+  { v: "proposito", rot: "Quero propósito e nicho", comeco: "luxo natural ou glamping com um programa de bem-estar ou de retiro", depois: "nichos mais exigentes, como medical retreat ou senior living, com parceiro técnico", cuidado: "em saúde, quem confirma é o profissional e o órgão competente" },
+];
+const DEGRAUS = { facil: "Fácil", medio: "Médio", complicado: "Complicado" };
+const FORMAS = { unidade: "venda por unidade", multipropriedade: "multipropriedade", timeshare: "timeshare", condo: "condo-hotel" };
+const DECISOES = { renda: "Renda", venda: "Venda", hibrido: "Híbrido" };
+const PASSOS_VENDA = [
+  { v: "vendavel", rot: "Separei a área vendável da não vendável (portão, estacionamento, caminho, recepção, lazer, rouparia)" },
+  { v: "obrigacao", rot: "Sei quem opera o conjunto depois da venda, e como presta contas a quem comprou" },
+  { v: "caixa", rot: "Sei de onde vem o dinheiro que precisa existir antes da primeira venda (projeto, aprovações, registro, garantias)" },
+  { v: "profissionais", rot: "Tenho advogado e contador desde o primeiro desenho" },
+  { v: "numeros", rot: "Já opero e tenho doze meses de números reais (reservas, receita, custos)" },
+];
+const SETE = [
+  { v: "q1", rot: "1 · Quem são os compradores?" },
+  { v: "q2", rot: "2 · Existe demanda real na região?" },
+  { v: "q3", rot: "3 · Qual é o perfil financeiro desse público?" },
+  { v: "q4", rot: "4 · Como os compradores serão alcançados?" },
+  { v: "q5", rot: "5 · Quanto vai custar conquistar cada comprador?" },
+  { v: "q6", rot: "6 · Qual é a capacidade comercial necessária?" },
+  { v: "q7", rot: "7 · Como serão tratados cancelamentos e desistências?" },
+];
+const vende = (r) => r.pensa_vender === "fase1" || r.pensa_vender === "depois";
+const temFracao = (r) => r.forma_venda === "multipropriedade" || r.forma_venda === "timeshare";
+/** A régua dos três cenários (média do ano), do Marco Zero e do Pilar 4. */
+const CENARIOS = [
+  { id: "fraco", nome: "Só fins de semana", faixa: "35% a 40%", piso: 35, teto: 40 },
+  { id: "medio", nome: "Fins de semana e feriados", faixa: "50% a 60%", piso: 50, teto: 60 },
+  { id: "forte", nome: "Procura forte", faixa: "65% a 85%", piso: 65, teto: 85 },
+];
+/** A ocupação de cada cenário: a sua medida entra no cenário em que ela cabe; os outros usam o piso da faixa.
+    O cenário mais fraco nunca passa do teto da faixa (40%): é o número em que você confia. */
+function ocupacoesDosCenarios(oc) {
+  return [Math.min(oc, 40), Math.max(50, Math.min(oc, 60)), Math.max(65, Math.min(oc, 85))];
+}
+const FONTES_PADRAO = [
+    { v: "medida", nota: 3, rot: "Tenho por escrito ou medi (conta feita no pilar anterior, proposta, documento)", curto: "Documento, medida ou conta" },
+    { v: "falado", nota: 2, rot: "Um profissional me indicou, mas ainda não tenho no papel", curto: "Profissional falou, sem papel" },
+    { v: "estimativa", nota: 1, rot: "É estimativa minha", curto: "Estimativa" },
+  ];
+const QUESTOES = [
+    {
+      id: "negocio", tipo: "escolha", aceitaNS: true, curto: "Alugar, hospedar ou vender", bloco: "Em que negócio você está",
+      pergunta: "Com o seu imóvel, você vai alugar, hospedar ou vender?",
+      explica: "Alugar é entregar o imóvel por um tempo, até noventa dias, e quem aluga cuida de si. Hospedar é receber a pessoa, com serviço, e cobrar diária. Vender é passar o imóvel, ou o tempo de uso dele, para outra pessoa.",
+      opcoes: [
+        { v: "alugar", rot: "Alugar (aluguel por temporada, sem serviço de hotel)" },
+        { v: "hospedar", rot: "Hospedar (com serviço, cobrando diária)" },
+        { v: "vender", rot: "Vender (as unidades ou o tempo de uso delas)" },
+      ],
+      porque: "Cada caminho pede empresa, contrato, licença e conta diferentes desde o começo. As regras não são as mesmas: a locação para temporada aparece na Lei do Inquilinato, e os meios de hospedagem, na Lei Geral do Turismo.",
+      onde: "<p>No seu produto, do Pilar 3: ele tem café, limpeza durante a estadia ou alguém para receber? Qual regra vale no seu caso, quem confirma é o <b>advogado</b> e o <b>contador</b>.</p>",
+      marina: "Hospedar: o produto dela tem serviço, o café na cesta, deixado na varanda antes das sete.",
+      ondeCurto: "conferir no produto do Pilar 3 se existe serviço, e levar a pergunta ao advogado e ao contador",
+    },
+    {
+      id: "servicos", tipo: "multipla", curto: "Serviços do produto", bloco: "Em que negócio você está",
+      pergunta: "O seu produto tem algum destes serviços?",
+      explica: "Marque o que existe de verdade. Se não tiver nenhum, marque \"Nenhum\".",
+      opcoes: [
+        { v: "cafe", rot: "Café (servido ou na cesta)" },
+        { v: "limpeza", rot: "Limpeza durante a estadia" },
+        { v: "receber", rot: "Alguém para receber o hóspede" },
+        { v: "nenhum", rot: "Nenhum" },
+      ],
+      porque: "É o teste simples: tem serviço, você hospeda. O chalé que você só aluga, sem café, sem limpeza durante a estadia e sem ninguém para receber, está mais perto do aluguel por temporada. E se amanhã você colocar uma cesta de café, a conversa com o contador muda.",
+      onde: "<p>Na sua Ficha do Produto (Pilar 3): o momento assinatura e quem prepara.</p>",
+      marina: "Um serviço só, simples: o café na cesta.",
+    },
+    {
+      id: "perfil", tipo: "escolha", aceitaNS: true, curto: "O seu perfil", bloco: "O mapa dos modelos",
+      pergunta: "Qual destes perfis mais parece com você hoje?",
+      explica: "É um ponto de partida para pensar, e não uma receita. Se ficou entre dois, escolha o que pesa mais agora.",
+      opcoes: PERFIS.map((p) => ({ v: p.v, rot: p.rot })),
+      porque: "Não existe modelo melhor nem pior. Existe o modelo certo para este terreno, este dono e este momento, e existe a ordem certa para passar de um modelo ao outro. O perfil mostra por onde costuma fazer sentido começar.",
+      onde: "<p>No seu diagnóstico prévio (Marco Zero) e na conversa com quem decide com você.</p>",
+      marina: "Tem o terreno e quer testar o destino.",
+      ondeCurto: "escrever, com quem decide com você, qual perfil pesa mais agora",
+    },
+    {
+      id: "modelo_mapa", tipo: "escolha", aceitaNS: true, curto: "Onde começa no mapa", bloco: "O mapa dos modelos",
+      pergunta: "No mapa dos modelos, por onde o seu projeto começa?",
+      explica: "Os cinco primeiros são do lado da renda: você fica com o imóvel e ganha com a operação. Os quatro últimos são do lado da venda: você constrói para vender.",
+      opcoes: MAPA.map((m) => ({ v: m.v, rot: m.rot })),
+      porque: "Leia cada modelo duas vezes. Do balcão para dentro: o que você precisa construir, quanto capital, quanto trabalho de operar e quanto tempo até o primeiro hóspede. Do balcão para fora: quem compra, o que quer hoje e por que procura.",
+      onde: "<p>No capítulo 2 do e-book, nas tabelas do balcão para dentro e do balcão para fora. Em tudo o que toca a saúde (wellness, medical retreat, senior living), quem confirma é o profissional e o órgão competente.</p>",
+      marina: "Glamping, do lado da renda: três cabanas para casal, poucas unidades, a fase um da estratégia, que é testar o destino com pouco capital.",
+      ondeCurto: "marcar no mapa do e-book onde o projeto começa e escrever o motivo em uma frase",
+    },
+    {
+      id: "balcao_fora", tipo: "escolha", curto: "Do balcão para fora", bloco: "O mapa dos modelos",
+      pergunta: "Do balcão para fora: você sabe para quem vai vender?",
+      explica: "Quem é essa pessoa, o que ela quer hoje e por que escolheria o seu lugar, e não outro.",
+      opcoes: [
+        { v: "sei", rot: "Sei: quem compra, o que quer hoje e por quê, com o que medi nos Pilares 2 e 3" },
+        { v: "ideia", rot: "Tenho uma ideia, mas ainda não medi" },
+        { v: "dentro", rot: "Escolhi pelo que é mais fácil de construir ou pelo que o vizinho fez" },
+      ],
+      porque: "É a mensagem mais importante do mapa: não adianta construir sem saber para quem vai vender. O que é fácil para você é do balcão para dentro. O que vende é do balcão para fora.",
+      onde: "<p>No modelo de renda, é o hóspede que você mediu no Pilar 2 e para quem desenhou o produto no Pilar 3. No modelo de venda, é o comprador, que é outra pessoa.</p>",
+      marina: "Ela sabe: o casal que mediu no Pilar 2 e para quem desenhou o produto no Pilar 3.",
+      nota: (r) => ({ sei: 3, ideia: 1, dentro: 0 }[r.balcao_fora] ?? 0),
+      semEvidencia: "é uma ideia, ainda sem medida.",
+      zeroTexto: "a escolha foi feita olhando só do balcão para dentro.",
+      ondeCurto: "reler a Ficha do Mercado e a Ficha do Produto e escrever quem compra, o que quer hoje e por quê",
+    },
+    {
+      id: "degrau", tipo: "escolha", aceitaNS: true, curto: "O degrau do produto", bloco: "O modelo de renda",
+      pergunta: "Em que degrau da escada de renda está o seu produto na fase um?",
+      explica: "Fácil: chalé, cabana ou glamping em poucas unidades, chave e limpeza. Médio: pousada ou glamping com serviço, equipe fixa e rotina todos os dias. Complicado: hotel boutique ou resort, operação de vinte e quatro horas.",
+      opcoes: [
+        { v: "facil", rot: "Fácil" },
+        { v: "medio", rot: "Médio" },
+        { v: "complicado", rot: "Complicado" },
+      ],
+      porque: "O degrau decide a equipe, a licença, o capital e o tempo até o negócio ficar de pé. Nenhum é melhor por definição. A pergunta é qual você consegue estruturar e operar bem na fase um. A fruta baixa quase sempre está no degrau fácil.",
+      onde: "<p>Pegue a Ficha do Produto e pergunte, item por item: isto exige equipe fixa? Licença de hospedagem? Operação todos os dias? Cada sim sobe o produto na escada.</p>",
+      marina: "Fácil: três cabanas de madeira para casal, sem recepção construída e sem restaurante. O café na cesta não exige cozinha de pousada nem equipe fixa grande.",
+      ondeCurto: "passar a Ficha do Produto item por item: equipe fixa, licença, operação todos os dias",
+    },
+    {
+      id: "consegue_operar", tipo: "escolha", aceitaNS: true, curto: "Consegue operar o degrau", bloco: "O modelo de renda",
+      pergunta: "Você consegue estruturar e operar bem este degrau na fase um?",
+      explica: "Pense na equipe, na licença e no capital que o degrau pede desde o primeiro dia.",
+      opcoes: [
+        { v: "sim", rot: "Sim: sei com quem e como" },
+        { v: "falta", rot: "Ainda falta equipe, licença ou capital" },
+      ],
+      porque: "Comece no tamanho que você consegue fazer bem, prove o negócio e suba depois. Quem pula degrau assume uma operação maior do que consegue estruturar.",
+      onde: "<p>Na lista do que o degrau pede, no capítulo 3 do e-book.</p>",
+      marina: "Sim: uma pessoa local, com a rotina escrita, dá conta do degrau fácil.",
+      ondeCurto: "listar o que o degrau pede (equipe, licença, capital) e o que você já tem",
+    },
+    {
+      id: "unidades_fase1", tipo: "numero", unidade: "unidades", nota: "fonte", positivo: true, aceitaNS: true, curto: "Unidades na fase um", bloco: "A conta do cem por cento",
+      fontes: [
+        { v: "medida", nota: 3, rot: "Saiu da conta de quantas cabem, na Ficha do Mercado ou na Ficha do Produto", curto: "Conta dos Pilares 2 e 3" },
+        { v: "falado", nota: 2, rot: "Um profissional me indicou, sem conta escrita", curto: "Profissional falou, sem papel" },
+        { v: "estimativa", nota: 1, rot: "É estimativa minha", curto: "Estimativa" },
+      ],
+      pergunta: "Quantas unidades abrem na fase um?",
+      explica: "É o número que o mercado aguenta agora. As outras ficam desenhadas para depois, no Pilar 5.",
+      porque: "É o primeiro número da conta de padaria da renda. Unidades vezes trezentos e sessenta e cinco noites é o seu cem por cento: todas as noites que existem no ano.",
+      onde: "<p>Na sua Ficha do Produto (Pilar 3), em unidades na primeira fase, ou na Ficha do Mercado (Pilar 2), em unidades que cabem agora.</p>",
+      marina: "3 cabanas. 3 × 365 = 1.095 noites: é o cem por cento dela.",
+      ondeCurto: "rever na Ficha do Mercado quantas unidades cabem agora",
+      veio: () => { const p = dadosDoPilar(3); if (p && typeof p.unidades_abertura === "number") return { valor: String(p.unidades_abertura), fonte: "medida", de: "Ficha do Produto (unidades na primeira fase)" }; const d = dadosDoPilar(2); return d && typeof d.cabem === "number" ? { valor: String(d.cabem), fonte: "medida", de: "Ficha do Mercado (unidades que cabem agora)" } : null; },
+    },
+    {
+      id: "ocupacao", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação média do ano", bloco: "A conta do cem por cento", placeholder: "Ex.: 38,5",
+      fontes: [
+        { v: "medida", nota: 3, rot: "Medi: é a ocupação do ano da Ficha do Mercado, ou os meus doze meses de operação", curto: "Medida (Pilar 2 ou 12 meses)" },
+        { v: "falado", nota: 2, rot: "Alguém da região me falou, sem papel", curto: "Alguém falou, sem papel" },
+        { v: "estimativa", nota: 1, rot: "É estimativa minha ou de uma ferramenta de dados", curto: "Estimativa" },
+      ],
+      pergunta: "Qual é a ocupação média do ano que você mediu?",
+      explica: "Ocupação é a parte das noites do ano que foi vendida. Use a média do ano, nunca o mês mais cheio. Escreva em porcentagem.",
+      porque: "O mês mais cheio engana: no exemplo da Marina, usar o mês mais cheio daria cerca de 66% a mais do que o ano entrega. Com ela, a ferramenta monta os três cenários da régua: só fins de semana (35% a 40%), fins de semana e feriados (50% a 60%) e procura forte (65% a 85%).",
+      onde: "<p>Na sua Ficha do Mercado (Pilar 2), em ocupação média do ano. Se você já opera, some as noites vendidas nos últimos doze meses e divida pelo seu cem por cento.</p>",
+      marina: "38,5%, a média do ano que ela mediu no Pilar 2. Fica na faixa de só fins de semana.",
+      ondeCurto: "rever na Ficha do Mercado a ocupação média do ano",
+      veio: () => { const d = dadosDoPilar(2); return d && typeof d.ocup_ano === "number" ? { valor: fmtN(d.ocup_ano, 1), fonte: "medida", de: "Ficha do Mercado (ocupação média do ano)" } : null; },
+    },
+    {
+      id: "diaria", tipo: "moeda", nota: "fonte", aceitaNS: true, curto: "Diária média", bloco: "A conta do cem por cento", placeholder: "Ex.: 645",
+      fontes: [
+        { v: "medida", nota: 3, rot: "Saiu da conta da semana, na Ficha do Mercado, ou dos meus doze meses", curto: "Conta do Pilar 2 ou 12 meses" },
+        { v: "falado", nota: 2, rot: "Alguém da região me falou, sem papel", curto: "Alguém falou, sem papel" },
+        { v: "estimativa", nota: 1, rot: "É estimativa minha, ou é o preço que pretendo cobrar", curto: "Estimativa" },
+      ],
+      pergunta: "Qual é a diária média que entra na conta?",
+      explica: "Diária média é o que entra, em média, por noite vendida. Use a média que você mediu, e não o preço que pretende cobrar.",
+      porque: "A conta se faz com o que já tem prova. O preço pretendido ainda é hipótese, até o anúncio e a reserva responderem. Você pode testá-lo no simulador, no fim.",
+      onde: "<p>Na sua Ficha do Mercado (Pilar 2), em diária média de verdade.</p>",
+      marina: "R$ 645, a média da região que ela mediu, e não os cerca de R$ 716 que ela pretende cobrar no Pilar 3.",
+      ondeCurto: "rever na Ficha do Mercado a diária média de verdade",
+      veio: () => { const d = dadosDoPilar(2); return d && typeof d.diaria_media === "number" ? { valor: fmtN(d.diaria_media, 2), fonte: "medida", de: "Ficha do Mercado (diária média de verdade)" } : null; },
+    },
+    {
+      id: "fica_de_pe", tipo: "escolha", aceitaNS: true, curto: "Em que cenário fica de pé", bloco: "A conta do cem por cento",
+      pergunta: "Com o que você sabe hoje, em que cenário o projeto fica de pé?",
+      explica: "Fica de pé quer dizer que o que entra paga o que sai, mês a mês, inclusive no mês fraco. A conta inteira, com os custos e o investimento, vem no Pilar 6.",
+      opcoes: [
+        { v: "fraco", rot: "Já no cenário mais fraco, o que eu medi" },
+        { v: "medio", rot: "Só no cenário do meio, de fins de semana e feriados" },
+        { v: "forte", rot: "Só no cenário de procura forte" },
+      ],
+      porque: "O número em que você confia é o do cenário mais fraco. Os outros dois servem para mostrar até onde o projeto pode ir se o mercado ajudar. Se o projeto só fecha no cenário de procura forte, ele não fecha.",
+      onde: "<p>Nos seus três cenários, que a ferramenta monta com as suas respostas. Se ainda não sabe os custos do ano, marque Não sei: é a conta do Pilar 6.</p>",
+      marina: "Ela decide pelo mais fraco, cerca de R$ 272 mil de receita bruta no ano. Se no Pilar 6 a conta do mais fraco não pagar os custos do ano, ela volta ao produto e ao preço.",
+      ondeCurto: "fazer a conta inteira do ano no Pilar 6, com custos fixos e variáveis",
+    },
+    {
+      id: "quem_opera", tipo: "escolha", aceitaNS: true, curto: "Quem opera a fase um", bloco: "A conta do cem por cento",
+      pergunta: "Quem opera a fase um?",
+      explica: "No modelo de renda, alguém precisa operar todos os dias: receber, limpar, responder, consertar.",
+      opcoes: [
+        { v: "voce", rot: "Eu mesmo" },
+        { v: "contratada", rot: "Uma pessoa contratada, com a rotina escrita" },
+        { v: "empresa", rot: "Uma empresa de gestão, com proposta por escrito" },
+      ],
+      porque: "É a primeira pergunta que um investidor vai fazer. Aqui basta decidir quem opera a fase um.",
+      onde: "<p>Você: tempo em noite, fim de semana e feriado. Pessoa contratada: a rotina escrita. Empresa de gestão: proposta por escrito, com o que faz e quanto cobra.</p>",
+      marina: "Uma pessoa local, que faz a limpeza, a manutenção leve e deixa a cesta na varanda antes das sete. A Marina fica com as decisões de preço e de produto.",
+      ondeCurto: "decidir quem opera a fase um e, se for outra pessoa, escrever a rotina ou pedir a proposta",
+    },
+    {
+      id: "pensa_vender", tipo: "escolha", curto: "Pensa em vender", bloco: "O modelo de venda",
+      pergunta: "Você pensa em vender alguma parte do projeto?",
+      explica: "Vender as unidades inteiras, ou o tempo de uso delas. Se não pensa, a ferramenta pula as perguntas de venda.",
+      opcoes: [
+        { v: "nao", rot: "Não: o meu caminho é a renda" },
+        { v: "depois", rot: "Talvez depois, com doze meses de números reais na mão" },
+        { v: "fase1", rot: "Sim, já na fase um" },
+      ],
+      porque: "Vender parece o atalho para o dinheiro. Mas a venda tem custo, tem regra, pede capital antes e cria uma obrigação que fica. Numa fase um pequena, vender raramente faz sentido.",
+      onde: "<p>No capítulo 5 do e-book, com os seis passos do modelo de venda.</p>",
+      marina: "Talvez depois. Na fase um, não: se um dia pensar em vender, vai vender com os números reais da operação, e com advogado e contador desde o começo.",
+    },
+    {
+      id: "forma_venda", tipo: "escolha", aceitaNS: true, curto: "A forma de vender", bloco: "O modelo de venda", mostrar: vende,
+      pergunta: "Se for vender, qual forma de venda você considera?",
+      explica: "Da mais simples à mais complicada: a unidade inteira, cotas de tempo (multipropriedade), o direito de uso por contrato (timeshare) ou a unidade com parte do resultado do hotel (condo-hotel).",
+      opcoes: [
+        { v: "unidade", rot: "Venda por unidade" },
+        { v: "multipropriedade", rot: "Multipropriedade" },
+        { v: "timeshare", rot: "Timeshare" },
+        { v: "condo", rot: "Condo-hotel" },
+      ],
+      porque: "Cada forma tem regra própria: incorporação registrada antes de vender na planta, lei da multipropriedade desde 2018, decreto do timeshare e, no condo-hotel, a CVM. A ferramenta mostra os sinais vermelhos da forma que você escolher.",
+      onde: "<p>No capítulo 5 do e-book, na escada das formas de vender. Qual delas cabe no seu caso, e como, quem confirma é o <b>advogado</b>, o <b>contador</b> e o <b>cartório</b>.</p>",
+      marina: "Ela estudou a multipropriedade, passou pelo checklist e guardou o estudo na pasta do Dossiê.",
+      ondeCurto: "ler a escada das formas de vender e levar a escolhida ao advogado e ao contador",
+    },
+    {
+      id: "unidades_venda", tipo: "numero", unidade: "unidades", aceitaNS: true, curto: "Unidades para vender", bloco: "O modelo de venda", mostrar: vende,
+      pergunta: "Quantas unidades você teria para vender?",
+      explica: "Só a área vendável: as unidades. Portão, estacionamento, caminho, recepção e lazer fazem parte do projeto e custam, mas ninguém compra separado.",
+      porque: "A obra custa tudo. A venda só paga a área vendável. No Pilar 5, o desenho do terreno vai mostrar quanto é vendável de verdade.",
+      onde: "<p>No seu desenho do projeto completo, ou na sua decisão de quantas unidades desenhar.</p>",
+      marina: "As três cabanas da fase um, se um dia.",
+      ondeCurto: "contar as unidades do projeto completo e listar a área não vendável",
+    },
+    {
+      id: "fracoes", tipo: "numero", unidade: "frações", aceitaNS: true, curto: "Frações por unidade", bloco: "O modelo de venda", mostrar: (r) => vende(r) && temFracao(r), placeholder: "Ex.: 51",
+      pergunta: "Em quantas frações você dividiria o ano de cada unidade?",
+      explica: "Na multipropriedade, cada fração tem no mínimo sete dias por ano. 52 frações dão cerca de uma semana cada; 26, cerca de duas; 13, cerca de quatro.",
+      porque: "Muitos projetos guardam uma semana do ano para a manutenção e vendem 51 frações em vez de 52. As semanas de feriado valem mais que as de março, e alguém precisa decidir, por regra escrita, como isso se resolve.",
+      onde: "<p>No capítulo 6 do e-book. A regra do calendário de uso se escreve com o <b>advogado</b>.</p>",
+      marina: "No estudo, 51 frações por cabana, uma semana cada, com uma semana guardada para a manutenção.",
+      ondeCurto: "decidir a divisão do ano e levar a regra do calendário ao advogado",
+    },
+    {
+      id: "preco_venda", tipo: "moeda", aceitaNS: true, curto: "Preço da unidade ou da fração", bloco: "O modelo de venda", mostrar: vende, placeholder: "Ex.: 350.000",
+      pergunta: "Qual é o preço de cada unidade, ou de cada fração, na sua primeira conta?",
+      explica: "Na venda por unidade, o preço da unidade inteira. Na multipropriedade ou no timeshare, o preço de cada fração. É a primeira conta, não avaliação.",
+      porque: "VGV quer dizer valor geral de vendas: tudo o que o projeto vende, somado. É a conta mais animadora deste pilar, e por isso mesmo a que mais precisa de cuidado. Na multipropriedade, existe uma conta didática de como o comprador enxerga o valor: diária × dias de uso × prazo de referência.",
+      onde: "<p>Numa pesquisa de mercado de unidades ou frações parecidas, com um especialista. A conta didática da fração está no capítulo 6 do e-book, com o aviso de que não é avaliação.</p>",
+      marina: "A Marina não pôs preço: guardou o estudo. Para ensinar a conta, o e-book usa um exemplo que não é a Marina: diária de R$ 600 × 7 dias × 8 anos = R$ 33.600 por fração.",
+      ondeCurto: "pesquisar o preço de unidades ou frações parecidas com um especialista",
+    },
+    {
+      id: "custo_vender", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Custo de vender", bloco: "O modelo de venda", mostrar: vende, placeholder: "Ex.: 30",
+      fontes: [
+        { v: "medida", nota: 3, rot: "Tenho proposta comercial ou orçamento por escrito", curto: "Proposta por escrito" },
+        { v: "falado", nota: 2, rot: "Um profissional me indicou, sem papel", curto: "Profissional falou, sem papel" },
+        { v: "estimativa", nota: 1, rot: "Usei o alerta de 30% do e-book, ou é estimativa minha", curto: "Alerta de 30% ou estimativa" },
+      ],
+      pergunta: "Quanto do VGV vai para o custo de vender?",
+      explica: "Custo de vender é marketing, comissão e a estrutura comercial para vender as unidades ou frações. Escreva em porcentagem do VGV.",
+      porque: "Vender cota custa caro. Segundo um levantamento de mercado, no começo da multipropriedade no Brasil o custo de marketing e venda chegou a cerca de 30% do VGV. Use 30% como alerta, não como regra.",
+      onde: "<p>Numa proposta comercial por escrito, de quem vai vender. Sem ela, use 30% como alerta.</p>",
+      marina: "No estudo, 30%, como alerta.",
+      ondeCurto: "pedir uma proposta comercial por escrito a quem vai vender",
+      semEvidencia: "é o alerta do e-book ou uma estimativa, não uma proposta.",
+    },
+    {
+      id: "passos_venda", tipo: "multipla", curto: "Os passos da venda já resolvidos", bloco: "O modelo de venda", mostrar: vende,
+      pergunta: "Dos passos do modelo de venda, quais você já resolveu?",
+      explica: "Marque só o que está resolvido de verdade, por escrito. Pode não marcar nenhum.",
+      opcoes: PASSOS_VENDA,
+      porque: "São seis passos, nesta ordem: o vendável, a forma, a conta, a obrigação, o caixa e os profissionais. Vender na planta não dispensa capital inicial: a venda pode ajudar a pagar, mas alguém paga primeiro. E estruturar qualquer forma de venda sozinho é o sinal vermelho deste pilar.",
+      onde: "<p>Leve os passos da forma, da obrigação, do caixa e dos profissionais ao <b>advogado</b> e ao <b>contador</b>.</p>",
+      marina: "Nenhum ainda: a venda não é a fase um dela. Se um dia vier, vem com os números reais da operação e com advogado e contador desde o começo.",
+    },
+    {
+      id: "sete_perguntas", tipo: "multipla", curto: "As sete perguntas de venda", bloco: "O modelo de venda", mostrar: (r) => vende(r) && temFracao(r),
+      pergunta: "Das sete perguntas de quem vai vender frações, quais você sabe responder hoje, por escrito?",
+      explica: "Marque só as que você sabe responder. As que ficarem sem marca contam como Não sei.",
+      opcoes: SETE,
+      porque: "O difícil não é construir. É vender: cada fração é um contrato, com uma pessoa que precisa dizer sim. Hóspede e comprador são pessoas diferentes. Se mais de duas ficarem em Não sei, a venda de frações não é a sua fase um.",
+      onde: "<p>Na sua pesquisa de compradores, que é diferente da pesquisa de hóspedes do Pilar 2.</p>",
+      marina: "Ela mediu quem se hospeda, não quem compraria: ficou sem resposta para quem são os compradores e quanto custa conquistar cada um. Duas em Não sei.",
+    },
+    {
+      id: "decisao", tipo: "escolha", aceitaNS: true, curto: "A decisão", bloco: "A decisão",
+      pergunta: "A sua decisão: renda, venda ou híbrido?",
+      explica: "Renda: você fica com o imóvel e o dinheiro volta pelas diárias. Venda: você estrutura o projeto para vender. Híbrido: você opera a fase um, prova com números reais e, depois, estrutura a venda de uma parte ou da fase dois.",
+      opcoes: [
+        { v: "renda", rot: "Renda" },
+        { v: "venda", rot: "Venda" },
+        { v: "hibrido", rot: "Híbrido" },
+      ],
+      porque: "Sem uma decisão escrita, o modelo volta à mesa a cada conversa, e o masterplan do Pilar 5 fica sem direção. Primeiro nasce o negócio, depois nasce o investimento.",
+      onde: "<p>Nas suas respostas acima: o degrau, os três cenários, quem opera e, se for o caso, a conta de venda e os sinais vermelhos.</p>",
+      marina: "Renda, no degrau fácil, na fase um.",
+      ondeCurto: "comparar os três caminhos com as suas respostas e escrever a decisão com o motivo",
+    },
+  ];
+// [fim do trecho copiado]
+
+const AULA = (function () {
+/* ===================================================================
+   Aula principal do Pilar 4: perguntas dentro dos slides.
+   Grava no MESMO estado da ferramenta (chave zion-t1-pilar4):
+   perfil, respostas, fontes, veio e passo, no formato dela.
+   A retomada do Pilar 3 e a reflexão das duas leituras (que a ferramenta
+   não tem) ficam em S.aulaExtras, um campo a mais que a ferramenta preserva.
+   Cada gravação relê o que está salvo antes, para nunca apagar o que a
+   ferramenta (aberta no diagnóstico) gravou.
+   =================================================================== */
+const CHAVE = "zion-t1-pilar4";
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const fontesDe = (q) => q.fontes || FONTES_PADRAO;
+
+function estadoVazio() {
+  return { versao: 1, pilar: 4, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, sim: { valores: {}, data: null }, resumo: null, mentor: null, atualizado: null };
+}
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d) return null;
+  const e = Object.assign(estadoVazio(), d);
+  if (!e.perfil || typeof e.perfil !== "object") e.perfil = estadoVazio().perfil;
+  for (const k of ["respostas", "fontes", "veio"]) if (!e[k] || typeof e[k] !== "object" || Array.isArray(e[k])) e[k] = {};
+  e.sim = Object.assign({ valores: {}, data: null }, d.sim || {});
+  e.sim.valores = Object.assign({}, (d.sim && d.sim.valores) || {});
+  return e;
+}
+let S = carregar() || estadoVazio();
+function garantir() {
+  if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+  if (!S.perfil || typeof S.perfil !== "object") S.perfil = { nome: "", email: "", cidade: "", uf: "" };
+}
+
+/* ---------- regras da ferramenta: o que vale e o que está completo ---------- */
+const visivel = (q) => !q.mostrar || !!q.mostrar(S.respostas);
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+function completaT(q) {
+  const v = S.respostas[q.id];
+  if (ehNumerico(q)) {
+    if (ehNS(v)) return !!q.aceitaNS;
+    const n = paraNumero(v);
+    if (n === null || n < 0) return false;
+    if (q.max !== undefined && n > q.max) return false;
+    if (q.positivo && n <= 0) return false;
+    if (q.nota === "fonte" && !S.fontes[q.id]) return false;
+    return true;
+  }
+  if (q.tipo === "multipla") return Array.isArray(v);
+  if (q.tipo === "escolha") return v !== undefined && v !== "";
+  if (q.tipo === "texto") return v !== undefined;
+  return false;
+}
+/** O passo da ferramenta: a primeira pergunta que vale e ainda falta. */
+function calcPasso() { const i = QUESTOES.findIndex((q) => visivel(q) && !completaT(q)); return i < 0 ? QUESTOES.length : i; }
+
+/** Grava: relê o salvo, aplica a mudança, recalcula o passo e salva. */
+function mexe(fn) {
+  const atual = carregar();
+  if (atual) S = atual;
+  garantir();
+  if (fn) fn(S);
+  S.passo = calcPasso();
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+
+/* ---------- ajustes de texto da ferramenta para ficar igual ao vídeo ---------- */
+const OVR = {
+  negocio: { cita: "No vídeo: o seu produto tem café, limpeza durante a estadia ou alguém para receber? Então você hospeda.",
+    porque: "Cada caminho pede empresa, contrato, licença e conta diferentes desde o começo. Qual regra vale no seu caso, quem confirma é o advogado e o contador.",
+    marina: "Hospedar: o produto dela tem um serviço simples, o café na cesta. É hospedagem, porque tem serviço." },
+  servicos: { cita: "No vídeo: tem café, limpeza durante a estadia ou alguém para receber? Então você hospeda.", marina: "Um serviço simples: o café na cesta." },
+  degrau: { cita: "No vídeo: a fruta baixa quase sempre está no degrau fácil.",
+    marina: "Degrau fácil: três cabanas de madeira para casal, com um serviço simples, o café na cesta." },
+  consegue_operar: { cita: "No vídeo: qual degrau você consegue estruturar e operar bem na fase um?", marina: "Sim: ela opera a fase um com uma pessoa local.",
+    onde: "<p>Na lista do que o degrau pede: equipe fixa, licença de hospedagem e operação todos os dias. Cada sim sobe o produto na escada.</p>" },
+  unidades_fase1: { cita: "No vídeo: unidades vezes trezentos e sessenta e cinco noites é o cem por cento.", marina: "3 cabanas. 3 × 365 = 1.095 noites: é o cem por cento dela." },
+  ocupacao: { cita: "No vídeo, a Marina tem 38,5% de ocupação: cerca de 422 noites vendidas no ano.",
+    porque: "A ocupação vem do que você mediu no Pilar 2. Use a média do ano, nunca o mês mais cheio. Com ela, a ferramenta monta os três cenários: só fins de semana, fins de semana e feriados, e procura forte.",
+    marina: "38,5%: com as 1.095 noites dela, são cerca de 422 noites vendidas no ano." },
+  diaria: { cita: "No vídeo: vezes seiscentos e quarenta e cinco reais de diária média, cerca de R$ 272 mil de receita bruta.",
+    marina: "R$ 645 de diária média. Com cerca de 422 noites vendidas, dá cerca de R$ 272 mil de receita bruta no ano. Receita bruta não é lucro." },
+  fica_de_pe: { cita: "No vídeo: o número em que você confia é o do cenário mais fraco.",
+    marina: "Ela confia no cenário mais fraco: cerca de R$ 272 mil de receita bruta no ano, antes de todas as contas." },
+  quem_opera: { cita: "No vídeo: pode ser você, uma pessoa contratada ou uma empresa de gestão.",
+    porque: "É a primeira pergunta que um investidor vai fazer. Como operar fica para outro momento: aqui basta decidir quem opera a fase um.",
+    marina: "Uma pessoa local opera a fase um." },
+  pensa_vender: { cita: "No vídeo: numa fase um pequena, vender raramente faz sentido.",
+    marina: "Na fase um, não. Se um dia pensar em vender, vai vender com os números reais da operação, e com advogado e contador desde o começo." },
+  forma_venda: { cita: "No vídeo: a forma de vender também é uma escada, da mais simples à mais complicada.",
+    porque: "Cada forma tem regra própria: a incorporação registrada no cartório antes de vender na planta, uma lei só para a multipropriedade desde 2018 e, no condo-hotel, a CVM. A ferramenta mostra os sinais vermelhos da forma que você escolher.",
+    onde: "<p>Na escada das formas de vender, no e-book do Pilar 4. Qual delas cabe no seu caso, e como, quem confirma é o <b>advogado</b>, o <b>contador</b> e o <b>cartório</b>.</p>",
+    marina: null },
+  unidades_venda: { cita: "No vídeo: a obra custa tudo. A venda só paga a área vendável.",
+    explica: "Só a área vendável: as unidades. Áreas comuns, circulação, lazer e serviço fazem parte do projeto e custam, mas não se vendem.",
+    marina: null },
+  fracoes: { cita: "No vídeo: uma única unidade com 51 cotas de R$ 30 mil soma R$ 1.530.000. Cada cota é de no mínimo sete dias por ano.",
+    onde: "<p>No e-book do Pilar 4, no capítulo da multipropriedade. A regra do calendário de uso se escreve com o <b>advogado</b>.</p>",
+    marina: null },
+  preco_venda: { cita: "No vídeo: dez cabanas a R$ 350 mil somam R$ 3,5 milhões de VGV.",
+    porque: "VGV quer dizer valor geral de vendas: tudo o que o projeto vende, somado. É a conta mais animadora deste pilar, e por isso mesmo a que mais precisa de cuidado. VGV não é lucro.",
+    onde: "<p>Numa pesquisa de mercado de unidades ou cotas parecidas, com um especialista. É a primeira conta, não avaliação.</p>",
+    marina: null },
+  custo_vender: { cita: "No vídeo: vender cota custa caro.",
+    porque: "Segundo um levantamento de mercado, no começo da multipropriedade no Brasil o custo de marketing e venda chegou a cerca de 30% do VGV. Use 30% como alerta, não como regra. E ainda existe a administração do condomínio, todos os anos.",
+    marina: null },
+  passos_venda: { cita: "No vídeo: sinal vermelho é estruturar qualquer forma de venda sozinho.",
+    porque: "Os seis passos, nesta ordem: o vendável, a forma, a conta, a obrigação, o caixa e os profissionais. Vender na planta não dispensa capital inicial. E estruturar qualquer forma de venda sozinho é o sinal vermelho deste pilar.",
+    marina: "Nenhum ainda: a venda não é a fase um dela." },
+  decisao: { cita: "No vídeo: quem vende com doze meses de números reais na mão vende um negócio, não uma promessa.", marina: "Renda, no degrau fácil, na fase um." },
+  perfil: { cita: "No vídeo extra: não existe modelo melhor nem pior. Existem modelos adaptados a cada terreno, a cada dono e a cada momento.", marina: null },
+  modelo_mapa: { cita: "No vídeo extra: do balcão para dentro é o lado do dono; do balcão para fora, o lado do cliente.", marina: null,
+    onde: "<p>No mapa dos modelos, no e-book do Pilar 4. Em tudo o que toca a saúde (wellness, medical retreat, senior living), quem confirma é o profissional e o órgão competente.</p>" },
+  balcao_fora: { cita: "No vídeo extra: não adianta construir sem saber para quem você vai vender.", marina: null },
+};
+for (const id in OVR) { const q = Q(id); if (q) Object.assign(q, OVR[id]); }
+
+/* ---------- perguntas da aula que a ferramenta não tem (ficam em S.aulaExtras) ---------- */
+const DQ = {
+  r_estrutura: { tipo: "quiz", curto: "Retomada · o erro mais caro",
+    pergunta: "No Pilar 3, qual é o erro mais caro na hora de definir o produto?", explica: "Responda de cabeça, sem voltar às páginas.",
+    opcoes: { cobrar: "Cobrar pouco", estrutura: "Começar pela estrutura", poucas: "Fazer poucas unidades" }, certa: "estrutura",
+    exp: "A estrutura é a parte mais fácil de comprar e a mais fácil de copiar. Quando o produto não está escrito, a planta decide por você.",
+    porque: "Lembrar sem olhar é o que fixa. E o produto do Pilar 3 é o ponto de partida do modelo de negócio." },
+  r_momento: { tipo: "quiz", curto: "Retomada · o momento assinatura",
+    pergunta: "Qual destes é um bom momento assinatura?", explica: "Pense nos requisitos do Pilar 3: só existe ali e acontece sem ninguém.",
+    opcoes: { wifi: "Wi-fi rápido em todas as unidades", por: "O pôr do sol, que todos os vizinhos também têm", raio: "O primeiro raio de sol entrando pela janela da cama, que só aquela encosta recebe" }, certa: "raio",
+    exp: "Wi-fi é item esperado, não momento. O pôr do sol que todos têm é atributo. O primeiro raio de sol só existe ali, acontece sem ninguém e cabe numa frase.",
+    porque: "O serviço e o momento do seu produto decidem, daqui a pouco, se você aluga ou hospeda." },
+  r_preco: { tipo: "quiz", curto: "Retomada · o preço",
+    pergunta: "Nesta fase, o preço que você pretende cobrar é o quê?", explica: "Pense no que o Pilar 3 disse sobre o preço.",
+    opcoes: { promessa: "Um número certo, que já pode entrar na conta", hipotese: "Uma hipótese, consequência do produto", vizinho: "O preço do vizinho" }, certa: "hipotese",
+    exp: "Preço é consequência do produto, e nesta fase é hipótese. Por isso a conta deste pilar usa a diária média que você mediu.",
+    porque: "Hoje a conta se faz com o que já tem prova: a diária média do Pilar 2." },
+  duas_leituras: { tipo: "texto", curto: "As duas leituras do seu modelo",
+    cita: "No vídeo extra: escreva as duas leituras, o que você constrói e para quem você vende.",
+    pergunta: "Escreva as duas leituras do seu modelo.", explica: "Do balcão para dentro: o que você constrói e opera. Do balcão para fora: quem compra, o que quer hoje e por quê.",
+    ns: "Ainda não sei", ondeCurto: "reler a Ficha do Mercado e a Ficha do Produto e escrever quem compra e por quê",
+    porque: "O que é fácil para você é do balcão para dentro. O que vende é do balcão para fora." },
+};
+
+/* ---------- montagem dos slides de pergunta ---------- */
+const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+const IDS = slidesQ.map((s) => s.dataset.q);
+const conta = (id) => (DQ[id] ? true : visivel(Q(id)));
+const idsValendo = () => IDS.filter(conta);
+
+function opcaoHTML(v, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+function campoHTML(id) {
+  const d = DQ[id];
+  if (d) {
+    if (d.tipo === "quiz") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, r]) => opcaoHTML(v, r)).join("")}</div>`;
+    if (d.tipo === "texto") return `<textarea class="resp" rows="4" placeholder="Para dentro: ... Para fora: ..." aria-label="${esc(d.pergunta)}"></textarea>${opcaoHTML("nao_sei", d.ns, "ns")}`;
+  }
+  const q = Q(id);
+  if (ehNumerico(q)) {
+    const pre = q.tipo === "moeda" ? '<span class="un">R$</span>' : "";
+    const pos = q.tipo === "percentual" ? '<span class="un">%</span>' : q.unidade ? `<span class="un">${esc(q.unidade)}</span>` : "";
+    return `<div class="cn">${pre}<input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || "Digite o número")}" aria-label="${esc(q.pergunta)}">${pos}</div>
+      <div class="veio" hidden></div>
+      ${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}
+      ${q.nota === "fonte" ? `<div class="fonte-bx"><span class="rot-r">De onde veio esse número?</span>${fontesDe(q).map((f) => `<button type="button" class="opc peq" data-fonte="${f.v}" aria-pressed="false"><span class="mk"></span><span>${esc(f.rot)}</span></button>`).join("")}</div>` : ""}`;
+  }
+  const longo = q.opcoes.length > 5 ? " longo" : "";
+  if (q.tipo === "multipla") return `<div class="ops2${longo}">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot, "multi")).join("")}${q.opcoes.some((o) => o.v === "nenhum") ? "" : opcaoHTML("__nenhum", "Ainda não resolvi nenhum", "multi")}</div>`;
+  if (q.tipo === "escolha") return `<div class="ops2${longo}">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot)).join("")}${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}</div>`;
+  return "";
+}
+const MOTIVO_FORA = {
+  fracoes: "Esta pergunta é só para quem pensa em vender cotas de tempo, na multipropriedade ou no timeshare.",
+};
+function montar(sl) {
+  const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+  const onde = d ? (d.ondeCurto ? `<p>Para descobrir: ${esc(d.ondeCurto)}.</p>` : "") : q.onde;
+  const ret = id.startsWith("r_");
+  sl.innerHTML = `<div class="pg" data-sem-clique>
+      <div class="pg-txt">
+        <p class="k">${ret ? "Retomada · Pilar 3" : "Agora é com você"} · <b class="nq"></b></p>
+        <h2>${esc(q.pergunta)}</h2>
+        ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+        <p class="expl">${esc(q.explica)}</p>
+      </div>
+      <div class="pg-dir">
+        <span class="rot-r">A sua resposta</span>
+        ${campoHTML(id)}
+        <div class="fb" role="status" aria-live="polite"></div>
+        <p class="st"></p>
+      </div>
+      <div class="pg-info">
+        <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+        ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+        ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>` : ""}
+      </div>
+    </div>
+    <div class="fora-msg"><p class="k">Pergunta que não vale no seu caso</p><h2>${esc(q.pergunta)}</h2><p>${esc(MOTIVO_FORA[id] || "Esta pergunta é só para quem pensa em vender alguma parte do projeto.")} Pelo que você respondeu, ela fica de fora, e a ferramenta também pula. Pode avançar.</p></div>`;
+  ligar(sl, id);
+}
+
+/* ---------- traz uma resposta de um pilar anterior, como a ferramenta faz ---------- */
+function aplicarVeio(q) {
+  if (!q || !q.veio || (S.veio && S.veio[q.id] !== undefined) || S.respostas[q.id] !== undefined) return;
+  let x = null;
+  try { x = q.veio(); } catch (e) { x = null; }
+  mexe((s) => {
+    if (s.veio[q.id] !== undefined || s.respostas[q.id] !== undefined) return;
+    s.veio[q.id] = x ? x.de : null;
+    if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") { s.respostas[q.id] = x.valor; if (x.fonte) s.fontes[q.id] = x.fonte; }
+  });
+}
+
+/* ---------- feedback imediato ---------- */
+const tarefa = (t) => ["at", "<b>Tarefa da semana</b>" + esc(t.replace(/^./, (c) => c.toUpperCase())) + ". Não sei não é vergonha: na página 4, ele vale zero e vira tarefa."];
+const DEG = { facil: "Fácil", medio: "Médio", complicado: "Complicado" };
+const SERV = { cafe: "café", limpeza: "limpeza durante a estadia", receber: "alguém para receber" };
+function renda() {
+  const r = S.respostas, u = paraNumero(r.unidades_fase1), oc = paraNumero(r.ocupacao), di = paraNumero(r.diaria);
+  const cem = u !== null && u > 0 ? u * 365 : null;
+  let cen = null;
+  if (cem !== null && oc !== null && oc <= 100 && di !== null) {
+    const os = ocupacoesDosCenarios(oc);
+    cen = CENARIOS.map((c, k) => { const noites = cem * os[k] / 100; return { nome: c.nome, faixa: c.faixa, ocupacao: os[k], noites, receita: noites * di }; });
+  }
+  return { u, oc, di, cem, cen };
+}
+function venda() {
+  const r = S.respostas, uv = paraNumero(r.unidades_venda), fr = temFracao(r) ? paraNumero(r.fracoes) : 1, pr = paraNumero(r.preco_venda), pct = paraNumero(r.custo_vender);
+  const qtd = uv !== null && fr !== null ? uv * fr : null, vgv = qtd !== null && pr !== null ? qtd * pr : null;
+  const custo = vgv !== null && pct !== null ? vgv * pct / 100 : null;
+  return { uv, fr, pr, pct, qtd, vgv, custo, sobra: vgv !== null && custo !== null ? vgv - custo : null };
+}
+function feedback(id) {
+  const d = DQ[id];
+  if (d) {
+    const v = S.aulaExtras[id];
+    if (v === undefined || v === "") return null;
+    if (d.tipo === "quiz") return v === d.certa ? ["ok", "<b>Isso</b>" + esc(d.exp)] : ["er", "<b>Ainda não</b>A resposta é: " + esc(d.opcoes[d.certa]) + ". " + esc(d.exp)];
+    if (ehNS(v)) return tarefa(d.ondeCurto);
+    const t = String(v).trim(); if (t.length < 3) return null;
+    if (!/fora|compra|cliente|h[oó]spede|quem/i.test(t)) return ["at", "Agora o lado de fora: quem compra, o que quer hoje e por quê. Sem ele, a leitura ainda está do balcão para dentro."];
+    return ["ok", "Guarde as duas leituras. Elas voltam no masterplan do Pilar 5."];
+  }
+  const q = Q(id), r = S.respostas, v = r[id];
+  if (v === undefined || v === "") return null;
+  if (ehNS(v)) return tarefa(q.ondeCurto || "descobrir essa resposta");
+  const serv = lst(r.servicos).filter((x) => x !== "nenhum"), semServ = lst(r.servicos).includes("nenhum") && !serv.length;
+  switch (id) {
+    case "negocio":
+    case "servicos": {
+      if (id === "servicos" && !Array.isArray(v)) return null;
+      if (r.negocio === "alugar" && serv.length) return ["at", "<b>Atenção</b>" + esc(`Você marcou alugar, mas o produto tem serviço (${juntar(serv.map((x) => SERV[x]))}). Tem serviço, você hospeda. Qual regra vale no seu caso, quem confirma é o advogado e o contador.`)];
+      if (r.negocio === "hospedar" && semServ) return ["at", "<b>Atenção</b>Você marcou hospedar, mas o produto não tem serviço: sem café, sem limpeza durante a estadia e sem ninguém para receber, ele está mais perto do aluguel por temporada. Confirme com o advogado e o contador."];
+      if (id === "servicos") return serv.length ? ["ok", "Tem serviço, você hospeda."] : ["in", "Sem serviço, o produto está mais perto do aluguel por temporada."];
+      return ["in", esc({ alugar: "Você aluga: entrega o imóvel por um tempo, até noventa dias, e quem aluga cuida de si.", hospedar: "Você hospeda: recebe a pessoa, com serviço, e cobra diária.", vender: "Você vende: passa o imóvel, ou o tempo de uso dele, para outra pessoa, e assume uma obrigação com quem compra." }[v] + " Qual regra vale no seu caso, quem confirma é o advogado e o contador.")];
+    }
+    case "degrau": {
+      const t = { facil: "Degrau fácil: poucas unidades, chave e limpeza, operação enxuta. É onde a fruta baixa costuma estar.", medio: "Degrau médio: equipe fixa, licença de hospedagem e rotina de serviço todos os dias.", complicado: "Degrau complicado: operação de vinte e quatro horas, equipe grande, capital alto e mais tempo até ficar de pé. Raramente é fase um pequena: a Zion avalia cada caso." }[v];
+      return [v === "complicado" ? "at" : "ok", esc(t)];
+    }
+    case "consegue_operar": return v === "sim" ? ["ok", "Comece no tamanho que você consegue fazer bem, prove o negócio e suba depois."] : ["at", "<b>Atenção</b>Se falta equipe, licença ou capital, desça um degrau na fase um. Comece no tamanho que você consegue fazer bem."];
+    case "unidades_fase1": case "ocupacao": case "diaria": {
+      const R = renda();
+      if (id === "unidades_fase1") return R.cem === null ? null : ["in", esc(`O seu cem por cento: ${fmtN(R.u)} × 365 = ${fmtN(R.cem)} noites. Nenhuma operação vende todas.`)];
+      if (id === "ocupacao") {
+        if (R.oc === null) return null;
+        if (R.oc > 100) return ["er", "A ocupação não passa de 100%."];
+        if (R.oc > 65) return ["at", "<b>Atenção</b>" + esc(`${fmtN(R.oc, 1)}% passa de 65%: só com procura extraordinária comprovada, ano após ano. Use a média do ano, nunca o mês mais cheio. O número em que você confia continua sendo o do cenário mais fraco.`)];
+        if (R.oc > 40) return ["at", esc(`${fmtN(R.oc, 1)}% passa da faixa de só fins de semana. Ela entra no cenário do meio, e o número em que você confia usa 40%, até você ter doze meses de dado real.`)];
+        return ["ok", esc(`${fmtN(R.oc, 1)}% é o seu cenário mais fraco: o que você mediu.`) + (R.cem !== null ? esc(` São ${fmtN(R.cem * R.oc / 100, 1)} noites vendidas no ano.`) : "")];
+      }
+      if (R.cen) return ["in", esc(`No cenário mais fraco: ${fmtN(R.cen[0].noites, 1)} noites × ${brl(R.di)} = cerca de ${brlMil(R.cen[0].receita)} de receita bruta no ano. Receita bruta não é lucro.`)];
+      return ["in", "Anotado. A conta aparece quando houver unidades, ocupação e diária."];
+    }
+    case "fica_de_pe": return { fraco: ["ok", "Pelo que você sabe hoje, fica de pé no cenário mais fraco. Quem confirma é a conta inteira do Pilar 6, com os custos e o investimento."], medio: ["at", "<b>Atenção</b>O número em que você confia é o do mais fraco. Confira no Pilar 6, com os custos, antes de seguir com esse tamanho."], forte: ["er", "<b>Sinal vermelho</b>Se o projeto só fecha no cenário de procura forte, ele não fecha. Volte ao produto, ao preço ou ao tamanho da fase um."] }[v] || null;
+    case "quem_opera": return ["in", esc({ voce: "Você opera: isso pede tempo em noite, fim de semana e feriado, que é quando o hóspede está lá.", contratada: "Uma pessoa contratada opera: isso pede a rotina escrita, para que outra pessoa consiga repetir.", empresa: "Uma empresa de gestão opera: peça a proposta por escrito, com o que ela faz e quanto cobra." }[v] || "")];
+    case "pensa_vender": return { nao: ["in", "O seu caminho é a renda. As perguntas de venda deste bloco ficam de fora, mas vale assistir: a decisão vem no fim."], depois: ["ok", "Quem vende com doze meses de números reais na mão vende um negócio, não uma promessa."], fase1: ["at", "<b>Atenção</b>Numa fase um pequena, vender raramente faz sentido. Primeiro nasce o negócio, depois nasce o investimento."] }[v] || null;
+    case "forma_venda": return ["in", esc({ unidade: "Venda por unidade: na planta, só depois do registro da incorporação no cartório.", multipropriedade: "Multipropriedade: cotas de no mínimo sete dias, cada uma com matrícula própria, numa lei só para isso.", timeshare: "Timeshare: quem compra tem o uso, não a propriedade.", condo: "Condo-hotel: o mais complicado. Oferta pública passa pela CVM." }[v] + " Quem confirma é o advogado, o contador e o cartório.")];
+    case "unidades_venda": { const n = paraNumero(v); return n === null ? null : ["in", esc(`${fmtN(n)} ${n === 1 ? "unidade vendável" : "unidades vendáveis"}. A obra custa tudo; a venda só paga a área vendável.`)]; }
+    case "fracoes": { const n = paraNumero(v); if (n === null) return null; return n > 52 ? ["er", "<b>Não cabe no ano</b>Cada cota tem no mínimo sete dias: mais de 52 cotas por unidade não cabem."] : ["in", esc(`${fmtN(n)} cotas por unidade.`)]; }
+    case "preco_venda": case "custo_vender": {
+      const V = venda();
+      if (V.vgv === null) return ["in", "Anotado. O VGV aparece com as unidades, as cotas e o preço."];
+      let t = `VGV: ${V.qtd !== null ? fmtN(V.qtd) + (temFracao(r) ? " cotas" : " unidades") : ""} × ${brl0(V.pr)} = ${brl0(V.vgv)}, se tudo for vendido.`;
+      if (V.sobra !== null) t += ` Menos ${fmtN(V.pct, 1)}% de custo de vender, sobram ${brl0(V.sobra)}, antes da obra inteira.`;
+      t += " VGV não é lucro.";
+      if (id === "custo_vender" && temFracao(r) && V.pct !== null && V.pct < 30) return ["at", "<b>Abaixo do alerta de 30%</b>" + esc(t)];
+      return ["in", esc(t)];
+    }
+    case "passos_venda": {
+      if (!Array.isArray(v)) return null;
+      if (!v.includes("profissionais")) return ["er", "<b>Sinal vermelho</b>Estruturar qualquer forma de venda sozinho. Advogado e contador desde o primeiro desenho."];
+      if (!v.includes("caixa")) return ["at", "<b>Atenção</b>Vender na planta não dispensa capital inicial: o dinheiro do que vem antes da primeira venda precisa existir antes."];
+      return ["ok", `${v.length} de ${PASSOS_VENDA.length} resolvidos por escrito.`];
+    }
+    case "decisao": return ["in", esc({ renda: "Renda: você fica com o imóvel e o dinheiro volta pelas diárias. A operação precisa fechar todo mês.", venda: "Venda: o dinheiro volta mais cedo, e a obrigação com quem comprou fica por muitos anos.", hibrido: "Híbrido: você opera a fase um, prova com números reais e, depois, estrutura a venda de uma parte ou da fase dois." }[v] + " Primeiro nasce o negócio, depois nasce o investimento.")];
+    case "perfil": { const p = PERFIS.find((x) => x.v === v); return p ? ["in", esc(`Ponto de partida, não receita. Comece: ${p.comeco}. Depois: ${p.depois}. Cuidado: ${p.cuidado}.`)] : null; }
+    case "modelo_mapa": { const m = MAPA.find((x) => x.v === v); if (!m) return null; return m.lado === "venda" ? ["at", "<b>Atenção</b>Começar pela venda inverte a ordem: primeiro nasce o negócio, depois nasce o investimento."] : ["in", esc(`Você começa em ${m.curto}, do lado da renda: fica com o imóvel e ganha com a operação.`) + (m.leve ? " Lembre: glamping é barraca, serve para renda e para testar." : "")]; }
+    case "balcao_fora": return { sei: ["ok", "Você sabe para quem vai vender. No modelo de venda, lembre: o comprador é outra pessoa, com outros motivos."], ideia: ["at", "Você tem uma ideia, mas ainda não mediu. A resposta vem dos Pilares 2 e 3: quem é, o que quer hoje e por quê."], dentro: ["er", "<b>Do balcão para dentro</b>Não adianta construir sem saber para quem vai vender. Antes, analise quem compra, o que quer hoje e por que escolheria o seu lugar."] }[v] || null;
+  }
+  return null;
+}
+
+/* ---------- pintar uma pergunta a partir do estado ---------- */
+function pintar(sl) {
+  const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+  if (!d && !visivel(q)) { sl.classList.add("fora"); return; }
+  sl.classList.remove("fora");
+  if (!d) aplicarVeio(q);
+  const vals = idsValendo(), pos = vals.indexOf(id);
+  const nq = sl.querySelector(".nq"); if (nq) nq.textContent = `pergunta ${pos + 1} de ${vals.length}`;
+  const v = d ? S.aulaExtras[id] : S.respostas[id];
+  const ns = ehNS(v);
+  sl.querySelectorAll(".opc[data-v]").forEach((b) => {
+    const bv = b.dataset.v;
+    let on;
+    if (bv === "nao_sei") on = ns;
+    else if (bv === "__nenhum") on = Array.isArray(v) && v.length === 0;
+    else if (b.classList.contains("multi")) on = Array.isArray(v) && v.includes(bv);
+    else on = v === bv;
+    b.setAttribute("aria-pressed", String(!!on));
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) {
+    if (document.activeElement !== inp) inp.value = ns || v === undefined ? "" : String(v);
+    inp.disabled = ns;
+  }
+  const fx = sl.querySelector(".fonte-bx");
+  if (fx) { fx.hidden = ns; fx.querySelectorAll("[data-fonte]").forEach((b) => b.setAttribute("aria-pressed", String(S.fontes[id] === b.dataset.fonte))); }
+  const vb = sl.querySelector(".veio");
+  if (vb) { const de = S.veio && S.veio[id]; vb.hidden = !(de && v !== undefined && !ns); vb.textContent = de ? `Trouxemos esta resposta da ${de}. Confira e corrija se mudou.` : ""; }
+  const fb = sl.querySelector(".fb"), f = feedback(id);
+  if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+  const st = sl.querySelector(".st");
+  let t = "";
+  if (!d && ehNumerico(q) && v !== undefined && v !== "" && !ns) {
+    const n = paraNumero(v);
+    if (n === null) t = "Escreva só o número. Pode usar ponto para milhar e vírgula para decimal.";
+    else if (n < 0) t = "O número não pode ser negativo.";
+    else if (q.max !== undefined && n > q.max) t = `O número não pode passar de ${fmtN(q.max)}.`;
+    else if (q.positivo && n <= 0) t = "O número precisa ser maior que zero.";
+    else if (q.nota === "fonte" && !S.fontes[id]) t = "Falta dizer de onde veio esse número: é isso que separa dado de palpite.";
+    else t = "Salvo neste aparelho.";
+  } else if (completa(id)) t = "Salvo neste aparelho.";
+  st.textContent = t;
+}
+function completa(id) {
+  const d = DQ[id];
+  if (d) { const v = S.aulaExtras[id]; if (v === undefined || v === "") return false; if (d.tipo === "texto") return ehNS(v) || String(v).trim().length > 0; return true; }
+  return completaT(Q(id));
+}
+
+/* ---------- eventos de cada pergunta (grava na hora) ---------- */
+function ligar(sl, id) {
+  const d = DQ[id];
+  sl.addEventListener("click", (e) => {
+    const b = e.target.closest(".opc");
+    if (!b || !sl.contains(b)) return;
+    e.stopPropagation();
+    mexe((s) => {
+      const R = d ? s.aulaExtras : s.respostas;
+      if (b.dataset.fonte) { if (!ehNS(R[id])) s.fontes[id] = b.dataset.fonte; return; }
+      const bv = b.dataset.v, multi = b.classList.contains("multi");
+      if (bv === "nao_sei") { if (ehNS(R[id])) delete R[id]; else { R[id] = "nao_sei"; if (!d) delete s.fontes[id]; } }
+      else if (bv === "__nenhum") R[id] = [];
+      else if (multi) {
+        let a = Array.isArray(R[id]) ? R[id].slice() : [];
+        if (bv === "nenhum") a = a.includes("nenhum") ? [] : ["nenhum"];
+        else { a = a.filter((x) => x !== "nenhum"); const k = a.indexOf(bv); if (k >= 0) a.splice(k, 1); else a.push(bv); }
+        R[id] = a;
+      } else R[id] = bv;
+      // Uma resposta nova vale mais do que um ajuste antigo do simulador da ferramenta.
+      if (!d && s.sim && s.sim.valores) delete s.sim.valores[id];
+    });
+    repintarTudo();
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) inp.addEventListener("input", () => {
+    mexe((s) => { (d ? s.aulaExtras : s.respostas)[id] = inp.value; if (!d && s.sim && s.sim.valores) delete s.sim.valores[id]; });
+    pintar(sl); atualizaNav();
+  });
+}
+function repintarTudo() { slidesQ.forEach(pintar); atualizaNav(); }
+
+/* ---------- perfil ---------- */
+function perfilDeOutraFerramenta() {
+  let melhor = null;
+  for (const p of PILARES) {
+    if (p.n === 4) continue;
+    const d = carregarChave(p.chave);
+    if (!d) continue;
+    const perfil = d.perfil && d.perfil.nome ? d.perfil : null;
+    if (perfil && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { perfil, at: d.atualizado };
+  }
+  return melhor ? melhor.perfil : null;
+}
+function ligarPerfil() {
+  const uf = document.getElementById("p-uf");
+  uf.insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+  const campos = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+  for (const [el, k] of Object.entries(campos)) {
+    const x = document.getElementById(el);
+    x.addEventListener(el === "p-uf" ? "change" : "input", () => mexe((s) => { s.perfil[k] = x.value.trim(); }));
+  }
+}
+function pintarPerfil() {
+  if (!S.perfil.nome && !S.perfil.email) { const p = perfilDeOutraFerramenta(); if (p) mexe((s) => { if (!s.perfil.nome && !s.perfil.email) s.perfil = Object.assign({}, s.perfil, { nome: p.nome || "", email: p.email || "", cidade: p.cidade || "", uf: p.uf || "" }); }); }
+  const map = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+  for (const [el, k] of Object.entries(map)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; }
+}
+
+/* ---------- os três cenários do aluno (a mesma régua da ferramenta) ---------- */
+function pintarCenarios() {
+  const el = document.getElementById("cen-meus"); if (!el) return;
+  const R = renda();
+  if (!R.cen) {
+    const f = [R.cem === null && "as unidades da fase um", R.oc === null && "a ocupação média do ano", R.di === null && "a diária média"].filter(Boolean);
+    el.innerHTML = `<p class="vazio-cen">Para os seus três cenários falta ${esc(juntar(f) || "um número")}. Volte às perguntas anteriores. Se ainda não mediu, marque Não sei: a conta espera, e vira tarefa da semana.</p>`;
+    return;
+  }
+  el.innerHTML = `<div class="cen3">${R.cen.map((c, k) => `<div class="${k === 0 ? "fraco" : ""}"><h4>${esc(c.nome)}</h4><span class="l">Ocupação ${esc(fmtN(c.ocupacao, 1))}% · ${esc(fmtN(c.noites, 1))} noites</span><span class="v">${esc(brlMil(c.receita))}</span>${k === 0 ? '<span class="conf">O número em que você confia</span>' : '<span class="l">Até onde pode ir, se o mercado ajudar</span>'}</div>`).join("")}</div>
+    <p class="vazio-cen" style="font-size:24px;margin-top:18px">${esc(`${fmtN(R.u)} ${R.u === 1 ? "unidade" : "unidades"} × 365 = ${fmtN(R.cem)} noites, com a diária média de ${brl(R.di)} nos três. A sua ocupação entra no cenário em que ela cabe; os outros usam o piso da faixa.`)}</p>`;
+}
+
+/* ---------- resumo do bloco 1 ---------- */
+function txtT(id) {
+  const q = Q(id), v = S.respostas[id];
+  if (v === undefined || v === "") return "em branco";
+  if (ehNS(v)) return "não sei";
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o ? o.rot : String(v); }
+  if (q.tipo === "percentual") { const n = paraNumero(v); return n === null ? "em branco" : fmtN(n, 1) + "%"; }
+  if (q.tipo === "moeda") { const n = paraNumero(v); return n === null ? "em branco" : brl(n); }
+  const n = paraNumero(v); return n === null ? "em branco" : fmtN(n);
+}
+function pintarAnote() {
+  const el = document.getElementById("anote"); if (!el) return;
+  const R = renda();
+  const linhas = [["Alugar, hospedar ou vender", txtT("negocio")], ["O degrau", txtT("degrau")], ["Unidades na fase um", txtT("unidades_fase1")], ["O seu cem por cento", R.cem === null ? "em branco" : fmtN(R.cem) + " noites"], ["Ocupação média do ano", txtT("ocupacao")], ["Diária média", txtT("diaria")], ["Cenário mais fraco", R.cen ? "cerca de " + brlMil(R.cen[0].receita) : "em branco"], ["Quem opera a fase um", txtT("quem_opera")]];
+  el.innerHTML = linhas.map(([r, t]) => `<div><span>${esc(r)}</span><b>${esc(t)}</b></div>`).join("");
+}
+
+/* ---------- simuladores com os números do aluno ---------- */
+function meusCem(aplicar) {
+  const R = renda(), bt = document.getElementById("meus-cem");
+  const tem = R.u !== null && R.u > 0 && R.oc !== null && R.di !== null;
+  if (bt) bt.style.display = tem ? "" : "none";
+  if (!aplicar || !tem || !ZD.estado || !ZD.estado.cem) return;
+  const sim = document.querySelector('.sim[data-sim="cem"]');
+  const set = (k, x) => { ZD.estado.cem[k] = String(x); const i = sim.querySelector(`input[name="${k}"]`); if (i && x > +i.max) i.max = String(Math.ceil(x)); };
+  set("un", R.u); set("ocup", Math.min(R.oc, 85)); set("diaria", R.di);
+  sim._calc && sim._calc();
+}
+
+/* ---------- o diagnóstico: a ferramenta dentro da aula ---------- */
+let diagCarregado = null;
+const assinatura = () => JSON.stringify([S.respostas, S.fontes, S.perfil]);
+function pintarDiag() {
+  const fr = document.getElementById("diag"); if (!fr) return;
+  const sig = assinatura();
+  if (!fr.getAttribute("src") || diagCarregado !== sig) { diagCarregado = sig; fr.setAttribute("src", fr.dataset.src); }
+  const vis = QUESTOES.filter(visivel), feitas = vis.filter(completaT).length;
+  document.getElementById("diag-st").textContent = `${feitas} de ${vis.length} perguntas da página 4 já respondidas aqui. Se a ferramenta abrir na tela inicial, toque em "Continuar de onde parei".`;
+}
+function ajustaIframe(k) {
+  const fr = document.getElementById("diag"), box = fr && fr.parentElement; if (!fr) return;
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) { fr.style.width = fr.style.height = fr.style.transform = ""; return; }
+  // O palco é reduzido por k; a ferramenta fica em tamanho de leitura normal (escala 1 na tela).
+  const W = box.clientWidth || 1760, H = box.clientHeight || 770;
+  fr.style.width = (W * k) + "px"; fr.style.height = (H * k) + "px"; fr.style.transform = "scale(" + (1 / k) + ")";
+}
+
+/* ---------- navegação, teclado e toque ---------- */
+const slides = Array.from(document.querySelectorAll(".s"));
+function atualizaNav() {
+  const vals = idsValendo(), n = vals.filter(completa).length;
+  document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${vals.length}`;
+  document.getElementById("n-bar").style.width = (vals.length ? n / vals.length * 100 : 0) + "%";
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+  document.getElementById("n-ant").disabled = i <= 0;
+  document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+}
+function pausaVideos(sl) {
+  if (!sl) return;
+  sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+}
+let atual = -1, prontoMotor = false;
+function aoTrocarSlide() {
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  if (i < 0 || i === atual) return;
+  const ant = slides[atual];
+  atual = i;
+  pausaVideos(ant);
+  if (prontoMotor) mexe((s) => { s.aulaExtras._slide = i; });
+  const sl = slides[i];
+  if (sl.dataset.q) pintar(sl);
+  if (sl.querySelector("#anote")) pintarAnote();
+  if (sl.id === "s-cenarios") pintarCenarios();
+  if (sl.id === "s-sim-cem") meusCem(false);
+  if (sl.id === "s-diag") pintarDiag();
+  if (sl.querySelector(".perfil")) pintarPerfil();
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+  atualizaNav();
+}
+const obs = new MutationObserver(aoTrocarSlide);
+slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+// teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta.
+// Dentro do iframe do diagnóstico as teclas nem chegam aqui: ficam com a ferramenta.
+document.addEventListener("keydown", (e) => {
+  const t = e.target;
+  if (!t || !t.matches) return;
+  if (t.matches("iframe")) { e.stopPropagation(); return; }
+  if (t.matches("input, textarea, select, [contenteditable]")) {
+    e.stopPropagation();
+    if (e.key === "Enter" && t.matches("input:not([type=range])") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+    return;
+  }
+  if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+});
+// arrastar a barra do simulador ou rolar um campo não troca de slide
+document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .sim, .vid, .pg-dir, .diag-box")) e.stopPropagation(); }, { passive: true });
+// a ferramenta, aberta no diagnóstico ou em outra aba, grava: a aula relê
+window.addEventListener("storage", (e) => {
+  if (e.key !== CHAVE) return;
+  const d = carregar(); if (!d) return;
+  S = d; garantir();
+  diagCarregado = assinatura();
+  slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+});
+
+/* ---------- início ---------- */
+garantir();
+slidesQ.forEach(montar);
+slidesQ.forEach(pintar);
+ligarPerfil(); pintarPerfil();
+document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+
+function escalaAula() {
+  const st = document.querySelector(".zd-stage");
+  const h = Math.max(200, innerHeight - 61);
+  const k = Math.min(innerWidth / 1920, h / 1080);
+  st.style.transform = "scale(" + k + ")";
+  ajustaIframe(k);
+}
+function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3200); }
+
+return {
+  depoisDoMotor() {
+    addEventListener("resize", escalaAula); escalaAula();
+    const mc = document.getElementById("meus-cem");
+    if (mc) mc.addEventListener("click", (e) => { e.stopPropagation(); setTimeout(() => meusCem(true), 0); });
+    const em = document.getElementById("ex-multi");
+    if (em) em.addEventListener("click", (e) => { e.stopPropagation(); if (!ZD.estado || !ZD.estado.vgv) return; Object.assign(ZD.estado.vgv, { uv: "1", fr: "51", preco: "30000", pct: "30" }); const s = document.querySelector('.sim[data-sim="vgv"]'); s && s._calc && s._calc(); });
+    prontoMotor = true;
+    const ultimo = S.aulaExtras && S.aulaExtras._slide;
+    if (!/^#\d/.test(location.hash) && typeof ultimo === "number" && ultimo > 0 && ultimo < slides.length) {
+      ZD.vai(ultimo);
+      toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+    }
+    aoTrocarSlide(); atualizaNav();
+  },
+  DQ, IDS, completa, calcPasso, get estado() { return S; },
+};
+
+})();
+</script>
+<script src="../_motor/deck.js"></script>
+<script>AULA.depoisDoMotor();</script>
+</body>
+</html>

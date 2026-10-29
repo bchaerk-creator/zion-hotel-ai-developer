@@ -1,0 +1,1236 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Marco Zero · A visão de toda a jornada</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.sv.ok{background:#EEF3EC;color:#173F25;border-color:var(--ok)}
+.sv.ok b{color:var(--ok)}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.lado img.ilus.v{object-fit:contain;width:auto;max-width:100%;max-height:760px;justify-self:center;border-radius:22px}
+.fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.fotos figure{margin:0;position:relative;border-radius:16px;overflow:hidden;height:300px}
+.fotos img{width:100%;height:100%;object-fit:cover;display:block}
+.fotos figcaption{position:absolute;left:0;right:0;bottom:0;padding:30px 18px 14px;font-size:22px;font-weight:600;color:#fff;background:linear-gradient(0deg,rgba(11,19,14,.88),rgba(11,19,14,0))}
+.fotos.mini figure{height:250px}
+.fotos.mini figcaption{font-size:20px}
+.tipos{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.tipos .card{padding:26px 28px;gap:6px}
+.tipos .card h3{font-size:36px}
+.tipos .card.gl{border:3px solid var(--ouro)}
+.num3{display:flex;flex-direction:column;gap:18px}
+.num3 .eq{display:grid;grid-template-columns:330px 1fr;gap:26px;align-items:center;padding:18px 26px;border-radius:16px;background:#fff;border:1px solid rgba(22,38,28,.08)}
+.num3 .eq b{font-family:var(--serif);font-size:52px;font-weight:500;color:var(--ouro2);line-height:1}
+.num3 .eq span{font-size:30px;line-height:1.35}
+.partes .card h3{font-size:36px}
+.partes .card p{font-size:25px}
+.partes .card.on{border:3px solid var(--ouro)}
+.pq .fr .tag{font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.opc:focus-visible,.perfil input:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.pg textarea:disabled{background:var(--creme2);opacity:.6}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.ops2.muitas .opc{font-size:22px;min-height:56px;padding:10px 18px}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil label.largo{grid-column:1/-1}
+.perfil input{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* anote */
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1600px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8;flex:none}
+.anote b{text-align:right}
+/* diagnóstico dentro da aula */
+.s.diag{padding-top:90px;padding-bottom:60px;gap:12px}
+.diag-txt{font-size:27px;line-height:1.4;max-width:1664px}
+.diag-moldura{width:1664px;height:770px;border-radius:18px;overflow:hidden;background:#F5F1E8;border:2px solid var(--ouro);box-shadow:0 8px 40px rgba(0,0,0,.25)}
+.diag-moldura iframe{border:0;display:block;width:calc(100% / 1.5);height:calc(100% / 1.5);transform:scale(1.5);transform-origin:0 0;background:#F5F1E8}
+.diag-cheia{font-size:20px;color:#D9D3C4;align-self:flex-end;text-decoration:underline}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula button:disabled{opacity:.4;cursor:default}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q,.s.diag{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.trio,.exe,.anote,.perfil,.tipos,.fotos{grid-template-columns:1fr!important;gap:12px}
+  .grid[style*="repeat(5"]{grid-template-columns:1fr!important}
+  .fotos{grid-template-columns:1fr 1fr!important} .fotos figure,.fotos.mini figure{height:140px} .fotos figcaption{font-size:13px;padding:18px 10px 8px}
+  .card{padding:14px 16px;gap:6px} .card h3,.tipos .card h3,.partes .card h3{font-size:19px} .card p,.partes .card p{font-size:15px} .card .n{font-size:30px}
+  .lado img.ilus.v{max-height:300px;width:auto;max-width:100%}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .pq{min-height:110px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica,.pq .fr .tag{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr!important;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .num3 .eq{grid-template-columns:1fr;gap:4px;padding:12px 14px} .num3 .eq b{font-size:28px} .num3 .eq span{font-size:15px}
+  .fases .linha{flex-direction:column;gap:8px} .fases .bt{font-size:15px} .fases .painel{font-size:15px;padding:14px} .fases .painel h4{font-size:12px} .fases .painel p{font-size:15px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.ops2.muitas .opc{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .perfil label{font-size:15px} .perfil input{font-size:17px;height:52px;border-width:2px}
+  .anote{font-size:15px}
+  .diag-txt{font-size:16px}
+  .diag-moldura{width:100%;height:74vh;height:74dvh;border-radius:12px}
+  .diag-moldura iframe{width:100%;height:100%;transform:none}
+  .diag-cheia{font-size:14px;align-self:flex-start}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+</style>
+<script>
+/* Marco Zero · aula principal em slides. Fonte: o texto falado dos dois vídeos do Marco Zero.
+   A estrutura da jornada segue as quatro etapas e os sete pilares. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+</script>
+</head>
+<body data-deck="t1-marco-zero-aula" data-titulo="Marco Zero · A visão de toda a jornada">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/cd21b66b22.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Marco Zero</p>
+  <h1>Marco Zero<br><i>A visão de toda a jornada</i></h1>
+  <p class="lead" style="max-width:1100px">Você sai sabendo onde está, o nome da sua dor e por qual pilar começar. No fim, você gera a página 0 do seu Dossiê: o seu diagnóstico prévio.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a página 0</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com o diagnóstico</h3><p>No fim, a ferramenta do diagnóstico abre aqui dentro, já com as suas respostas. Você baixa a página 0 do seu Dossiê em PDF.</p></div>
+  </div>
+  <p class="sv ok"><b>Dica</b><span>Tenha papel e caneta. Use os botões lá embaixo, ou as setas do teclado, para avançar. Onde não souber, marque "Não sei": também é diagnóstico.</span></p>
+</section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · A visão, quem somos e o setor">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · A visão, quem somos e o setor</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/wjmUcsxGLAQ?rel=0&modestbranding=1&enablejsapi=1" title="Marco Zero · Bloco 1 · A visão, quem somos e o setor" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/wjmUcsxGLAQ" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A aula em três respostas">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">O Marco Zero em três respostas</p>
+      <h2 style="font-size:66px">O que, por quê <i>e o que você leva</i></h2>
+      <ul class="lista num" style="font-size:31px;gap:16px">
+        <li class="f"><span><b>O que:</b> o setor de hospedagem por inteiro, o que trouxe você até aqui e a jornada que transforma um terreno, uma ideia ou um empreendimento em um destino turístico de sucesso.</span></li>
+        <li class="f"><span><b>Por quê:</b> quase todo mundo começa pela obra. E a obra é o último passo.</span></li>
+        <li class="f"><span><b>O resultado:</b> você sai sabendo onde está e por onde começar.</span></li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/9f71df5da0.jpg" alt="Três passos: o que você aprende, por que aprender e o resultado, o seu diagnóstico prévio">
+  </div>
+</section>
+<section class="s q" data-q="situacao" data-bloco="Bloco 1 · O seu ponto de partida"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o último passo de um empreendimento de hospedagem?</p>
+    <div class="ops">
+      <button class="op">Escolher o terreno</button>
+      <button class="op">Fazer o projeto</button>
+      <button class="op" data-certa>A obra</button>
+    </div>
+    <p class="exp">Quase todo mundo começa pela obra, e a obra é o último passo. Quem começa pelo fim descobre no meio do caminho o que faltou.</p>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/ec697bc679.jpg" data-bloco="Bloco 1 · A visão">
+  <p class="k">Tudo começa assim</p>
+  <h2 style="max-width:1150px">Tudo começa <i>de uma visão</i></h2>
+  <p class="lead" style="max-width:1050px">Se você está aqui, alguma coisa acendeu: um produto que você viu, um terreno parado, uma ideia. Isso não é distante. Existe um caminho, que outras pessoas já percorreram, erraram e refizeram.</p>
+  <ul class="lista" style="max-width:1150px;font-size:30px">
+    <li class="f">Por que criamos esta mentoria? Muitos donos de áreas, e muita gente que quer entrar no setor, não sabiam fazer essa leitura: como fazer, quanto gastar e quanto retorna.</li>
+    <li class="f">E também para abençoar vidas e expandir o setor: que você prospere com o que tem nas mãos, e que quem se hospeda encontre descanso, bem-estar e natureza.</li>
+  </ul>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · As cinco perguntas">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Antes de investir um real</p>
+      <h2 style="font-size:70px">Cinco <i>perguntas</i></h2>
+      <ul class="lista" style="font-size:31px;gap:14px">
+        <li class="f"><span><b>Visão:</b> o que você vai construir?</span></li>
+        <li class="f"><span><b>Demanda:</b> existe mercado para isso?</span></li>
+        <li class="f"><span><b>Tempo:</b> em quanto tempo?</span></li>
+        <li class="f"><span><b>Modo:</b> com que conhecimento e estratégia?</span></li>
+        <li class="f"><span><b>Resultado:</b> o que isso te devolve?</span></li>
+      </ul>
+      <p class="lead f">Agora, uma por tela: quais você já responde com número?</p>
+    </div>
+    <img class="ilus v" src="figuras/2efc9ca190.jpg" alt="As cinco perguntas acesas: visão, demanda, tempo, modo e resultado">
+  </div>
+</section>
+<section class="s q" data-q="cinco_visao" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="cinco_demanda" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="cinco_tempo" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="cinco_modo" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="cinco_resultado" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="e_falta" data-bloco="Bloco 1 · As cinco perguntas"></section>
+<section class="s q" data-q="e_construir" data-bloco="Bloco 1 · As cinco perguntas"></section>
+
+<section class="s" data-bloco="Bloco 1 · Uma pergunta para guardar">
+  <p class="k">Antes de seguir, uma pergunta para você guardar</p>
+  <h2 style="font-size:76px">O que te trouxe <i>até aqui?</i></h2>
+  <div class="grid g4">
+    <div class="card f"><span class="n">?</span><h3>O terreno parado</h3></div>
+    <div class="card f"><span class="n">?</span><h3>O capital sem destino</h3></div>
+    <div class="card f"><span class="n">?</span><h3>Um sócio para convencer</h3></div>
+    <div class="card f"><span class="n">?</span><h3>A dúvida de qual caminho seguir</h3></div>
+  </div>
+  <p class="lead f">Guarde a sua resposta. Ela volta no Bloco 2.</p>
+</section>
+<section class="s q" data-q="e_trouxe" data-bloco="Bloco 1 · Uma pergunta para guardar"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quem somos">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Quem está falando com você</p>
+      <h2 style="font-size:64px">O que a gente ensina, <i>a gente opera</i></h2>
+      <ul class="lista" style="font-size:26px;gap:12px">
+        <li class="f">O fundador da Zion, Bruno Chaerk, passou mais de vinte anos na hotelaria internacional, com a Meliá, a Barceló e a Wyndham, na Espanha, nas Canárias e nas Baleares.</li>
+        <li class="f">Ele participou de reconversões de hotéis e até de um destino inteiro, que saiu do turismo de excesso para o turismo de lifestyle e de luxo. A lição: as grandes redes estruturam tudo antes de construir.</li>
+        <li class="f">Em 2020, nós trouxemos isso para o Brasil, num terreno vazio, sem luz, sem água, sem internet. Tínhamos o dinheiro e, mesmo assim, enfrentamos muitos contratempos. Foi fazendo do zero que o caminho virou método.</li>
+        <li class="f">Hoje, Bruno Chaerk é palestrante e embaixador do Clube de Negócios Hotéis e Resorts.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/2b967f345d.jpg" alt="Bruno Chaerk palestrando">
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · Quem somos">
+  <p class="k">O Zion Bubble Glamping · as primeiras suítes bolha do Brasil</p>
+  <h2 style="font-size:62px">Duas sedes, dois biomas, <i>a mesma marca</i></h2>
+  <div class="fotos">
+    <figure class="f"><img src="figuras/97720fb183.jpg" alt="Suíte bolha na mata de araucárias"><figcaption>2020 · a primeira sede, na mata de araucárias</figcaption></figure>
+    <figure class="f"><img src="figuras/db90b57ddd.jpg" alt="Suíte bolha iluminada à noite"><figcaption>À noite</figcaption></figure>
+    <figure class="f"><img src="figuras/c4b7d4ee48.jpg" alt="O deck na floresta"><figcaption>O deck na floresta</figcaption></figure>
+    <figure class="f"><img src="figuras/997f8112bb.jpg" alt="A piscina entre as bolhas"><figcaption>2024 · a segunda sede, no clima tropical</figcaption></figure>
+    <figure class="f"><img src="figuras/81a062a470.jpg" alt="O interior de uma suíte bolha"><figcaption>Por dentro</figcaption></figure>
+    <figure class="f"><img src="figuras/f7ddae0c6d.jpg" alt="Vista aérea da segunda sede"><figcaption>Vista de cima</figcaption></figure>
+  </div>
+  <p class="sm f">Tudo o que você vê nesta jornada vem de modelos testados e de operações próprias da Zion, que nós fazemos todos os dias.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quem somos">
+  <div class="lado" style="grid-template-columns:1.25fr .75fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Zion Hotel Group International</p>
+      <h2 style="font-size:66px">Quatro braços, <i>um só caminho</i></h2>
+      <ul class="lista" style="font-size:30px;gap:14px">
+        <li class="f"><span><b>Desenvolvimento</b></span></li>
+        <li class="f"><span><b>Produtos</b></span></li>
+        <li class="f"><span><b>Gestão hoteleira</b></span></li>
+        <li class="f"><span><b>Educação</b></span></li>
+      </ul>
+      <p class="lead f">Vinte e três destinos mapeados para expansão pelo Brasil. E o nosso papel não é o do arquiteto nem o do engenheiro. É desenvolver, estruturar e ofertar.</p>
+    </div>
+    <img class="ilus v" src="figuras/5ea2ce3fc1.jpg" alt="Um tronco com quatro braços: desenvolvimento, produtos, gestão hoteleira e educação">
+  </div>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Qual é o papel da Zion num empreendimento de hospedagem?</p>
+    <div class="ops">
+      <button class="op">O do arquiteto: desenhar o projeto</button>
+      <button class="op">O do engenheiro: tocar a obra</button>
+      <button class="op" data-certa>Desenvolver, estruturar e ofertar</button>
+    </div>
+    <p class="exp">O nosso papel não é o do arquiteto nem o do engenheiro. É desenvolver, estruturar e ofertar.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A tese">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:34px">
+      <p class="k">O que vemos no Brasil</p>
+      <p class="citacao" style="font-size:62px">Existe dinheiro. O que não existe são <i>empreendimentos bem estruturados.</i></p>
+    </div>
+    <img class="ilus v" src="figuras/59bb43ec35.jpg" alt="Um terreno e uma pilha de dinheiro ligados por uma linha dourada que passa pelo plano">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A síndrome do terrenista">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Uma síndrome muito comum no Brasil</p>
+      <h2 style="font-size:70px">"A minha terra <i>é única."</i> E ela é.</h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Todo terrenista acredita que a terra dele é única, a mais bonita, a maior.</li>
+        <li class="f">Mas o Brasil é commodity: o que mais tem aqui é terra. E terra sem plano.</li>
+        <li class="f">O terrenista imagina que um dia vai descer um empresário de helicóptero, com uma mala de dinheiro, e dizer: "achei o seu terreno". Isso não vai acontecer. Sabe por quê? Porque não existe um plano.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/e77ad113ee.jpg" alt="Helicóptero com uma mala de dinheiro sobre o terreno, riscado em vermelho">
+  </div>
+</section>
+<section class="s q" data-q="e_plano" data-bloco="Bloco 1 · A síndrome do terrenista"></section>
+
+<section class="s" data-bloco="Bloco 1 · O plano">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Não é projeto arquitetônico</p>
+      <h2 style="font-size:66px">Um plano de execução <i>e de viabilidade, completo</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">E às vezes o empresário do helicóptero é você mesmo.</li>
+        <li class="f">Você tem a terra, tem o dinheiro, mas não sabe quanto vai gastar nem quanto vai voltar.</li>
+      </ul>
+      <p class="citacao f" style="font-size:50px">O que falta não é dinheiro. <i>É conhecimento.</i></p>
+    </div>
+    <img class="ilus v" src="figuras/e68dc52050.jpg" alt="O dono desce do helicóptero com a pasta: tem a terra e o dinheiro, falta o conhecimento">
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · O risco">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">E o risco?</p>
+      <h2 style="font-size:76px">É arriscado? <i>Todo negócio é.</i></h2>
+      <p class="citacao f" style="font-size:54px">Mas o risco se mitiga <i>com plano.</i></p>
+      <p class="lead f">Risco zero não existe. A pergunta certa é: o que eu faço para ficar menos arriscado?</p>
+    </div>
+    <img class="ilus v" src="figuras/04c82514cf.jpg" alt="Dois termômetros de risco: alto sem plano, mais baixo com plano; risco zero não existe">
+  </div>
+</section>
+<section class="s q" data-q="e_risco" data-bloco="Bloco 1 · O risco"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Por que o empresário de helicóptero, com a mala de dinheiro, não vem?</p>
+    <div class="ops">
+      <button class="op">Porque o terreno não é bonito o bastante</button>
+      <button class="op" data-certa>Porque não existe um plano</button>
+      <button class="op">Porque falta esperar o momento certo</button>
+    </div>
+    <p class="exp">Isso não vai acontecer porque não existe um plano. E plano não é projeto arquitetônico: é um plano de execução e de viabilidade, completo.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O setor de hospedagem">
+  <div class="lado" style="grid-template-columns:1.3fr .7fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Antes de qualquer decisão, a gente olha o mercado</p>
+      <h2 style="font-size:66px">As pessoas pagam pelo que <i>vivem</i></h2>
+      <div class="num3">
+        <div class="eq f"><b>US$ 2,1 tri</b><span>A economia da experiência até 2032, na projeção da Bloomberg</span></div>
+        <div class="eq f"><b>73%</b><span>Dos viajantes considerariam atividades calmas ligadas à natureza, na pesquisa da Booking para 2026</span></div>
+      </div>
+      <p class="lead f">Projeção não é garantia, mas mostra a direção.</p>
+    </div>
+    <img class="ilus" src="figuras/901904223c.jpg" alt="Hóspede descansando numa rede suspensa sobre a mata" style="max-height:760px">
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · O setor de hospedagem">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Os aplicativos mudaram o jogo</p>
+      <h2 style="font-size:66px">O Airbnb transformou quem tinha uma casa <i>em anfitrião</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Hoje qualquer pessoa pode operar hospedagem.</li>
+        <li class="f">Só que quase ninguém decide com clareza o que vai fazer com o imóvel.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/c5469ca910.jpg" alt="A casa vira hospedagem e o dono vira anfitrião com o celular">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Alugar, hospedar ou vender">
+  <p class="k">O que você vai fazer com o seu imóvel? · clique em cada cartão</p>
+  <h2 style="font-size:64px">Alugar, hospedar <i>ou vender</i></h2>
+  <div class="grid g4" style="min-height:290px">
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Alugar</span><h3>Por temporada</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você aluga por temporada, sem serviço.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Hospedar</span><h3>Com serviço</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você hospeda, com serviço, e cobra diária.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Vender</span><h3>Unidades inteiras</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>Você vende cada unidade inteira.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><span class="tag">Vender</span><h3>Frações</h3><span class="dica">Como funciona?</span></div><div class="vs"><b>Como funciona</b><p>É a multipropriedade: você vende frações do mesmo imóvel.</p></div></div></div>
+  </div>
+  <p class="lead f">Cada caminho tem a sua conta, a sua lei e o seu jeito de operar.</p>
+</section>
+<section class="s q" data-q="e_modelo" data-bloco="Bloco 1 · Alugar, hospedar ou vender"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Aluguel por temporada e hospedagem são a mesma coisa?</p>
+    <div class="ops">
+      <button class="op">Sim, os dois cobram pela estadia</button>
+      <button class="op" data-certa>Não: alugar por temporada é sem serviço; hospedar é com serviço e diária</button>
+      <button class="op">Depende do tamanho do imóvel</button>
+    </div>
+    <p class="exp">Alugar por temporada é sem serviço. Hospedar é com serviço e diária. Cada caminho tem a sua conta, a sua lei e o seu jeito de operar. No seu caso, quem confirma é o advogado, o contador ou a prefeitura.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Os jeitos de hospedar">
+  <p class="k">O mapa da hospedagem</p>
+  <h2 style="font-size:64px">Existem muitos jeitos <i>de hospedar</i></h2>
+  <div class="tipos">
+    <div class="card f"><h3>Hotel</h3></div>
+    <div class="card f"><h3>Resort</h3></div>
+    <div class="card f"><h3>Pousada</h3></div>
+    <div class="card f"><h3>Hotel fazenda</h3></div>
+    <div class="card f"><h3>Cama e café</h3></div>
+    <div class="card f"><h3>Flat</h3></div>
+    <div class="card f"><h3>Aluguel por temporada</h3></div>
+    <div class="card gl f"><h3>Glamping</h3></div>
+  </div>
+  <p class="lead f">Saber o nome certo do seu negócio muda a conta e a operação.</p>
+</section>
+<section class="s q" data-q="e_jeito" data-bloco="Bloco 1 · Os jeitos de hospedar"></section>
+
+<section class="s" data-bloco="Bloco 1 · O glamping">
+  <div class="lado" style="grid-template-columns:1fr 1fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Vamos falar do que a gente vive</p>
+      <h2 style="font-size:68px">O glamping <i>não é uma bolha</i></h2>
+      <ul class="lista" style="font-size:29px;gap:16px">
+        <li class="f">A bolha é uma das estruturas. E ela é barraca, não imóvel.</li>
+        <li class="f">O glamping é um conceito de hospedagem: hospedar com conforto dentro da natureza.</li>
+        <li class="f">Na praia, na mata, na selva ou no deserto, em bolha, em tenda ou num ofurô no meio da floresta. A estrutura muda, o conceito é o mesmo.</li>
+      </ul>
+    </div>
+    <div class="fotos mini" style="grid-template-columns:1fr 1fr">
+      <figure class="f"><img src="figuras/1d7fb0dfe0.jpg" alt="Glamping na praia"><figcaption>Na praia</figcaption></figure>
+      <figure class="f"><img src="figuras/fd4aa81247.jpg" alt="Glamping na selva"><figcaption>Na selva</figcaption></figure>
+      <figure class="f"><img src="figuras/925209a3b7.jpg" alt="Tendas no deserto"><figcaption>No deserto</figcaption></figure>
+      <figure class="f"><img src="figuras/d091d95991.jpg" alt="Ofurô no meio da floresta"><figcaption>Um ofurô na floresta</figcaption></figure>
+    </div>
+  </div>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Glamping é a mesma coisa que a bolha?</p>
+    <div class="ops">
+      <button class="op">Sim: glamping é o nome da bolha</button>
+      <button class="op" data-certa>Não: a bolha é uma das estruturas; o glamping é um conceito de hospedagem</button>
+      <button class="op">Não: glamping é só o que fica na mata</button>
+    </div>
+    <p class="exp">A bolha é uma das estruturas. O glamping é um conceito: hospedar com conforto dentro da natureza, na praia, na mata, na selva ou no deserto.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · As quatro partes">
+  <p class="k">Um negócio de hospedagem tem quatro grandes partes</p>
+  <h2 style="font-size:64px">O produto é só <i>uma delas</i></h2>
+  <div class="grid g4 partes">
+    <div class="card on f"><span class="n">1</span><h3>Desenvolvimento</h3><p>É aqui que o produto mora. É por aqui que começamos.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Gestão</h3></div>
+    <div class="card f"><span class="n">3</span><h3>Operação</h3></div>
+    <div class="card f"><span class="n">4</span><h3>Venda</h3></div>
+  </div>
+  <p class="lead f">O produto é um dos requisitos, não todo o contexto.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Pare e pense">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Pare e pense</p>
+      <h2 style="font-size:70px">O hóspede de hoje <i>compra o quê?</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Paredes e uma cama, o menor preço, uma experiência ou um motivo para viajar?</li>
+        <li class="f">Todas são válidas.</li>
+      </ul>
+      <p class="lead f">A pergunta é: qual você escolhe para o seu negócio?</p>
+    </div>
+    <img class="ilus v" src="figuras/69df947102.jpg" alt="Quatro respostas válidas: paredes e cama, menor preço, uma experiência e um motivo para viajar">
+  </div>
+</section>
+<section class="s q" data-q="e_hospede" data-bloco="Bloco 1 · Pare e pense"></section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do Bloco 2 · o que você já anotou</p>
+  <h2>A visão, quem somos <i>e o setor</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">Neste bloco: a visão que começa tudo, quem somos nós, da Zion, a síndrome do terrenista e como o setor de hospedagem funciona hoje. Onde aparece "não sei", é o seu primeiro estudo.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · As dores, a jornada e o seu diagnóstico">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · As dores, a jornada e o seu diagnóstico</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/8ObR1_6qZCM?rel=0&modestbranding=1&enablejsapi=1" title="Marco Zero · Bloco 2 · As dores, a jornada e o seu diagnóstico" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/8ObR1_6qZCM" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · As quatro dores">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">A pergunta mais importante</p>
+      <h2 style="font-size:76px">O que te trouxe <i>até aqui?</i></h2>
+      <ul class="lista num" style="font-size:33px">
+        <li class="f">Tenho o terreno e não tenho o capital</li>
+        <li class="f">Tenho o capital e não sei o que fazer</li>
+        <li class="f">Preciso estruturar para entrar com um sócio, um banco ou um investidor</li>
+        <li class="f">Preciso de clareza para decidir</li>
+      </ul>
+      <p class="sm f">São quatro dores. Pode ser mais de uma.</p>
+    </div>
+    <img class="ilus v" src="figuras/a1ec8c9f6d.jpg" alt="As quatro dores, numeradas, cada uma com um ícone">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Dor 1">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Dor 1 · o milionário descapitalizado</p>
+      <h2 style="font-size:70px">Tenho o terreno. <i>Não tenho o capital.</i></h2>
+      <p class="lead f">Milhões em terra e nenhum dinheiro para desenvolver.</p>
+      <p class="citacao f" style="font-size:52px">Linha sem isca não traz peixe. <i>O plano é a isca.</i></p>
+      <p class="sm f">Sem ele, o sócio, o banco ou o investidor não vem.</p>
+    </div>
+    <img class="ilus v" src="figuras/36d1ecdecd.jpg" alt="Pescaria: anzol sem isca e anzol com o plano como isca">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Dor 2">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Dor 2</p>
+      <h2 style="font-size:70px">Tenho o capital <i>e não sei o que fazer</i></h2>
+      <p class="lead f">Grande parte de quem chega até nós, da Zion, já construiu. Ouviu que todo mundo estava ganhando dinheiro com chalé, gastou trezentos, quatrocentos mil reais no terreno, mais a construção, e o calendário ficou vazio.</p>
+      <p class="citacao f" style="font-size:48px">Não errou por falta de dinheiro. Errou por <i>decidir fora de ordem.</i></p>
+    </div>
+    <img class="ilus v" src="figuras/48391afbdb.jpg" alt="Chalés iguais; um deles com o calendário vazio">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Dores 3 e 4">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Dores 3 e 4</p>
+      <h2 style="font-size:58px">Preciso estruturar. <i>Preciso de clareza.</i></h2>
+      <ul class="lista num" style="font-size:29px;gap:14px">
+        <li class="f"><span><b>Dor 3:</b> preciso estruturar para entrar com um sócio, um banco ou um investidor. Qual o melhor produto, quanto custa, quanto retorna, em quanto tempo? É isso que eles vão perguntar. Quantas você responde hoje, com número?</span></li>
+        <li class="f"><span><b>Dor 4:</b> preciso de clareza para decidir. Esse é o grande objetivo desta jornada.</span></li>
+      </ul>
+      <p class="citacao f" style="font-size:44px">Não é a Zion que decide por você. É você, <i>com os números na mão.</i></p>
+    </div>
+    <img class="ilus v" src="figuras/44a3a3e8b5.jpg" alt="A neblina se dissipa; uma balança com quanto custa e quanto retorna">
+  </div>
+</section>
+<section class="s q" data-q="dor" data-bloco="Bloco 2 · A sua dor"></section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Quem gastou no terreno e na construção e ficou com o calendário vazio errou por quê?</p>
+    <div class="ops">
+      <button class="op">Por falta de dinheiro</button>
+      <button class="op" data-certa>Por decidir fora de ordem</button>
+      <button class="op">Por falta de sorte</button>
+    </div>
+    <p class="exp">Não errou por falta de dinheiro. Errou por decidir fora de ordem: foi pelo que todo mundo falava, e não por um caminho.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Do pequeno para o grande">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Você não precisa de um grande hotel para começar</p>
+      <h2 style="font-size:76px">Fruta alta, <i>fruta baixa</i></h2>
+      <ul class="lista" style="font-size:32px">
+        <li class="f">A fruta alta é o resort de cinquenta quartos.</li>
+        <li class="f">A fruta baixa é começar com uma, duas ou três unidades, testar o mercado e a operação.</li>
+      </ul>
+      <p class="citacao f" style="font-size:50px">Nós, da Zion, recomendamos sempre <i>de menos a mais.</i></p>
+    </div>
+    <img class="ilus v" src="figuras/aaede60b77.jpg" alt="Árvore com a fruta baixa, uma bolha, e a fruta alta, um resort, ligadas por uma escada">
+  </div>
+</section>
+<section class="s q" data-q="e_fruta" data-bloco="Bloco 2 · Do pequeno para o grande"></section>
+
+<section class="s" data-bloco="Bloco 2 · Um caso real">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Um caso real</p>
+      <h2 style="font-size:76px">Rodrigo <i>e Priscila</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Um terreno com uma casinha e muita natureza. A primeira ideia era derrubar tudo e construir dez casas.</li>
+        <li class="f">Mas o diferencial estava na natureza do lugar. Eles foram construindo os chalés pouco a pouco.</li>
+        <li class="f">O que seria uma pousadinha para surfistas virou um negócio de luxo natural, com padrão, marca e diferenciação.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/cbced4f214.jpg" alt="Uma casinha na natureza; a ideia de dez casas, riscada; chalés pouco a pouco">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A regra de Pareto">
+  <p class="k">A regra de Pareto · clique em cada cartão</p>
+  <h2 style="font-size:62px">Poucas decisões respondem por <i>quase todo o resultado</i></h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);min-height:250px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Onde?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 1</b><p>Território e destino.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Para quem?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilares 2 e 3</b><p>Mercado e demanda; Produto e tipologias.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O quê?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 3</b><p>Produto e tipologias.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Em qual modelo?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilar 4</b><p>Modelo de negócio.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Com qual conta?</h3><span class="dica">Qual pilar?</span></div><div class="vs"><b>Pilares 6 e 7</b><p>Pré-viabilidade; Capital e Dossiê.</p></div></div></div>
+  </div>
+  <p class="lead f">Todas vêm antes da obra.</p>
+</section>
+<section class="s q" data-q="e_pareto" data-bloco="Bloco 2 · A regra de Pareto"></section>
+
+<section class="s" data-bloco="Bloco 2 · A jornada">
+  <div class="lado" style="grid-template-columns:.9fr 1.1fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Agora, a jornada</p>
+      <h2 style="font-size:62px">Quatro etapas, <i>sete pilares</i></h2>
+      <ul class="lista num" style="font-size:27px;gap:12px">
+        <li class="f"><span><b>Ler o lugar:</b> território e mercado.</span></li>
+        <li class="f"><span><b>Desenhar o produto:</b> produto e modelo de negócio, de renda ou de venda.</span></li>
+        <li class="f"><span><b>Desenhar o terreno:</b> o masterplan faseado.</span></li>
+        <li class="f"><span><b>Fechar a conta:</b> a pré-viabilidade, o capital e o seu Dossiê de Desenvolvimento.</span></li>
+      </ul>
+      <p class="sm f" style="font-size:24px">É esse Dossiê que um banco, um sócio, um investidor ou a Zion conseguem avaliar. E a Zion avalia cada caso.</p>
+    </div>
+    <img class="ilus v" src="figuras/quatro-etapas.png" alt="Quatro etapas, sete pilares: ler o lugar com território e mercado; desenhar o produto com produto e modelo; desenhar o terreno com o masterplan faseado; fechar a conta com pré-viabilidade e capital e Dossiê">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A jornada">
+  <p class="k">Cada pilar responde uma pergunta · clique em cada etapa</p>
+  <h2 style="font-size:58px">Do terreno ao Dossiê, <i>na ordem</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Ler o lugar<br>Pilares 1 e 2</span><div class="fx"><div><h4>O que responde</h4><p><b>Território e destino:</b> o que o meu terreno permite? <b>Mercado e demanda:</b> quem paga, quanto e quando?</p></div><div><h4>A página do Dossiê</h4><p>A Ficha do Território e a Ficha do Mercado.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Desenhar o produto<br>Pilares 3 e 4</span><div class="fx"><div><h4>O que responde</h4><p><b>Produto e tipologias:</b> o que eu vendo, e para quem? <b>Modelo de negócio:</b> renda ou venda, e quem opera?</p></div><div><h4>A página do Dossiê</h4><p>A Ficha do Produto e o Modelo de Negócio.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Desenhar o terreno<br>Pilar 5</span><div class="fx"><div><h4>O que responde</h4><p><b>Masterplan faseado:</b> onde fica cada coisa, o que cabe e o que entra na fase um?</p></div><div><h4>A página do Dossiê</h4><p>O Masterplan faseado.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Fechar a conta<br>Pilares 6 e 7</span><div class="fx"><div><h4>O que responde</h4><p><b>Pré-viabilidade:</b> o negócio se paga? <b>Capital e Dossiê:</b> como pagar, com quem, e avançar, ajustar ou parar?</p></div><div><h4>A página do Dossiê</h4><p>A Pré-viabilidade e o Capital e decisão.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada etapa: o que ela responde e a página do Dossiê que sai dela.</p></div>
+  </div>
+  <p class="sm f">Agora, pilar por pilar: o que você já tem hoje, com papel ou com conta?</p>
+</section>
+<section class="s q" data-q="jornada_1" data-bloco="Bloco 2 · Etapa 1 · Ler o lugar"></section>
+<section class="s q" data-q="jornada_2" data-bloco="Bloco 2 · Etapa 1 · Ler o lugar"></section>
+<section class="s q" data-q="jornada_3" data-bloco="Bloco 2 · Etapa 2 · Desenhar o produto"></section>
+<section class="s q" data-q="jornada_4" data-bloco="Bloco 2 · Etapa 2 · Desenhar o produto"></section>
+<section class="s q" data-q="jornada_5" data-bloco="Bloco 2 · Etapa 3 · Desenhar o terreno"></section>
+<section class="s q" data-q="jornada_6" data-bloco="Bloco 2 · Etapa 4 · Fechar a conta"></section>
+<section class="s q" data-q="jornada_7" data-bloco="Bloco 2 · Etapa 4 · Fechar a conta"></section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Em que etapa entra o masterplan faseado?</p>
+    <div class="ops">
+      <button class="op">Etapa 1 · Ler o lugar</button>
+      <button class="op" data-certa>Etapa 3 · Desenhar o terreno</button>
+      <button class="op">Etapa 4 · Fechar a conta</button>
+    </div>
+    <p class="exp">O masterplan faseado é a etapa 3, desenhar o terreno. Ele vem depois de ler o lugar e de desenhar o produto, e antes de fechar a conta.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · Agora é com você">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Agora é com você</p>
+      <h2 style="font-size:70px">O seu <i>diagnóstico prévio</i></h2>
+      <ul class="lista" style="font-size:30px">
+        <li class="f">São uns seis minutos sobre a sua situação, a sua dor e a sua etapa. E você já respondeu quase tudo nesta aula.</li>
+        <li class="f">Onde não souber, marque "Não sei": isso também é diagnóstico.</li>
+        <li class="f">No final, você recebe onde está, o seu ponto mais frágil e a primeira ação para os próximos sete dias.</li>
+      </ul>
+    </div>
+    <img class="ilus v" src="figuras/5fd1d1f3a3.jpg" alt="Um celular com as perguntas; uma seta leva ao PDF do diagnóstico">
+  </div>
+</section>
+
+<!-- ============ RESUMO ============ -->
+<section class="s" data-bloco="Resumo">
+  <p class="k">O Marco Zero em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:32px;gap:16px">
+    <li class="f">Quase todo mundo começa pela obra, e a obra é o último passo.</li>
+    <li class="f">Existe dinheiro. O que não existe são empreendimentos bem estruturados: o plano é a isca.</li>
+    <li class="f">Alugar, hospedar e vender são caminhos diferentes, cada um com a sua conta, a sua lei e o seu jeito de operar.</li>
+    <li class="f">De menos a mais: a fruta baixa vem primeiro, e poucas decisões, todas antes da obra, fazem quase todo o resultado.</li>
+    <li class="f">Quatro etapas, sete pilares, uma página do Dossiê por pilar. Você começa pela página 0.</li>
+  </ul>
+</section>
+
+<section class="s" data-bloco="O seu diagnóstico">
+  <p class="k">Para a página 0 sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label class="largo">Cidade e estado do terreno ou da ideia<input type="text" id="p-cidade" autocomplete="address-level2" placeholder="A cidade e a sigla do estado"></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Nada é enviado nesta tela: a ferramenta usa o seu e-mail só quando você baixar o PDF.</p>
+</section>
+
+<section class="s esc diag" data-bloco="O seu diagnóstico · página 0 do Dossiê" id="s-diag">
+  <p class="k">Faça agora · o seu diagnóstico prévio</p>
+  <p class="diag-txt">As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 0 do seu Dossiê. No fim, envie para o Land Bank da Zion.</p>
+  <div class="diag-moldura" data-sem-clique><iframe id="diag-if" data-sem-clique title="Diagnóstico prévio do Marco Zero" data-src="../../marco-zero/" src="about:blank"></iframe></div>
+  <a class="diag-cheia" href="../../marco-zero/" target="_blank" rel="noopener" data-sem-clique>Abrir em tela cheia</a>
+</section>
+
+<section class="s foto" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 1</p>
+  <h2 style="max-width:1150px">Território <i>e destino</i></h2>
+  <p class="lead" style="max-width:1050px">O checklist do seu terreno: o destino em volta, a chegada do hóspede, o chão, a água, a energia, a área que sobra e os papéis. Item por item, onde verificar e com quem.</p>
+  <p class="sv" style="max-width:1050px"><b>Lembrete</b><span>Salve o PDF na pasta Meu Dossiê.</span></p>
+  <p class="sm" style="max-width:1150px;margin-top:20px">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito, compra ou sociedade. A Zion avalia cada caso. Projeções de mercado mostram uma direção, não garantem resultado. Temas jurídicos aparecem em nível introdutório: quem confirma no seu caso é o advogado, o contador ou o cartório, o órgão ambiental ou a prefeitura.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Estado: o MESMO da ferramenta do diagnóstico prévio (marco-zero/).
+   Chave "zion-t1-marco-zero". Formato da ferramenta:
+   { tela, nome, email, cidade, situacao, dor, cinco:{visao..resultado: 2|1|0}, jornada:{1..7: 2|1|0}, acao, prazo }
+   As perguntas sem par na ferramenta ficam em S.aulaExtras, um campo a mais
+   que a ferramenta preserva. Nunca apagamos o que já existe: mesclamos.
+   =================================================================== */
+const CHAVE = "zion-t1-marco-zero";
+const TELAS = ["abertura", "situacao", "dor", "cinco", "jornada", "resultado"];
+const CINCO = [
+  { id: "visao", r: "Visão", p: "O que você vai construir?" },
+  { id: "demanda", r: "Demanda", p: "Existe mercado para isso?" },
+  { id: "tempo", r: "Tempo", p: "Em quanto tempo?" },
+  { id: "modo", r: "Modo", p: "Com que conhecimento e estratégia?" },
+  { id: "resultado", r: "Resultado", p: "O que isso te devolve?" },
+];
+const PIL = [
+  { n: 1, etapa: "Etapa 1 · Ler o lugar", t: "Território e destino", q: "O que o meu terreno permite?", p: "Sei o que o meu terreno permite", s: "A matrícula atualizada, o CAR, a zona da prefeitura e o acesso." },
+  { n: 2, etapa: "Etapa 1 · Ler o lugar", t: "Mercado e demanda", q: "Quem paga, quanto e quando?", p: "Sei quem paga, quanto e quando na minha região", s: "Os comparáveis, a diária, a ocupação e a curva do ano." },
+  { n: 3, etapa: "Etapa 2 · Desenhar o produto", t: "Produto e tipologias", q: "O que eu vendo, e para quem?", p: "Sei o que vou vender e para quem", s: "O público, a experiência, a promessa e a unidade." },
+  { n: 4, etapa: "Etapa 2 · Desenhar o produto", t: "Modelo de negócio", q: "Renda ou venda, e quem opera?", p: "Sei se é venda ou renda, e quem vai operar", s: "Alugar, hospedar ou vender, e quem cuida do dia a dia." },
+  { n: 5, etapa: "Etapa 3 · Desenhar o terreno", t: "Masterplan faseado", q: "Onde fica cada coisa, o que cabe e o que entra na fase um?", p: "Tenho o terreno inteiro no papel, com a fase um", s: "Onde nunca construir, o que precisa existir, o que cabe e o que entra na fase um." },
+  { n: 6, etapa: "Etapa 4 · Fechar a conta", t: "Pré-viabilidade", q: "O negócio se paga?", p: "Sei quanto custa, quanto sobra e em quanto tempo o dinheiro volta", s: "As oito linhas do investimento, a margem, os três cenários e o tempo de volta." },
+  { n: 7, etapa: "Etapa 4 · Fechar a conta", t: "Capital e Dossiê", q: "Como pagar, com quem, e avançar, ajustar ou parar?", p: "Sei de onde vem o capital, com quem, e tenho a decisão escrita", s: "O pedido exato, as fontes do capital e a decisão: avançar, ajustar ou parar." },
+];
+const DORES = [
+  { v: "1", r: "Tenho o terreno e não tenho o capital", fb: "É o milionário descapitalizado: milhões em terra e nenhum dinheiro para desenvolver. O plano é a isca: sem ele, o sócio, o banco ou o investidor não vem." },
+  { v: "2", r: "Tenho o capital e não sei o que fazer", fb: "Quem só construiu e ficou com o calendário vazio não errou por falta de dinheiro. Errou por decidir fora de ordem." },
+  { v: "3", r: "Preciso estruturar para entrar com um sócio, um banco ou um investidor", fb: "Qual o melhor produto, quanto custa, quanto retorna e em quanto tempo: é isso que eles vão perguntar. A meta é responder com número." },
+  { v: "4", r: "Preciso de clareza para decidir", fb: "Esse é o grande objetivo desta jornada. Não é a Zion que decide por você. É você, com os números na mão." },
+];
+const TROUXE = { terreno: "O terreno parado", capital: "O capital sem destino", socio: "Um sócio para convencer", duvida: "A dúvida de qual caminho seguir" };
+const TROUXE_DOR = { terreno: "1", capital: "2", socio: "3", duvida: "4" };
+
+function estadoVazio() { return { tela: 0, nome: "", email: "", cidade: "", situacao: "", dor: "", cinco: {}, jornada: {}, aulaExtras: {} }; }
+function carregar() {
+  try { const d = JSON.parse(window.localStorage.getItem(CHAVE)); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+let S = Object.assign(estadoVazio(), carregar() || {});
+function garantir() {
+  if (!S.cinco || typeof S.cinco !== "object") S.cinco = {};
+  if (!S.jornada || typeof S.jornada !== "object") S.jornada = {};
+  if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+  ["nome", "email", "cidade", "situacao", "dor"].forEach((k) => { if (typeof S[k] !== "string") S[k] = S[k] == null ? "" : String(S[k]); });
+}
+garantir();
+function proximaVazia() {
+  if (!S.situacao) return "situacao";
+  if (!S.dor) return "dor";
+  if (!CINCO.every((c) => S.cinco[c.id] != null)) return "cinco";
+  if (!PIL.every((p) => S.jornada[p.n] != null)) return "jornada";
+  return "resultado";
+}
+function salvar() {
+  garantir();
+  // a ferramenta abre na primeira tela que falta, ou direto no resultado
+  const algo = S.situacao || S.dor || Object.keys(S.cinco).length || Object.keys(S.jornada).length;
+  if (algo) S.tela = TELAS.indexOf(proximaVazia());
+  try {
+    const atual = carregar() || {};
+    const novo = Object.assign({}, atual, S); // mantém o que só a ferramenta grava (ação, prazo e outros)
+    window.localStorage.setItem(CHAVE, JSON.stringify(novo));
+  } catch (e) { /* sem armazenamento: a aula segue funcionando */ }
+}
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+function paraNumero(v) {
+  if (v === undefined || v === null || v === "" || v === "nao_sei") return null;
+  if (typeof v === "number") return Number.isFinite(v) ? v : null;
+  const s = String(v).replace(/\s/g, "").replace(/\./g, "").replace(",", ".");
+  if (!/^\d+(\.\d+)?$/.test(s)) return null;
+  return Number(s);
+}
+
+/* ---------- as perguntas da aula ---------- */
+const O = (rot, val, fb) => ({ rot, val, fb });
+const NIV5 = (fb2, fb1, fb0) => [O("Com número: tenho por escrito ou com conta", 2, ["ok", fb2]), O("Tenho uma ideia, mas ainda não conferi", 1, ["at", fb1]), O("Não sei", 0, ["at", fb0])];
+const NIVJ = (n) => [
+  O("Já tenho, com papel ou com conta", 2, ["ok", "Já tem. Mesmo assim, abra a ferramenta do Pilar " + n + " quando chegar lá, para conferir com papel ou conta."]),
+  O("Tenho em parte", 1, ["at", "Em parte. O Pilar " + n + " completa essa página do Dossiê."]),
+  O("Não sei", 0, ["at", "Não sei também é diagnóstico. É no Pilar " + n + " que essa resposta vira número."]),
+];
+const QS = {
+  situacao: { tipo: "escolha", caminho: ["situacao"], curto: "A sua situação",
+    pergunta: "Qual destas frases mais parece com você hoje?",
+    cita: "No vídeo: a jornada transforma um terreno, uma ideia ou um empreendimento em um destino turístico de sucesso.",
+    explica: "Escolha uma. Este caminho serve para um terreno, uma ideia ou um empreendimento que já existe.",
+    opcoes: [O("Tenho um terreno e ainda não hospedo ninguém", "terreno", ["in", "Você parte do terreno. A jornada começa lendo o que ele permite."]),
+      O("Tenho uma ideia, ou o capital, e ainda não tenho o terreno", "ideia", ["in", "Você parte da ideia. Ler o lugar antes de comprar é o jeito mais barato de decidir."]),
+      O("Já opero uma hospedagem e quero crescer", "opero", ["in", "Você já opera. A jornada serve para desenhar um produto novo ou expandir."])],
+    porque: "É o seu ponto de partida. A ferramenta do diagnóstico usa esta resposta para dizer por onde você começa." },
+  e_falta: { tipo: "escolha", caminho: ["aulaExtras", "e_falta"], curto: "A pergunta que mais falta",
+    pergunta: "Das cinco perguntas, qual mais te falta hoje?",
+    cita: "No vídeo: pausa e anota, qual das cinco mais te falta hoje?",
+    explica: "Escolha uma: a que você menos consegue responder hoje.",
+    opcoes: CINCO.map((c) => O(c.r + ": " + c.p.charAt(0).toLowerCase() + c.p.slice(1), c.id, ["in", "Anotado. Essa é a primeira que você vai transformar em número."])),
+    ns: "Ainda não sei", tarefa: "reler as cinco perguntas e escolher a que mais pesa",
+    porque: "Saber o que falta é o primeiro passo para estudar na ordem certa." },
+  e_construir: { tipo: "texto", caminho: ["aulaExtras", "e_construir"], curto: "O que quero construir",
+    pergunta: "Em uma linha: o que você quer construir?",
+    cita: "No vídeo: visão, o que você vai construir?",
+    explica: "Do jeito que está hoje na sua cabeça. Pode mudar ao longo da jornada.",
+    ns: "Ainda não sei", tarefa: "escrever em uma linha o que você quer construir",
+    porque: "Tudo começa de uma visão. Escrever transforma a ideia em ponto de partida." },
+  e_trouxe: { tipo: "multi", caminho: ["aulaExtras", "e_trouxe"], curto: "O que te trouxe",
+    pergunta: "O que te trouxe até aqui?",
+    cita: "No vídeo: guarda a sua resposta, a gente volta nela daqui a pouco.",
+    explica: "Pode ser mais de uma. Ela volta no Bloco 2.",
+    opcoes: Object.entries(TROUXE).map(([v, r]) => O(r, v)),
+    ns: "Ainda não sei",
+    porque: "Dar nome ao que te trouxe ajuda a escolher o caminho certo. No Bloco 2, essa resposta vira a sua dor." },
+  e_plano: { tipo: "escolha", caminho: ["aulaExtras", "e_plano"], curto: "O plano de hoje",
+    pergunta: "Hoje, o seu terreno ou a sua ideia tem um plano?",
+    cita: "No vídeo: o Brasil é commodity, o que mais tem aqui é terra. E terra sem plano.",
+    explica: "Escolha o que mais parece com o que você tem hoje.",
+    opcoes: [O("Ainda não: só a terra ou só a ideia", "nenhum", ["at", "É o ponto de partida mais comum. Esta jornada existe para construir esse plano."]),
+      O("Tenho um projeto arquitetônico", "projeto", ["at", "Projeto arquitetônico não é o plano completo. Falta o plano de execução e de viabilidade."]),
+      O("Tenho um plano de execução e de viabilidade", "completo", ["ok", "Ótimo. Confira se cada número tem papel ou conta por trás."])],
+    ns: "Não sei", tarefa: "separar o que você tem hoje: terra, projeto ou plano",
+    porque: "O que diferencia você não é ter a terra. É ter uma terra com plano." },
+  e_risco: { tipo: "texto", caminho: ["aulaExtras", "e_risco"], curto: "O maior risco que vejo",
+    pergunta: "Qual é o maior risco que você enxerga hoje no seu projeto?",
+    cita: "No vídeo: é arriscado? Todo negócio é. Mas o risco se mitiga com plano.",
+    explica: "Uma frase. Exemplo: \"não sei se tem gente para pagar a diária\".",
+    ns: "Ainda não sei", tarefa: "escrever o risco que mais preocupa você",
+    porque: "Risco zero não existe. Nomear o risco é o primeiro passo para mitigar." },
+  e_modelo: { tipo: "escolha", caminho: ["aulaExtras", "e_modelo"], curto: "O caminho que imagino",
+    pergunta: "Hoje, qual caminho você imagina para o seu imóvel?",
+    cita: "No vídeo: alugar, hospedar ou vender. Cada caminho tem a sua conta, a sua lei e o seu jeito de operar.",
+    explica: "Escolha o que você imagina hoje. A decisão de verdade vem no Pilar 4.",
+    opcoes: [O("Alugar por temporada, sem serviço", "alugar"), O("Hospedar, com serviço e diária", "hospedar"), O("Vender unidades inteiras", "unidades"), O("Vender frações: a multipropriedade", "fracoes")],
+    fbTodas: ["in", "Anotado. Cada caminho tem a sua conta, a sua lei e o seu jeito de operar. No seu caso, quem confirma é o advogado, o contador ou a prefeitura."],
+    ns: "Ainda não decidi", tarefa: "comparar alugar, hospedar e vender no Pilar 4",
+    porque: "Quase ninguém decide com clareza o que vai fazer com o imóvel. Escrever o que você imagina hoje é o começo." },
+  e_jeito: { tipo: "escolha", muitas: true, caminho: ["aulaExtras", "e_jeito"], curto: "O jeito de hospedar",
+    pergunta: "Qual destes jeitos de hospedar é o seu, ou o que você imagina?",
+    cita: "No vídeo: saber o nome certo do seu negócio muda a conta e a operação.",
+    explica: "Escolha um.",
+    opcoes: ["Hotel", "Resort", "Pousada", "Hotel fazenda", "Cama e café", "Flat", "Aluguel por temporada", "Glamping"].map((r) => O(r, r.toLowerCase().replace(/ /g, "_"))),
+    fbTodas: ["in", "Anotado. O nome certo muda a conta e a operação."],
+    ns: "Ainda não sei", tarefa: "descobrir o nome certo do seu negócio",
+    porque: "Saber o nome certo do seu negócio muda a conta e a operação." },
+  e_hospede: { tipo: "escolha", caminho: ["aulaExtras", "e_hospede"], curto: "O que o meu hóspede compra",
+    pergunta: "E o seu hóspede, vai comprar o quê?",
+    cita: "No vídeo: todas são válidas. A pergunta é qual você escolhe para o seu negócio.",
+    explica: "Escolha uma para o seu negócio.",
+    opcoes: [O("Paredes e uma cama", "cama"), O("O menor preço", "preco"), O("Uma experiência", "experiencia"), O("Um motivo para viajar", "motivo")],
+    fbTodas: ["in", "Todas são válidas. Essa escolha vai voltar quando você desenhar o produto, no Pilar 3."],
+    ns: "Ainda não escolhi", tarefa: "escolher o que o seu hóspede vai comprar",
+    porque: "É uma escolha, e ela define o produto que vem depois." },
+  dor: { tipo: "escolha", caminho: ["dor"], curto: "A sua dor",
+    pergunta: "Qual é a dor que mais pesa hoje?",
+    cita: "No vídeo: pausa e anota a sua. Pode ser mais de uma.",
+    explica: "Pode ser mais de uma, mas escolha a que mais pesa hoje.",
+    opcoes: DORES.map((d) => O("Dor " + d.v + ". " + d.r, d.v, ["in", d.fb])),
+    porque: "Quem não dá nome à própria dor compra a solução errada. A ferramenta do diagnóstico usa esta resposta." },
+  e_fruta: { tipo: "numero", unidade: "unidades", caminho: ["aulaExtras", "e_fruta"], curto: "A minha fruta baixa",
+    pergunta: "Com quantas unidades você começaria, para testar?",
+    cita: "No vídeo: a fruta baixa é começar com uma, duas ou três unidades, testar o mercado e a operação.",
+    explica: "Unidade é cada chalé, cabana, bolha ou quarto que você vende.",
+    ns: "Ainda não sei", tarefa: "pensar na sua fruta baixa: com quantas unidades você testaria",
+    porque: "Nós, da Zion, recomendamos sempre de menos a mais. Quantas unidades o lugar aguenta você mede nos Pilares 1 e 2." },
+  e_pareto: { tipo: "multi", caminho: ["aulaExtras", "e_pareto"], curto: "Decisões já tomadas",
+    pergunta: "Quais destas decisões você já tomou, com papel ou com conta?",
+    cita: "No vídeo: onde, para quem, o quê, em qual modelo e com qual conta. Todas vêm antes da obra.",
+    explica: "Marque só o que já está decidido com papel ou com conta.",
+    opcoes: [O("Onde", "onde"), O("Para quem", "quem"), O("O quê", "oque"), O("Em qual modelo", "modelo"), O("Com qual conta", "conta")],
+    nenhum: "Nenhuma ainda",
+    porque: "Poucas decisões respondem por quase todo o resultado. E todas vêm antes da obra." },
+};
+CINCO.forEach((c) => {
+  QS["cinco_" + c.id] = { tipo: "escolha", caminho: ["cinco", c.id], curto: c.r,
+    pergunta: c.r + ": " + c.p.charAt(0).toLowerCase() + c.p.slice(1),
+    cita: "No vídeo: antes de investir um real, cinco perguntas.",
+    explica: "\"Com número\" é quando você tem a resposta por escrito ou com conta. \"Tenho uma ideia\" é quando você imagina, mas ainda não conferiu.",
+    opcoes: NIV5("Com número. Guarde o papel ou a conta: é o que vale.", "Uma ideia ainda não conferida. Os pilares transformam essa ideia em número.", "Não sei também é diagnóstico. Essa é uma das respostas que a jornada vai construir."),
+    nsNaOpcao: true,
+    porque: "Não basta ter uma visão. A ferramenta do diagnóstico conta quantas das cinco você já responde com número." };
+});
+PIL.forEach((p) => {
+  QS["jornada_" + p.n] = { tipo: "escolha", caminho: ["jornada", String(p.n)], curto: "Pilar " + p.n + " · " + p.t,
+    pergunta: "Pilar " + p.n + " · " + p.p + ". Você já tem?",
+    cita: p.etapa + " · " + p.t + ": " + p.q,
+    explica: p.s,
+    opcoes: NIVJ(p.n), nsNaOpcao: true,
+    porque: "Cada pilar fecha com uma ferramenta online e uma página do seu Dossiê. O diagnóstico começa pelo primeiro pilar que você ainda não tem." };
+});
+
+/* ---------- ler e gravar uma resposta ---------- */
+function ler(id) { const c = QS[id].caminho; let o = S; for (let i = 0; i < c.length - 1; i++) { o = o && o[c[i]]; } return o ? o[c[c.length - 1]] : undefined; }
+function por(id, v) {
+  garantir();
+  const c = QS[id].caminho; let o = S;
+  for (let i = 0; i < c.length - 1; i++) { if (!o[c[i]] || typeof o[c[i]] !== "object") o[c[i]] = {}; o = o[c[i]]; }
+  const k = c[c.length - 1];
+  if (v === undefined) { if (c.length === 1) o[k] = ""; else delete o[k]; } else o[k] = v;
+}
+const ehNS = (v) => v === "nao_sei";
+function completa(id) {
+  const q = QS[id], v = ler(id);
+  if (v === undefined || v === null || v === "") return false;
+  if (ehNS(v)) return true;
+  if (q.tipo === "texto") return String(v).trim().length > 0;
+  if (q.tipo === "multi") return Array.isArray(v);
+  if (q.tipo === "numero") { const n = paraNumero(v); return n !== null && n >= 0; }
+  return q.opcoes.some((o) => o.val === v);
+}
+
+/* ---------- montagem dos slides de pergunta ---------- */
+const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+const IDS = slidesQ.map((s) => s.dataset.q);
+const TOTAL = IDS.length;
+function opcaoHTML(i, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-i="${i}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+function campoHTML(id) {
+  const q = QS[id];
+  if (q.tipo === "escolha") return `<div class="ops2${q.muitas ? " muitas" : ""}">${q.opcoes.map((o, i) => opcaoHTML(i, o.rot, q.nsNaOpcao && o.val === 0 ? "ns" : "")).join("")}${q.ns ? opcaoHTML("ns", q.ns, "ns") : ""}</div>`;
+  if (q.tipo === "multi") return `<div class="ops2">${q.opcoes.map((o, i) => opcaoHTML(i, o.rot, "multi")).join("")}${q.nenhum ? opcaoHTML("nenhum", q.nenhum, "multi") : ""}${q.ns ? opcaoHTML("ns", q.ns, "ns") : ""}</div>`;
+  if (q.tipo === "numero") return `<div class="cn"><input class="resp" type="text" inputmode="numeric" autocomplete="off" placeholder="Digite o número" aria-label="${esc(q.pergunta)}"><span class="un">${esc(q.unidade)}</span></div>${q.ns ? opcaoHTML("ns", q.ns, "ns") : ""}`;
+  if (q.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="Escreva aqui" aria-label="${esc(q.pergunta)}"></textarea>${q.ns ? opcaoHTML("ns", q.ns, "ns") : ""}`;
+  return "";
+}
+function montar(sl, n) {
+  const id = sl.dataset.q, q = QS[id];
+  sl.innerHTML = `<div class="pg" data-sem-clique>
+    <div class="pg-txt">
+      <p class="k">Agora é com você · <b>pergunta ${n} de ${TOTAL}</b></p>
+      <h2>${esc(q.pergunta)}</h2>
+      <p class="cita"></p>
+      <p class="expl">${esc(q.explica)}</p>
+    </div>
+    <div class="pg-dir">
+      <span class="rot-r">A sua resposta</span>
+      ${campoHTML(id)}
+      <div class="fb" role="status" aria-live="polite"></div>
+      <p class="st"></p>
+    </div>
+    <div class="pg-info">
+      <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+      ${q.tarefa ? `<div class="cx onde"><h4>Se ainda não sabe</h4><p>Tudo bem: vira o seu primeiro estudo. ${esc(q.tarefa.charAt(0).toUpperCase() + q.tarefa.slice(1))}.</p></div>` : ""}
+    </div>
+  </div>`;
+  ligar(sl, id);
+}
+function citaDe(id) {
+  const q = QS[id];
+  if (id === "dor") {
+    const t = ler("e_trouxe");
+    if (Array.isArray(t) && t.length) return "No Bloco 1 você guardou: " + t.map((x) => TROUXE[x] ? TROUXE[x].toLowerCase() : x).join(", ") + ". Agora, dê o nome da dor.";
+  }
+  return q.cita || "";
+}
+
+/* ---------- feedback imediato ---------- */
+function feedback(id) {
+  const q = QS[id], v = ler(id);
+  if (v === undefined || v === null || v === "") return null;
+  if (ehNS(v)) return ["at", "<b>O seu primeiro estudo</b>" + esc((q.tarefa || "voltar a esta pergunta depois").replace(/^./, (c) => c.toUpperCase())) + ". Não sei também é diagnóstico."];
+  if (q.tipo === "escolha") {
+    const o = q.opcoes.find((x) => x.val === v); if (!o) return null;
+    const f = o.fb || q.fbTodas; return f ? [f[0], esc(f[1])] : null;
+  }
+  if (q.tipo === "multi") {
+    if (!Array.isArray(v)) return null;
+    if (id === "e_trouxe") return v.length ? ["in", "Guardado. No Bloco 2, essa resposta vira a sua dor."] : null;
+    if (id === "e_pareto") {
+      if (!v.length) return ["at", "Nenhuma ainda, e está tudo bem: é para isso que existem os sete pilares. Todas vêm antes da obra."];
+      if (v.length === 5) return ["ok", "As cinco decididas. Confira se cada uma tem papel ou conta por trás."];
+      return ["in", esc(v.length + " de 5 decididas. As que faltam, os pilares respondem, todas antes da obra.")];
+    }
+    return null;
+  }
+  if (q.tipo === "numero") {
+    const n = paraNumero(v); if (n === null) return null;
+    if (n === 0) return ["at", "Zero unidade ainda não testa nada. A fruta baixa é começar com uma, duas ou três."];
+    if (n <= 3) return ["ok", esc("Fruta baixa: " + n + (n === 1 ? " unidade" : " unidades") + " para testar o mercado e a operação. De menos a mais.")];
+    return ["at", esc(n + " unidades já começa alto. Nós, da Zion, recomendamos de menos a mais: o que você testaria antes de construir tudo?")];
+  }
+  if (q.tipo === "texto") {
+    const t = String(v).trim(); if (t.length < 3) return null;
+    return ["ok", "Anotado. Volte a esta frase no fim da jornada e veja o quanto ela mudou."];
+  }
+  return null;
+}
+
+/* ---------- pintar uma pergunta a partir do estado ---------- */
+function pintar(sl) {
+  const id = sl.dataset.q, q = QS[id], v = ler(id), ns = ehNS(v);
+  sl.querySelectorAll(".opc[data-i]").forEach((b) => {
+    const i = b.dataset.i;
+    let on;
+    if (i === "ns") on = ns;
+    else if (i === "nenhum") on = Array.isArray(v) && v.length === 0;
+    else if (q.tipo === "multi") on = Array.isArray(v) && v.includes(q.opcoes[+i].val);
+    else on = v === q.opcoes[+i].val;
+    b.setAttribute("aria-pressed", String(!!on));
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) {
+    if (document.activeElement !== inp) inp.value = ns || v === undefined || v === null ? "" : String(v);
+    inp.disabled = ns;
+  }
+  const ci = sl.querySelector(".cita"), ct = citaDe(id);
+  ci.textContent = ct; ci.hidden = !ct;
+  const fb = sl.querySelector(".fb"), f = feedback(id);
+  if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+  let t = "";
+  if (q.tipo === "numero" && v !== undefined && v !== "" && !ns && paraNumero(v) === null) t = "Escreva só o número, por exemplo 3.";
+  else if (completa(id)) t = "Salvo neste aparelho.";
+  sl.querySelector(".st").textContent = t;
+}
+
+/* ---------- eventos de cada pergunta (grava na hora) ---------- */
+function ligar(sl, id) {
+  const q = QS[id];
+  sl.addEventListener("click", (e) => {
+    const b = e.target.closest(".opc");
+    if (!b || !sl.contains(b)) return;
+    e.stopPropagation();
+    const i = b.dataset.i, v = ler(id);
+    if (i === "ns") por(id, ehNS(v) ? undefined : "nao_sei");
+    else if (i === "nenhum") por(id, []);
+    else if (q.tipo === "multi") {
+      const a = Array.isArray(v) ? v.slice() : [];
+      const val = q.opcoes[+i].val, k = a.indexOf(val);
+      if (k >= 0) a.splice(k, 1); else a.push(val);
+      por(id, a);
+    } else por(id, q.opcoes[+i].val);
+    salvar(); pintar(sl); atualizaNav();
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) inp.addEventListener("input", () => { por(id, inp.value === "" ? undefined : inp.value); salvar(); pintar(sl); atualizaNav(); });
+}
+
+/* ---------- perfil ---------- */
+const CAMPOS = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade" };
+function ligarPerfil() {
+  for (const [el, k] of Object.entries(CAMPOS)) {
+    const x = document.getElementById(el);
+    x.addEventListener("input", () => { garantir(); S[k] = x.value.trim().slice(0, 120); salvar(); });
+  }
+}
+function pintarPerfil() {
+  // se a pessoa já preencheu o perfil na Ficha do Território, sugerimos o mesmo nome e e-mail
+  if (!S.nome || !S.email) {
+    try { const p = (JSON.parse(window.localStorage.getItem("zion-t1-aula1")) || {}).perfil || {}; if (!S.nome && p.nome) S.nome = String(p.nome); if (!S.email && p.email) S.email = String(p.email); } catch (e) {}
+  }
+  for (const [el, k] of Object.entries(CAMPOS)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S[k] || ""; }
+}
+
+/* ---------- o que você já anotou (fim do bloco 1) ---------- */
+function txt(id) {
+  const q = QS[id], v = ler(id);
+  if (v === undefined || v === null || v === "") return "em branco";
+  if (ehNS(v)) return "não sei";
+  if (q.tipo === "texto") return String(v).trim();
+  if (q.tipo === "numero") return String(v);
+  if (q.tipo === "multi") return Array.isArray(v) ? (v.length ? v.map((x) => (q.opcoes.find((o) => o.val === x) || {}).rot || x).join(", ") : "nenhuma") : "em branco";
+  const o = q.opcoes.find((x) => x.val === v); return o ? o.rot : String(v);
+}
+function pintarAnote() {
+  const el = document.getElementById("anote"); if (!el) return;
+  const comNumero = CINCO.filter((c) => S.cinco[c.id] === 2).length;
+  const linhas = [["Ponto de partida", txt("situacao")], ["Perguntas com número", comNumero + " de 5"], ["A que mais te falta", txt("e_falta")], ["O que quero construir", txt("e_construir")], ["O que te trouxe", txt("e_trouxe")], ["O caminho que imagino", txt("e_modelo")], ["O jeito de hospedar", txt("e_jeito")], ["O que o meu hóspede compra", txt("e_hospede")]];
+  el.innerHTML = linhas.map(([r, v]) => `<div><span>${esc(r)}</span><b>${esc(v)}</b></div>`).join("");
+}
+
+/* ---------- navegação, teclado e toque ---------- */
+const slides = Array.from(document.querySelectorAll(".s"));
+const diagIf = document.getElementById("diag-if");
+function atualizaNav() {
+  const n = IDS.filter(completa).length;
+  document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${TOTAL}`;
+  document.getElementById("n-bar").style.width = (n / TOTAL * 100) + "%";
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+  document.getElementById("n-ant").disabled = i <= 0;
+  document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+}
+function pausaVideos(sl) {
+  if (!sl) return;
+  sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+}
+let atual = -1, prontoMotor = false;
+function aoTrocarSlide() {
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  if (i < 0 || i === atual) return;
+  const ant = slides[atual];
+  atual = i;
+  pausaVideos(ant);
+  const sl = slides[i];
+  // o diagnóstico só carrega quando o slide abre, já com as respostas gravadas; ao sair, descarrega
+  if (ant && ant.id === "s-diag" && diagIf) diagIf.src = "about:blank";
+  if (sl.id === "s-diag" && diagIf) { salvar(); diagIf.src = diagIf.dataset.src; }
+  if (sl.dataset.q) pintar(sl);
+  if (sl.querySelector("#anote")) pintarAnote();
+  if (sl.querySelector(".perfil")) pintarPerfil();
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+  if (prontoMotor) { S.aulaSlide = i; salvar(); }
+  atualizaNav();
+}
+const obs = new MutationObserver(aoTrocarSlide);
+slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+// as teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta
+document.addEventListener("keydown", (e) => {
+  const t = e.target;
+  if (!t || !t.matches) return;
+  if (t.matches("input, textarea, select, [contenteditable]")) {
+    e.stopPropagation();
+    if (e.key === "Enter" && t.matches("input") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+    return;
+  }
+  if (t.matches("iframe")) { e.stopPropagation(); return; }
+  if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+});
+// rolar um campo, o vídeo ou o diagnóstico não troca de slide
+document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, .vid, .pg-dir, .diag-moldura, .fases")) e.stopPropagation(); }, { passive: true });
+// a ferramenta, aberta no slide do diagnóstico, também grava: a aula relê o estado
+window.addEventListener("storage", (e) => {
+  if (e.key !== CHAVE) return;
+  const d = carregar(); if (!d) return;
+  S = Object.assign(estadoVazio(), d); garantir();
+  slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+});
+
+/* ---------- início ---------- */
+slidesQ.forEach((sl, k) => montar(sl, k + 1));
+slidesQ.forEach(pintar);
+ligarPerfil(); pintarPerfil();
+document.getElementById("n-ant").addEventListener("click", () => window.ZD && ZD.anterior && ZD.anterior());
+document.getElementById("n-prox").addEventListener("click", () => window.ZD && ZD.proximo && ZD.proximo());
+
+function escalaAula() {
+  const st = document.querySelector(".zd-stage");
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) return;
+  const h = Math.max(200, innerHeight - 61);
+  const k = Math.min(innerWidth / 1920, h / 1080);
+  st.style.transform = "scale(" + k + ")";
+}
+function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3200); }
+function depoisDoMotor() {
+  addEventListener("resize", escalaAula); escalaAula();
+  prontoMotor = true;
+  const temHash = /^#\d/.test(location.hash);
+  if (!temHash && typeof S.aulaSlide === "number" && S.aulaSlide > 0 && S.aulaSlide < slides.length) {
+    ZD.vai(S.aulaSlide);
+    toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+  }
+  aoTrocarSlide(); atualizaNav();
+}
+</script>
+<script src="../_motor/deck.js"></script>
+<script>depoisDoMotor();</script>
+</body>
+</html>

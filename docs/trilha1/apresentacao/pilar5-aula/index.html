@@ -1,0 +1,1833 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 5 · Masterplan faseado</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria, a mesma do Pilar 1 (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.figs{display:flex;gap:24px;justify-content:center}
+.figs img{height:600px;width:auto;border-radius:18px;box-shadow:0 2px 0 rgba(22,38,28,.06)}
+.lado .figs img{height:640px}
+.lado .figs:not(.um) img{height:470px}
+.lado:has(.figs:not(.um)){grid-template-columns:1.15fr .85fr;gap:48px}
+.docs2 .card{padding:24px 30px;gap:8px}.docs2 .card h3{font-size:34px}.docs2 .card p{font-size:23px}.docs2 .card .n{font-size:40px}.docs2 .sv{font-size:20px!important;padding:8px 14px}
+.lado.l2{grid-template-columns:1fr 1fr}
+.fig-larga{width:100%;max-height:420px;object-fit:contain;border-radius:18px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:12px;padding:10px 16px;font-size:20px}
+.resumo-mini div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(22,38,28,.12);padding:6px 0}
+.resumo-mini div:last-child{border:0}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* resultado */
+.rs{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;min-height:0;height:830px}
+.rs-esq,.rs-dir{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding-right:8px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nums div{background:var(--verde);color:var(--creme);border-radius:16px;padding:18px 22px}
+.nums small{display:block;font-size:18px;opacity:.85}
+.nums strong{display:block;font-family:var(--serif);font-size:48px;color:var(--ouro);line-height:1.15}
+.leit{background:var(--verde);color:var(--creme);border:3px solid var(--ouro);border-radius:18px;padding:20px 24px;font-size:21px;line-height:1.45}
+.leit .rot{font-family:var(--serif);font-size:42px;color:var(--ouro)}
+.al{border-radius:12px;padding:12px 16px;font-size:19px;line-height:1.45;border-left:6px solid}
+.al b{display:block;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.al.critico{background:#F8E3DE;border-color:var(--erro);color:#4A140D}
+.al.ns,.al.tarefa{background:#FBEFD2;border-color:#7A5300;color:#3F2B00}
+.al.sem,.al.atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.al.info,.al.ok{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+.rs h3{font-size:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:17px;padding:6px 12px;border-radius:99px;background:#E1EFE3;color:#173F25;font-weight:600}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:14px;font:700 34px var(--sans);padding:26px 46px;border-radius:999px;background:var(--ouro);color:var(--verde);text-decoration:none;border:0;cursor:pointer;min-height:72px}
+.btn-g:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.lado.l2,.trio,.exe,.anote,.perfil,.rs,.nums{grid-template-columns:1fr!important;gap:12px}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .figs{flex-wrap:wrap;gap:10px} .figs img,.lado .figs img{height:auto;width:calc(50% - 5px);max-width:260px;border-radius:12px}
+  .figs.um img{width:70%}
+  .fig-larga{max-height:220px}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td{padding:8px 6px}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.rs>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .resumo-mini{font-size:14px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .rs{height:auto} .rs-esq,.rs-dir{overflow:visible;padding:0}
+  .nums strong{font-size:26px} .nums small{font-size:12px} .nums div{padding:12px 14px}
+  .leit{font-size:15px;padding:14px} .leit .rot{font-size:24px}
+  .al{font-size:14px;padding:10px 12px} .al b{font-size:11px} .rs h3{font-size:19px} .chips span{font-size:13px}
+  .btn-g{font-size:18px;padding:16px 22px;width:100%;min-height:56px}
+  .anote{font-size:15px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+/* ===== Pilar 5 ===== */
+.reg5{display:flex;height:44px;border-radius:10px;overflow:hidden;font-size:18px;font-weight:700}
+.reg5>div{display:flex;align-items:center;justify-content:center;color:#fff;text-align:center;padding:0 6px}
+.compacto .ctl{gap:12px}
+.compacto label{font-size:22px}
+.compacto label output{font-size:24px}
+.compacto input[type=range]{height:30px}
+.compacto .res{padding:24px 30px;gap:10px}
+.compacto .linha{font-size:23px;padding-bottom:8px}
+.compacto .linha.tot{font-size:29px}
+.compacto .aviso{font-size:21px}
+.compacto .reset{font-size:19px;padding:10px 16px}
+.compacto .btn-s2{font-size:19px;padding:10px 16px}
+.compacto .ajustado{font-size:16px}
+.na{font-size:22px;line-height:1.45;padding:14px 18px;border-radius:12px;background:#EEF3EC;color:#173F25;border-left:6px solid var(--ok)}
+.na[hidden],.veio-bx[hidden]{display:none}
+.veio-bx{font-size:19px;line-height:1.45;padding:10px 14px;border-radius:10px;background:#FFF7E6;color:#3F2B00;border:1px dashed #B98A1C}
+/* diagnóstico: a ferramenta dentro da aula */
+.s.diag{padding:56px 80px 34px;gap:12px;justify-content:flex-start}
+.s.diag .k{font-size:20px;letter-spacing:4px}
+.diag-txt{font-family:var(--serif);font-size:32px;line-height:1.3;color:var(--creme);max-width:1700px}
+.s.diag #diag-st{font-size:20px}
+.fz-moldura{width:100%;height:790px;border:1.5px solid #B08D3A;border-radius:16px;overflow:hidden;background:#F5F1E8;position:relative}
+.fz-moldura iframe{width:100%;height:100%;border:0;display:block;transform-origin:0 0;background:#F5F1E8}
+.diag-pe{text-align:right;font-size:20px}
+.lk{color:#E0BE5E;font-weight:600}
+@media (max-width:820px),(max-height:520px){
+  .reg5{font-size:11px;height:34px}
+  .compacto label{font-size:15px} .compacto label output{font-size:17px} .compacto .linha{font-size:15px} .compacto .linha.tot{font-size:18px} .compacto .aviso{font-size:14px}
+  .na{font-size:14px} .veio-bx{font-size:13px}
+  .s.diag{padding:50px 16px 90px}
+  .diag-txt{font-size:19px}
+  .s.diag #diag-st{font-size:13px}
+  .fz-moldura{height:72vh;height:72dvh;border-radius:12px}
+  .diag-pe{font-size:15px;text-align:left}
+  .regua{height:auto!important;flex-direction:column} .regua>div{padding:10px!important}
+}
+</style>
+<script>
+/* Pilar 5 · aula principal em slides. A Marina é um exemplo ilustrativo.
+   Números da Marina só do texto falado dos vídeos: 15.000 m² que ela pode usar; desenho completo de 304 m², cerca de 2%;
+   3 cabanas de 38 m² = 114 m²; apoio 30 m²; 30 / 144 = 20,8%; com cinco, abaixo de 15%, ampliação para 34 m²;
+   regra imaginada de 10% = 5.000 m²; 114 / 144 = cerca de 79%; rede para cinco; cabana 3 desceu uns 15 m. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function nf1p(x){ return (Math.round(x * 10) / 10).toLocaleString('pt-BR', {minimumFractionDigits:1, maximumFractionDigits:1}); }
+ZD.sims.apoio = function(v){
+  const uc = Math.max(v.uc, v.u1);
+  const hosp1 = v.u1 * v.af, fech1 = hosp1 + v.ap1, hospC = uc * v.af, fechC = hospC + v.apc;
+  const p1 = fech1 > 0 ? v.ap1 / fech1 * 100 : 0, pC = fechC > 0 ? v.apc / fechC * 100 : 0;
+  const minC = 0.15 * hospC / 0.85;
+  const av1 = p1 < 15 ? ['er','<b>Abaixo de 15%:</b> o apoio vai faltar no dia a dia e virar puxadinho.']
+    : p1 > 25 ? ['at','<b>Acima de 25%:</b> confira se a conta usou a base certa, só a área fechada, sem o deck.']
+    : ['ok','<b>Dentro da faixa de 15% a 25%.</b>'];
+  let avC;
+  if (uc === v.u1) avC = ['ok','O projeto completo tem as mesmas unidades da fase um.'];
+  else if (pC < 15) avC = ['at','<b>Projeto completo abaixo de 15%.</b> O mínimo é 0,15 × ' + Math.round(hospC).toLocaleString('pt-BR') + ' ÷ 0,85 = cerca de ' + nf1p(minC) + ' m². Prepare a ampliação já na fase um.'];
+  else if (pC > 25) avC = ['at','<b>Projeto completo acima de 25%:</b> confira a base da conta.'];
+  else avC = ['ok','<b>Projeto completo dentro da faixa.</b> A ampliação fica preparada já na fase um.'];
+  if (v.uc < v.u1) avC = ['er','O projeto completo não pode ter menos unidades que a fase um.'];
+  return {fech1, p1, fechC, pC, pont1: Math.min(p1, 40) / 40 * 100, av1, avC};
+};
+ZD.sims.cabe = function(v){
+  const pUs = v.us > 0 ? v.chao / v.us * 100 : 0, pTeto = v.teto > 0 ? v.chao / v.teto * 100 : 0;
+  const folga = v.teto - v.chao;
+  let a;
+  if (v.chao > v.us) a = ['er','<b>O desenho ocupa mais do que a área que você pode usar:</b> ele não cabe.'];
+  else if (v.chao > v.teto) a = ['er','<b>Passa do teto da regra:</b> o desenho precisa diminuir.'];
+  else a = ['ok','<b>Cabe, e abaixo do teto.</b> O número da lei é um teto, não uma meta: quem manda no número de unidades costuma ser o mercado.'];
+  return {pUs, pUsBar: Math.min(100, pUs), pTeto, folga: Math.max(0, folga), _aviso: a};
+};
+</script>
+</head>
+<body data-deck="t1-pilar5-aula" data-titulo="Pilar 5 · Masterplan faseado">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 3 · Desenhar o terreno</p>
+  <h1>Pilar 5<br><i>Masterplan faseado</i></h1>
+  <p class="lead" style="max-width:1080px">O terreno inteiro no papel: o que nunca se constrói, o que precisa existir, o que cabe, o que se vende e o que entra primeiro.</p>
+</section>
+
+<section class="s" data-bloco="O que você leva">
+  <p class="k">Ao fim desta aula</p>
+  <h2>O que você vai saber, <i>e a página que vai gerar</i></h2>
+  <div class="lado" style="grid-template-columns:1.1fr .9fr;gap:56px;align-items:start">
+    <ul class="lista" style="font-size:31px;gap:16px">
+      <li class="f">Onde você nunca vai construir, e por quê: lei ou produto.</li>
+      <li class="f">O que precisa existir: o programa e a conta do apoio.</li>
+      <li class="f">Onde fica cada coisa, em duas cores, conferido a pé.</li>
+      <li class="f">O que cabe, o que se vende e o que entra na fase um.</li>
+      <li class="f">Quando a fase dois pode começar.</li>
+    </ul>
+    <div class="card f" style="border:3px solid var(--ouro)">
+      <span class="n">5</span>
+      <h3>A página 5 do seu Dossiê</h3>
+      <p>O Masterplan faseado em PDF: a ocupação do terreno, a conta do apoio, o vendável, a rede, o gatilho da fase dois, os alertas e o próximo passo.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a página 5</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Gerar a página</h3><p>No fim, a ferramenta do Masterplan abre aqui dentro, já com as suas respostas, e você baixa a página 5 em PDF.</p></div>
+  </div>
+  <p class="sv" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Dica</b><span>Tenha à mão o mapa do terreno, uma caneta vermelha, uma de outra cor e as páginas dos pilares anteriores. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<!-- ============ RETOMADA ============ -->
+<section class="s q" data-q="r_cem" data-bloco="Retomada · Pilar 4"></section>
+<section class="s q" data-q="r_cenario" data-bloco="Retomada · Pilar 4"></section>
+<section class="s q" data-q="r_vendavel" data-bloco="Retomada · Pilar 4"></section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · Onde nunca e o que precisa existir">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · O masterplan, onde nunca e o que precisa existir</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/9uvGqAorP38?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 5 · Bloco 1 · O masterplan, onde nunca e o que precisa existir" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/9uvGqAorP38" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Por que importa">
+  <p class="k">Hoje, três perguntas</p>
+  <h2>O que se constrói, onde fica cada coisa <i>e o que entra primeiro</i></h2>
+  <div class="grid g2">
+    <div class="card f"><h3>O desenho de uma cabana</h3><p>Se corrige em semanas.</p></div>
+    <div class="card f" style="border:3px solid var(--erro)"><h3>O lugar dela no terreno</h3><p>Não se corrige nunca.</p></div>
+  </div>
+  <div class="regua f" style="font-size:28px;height:110px">
+    <div class="r1" style="padding:0 18px;text-align:center">Antes do projeto · corrigir custa papel</div>
+    <div class="r4" style="padding:0 18px;text-align:center">Depois da obra · custa outra obra</div>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Bloco 1 · A crença">
+  <p class="k">Uma crença que parece prudente</p>
+  <h2 style="max-width:1150px">"Não entendo de projeto, <i>o arquiteto resolve"</i></h2>
+  <ul class="lista" style="max-width:1050px;font-size:36px">
+    <li class="f">Ele resolve, sim, o que recebe.</li>
+    <li class="f">Sem critérios escritos, sobra um só: o mais barato de construir.</li>
+    <li class="f">O ponto plano, perto da estrada.</li>
+  </ul>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_criterio">
+    <p class="q" style="font-size:50px">O arquiteto recebe só o terreno, sem nenhum critério escrito. Que critério sobra para ele decidir?</p>
+    <div class="ops">
+      <button class="op">O da melhor vista para o hóspede</button>
+      <button class="op" data-certa>O mais barato de construir: o ponto plano, perto da estrada</button>
+      <button class="op">O número de unidades que o mercado pediu</button>
+    </div>
+    <p class="exp">Ele resolve o que recebe. Sem critérios escritos, sobra um só: o mais barato de construir. Por isso as regras são suas, e vêm antes do desenho.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · O masterplan">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Masterplan quer dizer plano mestre</p>
+      <h2 style="font-size:72px">O terreno inteiro <i>no tempo</i></h2>
+      <p class="lead f" style="font-size:32px">Não é a planta de uma cabana. Nele cabem cinco coisas:</p>
+      <ol class="lista num" style="font-size:32px;gap:14px">
+        <li class="f"><span>O que <b>nunca</b> será construído</span></li>
+        <li class="f"><span>A <b>fase um</b>, o que abre primeiro</span></li>
+        <li class="f"><span>A <b>reserva</b> da fase dois</span></li>
+        <li class="f"><span>O <b>apoio</b></span></li>
+        <li class="f"><span>A <b>rede</b> de água, energia e esgoto</span></li>
+      </ol>
+    </div>
+    <div class="figs um"><img src="figuras/02-camadas.svg" alt="As cinco camadas do masterplan: nunca, fase um, reserva, apoio e rede, o terreno inteiro no tempo"></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O masterplan">
+  <p class="k">Nesta etapa, ele é orientativo</p>
+  <h2>Um rascunho à mão, <i>com as regras escritas</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Sem escala, com as decisões e os motivos escritos. Você não precisa saber desenhar.</li>
+    <li class="f">O desenho fino é do arquiteto. As regras são suas.</li>
+    <li class="f">Ninguém orça um terreno: orça-se a lista que sai do masterplan.</li>
+  </ul>
+  <p class="sv f" style="background:#FBEFD2;color:#3F2B00;border-color:#B98A1C"><b style="color:#7A5300">Importante</b><span>O masterplan desta aula é orientativo. O projeto de verdade é feito por um arquiteto contratado por você, com o topógrafo e os profissionais que ele indicar.</span></p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O masterplan nasce do modelo">
+  <p class="k">Ele nasce do modelo que você escolheu no Pilar 4</p>
+  <h2>Cada modelo pede <i>um desenho diferente</i></h2>
+  <table class="t" style="font-size:34px">
+    <tr><th>Modelo</th><th>O que o desenho precisa mostrar</th></tr>
+    <tr class="f"><td><b>Venda</b></td><td>Quantas unidades cabem e a área de cada uma</td></tr>
+    <tr class="f"><td><b>Renda</b></td><td>Quantas vendem noites e o apoio para operar</td></tr>
+  </table>
+</section>
+<section class="s q" data-q="modelo" data-bloco="Bloco 1 · O masterplan nasce do modelo"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <p class="k">Passo 1 · Volte ao terreno com o mapa e uma caneta vermelha</p>
+  <p class="citacao" style="font-size:58px">Antes de decidir onde construir, decida onde <i>jamais vai construir.</i></p>
+  <div class="grid g2">
+    <div class="card f"><h3>Lei</h3><p>Comece pelo que a lei protege: a área de preservação, como a margem do rio e a nascente, e a reserva legal, a parte do imóvel rural que fica com mata nativa. Quem confirma é o técnico ambiental.</p></div>
+    <div class="card f"><h3>Produto</h3><p>Depois, o que o seu produto precisa: o bosque que segura o vento, a vista, a crista. A lei não pede, mas é o que você vende, e derrubado não volta.</p></div>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Bloco 1 · Passo 1 · Onde nunca">
+  <p class="k">E uma regra que vale ouro</p>
+  <p class="citacao" style="max-width:1150px;font-size:62px">O melhor ponto de vista fica só para as unidades, <i>nunca para a caixa d'água.</i></p>
+</section>
+<section class="s q" data-q="zonas_nunca" data-bloco="Bloco 1 · Passo 1 · Onde nunca"></section>
+
+<section class="s" data-bloco="Bloco 1 · Os três gestos">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Uma mancha em branco no desenho não segura uma máquina</p>
+      <h2 style="font-size:70px">O nunca só existe <i>com três gestos</i></h2>
+      <ol class="lista num" style="font-size:31px;gap:16px">
+        <li class="f"><span><b>Marcar</b> "nunca será construído" sobre cada zona.</span></li>
+        <li class="f"><span><b>Fotografar</b> o terreno com data, antes da primeira máquina.</span></li>
+        <li class="f"><span><b>Pôr em contrato</b>, numa cláusula que a empreiteira assina. Quem redige é o advogado.</span></li>
+      </ol>
+    </div>
+    <div class="figs um"><img src="figuras/10-tres-gestos.svg" alt="Os três gestos do nunca: marcar, fotografar com data e local, pôr em contrato. Mancha em branco não segura a máquina"></div>
+  </div>
+</section>
+<section class="s q" data-q="tres_gestos" data-bloco="Bloco 1 · Os três gestos"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_mancha">
+    <p class="q" style="font-size:52px">Você deixou o bosque em branco no desenho. Isso protege o bosque na obra?</p>
+    <div class="ops">
+      <button class="op">Sim: o espaço vazio já diz que ali não se constrói</button>
+      <button class="op" data-certa>Não: o nunca só existe marcado, fotografado com data e em contrato</button>
+      <button class="op">Sim, desde que o arquiteto saiba</button>
+    </div>
+    <p class="exp">Uma mancha em branco no desenho não segura uma máquina. São três gestos: marcar, fotografar com data e pôr numa cláusula que a empreiteira assina, redigida pelo advogado.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O nunca da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina · para ensinar a conta</span>
+  <h2 style="font-size:70px">O nunca <i>da Marina</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <table class="t" style="font-size:30px">
+      <tr><th>Pintado de vermelho</th><th>Motivo</th></tr>
+      <tr class="f"><td>A área de preservação</td><td>Lei</td></tr>
+      <tr class="f"><td>A reserva legal</td><td>Lei</td></tr>
+      <tr class="f"><td>Os dois bosques</td><td>Produto</td></tr>
+      <tr class="f"><td>A crista</td><td>Produto</td></tr>
+    </table>
+    <div class="conta" style="font-size:30px;gap:10px">
+      <div class="eq f"><span>Área que ela pode usar</span><span>15.000 m²</span></div>
+      <div class="eq f"><span>Desenho completo: cinco cabanas e o apoio</span><span>304 m²</span></div>
+      <div class="eq tot f" data-foco><span>Quanto isso ocupa</span><span>cerca de 2%</span></div>
+    </div>
+  </div>
+  <p class="lead f">A área nunca foi o limite. O limite é o mercado e o silêncio que ela vende.</p>
+</section>
+<section class="s q" data-q="area_matricula" data-bloco="Bloco 1 · O seu terreno"></section>
+<section class="s q" data-q="area_usavel" data-bloco="Bloco 1 · O seu terreno"></section>
+<section class="s q" data-q="area_nunca" data-bloco="Bloco 1 · O seu terreno"></section>
+
+<section class="s" data-bloco="Bloco 1 · Passo 2 · O programa">
+  <p class="k">Passo 2 · O que precisa existir</p>
+  <h2>O programa: <i>a lista de tudo, em quatro áreas</i></h2>
+  <div class="grid g4">
+    <div class="card f"><span class="n">1</span><h3>Hospedagem</h3><p>As unidades que você vende.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Convivência</h3><p>O que os hóspedes usam juntos.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Apoio</h3><p>O que faz a operação funcionar fora da vista.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Infraestrutura</h3><p>Água, energia, esgoto e acesso.</p></div>
+  </div>
+  <p class="lead f">Um ambiente por linha: quem usa, quando, e de que precisa estar perto ou longe.</p>
+</section>
+<section class="s q" data-q="unidades_fase1" data-bloco="Bloco 1 · Passo 2 · O programa"></section>
+<section class="s q" data-q="unidades_projeto_completo" data-bloco="Bloco 1 · Passo 2 · O programa"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · O apoio">
+  <p class="k">O que todo mundo esquece</p>
+  <h2>O apoio, <i>fora da vista</i></h2>
+  <ul class="lista" style="font-size:33px">
+    <li class="f">É o que faz a operação funcionar: rouparia, depósito, copa da equipe e o lugar do lixo.</li>
+    <li class="f">O ponto de partida do método: de 15% a 25% da área fechada.</li>
+    <li class="f">Área fechada é a de dentro, com parede e telhado. O deck fica fora.</li>
+  </ul>
+  <div class="f" style="max-width:1500px;display:flex;flex-direction:column;gap:8px">
+    <div class="reg5"><div style="flex:15;background:var(--erro)">abaixo de 15%: vai faltar</div><div style="flex:10;background:var(--ok)">de 15% a 25%</div><div style="flex:15;background:var(--alerta)">acima de 25%: confira a base</div></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_deck">
+    <p class="q" style="font-size:54px">Na conta do apoio, o deck entra na área fechada?</p>
+    <div class="ops">
+      <button class="op">Sim: o hóspede usa o deck todo dia</button>
+      <button class="op" data-certa>Não: área fechada é a de dentro, com parede e telhado</button>
+    </div>
+    <p class="exp">A régua do apoio usa a área fechada: o interior com parede e telhado. O deck fica fora da conta, mas ocupa chão, e entra quando você mede quanto o desenho ocupa.</p>
+  </div>
+</section>
+<section class="s q" data-q="area_fechada_unidade" data-bloco="Bloco 1 · O apoio"></section>
+<section class="s q" data-q="area_deck_unidade" data-bloco="Bloco 1 · O apoio"></section>
+
+<section class="s" data-bloco="Bloco 1 · A conta do apoio">
+  <span class="selo">Exemplo ilustrativo · a Marina · resolvido passo a passo</span>
+  <h2 style="font-size:66px">A conta do apoio <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:33px">
+    <div class="eq f"><span>Três cabanas de 38 m² fechados · 3 × 38</span><span>114 m²</span></div>
+    <div class="eq f"><span>O apoio</span><span>30 m²</span></div>
+    <div class="eq f"><span>Área fechada · 114 + 30</span><span>144 m²</span></div>
+    <div class="eq tot f" data-foco><span>O apoio pesa · 30 ÷ 144</span><span>20,8% · dentro da faixa</span></div>
+  </div>
+  <p class="lead f">Com cinco cabanas, os mesmos 30 m² ficariam abaixo de 15%. Então ela já prepara a ampliação para 34 m².</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A conta do apoio" id="s-sim-apoio">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a régua do apoio</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:58px">E quando forem <i>cinco cabanas?</i></h2>
+  <div class="sim compacto" data-sim="apoio" style="grid-template-columns:.85fr 1.15fr;gap:46px">
+    <div class="ctl">
+      <label>Unidades na fase um <output data-for="u1"></output><input type="range" name="u1" min="1" max="30" step="1" value="3"></label>
+      <label>Área fechada de cada unidade <output data-for="af" data-fmt="m2"></output><input type="range" name="af" min="10" max="200" step="1" value="38"></label>
+      <label>Apoio na fase um <output data-for="ap1" data-fmt="m2"></output><input type="range" name="ap1" min="0" max="200" step="1" value="30"></label>
+      <label>Unidades no projeto completo <output data-for="uc"></output><input type="range" name="uc" min="1" max="60" step="1" value="5"></label>
+      <label>Apoio no projeto completo <output data-for="apc" data-fmt="m2"></output><input type="range" name="apc" min="0" max="300" step="1" value="34"><small>Teste 30: com cinco cabanas, o mesmo apoio fica abaixo de 15%</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Fase um · área fechada</span><b data-r="fech1" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Apoio na fase um</span><b data-r="p1" data-fmt="pct"></b></div>
+      <div class="ponteiro" style="height:30px"><i data-ponteiro="pont1"></i></div>
+      <div class="reg5"><div style="flex:15;background:var(--erro)">abaixo de 15%</div><div style="flex:10;background:var(--ok)">15% a 25%</div><div style="flex:15;background:var(--alerta)">acima de 25%</div></div>
+      <div class="aviso" data-aviso="av1"></div>
+      <div class="linha"><span>Projeto completo · área fechada</span><b data-r="fechC" data-fmt="m2"></b></div>
+      <div class="linha tot"><span>Apoio no projeto completo</span><b data-r="pC" data-fmt="pct"></b></div>
+      <div class="aviso" data-aviso="avC"></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center"><button class="reset">Voltar ao exemplo da Marina</button><button class="btn-s2" data-meus="apoio">Usar os meus números</button><span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="area_apoio" data-bloco="Bloco 1 · A conta do apoio"></section>
+<section class="s q" data-q="apoio_completo" data-bloco="Bloco 1 · A conta do apoio"></section>
+<section class="s q" data-q="apoio_resolvido" data-bloco="Bloco 1 · A conta do apoio"></section>
+
+<section class="s" data-bloco="Bloco 1 · O dia simulado">
+  <div class="lado" style="grid-template-columns:1.05fr .95fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Um teste no papel</p>
+      <h2 style="font-size:66px">Hora a hora, o dia em que um hóspede sai <i>e outro chega</i></h2>
+      <ol class="lista num" style="font-size:31px;gap:12px">
+        <li class="f"><span>A cesta do café</span></li>
+        <li class="f"><span>A limpeza</span></li>
+        <li class="f"><span>O lençol</span></li>
+        <li class="f"><span>O lixo</span></li>
+        <li class="f"><span>A chegada</span></li>
+      </ol>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <div class="card f" style="border:2px dashed var(--ouro2)"><span class="selo" style="align-self:flex-start">Exemplo ilustrativo · a Marina</span><p style="font-size:30px">À uma da tarde, chegou a van que leva o lençol. Onde ela para? Não tinha vaga de serviço. <b>Agora tem.</b></p></div>
+      <p class="sv f"><b>Atenção</b><span>Esquecer um ambiente custa, depois da obra, cerca de dez vezes mais.</span></p>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="dia_simulado" data-bloco="Bloco 1 · O dia simulado"></section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · a sua lição</p>
+  <h2>O seu nunca <i>e o seu programa</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">Pinte de vermelho o seu nunca, com o motivo, lei ou produto. Faça as quatro listas do programa e a conta do apoio. Onde aparece "não sei", é tarefa da semana.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · O que cabe, o que se vende e a fase um">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · O que cabe, o que se vende e a fase um</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/h9Rm5bLwfRU?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 5 · Bloco 2 · O que cabe, o que se vende e a fase um" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/h9Rm5bLwfRU" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Onde fica cada coisa">
+  <p class="k">Passo 3 · Onde fica cada coisa</p>
+  <h2>Uma ordem que <i>contraria o instinto</i></h2>
+  <ol class="lista num" style="font-size:31px;gap:12px">
+    <li class="f"><span>Primeiro, o <b>nunca</b>.</span></li>
+    <li class="f"><span>Os <b>melhores pontos de vista</b>, só para as unidades.</span></li>
+    <li class="f"><span>O <b>caminho do hóspede</b>.</span></li>
+    <li class="f"><span>As <b>unidades</b>.</span></li>
+    <li class="f"><span>A <b>convivência</b>.</span></li>
+    <li class="f"><span>O <b>apoio</b>, com acesso próprio.</span></li>
+    <li class="f"><span>Por último, a <b>infraestrutura pesada</b>.</span></li>
+  </ol>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_ordem">
+    <p class="q" style="font-size:54px">Na ordem do masterplan, o que você decide primeiro?</p>
+    <div class="ops">
+      <button class="op">Onde ficam as unidades</button>
+      <button class="op" data-certa>O que nunca será construído</button>
+      <button class="op">Onde ficam a caixa d'água e o esgoto</button>
+    </div>
+    <p class="exp">Primeiro o nunca. Depois os melhores pontos de vista, só para as unidades. A infraestrutura pesada vem por último.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · As duas cores">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">No mapa, duas canetas</p>
+      <h2 style="font-size:70px">O hóspede numa cor, <i>o serviço em outra</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Desenhe o caminho do hóspede numa cor e o do serviço em outra.</li>
+        <li class="f">Circule cada ponto em que eles se cruzam ou se veem.</li>
+        <li class="f">Cada círculo é um problema para resolver agora, no papel.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img src="figuras/18-duas-cores.svg" alt="O caminho do hóspede e o caminho do serviço em duas cores, com o ponto em que se cruzam circulado"></div>
+  </div>
+</section>
+<section class="s q" data-q="caminhos" data-bloco="Bloco 2 · As duas cores"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · As estacas">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Depois, confira a pé</p>
+      <h2 style="font-size:70px">Quatro estacas <i>e barbante</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">Marque cada unidade com quatro estacas e barbante.</li>
+        <li class="f">Fique onde seriam a cama e a janela, às sete da manhã e às cinco da tarde.</li>
+      </ul>
+      <p class="sv f"><b>A Marina</b><span>Da janela da cabana 3 se via o deck da 2. A 3 desceu uns 15 metros. Custo da correção: quatro estacas.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/31-estacas-marina.svg" alt="No papel, a cabana 3 via o deck da 2; a pé, ela desceu cerca de 15 metros. Custo: quatro estacas"></div>
+  </div>
+</section>
+<section class="s q" data-q="caminhada_estacas" data-bloco="Bloco 2 · As estacas"></section>
+
+<section class="s" data-bloco="Bloco 2 · O que cabe">
+  <p class="k">Passo 4 · O que cabe · o estudo de massas</p>
+  <h2>Caixas de papelão <i>sobre a planta</i></h2>
+  <p class="lead f" style="font-size:32px">Testar o volume que cabe no terreno antes de desenhar cada unidade. Primeiro, o que a prefeitura permite: o plano diretor põe números no seu lote.</p>
+  <table class="t" style="font-size:30px">
+    <tr><th>O número</th><th>O nome que a prefeitura usa</th></tr>
+    <tr class="f"><td>Quanto do chão pode ser coberto</td><td>Taxa de ocupação</td></tr>
+    <tr class="f"><td>Quanto se constrói somando os andares</td><td>Coeficiente de aproveitamento</td></tr>
+    <tr class="f"><td>O espaço livre em volta e o teto</td><td>Recuos e altura máxima</td></tr>
+  </table>
+  <p class="sv f" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Você não calcula</b><span>Pede à prefeitura, por escrito, e entrega ao arquiteto.</span></p>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O que cabe">
+  <p class="k">O número da lei é um teto, não uma meta</p>
+  <h2 style="font-size:66px">E nem sempre <i>cabe no chão</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <ul class="lista" style="font-size:30px">
+      <li class="f">A encosta forte, a preservação, os recuos, a distância entre as unidades e o seu nunca também tiram volume.</li>
+      <li class="f">Por isso o estudo de massas vem depois do nunca.</li>
+    </ul>
+    <div class="conta" style="font-size:29px;gap:10px">
+      <span class="selo f" style="align-self:flex-start">Exemplo ilustrativo · a Marina</span>
+      <div class="eq f"><span>Uma regra imaginada: 10% do terreno</span><span>5.000 m²</span></div>
+      <div class="eq f"><span>O desenho completo dela ocupa</span><span>304 m²</span></div>
+      <div class="eq tot f" data-foco><span>Quem manda</span><span>o mercado: cabem três</span></div>
+    </div>
+  </div>
+  <p class="lead f">Quem manda não é o índice. É o mercado, que no Pilar 2 disse: cabem três.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · O que cabe" id="s-sim-cabe">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · o teto e o chão</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:58px">Quanto do terreno <i>o desenho ocupa?</i></h2>
+  <div class="sim compacto" data-sim="cabe" style="grid-template-columns:.9fr 1.1fr;gap:46px">
+    <div class="ctl">
+      <label>Área que você pode usar <output data-for="us" data-fmt="m2"></output><input type="range" name="us" min="500" max="200000" step="500" value="15000"></label>
+      <label>Chão do desenho completo <output data-for="chao" data-fmt="m2"></output><input type="range" name="chao" min="20" max="20000" step="2" value="304"><small>Unidades com o deck, mais o apoio</small></label>
+      <label>Teto de chão coberto da regra <output data-for="teto" data-fmt="m2"></output><input type="range" name="teto" min="100" max="100000" step="100" value="5000"><small>A regra da Marina é imaginada: não é a da sua zona</small></label>
+    </div>
+    <div class="res">
+      <div class="linha tot"><span>Sobre a área que você pode usar</span><b data-r="pUs" data-fmt="pct"></b></div>
+      <div class="barra"><i data-bar="pUsBar"></i></div>
+      <div class="linha"><span>Sobre o teto da regra</span><b data-r="pTeto" data-fmt="pct"></b></div>
+      <div class="linha"><span>Folga até o teto</span><b data-r="folga" data-fmt="m2"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center"><button class="reset">Voltar ao exemplo da Marina</button><button class="btn-s2" data-meus="cabe">Usar os meus números</button><span class="ajustado">Ajustado por você</span></div>
+      <p class="sm" style="font-size:19px">Caminhos, estacionamento e convivência ao ar livre ficam fora desta conta. As barras são para testar: o que vai para a página 5 são as suas respostas.</p>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="taxa_ocupacao" data-bloco="Bloco 2 · O que cabe"></section>
+<section class="s q" data-q="coef_aproveitamento" data-bloco="Bloco 2 · O que cabe"></section>
+<section class="s q" data-q="quem_manda" data-bloco="Bloco 2 · O que cabe"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_teto">
+    <p class="q" style="font-size:52px">A prefeitura permite muito mais do que você vai construir. O número da lei é...</p>
+    <div class="ops">
+      <button class="op">Uma meta a alcançar</button>
+      <button class="op" data-certa>Um teto: outro limite manda no número de unidades</button>
+      <button class="op">O número de unidades do projeto</button>
+    </div>
+    <p class="exp">O número da lei é um teto, não uma meta. Na Marina, quem manda é o mercado, que no Pilar 2 disse: cabem três.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · O que se vende">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Passo 5 · O que se vende</p>
+      <h2 style="font-size:66px">Todo empreendimento <i>tem duas áreas</i></h2>
+      <div class="card f"><h3>Vendável</h3><p>Gera receita: é a unidade, vendida pela diária, pela fração ou inteira.</p></div>
+      <div class="card f"><h3>Não vendável</h3><p>Estacionamento, caminho e apoio. Também custa, mas ninguém paga por ela separado.</p></div>
+      <p class="lead f" style="font-size:30px">Como no Pilar 4: a obra custa tudo, e a venda só paga a área vendável.</p>
+    </div>
+    <div class="figs um"><img src="figuras/10-vendavel.svg" alt="No chalé, o não vendável é chão; no resort, vira prédio. O que vende e o que só custa"></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O que se vende">
+  <p class="k">Quanto maior o projeto, mais pesa o que não se vende</p>
+  <h2 style="font-size:64px">No chalé, chão. <i>No resort, prédio.</i></h2>
+  <div class="grid g2">
+    <div class="card f"><h3>No chalé pequeno</h3><p>Quase todo o não vendável é chão: caminho e vaga.</p></div>
+    <div class="card f"><h3>No resort</h3><p>Vira prédio, com obra, móveis, equipe e manutenção.</p></div>
+  </div>
+  <div class="conta f" style="max-width:1500px;font-size:31px">
+    <div class="eq tot" data-foco><span>Marina, fase um · 114 m² vendáveis em 144 m² fechados</span><span>cerca de 79%</span></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_79">
+    <p class="q" style="font-size:54px">Cerca de 79% da área fechada da Marina é vendável. Isso quer dizer que o negócio fecha?</p>
+    <div class="ops">
+      <button class="op">Sim, o número é alto</button>
+      <button class="op" data-certa>Não: quem diz se fecha é a conta do Pilar 6</button>
+    </div>
+    <p class="exp">Esse número alto não diz se o negócio fecha. Em unidades espalhadas, quase todo o não vendável é chão. Quem diz se fecha é a conta do Pilar 6.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A fase um">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Passo 6 · A fase um, o que abre primeiro</p>
+      <p class="citacao" style="font-size:58px">Construa menos unidades, <i>nunca menos infraestrutura.</i></p>
+      <ul class="lista" style="font-size:30px;gap:14px">
+        <li class="f">A rede de água, energia e esgoto se faz para o projeto completo, já na fase um.</li>
+        <li class="f">Com um duto vazio, para passar cabo depois.</li>
+        <li class="f">Senão, na fase dois, você reabre vala com hóspede ao lado.</li>
+      </ul>
+      <p class="sm f">Quem diz o tamanho é o projetista, e a energia, a concessionária.</p>
+    </div>
+    <div class="figs um"><img src="figuras/24-rede.svg" alt="A rede de água, energia e esgoto nasce para todas as unidades, já na fase um, com duto vazio"></div>
+  </div>
+</section>
+<section class="s q" data-q="rede_para" data-bloco="Bloco 2 · A fase um"></section>
+
+<section class="s" data-bloco="Bloco 2 · A reserva e o escopo">
+  <p class="k">O que fica para depois tem lugar, e o que entra agora tem lista</p>
+  <h2>Guarde a fase dois <i>e congele a fase um</i></h2>
+  <div class="grid g2">
+    <div class="card f"><h3>A reserva</h3><p>Guarde a área da fase dois com estacas e placa, para não virar estacionamento ou canteiro.</p></div>
+    <div class="card f"><h3>O escopo congelado</h3><p>Três listas: o que entra, o que espera e o que nunca entra.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="reserva" data-bloco="Bloco 2 · A reserva e o escopo"></section>
+<section class="s q" data-q="escopo" data-bloco="Bloco 2 · A reserva e o escopo"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · O gatilho">
+  <p class="k">Quando começa a fase dois? Não depois de um feriado cheio.</p>
+  <h2>O gatilho: três condições <i>que acendem juntas</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Demanda</h3><p>Doze meses de reservas reais.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Caixa</h3><p>A sua parte e três meses de custo fixo guardados.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Maturidade</h3><p>Processos escritos e equipe estável.</p></div>
+  </div>
+  <p class="lead f">Escreva antes. Um feriado lotado é um dado, não doze meses.</p>
+</section>
+<section class="s q" data-q="gatilho_escrito" data-bloco="Bloco 2 · O gatilho"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="quiz_feriado">
+    <p class="q" style="font-size:54px">Um feriado lotou as três cabanas. É hora da fase dois?</p>
+    <div class="ops">
+      <button class="op">Sim: a demanda apareceu</button>
+      <button class="op" data-certa>Não: demanda, caixa e maturidade precisam acender juntas</button>
+    </div>
+    <p class="exp">Um feriado lotado é um dado, não doze meses. E ainda faltariam o caixa e a maturidade.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>Abre com três, <i>desenha tudo para cinco</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>A rede</h3><p>Feita para as cinco já na fase um.</p></div>
+    <div class="card f"><h3>O apoio preparado</h3><p>30 m² agora, com a ampliação para 34 m² pronta para vir.</p></div>
+    <div class="card f"><h3>A reserva marcada</h3><p>O lugar da fase dois, guardado com estacas e placa.</p></div>
+  </div>
+  <p class="lead f">Os números do gatilho, ela fecha no Pilar 6.</p>
+</section>
+
+<!-- ============ RESUMO, DIAGNÓSTICO E FECHAMENTO ============ -->
+<section class="s esc" data-bloco="Resumo">
+  <p class="k">O Pilar 5 em cinco frases</p>
+  <h2>O que <i>fica</i></h2>
+  <ol class="lista num" style="font-size:31px;gap:16px">
+    <li class="f"><span>Masterplan é o terreno inteiro no tempo: o nunca, a fase um, a reserva, o apoio e a rede.</span></li>
+    <li class="f"><span>Antes de onde construir, onde jamais construir: lei ou produto, com três gestos.</span></li>
+    <li class="f"><span>O programa tem quatro áreas, e o apoio fica entre 15% e 25% da área fechada.</span></li>
+    <li class="f"><span>O número da lei é teto, não meta, e só a área vendável gera receita.</span></li>
+    <li class="f"><span>Menos unidades, nunca menos infraestrutura. A fase dois espera o gatilho.</span></li>
+  </ol>
+  <p class="sv f" style="background:rgba(201,168,76,.18);color:#F5F1E8;border-color:var(--ouro)"><b style="color:var(--ouro)">Lembre</b><span>O masterplan é orientativo. O projeto de verdade é feito por um arquiteto contratado por você, com o topógrafo e os profissionais que ele indicar.</span></p>
+</section>
+
+<section class="s" data-bloco="A sua página">
+  <p class="k">Para a página 5 sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Se você já preencheu em outro pilar, os dados vieram de lá: confira.</p>
+</section>
+
+<section class="s esc diag sem-topo" data-bloco="O seu Masterplan faseado" id="s-diag">
+  <p class="k">Diagnóstico · aqui mesmo, sem sair da aula</p>
+  <p class="diag-txt">As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 5 do seu Dossiê. No fim, envie para o Land Bank da Zion.</p>
+  <p class="sm" id="diag-st"></p>
+  <div class="fz-moldura" data-sem-clique><iframe id="fz-ferramenta" data-sem-clique title="O seu Masterplan faseado"></iframe></div>
+  <p class="diag-pe" data-sem-clique><a class="lk" id="abrir-tela" href="../../pilar5/" target="_blank" rel="noopener">Abrir em tela cheia</a></p>
+</section>
+
+<section class="s foto" data-bg="../fotos/c4b7d4ee48.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 6</p>
+  <h2 style="max-width:1150px">Pré-<i>viabilidade</i></h2>
+  <p class="lead" style="max-width:1050px">Quanto custa o projeto inteiro, a conta, os três cenários e o tempo de volta. A coluna "Entra" do seu escopo é o que vai ser orçado.</p>
+  <p class="sv" style="max-width:1050px;background:rgba(201,168,76,.22);border-color:var(--ouro)"><b style="color:var(--ouro)">Lembrete</b><span>Salve o PDF na pasta Meu Dossiê.</span></p>
+  <p class="sm" style="max-width:1150px;margin-top:20px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são só de área. O masterplan desta aula é orientativo: o projeto de verdade é feito por um arquiteto contratado por você, com o topógrafo e os profissionais que ele indicar. Preservação, reserva legal, índices, redes e contratos aparecem em nível introdutório: quem confirma é o advogado, o contador ou o cartório, o órgão ambiental ou a prefeitura. Não é projeto nem oferta de investimento, e não é promessa de renda, retorno, ocupação, crédito, compra ou sociedade. A Zion avalia cada caso.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Parte copiada da ferramenta Faça agora do Pilar 5 (pilar5/index.html):
+   as páginas e chaves (PILARES), a leitura de números (Z), as contas
+   de área (calcular5), as fontes e as perguntas (QUESTOES).
+   Mesmo formato de gravação: chave "zion-t1-pilar5".
+   =================================================================== */
+const PILARES = [
+  { n: 0, tema: "Marco Zero", pagina: "Diagnóstico prévio", chave: "zion-t1-marco-zero" },
+  { n: 1, tema: "Território e destino", pagina: "Ficha do Território", chave: "zion-t1-aula1" },
+  { n: 2, tema: "Mercado e demanda", pagina: "Ficha do Mercado", chave: "zion-t1-aula2" },
+  { n: 3, tema: "Produto e tipologias", pagina: "Ficha do Produto", chave: "zion-t1-aula3" },
+  { n: 4, tema: "Modelo de negócio", pagina: "Modelo de Negócio", chave: "zion-t1-pilar4" },
+  { n: 5, tema: "Masterplan faseado", pagina: "Masterplan faseado", chave: "zion-t1-pilar5" },
+  { n: 6, tema: "Pré-viabilidade", pagina: "Pré-viabilidade", chave: "zion-t1-pilar6" },
+  { n: 7, tema: "Capital e Dossiê", pagina: "Capital e decisão", chave: "zion-t1-pilar7" },
+];
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  function brl0(x) { const r = arred(x, 0); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 0); }
+  function brlMil(x) { if (Math.abs(x) >= 1e6) return "R$ " + fmtN(x / 1e6, 2) + " milhões"; if (Math.abs(x) >= 1000) return "R$ " + fmtNum(x / 1000, 0) + " mil"; return brl0(x); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  const ok = (...xs) => xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, brl0, brlMil, fmtPct, juntar, div, ok };
+})();
+const { fmtN, brl, brl0, brlMil, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDoPilar = (n) => { const p = PILARES.find((x) => x.n === n); return p ? carregarChave(p.chave) : null; };
+const dadosDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+const respostasDoPilar = (n) => { const d = salvoDoPilar(n); return d && d.respostas ? d.respostas : null; };
+const lst = (v) => (Array.isArray(v) ? v : []);
+const N5 = (r, id) => paraNumero(r[id]);
+const GESTOS = [["marcado", "marcar no desenho"], ["fotografado", "fotografar com data"], ["clausula", "pedir a cláusula ao advogado"]];
+const APOIO = [
+  ["rouparia_lavanderia", "rouparia e lavanderia"], ["deposito", "depósito seco"], ["residuo", "lixo com acesso por fora"],
+  ["copa_vestiario", "copa e vestiário da equipe"], ["estac_servico", "estacionamento de serviço"], ["oficina", "oficina e ferramentas"], ["gas_reservatorio", "abrigo de gás e reservatório"],
+];
+const GATILHO = [["demanda", "demanda"], ["caixa", "caixa"], ["maturidade", "maturidade"]];
+const ESCOPO = [["entra", "Entra"], ["espera", "Espera"], ["nunca", "Nunca"]];
+const m2 = (x) => fmtN(x, 1) + " m²";
+function calcular5(r) {
+  const C = [];
+  const push = (c) => C.push(c);
+  const mat = N5(r, "area_matricula"), us = N5(r, "area_usavel"), nun = N5(r, "area_nunca");
+  const u1 = N5(r, "unidades_fase1"), uc = N5(r, "unidades_projeto_completo"), af = N5(r, "area_fechada_unidade"), dk = N5(r, "area_deck_unidade");
+  const ap1 = N5(r, "area_apoio"), apcR = N5(r, "apoio_completo");
+  const deck = dk === null ? 0 : dk;
+  const apc = apcR !== null ? apcR : ap1;
+  const A = {};
+  A.hosp1 = Z.ok(u1, af) ? u1 * af : null;
+  A.hospC = Z.ok(uc, af) ? uc * af : null;
+  A.fech1 = Z.ok(A.hosp1, ap1) ? A.hosp1 + ap1 : null;
+  A.fechC = Z.ok(A.hospC, apc) ? A.hospC + apc : null;
+  A.p1 = Z.div(ap1, A.fech1);
+  A.pC = Z.div(apc, A.fechC);
+  A.chao1 = Z.ok(u1, af, ap1) ? u1 * (af + deck) + ap1 : null;
+  A.chaoC = Z.ok(uc, af, apc) ? uc * (af + deck) + apc : null;
+  A.minC = A.hospC !== null ? 0.15 * A.hospC / 0.85 : null;
+  {
+    let t, alerta;
+    if (mat === null || us === null) t = `Falta ${juntar([mat === null && "a área da matrícula", us === null && "a área que você pode usar"].filter(Boolean))}.`;
+    else {
+      t = `Da matrícula de ${m2(mat)}, você pode usar ${m2(us)}: ${fmtPct(us / mat)}.`;
+      if (nun !== null) t += ` O nunca que você mediu soma ${m2(nun)}, ${fmtPct(nun / mat)} da matrícula.`;
+      if (us > mat) { t += " A área usável não pode passar da matrícula: confira os dois números."; alerta = "critico"; }
+      else if (nun !== null && nun + us > mat * 1.001) { t += " O nunca somado à área usável passa da matrícula: confira se uma parte do nunca já ficou fora da área usável no Pilar 1."; alerta = "atencao"; }
+    }
+    push({ id: "terreno", rotulo: "O terreno: matrícula, área usável e o nunca", valor: us, texto: t, alerta });
+  }
+  {
+    const g = lst(r.tres_gestos), falt = GESTOS.filter(([v]) => !g.includes(v));
+    push({ id: "gestos", rotulo: "Os três gestos do nunca", valor: g.length, alerta: falt.length ? "atencao" : undefined, texto: falt.length ? `Falta ${juntar(falt.map(([, n]) => n))}. Uma mancha em branco no desenho não segura uma máquina: sem os três gestos, preservar ainda é só intenção.` : "Os três gestos do nunca estão feitos: marcado, fotografado com data e com a cláusula pedida ao advogado." });
+  }
+  {
+    let t, alerta;
+    if (A.p1 === null) t = `Falta ${ap1 === null ? "a área de apoio" : "unidades ou área fechada por unidade"}. A régua: o apoio entre 15% e 25% da área fechada.`;
+    else {
+      t = `Fase um: ${fmtN(u1)} × ${m2(af)} = ${m2(A.hosp1)} de hospedagem, mais ${m2(ap1)} de apoio = ${m2(A.fech1)} de área fechada. Apoio: ${fmtPct(A.p1)}. `;
+      if (A.p1 < 0.15) { t += "Abaixo de 15%: o apoio vai faltar no dia a dia e virar puxadinho."; alerta = "critico"; }
+      else if (A.p1 > 0.25) { t += "Acima de 25%: confira se a conta foi feita com a base certa (só a área fechada, sem o deck)."; alerta = "atencao"; }
+      else t += "Dentro da faixa de 15% a 25%.";
+    }
+    push({ id: "apoio1", rotulo: "O apoio na fase um", valor: A.p1 === null ? null : A.p1 * 100, texto: t, alerta });
+  }
+  if (A.pC !== null && uc !== null && uc !== u1) {
+    let t = `Projeto completo: ${fmtN(uc)} × ${m2(af)} = ${m2(A.hospC)}, mais ${m2(apc)} de apoio${apcR === null ? " (o mesmo da fase um, porque você não respondeu o apoio do projeto completo)" : ""} = ${m2(A.fechC)}. Apoio: ${fmtPct(A.pC)}.`, alerta;
+    if (A.pC < 0.15) { t += ` Abaixo de 15%. O mínimo para ${fmtN(uc)} unidades é 0,15 × ${m2(A.hospC)} ÷ 0,85 = cerca de ${m2(A.minC)}. Prepare a ampliação já na fase um: a base e os pontos de água e energia no lugar.`; alerta = "atencao"; }
+    else t += " Dentro da faixa.";
+    push({ id: "apoioC", rotulo: "O apoio no projeto completo", valor: A.pC * 100, texto: t, alerta });
+  }
+  {
+    const res = lst(r.apoio_resolvido), esq = APOIO.filter(([v]) => !res.includes(v));
+    push({ id: "esquecidos", rotulo: "O que quase sempre falta", valor: esq.length, alerta: esq.length ? "atencao" : undefined, texto: esq.length ? `${esq.length} de 7 itens ainda sem lugar nem decisão: ${juntar(esq.map(([, n]) => n))}. Deixar de fora pode, por decisão escrita. Esquecer, não.${esq.some(([v]) => v === "gas_reservatorio") ? " Abrigo de gás e reservatório têm regras próprias: quem diz onde ficam é o profissional habilitado." : ""}` : "Os sete itens têm lugar no programa ou foram deixados de fora por decisão escrita." });
+  }
+  {
+    let t;
+    if (A.chaoC === null) t = "Falta unidades do projeto completo, área por unidade ou apoio para saber quanto do chão o desenho ocupa.";
+    else {
+      t = `Desenho completo: ${fmtN(uc)} × (${m2(af)} fechados + ${m2(deck)} de deck) + ${m2(apc)} de apoio = ${m2(A.chaoC)} de chão coberto.`;
+      if (us !== null) t += ` Sobre a área que você pode usar: ${fmtPct(A.chaoC / us, 2)}.`;
+      if (mat !== null) t += ` Sobre a matrícula: ${fmtPct(A.chaoC / mat, 2)}.`;
+      t += " Caminhos, estacionamento e convivência ao ar livre ficam fora desta conta e entram no orçamento como linhas próprias. A área livre também é produto.";
+    }
+    const alerta = A.chaoC !== null && us !== null && A.chaoC > us ? "critico" : undefined;
+    if (alerta) t += " O desenho ocupa mais do que a área que você pode usar: ele não cabe.";
+    push({ id: "ocupacao", rotulo: "Quanto do terreno o desenho ocupa", valor: A.chaoC, texto: t, alerta });
+  }
+  const tx = N5(r, "taxa_ocupacao"), co = N5(r, "coef_aproveitamento");
+  A.tetoTO = Z.ok(tx, mat) ? tx / 100 * mat : null;
+  A.tetoCA = Z.ok(co, mat) ? co * mat : null;
+  {
+    let t = "", alerta;
+    if (A.tetoTO === null && A.tetoCA === null) t = "Sem os índices da sua zona, o teto da prefeitura ainda é Não sei. Peça por escrito: taxa de ocupação, coeficiente de aproveitamento, permeabilidade, recuos e altura máxima.";
+    else {
+      if (A.tetoTO !== null) { t += `Taxa de ocupação de ${fmtN(tx, 1)}% sobre ${m2(mat)}: teto de ${m2(A.tetoTO)} de chão coberto, contra ${A.chaoC === null ? "um desenho ainda sem número" : m2(A.chaoC) + " do seu desenho completo"}. `; if (A.chaoC !== null && A.chaoC > A.tetoTO) { alerta = "critico"; t += "Passa do teto: o desenho precisa diminuir. "; } }
+      if (A.tetoCA !== null) { t += `Coeficiente de aproveitamento ${fmtN(co, 2)}: teto de ${m2(A.tetoCA)} somando os andares, contra ${A.fechC === null ? "uma área ainda sem número" : m2(A.fechC) + " de área fechada no projeto completo"}. `; if (A.fechC !== null && A.fechC > A.tetoCA) { alerta = "critico"; t += "Passa do teto. "; } }
+      t += "O índice é um teto, não uma meta, e o chão nem sempre cabe: encosta, recuos, distância entre unidades e o seu nunca também tiram volume. Quem lê o que entra na conta é o arquiteto, com a prefeitura.";
+    }
+    push({ id: "indices", rotulo: "O que a prefeitura permite", valor: A.tetoTO, texto: t, alerta });
+  }
+  if (r.quem_manda && !ehNS(r.quem_manda)) push({ id: "quem_manda", rotulo: "Quem manda no número de unidades", valor: r.quem_manda, texto: { mercado: "O mercado: o número de unidades sai do que o Pilar 2 mediu, e não do que o índice permite.", indice: "O índice da prefeitura: ele é o limite do seu desenho. Peça os números por escrito e entregue ao arquiteto.", chao: "O chão: encosta, preservação, recuos ou a distância entre unidades limitam o desenho antes do índice." }[r.quem_manda] });
+  if (A.fech1 !== null) {
+    const ef1 = A.hosp1 / A.fech1, efC = A.fechC ? A.hospC / A.fechC : null;
+    A.ef1 = ef1; A.efC = efC;
+    push({ id: "vendavel", rotulo: "O que se vende: vendável e não vendável", valor: ef1 * 100, texto: `Fase um: ${m2(A.hosp1)} vendáveis${dk !== null ? ` (mais ${m2(u1 * dk)} de deck privativo)` : ""} em ${m2(A.fech1)} fechados: eficiência de ${fmtPct(ef1)}.${efC !== null && uc !== u1 ? ` Projeto completo: ${m2(A.hospC)} em ${m2(A.fechC)}: ${fmtPct(efC)}.` : ""} Eficiência alta não é negócio bom: em unidades espalhadas, quase todo o não vendável é chão, caminho e vaga. Quem diz se o negócio fecha é a conta do Pilar 6.` });
+  }
+  {
+    const rede = N5(r, "rede_para");
+    const curta = rede !== null && uc !== null ? rede < uc : null;
+    A.redeCurta = curta;
+    push({ id: "rede", rotulo: "A rede contra o projeto completo", valor: curta, alerta: curta ? "critico" : undefined, texto: curta === null ? "Falta para quantas unidades a rede está dimensionada, ou quantas tem o projeto completo." : curta ? `Rede para ${fmtN(rede)} unidades e projeto completo de ${fmtN(uc)}. Na fase dois você reabre vala e troca o que ficou pequeno, com hóspede dormindo ao lado. Construa menos unidades, nunca menos infraestrutura.` : `A rede atende as ${fmtN(uc)} unidades do projeto completo já na fase um. Peça um duto vazio sob tudo o que vai ser construído. Quem diz o tamanho é o projetista, e a energia, a concessionária, por escrito.` });
+  }
+  if (uc !== null && u1 !== null && uc > u1) push({ id: "reserva", rotulo: "A reserva da fase dois", valor: r.reserva || null, alerta: r.reserva === "sim" ? undefined : "atencao", texto: r.reserva === "sim" ? `A área de ${fmtN(uc - u1)} ${uc - u1 === 1 ? "unidade" : "unidades"} da fase dois está marcada com estacas e placa, e o canteiro tem lugar próprio.` : `A área de ${fmtN(uc - u1)} ${uc - u1 === 1 ? "unidade" : "unidades"} da fase dois ainda não está protegida. O inimigo dela é virar estacionamento, depósito ou canteiro: estacas, placa e o canteiro decidido em outro lugar.` });
+  {
+    const e = lst(r.escopo), f = ESCOPO.filter(([v]) => !e.includes(v));
+    push({ id: "escopo", rotulo: "O escopo congelado da fase um", valor: e.length, alerta: f.length ? "atencao" : undefined, texto: f.length ? `Falta a lista ${juntar(f.map(([, n]) => '"' + n + '"'))}. Sem as três listas somadas, assinadas e datadas, a fase um cresce sozinha, uma boa ideia por semana. A coluna Entra é o que vai ser orçado no Pilar 6.` : "As três listas (entra, espera e nunca) estão escritas, somadas, assinadas e datadas. A coluna Entra é o que vai ser orçado no Pilar 6." });
+  }
+  {
+    const g = lst(r.gatilho_escrito).length;
+    push({ id: "gatilho", rotulo: "O gatilho da fase dois", valor: g, alerta: g < 3 ? "atencao" : undefined, texto: g < 3 ? `${g} de 3 condições escritas. Demanda, caixa e maturidade precisam acender juntas: uma ou duas não bastam. Os números de demanda e de caixa você fecha no Pilar 6.` : "As três condições estão escritas: demanda, caixa e maturidade, que precisam acender juntas. Se não acenderem em 24 meses, revise o produto ou o preço, em vez de esperar mais. Os números você fecha no Pilar 6." });
+  }
+  return { calculos: C, A };
+}
+
+const FONTES = [
+    { v: "medida", nota: 3, rot: "Tenho por escrito ou medi (matrícula, CAR, planta, lista do programa, resposta por escrito)", curto: "Documento, medida ou lista" },
+    { v: "falado", nota: 2, rot: "Um profissional me indicou, mas ainda não tenho no papel", curto: "Profissional falou, sem papel" },
+    { v: "estimativa", nota: 1, rot: "É estimativa minha", curto: "Estimativa" },
+  ];
+const QUESTOES = [
+    {
+      id: "area_matricula", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, positivo: true, curto: "Área da matrícula", bloco: "O terreno", placeholder: "Ex.: 50.000",
+      pergunta: "Qual é a área total da matrícula do terreno?",
+      explica: "A área que está escrita na matrícula do cartório, em metros quadrados. Um hectare tem 10.000 m².",
+      porque: "É a base de todas as contas de área: quanto do terreno é nunca, quanto você pode usar e quanto o desenho ocupa. É também sobre ela que a prefeitura aplica os índices.",
+      onde: "<p>Na matrícula atualizada do cartório de registro de imóveis, que você pediu no Pilar 1.</p>",
+      marina: "50.000 m² na matrícula.",
+      ondeCurto: "pedir a matrícula atualizada no cartório",
+      veio: () => { const d = dadosDoPilar(1); return d && typeof d.area_matricula === "number" ? { valor: fmtN(d.area_matricula, 2), fonte: "medida", de: "Ficha do Território (área da matrícula)" } : null; },
+    },
+    {
+      id: "area_usavel", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, positivo: true, curto: "Área que você pode usar", bloco: "O terreno", placeholder: "Ex.: 15.000",
+      pergunta: "Quanto dessa área você pode usar?",
+      explica: "É o que sobrou depois das subtrações do Pilar 1: preservação, reserva legal, encosta forte, faixas da estrada e da rede elétrica.",
+      porque: "A ocupação do terreno se mede sobre ela. Quem desenha sobre a matrícula inteira ocupa, no papel, a nascente e a encosta.",
+      onde: "<p>Na sua Ficha do Território (Pilar 1), em área que você pode usar. Quem confirma a preservação e a reserva legal é o técnico ambiental, com o CAR.</p>",
+      marina: "15.000 m² que ela pode usar, na meia encosta.",
+      ondeCurto: "refazer as subtrações da área na Ficha do Território",
+      veio: () => { const d = dadosDoPilar(1); return d && typeof d.area_usavel === "number" ? { valor: fmtN(d.area_usavel, 2), fonte: "medida", de: "Ficha do Território (área que você pode usar)" } : null; },
+    },
+    {
+      id: "zonas_nunca", tipo: "texto", aceitaNS: true, curto: "Onde nunca construir", bloco: "Passo 1 · Onde nunca",
+      pergunta: "O que nunca será construído no seu terreno, zona por zona, e por quê?",
+      explica: "Escreva cada zona e o motivo ao lado: lei (o que a lei protege) ou produto (o que a sua promessa precisa). Uma por linha.",
+      porque: "Antes de decidir onde construir, decida onde jamais vai construir. É a decisão mais barata do masterplan, e a única que não se desfaz depois. O masterplan pode preservar além da lei, nunca aquém. E o melhor ponto de vista fica só para as unidades, nunca para a caixa d'água.",
+      onde: "<p>Volte ao terreno com o mapa e uma caneta vermelha. A área de preservação e a reserva legal estão no <b>CAR</b> e se confirmam com o <b>técnico ambiental</b>. As do produto, só você decide.</p>",
+      marina: "A preservação do riacho e da nascente e a reserva legal, por lei. Por produto: o bosque que segura o vento da tarde, o bosque do caminho e a crista, que só recebe um deck leve para o fim de tarde.",
+      ondeCurto: "pintar de vermelho no mapa o que nunca será construído, com o motivo ao lado",
+    },
+    {
+      id: "area_nunca", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área do nunca", bloco: "Passo 1 · Onde nunca", placeholder: "Ex.: 22.000",
+      pergunta: "Quanto mede o seu nunca, somando as zonas que você conseguiu medir?",
+      explica: "Some em metros quadrados as zonas que já têm medida. As que ainda não têm (um bosque, uma crista) continuam valendo no desenho.",
+      porque: "Com ela, a ferramenta desenha a faixa do seu terreno: o nunca, a área usável e o que o desenho ocupa. Ela mostra, de um olhar, que a área quase nunca é o limite.",
+      onde: "<p>No CAR e no mapa do técnico ambiental, para as zonas da lei. As de produto, medidas a passo ou no mapa, são estimativa.</p>",
+      marina: "22.000 m²: a preservação do riacho e da nascente, 12.000 m², e a reserva legal, 10.000 m². Os bosques e a crista não foram medidos.",
+      ondeCurto: "pedir o mapa do CAR ao técnico ambiental e somar as zonas do nunca",
+    },
+    {
+      id: "tres_gestos", tipo: "multipla", curto: "Os três gestos do nunca", bloco: "Passo 1 · Onde nunca",
+      pergunta: "O seu nunca já tem quais gestos?",
+      explica: "Deixar uma mancha em branco no desenho não protege nada. Marque só o que já está feito.",
+      opcoes: [
+        { v: "marcado", rot: "Marcado: \"nunca será construído\" escrito sobre cada zona" },
+        { v: "fotografado", rot: "Fotografado: o terreno inteiro, com data e localização" },
+        { v: "clausula", rot: "Cláusula pedida ao advogado, para a empreiteira assinar" },
+      ],
+      porque: "Na correria da obra, o espaço vazio vira lugar de guardar material, de manobrar caminhão, de fazer o atalho. Desenho não segura retroescavadeira.",
+      onde: "<p>O desenho e as fotos são seus. A cláusula é redigida pelo <b>advogado</b>: você só decide o que ela protege.</p>",
+      marina: "Os três: escreveu \"nunca será construído\" sobre cada zona, fotografou o terreno com data e levou a cláusula ao advogado.",
+      ondeCurto: "marcar o nunca no desenho, fotografar o terreno com data e pedir a cláusula ao advogado",
+      nota: (r) => lst(r.tres_gestos).length,
+      semEvidencia: "só um dos três gestos. Sem os três, preservar é só intenção.",
+      zeroTexto: "nenhum dos três gestos feito ainda.",
+    },
+    {
+      id: "unidades_fase1", tipo: "numero", unidade: "unidades", aceitaNS: false, positivo: true, curto: "Unidades na fase um", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Quantas unidades entram na fase um?",
+      explica: "É o número do seu Modelo de Negócio e da sua Ficha do Produto.",
+      porque: "Com ele e com a área de cada unidade sai a área fechada da fase um, a base da régua do apoio.",
+      onde: "<p>No seu Modelo de Negócio (Pilar 4) ou na Ficha do Produto (Pilar 3).</p>",
+      marina: "3 cabanas na fase um.",
+      ondeCurto: "rever no Modelo de Negócio quantas unidades tem a fase um",
+      veio: () => { const d = dadosDoPilar(4); if (d && typeof d.unidades_fase1 === "number") return { valor: String(d.unidades_fase1), de: "página Modelo de Negócio (unidades na fase um)" }; const p = dadosDoPilar(3); return p && typeof p.unidades_abertura === "number" ? { valor: String(p.unidades_abertura), de: "Ficha do Produto (unidades na primeira fase)" } : null; },
+    },
+    {
+      id: "unidades_projeto_completo", tipo: "numero", unidade: "unidades", aceitaNS: true, positivo: true, curto: "Unidades no projeto completo", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Quantas unidades tem o projeto completo, somando todas as fases?",
+      explica: "A fase um mais o que fica reservado para depois. O projeto completo é o desenho com todas as fases.",
+      porque: "O masterplan desenha o terreno no tempo: a rede, o apoio e a reserva da fase dois são pensados para o projeto completo desde já.",
+      onde: "<p>Na sua Ficha do Mercado (quantas cabem agora) e na sua decisão de quantas desenhar para depois.</p>",
+      marina: "5 unidades: 3 agora, a 4ª e a 5ª reservadas na mesma linha.",
+      ondeCurto: "decidir quantas unidades o projeto completo terá, somando as fases",
+      validar: (n, r) => { const u = paraNumero(r.unidades_fase1); return u !== null && n < u ? "O projeto completo não pode ter menos unidades que a fase um." : ""; },
+    },
+    {
+      id: "area_fechada_unidade", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: false, positivo: true, curto: "Área fechada de cada unidade", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Qual é a área fechada de cada unidade?",
+      explica: "Área fechada é a de dentro, com parede e telhado. O deck aberto fica fora.",
+      porque: "A régua do apoio usa como base a área fechada: o interior das unidades mais o apoio construído. É também a área vendável de cada unidade.",
+      onde: "<p>Na sua Ficha do Produto (Pilar 3), em área interna da unidade.</p>",
+      marina: "38 m² fechados por cabana. Três cabanas: 3 × 38 = 114 m².",
+      ondeCurto: "rever na Ficha do Produto a área interna da unidade",
+      veio: () => { const d = dadosDoPilar(3); return d && typeof d.area_interna === "number" ? { valor: fmtN(d.area_interna, 2), fonte: "medida", de: "Ficha do Produto (área interna da unidade)" } : null; },
+    },
+    {
+      id: "area_deck_unidade", tipo: "numero", unidade: "m²", aceitaNS: true, curto: "Deck de cada unidade", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 16",
+      pergunta: "E o deck ou a varanda aberta de cada unidade, quantos metros quadrados?",
+      explica: "Fica fora da área fechada e da régua do apoio, mas ocupa chão. Se não tiver deck, escreva 0.",
+      porque: "Entra na conta de quanto do terreno o desenho ocupa, e na lista do que se vende: cada unidade vende a diária com o deck junto.",
+      onde: "<p>Na planta simples da unidade, da Ficha do Produto.</p>",
+      marina: "16 m² de deck por cabana: 38 + 16 = 54 m² de chão por cabana.",
+      ondeCurto: "pedir a planta simples da unidade com o deck",
+    },
+    {
+      id: "area_apoio", tipo: "numero", unidade: "m²", nota: "fonte", aceitaNS: true, curto: "Área de apoio da fase um", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 30",
+      pergunta: "Quanto de área de apoio você vai construir na fase um?",
+      explica: "Apoio é o que o hóspede não vê e a operação precisa: rouparia, depósito seco, lixo com acesso por fora, copa e vestiário da equipe. Some tudo, em m².",
+      porque: "Ninguém se apaixona por uma rouparia. Reserve entre 15% e 25% da área fechada para apoio: quem reserva pouco descobre depois, e a solução vira contêiner atrás da mata ou puxadinho. O apoio é o que não pode ser deixado para depois.",
+      onde: "<p>No seu <b>programa</b>: a lista de tudo o que o empreendimento precisa ter, em quatro áreas (hospedagem, convivência, apoio e infraestrutura), um ambiente por linha, com quem usa, quando e o tamanho estimado.</p>",
+      marina: "Rouparia 12 m², depósito seco 6 m², lixo com acesso por fora 4 m², copa e vestiário 8 m²: 30 m². Sobre 114 + 30 = 144 m², dá 20,8%, dentro da faixa.",
+      ondeCurto: "listar o programa de apoio ambiente por ambiente e somar os m²",
+    },
+    {
+      id: "apoio_completo", tipo: "numero", unidade: "m²", aceitaNS: true, curto: "Apoio no projeto completo", bloco: "Passo 2 · O que precisa existir", placeholder: "Ex.: 34",
+      mostrar: (r) => { const a = paraNumero(r.unidades_fase1), b = paraNumero(r.unidades_projeto_completo); return a !== null && b !== null && b > a; },
+      pergunta: "E no projeto completo, para quanto o apoio vai crescer?",
+      explica: "Com mais unidades, o mesmo apoio pode ficar abaixo de 15%. Escreva a área do apoio já ampliado, em m².",
+      porque: "O apoio não fica para depois: a fase um constrói o que precisa e prepara a ampliação, com a base e os pontos de água e energia no lugar.",
+      onde: "<p>Faça a conta: o mínimo é 0,15 × (unidades do projeto completo × área fechada) ÷ 0,85.</p>",
+      marina: "Com cinco cabanas, os mesmos 30 m² dariam 13,6%, abaixo do piso. O mínimo é cerca de 33,5 m²: ela prepara a ampliação para 34 m², que dá 15,2%.",
+      ondeCurto: "fazer a conta do apoio mínimo para o projeto completo",
+    },
+    {
+      id: "apoio_resolvido", tipo: "multipla", curto: "O que quase sempre falta", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Da lista do que quase sempre falta, o que já está resolvido?",
+      explica: "Resolvido é ter lugar no programa ou ter sido deixado de fora por decisão escrita, com o motivo. Pode não marcar nenhum.",
+      opcoes: APOIO.map(([v, rot]) => ({ v, rot: rot.charAt(0).toUpperCase() + rot.slice(1) })),
+      porque: "Deixar de fora pode, por decisão escrita. Esquecer, não: esquecer um item na lista custa cerca de dez vezes mais do que incluí-lo agora. Abrigo de gás e reservatório têm regras próprias de segurança: quem diz onde ficam é o profissional habilitado.",
+      onde: "<p>No seu programa, item por item.</p>",
+      marina: "Cinco resolvidos. A lavanderia é terceirizada, por decisão. Ficaram sem decisão a oficina e as ferramentas, e o abrigo de gás: ela decide com o profissional.",
+    },
+    {
+      id: "dia_simulado", tipo: "escolha", curto: "Dia de troca simulado", bloco: "Passo 2 · O que precisa existir",
+      pergunta: "Você simulou no papel um dia de troca de hóspede?",
+      explica: "Simular é seguir, hora por hora, o dia em que um hóspede sai e outro chega: a cesta do café, a limpeza, o lençol, o lixo e a chegada.",
+      opcoes: [
+        { v: "sim", rot: "Sim, e anotei o que faltou" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "É o passo que mais revela: cada hora do dia mostra um ambiente que faltava no programa.",
+      onde: "<p>Numa folha, com o seu programa ao lado e, de preferência, com quem vai operar de verdade.</p>",
+      marina: "À uma da tarde chega a van do lençol. Onde ela para? O programa tinha vaga de hóspede e nenhuma de serviço. Agora tem.",
+      ondeCurto: "simular no papel, hora por hora, um dia de troca de hóspede",
+      nota: (r) => (r.dia_simulado === "sim" ? 3 : 0),
+      zeroTexto: "o dia de troca ainda não foi simulado.",
+    },
+    {
+      id: "caminhos", tipo: "escolha", curto: "Caminho do hóspede e do serviço", bloco: "Passo 3 · Onde fica cada coisa",
+      pergunta: "O caminho do hóspede e o do serviço se cruzam em algum ponto visível?",
+      explica: "Desenhe os dois no mapa, cada um com uma cor, e circule cada ponto em que eles se cruzam ou se veem.",
+      opcoes: [
+        { v: "nao_cruzam", rot: "Não se cruzam" },
+        { v: "cruzam", rot: "Cruzam em algum ponto" },
+        { v: "nao_desenhei", rot: "Ainda não desenhei" },
+      ],
+      porque: "A operação precisa existir, mas praticamente invisível. E o estacionamento colado na cabana é conveniente por dois minutos e ruim pelo resto da estadia.",
+      onde: "<p>No mapa do terreno, com duas canetas de cores diferentes. A ordem que contraria o instinto: primeiro o nunca, depois os pontos de vista para as unidades, o caminho do hóspede, as unidades, a convivência, o apoio com acesso próprio e, por último, a infraestrutura pesada.</p>",
+      marina: "O caminho do hóspede sai do estacionamento na clareira e segue cerca de 120 m pela mata. O serviço chega por trás das cabanas, do lado oposto à vista. Não se cruzam.",
+      ondeCurto: "desenhar no mapa os dois caminhos, em duas cores",
+      nota: (r) => (r.caminhos === "nao_cruzam" || r.caminhos === "cruzam" ? 3 : 0),
+      zeroTexto: "os dois caminhos ainda não foram desenhados.",
+    },
+    {
+      id: "caminhada_estacas", tipo: "escolha", curto: "Caminhada com estacas", bloco: "Passo 3 · Onde fica cada coisa",
+      pergunta: "Você marcou as unidades com estacas e caminhou às sete da manhã e às cinco da tarde?",
+      explica: "Quatro estacas e barbante no lugar de cada unidade. Fique onde seriam a cama e a janela e pergunte: daqui eu vejo outra cabana? Vejo o carro? Ouço o caminho de serviço?",
+      opcoes: [
+        { v: "sim", rot: "Sim" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "A planta de uma unidade se corrige em duas semanas. A posição dela se corrige nunca. A caminhada custa quatro estacas e mostra o que o papel esconde.",
+      onde: "<p>No terreno, com estacas, barbante e o celular para fotografar, com data.</p>",
+      marina: "Da janela lateral da cabana 3 ela via o deck da 2. A cabana 3 desceu uns 15 m, e a 2 sumiu atrás das árvores. Custo da correção: quatro estacas.",
+      ondeCurto: "marcar as unidades com estacas e caminhar às 7h e às 17h, com foto",
+      nota: (r) => (r.caminhada_estacas === "sim" ? 3 : 0),
+      zeroTexto: "a posição das unidades ainda não foi conferida a pé.",
+    },
+    {
+      id: "taxa_ocupacao", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Taxa de ocupação da zona", bloco: "Passo 4 · O que cabe", placeholder: "Ex.: 10",
+      pergunta: "Qual é a taxa de ocupação da zona do seu terreno?",
+      explica: "Taxa de ocupação é quanto do terreno pode ser coberto por construção: a parte do chão que pode ter telhado. Escreva em porcentagem.",
+      porque: "O plano diretor põe números no seu lote. O índice é um teto, não uma meta, e o chão nem sempre cabe. Você não calcula: pede o número à prefeitura e entrega ao arquiteto.",
+      onde: "<p>Na prefeitura, em geral na secretaria de urbanismo, <b>por escrito</b>, com data e o nome de quem respondeu. Se você fez a consulta prévia do Pilar 1, a resposta já diz a zona.</p>",
+      marina: "Ainda esperando a resposta por escrito: Não sei. Para ensinar a conta, o e-book imagina 10% de 50.000 m² = 5.000 m², contra os 304 m² do desenho completo dela.",
+      ondeCurto: "pedir à prefeitura, por escrito, os índices da zona do terreno",
+    },
+    {
+      id: "coef_aproveitamento", tipo: "numero", unidade: "vezes", nota: "fonte", aceitaNS: true, curto: "Coeficiente de aproveitamento", bloco: "Passo 4 · O que cabe", placeholder: "Ex.: 0,5",
+      pergunta: "E o coeficiente de aproveitamento da zona?",
+      explica: "É quanto se pode construir somando as áreas de todos os andares, em vezes a área do terreno. Um coeficiente de 0,5 num terreno de 1.000 m² permite 500 m² somando os andares.",
+      porque: "O coeficiente conta andares; a taxa de ocupação conta chão. Nem toda área construída entra na conta: quem diz o que fica de fora é cada cidade, e quem lê isso no seu caso é o arquiteto, com a prefeitura.",
+      onde: "<p>Na mesma resposta por escrito da prefeitura.</p>",
+      marina: "Também Não sei, até a resposta da prefeitura.",
+      ondeCurto: "pedir à prefeitura, por escrito, os índices da zona do terreno",
+    },
+    {
+      id: "quem_manda", tipo: "escolha", aceitaNS: true, curto: "Quem manda no número de unidades", bloco: "Passo 4 · O que cabe",
+      pergunta: "Quem manda no seu número de unidades: o índice, o chão ou o mercado?",
+      explica: "O índice é o teto da prefeitura. O chão é o que a encosta, a preservação, os recuos e a distância entre unidades deixam. O mercado é o que o Pilar 2 mediu.",
+      opcoes: [
+        { v: "mercado", rot: "O mercado: cabe mais do que o mercado compra" },
+        { v: "chao", rot: "O chão: o terreno real limita antes do índice" },
+        { v: "indice", rot: "O índice da prefeitura" },
+      ],
+      porque: "Por isso o estudo de massas vem depois do nunca e do programa. Primeiro você tira o que não se toca. Depois vê o volume que sobra.",
+      onde: "<p>Compare o seu desenho com os índices por escrito, com o que tira volume no campo e com a Ficha do Mercado.</p>",
+      marina: "O mercado: cinco cabanas cabem com folga na meia encosta. O limite dela é o mercado e a promessa do silêncio.",
+      ondeCurto: "comparar o desenho com os índices, o chão e a Ficha do Mercado",
+    },
+    {
+      id: "limite_promessa", tipo: "escolha", aceitaNS: true, curto: "Limite que tira a promessa", bloco: "Passo 4 · O que cabe",
+      pergunta: "Algum limite do território, da lei ou do chão tira as unidades do ponto que sustenta a sua promessa?",
+      explica: "Uma consulta prévia, um índice, o mapa ambiental ou a encosta que empurram as unidades para longe da vista, do silêncio ou do que você vende.",
+      opcoes: [
+        { v: "nao", rot: "Não: pelo que sei hoje, as unidades ficam no ponto da promessa" },
+        { v: "tira", rot: "Sim: algum limite tira as unidades desse ponto" },
+      ],
+      porque: "Se a promessa depende de um ponto do terreno e a lei ou o chão não deixam construir ali, o problema não é de desenho: é de produto.",
+      onde: "<p>Na consulta prévia do Pilar 1, nos índices da prefeitura e no mapa do técnico ambiental.</p>",
+      marina: "Não, pelo que ela sabe hoje: as cabanas ficam na meia encosta virada para o nascente.",
+      ondeCurto: "conferir a consulta prévia, os índices e o mapa ambiental contra o ponto da promessa",
+    },
+    {
+      id: "rede_para", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Rede dimensionada para", bloco: "Passo 6 · A fase um",
+      pergunta: "Para quantas unidades a rede vai ser dimensionada?",
+      explica: "Rede é o que fica enterrado: água, energia, tratamento do esgoto e o caminho de acesso. Dimensionar é decidir o tamanho.",
+      porque: "Construa menos unidades, nunca menos infraestrutura. A rede feita só para a fase um poupa agora e sai mais cara somadas as duas fases: na fase dois você reabre vala com hóspede dormindo ao lado.",
+      onde: "<p>Peça ao <b>projetista</b> e à <b>concessionária</b>, por escrito, água, esgoto e energia para o projeto completo, com um duto vazio para passar cabo depois.</p>",
+      marina: "Para 5, já na fase um, com duto vazio sob tudo o que vai ser construído.",
+      ondeCurto: "pedir ao projetista e à concessionária, por escrito, a rede para o projeto completo",
+    },
+    {
+      id: "reserva", tipo: "escolha", curto: "Reserva da fase dois", bloco: "Passo 6 · A fase um",
+      mostrar: (r) => { const a = paraNumero(r.unidades_fase1), b = paraNumero(r.unidades_projeto_completo); return a !== null && b !== null && b > a; },
+      pergunta: "A área da fase dois está protegida?",
+      explica: "Protegida é marcada com estacas e placa, com o canteiro da obra da fase um decidido em outro lugar.",
+      opcoes: [
+        { v: "sim", rot: "Sim: estacas, placa e canteiro em outro lugar" },
+        { v: "nao", rot: "Ainda não" },
+      ],
+      porque: "A reserva tem um inimigo concreto: virar estacionamento, depósito ou canteiro, primeiro provisório e depois permanente.",
+      onde: "<p>No terreno, e no desenho, com a rota da obra da fase dois longe do caminho do hóspede.</p>",
+      marina: "Estacas e placa na área da 4ª e da 5ª cabanas, e o canteiro da fase um na clareira do acesso.",
+      ondeCurto: "marcar a reserva com estacas e placa e decidir onde fica o canteiro",
+      nota: (r) => (r.reserva === "sim" ? 3 : 0),
+      zeroTexto: "a área da fase dois ainda não está protegida.",
+    },
+    {
+      id: "escopo", tipo: "multipla", curto: "Escopo congelado", bloco: "Passo 6 · A fase um",
+      pergunta: "O escopo da fase um está congelado? Quais listas já estão escritas?",
+      explica: "Escopo é o que está combinado que vai ser feito. Marque as listas que já estão escritas, somadas, assinadas e datadas.",
+      opcoes: [
+        { v: "entra", rot: "Entra: o que vai ser construído na fase um, com a área de cada item" },
+        { v: "espera", rot: "Espera: o que tem lugar no desenho, mas só entra com o gatilho" },
+        { v: "nunca", rot: "Nunca: o que não entra, de propósito, com o motivo" },
+      ],
+      porque: "A fase um cresce por boas ideias, uma por semana, cada uma pequena e razoável. Três coisas nunca esperam: o apoio, o conforto que só se nota quando falta e os dutos. E a coluna Entra é o que vai ser orçado no Pilar 6.",
+      onde: "<p>Numa folha, com data e assinatura. É o Escopo Congelado Zion.</p>",
+      marina: "As três listas escritas. Nunca: piscina, restaurante, recepção construída, automação, eventos com som e grupos.",
+      ondeCurto: "escrever as listas entra, espera e nunca, com data e assinatura",
+      nota: (r) => lst(r.escopo).length,
+      semEvidencia: "só uma das três listas.",
+      zeroTexto: "nenhuma lista do escopo escrita ainda.",
+    },
+    {
+      id: "gatilho_escrito", tipo: "multipla", curto: "Gatilho da fase dois", bloco: "Passo 6 · A fase um",
+      pergunta: "O seu gatilho da fase dois: quais condições já estão escritas?",
+      explica: "Gatilho é o conjunto de condições, escritas antes, que autorizam a fase dois. Não é depois de um feriado cheio. Pode não marcar nenhuma.",
+      opcoes: [
+        { v: "demanda", rot: "Demanda: doze meses de reservas reais, com o número escrito antes" },
+        { v: "caixa", rot: "Caixa: a sua parte da fase dois e três meses de custo fixo guardados" },
+        { v: "maturidade", rot: "Maturidade: processos escritos, equipe estável, avaliações em dia" },
+      ],
+      porque: "As três condições do Gatilho de Expansão Zion precisam acender juntas. Um feriado lotado é um dado, não doze meses. E se as três não acenderem em vinte e quatro meses, revise o produto ou o preço.",
+      onde: "<p>Escreva as três numa folha, com data. Os números da demanda e do caixa você fecha no Pilar 6.</p>",
+      marina: "As três condições escritas. Os números de demanda e de caixa ficam como pendência com nome, para o Pilar 6.",
+      ondeCurto: "escrever as três condições do gatilho, com data",
+      nota: (r) => lst(r.gatilho_escrito).length,
+      semEvidencia: "só uma das três condições escrita. Uma ou duas não bastam.",
+      zeroTexto: "nenhuma condição do gatilho escrita ainda.",
+    },
+  ];
+
+const CHAVE = "zion-t1-pilar5";
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+function estadoVazio() {
+  return { versao: 1, pilar: 5, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, sim: { valores: {}, data: null }, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.perfil) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.sim = Object.assign({ valores: {}, data: null }, d.sim || {});
+  e.sim.valores = Object.assign({}, (d.sim && d.sim.valores) || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function perfilDeOutraFerramenta() {
+  let melhor = null;
+  for (const p of PILARES) {
+    if (p.n === 5) continue;
+    const d = carregarChave(p.chave);
+    if (!d) continue;
+    const perfil = d.perfil && d.perfil.nome ? d.perfil : d.nome ? { nome: d.nome || "", email: d.email || "", cidade: d.cidade || "", uf: d.uf || "" } : null;
+    if (perfil && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { perfil, at: d.atualizado };
+  }
+  return melhor ? melhor.perfil : null;
+}
+
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+const visivel = (q) => !q.mostrar || !!q.mostrar(S.respostas);
+function respostasBase() {
+  const r = {};
+  for (const q of QUESTOES) if (q.id in S.respostas && visivel(q)) r[q.id] = S.respostas[q.id];
+  return r;
+}
+function contas() { const res = calcular5(respostasBase()); return { res, A: res.A, g: (id) => res.calculos.find((c) => c.id === id) || null }; }
+
+/* ===================================================================
+   Aula principal do Pilar 5: perguntas dentro dos slides.
+   Grava no MESMO estado da ferramenta (S, chave zion-t1-pilar5):
+   S.perfil, S.respostas, S.fontes, S.veio e S.passo no formato dela.
+   A retomada, o modelo e os quizzes (que a ferramenta não tem) ficam
+   em S.aulaExtras, um campo a mais que a ferramenta preserva.
+   =================================================================== */
+const AULA = (function () {
+  const PROD = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/pilar5/";
+  const REL = "../../pilar5/";
+  const urlFerramenta = () => (location.protocol === "file:" ? PROD : REL);
+
+  /* ---------- ajustes de texto da ferramenta para ficar igual ao vídeo ---------- */
+  const OVR = {
+    area_matricula: { cita: "No vídeo, os números da prefeitura se aplicam sobre o terreno inteiro. Comece pelo número do papel.", marina: null },
+    area_usavel: { cita: "No vídeo: dos quinze mil metros quadrados que a Marina pode usar, o desenho completo ocupa trezentos e quatro, cerca de dois por cento.", marina: "A Marina pode usar 15.000 m²." },
+    zonas_nunca: { cita: "No vídeo: comece pelo que a lei protege. Depois, o que o seu produto precisa.", marina: "Ela pinta de vermelho a preservação e a reserva legal, que são lei, e os dois bosques e a crista, que são produto." },
+    area_nunca: { cita: "No vídeo, a Marina pinta de vermelho as zonas da lei e as do produto. Some aqui as que você já conseguiu medir.", marina: null },
+    tres_gestos: { cita: "No vídeo: uma mancha em branco no desenho não segura uma máquina.", marina: null },
+    unidades_fase1: { cita: "No vídeo, a Marina abre com três cabanas.", marina: "3 cabanas na fase um." },
+    unidades_projeto_completo: { cita: "No vídeo, a Marina abre com três cabanas e desenha tudo para cinco.", marina: "5 unidades no projeto completo: abre com três e desenha tudo para cinco." },
+    area_fechada_unidade: { cita: "No vídeo: área fechada é a de dentro, com parede e telhado. O deck fica fora.", marina: "38 m² fechados por cabana. Três cabanas: 3 × 38 = 114 m²." },
+    area_deck_unidade: { cita: "No vídeo: o deck fica fora da área fechada.", marina: null },
+    area_apoio: { cita: "No vídeo: o apoio é rouparia, depósito, copa da equipe e o lugar do lixo. Todo mundo esquece.", marina: "O apoio dela tem 30 m². Sobre 114 + 30 = 144 m², dá 20,8%, dentro da faixa." },
+    apoio_completo: { cita: "No vídeo: com cinco cabanas, os mesmos trinta ficariam abaixo de quinze por cento.", marina: "Com cinco cabanas, os mesmos 30 m² ficariam abaixo de 15%. Então ela já prepara a ampliação para 34 m²." },
+    apoio_resolvido: { cita: "No vídeo: o apoio é o que faz a operação funcionar fora da vista.", marina: null },
+    dia_simulado: { cita: "No vídeo: siga, hora a hora, o dia em que um hóspede sai e outro chega.", marina: "À uma da tarde, chegou a van que leva o lençol. Onde ela para? Não tinha vaga de serviço. Agora tem." },
+    caminhos: { cita: "No vídeo: cada círculo é um problema para resolver agora, no papel.", marina: null },
+    caminhada_estacas: { cita: "No vídeo: fique onde seriam a cama e a janela, às sete da manhã e às cinco da tarde.", marina: "Da janela da cabana 3 se via o deck da 2. A 3 desceu uns 15 m. Custo da correção: quatro estacas." },
+    taxa_ocupacao: { cita: "No vídeo: quanto do chão pode ser coberto. Você não calcula: pede à prefeitura, por escrito.", marina: "Imagine uma regra que deixasse ocupar 10% do terreno: 5.000 m². O desenho completo dela ocupa 304 m². É uma regra imaginada, para ensinar a conta." },
+    coef_aproveitamento: { cita: "No vídeo: quanto se constrói somando os andares.", marina: null },
+    quem_manda: { cita: "No vídeo: quem manda não é o índice. É o mercado.", marina: "O mercado, que no Pilar 2 disse: cabem três." },
+    rede_para: { cita: "No vídeo: construa menos unidades, nunca menos infraestrutura.", marina: "A rede é feita para cinco, já na fase um." },
+    reserva: { cita: "No vídeo: guarde a área da fase dois com estacas e placa, para não virar estacionamento ou canteiro.", marina: "A reserva da fase dois está marcada." },
+    escopo: { cita: "No vídeo: congele o escopo da fase um em três listas.", marina: null },
+    gatilho_escrito: { cita: "No vídeo: escreva antes o gatilho, três condições que acendem juntas.", marina: "Os números do gatilho, ela fecha no Pilar 6." },
+  };
+  for (const id in OVR) { const q = Q(id); if (q) Object.assign(q, OVR[id]); }
+
+  /* ---------- perguntas da retomada e do modelo (a ferramenta não tem) ---------- */
+  const T = (rot, cls, txt) => ({ rot, fb: [cls, txt] });
+  const DQ = {
+    r_cem: { tipo: "escolha", ret: true, curto: "O cem por cento de três cabanas",
+      cita: "No Pilar 4: comece pelo cem por cento, o número de unidades vezes trezentos e sessenta e cinco noites.",
+      pergunta: "A Marina abre com três cabanas. Qual é o cem por cento dela no ano?", explica: "Responda de cabeça, sem voltar às páginas.",
+      opcoes: { "365": T("365 noites", "er", "Isso é uma unidade só. O cem por cento é o número de unidades vezes 365: 3 × 365 = 1.095 noites."),
+        "1095": T("1.095 noites", "ok", "Isso: 3 × 365 = 1.095 noites. São todas as noites que existem no ano."),
+        "422": T("422 noites", "at", "422 são as noites vendidas com 38,5% de ocupação. O cem por cento vem antes: 3 × 365 = 1.095.") },
+      ns: "Não lembro", nsFb: "Sem problema: o cem por cento é o número de unidades vezes 365. Para a Marina, 3 × 365 = 1.095 noites.",
+      porque: "Puxar da memória, sem olhar, é o que faz o conteúdo ficar. E o masterplan nasce do modelo que você montou no Pilar 4." },
+    r_cenario: { tipo: "escolha", ret: true, curto: "O cenário em que se confia",
+      cita: "No Pilar 4: nunca faça um número só. Faça três cenários.",
+      pergunta: "Você fez três cenários. Em qual número você confia?", explica: "Só fins de semana, fins de semana e feriados, e procura forte.",
+      opcoes: { forte: T("No da procura forte", "er", "Esse é o melhor caso. O número em que você confia é o do cenário mais fraco."),
+        meio: T("No do meio, fins de semana e feriados", "at", "Quase. O número em que você confia é o do cenário mais fraco."),
+        fraco: T("No do cenário mais fraco", "ok", "Isso. Os outros dois mostram até onde pode ir, mas a decisão se apoia no mais fraco.") },
+      ns: "Não lembro", nsFb: "O número em que você confia é o do cenário mais fraco.",
+      porque: "No Pilar 6 você volta aos três cenários, agora com o custo do projeto inteiro." },
+    r_vendavel: { tipo: "escolha", ret: true, curto: "O que a venda paga",
+      cita: "No Pilar 4: separe a área vendável da não vendável.",
+      pergunta: "A obra custa tudo. E a venda, paga o quê?", explica: "Pense nas unidades, nas áreas comuns, na circulação e no serviço.",
+      opcoes: { tudo: T("Tudo o que foi construído", "er", "Não: a obra custa tudo, mas a venda só paga a área vendável, as unidades."),
+        vendavel: T("Só a área vendável", "ok", "Isso. E hoje você vai ver no seu desenho quanto é vendável de verdade."),
+        comuns: T("Só as áreas comuns", "er", "Ao contrário: as áreas comuns são não vendáveis. A venda só paga a área vendável.") },
+      ns: "Não lembro", nsFb: "A obra custa tudo. A venda só paga a área vendável: as unidades.",
+      porque: "É a ponte entre o Pilar 4 e este: no Bloco 2 você separa o vendável do não vendável no seu desenho." },
+    modelo: { tipo: "escolha", curto: "O modelo do Pilar 4",
+      cita: "No vídeo: na venda, o desenho mostra quantas unidades cabem e a área de cada uma. Na renda, quantas vendem noites e o apoio para operar.",
+      pergunta: "Qual modelo você escolheu no Pilar 4?", explica: "Renda, venda ou híbrido. Se você já respondeu na página do Pilar 4, a resposta veio de lá: confira.",
+      opcoes: { renda: T("Renda", "in", "Então o seu desenho precisa mostrar quantas unidades vendem noites e o apoio para operar."),
+        venda: T("Venda", "in", "Então o seu desenho precisa mostrar quantas unidades cabem e a área de cada uma."),
+        hibrido: T("Híbrido", "in", "Você opera a fase um primeiro: o desenho mostra quantas vendem noites e o apoio para operar, com a área de cada unidade escrita para quando vier a venda.") },
+      ns: "Ainda não decidi", nsFb: "Volte ao Pilar 4 e escreva a decisão. Sem ela, o masterplan fica sem direção.",
+      marina: "A Marina escolheu renda.",
+      porque: "O masterplan nasce do modelo. Cada modelo faz uma pergunta diferente ao terreno.",
+      veio: () => { const r = respostasDoPilar(4); return r && ["renda", "venda", "hibrido"].includes(r.decisao) ? { valor: r.decisao, de: "página Modelo de Negócio (a sua decisão)" } : null; } },
+  };
+
+  /* ---------- estado ---------- */
+  function garantir() {
+    if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+    if (!S.perfil) S.perfil = { nome: "", email: "", cidade: "", uf: "" };
+    if (!S.fontes) S.fontes = {};
+    if (!S.veio) S.veio = {};
+    if (!S.sim || typeof S.sim !== "object") S.sim = { valores: {}, data: null };
+    if (!S.sim.valores) S.sim.valores = {};
+  }
+  const ehNSv = (v) => v === "nao_sei";
+  function erroNum(q) {
+    const v = S.respostas[q.id];
+    if (v === undefined || v === "") return "";
+    if (ehNSv(v)) return "";
+    const n = paraNumero(v);
+    if (n === null) return "Escreva só o número: pode usar ponto para milhar e vírgula para decimal.";
+    if (n < 0) return "O número não pode ser negativo.";
+    if (q.min !== undefined && n < q.min) return `O número precisa ser pelo menos ${fmtN(q.min)}.`;
+    if (q.max !== undefined && n > q.max) return `O número não pode passar de ${fmtN(q.max)}.`;
+    if (q.positivo && n <= 0) return "O número precisa ser maior que zero.";
+    if (q.validar) { const e = q.validar(n, S.respostas); if (e) return e; }
+    return "";
+  }
+  function completaT(q) {
+    if (!visivel(q)) return true;
+    const v = S.respostas[q.id];
+    if (ehNumerico(q)) {
+      if (ehNSv(v)) return !!q.aceitaNS;
+      if (v === undefined || v === "" || paraNumero(v) === null || erroNum(q)) return false;
+      return q.nota !== "fonte" || !!S.fontes[q.id];
+    }
+    if (q.tipo === "texto") return ehNSv(v) || (typeof v === "string" && v.trim() !== "");
+    if (q.tipo === "multipla") return Array.isArray(v);
+    if (q.tipo === "escolha") return v !== undefined && v !== "" && (!ehNSv(v) || !!q.aceitaNS);
+    return false;
+  }
+  const completaD = (id) => { const v = S.aulaExtras[id]; return v !== undefined && v !== ""; };
+  const completa = (id) => (DQ[id] ? completaD(id) : completaT(Q(id)));
+  /** Próxima pergunta da ferramenta que falta (no formato do passo dela). */
+  function calcPasso() { const i = QUESTOES.findIndex((q) => !completaT(q)); return i < 0 ? QUESTOES.length : i; }
+  const perfilOk = () => !!(S.perfil.nome && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(S.perfil.email || "") && S.perfil.cidade && S.perfil.uf);
+  function gravar() {
+    garantir();
+    S.passo = perfilOk() ? calcPasso() : -1;
+    salvar();
+  }
+  /** Traz a resposta de um pilar anterior, uma vez só, como a ferramenta faz. */
+  function aplicarVeio(id) {
+    const d = DQ[id];
+    if (d) {
+      if (!d.veio || S.aulaExtras[id] !== undefined || S.aulaExtras["veio_" + id] !== undefined) return;
+      let x = null; try { x = d.veio(); } catch (e) { x = null; }
+      S.aulaExtras["veio_" + id] = x ? x.de : null;
+      if (x) S.aulaExtras[id] = x.valor;
+      salvar(); return;
+    }
+    const q = Q(id);
+    if (!q || !q.veio || S.veio[id] !== undefined || S.respostas[id] !== undefined) return;
+    let x = null; try { x = q.veio(); } catch (e) { x = null; }
+    S.veio[id] = x ? x.de : null;
+    if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") { S.respostas[id] = x.valor; if (x.fonte) S.fontes[id] = x.fonte; }
+    gravar();
+  }
+
+  /* ---------- montagem dos slides de pergunta ---------- */
+  const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+  const IDS = slidesQ.map((s) => s.dataset.q);
+  const TOTAL = IDS.length;
+
+  function opcaoHTML(v, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+  function campoHTML(id) {
+    const d = DQ[id];
+    if (d) return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot)).join("")}${opcaoHTML("nao_sei", d.ns, "ns")}</div>`;
+    const q = Q(id);
+    if (ehNumerico(q)) {
+      const un = q.tipo === "percentual" ? "%" : q.unidade || "";
+      return `<div class="cn"><input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || "Digite o número")}" aria-label="${esc(q.pergunta)}">${un ? `<span class="un">${esc(un)}</span>` : ""}</div>
+        ${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}
+        ${q.nota === "fonte" ? `<div class="fonte-bx"><span class="rot-r">De onde veio esse número?</span>${FONTES.map((f) => `<button type="button" class="opc peq" data-fonte="${f.v}" aria-pressed="false"><span class="mk"></span><span>${esc(f.rot)}</span></button>`).join("")}</div>` : ""}`;
+    }
+    if (q.tipo === "texto") return `<textarea class="resp" rows="4" placeholder="Uma zona por linha, com o motivo: lei ou produto" aria-label="${esc(q.pergunta)}"></textarea>${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}`;
+    if (q.tipo === "multipla") return `<div class="ops2">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot, "multi peq")).join("")}${opcaoHTML("__nenhum", "Nenhum ainda", "multi peq")}</div>`;
+    if (q.tipo === "escolha") return `<div class="ops2">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot)).join("")}${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}</div>`;
+    return "";
+  }
+  function montar(sl, n) {
+    const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+    const onde = d ? "" : q.onde;
+    const rot = d && d.ret ? `Retomada · Pilar 4 · <b>pergunta ${n} de ${TOTAL}</b>` : `Agora é com você · <b>pergunta ${n} de ${TOTAL}</b>`;
+    sl.innerHTML = `<div class="pg" data-sem-clique>
+      <div class="pg-txt">
+        <p class="k">${rot}</p>
+        <h2>${esc(q.pergunta)}</h2>
+        ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+        <p class="expl">${esc(q.explica)}</p>
+      </div>
+      <div class="pg-dir">
+        <span class="rot-r">A sua resposta</span>
+        <div class="na" hidden>Esta pergunta só vale quando o projeto completo tem mais unidades que a fase um. Pelas suas respostas, não é o caso: pode avançar.</div>
+        <div class="campo">${campoHTML(id)}</div>
+        <div class="veio-bx" hidden></div>
+        <div class="fb" role="status" aria-live="polite"></div>
+        <p class="st"></p>
+      </div>
+      <div class="pg-info">
+        <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+        ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+        ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>` : ""}
+      </div>
+    </div>`;
+    ligar(sl, id);
+  }
+
+  /* ---------- feedback imediato (as mesmas contas da ferramenta) ---------- */
+  const cls = (a) => (a === "critico" ? "er" : a === "atencao" ? "at" : a === "ok" ? "ok" : "in");
+  function feedback(id) {
+    const d = DQ[id];
+    if (d) {
+      const v = S.aulaExtras[id];
+      if (v === undefined || v === "") return null;
+      if (ehNSv(v)) return ["at", esc(d.nsFb)];
+      const o = d.opcoes[v];
+      return o && o.fb ? [o.fb[0], esc(o.fb[1])] : null;
+    }
+    const q = Q(id), v = S.respostas[id];
+    if (!visivel(q)) return null;
+    if (v === undefined || v === "") return null;
+    if (ehNSv(v)) return ["at", "<b>Tarefa da semana</b>" + esc((q.ondeCurto || "").replace(/^./, (c) => c.toUpperCase())) + ". Na página 5, este Não sei vale zero e vira tarefa."];
+    const C = contas(), A = C.A, g = C.g;
+    if (ehNumerico(q)) {
+      const n = paraNumero(v);
+      if (n === null || erroNum(q)) return null;
+      if (id === "area_matricula") return ["in", "Ponto de partida: " + esc(m2(n)) + ". É sobre este número que a prefeitura aplica os índices."];
+      if (id === "area_usavel" || id === "area_nunca") { const t = g("terreno"); return [cls(t.alerta), esc(t.texto)]; }
+      if (id === "unidades_fase1") return ["in", esc(`Anotado: ${fmtN(n)} ${n === 1 ? "unidade" : "unidades"} na fase um.`)];
+      if (id === "unidades_projeto_completo") { const u1 = paraNumero(S.respostas.unidades_fase1); return ["in", esc(u1 !== null && n > u1 ? `Abre com ${fmtN(u1)} e desenha tudo para ${fmtN(n)}: ${fmtN(n - u1)} ${n - u1 === 1 ? "fica reservada" : "ficam reservadas"} para a fase dois.` : "O projeto completo tem as mesmas unidades da fase um: não há reserva para a fase dois.")]; }
+      if (id === "area_fechada_unidade") return ["in", esc(A.hosp1 !== null ? `Hospedagem da fase um: ${m2(A.hosp1)} de área fechada vendável.` : "Anotado.")];
+      if (id === "area_deck_unidade") { const af = paraNumero(S.respostas.area_fechada_unidade); return ["in", esc(af !== null ? `Chão de cada unidade: ${m2(af)} fechados + ${m2(n)} de deck = ${m2(af + n)}. O deck fica fora da régua do apoio, mas ocupa chão.` : "Anotado. O deck fica fora da régua do apoio, mas ocupa chão.")]; }
+      if (id === "area_apoio") { const t = g("apoio1"); return [cls(t.alerta) === "in" ? "ok" : cls(t.alerta), esc(t.texto)]; }
+      if (id === "apoio_completo") { const t = g("apoioC"); return t ? [cls(t.alerta) === "in" ? "ok" : cls(t.alerta), esc(t.texto)] : ["in", "Anotado."]; }
+      if (id === "taxa_ocupacao" || id === "coef_aproveitamento") { const t = g("indices"); return [cls(t.alerta), esc(t.texto)]; }
+      if (id === "rede_para") { const t = g("rede"); return [t.alerta === "critico" ? "er" : t.valor === false ? "ok" : "in", esc(t.texto)]; }
+      return null;
+    }
+    if (q.tipo === "texto") {
+      const t = String(v).trim(); if (t.length < 3) return null;
+      if (!/\b(lei|produto)\b/i.test(t)) return ["at", "<b>Falta o motivo</b>Escreva ao lado de cada zona uma palavra: lei ou produto."];
+      return ["ok", "Anotado, com o motivo. Agora pinte cada zona de vermelho no mapa."];
+    }
+    if (q.tipo === "multipla") {
+      const map = { tres_gestos: "gestos", apoio_resolvido: "esquecidos", escopo: "escopo", gatilho_escrito: "gatilho" };
+      const t = g(map[id]); if (!t) return null;
+      return [t.alerta ? cls(t.alerta) : "ok", esc(t.texto)];
+    }
+    if (q.tipo === "escolha") {
+      const FB = {
+        dia_simulado: { sim: ["ok", "Ótimo. Cada ambiente que faltou vira uma linha do programa."], nao: ["at", "É o passo que mais revela: cada hora do dia mostra um ambiente que faltava. Faça antes de chamar o arquiteto."] },
+        caminhos: { nao_cruzam: ["ok", "A operação existe, mas fica fora da vista do hóspede."], cruzam: ["er", "<b>Ajustar o desenho</b>Cada ponto em que eles se cruzam ou se veem é um problema para resolver agora, no papel."], nao_desenhei: ["at", "Desenhe os dois no mapa, em duas cores, e circule cada cruzamento."] },
+        caminhada_estacas: { sim: ["ok", "A posição foi conferida a pé. Guarde as fotos com data."], nao: ["at", "No papel, tudo parece caber. A caminhada custa quatro estacas e mostra o que o papel esconde."] },
+      };
+      if (FB[id] && FB[id][v]) return [FB[id][v][0], FB[id][v][1].startsWith("<b>") ? FB[id][v][1] : esc(FB[id][v][1])];
+      if (id === "quem_manda") { const t = g("quem_manda"); return t ? ["in", esc(t.texto)] : null; }
+      if (id === "reserva") { const t = g("reserva"); return t ? [t.alerta ? "at" : "ok", esc(t.texto)] : null; }
+      return null;
+    }
+    return null;
+  }
+
+  /* ---------- pintar uma pergunta a partir do estado ---------- */
+  function pintar(sl) {
+    const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+    garantir();
+    const v = d ? S.aulaExtras[id] : S.respostas[id];
+    const ns = ehNSv(v);
+    const naoVale = !d && !visivel(q);
+    sl.querySelector(".na").hidden = !naoVale;
+    sl.querySelector(".campo").style.opacity = naoVale ? ".35" : "";
+    sl.querySelector(".campo").style.pointerEvents = naoVale ? "none" : "";
+    sl.querySelectorAll(".opc[data-v]").forEach((b) => {
+      const bv = b.dataset.v;
+      let on;
+      if (bv === "nao_sei") on = ns;
+      else if (bv === "__nenhum") on = Array.isArray(v) && v.length === 0;
+      else if (b.classList.contains("multi")) on = Array.isArray(v) && v.includes(bv);
+      else on = v === bv;
+      b.setAttribute("aria-pressed", String(!!on));
+    });
+    const inp = sl.querySelector(".resp");
+    if (inp) {
+      if (document.activeElement !== inp) inp.value = ns || v === undefined ? "" : String(v);
+      inp.disabled = ns;
+    }
+    const fx = sl.querySelector(".fonte-bx");
+    if (fx) { fx.hidden = ns; fx.querySelectorAll("[data-fonte]").forEach((b) => b.setAttribute("aria-pressed", String(S.fontes[id] === b.dataset.fonte))); }
+    const vb = sl.querySelector(".veio-bx");
+    const de = d ? S.aulaExtras["veio_" + id] : S.veio[id];
+    if (de && v !== undefined && !ns) { vb.hidden = false; vb.textContent = `Trouxemos esta resposta da ${de}. Confira e corrija se mudou.`; } else vb.hidden = true;
+    const fb = sl.querySelector(".fb"), f = feedback(id);
+    if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+    const st = sl.querySelector(".st");
+    let t = "";
+    if (!d && ehNumerico(q) && v !== undefined && v !== "" && !ns) {
+      const e = erroNum(q);
+      if (e) t = e;
+      else if (q.nota === "fonte" && !S.fontes[id]) t = "Falta dizer de onde veio esse número: é isso que separa dado de palpite.";
+      else t = "Salvo neste aparelho.";
+    } else if (completa(id) && !naoVale) t = "Salvo neste aparelho.";
+    st.textContent = t;
+  }
+
+  /* ---------- eventos de cada pergunta (grava na hora) ---------- */
+  function ligar(sl, id) {
+    const d = DQ[id];
+    const alvo = () => (d ? S.aulaExtras : S.respostas);
+    const mexeu = () => { if (!d && S.sim && S.sim.valores && Object.prototype.hasOwnProperty.call(S.sim.valores, id)) delete S.sim.valores[id]; };
+    sl.addEventListener("click", (e) => {
+      const b = e.target.closest(".opc");
+      if (!b || !sl.contains(b)) return;
+      e.stopPropagation();
+      garantir();
+      const R = alvo();
+      if (b.dataset.fonte) { if (!ehNSv(R[id])) S.fontes[id] = b.dataset.fonte; }
+      else {
+        const bv = b.dataset.v, multi = b.classList.contains("multi");
+        if (bv === "nao_sei") { if (ehNSv(R[id])) delete R[id]; else { R[id] = "nao_sei"; if (!d) delete S.fontes[id]; } }
+        else if (bv === "__nenhum") R[id] = [];
+        else if (multi) { const a = Array.isArray(R[id]) ? R[id].slice() : []; const k = a.indexOf(bv); if (k >= 0) a.splice(k, 1); else a.push(bv); R[id] = a; }
+        else R[id] = bv;
+        mexeu();
+      }
+      gravar(); pintar(sl); atualizaNav();
+    });
+    const inp = sl.querySelector(".resp");
+    if (inp) inp.addEventListener("input", () => { garantir(); alvo()[id] = inp.value; mexeu(); gravar(); pintar(sl); atualizaNav(); });
+  }
+
+  /* ---------- quizzes: a escolha também fica guardada ---------- */
+  document.querySelectorAll(".quiz[data-quiz]").forEach((qz) => {
+    qz.addEventListener("click", (e) => {
+      const o = e.target.closest(".op"); if (!o) return;
+      const ops = Array.from(qz.querySelectorAll(".op"));
+      garantir();
+      S.aulaExtras[qz.dataset.quiz] = { escolha: ops.indexOf(o) + 1, certa: o.dataset.certa !== undefined };
+      gravar();
+    }, true);
+  });
+
+  /* ---------- perfil ---------- */
+  function ligarPerfil() {
+    const uf = document.getElementById("p-uf");
+    uf.insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+    const campos = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(campos)) {
+      const x = document.getElementById(el);
+      x.addEventListener(el === "p-uf" ? "change" : "input", () => { garantir(); S.perfil[k] = x.value.trim(); gravar(); });
+    }
+  }
+  function pintarPerfil() {
+    const map = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(map)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; }
+  }
+
+  /* ---------- resumo do bloco 1 ---------- */
+  function pintarAnote() {
+    const el = document.getElementById("anote"); if (!el) return;
+    const r = S.respostas, A = contas().A;
+    const tx = (v, f) => (v === undefined || v === "" ? "em branco" : ehNSv(v) ? "não sei" : f(v));
+    const zon = tx(r.zonas_nunca, (v) => { const s = String(v).trim().replace(/\s*\n\s*/g, "; "); return s.length > 70 ? s.slice(0, 68) + "…" : s; });
+    const gest = Array.isArray(r.tres_gestos) ? `${r.tres_gestos.length} de 3` : "em branco";
+    const un = `${tx(r.unidades_fase1, (v) => v)} · ${tx(r.unidades_projeto_completo, (v) => v)}`;
+    const linhas = [
+      ["O seu nunca", zon], ["Os três gestos", gest], ["Unidades: fase um · completo", un],
+      ["Apoio na fase um", A.p1 === null ? "em branco" : fmtPct(A.p1)], ["Apoio no projeto completo", A.pC === null ? "em branco" : fmtPct(A.pC)],
+      ["Dia de troca simulado", r.dia_simulado === "sim" ? "sim" : r.dia_simulado === "nao" ? "ainda não" : "em branco"],
+    ];
+    el.innerHTML = linhas.map(([a, b]) => `<div><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("");
+  }
+
+  /* ---------- simuladores com os números do aluno ---------- */
+  function meusNumeros(nome) {
+    if (!ZD.estado || !ZD.estado[nome]) return;
+    const r = S.respostas, n = (id) => paraNumero(r[id]), A = contas().A;
+    const E = ZD.estado[nome];
+    const put = (k, val) => { if (val === null || val === undefined || !Number.isFinite(val)) return; const inp = document.querySelector(`.sim[data-sim="${nome}"] input[name="${k}"]`); if (inp && val > +inp.max) inp.max = String(Math.ceil(val * 1.2)); E[k] = String(Math.round(val * 100) / 100); };
+    if (nome === "apoio") { put("u1", n("unidades_fase1")); put("af", n("area_fechada_unidade")); put("ap1", n("area_apoio")); put("uc", n("unidades_projeto_completo")); put("apc", n("apoio_completo") !== null ? n("apoio_completo") : n("area_apoio")); }
+    if (nome === "cabe") { put("us", n("area_usavel")); put("chao", A.chaoC); put("teto", A.tetoTO); }
+    document.querySelectorAll(`.sim[data-sim="${nome}"]`).forEach((s) => s._calc && s._calc());
+    toast("Os seus números entraram no simulador. Faltou algum? Responda a pergunta e volte aqui.");
+  }
+
+  /* ---------- diagnóstico: a ferramenta dentro da aula ---------- */
+  function pintarDiag() {
+    gravar();
+    const fz = document.getElementById("fz-ferramenta"), a = document.getElementById("abrir-tela"), st = document.getElementById("diag-st");
+    a.href = urlFerramenta();
+    // A ferramenta abre na tela inicial; com o perfil completo, já entramos em "Continuar de onde parei".
+    fz.onload = () => {
+      try {
+        const doc = fz.contentDocument, bt = doc && doc.getElementById("continuar");
+        if (bt && perfilOk()) bt.click();
+      } catch (e) { /* outra origem: o aluno toca em "Continuar de onde parei" */ }
+    };
+    fz.src = urlFerramenta() + "?v=" + Date.now();
+    const vis = QUESTOES.filter(visivel), feitas = vis.filter(completaT).length;
+    st.innerHTML = `${feitas} de ${vis.length} perguntas da página respondidas.` + (feitas < vis.length ? " A ferramenta abre na primeira que falta." : " A ferramenta abre direto no resultado.") + " Se ela abrir na tela inicial, toque em \"Continuar de onde parei\"." + (perfilOk() ? "" : " <b>Falta o seu nome, e-mail, cidade ou estado:</b> volte um slide ou preencha na ferramenta.");
+    ajustaFerramenta();
+  }
+  /** O palco encolhe a página inteira; a ferramenta volta ao tamanho natural para ficar legível. */
+  function ajustaFerramenta() {
+    const fz = document.getElementById("fz-ferramenta"); if (!fz) return;
+    const movel = window.matchMedia("(max-width:820px),(max-height:520px)").matches;
+    const k = movel ? 1 : Math.min(innerWidth / 1920, Math.max(200, innerHeight - 61) / 1080);
+    const f = movel ? 1 : Math.max(1, Math.min(1.8, 1 / k));
+    fz.style.width = (100 / f) + "%"; fz.style.height = (100 / f) + "%";
+    fz.style.transform = f === 1 ? "" : `scale(${f})`;
+  }
+
+  /* ---------- navegação, teclado e toque ---------- */
+  const slides = Array.from(document.querySelectorAll(".s"));
+  function atualizaNav() {
+    const ativas = IDS.filter((id) => DQ[id] || visivel(Q(id)));
+    const n = ativas.filter(completa).length, tot = ativas.length;
+    document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${tot}`;
+    document.getElementById("n-bar").style.width = (n / tot * 100) + "%";
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+    document.getElementById("n-ant").disabled = i <= 0;
+    document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+  }
+  function pausaVideos(sl) {
+    if (!sl) return;
+    sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+  }
+  let atual = -1, prontoMotor = false;
+  function aoTrocarSlide() {
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    if (i < 0 || i === atual) return;
+    const ant = slides[atual];
+    atual = i;
+    pausaVideos(ant);
+    const sl = slides[i];
+    if (sl.dataset.q) { aplicarVeio(sl.dataset.q); pintar(sl); }
+    if (sl.querySelector("#anote")) pintarAnote();
+    if (sl.id === "s-diag") pintarDiag();
+    if (sl.querySelector(".perfil")) pintarPerfil();
+    if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+    if (prontoMotor && sl.id !== "s-diag") { garantir(); S.aulaExtras.slideAula = i; gravar(); }
+    atualizaNav();
+  }
+  const obs = new MutationObserver(aoTrocarSlide);
+  slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+  // teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta.
+  // Dentro da ferramenta (iframe), as teclas ficam com ela: o motor da aula não recebe nada de lá.
+  document.addEventListener("keydown", (e) => {
+    const t = e.target;
+    if (!t || !t.matches) return;
+    if (t.matches("iframe")) { e.stopPropagation(); return; }
+    if (t.matches("input, textarea, select, [contenteditable]")) {
+      e.stopPropagation();
+      if (e.key === "Enter" && t.matches("input:not([type=range])") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+      return;
+    }
+    if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+  });
+  // arrastar a barra do simulador ou rolar um campo não troca de slide
+  document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .sim, .vid, .pg-dir, .fz-moldura")) e.stopPropagation(); }, { passive: true });
+  window.addEventListener("storage", (e) => {
+    if (e.key !== CHAVE) return;
+    const d = carregar(); if (!d) return;
+    S = d; garantir();
+    slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+  });
+
+  /* ---------- início ---------- */
+  const salvo = carregar();
+  if (salvo) S = salvo;
+  garantir();
+  if (!S.perfil.nome) { const p = perfilDeOutraFerramenta(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
+  slidesQ.forEach((sl, k) => montar(sl, k + 1));
+  slidesQ.forEach(pintar);
+  ligarPerfil(); pintarPerfil();
+  document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+  document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+  document.querySelectorAll("[data-meus]").forEach((b) => b.addEventListener("click", (e) => { e.stopPropagation(); meusNumeros(b.dataset.meus); }));
+  document.getElementById("abrir-tela").addEventListener("click", (e) => { e.stopPropagation(); gravar(); });
+
+  function escalaAula() {
+    const st = document.querySelector(".zd-stage");
+    const h = Math.max(200, innerHeight - 61);
+    const k = Math.min(innerWidth / 1920, h / 1080);
+    st.style.transform = "scale(" + k + ")";
+    ajustaFerramenta();
+  }
+  function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); clearTimeout(toast._t); toast._t = setTimeout(() => el.classList.remove("on"), 3200); }
+
+  return {
+    depoisDoMotor() {
+      addEventListener("resize", escalaAula); escalaAula();
+      prontoMotor = true;
+      const temHash = /^#\d/.test(location.hash);
+      const ult = S.aulaExtras.slideAula;
+      if (!temHash && typeof ult === "number" && ult > 0 && ult < slides.length) {
+        ZD.vai(ult);
+        toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+      }
+      aoTrocarSlide(); atualizaNav();
+    },
+    DQ, IDS, completa, calcPasso,
+  };
+})();
+
+</script>
+<script src="../_motor/deck.js"></script>
+<script>AULA.depoisDoMotor();</script>
+</body>
+</html>

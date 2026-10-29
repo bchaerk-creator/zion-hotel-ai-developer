@@ -1,0 +1,1588 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 6 · Pré-viabilidade</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.figs{display:flex;gap:24px;justify-content:center}
+.figs img{height:600px;width:auto;border-radius:18px;box-shadow:0 2px 0 rgba(22,38,28,.06)}
+.lado .figs img{height:640px}
+.lado .figs:not(.um) img{height:470px}
+.lado:has(.figs:not(.um)){grid-template-columns:1.15fr .85fr;gap:48px}
+.docs2 .card{padding:24px 30px;gap:8px}.docs2 .card h3{font-size:34px}.docs2 .card p{font-size:23px}.docs2 .card .n{font-size:40px}.docs2 .sv{font-size:20px!important;padding:8px 14px}
+.lado.l2{grid-template-columns:1fr 1fr}
+.fig-larga{width:100%;max-height:420px;object-fit:contain;border-radius:18px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.lk{color:#E0BE5E;font-weight:600;margin-left:6px}.fz-moldura{width:1600px;max-width:100%;height:620px;border:1.5px solid #B08D3A;border-radius:16px;overflow:hidden;background:#F5F1E8}.fz-moldura iframe{width:100%;height:100%;border:0;display:block}@media (max-width:900px){.fz-moldura{width:100%;height:70vh}}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:12px;padding:10px 16px;font-size:20px}
+.resumo-mini div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(22,38,28,.12);padding:6px 0}
+.resumo-mini div:last-child{border:0}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* resultado */
+.rs{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;min-height:0;height:830px}
+.rs-esq,.rs-dir{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding-right:8px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nums div{background:var(--verde);color:var(--creme);border-radius:16px;padding:18px 22px}
+.nums small{display:block;font-size:18px;opacity:.85}
+.nums strong{display:block;font-family:var(--serif);font-size:48px;color:var(--ouro);line-height:1.15}
+.leit{background:var(--verde);color:var(--creme);border:3px solid var(--ouro);border-radius:18px;padding:20px 24px;font-size:21px;line-height:1.45}
+.leit .rot{font-family:var(--serif);font-size:42px;color:var(--ouro)}
+.al{border-radius:12px;padding:12px 16px;font-size:19px;line-height:1.45;border-left:6px solid}
+.al b{display:block;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.al.critico{background:#F8E3DE;border-color:var(--erro);color:#4A140D}
+.al.ns,.al.tarefa{background:#FBEFD2;border-color:#7A5300;color:#3F2B00}
+.al.sem,.al.atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.al.info,.al.ok{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+.rs h3{font-size:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:17px;padding:6px 12px;border-radius:99px;background:#E1EFE3;color:#173F25;font-weight:600}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:14px;font:700 34px var(--sans);padding:26px 46px;border-radius:999px;background:var(--ouro);color:var(--verde);text-decoration:none;border:0;cursor:pointer;min-height:72px}
+.btn-g:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.lado.l2,.trio,.exe,.anote,.perfil,.rs,.nums{grid-template-columns:1fr!important;gap:12px}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .figs{flex-wrap:wrap;gap:10px} .figs img,.lado .figs img{height:auto;width:calc(50% - 5px);max-width:260px;border-radius:12px}
+  .figs.um img{width:70%}
+  .fig-larga{max-height:220px}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td{padding:8px 6px}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.rs>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .resumo-mini{font-size:14px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .rs{height:auto} .rs-esq,.rs-dir{overflow:visible;padding:0}
+  .nums strong{font-size:26px} .nums small{font-size:12px} .nums div{padding:12px 14px}
+  .leit{font-size:15px;padding:14px} .leit .rot{font-size:24px}
+  .al{font-size:14px;padding:10px 12px} .al b{font-size:11px} .rs h3{font-size:19px} .chips span{font-size:13px}
+  .btn-g{font-size:18px;padding:16px 22px;width:100%;min-height:56px}
+  .anote{font-size:15px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+/* ===== Pilar 6: peças próprias desta aula ===== */
+.terco{display:flex;height:100px;border-radius:14px;overflow:hidden;font-size:28px;font-weight:700;max-width:1500px}
+.terco div{display:flex;align-items:center;justify-content:center;text-align:center;padding:0 18px}
+.terco .a{background:var(--verde);color:var(--creme)}
+.terco .b{background:var(--ouro);color:var(--verde)}
+.esc .terco .a{background:#33503D}
+.cx.veio{background:#FFF7E6;border:1px solid #E7C980}
+.opc.ref{border-color:#E7C980;background:#FFF7E6;justify-content:center;font-weight:600;color:var(--tinta)}
+.opc.ref .mk{display:none}
+.lado:has(> .figs.um){grid-template-columns:1.35fr .65fr;gap:56px}
+table.t td.v{white-space:nowrap}
+.duas{display:grid;grid-template-columns:1fr 1fr;gap:28px}
+.duas .card{border:3px dashed var(--ouro2)}
+.esc .duas .card{border-color:var(--ouro)}
+table.t td.n{color:var(--ouro2);font-weight:700}
+.esc table.t td.n{color:var(--ouro)}
+svg.escada-svg{width:100%;height:330px;display:block}
+.s.diag{padding:40px 70px 24px;gap:12px;justify-content:flex-start}
+.diag-txt{font-size:27px;line-height:1.4;max-width:1780px;color:var(--tinta);font-weight:500}
+.diag-txt b{color:var(--ouro2)}
+.diag-box{position:relative;width:1780px;height:886px;border-radius:18px;overflow:hidden;background:var(--creme2);border:3px solid var(--ouro);flex:none}
+.diag-box iframe{position:absolute;left:0;top:0;width:1780px;height:886px;border:0;transform-origin:0 0;background:#F5F1E8;display:block}
+.diag-vazio{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:28px;color:var(--cinza);padding:40px;text-align:center}
+.diag-vazio[hidden],.opc[hidden],.cx[hidden]{display:none!important}
+.diag-pe{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:21px;color:var(--cinza);width:1780px}
+.diag-pe a{color:var(--ouro2);font-weight:600}
+@media (max-width:820px),(max-height:520px){
+  .terco{height:auto;min-height:56px;font-size:13px}.terco div{padding:8px 6px}
+  .duas{grid-template-columns:1fr;gap:12px}
+  svg.escada-svg{height:180px}
+  .tv{font-size:20px!important}
+  .s.diag{padding:24px 12px 96px;gap:10px}
+  .diag-txt{font-size:15px}
+  .diag-box{width:100%;height:76vh;height:76dvh;border-radius:12px;border-width:2px}
+  .diag-box iframe{width:100%!important;height:100%!important;transform:none!important}
+  .diag-vazio{font-size:15px}
+  .diag-pe{width:100%;font-size:14px;flex-wrap:wrap;gap:8px}
+}
+</style>
+<script>
+/* Pilar 6 · aula principal em slides. A Marina é um exemplo ilustrativo.
+   Números da Marina só os do texto falado dos vídeos: unidade pronta cerca de 190 mil, unidade sozinha cerca de 129 mil,
+   3 unidades prontas cerca de 577 mil, licenças 15 mil, reserva de 10% cerca de 58 mil, giro de 3 meses cerca de 41 mil,
+   fase um cerca de 690 mil; receita cerca de 272 mil (3 cabanas, 38,5%, R$ 645); margem de referência de 40%: cerca de 109 mil;
+   cenários 38,5% / 50% / 65%: cerca de 109, 141 e 184 mil; volta: pouco mais de 6, perto de 5, menos de 4 anos;
+   critério: cerca de 870 mil de investimento ou receita uns 20% menor. Padaria: 1 milhão, 100 mil por ano, 10 anos. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function anosTxt(a){ if (!isFinite(a)) return 'sem volta'; return a.toLocaleString('pt-BR',{maximumFractionDigits:1}) + (a === 1 ? ' ano' : ' anos'); }
+function leituraRegua(a){
+  if (!isFinite(a)) return ['er','<b>A operação não deixa resultado.</b> Não há tempo de volta: volte às premissas.'];
+  if (a <= 5) return ['ok','<b>Até 5 anos:</b> muito bom, e raro.'];
+  if (a <= 8) return ['ok','<b>De 5 a 8 anos:</b> bom.'];
+  if (a <= 12) return ['at','<b>De 8 a 12 anos:</b> aceitável com valorização relevante do imóvel.'];
+  return ['er','<b>Acima de 12 anos:</b> só com uma razão escrita: patrimônio, uso da família ou projeto de vida.'];
+}
+ZD.sims.margem = function(v){
+  const m = v.m, res = v.rec * m / 100;
+  const a = m > 55 ? ['at','<b>Margem alta.</b> Confira com a sua lista de custos e com o contador antes de confiar nela.'] : ['ok','Simplificação, não promessa. A sua margem real sai da sua lista de custos.'];
+  return {res, sai: 'R$ ' + (100 - m), fica: 'R$ ' + m, _aviso: a};
+};
+ZD.sims.escada = function(v){
+  const volta = v.res > 0 ? v.inv / v.res : Infinity;
+  return {volta: anosTxt(volta), _aviso: leituraRegua(volta), _n: volta};
+};
+ZD.desenha.escada = function(sim, r, v){
+  const svg = sim.querySelector('svg.escada-svg'); if (!svg) return;
+  const n = isFinite(r._n) ? Math.min(16, Math.max(10, Math.ceil(r._n) + 1)) : 10;
+  const W = 1500, H = 330, base = 160, larg = W / (n + 1);
+  const topo = Math.max(v.inv, (n * v.res) - v.inv, 1), esc = topo / 135;
+  let acc = -v.inv, h = '<line x1="0" y1="' + base + '" x2="' + W + '" y2="' + base + '" stroke="#C9A84C" stroke-width="3"/>';
+  for (let a = 0; a <= n; a++) {
+    if (a > 0) acc += v.res;
+    const hh = Math.max(3, Math.min(135, Math.abs(acc) / esc));
+    const y = acc < 0 ? base : base - hh;
+    h += '<rect x="' + (a * larg + 6) + '" y="' + y + '" width="' + (larg - 12) + '" height="' + hh + '" rx="5" fill="' + (acc < 0 ? '#B5452F' : '#3E8E5A') + '"/>';
+    h += '<text x="' + (a * larg + larg / 2) + '" y="' + (H - 4) + '" text-anchor="middle" fill="#D9D3C4" style="font:600 20px Inter,Arial,sans-serif">' + (a === 0 ? 'ano 0' : a) + '</text>';
+  }
+  svg.setAttribute('viewBox', '0 0 ' + W + ' ' + H); svg.innerHTML = h;
+};
+</script>
+</head>
+<body data-deck="t1-pilar6-aula" data-titulo="Pilar 6 · Pré-viabilidade">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/ebbde60bb9.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 4 · Fechar a conta</p>
+  <h1>Pilar 6<br><i>Pré-viabilidade</i></h1>
+  <p class="lead" style="max-width:1100px">A primeira conta inteira, feita antes de gastar: quanto custa abrir a porta, quanto sobra, os três cenários e o tempo de volta do dinheiro.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a página 6</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com a página 6</h3><p>No fim, a sua Pré-viabilidade em PDF, a página 6 do Dossiê, gerada aqui dentro, sem sair da aula.</p></div>
+  </div>
+  <p class="sv" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Dica</b><span>Tenha à mão o seu Modelo de Negócio (Pilar 4), o seu Masterplan faseado (Pilar 5), papel e calculadora. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<!-- ============ RETOMADA · PILAR 5 ============ -->
+<section class="s esc" data-bloco="Retomada · Pilar 5">
+  <p class="k">Antes de começar · sem olhar as anotações</p>
+  <h2>Três perguntas <i>do Pilar 5</i></h2>
+  <p class="lead">No Pilar 5, você desenhou o masterplan e congelou a fase um. É dela que sai a conta de hoje: o que não se constrói não se orça. Responda de cabeça. Errar aqui também ensina.</p>
+</section>
+<section class="s q" data-q="r_infra" data-bloco="Retomada · Pilar 5"></section>
+<section class="s q" data-q="r_escopo" data-bloco="Retomada · Pilar 5"></section>
+<section class="s q" data-q="r_gatilho" data-bloco="Retomada · Pilar 5"></section>
+
+<section class="s" data-bloco="Pilar 6 · As duas perguntas">
+  <p class="k">Agora, as duas perguntas que todo mundo quer fazer primeiro</p>
+  <h2>Quanto custa, <i>e se a conta fecha</i></h2>
+  <div class="grid g2">
+    <div class="card f"><span class="n">1</span><h3>Bloco 1 · Quanto custa o projeto inteiro</h3><p>A folha de oito linhas, as duas linhas à parte e a origem de cada número.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Bloco 2 · A conta, os cenários e o tempo de volta</h3><p>Quanto entra, quanto sobra, o primeiro ano, os três cenários e em quanto tempo o dinheiro volta.</p></div>
+  </div>
+  <p class="lead f">Pré-viabilidade é uma primeira conta inteira, feita antes de gastar, para saber se vale a pena seguir.</p>
+</section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · Quanto custa o projeto inteiro">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · Quanto custa o projeto inteiro</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/dKOKiqhS4ZY?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 6 · Bloco 1 · Quanto custa o projeto inteiro" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/dKOKiqhS4ZY" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Bloco 1 · O preço da unidade">
+  <p class="k">Talvez você já tenha feito isto</p>
+  <h2>O preço chegou <i>pelo WhatsApp</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">Você pediu o preço de uma cabana, ou de uma bolha: "tanto a unidade".</li>
+    <li class="f">À noite, multiplicou pelas unidades que quer. Alívio.</li>
+    <li class="f">Logo depois, um frio na barriga: <i>será que é só isso?</i></li>
+  </ul>
+</section>
+<section class="s q" data-q="palpite" data-bloco="Bloco 1 · O preço da unidade"></section>
+
+<section class="s" data-bloco="Bloco 1 · O preço da unidade">
+  <p class="k">Esse frio tem razão de existir</p>
+  <h2>O preço da unidade <i>cobre a unidade</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Foi o que você pediu. Ficam de fora o deck, a luz, a água e o esgoto, o piso, a cama, o enxoval, as licenças e a reserva para o imprevisto.</li>
+    <li class="f">Na referência da Zion, o que fica fora do preço da unidade é cerca de um terço do custo de uma unidade pronta.</li>
+  </ul>
+  <div class="terco f"><div class="a" style="width:67%">O preço da unidade</div><div class="b" style="width:33%">Cerca de um terço fica de fora</div></div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">O preço que chegou pelo WhatsApp, "tanto a unidade", cobre...</p>
+    <div class="ops">
+      <button class="op">O deck, a luz e a fossa</button>
+      <button class="op">A cama e o enxoval</button>
+      <button class="op" data-certa>Só a unidade, que foi o que você pediu</button>
+      <button class="op">Tudo até o primeiro hóspede</button>
+    </div>
+    <p class="exp">O preço da unidade cobre a unidade. O deck, a luz, a água e o esgoto, o piso, a cama, o enxoval, as licenças e a reserva ficam de fora.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · Abrir a porta">
+  <p class="k">Então troque a pergunta</p>
+  <p class="citacao">Não é quanto custa a cabana. É quanto custa <i>abrir a porta.</i></p>
+  <p class="lead f">O investimento é tudo o que precisa existir até o primeiro hóspede, cada número com a origem escrita ao lado. O nome técnico é CAPEX: o que se gasta uma vez para construir e equipar.</p>
+</section>
+<section class="s q" data-q="unidades" data-bloco="Bloco 1 · Abrir a porta"></section>
+
+<section class="s" data-bloco="Bloco 1 · A folha de oito linhas">
+  <p class="k">Ele cabe numa folha de oito linhas</p>
+  <h2>Seis de cada unidade, <i>duas do projeto</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:start">
+    <ol class="lista num" style="font-size:32px;gap:14px">
+      <li class="f"><span>A unidade, a bolha ou a cabana</span></li>
+      <li class="f"><span>O deck de madeira</span></li>
+      <li class="f"><span>A luz</span></li>
+      <li class="f"><span>A água e o esgoto, ou a fossa</span></li>
+      <li class="f"><span>O mobiliário, os equipamentos e o enxoval, com três jogos de cama por cama</span></li>
+      <li class="f"><span>O piso interno</span></li>
+    </ol>
+    <div style="display:flex;flex-direction:column;gap:20px">
+      <ol class="lista num" style="font-size:32px;gap:14px;counter-reset:n 6">
+        <li class="f"><span>As licenças e os projetos</span></li>
+        <li class="f"><span>A reserva do imprevisto, de dez por cento</span></li>
+      </ol>
+      <p class="sm f">As seis primeiras são de cada unidade: somadas, são a unidade pronta. As duas últimas são do projeto.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · As duas linhas à parte">
+  <p class="k">E duas linhas ficam à parte</p>
+  <h2>O giro entra. O terreno fica fora, <i>mas não é de graça.</i></h2>
+  <div class="duas">
+    <div class="card f"><h3>O capital de giro</h3><p>O dinheiro que paga os primeiros meses. Entra na conta, e você vê no bloco dois.</p></div>
+    <div class="card f"><h3>O terreno</h3><p>Mesmo que já seja seu, é dinheiro preso no projeto. Fora da conta não quer dizer de graça.</p></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A origem de cada número">
+  <p class="k">Ao lado de cada linha, de onde veio o número</p>
+  <h2>Só existem <i>três respostas</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Faixa de referência</h3><p>Como a referência da Zion. É ponto de partida, marcado como referência.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Cotação escrita</h3><p>Com escopo e data. É a que fecha o número.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Em branco</h3><p>Declarado, e não escondido. Vira tarefa da semana.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:52px">Uma linha em branco vale mais do que um número inventado.</p>
+</section>
+<section class="s q" data-q="l_unidade" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="l_deck" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="l_luz" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="l_agua" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="l_mobilia" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="l_piso" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="licencas" data-bloco="Bloco 1 · As oito linhas"></section>
+<section class="s q" data-q="reserva_pct" data-bloco="Bloco 1 · As oito linhas"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Você ainda não tem cotação do deck. O que vai na linha 2?</p>
+    <div class="ops">
+      <button class="op">O preço de um deck que você viu em outra região, sem anotar</button>
+      <button class="op" data-certa>Em branco, ou a referência marcada como referência, até a cotação chegar</button>
+      <button class="op">Zero: deck é detalhe</button>
+    </div>
+    <p class="exp">Só existem três respostas: faixa de referência, cotação escrita com escopo e data, ou em branco. Uma linha em branco vale mais do que um número inventado.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A conta da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina · referência da Zion</span>
+  <h2>A fase um <i>da Marina</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:start">
+    <table class="t" style="font-size:30px">
+      <tr><th>Linha</th><th>Cerca de</th></tr>
+      <tr class="f"><td>Três unidades prontas, com mobília</td><td class="v">R$ 577 mil</td></tr>
+      <tr class="f"><td>Licenças e projetos, numa estimativa</td><td class="v">R$ 15 mil</td></tr>
+      <tr class="f"><td>Reserva do imprevisto, de dez por cento</td><td class="v">R$ 58 mil</td></tr>
+      <tr class="f"><td>Capital de giro</td><td class="v">R$ 41 mil</td></tr>
+      <tr class="f"><td><b>A fase um da Marina</b></td><td class="v">R$ 690 mil</td></tr>
+    </table>
+    <div style="display:flex;flex-direction:column;gap:22px">
+      <p class="lead f" style="font-size:32px">Três cabanas de glamping para casal. A unidade pronta, com mobília, seja bolha ou cabana: cerca de R$ 190 mil. A unidade sozinha: cerca de R$ 129 mil.</p>
+      <p class="sv f" style="font-size:24px"><b>Repare</b><span>É uma referência, não um orçamento. O seu número depende do terreno, da região e do padrão, e só fecha com cotação escrita. E o terreno é dela: fica fora da conta.</span></p>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="terreno" data-bloco="Bloco 1 · As duas linhas à parte"></section>
+
+<section class="s" data-bloco="Bloco 1 · A infraestrutura comum">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:28px">
+      <p class="k">Falta a infraestrutura comum</p>
+      <h2 style="font-size:72px">A linha que <i>mais varia</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">O acesso, os caminhos, o estacionamento, o apoio e a rede preparada para o projeto completo. Na Marina, para cinco cabanas.</li>
+        <li class="f">Varia de terreno para terreno, e se orça pela distância e pela capacidade.</li>
+        <li class="f">A primeira ligação é para a concessionária de energia: é gratuita.</li>
+      </ul>
+    </div>
+    <img class="ilus" src="../fotos/1c46550f59.jpg" alt="Masterplan desenhado sobre a vista aérea do terreno">
+  </div>
+</section>
+<section class="s q" data-q="infra" data-bloco="Bloco 1 · A infraestrutura comum"></section>
+<section class="s q" data-q="x_concessionaria" data-bloco="Bloco 1 · A infraestrutura comum"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · sobre licenças, um aviso</p>
+  <div class="quiz passo">
+    <p class="q">O que vale de licença no seu terreno, quem confirma?</p>
+    <div class="ops">
+      <button class="op">O fornecedor da cabana</button>
+      <button class="op">Um vizinho que já construiu</button>
+      <button class="op" data-certa>A prefeitura, o arquiteto e, se houver dúvida, o advogado</button>
+    </div>
+    <p class="exp">O que vale no seu terreno, quem confirma é a prefeitura, o arquiteto e, se houver dúvida, o advogado.</p>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/30cbcf90dc.jpg" data-bloco="Bloco 1 · Se a conta passar">
+  <p class="k">E se a conta passar do que você pode?</p>
+  <p class="citacao" style="max-width:1150px">Corte metros no projeto, antes da obra. Nunca corte <i>a experiência</i> dentro deles.</p>
+  <p class="lead f" style="max-width:1000px">Na Marina, a banheira no deck e a lareira são o que movem a diária. Ficam.</p>
+</section>
+<section class="s q" data-q="x_experiencia" data-bloco="Bloco 1 · Se a conta passar"></section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · a sua lição</p>
+  <h2>A sua folha <i>até aqui</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">A lição do vídeo: a folha de oito linhas, com a origem ao lado de cada número, as duas linhas à parte e a primeira ligação, para a concessionária. Onde aparece "não sei", é tarefa da semana.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · A conta, os cenários e o tempo de volta">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · A conta, os três cenários e o tempo de volta</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/2zNa1qad-SA?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 6 · Bloco 2 · A conta, os três cenários e o tempo de volta" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/2zNa1qad-SA" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A receita">
+  <span class="selo">Exemplo ilustrativo · a Marina · do Pilar 4</span>
+  <h2>Receita bruta <i>não é lucro</i></h2>
+  <div class="conta" style="max-width:1400px;font-size:36px">
+    <div class="eq f"><span>Três cabanas</span><span>3</span></div>
+    <div class="eq f"><span>Ocupação média do ano</span><span>38,5%</span></div>
+    <div class="eq f"><span>Diária média</span><span>R$ 645</span></div>
+    <div class="eq tot f" data-foco><span>Receita bruta no ano</span><span>cerca de R$ 272 mil</span></div>
+  </div>
+  <p class="lead f">Dessa receita ainda saem três coisas. Antes delas, os seus dois números.</p>
+</section>
+<section class="s q" data-q="diaria" data-bloco="Bloco 2 · A receita"></section>
+<section class="s q" data-q="ocup_cons" data-bloco="Bloco 2 · A receita"></section>
+
+<section class="s" data-bloco="Bloco 2 · O que sai da receita">
+  <p class="k">Dessa receita saem três coisas</p>
+  <h2>Do que entra <i>ao que sobra</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Impostos e comissões</h3><p>Com a alíquota que o contador confirma.</p></div>
+    <div class="card f"><h3>Custos variáveis</h3><p>Como a limpeza, a lavanderia e a cesta do café.</p></div>
+    <div class="card f"><h3>Custos fixos</h3><p>Saem com a casa cheia ou vazia: a pessoa local, a manutenção e o seu próprio trabalho.</p></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A margem">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Para uma primeira conta · simplificação de referência da Zion</p>
+      <h2 style="font-size:70px">De cada R$ 100 <i>que o hóspede paga</i></h2>
+      <ul class="lista" style="font-size:31px">
+        <li class="f">R$ 60 pagam custos, impostos e comissões. R$ 40 ficam como resultado da operação: uma margem operacional de 40%.</li>
+        <li class="f">Na Marina, 40% de cerca de R$ 272 mil dá cerca de R$ 109 mil por ano, antes de qualquer parcela de financiamento.</li>
+        <li class="f">É simplificação, não promessa. A sua margem real sai da sua lista de custos.</li>
+      </ul>
+      <p class="sv f" style="background:rgba(201,168,76,.18);color:#F5F1E8;border-color:var(--ouro)"><b style="color:var(--ouro)">Guarde</b><span>Ocupação é vaidade, margem é sobrevivência.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/02-de-cada-100.png" alt="De cada R$ 100 que o hóspede paga: 60 de custos, impostos e comissões e 40 de resultado operacional"></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A margem" id="s-margem">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a receita e a margem</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:60px">Faturou bem. <i>Quanto sobrou?</i></h2>
+  <div class="sim" data-sim="margem" style="grid-template-columns:1fr 1fr;gap:48px">
+    <div class="ctl" style="gap:14px">
+      <label>Receita bruta no ano <output data-for="rec" data-fmt="mil"></output><input type="range" name="rec" min="50000" max="1500000" step="1000" value="272000"><small>A Marina: cerca de R$ 272 mil</small></label>
+      <label>Margem operacional <output data-for="m" data-fmt="pct0"></output><input type="range" name="m" min="15" max="70" step="1" value="40"><small>Referência da Zion: 40%</small></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>De cada R$ 100, saem</span><b data-r="sai"></b></div>
+      <div class="linha"><span>De cada R$ 100, ficam</span><b data-r="fica"></b></div>
+      <div class="linha tot"><span>Resultado da operação no ano</span><b data-r="res" data-fmt="mil"></b></div>
+      <p class="sm" style="font-size:20px">Antes de qualquer parcela de financiamento.</p>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <button class="btn-s2" id="meus-margem">Usar os meus números</button> <span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="margem" data-bloco="Bloco 2 · A margem"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">A Marina fatura cerca de R$ 272 mil no ano. Na margem de referência, quanto fica como resultado da operação?</p>
+    <div class="ops">
+      <button class="op">Os R$ 272 mil: é o que entrou</button>
+      <button class="op" data-certa>Cerca de R$ 109 mil, antes de qualquer parcela de financiamento</button>
+      <button class="op">Não dá para saber sem mais hóspedes</button>
+    </div>
+    <p class="exp">Receita bruta não é lucro. De cada R$ 100, R$ 40 ficam: 40% de cerca de R$ 272 mil é cerca de R$ 109 mil por ano.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O primeiro ano">
+  <p class="k">E tem o primeiro ano</p>
+  <h2>Nenhuma hospedagem nova abre <i>com a ocupação do destino</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">A procura sobe aos poucos, e parte do custo não cai junto.</li>
+    <li class="f">A Marina abre no começo da alta: a decisão de maior efeito, e que não custa nada.</li>
+  </ul>
+</section>
+<section class="s q" data-q="mes_abertura" data-bloco="Bloco 2 · O primeiro ano"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · O capital de giro">
+  <p class="k">Para isso existe o capital de giro</p>
+  <h2>O dinheiro dos meses em que a receita <i>ainda não cobre o custo</i></h2>
+  <div class="conta" style="max-width:1400px;font-size:36px">
+    <div class="eq f"><span>A Marina deixa no banco, no dia da abertura</span><span>3 meses de custo</span></div>
+    <div class="eq tot f" data-foco><span>O giro da Marina</span><span>cerca de R$ 41 mil</span></div>
+  </div>
+  <p class="citacao f" style="font-size:52px">Projeto quebra por falta de caixa num mês.</p>
+</section>
+<section class="s q" data-q="giro_meses" data-bloco="Bloco 2 · O capital de giro"></section>
+
+<section class="s" data-bloco="Bloco 2 · Os três cenários">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Os três cenários do Pilar 4 · mesma diária, mesma margem</p>
+      <table class="t" style="font-size:28px">
+        <tr><th>Cenário</th><th>Ocupação</th><th>Resultado no ano</th></tr>
+        <tr class="f"><td>Conservador · só fins de semana, o que ela mediu</td><td class="v">38,5%</td><td class="v">cerca de R$ 109 mil</td></tr>
+        <tr class="f"><td>Base · com os feriados</td><td class="v">50%</td><td class="v">cerca de R$ 141 mil</td></tr>
+        <tr class="f"><td>Otimista · procura forte</td><td class="v">65%</td><td class="v">cerca de R$ 184 mil</td></tr>
+      </table>
+      <p class="lead f" style="font-size:32px">O otimista é teto, não meta. <b>O que precisa funcionar é o conservador.</b></p>
+    </div>
+    <div class="figs um"><img src="figuras/03-tres-cenarios.png" alt="Três cenários da Marina, resultado por ano: conservador cerca de R$ 109 mil, base cerca de R$ 141 mil, otimista cerca de R$ 184 mil, teto e não meta"></div>
+  </div>
+</section>
+<section class="s q" data-q="ocup_base" data-bloco="Bloco 2 · Os três cenários"></section>
+<section class="s q" data-q="ocup_otim" data-bloco="Bloco 2 · Os três cenários"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Dos três cenários, qual precisa funcionar?</p>
+    <div class="ops">
+      <button class="op">O otimista, porque é a meta</button>
+      <button class="op">O base, porque é o do meio</button>
+      <button class="op" data-certa>O conservador</button>
+    </div>
+    <p class="exp">O que precisa funcionar é o conservador, o que você mediu. O otimista é teto, não meta.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O tempo de volta">
+  <p class="k">O tempo de volta, em linguagem de padaria</p>
+  <h2>Você põe um milhão <i>numa padaria</i></h2>
+  <div class="conta" style="max-width:1300px;font-size:44px">
+    <div class="eq f"><span>Investimento</span><span>R$ 1 milhão</span></div>
+    <div class="eq f"><span>O que ela sobra por ano, depois de pagar tudo</span><span>R$ 100 mil</span></div>
+    <div class="eq tot f" data-foco><span>Para o milhão voltar</span><span>uns 10 anos</span></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A escada">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Pense numa escada</p>
+      <h2 style="font-size:64px">O ano em que a escada <i>passa do zero</i></h2>
+      <ul class="lista" style="font-size:29px">
+        <li class="f">No ano zero, sai o investimento. Depois, cada ano devolve o resultado.</li>
+        <li class="f">Na Marina, cerca de R$ 690 mil. No conservador, a escada passa do zero em pouco mais de seis anos. No base, perto de cinco. No otimista, em menos de quatro.</li>
+        <li class="f">O terreno não entra no tempo de volta porque já é dela. Mas fica preso no projeto: a razão fica escrita no Dossiê.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img src="figuras/04-escada-tempo-de-volta.png" alt="A escada do tempo de volta da Marina: menos 690 mil no ano zero, passa do zero em pouco mais de seis anos no conservador, e a régua"></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A escada" id="s-escada">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a escada</p><span class="selo">Começa na padaria</span></div>
+  <div class="sim" data-sim="escada" style="grid-template-columns:1fr;gap:18px">
+    <svg class="escada-svg" viewBox="0 0 1500 330" preserveAspectRatio="none"></svg>
+    <div class="grid g2" style="gap:40px;align-items:end">
+      <label>Investimento, no ano zero <output data-for="inv" data-fmt="brl"></output><input type="range" name="inv" min="100000" max="3000000" step="10000" value="1000000"></label>
+      <label>O que a operação deixa por ano <output data-for="res" data-fmt="brl"></output><input type="range" name="res" min="10000" max="600000" step="1000" value="100000"></label>
+    </div>
+    <div style="display:flex;gap:36px;align-items:center;flex-wrap:wrap;font-size:30px">
+      <span class="tv" style="color:var(--ouro);font-size:40px">Tempo de volta: <b data-r="volta"></b></span>
+      <div class="aviso" data-aviso style="flex:1;min-width:300px"></div>
+    </div>
+    <div><button class="reset">Voltar à padaria</button> <button class="btn-s2" id="meus-escada">Usar os meus números</button> <span class="ajustado">Ajustado por você</span></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A régua">
+  <p class="k">Como ler · hospedagem pequena, com operação própria</p>
+  <h2>A régua <i>do tempo de volta</i></h2>
+  <div class="regua" style="font-size:24px;max-width:1660px">
+    <div class="r1 f" style="flex:5">Até 5 · muito bom, e raro</div>
+    <div class="r2 f" style="flex:3">5 a 8 · bom</div>
+    <div class="r3 f" style="flex:4">8 a 12 · com valorização</div>
+    <div class="r4 f" style="flex:4">Acima de 12 · razão escrita</div>
+  </div>
+  <ul class="lista f" style="font-size:30px">
+    <li>De 8 a 12: aceitável com valorização relevante do imóvel.</li>
+    <li>Acima de 12: só com uma razão escrita, como patrimônio, uso da família ou projeto de vida.</li>
+  </ul>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">No conservador, a escada da Marina passa do zero em pouco mais de seis anos. Pela régua, isso é...</p>
+    <div class="ops">
+      <button class="op">Muito bom, e raro</button>
+      <button class="op" data-certa>Bom: fica na faixa de 5 a 8 anos</button>
+      <button class="op">Só com uma razão escrita</button>
+    </div>
+    <p class="exp">De cinco a oito anos é bom. No cenário mais fraco, a conta da Marina fecha dentro da régua. É uma leitura de referência, não garantia.</p>
+  </div>
+</section>
+
+<section class="s foto" data-bg="../fotos/9f117bde58.jpg" data-bloco="Bloco 2 · O veredito">
+  <p class="k">E a Marina?</p>
+  <h2 style="max-width:1150px">No cenário mais fraco, <i>dentro da régua</i></h2>
+  <ul class="lista" style="max-width:1150px;font-size:32px">
+    <li class="f">Ela pode avançar com a fase um. Mas é uma conta de referência.</li>
+    <li class="f">Antes de assinar, troca cada linha por cotação escrita e soma a infraestrutura do terreno.</li>
+    <li class="f">O critério: se o investimento passar de cerca de R$ 870 mil, ou a receita cair uns 20%, o tempo de volta passa de oito anos, e ela volta à conta.</li>
+  </ul>
+</section>
+<section class="s q" data-q="veredito" data-bloco="Bloco 2 · O seu veredito"></section>
+<section class="s q" data-q="criterio" data-bloco="Bloco 2 · O seu veredito"></section>
+
+<section class="s" data-bloco="Bloco 2 · Depois da conta">
+  <p class="k">Quando a conta fechar com números reais</p>
+  <h2>Três caminhos <i>para crescer</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Melhorar o que existe</h3><p>Mais resultado com o que já está de pé.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Construir mais</h3><p>No terreno que você já desenhou, quando o gatilho acender.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Um projeto novo</h3><p>O caminho inteiro de novo, em outro lugar.</p></div>
+  </div>
+  <p class="lead f">Primeiro prove a conta, depois escolha como crescer. Na Marina, a quarta e a quinta cabanas esperam o gatilho da fase dois, como no Pilar 5.</p>
+</section>
+<section class="s q" data-q="x_caminho" data-bloco="Bloco 2 · Depois da conta"></section>
+
+<!-- ============ RESUMO, PERFIL, DIAGNÓSTICO E FECHAMENTO ============ -->
+<section class="s esc" data-bloco="Resumo">
+  <p class="k">O Pilar 6 em cinco frases</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:34px;gap:18px">
+    <li class="f">Não é quanto custa a cabana: é quanto custa abrir a porta, numa folha de oito linhas, cada uma com a origem ao lado.</li>
+    <li class="f">O giro entra na conta. O terreno fica fora, mas não é de graça.</li>
+    <li class="f">Receita bruta não é lucro: a margem de 40% é simplificação, não promessa.</li>
+    <li class="f">O que precisa funcionar é o conservador. O otimista é teto, não meta.</li>
+    <li class="f">O tempo de volta é o ano em que a escada passa do zero: uma leitura, não garantia. Primeiro prove a conta, depois escolha como crescer.</li>
+  </ul>
+</section>
+
+<section class="s" data-bloco="A sua página 6">
+  <p class="k">Para a página sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Se você já preencheu em outro pilar, trouxemos de lá. Nada é enviado nesta aula: a ferramenta usa o seu e-mail só quando você pedir o mentor virtual ou baixar o PDF.</p>
+</section>
+
+<section class="s diag sem-topo" data-bloco="Diagnóstico · a sua Pré-viabilidade" id="s-diag">
+  <p class="diag-txt">As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 6 do seu Dossiê. No fim, envie para o Land Bank da Zion.</p>
+  <div class="diag-box" data-sem-clique>
+    <iframe id="diag-fr" data-sem-clique title="Faça agora · A sua Pré-viabilidade" loading="eager"></iframe>
+    <div class="diag-vazio" id="diag-vazio">Abrindo a ferramenta da Pré-viabilidade...</div>
+  </div>
+  <div class="diag-pe" data-sem-clique><span>Se a ferramenta abrir na tela inicial, toque em "Continuar de onde parei".</span><a id="diag-cheia" href="../../pilar6/" target="_blank" rel="noopener">Abrir em tela cheia</a></div>
+</section>
+
+<section class="s foto" data-bg="../fotos/c4b7d4ee48.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 7</p>
+  <h2 style="max-width:1150px">Capital <i>e Dossiê</i></h2>
+  <p class="lead" style="max-width:1050px">De onde vem o capital, com quem, e a decisão de avançar, ajustar ou parar. Só siga com a Pré-viabilidade na mão.</p>
+  <p class="sv" style="max-width:1150px;background:rgba(62,142,90,.32);border-color:var(--ok)"><b style="color:#BFE3C8">Lembre</b><span>Salve o PDF na pasta Meu Dossiê.</span></p>
+  <p class="sm" style="max-width:1150px;margin-top:20px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas, na referência da Zion. Não é orçamento nem oferta de investimento, e não é promessa de renda, lucro, retorno, prazo de retorno, ocupação, crédito ou sociedade: o tempo de volta é uma leitura, não garantia. Impostos, quem confirma é o contador; licenças, a prefeitura e o arquiteto; contratos, o advogado. A Zion avalia cada caso.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Aula principal do Pilar 6: perguntas dentro dos slides.
+   Grava no MESMO estado da ferramenta "Faça agora · A sua Pré-viabilidade"
+   (../../pilar6/, chave "zion-t1-pilar6"): perfil, respostas, fontes, veio,
+   passo, criterio e extra.veredito, no formato dela. As perguntas que a
+   ferramenta não tem ficam em S.aulaExtras, um campo a mais que ela preserva.
+   As contas abaixo são as mesmas da ferramenta (base simplificada da Zion).
+   =================================================================== */
+const CHAVE = "zion-t1-pilar6";
+const FERRAMENTA = "../../pilar6/";
+const PAGINAS = [
+  { n: 0, chave: "zion-t1-marco-zero" }, { n: 1, chave: "zion-t1-aula1" }, { n: 2, chave: "zion-t1-aula2" }, { n: 3, chave: "zion-t1-aula3" },
+  { n: 4, chave: "zion-t1-pilar4" }, { n: 5, chave: "zion-t1-pilar5" }, { n: 6, chave: "zion-t1-pilar6" }, { n: 7, chave: "zion-t1-pilar7" },
+];
+
+/* ---------- apoio: leitura e formatação pt-BR (as mesmas regras da ferramenta) ---------- */
+function falta(v) {
+  if (v === undefined || v === null) return true;
+  if (v === "nao_sei") return true;
+  if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+  if (Array.isArray(v)) return v.length === 0;
+  if (typeof v === "number") return !Number.isFinite(v);
+  return false;
+}
+function paraNumero(v) {
+  if (falta(v)) return null;
+  if (typeof v === "number") return Number.isFinite(v) ? v : null;
+  if (typeof v !== "string") return null;
+  let s = v.replace(/R\$|%|\s/g, "");
+  if (s === "") return null;
+  if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+  else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+  if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+  const n = Number(s);
+  return Number.isFinite(n) ? n : null;
+}
+function arred(x, casas = 2) {
+  const f = Math.pow(10, casas); const y = Number((Math.abs(x) * f).toPrecision(12));
+  let i = Math.floor(y); const d = y - i;
+  if (Math.abs(d - 0.5) < 1e-7) { if (i % 2 !== 0) i += 1; } else i = Math.round(y);
+  const r = i / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res;
+}
+const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+function brl0(x) { const r = arred(x, 0); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 0); }
+function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+const okN = (...xs) => xs.every((x) => typeof x === "number" && Number.isFinite(x));
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+const anos = (a) => (okN(a) ? fmtN(a, 2) + " anos" : "em branco");
+
+/* ---------- o que o aluno já salvou em outras páginas do Dossiê ---------- */
+function carregarChave(k) { try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; } }
+const salvoDaPagina = (n) => { const p = PAGINAS.find((x) => x.n === n); return p ? carregarChave(p.chave) : null; };
+const dadosDaPagina = (n) => { const d = salvoDaPagina(n); return (d && d.resumo && d.resumo.dados) || (d && d.dados) || {}; };
+const respostasDaPagina = (n) => { const d = salvoDaPagina(n); return (d && d.respostas) || {}; };
+function primeiroNumero(obj, nomes) { for (const k of nomes) { const v = paraNumero(obj ? obj[k] : null); if (v !== null) return v; } return null; }
+const comoPct = (x) => (x === null ? null : x <= 1 ? x * 100 : x);
+function perfilDeOutraPagina() {
+  let melhor = null;
+  for (const p of PAGINAS) {
+    if (p.n === 6) continue;
+    const d = carregarChave(p.chave); if (!d) continue;
+    const perfil = d.perfil && d.perfil.nome ? d.perfil : d.nome ? { nome: d.nome, email: d.email || "", cidade: d.cidade || "", uf: "" } : null;
+    if (perfil && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { perfil, at: d.atualizado };
+  }
+  return melhor ? melhor.perfil : null;
+}
+/* Os mesmos caminhos que a ferramenta usa para trazer um número de outra página. */
+const VEIO = {
+  unidades() {
+    const p5 = primeiroNumero(dadosDaPagina(5), ["unidades_fase1", "unidades_fase_um", "fase1_unidades", "unidades_abertura", "unidades"]);
+    if (p5 !== null) return { valor: String(p5), de: "página 5 do seu Dossiê, o Masterplan faseado (unidades da fase um)" };
+    const p4 = primeiroNumero(dadosDaPagina(4), ["unidades", "unidades_fase1", "unidades_abertura"]);
+    if (p4 !== null) return { valor: String(p4), de: "página 4 do seu Dossiê, o Modelo de Negócio" };
+    const p3 = primeiroNumero(dadosDaPagina(3), ["unidades_abertura"]);
+    if (p3 !== null) return { valor: String(p3), de: "página 3 do seu Dossiê, a Ficha do Produto (unidades na primeira fase)" };
+    return null;
+  },
+  diaria() {
+    const p4 = primeiroNumero(dadosDaPagina(4), ["diaria", "diaria_media", "diaria_conservador"]);
+    if (p4 !== null) return { valor: String(Math.round(p4 * 100) / 100).replace(".", ","), de: "página 4 do seu Dossiê, o Modelo de Negócio" };
+    const p2 = primeiroNumero(dadosDaPagina(2), ["diaria_media"]);
+    if (p2 !== null) return { valor: String(Math.round(p2)), de: "página 2 do seu Dossiê, a Ficha do Mercado (diária média arredondada ao real)" };
+    return null;
+  },
+  ocup_cons() {
+    const p4 = comoPct(primeiroNumero(dadosDaPagina(4), ["ocupacao_conservador", "ocup_conservador", "ocupacao", "ocup_ano"]));
+    if (p4 !== null) return { valor: fmtN(p4, 2), de: "página 4 do seu Dossiê, o Modelo de Negócio (cenário conservador)" };
+    const p2 = comoPct(primeiroNumero(dadosDaPagina(2), ["ocup_ano"]));
+    if (p2 !== null) return { valor: fmtN(p2, 2), de: "página 2 do seu Dossiê, a Ficha do Mercado (ocupação média do ano)" };
+    return null;
+  },
+  ocup_base() { const d4 = dadosDaPagina(4); const p4 = comoPct(primeiroNumero(d4, ["ocupacao_base", "ocup_base"]) ?? (Array.isArray(d4.cenarios) && d4.cenarios[1] ? paraNumero(d4.cenarios[1].ocupacao) : null)); return p4 !== null ? { valor: fmtN(p4, 2), de: "página 4 do seu Dossiê, o Modelo de Negócio (cenário base)" } : null; },
+  ocup_otim() { const d4 = dadosDaPagina(4); const p4 = comoPct(primeiroNumero(d4, ["ocupacao_otimista", "ocup_otimista", "ocup_otim"]) ?? (Array.isArray(d4.cenarios) && d4.cenarios[2] ? paraNumero(d4.cenarios[2].ocupacao) : null)); return p4 !== null ? { valor: fmtN(p4, 2), de: "página 4 do seu Dossiê, o Modelo de Negócio (cenário otimista)" } : null; },
+  terreno() {
+    const p1 = paraNumero(respostasDaPagina(1).preco_terreno);
+    if (p1 !== null) return { valor: String(p1), de: "página 1 do seu Dossiê, a Ficha do Território (valor do terreno)" };
+    const p5 = primeiroNumero(dadosDaPagina(5), ["terreno", "valor_terreno"]);
+    return p5 !== null ? { valor: String(p5), de: "página 5 do seu Dossiê" } : null;
+  },
+};
+
+/* ---------- a base simplificada da Zion e as fontes (iguais às da ferramenta) ---------- */
+const REF = { l_unidade: 129000, l_deck: 15000, l_luz: 10000, l_agua: 8500, l_mobilia: 25915, l_piso: 3931, licencas: 15000, reserva_pct: 10, giro_meses: 3, margem: 40, ocup_base: 50, ocup_otim: 65 };
+const LINHAS = ["l_unidade", "l_deck", "l_luz", "l_agua", "l_mobilia", "l_piso"];
+const REGUA = [5, 8, 12];
+const FONTES_CUSTO = [
+  { v: "cotacao", nota: 3, rot: "Cotação escrita, com escopo e data" },
+  { v: "falado", nota: 2, rot: "Um fornecedor ou profissional me passou, mas sem papel" },
+  { v: "referencia", nota: 1, rot: "Referência da Zion ou estimativa minha, marcada como referência" },
+];
+const FONTES_MERCADO = [
+  { v: "medida", nota: 3, rot: "Medi eu mesmo (comparáveis, calendários) ou tenho o extrato da operação" },
+  { v: "falado", nota: 2, rot: "Alguém da região me falou, mas não tenho no papel" },
+  { v: "estimativa", nota: 1, rot: "É estimativa minha ou a hipótese do meu produto" },
+];
+const FONTES_MARGEM = [
+  { v: "lista", nota: 3, rot: "Saiu da minha lista de custos, conferida com o contador, ou do extrato de doze meses" },
+  { v: "falado", nota: 2, rot: "Alguém que opera me passou, sem a minha lista" },
+  { v: "referencia", nota: 1, rot: "É a margem de referência da Zion, uma simplificação" },
+];
+
+/* ---------- as perguntas da ferramenta, na ordem dela (para o "passo"), com o texto em harmonia com os vídeos ---------- */
+const NS_LINHA = "Não sei: a conta usa a referência da Zion até a cotação chegar";
+const ONDE_LINHA = (txt) => `<p>${txt} Sem cotação, marque <b>Não sei</b>: a ferramenta usa a referência da Zion, marcada como referência, até a cotação chegar.</p>`;
+const TQ = [
+  { id: "palpite", tipo: "moeda", aceitaNS: true, placeholder: "Ex.: 400.000", curto: "O meu palpite",
+    cita: "No vídeo: o preço chegou pelo WhatsApp, você multiplicou pelas unidades e sentiu alívio. Será que é só isso?",
+    pergunta: "Antes da conta: quanto você acha que custa abrir a porta da sua fase um?",
+    explica: "Escreva o seu palpite, sem pesquisar: o número que vem à cabeça agora. No fim, a ferramenta compara com a conta inteira.",
+    porque: "A diferença entre o palpite e a conta inteira é o tamanho do risco que você estava prestes a correr.",
+    onde: "<p>Na sua cabeça, ou no preço que chegou pelo WhatsApp. Não pesquise agora: o palpite só vale se for escrito antes da conta.</p>",
+    marina: "A Marina pediu o preço da cabana, multiplicou pelas três unidades e sentiu alívio. Logo depois, veio o frio na barriga.",
+    ondeCurto: "escrever o palpite, com data, antes de fazer a conta" },
+  { id: "unidades", tipo: "numero", unidade: "unidades", aceitaNS: false, positivo: true, max: 200, placeholder: "Ex.: 3", curto: "Unidades da fase um", veio: VEIO.unidades,
+    cita: "No vídeo, a Marina abre a fase um com três cabanas de glamping para casal.",
+    pergunta: "Quantas unidades a sua fase um abre?",
+    explica: "As unidades da fase um, a lista do que entra no seu Masterplan faseado. Não as do projeto completo.",
+    porque: "Toda a conta deste pilar é da fase um: o que se constrói agora. O que espera o gatilho da fase dois não se orça agora.",
+    onde: "<p>No seu Masterplan faseado (Pilar 5) e no seu Modelo de Negócio (Pilar 4).</p>",
+    marina: "A Marina abre com três cabanas de glamping para casal.", ondeCurto: "rever a fase um no seu Masterplan faseado" },
+  { id: "l_unidade", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, ref: 129000, refRot: "Usar a referência da Zion: R$ 129.000 por unidade", nsRot: NS_LINHA, placeholder: "Ex.: 129.000", curto: "1 · A unidade",
+    cita: "No vídeo: na referência da Zion, a unidade sozinha fica em cerca de R$ 129 mil, bolha ou cabana.",
+    pergunta: "Linha 1 · Quanto custa a unidade, a bolha ou a cabana?",
+    explica: "O preço de uma unidade, sem deck, sem ligações e sem mobília. Escreva o valor por unidade.",
+    porque: "É a maior linha da folha. O seu número depende do terreno, da região e do padrão. Preço de outra região, ou de outro ano, é palpite.",
+    onde: "<p>Na <b>cotação escrita</b> do fornecedor, com o escopo e a data. Sem cotação, use a <b>referência da Zion</b>, marcada como referência, e peça a cotação.</p>",
+    marina: "Na referência da Zion, a unidade sozinha fica em cerca de R$ 129 mil. A Marina usa a referência até a cotação chegar.",
+    ondeCurto: "pedir a cotação escrita da unidade, com o escopo e a data" },
+  { id: "l_deck", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: NS_LINHA, placeholder: "Ex.: 20.000", curto: "2 · Deck de madeira",
+    cita: "No vídeo: o preço da unidade cobre a unidade. O deck fica de fora.",
+    pergunta: "Linha 2 · Quanto custa o deck de madeira de cada unidade?",
+    explica: "O deck de cada unidade. Escreva o valor por unidade.",
+    porque: "O fornecedor mandou o preço do que você pediu: a unidade. O deck é a primeira das linhas que ficam de fora.",
+    onde: ONDE_LINHA("Na cotação da construtora ou do carpinteiro da região, com a área do deck escrita."),
+    marina: "Na Marina, a banheira fica no deck: é uma das coisas que movem a diária.", ondeCurto: "pedir a cotação do deck, com a área escrita" },
+  { id: "l_luz", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: NS_LINHA, placeholder: "Ex.: 10.000", curto: "3 · Luz",
+    cita: "No vídeo: três, a luz.",
+    pergunta: "Linha 3 · Quanto custa levar a luz até cada unidade e instalar?",
+    explica: "A ligação e a instalação elétrica de cada unidade, por unidade. A rede comum, até o conjunto, fica na infraestrutura comum.",
+    porque: "A luz de cada unidade é uma linha da unidade pronta. O que é comum ao terreno inteiro se orça à parte, pela distância e pela capacidade.",
+    onde: ONDE_LINHA("No eletricista ou na construtora, com o projeto elétrico."),
+    marina: null, ondeCurto: "pedir ao eletricista a cotação da instalação de cada unidade" },
+  { id: "l_agua", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: NS_LINHA, placeholder: "Ex.: 8.000", curto: "4 · Água e esgoto, ou fossa",
+    cita: "No vídeo: quatro, a água e o esgoto, ou a fossa.",
+    pergunta: "Linha 4 · Quanto custa a água e o esgoto, ou a fossa, de cada unidade?",
+    explica: "A água que chega e o esgoto tratado de cada unidade, por unidade.",
+    porque: "Qual sistema vale no seu terreno, quem confirma é o projetista habilitado e a prefeitura.",
+    onde: ONDE_LINHA("No projetista habilitado e na construtora, com o sistema definido por escrito."),
+    marina: null, ondeCurto: "pedir ao projetista o sistema de água e esgoto de cada unidade, com o custo" },
+  { id: "l_mobilia", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: NS_LINHA, placeholder: "Ex.: 25.000", curto: "5 · Mobiliário, equipamentos e enxoval",
+    cita: "No vídeo: cinco, o mobiliário, os equipamentos e o enxoval, com três jogos de cama por cama.",
+    pergunta: "Linha 5 · Quanto custam o mobiliário, os equipamentos e o enxoval de cada unidade?",
+    explica: "A cama, os móveis, os equipamentos e o enxoval, com três jogos de cama por cama. Por unidade.",
+    porque: "Se a conta apertar, corte metros no projeto, nunca a experiência dentro deles. E cada item mora numa linha só: se a cotação do mobiliário já trouxer o enxoval, não some de novo.",
+    onde: ONDE_LINHA("Na especificação escrita de cada item e nas cotações das lojas."),
+    marina: "Na Marina, a banheira no deck e a lareira são o que movem a diária. Ficam.", ondeCurto: "escrever a especificação de uma unidade e cotar item por item" },
+  { id: "l_piso", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: NS_LINHA, placeholder: "Ex.: 4.000", curto: "6 · Piso interno",
+    cita: "No vídeo: o que fica fora do preço da unidade é cerca de um terço do custo de uma unidade pronta.",
+    pergunta: "Linha 6 · Quanto custa o piso interno de cada unidade?",
+    explica: "O acabamento do chão de cada unidade, por unidade.",
+    porque: "Com ela fecham as seis linhas de cada unidade. Somadas, mostram que o preço da unidade não é o preço da unidade pronta.",
+    onde: ONDE_LINHA("Na cotação da construtora ou do fornecedor do piso, com a área interna escrita."),
+    marina: "Na referência da Zion, a unidade pronta, com mobília, fica em cerca de R$ 190 mil. A unidade sozinha, cerca de R$ 129 mil.", ondeCurto: "pedir a cotação do piso, com a área interna escrita" },
+  { id: "licencas", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, ref: 15000, refRot: "Usar a estimativa de referência: R$ 15.000 para a fase, a confirmar", nsRot: "Não sei: a conta usa a estimativa de referência", placeholder: "Ex.: 15.000", curto: "7 · Licenças e projetos",
+    cita: "No vídeo: as licenças e os projetos da Marina entram numa estimativa de quinze mil.",
+    pergunta: "Linha 7 · Quanto custam as licenças e os projetos da fase um?",
+    explica: "Arquitetura, engenharia, aprovações e consultas. Escreva o valor total da fase, e não por unidade.",
+    porque: "O que vale no seu terreno, e quanto custa aprovar, quem confirma é a prefeitura, o arquiteto e, se houver dúvida, o advogado.",
+    onde: "<p>Nas propostas escritas do arquiteto, do engenheiro e do projetista.</p>",
+    marina: "A Marina usa uma estimativa de R$ 15 mil para a fase um, marcada como estimativa até as propostas chegarem.", ondeCurto: "pedir as propostas escritas do arquiteto e do engenheiro" },
+  { id: "reserva_pct", tipo: "percentual", aceitaNS: true, max: 50, ref: 10, refRot: "Usar a base da Zion: 10% sobre as unidades", nsRot: "Não sei: a conta usa 10%", placeholder: "Ex.: 10", curto: "8 · Reserva do imprevisto",
+    cita: "No vídeo: oito, a reserva do imprevisto, de dez por cento.",
+    pergunta: "Linha 8 · Quanto você reserva para o imprevisto?",
+    explica: "Uma porcentagem sobre as unidades prontas. Na base da Zion, dez por cento.",
+    porque: "Você não sabe qual imprevisto virá. Sabe que algum virá. A reserva cobre a obra orçada, e não escopo novo nem linha esquecida.",
+    onde: "<p>Escreva a porcentagem. Com muita incerteza nas cotações, reserve mais.</p>",
+    marina: "Na Marina, a reserva de dez por cento dá cerca de R$ 58 mil.", ondeCurto: "escrever a porcentagem da reserva e a regra de uso" },
+  { id: "infra", tipo: "moeda", fontes: FONTES_CUSTO, aceitaNS: true, nsRot: "Não sei: fica à parte, a cotar", placeholder: "Ex.: 120.000", curto: "À parte · Infraestrutura comum",
+    cita: "No vídeo: a infraestrutura comum é a linha que mais varia entre terrenos.",
+    pergunta: "A infraestrutura comum do terreno já tem orçamento?",
+    explica: "O acesso, os caminhos, o estacionamento, o apoio e a rede para o conjunto. Se já tiver orçamento, escreva o total. Se não, marque Não sei: ela fica à parte, a cotar.",
+    porque: "Ela não é de nenhuma unidade, e se orça pela distância e pela capacidade. É a linha que mais varia entre terrenos, e ela só pode aumentar a conta.",
+    onde: "<p>Energia: a <b>concessionária</b> informa, e a ligação é gratuita. Água e esgoto do conjunto: o <b>projetista habilitado</b>. Acesso e caminhos: a <b>construtora</b>.</p>",
+    marina: "Na Marina, a infraestrutura comum entra com o orçamento do terreno dela, por cotação. Por enquanto, ela marcou Não sei.", ondeCurto: "ligar para a concessionária e pedir à construtora o orçamento do acesso e dos caminhos" },
+  { id: "giro_meses", tipo: "numero", unidade: "meses", aceitaNS: true, min: 0, max: 24, ref: 3, refRot: "Usar o mínimo da base da Zion: 3 meses", nsRot: "Não sei: a conta usa 3 meses", placeholder: "Ex.: 3", curto: "Capital de giro (meses de custo)",
+    cita: "No vídeo: a Marina deixa três meses de custo, cerca de R$ 41 mil, no banco no dia da abertura.",
+    pergunta: "Capital de giro: quantos meses de custo você deixa no banco no dia da abertura?",
+    explica: "Capital de giro é o dinheiro dos meses em que a receita ainda não cobre o custo. A ferramenta calcula um mês de custo pelo seu cenário conservador.",
+    porque: "Nenhuma hospedagem nova abre com a ocupação do destino. Projeto quebra por falta de caixa num mês.",
+    onde: "<p>Três meses é o mínimo da base da Zion. Quando você tiver a sua lista de custos, refaça a conta com ela.</p>",
+    marina: "A Marina deixa três meses de custo, cerca de R$ 41 mil, no banco no dia da abertura.", ondeCurto: "calcular três meses do seu custo" },
+  { id: "terreno", tipo: "moeda", aceitaNS: true, placeholder: "Ex.: 500.000", curto: "À parte · Valor do terreno", veio: VEIO.terreno,
+    cita: "No vídeo: mesmo que já seja seu, o terreno é dinheiro preso no projeto. Fora da conta não quer dizer de graça.",
+    pergunta: "Quanto vale o seu terreno?",
+    explica: "O valor de mercado do terreno, mesmo que já seja seu. Ele fica fora do investimento e do tempo de volta.",
+    porque: "Fora da conta não quer dizer de graça: é dinheiro preso no projeto. Por isso a razão de deixá-lo fora fica escrita no Dossiê.",
+    onde: "<p>Na sua Ficha do Território (Pilar 1), no valor do terreno, ou numa avaliação.</p>",
+    marina: "O terreno é da Marina: fica fora da conta, mas não é de graça.", ondeCurto: "anotar o valor da Ficha do Território, ou pedir uma avaliação" },
+  { id: "diaria", tipo: "moeda", fontes: FONTES_MERCADO, aceitaNS: true, placeholder: "Ex.: 645", curto: "Diária média", veio: VEIO.diaria,
+    cita: "No vídeo: a receita da Marina vem de três cabanas, 38,5% de ocupação e R$ 645 de diária média.",
+    pergunta: "Qual é a diária média que entra na conta?",
+    explica: "Diária média é o que entra dividido pelas noites vendidas. Use a medida no mercado, e não a hipótese do seu produto.",
+    porque: "Receita bruta não é lucro, mas tudo começa nela. Entre a diária do mercado e a hipótese do produto, a conta usa a mais exigente.",
+    onde: "<p>Na sua Ficha do Mercado (Pilar 2) e no seu Modelo de Negócio (Pilar 4). Se você já opera, a diária média real dos últimos doze meses.</p>",
+    marina: "A Marina usa R$ 645 de diária média, a do Pilar 4.", ondeCurto: "rever a diária média na sua Ficha do Mercado" },
+  { id: "ocup_cons", tipo: "percentual", fontes: FONTES_MERCADO, aceitaNS: true, max: 100, placeholder: "Ex.: 38,5", curto: "Ocupação do conservador", veio: VEIO.ocup_cons,
+    cita: "No vídeo: o conservador é o que a Marina mediu, só fins de semana, 38,5%.",
+    pergunta: "Cenário conservador: qual ocupação média do ano entra na conta?",
+    explica: "Ocupação é a parte das noites do ano que foi vendida. O conservador é o que você mediu.",
+    porque: "O que precisa funcionar é o conservador. É nele que a conta se apoia.",
+    onde: "<p>Na sua Ficha do Mercado (Pilar 2), a ocupação média do ano, e no cenário conservador do seu Modelo de Negócio (Pilar 4).</p>",
+    marina: "38,5%: o que a Marina mediu, só fins de semana.", ondeCurto: "rever a ocupação média do ano na sua Ficha do Mercado" },
+  { id: "ocup_base", tipo: "percentual", aceitaNS: true, max: 100, ref: 50, refRot: "Usar o cenário base da Marina: 50%", nsRot: "Não sei: a conta fica sem o base", placeholder: "Ex.: 50", curto: "Ocupação do base", veio: VEIO.ocup_base,
+    cita: "No vídeo: o base, com os feriados, 50%.",
+    pergunta: "Cenário base: e se os feriados entrarem?",
+    explica: "A ocupação do ano com fins de semana e feriados.",
+    porque: "Os três cenários usam a mesma diária e a mesma margem: só a ocupação muda.",
+    onde: "<p>No cenário base do seu Modelo de Negócio (Pilar 4).</p>",
+    marina: "50%, com os feriados: cerca de R$ 141 mil por ano.", ondeCurto: "rever o cenário base do seu Modelo de Negócio" },
+  { id: "ocup_otim", tipo: "percentual", aceitaNS: true, max: 100, ref: 65, refRot: "Usar o cenário otimista da Marina: 65%", nsRot: "Não sei: a conta fica sem o otimista", placeholder: "Ex.: 65", curto: "Ocupação do otimista", veio: VEIO.ocup_otim,
+    cita: "No vídeo: o otimista, com procura forte, 65%: teto, não meta.",
+    pergunta: "Cenário otimista: e com a procura forte?",
+    explica: "A ocupação do ano com procura forte. É teto, não meta.",
+    porque: "O otimista mostra até onde a conta vai, e não serve para planejar. O que precisa funcionar é o conservador.",
+    onde: "<p>No cenário otimista do seu Modelo de Negócio (Pilar 4).</p>",
+    marina: "65%, com procura forte: cerca de R$ 184 mil por ano. Teto, não meta.", ondeCurto: "rever o cenário otimista do seu Modelo de Negócio" },
+  { id: "margem", tipo: "percentual", fontes: FONTES_MARGEM, aceitaNS: true, max: 90, ref: 40, refRot: "Usar a margem de referência da Zion: 40%", nsRot: "Não sei: a conta usa a referência de 40%", placeholder: "Ex.: 40", curto: "Margem operacional",
+    cita: "No vídeo: de cada cem reais que o hóspede paga, sessenta pagam custos, impostos e comissões, e quarenta ficam.",
+    pergunta: "Qual margem operacional entra na conta?",
+    explica: "Margem operacional é o resultado da operação dividido pela receita bruta. Sem a sua lista de custos, use a referência da Zion, de 40%.",
+    porque: "É simplificação, não promessa. A sua margem real sai da sua lista de custos. Ocupação é vaidade, margem é sobrevivência.",
+    onde: "<p>Na sua lista de custos fixos e variáveis, conferida com o <b>contador</b>: qual imposto incide, e com que alíquota, quem confirma é ele. Se você já opera, nos doze meses de extrato.</p>",
+    marina: "A Marina usa a margem de referência de 40%: cerca de R$ 109 mil por ano, antes de qualquer parcela de financiamento.", ondeCurto: "começar a lista de custos fixos e variáveis e mostrar a conta ao contador" },
+  { id: "mes_abertura", tipo: "escolha", aceitaNS: true, curto: "Mês de abertura",
+    cita: "No vídeo: a Marina abre no começo da alta, a decisão de maior efeito, e que não custa nada.",
+    pergunta: "Em que momento do calendário você pretende abrir?",
+    explica: "A procura sobe aos poucos no primeiro ano, e parte do custo não cai junto.",
+    porque: "Abrir no começo da alta é a decisão de maior efeito do primeiro ano, e não custa nada.",
+    onde: "<p>Na curva do ano da sua Ficha do Mercado (Pilar 2): os meses de alta, os médios e os fracos. O cronograma da obra passa a mirar essa data.</p>",
+    marina: "A Marina abre no começo da alta.", ondeCurto: "marcar na curva do ano o começo da alta e escrever a data de abertura",
+    opcoes: [
+      { v: "alta", rot: "No começo da alta", fb: ["ok", "A decisão de maior efeito do primeiro ano, e não custa nada. Agora o cronograma da obra mira essa data."] },
+      { v: "media", rot: "Numa época média do ano", fb: ["at", "Dá para ajustar sem gastar nada: veja na curva do ano quando começa a alta."] },
+      { v: "baixa", rot: "Na baixa", fb: ["er", "Abrir na baixa é a forma mais cara de começar: a procura que sobe aos poucos encontra o mês fraco."] },
+    ] },
+];
+const QT = (id) => TQ.find((q) => q.id === id);
+const fontesDe = (q) => q.fontes || null;
+
+/* ---------- as perguntas da aula que não estão na ferramenta (e as duas que gravam em campos dela) ---------- */
+const T = (rot, cls, txt) => ({ rot, fb: cls ? [cls, txt] : null });
+const DQ = {
+  r_infra: { tipo: "quiz", curto: "Retomada · a infraestrutura",
+    pergunta: "Na fase um, o que vale?", explica: "Do Pilar 5. Responda de cabeça.",
+    opcoes: { a: T("Menos infraestrutura, para sobrar dinheiro para as unidades"), b: Object.assign(T("Menos unidades, nunca menos infraestrutura"), { certa: true }), c: T("Tudo do projeto completo já na fase um, unidades e rede") },
+    exp: "A rede de água, energia e esgoto se faz para o projeto completo já na fase um. Senão, na fase dois, você reabre vala com hóspede ao lado.",
+    porque: "Neste pilar, a infraestrutura preparada para o projeto completo entra na conta da fase um. É por isso que ela aparece como uma linha à parte." },
+  r_escopo: { tipo: "quiz", curto: "Retomada · o escopo congelado",
+    pergunta: "O escopo da fase um ficou congelado em três listas. Quais?", explica: "Do Pilar 5. Responda de cabeça.",
+    opcoes: { a: T("As unidades, o apoio e a rede"), b: Object.assign(T("O que entra, o que espera e o que nunca entra"), { certa: true }), c: T("O barato, o médio e o caro") },
+    exp: "Neste pilar, só se orça a lista do que entra. O que espera aguarda o gatilho da fase dois.",
+    porque: "A conta de hoje sai da lista do que entra. O que não se constrói não se orça." },
+  r_gatilho: { tipo: "quiz", curto: "Retomada · o gatilho da fase dois",
+    pergunta: "Quando começa a fase dois?", explica: "Do Pilar 5. Responda de cabeça.",
+    opcoes: { a: T("Depois de um feriado cheio"), b: Object.assign(T("Quando três condições acendem juntas: demanda, caixa e maturidade"), { certa: true }), c: T("Quando o arquiteto entrega o projeto") },
+    exp: "Demanda, com doze meses de reservas reais. Caixa, com a sua parte e três meses de custo fixo guardados. Maturidade, com processos escritos e equipe estável. Um feriado lotado é um dado, não doze meses.",
+    porque: "No fim deste pilar, a Marina deixa a quarta e a quinta cabanas esperando esse gatilho." },
+  x_concessionaria: { tipo: "escolha", curto: "A ligação para a concessionária",
+    cita: "No vídeo: a primeira ligação é para a concessionária de energia, e é gratuita.",
+    pergunta: "Você já fez a primeira ligação, para a concessionária de energia?", explica: "Pergunte a distância até o ponto de energia e o que ela consegue entregar no seu terreno.",
+    opcoes: { escrito: T("Sim, e a resposta está anotada, por escrito", "ok", "Guarde a resposta, com a data. É o começo do orçamento da infraestrutura comum."),
+      boca: T("Liguei, mas a resposta foi só de boca", "at", "Peça por escrito. Resposta de boca não fecha orçamento."),
+      nao: T("Ainda não liguei", "at", "É a primeira ligação, e é gratuita. Faça esta semana: é a sua lição do bloco um.") },
+    porque: "A infraestrutura comum se orça pela distância e pela capacidade. A concessionária responde a primeira parte, de graça." },
+  x_experiencia: { tipo: "texto", curto: "O que move a diária",
+    cita: "No vídeo: na Marina, a banheira no deck e a lareira são o que movem a diária. Ficam.",
+    pergunta: "O que, no seu projeto, move a diária e não pode ser cortado?", explica: "Se a conta passar do que você pode, é o que fica. Escreva o que o hóspede sente, e não um adjetivo.",
+    ns: "Ainda não sei", ondeCurto: "rever a Ficha do Produto (Pilar 3) e escrever o que move a diária",
+    porque: "Corte metros no projeto, antes da obra. Nunca corte a experiência dentro deles." },
+  veredito: { tipo: "escolha", curto: "O seu veredito",
+    cita: "No vídeo: no cenário mais fraco, a conta da Marina fecha dentro da régua, e ela pode avançar com a fase um.",
+    pergunta: "Pelo que você viu até aqui, qual é o seu veredito hoje?", explica: "Olhe o resumo da sua conta logo abaixo. Quem decide é você, por escrito. A ferramenta compara com a conta e avisa se o seu veredito estiver mais otimista do que ela.",
+    resumo: true,
+    opcoes: { avancar: T("Avançar: o conservador paga as contas dentro da régua; antes de assinar, cada linha vira cotação escrita"),
+      testar: T("Testar: a conta só fecha com uma premissa ainda não provada, ou ainda falta um número"),
+      ajustar: T("Ajustar: a conta não fecha bem neste desenho; uma alavanca clara pode mudar isso"),
+      pausar: T("Pausar: a conta não fecha em nenhuma alavanca razoável, ou o risco não cabe na sua vida") },
+    porque: "Avançar, testar, ajustar ou pausar. Escrever o veredito impede que a decisão seja tomada pelo entusiasmo. A leitura da conta pode ser mais cautelosa que a sua escolha, nunca mais otimista." },
+  criterio: { tipo: "texto", curto: "O critério para parar",
+    cita: "No vídeo: se o investimento da Marina passar de cerca de R$ 870 mil, ou a receita cair uns 20%, o tempo de volta passa de oito anos, e ela volta à conta.",
+    pergunta: "Escreva o seu critério para parar.", explica: "Molde: \"Se [o fato], eu não assino a obra: volto à conta e redesenho o tamanho, o produto ou a fase.\"",
+    placeholder: "Se o investimento total passar de..., eu não assino a obra: volto à conta.",
+    ns: "Prefiro escrever depois de ver a minha conta", ondeCurto: "escrever o critério depois de ver a conta na ferramenta (ela sugere um com os seus números)",
+    porque: "O fato que mudaria a sua decisão, escrito antes, para você não decidir pelo entusiasmo. Ele entra na página 6 do seu Dossiê." },
+  x_caminho: { tipo: "escolha", curto: "Por onde crescer",
+    cita: "No vídeo: primeiro prove a conta, depois escolha como crescer.",
+    pergunta: "Quando a sua conta fechar com números reais, por qual caminho você começa a crescer?", explica: "Melhorar o que existe, construir mais ou fazer um projeto novo.",
+    opcoes: { melhorar: T("Melhorar o que existe", "ok", "Mais resultado com o que já está de pé. Primeiro prove a conta, depois escolha como crescer."),
+      construir: T("Construir mais", "in", "No terreno que você já desenhou, quando o gatilho da fase dois acender. Como a Marina, com a quarta e a quinta cabanas."),
+      novo: T("Um projeto novo", "at", "É o caminho inteiro de novo, em outro lugar. Antes, prove a conta deste.") },
+    ns: "Ainda não sei", ondeCurto: "decidir depois de doze meses de operação real",
+    porque: "Crescer em cima de uma conta ainda não provada é multiplicar o risco." },
+};
+
+/* ---------- estado (o mesmo formato da ferramenta) ---------- */
+function estadoVazio() {
+  return { versao: 1, pilar: 6, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, sim: null, extra: {}, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.perfil = Object.assign({ nome: "", email: "", cidade: "", uf: "" }, d.perfil || {});
+  e.extra = Object.assign({}, d.extra || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function garantir() {
+  for (const k of ["respostas", "fontes", "veio", "extra"]) if (!S[k] || typeof S[k] !== "object") S[k] = {};
+  if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+  if (!S.perfil || typeof S.perfil !== "object") S.perfil = { nome: "", email: "", cidade: "", uf: "" };
+  if (!S.perfil.nome) { const p = perfilDeOutraPagina(); if (p) S.perfil = Object.assign({}, S.perfil, { nome: p.nome || "", email: S.perfil.email || p.email || "", cidade: S.perfil.cidade || p.cidade || "", uf: S.perfil.uf || p.uf || "" }); }
+}
+const ehNumerico = (q) => q.tipo === "numero" || q.tipo === "moeda" || q.tipo === "percentual";
+/** A mesma validação da ferramenta: só conta como feita a pergunta que ela também aceitaria. */
+function completaT(q) {
+  const v = S.respostas[q.id];
+  if (ehNumerico(q)) {
+    if (ehNS(v)) return !!q.aceitaNS;
+    const n = paraNumero(v);
+    if (n === null || n < 0) return false;
+    if (q.min !== undefined && n < q.min) return false;
+    if (q.max !== undefined && n > q.max) return false;
+    if (q.positivo && n <= 0) return false;
+    if (q.fontes && !S.fontes[q.id]) return false;
+    return true;
+  }
+  if (q.tipo === "escolha") return v !== undefined && v !== "";
+  return false;
+}
+/* Onde gravar cada pergunta da aula. */
+function lerD(id) {
+  if (id === "criterio") return S.aulaExtras.criterio_ns ? "nao_sei" : (S.criterio || undefined);
+  if (id === "veredito") return S.extra.veredito;
+  return S.aulaExtras[id];
+}
+function gravarD(id, v) {
+  if (id === "criterio") {
+    if (v === "nao_sei") S.aulaExtras.criterio_ns = true;
+    else if (v === undefined) delete S.aulaExtras.criterio_ns;
+    else { delete S.aulaExtras.criterio_ns; S.criterio = String(v).trim() ? v : null; }
+    return;
+  }
+  if (id === "veredito") { if (v === undefined || v === "nao_sei") delete S.extra.veredito; else S.extra.veredito = v; return; }
+  if (v === undefined) delete S.aulaExtras[id]; else S.aulaExtras[id] = v;
+}
+function completaD(id) {
+  const d = DQ[id], v = lerD(id);
+  if (v === undefined || v === null || v === "") return false;
+  if (ehNS(v)) return true;
+  if (d.tipo === "texto") return String(v).trim().length > 0;
+  return true;
+}
+const completa = (id) => (DQ[id] ? completaD(id) : completaT(QT(id)));
+function calcPasso() { const i = TQ.findIndex((q) => !completaT(q)); return i < 0 ? TQ.length : i; }
+let sujo = true; // a aula gravou algo que a ferramenta aberta ainda não viu
+function gravar() { garantir(); S.passo = calcPasso(); salvar(); sujo = true; }
+
+/* ---------- as contas (as mesmas da ferramenta) ---------- */
+function paramsDasRespostas() {
+  const r = S.respostas, P = { usouRef: [] };
+  for (const k of ["unidades", ...LINHAS, "licencas", "reserva_pct", "infra", "giro_meses", "terreno", "diaria", "ocup_cons", "ocup_base", "ocup_otim", "margem"]) P[k] = paraNumero(r[k]);
+  for (const k of [...LINHAS, "licencas", "reserva_pct", "giro_meses", "margem"]) if (P[k] === null) { P[k] = REF[k]; P.usouRef.push(k); }
+  P.palpite = paraNumero(r.palpite);
+  return P;
+}
+function calcular(P) {
+  const C = { P };
+  const un = okN(P.unidades) && P.unidades > 0 ? P.unidades : null;
+  const m = okN(P.margem) ? P.margem / 100 : null;
+  C.pronta = LINHAS.reduce((s, id) => s + (okN(P[id]) ? P[id] : 0), 0);
+  C.unidadesTot = un === null ? null : un * C.pronta;
+  C.reserva = C.unidadesTot === null ? null : (P.reserva_pct / 100) * C.unidadesTot;
+  C.somaFolha = C.unidadesTot === null ? null : C.unidadesTot + P.licencas + C.reserva;
+  C.infra = okN(P.infra) ? P.infra : null;
+  C.noites100 = un === null ? null : un * 365;
+  const rec = (o) => (okN(o, P.diaria) && un !== null ? C.noites100 * (o / 100) * P.diaria : null);
+  C.rec = { cons: rec(P.ocup_cons), base: rec(P.ocup_base), otim: rec(P.ocup_otim) };
+  C.res = {}; for (const k of ["cons", "base", "otim"]) C.res[k] = C.rec[k] === null || m === null ? null : m * C.rec[k];
+  C.custoAnoCons = C.rec.cons === null || m === null ? null : (1 - m) * C.rec.cons;
+  C.giro = C.custoAnoCons === null ? null : C.custoAnoCons * P.giro_meses / 12;
+  C.totalSemGiro = C.somaFolha === null ? null : C.somaFolha + (C.infra || 0);
+  C.total = C.totalSemGiro === null || C.giro === null ? null : C.totalSemGiro + C.giro;
+  C.volta = {}; for (const k of ["cons", "base", "otim"]) C.volta[k] = C.total !== null && okN(C.res[k]) && C.res[k] > 0 ? C.total / C.res[k] : null;
+  C.inv8 = okN(C.res.cons) ? REGUA[1] * C.res.cons : null;
+  return C;
+}
+function leituraReguaT(a) {
+  if (!okN(a)) return "em branco";
+  if (a <= REGUA[0] + 1e-9) return "até 5 anos: muito bom, e raro";
+  if (a <= REGUA[1] + 1e-9) return "de 5 a 8 anos: bom";
+  if (a <= REGUA[2] + 1e-9) return "de 8 a 12 anos: aceitável com valorização relevante do imóvel";
+  return "acima de 12 anos: só com uma razão escrita";
+}
+function notaDe(id) {
+  const q = QT(id); const v = S.respostas[id];
+  if (!q || v === undefined || ehNS(v) || paraNumero(v) === null) return 0;
+  const f = (fontesDe(q) || []).find((x) => x.v === S.fontes[id]);
+  return f ? f.nota : 1;
+}
+/** O veredito que a ferramenta sugere (mesma regra). */
+function vereditoSugerido(C) {
+  const P = C.P;
+  if (C.total === null || C.res.cons === null) return { v: "testar", motivo: "Ainda falta um número da receita (as unidades, a diária ou a ocupação do conservador): sem ele não há giro nem tempo de volta." };
+  if (C.res.cons <= 0) return { v: "pausar", motivo: "Com esta margem, a operação não deixa resultado: não há tempo de volta." };
+  const vc = C.volta.cons;
+  if (P.ocup_cons > 65 + 1e-9) return { v: "testar", motivo: "O conservador usa mais de 65% de ocupação: antes de confiar nessa conta, é preciso prova de procura extraordinária." };
+  if (vc <= REGUA[1] + 1e-9) {
+    const d2 = primeiroNumero(dadosDaPagina(2), ["diaria_media"]);
+    if (d2 !== null && P.diaria > d2 * 1.05) return { v: "testar", motivo: `O conservador volta em ${anos(vc)}, mas com uma diária acima da medida no mercado. A conta só fecha com uma premissa ainda não provada.` };
+    const fracas = ["diaria", "ocup_cons"].filter((id) => notaDe(id) <= 1);
+    if (fracas.length) return { v: "testar", motivo: `O conservador volta em ${anos(vc)}, mas ${juntar(fracas.map((id) => QT(id).curto.toLowerCase()))} ainda ${fracas.length > 1 ? "são estimativas" : "é estimativa"} sem medida.` };
+    return { v: "avancar", motivo: `No conservador, o investimento volta em ${anos(vc)}, ${leituraReguaT(vc)}. É uma conta de referência: antes de assinar, cada linha vira cotação escrita.` };
+  }
+  if (vc <= REGUA[2] + 1e-9) return { v: "ajustar", motivo: `No conservador, o tempo de volta é de ${anos(vc)}: ${leituraReguaT(vc)}. Mexa numa alavanca (tamanho, produto, preço ou fase) ou escreva a razão.` };
+  if (C.volta.otim !== null && C.volta.otim > REGUA[2] + 1e-9) return { v: "pausar", motivo: `Nem com a procura forte o investimento volta em 12 anos (otimista: ${anos(C.volta.otim)}).` };
+  return { v: "ajustar", motivo: `No conservador, o tempo de volta passa de 12 anos (${anos(vc)}). Só com uma razão escrita, ou com uma alavanca clara.` };
+}
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+const PESO_V = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+const calcAgora = () => calcular(paramsDasRespostas());
+
+/* ===================================================================
+   Montagem dos slides de pergunta
+   =================================================================== */
+const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+const IDS = slidesQ.map((s) => s.dataset.q);
+const TOTAL = IDS.length;
+
+function opcaoHTML(v, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+function campoHTML(id) {
+  const d = DQ[id];
+  if (d) {
+    if (d.tipo === "quiz" || d.tipo === "escolha") return `${d.resumo ? '<div class="resumo-mini" data-resumo></div>' : ""}<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot)).join("")}${d.ns ? opcaoHTML("nao_sei", d.ns, "ns") : ""}</div>`;
+    if (d.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="${esc(d.placeholder || "Escreva aqui")}" aria-label="${esc(d.pergunta)}"></textarea>${d.ns ? opcaoHTML("nao_sei", d.ns, "ns") : ""}`;
+  }
+  const q = QT(id);
+  if (ehNumerico(q)) {
+    const pre = q.tipo === "moeda" ? '<span class="un">R$</span>' : "";
+    const pos = q.tipo === "percentual" ? '<span class="un">%</span>' : q.tipo === "numero" && q.unidade ? `<span class="un">${esc(q.unidade)}</span>` : "";
+    return `<div class="cn">${pre}<input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || "Digite o número")}" aria-label="${esc(q.pergunta)}">${pos}</div>
+      ${q.ref !== undefined ? `<button type="button" class="opc ref" data-ref="1"><span class="mk"></span><span>${esc(q.refRot)}</span></button>` : ""}
+      ${q.aceitaNS ? opcaoHTML("nao_sei", q.nsRot || "Não sei", "ns") : ""}
+      ${q.fontes ? `<div class="fonte-bx"><span class="rot-r">De onde veio esse número?</span>${q.fontes.map((f) => `<button type="button" class="opc peq" data-fonte="${f.v}" aria-pressed="false"><span class="mk"></span><span>${esc(f.rot)}</span></button>`).join("")}</div>` : ""}
+      <div class="cx veio" data-veio hidden></div>`;
+  }
+  if (q.tipo === "escolha") return `<div class="ops2">${q.opcoes.map((o) => opcaoHTML(o.v, o.rot)).join("")}${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}</div>`;
+  return "";
+}
+function montar(sl, n) {
+  const id = sl.dataset.q, d = DQ[id], q = d || QT(id);
+  let onde = "";
+  if (d) onde = d.ondeCurto ? `<p>Para descobrir: ${esc(d.ondeCurto)}.</p>` : "";
+  else onde = q.onde;
+  const rotulo = d && d.tipo === "quiz" ? "Retomada do Pilar 5" : "Agora é com você";
+  sl.innerHTML = `<div class="pg" data-sem-clique>
+      <div class="pg-txt">
+        <p class="k">${rotulo} · <b>pergunta ${n} de ${TOTAL}</b></p>
+        <h2>${esc(q.pergunta)}</h2>
+        ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+        <p class="expl">${esc(q.explica)}</p>
+      </div>
+      <div class="pg-dir">
+        <span class="rot-r">A sua resposta</span>
+        ${campoHTML(id)}
+        <div class="fb" role="status" aria-live="polite"></div>
+        <p class="st"></p>
+      </div>
+      <div class="pg-info">
+        ${q.porque ? `<div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>` : ""}
+        ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+        ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>` : ""}
+      </div>
+    </div>`;
+  ligar(sl, id);
+}
+
+/* ---------- traz o número de outra página, uma vez só, como a ferramenta ---------- */
+function aplicarVeio(id) {
+  const q = QT(id);
+  if (!q || !q.veio || S.veio[id] !== undefined || S.respostas[id] !== undefined) return;
+  let x = null;
+  try { x = q.veio(); } catch (e) { x = null; }
+  S.veio[id] = x ? x.de : null;
+  if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") S.respostas[id] = x.valor;
+  gravar();
+}
+
+/* ---------- feedback imediato ---------- */
+function feedback(id) {
+  const d = DQ[id];
+  if (d) {
+    const v = lerD(id);
+    if (v === undefined || v === null || v === "") return null;
+    if (ehNS(v)) return ["at", "<b>Tarefa da semana</b>" + esc((d.ondeCurto || "").replace(/^./, (c) => c.toUpperCase())) + ". Não sei não é vergonha: é tarefa da semana."];
+    if (d.tipo === "quiz") {
+      const o = d.opcoes[v]; if (!o) return null;
+      const certa = Object.values(d.opcoes).find((x) => x.certa);
+      return o.certa ? ["ok", "<b>Isso</b>" + esc(d.exp)] : ["er", "<b>A resposta é outra</b>" + esc(certa.rot) + ". " + esc(d.exp)];
+    }
+    if (id === "veredito") {
+      const C = calcAgora(), sug = vereditoSugerido(C);
+      if (PESO_V[v] < PESO_V[sug.v]) return ["at", "<b>Mais otimista que a conta</b>A leitura da sua conta hoje é " + esc(NOME_V[sug.v]) + ". " + esc(sug.motivo) + " Pode ser, desde que a razão fique escrita no critério para parar."];
+      return ["in", "<b>A leitura da sua conta hoje: " + esc(NOME_V[sug.v]) + "</b>" + esc(sug.motivo) + " Na ferramenta, você confere e confirma."];
+    }
+    if (d.tipo === "escolha") { const o = d.opcoes[v]; return o && o.fb ? [o.fb[0], esc(o.fb[1])] : null; }
+    if (d.tipo === "texto") {
+      const t = String(v).trim(); if (t.length < 3) return null;
+      if (id === "criterio") return /^se\b/i.test(t) ? ["ok", "Bom critério: começa por um fato. Ele vai para a página 6, e a ferramenta ainda sugere um com os seus números."] : ["at", "Comece por um fato: \"Se [o fato], eu não assino a obra: volto à conta.\""];
+      if (/\b(lind[oa]s?|incr[ií]ve(l|is)|maravilhos[oa]s?)\b/i.test(t)) return ["at", "<b>Troque o adjetivo</b>Escreva o que o hóspede vê, sente ou faz. Isso é o que move a diária."];
+      return ["ok", "Anotado. Se a conta apertar, isso fica: corte metros no projeto, antes da obra."];
+    }
+    return null;
+  }
+  const q = QT(id), v = S.respostas[id];
+  if (v === undefined || v === "") return null;
+  if (ehNS(v)) {
+    const extra = LINHAS.includes(id) || ["licencas", "reserva_pct", "giro_meses", "margem"].includes(id) ? " A conta segue com a referência, marcada como referência." : id === "infra" ? " Ela fica à parte, a cotar." : "";
+    return ["at", "<b>Tarefa da semana</b>" + esc((q.ondeCurto || "").replace(/^./, (c) => c.toUpperCase())) + "." + esc(extra) + " Na página 6, este Não sei vale zero e vira tarefa."];
+  }
+  if (q.tipo === "escolha") { const o = q.opcoes.find((x) => x.v === v); return o && o.fb ? [o.fb[0], esc(o.fb[1])] : null; }
+  const n = paraNumero(v); if (n === null) return null;
+  const C = calcAgora(), P = C.P;
+  if (id === "palpite") return ["in", "Anotado: " + esc(brl0(n)) + ". Agora, a conta inteira. No fim, a ferramenta compara as duas."];
+  if (id === "unidades") return ["in", "A conta deste pilar é das " + esc(fmtN(n)) + " unidades da fase um. O que espera o gatilho da fase dois não se orça agora."];
+  if (id === "l_piso") {
+    const todas = LINHAS.every((k) => paraNumero(S.respostas[k]) !== null);
+    if (todas) return ["in", "As seis linhas somam " + esc(brl0(C.pronta)) + " por unidade pronta. A linha 1 sozinha é " + esc(fmtN(P.l_unidade / C.pronta * 100, 1)) + "% disso."];
+    return ["in", "Anotado. Com as seis linhas, você tem a unidade pronta. Onde marcou Não sei, a ferramenta usa a referência da Zion."];
+  }
+  if (id === "reserva_pct") {
+    const t = C.reserva !== null ? "Reserva de " + fmtN(n, 1) + "% sobre as unidades prontas: " + brl0(C.reserva) + "." : "Reserva de " + fmtN(n, 1) + "% sobre as unidades prontas.";
+    return [n < 10 ? "at" : "ok", esc(t + (n < 10 ? " Abaixo da base da Zion, de dez por cento." : ""))];
+  }
+  if (id === "infra") return ["in", esc("Anotado: " + brl0(n) + " de infraestrutura comum. Ela entra no investimento da fase um.")];
+  if (id === "terreno") return ["in", esc("Anotado: " + brl0(n) + ". Fica fora do investimento e do tempo de volta, mas fica preso no projeto: a razão vai escrita no Dossiê.")];
+  if (id === "margem") {
+    if (C.res.cons !== null) return ["in", esc("Com " + fmtN(n, 1) + "% de margem, o seu conservador deixa " + brl0(C.res.cons) + " por ano, antes de qualquer parcela de financiamento.")];
+    return ["in", esc("De cada R$ 100, ficam R$ " + fmtN(n, 1) + ". Falta a diária ou a ocupação para fazer a conta.")];
+  }
+  if (id === "giro_meses") {
+    if (C.giro !== null) return [n < 2 ? "at" : "ok", esc(fmtN(n) + " " + (n === 1 ? "mês" : "meses") + " de custo: " + brl0(C.giro) + " no banco no dia da abertura." + (n < 2 ? " Menos de dois meses de fôlego é zona de risco." : ""))];
+    return ["in", "Anotado. O valor em reais sai do custo do seu conservador: falta a diária, a ocupação ou as unidades."];
+  }
+  if (id === "ocup_cons") return [n > 65 ? "er" : "in", esc(n > 65 ? "Acima de 65% no conservador: que prova você tem de procura extraordinária?" : (C.rec.cons !== null ? "A sua receita bruta no conservador: " + brl0(C.rec.cons) + " no ano. Receita bruta não é lucro." : "Anotado. Receita bruta não é lucro."))];
+  if (id === "diaria") return ["in", esc("Anotado: " + brl(n) + " de diária média.")];
+  if (id === "ocup_base" || id === "ocup_otim") {
+    const k = id === "ocup_base" ? "base" : "otim";
+    if (C.res[k] !== null) return ["in", esc("Neste cenário, a sua operação deixa " + brl0(C.res[k]) + " por ano." + (k === "otim" ? " Teto, não meta." : ""))];
+    return ["in", esc("Anotado: " + fmtN(n, 1) + "%.")];
+  }
+  if (LINHAS.includes(id) || id === "licencas") return ["in", esc("Anotado: " + brl0(n) + (id === "licencas" ? " para a fase." : " por unidade."))];
+  return null;
+}
+
+/* ---------- pintar uma pergunta a partir do estado ---------- */
+function resumoMini() {
+  const C = calcAgora();
+  return `<div><span>Investimento da fase um</span><b>${C.total === null ? "em branco" : esc(brl0(C.total))}</b></div>
+    <div><span>Resultado no ano, conservador</span><b>${C.res.cons === null ? "em branco" : esc(brl0(C.res.cons))}</b></div>
+    <div><span>Tempo de volta, conservador</span><b>${C.volta.cons === null ? "em branco" : esc(anos(C.volta.cons))}</b></div>
+    <div><span>Pela régua</span><b>${esc(leituraReguaT(C.volta.cons))}</b></div>`;
+}
+function pintar(sl) {
+  const id = sl.dataset.q, d = DQ[id];
+  const v = d ? lerD(id) : S.respostas[id];
+  const ns = ehNS(v);
+  sl.querySelectorAll(".opc[data-v]").forEach((b) => {
+    const bv = b.dataset.v;
+    b.setAttribute("aria-pressed", String(bv === "nao_sei" ? ns : v === bv));
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) { if (document.activeElement !== inp) inp.value = ns || v === undefined || v === null ? "" : String(v); inp.disabled = ns; }
+  const rb = sl.querySelector("[data-ref]"); if (rb) rb.hidden = ns;
+  const fx = sl.querySelector(".fonte-bx");
+  if (fx) { fx.hidden = ns; fx.querySelectorAll("[data-fonte]").forEach((b) => b.setAttribute("aria-pressed", String(S.fontes[id] === b.dataset.fonte))); }
+  const vx = sl.querySelector("[data-veio]");
+  if (vx) { const de = S.veio[id]; const mostra = !!de && v !== undefined && !ns; vx.hidden = !mostra; vx.innerHTML = mostra ? `Trouxemos este número da ${esc(de)}. Confira e corrija se mudou.` : ""; }
+  const rm = sl.querySelector("[data-resumo]"); if (rm) rm.innerHTML = resumoMini();
+  const fb = sl.querySelector(".fb"), f = feedback(id);
+  if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+  const st = sl.querySelector(".st");
+  let t = "";
+  if (!d && ehNumerico(QT(id)) && v !== undefined && v !== "" && !ns) {
+    const q = QT(id), n = paraNumero(v);
+    if (n === null) t = "Escreva só o número, por exemplo " + (q.placeholder || "10").replace(/^Ex\.: /, "") + ".";
+    else if (n < 0) t = "O número não pode ser negativo.";
+    else if (q.positivo && n <= 0) t = "O número precisa ser maior que zero.";
+    else if (q.min !== undefined && n < q.min) t = "O número precisa ser pelo menos " + fmtN(q.min) + ".";
+    else if (q.max !== undefined && n > q.max) t = "O número não pode passar de " + fmtN(q.max) + ".";
+    else if (q.fontes && !S.fontes[id]) t = "Falta dizer de onde veio esse número: é isso que separa dado de palpite.";
+    else t = "Salvo neste aparelho.";
+  } else if (completa(id)) t = "Salvo neste aparelho.";
+  st.textContent = t;
+}
+
+/* ---------- eventos de cada pergunta (grava na hora, sem apagar o resto do estado) ---------- */
+function ligar(sl, id) {
+  const d = DQ[id];
+  sl.addEventListener("click", (e) => {
+    const b = e.target.closest(".opc");
+    if (!b || !sl.contains(b)) return;
+    e.stopPropagation();
+    garantir();
+    if (d) {
+      const bv = b.dataset.v; const atual = lerD(id);
+      if (bv === "nao_sei") gravarD(id, ehNS(atual) ? undefined : "nao_sei");
+      else gravarD(id, bv);
+    } else if (b.dataset.fonte) {
+      if (!ehNS(S.respostas[id])) S.fontes[id] = b.dataset.fonte;
+    } else if (b.dataset.ref) {
+      const q = QT(id); S.respostas[id] = String(q.ref); if (q.fontes) S.fontes[id] = "referencia";
+    } else {
+      const bv = b.dataset.v;
+      if (bv === "nao_sei") { if (ehNS(S.respostas[id])) delete S.respostas[id]; else { S.respostas[id] = "nao_sei"; delete S.fontes[id]; } }
+      else S.respostas[id] = bv;
+    }
+    gravar(); pintar(sl); atualizaNav();
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) inp.addEventListener("input", () => {
+    garantir();
+    if (d) gravarD(id, inp.value); else S.respostas[id] = inp.value;
+    gravar(); pintar(sl); atualizaNav();
+  });
+}
+
+/* ---------- perfil ---------- */
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+const MAPA_PERFIL = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+function ligarPerfil() {
+  document.getElementById("p-uf").insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+  for (const [el, k] of Object.entries(MAPA_PERFIL)) {
+    const x = document.getElementById(el);
+    x.addEventListener(el === "p-uf" ? "change" : "input", () => { garantir(); S.perfil[k] = x.value.trim(); gravar(); });
+  }
+}
+function pintarPerfil() { for (const [el, k] of Object.entries(MAPA_PERFIL)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; } }
+
+/* ---------- fim do bloco 1: a folha até aqui ---------- */
+function txtT(id) {
+  const q = QT(id), v = S.respostas[id];
+  if (v === undefined || v === "") return "em branco";
+  if (ehNS(v)) return id === "infra" ? "à parte, a cotar" : LINHAS.includes(id) || id === "licencas" || id === "reserva_pct" ? "não sei · entra a referência" : "não sei";
+  const n = paraNumero(v); if (n === null) return "em branco";
+  const fonte = q.fontes ? (q.fontes.find((f) => f.v === S.fontes[id]) || {}).v : null;
+  const rotF = { cotacao: "cotação", falado: "falado", referencia: "referência" }[fonte] || (q.fontes ? "sem origem" : "");
+  const val = q.tipo === "moeda" ? brl0(n) : q.tipo === "percentual" ? fmtN(n, 1) + "%" : fmtN(n);
+  return val + (rotF ? " · " + rotF : "");
+}
+function pintarAnote() {
+  const el = document.getElementById("anote"); if (!el) return;
+  const C = calcAgora();
+  const linhas = [["O meu palpite", txtT("palpite")], ["Unidades da fase um", txtT("unidades")]]
+    .concat(TQ.filter((q) => LINHAS.includes(q.id) || q.id === "licencas" || q.id === "reserva_pct").map((q) => [q.curto, txtT(q.id)]))
+    .concat([["À parte · infraestrutura comum", txtT("infra")], ["À parte · terreno, fora da conta", txtT("terreno")],
+      ["A soma da folha, até aqui", C.somaFolha === null ? "falta o número de unidades" : brl0(C.somaFolha) + " (sem o giro)"],
+      ["A ligação para a concessionária", { escrito: "feita, por escrito", boca: "feita, só de boca", nao: "ainda não" }[S.aulaExtras.x_concessionaria] || "em branco"]]);
+  el.innerHTML = linhas.map(([r, t]) => `<div><span>${esc(r)}</span><b>${esc(t)}</b></div>`).join("");
+}
+
+/* ---------- simuladores com os números do aluno ---------- */
+function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3600); }
+function poeNoSim(nome, vals) {
+  const sim = document.querySelector(`.sim[data-sim="${nome}"]`); if (!sim || !ZD.estado || !ZD.estado[nome]) return;
+  for (const [k, x] of Object.entries(vals)) {
+    const inp = sim.querySelector(`input[name="${k}"]`);
+    if (inp) { if (x > +inp.max) inp.max = String(Math.ceil(x * 1.2 / +inp.step) * +inp.step); if (x < +inp.min) inp.min = String(Math.max(0, Math.floor(x / +inp.step) * +inp.step)); }
+    ZD.estado[nome][k] = String(Math.round(x));
+  }
+  sim._calc && sim._calc();
+}
+function meusMargem() {
+  const C = calcAgora();
+  if (C.rec.cons === null) { toast("Falta a diária, a ocupação do conservador ou as unidades para montar a sua receita."); return; }
+  poeNoSim("margem", { rec: C.rec.cons, m: C.P.margem });
+}
+function meusEscada() {
+  const C = calcAgora();
+  if (C.total === null || C.res.cons === null) { toast("Faltam respostas para montar a sua escada: as unidades, a diária e a ocupação do conservador."); return; }
+  poeNoSim("escada", { inv: C.total, res: C.res.cons });
+  toast("A sua escada: o investimento da fase um e o resultado do conservador.");
+}
+
+/* ---------- o diagnóstico: a ferramenta dentro da aula ---------- */
+let kAtual = 1;
+function ajustaDiag() {
+  const fr = document.getElementById("diag-fr"); if (!fr) return;
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) { fr.style.width = ""; fr.style.height = ""; fr.style.transform = ""; return; }
+  // A ferramenta fica no tamanho de leitura normal: o iframe desfaz a escala do palco.
+  fr.style.width = (1780 * kAtual) + "px"; fr.style.height = (886 * kAtual) + "px"; fr.style.transform = "scale(" + (1 / kAtual) + ")";
+}
+function abrirDiag() {
+  const fr = document.getElementById("diag-fr"), vazio = document.getElementById("diag-vazio");
+  ajustaDiag();
+  if (!fr.getAttribute("src")) { fr.addEventListener("load", () => { if (vazio) vazio.hidden = true; }, { once: true }); fr.setAttribute("src", FERRAMENTA); sujo = false; return; }
+  if (sujo) { try { fr.contentWindow.location.reload(); } catch (e) { fr.setAttribute("src", FERRAMENTA); } sujo = false; }
+}
+
+/* ---------- navegação, teclado e toque ---------- */
+const slides = Array.from(document.querySelectorAll(".s"));
+function atualizaNav() {
+  const n = IDS.filter(completa).length;
+  document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${TOTAL}`;
+  document.getElementById("n-bar").style.width = (n / TOTAL * 100) + "%";
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+  document.getElementById("n-ant").disabled = i <= 0;
+  document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+}
+function pausaVideos(sl) {
+  if (!sl) return;
+  sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+}
+let atual = -1, prontoMotor = false;
+function aoTrocarSlide() {
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  if (i < 0 || i === atual) return;
+  const ant = slides[atual];
+  atual = i;
+  pausaVideos(ant);
+  const sl = slides[i];
+  if (sl.dataset.q) { if (prontoMotor) aplicarVeio(sl.dataset.q); pintar(sl); }
+  if (sl.querySelector("#anote")) pintarAnote();
+  if (sl.querySelector(".perfil")) pintarPerfil();
+  if (sl.id === "s-diag" && prontoMotor) abrirDiag();
+  if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+  if (prontoMotor) { garantir(); S.aulaExtras.slide = i; S.passo = calcPasso(); salvar(); }
+  atualizaNav();
+}
+const obs = new MutationObserver(aoTrocarSlide);
+slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+// As teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta.
+document.addEventListener("keydown", (e) => {
+  const t = e.target;
+  if (!t || !t.matches) return;
+  if (t.matches("iframe") || document.activeElement && document.activeElement.tagName === "IFRAME") { e.stopPropagation(); return; }
+  if (t.matches("input, textarea, select, [contenteditable]")) {
+    e.stopPropagation();
+    if (e.key === "Enter" && t.matches("input") && !t.matches("input[type=range]") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+    return;
+  }
+  if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+}, true);
+// Arrastar a barra do simulador, rolar um campo ou mexer na ferramenta não troca de slide.
+document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .sim, .vid, .pg-dir, .diag-box")) e.stopPropagation(); }, { passive: true });
+// Quando a ferramenta (no iframe ou em outra aba) grava, a aula lê o estado novo.
+window.addEventListener("storage", (e) => {
+  if (e.key !== CHAVE) return;
+  const d = carregar(); if (!d) return;
+  S = d; garantir();
+  slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+});
+
+/* ---------- início ---------- */
+const salvo = carregar();
+if (salvo) S = salvo;
+garantir();
+slidesQ.forEach((sl, k) => montar(sl, k + 1));
+slidesQ.forEach(pintar);
+ligarPerfil(); pintarPerfil();
+document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+document.getElementById("meus-margem").addEventListener("click", (e) => { e.stopPropagation(); meusMargem(); });
+document.getElementById("meus-escada").addEventListener("click", (e) => { e.stopPropagation(); meusEscada(); });
+document.getElementById("diag-cheia").addEventListener("click", () => { gravar(); });
+
+function escalaAula() {
+  const st = document.querySelector(".zd-stage");
+  const h = Math.max(200, innerHeight - 61);
+  kAtual = Math.min(innerWidth / 1920, h / 1080);
+  st.style.transform = "scale(" + kAtual + ")";
+  ajustaDiag();
+}
+window.AULA = {
+  depoisDoMotor() {
+    addEventListener("resize", escalaAula); escalaAula();
+    prontoMotor = true;
+    const temHash = /^#\d/.test(location.hash);
+    const volta = S.aulaExtras && S.aulaExtras.slide;
+    if (!temHash && typeof volta === "number" && volta > 0 && volta < slides.length) {
+      ZD.vai(volta);
+      toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+    }
+    atual = -1; aoTrocarSlide(); atualizaNav();
+  },
+  IDS, completa, calcPasso, calcAgora, get estado() { return S; },
+};
+</script>
+<script src="../_motor/deck.js"></script>
+<script>AULA.depoisDoMotor();</script>
+</body>
+</html>

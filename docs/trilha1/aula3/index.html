@@ -619,7 +619,7 @@ const AULA = {
         { v: "escavada", rot: "Unidade escavada" },
       ],
       porque: "Tipologia parece gosto, mas é economia: outro capital, outro prazo, outra manutenção e outro público. Os três filtros juntos costumam deixar duas opções. E troque a estrutura na sua frase: se a frase morre, o diferencial é a estrutura, e estrutura qualquer um compra.",
-      onde: "<p>O terreno está na sua Ficha do Território (declive, acesso, solo, rede). O capital se confere na Trilha 2, com três orçamentos da mesma especificação. O público está nas suas respostas acima.</p>",
+      onde: "<p>O terreno está na sua Ficha do Território (declive, acesso, solo, rede). O capital se confere no Pilar 6, com três orçamentos da mesma especificação. O público está nas suas respostas acima.</p>",
       marina: "Sobraram duas: a modular transparente e a cabana de madeira. No frio úmido, o controle térmico da modular é trabalho de todo dia: ela escolheu a cabana de madeira, e a modular ficou como alternativa até os orçamentos.",
       ondeCurto: "passar as sete tipologias pelos três filtros, nesta ordem: terreno, capital e público",
     },
@@ -668,7 +668,7 @@ const AULA = {
       bloco: "O preço, como hipótese",
       pergunta: "Qual é a sua hipótese de diária média?",
       explica: "É hipótese, a testar no anúncio e na reserva. Mire a metade de cima da faixa, não o topo absoluto.",
-      porque: "Preço é consequência do produto e, nesta fase, nota 1 na escala de evidência: opinião, até o anúncio e a reserva responderem. O produto é a condição para pagar o terreno, não a garantia: a conta vem na Trilha 2.",
+      porque: "Preço é consequência do produto e, nesta fase, nota 1 na escala de evidência: opinião, até o anúncio e a reserva responderem. O produto é a condição para pagar o terreno, não a garantia: a conta vem no Pilar 6.",
       onde: "<p>Faça a semana com os seus preços: noites vendidas no fim de semana vezes o seu preço de fim de semana, mais as de domingo a quinta vezes o seu preço de semana, dividido pelas noites vendidas.</p>",
       marina: "Hipótese de R$ 640 de domingo a quinta e R$ 780 na sexta e no sábado: R$ 2.048,80 em 2,86 noites, cerca de R$ 716,36. Fica cerca de 11% acima da região. Não é promessa de diária.",
       ondeCurto: "testar a hipótese de preço no anúncio e na reserva",
@@ -708,7 +708,7 @@ const AULA = {
     const ordem = ["publico_principal", "momento_assinatura", "tipologia", "publico_semana", "quem_fica_fora", "area_interna", "unidades_abertura", "diaria_regiao", "diaria_hipotese", "provas"];
     const id = ordem.find((x) => c.nsIds.includes(x));
     if (id) return `${Q(id).curto} ainda é Não sei. Próximo passo: ${Q(id).ondeCurto}.`;
-    return "O preço é hipótese, nota 1, até o anúncio e a reserva responderem. E se o produto paga o terreno é conta da Trilha 2, Estruturação: quanto custa, quanto dá e quem paga.";
+    return "O preço é hipótese, nota 1, até o anúncio e a reserva responderem. E se o produto paga o terreno é conta do Pilar 6, Pré-viabilidade: quanto custa, quanto dá e quem paga.";
   },
   criterio: () => "Se a minha frase continuar verdadeira para algum dos três vizinhos, ou se no teste dos cinco segundos cada pessoa imaginar uma coisa diferente, eu pauso e volto ao DNA do destino antes de chamar o arquiteto.",
   moldeCriterio: "Molde: \"Se [o fato], eu pauso e volto ao DNA do destino antes de chamar o arquiteto.\"",
@@ -1248,7 +1248,7 @@ function telaResultado() {
       <button class="btn btn-ouro" id="pdf">${esc(AULA.botaoPDF)}</button>
       <button class="btn btn-s" id="editar">Revisar as respostas</button>
       <button class="btn btn-s" id="recomecar">Começar outra página</button>
-      ${PROX ? `<a class="btn btn-p" id="proxima" href="../aula${PROX.n}/index.html">Seguir para a Aula ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
+      ${PROX ? `<a class="btn btn-p" id="proxima" href="../${PROX.n <= 3 ? "aula" + PROX.n : "pilar" + PROX.n}/index.html" target="_top">Seguir para o Pilar ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
     </div>
     <div class="erro" id="erro-pdf" role="alert"></div>
   </div>`;
@@ -1419,5 +1419,6 @@ window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoPar
 <!-- Zion · lead no ClickMax quando o aluno baixa a página do Dossiê -->
 <iframe name="zx-sink" title="envio" hidden style="display:none"></iframe>
 <form id="zx-lead" data-cx-ingest-form data-cx-nostyles target="zx-sink" action="about:blank" hidden style="display:none"><input data-cx-field="name" type="text"><input data-cx-field="email" type="email"><input data-cx-field="website" type="text" hidden></form>
+<script src="../_landbank.js" defer></script>
 </body>
 </html>

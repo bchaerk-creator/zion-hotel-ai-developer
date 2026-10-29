@@ -1,0 +1,1984 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 2 · Mercado e demanda</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.figs{display:flex;gap:24px;justify-content:center}
+.figs img{height:600px;width:auto;border-radius:18px;box-shadow:0 2px 0 rgba(22,38,28,.06)}
+.lado .figs img{height:640px}
+.lado .figs:not(.um) img{height:470px}
+.lado:has(.figs:not(.um)){grid-template-columns:1.15fr .85fr;gap:48px}
+.docs2 .card{padding:24px 30px;gap:8px}.docs2 .card h3{font-size:34px}.docs2 .card p{font-size:23px}.docs2 .card .n{font-size:40px}.docs2 .sv{font-size:20px!important;padding:8px 14px}
+.lado.l2{grid-template-columns:1fr 1fr}
+.fig-larga{width:100%;max-height:420px;object-fit:contain;border-radius:18px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.lk{color:#E0BE5E;font-weight:600;margin-left:6px}.fz-moldura{width:1600px;max-width:100%;height:620px;border:1.5px solid #B08D3A;border-radius:16px;overflow:hidden;background:#F5F1E8}.fz-moldura iframe{width:100%;height:100%;border:0;display:block}@media (max-width:900px){.fz-moldura{width:100%;height:70vh}}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:12px;padding:10px 16px;font-size:20px}
+.resumo-mini div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(22,38,28,.12);padding:6px 0}
+.resumo-mini div:last-child{border:0}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* resultado */
+.rs{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;min-height:0;height:830px}
+.rs-esq,.rs-dir{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding-right:8px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nums div{background:var(--verde);color:var(--creme);border-radius:16px;padding:18px 22px}
+.nums small{display:block;font-size:18px;opacity:.85}
+.nums strong{display:block;font-family:var(--serif);font-size:48px;color:var(--ouro);line-height:1.15}
+.leit{background:var(--verde);color:var(--creme);border:3px solid var(--ouro);border-radius:18px;padding:20px 24px;font-size:21px;line-height:1.45}
+.leit .rot{font-family:var(--serif);font-size:42px;color:var(--ouro)}
+.al{border-radius:12px;padding:12px 16px;font-size:19px;line-height:1.45;border-left:6px solid}
+.al b{display:block;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.al.critico{background:#F8E3DE;border-color:var(--erro);color:#4A140D}
+.al.ns,.al.tarefa{background:#FBEFD2;border-color:#7A5300;color:#3F2B00}
+.al.sem,.al.atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.al.info,.al.ok{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+.rs h3{font-size:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:17px;padding:6px 12px;border-radius:99px;background:#E1EFE3;color:#173F25;font-weight:600}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:14px;font:700 34px var(--sans);padding:26px 46px;border-radius:999px;background:var(--ouro);color:var(--verde);text-decoration:none;border:0;cursor:pointer;min-height:72px}
+.btn-g:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.lado.l2,.trio,.exe,.anote,.perfil,.rs,.nums{grid-template-columns:1fr!important;gap:12px}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .figs{flex-wrap:wrap;gap:10px} .figs img,.lado .figs img{height:auto;width:calc(50% - 5px);max-width:260px;border-radius:12px}
+  .figs.um img{width:70%}
+  .fig-larga{max-height:220px}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td{padding:8px 6px}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.rs>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .resumo-mini{font-size:14px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .rs{height:auto} .rs-esq,.rs-dir{overflow:visible;padding:0}
+  .nums strong{font-size:26px} .nums small{font-size:12px} .nums div{padding:12px 14px}
+  .leit{font-size:15px;padding:14px} .leit .rot{font-size:24px}
+  .al{font-size:14px;padding:10px 12px} .al b{font-size:11px} .rs h3{font-size:19px} .chips span{font-size:13px}
+  .btn-g{font-size:18px;padding:16px 22px;width:100%;min-height:56px}
+  .anote{font-size:15px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+/* ===== Pilar 2: o que é só desta aula ===== */
+img.fig{border-radius:22px;max-height:640px;justify-self:center}
+.curva{width:100%;height:230px;display:block}
+.curva text{font:600 20px Inter,Arial,sans-serif}
+.cabem{width:100%;height:130px;display:block}
+.cabem text{font:600 20px Inter,Arial,sans-serif}
+.roc{display:flex;height:40px;border-radius:10px;overflow:hidden;font-size:16px;font-weight:700}
+.roc>div{display:flex;align-items:center;justify-content:center;color:#fff;white-space:nowrap;overflow:hidden}
+.roc .g{background:#6B7268}.roc .a{background:var(--ok)}.roc .b{background:#9A8A3A}.roc .c{background:var(--alerta)}.roc .d{background:var(--erro)}
+.sim .linha span{min-width:0}
+.campos{display:flex;flex-direction:column;gap:12px}
+.campos label{display:flex;flex-direction:column;gap:6px;font-size:22px;font-weight:600}
+.campos input,.campos textarea{font:500 28px/1.35 var(--sans);color:var(--tinta);padding:12px 18px;border:3px solid #B9AE95;border-radius:14px;background:#fff;width:100%}
+.campos input{height:74px}
+.campos textarea{min-height:84px;resize:vertical}
+.campos input:focus,.campos textarea:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.campos input:disabled,.campos textarea:disabled{background:var(--creme2);opacity:.6}
+.dica-p1{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 16px;font-size:21px;line-height:1.45;display:flex;gap:14px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+.dica-p1[hidden]{display:none}
+.ideias{display:flex;flex-direction:column;gap:18px;max-width:1560px}
+.ideias div{display:grid;grid-template-columns:64px 1fr;gap:22px;align-items:baseline;font-size:34px;line-height:1.35}
+.ideias b{font-family:var(--serif);font-size:52px;color:var(--ouro);line-height:1}
+/* diagnóstico dentro da aula */
+.s.diag{padding-top:96px;padding-bottom:40px;gap:14px}
+.diag-txt{font-size:28px;line-height:1.4;max-width:1664px}
+.diag-cx{flex:none;width:1664px;height:750px;border-radius:18px;overflow:hidden;background:#fff;border:3px solid var(--ouro);box-shadow:0 8px 40px rgba(0,0,0,.25);position:relative}
+.diag-cx iframe{border:0;display:block;transform-origin:0 0;background:var(--creme)}
+.diag-pe{flex:none;display:flex;justify-content:space-between;gap:20px;align-items:center;font-size:22px;color:var(--cinza);width:1664px}
+.diag-pe a{color:var(--ouro2);font-weight:700}
+@media (max-width:820px),(max-height:520px){
+  .ideias div{font-size:17px;grid-template-columns:30px 1fr;gap:10px} .ideias b{font-size:26px}
+  .campos label{font-size:15px} .campos input,.campos textarea{font-size:17px;border-width:2px;padding:10px 12px} .campos input{height:52px}
+  .dica-p1{font-size:14px}
+  .s.diag{padding:50px 16px 90px}
+  .diag-txt{font-size:16px}
+  .diag-cx,.diag-pe{width:100%}
+  .diag-cx{height:78vh;height:78dvh;border-width:2px;border-radius:12px}
+  .diag-cx iframe{width:100%!important;height:100%!important;transform:none!important}
+  .diag-pe{font-size:14px;flex-wrap:wrap}
+  .curva{height:150px} .cabem{height:90px}
+  .roc{height:30px;font-size:11px}
+  .sim-in,.sim .ctl{grid-template-columns:1fr!important}
+  .grid .card{grid-column:auto!important}
+}
+</style>
+<script>
+/* Pilar 2 · aula principal em slides. A Marina é um exemplo ilustrativo.
+   Números da Marina só do texto falado dos vídeos: lista 350 a 910, 31 - 4 - 7 = 20 comparáveis com 96 unidades;
+   semana 78% a R$ 700 e 26% a R$ 580: 2,86 noites, R$ 1.846, 40,9%, R$ 645; curva 3 a 64, 4 a 40, 5 a 22 = 38,5% (simples 42%);
+   100 avaliações, 68 de casais, "a casa só para nós" 11 vezes; absorção 13.315 noites, + quase 3.000 (22,5%), - quase 2.500 (18 em obra),
+   sobram 499, cerca de 139 por cabana, cabem 3, infraestrutura para 5. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function fmtP(o){ return (Math.round(o*10)/10).toLocaleString('pt-BR') + '%'; }
+function faixaOcup(o){
+  if (o >= 65) return ['er','<b>'+fmtP(o)+' no ano.</b> Passou de 65% sem prova de procura extraordinária? Pare e pergunte: que prova eu tenho?'];
+  if (o > 60) return ['at','<b>'+fmtP(o)+':</b> acima da faixa de 50% a 60%. Confira se os feriados e as datas festivas aparecem nos calendários.'];
+  if (o >= 50) return ['ok','<b>'+fmtP(o)+':</b> na faixa de 50% a 60%, de quem vende fins de semana, feriados e datas festivas.'];
+  if (o > 40) return ['ok','<b>'+fmtP(o)+':</b> entre as faixas. A mais próxima abaixo é 35% a 40%, de quem vende só nos fins de semana.'];
+  if (o >= 35) return ['ok','<b>'+fmtP(o)+':</b> na faixa de 35% a 40%, de quem vende só nos fins de semana.'];
+  return ['at','<b>'+fmtP(o)+':</b> abaixo da primeira faixa da régua. Olhe o mês fraco com atenção.'];
+}
+/* a semana de uma unidade */
+ZD.sims.sem = function(v){
+  const nF = 2 * v.ofds / 100, nS = 5 * v.osem / 100, noites = nF + nS;
+  const entra = nF * v.dfds + nS * v.dsem;
+  const diaria = noites > 0 ? entra / noites : 0;
+  let a;
+  if (noites <= 0) a = ['at', 'Nenhuma noite vendida na semana: a diária média fica em branco.'];
+  else a = ['ok', 'Diária média é o que entrou dividido pelas noites vendidas, e não a soma de dois preços dividida por dois.'];
+  return {noites, entra, ocJan: noites / 7 * 100, diaria, _aviso: a};
+};
+/* a curva do ano */
+ZD.sims.curva = function(v){
+  const mm = 12 - v.ma - v.mf;
+  if (mm < 0) return {mm: 0, ocAno: 0, simples: 0, pont: 0, _aviso: ['er', '<b>Meses de alta mais meses fracos passam de 12.</b> Confira a contagem.']};
+  const ocAno = (v.ma * v.oa + mm * v.om + v.mf * v.of) / 12;
+  const g = [v.ma > 0 && v.oa, mm > 0 && v.om, v.mf > 0 && v.of].filter(x => x !== false);
+  const simples = g.length ? g.reduce((a, b) => a + b, 0) / g.length : 0;
+  return {mm, ocAno, simples, pont: Math.min(100, ocAno), _aviso: faixaOcup(ocAno)};
+};
+ZD.desenha.curva = function(sim, r, v){
+  const sv = sim.querySelector('svg.curva'); if (!sv) return;
+  const W = 1200, H = 230, base = 195, k = 1.75, larg = W / 12;
+  const cores = [], ocs = [];
+  if (v.ma + v.mf <= 12) {
+    for (let i = 0; i < v.ma; i++){ cores.push('#C9A84C'); ocs.push(v.oa); }
+    for (let i = 0; i < r.mm; i++){ cores.push('#8B9188'); ocs.push(v.om); }
+    for (let i = 0; i < v.mf; i++){ cores.push('#B5452F'); ocs.push(v.of); }
+  }
+  let h = '';
+  ocs.forEach((o, i) => {
+    const hh = Math.max(2, o * k);
+    h += '<rect x="'+(i*larg+10)+'" y="'+(base-hh)+'" width="'+(larg-20)+'" height="'+hh+'" rx="6" fill="'+cores[i]+'"/>';
+    h += '<text x="'+(i*larg+larg/2)+'" y="'+(H-8)+'" text-anchor="middle" fill="#BFB8A8">'+(i+1)+'</text>';
+  });
+  if (ocs.length) {
+    const y = base - r.ocAno * k;
+    h += '<line x1="0" x2="'+W+'" y1="'+y+'" y2="'+y+'" stroke="#F5F1E8" stroke-width="3" stroke-dasharray="10 8"/>';
+    h += '<text x="'+(W-6)+'" y="'+(y-10)+'" text-anchor="end" fill="#F5F1E8">média do ano '+fmtP(r.ocAno)+'</text>';
+  }
+  sv.setAttribute('viewBox','0 0 '+W+' '+H); sv.innerHTML = h;
+};
+/* quantas unidades o destino compra: a mesma conta da ferramenta da Ficha do Mercado */
+ZD.sims.cab = function(v){
+  const oc = v.oc / 100;
+  const hoje = v.comp * 365 * oc, mais = hoje * v.cresc / 100, menos = v.obra * 365 * oc;
+  const sobra = mais - menos, precisa = 365 * oc;
+  const cabem = precisa > 0 ? Math.max(0, Math.floor(sobra / precisa + 1e-9)) : 0;
+  let a;
+  if (cabem < 1) a = ['er', '<b>Pausar.</b> A sobra do destino não cabe nem uma unidade: não existe procura para o que se quer fazer ali.'];
+  else if (v.oc >= 65) a = ['at', '<b>Testar.</b> A média do ano passou de 65% sem prova de procura extraordinária.'];
+  else if (cabem < v.pret) a = ['at', '<b>Ajustar.</b> Cabem ' + cabem + ', menos que as ' + v.pret + ' que você pensava: desenha a infraestrutura para ' + v.pret + ' e abre com ' + cabem + '.'];
+  else a = ['ok', '<b>Avançar, com condições.</b> O destino compra as ' + v.pret + ' que você pensava, se você entregar o que o topo da faixa entrega.'];
+  return {hoje, mais, menos, sobra: Math.max(0, sobra), precisa, cabemTxt: String(cabem), cabem, _aviso: a};
+};
+ZD.desenha.cab = function(sim, r, v){
+  const sc = sim.querySelector('svg.cabem'); if (!sc) return;
+  const W = 1500, H = 130, n = Math.max(v.pret, r.cabem + 1);
+  const tot = Math.max(r.sobra, n * r.precisa, 1), k = (W - 20) / tot;
+  let h = '<rect x="10" y="20" width="'+Math.max(0, r.sobra * k)+'" height="44" rx="8" fill="#C9A84C"/>';
+  h += '<text x="16" y="56" fill="#16261C">sobram '+Math.round(r.sobra).toLocaleString('pt-BR')+' noites</text>';
+  for (let i = 1; i <= n; i++){
+    const x = 10 + i * r.precisa * k, cabe = i * r.precisa <= r.sobra + 1e-9;
+    h += '<line x1="'+x+'" x2="'+x+'" y1="10" y2="80" stroke="'+(cabe ? '#3E8E5A' : '#B5452F')+'" stroke-width="4"/>';
+    h += '<text x="'+x+'" y="110" text-anchor="middle" fill="'+(cabe ? '#3E8E5A' : '#B5452F')+'">'+i+'</text>';
+  }
+  sc.setAttribute('viewBox','0 0 '+W+' '+H); sc.innerHTML = h;
+};
+</script>
+</head>
+<body data-deck="t1-pilar2-aula" data-titulo="Pilar 2 · Mercado e demanda">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/d3a55d6d89.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 1 · Ler o lugar</p>
+  <h1>Pilar 2<br><i>Mercado e demanda</i></h1>
+  <p class="lead" style="max-width:1100px">Quem paga, quanto, em que época e para quantas unidades. Você troca o "aqui enche oitenta por cento" por um número com fonte, e sai com a Ficha do Mercado: a página 2 do seu Dossiê.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com a sua Ficha</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com a Ficha</h3><p>No fim, a ferramenta da Ficha abre aqui mesmo, já com as suas respostas. Você gera o resultado e baixa a página 2 do Dossiê em PDF.</p></div>
+  </div>
+  <p class="sv" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Dica</b><span>Tenha o celular, o Airbnb e o Booking abertos, papel e caneta. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<!-- ============ RETOMADA ============ -->
+<section class="s" data-bloco="Retomada · Pilar 1">
+  <p class="k">Antes de começar · o Pilar 1 de cabeça · 1 de 3</p>
+  <div class="quiz passo" data-quiz="r_limite">
+    <p class="q">Dos quatro limites que decidem quantas unidades cabem, um ficou em aberto no Pilar 1. Qual?</p>
+    <div class="ops">
+      <button class="op">O físico</button>
+      <button class="op">O de infraestrutura</button>
+      <button class="op">O de experiência</button>
+      <button class="op" data-certa>O de mercado</button>
+    </div>
+    <p class="exp">O limite de mercado: quantas unidades o destino compra. É ele que você mede hoje. E quem manda é sempre o menor dos quatro.</p>
+  </div>
+</section>
+<section class="s" data-bloco="Retomada · Pilar 1">
+  <p class="k">Antes de começar · o Pilar 1 de cabeça · 2 de 3</p>
+  <div class="quiz passo" data-quiz="r_tempo">
+    <p class="q">O hóspede decide a viagem pela distância no mapa ou pelo tempo de caminho?</p>
+    <div class="ops">
+      <button class="op">Pela distância em linha reta</button>
+      <button class="op" data-certa>Pelo tempo</button>
+    </div>
+    <p class="exp">Pelo tempo. No Pilar 1 você ligou o cronômetro na chegada. Hoje, o raio dos comparáveis também é medido em tempo: até trinta minutos de carro.</p>
+  </div>
+</section>
+<section class="s" data-bloco="Retomada · Pilar 1">
+  <p class="k">Antes de começar · o Pilar 1 de cabeça · 3 de 3</p>
+  <div class="quiz passo" data-quiz="r_area">
+    <p class="q">A matrícula da Marina tem 50.000 m². Quanto disso virou negócio, depois das subtrações?</p>
+    <div class="ops">
+      <button class="op">Tudo: 50.000 m²</button>
+      <button class="op">Metade: 25.000 m²</button>
+      <button class="op" data-certa>30%: 15.000 m²</button>
+    </div>
+    <p class="exp">Só 30%. Quem negocia pela área do papel paga pelo metro que nunca vai usar. Hoje o erro parecido é outro: contar anúncios em vez de unidades.</p>
+  </div>
+</section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · Os comparáveis, a diária e a ocupação">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · Os comparáveis, a diária e a ocupação</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/lg_6GMZdqhw?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 2 · Bloco 1 · Os comparáveis, a diária e a ocupação" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/lg_6GMZdqhw" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O checklist do mercado">
+  <p class="k">Um checklist, não uma história</p>
+  <h2>Seis paradas, <i>quatro perguntas em cada</i></h2>
+  <div class="grid g2" style="gap:64px;align-items:start">
+    <ol class="lista num" style="font-size:31px;gap:14px">
+      <li class="f"><span><b>Como ler</b> o checklist</span></li>
+      <li class="f"><span><b>Os comparáveis</b>, quem vende o mesmo que você</span></li>
+      <li class="f"><span><b>A diária e a ocupação</b>, quanto a região paga e quanto enche</span></li>
+      <li class="f"><span><b>A curva do ano</b>, em que época ela vende</span></li>
+      <li class="f"><span><b>Quem paga</b>, o hóspede e o motivo da viagem</span></li>
+      <li class="f"><span><b>Quantas unidades</b> o destino compra</span></li>
+    </ol>
+    <div class="grid g2 f" style="gap:16px">
+      <div class="card"><h3>O que olhar</h3></div>
+      <div class="card"><h3>Por que importa</h3></div>
+      <div class="card"><h3>Como verificar</h3></div>
+      <div class="card" style="border:3px solid var(--erro)"><h3>Sinal vermelho</h3><p>O que manda parar e investigar.</p></div>
+    </div>
+  </div>
+  <p class="lead f">Quem constrói pelo que acha descobre o mercado depois da obra. Onde não souber, "não sei": vira uma tarefa com nome.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Os comparáveis">
+  <div class="lado" style="grid-template-columns:1.15fr .85fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Parada 2 · Os comparáveis</p>
+      <h2>Não é o vizinho. <i>É quem o seu hóspede escolheria no seu lugar.</i></h2>
+      <p class="lead f">Comparável é quem vende o mesmo motivo de viagem que você, na mesma faixa de preço. Passe cada anúncio por quatro filtros:</p>
+      <ul class="lista num" style="font-size:30px">
+        <li class="f"><span>Mesmo porte</span></li>
+        <li class="f"><span>Mesma proposta</span></li>
+        <li class="f"><span>Mesmo motivo de viagem</span></li>
+        <li class="f"><span>Mesma faixa de preço</span></li>
+      </ul>
+      <p class="sv f"><b>Sinal vermelho</b><span>Comparar cinco cabanas com um hotel de cem quartos.</span></p>
+    </div>
+    <div class="figs um"><img src="figuras/02-filtros.svg" alt="Funil com os quatro filtros: porte, proposta, motivo da viagem e faixa de preço"></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_porte">
+    <p class="q">Você vai ter cinco cabanas. Um hotel de cem quartos, na mesma estrada, entra na sua lista de comparáveis?</p>
+    <div class="ops">
+      <button class="op">Sim, ele está perto e disputa o mesmo turista</button>
+      <button class="op" data-certa>Não: o porte é outro, e esse é o sinal vermelho</button>
+    </div>
+    <p class="exp">Comparar cinco cabanas com um hotel de cem quartos é o sinal vermelho dos comparáveis. Comparável não é o vizinho: é quem passa nos quatro filtros.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · O raio">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">E o raio da busca</p>
+      <h2>Até trinta minutos <i>de carro</i></h2>
+      <p class="lead f" style="font-size:36px">Quem fica a até trinta minutos de carro do seu terreno.</p>
+      <p class="lead f" style="font-size:36px">O hóspede pensa em tempo, não em distância.</p>
+    </div>
+    <img class="fig" src="figuras/03-raio-30-min.svg" alt="Raio de 30 minutos de carro que segue as estradas, e não um círculo em quilômetros">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A busca">
+  <p class="k">A busca</p>
+  <h2>De 30% abaixo <i>a 30% acima</i> do que você imagina cobrar</h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Anúncio</h3><p>É a página de cada hospedagem numa plataforma, como o Airbnb ou o Booking.</p></div>
+    <div class="card f"><h3>A faixa</h3><p>O preço mais baixo que você imagina vezes 0,7. O mais alto vezes 1,3.</p></div>
+    <div class="card f"><h3>Mais de uma plataforma</h3><p>Cada uma mostra um conjunto diferente. Busque em mais de uma.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="faixa" data-bloco="Bloco 1 · A busca"></section>
+
+<section class="s" data-bloco="Bloco 1 · A lista">
+  <p class="k">Depois, monte a lista</p>
+  <h2>De dez a vinte comparáveis, <i>sem repetidos</i>, e some as unidades</h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <ul class="lista" style="font-size:32px">
+      <li class="f">Tire quem aparece nas duas plataformas.</li>
+      <li class="f">Tire quem não passa nos quatro filtros.</li>
+      <li class="f">Some as unidades. Unidade é cada cabana, chalé ou quarto.</li>
+    </ul>
+    <div class="card f" style="padding:34px 40px"><h3>Uma pousada de oito quartos</h3><p style="font-size:32px">É um anúncio e oito unidades.</p></div>
+  </div>
+  <p class="sv f"><b>Sinal vermelho</b><span>Contar anúncios em vez de unidades.</span></p>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A lista da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina · não é uma pessoa real</span>
+  <h2>A tarde <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1450px;font-size:32px">
+    <div class="eq f"><span>Ela imagina cobrar de R$ 500 a R$ 700. A busca vai de</span><span>R$ 350 a R$ 910</span></div>
+    <div class="eq f"><span>Anúncios encontrados</span><span>31</span></div>
+    <div class="eq f"><span>Repetidos</span><span>menos 4</span></div>
+    <div class="eq f"><span>Não passavam nos filtros</span><span>menos 7</span></div>
+    <div class="eq tot f" data-foco><span>Comparáveis que sobraram</span><span>20, com 96 unidades</span></div>
+  </div>
+</section>
+<section class="s q" data-q="n_comparaveis" data-bloco="Bloco 1 · A lista"></section>
+<section class="s q" data-q="unidades_comparaveis" data-bloco="Bloco 1 · A lista"></section>
+
+<section class="s" data-bloco="Bloco 1 · O que anotar">
+  <p class="k">De cada comparável, anote</p>
+  <h2>Sete itens, <i>numa folha só</i></h2>
+  <div class="grid g4" style="gap:20px">
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">Nome e link</h3></div>
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">As unidades</h3></div>
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">A diária de semana</h3></div>
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">A de fim de semana</h3><p>Separadas.</p></div>
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">Quantas avaliações</h3></div>
+    <div class="card f" style="padding:24px 26px"><h3 style="font-size:32px">A data da primeira</h3></div>
+    <div class="card f" style="padding:24px 26px;grid-column:span 2"><h3 style="font-size:32px">A promessa em uma frase</h3><p>O que ele diz que entrega.</p></div>
+  </div>
+  <p class="sv f"><b>Nunca</b><span>Nunca copie nome ou dado de hóspede.</span></p>
+</section>
+<section class="s q" data-q="anota" data-bloco="Bloco 1 · O que anotar"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · Quem já hospeda">
+  <p class="k">Se ninguém hospeda na sua região</p>
+  <h2>Descubra por quê <i>antes de comemorar</i></h2>
+  <div class="grid g2" style="gap:40px">
+    <div class="card f"><h3>Ausência de concorrente</h3><p>Pode ser ausência de procura.</p></div>
+    <div class="card f"><h3>Converse com dois ou três donos</h3><p>De comparáveis. Pergunte o que custou chegar até a porta aberta, não quanto faturam.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="concorrencia" data-bloco="Bloco 1 · Quem já hospeda"></section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_anuncio">
+    <p class="q">Na sua lista entrou uma pousada de oito quartos. Como ela entra na conta?</p>
+    <div class="ops">
+      <button class="op">Um comparável, uma unidade</button>
+      <button class="op" data-certa>Um anúncio, oito unidades</button>
+      <button class="op">Fica de fora, porque é pousada</button>
+    </div>
+    <p class="exp">Um anúncio e oito unidades. Contar anúncios em vez de unidades é sinal vermelho: o mercado parece menor do que é.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A diária e a ocupação">
+  <p class="k">Parada 3 · A diária e a ocupação</p>
+  <h2>A diária não se escolhe. <i>Se descobre.</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Ocupação</h3><p>É a parte das noites que foi vendida. Diária é o preço de uma noite.</p></div>
+    <div class="card f"><h3>Do dia 30 ao dia 90</h3><p>Leia no calendário de cada anúncio as noites bloqueadas, contando de hoje. Longe das reservas de última hora.</p></div>
+    <div class="card f"><h3>Sexta e sábado à parte</h3><p>Separe de domingo a quinta. Uma ocupação só esconde o meio de semana vazio, que é onde mora a oportunidade.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="ocup_fds" data-bloco="Bloco 1 · A ocupação"></section>
+<section class="s q" data-q="ocup_semana" data-bloco="Bloco 1 · A ocupação"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · O peso das unidades">
+  <div class="lado" style="grid-template-columns:1.1fr .9fr">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Na hora da média</p>
+      <h2>Cada comparável pesa <i>pelas unidades que tem</i></h2>
+      <div class="conta" style="font-size:31px">
+        <div class="eq f"><span>Um anúncio com uma cabana a 100% e outro com dez a 20%</span><span></span></div>
+        <div class="eq f"><span>A média dos anúncios</span><span>60%</span></div>
+        <div class="eq tot f" data-foco><span>A conta das onze cabanas</span><span>27%</span></div>
+      </div>
+    </div>
+    <img class="fig" src="figuras/11-peso-unidades.svg" alt="Balança: uma cabana a 100% contra dez cabanas a 20%; média dos anúncios 60%, pelas unidades 27%">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_peso">
+    <p class="q">Dois comparáveis: um com uma cabana a 100%, outro com dez cabanas a 20%. Qual é a ocupação que entra na sua conta?</p>
+    <div class="ops">
+      <button class="op">60%, a média dos dois anúncios</button>
+      <button class="op" data-certa>27%, a conta das onze cabanas</button>
+      <button class="op">100%, a do melhor</button>
+    </div>
+    <p class="exp">Cada comparável pesa pelas unidades que tem. A média dos anúncios dá 60%. A conta das onze cabanas dá 27%.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A mediana">
+  <p class="k">Para o preço</p>
+  <h2>Use a mediana: <i>o preço do meio</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <ul class="lista" style="font-size:32px">
+      <li class="f">Ponha os preços em fila e pegue o do meio.</li>
+      <li class="f">Uma mediana para o fim de semana, e outra para domingo a quinta.</li>
+    </ul>
+    <p class="sv f" style="font-size:32px"><b>Sinal vermelho</b><span>Escolher o preço pelo que você precisa, e não pelo que o hóspede paga.</span></p>
+  </div>
+</section>
+<section class="s q" data-q="diaria_fds" data-bloco="Bloco 1 · A mediana"></section>
+<section class="s q" data-q="diaria_semana" data-bloco="Bloco 1 · A mediana"></section>
+
+<section class="s" data-bloco="Bloco 1 · A diária média">
+  <span class="selo">Exemplo ilustrativo · a semana de uma cabana da Marina</span>
+  <h2>A diária média: <i>o que entrou ÷ as noites vendidas</i></h2>
+  <table class="t" style="font-size:32px">
+    <tr><th>Nos comparáveis da Marina</th><th>Ocupação</th><th>Diária</th></tr>
+    <tr class="f"><td>Sexta e sábado</td><td class="v">78%</td><td class="v">R$ 700</td></tr>
+    <tr class="f"><td>Domingo a quinta</td><td class="v">26%</td><td class="v">R$ 580</td></tr>
+  </table>
+  <div class="grid g4 f" style="gap:20px">
+    <div class="card" style="padding:22px 28px"><p>Noites vendidas na semana</p><h3>2,86</h3></div>
+    <div class="card" style="padding:22px 28px"><p>O que entra na semana</p><h3>R$ 1.846</h3></div>
+    <div class="card" style="padding:22px 28px"><p>Ocupação</p><h3>40,9%</h3></div>
+    <div class="card" style="padding:22px 28px" data-foco><p>Diária média</p><h3>R$ 645</h3></div>
+  </div>
+  <p class="lead f">Não é a soma de dois preços dividida por dois.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A diária média" id="s-sim-sem">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a conta da semana</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <h2 style="font-size:60px">A diária média <i>de verdade</i></h2>
+  <div class="sim" data-sim="sem">
+    <div class="ctl" style="gap:14px">
+      <label>Ocupação de sexta e sábado <output data-for="ofds" data-fmt="pct0"></output><input type="range" name="ofds" min="0" max="100" step="1" value="78"></label>
+      <label>Ocupação de domingo a quinta <output data-for="osem" data-fmt="pct0"></output><input type="range" name="osem" min="0" max="100" step="1" value="26"></label>
+      <label>Diária do meio, sexta e sábado <output data-for="dfds" data-fmt="brl"></output><input type="range" name="dfds" min="100" max="3000" step="10" value="700"></label>
+      <label>Diária do meio, domingo a quinta <output data-for="dsem" data-fmt="brl"></output><input type="range" name="dsem" min="100" max="3000" step="10" value="580"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Noites vendidas na semana</span><b data-r="noites" data-fmt="dec2"></b></div>
+      <div class="linha"><span>O que entra na semana</span><b data-r="entra" data-fmt="brl"></b></div>
+      <div class="linha"><span>Ocupação da semana</span><b data-r="ocJan" data-fmt="pct"></b></div>
+      <div class="linha tot"><span>Diária média de verdade</span><b data-r="diaria" data-fmt="brl"></b></div>
+      <div class="aviso" data-aviso></div>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <button class="btn-s2" data-meus="sem">Usar os meus números</button> <span class="ajustado">Ajustado por você</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_diaria_media">
+    <p class="q">Como se calcula a diária média?</p>
+    <div class="ops">
+      <button class="op">A diária do fim de semana mais a da semana, dividido por dois</button>
+      <button class="op" data-certa>O que entrou dividido pelas noites vendidas</button>
+      <button class="op">A diária mais alta da região</button>
+    </div>
+    <p class="exp">Diária média é o que entrou dividido pelas noites vendidas. O fim de semana vende mais noites e pesa mais na conta.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · A amplitude e o topo">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr;gap:56px">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">A amplitude</p>
+      <h2 style="font-size:60px">O seu destino <i>paga pela diferença?</i></h2>
+      <p class="lead f">A diária mais cara do seu raio dividida pela mais barata, no fim de semana.</p>
+      <div class="regua f" style="height:96px;font-size:24px">
+        <div class="r4" style="flex:2">Abaixo de 2 · a briga é de preço</div>
+        <div style="flex:1;background:#8B9188">2 a 3</div>
+        <div class="r1" style="flex:2">Acima de 3 · paga pela diferença</div>
+      </div>
+      <p class="lead f">Leia o que os três mais caros entregam e os três mais baratos não. Costuma ser uma lista curta.</p>
+      <p class="sv f"><b>Aviso</b><span>Preço alto com calendário vazio não é exemplo: é aviso.</span></p>
+    </div>
+    <img class="fig" src="figuras/15-topo.svg" alt="Os três mais caros entregam vista, isolamento, banheira e café entregue; preço alto com calendário vazio é aviso">
+  </div>
+</section>
+<section class="s q" data-q="amplitude" data-bloco="Bloco 1 · A amplitude e o topo"></section>
+<section class="s q" data-q="topo" data-bloco="Bloco 1 · A amplitude e o topo"></section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · a sua tarde de pesquisa</p>
+  <h2>O que você já <i>mediu</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">De dez a vinte comparáveis, com as unidades, a diária de sexta e sábado, a de domingo a quinta e as noites vendidas do dia 30 ao 90. Onde aparece "não sei", é tarefa da semana.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · A curva do ano, quem paga e quantas cabem">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · A curva do ano, quem paga e quantas cabem</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/RnFYW5-J_9I?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 2 · Bloco 2 · A curva do ano, quem paga e quantas cabem" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/RnFYW5-J_9I" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A curva do ano">
+  <p class="k">Parada 4 · A curva do ano</p>
+  <h2>A temporada que todo mundo repete é opinião. <i>A curva do ano é dado.</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Sazonalidade</h3><p>É como a procura muda ao longo do ano.</p></div>
+    <div class="card f"><h3>Conte os meses</h3><p>Quantos meses de alta, médios e fracos a região tem, e a ocupação de cada grupo. Peça a série de visitantes à secretaria de turismo.</p></div>
+    <div class="card f"><h3>A média pelos doze meses</h3><p>Os meses de cada grupo vezes a ocupação, somados e divididos por doze.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="meses_alta" data-bloco="Bloco 2 · A curva do ano"></section>
+<section class="s q" data-q="ocup_alta" data-bloco="Bloco 2 · A curva do ano"></section>
+<section class="s q" data-q="meses_fraco" data-bloco="Bloco 2 · A curva do ano"></section>
+<section class="s q" data-q="ocup_fraco" data-bloco="Bloco 2 · A curva do ano"></section>
+<section class="s q" data-q="ocup_media" data-bloco="Bloco 2 · A curva do ano"></section>
+
+<section class="s" data-bloco="Bloco 2 · A curva da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>A curva <i>da Marina</i></h2>
+  <table class="t" style="font-size:32px">
+    <tr><th>Grupo</th><th>Meses</th><th>Ocupação</th></tr>
+    <tr class="f"><td>Alta</td><td class="v">3</td><td class="v">64%</td></tr>
+    <tr class="f"><td>Médios</td><td class="v">4</td><td class="v">40%</td></tr>
+    <tr class="f"><td>Fracos</td><td class="v">5</td><td class="v">22%</td></tr>
+    <tr class="f"><td><b>No ano, pelos doze meses</b></td><td></td><td class="v">38,5%</td></tr>
+  </table>
+  <p class="lead f">A média simples das três estações daria 42%, <b>e erraria para cima.</b></p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A curva do ano" id="s-sim-curva">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · a curva do ano</p><span class="selo">Começa no exemplo da Marina</span></div>
+  <div class="sim" data-sim="curva" style="grid-template-columns:1fr;gap:16px">
+    <svg class="curva" viewBox="0 0 1200 230" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div style="display:grid;grid-template-columns:1.05fr .95fr;gap:44px;align-items:start" class="sim-in">
+      <div class="ctl" style="display:grid;grid-template-columns:1fr 1fr;gap:10px 30px">
+        <label>Meses de alta <output data-for="ma"></output><input type="range" name="ma" min="0" max="12" step="1" value="3"></label>
+        <label>Ocupação na alta <output data-for="oa" data-fmt="pct0"></output><input type="range" name="oa" min="0" max="100" step="1" value="64"></label>
+        <label>Meses fracos <output data-for="mf"></output><input type="range" name="mf" min="0" max="12" step="1" value="5"></label>
+        <label>Ocupação nos fracos <output data-for="of" data-fmt="pct0"></output><input type="range" name="of" min="0" max="100" step="1" value="22"></label>
+        <label style="grid-column:1/-1">Ocupação nos meses médios, os que sobram <output data-for="om" data-fmt="pct0"></output><input type="range" name="om" min="0" max="100" step="1" value="40"></label>
+      </div>
+      <div class="res" style="padding:24px 30px;gap:9px">
+        <div class="linha tot"><span>Média do ano</span><b data-r="ocAno" data-fmt="pct"></b></div>
+        <div class="ponteiro" style="height:30px"><i data-ponteiro="pont"></i></div>
+        <div class="roc"><div class="g" style="flex:35">abaixo</div><div class="a" style="flex:5">35</div><div class="g" style="flex:10"></div><div class="b" style="flex:10">50 a 60</div><div class="g" style="flex:5"></div><div class="c" style="flex:35">65 ou mais</div></div>
+        <div class="aviso" data-aviso></div>
+        <div class="linha"><span>Média simples das estações</span><b data-r="simples" data-fmt="pct"></b></div>
+        <div><button class="reset">Voltar ao exemplo</button> <button class="btn-s2" data-meus="curva">Usar os meus números</button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · A régua">
+  <p class="k">Confira na régua</p>
+  <h2>Quanto um lugar costuma encher <i>no ano</i></h2>
+  <div class="regua" style="font-size:26px;height:130px">
+    <div class="r1 f">35% a 40% · só nos fins de semana</div>
+    <div class="r2 f">50% a 60% · com feriados e datas festivas</div>
+    <div class="r3 f">Passou de 65% sem prova? Pare.</div>
+  </div>
+  <p class="citacao f" style="font-size:50px">Passou de sessenta e cinco sem prova de procura extraordinária, pare e pergunte: <i>que prova eu tenho?</i></p>
+  <p class="sm f">É régua para conferir, não promessa.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_regua">
+    <p class="q">A sua conta deu 72% de ocupação no ano, e você não tem prova de procura extraordinária. O que fazer?</p>
+    <div class="ops">
+      <button class="op">Seguir: o número é bom</button>
+      <button class="op" data-certa>Parar e perguntar: que prova eu tenho?</button>
+      <button class="op">Usar o mês mais cheio para confirmar</button>
+    </div>
+    <p class="exp">Passou de 65% sem prova de procura extraordinária, pare e pergunte que prova você tem. E na conta do ano entra a média do ano, nunca o mês mais cheio.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · O mês cheio e o mês fraco">
+  <p class="k">Receita bruta, o mês cheio e o mês fraco</p>
+  <h2>Na conta do ano, a média do ano. <i>Nunca o mês mais cheio.</i></h2>
+  <div class="grid g3">
+    <div class="card f"><h3>Receita bruta</h3><p>É tudo o que entra, antes de imposto, comissão ou custo.</p></div>
+    <div class="card f"><h3>Olhe o mês fraco</h3><p>Quanto entra por unidade. Se o custo de manter aberto passar disso, falta caixa.</p></div>
+    <div class="card f"><h3>Mês fraco pede produto</h3><p>Não desconto.</p></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_mes_fraco">
+    <p class="q">O mês fraco está vazio. O que ele pede?</p>
+    <div class="ops">
+      <button class="op">Desconto, até encher</button>
+      <button class="op" data-certa>Produto</button>
+    </div>
+    <p class="exp">Mês fraco pede produto, não desconto.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · Quem paga">
+  <div class="lado" style="grid-template-columns:1.2fr .8fr">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">Parada 5 · Quem paga</p>
+      <h2>"Casais e famílias" não é público. <i>É meio Brasil.</i></h2>
+      <ul class="lista" style="font-size:29px">
+        <li class="f">Público é quem vem, por qual motivo, de onde e por quantas noites.</li>
+        <li class="f">O motivo da viagem decide o que a pessoa compra: descansar, comemorar, trabalhar, explorar.</li>
+        <li class="f">Leia vinte avaliações recentes de cinco comparáveis, cem no total, e marque quem veio: casal, família, amigos, alguém sozinho ou a trabalho.</li>
+      </ul>
+    </div>
+    <img class="ilus" src="../fotos/ec697bc679.jpg" alt="Casal de hóspedes descansando" style="max-height:720px;object-fit:cover;border-radius:22px">
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · As avaliações da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>Cem avaliações. <i>Sessenta e oito de casais.</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:center">
+    <p class="citacao f" style="font-size:58px">"a casa só para nós"</p>
+    <ul class="lista" style="font-size:31px">
+      <li class="f">A frase apareceu onze vezes. É o motivo da viagem falando.</li>
+      <li class="f">Quem vem de até duas horas decide em cima da hora e fica no fim de semana.</li>
+    </ul>
+  </div>
+  <p class="sv f"><b>Sinal vermelho</b><span>Depender de uma cidade só.</span></p>
+</section>
+<section class="s q" data-q="quem_veio" data-bloco="Bloco 2 · Quem paga"></section>
+<section class="s q" data-q="motivo" data-bloco="Bloco 2 · Quem paga"></section>
+<section class="s q" data-q="frase" data-bloco="Bloco 2 · Quem paga"></section>
+
+<section class="s esc" data-bloco="Bloco 2 · Os dois públicos">
+  <p class="k">Então decida</p>
+  <h2>Dois públicos, <i>e quem fica de fora</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Fim de semana</h3><p>Um público de fim de semana.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Meio de semana</h3><p>E um de meio de semana.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Quem fica de fora</h3><p>Escreva quem você não vai atender.</p></div>
+  </div>
+  <p class="lead f">Essa é a base do produto, no Pilar 3.</p>
+</section>
+<section class="s q" data-q="dois_publicos" data-bloco="Bloco 2 · Os dois públicos"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quantas o destino compra">
+  <p class="k">Parada 6 · A absorção</p>
+  <h2>Não é quantas você quer. <i>É quantas o destino compra.</i></h2>
+  <p class="lead f">Absorção é quantas unidades novas o destino consegue encher sem tirar hóspede de ninguém.</p>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>As noites que já têm dono</h3><p>As que os comparáveis já vendem.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Quanto a procura cresce</h3><p>Até você abrir, pela série da secretaria de turismo. Sem série, "não sei": a ferramenta conta zero.</p></div>
+    <div class="card f"><span class="n">3</span><h3>O que está em obra</h3><p>As unidades em obra ou em licença. Peça os alvarás na prefeitura: elas abrem antes de você.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="crescimento_ate_abrir" data-bloco="Bloco 2 · Quantas o destino compra"></section>
+<section class="s q" data-q="unidades_em_obra" data-bloco="Bloco 2 · Quantas o destino compra"></section>
+
+<section class="s" data-bloco="Bloco 2 · As noites da Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina</span>
+  <h2>As noites <i>que sobram</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>Os 96 comparáveis vendem, por ano</span><span>13.315 noites</span></div>
+    <div class="eq f"><span>A procura cresce 22,5% até ela abrir</span><span>mais quase 3.000</span></div>
+    <div class="eq f"><span>18 unidades em obra levam</span><span>menos quase 2.500</span></div>
+    <div class="eq tot f" data-foco><span>Sobram</span><span>499 noites</span></div>
+    <div class="eq f"><span>Cada cabana precisa, para ficar na média, de cerca de</span><span>139 noites</span></div>
+  </div>
+  <p class="lead f"><b>Cabem três.</b> Ela desenha a infraestrutura para cinco e abre com três.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · Quantas o destino compra" id="s-sim-cab">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Mexa você · quantas o destino compra</p><span class="selo">Com as suas respostas</span></div>
+  <div class="sim" data-sim="cab" style="grid-template-columns:1fr;gap:14px">
+    <svg class="cabem" viewBox="0 0 1500 130" preserveAspectRatio="none" aria-hidden="true"></svg>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:44px;align-items:start" class="sim-in">
+      <div class="ctl" style="display:grid;grid-template-columns:1fr 1fr;gap:12px 30px">
+        <label>Unidades dos comparáveis <output data-for="comp"></output><input type="range" name="comp" min="0" max="400" step="1" value="60"></label>
+        <label>Ocupação média do ano <output data-for="oc" data-fmt="pct"></output><input type="range" name="oc" min="0" max="100" step="0.5" value="40"></label>
+        <label>Crescimento até abrir <output data-for="cresc" data-fmt="pct"></output><input type="range" name="cresc" min="0" max="100" step="0.5" value="15"></label>
+        <label>Em obra ou licença <output data-for="obra"></output><input type="range" name="obra" min="0" max="200" step="1" value="3"></label>
+        <label style="grid-column:1/-1">Unidades que você pensava abrir <output data-for="pret"></output><input type="range" name="pret" min="1" max="40" step="1" value="8"></label>
+      </div>
+      <div class="res" style="padding:24px 30px;gap:9px">
+        <div class="linha"><span>Já vendem hoje, já têm dono</span><b data-r="hoje"></b></div>
+        <div class="linha"><span>Procura nova até abrir</span><b data-r="mais"></b></div>
+        <div class="linha"><span>Levam as que estão em obra</span><b data-r="menos"></b></div>
+        <div class="linha"><span>Sobram para quem entra</span><b data-r="sobra"></b></div>
+        <div class="linha"><span>Cada unidade precisa</span><b data-r="precisa" data-fmt="dec1"></b></div>
+        <div class="linha tot"><span>Cabem agora</span><b data-r="cabemTxt"></b></div>
+        <div class="aviso" data-aviso></div>
+        <div><button class="btn-s2" data-meus="cab">Voltar aos meus números</button></div>
+        <p class="sm" style="font-size:19px">Onde você ainda não respondeu, a barra começa num valor neutro, que não é da Marina. As barras são para testar: o que vai para a Ficha são as suas respostas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="s q" data-q="unidades_pretendidas" data-bloco="Bloco 2 · Quantas o destino compra"></section>
+
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo" data-quiz="q_cabem">
+    <p class="q">Sobram 499 noites no destino da Marina, e cada cabana precisa de cerca de 139. O que ela faz?</p>
+    <div class="ops">
+      <button class="op">Abre as cinco que queria</button>
+      <button class="op" data-certa>Desenha a infraestrutura para cinco e abre com três</button>
+      <button class="op">Desiste do projeto</button>
+    </div>
+    <p class="exp">Cabem três. Ela desenha a infraestrutura para cinco e abre com três. É o veredito mais comum: ajustar.</p>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · O veredito">
+  <p class="k">Feche com uma palavra</p>
+  <h2>Avançar, testar, ajustar <i>ou pausar</i></h2>
+  <div class="grid g4">
+    <div class="card f"><h3>Avançar</h3></div>
+    <div class="card f"><h3>Testar</h3></div>
+    <div class="card f" data-foco style="border:3px solid var(--ouro)"><h3>Ajustar</h3><p>O mais comum.</p></div>
+    <div class="card f"><h3>Pausar</h3></div>
+  </div>
+  <p class="lead f">E escreva antes o critério para parar: o fato que mudaria a sua decisão.</p>
+</section>
+<section class="s q" data-q="veredito" data-bloco="Bloco 2 · O veredito"></section>
+<section class="s q" data-q="criterio" data-bloco="Bloco 2 · O veredito"></section>
+
+<!-- ============ RESUMO ============ -->
+<section class="s" data-bloco="Resumo">
+  <p class="k">O checklist do mercado, em cinco frases</p>
+  <h2>O que fica <i>deste pilar</i></h2>
+  <div class="ideias">
+    <div class="f"><b>1</b><span>Comparável é quem o seu hóspede escolheria no seu lugar. Conte unidades, não anúncios.</span></div>
+    <div class="f"><b>2</b><span>A diária não se escolhe, se descobre: no calendário, do dia 30 ao 90, com sexta e sábado separados.</span></div>
+    <div class="f"><b>3</b><span>Diária média é o que entrou dividido pelas noites vendidas.</span></div>
+    <div class="f"><b>4</b><span>Na conta do ano entra a média dos doze meses, nunca o mês mais cheio. Mês fraco pede produto, não desconto.</span></div>
+    <div class="f"><b>5</b><span>Não é quantas você quer. É quantas o destino compra.</span></div>
+  </div>
+  <p class="sv f" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">7 dias</b><span>Leia o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados, e faça a conta da semana. Se já fez, peça a série de visitantes e os alvarás.</span></p>
+</section>
+
+<section class="s" data-bloco="A sua Ficha">
+  <p class="k">Para a Ficha sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Se você já preencheu no Pilar 1, os dados vêm de lá. Nada é enviado nesta aula: a ferramenta da Ficha usa o seu e-mail só quando você pedir o mentor de IA ou baixar o PDF.</p>
+</section>
+
+<!-- ============ DIAGNÓSTICO ============ -->
+<section class="s diag" data-bloco="O seu diagnóstico" id="s-diag">
+  <p class="diag-txt"><b>As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 2 do seu Dossiê. No fim, envie para o Land Bank da Zion.</b> <span class="sm" id="diag-st"></span></p>
+  <div class="diag-cx" data-sem-clique><iframe id="diag-fr" title="Faça agora · A sua Ficha do Mercado" data-src="../../aula2/" data-sem-clique></iframe></div>
+  <div class="diag-pe" data-sem-clique><span>Se a ferramenta abrir na tela inicial, toque em "Continuar de onde parei".</span><a href="../../aula2/" target="_blank" rel="noopener" id="diag-cheia">Abrir em tela cheia</a></div>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 3</p>
+  <h2 style="max-width:1150px">Produto <i>e tipologias</i></h2>
+  <p class="lead" style="max-width:1100px">O que você vende, e para quem: o nicho, o que o hóspede vive, a promessa e a unidade. Tudo isso vira a sua Ficha do Produto, a página 3 do Dossiê. Só siga com a Ficha do Mercado na mão.</p>
+  <p class="sv" style="max-width:1100px;background:rgba(201,168,76,.22);color:#F5F1E8;border-color:var(--ouro)"><b style="color:var(--ouro)">Lembrete</b><span>Salve o PDF na pasta Meu Dossiê.</span></p>
+  <p class="sm" style="max-width:1150px;margin-top:22px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas. A régua de ocupação serve para conferir a conta, não é promessa. Alvarás e licenças: quem confirma é a prefeitura. Não é avaliação de mercado nem oferta de investimento, e não é promessa de renda, retorno, ocupação, crédito, compra ou sociedade. A Zion avalia cada caso.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+"use strict";
+/* ===================================================================
+   Parte copiada da ferramenta Faça agora do Pilar 2 (aula2/index.html):
+   o apoio (Z) e as contas (Calc_03), sem mudar a lógica.
+   Mesmo estado da ferramenta: chave "zion-t1-aula2".
+   =================================================================== */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function arred(x, casas = 2) { const f = Math.pow(10, casas); const r = Math.round(Math.abs(x) * f + 1e-7) / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res; }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, fmtPct, juntar, div };
+})();
+const { fmtN, brl, fmtPct, juntar, paraNumero } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+
+/** Lê o que o aluno salvou em outra ferramenta do Método Zion (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDaAula = (n) => carregarChave(PREFIXO + n);
+/** Os números que outra aula deixou no resumo (resumo.dados), ou null. */
+const dadosDaAula = (n) => { const d = salvoDaAula(n); return d && d.resumo && d.resumo.dados ? d.resumo.dados : null; };
+/** As respostas que o aluno deu em outra aula, ou null. */
+const respostasDaAula = (n) => { const d = salvoDaAula(n); return d && d.respostas ? d.respostas : null; };
+const fontesDaAula = (n) => { const d = salvoDaAula(n); return d && d.fontes ? d.fontes : {}; };
+var Calc_03 = (() => {
+  var __defProp = Object.defineProperty;
+  var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+  var __getOwnPropNames = Object.getOwnPropertyNames;
+  var __hasOwnProp = Object.prototype.hasOwnProperty;
+  var __export = (target, all) => {
+    for (var name in all)
+      __defProp(target, name, { get: all[name], enumerable: true });
+  };
+  var __copyProps = (to, from, except, desc) => {
+    if (from && typeof from === "object" || typeof from === "function") {
+      for (let key of __getOwnPropNames(from))
+        if (!__hasOwnProp.call(to, key) && key !== except)
+          __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+    }
+    return to;
+  };
+  var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+  // ../kit-code/ferramentas/ts/t1-a03.ts
+  var t1_a03_exports = {};
+  __export(t1_a03_exports, {
+    calcular: () => calcular
+  });
+
+  // ../kit-code/ferramentas/ts/util.ts
+  function falta(v) {
+    if (v === void 0 || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    const temVirgula = s.includes(",");
+    if (temVirgula) {
+      s = s.replace(/\./g, "").replace(",", ".");
+    } else {
+      const pontos = (s.match(/\./g) || []).length;
+      if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, "");
+    }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  function num(r, id) {
+    return paraNumero(r[id]);
+  }
+  function pct(r, id) {
+    const n = num(r, id);
+    return n === null ? null : n / 100;
+  }
+  function ok(...xs) {
+    return xs.every((x) => typeof x === "number" && Number.isFinite(x));
+  }
+  function div(a, b) {
+    if (!ok(a, b) || b === 0) return null;
+    const q = a / b;
+    return Number.isFinite(q) ? q : null;
+  }
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas);
+    const y = Math.abs(x) * f;
+    const r = Math.round(y + 1e-7) / f;
+    const res = x < 0 ? -r : r;
+    return Object.is(res, -0) ? 0 : res;
+  }
+  function pisoSeguro(x) {
+    return Math.floor(x + 1e-9);
+  }
+  function agrupar(inteiro) {
+    return inteiro.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  }
+  function fmtNum(x, casas = 2) {
+    const r = arred(x, casas);
+    const neg = r < 0;
+    const [i, d] = Math.abs(r).toFixed(casas).split(".");
+    return (neg ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : "");
+  }
+  function fmtN(x, casasMax = 2) {
+    const s = fmtNum(x, casasMax);
+    if (!s.includes(",")) return s;
+    return s.replace(/,?0+$/, "");
+  }
+  function brl(x) {
+    const r = arred(x, 2);
+    return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2);
+  }
+  function fmtPct(frac, casas = 1) {
+    return fmtNum(frac * 100, casas) + "%";
+  }
+  function juntar(itens) {
+    if (itens.length === 0) return "";
+    if (itens.length === 1) return itens[0];
+    return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1];
+  }
+  function limpaNumero(x, casas) {
+    return Number.isFinite(x) ? arred(x, casas) : null;
+  }
+  function limpaTexto(s) {
+    return s.replace(/\s*\u2014\s*/g, ", ").replace(/\u2013/g, "-");
+  }
+  function limpaDetalhe(v, casas) {
+    if (typeof v === "number") return limpaNumero(v, casas);
+    if (typeof v === "string") return limpaTexto(v);
+    if (Array.isArray(v)) return v.map(limpaTexto);
+    return v;
+  }
+  function fechar(c, casas = 2) {
+    const out = {
+      id: c.id,
+      rotulo: limpaTexto(c.rotulo),
+      valor: typeof c.valor === "number" ? limpaNumero(c.valor, casas) : typeof c.valor === "string" ? limpaTexto(c.valor) : c.valor,
+      texto: limpaTexto(c.texto)
+    };
+    if (c.alerta) out.alerta = c.alerta;
+    if (c.detalhes) {
+      out.detalhes = {};
+      for (const [k, v] of Object.entries(c.detalhes)) out.detalhes[k] = limpaDetalhe(v, 4);
+    }
+    return out;
+  }
+
+  // ../kit-code/ferramentas/ts/t1-a03.ts
+  var REGUA_OCUP = "Régua: 35% a 40% vende só nos fins de semana; 50% a 60% com fins de semana, feriados e datas; 65% a 85% só com procura extraordinária comprovada.";
+  function faixaOcupacao(o) {
+    if (o < 0.35) return "abaixo de 35%, abaixo da primeira faixa da régua";
+    if (o <= 0.4) return "na faixa de 35% a 40%: vende só nos fins de semana";
+    if (o < 0.5) return "entre faixas; a mais próxima abaixo é 35% a 40%, vende só nos fins de semana";
+    if (o <= 0.6) return "na faixa de 50% a 60%: fins de semana, feriados e datas";
+    if (o < 0.65) return "entre faixas; a mais próxima abaixo é 50% a 60%, fins de semana, feriados e datas";
+    if (o <= 0.85) return "na faixa de 65% a 85%: só com procura extraordinária comprovada";
+    return "acima de 85%; a faixa mais próxima abaixo é 65% a 85%, só com procura extraordinária comprovada";
+  }
+  function calcular(r) {
+    var _a, _b;
+    const calculos = [];
+    const oF = pct(r, "ocup_fds"), oS = pct(r, "ocup_semana");
+    const dF = num(r, "diaria_fds"), dS = num(r, "diaria_semana");
+    let diariaMedia = null;
+    {
+      if (oF === null || oS === null || dF === null || dS === null) {
+        const f = [oF === null && "ocupação de sexta e sábado", oS === null && "ocupação de domingo a quinta", dF === null && "diária do fim de semana", dS === null && "diária de domingo a quinta"].filter(Boolean);
+        calculos.push({ id: "conta_semana", rotulo: "A conta da semana", valor: null, texto: `Para a conta da semana falta ${juntar(f)}.` });
+      } else {
+        const noites = 2 * oF + 5 * oS;
+        const receita = 2 * oF * dF + 5 * oS * dS;
+        const ocupJanela = noites / 7;
+        diariaMedia = div(receita, noites);
+        const porNoite = receita / 7;
+        calculos.push({
+          id: "conta_semana",
+          rotulo: "A conta da semana",
+          valor: diariaMedia,
+          texto: diariaMedia === null ? "Nenhuma noite vendida na semana: a diária média fica em branco." : `Numa semana típica, uma unidade vende ${fmtN(noites, 2)} noites e entra ${brl(receita)}. Ocupação da janela: ${fmtPct(ocupJanela)}. Diária média de verdade (o que entra dividido pelas noites vendidas): ${brl(diariaMedia)}. Por noite disponível: ${brl(porNoite)}.`,
+          detalhes: { noites_semana: noites, receita_semana: receita, ocup_janela_pct: ocupJanela * 100, diaria_media: diariaMedia, por_noite_disponivel: porNoite }
+        });
+      }
+    }
+    const razao = div(oF, oS);
+    calculos.push({
+      id: "fds_vs_semana",
+      rotulo: "Quantas vezes o fim de semana enche mais",
+      valor: razao,
+      texto: razao === null ? "Falta a ocupação do fim de semana ou da semana (ou a da semana é zero)." : `O fim de semana enche ${fmtN(razao, 1)} vezes mais que a semana.`
+    });
+    const amp = num(r, "amplitude");
+    {
+      let t, alerta;
+      if (amp === null) t = "Falta a amplitude: diária mais cara dividida pela mais barata do raio.";
+      else if (amp > 3) {
+        t = `Amplitude de ${fmtN(amp, 2)}: acima de 3, o destino paga pela diferença.`;
+        alerta = "ok";
+      } else if (amp < 2) {
+        t = `Amplitude de ${fmtN(amp, 2)}: abaixo de 2, a briga é de preço.`;
+        alerta = "atencao";
+      } else t = `Amplitude de ${fmtN(amp, 2)}. Entre 2 e 3 a fonte não traz leitura: fica só o número.`;
+      calculos.push({ id: "regua_amplitude", rotulo: "Leitura da amplitude", valor: amp, texto: t, alerta });
+    }
+    const mA = num(r, "meses_alta"), mF = num(r, "meses_fraco");
+    const oA = pct(r, "ocup_alta"), oFr = pct(r, "ocup_fraco"), oM = pct(r, "ocup_media");
+    let ocupAno = null;
+    {
+      let t;
+      let alerta;
+      const mM = mA !== null && mF !== null ? 12 - mA - mF : null;
+      if (mA === null || mF === null) t = "Falta quantos meses de alta e quantos fracos.";
+      else if (mM < 0 || mA < 0 || mF < 0) t = "Meses de alta mais meses fracos passam de 12: confira.";
+      else {
+        const precisa = [[mA, oA, "ocupação da alta"], [mM, oM, "ocupação dos meses médios"], [mF, oFr, "ocupação dos meses fracos"]];
+        const f = precisa.filter(([m, o]) => m > 0 && o === null).map(([, , n]) => n);
+        if (f.length) t = `Para a média do ano falta ${juntar(f)}.`;
+        else {
+          ocupAno = (mA * (oA != null ? oA : 0) + mM * (oM != null ? oM : 0) + mF * (oFr != null ? oFr : 0)) / 12;
+          t = `Ocupação média do ano: ${fmtPct(ocupAno)}, ${faixaOcupacao(ocupAno)}. ${REGUA_OCUP}`;
+          alerta = ocupAno >= 0.65 - 1e-12 ? "atencao" : "ok";
+        }
+      }
+      calculos.push({ id: "ocup_ano", rotulo: "Ocupação média do ano", valor: ocupAno === null ? null : ocupAno * 100, texto: t, alerta, detalhes: { meses_medios: mM } });
+    }
+    const erro = ocupAno !== null && oA !== null ? div(oA, ocupAno) : null;
+    calculos.push({
+      id: "erro_mes_cheio",
+      rotulo: "Quanto a conta sairia maior usando o mês mais cheio",
+      valor: erro === null ? null : (erro - 1) * 100,
+      texto: erro === null ? "Falta a ocupação da alta ou a média do ano." : `Quem usa a ocupação da alta no lugar da média do ano faz uma conta ${fmtPct(erro - 1)} maior do que o ano entrega.`,
+      alerta: erro !== null && erro - 1 > 0 ? "atencao" : void 0
+    });
+    const rbu = ocupAno !== null && diariaMedia !== null ? ocupAno * 365 * diariaMedia : null;
+    calculos.push({
+      id: "receita_bruta_unidade",
+      rotulo: "Receita bruta por unidade no ano (não é retorno)",
+      valor: rbu,
+      texto: rbu === null ? "Falta a ocupação do ano ou a diária média." : `Receita bruta por unidade no ano: ${brl(rbu)} (${fmtN(ocupAno * 365, 1)} noites a ${brl(diariaMedia)}). Não é retorno: ainda saem impostos, comissões, custos e a retirada do dono.`
+    });
+    const mfu = oFr !== null && diariaMedia !== null ? 30 * oFr * diariaMedia : null;
+    calculos.push({
+      id: "mes_fraco_unidade",
+      rotulo: "Quanto entra num mês fraco, por unidade",
+      valor: mfu,
+      texto: mfu === null ? "Falta a ocupação dos meses fracos ou a diária média." : `Num mês fraco entra cerca de ${brl(mfu)} por unidade, antes de qualquer custo.`
+    });
+    const comp = num(r, "unidades_comparaveis");
+    const crescNS = falta(r["crescimento_ate_abrir"]);
+    const obraNS = falta(r["unidades_em_obra"]);
+    const cresc = (_a = pct(r, "crescimento_ate_abrir")) != null ? _a : 0;
+    const emObra = (_b = num(r, "unidades_em_obra")) != null ? _b : 0;
+    let cabem = null;
+    {
+      if (comp === null || ocupAno === null || ocupAno <= 0) {
+        calculos.push({ id: "absorcao", rotulo: "Quantas unidades o mercado aguenta agora", valor: null, texto: `Para a absorção falta ${comp === null ? "quantas unidades somam os comparáveis" : "a ocupação média do ano"}.` });
+      } else {
+        const noitesHoje = comp * 365 * ocupAno;
+        const mais = noitesHoje * cresc;
+        const menos = emObra * 365 * ocupAno;
+        const sobra = mais - menos;
+        const porUnidade = 365 * ocupAno;
+        cabem = Math.max(0, pisoSeguro(sobra / porUnidade));
+        const marcas = [crescNS && "sem a série (crescimento entrou como zero)", obraNS && "sem os alvarás (unidades em obra entraram como zero)"].filter(Boolean);
+        calculos.push({
+          id: "absorcao",
+          rotulo: "Quantas unidades o mercado aguenta agora",
+          valor: cabem,
+          texto: `Os comparáveis vendem ${fmtN(noitesHoje, 0)} noites hoje. Até você abrir, a procura cresce ${fmtN(mais, 0)} noites e as unidades em obra levam ${fmtN(menos, 0)}. Sobram ${fmtN(sobra, 0)} noites para quem entra; cada unidade precisa de ${fmtN(porUnidade, 1)}. Cabem ${cabem} agora.` + (marcas.length ? ` Conta ${juntar(marcas)}.` : ""),
+          alerta: cabem < 1 ? "critico" : void 0,
+          detalhes: { noites_hoje: noitesHoje, mais, menos, sobra, noites_por_unidade: porUnidade, cabem_agora: cabem, sem_serie: crescNS, sem_alvaras: obraNS }
+        });
+      }
+    }
+    const alerta65 = ocupAno === null ? null : ocupAno >= 0.65 - 1e-12;
+    calculos.push({
+      id: "checa_regua",
+      rotulo: "Prova exigida acima de 65%",
+      valor: alerta65,
+      texto: alerta65 === null ? "Sem a média do ano, não dá para checar a régua." : alerta65 ? `Alerta: ${fmtPct(ocupAno)} no ano exige prova de procura extraordinária.` : "Abaixo de 65%: não exige prova de procura extraordinária.",
+      alerta: alerta65 ? "critico" : alerta65 === false ? "ok" : void 0
+    });
+    const pretendidas = num(r, "unidades_pretendidas");
+    let v, motivo;
+    if (cabem !== null && cabem < 1 && !crescNS && !obraNS) {
+      v = "pausar";
+      motivo = "A sobra do destino não cabe nem uma unidade: não existe procura para o que se quer fazer ali.";
+    } else if (cabem === null || ocupAno === null || alerta65 || crescNS || obraNS) {
+      v = "testar";
+      const m = [];
+      if (cabem === null || ocupAno === null) m.push("falta dado para a média do ano ou a absorção");
+      if (alerta65) m.push("a ocupação do ano passou de 65% sem prova de procura extraordinária");
+      if (crescNS) m.push("falta a série de visitantes");
+      if (obraNS) m.push("faltam os alvarás");
+      motivo = `Testar: ${juntar(m)}.`;
+    } else if (pretendidas === null) {
+      v = "testar";
+      motivo = "Testar: falta quantas unidades você pensava em abrir para comparar com o que cabe.";
+    } else if (cabem < pretendidas) {
+      v = "ajustar";
+      motivo = `Cabem ${cabem} agora, menos que as ${fmtN(pretendidas)} pretendidas: desenha a infraestrutura para o total e abre com as que cabem.`;
+    } else {
+      v = "avancar";
+      motivo = "Seguir com condições: o mercado aguenta as unidades pretendidas, desde que se entregue o que o topo da faixa entrega.";
+    }
+    calculos.push({ id: "veredito_sugerido", rotulo: "Veredito sugerido pela página", valor: v, texto: motivo });
+    return { calculos: calculos.map((c) => fechar(c)), veredito_sugerido: v, motivo_veredito: motivo };
+  }
+  return __toCommonJS(t1_a03_exports);
+})();
+
+const CHAVE = "zion-t1-aula2";
+/** A mesma conta da ferramenta (AULA.calcular): a régua da amplitude vale "3 ou mais". */
+function calcular(r) {
+  const res = Calc_03.calcular(r);
+  const c = res.calculos.find((x) => x.id === "regua_amplitude");
+  if (typeof c.valor === "number" && c.valor >= 3) { c.texto = `Amplitude de ${fmtN(c.valor, 2)}: 3 ou mais, o destino paga pela diferença.`; c.alerta = "ok"; }
+  return res;
+}
+const FONTES = [
+  { v: "medida", nota: 3, rot: "Contei ou medi eu mesmo (anúncios, calendários, avaliações), ou tenho por escrito (série oficial, alvará)" },
+  { v: "falado", nota: 2, rot: "Alguém da região me falou (dono, secretaria, corretor), mas não tenho no papel" },
+  { v: "estimativa", nota: 1, rot: "É estimativa minha ou de uma ferramenta de dados de mercado" },
+];
+const LEITURAS = {
+  avancar: { rot: "Seguir com condições", sub: "O mercado aguenta as unidades pretendidas, desde que você entregue o que o topo da faixa entrega." },
+  testar: { rot: "Testar: medir o que falta", sub: "A medida ainda depende de dado que falta, ou a ocupação do ano pede prova." },
+  ajustar: { rot: "Ajustar: mudar alguma coisa", sub: "Mude o número de unidades, o produto ou o público antes de desenhar." },
+  pausar: { rot: "Pausar: rever público e produto", sub: "Não existe procura para o que se quer fazer ali." },
+};
+
+/* As 14 perguntas da ferramenta, na ordem dela, com os textos do vídeo. Mesmos ids, tipos e limites. */
+const TQ = [
+  { id: "unidades_comparaveis", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Unidades dos comparáveis",
+    pergunta: "Quantas unidades somam os seus comparáveis?",
+    cita: "No vídeo: conte unidades, não anúncios. Uma pousada de oito quartos é um anúncio e oito unidades.",
+    explica: "Some as unidades de todos os comparáveis da sua lista. Cada cabana, chalé ou quarto conta uma.",
+    porque: "É a base da conta de quantas unidades o destino ainda compra. Quem conta anúncios em vez de unidades mede um mercado menor do que ele é.",
+    onde: "<p>Na sua lista de 10 a 20 comparáveis, no <b>Airbnb</b> e no <b>Booking</b>: até 30 minutos de carro, de 30% abaixo a 30% acima do preço que você imagina, sem repetidos e só quem passa nos quatro filtros. Faça à mão e nunca copie nome ou dado de hóspede.</p>",
+    marina: "A Marina ficou com 20 comparáveis, que somam 96 unidades.",
+    ondeCurto: "montar a lista de 10 a 20 comparáveis no Airbnb e no Booking, no raio de 30 minutos" },
+  { id: "ocup_fds", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação de sexta e sábado",
+    pergunta: "Nos calendários dos comparáveis, quanto de sexta e sábado já está ocupado?",
+    cita: "No vídeo: leia no calendário as noites bloqueadas do dia 30 ao dia 90, contando de hoje.",
+    explica: "Ocupação é a parte das noites que foi vendida. Conte só as sextas e os sábados ocupados nessa janela, pesando pelas unidades. Escreva em porcentagem.",
+    porque: "Separe sexta e sábado de domingo a quinta. Uma ocupação só esconde o meio de semana vazio, que é onde mora a oportunidade.",
+    onde: "<ul><li>No calendário de cada anúncio, do dia 30 ao dia 90: longe das reservas de última hora.</li><li>Cada comparável pesa pelas unidades que tem: um lugar com dez cabanas pesa mais que um com uma.</li></ul>",
+    marina: "Nos comparáveis da Marina, sexta e sábado estavam 78% ocupados.",
+    ondeCurto: "ler o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados" },
+  { id: "ocup_semana", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação de domingo a quinta",
+    pergunta: "E de domingo a quinta, quanto está ocupado?",
+    cita: "No vídeo: o meio de semana vazio é onde mora a oportunidade.",
+    explica: "A mesma janela, do dia 30 ao dia 90, agora só de domingo a quinta. Pese pelas unidades.",
+    porque: "Junto com a ocupação de sexta e sábado, ela dá a conta da semana: quantas noites uma unidade vende de verdade em sete dias.",
+    onde: "<p>Nos mesmos calendários, com as mesmas regras: do dia 30 ao 90, pesando pelas unidades.</p>",
+    marina: "De domingo a quinta, os comparáveis da Marina estavam 26% ocupados.",
+    ondeCurto: "ler o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados" },
+  { id: "diaria_fds", tipo: "moeda", nota: "fonte", aceitaNS: true, curto: "Diária do meio no fim de semana", placeholder: "Ex.: 700",
+    pergunta: "Qual é a diária do meio de sexta e sábado, entre os seus comparáveis?",
+    cita: "No vídeo: a diária não se escolhe, se descobre.",
+    explica: "Diária é o preço de uma noite. Ponha os preços de sexta e sábado em fila, do mais barato ao mais caro, e pegue o do meio: é a mediana.",
+    porque: "O preço do meio não se deixa puxar por um preço muito alto ou muito baixo. Sinal vermelho: escolher o preço pelo que você precisa, e não pelo que o hóspede paga.",
+    onde: "<p>Nos anúncios dos seus comparáveis, no preço de sexta e sábado. Escreva só o número, por exemplo 700.</p>",
+    marina: "Nos comparáveis da Marina, a diária de sexta e sábado é R$ 700.",
+    ondeCurto: "anotar o preço de fim de semana dos comparáveis e pegar o do meio" },
+  { id: "diaria_semana", tipo: "moeda", nota: "fonte", aceitaNS: true, curto: "Diária do meio de domingo a quinta", placeholder: "Ex.: 580",
+    pergunta: "E de domingo a quinta, qual é a diária do meio?",
+    cita: "No vídeo: uma mediana para o fim de semana e outra para domingo a quinta.",
+    explica: "A mediana dos mesmos comparáveis, agora no preço de domingo a quinta.",
+    porque: "Com as duas diárias e as duas ocupações sai a diária média de verdade: o que entrou dividido pelas noites vendidas, e não a soma de dois preços dividida por dois.",
+    onde: "<p>Nos mesmos anúncios, no preço de domingo a quinta. Ponha em fila e pegue o do meio.</p>",
+    marina: "De domingo a quinta, R$ 580. Numa semana, uma cabana vende 2,86 noites e traz R$ 1.846: ocupação de 40,9% e diária média de R$ 645.",
+    ondeCurto: "anotar o preço de domingo a quinta dos comparáveis e pegar o do meio" },
+  { id: "amplitude", tipo: "numero", unidade: "vezes", nota: "fonte", aceitaNS: true, curto: "Amplitude de preço da região", placeholder: "Ex.: 3",
+    pergunta: "Quantas vezes a diária mais cara do seu raio é maior que a mais barata?",
+    cita: "No vídeo: acima de três, o destino paga pela diferença. Abaixo de dois, a briga é de preço.",
+    explica: "Divida a diária de fim de semana mais cara do seu raio pela mais barata. Pode usar vírgula, por exemplo 2,5.",
+    porque: "É uma régua rápida para saber se o seu destino paga por qualidade, e se existe espaço para quem entrega mais.",
+    onde: "<p>Na mesma busca dos comparáveis, no fim de semana, dentro do raio de 30 minutos.</p>",
+    marina: null,
+    ondeCurto: "dividir a diária mais cara do raio pela mais barata, no fim de semana" },
+  { id: "meses_alta", tipo: "numero", unidade: "meses", nota: "fonte", aceitaNS: true, min: 0, max: 12, curto: "Meses de alta",
+    pergunta: "Quantos meses de alta a sua região tem no ano?",
+    cita: "No vídeo: a temporada que todo mundo repete é opinião. A curva do ano é dado.",
+    explica: "Alta é a época em que a procura sobe. Conte quantos meses, de 0 a 12.",
+    porque: "É com a curva que se faz a média do ano: os meses de cada grupo vezes a ocupação, somados e divididos por doze.",
+    onde: "<p>Na <b>série de visitantes</b> da região, que se pede à <b>secretaria de turismo</b>. Conversas com quem trabalha na região ajudam: diga de onde veio.</p>",
+    marina: "A Marina tem três meses de alta.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo e conversar com quem trabalha na região" },
+  { id: "ocup_alta", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação na alta",
+    pergunta: "Quanto os comparáveis enchem nos meses de alta?",
+    cita: "No vídeo: na conta do ano entra a média do ano, nunca o mês mais cheio.",
+    explica: "A ocupação média dos meses de alta, em porcentagem.",
+    porque: "É o número mais lembrado e o mais perigoso: usar a ocupação da alta como se fosse a do ano inteiro faz a conta sair maior do que o ano entrega.",
+    onde: "<p>Na série de visitantes e nos calendários dos comparáveis lidos nessa época.</p>",
+    marina: "Nos meses de alta, os comparáveis da Marina enchem 64%.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo e ler os calendários na alta" },
+  { id: "meses_fraco", tipo: "numero", unidade: "meses", nota: "fonte", aceitaNS: true, min: 0, max: 12, curto: "Meses fracos",
+    pergunta: "Quantos meses fracos a sua região tem no ano?",
+    cita: "No vídeo: mês fraco pede produto, não desconto.",
+    explica: "Mês fraco é o que quase não vende. Os meses que sobram, nem alta nem fracos, são os médios.",
+    porque: "O mês fraco é o que testa o caixa: se o custo de manter aberto passar do que entra, falta caixa.",
+    onde: "<p>Na mesma série de visitantes e nas mesmas conversas com quem trabalha na região.</p>",
+    marina: "A Marina tem cinco meses fracos. Sobram quatro meses médios.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo e conversar com quem trabalha na região" },
+  { id: "ocup_fraco", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação nos meses fracos",
+    pergunta: "Quanto os comparáveis enchem nos meses fracos?",
+    cita: "No vídeo: olhe o mês fraco, quanto entra por unidade.",
+    explica: "A ocupação média dos meses fracos, em porcentagem.",
+    porque: "Com ela aparece quanto entra num mês fraco, por unidade, antes de qualquer custo. Se o custo de manter aberto passar disso, falta caixa.",
+    onde: "<p>Na série de visitantes e nos calendários lidos no mês fraco.</p>",
+    marina: "Nos meses fracos, os comparáveis da Marina enchem 22%.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo e ler os calendários no mês fraco" },
+  { id: "ocup_media", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 100, curto: "Ocupação nos meses médios",
+    pergunta: "E nos meses médios, quanto os comparáveis enchem?",
+    cita: "No vídeo: a média simples das três estações erraria para cima.",
+    explica: "Os meses médios são os que sobram depois da alta e dos fracos. Escreva a ocupação média deles, em porcentagem.",
+    porque: "Com os três grupos sai a média do ano, feita pelos doze meses, e não pela média simples das três estações.",
+    onde: "<p>Na série de visitantes e nos calendários dos comparáveis.</p>",
+    marina: "Nos quatro meses médios, 40%. A Marina chega a 38,5% no ano. A média simples das três estações daria 42%.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo" },
+  { id: "crescimento_ate_abrir", tipo: "percentual", nota: "fonte", aceitaNS: true, max: 1000, curto: "Crescimento da procura até abrir",
+    pergunta: "Quanto a procura pela região deve crescer, no total, até você abrir?",
+    cita: "No vídeo: sem série, marque não sei, e a ferramenta conta zero.",
+    explica: "É o crescimento somado da procura, de agora até a sua abertura, em porcentagem.",
+    porque: "É de onde vêm as noites novas. A pergunta não é quantas unidades você quer, é quantas o destino compra sem tirar hóspede de ninguém.",
+    onde: "<p>Na <b>série de visitantes</b> da <b>secretaria de turismo</b>. Se ela não existir, marque Não sei: a conta entra com crescimento zero.</p>",
+    marina: "Até a Marina abrir, a procura cresce 22,5%.",
+    ondeCurto: "pedir a série de visitantes à secretaria de turismo" },
+  { id: "unidades_em_obra", tipo: "numero", unidade: "unidades", nota: "fonte", aceitaNS: true, curto: "Unidades em obra ou licença",
+    pergunta: "Quantas unidades de hospedagem estão em obra ou em licença na região?",
+    cita: "No vídeo: peça os alvarás na prefeitura. Elas abrem antes de você.",
+    explica: "São as unidades que vão abrir antes de você, ou junto, e disputar o mesmo hóspede.",
+    porque: "Elas levam uma parte das noites novas. Se não souber, marque Não sei: a conta segue, marcada como sem os alvarás.",
+    onde: "<p>Peça à <b>prefeitura</b> os alvarás de novos empreendimentos de hospedagem na região.</p>",
+    marina: "Na região da Marina, 18 unidades estão em obra ou em licença.",
+    ondeCurto: "pedir à prefeitura os alvarás de novos empreendimentos de hospedagem" },
+  { id: "unidades_pretendidas", tipo: "numero", unidade: "unidades", nota: false, aceitaNS: true, curto: "Unidades que você pensava abrir",
+    pergunta: "Quantas unidades você pensava em abrir?",
+    cita: "No vídeo: a pergunta não é quantas você quer. É quantas o destino compra.",
+    explica: "O número que você tinha em mente antes desta conta. Pode ser o que saiu da capacidade da sua Ficha do Território.",
+    porque: "A ferramenta compara esse número com quantas unidades o mercado aguenta agora. Unidade que o mercado não compra custa obra, mobília e manutenção sem trazer receita.",
+    onde: "<p>Na sua Ficha do Território (Pilar 1), na capacidade: quantas unidades o lugar aguenta. Lá, o limite de mercado estava em aberto: é aqui que ele se mede.</p>",
+    marina: "A Marina desenha a infraestrutura para cinco unidades.",
+    ondeCurto: "rever a capacidade da sua Ficha do Território" },
+];
+
+/* Perguntas da aula sem par na ferramenta: gravam em S.aulaExtras.respostas.
+   A pergunta "criterio" grava no campo criterio da ferramenta (o critério para parar). */
+const T = (rot, cls, txt) => ({ rot, fb: cls ? [cls, txt] : null });
+const DQ = {
+  faixa: { tipo: "campos", num: true, curto: "A faixa de preço que você imagina",
+    cita: "No vídeo: busque de 30% abaixo a 30% acima. O mais baixo vezes 0,7, o mais alto vezes 1,3.",
+    pergunta: "Quanto você imagina cobrar por noite?", explica: "Escreva o menor e o maior preço que você imagina. Só o número.",
+    campos: [["min", "O menor preço, em R$"], ["max", "O maior preço, em R$"]],
+    ns: "Ainda não sei", ondeCurto: "definir a faixa de preço que você imagina cobrar",
+    porque: "Fora dessa faixa, o hóspede é outro. É ela que diz quem entra na sua lista de comparáveis.",
+    marina: "A Marina imagina cobrar de R$ 500 a R$ 700, então busca de R$ 350 a R$ 910." },
+  n_comparaveis: { tipo: "numero", unidade: "comparáveis", curto: "Comparáveis na lista",
+    cita: "No vídeo: de dez a vinte comparáveis, sem repetidos.",
+    pergunta: "Quantos comparáveis ficaram na sua lista?", explica: "Depois de tirar os repetidos e quem não passa nos quatro filtros.",
+    ns: "Ainda não montei a lista", ondeCurto: "montar a lista de 10 a 20 comparáveis, em mais de uma plataforma",
+    porque: "Com poucos, a média engana. Com muitos, quase sempre entrou quem não passa nos filtros.",
+    marina: "A Marina achou 31 anúncios, tirou 4 repetidos e 7 que não passavam nos filtros: sobraram 20." },
+  anota: { tipo: "multi", curto: "O que você anotou",
+    cita: "No vídeo: nunca copie nome ou dado de hóspede.",
+    pergunta: "De cada comparável, o que você já anotou?", explica: "Marque o que já está na sua folha.",
+    opcoes: { nome: T("O nome e o link"), unidades: T("As unidades"), diarias: T("A diária de semana e a de fim de semana, separadas"), avaliacoes: T("Quantas avaliações tem"), primeira: T("A data da primeira avaliação"), promessa: T("A promessa em uma frase") },
+    nenhum: "Ainda não anotei nada", ns: null, ondeCurto: "anotar os sete itens de cada comparável numa folha",
+    porque: "São esses itens que vão alimentar as contas da diária, da ocupação e da amplitude." },
+  concorrencia: { tipo: "escolha", curto: "Quem já hospeda na região",
+    cita: "No vídeo: ausência de concorrente pode ser ausência de procura.",
+    pergunta: "Na sua região, já tem quem hospede o mesmo que você?", explica: "Pense nos comparáveis que você achou, no raio de 30 minutos.",
+    opcoes: { varios: T("Sim, vários", "ok", "Bom: tem com quem comparar. Converse com dois ou três donos e pergunte o que custou chegar até a porta aberta."),
+      poucos: T("Poucos", "in", "Anote cada um. E converse com dois ou três donos: o que custou chegar até a porta aberta, não quanto faturam."),
+      ninguem: T("Ninguém", "at", "Descubra por quê antes de comemorar: ausência de concorrente pode ser ausência de procura.") },
+    ns: "Ainda não sei", ondeCurto: "buscar no Airbnb e no Booking quem hospeda no raio de 30 minutos",
+    porque: "Converse com dois ou três donos de comparáveis. Pergunte o que custou chegar até a porta aberta, não quanto faturam." },
+  topo: { tipo: "texto", curto: "O que o topo entrega", placeholder: "Escreva a lista curta",
+    cita: "No vídeo: costuma ser uma lista curta, como vista, isolamento, banheira e café entregue.",
+    pergunta: "O que os três mais caros do seu raio entregam e os três mais baratos não?", explica: "Leia os anúncios dos três mais caros e dos três mais baratos. Escreva a lista curta.",
+    ns: "Ainda não li", ondeCurto: "ler os anúncios dos três mais caros e dos três mais baratos do raio",
+    porque: "É o que o hóspede paga a mais. Preço alto com calendário vazio não é exemplo: é aviso." },
+  quem_veio: { tipo: "escolha", curto: "Quem mais veio",
+    cita: "No vídeo: leia vinte avaliações recentes de cinco comparáveis, cem no total.",
+    pergunta: "Nas avaliações que você leu, quem mais veio?", explica: "Marque o grupo que mais aparece.",
+    opcoes: { casal: T("Casal"), familia: T("Família"), amigos: T("Amigos"), sozinho: T("Alguém sozinho ou a trabalho") },
+    fbTodas: ["in", "Anotado. Agora o motivo da viagem: é ele que decide o que a pessoa compra."],
+    ns: "Ainda não li as avaliações", ondeCurto: "ler vinte avaliações recentes de cinco comparáveis, cem no total",
+    porque: "As avaliações mostram quem veio de verdade, e não quem você imagina." },
+  motivo: { tipo: "escolha", curto: "O motivo da viagem",
+    cita: "No vídeo: o motivo da viagem decide o que a pessoa compra.",
+    pergunta: "Qual motivo de viagem aparece mais nas avaliações?", explica: "Descansar, comemorar, trabalhar ou explorar.",
+    opcoes: { descansar: T("Descansar"), comemorar: T("Comemorar"), trabalhar: T("Trabalhar"), explorar: T("Explorar") },
+    fbTodas: ["in", "Anotado. Esse motivo vai para o Pilar 3, quando você desenhar o produto."],
+    ns: "Ainda não sei", ondeCurto: "marcar o motivo da viagem nas cem avaliações",
+    porque: "O motivo da viagem decide o que a pessoa compra." },
+  frase: { tipo: "texto", curto: "A frase que se repete", placeholder: "Escreva a frase",
+    cita: "No vídeo, nas avaliações da Marina, uma frase apareceu onze vezes: \"a casa só para nós\".",
+    pergunta: "Qual frase se repete nas avaliações que você leu?", explica: "Copie só a frase, nunca o nome de quem escreveu.",
+    ns: "Ainda não li as avaliações", ondeCurto: "ler as cem avaliações e anotar a frase que se repete",
+    porque: "A frase que se repete é o motivo da viagem falando." },
+  dois_publicos: { tipo: "campos", curto: "Os dois públicos",
+    cita: "No vídeo: casais e famílias não é público, é meio Brasil.",
+    pergunta: "Quais são os seus dois públicos, e quem fica de fora?", explica: "Um público de fim de semana, um de meio de semana, e quem você não vai atender.",
+    campos: [["fds", "O público de fim de semana"], ["semana", "O público de meio de semana"], ["fora", "Quem você não vai atender"]],
+    ns: "Ainda não sei", ondeCurto: "escrever os dois públicos e quem fica de fora, depois de ler as avaliações",
+    porque: "Essa é a base do produto, no Pilar 3. E depender de uma cidade só é sinal vermelho." },
+  veredito: { tipo: "escolha", curto: "A sua palavra",
+    cita: "No vídeo: feche com uma palavra. O mais comum é ajustar.",
+    pergunta: "Pelo que você mediu até aqui, qual é a sua palavra hoje?", explica: "Avançar, testar, ajustar ou pausar.",
+    opcoes: { avancar: T("Avançar"), testar: T("Testar"), ajustar: T("Ajustar"), pausar: T("Pausar") },
+    ns: "Ainda não sei", ondeCurto: "terminar as medidas e escolher a palavra",
+    porque: "Escolher uma palavra, por escrito, impede que a decisão seja tomada pelo entusiasmo. A ferramenta compara a sua palavra com as contas." },
+  criterio: { tipo: "texto", curto: "O critério para parar", placeholder: "Se ..., eu pauso e revejo público e produto antes de desenhar.",
+    cita: "No vídeo: escreva antes o critério para parar, o fato que mudaria a sua decisão.",
+    pergunta: "Qual fato mudaria a sua decisão?", explica: "Complete: \"Se a releitura dos calendários em 30 dias, ou a série de visitantes, mostrar que..., eu pauso e revejo público e produto antes de desenhar.\"",
+    ondeCurto: "escrever o critério para parar",
+    porque: "Escrito antes, ele impede que você decida pelo entusiasmo. Ele entra na sua Ficha do Mercado, e você pode reescrever lá." },
+};
+const TQI = Object.fromEntries(TQ.map((q) => [q.id, q]));
+const Q = (id) => TQI[id];
+const calc = (res, id) => res.calculos.find((c) => c.id === id);
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+/* ---------- o estado: o mesmo formato da ferramenta, mais aulaExtras ---------- */
+function estadoVazio() {
+  return { versao: 1, aula: 2, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, extra: {}, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d) return null;
+  const e = Object.assign(estadoVazio(), d);
+  if (!e.perfil || typeof e.perfil !== "object") e.perfil = { nome: "", email: "", cidade: "", uf: "" };
+  if (!e.respostas || typeof e.respostas !== "object") e.respostas = {};
+  if (!e.fontes || typeof e.fontes !== "object") e.fontes = {};
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function garantir() {
+  if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+  if (!S.aulaExtras.respostas || typeof S.aulaExtras.respostas !== "object") S.aulaExtras.respostas = {};
+  if (!S.aulaExtras.quiz || typeof S.aulaExtras.quiz !== "object") S.aulaExtras.quiz = {};
+  if (!S.perfil) S.perfil = { nome: "", email: "", cidade: "", uf: "" };
+  if (!S.respostas) S.respostas = {};
+  if (!S.fontes) S.fontes = {};
+}
+/** Perfil de outra ferramenta do Método Zion (só preenche o que está vazio). */
+function perfilDeOutra() {
+  let melhor = null;
+  for (let n = 1; n <= 6; n++) {
+    if (n === 2) continue;
+    const d = carregarChave("zion-t1-aula" + n);
+    if (d && d.perfil && d.perfil.nome && (!melhor || String(d.atualizado || "") > String(melhor.atualizado || ""))) melhor = d;
+  }
+  return melhor ? melhor.perfil : null;
+}
+/** A capacidade do lugar na Ficha do Território (Pilar 1), sem o limite de mercado. */
+function capacidadeP1() {
+  const d = carregarChave("zion-t1-aula1"); if (!d) return null;
+  if (d.resumo && d.resumo.dados && typeof d.resumo.dados.capacidade === "number") return d.resumo.dados.capacidade;
+  const r = d.respostas || {};
+  const v = ["limite_fisico", "limite_infra", "limite_experiencia"].map((k) => paraNumero(r[k])).filter((x) => x !== null);
+  return v.length ? Math.min(...v) : null;
+}
+
+/* ---------- ler e gravar uma resposta ---------- */
+const ehNSv = (v) => v === "nao_sei";
+function getV(id) {
+  if (id === "criterio") return S.criterio === null ? undefined : S.criterio;
+  if (DQ[id]) return S.aulaExtras.respostas[id];
+  return S.respostas[id];
+}
+function setV(id, v) {
+  if (id === "criterio") { S.criterio = (typeof v === "string" && v.trim()) ? v : null; return; }
+  const R = DQ[id] ? S.aulaExtras.respostas : S.respostas;
+  if (v === undefined) delete R[id]; else R[id] = v;
+}
+function completaT(q) {
+  const v = S.respostas[q.id];
+  if (ehNSv(v)) return !!q.aceitaNS;
+  const n = paraNumero(v);
+  if (n === null || n < 0) return false;
+  if (q.min !== undefined && n < q.min) return false;
+  if (q.max !== undefined && n > q.max) return false;
+  if (q.nota === "fonte" && !S.fontes[q.id]) return false;
+  return true;
+}
+function completaD(id) {
+  const d = DQ[id], v = getV(id);
+  if (v === undefined || v === "" || v === null) return false;
+  if (ehNSv(v)) return true;
+  if (d.tipo === "numero") { const n = paraNumero(v); return n !== null && n >= 0; }
+  if (d.tipo === "texto") return String(v).trim().length > 0;
+  if (d.tipo === "multi") return Array.isArray(v);
+  if (d.tipo === "campos") return typeof v === "object" && d.campos.every(([k]) => String(v[k] || "").trim() !== "" && (!d.num || paraNumero(v[k]) !== null));
+  return true;
+}
+const completa = (id) => (DQ[id] ? completaD(id) : completaT(Q(id)));
+function calcPasso() { const i = TQ.findIndex((q) => !completaT(q)); return i < 0 ? TQ.length : i; }
+let mudouNaAula = true;
+function gravar() { garantir(); S.passo = calcPasso(); salvar(); mudouNaAula = true; }
+
+function respostasParaCalculo() { const r = {}; for (const q of TQ) if (q.id in S.respostas) r[q.id] = S.respostas[q.id]; return r; }
+function ler() {
+  const res = calcular(respostasParaCalculo());
+  return { res, v: res.veredito_sugerido, motivo: res.motivo_veredito };
+}
+
+/* ---------- montagem dos slides de pergunta ---------- */
+const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+const IDS = slidesQ.map((s) => s.dataset.q);
+const TOTAL = IDS.length;
+
+function opcaoHTML(v, rot, extra) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+function campoHTML(id) {
+  const d = DQ[id];
+  if (d) {
+    const nsB = d.ns ? opcaoHTML("nao_sei", d.ns, "ns") : "";
+    if (d.tipo === "escolha") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot)).join("")}${nsB}</div>`;
+    if (d.tipo === "multi") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot, "multi")).join("")}${opcaoHTML("__nenhum", d.nenhum, "multi")}${nsB}</div>`;
+    if (d.tipo === "numero") return `<div class="cn"><input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="Digite o número" aria-label="${esc(d.pergunta)}"><span class="un">${esc(d.unidade)}</span></div>${nsB}`;
+    if (d.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="${esc(d.placeholder || "Escreva aqui")}" aria-label="${esc(d.pergunta)}"></textarea>${nsB}`;
+    if (d.tipo === "campos") return `<div class="campos">${d.campos.map(([k, rot]) => `<label>${esc(rot)}${d.num ? `<input type="text" inputmode="decimal" autocomplete="off" data-k="${k}" placeholder="Ex.: 500">` : `<textarea rows="2" data-k="${k}"></textarea>`}</label>`).join("")}</div>${nsB}`;
+  }
+  const q = Q(id);
+  const p1 = id === "unidades_pretendidas" ? `<div class="dica-p1" data-p1 hidden><span></span><button type="button" class="btn-s2" data-usar-p1>Usar este número</button></div>` : "";
+  return `${p1}<div class="cn">${q.tipo === "moeda" ? '<span class="un">R$</span>' : ""}<input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || "Digite o número")}" aria-label="${esc(q.pergunta)}">${q.tipo === "percentual" ? '<span class="un">%</span>' : q.tipo === "numero" ? `<span class="un">${esc(q.unidade)}</span>` : ""}</div>
+    ${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}
+    ${q.nota === "fonte" ? `<div class="fonte-bx"><span class="rot-r">De onde veio esse número?</span>${FONTES.map((f) => `<button type="button" class="opc peq" data-fonte="${f.v}" aria-pressed="false"><span class="mk"></span><span>${esc(f.rot)}</span></button>`).join("")}</div>` : ""}`;
+}
+function montar(sl, n) {
+  const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+  const onde = d ? (d.ondeCurto ? `<p>Para descobrir: ${esc(d.ondeCurto)}.</p>` : "") : q.onde;
+  const naFicha = d ? (id === "criterio" ? "Vai para a sua Ficha do Mercado." : "") : "Esta resposta vai direto para a sua Ficha do Mercado.";
+  sl.innerHTML = `<div class="pg" data-sem-clique>
+    <div class="pg-txt">
+      <p class="k">Agora é com você · <b>pergunta ${n} de ${TOTAL}</b></p>
+      <h2>${esc(q.pergunta)}</h2>
+      ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+      <p class="expl">${esc(q.explica)}</p>
+    </div>
+    <div class="pg-dir">
+      <span class="rot-r">A sua resposta${naFicha ? " · " + esc(naFicha) : ""}</span>
+      ${campoHTML(id)}
+      <div class="fb" role="status" aria-live="polite"></div>
+      <p class="st"></p>
+    </div>
+    <div class="pg-info">
+      <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+      ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+      ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar a conta, não é meta nem média de mercado.</p></div>` : ""}
+    </div>
+  </div>`;
+  ligar(sl, id);
+}
+
+/* ---------- feedback imediato ---------- */
+const B = (t) => `<b style="display:inline;font-size:inherit;letter-spacing:0;text-transform:none">${t}</b>`;
+function feedback(id) {
+  const d = DQ[id], v = getV(id);
+  if (v === undefined || v === "" || v === null) return null;
+  if (d) {
+    if (ehNSv(v)) return ["at", "<b>Tarefa da semana</b>" + esc(d.ondeCurto[0].toUpperCase() + d.ondeCurto.slice(1)) + ". Não sei não é vergonha: é tarefa com nome."];
+    if (d.tipo === "escolha") {
+      if (id === "veredito") {
+        const L = ler(), lt = LEITURAS[L.v];
+        const sua = d.opcoes[v] ? d.opcoes[v].rot : v;
+        return ["in", "<b>A sua palavra: " + esc(sua) + "</b>" + "Leitura das suas contas hoje: " + B(esc(lt.rot)) + ". " + esc(L.motivo) + " A leitura pode ser mais cautelosa que a sua palavra, nunca mais otimista."];
+      }
+      const o = d.opcoes[v]; const f = (o && o.fb) ? o.fb : d.fbTodas; return f ? [f[0], esc(f[1])] : null;
+    }
+    if (d.tipo === "multi") {
+      if (!Array.isArray(v)) return null;
+      const n = v.length, tot = Object.keys(d.opcoes).length;
+      if (!n) return ["at", "Comece pelo nome e o link, as unidades e as duas diárias. E nunca copie nome ou dado de hóspede."];
+      if (n < tot) return ["in", n + " de " + tot + " itens. Complete a folha: a data da primeira avaliação mostra mais ou menos quando ele abriu."];
+      return ["ok", "Folha completa. E nunca copie nome ou dado de hóspede."];
+    }
+    if (d.tipo === "numero") {
+      const n = paraNumero(v); if (n === null) return null;
+      if (id === "n_comparaveis") {
+        if (n < 10) return ["at", "Menos de dez: busque mais, em mais de uma plataforma, no raio de 30 minutos. Com poucos, a média engana."];
+        if (n > 20) return ["in", "Mais de vinte: confira se todos passam nos quatro filtros e se não ficou repetido."];
+        return ["ok", "Dentro da meta de dez a vinte. Agora some as unidades."];
+      }
+      return ["in", "Anotado."];
+    }
+    if (d.tipo === "texto") {
+      const t = String(v).trim(); if (t.length < 3) return null;
+      if (id === "topo") return ["ok", "Guarde essa lista: ela vai para o Pilar 3, quando você desenhar o produto."];
+      if (id === "frase") return ["ok", "É o motivo da viagem falando. Copie só a frase, nunca o nome de quem escreveu."];
+      if (id === "criterio") return ["ok", "Escrito antes, para não decidir pelo entusiasmo. Ele já aparece na sua Ficha, e você pode reescrever lá."];
+      return ["ok", "Anotado."];
+    }
+    if (d.tipo === "campos") {
+      if (id === "faixa") {
+        const a = paraNumero(v.min), b = paraNumero(v.max);
+        if (a === null || b === null) return null;
+        if (b < a) return ["at", "O maior preço ficou menor que o menor. Confira."];
+        return ["in", "A sua busca: de " + B(esc(brl(a * 0.7))) + " a " + B(esc(brl(b * 1.3))) + ". Busque em mais de uma plataforma."];
+      }
+      if (!completaD(id)) return ["in", "Falta preencher uma das linhas."];
+      return ["ok", "Três linhas escritas. Quem tenta agradar todo mundo vira mais um."];
+    }
+    return null;
+  }
+  const q = Q(id);
+  if (ehNSv(v)) return ["at", "<b>Tarefa da semana</b>" + esc(q.ondeCurto.replace(/^./, (c) => c.toUpperCase())) + ". Na Ficha, este Não sei vale zero e vira tarefa."];
+  const n = paraNumero(v); if (n === null) return null;
+  const L = ler(), c = (k) => calc(L.res, k);
+  if (id === "unidades_comparaveis") {
+    const nc = paraNumero(S.aulaExtras.respostas.n_comparaveis);
+    if (nc !== null && n < nc) return ["at", "Menos unidades que comparáveis? Cada comparável tem pelo menos uma unidade. Confira: conte unidades, não anúncios."];
+    return ["in", "Anotado: " + esc(fmtN(n)) + " unidades. Esse número entra na conta de quantas unidades o destino compra."];
+  }
+  if (id === "ocup_fds" || id === "ocup_semana") {
+    const fv = c("fds_vs_semana");
+    return ["in", esc(fv.valor === null ? "Anotado. Agora a outra metade da semana." : fv.texto + " O meio de semana vazio é onde mora a oportunidade.")];
+  }
+  if (id === "diaria_fds") {
+    const fx = S.aulaExtras.respostas.faixa;
+    const a = fx && typeof fx === "object" ? paraNumero(fx.min) : null, b = fx && typeof fx === "object" ? paraNumero(fx.max) : null;
+    if (a !== null && b !== null && (n < a || n > b)) return ["at", "O preço do meio dos comparáveis ficou fora da faixa que você imaginava (" + esc(brl(a)) + " a " + esc(brl(b)) + "). O preço não se escolhe pelo que você precisa: se descobre pelo que o hóspede paga."];
+    return ["in", "Anotado: " + esc(brl(n)) + " na sexta e no sábado. Agora a de domingo a quinta."];
+  }
+  if (id === "diaria_semana") { const cs = c("conta_semana"); return ["in", esc(cs.texto)]; }
+  if (id === "amplitude") { const a = c("regua_amplitude"); return [a.alerta === "ok" ? "ok" : a.alerta === "atencao" ? "at" : "in", esc(a.texto)]; }
+  if (id === "meses_alta" || id === "meses_fraco") {
+    const ma = paraNumero(S.respostas.meses_alta), mf = paraNumero(S.respostas.meses_fraco);
+    if (ma !== null && mf !== null) { if (ma + mf > 12) return ["er", "Meses de alta mais meses fracos passam de 12. Confira a contagem."]; return ["in", "Sobram " + (12 - ma - mf) + " meses médios."]; }
+    return ["in", "Anotado: " + esc(fmtN(n)) + " meses."];
+  }
+  if (id === "ocup_alta" || id === "ocup_fraco" || id === "ocup_media") {
+    const oa = c("ocup_ano");
+    if (oa.valor === null) return ["in", esc(oa.texto)];
+    const em = c("erro_mes_cheio");
+    return [oa.alerta === "atencao" ? "at" : "ok", esc("Ocupação média do ano: " + fmtN(oa.valor, 1) + "%. " + (em.valor !== null ? em.texto : ""))];
+  }
+  if (id === "crescimento_ate_abrir" || id === "unidades_em_obra") { const ab = c("absorcao"); return [ab.alerta === "critico" ? "er" : "in", esc(ab.texto)]; }
+  if (id === "unidades_pretendidas") { const lt = LEITURAS[L.v]; return ["in", "<b>Leitura das suas contas hoje: " + esc(lt.rot) + "</b>" + esc(L.motivo)]; }
+  return null;
+}
+
+/* ---------- pintar uma pergunta a partir do estado ---------- */
+function pintar(sl) {
+  const id = sl.dataset.q, d = DQ[id];
+  const v = getV(id);
+  const ns = ehNSv(v);
+  sl.querySelectorAll(".opc[data-v]").forEach((b) => {
+    const bv = b.dataset.v;
+    let on;
+    if (bv === "nao_sei") on = ns;
+    else if (bv === "__nenhum") on = Array.isArray(v) && v.length === 0;
+    else if (b.classList.contains("multi")) on = Array.isArray(v) && v.includes(bv);
+    else on = v === bv;
+    b.setAttribute("aria-pressed", String(!!on));
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) {
+    if (document.activeElement !== inp) inp.value = ns || v === undefined || v === null ? "" : String(v);
+    inp.disabled = ns;
+  }
+  sl.querySelectorAll("[data-k]").forEach((x) => {
+    const o = v && typeof v === "object" ? v : {};
+    if (document.activeElement !== x) x.value = ns ? "" : (o[x.dataset.k] || "");
+    x.disabled = ns;
+  });
+  const fx = sl.querySelector(".fonte-bx");
+  if (fx) { fx.hidden = ns; fx.querySelectorAll("[data-fonte]").forEach((b) => b.setAttribute("aria-pressed", String(S.fontes[id] === b.dataset.fonte))); }
+  const p1 = sl.querySelector("[data-p1]");
+  if (p1) {
+    const cap = capacidadeP1();
+    p1.hidden = cap === null;
+    if (cap !== null) p1.querySelector("span").textContent = "Na sua Ficha do Território, o lugar aguenta " + fmtN(cap) + " unidades, ainda sem o limite de mercado.";
+  }
+  const fb = sl.querySelector(".fb"), f = feedback(id);
+  if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+  const st = sl.querySelector(".st");
+  let t = "";
+  if (!d && v !== undefined && v !== "" && !ns) {
+    const q = Q(id), n = paraNumero(v);
+    if (n === null) t = q.tipo === "moeda" ? "Escreva só o número, por exemplo 700." : "Escreva só o número.";
+    else if (n < 0) t = "O número não pode ser negativo.";
+    else if (q.min !== undefined && n < q.min) t = "O número precisa ser pelo menos " + fmtN(q.min) + ".";
+    else if (q.max !== undefined && n > q.max) t = "O número não pode passar de " + fmtN(q.max) + ".";
+    else if (q.nota === "fonte" && !S.fontes[id]) t = "Falta dizer de onde veio esse número: é isso que separa dado de palpite.";
+    else t = "Salvo neste aparelho.";
+  } else if (d && d.tipo === "numero" && v !== undefined && v !== "" && !ns && paraNumero(v) === null) t = "Escreva só o número.";
+  else if (completa(id)) t = "Salvo neste aparelho.";
+  st.textContent = t;
+}
+
+/* ---------- eventos de cada pergunta (grava na hora) ---------- */
+function ligar(sl, id) {
+  const d = DQ[id];
+  sl.addEventListener("click", (e) => {
+    const usar = e.target.closest("[data-usar-p1]");
+    if (usar) { e.stopPropagation(); const cap = capacidadeP1(); if (cap !== null) { garantir(); setV(id, String(cap)); gravar(); pintar(sl); atualizaNav(); } return; }
+    const b = e.target.closest(".opc");
+    if (!b || !sl.contains(b)) return;
+    e.stopPropagation();
+    garantir();
+    const atual = getV(id);
+    if (b.dataset.fonte) { if (!ehNSv(atual)) S.fontes[id] = b.dataset.fonte; }
+    else {
+      const bv = b.dataset.v, multi = b.classList.contains("multi");
+      if (bv === "nao_sei") { if (ehNSv(atual)) setV(id, undefined); else { setV(id, "nao_sei"); if (!d) delete S.fontes[id]; } }
+      else if (bv === "__nenhum") setV(id, []);
+      else if (multi) { const a = Array.isArray(atual) ? atual.slice() : []; const k = a.indexOf(bv); if (k >= 0) a.splice(k, 1); else a.push(bv); setV(id, a); }
+      else setV(id, bv);
+    }
+    gravar(); pintar(sl); atualizaNav();
+  });
+  const inp = sl.querySelector(".resp");
+  if (inp) inp.addEventListener("input", () => { garantir(); setV(id, inp.value); gravar(); pintar(sl); atualizaNav(); });
+  sl.querySelectorAll("[data-k]").forEach((x) => x.addEventListener("input", () => {
+    garantir();
+    const cur = getV(id); const o = cur && typeof cur === "object" && !Array.isArray(cur) ? Object.assign({}, cur) : {};
+    o[x.dataset.k] = x.value; setV(id, o); gravar(); pintar(sl); atualizaNav();
+  }));
+}
+
+/* ---------- quiz: a escolha também fica guardada, em aulaExtras.quiz ---------- */
+document.querySelectorAll(".quiz[data-quiz]").forEach((qz) => {
+  qz.querySelectorAll(".op").forEach((o) => o.addEventListener("click", () => {
+    garantir();
+    if (!S.aulaExtras.quiz[qz.dataset.quiz]) {
+      S.aulaExtras.quiz[qz.dataset.quiz] = { escolha: o.textContent.replace(/^[A-G]/, "").trim(), certa: o.dataset.certa !== undefined, data: hojeISO() };
+      gravar();
+    }
+  }));
+});
+
+/* ---------- perfil ---------- */
+function ligarPerfil() {
+  const uf = document.getElementById("p-uf");
+  uf.insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+  const campos = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+  for (const [el, k] of Object.entries(campos)) {
+    const x = document.getElementById(el);
+    x.addEventListener(el === "p-uf" ? "change" : "input", () => { garantir(); S.perfil[k] = x.value.trim(); gravar(); });
+  }
+}
+function pintarPerfil() {
+  const map = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+  for (const [el, k] of Object.entries(map)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; }
+}
+
+/* ---------- o que você já mediu (fim do bloco 1) ---------- */
+function txtT(id) {
+  const q = Q(id), v = S.respostas[id];
+  if (v === undefined || v === "") return "em branco";
+  if (ehNSv(v)) return "não sei";
+  const n = paraNumero(v); if (n === null) return "em branco";
+  if (q.tipo === "moeda") return brl(n);
+  if (q.tipo === "percentual") return fmtN(n, 1) + "%";
+  return fmtN(n, 2) + (q.unidade ? " " + q.unidade : "");
+}
+function pintarAnote() {
+  const el = document.getElementById("anote"); if (!el) return;
+  const nc = S.aulaExtras.respostas.n_comparaveis;
+  const cs = calc(ler().res, "conta_semana");
+  const linhas = [
+    ["Comparáveis na lista", nc === undefined || nc === "" ? "em branco" : ehNSv(nc) ? "não sei" : String(nc)],
+    ["Unidades dos comparáveis", txtT("unidades_comparaveis")],
+    ["Ocupação de sexta e sábado", txtT("ocup_fds")],
+    ["Ocupação de domingo a quinta", txtT("ocup_semana")],
+    ["Diária do meio, sexta e sábado", txtT("diaria_fds")],
+    ["Diária do meio, domingo a quinta", txtT("diaria_semana")],
+    ["Diária média de verdade", cs.valor === null ? "a calcular" : brl(cs.valor)],
+    ["Amplitude", txtT("amplitude")],
+  ];
+  el.innerHTML = linhas.map(([r, t]) => `<div><span>${esc(r)}</span><b>${esc(t)}</b></div>`).join("");
+}
+
+/* ---------- simuladores com os números do aluno ---------- */
+const MAPAS = {
+  sem: { ofds: "ocup_fds", osem: "ocup_semana", dfds: "diaria_fds", dsem: "diaria_semana" },
+  curva: { ma: "meses_alta", oa: "ocup_alta", mf: "meses_fraco", of: "ocup_fraco", om: "ocup_media" },
+  cab: { comp: "unidades_comparaveis", cresc: "crescimento_ate_abrir", obra: "unidades_em_obra", pret: "unidades_pretendidas" },
+};
+function meusNumeros(nome, avisar) {
+  if (!ZD.estado || !ZD.estado[nome]) return;
+  const sim = document.querySelector(`.sim[data-sim="${nome}"]`);
+  let usados = 0;
+  const pega = (k, n) => {
+    const inp = sim.querySelector(`input[name="${k}"]`);
+    if (inp && n > +inp.max) inp.max = String(Math.ceil(n * 1.2));
+    ZD.estado[nome][k] = String(n); usados++;
+  };
+  for (const [k, id] of Object.entries(MAPAS[nome])) {
+    const n = paraNumero(S.respostas[id]);
+    if (n !== null && n >= 0) pega(k, n);
+  }
+  if (nome === "cab") { const oa = calc(ler().res, "ocup_ano"); if (oa.valor !== null) pega("oc", oa.valor); }
+  document.querySelectorAll(`.sim[data-sim="${nome}"]`).forEach((s) => s._calc && s._calc());
+  if (avisar && !usados) toast("Você ainda não respondeu estas perguntas. As barras ficam como estavam.");
+}
+document.querySelectorAll("[data-meus]").forEach((b) => b.addEventListener("click", (e) => { e.stopPropagation(); meusNumeros(b.dataset.meus, true); }));
+
+/* ---------- o diagnóstico: a ferramenta dentro da aula ---------- */
+const MOBILE = "(max-width:820px),(max-height:520px)";
+function ajustaDiag() {
+  const cx = document.querySelector(".diag-cx"), fr = document.getElementById("diag-fr");
+  if (!cx || !fr) return;
+  if (window.matchMedia(MOBILE).matches) { fr.style.width = fr.style.height = fr.style.transform = fr.style.transformOrigin = ""; return; }
+  const k = Math.min(innerWidth / 1920, Math.max(200, innerHeight - 61) / 1080) || 1;
+  /* o palco encolhe a página; a ferramenta volta ao tamanho real para ficar legível */
+  fr.style.width = (cx.clientWidth * k) + "px"; fr.style.height = (cx.clientHeight * k) + "px";
+  fr.style.transformOrigin = "0 0"; fr.style.transform = "scale(" + (1 / k) + ")";
+}
+function abrirDiag() {
+  const fr = document.getElementById("diag-fr");
+  S.passo = calcPasso(); salvar();
+  if (!fr.getAttribute("src")) { fr.setAttribute("src", fr.dataset.src); mudouNaAula = false; }
+  else if (mudouNaAula) { try { fr.contentWindow.location.reload(); } catch (e) { fr.setAttribute("src", fr.dataset.src); } mudouNaAula = false; }
+  const feitas = TQ.filter(completaT).length;
+  const semPerfil = !S.perfil.nome || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(S.perfil.email || "") || !S.perfil.cidade || !S.perfil.uf;
+  document.getElementById("diag-st").textContent = `${feitas} de ${TQ.length} perguntas da Ficha respondidas.` + (semPerfil ? " Falta o seu nome, e-mail, cidade ou estado: preencha na ferramenta." : "");
+  ajustaDiag();
+}
+
+/* ---------- navegação, teclado e toque ---------- */
+const slides = Array.from(document.querySelectorAll(".s"));
+function atualizaNav() {
+  const n = IDS.filter(completa).length;
+  document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${TOTAL}`;
+  document.getElementById("n-bar").style.width = (n / TOTAL * 100) + "%";
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+  document.getElementById("n-ant").disabled = i <= 0;
+  document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+}
+function pausaVideos(sl) {
+  if (!sl) return;
+  sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+}
+let atual = -1, prontoMotor = false;
+function aoTrocarSlide() {
+  const i = slides.findIndex((s) => s.classList.contains("on"));
+  if (i < 0 || i === atual) return;
+  const ant = slides[atual];
+  atual = i;
+  pausaVideos(ant);
+  const sl = slides[i];
+  if (sl.dataset.q) pintar(sl);
+  if (sl.querySelector("#anote")) pintarAnote();
+  if (sl.id === "s-sim-cab") meusNumeros("cab", false);
+  if (sl.id === "s-diag" && prontoMotor) abrirDiag();
+  if (sl.querySelector(".perfil")) pintarPerfil();
+  if (window.matchMedia(MOBILE).matches) window.scrollTo(0, 0);
+  if (prontoMotor) { garantir(); S.slideAula = i; S.passo = calcPasso(); salvar(); }
+  atualizaNav();
+}
+const obs = new MutationObserver(aoTrocarSlide);
+slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+// teclas do motor não disparam dentro de campos, nem com o foco num vídeo ou na ferramenta
+document.addEventListener("keydown", (e) => {
+  const t = e.target, ae = document.activeElement;
+  if (ae && ae.tagName === "IFRAME") { e.stopPropagation(); return; }
+  if (!t || !t.matches) return;
+  if (t.matches("input, textarea, select, [contenteditable]")) {
+    e.stopPropagation();
+    if (e.key === "Enter" && t.matches("input") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+    return;
+  }
+  if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+});
+// arrastar a barra do simulador, rolar um campo ou mexer na ferramenta não troca de slide
+document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .sim, .vid, .pg-dir, .diag-cx")) e.stopPropagation(); }, { passive: true });
+window.addEventListener("storage", (e) => {
+  if (e.key !== CHAVE) return;
+  const d = carregar(); if (!d) return;
+  S = d; garantir();
+  slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+});
+
+/* ---------- início ---------- */
+const salvo = carregar();
+if (salvo) S = salvo;
+garantir();
+{ const p = perfilDeOutra(); if (p) for (const k of ["nome", "email", "cidade", "uf"]) if (!S.perfil[k] && p[k]) S.perfil[k] = p[k]; }
+slidesQ.forEach((sl, k) => montar(sl, k + 1));
+slidesQ.forEach(pintar);
+ligarPerfil(); pintarPerfil();
+document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+document.getElementById("diag-cheia").addEventListener("click", () => { S.passo = calcPasso(); salvar(); });
+
+function escalaAula() {
+  const st = document.querySelector(".zd-stage");
+  const h = Math.max(200, innerHeight - 61);
+  const k = Math.min(innerWidth / 1920, h / 1080);
+  st.style.transform = "scale(" + k + ")";
+  ajustaDiag();
+}
+function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3200); }
+function depoisDoMotor() {
+  addEventListener("resize", escalaAula); escalaAula();
+  prontoMotor = true;
+  const temHash = /^#\d/.test(location.hash);
+  if (!temHash && typeof S.slideAula === "number" && S.slideAula > 0 && S.slideAula < slides.length) {
+    ZD.vai(S.slideAula);
+    toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+  }
+  atual = -1; aoTrocarSlide(); atualizaNav();
+}
+</script>
+<script src="../_motor/deck.js"></script>
+<script>depoisDoMotor();</script>
+</body>
+</html>

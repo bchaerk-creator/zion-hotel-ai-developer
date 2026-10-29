@@ -1,0 +1,1748 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Pilar 7 · Capital e Dossiê</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+/* ===== aula principal: interface própria (o motor não muda) ===== */
+.zd-ui,.zd-bar{display:none!important}
+.sv{display:inline-flex;gap:12px;align-items:baseline;font-size:28px;line-height:1.4;padding:16px 22px;border-radius:12px;background:#F8E3DE;color:#4A140D;border-left:7px solid var(--erro);max-width:1500px}
+.sv b{font-size:18px;letter-spacing:3px;text-transform:uppercase;color:var(--erro);flex:none}
+.esc .sv,.foto .sv{background:rgba(181,69,47,.28);color:#F5F1E8}
+.esc .sv b,.foto .sv b{color:#F2B3A6}
+.figs{display:flex;gap:24px;justify-content:center}
+.figs img{height:600px;width:auto;border-radius:18px;box-shadow:0 2px 0 rgba(22,38,28,.06)}
+.lado .figs img{height:640px}
+.lado .figs:not(.um) img{height:470px}
+.lado:has(.figs:not(.um)){grid-template-columns:1.15fr .85fr;gap:48px}
+.docs2 .card{padding:24px 30px;gap:8px}.docs2 .card h3{font-size:34px}.docs2 .card p{font-size:23px}.docs2 .card .n{font-size:40px}.docs2 .sv{font-size:20px!important;padding:8px 14px}
+.lado.l2{grid-template-columns:1fr 1fr}
+.fig-larga{width:100%;max-height:420px;object-fit:contain;border-radius:18px}
+.caixa-txt{font-size:30px;line-height:1.45;max-width:1500px}
+/* vídeo */
+.vid-wrap{display:flex;flex-direction:column;align-items:center;gap:18px}
+.vid{width:1180px;aspect-ratio:16/9;border-radius:18px;overflow:hidden;background:#000;box-shadow:0 8px 40px rgba(0,0,0,.35)}
+.lk{color:#E0BE5E;font-weight:600;margin-left:6px}.fz-moldura{width:1600px;max-width:100%;height:620px;border:1.5px solid #B08D3A;border-radius:16px;overflow:hidden;background:#F5F1E8}.fz-moldura iframe{width:100%;height:100%;border:0;display:block}@media (max-width:900px){.fz-moldura{width:100%;height:70vh}}
+.vid iframe{width:100%;height:100%;border:0;display:block}
+.vid-pe{display:flex;gap:28px;align-items:center;font-size:24px;color:#D9D3C4}
+.vid-pe a{color:var(--ouro);font-weight:700}
+/* pergunta */
+.s.q{padding-top:110px;padding-bottom:96px}
+.pg{display:grid;grid-template-columns:1fr 1fr;grid-template-areas:"txt dir" "info dir";grid-template-rows:auto 1fr;gap:22px 60px;height:860px}
+.pg-txt{grid-area:txt;display:flex;flex-direction:column;gap:16px}
+.pg-info{grid-area:info;overflow:auto;min-height:0;display:flex;flex-direction:column;gap:12px;padding-right:10px}
+.pg-dir{grid-area:dir;background:#fff;border-radius:22px;padding:30px 34px;border:1px solid rgba(22,38,28,.1);display:flex;flex-direction:column;gap:14px;overflow:auto;min-height:0;align-self:start;max-height:860px}
+.pg .k b{color:var(--tinta)}
+.pg h2{font-size:52px;line-height:1.12}
+.pg .cita{font-size:24px;line-height:1.45;font-style:italic;color:var(--ouro2);border-left:5px solid var(--ouro);padding-left:18px}
+.pg .expl{font-size:25px;line-height:1.45;color:var(--cinza)}
+.cx{border-radius:14px;padding:16px 20px;font-size:21px;line-height:1.5}
+.cx h4{font-size:15px;letter-spacing:3px;text-transform:uppercase;margin:0 0 6px;color:var(--ouro2)}
+.cx p{margin:0 0 6px}.cx ul{margin:0;padding-left:22px}.cx li{margin:4px 0}
+.cx.porque{background:#fff;border:1px solid rgba(22,38,28,.12)}
+.cx.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.cx.marina{background:#fff;border:2px dashed var(--ouro2)}
+.rot-r{font-size:16px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);font-weight:700}
+.cn{display:flex;gap:12px;align-items:stretch}
+.cn input{flex:1;min-width:0;font:600 42px var(--sans);color:var(--tinta);padding:0 24px;height:92px;border:3px solid #B9AE95;border-radius:16px;background:#fff}
+.cn input:disabled{background:var(--creme2);opacity:.6}
+.cn .un{display:flex;align-items:center;padding:0 22px;background:var(--creme2);border-radius:16px;font-size:28px;font-weight:700}
+.pg input:focus,.pg textarea:focus,.pg select:focus,.opc:focus-visible,.perfil input:focus,.perfil select:focus{outline:4px solid var(--ouro);outline-offset:2px}
+.pg textarea{width:100%;font:500 28px/1.4 var(--sans);color:var(--tinta);padding:16px 20px;border:3px solid #B9AE95;border-radius:16px;min-height:150px;resize:vertical}
+.ops2{display:flex;flex-direction:column;gap:10px}
+.opc{font:inherit;font-size:25px;line-height:1.3;text-align:left;padding:14px 20px;border-radius:14px;border:2px solid rgba(22,38,28,.18);background:#fff;color:var(--tinta);cursor:pointer;display:flex;gap:16px;align-items:center;min-height:68px;width:100%;transition:background .15s,border-color .15s}
+.opc:hover{border-color:var(--ouro2)}
+.opc .mk{flex:none;width:32px;height:32px;border-radius:50%;border:3px solid var(--ouro);display:flex;align-items:center;justify-content:center}
+.opc.multi .mk{border-radius:8px}
+.opc[aria-pressed=true]{border-color:var(--verde);background:#EAF1E7}
+.opc[aria-pressed=true] .mk{background:var(--verde);border-color:var(--verde)}
+.opc[aria-pressed=true] .mk::after{content:"";width:12px;height:12px;border-radius:50%;background:var(--ouro)}
+.opc.multi[aria-pressed=true] .mk::after{border-radius:3px}
+.opc.ns{border-style:dashed;justify-content:center;font-weight:700;color:var(--verde)}
+.opc.ns[aria-pressed=true]{background:var(--verde);color:var(--creme)}
+.opc.peq{font-size:21px;min-height:54px;padding:10px 16px}
+.opc.peq .mk{width:26px;height:26px}
+.fonte-bx{display:flex;flex-direction:column;gap:8px}
+.fonte-bx[hidden]{display:none}
+.fb{font-size:23px;line-height:1.45;padding:14px 18px;border-radius:12px;display:none}
+.fb.on{display:block;animation:zdIn .35s}
+.fb b{display:block;font-size:15px;letter-spacing:3px;text-transform:uppercase;margin-bottom:4px}
+.fb.ok{background:#E1EFE3;color:#173F25;border-left:6px solid var(--ok)}
+.fb.at{background:#FBEFD2;color:#3F2B00;border-left:6px solid #B98A1C}
+.fb.er{background:#F8E3DE;color:#4A140D;border-left:6px solid var(--erro)}
+.fb.in{background:var(--creme);color:var(--tinta);border-left:6px solid var(--ouro)}
+.st{font-size:17px;color:var(--cinza);min-height:1.2em}
+.resumo-mini{background:var(--creme);border-radius:12px;padding:10px 16px;font-size:20px}
+.resumo-mini div{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid rgba(22,38,28,.12);padding:6px 0}
+.resumo-mini div:last-child{border:0}
+/* perfil */
+.perfil{display:grid;grid-template-columns:1fr 1fr;gap:22px 40px;max-width:1500px}
+.perfil label{display:flex;flex-direction:column;gap:8px;font-size:24px;font-weight:600}
+.perfil input,.perfil select{font:500 32px var(--sans);color:var(--tinta);padding:0 20px;height:80px;border:3px solid #B9AE95;border-radius:14px;background:#fff}
+/* resultado */
+.rs{display:grid;grid-template-columns:.95fr 1.05fr;gap:40px;min-height:0;height:830px}
+.rs-esq,.rs-dir{display:flex;flex-direction:column;gap:16px;min-height:0;overflow:auto;padding-right:8px}
+.nums{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.nums div{background:var(--verde);color:var(--creme);border-radius:16px;padding:18px 22px}
+.nums small{display:block;font-size:18px;opacity:.85}
+.nums strong{display:block;font-family:var(--serif);font-size:48px;color:var(--ouro);line-height:1.15}
+.leit{background:var(--verde);color:var(--creme);border:3px solid var(--ouro);border-radius:18px;padding:20px 24px;font-size:21px;line-height:1.45}
+.leit .rot{font-family:var(--serif);font-size:42px;color:var(--ouro)}
+.al{border-radius:12px;padding:12px 16px;font-size:19px;line-height:1.45;border-left:6px solid}
+.al b{display:block;font-size:14px;letter-spacing:2px;text-transform:uppercase}
+.al.critico{background:#F8E3DE;border-color:var(--erro);color:#4A140D}
+.al.ns,.al.tarefa{background:#FBEFD2;border-color:#7A5300;color:#3F2B00}
+.al.sem,.al.atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.al.info,.al.ok{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+.rs h3{font-size:30px}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{font-size:17px;padding:6px 12px;border-radius:99px;background:#E1EFE3;color:#173F25;font-weight:600}
+.btn-g{display:inline-flex;align-items:center;justify-content:center;gap:14px;font:700 34px var(--sans);padding:26px 46px;border-radius:999px;background:var(--ouro);color:var(--verde);text-decoration:none;border:0;cursor:pointer;min-height:72px}
+.btn-g:focus-visible{outline:4px solid #fff;outline-offset:3px}
+.btn-s2{font:600 22px var(--sans);padding:12px 22px;border-radius:12px;border:2px solid var(--ouro);background:transparent;color:inherit;cursor:pointer}
+.anote{display:grid;grid-template-columns:1fr 1fr;gap:12px 40px;font-size:24px;max-width:1500px}
+.anote div{border-bottom:1px solid rgba(255,255,255,.15);padding:8px 0;display:flex;justify-content:space-between;gap:20px}
+.anote span{color:#BFB8A8}
+.toast{position:fixed;left:50%;top:14px;transform:translateX(-50%);background:var(--verde);color:var(--creme);border:1px solid var(--ouro);padding:10px 18px;border-radius:10px;font:500 15px var(--sans);z-index:60;opacity:0;transition:opacity .3s;pointer-events:none}
+.toast.on{opacity:1}
+/* barra de navegação da aula */
+.nav-aula{position:fixed;left:0;right:0;bottom:0;z-index:50;display:flex;align-items:center;gap:14px;padding:8px 14px;background:rgba(11,19,14,.94);border-top:1px solid rgba(201,168,76,.45);font:600 14px var(--sans);color:#F5F1E8}
+.nav-aula button{font:700 15px var(--sans);min-height:44px;min-width:96px;padding:0 16px;border-radius:10px;border:1px solid var(--ouro);background:transparent;color:#F5F1E8;cursor:pointer}
+.nav-aula button.ir{background:var(--ouro);color:var(--verde)}
+.nav-aula .meio{flex:1;display:flex;flex-direction:column;gap:5px;min-width:0}
+.nav-aula .linha1{display:flex;justify-content:space-between;gap:10px;white-space:nowrap;overflow:hidden}
+.nav-aula #n-sl{opacity:.7}.nav-aula .ct{display:none}
+@media (max-width:820px),(max-height:520px){.nav-aula .ct{display:inline}}
+.nav-aula .trilho{height:7px;border-radius:9px;background:rgba(255,255,255,.14);overflow:hidden}
+.nav-aula .trilho i{display:block;height:100%;width:0;background:var(--ouro);transition:width .3s}
+.zd-vp{bottom:61px}
+/* ===== celular e telas baixas ===== */
+@media (max-width:820px),(max-height:520px){
+  html,body{overflow:auto;height:auto;background:var(--creme)}
+  .zd-vp{position:static;display:block}
+  .zd-stage{width:auto;height:auto;transform:none!important}
+  .zd-tinta{display:none}
+  .s{position:relative;inset:auto;padding:50px 16px 96px;min-height:100vh;min-height:100dvh}
+  .s.on{display:flex;justify-content:flex-start;gap:16px}
+  .s.q{padding-top:50px;padding-bottom:96px}
+  .s .topo{top:14px;left:16px;right:16px;font-size:10px;letter-spacing:2px}
+  .s .topo img{height:20px}
+  .s .bg::after{background:linear-gradient(180deg,rgba(11,19,14,.9),rgba(11,19,14,.8))}
+  .k{font-size:12px;letter-spacing:2px}
+  h1{font-size:40px} h2{font-size:27px!important;line-height:1.15} h3{font-size:20px}
+  .lead{font-size:17px} .sm{font-size:14px}
+  .lista{font-size:17px!important;gap:10px} .lista li{gap:12px} .lista li::before{width:9px;height:9px;transform:translateY(-2px)}
+  .lista.num li::before{width:28px;height:28px;font-size:15px}
+  .grid.g2,.grid.g3,.grid.g4,.lado,.lado.l2,.trio,.exe,.anote,.perfil,.rs,.nums{grid-template-columns:1fr!important;gap:12px}
+  .card{padding:14px 16px;gap:6px} .card h3{font-size:19px} .card p{font-size:15px} .card .n{font-size:30px}
+  .figs{flex-wrap:wrap;gap:10px} .figs img,.lado .figs img{height:auto;width:calc(50% - 5px);max-width:260px;border-radius:12px}
+  .figs.um img{width:70%}
+  .fig-larga{max-height:220px}
+  .citacao{font-size:21px!important} .citacao::before{font-size:46px;vertical-align:-16px}
+  .caixa-txt{font-size:16px}
+  table.t{font-size:14px!important} table.t th{font-size:10px;letter-spacing:1px;padding:8px 6px} table.t td{padding:8px 6px}
+  .pq{min-height:130px!important} .pq .fr,.pq .vs{padding:14px 16px;gap:6px} .pq .fr h3{font-size:19px!important} .pq .vs p,.pq .fr p{font-size:15px!important} .pq .vs b,.pq .fr .dica{font-size:11px;letter-spacing:2px}
+  .quiz{gap:12px} .quiz .q{font-size:21px!important} .quiz .ops{grid-template-columns:1fr;gap:10px} .quiz .op{font-size:16px;padding:12px 14px;gap:12px} .quiz .op .l{width:30px;height:30px} .quiz .exp{font-size:15px;padding:12px 14px}
+  .conta{font-size:15px!important;gap:8px!important} .conta .eq{padding:10px 12px;gap:10px}
+  .sim{grid-template-columns:1fr!important;gap:14px!important} .sim .ctl{gap:10px!important} .sim label{font-size:15px} .sim label output{font-size:17px} .sim label small{font-size:12px} .sim input[type=range]{height:36px}
+  .sim .res{padding:16px;gap:8px} .sim .linha{font-size:15px;padding-bottom:6px} .sim .linha.tot{font-size:18px} .sim .aviso{font-size:14px;padding:10px 12px} .sim .reset,.btn-s2{font-size:14px;padding:10px 14px} .sim .ajustado{font-size:11px}
+  .selo{font-size:10px;letter-spacing:1px;padding:4px 8px}
+  .num-bg{display:none}
+  .sv{font-size:15px;padding:10px 12px;gap:8px;flex-direction:column} .sv b{font-size:11px;letter-spacing:2px}
+  .vid{width:100%;border-radius:10px} .vid-pe{font-size:14px;flex-wrap:wrap;gap:10px}
+  .pg>*,.rs>*,.s.on>*{min-width:0;max-width:100%}
+  .pg{width:100%;grid-template-columns:minmax(0,1fr);grid-template-areas:"txt" "dir" "info";grid-template-rows:auto;height:auto;gap:14px}
+  .pg-info{overflow:visible;padding:0} .pg-dir{padding:16px;max-height:none;overflow:visible;border-radius:14px;gap:10px}
+  .pg h2{font-size:23px!important} .pg .cita{font-size:14px;padding-left:12px;border-left-width:4px} .pg .expl{font-size:15px}
+  .cx{font-size:14px;padding:12px 14px} .cx h4{font-size:11px;letter-spacing:2px} .rot-r{font-size:11px;letter-spacing:2px}
+  .cn input{font-size:22px;height:56px;padding:0 14px;border-width:2px;border-radius:12px} .cn .un{font-size:15px;padding:0 12px;border-radius:12px}
+  .pg textarea{font-size:16px;min-height:110px;border-width:2px}
+  .opc,.opc.peq{font-size:16px;min-height:52px;padding:10px 14px;gap:12px;border-radius:12px} .opc .mk,.opc.peq .mk{width:22px;height:22px;border-width:2px} .opc[aria-pressed=true] .mk::after{width:8px;height:8px}
+  .fb{font-size:15px;padding:10px 12px} .fb b{font-size:11px;letter-spacing:2px} .st{font-size:13px}
+  .resumo-mini{font-size:14px}
+  .perfil label{font-size:15px} .perfil input,.perfil select{font-size:17px;height:52px;border-width:2px}
+  .rs{height:auto} .rs-esq,.rs-dir{overflow:visible;padding:0}
+  .nums strong{font-size:26px} .nums small{font-size:12px} .nums div{padding:12px 14px}
+  .leit{font-size:15px;padding:14px} .leit .rot{font-size:24px}
+  .al{font-size:14px;padding:10px 12px} .al b{font-size:11px} .rs h3{font-size:19px} .chips span{font-size:13px}
+  .btn-g{font-size:18px;padding:16px 22px;width:100%;min-height:56px}
+  .anote{font-size:15px}
+  .nav-aula{padding:8px 10px;gap:8px} .nav-aula button{min-width:84px;min-height:48px;font-size:15px}
+  .nav-aula .linha1{font-size:12px}
+  .nav-aula .linha1 #n-sl,.nav-aula .lg{display:none}
+}
+/* ===== só do Pilar 7 ===== */
+.figs.um img.vert{height:660px}
+.ctx{background:#F7F3E8;border:1px solid rgba(22,38,28,.12);border-radius:14px;padding:14px 18px;font-size:20px;line-height:1.45}
+.ctx h3{font:700 15px var(--sans);letter-spacing:3px;text-transform:uppercase;color:var(--ouro2);margin:0 0 8px}
+.ctx p{margin:0 0 8px}.ctx p:last-child{margin:0}
+.pags{display:grid;gap:8px}
+.pags.g2c{grid-template-columns:1fr 1fr;gap:14px 22px}
+.pag{border:1px solid rgba(22,38,28,.14);border-radius:12px;padding:10px 14px;background:#fff;font-size:19px;line-height:1.4;color:var(--tinta)}
+.pag .cab{display:flex;justify-content:space-between;gap:10px;align-items:baseline;flex-wrap:wrap}
+.pag .cab b{font-family:var(--serif);font-size:22px;font-weight:600}
+.pag p{margin:4px 0 0;color:var(--cinza)}
+.pag.fraca{border:2px solid var(--erro)}
+.pags.g2c .pag{font-size:24px;padding:16px 22px}.pags.g2c .pag .cab b{font-size:30px}
+.q4{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;margin-top:6px;font-size:17px}
+.q4 span:nth-child(odd){color:var(--cinza)}
+.pag .selo,.ctx .selo{font-size:14px;letter-spacing:2px;padding:4px 10px;border:0;border-radius:99px}
+.selo.s-avancar{background:#E1EFE3;color:#1F5A33}.selo.s-ajustar{background:#FBEFD2;color:#7A5300}.selo.s-testar{background:#FFF0D0;color:#6B4600}
+.selo.s-pausar,.selo.s-parar{background:#F8E3DE;color:#9B2C1F}.selo.s-pendente{background:var(--creme2);color:var(--cinza)}.selo.s-diag{background:#E6ECF2;color:#24384A}
+.veio-bx:empty{display:none}
+.veio-bx{background:#FFF7E6;border:1px solid #E7C980;border-radius:12px;padding:10px 16px;font-size:21px;line-height:1.4}
+/* a grade das seis fontes */
+.gr{display:flex;flex-direction:column;gap:8px}
+.gr .it{border:2px solid rgba(22,38,28,.14);border-radius:14px;padding:8px 14px}
+.gr .it b{font-size:21px}.gr .it small{display:block;font-size:16px;color:var(--cinza);line-height:1.3}
+.gr .tr{display:flex;gap:8px;margin-top:6px}
+.gr .tr .opc{flex:1;min-height:46px;font-size:18px;padding:6px 10px;justify-content:center;gap:8px}
+.gr .tr .opc .mk{width:22px;height:22px}
+/* as três palavras e os caminhos */
+.pal{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pal .card h3{font-size:44px}
+.cam .card .n{font-size:44px}
+/* diagnóstico dentro da aula */
+.s.diag{padding-top:104px;padding-bottom:70px;gap:16px;justify-content:flex-start}
+.diag-txt{font-size:27px;line-height:1.4;max-width:1664px}
+.diag-box{width:1664px;height:770px;border-radius:18px;overflow:hidden;background:var(--creme);border:3px solid var(--ouro);position:relative}
+.diag-box iframe{border:0;display:block;transform-origin:0 0;background:var(--creme);width:1664px;height:770px}
+.diag-pe{display:flex;justify-content:space-between;align-items:center;gap:20px;font-size:21px;color:var(--cinza)}
+.diag-pe a{color:var(--ouro2);font-weight:700}
+.fim-lnk{display:flex;flex-direction:column;gap:14px;align-items:flex-start}
+@media (max-width:820px),(max-height:520px){
+  .figs.um img.vert{width:78%;max-width:320px;height:auto}
+  .ctx{font-size:14px;padding:10px 12px}.ctx h3{font-size:11px;letter-spacing:2px}
+  .pag{font-size:14px;padding:8px 10px}.pag .cab b{font-size:16px}
+  .pags.g2c{grid-template-columns:1fr;gap:8px}.pags.g2c .pag{font-size:14px;padding:8px 10px}.pags.g2c .pag .cab b{font-size:16px}
+  .q4{font-size:13px}.pag .selo,.ctx .selo{font-size:10px;letter-spacing:1px}
+  .veio-bx{font-size:14px;padding:8px 10px}
+  .gr .it{padding:8px 10px}.gr .it b{font-size:15px}.gr .it small{font-size:12px}
+  .gr .tr{gap:6px}.gr .tr .opc{font-size:13px;min-height:44px;padding:6px 6px;gap:6px}.gr .tr .opc .mk{width:16px;height:16px}
+  .pal{grid-template-columns:1fr;gap:12px}.pal .card h3{font-size:22px}.cam .card .n{font-size:28px}
+  .s.diag{padding:50px 12px 90px;gap:10px}
+  .diag-txt{font-size:15px}
+  .diag-box{width:100%;height:78vh;height:78dvh;min-height:460px;border-width:2px;border-radius:12px}
+  .diag-box iframe{width:100%!important;height:100%!important;transform:none!important}
+  .diag-pe{font-size:13px;flex-wrap:wrap}
+}
+</style>
+<script>
+/* Pilar 7 · aula principal em slides. A Marina é um exemplo ilustrativo:
+   só entram os números dela que aparecem nos vídeos (R$ 645, pouco mais de seis anos, cerca de R$ 870 mil). */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+</script>
+</head>
+<body data-deck="t1-pilar7-aula" data-titulo="Pilar 7 · Capital e Dossiê">
+<div class="zd-vp"><div class="zd-stage" data-sem-clique>
+
+<!-- ============ ABERTURA ============ -->
+<section class="s foto sem-topo" data-bg="../fotos/c8d0eb086b.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Pilar 7 · O último pilar</p>
+  <h1>Pilar 7<br><i>Capital e Dossiê</i></h1>
+  <p class="lead" style="max-width:1100px">De onde vem o capital, e com quem. E a sua decisão, escrita. No fim, você baixa o seu Dossiê de Desenvolvimento completo, das páginas 0 a 7.</p>
+</section>
+
+<section class="s" data-bloco="Como funciona esta aula">
+  <p class="k">O que você vai fazer aqui</p>
+  <h2>Assistir, responder <i>e sair com o Dossiê</i></h2>
+  <div class="grid g3">
+    <div class="card"><span class="n">1</span><h3>Assistir</h3><p>Dois vídeos curtos, um por bloco. Eles aparecem aqui dentro, no ponto certo.</p></div>
+    <div class="card"><span class="n">2</span><h3>Responder</h3><p>Uma pergunta por tela, logo depois do trecho que a explica. Cada resposta fica salva na hora, neste aparelho.</p></div>
+    <div class="card"><span class="n">3</span><h3>Sair com o Dossiê</h3><p>No fim, a página 7, Capital e decisão, e o seu Dossiê de Desenvolvimento completo em PDF, das páginas 0 a 7.</p></div>
+  </div>
+  <p class="sv" style="background:#EEF3EC;color:#173F25;border-color:var(--ok)"><b style="color:var(--ok)">Dica</b><span>Tenha à mão a sua Pré-viabilidade, a página 6. Use os botões lá embaixo, ou as setas do teclado, para avançar.</span></p>
+</section>
+
+<section class="s esc" data-bloco="O que você leva">
+  <p class="k">No fim deste pilar, você sabe</p>
+  <h2>Como pagar, com quem, <i>e o que decidir</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">As três perguntas de sim ou não que vêm antes de qualquer dinheiro.</li>
+    <li class="f">O pedido certo, sem número redondo, e as seis fontes de capital, cada uma com o seu preço.</li>
+    <li class="f">Se o que te falta é dinheiro ou um sócio, e qual dos três tipos de sócio.</li>
+    <li class="f">As quatro perguntas de cada página, a página mais fraca, a decisão e os três caminhos.</li>
+  </ul>
+</section>
+
+<!-- ============ RETOMADA ============ -->
+<section class="s" data-bloco="Retomada · Pilar 6">
+  <p class="k">Retomada do Pilar 6 · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Dos três cenários da sua pré-viabilidade, qual é o que precisa funcionar?</p>
+    <div class="ops">
+      <button class="op">O otimista</button>
+      <button class="op">O base</button>
+      <button class="op" data-certa>O conservador</button>
+    </div>
+    <p class="exp">O conservador, o cenário mais fraco. O otimista é teto, não meta.</p>
+  </div>
+</section>
+<section class="s" data-bloco="Retomada · Pilar 6">
+  <p class="k">Retomada do Pilar 6 · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">O terreno já é seu e fica fora da folha de oito linhas. Então ele é de graça?</p>
+    <div class="ops">
+      <button class="op">Sim: se já é meu, não custa nada</button>
+      <button class="op" data-certa>Não: fora da conta não quer dizer de graça</button>
+    </div>
+    <p class="exp">É dinheiro preso no projeto. E a outra linha à parte, o capital de giro, entra na conta.</p>
+  </div>
+</section>
+<section class="s" data-bloco="Retomada · Pilar 6">
+  <p class="k">Retomada do Pilar 6 · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Na Marina, em quanto tempo o dinheiro volta no cenário conservador?</p>
+    <div class="ops">
+      <button class="op">Em menos de quatro anos</button>
+      <button class="op" data-certa>Em pouco mais de seis anos</button>
+      <button class="op">Em mais de oito anos</button>
+    </div>
+    <p class="exp">Pouco mais de seis anos, pela referência da Zion. É uma conta a trocar por cotação escrita.</p>
+  </div>
+</section>
+
+<!-- ============ BLOCO 1 ============ -->
+<section class="s esc" data-bloco="Bloco 1 · De onde vem o capital, e com quem">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 1 de 2 · Bloco 1 · De onde vem o capital, e com quem</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/LzvYel1A-IA?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 7 · Bloco 1 · De onde vem o capital, e com quem" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/LzvYel1A-IA" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · A frase que mais ouvimos">
+  <p class="k">A frase que mais ouvimos</p>
+  <h2>"Tenho o terreno, <i>mas não tenho o dinheiro"</i></h2>
+  <ul class="lista" style="font-size:36px">
+    <li class="f">Se essa é a sua frase, está tudo bem.</li>
+    <li class="f">Mas terreno parado quase nunca é falta de dinheiro. <b>É falta de ordem.</b></li>
+    <li class="f">Lembra da pescaria do Marco Zero? Linha sem isca não traz peixe. O plano é a isca.</li>
+  </ul>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · As três perguntas">
+  <p class="k">Antes de pensar em quem tem dinheiro</p>
+  <h2>Três perguntas <i>de sim ou não</i></h2>
+  <table class="t" style="font-size:31px">
+    <tr><th>Pergunta</th><th>Onde se responde</th></tr>
+    <tr class="f"><td><b>1.</b> Se o dinheiro aparecesse amanhã, eu sei o que construir, quantas unidades e para quem?</td><td>Páginas 3, 4 e 5</td></tr>
+    <tr class="f"><td><b>2.</b> Sei a diária que o meu produto sustenta, com dado, e não com palpite?</td><td>Páginas 2 e 3</td></tr>
+    <tr class="f"><td><b>3.</b> Sei em quanto tempo o dinheiro volta, nos três cenários?</td><td>Página 6</td></tr>
+  </table>
+  <p class="lead f">Um sim sem documento ao lado vale um não.</p>
+</section>
+<section class="s q" data-q="cap_construir" data-bloco="Bloco 1 · As três perguntas"></section>
+<section class="s q" data-q="cap_diaria" data-bloco="Bloco 1 · As três perguntas"></section>
+<section class="s q" data-q="cap_volta" data-bloco="Bloco 1 · As três perguntas"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · As três perguntas">
+  <p class="k">E o que as respostas dizem</p>
+  <h2>Três sim, <i>ou um não</i></h2>
+  <div class="grid g2" style="gap:28px">
+    <div class="card f"><h3>Três sim</h3><p>Aí falta capital. E o caminho é buscar, com a conta na mão.</p></div>
+    <div class="card f" style="border:3px solid var(--ouro)"><h3>Um não</h3><p>Não falta capital. Falta a decisão que vem antes dele.</p></div>
+  </div>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Duas das três perguntas são sim, e uma é não. O que falta?</p>
+    <div class="ops">
+      <button class="op">Capital</button>
+      <button class="op" data-certa>A decisão que vem antes do capital</button>
+      <button class="op">Um sócio</button>
+    </div>
+    <p class="exp">Um não basta. Não falta capital: falta a decisão que vem antes dele.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O pedido">
+  <p class="k">Quando perguntarem quanto você precisa</p>
+  <h2>Nada de <i>número redondo</i></h2>
+  <div class="conta" style="font-size:34px;gap:10px;max-width:1400px">
+    <div class="eq f"><span>A obra da fase um</span><span>+</span></div>
+    <div class="eq f"><span>O capital de giro dos primeiros meses</span><span>+</span></div>
+    <div class="eq f"><span>Uma reserva para imprevistos</span><span>+</span></div>
+    <div class="eq f"><span>O que você mesmo põe</span><span>−</span></div>
+    <div class="eq tot f" data-foco><span>O pedido certo</span><span>=</span></div>
+  </div>
+  <p class="lead f">Na ferramenta, o pedido vai linha por linha: a obra da fase um, com a reserva dentro, o giro, o que falta pagar do terreno, o custo de buscar o dinheiro e o que você põe.</p>
+</section>
+<section class="s q" data-q="ped_invest" data-bloco="Bloco 1 · O pedido"></section>
+<section class="s q" data-q="ped_giro" data-bloco="Bloco 1 · O pedido"></section>
+<section class="s q" data-q="ped_terreno" data-bloco="Bloco 1 · O pedido"></section>
+<section class="s q" data-q="ped_busca" data-bloco="Bloco 1 · O pedido"></section>
+<section class="s q" data-q="ped_proprio" data-bloco="Bloco 1 · O pedido"></section>
+
+<section class="s" data-bloco="Bloco 1 · As seis fontes">
+  <p class="k">As fontes, em linguagem de padaria</p>
+  <h2>São seis, <i>e cada uma cobra um preço diferente</i></h2>
+  <div class="grid g3 docs2" style="gap:18px">
+    <div class="card f"><span class="n">1</span><h3>Recurso próprio</h3><p>O mais rápido.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Banco</h3><p>Quer garantia e uma operação que pague a parcela.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Investidor</h3><p>Leva uma parte do negócio.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Sócio</h3><p>Esse fica para daqui a pouco.</p></div>
+    <div class="card f"><span class="n">5</span><h3>Pré-venda</h3><p>Só quando o seu modelo é de venda.</p></div>
+    <div class="card f"><span class="n">6</span><h3>Parceria com quem opera</h3><p>Quando o que falta é quem saiba operar.</p></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 1 · Recurso próprio">
+  <p class="k">Fonte 1 · O recurso próprio</p>
+  <h2>Não se mede pelo saldo. <i>Se mede por quanto você pode perder</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">É o mais rápido. Mas a pergunta é quanto você pode perder sem comprometer a sua vida.</li>
+    <li class="f">Esse é o seu limite de perda. Ele se escreve antes, em casa, com quem divide a vida com você.</li>
+    <li class="f">E dinheiro da família, só com contrato escrito, como se fosse de um desconhecido.</li>
+  </ul>
+</section>
+<section class="s q" data-q="limite" data-bloco="Bloco 1 · Recurso próprio"></section>
+<section class="s q" data-q="x_familia" data-bloco="Bloco 1 · Recurso próprio"></section>
+
+<section class="s" data-bloco="Bloco 1 · O banco">
+  <p class="k">Fonte 2 · O banco, o financiamento</p>
+  <h2>Quer garantia <i>e uma operação que pague a parcela</i></h2>
+  <div class="grid g3" style="gap:22px">
+    <div class="card f"><h3>A carência</h3><p>É o aperto mais comum: a obra não gera caixa, e o banco quer receber logo.</p></div>
+    <div class="card f"><h3>A garantia</h3><p>"A garantia é o meu terreno" é decisão, não detalhe.</p></div>
+    <div class="card f" style="border:3px solid var(--erro)"><h3>O aval pessoal</h3><p>Pode pôr a sua casa na conta.</p></div>
+  </div>
+  <p class="lead f">Linha e taxa, quem confirma é o banco e o contador.</p>
+</section>
+<section class="s q" data-q="garantia" data-bloco="Bloco 1 · O banco"></section>
+
+<section class="s" data-bloco="Bloco 1 · O investidor">
+  <p class="k">Fonte 3 · O investidor</p>
+  <h2>Não cobra juro. <i>Leva uma parte do negócio</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Quer conhecer a tese e quem conduz.</li>
+    <li class="f">Juro zero não é dinheiro de graça.</li>
+    <li class="f">A fonte 4, o sócio, fica para daqui a pouco.</li>
+  </ul>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">O investidor não cobra juro. Então ele é o dinheiro mais barato?</p>
+    <div class="ops">
+      <button class="op">Sim: juro zero é dinheiro de graça</button>
+      <button class="op" data-certa>Não: ele leva uma parte do negócio</button>
+    </div>
+    <p class="exp">Juro zero não é dinheiro de graça. O investidor leva uma parte do negócio, e quer conhecer a tese e quem conduz.</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Pré-venda e parceria">
+  <p class="k">Fontes 5 e 6</p>
+  <h2>A pré-venda <i>e a parceria com quem opera</i></h2>
+  <div class="grid g2" style="gap:28px">
+    <div class="card f"><span class="n">5</span><h3>A pré-venda</h3><p>Só quando o seu modelo é de venda, como no Pilar 4. Pré-venda não é receita: é uma obrigação com cara de caixa. Sem histórico de operação, você venderia uma renda que ainda não existe. Só com advogado e contador.</p></div>
+    <div class="card f"><span class="n">6</span><h3>A parceria com quem opera</h3><p>Às vezes o que falta não é dinheiro, é quem saiba operar. E quem opera é a primeira pergunta de qualquer banco ou investidor.</p></div>
+  </div>
+</section>
+<section class="s q" data-q="x_opera" data-bloco="Bloco 1 · Pré-venda e parceria"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · O seu mapa de fontes">
+  <p class="k">Antes de marcar as suas</p>
+  <h2>Duas ou três fontes pequenas <i>costumam ser mais viáveis do que uma grande</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Isso vale em projeto pequeno e faseado.</li>
+    <li class="f">Confira se duas fontes não pedem o mesmo terreno como garantia.</li>
+    <li class="f">E nenhuma é garantida: cada uma avalia o seu caso.</li>
+  </ul>
+</section>
+<section class="s q" data-q="fontes" data-bloco="Bloco 1 · O seu mapa de fontes"></section>
+
+<section class="s" data-bloco="Bloco 1 · Dinheiro ou sócio">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Agora, o sócio</p>
+      <h2>Não confunda precisar de dinheiro <i>com precisar de um sócio</i></h2>
+      <ul class="lista" style="font-size:29px">
+        <li class="f">Dinheiro: as fontes que você acabou de ver.</li>
+        <li class="f">Mão para uma tarefa: você contrata.</li>
+        <li class="f">Conhecimento: um profissional ou uma consultoria.</li>
+        <li class="f">Mercado: uma parceria comercial.</li>
+        <li class="f">Só quando falta gestão e decisão, talvez seja um sócio.</li>
+      </ul>
+    </div>
+    <div class="figs um"><img class="vert" src="figuras/01-o-que-falta.svg" alt="O que me falta de verdade: dinheiro, mão para uma tarefa, conhecimento, mercado, e gestão e decisão, que talvez pede um sócio"></div>
+  </div>
+</section>
+<section class="s q" data-q="falta" data-bloco="Bloco 1 · Dinheiro ou sócio"></section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q" style="font-size:52px">Um amigo oferece cuidar das redes sociais do projeto em troca de uma parte do negócio. O que perguntar primeiro?</p>
+    <div class="ops">
+      <button class="op">Se ele é bom de rede social</button>
+      <button class="op" data-certa>Se dá para contratar alguém para isso, e se o que ele traz vale a parte que você entrega</button>
+    </div>
+    <p class="exp">Mão para uma tarefa: você contrata. Antes de dividir o negócio, pergunte: dá para contratar? O que ele traz vale a parte que eu entrego?</p>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · Três tipos de sócio">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:26px">
+      <p class="k">Os três são legítimos</p>
+      <h2>Existem <i>três tipos de sócio</i></h2>
+      <ol class="lista num" style="font-size:32px;gap:16px">
+        <li class="f"><span><b>O que traz dinheiro.</b></span></li>
+        <li class="f"><span><b>O que opera.</b></span></li>
+        <li class="f"><span><b>O que abre portas:</b> contatos, mercado, conhecimento que você não tem.</span></li>
+      </ol>
+      <p class="lead f">O problema começa quando você precisa de um e escolhe outro.</p>
+    </div>
+    <div class="figs um"><img class="vert" src="figuras/02-tres-socios.svg" alt="Três tipos de sócio: o que traz dinheiro, o que opera e o que abre portas"></div>
+  </div>
+</section>
+<section class="s q" data-q="socio" data-bloco="Bloco 1 · Três tipos de sócio"></section>
+
+<section class="s esc" data-bloco="Bloco 1 · Antes de dividir">
+  <p class="k">Antes de dividir o negócio, pergunte</p>
+  <h2>Seis perguntas, <i>e só depois o sócio</i></h2>
+  <div class="grid g2" style="gap:56px;align-items:start">
+    <ol class="lista num" style="font-size:29px;gap:12px">
+      <li class="f"><span>Preciso de capital ou de um parceiro?</span></li>
+      <li class="f"><span>Dá para contratar?</span></li>
+      <li class="f"><span>Ele traz o que eu não tenho?</span></li>
+      <li class="f"><span>Queremos a mesma coisa?</span></li>
+      <li class="f"><span>Quem decide o quê está escrito?</span></li>
+      <li class="f"><span>O que ele traz vale a parte que eu entrego?</span></li>
+    </ol>
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="lead f">O sócio leva resultado, decisão, informação e saída.</p>
+      <p class="f" style="font-family:var(--serif);font-size:54px;line-height:1.15;color:var(--ouro)">Escolha o sócio pela década, não pelo cheque.</p>
+    </div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 1 · O que pôr na mesa">
+  <p class="k">E quem não tem dinheiro</p>
+  <h2>Também tem <i>o que pôr na mesa</i></h2>
+  <div class="grid g3" style="gap:22px">
+    <div class="card f"><h3>Terra</h3><p>O terreno vale como aporte.</p></div>
+    <div class="card f"><h3>Trabalho</h3><p>Quem conduz e executa também põe.</p></div>
+    <div class="card f"><h3>Conhecimento</h3><p>O que você sabe e o outro não sabe.</p></div>
+  </div>
+  <p class="lead f">Não existe percentual universal: pesa o que cada um põe, o risco, a responsabilidade e a dedicação. Como escrever, com advogado e contador.</p>
+</section>
+<section class="s q" data-q="x_aporte" data-bloco="Bloco 1 · O que pôr na mesa"></section>
+
+<section class="s" data-bloco="Bloco 1 · A Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina · para ensinar o raciocínio</span>
+  <h2>A Marina faz <i>as três perguntas</i></h2>
+  <table class="t" style="font-size:31px">
+    <tr><th>Pergunta</th><th>A resposta da Marina</th></tr>
+    <tr class="f"><td>O que construir</td><td>Sim: três cabanas de glamping para casal.</td></tr>
+    <tr class="f"><td>A diária</td><td>Sim: R$ 645, medida. E a conta do Pilar 6 fecha com ela.</td></tr>
+    <tr class="f"><td>O tempo de volta</td><td>Sim: pouco mais de seis anos no conservador.</td></tr>
+  </table>
+  <p class="lead f"><b>Três sim.</b> O terreno é dela, e quem opera ela já tem: uma pessoa local. O que falta é capital para a fase um.</p>
+</section>
+
+<section class="s esc" data-bloco="Fim do Bloco 1">
+  <p class="k">Antes do bloco dois · a sua lição</p>
+  <h2>O seu capital <i>no papel</i></h2>
+  <div class="anote" id="anote"></div>
+  <p class="sm">As três perguntas, quanto você pode perder, as seis fontes e o que te falta de verdade. Onde aparece "não sei", é tarefa da semana.</p>
+</section>
+
+<!-- ============ BLOCO 2 ============ -->
+<section class="s esc" data-bloco="Bloco 2 · O Dossiê e a decisão">
+  <div class="vid-wrap">
+    <p class="k" style="align-self:flex-start">Vídeo 2 de 2 · Bloco 2 · O Dossiê e a decisão</p>
+    <div class="vid" data-sem-clique><iframe loading="lazy" src="https://www.youtube-nocookie.com/embed/20sSPnYbkdw?rel=0&modestbranding=1&enablejsapi=1" title="Pilar 7 · Bloco 2 · O Dossiê e a decisão" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; fullscreen" allowfullscreen></iframe></div>
+    <div class="vid-pe"><span>Assista e depois avance: as perguntas seguem a ordem do vídeo.</span><a href="https://youtu.be/20sSPnYbkdw" target="_blank" rel="noopener">Abrir no YouTube</a></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · As sete páginas">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">O seu Dossiê de Desenvolvimento</p>
+      <h2>Sete páginas, <i>uma por pilar</i></h2>
+      <ol class="lista num" style="font-size:28px;gap:10px">
+        <li class="f"><span>O território</span></li>
+        <li class="f"><span>O mercado</span></li>
+        <li class="f"><span>O produto</span></li>
+        <li class="f"><span>O modelo de negócio</span></li>
+        <li class="f"><span>O masterplan faseado</span></li>
+        <li class="f"><span>A pré-viabilidade</span></li>
+        <li class="f"><span><b>O capital e a decisão</b>, que você fecha hoje</span></li>
+      </ol>
+      <p class="sm f">Antes delas, a página 0: o diagnóstico prévio do Marco Zero.</p>
+    </div>
+    <div class="figs um"><img class="vert" src="figuras/03-dossie-sete-paginas.svg" alt="O Dossiê de Desenvolvimento: sete páginas, uma por pilar, e as quatro perguntas de cada página"></div>
+  </div>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · O seu Dossiê neste aparelho" id="s-pags">
+  <p class="k">O que este aparelho já tem do seu Dossiê</p>
+  <h2 style="font-size:64px">As suas páginas, <i>hoje</i></h2>
+  <div class="pags g2c" id="pags-aparelho"></div>
+  <p class="sm">Só aparece o que foi salvo neste aparelho e neste navegador. Se fez uma página no papel ou em outro aparelho, considere-a mesmo assim.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · Bonito ou defensável">
+  <p class="k">A diferença não está na apresentação</p>
+  <h2>Bonito <i>ou defensável?</i></h2>
+  <div class="grid g2" style="gap:28px">
+    <div class="card f"><h3>Um Dossiê bonito</h3><p>Convence quem já quer acreditar.</p></div>
+    <div class="card f" style="border:3px solid var(--ouro)"><h3>Um Dossiê defensável</h3><p>Aguenta a pergunta de quem não tem interesse nenhum em acreditar: o banco, o investidor, o sócio desconfiado. E você mesmo, daqui a seis meses.</p></div>
+  </div>
+  <p class="lead f">O que não foi escrito não existe na hora da pergunta.</p>
+</section>
+
+<section class="s" data-bloco="Bloco 2 · As quatro perguntas">
+  <p class="k">Cada página passa por quatro perguntas</p>
+  <h2>Uma página está pronta <i>quando responde às quatro</i></h2>
+  <div class="grid g2 docs2" style="gap:22px 32px">
+    <div class="card f"><span class="n">1</span><h3>Está completa?</h3><p>Com a fonte e a data de cada número.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Qual é o veredito?</h3><p>Uma palavra, escrita.</p></div>
+    <div class="card f"><span class="n">3</span><h3>O que faria você parar?</h3><p>O fato que mudaria a decisão.</p></div>
+    <div class="card f"><span class="n">4</span><h3>Qual é a maior lacuna?</h3><p>Quem resolve, e até quando.</p></div>
+  </div>
+  <p class="lead f">Uma linha em branco, declarada, vale. Um número redondo sem fonte, não.</p>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · A página mais fraca">
+  <p class="k">Agora leia as sete páginas juntas</p>
+  <h2>O projeto anda na velocidade <i>da página mais fraca</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Não é votação: seis páginas boas não compram a que manda parar.</li>
+    <li class="f">Se a página que trava é o território, nada do que vem depois se sustenta.</li>
+  </ul>
+</section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Num projeto, seis páginas dizem avançar e uma diz parar. O que ele faz?</p>
+    <div class="ops">
+      <button class="op">Avança: seis contra uma</button>
+      <button class="op" data-certa>Para, ou ajusta, até resolver a que manda parar</button>
+    </div>
+    <p class="exp">Não é votação. Seis páginas boas não compram a que manda parar.</p>
+  </div>
+</section>
+<section class="s q" data-q="fraca" data-bloco="Bloco 2 · A página mais fraca"></section>
+<section class="s q" data-q="repete" data-bloco="Bloco 2 · A página mais fraca"></section>
+<section class="s q" data-q="x_lacuna" data-bloco="Bloco 2 · A página mais fraca"></section>
+
+<section class="s" data-bloco="Bloco 2 · A decisão">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:24px">
+      <p class="k">A decisão, escrita</p>
+      <h2>São <i>três palavras</i></h2>
+      <ul class="lista" style="font-size:28px">
+        <li class="f"><span><b>Avançar:</b> as páginas sustentam o próximo passo, e você sabe qual é.</span></li>
+        <li class="f"><span><b>Ajustar:</b> o projeto tem futuro, mas uma página pede mudança antes, no tamanho, no produto, no preço ou na fase.</span></li>
+        <li class="f"><span><b>Parar:</b> a conta não fecha neste desenho, ou o risco não cabe na sua vida.</span></li>
+      </ul>
+    </div>
+    <div class="figs um"><img class="vert" src="figuras/04-decisao-e-caminhos.svg" alt="A decisão escrita, avançar, ajustar ou parar, com o critério, e os três caminhos"></div>
+  </div>
+</section>
+
+<section class="s esc" data-bloco="Bloco 2 · Parar não é fracasso">
+  <p class="k">Uma palavra sobre parar</p>
+  <h2>Parar <i>não é fracasso</i></h2>
+  <ul class="lista" style="font-size:34px">
+    <li class="f">Você descobriu no papel o que muita gente descobre com a obra pronta e o calendário vazio.</li>
+    <li class="f">Gastou caderno e algumas semanas, não uma obra. E o Dossiê continua seu.</li>
+    <li class="f">Decidir não fazer, com evidência, é um resultado válido.</li>
+  </ul>
+</section>
+<section class="s q" data-q="decisao" data-bloco="Bloco 2 · A decisão"></section>
+
+<section class="s" data-bloco="Bloco 2 · O critério">
+  <p class="k">Toda decisão vem com o critério que a mudaria</p>
+  <h2>A frase que impede você <i>de decidir pelo entusiasmo</i></h2>
+  <p class="f" style="font-family:var(--serif);font-size:60px;line-height:1.2;color:var(--ouro2);max-width:1500px">"Se [o fato], então eu [avanço, ajusto ou paro]."</p>
+  <p class="lead f">Toda decisão sem critério para mudar vira teimosia.</p>
+</section>
+<section class="s q" data-q="criterio" data-bloco="Bloco 2 · O critério"></section>
+
+<section class="s" data-bloco="Bloco 2 · A Marina">
+  <span class="selo">Exemplo ilustrativo · a Marina · para ensinar o raciocínio</span>
+  <h2>A Marina põe <i>as sete páginas lado a lado</i></h2>
+  <table class="t" style="font-size:29px">
+    <tr><th>Página</th><th>O que diz</th></tr>
+    <tr class="f"><td>Território</td><td>Lido</td></tr>
+    <tr class="f"><td>Mercado</td><td>Medido</td></tr>
+    <tr class="f"><td>Produto, modelo e masterplan</td><td>Decididos: três cabanas de glamping para casal, renda no degrau fácil, a fase um com uma pessoa local</td></tr>
+    <tr class="f"><td>Pré-viabilidade</td><td>Pouco mais de seis anos no cenário mais fraco</td></tr>
+    <tr class="f"><td><b>Capital e decisão</b></td><td><b>Avançar com a fase um.</b> O próximo passo: trocar cada referência por cotação escrita.</td></tr>
+  </table>
+  <p class="lead f">O critério dela: se o investimento passar de cerca de R$ 870 mil, ela volta à conta antes de assinar.</p>
+</section>
+<section class="s q" data-q="frase" data-bloco="Bloco 2 · A frase do Dossiê"></section>
+
+<section class="s" data-bloco="Bloco 2 · Os três caminhos">
+  <p class="k">Com o Dossiê na mão</p>
+  <h2>Existem <i>três caminhos</i></h2>
+  <div class="grid g3 cam" style="gap:22px">
+    <div class="card f"><span class="n">1</span><h3>Fazer sozinho, com o Dossiê</h3><p>Se o investidor é você mesmo, quem precisa das respostas primeiro é você. O Dossiê vira a sua régua para cada gasto.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Levar ao banco ou a um investidor</h3><p>As páginas são as mesmas. O banco lê a garantia e se a operação paga a parcela. O investidor lê a tese e quem conduz. Nenhum dos dois é garantido.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Conversar com a Zion</h3><p>Projetos maiores, ou quem quer um olhar de fora, podem pedir uma reunião com o nosso fundador, Bruno Chaerk. E terrenos com o Dossiê feito podem pedir para entrar na lista do Land Bank Zion.</p></div>
+  </div>
+  <p class="sm f">A Zion avalia cada caso. Estar na lista não garante investimento, venda ou sociedade.</p>
+</section>
+<section class="s q" data-q="caminho" data-bloco="Bloco 2 · Os três caminhos"></section>
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · clique numa resposta</p>
+  <div class="quiz passo">
+    <p class="q">Um terreno com o Dossiê feito entrou na lista do Land Bank Zion. O que isso garante?</p>
+    <div class="ops">
+      <button class="op">Investimento</button>
+      <button class="op">Venda</button>
+      <button class="op">Sociedade</button>
+      <button class="op" data-certa>Nenhuma das três: a Zion avalia cada caso</button>
+    </div>
+    <p class="exp">A lista é a vitrine de terrenos estruturados. Estar nela não garante investimento, venda ou sociedade.</p>
+  </div>
+</section>
+
+<!-- ============ RESUMO ============ -->
+<section class="s esc" data-bloco="Resumo">
+  <p class="k">O Pilar 7 em uma tela</p>
+  <h2>O que <i>fica</i></h2>
+  <ol class="lista num" style="font-size:31px;gap:14px">
+    <li class="f"><span>Terreno parado quase nunca é falta de dinheiro. É falta de ordem.</span></li>
+    <li class="f"><span>Três perguntas de sim ou não vêm antes do dinheiro, e um não basta: falta a decisão que vem antes.</span></li>
+    <li class="f"><span>São seis fontes, e cada uma cobra um preço; o recurso próprio se mede por quanto você pode perder.</span></li>
+    <li class="f"><span>Não confunda precisar de dinheiro com precisar de um sócio, e escolha o sócio pela década.</span></li>
+    <li class="f"><span>O projeto anda na velocidade da página mais fraca, e a decisão vem com o critério que a mudaria.</span></li>
+  </ol>
+</section>
+
+<section class="s" data-bloco="O seu Dossiê">
+  <p class="k">Para o Dossiê sair com o seu nome</p>
+  <h2>Quem é você <i>e onde fica o terreno</i></h2>
+  <div class="perfil" data-sem-clique>
+    <label>O seu nome<input type="text" id="p-nome" autocomplete="name"></label>
+    <label>O seu e-mail<input type="email" id="p-email" autocomplete="email" inputmode="email"></label>
+    <label>Cidade do terreno<input type="text" id="p-cidade" autocomplete="address-level2"></label>
+    <label>Estado do terreno<select id="p-uf"><option value="">Escolha o estado</option></select></label>
+  </div>
+  <p class="sm" id="p-st">Fica salvo neste aparelho. Nada é enviado nesta aula: a ferramenta do Dossiê usa o seu e-mail só quando você pedir o mentor de IA, baixar o PDF ou enviar ao Land Bank.</p>
+</section>
+
+<!-- ============ DIAGNÓSTICO ============ -->
+<section class="s diag" data-bloco="Faça agora · O seu Dossiê de Desenvolvimento" id="s-diag">
+  <p class="diag-txt">As suas respostas já estão aqui. Confira, gere o resultado e baixe a página 7 do seu Dossiê, que sai junto com o Dossiê completo, das páginas 0 a 7. No fim, envie para o Land Bank da Zion.</p>
+  <div class="diag-box" data-sem-clique><iframe id="diag-ifr" title="Faça agora · O seu Dossiê de Desenvolvimento" data-sem-clique></iframe></div>
+  <div class="diag-pe"><span id="diag-st">Se a ferramenta abrir na tela inicial, toque em "Continuar de onde parei".</span><a href="../../pilar7/" target="_blank" rel="noopener" id="diag-cheia">Abrir em tela cheia</a></div>
+</section>
+
+<!-- ============ FECHAMENTO ============ -->
+<section class="s foto" data-bg="../fotos/901904223c.jpg" data-bloco="O próximo passo · Zion Land Members" style="gap:26px">
+  <h2 style="max-width:1400px;font-size:62px">Você começou com um terreno e uma dúvida. <i>Termina com sete páginas e uma decisão escrita.</i></h2>
+  <div class="fim-lnk">
+    <p class="lead" style="max-width:1350px;font-size:30px">Com o Dossiê na mão, o próximo passo é a Zion Land Members: o cadastro do seu terreno no banco de áreas da Zion. A Zion avalia cada caso. Não é promessa de investimento, crédito, compra ou sociedade.</p>
+    <a class="btn-g" href="https://airtable.com/appNazhHg9mqWAt9h/pageylHbg89JNYm81/form" target="_blank" rel="noopener" data-sem-clique>Abrir o cadastro da Zion Land Members</a>
+    <p class="sv" style="background:rgba(201,168,76,.18);color:#F5F1E8;border-color:var(--ouro)"><b style="color:var(--ouro)">Lembrete</b><span>Salve o PDF na pasta Meu Dossiê. E se a sua decisão hoje é ajustar ou parar, o seu próximo passo é a sua maior lacuna.</span></p>
+  </div>
+  <p class="sm" style="max-width:1500px;font-size:19px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas, na referência da Zion. Não é oferta de investimento nem recomendação de financiamento, de sociedade ou de qualquer fonte de capital, e não é promessa de renda, retorno, ocupação, crédito, investidor, sócio, compra, venda ou entrada no Land Bank Zion. Garantias, aval, sociedade, contratos e impostos: quem confirma no seu caso é o advogado, o contador e o banco. A Zion avalia cada caso.</p>
+</section>
+
+</div></div>
+<div class="nav-aula" data-sem-clique>
+  <button type="button" id="n-ant" aria-label="Voltar">‹ Voltar</button>
+  <div class="meio"><div class="linha1"><span id="n-resp">Perguntas respondidas</span><span id="n-sl"></span></div><div class="trilho"><i id="n-bar"></i></div></div>
+  <button type="button" class="ir" id="n-prox" aria-label="Avançar">Avançar ›</button>
+</div>
+<div class="toast" id="toast" role="status"></div>
+<script>
+"use strict";
+/* ===================================================================
+   Parte copiada da ferramenta Faça agora do Pilar 7 (pilar7/index.html):
+   a leitura das páginas salvas, as perguntas (QUESTOES), as contas do pedido
+   e o estado. Mesmo formato de gravação: chave "zion-t1-pilar7".
+   =================================================================== */
+/** As páginas do Dossiê de Desenvolvimento e onde cada ferramenta guarda as respostas neste aparelho. */
+const PAGINAS = [
+  { n: 0, tema: "Marco Zero", nome: "Diagnóstico prévio", chave: "zion-t1-marco-zero", pergunta: "Onde estou e por onde começo?", ferramenta: "Faça agora · O seu diagnóstico prévio" },
+  { n: 1, tema: "Território e destino", nome: "Ficha do Território", chave: "zion-t1-aula1", pergunta: "O que o meu terreno permite?", ferramenta: "Faça agora · A sua Ficha do Território" },
+  { n: 2, tema: "Mercado e demanda", nome: "Ficha do Mercado", chave: "zion-t1-aula2", pergunta: "Quem paga, quanto e quando?", ferramenta: "Faça agora · A sua Ficha do Mercado" },
+  { n: 3, tema: "Produto e tipologias", nome: "Ficha do Produto", chave: "zion-t1-aula3", pergunta: "O que eu vendo, e para quem?", ferramenta: "Faça agora · A sua Ficha do Produto" },
+  { n: 4, tema: "Modelo de negócio", nome: "Modelo de Negócio", chave: "zion-t1-pilar4", pergunta: "Como o projeto ganha dinheiro: renda ou venda?", ferramenta: "Faça agora · O seu Modelo de Negócio" },
+  { n: 5, tema: "Masterplan faseado", nome: "Masterplan faseado", chave: "zion-t1-pilar5", pergunta: "Onde fica cada coisa, o que cabe e o que entra na fase um?", ferramenta: "Faça agora · O seu Masterplan faseado" },
+  { n: 6, tema: "Pré-viabilidade", nome: "Pré-viabilidade", chave: "zion-t1-pilar6", pergunta: "O negócio se paga?", ferramenta: "Faça agora · A sua Pré-viabilidade" },
+  { n: 7, tema: "Capital e Dossiê", nome: "Capital e decisão", chave: "zion-t1-pilar7", pergunta: "Como pagar, com quem, e avançar, ajustar ou parar?", ferramenta: "Faça agora · O seu Dossiê de Desenvolvimento" },
+];
+const NOME_V = { avancar: "Avançar", testar: "Testar", ajustar: "Ajustar", pausar: "Pausar" };
+const PESO_V = { pausar: 3, testar: 2, ajustar: 1, avancar: 0 };
+
+/* ---------------------------------------------------------------------
+   1. Apoio: leitura e formatação pt-BR (as mesmas regras das ferramentas dos Pilares 1 a 3)
+   --------------------------------------------------------------------- */
+const Z = (function () {
+  function falta(v) {
+    if (v === undefined || v === null) return true;
+    if (v === "nao_sei") return true;
+    if (typeof v === "string") return v.trim() === "" || v.trim().toLowerCase() === "nao_sei";
+    if (Array.isArray(v)) return v.length === 0;
+    if (typeof v === "number") return !Number.isFinite(v);
+    return false;
+  }
+  function paraNumero(v) {
+    if (falta(v)) return null;
+    if (typeof v === "number") return Number.isFinite(v) ? v : null;
+    if (typeof v !== "string") return null;
+    let s = v.replace(/R\$|%|\s/g, "");
+    if (s === "") return null;
+    if (s.includes(",")) s = s.replace(/\./g, "").replace(",", ".");
+    else { const pontos = (s.match(/\./g) || []).length; if (pontos > 1 || /^-?\d{1,3}\.\d{3}$/.test(s)) s = s.replace(/\./g, ""); }
+    if (!/^-?\d+(\.\d+)?$/.test(s)) return null;
+    const n = Number(s);
+    return Number.isFinite(n) ? n : null;
+  }
+  /** Arredonda como o Python de pilar6/contas_pilar6.py: sem o erro de vírgula flutuante e, no empate exato, para o par
+      (15.302,625 vira 15.302,62, como no e-book). */
+  function arred(x, casas = 2) {
+    const f = Math.pow(10, casas); const y = Number((Math.abs(x) * f).toPrecision(12));
+    let i = Math.floor(y); const d = y - i;
+    if (Math.abs(d - 0.5) < 1e-7) { if (i % 2 !== 0) i += 1; } else i = Math.round(y);
+    const r = i / f; const res = x < 0 ? -r : r; return Object.is(res, -0) ? 0 : res;
+  }
+  const agrupar = (i) => i.replace(/\B(?=(\d{3})+(?!\d))/g, ".");
+  function fmtNum(x, casas = 2) { const r = arred(x, casas); const [i, d] = Math.abs(r).toFixed(casas).split("."); return (r < 0 ? "-" : "") + agrupar(i) + (casas > 0 ? "," + d : ""); }
+  function fmtN(x, casasMax = 2) { const s = fmtNum(x, casasMax); return s.includes(",") ? s.replace(/,?0+$/, "") : s; }
+  function brl(x) { const r = arred(x, 2); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 2); }
+  function brl0(x) { const r = arred(x, 0); return (r < 0 ? "-" : "") + "R$ " + fmtNum(Math.abs(r), 0); }
+  const fmtPct = (frac, casas = 1) => fmtNum(frac * 100, casas) + "%";
+  function juntar(itens) { if (!itens.length) return ""; if (itens.length === 1) return itens[0]; return itens.slice(0, -1).join(", ") + " e " + itens[itens.length - 1]; }
+  function div(a, b) { if (typeof a !== "number" || typeof b !== "number" || !Number.isFinite(a) || !Number.isFinite(b) || b === 0) return null; const q = a / b; return Number.isFinite(q) ? q : null; }
+  return { falta, paraNumero, arred, fmtNum, fmtN, brl, brl0, fmtPct, juntar, div };
+})();
+const { fmtN, brl, brl0, fmtPct, juntar, paraNumero, div } = Z;
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === "nao_sei";
+const okN = (...xs) => xs.every((x) => typeof x === "number" && Number.isFinite(x));
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); return d.toISOString().slice(0, 10); }
+const dataBR = (iso) => (iso && /^\d{4}-\d{2}-\d{2}$/.test(iso) ? iso.split("-").reverse().join("/") : iso || "");
+/** "cerca de R$ 870 mil", como os roteiros falam. */
+function cerca(x) {
+  if (!okN(x)) return "em branco";
+  if (Math.abs(x) >= 1e6) { const m = Math.round(x / 1e4) / 100; return `cerca de R$ ${fmtN(m, 2)} ${m < 2 ? "milhão" : "milhões"}`; }
+  if (Math.abs(x) >= 1000) return `cerca de R$ ${fmtN(Math.round(x / 1e4) * 10, 0)} mil`;
+  return "cerca de " + brl0(x);
+}
+function anosMeses(a) {
+  if (!okN(a)) return "em branco";
+  let y = Math.floor(a + 1e-9), m = Math.round((a - y) * 12);
+  if (m === 12) { y += 1; m = 0; }
+  return `${y} ${y === 1 ? "ano" : "anos"}${m ? ` e ${m} ${m === 1 ? "mês" : "meses"}` : ""}`;
+}
+const anos = (a) => (okN(a) ? fmtN(a, 2) + " anos" : "em branco");
+
+/** Lê o que o aluno salvou em outra ferramenta do Método Zion (sempre com try/catch). */
+function carregarChave(k) {
+  try { const raw = window.localStorage.getItem(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; }
+}
+const salvoDaPagina = (n) => { const p = PAGINAS.find((x) => x.n === n); return p ? carregarChave(p.chave) : null; };
+/** Os números que outra página deixou (resumo.dados), ou {}; lido de forma tolerante. */
+const dadosDaPagina = (n) => { const d = salvoDaPagina(n); return (d && d.resumo && d.resumo.dados) || (d && d.dados) || {}; };
+const respostasDaPagina = (n) => { const d = salvoDaPagina(n); return (d && d.respostas) || {}; };
+/** O primeiro número válido entre vários nomes possíveis de campo. */
+function primeiroNumero(obj, nomes) { for (const k of nomes) { const v = paraNumero(obj ? obj[k] : null); if (v !== null) return v; } return null; }
+/** Ocupação salva como fração (0,385) ou como porcentagem (38,5): devolve sempre a porcentagem. */
+const comoPct = (x) => (x === null ? null : x <= 1 ? x * 100 : x);
+
+
+/* =====================================================================
+   2. O pilar: ler as outras páginas, as perguntas e as contas
+   ===================================================================== */
+const AULA = { n: 7, tema: "Capital e Dossiê", pagina: "Capital e decisão", etapa: "pilar-7" };
+/** A decisão do Dossiê tem três palavras. Nos pilares foram quatro: testar mora dentro de ajustar, e pausar vira parar por enquanto. */
+const NOME_D = { avancar: "Avançar", ajustar: "Ajustar", parar: "Parar" };
+const PESO_D = { parar: 2, ajustar: 1, avancar: 0 };
+const PONTE = "Nos pilares, você usou quatro palavras. No Dossiê inteiro, ficam três: testar mora dentro de ajustar, e pausar vira parar por enquanto.";
+/** Lê um veredito salvo em qualquer formato razoável ("avancar", "Avançar", "seguir", "parar"...). */
+function normV(v) {
+  const k = String(v || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().trim().split(/[^a-z]/)[0];
+  return { avancar: "avancar", seguir: "avancar", testar: "testar", investigar: "testar", ajustar: "ajustar", renegociar: "ajustar", pausar: "pausar", parar: "pausar", trocar: "pausar" }[k] || null;
+}
+const paraDecisao = (v) => (v === "pausar" ? "parar" : v === "avancar" ? "avancar" : v ? "ajustar" : null);
+
+/** O que o Marco Zero salvou (formato próprio da ferramenta do Marco Zero). */
+const JORNADA_MZ = ["Território e destino", "Mercado e demanda", "Produto e tipologias", "Modelo de negócio", "Masterplan faseado", "Pré-viabilidade", "Capital e Dossiê"];
+const DORES_MZ = { 1: "Tenho o terreno e não tenho o capital", 2: "Tenho o capital e não sei o que fazer", 3: "Preciso estruturar para entrar com um sócio, um banco ou um investidor", 4: "Preciso de clareza para decidir" };
+function lerMarcoZero() {
+  const d = carregarChave(PAGINAS[0].chave);
+  const base = Object.assign({}, PAGINAS[0], { status: "a fazer", v: null, numeros: [], tabelas: [] });
+  if (!d) return base;
+  const cinco = d.cinco || {}, jor = d.jornada || {};
+  const ids = ["visao", "demanda", "tempo", "modo", "resultado"];
+  const feito = !!(d.situacao && d.dor && ids.every((k) => cinco[k] != null) && [1, 2, 3, 4, 5, 6, 7].every((n) => jor[n] != null));
+  if (!feito) return Object.assign(base, { status: "começada" });
+  const comNumero = ids.filter((k) => cinco[k] === 2).length;
+  const prontas = [1, 2, 3, 4, 5, 6, 7].filter((n) => jor[n] === 2).length;
+  const inicio = [1, 2, 3, 4, 5, 6, 7].find((n) => jor[n] !== 2) || null;
+  const fr = [1, 2, 3, 4, 5, 6, 7].find((n) => jor[n] === 0) || [1, 2, 3, 4, 5, 6, 7].find((n) => jor[n] === 1) || null;
+  return Object.assign(base, {
+    status: "feita", rot: "Diagnóstico", data: "",
+    motivo: inicio ? `Começar pelo Pilar ${inicio} · ${JORNADA_MZ[inicio - 1]}.` : "Com o produto desenhado no ponto de partida.",
+    fragil: fr ? `Pilar ${fr} · ${JORNADA_MZ[fr - 1]}: ${jor[fr] === 0 ? "marcado como Não sei" : "só em parte"}, no ponto de partida.` : "Nenhum Não sei na jornada, no ponto de partida.",
+    numeros: [["Por onde começar", inicio ? "Pilar " + inicio : "já desenhado"], ["Cinco perguntas com número", `${comNumero} de 5`], ["Páginas que já tinha", `${prontas} de 7`], ["A dor", d.dor ? "Dor " + d.dor : "em branco"]],
+    criterio: "", compromisso: d.acao ? { acao: d.acao, prazo: d.prazo || "" } : null,
+    dor: DORES_MZ[d.dor] || "", situacao: d.situacao || "",
+  });
+}
+/** Lê uma página de 1 a 6, no formato das ferramentas (resumo dentro do estado salvo), de forma tolerante. */
+function lerPagina(n) {
+  if (n === 0) return lerMarcoZero();
+  const meta = PAGINAS[n];
+  const d = carregarChave(meta.chave);
+  const base = Object.assign({}, meta, { status: "a fazer", v: null, numeros: [], tabelas: [] });
+  if (!d) return base;
+  const r = d.resumo || d.pagina || (d.v || d.veredito ? d : null);
+  if (!r || !(r.v || r.veredito || (Array.isArray(r.numeros) && r.numeros.length))) return Object.assign(base, { status: d.respostas && Object.keys(d.respostas).length ? "começada" : "a fazer" });
+  const lista = (x) => (Array.isArray(x) ? x.filter((p) => Array.isArray(p) && p.length >= 2).map((p) => [String(p[0]), String(p[1])]) : []);
+  return Object.assign(base, {
+    status: "feita", v: normV(r.v || r.veredito), rot: typeof r.rot === "string" ? r.rot : "", sub: typeof r.sub === "string" ? r.sub : "",
+    motivo: typeof r.motivo === "string" ? r.motivo : "", fragil: typeof r.fragil === "string" ? r.fragil : "",
+    criterio: typeof r.criterio === "string" ? r.criterio : "", compromisso: r.compromisso && typeof r.compromisso === "object" ? r.compromisso : null,
+    numeros: lista(r.numeros), data: typeof r.data === "string" ? r.data : String(d.atualizado || "").slice(0, 10),
+    nNS: typeof r.nNS === "number" ? r.nNS : null, soma: r.soma, max: r.max,
+    ajustado: !!(r.ajustado || (r.simulador && r.simulador.ajustado) || (r.dados && r.dados.ajustado)),
+    tabelas: Array.isArray(r.tabelas) ? r.tabelas.filter((t) => t && Array.isArray(t.cab) && Array.isArray(t.linhas)) : [],
+    mentor: r.mentor && typeof r.mentor === "object" ? r.mentor : null,
+    dados: r.dados && typeof r.dados === "object" ? r.dados : {},
+  });
+}
+const lerPaginas = () => [0, 1, 2, 3, 4, 5, 6].map(lerPagina);
+/** As quatro perguntas de cada página, respondidas com o que ela salvou. */
+function quatro(p) {
+  if (p.status !== "feita") return { completa: p.status === "começada" ? "começada, sem página gerada" : "não: a fazer", veredito: "em branco", criterio: "em branco", lacuna: `a página inteira: abrir "${p.ferramenta}"` };
+  return {
+    completa: p.n === 0 ? "sim" : p.nNS ? `sim, com ${p.nNS} Não sei declarado${p.nNS > 1 ? "s" : ""}` : "sim",
+    veredito: p.n === 0 ? "diagnóstico (sem veredito)" : p.v ? NOME_V[p.v] + (p.ajustado ? " (ajustado no simulador)" : "") : "em branco",
+    criterio: p.n === 0 ? "não se aplica" : p.criterio && p.criterio.trim() ? "escrito" : "em branco",
+    lacuna: p.fragil || "em branco",
+  };
+}
+/** A página mais fraca: a mais restritiva ainda não resolvida (pausar > testar > ajustar), a primeira em caso de empate. */
+function maisFraca(pags) {
+  let m = null;
+  for (const p of pags) if (p.n >= 1 && p.status === "feita" && p.v && (m === null || PESO_V[p.v] > PESO_V[m.v])) m = p;
+  return m;
+}
+
+const SIMNAO = [
+  { v: "sim_doc", rot: "Sim, e tenho o documento ou a conta por escrito" },
+  { v: "sim_sem", rot: "Sim, mas sem documento (um sim sem documento vale um não)" },
+  { v: "nao", rot: "Não" },
+];
+const FONTES6 = [
+  { id: "proprio", rot: "1 · Recurso próprio", cobra: "Toda a concentração do risco em você" },
+  { id: "banco", rot: "2 · Banco", cobra: "Juro, carência curta e, às vezes, aval" },
+  { id: "investidor", rot: "3 · Investidor", cobra: "Uma parte do negócio e das decisões" },
+  { id: "socio", rot: "4 · Sócio", cobra: "Resultado, decisão, informação e saída" },
+  { id: "prevenda", rot: "5 · Pré-venda (só no modelo de venda)", cobra: "Uma obrigação com cara de caixa" },
+  { id: "parceria", rot: "6 · Parceria com quem opera", cobra: "Parte do resultado, pela operação" },
+];
+const NIV_F = [{ v: "disponivel", rot: "Disponível" }, { v: "possivel", rot: "Possível" }, { v: "fora", rot: "Fora" }];
+const FALTAS = [
+  { v: "dinheiro", rot: "Dinheiro para investir", alt: "Recurso próprio, financiamento ou investidor" },
+  { v: "mao", rot: "Mão para uma tarefa específica", alt: "Contratar um profissional" },
+  { v: "conhecimento", rot: "Conhecimento especializado", alt: "Uma consultoria ou um profissional especializado" },
+  { v: "mercado", rot: "Acesso a um mercado", alt: "Uma parceria comercial" },
+  { v: "gestao", rot: "Gestão e decisões estratégicas", alt: "Talvez um sócio, com competências que você não tem" },
+  { v: "expansao", rot: "Expansão imobiliária grande", alt: "Estudo de incorporação, financiamento ou parceria estruturada" },
+];
+const P6 = () => lerPagina(6);
+const d6 = () => (P6().dados || {});
+
+const QUESTOES = [
+  {
+    id: "cap_construir", tipo: "escolha", opcoes: SIMNAO, curto: "Pergunta 1 · O que construir", bloco: "As três perguntas do capital",
+    pergunta: "Se o dinheiro aparecesse amanhã, você sabe o que construir, quantas unidades e para quem?",
+    explica: "Três perguntas de sim ou não vêm antes de qualquer dinheiro. São as que um banco, um sócio ou um investidor fazem primeiro, com outras palavras.",
+    porque: "Três sim: aí falta capital, e o caminho é buscar com a conta na mão. Um não: não falta capital. Falta a decisão que vem antes dele.",
+    onde: "<p>Nas páginas 3, 4 e 5 do seu Dossiê: a Ficha do Produto, o Modelo de Negócio e o Masterplan faseado.</p>",
+    marina: "Sim. Três cabanas de glamping para casal, desenhadas para cinco, com o escopo da fase um congelado.",
+    ondeCurto: "fechar as páginas 3, 4 e 5 do Dossiê",
+    contexto: () => ctxPaginas([3, 4, 5]),
+  },
+  {
+    id: "cap_diaria", tipo: "escolha", opcoes: SIMNAO, curto: "Pergunta 2 · A diária", bloco: "As três perguntas do capital",
+    pergunta: "Você sabe a diária que o seu produto sustenta, com dado, e não com palpite?",
+    explica: "A diária medida no mercado, e não a que você gostaria de cobrar. Se você já opera, a diária média real dos últimos doze meses.",
+    porque: "A conta inteira se apoia na diária. Um sim sem documento vale um não: quem põe dinheiro vai perguntar de onde saiu o número.",
+    onde: "<p>Nas páginas 2 e 3 do seu Dossiê: a Ficha do Mercado e a Ficha do Produto.</p>",
+    marina: "Sim. A do mercado, R$ 645, medida no Pilar 2. A do produto dela, as primeiras reservas confirmam.",
+    ondeCurto: "rever a diária média na Ficha do Mercado",
+    contexto: () => ctxPaginas([2, 3]),
+  },
+  {
+    id: "cap_volta", tipo: "escolha", opcoes: SIMNAO, curto: "Pergunta 3 · O tempo de volta", bloco: "As três perguntas do capital",
+    pergunta: "Você sabe em quanto tempo o dinheiro volta, nos três cenários?",
+    explica: "O tempo de volta é o investimento dividido pelo que a operação deixa por ano. Ele está na página 6 do seu Dossiê, a Pré-viabilidade.",
+    porque: "Sem ele, o pedido é um número sem chão. Com ele, você sabe o que precisa ser verdade para o dinheiro voltar dentro da régua.",
+    onde: "<p>Na página 6 do seu Dossiê, a Pré-viabilidade: os três cenários e o tempo de volta.</p>",
+    marina: "Sim. Pouco mais de seis anos no conservador, pela referência da Zion.",
+    ondeCurto: "fazer a página 6, a Pré-viabilidade",
+    contexto: () => ctxPaginas([6]),
+  },
+  {
+    id: "ped_invest", tipo: "moeda", aceitaNS: true, curto: "Linha 1 · Investimento da fase um (sem o giro)", bloco: "O pedido, linha por linha", placeholder: "Ex.: 649.741,80",
+    pergunta: "Quanto é o investimento da fase um, sem o capital de giro?",
+    explica: "As oito linhas da Pré-viabilidade (com a reserva do imprevisto dentro) e a infraestrutura comum, se já tiver orçamento. O giro vem na próxima tela.",
+    porque: "Pedir pouco parece modesto. É o contrário: pedir de menos é o erro mais caro, porque a segunda rodada acontece com a obra parada, e a outra parte sabe que você não tem alternativa.",
+    onde: "<p>Na página 6 do seu Dossiê, a soma da folha. Cotação velha se refaz. Se a reserva já está nas oito linhas, não some de novo.</p>",
+    marina: "As oito linhas pela referência da Zion: 577.038 + 15.000 + 57.703,80 = R$ 649.741,80, ainda sem cotação e sem a infraestrutura comum do terreno.",
+    ondeCurto: "fazer a página 6, a Pré-viabilidade",
+    veio: () => { const d = d6(); const x = paraNumero(d.total_sem_giro); return x !== null ? { valor: fmtN(x, 2), de: "página 6 do seu Dossiê, a Pré-viabilidade (a soma da folha" + (paraNumero(d.infra) !== null ? ", com a infraestrutura comum" : "") + ")" } : null; },
+  },
+  {
+    id: "ped_giro", tipo: "moeda", aceitaNS: true, curto: "Linha 2 · Capital de giro", bloco: "O pedido, linha por linha", placeholder: "Ex.: 40.787,38",
+    pergunta: "Quanto é o capital de giro?",
+    explica: "O dinheiro que paga a operação enquanto a receita ainda não cobre o custo. No mínimo três meses de custo.",
+    porque: "É a linha que falta em quase todo pedido. Obra pronta não é negócio funcionando.",
+    onde: "<p>Na página 6 do seu Dossiê, o capital de giro.</p>",
+    marina: "R$ 40.787,38, três meses de custo.",
+    ondeCurto: "calcular três meses de custo na página 6",
+    veio: () => { const x = paraNumero(d6().giro); return x !== null ? { valor: fmtN(x, 2), de: "página 6 do seu Dossiê, a Pré-viabilidade" } : null; },
+  },
+  {
+    id: "ped_terreno", tipo: "moeda", aceitaNS: true, curto: "Linha 3 · O que falta pagar do terreno", bloco: "O pedido, linha por linha", placeholder: "Ex.: 0",
+    pergunta: "Quanto ainda falta pagar do terreno?",
+    explica: "Se o terreno já é seu, escreva zero. Se ainda falta pagar uma parte, escreva quanto.",
+    porque: "O terreno pago não entra no pedido. O que falta pagar dele, sim: é dinheiro que precisa existir.",
+    onde: "<p>No seu contrato de compra, ou na matrícula. Quem confirma ônus e pendências é o advogado e o cartório.</p>",
+    marina: "Já é dela. Zero, escrito.",
+    ondeCurto: "conferir o contrato e a matrícula do terreno",
+  },
+  {
+    id: "ped_busca", tipo: "moeda", aceitaNS: true, curto: "Linha 4 · O custo de buscar o dinheiro", bloco: "O pedido, linha por linha", placeholder: "Ex.: 20.000",
+    pergunta: "Quanto custa buscar o dinheiro?",
+    explica: "Advogado, laudos, estruturação e registro: o que se gasta para o dinheiro chegar. Se ainda não sabe, marque Não sei: a linha fica em branco, declarada.",
+    porque: "É a linha que mais some dos pedidos. E uma linha em branco declarada vale mais do que um número inventado.",
+    onde: "<p>Nas propostas do advogado e do avaliador, e no que o banco cobra para abrir a operação. Quem confirma é o advogado, o contador e o banco.</p>",
+    marina: "Em branco: ela ainda não pediu as propostas. Marcou Não sei.",
+    ondeCurto: "pedir a proposta do advogado e do avaliador",
+  },
+  {
+    id: "ped_proprio", tipo: "moeda", aceitaNS: true, curto: "Linha 5 · O que você põe, contratado", bloco: "O pedido, linha por linha", placeholder: "Ex.: 100.000",
+    pergunta: "Quanto você mesmo põe, já contratado?",
+    explica: "Só o que existe hoje, no banco ou contratado por escrito. A promessa do parente, o carro que vai ser vendido e a herança que não saiu não entram: são premissas, e vão para a lista de riscos.",
+    porque: "O pedido é o que falta de fora: a obra da fase um, o giro e a reserva, menos o que você põe. Contratado, não esperado.",
+    onde: "<p>No seu extrato e nos contratos que já existem. E no limite de perda, a próxima pergunta.</p>",
+    marina: "Em branco: o limite de perda dela nunca foi escrito. Marcou Não sei.",
+    ondeCurto: "escrever, com quem divide a vida com você, quanto existe de verdade",
+  },
+  {
+    id: "limite", tipo: "moeda", aceitaNS: true, curto: "O meu limite de perda", bloco: "As seis fontes", placeholder: "Ex.: 150.000",
+    pergunta: "Quanto você pode perder sem comprometer a sua vida?",
+    explica: "É o seu limite de perda. Não é o saldo da conta. Ele se escreve antes, em casa, com quem divide a vida com você.",
+    porque: "Ele decide se você faz sozinho, quanto você pede e o que você aceita ceder. Todas as conversas de capital começam nele. E é legítimo adiar quando o dinheiro que seria usado é dinheiro de sobrevivência.",
+    onde: "<p>Numa conversa honesta em casa. Não precisa de banco, investidor nem profissional pago.</p>",
+    marina: "Em branco. É a primeira tarefa dos 90 dias dela.",
+    ondeCurto: "escrever o limite de perda com quem divide a vida com você",
+  },
+  {
+    id: "fontes", tipo: "grade", curto: "As seis fontes", bloco: "As seis fontes",
+    pergunta: "Para cada fonte de capital: disponível, possível ou fora?",
+    explica: "Nenhuma é melhor em abstrato. Todas pedem os mesmos números; o que muda é o que cada uma cobra. Fora também é informação.",
+    porque: "Todo dinheiro cobra cinco coisas: juro, participação, garantia, tempo e liberdade. Juro zero não é dinheiro de graça. Em projeto pequeno e faseado, duas ou três fontes pequenas costumam ser mais viáveis do que uma grande.",
+    onde: "<p>No seu limite de perda (fonte 1), numa conversa com o gerente (fonte 2) e no seu Modelo de Negócio (a pré-venda só existe no modelo de venda). Linha, taxa e prazo, quem confirma é o banco e o contador.</p>",
+    marina: "Recurso próprio, possível; banco, possível; investidor e sócio, fora por enquanto (não falta gestão nem operação); pré-venda, fora (modelo de renda); parceria com quem opera, já resolvida com a pessoa local.",
+    ondeCurto: "marcar cada fonte como disponível, possível ou fora",
+  },
+  {
+    id: "garantia", tipo: "escolha", aceitaNS: true, curto: "Garantia e aval", bloco: "As seis fontes",
+    pergunta: "Você está disposto a pôr o terreno em garantia? E aval pessoal?",
+    explica: "Garantia real é um bem que responde pela dívida, em geral o imóvel do projeto. Aval pessoal põe o patrimônio da família na conta.",
+    porque: "\"A garantia é o meu terreno\" é decisão, não detalhe. Sem aval, o pior cenário é perder o que foi investido. Com aval, o pior cenário alcança a sua casa. Não é proibido: é para ser pesado, por escrito, antes.",
+    onde: "<p>Numa conversa em casa, e depois com o advogado e o banco: como cada garantia funciona no seu caso, quem confirma são eles. Duas fontes diferentes podem pedir o mesmo terreno: confira antes de assinar a segunda.</p>",
+    marina: "Ainda não decidiu: o terreno em garantia é uma decisão a pesar. Marcou Não sei.",
+    ondeCurto: "conversar em casa sobre garantia e aval, e levar a dúvida ao advogado",
+    opcoes: [
+      { v: "nenhum", rot: "Nem o terreno em garantia, nem aval pessoal" },
+      { v: "terreno", rot: "O terreno em garantia, sem aval pessoal" },
+      { v: "ambos", rot: "O terreno em garantia e aval pessoal, se for preciso" },
+    ],
+  },
+  {
+    id: "falta", tipo: "multipla", curto: "O que me falta de verdade", bloco: "Dinheiro ou sócio",
+    pergunta: "O que te falta de verdade?",
+    explica: "Marque tudo o que falta hoje. Não confunda precisar de dinheiro com precisar de um sócio: são problemas diferentes, com soluções diferentes.",
+    porque: "Muita gente entrega uma parte do negócio para resolver um problema que um contrato, um empréstimo ou um profissional resolveriam. Só uma linha termina em sócio, e mesmo ela começa com talvez.",
+    onde: "<p>No seu Modelo de Negócio (quem opera a fase um) e nas suas páginas: o que você não sabe fazer, e o que você não quer delegar.</p>",
+    marina: "Dinheiro, para a fase um. E um pouco de conhecimento na obra, que ela resolve com o arquiteto e o engenheiro, contratados. Quem opera não falta: ela tem uma pessoa local.",
+    ondeCurto: "escrever o que falta, e a alternativa a estudar primeiro",
+    opcoes: FALTAS,
+  },
+  {
+    id: "socio", tipo: "escolha", aceitaNS: true, curto: "Se eu precisar de sócio", bloco: "Dinheiro ou sócio",
+    pergunta: "Se você precisar de um sócio, de que tipo?",
+    explica: "Três sócios diferentes: o que traz dinheiro, o que opera e o que abre portas. O problema começa quando você precisa de um e escolhe outro.",
+    porque: "O sócio leva quatro coisas que não se desfazem sem comprar de volta: uma parte do resultado, das decisões, o direito à informação e as regras de saída. Escolha o sócio pela década, não pelo cheque.",
+    onde: "<p>Nas seis perguntas antes de dividir: preciso de capital ou de parceiro? Dá para contratar? Ela traz o que eu não tenho? Queremos a mesma coisa, no mesmo prazo? Quem decide o quê está escrito? O que ela traz vale a parte que eu entrego? Acordo de sócios, quem confirma é o advogado e o contador.</p>",
+    marina: "Não precisa de sócio: procura dinheiro, não sócio. Se um dia precisar, sabe de que tipo, e o que perguntar.",
+    ondeCurto: "responder as seis perguntas antes de dividir",
+    opcoes: [
+      { v: "nao", rot: "Não preciso de sócio agora" },
+      { v: "dinheiro", rot: "O que traz dinheiro" },
+      { v: "opera", rot: "O que opera" },
+      { v: "portas", rot: "O que abre portas" },
+    ],
+  },
+  {
+    id: "fraca", tipo: "escolha", aceitaNS: true, curto: "A minha página mais fraca", bloco: "As sete páginas, lado a lado",
+    pergunta: "Qual é a sua página mais fraca?",
+    explica: "A ferramenta leu as páginas salvas neste aparelho e passou cada uma pelas quatro perguntas: está completa? qual é o veredito? o que faria parar? qual é a maior lacuna? Escolha a que manda no seu projeto hoje.",
+    porque: "O projeto anda na velocidade da página mais fraca. Não é votação: seis páginas boas não compram a que manda parar.",
+    onde: "<p>Nas suas sete páginas, logo acima. Se uma página foi feita no papel ou em outro aparelho, ela não aparece aqui: considere-a mesmo assim.</p>",
+    marina: "A página 1, Território, testava uma diária acima da média da região. A página 6 mostrou que, com a diária do mercado, o conservador fecha. A lacuna que sobra é o custo cotado.",
+    ondeCurto: "montar a tabela das sete páginas e ler a última coluna",
+    opcoes: () => PAGINAS.filter((p) => p.n >= 1 && p.n <= 6).map((p) => ({ v: "p" + p.n, rot: `Página ${p.n} · ${p.nome}` })),
+    contexto: () => ctxSete(),
+    veio: () => { const m = maisFraca(lerPaginas()); return m ? { valor: "p" + m.n, de: `leitura das páginas salvas (a mais restritiva é a página ${m.n}, ${NOME_V[m.v]})` } : null; },
+  },
+  {
+    id: "repete", tipo: "texto", aceitaNS: true, curto: "O que se repete", bloco: "As sete páginas, lado a lado", placeholder: "Ex.: a diária e o custo cotado",
+    pergunta: "Lida de cima para baixo, o que se repete na coluna \"depende de\"?",
+    explica: "A coluna \"depende de\" é a maior lacuna de cada página. O que aparece em mais de uma é a sua maior lacuna, e cabe numa linha.",
+    porque: "Esse é o achado do Dossiê completo. Um Dossiê com todas as páginas pode dizer coisas diferentes em cada uma: lido junto, ele mostra a pergunta que se repete.",
+    onde: "<p>Na tabela das sete páginas, logo acima, coluna da maior lacuna.</p>",
+    marina: "A diária e o custo cotado. A conta inteira se apoia na diária que ela mediu no mercado, e espera as cotações.",
+    ondeCurto: "ler a coluna da maior lacuna de cima para baixo",
+    contexto: () => ctxSete(true),
+  },
+  {
+    id: "decisao", tipo: "escolha", curto: "A minha decisão", bloco: "A decisão",
+    pergunta: "A sua decisão: avançar, ajustar ou parar?",
+    explica: "Avançar: as páginas sustentam o próximo passo, e você sabe qual é. Ajustar: o projeto tem futuro, mas uma página pede mudança antes (tamanho, produto, preço ou fase). Parar: a conta não fecha neste desenho, ou o risco não cabe na sua vida.",
+    porque: PONTE + " Parar não é fracasso: você descobriu no papel o que muita gente descobre com a obra pronta e o calendário vazio.",
+    onde: "<p>Na leitura das suas páginas, logo acima, e na sua página mais fraca.</p>",
+    marina: "Avançar com a fase um de três cabanas. O próximo passo: trocar cada referência por cotação escrita e orçar a infraestrutura comum do terreno.",
+    ondeCurto: "ler as sete páginas juntas e escolher uma palavra",
+    opcoes: [{ v: "avancar", rot: "Avançar" }, { v: "ajustar", rot: "Ajustar" }, { v: "parar", rot: "Parar" }],
+    contexto: () => { const s = decisaoSugerida(); return `<div class="ctx"><h3>O que as suas páginas sugerem</h3><p><b>${esc(NOME_D[s.d])}.</b> ${esc(s.motivo)}</p></div>`; },
+  },
+  {
+    id: "criterio", tipo: "texto", curto: "O critério que mudaria a decisão", bloco: "A decisão", placeholder: "Se [o fato], então eu [avanço, ajusto ou paro].",
+    pergunta: "Qual fato mudaria a sua decisão?",
+    explica: "Escreva assim: \"Se [o fato], então [eu avanço, ajusto ou paro].\" Entre dois critérios, fique com o mais exigente, com a razão escrita.",
+    porque: "É a frase que impede você de decidir pelo entusiasmo. Toda decisão sem critério para mudar vira teimosia.",
+    onde: "<p>No critério para parar da sua página 6, a Pré-viabilidade, e nos das outras páginas.</p>",
+    marina: "Se o investimento total, com as cotações e a infraestrutura comum, passar de cerca de R$ 870 mil, ou se a lista de custos levar o conservador acima de 8 anos, ela volta à conta antes de assinar e ajusta o tamanho, o produto ou a fase.",
+    ondeCurto: "escrever o critério com o fato e a decisão",
+    veio: () => { const p = P6(); return p.criterio && p.criterio.trim() ? { valor: p.criterio.trim(), de: "página 6 do seu Dossiê, o critério para parar da Pré-viabilidade" } : null; },
+  },
+  {
+    id: "caminho", tipo: "escolha", curto: "O meu caminho", bloco: "Os três caminhos",
+    pergunta: "Com o Dossiê na mão, qual é o seu caminho agora?",
+    explica: "Nenhum é melhor por definição. O que muda é quem lê a sua pasta, e a página que essa pessoa lê primeiro. O caminho segue a decisão, e não o contrário.",
+    porque: "Se a decisão é ajustar ou parar, o caminho quase sempre é o 1, por enquanto. Banco e investidor avaliam o seu caso com os critérios deles; nenhum dos dois é garantido. A Zion avalia cada caso.",
+    onde: "<p>Na sua decisão, logo antes. Projetos maiores, ou quem quer um olhar de fora, podem pedir uma reunião com o nosso fundador, Bruno Chaerk.</p>",
+    marina: "Primeiro o caminho 1: com o Dossiê como régua, ela cota e escreve o limite de perda. Com as cotações na mão e a página 6 refeita, decide entre o banco, um investidor ou uma conversa com a Zion.",
+    ondeCurto: "escolher o caminho pela decisão",
+    opcoes: [
+      { v: "sozinho", rot: "1 · Fazer sozinho, com o Dossiê como régua" },
+      { v: "banco", rot: "2 · Levar a um banco ou a um investidor" },
+      { v: "zion", rot: "3 · Conversar com a Zion" },
+    ],
+  },
+];
+const Q = (id) => QUESTOES.find((q) => q.id === id);
+const opcoesDe = (q) => (typeof q.opcoes === "function" ? q.opcoes() : q.opcoes || []);
+const ITENS_NOTA = [];
+const NOTA_MAX = 0;
+
+/* ---------- o que as páginas mostram dentro das perguntas ---------- */
+const selo = (p) => (p.status !== "feita" ? `<span class="selo s-pendente">${esc(p.status)}</span>` : p.n === 0 ? `<span class="selo s-diag">Diagnóstico</span>` : p.v ? `<span class="selo s-${p.v}">${esc(NOME_V[p.v])}</span>` : `<span class="selo s-pendente">sem veredito</span>`);
+function ctxPaginas(ns) {
+  const pags = ns.map(lerPagina);
+  return `<div class="ctx"><h3>O que o seu Dossiê já diz, neste aparelho</h3>${pags.map((p) => `<p><b>Página ${p.n} · ${esc(p.nome)}</b> ${selo(p)}<br>${p.status === "feita" ? esc(p.numeros.slice(0, 3).map((x) => x[0] + ": " + x[1]).join(" · ")) : "Ainda não foi salva neste aparelho."}</p>`).join("")}</div>`;
+}
+function ctxSete(soLacuna) {
+  const pags = lerPaginas().filter((p) => p.n >= 1);
+  const fr = maisFraca(pags);
+  return `<div class="pags" style="margin:10px 0">${pags.map((p) => { const q = quatro(p); return `<div class="pag ${fr && fr.n === p.n && p.v !== "avancar" ? "fraca" : ""}"><div class="cab"><b>${p.n} · ${esc(p.nome)}</b>${selo(p)}</div>${soLacuna ? `<p><b>Depende de:</b> ${esc(q.lacuna)}</p>` : `<div class="q4"><span>Completa?</span><span>${esc(q.completa)}</span><span>Veredito</span><span>${esc(q.veredito)}</span><span>O que faria parar</span><span>${esc(q.criterio)}</span><span>Maior lacuna</span><span>${esc(q.lacuna)}</span></div>`}</div>`; }).join("")}</div>`;
+}
+
+/* ---------- a decisão sugerida pelas páginas ---------- */
+function decisaoSugerida() {
+  const pags = lerPaginas();
+  const r = S.respostas;
+  const pausa = pags.find((p) => p.n >= 1 && p.v === "pausar");
+  if (pausa) return { d: "parar", motivo: `A página ${pausa.n}, ${pausa.nome}, diz pausar. Não é votação: seis páginas boas não compram a que manda parar. No Dossiê, pausar vira parar por enquanto.` };
+  const caps = ["cap_construir", "cap_diaria", "cap_volta"];
+  const nao = caps.filter((k) => r[k] === "nao"), sem = caps.filter((k) => r[k] === "sim_sem");
+  if (nao.length) return { d: "ajustar", motivo: `${juntar(nao.map((k) => Q(k).curto))}: não. Um não basta: não falta capital, falta a decisão que vem antes dele.` };
+  if (sem.length) return { d: "ajustar", motivo: `${juntar(sem.map((k) => Q(k).curto))}: sim, sem documento. Um sim sem documento vale um não.` };
+  const faltam = pags.filter((p) => p.n >= 1 && p.status !== "feita");
+  if (faltam.length) return { d: "ajustar", motivo: `${faltam.length === 1 ? "Falta a página" : "Faltam as páginas"} ${juntar(faltam.map((p) => p.n + " (" + p.nome + ")"))} neste aparelho. Antes de decidir o projeto inteiro, feche ${faltam.length === 1 ? "essa página" : "essas páginas"}, ou junte as que você fez no papel.` };
+  const p6 = pags[6];
+  if (p6.v && p6.v !== "avancar") return { d: "ajustar", motivo: `A Pré-viabilidade diz ${NOME_V[p6.v].toLowerCase()}: a conta ainda não sustenta o próximo passo neste desenho.` };
+  const fr = maisFraca(pags);
+  return { d: "avancar", motivo: `Três sim e a Pré-viabilidade avança.${fr && fr.v !== "avancar" ? ` A página mais restritiva é a ${fr.n} (${NOME_V[fr.v].toLowerCase()}): confira se a página 6 já a resolveu.` : ""} O próximo passo é trocar cada referência por cotação escrita.` };
+}
+
+/* ---------- os números de entrada e o simulador ---------- */
+const CHAVES_SIM = ["ped_invest", "ped_giro", "ped_terreno", "ped_busca", "ped_proprio", "limite", "terreno_aporte", "aporte_socio", "cota"];
+function paramsDasRespostas() {
+  const r = S.respostas; const P = {};
+  for (const k of ["ped_invest", "ped_giro", "ped_terreno", "ped_busca", "ped_proprio", "limite"]) P[k] = paraNumero(r[k]);
+  const dd = d6();
+  P.terreno_aporte = paraNumero(dd.terreno) ?? paraNumero(respostasDaPagina(1).preco_terreno);
+  const antes = pedidoAntes(P);
+  P.aporte_socio = antes === null ? null : Math.max(0, antes + (P.ped_busca || 0) - (P.ped_proprio || 0));
+  P.cota = 50000;
+  return P;
+}
+function pedidoAntes(P) { return okN(P.ped_invest) ? P.ped_invest + (P.ped_giro || 0) + (P.ped_terreno || 0) : null; }
+function paramsDaTela() {
+  const base = paramsDasRespostas();
+  const P = Object.assign({}, base);
+  if (S.sim) for (const k of CHAVES_SIM) if (k in S.sim) P[k] = S.sim[k];
+  /* Sem ajuste próprio, o aporte do sócio acompanha o pedido da tela. */
+  if (!(S.sim && "aporte_socio" in S.sim)) { const a = pedidoAntes(P); P.aporte_socio = a === null ? null : Math.max(0, a + (P.ped_busca || 0) - (P.ped_proprio || 0)); }
+  P.ajustes = CHAVES_SIM.filter((k) => S.sim && k in S.sim && !mesmo(S.sim[k], base[k])).map((k) => ({ k, de: base[k], para: S.sim[k] }));
+  P.ajustado = P.ajustes.length > 0;
+  return P;
+}
+const mesmo = (a, b) => (a === null && b === null) || (okN(a, b) && Math.abs(a - b) < 1e-9);
+function calcular(P) {
+  const C = { P };
+  C.antes = pedidoAntes(P);
+  C.brancos = ["ped_giro", "ped_terreno", "ped_busca", "ped_proprio"].filter((k) => !okN(P[k]));
+  C.pedido = C.antes === null ? null : C.antes + (P.ped_busca || 0) - (P.ped_proprio || 0);
+  C.pessoas = C.pedido !== null && okN(P.cota) && P.cota > 0 ? C.pedido / P.cota : null;
+  const soc = okN(P.aporte_socio) ? P.aporte_socio : 0, prop = okN(P.ped_proprio) ? P.ped_proprio : 0, ter = okN(P.terreno_aporte) ? P.terreno_aporte : 0;
+  C.part = soc + prop + ter > 0 && soc > 0 ? soc / (soc + prop + ter) : null;
+  C.partAluno = C.part === null ? null : 1 - C.part;
+  C.fluxoMes = paraNumero(d6().resultado_mes_cons);
+  C.proprioVsLimite = okN(P.ped_proprio, P.limite) ? P.ped_proprio - P.limite : null;
+  return C;
+}
+
+/* =====================================================================
+   3. Estado, salvamento e resumo
+   ===================================================================== */
+const CHAVE = PAGINAS.find((p) => p.n === AULA.n).chave;
+function estadoVazio() {
+  return { versao: 1, pilar: AULA.n, perfil: { nome: "", email: "", cidade: "", uf: "" }, respostas: {}, fontes: {}, veio: {}, passo: -1, criterio: null, compromisso: null, sim: null, extra: {}, resumo: null, mentor: null, atualizado: null };
+}
+let S = estadoVazio();
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.perfil) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.extra = Object.assign({}, d.extra || {});
+  return e;
+}
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) { /* sem armazenamento: segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+function perfilDeOutraPagina() {
+  let melhor = null;
+  for (const p of PAGINAS) {
+    if (p.n === AULA.n) continue;
+    const d = carregarChave(p.chave);
+    if (!d) continue;
+    const perfil = d.perfil && d.perfil.nome ? d.perfil : d.nome ? { nome: d.nome, email: d.email || "", cidade: d.cidade || "", uf: "" } : null;
+    if (perfil && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { perfil, at: d.atualizado };
+  }
+  return melhor ? melhor.perfil : null;
+}
+const UFS = ["AC","AL","AP","AM","BA","CE","DF","ES","GO","MA","MT","MS","MG","PA","PB","PR","PE","PI","RJ","RN","RS","RO","RR","SC","SP","SE","TO"];
+
+/* ===================================================================
+   Aula principal do Pilar 7: perguntas dentro dos slides.
+   Grava no MESMO estado da ferramenta (S, chave zion-t1-pilar7):
+   S.perfil, S.respostas, S.veio e S.passo no formato dela, e a frase do
+   Dossiê em S.extra.frase. As perguntas que a ferramenta não tem ficam em
+   S.aulaExtras, um campo a mais que a ferramenta preserva.
+   =================================================================== */
+const AULAI = (function () {
+  const FERR = "../../pilar7/";
+
+  /* ---------- ajustes de texto: só o que está no vídeo ---------- */
+  const OVR = {
+    cap_construir: { cita: "No vídeo: se o dinheiro aparecesse amanhã, eu sei o que construir, quantas unidades e para quem?",
+      marina: "Sim: três cabanas de glamping para casal." },
+    cap_diaria: { cita: "No vídeo: a diária com dado, e não com palpite.",
+      marina: "Sim: R$ 645, medida. E a conta do Pilar 6 fecha com ela." },
+    cap_volta: { cita: "No vídeo: três sim, aí falta capital. Um não, falta a decisão que vem antes dele.",
+      marina: "Sim: pouco mais de seis anos no conservador." },
+    ped_invest: { cita: "No vídeo: o pedido certo soma a obra da fase um, o capital de giro e uma reserva para imprevistos, e tira o que você mesmo põe.", marina: null },
+    ped_giro: { cita: "No vídeo: o capital de giro dos primeiros meses entra no pedido.", marina: null },
+    ped_terreno: { cita: "Nada de número redondo: linha por linha.", marina: "O terreno é dela." },
+    ped_busca: { cita: "Nada de número redondo: linha por linha.", marina: null },
+    ped_proprio: { cita: "No vídeo: o pedido tira o que você mesmo põe.", marina: null },
+    limite: { cita: "No vídeo: o recurso próprio não se mede pelo saldo, e sim por quanto você pode perder sem comprometer a sua vida.", marina: null },
+    fontes: { cita: "No vídeo: são seis fontes, e cada uma cobra um preço diferente. Nenhuma é garantida.", marina: null },
+    garantia: { cita: "No vídeo: o banco quer garantia, e o aval pessoal pode pôr a sua casa na conta.", marina: null },
+    falta: { cita: "No vídeo: não confunda precisar de dinheiro com precisar de um sócio.",
+      marina: "O que falta à Marina é capital para a fase um. Quem opera ela já tem: uma pessoa local." },
+    socio: { cita: "No vídeo: o que traz dinheiro, o que opera e o que abre portas.", marina: null },
+    fraca: { cita: "No vídeo: o projeto anda na velocidade da página mais fraca.", marina: null },
+    repete: { cita: "No vídeo: qual é a maior lacuna de cada página?", marina: null },
+    decisao: { cita: "No vídeo: avançar, ajustar ou parar. Parar não é fracasso.",
+      marina: "Avançar com a fase um. O próximo passo: trocar cada referência por cotação escrita." },
+    criterio: { cita: "No vídeo: toda decisão vem com o critério que a mudaria.",
+      marina: "Se o investimento passar de cerca de R$ 870 mil, ela volta à conta antes de assinar." },
+    caminho: { cita: "No vídeo: fazer sozinho, levar ao banco ou a um investidor, ou conversar com a Zion.", marina: null },
+  };
+  for (const id in OVR) { const q = Q(id); if (q) Object.assign(q, OVR[id]); }
+
+  /* ---------- perguntas da aula que a ferramenta não tem ---------- */
+  const T = (rot, cls, txt) => ({ rot, fb: [cls, txt] });
+  const DQ = {
+    x_familia: { tipo: "escolha", curto: "Dinheiro da família",
+      cita: "No vídeo: dinheiro da família, só com contrato escrito, como se fosse de um desconhecido.",
+      pergunta: "Vai entrar dinheiro da família ou de amigos no projeto?", explica: "Empréstimo, ajuda ou parte do negócio: qualquer dinheiro de gente próxima.",
+      opcoes: { nao: T("Não vai entrar", "ok", "Anotado. O seu recurso próprio se mede pelo seu limite de perda."),
+        contrato: T("Sim, com contrato escrito", "ok", "Como se fosse de um desconhecido: prazo, remuneração, atraso, e o que acontece se o projeto não sair."),
+        palavra: T("Sim, combinado só de palavra", "er", "Dinheiro da família, só com contrato escrito, como se fosse de um desconhecido. Antes de receber, escreva.") },
+      ns: "Ainda não sei", ondeCurto: "conversar com a família e escrever o combinado em contrato",
+      porque: "Dinheiro de gente próxima sem contrato vira conflito no primeiro atraso. Com contrato escrito, ele é tratado como o de um desconhecido." },
+    x_opera: { tipo: "escolha", curto: "Quem opera",
+      cita: "No vídeo: quem opera é a primeira pergunta de qualquer banco ou investidor.",
+      pergunta: "Quem vai operar a fase um?", explica: "Quem cuida do dia a dia: reservas, hóspedes, limpeza e manutenção.",
+      opcoes: { eu: T("Eu mesmo vou operar", "in", "Então escreva isso na página. Quem opera é a primeira pergunta de qualquer banco ou investidor."),
+        parceiro: T("Uma pessoa ou empresa que opera, já combinada", "ok", "Ponha o combinado por escrito, com papéis claros. A parceria com quem opera é a fonte 6."),
+        ninguem: T("Ainda não tenho quem opere", "at", "Às vezes o que falta não é dinheiro, é quem saiba operar. A parceria com quem opera é uma das seis fontes.") },
+      ns: "Não sei", ondeCurto: "decidir quem opera a fase um, e escrever o combinado",
+      porque: "Às vezes o que falta não é dinheiro, é quem saiba operar. E quem opera é a primeira pergunta de qualquer banco ou investidor." },
+    x_aporte: { tipo: "multi", curto: "O que eu ponho na mesa",
+      cita: "No vídeo: terra, trabalho e conhecimento valem como aporte.",
+      pergunta: "Além do dinheiro, o que você tem para pôr na mesa?", explica: "Marque tudo o que você traz para o projeto.",
+      opcoes: { terra: T("Terra: o terreno"), trabalho: T("Trabalho: eu conduzo e executo"), conhecimento: T("Conhecimento que o outro não tem") },
+      nenhum: "Nenhum dos três", ns: "Ainda não sei", ondeCurto: "listar o que você põe na mesa e levar ao advogado e ao contador",
+      porque: "Quem não tem dinheiro também tem o que pôr na mesa. Não existe percentual universal: pesa o que cada um põe, o risco, a responsabilidade e a dedicação. Como escrever, com advogado e contador." },
+    x_lacuna: { tipo: "texto", curto: "Quem resolve a maior lacuna", placeholder: "Quem resolve, e até quando",
+      cita: "No vídeo: qual é a maior lacuna, quem resolve e até quando?",
+      pergunta: "Quem resolve a sua maior lacuna, e até quando?", explica: "Um nome, ou um profissional, e uma data.",
+      ns: "Ainda não sei", ondeCurto: "escrever quem resolve a maior lacuna e a data",
+      porque: "Uma lacuna sem dono e sem data não fecha. Com nome e prazo, ela vira tarefa." },
+    frase: { tipo: "texto", curto: "A frase do Dossiê", placeholder: "O meu projeto...",
+      cita: "No vídeo, a frase da Marina: o meu projeto está pronto para o próximo passo, e eu sei qual é.",
+      pergunta: "Qual é a frase do seu Dossiê?", explica: "Uma frase só, com as suas palavras. Ela não promete nada: diz onde o projeto está e qual é o próximo passo.",
+      ns: "Ainda não sei", ondeCurto: "escrever a frase depois de decidir",
+      porque: "A frase resume a decisão em uma linha, para você e para quem ler a pasta. Ela entra no seu Dossiê.",
+      marina: "O meu projeto está pronto para o próximo passo, e eu sei qual é." },
+  };
+
+  /* ---------- estado ---------- */
+  let sujo = true;
+  function garantir() {
+    if (!S.aulaExtras || typeof S.aulaExtras !== "object") S.aulaExtras = {};
+    if (!S.perfil || typeof S.perfil !== "object") S.perfil = { nome: "", email: "", cidade: "", uf: "" };
+    if (!S.respostas || typeof S.respostas !== "object") S.respostas = {};
+    if (!S.extra || typeof S.extra !== "object") S.extra = {};
+    if (!S.veio || typeof S.veio !== "object") S.veio = {};
+  }
+  function getV(id) {
+    if (id === "frase") return S.aulaExtras.frase === "nao_sei" ? "nao_sei" : S.extra.frase;
+    return DQ[id] ? S.aulaExtras[id] : S.respostas[id];
+  }
+  function setV(id, v) {
+    if (id === "frase") {
+      if (v === "nao_sei") S.aulaExtras.frase = "nao_sei";
+      else { delete S.aulaExtras.frase; if (v === undefined) delete S.extra.frase; else S.extra.frase = v; }
+      return;
+    }
+    const R = DQ[id] ? S.aulaExtras : S.respostas;
+    if (v === undefined) delete R[id]; else R[id] = v;
+  }
+  function completaT(q) {
+    const v = S.respostas[q.id];
+    if (ehNS(v)) return !!q.aceitaNS;
+    if (q.tipo === "moeda") { const n = paraNumero(v); return n !== null && n >= 0; }
+    if (q.tipo === "texto") return typeof v === "string" && v.trim().length > 0;
+    if (q.tipo === "escolha") return v !== undefined && opcoesDe(q).some((o) => o.v === v);
+    if (q.tipo === "multipla") return Array.isArray(v) && v.length > 0;
+    if (q.tipo === "grade") return !!(v && typeof v === "object" && FONTES6.every((f) => v[f.id]));
+    return false;
+  }
+  function completaD(id) {
+    const d = DQ[id], v = getV(id);
+    if (v === undefined || v === "") return false;
+    if (ehNS(v)) return true;
+    if (d.tipo === "texto") return String(v).trim().length > 0;
+    if (d.tipo === "multi") return Array.isArray(v);
+    return true;
+  }
+  const completa = (id) => (DQ[id] ? completaD(id) : completaT(Q(id)));
+  function calcPasso() { const i = QUESTOES.findIndex((q) => !completaT(q)); return i < 0 ? QUESTOES.length : i; }
+  function gravar() { garantir(); S.passo = calcPasso(); salvar(); sujo = true; }
+  function aplicarVeio(q) {
+    if (!q || !q.veio || S.respostas[q.id] !== undefined) return;
+    let x = null;
+    try { x = q.veio(); } catch (e) { x = null; }
+    if (x && x.valor !== undefined && x.valor !== null && x.valor !== "") { S.veio[q.id] = x.de; S.respostas[q.id] = x.valor; gravar(); }
+  }
+
+  /* ---------- montagem dos slides de pergunta ---------- */
+  const slidesQ = Array.from(document.querySelectorAll(".s.q[data-q]"));
+  const IDS = slidesQ.map((s) => s.dataset.q);
+  const TOTAL = IDS.length;
+  function opcaoHTML(v, rot, extra, attrs) { return `<button type="button" class="opc ${extra || ""}" data-v="${esc(v)}" ${attrs || ""} aria-pressed="false"><span class="mk"></span><span>${esc(rot)}</span></button>`; }
+  function campoHTML(id) {
+    const d = DQ[id];
+    if (d) {
+      if (d.tipo === "escolha") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot)).join("")}${opcaoHTML("nao_sei", d.ns, "ns")}</div>`;
+      if (d.tipo === "multi") return `<div class="ops2">${Object.entries(d.opcoes).map(([v, o]) => opcaoHTML(v, o.rot, "multi")).join("")}${opcaoHTML("__nenhum", d.nenhum, "multi")}${opcaoHTML("nao_sei", d.ns, "ns")}</div>`;
+      if (d.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="${esc(d.placeholder || "Escreva aqui")}" aria-label="${esc(d.pergunta)}"></textarea>${opcaoHTML("nao_sei", d.ns, "ns")}`;
+    }
+    const q = Q(id);
+    if (q.tipo === "moeda") return `<div class="cn"><span class="un">R$</span><input class="resp" type="text" inputmode="decimal" autocomplete="off" placeholder="${esc(q.placeholder || "Ex.: 100.000")}" aria-label="${esc(q.pergunta)}"></div>${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}`;
+    if (q.tipo === "texto") return `<textarea class="resp" rows="3" placeholder="${esc(q.placeholder || "Escreva com as suas palavras")}" aria-label="${esc(q.pergunta)}"></textarea>${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}`;
+    if (q.tipo === "escolha") return `<div class="ops2">${opcoesDe(q).map((o) => opcaoHTML(o.v, o.rot)).join("")}${q.aceitaNS ? opcaoHTML("nao_sei", "Não sei", "ns") : ""}</div>`;
+    if (q.tipo === "multipla") return `<div class="ops2">${opcoesDe(q).map((o) => opcaoHTML(o.v, o.rot, "multi peq")).join("")}</div>`;
+    if (q.tipo === "grade") return `<div class="gr">${FONTES6.map((f) => `<div class="it"><b>${esc(f.rot)}</b><small>Cobra: ${esc(f.cobra)}</small><div class="tr" role="group" aria-label="${esc(f.rot)}">${NIV_F.map((o) => opcaoHTML(o.v, o.rot, "peq", `data-g="${f.id}"`)).join("")}</div></div>`).join("")}</div>`;
+    return "";
+  }
+  function montar(sl, n) {
+    const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+    const onde = d ? (d.ondeCurto ? `<p>Para descobrir: ${esc(d.ondeCurto)}.</p>` : "") : q.onde;
+    sl.innerHTML = `<div class="pg" data-sem-clique>
+      <div class="pg-txt">
+        <p class="k">Agora é com você · <b>pergunta ${n} de ${TOTAL}</b></p>
+        <h2>${esc(q.pergunta)}</h2>
+        ${q.cita ? `<p class="cita">${esc(q.cita)}</p>` : ""}
+        <p class="expl">${esc(q.explica)}</p>
+        <div class="veio-bx"></div>
+      </div>
+      <div class="pg-dir">
+        <span class="rot-r">A sua resposta</span>
+        ${campoHTML(id)}
+        <div class="fb" role="status" aria-live="polite"></div>
+        <p class="st"></p>
+      </div>
+      <div class="pg-info">
+        <div class="ctx-bx"></div>
+        <div class="cx porque"><h4>Por que perguntamos isso</h4><p>${esc(q.porque)}</p></div>
+        ${onde ? `<div class="cx onde"><h4>Onde conseguir essa informação</h4>${onde}</div>` : ""}
+        ${q.marina ? `<div class="cx marina"><h4>Exemplo ilustrativo · Marina</h4><p>${esc(q.marina)} A Marina é um exemplo para ensinar o raciocínio, não é meta nem proposta.</p></div>` : ""}
+      </div>
+    </div>`;
+    ligar(sl, id);
+  }
+
+  /* ---------- feedback imediato ---------- */
+  const cap1 = (s) => String(s || "").replace(/^./, (c) => c.toUpperCase());
+  const CAPS = ["cap_construir", "cap_diaria", "cap_volta"];
+  const rotOp = (q, v) => { const o = opcoesDe(q).find((x) => x.v === v); return o ? o.rot : v; };
+  function fbPedido() {
+    const C = calcular(paramsDasRespostas());
+    if (C.antes === null) return ["in", "Anotado. O pedido aparece quando o investimento da fase um estiver escrito."];
+    let t = `O pedido até aqui: <b style="display:inline;font-size:inherit;letter-spacing:0;text-transform:none">${esc(brl(C.pedido))}</b>`;
+    if (C.brancos.length) t += esc(`, com ${C.brancos.length === 1 ? "uma linha" : C.brancos.length + " linhas"} ainda em branco. O número exato sai quando ${C.brancos.length > 1 ? "elas chegarem" : "ela chegar"}.`);
+    else t += ". Um número exato, e não um redondo.";
+    return ["in", t];
+  }
+  function feedback(id) {
+    const d = DQ[id], v = getV(id);
+    if (v === undefined || v === "") return null;
+    if (ehNS(v)) {
+      const oc = d ? d.ondeCurto : Q(id).ondeCurto;
+      return ["at", "<b>Tarefa da semana</b>" + esc(cap1(oc)) + ". Em branco, declarado: vale mais que um número inventado."];
+    }
+    if (d) {
+      if (d.tipo === "escolha") { const o = d.opcoes[v]; return o && o.fb && o.fb[0] ? [o.fb[0], esc(o.fb[1])] : null; }
+      if (d.tipo === "multi") {
+        if (!Array.isArray(v)) return null;
+        if (!v.length) return ["in", "Anotado. O dinheiro, então, é o que você põe na mesa: ele se mede pelo seu limite de perda."];
+        return ["ok", "Terra, trabalho e conhecimento valem como aporte. Não existe percentual universal: como escrever, com advogado e contador."];
+      }
+      if (d.tipo === "texto") {
+        const t = String(v).trim(); if (t.length < 3) return null;
+        if (id === "frase") return ["ok", "Entra no seu Dossiê. Ela não promete nada: diz onde o projeto está e qual é o próximo passo."];
+        if (!/\d/.test(t)) return ["at", "Falta a data. Quem resolve, e até quando: sem data, a lacuna não vira tarefa."];
+        return ["ok", "Anotado: a lacuna tem dono e prazo."];
+      }
+      return null;
+    }
+    const q = Q(id);
+    if (CAPS.includes(id)) {
+      const n = CAPS.filter((k) => S.respostas[k] === "sim_doc").length, todas = CAPS.every((k) => S.respostas[k] !== undefined);
+      if (v === "sim_doc") return ["ok", esc("Sim, com documento." + (todas && n === 3 ? " Três sim: aí falta capital, e o caminho é buscar com a conta na mão." : ""))];
+      if (v === "sim_sem") return ["at", "<b>Um sim sem documento vale um não</b>" + esc(cap1(q.ondeCurto)) + ", e guarde o documento."];
+      return ["at", "<b>Um não basta</b>Não falta capital. Falta a decisão que vem antes dele. Próximo passo: " + esc(q.ondeCurto) + "."];
+    }
+    if (q.tipo === "moeda") {
+      const n = paraNumero(v); if (n === null || n < 0) return null;
+      if (id === "limite") {
+        const p = paraNumero(S.respostas.ped_proprio);
+        if (p !== null && p > n) return ["er", "<b>Acima do limite</b>" + esc(`Você põe ${brl(p)}, ${brl(p - n)} acima do seu limite de perda. Recurso próprio se mede pelo limite de perda, não pelo saldo.`)];
+        return ["ok", esc(`Escrito: ${brl(n)}. Ele decide se você faz sozinho, quanto você pede e o que aceita ceder.`)];
+      }
+      return fbPedido();
+    }
+    if (id === "fontes") {
+      const g = v && typeof v === "object" ? v : {};
+      if (!FONTES6.every((f) => g[f.id])) return ["in", "Marque as seis: disponível, possível ou fora. Fora também é informação."];
+      if (g.prevenda !== "fora") return ["at", "<b>Pré-venda</b>Só existe no modelo de venda, e não é receita: é uma obrigação com cara de caixa. Só com advogado e contador."];
+      const lst = (nv) => FONTES6.filter((f) => g[f.id] === nv).map((f) => f.rot.replace(/^\d · /, "").replace(" (só no modelo de venda)", "").toLowerCase());
+      return ["ok", esc(`Disponível: ${juntar(lst("disponivel")) || "nenhuma"}. Possível: ${juntar(lst("possivel")) || "nenhuma"}. Nenhuma é garantida: cada uma avalia o seu caso. Confira se duas não pedem o mesmo terreno como garantia.`)];
+    }
+    if (id === "garantia") {
+      if (v === "ambos") return ["at", "<b>Atenção · aval</b>Com aval pessoal, o pior cenário alcança a sua casa. Não é proibido: pese por escrito, antes, e leve ao advogado e ao banco."];
+      if (v === "terreno") return ["in", "\"A garantia é o meu terreno\" é decisão, não detalhe. Confira se duas fontes não pedem o mesmo terreno."];
+      return ["ok", "Anotado. Sem garantia nem aval, o banco tende a ficar mais difícil: as outras fontes ganham peso."];
+    }
+    if (id === "falta") {
+      const a = Array.isArray(v) ? v : []; if (!a.length) return null;
+      const alt = FALTAS.filter((x) => a.includes(x.v)).map((x) => `${x.rot}: ${x.alt.toLowerCase()}`).join(". ");
+      return [a.includes("gestao") ? "in" : "ok", esc(alt + ". " + (a.includes("gestao") ? "Falta gestão e decisão: talvez um sócio, com as perguntas antes de dividir." : "Nenhuma das faltas pede um sócio."))];
+    }
+    if (id === "socio") {
+      const a = Array.isArray(S.respostas.falta) ? S.respostas.falta : [];
+      if (v === "nao") return ["ok", "Anotado. Se um dia precisar, você já sabe de que tipo, e o que perguntar antes."];
+      if (!a.includes("gestao")) return ["at", "<b>Dinheiro ou sócio</b>Você marcou um tipo de sócio, mas o que te falta não é gestão nem decisão. Estude primeiro a alternativa de cada falta."];
+      return ["in", esc(`${rotOp(q, v)}. Antes de dividir, as seis perguntas. Escolha o sócio pela década, não pelo cheque.`)];
+    }
+    if (id === "fraca") return ["in", esc(`${rotOp(q, v)}. O projeto anda na velocidade dessa página: é por ela que o próximo passo começa.`)];
+    if (id === "repete") { const t = String(v).trim(); return t.length < 3 ? null : ["ok", "Esse é o achado do Dossiê completo: a pergunta que se repete, em uma linha."]; }
+    if (id === "decisao") {
+      const sug = decisaoSugerida();
+      if (PESO_D[v] < PESO_D[sug.d]) return ["at", "<b>Mais otimista que as páginas</b>" + esc(`As suas páginas sugerem ${NOME_D[sug.d].toLowerCase()}: ${sug.motivo} Pode ser, desde que a razão fique escrita no critério.`)];
+      return ["in", esc(`As suas páginas sugerem ${NOME_D[sug.d].toLowerCase()}.` + (v === "parar" ? " Parar não é fracasso: gastou caderno e algumas semanas, não uma obra." : " Agora, o critério que mudaria essa decisão."))];
+    }
+    if (id === "criterio") {
+      const t = String(v).trim(); if (t.length < 3) return null;
+      if (!/^se\b/i.test(t) || !/ent[aã]o/i.test(t)) return ["at", "Escreva assim: \"Se [o fato], então eu [avanço, ajusto ou paro].\" Com o fato e a decisão na mesma frase."];
+      return ["ok", "Critério escrito: é a frase que impede você de decidir pelo entusiasmo."];
+    }
+    if (id === "caminho") {
+      const dc = S.respostas.decisao;
+      if ((dc === "ajustar" || dc === "parar") && v !== "sozinho") return ["at", "Se a decisão é ajustar ou parar, o caminho quase sempre é o 1, por enquanto. O seu próximo passo é a maior lacuna."];
+      if (v === "zion") return ["in", "A reunião e o Land Bank Zion são caminhos possíveis, não promessas. A Zion avalia cada caso."];
+      if (v === "banco") return ["in", "As páginas são as mesmas. O banco lê a garantia e se a operação paga a parcela; o investidor lê a tese e quem conduz. Nenhum dos dois é garantido."];
+      return ["ok", "O Dossiê vira a sua régua para cada gasto."];
+    }
+    return null;
+  }
+
+  /* ---------- pintar uma pergunta a partir do estado ---------- */
+  function pintar(sl) {
+    const id = sl.dataset.q, d = DQ[id], q = d || Q(id);
+    const v = getV(id), ns = ehNS(v);
+    sl.querySelectorAll(".opc[data-v]:not([data-g])").forEach((b) => {
+      const bv = b.dataset.v;
+      let on;
+      if (bv === "nao_sei") on = ns;
+      else if (bv === "__nenhum") on = Array.isArray(v) && v.length === 0;
+      else if (b.classList.contains("multi")) on = Array.isArray(v) && v.includes(bv);
+      else on = v === bv;
+      b.setAttribute("aria-pressed", String(!!on));
+    });
+    sl.querySelectorAll(".opc[data-g]").forEach((b) => { const g = v && typeof v === "object" ? v : {}; b.setAttribute("aria-pressed", String(g[b.dataset.g] === b.dataset.v)); });
+    const inp = sl.querySelector(".resp");
+    if (inp) {
+      if (document.activeElement !== inp) inp.value = ns || v === undefined || v === null ? "" : String(v);
+      inp.disabled = ns;
+    }
+    const vb = sl.querySelector(".veio-bx");
+    if (vb) vb.innerHTML = !d && S.veio[id] && S.respostas[id] !== undefined && !ns ? `Trouxemos esta resposta da ${esc(S.veio[id])}. Confira e corrija se mudou.` : "";
+    const cb = sl.querySelector(".ctx-bx");
+    if (cb) { let h = ""; if (!d && q.contexto) { try { h = q.contexto(); } catch (e) { h = ""; } } cb.innerHTML = h; }
+    const fb = sl.querySelector(".fb"), f = feedback(id);
+    if (f) { fb.className = "fb on " + f[0]; fb.innerHTML = f[1]; } else { fb.className = "fb"; fb.innerHTML = ""; }
+    const st = sl.querySelector(".st");
+    let t = "";
+    if (!d && q.tipo === "moeda" && v !== undefined && v !== "" && !ns) {
+      const n = paraNumero(v);
+      if (n === null) t = "Escreva só o número, por exemplo 100.000.";
+      else if (n < 0) t = "O número não pode ser negativo.";
+      else t = "Salvo neste aparelho.";
+    } else if (!d && q.tipo === "grade" && v && !completa(id)) t = "Faltam fontes: marque as seis.";
+    else if (completa(id)) t = "Salvo neste aparelho.";
+    st.textContent = t;
+  }
+
+  /* ---------- eventos de cada pergunta (grava na hora) ---------- */
+  function ligar(sl, id) {
+    const d = DQ[id];
+    sl.addEventListener("click", (e) => {
+      const b = e.target.closest(".opc");
+      if (!b || !sl.contains(b)) return;
+      e.stopPropagation();
+      garantir();
+      const cur = getV(id);
+      if (b.dataset.g) {
+        const g = Object.assign({}, cur && typeof cur === "object" && !Array.isArray(cur) ? cur : {});
+        g[b.dataset.g] = b.dataset.v; setV(id, g);
+      } else {
+        const bv = b.dataset.v, multi = b.classList.contains("multi");
+        if (bv === "nao_sei") { if (ehNS(cur)) setV(id, undefined); else { setV(id, "nao_sei"); if (!d) delete S.veio[id]; } }
+        else if (bv === "__nenhum") setV(id, []);
+        else if (multi) { const a = Array.isArray(cur) ? cur.slice() : []; const k = a.indexOf(bv); if (k >= 0) a.splice(k, 1); else a.push(bv); setV(id, a); }
+        else setV(id, bv);
+      }
+      gravar(); pintar(sl); atualizaNav();
+    });
+    const inp = sl.querySelector(".resp");
+    if (inp) inp.addEventListener("input", () => { garantir(); setV(id, inp.value); if (!d) delete S.veio[id]; gravar(); pintar(sl); atualizaNav(); });
+  }
+
+  /* ---------- perfil ---------- */
+  function ligarPerfil() {
+    const uf = document.getElementById("p-uf");
+    uf.insertAdjacentHTML("beforeend", UFS.map((u) => `<option>${u}</option>`).join(""));
+    const campos = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(campos)) {
+      const x = document.getElementById(el);
+      x.addEventListener(el === "p-uf" ? "change" : "input", () => { garantir(); S.perfil[k] = x.value.trim(); gravar(); });
+    }
+  }
+  function pintarPerfil() {
+    const map = { "p-nome": "nome", "p-email": "email", "p-cidade": "cidade", "p-uf": "uf" };
+    for (const [el, k] of Object.entries(map)) { const x = document.getElementById(el); if (document.activeElement !== x) x.value = S.perfil[k] || ""; }
+  }
+
+  /* ---------- resumo do bloco 1 e as páginas do aparelho ---------- */
+  function pintarAnote() {
+    const el = document.getElementById("anote"); if (!el) return;
+    const r = S.respostas;
+    const nSim = CAPS.filter((k) => r[k] === "sim_doc").length, nResp = CAPS.filter((k) => r[k] !== undefined).length;
+    const C = calcular(paramsDasRespostas());
+    const lim = paraNumero(r.limite);
+    const g = r.fontes && typeof r.fontes === "object" ? r.fontes : {};
+    const abertas = FONTES6.filter((f) => g[f.id] === "disponivel" || g[f.id] === "possivel").map((f) => f.rot.replace(/^\d · /, "").replace(" (só no modelo de venda)", "").toLowerCase());
+    const fl = Array.isArray(r.falta) ? FALTAS.filter((x) => r.falta.includes(x.v)).map((x) => x.rot.toLowerCase()) : [];
+    const op = S.aulaExtras.x_opera;
+    const linhas = [
+      ["As três perguntas", nResp < 3 ? `${nResp} de 3 respondidas` : `${nSim} de 3 sim, com documento`],
+      ["O pedido até aqui", C.pedido === null ? "em branco" : brl(C.pedido)],
+      ["O meu limite de perda", ehNS(r.limite) ? "não sei" : lim === null ? "em branco" : brl(lim)],
+      ["Fontes disponíveis ou possíveis", abertas.length ? juntar(abertas) : FONTES6.some((f) => g[f.id]) ? "nenhuma" : "em branco"],
+      ["O que me falta de verdade", fl.length ? juntar(fl) : "em branco"],
+      ["Quem opera", op === undefined ? "em branco" : ehNS(op) ? "não sei" : DQ.x_opera.opcoes[op] ? DQ.x_opera.opcoes[op].rot : op],
+    ];
+    el.innerHTML = linhas.map(([a, b]) => `<div><span>${esc(a)}</span><b>${esc(b)}</b></div>`).join("");
+  }
+  function pintarPags() {
+    const el = document.getElementById("pags-aparelho"); if (!el) return;
+    const pags = lerPaginas();
+    el.innerHTML = pags.map((p) => `<div class="pag"><div class="cab"><b>${p.n} · ${esc(p.nome)}</b>${selo(p)}</div><p>${p.status === "feita" ? esc(p.n === 0 ? p.motivo : (p.fragil ? "Maior lacuna: " + p.fragil : "Salva neste aparelho.")) : esc(`Abra "${p.ferramenta}" e gere a página.`)}</p></div>`).join("")
+      + `<div class="pag" style="border:2px solid var(--ouro)"><div class="cab"><b>7 · Capital e decisão</b><span class="selo s-pendente">hoje</span></div><p>Você fecha nesta aula.</p></div>`;
+  }
+
+  /* ---------- o diagnóstico dentro da aula ---------- */
+  function abrirDiag() {
+    const f = document.getElementById("diag-ifr"); if (!f) return;
+    garantir(); S.passo = calcPasso(); salvar();
+    if (!f.getAttribute("src")) { f.setAttribute("src", FERR); sujo = false; }
+    else if (sujo) { try { f.contentWindow.location.reload(); } catch (e) { f.setAttribute("src", FERR); } sujo = false; }
+    const feitas = QUESTOES.filter(completaT).length;
+    document.getElementById("diag-st").textContent = `${feitas} de ${QUESTOES.length} perguntas da ferramenta já respondidas. Se ela abrir na tela inicial, toque em "Continuar de onde parei".`;
+    escalaAula();
+  }
+
+  /* ---------- navegação, teclado e toque ---------- */
+  const slides = Array.from(document.querySelectorAll(".s"));
+  function atualizaNav() {
+    const n = IDS.filter(completa).length;
+    document.getElementById("n-resp").innerHTML = `<span class="lg">Perguntas respondidas: </span><span class="ct">Respondidas </span>${n} de ${TOTAL}`;
+    document.getElementById("n-bar").style.width = (n / TOTAL * 100) + "%";
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    document.getElementById("n-sl").textContent = `Tela ${i + 1} de ${slides.length}`;
+    document.getElementById("n-ant").disabled = i <= 0;
+    document.getElementById("n-prox").textContent = i >= slides.length - 1 ? "Fim" : "Avançar ›";
+  }
+  function pausaVideos(sl) {
+    if (!sl) return;
+    sl.querySelectorAll(".vid iframe").forEach((f) => { try { f.contentWindow.postMessage(JSON.stringify({ event: "command", func: "pauseVideo", args: "" }), "*"); } catch (e) {} });
+  }
+  let atual = -1, prontoMotor = false;
+  function aoTrocarSlide() {
+    const i = slides.findIndex((s) => s.classList.contains("on"));
+    if (i < 0 || i === atual) return;
+    const ant = slides[atual];
+    atual = i;
+    pausaVideos(ant);
+    const sl = slides[i];
+    if (sl.dataset.q) { const q = DQ[sl.dataset.q] ? null : Q(sl.dataset.q); if (prontoMotor) aplicarVeio(q); pintar(sl); }
+    if (sl.querySelector("#anote")) pintarAnote();
+    if (sl.id === "s-pags") pintarPags();
+    if (sl.querySelector(".perfil")) pintarPerfil();
+    if (sl.id === "s-diag" && prontoMotor) abrirDiag();
+    if (window.matchMedia("(max-width:820px),(max-height:520px)").matches) window.scrollTo(0, 0);
+    if (prontoMotor) { garantir(); S.slideAula = i; salvar(); }
+    atualizaNav();
+  }
+  const obs = new MutationObserver(aoTrocarSlide);
+  slides.forEach((s) => obs.observe(s, { attributes: true, attributeFilter: ["class"] }));
+
+  // teclas do motor não disparam dentro de campos; espaço e Enter não avançam sobre um botão de resposta
+  document.addEventListener("keydown", (e) => {
+    const t = e.target;
+    if (!t || !t.matches) return;
+    if (t.matches("input, textarea, select, [contenteditable]")) {
+      e.stopPropagation();
+      if (e.key === "Enter" && t.matches("input") && window.ZD && ZD.proximo) { e.preventDefault(); t.blur(); ZD.proximo(); }
+      return;
+    }
+    if (t.matches("iframe")) { e.stopPropagation(); return; }
+    if (t.matches("button, a") && (e.key === " " || e.key === "Enter" || /^[a-z0-9]$/i.test(e.key))) e.stopPropagation();
+  });
+  // rolar um campo, o vídeo ou a ferramenta não troca de slide
+  document.addEventListener("touchstart", (e) => { if (e.target.closest && e.target.closest("input, textarea, select, .vid, .pg-dir, .diag-box")) e.stopPropagation(); }, { passive: true });
+  window.addEventListener("storage", (e) => {
+    if (e.key !== CHAVE) return;
+    const dd = carregar(); if (!dd) return;
+    S = dd; garantir();
+    slidesQ.forEach(pintar); pintarPerfil(); atualizaNav();
+  });
+
+  /* ---------- início ---------- */
+  const salvo = carregar();
+  if (salvo) S = salvo;
+  garantir();
+  if (!S.perfil.nome) { const p = perfilDeOutraPagina(); if (p) S.perfil = Object.assign({}, S.perfil, p); }
+  slidesQ.forEach((sl, k) => montar(sl, k + 1));
+  slidesQ.forEach(pintar);
+  ligarPerfil(); pintarPerfil();
+  document.getElementById("n-ant").addEventListener("click", () => ZD.anterior && ZD.anterior());
+  document.getElementById("n-prox").addEventListener("click", () => ZD.proximo && ZD.proximo());
+  document.getElementById("diag-cheia").addEventListener("click", (e) => { e.stopPropagation(); garantir(); S.passo = calcPasso(); salvar(); });
+
+  function escalaAula() {
+    const st = document.querySelector(".zd-stage");
+    const h = Math.max(200, innerHeight - 61);
+    const k = Math.min(innerWidth / 1920, h / 1080);
+    st.style.transform = "scale(" + k + ")";
+    // a ferramenta dentro da aula aparece em tamanho real: o iframe desfaz a escala do palco
+    const f = document.getElementById("diag-ifr"), bx = f && f.parentElement;
+    if (f && bx && !window.matchMedia("(max-width:820px),(max-height:520px)").matches) {
+      f.style.width = (1664 * k) + "px"; f.style.height = (770 * k) + "px"; f.style.transform = "scale(" + (1 / k) + ")";
+    }
+  }
+  function toast(t) { const el = document.getElementById("toast"); el.textContent = t; el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 3200); }
+
+  return {
+    depoisDoMotor() {
+      addEventListener("resize", escalaAula); escalaAula();
+      prontoMotor = true;
+      const temHash = /^#\d/.test(location.hash);
+      if (!temHash && typeof S.slideAula === "number" && S.slideAula > 0 && S.slideAula < slides.length) {
+        ZD.vai(S.slideAula);
+        toast("Voltamos ao ponto onde você parou. As suas respostas estão salvas.");
+      }
+      atual = -1; aoTrocarSlide(); atualizaNav();
+    },
+    DQ, IDS, completa, calcPasso,
+  };
+})();
+
+</script>
+<script src="../_motor/deck.js"></script>
+<script>AULAI.depoisDoMotor();</script>
+</body>
+</html>

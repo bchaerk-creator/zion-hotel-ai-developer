@@ -645,7 +645,7 @@ const AULA = {
       bloco: "A curva do ano",
       pergunta: "Quanto os comparáveis enchem nos meses fracos?",
       explica: "A ocupação média dos meses fracos, em porcentagem.",
-      porque: "Com ela a ferramenta mostra quanto entra num mês fraco, por unidade, antes de qualquer custo. Se o seu custo do mês passar disso, falta caixa: essa conta se fecha na Trilha 2.",
+      porque: "Com ela a ferramenta mostra quanto entra num mês fraco, por unidade, antes de qualquer custo. Se o seu custo do mês passar disso, falta caixa: essa conta se fecha no Pilar 6.",
       onde: "<p>Na série de visitantes, nos calendários lidos no mês fraco e nas conversas com quem já opera na região.</p>",
       marina: "Nos meses fracos, 22%. Num mês fraco entra cerca de R$ 4.260 por cabana, antes de qualquer custo.",
       ondeCurto: "pedir a série de visitantes à secretaria de turismo e ler os calendários no mês fraco",
@@ -712,7 +712,7 @@ const AULA = {
     const g = (id) => calc(L.res, id);
     return { diaria_media: g("conta_semana").valor, ocup_ano: g("ocup_ano").valor, cabem: g("absorcao").valor };
   },
-  alertasDepois: () => [{ t: "info", tit: "Para conferir", txt: "Ferramentas de dados de mercado trabalham com estimativas: confira sempre alguns comparáveis à mão. Receita bruta não é retorno: impostos, comissões e custos entram na Trilha 2." }],
+  alertasDepois: () => [{ t: "info", tit: "Para conferir", txt: "Ferramentas de dados de mercado trabalham com estimativas: confira sempre alguns comparáveis à mão. Receita bruta não é retorno: impostos, comissões e custos entram no Pilar 6." }],
   fragil(c) {
     const ab = c.g("absorcao"), cr = c.g("checa_regua"), amp = c.g("regua_amplitude");
     const pret = paraNumero(c.r.unidades_pretendidas);
@@ -1271,7 +1271,7 @@ function telaResultado() {
       <button class="btn btn-ouro" id="pdf">${esc(AULA.botaoPDF)}</button>
       <button class="btn btn-s" id="editar">Revisar as respostas</button>
       <button class="btn btn-s" id="recomecar">Começar outra página</button>
-      ${PROX ? `<a class="btn btn-p" id="proxima" href="../aula${PROX.n}/index.html">Seguir para a Aula ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
+      ${PROX ? `<a class="btn btn-p" id="proxima" href="../${PROX.n <= 3 ? "aula" + PROX.n : "pilar" + PROX.n}/index.html" target="_top">Seguir para o Pilar ${PROX.n}: ${esc(PROX.tema)}</a>` : `<a class="btn btn-p" href="../index.html">Ver as seis ferramentas</a>`}
     </div>
     <div class="erro" id="erro-pdf" role="alert"></div>
   </div>`;
@@ -1442,5 +1442,6 @@ window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoPar
 <!-- Zion · lead no ClickMax quando o aluno baixa a página do Dossiê -->
 <iframe name="zx-sink" title="envio" hidden style="display:none"></iframe>
 <form id="zx-lead" data-cx-ingest-form data-cx-nostyles target="zx-sink" action="about:blank" hidden style="display:none"><input data-cx-field="name" type="text"><input data-cx-field="email" type="email"><input data-cx-field="website" type="text" hidden></form>
+<script src="../_landbank.js" defer></script>
 </body>
 </html>
