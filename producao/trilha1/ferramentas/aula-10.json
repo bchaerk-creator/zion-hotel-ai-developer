@@ -1,0 +1,263 @@
+{
+  "id": "t1-a10",
+  "slug": "1-10",
+  "nome_curto": "capital",
+  "titulo": "Capital e captação · A nota do projeto",
+  "aula": 10,
+  "objetivo": "Você sai sabendo se o seu projeto está pronto para pedir dinheiro, quanto exatamente pediria e o que mudar antes, em ordem.",
+  "campos": [
+    {
+      "id": "p1_construir",
+      "rotulo": "Se o dinheiro aparecesse amanhã, você sabe exatamente o que construir, quantas unidades e para quem?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim, com documento"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Sim só com documento. Exemplo: sim, o escopo congelado da Aula 6.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "p2_diaria",
+      "rotulo": "Você sabe qual diária o projeto precisa, com dado coletado e testado?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim, com documento"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "A do mercado medida não basta se o projeto precisa de mais. Exemplo: não, a do meu produto nunca foi testada.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "p3_retorno",
+      "rotulo": "Você sabe em quanto tempo o investimento retorna, nos três cenários?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim, com documento"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Exemplo: sim, rodei conservador, base e otimista na Aula 9.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "nota_capex",
+      "rotulo": "Nota CAPEX (0 a 100): quão bem calculado está",
+      "tipo": "numero",
+      "ajuda": "Escreva o critério ao lado no papel. Se não consegue justificar, marque Não sei e a linha fica em branco.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 100
+    },
+    {
+      "id": "nota_receita",
+      "rotulo": "Nota Receita (0 a 100): premissas defensáveis",
+      "tipo": "numero",
+      "ajuda": "Exemplo: mercado medido, mas diária do produto sem prova.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 100
+    },
+    {
+      "id": "nota_ebitda",
+      "rotulo": "Nota EBITDA (0 a 100): a saúde do modelo",
+      "tipo": "numero",
+      "ajuda": "Critério: de 25% a 35% nos tradicionais; 40% ou mais nos enxutos premium.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 100
+    },
+    {
+      "id": "nota_tir",
+      "rotulo": "Nota TIR (0 a 100)",
+      "tipo": "numero",
+      "ajuda": "Pede horizonte e taxa declarados. Se não calculou, marque Não sei: fica em branco.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 100
+    },
+    {
+      "id": "nota_viabilidade",
+      "rotulo": "Nota Viabilidade (0 a 100)",
+      "tipo": "numero",
+      "ajuda": "Sobrevive ao conservador? O payback cabe no horizonte? Licenças, estrutura e fonte de capital compatíveis?",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 100
+    },
+    {
+      "id": "conservador_fecha",
+      "rotulo": "O cenário conservador da Aula 9 fecha?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Exemplo: não, fica negativo por ano.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "capex",
+      "rotulo": "CAPEX da fase (R$)",
+      "tipo": "moeda",
+      "ajuda": "Da Aula 7. Se é intervalo, rode uma vez com o piso e outra com o teto. Exemplo: R$ 963.240.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "giro",
+      "rotulo": "Capital de giro da Aula 9 (R$)",
+      "tipo": "moeda",
+      "ajuda": "Exemplo: R$ 124.500.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "menor_saldo",
+      "rotulo": "Menor saldo da curva de caixa, com a contingência toda usada (R$)",
+      "tipo": "moeda",
+      "ajuda": "Da Aula 9. Exemplo: R$ 63.556,98.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "capital_proprio",
+      "rotulo": "Capital próprio contratado, pelo seu limite de perda (R$)",
+      "tipo": "moeda",
+      "ajuda": "Quanto você pode perder sem comprometer a sua vida, e que está disponível de fato. Promessa de parente não conta. Se não escreveu, marque Não sei.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "contribuicao_documentada",
+      "rotulo": "O que você põe no projeto, documentado (R$)",
+      "tipo": "moeda",
+      "ajuda": "Exemplo: o terreno, R$ 600.000, se um laudo confirmar.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "tres_perguntas",
+      "nome": "As três perguntas do capital",
+      "formula": "algum_nao = 'nao' em [p1_construir, p2_diaria, p3_retorno]",
+      "leitura": "Três sim: falta capital, e o caminho é captação estruturada. Qualquer não: falta a decisão anterior ao capital.",
+      "fonte": "E-book Aula 10, cap. 3 (A Ordem das Coisas)"
+    },
+    {
+      "id": "score",
+      "nome": "Zion Score de Investimento",
+      "formula": "se as cinco notas existem entao score = 0,2 × (nota_capex + nota_receita + nota_ebitda + nota_tir + nota_viabilidade) senao 'em branco'",
+      "saida": "0 a 100",
+      "leitura": "85 a 100 excepcional; 70 a 84 forte, avançar ajustando as mais fracas; 55 a 69 não captar ainda; 40 a 54 repensar o modelo; abaixo de 40 reprovado nesta forma. Mostrar as notas uma a uma, nunca só a soma.",
+      "fonte": "E-book Aula 10, cap. 4 (Volume 5, edição do projeto, cap. 20)"
+    },
+    {
+      "id": "regra_prevalece",
+      "nome": "A regra do conservador",
+      "formula": "se conservador_fecha == 'nao' entao 'não captar ainda', qualquer que seja o score",
+      "fonte": "E-book Aula 10, cap. 4 (\"nenhum 70 autoriza captar\")"
+    },
+    {
+      "id": "colchao",
+      "nome": "Reforço de giro para o colchão de 10%",
+      "formula": "reforco = maior(0, 10% × capex - menor_saldo); giro_ajustado = giro + reforco",
+      "saida": "R$",
+      "fonte": "E-book Aula 10, cap. 5 (Marina: R$ 32.767,02 no piso; giro de R$ 157.267,02)"
+    },
+    {
+      "id": "regua",
+      "nome": "Régua do Quanto Captar",
+      "formula": "necessidade_antes = capex + 0 (terreno já pago) + giro_ajustado + 0 (reserva já no CAPEX); externo = necessidade_antes - capital_proprio; com_custo_2 = externo / (1 - 2%); com_custo_5 = externo / (1 - 5%)",
+      "saida": "R$",
+      "se_nao_sei": "Capital próprio em Não sei: a necessidade sai \"antes do capital próprio\" e o pedido não pode ser escrito.",
+      "fonte": "E-book Aula 10, cap. 5 (Régua do Quanto Captar, Volume 5, edição de captação, cap. 04; Marina: R$ 1.120.507,02 antes do custo e do capital próprio)"
+    },
+    {
+      "id": "participacao",
+      "nome": "Quanto ficaria com quem aporta (conta do tamanho do problema)",
+      "formula": "participacao = externo / (contribuicao_documentada + externo)",
+      "saida": "%",
+      "leitura": "Não é proposta nem valuation: mostra o custo de captar antes de o projeto estar pronto.",
+      "fonte": "E-book Aula 10, cap. 2 (regra da participação; Marina: 65,1% no piso)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se (score != 'em branco' e score < 40) ou (p2_diaria == 'sim' e conservador_fecha == 'nao') entao 'pausar'; senao se algum_nao entao 'testar'; senao se conservador_fecha == 'nao' ou score == 'em branco' ou score < 70 entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 10, caps. 3, 4 e 7 (faixas da nota; veredito da Marina: testa, e não capta)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Três sim, conservador que fecha e nota de 70 ou mais com critério escrito: procurar capital estruturado, ajustando as dimensões mais fracas, com a necessidade exata na frase do pedido.",
+    "testar": "Alguma das três perguntas é não: não falta capital, falta a decisão anterior. Testa, e não capta (é o caso da Marina, cuja diária do produto não foi testada).",
+    "ajustar": "As três são sim, mas a nota está em branco ou abaixo de 70 (55 a 69: não captar ainda; 40 a 54: repensar o modelo), ou o conservador ainda não fecha.",
+    "pausar": "Nota abaixo de 40 (reprovado nesta forma), ou a diária já foi testada e o conservador continua sem fechar: não procura capital para este desenho; pausa e redesenha, ou declara projeto de patrimônio e de vida e decide só com o dinheiro que pode perder.",
+    "criterio_para_parar": "Molde da Marina: se o teste não mostrar a diária que faz o conservador fechar (na Marina, perto de R$ 800), ela não procura capital para este desenho; pausa e redesenha, ou declara por escrito que é projeto de patrimônio e de vida, e decide só com o dinheiro que pode perder.",
+    "fonte": "E-book Aula 10, caps. 3 a 7; auditoria-aula-10-capital.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 10 da Trilha 1 da Mentoria Zion (Capital e captação), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 9 · A nota do projeto e a estrutura de capital\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- O que falta quase nunca é dinheiro primeiro. Captar cedo demais custa participação, e às vezes o terreno. Tudo o que ainda não está provado, quem põe dinheiro desconta do lado do dono.\n- Seis coisas que o capital procura (A Ordem das Coisas): território lido, mercado medido, produto definido, modelagem defensável, estrutura societária limpa, operação que não depende de uma pessoa. Sem elas, o projeto é lido como intenção. Estruturar para captar, nunca captar para estruturar.\n- As três perguntas do capital: sei o que construir, com quantas unidades e para quem? Sei qual diária o destino sustenta, mês a mês, com dado coletado? Sei em quanto tempo o investimento retorna nos cenários conservador, base e otimista? Três sim: falta capital, e o caminho é captação estruturada. Qualquer não: não falta capital, falta a decisão anterior a ele.\n- Zion Score de Investimento (Volume 5, edição do projeto, cap. 20): Score = CAPEX × 20% + Receita × 20% + EBITDA × 20% + TIR × 20% + Viabilidade × 20%, cada dimensão de 0 a 100. Critérios: CAPEX, quão bem calculado está; Receita, premissas defensáveis; EBITDA, de 25% a 35% nos tradicionais e 40% ou mais nos enxutos premium, abaixo disso o modelo precisa se explicar; TIR, acima de 20% forte, de 15% a 20% competitiva, abaixo do custo de oportunidade reprovado; Viabilidade, sobrevive ao conservador, payback no horizonte dos sócios, licenças, estrutura e fonte de capital compatíveis.\n- Faixas: 85 a 100 excepcional; 70 a 84 forte, avançar ajustando as dimensões mais fracas; 55 a 69 em construção, não captar ainda; 40 a 54 alerta, repensar o modelo antes de qualquer capital; abaixo de 40 reprovado nesta forma (pode voltar aprovado depois de redesenhado).\n- A nota é julgamento, não cálculo: vale se o critério de cada dimensão estiver escrito ao lado. Faça com outra pessoa: sozinho, todo mundo se dá nota melhor. O Score nunca passa por cima da regra: se o conservador não fecha, nenhum 70 autoriza captar.\n- Régua do Quanto Captar (Volume 5, edição de captação, cap. 04): 1 CAPEX da fase (cotação com mais de 90 dias, refaça); 2 terreno, se ainda não pago (se já é seu, zero, escrito); 3 capital de giro (no mínimo três meses de fixo); 4 reserva de implantação de 10% a 15% do CAPEX (a contingência da Aula 7 já é ela: não somar duas vezes); 5 custo da captação, de 2% a 5% da captação; 6 menos o capital próprio contratado. O resultado é a necessidade de capital externo: esse número exato, não um redondo, vai no pedido.\n- Contratado, não esperado: capital que depende de vender outra coisa é premissa, não capital disponível. O capital próprio se mede pelo limite de perda, não pelo saldo.\n- Regra da participação: valor depois do aporte = valor antes + aporte; participação de quem aporta = aporte ÷ valor depois. É conta para ver o tamanho do problema, não proposta nem valuation.\n- Mapa das Seis Fontes: capital próprio, pessoa física do círculo (sempre com contrato escrito), comprador de unidade (não serve em primeira operação sem histórico; tema regulado), dívida bancária (o obstáculo costuma ser a carência), fomento e crédito direcionado (começar junto com o licenciamento), investidor (caro em participação). Cada fonte tem situação: disponível, possível ou fora. Este exercício não indica banco, linha nem condição.\n- Custo Real do Capital: juro, diluição, garantia, tempo e liberdade. Aval pessoal é a decisão mais pesada de uma captação: precificar, com advogado.\n- Faixa de Negociação: piso, âncora, teto e a melhor alternativa, escritos antes, no papel. Temas jurídicos, societários e tributários só com advogado, avaliador e contador.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". A regra vem antes do número: se o conservador não fecha, não diga que pode captar, qualquer que seja a nota. Nota sem critério escrito não vale: se o aluno deu nota sem justificar, trate como em branco e diga por quê. Nunca indique banco, linha de crédito, investidor, taxa ou condição; nunca diga que vai aparecer capital.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se o teste não mostrar diária de pelo menos R$ [a diária que faz o conservador fechar, da Aula 9], eu não procuro capital para este desenho: pauso e redesenho, ou declaro por escrito que é projeto de patrimônio e de vida, e decido só com o dinheiro que posso perder.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nTirar a nota com critério, evidência e leitura das cinco dimensões, e transformar as duas mais fracas numa lista de documentos, cada um com dono e prazo (\"nomeie o documento, não o tema\"). Responsável: o aluno, com alguém que vai discordar dele. Prazo: 7 dias, antes da Aula 11. Evidência: a folha impressa, com data, ao lado do palpite inicial. Se já fez, troque por: a Régua com as seis linhas, ou o Mapa das Seis Fontes com o limite de perda escrito.\n\nA conta de participação existe só para mostrar o custo de captar cedo. Diga isso quando citá-la. Temas de veículo do projeto, acordo de sócios, garantias, aval e tributos: só com advogado e contador.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 9 · A nota do projeto e a estrutura de capital",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-10-capital.md",
+    "/home/claude/mz-trilha/ebook-10-capital.txt"
+  ],
+  "pendente_bruno": [
+    "Escala de pontos do Zion Score de Investimento: a fonte dá critério e faixas, não pontos (auditoria Aula 10, item 1). A página só soma se o aluno der as cinco notas, e a IA trata nota sem critério como em branco.",
+    "TIR sem taxa declarada nas fontes (item 2): a dimensão tende a ficar em branco.",
+    "Qual faixa de EBITDA vale para a trilha, tradicional ou enxuto premium (item 3).",
+    "Custo da captação calculado como percentual da captação (externo ÷ (1 - c)): leitura da página sobre \"2% a 5% da captação\".",
+    "Veredito \"testa, e não capta\" e critério (item 10)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aula 1 · Território e mercado · V01 Abertura</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  #lote { left: 0; top: 0; width: 1920px; height: 1080px; }
+  #lote path { fill: rgba(224,190,94,.10); stroke: var(--ouro); stroke-width: 5; stroke-linejoin: round; }
+  #t1 { left: 120px; top: 330px; width: 980px; }
+  #t1b { left: 120px; top: 760px; width: 980px; font-size: 38px; line-height: 1.3; color: rgba(245,241,232,.9);
+         border-left: 4px solid var(--ouro); padding-left: 26px; }
+
+  .claro { inset: 0; background: var(--creme); }
+  #t2 { left: 120px; top: 150px; color: var(--verde); }
+  #t2 em, #t5 em, .claro em { color: var(--bronze); }
+  #tres { left: 120px; right: 120px; top: 360px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 34px; }
+  #tres .c { height: 470px; box-sizing: border-box; border-radius: 22px; padding: 40px; background: #fff;
+             border: 2px solid var(--linha); color: var(--verde); position: relative; }
+  #tres .c small { font-size: 26px; font-weight: 600; letter-spacing: 3px; color: var(--bronze); }
+  #tres .c b { display: block; margin-top: 22px; font-family: 'Playfair Display', serif; font-weight: 400; font-size: 58px;
+               line-height: 1.1; }
+  #tres .c.escuro { background: var(--verde); border-color: var(--verde); color: var(--creme); }
+  #tres .c.escuro small { color: var(--ouro); }
+  .dossie { position: absolute; right: 40px; bottom: 40px; width: 170px; height: 220px; background: var(--creme);
+            border-radius: 8px; box-shadow: 0 18px 40px rgba(0,0,0,.35); padding: 18px; box-sizing: border-box; }
+  .dossie i { display: block; font-style: normal; font-size: 15px; font-weight: 600; color: var(--bronze); letter-spacing: 1px; }
+  .dossie u { display: block; text-decoration: none; margin-top: 10px; font-family: 'Playfair Display', serif; font-size: 22px;
+              line-height: 1.1; color: var(--verde); }
+  .dossie s { display: block; height: 6px; margin-top: 12px; background: var(--linha); border-radius: 3px; text-decoration: none; }
+
+  #mapa { left: 120px; right: 120px; top: 470px; height: 300px; }
+  #mapa svg { position: absolute; inset: 0; overflow: visible; }
+  .no { position: absolute; top: 108px; width: 0; }
+  .no i { position: absolute; left: -22px; top: -22px; width: 44px; height: 44px; border-radius: 50%; background: var(--verde);
+          border: 4px solid rgba(245,241,232,.45); box-sizing: border-box; }
+  .no span { position: absolute; top: 44px; left: -150px; width: 300px; text-align: center; font-size: 30px; font-weight: 600;
+             color: rgba(245,241,232,.75); }
+  .no.aceso i { background: var(--ouro); border-color: var(--ouro); box-shadow: 0 0 36px rgba(224,190,94,.85); }
+  .no.aceso span { color: var(--ouro); }
+  #t3 { left: 120px; top: 170px; width: 1680px; }
+  #metades { left: 120px; right: 120px; top: 820px; display: flex; gap: 40px; }
+  #metades div { flex: 1; font-family: 'Playfair Display', serif; font-size: 46px; padding-left: 26px; border-left: 4px solid var(--ouro); }
+  #metades em { color: var(--ouro); }
+
+  #t4 { left: 120px; top: 360px; width: 980px; }
+  #t4b { left: 120px; top: 760px; width: 1400px; }
+  #icones { left: 120px; top: 330px; display: flex; gap: 46px; }
+  #icones .ic { width: 230px; text-align: center; }
+  #icones svg { width: 150px; height: 150px; overflow: visible; }
+  #icones svg .t { fill: none; stroke: var(--creme); stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; }
+  #icones svg .x { fill: none; stroke: #D9534F; stroke-width: 7; stroke-linecap: round; }
+  #icones span { display: block; margin-top: 16px; font-size: 28px; font-weight: 600; color: var(--creme); }
+
+  #t5 { left: 120px; top: 110px; width: 1680px; color: var(--verde); font-size: 76px; }
+  #tabela { left: 120px; right: 120px; top: 300px; }
+  #tabela .l { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; border-top: 2px solid var(--linha); padding: 26px 0; }
+  #tabela .l.cab { border-top: 0; padding-bottom: 12px; }
+  #tabela .l.cab div { font-size: 24px; font-weight: 600; letter-spacing: 3px; text-transform: uppercase; color: var(--texto); }
+  #tabela .l.cab div + div { color: var(--bronze); }
+  #tabela .l div { font-size: 38px; line-height: 1.25; color: var(--texto); }
+  #tabela .l div + div { font-family: 'Playfair Display', serif; font-size: 42px; color: var(--verde); }
+  #tabela .l div + div::before { content: '→  '; color: var(--bronze); font-family: Inter, sans-serif; }
+  #tabela .l.cab div + div { font-family: Inter, sans-serif; font-size: 24px; }
+  #tabela .l.cab div + div::before { content: ''; }
+</style>
+</head>
+<body>
+<div id="cena">
+  <div id="selo"></div>
+  <div id="barra"></div>
+</div>
+<script src="assets/gsap.min.js"></script>
+<script src="base.js"></script>
+<script>
+const X = (cls = 't') => `class="${cls}"`;
+iniciar('V01', tl => {
+  const F = [null, FALA(1), FALA(2), FALA(3), FALA(4), FALA(5)];
+  const ent = (n, t, d = {}) => tl.fromTo(n, { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: E, ...d }, t);
+  const some = (ns, t) => tl.to(ns, { autoAlpha: 0, duration: 0.5, ease: 'power2.in' }, t);
+
+  // FALA 1 · foto aérea, o contorno do lote se desenha, título em duas linhas
+  const fim1 = F[2].a - 0.4;
+  const a1 = foto('15-aerea-araucarias-urubici', { lado: 'esq', zoom: [1, 1.08], pos: '60% 50%' });
+  tl.fromTo(a1, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, 0);
+  mover(tl, a1, 0, fim1 + 0.6);
+  const lote = el(`<svg id="lote" viewBox="0 0 1920 1080"><path d="M1330 240 L1740 290 L1790 620 L1540 840 L1270 750 L1220 470 Z"/></svg>`);
+  const p = lote.querySelector('path'), L = p.getTotalLength();
+  tl.fromTo(p, { strokeDasharray: L, strokeDashoffset: L, fillOpacity: 0 },
+            { strokeDashoffset: 0, duration: 2.2, ease: 'power2.inOut' }, W(1, 'território e mercado') - 0.2);
+  tl.fromTo(p, { fillOpacity: 0 }, { fillOpacity: 1, duration: 0.8 }, W(1, 'território e mercado') + 2);
+  const t1 = el(`<div class="titulo" id="t1">Território e mercado:<br><em>o seu terreno é apto, e existe demanda?</em></div>`);
+  ent(t1, W(1, 'território e mercado'));
+  const t1b = el(`<div id="t1b">As duas primeiras respostas de qualquer empreendimento de hospedagem</div>`);
+  ent(t1b, W(1, 'duas perguntas'));
+  some([a1, lote, t1, t1b], fim1);
+
+  // FALA 2 · três cartões, o terceiro escuro com o Dossiê 1
+  const fim2 = F[3].a - 0.4;
+  const claro = el(`<div class="claro"></div>`);
+  tl.fromTo(claro, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, fim1);
+  const t2 = el(`<div class="titulo" id="t2">O que você <em>leva desta aula</em></div>`);
+  ent(t2, F[2].a);
+  const tres = el(`<div id="tres">
+      <div class="c"><small>1</small><b>Você vai aprender</b></div>
+      <div class="c"><small>2</small><b>Por que aprender</b></div>
+      <div class="c escuro"><small>3</small><b>O resultado</b>
+        <div class="dossie"><i>DOSSIÊ 1</i><u>Território e mercado</u><s></s><s style="width:70%"></s><s></s></div></div></div>`);
+  const cs = tres.children;
+  ent(cs[0], W(2, 'o que você vai aprender'));
+  ent(cs[1], W(2, 'por que aprender'));
+  ent(cs[2], W(2, 'e o resultado'));
+  ent(cs[2].querySelector('.dossie'), W(2, 'o seu dossiê') , { y: 60 });
+  [0, 1, 2].forEach(i => {
+    const ini = [W(2, 'o que você vai aprender'), W(2, 'por que aprender'), W(2, 'e o resultado')][i];
+    const fim = [W(2, 'por que aprender'), W(2, 'e o resultado'), fim2][i];
+    tl.fromTo(cs[i], { scale: 1 }, { scale: 1.04, duration: 0.4, ease: E }, ini + 0.4)
+      .to(cs[i], { scale: 1, duration: 0.4, ease: E }, fim - 0.2);
+  });
+  some([t2, tres], fim2);
+
+  // FALA 3 · o mapa da jornada: a estrada acende do Marco Zero até a Aula 1
+  const fim3 = F[4].a - 0.4;
+  tl.to(claro, { autoAlpha: 0, duration: 0.5 }, fim2);
+  const t3 = el(`<div class="titulo" id="t3">Etapa 1 · <em>Território e mercado</em></div>`);
+  ent(t3, W(3, 'o ponto aceso'));
+  const mapa = el(`<div id="mapa"><svg viewBox="0 0 1680 300">
+        <line x1="0" y1="108" x2="1680" y2="108" stroke="rgba(245,241,232,.25)" stroke-width="6" stroke-dasharray="4 16" stroke-linecap="round"/>
+        <line class="via" x1="0" y1="108" x2="420" y2="108" stroke="rgba(245,241,232,.7)" stroke-width="6" stroke-linecap="round"/>
+        <line class="etapa" x1="420" y1="108" x2="840" y2="108" stroke="#E0BE5E" stroke-width="10" stroke-linecap="round"/>
+      </svg>
+      <div class="no" style="left:0"><i></i><span>Marco Zero</span></div>
+      <div class="no aula" style="left:420px"><i></i><span>Aula 1</span></div>
+      <div class="no" style="left:840px"><i></i><span>Etapa 2</span></div>
+      <div class="no" style="left:1260px"><i></i><span>Etapa 3</span></div>
+      <div class="no" style="left:1680px"><i></i><span>Destino</span></div></div>`);
+  ent(mapa, F[3].a);
+  const via = mapa.querySelector('.via'), etapa = mapa.querySelector('.etapa');
+  tl.fromTo(via, { attr: { x2: 0 } }, { attr: { x2: 420 }, duration: 1.2, ease: 'power2.inOut' }, W(3, 'o marco zero ficou'));
+  tl.set(mapa.querySelector('.aula'), { className: 'no aula' }, 0);
+  tl.set(mapa.querySelector('.aula'), { className: 'no aula aceso' }, W(3, 'o ponto aceso'));
+  tl.fromTo(etapa, { attr: { x2: 420 } }, { attr: { x2: 840 }, duration: 1.2, ease: 'power2.inOut' }, W(3, 'a primeira etapa'));
+  const met = el(`<div id="metades"><div>O território diz <em>o que pode</em>.</div><div>O mercado diz <em>o que vende</em>.</div></div>`);
+  ent(met.children[0], W(3, 'o território diz'));
+  ent(met.children[1], W(3, 'o mercado diz'));
+  some([t3, mapa, met], fim3);
+
+  // FALA 4 · sábado de sol, depois os quatro problemas riscados
+  const fim4 = F[5].a - 0.4;
+  const a4 = foto('04-hospede-olhando-serra-deck', { lado: 'dir', zoom: [1, 1.08], pos: '50% 70%' });
+  tl.fromTo(a4, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.6 }, fim3);
+  mover(tl, a4, fim3, fim4 + 0.6);
+  const t4 = el(`<div class="titulo" id="t4" style="left:auto;right:120px;width:760px;text-align:right">Um sábado de sol, <em>e a paixão chega primeiro</em></div>`);
+  ent(t4, W(4, 'sábado de sol'));
+  const tMeses = W(4, 'meses depois');
+  some(t4, tMeses - 0.3);
+  tl.to(a4.querySelector('.degrade'), { background: 'rgba(22,38,28,.72)', duration: 0.6 }, tMeses - 0.3);
+  const icones = el(`<div id="icones">
+      <div class="ic"><svg viewBox="0 0 100 100"><path ${X()} d="M56 8 L24 56 H48 L42 92 L76 40 H52 Z"/><line class="x" x1="10" y1="90" x2="90" y2="10"/></svg><span>Energia</span></div>
+      <div class="ic"><svg viewBox="0 0 100 100"><path ${X()} d="M38 92 L46 40 M62 92 L54 40 M50 88 V80 M50 70 V62 M50 52 V46"/><path ${X()} d="M28 30 a14 14 0 0 1 26 -8 a12 12 0 0 1 20 10 H28 Z"/><path ${X()} d="M34 40 l-3 6 M50 40 l-3 6 M66 40 l-3 6"/><line class="x" x1="10" y1="90" x2="90" y2="10"/></svg><span>Estrada</span></div>
+      <div class="ic"><svg viewBox="0 0 100 100"><rect ${X()} x="16" y="16" width="68" height="68" rx="6"/><path ${X()} d="M16 40 L40 16 M16 64 L64 16 M16 84 L84 16 M36 84 L84 36 M60 84 L84 60"/><line class="x" x1="10" y1="90" x2="90" y2="10"/></svg><span>Área travada</span></div>
+      <div class="ic"><svg viewBox="0 0 100 100"><rect ${X()} x="14" y="20" width="72" height="66" rx="6"/><path ${X()} d="M14 36 H86 M32 12 V26 M68 12 V26"/><line class="x" x1="10" y1="90" x2="90" y2="10"/></svg><span>Terças vazias</span></div></div>`);
+  const ics = [...icones.children];
+  ['a energia', 'a estrada', 'a área que não pode', 'as terças-feiras'].forEach((w, i) => {
+    const t = W(4, w);
+    ent(ics[i], t, { y: 24, duration: 0.5 });
+    tl.fromTo(ics[i].querySelector('.x'), { strokeDasharray: 114, strokeDashoffset: 114 },
+              { strokeDashoffset: 0, duration: 0.45, ease: E }, t + 0.45);
+  });
+  const t4b = el(`<div class="titulo" id="t4b">A leitura chega tarde, <em>quando já custa caro</em></div>`);
+  ent(t4b, W(4, 'quase nunca'));
+  some([a4, icones, t4b], fim4);
+
+  // FALA 5 · quem compra pergunta, quem desenvolve mede: a tabela se monta linha a linha
+  const claro5 = el(`<div class="claro"></div>`);
+  tl.fromTo(claro5, { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, fim4);
+  const t5 = el(`<div class="titulo" id="t5">Quem compra pergunta. <em>Quem desenvolve mede.</em></div>`);
+  ent(t5, F[5].a);
+  const linhas = [['Quanto custa o terreno?', 'Quanto dele vira negócio?'],
+                  ['Quantas unidades cabem?', 'Quantas o lugar aguenta e o mercado compra?'],
+                  ['O vendedor disse que pode?', 'A prefeitura respondeu, por escrito?'],
+                  ['Aqui enche bastante?', 'Quantas noites vendem, na média do ano?']];
+  const tab = el(`<div id="tabela"><div class="l cab"><div>Quem compra pergunta</div><div>Quem desenvolve pergunta</div></div>
+      ${linhas.map(([a, b]) => `<div class="l"><div>${a}</div><div>${b}</div></div>`).join('')}</div>`);
+  tl.set(tab, { autoAlpha: 0 }, 0).set(tab, { autoAlpha: 1 }, F[5].a);
+  [...tab.children].forEach(l => tl.fromTo(l, { borderTopColor: 'rgba(217,207,188,0)' }, { borderTopColor: 'rgba(217,207,188,1)', duration: 0.5 }, W(5, 'quem compra pergunta quanto custa') - 0.3));
+  ent(tab.children[0], W(5, 'quem compra pergunta quanto custa') - 0.3);
+  const marcas = [['quem compra pergunta quanto custa', 'quem desenvolve pergunta quanto dele'],
+                  ['quem compra pergunta quantas', 'quem desenvolve pergunta quantas'],
+                  ['quem compra confia', 'quem desenvolve pede'],
+                  ['e quem compra acredita', 'quem desenvolve mede']];
+  marcas.forEach(([a, b], i) => {
+    const l = tab.children[i + 1];
+    ent(l.children[0], W(5, a), { y: 0, x: -30 });
+    tl.fromTo(l.children[1], { autoAlpha: 0, rotationX: -70, transformOrigin: '50% 0%' },
+              { autoAlpha: 1, rotationX: 0, duration: 0.7, ease: E }, W(5, b));
+    tl.to(l.children[0], { opacity: 0.45, duration: 0.5 }, W(5, b) + 0.3);
+  });
+  some([t5, tab, claro5], DADOS.total - 0.9);
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,275 @@
+{
+  "id": "t1-a04",
+  "slug": "1-4",
+  "nome_curto": "produto",
+  "titulo": "Produto · O que você vende, e para quem",
+  "aula": 4,
+  "objetivo": "Você sai com a frase do seu produto em três partes, testada contra os vizinhos, e com a unidade escolhida pelos três filtros.",
+  "campos": [
+    {
+      "id": "publico_principal",
+      "rotulo": "Seu público principal, com o motivo da viagem",
+      "tipo": "texto",
+      "ajuda": "Não \"casais\", mas casais que viajam para quê. Exemplo: o casal que vem descansar, de até duas horas de estrada.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "publico_semana",
+      "rotulo": "Seu público de domingo a quinta, e por que ele viria",
+      "tipo": "texto",
+      "ajuda": "Quem pode vir no meio da semana. Exemplo: quem trabalha tranquilo, com mesa e boa internet.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "quem_fica_fora",
+      "rotulo": "Quem fica de fora, e por quê",
+      "tipo": "texto",
+      "ajuda": "Quem quebra a promessa feita a quem entra. Exemplo: eventos com som, porque quebram o silêncio do casal.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "momento_assinatura",
+      "rotulo": "O seu momento assinatura, em uma frase, com horário e quem prepara",
+      "tipo": "texto",
+      "ajuda": "O instante que concentra a lembrança. Exemplo: o vale às sete, visto da cama, com o café na varanda deixado antes.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "requisitos_momento",
+      "rotulo": "O seu momento passa em quais requisitos?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "so_aqui",
+          "rotulo": "Só existe aqui"
+        },
+        {
+          "valor": "sem_voce",
+          "rotulo": "Acontece sem você presente"
+        },
+        {
+          "valor": "uma_frase",
+          "rotulo": "Cabe numa frase"
+        },
+        {
+          "valor": "foto",
+          "rotulo": "É fotografável"
+        }
+      ],
+      "ajuda": "Marque só os que ele cumpre de verdade. Falhou em um, ele sai da lista.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "frase_produto",
+      "rotulo": "A sua frase em três partes",
+      "tipo": "texto",
+      "ajuda": "O que se vive, para quem, por que só aqui, sem adjetivo. Exemplo: acordar com o vale entrando pela janela, para casais que precisam de silêncio, num lugar onde a cama olha o nascente.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "provas",
+      "rotulo": "As provas da sua promessa, uma por linha",
+      "tipo": "texto",
+      "ajuda": "Fatos do lugar ou do produto que sustentam a promessa. Exemplo: a cama virada para o nascente; nenhuma janela vê outra unidade.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "teste_vizinho",
+      "rotulo": "O teste do vizinho: trocando o seu nome pelo dos três concorrentes mais próximos",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "falsa_para_os_tres",
+          "rotulo": "Ficou falsa para os três"
+        },
+        {
+          "valor": "verdadeira_para_algum",
+          "rotulo": "Continuou verdadeira para algum"
+        },
+        {
+          "valor": "nao_fiz",
+          "rotulo": "Ainda não fiz"
+        }
+      ],
+      "ajuda": "Leia a frase com o nome de cada vizinho. Se ela continuar verdadeira para algum, ainda não é sua.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "teste_cinco_segundos",
+      "rotulo": "O teste dos cinco segundos, com cinco pessoas",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "mesma",
+          "rotulo": "Imaginaram a mesma experiência"
+        },
+        {
+          "valor": "diferentes",
+          "rotulo": "Cada pessoa imaginou uma coisa diferente"
+        },
+        {
+          "valor": "nao_fiz",
+          "rotulo": "Ainda não fiz"
+        }
+      ],
+      "ajuda": "Mostre uma foto do lugar no horário do momento e pergunte: que experiência você imagina viver aqui?",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "tipologia",
+      "rotulo": "A tipologia que sobrou nos três filtros (terreno, capital, público)",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "modular_transparente",
+          "rotulo": "Estrutura modular transparente"
+        },
+        {
+          "valor": "cabana_madeira",
+          "rotulo": "Cabana de madeira"
+        },
+        {
+          "valor": "conteiner",
+          "rotulo": "Contêiner adaptado"
+        },
+        {
+          "valor": "alvenaria",
+          "rotulo": "Alvenaria convencional"
+        },
+        {
+          "valor": "casa_chale",
+          "rotulo": "Casa inteira ou chalé"
+        },
+        {
+          "valor": "tenda",
+          "rotulo": "Tenda estruturada"
+        },
+        {
+          "valor": "escavada",
+          "rotulo": "Unidade escavada"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Corte nesta ordem: terreno, capital, público. Exemplo: a cabana de madeira passou nos três.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "area_interna",
+      "rotulo": "Área interna da unidade (m²)",
+      "tipo": "numero",
+      "ajuda": "Saia do uso: cama, banho, estar, mesa. Exemplo: 38 m² internos e um deck à parte.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "unidades_abertura",
+      "rotulo": "Quantas unidades abrem na primeira fase",
+      "tipo": "numero",
+      "ajuda": "O número que o mercado aguenta agora, da Aula 3. Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "diaria_regiao",
+      "rotulo": "Diária média da região, da Aula 3 (R$)",
+      "tipo": "moeda",
+      "ajuda": "A que saiu da conta da semana. Exemplo: R$ 645.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "diaria_hipotese",
+      "rotulo": "A sua hipótese de diária média (R$)",
+      "tipo": "moeda",
+      "ajuda": "É hipótese, a testar. Mire a metade de cima da faixa, não o topo. Exemplo: R$ 716.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "lista_negra",
+      "nome": "Palavras da lista negra na frase",
+      "formula": "achadas = palavras de ['único','incrível','exclusivo','inesquecível','encantador','premium'] presentes em frase_produto (sem acento, sem diferenciar maiúscula, com plural e feminino)",
+      "saida": "lista",
+      "leitura": "Qualquer palavra achada: reescrever. Se a frase morrer sem ela, não tinha conteúdo.",
+      "fonte": "E-book Aula 4, cap. 5 (a lista negra)"
+    },
+    {
+      "id": "momento_ok",
+      "nome": "O momento passa nos quatro requisitos?",
+      "formula": "momento_ok = contar(requisitos_momento) == 4",
+      "saida": "sim ou não",
+      "fonte": "E-book Aula 4, cap. 4 (\"falhou em um, sai da lista\")"
+    },
+    {
+      "id": "conta_provas",
+      "nome": "Quantas provas",
+      "formula": "conta_provas = linhas não vazias em provas",
+      "leitura": "Menos de 3: a promessa é maior que o produto.",
+      "fonte": "E-book Aula 4, cap. 5 (regra das três provas)"
+    },
+    {
+      "id": "faixa_area",
+      "nome": "Em que faixa de tamanho a unidade cai",
+      "formula": "faixa = 22 a 30: suíte de casal; 32 a 45: cabana de casal com sala; 60 a 85: familiar de dois quartos; fora disso: fora das faixas da fonte",
+      "fonte": "E-book Aula 4, cap. 6 (Jornada do COMO, Etapa 03)"
+    },
+    {
+      "id": "mix",
+      "nome": "O mix pela regra de partida",
+      "formula": "se unidades_abertura <= 4 entao 'tudo igual; o segundo público entra por produto e preço' senao principal = arredondar(unidades_abertura × 2/3), semana = unidades_abertura - principal",
+      "fonte": "E-book Aula 4, cap. 6 (o mix)"
+    },
+    {
+      "id": "hipotese_vs_regiao",
+      "nome": "Quanto a hipótese fica acima da região",
+      "formula": "diaria_hipotese / diaria_regiao - 1",
+      "saida": "%",
+      "leitura": "É nota 1 na escala de evidência: opinião, até ser testada no anúncio e na reserva. Não é promessa de diária.",
+      "fonte": "E-book Aula 4, cap. 7 (Marina: 716 ÷ 645 = 1,11, cerca de 11%)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se teste_vizinho == 'verdadeira_para_algum' ou teste_cinco_segundos == 'diferentes' entao 'pausar'; senao se teste_vizinho == 'nao_fiz' ou teste_cinco_segundos == 'nao_fiz' entao 'testar'; senao se lista_negra nao vazia ou conta_provas < 3 ou nao momento_ok entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 4, cap. 7 (veredito da Marina: avança, com o preço em teste; critério para parar)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "A frase passou no teste do vizinho e no dos cinco segundos, o momento cumpre os quatro requisitos e há três provas. Leva o Conceito de Produto ao modelo de negócio, com o preço em teste (nota 1).",
+    "testar": "Os dois testes ainda não foram feitos: a frase é só hipótese.",
+    "ajustar": "A frase tem palavra da lista negra, faltam provas (reduzir a promessa ou aumentar o produto) ou o momento falha em um requisito.",
+    "pausar": "A frase continua verdadeira para algum vizinho, ou no teste dos cinco segundos cada pessoa imaginou uma coisa diferente: pausa e volta ao DNA do destino antes de chamar o arquiteto.",
+    "criterio_para_parar": "Molde da Marina: se a frase não passar no teste do vizinho, ou se no teste dos cinco segundos cada pessoa imaginar uma coisa diferente, pausa e volta ao DNA do destino antes de chamar o arquiteto.",
+    "fonte": "E-book Aula 4, caps. 4 a 7; auditoria-aula-4-produto.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 4 da Trilha 1 da Mentoria Zion (Produto), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 3 · Conceito de Produto\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Produto é tudo o que a pessoa vive, das 72 horas antes da chegada às 72 horas depois. A unidade é só uma parte. Só a experiência sustenta diária no topo da faixa.\n- Triângulo do Posicionamento: Quem (o público, com o motivo da viagem), O quê (o que a pessoa vive), Por quê (por que só aqui, com evidência do território). Fora dele, quem fica de fora: quem quebra a promessa feita a quem entra. Um público principal e um secundário; três é demais. \"Desenhar para\" não é proibir: regra de aceitação de hóspede se confirma com advogado.\n- Momento assinatura: quatro requisitos, falhou em um, sai da lista: só existe aqui; acontece sem você presente; cabe numa frase; é fotografável. Um só, e bem feito. O que depende de clima precisa de uma versão de todo dia.\n- Mês fraco pede produto, não desconto: o produto da semana tem público e preço próprios e é vendido como estadia, nunca como diária de tabela mais baixa.\n- A frase em três partes: o que se vive (concreto, com verbo, sem adjetivo); para quem (com o motivo da viagem); por que só aqui (uma evidência do território). Lista negra: único, incrível, exclusivo, inesquecível, encantador, premium. Se a frase couber no concorrente, ela não é sua.\n- Regra das três provas: se não houver três, a promessa é maior que o produto; reduza a promessa ou aumente o produto. Promessa sem prova é publicidade.\n- Dois testes que não custam nada: teste dos cinco segundos (uma foto do lugar a quem nunca esteve lá: cada pessoa imaginou uma coisa diferente, a comunicação ainda é genérica); a frase cabe no vizinho? (troque o seu nome pelo dos três concorrentes mais próximos: se continuar verdadeira para algum, reescreva o por que só aqui).\n- Tipologia se escolhe cortando, nesta ordem: terreno, capital, público. Os três juntos costumam deixar duas opções; se sobrou mais de três, algum filtro foi frouxo. Teste de trocar a estrutura na frase: se a frase morre, o diferencial é a estrutura, e estrutura qualquer um compra.\n- Tamanho pelo uso (Jornada do COMO, Etapa 03): suíte de casal 22 a 30 m² mais deck; cabana de casal com sala 32 a 45 m²; familiar de dois quartos 60 a 85 m²; deck ou varanda 10 a 20 m². Metro quadrado a mais não vira diária a mais.\n- Mix: com quatro unidades ou menos, costuma ser melhor tudo igual e atender o segundo público com produto e preço; acima disso, ponto de partida de dois terços para o principal e um terço para o de meio de semana.\n- Itens: os que movem a diária (escolher dentro do orçamento), os esperados (nunca cortar: chuveiro com pressão, isolamento acústico, água quente, aquecimento, cama boa, blackout, internet) e os que ninguém nota (onde está a economia). Restaurante é outro negócio.\n- Preço é consequência do produto e, nesta fase, hipótese (nota 1 na escala de evidência) até o anúncio e a reserva responderem. Mire a metade de cima da faixa, não o topo absoluto sem as provas de quem está lá. O produto é a condição para pagar o terreno, não a garantia: a conta vem nas Aulas 8 e 9.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". O critério da fonte manda pausar quando a frase falha no teste do vizinho ou no dos cinco segundos. Mesmo com avancar, diga que o preço continua em teste (nota 1) e que pagar o terreno é conta das Aulas 8 e 9.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se a minha frase continuar verdadeira para algum dos três vizinhos, ou se no teste dos cinco segundos cada pessoa imaginar uma coisa diferente, eu pauso e volto ao DNA do destino antes de chamar o arquiteto.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nEscrever dez versões da frase em três partes em 30 minutos, ficar com uma e passar no teste do vizinho. Responsável: o aluno, não o arquiteto. Prazo: 7 dias, antes da Aula 5. Evidência: a frase escolhida, com as dez versões e os três vizinhos testados, por escrito. Se já passou, troque por: às sete da manhã, fotografar de onde a cama vai ficar e fazer o teste dos cinco segundos com cinco pessoas.\n\nONDE A ZION ENTRA (só se couber, uma frase, sem promessa):\nSó se a tipologia for a estrutura modular transparente: diga \"fale com a Zion; a Zion avalia cada caso\". Não cite condição, preço nem desconto. Se a tipologia for outra, diga que o método é o mesmo.\n\nAo comentar a frase, aponte qual das três partes falhou (o que se vive, para quem, por que só aqui). Quase sempre é o por que só aqui. Não reescreva a frase do aluno por ele: dê no máximo uma pergunta que ajude a reescrever.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 3 · Conceito de Produto",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-4-produto.md",
+    "/home/claude/mz-trilha/ebook-04-produto.txt"
+  ],
+  "pendente_bruno": [
+    "Hipótese de preço da Marina R$ 716 segue pendente (auditoria Aula 4, item 4.1); a página só calcula a distância da hipótese do aluno para a região.",
+    "Ponte com a Zion Glamping Store: a condição de aluno não está confirmada (auditoria item 4.3); o prompt usa só \"fale com a Zion; a Zion avalia\".",
+    "Definição do teste dos cinco segundos (auditoria item 4.4) e veredito \"avança, com o preço em teste\" (item 18)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

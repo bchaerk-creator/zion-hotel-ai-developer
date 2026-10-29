@@ -1,0 +1,262 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aula Zion</title>
+<!--
+  Template das aulas no estilo do Reel de referência, em 16:9 (área de membros) ou 9:16 (teaser).
+  render.py abre templates/aula.html?lesson=<id>&formato=16x9|9x16 e chama window.render(t, frame).
+  Modos de cena (timeline.cenas): apresentador (tela cheia, selo de título, zoom), painel (tela dividida),
+  cheia (ilustração ocupa tudo, legenda vira pílula escura). Transição de 0,5 s entre modos.
+-->
+<style>
+@font-face{font-family:Aventa;src:url(../assets/fonts/aventa.woff2) format('woff2');font-weight:100 900}
+:root{--black:#040605;--moss:#1B2117;--cream:#FEF5F0;--sand:#DED6BF;--earth:#8B714E;--gold:#C9A96E;--painel:#F4EEE6}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow:hidden;background:var(--black);font-family:Aventa,sans-serif}
+#palco{position:relative;overflow:hidden;background:var(--moss)}
+.abs{position:absolute}
+#ambiente{inset:0;background-size:cover;background-position:center}
+#veu{inset:0;background:linear-gradient(to bottom,rgba(4,6,5,.35),rgba(4,6,5,.55) 60%,rgba(4,6,5,.85))}
+#bruno{transform-origin:50% 0;-webkit-mask-image:linear-gradient(to right,transparent 0,#000 5%,#000 95%,transparent 100%),linear-gradient(to bottom,#000 82%,transparent 100%);-webkit-mask-composite:source-in;mask-composite:intersect}
+#painel{overflow:hidden;background:var(--painel);box-shadow:0 30px 80px rgba(0,0,0,.45)}
+#cena{position:absolute;left:0;top:0}
+#etiquetas{inset:0}
+.etq{position:absolute;display:flex;align-items:center;gap:12px;font-weight:700;color:var(--moss);white-space:nowrap}
+.etq i{display:block;width:12px;height:12px;border-radius:50%;background:var(--gold)}
+.etq small{font-weight:600;color:var(--earth)}
+#linhas{position:absolute;inset:0;overflow:visible}
+#centro{position:absolute;text-align:center;color:var(--moss);font-weight:900;line-height:1}
+#centro small{display:block;font-weight:700;letter-spacing:4px;color:var(--earth);text-transform:uppercase}
+#progresso{display:flex;align-items:center;gap:20px}
+#progresso b{font-weight:700;letter-spacing:5px;text-transform:uppercase}
+#segs{display:flex;gap:8px}#segs i{display:block;height:6px;border-radius:3px;background:rgba(222,214,191,.3)}
+#segs i.feito{background:var(--sand)}#segs i.agora{background:var(--gold)}
+#selo{background:#fff;border-radius:28px;text-align:center;box-shadow:0 20px 50px rgba(0,0,0,.35);color:var(--moss)}
+#selo small{display:block;font-weight:700;letter-spacing:5px;color:var(--earth);text-transform:uppercase}
+#selo b{display:block;font-weight:800;line-height:1.1}
+#credito{border-left:5px solid var(--gold);background:rgba(4,6,5,.72);color:var(--cream)}
+#credito b{display:block;font-weight:900}#credito span{font-weight:700;color:var(--sand)}
+#legenda{text-align:center;font-weight:700;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.85),0 2px 4px rgba(0,0,0,.9)}
+#legenda span{display:inline-block;padding:.12em .55em;border-radius:999px}
+#legenda.pilula span{background:rgba(4,6,5,.88);text-shadow:none}
+.chip{position:absolute;display:flex;align-items:center;gap:14px;border-radius:999px;background:#fff;color:var(--moss);font-weight:700;box-shadow:0 12px 30px rgba(0,0,0,.25);white-space:nowrap}
+.chip::before{content:"";width:14px;height:14px;border-radius:50%;background:var(--gold)}
+</style>
+<script type="importmap">{"imports":{"three":"../node_modules/three/build/three.module.js"}}</script>
+</head>
+<body>
+<div id="palco">
+  <div id="ambiente" class="abs"></div><div id="veu" class="abs"></div>
+  <img id="bruno" class="abs" alt="">
+  <div id="painel" class="abs"><canvas id="cena"></canvas><svg id="linhas"></svg><div id="etiquetas" class="abs"></div><div id="centro"></div></div>
+  <div id="progresso" class="abs"><b></b><div id="segs"></div></div>
+  <img id="marca" class="abs" alt="">
+  <div id="selo" class="abs"></div>
+  <div id="credito" class="abs"></div>
+  <div id="chips" class="abs"></div>
+  <div id="legenda" class="abs"><span></span></div>
+</div>
+<script type="module">
+import * as THREE from 'three';
+const q = new URLSearchParams(location.search);
+const base = `../lessons/${q.get('lesson')}/`;
+const VERT = q.get('formato') === '9x16';
+const W = VERT ? 1080 : 1920, H = VERT ? 1920 : 1080;
+const TL = await (await fetch(base + 'timeline.json')).json();
+const ANC = await (await fetch(base + 'anchors.json')).json();
+const $ = id => document.getElementById(id);
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const pop = (t, t0) => { const x = Math.max(0, t - t0); return x === 0 ? 0 : 1 - Math.exp(-7 * x) * Math.cos(9 * x); };
+const lerp = (a, b, k) => a + (b - a) * k;
+window.SFX = [];
+const som = (tipo, t0) => { if (!SFX.some(s => s.tipo === tipo && Math.abs(s.t - t0) < 1e-3)) SFX.push({ tipo, t: t0 }); };
+
+// ---------- layout por formato: posição do painel e do apresentador em cada modo ----------
+const L = VERT ? {
+  apresentador: { painel: [40, 2000, 1000, 820, 28], bruno: { x: 540, topo: 330, alt: 1750 }, bOp: 1 },
+  painel:       { painel: [40, 170, 1000, 860, 28], bruno: { x: 540, topo: 1080, alt: 1150 }, bOp: 1 },
+  cheia:        { painel: [0, 0, 1080, 1920, 0],   bruno: { x: 540, topo: 1080, alt: 1150 }, bOp: 0 },
+  legenda: { apresentador: 1500, painel: 1660, cheia: 1640, tam: 64, larg: 960 },
+  progresso: [48, 70, 22, 34], marca: [W - 230, 52, 170], selo: [90, 150, 900, 30, 56], credito: [60, 1420, 34, 22], chip: 30,
+} : {
+  apresentador: { painel: [80, 1180, 760, 760, 28], bruno: { x: 960, topo: 150, alt: 1420 }, bOp: 1 },
+  painel:       { painel: [80, 150, 760, 760, 28],  bruno: { x: 1390, topo: 170, alt: 1180 }, bOp: 1 },
+  cheia:        { painel: [0, 0, 1920, 1080, 0],    bruno: { x: 1390, topo: 170, alt: 1180 }, bOp: 0 },
+  legenda: { apresentador: 920, painel: 930, cheia: 950, tam: 66, larg: 1500 },
+  progresso: [80, 56, 22, 44], marca: [W - 262, 46, 190], selo: [560, 120, 800, 26, 52], credito: [1010, 740, 38, 24], chip: 30,
+};
+const P = $('palco'); P.style.width = W + 'px'; P.style.height = H + 'px';
+document.body.style.width = W + 'px'; document.body.style.height = H + 'px';
+$('ambiente').style.backgroundImage = `url(${TL.ambiente || '../assets/ambientes/serra.webp'})`;
+
+// progresso da trilha, crédito e selo de título
+const [px, py, pt, pseg] = L.progresso;
+Object.assign($('progresso').style, { left: px + 'px', top: py + 'px' });
+$('progresso').querySelector('b').style.fontSize = pt + 'px';
+$('progresso').querySelector('b').textContent = `Pilar ${TL.pilar} · Aula ${TL.aula} de ${TL.total_aulas}`;
+for (let i = 1; i <= TL.total_aulas; i++) {
+  const s = document.createElement('i'); s.style.width = pseg + 'px';
+  s.className = i < +TL.aula ? 'feito' : i === +TL.aula ? 'agora' : ''; $('segs').appendChild(s);
+}
+const [mx, my, mw] = L.marca; Object.assign($('marca').style, { left: mx + 'px', top: my + 'px', width: mw + 'px' });
+const [sx, sy, sw, sk, st] = L.selo;
+Object.assign($('selo').style, { left: sx + 'px', top: sy + 'px', width: sw + 'px', padding: `${st * .5}px ${st * .7}px` });
+$('selo').innerHTML = `<small style="font-size:${sk * .8}px;margin-bottom:12px">${TL.selo.kicker}</small><b style="font-size:${st}px">${TL.selo.titulo}</b>`;
+const [cx, cy, cb, cs] = L.credito;
+Object.assign($('credito').style, { left: cx + 'px', top: cy + 'px', padding: `${cs}px ${cs * 1.4}px` });
+$('credito').innerHTML = `<b style="font-size:${cb}px">Bruno Chaerk</b><span style="font-size:${cs}px">Fundador &amp; CEO · Zion Hotel Group · @brunochaerkofc</span>`;
+const lg = $('legenda'); lg.style.left = (W - L.legenda.larg) / 2 + 'px'; lg.style.width = L.legenda.larg + 'px'; lg.style.fontSize = L.legenda.tam + 'px';
+
+// ---------- cenas 3D ----------
+const r3 = new THREE.WebGLRenderer({ canvas: $('cena'), antialias: true, preserveDrawingBuffer: true });
+r3.setClearColor(0xF4EEE6, 1);
+const cena = new THREE.Scene();
+const cam = new THREE.PerspectiveCamera(32, 1, 0.1, 100);
+cena.add(new THREE.HemisphereLight(0xFEF5F0, 0x8B714E, 1.1));
+const sol = new THREE.DirectionalLight(0xffffff, 1.4); sol.position.set(4, 6, 3); cena.add(sol);
+const mat = c => new THREE.MeshStandardMaterial({ color: c, roughness: .8 });
+
+const bolha = new THREE.Group(); cena.add(bolha);
+{
+  const chao = new THREE.Mesh(new THREE.CylinderGeometry(3.2, 3.2, .18, 64), mat(0xDED6BF)); chao.position.y = -.09; bolha.add(chao);
+  const deck = new THREE.Mesh(new THREE.CylinderGeometry(1.25, 1.25, .12, 48), mat(0x8B714E)); deck.position.y = .06; bolha.add(deck);
+  const d = new THREE.Mesh(new THREE.SphereGeometry(1.05, 64, 32, 0, Math.PI * 2, 0, Math.PI / 2),
+    new THREE.MeshPhysicalMaterial({ color: 0xffffff, transparent: true, opacity: .5, roughness: .05 }));
+  d.position.y = .12; bolha.add(d);
+  const aro = new THREE.Mesh(new THREE.TorusGeometry(1.05, .025, 12, 96), mat(0xC9A96E)); aro.rotation.x = Math.PI / 2; aro.position.y = .13; bolha.add(aro);
+  const cama = new THREE.Mesh(new THREE.BoxGeometry(.9, .22, .6), mat(0xFEF5F0)); cama.position.set(0, .24, -.1); bolha.add(cama);
+  [[-2.2, -.6], [-1.9, .9], [2.1, -1], [2.4, .5], [-.4, -2.3]].forEach(([x, z], i) => {
+    const a = new THREE.Mesh(new THREE.ConeGeometry(.3, 1 + (i % 2) * .35, 18), mat(0x1B2117)); a.position.set(x, .5 + (i % 2) * .17, z); bolha.add(a);
+  });
+  const m = new THREE.Mesh(new THREE.ConeGeometry(1.3, 1.8, 5), mat(0x8B714E)); m.position.set(-1.6, .8, -2.4); bolha.add(m);
+}
+
+// medidor do Zion Score: 7 segmentos (uma dimensão cada, de 0 a 10), escala de 0 a 70
+const DIM = ['Clareza', 'Mercado', 'Produto', 'Marca', 'Distribuição', 'Operação', 'Demanda'];
+const score = new THREE.Group(); cena.add(score);
+const ARCO = Math.PI * 1.25, INI = Math.PI * .5 + ARCO / 2;  // arco de 225 graus, aberto embaixo
+const segs = DIM.map((_, i) => {
+  const passo = ARCO / 7, g = new THREE.TorusGeometry(2, .32, 20, 48, passo * .9);
+  const s = new THREE.Mesh(g, new THREE.MeshStandardMaterial({ color: 0xDED6BF, roughness: .5, metalness: .1 }));
+  s.rotation.z = INI - passo * (i + 1) + passo * .05; score.add(s); return s;
+});
+
+function cena3D(t, k, w, h, cheia) {
+  if (Math.round(w) !== r3.domElement.width || Math.round(h) !== r3.domElement.height) r3.setSize(Math.round(w), Math.round(h), false);
+  $('cena').style.width = w + 'px'; $('cena').style.height = h + 'px';
+  cam.aspect = w / h; cam.updateProjectionMatrix();
+  bolha.visible = k === 'bolha'; score.visible = k === 'score';
+  if (k === 'bolha') {
+    const giro = .5 + t * .12, z = 9.6; cam.fov = 32;
+    cam.position.set(Math.sin(giro) * z, 4.2, Math.cos(giro) * z); cam.lookAt(0, .2, 0);
+  } else {
+    cam.fov = 30; cam.position.set(0, 0, VERT ? 19 : (cheia ? 15 : 13)); cam.lookAt(0, 0, 0);
+    score.position.x = 0; score.position.y = VERT && cheia ? 3.4 : (cheia ? -.35 : 0);
+    score.rotation.y = Math.sin(t * .6) * .15;
+    segs.forEach((s, i) => {
+      const on = clamp(pop(t, cenaAtual.a + .4 + i * .22), 0, 1.15);
+      s.material.color.setHex(on > .5 ? 0xC9A96E : 0xDED6BF); s.scale.setScalar(.85 + .15 * on);
+    });
+  }
+  cam.updateProjectionMatrix();
+  r3.setScissorTest(false); r3.clear(); r3.render(cena, cam);
+}
+// ponto do medidor (coordenadas locais) projetado para pixels do painel
+function tela(x, y, w, h) {
+  score.updateMatrixWorld();
+  const v = new THREE.Vector3(x, y, 0).applyMatrix4(score.matrixWorld).project(cam);
+  return [(v.x + 1) / 2 * w, (1 - v.y) / 2 * h];
+}
+
+// etiquetas ligadas por linhas no medidor (só no modo cheia)
+function etiquetasScore(t, w, h, vis) {
+  const box = $('etiquetas'), svg = $('linhas'); box.innerHTML = ''; svg.innerHTML = '';
+  const c = $('centro'); c.style.display = vis ? 'block' : 'none';
+  if (!vis) return;
+  const tam = VERT ? 34 : 30;
+  const [cxp, cyp] = tela(0, 0, w, h);
+  c.style.left = (cxp - 200) + 'px'; c.style.width = '400px'; c.style.top = (cyp - 60) + 'px';
+  c.innerHTML = `<small style="font-size:${tam * .7}px;margin-bottom:10px">Zion Score™</small><span style="font-size:${tam * 3.2}px">0 a 70</span>`;
+  c.style.opacity = ease(prog(t, cenaAtual.a + .2, cenaAtual.a + .6));
+  DIM.forEach((d, i) => {
+    const t0 = cenaAtual.a + .5 + i * .22, a = clamp((t - t0) / .3); if (a <= 0) return;
+    const e = document.createElement('div'); e.className = 'etq'; e.style.fontSize = tam + 'px'; e.style.opacity = a;
+    e.innerHTML = `<i></i>${String(i + 1).padStart(2, '0')} ${d} <small>· 0 a 10</small>`;
+    if (VERT) {  // no vertical, lista em duas colunas abaixo do medidor
+      Object.assign(e.style, { left: 120 + (i % 2) * 450 + 'px', top: h * .58 + Math.floor(i / 2) * 90 + 'px', transform: `translateX(${(1 - a) * 30}px)` });
+    } else {     // no horizontal, cada etiqueta fica ao lado do seu segmento, ligada por uma linha
+      const ang = INI - (ARCO / 7) * (i + .5);
+      const [ax, ay] = tela(Math.cos(ang) * 2.45, Math.sin(ang) * 2.45, w, h);
+      const [lx, ly] = tela(Math.cos(ang) * 3.35, Math.sin(ang) * 3.35, w, h);
+      const esquerda = lx < cxp - 20;
+      if (esquerda) e.innerHTML = `${String(i + 1).padStart(2, '0')} ${d} <small>· 0 a 10</small><i></i>`;
+      Object.assign(e.style, { left: (esquerda ? lx - 14 : lx + 14) + 'px', top: ly - tam * .6 + 'px',
+        transform: `translateX(${esquerda ? '-100%' : '0'})` });
+      const k = a * a;
+      svg.insertAdjacentHTML('beforeend', `<line x1="${ax}" y1="${ay}" x2="${ax + (lx - ax) * k}" y2="${ay + (ly - ay) * k}" stroke="#8B714E" stroke-width="2.5" opacity=".8"/>`);
+    }
+    box.appendChild(e);
+  });
+}
+
+// ---------- modos e transições ----------
+let cenaAtual = TL.cenas[0];
+function estado(t) {
+  const i = Math.max(0, TL.cenas.findIndex(c => t >= c.a && t < c.b));
+  const c = TL.cenas[i], ant = TL.cenas[i - 1] || c; cenaAtual = c;
+  const k = ease(prog(t, c.a, c.a + .5));
+  const de = L[ant.m], para = L[c.m];
+  const pnl = de.painel.map((v, j) => lerp(v, para.painel[j], k));
+  const br = { x: lerp(de.bruno.x, para.bruno.x, k), topo: lerp(de.bruno.topo, para.bruno.topo, k),
+    alt: lerp(de.bruno.alt * (ant.zoom || 1), para.bruno.alt * (c.zoom || 1), k), op: lerp(de.bOp, para.bOp, k) };
+  return { c, k, pnl, br, cheia: c.m === 'cheia' && k > .5 };
+}
+
+function apresentador(frame, br) {
+  const a = ANC[Math.min(frame, ANC.length - 1)], el = $('bruno');
+  const src = `${base}fg/${String(a.f).padStart(5, '0')}.webp`;
+  if (el.getAttribute('src') !== src) el.setAttribute('src', src);
+  const e = br.alt / a.h;
+  Object.assign(el.style, { width: a.w * e + 'px', left: (br.x - a.cx * e) + 'px', top: (br.topo - a.top * e) + 'px', opacity: br.op });
+}
+
+window.render = (t, frame) => {
+  const s = estado(t);
+  apresentador(frame, s.br);
+  const [x, y, w, h, r] = s.pnl;
+  Object.assign($('painel').style, { left: x + 'px', top: y + 'px', width: w + 'px', height: h + 'px', borderRadius: r + 'px' });
+  cena3D(t, s.c.k, w, h, s.c.m === 'cheia');
+  etiquetasScore(t, w, h, s.c.k === 'score' && s.c.m === 'cheia');
+  // marca e progresso trocam de cor sobre o painel claro em tela cheia
+  $('marca').src = s.cheia ? '../assets/logos/logo_green.png' : '../assets/logos/logo_cream.png';
+  $('progresso').querySelector('b').style.color = s.cheia ? '#1B2117' : '#DED6BF';
+  // selo de título no começo, crédito logo depois
+  $('selo').style.opacity = ease(prog(t, .2, .6)) * (1 - prog(t, TL.selo.ate - .4, TL.selo.ate));
+  $('selo').style.transform = `translateY(${(1 - ease(prog(t, .2, .6))) * -30}px)`;
+  const cr = prog(t, TL.credito.de, TL.credito.de + .4) * (1 - prog(t, TL.credito.ate - .4, TL.credito.ate));
+  $('credito').style.opacity = cr;
+  // legenda: até 4 palavras, entra com leve escala; pílula escura em tela cheia
+  const cap = TL.caps.find(c => t >= c.a && t < c.b);
+  lg.querySelector('span').textContent = cap ? cap.txt : '';
+  lg.classList.toggle('pilula', s.cheia);
+  lg.style.top = L.legenda[s.c.m] + 'px';
+  lg.style.transform = cap ? `scale(${.92 + .08 * ease(prog(t, cap.a, cap.a + .18))})` : '';
+  // chips
+  const box = $('chips'); box.innerHTML = '';
+  for (const ch of TL.chips) {
+    if (t < ch.a || t > ch.b) continue; som('pop', ch.a);
+    const el = document.createElement('div'); el.className = 'chip'; el.textContent = ch.txt;
+    const sc = clamp(pop(t, ch.a), 0, 1.2), sai = 1 - prog(t, ch.b - .25, ch.b), pos = VERT ? ch.v : ch.h;
+    Object.assign(el.style, { left: pos[0] + 'px', top: pos[1] + 'px', fontSize: L.chip + 'px', padding: '16px 28px',
+      opacity: Math.min(1, sc * 3) * sai, transform: `scale(${.6 + .4 * sc})` });
+    box.appendChild(el);
+  }
+  return $('bruno').decode().catch(() => {});
+};
+window.pronto = document.fonts.ready;
+</script>
+</body>
+</html>

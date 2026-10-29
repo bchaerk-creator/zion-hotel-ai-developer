@@ -1,0 +1,41 @@
+@font-face { font-family: 'Playfair Display'; font-weight: 400; src: url(assets/fonts/playfair-display-latin-400-normal.woff2); }
+@font-face { font-family: 'Playfair Display'; font-weight: 400; font-style: italic; src: url(assets/fonts/playfair-display-latin-400-italic.woff2); }
+@font-face { font-family: 'Playfair Display'; font-weight: 600; src: url(assets/fonts/playfair-display-latin-600-normal.woff2); }
+@font-face { font-family: 'Playfair Display'; font-weight: 600; font-style: italic; src: url(assets/fonts/playfair-display-latin-600-italic.woff2); }
+@font-face { font-family: Inter; font-weight: 400; src: url(assets/fonts/inter-latin-400-normal.woff2); }
+@font-face { font-family: Inter; font-weight: 500; src: url(assets/fonts/inter-latin-500-normal.woff2); }
+@font-face { font-family: Inter; font-weight: 600; src: url(assets/fonts/inter-latin-600-normal.woff2); }
+
+:root { --verde: #16261C; --creme: #F5F1E8; --ouro: #E0BE5E; --bronze: #8A6D2F; --texto: #4A4F45; --linha: #D9CFBC; }
+html, body { margin: 0; background: #000; }
+#cena { position: relative; width: 1920px; height: 1080px; overflow: hidden; background: var(--verde);
+        font-family: Inter, sans-serif; color: var(--creme); }
+#cena > * { position: absolute; }
+em { font-style: italic; }
+
+.fundo { inset: 0; }
+.fundo.verde { background: var(--verde); }
+.fundo.creme { background: var(--creme); }
+
+.foto { inset: 0; overflow: hidden; }
+.foto img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; transform-origin: 50% 50%; }
+.degrade { position: absolute; inset: 0; }
+.degrade.esq { background: linear-gradient(90deg, rgba(22,38,28,.92) 0%, rgba(22,38,28,.72) 38%, rgba(22,38,28,0) 72%); }
+.degrade.dir { background: linear-gradient(270deg, rgba(22,38,28,.92) 0%, rgba(22,38,28,.72) 38%, rgba(22,38,28,0) 72%); }
+.degrade.base { background: linear-gradient(0deg, rgba(22,38,28,.94) 0%, rgba(22,38,28,.6) 45%, rgba(22,38,28,0) 75%); }
+.degrade.todo { background: rgba(22,38,28,.62); }
+
+.titulo { font-family: 'Playfair Display', serif; font-weight: 400; font-size: 92px; line-height: 1.08; letter-spacing: -.5px; }
+.titulo em { color: var(--ouro); }
+.claro .titulo, .titulo.escuro { color: var(--verde); }
+.titulo.escuro em { color: var(--bronze); }
+.rotulo { font-family: Inter, sans-serif; font-weight: 600; font-size: 24px; letter-spacing: 5px; text-transform: uppercase; color: var(--ouro); }
+
+.card { background: rgba(245,241,232,.06); border: 1.5px solid rgba(224,190,94,.45); border-radius: 18px; padding: 30px 30px 32px; }
+.card b { display: block; font-family: 'Playfair Display', serif; font-weight: 400; font-size: 46px; color: var(--creme); }
+.card span { display: block; margin-top: 12px; font-size: 25px; line-height: 1.3; color: rgba(245,241,232,.78); }
+
+#selo { left: 120px; top: 64px; font-size: 26px; font-weight: 600; color: var(--ouro); letter-spacing: .5px; z-index: 50; }
+#barra { left: 0; bottom: 0; width: 1920px; height: 6px; background: var(--ouro); transform-origin: 0 50%; z-index: 50; }
+.relogio { left: 120px; bottom: 90px; display: flex; align-items: center; gap: 26px; z-index: 40; }
+.relogio span { font-size: 40px; font-weight: 600; color: var(--creme); text-shadow: 0 2px 18px rgba(0,0,0,.35); }
