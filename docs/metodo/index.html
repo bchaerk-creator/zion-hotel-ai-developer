@@ -285,6 +285,63 @@ details.fq p{color:var(--paper-2);margin-top:10px;max-width:760px}
   <p class="up" style="--d:2;color:var(--paper-2);max-width:720px;margin-top:22px">Quem compra o terreno barato, constrói caro e começa pela obra costuma vender a pousada a preço de banana. A questão não é quanto você gasta. É como você gasta. O Método Zion põe cada decisão na ordem certa, antes do concreto.</p>
 </div></section>
 
+<style>
+.zv-track{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:6px 0 18px;scrollbar-width:none;-webkit-overflow-scrolling:touch;margin-top:28px}
+.zv-track::-webkit-scrollbar{display:none}
+.zv-card{flex:0 0 auto;scroll-snap-align:start;width:min(76vw,290px);display:flex;flex-direction:column;gap:12px;min-width:0}
+.zv-card.h{width:min(86vw,520px)}
+.zv-media{position:relative;border-radius:16px;overflow:hidden;background:var(--panel);aspect-ratio:9/16;border:1px solid rgba(224,190,94,.35)}
+.zv-card.h .zv-media{aspect-ratio:16/9}
+.zv-media video{width:100%;height:100%;object-fit:cover;display:block}
+.zv-play{position:absolute;inset:0;display:flex;align-items:flex-end;padding:14px;gap:8px;background:linear-gradient(180deg,rgba(0,0,0,0) 45%,rgba(0,0,0,.75));border:0;cursor:pointer;color:var(--paper);font:inherit}
+.zv-ico{width:54px;height:54px;border-radius:50%;background:var(--gold);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);box-shadow:0 6px 24px rgba(0,0,0,.45)}
+.zv-ico:after{content:"";position:absolute;left:21px;top:16px;border-left:17px solid var(--ink);border-top:11px solid transparent;border-bottom:11px solid transparent}
+.zv-tag{font-size:11px;letter-spacing:.16em;text-transform:uppercase;background:rgba(14,26,19,.85);border:1px solid var(--gold);color:var(--gold);padding:5px 9px;border-radius:999px}
+.zv-dur{margin-left:auto;font-size:12px;color:var(--muted)}
+.zv-playing .zv-play{display:none}
+.zv-card h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:21px;line-height:1.2;margin:0;text-wrap:balance;color:var(--paper)}
+.zv-card p{margin:0;color:var(--muted);font-size:14px;line-height:1.45}
+.zv-cta{align-self:flex-start;background:var(--gold);color:var(--ink);font-weight:600;font-size:14px;padding:11px 16px;border-radius:999px;text-decoration:none}
+.zv-track.solo{overflow:visible}
+@media (min-width:720px){.zv-track.solo .zv-card{width:100%;max-width:860px;display:grid;grid-template-columns:300px minmax(0,1fr);column-gap:40px;row-gap:14px;grid-template-rows:1fr auto auto auto 1fr}
+.zv-track.solo .zv-media{grid-row:1/6;grid-column:1}.zv-track.solo .zv-card h3{font-size:34px;grid-row:2;grid-column:2}.zv-track.solo .zv-card p{font-size:17px;grid-row:3;grid-column:2}.zv-track.solo .zv-cta{grid-row:4;grid-column:2;justify-self:start}}
+.zv-nav{display:flex;gap:10px;justify-content:flex-end}
+.zv-nav button{width:44px;height:44px;border-radius:50%;border:1px solid var(--gold);background:transparent;color:var(--paper);font-size:20px;cursor:pointer}
+</style>
+<section class="s gut" id="videos" style="padding-top:0"><div class="wrap">
+  <p class="kicker mono up">Assista antes de começar</p>
+  <h2 class="up" style="--d:1">O Brasil tem tudo para o glamping. <em>E o seu terreno?</em></h2>
+<div class="zv-track" id="zv-track"></div>
+<div class="zv-nav"><button type="button" aria-label="Vídeo anterior" data-dir="-1">&#8249;</button><button type="button" aria-label="Próximo vídeo" data-dir="1">&#8250;</button></div>
+</div></section>
+<script>
+(function(){
+var U='https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/';
+var V=[
+ {a:'03-brasil-maior-polo-de-glamping.mp4',c:'03-brasil-maior-polo-de-glamping.jpg',h:0,t:'Glamping',g:'O Brasil pode ser o maior polo de glamping do mundo',s:'Onde uma construção tradicional não chega, o glamping chega.',d:'0:46',b:'Ver como começar no seu terreno',l:'#oferta'}
+];
+var tr=document.getElementById('zv-track');
+V.forEach(function(v){
+ var c=document.createElement('article');c.className='zv-card'+(v.h?' h':'');
+ var m=document.createElement('div');m.className='zv-media';
+ var vid=document.createElement('video');vid.playsInline=true;vid.preload='metadata';vid.poster=U+'capas/'+v.c;vid.src=U+'videos/'+v.a;
+ var b=document.createElement('button');b.type='button';b.className='zv-play';b.setAttribute('aria-label','Assistir: '+v.g);
+ b.innerHTML='<span class="zv-ico"></span><span class="zv-tag"></span><span class="zv-dur"></span>';
+ b.querySelector('.zv-tag').textContent=v.t;b.querySelector('.zv-dur').textContent=v.d;
+ m.appendChild(vid);m.appendChild(b);
+ var h=document.createElement('h3');h.textContent=v.g;var p=document.createElement('p');p.textContent=v.s;
+ var a=document.createElement('a');a.className='zv-cta';a.href=v.l;a.textContent=v.b+' \u2192';
+ c.appendChild(m);c.appendChild(h);c.appendChild(p);c.appendChild(a);
+ b.addEventListener('click',function(){
+  tr.querySelectorAll('video').forEach(function(o){if(o!==vid){o.pause();o.controls=false;o.closest('.zv-card').classList.remove('zv-playing');}});
+  c.classList.add('zv-playing');vid.controls=true;vid.play();
+ });
+ tr.appendChild(c);
+});
+if(V.length<2){var nv=document.querySelector('.zv-nav');if(nv)nv.style.display='none';tr.classList.add('solo');}
+document.querySelectorAll('.zv-nav button').forEach(function(x){x.addEventListener('click',function(){tr.scrollBy({left:(+x.dataset.dir)*Math.min(tr.clientWidth*.8,540),behavior:'smooth'});});});
+})();
+</script>
 <section class="s gut" style="padding-top:0"><div class="wrap">
   <div class="head2"><div><p class="kicker mono up"><b>02</b> Onde você está</p><h2 class="up" style="--d:1">Cada pessoa chega por uma dor. <em>O método tem uma porta para cada uma.</em></h2></div>
   <p class="up" style="--d:2">Escolha a frase que mais parece com você. Ela mostra por onde começar.</p></div>
