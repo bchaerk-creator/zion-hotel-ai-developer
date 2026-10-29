@@ -1,0 +1,677 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Pilar 6 · Pré-viabilidade · Aula ao vivo</title>
+<link rel="stylesheet" href="../_motor/deck.css">
+<style>
+.escada{width:100%;height:330px}
+.escada text{font:600 20px Inter,Arial,sans-serif;fill:#D9D3C4}
+.cen{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.cen>div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:24px 26px;display:flex;flex-direction:column;gap:8px}
+.cen h4{margin:0;font-size:20px;letter-spacing:3px;text-transform:uppercase;color:var(--ouro)}
+.cen .v{font-family:var(--serif);font-size:52px;line-height:1.1}
+.cen .l{font-size:22px;color:#BFB8A8}
+.dez{display:flex;height:90px;border-radius:14px;overflow:hidden;font-size:30px;font-weight:700;max-width:1500px}
+.dez .c{background:#8B9188;color:#fff;display:flex;align-items:center;justify-content:center}
+.dez .r{background:var(--ouro);color:var(--verde);display:flex;align-items:center;justify-content:center}
+.painel-sim .ctl{gap:14px}
+.painel-sim label{font-size:22px}
+.painel-sim label output{font-size:24px}
+.painel-sim input[type=range]{height:30px}
+.painel-sim .res{padding:26px 30px;gap:10px}
+.painel-sim .linha{font-size:24px;padding-bottom:8px}
+.painel-sim .linha.tot{font-size:30px}
+</style>
+<script>
+/* Simulador do Pilar 6: a conta da Marina (exemplo ilustrativo), na base simplificada da Zion.
+   Conferida com pilar6/contas_pilar6.py: total R$ 690.529,18; resultado conservador R$ 108.766,35; 6,35 anos. */
+window.ZD = {logoClaro:'../../../brand/zion-logo-claro.png', logoEscuro:'../../../brand/zion-logo-escuro.png', sims:{}, desenha:{}};
+function leitura(a){
+  if (!isFinite(a)) return ['er','A operação não deixa resultado: <b>a conta não fecha</b>. Volte às premissas.'];
+  if (a <= 5) return ['ok','<b>Até 5 anos:</b> muito bom, e raro em construção do zero.'];
+  if (a <= 8) return ['ok','<b>De 5 a 8 anos:</b> bom, típico de projeto bem feito com imóvel próprio.'];
+  if (a <= 12) return ['at','<b>De 8 a 12 anos:</b> aceitável quando há valorização relevante do imóvel.'];
+  return ['er','<b>Acima de 12 anos:</b> só com uma razão escrita: patrimônio, uso da família ou projeto de vida.'];
+}
+ZD.sims.p6 = function(v){
+  const uni = v.un * v.pronta, res = uni * v.res / 100, noites = v.un * 365, m = v.margem / 100;
+  const rec = o => noites * o / 100 * v.diaria;
+  const receita = rec(v.ocup), resultado = receita * m, custo = receita - resultado, giro = custo * v.giro / 12;
+  const total = uni + v.lic + res + giro;
+  const volta = resultado > 0 ? total / resultado : Infinity;
+  const voltaT = resultado > 0 ? (total + v.terreno) / resultado : Infinity;
+  const r2 = rec(v.oc2) * m, r3 = rec(v.oc3) * m;
+  const inv8 = 8 * resultado;
+  const rec8 = total / 8 / (m || 1e-9);
+  const pos = a => isFinite(a) ? Math.min(a, 16) / 16 * 100 : 100;
+  return {uni, res, giro, lic: v.lic, total, porUn: total / v.un, receita, resultado, mes: resultado / 12, custo,
+    volta, voltaT, pesoT: v.terreno / (v.terreno + total) * 100,
+    rec2: rec(v.oc2), rec3: rec(v.oc3), res2: r2, res3: r3, volta2: r2 > 0 ? total / r2 : Infinity, volta3: r3 > 0 ? total / r3 : Infinity,
+    inv8, folga: inv8 - total, diaria8: rec8 / (noites * v.ocup / 100), ocup8: rec8 / (noites * v.diaria) * 100,
+    pctRes: m * 100, pctCusto: 100 - m * 100,
+    ponteiro: pos(volta), ponteiroT: pos(voltaT),
+    _aviso: leitura(volta), avisoT: leitura(voltaT)};
+};
+ZD.desenha.p6 = function(sim, r){
+  const svg = sim.querySelector('svg.escada'); if (!svg) return;
+  const W = 1500, H = 330, base = 165, anos = 12, larg = W / (anos + 1);
+  const esc = Math.max(r.total, 1) / 140;
+  let acc = -r.total, h = '<line x1="0" y1="'+base+'" x2="'+W+'" y2="'+base+'" stroke="#C9A84C" stroke-width="2"/>';
+  for (let a = 0; a <= anos; a++){
+    if (a > 0) acc += r.resultado;
+    const y = acc < 0 ? base : base - Math.min(140, acc / esc), hh = Math.min(140, Math.abs(acc) / esc);
+    const cor = acc < 0 ? '#B5452F' : '#3E8E5A';
+    h += '<rect x="'+(a*larg+8)+'" y="'+y+'" width="'+(larg-16)+'" height="'+Math.max(2,hh)+'" rx="6" fill="'+cor+'"/>';
+    h += '<text x="'+(a*larg+larg/2)+'" y="'+(H-2)+'" text-anchor="middle">'+(a===0?'ano 0':a)+'</text>';
+  }
+  svg.setAttribute('viewBox','0 0 '+W+' '+H); svg.innerHTML = h;
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body data-deck="t1-pilar6" data-titulo="Pilar 6 · Pré-viabilidade">
+<div class="zd-vp"><div class="zd-stage">
+
+<!-- 1 · CAPA -->
+<section class="s foto sem-topo" data-bg="../fotos/ebbde60bb9.jpg" data-bloco="Abertura">
+  <img src="../../../brand/zion-logo-claro.png" alt="Zion" style="height:64px;align-self:flex-start">
+  <p class="k">Método Zion · Etapa 4 · Fechar a conta</p>
+  <h1>Pilar 6<br><i>Pré-viabilidade</i></h1>
+  <p class="lead" style="max-width:1000px">A primeira conta inteira, feita antes de gastar.</p>
+  <aside><b>Abertura · 1 min.</b> Boas-vindas. "Hoje a gente faz as duas perguntas que todo mundo quer fazer primeiro: quanto custa, e se a conta fecha." Peça papel, caneta e calculadora. Avise que a aula tem simulador ao vivo: os números vão mexer na tela.</aside>
+</section>
+
+<!-- 2 · MAPA -->
+<section class="s" data-bloco="Mapa da aula">
+  <p class="k">Esta aula em três respostas</p>
+  <h2>O que, por quê e <i>o que você leva</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>O que</h3><p>Quanto custa abrir a porta, quanto sobra, os três cenários e o tempo de volta do dinheiro.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Por quê</h3><p>Descobrir numa tarde, e não numa obra, é o melhor momento para descobrir.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Resultado</h3><p>A página 6 do seu Dossiê: a conta inteira, com origem e com veredito.</p></div>
+  </div>
+  <aside><b>2 min.</b> Clique três vezes. "Pré-viabilidade é uma primeira conta inteira, feita antes de gastar, para saber se vale a pena seguir." Bloco 1: quanto custa. Bloco 2: a conta, os cenários e o tempo de volta. No fim, o Faça agora.</aside>
+</section>
+
+<!-- 3 · REVISITE -->
+<section class="s" data-bloco="Revisite">
+  <p class="k">Revisite · sem voltar às páginas</p>
+  <h2>Três perguntas dos <i>Pilares 4 e 5</i></h2>
+  <div class="grid g3" style="min-height:340px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Qual é a receita bruta da Marina no cenário que ela mediu?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Cerca de R$ 272 mil no ano.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Receita bruta é lucro?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Não. Ainda saem impostos, comissões e os custos da operação.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O que entra na coluna "Entra" do escopo congelado?</h3><span class="dica">Clique para virar</span></div><div class="vs"><b>Resposta</b><p>Exatamente o que vai ser orçado neste pilar.</p></div></div></div>
+  </div>
+  <aside><b>3 min · prática de recuperação.</b> Leia cada pergunta, peça a resposta no chat, espere uns 10 segundos e só então clique para virar o cartão. A Marina é o nosso exemplo ilustrativo: três cabanas de glamping para casal, diária média de R$ 645 e 38,5% de ocupação.</aside>
+</section>
+
+<!-- 4 · BLOCO 1 -->
+<section class="s esc bloco" data-num="1" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">Bloco 1</p>
+  <h2>Quanto custa <i>o projeto inteiro</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Na referência da Zion, um terço do custo de uma unidade pronta fica fora do preço da unidade.</div>
+    <div class="f"><b>Reflexão</b>Se eu te pedir agora o custo da sua fase um, de onde vem o número que você vai dizer?</div>
+    <div class="f"><b>Dica</b>Escreva o seu palpite hoje, com data. No fim, compare com a conta inteira.</div>
+  </div>
+  <aside><b>1 min.</b> Clique para os três cartões. Na reflexão, peça que escrevam o palpite no papel antes de continuar. A diferença entre o palpite e a conta inteira é o tamanho do risco que a pessoa estava prestes a correr.</aside>
+</section>
+
+<!-- 5 · CENA -->
+<section class="s foto" data-bg="../fotos/5e32d61171.jpg" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">A cena que se repete</p>
+  <h2>O preço chegou <i>pelo WhatsApp</i></h2>
+  <ul class="lista" style="max-width:1050px">
+    <li class="f">"Fica em tanto a unidade."</li>
+    <li class="f">À noite, a calculadora: vezes as unidades. Alívio.</li>
+    <li class="f">Logo depois, um frio na barriga: <i>será que é só isso?</i></li>
+  </ul>
+  <aside><b>2 min.</b> Conte a cena com calma. "Esse frio tem razão de existir. O fornecedor mandou o preço do que você pediu: a unidade. Ninguém pediu a ele o deck, a luz, a água e o esgoto, o piso, a cama, as licenças e a reserva. Não é falha dele. É que ninguém escreveu a lista inteira."</aside>
+</section>
+
+<!-- 6 · PREVISÃO -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">Antes da resposta · o que você acha?</p>
+  <div class="quiz passo">
+    <p class="q">O preço da unidade costuma incluir...</p>
+    <div class="ops">
+      <button class="op">O deck, a luz e a fossa</button>
+      <button class="op">A cama e o enxoval</button>
+      <button class="op" data-certa>Só a unidade, o que você pediu</button>
+      <button class="op">Tudo até o primeiro hóspede</button>
+    </div>
+    <p class="exp">Ele cobre a unidade. Deck, ligações, piso, mobília, enxoval, licenças, reserva e capital de giro ficam com você.</p>
+  </div>
+  <aside><b>2 min · previsão.</b> Peça a letra no chat. Você pode clicar na alternativa que alguém escolheu (fica vermelha se errada) ou avançar para revelar a certa e a explicação.</aside>
+</section>
+
+<!-- 7 · O PRIMEIRO ESQUECIMENTO -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <span class="selo">Exemplo ilustrativo · base de referência da Zion</span>
+  <h2>O primeiro <i>esquecimento</i></h2>
+  <div class="conta" style="max-width:1400px">
+    <div class="eq f"><span>A unidade sozinha, bolha ou cabana · 3 × R$ 129.000</span><span>R$ 387.000</span></div>
+    <div class="eq f"><span>A unidade pronta, com deck, luz, água, piso e mobília · 3 × R$ 192.346</span><span>R$ 577.038</span></div>
+    <div class="eq tot f" data-foco><span>O que ficaria de fora</span><span>R$ 190.038 · 32,9%</span></div>
+  </div>
+  <p class="sm f">Um terço do custo das unidades prontas, antes de qualquer licença ou reserva. Valores orientativos, não orçamento.</p>
+  <aside><b>2 min · exemplo resolvido.</b> Revele linha a linha. 577.038 − 387.000 = 190.038; 190.038 ÷ 577.038 = 32,9%. "É uma referência da Zion, uma faixa. O seu número depende do terreno, da região e do padrão, e só fecha com cotação escrita."</aside>
+</section>
+
+<!-- 8 · CINCO ERROS -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">Os cinco erros do orçamento amador</p>
+  <h2>Clique em cada um: <i>o que acontece?</i></h2>
+  <div class="grid" style="grid-template-columns:repeat(5,1fr);min-height:330px">
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:34px">Orçar só as unidades</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>Deck, ligações, áreas comuns e infraestrutura aparecem na obra.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:34px">Usar o preço de outra região, ou de outro ano</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>O preço não é o seu.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:34px">Esquecer os suprimentos da operação</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>Enxoval, utensílios e limpeza chegam na semana da abertura.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:34px">Tratar a reserva como opcional</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>Otimismo não paga aditivo, o acréscimo cobrado no meio da obra.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3 style="font-size:34px">Esquecer o caixa dos primeiros meses</h3><span class="dica">Virar</span></div><div class="vs"><b>Acontece</b><p>Obra pronta não é negócio funcionando.</p></div></div></div>
+  </div>
+  <p class="lead f">A raiz dos cinco é uma só: o orçamento parou onde o primeiro preço parou.</p>
+  <aside><b>3 min.</b> Pergunte à turma qual desses já aconteceu com alguém. Vire os cartões clicando neles, na ordem que a conversa pedir. O último clique da sequência revela a frase da raiz.</aside>
+</section>
+
+<!-- 9 · ABRIR A PORTA -->
+<section class="s esc" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">Troque a pergunta</p>
+  <p class="citacao">Não é quanto custa a cabana. É quanto custa <i>abrir a porta.</i></p>
+  <p class="lead f">O investimento é tudo o que precisa existir até o primeiro hóspede, com a origem de cada número escrita ao lado. O nome técnico é CAPEX.</p>
+  <aside><b>1 min.</b> Pausa. Deixe a frase respirar. CAPEX: o que se gasta uma vez para construir e equipar. O custo de cada mês é outra coisa, o OPEX.</aside>
+</section>
+
+<!-- 10 · OITO LINHAS -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">A folha de oito linhas</p>
+  <h2>Seis por unidade, <i>duas do projeto</i></h2>
+  <div class="grid g2" style="gap:56px">
+    <ul class="lista num" style="font-size:34px">
+      <li class="f">A unidade, bolha ou cabana</li>
+      <li class="f">O deck de madeira</li>
+      <li class="f">A luz</li>
+      <li class="f">A água e o esgoto, ou a fossa</li>
+      <li class="f">Mobiliário, equipamentos e enxoval, com três jogos por cama</li>
+      <li class="f">O piso interno</li>
+    </ul>
+    <ul class="lista num" style="font-size:34px;counter-reset:n 6;align-self:start">
+      <li class="f">As licenças e os projetos</li>
+      <li class="f">A reserva do imprevisto, de 10%</li>
+    </ul>
+  </div>
+  <aside><b>3 min.</b> Revele uma linha por clique. As seis primeiras, somadas, são a "unidade pronta": na referência da Zion, cerca de R$ 192 mil, bolha ou cabana. Três jogos de cama por cama: um na cama, um na lavanderia, um no armário.</aside>
+</section>
+
+<!-- 11 · DUAS LINHAS À PARTE -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">E duas linhas ficam à parte</p>
+  <h2>O giro entra. O terreno fica fora, <i>mas não é de graça.</i></h2>
+  <div class="grid g2" style="min-height:320px">
+    <div class="pq passo"><div class="in"><div class="fr"><h3>Capital de giro</h3><p class="sm">Entra na conta?</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Por quê</b><p>Entra. É o dinheiro que paga os primeiros meses, enquanto a receita ainda não cobre o custo. Tem que estar no banco no dia da abertura.</p></div></div></div>
+    <div class="pq passo"><div class="in"><div class="fr"><h3>O terreno</h3><p class="sm">Entra na conta?</p><span class="dica">Clique para o porquê</span></div><div class="vs"><b>Por quê</b><p>Fica fora, mesmo que já seja seu. Mas é dinheiro preso no projeto: fora da conta não quer dizer de graça.</p></div></div></div>
+  </div>
+  <aside><b>2 min.</b> Pergunte primeiro: "o giro entra ou não?" Espere. Vire. Depois o terreno. O terreno volta no fim do bloco 2, na pergunta dos 27%.</aside>
+</section>
+
+<!-- 12 · ORIGEM -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">A origem de cada número</p>
+  <h2>Só existem <i>três respostas</i></h2>
+  <div class="grid g3">
+    <div class="card f"><span class="n">1</span><h3>Faixa de referência</h3><p>Um ponto de partida, como a referência da Zion. Não fecha o número.</p></div>
+    <div class="card f"><span class="n">2</span><h3>Cotação escrita</h3><p>Com escopo e data. É a que fecha.</p></div>
+    <div class="card f"><span class="n">3</span><h3>Em branco</h3><p>E a quem perguntar, anotado ao lado.</p></div>
+  </div>
+  <p class="citacao f" style="font-size:52px">Uma linha em branco vale mais do que um número inventado.</p>
+  <aside><b>2 min.</b> Esta é a regra que deixa a conta legível para um banco, um sócio ou a Zion: cada número diz de onde veio.</aside>
+</section>
+
+<!-- 13 · SIMULADOR · O INVESTIMENTO -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a folha</p><span class="selo">Exemplo ilustrativo · valores orientativos</span></div>
+  <h2 style="font-size:64px">Quanto custa <i>abrir a porta</i></h2>
+  <div class="sim" data-sim="p6">
+    <div class="ctl">
+      <label>Unidades na fase um <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+      <label>Unidade pronta, com mobília <output data-for="pronta" data-fmt="brl"></output><input type="range" name="pronta" min="120000" max="320000" step="1" value="192346"><small>Referência da Zion: cerca de R$ 192 mil, bolha ou cabana</small></label>
+      <label>Licenças e projetos <output data-for="lic" data-fmt="brl"></output><input type="range" name="lic" min="0" max="80000" step="1000" value="15000"></label>
+      <label>Reserva do imprevisto <output data-for="res" data-fmt="pct0"></output><input type="range" name="res" min="5" max="20" step="1" value="10"></label>
+      <label>Capital de giro, em meses de custo <output data-for="giro"></output><input type="range" name="giro" min="1" max="6" step="1" value="3"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Unidades prontas</span><b data-r="uni" data-fmt="brl"></b></div>
+      <div class="linha"><span>Licenças e projetos</span><b data-r="lic" data-fmt="brl"></b></div>
+      <div class="linha"><span>Reserva do imprevisto</span><b data-r="res" data-fmt="brl"></b></div>
+      <div class="linha"><span>Capital de giro</span><b data-r="giro" data-fmt="brl"></b></div>
+      <div class="linha tot"><span>Investimento da fase</span><b data-r="total" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por unidade aberta</span><b data-r="porUn" data-fmt="brl"></b></div>
+      <p class="sm" style="color:#BFB8A8">Fora da conta: o terreno e a infraestrutura comum, por cotação.</p>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Comece no exemplo da Marina: cerca de R$ 690 mil (577.038 + 15.000 + 57.704 + 40.787 = 690.529). Depois mexa ao vivo: "e se fossem cinco unidades?", "e se a sua unidade pronta custar 250 mil?". Tecla R ou o botão voltam ao exemplo. Os mesmos números seguem para os próximos simuladores. O giro aqui usa a margem e a receita do bloco 2: se mudar lá, muda aqui.</aside>
+</section>
+
+<!-- 14 · INFRAESTRUTURA E LICENÇAS -->
+<section class="s" data-bloco="Bloco 1 · Quanto custa">
+  <div class="lado">
+    <div style="display:flex;flex-direction:column;gap:30px">
+      <p class="k">A linha que mais varia</p>
+      <h2 style="font-size:72px">A infraestrutura <i>comum</i></h2>
+      <ul class="lista" style="font-size:34px">
+        <li class="f">Acesso, caminhos, estacionamento, apoio e a rede preparada para a fase dois.</li>
+        <li class="f">Se orça pela distância e pela capacidade, com cotação.</li>
+        <li class="f">A primeira ligação é para a concessionária de energia, e é gratuita.</li>
+      </ul>
+      <p class="sm f">Licenças: o que vale no seu terreno, quem confirma é a prefeitura, o arquiteto e, se houver dúvida, o advogado.</p>
+    </div>
+    <img class="ilus" src="../fotos/1c46550f59.jpg" alt="Masterplan desenhado sobre a vista aérea do terreno">
+  </div>
+  <aside><b>2 min.</b> Quantos metros até a unidade mais distante, e para quantas unidades cada sistema é dimensionado. Na Marina, essa linha entra com o orçamento do terreno dela, por cotação. Refazer infraestrutura é a forma mais cara de economizar.</aside>
+</section>
+
+<!-- 15 · CORTE METROS -->
+<section class="s foto" data-bg="../fotos/30cbcf90dc.jpg" data-bloco="Bloco 1 · Quanto custa">
+  <p class="k">E se a conta passar do que você pode?</p>
+  <p class="citacao" style="max-width:1100px">Corte metros no projeto, antes da obra. Nunca corte <i>a experiência</i> dentro deles.</p>
+  <p class="lead f" style="max-width:1000px">Na Marina, a banheira no deck e a lareira movem a diária. Ficam.</p>
+  <aside><b>1 min.</b> Liga com o Pilar 3: a experiência é o que sustenta a diária. Cortar a banheira para economizar costuma custar mais em diária do que economizou na obra.</aside>
+</section>
+
+<!-- 16 · QUIZ BLOCO 1 -->
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 1 de 2</p>
+  <div class="quiz passo">
+    <p class="q">O que é CAPEX?</p>
+    <div class="ops">
+      <button class="op">O preço da unidade</button>
+      <button class="op" data-certa>O investimento para construir e equipar até o primeiro hóspede</button>
+      <button class="op">O custo mensal da operação</button>
+      <button class="op">O valor do terreno</button>
+    </div>
+    <p class="exp">Tudo até o primeiro hóspede. O custo de cada mês é o OPEX.</p>
+  </div>
+  <aside><b>1 min.</b> Letra no chat, depois revele.</aside>
+</section>
+<section class="s" data-bloco="Bloco 1 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago · 2 de 2</p>
+  <div class="quiz passo">
+    <p class="q">Como se orça a infraestrutura comum?</p>
+    <div class="ops">
+      <button class="op">Por unidade, como o resto</button>
+      <button class="op" data-certa>Por distância e capacidade, com cotação</button>
+      <button class="op">Por metro quadrado construído</button>
+      <button class="op">Não se orça: entra na reserva</button>
+    </div>
+    <p class="exp">Quantos metros até a unidade mais distante, e para quantas unidades cada sistema é dimensionado.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 18 · LIÇÃO DO BLOCO 1 -->
+<section class="s esc" data-bloco="Bloco 1 · Faça você">
+  <p class="k">Antes do bloco 2 · 5 minutos</p>
+  <h2>A sua folha <i>de oito linhas</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span>Escreva as oito linhas, com valor ou em branco.</span></div>
+      <div class="passo f"><b>2</b><span>Ao lado de cada uma, a origem: referência, cotação ou em branco.</span></div>
+      <div class="passo f"><b>3</b><span>Escreva as duas linhas à parte: o giro e o terreno.</span></div>
+      <div class="passo f"><b>4</b><span>Anote a primeira ligação: a concessionária.</span></div>
+    </div>
+    <div class="lado-qr">
+      <div class="crono" data-min="5"><span class="tempo">5:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+      <p class="sm">Compare com o palpite que você escreveu no começo.</p>
+    </div>
+  </div>
+  <aside><b>5 min · prática.</b> Clique em Começar no cronômetro. Enquanto a turma escreve, leia perguntas do chat. Ao terminar: "quem descobriu uma linha que ninguém tinha orçado?"</aside>
+</section>
+
+<!-- 19 · BLOCO 2 -->
+<section class="s esc bloco" data-num="2" data-bloco="Bloco 2 · A conta">
+  <p class="k">Bloco 2</p>
+  <h2>A conta, os três cenários <i>e o tempo de volta</i></h2>
+  <div class="trio">
+    <div class="f"><b>Curiosidade</b>Projeto quebra por falta de caixa num mês, não por prejuízo no ano.</div>
+    <div class="f"><b>Reflexão</b>Se o seu cenário mais fraco acontecer, a conta ainda paga as contas?</div>
+    <div class="f"><b>Dica</b>Escolha o mês de abertura no começo da alta. Não custa nada.</div>
+  </div>
+  <aside><b>1 min.</b> Retome: no bloco 1, quanto custa. Agora, quanto entra, quanto sobra e em quanto tempo o dinheiro volta.</aside>
+</section>
+
+<!-- 20 · RECEITA BRUTA -->
+<section class="s" data-bloco="Bloco 2 · A conta">
+  <span class="selo">Exemplo ilustrativo · Pilar 4</span>
+  <h2>Receita bruta <i>não é lucro</i></h2>
+  <div class="conta" style="max-width:1400px">
+    <div class="eq f"><span>Noites possíveis · 3 cabanas × 365</span><span>1.095</span></div>
+    <div class="eq f"><span>Noites vendidas · 1.095 × 38,5%</span><span>421,6</span></div>
+    <div class="eq f"><span>× diária média de R$ 645</span><span>R$ 271.916</span></div>
+    <div class="eq tot f" data-foco><span>Receita bruta no ano</span><span>cerca de R$ 272 mil</span></div>
+  </div>
+  <p class="lead f">Dessa receita ainda saem impostos e comissões, custos variáveis e custos fixos.</p>
+  <aside><b>2 min · exemplo resolvido.</b> 1.095 × 0,385 = 421,575 noites; × 645 = R$ 271.915,88. É a mesma conta do Pilar 4, não muda.</aside>
+</section>
+
+<!-- 21 · O QUE SAI DA RECEITA -->
+<section class="s" data-bloco="Bloco 2 · A conta">
+  <p class="k">O que sai da receita</p>
+  <h2>Três grupos de custo. <i>Clique em cada um.</i></h2>
+  <div class="grid g3" style="min-height:300px">
+    <div class="pq"><div class="in"><div class="fr"><h3>Impostos e comissões</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>Os impostos sobre a receita e as comissões das plataformas. A alíquota, quem confirma é o contador.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Custos variáveis</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>O que só sai porque alguém dormiu: limpeza, lavanderia, a cesta do café.</p></div></div></div>
+    <div class="pq"><div class="in"><div class="fr"><h3>Custos fixos</h3><span class="dica">Exemplos</span></div><div class="vs"><b>O que é</b><p>O que sai com a casa cheia ou vazia: a pessoa local, a manutenção e o seu próprio trabalho.</p></div></div></div>
+  </div>
+  <div class="f" style="display:flex;flex-direction:column;gap:12px">
+    <p class="sm">Na primeira conta, a simplificação de referência da Zion: de cada R$ 100 que o hóspede paga...</p>
+    <div class="dez"><div class="c" style="width:60%">R$ 60 · custos, impostos e comissões</div><div class="r" style="width:40%">R$ 40 · resultado</div></div>
+  </div>
+  <aside><b>3 min.</b> Vire os cartões. Depois o último clique mostra a barra 60/40. "É simplificação, não promessa. A sua margem real sai da sua lista de custos." Ocupação é vaidade, margem é sobrevivência.</aside>
+</section>
+
+<!-- 22 · SIMULADOR · RESULTADO -->
+<section class="s esc" data-bloco="Bloco 2 · A conta">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · equalize a operação</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:64px">Faturou bem, <i>então sobrou?</i></h2>
+  <div class="sim" data-sim="p6">
+    <div class="ctl">
+      <label>Ocupação média do ano <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="80" step="0.5" value="38.5"><small>A Marina mediu 38,5%: só fins de semana</small></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="300" max="1500" step="5" value="645"></label>
+      <label>Margem operacional <output data-for="margem" data-fmt="pct0"></output><input type="range" name="margem" min="15" max="60" step="1" value="40"><small>Referência da Zion: 40%. A sua sai da sua lista de custos.</small></label>
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Receita bruta no ano</span><b data-r="receita" data-fmt="brl"></b></div>
+      <div class="linha"><span>Custos, impostos e comissões</span><b data-r="custo" data-fmt="brl"></b></div>
+      <div class="barra"><i data-bar="pctRes"></i></div>
+      <div class="linha tot"><span>Resultado operacional no ano</span><b data-r="resultado" data-fmt="brl"></b></div>
+      <div class="linha"><span>Por mês, em média</span><b data-r="mes" data-fmt="brl"></b></div>
+      <p class="sm" style="color:#BFB8A8">Antes de qualquer parcela de financiamento e de impostos sobre o lucro.</p>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Marina: 40% de R$ 271.916 = R$ 108.766 por ano, R$ 9.064 por mês. Mexa: "e se a diária fosse R$ 595?" Mostre que cada noite vendida deixa 40% de R$ 645 = R$ 258. Peça que digam no chat a ocupação e a diária deles, e coloque os números de um aluno.</aside>
+</section>
+
+<!-- 23 · RAMPA -->
+<section class="s" data-bloco="Bloco 2 · O primeiro ano">
+  <p class="k">O primeiro ano tem rampa</p>
+  <h2>Ninguém abre na <i>ocupação do destino</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Meses 1 a 3</span><div class="fx"><div><h4>O que acontece</h4><p>De 25% a 40% da ocupação do ano normal. Pouca avaliação, pouca procura.</p></div><div><h4>Por quê</h4><p>A ocupação que você mediu é de quem está no destino há anos. Quem abre agora começa abaixo.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Meses 4 a 6</span><div class="fx"><div><h4>O que acontece</h4><p>De 45% a 60% do ano normal.</p></div><div><h4>Por quê</h4><p>As primeiras avaliações começam a trabalhar por você.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Meses 7 a 12</span><div class="fx"><div><h4>O que acontece</h4><p>De 65% a 85% do ano normal.</p></div><div><h4>Por quê</h4><p>Hóspedes que voltam e indicam. O cuidado: o primeiro vale do calendário pode cair aqui.</p></div></div></button>
+      <button class="bt"><span class="bol">4</span><span>Meses 13 a 18</span><div class="fx"><div><h4>O que acontece</h4><p>O patamar do destino.</p></div><div><h4>Por quê</h4><p>Sem procura consolidada, a rampa pode levar de 18 a 30 meses. Por isso existe o capital de giro.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada fase para ver o que acontece e por quê.</p></div>
+  </div>
+  <p class="sm f">A rampa se cruza com o calendário, mês a mês, nunca com a média do ano. Fonte: Jornada do COMO, Etapa 02.</p>
+  <aside><b>3 min.</b> Cada clique abre a próxima fase com o porquê. A decisão de maior efeito do primeiro ano: abrir no começo da alta, e não no meio da baixa. Não custa nada. A Marina abre no começo da alta.</aside>
+</section>
+
+<!-- 24 · GIRO -->
+<section class="s" data-bloco="Bloco 2 · O primeiro ano">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>O giro <i>da Marina</i></h2>
+  <div class="conta" style="max-width:1400px">
+    <div class="eq f"><span>O custo do ano, no conservador · 60% × R$ 271.916</span><span>R$ 163.150</span></div>
+    <div class="eq f"><span>Um mês de custo, em média · ÷ 12</span><span>R$ 13.596</span></div>
+    <div class="eq tot f" data-foco><span>Três meses, no banco no dia da abertura</span><span>cerca de R$ 41 mil</span></div>
+  </div>
+  <p class="citacao f" style="font-size:48px">Projeto quebra por falta de caixa num mês. E esse mês dá para saber qual é.</p>
+  <aside><b>2 min.</b> 163.149,53 ÷ 12 = 13.595,79; × 3 = 40.787,38. Três meses é o mínimo da base simplificada. Quando tiver a lista de custos, refaça pela segunda regra da Jornada do COMO e fique com a maior.</aside>
+</section>
+
+<!-- 25 · TRÊS CENÁRIOS -->
+<section class="s esc" data-bloco="Bloco 2 · Os cenários">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · os três cenários</p><span class="selo">Exemplo ilustrativo · não é promessa</span></div>
+  <h2 style="font-size:64px">Não interessa o melhor caso. <i>Interessa onde ele para.</i></h2>
+  <div class="sim" data-sim="p6" style="grid-template-columns:.8fr 1.2fr">
+    <div class="ctl">
+      <label>Conservador · o que você mediu <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="80" step="0.5" value="38.5"></label>
+      <label>Base · com os feriados <output data-for="oc2" data-fmt="pct"></output><input type="range" name="oc2" min="15" max="85" step="0.5" value="50"></label>
+      <label>Otimista · procura forte <output data-for="oc3" data-fmt="pct"></output><input type="range" name="oc3" min="15" max="90" step="0.5" value="65"></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="300" max="1500" step="5" value="645"></label>
+      <button class="reset">Voltar ao exemplo da Marina</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+    <div class="cen">
+      <div><h4>Conservador</h4><span class="l">Receita</span><span data-r="receita" data-fmt="brl"></span><span class="l">Resultado no ano</span><span class="v" data-r="resultado" data-fmt="mil"></span><span class="l">Tempo de volta</span><span class="v" data-r="volta" data-fmt="anos"></span><span class="l" style="color:#E9B47A">O que precisa funcionar</span></div>
+      <div><h4>Base</h4><span class="l">Receita</span><span data-r="rec2" data-fmt="brl"></span><span class="l">Resultado no ano</span><span class="v" data-r="res2" data-fmt="mil"></span><span class="l">Tempo de volta</span><span class="v" data-r="volta2" data-fmt="anos"></span></div>
+      <div><h4>Otimista</h4><span class="l">Receita</span><span data-r="rec3" data-fmt="brl"></span><span class="l">Resultado no ano</span><span class="v" data-r="res3" data-fmt="mil"></span><span class="l">Tempo de volta</span><span class="v" data-r="volta3" data-fmt="anos"></span><span class="l" style="color:#E9B47A">Teto, não meta</span></div>
+    </div>
+  </div>
+  <aside><b>4 min.</b> Marina, margem de 40% nos três: 109 mil, 141 mil e 184 mil por ano; 6,35, 4,89 e 3,76 anos. "Se o conservador não paga as contas, o projeto ainda não está pronto." Os feriados só entram quando aparecem, comprovados, no calendário dos comparáveis.</aside>
+</section>
+
+<!-- 26 · PADARIA -->
+<section class="s" data-bloco="Bloco 2 · O tempo de volta">
+  <p class="k">O tempo de volta em linguagem de padaria</p>
+  <h2>Você põe um milhão <i>numa padaria</i></h2>
+  <div class="conta" style="max-width:1300px;font-size:44px">
+    <div class="eq f"><span>Investimento</span><span>R$ 1.000.000</span></div>
+    <div class="eq f"><span>O que sobra por ano, depois de pagar tudo</span><span>R$ 100.000</span></div>
+    <div class="eq tot f" data-foco><span>Tempo para o milhão voltar</span><span>10 anos</span></div>
+  </div>
+  <p class="lead f">O mercado chama de payback. Nós chamamos de tempo de volta: o investimento dividido pelo que a operação deixa por ano.</p>
+  <aside><b>2 min.</b> Exemplo genérico, sem a Marina. Lucro e retorno são coisas diferentes: pode sobrar dinheiro todo ano e o investimento demorar a voltar.</aside>
+</section>
+
+<!-- 27 · ESCADA AO VIVO -->
+<section class="s esc" data-bloco="Bloco 2 · O tempo de volta">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a escada</p><span class="selo">Exemplo ilustrativo</span></div>
+  <h2 style="font-size:60px">O ano em que a escada <i>passa do zero</i></h2>
+  <div class="sim" data-sim="p6" style="grid-template-columns:1fr;gap:20px">
+    <svg class="escada" viewBox="0 0 1500 330" preserveAspectRatio="none"></svg>
+    <div class="grid g4" style="gap:22px;align-items:end">
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+      <label>Ocupação <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="80" step="0.5" value="38.5"></label>
+      <label>Diária <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="300" max="1500" step="5" value="645"></label>
+      <label>Unidade pronta <output data-for="pronta" data-fmt="brl"></output><input type="range" name="pronta" min="120000" max="320000" step="1" value="192346"></label>
+    </div>
+    <div style="display:flex;gap:40px;align-items:center;font-size:30px;flex-wrap:wrap">
+      <span>Investimento <b data-r="total" data-fmt="brl"></b></span><span>Resultado por ano <b data-r="resultado" data-fmt="brl"></b></span><span style="color:var(--ouro);font-size:40px">Tempo de volta <b data-r="volta" data-fmt="anos"></b></span>
+      <button class="reset">Voltar ao exemplo</button><span class="ajustado">Ajustado ao vivo</span>
+    </div>
+  </div>
+  <aside><b>4 min · simulador.</b> Ano 0: sai o investimento (barra vermelha). Cada ano devolve o resultado. Marina: no fim do ano 6 ainda faltam R$ 37.931; no ano 7 a escada passa do zero. 690.529 ÷ 108.766 = 6,35 anos. A conta simples não desconta a rampa, os impostos sobre o lucro nem parcelas de financiamento.</aside>
+</section>
+
+<!-- 28 · RÉGUA -->
+<section class="s" data-bloco="Bloco 2 · O tempo de volta">
+  <p class="k">Como ler · hospedagem pequena com operação própria</p>
+  <h2>A régua do <i>tempo de volta</i></h2>
+  <div class="regua" style="font-size:24px">
+    <div class="r1 f" style="flex:5">Até 5 · muito bom, e raro</div>
+    <div class="r2 f" style="flex:3">5 a 8 · bom</div>
+    <div class="r3 f" style="flex:4">8 a 12 · com valorização</div>
+    <div class="r4 f" style="flex:4">Acima de 12 · razão escrita</div>
+  </div>
+  <div class="quiz passo" style="margin-top:20px">
+    <p class="q" style="font-size:44px">Acima de 12 anos quer dizer que o projeto é proibido?</p>
+    <div class="ops"><button class="op">Sim, desista</button><button class="op" data-certa>Não: precisa de outra razão, escrita antes</button></div>
+    <p class="exp">A régua não proíbe; exige. Patrimônio, uso da família ou projeto de vida, escritos no Dossiê antes de pedir dinheiro. Fonte da régua: Jornada do COMO, Etapa 02.</p>
+  </div>
+  <aside><b>3 min.</b> Revele as quatro faixas, depois a pergunta.</aside>
+</section>
+
+<!-- 29 · PAINEL COMPLETO -->
+<section class="s esc painel-sim" data-bloco="Bloco 2 · A conta inteira">
+  <div style="display:flex;justify-content:space-between;align-items:baseline"><p class="k">Ao vivo · a conta inteira em uma tela</p><span class="selo">Exemplo ilustrativo · valores orientativos</span></div>
+  <div class="sim" data-sim="p6" style="grid-template-columns:.9fr 1.1fr;gap:44px">
+    <div class="ctl">
+      <label>Unidades <output data-for="un"></output><input type="range" name="un" min="1" max="10" step="1" value="3"></label>
+      <label>Unidade pronta <output data-for="pronta" data-fmt="brl"></output><input type="range" name="pronta" min="120000" max="320000" step="1" value="192346"></label>
+      <label>Ocupação <output data-for="ocup" data-fmt="pct"></output><input type="range" name="ocup" min="15" max="80" step="0.5" value="38.5"></label>
+      <label>Diária média <output data-for="diaria" data-fmt="brl"></output><input type="range" name="diaria" min="300" max="1500" step="5" value="645"></label>
+      <label>Margem <output data-for="margem" data-fmt="pct0"></output><input type="range" name="margem" min="15" max="60" step="1" value="40"></label>
+      <label>Terreno, fora da conta <output data-for="terreno" data-fmt="brl"></output><input type="range" name="terreno" min="0" max="2000000" step="10000" value="600000"></label>
+      <div><button class="reset">Voltar ao exemplo da Marina</button> <span class="ajustado">Ajustado ao vivo</span></div>
+    </div>
+    <div class="res">
+      <div class="linha"><span>Investimento da fase, com o giro</span><b data-r="total" data-fmt="brl"></b></div>
+      <div class="linha"><span>Resultado operacional no ano</span><b data-r="resultado" data-fmt="brl"></b></div>
+      <div class="linha tot"><span>Tempo de volta</span><b data-r="volta" data-fmt="anos"></b></div>
+      <div class="ponteiro"><i data-ponteiro="ponteiro"></i></div>
+      <div class="regua" style="height:46px;font-size:16px"><div class="r1" style="flex:5">até 5</div><div class="r2" style="flex:3">5 a 8</div><div class="r3" style="flex:4">8 a 12</div><div class="r4" style="flex:4">12+</div></div>
+      <div class="aviso" data-aviso></div>
+      <div class="linha"><span>Com o terreno somado</span><b data-r="voltaT" data-fmt="anos"></b></div>
+      <div class="linha"><span>Limite do investimento dentro de 8 anos</span><b data-r="inv8" data-fmt="brl"></b></div>
+      <div class="linha"><span>Diária mínima para ficar em 8 anos</span><b data-r="diaria8" data-fmt="brl"></b></div>
+    </div>
+  </div>
+  <aside><b>5 min · o coração da aula.</b> Este painel junta tudo. Marina: 6,35 anos (bom); com o terreno somado, 11,87; limite do investimento em 8 anos, cerca de R$ 870 mil; diária mínima cerca de R$ 512. Peça um aluno com números e equalize ao vivo. Lembre: é uma conta de referência, não orçamento nem promessa de retorno.</aside>
+</section>
+
+<!-- 30 · A PREMISSA QUE MAIS DÓI -->
+<section class="s" data-bloco="Bloco 2 · O teste">
+  <p class="k">A premissa que mais dói</p>
+  <div class="quiz passo">
+    <p class="q">Na vida real, o que dói mais: a diária 10% menor ou a ocupação 10% menor?</p>
+    <div class="ops">
+      <button class="op">A ocupação, porque são menos hóspedes</button>
+      <button class="op" data-certa>A diária, porque cada noite vendida continua com limpeza e enxoval</button>
+    </div>
+    <p class="exp">Na margem de referência as duas pesam igual: o tempo de volta do conservador vai de 6,35 para 7,05 anos. Na vida real, a diária menor dói mais. A hierarquia da dor: diária, ocupação, custo fixo, investimento. O que protege a diária é o produto do Pilar 3 e a reputação.</p>
+  </div>
+  <aside><b>2 min.</b> Depois de revelar, volte ao painel (slide anterior) e mostre: diária de 645 para 580 no simulador.</aside>
+</section>
+
+<!-- 31 · O QUE PRECISA SER VERDADE -->
+<section class="s" data-bloco="Bloco 2 · O teste">
+  <span class="selo">Exemplo ilustrativo · conservador</span>
+  <h2>O que precisa ser verdade <i>para ficar em 8 anos</i></h2>
+  <table class="t">
+    <tr><th>O que muda</th><th>Até onde aguenta</th><th>A conta</th></tr>
+    <tr class="f"><td>O investimento total</td><td>Até cerca de R$ 870 mil</td><td>8 × 108.766 = 870.131</td></tr>
+    <tr class="f"><td>A receita no ano</td><td>Até cerca de 20% abaixo</td><td>690.529 ÷ 8 ÷ 0,40 = 215.790</td></tr>
+    <tr class="f"><td>A diária, com 38,5%</td><td>Até cerca de R$ 512</td><td>215.790 ÷ 421,6 noites</td></tr>
+    <tr class="f"><td>A ocupação, com R$ 645</td><td>Até cerca de 30,5%</td><td>215.790 ÷ (1.095 × 645)</td></tr>
+  </table>
+  <p class="lead f">Uma conta que fecha com folga declarada é uma conta que se defende.</p>
+  <aside><b>3 min.</b> A folga do investimento para a infraestrutura comum e as cotações: cerca de R$ 180 mil. Cada R$ 100 mil a mais somam cerca de 0,9 ano.</aside>
+</section>
+
+<!-- 32 · OS 27% -->
+<section class="s esc" data-bloco="Bloco 2 · O terreno">
+  <span class="selo">Exemplo ilustrativo · resolvido passo a passo</span>
+  <h2>A pergunta dos 27%, <i>respondida</i></h2>
+  <div class="conta" style="max-width:1500px;font-size:32px">
+    <div class="eq f"><span>O peso do terreno: 600 mil ÷ (600 mil + 690,5 mil)</span><span>46,5%</span></div>
+    <div class="eq f"><span>Sem o terreno, no conservador</span><span>6,35 anos</span></div>
+    <div class="eq f"><span>Com o terreno somado</span><span>11,87 anos</span></div>
+  </div>
+  <p class="citacao f" style="font-size:40px">O terreno é patrimônio da família e fica fora do tempo de volta. Eu aceito esse peso e escrevo isso antes de pedir dinheiro.</p>
+  <aside><b>3 min.</b> Fecha o fio dos Pilares 1 a 3. O terreno pesa mais do que os 27% do Pilar 1 porque a fase um ficou menor. A operação paga a obra com folga, e não paga também o terreno dentro de 8 anos. Por isso a razão fica escrita no Dossiê.</aside>
+</section>
+
+<!-- 33 · VEREDITO -->
+<section class="s foto" data-bg="../fotos/9f117bde58.jpg" data-bloco="Bloco 2 · O veredito">
+  <p class="k">Então a conta da Marina fecha?</p>
+  <h2 style="max-width:1150px">No cenário mais fraco, <i>dentro da régua</i></h2>
+  <ul class="lista" style="max-width:1100px;font-size:34px">
+    <li class="f">Veredito: avança com a fase um, de três cabanas.</li>
+    <li class="f">Antes de assinar, troca cada linha por cotação escrita e soma a infraestrutura comum.</li>
+    <li class="f">Critério para voltar à conta: investimento acima de cerca de R$ 870 mil, ou receita uns 20% abaixo do conservador.</li>
+  </ul>
+  <aside><b>2 min.</b> Toda página do Dossiê termina com um veredito e um critério para parar. É uma conta de referência, não promessa.</aside>
+</section>
+
+<!-- 34 · TRÊS CAMINHOS -->
+<section class="s" data-bloco="Bloco 2 · Depois da conta">
+  <p class="k">Primeiro prove a conta, depois escolha como crescer</p>
+  <h2>Os três caminhos <i>para crescer</i></h2>
+  <div class="fases passo">
+    <div class="linha">
+      <button class="bt"><span class="bol">1</span><span>Melhorar o que existe</span><div class="fx"><div><h4>O que pede</h4><p>Tempo, método e atenção ao número. Quase nenhum capital: ocupação nos meses fracos, diária, desperdícios, eficiência.</p></div><div><h4>Por que primeiro</h4><p>É o mais barato e o mais rápido. Na Marina, R$ 50 a mais de diária valem cerca de R$ 8,4 mil por ano, sem obra.</p></div></div></button>
+      <button class="bt"><span class="bol">2</span><span>Construir mais</span><div class="fx"><div><h4>O que pede</h4><p>Capital, licença, infraestrutura e a mesma operação aguentando mais.</p></div><div><h4>Por quê</h4><p>Só se aumentar o resultado, e não só o tamanho. Com o masterplan do Pilar 5 bem feito, a rede e o lugar já estão prontos.</p></div></div></button>
+      <button class="bt"><span class="bol">3</span><span>Um projeto novo</span><div class="fx"><div><h4>O que pede</h4><p>O caminho inteiro de novo, do Pilar 1 ao 7, com risco novo, e muitas vezes banco, investidor ou sócio.</p></div><div><h4>Por que por último</h4><p>É o mais caro e o mais longo. Pede comparar o risco novo com o de expandir o que já funciona.</p></div></div></button>
+    </div>
+    <div class="painel"><p class="vazio">Clique em cada caminho: o que pede e por que nessa ordem.</p></div>
+  </div>
+  <aside><b>3 min.</b> Nenhum caminho é promessa: cada um é uma pergunta a estudar com números reais. Os três caminhos vêm de uma aula externa sobre modelos de negócio hoteleiro, reescritos na linguagem da Zion.</aside>
+</section>
+
+<!-- 35 · QUIZ GATILHO -->
+<section class="s" data-bloco="Bloco 2 · Quiz relâmpago">
+  <p class="k">Quiz relâmpago</p>
+  <div class="quiz passo">
+    <p class="q">A conta da Marina fecha no conservador. Ela já constrói a quarta e a quinta cabanas?</p>
+    <div class="ops">
+      <button class="op">Sim, para diluir o custo</button>
+      <button class="op" data-certa>Não: primeiro prova a conta com doze meses de operação real</button>
+    </div>
+    <p class="exp">As cabanas 4 e 5 esperam o gatilho: reservas reais, caixa (cerca de R$ 423 mil pela mesma referência, com reserva) e maturidade. Crescer em cima de uma conta ainda não provada é multiplicar o risco.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 36 · REVISÃO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">Qual cenário precisa funcionar?</p>
+    <div class="ops"><button class="op">O otimista</button><button class="op">O base</button><button class="op" data-certa>O conservador</button><button class="op">A média dos três</button></div>
+    <p class="exp">Se o conservador não paga as contas, o projeto ainda não está pronto. O otimista é teto, não meta.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+<section class="s" data-bloco="Revisão">
+  <p class="k">Revisão · responda de cabeça</p>
+  <div class="quiz passo">
+    <p class="q">A rampa do primeiro ano se aplica sobre...</p>
+    <div class="ops"><button class="op">A média do ano</button><button class="op" data-certa>Cada mês do calendário</button></div>
+    <p class="exp">Sobre a média, ela esconde o pior: o primeiro vale caindo na metade da rampa.</p>
+  </div>
+  <aside><b>1 min.</b></aside>
+</section>
+
+<!-- 38 · FAÇA AGORA -->
+<section class="s esc" data-bloco="Faça agora">
+  <p class="k">Faça agora · a página 6 do seu Dossiê</p>
+  <h2>A sua <i>Pré-viabilidade</i></h2>
+  <div class="exe">
+    <div class="passos">
+      <div class="passo f"><b>1</b><span><strong>Responda.</strong> Uma pergunta por tela: as oito linhas, o giro e o terreno, a receita e a margem. Onde não souber, "não sei" vira tarefa da semana.</span></div>
+      <div class="passo f"><b>2</b><span><strong>Equalize no simulador.</strong> Os três cenários, o tempo de volta e os seus limites.</span></div>
+      <div class="passo f"><b>3</b><span><strong>Baixe o seu PDF</strong> e guarde na pasta "Meu Dossiê".</span></div>
+      <div class="crono f" data-min="10"><span class="tempo">10:00</span><button class="ir">Começar</button><button class="sec">Zerar</button></div>
+    </div>
+    <div class="lado-qr">
+      <div class="qr" data-url="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/pilar6/"></div>
+      <span class="url">Na área de membros: aula "Faça agora · A sua Pré-viabilidade"</span>
+    </div>
+  </div>
+  <aside><b>10 min · prática.</b> Peça que abram pelo QR ou pela área de membros. Ligue o cronômetro. Circule pelas dúvidas do chat. Quem terminar, escreve no chat o tempo de volta do conservador e a faixa da régua.</aside>
+</section>
+
+<!-- 39 · RESUMO -->
+<section class="s" data-bloco="Revisão">
+  <p class="k">O Pilar 6 em uma tela</p>
+  <h2>O que <i>ficou</i></h2>
+  <ul class="lista" style="font-size:32px;gap:16px">
+    <li class="f">Não é quanto custa a cabana: é quanto custa abrir a porta, em oito linhas, cada uma com origem.</li>
+    <li class="f">O giro entra na conta. O terreno fica fora, mas não é de graça.</li>
+    <li class="f">Receita bruta não é lucro. A margem de 40% é simplificação, não promessa.</li>
+    <li class="f">O primeiro ano tem rampa: o giro existe para isso.</li>
+    <li class="f">Tempo de volta se lê numa escada. O conservador precisa funcionar.</li>
+    <li class="f">Primeiro prove a conta, depois escolha como crescer.</li>
+  </ul>
+  <aside><b>2 min.</b> Volte ao mapa da aula: o que, por quê e o resultado. Pergunte: "qual dessas frases você vai levar para a sua conta?"</aside>
+</section>
+
+<!-- 40 · PONTE -->
+<section class="s foto" data-bg="../fotos/c4b7d4ee48.jpg" data-bloco="Próximo pilar">
+  <p class="k">Próximo · Pilar 7</p>
+  <h2 style="max-width:1150px">Capital <i>e Dossiê</i></h2>
+  <p class="lead" style="max-width:1050px">De onde vem o capital, com quem, e a decisão de avançar, ajustar ou parar. Um projeto assim é o que um sócio, um banco ou a Zion conseguem avaliar. E a Zion avalia cada caso.</p>
+  <p class="sm" style="max-width:1150px;margin-top:30px">Conteúdo educacional. A Marina é um exemplo ilustrativo e as contas são ilustrativas, na base de referência da Zion. Não é orçamento nem oferta de investimento, e não é promessa de renda, lucro, retorno, prazo de retorno, ocupação, crédito ou sociedade.</p>
+  <aside><b>1 min.</b> Encerramento. "Nós terminamos aqui o Pilar 6. No Pilar 7, o capital e a decisão." Abra para perguntas.</aside>
+</section>
+
+</div></div>
+<script src="../_motor/deck.js"></script>
+</body>
+</html>
