@@ -184,6 +184,13 @@ td.n,th.n{text-align:center;font-weight:700;width:3.2em}
 }
 @media print{.topo,.nav,.acoes,.sim{display:none}}
 </style>
+<!-- Start of Clickmax SDK Code -->
+<script>
+(()=>{let e="projeto-de-bruno-25763216",c="/SyA_LLQjV2yPCKZW6oDIs",t=window;if(!t.cxs){function s(e,...c){t._cx?t._cx.callMethod.apply(t._cx,[e,...c]):t.cxs.queue.push([e,...c])}s.queue=[],t.cxs=s;{let t=encodeURIComponent,s=document,n=`https://api.clickmax.io/sdk/script.js?ps=${t(e)}&pg=${t(c)}`,i="script",p=s.createElement(i);p.async=!0,p.src=n;let o=s.getElementsByTagName(i)[0];o.parentNode.insertBefore(p,o)}}cxs("init",e,c)})();
+cxs('track', 'page_view');
+</script>
+<noscript><img height="1" width="1" style="display: none" src="https://api.clickmax.io/tr/projeto-de-bruno-25763216?ty=page_view&pg=%2FSyA_LLQjV2yPCKZW6oDIs&pl=%7B%22noscript%22%3A1%7D"/></noscript>
+<!-- End of Clickmax SDK Code -->
 </head>
 <body>
 <header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Trilha 1 · Pilar 4<br>Modelo de negócio</div></div></header>
@@ -197,7 +204,7 @@ td.n,th.n{text-align:center;font-weight:700;width:3.2em}
    Nada é enviado: ZION_WEBHOOK_URL vazia, enviarParaZion só faz console.log.
    ===================================================================== */
 "use strict";
-const ZION_WEBHOOK_URL = "";
+const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (o mesmo das ferramentas dos Pilares 1 a 3). Vazia: a seção mostra "Disponível em breve". */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
 const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.";
@@ -1065,10 +1072,27 @@ function montarPayload(L) {
     calculos: L.res.calculos,
   };
 }
+/* Zion · CRM: guarda a página do Dossiê (Lovable) e registra o aluno no ClickMax. Nunca trava a ferramenta. */
+const ZION_PAGINA = "t1-pilar-4";
+function zionEmailOk(e) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(String(e || "").trim()); }
+function zionLead(nome, email) {
+  try {
+    if (!zionEmailOk(email)) return;
+    const f = document.getElementById("zx-lead"); if (!f) return;
+    f.querySelector('[data-cx-field="name"]').value = String(nome || "").slice(0, 200);
+    f.querySelector('[data-cx-field="email"]').value = String(email).trim();
+    if (f.requestSubmit) f.requestSubmit(); else f.dispatchEvent(new Event("submit", { cancelable: true, bubbles: true }));
+  } catch (e) { console.log("[Zion] lead não enviado", e); }
+}
 async function enviarParaZion(payload) {
+  payload = payload || {};
+  zionLead(payload.nome, payload.email);
   if (!ZION_WEBHOOK_URL) { console.log("[Zion] envio desligado (ZION_WEBHOOK_URL vazia). Payload:", payload); return { enviado: false }; }
-  try { const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(payload) }); return { enviado: r.ok }; }
-  catch (e) { return { enviado: false, erro: String(e) }; }
+  try {
+    const corpo = { pagina: ZION_PAGINA, email: zionEmailOk(payload.email) ? String(payload.email).trim() : "", nome: String(payload.nome || "").slice(0, 200), payload: payload };
+    const r = await fetch(ZION_WEBHOOK_URL, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(corpo) });
+    return { enviado: r.ok };
+  } catch (e) { return { enviado: false, erro: String(e) }; }
 }
 
 /* ---------------------------------------------------------------------
@@ -1749,5 +1773,8 @@ window.ZionApp = { ler, montarPayload, enviarParaZion, montarResumo, vereditoPar
 })();
 
 </script>
+<!-- Zion · lead no ClickMax quando o aluno baixa a página do Dossiê -->
+<iframe name="zx-sink" title="envio" hidden style="display:none"></iframe>
+<form id="zx-lead" data-cx-ingest-form data-cx-nostyles target="zx-sink" action="about:blank" hidden style="display:none"><input data-cx-field="name" type="text"><input data-cx-field="email" type="email"><input data-cx-field="website" type="text" hidden></form>
 </body>
 </html>
