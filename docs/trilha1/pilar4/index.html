@@ -331,7 +331,7 @@ const temFracao = (r) => r.forma_venda === "multipropriedade" || r.forma_venda =
 const CENARIOS = [
   { id: "fraco", nome: "Só fins de semana", faixa: "35% a 40%", piso: 35, teto: 40 },
   { id: "medio", nome: "Fins de semana e feriados", faixa: "50% a 60%", piso: 50, teto: 60 },
-  { id: "forte", nome: "Procura forte", faixa: "65% a 85%", piso: 65, teto: 85 },
+  { id: "forte", nome: "Procura forte", faixa: "65% a 85%, só com procura comprovada", piso: 65, teto: 85 },
 ];
 /** A ocupação de cada cenário: a sua medida entra no cenário em que ela cabe; os outros usam o piso da faixa.
     O cenário mais fraco nunca passa do teto da faixa (40%): é o número em que você confia. */

@@ -383,7 +383,7 @@ ZD.sims.vgv = function(v){
     <div class="card f"><span class="n">2</span><h3>Fins de semana e feriados</h3><p>Mostra até onde o projeto pode ir.</p></div>
     <div class="card f"><span class="n">3</span><h3>Procura forte</h3><p>Também mostra até onde pode ir. Não decide se o projeto fica de pé.</p></div>
   </div>
-  <p class="sm f">Na ferramenta, a régua dos três cenários é a mesma do Marco Zero: 35% a 40%, 50% a 60% e 65% a 85% de ocupação média do ano. A sua medida entra no cenário em que ela cabe.</p>
+  <p class="sm f">Na ferramenta, a régua dos três cenários é a mesma do Marco Zero: 35% a 40%, 50% a 60% e 65% a 85% de ocupação média do ano, esta última só com procura extraordinária comprovada. A sua medida entra no cenário em que ela cabe.</p>
 </section>
 
 <section class="s esc" data-bloco="Bloco 1 · Os seus três cenários" id="s-cenarios">
@@ -847,7 +847,7 @@ const temFracao = (r) => r.forma_venda === "multipropriedade" || r.forma_venda =
 const CENARIOS = [
   { id: "fraco", nome: "Só fins de semana", faixa: "35% a 40%", piso: 35, teto: 40 },
   { id: "medio", nome: "Fins de semana e feriados", faixa: "50% a 60%", piso: 50, teto: 60 },
-  { id: "forte", nome: "Procura forte", faixa: "65% a 85%", piso: 65, teto: 85 },
+  { id: "forte", nome: "Procura forte", faixa: "65% a 85%, só com procura comprovada", piso: 65, teto: 85 },
 ];
 /** A ocupação de cada cenário: a sua medida entra no cenário em que ela cabe; os outros usam o piso da faixa.
     O cenário mais fraco nunca passa do teto da faixa (40%): é o número em que você confia. */
