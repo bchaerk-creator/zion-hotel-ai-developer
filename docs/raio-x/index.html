@@ -210,7 +210,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
   <div class="hero-copy gut"><div class="in">
     <p class="eyebrow mono rv" style="--d:1">Zion Glamping Store · Método Zion 360°</p>
     <h1 class="rv" style="--d:2">Antes do preço, descubra <em>o que o seu terreno pede.</em></h1>
-    <p class="lede rv" style="--d:3">Você chegou pela Bubble. Em poucos minutos, o Raio-X do Terreno mostra o modelo de hospedagem que combina com a sua região e o seu momento. Depois, você conhece os produtos e os preços.</p>
+    <p class="lede rv" style="--d:3"><span id="deBubble" hidden>Você chegou pela Bubble. </span>Em poucos minutos, o Raio-X do Terreno mostra o modelo de hospedagem que combina com a sua região e o seu momento. Depois, você conhece os produtos e os preços.</p>
     <div class="ctas rv" style="--d:4">
       <a class="pill pill-gold" href="#raiox">Fazer o Raio-X grátis <span class="arr" aria-hidden="true">→</span></a>
       <a class="link-u" href="/store" target="_blank" rel="noopener">Só quero ver os produtos ↗</a>
@@ -302,6 +302,12 @@ var CONFIG={
   precoTrilha:'R$ 270',
   precoPacote:'R$ 890'
 };
+
+/* HERO: "Você chegou pela Bubble" só para quem vem da Store ou de campanha da Bubble */
+(function(){
+  try{var q=new URLSearchParams(location.search),t=[q.get('utm_source'),q.get('utm_campaign'),q.get('utm_content'),q.get('de')].join(' ');
+    if(/\/store/.test(document.referrer)||/bubble|store/i.test(t))document.getElementById('deBubble').hidden=false;}catch(e){}
+})();
 
 /* HERO: revela a interface depois que a foto assenta */
 (function(){
