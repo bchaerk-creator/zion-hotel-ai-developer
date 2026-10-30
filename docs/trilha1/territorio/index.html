@@ -1,0 +1,409 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Leitor de Território</title>
+<meta name="description" content="Ferramenta do Pilar 1 do Método Zion: você responde perguntas rápidas sobre o seu terreno, informa o CEP e recebe uma leitura orientativa da região, da oferta de hospedagem em volta e dos caminhos possíveis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:720px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+label.l{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],select{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;min-height:48px}
+input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid var(--dourado);outline-offset:1px}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;text-align:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:#fff;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;margin-top:22px}
+.nav .btn{flex:1}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden;margin-bottom:16px}
+.barra i{display:block;height:100%;background:var(--verde);transition:width .25s}
+fieldset{border:0;padding:0;margin:18px 0 0;min-width:0}
+legend{font-weight:600;font-size:1.05rem;padding:0;margin-bottom:4px}
+.dica{font-size:.88rem;color:var(--texto-2);margin:0 0 8px}
+.opcoes{display:grid;gap:8px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:11px 12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:10px;min-height:1.2em}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem;background:#EEF3EC;border:1px solid #C9D8C6}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.links{display:grid;gap:8px;margin-top:8px}
+.links a{display:flex;justify-content:space-between;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px 12px;text-decoration:none;font-weight:600}
+.links a span{font-weight:400;color:var(--texto-2);font-size:.88rem}
+section.bloco{margin-top:22px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.95rem;border-left:5px solid}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.06em}
+.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-atencao{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-ok{background:var(--ok-bg);border-color:var(--ok);color:#173F25}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.4rem;color:var(--dourado);margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura p:last-child{margin:0}
+.aposta{border:1.5px solid var(--dourado);border-radius:12px;padding:12px 14px;margin:10px 0;background:#fff}
+.aposta b{font-family:"Playfair Display",Georgia,serif;font-size:1.15rem}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:7px 6px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2)}
+.tab{overflow-x:auto}
+ul.lista{padding-left:20px;margin:6px 0}
+.fontes{font-size:.82rem;color:var(--texto-2)}
+.fontes a{overflow-wrap:anywhere}
+.aviso{font-size:.82rem;color:var(--texto-2);background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:18px}
+.carregando{display:flex;gap:12px;align-items:center;padding:14px;background:var(--creme);border-radius:12px}
+.giro{width:22px;height:22px;border:3px solid var(--linha);border-top-color:var(--verde);border-radius:50%;animation:g 1s linear infinite;flex:none}
+@keyframes g{to{transform:rotate(360deg)}}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+[hidden]{display:none!important}
+@media (min-width:720px){main{padding:36px 16px 48px}.card{padding:32px 34px}.numeros{grid-template-columns:repeat(4,1fr)}.opcoes.duas{grid-template-columns:1fr 1fr}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>ZION</b> · Método Zion 360°</div><div class="etiqueta">Pilar 1 · Território e destino</div></div></header>
+<main><div class="wrap">
+
+<!-- INÍCIO -->
+<div class="card" id="tela-inicio">
+  <div class="eyebrow">Ferramenta orientativa com IA</div>
+  <h1>Leitor de Território</h1>
+  <p class="lead">Você responde perguntas rápidas sobre o seu terreno, informa o CEP e nós cruzamos com dados públicos da região: o que já existe de hospedagem em volta, o que se repete, o que falta e quais caminhos fazem sentido para o seu caso.</p>
+  <p class="dica">Leva cerca de 5 minutos. É uma leitura orientativa: muita coisa não aparece nas fontes públicas, e você confere tudo no Pilar 2.</p>
+  <label class="l" for="nome">O seu nome</label>
+  <input type="text" id="nome" autocomplete="name">
+  <label class="l" for="email">O seu e-mail (o mesmo da área de membros)</label>
+  <input type="email" id="email" autocomplete="email">
+  <label class="l" for="cep">CEP do terreno</label>
+  <input type="text" id="cep" inputmode="numeric" maxlength="9" placeholder="00000-000">
+  <p class="dica">Terreno rural sem CEP próprio? Use o CEP da área rural ou do centro do município.</p>
+  <p class="dica">Ao continuar, você autoriza a Zion a guardar estas respostas para gerar a sua leitura e acompanhar o seu Dossiê, conforme a LGPD.</p>
+  <div class="erro" id="erro-inicio" role="alert"></div>
+  <div class="nav"><button class="btn btn-p" id="comecar">Começar</button></div>
+</div>
+
+<!-- PERGUNTAS -->
+<div class="card" id="tela-perguntas" hidden>
+  <div class="progresso"><div class="txt"><span id="passo-nome"></span><span id="passo-n"></span></div><div class="barra"><i id="barra"></i></div></div>
+  <div id="passo"></div>
+  <div class="erro" id="erro-passo" role="alert"></div>
+  <div class="nav"><button class="btn btn-s" id="voltar">Voltar</button><button class="btn btn-p" id="avancar">Avançar</button></div>
+</div>
+
+<!-- RESULTADO -->
+<div id="tela-resultado" hidden>
+  <div class="card">
+    <div class="eyebrow">A sua leitura de território</div>
+    <h1 id="r-titulo">O seu terreno</h1>
+    <div id="r-ia-status"></div>
+    <div id="r-resumo"></div>
+    <section class="bloco"><h2>1 · O seu terreno, pelas suas respostas</h2><p class="dica">Sinal verde é ponto a favor. Amarelo pede atenção. Vermelho precisa ser resolvido antes de gastar.</p><div id="r-alertas"></div></section>
+    <section class="bloco" id="b-regiao" hidden><h2>2 · A sua região</h2><div id="r-regiao"></div></section>
+    <section class="bloco" id="b-oferta" hidden><h2>3 · A hospedagem em volta</h2><div id="r-oferta"></div></section>
+    <section class="bloco" id="b-aposta" hidden><h2>4 · Onde nós apostaríamos</h2><div id="r-aposta"></div></section>
+    <section class="bloco"><h2>5 · Com o recurso que você marcou</h2><div id="r-capital"></div></section>
+    <section class="bloco"><h2>6 · Confira com os próprios olhos</h2><p>A IA não vê tudo. Abra cada busca, conte o que aparece e anote na sua Ficha do Território.</p><div class="links" id="r-links"></div></section>
+    <section class="bloco" id="b-proximos"><h2>7 · Leve para o Pilar 2</h2><div id="r-proximos"></div></section>
+    <div class="aviso" id="r-aviso">Leitura orientativa, feita com fontes públicas e IA. Não substitui a visita, o estudo de mercado nem arquiteto, advogado, contador ou órgão ambiental. Não é promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.</div>
+    <div class="acoes">
+      <button class="btn btn-ouro" id="copiar">Copiar a leitura para a minha Ficha</button>
+      <a class="btn btn-p" href="../aula1/" id="ir-ficha">Abrir a Ficha do Território (Faça agora)</a>
+      <button class="btn btn-s" id="refazer">Rever as minhas respostas</button>
+    </div>
+    <div class="erro" id="erro-copia" role="status"></div>
+  </div>
+</div>
+
+</div></main>
+<footer class="rodape">Zion Hotel Group · Método Zion 360° · Conteúdo educacional. Quem confirma questão legal ou ambiental é o advogado, o órgão ambiental ou a prefeitura.</footer>
+
+<script>
+(function(){
+"use strict";
+var API = "https://www.zionhotelgroup.com/api/public/territorio";
+var CHAVE = "zion-leitor-territorio-v1";
+
+/* As perguntas, por etapa. tipo: "um" (uma escolha) ou "varios" */
+var ETAPAS = [
+ {nome:"Acesso", qs:[
+  {id:"acesso",p:"Como se chega ao terreno?",o:[["asfalto","Asfalto até a porteira"],["asfalto_terra","Asfalto e depois um trecho de terra"],["terra","Só estrada de terra"],["4x4","Só de 4x4 ou por trilha"]]},
+  {id:"km_terra",p:"Quanto de estrada de terra até o terreno?",o:[["0","Nenhum"],["ate2","Até 2 km"],["2a5","De 2 a 5 km"],["5a15","De 5 a 15 km"],["mais15","Mais de 15 km"]]},
+  {id:"chuva",p:"E com chuva forte, como fica o acesso?",o:[["igual","Igual: carro comum passa"],["lento","Mais lento, mas carro comum passa"],["4x4","Só passa 4x4"],["fecha","Fica intransitável"],["nao_sei","Não sei"]]},
+  {id:"vizinho",p:"O caminho passa pelo terreno de algum vizinho?",o:[["nao","Não, a entrada é por via pública"],["servidao","Sim, com servidão registrada"],["deixa","Sim, o vizinho \"sempre deixou passar\""],["nao_sei","Não sei"]]},
+  {id:"cidade",p:"Distância até a cidade com mercado, posto e farmácia",o:[["ate10","Até 10 km"],["10a30","De 10 a 30 km"],["30a60","De 30 a 60 km"],["mais60","Mais de 60 km"]]},
+  {id:"aeroporto",p:"Distância até o aeroporto ou a rodoviária mais próxima",o:[["ate60","Até 60 km"],["60a150","De 60 a 150 km"],["150a300","De 150 a 300 km"],["mais300","Mais de 300 km"]]}
+ ]},
+ {nome:"Infraestrutura", qs:[
+  {id:"energia",p:"Energia elétrica",o:[["no_terreno","Já tem no terreno"],["perto","A rede passa perto, até uns 500 m"],["longe","A rede está longe"],["nao_sei","Não sei"]]},
+  {id:"agua",p:"Água",o:[["rede","Rede pública"],["poco","Poço"],["nascente","Nascente ou rio"],["nao","Não tem"],["nao_sei","Não sei"]]},
+  {id:"internet",p:"Internet",o:[["fibra","Fibra ou cabo"],["radio","Rádio ou satélite"],["celular","Só pelo sinal do celular"],["nenhuma","Nenhuma"],["nao_sei","Não sei"]]},
+  {id:"sinal",p:"Sinal de celular no terreno",o:[["bom","Bom"],["fraco","Fraco, em alguns pontos"],["sem","Não tem"]]}
+ ]},
+ {nome:"Vizinhança", qs:[
+  {id:"vizinhos",p:"Vizinhos à vista",o:[["nenhum","Nenhum à vista"],["espacados","Casas espaçadas"],["proximos","Vizinhos próximos"],["vila","Fica num bairro ou vila"]]},
+  {id:"barulho",p:"Barulho por perto (estrada movimentada, fábrica, criação de animais)",o:[["nao","Não"],["as_vezes","Às vezes"],["sim","Sim"]]},
+  {id:"seguranca",p:"Como é a segurança da região?",o:[["tranquila","Tranquila"],["normal","Normal"],["preocupa","Me preocupa"]]}
+ ]},
+ {nome:"Terreno e paisagem", qs:[
+  {id:"relevo",p:"Relevo do terreno",o:[["plano","Plano"],["ondulado","Ondulado"],["encosta","Encosta forte"],["misto","Misto"]]},
+  {id:"area",p:"Tamanho aproximado",o:[["ate5mil","Até 5.000 m²"],["5a20mil","De 5.000 a 20.000 m²"],["2a10ha","De 2 a 10 hectares"],["10a50ha","De 10 a 50 hectares"],["mais50ha","Mais de 50 hectares"]]},
+  {id:"atrativos_terreno",tipo:"varios",p:"O que o seu terreno tem? (marque todos)",o:[["vista","Vista panorâmica"],["mata","Mata nativa"],["rio","Rio, riacho ou cachoeira"],["lago","Lago ou represa"],["mar","Praia ou mar"],["serra","Montanha ou serra"],["ceu","Céu escuro, bom para estrelas"],["frio","Clima frio no inverno"],["campo","Campo, vinhedo ou pomar"],["nenhum","Nada disso"]]},
+  {id:"atrativos_regiao",tipo:"varios",p:"E a região, o que tem? (marque todos)",o:[["cidade_turistica","Cidade turística por perto"],["trilhas","Trilhas e cachoeiras"],["gastronomia","Gastronomia ou vinícolas"],["praias","Praias"],["parques","Parques ou reservas naturais"],["eventos","Festas e eventos conhecidos"],["rural","Turismo rural"],["nenhum","Nenhum que eu saiba"]]}
+ ]},
+ {nome:"Mercado e ideia", qs:[
+  {id:"concorrentes",p:"Hospedagens parecidas por perto, até onde você sabe",o:[["muitas","Muitas"],["algumas","Algumas"],["nenhuma","Nenhuma"],["nao_sei","Não sei"]]},
+  {id:"momento",p:"Em que pé você está?",o:[["terreno","Só o terreno"],["ideia","Tenho uma ideia do que construir"],["desenho","Já tenho desenho ou orçamento"],["opero","Já opero e quero crescer"]]},
+  {id:"imagina",tipo:"varios",p:"O que você imagina construir? (marque todos)",o:[["bolha","Bolhas de glamping"],["cabanas","Cabanas ou chalés"],["domos","Domos ou tendas"],["pousada","Pousada com quartos"],["casas","Casas para temporada"],["nao_sei","Ainda não sei"]]},
+  {id:"publico",tipo:"varios",p:"Para quem? (marque todos)",o:[["casais","Casais"],["familias","Famílias"],["grupos","Grupos de amigos"],["aventura","Aventura e natureza"],["bem_estar","Bem-estar e descanso"],["remoto","Trabalho remoto"],["nao_sei","Ainda não sei"]]}
+ ]},
+ {nome:"Recurso e caminho", qs:[
+  {id:"recurso",p:"Quanto você tem hoje para começar, em dinheiro?",d:"Marque a faixa. A faixa vai junto com a sua leitura e serve só para sugerir caminhos que cabem no seu caso.",o:[["nao_tenho","Ainda não tenho recurso"],["ate100","Até R$ 100 mil"],["100a300","De R$ 100 mil a R$ 300 mil"],["300a1m","De R$ 300 mil a R$ 1 milhão"],["mais1m","Acima de R$ 1 milhão"],["prefiro","Prefiro não dizer"]]},
+  {id:"caminhos",tipo:"varios",p:"Que caminhos você considera? (marque todos)",o:[["sozinho","Fazer sozinho, com recurso próprio"],["socio","Com um sócio ou investidor"],["banco","Com financiamento"],["zion","Com a Zion como parceira"],["vender","Vender ou arrendar a terra estruturada"],["nao_sei","Ainda não sei"]]}
+ ]}
+];
+
+var r = {}; var passo = 0; var dados = {nome:"",email:"",cep:""};
+function ler(){ try{ var s = JSON.parse(localStorage.getItem(CHAVE)||"null"); if(s){ r = s.r||{}; dados = s.dados||dados; } }catch(e){} }
+function gravar(){ try{ localStorage.setItem(CHAVE, JSON.stringify({r:r, dados:dados})); }catch(e){} }
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c];}); }
+function rot(qid, v){ for(var i=0;i<ETAPAS.length;i++) for(var j=0;j<ETAPAS[i].qs.length;j++){ var q=ETAPAS[i].qs[j]; if(q.id===qid) for(var k=0;k<q.o.length;k++) if(q.o[k][0]===v) return q.o[k][1]; } return v; }
+function soDig(s){ return String(s||"").replace(/\D/g,""); }
+
+ler();
+$("nome").value = dados.nome||""; $("email").value = dados.email||""; $("cep").value = dados.cep||"";
+$("cep").addEventListener("input", function(){ var d = soDig(this.value).slice(0,8); this.value = d.length>5 ? d.slice(0,5)+"-"+d.slice(5) : d; });
+
+$("comecar").onclick = function(){
+  var n=$("nome").value.trim(), e=$("email").value.trim(), c=soDig($("cep").value);
+  if(!n){ $("erro-inicio").textContent="Escreva o seu nome."; return; }
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(e)){ $("erro-inicio").textContent="Confira o e-mail."; return; }
+  if(c.length!==8){ $("erro-inicio").textContent="O CEP precisa ter 8 números."; return; }
+  dados={nome:n,email:e,cep:c}; gravar();
+  $("tela-inicio").hidden=true; $("tela-perguntas").hidden=false; passo=0; mostrar();
+};
+
+function mostrar(){
+  var et=ETAPAS[passo]; $("passo-nome").textContent=et.nome; $("passo-n").textContent=(passo+1)+" de "+ETAPAS.length;
+  $("barra").style.width=Math.round((passo)/ETAPAS.length*100)+"%";
+  var h="<h2>"+esc(et.nome)+"</h2>";
+  et.qs.forEach(function(q){
+    var multi=q.tipo==="varios"; var val=r[q.id];
+    h+="<fieldset><legend>"+esc(q.p)+"</legend>"+(q.d?"<p class='dica'>"+esc(q.d)+"</p>":"")+"<div class='opcoes"+(q.o.length>5?" duas":"")+"'>";
+    q.o.forEach(function(o){
+      var marcado = multi ? (Array.isArray(val)&&val.indexOf(o[0])>=0) : val===o[0];
+      h+="<label class='op'><input type='"+(multi?"checkbox":"radio")+"' name='"+q.id+"' value='"+o[0]+"'"+(marcado?" checked":"")+">"+esc(o[1])+"</label>";
+    });
+    h+="</div></fieldset>";
+  });
+  $("passo").innerHTML=h; $("erro-passo").textContent="";
+  $("voltar").textContent = passo===0 ? "Início" : "Voltar";
+  $("avancar").textContent = passo===ETAPAS.length-1 ? "Ver a minha leitura" : "Avançar";
+  window.scrollTo(0,0);
+}
+function colher(){
+  var et=ETAPAS[passo], falta=[];
+  et.qs.forEach(function(q){
+    if(q.tipo==="varios"){ var v=[].map.call(document.querySelectorAll("input[name='"+q.id+"']:checked"),function(i){return i.value;}); r[q.id]=v; if(!v.length) falta.push(q.p); }
+    else { var s=document.querySelector("input[name='"+q.id+"']:checked"); if(s) r[q.id]=s.value; else falta.push(q.p); }
+  });
+  gravar(); return falta;
+}
+$("avancar").onclick=function(){ var f=colher(); if(f.length){ $("erro-passo").textContent="Falta responder: "+f[0]; return; } if(passo<ETAPAS.length-1){ passo++; mostrar(); } else resultado(); };
+$("voltar").onclick=function(){ colher(); if(passo===0){ $("tela-perguntas").hidden=true; $("tela-inicio").hidden=false; } else { passo--; mostrar(); } };
+$("refazer").onclick=function(){ $("tela-resultado").hidden=true; $("tela-perguntas").hidden=false; passo=0; mostrar(); };
+
+/* ---------- Leitura do terreno pelas respostas (regras fixas, sem IA) ---------- */
+function alertas(){
+  var a=[]; function add(n,t,x){ a.push({n:n,t:t,x:x}); }
+  if(r.acesso==="asfalto") add("ok","Acesso","Asfalto até a porteira: o hóspede chega de carro comum em qualquer tempo.");
+  if(r.acesso==="4x4") add("critico","Acesso","Só de 4x4 ou trilha: o público fica restrito e a obra fica mais cara. Isso decide o produto antes de tudo.");
+  if(r.km_terra==="5a15") add("atencao","Estrada de terra","De 5 a 15 km de terra: cronometre o trajeto no sol e na chuva e mostre isso no anúncio.");
+  if(r.km_terra==="mais15") add("critico","Estrada de terra","Mais de 15 km de terra: é o primeiro motivo de cancelamento. Teste se o hóspede aceita antes de investir.");
+  if(r.chuva==="lento") add("atencao","Chuva","Com chuva o acesso fica lento: avise o hóspede e planeje a manutenção do trecho.");
+  if(r.chuva==="4x4"||r.chuva==="fecha") add("critico","Chuva","Com chuva só passa 4x4 ou fecha: na temporada de chuva, a operação para. Resolva o acesso antes do produto.");
+  if(r.chuva==="nao_sei") add("atencao","Chuva","Você não sabe como fica o acesso na chuva: vá ao terreno num dia de chuva e cronometre.");
+  if(r.vizinho==="deixa") add("critico","Acesso pelo vizinho","O vizinho \"sempre deixou passar\" não é acesso garantido. Sem servidão registrada, o caminho pode fechar. Quem confirma é o advogado ou o cartório.");
+  if(r.vizinho==="nao_sei") add("atencao","Acesso pelo vizinho","Confira na matrícula se a entrada é por via pública ou por servidão.");
+  if(r.vizinho==="servidao") add("ok","Acesso pelo vizinho","Servidão registrada: o caminho está garantido no papel.");
+  if(r.cidade==="mais60") add("atencao","Distância da cidade","Mais de 60 km da cidade: compras, manutenção e equipe ficam mais caras. Conte isso no custo da operação.");
+  if(r.aeroporto==="ate60") add("ok","Chegada","Aeroporto ou rodoviária a até 60 km: amplia o público de fora.");
+  if(r.energia==="no_terreno") add("ok","Energia","Energia já no terreno: menos obra e menos prazo.");
+  if(r.energia==="perto") add("atencao","Energia","A rede passa perto: peça à concessionária o orçamento e o prazo da ligação.");
+  if(r.energia==="longe") add("critico","Energia","A rede está longe: a extensão pode custar caro e demorar. Peça o orçamento antes de qualquer outra decisão.");
+  if(r.energia==="nao_sei") add("atencao","Energia","Descubra onde está o poste mais próximo e peça a viabilidade à concessionária.");
+  if(r.agua==="nao") add("critico","Água","Sem água não há hospedagem. Investigue poço, captação e a outorga antes de seguir.");
+  if(r.agua==="nascente") add("atencao","Água","Nascente ou rio: o uso da água e o entorno podem ter regras. Quem confirma é o órgão ambiental.");
+  if(r.agua==="nao_sei") add("atencao","Água","Descubra de onde viria a água e em que quantidade.");
+  if(r.internet==="nenhuma") add("critico","Internet","Sem internet: o hóspede de hoje pede conexão, e a operação também. Veja rádio ou satélite.");
+  if(r.internet==="celular") add("atencao","Internet","Só sinal de celular: é pouco para hóspede e para o sistema de reservas.");
+  if(r.internet==="fibra") add("ok","Internet","Fibra ou cabo: atende hóspede e trabalho remoto.");
+  if(r.sinal==="sem") add("atencao","Sinal de celular","Sem sinal: pense em como o hóspede chama ajuda. Pode virar argumento de desconexão, se houver internet.");
+  if(r.vizinhos==="proximos"||r.vizinhos==="vila") add("atencao","Privacidade","Vizinhos próximos: privacidade é parte do produto. Planeje a posição das unidades e a vegetação.");
+  if(r.vizinhos==="nenhum") add("ok","Privacidade","Nenhum vizinho à vista: privacidade é um dos maiores valores do glamping.");
+  if(r.barulho==="sim") add("atencao","Barulho","Barulho por perto: quem paga para descansar reclama. Meça em horários diferentes.");
+  if(r.seguranca==="preocupa") add("critico","Segurança","A segurança preocupa: isso pesa na decisão do hóspede e no custo da operação. Converse com vizinhos e a polícia local.");
+  if(r.relevo==="encosta") add("atencao","Relevo","Encosta forte: casa convencional fica cara. Estruturas leves sobre deck e pilares entram melhor, e a fundação é caso a caso com profissional.");
+  var at=(r.atrativos_terreno||[]).filter(function(x){return x!=="nenhum";});
+  if(at.length>=3) add("ok","Paisagem",at.length+" atrativos no próprio terreno: é matéria-prima de experiência.");
+  if(!at.length) add("atencao","Paisagem","O terreno não tem atrativo natural marcado: o diferencial vai ter de vir do produto e da experiência.");
+  return a;
+}
+
+/* ---------- Cenários com o recurso (conta orientativa da Zion) ---------- */
+var INFRA = "Na conta orientativa da Zion, a base e o interior de uma unidade de glamping (deck de 50 m², luz, água e esgoto ou fossa, móveis, enxoval e piso) ficam perto de R$ 61 mil, sem contar a estrutura da cabana, que depende do produto escolhido.";
+var PARCERIA = "Se um dos caminhos for parceria, a Zion avalia cada caso, sempre com o empreendimento estruturado: o lugar, o público, a conta e quem vai operar. Nada aqui é promessa de investimento, crédito ou sociedade.";
+function capital(){
+  var t={
+    nao_tenho:"Sem recurso agora, o primeiro passo não é dinheiro, é o plano. Terreno não atrai capital: plano estruturado atrai. Com o Dossiê pronto, você conversa com um sócio, um banco ou a Zion de outro jeito.",
+    ate100:"Com até R$ 100 mil, um caminho possível é preparar a base de uma primeira unidade e buscar quem entre com a estrutura, ou estruturar o plano inteiro e começar com uma unidade testada. "+INFRA,
+    "100a300":"De R$ 100 mil a R$ 300 mil, dependendo do produto, cabe uma primeira unidade completa, ou a base de duas a quatro unidades para uma fase um feita junto com um parceiro. "+INFRA,
+    "300a1m":"De R$ 300 mil a R$ 1 milhão, cabe uma fase um com algumas unidades e as áreas comuns mínimas, deixando espaço no masterplan para crescer. A ordem é: provar a demanda com poucas unidades bem feitas e só depois ampliar. "+INFRA,
+    mais1m:"Acima de R$ 1 milhão, a pergunta deixa de ser quanto você gasta e passa a ser como. É o caso típico de quem compra barato e constrói caro sem plano. Masterplan faseado, fase um enxuta e conta fechada antes da obra.",
+    prefiro:"Sem a faixa, mostramos o princípio: comece pequeno, prove a demanda e cresça por fases. "+INFRA
+  }[r.recurso]||"";
+  var c=r.caminhos||[]; var extra="";
+  if(c.indexOf("vender")>=0) extra+=" E se o plano for vender ou arrendar: uma terra sem plano vale pouco, uma terra com plano vale mais, até para vender.";
+  if(c.indexOf("banco")>=0) extra+=" Banco pede garantia e conta: o Pilar 7 mostra o que levar.";
+  return "<p>"+esc(t+extra)+"</p>"+(c.indexOf("zion")>=0||c.indexOf("socio")>=0?"<div class='alerta a-ok'><b>Parceria</b>"+esc(PARCERIA)+"</div>":"");
+}
+
+/* ---------- Pesquisa guiada ---------- */
+function links(cidade, uf){
+  var lugar = cidade ? cidade+(uf?" "+uf:"") : dados.cep;
+  var q=encodeURIComponent(lugar);
+  var L=[
+   ["Google Maps","pousadas perto de "+lugar,"https://www.google.com/maps/search/pousadas+perto+de+"+q],
+   ["Google Maps","glamping perto de "+lugar,"https://www.google.com/maps/search/glamping+perto+de+"+q],
+   ["Booking","hospedagens em "+lugar,"https://www.booking.com/searchresults.pt-br.html?ss="+q],
+   ["Airbnb","acomodações em "+lugar,"https://www.airbnb.com.br/s/"+encodeURIComponent(lugar)+"/homes"],
+   ["Cadastur","meios de hospedagem cadastrados no Ministério do Turismo","https://cadastur.turismo.gov.br/cadastur/#!/public/qualquer-um/consultar-prestador"],
+   ["Mapa do Turismo","a categoria do seu município","https://www.mapa.turismo.gov.br/"]
+  ];
+  return L.map(function(l){ return "<a href='"+l[2]+"' target='_blank' rel='noopener noreferrer'>"+esc(l[0])+" <span>"+esc(l[1])+" ↗</span></a>"; }).join("");
+}
+
+/* ---------- Resultado ---------- */
+var ultima=null;
+function resultado(){
+  $("tela-perguntas").hidden=true; $("tela-resultado").hidden=false; window.scrollTo(0,0);
+  $("r-titulo").textContent="O terreno de "+dados.nome.split(" ")[0];
+  var a=alertas(); var ordem={critico:0,atencao:1,ok:2};
+  a.sort(function(x,y){return ordem[x.n]-ordem[y.n];});
+  $("r-alertas").innerHTML=a.map(function(x){return "<div class='alerta a-"+x.n+"'><b>"+esc(x.t)+"</b>"+esc(x.x)+"</div>";}).join("")||"<p>Sem alertas pelas respostas.</p>";
+  $("r-capital").innerHTML=capital();
+  $("r-links").innerHTML=links("", "");
+  $("r-resumo").innerHTML=""; ["b-regiao","b-oferta","b-aposta"].forEach(function(b){$(b).hidden=true;});
+  $("r-proximos").innerHTML="<ul class='lista'><li>Quem é o hóspede que vem para esta região, e de onde ele vem?</li><li>Quanto cobram as hospedagens parecidas, na alta e na baixa?</li><li>O que ninguém oferece por aqui?</li></ul>";
+  $("r-ia-status").innerHTML="<div class='carregando'><span class='giro'></span><span>Estamos lendo a sua região: CEP, mapa, hospedagens em volta e fontes públicas. Pode levar até um minuto.</span></div>";
+  var corpo={nome:dados.nome,email:dados.email,cep:dados.cep,respostas:r};
+  var ctrl = ("AbortController" in window) ? new AbortController() : null;
+  var tempo = setTimeout(function(){ if(ctrl) ctrl.abort(); }, 120000);
+  fetch(API,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(corpo),signal:ctrl?ctrl.signal:undefined})
+   .then(function(res){return res.json();})
+   .then(function(j){ clearTimeout(tempo); if(!j||!j.ok||!j.leitura) throw new Error((j&&j.erro)||"sem leitura"); pintar(j.leitura, j.repetida); })
+   .catch(function(){ clearTimeout(tempo); $("r-ia-status").innerHTML="<div class='alerta a-atencao'><b>A leitura da região não respondeu agora</b>A parte do seu terreno e os cenários abaixo já valem. Use a pesquisa guiada e tente de novo mais tarde.</div>"; });
+}
+function lista(arr){ return (arr&&arr.length) ? "<ul class='lista'>"+arr.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+"</ul>" : ""; }
+function fontes(fs){ fs=(fs||[]).filter(function(f){return f&&f.url;}); if(!fs.length) return ""; return "<p class='fontes'>Fontes: "+fs.slice(0,8).map(function(f){return "<a href='"+esc(f.url)+"' target='_blank' rel='noopener noreferrer'>"+esc(f.titulo||f.url)+"</a>"+(f.data?" ("+esc(f.data)+")":"");}).join(" · ")+"</p>"; }
+var brl=function(n){ return "R$ "+Math.round(n).toLocaleString("pt-BR"); };
+function pintar(L, repetida){
+  ultima=L;
+  $("r-ia-status").innerHTML = repetida ? "<p class='dica'>Esta é a leitura que fizemos para o seu e-mail na primeira vez. Cada aluno tem uma leitura.</p>" : "";
+  if(L.municipio) $("r-titulo").textContent = "O terreno em "+L.municipio+(L.uf?"/"+L.uf:"");
+  $("r-links").innerHTML=links(L.municipio, L.uf);
+  var s=L.sintese;
+  if(s&&s.resumo) $("r-resumo").innerHTML="<div class='leitura'><p>"+esc(s.resumo)+"</p></div>";
+  var g=L.regiao;
+  if(g){
+    var h="";
+    if(g.texto) h+="<p>"+esc(g.texto)+"</p>";
+    h+="<div class='numeros'>";
+    if(g.forca) h+="<div class='num'><small>Força do destino</small><strong>"+esc({consolidado:"Consolidado",formacao:"Em formação",incipiente:"Incipiente"}[g.forca]||g.forca)+"</strong></div>";
+    if(g.diaria) h+="<div class='num'><small>Diária orientativa, padrão "+esc(g.padrao||"")+"</small><strong>"+brl(g.diaria.min)+" a "+brl(g.diaria.max)+"</strong></div>";
+    if(g.altaTemporada) h+="<div class='num'><small>Alta temporada</small><strong>"+esc(g.altaTemporada)+"</strong></div>";
+    h+="</div>";
+    if(g.procedencia) h+="<p class='dica'>"+esc(g.procedencia)+"</p>";
+    h+=fontes(g.fontes);
+    $("r-regiao").innerHTML=h; $("b-regiao").hidden=false;
+  }
+  var o=L.oferta_osm, oi=L.oferta_ia, h2="";
+  if(o&&o.raio30){
+    var tipos=Object.keys(Object.assign({},o.raio30.por_tipo||{},(o.raio100&&o.raio100.por_tipo)||{}));
+    h2+="<div class='numeros'><div class='num'><small>No mapa, até 30 km</small><strong>"+(o.raio30.total||0)+"</strong></div>"+(o.raio100?"<div class='num'><small>No mapa, até 100 km</small><strong>"+(o.raio100.total||0)+"</strong></div>":"")+"</div>";
+    if(tipos.length){ h2+="<div class='tab'><table><tr><th>Tipo</th><th>Até 30 km</th><th>Até 100 km</th></tr>"+tipos.map(function(t){return "<tr><td>"+esc(t)+"</td><td>"+((o.raio30.por_tipo||{})[t]||0)+"</td><td>"+(((o.raio100||{}).por_tipo||{})[t]||0)+"</td></tr>";}).join("")+"</table></div>"; }
+    if(o.raio30.proximas&&o.raio30.proximas.length) h2+="<p class='dica' style='margin-top:10px'>As mais próximas no mapa: "+o.raio30.proximas.slice(0,8).map(function(p){return esc((p.nome||"sem nome")+" ("+p.tipo+", "+String(p.km).replace(".",",")+" km)");}).join(" · ")+"</p>";
+    if(o.nota) h2+="<p class='dica'>"+esc(o.nota)+"</p>";
+  }
+  if(oi){
+    if(oi.tipologias_predominantes&&oi.tipologias_predominantes.length) h2+="<h3>O que predomina</h3>"+lista(oi.tipologias_predominantes);
+    if(oi.mais_do_mesmo) h2+="<div class='alerta a-atencao'><b>Mais do mesmo</b>"+esc(oi.mais_do_mesmo)+"</div>";
+    if(oi.lacunas&&oi.lacunas.length) h2+="<h3>O que quase não existe</h3>"+lista(oi.lacunas);
+    h2+=fontes(oi.fontes);
+  }
+  if(h2){ $("r-oferta").innerHTML=h2; $("b-oferta").hidden=false; }
+  if(s){
+    var h3="";
+    (s.aposta||[]).forEach(function(p){ h3+="<div class='aposta'><b>"+esc(p.tipologia)+"</b><p>"+esc(p.porque)+"</p>"+(p.o_que_testar?"<p class='dica'><b>O que testar:</b> "+esc(p.o_que_testar)+"</p>":"")+"</div>"; });
+    if(s.primeira_fase) h3+="<p><b>A primeira fase:</b> "+esc(s.primeira_fase)+"</p>";
+    if(s.riscos&&s.riscos.length) h3+="<h3>Os riscos que vimos</h3>"+lista(s.riscos);
+    if(h3){ h3="<p class='dica'>São hipóteses, não conclusões. Você testa no Pilar 2 (Mercado e demanda) e no Pilar 3 (Produto e tipologias).</p>"+h3; $("r-aposta").innerHTML=h3; $("b-aposta").hidden=false; }
+    if(s.perguntas_para_o_pilar_2&&s.perguntas_para_o_pilar_2.length) $("r-proximos").innerHTML=lista(s.perguntas_para_o_pilar_2);
+  }
+  if(L.aviso) $("r-aviso").textContent=L.aviso+" A Zion avalia cada caso.";
+}
+
+/* ---------- Copiar ---------- */
+function textoPlano(){
+  var t=["LEITURA DE TERRITÓRIO · Método Zion 360°", dados.nome+" · CEP "+dados.cep, ""];
+  t.push("O SEU TERRENO"); alertas().forEach(function(a){ t.push("- ["+({ok:"verde",atencao:"amarelo",critico:"vermelho"}[a.n])+"] "+a.t+": "+a.x); });
+  if(ultima){
+    if(ultima.sintese&&ultima.sintese.resumo){ t.push("","RESUMO",ultima.sintese.resumo); }
+    if(ultima.regiao&&ultima.regiao.texto){ t.push("","A REGIÃO",ultima.regiao.texto); }
+    var o=ultima.oferta_osm; if(o&&o.raio30) t.push("","HOSPEDAGEM NO MAPA: "+o.raio30.total+" até 30 km"+(o.raio100?", "+o.raio100.total+" até 100 km":""));
+    var oi=ultima.oferta_ia; if(oi&&oi.mais_do_mesmo) t.push("Mais do mesmo: "+oi.mais_do_mesmo);
+    if(ultima.sintese&&ultima.sintese.aposta) ultima.sintese.aposta.forEach(function(p){ t.push("Aposta: "+p.tipologia+". "+p.porque); });
+  }
+  t.push("","COM O SEU RECURSO", document.getElementById("r-capital").innerText);
+  t.push("","Leitura orientativa. Não é promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.");
+  return t.join("\n");
+}
+$("copiar").onclick=function(){
+  var txt=textoPlano();
+  function falhou(){ var ta=document.createElement("textarea"); ta.value=txt; ta.style.width="100%"; ta.style.minHeight="200px"; $("erro-copia").innerHTML="Selecione o texto abaixo e copie:"; $("erro-copia").appendChild(ta); ta.select(); }
+  try{ navigator.clipboard.writeText(txt).then(function(){ $("erro-copia").textContent="Copiado. Cole na sua Ficha do Território."; }, falhou); }catch(e){ falhou(); }
+};
+})();
+</script>
+</body>
+</html>
