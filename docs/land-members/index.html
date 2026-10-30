@@ -39,6 +39,18 @@ p{margin:0 0 12px}
 /* topo */
 .top{position:sticky;top:0;z-index:20;background:rgba(15,29,21,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
 .top .w{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.hero .ph{position:relative}
+.hplay{position:absolute;inset:0;z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;background:linear-gradient(180deg,rgba(0,0,0,0) 40%,rgba(0,0,0,.28));border:0;cursor:pointer;color:#fff;font:600 12px/1.2 var(--f-b);letter-spacing:.14em;text-transform:uppercase}
+.hplay-c{width:84px;height:84px;border-radius:50%;display:grid;place-items:center;background:rgba(15,29,21,.55);border:1.5px solid rgba(255,255,255,.85);backdrop-filter:blur(6px);transition:transform .25s ease,background .25s ease;box-shadow:0 10px 40px rgba(0,0,0,.35)}
+.hplay-c svg{width:34px;height:34px;margin-left:5px}
+.hplay:hover .hplay-c,.hplay:focus-visible .hplay-c{transform:scale(1.08);background:rgba(201,162,74,.85)}
+.hplay-t{background:rgba(15,29,21,.6);padding:7px 12px;border-radius:999px;backdrop-filter:blur(6px)}
+.vmodal{position:fixed;inset:0;z-index:100;background:rgba(5,10,7,.92);display:flex;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) max(16px,env(safe-area-inset-right,0px)) max(16px,env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px))}
+.vmodal[hidden]{display:none}
+.vmodal video{width:min(1100px,100%);max-height:86vh;border-radius:10px;background:#000}
+.vmodal .vx{position:absolute;top:calc(14px + env(safe-area-inset-top,0px));right:calc(16px + env(safe-area-inset-right,0px));width:44px;height:44px;border-radius:50%;border:1px solid rgba(255,255,255,.5);background:transparent;color:#fff;font-size:22px;cursor:pointer}
+@media (max-width:600px){.hplay-c{width:68px;height:68px}.hplay-c svg{width:28px;height:28px}}
+.logo .zlogo{display:block;width:30px;height:30px;color:#E6DFCF;flex:none}
 .logo{display:flex;align-items:center;gap:12px;font:500 13px/1.15 var(--f-b);letter-spacing:.16em}
 .logo b{font:500 22px/1 var(--f-d);letter-spacing:.08em;color:var(--paper)}
 .logo small{display:block;font-size:10px;letter-spacing:.24em;color:var(--mute)}
@@ -398,7 +410,7 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
 <body>
 
 <header class="top g"><div class="w">
-  <a class="logo" href="/" aria-label="Zion Hotel Group International"><b>ZION</b><span>HOTEL GROUP<small>INTERNATIONAL</small></span></a>
+  <a class="logo" href="/" aria-label="Zion Hotel Group International"><svg class="zlogo" viewBox="0 0 424 423" aria-hidden="true" focusable="false"><g fill="currentColor"><polygon points="0,0 424,0 424,53 397,53 318,106 0,106"/><polygon points="318,106 424,106 424,264 212,264 132,317 0,317"/><polygon points="0,370 317,370 424,291 424,423 0,423"/></g></svg><b>ZION</b><span>HOTEL GROUP<small>INTERNATIONAL</small></span></a>
   <nav class="nav" aria-label="Principal">
     <details><summary>Método Zion ▾</summary><div class="sub">
       <a href="/metodo-zion">Método 1 · Desenvolvimento Hoteleiro<small>Disponível</small></a>
@@ -424,7 +436,7 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
 
 <main>
 <section class="hero" style="padding:0">
-  <div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion com jacuzzi no deck, entre as árvores" fetchpriority="high" style="object-position:center 40%"></div>
+  <div class="ph"><button type="button" class="hplay" aria-label="Assistir ao vídeo de boas-vindas" onclick="abrirVideoHero()"><span class="hplay-c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="hplay-t">Assista: a jornada completa</span></button><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion com jacuzzi no deck, entre as árvores" fetchpriority="high" style="object-position:center 40%"></div>
   <div class="tx">
     <span class="k">Zion Land Members</span>
     <h1 class="h-lm">Transforme seu sonho em um <em>negócio de hospedagem.</em></h1>
@@ -683,5 +695,10 @@ try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.search
 var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
 if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
 else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
+<div class="vmodal" id="vmodal" hidden><button type="button" class="vx" aria-label="Fechar o vídeo" onclick="fecharVideoHero()">×</button><video id="vhero" controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas-capa.jpg" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4"></video></div>
+<script>function abrirVideoHero(){var m=document.getElementById('vmodal'),v=document.getElementById('vhero');m.hidden=false;try{v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
+function fecharVideoHero(){var m=document.getElementById('vmodal'),v=document.getElementById('vhero');try{v.pause();}catch(e){}m.hidden=true;}
+document.addEventListener('keydown',function(e){if(e.key==='Escape')fecharVideoHero();});
+document.getElementById('vmodal').addEventListener('click',function(e){if(e.target.id==='vmodal')fecharVideoHero();});</script>
 </body>
 </html>
