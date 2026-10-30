@@ -234,6 +234,18 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
 @media (max-width:960px){.trilho{grid-template-columns:1fr 1fr}.trilho:before{display:none}.etapa:before{display:none}.mapa{grid-template-columns:1fr 1fr}.mapa svg{display:none}.no.centro{grid-column:1/-1;order:-1}}
 @media (max-width:600px){.trilho,.mapa{grid-template-columns:1fr}.obj,.chegada{grid-template-columns:1fr}}
 </style>
+<style>
+.h-lm{max-width:11ch}
+.sub-lm{font-family:var(--f-d);font-size:clamp(19px,1.7vw,24px);color:var(--paper);opacity:.92;max-width:30ch}
+.pill-lm{letter-spacing:.14em;font-weight:600;font-size:16px;padding-left:34px;gap:40px}
+.sec-lm{align-items:center}
+.div-lm{width:1px;height:18px;background:var(--line)}
+.lnk-plain{border-bottom-color:transparent}
+.prova-lm{justify-content:space-between;align-items:center}
+.caso-lm{color:var(--gold);font-size:13px;text-decoration:underline;text-underline-offset:3px}
+.nav a.on{color:var(--gold);opacity:1}
+.nav a.cta-top{color:var(--deep);opacity:1;padding:12px 22px;font-size:14px}
+</style>
 </head>
 <body>
 
@@ -246,11 +258,11 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
       <a href="/#metodos">Método 3 · Operação Hoteleira<small>Em breve</small></a>
       <a href="/#metodos">Método 4 · Aceleração de Vendas<small>Em breve</small></a>
     </div></details>
-    <a href="/land-members">Zion Land Members</a>
+    <a class="on" href="/land-members">Zion Land Members</a>
     <a href="/oportunidades">Investidores</a>
     <a href="/store">Glamping Store</a>
     <a href="/#sobre">Sobre</a>
-    <a class="cta-top" href="/inscreva">Inscreva seu terreno</a>
+    <a class="cta-top" href="/inscreva">Inscrever-se →</a>
   </nav>
   <details class="menu-m"><summary>Menu</summary><div class="mm">
     <a href="/land-members">Zion Land Members</a>
@@ -264,16 +276,16 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
 
 <main>
 <section class="hero" style="padding:0">
-  <div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/vista.webp" alt="Vista de uma operação Zion ao entardecer" fetchpriority="high"></div>
+  <div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion com jacuzzi no deck, entre as árvores" fetchpriority="high" style="object-position:center 40%"></div>
   <div class="tx">
     <span class="k">Zion Land Members</span>
-    <h1>Seja membro e estruture o seu <em>sonho.</em></h1>
-    <p class="sub2">No nosso clube, você inscreve o seu terreno e nós o mantemos no radar de oportunidades e investimentos. Mas antes, preparamos a sua área: formatamos o melhor modelo para você começar.</p>
+    <h1 class="h-lm">Transforme seu sonho em um <em>negócio de hospedagem.</em></h1>
+    <p class="sub2 sub-lm">Aprenda a desenvolver, operar e rentabilizar sua hospedagem com o Método Zion.</p>
     <div class="acoes">
-      <a class="pill" href="/inscreva">Inscrever meu terreno · 6x de R$ 45 <span class="arr">→</span></a>
-      <div class="sec"><a class="lnk" href="/inscreva?tipo=projeto">Já tenho projeto ↗</a><a class="lnk" href="#como">Como funciona ↓</a></div>
+      <a class="pill pill-lm" href="/inscreva">QUERO COMEÇAR <span class="arr">→</span></a>
+      <div class="sec sec-lm"><a class="lnk" href="/inscreva?tipo=projeto">Já tenho projeto →</a><span class="div-lm" aria-hidden="true"></span><a class="lnk lnk-plain" href="#como">Como funciona ↓</a></div>
     </div>
-    <div class="prova"><span><b>Terra parada?</b> Você não precisa de um grande hotel para começar</span><span>Cada caso é avaliado pela Zion</span></div>
+    <div class="prova prova-lm"><span><b>Terra parada?</b> Você não precisa de um grande hotel para começar.</span><a class="caso-lm" href="#perguntas">Cada caso é único →</a></div>
   </div>
 </section>
 
@@ -405,7 +417,7 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
 </div></section>
 
 <section class="g alt"><div class="w">
-  <div class="head"><span class="k">Perguntas</span><h2>Antes de virar <em>membro.</em></h2></div>
+  <div class="head"><span class="k" id="perguntas">Perguntas</span><h2>Antes de virar <em>membro.</em></h2></div>
   <details class="fq"><summary>Não tenho projeto, só a terra. Posso entrar?</summary><p>Pode. O passo a passo começa exatamente do terreno, e você não precisa de um grande hotel para começar.</p></details>
   <details class="fq"><summary>O que era o Zion Land Bank?</summary><p>O Land Bank continua existindo: agora ele vive dentro da Zion Land Members. Quem é membro tem a sua área no banco, com o Dossiê.</p></details>
   <details class="fq"><summary>Ser membro garante investimento ou sociedade?</summary><p>Não. A Zion avalia cada caso. Ser membro coloca a sua área no radar da Zion, com o diagnóstico prévio.</p></details>
