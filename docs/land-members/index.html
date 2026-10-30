@@ -195,6 +195,45 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
 .frase{font:400 clamp(28px,3.4vw,44px)/1.2 var(--f-d);max-width:22ch}
 @media (max-width:900px){.passos,.bens,.planos{grid-template-columns:1fr}}
 </style>
+<style>
+/* jornada */
+.jor{background:var(--deep)}
+.obj{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:center;background:var(--panel);border:1px solid rgba(224,190,94,.45);border-radius:22px;padding:24px 28px;margin-bottom:56px}
+.obj .alvo{width:64px;height:64px;border-radius:50%;border:2px solid var(--gold);display:grid;place-items:center;font:400 26px/1 var(--f-d);color:var(--gold)}
+.obj b{display:block;font:400 clamp(22px,2.4vw,30px)/1.2 var(--f-d)}
+.obj span{color:var(--mute);font-size:15px}
+.fase{font:500 11px/1.2 var(--f-b);letter-spacing:.24em;text-transform:uppercase;color:var(--gold);margin:0 0 18px}
+.trilho{position:relative;display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding-top:34px}
+.trilho:before{content:"";position:absolute;left:0;right:0;top:9px;height:2px;background:linear-gradient(90deg,var(--gold2),rgba(224,190,94,.25))}
+.etapa{position:relative;display:grid;gap:12px;align-content:start;min-width:0}
+.etapa:before{content:"";position:absolute;top:-31px;left:0;width:16px;height:16px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 5px var(--deep)}
+.etapa .et{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--mute)}
+.etapa .et b{color:var(--paper);font-weight:500}
+.pil{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px 18px;display:grid;gap:6px}
+.pil .pn{font:400 13px/1 var(--f-b);color:var(--gold);letter-spacing:.12em;text-transform:uppercase}
+.pil h4{margin:0;font:400 20px/1.2 var(--f-d)}
+.pil q{color:var(--mute);font-size:14px;quotes:"“" "”"}
+.pil .pg{font-size:13px;color:var(--paper);border-top:1px solid var(--line);padding-top:8px;margin-top:2px}
+.pil .pg:before{content:"→ ";color:var(--gold)}
+.mz{border-color:rgba(224,190,94,.45)}
+.chegada{position:relative;margin:44px 0 64px;display:grid;grid-template-columns:auto 1fr;gap:22px;align-items:center;background:linear-gradient(120deg,rgba(224,190,94,.16),rgba(224,190,94,.04));border:1px solid var(--gold);border-radius:22px;padding:28px}
+.chegada .band{width:72px;height:72px;border-radius:16px;background:repeating-conic-gradient(var(--paper) 0 25%,var(--deep) 0 50%) 0 0/18px 18px;border:2px solid var(--gold)}
+.chegada b{display:block;font:400 clamp(26px,3vw,38px)/1.15 var(--f-d)}
+.chegada span{color:var(--mute);font-size:15px;display:block;max-width:62ch;margin-top:6px}
+.mapa{position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.mapa svg{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:0}
+.no{position:relative;z-index:1;background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:20px 22px;display:grid;gap:8px;align-content:start;min-width:0}
+.no h4{margin:0;font:400 22px/1.2 var(--f-d)}
+.no .tg{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)}
+.no ul{list-style:none;padding:0;margin:0;display:grid;gap:5px;font-size:14px;color:var(--mute)}
+.no li:before{content:"· ";color:var(--gold)}
+.no.centro{background:var(--gold);color:var(--deep);border-color:var(--gold);align-content:center;text-align:center;justify-items:center}
+.no.centro h4{font-size:28px}
+.no.centro p{margin:0;font-size:14px;color:rgba(15,29,21,.8)}
+.nota-j{color:var(--mute);font-size:13px;margin-top:22px}
+@media (max-width:960px){.trilho{grid-template-columns:1fr 1fr}.trilho:before{display:none}.etapa:before{display:none}.mapa{grid-template-columns:1fr 1fr}.mapa svg{display:none}.no.centro{grid-column:1/-1;order:-1}}
+@media (max-width:600px){.trilho,.mapa{grid-template-columns:1fr}.obj,.chegada{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 
@@ -245,6 +284,49 @@ details.fq p{color:var(--mute);margin:10px 0 0;max-width:62ch}
     <div class="ps"><span class="n">2</span><h3>Estruture</h3><p>Passo a passo, com aulas curtas e o mentor de IA da Zion, você monta o Dossiê prévio: território, mercado, produto, modelo, masterplan, a conta e o capital. É assim que nasce o melhor modelo para começar.</p></div>
     <div class="ps"><span class="n">3</span><h3>Fique no radar</h3><p>Com o Dossiê feito, a sua área entra no Land Bank Zion, o banco de áreas que a Zion estuda para parcerias, para apresentar a possíveis investidores e para estruturar empreendimentos.</p></div>
   </div>
+</div></section>
+
+<section class="g jor" id="jornada"><div class="w">
+  <div class="head"><span class="k">A jornada do membro</span><h2>Do terreno ao Dossiê. Do Dossiê ao <em>clube.</em></h2><p class="lead">Uma linha do tempo com um objetivo só: estruturar o seu empreendimento antes de qualquer obra. Cada pilar responde uma pergunta e termina com uma página do seu Dossiê.</p></div>
+
+  <div class="obj"><div class="alvo">◎</div><div><b>Objetivo: estruturar.</b><span>O papel suporta qualquer projeto. A pergunta é se o seu terreno suporta o que está no papel, e se o que está nele tem demanda.</span></div></div>
+
+  <p class="fase">Fase 1 · A estruturação · os pilares</p>
+  <div class="trilho">
+    <div class="etapa"><span class="et"><b>Comece aqui</b></span>
+      <div class="pil mz"><span class="pn">Marco Zero</span><h4>Diagnóstico prévio</h4><q>O papel suporta qualquer projeto.</q><span class="pg">Página 0 · o seu diagnóstico</span></div>
+    </div>
+    <div class="etapa"><span class="et">Etapa 1 · <b>Ler o lugar</b></span>
+      <div class="pil"><span class="pn">Pilar 1</span><h4>Território e destino</h4><q>O seu terreno suporta o que está no papel?</q><span class="pg">Página 1 · Ficha do Território</span></div>
+      <div class="pil"><span class="pn">Pilar 2</span><h4>Mercado e demanda</h4><q>O que está no terreno tem demanda?</q><span class="pg">Página 2 · Ficha do Mercado</span></div>
+    </div>
+    <div class="etapa"><span class="et">Etapa 2 · <b>Desenhar o produto</b></span>
+      <div class="pil"><span class="pn">Pilar 3</span><h4>Produto e tipologias</h4><q>Para quem vamos vender?</q><span class="pg">Página 3 · Ficha do Produto</span></div>
+      <div class="pil"><span class="pn">Pilar 4</span><h4>Modelo de negócio</h4><q>Qual é o melhor caminho?</q><span class="pg">Página 4 · Modelo de Negócio</span></div>
+    </div>
+    <div class="etapa"><span class="et">Etapas 3 e 4 · <b>Desenhar e fechar a conta</b></span>
+      <div class="pil"><span class="pn">Pilar 5</span><h4>Masterplan faseado</h4><q>O que cabe e o que entra na fase um?</q><span class="pg">Página 5 · Masterplan</span></div>
+      <div class="pil"><span class="pn">Pilar 6</span><h4>Pré-viabilidade</h4><q>O retorno está alinhado com a minha perspectiva?</q><span class="pg">Página 6 · Pré-viabilidade</span></div>
+      <div class="pil"><span class="pn">Pilar 7</span><h4>Capital e Dossiê</h4><q>Avançar, ajustar ou parar?</q><span class="pg">Página 7 · Capital e decisão</span></div>
+    </div>
+  </div>
+
+  <div class="chegada"><div class="band" aria-hidden="true"></div><div><b>Linha de chegada: o seu Dossiê completo, dentro do clube.</b><span>As sete páginas juntas, com a sua decisão escrita. O Dossiê é seu e entra no Land Bank Zion: a sua área passa a estar no radar de oportunidades da Zion. A Zion avalia cada caso.</span></div></div>
+
+  <p class="fase">Fase 2 · Dentro do clube · o que você tem à disposição</p>
+  <div class="mapa">
+    <svg viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true"><g stroke="rgba(224,190,94,.45)" stroke-width="1" vector-effect="non-scaling-stroke" fill="none"><line x1="150" y1="150" x2="50" y2="50"/><line x1="150" y1="150" x2="150" y2="50"/><line x1="150" y1="150" x2="250" y2="50"/><line x1="150" y1="150" x2="50" y2="150"/><line x1="150" y1="150" x2="250" y2="150"/><line x1="150" y1="150" x2="50" y2="250"/><line x1="150" y1="150" x2="150" y2="250"/><line x1="150" y1="150" x2="250" y2="250"/></g></svg>
+    <div class="no"><span class="tg">A sua área</span><h4>Land Bank Zion</h4><ul><li>Cadastrada</li><li>Em desenvolvimento</li><li>Em validação</li><li>Qualificada para avaliação</li></ul></div>
+    <div class="no"><span class="tg">Avançar</span><h4>Desenvolvimento avançado</h4><ul><li>Pilar 8 · Viabilidade completa</li><li>Pilar 9 · Implantação faseada</li><li>Pilar 10 · Captação e data room</li></ul></div>
+    <div class="no"><span class="tg">Ferramentas</span><h4>IA e ferramentas</h4><ul><li>Mentor de IA da Zion</li><li>Leitor de Território</li><li>Agentes de IA da Zion</li><li>Ferramentas parceiras de gestão e vendas</li></ul></div>
+    <div class="no"><span class="tg">Aprender</span><h4>Aulas e conteúdo</h4><ul><li>Aula ao vivo semanal</li><li>Tema escolhido pelos membros</li><li>E-books de cada pilar</li></ul></div>
+    <div class="no centro"><h4>Você, membro</h4><p>Zion Land Members</p></div>
+    <div class="no"><span class="tg">Produtos</span><h4>Glamping Store</h4><ul><li>Bubble com condição de membro</li><li>Soluções para hospedagem</li><li>Fornecedores da Zion</li></ul></div>
+    <div class="no"><span class="tg">Condições</span><h4>Descontos de membro</h4><ul><li>Assessoria em grupo e individual</li><li>Visita técnica</li><li>Parceiros e ferramentas</li></ul></div>
+    <div class="no"><span class="tg">Conexões</span><h4>Network e encontros</h4><ul><li>Comunidade de membros</li><li>Encontro trimestral do setor</li><li>Profissionais, fornecedores e investidores</li></ul></div>
+    <div class="no"><span class="tg">Em breve</span><h4>Próximos métodos</h4><ul><li>Gestor de hospedagem</li><li>Operador de hospedagem</li><li>Alimentos e bebidas</li><li>Identidade e branding</li><li>Aceleração de vendas</li></ul></div>
+  </div>
+  <p class="nota-j">O que entra em cada plano está na seção dos planos. Investimento, parceria ou sociedade: a Zion avalia cada caso.</p>
 </div></section>
 
 <section class="g alt"><div class="w dois">
