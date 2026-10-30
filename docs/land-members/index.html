@@ -327,6 +327,13 @@ details.pj p{color:var(--mute);margin:10px 0 0;font-size:15px;max-width:70ch}
 .mr-tags span{border:1px solid var(--gold2);color:var(--gold);border-radius:999px;padding:7px 14px;font-size:13px}
 .mr-nota{margin-top:18px;font-size:12px;color:var(--mute)}
 @media (max-width:900px){.membro-r{grid-template-columns:1fr}.mr-gal{grid-template-columns:1fr 1fr}}
+.jor-top{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);gap:clamp(24px,4vw,56px);align-items:center;margin-bottom:10px}
+.jor-top .head{margin:0}
+.jor-vlab{margin-top:18px;font:600 12px/1.4 var(--f-b);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.jor-video{margin:0;min-width:0}
+.jor-video video{display:block;width:100%;aspect-ratio:16/9;border-radius:18px;border:1px solid var(--line);background:#000;box-shadow:0 30px 60px rgba(0,0,0,.35)}
+.jor-video figcaption{margin-top:10px;font-size:12.5px;color:var(--mute)}
+@media (max-width:900px){.jor-top{grid-template-columns:1fr}}
 .orbs{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,3vw,48px);margin-top:20px}
 .orb{min-width:0}
 .orb .fase{text-align:center;margin:0 0 4px}
@@ -440,7 +447,10 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
 </div></section>
 
 <section class="g jor" id="jornada"><div class="w">
-  <div class="head"><span class="k">A jornada do membro</span><h2>Do terreno ao Dossiê. Do Dossiê ao <em>clube.</em></h2><p class="lead">Um ciclo com um objetivo só: estruturar o seu empreendimento antes de qualquer obra. Cada pilar responde uma pergunta e acrescenta uma página ao seu Dossiê. No centro, a sua decisão.</p></div>
+  <div class="jor-top">
+    <div class="head"><span class="k">A jornada do membro</span><h2>Do terreno ao Dossiê. Do Dossiê ao <em>clube.</em></h2><p class="lead">Um ciclo com um objetivo só: estruturar o seu empreendimento antes de qualquer obra. Cada pilar responde uma pergunta e acrescenta uma página ao seu Dossiê. No centro, a sua decisão.</p><p class="jor-vlab">▶ Assista: o caminho completo em 3 minutos e meio</p></div>
+    <figure class="jor-video"><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas-capa.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4" type="video/mp4"></video><figcaption>Comece aqui · Boas-vindas · 3:36</figcaption></figure>
+  </div>
 
   <div class="orbs">
     <div class="orb">
