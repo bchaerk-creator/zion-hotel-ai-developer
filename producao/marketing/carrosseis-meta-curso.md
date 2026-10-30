@@ -6,6 +6,41 @@ Versão 2 · 30/10/2026 · Skills: `ecroi`, `ad-creative` e `marketing-psycholog
 
 ---
 
+## 0. O campeão atual · "Campanha Investidores e Hoteleiros" (30/10)
+
+O Bruno indicou este como o carrossel que melhor funciona. Ele vira o **controle**: tudo o que é novo é testado contra ele, mudando **uma coisa por vez**.
+
+**Os 7 cards**
+1. "GLAMPING · Transformamos o seu terreno em um destino turístico." + foto da Bubble (deck, vista de cima) + "MÉTODO ZION · Aprenda o passo a passo e inscreva seu terreno"
+2. "O setor que mais cresce no Brasil" · colagem de cabanas, tendas e bubbles
+3. "Quem disse que você precisa construir um hotel para ganhar dinheiro com hospedagem?" · "Faça parte do Zion Members Hospitality"
+4. "O mercado que mais cresce no turismo brasileiro" · "Glamour + camping = glamping" · "Inscreva seu terreno"
+5. "Mais que uma hospedagem, uma experiência" · Bubble à noite · "Comece a ganhar dinheiro com esse setor"
+6. "Somos especialistas em desenvolver projetos de hospedagem" · "Mais de 20 anos de experiência internacional"
+7. "Aprenda com quem é referência no setor" · Zion Glamping Collection · botão amarelo "Inscreva seu terreno e seu projeto"
+
+**Por que ele funciona**
+- **A Bubble abre** (card 1), confirmando a regra do Bruno: a imagem é o gancho.
+- **O pedido é leve:** "inscreva seu terreno" é um cadastro grátis, e não uma compra. Para quem nunca ouviu falar da Zion, pedir pouco converte mais.
+- **Desejo antes de argumento:** fotos de experiência (noite, céu, piscina, pessoa dentro da bolha) vendem o sonho.
+- **Uma frase grande por card**, que dá para ler no celular sem esforço.
+- **A crença quebrada no card 3** ("quem disse que precisa de um hotel?") é o mesmo gatilho que o Bruno quer usar.
+
+**O que corrigir sem mexer no que funciona** (não muda o teste, só tira atrito)
+- Card 1: o texto está **cortado na borda direita** ("SEU" e "DESTINO" saem da arte).
+- Erros de digitação: "**Apreenda**" (card 7), "Zion **Menbers**" e "**Faca** parte" (card 3).
+- **Três nomes de marca** num só anúncio: Método Zion, Zion Members Hospitality e Zion Glamping Collection. Usar um só, "Método Zion", e o logo Zion.
+- "**Comece a ganhar dinheiro**" (card 5) e "**o setor que mais cresce no Brasil**" (cards 2 e 4): promessa de ganho é motivo de reprovação no Meta, e o dado de crescimento que a Zion tem é global (Grand View Research). Trocar por "Um mercado que cresce no mundo inteiro" e "Faça parte desse mercado".
+- **Nenhum número de prova.** Falta o que só a Zion tem: diária de R$ 1.571, 60% de ocupação, Booking 9,6. Cabe no card 6, junto com os 20 anos.
+- Tendas no deserto e tipis parecem imagens de banco. Se não forem da Zion, trocar por fotos reais da operação.
+
+**O que isso muda no plano abaixo**
+- "**Inscreva seu terreno**" vira o botão de todos os carrosséis frios, e o link vai para o **Raio-X** (que é, literalmente, inscrever o terreno). O resultado do Raio-X vende os R$ 270. O carrossel não vende o curso direto: ele traz o cadastro.
+- Os carrosséis da seção 3 passam a usar **o visual e a estrutura do campeão** (verde e dourado da Zion, foto grande e uma frase por card), e não um layout novo.
+- **Ordem do teste:** (1) o campeão corrigido contra o original; (2) o campeão com o card 3 trocado pela dor do capital (C2) ou da parceria (C3); (3) só depois os carrosséis inteiros novos.
+
+---
+
 ## 1. Duas decisões antes das artes
 
 ### Como chamar o produto
