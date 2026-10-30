@@ -980,6 +980,10 @@ function validar(q) {
     if (n === null) return q.aceitaNS ? "Escreva um número (só dígitos, pode usar ponto para milhar) ou toque em Não sei." : "Escreva um número, só dígitos (pode usar ponto para milhar).";
     if (n < 0) return "O número não pode ser negativo.";
     if (q.id === "area_matricula" && n <= 0) return "A área da matrícula precisa ser maior que zero.";
+    if (q.id === "area_matricula" && n > 10000000 && window.__zionAreaConfere !== n) {
+      window.__zionAreaConfere = n;
+      return "Confere esse número? " + n.toLocaleString("pt-BR") + " m² são " + (n / 10000).toLocaleString("pt-BR", { maximumFractionDigits: 0 }) + " hectares. Lembre: 1 hectare tem 10.000 m². Se estiver certo, toque em Avançar de novo.";
+    }
     if (!S.fontes[q.id]) return "Diga de onde veio esse número: é isso que separa dado de palpite.";
     return "";
   }

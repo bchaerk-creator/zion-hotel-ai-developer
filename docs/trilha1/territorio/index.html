@@ -135,6 +135,13 @@ ul.lista{padding-left:20px;margin:6px 0}
     <section class="bloco"><h2>6 · Confira com os próprios olhos</h2><p>A IA não vê tudo. Abra cada busca, conte o que aparece e anote na sua Ficha do Território.</p><div class="links" id="r-links"></div></section>
     <section class="bloco" id="b-proximos"><h2>7 · Leve para o Pilar 2</h2><div id="r-proximos"></div></section>
     <div class="aviso" id="r-aviso">Leitura orientativa, feita com fontes públicas e IA. Não substitui a visita, o estudo de mercado nem arquiteto, advogado, contador ou órgão ambiental. Não é promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.</div>
+    <div class="caixa" id="lb" style="background:#FBF6E8;border:1.5px solid #B08D3A">
+      <h3>Zion Land Members</h3>
+      <p>Guarde esta leitura no seu cadastro do banco de áreas da Zion, junto da página 1 do seu Dossiê. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade.</p>
+      <label style="display:flex;gap:8px;align-items:flex-start;font-size:.92rem"><input type="checkbox" id="lb-ok" style="margin-top:4px;width:18px;height:18px;accent-color:#16261C"><span>Autorizo a Zion a guardar esta leitura no meu cadastro do Zion Land Members, conforme o <a href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/privacidade/" target="_blank" rel="noopener">Aviso de Privacidade</a>.</span></label>
+      <button class="btn btn-p" id="lb-btn" style="margin-top:10px">Enviar ao Land Bank da Zion</button>
+      <p class="dica" id="lb-msg" role="status" style="margin-top:8px"></p>
+    </div>
     <div class="acoes">
       <button class="btn btn-ouro" id="copiar">Copiar a leitura para a minha Ficha</button>
       <a class="btn btn-p" href="../aula1/" id="ir-ficha">Abrir a Ficha do Território (Faça agora)</a>
@@ -382,6 +389,35 @@ function pintar(L, repetida){
   }
   if(L.aviso) $("r-aviso").textContent=L.aviso+" A Zion avalia cada caso.";
 }
+
+/* ---------- Land Bank (mesmo envio das páginas do Dossiê) ---------- */
+var DOSSIE_API = "https://zion-dossie-aulas.lovable.app/api/dossie";
+var FORM_LM = "https://airtable.com/appNazhHg9mqWAt9h/pageylHbg89JNYm81/form";
+function enxuta(L){
+  if(!L) return null;
+  var o=L.oferta_osm, oi=L.oferta_ia, g=L.regiao;
+  return {
+    municipio:L.municipio, uf:L.uf, cep:L.cep,
+    regiao: g ? {forca:g.forca, categoriaMtur:g.categoriaMtur, diaria:g.diaria, padrao:g.padrao, altaTemporada:g.altaTemporada, atrativos:g.atrativos, mercadoEmissor:g.mercadoEmissor, texto:g.texto, confianca:g.confianca} : null,
+    oferta_osm: o ? {raio30:{total:o.raio30&&o.raio30.total, por_tipo:o.raio30&&o.raio30.por_tipo}, raio100:o.raio100?{total:o.raio100.total, por_tipo:o.raio100.por_tipo}:null} : null,
+    oferta_ia: oi ? {tipologias_predominantes:oi.tipologias_predominantes, mais_do_mesmo:oi.mais_do_mesmo, lacunas:oi.lacunas, fontes:(oi.fontes||[]).slice(0,6)} : null,
+    sintese: L.sintese || null
+  };
+}
+$("lb-btn").onclick=function(){
+  var msg=$("lb-msg");
+  if(!$("lb-ok").checked){ msg.textContent="Marque a autorização para enviar."; return; }
+  var payload={ tipo:"leitor-territorio", nome:dados.nome, email:dados.email, cep:dados.cep,
+    respostas:r, alertas:alertas().map(function(a){return {sinal:a.n,tema:a.t,texto:a.x};}),
+    leitura:enxuta(ultima), land_bank:{autorizado:true, quando:new Date().toISOString()} };
+  var corpo={pagina:"t1-aula-1", email:dados.email, nome:dados.nome, payload:payload};
+  var txt=JSON.stringify(corpo); if(txt.length>45000){ payload.leitura&&payload.leitura.oferta_ia&&(payload.leitura.oferta_ia.fontes=[]); txt=JSON.stringify(corpo); }
+  var link=FORM_LM+"?prefill_"+encodeURIComponent("LM · Nome do membro")+"="+encodeURIComponent(dados.nome)+"&prefill_"+encodeURIComponent("LM · E-mail do membro")+"="+encodeURIComponent(dados.email);
+  msg.textContent="Enviando...";
+  fetch(DOSSIE_API,{method:"POST",headers:{"Content-Type":"application/json"},body:txt})
+   .then(function(res){ msg.innerHTML=(res.ok?"Enviado. A leitura já está no seu cadastro do Land Bank. ":"Não conseguimos enviar agora. Tente de novo em alguns minutos. ")+"<a href='"+link+"' target='_blank' rel='noopener'><b>Completar o cadastro do meu terreno</b></a>"; })
+   .catch(function(){ msg.innerHTML="Não conseguimos enviar agora. <a href='"+link+"' target='_blank' rel='noopener'>Completar o cadastro do meu terreno</a>"; });
+};
 
 /* ---------- Copiar ---------- */
 function textoPlano(){
