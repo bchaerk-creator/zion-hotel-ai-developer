@@ -36,6 +36,12 @@ Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, 
 - Já opera e quer encher o calendário, organizar a operação ou expandir.
 - Em geral, não entende de hotelaria e chega pela Bubble, querendo o produto antes do plano.
 
+## Zion Land Members (30/10)
+
+- Clube de áreas: inscrição de **R$ 270** (inscrição do terreno + estruturação pelas aulas online e formulários) + mensalidade de **R$ 47**. Pacotes anuais ou em 12x; com o ano inteiro, bônus de uma consultoria prévia (impactos climáticos / "defesa civil da Zion") com CS ou com o Bruno.
+- Mensagem: "Seja membro da Zion Land Members e estruture o seu sonho. Você inscreve o seu terreno, te ajudamos a preparar o melhor modelo para você começar, e ele fica no radar de oportunidades e investimentos."
+- Detalhes completos: aguardando o arquivo de estratégia do Bruno.
+
 ## Mensagens que o Bruno quer usar (29/10)
 
 - "Transforme seu terreno em um destino turístico."
@@ -45,6 +51,8 @@ Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, 
 - Ideia central: **terra parada dá prejuízo; terra com plano vira dinheiro.**
 
 ## Regras de texto (obrigatórias)
+
+- **A Zion ajuda, não faz.** Sempre "te ajudamos a…" e "o nosso método te ajuda a…". Nunca "transformamos", "estruturamos", "formatamos", "fazemos por você" ou "nós fazemos".
 
 - **Nunca prometer renda, lucro, retorno, ocupação, crédito, sócio ou captação garantidos.** O próprio site diz isso (FAQ: "Vocês garantem resultado ou retorno? Não."), e a promessa é publicidade enganosa pelo CDC (art. 37), além de ser reprovada nos anúncios do Meta e do Google.
 - Números da operação Zion sempre como "o case da Zion", com o aviso "não é promessa de resultado".

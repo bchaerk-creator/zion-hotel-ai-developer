@@ -216,10 +216,12 @@ Texto-base do Bruno: "Seja membro da Zion Land Members e estruture seu sonho. At
 **Card novo:** `06b-land-members.png` (foto D, Bubble Zion na mata de araucárias). Entra antes do card 7.
 
 **Texto principal (3 versões)**
-- **LM1 · Clube:** Seja membro da Zion Land Members e estruture o seu sonho. No nosso clube, você inscreve o seu terreno e a gente prepara ele primeiro: formatamos o melhor modelo para você começar. Depois, ele fica no nosso radar de oportunidades e investimentos. Inscreva o seu terreno.
-- **LM2 · Terra parada:** Tem um terreno parado? Na Zion Land Members, ele sai da gaveta. Você inscreve, a gente estrutura o melhor modelo para você começar, e o terreno entra no radar de oportunidades e investimentos da Zion. Inscreva o seu terreno.
-- **LM3 · Curto:** Inscreva o seu terreno na Zion Land Members. Primeiro, a gente prepara o modelo certo para você começar. Depois, ele fica no radar de oportunidades e investimentos.
+- **LM1 · Clube:** Seja membro da Zion Land Members e estruture o seu sonho. No nosso clube, você inscreve o seu terreno e, primeiro, te ajudamos a prepará-lo: a formatar o melhor modelo para você começar. Depois, ele fica no nosso radar de oportunidades e investimentos. Inscreva o seu terreno.
+- **LM2 · Terra parada:** Tem um terreno parado? Na Zion Land Members, ele sai da gaveta. Você inscreve, te ajudamos a estruturar o melhor modelo para você começar, e o terreno entra no radar de oportunidades e investimentos da Zion. Inscreva o seu terreno.
+- **LM3 · Curto:** Inscreva o seu terreno na Zion Land Members. Primeiro, te ajudamos a preparar o modelo certo para você começar. Depois, ele fica no radar de oportunidades e investimentos.
 
 **Título:** Inscreva seu terreno na Land Members (36) · **Descrição:** O clube de áreas da Zion (24)
 
 **Regras:** "radar de oportunidades" sempre sem promessa. Nunca usar "garantimos investidor", "captação garantida" ou valores de retorno. No formulário ou na página: "A Zion avalia cada caso e não garante investimento, crédito ou sociedade."
+
+**Regra de voz (Bruno, 30/10):** a Zion **sempre ajuda**, nunca "faz por você". Usar "te ajudamos a…", "o nosso método te ajuda a…". Nunca "transformamos", "estruturamos", "formatamos" ou "fazemos". Cards ajustados: 01 ("Te ajudamos a transformar o seu terreno em um destino turístico", com o original guardado em `01-destino-original.png`), 06 ("Te ajudamos a desenvolver o seu projeto de hospedagem"), 06b ("Te ajudamos a preparar o melhor modelo") e 07 ("O nosso método te ajuda a tirar o seu projeto do papel").
