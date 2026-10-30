@@ -27,7 +27,8 @@ O Bruno indicou este como o carrossel que melhor funciona. Ele vira o **controle
 - **A crença quebrada no card 3** ("quem disse que precisa de um hotel?") é o mesmo gatilho que o Bruno quer usar.
 
 **O que corrigir sem mexer no que funciona** (não muda o teste, só tira atrito)
-- Card 1: o texto está **cortado na borda direita** ("SEU" e "DESTINO" saem da arte).
+- Card 1: a arte original está certa. O corte de "SEU" e "DESTINO" aparece só **na versão em vídeo**: a exportação cortou as laterais. Se o anúncio roda como vídeo, exportar de novo sem corte.
+- **Versão corrigida pronta:** `producao/marketing/carrossel-campeao-v2/` (cards 01 a 07, mais as variações `03b-sem-capital` e `03c-parceria`).
 - Erros de digitação: "**Apreenda**" (card 7), "Zion **Menbers**" e "**Faca** parte" (card 3).
 - **Três nomes de marca** num só anúncio: Método Zion, Zion Members Hospitality e Zion Glamping Collection. Usar um só, "Método Zion", e o logo Zion.
 - "**Comece a ganhar dinheiro**" (card 5) e "**o setor que mais cresce no Brasil**" (cards 2 e 4): promessa de ganho é motivo de reprovação no Meta, e o dado de crescimento que a Zion tem é global (Grand View Research). Trocar por "Um mercado que cresce no mundo inteiro" e "Faça parte desse mercado".
