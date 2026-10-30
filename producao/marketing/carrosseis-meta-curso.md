@@ -175,3 +175,34 @@ Todos com o card 1 na Bubble. O que muda é a dor.
 1. Qual escassez real usar (seção 2).
 2. Se o Raio-X pode mostrar um preço ou uma faixa da Bubble (condição para o C4).
 3. Fotos reais da Bubble para os cards 1. Uma diferente por carrossel é melhor.
+
+---
+
+## 6. Subida no Meta · conta "Zion Collection 2" (30/10)
+
+**Onde:** campanha `Bubble — Formulário — Validação` (OUTCOME_LEADS, formulário nativo, página Zion Glamping Collection `576944608845537`).
+Nos últimos 90 dias: R$ 2.096, 410 leads, **R$ 5,10 por lead**, 145 conversas no WhatsApp. O campeão é o anúncio `VIDEO (campeão CPL 3,85 — reuso)` (394 leads a R$ 5,05), no conjunto `FORM — Investidor/Empresário 30-60 [página ZC]` (`120248809131940016`).
+
+**Plano**
+- Duplicar esse conjunto (mesmo público, mesmo formulário), pausado, com os 3 carrosséis novos. Assim o campeão continua rodando sem ter a verba dividida.
+- 3 anúncios de carrossel com 7 cards cada, criados **pausados**:
+
+| Anúncio | Card 3 | Texto principal |
+|---|---|---|
+| CARROSSEL v2 · Quem disse | 03-quem-disse | Quem disse que você precisa construir um hotel para ter um negócio de hospedagem? Com o Método Zion, você aprende o passo a passo para transformar o seu terreno em um destino turístico, na ordem certa: território, mercado, produto, modelo e conta. Inscreva o seu terreno e receba o próximo passo no WhatsApp. |
+| CARROSSEL v2 · Sem capital | 03b-sem-capital | Tem o terreno, mas falta o capital? É o ponto de partida da maioria. Com o Método Zion, você aprende o passo a passo para estruturar o projeto e buscar os recursos com um sócio, um banco ou um investidor. Inscreva o seu terreno e receba o próximo passo no WhatsApp. |
+| CARROSSEL v2 · Parceria | 03c-parceria | Quer ter a Zion como parceira no seu terreno? A Zion avalia parcerias com empreendimentos estruturados. Com o Método Zion, você aprende o passo a passo para chegar pronto. Inscreva o seu terreno e receba o próximo passo no WhatsApp. |
+
+- Botão: **Cadastre-se** (SIGN_UP), abrindo o formulário nativo.
+- Título dos cards: "Inscreva seu terreno".
+- Imagens: `raw.githubusercontent.com/bchaerk-creator/zion-hotel-ai-developer/claude/marketing-skills/producao/marketing/carrossel-campeao-v2/<card>.png`
+
+**O formulário (rápido)**
+1. Nome (preenchido pelo Meta)
+2. WhatsApp (preenchido pelo Meta)
+3. Cidade e estado do terreno
+4. "Qual frase mais parece com você?" · Tenho o terreno e não tenho o capital / Tenho o terreno e o capital / Quero a Zion como parceira / Ainda não tenho o terreno
+
+**Tela final:** botão "Falar no WhatsApp", abrindo o número do agente de IA com a mensagem "Oi! Inscrevi o meu terreno no Método Zion."
+
+**Falta para subir:** o ID do formulário nativo e o número do WhatsApp do agente. A API do Windsor não cria nem lê formulários: ele é criado ou escolhido no Gerenciador de Anúncios.
