@@ -64,7 +64,11 @@ p{margin:0 0 12px}
 .mod .in{padding:24px;display:grid;gap:14px;flex:1}
 .preco{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 .preco strong{font:400 40px/1 var(--f-disp);color:var(--green)}
-.preco s{color:var(--mute);font-size:15px}
+.preco s{color:var(--mute)}
+.preco .parc{width:100%;font-size:14px;font-weight:600;color:var(--mute)}
+.multi{display:grid;gap:8px;margin-top:22px;background:var(--card);border:1.5px dashed var(--gold);border-radius:14px;padding:18px 20px}
+.multi span{color:var(--mute);font-size:15px}
+.multi .btn{justify-self:start}
 .preco small{width:100%;color:var(--mute);font-size:13px}
 .ficha{display:grid;grid-template-columns:1fr 1fr;gap:6px 14px;font-size:14px;margin:0;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .ficha dt{color:var(--mute)}
@@ -125,9 +129,9 @@ details p{margin:10px 0 0;color:var(--mute)}
 <header class="hero">
   <div class="ph"><img src="../img/hero.webp" alt="Bubble Zion iluminada à noite, sobre o deck, no meio da mata"></div>
   <div class="tx">
-    <span class="selo">Condição exclusiva até 30/11/2026</span>
+    <span class="selo">Unidades à pronta entrega · condição até 30/11/2026</span>
     <h1>Leve a Bubble Zion para o seu terreno.</h1>
-    <p>A cabana premium de glamping que a Zion opera desde 2020. Compra direta, com pagamento no cartão, e a orientação do deck da nossa equipe.</p>
+    <p>A cabana premium de glamping que a Zion opera desde 2020. Compra direta, em até 12x no cartão, com a orientação do deck da nossa equipe. Unidades à pronta entrega: receba em até 15 dias.</p>
     <div class="ctas">
       <a class="btn gold" href="#modelos">Ver os modelos e comprar</a>
       <a class="btn ghost js-zaya" href="#" data-msg="Olá, Zaya! Estou na página de compra da Bubble e tenho uma dúvida.">Falar com a Zaya</a>
@@ -139,13 +143,13 @@ details p{margin:10px 0 0;color:var(--mute)}
 <section class="g" id="modelos"><div class="w">
   <span class="k">Os modelos</span>
   <h2>Escolha a sua Bubble.</h2>
-  <p class="lead">Preço especial à vista, para pedidos fechados até 30 de novembro de 2026. A bolha vem vazia: deck, instalações e móveis você prepara com a nossa orientação.</p>
+  <p class="lead">Aceitamos cartão de crédito em até 12x. Condição especial para pedidos fechados até 30 de novembro de 2026. A bolha vem vazia: deck, instalações e móveis você prepara com a nossa orientação.</p>
   <div class="modelos">
     <article class="mod">
       <img src="../img/suite-foto.webp" alt="Bubble Suite vista de cima, sobre o deck">
       <div class="in">
         <h3>Bubble Suite</h3>
-        <div class="preco"><strong>R$ 79 mil</strong><s>R$ 129 mil</s><small>À vista, até 30/11/2026</small></div>
+        <div class="preco"><span class="parc">12x de</span><strong>R$ 6.583</strong><small>no cartão de crédito · ou R$ 79 mil à vista · <s>tabela R$ 129 mil</s> · condição até 30/11/2026</small></div>
         <dl class="ficha">
           <dt>Superfície total</dt><dd>27,6 m²</dd>
           <dt>Área útil</dt><dd>22,8 m²</dd>
@@ -164,7 +168,7 @@ details p{margin:10px 0 0;color:var(--mute)}
       <img src="../img/premium-foto.webp" alt="Bubble Suite Premium vista de cima, no meio da mata">
       <div class="in">
         <h3>Bubble Suite Premium</h3>
-        <div class="preco"><strong>R$ 85 mil</strong><s>R$ 149 mil</s><small>À vista, até 30/11/2026</small></div>
+        <div class="preco"><span class="parc">12x de</span><strong>R$ 7.083</strong><small>no cartão de crédito · ou R$ 85 mil à vista · <s>tabela R$ 149 mil</s> · condição até 30/11/2026</small></div>
         <dl class="ficha">
           <dt>Superfície total</dt><dd>40,1 m²</dd>
           <dt>Área útil</dt><dd>32,8 m²</dd>
@@ -180,7 +184,8 @@ details p{margin:10px 0 0;color:var(--mute)}
       </div>
     </article>
   </div>
-  <p class="nota" style="margin-top:14px">Frete e prazo de entrega: a nossa equipe confirma no seu pedido, conforme a região do terreno.</p>
+  <div class="multi"><b>Quer dividir em até 3 cartões, ou dar uma entrada e o resto no cartão?</b><span>A nossa equipe monta a forma de pagamento com você pelo WhatsApp.</span><a class="btn line js-zaya" href="#" data-msg="Olá, Zaya! Quero comprar a Bubble e pagar em mais de um cartão (ou com entrada).">Combinar o pagamento com a Zaya</a></div>
+  <p class="nota" style="margin-top:14px">Unidades à pronta entrega: receba em até 15 dias. O frete e a data de entrega a nossa equipe confirma no seu pedido, conforme a região do terreno.</p>
 </div></section>
 
 <section class="g sand"><div class="w">
@@ -212,7 +217,7 @@ details p{margin:10px 0 0;color:var(--mute)}
       <li>Aprenda com quem opera hospedagem há anos e ensina o que opera</li>
     </ul>
     <div class="ctas">
-      <a class="btn gold" href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener noreferrer">Começar o passo a passo · R$ 270</a>
+      <a class="btn gold" href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener noreferrer">Começar o passo a passo · 6x de R$ 45</a>
       <a class="btn ghost" href="https://www.zionhotelgroup.com/raio-x" target="_blank" rel="noopener noreferrer">Fazer o Raio-X do Terreno, grátis</a>
     </div>
   </div>
@@ -221,7 +226,7 @@ details p{margin:10px 0 0;color:var(--mute)}
     <div class="grande">menos de 1%</div>
     <p style="color:var(--on-dark-mute)">do que custa uma Suite pronta para operar.</p>
     <div class="lin"><span>Bolha, base e interior de uma Suite</span><b>perto de R$ 140 mil</b></div>
-    <div class="lin"><span>O passo a passo da Zion</span><b>R$ 270, em até 12x</b></div>
+    <div class="lin"><span>O passo a passo da Zion</span><b>6x de R$ 45 (R$ 270)</b></div>
     <p class="nota" style="color:var(--on-dark-mute);margin:12px 0 0">Conta orientativa da Zion, com a condição até 30/11. O seu orçamento depende do terreno, da região e do padrão.</p>
   </div>
 </div></section>
@@ -230,7 +235,7 @@ details p{margin:10px 0 0;color:var(--mute)}
   <span class="k">Como funciona a compra</span>
   <h2>Do pagamento à bolha de pé.</h2>
   <ol class="passos">
-    <li>Você escolhe o modelo e paga no cartão.</li>
+    <li>Você escolhe o modelo e paga em até 12x no cartão.</li>
     <li>A Zaya, da nossa equipe, chama você no WhatsApp para confirmar o terreno e a entrega.</li>
     <li>Você recebe a orientação do deck e o manual de instalação.</li>
     <li>Você prepara o deck, a luz, a água e o esgoto.</li>
@@ -239,7 +244,8 @@ details p{margin:10px 0 0;color:var(--mute)}
   <h3 style="margin-top:44px">Perguntas rápidas</h3>
   <details><summary>A Bubble vem mobiliada?</summary><p>Não. A Zion vende a bolha com a turbina e a capa. Móveis, climatização e piso ficam com você, e a nossa equipe envia a estimativa.</p></details>
   <details><summary>Quem monta?</summary><p>O próprio cliente instala a bolha no deck, seguindo o manual e a orientação da Zion. Com o deck e as instalações prontos, dá para operar em até 90 dias.</p></details>
-  <details><summary>Posso parcelar?</summary><p>A condição até 30/11 é o preço especial à vista. Outras formas de pagamento, a Zaya confirma com a equipe.</p></details>
+  <details><summary>Posso parcelar?</summary><p>Sim: em até 12x no cartão de crédito. Se quiser dividir em até 3 cartões, ou dar uma entrada e o resto no cartão, a Zaya combina com você pelo WhatsApp.</p></details>
+  <details><summary>Em quanto tempo recebo?</summary><p>Temos unidades à pronta entrega: você recebe em até 15 dias. A data exata e o frete a equipe confirma no seu pedido.</p></details>
   <details><summary>Posso instalar em área de preservação?</summary><p>Depende do terreno, do município e do licenciamento. Quem confirma é o órgão ambiental ou a prefeitura.</p></details>
   <details><summary>Quanto uma Bubble fatura?</summary><p>Na operação da própria Zion, a base é de 60% de ocupação média e diária de R$ 1.571. É o caso da Zion, não promessa: cada empreendimento tem o seu número, e é essa conta que o passo a passo ensina a fazer.</p></details>
 </div></section>
