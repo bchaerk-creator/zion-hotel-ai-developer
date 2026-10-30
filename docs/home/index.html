@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Zion Hotel Group International</title>
+<meta name="description" content="Transforme seu terreno em um destino turístico. Aprenda o passo a passo, inscreva o seu terreno na Zion Land Members e conheça a Glamping Store.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap">
+<link rel="preload" as="image" href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/home/img/hero-bolha.webp">
+<style>
+:root{
+  --deep:#0F1D15;--forest:#16261C;--panel:#1C3024;--line:rgba(244,236,222,.14);
+  --paper:#F4ECDE;--mute:rgba(244,236,222,.72);--gold:#E0BE5E;--gold2:#C9A548;
+  --f-d:"Playfair Display",Georgia,"Times New Roman",serif;--f-b:Inter,system-ui,-apple-system,"Segoe UI",sans-serif;
+  --img:"https://bchaerk-creator.github.io/zion-hotel-ai-developer";
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--forest);color:var(--paper);font:300 17px/1.65 var(--f-b);overflow-x:hidden}
+img{display:block;max-width:100%}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:var(--f-d);font-weight:400;text-wrap:balance;margin:0}
+em{font-style:italic;color:var(--gold)}
+p{margin:0 0 12px}
+.g{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.w{max-width:1200px;margin:0 auto}
+.k{display:flex;align-items:center;gap:14px;font:500 11px/1.2 var(--f-b);letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.k:before{content:"";width:34px;height:1px;background:var(--gold)}
+.lead{color:var(--mute);max-width:56ch;font-size:18px}
+.pill{display:inline-flex;align-items:center;gap:14px;background:var(--gold);color:var(--deep);font:500 15px/1 var(--f-b);border-radius:999px;padding:8px 8px 8px 26px;min-height:58px;transition:transform .2s}
+.pill:hover{transform:translateY(-1px)}
+.pill .arr{display:grid;place-items:center;width:42px;height:42px;border-radius:50%;background:var(--deep);color:var(--gold);font-size:18px}
+.lnk{display:inline-flex;align-items:center;gap:8px;font-size:15px;color:var(--paper);border-bottom:1px solid var(--gold2);padding-bottom:3px}
+.btn{display:inline-flex;align-items:center;justify-content:center;font:500 14px/1.2 var(--f-b);padding:14px 22px;border-radius:999px;border:1px solid var(--gold2);color:var(--paper);min-height:48px}
+.btn.ouro{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+
+/* topo */
+.top{position:sticky;top:0;z-index:20;background:rgba(15,29,21,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .w{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:72px}
+.logo{display:flex;align-items:center;gap:12px;font:500 13px/1.15 var(--f-b);letter-spacing:.16em}
+.logo b{font:500 22px/1 var(--f-d);letter-spacing:.08em;color:var(--paper)}
+.logo small{display:block;font-size:10px;letter-spacing:.24em;color:var(--mute)}
+.nav{display:flex;align-items:center;gap:26px;font-size:14px}
+.nav a,.nav summary{color:var(--paper);opacity:.88;cursor:pointer;list-style:none}
+.nav summary::-webkit-details-marker{display:none}
+.nav a:hover,.nav summary:hover{color:var(--gold);opacity:1}
+.nav details{position:relative}
+.nav details[open] .sub{display:grid}
+.sub{display:none;position:absolute;top:34px;left:-16px;min-width:280px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:10px;gap:2px}
+.sub a{padding:10px 12px;border-radius:10px;opacity:1}
+.sub a:hover{background:rgba(224,190,94,.1)}
+.sub small{display:block;color:var(--mute);font-size:12px}
+.cta-top{background:var(--gold);color:var(--deep);border-radius:999px;padding:10px 18px;font-size:13px;font-weight:500;white-space:nowrap}
+.menu-m{display:none}
+@media (max-width:980px){.nav{display:none}.menu-m{display:block}}
+.menu-m summary{list-style:none;cursor:pointer;font-size:13px;border:1px solid var(--line);border-radius:999px;padding:9px 14px}
+.menu-m summary::-webkit-details-marker{display:none}
+.menu-m[open] .mm{display:grid}
+.mm{display:none;position:absolute;left:0;right:0;top:72px;background:var(--deep);border-bottom:1px solid var(--line);padding:12px 20px 20px;gap:4px}
+.mm a{padding:12px 0;border-bottom:1px solid var(--line);font-family:var(--f-d);font-size:20px}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100svh - 72px);background:var(--deep)}
+.hero .ph{position:relative;min-height:420px;overflow:hidden}
+.hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.play{position:absolute;right:20px;bottom:20px;display:flex;align-items:center;gap:14px;background:rgba(15,29,21,.82);backdrop-filter:blur(6px);border:1px solid rgba(224,190,94,.4);border-radius:999px;padding:8px 22px 8px 8px;color:var(--paper);cursor:pointer;font:inherit;text-align:left}
+.play .bt{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--deep);font-size:18px;flex:none}
+.play b{display:block;font:500 16px/1.25 var(--f-b)}
+.play small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
+.hero .tx{display:grid;align-content:center;gap:24px;padding:64px max(20px,env(safe-area-inset-right,0px)) 64px clamp(28px,5vw,80px)}
+.hero h1{font-size:clamp(40px,5.2vw,74px);line-height:1.03;max-width:12ch}
+.hero .sub2{color:var(--mute);font-size:18px;max-width:46ch;margin:0}
+.hero .acoes{display:grid;gap:18px;justify-items:start}
+.hero .sec{display:flex;gap:24px;flex-wrap:wrap}
+.prova{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:13px;color:var(--mute);border-top:1px solid var(--line);padding-top:18px}
+.prova b{color:var(--paper);font-weight:500}
+@media (max-width:860px){.hero{grid-template-columns:1fr;min-height:0}.hero .ph{aspect-ratio:4/5;min-height:0;max-height:78vh}.hero .tx{padding:40px max(20px,env(safe-area-inset-right,0px)) 52px max(20px,env(safe-area-inset-left,0px))}}
+
+section{padding-block:96px}
+.head{display:grid;gap:14px;margin-bottom:44px}
+.head h2{font-size:clamp(32px,4vw,52px);line-height:1.08;max-width:20ch}
+
+/* portas */
+.portas{display:grid;gap:18px}
+.porta{display:grid;grid-template-columns:1fr 1fr;background:var(--panel);border:1px solid var(--line);border-radius:22px;overflow:hidden;min-height:340px}
+.porta:nth-child(even) .pf{order:2}
+.porta .pf{position:relative;min-height:260px}
+.porta .pf img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.porta .pt{display:grid;align-content:center;gap:14px;padding:clamp(28px,4vw,56px)}
+.porta .n{font:400 54px/1 var(--f-d);color:var(--gold)}
+.porta h3{font-size:clamp(28px,3vw,40px);line-height:1.1}
+.porta p{color:var(--mute);margin:0;max-width:42ch}
+.porta .bts{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px}
+@media (max-width:860px){.porta{grid-template-columns:1fr}.porta:nth-child(even) .pf{order:0}.porta .pf{aspect-ratio:16/10;min-height:0}}
+
+/* métodos */
+.alt{background:var(--deep)}
+.metodos{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.met{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;display:grid;gap:12px;align-content:start;min-width:0}
+.met .n{font:400 40px/1 var(--f-d);color:var(--gold)}
+.met h3{font-size:22px;line-height:1.2}
+.met p{color:var(--mute);font-size:15px;margin:0}
+.selo{display:inline-block;width:fit-content;font-size:11px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:5px 12px;border:1px solid var(--line);color:var(--mute)}
+.selo.on{background:var(--gold);color:var(--deep);border-color:var(--gold)}
+.met .btn{margin-top:6px;justify-self:start}
+@media (max-width:1000px){.metodos{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.metodos{grid-template-columns:1fr}}
+
+/* ecossistema */
+.eco{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.ec{border-top:1px solid var(--gold2);padding-top:22px;display:grid;gap:10px;align-content:start}
+.ec h3{font-size:24px}
+.ec p{color:var(--mute);font-size:15px;margin:0}
+.ec .nota{font-size:12px;color:var(--mute);opacity:.85}
+.ec a{margin-top:6px}
+@media (max-width:860px){.eco{grid-template-columns:1fr}}
+
+/* sobre */
+.sobre{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.sobre img{border-radius:22px;width:100%;aspect-ratio:4/5;object-fit:cover}
+.linha{list-style:none;padding:0;margin:22px 0 26px;display:grid;gap:14px}
+.linha li{display:grid;grid-template-columns:110px 1fr;gap:16px;border-top:1px solid var(--line);padding-top:14px;font-size:15px}
+.linha b{font:400 20px/1.2 var(--f-d);color:var(--gold)}
+.linha span{color:var(--mute)}
+.nums{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:26px 0}
+.nums strong{display:block;font:400 40px/1 var(--f-d);color:var(--gold)}
+.nums span{font-size:13px;color:var(--mute)}
+@media (max-width:860px){.sobre{grid-template-columns:1fr}.sobre img{aspect-ratio:16/11}.linha li{grid-template-columns:1fr;gap:2px}}
+
+.caso{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
+.caso img{border-radius:22px;width:100%;aspect-ratio:16/11;object-fit:cover}
+.caso blockquote{margin:0;font:400 clamp(24px,2.6vw,34px)/1.3 var(--f-d)}
+.caso cite{display:block;margin-top:16px;font:400 14px/1.4 var(--f-b);font-style:normal;color:var(--mute)}
+@media (max-width:860px){.caso{grid-template-columns:1fr}}
+
+footer{background:var(--deep);border-top:1px solid var(--line);padding-block:44px;font-size:13px;color:var(--mute)}
+footer .w{display:grid;gap:14px}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--paper)}
+
+/* vídeo */
+.modal{position:fixed;inset:0;z-index:50;background:rgba(5,10,7,.94);display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px}
+.modal.on{display:flex}
+.modal .box{width:min(1100px,100%);aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden}
+.modal video,.modal iframe{width:100%;height:100%;border:0;display:block}
+.modal .x{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:16px;background:var(--gold);color:var(--deep);border:0;border-radius:999px;padding:10px 16px;font:500 14px var(--f-b);cursor:pointer}
+</style>
+</head>
+<body>
+
+<header class="top g"><div class="w">
+  <a class="logo" href="/" aria-label="Zion Hotel Group International"><b>ZION</b><span>HOTEL GROUP<small>INTERNATIONAL</small></span></a>
+  <nav class="nav" aria-label="Principal">
+    <details><summary>Método Zion ▾</summary><div class="sub">
+      <a href="/metodo-zion">Método 1 · Desenvolvimento Hoteleiro<small>Disponível</small></a>
+      <a href="#metodos">Método 2 · Gestão Hoteleira<small>Em breve</small></a>
+      <a href="#metodos">Método 3 · Operação Hoteleira<small>Em breve</small></a>
+      <a href="#metodos">Método 4 · Aceleração de Vendas<small>Em breve</small></a>
+    </div></details>
+    <a href="/inscreva">Inscreva seu terreno</a>
+    <a href="/oportunidades">Investidores</a>
+    <a href="/store">Glamping Store</a>
+    <a href="#sobre">Sobre</a>
+    <a class="cta-top" href="/raio-x">Raio-X grátis</a>
+  </nav>
+  <details class="menu-m"><summary>Menu</summary><div class="mm">
+    <a href="/inscreva">Inscreva seu terreno</a>
+    <a href="/metodo-zion">Método Zion</a>
+    <a href="/oportunidades">Investidores</a>
+    <a href="/store">Glamping Store</a>
+    <a href="#sobre">Sobre</a>
+    <a href="/raio-x">Raio-X grátis</a>
+  </div></details>
+</div></header>
+
+<main>
+<section class="hero" style="padding:0">
+  <div class="ph">
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/home/img/hero-bolha.webp" alt="Bubble Zion transparente sobre o deck, no meio da mata" fetchpriority="high">
+    <button class="play" type="button" id="abrir-video" aria-label="Assistir ao vídeo da Zion Glamping Collection"><span class="bt">▶</span><span><b>Assista: Zion Glamping Collection</b><small>O vídeo da operação</small></span></button>
+  </div>
+  <div class="tx">
+    <span class="k">Zion Hotel Group International</span>
+    <h1>Transforme seu terreno em um <em>destino turístico.</em></h1>
+    <p class="sub2">Aprenda o passo a passo para estruturar um empreendimento de hospedagem de excelência e inscreva o seu terreno no ecossistema da Zion.</p>
+    <div class="acoes">
+      <a class="pill" href="/inscreva">Inscrever meu terreno <span class="arr">→</span></a>
+      <div class="sec"><a class="lnk" href="/store">Comprar produtos ↗</a><a class="lnk" href="#metodos">Aprender com a Zion ↗</a></div>
+    </div>
+    <div class="prova"><span><b>20+ anos</b> de hotelaria internacional</span><span><b>Booking 9,6</b></span><span><b>Airbnb 5/5</b> Superhost</span><span><b>Expedia 10</b></span></div>
+  </div>
+</section>
+
+<section class="g" id="comecar"><div class="w">
+  <div class="head"><span class="k">Por onde você quer começar?</span><h2>Quatro portas para entrar na <em>Zion.</em></h2></div>
+  <div class="portas">
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mata.webp" alt="Bubble Zion no meio da mata, vista do alto"></div>
+      <div class="pt"><span class="n">01</span><h3>Inscreva o seu <em>terreno</em></h3><p>Tem a terra e quer saber o que ela pode virar? Estruture o Dossiê prévio e entre no radar da Zion. Estamos construindo o maior banco de áreas turísticas do Brasil.</p><div class="bts"><a class="btn ouro" href="/inscreva">Inscrever meu terreno</a></div></div>
+    </article>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/deck.webp" alt="Deck da operação Zion com as bolhas e os anexos"></div>
+      <div class="pt"><span class="n">02</span><h3>Inscreva o seu <em>projeto</em></h3><p>Já tem um projeto ou uma hospedagem? Organize tudo no Dossiê e apresente o seu empreendimento à Zion.</p><div class="bts"><a class="btn ouro" href="/inscreva?tipo=projeto">Inscrever meu projeto</a></div></div>
+    </article>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/transparente.webp" alt="Bubble Zion transparente com a cama de dossel à vista"></div>
+      <div class="pt"><span class="n">03</span><h3>Compre <em>produtos</em></h3><p>A Bubble Zion e os melhores produtos de glamping, à pronta entrega, em até 12x no cartão.</p><div class="bts"><a class="btn ouro" href="/store/comprar">Comprar a minha Bubble</a><a class="btn" href="/store">Conhecer a Bubble</a></div></div>
+    </article>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede.webp" alt="Hóspede sentada no deck em frente à Bubble"></div>
+      <div class="pt"><span class="n">04</span><h3>Aprenda com a <em>Zion</em></h3><p>Os métodos da Zion Hospitality Business School, com quem opera o que ensina.</p><div class="bts"><a class="btn ouro" href="#metodos">Conhecer os métodos</a></div></div>
+    </article>
+  </div>
+</div></section>
+
+<section class="g alt" id="metodos"><div class="w">
+  <div class="head"><span class="k">Zion Hospitality Business School</span><h2>Aprenda através do nosso <em>método.</em></h2><p class="lead">Uma escola internacional de formação de desenvolvedores, gestores e operadores hoteleiros. Cursos e mentorias com quem opera o que ensina.</p></div>
+  <div class="metodos">
+    <div class="met"><span class="n">1</span><span class="selo on">Disponível</span><h3>Método Zion de Desenvolvimento Hoteleiro</h3><p>Do terreno ao empreendimento estruturado.</p><a class="btn ouro" href="/metodo-zion">Conhecer o método</a></div>
+    <div class="met"><span class="n">2</span><span class="selo">Em breve</span><h3>Método Zion de Gestão Hoteleira</h3><p>Gestão, números e equipe de uma hospedagem que funciona.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Gest%C3%A3o%20Hoteleira">Entrar na lista de espera</a></div>
+    <div class="met"><span class="n">3</span><span class="selo">Em breve</span><h3>Método Zion de Operação Hoteleira</h3><p>O padrão Zion do check-in ao check-out.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Opera%C3%A7%C3%A3o%20Hoteleira">Entrar na lista de espera</a></div>
+    <div class="met"><span class="n">4</span><span class="selo">Em breve</span><h3>Método Zion de Aceleração de Vendas para Hospedagem</h3><p>Identidade, anúncio e tráfego para calendário cheio.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Acelera%C3%A7%C3%A3o%20de%20Vendas">Entrar na lista de espera</a></div>
+  </div>
+</div></section>
+
+<section class="g"><div class="w">
+  <div class="head"><span class="k">O ecossistema Zion</span><h2>Do terreno à operação, com a <em>Zion.</em></h2></div>
+  <div class="eco">
+    <div class="ec"><h3>Desenvolvimento com a Zion</h3><p>Prefere não fazer sozinho? A equipe Zion estrutura o empreendimento com você.</p><a class="lnk" target="_blank" rel="noopener noreferrer" href="https://calendly.com/contato-zionglampingcollection/1h">Conversar com a Zion ↗</a></div>
+    <div class="ec"><h3>Gestão e operação hoteleira</h3><p>A sua hospedagem operada com o padrão Zion.</p><a class="lnk" href="/management">Conhecer a Zion Hotel Management ↗</a></div>
+    <div class="ec"><h3>Investidores</h3><p>Comece a investir em hospedagem. Faça parte do nosso pool de investidores e conheça os empreendimentos desenvolvidos e analisados pela Zion.</p><a class="lnk" href="/oportunidades">Quero investir ↗</a><span class="nota">Cadastro de interesse. Não é oferta pública de investimento. Cada oportunidade é apresentada individualmente e passa por análise jurídica.</span></div>
+  </div>
+</div></section>
+
+<section class="g alt" id="sobre"><div class="w sobre">
+  <img loading="lazy" src="https://www.zionhotelgroup.com/__l5e/assets-v1/ebc95646-a975-425b-a26e-d484e38573ba/bruno-chaerk.jpg" alt="Bruno Chaerk, fundador da Zion Hotel Group">
+  <div>
+    <span class="k">Sobre nós</span>
+    <h2 style="font-size:clamp(30px,3.6vw,46px);line-height:1.1;margin:14px 0 16px">O que a gente ensina, a gente <em>opera.</em></h2>
+    <p class="lead">A Zion nasceu de um terreno vazio, sem luz, sem água e sem internet. Já operou pousadas e hotéis tradicionais, gastou muito em infraestrutura e retornou pouco. Com o glamping, gastou menos, operou mais e hospedou mais. A Zion errou primeiro, por isso ensina a ordem.</p>
+    <div class="nums"><div><strong>2</strong><span>sedes próprias do Zion Bubble Glamping</span></div><div><strong>23</strong><span>destinos mapeados pelo Brasil</span></div><div><strong>20+</strong><span>anos de hotelaria internacional</span></div></div>
+    <h3 style="font-size:24px">Bruno Chaerk, fundador</h3>
+    <ul class="linha">
+      <li><b>Hotelaria</b><span>Mais de 20 anos com Meliá, Barceló e Wyndham, na Espanha, nas Canárias e nas Baleares.</span></li>
+      <li><b>Zion</b><span>A volta ao Brasil e o primeiro terreno da Zion, construído do zero.</span></li>
+      <li><b>2020</b><span>A primeira Bubble em operação.</span></li>
+      <li><b>Hoje</b><span>Hotel Cast e o Clube de Negócios Hotéis e Resorts, como embaixador e palestrante.</span></li>
+    </ul>
+    <a class="btn" href="/fundador">Conhecer a trajetória do Bruno</a>
+  </div>
+</div></section>
+
+<section class="g"><div class="w caso">
+  <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/vista.webp" alt="Vista da operação Zion ao entardecer">
+  <div>
+    <span class="k">Quem aplicou</span>
+    <blockquote style="margin-top:16px">Priscila e Rodrigo aplicaram o método com o direcionamento do Bruno: mudaram o posicionamento e profissionalizaram o empreendimento.<cite>Chalés Magia do Campeche · Notas da operação própria da Zion: Booking 9,6 · Airbnb Superhost 5/5 · Expedia 10</cite></blockquote>
+    <div style="margin-top:28px"><a class="pill" href="/inscreva">Inscrever meu terreno <span class="arr">→</span></a></div>
+  </div>
+</div></section>
+</main>
+
+<footer class="g"><div class="w">
+  <nav><a href="/inscreva">Inscreva seu terreno</a><a href="/metodo-zion">Método Zion</a><a href="/oportunidades">Investidores</a><a href="/store">Glamping Store</a><a href="/fundador">Fundador</a><a href="/raio-x">Raio-X grátis</a><a href="/privacidade">Privacidade</a></nav>
+  <span>Zion Hotel Group International · operações de hospedagem por todo o Brasil · WhatsApp +55 48 6137-1061</span>
+  <span>Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.</span>
+</div></footer>
+
+<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vídeo da Zion Glamping Collection">
+  <button class="x" type="button" id="fechar">Fechar ✕</button>
+  <div class="box" id="caixa"></div>
+</div>
+
+<script>
+(function(){
+  /* Para usar o YouTube no lugar do arquivo, coloque o ID do vídeo aqui (ex.: "abc123XYZ"). */
+  var YOUTUBE_ID = "";
+  var MP4 = "https://www.zionhotelgroup.com/__l5e/assets-v1/8125326d-bf99-4ae1-b080-f12ef95895d1/zion-glamping-collection.mp4";
+  var modal = document.getElementById("modal"), caixa = document.getElementById("caixa");
+  function abrir(){
+    caixa.innerHTML = YOUTUBE_ID
+      ? '<iframe src="https://www.youtube-nocookie.com/embed/' + YOUTUBE_ID + '?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen title="Zion Glamping Collection"></iframe>'
+      : '<video src="' + MP4 + '" controls autoplay playsinline preload="auto"></video>';
+    modal.classList.add("on"); document.body.style.overflow = "hidden";
+  }
+  function fechar(){ modal.classList.remove("on"); caixa.innerHTML = ""; document.body.style.overflow = ""; }
+  document.getElementById("abrir-video").addEventListener("click", abrir);
+  document.getElementById("fechar").addEventListener("click", fechar);
+  modal.addEventListener("click", function(e){ if (e.target === modal) fechar(); });
+  document.addEventListener("keydown", function(e){ if (e.key === "Escape") fechar(); });
+})();
+</script>
+</body>
+</html>
