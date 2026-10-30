@@ -487,5 +487,12 @@ document.querySelectorAll('.zv-nav button').forEach(function(x){x.addEventListen
 })();
 
 </script>
+<script>/* WhatsApp direto: abre o app no celular e o WhatsApp Web no computador, sem a página intermediária */
+(function(){var mob=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="api.whatsapp.com/send"]');if(!a)return;
+try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.searchParams.get('phone');if(!ph)return;var tx=u.searchParams.get('text')||'';
+var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
+if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
+else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
 </body>
 </html>

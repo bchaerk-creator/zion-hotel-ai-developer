@@ -1285,4 +1285,11 @@ i.dot{display:inline-block;width:7px;height:7px;transform:rotate(45deg);border:1
 
 <script>(function(){var h=document.getElementById('topo');if(!h)return;requestAnimationFrame(function(){h.classList.add('go')});var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;setTimeout(function(){h.classList.add('on')},r?0:1400);setTimeout(function(){h.classList.add('on')},4000)})();</script>
 <script>(function(){var r=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;if(r||!('IntersectionObserver' in window))return;document.documentElement.classList.add('js-up');var els=[];document.querySelectorAll('main section .w > *, body > section .w > *').forEach(function(e,i){if(e.closest('#orcamento form'))return;e.classList.add('up');var p=e.parentNode;e.style.setProperty('--d',Math.min([].indexOf.call(p.children,e),5));els.push(e)});var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}})},{threshold:0,rootMargin:'0px 0px -8% 0px'});els.forEach(function(e){io.observe(e)});setTimeout(function(){els.forEach(function(e){e.classList.add('in')})},12000)})();</script>
+<script>/* WhatsApp direto: abre o app no celular e o WhatsApp Web no computador, sem a página intermediária */
+(function(){var mob=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="api.whatsapp.com/send"]');if(!a)return;
+try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.searchParams.get('phone');if(!ph)return;var tx=u.searchParams.get('text')||'';
+var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
+if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
+else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
 </body></html>

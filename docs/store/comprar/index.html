@@ -131,7 +131,7 @@ details p{margin:10px 0 0;color:var(--mute)}
   <div class="tx">
     <span class="selo">Unidades à pronta entrega · condição até 30/11/2026</span>
     <h1>Leve a Bubble Zion para o seu terreno.</h1>
-    <p>A cabana premium de glamping que a Zion opera desde 2020. Compra direta, em até 12x no cartão, com a orientação do deck da nossa equipe. Unidades à pronta entrega: receba em até 15 dias.</p>
+    <p>A cabana premium de glamping que a Zion opera desde 2020. A compra é feita com o consultor da Zion, em até 12x no cartão, com a orientação do deck da nossa equipe. Unidades à pronta entrega: receba em até 15 dias.</p>
     <div class="ctas">
       <a class="btn gold" href="#modelos">Ver os modelos e comprar</a>
       <a class="btn ghost js-zaya" href="#" data-msg="Olá, Zaya! Estou na página de compra da Bubble e tenho uma dúvida.">Falar com a Zaya</a>
@@ -159,7 +159,7 @@ details p{margin:10px 0 0;color:var(--mute)}
           <dt>Turbina</dt><dd>140 W</dd>
         </dl>
         <div class="btns">
-          <a class="btn dark js-comprar" data-modelo="suite" href="#">Comprar a Suite no cartão</a>
+          <a class="btn dark js-comprar" data-modelo="suite" href="#">Comprar a Suite com o consultor</a>
           <a class="btn line js-zaya" href="#" data-msg="Olá, Zaya! Quero comprar a Bubble Suite e tenho uma dúvida antes.">Tirar uma dúvida com a Zaya</a>
         </div>
       </div>
@@ -178,7 +178,7 @@ details p{margin:10px 0 0;color:var(--mute)}
           <dt>Turbina</dt><dd>140 W</dd>
         </dl>
         <div class="btns">
-          <a class="btn dark js-comprar" data-modelo="premium" href="#">Comprar a Premium no cartão</a>
+          <a class="btn dark js-comprar" data-modelo="premium" href="#">Comprar a Premium com o consultor</a>
           <a class="btn line js-zaya" href="#" data-msg="Olá, Zaya! Quero comprar a Bubble Suite Premium e tenho uma dúvida antes.">Tirar uma dúvida com a Zaya</a>
         </div>
       </div>
@@ -235,7 +235,7 @@ details p{margin:10px 0 0;color:var(--mute)}
   <span class="k">Como funciona a compra</span>
   <h2>Do pagamento à bolha de pé.</h2>
   <ol class="passos">
-    <li>Você escolhe o modelo e paga em até 12x no cartão.</li>
+    <li>Você escolhe o modelo e fala com o consultor da Zion, que agenda a conversa de compra com você.</li>
     <li>A Zaya, da nossa equipe, chama você no WhatsApp para confirmar o terreno e a entrega.</li>
     <li>Você recebe a orientação do deck e o manual de instalação.</li>
     <li>Você prepara o deck, a luz, a água e o esgoto.</li>
@@ -256,7 +256,7 @@ details p{margin:10px 0 0;color:var(--mute)}
 
 <script>
 (function(){
-  /* Links de pagamento no cartão (Asaas). Enquanto estiverem vazios, o botão abre a Zaya com o pedido. */
+  /* A compra da Bubble é sempre com o consultor: o botão abre o WhatsApp com o pedido de agendamento. */
   var LINKS = { suite: "", premium: "" };
   var ZAP = "554861371061";
   var NOME = { suite: "Bubble Suite", premium: "Bubble Suite Premium" };
@@ -266,10 +266,17 @@ details p{margin:10px 0 0;color:var(--mute)}
   });
   [].forEach.call(document.querySelectorAll(".js-comprar"), function(a){
     var m = a.getAttribute("data-modelo");
-    a.href = LINKS[m] || zap("Olá, Zaya! Quero comprar a " + NOME[m] + " na condição até 30/11.");
+    a.href = zap("Olá! Quero comprar a " + NOME[m] + " na condição até 30/11 e agendar a conversa com o consultor.");
     a.target = "_blank"; a.rel = "noopener noreferrer";
   });
 })();
 </script>
+<script>/* WhatsApp direto: abre o app no celular e o WhatsApp Web no computador, sem a página intermediária */
+(function(){var mob=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
+document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="api.whatsapp.com/send"]');if(!a)return;
+try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.searchParams.get('phone');if(!ph)return;var tx=u.searchParams.get('text')||'';
+var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
+if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
+else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
 </body>
 </html>
