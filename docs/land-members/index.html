@@ -306,6 +306,29 @@ details.pj p{color:var(--mute);margin:10px 0 0;font-size:15px;max-width:70ch}
 @media (max-width:900px){.aut-top,.pjs,.acad{grid-template-columns:1fr}.cards-a{grid-template-columns:1fr 1fr}}
 @media (max-width:560px){.cards-a{grid-template-columns:1fr}}
 </style>
+<style>
+/* case */
+.case-z{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:200px;gap:10px;margin:30px 0}
+.case-z img{width:100%;height:100%;object-fit:cover;border-radius:16px}
+.case-z .a{grid-column:span 2;grid-row:span 2}
+.case-z .b{grid-row:span 2}
+.case-n{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px}
+.case-n strong{display:block;font:400 clamp(34px,3.6vw,48px)/1 var(--f-d);color:var(--gold)}
+.case-n span{font-size:13px;color:var(--mute)}
+.case-bts{display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+@media (max-width:900px){.case-z{grid-template-columns:1fr 1fr;grid-auto-rows:150px}.case-z .a{grid-column:span 2}.case-n{grid-template-columns:1fr 1fr}}
+/* midia */
+.midia{display:grid;grid-template-columns:1.4fr 1fr 1fr;grid-auto-rows:210px;gap:10px;margin-top:22px}
+.midia figure{position:relative;margin:0;border-radius:16px;overflow:hidden}
+.midia img{width:100%;height:100%;object-fit:cover}
+.midia figcaption{position:absolute;left:0;right:0;bottom:0;padding:26px 14px 12px;background:linear-gradient(180deg,transparent,rgba(15,29,21,.9));font-size:13px;color:var(--paper)}
+.midia figcaption b{display:block;font:400 18px/1.2 var(--f-d)}
+.midia .m1{grid-row:span 2}
+@media (max-width:900px){.midia{grid-template-columns:1fr 1fr;grid-auto-rows:170px}.midia .m1{grid-column:span 2;grid-row:span 2}}
+.pj-fotos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px}
+.pj-fotos img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:10px}
+details.pj a.lnk{display:inline-flex;margin-top:12px}
+</style>
 </head>
 <body>
 
@@ -486,6 +509,23 @@ details.pj p{color:var(--mute);margin:10px 0 0;font-size:15px;max-width:70ch}
   </div>
 </div></section>
 
+<section class="g" id="case"><div class="w">
+  <div class="head"><span class="k">O maior case de sucesso</span><h2>Zion Bubble Glamping: dormir dentro da <em>natureza.</em></h2><p class="lead">O empreendimento que começou num terreno sem luz, sem água e sem internet e virou referência em glamping de alto padrão. É aqui que a Zion testa tudo o que ensina.</p></div>
+  <div class="case-z">
+    <img class="a" loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-aerea-mata.webp" alt="Bolhas da Zion vistas do alto, no meio da mata">
+    <img class="b" loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-jacuzzi-mata.webp" alt="Hóspede na jacuzzi do deck, entre as árvores">
+    <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-banheira-piscina.webp" alt="Banheira dentro da bolha com vista para a piscina">
+    <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-bolha-mata.webp" alt="Bolha iluminada no meio da mata">
+    <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-deck-piscina.webp" alt="Deck com piscina e bolhas ao fundo">
+    <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-bolhas-tropical.webp" alt="Bolhas entre palmeiras">
+  </div>
+  <div class="case-n"><div><strong>2020</strong><span>primeira Bubble em operação</span></div><div><strong>2</strong><span>sedes próprias, em dois biomas</span></div><div><strong>9,8</strong><span>nota no Booking</span></div><div><strong>5,0</strong><span>nota no Google</span></div></div>
+  <div class="case-bts">
+    <a class="pill" href="https://www.instagram.com/zionbubble/" target="_blank" rel="noopener noreferrer">Ver no Instagram · @zionbubble <span class="arr">↗</span></a>
+    <a class="lnk" href="https://www.zionbubbleglamping.com" target="_blank" rel="noopener noreferrer">Visitar o site da Zion Bubble Glamping ↗</a>
+  </div>
+</div></section>
+
 <section class="g alt" id="fundador"><div class="w">
   <div class="aut-top">
     <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/aula/bruno-palco-v.jpg" alt="Bruno Chaerk palestrando no palco">
@@ -497,25 +537,30 @@ details.pj p{color:var(--mute);margin:10px 0 0;font-size:15px;max-width:70ch}
       <a class="btn" href="/fundador">Conhecer a trajetória completa</a>
     </div>
   </div>
-  <div class="cards-a">
-    <a class="ca" href="/fundador"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/aula/bruno-palco-h.jpg" alt="Bruno Chaerk em palestra"><span class="cb"><span class="tg">Palestrante</span><h4>Embaixador do Clube de Negócios Hotéis e Resorts</h4><p>Palestras sobre desenvolvimento hoteleiro, glamping e reconversão de destinos.</p></span></a>
-    <a class="ca" href="/fundador"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/resultados/hotelcast-bruno-microfone.jpg" alt="Bruno Chaerk no Hotel Cast"><span class="cb"><span class="tg">Na mídia</span><h4>Hotel Cast e entrevistas</h4><p>O podcast do setor de hospitalidade e entrevistas sobre os projetos que liderou.</p></span></a>
-    <a class="ca" href="/fundador"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/resultados/floripa-aerea-pronta.jpg" alt="Sede Zion vista do alto"><span class="cb"><span class="tg">Na prática</span><h4>Zion Bubble Glamping</h4><p>Pioneira no glamping em suítes bolha no Brasil, com duas sedes próprias em dois biomas.</p></span></a>
+
+  <span class="k">Na mídia e nos palcos</span>
+  <div class="midia">
+    <figure class="m1"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/cnn-brasil.webp" alt="Bruno Chaerk dando entrevista à CNN Brasil"><figcaption><b>Entrevista à CNN Brasil</b>Glamping e desenvolvimento de destinos</figcaption></figure>
+    <figure><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/clube-negocios.webp" alt="Bruno Chaerk no palco do Clube de Negócios Hotéis e Resorts" style="object-position:center 35%"><figcaption><b>Palestrante</b>Clube de Negócios Hotéis e Resorts</figcaption></figure>
+    <figure><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/hotelcast-mesa.webp" alt="Bruno Chaerk com convidados no Hotel Cast" style="object-position:center 60%"><figcaption><b>Hotel Cast</b>O podcast do setor de hospitalidade</figcaption></figure>
+    <figure><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/entrevista-espanha.webp" alt="Bruno Chaerk em entrevista à mídia espanhola"><figcaption><b>Mídia espanhola</b>Inauguração do Rooftop Nine</figcaption></figure>
+    <figure><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/patrocinadores.webp" alt="Bruno Chaerk diante do painel de patrocinadores com a Zion" style="object-position:center 30%"><figcaption><b>Zion patrocinadora</b>Eventos do setor</figcaption></figure>
   </div>
+
   <div class="pjs">
     <div>
       <h3>Projetos <em>internacionais</em></h3>
-      <details class="pj"><summary>Reconversão de Magaluf <small>Mallorca · Meliá</small></summary><p>Participou do projeto de reconversão de Magaluf liderado pela Meliá Hotels International: hotéis conceito como INNSiDE Calviá Beach, INNSiDE Wave e ME Mallorca, somando 1.096 quartos num plano que mudou a percepção internacional do destino.</p></details>
-      <details class="pj"><summary>Sitges e Barcelona <small>Meliá · Wyndham</small></summary><p>Mais de 10 anos na região, em ativos como o Meliá Sitges (307 quartos), hotel de congressos, e o Dolce by Wyndham Sitges Barcelona, no seu rebranding internacional.</p></details>
-      <details class="pj"><summary>Fuerteventura, Ilhas Canárias <small>Barceló</small></summary><p>Reconversão e rebranding de resorts da Barceló para a marca Occidental, com mais de 1.100 quartos envolvidos.</p></details>
-      <details class="pj"><summary>Fusão Dolce e Wyndham <small>M&amp;A</small></summary><p>Integrou o comitê executivo na fusão do grupo Dolce com a americana Wyndham.</p></details>
+      <details class="pj"><summary>Reconversão de Magaluf <small>Mallorca · Meliá</small></summary><p>Participou do projeto de reconversão de Magaluf liderado pela Meliá Hotels International: hotéis conceito como INNSiDE Calviá Beach, INNSiDE Wave e ME Mallorca, somando 1.096 quartos num plano que mudou a percepção internacional do destino.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/magaluf-hotel.webp" alt="Hotel do projeto de reconversão de Magaluf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/magaluf-wave.webp" alt="Piscina de ondas do INNSiDE Wave em Magaluf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/mallorca.webp" alt="Enseada em Mallorca"></div></details>
+      <details class="pj"><summary>Meliá Sitges e Barcelona <small>Meliá · Wyndham</small></summary><p>Mais de 10 anos na região, em ativos como o Meliá Sitges (307 quartos), hotel de congressos, e o Dolce by Wyndham Sitges Barcelona, no seu rebranding internacional.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/sitges-hotel.webp" alt="Hotel Meliá Sitges"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/sitges-congressos.webp" alt="Auditório de congressos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/barcelona.webp" alt="Porto de Barcelona"></div></details>
+      <details class="pj"><summary>Fuerteventura, Ilhas Canárias <small>Barceló</small></summary><p>Reconversão e rebranding de resorts da Barceló para a marca Occidental, em Jandía, com mais de 1.100 quartos envolvidos.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/jandia-resort.webp" alt="Resort em Jandía"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/jandia-noite.webp" alt="Resort em Jandía à noite"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/fuerteventura-praia.webp" alt="Praia de Fuerteventura"></div></details>
+      <details class="pj"><summary>Fusão Dolce e Wyndham <small>M&amp;A</small></summary><p>Integrou o comitê executivo na fusão do grupo Dolce com a americana Wyndham, um projeto que consolidou duas grandes marcas.</p></details>
     </div>
     <div>
       <h3>Projetos <em>nacionais</em></h3>
-      <details class="pj"><summary>Zion Bubble Glamping · sede 1 <small>Serra · desde 2020</small></summary><p>Primeira sede da marca, num bosque nativo na serra. O laboratório onde nasceram os padrões de experiência, design e operação da Zion.</p></details>
-      <details class="pj"><summary>Zion Bubble Glamping · sede 2 <small>Litoral tropical</small></summary><p>Segunda sede, criada pela alta demanda, que comprovou o modelo Zion em outro bioma e outro perfil de público.</p></details>
-      <details class="pj"><summary>Zion Collection <small>Expansão</small></summary><p>Mais de 23 destinos mapeados no Brasil para novas implantações, e planos para levar o modelo a outros países.</p></details>
-      <details class="pj"><summary>Zion Glamping Store e Método Zion <small>Produtos e ensino</small></summary><p>Os produtos que a Zion opera, vendidos para outros empreendimentos, e o método que ensina o passo a passo, do terreno ao Dossiê.</p></details>
+      <details class="pj"><summary>Zion Bubble Glamping · sede 1 <small>Serra · desde 2020</small></summary><p>Primeira sede da marca, num bosque nativo na serra. O laboratório onde nasceram os padrões de experiência, design e operação da Zion.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-aerea-mata.webp" alt="Sede da Zion vista do alto"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-jacuzzi-mata.webp" alt="Jacuzzi no deck entre as árvores"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-bolha-mata.webp" alt="Bolha na mata"></div><a class="lnk" href="https://www.instagram.com/zionbubble/" target="_blank" rel="noopener noreferrer">Ver no Instagram @zionbubble ↗</a></details>
+      <details class="pj"><summary>Zion Bubble Glamping · sede 2 <small>Litoral tropical</small></summary><p>Segunda sede, criada pela alta demanda, que comprovou o modelo Zion em outro bioma e outro perfil de público.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-bolhas-tropical.webp" alt="Bolhas entre palmeiras"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-deck-piscina.webp" alt="Deck com piscina"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/zion-banheira-piscina.webp" alt="Banheira com vista para a piscina"></div><a class="lnk" href="https://www.zionbubbleglamping.com" target="_blank" rel="noopener noreferrer">Visitar o site ↗</a></details>
+      <details class="pj"><summary>Zion Collection <small>Expansão</small></summary><p>Mais de 23 destinos mapeados no Brasil para novas implantações, e planos para levar o modelo a outros países.</p><a class="lnk" href="#expansao">Ver o mapa de expansão ↓</a></details>
+      <details class="pj"><summary>Zion Glamping Store e Método Zion <small>Produtos e ensino</small></summary><p>Os produtos que a Zion opera, vendidos para outros empreendimentos, e o método que ensina o passo a passo, do terreno ao Dossiê.</p><div class="pj-fotos"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/obra.webp" alt="Bruno Chaerk acompanhando uma obra"></div><a class="lnk" href="/store">Conhecer a Glamping Store ↗</a></details>
     </div>
   </div>
   <div class="acad">
