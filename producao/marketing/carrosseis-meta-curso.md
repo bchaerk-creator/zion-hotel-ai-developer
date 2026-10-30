@@ -206,3 +206,20 @@ Nos últimos 90 dias: R$ 2.096, 410 leads, **R$ 5,10 por lead**, 145 conversas n
 **Tela final:** botão "Falar no WhatsApp", abrindo o número do agente de IA com a mensagem "Oi! Inscrevi o meu terreno no Método Zion."
 
 **Falta para subir:** o ID do formulário nativo e o número do WhatsApp do agente. A API do Windsor não cria nem lê formulários: ele é criado ou escolhido no Gerenciador de Anúncios.
+
+---
+
+## 7. Zion Land Members · textos (30/10)
+
+Texto-base do Bruno: "Seja membro da Zion Land Members e estruture seu sonho. Através do nosso clube você inscreve seu terreno e mantemos ele no radar de oportunidades e investimentos. Para isso preparamos ele primeiro. Formatamos o melhor modelo para você começar."
+
+**Card novo:** `06b-land-members.png` (foto D, Bubble Zion na mata de araucárias). Entra antes do card 7.
+
+**Texto principal (3 versões)**
+- **LM1 · Clube:** Seja membro da Zion Land Members e estruture o seu sonho. No nosso clube, você inscreve o seu terreno e a gente prepara ele primeiro: formatamos o melhor modelo para você começar. Depois, ele fica no nosso radar de oportunidades e investimentos. Inscreva o seu terreno.
+- **LM2 · Terra parada:** Tem um terreno parado? Na Zion Land Members, ele sai da gaveta. Você inscreve, a gente estrutura o melhor modelo para você começar, e o terreno entra no radar de oportunidades e investimentos da Zion. Inscreva o seu terreno.
+- **LM3 · Curto:** Inscreva o seu terreno na Zion Land Members. Primeiro, a gente prepara o modelo certo para você começar. Depois, ele fica no radar de oportunidades e investimentos.
+
+**Título:** Inscreva seu terreno na Land Members (36) · **Descrição:** O clube de áreas da Zion (24)
+
+**Regras:** "radar de oportunidades" sempre sem promessa. Nunca usar "garantimos investidor", "captação garantida" ou valores de retorno. No formulário ou na página: "A Zion avalia cada caso e não garante investimento, crédito ou sociedade."
