@@ -60,6 +60,7 @@
       var envio = (typeof window.enviarParaZion === "function") ? window.enviarParaZion(p) : Promise.resolve({ enviado: false });
       Promise.resolve(envio).then(function (r) {
         var ok = r && r.enviado;
+        if (ok) { try { localStorage.setItem("zion-lb-ok-" + (typeof ZION_PAGINA !== "undefined" ? ZION_PAGINA : location.pathname), new Date().toISOString()); } catch (e) {} }
         msg.innerHTML = (ok ? "Enviado. Esta página já está no seu cadastro do Land Bank. " : "Não conseguimos enviar agora; baixe o PDF e anexe no cadastro. ") +
           '<a href="' + linkForm(p.nome, p.email) + '" target="_blank" rel="noopener" style="font-weight:700;color:#7A5E12">Completar o cadastro do meu terreno</a>';
       }).catch(function () {
