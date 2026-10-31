@@ -21,7 +21,7 @@
   if (idx < 0) return;
   var aqui = ORDEM[idx], prox = ORDEM[idx + 1] || null;
   var destino = prox ? "../" + prox.slug + "/" : "../../index.html";
-  var rotulo = prox ? "Próximo bloco ›" : "Concluir ›";
+  var rotulo = prox ? "Próximo bloco ›" : "Concluir o dossiê ›";
   var armado = 0;
 
   function guardada() {
@@ -58,7 +58,9 @@
     if (!b || !ultimo()) return;
     e.stopImmediatePropagation();
     e.preventDefault();
-    if (guardada() || Date.now() < armado) { location.href = destino; return; }
+    if (guardada()) { location.href = destino; return; }
+    if (!prox) { aviso("O seu dossiê só está completo depois de enviado à Zion. Volte um slide, gere o dossiê e toque em Enviar ao Land Bank da Zion."); return; }
+    if (Date.now() < armado) { location.href = destino; return; }
     armado = Date.now() + 9000;
     aviso("A sua Ficha deste bloco ainda não foi guardada na Zion. Volte um slide, gere a Ficha e toque em Enviar ao Land Bank. Se preferir seguir assim mesmo, toque de novo em " + rotulo.replace(" ›", "") + ".");
   }, true);
