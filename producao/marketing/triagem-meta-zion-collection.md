@@ -84,3 +84,5 @@ As causas mais comuns são pagamento pendente ou recusado, conta desativada ou r
 **Texto alternativo (se o Meta segurar o "peladão" na revisão):** Privacidade total, no meio da mata. 🌿 Uma bubble transparente só para vocês dois, com piscina privativa, jacuzzi e café da manhã no deck. Zion Bubble Floripa. Veja as datas disponíveis.
 
 **Cuidados:** o vídeo tem a marca d'água do TikTok (o Meta entrega menos conteúdo com marca de outra rede; pedir o arquivo original aos Desmochilados). O conteúdo é deles: o ideal é rodar como anúncio de parceria, com a autorização deles.
+
+**31/10 · Ativado.** Campanha "Zion Bubble - Formulario Reserva - Leads" (conta BRUNO 01) com orçamento de R$ 30/dia (antes R$ 8), campanha e anúncio novo ativados. O vídeo antigo "Desmochilados Floripa 2" segue ativo no mesmo conjunto. Regra do Bruno: conteúdo dos Desmochilados vai sempre na conta do Bruno (BRUNO 01), nunca na Zion Collection.
