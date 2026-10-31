@@ -68,3 +68,19 @@ Os anúncios que vão nesta campanha, reaproveitando os criativos campeões com 
 O Meta respondeu: "O status da conta de anúncios não cumpre os requisitos para administrar anúncios" (código 200, subcódigo 2490592), com este link de ajuda: https://www.facebook.com/business/help/422289316306981
 
 As causas mais comuns são pagamento pendente ou recusado, conta desativada ou restrita, ou verificação pendente. Resolve-se no Gerenciador de Negócios, em Faturamento ou na Central de Qualidade da Conta. Depois de resolvido, os anúncios podem ser criados em minutos.
+
+---
+
+## Vídeo Desmochilados · conta BRUNO 01 (31/10)
+
+- Vídeo enviado para a biblioteca: ID `1562441955901280` ("Pode ficar peladão o dia inteiro?", 65 s, @desmochilados).
+- Anúncio criado **pausado**: `120257623885770091`, no conjunto "Brasil Amplo - Advantage+ V2" (`120256439139520091`), dentro da campanha "Zion Bubble - Formulario Reserva - Leads" (`120256438907390091`). Formulário: "Zion Bubble - Reserva - Qualificação 2" (`1105178921952601`). O outro vídeo dos Desmochilados nesse conjunto fez 48 cadastros a R$ 3,40.
+- Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=923517867340515&selected_ad_ids=120257623885770091
+- Para rodar: ativar a campanha, o conjunto e o anúncio (os três estão pausados).
+
+**Texto principal:** "Pode ficar peladão o dia inteiro?" Pode. 😄 / Uma bubble transparente só para vocês, no meio da mata, com piscina privativa, jacuzzi, lençol térmico e um café da manhã espetacular no deck. / Zion Bubble Floripa. A noite que vocês vão contar para todo mundo. / Toque em "Saiba mais" e veja as datas disponíveis.
+**Título:** Sua escapada a dois na bolha · **Botão:** Saiba mais → formulário de reserva
+
+**Texto alternativo (se o Meta segurar o "peladão" na revisão):** Privacidade total, no meio da mata. 🌿 Uma bubble transparente só para vocês dois, com piscina privativa, jacuzzi e café da manhã no deck. Zion Bubble Floripa. Veja as datas disponíveis.
+
+**Cuidados:** o vídeo tem a marca d'água do TikTok (o Meta entrega menos conteúdo com marca de outra rede; pedir o arquivo original aos Desmochilados). O conteúdo é deles: o ideal é rodar como anúncio de parceria, com a autorização deles.
