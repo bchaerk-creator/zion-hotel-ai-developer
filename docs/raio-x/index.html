@@ -544,7 +544,7 @@ var CONFIG={
         '<div style="font-family:var(--serif);font-size:56px;line-height:1;margin:8px 0 2px;color:var(--gold)">R$ 270</div>'+
         '<p class="small" style="margin:0 0 6px">à vista ou 6x de R$ 45</p>'+
         '<p style="color:var(--paper);margin:0 0 14px"><b>Kit Estratégico Zion:</b> sessão com a equipe, diagnóstico em PDF e o mapa do seu caso.</p>'+
-        '<a class="pill pill-gold" href="'+k270+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit · R$ 270</span><span class="arr" aria-hidden="true">→</span></a><button class="link-u" data-go="2" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:12px auto 0">Ver o que vem no Kit</button><p class="small" style="margin-top:8px">Pagamento seguro. O agendamento abre assim que o pagamento é confirmado.</p></div>';
+        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit · R$ 270</span><span class="arr" aria-hidden="true">→</span></a><button class="link-u" data-go="2" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:12px auto 0">Ver o que vem no Kit</button><p class="small" style="margin-top:8px">Pagamento seguro. O agendamento abre assim que o pagamento é confirmado.</p></div>';
       h=head+oferta+
         '<div class="nx"><p style="color:var(--paper);margin:0 0 6px"><b>Identificamos o que você precisa:</b> '+X.d+'</p><h3 style="font-size:26px;line-height:1.15;margin:8px 0;color:var(--gold)">'+X.v+'</h3><p style="margin:0">'+X.f+'</p></div>'+
         '<div class="nx"><p style="color:var(--paper);margin:0 0 4px"><b>✓ Primeiro passo feito: o diagnóstico.</b></p><span class="mono">Os próximos passos para destravar</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+X.l.map(function(x,i){return li(i+1,x)}).join('')+'</ul></div>'+
@@ -559,7 +559,7 @@ var CONFIG={
           li('1','<b style="color:var(--paper)">Sessão estratégica com a equipe Zion.</b> Online, por agendamento. Libera na hora em que o pagamento é confirmado.')+
           li('2','<b style="color:var(--paper)">O seu diagnóstico em PDF.</b> O que está bom, o que pede atenção e os próximos passos.')+
           li('3','<b style="color:var(--paper)">O mapa do seu caso.</b> Uma página só sua: o que está definido, o que falta e o que fazer primeiro.')+'</ul>'+
-        '<a class="pill pill-gold" href="'+k270+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit com a sessão · R$ 270</span><span class="arr" aria-hidden="true">→</span></a>'+
+        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit com a sessão · R$ 270</span><span class="arr" aria-hidden="true">→</span></a>'+
         '<p class="small" style="margin-top:10px">Pagamento seguro. O agendamento abre assim que o pagamento é confirmado.</p></div>'+
         '<button class="link-u" data-go="3" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:6px auto 0">Agora não</button>'+legal;
     }else if(t===3){
@@ -583,7 +583,7 @@ var CONFIG={
         '<div class="res-top"><h2 class="pronto">O seu diagnóstico <em>continua com você.</em></h2><p class="lead">Quando fizer sentido dar o próximo passo, é só voltar.</p></div>'+
         '<button class="pill btn-s" data-go="1" style="width:100%;justify-content:center">Voltar ao meu diagnóstico</button>';
     }
-    return h+back;
+    return h+(t===2?'':back);
   }
   function ofertaHTML(r){
     var q=S.q,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r)),T=trilhaDe(r);
