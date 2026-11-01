@@ -389,6 +389,7 @@ var CONFIG={
   var QQ=C, Q=A.concat(C), TOTAL=20;
   function build(){Q=A.concat(B[(S.r&&S.r.situacao)||'terreno']||[],C)}
   var S={i:0,r:{}};
+  try{if(/[?&]novo(=|&|$)/.test(location.search))localStorage.removeItem(KEY)}catch(e){}
   try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.r)S=s}catch(e){}
   var box=document.getElementById('form');
   function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
