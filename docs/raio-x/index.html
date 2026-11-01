@@ -328,24 +328,56 @@ var CONFIG={
 /* RAIO-X */
 (function(){
   var KEY='zion-raiox';
-  var Q=[
+  var A=[
     {id:'contato',tipo:'contato',q:'Para começar, quem é você?',h:'Usamos o seu contato só para te mandar o resultado e os próximos passos.'},
     {id:'local',tipo:'texto',q:'Em que cidade e estado fica o terreno, ou a região que você imagina?',h:'Se ainda não tem terreno, escreva a região que você tem em mente.',ph:'Ex.: a cidade e a sigla do estado'},
     {id:'situacao',q:'Qual frase mais parece com você hoje?',o:[['terreno','Tenho um terreno e ainda não hospedo ninguém'],['opero','Já opero uma hospedagem e quero crescer'],['ideia','Tenho uma ideia, ou o capital, e ainda não tenho o terreno']]},
-    {id:'tamanho',q:'Qual o tamanho aproximado do terreno?',h:'Um hectare tem 10.000 m².',o:[['p','Até 5.000 m²'],['m','De 5.000 m² a 2 hectares'],['g','Mais de 2 hectares'],['ns','Não sei ou ainda não tenho terreno']]},
-    {id:'matricula',q:'O terreno tem matrícula no cartório, em seu nome?',h:'A matrícula é o registro do imóvel. É o primeiro papel que um sócio ou um banco vão pedir.',o:[['sim','Sim'],['nao','Não, ou ainda está em regularização'],['ns','Não sei']]},
-    {id:'definido',q:'Você já sabe o que vai construir ou instalar, quantas unidades e onde?',h:'Por exemplo: duas Bubbles na encosta, com deck e banheiro, perto da entrada.',o:[['sim','Sim, está definido'],['parte','Em parte'],['nao','Ainda não']]},
-    {id:'capital',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
     {id:'dor',q:'O que mais pesa hoje?',o:[['1','Tenho o terreno e não tenho o capital'],['2','Tenho o capital e não sei o que fazer'],['3','Preciso estruturar para entrar com um sócio, um banco ou um investidor'],['4','Preciso de clareza para decidir'],['5','Já opero e o calendário não enche'],['6','Já opero e a operação está desorganizada'],['7','Já opero e quero criar um novo produto ou expandir']]},
     {id:'interesse',q:'O que você quer agora?',o:[['produto','Conhecer os produtos e os preços'],['aprender','Aprender o passo a passo para estruturar o meu empreendimento'],['parceria','Saber se a Zion pode ser parceira'],['tudo','Tudo isso']]}
   ];
+  var B={
+    terreno:[
+      {id:'tamanho',q:'Qual o tamanho aproximado do terreno?',h:'Um hectare tem 10.000 m².',o:[['p','Até 5.000 m²'],['m','De 5.000 m² a 2 hectares'],['g','Mais de 2 hectares'],['ns','Não sei']]},
+      {id:'matricula',q:'O terreno tem matrícula no cartório, em seu nome?',h:'A matrícula é o registro do imóvel. É o primeiro papel que um sócio ou um banco vão pedir.',o:[['sim','Sim'],['nao','Não, ou ainda está em regularização'],['ns','Não sei']]},
+      {id:'infra',q:'Como é o acesso, a água e a energia no terreno?',o:[['tudo','Tem acesso, água e energia'],['parte','Tem parte disso'],['nada','Ainda não tem nada disso'],['ns','Não sei']]},
+      {id:'definido',q:'Você já sabe o que vai construir ou instalar, quantas unidades e onde?',h:'Por exemplo: duas Bubbles na encosta, com deck e banheiro, perto da entrada.',o:[['sim','Sim, está definido'],['parte','Em parte'],['nao','Ainda não']]},
+      {id:'capital',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
+      {id:'turismo',q:'A região do terreno já recebe turistas?',o:[['sim','Sim, bastante'],['pouco','Um pouco, em algumas épocas'],['nao','Quase nada'],['ns','Não sei']]}
+    ],
+    opero:[
+      {id:'tempo',q:'Há quanto tempo você opera?',o:[['1','Menos de 1 ano'],['3','De 1 a 3 anos'],['m3','Mais de 3 anos']]},
+      {id:'unidades',q:'Quantas unidades de hospedagem você tem?',o:[['1a3','De 1 a 3'],['4a10','De 4 a 10'],['m10','Mais de 10']]},
+      {id:'ocupacao',q:'Como está a ocupação ao longo do ano?',o:[['alta','Cheia na maior parte do ano'],['sazonal','Cheia só na alta temporada'],['baixa','Baixa quase o ano todo'],['ns','Não acompanho com número']]},
+      {id:'canais',q:'De onde vêm as suas reservas hoje?',o:[['ota','Principalmente Airbnb e Booking'],['direto','Principalmente reserva direta'],['mix','Um pouco de cada'],['poucas','Quase não tenho reservas']]},
+      {id:'equipe',q:'Como é a sua equipe?',o:[['eu','Eu faço quase tudo'],['peq','Tenho uma equipe pequena'],['org','Tenho equipe e processos']]},
+      {id:'meta',q:'O que você quer fazer com a operação?',o:[['vender','Vender mais noites'],['organizar','Organizar a casa'],['novo','Criar um novo produto ou unidade'],['tudo','Tudo isso']]}
+    ],
+    ideia:[
+      {id:'capital',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
+      {id:'regiao',q:'Você já escolheu a região?',o:[['sim','Sim'],['algumas','Tenho algumas opções'],['nao','Ainda não']]},
+      {id:'modelo',q:'Que tipo de empreendimento você imagina?',o:[['glamping','Glamping'],['pousada','Pousada ou chalés'],['hotel','Hotel ou resort'],['ns','Ainda não sei']]},
+      {id:'exp',q:'Você já teve alguma experiência com hospedagem?',o:[['nenhuma','Nenhuma'],['hospede','Só como hóspede'],['operei','Já trabalhei ou operei']]},
+      {id:'dedic',q:'Quanto tempo por semana você consegue dedicar a esse projeto?',o:[['p','Até 3 horas'],['m','De 3 a 8 horas'],['g','Mais de 8 horas']]},
+      {id:'prazo',q:'Quando você imagina abrir?',o:[['1','Em até 1 ano'],['3','Em 2 ou 3 anos'],['sp','Sem pressa']]}
+    ]
+  };
+  var C=[
+    {id:'trava',q:'O que mais te segura hoje para tirar esse projeto do papel?',o:[['ordem','Não sei por onde começar'],['medo','Tenho medo de investir e errar'],['capital','Não sei como pagar a obra'],['terreno','Não sei se o meu terreno serve'],['tempo','Me falta tempo para cuidar disso']]},
+    {id:'tentou',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',o:[['nao','Ainda não'],['valeu','Sim, e me ajudou'],['naoresolveu','Sim, e não resolveu o que eu precisava']]},
+    {id:'quando',q:'Quando você quer tomar uma decisão sobre esse projeto?',o:[['ja','Nos próximos 30 dias'],['seis','Nos próximos 6 meses'],['pesq','Ainda estou pesquisando']]},
+    {id:'decide',q:'Quem decide esse projeto?',o:[['sim','Eu decido sozinho'],['junto','Decido com sócio, cônjuge ou família']]},
+    {id:'como',q:'Como você prefere avançar?',o:[['perto','Com alguém olhando o meu caso de perto'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas']]}
+  ];
+  var QQ=C, Q=A.concat(C), TOTAL=16;
+  function build(){Q=A.concat(B[(S.r&&S.r.situacao)||'terreno']||[],C)}
   var S={i:0,r:{}};
   try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.r)S=s}catch(e){}
   var box=document.getElementById('form');
   function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
   function esc(x){return String(x==null?'':x).replace(/[&<>"']/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]})}
   function render(){
-    if(S.i>=Q.length){box.innerHTML=result();bindRes();enviarLead();return}
+    build();
+    if(S.i>=Q.length){S.q=S.r;box.innerHTML=result();bindRes();enviarLead();return}
     var q=Q[S.i],v=S.r[q.id],h='';
     h+='<div class="prog mono"><span>Pergunta '+(S.i+1)+' de '+Q.length+'</span><span>Raio-X do Terreno</span></div><div class="bar"><i style="width:'+((S.i)/Q.length*100)+'%"></i></div>';
     h+='<p class="q">'+q.q+'</p>'+(q.h?'<p class="qhelp">'+q.h+'</p>':'');
@@ -353,19 +385,21 @@ var CONFIG={
       h+='<label class="f" for="nome">Nome</label><input class="t" id="nome" autocomplete="name" value="'+esc(c.nome)+'">';
       h+='<label class="f" for="zap">WhatsApp</label><input class="t" id="zap" inputmode="tel" autocomplete="tel" value="'+esc(c.zap)+'" placeholder="(DDD) número">';
       h+='<label class="f" for="mail">E-mail</label><input class="t" id="mail" type="email" autocomplete="email" value="'+esc(c.mail)+'">';
+      h+='<label class="f" style="display:flex;gap:10px;align-items:flex-start;margin-top:12px;font-size:14px;line-height:1.4"><input type="checkbox" id="lgpd" '+(c.ok?'checked':'')+' style="margin-top:3px"><span>Autorizo a Zion a usar meus dados para me enviar o resultado e falar comigo sobre o meu projeto. Posso pedir a exclusão quando quiser. <a class="link-u" href="/land-members/privacidade/" target="_blank" rel="noopener">Política de privacidade</a></span></label>';
     }else if(q.tipo==='texto'){
       h+='<input class="t" id="txt" value="'+esc(v)+'" placeholder="'+esc(q.ph||'')+'">';
     }else{
       h+='<div class="opts" role="radiogroup">'+q.o.map(function(o){return '<label class="opt"><input type="radio" name="o" value="'+o[0]+'"'+(v===o[0]?' checked':'')+'>'+o[1]+'</label>'}).join('')+'</div>';
     }
-    h+='<p class="err" id="err"></p><div class="navf">'+(S.i>0?'<button class="pill btn-s" id="back">Voltar</button>':'<span></span>')+'<button class="pill pill-gold" id="next">'+(S.i===Q.length-1?'Ver o meu Raio-X':'Avançar')+' <span class="arr" aria-hidden="true">→</span></button></div>';
+    h+='<p class="err" id="err"></p><div class="navf">'+(S.i>0?'<button class="pill btn-s" id="back">Voltar</button>':'<span></span>')+'<button class="pill pill-gold" id="next">'+(S.i===Q.length-1?'Ver o meu diagnóstico':'Avançar')+' <span class="arr" aria-hidden="true">→</span></button></div>';
     box.innerHTML=h;
     var b=document.getElementById('back');if(b)b.onclick=function(){S.i--;save();render()};
     document.getElementById('next').onclick=function(){
       var err=document.getElementById('err');
       if(q.tipo==='contato'){
-        var c={nome:document.getElementById('nome').value.trim(),zap:document.getElementById('zap').value.trim(),mail:document.getElementById('mail').value.trim()};
+        var c={nome:document.getElementById('nome').value.trim(),zap:document.getElementById('zap').value.trim(),mail:document.getElementById('mail').value.trim(),ok:document.getElementById('lgpd').checked};
         if(!c.nome||(!c.zap&&!c.mail)){err.textContent='Preencha o nome e o WhatsApp ou o e-mail.';return}
+        if(!c.ok){err.textContent='Para continuar, marque a autorização de uso dos dados.';return}
         S.r.contato=c;
       }else if(q.tipo==='texto'){
         var t=document.getElementById('txt').value.trim();if(!t){err.textContent='Escreva a cidade ou a região.';return}S.r[q.id]=t;
@@ -382,7 +416,7 @@ var CONFIG={
       ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'].forEach(function(k){if(qs.get(k))u[k]=qs.get(k).slice(0,200)});
       var resp={};Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];resp[x.id]=o?o[1]:r[x.id]}});
       fetch('/api/public/raio-x-lead',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
-        body:JSON.stringify(Object.assign({nome:c.nome||'',telefone:c.zap||'',email:c.mail||'',local:r.local||'',respostas:resp,leitura:L[0],caminho:L[2]},u))}).catch(function(){});
+        body:JSON.stringify(Object.assign({nome:c.nome||'',telefone:c.zap||'',email:c.mail||'',local:r.local||'',respostas:resp,leitura:L[0],caminho:L[2],consentimento:!!c.ok},u))}).catch(function(){});
       S.enviado=true;save();
     }catch(e){}
   }
@@ -396,15 +430,8 @@ var CONFIG={
     if(r.matricula==='sim') return ['Você tem a terra e o papel','A matrícula em seu nome é mais da metade do caminho. O que falta é o plano: o que o terreno permite, quem paga e quanto custa.','Comece pela jornada Desenvolvimento e Captação, e siga depois para o método de Gestão, onde entram o custo, o retorno e o caminho do capital.'];
     return ['Você tem a terra, e falta o papel','Antes de qualquer obra, a matrícula precisa estar em ordem. É a primeira coisa que um sócio, um banco ou a Zion vão olhar.','Comece pela jornada Desenvolvimento e Captação. A Aula 1 mostra, item por item, os papéis do terreno e quem verifica cada um.'];
   }
-  var QQ=[
-    {id:'trava',q:'O que mais te segura hoje para tirar esse projeto do papel?',o:[['ordem','Não sei por onde começar'],['medo','Tenho medo de investir e errar'],['capital','Não sei como pagar a obra'],['terreno','Não sei se o meu terreno serve'],['tempo','Me falta tempo para cuidar disso']]},
-    {id:'tentou',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',o:[['nao','Ainda não'],['valeu','Sim, e me ajudou'],['naoresolveu','Sim, e não resolveu o que eu precisava']]},
-    {id:'quando',q:'Quando você quer tomar uma decisão sobre esse projeto?',o:[['ja','Nos próximos 30 dias'],['seis','Nos próximos 6 meses'],['pesq','Ainda estou pesquisando']]},
-    {id:'decide',q:'Quem decide esse projeto?',o:[['sim','Eu decido sozinho'],['junto','Decido com sócio, cônjuge ou família']]},
-    {id:'como',q:'Como você prefere avançar?',o:[['perto','Com alguém olhando o meu caso de perto'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas']]}
-  ];
   var TRAVA={ordem:'Não saber por onde começar é falta de ordem, não de capacidade.',medo:'O medo de errar diminui quando a decisão vem antes da obra: na ordem, você corrige no papel, não no concreto.',capital:'Terreno não atrai capital. Projeto atrai.',terreno:'Saber o que o seu terreno permite é exatamente o primeiro passo do projeto.',tempo:'Com a ordem certa, cada hora conta: você para de gastar tempo com o que não importa agora.'};
-  function quali(){var q=S.q||{};return QQ.every(function(x){return q[x.id]})}
+  function quali(){return true}
   function qualHTML(){
     var q=S.q||{},n=0;QQ.forEach(function(x){if(q[x.id])n++});
     var x=QQ.filter(function(y){return !q[y.id]})[0];
@@ -440,9 +467,20 @@ var CONFIG={
     var reuniao='<div class="nx'+(perto?' hi':'')+'"><span class="mono">'+(perto?'Para você · Com acompanhamento':'Quer acompanhamento de perto?')+'</span><h4>Uma reunião com o Bruno sobre o seu caso</h4><p>Uma conversa online de 45 minutos para ouvir o seu projeto, entender onde a Zion pode entrar e te mostrar o caminho da assessoria em grupo ou individual.</p><div class="row"><a class="pill '+(perto?'pill-gold':'pill-dark')+'" href="'+agendaURL(r)+'" target="_blank" rel="noopener">Agendar a reunião <span class="arr" aria-hidden="true">→</span></a><a class="link-u" href="'+z+'" target="_blank" rel="noopener">Prefiro falar no WhatsApp</a></div>'+nota+'</div>';
     var trilha;
     var obj=r.situacao==='ideia'?'a sua ideia':(r.definido==='sim'?'o seu projeto':'o seu terreno');
-    if(T.t1) trilha='<div class="nx hi" id="membro"><span class="mono">O seu diagnóstico · Zion Land Members</span><h4>'+obj.charAt(0).toUpperCase()+obj.slice(1)+' tem muito potencial. Porém, precisa ser melhor estruturado.</h4><p>Entre, seja membro do nosso clube, e nós te ajudamos passo a passo a estruturar melhor o seu projeto. Com o Dossiê feito, a sua área entra no Land Bank Zion, no radar de oportunidades e investimentos. A Zion avalia cada caso.</p>'+TRAILER+'<div style="margin-top:12px"><p style="color:var(--paper);font-weight:600">A inscrição inclui</p><ul style="margin:6px 0 0;padding-left:20px;display:grid;gap:4px"><li>A estruturação do seu Dossiê prévio: o Marco Zero e os 7 pilares</li><li>Ferramentas para fazer os exercícios do Dossiê e o Leitor de Território</li><li>O e-book de cada pilar e uma ferramenta por pilar, que gera a sua ficha em PDF</li><li>30 dias no clube e no Land Bank Zion</li></ul><p class="small" style="margin-top:8px">Depois dos 30 dias, a Zaya te envia pelo WhatsApp os planos para manter o seu terreno no clube.</p></div>'+buyHTML()+'<div class="row"><a class="link-u" href="/inscreva?tipo=projeto" target="_blank" rel="noopener">Já tenho projeto: inscrever o meu projeto ↗</a><a class="link-u" href="/land-members" target="_blank" rel="noopener">Conhecer a Zion Land Members ↗</a></div></div>';
+    if(T.t1){
+      var abre={terreno:'Você tem um terreno e ainda não tem o plano. Esse é o ponto exato em que a maioria trava.',opero:'Você já opera. Falta o plano que faz a casa vender e crescer com ordem.',ideia:'Você ainda não tem o terreno. É a melhor hora para escolher bem: errar agora custa quase nada.'}[r.situacao]||'';
+      trilha='<div class="nx hi" id="membro"><span class="mono">O seu plano · Zion Land Members</span><h4>Agora já temos o que precisamos para desenhar o seu plano.</h4><p>'+abre+' Você respondeu 16 perguntas sobre '+obj+'. Isso já é a primeira página do seu Dossiê, e ela está pronta. Entre na Zion Land Members e você recebe:</p>'+
+      '<ol style="list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0">'+
+      '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">1</b><span><b style="color:var(--paper)">O seu Dossiê estratégico.</b> O Marco Zero e os 7 pilares, já começados com as suas respostas. Você não parte do zero.</span></li>'+
+      '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">2</b><span><b style="color:var(--paper)">O seu Mapa.</b> Território, mercado, produto, modelo, conta e capital, na ordem em que um sócio, um banco ou um investidor vão perguntar.</span></li>'+
+      '<li style="display:flex;gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">3</b><span><b style="color:var(--paper)">A sua Sessão Estratégica com a equipe Zion.</b> 30 minutos, só você e a equipe, olhando o seu Dossiê e dizendo qual é o próximo passo.</span></li></ol>'+
+      '<p class="small" style="margin-top:10px">Mais as ferramentas e o leitor de território, o e-book e a ficha em PDF de cada pilar, 30 dias no clube e a entrada da sua área no Land Bank Zion. A Zion avalia cada caso.</p>'+TRAILER+
+      '<p style="color:var(--paper);margin-top:12px"><b>R$ 270 à vista ou 6x de R$ 45.</b> O erro mais caro do setor é começar pela obra. Isto custa 6x de R$ 45 e vem antes dela.</p>'+
+      '<div class="buy" style="display:grid;gap:12px;margin-top:14px"><a class="pill pill-gold" href="'+(CONFIG.checkoutTrilha||CONFIG.trilha1)+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Quero o meu Dossiê e a minha Sessão · <b>6x de R$ 45</b></span><span class="arr" aria-hidden="true">→</span></a><p class="small">Garantia de 7 dias sobre o produto: se não fizer sentido para você, devolvemos. A garantia não cobre capital, sócio ou renda. Pagamento seguro. O acesso abre na hora e a Sessão é agendada logo depois.</p></div>'+
+      '<div class="row"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button><a class="link-u" href="/land-members" target="_blank" rel="noopener">Conhecer a Zion Land Members ↗</a></div></div>';
+    }
     else trilha='<div class="nx"><span class="mono">No seu ritmo</span><h4>'+T.n+'</h4><p>Esta trilha abre em breve. Na lista, você é avisado primeiro.</p><div class="row"><a class="link-u" href="'+CONFIG.lista+'" target="_blank" rel="noopener">Entrar na lista da '+T.n.split(' · ')[0]+' →</a></div></div>';
-    return '<div class="nexts">'+(T.t1?trilha+prov+reuniao:prov+reuniao+trilha)+'</div><p class="small" style="margin-top:8px">Cada empreendimento é avaliado individualmente. Não é promessa de renda, retorno, crédito ou sociedade.</p>';
+    return '<div class="nexts">'+(T.t1?trilha+prov:prov+reuniao+trilha)+'</div><p class="small" style="margin-top:8px">Cada empreendimento é avaliado individualmente. Não é promessa de renda, retorno, crédito ou sociedade.</p>';
   }
   function result(){
     var r=S.r,L=leitura(r),nome=(r.contato&&r.contato.nome||'').split(' ')[0];
@@ -458,7 +496,22 @@ var CONFIG={
     h+='</div><div class="navf"><button class="pill btn-s" id="redo">Refazer o Raio-X</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
     return h;
   }
-  function bindRes(){document.getElementById('redo').onclick=function(){S.i=0;S.q={};save();render()};
+
+  function pdfDiag(){
+    var r=S.r,L=leitura(r),c=r.contato||{},nome=(c.nome||'').split(' ')[0],hoje=new Date().toLocaleDateString('pt-BR');
+    var linhas=[];Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')linhas.push('<tr><td>'+esc(x.q)+'</td><td><b>'+esc(o[1])+'</b></td></tr>')}});
+    var w=window.open('','_blank');if(!w){alert('Permita a janela para baixar o PDF.');return}
+    w.document.write('<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Diagnóstico Raio-X · Zion</title><style>@page{size:A4;margin:0}*{box-sizing:border-box}body{margin:0;font:14px/1.5 Georgia,serif;color:#1d2a20}.pg{width:210mm;height:297mm;padding:18mm;page-break-after:always;position:relative;overflow:hidden}.pg:last-child{page-break-after:auto}.top{background:#2f3e2c;color:#f3efe3;margin:-18mm -18mm 10mm;padding:14mm 18mm}.top small{letter-spacing:.18em;text-transform:uppercase;color:#c9a96a;font:11px Arial}.top h1{margin:6px 0 0;font-size:26px;font-weight:600}h2{color:#2f3e2c;font-size:18px;margin:16px 0 6px}table{width:100%;border-collapse:collapse;font:12px Arial}td{border-top:1px solid #d5d9cb;padding:6px 4px;vertical-align:top}td:first-child{color:#556}.box{border:2px solid #2f3e2c;border-radius:10px;padding:14px;margin-top:14px}.gold{color:#8a6d2f}.ft{position:absolute;left:18mm;right:18mm;bottom:12mm;font:10px Arial;color:#667}.pil{display:grid;grid-template-columns:1fr 1fr;gap:6px 18px;font:13px Arial;margin:6px 0}</style></head><body>'+
+      '<div class="pg"><div class="top"><small>Zion Hotel Group · Raio-X do Terreno</small><h1>'+(nome?esc(nome)+', este é o seu diagnóstico':'O seu diagnóstico')+'</h1><small>'+hoje+(r.local?' · '+esc(r.local):'')+'</small></div>'+
+      '<h2>'+L[0]+'</h2><p>'+L[1]+'</p><p><b>Por onde começar:</b> '+L[2]+'</p><h2>O que você nos contou</h2><table>'+linhas.join('')+'</table><div class="ft">Leitura inicial. Não é estudo de viabilidade nem promessa de renda, retorno, crédito ou sociedade.</div></div>'+
+      '<div class="pg"><div class="top"><small>Próximo passo</small><h1>Do Raio-X ao seu plano</h1></div>'+
+      '<p>O Raio-X é a página zero do seu Dossiê. Ela já está feita. Estas são as próximas, em ordem:</p><div class="pil"><span>1 · Território</span><span>2 · Mercado</span><span>3 · Produto</span><span>4 · Modelo de negócio</span><span>5 · Masterplan e conta</span><span>6 · Capital</span><span>7 · Dossiê final</span></div>'+
+      '<div class="box"><b class="gold">ZION LAND MEMBERS · R$ 270 ou 6x de R$ 45</b><ol style="padding-left:18px;margin:8px 0 0"><li><b>O seu Dossiê estratégico</b>, já começado com as suas respostas.</li><li><b>O seu Mapa</b>: território, mercado, produto, modelo, conta e capital.</li><li><b>A sua Sessão Estratégica</b> de 30 minutos com a equipe Zion, para definir o próximo passo.</li></ol><p style="margin:10px 0 0;font:12px Arial">Inclui ferramentas, e-books e fichas em PDF de cada pilar, 30 dias no clube e a entrada da sua área no Land Bank Zion. A Zion avalia cada caso. Garantia de 7 dias sobre o produto.</p></div>'+
+      '<p style="margin-top:14px"><b>Para entrar:</b> '+CONFIG.checkoutTrilha+'</p><div class="ft">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. zionhotelgroup.com</div></div>'+
+      '<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script></body></html>');
+    w.document.close();
+  }
+  function bindRes(){var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;document.getElementById('redo').onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
   render();
 })();
