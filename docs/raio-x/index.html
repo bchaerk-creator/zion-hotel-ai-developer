@@ -310,6 +310,7 @@ var CONFIG={
   checkoutTrilha:'https://www.asaas.com/000/c/zrhq4rk88iyta3id', /* link de pagamento da Trilha 1 (R$ 270) */
   checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   zap:'https://wa.me/554861371061?text=',
+  checkout47:'', /* link Asaas do material R$ 47: vazio = a oferta de R$ 47 fica oculta */
   precoTrilha:'R$ 270',
   precoPacote:'R$ 890'
 };
@@ -491,6 +492,75 @@ var CONFIG={
     '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener"><span>Quero o passo 2 \u00b7 <b>6x de R$ 45</b></span><span class="arr" aria-hidden="true">\u2192</span></a>'+
     '<p class="sub">R$ 270 \u00e0 vista \u00b7 garantia de 7 dias \u00b7 acesso na hora</p></div>';
   }
+
+  var DOR={
+   capital:{v:'Você tem a terra. Falta o capital.',f:'Terreno não atrai capital. Projeto atrai.',d:'estruturar o projeto para captar capital.',k:'O seu ponto hoje é o capital',l:['As fontes de capital: sócio, investidor, banco, o seu dinheiro e a parceria com quem tem a terra','O que o seu projeto precisa ter para alguém aceitar olhar','Candidatura da sua área ao Land Bank Zion. A Zion avalia cada caso']},
+   parceiro:{v:'Você quer um parceiro. Ele precisa de um projeto para olhar.',f:'Parceiro avalia o projeto, não só o terreno.',d:'estruturar o projeto para uma parceria com a Zion.',k:'Você quer a Zion como parceira',l:['Como a Zion avalia áreas e projetos no Land Bank','O que o seu caso precisa ter para entrar numa conversa de parceria','O que fica por sua conta e o que a Zion pode somar. O cadastro não garante aprovação, apresentação a investidores nem parceria']},
+   produto:{v:'Você quer o produto, mas ainda falta o plano.',f:'Comprar antes de planejar é o erro mais caro.',d:'definir o produto certo para o seu terreno.',k:'Você quer o produto certo para o seu terreno',l:['Bubble e outras soluções da Glamping Store','Qual faz sentido para o seu terreno e a sua região, a avaliar caso a caso','A ordem certa: decidir antes de comprar']},
+   clareza:{v:'Você ainda não tem clareza para decidir.',f:'Errar no papel custa pouco. Errar no concreto custa caro.',d:'clareza para decidir se vale a pena.',k:'O seu ponto hoje é a clareza',l:['O que o seu terreno pede, em leitura simples','O que falta definir antes de gastar','A ordem do que fazer primeiro']}
+  };
+  var MOT={
+   valor:['Entendido. Então comece pelo material, por R$ 47.','Você recebe o seu relatório, o guia e o mapa, e já sabe o primeiro passo.'],
+   sozinho:['Começar sozinho também é um bom caminho.','O guia foi feito para isso: o passo a passo para você avançar no seu ritmo.'],
+   tempo:['Sem tempo agora? Leia no seu ritmo.','O material fica com você. A sessão com a equipe espera até fazer sentido para a sua agenda.'],
+   entender:['Faz sentido entender antes de decidir.','O guia mostra o caminho geral e o seu relatório mostra o que falta no seu caso. Depois você escolhe com mais clareza.']
+  };
+  function dorDe(r){
+    if(r.resultado==='socio') return 'parceiro';
+    if(r.dor==='1'||r.dor==='3'||r.resultado==='capital') return 'capital';
+    if(r.dor==='2'||r.resultado==='produto'||r.resultado==='obra') return 'produto';
+    return 'clareza';
+  }
+  function li(n,t){return '<li style="display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line)"><i style="font-style:normal;color:var(--gold);font-weight:700">'+n+'</i><span>'+t+'</span></li>'}
+  function flowHTML(r,head){
+    var X=DOR[dorDe(r)],t=S.tela||1,k270=CONFIG.checkoutTrilha||CONFIG.trilha1,k47=CONFIG.checkout47,h='';
+    var back='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
+    var legal='<p class="small" style="margin-top:8px">Não garante investidor, financiamento nem aprovação. A Zion avalia cada caso.</p>';
+    if(t===1){
+      h=head+'<div class="nx hi"><p style="color:var(--paper);margin:0"><b>Identificamos o que você precisa:</b> '+X.d+'</p></div>'+
+        '<div class="nx"><span class="mono">Onde o seu projeto trava</span><h4>'+X.v+'</h4><p style="color:var(--gold);font-weight:600">'+X.f+'</p></div>'+
+        '<div class="nx"><p style="color:var(--paper);margin:0"><b>✓ Primeiro passo feito: o diagnóstico.</b></p><p>O seu projeto vale a pena aprofundar. Para o que trava você, a Zion tem:</p><span class="mono">'+X.k+'</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+X.l.map(function(x){return li('✓',x)}).join('')+'</ul></div>'+
+        '<button class="pill pill-gold" data-go="2" style="width:100%;justify-content:space-between"><span>Ver a melhor forma de seguir</span><span class="arr" aria-hidden="true">→</span></button>'+
+        '<div class="row" style="margin-top:10px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button></div>';
+    }else if(t===2){
+      h='<div class="prog mono"><span>Próximo passo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
+        '<div class="res-top"><h2 class="pronto">Antes de qualquer obra, <em>estruture o projeto.</em></h2><p class="lead">Ninguém põe dinheiro, sociedade ou produto em um projeto que não entende. O próximo passo é a equipe Zion olhar o seu caso com você.</p></div>'+
+        '<div class="nx hi"><span class="mono">Kit Estratégico Zion</span><h3>R$ 270 <small style="font-size:14px;font-weight:400">à vista ou 6x de R$ 45</small></h3>'+
+        '<span class="mono">Comece por aqui</span><ul style="list-style:none;margin:6px 0 10px;padding:0">'+li('1','<b style="color:var(--paper)">Sessão estratégica inicial com a equipe Zion.</b> Uma conversa online de 30 minutos, por agendamento: a equipe lê o seu diagnóstico com você, responde as suas dúvidas e mostra o caminho. O agendamento abre assim que o pagamento é confirmado.')+'</ul>'+
+        '<span class="mono">Para ler no seu ritmo</span><ul style="list-style:none;margin:6px 0 10px;padding:0">'+
+          li('2','<b style="color:var(--paper)">O seu diagnóstico em PDF.</b> Um relatório só seu: o que você respondeu, o que está bom, o que pede atenção e os 3 próximos passos.')+
+          li('3','<b style="color:var(--paper)">Um guia passo a passo.</b> Como sair de um terreno parado para uma hospedagem funcionando, em linguagem simples, com exercícios.')+
+          li('4','<b style="color:var(--paper)">Um mapa de uma página.</b> As 6 etapas do caminho, para você ver em qual está.')+'</ul>'+
+        '<span class="mono">Depois da sessão</span><ul style="list-style:none;margin:6px 0 10px;padding:0">'+
+          li('5','<b style="color:var(--paper)">O seu plano em PDF.</b> De onde você parte, aonde quer chegar, o que está no caminho e o que fazer primeiro.')+
+          li('6','<b style="color:var(--paper)">O que fazer em 30, 60 e 90 dias.</b> Uma lista simples, mês a mês.')+
+          li('7','<b style="color:var(--paper)">O seu diagnóstico atualizado</b> com tudo o que foi conversado.')+'</ul>'+
+        '<a class="pill pill-gold" href="'+k270+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Sim, quero o Kit com a sessão</span><span class="arr" aria-hidden="true">→</span></a>'+
+        '<p class="small" style="text-align:center;margin-top:8px">O agendamento é liberado assim que o pagamento é confirmado.</p></div>'+
+        '<button class="pill btn-s" data-go="3" style="width:100%;justify-content:center">Agora não</button>'+legal;
+    }else if(t===3){
+      h='<div class="prog mono"><span>Sem problema</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
+        '<div class="res-top"><h2 class="pronto">O que pesou mais <em>agora?</em></h2><p class="lead">Uma resposta rápida nos ajuda a te mostrar o caminho certo.</p></div>'+
+        '<div class="opts" style="display:grid;gap:10px">'+
+        [['valor','É um valor alto para agora'],['sozinho','Prefiro começar sozinho'],['tempo','Não tenho tempo para uma consulta agora'],['entender','Quero entender melhor antes de decidir']].map(function(m){return '<button type="button" class="pill btn-s" data-go="'+(k47?4:5)+'" data-m="'+m[0]+'" style="justify-content:flex-start;text-align:left;width:100%">'+m[1]+'</button>'}).join('')+'</div>';
+    }else if(t===4&&k47){
+      var m=MOT[S.mot||'valor'];
+      h='<div class="prog mono"><span>Outro caminho</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
+        '<div class="res-top"><h2 class="pronto">'+m[0]+'</h2><p class="lead">'+m[1]+'</p></div>'+
+        '<div class="nx"><span class="mono">Diagnóstico e guia passo a passo</span><h3>R$ 47</h3><ul style="list-style:none;margin:6px 0 10px;padding:0">'+
+          li('1','<b style="color:var(--paper)">O seu diagnóstico em PDF.</b> Um relatório só seu, com os 3 próximos passos.')+
+          li('2','<b style="color:var(--paper)">Um guia passo a passo.</b> Como sair de um terreno parado para uma hospedagem funcionando, em linguagem simples, com exercícios.')+
+          li('3','<b style="color:var(--paper)">Um mapa de uma página.</b> As 6 etapas do caminho, para você ver em qual está.')+'</ul>'+
+        '<a class="pill pill-gold" href="'+k47+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Quero o diagnóstico e o guia por R$ 47</span><span class="arr" aria-hidden="true">→</span></a>'+
+        '<p class="small" style="text-align:center;margin-top:8px">Se depois quiser a sessão com a equipe, você sobe para o Kit pagando só a diferença.</p></div>'+
+        '<button class="pill btn-s" data-go="5" style="width:100%;justify-content:center">Agora não</button>';
+    }else{
+      h='<div class="prog mono"><span>Tudo certo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
+        '<div class="res-top"><h2 class="pronto">O seu diagnóstico <em>continua com você.</em></h2><p class="lead">Quando fizer sentido dar o próximo passo, é só voltar.</p></div>'+
+        '<button class="pill btn-s" data-go="1" style="width:100%;justify-content:center">Voltar ao meu diagnóstico</button>';
+    }
+    return h+back;
+  }
   function ofertaHTML(r){
     var q=S.q,junto=q.decide==='junto',z=CONFIG.zap+encodeURIComponent(resumo(r)),T=trilhaDe(r);
     var perto=q.como==='perto';
@@ -518,7 +588,7 @@ var CONFIG={
     var h='<div class="prog mono"><span>Resultado</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>';
     h+='<div class="res-top"><p class="mono">&#10003; Diagn\u00f3stico conclu\u00eddo</p><h2 class="pronto">'+(nome?esc(nome)+', o seu':'O seu')+' <em>Diagnóstico prévio est\u00e1 pronto.</em></h2><h3>'+L[0]+'</h3><p class="lead">'+L[1]+'</p><p style="margin-top:12px;color:var(--paper)"><b>Por onde come\u00e7ar:</b> '+L[2]+'</p></div>';
     if(!quali()) { h+=qualHTML(); h+='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>'; return h; }
-    if(trilhaDe(r).t1) h+=heroHTML(r);
+    if(trilhaDe(r).t1) return flowHTML(r,h);
     h+=ofertaHTML(r);
     var pronto=(r.definido==='sim')&&(r.situacao==='opero'||r.matricula==='sim');
     h+='<div class="nexts">';
@@ -557,7 +627,7 @@ var CONFIG={
       '<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script></body></html>');
     w.document.close();
   }
-  function bindRes(){var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;document.getElementById('redo').onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
+  function bindRes(){[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tela=+b.dataset.go;if(b.dataset.m)S.mot=b.dataset.m;box.innerHTML=result();bindRes();try{window.scrollTo(0,0)}catch(e){}}});var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;document.getElementById('redo').onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
   render();
 })();
