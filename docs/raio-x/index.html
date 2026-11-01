@@ -520,6 +520,7 @@ var CONFIG={
    produto:{v:'Você quer o produto, mas ainda falta o plano.',f:'Comprar antes de planejar é o erro mais caro.',d:'definir o produto certo para o seu terreno.',k:'Você quer o produto certo para o seu terreno',l:['Bubble e outras soluções da Glamping Store','Qual faz sentido para o seu terreno e a sua região, a avaliar caso a caso','A ordem certa: decidir antes de comprar']},
    clareza:{v:'Você ainda não tem clareza para decidir.',f:'Errar no papel custa pouco. Errar no concreto custa caro.',d:'clareza para decidir se vale a pena.',k:'O seu ponto hoje é a clareza',l:['Aprender a usar bem o recurso que você já tem: a terra, o dinheiro e o seu tempo','O que o seu terreno pede, em leitura simples','A ordem do que fazer primeiro, sem gastar à toa']}
   };
+  DOR.opera={v:'Você já opera, e o calendário não enche.',f:'Casa bonita não vende sozinha. Venda tem método.',d:'organizar canais, preço e reserva direta para encher o calendário.',k:'O seu ponto hoje é vender mais, com ordem',l:['Onde estão as suas reservas hoje e quanto você paga por elas','Preço e canais: o que ajustar primeiro para ocupar mais datas','Reserva direta e marketing: a ordem certa para depender menos de plataforma']};
   var MOT={
    valor:['Entendido. Então comece pelo material, por R$ 47.','Você recebe o seu relatório, o guia e o mapa, e já sabe o primeiro passo.'],
    sozinho:['Começar sozinho também é um bom caminho.','O guia foi feito para isso: o passo a passo para você avançar no seu ritmo.'],
@@ -527,6 +528,7 @@ var CONFIG={
    entender:['Faz sentido entender antes de decidir.','O guia mostra o caminho geral e o seu relatório mostra o que falta no seu caso. Depois você escolhe com mais clareza.']
   };
   function dorDe(r){
+    if(r.situacao==='opero') return 'opera';
     if(r.resultado==='socio') return 'parceiro';
     if(r.dor==='1'||r.dor==='3'||r.resultado==='capital') return 'capital';
     if(r.dor==='2'||r.resultado==='produto'||r.resultado==='obra') return 'produto';
@@ -545,7 +547,7 @@ var CONFIG={
         '<div class="row" style="margin-top:12px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button></div>';
     }else if(t===2){
       h='<div class="prog mono"><span>Próximo passo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
-        '<div class="res-top"><h2 class="pronto">Antes de qualquer obra, <em>estruture o projeto.</em></h2></div>'+
+        '<div class="res-top"><h2 class="pronto">'+(dorDe(r)==='opera'?'Antes de gastar mais, <em>organize a venda.</em>':'Antes de qualquer obra, <em>estruture o projeto.</em>')+'</h2></div>'+
         '<div class="nx hi" style="text-align:center"><span class="mono">Kit Estratégico Zion</span>'+
         '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:10px 0 2px;color:var(--gold)">R$ 270</div>'+
         '<p class="small" style="margin:0 0 14px">à vista ou 6x de R$ 45</p>'+
@@ -606,7 +608,7 @@ var CONFIG={
     var h='<div class="prog mono"><span>Resultado</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>';
     h+='<div class="res-top"><p class="mono">&#10003; Diagn\u00f3stico conclu\u00eddo</p><h2 class="pronto">'+(nome?esc(nome)+', o seu':'O seu')+' <em>Diagnóstico prévio est\u00e1 pronto.</em></h2><h3>'+L[0]+'</h3><p class="lead">'+L[1]+'</p><p style="margin-top:12px;color:var(--paper)"><b>Por onde come\u00e7ar:</b> '+L[2]+'</p></div>';
     if(!quali()) { h+=qualHTML(); h+='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>'; return h; }
-    if(trilhaDe(r).t1) return flowHTML(r,h);
+    return flowHTML(r,h);
     h+=ofertaHTML(r);
     var pronto=(r.definido==='sim')&&(r.situacao==='opero'||r.matricula==='sim');
     h+='<div class="nexts">';
