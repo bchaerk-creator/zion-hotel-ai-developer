@@ -463,7 +463,7 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
 
 <main>
 <section class="hero" style="padding:0">
-  <div class="ph"><button type="button" class="hplay" aria-label="Assistir ao vídeo de boas-vindas" onclick="abrirVideoHero()"><span class="hplay-c"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span><span class="hplay-t">Assista: a jornada completa</span></button><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion com jacuzzi no deck, entre as árvores" fetchpriority="high" style="object-position:center 40%"></div>
+  <div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion com jacuzzi no deck, entre as árvores" fetchpriority="high" style="object-position:center 40%"></div>
   <div class="tx">
     <span class="k">Zion Land Members</span>
     <h1 class="h-lm">Gere o estudo de viabilidade <em>da sua hospedagem</em> e entre no radar da Zion.</h1>
@@ -476,13 +476,6 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
   </div>
 </section>
 
-<section class="g vids" id="videos"><div class="w">
-<span class="k">Assista antes de decidir</span>
-<h2>Três respostas para quem tem uma terra <em>e quer um destino turístico.</em></h2>
-<p class="vsub">Transforme o seu terreno em um destino turístico. Aprenda o passo a passo para criar uma hospedagem de sucesso. Escolha por onde começar.</p>
-<div class="vgrid">
-<button type="button" class="vcard" onclick="abrirVideo('https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/consciencia.mp4','1')"><span class="vcap"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hero.webp" alt="Bubble da Zion entre as árvores" loading="lazy"><span class="vn">1</span><span class="vp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="vd">Consciência · 2 min</span><h3>Por que o seu terreno está parado?</h3><p>Em 2 minutos, entenda o que falta para transformar o seu terreno em um destino turístico.</p></button><button type="button" class="vcard" onclick="abrirVideo('https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/objecoes.mp4','2')"><span class="vcap"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/hotelcast-conversa.webp" alt="Conversa no Hotel Cast" loading="lazy"><span class="vn">2</span><span class="vp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="vd">Objeções · 3 min</span><h3>As 9 dúvidas antes de começar</h3><p>Medo de errar, falta de capital, não entender do setor. Respondemos as que mais ouvimos.</p></button><button type="button" class="vcard" onclick="abrirVideo('https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/prospeccao.mp4','3')"><span class="vcap"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/img/magia-chale.webp" alt="Chalés Magia do Campeche" loading="lazy"><span class="vn">3</span><span class="vp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg></span></span><span class="vd">Passo a passo · 2 min</span><h3>O que você recebe na Zion Land Members</h3><p>A jornada, o Land Bank e o clube, explicados passo a passo.</p></button>
-</div></div></section>
 
 <section class="g" id="como"><div class="w">
   <div class="head"><span class="k">Como funciona</span><h2>Primeiro preparamos a sua área. Depois ela entra no <em>radar.</em></h2></div>
@@ -496,7 +489,6 @@ details.pj a.lnk{display:inline-flex;margin-top:12px}
 <section class="g jor" id="jornada"><div class="w">
   <div class="jor-top">
     <div class="head"><span class="k">A jornada do membro</span><h2>Do terreno ao Dossiê. Do Dossiê ao <em>clube.</em></h2><p class="lead">Um ciclo com um objetivo só: estruturar o seu empreendimento antes de qualquer obra. Cada pilar responde uma pergunta e acrescenta uma página ao seu Dossiê. No centro, a sua decisão.</p><p class="jor-vlab">▶ Assista: o caminho completo em 3 minutos e meio</p></div>
-    <figure class="jor-video"><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas-capa.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4" type="video/mp4"></video><figcaption>Comece aqui · Boas-vindas · 3:36</figcaption></figure>
   </div>
 
   <div class="orbs">
@@ -731,12 +723,7 @@ try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.search
 var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
 if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
 else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
-<div class="vmodal" id="vmodal" hidden><button type="button" class="vx" aria-label="Fechar o vídeo" onclick="fecharVideoHero()">×</button><video id="vhero" controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas-capa.jpg" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4"></video><div class="vsoon" id="vsoon" hidden><p style="font-size:18px;margin:0 0 6px">Este vídeo entra no ar em breve.</p><p style="margin:0;opacity:.75;font-size:14px">Enquanto isso, veja a jornada completa no play do topo.</p></div></div>
-<script>function abrirVideoHero(){var m=document.getElementById('vmodal'),v=document.getElementById('vhero');document.getElementById('vsoon').hidden=true;v.style.display='';v.onerror=null;if(v.getAttribute('src')!=='https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4'){v.src='https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas.mp4';v.poster='https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/video/boas-vindas-capa.jpg';}m.hidden=false;try{v.currentTime=0;var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
-function abrirVideo(src,n){var m=document.getElementById('vmodal'),v=document.getElementById('vhero'),s=document.getElementById('vsoon');s.hidden=true;v.removeAttribute('poster');v.onerror=function(){v.style.display='none';s.hidden=false;};v.style.display='';v.src=src;m.hidden=false;try{var p=v.play();if(p&&p.catch)p.catch(function(){});}catch(e){}}
-function fecharVideoHero(){var m=document.getElementById('vmodal'),v=document.getElementById('vhero');try{v.pause();}catch(e){}m.hidden=true;}
-document.addEventListener('keydown',function(e){if(e.key==='Escape')fecharVideoHero();});
-document.getElementById('vmodal').addEventListener('click',function(e){if(e.target.id==='vmodal')fecharVideoHero();});</script>
+
 <div class="zbarra" id="zbarra"><span><b>Dossiê + Land Bank</b>R$ 270 ou 6x de R$ 45</span><a href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener">Começar</a></div>
 <script>
 (function(){var b=document.getElementById("zbarra"),h=document.querySelector(".hero");if(!b||!h)return;
