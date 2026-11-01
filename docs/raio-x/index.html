@@ -476,9 +476,15 @@ var CONFIG={
     return {t1:true,n:'Desenvolvimento e Captação'};
   }
   var TRAILER='';
+  function desejoHTML(r){
+    var c=(r.resultado==='capital'||r.dor==='1'||r.dor==='3'),sc=(r.resultado==='socio');
+    var t=(c&&sc)?'captar capital e fechar uma parceria':c?'captar capital para o seu projeto':sc?'fechar uma sociedade ou parceria':'';
+    if(!t) return '';
+    return '<p style="color:var(--paper);margin:2px 0 0"><b>O que voc\u00ea quer:</b> '+t+', ou ter a Zion como parceira. O mapa organiza o seu caso para chegar l\u00e1. A Zion avalia cada caso.</p>';
+  }
   function heroHTML(r){
     var t=CONFIG.checkoutTrilha||CONFIG.trilha1;
-    return '<div class="nx hi hero"><span class="mono">O caminho para o seu destino tur\u00edstico</span><h3>Voc\u00ea j\u00e1 deu o <em>passo 1</em> para transformar o seu terreno em um destino tur\u00edstico.</h3>'+
+    return '<div class="nx hi hero"><span class="mono">O caminho para o seu destino tur\u00edstico</span><h3>Voc\u00ea j\u00e1 deu o <em>passo 1</em> para transformar o seu terreno em um destino tur\u00edstico.</h3>'+desejoHTML(r)+
     '<ul><li><i>\u2713</i><span><b>Passo 1 \u00b7 O seu Raio-X.</b> Feito. As suas respostas j\u00e1 s\u00e3o a primeira p\u00e1gina do seu projeto.</span></li>'+
     '<li><i>2</i><span><b>Passo 2 \u00b7 A Sess\u00e3o Estrat\u00e9gica com a equipe Zion.</b> 45 minutos, s\u00f3 voc\u00ea e a equipe, olhando o seu caso. O agendamento \u00e9 liberado assim que o pagamento \u00e9 confirmado.</span></li></ul>'+
     '<p style="color:var(--paper);margin-top:6px"><b>O que voc\u00ea ganha:</b></p>'+
