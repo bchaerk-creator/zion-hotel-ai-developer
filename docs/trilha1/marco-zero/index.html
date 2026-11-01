@@ -215,8 +215,8 @@ const NIVJ = [{ v: 2, r: "Já tenho" }, { v: 1, r: "Em parte" }, { v: 0, r: "Nã
 
 const TELAS = ["abertura", "situacao", "dor", "cinco", "jornada", "resultado"];
 let S = ler() || { tela: 0, nome: nomeAnterior(), email: "", cidade: "", situacao: "", dor: "", cinco: {}, jornada: {} };
-/* O diagnóstico aprofunda o Raio-X do Terreno: o que o Raio-X já respondeu não é perguntado de novo.
-   Lê o Raio-X salvo neste navegador (mesmo domínio) ou os parâmetros do link: ?sit=terreno&dor=1&nome=...&cid=... */
+/* O diagnóstico aprofunda o Diagnóstico prévio gratuito: o que o diagnóstico prévio já respondeu não é perguntado de novo.
+   Lê o diagnóstico prévio salvo neste navegador (mesmo domínio) ou os parâmetros do link: ?sit=terreno&dor=1&nome=...&cid=... */
 function importarRaioX() {
   let rx = null;
   try { const x = JSON.parse(localStorage.getItem("zion-raiox")); if (x && x.r && x.r.situacao) rx = { sit: x.r.situacao, dor: x.r.dor, nome: x.r.contato && x.r.contato.nome, mail: x.r.contato && x.r.contato.mail, cid: x.r.local }; } catch (e) {}
@@ -248,12 +248,12 @@ function render() {
   let h = progresso();
   if (t === "abertura") {
     const comecou = !S.doRaioX && (S.situacao || S.dor);
-    const doRx = S.doRaioX && S.situacao && S.dor ? `<div class="retomar"><b>O seu Raio-X do Terreno já respondeu a sua situação e a sua dor.</b> Aqui a gente não pergunta de novo: vamos direto ao que aprofunda, as cinco perguntas antes de investir e a jornada.</div>` : "";
+    const doRx = S.doRaioX && S.situacao && S.dor ? `<div class="retomar"><b>O seu Diagnóstico prévio gratuito já respondeu a sua situação e a sua dor.</b> Aqui a gente não pergunta de novo: vamos direto ao que aprofunda, as cinco perguntas antes de investir e a jornada.</div>` : "";
     h += `<div class="card"><div class="eyebrow">Marco Zero · Faça agora</div><h1>O seu diagnóstico prévio</h1>
     <p class="lead">Em uns seis minutos, você vê onde está hoje, o seu ponto mais frágil e a primeira ação para os próximos sete dias.</p>
     <div class="tres"><div><b>Por que fazer isso</b>Quase todo mundo começa pela obra, e a obra é o último passo. Quem sabe onde está não começa pela obra.</div>
     <div><b>Como vamos fazer</b>${S.doRaioX && S.situacao && S.dor ? "Duas telas: as cinco perguntas antes de investir e a jornada dos sete pilares." : "Quatro telas: a sua situação, a sua dor, as cinco perguntas antes de investir e a jornada."} Onde não souber, marque Não sei: também é diagnóstico.</div>
-    <div><b>Para que serve</b>Você sai sabendo por qual pilar começar e com uma ação de sete dias, em PDF. Junto com o Raio-X, é a página zero do seu Dossiê.</div></div>
+    <div><b>Para que serve</b>Você sai sabendo por qual pilar começar e com uma ação de sete dias, em PDF. Junto com o diagnóstico prévio, é a página zero do seu Dossiê.</div></div>
     ${doRx}
     ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
     <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
