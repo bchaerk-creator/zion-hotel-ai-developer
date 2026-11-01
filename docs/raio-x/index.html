@@ -477,10 +477,10 @@ var CONFIG={
     var obj=r.situacao==='ideia'?'a sua ideia':(r.definido==='sim'?'o seu projeto':'o seu terreno');
     if(T.t1){
       var abre={terreno:'Você tem um terreno e ainda não tem o plano. Esse é o ponto exato em que a maioria trava.',opero:'Você já opera. Falta o plano que faz a casa vender e crescer com ordem.',ideia:'Você ainda não tem o terreno. É a melhor hora para escolher bem: errar agora custa quase nada.'}[r.situacao]||'';
-      trilha='<div class="nx hi" id="membro"><span class="mono">O seu plano · Zion Land Members</span><h4>Agora já temos o que precisamos para desenhar o seu plano.</h4><p>'+abre+' Você respondeu 20 perguntas sobre '+obj+'. Isso já é a primeira página do seu Dossiê, e ela está pronta. Entre na Zion Land Members e você recebe:</p>'+
+      trilha='<div class="nx hi" id="membro"><span class="mono">O seu plano · Zion Land Members</span><h4>Agora já temos o que precisamos para desenhar o seu plano.</h4><p>'+abre+' Você respondeu 20 perguntas sobre '+obj+'. Isso já é a primeira página do seu Dossiê, e ela está pronta. O resto do mapa a gente desenha junto. Entre na Zion Land Members e você recebe:</p>'+
       '<ol style="list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0">'+
       '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">1</b><span><b style="color:var(--paper)">O seu Dossiê estratégico.</b> O Marco Zero e os 7 pilares, já começados com as suas respostas. Você não parte do zero.</span></li>'+
-      '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">2</b><span><b style="color:var(--paper)">O seu Mapa.</b> Território, mercado, produto, modelo, conta e capital, na ordem em que um sócio, um banco ou um investidor vão perguntar.</span></li>'+
+      '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">2</b><span><b style="color:var(--paper)">O seu Mapa inicial.</b> Mostra o que já sabemos do seu caso e marca, pilar por pilar, o que ainda falta definir. O que falta é o caminho até um projeto que um sócio, um banco ou um investidor aceitam olhar.</span></li>'+
       '<li style="display:flex;gap:12px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">3</b><span><b style="color:var(--paper)">A sua Sessão Estratégica com a equipe Zion.</b> 30 minutos, só você e a equipe, olhando o seu Dossiê e dizendo qual é o próximo passo.</span></li></ol>'+
       '<p class="small" style="margin-top:10px">Mais as ferramentas e o leitor de território, o e-book e a ficha em PDF de cada pilar, 30 dias no clube e a entrada da sua área no Land Bank Zion. A Zion avalia cada caso.</p>'+TRAILER+
       '<p style="color:var(--paper);margin-top:12px"><b>R$ 270 à vista ou 6x de R$ 45.</b> O erro mais caro do setor é começar pela obra. Isto custa 6x de R$ 45 e vem antes dela.</p>'+
@@ -505,6 +505,20 @@ var CONFIG={
     return h;
   }
 
+
+  function pilares(r){
+    var t=(r.situacao==='terreno'),op=(r.situacao==='opero');
+    var st=[
+      ['1 · Território',t&&r.matricula&&r.utilizavel?'Parcial':'A definir'],
+      ['2 · Mercado',(r.turismo||r.diaria||r.canais)?'Parcial':'A definir'],
+      ['3 · Produto',(r.definido==='sim'||op)?'Parcial':'A definir'],
+      ['4 · Modelo de negócio','A definir'],
+      ['5 · Masterplan e conta','A definir'],
+      ['6 · Capital',r.faixa_capital?'Parcial':'A definir'],
+      ['7 · Dossiê final','A definir']
+    ];
+    return '<table style="margin:8px 0">'+st.map(function(x){return '<tr><td>'+x[0]+'</td><td><b style="color:'+(x[1]==='Parcial'?'#2f3e2c':'#8a6d2f')+'">'+(x[1]==='Parcial'?'Já temos uma leitura':'A definir na mentoria')+'</b></td></tr>'}).join('')+'</table><p style="font:12px Arial;color:#556">O que está em dourado é o que ainda falta decidir. Cada item se resolve na ordem, com a equipe Zion.</p>';
+  }
   function pdfDiag(){
     var r=S.r,L=leitura(r),c=r.contato||{},nome=(c.nome||'').split(' ')[0],hoje=new Date().toLocaleDateString('pt-BR');
     var linhas=[];Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')linhas.push('<tr><td>'+esc(x.q)+'</td><td><b>'+esc(o[1])+'</b></td></tr>')}});
@@ -513,7 +527,7 @@ var CONFIG={
       '<div class="pg"><div class="top"><small>Zion Hotel Group · Raio-X do Terreno</small><h1>'+(nome?esc(nome)+', este é o seu diagnóstico':'O seu diagnóstico')+'</h1><small>'+hoje+(r.local?' · '+esc(r.local):'')+'</small></div>'+
       '<h2>'+L[0]+'</h2><p>'+L[1]+'</p><p><b>Por onde começar:</b> '+L[2]+'</p><h2>O que você nos contou</h2><table>'+linhas.join('')+'</table><div class="ft">Leitura inicial. Não é estudo de viabilidade nem promessa de renda, retorno, crédito ou sociedade.</div></div>'+
       '<div class="pg"><div class="top"><small>Próximo passo</small><h1>Do Raio-X ao seu plano</h1></div>'+
-      '<p>O Raio-X é a página zero do seu Dossiê. Ela já está feita. Estas são as próximas, em ordem:</p><div class="pil"><span>1 · Território</span><span>2 · Mercado</span><span>3 · Produto</span><span>4 · Modelo de negócio</span><span>5 · Masterplan e conta</span><span>6 · Capital</span><span>7 · Dossiê final</span></div>'+
+      '<p>O Raio-X é a página zero do seu Dossiê. Este é o seu mapa inicial: o que já conseguimos ler e o que ainda falta definir.</p>'+pilares(r)+''+
       '<div class="box"><b class="gold">ZION LAND MEMBERS · R$ 270 ou 6x de R$ 45</b><ol style="padding-left:18px;margin:8px 0 0"><li><b>O seu Dossiê estratégico</b>, já começado com as suas respostas.</li><li><b>O seu Mapa</b>: território, mercado, produto, modelo, conta e capital.</li><li><b>A sua Sessão Estratégica</b> de 30 minutos com a equipe Zion, para definir o próximo passo.</li></ol><p style="margin:10px 0 0;font:12px Arial">Inclui ferramentas, e-books e fichas em PDF de cada pilar, 30 dias no clube e a entrada da sua área no Land Bank Zion. A Zion avalia cada caso. Garantia de 7 dias sobre o produto.</p></div>'+
       '<p style="margin-top:14px"><b>Para entrar:</b> '+CONFIG.checkoutTrilha+'</p><div class="ft">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. zionhotelgroup.com</div></div>'+
       '<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script></body></html>');
