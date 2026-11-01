@@ -333,42 +333,50 @@ var CONFIG={
     {id:'local',tipo:'texto',q:'Em que cidade e estado fica o terreno, ou a região que você imagina?',h:'Se ainda não tem terreno, escreva a região que você tem em mente.',ph:'Ex.: a cidade e a sigla do estado'},
     {id:'situacao',q:'Qual frase mais parece com você hoje?',o:[['terreno','Tenho um terreno e ainda não hospedo ninguém'],['opero','Já opero uma hospedagem e quero crescer'],['ideia','Tenho uma ideia, ou o capital, e ainda não tenho o terreno']]},
     {id:'dor',q:'O que mais pesa hoje?',o:[['1','Tenho o terreno e não tenho o capital'],['2','Tenho o capital e não sei o que fazer'],['3','Preciso estruturar para entrar com um sócio, um banco ou um investidor'],['4','Preciso de clareza para decidir'],['5','Já opero e o calendário não enche'],['6','Já opero e a operação está desorganizada'],['7','Já opero e quero criar um novo produto ou expandir']]},
-    {id:'interesse',q:'O que você quer agora?',o:[['produto','Conhecer os produtos e os preços'],['aprender','Aprender o passo a passo para estruturar o meu empreendimento'],['parceria','Saber se a Zion pode ser parceira'],['tudo','Tudo isso']]}
+    {id:'resultado',q:'Daqui a 12 meses, o que seria um bom resultado?',o:[['obra','A obra começando'],['capital','O capital captado'],['cheio','O calendário cheio'],['produto','Um novo produto ou unidade funcionando'],['socio','Uma sociedade ou parceria fechada'],['clareza','Clareza para decidir se vale a pena']]},
+    {id:'faixa_capital',q:'Quanto de capital existe hoje para esse projeto?',h:'Uma faixa já basta. Isso nos ajuda a indicar o caminho certo.',o:[['a','Até R$ 100 mil'],['b','De R$ 100 mil a R$ 400 mil'],['c','De R$ 400 mil a R$ 1,5 milhão'],['d','Mais de R$ 1,5 milhão'],['socio','Depende de sócio ou banco'],['ns','Ainda não sei']]},
+    {id:'tentou',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',o:[['nao','Ainda não'],['valeu','Sim, e me ajudou'],['naoresolveu','Sim, e não resolveu o que eu precisava']]}
   ];
   var B={
     terreno:[
       {id:'tamanho',q:'Qual o tamanho aproximado do terreno?',h:'Um hectare tem 10.000 m².',o:[['p','Até 5.000 m²'],['m','De 5.000 m² a 2 hectares'],['g','Mais de 2 hectares'],['ns','Não sei']]},
       {id:'matricula',q:'O terreno tem matrícula no cartório, em seu nome?',h:'A matrícula é o registro do imóvel. É o primeiro papel que um sócio ou um banco vão pedir.',o:[['sim','Sim'],['nao','Não, ou ainda está em regularização'],['ns','Não sei']]},
+      {id:'utilizavel',q:'Quanto do terreno você consegue de fato usar?',h:'Descontando mata, área de preservação, nascentes e declive forte.',o:[['quase','Quase tudo'],['metade','Cerca da metade'],['pouco','Pouco'],['ns','Não sei']]},
       {id:'infra',q:'Como é o acesso, a água e a energia no terreno?',o:[['tudo','Tem acesso, água e energia'],['parte','Tem parte disso'],['nada','Ainda não tem nada disso'],['ns','Não sei']]},
+      {id:'distancia',q:'A que distância o terreno fica da cidade ou do principal ponto turístico?',o:[['perto','Até 15 minutos'],['medio','De 15 a 45 minutos'],['longe','Mais de 45 minutos'],['ns','Não sei']]},
+      {id:'turismo',q:'A região do terreno já recebe turistas?',o:[['sim','Sim, bastante'],['pouco','Um pouco, em algumas épocas'],['nao','Quase nada'],['ns','Não sei']]},
       {id:'definido',q:'Você já sabe o que vai construir ou instalar, quantas unidades e onde?',h:'Por exemplo: duas Bubbles na encosta, com deck e banheiro, perto da entrada.',o:[['sim','Sim, está definido'],['parte','Em parte'],['nao','Ainda não']]},
-      {id:'capital',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
-      {id:'turismo',q:'A região do terreno já recebe turistas?',o:[['sim','Sim, bastante'],['pouco','Um pouco, em algumas épocas'],['nao','Quase nada'],['ns','Não sei']]}
+      {id:'valor_terreno',q:'Quanto vale o terreno, mais ou menos?',h:'Uma faixa já basta.',o:[['a','Até R$ 200 mil'],['b','De R$ 200 mil a R$ 600 mil'],['c','De R$ 600 mil a R$ 2 milhões'],['d','Mais de R$ 2 milhões'],['ns','Não sei']]}
     ],
     opero:[
       {id:'tempo',q:'Há quanto tempo você opera?',o:[['1','Menos de 1 ano'],['3','De 1 a 3 anos'],['m3','Mais de 3 anos']]},
       {id:'unidades',q:'Quantas unidades de hospedagem você tem?',o:[['1a3','De 1 a 3'],['4a10','De 4 a 10'],['m10','Mais de 10']]},
       {id:'ocupacao',q:'Como está a ocupação ao longo do ano?',o:[['alta','Cheia na maior parte do ano'],['sazonal','Cheia só na alta temporada'],['baixa','Baixa quase o ano todo'],['ns','Não acompanho com número']]},
       {id:'canais',q:'De onde vêm as suas reservas hoje?',o:[['ota','Principalmente Airbnb e Booking'],['direto','Principalmente reserva direta'],['mix','Um pouco de cada'],['poucas','Quase não tenho reservas']]},
+      {id:'diaria',q:'Qual a sua diária média?',o:[['a','Até R$ 400'],['b','De R$ 400 a R$ 800'],['c','De R$ 800 a R$ 1.500'],['d','Mais de R$ 1.500'],['ns','Não sei']]},
+      {id:'nota',q:'Qual a sua nota nas plataformas?',o:[['9','9 ou mais'],['8','De 8 a 9'],['b8','Abaixo de 8'],['nao','Ainda não tenho nota']]},
       {id:'equipe',q:'Como é a sua equipe?',o:[['eu','Eu faço quase tudo'],['peq','Tenho uma equipe pequena'],['org','Tenho equipe e processos']]},
       {id:'meta',q:'O que você quer fazer com a operação?',o:[['vender','Vender mais noites'],['organizar','Organizar a casa'],['novo','Criar um novo produto ou unidade'],['tudo','Tudo isso']]}
     ],
     ideia:[
-      {id:'capital',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
+      {id:'via',q:'Como você pensa em colocar o projeto de pé?',o:[['proprio','Com capital próprio'],['socio','Procuro um sócio, um banco ou um investidor'],['zion','Quero a Zion como parceira'],['ns','Ainda não sei']]},
       {id:'regiao',q:'Você já escolheu a região?',o:[['sim','Sim'],['algumas','Tenho algumas opções'],['nao','Ainda não']]},
       {id:'modelo',q:'Que tipo de empreendimento você imagina?',o:[['glamping','Glamping'],['pousada','Pousada ou chalés'],['hotel','Hotel ou resort'],['ns','Ainda não sei']]},
       {id:'exp',q:'Você já teve alguma experiência com hospedagem?',o:[['nenhuma','Nenhuma'],['hospede','Só como hóspede'],['operei','Já trabalhei ou operei']]},
       {id:'dedic',q:'Quanto tempo por semana você consegue dedicar a esse projeto?',o:[['p','Até 3 horas'],['m','De 3 a 8 horas'],['g','Mais de 8 horas']]},
-      {id:'prazo',q:'Quando você imagina abrir?',o:[['1','Em até 1 ano'],['3','Em 2 ou 3 anos'],['sp','Sem pressa']]}
+      {id:'prazo',q:'Quando você imagina abrir?',o:[['1','Em até 1 ano'],['3','Em 2 ou 3 anos'],['sp','Sem pressa']]},
+      {id:'motivo',q:'Por que hospedagem?',o:[['renda','Para ter uma renda'],['estilo','Por estilo de vida'],['invest','Como investimento'],['legado','Para deixar um legado']]},
+      {id:'socio',q:'Você já tem um sócio ou parceiro?',o:[['sim','Sim'],['procuro','Estou procurando'],['nao','Vou sozinho']]}
     ]
   };
   var C=[
     {id:'trava',q:'O que mais te segura hoje para tirar esse projeto do papel?',o:[['ordem','Não sei por onde começar'],['medo','Tenho medo de investir e errar'],['capital','Não sei como pagar a obra'],['terreno','Não sei se o meu terreno serve'],['tempo','Me falta tempo para cuidar disso']]},
-    {id:'tentou',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',o:[['nao','Ainda não'],['valeu','Sim, e me ajudou'],['naoresolveu','Sim, e não resolveu o que eu precisava']]},
     {id:'quando',q:'Quando você quer tomar uma decisão sobre esse projeto?',o:[['ja','Nos próximos 30 dias'],['seis','Nos próximos 6 meses'],['pesq','Ainda estou pesquisando']]},
     {id:'decide',q:'Quem decide esse projeto?',o:[['sim','Eu decido sozinho'],['junto','Decido com sócio, cônjuge ou família']]},
-    {id:'como',q:'Como você prefere avançar?',o:[['perto','Com alguém olhando o meu caso de perto'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas']]}
+    {id:'como',q:'Como você prefere avançar?',o:[['perto','Com alguém olhando o meu caso de perto'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas']]},
+    {id:'gatilho',q:'O que te faria decidir agora?',o:[['plano','Ver o plano do meu caso'],['caso','Ver um caso real parecido com o meu'],['equipe','Falar com a equipe'],['garantia','Ter uma garantia'],['parcelar','Poder parcelar']]}
   ];
-  var QQ=C, Q=A.concat(C), TOTAL=16;
+  var QQ=C, Q=A.concat(C), TOTAL=20;
   function build(){Q=A.concat(B[(S.r&&S.r.situacao)||'terreno']||[],C)}
   var S={i:0,r:{}};
   try{var s=JSON.parse(localStorage.getItem(KEY));if(s&&s.r)S=s}catch(e){}
@@ -469,7 +477,7 @@ var CONFIG={
     var obj=r.situacao==='ideia'?'a sua ideia':(r.definido==='sim'?'o seu projeto':'o seu terreno');
     if(T.t1){
       var abre={terreno:'Você tem um terreno e ainda não tem o plano. Esse é o ponto exato em que a maioria trava.',opero:'Você já opera. Falta o plano que faz a casa vender e crescer com ordem.',ideia:'Você ainda não tem o terreno. É a melhor hora para escolher bem: errar agora custa quase nada.'}[r.situacao]||'';
-      trilha='<div class="nx hi" id="membro"><span class="mono">O seu plano · Zion Land Members</span><h4>Agora já temos o que precisamos para desenhar o seu plano.</h4><p>'+abre+' Você respondeu 16 perguntas sobre '+obj+'. Isso já é a primeira página do seu Dossiê, e ela está pronta. Entre na Zion Land Members e você recebe:</p>'+
+      trilha='<div class="nx hi" id="membro"><span class="mono">O seu plano · Zion Land Members</span><h4>Agora já temos o que precisamos para desenhar o seu plano.</h4><p>'+abre+' Você respondeu 20 perguntas sobre '+obj+'. Isso já é a primeira página do seu Dossiê, e ela está pronta. Entre na Zion Land Members e você recebe:</p>'+
       '<ol style="list-style:none;margin:12px 0 0;padding:0;display:grid;gap:0">'+
       '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">1</b><span><b style="color:var(--paper)">O seu Dossiê estratégico.</b> O Marco Zero e os 7 pilares, já começados com as suas respostas. Você não parte do zero.</span></li>'+
       '<li style="display:flex;gap:12px;border-top:1px solid var(--line);padding:12px 0"><b style="color:var(--gold);min-width:22px">2</b><span><b style="color:var(--paper)">O seu Mapa.</b> Território, mercado, produto, modelo, conta e capital, na ordem em que um sócio, um banco ou um investidor vão perguntar.</span></li>'+
