@@ -540,10 +540,14 @@ var CONFIG={
     var back='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
     var legal='<p class="small" style="margin-top:8px">Não garante investidor, financiamento nem aprovação. A Zion avalia cada caso.</p>';
     if(t===1){
-      h=head+'<div class="nx hi"><p style="color:var(--paper);margin:0;font-size:19px"><b>Identificamos o que você precisa:</b> '+X.d+'</p></div>'+
-        '<div class="nx" style="border:2px solid var(--gold);background:rgba(224,190,94,.08)"><span class="mono" style="color:var(--gold)">Onde o seu projeto trava</span><h3 style="font-size:28px;line-height:1.15;margin:8px 0">'+X.v+'</h3><p style="color:var(--gold);font-weight:700;font-size:19px;margin:0">'+X.f+'</p></div>'+
+      var oferta='<div class="nx hi" style="text-align:center;border:2px solid var(--gold)"><span class="mono">O seu próximo passo</span>'+
+        '<div style="font-family:var(--serif);font-size:56px;line-height:1;margin:8px 0 2px;color:var(--gold)">R$ 270</div>'+
+        '<p class="small" style="margin:0 0 6px">à vista ou 6x de R$ 45</p>'+
+        '<p style="color:var(--paper);margin:0 0 14px"><b>Kit Estratégico Zion:</b> sessão com a equipe, diagnóstico em PDF e o mapa do seu caso.</p>'+
+        '<button class="pill pill-gold" data-go="2" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o meu próximo passo</span><span class="arr" aria-hidden="true">→</span></button></div>';
+      h=head+oferta+
+        '<div class="nx"><p style="color:var(--paper);margin:0 0 6px"><b>Identificamos o que você precisa:</b> '+X.d+'</p><h3 style="font-size:26px;line-height:1.15;margin:8px 0;color:var(--gold)">'+X.v+'</h3><p style="margin:0">'+X.f+'</p></div>'+
         '<div class="nx"><p style="color:var(--paper);margin:0 0 4px"><b>✓ Primeiro passo feito: o diagnóstico.</b></p><span class="mono">Os próximos passos para destravar</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+X.l.map(function(x,i){return li(i+1,x)}).join('')+'</ul></div>'+
-        '<button class="pill pill-gold" data-go="2" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Ver o meu próximo passo</span><span class="arr" aria-hidden="true">→</span></button>'+
         '<div class="row" style="margin-top:12px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button></div>';
     }else if(t===2){
       h='<div class="prog mono"><span>Próximo passo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
@@ -607,8 +611,9 @@ var CONFIG={
     var r=S.r,L=leitura(r),nome=(r.contato&&r.contato.nome||'').split(' ')[0];
     var h='<div class="prog mono"><span>Resultado</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>';
     h+='<div class="res-top"><p class="mono">&#10003; Diagn\u00f3stico conclu\u00eddo</p><h2 class="pronto">'+(nome?esc(nome)+', o seu':'O seu')+' <em>Diagnóstico prévio est\u00e1 pronto.</em></h2><h3>'+L[0]+'</h3><p class="lead">'+L[1]+'</p><p style="margin-top:12px;color:var(--paper)"><b>Por onde come\u00e7ar:</b> '+L[2]+'</p></div>';
+    var h0=h.replace(/<p class="lead">.*?<\/p><p style="margin-top:12px;color:var\(--paper\)"><b>Por onde come.*?<\/p><\/div>$/,'</div>');
     if(!quali()) { h+=qualHTML(); h+='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>'; return h; }
-    return flowHTML(r,h);
+    return flowHTML(r,h0);
     h+=ofertaHTML(r);
     var pronto=(r.definido==='sim')&&(r.situacao==='opero'||r.matricula==='sim');
     h+='<div class="nexts">';
