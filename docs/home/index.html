@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Zion Hotel Group International</title>
-<meta name="description" content="Transforme seu terreno em um destino turístico. Aprenda o passo a passo, inscreva o seu terreno na Zion Land Members e conheça a Glamping Store.">
+<meta name="description" content="Transforme seu terreno em um destino turístico. Faça o Raio-X grátis do seu terreno, entre no radar da Zion e conheça os produtos e o método.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap">
@@ -66,10 +66,6 @@ p{margin:0 0 12px}
 .hero{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100svh - 72px);background:var(--deep)}
 .hero .ph{position:relative;min-height:420px;overflow:hidden}
 .hero .ph img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.play{position:absolute;right:20px;bottom:20px;display:flex;align-items:center;gap:14px;background:rgba(15,29,21,.82);backdrop-filter:blur(6px);border:1px solid rgba(224,190,94,.4);border-radius:999px;padding:8px 22px 8px 8px;color:var(--paper);cursor:pointer;font:inherit;text-align:left}
-.play .bt{display:grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--gold);color:var(--deep);font-size:18px;flex:none}
-.play b{display:block;font:500 16px/1.25 var(--f-b)}
-.play small{display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--mute)}
 .hero .tx{display:grid;align-content:center;gap:24px;padding:64px max(20px,env(safe-area-inset-right,0px)) 64px clamp(28px,5vw,80px)}
 .hero h1{font-size:clamp(40px,5.2vw,74px);line-height:1.03;max-width:12ch}
 .hero .sub2{color:var(--mute);font-size:18px;max-width:46ch;margin:0}
@@ -116,7 +112,7 @@ section{padding-block:96px}
 .ec p{color:var(--mute);font-size:15px;margin:0}
 .ec .nota{font-size:12px;color:var(--mute);opacity:.85}
 .ec a{margin-top:6px}
-@media (max-width:860px){.eco{grid-template-columns:1fr}}
+@media (max-width:860px){.eco,.eco[style]{grid-template-columns:1fr!important}}
 
 /* sobre */
 .sobre{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:center}
@@ -140,12 +136,6 @@ footer{background:var(--deep);border-top:1px solid var(--line);padding-block:44p
 footer .w{display:grid;gap:14px}
 footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--paper)}
 
-/* vídeo */
-.modal{position:fixed;inset:0;z-index:50;background:rgba(5,10,7,.94);display:none;align-items:center;justify-content:center;padding:max(16px,env(safe-area-inset-top,0px)) 16px}
-.modal.on{display:flex}
-.modal .box{width:min(1100px,100%);aspect-ratio:16/9;background:#000;border-radius:14px;overflow:hidden}
-.modal video,.modal iframe{width:100%;height:100%;border:0;display:block}
-.modal .x{position:absolute;top:max(14px,env(safe-area-inset-top,0px));right:16px;background:var(--gold);color:var(--deep);border:0;border-radius:999px;padding:10px 16px;font:500 14px var(--f-b);cursor:pointer}
 </style>
 </head>
 <body>
@@ -155,22 +145,22 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--paper)}
   <nav class="nav" aria-label="Principal">
     <details><summary>Método Zion ▾</summary><div class="sub">
       <a href="/metodo-zion">Método 1 · Desenvolvimento Hoteleiro<small>Disponível</small></a>
-      <a href="#metodos">Método 2 · Gestão Hoteleira<small>Em breve</small></a>
-      <a href="#metodos">Método 3 · Operação Hoteleira<small>Em breve</small></a>
-      <a href="#metodos">Método 4 · Aceleração de Vendas<small>Em breve</small></a>
+      <a href="/metodo-zion">Método 2 · Gestão Hoteleira<small>Em breve</small></a>
+      <a href="/metodo-zion">Método 3 · Operação Hoteleira<small>Em breve</small></a>
+      <a href="/metodo-zion">Método 4 · Aceleração de Vendas<small>Em breve</small></a>
     </div></details>
-    <a href="/inscreva">Inscreva seu terreno</a>
+    <a href="/raio-x">Seu terreno</a>
     <a href="/oportunidades">Investidores</a>
     <a href="/store">Glamping Store</a>
-    <a href="#sobre">Sobre</a>
+    <a href="/fundador">Sobre</a>
     <a class="cta-top" href="/raio-x">Raio-X grátis</a>
   </nav>
   <details class="menu-m"><summary>Menu</summary><div class="mm">
-    <a href="/inscreva">Inscreva seu terreno</a>
+    <a href="/raio-x">Seu terreno</a>
     <a href="/metodo-zion">Método Zion</a>
     <a href="/oportunidades">Investidores</a>
     <a href="/store">Glamping Store</a>
-    <a href="#sobre">Sobre</a>
+    <a href="/fundador">Sobre</a>
     <a href="/raio-x">Raio-X grátis</a>
   </div></details>
 </div></header>
@@ -179,119 +169,60 @@ footer nav{display:flex;flex-wrap:wrap;gap:8px 22px;color:var(--paper)}
 <section class="hero" style="padding:0">
   <div class="ph">
     <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/home/img/hero-bolha.webp" alt="Bubble Zion transparente sobre o deck, no meio da mata" fetchpriority="high">
-    <button class="play" type="button" id="abrir-video" aria-label="Assistir ao vídeo da Zion Glamping Collection"><span class="bt">▶</span><span><b>Assista: Zion Glamping Collection</b><small>O vídeo da operação</small></span></button>
   </div>
   <div class="tx">
     <span class="k">Zion Hotel Group International</span>
     <h1>Transforme seu terreno em um <em>destino turístico.</em></h1>
-    <p class="sub2">Aprenda o passo a passo para estruturar um empreendimento de hospedagem de excelência e inscreva o seu terreno no ecossistema da Zion.</p>
+    <p class="sub2">Descubra o potencial do seu terreno com o Raio-X grátis e aprenda o passo a passo para estruturar uma hospedagem de excelência com a Zion.</p>
     <div class="acoes">
-      <a class="pill" href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener">Inscrever meu terreno <span class="arr">→</span></a>
-      <div class="sec"><a class="lnk" href="/store">Comprar produtos ↗</a><a class="lnk" href="#metodos">Aprender com a Zion ↗</a></div>
+      <a class="pill" href="/raio-x">Fazer o Raio-X do meu terreno <span class="arr">→</span></a>
+      <div class="sec"><a class="lnk" href="/store">Produtos e soluções ↗</a><a class="lnk" href="/metodo-zion">Aprenda com a Zion ↗</a></div>
     </div>
-    <div class="prova"><span><b>20+ anos</b> de hotelaria internacional</span><span><b>Booking 9,6</b></span><span><b>Airbnb 5/5</b> Superhost</span><span><b>Expedia 10</b></span></div>
+    <div class="prova"><span><b>20+ anos</b> de hotelaria internacional</span><span><b>Booking 9,8</b></span><span><b>Airbnb 5/5</b> Superhost</span><span><b>Expedia 10</b></span></div>
   </div>
 </section>
 
 <section class="g" id="comecar"><div class="w">
-  <div class="head"><span class="k">Por onde você quer começar?</span><h2>Quatro portas para entrar na <em>Zion.</em></h2></div>
+  <div class="head"><span class="k">O ecossistema Zion</span><h2>Conheça o nosso <em>ecossistema.</em></h2><p class="lead">Sete portas numa mesma linha: quem tem terra, quem quer aprender, quem precisa de produto e quem tem capital para investir em hospedagem.</p></div>
   <div class="portas">
     <article class="porta">
       <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/mata.webp" alt="Bubble Zion no meio da mata, vista do alto"></div>
-      <div class="pt"><span class="n">01</span><h3>Inscreva o seu <em>terreno</em></h3><p>Tem a terra e quer saber o que ela pode virar? Estruture o Dossiê prévio e entre no radar da Zion. Estamos construindo o maior banco de áreas turísticas do Brasil.</p><div class="bts"><a class="btn ouro" href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener">Inscrever meu terreno</a></div></div>
+      <div class="pt"><span class="n">01</span><h3>Raio-X do seu <em>terreno</em></h3><p>Conheça o potencial e um diagnóstico prévio da sua área.</p><div class="bts"><a class="btn ouro" href="/raio-x">Fazer o Raio-X do meu terreno</a></div></div>
     </article>
     <article class="porta">
       <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/deck.webp" alt="Deck da operação Zion com as bolhas e os anexos"></div>
-      <div class="pt"><span class="n">02</span><h3>Inscreva o seu <em>projeto</em></h3><p>Já tem um projeto ou uma hospedagem? Organize tudo no Dossiê e apresente o seu empreendimento à Zion.</p><div class="bts"><a class="btn ouro" href="/inscreva?tipo=projeto">Inscrever meu projeto</a></div></div>
+      <div class="pt"><span class="n">02</span><h3>Zion Land <em>Members</em></h3><p>Entre no radar da Zion e faça parte do clube de quem tem terra ou projeto turístico.</p><div class="bts"><a class="btn ouro" href="/land-members">Conhecer o Land Members</a></div></div>
     </article>
     <article class="porta">
       <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/transparente.webp" alt="Bubble Zion transparente com a cama de dossel à vista"></div>
-      <div class="pt"><span class="n">03</span><h3>Compre <em>produtos</em></h3><p>A Bubble Zion e os melhores produtos de glamping, à pronta entrega, em até 12x no cartão.</p><div class="bts"><a class="btn ouro" href="/store/comprar">Comprar a minha Bubble</a><a class="btn" href="/store">Conhecer a Bubble</a></div></div>
+      <div class="pt"><span class="n">03</span><h3>Conheça nossos <em>produtos</em> e soluções para glamping</h3><p>A Bubble Zion e os produtos de glamping da Zion Glamping Store, de quem opera o que vende.</p><div class="bts"><a class="btn ouro" href="/store">Conhecer a Glamping Store</a></div></div>
     </article>
     <article class="porta">
       <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/hospede.webp" alt="Hóspede sentada no deck em frente à Bubble"></div>
-      <div class="pt"><span class="n">04</span><h3>Aprenda com a <em>Zion</em></h3><p>Os métodos da Zion Hospitality Business School, com quem opera o que ensina.</p><div class="bts"><a class="btn ouro" href="#metodos">Conhecer os métodos</a></div></div>
+      <div class="pt"><span class="n">04</span><h3>Aprenda com a Zion através da <em>metodologia</em></h3><p>As trilhas da Zion Hospitality Business School, do terreno ao negócio que funciona, e o testemunho de quem aplicou.</p><div class="bts"><a class="btn ouro" href="/metodo-zion">Conhecer a metodologia</a></div></div>
     </article>
-  </div>
-</div></section>
-
-<section class="g alt" id="metodos"><div class="w">
-  <div class="head"><span class="k">Zion Hospitality Business School</span><h2>Aprenda através do nosso <em>método.</em></h2><p class="lead">Uma escola internacional de formação de desenvolvedores, gestores e operadores hoteleiros. Cursos e assessorias com quem opera o que ensina.</p></div>
-  <div class="metodos">
-    <div class="met"><span class="n">1</span><span class="selo on">Disponível</span><h3>Método Zion de Desenvolvimento Hoteleiro</h3><p>Do terreno ao empreendimento estruturado.</p><a class="btn ouro" href="/metodo-zion">Conhecer o método</a></div>
-    <div class="met"><span class="n">2</span><span class="selo">Em breve</span><h3>Método Zion de Gestão Hoteleira</h3><p>Gestão, números e equipe de uma hospedagem que funciona.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Gest%C3%A3o%20Hoteleira">Entrar na lista de espera</a></div>
-    <div class="met"><span class="n">3</span><span class="selo">Em breve</span><h3>Método Zion de Operação Hoteleira</h3><p>O padrão Zion do check-in ao check-out.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Opera%C3%A7%C3%A3o%20Hoteleira">Entrar na lista de espera</a></div>
-    <div class="met"><span class="n">4</span><span class="selo">Em breve</span><h3>Método Zion de Aceleração de Vendas para Hospedagem</h3><p>Identidade, anúncio e tráfego para calendário cheio.</p><a class="btn" target="_blank" rel="noopener noreferrer" href="https://wa.me/554861371061?text=Quero%20entrar%20na%20lista%20do%20M%C3%A9todo%20Zion%20de%20Acelera%C3%A7%C3%A3o%20de%20Vendas">Entrar na lista de espera</a></div>
-  </div>
-</div></section>
-
-<section class="g"><div class="w">
-  <div class="head"><span class="k">O ecossistema Zion</span><h2>Do terreno à operação, com a <em>Zion.</em></h2></div>
-  <div class="eco">
-    <div class="ec"><h3>Desenvolvimento com a Zion</h3><p>Prefere não fazer sozinho? A equipe Zion estrutura o empreendimento com você.</p><a class="lnk" target="_blank" rel="noopener noreferrer" href="https://calendly.com/contato-zionglampingcollection/1h">Conversar com a Zion ↗</a></div>
-    <div class="ec"><h3>Gestão e operação hoteleira</h3><p>A sua hospedagem operada com o padrão Zion.</p><a class="lnk" href="/management">Conhecer a Zion Hotel Management ↗</a></div>
-    <div class="ec"><h3>Investidores</h3><p>Comece a investir em hospedagem. Faça parte do nosso pool de investidores e conheça os empreendimentos desenvolvidos e analisados pela Zion.</p><a class="lnk" href="/oportunidades">Quero investir ↗</a><span class="nota">Cadastro de interesse. Não é oferta pública de investimento. Cada oportunidade é apresentada individualmente e passa por análise jurídica.</span></div>
-  </div>
-</div></section>
-
-<section class="g alt" id="sobre"><div class="w sobre">
-  <img loading="lazy" src="https://www.zionhotelgroup.com/__l5e/assets-v1/ebc95646-a975-425b-a26e-d484e38573ba/bruno-chaerk.jpg" alt="Bruno Chaerk, fundador da Zion Hotel Group">
-  <div>
-    <span class="k">Sobre nós</span>
-    <h2 style="font-size:clamp(30px,3.6vw,46px);line-height:1.1;margin:14px 0 16px">O que a gente ensina, a gente <em>opera.</em></h2>
-    <p class="lead">A Zion nasceu de um terreno vazio, sem luz, sem água e sem internet. Já operou pousadas e hotéis tradicionais, gastou muito em infraestrutura e retornou pouco. Com o glamping, gastou menos, operou mais e hospedou mais. A Zion errou primeiro, por isso ensina a ordem.</p>
-    <div class="nums"><div><strong>Pioneiros</strong><span>do glamping no Brasil, com várias operações</span></div><div><strong>23</strong><span>destinos mapeados pelo Brasil</span></div><div><strong>20+</strong><span>anos de hotelaria internacional</span></div></div>
-    <h3 style="font-size:24px">Bruno Chaerk, fundador</h3>
-    <ul class="linha">
-      <li><b>Hotelaria</b><span>Mais de 20 anos com Meliá, Barceló e Wyndham, na Espanha, nas Canárias e nas Baleares.</span></li>
-      <li><b>Zion</b><span>A volta ao Brasil e o primeiro terreno da Zion, construído do zero.</span></li>
-      <li><b>2020</b><span>A primeira Bubble em operação.</span></li>
-      <li><b>Hoje</b><span>Hotel Cast e o Clube de Negócios Hotéis e Resorts, como embaixador e palestrante.</span></li>
-    </ul>
-    <a class="btn" href="/fundador">Conhecer a trajetória do Bruno</a>
-  </div>
-</div></section>
-
-<section class="g"><div class="w caso">
-  <img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/vista.webp" alt="Vista da operação Zion ao entardecer">
-  <div>
-    <span class="k">Quem aplicou</span>
-    <blockquote style="margin-top:16px">Priscila e Rodrigo aplicaram o método com o direcionamento do Bruno: mudaram o posicionamento e profissionalizaram o empreendimento.<cite>Chalés Magia do Campeche · Notas da operação própria da Zion: Booking 9,6 · Airbnb Superhost 5/5 · Expedia 10</cite></blockquote>
-    <div style="margin-top:28px"><a class="pill" href="https://www.asaas.com/000/c/zrhq4rk88iyta3id" target="_blank" rel="noopener">Inscrever meu terreno <span class="arr">→</span></a></div>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/ceu.webp" alt="Céu aberto sobre a operação Zion"></div>
+      <div class="pt"><span class="n">05</span><h3>Seja um <em>investidor</em></h3><p>Entre no pool de investidores da Zion e conheça os projetos turísticos do Brasil.</p><div class="bts"><a class="btn ouro" href="/oportunidades">Conhecer o pool de investidores</a></div></div>
+    </article>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/resultados/floripa-aerea-pronta.jpg" alt="Vista aérea da Zion Florianópolis pronta"></div>
+      <div class="pt"><span class="n">06</span><h3>Conheça os nossos <em>cases de sucesso</em></h3><p>A Zion e todos os projetos da Zion: do terreno vazio à operação.</p><div class="bts"><a class="btn ouro" href="/cases">Conhecer os cases</a></div></div>
+    </article>
+    <article class="porta">
+      <div class="pf"><img loading="lazy" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/lancamento/img/aula/bruno-palco-h.jpg" alt="Bruno Chaerk palestrando no palco"></div>
+      <div class="pt"><span class="n">07</span><h3>Conheça o nosso <em>fundador</em></h3><p>A biografia completa do Bruno Chaerk: trajetória, palcos, entrevistas, Hotel Cast e propósito.</p><div class="bts"><a class="btn ouro" href="/fundador">Conhecer o Bruno</a></div></div>
+    </article>
   </div>
 </div></section>
 </main>
 
 <footer class="g"><div class="w">
-  <nav><a href="/inscreva">Inscreva seu terreno</a><a href="/metodo-zion">Método Zion</a><a href="/oportunidades">Investidores</a><a href="/store">Glamping Store</a><a href="/fundador">Fundador</a><a href="/raio-x">Raio-X grátis</a><a href="/privacidade">Privacidade</a></nav>
+  <nav><a href="/raio-x">Seu terreno</a><a href="/metodo-zion">Método Zion</a><a href="/oportunidades">Investidores</a><a href="/store">Glamping Store</a><a href="/fundador">Fundador</a><a href="/raio-x">Raio-X grátis</a><a href="/privacidade">Privacidade</a></nav>
   <span>Zion Hotel Group International · operações de hospedagem por todo o Brasil · WhatsApp +55 48 6137-1061</span>
   <span>Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.</span>
 </div></footer>
 
-<div class="modal" id="modal" role="dialog" aria-modal="true" aria-label="Vídeo da Zion Glamping Collection">
-  <button class="x" type="button" id="fechar">Fechar ✕</button>
-  <div class="box" id="caixa"></div>
-</div>
-
-<script>
-(function(){
-  /* Para usar o YouTube no lugar do arquivo, coloque o ID do vídeo aqui (ex.: "abc123XYZ"). */
-  var YOUTUBE_ID = "";
-  var MP4 = "https://www.zionhotelgroup.com/__l5e/assets-v1/8125326d-bf99-4ae1-b080-f12ef95895d1/zion-glamping-collection.mp4";
-  var modal = document.getElementById("modal"), caixa = document.getElementById("caixa");
-  function abrir(){
-    caixa.innerHTML = YOUTUBE_ID
-      ? '<iframe src="https://www.youtube-nocookie.com/embed/' + YOUTUBE_ID + '?autoplay=1&rel=0" allow="autoplay; fullscreen; encrypted-media" allowfullscreen title="Zion Glamping Collection"></iframe>'
-      : '<video src="' + MP4 + '" controls autoplay playsinline preload="auto"></video>';
-    modal.classList.add("on"); document.body.style.overflow = "hidden";
-  }
-  function fechar(){ modal.classList.remove("on"); caixa.innerHTML = ""; document.body.style.overflow = ""; }
-  document.getElementById("abrir-video").addEventListener("click", abrir);
-  document.getElementById("fechar").addEventListener("click", fechar);
-  modal.addEventListener("click", function(e){ if (e.target === modal) fechar(); });
-  document.addEventListener("keydown", function(e){ if (e.key === "Escape") fechar(); });
-})();
-</script>
 <script>/* WhatsApp direto: abre o app no celular e o WhatsApp Web no computador, sem a página intermediária */
 (function(){var mob=/Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent);
 document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href*="wa.me/"],a[href*="api.whatsapp.com/send"]');if(!a)return;
