@@ -59,7 +59,7 @@ var DEMO={answers:{nome:'Cliente Exemplo',email:'exemplo@zion.com',whats:'48 999
 {id:'infra_exist',block:'Valor da terra',q:'Estrutura',label:'Infraestrutura básica (acesso, água, energia)',status:'ok'},
 {id:'parceria_infra',block:'Valor da terra',q:'Parceria terra + produtos Zion',label:'Quero entender como funciona',status:'ok'}]};
 /* PREENCHER com números reais aprovados pelo Bruno. Vazio = o slide não aparece. */
-var ZION={cabanas:3,periodo:'',faturamento:'',ocupacao:'',diaria:'',obs:''};
+var ZION={cabanas:3,periodo:'Urubici, janeiro a dezembro de 2025',faturamento:'R$ 1.114.584',ocupacao:'cerca de 61% (671 diárias em 3 cabanas)',diaria:'cerca de R$ 1.496 (hospedagem)',obs:'Hospedagem R$ 1.003.817 mais R$ 110.767 em serviços, bar, bodega e packs. Faturamento não é lucro. Resultado real de operação própria, não promessa para o seu projeto.'};
 var data,i=0,S=[];
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function ans(id){var r=(data.resolved||[]).filter(function(x){return x.id===id})[0];return r?r.label:''}
