@@ -36,6 +36,7 @@ ul.fix{padding-left:20px;margin:8px 0}ul.fix li{margin:8px 0;color:var(--mut)}
 .fileb b{font:700 15px Arial;display:block}.fileb span{font:13px Arial;color:var(--dim)}.fileb input{margin-top:8px;color:var(--mut);font:14px Arial;max-width:100%}
 .err{color:#ffb4a3;font:14px Arial;margin-top:8px}
 @media print{body{background:#fff;color:#000}.top,.bar,.row,.no-print{display:none!important}.card{border:1px solid #999;background:#fff}p,li{color:#222}.why{background:#f4f1e6}}
+.emb .w{padding:14px 14px 60px}.emb .top{display:none}
 </style></head><body><div class="w">
 <div class="top"><span>Zion Land Bank</span><span id="stp">Dossiê prévio</span></div>
 <div class="bar"><i id="pg"></i></div>
@@ -47,7 +48,7 @@ var ENDPOINT=(location.hostname.indexOf('zionhotelgroup.com')>-1?'':'https://www
 var AGENDAR='../agendar/';
 var KEY='zlb_dossie_v1';
 var NS={v:'nao_sei',label:'Não sei',s:'unk'};
-var B={1:'Você e o projeto',2:'A sua área',3:'Documentos',4:'Mercado',5:'Produto e investimento',6:'Valor da terra',7:'Fechamento'};
+var B={1:'Você e o projeto',2:'A sua área',3:'Documentos',4:'Mercado',5:'Produto e investimento',6:'Valor da terra',7:'Fechamento',8:'Operação atual'};
 var Q=[
 {id:'ident',b:1,t:'ident',q:'Vamos começar. Quem é você?',why:'A equipe Zion lê o seu dossiê antes da reunião. Use o mesmo e-mail com que você entrou na área de membros.'},
 {id:'papel',b:1,t:'one',q:'Qual é o seu papel neste projeto?',why:'A Zion conversa de um jeito com quem é dono da terra e de outro com quem opera ou investe.',o:[['dono','Sou dono da terra','ok'],['heranca','Terra em herança ou inventário','warn'],['investidor','Sou investidor, ainda sem terra','ok'],['opera','Já opero hospedagem e quero ampliar','ok'],['outro','Outro','ok']]},
@@ -57,6 +58,7 @@ var Q=[
 {id:'tamanho',b:2,t:'one',q:'Qual é o tamanho da área?',why:'O tamanho define quantas unidades cabem e que produto faz sentido: poucas unidades de alto padrão, ou um empreendimento maior.',o:[['p','Até 1.000 m²','ok'],['m','1.000 a 5.000 m²','ok'],['g','5.000 m² a 2 hectares','ok'],['gg','2 a 10 hectares','ok'],['xg','Mais de 10 hectares','ok'],NS],fix:'Meça a área pela matrícula, não de olho. Sócio e banco só aceitam metragem documentada.'},
 {id:'tipo',b:2,t:'one',q:'A área é urbana ou rural?',why:'Urbano e rural têm leis, impostos e licenças diferentes. É a primeira trava de quase todo projeto de hospedagem.',o:[['urbano','Urbana','ok'],['rural','Rural','ok'],['expansao','Expansão urbana ou condomínio','ok'],NS],fix:'Descubra a classificação oficial da área na prefeitura. Ela decide o que pode ser construído.'},
 {id:'acesso',b:2,t:'one',q:'Como é o acesso até a área?',why:'O hóspede avalia a chegada antes de avaliar a hospedagem. Acesso ruim reduz a diária e eleva o custo da obra.',o:[['asfalto','Asfalto até a porta','ok'],['terra_boa','Estrada de terra em boas condições','ok'],['terra_dificil','Estrada de terra difícil','warn'],NS],fix:'Registre em fotos e vídeo o trajeto de chegada. Investidor pergunta isso logo.'},
+{id:'distancia',b:2,t:'one',q:'A que distância a área fica da cidade ou do principal ponto turístico?',why:'Distância define o perfil do hóspede e o custo de chegar até você.',o:[['perto','Até 15 minutos','ok'],['medio','De 15 a 45 minutos','ok'],['longe','Mais de 45 minutos','warn'],NS],fix:'Meça o tempo real de carro até o principal atrativo e a cidade.'},
 {id:'infra',b:2,t:'multi',q:'O que já existe na área?',why:'Água, energia e internet são obra e custo. Quanto mais você já tem, menor o investimento inicial.',o:[['energia','Energia','ok'],['agua','Água','ok'],['internet','Internet','ok'],['esgoto','Esgoto ou fossa','ok'],['nenhuma','Nenhuma','warn'],['nao_sei','Não sei','unk']],fix:'Levante o que existe e o que falta. Sem isso o custo da obra é só um chute.'},
 {id:'restricoes',b:2,t:'multi',q:'Há alguma restrição na área?',why:'Mata nativa, nascente e declive reduzem a área construível. Descobrir isso depois da compra do projeto é caro.',o:[['mata','Mata nativa ou APP','warn'],['nascente','Nascente ou rio','warn'],['declive','Declive forte','warn'],['alagavel','Área alagável','warn'],['nenhuma','Nenhuma que eu saiba','ok'],['nao_sei','Não sei','unk']],fix:'Peça um levantamento ambiental e topográfico antes de desenhar qualquer coisa.'},
 {id:'i2',b:2,t:'inter',txt:'A área está descrita. Agora vem a parte que mais separa projeto sério de intenção: os documentos.'},
@@ -82,13 +84,31 @@ var Q=[
 {id:'infra_exist',b:6,t:'multi',q:'Você já tem alguma estrutura ou operação de hospedagem no local?',why:'Quem já tem infraestrutura (recepção, restaurante, água, energia, acessos, equipe) tem uma vantagem real: a Zion pode entrar com os produtos, como as cabanas, e você com o terreno e a estrutura.',o:[['nenhuma','Não tenho estrutura','ok'],['basica','Infraestrutura básica (acesso, água, energia)','ok'],['apoio','Estrutura de apoio (recepção, restaurante, áreas comuns)','ok'],['opera','Já opero hospedagem ou turismo','ok']],fix:'Liste o que já existe no local, com fotos. Isso muda o investimento necessário.'},
 {id:'parceria_infra',b:6,t:'one',q:'Você teria interesse em uma parceria em que entra com a terra e a infraestrutura e a Zion entra com os produtos (cabanas)?',why:'É um modelo possível para quem já tem estrutura. Só avança depois de conhecermos o projeto, a legalidade do local e a demanda da região, por isso este dossiê existe. Cada caso é avaliado, sem garantia de aprovação.',o:[['sim','Sim, tenho interesse','ok'],['entender','Quero entender como funciona','ok'],['capital','Tenho um pouco de capital para somar','ok'],['nao','Não tenho interesse','ok'],NS]},
 {id:'aporte',b:6,t:'one',q:'Você aceitaria conversar sobre usar a terra como parte de uma estrutura de projeto?',why:'Terras bem documentadas podem entrar como ativo em estruturas de projeto com a Zion. Cada caso é avaliado, sem garantia de aprovação.',o:[['sim','Sim, tenho interesse','ok'],['talvez','Talvez, quero entender','ok'],['nao','Não','ok'],NS]},
+{id:'o_intro',b:8,t:'inter',show:function(){return OP()},txt:'Como você já opera, queremos ler também a operação. Isso muda o diagnóstico e abre caminhos como expansão e parceria.'},
+{id:'o_tempo',b:8,t:'one',show:function(){return OP()},q:'Há quanto tempo você opera?',why:'Operação com histórico vale mais para sócio e investidor.',o:[['1','Menos de 1 ano','ok'],['3','De 1 a 3 anos','ok'],['m3','Mais de 3 anos','ok']]},
+{id:'o_unidades',b:8,t:'one',show:function(){return OP()},q:'Quantas unidades de hospedagem você tem?',why:'O tamanho da operação define o caminho de expansão.',o:[['1a3','De 1 a 3','ok'],['4a10','De 4 a 10','ok'],['m10','Mais de 10','ok']]},
+{id:'o_ocupacao',b:8,t:'one',show:function(){return OP()},q:'Como está a ocupação ao longo do ano?',why:'Sazonalidade é o que mais pesa no caixa.',o:[['alta','Cheia na maior parte do ano','ok'],['sazonal','Cheia só na alta temporada','warn'],['baixa','Baixa quase o ano todo','bad'],['ns','Não acompanho com número','warn']],fix:'Passe a acompanhar ocupação e diária todo mês. Sem número não há gestão.'},
+{id:'o_canais',b:8,t:'one',show:function(){return OP()},q:'De onde vêm as suas reservas hoje?',why:'Dependência de plataforma custa comissão e poder de preço.',o:[['ota','Principalmente Airbnb e Booking','warn'],['direto','Principalmente reserva direta','ok'],['mix','Um pouco de cada','ok'],['poucas','Quase não tenho reservas','bad']],fix:'Monte um canal de reserva direta para depender menos de plataformas.'},
+{id:'o_diaria',b:8,t:'one',show:function(){return OP()},q:'Qual é a sua diária média?',why:'A diária define a receita e o posicionamento.',o:[['a','Até R$ 400','ok'],['b','De R$ 400 a R$ 800','ok'],['c','De R$ 800 a R$ 1.500','ok'],['d','Mais de R$ 1.500','ok'],NS]},
+{id:'o_nota',b:8,t:'one',show:function(){return OP()},q:'Qual é a sua nota nas plataformas?',why:'A nota afeta visibilidade e preço.',o:[['9','9 ou mais','ok'],['8','De 8 a 9','ok'],['b8','Abaixo de 8','warn'],['nao','Ainda não tenho nota','warn']]},
+{id:'o_equipe',b:8,t:'one',show:function(){return OP()},q:'Como é a sua equipe?',why:'Operação que depende só do dono não escala.',o:[['eu','Eu faço quase tudo','warn'],['peq','Tenho uma equipe pequena','ok'],['org','Tenho equipe e processos','ok']],fix:'Documente os processos antes de crescer.'},
 {id:'i6',b:6,t:'inter',txt:'Valor da terra, documento e produto são os três pontos que um investidor lê primeiro. Você acabou de passar por todos.'},
-{id:'dores',b:7,t:'multi',q:'Qual é a sua maior dor hoje?',why:'Sua resposta ajuda a equipe a preparar a reunião certa para você. Pode marcar mais de uma.',o:[['capital','Tenho a terra e não tenho capital','ok'],['sei','Tenho capital e não sei o que fazer','ok'],['estruturar','Preciso estruturar para sócio, banco ou investidor','ok'],['clareza','Preciso de clareza para decidir','ok']]},
+{id:'dores',b:7,t:'multi',q:'O que mais pesa hoje?',why:'Sua resposta ajuda a equipe a preparar a reunião certa para você. Pode marcar mais de uma.',o:[['capital','Tenho o terreno e não tenho o capital','ok'],['sei','Tenho o capital e não sei o que fazer','ok'],['estruturar','Preciso estruturar para entrar com um sócio, um banco ou um investidor','ok'],['clareza','Preciso de clareza para decidir','ok'],['calendario','Já opero e o calendário não enche','ok'],['desorg','Já opero e a operação está desorganizada','ok'],['expandir','Já opero e quero criar um novo produto ou expandir','ok']]},
+{id:'resultado',b:7,t:'one',q:'Daqui a 12 meses, o que seria um bom resultado?',why:'Define o que a reunião precisa entregar para você.',o:[['obra','A obra começando','ok'],['capital','O capital captado','ok'],['cheio','O calendário cheio','ok'],['produto','Um novo produto ou unidade funcionando','ok'],['socio','Uma sociedade ou parceria fechada','ok'],['clareza','Clareza para decidir se vale a pena','ok']]},
+{id:'tentou',b:7,t:'one',q:'Você já buscou ajuda para esse projeto, com curso, consultoria ou projeto?',why:'Mostra o que já foi tentado e o que faltou.',o:[['nao','Ainda não','ok'],['valeu','Sim, e me ajudou','ok'],['naoresolveu','Sim, e não resolveu o que eu precisava','warn']]},
+{id:'trava',b:7,t:'one',q:'O que mais te segura hoje para tirar esse projeto do papel?',why:'É onde a reunião precisa começar.',o:[['ordem','Não sei por onde começar','warn'],['medo','Tenho medo de investir e errar','warn'],['capital','Não sei como pagar a obra','warn'],['terreno','Não sei se o meu terreno serve','warn'],['tempo','Me falta tempo para cuidar disso','warn']]},
+{id:'quando',b:7,t:'one',q:'Quando você quer tomar uma decisão sobre esse projeto?',why:'Ajuda a equipe a respeitar o seu tempo.',o:[['ja','Nos próximos 30 dias','ok'],['seis','Nos próximos 6 meses','ok'],['pesq','Ainda estou pesquisando','warn']]},
+{id:'decide',b:7,t:'one',q:'Quem decide esse projeto?',why:'Se há mais pessoas na decisão, vale trazê-las para a reunião.',o:[['sim','Eu decido sozinho','ok'],['junto','Decido com sócio, cônjuge ou família','ok']]},
+{id:'como',b:7,t:'one',q:'Como você prefere avançar?',why:'Define o formato de apoio mais adequado.',o:[['perto','Com alguém olhando o meu caso de perto','ok'],['sozinho','Sozinho, no meu ritmo, com aulas e ferramentas','ok']]},
+{id:'gatilho',b:7,t:'one',q:'O que te faria decidir agora?',why:'Ajuda a equipe a mostrar o que importa para você.',o:[['plano','Ver o plano do meu caso','ok'],['caso','Ver um caso real parecido com o meu','ok'],['equipe','Falar com a equipe','ok'],['garantia','Ter uma garantia','ok'],['parcelar','Poder parcelar','ok']]},
 {id:'duvida',b:7,t:'long',q:'Qual é a sua maior dúvida sobre o projeto?',why:'Opcional. Escreva do seu jeito. A equipe lê antes de falar com você.',ph:'Escreva aqui'},
 {id:'consent',b:7,t:'consent',q:'Para enviar o dossiê',why:''}
 ];
+var OP=function(){var p=st.a.papel,i=st.a.infra_exist||[];return p==='opera'||i.indexOf('opera')>-1};
 var st={i:0,a:{}},files={},sent=false;
 try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv&&sv.a){st=sv;if(st.i>=Q.length)st.i=Q.length-1}}catch(e){}
+try{var az=JSON.parse(localStorage.getItem('zion-t1-marco-zero')||'null')||{};if(az.nome&&!st.a.nome)st.a.nome=az.nome;if(az.email&&!st.a.email)st.a.email=az.email;if(az.cidade&&!st.a.local)st.a.local=az.cidade}catch(e){}
+if(location.search.indexOf('embed=1')>-1)document.body.classList.add('emb');
 function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
 var $=function(s){return document.querySelector(s)},app=$('#app');
 function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
@@ -111,7 +131,7 @@ function render(){
   else if(q.t==='long'){h+='<textarea id="tx" placeholder="'+esc(q.ph||'')+'">'+esc(st.a[q.id]||'')+'</textarea><div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="nx">Continuar</button></div>'}
  }
  app.innerHTML=h;bind(q);window.scrollTo(0,0)}
-function go(d){st.i=Math.max(0,Math.min(Q.length-1,st.i+d));save();render()}
+function go(d){var n=st.i+d;while(n>0&&n<Q.length-1&&Q[n].show&&!Q[n].show())n+=d;st.i=Math.max(0,Math.min(Q.length-1,n));save();render()}
 function bind(q){
  var bk=$('#bk');if(bk)bk.onclick=function(){go(-1)};
  var nx=$('#nx');
