@@ -132,3 +132,17 @@ Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=1271873041294684
 - As duas campanhas estão ativas, cada uma com **R$ 20/dia** no conjunto Investidor 30-60: Raio-X `120250113155280016` e Checkout `120250173412720016`.
 - Ativos: os 4 carrosséis (v2 e v3 em cada campanha). Pausados: os campeões com formulário antigo e os conjuntos IMOB.
 - Critério de comparação (5 a 7 dias): custo por cadastro, % de cadastros que fazem o Raio-X ou pagam, e **custo por inscrição paga (R$ 270)**, que é o que decide.
+
+## 02/11 · Campeões recriados com os formulários novos (pausados)
+
+Vídeo campeão reenviado à conta: `1475116091178850` (arquivo `producao/marketing/videos/campeao-investidores-hoteleiros.mp4`). O Carrossel terrenos foi recriado com as próprias imagens dele (puxadas do Meta).
+Texto dos campeões ajustado à regra "te ajudamos" e sem "explodindo" ou "fatura alto". O título "Ter a terra sem um projeto é deixar o lucro para depois." foi mantido.
+
+| Campanha | Anúncio | ID |
+|---|---|---|
+| Raio-X | CAMPEÃO RECRIADO · VIDEO Investidores · Form Raio-X | `120250173500100016` |
+| Raio-X | CAMPEÃO RECRIADO · Carrossel terrenos · Form Raio-X | `120250173514780016` |
+| Checkout | CAMPEÃO RECRIADO · VIDEO Investidores · Form Checkout | `120250173501650016` |
+| Checkout | CAMPEÃO RECRIADO · Carrossel terrenos · Form Checkout | `120250173525110016` |
+
+**Não recriados:** Carrossel AD3 e Video AD02 (público IMOB). São anúncios para imobiliárias parceiras, e o Raio-X e o checkout são ofertas para o dono do terreno. Os anúncios antigos "TROCAR form" seguem pausados e podem ser arquivados.
