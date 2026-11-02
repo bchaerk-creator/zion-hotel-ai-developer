@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Reunião estratégica · Zion Land Bank</title><meta name="robots" content="noindex,nofollow">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#0f1a12;--card:#1a2a1e;--line:#33463a;--gold:#c9a96a;--paper:#f3efe3;--mut:#d8d4c6;--dim:#9aa89d;--ok:#6fbf73;--warn:#e0b84d;--bad:#d0573f}
+html,body{height:100%;margin:0;background:var(--bg);color:var(--paper);font:20px/1.5 Georgia,serif}
+.stage{height:100%;display:flex;flex-direction:column}
+.slide{display:none;flex:1;overflow:auto;padding:5vh 7vw}.slide.on{display:block}
+.k{letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font:13px Arial;margin-bottom:10px}
+h1{font-size:clamp(30px,4.6vw,56px);line-height:1.1;font-weight:500;margin:0 0 18px}
+h2{font-size:clamp(24px,3.4vw,40px);line-height:1.15;font-weight:500;margin:0 0 14px}
+p,li{color:var(--mut)}li{margin:8px 0}
+.big{font-size:clamp(22px,2.6vw,32px);color:var(--paper)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px;margin:18px 0}
+.c{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px 18px}
+.c b{display:block;font:700 15px Arial;color:var(--gold);margin-bottom:6px;letter-spacing:.04em}
+.pill{display:inline-block;border-radius:999px;padding:3px 12px;font:700 12px Arial;color:#0f1a12;margin-left:8px}
+.pill.ok{background:var(--ok)}.pill.warn{background:var(--warn)}.pill.bad{background:var(--bad)}
+.row{display:flex;justify-content:space-between;gap:14px;border-bottom:1px solid var(--line);padding:9px 0;font:16px Arial}
+.row span:first-child{color:var(--dim);max-width:55%}
+.price{font-size:clamp(40px,6vw,76px);color:var(--gold);margin:6px 0}
+.strike{text-decoration:line-through;color:var(--dim)}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-top:1px solid var(--line);font:13px Arial;color:var(--dim)}
+.nav button{background:none;border:1px solid var(--line);color:var(--paper);border-radius:999px;padding:8px 18px;cursor:pointer;font:14px Arial}
+.nav button:hover{border-color:var(--gold)}
+.notes{display:none;background:#12201a;border-top:2px solid var(--gold);padding:12px 7vw;font:15px/1.5 Arial;color:var(--mut);max-height:28vh;overflow:auto}
+.notes.on{display:block}.notes b{color:var(--gold)}
+.hid{opacity:.55}
+.load{max-width:700px;margin:10vh auto;padding:0 20px}
+textarea{width:100%;min-height:140px;background:#12201a;border:1px solid var(--line);border-radius:12px;color:var(--paper);padding:12px;font:14px monospace}
+.btn{background:var(--gold);color:#0f1a12;border:0;border-radius:999px;padding:13px 24px;font:700 15px Arial;cursor:pointer;margin:8px 8px 0 0}
+.btn.g{background:none;color:var(--gold);border:1px solid var(--gold)}
+</style></head><body>
+<div id="load" class="load"><div class="k">Zion Land Bank · uso interno</div><h1>Deck da reunião</h1>
+<p>Cole o JSON do dossiê do aluno (campo <b>payload</b>) ou abra o exemplo.</p>
+<textarea id="js" placeholder='{"resolved":[...],"answers":{...}}'></textarea>
+<div><button class="btn" id="go">Gerar deck</button><button class="btn g" id="demo">Ver exemplo</button></div></div>
+<div id="app" class="stage" style="display:none"><div id="sl" style="flex:1;display:flex;flex-direction:column;min-height:0"></div>
+<div class="notes" id="nt"></div>
+<div class="nav"><button id="pv">Anterior</button><span id="ct"></span><span>N = notas do closer · setas = navegar</span><button id="nx">Próximo</button></div></div>
+<script>
+(function(){
+var DEMO={answers:{nome:'Cliente Exemplo',email:'exemplo@zion.com',whats:'48 99999-9999'},resolved:[
+{id:'papel',block:'Você e o projeto',q:'Papel',label:'Sou dono da terra',status:'ok'},
+{id:'objetivo',block:'Você e o projeto',q:'Objetivo',label:'Entrar com sócio ou investidor',status:'ok'},
+{id:'local',block:'A sua área',q:'Cidade',label:'Urubici, SC',status:'ok'},
+{id:'tamanho',block:'A sua área',q:'Tamanho',label:'2 a 10 hectares',status:'ok'},
+{id:'tipo',block:'A sua área',q:'Urbana ou rural',label:'Rural',status:'ok'},
+{id:'restricoes',block:'A sua área',q:'Restrições',label:'Não sei',status:'warn',fix:'Peça um levantamento ambiental e topográfico antes de desenhar qualquer coisa.'},
+{id:'situacao',block:'Documentos',q:'Situação jurídica',label:'Matrícula em nome de outra pessoa ou herança',status:'warn',fix:'Regularizar a escritura e a matrícula é o primeiro passo.'},
+{id:'zoneamento',block:'Documentos',q:'Hospedagem permitida?',label:'Ainda não consultei',status:'warn',fix:'Peça à prefeitura a certidão de uso e ocupação do solo.'},
+{id:'demanda',block:'Mercado',q:'Demanda',label:'Há atrativos, mas pouca hospedagem',status:'ok'},
+{id:'concorrencia',block:'Mercado',q:'Concorrência',label:'Nunca pesquisei',status:'bad',fix:'Faça uma planilha com 10 concorrentes: tipo, diária, nota e diferencial.'},
+{id:'produto',block:'Produto e investimento',q:'Produto',label:'Glamping',status:'ok'},
+{id:'gasto',block:'Produto e investimento',q:'Investimento',label:'Não faço ideia',status:'bad',fix:'Monte uma estimativa por unidade e por fase.'},
+{id:'valor',block:'Valor da terra',q:'Valor',label:'1.500.000',status:'ok'},
+{id:'base',block:'Valor da terra',q:'Base do valor',label:'Só uma impressão',status:'warn',fix:'Pegue ao menos dois pareceres de corretores locais ou um laudo.'},
+{id:'infra_exist',block:'Valor da terra',q:'Estrutura',label:'Infraestrutura básica (acesso, água, energia)',status:'ok'},
+{id:'parceria_infra',block:'Valor da terra',q:'Parceria terra + produtos Zion',label:'Quero entender como funciona',status:'ok'}]};
+var data,i=0,S=[];
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function ans(id){var r=(data.resolved||[]).filter(function(x){return x.id===id})[0];return r?r.label:''}
+function pill(s){return '<span class="pill '+s+'">'+(s==='ok'?'em ordem':s==='warn'?'atenção':'crítico')+'</span>'}
+function blocks(){var m={},o=[];(data.resolved||[]).forEach(function(r){if(r.block==='Você e o projeto'||r.block==='Fechamento')return;if(!m[r.block]){m[r.block]={n:r.block,w:'ok',it:[]};o.push(m[r.block])}var b=m[r.block];b.it.push(r);if(r.status==='bad')b.w='bad';else if(r.status!=='ok'&&b.w!=='bad')b.w='warn'});return o}
+function top(){var a=(data.resolved||[]).filter(function(r){return r.status==='bad'}).concat((data.resolved||[]).filter(function(r){return r.status==='warn'}));return a.slice(0,3)}
+function add(h,n){S.push({h:h,n:n||''})}
+function build(){S=[];var nome=(data.answers.nome||'').split(' ')[0]||'você';var b=blocks(),t=top();
+add('<div class="k">Reunião estratégica · Zion Land Bank</div><h1>'+esc(nome)+', vamos ler o seu projeto juntos.</h1><p class="big">Hoje não é uma apresentação. É uma conversa sobre o que você nos contou e o caminho para tirar o projeto do papel.</p>','<b>Conexão.</b> Cumprimente, agradeça o dossiê e pergunte: "O que você espera sair daqui hoje?". Anote a resposta literal, ela volta no fechamento.');
+add('<div class="k">Escuta</div><h2>Antes do diagnóstico: conte o projeto com as suas palavras.</h2><p class="big">Você tem '+esc(ans('papel')||'uma área')+(ans('local')?' em '+esc(ans('local')):'')+(ans('tamanho')?', de '+esc(ans('tamanho')):'')+'. O seu objetivo: '+esc(ans('objetivo')||'ainda em definição')+'.</p><p>O que você sonha para essa terra?</p>','<b>Espelhamento.</b> Deixe-o falar 3 a 5 minutos. Repita as palavras dele ("você disse que..."). Pergunte: o que já tentou, o que o trava, e o que acontece se nada mudar em 12 meses.');
+add('<div class="k">Quem é a Zion</div><h2>Hotelaria de verdade, antes de qualquer promessa.</h2><div class="grid"><div class="c"><b>Bruno Chaerk</b>20 anos de hotelaria internacional (Meliá, Barceló, Wyndham).</div><div class="c"><b>Duas operações</b>Glamping em Urubici e em Florianópolis, funcionando hoje.</div><div class="c"><b>23 destinos</b>Mapeados para expansão da Zion.</div></div><p>Não vendemos terra nem sonho. Estruturamos projetos que um investidor consegue ler.</p>','<b>Autoridade.</b> Curto. Duas frases sobre o Bruno e a operação própria. A mensagem: "a gente faz, não só ensina".');
+add('<div class="k">Quem já passou por aqui</div><h2>Priscila e Rodrigo, Chalés Magia do Campeche</h2><p class="big">Donos de chalés, aplicaram o método da Zion com direcionamento do Bruno e organizaram a operação.</p><p>O padrão se repete: tinham o ativo, faltava a estrutura que transforma ativo em negócio.</p>','<b>Case.</b> Conte a história com os detalhes reais que o Bruno confirmar (números, tempo, resultado). Não invente resultado: use só o que está autorizado.');
+add('<div class="k">O seu diagnóstico de viabilidade</div><h2>Assim está o seu projeto hoje.</h2>'+b.map(function(x){return '<div class="row"><span>'+esc(x.n)+'</span><span>'+pill(x.w)+'</span></div>'}).join(''),'<b>Raio-x.</b> Apresente o quadro inteiro de uma vez, sem julgar. "Isso é um exame, não uma nota."');
+add('<div class="k">O que está bom</div><h2>Você já tem uma base real.</h2><ul>'+(data.resolved||[]).filter(function(r){return r.status==='ok'&&r.block!=='Você e o projeto'}).slice(0,5).map(function(r){return '<li>'+esc(r.q)+': '+esc(r.label)+'</li>'}).join('')+'</ul>','<b>Confiança.</b> Comece sempre pelo que está certo. Se houver pouca coisa, destaque o fato de ele ter chegado até aqui e respondido.');
+t.forEach(function(r,idx){add('<div class="k">Ponto '+(idx+1)+' · '+esc(r.block)+'</div><h2>'+esc(r.q)+': '+esc(r.label)+pill(r.status)+'</h2><p class="big">'+esc(r.fix||'Esse ponto precisa de resposta antes de qualquer investimento.')+'</p><p><b style="color:var(--gold)">E se você seguir sem resolver isso?</b></p>','<b>Custo invisível.</b> Pergunte: "O que isso custa se você tocar o projeto assim?". Faça-o dizer o custo (tempo parado, obra refeita, investidor que desiste). Só depois mostre a saída.')});
+add('<div class="k">O mapa de decisões</div><h2>Existe uma ordem. A obra é o último passo.</h2><div class="grid"><div class="c"><b>1 · Terra</b>Documento, valor, restrições.</div><div class="c"><b>2 · Mercado</b>Demanda, concorrência, público.</div><div class="c"><b>3 · Produto</b>O que construir e quanto custa.</div><div class="c"><b>4 · Capital</b>Sozinho, sócio, investidor ou parceria.</div><div class="c"><b>5 · Obra e operação</b>Só depois de tudo acima.</div></div>','<b>Reencadramento.</b> Mostre onde ele está no mapa. A maioria tenta pular direto para a obra.');
+add('<div class="k">Os caminhos possíveis</div><h2>Qualquer caminho exige o mesmo ponto de partida.</h2><div class="grid"><div class="c"><b>Fazer sozinho</b></div><div class="c"><b>Sócio ou investidor</b></div><div class="c"><b>Parceria com a Zion</b>Você com terra e infraestrutura, a Zion com os produtos.</div><div class="c"><b>Vender a terra</b>Com valor defendável.</div></div><p class="big">Todos pedem a mesma coisa: um projeto estruturado e com viabilidade comprovada.</p>'+(ans('parceria_infra')?'<p>Você marcou sobre parceria: <b>'+esc(ans('parceria_infra'))+'</b>.</p>':''),'<b>Inevitabilidade.</b> Retome o objetivo que ele disse no slide 2. Parcerias só avançam depois de conhecermos projeto, legalidade e demanda. Sem garantia de aprovação.');
+add('<div class="k">O plano para o seu caso</div><h2>Preparamos o caminho com base no seu diagnóstico.</h2><ul>'+t.map(function(r){return '<li>'+esc(r.q)+': '+esc(r.fix||'estruturar')+'</li>'}).join('')+'</ul><p class="big">Identificamos isso e acreditamos que a solução é estruturar o projeto antes de decidir.</p>','<b>A virada.</b> Liga cada dor dele a uma entrega da mentoria. Pergunte: "Faz sentido para você?" e espere o sim.');
+add('<div class="k">A solução</div><h2>Mentoria em grupo: o passo a passo do desenvolvimento.</h2><div class="grid"><div class="c"><b>Tarefas e entregáveis</b>Cada etapa gera um documento do seu projeto.</div><div class="c"><b>Aulas e vídeos</b>Conteúdo gravado e encontros com o Bruno.</div><div class="c"><b>Grupo e Clube Zion</b>Rede de desenvolvedores e operadores.</div><div class="c"><b>Entrega final</b>Uma segunda reunião para entregar o seu diagnóstico estruturado.</div></div>','<b>Pitch.</b> Mostre o que ele terá em mãos no fim. Funciona para os 4 caminhos do slide anterior.');
+add('<div class="k">A segunda etapa</div><h2>De projeto não estruturado para projeto com viabilidade de investimento.</h2><p class="big">No fim da mentoria, você volta para uma segunda reunião. Os projetos estruturados entram em conversas de parceria e investimento, de onde vier o capital.</p><p>A Zion avalia cada caso e não garante investidor, financiamento nem aprovação.</p>','<b>Inevitabilidade e cuidado.</b> Nunca prometa aprovação. A promessa é projeto estruturado, não dinheiro garantido.');
+add('<div class="k">O investimento</div><h2>Uma estruturação completa hoje passa de R$ 120 mil.</h2><p>Estudo de viabilidade, masterplan, jurídico, CAPEX, modelo de negócio e plano de capital, feitos por consultoria.</p><p class="big">Estamos lançando uma oportunidade para viabilizar projetos de forma mais prática e interativa, adaptada à realidade de cada um.</p><div class="strike">Consultoria completa: mais de R$ 120.000</div><div class="price">6x de R$ 549</div><p>Condição de lançamento da Mentoria em Grupo (R$ 3.294 em 3 meses). Turma Fundadores.</p>','<b>Ancoragem.</b> Ordem: custo de errar, âncora de R$ 120 mil, depois o valor. Silêncio após falar o preço. Confirme condição e vagas com o Bruno antes de usar.');
+add('<div class="k">Decisão</div><h2>Em uma escala de 0 a 10, o quanto você quer isso resolvido nos próximos 6 meses?</h2><p class="big">Se for 7 ou mais, o próximo passo é entrar na Turma Fundadores hoje.</p>','<b>Fechamento.</b> Pergunte o número. Se for baixo, pergunte "o que faria subir?". Entregue o link de pagamento na própria reunião. Se disser "preciso pensar": "pensar sobre o quê, exatamente?".');
+add('<div class="k">Uso interno do closer</div><h2>Objeções e downsell</h2><div class="grid"><div class="c"><b>"Preciso pensar"</b>Sobre o quê, exatamente? Devolva a pergunta e trate a causa.</div><div class="c"><b>"Não tenho capital"</b>A mentoria é para estruturar e atrair capital. Sem projeto, ninguém investe.</div><div class="c"><b>"Tenho sócio"</b>Ele precisa ler o mesmo diagnóstico. Proponha trazê-lo à próxima conversa.</div><div class="c"><b>"É caro"</b>Volte à âncora e ao custo de errar.</div><div class="c"><b>Downsell</b>Só se recusar a mentoria em grupo: Trilha 1 gravada, R$ 980 à vista ou até 10x. Não mostrar antes.</div></div>','<b>Fora da apresentação.</b> Esse slide não é exibido ao cliente. Pule se não for necessário.')}
+function show(){var s=S[i];document.getElementById('sl').innerHTML='<div class="slide on">'+s.h+'</div>';document.getElementById('nt').innerHTML=s.n;document.getElementById('ct').textContent=(i+1)+' / '+S.length}
+function start(d){data=d;build();i=0;document.getElementById('load').style.display='none';document.getElementById('app').style.display='flex';show()}
+document.getElementById('go').onclick=function(){try{var d=JSON.parse(document.getElementById('js').value);if(!d.answers)d.answers={};start(d)}catch(e){alert('JSON inválido.')}};
+document.getElementById('demo').onclick=function(){start(DEMO)};
+function mv(d){i=Math.max(0,Math.min(S.length-1,i+d));show()}
+document.getElementById('pv').onclick=function(){mv(-1)};document.getElementById('nx').onclick=function(){mv(1)};
+document.addEventListener('keydown',function(e){if(!data)return;if(e.key==='ArrowRight'||e.key===' ')mv(1);else if(e.key==='ArrowLeft')mv(-1);else if(e.key==='n'||e.key==='N')document.getElementById('nt').classList.toggle('on')});
+if(location.hash==='#demo')start(DEMO);
+})();
+</script></body></html>
