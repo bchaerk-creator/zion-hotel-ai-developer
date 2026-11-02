@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Panorama do Desenvolvimento Hoteleiro · Zion Hospitality Business</title>
+<meta name="description" content="O mapa inteiro do desenvolvimento hoteleiro, em 7 pilares, antes de você entrar nele. E-book interativo da Zion.">
+<meta name="robots" content="noindex,nofollow">
+<style>
+:root{--bg:#0E1A13;--bg2:#16261C;--panel:#1B2E22;--panel2:#223A2B;--line:rgba(243,239,227,.14);--paper:#F3EFE3;--mute:#B9C2B7;--gold:#E0BE5E;--gold2:#CFA94A;--ink:#10190F;--ok:#7BC48F;--serif:Georgia,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font:17px/1.6 var(--sans);-webkit-text-size-adjust:100%}
+.bar{position:fixed;top:0;left:0;height:3px;background:var(--gold);width:0;z-index:50;transition:width .15s}
+.top{position:sticky;top:0;z-index:40;background:rgba(14,26,19,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:12px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.top span:last-child{color:var(--mute);letter-spacing:.06em;text-transform:none}
+.w{max-width:720px;margin:0 auto;padding:0 20px}
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+.k{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin:0 0 10px}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.15;margin:0 0 14px}
+h1{font-size:clamp(38px,9vw,64px)}h2{font-size:clamp(28px,6.5vw,40px)}h3{font-size:22px}
+em{color:var(--gold);font-style:italic}
+p{margin:0 0 14px;color:#DAD6C8}
+.lead{font-size:19px;color:var(--paper)}
+.cover{min-height:92svh;display:flex;flex-direction:column;justify-content:center;background:radial-gradient(1200px 500px at 70% -10%,rgba(224,190,94,.14),transparent 60%),var(--bg)}
+.pill{display:inline-flex;align-items:center;justify-content:space-between;gap:14px;background:linear-gradient(180deg,var(--gold),var(--gold2));color:var(--ink);font-weight:700;border:0;border-radius:999px;padding:16px 22px;font-size:18px;text-decoration:none;cursor:pointer;box-shadow:0 18px 40px -18px rgba(224,190,94,.6)}
+.ghost{background:transparent;color:var(--gold);border:1px solid rgba(224,190,94,.5);box-shadow:none}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:20px}
+.grid2{display:grid;gap:12px}
+@media(min-width:640px){.grid2{grid-template-columns:1fr 1fr}}
+.cmp{display:grid;gap:10px;margin:18px 0}
+.cmp div{display:grid;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.cmp b{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);font-weight:600}
+.cmp .a{color:#9aa89d;text-decoration:line-through;text-decoration-color:rgba(224,190,94,.5)}.cmp .b{color:var(--paper);font-weight:600}
+.big{font-family:var(--serif);font-size:26px;line-height:1.25;border-left:3px solid var(--gold);padding:4px 0 4px 16px;margin:22px 0;color:var(--paper)}
+/* trilha */
+.path{position:relative;margin-top:22px;padding-left:0}
+.st{background:var(--panel);border:1px solid var(--line);border-radius:18px;margin:0 0 12px;overflow:hidden}
+.st>button{all:unset;box-sizing:border-box;width:100%;display:flex;gap:14px;align-items:center;padding:16px;cursor:pointer;-webkit-tap-highlight-color:transparent}
+.st .l{flex:none;width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--gold);color:var(--gold);font:700 20px var(--serif)}
+.st .n{flex:1}.st .n b{display:block;font-size:19px}.st .n small{color:var(--mute);font-size:14px;line-height:1.35;display:block}
+.st .ch{flex:none;color:var(--gold);font-size:22px;transition:transform .2s}
+.st.open{border-color:rgba(224,190,94,.6);background:var(--panel2)}.st.open .ch{transform:rotate(180deg)}
+.st .bd{display:none;padding:0 16px 18px}.st.open .bd{display:block}
+.bd .row{border-top:1px solid var(--line);padding:12px 0}
+.bd .row span{display:block;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);margin-bottom:4px}
+.bd .row p{margin:0;color:var(--paper)}
+.tag{display:inline-block;border:1px solid rgba(224,190,94,.5);color:var(--gold);border-radius:999px;padding:2px 10px;font-size:13px;margin-top:6px}
+/* e se */
+.opts{display:grid;gap:10px;margin:16px 0}
+.opt{all:unset;box-sizing:border-box;display:block;width:100%;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;cursor:pointer;font-size:17px}
+.opt:hover{border-color:rgba(224,190,94,.5)}
+.opt.sel{border-color:var(--gold);background:var(--panel2)}
+.opt.certa{border-color:var(--ok)}
+.fb{display:none;margin-top:12px;border-radius:16px;padding:16px;background:var(--bg2);border:1px solid rgba(224,190,94,.4)}
+.fb.show{display:block}
+/* rotas */
+.tabs{display:flex;gap:8px;margin:16px 0}
+.tabs button{all:unset;box-sizing:border-box;flex:1;text-align:center;padding:12px;border-radius:999px;border:1px solid var(--line);cursor:pointer;font-weight:600}
+.tabs button.on{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.seq{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}
+.seq i{font-style:normal;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font:700 18px var(--serif);border:2px solid var(--gold);color:var(--gold);background:var(--bg)}
+.seq i.later{opacity:.55;border-style:dashed}
+/* checklist */
+.chk{display:grid;gap:10px;margin:16px 0}
+.chk label{display:flex;gap:12px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer}
+.chk input{margin-top:4px;width:22px;height:22px;accent-color:#E0BE5E;flex:none}
+.chk b{color:var(--gold);margin-right:4px}
+.res{display:none;margin-top:18px;border:2px solid var(--gold);border-radius:20px;padding:20px;background:rgba(224,190,94,.07)}
+.res.show{display:block}
+/* direitos */
+.five{display:grid;gap:10px;margin-top:16px}
+.five div{display:flex;gap:14px;align-items:flex-start;background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px 16px}
+.five b.n{flex:none;width:32px;height:32px;border-radius:50%;display:grid;place-items:center;background:var(--gold);color:var(--ink);font-family:var(--serif)}
+.five p{margin:0}.five strong{color:var(--paper)}
+/* exercicio */
+.ex{display:grid;gap:12px;margin:16px 0}
+.ex label{display:block;font-weight:600;margin-bottom:6px}
+.ex textarea{width:100%;min-height:78px;background:var(--bg);color:var(--paper);border:1px solid var(--line);border-radius:14px;padding:12px;font:16px/1.5 var(--sans);resize:vertical}
+.ex textarea:focus{outline:2px solid rgba(224,190,94,.6)}
+.save{color:var(--mute);font-size:14px}
+footer{padding:40px 0 80px;color:var(--mute);font-size:14px}
+@media print{.top,.bar,.pill{display:none}body{background:#fff;color:#000}p,.n small{color:#000}}
+</style>
+</head>
+<body>
+<div class="bar" id="bar"></div>
+<div class="top"><span>Zion Hospitality Business</span><span>Panorama do Desenvolvimento Hoteleiro</span></div>
+
+<section class="cover"><div class="w">
+  <p class="k">E-book interativo · Marco Zero</p>
+  <h1>Panorama do <em>Desenvolvimento Hoteleiro</em></h1>
+  <p class="lead">O mapa inteiro, antes de você entrar nele. Sete pilares, na ordem certa, e o porquê de cada um.</p>
+  <p class="save">Leitura de cerca de 15 minutos. Toque nos cartões. Responda com o dedo.</p>
+  <p style="margin-top:22px"><a class="pill" href="#tese">Começar <span aria-hidden="true">↓</span></a></p>
+</div></section>
+
+<section id="tese"><div class="w">
+  <p class="k">01 · Você está aqui</p>
+  <h2>Uma vontade não é <em>um projeto.</em></h2>
+  <p class="lead">Todo mundo que sobe no seu terreno diz a mesma frase: "aqui dava um negócio". O terreno continua parado. E a explicação de sempre é curta: "não tenho o capital".</p>
+  <p>Só que essa frase fecha a conversa. Ela transforma um problema com muitas partes numa parede lisa, sem maçaneta. E parede lisa não tem próximo passo.</p>
+  <div class="cmp">
+    <div><b>O que você chamava de projeto</b><span class="a">uma vontade · "quero construir quatro cabanas" · fotos do lugar · entusiasmo</span></div>
+    <div><b>O que o outro lado chama de projeto</b><span class="b">um conjunto de respostas, em ordem: quanto custa, quanto entra, quanto sobra, em quanto tempo e o que acontece se der errado</span></div>
+  </div>
+  <div class="big">Você não vai construir uma coisa. Vai criar um negócio que, por acaso, precisa de uma construção para existir.</div>
+  <p>A construção é o corpo. O negócio precisa receber gente, cobrar um preço, ser encontrado, ser limpo toda semana, ser consertado quando quebra e ainda sobrar dinheiro no fim do mês.</p>
+  <p><b style="color:var(--paper)">Este e-book não ensina nenhuma etapa.</b> Ele faz uma coisa só, antes de todas: mostra o caminho inteiro de cima.</p>
+  <p style="margin-top:20px"><a class="pill ghost" href="#pilares">Ver os 7 pilares <span aria-hidden="true">↓</span></a></p>
+</div></section>
+
+<section id="pilares"><div class="w">
+  <p class="k">02 · O mapa</p>
+  <h2>Os sete pilares, <em>nesta ordem.</em></h2>
+  <p>Cada pilar responde a uma pergunta. Toque para abrir: você vê a pergunta, por que o pilar existe, o erro de pular e o que sai dele.</p>
+  <div class="path" id="path"></div>
+</div></section>
+
+<section id="inverter"><div class="w">
+  <p class="k">03 · Por que essa ordem</p>
+  <h2>O preço de <em>inverter a ordem.</em></h2>
+  <p>Teste a sua intuição. Escolha uma resposta antes de ver o porquê.</p>
+  <div id="quiz"></div>
+</div></section>
+
+<section id="rotas"><div class="w">
+  <p class="k">04 · O seu caminho</p>
+  <h2>Quero começar <em>ou quero crescer?</em></h2>
+  <p>A ordem muda conforme o ponto em que você está. Toque em um dos dois.</p>
+  <div class="tabs"><button id="tA" class="on" type="button">Quero começar</button><button id="tB" type="button">Quero crescer</button></div>
+  <div class="card" id="rotaTxt"></div>
+  <div class="seq" id="seq"></div>
+</div></section>
+
+<section id="onde"><div class="w">
+  <p class="k">05 · Onde você está</p>
+  <h2>Marque o que você <em>já sabe dizer.</em></h2>
+  <p>Sem otimismo e sem drama. Marque só o que você consegue responder hoje, com clareza, sem pesquisar.</p>
+  <div class="chk" id="chk"></div>
+  <div class="res" id="res"></div>
+</div></section>
+
+<section id="papel"><div class="w">
+  <p class="k">06 · O seu papel</p>
+  <h2>Você não vai construir. <em>Você vai governar.</em></h2>
+  <p>Você contrata quem executa. O seu trabalho é decidir o que será feito e saber, sem estar lá todo dia, se está indo bem. São cinco decisões que você nunca entrega:</p>
+  <div class="five">
+    <div><b class="n">1</b><p><strong>O escopo.</strong> O que será construído, e o que não será. Entregue, a obra cresce sozinha.</p></div>
+    <div><b class="n">2</b><p><strong>O dinheiro.</strong> Quando ele sai, e contra qual prova. Entregue, você paga por trabalho que ninguém conferiu.</p></div>
+    <div><b class="n">3</b><p><strong>O padrão.</strong> O que significa "pronto". Entregue, "pronto" vira opinião, e ganha quem fala mais alto.</p></div>
+    <div><b class="n">4</b><p><strong>O tempo.</strong> As datas em que você decide. Entregue, você vira refém do cronograma de quem executa.</p></div>
+    <div><b class="n">5</b><p><strong>O não.</strong> Quando parar, trocar ou recusar. Entregue, você descobre tarde que já era para ter parado.</p></div>
+  </div>
+  <div class="big">Projeto pequeno não morre de acidente. Morre de conversa. O antídoto é escrever.</div>
+</div></section>
+
+<section id="exercicio"><div class="w">
+  <p class="k">07 · Agora é com você</p>
+  <h2>O seu retrato <em>de partida.</em></h2>
+  <p>Não pesquise nada. Registre o seu ponto de partida honesto, para você levar à sessão com a equipe Zion. O que você escreve fica salvo só neste aparelho.</p>
+  <div class="ex" id="ex"></div>
+  <p class="save" id="saved">Tempo: 15 minutos.</p>
+  <p><button class="pill ghost" type="button" onclick="window.print()">Salvar ou imprimir <span aria-hidden="true">↓</span></button></p>
+  <div class="card" style="margin-top:22px"><h3>A quinta pergunta é a mais reveladora.</h3><p style="margin:0">Se você não souber responder, o seu problema nunca foi dinheiro. E se a última coisa concreta que você fez foi há mais de seis meses, o projeto não está parado por falta de capital. Está parado por falta de próximo passo definido.</p></div>
+</div></section>
+
+<footer><div class="w">
+  <p>Zion Hospitality Business · Academia de Negócios de Hospedagem. Do terreno ao negócio que funciona.</p>
+  <p>Leitura introdutória. Não é estudo de viabilidade e não promete renda, retorno, crédito, investidor, sociedade ou aprovação. A Zion avalia cada caso.</p>
+</div></footer>
+
+<script>
+(function(){
+var P=[
+{l:'D',n:'Desenvolver',q:'O que este lugar e este mercado permitem, e qual negócio montar?',por:'Antes de gastar, é preciso saber para que serve o lugar. Terreno bom não existe: existe terreno bom para alguma coisa. Aqui você lê o território, mede a demanda e decide o produto.',erro:'Desenhar as cabanas antes de saber quanto a região paga.',sai:'Dossiê de Desenvolvimento Zion'},
+{l:'F',n:'Financiar',q:'Quanto custa, quanto rende, vale a pena, e de onde vem o dinheiro?',por:'Capital vem depois da estrutura. Quem pede dinheiro com uma vontade ouve "mostre o projeto". Aqui a ideia vira conta: custo, receita, retorno e a fonte do dinheiro.',erro:'Procurar sócio ou banco sem uma conta que se explique.',sai:'Business Plan Financeiro e Dossiê de Bancabilidade'},
+{l:'E',n:'Implantar',q:'Como tirar do papel: licenças, projeto, obra e abertura?',por:'Obra sem o negócio decidido custa caro para corrigir. Aqui você monta a equipe, aprova o que precisa ser aprovado, constrói e entrega com tudo funcionando.',erro:'Começar a obra com decisões ainda em aberto.',sai:'Plano Mestre de Implantação Zion'},
+{l:'M',n:'Marca e Experiência',q:'Por que o hóspede escolhe você e volta?',por:'O hóspede não compara quartos. Compara motivos. Aqui você define quem é o seu lugar, a sua história e o que o hóspede vive do começo ao fim.',erro:'Competir só por preço, sem uma razão para ser escolhido.',sai:'Brandbook Zion aplicado'},
+{l:'L',n:'Vender',q:'Como encher a agenda: canais, preço e reserva direta?',por:'Ninguém reserva um lugar que não encontra. Aqui você escolhe onde vender, quanto cobrar em cada época e como trazer o hóspede de volta sem depender só de plataforma.',erro:'Abrir as portas e esperar que a agenda encha sozinha.',sai:'Máquina Comercial e Plano de Aceleração de 90 Dias'},
+{l:'G',n:'Gerir',q:'Como gerir pessoas, números e a rotina do dono?',por:'Negócio que depende do dono todo dia não é negócio, é trabalho. Aqui você organiza a equipe, o dinheiro e os indicadores para saber como vai o mês sem estar lá.',erro:'Decidir tudo de pé e não anotar nada.',sai:'Sistema de Gestão Hoteleira Zion'},
+{l:'O',n:'Operar',q:'Como fazer o dia a dia funcionar: limpeza, manutenção e padrão?',por:'A noite do hóspede é feita de detalhes repetidos todo dia. Aqui você escreve como cada tarefa é feita, para o padrão não depender de quem está de plantão.',erro:'Deixar o padrão na cabeça de uma pessoa só.',sai:'Manual Operacional Hoteleiro Zion'}
+];
+var path=document.getElementById('path');
+P.forEach(function(p,i){
+  var d=document.createElement('div');d.className='st';
+  d.innerHTML='<button type="button" aria-expanded="false"><span class="l">'+p.l+'</span><span class="n"><b>'+p.n+'</b><small>'+p.q+'</small></span><span class="ch" aria-hidden="true">⌄</span></button>'+
+  '<div class="bd"><div class="row"><span>A pergunta</span><p>'+p.q+'</p></div><div class="row"><span>Por que existe</span><p>'+p.por+'</p></div><div class="row"><span>O erro de pular</span><p>'+p.erro+'</p></div><div class="row"><span>O que sai daqui</span><p>'+p.sai+'</p></div></div>';
+  d.firstChild.onclick=function(){var o=d.classList.toggle('open');d.firstChild.setAttribute('aria-expanded',o)};
+  path.appendChild(d);
+});
+/* quiz */
+var Q=[
+{t:'Você ainda não sabe quanto a região paga por noite, mas já tem o desenho das cabanas. Qual é o problema?',o:[['O desenho está feio.',0],['O desenho veio antes do mercado. Se a região pagar menos do que a conta precisa, o desenho inteiro volta para a prancheta.',1],['Faltou escolher a cor da fachada.',0]],f:'Mercado vem antes do projeto. Mudar uma linha no papel custa pouco. Mudar uma parede construída custa caro. Por isso o pilar Desenvolver vem primeiro.'},
+{t:'Você vai ao banco só com a matrícula do terreno e três fotos do pôr do sol. O que o gerente pede?',o:[['O projeto: custo, receita, sobra, prazo e o que acontece se der errado.',1],['Mais fotos.',0],['Nada, as fotos bastam.',0]],f:'Foto prova que o lugar existe. Não prova que existe gente disposta a pagar. Capital vem depois da estrutura, e por isso Financiar vem depois de Desenvolver.'},
+{t:'A obra ficou linda e abriu. Três meses depois, a rouparia não tem onde ficar e o carrinho não passa no corredor. De quem foi o erro?',o:[['Do pedreiro.',0],['De uma decisão tomada meses antes, por quem pensava em construir quando devia pensar em operar.',1],['Do hóspede, que reclamou.',0]],f:'Quem constrói pensando só na obra abre bonito e opera mal. Por isso Operar é planejado desde o começo, e não depois que a obra termina.'}
+];
+var quiz=document.getElementById('quiz');
+Q.forEach(function(q,qi){
+  var box=document.createElement('div');box.className='card';box.style.marginBottom='16px';
+  box.innerHTML='<h3 style="font-size:20px;font-family:var(--sans);font-weight:600">'+(qi+1)+'. '+q.t+'</h3><div class="opts"></div><div class="fb"></div>';
+  var opts=box.querySelector('.opts'),fb=box.querySelector('.fb');
+  q.o.forEach(function(o){
+    var b=document.createElement('button');b.className='opt';b.type='button';b.textContent=o[0];
+    b.onclick=function(){[].forEach.call(opts.children,function(x){x.classList.remove('sel','certa')});b.classList.add('sel');if(o[1])b.classList.add('certa');fb.innerHTML='<b style="color:var(--gold)">'+(o[1]?'Isso mesmo. ':'Quase. ')+'</b>'+q.f;fb.classList.add('show')};
+    opts.appendChild(b);
+  });
+  quiz.appendChild(box);
+});
+/* rotas */
+var R={A:{t:'Você ainda não recebe hóspedes. O objeto é o terreno, o imóvel ou a ideia. Siga a ordem inteira, uma etapa de cada vez. Pular uma custa caro mais adiante.',s:['D','F','E','M','L','G','O'],later:[]},
+B:{t:'Você já opera. O objeto é o negócio que existe. Comece por onde o dinheiro vaza hoje: marca, venda, gestão e operação. Os três primeiros pilares ficam para quando for crescer de verdade.',s:['M','L','G','O','F','D','E'],later:['F','D','E']}};
+function rota(k){
+  document.getElementById('tA').classList.toggle('on',k==='A');document.getElementById('tB').classList.toggle('on',k==='B');
+  document.getElementById('rotaTxt').innerHTML='<p style="margin:0">'+R[k].t+'</p>';
+  var s=document.getElementById('seq');s.innerHTML='';
+  R[k].s.forEach(function(l){var i=document.createElement('i');i.textContent=l;if(R[k].later.indexOf(l)>-1)i.className='later';s.appendChild(i)});
+  window._rota=k;if(window._chk)window._chk();
+}
+document.getElementById('tA').onclick=function(){rota('A')};document.getElementById('tB').onclick=function(){rota('B')};rota('A');
+/* onde voce esta */
+var C=[
+['D','Sei dizer o que o meu terreno permite e quanto a região paga por noite.'],
+['F','Sei quanto custa montar, quanto sobra por mês e de onde vem o dinheiro.'],
+['E','Sei quais licenças preciso, quem faz o projeto e em que ordem a obra anda.'],
+['M','Sei dizer, em uma frase, por que o hóspede escolhe o meu lugar e não outro.'],
+['L','Sei onde vou vender, quanto cobrar em cada época e como trazer o hóspede de volta.'],
+['G','Sei como acompanhar o mês sem estar lá todo dia: equipe, dinheiro e indicadores.'],
+['O','Tenho por escrito como cada tarefa do dia a dia é feita, para o padrão não depender de uma pessoa.']];
+var chk=document.getElementById('chk'),res=document.getElementById('res'),mark={};
+try{mark=JSON.parse(localStorage.getItem('zion_panorama_chk')||'{}')}catch(e){}
+C.forEach(function(c){
+  var lb=document.createElement('label');lb.innerHTML='<input type="checkbox"'+(mark[c[0]]?' checked':'')+'><span><b>'+c[0]+'</b>'+c[1]+'</span>';
+  lb.firstChild.onchange=function(e){mark[c[0]]=e.target.checked;try{localStorage.setItem('zion_panorama_chk',JSON.stringify(mark))}catch(x){}calc()};
+  chk.appendChild(lb);
+});
+function nome(l){return P.filter(function(p){return p.l===l})[0]}
+function calc(){
+  var ord=R[window._rota||'A'].s,n=0;C.forEach(function(c){if(mark[c[0]])n++});
+  var prox=null;for(var i=0;i<ord.length;i++){if(!mark[ord[i]]){prox=ord[i];break}}
+  res.classList.add('show');
+  if(!n){res.innerHTML='<p class="k">O seu retrato</p><h3>Nenhum pilar marcado, e isso é um ponto de partida honesto.</h3><p style="margin:0">Comece por <b style="color:var(--gold)">'+ord[0]+' · '+nome(ord[0]).n+'</b>: '+nome(ord[0]).q+'</p>';return}
+  if(!prox){res.innerHTML='<p class="k">O seu retrato</p><h3>Você marcou os sete pilares.</h3><p style="margin:0">Então o próximo passo é conferir se cada resposta existe por escrito. Se estiver só na cabeça, ainda não é projeto.</p>';return}
+  res.innerHTML='<p class="k">O seu retrato</p><h3>Você marcou '+n+' de 7. O próximo passo é <em>'+prox+' · '+nome(prox).n+'.</em></h3><p style="margin:0 0 8px">A pergunta que falta responder: <b style="color:var(--paper)">'+nome(prox).q+'</b></p><p style="margin:0">Leve este resultado para a sessão com a equipe Zion.</p>';
+}
+window._chk=function(){if(Object.keys(mark).length||document.querySelector('#chk input:checked'))calc()};
+if(Object.keys(mark).some(function(k){return mark[k]}))calc();
+/* exercicio */
+var E=['O que eu tenho hoje: terreno próprio, terreno de família, imóvel construído, ou só a intenção?','Há quanto tempo essa ideia está na minha cabeça?','Quanto já gastei com ela até hoje? (viagem, projeto, consultoria, escritura, IPTU dos anos parados)','Qual foi a última coisa concreta que fiz por ela, e quando?','Se eu tivesse o dinheiro todo hoje, qual seria o meu primeiro passo na segunda-feira de manhã?'];
+var ex=document.getElementById('ex'),vals={};
+try{vals=JSON.parse(localStorage.getItem('zion_panorama_ex')||'{}')}catch(e){}
+E.forEach(function(q,i){
+  var d=document.createElement('div');d.innerHTML='<label for="e'+i+'">'+(i+1)+'. '+q+'</label><textarea id="e'+i+'"></textarea>';
+  var t=d.querySelector('textarea');t.value=vals[i]||'';
+  t.oninput=function(){vals[i]=t.value;try{localStorage.setItem('zion_panorama_ex',JSON.stringify(vals));document.getElementById('saved').textContent='Salvo neste aparelho.'}catch(x){}};
+  ex.appendChild(d);
+});
+/* progresso */
+var bar=document.getElementById('bar');
+function sc(){var h=document.documentElement,m=h.scrollHeight-h.clientHeight;bar.style.width=(m>0?h.scrollTop/m*100:0)+'%'}
+addEventListener('scroll',sc,{passive:true});sc();
+})();
+</script>
+</body>
+</html>
