@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dossiê prévio · Zion Land Bank</title>
+<meta name="robots" content="noindex,nofollow">
+<style>
+*{box-sizing:border-box}
+:root{--bg:#0f1a12;--card:#1a2a1e;--line:#33463a;--gold:#c9a96a;--paper:#f3efe3;--mut:#d8d4c6;--dim:#9aa89d;--ok:#6fbf73;--warn:#e0b84d;--bad:#d0573f}
+body{margin:0;background:var(--bg);color:var(--paper);font:17px/1.55 Georgia,serif}
+.w{max-width:720px;margin:0 auto;padding:26px 18px 90px}
+.top{display:flex;justify-content:space-between;align-items:center;font:12px Arial;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.bar{height:5px;background:#24352a;border-radius:9px;margin:10px 0 22px;overflow:hidden}.bar i{display:block;height:100%;background:var(--gold);width:0;transition:width .3s}
+h1{font-size:32px;line-height:1.15;font-weight:500;margin:6px 0 12px}
+h2{font-size:26px;line-height:1.2;font-weight:500;margin:6px 0 10px}
+p{color:var(--mut);margin:8px 0}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin:16px 0}
+.why{border-left:3px solid var(--gold);background:rgba(201,169,106,.07);border-radius:10px;padding:12px 14px;margin:14px 0;font-size:15px}
+.why b{display:block;color:var(--gold);font:700 11px Arial;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.opts{display:grid;gap:10px;margin:16px 0}
+.opt{display:flex;gap:12px;align-items:center;text-align:left;width:100%;background:#1f3025;border:1px solid var(--line);color:var(--paper);border-radius:14px;padding:15px 16px;font:16px/1.3 Arial;cursor:pointer;min-height:56px}
+.opt:hover{border-color:var(--gold)}.opt.on{border-color:var(--gold);background:#2a3d2e;box-shadow:inset 0 0 0 1px var(--gold)}
+.opt .dot{flex:0 0 20px;height:20px;border:2px solid var(--dim);border-radius:50%}.opt.multi .dot{border-radius:5px}.opt.on .dot{background:var(--gold);border-color:var(--gold)}
+input[type=text],input[type=email],input[type=tel],textarea{width:100%;background:#12201a;border:1px solid var(--line);border-radius:12px;color:var(--paper);padding:14px;font:17px Arial;margin:6px 0}
+textarea{min-height:110px}
+label.f{display:block;font:13px Arial;color:var(--dim);margin-top:12px}
+.btn{display:inline-flex;justify-content:center;align-items:center;background:var(--gold);color:#0f1a12;border:0;border-radius:999px;padding:15px 26px;font:700 16px Arial;cursor:pointer;text-decoration:none;min-height:52px}
+.btn.ghost{background:none;color:var(--gold);border:1px solid var(--gold)}
+.btn[disabled]{opacity:.4;cursor:default}
+.row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;align-items:center}
+.small{font:13px Arial;color:var(--dim)}
+.k{letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font:12px Arial}
+.score{display:grid;grid-template-columns:1fr auto;gap:8px 12px;align-items:center}
+.pill{display:inline-block;border-radius:999px;padding:4px 12px;font:700 12px Arial;color:#0f1a12}
+.pill.ok{background:var(--ok)}.pill.warn{background:var(--warn)}.pill.bad{background:var(--bad)}
+ul.fix{padding-left:20px;margin:8px 0}ul.fix li{margin:8px 0;color:var(--mut)}
+.fileb{border:1px dashed var(--line);border-radius:12px;padding:12px;margin:10px 0}
+.fileb b{font:700 15px Arial;display:block}.fileb span{font:13px Arial;color:var(--dim)}.fileb input{margin-top:8px;color:var(--mut);font:14px Arial;max-width:100%}
+.err{color:#ffb4a3;font:14px Arial;margin-top:8px}
+@media print{body{background:#fff;color:#000}.top,.bar,.row,.no-print{display:none!important}.card{border:1px solid #999;background:#fff}p,li{color:#222}.why{background:#f4f1e6}}
+</style></head><body><div class="w">
+<div class="top"><span>Zion Land Bank</span><span id="stp">Dossiê prévio</span></div>
+<div class="bar"><i id="pg"></i></div>
+<div id="app"></div>
+</div>
+<script>
+(function(){
+var ENDPOINT='https://zionhotelgroup.com/api/public/dossie-landbank';
+var AGENDAR='../agendar/';
+var KEY='zlb_dossie_v1';
+var NS={v:'nao_sei',label:'Não sei',s:'unk'};
+var B={1:'Você e o projeto',2:'A sua área',3:'Documentos',4:'Mercado',5:'Produto e investimento',6:'Valor da terra',7:'Fechamento'};
+var Q=[
+{id:'ident',b:1,t:'ident',q:'Vamos começar. Quem é você?',why:'A equipe Zion lê o seu dossiê antes da reunião. Use o mesmo e-mail com que você entrou na área de membros.'},
+{id:'papel',b:1,t:'one',q:'Qual é o seu papel neste projeto?',why:'A Zion conversa de um jeito com quem é dono da terra e de outro com quem opera ou investe.',o:[['dono','Sou dono da terra','ok'],['heranca','Terra em herança ou inventário','warn'],['investidor','Sou investidor, ainda sem terra','ok'],['opera','Já opero hospedagem e quero ampliar','ok'],['outro','Outro','ok']]},
+{id:'objetivo',b:1,t:'multi',q:'O que você quer fazer com ela?',why:'Cada caminho exige um tipo de preparo. Quem quer sócio precisa de números. Quem quer vender precisa de valor defendável. Dá para marcar mais de um.',o:[['sozinho','Fazer sozinho','ok'],['socio','Entrar com sócio ou investidor','ok'],['parceria','Parceria com a Zion','ok'],['vender','Vender a terra algum dia','ok'],['nao_sei','Ainda não sei','unk']],fix:'Defina o objetivo antes de gastar: ele muda o projeto inteiro.'},
+{id:'i1',b:1,t:'inter',txt:'Primeiro bloco feito. Repare: quase tudo daqui para frente depende do seu objetivo. Quem não define o objetivo costuma projetar a coisa errada.'},
+{id:'local',b:2,t:'text',q:'Em que cidade e estado fica a área?',why:'Localização define demanda, leis e concorrência. É o primeiro filtro de qualquer investidor.',ph:'Ex.: Urubici, SC',req:1},
+{id:'tamanho',b:2,t:'one',q:'Qual é o tamanho da área?',why:'O tamanho define quantas unidades cabem e que produto faz sentido: poucas unidades de alto padrão, ou um empreendimento maior.',o:[['p','Até 1.000 m²','ok'],['m','1.000 a 5.000 m²','ok'],['g','5.000 m² a 2 hectares','ok'],['gg','2 a 10 hectares','ok'],['xg','Mais de 10 hectares','ok'],NS],fix:'Meça a área pela matrícula, não de olho. Sócio e banco só aceitam metragem documentada.'},
+{id:'tipo',b:2,t:'one',q:'A área é urbana ou rural?',why:'Urbano e rural têm leis, impostos e licenças diferentes. É a primeira trava de quase todo projeto de hospedagem.',o:[['urbano','Urbana','ok'],['rural','Rural','ok'],['expansao','Expansão urbana ou condomínio','ok'],NS],fix:'Descubra a classificação oficial da área na prefeitura. Ela decide o que pode ser construído.'},
+{id:'acesso',b:2,t:'one',q:'Como é o acesso até a área?',why:'O hóspede avalia a chegada antes de avaliar a hospedagem. Acesso ruim reduz a diária e eleva o custo da obra.',o:[['asfalto','Asfalto até a porta','ok'],['terra_boa','Estrada de terra em boas condições','ok'],['terra_dificil','Estrada de terra difícil','warn'],NS],fix:'Registre em fotos e vídeo o trajeto de chegada. Investidor pergunta isso logo.'},
+{id:'infra',b:2,t:'multi',q:'O que já existe na área?',why:'Água, energia e internet são obra e custo. Quanto mais você já tem, menor o investimento inicial.',o:[['energia','Energia','ok'],['agua','Água','ok'],['internet','Internet','ok'],['esgoto','Esgoto ou fossa','ok'],['nenhuma','Nenhuma','warn'],['nao_sei','Não sei','unk']],fix:'Levante o que existe e o que falta. Sem isso o custo da obra é só um chute.'},
+{id:'restricoes',b:2,t:'multi',q:'Há alguma restrição na área?',why:'Mata nativa, nascente e declive reduzem a área construível. Descobrir isso depois da compra do projeto é caro.',o:[['mata','Mata nativa ou APP','warn'],['nascente','Nascente ou rio','warn'],['declive','Declive forte','warn'],['alagavel','Área alagável','warn'],['nenhuma','Nenhuma que eu saiba','ok'],['nao_sei','Não sei','unk']],fix:'Peça um levantamento ambiental e topográfico antes de desenhar qualquer coisa.'},
+{id:'i2',b:2,t:'inter',txt:'A área está descrita. Agora vem a parte que mais separa projeto sério de intenção: os documentos.'},
+{id:'situacao',b:3,t:'one',q:'Qual é a situação jurídica da área?',why:'Sem escritura pública registrada não há financiamento nem sociedade. É a pergunta que mais trava investidor.',o:[['escritura','Escritura pública e matrícula no meu nome','ok'],['outro_nome','Matrícula em nome de outra pessoa ou herança','warn'],['contrato','Só contrato de compra e venda, sem escritura','warn'],['posse','Só posse','bad'],NS],fix:'Regularizar a escritura e a matrícula é o primeiro passo. Procure um cartório e um advogado imobiliário.'},
+{id:'onus',b:3,t:'one',q:'A área tem dívidas ou ônus?',why:'Hipoteca, penhora ou financiamento aparecem na matrícula. Um investidor lê isso antes de ouvir a sua ideia.',o:[['livre','Livre de dívidas e ônus','ok'],['onus','Há hipoteca, penhora ou financiamento','warn'],NS],fix:'Peça uma certidão atualizada da matrícula. Ela mostra tudo o que pesa sobre a área.'},
+{id:'cadastro',b:3,t:'one',q:'Os cadastros da área estão em dia?',why:'Na área rural, CAR e ITR. Na urbana, o IPTU. Pendência trava licença e crédito.',o:[['ok','Tudo em dia','ok'],['pend','Há pendências','warn'],NS],fix:'Regularize os cadastros antes de procurar sócio ou banco.'},
+{id:'zoneamento',b:3,t:'one',q:'Você já confirmou se hospedagem é permitida ali?',why:'O zoneamento da prefeitura diz se pode haver hospedagem, quantas unidades e que tipo. Mesmo um glamping precisa de enquadramento.',o:[['sim','Sim, consultei e é permitido','ok'],['nao','Ainda não consultei','warn'],['restr','Sei que há restrição','bad'],NS],fix:'Peça à prefeitura a certidão de uso e ocupação do solo. É barata e decide muita coisa.'},
+{id:'topo',b:3,t:'one',q:'Existe levantamento topográfico ou georreferenciamento?',why:'É a planta técnica da área. Sem ela, o projeto e o orçamento ficam no escuro.',o:[['sim','Sim','ok'],['nao','Não','warn'],NS],fix:'Um levantamento topográfico é um serviço simples e base de todo projeto.'},
+{id:'docs',b:3,t:'files',q:'Se tiver, envie os documentos agora',why:'Tudo é opcional. Quanto mais a equipe vê antes da reunião, mais direta é a conversa. Arquivos PDF, JPG ou PNG.',files:[['matricula','Matrícula atualizada'],['fotos','Fotos da área'],['localizacao','Localização (print do mapa)'],['planta','Planta, levantamento ou projeto, se houver']]},
+{id:'i3',b:3,t:'inter',txt:'Documentos são o ponto onde a maioria dos terrenos trava. Se você marcou vários "não sei" ou pendências, isso é normal e resolvível, mas precisa de ordem.'},
+{id:'demanda',b:4,t:'one',q:'Como é a demanda por hospedagem na sua região?',why:'Terra bonita não é demanda. Demanda é gente pagando para dormir ali, em que época e a que preço.',o:[['forte','Há turismo forte e constante','ok'],['atrativos','Há atrativos, mas pouca hospedagem','ok'],['fraca','Região pouco turística','warn'],NS],fix:'Pesquise ocupação e diária de quem já opera na região antes de decidir o produto.'},
+{id:'concorrencia',b:4,t:'one',q:'Você conhece a concorrência?',why:'Saber quem hospeda ao redor, a que diária e com que diferencial é o começo do preço e do posicionamento.',o:[['conheco','Conheço os concorrentes e as diárias','ok'],['alguns','Conheço alguns','warn'],['nunca','Nunca pesquisei','bad']],fix:'Faça uma planilha com 10 concorrentes: tipo, diária, nota e diferencial.'},
+{id:'publico',b:4,t:'multi',q:'Quem seria o seu hóspede?',why:'Casais, famílias e eventos pedem produtos diferentes. Quem tenta agradar todo mundo não vende bem para ninguém.',o:[['casais','Casais','ok'],['familias','Famílias','ok'],['corp','Corporativo','ok'],['eventos','Eventos','ok'],['nao_sei','Não sei','unk']],fix:'Escolha um público principal. Ele define produto, preço e comunicação.'},
+{id:'i4',b:4,t:'inter',txt:'Mercado é a base. Sem ele, o produto e o investimento viram palpite.'},
+{id:'produto',b:5,t:'one',q:'Que produto você imagina para a área?',why:'O produto é só uma peça do negócio, mas é a que o dinheiro compra primeiro. Escolher antes de ler o mercado é o erro mais comum.',o:[['glamping','Glamping','ok'],['chales','Chalés','ok'],['pousada','Pousada ou hotel','ok'],['resort','Resort ou grande empreendimento','warn'],['lotes','Loteamento ou multipropriedade','warn'],['nenhum','Ainda não sei','unk']],fix:'Compare 2 ou 3 produtos com números de investimento e retorno antes de escolher.'},
+{id:'unidades',b:5,t:'one',q:'Quantas unidades você imagina?',why:'A recomendação da Zion é ir de menos a mais: começar com poucas unidades, testar mercado e operação, e crescer.',o:[['1-3','1 a 3','ok'],['4-10','4 a 10','ok'],['11-30','11 a 30','warn'],['30+','Mais de 30','warn'],NS],fix:'Comece pequeno e prove o modelo antes de multiplicar.'},
+{id:'gasto',b:5,t:'one',q:'Quanto você imagina investir na obra e na estrutura?',why:'Quem não consegue estimar o investimento ainda tem uma intenção, não um projeto. É a primeira pergunta de sócio, banco e investidor.',o:[['300','Até R$ 300 mil','ok'],['1m','R$ 300 mil a R$ 1 milhão','ok'],['5m','R$ 1 a R$ 5 milhões','ok'],['5m+','Acima de R$ 5 milhões','ok'],['zero','Não faço ideia','bad']],fix:'Monte uma estimativa por unidade e por fase. Um orçamento ruim é melhor que nenhum.'},
+{id:'capital',b:5,t:'one',q:'Como está o capital para o projeto?',why:'A origem do dinheiro define a estrutura: dinheiro próprio, sócio, venda de parte da terra ou investidor.',o:[['todo','Tenho todo o capital','ok'],['parte','Tenho parte','warn'],['socio','Preciso de sócio ou investidor','warn'],['vender','Pretendo vender parte da terra','warn'],NS],fix:'Monte o plano financeiro antes de procurar capital. Quem pede dinheiro sem plano não recebe.'},
+{id:'prazo',b:5,t:'one',q:'Em quanto tempo você quer começar?',why:'Prazo realista evita decisão no escuro. Licença, projeto e obra levam mais tempo do que quase todo mundo imagina.',o:[['6','Em até 6 meses','ok'],['12','De 6 a 12 meses','ok'],['12+','Mais de 12 meses','ok'],['sem','Sem prazo definido','warn']],fix:'Trace as etapas com prazo: documentos, projeto, licença, obra e abertura.'},
+{id:'i5',b:5,t:'inter',txt:'Você já viu, na prática, quantas decisões vêm antes da obra. É por isso que quem decide fora de ordem gasta e não enche o calendário.'},
+{id:'valor',b:6,t:'money',q:'Quanto você acha que vale a sua terra hoje?',why:'Esta é uma das perguntas mais importantes. Para entrar em estruturas com sócio ou investidor, a terra precisa de um valor que se defende com documentos.',ph:'Ex.: 1.500.000',fix:'Sem um valor, não há conversa. Defina uma faixa e dê base a ela.'},
+{id:'base',b:6,t:'one',q:'De onde vem esse valor?',why:'Avaliação sem base é opinião. Laudo, parecer de corretor e preço de vizinhos são argumentos. "Acho que vale" não é.',o:[['laudo','Avaliação profissional','ok'],['corretor','Parecer de corretor','ok'],['vizinhos','Preço de terras vizinhas','ok'],['paguei','O valor que paguei','warn'],['impressao','Só uma impressão','warn'],NS],fix:'Pegue ao menos dois pareceres de corretores locais ou um laudo de avaliação.'},
+{id:'aporte',b:6,t:'one',q:'Você aceitaria conversar sobre usar a terra como parte de uma estrutura de projeto?',why:'Terras bem documentadas podem entrar como ativo em estruturas de projeto com a Zion. Cada caso é avaliado, sem garantia de aprovação.',o:[['sim','Sim, tenho interesse','ok'],['talvez','Talvez, quero entender','ok'],['nao','Não','ok'],NS]},
+{id:'i6',b:6,t:'inter',txt:'Valor da terra, documento e produto são os três pontos que um investidor lê primeiro. Você acabou de passar por todos.'},
+{id:'dores',b:7,t:'multi',q:'Qual é a sua maior dor hoje?',why:'Sua resposta ajuda a equipe a preparar a reunião certa para você. Pode marcar mais de uma.',o:[['capital','Tenho a terra e não tenho capital','ok'],['sei','Tenho capital e não sei o que fazer','ok'],['estruturar','Preciso estruturar para sócio, banco ou investidor','ok'],['clareza','Preciso de clareza para decidir','ok']]},
+{id:'duvida',b:7,t:'long',q:'Qual é a sua maior dúvida sobre o projeto?',why:'Opcional. Escreva do seu jeito. A equipe lê antes de falar com você.',ph:'Escreva aqui'},
+{id:'consent',b:7,t:'consent',q:'Para enviar o dossiê',why:''}
+];
+var st={i:0,a:{}},files={},sent=false;
+try{var sv=JSON.parse(localStorage.getItem(KEY)||'null');if(sv&&sv.a){st=sv;if(st.i>=Q.length)st.i=Q.length-1}}catch(e){}
+function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+var $=function(s){return document.querySelector(s)},app=$('#app');
+function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function opt(q,o){var v=st.a[q.id];var on=q.t==='multi'?(v||[]).indexOf(o[0])>-1:v===o[0];return '<button type="button" class="opt'+(q.t==='multi'?' multi':'')+(on?' on':'')+'" data-v="'+esc(o[0])+'"><span class="dot"></span><span>'+esc(o[1])+'</span></button>'}
+function norm(q){return (q.o||[]).map(function(o){return Array.isArray(o)?o:[o.v,o.label,o.s]})}
+q_prepare();function q_prepare(){Q.forEach(function(q){if(q.o)q.o=norm(q)})}
+function unkCount(b){var n=0;Q.forEach(function(q){if(q.b!==b||!q.o)return;var v=st.a[q.id];if(v==null)return;var arr=Array.isArray(v)?v:[v];arr.forEach(function(x){var o=q.o.filter(function(o){return o[0]===x})[0];if(o&&(o[2]==='unk'||o[2]==='bad'))n++})});if(b===6&&st.a.valor==='nao_sei')n++;return n}
+function head(q){var i=Q.indexOf(q);$('#pg').style.width=Math.round(i/(Q.length-1)*100)+'%';$('#stp').textContent=(B[q.b]||'Dossiê prévio')+' · '+(i+1)+' de '+Q.length}
+function render(){
+ if(sent){return done()}
+ var q=Q[st.i];head(q);var h='';
+ if(q.t==='inter'){var n=unkCount(q.b);h='<div class="k">Bloco concluído · '+esc(B[q.b])+'</div><h2>'+(n?'Você marcou '+n+' ponto'+(n>1?'s':'')+' sem resposta ou crítico'+(n>1?'s':'')+'.':'Bom começo. Você respondeu com clareza.')+'</h2><div class="card"><p>'+esc(q.txt)+'</p>'+(n?'<p><b>É exatamente nesses pontos que a reunião vai ajudar você.</b></p>':'')+'</div><div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="nx">Continuar</button></div>'}
+ else if(q.t==='ident'){var a=st.a;h='<div class="k">Passo 1 · Você</div><h2>'+esc(q.q)+'</h2><div class="why"><b>Por que perguntamos</b>'+esc(q.why)+'</div><label class="f">Nome completo</label><input type="text" id="f_nome" value="'+esc(a.nome)+'" autocomplete="name"><label class="f">E-mail (o mesmo do seu acesso)</label><input type="email" id="f_email" value="'+esc(a.email)+'" autocomplete="email"><label class="f">WhatsApp com DDD</label><input type="tel" id="f_whats" value="'+esc(a.whats)+'" autocomplete="tel"><div class="row"><button class="btn" id="nx">Continuar</button></div><p class="small">O que você responde fica salvo neste aparelho. Você pode parar e continuar depois.</p>'}
+ else if(q.t==='files'){h='<div class="k">Opcional</div><h2>'+esc(q.q)+'</h2><div class="why"><b>Por que perguntamos</b>'+esc(q.why)+'</div>'+q.files.map(function(f){var fl=files[f[0]];return '<div class="fileb"><b>'+esc(f[1])+'</b><span>'+(fl&&fl.length?fl.length+' arquivo(s) selecionado(s)':'Nenhum arquivo')+'</span><br><input type="file" data-f="'+f[0]+'" accept=".pdf,.jpg,.jpeg,.png" '+(f[0]==='fotos'?'multiple':'')+'></div>'}).join('')+'<div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="nx">Continuar</button></div><p class="small">Se não tiver agora, siga em frente. Você pode levar os documentos para a reunião.</p>'}
+ else if(q.t==='consent'){h='<div class="k">Último passo</div><h2>Revise e envie o seu dossiê</h2>'+result()+'<div class="card"><button type="button" class="opt multi'+(st.a.consent?' on':'')+'" id="cs"><span class="dot"></span><span>Autorizo a Zion a usar estas informações para avaliar o meu caso e entrar em contato. Entendo que a Zion avalia cada caso e não garante investidor, financiamento nem aprovação.</span></button><div id="er" class="err"></div></div><div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="sd">Enviar e agendar a reunião</button><button class="btn ghost no-print" id="pr">Baixar em PDF</button></div>'}
+ else{h='<div class="k">'+esc(B[q.b])+'</div><h2>'+esc(q.q)+'</h2>';
+  if(q.why)h+='<div class="why"><b>Por que perguntamos</b>'+esc(q.why)+'</div>';
+  if(q.t==='one'||q.t==='multi'){h+='<div class="opts">'+q.o.map(function(o){return opt(q,o)}).join('')+'</div><div class="row"><button class="btn ghost" id="bk">Voltar</button>'+(q.t==='multi'?'<button class="btn" id="nx">Continuar</button>':'')+'</div>'}
+  else if(q.t==='text'||q.t==='money'){h+='<input type="text" id="tx" placeholder="'+esc(q.ph||'')+'" value="'+esc(st.a[q.id]&&st.a[q.id]!=='nao_sei'?st.a[q.id]:'')+'">'+(q.t==='money'?'<div class="opts"><button class="opt'+(st.a[q.id]==='nao_sei'?' on':'')+'" id="ns"><span class="dot"></span><span>Não sei</span></button></div>':'')+'<div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="nx">Continuar</button></div>'}
+  else if(q.t==='long'){h+='<textarea id="tx" placeholder="'+esc(q.ph||'')+'">'+esc(st.a[q.id]||'')+'</textarea><div class="row"><button class="btn ghost" id="bk">Voltar</button><button class="btn" id="nx">Continuar</button></div>'}
+ }
+ app.innerHTML=h;bind(q);window.scrollTo(0,0)}
+function go(d){st.i=Math.max(0,Math.min(Q.length-1,st.i+d));save();render()}
+function bind(q){
+ var bk=$('#bk');if(bk)bk.onclick=function(){go(-1)};
+ var nx=$('#nx');
+ document.querySelectorAll('.opt[data-v]').forEach(function(b){b.onclick=function(){var v=b.getAttribute('data-v');if(q.t==='multi'){var arr=st.a[q.id]||[];var i=arr.indexOf(v);if(i>-1)arr.splice(i,1);else{if(v==='nao_sei'||v==='nenhuma')arr=[];else arr=arr.filter(function(x){return x!=='nao_sei'&&x!=='nenhuma'});arr.push(v)}st.a[q.id]=arr;save();render()}else{st.a[q.id]=v;save();setTimeout(function(){go(1)},180)}}});
+ if(q.t==='multi'&&nx)nx.onclick=function(){if(!(st.a[q.id]||[]).length){return}go(1)};
+ if(q.t==='inter'&&nx)nx.onclick=function(){go(1)};
+ if(q.t==='files'){document.querySelectorAll('input[type=file]').forEach(function(i){i.onchange=function(){files[i.getAttribute('data-f')]=Array.prototype.slice.call(i.files);render()}});if(nx)nx.onclick=function(){go(1)}}
+ if(q.t==='ident'&&nx)nx.onclick=function(){var n=$('#f_nome').value.trim(),e=$('#f_email').value.trim(),w=$('#f_whats').value.trim();if(!n||!/.+@.+\..+/.test(e)||w.replace(/\D/g,'').length<10){alert('Preencha nome, e-mail válido e WhatsApp com DDD.');return}st.a.nome=n;st.a.email=e;st.a.whats=w;save();go(1)};
+ if((q.t==='text'||q.t==='money'||q.t==='long')&&nx){nx.onclick=function(){var v=$('#tx').value.trim();if(!v&&q.req){alert('Preencha para continuar.');return}if(!v&&q.t==='money'){alert('Escreva um valor ou marque "Não sei".');return}st.a[q.id]=v;save();go(1)}}
+ var ns=$('#ns');if(ns)ns.onclick=function(){st.a[q.id]='nao_sei';save();go(1)};
+ if(q.t==='consent'){$('#cs').onclick=function(){st.a.consent=!st.a.consent;save();render()};$('#pr').onclick=function(){window.print()};$('#sd').onclick=send}
+}
+function sc(q){var v=st.a[q.id];if(v==null)return null;var arr=Array.isArray(v)?v:[v];var worst='ok';arr.forEach(function(x){var o=q.o&&q.o.filter(function(o){return o[0]===x})[0];var s=o?o[2]:'ok';if(s==='bad')worst='bad';else if((s==='warn'||s==='unk')&&worst!=='bad')worst='warn'});return worst}
+function result(){
+ var blocks={2:'Área',3:'Documentos',4:'Mercado',5:'Produto e capital',6:'Valor da terra'};var rows='',fix=[];
+ Object.keys(blocks).forEach(function(b){var w='ok',n=0,t=0;Q.forEach(function(q){if(q.b!=+b||!q.o)return;var s=sc(q);if(s==null)return;t++;if(s==='bad'){w='bad';n++;if(q.fix)fix.push(q.fix)}else if(s==='warn'){if(w!=='bad')w='warn';n++;if(q.fix)fix.push(q.fix)}});if(+b===6&&(st.a.valor==='nao_sei'||!st.a.valor)){if(w!=='bad')w='warn';n++;fix.push(Q.filter(function(q){return q.id==='valor'})[0].fix)}
+  rows+='<span>'+blocks[b]+'</span><span class="pill '+w+'">'+(w==='ok'?'Em ordem':w==='warn'?'Atenção':'Crítico')+'</span>'});
+ var top=fix.filter(function(x,i){return fix.indexOf(x)===i}).slice(0,5);
+ return '<div class="card"><div class="k">O seu raio-x</div><div class="score" style="margin-top:10px">'+rows+'</div></div>'+(top.length?'<div class="card"><div class="k">O que precisa de ordem primeiro</div><ul class="fix">'+top.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul><p><b>Na reunião, a equipe Zion lê este raio-x com você e indica os próximos passos, na ordem certa.</b></p></div>':'<div class="card"><p>Seu raio-x está bem encaminhado. Na reunião, a equipe Zion aprofunda e indica os próximos passos.</p></div>')}
+function send(){
+ var er=$('#er');if(!st.a.consent){er.textContent='Marque a autorização para enviar.';return}
+ var btn=$('#sd');btn.disabled=true;btn.textContent='Enviando...';
+ var fd=new FormData();fd.append('payload',JSON.stringify({answers:st.a,questions:Q.filter(function(q){return q.q}).map(function(q){return{id:q.id,block:B[q.b],q:q.q}}),sentAt:new Date().toISOString()}));
+ Object.keys(files).forEach(function(k){(files[k]||[]).forEach(function(f){fd.append(k,f,f.name)})});
+ fetch(ENDPOINT,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.ok===false)throw new Error('x');return j})}).then(function(){sent=true;try{localStorage.setItem(KEY+'_sent','1')}catch(e){}render()}).catch(function(){btn.disabled=false;btn.textContent='Enviar e agendar a reunião';er.textContent='Não consegui enviar agora. Suas respostas estão salvas neste aparelho. Tente de novo em instantes.'})}
+function done(){$('#pg').style.width='100%';$('#stp').textContent='Dossiê enviado';app.innerHTML='<div class="k">Dossiê enviado</div><h1>Tarefa de casa feita.</h1><p>A equipe Zion recebe o seu dossiê antes da reunião. Agora escolha o melhor horário para a conversa.</p>'+result()+'<div class="row"><a class="btn" href="'+AGENDAR+'">Agendar a minha reunião</a><button class="btn ghost no-print" id="pr">Baixar em PDF</button></div>';$('#pr').onclick=function(){window.print()}}
+render();
+})();
+</script></body></html>
