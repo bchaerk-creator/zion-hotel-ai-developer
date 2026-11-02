@@ -95,3 +95,19 @@ As causas mais comuns são pagamento pendente ou recusado, conta desativada ou r
 - Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=923517867340515&selected_ad_ids=120257661485330091
 - Texto: "Uma noite mágica para dormir em um hotel bolha. ✨ / Inscreva-se e receba um desconto especial para viver a Zion: bubble transparente, piscina privativa, jacuzzi e café da manhã no deck, no meio da mata. / São poucas bolhas por noite. Garanta a sua data."
 - Pendências: o card 1 diz "Válido para reservas realizadas hoje" e mostra o cupom NOITEMAGICA (urgência que vale todo dia, e cupom aberto antes da inscrição). O card 2 (biquíni) pode ter entrega limitada pelo Meta.
+
+## 02/11 · Conta Zion Collection 2 liberada · anúncios criados (pausados)
+
+Campanha `120250113109820016` renomeada para **[LAND BANK][LEADS][FORM → RAIO-X] Réplica dos campeões [02/11]**.
+Formulário Raio-X: `1335538638609895` (idioma do formulário: English US, trocar para Português).
+
+| Conjunto | Anúncio | ID | Formulário |
+|---|---|---|---|
+| Investidor 30-60 (`120250113155280016`) | CARROSSEL v2 · Te ajudamos + Land Bank | `120250173399350016` | Raio-X ✅ |
+| Investidor 30-60 | CARROSSEL v3 · Fotos novas + Land Bank | `120250173402220016` | Raio-X ✅ |
+| Investidor 30-60 | CAMPEÃO · VIDEO terrenos | `120250173402600016` | antigo → trocar |
+| Investidor 30-60 | CAMPEÃO · Carrossel terrenos | `120250173402970016` | antigo → trocar |
+| IMOB (`120250113115090016`) | CAMPEÃO · Carrossel AD3 | `120250173403210016` | antigo → trocar |
+| IMOB | CAMPEÃO · Video AD02 | `120250173404130016` | antigo → trocar |
+
+Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=1271873041294684&selected_campaign_ids=120250113109820016
