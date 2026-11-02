@@ -663,7 +663,7 @@ var CONFIG={
       '<script>window.onload=function(){setTimeout(function(){window.print()},400)}<\/script></body></html>');
     w.document.close();
   }
-  function bindRes(){[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tela=+b.dataset.go;if(b.dataset.m)S.mot=b.dataset.m;box.innerHTML=result();bindRes();try{window.scrollTo(0,0)}catch(e){}}});var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;document.getElementById('redo').onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
+  function bindRes(){[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tela=+b.dataset.go;if(b.dataset.m)S.mot=b.dataset.m;box.innerHTML=result();bindRes();try{window.scrollTo(0,0)}catch(e){}}});var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;var rd=document.getElementById('redo');if(rd)rd.onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
   render();
 })();
