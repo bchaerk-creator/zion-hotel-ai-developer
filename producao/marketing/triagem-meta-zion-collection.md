@@ -111,3 +111,18 @@ Formulário Raio-X: `1335538638609895` (idioma do formulário: English US, troca
 | IMOB | CAMPEÃO · Video AD02 | `120250173404130016` | antigo → trocar |
 
 Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=1271873041294684&selected_campaign_ids=120250113109820016
+
+## 02/11 · Campanha FORM → CHECKOUT (pausada)
+
+Campanha **[LAND BANK][LEADS][FORM → CHECKOUT] Inscrição R$ 270 [02/11]** · `120250173411950016`. Formulário Checkout: `1128299000065062` (idioma English US, trocar para Português).
+
+| Conjunto | Anúncio | ID | Formulário |
+|---|---|---|---|
+| Investidor 30-60, cópia do 07/03 LUIS (`120250173412720016`) | CARROSSEL v2 · Land Bank R$ 270 | `120250173416430016` | Checkout ✅ |
+| Investidor 30-60 | CARROSSEL v3 · Land Bank R$ 270 | `120250173417850016` | Checkout ✅ |
+| Investidor 30-60 | CAMPEÃO · VIDEO terrenos | `120250173418130016` | antigo → trocar |
+| IMOB (`120250173413240016`) | CAMPEÃO · Carrossel AD3 | `120250173418280016` | antigo → trocar |
+
+Os conjuntos são cópia dos públicos frios campeões. Para o checkout, o ideal é trocar o público para quente (envolvimento com a página/Instagram em 180 dias, quem viu 50% dos vídeos, cadastros antigos).
+
+Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=1271873041294684&selected_campaign_ids=120250173411950016
