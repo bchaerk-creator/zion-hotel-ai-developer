@@ -102,6 +102,14 @@ section.s{padding-block:96px}
 .what div{display:flex;gap:14px;align-items:flex-start;border-top:1px solid var(--line);padding-top:12px;color:var(--paper-2);font-size:15px}
 .what b{font-family:var(--mono);color:var(--gold);font-weight:500;font-size:12px;padding-top:3px}
 .hm .hm-ph{position:relative}.hm .hm-plug{position:absolute;left:16px;right:16px;bottom:18px;z-index:5;display:flex;justify-content:space-between;align-items:center;gap:12px;background:#000;color:#E0BE5E;border:2px solid #E0BE5E;border-radius:999px;padding:16px 20px 16px 24px;font:700 17px/1.2 var(--f-b,system-ui,sans-serif);text-decoration:none;box-shadow:0 14px 40px rgba(0,0,0,.6)}@media(min-width:900px){.hm .hm-plug{left:auto;right:auto;width:max-content;max-width:90%;left:24px}}
+.foco-hide{display:none!important}
+body.foco .steps-side{display:none!important}
+body.foco .grid-rx{display:block!important;max-width:640px;margin:0 auto}
+body.foco .raiox{min-height:100svh;padding-top:12px}
+.foco-bar{display:none;background:#000;border-bottom:1px solid rgba(224,190,94,.35);padding:12px 20px;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:50}
+body.foco .foco-bar{display:flex}
+.foco-bar a{color:#E0BE5E;text-decoration:none;font:600 15px/1 system-ui,sans-serif}
+.foco-bar span{color:#cfd6d1;font:500 13px/1 system-ui,sans-serif}
 .raiox{background:#000!important;border-top:1px solid rgba(224,190,94,.35);border-bottom:1px solid rgba(224,190,94,.35)}
 #form{--bg:#000;--bg-2:#0B0B0B;--panel:#0F0F0F;--panel-2:#171717;background:#000!important;border:1px solid rgba(224,190,94,.55)!important;box-shadow:0 0 0 1px rgba(224,190,94,.12),0 40px 80px -40px rgba(0,0,0,.9)}
 .card{background:var(--panel);border:1px solid var(--line);border-radius:24px;padding:28px;box-shadow:0 40px 80px -40px rgba(0,0,0,.7)}
@@ -668,5 +676,32 @@ try{var u=new URL(a.href);var ph=(u.pathname.match(/\d{8,15}/)||[])[0]||u.search
 var q='phone='+ph+(tx?'&text='+encodeURIComponent(tx):'');e.preventDefault();
 if(mob){var t=Date.now();location.href='whatsapp://send?'+q;setTimeout(function(){if(Date.now()-t<2500&&!document.hidden)location.href='https://api.whatsapp.com/send?'+q;},1800);}
 else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch(err){}},true);})();</script>
+<script>
+(function(){
+  var bar=document.createElement('div');bar.className='foco-bar';
+  bar.innerHTML='<a href="#" id="focoVoltar">← Voltar ao início</a><span>Diagnóstico prévio gratuito</span>';
+  document.body.insertBefore(bar,document.body.firstChild);
+  function filhos(){return [].filter.call(document.body.children,function(n){return n!==bar&&!/^(SCRIPT|STYLE|LINK|NOSCRIPT)$/.test(n.tagName)})}
+  function entrar(push){
+    var r=document.getElementById('raiox');
+    filhos().forEach(function(n){if(!n.contains(r))n.classList.add('foco-hide')});
+    [].forEach.call(r.parentNode===document.body?[]:r.parentNode.children,function(n){if(n!==r&&!/^(SCRIPT|STYLE)$/.test(n.tagName))n.classList.add('foco-hide')});
+    document.body.classList.add('foco');
+    if(push&&location.hash!=='#diagnostico')history.pushState({foco:1},'','#diagnostico');
+    window.scrollTo(0,0);
+  }
+  function sair(){
+    [].forEach.call(document.querySelectorAll('.foco-hide'),function(n){n.classList.remove('foco-hide')});
+    document.body.classList.remove('foco');window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('a[href="#raiox"]');
+    if(a){e.preventDefault();entrar(true)}
+    if(e.target.id==='focoVoltar'){e.preventDefault();if(location.hash==='#diagnostico')history.back();else sair()}
+  });
+  window.addEventListener('popstate',function(){location.hash==='#diagnostico'?entrar(false):sair()});
+  if(location.hash==='#diagnostico'||location.hash==='#raiox')entrar(false);
+})();
+</script>
 </body>
 </html>
