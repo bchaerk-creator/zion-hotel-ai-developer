@@ -86,3 +86,12 @@ As causas mais comuns são pagamento pendente ou recusado, conta desativada ou r
 **Cuidados:** o vídeo tem a marca d'água do TikTok (o Meta entrega menos conteúdo com marca de outra rede; pedir o arquivo original aos Desmochilados). O conteúdo é deles: o ideal é rodar como anúncio de parceria, com a autorização deles.
 
 **31/10 · Ativado.** Campanha "Zion Bubble - Formulario Reserva - Leads" (conta BRUNO 01) com orçamento de R$ 30/dia (antes R$ 8), campanha e anúncio novo ativados. O vídeo antigo "Desmochilados Floripa 2" segue ativo no mesmo conjunto. Regra do Bruno: conteúdo dos Desmochilados vai sempre na conta do Bruno (BRUNO 01), nunca na Zion Collection.
+
+## Carrossel Noite Mágica · conta BRUNO 01 (02/11)
+
+- Campanha de teste **pausada**: "[TESTE] Zion Bubble - Form Reserva - Criativos novos [02/11]" (`120257661443180091`), R$ 20/dia, separada da campanha do "peladão".
+- Conjunto copiado do Brasil Amplo Advantage+ V2: `120257661456980091`.
+- Anúncio: "CARROSSEL — Noite Mágica — Inscreva-se e ganhe desconto [02/11]" (`120257661485330091`), 6 cards (`producao/marketing/noite-magica/`), formulário de reserva `1105178921952601`, botão Cadastre-se.
+- Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=923517867340515&selected_ad_ids=120257661485330091
+- Texto: "Uma noite mágica para dormir em um hotel bolha. ✨ / Inscreva-se e receba um desconto especial para viver a Zion: bubble transparente, piscina privativa, jacuzzi e café da manhã no deck, no meio da mata. / São poucas bolhas por noite. Garanta a sua data."
+- Pendências: o card 1 diz "Válido para reservas realizadas hoje" e mostra o cupom NOITEMAGICA (urgência que vale todo dia, e cupom aberto antes da inscrição). O card 2 (biquíni) pode ter entrega limitada pelo Meta.
