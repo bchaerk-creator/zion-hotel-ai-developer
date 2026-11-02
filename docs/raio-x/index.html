@@ -561,16 +561,18 @@ var CONFIG={
         '<button class="pill pill-gold" data-go="2" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o próximo passo</span><span class="arr" aria-hidden="true">→</span></button>'+
         '<div class="row" style="margin-top:12px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button></div>';
     }else if(t===2){
+      var op=dorDe(r)==='opera';
       h='<div class="prog mono"><span>Próximo passo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
-        '<div class="res-top"><h2 class="pronto">'+(dorDe(r)==='opera'?'Antes de gastar mais, <em>organize a venda.</em>':'Antes de qualquer obra, <em>estruture o projeto.</em>')+'</h2></div>'+
-        '<div class="nx hi" style="text-align:center"><span class="mono">Kit Estratégico Zion</span>'+
+        '<div class="res-top"><h2 class="pronto">Agende a sua <em>sessão estratégica com a Zion</em> e receba o seu diagnóstico.</h2></div>'+
+        '<div class="nx"><span class="mono">O que você recebe</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+
+          li('1','<b style="color:var(--paper)">Sessão estratégica com a equipe Zion.</b> Online, só você e a equipe. O agendamento abre na hora em que o pagamento é confirmado.')+
+          li('2','<b style="color:var(--paper)">O PDF do seu caso.</b> O seu diagnóstico por escrito: o que está bom, o que pede atenção e os próximos passos.')+
+          li('3','<b style="color:var(--paper)">O mapa do seu caso.</b> Uma página só sua: o que está definido, o que falta e o que fazer primeiro.')+'</ul></div>'+
+        '<div class="nx hi"><span class="mono">O que você consegue com isso</span><p style="color:var(--paper);margin:8px 0 0">Analisamos o seu caso a partir do seu diagnóstico e apontamos o melhor caminho: '+(op?'canais, preço e reserva direta para encher o calendário, e as parcerias que fazem sentido para o seu negócio.':'o que fazer primeiro, como estruturar o projeto, as possíveis parcerias e a forma de captar capital, quando fizer sentido para o seu caso.')+'</p></div>'+
+        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold)"><span class="mono">Kit Estratégico Zion</span>'+
         '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:10px 0 2px;color:var(--gold)">R$ 270</div>'+
         '<p class="small" style="margin:0 0 14px">à vista ou 6x de R$ 45</p>'+
-        '<ul style="list-style:none;margin:0 0 16px;padding:0;text-align:left">'+
-          li('1','<b style="color:var(--paper)">Sessão estratégica com a equipe Zion.</b> Online, por agendamento. Libera na hora em que o pagamento é confirmado.')+
-          li('2','<b style="color:var(--paper)">O seu diagnóstico em PDF.</b> O que está bom, o que pede atenção e os próximos passos.')+
-          li('3','<b style="color:var(--paper)">O mapa do seu caso.</b> Uma página só sua: o que está definido, o que falta e o que fazer primeiro.')+'</ul>'+
-        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit com a sessão · R$ 270</span><span class="arr" aria-hidden="true">→</span></a>'+
+        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Agendar a minha sessão · R$ 270</span><span class="arr" aria-hidden="true">→</span></a>'+
         '<p class="small" style="margin-top:10px">Pagamento seguro. O agendamento abre assim que o pagamento é confirmado.</p></div>'+
         '<button class="link-u" data-go="3" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:6px auto 0">Agora não</button>'+legal;
     }else if(t===3){
