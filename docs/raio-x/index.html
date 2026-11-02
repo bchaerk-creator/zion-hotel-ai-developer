@@ -566,6 +566,12 @@ var CONFIG={
       h='<div class="prog mono"><span>Último passo</span><span>Clube Zion Land</span></div><div class="bar"><i style="width:100%"></i></div>'+
         '<div style="margin:10px -4px 0;border-radius:16px;overflow:hidden;position:relative"><img src="'+IM+'mata.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:auto"></div>'+
         '<div class="res-top"><p class="mono">Land Bank Zion · Clube Zion Land</p><h2 class="pronto">Entre para o clube de projetos turísticos e de hospedagem <em>da Zion.</em></h2><p class="lead">Você viu a Bubble. Agora imagine uma no seu terreno. Entre para o clube, faça parte do ecossistema Zion e receba o passo a passo para transformar o seu terreno em um destino turístico.</p></div>'+
+        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold)">'+
+        '<p class="small" style="margin:0;color:var(--gold)">Acesso ao Clube Zion Land</p>'+
+        '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:6px 0 2px;color:var(--gold)">R$ 270</div>'+
+        '<p class="small" style="margin:0 0 14px">ou 6x de R$ 45</p>'+
+        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Entrar para o clube</span><span class="arr" aria-hidden="true">→</span></a>'+
+        '<p class="small" style="margin-top:10px">Pagamento seguro. O acesso abre na hora, na sua área de membros. Garantia de 7 dias. A reunião de diagnóstico vem depois do dossiê. A Zion avalia cada caso e não garante investidor, financiamento nem aprovação.</p></div>'+
         '<div class="nx" style="border-left:4px solid var(--gold)"><span class="mono" style="color:var(--gold)">Por que só o terreno não basta</span><h3 style="font-size:24px;line-height:1.2;margin:8px 0 6px">Estar no Land Bank é o começo. O que torna o seu terreno competitivo é ter <em>projeto.</em></h3><p style="margin:0;font-size:16px;line-height:1.5">Um terreno estruturado, com o lugar, o público, a conta e quem vai operar, é o que atrai parceiros, sócios e investidores. E se você quiser tocar sozinho, é o que faz o caminho ter pé e cabeça, do jeito certo.</p></div>'+
         '<div class="nx"><span class="mono">Ao entrar, você é membro do Land Bank</span><ul style="list-style:none;padding:0;margin:8px 0 0">'+
         rw('🔑','Acesso à área de membros do Land Bank Zion','Você entra na hora, logo depois do pagamento.')+
@@ -575,15 +581,8 @@ var CONFIG={
         rw('🎁','Condições exclusivas nos produtos Zion','Para quem é membro do Land Bank.')+'</ul></div>'+
         '<div class="nx" style="border:1px solid rgba(224,190,94,.45)"><span class="mono" style="color:var(--gold)">De bônus</span><ul style="list-style:none;padding:0;margin:8px 0 0">'+
         rw('📘','E-book: Como transformar seu terreno em destino turístico · Volume 1 · Panorama do Desenvolvimento Hoteleiro','Liberado na hora do pagamento.')+'</ul></div>'+
-        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0"><img src="'+IM+'noite.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'dentro.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'hospede.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"></div>'+
-        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold)">'+
-        '<p class="small" style="margin:0;color:var(--gold)">Acesso ao Clube Zion Land</p>'+
-        '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:6px 0 2px;color:var(--gold)">R$ 270</div>'+
-        '<p class="small" style="margin:0 0 14px">ou 6x de R$ 45</p>'+
-        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Entrar para o clube</span><span class="arr" aria-hidden="true">→</span></a>'+
-        '<p class="small" style="margin-top:10px">Pagamento seguro. O acesso abre na hora, na sua área de membros. Garantia de 7 dias. A reunião de diagnóstico vem depois do dossiê. A Zion avalia cada caso e não garante investidor, financiamento nem aprovação.</p></div>'+
-        '<button class="link-u" data-go="6" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:10px auto 0;font-size:14px">Ver o meu resultado do raio-x</button>'+
-        '<button class="link-u" data-go="3" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:6px auto 0">Agora não</button>';
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0"><img src="'+IM+'noite.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'dentro.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'hospede.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"></div>'+'<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:68px;font-size:19px;font-weight:700;padding:12px 14px 12px 28px;margin-top:6px"><span>Entrar para o clube · R$ 270</span><span class="arr" aria-hidden="true">→</span></a>'+
+        (S.direto?'<p class="small" style="text-align:center;margin-top:12px">Prefere começar pelo diagnóstico gratuito? <a class="link-u" href="/raio-x">Faça o Raio-X</a></p>':'<button class="link-u" data-go="6" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:10px auto 0;font-size:14px">Ver o meu resultado do raio-x</button><button class="link-u" data-go="3" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:6px auto 0">Agora não</button>');
     }else if(t===6){
       var L6=leitura(r),ln='';
       Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')ln+='<li style="padding:9px 0;border-top:1px solid var(--line)"><span class="small" style="display:block">'+esc(x.q)+'</span><b style="color:var(--paper)">'+esc(o[1])+'</b></li>'}});
@@ -684,7 +683,7 @@ var CONFIG={
   }
   function bindRes(){try{if(window.fbq&&S.tela===1&&!window._zLead){window._zLead=1;fbq('track','Lead')}}catch(e){}[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tela=+b.dataset.go;if(b.dataset.m)S.mot=b.dataset.m;box.innerHTML=result();bindRes();try{window.scrollTo(0,0)}catch(e){}}});var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;var rd=document.getElementById('redo');if(rd)rd.onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
-  render();
+  if(location.hash==='#clube'){S.direto=true;S.tela=2;S.r=S.r||{};S.q=S.r;box.innerHTML=flowHTML(S.r,'');bindRes();try{if(window.fbq)fbq('track','ViewContent',{content_name:'clube-direto'})}catch(e){}}else render();
 })();
 </script>
 
@@ -719,7 +718,7 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
     if(e.target.id==='focoVoltar'){e.preventDefault();if(location.hash==='#diagnostico')history.back();else sair()}
   });
   window.addEventListener('popstate',function(){location.hash==='#diagnostico'?entrar(false):sair()});
-  if(location.hash==='#diagnostico'||location.hash==='#raiox')entrar(false);
+  if(location.hash==='#diagnostico'||location.hash==='#raiox'||location.hash==='#clube')entrar(false);
 })();
 </script>
 <script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:270,currency:'BRL'})}catch(x){}},true)</script>
