@@ -40,7 +40,9 @@ Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, 
 
 - Clube de áreas: inscrição de **R$ 270** (inscrição do terreno + estruturação pelas aulas online e formulários) + mensalidade de **R$ 47**. Pacotes anuais ou em 12x; com o ano inteiro, bônus de uma consultoria prévia (impactos climáticos / "defesa civil da Zion") com CS ou com o Bruno.
 - Mensagem: "Seja membro da Zion Land Members e estruture o seu sonho. Você inscreve o seu terreno, te ajudamos a preparar o melhor modelo para você começar, e ele fica no radar de oportunidades e investimentos."
-- Detalhes completos: aguardando o arquivo de estratégia do Bruno.
+- **Land Bank (02/11):** o banco de áreas da Zion. A área do membro fica inscrita numa área de membros de projetos turísticos da Zion Collection, onde podem existir possíveis parcerias, investimentos e conexões. Gancho: "Já imaginou transformar o seu terreno em um destino turístico? Entre para a área de membros da Zion Collection e faça parte do Land Bank." Estrutura em `producao/marketing/land-bank-estrutura.md`.
+- Sempre "possíveis" parcerias/investimentos; aviso: "não é oferta de investimento nem garantia de parceria, crédito ou sociedade".
+- Detalhes completos: aguardando as instruções do Land Bank do Bruno.
 
 ## Mensagens que o Bruno quer usar (29/10)
 
