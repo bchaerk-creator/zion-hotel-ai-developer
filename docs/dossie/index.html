@@ -43,7 +43,7 @@ ul.fix{padding-left:20px;margin:8px 0}ul.fix li{margin:8px 0;color:var(--mut)}
 </div>
 <script>
 (function(){
-var ENDPOINT='https://zionhotelgroup.com/api/public/dossie-landbank';
+var ENDPOINT=(location.hostname.indexOf('zionhotelgroup.com')>-1?'':'https://www.zionhotelgroup.com')+'/api/public/dossie-landbank';
 var AGENDAR='../agendar/';
 var KEY='zlb_dossie_v1';
 var NS={v:'nao_sei',label:'Não sei',s:'unk'};
@@ -138,7 +138,7 @@ function send(){
  var btn=$('#sd');btn.disabled=true;btn.textContent='Enviando...';
  var fd=new FormData();fd.append('payload',JSON.stringify({resolved:resolved(),answers:st.a,questions:Q.filter(function(q){return q.q}).map(function(q){return{id:q.id,block:B[q.b],q:q.q}}),sentAt:new Date().toISOString()}));
  Object.keys(files).forEach(function(k){(files[k]||[]).forEach(function(f){fd.append(k,f,f.name)})});
- fetch(ENDPOINT,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.ok===false)throw new Error('x');return j})}).then(function(){sent=true;try{localStorage.setItem(KEY+'_sent','1')}catch(e){}render()}).catch(function(){btn.disabled=false;btn.textContent='Enviar e agendar a reunião';er.textContent='Não consegui enviar agora. Suas respostas estão salvas neste aparelho. Tente de novo em instantes.'})}
+ fetch(ENDPOINT,{method:'POST',body:fd}).then(function(r){return r.json().catch(function(){return{}}).then(function(j){if(!r.ok||j.ok===false)throw new Error('x');return j})}).then(function(){sent=true;try{localStorage.setItem(KEY+'_sent','1')}catch(e){}render()}).catch(function(){btn.disabled=false;btn.textContent='Enviar e agendar a reunião';er.textContent='Não consegui enviar agora (conexão com o servidor). Suas respostas estão salvas neste aparelho. Tente de novo em instantes.'})}
 function done(){$('#pg').style.width='100%';$('#stp').textContent='Dossiê enviado';app.innerHTML='<div class="k">Dossiê enviado</div><h1>Tarefa de casa feita.</h1><p>A equipe Zion recebe o seu dossiê antes da reunião. Agora escolha o melhor horário: é na reunião que a equipe apresenta o seu diagnóstico completo.</p>'+teaser()+'<div class="row"><a class="btn" href="'+AGENDAR+'">Agendar a minha reunião</a></div>';}
 render();
 })();
