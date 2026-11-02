@@ -146,3 +146,5 @@ Texto dos campeões ajustado à regra "te ajudamos" e sem "explodindo" ou "fatur
 | Checkout | CAMPEÃO RECRIADO · Carrossel terrenos · Form Checkout | `120250173525110016` |
 
 **Não recriados:** Carrossel AD3 e Video AD02 (público IMOB). São anúncios para imobiliárias parceiras, e o Raio-X e o checkout são ofertas para o dono do terreno. Os anúncios antigos "TROCAR form" seguem pausados e podem ser arquivados.
+
+**02/11 · Pausadas a pedido do Bruno** (ele está revisando os formulários): as campanhas Raio-X `120250113109820016` e Checkout `120250173411950016`. Só religar com o ok dele.
