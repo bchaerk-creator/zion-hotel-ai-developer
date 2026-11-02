@@ -540,14 +540,12 @@ var CONFIG={
     var back='<div class="navf"><button class="pill btn-s" id="redo">Refazer o diagnóstico prévio</button><span class="small" style="align-self:center">Leitura inicial, não é estudo de viabilidade.</span></div>';
     var legal='<p class="small" style="margin-top:8px">Não garante investidor, financiamento nem aprovação. A Zion avalia cada caso.</p>';
     if(t===1){
-      var oferta='<div class="nx hi" style="text-align:center;border:2px solid var(--gold)"><span class="mono">O seu próximo passo</span>'+
-        '<div style="font-family:var(--serif);font-size:56px;line-height:1;margin:8px 0 2px;color:var(--gold)">R$ 270</div>'+
-        '<p class="small" style="margin:0 0 6px">à vista ou 6x de R$ 45</p>'+
-        '<p style="color:var(--paper);margin:0 0 14px"><b>Kit Estratégico Zion:</b> sessão com a equipe, diagnóstico em PDF e o mapa do seu caso.</p>'+
-        '<a class="pill pill-gold" href="'+k270+'" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o Kit · R$ 270</span><span class="arr" aria-hidden="true">→</span></a><button class="link-u" data-go="2" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:12px auto 0">Ver o que vem no Kit</button><p class="small" style="margin-top:8px">Pagamento seguro. O agendamento abre assim que o pagamento é confirmado.</p></div>';
-      h=head+oferta+
-        '<div class="nx"><p style="color:var(--paper);margin:0 0 6px"><b>Identificamos o que você precisa:</b> '+X.d+'</p><h3 style="font-size:26px;line-height:1.15;margin:8px 0;color:var(--gold)">'+X.v+'</h3><p style="margin:0">'+X.f+'</p></div>'+
-        '<div class="nx"><p style="color:var(--paper);margin:0 0 4px"><b>✓ Primeiro passo feito: o diagnóstico.</b></p><span class="mono">Os próximos passos para destravar</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+X.l.map(function(x,i){return li(i+1,x)}).join('')+'</ul></div>'+
+      h=head+
+        '<div class="nx hi"><p style="color:var(--paper);margin:0 0 6px;font-size:19px"><b>✓ Você já fez o passo 1: o diagnóstico.</b></p><p style="margin:0">Para começar a transformar o seu terreno em um destino turístico, o próximo passo é a sessão estratégica com a equipe Zion. Identificamos o que você precisa: '+X.d+'</p></div>'+
+        '<div class="nx" style="border:2px solid var(--gold);background:rgba(224,190,94,.08)"><span class="mono" style="color:var(--gold)">Onde o seu projeto trava</span><h3 style="font-size:26px;line-height:1.15;margin:8px 0">'+X.v+'</h3><p style="color:var(--gold);font-weight:700;font-size:19px;margin:0">'+X.f+'</p></div>'+
+        '<div class="nx"><span class="mono">O que a sessão destrava para você</span><ul style="list-style:none;margin:8px 0 0;padding:0">'+X.l.map(function(x,i){return li(i+1,x)}).join('')+'</ul></div>'+
+        '<h3 style="text-align:center;font-size:26px;margin:18px 0 12px">Quer dar o próximo passo?</h3>'+
+        '<button class="pill pill-gold" data-go="2" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Quero o próximo passo</span><span class="arr" aria-hidden="true">→</span></button>'+
         '<div class="row" style="margin-top:12px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu diagnóstico em PDF ↓</button></div>';
     }else if(t===2){
       h='<div class="prog mono"><span>Próximo passo</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
