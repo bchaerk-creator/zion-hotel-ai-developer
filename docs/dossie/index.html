@@ -131,7 +131,7 @@ function result(){
   rows+='<span>'+blocks[b]+'</span><span class="pill '+w+'">'+(w==='ok'?'Em ordem':w==='warn'?'Atenção':'Crítico')+'</span>'});
  var top=fix.filter(function(x,i){return fix.indexOf(x)===i}).slice(0,5);
  return '<div class="card"><div class="k">O seu raio-x</div><div class="score" style="margin-top:10px">'+rows+'</div></div>'+(top.length?'<div class="card"><div class="k">O que precisa de ordem primeiro</div><ul class="fix">'+top.map(function(x){return '<li>'+esc(x)+'</li>'}).join('')+'</ul><p><b>Na reunião, a equipe Zion lê este raio-x com você e indica os próximos passos, na ordem certa.</b></p></div>':'<div class="card"><p>Seu raio-x está bem encaminhado. Na reunião, a equipe Zion aprofunda e indica os próximos passos.</p></div>')}
-function teaser(){var n=0,t=0;Q.forEach(function(q){if(!q.o)return;var v=sc(q);if(v==null)return;t++;if(v!=='ok')n++});return '<div class="card"><div class="k">O seu raio-x</div><h2>'+n+' ponto'+(n===1?'':'s')+' pedem atenção</h2><p>Você respondeu '+t+' perguntas. O diagnóstico completo, com a leitura de cada bloco e o plano de ação, é apresentado na sua reunião com a equipe Zion.</p></div>'}
+function teaser(){return '<div class="card"><div class="k">Diagnóstico de viabilidade</div><h2>O seu diagnóstico está sendo preparado</h2><p>Com base nas suas respostas, a equipe Zion monta a leitura do seu projeto: o que está em ordem, o que trava e qual é o caminho. Ele é apresentado por um especialista na sua reunião.</p></div>'}
 function send(){
  var er=$('#er');if(!st.a.consent){er.textContent='Marque a autorização para enviar.';return}
  var btn=$('#sd');btn.disabled=true;btn.textContent='Enviando...';
