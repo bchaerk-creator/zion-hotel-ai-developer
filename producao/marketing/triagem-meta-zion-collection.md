@@ -126,3 +126,9 @@ Campanha **[LAND BANK][LEADS][FORM → CHECKOUT] Inscrição R$ 270 [02/11]** ·
 Os conjuntos são cópia dos públicos frios campeões. Para o checkout, o ideal é trocar o público para quente (envolvimento com a página/Instagram em 180 dias, quem viu 50% dos vídeos, cadastros antigos).
 
 Link: https://adsmanager.facebook.com/adsmanager/manage/ads?act=1271873041294684&selected_campaign_ids=120250173411950016
+
+## 02/11 · Teste Raio-X × Checkout no ar
+
+- As duas campanhas estão ativas, cada uma com **R$ 20/dia** no conjunto Investidor 30-60: Raio-X `120250113155280016` e Checkout `120250173412720016`.
+- Ativos: os 4 carrosséis (v2 e v3 em cada campanha). Pausados: os campeões com formulário antigo e os conjuntos IMOB.
+- Critério de comparação (5 a 7 dias): custo por cadastro, % de cadastros que fazem o Raio-X ou pagam, e **custo por inscrição paga (R$ 270)**, que é o que decide.
