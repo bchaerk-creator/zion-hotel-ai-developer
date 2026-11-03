@@ -193,3 +193,9 @@ A campanha de clique para o WhatsApp `120250180459720016` ficou vazia, porque o 
 - Total da conta com tudo ligado: **R$ 120/dia**, sendo R$ 40 do Diagnóstico, R$ 40 do Checkout e R$ 40 do WA-SDR.
 
 **03/11 · WA-SDR PAUSADA a pedido do Bruno:** o formulário `3609977235810279` ainda precisa ser ligado à Zaia (agente do WhatsApp). Religar a campanha `120250180499050016` quando ele avisar.
+
+## 03/11 (manhã) · Ajuste de verba (ok do Bruno)
+
+- **Brasil · Checkout** `120250173412720016` passou de R$ 20 para **R$ 40/dia**. Até aqui teve o melhor custo por lead: 5 leads por R$ 12,91, ou R$ 2,58 cada.
+- **Destinos turísticos · Checkout** `120250176378690016` foi **pausado**: R$ 6,40 gastos e 0 leads.
+- Total no ar: **R$ 80/dia**, sendo Brasil Diagnóstico R$ 20, Brasil Checkout R$ 40 e Destinos Diagnóstico R$ 20. A WA-SDR segue pausada até a conexão com a Zaia.
