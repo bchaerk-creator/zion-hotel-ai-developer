@@ -74,3 +74,13 @@ Texto: "Vem conhecer por dentro a Zion Bubble Floripa. ✨ / Uma bubble transpar
 
 ⚠ O vídeo do pitch tem na fala e na legenda "marca nacionalmente reconhecida como **líder** no setor de glamping no Brasil" e "modelo com **alta rentabilidade**". O Meta pode reprovar, e é uma promessa difícil de sustentar. Não dá para corrigir no texto: está gravado no vídeo.
 O anúncio criado por engano na BRUNO 01 (`120257672434650091`) está pausado e com o nome "NÃO USAR".
+
+## Adicionado em 03/11 · Zion Collection · Land Bank → Checkout (conjunto Investidor 30-60)
+
+| Anúncio | ID | Vídeo | Texto | Formulário | Status |
+|---|---|---|---|---|---|
+| VIDEO · Pitch parceiro | `120250175735220016` | `1116827621080306` | C2 com o preço de R$ 270 | Checkout `1128299000065062` ✅ | ⏸ pausado |
+| VIDEO · Tour Floripa e serra | `120250175735730016` | `1931636497814905` | C1 com o preço de R$ 270 | Checkout ✅ | ⏸ pausado |
+| VIDEO · Tour apresentadora | `120250175735930016` | `1660255505558770` | C3 com o preço de R$ 270 | Checkout ✅ | ⏸ pausado |
+
+Formulário Checkout (print do Bruno, 03/11): 1 cadastro "sem segmentar" e "recuperação de cadastros sem segmentar" desativada. É provável que o WhatsApp de 03/11 tenha vindo deste formulário, no período em que a campanha de Checkout ficou ligada (R$ 0,07), e não só da Validação.
