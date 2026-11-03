@@ -217,6 +217,7 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
 .zword b{font-weight:700;letter-spacing:.06em}
 .brand,.zx-brand{gap:12px}
 .rx-video{margin:28px 0 0}.rx-video video{display:block;width:100%;aspect-ratio:16/9;border-radius:16px;border:1px solid var(--line);background:#000}.rx-video figcaption{margin-top:8px;font-size:12.5px;opacity:.7}
+.car{display:flex;gap:10px;width:100%;min-width:0;max-width:calc(100vw - 32px);contain:inline-size;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;padding-bottom:6px;scrollbar-width:none}.car::-webkit-scrollbar{display:none}.car-i{flex:0 0 78%;margin:0;scroll-snap-align:start}.car-i img{width:100%;height:220px;object-fit:cover;border-radius:14px;display:block}.car-i figcaption{font-size:12px;opacity:.75;margin-top:6px}.car-v{position:relative;contain:inline-size;padding-top:177.7%;max-height:640px;border-radius:14px;overflow:hidden;margin:0 0 10px;background:#000}.car-v iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
 </style>
 <style>.hm{--deep:#0F1D15;--forest:#16261C;--panel:#1C3024;--line:rgba(244,236,222,.14);--paper:#F4ECDE;--mute:rgba(244,236,222,.72);--gold:#E0BE5E;--gold2:#C9A548;--f-d:"Playfair Display",Georgia,serif;--f-b:Inter,system-ui,-apple-system,sans-serif;background:var(--forest);color:var(--paper);font:300 17px/1.65 var(--f-b)}
 .hm *{box-sizing:border-box}.hm a{color:inherit;text-decoration:none}.hm img{display:block;max-width:100%}.hm p{margin:0 0 12px}
@@ -406,6 +407,7 @@ var CONFIG={
   checkoutTrilha:'https://www.asaas.com/000/c/zrhq4rk88iyta3id', /* inscrição Land Bank: o link é enviado pela Zaya no WhatsApp; não aparece no site */
   checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   zap:'https://wa.me/554861371061?text=',
+  prova:{video:'',siteBubble:''},
   inscricao:{preco:'R$ 97',valor:97,link:'https://www.asaas.com/000/c/zrhq4rk88iyta3id'}, /* teste do checkout direto: para R$ 47, troque preco, valor e (se mudar) o link */
   checkout47:'', /* link Asaas do material R$ 47: vazio = a oferta de R$ 47 fica oculta */
   precoTrilha:'R$ 97',
@@ -692,8 +694,20 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
           '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Investidor não compra terreno. Compra projeto.</b>'+
           '<p style="margin:6px 0 0">Assessorias cobram caro para preparar o que um investidor pede para ver. Aqui você começa por '+INS.preco+', com o know-how de quem opera hospedagem desde 2020: <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu projeto</b>, o lugar, o produto, a conta e quem opera.</p>'+
         '</div>'+
-        '<span class="mono" style="display:block;margin:16px 0 8px;color:var(--gold)">Veja os nossos projetos</span>'+
-        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><img src="'+IM+'store/img/noite.webp" alt="Bubble Zion à noite" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/dentro.webp" alt="Por dentro da Bubble" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/hospede.webp" alt="Hóspede na Bubble Zion" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"></div>'+
+        '<span class="mono" style="display:block;margin:18px 0 6px;color:var(--gold)">Conheça as nossas operações</span>'+
+        '<p class="small" style="margin:0 0 10px">Hóspedes vivendo a Zion hoje, em operação própria. Arraste para o lado.</p>'+
+        (CONFIG.prova.video?'<div class="car-v"><iframe src="'+CONFIG.prova.video+'" title="Zion Collection" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>':'')+
+        '<div class="car">'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/floripa-aerea-dia.webp" alt="Bubble Zion vista de cima, com deck e ofurô" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Bubble Zion vista de cima, com deck e ofurô</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/urubici-ofuro.webp" alt="Hóspede no ofurô do deck, no meio da mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Hóspede no ofurô do deck, no meio da mata</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/floripa-anoitecer.webp" alt="Bubble iluminada ao anoitecer" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Bubble iluminada ao anoitecer</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/urubici-cafe.webp" alt="Interior da unidade Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Interior da unidade Zion</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/floripa-noite-piscina.webp" alt="Banheira com vista para a mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Banheira com vista para a mata</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/urubici-manha.webp" alt="Amanhecer na Bubble Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Amanhecer na Bubble Zion</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/floripa-aerea-noite.webp" alt="Duas unidades Zion integradas à mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Duas unidades Zion integradas à mata</figcaption></figure>'+
+        '<figure class="car-i"><img src="https://zionhotelgroup.com/img/bubble-mata.webp" alt="Bubble transparente na mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Bubble transparente na mata</figcaption></figure>'+
+        '</div>'+
+        (CONFIG.prova.siteBubble?'<a class="pill btn-s" href="'+CONFIG.prova.siteBubble+'" target="_blank" rel="noopener" style="display:flex;justify-content:center;min-height:46px;font-size:15px;text-decoration:none;margin:10px 0 0">Site da Zion Bubble Glamping ↗</a>':'')+
         '<div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0">'+
           '<a class="pill btn-s" href="https://zionhotelgroup.com/collection" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;min-height:46px;font-size:15px;text-decoration:none">As operações da Zion ↗</a>'+
           '<a class="pill btn-s" href="https://instagram.com/zionglampingcollection" target="_blank" rel="noopener" style="flex:1;justify-content:center;min-height:46px;font-size:13px;text-decoration:none">@zionglampingcollection</a>'+
