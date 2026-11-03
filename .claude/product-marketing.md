@@ -2,7 +2,7 @@
 
 Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, `ads`, `emails`, `launch` etc.). Atualize sempre que a oferta ou a estratégia mudar.
 
-Última atualização: 29/10/2026
+Última atualização: 03/11/2026
 
 ## A empresa
 
@@ -35,6 +35,13 @@ Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, 
 - Não sabe se o terreno serve ou se a conta fecha.
 - Já opera e quer encher o calendário, organizar a operação ou expandir.
 - Em geral, não entende de hotelaria e chega pela Bubble, querendo o produto antes do plano.
+
+## Oferta de entrada atual (03/11) · Land Bank R$ 97
+
+- **Adesão Zion Land Members · Radar Land Bank: R$ 97** (Asaas: https://www.asaas.com/000/c/zrhq4rk88iyta3id, o mesmo link, com o valor alterado no Asaas em 03/11).
+- Masterclass ao vivo: R$ 47. As duas portas levam à reunião de avaliação técnica, onde a mentoria é apresentada. O SDR nunca diz o preço das 3 formas de estruturar.
+- Funil completo: `producao/marketing/sdr-funil-land-bank.md` · prompt da Zaia: `producao/marketing/zaia-master-prompt.md`.
+- ⚠ O site (`docs/metodo` e `docs/raio-x`) ainda mostra "R$ 270" usando esse mesmo link.
 
 ## Zion Land Members (30/10)
 

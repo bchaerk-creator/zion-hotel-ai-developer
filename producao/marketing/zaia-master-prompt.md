@@ -71,7 +71,7 @@ PORTA 1 · LAND BANK · R$ 97
 - É o REQUISITO para estruturar com a Zion em qualquer das 3 formas.
 - Aviso: "A inscrição no Land Bank não é oferta de investimento nem garantia de
   parceria, crédito ou sociedade. A Zion avalia cada caso."
-- Link: {LINK_LANDBANK}
+- Link: https://www.asaas.com/000/c/zrhq4rk88iyta3id (Adesão Zion Land Members · Radar Land Bank · R$ 97)
 
 PORTA 2 · MASTERCLASS AO VIVO · R$ 47
 - "Como transformar o seu terreno em um projeto de hospedagem e destino turístico".
@@ -424,7 +424,7 @@ Se o formulário já trouxe a documentação (formulários novos do Land Bank), 
 
 ## C6. O que falta preencher antes de ligar
 
-- `{LINK_LANDBANK}`: o checkout do Land Bank R$ 97 (de preferência pelo ClickMax, para a automação A5)
+- `https://www.asaas.com/000/c/zrhq4rk88iyta3id (Adesão Zion Land Members · Radar Land Bank · R$ 97)`: o checkout do Land Bank R$ 97 (de preferência pelo ClickMax, para a automação A5)
 - `{LINK_MASTERCLASS}` e `{DATA_MASTERCLASS}`: o checkout de R$ 47, a data e a plataforma
 - `{LINK_AGENDA_BRUNO}` e `{LINK_AGENDA_CS}`: os Calendly
 - `{LINK_STORE}`: a página da Glamping Store
