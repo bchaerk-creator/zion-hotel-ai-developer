@@ -168,7 +168,7 @@ O conjunto Investidor 30-60 estava restrito a PR, RS, SC e SP. Agora são 4 conj
 
 **Regiões novas:** as cidades que já estão na lista das 67 podem ser usadas direto. Para incluir outras, é preciso adicioná-las no Gerenciador de Anúncios, porque o Windsor não busca a chave de localização do Meta.
 
-## 03/11 · Teste: formulário do Meta → WhatsApp (robô SDR) · PAUSADO
+## 03/11 · Teste: formulário do Meta → WhatsApp (robô SDR) · LIGADO (teste de 1 dia)
 
 - **Campanha `120250180499050016`:** [LAND BANK][LEADS][FORM → WHATSAPP SDR] [03/11].
 - **Formulário `3609977235810279`:** "[360] Avaliação Oficial de Potencial Turístico do Terreno – Collection-WhatsApp". A tela final leva ao WhatsApp. Com o VIDEO terrenos, gerou 5 leads por R$ 20,77 nos últimos 7 dias.
@@ -184,3 +184,10 @@ O conjunto Investidor 30-60 estava restrito a PR, RS, SC e SP. Agora são 4 conj
 | CAMPEÃO VIDEO Investidores | `120250180510990016` | `120250180512600016` |
 
 A campanha de clique para o WhatsApp `120250180459720016` ficou vazia, porque o número 48 6137-1061 não está vinculado à página.
+
+**Atualização 03/11 · ligado pelo ok do Bruno ("rodar 1 dia")**
+
+- Os 2 conjuntos agora têm os mesmos 7 criativos das campanhas Land Bank, mais o VIDEO terrenos original: 8 anúncios por conjunto, todos com o formulário `3609977235810279`.
+- Anúncios do conjunto Brasil: `120250180505350016`, `120250180510990016`, `120250180526360016`, `120250180528990016`, `120250180530820016`, `120250180538330016`, `120250180545410016`, `120250180549720016`.
+- Anúncios do conjunto Destinos: `120250180506450016`, `120250180512600016`, `120250180527470016`, `120250180529970016`, `120250180532890016`, `120250180542530016`, `120250180549100016`, `120250180550480016`.
+- Total da conta com tudo ligado: **R$ 120/dia**, sendo R$ 40 do Diagnóstico, R$ 40 do Checkout e R$ 40 do WA-SDR.
