@@ -1,5 +1,7 @@
 # SDR Zion Collection · Qualificação, ofertas e objeções
 
+> **Atualização 03/11:** a reunião passou a ser **só para membros do Land Bank** (a adesão inclui a sessão de consultoria). O fluxo completo, com webinar, upsell e downsell, está em `sdr-funil-land-bank.md`. Os perfis e a nota abaixo continuam valendo, mas agora servem para **personalizar o convite e definir quem faz a sessão**.
+
 Para o chatbot e a Zaia (agente de IA) · 03/11/2026 · Versão 1, para revisão do Bruno
 
 Base de dados: **424 leads reais** dos formulários do Meta nos últimos 90 dias (página Zion Glamping Collection), sem contar os testes. O Meta só guarda leads por 90 dias.
