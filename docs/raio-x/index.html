@@ -408,7 +408,7 @@ var CONFIG={
   checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   zap:'https://wa.me/554861371061?text=',
   prova:{video:'',siteBubble:''},
-  inscricao:{preco:'R$ 97',valor:97,link:'https://www.asaas.com/000/c/zrhq4rk88iyta3id'}, /* teste do checkout direto: para R$ 47, troque preco, valor e (se mudar) o link */
+  inscricao:{preco:'R$ 97',valor:97,parcelas:2,parcela:'R$ 48,50',link:'https://www.asaas.com/000/c/zrhq4rk88iyta3id'}, /* teste do checkout direto: para R$ 47, troque preco, valor e (se mudar) o link */
   checkout47:'', /* link Asaas do material R$ 47: vazio = a oferta de R$ 47 fica oculta */
   precoTrilha:'R$ 97',
   precoPacote:'R$ 890'
@@ -647,7 +647,7 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
     var legal='<p class="small" style="margin-top:8px">Não garante investidor, financiamento nem aprovação. A Zion avalia cada caso.</p>';
     var bl=function(ic,tt,tx){return '<div style="display:flex;gap:14px;align-items:flex-start;padding:16px;margin:10px 0;border:1px solid rgba(224,190,94,.45);border-left:4px solid var(--gold);border-radius:14px;background:rgba(224,190,94,.06)"><span style="font-size:30px;line-height:1">'+ic+'</span><span><b style="display:block;color:var(--paper);font-size:19px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:4px;font-size:15px;line-height:1.4">'+tx+'</span></span></div>'};
     var blocos=bl('🎓','O passo a passo do Marco Zero','Aulas interativas e vídeos curtos que levam o seu terreno de endereço a destino turístico.')+bl('📘','E-book Panorama do Desenvolvimento Hoteleiro','Liberado na hora do pagamento.')+bl('📝','O seu dossiê prévio','A tarefa de casa que organiza o terreno, o público, a conta e quem vai operar.')+bl('🏔','Boas-vindas ao Clube Zion Land','O seu terreno no radar da Zion, com condições exclusivas nos produtos Zion.')+bl('📅','Reunião estratégica online com a equipe Zion','Por último, com o seu dossiê em mãos: o diagnóstico estratégico e o mapa do seu caso.')+bl('📝','O resumo da reunião no seu e-mail','Com o que foi combinado e os próximos passos.');
-    var INS=CONFIG.inscricao,pago=INS.link,nm0=((r.contato||{}).nome||'').split(' ')[0];
+    var INS=CONFIG.inscricao,PTX=(INS.parcelas>1?INS.parcelas+'x de '+INS.parcela:INS.preco),pago=INS.link,nm0=((r.contato||{}).nome||'').split(' ')[0];
     var btnPagar=function(txt,big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?76:66)+'px;font-size:'+(big?20:19)+'px;font-weight:700;padding:12px 14px 12px 28px;text-decoration:none"><span>'+txt+'</span><span class="arr" aria-hidden="true">→</span></a>'};
     var btnDuvida='<a class="pill btn-s" href="'+inscreverURL(r)+'" target="_blank" rel="noopener" style="display:flex;justify-content:center;align-items:center;width:100%;min-height:54px;margin-top:10px;font-size:16px;font-weight:600;text-decoration:none">Tenho uma dúvida · enviar meu diagnóstico no WhatsApp</a>';
     var it=function(n,tt,tx,qd){return '<li style="display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line)"><span style="flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#0d1710;display:grid;place-items:center;font-weight:800">'+n+'</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:3px;font-size:14.5px;line-height:1.4">'+tx+'</span><span class="mono" style="display:block;margin-top:4px;color:var(--gold);font-size:11px">'+qd+'</span></span></li>'};
@@ -662,7 +662,7 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
       '</ul>';
     if(t===1){
       h=head+
-        '<div class="nx hi" style="text-align:center"><p style="color:var(--paper);margin:0;font-size:22px"><b>'+(nm0?esc(nm0)+', o':'O')+' seu resultado está pronto.</b></p><p class="small" style="margin:8px 0 0">O próximo passo é a sua inscrição no Zion Land Bank: o mapa do seu caso, os e-books, a masterclass e a reunião com a equipe Zion, por '+INS.preco+'.</p></div>'+
+        '<div class="nx hi" style="text-align:center"><p style="color:var(--paper);margin:0;font-size:22px"><b>'+(nm0?esc(nm0)+', o':'O')+' seu resultado está pronto.</b></p><p class="small" style="margin:8px 0 0">O próximo passo é a sua inscrição no Zion Land Bank: o mapa do seu caso, os e-books, a masterclass e a reunião com a equipe Zion, por '+PTX+'.</p></div>'+
         '<button type="button" data-go="2" class="pill pill-gold" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px;border:0;cursor:pointer"><span>Quero fazer parte · ver a inscrição</span><span class="arr" aria-hidden="true">→</span></button>'+
         btnDuvida+
         '<div class="row" style="margin-top:14px;justify-content:center"><button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:14px">Ver o meu resultado completo</button></div>';
@@ -678,8 +678,11 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
         '</div>'+
         '<p class="lead" style="margin:12px 0 0">Transforme o seu terreno em destino turístico, com o projeto que investidores, sócios e a própria Zion pedem para ver. <b style="color:var(--paper)">Estamos selecionando as melhores áreas do Brasil para a expansão da Zion, e a sua pode ser a próxima.</b></p>'+
         '<div class="nx hi" style="text-align:center;border:2px solid var(--gold);margin-top:14px">'+
-          '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição · pagamento único</p>'+
-          '<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>'+cta(true)+
+          '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição</p>'+
+          (INS.parcelas>1
+            ?'<div style="font-family:var(--serif);line-height:1;margin:8px 0 4px;color:var(--gold);white-space:nowrap"><span style="font-size:24px">'+INS.parcelas+'x de </span><span style="font-size:50px">'+INS.parcela+'</span></div>'+
+             '<p class="small" style="margin:0 0 12px;opacity:.7;font-size:12px">ou '+INS.preco+' à vista</p>'
+            :'<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>')+cta(true)+
           '<p class="small" style="margin:10px 0 0">Pix ou cartão, pelo Asaas. Use o e-mail do diagnóstico. Logo depois do pagamento você escolhe o dia da sua reunião.</p>'+
         '</div>'+
         '<p style="margin:18px 0 8px;color:var(--paper);font-size:17px"><b>Para prosseguir, faça a sua inscrição no Clube Zion Land Bank.</b> É ela que dá acesso a:</p>'+
@@ -692,7 +695,7 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
         '<p class="small" style="margin:8px 0 0;text-align:center">+ e-books do Marco Zero e do Glamping · masterclass ao vivo com o Bruno</p>'+
         '<div class="nx" style="margin-top:16px;border:1px solid rgba(224,190,94,.45);background:rgba(224,190,94,.06)">'+
           '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Investidor não compra terreno. Compra projeto.</b>'+
-          '<p style="margin:6px 0 0">Assessorias cobram caro para preparar o que um investidor pede para ver. Aqui você começa por '+INS.preco+', com o know-how de quem opera hospedagem desde 2020: <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu projeto</b>, o lugar, o produto, a conta e quem opera.</p>'+
+          '<p style="margin:6px 0 0">Assessorias cobram caro para preparar o que um investidor pede para ver. Aqui você começa por '+PTX+', com o know-how de quem opera hospedagem desde 2020: <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu projeto</b>, o lugar, o produto, a conta e quem opera.</p>'+
         '</div>'+
         '<span class="mono" style="display:block;margin:18px 0 6px;color:var(--gold)">Conheça as nossas operações</span>'+
         '<p class="small" style="margin:0 0 10px">Hóspedes vivendo a Zion hoje, em operação própria. Arraste para o lado →</p>'+
