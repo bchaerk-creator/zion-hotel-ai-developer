@@ -4,7 +4,9 @@ Versão 2 · 03/11/2026 · Para revisão do Bruno. Os perfis A a F e a nota de `
 
 ## 1. O princípio
 
-O SDR **não fala de mentoria nem de preço de mentoria**. Ele vende **uma de duas portas de entrada**, e as duas levam à **reunião de vendas**:
+> **Atualização v3 (03/11):** o SDR **pode e deve falar das formas de estruturar** (feito por você, feito com você, você faz sozinho com as trilhas), com conhecimento de causa, mas **nunca diz o preço delas**. O preço vem só depois da **avaliação técnica na reunião**. O SDR deixa claro que **o requisito para estruturar com a Zion é ser membro do clube** (Land Bank). Para separar curiosos de interessados, ele usa vídeos da Zion Collection, resultados de faturamento, cases e os produtos. Ver as seções 11 a 14.
+
+O SDR só diz o preço das portas de entrada. Ele vende **uma de duas portas**, e as duas levam à **reunião de vendas**:
 
 | Porta | O que é | Preço | O que dá para a pessoa |
 |---|---|---|---|
@@ -190,3 +192,94 @@ Gera o novo diagnóstico na hora.
 3. A agenda da reunião (dias e horários) e quem conduz.
 4. O Formulário de Competitividade: monto no ClickMax com as 8 perguntas acima.
 5. A mensalidade de R$ 47 do Land Bank continua, ou o R$ 47 agora é só da Masterclass?
+
+---
+
+## 11. O que o SDR precisa saber: as 3 formas de estruturar
+
+O SDR fala das 3 formas **para cada caso**, sabendo do que está falando. **A regra de ouro: estruturar com a Zion, em qualquer das 3 formas, exige ser membro do clube.**
+
+| | **Você faz sozinho** | **Feito com você** | **Feito por você** |
+|---|---|---|---|
+| O que é | As **trilhas gravadas** do Método Zion 360°: Marco Zero e 7 pilares, com e-books, simuladores e o mentor de IA que monta o Dossiê | **Mentoria**: você estrutura com o acompanhamento do Bruno e do time, sem errar a ordem | **Estruturação pela equipe Zion**: o time conduz o projeto (lugar, produto, desenho, conta e Dossiê) e você aprova as decisões |
+| Para quem | Quem tem tempo, gosta de aprender e tem um projeto mais simples | Quem quer fazer certo da primeira vez e ter alguém experiente do lado | Quem não tem tempo, tem uma área grande ou prefere que uma empresa especializada conduza |
+| Perfil típico | E, B | A, B, C, D | A, F, D (expansão grande) |
+| Como o SDR apresenta | "Você mesmo, no seu ritmo, com o nosso método." | "Você do lado de quem já fez: a gente te ajuda a não errar a ordem." | "O nosso time conduz e você decide." |
+| Preço | **Nunca no SDR.** Só depois da avaliação técnica na reunião. | **Nunca no SDR.** | **Nunca no SDR.** |
+
+**Como explicar a regra do clube:**
+> Qualquer uma das três formas começa do mesmo jeito: a sua área entra no **Land Bank**, o banco de projetos e áreas turísticas da Zion Collection. É ali que a gente faz a **avaliação técnica** da sua área. Com ela, mostramos qual das três formas faz sentido para o seu caso e quanto custa cada uma. Sem a avaliação, qualquer preço seria chute, e a gente não trabalha assim.
+
+**Quando perguntarem o preço da mentoria ou da estruturação:**
+> Depende do tamanho da área, do estágio e do que você quer construir. Por isso a gente não passa valor sem a avaliação técnica: seria injusto com você. O que posso te dizer é que existe caminho para os três perfis, de quem faz sozinho até quem quer tudo conduzido. Na reunião você recebe o diagnóstico com o plano de ação e as opções com valores. Quer garantir a sua?
+
+---
+
+## 12. Curioso ou interessado? (a régua de sinais)
+
+O SDR **não insiste igual com todo mundo**. Ele mede o interesse pelo que a pessoa **faz**, não pelo que ela diz.
+
+| Sinal | Pontos |
+|---|---|
+| Respondeu às 3 travas | +2 |
+| Respondeu às perguntas SPIN (implicação e necessidade) com texto ou áudio | +3 |
+| Assistiu ao vídeo enviado (respondeu sobre ele) | +2 |
+| Mandou fotos, localização ou documentos do terreno | **+4** |
+| Perguntou "como funciona", "quanto custa", "quando começa" | +3 |
+| Disse "vou falar com meu sócio/esposa" | +1 (marcar para a reunião com os dois) |
+| Respostas de uma palavra, sem pergunta de volta | −1 |
+| Sumiu depois do diagnóstico grátis | −2 |
+| "Só estou olhando" / "só curiosidade" | −3 |
+
+- **Interessado:** 6 pontos ou mais. Empurrar a porta (Land Bank) e a reunião.
+- **Morno:** de 2 a 5. Mandar mais 1 conteúdo de sedução e oferecer a Masterclass.
+- **Curioso:** menos de 2. Vai para a nutrição (conteúdo semanal + convite para a próxima Masterclass). Não gasta o tempo do closer.
+
+---
+
+## 13. A régua de sedução (o que mandar e quando)
+
+Cada conteúdo tem **um objetivo** e termina com **uma pergunta**, para medir o interesse.
+
+| Momento | Conteúdo | Arquivo / fonte | Gatilho | Pergunta no final |
+|---|---|---|---|---|
+| Logo depois das 3 travas | **Vídeo Tour Zion Collection** (Floripa + serra) | `producao/marketing/videos/collection-tour-floripa-serra-720.mp4` | Desejo / futuro desejado | "Imagina a sua área assim. Qual dessas experiências mais combina com o seu terreno?" |
+| Junto com o diagnóstico grátis | **O case da Zion em números** | `.claude/product-marketing.md` | Prova / autoridade | "O que mais te chamou atenção?" |
+| Se o perfil for C ou E | **Vídeo do Bruno: "Ter a terra sem projeto é deixar o lucro para depois"** | vídeo campeão Investidores | Colapso de crença | "Faz sentido para você?" |
+| Se o perfil for A, D ou F | **Vídeo Pitch parceiro Zion** | `producao/marketing/videos/collection-pitch-parceiro-720.mp4` | Pertencimento / parceria | "Você se vê como parceiro Zion?" |
+| Quando perguntar "o que eu construo?" | **Os produtos:** Bubble Suite (27,6 m²) e Suite Premium (40,1 m²) na Glamping Store | `docs/store/index.html` | Tangibilidade | "Você já imaginou uma dessas na sua área?" |
+| Quando disser "não tenho dinheiro" | **"Sócio entra em projeto, não em terreno"** + a estrutura do Dossiê | Land Bank | Reencadramento | "Se o dinheiro existe, o que falta é o projeto. Concorda?" |
+| +24 h sem decisão | **Depoimento / case de cliente** | *falta: o Bruno enviar* | Prova social | "Quer ser o próximo case?" |
+| Antes de a janela fechar | **Convite para a Masterclass ao vivo** | — | Escassez real | "Guardo a sua vaga?" |
+
+**O case da Zion em números (o texto que o SDR pode enviar):**
+> 📊 **O case da Zion Bubble Glamping**
+> • 2 sedes em 2 biomas, operando desde 2020
+> • Booking 9,6 · Airbnb 5/5 Superhost · Expedia 10 · Google 4,7
+> • Na operação da Zion, uma cabana chegou perto de **R$ 400 mil em um ano** (hospedagem + serviços)
+> • **60% de ocupação média** em 5 anos · **diária média de R$ 1.571**
+> *Este é o case da operação da Zion. Não é promessa de resultado: cada área tem a sua conta, e é isso que a avaliação técnica mostra.*
+
+---
+
+## 14. A conversa completa do SDR (resumo)
+
+1. **Rapport + 3 travas** → +2 na régua.
+2. **Vídeo Tour Collection** + a pergunta do desejo.
+3. **Perguntas SPIN** (implicação e necessidade).
+4. **Diagnóstico grátis por escrito** + **o case da Zion em números**.
+5. **As 3 formas de estruturar** (seção 11), adaptadas ao perfil e **sem preço**: "Qual dessas se parece mais com você?"
+6. **A regra do clube:** "Qualquer forma começa pelo Land Bank, onde fazemos a avaliação técnica."
+7. **A porta:** Land Bank (interessados) ou Masterclass (mornos), com escolha entre dois sins.
+8. **A reunião:** avaliação técnica → novo diagnóstico + plano de ação → **as 3 formas com preço** → fechamento.
+9. **Curiosos** → nutrição + Masterclass.
+
+**Regras extras desta versão:**
+- **Resultados de faturamento:** só os números da **operação da Zion**, sempre com "o case da Zion, não é promessa de resultado". Nunca dizer "você vai faturar".
+- **Cases de clientes:** só com **autorização por escrito** do cliente. Enquanto o Bruno não enviar os cases autorizados, usar apenas o case da Zion.
+- **Produtos:** preços da Store só quando a pessoa pedir especificamente o produto (não é preço de estruturação). Condição à vista válida até 30/11/2026.
+
+**O que falta do Bruno para esta versão:**
+1. **Cases de clientes** com autorização (nome, região, antes e depois, frase).
+2. **Vídeo curto do Bruno** explicando as 3 formas de estruturar, de cerca de 60 segundos, para o SDR enviar.
+3. Confirmar que **as 3 formas** são exatamente: trilhas gravadas = você faz sozinho; mentoria = feito com você; estruturação pela equipe = feito por você.
