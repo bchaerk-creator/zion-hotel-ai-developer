@@ -63,3 +63,14 @@ Formulários:
 
 Vídeo na biblioteca: `992861006542567` (`producao/marketing/videos/tour-floripa-apresentadora.mp4`, 45 s, sem marca d'água).
 Texto: "Vem conhecer por dentro a Zion Bubble Floripa. ✨ / Uma bubble transparente no meio da mata, com piscina privativa, jacuzzi, banheiro completo e um café da manhã servido no deck. / De dia, o sol na piscina. À noite, a cama olhando para o céu. / Toque em “Saiba mais” e veja as datas disponíveis." · Título: "Conheça a sua bolha antes de chegar".
+
+## Adicionado em 03/11 · Zion Collection · Land Bank → Raio-X (conjunto Investidor 30-60)
+
+| Anúncio | ID | Vídeo | Texto | Formulário | Status |
+|---|---|---|---|---|---|
+| VIDEO · Pitch parceiro | `120250175513690016` | `1116827621080306` (45 s, legendado) | C2 · Seja um parceiro Zion | Raio-X ✅ | ⏸ pausado |
+| VIDEO · Tour Floripa e serra | `120250175514760016` | `1931636497814905` (63 s) | C1 · Refúgio de luxo natural | Raio-X ✅ | ⏸ pausado |
+| VIDEO · Tour apresentadora | `120250175515430016` | `1660255505558770` (45 s) | C3 · Curto | Raio-X ✅ | ⏸ pausado |
+
+⚠ O vídeo do pitch tem na fala e na legenda "marca nacionalmente reconhecida como **líder** no setor de glamping no Brasil" e "modelo com **alta rentabilidade**". O Meta pode reprovar, e é uma promessa difícil de sustentar. Não dá para corrigir no texto: está gravado no vídeo.
+O anúncio criado por engano na BRUNO 01 (`120257672434650091`) está pausado e com o nome "NÃO USAR".
