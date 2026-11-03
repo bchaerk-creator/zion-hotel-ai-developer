@@ -120,6 +120,31 @@ footer{padding:36px 0 110px;border-top:1px solid var(--line);font-size:12.5px;co
 .bar .t{flex:1;font-size:13px;line-height:1.3;color:var(--muted)}
 .bar .t b{display:block;color:var(--paper);font-size:15px}
 .bar a{flex:0 0 auto;min-height:48px;display:flex;align-items:center;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:800;padding:0 20px;text-decoration:none}
+.vid{position:relative;max-width:360px;margin:18px auto 0;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:#000;aspect-ratio:9/16}
+.vid video{width:100%;height:100%;object-fit:cover;display:block}
+.ent{display:grid;gap:16px;margin:20px 0 0}
+.ent .c{background:var(--panel);border:1px solid var(--line);border-radius:20px;overflow:hidden}
+.ent .c .tx{padding:14px 16px 16px}
+.ent .c .tx b{display:block;font-size:18px;line-height:1.3;color:var(--paper)}
+.ent .c .tx>span{display:block;font-size:14.5px;color:var(--muted);margin-top:4px}
+.ent .c .tx span span{display:inline;margin:0}
+.ent .tag{font-family:var(--mono);font-size:11px;letter-spacing:.16em;color:var(--gold);text-transform:uppercase}
+.ent .ph{position:relative}
+.ent .ph img{width:100%;display:block}
+.live{position:absolute;left:10px;top:10px;display:inline-flex;align-items:center;gap:6px;background:#e5484d;color:#fff;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 8px}
+.live i{width:6px;height:6px;border-radius:50%;background:#fff}
+.zoom{position:absolute;right:10px;top:10px;background:rgba(0,0,0,.6);color:#fff;font-size:11px;border-radius:6px;padding:4px 8px}
+.capas{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 16px 0;background:radial-gradient(circle at 50% 30%,#24402e,#14241a)}
+.capas img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px 10px 10px 6px;box-shadow:-6px 10px 22px rgba(0,0,0,.55),inset 3px 0 0 rgba(255,255,255,.08);transform:perspective(600px) rotateY(8deg)}
+.capas img+img{transform:perspective(600px) rotateY(-8deg)}
+.mapa{padding:14px;background:#14241a}
+.mapa img{border-radius:10px;box-shadow:0 10px 26px rgba(0,0,0,.5)}
+.lb .pin{position:absolute;left:50%;top:44%;transform:translate(-50%,-100%);display:flex;flex-direction:column;align-items:center}
+.lb .pin span{background:var(--gold);color:var(--ink);font-weight:800;font-size:12.5px;border-radius:999px;padding:6px 12px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.lb .pin i{width:2px;height:22px;background:var(--gold)}
+.lb .pin i:after{content:"";display:block;width:12px;height:12px;border-radius:50%;background:var(--gold);margin:20px 0 0 -5px;box-shadow:0 0 0 6px rgba(224,190,94,.3)}
+.lb .card{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(14,26,19,.9);border:1px solid var(--gold);border-radius:14px;padding:10px 12px;font-size:13px;color:var(--paper)}
+.lb .card b{color:var(--gold)}
 @media (min-width:760px){.hero{min-height:86svh}.car figure{flex-basis:46%}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -157,6 +182,14 @@ var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
   <h2>Ninguém paga para dormir num terreno. <em>Paga por uma experiência.</em></h2>
   <p class="lead">O seu terreno já tem o mais difícil: o lugar. O que falta é transformar esse lugar numa experiência que o hóspede não encontra em outro canto, e num projeto que um sócio ou um investidor aceitam olhar.</p>
   <p class="muted" style="margin:12px 0 0">Neste webinário ao vivo, o Bruno Chaerk, fundador da Zion, mostra como a Zion saiu de um terreno sem luz, sem água e sem internet para uma operação com nota máxima no Airbnb. E qual é o caminho, na ordem certa, para fazer o mesmo no seu, com exemplos reais de como isso se aplica a um terreno como o seu.</p>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">Assista antes · 45 segundos</span>
+  <h2>O Brasil vai ser o maior polo de <em>glamping</em> do mundo</h2>
+  <p class="lead">O Bruno explica, em menos de um minuto, por que um terreno como o seu pode estar no lugar certo, na hora certa.</p>
+  <div class="vid"><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/video-capa.webp"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/videos/01-brasil-maior-polo-de-glamping.mp4" type="video/mp4"></video></div>
+  <p class="small" style="text-align:center;margin:8px 0 0">Toque para assistir com som</p>
 </div></section>
 
 <section class="sec"><div class="w">
@@ -220,13 +253,30 @@ var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
   </ul>
 </div></section>
 
+<section class="sec"><div class="w">
+  <span class="mono">O que você recebe</span>
+  <h2>Tudo isso por <em data-c="preco"></em></h2>
+  <p class="lead">Veja exatamente o que chega para você ao garantir a vaga:</p>
+  <div class="ent">
+    <div class="c"><div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/bruno-ao-vivo.webp" alt="Prévia do webinário: slide do Método Zion com o Bruno na câmera" loading="lazy"><span class="live"><i></i>Ao vivo</span><span class="zoom">Zoom</span></div>
+      <div class="tx"><span class="tag">1 · Webinário ao vivo</span><b>Do terreno ao destino, com o Bruno</b><span><span data-c="dataTxt"></span>, às <span data-c="horaTxt"></span>. O método em 7 passos, exemplos reais da operação e perguntas ao vivo.</span></div></div>
+    <div class="c"><div class="capas"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/capa-marco-zero.webp" alt="Capa do e-book Marco Zero: a jornada do desenvolvedor de hospedagem" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/capa-glamping.webp" alt="Capa do e-book Glamping: mais que uma hospedagem, uma experiência" loading="lazy"></div>
+      <div class="tx"><span class="tag">2 · Dois e-books</span><b>Marco Zero e Glamping</b><span>A jornada de quem desenvolve hospedagem, do terreno ao destino, e o que faz um glamping virar experiência. Para ler antes do webinário.</span></div></div>
+    <div class="c"><div class="mapa"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/capa-mapa.webp" alt="Mapa estratégico dos primeiros passos da Zion" loading="lazy"></div>
+      <div class="tx"><span class="tag">3 · Mapa estratégico</span><b>O mapa dos primeiros passos</b><span>O que decidir primeiro, e em que ordem, para não gastar antes da hora.</span></div></div>
+    <div class="c lb"><div class="ph"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op09.webp" alt="Unidade Zion no meio da mata, vista do alto" loading="lazy" style="height:280px;object-fit:cover"><div class="pin"><span>Sua área</span><i></i></div><div class="card"><b>Banco de Áreas Zion</b> · a sua área inscrita para a Zion conhecer</div></div>
+      <div class="tx"><span class="tag">4 · Inscrição no Land Bank</span><b>A sua área no Banco de Áreas da Zion</b><span>A Zion está selecionando áreas pelo Brasil para a expansão. A sua entra no radar e a Zion avalia cada caso.</span></div></div>
+  </div>
+</div></section>
+
 <section class="sec" id="vaga"><div class="w">
   <span class="mono">Garanta a sua vaga</span>
   <h2>Webinário ao vivo <em>Do terreno ao destino</em></h2>
   <ul class="ok">
     <li><span><b>Webinário ao vivo com o Bruno</b> · <span data-c="dataTxt"></span>, às <span data-c="horaTxt"></span>, no <span data-c="plataforma"></span></span></li>
-    <li><span><b>O mapa dos 7 passos</b> do terreno ao destino turístico</span></li>
-    <li><span><b>Perguntas ao vivo</b> com quem opera hospedagem</span></li>
+    <li><span><b>E-books</b> Marco Zero e Glamping</span></li>
+    <li><span><b>Mapa estratégico</b> dos primeiros passos</span></li>
+    <li><span><b>Inscrição da sua área</b> no Banco de Áreas Zion</span></li>
     <li><span><b>No final:</b> quem quiser pode se candidatar a uma sessão estratégica one‑on‑one, em que a equipe Zion desenha o plano de ação do seu terreno</span></li>
   </ul>
   <div class="preco">
