@@ -406,6 +406,7 @@ var CONFIG={
   checkoutTrilha:'https://www.asaas.com/000/c/zrhq4rk88iyta3id', /* inscrição Land Bank: o link é enviado pela Zaya no WhatsApp; não aparece no site */
   checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   zap:'https://wa.me/554861371061?text=',
+  inscricao:{preco:'R$ 97',valor:97,link:'https://www.asaas.com/000/c/zrhq4rk88iyta3id'}, /* teste do checkout direto: para R$ 47, troque preco, valor e (se mudar) o link */
   checkout47:'', /* link Asaas do material R$ 47: vazio = a oferta de R$ 47 fica oculta */
   precoTrilha:'R$ 97',
   precoPacote:'R$ 890'
@@ -542,6 +543,8 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
       try{if(window.cxs&&c.ok&&(c.zap||c.mail)){
         var cf={raiox_leitura:L[0]||'',raiox_caminho:L[2]||'',raiox_local:r.local||'',raiox_data:new Date().toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).replace(',','')};
         for(var k in resp)cf[k==='nota'?'raiox_nota_plataformas':'raiox_'+k]=String(resp[k]).slice(0,200);
+        /* quente = capital próprio declarado (não o valor do terreno) */
+        cf.raiox_temperatura=(r.faixa_capital==='c'||r.faixa_capital==='d')?'quente · capital próprio a partir de R$ 400 mil':(r.faixa_capital==='b'?'morno · capital de R$ 100 a 400 mil':'frio · sem capital próprio declarado');
         try{var rs=window.__zionResumo&&window.__zionResumo(r);if(rs)cf.raiox_resumo=rs.replace(/^Oi![^\n]*\n\n/,'').replace(/\*/g,'').slice(0,4000)}catch(x){}
         cxs('lead',{name:c.nome||'',email:c.mail||'',telephone:String(c.zap||'').replace(/\D/g,''),customFields:cf},function(){},{elementId:'raiox-diagnostico'});
       }}catch(x){}
@@ -642,52 +645,50 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
     var legal='<p class="small" style="margin-top:8px">Não garante investidor, financiamento nem aprovação. A Zion avalia cada caso.</p>';
     var bl=function(ic,tt,tx){return '<div style="display:flex;gap:14px;align-items:flex-start;padding:16px;margin:10px 0;border:1px solid rgba(224,190,94,.45);border-left:4px solid var(--gold);border-radius:14px;background:rgba(224,190,94,.06)"><span style="font-size:30px;line-height:1">'+ic+'</span><span><b style="display:block;color:var(--paper);font-size:19px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:4px;font-size:15px;line-height:1.4">'+tx+'</span></span></div>'};
     var blocos=bl('🎓','O passo a passo do Marco Zero','Aulas interativas e vídeos curtos que levam o seu terreno de endereço a destino turístico.')+bl('📘','E-book Panorama do Desenvolvimento Hoteleiro','Liberado na hora do pagamento.')+bl('📝','O seu dossiê prévio','A tarefa de casa que organiza o terreno, o público, a conta e quem vai operar.')+bl('🏔','Boas-vindas ao Clube Zion Land','O seu terreno no radar da Zion, com condições exclusivas nos produtos Zion.')+bl('📅','Reunião estratégica online com a equipe Zion','Por último, com o seu dossiê em mãos: o diagnóstico estratégico e o mapa do seu caso.')+bl('📝','O resumo da reunião no seu e-mail','Com o que foi combinado e os próximos passos.');
+    var INS=CONFIG.inscricao,pago=INS.link,nm0=((r.contato||{}).nome||'').split(' ')[0];
+    var btnPagar=function(txt,big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?76:66)+'px;font-size:'+(big?20:19)+'px;font-weight:700;padding:12px 14px 12px 28px;text-decoration:none"><span>'+txt+'</span><span class="arr" aria-hidden="true">→</span></a>'};
+    var btnDuvida='<a class="pill btn-s" href="'+inscreverURL(r)+'" target="_blank" rel="noopener" style="display:flex;justify-content:center;align-items:center;width:100%;min-height:54px;margin-top:10px;font-size:16px;font-weight:600;text-decoration:none">Tenho uma dúvida · enviar meu diagnóstico no WhatsApp</a>';
+    var it=function(n,tt,tx,qd){return '<li style="display:flex;gap:12px;align-items:flex-start;padding:13px 0;border-top:1px solid var(--line)"><span style="flex:none;width:30px;height:30px;border-radius:50%;background:var(--gold);color:#0d1710;display:grid;place-items:center;font-weight:800">'+n+'</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:3px;font-size:14.5px;line-height:1.4">'+tx+'</span><span class="mono" style="display:block;margin-top:4px;color:var(--gold);font-size:11px">'+qd+'</span></span></li>'};
+    var ENTREGA='<ul style="list-style:none;padding:0;margin:6px 0 0">'+
+      it(1,'O mapa de direcionamento do seu caso','Montado com as suas respostas: o que já está definido, o que falta e a ordem dos próximos passos, mais o mapa mental do desenvolvimento, do papel da Zion e das possíveis parcerias e investimentos.','PDF · logo depois do pagamento')+
+      it(2,'O seu terreno no banco de áreas da Zion','O Zion Land Bank, que a Zion olha quando desenvolve novos destinos.','Cadastro · na inscrição')+
+      it(3,'A área de membros do Land Bank','O passo a passo, em aulas, para montar o dossiê inicial do seu projeto.','Acesso no seu e-mail · na hora')+
+      it(4,'E-book do Marco Zero','O primeiro passo do Método Zion 360°: por onde começar antes da obra.','E-book · na hora')+
+      it(5,'E-book do Glamping','Muito mais que uma hospedagem, uma experiência: por que o glamping cresce e onde está a oportunidade.','E-book · na hora')+
+      it(6,'Masterclass ao vivo com o Bruno Chaerk','Como transformar o seu terreno em destino turístico. Você participa de uma.','Online · toda quinta às 20h')+
+      it(7,'Reunião de direcionamento com a equipe Zion','Online, olhando o seu caso: o feedback do diagnóstico e o plano de ação.','Você agenda logo depois do pagamento')+
+      '</ul>';
     if(t===1){
-      var nm=((r.contato||{}).nome||'').split(' ')[0];
       h=head+
-        '<div class="nx hi" style="text-align:center"><p style="color:var(--paper);margin:0;font-size:22px"><b>'+(nm?nm+', o':'O')+' seu resultado está pronto.</b></p><p class="small" style="margin:8px 0 0">E o seu terreno já pode ter um lugar no Land Bank Zion.</p></div>'+
-        '<a class="pill pill-gold" href="'+inscreverURL(r)+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px;text-decoration:none"><span>Enviar meu diagnóstico para a equipe Zion</span><span class="arr" aria-hidden="true">→</span></a><p class="small" style="text-align:center;margin-top:8px">Você continua no WhatsApp, com a equipe Zion.</p>'+
-        '<div class="row" style="margin-top:14px;justify-content:center"><button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:14px">Ver o meu resultado do raio-x</button></div>';
+        '<div class="nx hi" style="text-align:center"><p style="color:var(--paper);margin:0;font-size:22px"><b>'+(nm0?esc(nm0)+', o':'O')+' seu resultado está pronto.</b></p><p class="small" style="margin:8px 0 0">O próximo passo é a sua inscrição no Zion Land Bank: o mapa do seu caso, os e-books, a masterclass e a reunião com a equipe Zion, por '+INS.preco+'.</p></div>'+
+        '<button type="button" data-go="2" class="pill pill-gold" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px;border:0;cursor:pointer"><span>Quero fazer parte · ver a inscrição</span><span class="arr" aria-hidden="true">→</span></button>'+
+        btnDuvida+
+        '<div class="row" style="margin-top:14px;justify-content:center"><button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:14px">Ver o meu resultado completo</button></div>';
     }else if(t===2){
       var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/';
-      var rw=function(ic,tt,tx){return '<li style="display:flex;gap:14px;align-items:flex-start;padding:14px 0;border-top:1px solid var(--line)"><span style="font-size:28px;line-height:1.1">'+ic+'</span><span><b style="display:block;color:var(--paper);font-size:18px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:3px;font-size:15px;line-height:1.4">'+tx+'</span></span></li>'};
-      h='<div class="prog mono"><span>Último passo</span><span>Clube Zion Land</span></div><div class="bar"><i style="width:100%"></i></div>'+
-        '<div style="margin:10px -4px 0;border-radius:16px;overflow:hidden;position:relative"><img src="'+IM+'mata.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:auto"></div>'+
-        '<div class="res-top"><p class="mono">Land Bank Zion · Clube Zion Land</p><h2 class="pronto">Entre para o clube de projetos e hospedagem <em>da Zion.</em></h2><p class="lead">O seu terreno e o seu projeto têm potencial. Basta ser estruturado.</p></div>'+
+      h='<div class="prog mono"><span>Último passo</span><span>Inscrição no Zion Land Bank</span></div><div class="bar"><i style="width:100%"></i></div>'+
+        '<div style="margin:10px -4px 0;border-radius:16px;overflow:hidden"><img src="'+IM+'mata.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:auto"></div>'+
+        '<div class="res-top"><p class="mono">Zion Land Bank · inscrição</p><h2 class="pronto">'+(nm0?esc(nm0)+', queremos':'Queremos')+' conhecer o seu projeto <em>de perto.</em></h2><p class="lead">A Zion está desenvolvendo vários destinos por todo o Brasil. A inscrição é o primeiro passo para o seu terreno ter um plano, na ordem certa, antes de qualquer obra.</p></div>'+
         '<div class="nx hi" style="text-align:center;border:2px solid var(--gold)">'+
-        '<p class="small" style="margin:0;color:var(--gold)">Taxa de inscrição no Zion Land Bank</p>'+
-        '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:6px 0 2px;color:var(--gold)">R$ 97</div>'+
-        '<p class="small" style="margin:0 0 14px">A sua inscrição é feita com a equipe Zion, pelo WhatsApp.</p>'+
-        '<a class="pill pill-gold" href="'+k270+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px"><span>Enviar meu diagnóstico para a equipe Zion</span><span class="arr" aria-hidden="true">→</span></a>'+
-        '<p class="small" style="margin-top:10px"><b style="color:var(--paper)">Como funciona:</b> você fala com a equipe Zion no WhatsApp, tira as dúvidas e recebe o link oficial de pagamento. Use nele o mesmo e-mail do Raio-X: o seu acesso é criado nele.</p>'+
-        '<p class="small" style="margin-top:10px">Pagamento seguro. O acesso abre na hora, na sua área de membros. A reunião de diagnóstico vem depois do dossiê. A Zion avalia cada caso e não garante investidor, financiamento nem aprovação.</p></div>'+
-        '<div class="nx"><span class="mono">Ao entrar, você é membro do Land Bank</span><ul style="list-style:none;padding:0;margin:8px 0 0">'+
-        rw('🔑','Acesso à área de membros do Land Bank Zion','Você entra na hora, logo depois do pagamento.')+
-        rw('🧭','O passo a passo para montar o seu dossiê inicial','Você organiza o seu terreno e o seu projeto, no seu ritmo.')+
-        rw('🏔','O seu projeto inscrito no Land Bank','Com o dossiê pronto, o seu terreno entra no banco de áreas da Zion.')+
-        rw('🤝','Reunião de diagnóstico e feedback com a equipe Zion','Você recebe o plano de ação e o mapa do seu caso, depois do dossiê.')+
-        rw('🎥','Acesso a uma masterclass ao vivo: como transformar o seu terreno em destino turístico','Aula com o Bruno, toda quinta às 20h. Você participa de uma, e o link chega no dia.')+
-        '</ul></div>'+
-        '<div class="nx" style="border:1px solid rgba(224,190,94,.45)"><span class="mono" style="color:var(--gold)">O que o Land Bank abre para você</span><ul style="list-style:none;padding:0;margin:8px 0 0">'+
-        rw('🎁','Produtos e condições exclusivas da Zion','Acesso antecipado e condições de membro nos produtos Zion, como a Glamping Store e a mentoria.')+
-        rw('🤝','Possibilidades de parceria','Com o projeto estruturado, o seu terreno pode ser avaliado pela Zion para parcerias com operadores e fornecedores.')+
-        rw('💼','Possibilidades de investimento','Projetos organizados ficam visíveis para a rede de investidores e sócios que a Zion acompanha.')+
-        rw('🌐','Network','Você entra na rede de proprietários, desenvolvedores e parceiros do ecossistema Zion.')+'</ul>'+
-        '<p class="small" style="margin:8px 0 0">As possibilidades dependem da avaliação de cada caso. A Zion não garante investidor, financiamento nem aprovação.</p></div>'+
-        '<div class="nx" style="border:1px solid rgba(224,190,94,.45)"><span class="mono" style="color:var(--gold)">De bônus · 2 e-books</span><ul style="list-style:none;padding:0;margin:8px 0 0">'+
-        rw('📘','E-book: Como transformar seu terreno em destino turístico · Volume 1 · Panorama do Desenvolvimento Hoteleiro','Liberado na hora do pagamento.')+
-        rw('📗','E-book: Glamping · Muito mais que uma hospedagem, uma experiência','O livro que mostra por que o glamping cresce e onde está a oportunidade. Liberado na hora do pagamento.')+'</ul></div>'+
-        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0"><img src="'+IM+'noite.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'dentro.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'hospede.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"></div>'+'<a class="pill pill-gold" href="'+k270+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:68px;font-size:19px;font-weight:700;padding:12px 14px 12px 28px;margin-top:6px"><span>Enviar meu diagnóstico para a equipe Zion</span><span class="arr" aria-hidden="true">→</span></a>'+
-        '<a class="pill btn-s" href="https://wa.me/554861371061?text=Oi%2C%20tenho%20uma%20d%C3%BAvida%20sobre%20o%20Cl%C3%BAbe%20Zion%20Land." target="_blank" rel="noopener" style="display:flex;justify-content:center;align-items:center;gap:10px;width:100%;min-height:56px;margin-top:10px;font-size:17px;font-weight:600"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M17.5 14.4c-.3-.1-1.7-.8-2-.9-.3-.1-.5-.1-.7.1-.2.3-.8.9-.9 1.1-.2.2-.3.2-.6.1-.3-.1-1.2-.5-2.3-1.4-.9-.8-1.4-1.700-1.6-2-.2-.3 0-.4.1-.6l.4-.5c.1-.1.2-.3.3-.5.1-.2 0-.4 0-.5-.1-.1-.7-1.600-.9-2.200-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.400s1 2.800 1.200 3c.1.2 2 3.100 4.900 4.300.7.3 1.200.5 1.600.6.7.2 1.300.2 1.800.1.5-.1 1.700-.7 1.900-1.400.2-.7.2-1.200.2-1.400-.1-.1-.3-.2-.6-.3zM12 2a10 10 0 0 0-8.600 15.100L2 22l5-1.300A10 10 0 1 0 12 2z"/></svg><span>Tirar dúvidas no WhatsApp</span></a>'+
-        '<p class="small" style="text-align:center;margin-top:14px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20o%20Clube%20Zion%20Land%20e%20n%C3%A3o%20recebi%20o%20acesso." target="_blank" rel="noopener">Fale com a Zaya no WhatsApp</a></p>'+
-        (S.direto?'<p class="small" style="text-align:center;margin-top:12px">Prefere começar pelo diagnóstico gratuito? <a class="link-u" href="/raio-x">Faça o Raio-X</a></p>':'<button class="link-u" data-go="6" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:10px auto 0;font-size:14px">Ver o meu resultado do raio-x</button><button class="link-u" data-go="3" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:6px auto 0">Agora não</button>');
+        '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição</p>'+
+        '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:6px 0 2px;color:var(--gold)">'+INS.preco+'</div>'+
+        '<p class="small" style="margin:0 0 14px">Pagamento único · menos que uma diária de hospedagem</p>'+
+        btnPagar('Fazer minha inscrição · '+INS.preco,true)+
+        '<p class="small" style="margin-top:10px">Pagamento seguro pelo Asaas, por Pix ou cartão. Use o mesmo e-mail do diagnóstico: o seu acesso é criado nele. Logo depois do pagamento você escolhe o dia da sua reunião.</p></div>'+
+        '<div class="nx"><span class="mono">O que você recebe, exatamente</span>'+ENTREGA+'</div>'+
+        '<div class="nx" style="border:1px solid rgba(224,190,94,.45)"><span class="mono" style="color:var(--gold)">E, como membro, abre portas para</span><ul style="margin:8px 0 0;padding-left:18px"><li>Condições exclusivas de membro nos produtos Zion, como as Bubbles da Glamping Store.</li><li>Possíveis parcerias com a Zion, a partir do projeto organizado.</li><li>Possíveis investimentos: projetos organizados conversam com sócio, banco ou investidor.</li><li>Network com proprietários e parceiros do ecossistema Zion.</li></ul><p class="small" style="margin:8px 0 0">A inscrição não é oferta de investimento nem garantia de parceria, crédito ou sociedade. A Zion avalia cada caso.</p></div>'+
+        '<div class="nx"><span class="mono">Quem é a Zion</span><p style="margin:6px 0 0">Zion Hotel Group International, de Florianópolis (SC). Opera a própria hospedagem de glamping desde 2020 (Airbnb 5/5 Superhost, Expedia 10) e fabrica as Bubbles da Zion Glamping Store. O fundador, Bruno Chaerk, tem mais de 20 anos de hotelaria.</p></div>'+
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0"><img src="'+IM+'noite.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'dentro.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'hospede.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"></div>'+
+        btnPagar('Fazer minha inscrição · '+INS.preco,false)+btnDuvida+
+        '<p class="small" style="text-align:center;margin-top:14px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20a%20inscri%C3%A7%C3%A3o%20no%20Zion%20Land%20Bank%20e%20n%C3%A3o%20recebi%20o%20acesso." target="_blank" rel="noopener">Fale com a equipe Zion no WhatsApp</a></p>'+
+        '<button class="link-u" data-go="6" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:10px auto 0;font-size:14px">Ver o meu resultado completo</button>';
     }else if(t===6){
       var L6=leitura(r),ln='';
       Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')ln+='<li style="padding:9px 0;border-top:1px solid var(--line)"><span class="small" style="display:block">'+esc(x.q)+'</span><b style="color:var(--paper)">'+esc(o[1])+'</b></li>'}});
       h=head+'<div class="nx" style="border:2px solid var(--gold);background:rgba(224,190,94,.08)"><p style="margin:0 0 8px;color:var(--paper)">'+L6[1]+'</p><p style="margin:0;color:var(--paper)"><b>Por onde começar:</b> '+L6[2]+'</p></div>'+
         '<div class="nx"><span class="mono">O que você nos contou</span><ul style="list-style:none;padding:0;margin:6px 0 0">'+ln+'</ul></div>'+
         '<p class="small">Leitura inicial. Não é estudo de viabilidade nem promessa de renda, retorno, crédito ou sociedade.</p>'+
-        '<a class="pill pill-gold" href="'+inscreverURL(r)+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px;text-decoration:none"><span>Enviar meu diagnóstico para a equipe Zion</span><span class="arr" aria-hidden="true">→</span></a><p class="small" style="text-align:center;margin-top:8px">Você continua no WhatsApp, com a equipe Zion.</p>'+
+        '<button type="button" data-go="2" class="pill pill-gold" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:76px;font-size:20px;font-weight:700;padding:12px 14px 12px 28px;border:0;cursor:pointer"><span>Quero fazer parte · ver a inscrição</span><span class="arr" aria-hidden="true">→</span></button>'+btnDuvida+
         '<div class="row" style="margin-top:12px"><button class="link-u" id="pdfdiag" type="button" style="background:none;border:0;cursor:pointer;padding:0">Baixar o meu resultado em PDF ↓</button></div>';
     }else if(t===3){
       h='<div class="prog mono"><span>Sem problema</span><span>Diagnóstico prévio gratuito</span></div><div class="bar"><i style="width:100%"></i></div>'+
@@ -819,7 +820,7 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
   if(location.hash==='#diagnostico'||location.hash==='#raiox')entrar(false);
 })();
 </script>
-<script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"],a[href*="wa.me/554861371061?text=Oi!%20Sou"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:97,currency:'BRL'})}catch(x){}},true)</script>
+<script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:(window.CONFIG&&CONFIG.inscricao&&CONFIG.inscricao.valor)||97,currency:'BRL'})}catch(x){}},true)</script>
 <div data-cx-livechat="54c75883-482d-4168-aa4f-8d987487aba8"></div>
 <script async src="https://api.clickmax.io/sdk/livechat.js"></script>
 </body>
