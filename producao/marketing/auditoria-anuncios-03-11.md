@@ -135,3 +135,8 @@ Todos com o formulário `1679964956911881`, e o texto cita "R$ 270 em até 12x".
 |---|---|---|
 | [FORM → DIAGNÓSTICO GRÁTIS] | `1779605203334486` | **DIAG** (7) |
 | [FORM → CHECKOUT DIRETO R$ 270] | `1679964956911881` | **DIRETO** (7) |
+
+## 03/11 · NO AR (ok do Bruno)
+
+- Campanhas ligadas: Diagnóstico grátis `120250113109820016` e Checkout direto `120250173411950016`, com R$ 20/dia cada no conjunto Investidor 30-60.
+- Anúncios ligados: os 7 DIAG e os 7 DIRETO. Todos os outros seguem pausados, e os conjuntos IMOB também.
