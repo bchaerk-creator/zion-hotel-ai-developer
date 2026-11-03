@@ -199,3 +199,11 @@ A campanha de clique para o WhatsApp `120250180459720016` ficou vazia, porque o 
 - **Brasil · Checkout** `120250173412720016` passou de R$ 20 para **R$ 40/dia**. Até aqui teve o melhor custo por lead: 5 leads por R$ 12,91, ou R$ 2,58 cada.
 - **Destinos turísticos · Checkout** `120250176378690016` foi **pausado**: R$ 6,40 gastos e 0 leads.
 - Total no ar: **R$ 80/dia**, sendo Brasil Diagnóstico R$ 20, Brasil Checkout R$ 40 e Destinos Diagnóstico R$ 20. A WA-SDR segue pausada até a conexão com a Zaia.
+
+## 03/11 · Adesão ao Land Bank mudou para R$ 97 (decisão do Bruno)
+
+- Textos atualizados nos anúncios ligados do conjunto Brasil · Checkout `120250173412720016`, mantendo os IDs: Pitch `120250176183770016` (título "Seja um parceiro Zion · R$ 97"), Tour serra `…185410016`, Tour apresentadora `…186770016`, VIDEO Investidores `…187890016` e Carrossel terrenos `…205040016`.
+- Carrosséis recriados com R$ 97 nos textos e nos 8 cards: v2 `120250192324490016` e v3 `120250192333210016`. Os antigos (`…195380016`, `…197950016`) foram pausados.
+- Ainda dizem R$ 270, mas estão **pausados**: os anúncios DIRETO · TUR (conjunto `120250176378690016`) e as versões antigas. Não religar sem trocar o texto.
+- **Fora do meu alcance (fazer no Meta e no Asaas):** a tela final do formulário Checkout `1679964956911881` ainda leva ao link de R$ 270 no Asaas. É preciso trocar o link ou a cobrança para R$ 97, ou trocar a tela final para o WhatsApp.
+- Documentos do SDR e o master prompt da Zaia atualizados para R$ 97.

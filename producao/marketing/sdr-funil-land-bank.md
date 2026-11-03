@@ -10,7 +10,7 @@ O SDR só diz o preço das portas de entrada. Ele vende **uma de duas portas**, 
 
 | Porta | O que é | Preço | O que dá para a pessoa |
 |---|---|---|---|
-| **Land Bank** | O banco de projetos e áreas turísticas da Zion Collection | **R$ 270** (em até 12x) | A área entra no banco, que abre a possibilidade de parcerias, sócios e investidores. Inclui a reunião de diagnóstico. |
+| **Land Bank** | O banco de projetos e áreas turísticas da Zion Collection | **R$ 97** | A área entra no banco, que abre a possibilidade de parcerias, sócios e investidores. Inclui a reunião de diagnóstico. |
 | **Masterclass ao vivo** | "Como transformar o seu terreno em um projeto de hospedagem e destino turístico" | **R$ 47** | Uma aula ao vivo com o método Zion. Quem assiste ganha a reunião de diagnóstico. |
 
 A **reunião de vendas** reúne quem já está qualificado pelo formulário e já pagou uma das portas. Nela, a pessoa preenche ao vivo um formulário de competitividade. Na hora, sai um **novo diagnóstico com o plano de ação**, e é aí que entra a **oferta da mentoria**.
@@ -24,7 +24,7 @@ Anúncio → Formulário do Meta (diagnóstico grátis)
   → WhatsApp: chatbot + Zaia (SDR)
       1. Rapport + perguntas SPIN usando as respostas do formulário
       2. Diagnóstico grátis por escrito (o que o anúncio prometeu)
-      3. Escolha de porta: LAND BANK R$ 270 ou MASTERCLASS R$ 47
+      3. Escolha de porta: LAND BANK R$ 97 ou MASTERCLASS R$ 47
             ├─ Land Bank → onboarding → agenda a REUNIÃO
             └─ Masterclass → assiste ao vivo → no final, agenda a REUNIÃO (e tem a oferta do Land Bank)
   → REUNIÃO DE VENDAS (60 min, Bruno ou closer)
@@ -80,7 +80,7 @@ Anúncio → Formulário do Meta (diagnóstico grátis)
 ### 4.4 A escolha de porta (dois sins)
 > Para o próximo passo você tem dois caminhos, e os dois te levam a uma **reunião de diagnóstico com o nosso time**, onde montamos o plano de ação da sua área:
 >
-> 🏛 **Land Bank · R$ 270 (em até 12x)**
+> 🏛 **Land Bank · R$ 97**
 > A sua área entra no **banco de projetos e áreas turísticas da Zion Collection**, que abre a possibilidade de parcerias, sócios e investidores. Inclui a reunião de diagnóstico.
 >
 > 🎥 **Masterclass ao vivo · R$ 47**
@@ -157,7 +157,7 @@ Gera o novo diagnóstico na hora.
 |---|---|---|
 | 0 | Diagnóstico grátis por escrito | Zaia |
 | 1a | **Masterclass ao vivo · R$ 47** | Zaia |
-| 1b | **Land Bank · R$ 270** | Zaia (ou no final da Masterclass) |
+| 1b | **Land Bank · R$ 97** | Zaia (ou no final da Masterclass) |
 | 2 | **Mentoria** (a proposta só é apresentada na reunião) | Bruno ou closer |
 | 3 | *Upsell:* mentoria individual / estruturação pela equipe / parceria Zion Collection / produtos (Bubble Suite) | Bruno |
 | ↓ | *Downsell* de quem não fecha a mentoria: Land Bank (se veio da Masterclass) ou pacote das trilhas (R$ 890) | Closer |
@@ -168,7 +168,7 @@ Gera o novo diagnóstico na hora.
 2. Em qualificação (SDR)
 3. Diagnóstico grátis enviado
 4. Porta oferecida
-5. **Pagou a Masterclass (R$ 47)** ou **Pagou o Land Bank (R$ 270)**
+5. **Pagou a Masterclass (R$ 47)** ou **Pagou o Land Bank (R$ 97)**
 6. Masterclass assistida
 7. Reunião agendada
 8. Reunião feita (formulário de competitividade preenchido)
@@ -188,7 +188,7 @@ Gera o novo diagnóstico na hora.
 ## 10. O que falta definir
 
 1. A data, a plataforma e o link de pagamento da Masterclass (R$ 47).
-2. O link do Land Bank (R$ 270) pelo ClickMax.
+2. O link do Land Bank (R$ 97) pelo ClickMax.
 3. A agenda da reunião (dias e horários) e quem conduz.
 4. O Formulário de Competitividade: monto no ClickMax com as 8 perguntas acima.
 5. A mensalidade de R$ 47 do Land Bank continua, ou o R$ 47 agora é só da Masterclass?

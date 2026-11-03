@@ -1,6 +1,6 @@
 # SDR Zion Collection · Qualificação, ofertas e objeções
 
-> **Atualização 03/11:** o SDR vende só as portas de entrada (Land Bank R$ 270 ou Masterclass R$ 47); as duas levam à reunião de vendas, e a mentoria só é ofertada na reunião. O fluxo completo, com webinar, upsell e downsell, está em `sdr-funil-land-bank.md`. Os perfis e a nota abaixo continuam valendo, mas agora servem para **personalizar o convite e definir quem faz a sessão**.
+> **Atualização 03/11:** o SDR vende só as portas de entrada (Land Bank R$ 97 ou Masterclass R$ 47); as duas levam à reunião de vendas, e a mentoria só é ofertada na reunião. O fluxo completo, com webinar, upsell e downsell, está em `sdr-funil-land-bank.md`. Os perfis e a nota abaixo continuam valendo, mas agora servem para **personalizar o convite e definir quem faz a sessão**.
 
 Para o chatbot e a Zaia (agente de IA) · 03/11/2026 · Versão 1, para revisão do Bruno
 
@@ -74,10 +74,10 @@ As regras são aplicadas nesta ordem.
 |---|---|---|---|---|---|
 | **D** | **Operador / expansão** | Já tem hotel ou pousada | **Mentoria de expansão** com o Bruno | Bubble Suite e Suite Premium (Store); Land Bank para a área nova | Zaia → Bruno |
 | **F** | **Quer um operador** | Prefere que uma empresa opere **e** tem 5 pontos ou mais | **Reunião de parceria Zion Collection** (estruturação sob proposta) | Land Bank para entrar no radar | Zaia → Bruno |
-| **A** | **Pronto para o Land Bank** | Escritura em dia **e** (investimento de R$ 400 mil ou mais **ou** área de R$ 2 mi ou mais) | **Land Bank R$ 270 + diagnóstico com o Bruno** | Mentoria individual | Zaia → Bruno |
-| **B** | **Dono de terra estruturável** | Escritura em dia **e** investimento de R$ 150 a 400 mil | **Land Bank R$ 270** (Dossiê para captar sócio ou crédito) | Pacote das trilhas (R$ 890) | Zaia → CS |
+| **A** | **Pronto para o Land Bank** | Escritura em dia **e** (investimento de R$ 400 mil ou mais **ou** área de R$ 2 mi ou mais) | **Land Bank R$ 97 + diagnóstico com o Bruno** | Mentoria individual | Zaia → Bruno |
+| **B** | **Dono de terra estruturável** | Escritura em dia **e** investimento de R$ 150 a 400 mil | **Land Bank R$ 97** (Dossiê para captar sócio ou crédito) | Pacote das trilhas (R$ 890) | Zaia → CS |
 | **C** | **Quer sócio, com posse** | Só contrato ou posse, **ou** busca sócio ou capital sem ter recurso próprio | **Mentoria** (em grupo; individual se tiver 6 pontos ou mais), com o primeiro passo sendo **regularizar a área** | Land Bank só depois de regularizar | Chatbot → Zaia; se tiver 6 pontos ou mais, Bruno |
-| **E** | **Ideia inicial** | Apenas a ideia, até 5.000 m², R$ 150 a 400 mil, sem sinal forte | **Curso / Land Bank R$ 270** (aprender o passo a passo) | Nutrição: conteúdo e Raio-X | Chatbot |
+| **E** | **Ideia inicial** | Apenas a ideia, até 5.000 m², R$ 150 a 400 mil, sem sinal forte | **Curso / Land Bank R$ 97** (aprender o passo a passo) | Nutrição: conteúdo e Raio-X | Chatbot |
 
 **As regras do Bruno, já incluídas:**
 - "Quer sócio e tem terreno com posse" → **não é bom para o Land Bank, mas dá para vender mentoria** (perfil C).
@@ -106,7 +106,7 @@ Os perfis A, D e F somam **118 leads (28%)**. São os que justificam o Bruno ent
 4. **Diagnóstico agendado**: call de 20 minutos com o CS (perfis B, C e E) ou com o Bruno (A, D e F).
 5. **Diagnóstico feito**
 6. **Oferta enviada**: Land Bank, Mentoria ou Parceria.
-7. **Membro Land Bank** (pagou R$ 270) → onboarding e mensalidade de R$ 47.
+7. **Membro Land Bank** (pagou R$ 97) → onboarding e mensalidade de R$ 47.
 8. **Mentoria / Parceria fechada**
 9. **Nutrição**: sem resposta em 72 horas ou ainda não está pronto.
 10. **Perdido**: com o motivo.
@@ -128,7 +128,7 @@ Campos personalizados: local, tamanho, documentação, investimento, valor da á
 - **A (Land Bank + Bruno):**
   > Pelo que você me contou ({tamanho}, escritura em dia, {investimento}), a sua área tem o perfil que a gente procura no **Land Bank**, o banco de áreas da Zion Collection. Quero colocar você numa conversa de 20 minutos com o Bruno Chaerk, fundador da Zion, para olhar o potencial da área. Tenho {dia1} ou {dia2}. Qual fica melhor?
 - **B (Land Bank):**
-  > Você já tem o principal: a terra regularizada. O que falta é o projeto que mostre a conta para um sócio ou banco. É isso que a gente te ajuda a montar no **Land Bank**: aulas, ferramentas e o Dossiê da sua área, que fica inscrita onde podem surgir parcerias. A inscrição é R$ 270 em até 12x. Quer que eu te mande o link, ou prefere tirar dúvidas numa call rápida?
+  > Você já tem o principal: a terra regularizada. O que falta é o projeto que mostre a conta para um sócio ou banco. É isso que a gente te ajuda a montar no **Land Bank**: aulas, ferramentas e o Dossiê da sua área, que fica inscrita onde podem surgir parcerias. A inscrição é R$ 97. Quer que eu te mande o link, ou prefere tirar dúvidas numa call rápida?
 - **C (Mentoria + regularização):**
   > Vou ser sincero com você: hoje o que mais trava um sócio ou investidor é a documentação. Com só contrato ou posse, ninguém sério entra. O primeiro passo é regularizar, e a gente te ajuda a montar esse caminho na **mentoria**, junto com o projeto. Quando a área estiver em dia, ela entra no Land Bank. Quer agendar uma conversa para eu te mostrar como funciona?
 - **D (Expansão):**
@@ -136,7 +136,7 @@ Campos personalizados: local, tamanho, documentação, investimento, valor da á
 - **F (Parceria / operação):**
   > Você comentou que prefere que uma empresa especializada opere. Esse é exatamente o modelo de parceria da Zion Collection, avaliado caso a caso. O próximo passo é uma conversa com o Bruno para entender a área e o modelo. {dia1} ou {dia2}?
 - **E (Ideia inicial):**
-  > Ótimo começar pela ideia: é a fase em que mais se economiza erro. O **Land Bank** te dá o passo a passo (8 aulas, ferramentas e o Dossiê) por R$ 270 em até 12x. Quer o link ou prefere que eu te mande antes um conteúdo curto sobre por onde começar?
+  > Ótimo começar pela ideia: é a fase em que mais se economiza erro. O **Land Bank** te dá o passo a passo (8 aulas, ferramentas e o Dossiê) por R$ 97. Quer o link ou prefere que eu te mande antes um conteúdo curto sobre por onde começar?
 
 ---
 
@@ -147,7 +147,7 @@ Campos personalizados: local, tamanho, documentação, investimento, valor da á
 | "Não tenho dinheiro, quero sócio" | B, C, E | "Quase todo mundo que chega aqui tem a terra e não tem o capital. Sócio e banco entram em **projeto**, não em terreno. Te ajudamos a montar o Dossiê que se leva a eles. A Zion avalia parceria caso a caso, mas não prometemos sócio nem crédito." |
 | "A Zion investe no meu terreno?" | C, F | "A Zion avalia parcerias caso a caso, e o primeiro filtro é a área estar regularizada e com um projeto. Por isso, o caminho começa pelo diagnóstico." |
 | "Só tenho posse ou contrato" | C | "Esse é o primeiro ponto a resolver: com a área regularizada, ela ganha valor e vira garantia. Na mentoria, a gente te ajuda a montar o caminho da regularização junto com o projeto." |
-| "R$ 270 é caro / vou pensar" | B, E | "É menos que uma diária de glamping, em até 12x, e você sai com o Dossiê da sua área. Um erro de projeto custa dezenas de milhares. Quer que eu te mostre o que tem dentro antes?" |
+| "R$ 97 é caro / vou pensar" | B, E | "É menos que uma diária de glamping, e você sai com o Dossiê da sua área. Um erro de projeto custa dezenas de milhares. Quer que eu te mostre o que tem dentro antes?" |
 | "É curso? Não quero curso" | A, B | "Não é só curso: é a inscrição da sua área no banco de áreas da Zion Collection. As aulas servem para preparar a área para entrar bem." |
 | "Meu terreno é pequeno" | E | "Uma cabana na operação da Zion chegou perto de R$ 400 mil em um ano. É o case da Zion, não é promessa de resultado. Não precisa de área grande para começar; precisa do modelo certo." |
 | "Não sei se o terreno serve" | todos | "É exatamente isso que o diagnóstico de 20 minutos responde, sem custo." |
@@ -163,7 +163,7 @@ Campos personalizados: local, tamanho, documentação, investimento, valor da á
 ## 6. Por que ninguém entrou no clube ainda
 
 1. **Ninguém foi chamado.** Os formulários não estão conectados ao ClickMax nem à Zaia, então nenhum dos leads recebeu contato. O lead de formulário esfria em horas: a resposta precisa sair em até 5 minutos.
-2. **O Checkout direto pede R$ 270 a quem nunca falou com a Zion.** A tela final manda direto para o pagamento no Asaas. Para uma decisão sobre a terra da família, quase ninguém paga sem uma conversa antes. O formulário converte bem em **lead** (5 leads a R$ 2,58 cada), mas a **venda** precisa passar pelo WhatsApp.
+2. **O Checkout direto pede R$ 97 a quem nunca falou com a Zion.** A tela final manda direto para o pagamento no Asaas. Para uma decisão sobre a terra da família, quase ninguém paga sem uma conversa antes. O formulário converte bem em **lead** (5 leads a R$ 2,58 cada), mas a **venda** precisa passar pelo WhatsApp.
 3. **O Diagnóstico manda para outro questionário.** A tela final leva ao Raio-X, que repete perguntas que a pessoa acabou de responder. Ela acha que já terminou e para.
 4. **O perfil busca parceiro e capital, não curso.** Entre os 424 leads, 39% querem parceiro, 23% querem capital e 41% citam a falta de capital como maior dificuldade. Se o Land Bank for oferecido como "curso", não encaixa. Ele precisa ser apresentado como **o caminho para chegar a um sócio** (o Dossiê).
 5. **Metade dos leads novos só tem posse.** Pela regra do Bruno, esses não são para o Land Bank agora. Vão para mentoria e regularização.

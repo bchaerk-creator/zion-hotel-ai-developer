@@ -6,7 +6,7 @@
 
 1. O anúncio de clique para o WhatsApp abre a conversa com uma **mensagem pronta**, enviada pela própria pessoa.
 2. Como foi ela quem escreveu primeiro, abre-se a **janela gratuita de 72 h** (entrada por anúncio): durante esse tempo, a Zion manda mensagens livres, sem template e sem custo por conversa.
-3. Meta das 72 h: **agendar o diagnóstico gratuito** (call de 20 min) e/ou **fechar a inscrição no Land Bank** (R$ 270 em até 12x).
+3. Meta das 72 h: **agendar o diagnóstico gratuito** (call de 20 min) e/ou **fechar a inscrição no Land Bank** (R$ 97).
 4. Passadas as 72 h, só dá para falar com a pessoa por **template aprovado** pelo Meta (pago).
 
 Precedente na conta: a campanha "[360] Evento Pablo", de clique para o WhatsApp, gerou 124 conversas com R$ 351 de gasto, ou seja, cerca de **R$ 2,83 por conversa**.
@@ -37,7 +37,7 @@ Botões rápidos (ice breakers):
 **Se agendar · apresentar o clube**
 > Agendado ✅ {dia}, {hora}.
 > Enquanto isso, já te conto: quem entra no **Land Bank**, o banco de áreas da Zion, recebe as aulas e as ferramentas para estruturar o projeto, monta o Dossiê do terreno e tem a área inscrita na área de membros de projetos turísticos da Zion Collection, onde podem surgir possíveis parcerias, investimentos e conexões.
-> A inscrição é de R$ 270 em até 12x. Quer que eu já te mande o link para você chegar na conversa com acesso liberado?
+> A inscrição é de R$ 97. Quer que eu já te mande o link para você chegar na conversa com acesso liberado?
 
 **H+3 a H+6 · sem resposta**
 > {nome}, ficou alguma dúvida? Se preferir, me manda um áudio contando do seu terreno que eu te respondo por aqui.
@@ -55,7 +55,7 @@ Botões rápidos (ice breakers):
   > O diagnóstico gratuito é exatamente para isso: você sai sabendo se a área tem potencial, sem compromisso.
 
 **H+66 a H+70 · antes de a janela fechar**
-> {nome}, vou deixar reservado o seu horário de {dia} às {hora} só até hoje. Se fizer sentido, é só responder "quero" que eu confirmo, ou te mando o link da inscrição no Land Bank (R$ 270 em até 12x).
+> {nome}, vou deixar reservado o seu horário de {dia} às {hora} só até hoje. Se fizer sentido, é só responder "quero" que eu confirmo, ou te mando o link da inscrição no Land Bank (R$ 97).
 
 ## Regras (obrigatórias)
 
