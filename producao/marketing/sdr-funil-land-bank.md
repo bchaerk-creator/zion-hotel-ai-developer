@@ -1,177 +1,192 @@
-# Funil SDR · Land Bank → Consultoria → Mentoria
+# Funil SDR · Land Bank ou Masterclass → Reunião de vendas → Mentoria
 
-03/11/2026 · Versão 1, para revisão do Bruno. Complementa `sdr-qualificacao-objecoes.md` (os perfis A a F e a nota continuam valendo).
+Versão 2 · 03/11/2026 · Para revisão do Bruno. Os perfis A a F e a nota de `sdr-qualificacao-objecoes.md` continuam valendo.
 
 ## 1. O princípio
 
-> **Não existe reunião sem adesão ao clube.**
-> Quem quer falar com a Zion entra no **Land Bank**. A adesão inclui **uma sessão de consultoria com diagnóstico prévio do negócio**. Essa sessão mostra os primeiros passos e leva a pessoa a uma consciência clara: **sem estruturar, não tem parceiro, sócio nem investimento.** O caminho para estruturar com acompanhamento é a **Mentoria**.
+O SDR **não fala de mentoria nem de preço de mentoria**. Ele vende **uma de duas portas de entrada**, e as duas levam à **reunião de vendas**:
 
-O lead gasta energia em cada etapa: responde o formulário, responde o SDR, paga a adesão e prepara o material para a sessão. Quanto mais ele investe, mais ele valoriza o que vem depois, e mais filtrado chega ao pitch.
+| Porta | O que é | Preço | O que dá para a pessoa |
+|---|---|---|---|
+| **Land Bank** | O banco de projetos e áreas turísticas da Zion Collection | **R$ 270** (em até 12x) | A área entra no banco, que abre a possibilidade de parcerias, sócios e investidores. Inclui a reunião de diagnóstico. |
+| **Masterclass ao vivo** | "Como transformar o seu terreno em um projeto de hospedagem e destino turístico" | **R$ 47** | Uma aula ao vivo com o método Zion. Quem assiste ganha a reunião de diagnóstico. |
+
+A **reunião de vendas** reúne quem já está qualificado pelo formulário e já pagou uma das portas. Nela, a pessoa preenche ao vivo um formulário de competitividade. Na hora, sai um **novo diagnóstico com o plano de ação**, e é aí que entra a **oferta da mentoria**.
+
+> A frase-mãe do funil: **"Você já está inscrito para receber um investidor, um sócio ou a Zion como parceira, ou para investir o seu próprio dinheiro. Mas, em qualquer desses caminhos, o dinheiro só entra em projeto estruturado e competitivo."**
 
 ## 2. O caminho
 
 ```
-Anúncio → Formulário "Diagnóstico grátis" (Meta)
-   → WhatsApp: chatbot (3 travas) → Zaia entrega o DIAGNÓSTICO GRÁTIS escrito
-      → Convite: entrar no LAND BANK (R$ 270 em 12x + R$ 47/mês)
-         ├─ Aderiu → onboarding → prepara a "Ficha do Terreno" → SESSÃO DE CONSULTORIA (45 min)
-         │     → consciência: "sem estrutura não há sócio" → PITCH DA MENTORIA
-         │         ├─ Fechou → Mentoria (upsell: individual / estruturação / parceria / produtos)
-         │         └─ Não fechou → downsell: pacote das trilhas ou mentoria em grupo → webinar
-         └─ Não aderiu em 72 h → WEBINAR MASTER AO VIVO → pitch da Mentoria (Land Bank como downsell)
-               └─ Não decidiu → nutrição (conteúdo + próximo webinar)
+Anúncio → Formulário do Meta (diagnóstico grátis)
+  → WhatsApp: chatbot + Zaia (SDR)
+      1. Rapport + perguntas SPIN usando as respostas do formulário
+      2. Diagnóstico grátis por escrito (o que o anúncio prometeu)
+      3. Escolha de porta: LAND BANK R$ 270 ou MASTERCLASS R$ 47
+            ├─ Land Bank → onboarding → agenda a REUNIÃO
+            └─ Masterclass → assiste ao vivo → no final, agenda a REUNIÃO (e tem a oferta do Land Bank)
+  → REUNIÃO DE VENDAS (60 min, Bruno ou closer)
+      → formulário ao vivo → novo diagnóstico + plano de ação → OFERTA DA MENTORIA
+          ├─ Sim → mentoria (upsell: individual, estruturação, parceria, produtos)
+          └─ Não → downsell (Land Bank, se veio da Masterclass, ou pacote das trilhas) → nutrição
 ```
 
-## 3. Etapa 1 · O diagnóstico grátis (o que o anúncio promete)
+## 3. Gatilhos e técnicas (usar em todas as etapas)
 
-O anúncio e o formulário prometem um **diagnóstico gratuito**, e ele precisa ser entregue de verdade, de graça e por escrito. Se o diagnóstico grátis for trocado por "pague para conversar", isso vira propaganda enganosa e o Meta pode reprovar os anúncios.
+| Técnica | Como usar |
+|---|---|
+| **Rapport** | Chamar pelo nome, citar a cidade e o terreno dele, espelhar o vocabulário ("minha terra", "meu sítio"). Áudio curto do SDR humanizado quando a pessoa mandar áudio. |
+| **Espelhamento (ECROI · E)** | "Você tem {área} em {local}, quer {objetivo} e hoje o que trava é {dificuldade}." A pessoa precisa se ver na frase. |
+| **SPIN** | **S**ituação: o que você tem. **P**roblema: o que trava. **I**mplicação: o que acontece se continuar parado. **N**ecessidade: o que mudaria se estivesse estruturado. |
+| **Custo invisível / aversão à perda** | "Cada ano com a terra parada é imposto, manutenção e oportunidade indo embora." |
+| **Colapso de crença (ECROI · C)** | "Você acha que falta dinheiro. Mas o dinheiro existe: o que falta é o projeto onde ele possa entrar." |
+| **Reencadramento (ECROI · R)** | "Terreno não atrai capital. Projeto atrai." |
+| **Inevitabilidade (ECROI · I)** | "Com sócio, com investidor, com a Zion ou com o seu dinheiro: qualquer caminho passa por estruturar. A pergunta é só se vai ser agora." |
+| **Pertencimento** | "Membro do Land Bank", "a sua área entra no banco de áreas da Zion Collection". |
+| **Autoridade** | Bruno, 20 anos de Meliá, Barceló e Wyndham; a Zion opera desde 2020, com duas sedes em dois biomas e notas Booking 9,6 / Airbnb 5. |
+| **Prova social** | O case da Zion e os depoimentos (sempre com "não é promessa de resultado"). |
+| **Compromisso e coerência** | Microssins: "Faz sentido?", "Isso é importante para você?". Quem diz 3 sins pequenos diz o grande. |
+| **Reciprocidade** | O diagnóstico grátis por escrito é entregue **antes** de qualquer oferta. |
+| **Escolha entre dois sins** | "Você prefere começar pelo Land Bank ou pela Masterclass?" (nunca "quer ou não quer?"). |
+| **Escassez real** | Vagas da Masterclass, horários da reunião da semana. Só quando for verdade. |
+| **Futuro desejado** | "Imagina daqui a 12 meses: a sua área com o projeto pronto, recebendo os primeiros hóspedes…" |
+| **Aposta de Pascal** | "Se a sua área tiver potencial e você não estruturar, perde a janela. Se não tiver, você descobre por R$ 47 e não por R$ 400 mil." |
 
-O diagnóstico grátis é uma **leitura escrita do terreno**, montada pela Zaia com as respostas do formulário e as 3 travas. Ela é enviada no WhatsApp em até 5 minutos.
+## 4. O SDR no WhatsApp (chatbot + Zaia)
 
-**Modelo:**
-> 📋 **Diagnóstico gratuito · Terreno em {local}**
->
+### 4.1 Abertura (rapport + reciprocidade), em até 5 minutos
+> Oi, {nome}! Aqui é da Zion Collection 🌿 Vi o seu cadastro do terreno em **{local}**. {Se tiver mais de 20 mil m²: "Área de bom tamanho, hein!"} Antes de te mandar o seu diagnóstico, me ajuda com 3 coisas rápidas?
+> 1️⃣ A área tem escritura ou matrícula em seu nome?
+> 2️⃣ Hoje você tem algum recurso para começar, ou depende de sócio ou investidor?
+> 3️⃣ Você decide sozinho ou com mais alguém?
+
+### 4.2 SPIN (Implicação e Necessidade), 1 ou 2 mensagens
+> E se essa área continuar como está pelos próximos 2 ou 3 anos, o que isso significa para você?
+
+> E se ela estivesse com o projeto pronto, mostrando a conta para um sócio ou investidor, o que mudaria?
+
+*Deixar a pessoa escrever. É ela que gasta energia e cria o desejo.*
+
+### 4.3 Diagnóstico grátis por escrito (o que o anúncio prometeu)
+> 📋 **O seu diagnóstico · {local}**
 > **O que você tem:** {possui}, {tamanho}, {documentação}.
-> **O seu objetivo:** {objetivo do projeto} · estágio: {estágio}.
->
-> **Ponto forte:** {um destes: "área grande em região turística", "escritura em dia (a área já pode virar garantia)", "você já opera hospedagem", "região com demanda de turismo de natureza"}.
->
-> **O gargalo hoje:** {pela dificuldade e pela documentação:
-> · falta de capital → "sócio e banco entram em projeto, não em terreno. Hoje a sua área ainda não tem o projeto que mostra a conta";
-> · posse ou contrato → "sem documentação regularizada, nenhum sócio sério entra. Esse é o primeiro passo";
-> · não sabe por onde começar → "falta a ordem: lugar, produto, desenho e conta";
-> · não sabe se o terreno serve → "falta a leitura do lugar: acesso, demanda e restrições";
-> · medo de errar → "falta validar o modelo antes de construir"}.
->
-> **O primeiro passo recomendado:** estruturar o projeto (Dossiê de Desenvolvimento) antes de buscar sócio, crédito ou construir.
->
-> *Esta é uma leitura inicial com base nas suas respostas. Não é promessa de resultado.*
+> **Ponto forte:** {ponto forte}.
+> **O que trava hoje:** {gargalo: sem projeto / sem documentação / sem ordem / sem validação}.
+> **O caminho:** {nome}, quem tem a terra e quer sócio, investidor ou crédito precisa, antes, de um **projeto estruturado e competitivo**. Dinheiro entra em projeto, não em terreno.
+> *Leitura inicial com base nas suas respostas. Não é promessa de resultado.*
 
-## 4. Etapa 2 · O convite para o Land Bank (a porta da reunião)
-
-Logo depois do diagnóstico:
-
-> {nome}, esse é o retrato de onde a sua área está hoje. O próximo passo é aprofundar: entender o seu caso com um especialista e sair com os primeiros passos definidos.
+### 4.4 A escolha de porta (dois sins)
+> Para o próximo passo você tem dois caminhos, e os dois te levam a uma **reunião de diagnóstico com o nosso time**, onde montamos o plano de ação da sua área:
 >
-> Essa conversa acontece **dentro do Land Bank**, o clube de áreas da Zion Collection. Na adesão você recebe:
-> ✅ **Uma sessão de consultoria** com diagnóstico prévio do seu negócio
-> ✅ A inscrição da sua área no banco de áreas da Zion Collection, onde podem surgir possíveis parcerias, investimentos e conexões
-> ✅ As aulas e ferramentas para estruturar o projeto (8 aulas, simuladores e o Dossiê)
-> ✅ Acesso à área de membros por 1 ano
+> 🏛 **Land Bank · R$ 270 (em até 12x)**
+> A sua área entra no **banco de projetos e áreas turísticas da Zion Collection**, que abre a possibilidade de parcerias, sócios e investidores. Inclui a reunião de diagnóstico.
 >
-> Adesão de **R$ 270 em até 12x**, mais R$ 47/mês para manter a área ativa no banco.
-> Quer que eu te mande o link para garantir a sua sessão desta semana?
+> 🎥 **Masterclass ao vivo · R$ 47**
+> "Como transformar o seu terreno em um projeto de hospedagem e destino turístico", com o método que a Zion usa nas próprias sedes. Quem assiste ganha a reunião de diagnóstico.
+>
+> Por onde você prefere começar?
 
-**Por que só para membros** (se perguntarem):
-> A sessão é feita com base no seu material. Antes dela, você preenche a Ficha do Terreno dentro do clube, e o especialista chega com o seu caso estudado. Por isso ela é para membros: não é uma conversa genérica, é trabalho em cima da sua área.
+**Qual porta empurrar primeiro (pelo perfil):**
 
-**Ajuste do convite por perfil:**
-
-| Perfil | Ângulo | Quem faz a sessão |
+| Perfil | Porta principal | Argumento |
 |---|---|---|
-| A · Pronto (escritura + recurso) | "A sua área tem perfil para o banco de áreas. A sessão vai mostrar o caminho para chegar a um parceiro." | Bruno |
-| B · Terra estruturável | "Você tem a terra regularizada. Falta o projeto que mostra a conta." | CS |
-| C · Quer sócio, com posse | "Primeiro passo: regularizar e estruturar. A sessão monta esse caminho." | CS (Bruno se tiver nota 6 ou mais) |
-| D · Operador | "Vamos olhar a expansão da sua operação com quem já opera." | Bruno |
-| E · Ideia inicial | "É a fase em que mais se economiza erro. A sessão define por onde começar." | CS |
-| F · Quer operador | "Você quer que uma empresa opere. A sessão avalia se a sua área tem perfil para um modelo de parceria." | Bruno |
+| A · Escritura + recurso | **Land Bank** | "A sua área já tem perfil para o banco." |
+| B · Terra estruturável | **Land Bank** | "Você já tem a terra regularizada. Falta ela aparecer para quem investe." |
+| D · Operador | **Land Bank** | "A sua operação mais uma área nova é o que mais chama atenção de parceiro." |
+| F · Quer operador | **Land Bank** | "É no banco que a Zion avalia as áreas para modelos de parceria." |
+| C · Posse, quer sócio | **Masterclass** | "Primeiro entender o caminho, que começa pela regularização." |
+| E · Ideia inicial | **Masterclass** | "É a fase em que mais se economiza erro." |
 
-**Follow-up da adesão (janela de 72 h):**
-- **+3 h:** "Ficou alguma dúvida sobre o Land Bank? Se quiser, me manda um áudio."
-- **+24 h:** prova: "Sócio entra em projeto, não em terreno. Foi assim que a Zion estruturou as próprias sedes desde 2020."
-- **+48 h:** a objeção do perfil (ver o banco de objeções).
-- **+66 a 70 h:** escassez real. "As sessões desta semana fecham hoje. Garanto a sua?" Se não aderir, vai para a **Etapa 5 (webinar)**.
+### 4.5 Fechamento
+- **Escolheu:** "Perfeito! Aqui está o link: {link}. Assim que confirmar, já te mando os horários da reunião."
+- **Hesitou:** "O que te faria ter certeza?" (deixar a objeção aparecer e responder pelo banco de objeções).
+- **"Vou pensar":** "Claro. Só para eu entender: o que pesa mais, o valor ou se isso é para você agora?"
 
-## 5. Etapa 3 · Onboarding do membro
+### 4.6 Follow-up (janela de 72 h)
+- **+3 h:** "{nome}, ficou alguma dúvida? Pode me mandar áudio."
+- **+24 h (prova):** "Sócio entra em projeto, não em terreno. Foi estruturando que a Zion construiu as próprias sedes desde 2020."
+- **+48 h (custo invisível):** "Cada mês com a terra parada é custo sem retorno. Por R$ 47 você já sai da Masterclass sabendo o caminho."
+- **+66 a 70 h (escassez real):** "A Masterclass de {data} está fechando as vagas. Garanto a sua?"
 
-1. Pagou → mensagem de boas-vindas + acesso à área de membros.
-2. **Ficha do Terreno** (tarefa antes da sessão): fotos, localização, documentos, o que já tem e o objetivo. *Isso faz o membro gastar energia, e quem preenche aparece na sessão.*
-3. Assistir o **Marco Zero** (a aula do diagnóstico prévio).
-4. Agendar a sessão (Calendly), só depois de enviar a ficha.
+## 5. A Masterclass ao vivo (R$ 47)
 
-## 6. Etapa 4 · A sessão de consultoria (45 min, ECROI)
+**Título:** "Como transformar o seu terreno em um projeto de hospedagem e destino turístico"
 
-| Min | Bloco | O que acontece |
-|---|---|---|
-| 0–5 | **Espelhamento** | Ler a ficha com ele. "Você tem {área}, quer {objetivo}, e o que trava é {gargalo}." Ele precisa se ver na fala. |
-| 5–15 | **Diagnóstico prévio** | Os 7 pilares em 4 etapas: lugar, produto, desenho do terreno e conta. Mostrar onde ele está em cada um (verde, amarelo ou vermelho). |
-| 15–25 | **Colapso da crença** | "O que você está esperando é um sócio ou um dinheiro. Mas veja: em qual destes pilares um investidor confiaria hoje?" Ele mesmo percebe que **sem estrutura não há sócio, crédito nem parceiro.** |
-| 25–30 | **Reencadramento** | "O seu problema não é dinheiro, é ordem. Terreno não atrai capital: projeto atrai." |
-| 30–35 | **Primeiros passos** | Entregar 3 passos concretos para os próximos 30 dias (por exemplo: regularizar, fazer a leitura do lugar, definir o produto). Ele sai com valor, mesmo sem comprar. |
-| 35–45 | **Inevitabilidade + pitch** | "Você pode fazer esses passos sozinho com o Land Bank, ou fazer com a gente do lado, sem errar a ordem. Isso é a **Mentoria**." Apresentar a oferta (seção 8). |
-
-**Pergunta de fechamento:**
-> Faz sentido para você fazer isso acompanhado? Começamos na próxima turma ou no individual?
-
-## 7. Etapa 5 · Webinar Master ao vivo (para quem não decidiu)
-
-**Título:** *Como estruturar o seu terreno em um destino turístico e em um projeto de sucesso*
-
-**Quem vai:**
-- leads que não aderiram ao Land Bank em 72 h;
-- membros que fizeram a sessão e não fecharam a mentoria;
-- a base antiga (nutrição).
-
-**Convite (WhatsApp):**
-> {nome}, vou fazer uma aula **ao vivo** na {dia}, às {hora}: "Como estruturar o seu terreno em um destino turístico e em um projeto de sucesso". Vou mostrar os 7 pilares que a Zion usa e por que sem eles não aparece sócio nem investimento. É gratuito e com vagas limitadas na sala. Quer que eu guarde a sua?
-
-**Lembretes:** D-1, 2 h antes, 15 min antes ("estamos entrando") e o link do replay por 24 h para quem não assistiu.
-
-**Roteiro (75 min):**
-1. **(10 min) História:** Bruno, 20 anos de Meliá, Barceló e Wyndham; a Zion desde 2020, com duas sedes em dois biomas.
+**Roteiro de 75 minutos:**
+1. **(10 min) Rapport + história:** o Bruno, os 20 anos de hotelaria e a Zion desde 2020.
 2. **(10 min) Espelhamento:** "Você tem a terra e acha que falta dinheiro…"
-3. **(25 min) Conteúdo:** os 7 pilares em 4 etapas, com 1 erro comum em cada um.
-4. **(10 min) Colapso + reencadramento:** "Sócio entra em projeto, não em terreno."
-5. **(15 min) Pitch da Mentoria**, com bônus para quem fechar ao vivo. **Downsell no final:** Land Bank.
-6. **(5 min) Perguntas** + escassez real (vagas da turma, bônus só na live).
+3. **(25 min) Conteúdo:** os 7 pilares em 4 etapas, com 1 erro comum em cada um. O ensino é real e gera reciprocidade.
+4. **(10 min) Colapso + reencadramento:** "As 4 fontes de dinheiro (investidor, sócio, a Zion como parceira e o seu próprio dinheiro) só entram em projeto estruturado e competitivo."
+5. **(10 min) Convite para a reunião de diagnóstico** (incluída para quem está na live) + **oferta do Land Bank** para colocar a área no banco.
+6. **(10 min) Perguntas ao vivo** + agenda das reuniões (escassez: horários limitados na semana).
 
-## 8. A escada de ofertas (upsell e downsell)
+## 6. A reunião de vendas (60 min)
 
-| Nível | Oferta | Preço | Quando |
-|---|---|---|---|
-| 0 | Diagnóstico grátis escrito + webinar | Grátis | Sempre |
-| 1 | **Land Bank** (adesão + sessão de consultoria + aulas + inscrição da área) | R$ 270 em 12x + R$ 47/mês | Depois do diagnóstico grátis |
-| 1b | *Downsell do 2:* pacote das 4 trilhas | R$ 890 | Quem não fecha a mentoria, mas quer mais conteúdo |
-| **2** | **Mentoria em grupo** | {preço a definir} | **Pitch principal:** na sessão e no webinar |
-| 3 | *Upsell:* Mentoria individual com o Bruno | {preço a definir} | Perfis A, D e F, ou quem pede proximidade |
-| 4 | *Upsell:* estruturação feita pela equipe Zion | Sob proposta | Perfil F, ou quem diz "quero que alguém faça" |
-| 5 | *Upsell:* produtos (Bubble Suite, Suite Premium) e parceria Zion Collection | Tabela da Store / caso a caso | Depois do projeto estruturado |
+Quem chega: um lead **já qualificado pelo formulário** e **que já pagou** o Land Bank ou a Masterclass. Quem conduz: o Bruno (perfis A, D e F) ou o closer (os outros).
 
-**Regras da escada:**
-- Nunca oferecer dois níveis ao mesmo tempo. Um "não" leva ao **downsell** do mesmo momento; um "sim" leva ao **upsell** na entrega seguinte.
-- Todo caminho termina no **pitch da Mentoria**: na sessão (para quem é membro) ou no webinar (para quem não é).
+| Min | Bloco | O que fazer |
+|---|---|---|
+| 0–5 | **Rapport** | Falar da região dele e do que ele contou no formulário. "Vi que você {detalhe}." |
+| 5–10 | **Enquadramento** | "Você está inscrito agora para receber um investidor, um sócio ou a Zion como parceira, ou para investir o seu próprio dinheiro. Hoje vamos ver o que falta para qualquer um desses caminhos dar certo." |
+| 10–25 | **Formulário ao vivo** | Enviar o link do **Formulário de Competitividade** (6.1) e preencher junto com ele, explicando cada pilar. *Ele gasta energia e vê as lacunas com os próprios olhos.* |
+| 25–35 | **Novo diagnóstico + plano de ação** | Mostrar a nota por pilar (verde, amarelo ou vermelho) e os **3 passos dos próximos 90 dias**. |
+| 35–40 | **Colapso + inevitabilidade** | "Olha o que um investidor vê hoje: {pilares em vermelho}. É por isso que o dinheiro não entra. Ou você estrutura sozinho, testando e errando, ou estrutura com quem já fez." |
+| 40–55 | **Oferta da mentoria** | O que ela entrega, como funciona e o investimento, apresentado só aqui, na reunião. Reforçar com o futuro desejado e a Aposta de Pascal. |
+| 55–60 | **Fechamento** | "Faz sentido começarmos?" Na dúvida: "O que te impede de decidir hoje?" Se a resposta for não → downsell. |
 
-## 9. O pipeline atualizado (ClickMax)
+### 6.1 Formulário de Competitividade (preenchido ao vivo)
+
+Gera o novo diagnóstico na hora.
+
+1. **Lugar:** acesso (asfalto, distância de aeroporto ou capital), atrativos num raio de 50 km, demanda turística da região.
+2. **Documentação:** escritura, matrícula, CAR, restrições ambientais (APP, reserva legal).
+3. **Produto:** que experiência você quer vender? Para quem (casal, família, grupo)?
+4. **Desenho do terreno:** onde ficariam as unidades, a vista, água, energia.
+5. **Conta:** quantas unidades no início, diária que imagina, quanto pode investir agora.
+6. **Operação:** quem vai operar e se já tem experiência.
+7. **Capital:** recurso próprio, sócio, crédito ou parceria com a Zion.
+8. **Prazo:** quando você quer receber o primeiro hóspede?
+
+**Resultado:** nota de 0 a 10 em cada pilar, os 3 pilares mais fracos e o plano de ação de 90 dias. Esse resultado é a **ponte para a mentoria**: "a mentoria é exatamente o caminho para fechar esses pilares".
+
+## 7. A escada (sem preço de mentoria no SDR)
+
+| Nível | Oferta | Quem vende |
+|---|---|---|
+| 0 | Diagnóstico grátis por escrito | Zaia |
+| 1a | **Masterclass ao vivo · R$ 47** | Zaia |
+| 1b | **Land Bank · R$ 270** | Zaia (ou no final da Masterclass) |
+| 2 | **Mentoria** (a proposta só é apresentada na reunião) | Bruno ou closer |
+| 3 | *Upsell:* mentoria individual / estruturação pela equipe / parceria Zion Collection / produtos (Bubble Suite) | Bruno |
+| ↓ | *Downsell* de quem não fecha a mentoria: Land Bank (se veio da Masterclass) ou pacote das trilhas (R$ 890) | Closer |
+
+## 8. O pipeline (ClickMax)
 
 1. Novo lead (formulário)
-2. Diagnóstico grátis enviado
-3. Convite Land Bank enviado (janela de 72 h)
-4. **Membro Land Bank** (pagou)
-5. Ficha do Terreno enviada
-6. Sessão agendada
-7. Sessão feita → pitch
-8. **Mentoria fechada** (grupo ou individual) → upsell
-9. Webinar inscrito
-10. Webinar assistido → pitch
-11. Nutrição
-12. Perdido (com motivo)
+2. Em qualificação (SDR)
+3. Diagnóstico grátis enviado
+4. Porta oferecida
+5. **Pagou a Masterclass (R$ 47)** ou **Pagou o Land Bank (R$ 270)**
+6. Masterclass assistida
+7. Reunião agendada
+8. Reunião feita (formulário de competitividade preenchido)
+9. Proposta da mentoria apresentada
+10. **Mentoria fechada** → upsell
+11. Downsell aceito
+12. Nutrição / Perdido (com motivo)
 
-**Tags:** perfil (A a F), temperatura, `membro-landbank`, `sessao-feita`, `webinar-inscrito`, `webinar-assistiu`, `mentoria-grupo`, `mentoria-individual`.
+## 9. Regras e alertas
 
-## 10. Regras (obrigatórias)
-
-- O **diagnóstico grátis é entregue de graça e por escrito**. O que é exclusivo de membros é a **sessão de consultoria**. O texto do anúncio continua correto: "Comece pelo diagnóstico gratuito".
-- "Te ajudamos a estruturar", nunca "estruturamos por você".
-- Sempre "**possíveis** parcerias, investimentos e conexões". Nunca prometer sócio, crédito, renda ou retorno.
+- **Título da Masterclass:** "de alta rentabilidade" é promessa de resultado. O Meta reprova esse tipo de anúncio, e o CDC (art. 37) proíbe a promessa. **Sugestão:** usar o título sem essa expressão nos anúncios e nas páginas. Se quiser manter a ideia, trocar por algo como "de hospedagem que se paga" e explicar na aula, com o aviso "não é promessa de resultado".
+- **Land Bank:** sempre "abre a **possibilidade** de parcerias, sócios e investidores". Na reunião, "você está inscrito para receber" deve vir com o **"desde que o projeto esteja estruturado"**. Nunca garantir sócio, investidor nem crédito.
+- **O diagnóstico grátis é sempre entregue**, porque o anúncio prometeu. O que é pago é a porta (Land Bank ou Masterclass), e a reunião vem junto com ela.
+- "Te ajudamos", nunca "fazemos". Escassez só quando for real.
 - Aviso do Land Bank: "A inscrição não é oferta de investimento nem garantia de parceria, crédito ou sociedade. A Zion avalia cada caso."
-- Escassez só quando for real (vagas na sessão da semana, turma ou bônus da live).
 
-## 11. O que falta definir (Bruno)
+## 10. O que falta definir
 
-1. O preço da mentoria em grupo e da individual, e o formato (duração, encontros).
-2. A data e o horário do primeiro Webinar Master, e a plataforma (Zoom, YouTube ou StreamYard).
-3. Quantas sessões de consultoria por semana, e com quem: o Bruno faz os perfis A, D e F, e o CS faz os outros?
-4. O bônus para quem fechar a mentoria na sessão e no webinar.
-5. O link de pagamento do Land Bank passando pelo ClickMax, para registrar automaticamente quem é membro.
-6. A tela final dos formulários: trocar por "Falar no WhatsApp".
+1. A data, a plataforma e o link de pagamento da Masterclass (R$ 47).
+2. O link do Land Bank (R$ 270) pelo ClickMax.
+3. A agenda da reunião (dias e horários) e quem conduz.
+4. O Formulário de Competitividade: monto no ClickMax com as 8 perguntas acima.
+5. A mensalidade de R$ 47 do Land Bank continua, ou o R$ 47 agora é só da Masterclass?

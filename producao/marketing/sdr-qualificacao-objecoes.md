@@ -1,6 +1,6 @@
 # SDR Zion Collection · Qualificação, ofertas e objeções
 
-> **Atualização 03/11:** a reunião passou a ser **só para membros do Land Bank** (a adesão inclui a sessão de consultoria). O fluxo completo, com webinar, upsell e downsell, está em `sdr-funil-land-bank.md`. Os perfis e a nota abaixo continuam valendo, mas agora servem para **personalizar o convite e definir quem faz a sessão**.
+> **Atualização 03/11:** o SDR vende só as portas de entrada (Land Bank R$ 270 ou Masterclass R$ 47); as duas levam à reunião de vendas, e a mentoria só é ofertada na reunião. O fluxo completo, com webinar, upsell e downsell, está em `sdr-funil-land-bank.md`. Os perfis e a nota abaixo continuam valendo, mas agora servem para **personalizar o convite e definir quem faz a sessão**.
 
 Para o chatbot e a Zaia (agente de IA) · 03/11/2026 · Versão 1, para revisão do Bruno
 
