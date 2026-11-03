@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Webinário Zion · Do terreno ao destino</title>
+<meta name="description" content="Webinário ao vivo com Bruno Chaerk, fundador da Zion: transforme seu terreno em um destino turístico e aprenda a construir um Airbnb de sucesso. Quinta, 12/11, às 20h.">
+<meta property="og:title" content="Transforme seu terreno em um destino turístico">
+<meta property="og:description" content="Webinário ao vivo com a Zion · quinta 12/11 · 20h · R$ 47">
+<meta property="og:image" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0E1A13;--bg-2:#16261C;--panel:#1B2E22;--line:rgba(245,241,232,.14);
+  --paper:#F5F1E8;--muted:#A9B3A5;--gold:#E0BE5E;--gold-2:#B08D3A;--ink:#0E1A13;--err:#E7A08F;
+  --serif:'Playfair Display',Georgia,serif;--sans:'Inter',system-ui,-apple-system,'Segoe UI',Arial,sans-serif;
+  --mono:'JetBrains Mono',ui-monospace,Menlo,monospace;color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--paper);font-family:var(--sans);font-size:16px;line-height:1.55;overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;margin:0;text-wrap:balance}
+p{margin:0}
+.w{max-width:680px;margin:0 auto;padding:0 16px}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+.sec{padding:56px 0;border-top:1px solid var(--line)}
+.sec h2{font-size:clamp(30px,7.4vw,44px);line-height:1.1;margin:10px 0 14px}
+.sec h2 em{color:var(--gold)}
+.lead{font-size:17.5px;color:var(--paper)}
+.muted{color:var(--muted)}
+.small{font-size:13.5px;color:var(--muted);line-height:1.5}
+
+/* hero */
+.hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,19,.25) 0%,rgba(14,26,19,.55) 40%,var(--bg) 92%)}
+.hero .w{position:relative;z-index:1;padding-bottom:34px;width:100%}
+.badge{display:inline-flex;align-items:center;gap:8px;background:rgba(14,26,19,.82);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
+.badge i{width:8px;height:8px;border-radius:50%;background:#e5484d;box-shadow:0 0 0 0 rgba(229,72,77,.7);animation:pulse 1.6s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(229,72,77,0)}100%{box-shadow:0 0 0 0 rgba(229,72,77,0)}}
+.hero h1{font-size:clamp(36px,9.4vw,60px);line-height:1.04;margin:16px 0 12px}
+.hero h1 em{color:var(--gold)}
+.hero .sub{font-size:19px;line-height:1.4;color:var(--paper)}
+.quando{display:flex;flex-wrap:wrap;gap:8px 16px;margin:16px 0 0;font-size:15px;color:var(--paper)}
+.quando b{color:var(--gold)}
+
+/* countdown */
+.cd{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:18px 0 0}
+.cd div{background:rgba(27,46,34,.9);border:1px solid var(--line);border-radius:14px;text-align:center;padding:10px 4px}
+.cd b{display:block;font-family:var(--serif);font-size:30px;line-height:1;color:var(--paper)}
+.cd span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}
+
+/* buttons */
+.btn{display:flex;justify-content:space-between;align-items:center;gap:12px;width:100%;min-height:72px;border:0;border-radius:999px;background:linear-gradient(180deg,#EED27A,var(--gold) 55%,var(--gold-2));color:var(--ink);font:800 19px/1.2 var(--sans);padding:12px 14px 12px 26px;text-decoration:none;cursor:pointer;box-shadow:0 0 0 6px rgba(224,190,94,.16);text-align:left}
+.btn .arr{flex:0 0 40px;height:40px;border-radius:50%;background:var(--ink);color:var(--gold);display:flex;align-items:center;justify-content:center;font-size:20px}
+.btn:focus-visible{outline:3px solid var(--paper);outline-offset:3px}
+.btn-s{display:flex;align-items:center;justify-content:center;min-height:50px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--paper);font:600 15px var(--sans);text-decoration:none;padding:0 18px}
+
+/* price */
+.preco{border:2px solid var(--gold);border-radius:22px;background:#111f16;padding:22px 18px;text-align:center;margin:22px 0 0}
+.preco .v{font-family:var(--serif);font-size:62px;line-height:1;color:var(--gold);margin:6px 0 2px}
+.preco .de{font-size:13px;color:var(--muted)}
+
+/* lists */
+.cr{display:grid;gap:12px;margin:18px 0 0}
+.cr div{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:18px}
+.cr .n{font-family:var(--mono);font-size:12px;color:var(--gold);letter-spacing:.14em}
+.cr b{display:block;font-size:18px;line-height:1.3;margin:6px 0 4px;color:var(--paper)}
+.cr .x{color:var(--muted);font-size:15px}
+.cr .x s{color:#8e9a8f}
+.met{list-style:none;margin:16px 0 0;padding:0;counter-reset:m}
+.met li{position:relative;display:flex;gap:14px;padding:0 0 18px}
+.met li:before{counter-increment:m;content:counter(m);flex:0 0 34px;height:34px;border-radius:50%;border:2px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px}
+.met li:not(:last-child):after{content:"";position:absolute;left:16px;top:36px;bottom:-2px;width:2px;background:#2b3d31}
+.met b{display:block;color:var(--paper);font-size:17px;line-height:1.3}
+.met span{display:block;font-size:14.5px;color:var(--muted);margin-top:2px}
+.ok{list-style:none;margin:14px 0 0;padding:0}
+.ok li{display:flex;gap:10px;padding:9px 0;border-top:1px solid var(--line);font-size:16px}
+.ok li:before{content:"✓";color:var(--gold);font-weight:800}
+.no li:before{content:"✕";color:var(--err)}
+
+/* carousel */
+.car{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none;margin:18px 0 0;padding-bottom:4px;contain:inline-size}
+.car::-webkit-scrollbar{display:none}
+.car figure{flex:0 0 78%;margin:0;scroll-snap-align:start}
+.car img{width:100%;height:300px;object-fit:cover;border-radius:16px}
+.car figcaption{font-size:12.5px;color:var(--muted);margin-top:6px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:18px 0 0}
+.stats div{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:14px}
+.stats b{display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1.1}
+.stats span{font-size:13px;color:var(--muted)}
+.bruno{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;margin:20px 0 0}
+.bruno img{width:120px;height:150px;object-fit:cover;border-radius:16px}
+.ig{display:grid;gap:8px;margin:16px 0 0}
+.ig a{flex-direction:column;gap:1px;line-height:1.2;min-height:54px}
+.ig a span{font-size:11.5px;color:var(--muted);font-weight:500}
+
+/* form */
+.form{background:var(--panel);border:1px solid var(--gold);border-radius:22px;padding:20px 16px;margin:20px 0 0}
+.form label{display:block;font-size:14px;font-weight:600;margin:12px 0 6px}
+.form input[type=text],.form input[type=tel],.form input[type=email]{width:100%;min-height:52px;border-radius:14px;border:1px solid #3a4d40;background:#0f1c14;color:var(--paper);font:16px var(--sans);padding:0 14px}
+.form input:focus{outline:2px solid var(--gold);border-color:var(--gold)}
+.form .lg{display:flex;gap:10px;align-items:flex-start;font-weight:400;font-size:13px;color:var(--muted);margin:14px 0 16px}
+.form .lg input{margin-top:3px;width:18px;height:18px;flex:0 0 18px}
+.erro{color:var(--err);font-size:14px;margin:10px 0 0;min-height:1em}
+details{border-top:1px solid var(--line);padding:14px 0}
+details summary{cursor:pointer;font-weight:600;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+details summary:after{content:"+";color:var(--gold);font-size:20px;line-height:1}
+details[open] summary:after{content:"–"}
+details p{margin:8px 0 0;color:var(--muted);font-size:15px}
+footer{padding:36px 0 110px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted)}
+
+/* sticky bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:20;background:rgba(14,26,19,.96);border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom,0px));display:flex;align-items:center;gap:12px;transform:translateY(110%);transition:transform .3s}
+.bar.on{transform:none}
+.bar .t{flex:1;font-size:13px;line-height:1.3;color:var(--muted)}
+.bar .t b{display:block;color:var(--paper);font-size:15px}
+.bar a{flex:0 0 auto;min-height:48px;display:flex;align-items:center;border-radius:999px;background:var(--gold);color:var(--ink);font-weight:800;padding:0 20px;text-decoration:none}
+@media (min-width:760px){.hero{min-height:86svh}.car figure{flex-basis:46%}}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script>!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');fbq('init','903918118859018');fbq('track','PageView');</script>
+</head>
+<body>
+<script>
+var CONFIG={
+  inicio:'2026-11-12T20:00:00-03:00',
+  dataTxt:'Quinta-feira, 12/11',horaTxt:'20h (Brasília)',plataforma:'Zoom',
+  preco:'R$\u00a047',valor:47,
+  /* link de pagamento do Asaas de R$ 47 — colar aqui quando existir */
+  checkout:'',
+  whatsapp:'554861371061'
+};
+var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
+</script>
+
+<header class="hero">
+  <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="Bubble Zion no meio da mata de araucárias, vista de cima" fetchpriority="high">
+  <div class="w">
+    <span class="badge"><i></i>Webinário ao vivo · Zion</span>
+    <h1>Transforme seu terreno em um <em>destino turístico</em></h1>
+    <p class="sub">e aprenda a construir um Airbnb de sucesso, com quem já opera hospedagem.</p>
+    <div class="quando"><span><b>📅</b> <span data-c="dataTxt"></span></span><span><b>🕗</b> <span data-c="horaTxt"></span></span><span><b>💻</b> Ao vivo no <span data-c="plataforma"></span></span></div>
+    <div class="cd" id="cd" aria-label="Tempo até o webinário"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div>
+    <div style="margin:20px 0 0"><a class="btn" href="#vaga" data-ir><span>Garantir minha vaga por <span data-c="preco"></span></span><span class="arr" aria-hidden="true">→</span></a></div>
+    <p class="small" style="margin:10px 0 0;text-align:center">Vagas limitadas na sala ao vivo · pagamento único</p>
+  </div>
+</header>
+
+<main>
+<section class="sec" style="border-top:0;padding-top:34px"><div class="w">
+  <span class="mono">A ideia central</span>
+  <h2>Ninguém paga para dormir num terreno. <em>Paga por uma experiência.</em></h2>
+  <p class="lead">O seu terreno já tem o mais difícil: o lugar. O que falta é transformar esse lugar numa experiência que o hóspede não encontra em outro canto, e num projeto que um sócio ou um investidor aceitam olhar.</p>
+  <p class="muted" style="margin:12px 0 0">Neste webinário ao vivo, o Bruno Chaerk, fundador da Zion, mostra como a Zion saiu de um terreno sem luz, sem água e sem internet para uma operação com nota máxima no Airbnb. E qual é o caminho, na ordem certa, para fazer o mesmo no seu, com exemplos reais de como isso se aplica a um terreno como o seu.</p>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">3 coisas que você vai deixar de acreditar</span>
+  <h2>O que trava quem tem um terreno <em>parado</em></h2>
+  <div class="cr">
+    <div><span class="n">CRENÇA 1</span><b>"Hospedagem é para quem tem milhões."</b><p class="x">Você vai ver por que um destino começa pequeno: uma unidade, um deck e uma experiência bem pensada, e cresce com o caixa da própria operação.</p></div>
+    <div><span class="n">CRENÇA 2</span><b>"Eu não sei nada de hotelaria."</b><p class="x">Você vai ver que existe um método, passo a passo, e que dá para começar sem nunca ter operado: o que importa é a ordem das decisões.</p></div>
+    <div><span class="n">CRENÇA 3</span><b>"Não tem dinheiro nem investidor para isso."</b><p class="x">Existe dinheiro. O que não existe são empreendimentos bem estruturados. Você vai ver o que um sócio, um banco ou um investidor pedem para ver antes de entrar.</p></div>
+  </div>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">O como · o Método Zion</span>
+  <h2>Do terreno ao destino, <em>em 7 passos</em></h2>
+  <p class="lead">No webinário você vê o mapa completo e o que fazer em cada etapa:</p>
+  <ol class="met">
+    <li><div><b>Território</b><span>Como ler o seu terreno: acesso, água, energia, vista e o que ele tem de único.</span></div></li>
+    <li><div><b>Mercado</b><span>Quem é o hóspede da sua região e quanto ele paga por uma diária.</span></div></li>
+    <li><div><b>Produto</b><span>Qual hospedagem faz sentido para o seu lugar: bolha, cabana, glamping ou outro modelo.</span></div></li>
+    <li><div><b>Modelo de negócio</b><span>Operar você mesmo, com sócio ou com a curadoria de quem já opera.</span></div></li>
+    <li><div><b>Masterplan e conta</b><span>Quantas unidades, em que ordem, e a conta que fecha antes da obra.</span></div></li>
+    <li><div><b>Capital</b><span>Os caminhos para viabilizar: o seu dinheiro, um sócio, um banco ou um investidor.</span></div></li>
+    <li><div><b>Dossiê</b><span>O projeto pronto para apresentar, e o anúncio que faz o Airbnb trabalhar por você.</span></div></li>
+  </ol>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">Quem vai te mostrar</span>
+  <h2>Não é teoria. <em>É a nossa operação.</em></h2>
+  <div class="stats">
+    <div><b>5/5</b><span>Airbnb · Superhost</span></div>
+    <div><b>10</b><span>nota na Expedia</span></div>
+    <div><b>desde 2020</b><span>operando hospedagem</span></div>
+    <div><b>20+</b><span>anos de hotelaria do fundador</span></div>
+  </div>
+  <div class="car" id="car" aria-label="Fotos da operação Zion"></div>
+  <p class="small" style="margin:8px 0 0">Hóspedes e unidades da Zion, em operação própria. Arraste para o lado →</p>
+  <div class="bruno">
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/hub/bruno.webp" alt="Bruno Chaerk, fundador da Zion" loading="lazy">
+    <div><b style="display:block;font-size:18px">Bruno Chaerk</b><p class="small" style="margin:4px 0 0">Fundador da Zion Hotel Group International, em Florianópolis. Começou com uma bolha no meio da mata, num terreno vazio, e transformou o caminho em método.</p></div>
+  </div>
+  <div class="ig">
+    <a class="btn-s" href="https://instagram.com/zionbubble" target="_blank" rel="noopener">@zionbubble<span>Hospedagem · nosso case de sucesso</span></a>
+    <a class="btn-s" href="https://instagram.com/zionglampingcollection" target="_blank" rel="noopener">@zionglampingcollection<span>Zion Glamping Collection</span></a>
+    <a class="btn-s" href="https://instagram.com/brunochaerkofc" target="_blank" rel="noopener">@brunochaerkofc<span>Bruno Chaerk · fundador</span></a>
+  </div>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">Para quem é</span>
+  <h2>Este webinário é <em>para você</em> se:</h2>
+  <ul class="ok">
+    <li>Tem um terreno, uma chácara ou um sítio parado e quer transformar em hospedagem.</li>
+    <li>Pensa em construir uma bolha, cabana ou glamping para alugar no Airbnb.</li>
+    <li>Já tem uma hospedagem e quer que ela vire um destino, com diária e ocupação melhores.</li>
+    <li>Quer apresentar o seu projeto a um sócio, um banco ou um investidor.</li>
+  </ul>
+  <ul class="ok no" style="margin-top:18px">
+    <li>Não é para quem procura dinheiro rápido ou renda garantida.</li>
+  </ul>
+</div></section>
+
+<section class="sec" id="vaga"><div class="w">
+  <span class="mono">Garanta a sua vaga</span>
+  <h2>Webinário ao vivo <em>Do terreno ao destino</em></h2>
+  <ul class="ok">
+    <li><span><b>Webinário ao vivo com o Bruno</b> · <span data-c="dataTxt"></span>, às <span data-c="horaTxt"></span>, no <span data-c="plataforma"></span></span></li>
+    <li><span><b>O mapa dos 7 passos</b> do terreno ao destino turístico</span></li>
+    <li><span><b>Perguntas ao vivo</b> com quem opera hospedagem</span></li>
+    <li><span><b>No final:</b> quem quiser pode se candidatar a uma sessão estratégica one‑on‑one, em que a equipe Zion desenha o plano de ação do seu terreno</span></li>
+  </ul>
+  <div class="preco">
+    <span class="mono">Acesso ao webinário</span>
+    <div class="v" data-c="preco"></div>
+    <p class="de">pagamento único · Pix ou cartão, pelo Asaas</p>
+  </div>
+  <form class="form" id="f" novalidate>
+    <b style="display:block;font-size:18px">Para onde mandamos o link do Zoom?</b>
+    <label for="nome">Seu nome</label><input id="nome" type="text" autocomplete="name" required>
+    <label for="zap">WhatsApp com DDD</label><input id="zap" type="tel" inputmode="tel" autocomplete="tel" placeholder="(48) 99999-9999" required>
+    <label for="mail">E-mail</label><input id="mail" type="email" autocomplete="email" required>
+    <label class="lg"><input id="lgpd" type="checkbox" required><span>Aceito receber o link e os avisos do webinário pela Zion, no WhatsApp e no e-mail.</span></label>
+    <button class="btn" type="submit"><span>Garantir minha vaga por <span data-c="preco"></span></span><span class="arr" aria-hidden="true">→</span></button>
+    <p class="erro" id="erro" role="alert"></p>
+    <p class="small" style="text-align:center">Depois do pagamento, o link chega no seu WhatsApp e no seu e-mail.</p>
+  </form>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">Dúvidas</span>
+  <h2>Perguntas <em>frequentes</em></h2>
+  <details><summary>Preciso já ter um terreno?</summary><p>Não. O webinário serve para quem tem um terreno, para quem está procurando um e para quem já tem uma hospedagem e quer melhorar.</p></details>
+  <details><summary>Como recebo o link do Zoom?</summary><p>Depois do pagamento, enviamos o link no WhatsApp e no e-mail que você informar. No dia, mandamos um lembrete antes de começar.</p></details>
+  <details><summary>Vai ficar gravado?</summary><p>O webinário é ao vivo, com perguntas na hora. Reserve o horário para aproveitar tudo.</p></details>
+  <details><summary>O pagamento é seguro?</summary><p>Sim. O pagamento é pelo Asaas, uma plataforma de pagamentos regulada, por Pix ou cartão.</p></details>
+  <details><summary>Vocês prometem renda ou investidor?</summary><p>Não. O webinário ensina o caminho para estruturar o projeto. Cada caso depende do terreno, da região e de quem vai operar, e a Zion avalia cada caso.</p></details>
+  <div style="margin:22px 0 0"><a class="btn" href="#vaga" data-ir><span>Garantir minha vaga por <span data-c="preco"></span></span><span class="arr" aria-hidden="true">→</span></a></div>
+</div></section>
+</main>
+
+<footer><div class="w">
+  <p>Zion Hotel Group International · Florianópolis (SC) · zionhotelgroup.com</p>
+  <p style="margin:8px 0 0">Conteúdo educativo. Não é oferta de investimento nem garantia de renda, parceria, crédito ou sociedade. A Zion avalia cada caso. Airbnb é marca de terceiros e não patrocina este webinário.</p>
+</div></footer>
+
+<div class="bar" id="bar"><div class="t"><b>Webinário ao vivo · <span data-c="preco"></span></b><span data-c="dataTxt"></span> · <span data-c="horaTxt"></span></div><a href="#vaga" data-ir>Garantir vaga</a></div>
+
+<script>
+(function(){
+  document.querySelectorAll('[data-c]').forEach(function(el){el.textContent=CONFIG[el.getAttribute('data-c')]||''});
+  // fotos
+  var caps=['Café da manhã no deck, de roupão','Fim de tarde com piscina privativa','Café flutuante na piscina','Banheira com vista para o jardim','A suíte dentro da bolha','Vista de cima: suíte, banheira e piscina','Ofurô no deck, no meio da mata','Bubble Zion entre as araucárias','Uma unidade Zion vista do alto','Dormir sob o céu','Suíte, ofurô e rede sobre a mata','Duas bolhas integradas: suíte e banheira'];
+  document.getElementById('car').innerHTML=caps.map(function(c,i){return '<figure><img src="'+IM+'assets/operacoes/op'+(i<9?'0':'')+(i+1)+'.webp" alt="'+c+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>'+c+'</figcaption></figure>'}).join('');
+  // contagem
+  var alvo=new Date(CONFIG.inicio).getTime();
+  function pad(n){return (n<10?'0':'')+n}
+  function tick(){var d=Math.max(0,alvo-Date.now()),s=Math.floor(d/1000);
+    document.getElementById('cd-d').textContent=pad(Math.floor(s/86400));document.getElementById('cd-h').textContent=pad(Math.floor(s%86400/3600));
+    document.getElementById('cd-m').textContent=pad(Math.floor(s%3600/60));document.getElementById('cd-s').textContent=pad(s%60);}
+  tick();setInterval(tick,1000);
+  // barra fixa
+  var bar=document.getElementById('bar'),vaga=document.getElementById('vaga');
+  function onScroll(){var r=vaga.getBoundingClientRect();bar.classList.toggle('on',window.scrollY>window.innerHeight*.8&&(r.top>window.innerHeight||r.bottom<0))}
+  window.addEventListener('scroll',onScroll,{passive:true});
+  // utm
+  var qs=new URLSearchParams(location.search),utm={};['utm_source','utm_medium','utm_campaign','utm_content','utm_term','fbclid'].forEach(function(k){if(qs.get(k))utm[k]=qs.get(k)});
+  try{if(Object.keys(utm).length)sessionStorage.setItem('zw_utm',JSON.stringify(utm));else utm=JSON.parse(sessionStorage.getItem('zw_utm')||'{}')}catch(e){}
+  // formulário
+  var f=document.getElementById('f'),erro=document.getElementById('erro');
+  f.addEventListener('submit',function(ev){
+    ev.preventDefault();erro.textContent='';
+    var nome=f.nome.value.trim(),zap=f.zap.value.replace(/\D/g,''),mail=f.mail.value.trim();
+    if(nome.length<2){erro.textContent='Escreva o seu nome.';f.nome.focus();return}
+    if(zap.length<10||zap.length>13){erro.textContent='Confira o WhatsApp com DDD.';f.zap.focus();return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){erro.textContent='Confira o e-mail.';f.mail.focus();return}
+    if(!f.lgpd.checked){erro.textContent='Marque o aceite para receber o link do webinário.';return}
+    if(zap.length<=11)zap='55'+zap;
+    try{if(window.cxs)cxs('lead',{name:nome,email:mail,telephone:zap,customFields:{origem:'Webinário Zion 12/11'}},function(){},{elementId:'webinario-form'})}catch(e){}
+    try{fbq('track','Lead',{content_name:'Webinário Zion 12/11'})}catch(e){}
+    if(CONFIG.checkout){
+      try{fbq('track','InitiateCheckout',{value:CONFIG.valor,currency:'BRL',content_name:'Webinário Zion 12/11'})}catch(e){}
+      var u=CONFIG.checkout;
+      setTimeout(function(){location.href=u},350);
+    }else{
+      var msg='Olá! Sou '+nome+' e quero garantir minha vaga no webinário da Zion de '+CONFIG.dataTxt+', às '+CONFIG.horaTxt+'.';
+      location.href='https://wa.me/'+CONFIG.whatsapp+'?text='+encodeURIComponent(msg);
+    }
+  });
+})();
+</script>
+<script>
+(()=>{let e="projeto-de-bruno-25763216",c="/GTD3548dQsGW4H81xDll_",t=window;if(!t.cxs){function s(e,...c){t._cx?t._cx.callMethod.apply(t._cx,[e,...c]):t.cxs.queue.push([e,...c])}s.queue=[],t.cxs=s;{let t=encodeURIComponent,s=document,n=`https://api.clickmax.io/sdk/script.js?ps=${t(e)}&pg=${t(c)}`,i="script",p=s.createElement(i);p.async=!0,p.src=n;let o=s.getElementsByTagName(i)[0];o.parentNode.insertBefore(p,o)}}cxs("init",e,c)})();
+cxs('track','page_view');
+</script>
+</body>
+</html>
