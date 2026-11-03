@@ -290,16 +290,16 @@ footer .wrap{display:flex;flex-direction:column;gap:8px}
 var CONFIG={
   video:'https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/trailer/Trailer-Trilha-1-web.mp4', /* MP4 do vídeo de 1 min 40 (ou link do YouTube/Vimeo da página final) */
   store:'/store',
-  trilha1:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20come%C3%A7ar%20pela%20Trilha%201%20%C2%B7%20Desenvolvimento%20%28R%24%20270%29.',
+  trilha1:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20come%C3%A7ar%20pela%20Trilha%201%20%C2%B7%20Desenvolvimento%20e%20entrar%20no%20Land%20Bank.',
   trilhas:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20conhecer%20as%204%20trilhas%20e%20o%20pacote%20completo%20do%20M%C3%A9todo%20Zion%20360%C2%B0.',
   pacote:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20o%20pacote%20com%20as%204%20trilhas%20%28R%24%20890%29.',
   mentoria:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20agendar%20uma%20conversa%20sobre%20a%20mentoria%20em%20grupo%20ou%20individual.',
   lista:'https://wa.me/554861371061?text=Oi%21%20Fiz%20o%20Raio-X%20do%20Terreno%20e%20quero%20entrar%20na%20lista%20de%20espera%20das%20Trilhas%203%20e%204.',
-  checkoutTrilha:'https://www.asaas.com/000/c/zrhq4rk88iyta3id', /* link de pagamento da Trilha 1 (R$ 270) */
+  checkoutTrilha:'', /* vazio: o botão leva ao WhatsApp da Zion (Zaia), sem preço no site */
   checkoutCombo:'https://www.asaas.com/000/c/62zus3azyzd50jbw', /* link de pagamento do pacote das 4 trilhas (R$ 890) */
   agenda:'https://calendly.com/contato-zionglampingcollection/1h', /* Sessão Zero com o Bruno (Calendly) */
   zap:'https://wa.me/554861371061?text=',
-  precoTrilha:'R$ 270',
+  precoTrilha:'',
   precoPacote:'R$ 890'
 };
 
@@ -427,8 +427,8 @@ var CONFIG={
   function buyHTML(){
     var t=CONFIG.checkoutTrilha||CONFIG.trilha1;
     return '<div class="buy" style="display:grid;gap:12px;margin-top:14px">'+
-      '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Começar a Trilha 1 · <b>R$ 270 em até 12x</b></span><span class="arr" aria-hidden="true">→</span></a>'+
-      '<p class="small">Em até 12x no cartão, ou à vista no Pix. Pagamento seguro. A Trilha 1 abre na hora, na sua área de membros.</p></div>';
+      '<a class="pill pill-gold" href="'+t+'" target="_blank" rel="noopener" style="justify-content:space-between"><span>Quero entrar no <b>Land Bank</b></span><span class="arr" aria-hidden="true">→</span></a>'+
+      '<p class="small">A Zion te responde no WhatsApp com o próximo passo para a sua área e a reunião de avaliação técnica.</p></div>';
   }
   function trilhaDe(r){
     if(r.situacao==='opero'&&r.dor==='6') return {t1:false,n:'Trilha 3 · Operação'};

@@ -41,7 +41,7 @@ Lido automaticamente pelas skills de marketing (`cro`, `copywriting`, `offers`, 
 - **Adesão Zion Land Members · Radar Land Bank: R$ 97** (Asaas: https://www.asaas.com/000/c/zrhq4rk88iyta3id, o mesmo link, com o valor alterado no Asaas em 03/11).
 - Masterclass ao vivo: R$ 47. As duas portas levam à reunião de avaliação técnica, onde a mentoria é apresentada. O SDR nunca diz o preço das 3 formas de estruturar.
 - Funil completo: `producao/marketing/sdr-funil-land-bank.md` · prompt da Zaia: `producao/marketing/zaia-master-prompt.md`.
-- ⚠ O site (`docs/metodo` e `docs/raio-x`) ainda mostra "R$ 270" usando esse mesmo link.
+- Site (`docs/metodo` e `docs/raio-x`): sem preço; o botão leva ao WhatsApp da Zion (Zaia), decisão do Bruno em 03/11.
 
 ## Zion Land Members (30/10)
 
