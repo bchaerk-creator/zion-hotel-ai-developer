@@ -140,3 +140,30 @@ Todos com o formulário `1679964956911881`, e o texto cita "R$ 270 em até 12x".
 
 - Campanhas ligadas: Diagnóstico grátis `120250113109820016` e Checkout direto `120250173411950016`, com R$ 20/dia cada no conjunto Investidor 30-60.
 - Anúncios ligados: os 7 DIAG e os 7 DIRETO. Todos os outros seguem pausados, e os conjuntos IMOB também.
+
+## 03/11 · Público: Brasil inteiro + Destinos turísticos
+
+O conjunto Investidor 30-60 estava restrito a PR, RS, SC e SP. Agora são 4 conjuntos ativos, cada um com R$ 20/dia, o que dá **R$ 80/dia** no total.
+
+| Conjunto | ID | Público | Formulário |
+|---|---|---|---|
+| BRASIL · Investidor/Empresário 25-65 · Diagnóstico | `120250113155280016` | Brasil inteiro, 25-65, investimento imobiliário / viajantes internacionais / iPhone 14 / Empresário (o mesmo público da "Validação", que gerou 403 leads a R$ 5,03) | `1779605203334486` |
+| BRASIL · Investidor/Empresário 25-65 · Checkout | `120250173412720016` | igual | `1679964956911881` |
+| DESTINOS TURÍSTICOS (67 cidades, 40 km) · Diagnóstico | `120250176378360016` | as 67 cidades turísticas do IMOB campeão (815 leads), 25-65, só Instagram | `1779605203334486` |
+| DESTINOS TURÍSTICOS (67 cidades, 40 km) · Checkout | `120250176378690016` | igual | `1679964956911881` |
+
+### Anúncios nos conjuntos de Destinos turísticos (ligados)
+
+| Anúncio | DIAG | DIRETO |
+|---|---|---|
+| CAMPEÃO VIDEO Investidores | `120250176394440016` | `120250176399930016` |
+| VIDEO Pitch parceiro · C2 · HD | `120250176528200016` | `120250176531350016` |
+| VIDEO Tour Floripa e serra · C1 · HD | `120250176528660016` | `120250176532150016` |
+| VIDEO Tour apresentadora · C3 · HD | `120250176529420016` | `120250176532360016` |
+| CARROSSEL v2 | `120250176451000016` | `120250176468470016` |
+| CARROSSEL v3 | `120250176456570016` | `120250176471860016` |
+| CAMPEÃO Carrossel terrenos | `120250176465040016` | `120250176483490016` |
+
+**Por que existem versões "HD":** o Instagram exige mídia com pelo menos 500 px de largura, e os 3 vídeos da Collection tinham 480 × 848 px. Por isso, eles foram reenviados em 720 × 1272 px (vídeos `4487236111531335`, `1329606149196099` e `2975907712785953`, com capas `*-capa-hd.jpg`). As versões em 480 px ficaram pausadas, marcadas "com problemas": `120250176432040016`, `120250176433230016`, `120250176433920016`, `120250176434930016`, `120250176436500016` e `120250176437800016`. Não religar.
+
+**Regiões novas:** as cidades que já estão na lista das 67 podem ser usadas direto. Para incluir outras, é preciso adicioná-las no Gerenciador de Anúncios, porque o Windsor não busca a chave de localização do Meta.
