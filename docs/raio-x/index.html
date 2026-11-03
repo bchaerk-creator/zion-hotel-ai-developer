@@ -665,23 +665,44 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
         btnDuvida+
         '<div class="row" style="margin-top:14px;justify-content:center"><button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:14px">Ver o meu resultado completo</button></div>';
     }else if(t===2){
-      var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/img/';
-      h='<div class="prog mono"><span>Último passo</span><span>Inscrição no Zion Land Bank</span></div><div class="bar"><i style="width:100%"></i></div>'+
-        '<div style="margin:10px -4px 0;border-radius:16px;overflow:hidden"><img src="'+IM+'mata.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:auto"></div>'+
-        '<div class="res-top"><p class="mono">Zion Land Bank · inscrição</p><h2 class="pronto">'+(nm0?esc(nm0)+', queremos':'Queremos')+' conhecer o seu projeto <em>de perto.</em></h2><p class="lead">A Zion está desenvolvendo vários destinos por todo o Brasil. A inscrição é o primeiro passo para o seu terreno ter um plano, na ordem certa, antes de qualquer obra.</p></div>'+
-        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold)">'+
-        '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição</p>'+
-        '<div style="font-family:var(--serif);font-size:64px;line-height:1;margin:6px 0 2px;color:var(--gold)">'+INS.preco+'</div>'+
-        '<p class="small" style="margin:0 0 14px">Pagamento único · menos que uma diária de hospedagem</p>'+
-        btnPagar('Fazer minha inscrição · '+INS.preco,true)+
-        '<p class="small" style="margin-top:10px">Pagamento seguro pelo Asaas, por Pix ou cartão. Use o mesmo e-mail do diagnóstico: o seu acesso é criado nele. Logo depois do pagamento você escolhe o dia da sua reunião.</p></div>'+
-        '<div class="nx"><span class="mono">O que você recebe, exatamente</span>'+ENTREGA+'</div>'+
-        '<div class="nx" style="border:1px solid rgba(224,190,94,.45)"><span class="mono" style="color:var(--gold)">E, como membro, abre portas para</span><ul style="margin:8px 0 0;padding-left:18px"><li>Condições exclusivas de membro nos produtos Zion, como as Bubbles da Glamping Store.</li><li>Possíveis parcerias com a Zion, a partir do projeto organizado.</li><li>Possíveis investimentos: projetos organizados conversam com sócio, banco ou investidor.</li><li>Network com proprietários e parceiros do ecossistema Zion.</li></ul><p class="small" style="margin:8px 0 0">A inscrição não é oferta de investimento nem garantia de parceria, crédito ou sociedade. A Zion avalia cada caso.</p></div>'+
-        '<div class="nx"><span class="mono">Quem é a Zion</span><p style="margin:6px 0 0">Zion Hotel Group International, de Florianópolis (SC). Opera a própria hospedagem de glamping desde 2020 (Airbnb 5/5 Superhost, Expedia 10) e fabrica as Bubbles da Zion Glamping Store. O fundador, Bruno Chaerk, tem mais de 20 anos de hotelaria.</p></div>'+
-        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:14px 0"><img src="'+IM+'noite.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'dentro.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"><img src="'+IM+'hospede.webp" alt="" loading="lazy" style="width:100%;height:110px;object-fit:cover;border-radius:12px"></div>'+
-        btnPagar('Fazer minha inscrição · '+INS.preco,false)+btnDuvida+
-        '<p class="small" style="text-align:center;margin-top:14px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20a%20inscri%C3%A7%C3%A3o%20no%20Zion%20Land%20Bank%20e%20n%C3%A3o%20recebi%20o%20acesso." target="_blank" rel="noopener">Fale com a equipe Zion no WhatsApp</a></p>'+
-        '<button class="link-u" data-go="6" style="background:none;border:0;cursor:pointer;padding:0;display:block;margin:10px auto 0;font-size:14px">Ver o meu resultado completo</button>';
+      var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
+      var tile=function(ic,tt,tx){return '<div style="background:#142219;border:1px solid #2b3d31;border-radius:16px;padding:14px 12px"><div style="font-size:28px;line-height:1">'+ic+'</div><b style="display:block;margin-top:8px;color:var(--paper);font-size:15.5px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:4px;font-size:13px;line-height:1.35">'+tx+'</span></div>'};
+      var cta=function(big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?78:68)+'px;font-size:'+(big?21:19)+'px;font-weight:800;padding:12px 14px 12px 26px;text-decoration:none;box-shadow:0 0 0 6px rgba(224,190,94,.16)"><span>Quero fazer minha inscrição</span><span class="arr" aria-hidden="true">→</span></a>'};
+      h='<div style="position:relative;margin:-4px -4px 0;border-radius:18px;overflow:hidden">'+
+          '<img src="'+IM+'home/img/hero-bolha.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:340px;object-fit:cover">'+
+          '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,23,16,.15) 0%,rgba(13,23,16,.35) 45%,#0d1710 100%)"></div>'+
+          '<span style="position:absolute;left:12px;top:12px;background:rgba(13,23,16,.85);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Seleção de áreas · expansão Zion</span>'+
+          '<div style="position:absolute;left:16px;right:16px;bottom:14px"><h2 class="pronto" style="margin:0;font-size:31px;line-height:1.08">Estamos selecionando as melhores áreas do Brasil. <em>A sua pode ser a próxima.</em></h2></div>'+
+        '</div>'+
+        '<p class="lead" style="margin:12px 0 0">'+(nm0?esc(nm0)+', queremos':'Queremos')+' te conhecer. A Zion está expandindo e desenvolvendo destinos por todo o Brasil. Faça a sua inscrição no <b style="color:var(--paper)">Zion Land Bank</b> e a nossa equipe olha o seu terreno de perto.</p>'+
+        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold);margin-top:14px">'+
+          '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição · pagamento único</p>'+
+          '<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>'+cta(true)+
+          '<p class="small" style="margin:10px 0 0">Pix ou cartão, pelo Asaas. Use o e-mail do diagnóstico. Logo depois do pagamento você escolhe o dia da sua reunião.</p>'+
+        '</div>'+
+        '<span class="mono" style="display:block;margin:18px 0 8px;color:var(--gold)">O que você recebe</span>'+
+        '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'+
+          tile('🤝','Reunião de diagnóstico','Online, com a equipe Zion olhando o seu caso.')+
+          tile('🧠','Mapa mental','Desenvolvimento, o papel da Zion, parcerias e investimentos.')+
+          tile('🧭','Orientação dos primeiros passos','O plano de ação do seu caso, na ordem certa.')+
+          tile('🏔','Seu terreno no banco de áreas','O Land Bank que a Zion olha ao escolher novos destinos.')+
+        '</div>'+
+        '<p class="small" style="margin:8px 0 0;text-align:center">+ e-books do Marco Zero e do Glamping · masterclass ao vivo com o Bruno · área de membros com o passo a passo</p>'+
+        '<div class="nx" style="margin-top:16px;border:1px solid rgba(224,190,94,.45);background:rgba(224,190,94,.06)">'+
+          '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Terreno não atrai investidor. Projeto atrai.</b>'+
+          '<p style="margin:6px 0 0">Investidores e sócios olham para projetos organizados. Com o know-how de quem opera hospedagem desde 2020, <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu</b>: o lugar, o produto, a conta e quem opera.</p>'+
+        '</div>'+
+        '<span class="mono" style="display:block;margin:16px 0 8px;color:var(--gold)">Veja os nossos projetos</span>'+
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><img src="'+IM+'store/img/noite.webp" alt="Bubble Zion à noite" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/dentro.webp" alt="Por dentro da Bubble" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/hospede.webp" alt="Hóspede na Bubble Zion" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"></div>'+
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0">'+
+          '<a class="pill btn-s" href="https://zionhotelgroup.com/collection" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;min-height:46px;font-size:15px;text-decoration:none">As operações da Zion ↗</a>'+
+          '<a class="pill btn-s" href="https://instagram.com/zionbubble" target="_blank" rel="noopener" style="flex:1;justify-content:center;min-height:46px;font-size:15px;text-decoration:none">@zionbubble</a>'+
+          '<a class="pill btn-s" href="https://instagram.com/brunochaerkofc" target="_blank" rel="noopener" style="flex:1;justify-content:center;min-height:46px;font-size:15px;text-decoration:none">@brunochaerkofc</a>'+
+        '</div>'+
+        '<p class="small" style="margin:10px 0 0">Zion Hotel Group International · Florianópolis (SC) · Airbnb 5/5 Superhost · Expedia 10 · mais de 20 anos de hotelaria do fundador, Bruno Chaerk.</p>'+
+        '<div style="margin-top:16px">'+cta(false)+'</div>'+btnDuvida+
+        '<p class="small" style="text-align:center;margin-top:12px">A inscrição não é oferta de investimento nem garantia de parceria, crédito ou sociedade. A Zion avalia cada caso.</p>'+
+        '<p class="small" style="text-align:center;margin-top:6px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20a%20inscri%C3%A7%C3%A3o%20no%20Zion%20Land%20Bank%20e%20n%C3%A3o%20recebi%20o%20acesso." target="_blank" rel="noopener">Fale com a equipe Zion</a> · <button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:inherit">ver o meu resultado</button></p>';
     }else if(t===6){
       var L6=leitura(r),ln='';
       Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')ln+='<li style="padding:9px 0;border-top:1px solid var(--line)"><span class="small" style="display:block">'+esc(x.q)+'</span><b style="color:var(--paper)">'+esc(o[1])+'</b></li>'}});
