@@ -538,6 +538,13 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
       var resp={};Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];resp[x.id]=o?o[1]:r[x.id]}});
       fetch('/api/public/raio-x-lead',{method:'POST',headers:{'Content-Type':'application/json'},keepalive:true,
         body:JSON.stringify(Object.assign({nome:c.nome||'',telefone:c.zap||'',email:c.mail||'',local:r.local||'',respostas:resp,leitura:L[0],caminho:L[2],consentimento:!!c.ok},u))}).catch(function(){});
+      /* Mesmo lead pelo rastreamento da ClickMax: liga a visita ao contato (conversão por página) */
+      try{if(window.cxs&&c.ok&&(c.zap||c.mail)){
+        var cf={raiox_leitura:L[0]||'',raiox_caminho:L[2]||'',raiox_local:r.local||'',raiox_data:new Date().toLocaleString('pt-BR',{timeZone:'America/Sao_Paulo',day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'}).replace(',','')};
+        for(var k in resp)cf[k==='nota'?'raiox_nota_plataformas':'raiox_'+k]=String(resp[k]).slice(0,200);
+        try{var rs=window.__zionResumo&&window.__zionResumo(r);if(rs)cf.raiox_resumo=rs.replace(/^Oi![^\n]*\n\n/,'').replace(/\*/g,'').slice(0,4000)}catch(x){}
+        cxs('lead',{name:c.nome||'',email:c.mail||'',telephone:String(c.zap||'').replace(/\D/g,''),customFields:cf},function(){},{elementId:'raiox-diagnostico'});
+      }}catch(x){}
       S.enviado=true;save();
     }catch(e){}
   }
