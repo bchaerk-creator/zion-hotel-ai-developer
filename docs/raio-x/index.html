@@ -667,30 +667,30 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
     }else if(t===2){
       var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
       var tile=function(ic,tt,tx){return '<div style="background:#142219;border:1px solid #2b3d31;border-radius:16px;padding:14px 12px"><div style="font-size:28px;line-height:1">'+ic+'</div><b style="display:block;margin-top:8px;color:var(--paper);font-size:15.5px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:4px;font-size:13px;line-height:1.35">'+tx+'</span></div>'};
-      var cta=function(big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?78:68)+'px;font-size:'+(big?21:19)+'px;font-weight:800;padding:12px 14px 12px 26px;text-decoration:none;box-shadow:0 0 0 6px rgba(224,190,94,.16)"><span>Quero fazer minha inscrição</span><span class="arr" aria-hidden="true">→</span></a>'};
+      var cta=function(big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?78:68)+'px;font-size:'+(big?21:19)+'px;font-weight:800;padding:12px 14px 12px 26px;text-decoration:none;box-shadow:0 0 0 6px rgba(224,190,94,.16)"><span>Quero inscrever meu projeto</span><span class="arr" aria-hidden="true">→</span></a>'};
       h='<div style="position:relative;margin:-4px -4px 0;border-radius:18px;overflow:hidden">'+
           '<img src="'+IM+'home/img/hero-bolha.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:340px;object-fit:cover">'+
           '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,23,16,.15) 0%,rgba(13,23,16,.35) 45%,#0d1710 100%)"></div>'+
           '<span style="position:absolute;left:12px;top:12px;background:rgba(13,23,16,.85);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Seleção de áreas · expansão Zion</span>'+
-          '<div style="position:absolute;left:16px;right:16px;bottom:14px"><h2 class="pronto" style="margin:0;font-size:31px;line-height:1.08">Estamos selecionando as melhores áreas do Brasil. <em>A sua pode ser a próxima.</em></h2></div>'+
+          '<div style="position:absolute;left:16px;right:16px;bottom:14px"><h2 class="pronto" style="margin:0;font-size:31px;line-height:1.08">'+(nm0?esc(nm0)+', inscreva':'Inscreva')+' o seu projeto. <em>Queremos te conhecer.</em></h2></div>'+
         '</div>'+
-        '<p class="lead" style="margin:12px 0 0">'+(nm0?esc(nm0)+', queremos':'Queremos')+' te conhecer. A Zion está expandindo e desenvolvendo destinos por todo o Brasil. Faça a sua inscrição no <b style="color:var(--paper)">Zion Land Bank</b> e a nossa equipe olha o seu terreno de perto.</p>'+
+        '<p class="lead" style="margin:12px 0 0">Transforme o seu terreno em destino turístico, com o projeto que investidores, sócios e a própria Zion pedem para ver. <b style="color:var(--paper)">Estamos selecionando as melhores áreas do Brasil para a expansão da Zion, e a sua pode ser a próxima.</b></p>'+
         '<div class="nx hi" style="text-align:center;border:2px solid var(--gold);margin-top:14px">'+
           '<p class="small" style="margin:0;color:var(--gold)">Taxa simbólica de inscrição · pagamento único</p>'+
           '<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>'+cta(true)+
           '<p class="small" style="margin:10px 0 0">Pix ou cartão, pelo Asaas. Use o e-mail do diagnóstico. Logo depois do pagamento você escolhe o dia da sua reunião.</p>'+
         '</div>'+
-        '<span class="mono" style="display:block;margin:18px 0 8px;color:var(--gold)">O que você recebe</span>'+
+        '<p style="margin:18px 0 8px;color:var(--paper);font-size:17px"><b>Para prosseguir, faça a sua inscrição no Clube Zion Land Bank.</b> É ela que dá acesso a:</p>'+
         '<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">'+
-          tile('🤝','Reunião de diagnóstico','Online, com a equipe Zion olhando o seu caso.')+
-          tile('🧠','Mapa mental','Desenvolvimento, o papel da Zion, parcerias e investimentos.')+
-          tile('🧭','Orientação dos primeiros passos','O plano de ação do seu caso, na ordem certa.')+
-          tile('🏔','Seu terreno no banco de áreas','O Land Bank que a Zion olha ao escolher novos destinos.')+
+          tile('🧭','Estruturação passo a passo','Os primeiros passos do seu projeto, na ordem certa, com a área de membros.')+
+          tile('🧠','O mapa do seu caso','O que o investidor olha (lugar, produto, conta e quem opera) e onde você está.')+
+          tile('🤝','Reunião de diagnóstico','Online, com a equipe Zion, e o plano de ação do seu caso.')+
+          tile('🏔','Banco de áreas e parcerias','O seu terreno no Land Bank que a Zion olha para a expansão.')+
         '</div>'+
-        '<p class="small" style="margin:8px 0 0;text-align:center">+ e-books do Marco Zero e do Glamping · masterclass ao vivo com o Bruno · área de membros com o passo a passo</p>'+
+        '<p class="small" style="margin:8px 0 0;text-align:center">+ e-books do Marco Zero e do Glamping · masterclass ao vivo com o Bruno</p>'+
         '<div class="nx" style="margin-top:16px;border:1px solid rgba(224,190,94,.45);background:rgba(224,190,94,.06)">'+
-          '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Terreno não atrai investidor. Projeto atrai.</b>'+
-          '<p style="margin:6px 0 0">Investidores e sócios olham para projetos organizados. Com o know-how de quem opera hospedagem desde 2020, <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu</b>: o lugar, o produto, a conta e quem opera.</p>'+
+          '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Investidor não compra terreno. Compra projeto.</b>'+
+          '<p style="margin:6px 0 0">Assessorias cobram caro para preparar o que um investidor pede para ver. Aqui você começa por '+INS.preco+', com o know-how de quem opera hospedagem desde 2020: <b style="color:var(--paper)">vamos te ensinar o passo a passo para estruturar o seu projeto</b>, o lugar, o produto, a conta e quem opera.</p>'+
         '</div>'+
         '<span class="mono" style="display:block;margin:16px 0 8px;color:var(--gold)">Veja os nossos projetos</span>'+
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px"><img src="'+IM+'store/img/noite.webp" alt="Bubble Zion à noite" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/dentro.webp" alt="Por dentro da Bubble" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"><img src="'+IM+'store/img/hospede.webp" alt="Hóspede na Bubble Zion" loading="lazy" style="width:100%;height:104px;object-fit:cover;border-radius:12px"></div>'+
