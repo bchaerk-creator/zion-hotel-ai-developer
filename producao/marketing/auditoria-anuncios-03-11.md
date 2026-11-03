@@ -84,3 +84,25 @@ O anúncio criado por engano na BRUNO 01 (`120257672434650091`) está pausado e 
 | VIDEO · Tour apresentadora | `120250175735930016` | `1660255505558770` | C3 com o preço de R$ 270 | Checkout ✅ | ⏸ pausado |
 
 Formulário Checkout (print do Bruno, 03/11): 1 cadastro "sem segmentar" e "recuperação de cadastros sem segmentar" desativada. É provável que o WhatsApp de 03/11 tenha vindo deste formulário, no período em que a campanha de Checkout ficou ligada (R$ 0,07), e não só da Validação.
+
+## 03/11 · Formulário de diagnóstico NOVO · campanha refeita
+
+O Bruno passou o formulário certo do diagnóstico gratuito: **"Land Bank | Diagnóstico do terreno" `1779605203334486`**. Ele substitui o `1335538638609895`.
+A campanha `120250113109820016` foi renomeada para **[LAND BANK][LEADS][FORM → DIAGNÓSTICO GRÁTIS] [03/11]**.
+
+### ✅ Anúncios que VÃO ao ar (conjunto Investidor 30-60, todos pausados)
+
+| Anúncio | ID | Formulário |
+|---|---|---|
+| DIAG · VIDEO Pitch parceiro · C2 | `120250176146140016` | Diagnóstico `1779605203334486` |
+| DIAG · VIDEO Tour Floripa e serra · C1 | `120250176146510016` | Diagnóstico |
+| DIAG · VIDEO Tour apresentadora · C3 | `120250176146750016` | Diagnóstico |
+| DIAG · CAMPEÃO VIDEO Investidores | `120250176147330016` | Diagnóstico |
+| DIAG · CARROSSEL v2 | `120250176150280016` | Diagnóstico |
+| DIAG · CARROSSEL v3 | `120250176153150016` | Diagnóstico |
+| DIAG · CAMPEÃO Carrossel terrenos | `120250176168560016` | Diagnóstico |
+
+Os textos terminam com "Comece pelo diagnóstico gratuito do seu terreno".
+
+### ⛔ NÃO ligar (mesmo conjunto, formulário velho, todos pausados)
+`120250173399350016`, `120250173402220016`, `120250173500100016`, `120250173514780016`, `120250175513690016`, `120250175514760016`, `120250175515430016` (formulário `1335538638609895`) e os "TROCAR" `120250173402600016`, `120250173402970016` (formulário do WhatsApp).
