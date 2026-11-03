@@ -106,3 +106,32 @@ Os textos terminam com "Comece pelo diagnóstico gratuito do seu terreno".
 
 ### ⛔ NÃO ligar (mesmo conjunto, formulário velho, todos pausados)
 `120250173399350016`, `120250173402220016`, `120250173500100016`, `120250173514780016`, `120250175513690016`, `120250175514760016`, `120250175515430016` (formulário `1335538638609895`) e os "TROCAR" `120250173402600016`, `120250173402970016` (formulário do WhatsApp).
+
+## 03/11 · Formulário de checkout direto NOVO · campanha refeita
+
+Formulário: **"Land Bank | Diagnóstico do terreno-direto" `1679964956911881`** (preenche no Meta e leva direto ao checkout). Ele substitui o `1128299000065062`.
+A campanha `120250173411950016` foi renomeada para **[LAND BANK][LEADS][FORM → CHECKOUT DIRETO R$ 270] [03/11]**.
+
+### ✅ Anúncios que VÃO ao ar (conjunto Investidor 30-60 `120250173412720016`, todos pausados)
+
+| Anúncio | ID |
+|---|---|
+| DIRETO · VIDEO Pitch parceiro · C2 | `120250176183770016` |
+| DIRETO · VIDEO Tour Floripa e serra · C1 | `120250176185410016` |
+| DIRETO · VIDEO Tour apresentadora · C3 | `120250176186770016` |
+| DIRETO · CAMPEÃO VIDEO Investidores | `120250176187890016` |
+| DIRETO · CARROSSEL v2 | `120250176195380016` |
+| DIRETO · CARROSSEL v3 | `120250176197950016` |
+| DIRETO · CAMPEÃO Carrossel terrenos | `120250176205040016` |
+
+Todos com o formulário `1679964956911881`, e o texto cita "R$ 270 em até 12x".
+
+### ⛔ NÃO ligar (formulário velho `1128299000065062` ou do WhatsApp, todos pausados)
+`120250173416430016`, `120250173417850016`, `120250173501650016`, `120250173525110016`, `120250175735220016`, `120250175735730016`, `120250175735930016`, `120250173418130016` e, no conjunto IMOB, `120250173418280016`.
+
+## RESUMO FINAL (para ligar com o ok do Bruno)
+
+| Campanha | Formulário | Ligar só os anúncios que começam com |
+|---|---|---|
+| [FORM → DIAGNÓSTICO GRÁTIS] | `1779605203334486` | **DIAG** (7) |
+| [FORM → CHECKOUT DIRETO R$ 270] | `1679964956911881` | **DIRETO** (7) |
