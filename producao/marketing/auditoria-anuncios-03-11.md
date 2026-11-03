@@ -54,3 +54,12 @@ Formulários:
 |---|---|---|---|---|
 | Zion Bubble - Formulario Reserva - Leads | Desmochilados — Pode ficar peladão | Reserva Qualificação 2 `1105178921952601` | ▶ **no ar** (R$ 30/dia) | ✅ OK · 141 cadastros |
 | [TESTE] Criativos novos [02/11] | Carrossel Noite Mágica | Reserva Qualificação 2 | ⏸ pausada | ⚠ o card 1 diz "Válido para reservas realizadas hoje" e mostra o cupom |
+
+## Adicionado em 03/11 · BRUNO 01
+
+| Campanha | Anúncio | ID | Formulário | Status |
+|---|---|---|---|---|
+| [TESTE] Criativos novos [02/11] | VIDEO — Tour Floripa apresentadora | `120257672434650091` | Reserva Qualificação 2 `1105178921952601` | ⏸ pausado |
+
+Vídeo na biblioteca: `992861006542567` (`producao/marketing/videos/tour-floripa-apresentadora.mp4`, 45 s, sem marca d'água).
+Texto: "Vem conhecer por dentro a Zion Bubble Floripa. ✨ / Uma bubble transparente no meio da mata, com piscina privativa, jacuzzi, banheiro completo e um café da manhã servido no deck. / De dia, o sol na piscina. À noite, a cama olhando para o céu. / Toque em “Saiba mais” e veja as datas disponíveis." · Título: "Conheça a sua bolha antes de chegar".
