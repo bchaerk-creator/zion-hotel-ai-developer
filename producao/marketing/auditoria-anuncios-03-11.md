@@ -167,3 +167,20 @@ O conjunto Investidor 30-60 estava restrito a PR, RS, SC e SP. Agora são 4 conj
 **Por que existem versões "HD":** o Instagram exige mídia com pelo menos 500 px de largura, e os 3 vídeos da Collection tinham 480 × 848 px. Por isso, eles foram reenviados em 720 × 1272 px (vídeos `4487236111531335`, `1329606149196099` e `2975907712785953`, com capas `*-capa-hd.jpg`). As versões em 480 px ficaram pausadas, marcadas "com problemas": `120250176432040016`, `120250176433230016`, `120250176433920016`, `120250176434930016`, `120250176436500016` e `120250176437800016`. Não religar.
 
 **Regiões novas:** as cidades que já estão na lista das 67 podem ser usadas direto. Para incluir outras, é preciso adicioná-las no Gerenciador de Anúncios, porque o Windsor não busca a chave de localização do Meta.
+
+## 03/11 · Teste: formulário do Meta → WhatsApp (robô SDR) · PAUSADO
+
+- **Campanha `120250180499050016`:** [LAND BANK][LEADS][FORM → WHATSAPP SDR] [03/11].
+- **Formulário `3609977235810279`:** "[360] Avaliação Oficial de Potencial Turístico do Terreno – Collection-WhatsApp". A tela final leva ao WhatsApp. Com o VIDEO terrenos, gerou 5 leads por R$ 20,77 nos últimos 7 dias.
+
+| Conjunto | ID | Público | Orçamento |
+|---|---|---|---|
+| WA-SDR · BRASIL · Investidor/Empresário 25-65 | `120250180500050016` | Brasil inteiro | R$ 20/dia |
+| WA-SDR · DESTINOS TURÍSTICOS (67 cidades, 40 km) | `120250180501330016` | 67 destinos, só Instagram | R$ 20/dia |
+
+| Anúncio | Brasil | Destinos |
+|---|---|---|
+| CAMPEÃO VIDEO terrenos (creative original `1729824318071630`) | `120250180505350016` | `120250180506450016` |
+| CAMPEÃO VIDEO Investidores | `120250180510990016` | `120250180512600016` |
+
+A campanha de clique para o WhatsApp `120250180459720016` ficou vazia, porque o número 48 6137-1061 não está vinculado à página.
