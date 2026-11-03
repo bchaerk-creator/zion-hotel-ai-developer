@@ -191,3 +191,5 @@ A campanha de clique para o WhatsApp `120250180459720016` ficou vazia, porque o 
 - Anúncios do conjunto Brasil: `120250180505350016`, `120250180510990016`, `120250180526360016`, `120250180528990016`, `120250180530820016`, `120250180538330016`, `120250180545410016`, `120250180549720016`.
 - Anúncios do conjunto Destinos: `120250180506450016`, `120250180512600016`, `120250180527470016`, `120250180529970016`, `120250180532890016`, `120250180542530016`, `120250180549100016`, `120250180550480016`.
 - Total da conta com tudo ligado: **R$ 120/dia**, sendo R$ 40 do Diagnóstico, R$ 40 do Checkout e R$ 40 do WA-SDR.
+
+**03/11 · WA-SDR PAUSADA a pedido do Bruno:** o formulário `3609977235810279` ainda precisa ser ligado à Zaia (agente do WhatsApp). Religar a campanha `120250180499050016` quando ele avisar.
