@@ -150,6 +150,8 @@ footer{padding:36px 0 110px;border-top:1px solid var(--line);font-size:12.5px;co
 .spk span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
 .spk b{display:block;font-size:17px;line-height:1.2}
 .spk em{display:block;font-style:normal;font-size:12.5px;color:var(--muted);line-height:1.35}
+.vh{position:relative;margin:18px 0 0;border-radius:18px;overflow:hidden;border:1px solid var(--gold);background:#000;aspect-ratio:16/9;box-shadow:0 14px 40px rgba(0,0,0,.45)}
+.vh video{width:100%;height:100%;display:block;object-fit:cover}
 .cortes{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:18px 0 0;contain:inline-size}
 .cortes::-webkit-scrollbar{display:none}
 .cortes figure{flex:0 0 72%;margin:0;scroll-snap-align:start}
@@ -172,8 +174,7 @@ var CONFIG={
   whatsapp:'554861371061',
   /* cortes de vídeo: {v: arquivo mp4, p: capa, t: legenda} */
   cortes:[
-    {v:'videos-web/videos/02-glamping-nao-e-pdf.mp4',p:'assets/webinario/corte-02-glamping-nao-e-pdf.webp',t:'Glamping não é PDF: começa com um deck, luz e uma bolha'},
-    {v:'videos-web/videos/03-as-7-perguntas-na-ordem-certa.mp4',p:'assets/webinario/corte-03-as-7-perguntas-na-ordem-certa.webp',t:'As 7 perguntas, na ordem certa',h:1}
+    {v:'videos-web/videos/02-glamping-nao-e-pdf.mp4',p:'assets/webinario/corte-02-glamping-nao-e-pdf.webp',t:'Glamping não é PDF: começa com um deck, luz e uma bolha'}
   ]
 };
 var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
@@ -194,7 +195,16 @@ var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
 </header>
 
 <main>
-<section class="sec" style="border-top:0;padding-top:34px"><div class="w">
+<section class="sec" style="border-top:0;padding-top:26px"><div class="w">
+  <span class="mono">⚠ Antes de gastar o primeiro real · 2 minutos</span>
+  <h2>As 7 perguntas que quase ninguém faz <em>antes de construir</em></h2>
+  <p class="lead">A maioria começa pela obra. E descobre tarde demais que pulou a pergunta que decidia tudo. <b>Qual é essa pergunta?</b> O Bruno mostra as 7, na ordem certa, em menos de 2 minutos.</p>
+  <p class="small" style="margin:8px 0 0">Assista até o fim: a ordem das perguntas muda o resultado.</p>
+  <div class="vh"><video controls playsinline preload="metadata" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/corte-03-as-7-perguntas-na-ordem-certa.webp"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/videos/03-as-7-perguntas-na-ordem-certa.mp4" type="video/mp4"></video></div>
+  <div style="margin:18px 0 0"><a class="btn" href="#vaga" data-ir><span>Quero as 7 respostas, ao vivo</span><span class="arr" aria-hidden="true">→</span></a></div>
+</div></section>
+
+<section class="sec"><div class="w">
   <span class="mono">A ideia central</span>
   <h2>Ninguém paga para dormir num terreno. <em>Paga por uma experiência.</em></h2>
   <p class="lead">O seu terreno já tem o mais difícil: o lugar. O que falta é transformar esse lugar numa experiência que o hóspede não encontra em outro canto, e num projeto que um sócio ou um investidor aceitam olhar.</p>
