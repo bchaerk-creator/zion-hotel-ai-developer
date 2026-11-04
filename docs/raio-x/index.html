@@ -398,6 +398,7 @@ cxs('track', 'page_view');
 </div>
 </section>
 <section class="lr" id="clube" style="padding:40px 0 8px"><div class="w">
+    <div id="zvFeatL"></div><script>document.addEventListener('DOMContentLoaded',function(){document.getElementById('zvFeatL').innerHTML=window.zvFeat()});</script>
     <span class="k" style="display:block;margin-top:34px">Zion Land Bank</span>
     <h2>Os benefícios de <em>fazer parte.</em></h2>
     <style>
@@ -442,14 +443,14 @@ cxs('track', 'page_view');
     <script>
     document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-som]');if(!b)return;var v=b.parentNode.querySelector('video');if(!v)return;v.muted=false;v.controls=true;try{v.currentTime=0;v.play()}catch(x){}b.remove();});
     window.zvcHTML=function(){var A='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
-      var V=[['09-marca-lider-glamping','webp','O modelo de parceria','Seja um investidor e colecionador de paraísos, oferecendo memórias inesquecíveis.'],
-             ['01-brasil-maior-polo-de-glamping','jpg','O mercado','O Brasil será o maior polo de glamping do mundo.'],
+      var V=[['01-brasil-maior-polo-de-glamping','jpg','O mercado','O Brasil será o maior polo de glamping do mundo.'],
              ['02-glamping-nao-e-pdf','jpg','Como começar','Simplesmente com um deck de madeira, luz e uma bolha.'],
              ['08-transformamos-seu-terreno','webp','Do terreno ao destino','Transformamos o seu terreno em um destino turístico.'],
              ['10-tour-zion-floripa','webp','O produto pronto','Um tour pela Zion Floripa: do deck à bolha.'],
              ['11-zion-por-dentro','webp','A experiência','Por dentro de uma operação Zion: o que o hóspede vive.'],
              ['06-tour-operacoes-zion','webp','Da praia à serra','As operações Zion em Florianópolis e na serra.']];
       return '<div class="zvc">'+V.map(function(v,i){return '<article><video controls playsinline preload="none" poster="'+A+'videos-web/capas/'+v[0]+'.'+v[1]+'"><source src="'+A+'videos-web/videos/'+v[0]+'.mp4" type="video/mp4"></video><div class="bx"><span class="n">'+(i<9?'0':'')+(i+1)+'</span><h4>'+v[2]+'</h4><q>'+v[3]+'</q></div></article>'}).join('')+'</div>';};
+    window.zvFeat=function(){return '<div style="margin:22px 0 0;padding:16px;border-radius:22px;border:2px solid #e0be5e;background:radial-gradient(circle at 50% 0%,#24402e,#0f1c14)"><span style="display:block;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:#e0be5e">Zion Land Bank</span><h3 style="margin:6px 0 0;font-family:Playfair Display,Georgia,serif;font-weight:400;font-size:30px;line-height:1.1;color:#f4efe2">Faça parte do nosso <em style="color:#e0be5e">Land Bank</em></h3><p style="margin:6px 0 12px;font-size:15px;color:#cfd6cc">O banco de áreas e projetos de hospedagem e turismo da Zion.</p><div style="max-width:360px;margin:0 auto;border-radius:18px;overflow:hidden;border:1px solid #e0be5e;background:#000;aspect-ratio:9/16"><video controls playsinline preload="metadata" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/capas/09-marca-lider-glamping.webp" style="width:100%;height:100%;object-fit:cover;display:block"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/videos/09-marca-lider-glamping.mp4" type="video/mp4"></video></div><p style="margin:12px 0 0;text-align:center;font-family:Playfair Display,Georgia,serif;font-style:italic;font-size:19px;line-height:1.35;color:#f4efe2">“Junte-se a uma marca nacionalmente reconhecida como líder no setor de glamping e experiências no Brasil.”</p></div>'};
     window.zvx=function(){var A='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
       var c=function(n,img,t,d,extra){return '<article class="op2"><div class="im"><img loading="lazy" src="'+A+img+'" alt="">'+(extra||'')+'</div><div class="bx"><span class="n">'+n+'</span><h3>'+t+'</h3><p>'+d+'</p></div></article>'};
       return '<div class="opts5">'+
@@ -810,6 +811,7 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
         '</div>'+
         '<h2 class="pronto" style="margin:16px 0 0;font-size:32px;line-height:1.08">'+(nm0?esc(nm0)+', inscreva':'Inscreva')+' o seu projeto. <em>Queremos te conhecer.</em></h2>'+
         '<p class="lead" style="margin:8px 0 0">Transforme o seu terreno em destino turístico. A sua área pode ser a próxima.</p>'+
+        window.zvFeat()+
         precoBox+
         '<h3 style="margin:26px 0 0;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1">Os modelos de negócio, <em style="color:var(--gold)">em vídeo</em></h3><p class="small" style="margin:4px 0 0">Arraste para o lado →</p>'+window.zvcHTML()+
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 0;text-align:center">'+
