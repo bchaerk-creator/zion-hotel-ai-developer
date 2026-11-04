@@ -401,6 +401,16 @@ cxs('track', 'page_view');
     <span class="k" style="display:block;margin-top:34px">Zion Land Bank</span>
     <h2>Os benefícios de <em>fazer parte.</em></h2>
     <style>
+    .zvc{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:14px -4px 0;padding:0 4px 6px;contain:inline-size}
+    .zvc::-webkit-scrollbar{display:none}
+    .zvc article{flex:0 0 72%;scroll-snap-align:start;background:#142219;border:1px solid #2b3d31;border-radius:18px;overflow:hidden}
+    .zvc video{display:block;width:100%;aspect-ratio:9/16;object-fit:cover;background:#000}
+    .zvc .bx{padding:12px 14px 16px}
+    .zvc .n{font:400 26px/1 'Playfair Display',Georgia,serif;color:#e0be5e}
+    .zvc h4{margin:6px 0 0;font:400 19px/1.2 'Playfair Display',Georgia,serif;color:#f4efe2}
+    .zvc q{display:block;margin:6px 0 0;font-size:14.5px;line-height:1.4;color:#cfd6cc;font-style:italic}
+    .zvc q:before{content:'“'}.zvc q:after{content:'”'}
+    @media (min-width:760px){.zvc article{flex-basis:31%}}
     .opts5{display:grid;gap:14px;margin:16px 0 0;text-align:left}
     .op2{background:#142219;border:1px solid #2b3d31;border-radius:18px;overflow:hidden;min-width:0}
     .op2 .im{position:relative}.op2 .im img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
@@ -431,6 +441,15 @@ cxs('track', 'page_view');
     </style>
     <script>
     document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-som]');if(!b)return;var v=b.parentNode.querySelector('video');if(!v)return;v.muted=false;v.controls=true;try{v.currentTime=0;v.play()}catch(x){}b.remove();});
+    window.zvcHTML=function(){var A='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
+      var V=[['09-marca-lider-glamping','webp','O modelo de parceria','Seja um investidor e colecionador de paraísos, oferecendo memórias inesquecíveis.'],
+             ['01-brasil-maior-polo-de-glamping','jpg','O mercado','O Brasil será o maior polo de glamping do mundo.'],
+             ['02-glamping-nao-e-pdf','jpg','Como começar','Simplesmente com um deck de madeira, luz e uma bolha.'],
+             ['08-transformamos-seu-terreno','webp','Do terreno ao destino','Transformamos o seu terreno em um destino turístico.'],
+             ['10-tour-zion-floripa','webp','O produto pronto','Um tour pela Zion Floripa: do deck à bolha.'],
+             ['11-zion-por-dentro','webp','A experiência','Por dentro de uma operação Zion: o que o hóspede vive.'],
+             ['06-tour-operacoes-zion','webp','Da praia à serra','As operações Zion em Florianópolis e na serra.']];
+      return '<div class="zvc">'+V.map(function(v,i){return '<article><video controls playsinline preload="none" poster="'+A+'videos-web/capas/'+v[0]+'.'+v[1]+'"><source src="'+A+'videos-web/videos/'+v[0]+'.mp4" type="video/mp4"></video><div class="bx"><span class="n">'+(i<9?'0':'')+(i+1)+'</span><h4>'+v[2]+'</h4><q>'+v[3]+'</q></div></article>'}).join('')+'</div>';};
     window.zvx=function(){var A='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
       var c=function(n,img,t,d,extra){return '<article class="op2"><div class="im"><img loading="lazy" src="'+A+img+'" alt="">'+(extra||'')+'</div><div class="bx"><span class="n">'+n+'</span><h3>'+t+'</h3><p>'+d+'</p></div></article>'};
       return '<div class="opts5">'+
@@ -786,12 +805,13 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
             :'<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>')+cta(true)+
         '</div>';
       h='<div style="position:relative;margin:-4px -4px 0">'+
-          vid('videos-web/videos/06-tour-operacoes-zion.mp4','videos-web/capas/06-tour-operacoes-zion.webp','4/5',true)+
+          vid('videos-web/videos/07-zion-collection-filme.mp4','videos-web/capas/07-zion-collection-filme.webp','16/9',true)+
           '<span style="position:absolute;left:12px;top:12px;background:rgba(13,23,16,.85);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Seleção de áreas · expansão Zion</span>'+
         '</div>'+
         '<h2 class="pronto" style="margin:16px 0 0;font-size:32px;line-height:1.08">'+(nm0?esc(nm0)+', inscreva':'Inscreva')+' o seu projeto. <em>Queremos te conhecer.</em></h2>'+
         '<p class="lead" style="margin:8px 0 0">Transforme o seu terreno em destino turístico. A sua área pode ser a próxima.</p>'+
         precoBox+
+        '<h3 style="margin:26px 0 0;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1">Os modelos de negócio, <em style="color:var(--gold)">em vídeo</em></h3><p class="small" style="margin:4px 0 0">Arraste para o lado →</p>'+window.zvcHTML()+
         '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 0;text-align:center">'+
           '<div style="background:#142219;border:1px solid #2b3d31;border-radius:14px;padding:12px 4px"><b style="display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1">5/5</b><span style="font-size:12px">Airbnb Superhost</span></div>'+
           '<div style="background:#142219;border:1px solid #2b3d31;border-radius:14px;padding:12px 4px"><b style="display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1">10</b><span style="font-size:12px">nota Expedia</span></div>'+
