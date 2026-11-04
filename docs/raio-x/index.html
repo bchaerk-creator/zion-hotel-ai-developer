@@ -949,7 +949,7 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
   /* Teste B · venda direta: /raio-x?modo=direto ou #inscricao abre a inscrição sem o diagnóstico */
   window.__zDIRETO=/[?&]modo=direto(&|$)/.test(location.search)||location.hash==='#inscricao';
-  window.__zDireto=function(){S.tela=2;box.innerHTML=flowHTML(S.r||{},'');bindRes();try{if(window.fbq)fbq('track','ViewContent',{content_name:'inscricao-direta'})}catch(e){}};
+  window.__zDireto=function(){try{box.classList.add('in')}catch(e){}S.tela=2;box.innerHTML=flowHTML(S.r||{},'');bindRes();try{if(window.fbq)fbq('track','ViewContent',{content_name:'inscricao-direta'})}catch(e){}};
   if(location.hash==='#clube'){try{if(window.fbq)fbq('track','ViewContent',{content_name:'clube-direto'})}catch(e){}}render(); /* #clube abre igual ao /raio-x */
 })();
 </script>
@@ -972,6 +972,7 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
     filhos().forEach(function(n){if(!n.contains(r))n.classList.add('foco-hide')});
     [].forEach.call(r.parentNode===document.body?[]:r.parentNode.children,function(n){if(n!==r&&!/^(SCRIPT|STYLE)$/.test(n.tagName))n.classList.add('foco-hide')});
     document.body.classList.add('foco');
+    try{var fm=document.getElementById('form');if(fm)fm.classList.add('in')}catch(e){}
     if(push&&location.hash!=='#diagnostico')history.pushState({foco:1},'','#diagnostico');
     window.scrollTo(0,0);
   }
@@ -986,7 +987,7 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
   });
   window.addEventListener('popstate',function(){location.hash==='#diagnostico'?entrar(false):sair()});
   if(location.hash==='#diagnostico'||location.hash==='#raiox')entrar(false);
-  if(window.__zDIRETO){[].forEach.call(document.querySelectorAll('a[href="#raiox"]'),function(a){var sp=a.querySelector('span');if(sp)sp.textContent='Quero fazer parte · ver a inscrição'});var fb=document.querySelector('.foco-bar span');if(fb)fb.textContent='Inscrição · Zion Land Bank';}
+  if(window.__zDIRETO){[].forEach.call(document.querySelectorAll('a[href="#raiox"]'),function(a){var sp=a.querySelector('span');if(sp)sp.textContent='Quero fazer parte · ver a inscrição'});var fb=document.querySelector('.foco-bar span');if(fb)fb.textContent='Inscrição · Zion Land Bank';var ld=document.querySelector('#topo .lead');if(ld)ld.textContent='Faça a sua inscrição no Land Bank e entre no Clube Zion Collection.';var st=document.createElement('style');st.textContent='#form [data-go="6"]{display:none}';document.head.appendChild(st);}
 })();
 </script>
 <script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:(window.CONFIG&&CONFIG.inscricao&&CONFIG.inscricao.valor)||97,currency:'BRL'})}catch(x){}},true)</script>
