@@ -919,6 +919,9 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
   }
   function bindRes(){try{if(window.fbq&&S.tela===1&&!window._zLead){window._zLead=1;fbq('track','Lead')}}catch(e){}[].forEach.call(document.querySelectorAll('[data-go]'),function(b){b.onclick=function(){S.tela=+b.dataset.go;if(b.dataset.m)S.mot=b.dataset.m;box.innerHTML=result();bindRes();try{window.scrollTo(0,0)}catch(e){}}});var pb=document.getElementById('pdfdiag');if(pb)pb.onclick=pdfDiag;var rd=document.getElementById('redo');if(rd)rd.onclick=function(){S.i=0;S.r={};S.q=S.r;S.enviado=false;save();render()};
     [].forEach.call(document.querySelectorAll('.qopt'),function(b){b.onclick=function(){S.q=S.q||{};S.q[b.dataset.k]=b.dataset.v;save();box.innerHTML=result();bindRes();var t=document.getElementById('qual')||box;try{t.scrollIntoView({behavior:'smooth',block:'start'})}catch(e){}}})}
+  /* Teste B · venda direta: /raio-x?modo=direto ou #inscricao abre a inscrição sem o diagnóstico */
+  window.__zDIRETO=/[?&]modo=direto(&|$)/.test(location.search)||location.hash==='#inscricao';
+  window.__zDireto=function(){S.tela=2;box.innerHTML=flowHTML(S.r||{},'');bindRes();try{if(window.fbq)fbq('track','ViewContent',{content_name:'inscricao-direta'})}catch(e){}};
   if(location.hash==='#clube'){try{if(window.fbq)fbq('track','ViewContent',{content_name:'clube-direto'})}catch(e){}}render(); /* #clube abre igual ao /raio-x */
 })();
 </script>
@@ -950,11 +953,12 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
   }
   document.addEventListener('click',function(e){
     var a=e.target.closest&&e.target.closest('a[href="#raiox"]');
-    if(a){e.preventDefault();entrar(true)}
+    if(a){e.preventDefault();entrar(true);if(window.__zDIRETO&&window.__zDireto)window.__zDireto()}
     if(e.target.id==='focoVoltar'){e.preventDefault();if(location.hash==='#diagnostico')history.back();else sair()}
   });
   window.addEventListener('popstate',function(){location.hash==='#diagnostico'?entrar(false):sair()});
   if(location.hash==='#diagnostico'||location.hash==='#raiox')entrar(false);
+  if(window.__zDIRETO){[].forEach.call(document.querySelectorAll('a[href="#raiox"]'),function(a){var sp=a.querySelector('span');if(sp)sp.textContent='Quero fazer parte · ver a inscrição'});var fb=document.querySelector('.foco-bar span');if(fb)fb.textContent='Inscrição · Zion Land Bank';}
 })();
 </script>
 <script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:(window.CONFIG&&CONFIG.inscricao&&CONFIG.inscricao.valor)||97,currency:'BRL'})}catch(x){}},true)</script>
