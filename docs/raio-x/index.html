@@ -321,21 +321,24 @@ cxs('track', 'page_view');
     <p class="lead">Comece pelo diagnóstico gratuito. Leva 3 minutos.</p>
     <a class="cta" href="#raiox"><span>Fazer meu diagnóstico gratuito</span><span aria-hidden="true">→</span></a>
     <style>
-    .cami{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:22px 0 0}
-    .cami div{position:relative;background:#142219;border:1px solid #2b3d31;border-radius:18px;padding:14px 12px 12px}
-    .cami div.on{border-color:#e0be5e;background:radial-gradient(circle at 30% 0%,#2a4834,#142219)}
-    .cami i{font-style:normal;font-size:30px;line-height:1;display:block}
-    .cami b{display:block;margin-top:10px;font-size:15.5px;line-height:1.25;color:#f4efe2}
-    .cami small{display:block;margin-top:3px;font-size:12.5px;color:#b8c1b6}
-    .cami u{position:absolute;right:12px;top:12px;text-decoration:none;font:600 12px Inter,sans-serif;color:#e0be5e}
+    .cami{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
+    .cami div{position:relative;border-radius:18px;overflow:hidden;border:1px solid #2b3d31;aspect-ratio:4/5;background:#142219}
+    .cami div.on{border:2px solid #e0be5e}
+    .cami img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+    .cami div:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,23,16,0) 35%,rgba(13,23,16,.92) 100%)}
+    .cami span{position:absolute;left:12px;right:12px;bottom:12px;z-index:1}
+    .cami b{display:block;font-size:16px;line-height:1.2;color:#f4efe2}
+    .cami small{display:block;margin-top:2px;font-size:12.5px;color:#cfd6cc}
+    .cami u{position:absolute;left:10px;top:10px;z-index:1;text-decoration:none;width:28px;height:28px;border-radius:50%;background:#e0be5e;color:#0d1710;font:800 13px/28px Inter,sans-serif;text-align:center}
+    .cami .pin{position:absolute;left:50%;top:38%;transform:translate(-50%,-50%);z-index:1;font-style:normal;background:#e0be5e;color:#0d1710;font:800 12px Inter,sans-serif;border-radius:999px;padding:5px 10px;white-space:nowrap;box-shadow:0 4px 14px rgba(0,0,0,.45)}
     @media (min-width:900px){.cami{grid-template-columns:repeat(4,1fr)}}
     </style>
     <span class="k" style="display:block;margin-top:26px">O seu caminho no clube</span>
     <div class="cami">
-      <div class="on"><u>1</u><i>📋</i><b>Diagnóstico</b><small>grátis, agora</small></div>
-      <div><u>2</u><i>🗝️</i><b>Clube Zion Collection</b><small>produtos e modelos de negócio</small></div>
-      <div><u>3</u><i>📍</i><b>Land Bank</b><small>a sua área no radar</small></div>
-      <div><u>4</u><i>🤝</i><b>Sessão one‑on‑one</b><small>o seu direcionamento</small></div>
+      <div class="on"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="Diagnóstico" loading="lazy"><u>1</u><span><b>Diagnóstico</b><small>grátis, agora</small></span></div>
+      <div><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op01.webp" alt="Clube Zion Collection" loading="lazy"><u>2</u><span><b>Clube Zion Collection</b><small>produtos e modelos de negócio</small></span></div>
+      <div><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op09.webp" alt="Land Bank" loading="lazy"><em class="pin">📍 Sua área</em><u>3</u><span><b>Land Bank</b><small>a sua área no radar</small></span></div>
+      <div><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/raio-x-entregaveis/sessao-foto.webp" alt="Sessão one‑on‑one com a equipe Zion" loading="lazy"><u>4</u><span><b>Sessão one‑on‑one</b><small>com a equipe Zion</small></span></div>
     </div>
   </div>
 </section>
