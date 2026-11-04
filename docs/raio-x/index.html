@@ -989,5 +989,31 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
 <script>document.addEventListener('click',function(e){try{var a=e.target.closest&&e.target.closest('a[href*="asaas.com"]');if(a&&window.fbq)fbq('track','InitiateCheckout',{value:(window.CONFIG&&CONFIG.inscricao&&CONFIG.inscricao.valor)||97,currency:'BRL'})}catch(x){}},true)</script>
 <div data-cx-livechat="54c75883-482d-4168-aa4f-8d987487aba8"></div>
 <script async src="https://api.clickmax.io/sdk/livechat.js"></script>
-<script>document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-abre]');if(!b)return;var sec=document.getElementById(b.getAttribute('data-abre'));if(!sec)return;var on=!sec.classList.contains('aberto');sec.classList.toggle('aberto',on);b.classList.toggle('on',on);if(on){sec.querySelectorAll('.up,.rv').forEach(function(x){x.classList.add('in')});setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'})},60)}});</script></body>
+<script>document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-abre]');if(!b)return;var sec=document.getElementById(b.getAttribute('data-abre'));if(!sec)return;var on=!sec.classList.contains('aberto');sec.classList.toggle('aberto',on);b.classList.toggle('on',on);if(on){sec.querySelectorAll('.up,.rv').forEach(function(x){x.classList.add('in')});setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'})},60)}});</script><script>/* Estratégia WhatsApp (04/11): todo CTA da land leva ao WhatsApp da Zaya. O diagnóstico online continua em /raio-x?diag=1#diagnostico (link que a Zaya envia). */
+(function(){
+  if(/[?&]diag=1(&|$)/.test(location.search))return;
+  var MSG='Oi! Quero reservar a minha sessão estratégica, fazer o diagnóstico e inscrever o meu terreno.';
+  var WA='https://wa.me/554861371061?text='+encodeURIComponent(MSG);
+  var LAB={'Fazer meu diagnóstico gratuito':'Reservar minha sessão estratégica','Começar agora, é grátis':'Reservar minha sessão estratégica'};
+  function troca(){
+    [].forEach.call(document.querySelectorAll('a[href="#raiox"]'),function(a){
+      a.setAttribute('href',WA);a.setAttribute('data-zwa','1');
+      var sp=a.querySelector('span:not([aria-hidden])');var tn=null;if(!sp){for(var k=0;k<a.childNodes.length;k++){if(a.childNodes[k].nodeType===3&&a.childNodes[k].nodeValue.trim()){tn=a.childNodes[k];break}}}var t=((sp?sp.textContent:(tn?tn.nodeValue:''))||'').trim();
+      var novo=LAB[t]||(/inscre/i.test(t)?'Inscrever meu terreno pelo WhatsApp':'Reservar minha sessão estratégica');
+      if(sp)sp.textContent=novo;else if(tn)tn.nodeValue=novo+' ';
+    });
+    [].forEach.call(document.querySelectorAll('#topo .lead,section .lead'),function(p){
+      if(/primeiro passo é grátis/i.test(p.textContent))p.textContent='Faça o diagnóstico, inscreva o seu terreno e reserve a sua sessão estratégica, tudo pelo WhatsApp.';
+    });
+  }
+  troca();
+  if(location.hash==='#diagnostico'||location.hash==='#raiox'||location.hash==='#inscricao'){
+    [].forEach.call(document.querySelectorAll('.foco-hide'),function(n){n.classList.remove('foco-hide')});
+    document.body.classList.remove('foco');
+    try{history.replaceState(null,'',location.pathname+location.search)}catch(e){}
+    window.scrollTo(0,0);
+  }
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[data-zwa]');if(a&&window.fbq){try{fbq('track','Contact')}catch(x){}}},true);
+})();
+</script></body>
 </html>
