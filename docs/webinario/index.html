@@ -36,7 +36,7 @@ p{margin:0}
 
 /* hero */
 .hero{position:relative;min-height:92svh;display:flex;align-items:flex-end;overflow:hidden}
-.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,26,19,.25) 0%,rgba(14,26,19,.55) 40%,var(--bg) 92%)}
 .hero .w{position:relative;z-index:1;padding-bottom:34px;width:100%}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(14,26,19,.82);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:7px 13px;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase}
@@ -145,6 +145,17 @@ footer{padding:36px 0 110px;border-top:1px solid var(--line);font-size:12.5px;co
 .lb .pin i:after{content:"";display:block;width:12px;height:12px;border-radius:50%;background:var(--gold);margin:20px 0 0 -5px;box-shadow:0 0 0 6px rgba(224,190,94,.3)}
 .lb .card{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(14,26,19,.9);border:1px solid var(--gold);border-radius:14px;padding:10px 12px;font-size:13px;color:var(--paper)}
 .lb .card b{color:var(--gold)}
+.spk{display:flex;gap:12px;align-items:center;margin:16px 0 0;background:rgba(14,26,19,.78);border:1px solid var(--line);border-radius:18px;padding:10px 12px}
+.spk img{flex:0 0 58px;width:58px;height:58px;border-radius:50%;object-fit:cover;object-position:50% 18%;border:2px solid var(--gold)}
+.spk span{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.spk b{display:block;font-size:17px;line-height:1.2}
+.spk em{display:block;font-style:normal;font-size:12.5px;color:var(--muted);line-height:1.35}
+.cortes{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;margin:18px 0 0;contain:inline-size}
+.cortes::-webkit-scrollbar{display:none}
+.cortes figure{flex:0 0 72%;margin:0;scroll-snap-align:start}
+.cortes video{width:100%;aspect-ratio:9/16;object-fit:cover;border-radius:16px;background:#000;display:block}
+.cortes .hz{flex-basis:88%}.cortes .hz video{aspect-ratio:16/9}
+.cortes figcaption{font-size:13px;color:var(--muted);margin-top:6px}
 @media (min-width:760px){.hero{min-height:86svh}.car figure{flex-basis:46%}}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}}
 </style>
@@ -158,18 +169,24 @@ var CONFIG={
   preco:'R$\u00a047',valor:47,
   /* link de pagamento do Asaas de R$ 47 — colar aqui quando existir */
   checkout:'',
-  whatsapp:'554861371061'
+  whatsapp:'554861371061',
+  /* cortes de vídeo: {v: arquivo mp4, p: capa, t: legenda} */
+  cortes:[
+    {v:'videos-web/videos/02-glamping-nao-e-pdf.mp4',p:'assets/webinario/corte-02-glamping-nao-e-pdf.webp',t:'Glamping não é PDF: começa com um deck, luz e uma bolha'},
+    {v:'videos-web/videos/03-as-7-perguntas-na-ordem-certa.mp4',p:'assets/webinario/corte-03-as-7-perguntas-na-ordem-certa.webp',t:'As 7 perguntas, na ordem certa',h:1}
+  ]
 };
 var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
 </script>
 
 <header class="hero">
-  <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/bruno-palco.webp" alt="Bruno Chaerk, fundador da Zion, falando ao microfone" fetchpriority="high" style="object-position:50% 10%;height:74%;bottom:auto">
+  <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="Bubble Zion no meio da mata de araucárias, vista de cima" fetchpriority="high">
   <div class="w">
     <span class="badge"><i></i>Webinário ao vivo · Zion</span>
     <h1>Transforme seu terreno em um <em>destino turístico</em></h1>
     <p class="sub">e aprenda a construir um Airbnb de sucesso, com quem já opera hospedagem.</p>
     <div class="quando"><span><b>📅</b> <span data-c="dataTxt"></span></span><span><b>🕗</b> <span data-c="horaTxt"></span></span><span><b>💻</b> Ao vivo no <span data-c="plataforma"></span></span></div>
+    <div class="spk"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/webinario/bruno-palco.webp" alt="Bruno Chaerk"><div><span>Com o palestrante</span><b>Bruno Chaerk</b><em>Fundador da Zion · criador da Zion Bubble Glamping e do Método Zion 360°</em></div></div>
     <div class="cd" id="cd" aria-label="Tempo até o webinário"><div><b id="cd-d">--</b><span>dias</span></div><div><b id="cd-h">--</b><span>horas</span></div><div><b id="cd-m">--</b><span>min</span></div><div><b id="cd-s">--</b><span>seg</span></div></div>
     <div style="margin:20px 0 0"><a class="btn" href="#vaga" data-ir><span>Garantir minha vaga por <span data-c="preco"></span></span><span class="arr" aria-hidden="true">→</span></a></div>
     <p class="small" style="margin:10px 0 0;text-align:center">Vagas limitadas na sala ao vivo · pagamento único</p>
@@ -237,6 +254,13 @@ var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
     <a class="btn-s" href="https://instagram.com/zionglampingcollection" target="_blank" rel="noopener">@zionglampingcollection<span>Zion Glamping Collection</span></a>
     <a class="btn-s" href="https://instagram.com/brunochaerkofc" target="_blank" rel="noopener">@brunochaerkofc<span>Bruno Chaerk · fundador</span></a>
   </div>
+</div></section>
+
+<section class="sec"><div class="w">
+  <span class="mono">Cortes do Bruno</span>
+  <h2>Uma amostra do que você <em>vai ver ao vivo</em></h2>
+  <p class="lead">Trechos curtos do Bruno explicando o método. Arraste para o lado →</p>
+  <div class="cortes" id="cortes"></div>
 </div></section>
 
 <section class="sec"><div class="w">
@@ -321,6 +345,9 @@ var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
   // fotos
   var caps=['Café da manhã no deck, de roupão','Fim de tarde com piscina privativa','Café flutuante na piscina','Banheira com vista para o jardim','A suíte dentro da bolha','Vista de cima: suíte, banheira e piscina','Ofurô no deck, no meio da mata','Bubble Zion entre as araucárias','Uma unidade Zion vista do alto','Dormir sob o céu','Suíte, ofurô e rede sobre a mata','Duas bolhas integradas: suíte e banheira'];
   document.getElementById('car').innerHTML=caps.map(function(c,i){return '<figure><img src="'+IM+'assets/operacoes/op'+(i<9?'0':'')+(i+1)+'.webp" alt="'+c+'" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>'+c+'</figcaption></figure>'}).join('');
+  // cortes
+  document.getElementById('cortes').innerHTML=(CONFIG.cortes||[]).map(function(c){return '<figure'+(c.h?' class="hz"':'')+'><video controls playsinline preload="none" poster="'+IM+c.p+'"><source src="'+IM+c.v+'" type="video/mp4"></video><figcaption>'+c.t+'</figcaption></figure>'}).join('');
+  if(!(CONFIG.cortes||[]).length)document.getElementById('cortes').closest('section').style.display='none';
   // contagem
   var alvo=new Date(CONFIG.inicio).getTime();
   function pad(n){return (n<10?'0':'')+n}
