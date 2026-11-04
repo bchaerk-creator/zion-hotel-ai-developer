@@ -327,13 +327,49 @@ cxs('track', 'page_view');
     </div>
     <span class="k" style="display:block;margin-top:34px">Zion Land Bank</span>
     <h2>Os benefícios de <em>fazer parte.</em></h2>
-    <div class="ben">
-      <div class="b"><div class="i">🏔</div><b>Seu terreno no banco de áreas</b><p>Cadastro do terreno, da ideia ou do projeto.</p></div>
-      <div class="b"><div class="i">🔑</div><b>Área de membros</b><p>Acesso exclusivo do Land Bank.</p></div>
-      <div class="b"><div class="i">🎓</div><b>Aula interativa</b><p>E materiais para se preparar.</p></div>
-      <div class="b"><div class="i">📝</div><b>Dossiê inicial</b><p>A ficha e o roteiro para organizar o projeto.</p></div>
-      <div class="b" style="grid-column:1/-1"><div class="i">📅</div><b>Reunião de direcionamento com a equipe Zion</b><p>Diagnóstico orientativo, feedback e o plano de ação do seu caso.</p></div>
-    </div>
+    <style>
+    .opts5{display:grid;gap:14px;margin:16px 0 0;text-align:left}
+    .op2{background:#142219;border:1px solid #2b3d31;border-radius:18px;overflow:hidden;min-width:0}
+    .op2 .im{position:relative}.op2 .im img{display:block;width:100%;aspect-ratio:16/10;object-fit:cover}
+    .op2 .lv{position:absolute;left:10px;top:10px;background:#e5484d;color:#fff;font:800 11px/1 Inter,sans-serif;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:6px 8px}
+    .op2 .bx{padding:16px 18px 18px;display:grid;gap:6px}
+    .op2 .n{font:400 32px/1 'Playfair Display',Georgia,serif;color:#e0be5e}
+    .op2 h3{font-family:'Playfair Display',Georgia,serif;font-weight:400;font-size:22px;line-height:1.2;margin:0;color:#f4efe2}.op2 h3 em{color:#e0be5e}
+    .op2 p{margin:0;font-size:15px;color:#b8c1b6}
+    @media (min-width:760px){.opts5{grid-template-columns:1fr 1fr}}
+    .zvx{display:grid;gap:14px;margin:16px 0 0}
+    .zvx .c{background:#142219;border:1px solid #2b3d31;border-radius:20px;overflow:hidden;text-align:left}
+    .zvx .ph{position:relative}.zvx .ph img{display:block;width:100%}
+    .zvx .tx{padding:14px 16px 16px}
+    .zvx .tg{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#e0be5e}
+    .zvx .tx b{display:block;font-size:18px;line-height:1.3;color:#f4efe2;margin-top:4px}
+    .zvx .tx p{margin:4px 0 0;font-size:14.5px;line-height:1.45;color:#b8c1b6}
+    .zvx .live{position:absolute;left:10px;top:10px;background:#e5484d;color:#fff;font-weight:800;font-size:11px;letter-spacing:.08em;text-transform:uppercase;border-radius:6px;padding:4px 8px}
+    .zvx .capas{display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:16px 16px 0;background:radial-gradient(circle at 50% 30%,#24402e,#14241a)}
+    .zvx .capas img{width:100%;aspect-ratio:2/3;object-fit:cover;border-radius:6px 10px 10px 6px;box-shadow:-6px 10px 22px rgba(0,0,0,.55);transform:perspective(600px) rotateY(8deg)}
+    .zvx .capas img+img{transform:perspective(600px) rotateY(-8deg)}
+    .zvx .mapa{padding:14px;background:#14241a}.zvx .mapa img{border-radius:10px;box-shadow:0 10px 26px rgba(0,0,0,.5)}
+    .zvx .pin{position:absolute;left:50%;top:42%;transform:translate(-50%,-100%);background:#e0be5e;color:#0d1710;font-weight:800;font-size:12.5px;border-radius:999px;padding:6px 12px;white-space:nowrap;box-shadow:0 6px 18px rgba(0,0,0,.45)}
+    .zvx .lbcard{position:absolute;left:10px;right:10px;bottom:10px;background:rgba(14,26,19,.9);border:1px solid #e0be5e;border-radius:14px;padding:9px 12px;font-size:13px;color:#f4efe2}
+    .zvx .lbcard b{color:#e0be5e}
+    .zvx .one{display:flex;gap:12px;align-items:center;padding:16px;background:radial-gradient(circle at 20% 30%,#24402e,#14241a)}
+    .zvx .one .av{display:flex}.zvx .one .av span{width:44px;height:44px;border-radius:50%;border:2px solid #e0be5e;background:#1b2e22;display:flex;align-items:center;justify-content:center;font-size:20px;margin-left:-10px}.zvx .one .av span:first-child{margin-left:0}
+    @media (min-width:760px){.zvx{grid-template-columns:1fr 1fr}}
+    </style>
+    <script>
+    document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-som]');if(!b)return;var v=b.parentNode.querySelector('video');if(!v)return;v.muted=false;v.controls=true;try{v.currentTime=0;v.play()}catch(x){}b.remove();});
+    window.zvx=function(){var A='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
+      var c=function(n,img,t,d,extra){return '<article class="op2"><div class="im"><img loading="lazy" src="'+A+img+'" alt="">'+(extra||'')+'</div><div class="bx"><span class="n">'+n+'</span><h3>'+t+'</h3><p>'+d+'</p></div></article>'};
+      return '<div class="opts5">'+
+       c('01','assets/raio-x-entregaveis/sessao.webp','Sessão estratégica <em>one‑on‑one</em>','Só você e a equipe Zion, olhando o seu caso.')+
+       c('02','assets/webinario/bruno-ao-vivo.webp','Masterclass ao vivo com o <em>Bruno</em>','Como transformar o seu terreno em um destino turístico.','<span class="lv">● Ao vivo</span>')+
+       c('03','assets/webinario/capa-mapa.webp','O mapa <em>estratégico</em> dos primeiros passos','O que fazer primeiro, e em que ordem.')+
+       c('04','assets/raio-x-entregaveis/ebooks.webp','Dois <em>e-books</em>, na hora','Destino Turístico, Vol. 1 · e Glamping.')+
+       c('05','assets/raio-x-entregaveis/landbank.webp','A sua área no <em>Land Bank</em>','No radar da expansão Zion.')+
+      '</div>';};
+    </script>
+    <div id="zvxLanding"></div>
+    <script>document.getElementById('zvxLanding').innerHTML=window.zvx();</script>
     <div class="abre"><span class="k">E abre portas para</span><ul><li>🤝 Possíveis parcerias</li><li>💼 Possíveis investimentos</li><li>🌐 Network com proprietários e parceiros</li><li>🎁 Condições de membro nos produtos Zion</li></ul></div>
     <p class="legal">A Zion avalia cada caso. Não é garantia de parceria, crédito ou investimento.</p>
     <div class="prova"><span><b>20+ anos</b> de hotelaria</span><span><b>Airbnb 5/5</b> Superhost</span><span><b>Expedia 10</b></span><span>Operando desde <b>2020</b></span></div>
@@ -679,86 +715,44 @@ function inscreverURL(r){var c=(r&&r.contato)||{},nm=(c.nome||'').split(' ')[0],
       var IM='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
       var tile=function(ic,tt,tx){return '<div style="background:#142219;border:1px solid #2b3d31;border-radius:16px;padding:14px 12px"><div style="font-size:28px;line-height:1">'+ic+'</div><b style="display:block;margin-top:8px;color:var(--paper);font-size:15.5px;line-height:1.25">'+tt+'</b><span style="display:block;margin-top:4px;font-size:13px;line-height:1.35">'+tx+'</span></div>'};
       var cta=function(big){return '<a class="pill pill-gold" data-pagar="1" href="'+pago+'" target="_blank" rel="noopener" style="display:flex;justify-content:space-between;align-items:center;width:100%;min-height:'+(big?78:68)+'px;font-size:'+(big?21:19)+'px;font-weight:800;padding:12px 14px 12px 26px;text-decoration:none;box-shadow:0 0 0 6px rgba(224,190,94,.16)"><span>Quero inscrever meu projeto</span><span class="arr" aria-hidden="true">→</span></a>'};
-      h='<div style="position:relative;margin:-4px -4px 0;border-radius:18px;overflow:hidden">'+
-          '<img src="'+IM+'home/img/hero-bolha.webp" alt="Bubble Zion no meio da mata" style="display:block;width:100%;height:340px;object-fit:cover">'+
-          '<div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,23,16,.15) 0%,rgba(13,23,16,.35) 45%,#0d1710 100%)"></div>'+
-          '<span style="position:absolute;left:12px;top:12px;background:rgba(13,23,16,.85);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Seleção de áreas · expansão Zion</span>'+
-          '<div style="position:absolute;left:16px;right:16px;bottom:14px"><h2 class="pronto" style="margin:0;font-size:31px;line-height:1.08">'+(nm0?esc(nm0)+', inscreva':'Inscreva')+' o seu projeto. <em>Queremos te conhecer.</em></h2></div>'+
-        '</div>'+
-        '<p class="lead" style="margin:12px 0 0">Transforme o seu terreno em destino turístico, com o projeto que investidores, sócios e a própria Zion pedem para ver. <b style="color:var(--paper)">Estamos selecionando as melhores áreas do Brasil para a expansão da Zion, e a sua pode ser a próxima.</b></p>'+
-        '<div class="nx hi" style="text-align:center;border:2px solid var(--gold);margin-top:14px">'+
+      var vid=function(src,poster,ratio,auto){return '<div style="position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--gold);background:#000;aspect-ratio:'+ratio+';box-shadow:0 14px 40px rgba(0,0,0,.45)"><video '+(auto?'autoplay muted loop ':'controls ')+'playsinline preload="metadata" poster="'+IM+poster+'" style="width:100%;height:100%;object-fit:cover;display:block"><source src="'+IM+src+'" type="video/mp4"></video>'+(auto?'<button type="button" data-som="1" style="position:absolute;right:10px;bottom:10px;background:rgba(13,23,16,.85);color:var(--paper);border:1px solid var(--gold);border-radius:999px;padding:9px 14px;font:600 14px var(--sans,Inter,sans-serif);cursor:pointer">🔊 Ouvir</button>':'')+'</div>'};
+      var precoBox='<div class="nx hi" style="text-align:center;border:2px solid var(--gold);margin-top:14px">'+
           '<p class="small" style="margin:0;color:var(--gold)">Taxa de acesso e inscrição</p>'+
           (INS.parcelas>1
-            ?'<div style="font-family:var(--serif);line-height:1;margin:8px 0 4px;color:var(--gold);white-space:nowrap"><span style="font-size:24px">'+INS.parcelas+'x de </span><span style="font-size:50px">'+INS.parcela+'</span></div>'+
-             '<p class="small" style="margin:0 0 12px;opacity:.7;font-size:12px">ou '+INS.preco+' à vista</p>'
+            ?'<div style="font-family:var(--serif);line-height:1;margin:8px 0 4px;color:var(--gold);white-space:nowrap"><span style="font-size:24px">'+INS.parcelas+'x de </span><span style="font-size:50px">'+INS.parcela+'</span></div><p class="small" style="margin:0 0 12px;opacity:.7;font-size:12px">ou '+INS.preco+' à vista · Pix ou cartão</p>'
             :'<div style="font-family:var(--serif);font-size:58px;line-height:1;margin:6px 0 10px;color:var(--gold)">'+INS.preco+'</div>')+cta(true)+
-          '<p class="small" style="margin:10px 0 0">Pix ou cartão, pelo Asaas. Use o e-mail do diagnóstico. Logo depois do pagamento você escolhe o dia da sua sessão estratégica.</p>'+
+        '</div>';
+      h='<div style="position:relative;margin:-4px -4px 0">'+
+          vid('videos-web/videos/06-tour-operacoes-zion.mp4','videos-web/capas/06-tour-operacoes-zion.webp','4/5',true)+
+          '<span style="position:absolute;left:12px;top:12px;background:rgba(13,23,16,.85);border:1px solid var(--gold);color:var(--gold);border-radius:999px;padding:6px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase">Seleção de áreas · expansão Zion</span>'+
         '</div>'+
-        '<h3 style="margin:22px 0 2px;color:var(--paper);font-size:26px;line-height:1.15">O que você recebe</h3>'+
-        '<p class="small" style="margin:0 0 6px">Incluído na taxa de acesso e inscrição:</p>'+
-        '<ul style="list-style:none;margin:0;padding:0">'+
-          '<li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #2b3d31"><span style="font-size:26px;line-height:1;flex:0 0 32px">🤝</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">Sessão estratégica one‑on‑one com a equipe Zion</b><span style="display:block;margin-top:3px;font-size:14px;line-height:1.4">Só você e a equipe Zion, online, olhando o seu caso: o direcionamento inicial de por onde começar.</span></span></li>'+
-          '<li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #2b3d31"><span style="font-size:26px;line-height:1;flex:0 0 32px">🗺</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">O mapa dos primeiros passos</b><span style="display:block;margin-top:3px;font-size:14px;line-height:1.4">Para você sair da sessão sabendo o que fazer primeiro, e em que ordem.</span></span></li>'+
-          '<li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #2b3d31"><span style="font-size:26px;line-height:1;flex:0 0 32px">🏔</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">A inscrição do seu terreno no Land Bank da Zion</b><span style="display:block;margin-top:3px;font-size:14px;line-height:1.4">Para a Zion avaliar a sua área na expansão e em possíveis parcerias.</span></span></li>'+
-          '<li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #2b3d31"><span style="font-size:26px;line-height:1;flex:0 0 32px">🎙</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">Masterclass ao vivo com o Bruno: Como transformar o seu terreno em um destino turístico</b><span style="display:block;margin-top:3px;font-size:14px;line-height:1.4">Um webinário em grupo, ao vivo, com o seu mentor: o caminho do terreno ao destino e as suas dúvidas respondidas na hora.</span></span></li>'+
-          '<li style="display:flex;gap:12px;align-items:flex-start;padding:12px 0;border-top:1px solid #2b3d31"><span style="font-size:26px;line-height:1;flex:0 0 32px">📘</span><span><b style="display:block;color:var(--paper);font-size:17px;line-height:1.25">E-books do Marco Zero e do Glamping</b><span style="display:block;margin-top:3px;font-size:14px;line-height:1.4">Para ler antes da sessão e chegar com as perguntas certas.</span></span></li>'+
-        '</ul>'+
-        '<div style="margin:8px 0 0;padding:12px 14px;border-radius:14px;border:1px dashed #4a5a4e;font-size:14px;line-height:1.45"><b style="color:var(--paper)">O que a inscrição não inclui:</b> a mentoria e a estruturação completa do projeto. Elas são a próxima etapa, apresentada na sessão estratégica para quem fizer sentido. A Zion avalia cada caso.</div>'+
-        '<h3 style="margin:22px 0 4px;color:var(--paper);font-size:26px;line-height:1.15">A sua jornada</h3>'+
-        '<p class="small" style="margin:0 0 12px">Onde a inscrição te leva, e o que vem depois.</p>'+
-        '<span class="mono" style="display:block;margin:0 0 10px;color:var(--gold)">Incluído na inscrição</span>'+
-        '<ol style="list-style:none;margin:0;padding:0">'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="position:absolute;left:15px;top:34px;bottom:-6px;width:2px;background:#2b3d31"></span><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:var(--gold);color:#0d1710;border:2px solid var(--gold)">✓</span><span><b style="display:block;color:var(--paper);font-size:16px;line-height:1.25">Diagnóstico gratuito</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">Feito. Você já tem o seu resultado.</span></span></li>'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="position:absolute;left:15px;top:34px;bottom:-6px;width:2px;background:#2b3d31"></span><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:#0d1710;color:var(--gold);border:2px solid var(--gold);box-shadow:0 0 0 4px rgba(224,190,94,.25)">2</span><span><b style="display:block;color:var(--gold);font-size:16px;line-height:1.25">Inscrição no Land Bank da Zion</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">Você está aqui.</span></span></li>'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="position:absolute;left:15px;top:34px;bottom:-6px;width:2px;background:#2b3d31"></span><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:#0d1710;color:var(--paper);border:2px solid #3a4d40">3</span><span><b style="display:block;color:var(--paper);font-size:16px;line-height:1.25">Masterclass ao vivo com o Bruno</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">Como transformar o seu terreno em um destino turístico.</span></span></li>'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:#0d1710;color:var(--paper);border:2px solid #3a4d40">4</span><span><b style="display:block;color:var(--paper);font-size:16px;line-height:1.25">Sessão estratégica one‑on‑one</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">O direcionamento inicial com a equipe Zion e o mapa dos primeiros passos.</span></span></li>'+
-        '</ol>'+
-        '<span class="mono" style="display:block;margin:4px 0 10px;color:#9aa79d">Próxima etapa · à parte, não incluída</span>'+
-        '<ol style="list-style:none;margin:0;padding:0">'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="position:absolute;left:15px;top:34px;bottom:-6px;width:2px;background:transparent;border-left:2px dashed #3a4d40"></span><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:transparent;color:#7d8c80;border:2px dashed #4a5a4e">5</span><span style="opacity:.75"><b style="display:block;color:#9aa79d;font-size:16px;line-height:1.25">Mentoria e estruturação do projeto</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">Lugar, produto, conta e quem opera, com o acompanhamento da Zion.</span></span></li>'+
-          '<li style="position:relative;display:flex;gap:12px;padding:0 0 16px"><span style="flex:0 0 32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;box-sizing:border-box;background:transparent;color:#7d8c80;border:2px dashed #4a5a4e">6</span><span style="opacity:.75"><b style="display:block;color:#9aa79d;font-size:16px;line-height:1.25">Projeto pronto para apresentar</b><span style="display:block;margin-top:2px;font-size:13.5px;line-height:1.4">A investidores, sócios ou à Zion.</span></span></li>'+
-        '</ol>'+
-        '<div class="nx" style="margin-top:16px;border:1px solid rgba(224,190,94,.45);background:rgba(224,190,94,.06)">'+
-          '<b style="display:block;color:var(--paper);font-size:18px;line-height:1.3">Investidor não compra terreno. Compra projeto.</b>'+
-          '<p style="margin:6px 0 0">Assessorias cobram caro para preparar o que um investidor pede para ver. Aqui você começa por '+PTX+', com o know-how de quem opera hospedagem desde 2020: <b style="color:var(--paper)">a equipe Zion olha o seu caso e te dá o direcionamento prévio</b>, para você dar o primeiro passo na ordem certa.</p>'+
+        '<h2 class="pronto" style="margin:16px 0 0;font-size:32px;line-height:1.08">'+(nm0?esc(nm0)+', inscreva':'Inscreva')+' o seu projeto. <em>Queremos te conhecer.</em></h2>'+
+        '<p class="lead" style="margin:8px 0 0">Transforme o seu terreno em destino turístico. A sua área pode ser a próxima.</p>'+
+        precoBox+
+        '<div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:18px 0 0;text-align:center">'+
+          '<div style="background:#142219;border:1px solid #2b3d31;border-radius:14px;padding:12px 4px"><b style="display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1">5/5</b><span style="font-size:12px">Airbnb Superhost</span></div>'+
+          '<div style="background:#142219;border:1px solid #2b3d31;border-radius:14px;padding:12px 4px"><b style="display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1">10</b><span style="font-size:12px">nota Expedia</span></div>'+
+          '<div style="background:#142219;border:1px solid #2b3d31;border-radius:14px;padding:12px 4px"><b style="display:block;font-family:var(--serif);font-size:28px;color:var(--gold);line-height:1">20+</b><span style="font-size:12px">anos de hotelaria</span></div>'+
         '</div>'+
-        '<span class="mono" style="display:block;margin:20px 0 8px;color:var(--gold)">O seu mentor</span>'+
-        '<div style="border-radius:20px;overflow:hidden;border:1px solid #2b3d31;background:#142219">'+
-          '<div style="position:relative"><img src="'+IM+'assets/webinario/bruno-palco.webp" alt="Bruno Chaerk, fundador da Zion, palestrando" loading="lazy" style="display:block;width:100%;height:360px;object-fit:cover;object-position:50% 12%"><div style="position:absolute;inset:auto 0 0 0;height:55%;background:linear-gradient(180deg,rgba(20,34,25,0),#142219)"></div>'+
-          '<div style="position:absolute;left:16px;right:16px;bottom:10px"><b style="display:block;font-family:var(--serif);font-size:30px;line-height:1.1;color:var(--paper)">Bruno Chaerk</b><span style="display:block;font-size:13.5px;color:var(--gold)">Fundador da Zion · mentor do Clube Zion Land Bank</span></div></div>'+
-          '<div style="padding:6px 16px 16px">'+
-            '<p style="margin:0;font-size:15px;line-height:1.5">São mais de 20 anos de hotelaria. Em 2020, o Bruno começou a Zion com uma bolha no meio da mata, num terreno sem luz, sem água e sem internet. Hoje a operação é Superhost no Airbnb, com nota 5/5, e tem nota 10 na Expedia. O caminho que ele fez virou o Método Zion 360°, e é esse caminho que ele mostra para você.</p>'+
-            '<div style="margin:12px 0 0;padding:12px 14px;border-radius:14px;border:1px solid var(--gold);background:rgba(224,190,94,.08)"><span style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)">Incluído na sua inscrição</span><b style="display:block;margin-top:4px;color:var(--paper);font-size:17px;line-height:1.3">Masterclass ao vivo com o Bruno: Como transformar o seu terreno em um destino turístico</b></div>'+
-          '</div>'+
+        '<h3 style="margin:26px 0 0;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:30px;line-height:1.1">Veja tudo o que <em style="color:var(--gold)">você recebe</em></h3>'+
+        window.zvx()+
+        '<p class="small" style="margin:10px 0 0;text-align:center">A mentoria completa é a próxima etapa, à parte.</p>'+
+        '<div style="margin-top:16px">'+cta(false)+'</div>'+
+        '<div style="position:relative;margin:28px -4px 0;border-radius:20px;overflow:hidden">'+
+          '<img src="'+IM+'assets/webinario/bruno-palco.webp" alt="Bruno Chaerk palestrando" loading="lazy" style="display:block;width:100%;height:460px;object-fit:cover;object-position:50% 12%">'+
+          '<div style="position:absolute;inset:auto 0 0 0;height:50%;background:linear-gradient(180deg,rgba(13,23,16,0),#0d1710)"></div>'+
+          '<div style="position:absolute;left:18px;right:18px;bottom:16px"><span class="mono" style="color:var(--gold)">O seu mentor</span><b style="display:block;font-family:var(--serif);font-weight:400;font-size:34px;line-height:1.05;color:var(--paper);margin-top:4px">Bruno Chaerk</b><span style="font-size:14px">Fundador da Zion · do terreno vazio à nota máxima no Airbnb</span></div>'+
         '</div>'+
-        '<span class="mono" style="display:block;margin:18px 0 6px;color:var(--gold)">Conheça as nossas operações</span>'+
-        '<p class="small" style="margin:0 0 10px">Hóspedes vivendo a Zion hoje, em operação própria. Arraste para o lado →</p>'+
-        (CONFIG.prova.video?'<div class="car-v"><iframe src="'+CONFIG.prova.video+'" title="Zion Collection" loading="lazy" allow="autoplay; encrypted-media; picture-in-picture" allowfullscreen></iframe></div>':'')+
+        '<h3 style="margin:26px 0 10px;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1">As 7 perguntas, <em style="color:var(--gold)">na ordem certa</em></h3>'+
+        vid('videos-web/videos/03-as-7-perguntas-corte-52s.mp4','assets/webinario/corte-03-as-7-perguntas-na-ordem-certa.webp','16/9',false)+
+        '<h3 style="margin:26px 0 10px;color:var(--paper);font-family:var(--serif);font-weight:400;font-size:28px;line-height:1.1">Isso é a <em style="color:var(--gold)">Zion</em> hoje</h3>'+
         '<div class="car">'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op01.webp" alt="Café da manhã no deck, de roupão" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Café da manhã no deck, de roupão</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op02.webp" alt="Fim de tarde com piscina privativa" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Fim de tarde com piscina privativa</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op03.webp" alt="Café flutuante na piscina" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Café flutuante na piscina</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op04.webp" alt="Banheira com vista para o jardim" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Banheira com vista para o jardim</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op05.webp" alt="A suíte dentro da bolha" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>A suíte dentro da bolha</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op06.webp" alt="Vista de cima: suíte, banheira e piscina" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Vista de cima: suíte, banheira e piscina</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op07.webp" alt="Ofurô no deck, no meio da mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Ofurô no deck, no meio da mata</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op08.webp" alt="Bubble Zion entre as araucárias" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Bubble Zion entre as araucárias</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op09.webp" alt="Uma unidade Zion vista do alto" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Uma unidade Zion vista do alto</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op10.webp" alt="Dormir sob o céu" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Dormir sob o céu</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op11.webp" alt="Suíte, ofurô e rede sobre a mata" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Suíte, ofurô e rede sobre a mata</figcaption></figure>'+
-        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op12.webp" alt="Duas bolhas integradas: suíte e banheira" loading="lazy" onerror="this.parentNode.style.display=\'none\'"><figcaption>Duas bolhas integradas: suíte e banheira</figcaption></figure>'+
+        '<figure class="car-i"><img src="'+IM+'assets/operacoes/op01.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op02.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op03.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op07.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op10.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op05.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op08.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op04.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op11.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op12.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op06.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+'<figure class="car-i"><img src="'+IM+'assets/operacoes/op09.webp" alt="Operação Zion" loading="lazy" onerror="this.parentNode.style.display=\'none\'"></figure>'+
         '</div>'+
-        (CONFIG.prova.siteBubble?'<a class="pill btn-s" href="'+CONFIG.prova.siteBubble+'" target="_blank" rel="noopener" style="display:flex;justify-content:center;min-height:46px;font-size:15px;text-decoration:none;margin:10px 0 0">Site da Zion Bubble Glamping ↗</a>':'')+
-        '<div style="display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0">'+
-          '<a class="pill btn-s" href="https://zionhotelgroup.com/collection" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;min-height:46px;font-size:15px;text-decoration:none">As operações da Zion ↗</a>'+
-          '<a class="pill btn-s" href="https://instagram.com/zionbubble" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;flex-direction:column;gap:2px;min-height:54px;font-size:15px;text-decoration:none;line-height:1.2"><span>@zionbubble</span><span style="font-size:11.5px;opacity:.7">Hospedagem · nosso case de sucesso</span></a>'+
-          '<a class="pill btn-s" href="https://instagram.com/zionglampingcollection" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;flex-direction:column;gap:2px;min-height:54px;font-size:15px;text-decoration:none;line-height:1.2"><span>@zionglampingcollection</span><span style="font-size:11.5px;opacity:.7">Zion Glamping Collection</span></a>'+
-          '<a class="pill btn-s" href="https://instagram.com/brunochaerkofc" target="_blank" rel="noopener" style="flex:1 1 100%;justify-content:center;flex-direction:column;gap:2px;min-height:54px;font-size:15px;text-decoration:none;line-height:1.2"><span>@brunochaerkofc</span><span style="font-size:11.5px;opacity:.7">Bruno Chaerk · fundador</span></a>'+
-        '</div>'+
-        '<p class="small" style="margin:10px 0 0">Zion Hotel Group International · Florianópolis (SC) · Airbnb 5/5 Superhost · Expedia 10 · mais de 20 anos de hotelaria do fundador, Bruno Chaerk.</p>'+
-        '<div style="margin-top:16px">'+cta(false)+'</div>'+btnDuvida+
+        '<div style="display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:12px 0 0;font-size:14px"><a href="https://instagram.com/zionbubble" target="_blank" rel="noopener" class="link-u">@zionbubble</a><span>·</span><a href="https://instagram.com/zionglampingcollection" target="_blank" rel="noopener" class="link-u">@zionglampingcollection</a><span>·</span><a href="https://instagram.com/brunochaerkofc" target="_blank" rel="noopener" class="link-u">@brunochaerkofc</a></div>'+
+        precoBox+btnDuvida+
         '<p class="small" style="text-align:center;margin-top:12px">A inscrição não é oferta de investimento nem garantia de parceria, crédito ou sociedade. A Zion avalia cada caso.</p>'+
-        '<p class="small" style="text-align:center;margin-top:6px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20a%20inscri%C3%A7%C3%A3o%20no%20Zion%20Land%20Bank%20e%20n%C3%A3o%20recebi%20o%20acesso." target="_blank" rel="noopener">Fale com a equipe Zion</a> · <button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:inherit">ver o meu resultado</button></p>';
+        '<p class="small" style="text-align:center;margin-top:6px">Pagou e não recebeu o acesso? <a class="link-u" href="https://wa.me/554861371061?text=Oi%2C%20paguei%20a%20inscri%C3%A7%C3%A3o%20e%20n%C3%A3o%20recebi%20o%20acesso" target="_blank" rel="noopener">Fale com a equipe Zion</a> · <button class="link-u" data-go="6" type="button" style="background:none;border:0;cursor:pointer;padding:0;font-size:inherit">ver o meu resultado</button></p>';
     }else if(t===6){
       var L6=leitura(r),ln='';
       Q.forEach(function(x){if(x.o&&r[x.id]){var o=x.o.filter(function(p){return p[0]===r[x.id]})[0];if(o&&x.id!=='situacao')ln+='<li style="padding:9px 0;border-top:1px solid var(--line)"><span class="small" style="display:block">'+esc(x.q)+'</span><b style="color:var(--paper)">'+esc(o[1])+'</b></li>'}});
