@@ -10,3 +10,13 @@
 - Autorização para iniciar a Etapa 1 (frase exata: "ZAIOS: AUTORIZO INICIAR O DESENVOLVIMENTO").
 - Fonte oficial das fórmulas financeiras (planilhas e simuladores Zion de referência).
 - Definição de "receita de hospedagem": inclui ou não a taxa de limpeza; antes ou depois dos impostos.
+
+## Andamento
+| Data | Etapa | Resultado |
+|---|---|---|
+| 05/11/2026 | Etapa 1 · Fundação | Construída no projeto Lovable novo "Zion Empreendimentos" (id 51fa7ea5-6cb2-4867-9bf7-6e1cbb3e71dc), não publicado. 12 créditos. 8 testes automáticos passaram. Falta o teste real de entrada pelo link no e-mail, feito pelo Bruno |
+
+## Ajustes anotados para o início da Etapa 2
+- Impedir que o admin suspenda o próprio acesso.
+- Tela para o associado editar nome, telefone e cidade.
+- Conferir no Lovable Cloud a lista de endereços permitidos para o retorno do link de acesso.
