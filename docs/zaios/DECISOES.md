@@ -7,7 +7,7 @@
 | 05/11/2026 | O MVP sai sem IA generativa: as fichas funcionam como exercícios guiados, com cálculos determinísticos e veredito por regras. A IA entra na fase seguinte, começando por P5 (CAPEX) e P6 (Viabilidade) | Bruno Chaerk |
 
 ## Decisões pendentes
-- Autorização para iniciar a Etapa 1 (frase exata: "ZAIOS: AUTORIZO INICIAR O DESENVOLVIMENTO").
+- Autorização da Etapa 1 recebida em 05/11/2026. Cada etapa seguinte precisa de aprovação própria.
 - Fonte oficial das fórmulas financeiras (planilhas e simuladores Zion de referência).
 - Definição de "receita de hospedagem": inclui ou não a taxa de limpeza; antes ou depois dos impostos.
 
