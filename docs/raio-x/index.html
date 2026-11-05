@@ -992,7 +992,7 @@ else{window.open('https://web.whatsapp.com/send?'+q,'_blank','noopener');}}catch
 <script>document.addEventListener('click',function(e){var b=e.target.closest&&e.target.closest('[data-abre]');if(!b)return;var sec=document.getElementById(b.getAttribute('data-abre'));if(!sec)return;var on=!sec.classList.contains('aberto');sec.classList.toggle('aberto',on);b.classList.toggle('on',on);if(on){sec.querySelectorAll('.up,.rv').forEach(function(x){x.classList.add('in')});setTimeout(function(){sec.scrollIntoView({behavior:'smooth',block:'start'})},60)}});</script><script>/* Estratégia WhatsApp (04/11): todo CTA da land leva ao WhatsApp da Zaya. O diagnóstico online continua em /raio-x?diag=1#diagnostico (link que a Zaya envia). */
 (function(){
   if(/[?&]diag=1(&|$)/.test(location.search))return;
-  var MSG='Oi! Quero reservar a minha sessão de direcionamento estratégico, fazer o diagnóstico e inscrever o meu terreno.';
+  var MSG='Oi! Preenchi o formulário e quero inscrever o meu terreno no Land Bank da Zion.';
   var WA='https://wa.me/554861371061?text='+encodeURIComponent(MSG);
   var LAB={'Fazer meu diagnóstico gratuito':'Reservar minha sessão de direcionamento','Começar agora, é grátis':'Reservar minha sessão de direcionamento'};
   function troca(){
