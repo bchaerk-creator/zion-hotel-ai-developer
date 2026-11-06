@@ -37,6 +37,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
   - **área de membros**: `portals_*`, `classroom_*`, `content_*`, `lesson_*` e `offers_add_membership_delivery`;
   - **link**: `offers_add_link_delivery`;
   - **arquivo**: `offers_add_file_delivery` com URL pública, ou Bruno sobe em Produtos → oferta → "Cadastrar E-Books, PDFs ou Arquivos Digitais".
+- Hospedagem dos entregáveis: no site, em `docs/p/adbc67069af26ae0/<produto>/` (endereço longo, com `noindex` e `Disallow: /p/` no robots.txt). URL pública: `https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/<produto>/`. O repositório é visível no GitHub, então esse endereço é discreto, não secreto.
 - Uma tag isolada não comprova pagamento nem entrega: verifique o caminho completo, do pagamento confirmado até o acesso.
 - A aprovação da oferta é feita por uma pessoa do ClickMax: envie para aprovação só depois que `offers_get_incomplete_reason` voltar vazio.
 - Plano B: Hotmart, com o mesmo produto.
@@ -44,9 +45,9 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 ## 4. Produtos já existentes neste repositório
 | Produto | Pasta | ClickMax |
 |---|---|---|
-| Arsenal Interativo 01 · Seu Airbnb Está Vazio? (40 telas, 7 pilares, dossiê em PDF) | `producao/academy01/arsenal/` | Oferta `1ff56fea-8d49-4018-b0cd-e64e408eddf3` (R$ 27, checkout `ySAkZG38VS`) |
+| Arsenal Interativo 01 · Seu Airbnb Está Vazio? (40 telas, 7 pilares, dossiê em PDF) | `producao/academy01/arsenal/` | Oferta `1ff56fea-8d49-4018-b0cd-e64e408eddf3` (R$ 27, checkout `ySAkZG38VS`). Entrega por link: `p/adbc67069af26ae0/arsenal-01/` |
 | Landing do Arsenal 01 | `producao/academy01/landing/` | Página `82e1bb5f-9f91-4dc7-9a3d-c6635dbee0e6` (rascunho, `/academy-01`) |
-| Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`) |
+| Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`). Entrega por arquivo: `p/adbc67069af26ae0/planilha-01/` |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 
 Escada de preços (Estratégia Low Ticket Ladeira): ferramentas de R$ 19 → Arsenal R$ 27 → Trilhas. Cada degrau entrega a sua promessa sozinho.
@@ -67,7 +68,7 @@ Escada de preços (Estratégia Low Ticket Ladeira): ferramentas de R$ 19 → Ars
 ## 6. Anúncios no Meta
 - **Formato:** cada criativo 1080×1350 é um anúncio. Todos levam à mesma landing, com `utm_source=meta&utm_medium=paid&utm_campaign=<produto>&utm_content=<criativo>`.
 - **Botão:** no Meta o botão é de uma lista fixa; use "Saiba mais". A chamada personalizada vai na arte e na primeira linha do texto.
-- **Criação de campanha:** só pelo conector da conta de anúncios (ex.: Windsor.ai), se estiver conectado. Crie sempre **pausada**, dentro do orçamento máximo do prompt, e ative só com "aprovado".
+- **Criação de campanha:** pelo Windsor.ai (conector `facebook`, já conectado; contas de anúncio: Zion Bubble `1767208367384473`, Zion Collection 2, Bruno Ch, BRUNO 01). Confirme com Bruno qual conta usar. Crie sempre **pausada**, dentro do orçamento máximo do prompt, e ative só com "aprovado".
 - **Medição:** compare o custo por venda com o preço menos taxas e impostos. Faturamento não é lucro.
 
 ## 7. Economia de créditos
