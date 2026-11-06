@@ -13,8 +13,11 @@ subs = {
   "{{IMG_CAPA}}": b64(A/"src/img/capa.webp"),
   "{{IMG_AEREA}}": b64(A/"src/img/aerea.webp"),
   "{{LOGIC}}": (A/"src/logic.js").read_text(),
+  "{{LOGIC2}}": (A/"src/logic2.js").read_text(),
+  "{{PILARES_HTML}}": (A/"src/pilares.html").read_text(),
+  "{{PILARES_JS}}": (A/"src/pilares.js").read_text(),
 }
-for k, v in subs.items(): src = src.replace(k, v)
+for k in sorted(subs, key=len, reverse=True): src = src.replace(k, subs[k])
 assert "{{" not in src, "placeholder sem substituir"
 head, rest = src.split("</style>", 1)
 full = ('<!doctype html>\n<html lang="pt-BR">\n<head>\n<meta charset="utf-8">\n'

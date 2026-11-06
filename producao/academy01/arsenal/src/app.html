@@ -376,16 +376,17 @@ ul.premissas li{margin:6px 0}
     </div>
     <div class="status" id="statusPdf" role="status"></div>
   </div>
-  <div class="proximo"><div><b>Pilar 2 · Quem é seu hóspede?</b><span>Próximo bloco em desenvolvimento.</span></div><span class="selo">Em breve</span></div>
+  <div class="proximo"><div><b>Pilar 2 · Quem é seu hóspede?</b><span>Perfil Prioritário de Hóspede.</span></div><button class="btn" type="button" data-ir="9">Continuar</button></div>
   <p class="privacidade">Privacidade: suas respostas ficam salvas só neste aparelho, no armazenamento do navegador. Nada é enviado para a Zion ou para terceiros, e nenhuma senha é pedida. <button class="btn-link" type="button" id="apagar">Apagar meus dados deste aparelho</button></p>
-  <div class="nav"><button class="btn-2" type="button" data-ir="7">Voltar</button><button class="btn" type="button" id="irTopo">Revisar desde o início</button></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="7">Voltar</button><button class="btn" type="button" data-ir="9">Ir para o Pilar 2</button></div>
 </div></section>
+{{PILARES_HTML}}
 </main>
 
 <div class="sumario gut" id="sumario" role="dialog" aria-modal="true" aria-label="Sumário" hidden>
   <div class="w">
     <div style="display:flex;justify-content:space-between;align-items:center;gap:12px"><h2 style="margin:0;font-size:34px">Sumário</h2><button class="btn-2" type="button" id="fecharSumario" style="min-height:44px">Fechar</button></div>
-    <p class="small" style="margin-top:8px">Bloco 01 disponível: telas 01 a 08. Os demais pilares serão liberados nos próximos blocos.</p>
+    <p class="small" style="margin-top:8px">Você pode voltar a qualquer tela que já visitou.</p>
     <ol id="listaSumario"></ol>
   </div>
 </div>
@@ -394,13 +395,19 @@ ul.premissas li{margin:6px 0}
 {{LOGIC}}
 </script>
 <script>
+{{LOGIC2}}
+</script>
+<script>
+{{PILARES_JS}}
+</script>
+<script>
 (function(){
   "use strict";
   var L = window.ZionLogic;
   var CHAVE = "zion-academy-arsenal01-v1";
   var TOTAL = 40;
   var TELAS = {1:"Capa",2:"Como funciona",3:"Conhecendo sua hospedagem",4:"Por que um Airbnb fica vazio?",5:"Entenda os números",6:"Preencha seus números",7:"Calculadora e interpretação",8:"Feedback e diagnóstico inicial"};
-  var BLOQ = [["9–13","Pilar 2 · Quem é seu hóspede?"],["14–18","Pilar 3 · Por que escolher sua hospedagem?"],["19–23","Pilar 4 · Transforme seu anúncio"],["24–28","Pilar 5 · Sua diária faz sentido?"],["29–33","Pilar 6 · Sua experiência encanta?"],["34–38","Pilar 7 · Seu plano de 30 dias"],["39–40","Conclusão · Dossiê final"]];
+  var BLOQ = [];
   var METRICAS = [
     {id:"disponiveis", rot:"Noites disponíveis", ajuda:"Noites abertas para reserva no período. Não conte bloqueios seus.", semDado:false},
     {id:"ocupadas", rot:"Noites ocupadas", ajuda:"Noites com hóspede no período.", semDado:false},
@@ -540,6 +547,7 @@ ul.premissas li{margin:6px 0}
       if (!$("periodo").value){ $("resumoErros").hidden = false; $("resumoErros").textContent = "Escolha o período analisado."; return false; }
       return r.valido;
     }
+    if (n >= 9 && window.ZP) return window.ZP.validar(n);
     return true;
   }
   function ir(n, semValidar){
@@ -554,9 +562,11 @@ ul.premissas li{margin:6px 0}
     $("pilarTag").textContent = tela.getAttribute("data-pilar");
     if (n === 7) pintar7();
     if (n === 8) pintar8();
+    if (n >= 9 && window.ZP) window.ZP.render(n);
     salvar(); window.scrollTo(0,0);
   }
   function pintarSumario(){
+    if (window.ZP) Object.assign(TELAS, window.ZP.TELAS);
     var h = Object.keys(TELAS).map(function(k){ var n = +k, pode = estado.visitadas.indexOf(n) >= 0;
       return '<li><button type="button" data-sum="'+n+'"'+(pode?'':' disabled')+(n===atual?' class="atual"':'')+'><b>'+String(n).padStart(2,"0")+'</b>'+TELAS[k]+'</button></li>'; }).join("");
     h += BLOQ.map(function(b){ return '<li><button type="button" disabled><b>'+b[0].split("–")[0]+'</b>'+b[1]+' · em breve</button></li>'; }).join("");
@@ -581,17 +591,17 @@ ul.premissas li{margin:6px 0}
   $("fecharSumario").addEventListener("click", function(){ $("sumario").hidden = true; });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape") $("sumario").hidden = true; });
   $("continuar").addEventListener("click", function(){ ir(estado.tela, true); });
-  $("irTopo").addEventListener("click", function(){ ir(2, true); });
   $("apagar").addEventListener("click", function(){
     var b = $("apagar");
     if (b.dataset.confirmar !== "1"){ b.dataset.confirmar = "1"; b.textContent = "Toque de novo para confirmar: isso apaga todas as respostas"; return; }
     try { localStorage.removeItem(CHAVE); } catch(e){}
-    estado = { tela:1, visitadas:[1], perfil:{}, numeros:{}, area:null, quiz:null }; aplicar(); b.dataset.confirmar = ""; b.textContent = "Apagar meus dados deste aparelho"; $("continuar").hidden = true; ir(1, true);
+    estado = { tela:1, visitadas:[1], perfil:{}, numeros:{}, area:null, quiz:null }; aplicar(); if (window.ZP) window.ZP.aplicar(); b.dataset.confirmar = ""; b.textContent = "Apagar meus dados deste aparelho"; $("continuar").hidden = true; ir(1, true);
   });
 
   // ---------- PDF (prévia do dossiê) ----------
   var LOGO = document.querySelector(".topo img").src;
   $("gerarPdf").addEventListener("click", function(){
+    if (window.ZP && window.ZP.pdf) { window.ZP.pdf($("statusPdf"), true); return; }
     var st = $("statusPdf");
     if (!window.jspdf){ st.textContent = "Não foi possível carregar o gerador de PDF. Verifique a internet e tente de novo."; return; }
     var r = calcularAgora(), fb = L.feedback(r, estado.perfil), p = estado.perfil;
@@ -652,10 +662,15 @@ ul.premissas li{margin:6px 0}
     try { doc.save(arq); st.textContent = "Prévia gerada: " + arq + "."; } catch(e){ st.textContent = "Este navegador bloqueou o download. Abra no Chrome ou no Safari."; }
   });
 
+  window.ZA = { get estado(){ return estado; }, ir: ir, salvar: salvar, calcular: calcularAgora, esc: esc, pct: pct, brl: brl, nv: nv, L: L, feedback: function(){ return L.feedback(calcularAgora(), estado.perfil); } };
   // ---------- início ----------
-  var temSalvo = carregar();
-  aplicar();
-  if (temSalvo && estado.tela > 1){ $("continuar").hidden = false; $("continuar").textContent = "Continuar da tela " + String(estado.tela).padStart(2,"0"); }
-  ir(1, true);
+  function iniciar(){
+    var temSalvo = carregar();
+    aplicar();
+    if (window.ZP) window.ZP.aplicar();
+    if (temSalvo && estado.tela > 1){ $("continuar").hidden = false; $("continuar").textContent = "Continuar da tela " + String(estado.tela).padStart(2,"0"); }
+    ir(1, true);
+  }
+  if (document.readyState === "complete") setTimeout(iniciar, 0); else window.addEventListener("load", iniciar);
 })();
 </script>

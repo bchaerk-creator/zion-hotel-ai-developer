@@ -1,0 +1,390 @@
+<style>
+.antesdepois{display:grid;gap:10px;margin:22px 0}
+.antesdepois div{padding:14px 16px;border-radius:3px;font-size:15px;color:var(--areia)}
+.antesdepois b{display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:4px}
+.antesdepois .a{background:rgba(240,162,122,.07);border-left:2px solid var(--erro)} .antesdepois .a b{color:var(--erro)}
+.antesdepois .d{background:rgba(159,192,160,.07);border-left:2px solid var(--fato)} .antesdepois .d b{color:var(--fato)}
+.grade-chk{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+@media (max-width:440px){.grade-chk{grid-template-columns:1fr}}
+.grade-chk label{display:flex;gap:10px;align-items:center;padding:12px;border:1px solid var(--linha);border-radius:3px;background:var(--preto-2);cursor:pointer;font-size:14px;color:var(--creme);min-height:48px}
+.grade-chk label:has(input:checked){border-color:var(--champanhe);background:var(--musgo)}
+.grade-chk input{accent-color:var(--champanhe);width:18px;height:18px;flex:none}
+textarea.ta{width:100%;font:inherit;font-size:16px;color:var(--creme);background:var(--musgo);border:1px solid var(--linha-forte);border-radius:3px;padding:12px 14px;min-height:96px;resize:vertical}
+.cont{font-size:12px;color:var(--muted);text-align:right;margin-top:4px;font-variant-numeric:tabular-nums}
+.cont.estoura{color:var(--erro)}
+.checks{list-style:none;padding:0;margin:10px 0 0}
+.checks li{padding:8px 0 8px 26px;position:relative;font-size:14px;color:var(--areia);border-top:1px solid var(--linha)}
+.checks li::before{content:"";position:absolute;left:2px;top:13px;width:12px;height:12px;border-radius:50%;border:1.5px solid var(--erro)}
+.checks li.ok::before{border-color:var(--fato);background:var(--fato)}
+.pub{display:grid;gap:8px;margin:16px 0}
+.pub .opcao{grid-template-columns:auto 1fr auto}
+.barra-af{height:4px;background:var(--linha);border-radius:2px;margin-top:6px;overflow:hidden}
+.barra-af i{display:block;height:100%;background:var(--champanhe)}
+.pct-af{font-family:var(--f-display);font-size:24px;color:var(--champanhe);font-variant-numeric:tabular-nums}
+.linha-dif{border:1px solid var(--linha);border-radius:3px;padding:14px;margin-top:12px;background:var(--preto-2)}
+.linha-dif .campo{margin-top:10px}
+.mini{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.mini label{font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.mini select{min-height:44px;font-size:15px;padding:8px}
+.item-mel{border:1px solid var(--linha);border-radius:3px;padding:14px;margin-top:10px;background:var(--preto-2)}
+.item-mel:has(> label input:checked){border-color:var(--champanhe)}
+.item-mel > label{display:flex;gap:10px;align-items:flex-start;color:var(--creme);cursor:pointer}
+.item-mel > label input{accent-color:var(--champanhe);width:18px;height:18px;margin-top:3px;flex:none}
+.item-mel small{display:block;color:var(--muted);font-size:12px;letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
+.matriz{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:18px 0}
+.matriz div{border:1px solid var(--linha);border-radius:3px;padding:12px;min-height:90px;background:var(--preto-2)}
+.matriz b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--champanhe);margin-bottom:6px}
+.matriz div:first-child{border-color:var(--champanhe)}
+.matriz ul{margin:0;padding-left:16px;font-size:13px;color:var(--areia)}
+.semanas{display:grid;gap:12px;margin-top:18px}
+.semanas .s{border:1px solid var(--linha);border-radius:3px;padding:14px;background:var(--preto-2)}
+.semanas .s b{font-family:var(--f-display);font-size:24px;font-weight:400;color:var(--champanhe)}
+.semanas ul{margin:6px 0 0;padding-left:18px;color:var(--creme);font-size:15px}
+.painel7{display:grid;gap:8px;margin-top:18px}
+.painel7 button{display:grid;grid-template-columns:36px 1fr auto;gap:12px;align-items:center;text-align:left;background:var(--preto-2);border:1px solid var(--linha);border-radius:3px;padding:14px;color:var(--creme);min-height:64px}
+.painel7 button b{font-family:var(--f-display);font-size:26px;color:var(--champanhe);font-weight:400}
+.painel7 button small{display:block;color:var(--muted);font-size:13px}
+.painel7 .st{font-size:11px;letter-spacing:.12em;text-transform:uppercase;padding:3px 7px;border-radius:2px;border:1px solid currentColor}
+.painel7 .st.ok{color:var(--fato)} .painel7 .st.pend{color:var(--erro)}
+.doc{background:#FBF8F3;color:#1B2117;border-radius:3px;padding:26px 22px;margin-top:20px}
+.doc h4{font-family:var(--f-display);font-weight:500;font-size:22px;color:#1B2117;margin:22px 0 8px;padding-bottom:6px;border-bottom:1px solid #C9B8A0;display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.doc h4 button{font:inherit;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#7A5E12;background:none;border:0;text-decoration:underline;cursor:pointer;min-height:32px}
+.doc p,.doc li{color:#2D352A;font-size:14px;margin:4px 0}
+.doc .k{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#7A5E12;margin-top:10px;display:block}
+.doc .cab{background:#040605;color:#FEF5F0;margin:-26px -22px 18px;padding:22px;border-radius:3px 3px 0 0}
+.doc .cab b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;color:#FEF5F0}
+.doc .cab span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#C9B37E}
+.doc .pend{color:#9B2C1F}
+</style>
+
+<!-- ===================== PILAR 2 ===================== -->
+<section class="tela gut" data-t="9" data-pilar="Pilar 2 · Quem é seu hóspede?"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>Para todo mundo <em>é para ninguém.</em></h2>
+  <p class="lead">Um anúncio que tenta agradar a todos não ajuda ninguém a decidir.</p>
+  <div class="antesdepois">
+    <div class="a"><b>Genérico</b>"Casa ampla, bem localizada, ideal para todos os momentos."</div>
+    <div class="d"><b>Para alguém</b>"Para casais que querem desligar: ofurô com vista para o vale e nenhum vizinho à vista."</div>
+  </div>
+  <p>Quando você escolhe um hóspede prioritário, fica mais fácil decidir a primeira foto, o título e até o que melhorar primeiro. Os outros hóspedes continuam podendo reservar.</p>
+  <div class="nav"><button class="btn-2" type="button" data-ir="8">Voltar</button><button class="btn" type="button" data-ir="10">Ver exemplos de públicos</button></div>
+</div></section>
+
+<section class="tela gut" data-t="10" data-pilar="Pilar 2 · Quem é seu hóspede?"><div class="w">
+  <div class="croi"><b>R</b>Reconhecimento</div>
+  <h2>Cada hóspede <em>procura uma coisa.</em></h2>
+  <p>Exemplos de públicos comuns em hospedagens de temporada, com o que costumam procurar e a dúvida que mais os trava. São exemplos para orientar, não uma pesquisa de mercado.</p>
+  <div id="p2exemplos"></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="9">Voltar</button><button class="btn" type="button" data-ir="11">Avaliar o meu imóvel</button></div>
+</div></section>
+
+<section class="tela gut" data-t="11" data-pilar="Pilar 2 · Quem é seu hóspede?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>O que a sua <em>hospedagem tem?</em></h2>
+  <p>Marque só o que existe de verdade. Isso orienta a escolha do perfil e, depois, o anúncio.</p>
+  <div class="grade-chk" id="p2caracs"></div>
+  <label class="campo"><span class="rot">Outras comodidades importantes</span><span class="ajuda">Opcional. Ex.: cafeteira de cápsula, roupa de cama de algodão, rede na varanda.</span><input type="text" data-k="p2.outras" placeholder="Separe por vírgulas"></label>
+  <label class="campo"><span class="rot">Quem costuma se hospedar hoje?</span><span class="ajuda">Pelo que você vê nas reservas e avaliações.</span><input type="text" data-k="p2.atual" placeholder="Ex.: casais de São Paulo no fim de semana"></label>
+  <div class="nav"><button class="btn-2" type="button" data-ir="10">Voltar</button><button class="btn" type="button" data-ir="12">Montar o perfil</button></div>
+</div></section>
+
+<section class="tela gut" data-t="12" data-pilar="Pilar 2 · Quem é seu hóspede?"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Seu hóspede <em>prioritário.</em></h2>
+  <p class="small">Afinidade = quantos itens que esse perfil costuma procurar o seu imóvel tem. É um critério simples para ajudar a escolher, não uma previsão de demanda.</p>
+  <div class="pub" id="p2afinidade" role="radiogroup" aria-label="Perfil prioritário"></div>
+  <span class="msg-erro" id="e_p2_publico"></span>
+  <label class="campo"><span class="rot">Ocasião da viagem</span><input type="text" data-k="p2.ocasiao" placeholder="Ex.: aniversário de namoro, feriado prolongado"><span class="msg-erro" id="e_p2_ocasiao"></span></label>
+  <label class="campo"><span class="rot">Quantas pessoas costumam vir</span><input type="number" inputmode="numeric" data-k="p2.pessoas" placeholder="Ex.: 2"><span class="msg-erro" id="e_p2_pessoas"></span></label>
+  <label class="campo"><span class="rot">Principal necessidade</span><input type="text" data-k="p2.necessidade" placeholder="O que esse hóspede mais quer"><span class="msg-erro" id="e_p2_necessidade"></span></label>
+  <label class="campo"><span class="rot">Principal objeção ou dúvida</span><input type="text" data-k="p2.objecao" placeholder="O que pode fazer esse hóspede desistir"><span class="msg-erro" id="e_p2_objecao"></span></label>
+  <div class="campo"><span class="rot">As 3 comodidades essenciais para ele</span><span class="ajuda">Marque exatamente três.</span><div class="grade-chk" id="p2essenciais"></div><span class="msg-erro" id="e_p2_essenciais"></span></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="11">Voltar</button><button class="btn" type="button" data-ir="13">Validar o perfil</button></div>
+</div></section>
+
+<section class="tela gut" data-t="13" data-pilar="Pilar 2 · Quem é seu hóspede?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Perfil <em>validado.</em></h2>
+  <div id="p2fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 2</div><div class="t">Perfil Prioritário de Hóspede</div><div id="p2resumo"></div></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="12">Corrigir o perfil</button><button class="btn" type="button" data-ir="14">Ir para o Pilar 3</button></div>
+</div></section>
+
+<!-- ===================== PILAR 3 ===================== -->
+<section class="tela gut" data-t="14" data-pilar="Pilar 3 · Por que escolher sua hospedagem?"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>Característica <em>não é benefício.</em></h2>
+  <p class="lead">O hóspede não reserva "uma lareira". Reserva a noite fria aquecida ao lado de quem ele gosta.</p>
+  <div class="antesdepois">
+    <div class="a"><b>Característica</b>Wi-Fi de 300 mega.</div>
+    <div class="d"><b>Benefício</b>Dá para fazer chamada de vídeo do deck sem a imagem travar.</div>
+    <div class="a"><b>Característica</b>Ofurô.</div>
+    <div class="d"><b>Benefício</b>Terminar o dia de trilha na água quente, olhando o vale.</div>
+  </div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="13">Voltar</button><button class="btn" type="button" data-ir="15">Comparar ofertas</button></div>
+</div></section>
+
+<section class="tela gut" data-t="15" data-pilar="Pilar 3 · Por que escolher sua hospedagem?"><div class="w">
+  <div class="croi"><b>R</b>Reconhecimento</div>
+  <h2>Duas ofertas, <em>o mesmo imóvel.</em></h2>
+  <div class="cartao"><span class="etq pendencia">Genérica</span><p style="color:var(--creme)">"Chalé aconchegante e incrível, perfeito para descansar. Venha viver momentos inesquecíveis!"</p><p class="small">Usa adjetivos que qualquer anúncio usa. O hóspede não descobre o que é diferente.</p></div>
+  <div class="cartao"><span class="etq fato">Diferenciada</span><p style="color:var(--creme)">"Para casais que querem silêncio: chalé a 800 m de altitude, com lareira a lenha e café da manhã da padaria da vila entregue às 8h."</p><p class="small">Diz para quem é, mostra fatos que dá para conferir nas fotos e entrega uma cena.</p></div>
+  <p>As duas descrevem o mesmo chalé. A segunda só funciona se tudo for verdade, e é por isso que ela convence.</p>
+  <div class="nav"><button class="btn-2" type="button" data-ir="14">Voltar</button><button class="btn" type="button" data-ir="16">Listar meus diferenciais</button></div>
+</div></section>
+
+<section class="tela gut" data-t="16" data-pilar="Pilar 3 · Por que escolher sua hospedagem?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Seus diferenciais <em>reais.</em></h2>
+  <p>Até 6 itens. Para cada um, escreva o benefício para o hóspede e confirme se é verdade e se dá para mostrar em foto ou descrição.</p>
+  <button class="btn-2" type="button" id="p3trazer">Trazer o que marquei no Pilar 2</button>
+  <div id="p3difs"></div>
+  <span class="msg-erro" id="e_p3_difs"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="15">Voltar</button><button class="btn" type="button" data-ir="17">Montar a proposta</button></div>
+</div></section>
+
+<section class="tela gut" data-t="17" data-pilar="Pilar 3 · Por que escolher sua hospedagem?"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Sua proposta <em>de valor.</em></h2>
+  <p class="small">Modelo: Para [hóspede], que busca [necessidade], [hospedagem] oferece [diferenciais], para [benefício].</p>
+  <div class="cartao"><span class="etq fato">Sugestão montada com as suas respostas</span><p id="p3sugestao" style="color:var(--creme);margin:0"></p><button class="btn-link" type="button" id="p3usar">Usar esta sugestão como ponto de partida</button></div>
+  <label class="campo"><span class="rot">A sua versão</span><textarea class="ta" data-k="p3.proposta" placeholder="Reescreva com as suas palavras"></textarea></label>
+  <ul class="checks" id="p3checks"></ul>
+  <span class="msg-erro" id="e_p3_proposta"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="16">Voltar</button><button class="btn" type="button" data-ir="18">Revisar</button></div>
+</div></section>
+
+<section class="tela gut" data-t="18" data-pilar="Pilar 3 · Por que escolher sua hospedagem?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Proposta <em>final.</em></h2>
+  <div id="p3fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 3</div><div class="t">Proposta de Valor</div><p id="p3final" style="color:var(--creme)"></p></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="17">Editar</button><button class="btn" type="button" data-ir="19">Ir para o Pilar 4</button></div>
+</div></section>
+
+<!-- ===================== PILAR 4 ===================== -->
+<section class="tela gut" data-t="19" data-pilar="Pilar 4 · Transforme seu anúncio"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>Título genérico <em>não para o dedo.</em></h2>
+  <p class="lead">Na busca, o hóspede passa por dezenas de anúncios. O título e a primeira foto decidem se ele abre o seu.</p>
+  <div class="antesdepois">
+    <div class="a"><b>Antes</b>Casa com 2 quartos</div>
+    <div class="d"><b>Depois</b>Refúgio para casal com lareira e vista para a serra</div>
+  </div>
+  <p class="small">O "depois" só vale se for verdade. No Airbnb, o título tem até 50 caracteres.</p>
+  <div class="nav"><button class="btn-2" type="button" data-ir="18">Voltar</button><button class="btn" type="button" data-ir="20">Ver exemplos</button></div>
+</div></section>
+
+<section class="tela gut" data-t="20" data-pilar="Pilar 4 · Transforme seu anúncio"><div class="w">
+  <div class="croi"><b>R</b>Reconhecimento</div>
+  <h2>Como montar <em>título e descrição.</em></h2>
+  <h3>Título</h3>
+  <ul class="checks"><li class="ok">Um diferencial real logo no começo</li><li class="ok">Para quem é</li><li class="ok">Onde fica, se o lugar for parte do motivo</li><li class="ok">Até 50 caracteres, sem tudo em maiúsculas</li></ul>
+  <h3>Descrição</h3>
+  <ul class="checks"><li class="ok">Primeira frase: a proposta de valor</li><li class="ok">Para quem é e o que a pessoa vai viver</li><li class="ok">Os diferenciais, com fatos</li><li class="ok">Como é a chegada e o acesso</li><li class="ok">Regras claras, sem letra miúda</li></ul>
+  <div class="nav"><button class="btn-2" type="button" data-ir="19">Voltar</button><button class="btn" type="button" data-ir="21">Avaliar meu anúncio</button></div>
+</div></section>
+
+<section class="tela gut" data-t="21" data-pilar="Pilar 4 · Transforme seu anúncio"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Seu anúncio <em>hoje.</em></h2>
+  <p>Copie e cole o título e a descrição atuais. Nada é enviado para fora deste aparelho.</p>
+  <label class="campo"><span class="rot">Título atual</span><input type="text" data-k="p4.tituloAtual" placeholder="Cole aqui"></label>
+  <ul class="checks" id="p4checkTit"></ul>
+  <label class="campo"><span class="rot">Descrição atual</span><textarea class="ta" data-k="p4.descAtual" placeholder="Cole aqui" style="min-height:140px"></textarea></label>
+  <ul class="checks" id="p4checkDesc"></ul>
+  <div class="nav"><button class="btn-2" type="button" data-ir="20">Voltar</button><button class="btn" type="button" data-ir="22">Reescrever</button></div>
+</div></section>
+
+<section class="tela gut" data-t="22" data-pilar="Pilar 4 · Transforme seu anúncio"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Três títulos <em>e uma descrição.</em></h2>
+  <div id="p4titulos"></div>
+  <label class="campo"><span class="rot">Nova descrição</span><textarea class="ta" data-k="p4.descNova" style="min-height:200px" placeholder="Comece pela proposta de valor"></textarea></label>
+  <button class="btn-link" type="button" id="p4rascunho">Montar um rascunho com as minhas respostas</button>
+  <ul class="checks" id="p4checkNova"></ul>
+  <span class="msg-erro" id="e_p4"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="21">Voltar</button><button class="btn" type="button" data-ir="23">Escolher a versão final</button></div>
+</div></section>
+
+<section class="tela gut" data-t="23" data-pilar="Pilar 4 · Transforme seu anúncio"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>A versão <em>final.</em></h2>
+  <div class="opcoes" id="p4escolha" role="radiogroup" aria-label="Título final"></div>
+  <span class="msg-erro" id="e_p4_final"></span>
+  <div id="p4fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 4</div><div class="t">Anúncio Revisado</div><p class="small">Publique o novo título e a nova descrição em datas diferentes, para saber o efeito de cada mudança.</p></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="22">Editar</button><button class="btn" type="button" data-ir="24">Ir para o Pilar 5</button></div>
+</div></section>
+
+<!-- ===================== PILAR 5 ===================== -->
+<section class="tela gut" data-t="24" data-pilar="Pilar 5 · Sua diária faz sentido?"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>Preço sem custo <em>é chute.</em></h2>
+  <p class="lead">Baixar a diária para encher o calendário pode fazer você trabalhar mais e ganhar menos.</p>
+  <div class="demo"><span class="selo-demo">Demonstração · dados fictícios</span>
+    <p style="color:var(--creme)">Dois chalés iguais, com o mesmo custo de R$ 180 por noite ocupada:</p>
+    <div class="linhas"><div><span>Chalé A · 12 noites a R$ 350</span><span>R$ 2.040 de margem</span></div><div><span>Chalé B · 20 noites a R$ 260</span><span>R$ 1.600 de margem</span></div></div>
+    <p class="formula">Margem = (diária − custo por noite) × noites. O B vendeu mais e ganhou menos.</p></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="23">Voltar</button><button class="btn" type="button" data-ir="25">Entender os custos</button></div>
+</div></section>
+
+<section class="tela gut" data-t="25" data-pilar="Pilar 5 · Sua diária faz sentido?"><div class="w">
+  <div class="croi"><b>R</b>Reconhecimento</div>
+  <h2>Os números <em>do dinheiro.</em></h2>
+  <dl class="defs">
+    <div><dt>Custos fixos</dt><dd></dd><p>Existem mesmo sem hóspede: condomínio, IPTU, internet, contador, parcelas.</p></div>
+    <div><dt>Custos variáveis</dt><dd></dd><p>Crescem com as reservas: limpeza, lavanderia, amenities, energia extra.</p></div>
+    <div><dt>Taxas</dt><dd></dd><p>A comissão da plataforma e os impostos sobre a receita.</p></div>
+    <div><dt>Margem de contribuição</dt><dd></dd><p>O que sobra das reservas depois das taxas e dos custos variáveis. É ela que paga os custos fixos.</p></div>
+    <div><dt>Sazonalidade</dt><dd></dd><p>Procura e preço mudam ao longo do ano. Compare sempre períodos equivalentes.</p></div>
+  </dl>
+  <div class="nav"><button class="btn-2" type="button" data-ir="24">Voltar</button><button class="btn" type="button" data-ir="26">Preencher meus custos</button></div>
+</div></section>
+
+<section class="tela gut" data-t="26" data-pilar="Pilar 5 · Sua diária faz sentido?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Seus <em>custos.</em></h2>
+  <p>Use o mesmo período do Pilar 1. Os três primeiros campos já vêm do Raio-X: confira e corrija se precisar.</p>
+  <div id="p5campos"></div>
+  <div class="aviso" id="p5erros" hidden></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="25">Voltar</button><button class="btn" type="button" data-ir="27">Calcular a margem</button></div>
+</div></section>
+
+<section class="tela gut" data-t="27" data-pilar="Pilar 5 · Sua diária faz sentido?"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Margem e <em>simulação.</em></h2>
+  <div id="p5calc"></div>
+  <h3>Simulador</h3>
+  <p class="small">Mude a diária e as noites para ver o efeito. A simulação mantém a estadia média e os custos por noite e por reserva.</p>
+  <div class="dupla">
+    <label class="campo"><span class="rot">Diária simulada (R$)</span><input type="text" inputmode="decimal" data-k="p5.simDiaria" placeholder="Ex.: 380"></label>
+    <label class="campo"><span class="rot">Noites simuladas</span><input type="number" inputmode="numeric" data-k="p5.simNoites" placeholder="Ex.: 18"></label>
+  </div>
+  <div id="p5sim"></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="26">Corrigir custos</button><button class="btn" type="button" data-ir="28">Ver o diagnóstico</button></div>
+</div></section>
+
+<section class="tela gut" data-t="28" data-pilar="Pilar 5 · Sua diária faz sentido?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Diagnóstico <em>financeiro.</em></h2>
+  <div id="p5fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 5</div><div class="t">Diagnóstico Financeiro Inicial</div><p class="small">Próximo passo: guarde os números do próximo mês e refaça a conta no mesmo período.</p></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="27">Voltar</button><button class="btn" type="button" data-ir="29">Ir para o Pilar 6</button></div>
+</div></section>
+
+<!-- ===================== PILAR 6 ===================== -->
+<section class="tela gut" data-t="29" data-pilar="Pilar 6 · Sua experiência encanta?"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>A experiência começa <em>antes do check-in.</em></h2>
+  <p class="lead">A avaliação que o hóspede deixa começa a ser escrita na primeira mensagem que ele recebe.</p>
+  <div class="antesdepois">
+    <div class="a"><b>Comum</b>O hóspede chega à noite, não acha a entrada e liga três vezes.</div>
+    <div class="d"><b>Simples de corrigir</b>Dois dias antes, ele recebe um guia com fotos do caminho, a senha da porta e onde estacionar.</div>
+  </div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="28">Voltar</button><button class="btn" type="button" data-ir="30">Ver melhorias simples</button></div>
+</div></section>
+
+<section class="tela gut" data-t="30" data-pilar="Pilar 6 · Sua experiência encanta?"><div class="w">
+  <div class="croi"><b>R</b>Reconhecimento</div>
+  <h2>Melhorias <em>que custam pouco.</em></h2>
+  <p>Exemplos por etapa da jornada do hóspede. Na próxima tela você avalia a sua.</p>
+  <div id="p6exemplos"></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="29">Voltar</button><button class="btn" type="button" data-ir="31">Auditar minha jornada</button></div>
+</div></section>
+
+<section class="tela gut" data-t="31" data-pilar="Pilar 6 · Sua experiência encanta?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Auditoria <em>da jornada.</em></h2>
+  <p>Para cada etapa, como está hoje? Pense nas últimas avaliações e mensagens.</p>
+  <div id="p6auditoria"></div>
+  <label class="campo"><span class="rot">Principais dificuldades operacionais</span><span class="ajuda">Ex.: limpeza entre reservas no mesmo dia, falta de quem receba o hóspede.</span><textarea class="ta" data-k="p6.dificuldades"></textarea></label>
+  <span class="msg-erro" id="e_p6_aud"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="30">Voltar</button><button class="btn" type="button" data-ir="32">Escolher melhorias</button></div>
+</div></section>
+
+<section class="tela gut" data-t="32" data-pilar="Pilar 6 · Sua experiência encanta?"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Impacto, custo <em>e esforço.</em></h2>
+  <p class="small">Prioridade = impacto × 2 − custo − esforço (cada um de 1 a 3). As etapas que você marcou com falha aparecem primeiro.</p>
+  <div id="p6melhorias"></div>
+  <label class="campo"><span class="rot">Outra melhoria (opcional)</span><input type="text" data-k="p6.outra.texto" placeholder="Escreva a sua"></label>
+  <div class="mini"><label>Impacto<select data-k="p6.outra.impacto"><option value="">–</option><option value="1">1 · baixo</option><option value="2">2</option><option value="3">3 · alto</option></select></label><label>Custo<select data-k="p6.outra.custo"><option value="">–</option><option value="1">1 · baixo</option><option value="2">2</option><option value="3">3 · alto</option></select></label><label>Esforço<select data-k="p6.outra.esforco"><option value="">–</option><option value="1">1 · baixo</option><option value="2">2</option><option value="3">3 · alto</option></select></label></div>
+  <span class="msg-erro" id="e_p6_mel"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="31">Voltar</button><button class="btn" type="button" data-ir="33">Ver meu checklist</button></div>
+</div></section>
+
+<section class="tela gut" data-t="33" data-pilar="Pilar 6 · Sua experiência encanta?"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Seu checklist <em>da experiência.</em></h2>
+  <div id="p6fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 6</div><div class="t">Plano de Melhoria da Experiência</div><ol id="p6lista" style="color:var(--creme);padding-left:20px"></ol></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="32">Editar</button><button class="btn" type="button" data-ir="34">Ir para o Pilar 7</button></div>
+</div></section>
+
+<!-- ===================== PILAR 7 ===================== -->
+<section class="tela gut" data-t="34" data-pilar="Pilar 7 · Seu plano de 30 dias"><div class="w">
+  <div class="croi"><b>C</b>Confronto</div>
+  <h2>Mudar tudo de uma vez <em>esconde o que funcionou.</em></h2>
+  <p class="lead">Se você troca título, fotos e preço no mesmo dia e as reservas sobem, não sabe qual mudança causou isso.</p>
+  <p>Agora você vai juntar as ações dos seis pilares, escolher as mais importantes e espalhar em quatro semanas, uma mudança por indicador de cada vez.</p>
+  <div class="nav"><button class="btn-2" type="button" data-ir="33">Voltar</button><button class="btn" type="button" data-ir="35">Montar a matriz</button></div>
+</div></section>
+
+<section class="tela gut" data-t="35" data-pilar="Pilar 7 · Seu plano de 30 dias"><div class="w">
+  <div class="croi"><b>O</b>Orientação</div>
+  <h2>Matriz de <em>impacto e esforço.</em></h2>
+  <p class="small">Para cada ação, diga se o impacto esperado é alto ou baixo e se o esforço é alto ou baixo. As ações vieram dos seus pilares; você pode incluir outras.</p>
+  <div id="p7acoes"></div>
+  <label class="campo"><span class="rot">Outra ação (opcional)</span><input type="text" data-k="p7.extra" placeholder="Ex.: fazer fotos profissionais"></label>
+  <div class="matriz" id="p7matriz"></div>
+  <span class="msg-erro" id="e_p7_matriz"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="34">Voltar</button><button class="btn" type="button" data-ir="36">Escolher prioridades</button></div>
+</div></section>
+
+<section class="tela gut" data-t="36" data-pilar="Pilar 7 · Seu plano de 30 dias"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>As ações <em>prioritárias.</em></h2>
+  <p>Escolha até 8. Comece pelo quadrante "Fazer primeiro".</p>
+  <div id="p7selecao"></div>
+  <span class="msg-erro" id="e_p7_sel"></span>
+  <div class="nav"><button class="btn-2" type="button" data-ir="35">Voltar</button><button class="btn" type="button" data-ir="37">Montar o cronograma</button></div>
+</div></section>
+
+<section class="tela gut" data-t="37" data-pilar="Pilar 7 · Seu plano de 30 dias"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Quatro <em>semanas.</em></h2>
+  <p>Escolha a semana de cada ação. Evite duas mudanças no mesmo indicador na mesma semana.</p>
+  <div id="p7semanas"></div>
+  <div id="p7avisos"></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="36">Voltar</button><button class="btn" type="button" data-ir="38">Revisar o plano</button></div>
+</div></section>
+
+<section class="tela gut" data-t="38" data-pilar="Pilar 7 · Seu plano de 30 dias"><div class="w">
+  <div class="croi"><b>I</b>Implementação</div>
+  <h2>Seu plano <em>de 30 dias.</em></h2>
+  <div class="semanas" id="p7plano"></div>
+  <h3>Indicadores para acompanhar</h3>
+  <ul class="premissas" id="p7indicadores"></ul>
+  <div id="p7fb"></div>
+  <div class="entregavel"><div class="small" style="letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)">Entregável do Pilar 7</div><div class="t">Plano de Ação de 30 Dias</div><p class="small">Anote a data de cada mudança. No fim das quatro semanas, refaça o Raio-X com os mesmos indicadores.</p></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="37">Editar</button><button class="btn" type="button" data-ir="39">Ver meus resultados</button></div>
+</div></section>
+
+<!-- ===================== CONCLUSÃO ===================== -->
+<section class="tela gut" data-t="39" data-pilar="Conclusão"><div class="w">
+  <h2>Seus sete <em>resultados.</em></h2>
+  <p>Toque em um pilar para revisar. O que estiver pendente aparece no dossiê como pendência.</p>
+  <div class="painel7" id="painel7"></div>
+  <div class="nav"><button class="btn-2" type="button" data-ir="38">Voltar</button><button class="btn" type="button" data-ir="40">Abrir meu dossiê</button></div>
+</div></section>
+
+<section class="tela gut" data-t="40" data-pilar="Conclusão"><div class="w">
+  <h2>Meu Plano de Melhoria <em>do Airbnb.</em></h2>
+  <p class="small">Confira antes de baixar. Use "Editar" para corrigir qualquer parte; os cálculos se atualizam sozinhos.</p>
+  <div class="acoes" style="margin-top:14px"><button class="btn" type="button" id="pdfFinal">Baixar meu dossiê em PDF</button></div>
+  <div class="status" id="statusPdfFinal" role="status"></div>
+  <div class="doc" id="dossie"></div>
+  <p class="privacidade">Este material é educativo e não garante reservas, ocupação nem faturamento. Todos os números foram informados por você e não foram conferidos com a plataforma.</p>
+  <div class="nav"><button class="btn-2" type="button" data-ir="39">Voltar</button><button class="btn-2" type="button" data-ir="1">Ir para a capa</button></div>
+</div></section>

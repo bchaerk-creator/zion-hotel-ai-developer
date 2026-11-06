@@ -1,0 +1,110 @@
+// Ponta a ponta dos Pilares 2 a 7 e conclusão (telas 09 a 40). Uso: node e2e2.js <saida> <jspdf.umd.min.js>
+const { chromium, devices } = require('playwright');
+const fs = require('fs'), path = require('path');
+const OUT = process.argv[2], JSPDF = fs.readFileSync(process.argv[3], 'utf8');
+const URL = 'file://' + path.resolve(__dirname, '../dist/index.html');
+let ok = 0, fal = 0; const log = (b, m) => { b ? ok++ : fal++; console.log((b ? '  ok  ' : '  FALHOU  ') + m); };
+(async () => {
+  const b = await chromium.launch();
+  const ctx = await b.newContext({ ...devices['iPhone 13'], acceptDownloads: true });
+  await ctx.route('**/jspdf.umd.min.js', r => r.fulfill({ contentType: 'application/javascript', body: JSPDF }));
+  const p = await ctx.newPage(); const erros = [];
+  p.on('pageerror', e => erros.push(e.message)); p.on('console', m => m.type() === 'error' && erros.push(m.text()));
+  const btn = (t) => p.locator('section.tela.ativa button', { hasText: t }).first().click();
+  const tela = async () => +(await p.locator('#contador').textContent()).match(/\d+/)[0];
+  const shot = (n) => p.screenshot({ path: `${OUT}/${n}.png`, fullPage: true });
+  const ativa = (sel, opt) => p.locator('section.tela.ativa ' + sel, opt);
+  await p.goto(URL); await p.waitForFunction(() => !!window.jspdf && !!window.ZP);
+  // Pilar 1 rápido
+  await btn('Começar meu diagnóstico'); await btn('Vamos começar');
+  await p.fill('#p_nome', 'Cabana Vista da Serra'); await p.selectOption('#p_tipo', 'Cabana ou chalé'); await p.fill('#p_cidade', 'Urubici, SC'); await p.fill('#p_capacidade', '2'); await p.fill('#p_unidades', '1');
+  await p.locator('label.opcao', { hasText: 'Perguntam, mas não reservam' }).click(); await btn('Salvar e continuar'); await btn('Entender os números'); await btn('Preencher meus números');
+  await p.selectOption('#periodo', '30'); await p.fill('#disponiveis', '30'); await p.fill('#ocupadas', '22'); await p.fill('#diaria', '390'); await p.fill('#visualizacoes', '1200'); await p.fill('#consultas', '30'); await p.fill('#reservas', '8');
+  await p.locator('label.opcao', { hasText: /^Não$/ }).click();
+  await btn('Calcular'); await btn('Ver meu diagnóstico');
+  await btn('Ir para o Pilar 2'); log(await tela() === 9, 'tela 08 → 09 (Pilar 2 liberado)');
+  await btn('Ver exemplos de públicos'); log((await ativa('.cartao').count()) === 6, 'tela 10: 6 exemplos de público');
+  await btn('Avaliar o meu imóvel');
+  for (const c of ['Banheira ou ofurô', 'Lareira', 'Vista bonita', 'Privacidade', 'Wi-Fi rápido']) await ativa('.grade-chk label', { hasText: c }).first().click();
+  await btn('Montar o perfil'); log(await tela() === 12, 'tela 12: afinidade');
+  const primeiro = await ativa('#p2afinidade label').first().textContent(); log(/Casal em escapada/.test(primeiro) && /100%/.test(primeiro), 'afinidade coloca "Casal" em 1º com 100%');
+  await btn('Validar o perfil'); log(await tela() === 12 && /Escolha um perfil/.test(await p.textContent('#e_p2_publico')), 'bloqueia sem perfil escolhido');
+  await ativa('#p2afinidade label', { hasText: 'Casal em escapada' }).click();
+  log((await p.inputValue('section.tela.ativa input[data-k="p2.necessidade"]')).length > 0, 'necessidade sugerida a partir do perfil');
+  await p.fill('section.tela.ativa input[data-k="p2.ocasiao"]', 'aniversário de namoro'); await p.fill('section.tela.ativa input[data-k="p2.pessoas"]', '3');
+  for (const c of ['Banheira ou ofurô', 'Lareira', 'Vista bonita']) await ativa('#p2essenciais label', { hasText: c }).click();
+  await btn('Validar o perfil'); log(/capacidade informada é 2/.test(await p.textContent('#e_p2_pessoas')), 'pessoas acima da capacidade recusado');
+  await p.fill('section.tela.ativa input[data-k="p2.pessoas"]', '2'); await btn('Validar o perfil'); log(await tela() === 13, 'perfil validado');
+  await shot('p2-13');
+  // Pilar 3
+  await btn('Ir para o Pilar 3'); await btn('Comparar ofertas'); await btn('Listar meus diferenciais');
+  await btn('Trazer o que marquei'); log((await p.inputValue('input[data-k="p3.dif.0.caracteristica"]')) === 'Banheira ou ofurô', 'diferenciais trazidos do Pilar 2');
+  await btn('Montar a proposta'); log(/benefício|verdadeiro/.test(await p.textContent('#e_p3_difs')), 'exige benefício e confirmação');
+  await p.fill('input[data-k="p3.dif.0.caracteristica"]', 'Ofurô com vista para o vale'); await p.fill('input[data-k="p3.dif.0.beneficio"]', 'relaxar a dois ao entardecer'); await p.check('input[data-k="p3.dif.0.verdadeiro"]');
+  await p.fill('input[data-k="p3.dif.1.caracteristica"]', 'Lareira a lenha'); await p.fill('input[data-k="p3.dif.1.beneficio"]', 'noites frias aquecidas'); await p.check('input[data-k="p3.dif.1.verdadeiro"]');
+  for (let i = 2; i < 6; i++) await p.fill(`input[data-k="p3.dif.${i}.caracteristica"]`, '');
+  await btn('Montar a proposta'); log(await tela() === 17, 'tela 17: proposta');
+  log(/Ofurô com vista para o vale e Lareira a lenha/.test(await p.textContent('#p3sugestao')), 'sugestão usa só diferenciais verdadeiros');
+  await btn('Usar esta sugestão'); log((await ativa('#p3checks li.ok').count()) === 5, 'sugestão passa nos 5 critérios');
+  await btn('Revisar'); await shot('p3-18');
+  // Pilar 4
+  await btn('Ir para o Pilar 4'); await btn('Ver exemplos'); await btn('Avaliar meu anúncio');
+  await p.fill('input[data-k="p4.tituloAtual"]', 'CASA INCRÍVEL NA SERRA'); log((await ativa('#p4checkTit li.ok').count()) < 3, 'título atual genérico é apontado');
+  await btn('Reescrever');
+  await p.fill('input[data-k="p4.t0"]', 'Ofurô e lareira: cabana para casal na serra');
+  await p.fill('input[data-k="p4.t1"]', 'Cabana romântica para casal com ofurô e vista para o vale da serra');
+  log(/estoura/.test(await p.getAttribute('#p4c1', 'class')), 'contador marca título acima de 50');
+  await btn('Montar um rascunho'); await btn('Escolher a versão final'); log(/colchetes/.test(await p.textContent('#e_p4')) || /50/.test(await p.textContent('#e_p4')), 'bloqueia título longo ou rascunho incompleto');
+  await p.fill('input[data-k="p4.t1"]', 'Refúgio para casal com ofurô na serra');
+  const d = (await p.inputValue('textarea[data-k="p4.descNova"]')).replace('[explique o caminho, o estacionamento e como é o check-in]', 'estrada de terra de 2 km, estacionamento coberto, check-in com senha').replace('[horário de silêncio, número de hóspedes, pets, festas]', 'silêncio após as 22h, até 2 hóspedes, sem festas');
+  await p.fill('textarea[data-k="p4.descNova"]', d); await btn('Escolher a versão final'); log(await tela() === 23, 'tela 23: escolha');
+  await ativa('#p4escolha label').first().click(); log(/critérios/.test(await p.textContent('#p4fb')), 'feedback do título final');
+  // Pilar 5
+  await btn('Ir para o Pilar 5'); await btn('Entender os custos'); await btn('Preencher meus custos');
+  log((await p.inputValue('input[data-k="p5.noites"]')) === '22' && /8580/.test((await p.inputValue('input[data-k="p5.receita"]')).replace(/\D/g, '')), 'custos: receita e noites trazidas do Pilar 1');
+  await p.fill('input[data-k="p5.taxaPlataforma"]', '150'); await btn('Calcular a margem'); log(await tela() === 26, 'percentual acima de 100 bloqueia');
+  await p.fill('input[data-k="p5.taxaPlataforma"]', '15'); await p.fill('input[data-k="p5.impostos"]', '6'); await p.fill('input[data-k="p5.limpezaPorReserva"]', '120'); await p.fill('input[data-k="p5.variavelPorNoite"]', '45'); await p.fill('input[data-k="p5.fixosPeriodo"]', '5200');
+  await btn('Calcular a margem'); const c27 = await p.textContent('#p5calc');
+  log(/4\.828/.test(c27) && /−R\$\s372/.test(c27), 'margem R$ 4.828 e resultado −R$ 372 (cenário C)');
+  await p.fill('input[data-k="p5.simDiaria"]', '450'); await p.fill('input[data-k="p5.simNoites"]', '22'); log(/Diferença para o atual/.test(await p.textContent('#p5sim')), 'simulador responde');
+  await shot('p5-27');
+  await btn('Ver o diagnóstico'); const f28 = await p.textContent('#p5fb'); log(/não cobre os custos fixos/.test(f28) && !/lucro líquido de/i.test(f28), 'cenário C: margem não cobre fixos, sem chamar de lucro');
+  // Pilar 6
+  await btn('Ir para o Pilar 6'); await btn('Ver melhorias simples'); await btn('Auditar minha jornada');
+  await btn('Escolher melhorias'); log(/Faltam/.test(await p.textContent('#e_p6_aud')), 'auditoria exige todas as etapas');
+  const etapas = ['antes', 'confirmacao', 'prechegada', 'chegada', 'estadia', 'checkout', 'pos'];
+  for (const e of etapas) await p.locator(`input[name="p6a_${e}"][value="${e === 'chegada' ? 'falha' : 'funciona'}"]`).check({ force: true });
+  await btn('Escolher melhorias'); log(/Chegada/.test(await ativa('#p6melhorias .item-mel').first().textContent()), 'melhorias da etapa com falha aparecem primeiro');
+  await ativa('#p6melhorias input[type=checkbox]').first().check(); await btn('Ver meu checklist'); log(/nota/.test(await p.textContent('#e_p6_mel')), 'exige notas da melhoria escolhida');
+  const sels = ativa('#p6melhorias .item-mel').first().locator('select');
+  await sels.nth(0).selectOption('3'); await sels.nth(1).selectOption('1'); await sels.nth(2).selectOption('1');
+  await btn('Ver meu checklist'); log(/4 pontos/.test(await p.textContent('#p6lista')), 'prioridade = 3×2 − 1 − 1 = 4');
+  // Pilar 7
+  await btn('Ir para o Pilar 7'); await btn('Montar a matriz');
+  const n7 = await ativa('#p7acoes .item-mel').count(); log(n7 >= 3, 'matriz recebe ações dos pilares (' + n7 + ')');
+  await btn('Escolher prioridades'); log(/impacto e esforço/.test(await p.textContent('#e_p7_matriz')), 'matriz exige impacto e esforço');
+  const radios = ativa('#p7acoes .item-mel');
+  for (let i = 0; i < n7; i++) { const it = radios.nth(i); await it.locator('input[value="alto"]').first().check({ force: true }); await it.locator('input[value="baixo"]').nth(1).check({ force: true }); }
+  log((await p.locator('#p7matriz div').first().locator('li').count()) === n7, 'todas no quadrante "Fazer primeiro"');
+  await btn('Escolher prioridades');
+  const chks = ativa('#p7selecao input[type=checkbox]'); for (let i = 0; i < Math.min(4, n7); i++) await chks.nth(i).check();
+  await btn('Montar o cronograma');
+  const ss = ativa('#p7semanas select'); const ns = await ss.count();
+  for (let i = 0; i < ns; i++) await ss.nth(i).selectOption(String([2, 2, 3, 4][i] || 4));
+  log(/mesmo indicador/.test(await p.textContent('#p7avisos')), 'cronograma avisa título e descrição na mesma semana');
+  await btn('Revisar o plano'); log(await tela() === 38 && (await ativa('#p7plano .s').count()) === 4, 'plano em 4 semanas');
+  await shot('p7-38');
+  await btn('Ver meus resultados'); log((await ativa('.painel7 .st.ok').count()) === 7, 'painel: os 7 pilares prontos');
+  await shot('c-39');
+  await btn('Abrir meu dossiê'); const doss = await p.textContent('#dossie');
+  log(['Identificação', 'Diagnóstico inicial', 'Público prioritário', 'Proposta de valor', 'Título e descrição', 'Diagnóstico financeiro', 'experiência do hóspede', 'Plano de ação', 'Indicadores', 'Pendências'].every(t => doss.includes(t)), 'dossiê tem as 10 seções');
+  await shot('c-40');
+  const [dl] = await Promise.all([p.waitForEvent('download'), p.click('#pdfFinal')]); await dl.saveAs(`${OUT}/dossie-completo.pdf`); log(/Meu-Plano-de-Melhoria-Cabana-Vista-da-Serra\.pdf/.test(dl.suggestedFilename()), 'PDF final: ' + dl.suggestedFilename());
+  // edição a partir do dossiê e persistência
+  await ativa('#dossie button[data-sum="26"]').click(); log(await tela() === 26, 'editar no dossiê leva à tela do pilar');
+  await p.reload(); await p.waitForFunction(() => !!window.ZP); await p.click('#continuar');
+  log(await tela() === 26 && (await p.inputValue('input[data-k="p5.fixosPeriodo"]')) === '5200', 'recarregar mantém respostas dos pilares');
+  log(!(await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)), 'celular: sem rolagem horizontal');
+  log(erros.length === 0, 'sem erros no console' + (erros.length ? ': ' + erros.join(' | ') : ''));
+  console.log(`\n${ok} passaram, ${fal} falharam`); await b.close(); process.exit(fal ? 1 : 0);
+})().catch(e => { console.error(e); process.exit(1); });

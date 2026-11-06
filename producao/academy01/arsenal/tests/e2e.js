@@ -68,7 +68,7 @@ let ok = 0, fal = 0; const log = (b, m) => { b ? ok++ : fal++; console.log((b ? 
   await btn('Corrigir números'); await p.locator('label.opcao', { hasText: 'Sim, todos do mesmo período' }).click();
   await p.fill('#ocupadas', '22'); await p.fill('#diaria', '390'); await p.fill('#reservas', '8');
   await p.click('#abrirSumario'); await p.locator('[data-sum="3"]').click(); await p.locator('label.opcao', { hasText: 'sobra pouco dinheiro' }).click();
-  await p.click('#abrirSumario'); log(await p.locator('#listaSumario button[disabled]').count() === 7, 'sumário: pilares futuros bloqueados'); await p.locator('[data-sum="8"]').click();
+  await p.click('#abrirSumario'); log(await p.locator('#listaSumario button').count() === 40 && await p.locator('#listaSumario button[disabled]').count() > 0, 'sumário: 40 telas, só as visitadas liberadas'); await p.locator('[data-sum="8"]').click();
   const fC = await p.textContent('#fbSaida'); log(/Pilar 5/.test(fC) && !/lucro/i.test(fC), 'cenário C: encaminha custos ao Pilar 5, sem chamar de lucro');
   const [d2] = await Promise.all([p.waitForEvent('download'), p.click('#gerarPdf')]); await d2.saveAs(`${OUT}/plano-cenario-C.pdf`);
   log(!(await p.evaluate(() => document.documentElement.scrollWidth > window.innerWidth)), 'celular: sem rolagem horizontal');
