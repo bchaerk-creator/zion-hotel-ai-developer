@@ -1,0 +1,385 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kit do Investidor · do Dossiê ao pitch</title>
+<meta name="description" content="Pilar 7 do Método Zion. Seis peças para apresentar o seu projeto a investidor, sócio e parceiro: teaser, one-pager, pitch, masterplan de viabilidade, plano conceitual e direcionamento de marca. Com a estrutura de cada peça, de onde vem cada número e os prompts prontos para ChatGPT e Claude.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#16261C;--verde-2:#22382A;--creme:#F5F1E8;--creme-2:#EBE4D4;--dourado:#E0BE5E;--dourado-escuro:#7A5E12;--texto:#16261C;--texto-2:#46564B;--linha:#D6CDB8;--branco:#FFFDF8;--critico:#9B2C1F;--critico-bg:#F8E3DE;--ok:#1F5A33;--ok-bg:#E1EFE3;--raio:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+h1{font-size:2rem}h2{font-size:1.5rem}h3{font-size:1.15rem}
+p{margin:0 0 .8em}a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:860px;margin:0 auto}
+main{padding:20px 16px 40px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:22px 18px;margin-bottom:18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.indice{display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));margin:14px 0 4px}
+.indice a{display:block;background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px;text-decoration:none;font-weight:600}
+.indice a small{display:block;font-weight:400;color:var(--texto-2);font-size:.85rem}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.meta span{background:var(--creme-2);border-radius:999px;padding:4px 12px;font-size:.82rem;font-weight:600}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa ul,.caixa ol{padding-left:20px;margin:0 0 .4em}.caixa p:last-child,.caixa ul:last-child,.caixa ol:last-child{margin-bottom:0}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.alerta{background:#FFF7E6;border:1px solid #E7C980}
+.alerta h3{color:var(--dourado-escuro)}
+.nao{background:var(--critico-bg);border:1px solid #E6B9B1}.nao h3{color:var(--critico)}
+
+.rolagem{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0}
+table{width:100%;min-width:480px;border-collapse:collapse;font-size:.92rem;margin:8px 0}
+th,td{text-align:left;padding:8px 8px;border-bottom:1px solid var(--linha);vertical-align:top}
+th{font-size:.78rem;text-transform:uppercase;letter-spacing:.05em;color:var(--dourado-escuro)}
+label{display:block;font-weight:600;margin:12px 0 4px;font-size:.92rem}
+input,select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 12px;min-height:44px}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px}
+.grade{display:grid;gap:0 14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
+.btn{appearance:none;border:0;border-radius:999px;padding:11px 20px;font:inherit;font-weight:600;cursor:pointer;min-height:44px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.btn-p{background:var(--verde);color:var(--creme)}.btn-p:hover{background:var(--verde-2)}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.acoes{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.prompt{position:relative;background:#1E2A22;color:#EFE9DA;border-radius:12px;padding:14px 14px 14px;margin-top:10px;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.84rem;line-height:1.5;white-space:pre-wrap;word-break:break-word}
+.prompt .copiar{position:absolute;top:8px;right:8px;font-family:Inter,sans-serif;font-size:.78rem;padding:6px 12px;min-height:32px;background:var(--dourado);color:var(--verde);border:0;border-radius:999px;cursor:pointer;font-weight:600}
+.prompt .copiar[data-ok]{background:var(--ok);color:#fff}
+.abas{display:flex;gap:6px;margin-top:14px;flex-wrap:wrap}
+.abas button{background:var(--creme-2);border:1.5px solid transparent;border-radius:999px;padding:7px 14px;font:inherit;font-weight:600;cursor:pointer;font-size:.85rem}
+.abas button[aria-selected=true]{background:var(--verde);color:var(--creme)}
+.painel[hidden]{display:none}
+details{margin-top:10px;border:1px solid var(--linha);border-radius:10px;background:#fff}
+summary{cursor:pointer;padding:10px 14px;font-weight:600}
+details>div{padding:0 14px 12px}
+.check li{margin-bottom:4px}
+.rodape{font-size:.82rem;color:var(--texto-2);text-align:center;padding:8px 16px 24px}
+.ficha-ok{display:none;background:var(--ok-bg);color:var(--ok);border-radius:10px;padding:8px 12px;margin-top:10px;font-weight:600;font-size:.9rem}
+@media print{.topo,.acoes,.copiar,.abas{display:none}.card{break-inside:avoid;box-shadow:none}.prompt{background:#f3f3f3;color:#000;border:1px solid #999}.painel[hidden]{display:block}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Club Zion Collection</div><div class="etiqueta">Pilar 7 · Capital e Dossiê<br>Kit do Investidor</div></div></header>
+<main><div class="wrap">
+
+<section class="card" id="inicio">
+  <div class="eyebrow">Ferramenta do Pilar 7</div>
+  <h1>Kit do Investidor: do Dossiê ao pitch</h1>
+  <p class="lead">Você fez a conta (Planilhas 1 e 2) e fechou o Dossiê de Desenvolvimento (páginas 0 a 7). Agora o projeto precisa ser apresentado. Este kit ensina a produzir as seis peças que um investidor, um sócio ou um parceiro esperam receber, com os números certos, na ordem certa, e com os prompts prontos para o ChatGPT e o Claude fazerem o trabalho pesado com você.</p>
+  <div class="indice">
+    <a href="#ficha">0 · Ficha de números<small>Preencha uma vez; entra em todos os prompts</small></a>
+    <a href="#teaser">1 · Teaser<small>1 página, para abrir a conversa</small></a>
+    <a href="#onepager">2 · One-pager<small>1 página, o resumo executivo</small></a>
+    <a href="#pitch">3 · Pitch deck<small>12 slides, para a reunião</small></a>
+    <a href="#masterplan">4 · Masterplan de viabilidade<small>Documento econômico-financeiro</small></a>
+    <a href="#conceito">5 · Plano conceitual<small>A experiência e o lugar</small></a>
+    <a href="#marca">6 · Direcionamento de marca<small>Brief para nome, identidade e brand book</small></a>
+  </div>
+  <div class="caixa porque"><h3>Como usar o kit</h3>
+    <ol>
+      <li><b>Preencha a Ficha de números</b> (abaixo) com os valores que saem das Planilhas 1 e 2. Ela fica salva neste aparelho e entra automaticamente em todos os prompts.</li>
+      <li><b>Leia a estrutura da peça</b> antes de gerar: você precisa saber o que o investidor vai procurar em cada página.</li>
+      <li><b>Copie o prompt</b> (ChatGPT ou Claude), cole na ferramenta e <b>anexe os arquivos</b> indicados: as planilhas em xlsx e os PDFs do Dossiê. Os dois aceitam anexos.</li>
+      <li><b>Revise</b> com o checklist. A IA escreve; quem assina os números é você.</li>
+      <li><b>Monte a peça</b> nos modelos editáveis (pptx e docx na aba Materiais) ou peça à IA para formatar.</li>
+      <li><b>Anexe o resultado</b> no cadastro do Zion Land Members, no campo "Dossiê do curso". A equipe Zion lê o Dossiê e as peças juntos.</li>
+    </ol>
+  </div>
+  <div class="caixa alerta"><h3>A regra de ouro</h3><p>Nenhuma peça promete retorno. Apresente <b>cenários</b> (conservador, base, otimista), diga <b>de onde vem cada premissa</b> e mostre <b>o risco e o que o cobre</b>. Investidor experiente desconfia de quem só mostra o otimista. Credibilidade vale mais do que um número bonito.</p></div>
+</section>
+
+<section class="card" id="ficha">
+  <div class="eyebrow">Passo 0</div>
+  <h2>Ficha de números do projeto</h2>
+  <p class="lead">Copie da Planilha 1 (aba Resumo) e da Planilha 2 (abas Massas, Investimento, Modelo de venda e Modelo de renda, cenário Base). Tudo fica salvo só neste aparelho.</p>
+  <form id="formFicha" onsubmit="return false">
+    <div class="grade">
+      <div><label for="f_nome">Nome do projeto (ou provisório)</label><input id="f_nome" placeholder="Refúgio Serra Alta"></div>
+      <div><label for="f_local">Município e estado</label><input id="f_local" placeholder="Urubici, SC"></div>
+      <div><label for="f_terreno">Área do terreno</label><input id="f_terreno" placeholder="2 hectares (20.000 m²)"></div>
+      <div><label for="f_situacao">Situação do terreno</label><select id="f_situacao"><option>meu, quitado e documentado</option><option>meu, com documentação em regularização</option><option>da família, com acordo para o projeto</option><option>em negociação de compra</option><option>em busca de parceria com o dono</option></select></div>
+      <div><label for="f_tipologias">Tipologias e nº de unidades (fase 1)</label><input id="f_tipologias" placeholder="4 suítes, 3 chalés com banheira, 3 bolhas"></div>
+      <div><label for="f_unidades">Total de unidades (fase 1)</label><input id="f_unidades" inputmode="numeric" placeholder="10"></div>
+      <div><label for="f_publico">Público principal (Pilar 3)</label><input id="f_publico" placeholder="casais de capitais a até 3 h de carro, 30 a 55 anos"></div>
+      <div><label for="f_promessa">Promessa da estadia em uma frase (Pilar 3)</label><input id="f_promessa" placeholder="dormir sob as estrelas com banheira quente e café na varanda"></div>
+      <div><label for="f_area">Área construída total (m²) · Planilha 2, Massas</label><input id="f_area" inputmode="numeric" placeholder="758"></div>
+      <div><label for="f_capex">CAPEX de abertura (R$) · Planilha 1, Resumo</label><input id="f_capex" inputmode="numeric" placeholder="3.535.000"></div>
+      <div><label for="f_invest">Investimento total com giro (R$) · Planilha 2, Investimento</label><input id="f_invest" inputmode="numeric" placeholder="3.620.000"></div>
+      <div><label for="f_m2">Custo por m² construído (R$)</label><input id="f_m2" inputmode="numeric" placeholder="4.660"></div>
+      <div><label for="f_diaria">Diária média (R$) · cenário Base</label><input id="f_diaria" inputmode="numeric" placeholder="650"></div>
+      <div><label for="f_ocup">Ocupação · conservador / base / otimista</label><input id="f_ocup" placeholder="40% / 50% / 60%"></div>
+      <div><label for="f_receita">Receita bruta anual (R$) · Base</label><input id="f_receita" inputmode="numeric" placeholder="1.305.000"></div>
+      <div><label for="f_noi">Resultado operacional anual, NOI (R$) · conservador / base / otimista</label><input id="f_noi" placeholder="257 mil / 569 mil / 960 mil"></div>
+      <div><label for="f_payback">Payback (anos) · conservador / base / otimista</label><input id="f_payback" placeholder="14 / 6,3 / 3,8"></div>
+      <div><label for="f_tir">TIR 10 anos · conservador / base / otimista</label><input id="f_tir" placeholder="−2% / 14% / 28%"></div>
+      <div><label for="f_vpl">VPL 10 anos (R$) · Base, e taxa de desconto</label><input id="f_vpl" placeholder="259 mil a 12%"></div>
+      <div><label for="f_vgv">VGV e margem (se houver modelo de venda)</label><input id="f_vgv" placeholder="R$ 5,31 milhões, margem 18,5%"></div>
+      <div><label for="f_modelo">Modelo escolhido (Pilar 4)</label><select id="f_modelo"><option>renda: operar a hospedagem</option><option>venda: vender unidades prontas</option><option>misto: operar e vender parte das unidades</option><option>operar e vender o negócio pronto depois</option></select></div>
+      <div><label for="f_pedido">O pedido: quanto, para quê e em troca de quê (Pilar 7)</label><textarea id="f_pedido" placeholder="R$ 1,8 milhão para a fase 1 (infraestrutura e 6 unidades), em troca de participação a combinar; o terreno entra como aporte do proprietário"></textarea></div>
+      <div><label for="f_fases">Fases do masterplan (Pilar 5)</label><textarea id="f_fases" placeholder="Fase 1: infraestrutura, recepção e 6 unidades. Fase 2: +4 unidades e piscina. Fase 3: restaurante e spa"></textarea></div>
+      <div><label for="f_dif">Diferenciais e por que aqui (Pilares 1 e 2)</label><textarea id="f_dif" placeholder="vista para o cânion, 40 min do aeroporto, destino com 300 mil visitantes/ano e poucas unidades com banheira"></textarea></div>
+      <div><label for="f_riscos">Riscos que você já enxerga e o que os cobre</label><textarea id="f_riscos" placeholder="licenciamento ambiental (consulta prévia feita), sazonalidade (eventos no inverno), obra em área remota (contingência de 12%)"></textarea></div>
+      <div><label for="f_equipe">Quem está no projeto (você, sócios, apoio Zion)</label><textarea id="f_equipe" placeholder="eu (dono do terreno, 15 anos no agro), minha irmã (arquiteta), acompanhamento da equipe Zion"></textarea></div>
+    </div>
+    <div class="acoes"><button class="btn btn-p" type="button" id="salvar">Salvar ficha e atualizar os prompts</button><button class="btn btn-s" type="button" id="limpar">Limpar</button></div>
+    <div class="ficha-ok" id="fichaOk">Ficha salva neste aparelho. Os prompts abaixo já estão com os seus números.</div>
+  </form>
+  <div class="caixa onde"><h3>Onde cada número está</h3>
+    <div class="rolagem"><table><tr><th>Número</th><th>Planilha e aba</th></tr>
+    <tr><td>CAPEX, custo por unidade, por m²</td><td>Planilha 1 · Resumo (linhas 12, 16 e 18)</td></tr>
+    <tr><td>Área construída, vendável, índice de aproveitamento</td><td>Planilha 2 · Massas (linhas 27 a 36)</td></tr>
+    <tr><td>Investimento total com giro, custo por m² privativo</td><td>Planilha 2 · Investimento (linhas 10, 13 a 15)</td></tr>
+    <tr><td>VGV, margem, ROI, preço mínimo</td><td>Planilha 2 · Modelo de venda (linhas 9, 20 a 26)</td></tr>
+    <tr><td>RevPAR, NOI, margem, equilíbrio, payback, TIR, VPL, valor do negócio</td><td>Planilha 2 · Modelo de renda (linhas 31, 41 a 47, 62 a 64)</td></tr>
+    <tr><td>Território, mercado, produto, modelo, fases, capital</td><td>Dossiê · páginas 1 a 7 (PDFs das ferramentas Faça agora)</td></tr></table></div>
+  </div>
+</section>
+
+<!-- ============ 1 TEASER ============ -->
+<section class="card" id="teaser">
+  <div class="eyebrow">Peça 1</div>
+  <h2>Teaser</h2>
+  <div class="meta"><span>1 página</span><span>Sem nome do terreno nem localização exata</span><span>Para abrir a conversa</span><span>Leitura em 60 segundos</span></div>
+  <p>O teaser é o convite. Vai por WhatsApp ou e-mail para alguém que ainda não sabe nada do projeto, e tem uma única missão: fazer a pessoa pedir a reunião ou o one-pager. Não entrega tudo; entrega o suficiente para despertar interesse e mostrar que há método por trás.</p>
+  <div class="caixa porque"><h3>Estrutura (nesta ordem)</h3><ol>
+    <li><b>Título com a oportunidade</b>, não com o nome do projeto. Ex.: "Hospedagem de natureza em destino consolidado da Serra Catarinense, terreno próprio, fase 1 pronta para investir".</li>
+    <li><b>O lugar em 2 linhas</b>: região, distância do público, o que o destino já tem (Dossiê, páginas 1 e 2). Sem endereço.</li>
+    <li><b>O produto em 2 linhas</b>: tipologias, nº de unidades da fase 1, a promessa da estadia (página 3).</li>
+    <li><b>Quatro números</b>, em destaque: investimento da fase 1, diária média do cenário base, ocupação de equilíbrio, payback no cenário base. Sempre com a palavra "cenário".</li>
+    <li><b>O que já existe</b>: terreno próprio ou acordo, documentação, consulta prévia, projeto conceitual, estudo de viabilidade feito com método.</li>
+    <li><b>O pedido em uma linha</b>: valor e tipo de participação, "a combinar".</li>
+    <li><b>Chamada</b>: "Material completo e visita sob acordo de confidencialidade" + seu contato.</li></ol></div>
+  <div class="caixa nao"><h3>O que não fazer</h3><ul><li>Prometer rentabilidade ("retorno garantido de X% ao ano"). Use "cenário base indica".</li><li>Colocar localização exata, matrícula ou nome do dono. O teaser circula.</li><li>Mais de uma página. Se não cabe, não é teaser.</li></ul></div>
+  <div class="caixa onde"><h3>Checklist antes de enviar</h3><ul class="check"><li>Alguém de fora entende o que é, onde é (região) e quanto custa em 60 segundos?</li><li>Os quatro números batem com a Planilha 2, cenário Base?</li><li>Tem a palavra "cenário" perto de cada número de resultado?</li><li>Tem contato e próximo passo?</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="teaser-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="teaser-claude">Prompt para Claude</button></div>
+  <div class="painel" id="teaser-gpt"><div class="prompt" data-prompt="teaser" data-ia="gpt"></div></div>
+  <div class="painel" id="teaser-claude" hidden><div class="prompt" data-prompt="teaser" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Planilha 2 (xlsx) e os PDFs das páginas 1, 2, 3 e 7 do Dossiê. Depois, monte no modelo "Teaser e One-pager" (docx) da aba Materiais.</p>
+</section>
+
+<!-- ============ 2 ONE-PAGER ============ -->
+<section class="card" id="onepager">
+  <div class="eyebrow">Peça 2</div>
+  <h2>One-pager</h2>
+  <div class="meta"><span>1 página, frente (ou frente e verso)</span><span>Com nome e localização</span><span>Depois do teaser, antes da reunião</span></div>
+  <p>O one-pager é o resumo executivo. Vai para quem já mostrou interesse e vai ler com atenção. Tudo que está no pitch está aqui em miniatura, e cada número tem fonte. É a peça que o investidor encaminha para o sócio dele ou para o analista do banco.</p>
+  <div class="caixa porque"><h3>Estrutura (8 blocos)</h3><ol>
+    <li><b>Cabeçalho</b>: nome do projeto, cidade/UF, uma frase de posicionamento, seu nome e contato.</li>
+    <li><b>A oportunidade</b> (3 linhas): o destino, a demanda, a lacuna que o produto ocupa (Dossiê, páginas 1 e 2; cite as fontes dos dados de visitação).</li>
+    <li><b>O produto</b>: tipologias, unidades por fase, promessa, público, diária alvo por tipologia (página 3).</li>
+    <li><b>O terreno</b>: área, situação documental, acesso, infraestrutura disponível, o que a lei permite (página 1 e Planilha 2, Massas).</li>
+    <li><b>Masterplan em fases</b>: 3 linhas, uma por fase, com unidades e investimento de cada (página 5).</li>
+    <li><b>Os números</b>, numa tabela com 3 colunas (conservador, base, otimista): diária, ocupação, receita bruta, NOI, margem, payback, TIR. Abaixo: investimento total e custo por m². Fonte: Planilha 2.</li>
+    <li><b>Modelo e pedido</b>: renda, venda ou misto; quanto, para quê, em troca de quê; o que o proprietário aporta (página 7).</li>
+    <li><b>Riscos e mitigantes</b>: 3 pares, honestos. Fecha com: "Estudo elaborado com a metodologia Zion Hospitality Business; premissas disponíveis para auditoria."</li></ol></div>
+  <div class="caixa alerta"><h3>Dica de quem recebe</h3><p>O analista vai direto à tabela de cenários e à ocupação de equilíbrio. Se a ocupação do seu cenário base estiver muito acima da ocupação média da região (Ficha do Mercado, Pilar 2), ele para de ler. Coloque a referência de mercado ao lado da sua premissa.</p></div>
+  <div class="caixa onde"><h3>Checklist</h3><ul class="check"><li>Tabela com os 3 cenários e fonte "Planilha 2 · Modelo de renda"?</li><li>Ocupação do cenário base comparada com a do mercado?</li><li>Pedido claro: valor, uso, contrapartida?</li><li>3 riscos com o que os cobre?</li><li>Cabe em uma página com letra legível (mínimo 9 pt)?</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="op-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="op-claude">Prompt para Claude</button></div>
+  <div class="painel" id="op-gpt"><div class="prompt" data-prompt="onepager" data-ia="gpt"></div></div>
+  <div class="painel" id="op-claude" hidden><div class="prompt" data-prompt="onepager" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Planilhas 1 e 2 (xlsx) e o Dossiê completo (PDF). Monte no modelo "Teaser e One-pager" (docx).</p>
+</section>
+
+<!-- ============ 3 PITCH ============ -->
+<section class="card" id="pitch">
+  <div class="eyebrow">Peça 3</div>
+  <h2>Pitch deck</h2>
+  <div class="meta"><span>12 slides</span><span>Apresentação de 15 minutos</span><span>Para investidor, sócio ou parceiro</span><span>Modelo pptx na aba Materiais</span></div>
+  <p>O pitch é a conversa guiada. Cada slide responde a uma pergunta que a pessoa do outro lado está se fazendo. A ordem é a ordem das perguntas: por que esse lugar, para quem, o quê, quanto custa, quanto volta, qual o risco, quem faz, o que você quer de mim.</p>
+  <div class="caixa porque"><h3>Os 12 slides e a pergunta que cada um responde</h3>
+  <div class="rolagem"><table><tr><th>#</th><th>Slide</th><th>Pergunta do investidor</th><th>De onde vem</th></tr>
+  <tr><td>1</td><td>Capa: nome, lugar, uma frase, seu nome</td><td>O que é isso?</td><td>Página 3</td></tr>
+  <tr><td>2</td><td>A oportunidade: o destino e a lacuna</td><td>Por que aqui e por que agora?</td><td>Páginas 1 e 2</td></tr>
+  <tr><td>3</td><td>O mercado: visitação, comparáveis, diária e ocupação da região</td><td>Tem demanda? Quanto pagam?</td><td>Página 2, Ficha do Mercado</td></tr>
+  <tr><td>4</td><td>O hóspede e a promessa</td><td>Para quem é e o que ele leva?</td><td>Página 3</td></tr>
+  <tr><td>5</td><td>O produto: tipologias, unidades, imagens de referência</td><td>Como é a experiência?</td><td>Página 3, Plano conceitual</td></tr>
+  <tr><td>6</td><td>O terreno e o masterplan em fases</td><td>Onde fica cada coisa e como cresce?</td><td>Páginas 1 e 5, Planilha 2 · Massas</td></tr>
+  <tr><td>7</td><td>O investimento: CAPEX por bloco e por fase</td><td>Quanto custa e onde vai o dinheiro?</td><td>Planilha 1 · Resumo</td></tr>
+  <tr><td>8</td><td>O modelo e os números: 3 cenários, RevPAR, NOI, margem</td><td>Quanto entra e quanto sobra?</td><td>Planilha 2 · Modelo de renda</td></tr>
+  <tr><td>9</td><td>O retorno: payback, TIR, VPL, equilíbrio, valor do negócio</td><td>Quanto volta e em quanto tempo?</td><td>Planilha 2 · linhas 44 a 47, 62 a 64</td></tr>
+  <tr><td>10</td><td>Riscos e mitigantes</td><td>O que pode dar errado?</td><td>Páginas 6 e 7</td></tr>
+  <tr><td>11</td><td>Quem faz: você, sócios, parceiros, acompanhamento</td><td>Por que vocês?</td><td>Página 7</td></tr>
+  <tr><td>12</td><td>O pedido e os próximos passos</td><td>O que você quer de mim e o que acontece depois?</td><td>Página 7</td></tr></table></div></div>
+  <div class="caixa alerta"><h3>Três versões, um deck</h3><p><b>Investidor financeiro</b>: slides 8, 9 e 12 ganham tempo; fale de TIR, payback e saída. <b>Sócio operador ou de terreno</b>: slides 4, 5, 6 e 11; fale de produto, fases e papéis. <b>Parceiro (operadora, rede, Zion)</b>: slides 2, 3 e 6; fale do destino, da escala e do que falta para o projeto andar. O conteúdo é o mesmo; muda onde você para e explica.</p></div>
+  <div class="caixa nao"><h3>Erros que derrubam um pitch</h3><ul><li>Slide de números sem o cenário conservador.</li><li>Falar 15 minutos de sonho e 2 de conta. O investidor vem pela conta.</li><li>Pedido vago ("estou aberto a propostas"). Diga o valor, o uso e a contrapartida que você propõe; negociar vem depois.</li><li>Imagens de outros hotéis sem dizer que são referência.</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="pt-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="pt-claude">Prompt para Claude</button></div>
+  <div class="painel" id="pt-gpt"><div class="prompt" data-prompt="pitch" data-ia="gpt"></div></div>
+  <div class="painel" id="pt-claude" hidden><div class="prompt" data-prompt="pitch" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Planilhas 1 e 2 (xlsx), Dossiê completo (PDF) e, se já tiver, o Plano conceitual. Cole o texto de cada slide no modelo "Pitch deck" (pptx) da aba Materiais.</p>
+</section>
+
+<!-- ============ 4 MASTERPLAN VIABILIDADE ============ -->
+<section class="card" id="masterplan">
+  <div class="eyebrow">Peça 4</div>
+  <h2>Masterplan de viabilidade econômico-financeira</h2>
+  <div class="meta"><span>10 a 15 páginas</span><span>Para analista, banco e investidor que vai fundo</span><span>É o documento que sustenta o pitch</span></div>
+  <p>Aqui a conta aparece inteira, com as premissas abertas. É o documento que o investidor pede depois da reunião, o que o banco exige para falar de crédito e o que a Zion lê antes de qualquer conversa de parceria. Não é bonito; é claro, numerado e verificável.</p>
+  <div class="caixa porque"><h3>Estrutura (capítulos)</h3><ol>
+    <li><b>Sumário executivo</b> (1 página): o one-pager em prosa.</li>
+    <li><b>Território e destino</b>: localização, acesso, infraestrutura, zoneamento e o que a lei permite, situação documental (página 1).</li>
+    <li><b>Mercado e demanda</b>: visitação e sazonalidade, comparáveis com diária e ocupação, público, lacuna (página 2). Cite as fontes.</li>
+    <li><b>Produto e tipologias</b>: unidades, metragens, serviços, promessa, posicionamento de preço (página 3).</li>
+    <li><b>Estudo de massas</b>: terreno, área construída, privativa e comum, índice de aproveitamento, ocupação do terreno e limite legal (Planilha 2 · Massas).</li>
+    <li><b>Masterplan faseado</b>: o que cada fase constrói, quando, e quanto custa (página 5 + Planilha 1 por fase).</li>
+    <li><b>Investimento (CAPEX)</b>: tabela por bloco (infraestrutura, construção, FF&amp;E, OS&amp;E, contingência), custo por unidade e por m², comparação com referência regional (Planilha 1 · Resumo).</li>
+    <li><b>Modelo de negócio</b>: renda, venda ou misto, e por quê (página 4).</li>
+    <li><b>Premissas operacionais</b>: diária, ocupação, receita extra, comissões, impostos, custos variáveis e fixos, cada uma com a origem (Planilha 2 · Modelo de renda, linhas 6 a 26).</li>
+    <li><b>Resultados em três cenários</b>: receita, NOI, margem, equilíbrio, ROI, payback (linhas 29 a 47).</li>
+    <li><b>Fluxo de caixa de 10 anos, TIR e VPL</b>, e valor do negócio em operação pelo cap rate (linhas 49 a 65). Se houver venda: VGV, margem, ROI (Modelo de venda).</li>
+    <li><b>Análise de sensibilidade</b>: o que acontece com o payback se a diária cair 15%, se a ocupação cair 10 pontos, se o CAPEX subir 20%. Rode na planilha e registre.</li>
+    <li><b>Riscos e mitigantes</b>: licenciamento, obra, demanda, operação, sazonalidade, capital.</li>
+    <li><b>Estrutura de capital e o pedido</b>: quanto vem de quem, em que ordem, e o que se propõe em troca (página 7).</li>
+    <li><b>Anexos</b>: as duas planilhas, o Dossiê, documentos do terreno, fotos e referências.</li></ol></div>
+  <div class="caixa alerta"><h3>Como a Zion lê este documento</h3><p>Primeiro o índice de aproveitamento e o custo por m² privativo contra o preço do mercado. Depois a ocupação de equilíbrio contra a ocupação realista da região. Depois o payback e a TIR no cenário <b>conservador</b>. Se esses três fecham, o resto é conversa de ajuste. Se não fecham, o pedido é revisar antes de apresentar.</p></div>
+  <div class="caixa onde"><h3>Checklist</h3><ul class="check"><li>Toda premissa tem origem (planilha, página do Dossiê ou fonte externa)?</li><li>Os três cenários aparecem em todas as tabelas de resultado?</li><li>Há sensibilidade (diária, ocupação, CAPEX)?</li><li>Os números do documento são idênticos aos da planilha anexa?</li><li>Nenhuma frase promete retorno?</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="mp-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="mp-claude">Prompt para Claude</button></div>
+  <div class="painel" id="mp-gpt"><div class="prompt" data-prompt="masterplan" data-ia="gpt"></div></div>
+  <div class="painel" id="mp-claude" hidden><div class="prompt" data-prompt="masterplan" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Planilhas 1 e 2 (xlsx, versão preenchida) e o Dossiê completo (PDF). Peça o resultado em docx ou cole num documento. Antes de rodar o prompt, faça a sensibilidade na planilha (mude diária, ocupação e CAPEX e anote os paybacks).</p>
+</section>
+
+<!-- ============ 5 PLANO CONCEITUAL ============ -->
+<section class="card" id="conceito">
+  <div class="eyebrow">Peça 5</div>
+  <h2>Plano conceitual</h2>
+  <div class="meta"><span>6 a 10 páginas, visual</span><span>Para sócio, arquiteto, operador e investidor</span><span>É o "como vai ser" antes do projeto arquitetônico</span></div>
+  <p>O plano conceitual traduz a conta em experiência. É o que faz o investidor se imaginar hospedado e o que dá ao arquiteto o brief certo. Sem ele, cada pessoa imagina um hotel diferente, e o orçamento vira briga.</p>
+  <div class="caixa porque"><h3>Estrutura</h3><ol>
+    <li><b>Conceito em uma frase</b> e em um parágrafo: o que é, para quem, qual a sensação (página 3).</li>
+    <li><b>O lugar</b>: o que o terreno tem de único (vista, água, mata, silêncio, céu), o que se preserva e o que se constrói (página 1).</li>
+    <li><b>A jornada do hóspede</b>: da descoberta à volta para casa, em 8 a 10 momentos (chegada, check-in, a unidade, a noite, a manhã, as experiências, a despedida, o retorno).</li>
+    <li><b>As tipologias</b>: uma página por tipologia com metragem, o que tem dentro (a lista FF&amp;E da Planilha 1), diária alvo e para quem é.</li>
+    <li><b>As áreas comuns e os serviços</b>: o que existe em cada fase, o que é terceirizado, o que é experiência vendida à parte (receita extra da Planilha 2).</li>
+    <li><b>Implantação em fases</b> (masterplan): onde fica o que, por que nessa ordem (página 5).</li>
+    <li><b>Padrão e referências</b>: 6 a 10 imagens de referência, sempre identificadas como referência, com o que se aproveita de cada uma.</li>
+    <li><b>Sustentabilidade e operação</b>: energia, água, esgoto, resíduos, equipe mínima.</li>
+    <li><b>Direcionamento de marca</b> (resumo da peça 6).</li></ol></div>
+  <div class="caixa onde"><h3>Checklist</h3><ul class="check"><li>Alguém que leu só o plano conceitual descreve a estadia do jeito que você imagina?</li><li>As tipologias batem em nome, quantidade e metragem com a Planilha 2 · Massas?</li><li>Cada imagem está marcada como referência?</li><li>As fases batem com a página 5 do Dossiê?</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="pc-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="pc-claude">Prompt para Claude</button></div>
+  <div class="painel" id="pc-gpt"><div class="prompt" data-prompt="conceito" data-ia="gpt"></div></div>
+  <div class="painel" id="pc-claude" hidden><div class="prompt" data-prompt="conceito" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Dossiê (páginas 1, 3 e 5), Planilha 1 (aba FF&amp;E) e fotos do terreno. Para as imagens de referência, use a descrição que a IA gerar como busca ou como prompt de imagem.</p>
+</section>
+
+<!-- ============ 6 MARCA ============ -->
+<section class="card" id="marca">
+  <div class="eyebrow">Peça 6</div>
+  <h2>Direcionamento de marca</h2>
+  <div class="meta"><span>3 a 5 páginas</span><span>Brief para o designer e base do brand book</span><span>Inclui opções de nome</span></div>
+  <p>Marca não é logotipo; é a promessa repetida em tudo que o hóspede vê e sente. Este direcionamento resolve o que vem antes do design: propósito, nome, território, tom de voz e referências visuais. Com ele, o designer entrega em uma rodada o que levaria cinco.</p>
+  <div class="caixa porque"><h3>Estrutura</h3><ol>
+    <li><b>Propósito e promessa</b>: por que o lugar existe e o que promete (página 3).</li>
+    <li><b>Público e momento de uso</b>: quem vem, com quem, para quê, quando.</li>
+    <li><b>Posicionamento</b>: a frase "para [público], [nome] é a [categoria] que [diferença], porque [prova]".</li>
+    <li><b>Personalidade e tom de voz</b>: 3 adjetivos que somos, 3 que não somos; como escrevemos uma mensagem de boas-vindas e uma resposta a uma reclamação.</li>
+    <li><b>Território de nome</b>: 3 caminhos (do lugar, da sensação, inventado) com 5 opções cada e os critérios: fácil de falar e escrever, disponível como domínio e Instagram, sem conflito de marca registrada (consulta no INPI).</li>
+    <li><b>Universo visual</b>: paleta (3 a 5 cores com origem no lugar), tipografia (uma de título, uma de texto), materiais e texturas, fotografia (luz, enquadramento, pessoas ou não), o que evitar.</li>
+    <li><b>Pontos de contato</b>: onde a marca aparece, em ordem de prioridade (sinalização de chegada, enxoval e amenities, site e reservas, mensagens, embalagens do café, uniforme).</li>
+    <li><b>Entregáveis para o designer</b>: logotipo e variações, paleta, tipografia, padrões, aplicação nos 5 pontos de contato prioritários, manual curto.</li></ol></div>
+  <div class="caixa alerta"><h3>Antes de se apaixonar por um nome</h3><p>Pesquise o nome no INPI (busca de marca), no registro.br (domínio) e no Instagram. Um nome em uso em hospedagem no Brasil é problema jurídico e de SEO. Faça isso com as 5 finalistas, não com a escolhida.</p></div>
+  <div class="caixa onde"><h3>Checklist</h3><ul class="check"><li>A promessa da marca é a mesma promessa da estadia (página 3)?</li><li>Os 3 adjetivos aparecem no tom das mensagens de exemplo?</li><li>As cores têm origem no lugar e não numa tendência?</li><li>As finalistas de nome foram consultadas no INPI, registro.br e Instagram?</li></ul></div>
+  <div class="abas" role="tablist"><button role="tab" aria-selected="true" data-aba="br-gpt">Prompt para ChatGPT</button><button role="tab" aria-selected="false" data-aba="br-claude">Prompt para Claude</button></div>
+  <div class="painel" id="br-gpt"><div class="prompt" data-prompt="marca" data-ia="gpt"></div></div>
+  <div class="painel" id="br-claude" hidden><div class="prompt" data-prompt="marca" data-ia="claude"></div></div>
+  <p style="margin-top:10px;font-size:.9rem;color:var(--texto-2)">Anexe: Dossiê (páginas 1 e 3), fotos do terreno e o Plano conceitual, se já tiver.</p>
+</section>
+
+<section class="card" id="fim">
+  <div class="eyebrow">Fechamento</div>
+  <h2>Pronto para apresentar</h2>
+  <p>Com as seis peças e as duas planilhas, você sai da Trilha com um projeto apresentável a qualquer investidor, banco, sócio ou parceiro do setor. A ordem de uso: teaser abre a conversa, one-pager sustenta o interesse, pitch conduz a reunião, masterplan de viabilidade responde ao analista, plano conceitual e marca mostram que o projeto tem alma e método.</p>
+  <div class="caixa onde"><h3>Último passo</h3><p>Anexe o teaser, o one-pager, o pitch e o masterplan de viabilidade (em PDF) no cadastro do Zion Land Members, no campo "Dossiê do curso", junto com as páginas do Dossiê. A equipe Zion avalia cada caso e, quando houver aderência, procura você para conversar sobre as possibilidades de parceria e de investimento. Nada é promessa; é acesso à conversa com o projeto feito.</p>
+  <div class="acoes"><a class="btn btn-ouro" href="https://airtable.com/appNazhHg9mqWAt9h/pageylHbg89JNYm81/form" target="_blank" rel="noopener">Abrir o cadastro Zion Land Members</a><button class="btn btn-s" type="button" onclick="window.print()">Imprimir ou salvar este guia em PDF</button></div></div>
+</section>
+
+</div></main>
+<p class="rodape">Zion Hospitality Business · Club Zion Collection · Material educativo. Os resultados dependem das premissas de cada projeto: não são projeção nem promessa de renda, retorno ou parceria. A Zion avalia cada caso.</p>
+
+<script>
+(function(){
+  const CAMPOS=["nome","local","terreno","situacao","tipologias","unidades","publico","promessa","area","capex","invest","m2","diaria","ocup","receita","noi","payback","tir","vpl","vgv","modelo","pedido","fases","dif","riscos","equipe"];
+  const K="zion_kit_ficha_v1";
+  const ler=()=>{const o={};CAMPOS.forEach(c=>{const el=document.getElementById("f_"+c);o[c]=el?el.value.trim():""});return o};
+  const v=(x,alt)=>x||("["+alt+"]");
+  function ficha(o){
+    return [
+`FICHA DE NÚMEROS DO PROJETO (fonte: Planilhas 1 e 2 do Club Zion Collection e Dossiê de Desenvolvimento)`,
+`- Projeto: ${v(o.nome,"nome do projeto")} · ${v(o.local,"município/UF")}`,
+`- Terreno: ${v(o.terreno,"área")} · situação: ${v(o.situacao,"situação")}`,
+`- Produto (fase 1): ${v(o.tipologias,"tipologias e unidades")} · total ${v(o.unidades,"n")} unidades · área construída ${v(o.area,"m²")} m²`,
+`- Público: ${v(o.publico,"público")} · Promessa: ${v(o.promessa,"promessa da estadia")}`,
+`- Investimento: CAPEX R$ ${v(o.capex,"CAPEX")} · total com capital de giro R$ ${v(o.invest,"investimento total")} · custo por m² construído R$ ${v(o.m2,"R$/m²")}`,
+`- Operação (cenário base): diária média R$ ${v(o.diaria,"diária")} · ocupação conservador/base/otimista ${v(o.ocup,"x/y/z")} · receita bruta anual R$ ${v(o.receita,"receita")}`,
+`- Resultado operacional anual (NOI) conservador/base/otimista: ${v(o.noi,"a/b/c")}`,
+`- Payback (anos) conservador/base/otimista: ${v(o.payback,"a/b/c")} · TIR 10 anos: ${v(o.tir,"a/b/c")} · VPL 10 anos (base): ${v(o.vpl,"VPL e taxa")}`,
+`- Modelo de venda (se houver): ${v(o.vgv,"VGV e margem, ou 'não se aplica'")}`,
+`- Modelo escolhido: ${v(o.modelo,"renda/venda/misto")}`,
+`- Masterplan em fases: ${v(o.fases,"fases")}`,
+`- Diferenciais e por que aqui: ${v(o.dif,"diferenciais")}`,
+`- Riscos já mapeados e mitigantes: ${v(o.riscos,"riscos")}`,
+`- Equipe: ${v(o.equipe,"quem faz")}`,
+`- O pedido: ${v(o.pedido,"quanto, para quê, em troca de quê")}`].join("\n");
+  }
+  const REGRAS=`REGRAS OBRIGATÓRIAS
+1. Use somente os números da ficha e dos anexos. Se faltar um dado, escreva [CONFIRMAR] no lugar; nunca invente.
+2. Nunca prometa retorno, renda ou valorização. Apresente sempre como cenários (conservador, base, otimista) e use "o cenário base indica", "estimativa", "premissa".
+3. Toda premissa de mercado (diária, ocupação, visitação) deve vir acompanhada da fonte ou de [FONTE A CONFIRMAR].
+4. Português do Brasil, claro e direto, sem jargão vazio. Frases curtas. Nada de superlativos ("único", "incrível", "imperdível").
+5. Não use nomes de outras marcas ou plataformas como se fossem parceiros. Imagens citadas devem ser identificadas como referência.
+6. Ao final, liste em 5 linhas o que você considerou fraco ou inconsistente nos dados, para eu revisar.`;
+  const PAPEL_GPT=`Você é um consultor sênior de desenvolvimento hoteleiro e estruturação de investimentos em hospedagem de natureza no Brasil (pousadas, chalés, glamping), com experiência em apresentar projetos a investidores, bancos e sócios.`;
+  const PAPEL_CLAUDE=`Atue como consultor sênior de desenvolvimento hoteleiro e estruturação de investimentos em hospedagem de natureza no Brasil (pousadas, chalés, glamping). Você já apresentou dezenas de projetos a investidores, bancos e sócios e sabe o que faz um analista parar de ler. Antes de escrever, leia os anexos por completo e cruze os números da ficha com os das planilhas; se houver divergência, aponte antes de produzir a peça.`;
+  const TAREFAS={
+teaser:{titulo:"TAREFA: escrever um TEASER de 1 página (até 220 palavras).",corpo:`ESTRUTURA, nesta ordem:
+1. Título com a oportunidade (não com o nome do projeto). Sem localização exata: só região.
+2. O lugar em 2 linhas: região, distância do público, o que o destino já tem.
+3. O produto em 2 linhas: tipologias, nº de unidades da fase 1, a promessa da estadia.
+4. Quatro números em destaque, cada um com a palavra "cenário base": investimento da fase 1, diária média, ocupação de equilíbrio, payback.
+5. O que já existe (terreno, documentação, estudos feitos com método).
+6. O pedido em uma linha: valor e tipo de participação, "a combinar".
+7. Chamada final: "Material completo e visita sob acordo de confidencialidade" + [CONTATO].
+Entregue também 3 opções de título e 2 versões de mensagem curta (WhatsApp e e-mail) para enviar o teaser.`,anexos:"Anexos: Planilha 2 (xlsx) e PDFs das páginas 1, 2, 3 e 7 do Dossiê."},
+onepager:{titulo:"TAREFA: escrever um ONE-PAGER (resumo executivo) que caiba em uma página A4 com letra 9 a 10 pt.",corpo:`ESTRUTURA em 8 blocos: 1) cabeçalho com nome, cidade/UF, frase de posicionamento e contato; 2) a oportunidade em 3 linhas com fontes; 3) o produto: tipologias, unidades por fase, promessa, público, diária alvo; 4) o terreno: área, situação documental, acesso, infraestrutura, o que a lei permite; 5) masterplan em fases, uma linha por fase com unidades e investimento; 6) tabela de números com 3 colunas (conservador, base, otimista) e linhas: diária, ocupação, receita bruta, NOI, margem, payback, TIR; abaixo, investimento total e custo por m²; fonte "Planilha 2 · Modelo de renda"; 7) modelo e pedido: quanto, para quê, em troca de quê, o que o proprietário aporta; 8) 3 riscos com mitigantes e a frase final "Estudo elaborado com a metodologia Zion Hospitality Business; premissas disponíveis para auditoria."
+Na tabela, coloque ao lado da ocupação do cenário base a ocupação média da região (dos anexos ou [FONTE A CONFIRMAR]).
+Entregue em texto estruturado por blocos, pronto para colar no modelo docx, e a tabela em formato de tabela.`,anexos:"Anexos: Planilhas 1 e 2 (xlsx) e o Dossiê completo (PDF)."},
+pitch:{titulo:"TAREFA: escrever o conteúdo de um PITCH DECK de 12 slides para uma apresentação de 15 minutos.",corpo:`Para cada slide, entregue: título (até 8 palavras), 3 a 5 bullets curtos ou uma tabela, o número de destaque (quando houver) e uma nota de 2 a 3 frases do que eu devo falar ao apresentar.
+OS 12 SLIDES: 1 capa (nome, lugar, uma frase, meu nome); 2 a oportunidade (destino e lacuna); 3 o mercado (visitação, comparáveis, diária e ocupação da região, com fontes); 4 o hóspede e a promessa; 5 o produto (tipologias, unidades, nota de imagens de referência a buscar); 6 o terreno e o masterplan em fases; 7 o investimento (CAPEX por bloco e por fase, custo por unidade e por m²); 8 o modelo e os números (tabela 3 cenários: diária, ocupação, RevPAR, receita, NOI, margem); 9 o retorno (payback, TIR, VPL, ocupação de equilíbrio, valor do negócio em operação); 10 riscos e mitigantes (5 pares); 11 quem faz; 12 o pedido e os próximos passos (valor, uso, contrapartida proposta, 3 passos com prazos).
+Depois dos 12 slides, entregue: a) uma versão alternativa dos slides 8, 9 e 12 para um INVESTIDOR FINANCEIRO (foco em TIR, payback, saída); b) uma versão alternativa dos slides 4, 5, 6 e 11 para um SÓCIO OPERADOR ou DE TERRENO (foco em produto, fases e papéis); c) as 10 perguntas mais prováveis do investidor e a resposta curta para cada, usando os números da ficha.`,anexos:"Anexos: Planilhas 1 e 2 (xlsx), Dossiê completo (PDF) e o Plano conceitual, se houver."},
+masterplan:{titulo:"TAREFA: redigir um MASTERPLAN DE VIABILIDADE ECONÔMICO-FINANCEIRA de 10 a 15 páginas, em capítulos numerados, para análise por investidor, banco ou parceiro.",corpo:`CAPÍTULOS: 1 sumário executivo (1 página); 2 território e destino; 3 mercado e demanda (com fontes); 4 produto e tipologias; 5 estudo de massas (terreno, área construída, privativa e comum, índice de aproveitamento, ocupação do terreno e limite legal); 6 masterplan faseado com custo por fase; 7 investimento (tabela de CAPEX por bloco: infraestrutura, construção, FF&E, OS&E, contingência; custo por unidade e por m²; comparação com referência regional [CONFIRMAR]); 8 modelo de negócio e justificativa; 9 premissas operacionais, cada uma com origem (diária, ocupação, receita extra, comissões, impostos, custos variáveis e fixos); 10 resultados em três cenários (receita, NOI, margem, ocupação de equilíbrio, ROI, payback); 11 fluxo de caixa de 10 anos, TIR, VPL e valor do negócio em operação pelo cap rate; se houver venda, VGV, margem e ROI; 12 análise de sensibilidade (use os valores que eu informar abaixo ou marque [RODAR NA PLANILHA]: diária −15%, ocupação −10 pontos, CAPEX +20%); 13 riscos e mitigantes (licenciamento, obra, demanda, operação, sazonalidade, capital); 14 estrutura de capital e o pedido; 15 lista de anexos.
+Use tabelas sempre que houver números. Repita os números exatamente como estão nas planilhas anexas; se um número do texto não bater com a planilha, use a planilha e me avise.
+SENSIBILIDADE (preencha ou deixe para rodar): diária −15% → payback [ ]; ocupação −10 pontos → payback [ ]; CAPEX +20% → payback [ ].
+Entregue em texto pronto para um documento (títulos, subtítulos, tabelas), com um glossário curto no fim (CAPEX, FF&E, OS&E, VGV, RevPAR, NOI, TIR, VPL, cap rate, payback).`,anexos:"Anexos: Planilhas 1 e 2 (xlsx, preenchidas) e o Dossiê completo (PDF)."},
+conceito:{titulo:"TAREFA: escrever um PLANO CONCEITUAL de 6 a 10 páginas, visual e narrativo, para sócio, arquiteto, operador e investidor.",corpo:`ESTRUTURA: 1 conceito em uma frase e em um parágrafo; 2 o lugar (o que o terreno tem de único, o que se preserva, o que se constrói); 3 a jornada do hóspede em 8 a 10 momentos (descoberta e reserva, chegada, check-in, a unidade, a noite, a manhã, as experiências, a despedida, o retorno e a recomendação), um parágrafo por momento; 4 as tipologias, uma seção por tipologia com metragem, o que tem dentro (use a lista FF&E da Planilha 1), diária alvo e para quem é; 5 áreas comuns e serviços por fase, o que é terceirizado e o que é experiência vendida à parte; 6 implantação em fases e a lógica da ordem; 7 padrão e referências: descreva 8 imagens de referência a buscar (ambiente, luz, materiais, enquadramento) e o que aproveitar de cada, sempre identificadas como referência; 8 sustentabilidade e operação (energia, água, esgoto, resíduos, equipe mínima); 9 resumo do direcionamento de marca.
+Escreva de modo que alguém que só leia este documento descreva a estadia do jeito que a ficha promete. Mantenha nomes, quantidades e metragens idênticos aos da ficha e das planilhas.
+Entregue também 8 prompts de geração de imagem (em inglês e em português) para visualizar as tipologias e os momentos-chave, marcados como "imagem conceitual, não é projeto".`,anexos:"Anexos: Dossiê (páginas 1, 3 e 5), Planilha 1 (aba FF&E) e fotos do terreno."},
+marca:{titulo:"TAREFA: escrever um DIRECIONAMENTO DE MARCA de 3 a 5 páginas, que sirva de brief para o designer e de base para o brand book.",corpo:`ESTRUTURA: 1 propósito e promessa; 2 público e momento de uso; 3 posicionamento na forma "para [público], [nome] é a [categoria] que [diferença], porque [prova]"; 4 personalidade e tom de voz: 3 adjetivos que somos e 3 que não somos, e dois textos de exemplo (mensagem de boas-vindas de 60 palavras e resposta a uma reclamação de 60 palavras); 5 território de nome: 3 caminhos (do lugar, da sensação, inventado) com 5 opções cada, e para cada opção uma linha de significado; depois os critérios de escolha (fácil de falar e escrever, disponibilidade de domínio .com.br e Instagram, risco de conflito de marca registrada a consultar no INPI); 6 universo visual: paleta de 3 a 5 cores com origem no lugar (nome, uso e hex), tipografia (uma de título, uma de texto, com justificativa), materiais e texturas, direção de fotografia, o que evitar; 7 pontos de contato em ordem de prioridade (sinalização de chegada, enxoval e amenities, site e reservas, mensagens, café, uniforme) com uma linha de como a marca aparece em cada; 8 lista de entregáveis para o designer.
+Não use nomes de hospedagens existentes. Marque as finalistas de nome com [CONSULTAR INPI / REGISTRO.BR / INSTAGRAM].`,anexos:"Anexos: Dossiê (páginas 1 e 3), fotos do terreno e o Plano conceitual, se houver."}
+  };
+  function prompt(tipo,ia){
+    const o=ler(); const t=TAREFAS[tipo];
+    const papel = ia==="gpt" ? PAPEL_GPT : PAPEL_CLAUDE;
+    const fecho = ia==="gpt" ? `Antes de escrever, confirme em 3 linhas o que entendeu do projeto e aponte dados que faltam. Depois escreva a peça completa.` : `Comece com um parágrafo curto do que entendeu e do que falta. Em seguida, escreva a peça completa. No fim, a lista de pontos fracos.`;
+    return `${papel}\n\n${t.titulo}\n\n${ficha(o)}\n\n${t.anexos}\n\n${t.corpo}\n\n${REGRAS}\n\n${fecho}`;
+  }
+  function render(){document.querySelectorAll(".prompt").forEach(el=>{el.textContent=prompt(el.dataset.prompt,el.dataset.ia);const b=document.createElement("button");b.className="copiar";b.type="button";b.textContent="Copiar prompt";b.addEventListener("click",()=>{navigator.clipboard.writeText(el.textContent.replace(/Copiar prompt$|Copiado!$/,"").trim()).then(()=>{b.textContent="Copiado!";b.dataset.ok="1";setTimeout(()=>{b.textContent="Copiar prompt";delete b.dataset.ok},1800)})});el.appendChild(b)})}
+  function salvar(){try{localStorage.setItem(K,JSON.stringify(ler()))}catch(e){}render();const ok=document.getElementById("fichaOk");ok.style.display="block";setTimeout(()=>ok.style.display="none",4000)}
+  function carregar(){try{const o=JSON.parse(localStorage.getItem(K)||"{}");CAMPOS.forEach(c=>{const el=document.getElementById("f_"+c);if(el&&o[c]!=null)el.value=o[c]})}catch(e){}}
+  document.getElementById("salvar").addEventListener("click",salvar);
+  document.getElementById("limpar").addEventListener("click",()=>{if(confirm("Apagar a ficha salva neste aparelho?")){try{localStorage.removeItem(K)}catch(e){}document.getElementById("formFicha").reset();render()}});
+  document.querySelectorAll(".abas button").forEach(b=>b.addEventListener("click",()=>{const grupo=b.parentElement;grupo.querySelectorAll("button").forEach(x=>x.setAttribute("aria-selected",x===b?"true":"false"));const card=grupo.closest(".card");card.querySelectorAll(".painel").forEach(p=>p.hidden=(p.id!==b.dataset.aba))}));
+  carregar();render();
+})();
+</script>
+</body>
+</html>
