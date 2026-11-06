@@ -1,0 +1,354 @@
+<title>Seu Airbnb Está Vazio?</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: página de venda editorial em sete bandas, preto profundo, fotografia real da Zion sangrada nas bandas de desejo; coluna de leitura de 640px, grade de 1120px nas fotos. */
+:root{
+  --preto:#040605; --preto-2:#0C100C; --musgo:#1B2117; --creme:#FEF5F0; --areia:#DED6BF; --terra:#8B714E;
+  --champanhe:#C9B37E; --muted:#A39E8E; --linha:rgba(222,214,191,.16); --ok:#9FC0A0; --alerta:#F0A27A;
+  --f-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-corpo:"Jost","Helvetica Neue",Arial,system-ui,sans-serif;
+  color-scheme:dark;
+}
+.zl *{box-sizing:border-box}
+.zl{background:var(--preto);color:var(--creme);font-family:var(--f-corpo);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--preto);margin:0}
+.zl .gut{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.zl .col{max-width:640px;margin:0 auto}
+.zl .larga{max-width:1120px;margin:0 auto}
+.zl section{padding-block:88px}
+.zl h1,.zl h2,.zl h3{font-family:var(--f-display);font-weight:400;line-height:1.02;margin:0 0 20px;text-wrap:balance;color:var(--creme)}
+.zl h1{font-size:clamp(52px,12vw,104px);letter-spacing:-.01em}
+.zl h2{font-size:clamp(38px,8vw,64px)}
+.zl h3{font-size:28px;line-height:1.1;margin-bottom:8px}
+.zl h1 em,.zl h2 em{font-style:italic;color:var(--champanhe)}
+.zl p{margin:0 0 16px;color:var(--areia);max-width:60ch}
+.zl .lead{font-size:20px;line-height:1.5;color:var(--creme)}
+.zl .eyebrow{display:block;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--champanhe);margin-bottom:22px;font-weight:500}
+.zl .small{font-size:14px;color:var(--muted)}
+.zl .btn{display:inline-block;background:var(--champanhe);color:var(--preto);font-weight:600;text-decoration:none;padding:20px 34px;border-radius:2px;font-size:16px;letter-spacing:.08em;text-transform:uppercase;min-height:56px}
+.zl .btn:hover{background:#D8C493}
+.zl .btn:focus-visible{outline:2px solid var(--creme);outline-offset:3px}
+.zl .micro{display:block;font-size:13px;color:var(--muted);margin-top:14px;letter-spacing:.02em}
+.zl .rule{height:1px;background:var(--linha);border:0;margin:0}
+
+/* HERO */
+.zl .hero{position:relative;min-height:min(94vh,900px);display:flex;align-items:flex-end;padding-block:120px 72px;overflow:hidden}
+.zl .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.zl .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.15) 0%,rgba(4,6,5,.25) 30%,rgba(4,6,5,.88) 70%,var(--preto) 100%)}
+.zl .hero .larga{position:relative;z-index:1;width:100%}
+.zl .hero .marca{position:absolute;top:28px;left:0;z-index:1;height:30px;width:auto}
+.zl .hero .sub{font-family:var(--f-display);font-style:italic;font-size:clamp(26px,5.4vw,40px);line-height:1.15;color:var(--areia);margin:-4px 0 22px;max-width:22ch}
+.zl .hero .lead{max-width:34ch}
+.zl .credito{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:16px;z-index:1;font-size:11px;letter-spacing:.08em;color:var(--muted)}
+
+/* DOR */
+.zl .sinais{list-style:none;padding:0;margin:30px 0;display:grid;gap:0}
+.zl .sinais li{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--linha);align-items:baseline}
+.zl .sinais li:last-child{border-bottom:1px solid var(--linha)}
+.zl .sinais b{font-family:var(--f-display);font-weight:400;font-size:24px;color:var(--champanhe);min-width:1.6em}
+.zl .sinais span{color:var(--creme);font-size:18px}
+.zl .virada{font-family:var(--f-display);font-size:clamp(28px,6vw,40px);line-height:1.15;color:var(--creme);margin-top:36px;max-width:24ch}
+.zl .virada em{color:var(--champanhe)}
+
+/* OPORTUNIDADE */
+.zl .op{background:var(--preto-2)}
+.zl .tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.zl .tres figure{margin:0;position:relative;overflow:hidden;border-radius:2px;aspect-ratio:3/4;background:var(--musgo)}
+.zl .tres img{width:100%;height:100%;object-fit:cover;display:block}
+.zl .tres figcaption{position:absolute;inset:auto 0 0 0;padding:40px 16px 16px;background:linear-gradient(180deg,transparent,rgba(4,6,5,.85));font-family:var(--f-display);font-size:26px;font-style:italic;color:var(--creme)}
+@media (max-width:640px){.zl .tres{grid-template-columns:1fr 1fr}.zl .tres figure:first-child{grid-column:1/-1;aspect-ratio:4/3}}
+.zl .op .fecho{font-size:20px;color:var(--creme);margin-top:36px;max-width:40ch}
+
+/* O QUE VOCÊ VAI FAZER */
+.zl .comofunc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:34px 0 54px;border-top:1px solid var(--linha)}
+.zl .comofunc div{padding:18px 16px 0 0;min-width:0}
+.zl .comofunc b{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--champanhe);margin-bottom:6px}
+.zl .comofunc span{font-size:15px;color:var(--areia)}
+@media (max-width:640px){.zl .comofunc{grid-template-columns:1fr 1fr;row-gap:18px}}
+.zl .pilares{display:grid;grid-template-columns:1fr;gap:0;counter-reset:p}
+.zl .pilar{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--linha)}
+.zl .pilar::before{counter-increment:p;content:counter(p);font-family:var(--f-display);font-size:56px;line-height:.9;color:var(--champanhe)}
+.zl .pilar h3{margin-bottom:6px}
+.zl .pilar p{margin:0;font-size:16px}
+.zl .pilar .ent{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok)}
+.zl .vitrine{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center}
+@media (max-width:860px){.zl .vitrine{grid-template-columns:1fr}}
+.zl .tel{width:100%;max-width:300px;margin:0 auto;border:1px solid rgba(222,214,191,.3);border-radius:34px;padding:14px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.zl .tel-tela{border-radius:22px;background:var(--preto);padding:22px 18px;min-height:480px;border:1px solid var(--linha)}
+.zl .tel .demo{display:inline-block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--preto);background:#E8C56E;padding:3px 6px;border-radius:2px;margin-bottom:14px}
+.zl .tel .rot{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.zl .tel .num{font-family:var(--f-display);font-size:72px;line-height:1;color:var(--champanhe);margin:4px 0}
+.zl .tel .num small{font-size:.35em;color:var(--areia)}
+.zl .tel .f{font-size:11px;color:var(--muted)}
+.zl .tel .ln{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--linha);font-size:13px;color:var(--areia)}
+.zl .tel .ln b{color:var(--creme);font-weight:500}
+.zl .tel .ln span{color:var(--areia)}
+.zl .tel .fb{margin-top:16px;border:1px solid var(--linha);border-radius:4px;padding:12px}
+.zl .tel .fb .t{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)}
+.zl .tel .fb p{font-size:12px;line-height:1.45;margin:4px 0 0;color:var(--areia)}
+
+/* PROVA */
+.zl .prova .grade{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:40px}
+.zl .prova figure{margin:0;overflow:hidden;border-radius:2px;background:var(--musgo);position:relative}
+.zl .prova figure img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+.zl .prova figure:first-child{grid-row:span 2}
+.zl .prova figure:first-child img{aspect-ratio:auto;min-height:100%}
+.zl .prova figcaption{position:absolute;left:12px;bottom:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+@media (max-width:640px){.zl .prova .grade{grid-template-columns:1fr 1fr}.zl .prova figure:first-child{grid-column:1/-1;grid-row:auto}.zl .prova figure:first-child img{aspect-ratio:4/3}}
+.zl .assinatura{display:flex;gap:18px;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--linha)}
+.zl .assinatura b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;color:var(--creme)}
+.zl .assinatura span{font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* PARA QUEM */
+.zl .quem{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+@media (max-width:700px){.zl .quem{grid-template-columns:1fr;gap:10px}}
+.zl .quem h3{font-size:14px;font-family:var(--f-corpo);letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--champanhe);margin:0 0 12px}
+.zl .quem ul{list-style:none;padding:0;margin:0}
+.zl .quem li{padding:13px 0 13px 30px;border-top:1px solid var(--linha);position:relative;color:var(--creme)}
+.zl .quem li::before{content:"";position:absolute;left:2px;top:22px;width:12px;height:6px;border-left:1.5px solid var(--ok);border-bottom:1.5px solid var(--ok);transform:rotate(-45deg)}
+.zl .quem .nao li{color:var(--areia)}
+.zl .quem .nao li::before{width:12px;height:0;border-left:0;border-bottom:1.5px solid var(--alerta);transform:none;top:25px}
+.zl .quem .nao h3{color:var(--alerta)}
+
+/* OFERTA */
+.zl .oferta{background:linear-gradient(180deg,var(--preto) 0%,var(--musgo) 100%)}
+.zl .caixa{border:1px solid var(--champanhe);border-radius:2px;padding:44px 28px;background:rgba(4,6,5,.7)}
+.zl .caixa .tit{font-family:var(--f-display);font-size:clamp(34px,7vw,48px);line-height:1.05;color:var(--creme);margin:0 0 6px}
+.zl .caixa ul{list-style:none;padding:0;margin:28px 0}
+.zl .caixa li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--linha);color:var(--creme)}
+.zl .caixa li::before{content:"";width:8px;height:8px;margin-top:9px;background:var(--champanhe);transform:rotate(45deg)}
+.zl .caixa li span{color:var(--creme)}
+.zl .caixa li small{display:block;color:var(--muted);font-size:14px}
+.zl .preco{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:8px 0 4px}
+.zl .preco b{font-family:var(--f-display);font-weight:400;font-size:clamp(76px,18vw,112px);line-height:1;color:var(--champanhe)}
+.zl .preco span{color:var(--areia);font-size:15px}
+.zl [data-cx-checkout]{margin-top:24px}
+.zl [data-cx-checkout]:empty{min-height:120px;border:1px dashed var(--linha);border-radius:2px;display:grid;place-items:center}
+.zl [data-cx-checkout]:empty::before{content:"Checkout ClickMax · R$ 27 · Pix ou cartão";color:var(--muted);font-size:14px}
+.zl .nao-inclui{font-size:14px;color:var(--muted);margin-top:22px}
+.zl .garantia{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;margin-top:26px;padding-top:22px;border-top:1px solid var(--linha)}
+.zl .garantia b{font-family:var(--f-display);font-size:44px;line-height:1;color:var(--champanhe);font-weight:400}
+
+/* FAQ */
+.zl details{border-top:1px solid var(--linha);padding:4px 0}
+.zl details:last-of-type{border-bottom:1px solid var(--linha)}
+.zl summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;font-size:18px;color:var(--creme)}
+.zl summary::-webkit-details-marker{display:none}
+.zl summary::after{content:"+";position:absolute;right:4px;top:14px;font-size:26px;color:var(--champanhe);font-weight:300}
+.zl details[open] summary::after{content:"−"}
+.zl details p{padding-bottom:12px}
+
+/* CTA FINAL */
+.zl .final{text-align:center}
+.zl .final p{margin-left:auto;margin-right:auto}
+.zl .rodape{padding-block:36px;border-top:1px solid var(--linha);text-align:center}
+.zl .rodape img{height:24px;width:auto;opacity:.85}
+.zl .rodape p{font-size:12px;color:var(--muted);margin:14px auto 0;max-width:70ch}
+@media (prefers-reduced-motion:reduce){.zl *{transition:none!important;animation:none!important}}
+</style>
+
+<div class="zl">
+
+<!-- 1 · HERO -->
+<section class="hero gut" data-cx-section="hero">
+  <img class="bg cm-image" data-cx-image-slot="hero" data-cx-image-hint="Foto do produto, 16:9" data-cx-image-kind="brand" src="{{IMG:op08}}" alt="Vista aérea de uma bolha da Zion Bubble Glamping entre as araucárias, em Urubici">
+  <div class="larga" style="position:relative">
+    <img class="marca" src="{{IMG:logo}}" alt="Zion Hotel Group International" width="114" height="30" style="position:static;display:block;margin-bottom:56px">
+    <span class="eyebrow">Zion Hotel Academy · Arsenal Interativo 01</span>
+    <h1>Seu Airbnb está vazio?</h1>
+    <p class="sub">Talvez o problema não seja a localização. Pode ser a sua oferta.</p>
+    <p class="lead">Um guia interativo em 7 passos que usa os números da sua hospedagem para mostrar onde o hóspede desiste e montar com você um plano de melhoria de 30 dias.</p>
+    <a class="btn" href="#oferta" data-cx-cta>Quero meu diagnóstico</a>
+    <span class="micro">R$ 27 · pagamento único · no celular ou no computador</span>
+  </div>
+  <span class="credito">Zion Bubble Glamping · Urubici</span>
+</section>
+
+<!-- 2 · A DOR -->
+<section class="gut" data-cx-section="problem">
+  <div class="col">
+    <span class="eyebrow">O calendário vazio</span>
+    <h2>Datas abertas, <em>mês após mês.</em></h2>
+    <p class="lead">E a primeira ideia é sempre a mesma: baixar a diária.</p>
+    <p>Só que um calendário vazio quase nunca tem uma causa só. Ele costuma dar um destes sinais:</p>
+    <ul class="sinais">
+      <li><b>i.</b><span>Pouca gente abre o seu anúncio.</span></li>
+      <li><b>ii.</b><span>Abrem, olham as fotos e vão embora sem perguntar nada.</span></li>
+      <li><b>iii.</b><span>Perguntam, recebem resposta e reservam em outro lugar.</span></li>
+      <li><b>iv.</b><span>As reservas chegam, mas sobra pouco no fim do mês.</span></li>
+    </ul>
+    <p>Cada sinal pede uma correção diferente. Baixar o preço resolve, no máximo, um deles.</p>
+    <p class="virada">O problema nem sempre é o imóvel. É não saber <em>em que etapa o hóspede desiste.</em></p>
+  </div>
+</section>
+
+<!-- 3 · A OPORTUNIDADE -->
+<section class="op gut">
+  <div class="larga">
+    <div class="col" style="margin:0">
+      <span class="eyebrow">O hóspede mudou</span>
+      <h2>Ninguém procura <em>só uma cama.</em></h2>
+      <p class="lead">Quem reserva uma hospedagem de temporada está escolhendo uma experiência. E escolhe a oferta que deixa isso mais claro.</p>
+    </div>
+    <div class="tres">
+      <figure><img src="{{IMG:op01}}" alt="Casal tomando café da manhã ao ar livre na Zion Bubble" loading="lazy"><figcaption>Experiência</figcaption></figure>
+      <figure><img src="{{IMG:op14}}" alt="Rede de fibra natural entre plantas tropicais" loading="lazy"><figcaption>Natureza</figcaption></figure>
+      <figure><img src="{{IMG:op04}}" alt="Banheira sob um arco de madeira com vista para o jardim" loading="lazy"><figcaption>Privacidade</figcaption></figure>
+    </div>
+    <p class="fecho">A maioria das hospedagens já tem algo especial. O que falta é mostrar isso no anúncio, nas fotos e no preço de um jeito que o hóspede entenda em segundos.</p>
+  </div>
+</section>
+
+<!-- 4 · O QUE VOCÊ VAI FAZER -->
+<section class="gut" data-cx-section="solution">
+  <div class="larga">
+    <div class="vitrine">
+      <div>
+        <span class="eyebrow">Como funciona</span>
+        <h2>Não é um e-book <em>para ler.</em> É para fazer.</h2>
+        <p class="lead">Você aprende uma ideia, aplica na sua hospedagem e recebe um retorno feito com os seus números.</p>
+        <div class="comofunc">
+          <div><b>Aprenda</b><span>Uma ideia por tela, com exemplos de erro e de correção.</span></div>
+          <div><b>Responda</b><span>Exercícios curtos com os dados reais da sua hospedagem.</span></div>
+          <div><b>Receba retorno</b><span>Contas e orientações a partir do que você informou.</span></div>
+          <div><b>Monte o plano</b><span>Cada passo vira uma parte do seu plano final em PDF.</span></div>
+        </div>
+      </div>
+      <div class="tel" aria-label="Exemplo de tela do guia, com dados fictícios">
+        <div class="tel-tela">
+          <span class="demo">Exemplo · dados fictícios</span>
+          <div class="rot">Taxa de ocupação · 30 dias</div>
+          <div class="num">30<small>%</small></div>
+          <div class="f">9 noites ocupadas ÷ 30 disponíveis × 100</div>
+          <div style="margin-top:14px">
+            <div class="ln"><span>Noites vazias</span><b>21</b></div>
+            <div class="ln"><span>Receita estimada</span><b>R$ 2.880</b></div>
+            <div class="ln"><span>Viram → perguntaram</span><b>340 → 6</b></div>
+          </div>
+          <div class="fb"><div class="t">O que fazer agora</div><p>Revise um item da apresentação por vez, começando pela primeira foto ou pelo título, e anote a data da mudança.</p></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col" style="max-width:820px;margin:60px auto 0">
+      <span class="eyebrow">Os 7 passos</span>
+      <h2 style="font-size:clamp(34px,6.5vw,52px)">Do diagnóstico <em>ao plano de 30 dias.</em></h2>
+      <div class="pilares">
+        <div class="pilar"><div><h3>Raio-X da hospedagem</h3><p>Ocupação, visualizações, consultas e reservas lado a lado, para ver em que etapa o hóspede para.</p><span class="ent">Você sai com o Raio-X da Oferta</span></div></div>
+        <div class="pilar"><div><h3>Quem é o seu hóspede</h3><p>Pare de anunciar para todo mundo e escolha o perfil que mais combina com o que você tem.</p><span class="ent">Perfil Prioritário de Hóspede</span></div></div>
+        <div class="pilar"><div><h3>Por que escolher você</h3><p>Transforme características em benefícios reais que o hóspede reconhece.</p><span class="ent">Proposta de Valor</span></div></div>
+        <div class="pilar"><div><h3>Seu anúncio, reescrito</h3><p>Avalie o título e a descrição atuais e construa três alternativas para testar.</p><span class="ent">Anúncio Revisado</span></div></div>
+        <div class="pilar"><div><h3>A sua diária faz sentido?</h3><p>Custos, taxas e margem em um simulador simples, antes de mexer no preço.</p><span class="ent">Diagnóstico Financeiro Inicial</span></div></div>
+        <div class="pilar"><div><h3>A experiência do hóspede</h3><p>Da reserva ao check-out: melhorias simples, escolhidas por impacto, custo e esforço.</p><span class="ent">Plano de Melhoria da Experiência</span></div></div>
+        <div class="pilar"><div><h3>Seu plano de 30 dias</h3><p>As ações prioritárias em quatro semanas, com os indicadores para acompanhar.</p><span class="ent">Plano de Ação de 30 Dias</span></div></div>
+      </div>
+      <p class="small" style="margin-top:22px">No final, tudo vira um único documento: <b style="color:var(--creme);font-weight:500">Meu Plano de Melhoria do Airbnb</b>, em PDF, com os seus números e as suas decisões.</p>
+      <p style="margin-top:26px"><a class="btn" href="#oferta" data-cx-cta>Quero meu diagnóstico</a></p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · PROVA -->
+<section class="prova op gut" data-cx-section="social-proof">
+  <div class="larga">
+    <div class="col" style="margin:0">
+      <span class="eyebrow">Da prática, não da teoria</span>
+      <h2>Feito por quem <em>opera hospedagem.</em></h2>
+      <p class="lead">A Zion nasceu transformando natureza em hospedagens de experiência, em Florianópolis e na serra de Urubici.</p>
+      <p>O guia leva para a sua hospedagem a forma como olhamos as nossas: primeiro os números, depois a oferta, por último o preço.</p>
+    </div>
+    <div class="grade">
+      <figure><img src="{{IMG:op06}}" alt="Vista aérea das bolhas da Zion Bubble Glamping com piscina e deck, em Florianópolis" loading="lazy"><figcaption>Florianópolis</figcaption></figure>
+      <figure><img src="{{IMG:op10}}" alt="Ofurô em deck de madeira no meio da mata" loading="lazy"><figcaption>Urubici</figcaption></figure>
+      <figure><img src="{{IMG:op05}}" alt="Interior de uma bolha com cama e arco de madeira" loading="lazy"><figcaption>Bubble</figcaption></figure>
+      <figure><img src="{{IMG:noturna}}" alt="Bolha iluminada à noite entre palmeiras" loading="lazy"><figcaption>À noite</figcaption></figure>
+      <figure><img src="{{IMG:op12}}" alt="Bolha transparente com cama e cortinas, em dia de céu aberto" loading="lazy"><figcaption>Experiência</figcaption></figure>
+    </div>
+    <div class="assinatura">
+      <div><b>Bruno Chaerk</b><span>Fundador · Zion Hotel Group International</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · PARA QUEM É -->
+<section class="gut">
+  <div class="col" style="max-width:900px">
+    <span class="eyebrow">Para quem é</span>
+    <h2>Se você anuncia, <em>é para você.</em></h2>
+    <div class="quem">
+      <div>
+        <h3>É para você que</h3>
+        <ul>
+          <li>Anuncia no Airbnb, Booking ou similares e tem datas vazias</li>
+          <li>Tem cabana, chalé, glamping, casa de temporada ou pousada pequena</li>
+          <li>Está começando a anunciar e quer fazer certo desde o início</li>
+          <li>Administra o imóvel de outra pessoa, como coanfitrião</li>
+          <li>Quer decidir com números, não com palpite</li>
+        </ul>
+      </div>
+      <div class="nao">
+        <h3>Não é para você que</h3>
+        <ul>
+          <li>Procura uma fórmula com lotação garantida</li>
+          <li>Não quer olhar os próprios números</li>
+          <li>Quer que alguém faça por você: o guia orienta, você aplica</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · A OFERTA -->
+<section class="oferta gut" id="oferta" data-cx-section="offer">
+  <div class="col">
+    <div class="caixa">
+      <span class="eyebrow">Arsenal Interativo 01</span>
+      <p class="tit">Seu Airbnb Está Vazio?</p>
+      <p style="margin:0">O problema pode estar na sua oferta.</p>
+      <ul>
+        <li><span>Guia interativo em 7 passos<small>No celular ou no computador, no seu ritmo. As respostas ficam salvas.</small></span></li>
+        <li><span>Contas feitas com os seus números<small>Ocupação, consultas, conversão, receita e margem, com as fórmulas à vista.</small></span></li>
+        <li><span>Retorno personalizado em cada passo<small>O que o resultado significa, o que fazer agora e como verificar.</small></span></li>
+        <li><span>Meu Plano de Melhoria do Airbnb<small>O seu dossiê final em PDF, com o plano de ação de 30 dias.</small></span></li>
+      </ul>
+      <div class="preco"><b>R$ 27</b><span>pagamento único<br>Pix ou cartão</span></div>
+      <div data-cx-checkout></div>
+      <p class="nao-inclui">Não inclui mentoria, clube, Zion Land Bank, reuniões ou acompanhamento individual.</p>
+      <div class="garantia"><b>7</b><p class="small" style="margin:0">Você tem 7 dias, a contar da compra, para pedir o reembolso, como prevê o Código de Defesa do Consumidor.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="gut" data-cx-section="faq">
+  <div class="col">
+    <span class="eyebrow">Perguntas frequentes</span>
+    <h2 style="font-size:clamp(34px,6.5vw,48px)">Antes de <em>começar.</em></h2>
+    <details><summary>Vai lotar o meu calendário?</summary><p>Não existe garantia de reservas, ocupação ou faturamento. O guia ensina a encontrar o que trava a sua oferta, testar melhorias e medir o que mudou.</p></details>
+    <details><summary>Preciso entender de marketing?</summary><p>Não. Cada passo explica o conceito com exemplos e pede só o que você já sabe sobre a sua hospedagem.</p></details>
+    <details><summary>E se eu não tiver os números do anúncio?</summary><p>Tudo bem. Você pode marcar "Não tenho esse dado" e o guia mostra o que dá para analisar e o que começar a anotar a partir de hoje.</p></details>
+    <details><summary>Serve para Booking e outras plataformas?</summary><p>Sim. Os conceitos valem para qualquer plataforma. Você informa os números da que usa.</p></details>
+    <details><summary>Meus dados ficam com a Zion?</summary><p>Não. As respostas ficam salvas no seu aparelho. Nunca pedimos a senha do Airbnb ou de qualquer plataforma.</p></details>
+    <details><summary>Como recebo o acesso?</summary><p>Assim que o pagamento é confirmado, você recebe por e-mail o acesso ao guia interativo.</p></details>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<section class="final gut" data-cx-section="cta">
+  <div class="col">
+    <h2>Antes de baixar a diária, <em>descubra o motivo.</em></h2>
+    <p class="lead">Leva cerca de 10 minutos por passo. Começa com os números que você já tem.</p>
+    <p style="margin-top:30px"><a class="btn" href="#oferta" data-cx-cta>Quero meu diagnóstico</a></p>
+    <span class="micro">R$ 27 · pagamento único</span>
+  </div>
+</section>
+
+<footer class="rodape gut">
+  <img src="{{IMG:logo}}" alt="Zion Hotel Group International" width="91" height="24">
+  <p>Zion Hotel Academy · Material educativo. Os resultados dependem da aplicação, da época e do mercado de cada hospedagem. Fotos: Zion Bubble Glamping. Os números nas telas de exemplo são fictícios.</p>
+</footer>
+
+</div>
