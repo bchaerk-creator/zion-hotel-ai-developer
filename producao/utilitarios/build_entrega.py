@@ -7,7 +7,7 @@ P = R / "docs/p/adbc67069af26ae0"
 E = html.escape
 
 PRODUTOS = [
-    dict(pasta="checklist-17", num="17", foto="op05", titulo="Checklist de Limpeza, Inspeção e Liberação",
+    dict(pasta="checklist-17", num="17", foto="store/noite", pos="center 88%", zoom=1.0, titulo="Checklist de Limpeza, Inspeção e Liberação",
          promessa="Aprenda o passo a passo para limpar, conferir e liberar cada unidade com o mesmo padrão, sabendo quem fez, quem conferiu e o que ficou pendente.",
          itens=["Planilha com modelo de 33 itens em 8 ambientes", "Exemplo preenchido", "Checklist para imprimir", "Guia passo a passo"],
          passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja uma troca preenchida.", "Na planilha em branco, ajuste o modelo à sua unidade e defina quem limpa e quem confere.", "Use na próxima troca de hóspede: libere só quando a situação ficar verde."],
@@ -15,7 +15,7 @@ PRODUTOS = [
                    ("Checklist-Limpeza-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Checklist-Limpeza-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Checklist-Imprimivel.pdf", "Checklist para imprimir", "PDF · 2 páginas")]),
-    dict(pasta="kit-mensagens-11", num="11", foto="op11", titulo="Kit de Mensagens de Chegada e Saída",
+    dict(pasta="kit-mensagens-11", num="11", foto="store/noturna", pos="78% 75%", zoom=1.45, titulo="Kit de Mensagens de Chegada e Saída",
          promessa="Aprenda o passo a passo para enviar, no momento certo, as mensagens de confirmação, acesso, chegada, apoio durante a estadia e saída.",
          itens=["Planilha que monta 10 mensagens", "Data de envio de cada uma", "Modelos em PDF", "Guia passo a passo"],
          passos=["Leia o guia (cerca de 10 minutos).", "Abra o exemplo e veja as 10 mensagens montadas.", "Na planilha em branco, preencha a ficha da hospedagem uma vez.", "A cada reserva, preencha nome e datas e siga a coluna Data de envio."],
@@ -32,7 +32,7 @@ def capa_html(p):
     lis = "".join(f"<li>{E(i)}</li>" for i in p["itens"])
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{FONTES_LOCAIS}
 *{{box-sizing:border-box;margin:0}} body{{width:1080px;height:1080px;overflow:hidden;background:#1B2117;font-family:Aventa,Arial,sans-serif;color:#FEF5F0}}
-.foto{{position:absolute;inset:0;width:100%;height:62%;object-fit:cover}}
+.foto{{position:absolute;inset:0;width:100%;height:66%;object-fit:cover}} body{{overflow:hidden}}
 .grad{{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,33,23,0) 30%,rgba(27,33,23,.85) 52%,#1B2117 62%)}}
 .txt{{position:absolute;left:80px;right:80px;bottom:76px}}
 .logo{{position:absolute;top:60px;left:80px;height:54px}}
@@ -41,7 +41,7 @@ h1{{font-family:Cormorant,Georgia,serif;font-weight:500;font-size:82px;line-heig
 ul{{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 30px}} li{{font-size:24px;color:#DED6BF;padding-left:28px;position:relative}}
 li:before{{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;background:#C9B37E;border-radius:2px}}
 .cred{{position:absolute;top:66px;right:80px;font-size:16px;color:#FEF5F0;text-shadow:0 1px 6px rgba(0,0,0,.9)}}</style></head><body>
-<img class="foto" src="{(R/'docs/assets/operacoes'/(p['foto']+'.webp')).as_uri()}"><div class="grad"></div>
+<img class="foto" style="object-position:{p.get('pos','center')};transform:scale({p.get('zoom',1)});transform-origin:{p.get('pos','center')}" src="{(R/'docs/assets'/(p['foto'] if '/' in p['foto'] else 'operacoes/'+p['foto'])).with_suffix('.webp').as_uri()}"><div class="grad"></div>
 <img class="logo" src="{(R/'docs/brand/zion-logo-claro.png').as_uri()}"><div class="cred">Foto real · Zion Bubble Glamping</div>
 <div class="txt"><div class="k">Ferramenta {p['num']} · Zion Hospitality Business</div><h1>{E(p['titulo'])}</h1><ul>{lis}</ul></div></body></html>"""
 
