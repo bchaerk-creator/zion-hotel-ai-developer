@@ -47,6 +47,8 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 | Arsenal Interativo 01 · Seu Airbnb Está Vazio? (40 telas, 7 pilares, dossiê em PDF) | `producao/academy01/arsenal/` | Oferta `1ff56fea-8d49-4018-b0cd-e64e408eddf3` (R$ 27, checkout `ySAkZG38VS`) |
 | Landing do Arsenal 01 | `producao/academy01/landing/` | Página `82e1bb5f-9f91-4dc7-9a3d-c6635dbee0e6` (rascunho, `/academy-01`) |
 | Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`) |
+| Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação | `producao/utilitarios/17-checklist-limpeza/` | Oferta `08ad22e8-9f9a-4244-856f-1bca05234924` (R$ 19, checkout `uB0Db7Gpg4`), página `023476bb-0ea7-41b2-ba99-73c62a5aa94c` (rascunho, `/checklist-limpeza`) |
+| Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 
 Escada de preços (Estratégia Low Ticket Ladeira): ferramentas de R$ 19 → Arsenal R$ 27 → Trilhas. Cada degrau entrega a sua promessa sozinho.
