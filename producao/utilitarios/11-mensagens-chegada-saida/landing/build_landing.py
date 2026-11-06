@@ -25,13 +25,12 @@ lis = "".join(f'<li><b style="color:#C9B37E">{a}</b> {b} <span style="color:#A39
 corpo = f"""
 <div class="zl">
 <section class="hero gut" data-cx-section="hero">
-<img class="bg cm-image" src="{BASE}assets/operacoes/op07.webp" alt="Vista aérea de uma unidade da Zion Bubble Glamping" data-cx-image-slot="hero" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
 <div class="col"><img src="{BASE}brand/zion-logo-claro.png" alt="Zion" style="height:28px;margin-bottom:40px">
 <span class="eyebrow">Ferramenta 11 · Zion Hospitality Business</span>
 <h1>As mesmas perguntas, toda reserva. <em>As respostas já prontas.</em></h1>
 <p style="font-size:20px;color:#FEF5F0">Aprenda o passo a passo para enviar, no momento certo, as mensagens de confirmação, acesso, chegada, apoio durante a estadia e saída, com as informações da sua hospedagem.</p>
-<a class="btn" href="#oferta" data-cx-cta>Quero o meu kit</a><span class="micro">Planilha + modelos + guia · R$ 19 · pagamento único</span></div>
-<span class="credito">Foto real · Zion Bubble Glamping</span></section>
+<span class="micro" style="color:#C9B37E;font-size:15px;margin:0 0 22px;letter-spacing:.02em">Para Airbnb, casas, apartamentos, pousadas e glampings.</span><a class="btn" href="#oferta" data-cx-cta>Quero o meu kit</a><span class="micro">Planilha + modelos + guia · R$ 19 · pagamento único</span></div>
+</section>
 <section class="gut" data-cx-section="problem"><div class="col"><span class="eyebrow">O problema</span>
 <h2>"Qual é a senha do <em>Wi-Fi</em>?"</h2>
 <p>Endereço, horário, acesso, senha, regras, saída. Escrever tudo de novo a cada reserva toma tempo, e um dado esquecido vira ligação na hora da chegada.</p>
@@ -42,7 +41,8 @@ corpo = f"""
 <div class="demo">{tela("Pronta para copiar", PRONTA, True)}{tela("Falta: Wi-Fi: senha", FALTA, False)}</div>
 <p style="font-size:14px;color:#A39E8E">Trecho da mensagem M04 montada pela planilha no arquivo de exemplo (dados fictícios).</p>
 <ul class="lista">{lis}</ul>
-<p>A jornada parte dos scripts de atendimento usados nas unidades da Zion, generalizados para qualquer hospedagem.</p></div></section>
+<p>A jornada parte dos scripts de atendimento usados nas unidades da Zion, generalizados para qualquer hospedagem.</p>
+<figure style="margin:18px 0 0"><img src="{BASE}assets/operacoes/op07.webp" alt="Unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><figcaption style="font-size:13px;color:#A39E8E;margin-top:6px">Foto real · unidade da Zion Bubble Glamping, onde esses scripts são usados.</figcaption></figure></div></section>
 <section class="gut" data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
 <img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/kit-mensagens-11/capa.jpg" alt="Capa do produto: Kit de Mensagens de Chegada e Saída" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>Planilha em branco: ficha, 10 mensagens montadas e datas de envio</li><li>Exemplo preenchido (dados fictícios)</li><li>Modelos em PDF para copiar à mão</li><li>Guia "Aprenda o passo a passo", com exercícios e critérios de conferência</li></ul>

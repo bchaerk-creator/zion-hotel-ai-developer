@@ -80,13 +80,13 @@ def painel(t):
 def guia():
     N = 8; p = []
     p.append(f"""<section class="page" style="padding:0;background:var(--musgo);color:var(--creme)">
-<img src="{(OPS/'op05.webp').as_uri()}" style="width:100%;height:150mm;object-fit:cover;display:block">
+<div style="height:150mm;position:relative;background:radial-gradient(circle at 70% 40%,#2c3524,#1B2117 60%,#121610)"><img src="{(DIST/'demonstracao/demo-bloqueada.png').resolve().as_uri()}" style="position:absolute;width:62mm;left:52mm;top:16mm;border:5px solid #0b0e09;border-radius:16px;transform:rotate(-4deg);box-shadow:0 18px 36px rgba(0,0,0,.5)"><img src="{(DIST/'demonstracao/demo-liberada.png').resolve().as_uri()}" style="position:absolute;width:62mm;left:104mm;top:30mm;border:5px solid #0b0e09;border-radius:16px;transform:rotate(5deg);box-shadow:0 18px 36px rgba(0,0,0,.5)"></div>
 <div style="padding:14mm 18mm">
 <img src="{(BRAND/'zion-logo-claro.png').as_uri()}" style="height:16mm;margin-bottom:8mm">
 <div class="kicker" style="color:var(--dourado)">Ferramenta 17 · Guia do comprador</div>
 <h1 style="color:var(--creme)">Checklist de Limpeza, Inspeção e Liberação</h1>
 <p style="font-size:13pt;max-width:150mm">Aprenda o passo a passo para limpar, conferir e liberar cada unidade com o mesmo padrão, sabendo quem fez, quem conferiu e o que ficou pendente.</p>
-<p style="font-size:8pt;color:var(--areia);margin-top:10mm">Foto real: interior de uma unidade da Zion Bubble Glamping.</p>
+<p style="font-size:9pt;color:var(--dourado);margin-top:8mm">Para Airbnb, casas, apartamentos, pousadas e glampings. Telas reais da planilha, com dados fictícios.</p>
 </div></section>""")
     p.append(f"""<section class="page"><div class="kicker">Antes de começar</div><h2>Para quem é e com o que você termina</h2>
 <div class="box"><b>Para quem é:</b> anfitriões, pousadas, glampings e pequenos hotéis que fazem troca de hóspede, com equipe ou sozinhos.<br>

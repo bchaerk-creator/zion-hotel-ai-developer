@@ -24,9 +24,9 @@ background:#040605;color:#FEF5F0;font-family:"Jost",Arial,sans-serif;font-size:1
 .zl .eyebrow{{display:block;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:#C9B37E;margin-bottom:18px;font-weight:500}}
 .zl .btn{{display:inline-block;background:#C9B37E;color:#040605;font-weight:600;text-decoration:none;padding:18px 30px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;font-size:15px}}
 .zl .micro{{display:block;font-size:13px;color:#A39E8E;margin-top:12px}}
-.zl .hero{{position:relative;min-height:88vh;display:flex;align-items:flex-end;padding-block:110px 64px}}
+.zl .hero{{position:relative;min-height:78vh;background:radial-gradient(circle at 80% 20%,#2c3524 0%,#1B2117 50%,#040605 100%);display:flex;align-items:flex-end;padding-block:110px 64px}}
 .zl .hero img.bg{{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}}
-.zl .hero::after{{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.2),rgba(4,6,5,.9) 70%,#040605)}}
+
 .zl .hero .col{{position:relative;z-index:1;width:100%}} .zl .credito{{position:absolute;right:20px;bottom:12px;z-index:1;font-size:11px;color:#A39E8E}}
 .zl .lista{{list-style:none;padding:0;margin:24px 0}} .zl .lista li{{padding:14px 0;border-top:1px solid rgba(222,214,191,.16);color:#FEF5F0}}
 .zl .demo{{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:26px 0}} .zl .demo img{{width:100%;border-radius:10px;display:block}}
@@ -39,13 +39,12 @@ background:#040605;color:#FEF5F0;font-family:"Jost",Arial,sans-serif;font-size:1
 </style>
 <div class="zl">
 <section class="hero gut" data-cx-section="hero">
-<img class="bg cm-image" src="{BASE}assets/operacoes/op12.webp" alt="Vista aérea de uma unidade da Zion Bubble Glamping" data-cx-image-slot="hero" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
 <div class="col"><img src="{BASE}brand/zion-logo-claro.png" alt="Zion" style="height:28px;margin-bottom:40px">
 <span class="eyebrow">Ferramenta 17 · Zion Hospitality Business</span>
 <h1>Sua unidade está <em>mesmo</em> pronta para o próximo hóspede?</h1>
 <p style="font-size:20px;color:#FEF5F0">Aprenda o passo a passo para limpar, conferir e liberar cada unidade com o mesmo padrão, sabendo quem fez, quem conferiu e o que ficou pendente.</p>
-<a class="btn" href="#oferta" data-cx-cta>Quero o meu checklist</a><span class="micro">Planilha + guia · R$ 19 · pagamento único</span></div>
-<span class="credito">Foto real · Zion Bubble Glamping</span></section>
+<span class="micro" style="color:#C9B37E;font-size:15px;margin:0 0 22px;letter-spacing:.02em">Para Airbnb, casas, apartamentos, pousadas e glampings.</span><a class="btn" href="#oferta" data-cx-cta>Quero o meu checklist</a><span class="micro">Planilha + guia · R$ 19 · pagamento único</span></div>
+</section>
 <section class="gut" data-cx-section="problem"><div class="col"><span class="eyebrow">O problema</span>
 <h2>Quem limpou não viu. <em>Quem chega vê.</em></h2>
 <p>A limpeza parece feita, mas o chuveiro está frio, o ralo ficou com cabelo ou faltou papel. Sem um padrão escrito e uma conferência, cada troca de hóspede depende da memória de alguém.</p>
@@ -56,7 +55,8 @@ background:#040605;color:#FEF5F0;font-family:"Jost",Arial,sans-serif;font-size:1
 <div class="demo">{tela("NÃO LIBERAR: 1 item obrigatório pendente", False)}{tela("LIBERADA PARA O PRÓXIMO HÓSPEDE", True)}</div>
 <p style="font-size:14px;color:#A39E8E">Trecho da tela da planilha, com os resultados que ela calcula no arquivo de exemplo (dados fictícios).</p>
 <ul class="lista"><li><b style="color:#C9B37E">1.</b> Ajuste o modelo: apague, acrescente, marque o que é obrigatório.</li><li><b style="color:#C9B37E">2.</b> Defina quem limpa e quem confere (ou confira sozinho).</li><li><b style="color:#C9B37E">3.</b> Marque a troca item por item.</li><li><b style="color:#C9B37E">4.</b> Libere só com a situação verde.</li><li><b style="color:#C9B37E">5.</b> Registre pendências e o histórico.</li></ul>
-<p>A sequência do modelo parte da rotina de troca usada nas unidades da Zion, generalizada para qualquer hospedagem.</p></div></section>
+<p>A sequência do modelo parte da rotina de troca usada nas unidades da Zion, generalizada para qualquer hospedagem.</p>
+<figure style="margin:18px 0 0"><img src="{BASE}assets/operacoes/op12.webp" alt="Unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><figcaption style="font-size:13px;color:#A39E8E;margin-top:6px">Foto real · unidade da Zion Bubble Glamping, onde essa rotina de troca é usada.</figcaption></figure></div></section>
 <section class="gut" data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
 <img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/checklist-17/capa.jpg" alt="Capa do produto: Checklist de Limpeza, Inspeção e Liberação" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>Planilha em branco com o modelo de 33 itens pronto para ajustar</li><li>Exemplo preenchido (dados fictícios)</li><li>Checklist para imprimir, com assinaturas</li><li>Guia "Aprenda o passo a passo", com exercícios e critérios de conferência</li></ul>

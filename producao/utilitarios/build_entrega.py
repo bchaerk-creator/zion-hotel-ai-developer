@@ -7,7 +7,7 @@ P = R / "docs/p/adbc67069af26ae0"
 E = html.escape
 
 PRODUTOS = [
-    dict(pasta="checklist-17", num="17", foto="store/noite", pos="center 88%", zoom=1.0, titulo="Checklist de Limpeza, Inspeção e Liberação",
+    dict(pasta="checklist-17", num="17", telas=["producao/utilitarios/17-checklist-limpeza/dist/demonstracao/demo-bloqueada.png", "producao/utilitarios/17-checklist-limpeza/dist/demonstracao/demo-liberada.png"], titulo="Checklist de Limpeza, Inspeção e Liberação",
          promessa="Aprenda o passo a passo para limpar, conferir e liberar cada unidade com o mesmo padrão, sabendo quem fez, quem conferiu e o que ficou pendente.",
          itens=["Planilha com modelo de 33 itens em 8 ambientes", "Exemplo preenchido", "Checklist para imprimir", "Guia passo a passo"],
          passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja uma troca preenchida.", "Na planilha em branco, ajuste o modelo à sua unidade e defina quem limpa e quem confere.", "Use na próxima troca de hóspede: libere só quando a situação ficar verde."],
@@ -15,7 +15,7 @@ PRODUTOS = [
                    ("Checklist-Limpeza-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Checklist-Limpeza-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Checklist-Imprimivel.pdf", "Checklist para imprimir", "PDF · 2 páginas")]),
-    dict(pasta="kit-mensagens-11", num="11", foto="store/noturna", pos="78% 75%", zoom=1.45, titulo="Kit de Mensagens de Chegada e Saída",
+    dict(pasta="kit-mensagens-11", num="11", telas=["producao/utilitarios/11-mensagens-chegada-saida/dist/demonstracao/demo-falta.png", "producao/utilitarios/11-mensagens-chegada-saida/dist/demonstracao/demo-pronta.png"], titulo="Kit de Mensagens de Chegada e Saída",
          promessa="Aprenda o passo a passo para enviar, no momento certo, as mensagens de confirmação, acesso, chegada, apoio durante a estadia e saída.",
          itens=["Planilha que monta 10 mensagens", "Data de envio de cada uma", "Modelos em PDF", "Guia passo a passo"],
          passos=["Leia o guia (cerca de 10 minutos).", "Abra o exemplo e veja as 10 mensagens montadas.", "Na planilha em branco, preencha a ficha da hospedagem uma vez.", "A cada reserva, preencha nome e datas e siga a coluna Data de envio."],
@@ -28,22 +28,30 @@ PRODUTOS = [
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
 @font-face{{font-family:Aventa;src:url('{(R/'docs/assets/fonts/aventa.woff2').as_uri()}')}}"""
 
+PUBLICO = "Para Airbnb, casas, apartamentos, pousadas e glampings"
+
 def capa_html(p):
+    """Capa centrada no produto: telas reais da ferramenta (valores calculados pela planilha), sem foto de hospedagem."""
     lis = "".join(f"<li>{E(i)}</li>" for i in p["itens"])
+    t1, t2 = [(R / x).as_uri() for x in p["telas"]]
     return f"""<!doctype html><html><head><meta charset="utf-8"><style>{FONTES_LOCAIS}
-*{{box-sizing:border-box;margin:0}} body{{width:1080px;height:1080px;overflow:hidden;background:#1B2117;font-family:Aventa,Arial,sans-serif;color:#FEF5F0}}
-.foto{{position:absolute;inset:0;width:100%;height:66%;object-fit:cover}} body{{overflow:hidden}}
-.grad{{position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,33,23,0) 30%,rgba(27,33,23,.85) 52%,#1B2117 62%)}}
-.txt{{position:absolute;left:80px;right:80px;bottom:76px}}
-.logo{{position:absolute;top:60px;left:80px;height:54px}}
-.k{{font-size:22px;letter-spacing:.24em;text-transform:uppercase;color:#C9B37E;font-weight:700;margin-bottom:22px}}
-h1{{font-family:Cormorant,Georgia,serif;font-weight:500;font-size:82px;line-height:1.02;margin-bottom:30px}}
-ul{{list-style:none;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:12px 30px}} li{{font-size:24px;color:#DED6BF;padding-left:28px;position:relative}}
+*{{box-sizing:border-box;margin:0}} body{{width:1080px;height:1080px;overflow:hidden;font-family:Aventa,Arial,sans-serif;color:#FEF5F0;
+background:radial-gradient(circle at 78% 40%,#2c3524 0%,#1B2117 55%,#121610 100%);position:relative}}
+.logo{{position:absolute;top:64px;left:72px;height:52px}}
+.txt{{position:absolute;left:72px;top:190px;width:500px}}
+.k{{font-size:21px;letter-spacing:.22em;text-transform:uppercase;color:#C9B37E;font-weight:700;margin-bottom:24px;line-height:1.4}}
+h1{{font-family:Cormorant,Georgia,serif;font-weight:500;font-size:76px;line-height:1.02;margin-bottom:34px}}
+ul{{list-style:none;padding:0}} li{{font-size:25px;color:#DED6BF;padding:0 0 14px 30px;position:relative}}
 li:before{{content:"";position:absolute;left:0;top:11px;width:12px;height:12px;background:#C9B37E;border-radius:2px}}
-.cred{{position:absolute;top:66px;right:80px;font-size:16px;color:#FEF5F0;text-shadow:0 1px 6px rgba(0,0,0,.9)}}</style></head><body>
-<img class="foto" style="object-position:{p.get('pos','center')};transform:scale({p.get('zoom',1)});transform-origin:{p.get('pos','center')}" src="{(R/'docs/assets'/(p['foto'] if '/' in p['foto'] else 'operacoes/'+p['foto'])).with_suffix('.webp').as_uri()}"><div class="grad"></div>
-<img class="logo" src="{(R/'docs/brand/zion-logo-claro.png').as_uri()}"><div class="cred">Foto real · Zion Bubble Glamping</div>
-<div class="txt"><div class="k">Ferramenta {p['num']} · Zion Hospitality Business</div><h1>{E(p['titulo'])}</h1><ul>{lis}</ul></div></body></html>"""
+.pub{{position:absolute;left:72px;right:72px;bottom:64px;border-top:1px solid rgba(201,179,126,.45);padding-top:24px;font-size:25px;color:#FEF5F0}}
+.pub b{{color:#C9B37E;font-weight:600}}
+.tela{{position:absolute;width:300px;border-radius:26px;border:8px solid #0b0e09;box-shadow:0 30px 60px rgba(0,0,0,.55);background:#fff}}
+.t1{{left:610px;top:150px;transform:rotate(-4deg)}} .t2{{left:735px;top:250px;transform:rotate(5deg)}}
+</style></head><body>
+<img class="logo" src="{(R/'docs/brand/zion-logo-claro.png').as_uri()}">
+<div class="txt"><div class="k">Ferramenta {p['num']}<br>Zion Hospitality Business</div><h1>{E(p['titulo'])}</h1><ul>{lis}</ul></div>
+<img class="tela t1" src="{t1}"><img class="tela t2" src="{t2}">
+<div class="pub"><b>{PUBLICO}.</b> Telas reais da planilha, com dados fictícios.</div></body></html>"""
 
 def acesso_html(p):
     arqs = "".join(f'<a class="arq" href="{a}" download><span class="n">{i}</span><span class="t"><b>{E(t)}</b><small>{E(d)}</small></span><span class="b">Baixar</span></a>'
@@ -68,7 +76,7 @@ ol li{{margin-bottom:8px}} .nota{{font-size:14px;color:#6b6656;border-top:1px so
 </style></head><body>
 <img class="capa" src="capa.jpg" alt="Capa: {E(p['titulo'])}">
 <div class="wrap"><div class="k">Ferramenta {p['num']} · Seu acesso</div><h1>{E(p['titulo'])}</h1>
-<p>{E(p['promessa'])}</p>
+<p>{E(p['promessa'])}</p><p style="color:#8B714E;font-weight:600">{PUBLICO}.</p>
 <h2>Seus arquivos</h2>{arqs}
 <h2>Por onde começar</h2><ol>{passos}</ol>
 <p class="nota">Funciona no Excel, no Google Sheets (Arquivo → Importar) e no LibreOffice. No celular, use o app do Google Sheets ou do Excel.<br>

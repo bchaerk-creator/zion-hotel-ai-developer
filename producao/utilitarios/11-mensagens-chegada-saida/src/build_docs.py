@@ -61,12 +61,12 @@ def get(lst, mid): return next(x for x in lst if x["id"] == mid)
 def guia():
     T = 7; p = []
     p.append(f"""<section class="page" style="padding:0;background:var(--musgo);color:var(--creme)">
-<img src="{(OPS/'op11.webp').as_uri()}" style="width:100%;height:150mm;object-fit:cover;display:block">
+<div style="height:150mm;position:relative;background:radial-gradient(circle at 70% 40%,#2c3524,#1B2117 60%,#121610)"><img src="{(DIST/'demonstracao/demo-falta.png').resolve().as_uri()}" style="position:absolute;width:62mm;left:52mm;top:16mm;border:5px solid #0b0e09;border-radius:16px;transform:rotate(-4deg);box-shadow:0 18px 36px rgba(0,0,0,.5)"><img src="{(DIST/'demonstracao/demo-pronta.png').resolve().as_uri()}" style="position:absolute;width:62mm;left:104mm;top:30mm;border:5px solid #0b0e09;border-radius:16px;transform:rotate(5deg);box-shadow:0 18px 36px rgba(0,0,0,.5)"></div>
 <div style="padding:14mm 18mm"><img src="{(BRAND/'zion-logo-claro.png').as_uri()}" style="height:16mm;margin-bottom:8mm">
 <div class="kicker" style="color:var(--dourado)">Ferramenta 11 · Guia do comprador</div>
 <h1 style="color:var(--creme)">Kit de Mensagens de Chegada e Saída</h1>
 <p style="font-size:13pt;max-width:155mm">Aprenda o passo a passo para enviar, no momento certo, as mensagens de confirmação, acesso, chegada, apoio durante a estadia e saída, com as informações da sua hospedagem.</p>
-<p style="font-size:8pt;color:var(--areia);margin-top:10mm">Foto real: unidade da Zion Bubble Glamping.</p></div></section>""")
+<p style="font-size:9pt;color:var(--dourado);margin-top:8mm">Para Airbnb, casas, apartamentos, pousadas e glampings. Telas reais da planilha, com dados fictícios.</p></div></section>""")
     p.append(f"""<section class="page"><div class="kicker">Antes de começar</div><h2>Para quem é e com o que você termina</h2>
 <div class="box"><b>Para quem é:</b> anfitriões de aluguel por temporada, pousadas, glampings e pequenos hotéis que conversam com o hóspede por WhatsApp ou pela plataforma.<br>
 <b>Quando usar:</b> a cada reserva, da confirmação até depois da saída.</div>
