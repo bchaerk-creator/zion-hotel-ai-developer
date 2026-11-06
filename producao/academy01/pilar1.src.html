@@ -1,0 +1,472 @@
+<title>Diagnóstico do Calendário</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Zion Hotel Academy · Vol. 01 · Pilar 1: diagnostique o calendário vazio da sua hospedagem e baixe o seu diagnóstico em PDF.">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+/* Layout: um caderno de exercícios em telas, uma etapa CROI por vez, coluna única de 640px sobre preto profundo */
+@font-face{font-family:"Cormorant Z";src:url(data:font/woff2;base64,{{FONT_CORM}}) format("woff2");font-weight:300 700;font-style:normal;font-display:swap}
+@font-face{font-family:"Cormorant Z";src:url(data:font/woff2;base64,{{FONT_CORM_I}}) format("woff2");font-weight:300 700;font-style:italic;font-display:swap}
+@font-face{font-family:"Aventa Z";src:url(data:font/woff2;base64,{{FONT_AVENTA}}) format("woff2");font-weight:100 900;font-style:normal;font-display:swap}
+:root{
+  --preto:#040605; --musgo:#1B2117; --musgo-2:#232B1E; --creme:#FEF5F0; --areia:#DED6BF;
+  --terra:#8B714E; --champanhe:#C9B37E; --muted:#A9A391; --linha:rgba(222,214,191,.18);
+  --alerta:#E3A86B; --ok:#9FBF8F;
+  --f-display:"Cormorant Z","Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-corpo:"Aventa Z","Helvetica Neue",Arial,system-ui,sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{background:var(--preto)}
+body{margin:0;color:var(--creme);font-family:var(--f-corpo);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.topo{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--preto);border-bottom:1px solid var(--linha);padding-block:12px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--preto)}
+.topo .w{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.topo img{height:26px;width:auto;display:block}
+.vol{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--champanhe);text-align:right}
+.w{max-width:640px;margin:0 auto}
+main{padding-block:28px 56px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.trilho{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin-bottom:8px}
+.trilho span{height:3px;background:var(--linha);border-radius:2px}
+.trilho span.on{background:var(--champanhe)}
+.etapa-nome{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-bottom:28px;display:flex;justify-content:space-between;gap:8px}
+.etapa-nome b{color:var(--champanhe);font-weight:600}
+h1,h2{font-family:var(--f-display);font-weight:400;line-height:1.08;margin:0 0 16px;text-wrap:balance;color:var(--creme)}
+h1{font-size:clamp(38px,9vw,56px)}
+h2{font-size:clamp(30px,7vw,42px)}
+h1 em,h2 em{font-style:italic;color:var(--areia)}
+h3{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe);font-weight:600;margin:28px 0 10px}
+p{margin:0 0 14px;color:var(--areia);max-width:62ch}
+.lead{font-size:18px;color:var(--creme)}
+.small{font-size:13px;color:var(--muted)}
+.tela{display:none}
+.tela.ativa{display:block;animation:sobe .35s ease both}
+@keyframes sobe{from{opacity:.4;transform:translateY(6px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){.tela.ativa{animation:none}}
+.causas{display:grid;gap:10px;margin:22px 0}
+.causa{display:grid;grid-template-columns:auto 1fr;gap:14px;align-items:start;padding:16px;border:1px solid var(--linha);border-radius:4px;background:var(--musgo);cursor:pointer}
+.causa input{margin-top:4px;accent-color:var(--champanhe);width:18px;height:18px}
+.causa b{display:block;color:var(--creme);font-weight:600;margin-bottom:2px}
+.causa span{color:var(--areia);font-size:14px}
+.causa:has(input:checked){border-color:var(--champanhe)}
+label.campo{display:block;margin:18px 0 0}
+label.campo>span{display:block;font-weight:600;font-size:14px;margin-bottom:6px;color:var(--creme)}
+label.campo>small{display:block;color:var(--muted);font-size:13px;margin:-2px 0 8px}
+input[type=text],input[type=number],select,textarea{width:100%;font:inherit;color:var(--creme);background:var(--musgo);border:1px solid rgba(222,214,191,.32);border-radius:4px;padding:12px;min-height:48px}
+textarea{min-height:84px;resize:vertical}
+input:focus-visible,select:focus-visible,textarea:focus-visible,button:focus-visible,.causa:focus-within{outline:2px solid var(--champanhe);outline-offset:2px}
+.dupla{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dupla label.campo{margin-top:12px}
+@media (max-width:420px){.dupla{grid-template-columns:1fr}}
+.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;align-items:center}
+button{font:inherit;cursor:pointer;border-radius:2px;min-height:48px;padding:12px 22px}
+.btn{background:var(--champanhe);color:var(--preto);border:0;font-weight:700;letter-spacing:.02em}
+.btn-2{background:transparent;color:var(--areia);border:1px solid rgba(222,214,191,.4)}
+.btn-link{background:none;border:0;color:var(--muted);text-decoration:underline;padding:12px 4px}
+.erro{color:var(--alerta);font-size:14px;margin-top:12px;min-height:1px}
+.painel{border:1px solid var(--linha);border-radius:4px;padding:20px;margin:22px 0;background:var(--musgo)}
+.grande{font-family:var(--f-display);font-size:clamp(64px,16vw,96px);line-height:1;color:var(--champanhe);font-variant-numeric:tabular-nums}
+.grande small{font-size:.35em;color:var(--areia)}
+#rConta{margin-top:10px}
+.linhas{display:grid;gap:0;margin-top:12px}
+.linhas div{display:flex;justify-content:space-between;gap:12px;padding:10px 0;border-top:1px solid var(--linha);font-variant-numeric:tabular-nums}
+.linhas div span:first-child{color:var(--areia)}
+.linhas div span:last-child{color:var(--creme);font-weight:600;text-align:right}
+.funil{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.funil div{border-top:2px solid var(--terra);padding-top:8px;min-width:0}
+.funil b{display:block;font-family:var(--f-display);font-size:34px;font-weight:400;color:var(--creme);line-height:1.1;font-variant-numeric:tabular-nums}
+.funil span{font-size:12px;color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.taxa{font-size:13px;color:var(--areia);margin-top:10px}
+.regua{margin:22px 0;display:grid;gap:10px}
+.regua div{padding:12px 14px;border-left:2px solid var(--terra);background:rgba(27,33,23,.6)}
+.regua b{color:var(--creme)}
+.hip{border:1px solid var(--linha);border-radius:4px;padding:18px;margin:16px 0;background:var(--musgo)}
+.hip-t{font-family:var(--f-display);font-size:24px;color:var(--champanhe);margin-bottom:4px}
+.check{list-style:none;padding:0;margin:16px 0}
+.check li{padding:10px 0 10px 28px;border-top:1px solid var(--linha);position:relative;color:var(--areia)}
+.check li::before{content:"";position:absolute;left:2px;top:17px;width:12px;height:12px;border:1px solid var(--champanhe)}
+.check li.ok::before{background:var(--champanhe)}
+.aviso{font-size:13px;color:var(--muted);border-top:1px solid var(--linha);padding-top:14px;margin-top:28px}
+.proximo{display:flex;justify-content:space-between;gap:14px;align-items:center;padding:16px;border:1px dashed rgba(201,179,126,.5);border-radius:4px;margin-top:22px}
+.proximo b{display:block;color:var(--creme)}
+.proximo span{font-size:13px;color:var(--muted)}
+.proximo .selo{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--preto);background:var(--areia);padding:4px 8px;border-radius:2px;white-space:nowrap}
+.exemplo-tag{display:inline-block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--alerta);border:1px solid var(--alerta);padding:3px 8px;border-radius:2px;margin-bottom:14px}
+.status{font-size:14px;color:var(--ok);margin-top:12px;min-height:1px}
+</style>
+
+<header class="topo"><div class="w">
+  <img src="data:image/png;base64,{{LOGO}}" alt="Zion Hotel Group International" width="99" height="26">
+  <div class="vol">Zion Hotel Academy<br>Vol. 01 · Pilar 1 de 7</div>
+</div></header>
+
+<main><div class="w">
+  <div class="trilho" id="trilho" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span><span></span></div>
+  <div class="etapa-nome"><b id="etapaNome">Abertura</b><span id="etapaNum">1 de 6</span></div>
+  <div id="exemploTag" class="exemplo-tag" hidden>Exemplo fictício · cabana demonstrativa</div>
+
+  <!-- 0 ABERTURA -->
+  <section class="tela ativa" data-nome="Abertura">
+    <h1>Diagnostique o <em>calendário vazio</em></h1>
+    <p class="lead">Antes de baixar a diária, descubra por que as datas estão sobrando.</p>
+    <p>Em cerca de 10 minutos você vai separar três causas que costumam se misturar, calcular a sua ocupação real e sair com três hipóteses para testar nesta semana. No final, você baixa o seu diagnóstico em PDF.</p>
+    <p class="small">Tenha à mão o calendário dos próximos 30 dias e as estatísticas do seu anúncio (no Airbnb: Menu → Insights → Desempenho do anúncio). Suas respostas ficam salvas só neste aparelho.</p>
+    <label class="campo"><span>Seu nome</span><input type="text" id="nome" autocomplete="given-name" placeholder="Ex.: Ana"></label>
+    <label class="campo"><span>Nome da hospedagem</span><input type="text" id="hospedagem" placeholder="Ex.: Cabana Vista da Serra"></label>
+    <label class="campo"><span>Tipo e cidade</span><input type="text" id="tipo" placeholder="Ex.: cabana para casal · Urubici, SC"></label>
+    <div class="erro" id="erro0"></div>
+    <div class="acoes">
+      <button class="btn" data-ir="1">Começar o diagnóstico</button>
+      <button class="btn-link" id="carregarExemplo" type="button">Ver com um exemplo preenchido</button>
+    </div>
+  </section>
+
+  <!-- 1 CONFRONTO -->
+  <section class="tela" data-nome="Confronto">
+    <h2>Calendário vazio <em>não é um problema só.</em></h2>
+    <p>São três problemas diferentes, e cada um pede uma correção diferente. Baixar o preço resolve só um deles, e às vezes nenhum.</p>
+    <div class="causas" role="radiogroup" aria-label="O que você sente hoje">
+      <label class="causa"><input type="radio" name="sente" value="procura"><div><b>Falta de procura</b><span>Pouca gente busca hospedagem na sua região nessas datas. É época, mercado ou evento.</span></div></label>
+      <label class="causa"><input type="radio" name="sente" value="visibilidade"><div><b>Falta de visibilidade</b><span>As pessoas buscam, mas o seu anúncio quase não aparece ou não é clicado.</span></div></label>
+      <label class="causa"><input type="radio" name="sente" value="conversao"><div><b>Baixa conversão</b><span>As pessoas veem e até perguntam, mas não reservam.</span></div></label>
+      <label class="causa"><input type="radio" name="sente" value="naosei"><div><b>Não sei dizer</b><span>Normal. Os números da próxima etapa vão mostrar.</span></div></label>
+    </div>
+    <p class="small">Marque o que você sente hoje. Vamos conferir com dados logo em seguida.</p>
+    <div class="erro" id="erro1"></div>
+    <div class="acoes"><button class="btn" data-ir="2">Continuar</button><button class="btn-2" data-ir="0">Voltar</button></div>
+  </section>
+
+  <!-- 2 RECONHECIMENTO -->
+  <section class="tela" data-nome="Reconhecimento">
+    <h2>Agora, <em>os seus números.</em></h2>
+    <p>Abra o calendário dos próximos 30 dias e conte as noites. Bloqueio feito por você (uso próprio, manutenção) não é falta de procura, por isso fica separado.</p>
+    <h3>Próximos 30 dias</h3>
+    <div class="dupla">
+      <label class="campo"><span>Noites reservadas</span><input type="number" inputmode="numeric" min="0" max="31" id="reservadas" placeholder="0"></label>
+      <label class="campo"><span>Noites abertas, sem reserva</span><input type="number" inputmode="numeric" min="0" max="31" id="abertas" placeholder="0"></label>
+    </div>
+    <div class="dupla">
+      <label class="campo"><span>Noites bloqueadas por você</span><input type="number" inputmode="numeric" min="0" max="31" id="bloqueadas" placeholder="0"></label>
+      <label class="campo"><span>Diária média (R$)</span><input type="number" inputmode="decimal" min="0" id="diaria" placeholder="0"></label>
+    </div>
+    <h3>Últimos 30 dias</h3>
+    <label class="campo"><span>Visualizações do anúncio</span><small>Se não souber, deixe em branco.</small><input type="number" inputmode="numeric" min="0" id="visualizacoes" placeholder="Opcional"></label>
+    <div class="dupla">
+      <label class="campo"><span>Consultas e mensagens</span><input type="number" inputmode="numeric" min="0" id="consultas" placeholder="0"></label>
+      <label class="campo"><span>Reservas feitas</span><input type="number" inputmode="numeric" min="0" id="reservasFeitas" placeholder="0"></label>
+    </div>
+    <div class="erro" id="erro2"></div>
+    <div class="acoes"><button class="btn" data-ir="3">Calcular</button><button class="btn-2" data-ir="1">Voltar</button></div>
+  </section>
+
+  <!-- 3 ORIENTAÇÃO -->
+  <section class="tela" data-nome="Orientação">
+    <h2>O que os números <em>dizem.</em></h2>
+    <div class="painel">
+      <div class="small">Ocupação dos próximos 30 dias</div>
+      <div class="grande" id="rOcup">0<small>%</small></div>
+      <div class="small" id="rConta">noites reservadas ÷ noites à venda</div>
+      <div class="linhas">
+        <div><span>Noites à venda</span><span id="rVenda">0</span></div>
+        <div><span>Noites vazias</span><span id="rVazias">0</span></div>
+        <div><span>Receita de diárias já reservada</span><span id="rReceita">R$ 0</span></div>
+        <div><span>Receita parada nas noites vazias, pela diária atual</span><span id="rParada">R$ 0</span></div>
+      </div>
+    </div>
+    <h3>Onde o hóspede para</h3>
+    <div class="funil">
+      <div><b id="fVis">–</b><span>Viram</span></div>
+      <div><b id="fCon">0</b><span>Perguntaram</span></div>
+      <div><b id="fRes">0</b><span>Reservaram</span></div>
+    </div>
+    <div class="taxa" id="fTaxas"></div>
+    <h3>Como ler</h3>
+    <div class="regua">
+      <div><b>Poucas visualizações:</b> visibilidade ou procura. Olhe a época, a primeira foto e o preço que aparece na busca.</div>
+      <div><b>Muitas visualizações e poucas consultas:</b> apresentação. Título, fotos e descrição não convencem.</div>
+      <div><b>Consultas que não viram reserva:</b> conversão. Tempo de resposta, regras, estadia mínima e preço total.</div>
+    </div>
+    <p class="small">Compare com o seu próprio histórico, no mesmo período do ano passado, se tiver. Não existe um número certo que valha para todo imóvel.</p>
+    <label class="campo"><span>Olhando os números, onde está o maior gargalo?</span>
+      <select id="gargalo">
+        <option value="">Escolha uma opção</option>
+        <option value="Visibilidade ou procura">Visibilidade ou procura</option>
+        <option value="Apresentação do anúncio">Apresentação do anúncio</option>
+        <option value="Conversão em reserva">Conversão em reserva</option>
+        <option value="Ainda não está claro">Ainda não está claro</option>
+      </select>
+    </label>
+    <div class="erro" id="erro3"></div>
+    <div class="acoes"><button class="btn" data-ir="4">Montar as hipóteses</button><button class="btn-2" data-ir="2">Voltar</button></div>
+  </section>
+
+  <!-- 4 FERRAMENTA -->
+  <section class="tela" data-nome="Implementação">
+    <h2>Três hipóteses, <em>com evidência.</em></h2>
+    <p>Uma hipótese é um palpite que dá para testar. Escreva o que você viu e o que vai mudar nesta semana. Mude uma coisa por vez, para saber o que funcionou.</p>
+    <div id="hipoteses"></div>
+    <div class="erro" id="erro4"></div>
+    <div class="acoes"><button class="btn" data-ir="5">Ver meu diagnóstico</button><button class="btn-2" data-ir="3">Voltar</button></div>
+  </section>
+
+  <!-- 5 ENTREGA -->
+  <section class="tela" data-nome="Seu diagnóstico">
+    <h2 id="tituloFinal">Seu diagnóstico <em>está pronto.</em></h2>
+    <div class="painel">
+      <div class="linhas" id="resumo"></div>
+    </div>
+    <h3>Seus próximos 7 dias</h3>
+    <ul class="check">
+      <li class="ok">Calendário auditado e ocupação calculada</li>
+      <li class="ok">Gargalo identificado com dados</li>
+      <li class="ok">Três hipóteses com evidência</li>
+      <li>Leia 20 avaliações de imóveis parecidos e anote os motivos da viagem</li>
+      <li>Escolha 5 concorrentes para comparar no Pilar 3</li>
+      <li>Aplique só o teste da hipótese 1 e anote a data</li>
+    </ul>
+    <div class="acoes">
+      <button class="btn" id="gerarPdf" type="button">Baixar meu diagnóstico em PDF</button>
+      <button class="btn-2" data-ir="4">Editar respostas</button>
+    </div>
+    <div class="status" id="statusPdf" role="status"></div>
+    <div class="proximo">
+      <div><b>Pilar 2 · Entenda o hóspede certo</b><span>Ficha do hóspede ideal, com necessidade, benefício e objeção.</span></div>
+      <span class="selo">Em breve</span>
+    </div>
+    <div class="acoes"><button class="btn-link" id="recomecar" type="button">Apagar respostas e recomeçar</button></div>
+    <p class="aviso">Este diagnóstico organiza o que investigar e testar. Ele não garante reservas nem faturamento: os resultados dependem da aplicação, da época e do mercado de cada hospedagem.</p>
+  </section>
+</div></main>
+
+<script>
+(function(){
+  var CHAVE = "zion-academy-01-pilar1";
+  var NOMES = ["Abertura","Confronto","Reconhecimento","Orientação","Implementação","Seu diagnóstico"];
+  var CAUSAS = ["Preço","Apresentação (fotos, título, descrição)","Restrições (estadia mínima, regras, datas)","Visibilidade","Procura ou época"];
+  var CAMPOS = ["nome","hospedagem","tipo","reservadas","abertas","bloqueadas","diaria","visualizacoes","consultas","reservasFeitas","gargalo"];
+  var estado = {sente:"", hip:[{},{},{}], exemplo:false};
+  var atual = 0;
+  var $ = function(id){ return document.getElementById(id); };
+
+  // Hipóteses
+  var hWrap = $("hipoteses");
+  var dicas = [
+    {ev:"Ex.: 340 visualizações e só 6 consultas no mês", te:"Ex.: trocar a primeira foto pela vista ao entardecer"},
+    {ev:"Ex.: 2 hóspedes perguntaram se cabe criança", te:"Ex.: deixar claro na descrição para quantas pessoas é"},
+    {ev:"Ex.: estadia mínima de 3 noites em dias de semana", te:"Ex.: aceitar 2 noites de segunda a quinta"}
+  ];
+  for (var i=0;i<3;i++){
+    var opts = '<option value="">Escolha a causa</option>' + CAUSAS.map(function(c){return '<option>'+c+'</option>';}).join("");
+    hWrap.insertAdjacentHTML("beforeend",
+      '<div class="hip"><div class="hip-t">Hipótese '+(i+1)+'</div>'+
+      '<label class="campo"><span>Causa provável</span><select id="h'+i+'c">'+opts+'</select></label>'+
+      '<label class="campo"><span>O que você viu (evidência)</span><textarea id="h'+i+'e" placeholder="'+dicas[i].ev+'"></textarea></label>'+
+      '<label class="campo"><span>O que você vai testar nesta semana</span><textarea id="h'+i+'t" placeholder="'+dicas[i].te+'"></textarea></label></div>');
+  }
+
+  function num(id){ var v = parseFloat(String($(id).value).replace(",", ".")); return isNaN(v) ? null : v; }
+  function brl(v){ return "R$ " + Math.round(v).toLocaleString("pt-BR"); }
+  function pct(a,b){ return b>0 ? Math.round(a/b*100) : 0; }
+
+  function ler(){
+    var d = {};
+    CAMPOS.forEach(function(c){ d[c] = $(c).value; });
+    var s = document.querySelector('input[name="sente"]:checked'); d.sente = s ? s.value : "";
+    d.hip = [0,1,2].map(function(i){ return {c:$("h"+i+"c").value, e:$("h"+i+"e").value, t:$("h"+i+"t").value}; });
+    d.exemplo = estado.exemplo;
+    return d;
+  }
+  function escrever(d){
+    CAMPOS.forEach(function(c){ if (d[c] != null) $(c).value = d[c]; });
+    document.querySelectorAll('input[name="sente"]').forEach(function(r){ r.checked = (r.value === d.sente); });
+    (d.hip||[]).forEach(function(h,i){ $("h"+i+"c").value = h.c||""; $("h"+i+"e").value = h.e||""; $("h"+i+"t").value = h.t||""; });
+    estado.exemplo = !!d.exemplo; $("exemploTag").hidden = !estado.exemplo;
+  }
+  function salvar(){ if (estado.exemplo) return; try { localStorage.setItem(CHAVE, JSON.stringify({d:ler(), t:atual})); } catch(e){} }
+  function carregar(){ try { var x = JSON.parse(localStorage.getItem(CHAVE)||"null"); if (x && x.d){ escrever(x.d); return x.t||0; } } catch(e){} return 0; }
+
+  function calc(){
+    var r = num("reservadas")||0, a = num("abertas")||0, di = num("diaria")||0;
+    var venda = r + a;
+    return {r:r, a:a, b:num("bloqueadas")||0, venda:venda, ocup:pct(r,venda), di:di,
+      receita:r*di, parada:a*di, vis:num("visualizacoes"), con:num("consultas")||0, res:num("reservasFeitas")||0};
+  }
+
+  function pintarCalculo(){
+    var k = calc();
+    $("rOcup").innerHTML = k.ocup + "<small>%</small>";
+    $("rConta").textContent = k.r + " noites reservadas ÷ " + k.venda + " noites à venda";
+    $("rVenda").textContent = k.venda;
+    $("rVazias").textContent = k.a;
+    $("rReceita").textContent = brl(k.receita);
+    $("rParada").textContent = brl(k.parada);
+    $("fVis").textContent = k.vis == null ? "–" : k.vis.toLocaleString("pt-BR");
+    $("fCon").textContent = k.con;
+    $("fRes").textContent = k.res;
+    var t = [];
+    if (k.vis) t.push(pct(k.con,k.vis) + "% de quem viu perguntou");
+    if (k.con) t.push(pct(k.res,k.con) + "% de quem perguntou reservou");
+    $("fTaxas").textContent = t.length ? t.join(" · ") : "Preencha visualizações e consultas para ver as taxas.";
+  }
+
+  function validar(n){
+    var e = "";
+    if (n === 0){ if (!$("hospedagem").value.trim()) e = "Escreva o nome da hospedagem para ele aparecer no seu PDF."; }
+    if (n === 1){ if (!document.querySelector('input[name="sente"]:checked')) e = "Marque uma opção. Pode ser \"Não sei dizer\"."; }
+    if (n === 2){
+      var r = num("reservadas"), a = num("abertas");
+      if (r == null || a == null) e = "Preencha as noites reservadas e as abertas. Se for zero, escreva 0.";
+      else if (r + a + (num("bloqueadas")||0) > 31) e = "A soma de reservadas, abertas e bloqueadas passou de 31 noites. Confira os números.";
+      else if (r + a === 0) e = "Não há noites à venda nos próximos 30 dias. Confira se o calendário está todo bloqueado.";
+      else if (num("diaria") == null) e = "Informe a diária média. Pode ser aproximada.";
+    }
+    if (n === 3){ if (!$("gargalo").value) e = "Escolha onde está o maior gargalo."; }
+    if (n === 4){
+      var falta = [0,1,2].some(function(i){ return !$("h"+i+"c").value || !$("h"+i+"e").value.trim() || !$("h"+i+"t").value.trim(); });
+      if (falta) e = "Complete as três hipóteses: causa, o que você viu e o que vai testar.";
+    }
+    var box = $("erro"+n); if (box) box.textContent = e;
+    return !e;
+  }
+
+  function pintarResumo(){
+    var k = calc(), d = ler();
+    $("tituloFinal").innerHTML = (d.nome ? d.nome + ", seu" : "Seu") + " diagnóstico <em>está pronto.</em>";
+    var linhas = [
+      ["Hospedagem", d.hospedagem || "–"],
+      ["Ocupação, próximos 30 dias", k.ocup + "%"],
+      ["Noites vazias", String(k.a)],
+      ["Receita parada, pela diária atual", brl(k.parada)],
+      ["Maior gargalo", d.gargalo || "–"]
+    ];
+    d.hip.forEach(function(h,i){ linhas.push(["Teste " + (i+1) + " · " + (h.c||"–"), h.t || "–"]); });
+    $("resumo").innerHTML = linhas.map(function(l){ return "<div><span></span><span></span></div>"; }).join("");
+    var rows = $("resumo").children;
+    linhas.forEach(function(l,i){ rows[i].children[0].textContent = l[0]; rows[i].children[1].textContent = l[1]; });
+  }
+
+  function ir(n){
+    if (n > atual && !validar(atual)) return;
+    document.querySelectorAll(".tela").forEach(function(t,i){ t.classList.toggle("ativa", i === n); });
+    atual = n;
+    $("etapaNome").textContent = NOMES[n];
+    $("etapaNum").textContent = (n+1) + " de 6";
+    document.querySelectorAll("#trilho span").forEach(function(s,i){ s.classList.toggle("on", i <= n); });
+    if (n === 3) pintarCalculo();
+    if (n === 5) pintarResumo();
+    salvar();
+    window.scrollTo({top:0, behavior:"auto"});
+  }
+
+  document.addEventListener("click", function(ev){
+    var b = ev.target.closest("[data-ir]"); if (!b) return;
+    ev.preventDefault(); ir(parseInt(b.getAttribute("data-ir"),10));
+  });
+  document.addEventListener("input", function(){ salvar(); });
+
+  $("carregarExemplo").addEventListener("click", function(){
+    escrever({nome:"Ana", hospedagem:"Cabana demonstrativa", tipo:"cabana para casal · serra catarinense",
+      reservadas:"9", abertas:"21", bloqueadas:"0", diaria:"320", visualizacoes:"340", consultas:"6", reservasFeitas:"2",
+      gargalo:"Apresentação do anúncio", sente:"conversao",
+      hip:[{c:"Apresentação (fotos, título, descrição)", e:"340 visualizações e só 6 consultas no mês", t:"Trocar a primeira foto pela vista ao entardecer"},
+           {c:"Restrições (estadia mínima, regras, datas)", e:"Estadia mínima de 3 noites também de segunda a quinta", t:"Aceitar 2 noites de segunda a quinta"},
+           {c:"Preço", e:"Taxa de limpeza deixa o total 25% acima de 3 cabanas parecidas", t:"Rever a taxa de limpeza antes de mexer na diária"}],
+      exemplo:true});
+    ir(3);
+  });
+  $("recomecar").addEventListener("click", function(){
+    try { localStorage.removeItem(CHAVE); } catch(e){}
+    estado.exemplo = false;
+    escrever({nome:"",hospedagem:"",tipo:"",reservadas:"",abertas:"",bloqueadas:"",diaria:"",visualizacoes:"",consultas:"",reservasFeitas:"",gargalo:"",sente:"",hip:[{},{},{}],exemplo:false});
+    ir(0);
+  });
+
+  // PDF
+  var LOGO = document.querySelector(".topo img").src;
+  function gerarPdf(){
+    var st = $("statusPdf");
+    if (!window.jspdf){ st.textContent = "Não foi possível carregar o gerador de PDF. Verifique a internet e tente de novo."; return; }
+    var d = ler(), k = calc();
+    var doc = new window.jspdf.jsPDF({unit:"mm", format:"a4", compress:true});
+    var W = 210, M = 18, y = 0;
+    var PRETO=[4,6,5], CREME=[254,245,240], TERRA=[139,113,78], OURO=[150,124,62], TXT=[27,33,23], CINZA=[95,95,85];
+    function novaPagina(){ doc.addPage(); y = 20; }
+    function cabe(h){ if (y + h > 280) novaPagina(); }
+    function titulo(t){ cabe(14); doc.setFont("helvetica","bold"); doc.setFontSize(9); doc.setTextColor.apply(doc, OURO); doc.text(t.toUpperCase(), M, y, {charSpace:.6}); y += 2.5; doc.setDrawColor.apply(doc, TERRA); doc.setLineWidth(.3); doc.line(M, y, W-M, y); y += 6; }
+    function linha(a, b){ cabe(8); doc.setFont("helvetica","normal"); doc.setFontSize(10.5); doc.setTextColor.apply(doc, CINZA); doc.text(a, M, y);
+      doc.setFont("helvetica","bold"); doc.setTextColor.apply(doc, TXT); var l = doc.splitTextToSize(String(b), 80); doc.text(l, W-M, y, {align:"right"}); y += 6.5 * l.length; }
+    function para(t, tam, cor, estilo){ doc.setFont("helvetica", estilo||"normal"); doc.setFontSize(tam||10.5); doc.setTextColor.apply(doc, cor||TXT);
+      var l = doc.splitTextToSize(t, W-2*M); cabe(l.length*5+2); doc.text(l, M, y); y += l.length*5 + 2; }
+
+    // capa
+    doc.setFillColor.apply(doc, PRETO); doc.rect(0,0,W,62,"F");
+    try { doc.addImage(LOGO, "PNG", M, 14, 61, 16, "logo", "FAST"); } catch(e){}
+    doc.setFont("helvetica","normal"); doc.setFontSize(8.5); doc.setTextColor(201,179,126);
+    doc.text("ZION HOTEL ACADEMY  ·  VOL. 01  ·  PILAR 1 DE 7", M, 42, {charSpace:.5});
+    doc.setFont("times","normal"); doc.setFontSize(24); doc.setTextColor.apply(doc, CREME);
+    doc.text("Diagnóstico do calendário", M, 53);
+    y = 76;
+    doc.setFont("times","italic"); doc.setFontSize(15); doc.setTextColor.apply(doc, TXT);
+    doc.text(d.hospedagem || "Minha hospedagem", M, y); y += 6;
+    doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor.apply(doc, CINZA);
+    var sub = [d.tipo, d.nome ? "Preenchido por " + d.nome : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join("  ·  ");
+    doc.text(sub, M, y); y += 5;
+    if (d.exemplo){ doc.setTextColor(170,90,30); doc.text("EXEMPLO FICTÍCIO · números ilustrativos", M, y); y += 5; }
+    y += 6;
+
+    titulo("Próximos 30 dias");
+    doc.setFont("times","normal"); doc.setFontSize(40); doc.setTextColor.apply(doc, OURO); doc.text(k.ocup + "%", M, y+10);
+    doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor.apply(doc, CINZA);
+    doc.text("de ocupação  (" + k.r + " noites reservadas de " + k.venda + " à venda)", M + 34, y+9); y += 18;
+    linha("Noites vazias", String(k.a));
+    linha("Noites bloqueadas por você", String(k.b));
+    linha("Diária média", brl(k.di));
+    linha("Receita de diárias já reservada", brl(k.receita));
+    linha("Receita parada nas noites vazias", brl(k.parada));
+    y += 4;
+
+    titulo("Últimos 30 dias: onde o hóspede para");
+    linha("Visualizações do anúncio", k.vis == null ? "não informado" : k.vis.toLocaleString("pt-BR"));
+    linha("Consultas e mensagens", String(k.con));
+    linha("Reservas feitas", String(k.res));
+    if (k.vis) linha("De quem viu, perguntou", pct(k.con,k.vis) + "%");
+    if (k.con) linha("De quem perguntou, reservou", pct(k.res,k.con) + "%");
+    var sente = {procura:"Falta de procura", visibilidade:"Falta de visibilidade", conversao:"Baixa conversão", naosei:"Não sabia dizer"}[d.sente] || "–";
+    linha("O que você sentia antes", sente);
+    linha("Gargalo apontado pelos dados", d.gargalo || "–");
+    y += 4;
+
+    titulo("Três hipóteses para testar");
+    d.hip.forEach(function(h,i){
+      cabe(26);
+      doc.setFont("times","bold"); doc.setFontSize(13); doc.setTextColor.apply(doc, OURO); doc.text("Hipótese " + (i+1) + "  ·  " + (h.c||"–"), M, y); y += 6;
+      para("Evidência: " + (h.e||"–"), 10.5, TXT);
+      para("Teste desta semana: " + (h.t||"–"), 10.5, TXT, "bold");
+      y += 2;
+    });
+
+    titulo("Seus próximos 7 dias");
+    ["Leia 20 avaliações de imóveis parecidos e anote os motivos da viagem.",
+     "Escolha 5 concorrentes parecidos com o seu para comparar no Pilar 3.",
+     "Aplique só o teste da hipótese 1 e anote a data da mudança.",
+     "Daqui a 7 dias, repita a contagem: consultas, reservas e noites vazias."].forEach(function(t){
+      cabe(7); doc.setDrawColor.apply(doc, TERRA); doc.rect(M, y-3.2, 3.5, 3.5); para("     " + t, 10.5, TXT);
+    });
+
+    // rodapé em todas as páginas
+    var n = doc.getNumberOfPages();
+    for (var p=1;p<=n;p++){ doc.setPage(p); doc.setFont("helvetica","normal"); doc.setFontSize(7.5); doc.setTextColor(130,125,110);
+      doc.text(doc.splitTextToSize("Zion Hotel Academy · Seu Airbnb Está Vazio? · Pilar 1. Este diagnóstico organiza o que investigar e testar; não garante reservas nem faturamento.", W-2*M-14), M, 289);
+      doc.text(p + "/" + n, W-M, 289, {align:"right"}); }
+
+    var arq = "Diagnostico-Pilar1-" + (d.hospedagem||"hospedagem").normalize("NFD").replace(/[̀-ͯ]/g,"").replace(/[^A-Za-z0-9]+/g,"-").replace(/^-|-$/g,"") + ".pdf";
+    try { doc.save(arq); st.textContent = "PDF gerado: " + arq + ". Se o download não começar, abra esta página no navegador do celular ou do computador."; }
+    catch(e){ st.textContent = "O download foi bloqueado por este navegador. Abra a página no Chrome ou no Safari e tente de novo."; }
+    window.__ultimoPdf = doc;
+  }
+  $("gerarPdf").addEventListener("click", gerarPdf);
+
+  ir(carregar());
+})();
+</script>
