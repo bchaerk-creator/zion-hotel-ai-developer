@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Zion Arsenal · Zion Hotel Academy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="engine.css">
+</head>
+<body>
+<div id="za-app"><main class="za-wrap"><p>Carregando sua mini mentoria…</p></main></div>
+<noscript><p style="padding:16px">Ative o JavaScript para usar a ferramenta.</p></noscript>
+<script src="engine.js"></script>
+<script>
+(function(){
+  var p=(window.ZA_PRODUCT||new URLSearchParams(location.search).get('p')||'').toUpperCase();
+  if(!/^[AB](0[1-9]|10)$/.test(p)){document.getElementById('za-app').innerHTML='<main class="za-wrap"><h1 class="za-h">Produto não encontrado</h1><p>Acesse a ferramenta pelo link da sua área de membros Zion Arsenal.</p></main>';return;}
+  ZA._onRegister=function(){ZA.boot(document.getElementById('za-app'));};
+  var s=document.createElement('script'); s.src=(window.ZA_BASE||'')+'products/'+p+'.js';
+  s.onerror=function(){document.getElementById('za-app').innerHTML='<main class="za-wrap"><h1 class="za-h">Esta mini mentoria ainda não está disponível</h1></main>';};
+  document.body.appendChild(s);
+})();
+</script>
+</body>
+</html>
