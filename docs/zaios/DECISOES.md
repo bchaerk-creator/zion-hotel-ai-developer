@@ -23,7 +23,14 @@
 | 06/11/2026 | Etapa 3 · Parte 1 | Motor com blocos, escolha múltipla, listas, veredito e aba Pendências. P1 Território com semáforo por tema. 139 testes | 8,7 |
 | 06/11/2026 | Etapa 3 · Parte 2 | Ajustes no P1 (servidão e faixa de rodovia em amarelo; frase por tema). P2 Mercado e P3 Produto. Faixa dos concorrentes no exercício de faturamento. 198 testes | 7,2 |
 | 06/11/2026 | Etapa 3 · Parte 3 | Dossiê preliminar: aba Dossiê, 12 seções, selo de qualidade, versões imutáveis no banco, PDF A4 com texto selecionável. CAPEX e viabilidade como "Em breve" | 8,9 |
-| | **Total até aqui** | | **54,1** |
+| 06/11/2026 | Etapa 4 · Parte 1 | Jornada Operação: V1 Raio-X da casa (nota por critério, 5 correções) e V2 Posicionamento. Dossiê de Operação. 227 testes | 9,3 |
+| 06/11/2026 | Etapa 4 · Parte 2 | G1 Maturidade da gestão e Plano de Melhoria (sincronizado com as pendências). 260 testes | 13,3 |
+| 06/11/2026 | Etapa 4 · Parte 3 | INCOMPLETA. G2 Finanças e G3 Indicadores construídos, mas com erro de build: a prévia não abre. Testes desta parte não escritos. Parou porque o workspace ficou sem créditos | 8,8 |
+| | **Total até aqui** | | **85,5** |
+
+## Para retomar (quando houver créditos)
+- Corrigir o erro de build em src/routes/_authenticated/empreendimentos.$id_.financas.tsx.
+- Escrever e rodar os testes de G2 e G3 (fórmulas, segurança, dossiê), atualizar FORMULAS.md, conferir em 390px e conferir o PDF do Dossiê de Operação.
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
