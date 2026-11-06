@@ -7,6 +7,7 @@
 | 05/11/2026 | O MVP sai sem IA generativa: as fichas funcionam como exercícios guiados, com cálculos determinísticos e veredito por regras. A IA entra na fase seguinte, começando por P5 (CAPEX) e P6 (Viabilidade) | Bruno Chaerk |
 | 06/11/2026 | Seguir para a Etapa 2 com as fórmulas como "Versão 0, a validar pela Zion" | Bruno Chaerk |
 | 06/11/2026 | Iniciar a Etapa 3 por P1, P2 e P3, que não dependem das planilhas | Bruno Chaerk |
+| 06/11/2026 | Fazer o Dossiê preliminar antes da Jornada Operação | Bruno Chaerk |
 
 ## Decisões pendentes
 - Fonte oficial das fórmulas financeiras (planilhas e simuladores Zion de referência).
@@ -21,7 +22,8 @@
 | 06/11/2026 | Etapa 2 · Correções | Revisão do código encontrou 4 defeitos (leitura de reais com ponto, campos sem limite, concluído voltando a rascunho, recálculo com valor antigo). Corrigidos. 74 testes passaram e o fluxo foi conferido em 390px | 3,9 |
 | 06/11/2026 | Etapa 3 · Parte 1 | Motor com blocos, escolha múltipla, listas, veredito e aba Pendências. P1 Território com semáforo por tema. 139 testes | 8,7 |
 | 06/11/2026 | Etapa 3 · Parte 2 | Ajustes no P1 (servidão e faixa de rodovia em amarelo; frase por tema). P2 Mercado e P3 Produto. Faixa dos concorrentes no exercício de faturamento. 198 testes | 7,2 |
-| | **Total até aqui** | | **45,2** |
+| 06/11/2026 | Etapa 3 · Parte 3 | Dossiê preliminar: aba Dossiê, 12 seções, selo de qualidade, versões imutáveis no banco, PDF A4 com texto selecionável. CAPEX e viabilidade como "Em breve" | 8,9 |
+| | **Total até aqui** | | **54,1** |
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
