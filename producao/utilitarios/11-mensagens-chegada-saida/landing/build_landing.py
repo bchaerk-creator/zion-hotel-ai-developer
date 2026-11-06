@@ -44,7 +44,7 @@ corpo = f"""
 <ul class="lista">{lis}</ul>
 <p>A jornada parte dos scripts de atendimento usados nas unidades da Zion, generalizados para qualquer hospedagem.</p></div></section>
 <section class="gut" data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
-<img class="foto cm-image" src="{BASE}assets/operacoes/op11.webp" alt="Bubble de vidro da Zion Bubble Glamping" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
+<img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/kit-mensagens-11/capa.jpg" alt="Capa do produto: Kit de Mensagens de Chegada e Saída" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>Planilha em branco: ficha, 10 mensagens montadas e datas de envio</li><li>Exemplo preenchido (dados fictícios)</li><li>Modelos em PDF para copiar à mão</li><li>Guia "Aprenda o passo a passo", com exercícios e critérios de conferência</li></ul>
 <div class="preco">R$ 19</div><p style="margin-top:8px">Pagamento único, Pix ou cartão. Acesso aos arquivos depois do pagamento confirmado. Funciona no Excel, Google Sheets e LibreOffice.</p>
 <div data-cx-checkout></div>

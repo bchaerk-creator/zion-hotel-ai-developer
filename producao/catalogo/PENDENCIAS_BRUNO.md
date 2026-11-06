@@ -9,5 +9,13 @@ Atualizado pelas sessões de produção. Tudo o mais é feito automaticamente.
 ## Arquivos de entrega
 Não dependem mais de Bruno: ficam em `docs/p/adbc67069af26ae0/<produto>/` e são ligados à oferta automaticamente (Ferramentas 01, 11 e 17 já ligadas).
 
+## Imagem do produto no checkout (opcional, 1 minuto por produto)
+O ClickMax só aceita a imagem do produto se ela for enviada para o armazenamento dele, e o módulo de upload que eu usaria (posts sociais) está desligado nesta conta. As capas já estão prontas e em uso na página de vendas e na página de acesso. Para o checkout: Produtos → oferta → imagem do produto → subir o arquivo.
+| Produto | Capa |
+|---|---|
+| Ferramenta 17 | `docs/p/adbc67069af26ae0/checklist-17/capa.jpg` |
+| Ferramenta 11 | `docs/p/adbc67069af26ae0/kit-mensagens-11/capa.jpg` |
+Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
+
 ## Quando quiser
 - Teto de verba para anúncios (hoje R$ 0; campanhas só pausadas).
