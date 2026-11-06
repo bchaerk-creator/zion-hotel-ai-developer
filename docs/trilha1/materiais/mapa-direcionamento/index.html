@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapa de direcionamento · Trilha de Desenvolvimento</title>
+<meta name="description" content="O mapa da Trilha de Desenvolvimento do Club Zion Collection: as tarefas de cada etapa, o que você entrega, a ferramenta que usa, quanto tempo leva e como uma etapa alimenta a seguinte, do Marco Zero ao cadastro no Zion Land Members.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--verde:#16261C;--verde-2:#22382A;--creme:#F5F1E8;--creme-2:#EBE4D4;--dourado:#E0BE5E;--dourado-escuro:#7A5E12;--texto:#16261C;--texto-2:#46564B;--linha:#D6CDB8;--branco:#FFFDF8;--ok:#1F5A33;--ok-bg:#E1EFE3;--raio:14px}
+*{box-sizing:border-box}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+h1{font-size:2rem}h2{font-size:1.35rem}h3{font-size:1.05rem}
+p{margin:0 0 .8em}a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem}.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:860px;margin:0 auto}
+main{padding:20px 16px 40px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;margin-bottom:14px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.progresso{margin:14px 0 4px}.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:10px;background:var(--creme-2);border-radius:99px;overflow:hidden}.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.etapa{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:start}
+.num{width:48px;height:48px;border-radius:50%;background:var(--verde);color:var(--dourado);font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.3rem;display:flex;align-items:center;justify-content:center}
+.etapa.feita .num{background:var(--ok)}
+.meta{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 10px}.meta span{background:var(--creme-2);border-radius:999px;padding:3px 10px;font-size:.78rem;font-weight:600}
+.lista{margin:0;padding-left:0;list-style:none}
+.lista li{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-top:1px solid var(--linha)}
+.lista li:first-child{border-top:0}
+.lista input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.lista label{cursor:pointer}
+.lista li.ok label{color:var(--texto-2);text-decoration:line-through}
+.entrega{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:10px;padding:10px 12px;margin-top:10px;font-size:.92rem}
+.entrega b{color:var(--ok)}
+.alimenta{font-size:.88rem;color:var(--texto-2);margin-top:8px}
+.alimenta b{color:var(--dourado-escuro)}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:12px;font-size:.95rem;background:var(--creme);border:1px solid var(--linha)}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa ul{padding-left:20px;margin:0}
+.btn{appearance:none;border:0;border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;min-height:42px;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.rodape{font-size:.82rem;color:var(--texto-2);text-align:center;padding:8px 16px 24px}
+@media print{.topo,.btn{display:none}.card{break-inside:avoid;box-shadow:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Club Zion Collection</div><div class="etiqueta">Trilha de Desenvolvimento<br>Mapa de direcionamento</div></div></header>
+<main><div class="wrap">
+
+<section class="card">
+  <div class="eyebrow">Comece por aqui</div>
+  <h1>Mapa de direcionamento</h1>
+  <p class="lead">A Trilha inteira numa página: 10 etapas, o que você faz em cada uma, o que sai pronto e como uma etapa alimenta a seguinte. Marque o que já fez; fica salvo neste aparelho. Ao final, você tem um projeto apresentável a investidor, sócio e parceiro, e o terreno cadastrado no Zion Land Members.</p>
+  <div class="progresso"><div class="txt"><span>Seu progresso</span><span id="pct">0 de 0 tarefas</span></div><div class="barra"><i id="barra" style="width:0%"></i></div></div>
+  <div class="caixa"><h3>Como a Trilha se encaixa</h3>
+    <p style="margin:0">O <b>Marco Zero</b> diz onde você está. Os <b>Pilares 1 a 3</b> definem o lugar, a demanda e o produto. Os <b>Pilares 4 e 5</b> decidem como o projeto ganha dinheiro e onde fica cada coisa. O <b>Pilar 6</b> e as <b>Planilhas 1 e 2</b> fazem a conta completa. O <b>Pilar 7</b> fecha o Dossiê e decide o capital. O <b>Kit do Investidor</b> transforma tudo em apresentação. O <b>Zion Land Members</b> recebe o projeto pronto. Cada etapa gera uma página do Dossiê; o Dossiê alimenta as planilhas; as planilhas alimentam o pitch.</p></div>
+  <p style="margin-top:10px"><button class="btn btn-s" type="button" onclick="window.print()">Imprimir ou salvar em PDF</button></p>
+</section>
+
+<div id="etapas"></div>
+
+<section class="card">
+  <div class="eyebrow">Ritmo sugerido</div>
+  <h2>Quanto tempo leva</h2>
+  <p>Com uma hora por dia: Marco Zero e Pilares 1 a 3 em duas semanas; Pilares 4 e 5 em uma; Pilar 6 e planilhas em duas (o que demora é cotação); Pilar 7 e Kit em duas; cadastro no último dia. <b>Sete a oito semanas</b> para sair com o projeto feito. Quem já tem o terreno documentado e o mercado estudado faz em quatro.</p>
+  <div class="caixa"><h3>Três regras para não travar</h3><ul>
+    <li>Onde não souber, marque "estimativa minha" e siga. A ferramenta transforma em pendência, não em reprovação.</li>
+    <li>Nunca pule o Pilar 2. Diária e ocupação sem dado de mercado derrubam todo o resto.</li>
+    <li>Quando a conta não fechar, volte um pilar (produto, fases ou modelo), não force o número.</li></ul></div>
+</section>
+
+</div></main>
+<p class="rodape">Zion Hospitality Business · Club Zion Collection · Material educativo. Os resultados dependem de cada projeto: não são projeção nem promessa de renda, retorno ou parceria. A Zion avalia cada caso.</p>
+
+<script>
+(function(){
+const B="https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/";
+const E=[
+ {n:"0",t:"Marco Zero · A visão de toda a jornada",tempo:"2 h",ferr:"Aula interativa + Diagnóstico prévio",tar:["Assistir aos dois vídeos do Marco Zero","Responder ao Diagnóstico prévio: onde você está e o que te trouxe aqui","Baixar a página 0 do Dossiê"],ent:"Página 0 do Dossiê: o seu ponto de partida e a sua pergunta principal",ali:"Diz qual pilar precisa de mais atenção. Nada mais depende dele, tudo começa nele."},
+ {n:"1",t:"Pilar 1 · Território e destino",tempo:"3 h + documentos",ferr:"Leitor de Território (CEP) + Ficha do Território",tar:["Levantar matrícula, área, CAR e situação documental","Rodar o Leitor de Território com o CEP e anotar zoneamento e taxa de ocupação","Listar acesso, energia, água, internet e o que já existe no terreno","Baixar a página 1 do Dossiê"],ent:"Página 1: o que o terreno é, o que a lei permite e o que falta documentar",ali:"Alimenta o limite legal da Planilha 2 (Massas), a pasta Terreno do data room e as perguntas do cadastro Land Members."},
+ {n:"2",t:"Pilar 2 · Mercado e demanda",tempo:"4 h de pesquisa",ferr:"Ficha do Mercado",tar:["Mapear comparáveis no seu raio: unidades, diárias de fim de semana e de semana","Medir ocupação de alta, média e baixa nos calendários dos comparáveis","Registrar visitação da região e o que está em obra","Baixar a página 2 do Dossiê"],ent:"Página 2: diária e ocupação de referência, com fonte",ali:"É a origem da diária e da ocupação da Planilha 2 (Modelo de renda) e do slide 3 do pitch. Sem ela, tudo depois é palpite."},
+ {n:"3",t:"Pilar 3 · Produto e tipologias",tempo:"3 h",ferr:"Ficha do Produto",tar:["Definir público principal, quem vem de domingo a quinta e quem fica de fora","Escrever o momento assinatura e a promessa em uma frase","Escolher a tipologia que passa nos três filtros (terreno, capital, público)","Definir área interna, unidades da fase 1 e hipótese de diária","Baixar a página 3 do Dossiê"],ent:"Página 3: o produto, para quem e a promessa",ali:"Define as tipologias e metragens das Planilhas 1 e 2 e é a base do plano conceitual e da marca (Kit, peças 5 e 6)."},
+ {n:"4",t:"Pilar 4 · Modelo de negócio",tempo:"2 h",ferr:"O seu Modelo de Negócio",tar:["Decidir: renda, venda ou misto, e em que degrau da escada começa a fase 1","Definir quem opera a fase 1","Se houver venda: o que, para quem e em quantas frações","Baixar a página 4 do Dossiê"],ent:"Página 4: como o projeto ganha dinheiro",ali:"Decide qual aba da Planilha 2 pesa mais (Modelo de venda ou Modelo de renda) e o pedido do Pilar 7."},
+ {n:"5",t:"Pilar 5 · Masterplan faseado",tempo:"4 h + visita ao terreno",ferr:"O seu Masterplan faseado",tar:["Marcar o 'nunca': o que não será construído, zona por zona","Definir unidades da fase 1 e do projeto completo, área fechada e deck de cada uma","Dimensionar as áreas de apoio da fase 1 e do projeto completo","Estaquear as unidades e caminhar às 7h e às 17h; simular um dia de troca de hóspede","Baixar a página 5 do Dossiê"],ent:"Página 5: onde fica cada coisa e o que entra na fase 1",ali:"Alimenta direto a aba Massas da Planilha 2 e os slides 6 do pitch. As fases viram as fases do orçamento."},
+ {n:"6",t:"Pilar 6 · Pré-viabilidade e as duas planilhas",tempo:"6 h + espera de cotações",ferr:"Pré-viabilidade (folha de 8 linhas) + Planilha 1 + Planilha 2",tar:["Fazer a Pré-viabilidade da aula: a folha de oito linhas e os três cenários","Preencher a Planilha 1 · Orçamento de Abertura, com 3 cotações nos itens grandes","Preencher a Planilha 2 · Estudo de Massas e Viabilidade (massas, investimento, venda, renda)","Rodar a sensibilidade: diária −15%, ocupação −10 pontos, CAPEX +20%","Voltar à ferramenta da aula e refazer a página 6 com os números das planilhas"],ent:"Página 6 alinhada com as planilhas: CAPEX, custo por m², cenários, payback, TIR e VPL",ali:"Tudo que o Kit do Investidor usa vem daqui. Se a conta não fecha no conservador, volte ao Pilar 3, 4 ou 5 antes de seguir."},
+ {n:"7",t:"Pilar 7 · Capital e Dossiê",tempo:"3 h",ferr:"O seu Dossiê de Desenvolvimento",tar:["Responder às três perguntas do capital e definir o pedido exato","Escolher as fontes possíveis (recurso próprio, banco, investidor, sócio, pré-venda, parceria)","Decidir: avançar, ajustar ou parar, e o plano de 90 dias","Gerar o Dossiê completo (páginas 0 a 7) em PDF"],ent:"Dossiê de Desenvolvimento completo e a decisão",ali:"O pedido e as fontes viram o slide 12 do pitch e os campos de capital do cadastro Land Members."},
+ {n:"8",t:"Kit do Investidor",tempo:"2 semanas, 1 h por dia",ferr:"Kit do Investidor (guia, prompts e modelos)",tar:["Preencher a Ficha de números do Kit com as planilhas","Gerar e revisar: one-pager e masterplan de viabilidade","Gerar e revisar: plano conceitual e direcionamento de marca","Montar o pitch no modelo pptx e treinar 15 minutos em voz alta","Escrever o teaser e montar o data room"],ent:"Seis peças em PDF: teaser, one-pager, pitch, masterplan de viabilidade, plano conceitual, marca",ali:"É o que o investidor, o sócio, o banco e a Zion recebem. Sem o Pilar 6 alinhado, o Kit não tem número para mostrar."},
+ {n:"9",t:"Zion Land Members · Cadastre o seu terreno",tempo:"30 min",ferr:"Formulário Zion Land Members",tar:["Preencher o cadastro com o mesmo e-mail da área de membros","Anexar documentos do terreno, PDFs do Dossiê, planilhas e peças do Kit","Informar investimento estimado, pedido de capital e o que você busca da Zion","Enviar o teaser para as 3 primeiras pessoas da sua lista de fontes de capital"],ent:"Terreno, Dossiê, planilhas e pitch na base da Zion, e as primeiras conversas abertas",ali:"A equipe Zion avalia cada caso. Quando houver aderência, procura você para conversar sobre possibilidades de parceria e de investimento. Não é promessa; é acesso à conversa com o projeto feito."}
+];
+const L={"0":"marco-zero/","1":"territorio/","2":"aula2/","3":"aula3/","4":"pilar4/","5":"pilar5/","6":"pilar6/","7":"pilar7/","8":"materiais/kit-investidor/","9":"https://airtable.com/appNazhHg9mqWAt9h/pageylHbg89JNYm81/form"};
+const K="zion_mapa_v1"; let S={}; try{S=JSON.parse(localStorage.getItem(K)||"{}")}catch(e){}
+const root=document.getElementById("etapas"); let total=0;
+E.forEach(e=>{
+  const sec=document.createElement("section"); sec.className="card etapa"; sec.id="e"+e.n;
+  const link=L[e.n].startsWith("http")?L[e.n]:B+L[e.n];
+  sec.innerHTML=`<div class="num">${e.n}</div><div><h2>${e.t}</h2><div class="meta"><span>${e.tempo}</span><span>${e.ferr}</span></div><ul class="lista">${e.tar.map((t,i)=>{const id="t"+e.n+"_"+i;total++;return `<li id="li_${id}"><input type="checkbox" id="${id}" data-k="${id}"><label for="${id}">${t}</label></li>`}).join("")}</ul><div class="entrega"><b>O que sai pronto:</b> ${e.ent}</div><p class="alimenta"><b>Alimenta:</b> ${e.ali}</p><p style="margin:10px 0 0"><a class="btn btn-s" href="${link}" target="_blank" rel="noopener">Abrir a ferramenta</a></p></div>`;
+  root.appendChild(sec);
+});
+function atualiza(){let n=0;document.querySelectorAll(".lista input").forEach(c=>{const on=!!S[c.dataset.k];c.checked=on;c.closest("li").classList.toggle("ok",on);if(on)n++});document.querySelectorAll(".etapa").forEach(s=>{const cs=[...s.querySelectorAll("input")];s.classList.toggle("feita",cs.length&&cs.every(c=>c.checked))});document.getElementById("pct").textContent=`${n} de ${total} tarefas`;document.getElementById("barra").style.width=(total?Math.round(100*n/total):0)+"%"}
+root.addEventListener("change",ev=>{if(ev.target.matches("input")){S[ev.target.dataset.k]=ev.target.checked;try{localStorage.setItem(K,JSON.stringify(S))}catch(e){}atualiza()}});
+atualiza();
+})();
+</script>
+</body>
+</html>
