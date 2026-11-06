@@ -232,7 +232,7 @@
     } else {
       // Funil completo e com valores > 0: só interpretamos com referência (período anterior ou meta)
       var bloco = { id: "funil", titulo: "Onde o hóspede para", tipo: "fato",
-        resultado: "De " + r.visualizacoes.toLocaleString("pt-BR") + " visualizações saíram " + r.consultas + " consultas" + (r.taxaConsulta != null ? " (" + pct(r.taxaConsulta) + ")" : "") + " e " + r.reservas + " reservas" + (r.taxaReserva != null ? " (" + pct(r.taxaReserva) + " das consultas)" : "") + "." + (r.estadiaMedia ? " Estadia média: " + arred(r.estadiaMedia, 1).toLocaleString("pt-BR") + " noites por reserva." : ""),
+        resultado: "De " + r.visualizacoes.toLocaleString("pt-BR") + " visualizações saíram " + r.consultas + " consultas" + (r.taxaConsulta != null ? " (" + pct(r.taxaConsulta) + ")" : "") + " e " + r.reservas + (r.reservas === 1 ? " reserva" : " reservas") + (r.taxaReserva != null ? " (" + pct(r.taxaReserva) + " das consultas)" : "") + "." + (r.estadiaMedia ? " Estadia média: " + arred(r.estadiaMedia, 1).toLocaleString("pt-BR") + " noites por reserva." : ""),
         significado: "", atencao: "", fazer: "", verificar: "" };
       var a = r.anterior;
       if (a) {

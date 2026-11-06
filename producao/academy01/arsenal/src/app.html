@@ -599,8 +599,8 @@ ul.premissas li{margin:6px 0}
     var W = 210, M = 18, y = 0;
     var PRETO=[4,6,5], CREME=[254,245,240], OURO=[150,124,62], TXT=[27,33,23], CINZA=[95,95,85], TERRA=[139,113,78];
     function cabe(h){ if (y + h > 278){ doc.addPage(); y = 22; } }
-    function sec(num, t){ cabe(16); y += 3; doc.setFont("times","normal"); doc.setFontSize(15); doc.setTextColor.apply(doc,TXT); doc.text(num + ". " + t, M, y); y += 2.5; doc.setDrawColor.apply(doc,TERRA); doc.setLineWidth(.3); doc.line(M,y,W-M,y); y += 6; }
-    function tag(t, cor){ doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor.apply(doc,cor); doc.text(t.toUpperCase(), M, y, {charSpace:.5}); y += 4; }
+    function sec(num, t){ cabe(26); y += 3; doc.setFont("times","normal"); doc.setFontSize(15); doc.setTextColor.apply(doc,TXT); doc.text(num + ". " + t, M, y); y += 2.5; doc.setDrawColor.apply(doc,TERRA); doc.setLineWidth(.3); doc.line(M,y,W-M,y); y += 6; }
+    function tag(t, cor){ cabe(20); doc.setFont("helvetica","bold"); doc.setFontSize(7); doc.setTextColor.apply(doc,cor); doc.text(t.toUpperCase(), M, y, {charSpace:.5}); y += 4; }
     function linha(a,b){ var l = doc.splitTextToSize(String(b), 85); cabe(6*l.length+1); doc.setFont("helvetica","normal"); doc.setFontSize(10); doc.setTextColor.apply(doc,CINZA); doc.text(a, M, y); doc.setFont("helvetica","bold"); doc.setTextColor.apply(doc,TXT); doc.text(l, W-M, y, {align:"right"}); y += 6*l.length; }
     function para(t, est, tam, cor){ doc.setFont("helvetica", est||"normal"); doc.setFontSize(tam||10); doc.setTextColor.apply(doc, cor||TXT); var l = doc.splitTextToSize(String(t), W-2*M); cabe(l.length*4.6+2); doc.text(l, M, y); y += l.length*4.6 + 1.5; }
 
