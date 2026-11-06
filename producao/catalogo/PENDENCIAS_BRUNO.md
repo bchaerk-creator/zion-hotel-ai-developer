@@ -3,7 +3,7 @@
 Atualizado pelas sessões de produção. Tudo o mais é feito automaticamente.
 
 ## Uma vez só
-- [ ] Ligar o GitHub Pages (GitHub → Settings → Pages → branch `main`, pasta `/docs`). Sem isso as fotos das páginas não aparecem.
+- [ ] Ligar o GitHub Pages (GitHub → Settings → Pages → branch `main`, pasta `/docs`). Sem isso as fotos das páginas e os links de download das entregas não abrem. (Não consigo conferir daqui: o acesso ao github.io é bloqueado neste ambiente.)
 - [ ] Concluir a análise de vendedor no ClickMax (Carteira → `/sales/wallet`). Sem isso nenhum checkout vende.
 
 ## Arquivos de entrega
