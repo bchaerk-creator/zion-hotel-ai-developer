@@ -93,7 +93,7 @@ Regras: sem promessa de avaliações ou reservas; dados fictícios identificados
 ## 13. Instruções de entrega (ClickMax)
 Projeto **Infoprodutos Zion** `8d1152a4-4490-4666-bcb5-582b75c82660`. Padrão: pagamento único, Pix e cartão à vista, `softDescriptor` ZIONACADEMY, `supportPhone` +55 48 6137-1061, reembolso 7 dias.
 1. Produto e oferta novos "Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação", R$ 19.
-2. Entrega por arquivo: Bruno sobe o ZIP em Produtos → oferta → "Cadastrar E-Books, PDFs ou Arquivos Digitais" (ou `offers_add_file_delivery` com URL pública, se Bruno autorizar publicar o ZIP).
+2. Entrega por arquivo: os 4 arquivos finais ficam em `docs/p/adbc67069af26ae0/checklist-17/` e estão ligados à oferta com `offers_add_file_delivery` (06/11/2026).
 3. Página: molde `producao/academy01/landing/`, com `data-cx-section`, `data-cx-cta` e `<div data-cx-checkout></div>`; spans com cor explícita.
 4. Mensagem de acesso: "Seu checklist chegou. Comece pelo arquivo Guia-Aprenda-o-Passo-a-Passo.pdf e depois abra a planilha EM-BRANCO. Dúvidas: +55 48 6137-1061."
 5. Conferir o caminho completo: pagamento confirmado → e-mail de acesso → download do ZIP. Tag isolada não comprova entrega.

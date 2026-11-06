@@ -86,7 +86,7 @@ Mesmo degrau das ferramentas 01 e 17. Concorre com modelos grátis: o valor est�
 Comprador: zero. Por venda: taxa do checkout, impostos, reembolsos. Entrega por arquivo, sem servidor. Manutenção: revisar se as plataformas mudarem as regras de mensagens.
 
 ## 13. Instruções de entrega (ClickMax)
-Mesmo padrão da Ferramenta 17 (projeto Infoprodutos Zion, pagamento único, Pix e cartão, `ZIONACADEMY`, +55 48 6137-1061, reembolso 7 dias). Bruno sobe o ZIP em Produtos → oferta → "Cadastrar E-Books, PDFs ou Arquivos Digitais". Mensagem de acesso: "Seu kit chegou. Comece pelo Guia-Aprenda-o-Passo-a-Passo.pdf e depois preencha a ficha da planilha EM-BRANCO. Dúvidas: +55 48 6137-1061." Conferir o caminho completo: pagamento confirmado → e-mail de acesso → download. Plano B: Hotmart.
+Mesmo padrão da Ferramenta 17 (projeto Infoprodutos Zion, pagamento único, Pix e cartão, `ZIONACADEMY`, +55 48 6137-1061, reembolso 7 dias). Entrega por arquivo: os 4 arquivos finais ficam em `docs/p/adbc67069af26ae0/kit-mensagens-11/` e estão ligados à oferta com `offers_add_file_delivery` (06/11/2026). Mensagem de acesso: "Seu kit chegou. Comece pelo Guia-Aprenda-o-Passo-a-Passo.pdf e depois preencha a ficha da planilha EM-BRANCO. Dúvidas: +55 48 6137-1061." Conferir o caminho completo: pagamento confirmado → e-mail de acesso → download. Plano B: Hotmart.
 
 ## 14. Código-fonte e execução
 ```

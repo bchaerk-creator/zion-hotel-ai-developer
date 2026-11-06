@@ -43,6 +43,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
   - **área de membros**: `portals_*`, `classroom_*`, `content_*`, `lesson_*` e `offers_add_membership_delivery`;
   - **link**: `offers_add_link_delivery`;
   - **arquivo**: `offers_add_file_delivery` com URL pública, ou Bruno sobe em Produtos → oferta → "Cadastrar E-Books, PDFs ou Arquivos Digitais".
+- Hospedagem dos entregáveis: no site, em `docs/p/adbc67069af26ae0/<produto>/` (endereço longo, com `noindex` e `Disallow: /p/` no robots.txt). URL pública: `https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/<produto>/`. O repositório é visível no GitHub, então esse endereço é discreto, não secreto.
 - Uma tag isolada não comprova pagamento nem entrega: verifique o caminho completo, do pagamento confirmado até o acesso.
 - A aprovação da oferta é feita por uma pessoa do ClickMax: envie para aprovação só depois que `offers_get_incomplete_reason` voltar vazio.
 - Plano B: Hotmart, com o mesmo produto.
@@ -50,11 +51,11 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 ## 4. Produtos já existentes neste repositório
 | Produto | Pasta | ClickMax |
 |---|---|---|
-| Arsenal Interativo 01 · Seu Airbnb Está Vazio? (40 telas, 7 pilares, dossiê em PDF) | `producao/academy01/arsenal/` | Oferta `1ff56fea-8d49-4018-b0cd-e64e408eddf3` (R$ 27, checkout `ySAkZG38VS`) |
+| Arsenal Interativo 01 · Seu Airbnb Está Vazio? (40 telas, 7 pilares, dossiê em PDF) | `producao/academy01/arsenal/` | Oferta `1ff56fea-8d49-4018-b0cd-e64e408eddf3` (R$ 27, checkout `ySAkZG38VS`). Entrega por link: `p/adbc67069af26ae0/arsenal-01/` |
 | Landing do Arsenal 01 | `producao/academy01/landing/` | Página `82e1bb5f-9f91-4dc7-9a3d-c6635dbee0e6` (rascunho, `/academy-01`) |
-| Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`) |
-| Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação | `producao/utilitarios/17-checklist-limpeza/` | Oferta `08ad22e8-9f9a-4244-856f-1bca05234924` (R$ 19, checkout `uB0Db7Gpg4`), página `023476bb-0ea7-41b2-ba99-73c62a5aa94c` (rascunho, `/checklist-limpeza`) |
-| Ferramenta 11 · Kit de Mensagens de Chegada e Saída | `producao/utilitarios/11-mensagens-chegada-saida/` | Oferta `fad5df5a-49fa-442e-aed7-c08cf2f6f92f` (R$ 19, checkout `X4mTsfhUtb`), página `545010c0-a48c-4555-9b73-d501dac3c6a7` (rascunho, `/kit-mensagens`) |
+| Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`). Entrega por arquivo: `p/adbc67069af26ae0/planilha-01/` |
+| Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação | `producao/utilitarios/17-checklist-limpeza/` | Oferta `08ad22e8-9f9a-4244-856f-1bca05234924` (R$ 19, checkout `uB0Db7Gpg4`), página `023476bb-0ea7-41b2-ba99-73c62a5aa94c` (rascunho, `/checklist-limpeza`). Entrega por arquivo: `p/adbc67069af26ae0/checklist-17/` |
+| Ferramenta 11 · Kit de Mensagens de Chegada e Saída | `producao/utilitarios/11-mensagens-chegada-saida/` | Oferta `fad5df5a-49fa-442e-aed7-c08cf2f6f92f` (R$ 19, checkout `X4mTsfhUtb`), página `545010c0-a48c-4555-9b73-d501dac3c6a7` (rascunho, `/kit-mensagens`). Entrega por arquivo: `p/adbc67069af26ae0/kit-mensagens-11/` |
 | Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 
@@ -73,13 +74,13 @@ Escada de preços (Estratégia Low Ticket Ladeira): ferramentas de R$ 19 → Ars
 - **Testes de navegador:** o Playwright já vem instalado (`require('playwright')`).
 - **Ferramenta utilitária (planilha + guia + PDF + página):** use os moldes `producao/utilitarios/17-checklist-limpeza/` e `producao/utilitarios/11-mensagens-chegada-saida/` (build_planilha, test_planilha contra regra independente, build_docs + render.js, empacotar.sh, landing/build_landing.py). Fotos sem pessoas: op04, op05, op07, op08, op09, op10, op11, op12 (op01, op02, op13 e op14 têm pessoas).
 - **Página no ClickMax:** sem imagens embutidas em base64 (não cabem na chamada); demonstração em HTML puro.
-- **Entrega:** o ZIP fica em `dist/` (fora do git, repositório público). Bruno sobe os ZIPs pendentes de uma vez; a lista fica em `producao/catalogo/PENDENCIAS_BRUNO.md`.
+- **Entrega:** copie os arquivos finais (planilhas e PDFs) para `docs/p/adbc67069af26ae0/<produto>/` e ligue cada um à oferta com `offers_add_file_delivery`, como na Ferramenta 01. O ZIP de `dist/` fica só como cópia. O que ainda depende de Bruno fica em `producao/catalogo/PENDENCIAS_BRUNO.md`.
 - **Arquivos isolados por produto:** `producao/<linha>/<nn-nome>/` com `src/`, `dist/`, `tests/` e `OFERTA.md` (público, promessa, entregáveis, copy, perguntas frequentes, 3 anúncios, preço, custos e indicadores).
 
 ## 6. Anúncios no Meta
 - **Formato:** cada criativo 1080×1350 é um anúncio. Todos levam à mesma landing, com `utm_source=meta&utm_medium=paid&utm_campaign=<produto>&utm_content=<criativo>`.
 - **Botão:** no Meta o botão é de uma lista fixa; use "Saiba mais". A chamada personalizada vai na arte e na primeira linha do texto.
-- **Criação de campanha:** só pelo conector da conta de anúncios (ex.: Windsor.ai), se estiver conectado. Crie sempre **pausada**, dentro do orçamento máximo do prompt, e ative só com "aprovado".
+- **Criação de campanha:** pelo Windsor.ai (conector `facebook`, já conectado; contas de anúncio: Zion Bubble `1767208367384473`, Zion Collection 2, Bruno Ch, BRUNO 01). Confirme com Bruno qual conta usar. Crie sempre **pausada**, dentro do orçamento máximo do prompt, e ative só com "aprovado".
 - **Medição:** compare o custo por venda com o preço menos taxas e impostos. Faturamento não é lucro.
 
 ## 7. Economia de créditos
