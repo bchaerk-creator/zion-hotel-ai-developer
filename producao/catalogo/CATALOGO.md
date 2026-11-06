@@ -12,7 +12,7 @@ Orientação central: **"Aprenda o passo a passo."** Nada aqui foi publicado, at
 | 60 páginas | A skill da série editorial fala em 60 a 70 páginas por volume. Não abrimos os PDFs A01 a A10 para contar as páginas | Conferir |
 | Narrativa | **Bruno confirmou em 06/11/2026: a narrativa é ECROI** ("CROI" no prompt era ECROI). Definição usada, da skill ECROI: **E** Espelhamento, **C** Colapso de crença, **R** Reencadramento, **O** Inevitabilidade, **I** Resultado viral educacional, nesta ordem. Bruno confirmou que vale esta sequência (a da skill), aplicada como roteiro de texto: espelhar a situação do leitor, derrubar a crença que trava, reenquadrar, mostrar o caminho e fechar com o resultado educacional. Conforme o handoff de 16/10, o ECROI fica fora das aulas: usamos na narrativa de venda, na abertura e no fechamento dos e-books, nos anúncios e no carrossel, sem promessa de resultado | Resolvido |
 
-**Consequência:** os dez títulos propostos no prompt são diferentes dos dez temas originais. Os originais seguem a jornada do desenvolvedor (terreno → lançamento). Os propostos misturam começar, operar e vender. A tabela 2 mostra a correspondência. **Bruno decide:** (a) manter os dez originais, (b) adotar os dez propostos, ou (c) os propostos como linha "Aprenda o passo a passo", separada da coleção Método Zion 360°. Recomendamos a opção (c): os volumes A são de desenvolvimento e não devem ser alterados.
+**Consequência:** os dez títulos propostos no prompt são diferentes dos dez temas originais. Os originais seguem a jornada do desenvolvedor (terreno → lançamento). Os propostos misturam começar, operar e vender. A tabela 2 mostra a correspondência. **Bruno decide:** (a) manter os dez originais, (b) adotar os dez propostos, ou (c) os propostos como linha "Aprenda o passo a passo", separada da coleção Método Zion 360°. **Decisão de Bruno (06/11/2026): opção (c).** Os dez e-books abaixo formam a linha "Aprenda o passo a passo", separada da coleção Método Zion 360° (A01 a A11), que não é alterada.
 
 ## 1. Públicos
 - **A · Quem quer começar:** dono de terreno, quem quer a primeira cabana, bubble ou chalé, quem vai transformar um imóvel em hospedagem.
@@ -52,13 +52,13 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 08 | Kit do primeiro anúncio | A | D + aula curta | A fazer (Arsenal 01 Pilar 4 tem base) |
 | 09 | Calculadora "Quanto sobra da reserva?" | B | P | **Grande parte já existe** na Ferramenta 01 (aba Reservas). Fazer só se trouxer o que falta: descontos, receitas extras e rateio |
 | 10 | Planilha financeira por imóvel | B | P | **Parte já existe** na Ferramenta 01 (Resumo do mês). Falta: categorias, fechamento, conciliação, vários imóveis |
-| 11 | Kit de mensagens de chegada e saída | B | K | A fazer (base real: Manual de Hospitalidade da Zion) |
+| 11 | Kit de mensagens de chegada e saída | B | K + P | **Pronto** (`producao/utilitarios/11-mensagens-chegada-saida/`) |
 | 12 | Checklist de fotos e comodidades do anúncio | B | D | A fazer |
 | 13 | Controle de enxoval e reposição | B | P | A fazer |
 | 14 | Quadro de ocorrências e manutenção | B | P | A fazer |
 | 15 | Comparador de fornecedores | B | P | A fazer |
 | 16 | Kit operacional de parcerias | C | D + P | A fazer |
-| 17 | **Checklist de limpeza, inspeção e liberação** | B | P + PDF | **Em produção nesta sessão** |
+| 17 | **Checklist de limpeza, inspeção e liberação** | B | P + PDF | **Pronto** (`producao/utilitarios/17-checklist-limpeza/`) |
 | 18 | Planner de manutenção preventiva | B | P | A fazer (base: Manual Técnico da Zion) |
 | 19 | Controle de compras e consumo interno | B | P | A fazer |
 | 20 | Kit de treinamento do primeiro turno | B | D | A fazer (base: Onboarding da Zion) |
@@ -84,16 +84,15 @@ Regra das ofertas: cada ferramenta é vendida sozinha e cumpre a sua promessa so
 - **Mapa de 30 oportunidades** (`producao/low-ticket/MAPA_OPORTUNIDADES.md`), com fontes e datas.
 
 ## 5. Materiais ainda necessários (dependem de Bruno)
-1. Decisão sobre os títulos (opção a, b ou c da seção 0).
-2. Autorização para dizer na copy que um checklist "parte da rotina usada nas unidades da Zion".
+2. Autorização para dizer na copy que o checklist (17) e o kit de mensagens (11) partem da rotina e dos scripts usados nas unidades da Zion.
 3. Conta de vendedor aprovada no ClickMax (sem isso nenhum checkout vende).
 4. Vídeos reais de demonstração gravados no celular (roteiros entregues em cada pacote).
 5. Para os e-books: liberação dos PDFs A01 a A10 como fonte e confirmação dos sete pilares.
 
 ## 6. Ordem recomendada de produção
 Critério: tarefa mais clara, aplicação simples, demonstração fácil, base real disponível.
-1. **17 · Checklist de limpeza, inspeção e liberação** (agora).
-2. 11 · Kit de mensagens de chegada e saída.
+1. **17 · Checklist de limpeza, inspeção e liberação** (pronto, em rascunho no ClickMax).
+2. **11 · Kit de mensagens de chegada e saída** (pronto, em rascunho no ClickMax).
 3. 13 · Controle de enxoval e reposição.
 4. 14 · Quadro de ocorrências e manutenção.
 5. 29 · Calculadora de custos de experiências.
