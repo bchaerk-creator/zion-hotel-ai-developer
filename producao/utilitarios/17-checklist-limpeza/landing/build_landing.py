@@ -58,15 +58,15 @@ background:#040605;color:#FEF5F0;font-family:"Jost",Arial,sans-serif;font-size:1
 <p>A sequência do modelo parte da rotina de troca usada nas unidades da Zion, generalizada para qualquer hospedagem.</p>
 <figure style="margin:18px 0 0"><img src="{BASE}assets/operacoes/op12.webp" alt="Unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><figcaption style="font-size:13px;color:#A39E8E;margin-top:6px">Foto real · unidade da Zion Bubble Glamping, onde essa rotina de troca é usada.</figcaption></figure></div></section>
 <section class="gut" data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
-<img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/checklist-17/capa.jpg" alt="Capa do produto: Checklist de Limpeza, Inspeção e Liberação" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
+<img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/checklist-17/capa.jpg" alt="Capa do produto: Checklist de Limpeza, Inspeção e Liberação" data-cx-image-slot="offer" data-cx-image-hint="Capa do produto" data-cx-image-kind="brand">
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>Planilha em branco com o modelo de 33 itens pronto para ajustar</li><li>Exemplo preenchido (dados fictícios)</li><li>Checklist para imprimir, com assinaturas</li><li>Guia "Aprenda o passo a passo", com exercícios e critérios de conferência</li></ul>
 <div class="preco">R$ 19</div><p style="margin-top:8px">Pagamento único, Pix ou cartão. Acesso aos arquivos depois do pagamento confirmado. Funciona no Excel, Google Sheets e LibreOffice.</p>
 <div data-cx-checkout></div>
 <p style="font-size:14px;color:#A39E8E">Reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor.</p></div></div></section>
 <section class="gut" data-cx-section="faq"><div class="col"><span class="eyebrow">Perguntas frequentes</span>
+<details><summary>Serve para apartamento ou casa de temporada?</summary><p>Serve. O modelo vem com ambientes comuns (quarto, banheiro, copa, área externa) e você apaga ou acrescenta o que a sua unidade tem.</p></details>
 <details><summary>Funciona no celular?</summary><p>Sim, pelo app do Google Sheets ou do Excel. Para ajustar o modelo pela primeira vez, o computador é mais confortável.</p></details>
 <details><summary>Trabalho sozinho. Serve?</summary><p>Serve. Você marca que confere o próprio trabalho e faz a conferência depois de terminar tudo.</p></details>
-<details><summary>Minha unidade tem itens diferentes.</summary><p>O modelo é editável: apague, acrescente e marque o que é obrigatório.</p></details>
 <details><summary>Diz quais produtos de limpeza usar?</summary><p>Não. Produtos e proteção são definidos pelo responsável, seguindo o rótulo.</p></details>
 <details><summary>Garante nota 5 nas avaliações?</summary><p>Não. Ajuda a não esquecer etapas e a conferir. A avaliação depende de muitos fatores.</p></details>
 <details><summary>Para quem não é?</summary><p>Para quem procura um aplicativo com notificações e sincronização automática.</p></details></div></section>

@@ -44,15 +44,15 @@ corpo = f"""
 <p>A jornada parte dos scripts de atendimento usados nas unidades da Zion, generalizados para qualquer hospedagem.</p>
 <figure style="margin:18px 0 0"><img src="{BASE}assets/operacoes/op07.webp" alt="Unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><figcaption style="font-size:13px;color:#A39E8E;margin-top:6px">Foto real · unidade da Zion Bubble Glamping, onde esses scripts são usados.</figcaption></figure></div></section>
 <section class="gut" data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
-<img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/kit-mensagens-11/capa.jpg" alt="Capa do produto: Kit de Mensagens de Chegada e Saída" data-cx-image-slot="offer" data-cx-image-hint="Foto real da Zion, sem pessoas" data-cx-image-kind="brand">
+<img class="foto cm-image" src="{BASE}p/adbc67069af26ae0/kit-mensagens-11/capa.jpg" alt="Capa do produto: Kit de Mensagens de Chegada e Saída" data-cx-image-slot="offer" data-cx-image-hint="Capa do produto" data-cx-image-kind="brand">
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>Planilha em branco: ficha, 10 mensagens montadas e datas de envio</li><li>Exemplo preenchido (dados fictícios)</li><li>Modelos em PDF para copiar à mão</li><li>Guia "Aprenda o passo a passo", com exercícios e critérios de conferência</li></ul>
 <div class="preco">R$ 19</div><p style="margin-top:8px">Pagamento único, Pix ou cartão. Acesso aos arquivos depois do pagamento confirmado. Funciona no Excel, Google Sheets e LibreOffice.</p>
 <div data-cx-checkout></div>
 <p style="font-size:14px;color:#A39E8E">Reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor.</p></div></div></section>
 <section class="gut" data-cx-section="faq"><div class="col"><span class="eyebrow">Perguntas frequentes</span>
+<details><summary>Serve para apartamento ou casa de temporada?</summary><p>Serve. A ficha pede os dados de qualquer hospedagem: endereço, acesso, Wi-Fi, regras e horários.</p></details>
 <details><summary>Envia as mensagens sozinho?</summary><p>Não. Você copia e cola no WhatsApp ou na plataforma. Se a plataforma tiver mensagens rápidas ou programadas, pode colar lá.</p></details>
 <details><summary>Funciona no celular?</summary><p>Sim, pelo app do Google Sheets ou do Excel. Preencher a ficha é mais confortável no computador.</p></details>
-<details><summary>Posso mudar os textos?</summary><p>Pode. Edite depois de colar, sem mudar datas, horários, senha e endereço.</p></details>
 <details><summary>E se eu esquecer um dado?</summary><p>A mensagem mostra [PREENCHA] no lugar e não aparece como pronta.</p></details>
 <details><summary>Pede avaliação 5 estrelas?</summary><p>Não. Pede uma avaliação honesta, sem oferecer nada em troca. Confira também as regras da sua plataforma.</p></details>
 <details><summary>Para quem não é?</summary><p>Para quem procura envio automático ou integração com as plataformas.</p></details></div></section>
