@@ -10,7 +10,7 @@ Orientação central: **"Aprenda o passo a passo."** Nada aqui foi publicado, at
 | Dez temas originais | Drive, pasta da coleção "Método Zion 360°": **A01 Território, A02 Mercado, A03 Produto, A04 Estratégia, A05 Investimento, A06 Implantação, A07 Lançamento, A08 Airbnb de Sucesso, A09 Glamping, A10 Captar Dinheiro** (e A11 Livro-mãe) | Encontrado |
 | Sete pilares | A capa do A07 diz "Domine os 7 pilares do Método Zion 360°" e o A10 traz "Os 7 pilares do desenvolvimento: 01 Território…". O Mapa de Liberação liga P01 a P06 aos volumes A01 a A06. Leitura provável: **os sete pilares = A01 a A07** | Provável. Bruno confirma |
 | 60 páginas | A skill da série editorial fala em 60 a 70 páginas por volume. Não abrimos os PDFs A01 a A10 para contar as páginas | Conferir |
-| Narrativa CROI | **"CROI" não aparece em nenhum arquivo** do repositório, do Drive pesquisado ou das skills. Existe o **ECROI** (Espelhamento, Colapso de crença, Reencadramento…), com duas definições divergentes já registradas no Manual. O handoff de 16/10 diz "ECROI fica fora das aulas" | **Pendência.** Não inventamos o significado |
+| Narrativa | **Bruno confirmou em 06/11/2026: a narrativa é ECROI** ("CROI" no prompt era ECROI). Definição usada, da skill ECROI: **E** Espelhamento, **C** Colapso de crença, **R** Reencadramento, **O** Inevitabilidade, **I** Resultado viral educacional, nesta ordem. O Manual Oficial tem uma segunda definição divergente, já registrada; seguimos a da skill. Conforme o handoff de 16/10, o ECROI fica fora das aulas: usamos na narrativa de venda, na abertura e no fechamento dos e-books, nos anúncios e no carrossel, sem promessa de resultado | Resolvido |
 
 **Consequência:** os dez títulos propostos no prompt são diferentes dos dez temas originais. Os originais seguem a jornada do desenvolvedor (terreno → lançamento). Os propostos misturam começar, operar e vender. A tabela 2 mostra a correspondência. **Bruno decide:** (a) manter os dez originais, (b) adotar os dez propostos, ou (c) os propostos como linha "Aprenda o passo a passo", separada da coleção Método Zion 360°. Recomendamos a opção (c): os volumes A são de desenvolvimento e não devem ser alterados.
 
@@ -34,7 +34,7 @@ Orientação central: **"Aprenda o passo a passo."** Nada aqui foi publicado, at
 | E09 | Identidade, conteúdo e vendas para hospedagem | B | A07 Lançamento, A04 Estratégia | 22, 23, 12 |
 | E10 | Experiências que complementam a hospedagem | B, C | A03 Produto; Manual de Hospitalidade (Notion) | 16, 28, 29, 30 |
 
-Padrão de cada e-book: 60 páginas úteis, pacote com os 13 itens do prompt. Promessas e resultados esperados como no prompt mestre, sem promessa de reservas, renda, investimento ou aprovação.
+Padrão de cada e-book: 60 páginas úteis, sete pilares conforme os originais, narrativa ECROI na abertura, no fechamento e nos materiais de venda, pacote com os 13 itens do prompt. Promessas e resultados esperados como no prompt mestre, sem promessa de reservas, renda, investimento ou aprovação.
 
 ## 3. Trinta ferramentas utilitárias
 
@@ -84,7 +84,7 @@ Regra das ofertas: cada ferramenta é vendida sozinha e cumpre a sua promessa so
 - **Mapa de 30 oportunidades** (`producao/low-ticket/MAPA_OPORTUNIDADES.md`), com fontes e datas.
 
 ## 5. Materiais ainda necessários (dependem de Bruno)
-1. Decisão sobre os títulos (opção a, b ou c da seção 0) e o significado de "CROI".
+1. Decisão sobre os títulos (opção a, b ou c da seção 0).
 2. Autorização para dizer na copy que um checklist "parte da rotina usada nas unidades da Zion".
 3. Conta de vendedor aprovada no ClickMax (sem isso nenhum checkout vende).
 4. Vídeos reais de demonstração gravados no celular (roteiros entregues em cada pacote).
