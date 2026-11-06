@@ -56,6 +56,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 | Ferramenta 01 · Planilha Diária Mínima | `producao/low-ticket/01-diaria-minima/` | Oferta `974727ce-d051-4c86-99b6-c3b04fdf9d8e` (R$ 19, checkout `-e5nx6Wvi9`). Entrega por arquivo: `p/adbc67069af26ae0/planilha-01/` |
 | Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação | `producao/utilitarios/17-checklist-limpeza/` | Oferta `08ad22e8-9f9a-4244-856f-1bca05234924` (R$ 19, checkout `uB0Db7Gpg4`), página `023476bb-0ea7-41b2-ba99-73c62a5aa94c` (rascunho, `/checklist-limpeza`). Entrega por arquivo: `p/adbc67069af26ae0/checklist-17/` |
 | Ferramenta 11 · Kit de Mensagens de Chegada e Saída | `producao/utilitarios/11-mensagens-chegada-saida/` | Oferta `fad5df5a-49fa-442e-aed7-c08cf2f6f92f` (R$ 19, checkout `X4mTsfhUtb`), página `545010c0-a48c-4555-9b73-d501dac3c6a7` (rascunho, `/kit-mensagens`). Entrega por arquivo: `p/adbc67069af26ae0/kit-mensagens-11/` |
+| Ferramenta 13 · Controle de Enxoval e Reposição | `producao/utilitarios/13-controle-enxoval/` | Oferta `b667369e-f024-47b8-a8d9-46020897b95b` (R$ 19, checkout `aIN6h2A0bT`), página `d816d6db-9283-43f7-b493-ea3afbc419cc` (rascunho, `/controle-enxoval`). Entrega por arquivo: `p/adbc67069af26ae0/enxoval-13/` |
 | Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 

@@ -23,6 +23,15 @@ PRODUTOS = [
                    ("Kit-Mensagens-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Kit-Mensagens-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Mensagens-Modelo.pdf", "Modelos de mensagens", "PDF · para copiar à mão")]),
+    dict(pasta="enxoval-13", num="13", telas=["producao/utilitarios/13-controle-enxoval/dist/demonstracao/demo-movimentos.png", "producao/utilitarios/13-controle-enxoval/dist/demonstracao/demo-compras.png"],
+         titulo="Controle de Enxoval e Reposição",
+         promessa="Aprenda o passo a passo para saber quanto enxoval e quantos itens de reposição você tem, quanto deveria ter e o que precisa comprar.",
+         itens=["Mínimo de cada item", "Entradas e saídas", "Lista do que comprar e custo", "Ficha de contagem semanal"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Saldo.", "Na planilha em branco, ajuste a lista, defina os mínimos e lance a contagem inicial.", "Lance compras e saídas e conte uma vez por semana com a ficha."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Controle-Enxoval-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Controle-Enxoval-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Contagem.pdf", "Ficha de contagem semanal", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
