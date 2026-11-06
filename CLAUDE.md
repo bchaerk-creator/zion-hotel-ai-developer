@@ -4,7 +4,13 @@ Regras fixas para toda sessão neste repositório. Responsável: Bruno Chaerk ·
 O prompt de cada produto só precisa dizer o que muda: produto, público, dor, preço, formato e autorizações.
 
 ## 1. Regras inegociáveis
-- **Rascunho por padrão.** Publicar página, ativar oferta, ativar automação, disparar mensagem ou gastar com anúncio só com um "aprovado" de Bruno nesta sessão, dentro dos limites que o prompt der. Antes disso, apresente um resumo único: produto, oferta, checkout, página, entrega e campanha.
+- **Autorização permanente de Bruno (06/11/2026), sem pedir "aprovado" a cada produto:**
+  - produzir os produtos do catálogo, um por vez, e criar produto, oferta e página no ClickMax;
+  - enviar a oferta para aprovação assim que `offers_get_incomplete_reason` voltar vazio;
+  - publicar a página de vendas quando a oferta estiver **ativa** (aprovada), para ninguém cair num checkout que não vende;
+  - usar nas copies que a sequência ou os scripts "partem da rotina usada nas unidades da Zion" (quando for verdade para o produto).
+  - **Continua exigindo "aprovado" de Bruno:** gastar com anúncio (teto atual: R$ 0; campanhas só pausadas), disparar mensagens para leads, ativar automações, mexer em qualquer coisa que já existe.
+  - Depois de cada publicação ou envio, registrar no `OFERTA.md` e no resumo da sessão.
 - **Não mexa no que já existe:** produtos, páginas, funis, automações, checkouts, Land Bank, Zion Collection, integrações com Asaas, o site institucional (`docs/`) e o Clube. Crie tudo novo e separado.
 - **Sem invenção:** nada de números de mercado, depoimentos, resultados, garantias, preço "de" falso, bônus ou urgência falsa. Exemplos sempre marcados como "dados fictícios".
 - **Sem promessa** de reservas, ocupação, renda, investimento ou valorização. Use a promessa "Aprenda o passo a passo para ...". Diferencie o tempo para começar a usar do resultado externo.
@@ -65,6 +71,9 @@ Escada de preços (Estratégia Low Ticket Ladeira): ferramentas de R$ 19 → Ars
   - teste de ponta a ponta com Playwright, servindo o jsPDF do pacote npm, porque o cdnjs é bloqueado aqui.
 - **Landing page:** use o molde de `producao/academy01/landing/` (sete bandas, fotos reais por URL pública).
 - **Testes de navegador:** o Playwright já vem instalado (`require('playwright')`).
+- **Ferramenta utilitária (planilha + guia + PDF + página):** use os moldes `producao/utilitarios/17-checklist-limpeza/` e `producao/utilitarios/11-mensagens-chegada-saida/` (build_planilha, test_planilha contra regra independente, build_docs + render.js, empacotar.sh, landing/build_landing.py). Fotos sem pessoas: op04, op05, op07, op08, op09, op10, op11, op12 (op01, op02, op13 e op14 têm pessoas).
+- **Página no ClickMax:** sem imagens embutidas em base64 (não cabem na chamada); demonstração em HTML puro.
+- **Entrega:** o ZIP fica em `dist/` (fora do git, repositório público). Bruno sobe os ZIPs pendentes de uma vez; a lista fica em `producao/catalogo/PENDENCIAS_BRUNO.md`.
 - **Arquivos isolados por produto:** `producao/<linha>/<nn-nome>/` com `src/`, `dist/`, `tests/` e `OFERTA.md` (público, promessa, entregáveis, copy, perguntas frequentes, 3 anúncios, preço, custos e indicadores).
 
 ## 6. Anúncios no Meta
