@@ -1,0 +1,75 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Trailer · Trilha de Desenvolvimento</title>
+<style>
+@font-face{font-family:Cormorant;src:url(assets/cormorant.woff2) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;src:url(assets/cormorant-italic.woff2) format("woff2");font-style:italic;font-weight:300 700}
+@font-face{font-family:Aventa;src:url(assets/aventa.woff2) format("woff2");font-weight:300 700}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--preto);color:var(--creme);font-family:Aventa,Arial,sans-serif}
+.cena{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:flex-end;padding:120px 88px 200px;animation:fade .6s ease both}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center;animation:kb 14s ease-out both;transform-origin:center}
+.veu{position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.25) 0%,rgba(4,6,5,.55) 45%,rgba(4,6,5,.92) 100%)}
+.musgo .veu{background:var(--musgo)}
+.k{position:relative;color:var(--ouro);letter-spacing:.22em;text-transform:uppercase;font-size:26px;font-weight:600;margin-bottom:28px;animation:up .7s .2s ease both}
+h1{position:relative;font-family:Cormorant,Georgia,serif;font-weight:500;font-size:104px;line-height:1.04;margin:0 0 30px;animation:up .8s .35s ease both}
+h1 i{font-style:italic;color:var(--ouro)}
+p{position:relative;font-size:40px;line-height:1.35;color:var(--areia);margin:0;animation:up .8s .6s ease both;max-width:880px}
+.bar{position:relative;width:140px;height:5px;background:var(--ouro);margin:40px 0 0;animation:up .8s .8s ease both}
+.topo{position:absolute;top:70px;left:88px;right:88px;display:flex;justify-content:space-between;align-items:center;font-size:22px;letter-spacing:.2em;text-transform:uppercase;color:var(--areia);opacity:.85}
+.topo img{height:46px}
+.rodape{position:absolute;bottom:70px;left:88px;right:88px;font-size:22px;color:var(--areia);opacity:.7;line-height:1.4}
+/* lista de bullets */
+ul{position:relative;list-style:none;padding:0;margin:20px 0 0}
+li{font-size:40px;line-height:1.3;color:var(--creme);padding:22px 0;border-top:1px solid rgba(222,214,191,.25);display:flex;gap:22px;align-items:flex-start;animation:up .7s ease both}
+li:nth-child(1){animation-delay:.5s}li:nth-child(2){animation-delay:.9s}li:nth-child(3){animation-delay:1.3s}li:nth-child(4){animation-delay:1.7s}
+li b{color:var(--ouro);font-family:Cormorant,serif;font-size:52px;line-height:1;min-width:64px}
+/* etapas com tela */
+.etp{justify-content:center;padding-bottom:140px}.etapas{position:relative;display:flex;flex-direction:column;gap:56px;margin-bottom:10px}
+.etapa{display:flex;flex-direction:column;gap:20px;animation:up .8s ease both}
+.etapa:nth-child(2){animation-delay:.9s}
+.tela{width:904px;height:440px;border-radius:14px;overflow:hidden;border:3px solid rgba(201,179,126,.6);box-shadow:0 30px 60px rgba(0,0,0,.5);background:#fff}
+.tela img{width:100%;height:100%;object-fit:cover;object-position:top left;transform:scale(1.25);transform-origin:top left;animation:pan 9s linear both}
+.txt .n{font-family:Aventa,sans-serif;color:var(--ouro);font-size:26px;letter-spacing:.2em;text-transform:uppercase;font-weight:600}
+.txt h2{font-family:Cormorant,serif;font-weight:500;font-size:64px;line-height:1.05;margin:4px 0 8px}
+.txt p{font-size:30px;line-height:1.3}
+.logo{position:relative;width:420px;margin:0 0 40px;animation:up .8s .2s ease both}
+.cx{position:relative;display:grid;grid-template-columns:1fr 1fr 1fr;gap:22px;margin:0 0 50px}
+.cx div{background:rgba(254,245,240,.08);border:1px solid rgba(201,179,126,.5);border-radius:14px;padding:30px 22px;font-size:28px;line-height:1.25;animation:up .7s ease both}
+.cx div:nth-child(1){animation-delay:.5s}.cx div:nth-child(2){animation-delay:.8s}.cx div:nth-child(3){animation-delay:1.1s}
+.cx b{display:block;font-family:Cormorant,serif;font-size:44px;color:var(--ouro);margin-bottom:8px;font-weight:500}
+.cta{position:relative;display:inline-block;background:var(--ouro);color:var(--preto);font-weight:700;font-size:36px;padding:28px 44px;border-radius:999px;margin-top:36px;animation:up .8s .9s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1.0)}}
+@keyframes pan{from{transform:scale(1.25) translate(0,0)}to{transform:scale(1.25) translate(-8%,-18%)}}
+</style></head><body>
+<script>
+const S=[
+ {foto:"hero.webp",k:"Club Zion Collection",h:"Você tem um terreno.<br>E um projeto <i>parado no papel</i>?",p:"Em área turística, com potencial, mas sem o próximo passo claro."},
+ {foto:"op07.webp",k:"O custo invisível",h:"Terreno parado <i>custa</i>.",p:"Imposto, manutenção e o tempo que não volta. Cada ano sem decisão é um ano em que o destino cresce sem você."},
+ {musgo:1,k:"A crença que trava",h:"O problema não é <i>falta de dinheiro</i>.",p:"O que falta é um projeto viável: com número, com fonte e com um dossiê que alguém consiga ler."},
+ {foto:"op09.webp",k:"Quem decide, decide assim",h:"Investidor não compra ideia.",p:"Compra um projeto que já respondeu as perguntas difíceis: terreno, mercado, produto, modelo, fase, conta e capital."},
+ {musgo:1,logo:1,k:"Trilha de Desenvolvimento",h:"O passo a passo que usamos nas <i>unidades da Zion</i>.",p:"Oito etapas. Em cada uma, você responde uma ficha, recebe uma nota e sai com uma página do seu Dossiê."},
+ {musgo:1,k:"Etapas 1 e 2 de 8",etapas:[["Marco Zero","Diagnóstico prévio","Onde você está, qual é a sua dor e por onde começar.","tela-marco-zero.png"],["Pilar 1","Território","Da matrícula à área que você pode usar, e o que pode travar.","tela-pilar1.png"]]},
+ {musgo:1,k:"Etapas 3 e 4 de 8",etapas:[["Pilar 2","Mercado","Quem vende o mesmo que você, quanto enche e quanto paga.","tela-pilar2.png"],["Pilar 3","Produto","Para quem, a promessa, a tipologia e a diária como hipótese.","tela-pilar3.png"]]},
+ {musgo:1,k:"Etapas 5 e 6 de 8",etapas:[["Pilar 4","Modelo de negócio","Renda, venda ou híbrido: como o projeto ganha dinheiro.","tela-pilar4.png"],["Pilar 5","Masterplan faseado","O que entra na fase um, e o que espera.","tela-pilar5.png"]]},
+ {musgo:1,k:"Etapas 7 e 8 de 8",etapas:[["Pilar 6","Pré-viabilidade","A folha de oito linhas, três cenários e o tempo de volta.","tela-pilar6.png"],["Pilar 7","Capital e Dossiê","Quanto falta, as seis fontes e a decisão: avançar, ajustar ou parar.","tela-pilar7.png"]]},
+ {foto:"op10.webp",k:"O que fica na sua mão",h:"Projeto <i>que se lê</i>.",cx:[["Dossiê","de Desenvolvimento em PDF, página a página"],["Planilhas","orçamento de abertura e estudo de viabilidade"],["Kit do Investidor","teaser, one-pager e pitch"]]},
+ {foto:"op11.webp",k:"O que isso abre",h:"Possibilidades, <i>com critério</i>.",lista:[["01","Conversa com investidor, sócio e banco, com projeto na mão"],["02","Dinheiro no lugar certo, na hora certa: sem gastar onde ainda não precisa"],["03","A decisão clara: avançar, ajustar ou parar, antes da obra"],["04","Cadastro no Zion Land Bank. A Zion avalia cada caso"]]},
+ {foto:"noturna.webp",k:"Club Zion Collection",h:"Do terreno ao <i>projeto viável</i>.",p:"Comece pela Trilha de Desenvolvimento e inscreva o seu terreno.",cta:"Responda esta mensagem",rodape:"Conteúdo educacional. Cenários, não promessas de renda, retorno ou parceria. A Zion avalia cada caso."}
+];
+const i=+(new URLSearchParams(location.search).get("s")||0); const c=S[i]; const esc=s=>s;
+let h=`<div class="cena ${c.musgo?"musgo":""} ${c.etapas?"etp":""}">`;
+if(c.foto) h+=`<div class="foto" style="background-image:url(assets/${c.foto})"></div>`;
+h+=`<div class="veu"></div><div class="topo"><img src="assets/zion-logo-claro.png" alt="Zion"><span>Trilha de Desenvolvimento</span></div>`;
+if(c.logo) h+=`<img class="logo" src="assets/zion-logo-claro.png" alt="Zion">`;
+h+=`<div class="k">${c.k}</div>`;
+if(c.etapas){ h=h.replace(`<div class="k">${c.k}</div>`,""); h+=`<div class="k">${c.k}</div>`+`<div class="etapas">`+c.etapas.map(e=>`<div class="etapa"><div class="tela"><img src="assets/${e[3]}"></div><div class="txt"><div class="n">${e[0]}</div><h2>${e[1]}</h2><p>${e[2]}</p></div></div>`).join("")+`</div>`; }
+if(c.h) h+=`<h1>${c.h}</h1>`;
+if(c.cx) h+=`<div class="cx">`+c.cx.map(x=>`<div><b>${x[0]}</b>${x[1]}</div>`).join("")+`</div>`;
+if(c.lista) h+=`<ul>`+c.lista.map(x=>`<li><b>${x[0]}</b><span>${x[1]}</span></li>`).join("")+`</ul>`;
+if(c.p) h+=`<p>${c.p}</p>`;
+if(c.cta) h+=`<div class="cta">${c.cta} →</div>`;
+h+=`<div class="bar"></div>`;
+h+=`<div class="rodape">${c.rodape||"zionhotelgroup.com · @zionbubble"}</div></div>`;
+document.body.innerHTML=h;
+</script></body></html>
