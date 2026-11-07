@@ -1,0 +1,144 @@
+{
+"voice": "pt-BR-FranciscaNeural",
+"scenes": [
+{
+"say": "Olá! Este é o tutorial do Diagnóstico prévio, a ferramenta Faça agora do Marco Zero. Em quatro telas, ela diz onde você está na jornada, qual é a sua dor principal e por onde começar.",
+"actions": [
+{
+"card": {
+"t": "Marco Zero · Diagnóstico prévio",
+"s": "Onde você está, qual é a sua dor e por onde começar"
+}
+}
+]
+},
+{
+"say": "Preencha nome, e-mail e a cidade do terreno ou da ideia. Use o mesmo e-mail da área de membros. Depois, Começar.",
+"actions": [
+{
+"goto": "http://localhost:8790/trilha1/marco-zero/"
+},
+{
+"show": "h1",
+"wait": 1200
+},
+{
+"fillStart": {
+"#nome": "Ana Exemplo",
+"#email": "ana@exemplo.com",
+"#cidade": "Urubici, SC"
+}
+},
+{
+"click": "#vai",
+"wait": 900
+}
+]
+},
+{
+"say": "Primeira tela: qual destas frases mais parece com você hoje. Tenho um terreno e ainda não hospedo ninguém; tenho uma ideia ou o capital e ainda não tenho o terreno; ou já opero e quero crescer. Escolha a mais honesta.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 1500
+},
+{
+"show": "label.op",
+"wait": 1500
+},
+{
+"auto": 1,
+"pace": 500
+}
+]
+},
+{
+"say": "Segunda tela: o que te trouxe até aqui. São as quatro dores que a Zion mais ouve de quem tem terreno. Terceira: quais das cinco perguntas, antes de investir um real, você já responde. Marque só as que você responde com documento ou conta na mão.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 1500
+},
+{
+"auto": 1,
+"pace": 500
+},
+{
+"show": ".pergunta",
+"wait": 2500
+},
+{
+"auto": 1,
+"pace": 500
+}
+]
+},
+{
+"say": "Quarta tela: onde você está na jornada de quatro etapas e sete pilares. A ferramenta usa a sua resposta para apontar o pilar em que você deve concentrar mais atenção.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 2500
+},
+{
+"auto": 1,
+"pace": 500
+}
+]
+},
+{
+"say": "E o resultado: a sua jornada, o seu ponto mais frágil, a sua dor, e a primeira ação de sete dias, com prazo. É a página zero do seu Dossiê de Desenvolvimento.",
+"actions": [
+{
+"text": "A sua jornada",
+"sel": "h2",
+"wait": 2500
+},
+{
+"text": "O seu ponto mais frágil",
+"sel": "h2",
+"wait": 2500
+},
+{
+"text": "A sua dor",
+"sel": "h2",
+"wait": 2000
+},
+{
+"text": "A sua primeira ação de 7 dias",
+"sel": "h2",
+"wait": 3000
+}
+]
+},
+{
+"say": "Abaixo, os próximos passos com a Zion, o botão para baixar o diagnóstico em PDF e o envio ao Land Bank. Depois, siga para o Pilar um, Território e destino. Boa jornada.",
+"actions": [
+{
+"text": "Os seus próximos passos com a Zion",
+"sel": "h2",
+"wait": 2500
+},
+{
+"show": "#pdf",
+"wait": 2000
+},
+{
+"show": "#zlb-btn",
+"wait": 2000
+}
+]
+},
+{
+"say": "Abra o Mapa de direcionamento para ver as tarefas de cada etapa. Até a próxima ferramenta.",
+"actions": [
+{
+"card": {
+"t": "Próximo passo: Pilar 1 · Território e destino",
+"s": "Club Zion Collection · Trilha de Desenvolvimento"
+}
+}
+]
+}
+]
+}

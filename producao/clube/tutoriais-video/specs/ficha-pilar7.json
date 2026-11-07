@@ -1,0 +1,228 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Dossiê de Desenvolvimento, a ferramenta Faça agora do Pilar sete. Ela fecha a Trilha: as três perguntas do capital, o pedido exato, as seis fontes, dinheiro ou sócio, e a decisão de avançar, ajustar ou parar. E junta as páginas zero a sete no Dossiê completo.",
+   "actions": [
+    {
+     "card": {
+      "t": "Pilar 7 · Dossiê de Desenvolvimento",
+      "s": "As três perguntas do capital, o pedido, as seis fontes e a decisão"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na tela inicial, você preenche nome, e-mail e a cidade do terreno. Use o mesmo e-mail da área de membros: é por ele que a página chega ao seu cadastro no Land Bank. Depois, Começar.",
+   "actions": [
+    {
+     "goto": "http://localhost:8790/trilha1/pilar7/"
+    },
+    {
+     "show": "h1",
+     "wait": 1200
+    },
+    {
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#cidade": "Urubici",
+      "#uf": "SC"
+     }
+    },
+    {
+     "click": "#comecar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "As três perguntas do capital abrem a ferramenta: se o dinheiro aparecesse amanhã, você sabe o que construir, quantas unidades e para quem? Sabe a diária que o seu produto sustenta, com dado? Sabe em quanto tempo o dinheiro volta, nos três cenários? Um sim sem documento vale um não.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1500
+    },
+    {
+     "text": "Por que perguntamos isso",
+     "sel": "h3",
+     "wait": 2500
+    },
+    {
+     "text": "Onde conseguir essa informação",
+     "sel": "h3",
+     "wait": 2500
+    },
+    {
+     "text": "Exemplo ilustrativo",
+     "sel": "h3",
+     "wait": 2200
+    }
+   ]
+  },
+  {
+   "say": "Cada resposta tem uma origem: medi eu mesmo, alguém me passou, ou é estimativa minha. Marque com honestidade, porque a nota depende disso. Se não souber, toque em Não sei: vira pendência, não reprovação. Vamos responder e avançar.",
+   "actions": [
+    {
+     "show": "label.op",
+     "wait": 1500
+    },
+    {
+     "show": "#ns",
+     "wait": 1200
+    },
+    {
+     "auto": 1,
+     "pace": 500,
+     "pick": 0,
+     "answers": []
+    }
+   ]
+  },
+  {
+   "say": "O pedido, linha por linha: o investimento da fase um sem o giro, o capital de giro, o que ainda falta pagar do terreno, quanto custa buscar o dinheiro, e quanto você mesmo põe, já contratado. É o pedido que vai para o slide doze do pitch.",
+   "actions": [
+    {
+     "auto": 7,
+     "pace": 420,
+     "pick": 0,
+     "answers": []
+    }
+   ]
+  },
+  {
+   "say": "As seis fontes: quanto você pode perder sem comprometer a sua vida; para cada fonte, recurso próprio, banco, investidor, sócio, pré-venda e parceria com quem opera, se está disponível, possível ou fora; e se você aceita terreno em garantia ou aval pessoal.",
+   "actions": [
+    {
+     "auto": 3,
+     "pace": 420,
+     "pick": 0,
+     "answers": []
+    }
+   ]
+  },
+  {
+   "say": "Dinheiro ou sócio: o que te falta de verdade e, se precisar de sócio, de que tipo. As sete páginas lado a lado: qual é a mais fraca e o que se repete na coluna depende de. E a decisão: avançar, ajustar ou parar, e qual fato mudaria essa decisão.",
+   "actions": [
+    {
+     "auto": 14,
+     "pace": 420,
+     "pick": 0,
+     "answers": []
+    }
+   ]
+  },
+  {
+   "say": "A página começa pelos alertas: o que, nas suas respostas, pede atenção antes de qualquer conta.",
+   "actions": [
+    {
+     "text": "Primeiro, os alertas",
+     "sel": "h2",
+     "wait": 3200
+    }
+   ]
+  },
+  {
+   "say": "Depois, as contas e as leituras: o que a ferramenta calculou com o que você digitou, e o que cada número significa.",
+   "actions": [
+    {
+     "text": "As contas e as leituras",
+     "sel": "h2",
+     "wait": 3200
+    }
+   ]
+  },
+  {
+   "say": "A nota por item mostra, pergunta a pergunta, a qualidade da sua resposta: medido vale mais do que estimado.",
+   "actions": [
+    {
+     "text": "A nota por item",
+     "sel": "h2",
+     "wait": 3200
+    }
+   ]
+  },
+  {
+   "say": "E o ponto mais frágil: a resposta que mais pesa contra o projeto hoje. É por ela que você começa a trabalhar.",
+   "actions": [
+    {
+     "text": "O ponto mais frágil",
+     "sel": "h2",
+     "wait": 3200
+    }
+   ]
+  },
+  {
+   "say": "A leitura do método junta tudo em um veredito claro: seguir, seguir com condições, ajustar ou esperar.",
+   "actions": [
+    {
+     "text": "A leitura",
+     "sel": "h2",
+     "wait": 3200
+    }
+   ]
+  },
+  {
+   "say": "Se quiser uma segunda opinião, peça a leitura do mentor virtual: ele comenta as suas respostas com a lógica do método Zion. Não substitui a equipe; orienta.",
+   "actions": [
+    {
+     "text": "O mentor virtual",
+     "sel": "h2",
+     "wait": 1200
+    },
+    {
+     "show": "#mentor-pedir",
+     "wait": 2500
+    }
+   ]
+  },
+  {
+   "say": "Antes de baixar, dois compromissos. O critério para parar: qual fato, se aparecer, faz você parar ou mudar de rumo.",
+   "actions": [
+    {
+     "text": "O seu critério para parar",
+     "sel": "h2",
+     "wait": 3500
+    }
+   ]
+  },
+  {
+   "say": "E o compromisso de sete dias: uma ação, um responsável, um prazo e a evidência que você vai ter na mão. É o que transforma a aula em movimento.",
+   "actions": [
+    {
+     "text": "O seu Compromisso de 7 dias",
+     "sel": "h2",
+     "wait": 3500
+    }
+   ]
+  },
+  {
+   "say": "No fim, três saídas: baixar a sua Dossiê de Desenvolvimento em PDF, que é uma página do seu Dossiê de Desenvolvimento; enviar ao Land Bank da Zion, para a página chegar ao seu cadastro; e seguir para o próximo pilar. o cadastro no Zion Land Members e o Kit do Investidor.",
+   "actions": [
+    {
+     "show": "#pdf",
+     "wait": 2500
+    },
+    {
+     "show": "#zlb-btn",
+     "wait": 2500
+    },
+    {
+     "show": "#proxima",
+     "wait": 2500
+    }
+   ]
+  },
+  {
+   "say": "Com o Dossiê completo, você entra no Kit do Investidor para transformar a conta em teaser, one-pager e pitch, e cadastra o terreno no Zion Land Members com tudo anexado. A equipe Zion avalia cada caso. Parabéns por chegar até aqui.",
+   "actions": [
+    {
+     "card": {
+      "t": "Próximo passo: o cadastro no Zion Land Members e o Kit do Investidor.",
+      "s": "Club Zion Collection · Trilha de Desenvolvimento"
+     }
+    }
+   ]
+  }
+ ]
+}

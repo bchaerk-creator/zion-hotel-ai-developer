@@ -1,0 +1,232 @@
+{
+"voice": "pt-BR-FranciscaNeural",
+"scenes": [
+{
+"say": "Olá! Este é o tutorial do Modelo de Negócio, a ferramenta Faça agora do Pilar quatro. Ela ajuda a decidir como o projeto ganha dinheiro: renda, venda ou híbrido, e em que degrau você começa.",
+"actions": [
+{
+"card": {
+"t": "Pilar 4 · Modelo de Negócio",
+"s": "Renda, venda ou híbrido: como o projeto ganha dinheiro"
+}
+}
+]
+},
+{
+"say": "Na tela inicial, você preenche nome, e-mail e a cidade do terreno. Use o mesmo e-mail da área de membros: é por ele que a página chega ao seu cadastro no Land Bank. Depois, Começar.",
+"actions": [
+{
+"goto": "http://localhost:8790/trilha1/pilar4/"
+},
+{
+"show": "h1",
+"wait": 1200
+},
+{
+"fillStart": {
+"#nome": "Ana Exemplo",
+"#email": "ana@exemplo.com",
+"#cidade": "Urubici",
+"#uf": "SC"
+}
+},
+{
+"click": "#comecar",
+"wait": 900
+}
+]
+},
+{
+"say": "A primeira pergunta: com o seu imóvel, você vai alugar, hospedar ou vender. Parece simples, mas define todo o resto. Leia os três apoios antes de responder.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 1500
+},
+{
+"text": "Por que perguntamos isso",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Onde conseguir essa informação",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Exemplo ilustrativo",
+"sel": "h3",
+"wait": 2200
+}
+]
+},
+{
+"say": "Cada resposta tem uma origem: medi eu mesmo, alguém me passou, ou é estimativa minha. Marque com honestidade, porque a nota depende disso. Se não souber, toque em Não sei: vira pendência, não reprovação. Vamos responder e avançar.",
+"actions": [
+{
+"show": "label.op",
+"wait": 1500
+},
+{
+"show": "#ns",
+"wait": 1200
+},
+{
+"auto": 1,
+"pace": 500,
+"pick": 0,
+"answers": []
+}
+]
+},
+{
+"say": "O bloco Em que negócio você está pergunta quais serviços o seu produto tem. Depois, o mapa dos modelos: qual perfil mais parece com você, por onde o projeto começa no mapa, e se você sabe para quem vai vender, do balcão para fora.",
+"actions": [
+{
+"auto": 4,
+"pace": 420,
+"pick": 0,
+"answers": []
+}
+]
+},
+{
+"say": "O modelo de renda: em que degrau da escada o seu produto está na fase um, e se você consegue estruturar e operar bem esse degrau. A conta do cem por cento: unidades da fase um, ocupação medida, diária média, em que cenário o projeto fica de pé, e quem opera.",
+"actions": [
+{
+"auto": 7,
+"pace": 420,
+"pick": 0,
+"answers": [
+3,
+45,
+580
+]
+}
+]
+},
+{
+"say": "O modelo de venda: se você pensa em vender alguma parte, de que forma e quantas unidades. E a decisão: renda, venda ou híbrido.",
+"actions": [
+{
+"auto": 2,
+"pace": 420,
+"pick": 0,
+"answers": []
+}
+]
+},
+{
+"say": "A página começa pelos alertas: o que, nas suas respostas, pede atenção antes de qualquer conta.",
+"actions": [
+{
+"text": "Primeiro, os alertas",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Depois, as contas e as leituras: o que a ferramenta calculou com o que você digitou, e o que cada número significa.",
+"actions": [
+{
+"text": "As contas e as leituras",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A nota por item mostra, pergunta a pergunta, a qualidade da sua resposta: medido vale mais do que estimado.",
+"actions": [
+{
+"text": "A nota por item",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "E o ponto mais frágil: a resposta que mais pesa contra o projeto hoje. É por ela que você começa a trabalhar.",
+"actions": [
+{
+"text": "O ponto mais frágil",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A leitura do método junta tudo em um veredito claro: seguir, seguir com condições, ajustar ou esperar.",
+"actions": [
+{
+"text": "A leitura",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Se quiser uma segunda opinião, peça a leitura do mentor virtual: ele comenta as suas respostas com a lógica do método Zion. Não substitui a equipe; orienta.",
+"actions": [
+{
+"text": "O mentor virtual",
+"sel": "h2",
+"wait": 1200
+},
+{
+"show": "#mentor-pedir",
+"wait": 2500
+}
+]
+},
+{
+"say": "Antes de baixar, dois compromissos. O critério para parar: qual fato, se aparecer, faz você parar ou mudar de rumo.",
+"actions": [
+{
+"text": "O seu critério para parar",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "E o compromisso de sete dias: uma ação, um responsável, um prazo e a evidência que você vai ter na mão. É o que transforma a aula em movimento.",
+"actions": [
+{
+"text": "O seu Compromisso de 7 dias",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "No fim, três saídas: baixar a sua Modelo de Negócio em PDF, que é uma página do seu Dossiê de Desenvolvimento; enviar ao Land Bank da Zion, para a página chegar ao seu cadastro; e seguir para o próximo pilar. Pilar 5, Masterplan faseado.",
+"actions": [
+{
+"show": "#pdf",
+"wait": 2500
+},
+{
+"show": "#zlb-btn",
+"wait": 2500
+},
+{
+"show": "#proxima",
+"wait": 2500
+}
+]
+},
+{
+"say": "A página do Pilar quatro tem um detalhe a mais: o simulador. Você equaliza unidades, ocupação e diária nos controles e vê os três cenários mudarem na hora. É o ensaio da Planilha dois. Até a próxima.",
+"actions": [
+{
+"card": {
+"t": "Próximo passo: Pilar 5, Masterplan faseado.",
+"s": "Club Zion Collection · Trilha de Desenvolvimento"
+}
+}
+]
+}
+]
+}

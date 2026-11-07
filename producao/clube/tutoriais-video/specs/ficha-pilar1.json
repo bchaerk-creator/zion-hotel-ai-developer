@@ -1,0 +1,254 @@
+{
+"voice": "pt-BR-FranciscaNeural",
+"scenes": [
+{
+"say": "Olá! Este é o tutorial da Ficha do Território, a ferramenta Faça agora do Pilar um. Ela transforma a matrícula do seu terreno na área que você realmente pode usar, mostra quanto o lugar aguenta e o que pode travar o projeto antes de qualquer desenho.",
+"actions": [
+{
+"card": {
+"t": "Pilar 1 · Ficha do Território",
+"s": "Da matrícula à área que você pode usar, os preços, o que o lugar aguenta e o que pode travar"
+}
+}
+]
+},
+{
+"say": "Na tela inicial, você preenche nome, e-mail e a cidade do terreno. Use o mesmo e-mail da área de membros: é por ele que a página chega ao seu cadastro no Land Bank. Depois, Começar.",
+"actions": [
+{
+"goto": "http://localhost:8790/trilha1/aula1/"
+},
+{
+"show": "h1",
+"wait": 1200
+},
+{
+"fillStart": {
+"#nome": "Ana Exemplo",
+"#email": "ana@exemplo.com",
+"#cidade": "Urubici",
+"#uf": "SC"
+}
+},
+{
+"click": "#comecar",
+"wait": 900
+}
+]
+},
+{
+"say": "A primeira pergunta: qual é o tamanho do terreno, do jeito que está escrito na matrícula, em metros quadrados. Cada tela tem três apoios: por que perguntamos isso, onde conseguir a informação, e um exemplo ilustrativo com a Marina, a personagem que acompanha a Trilha.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 1500
+},
+{
+"text": "Por que perguntamos isso",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Onde conseguir essa informação",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Exemplo ilustrativo",
+"sel": "h3",
+"wait": 2200
+}
+]
+},
+{
+"say": "Cada resposta tem uma origem: medi eu mesmo, alguém me passou, ou é estimativa minha. Marque com honestidade, porque a nota depende disso. Se não souber, toque em Não sei: vira pendência, não reprovação. Vamos responder e avançar.",
+"actions": [
+{
+"show": "label.op",
+"wait": 1500
+},
+{
+"show": "#ns",
+"wait": 1200
+},
+{
+"auto": 1,
+"pace": 500,
+"pick": 0,
+"answers": [
+"50000"
+]
+}
+]
+},
+{
+"say": "O bloco Da matrícula à área que você pode usar continua descontando o que não entra na conta: área de preservação, reserva legal, encosta forte, recuos e faixas, e o espaço que o projeto vai precisar para serviço. O que sobra é a área útil de verdade.",
+"actions": [
+{
+"auto": 5,
+"pace": 420,
+"pick": 0,
+"answers": [
+12000,
+10000,
+5000,
+2000,
+1500
+]
+}
+]
+},
+{
+"say": "Depois, Os preços do terreno: quanto vale o terreno e quanto você imagina investir no total. Essa relação diz se a terra pesa demais na conta.",
+"actions": [
+{
+"auto": 2,
+"pace": 420,
+"pick": 0,
+"answers": [
+600000,
+1800000
+]
+}
+]
+},
+{
+"say": "O bloco O que o lugar aguenta: quantas unidades cabem na área útil com espaço e caminhos, para quantas dá água, energia e esgoto, e a partir de quantas um hóspede começa a ver ou ouvir o outro. O menor desses três números é o seu teto.",
+"actions": [
+{
+"auto": 3,
+"pace": 420,
+"pick": 0,
+"answers": [
+6,
+8,
+5
+]
+}
+]
+},
+{
+"say": "Por fim, O que pode travar: quais documentos você já tem na mão, como matrícula atualizada, CAR, zona confirmada e consulta prévia. E a sua leitura: seguir, renegociar, investigar antes ou trocar de terreno.",
+"actions": [
+{
+"auto": 2,
+"pace": 420,
+"pick": 0,
+"answers": []
+}
+]
+},
+{
+"say": "A página começa pelos alertas: o que, nas suas respostas, pede atenção antes de qualquer conta.",
+"actions": [
+{
+"text": "Primeiro, os alertas",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Depois, as contas e as leituras: o que a ferramenta calculou com o que você digitou, e o que cada número significa.",
+"actions": [
+{
+"text": "As contas e as leituras",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A nota por item mostra, pergunta a pergunta, a qualidade da sua resposta: medido vale mais do que estimado.",
+"actions": [
+{
+"text": "A nota por item",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "E o ponto mais frágil: a resposta que mais pesa contra o projeto hoje. É por ela que você começa a trabalhar.",
+"actions": [
+{
+"text": "O ponto mais frágil",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A leitura do método junta tudo em um veredito claro: seguir, seguir com condições, ajustar ou esperar.",
+"actions": [
+{
+"text": "A leitura",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Se quiser uma segunda opinião, peça a leitura do mentor virtual: ele comenta as suas respostas com a lógica do método Zion. Não substitui a equipe; orienta.",
+"actions": [
+{
+"text": "O mentor virtual",
+"sel": "h2",
+"wait": 1200
+},
+{
+"show": "#mentor-pedir",
+"wait": 2500
+}
+]
+},
+{
+"say": "Antes de baixar, dois compromissos. O critério para parar: qual fato, se aparecer, faz você parar ou mudar de rumo.",
+"actions": [
+{
+"text": "O seu critério para parar",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "E o compromisso de sete dias: uma ação, um responsável, um prazo e a evidência que você vai ter na mão. É o que transforma a aula em movimento.",
+"actions": [
+{
+"text": "O seu Compromisso de 7 dias",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "No fim, três saídas: baixar a sua Ficha do Território em PDF, que é uma página do seu Dossiê de Desenvolvimento; enviar ao Land Bank da Zion, para a página chegar ao seu cadastro; e seguir para o próximo pilar. Pilar 2, Mercado e demanda.",
+"actions": [
+{
+"show": "#pdf",
+"wait": 2500
+},
+{
+"show": "#zlb-btn",
+"wait": 2500
+},
+{
+"show": "#proxima",
+"wait": 2500
+}
+]
+},
+{
+"say": "Com a Ficha do Território pronta, você sabe a área que pode usar, o teto de unidades e o que ainda falta de papel. Esses números entram no Masterplan e na Planilha dois. Até a próxima.",
+"actions": [
+{
+"card": {
+"t": "Próximo passo: Pilar 2, Mercado e demanda.",
+"s": "Club Zion Collection · Trilha de Desenvolvimento"
+}
+}
+]
+}
+]
+}

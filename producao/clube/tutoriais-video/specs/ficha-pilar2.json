@@ -1,0 +1,246 @@
+{
+"voice": "pt-BR-FranciscaNeural",
+"scenes": [
+{
+"say": "Olá! Este é o tutorial da Ficha do Mercado, a ferramenta Faça agora do Pilar dois. Ela transforma a sua pesquisa de comparáveis em diária, ocupação e capacidade do destino: os números que depois entram na Planilha dois e no pitch.",
+"actions": [
+{
+"card": {
+"t": "Pilar 2 · Ficha do Mercado",
+"s": "Quem vende o mesmo que você, quanto enche, quanto paga e quantas unidades o destino compra"
+}
+}
+]
+},
+{
+"say": "Na tela inicial, você preenche nome, e-mail e a cidade do terreno. Use o mesmo e-mail da área de membros: é por ele que a página chega ao seu cadastro no Land Bank. Depois, Começar.",
+"actions": [
+{
+"goto": "http://localhost:8790/trilha1/aula2/"
+},
+{
+"show": "h1",
+"wait": 1200
+},
+{
+"fillStart": {
+"#nome": "Ana Exemplo",
+"#email": "ana@exemplo.com",
+"#cidade": "Urubici",
+"#uf": "SC"
+}
+},
+{
+"click": "#comecar",
+"wait": 900
+}
+]
+},
+{
+"say": "A primeira pergunta: quantas unidades somam os seus comparáveis. Comparável é quem vende exatamente o mesmo que você pretende vender, no seu raio. Cada tela tem três apoios: por que perguntamos isso, onde conseguir a informação, e um exemplo ilustrativo com a Marina, a personagem que acompanha a Trilha.",
+"actions": [
+{
+"show": ".pergunta",
+"wait": 1500
+},
+{
+"text": "Por que perguntamos isso",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Onde conseguir essa informação",
+"sel": "h3",
+"wait": 2500
+},
+{
+"text": "Exemplo ilustrativo",
+"sel": "h3",
+"wait": 2200
+}
+]
+},
+{
+"say": "Cada resposta tem uma origem: medi eu mesmo, alguém me passou, ou é estimativa minha. Marque com honestidade, porque a nota depende disso. Se não souber, toque em Não sei: vira pendência, não reprovação. Vamos responder e avançar.",
+"actions": [
+{
+"show": "label.op",
+"wait": 1500
+},
+{
+"show": "#ns",
+"wait": 1200
+},
+{
+"auto": 1,
+"pace": 500,
+"pick": 0,
+"answers": [
+"96"
+]
+}
+]
+},
+{
+"say": "O bloco Quanto enche e quanto paga pede a ocupação de sexta e sábado e de domingo a quinta, a diária do meio nos dois casos, e a distância entre a diária mais cara e a mais barata do seu raio. Tudo isso você mede nos calendários dos comparáveis, não no achismo.",
+"actions": [
+{
+"auto": 5,
+"pace": 420,
+"pick": 0,
+"answers": [
+70,
+35,
+614,
+420,
+3
+]
+}
+]
+},
+{
+"say": "A curva do ano: quantos meses de alta, quanto os comparáveis enchem na alta, quantos meses fracos, quanto enchem nos fracos e nos médios. É a sazonalidade que vai para o cenário conservador.",
+"actions": [
+{
+"auto": 5,
+"pace": 420,
+"pick": 0,
+"answers": [
+4,
+85,
+3,
+25,
+50
+]
+}
+]
+},
+{
+"say": "E o bloco Quantas unidades o destino compra: quanto a procura deve crescer até você abrir, quantas unidades estão em obra ou em licença na região, e quantas você pensava em abrir. É aqui que a ferramenta diz se o destino absorve o seu projeto.",
+"actions": [
+{
+"auto": 3,
+"pace": 420,
+"pick": 0,
+"answers": [
+20,
+12,
+3
+]
+}
+]
+},
+{
+"say": "A página começa pelos alertas: o que, nas suas respostas, pede atenção antes de qualquer conta.",
+"actions": [
+{
+"text": "Primeiro, os alertas",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Depois, as contas e as leituras: o que a ferramenta calculou com o que você digitou, e o que cada número significa.",
+"actions": [
+{
+"text": "As contas e as leituras",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A nota por item mostra, pergunta a pergunta, a qualidade da sua resposta: medido vale mais do que estimado.",
+"actions": [
+{
+"text": "A nota por item",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "E o ponto mais frágil: a resposta que mais pesa contra o projeto hoje. É por ela que você começa a trabalhar.",
+"actions": [
+{
+"text": "O ponto mais frágil",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "A leitura do método junta tudo em um veredito claro: seguir, seguir com condições, ajustar ou esperar.",
+"actions": [
+{
+"text": "A leitura",
+"sel": "h2",
+"wait": 3200
+}
+]
+},
+{
+"say": "Se quiser uma segunda opinião, peça a leitura do mentor virtual: ele comenta as suas respostas com a lógica do método Zion. Não substitui a equipe; orienta.",
+"actions": [
+{
+"text": "O mentor virtual",
+"sel": "h2",
+"wait": 1200
+},
+{
+"show": "#mentor-pedir",
+"wait": 2500
+}
+]
+},
+{
+"say": "Antes de baixar, dois compromissos. O critério para parar: qual fato, se aparecer, faz você parar ou mudar de rumo.",
+"actions": [
+{
+"text": "O seu critério para parar",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "E o compromisso de sete dias: uma ação, um responsável, um prazo e a evidência que você vai ter na mão. É o que transforma a aula em movimento.",
+"actions": [
+{
+"text": "O seu Compromisso de 7 dias",
+"sel": "h2",
+"wait": 3500
+}
+]
+},
+{
+"say": "No fim, três saídas: baixar a sua Ficha do Mercado em PDF, que é uma página do seu Dossiê de Desenvolvimento; enviar ao Land Bank da Zion, para a página chegar ao seu cadastro; e seguir para o próximo pilar. Pilar 3, Produto e tipologias.",
+"actions": [
+{
+"show": "#pdf",
+"wait": 2500
+},
+{
+"show": "#zlb-btn",
+"wait": 2500
+},
+{
+"show": "#proxima",
+"wait": 2500
+}
+]
+},
+{
+"say": "Com a Ficha do Mercado pronta, você tem a diária e a ocupação com fonte. Leve esses números para a Planilha dois, aba Modelo de renda. Até a próxima.",
+"actions": [
+{
+"card": {
+"t": "Próximo passo: Pilar 3, Produto e tipologias.",
+"s": "Club Zion Collection · Trilha de Desenvolvimento"
+}
+}
+]
+}
+]
+}
