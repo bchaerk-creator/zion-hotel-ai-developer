@@ -20,7 +20,7 @@ p{position:relative;font-size:40px;line-height:1.35;color:var(--areia);margin:0;
 .rodape{position:absolute;bottom:70px;left:88px;right:88px;font-size:22px;color:var(--areia);opacity:.7;line-height:1.4}
 ul{position:relative;list-style:none;padding:0;margin:20px 0 0}
 li{font-size:38px;line-height:1.3;color:var(--creme);padding:22px 0;border-top:1px solid rgba(222,214,191,.25);display:flex;gap:22px;align-items:flex-start;animation:up .7s ease both}
-li:nth-child(1){animation-delay:.5s}li:nth-child(2){animation-delay:.9s}li:nth-child(3){animation-delay:1.3s}li:nth-child(4){animation-delay:1.7s}
+li:nth-child(1){animation-delay:.5s}li:nth-child(2){animation-delay:.9s}li:nth-child(3){animation-delay:1.3s}li:nth-child(4){animation-delay:1.7s}li:nth-child(5){animation-delay:2.1s}
 li b{color:var(--ouro);font-family:Cormorant,serif;font-size:52px;line-height:1;min-width:64px}
 li small{display:block;font-size:28px;color:var(--areia);margin-top:6px}
 .logo{position:relative;width:420px;margin:0 0 40px;animation:up .8s .2s ease both}
@@ -49,17 +49,17 @@ li small{display:block;font-size:28px;color:var(--areia);margin-top:6px}
 </style></head><body>
 <script>
 const S=[
- {foto:"ceu.webp",k:"Club Zion Collection",h:"Você tem um terreno.<br>Ou <i>já hospeda</i>.",p:"E quer transformar o que tem num negócio de hospedagem com ordem, método e gente ao lado."},
- {musgo:1,logo:1,k:"O que é o Club",h:"Uma comunidade, <i>não um curso</i>.",p:"O ecossistema de quem desenvolve, gere e opera hospedagem, na língua de quem tem a terra e não é do ramo."},
- {foto:"dentro.webp",k:"Ao entrar, três coisas acontecem",lista:[["01","Acesso ao ecossistema Zion",""],["02","Acesso à primeira trilha: Desenvolvimento",""],["03","Seu terreno entra no Land Bank Zion",""]]},
- {musgo:1,meio:1,k:"Trilha 1 · Desenvolvimento",h:"Do terreno ao <i>projeto viável</i>.",telas:["tela-marco-zero.png","tela-pilar2.png","tela-pilar6.png","tela-pilar7.png"],p:"Marco Zero e 7 pilares, 43 aulas, planilhas, ferramentas e o Dossiê de Desenvolvimento do seu terreno."},
- {foto:"deck.webp",k:"Trilha 2 · Gestão, operação e vendas",h:"Para quem <i>já hospeda</i>.",p:"Gestão, operação e aceleração de vendas: Mapa do Calendário Vazio e Plano de 90 dias para organizar e crescer o que você já tem."},
- {foto:"op08.webp",k:"Trilha Pro",h:"A Zion <i>ao lado</i> do seu projeto.",p:"Tudo das duas trilhas, mais reuniões semanais de acompanhamento com a equipe Zion."},
- {musgo:1,k:"Land Bank Zion",h:"A vitrine onde a Zion <i>olha cada caso</i>.",p:"Com o Dossiê pronto, o seu terreno entra no banco de áreas turísticas da Zion: terreno, projeto e dono, apresentados do jeito que o mercado lê."},
+ {foto:"ceu.webp",k:"Club Zion Collection",h:"Você tem um terreno.<br>Ou <i>já hospeda</i>.",p:"Em área turística, com potencial, e com uma decisão que ainda não foi tomada."},
+ {foto:"op07.webp",k:"O que você escreveu no formulário",h:"Tem a terra. Falta o capital, <i>ou falta um parceiro</i>.",p:"É a resposta mais comum que recebemos. E a pergunta que fica: há quanto tempo essa terra está parada?"},
+ {musgo:1,logo:1,k:"O que é o Club",h:"Um ecossistema, <i>não um curso</i>.",p:"Criado para viabilizar o começo: profissionalizar o setor e abrir investimentos na área, na língua de quem tem a terra e não é do ramo."},
+ {foto:"dentro.webp",k:"E como você faz isso?",lista:[["01","Você se inscreve e entra na área de membros",""],["02","Segue o passo a passo: aulas, ferramentas e planilhas",""],["03","Responde cada ficha e anexa o que tem na mão",""],["04","O resultado vai se formando, trilha por trilha",""]]},
+ {musgo:1,meio:1,k:"Trilha 1 · Desenvolvimento",h:"Do terreno ao <i>projeto viável</i>.",telas:["tela-marco-zero.png","tela-pilar2.png","tela-pilar6.png","tela-pilar7.png"],p:"Marco Zero e 7 pilares: território, mercado, produto, modelo de negócio, masterplan, pré-viabilidade e capital."},
+ {foto:"op10.webp",k:"O que você sai sabendo",h:"A sua conta, <i>com os seus números</i>.",lista:[["01","Raio-x do seu terreno e do mercado",""],["02","O que é possível fazer na área",""],["03","Quanto custa e quanto você investiria, sozinho ou com alguém",""],["04","O tempo de volta, em três cenários",""]]},
+ {foto:"op11.webp",k:"Para que serve",h:"Estruturar <i>abre portas</i>.",lista:[["01","Investir o seu capital com critério",""],["02","Trazer um sócio: um amigo ou alguém perto de você",""],["03","Atrair um parceiro como a Zion, com os produtos e o ecossistema",""],["04","Apresentar o projeto a investidores",""]]},
+ {foto:"deck.webp",k:"Land Bank Zion",h:"Projeto pronto, <i>reunião com a Zion</i>.",p:"O critério para entrar é a viabilidade estruturada: não há como investir numa área sem saber o que pode ser feito nela. Com o projeto no Land Bank, a equipe Zion avalia o seu caso para o próximo passo."},
  {foto:"op12.webp",k:"Quem está do outro lado",h:"A Zion está em <i>expansão</i>.",lista:[["01","A Zion seleciona áreas e terrenos para novos projetos",""],["02","Banco de investidores: empresários, empresas e fundos que investem em turismo",""],["03","Para ser avaliado: estar no Club e ter o terreno estruturado no Land Bank",""]],rodape:"Cadastro de interesse. Não é oferta pública de investimento. A Zion avalia cada caso e não garante parceria ou investimento."},
  {foto:"op05.webp",k:"Para quem é",cx:[["Tenho terreno","Você tem a terra e quer saber o que fazer com ela, na ordem certa."],["Tenho um projeto","Falta a conta, o plano e quem apresenta isso ao mercado."],["Já hospedo","Quer ampliar, e o Land Bank é o caminho mais curto para a Zion conhecer o seu negócio."]],h:"Não existe modelo certo. Existe o que <i>serve para a sua região</i>."},
- {musgo:1,meio:1,k:"Acesso anual · parcelado no cartão",h:"Três <i>degraus</i>.",planos:[["Base","Trilha de Desenvolvimento, Dossiê, reunião de diagnóstico, masterclass e Land Bank","6x de R$ 45","ou R$ 270 à vista"],["Master","Tudo do Base + trilhas de gestão, operação e vendas, com aulas ao vivo","12x de R$ 81,67","ou R$ 980 à vista"],["Pro","Tudo do Base e do Master + reuniões semanais de acompanhamento","12x de R$ 241,67","ou R$ 2.900 à vista"]]},
- {foto:"op04.webp",k:"Club Zion Collection",h:"Entre para o clube.<br><i>Inscreva o seu terreno</i>.",p:"Aprenda o passo a passo, estruture o seu projeto e coloque o seu terreno na vitrine da Zion.",cta:"Responda esta mensagem",rodape:"Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade. A Zion avalia cada caso."}
+ {foto:"op04.webp",k:"Club Zion Collection",h:"Inscreva o seu terreno, o seu projeto <i>ou a sua hospedagem</i>.",p:"E vamos juntos buscar o melhor resultado. A inscrição e os planos estão no link.",cta:"Inscreva-se no link",rodape:"Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade. A Zion avalia cada caso."}
 ];
 const i=+(new URLSearchParams(location.search).get("s")||0); const c=S[i];
 let h=`<div class="cena ${c.musgo?"musgo":""} ${c.meio?"meio":""}">`;

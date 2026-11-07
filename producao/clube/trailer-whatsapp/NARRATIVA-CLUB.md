@@ -1,78 +1,63 @@
-# Trailer do Club Zion Collection · narrativa para o disparo no WhatsApp
+# Trailer do Club Zion Collection · narrativa para o disparo no WhatsApp (versão 2, ajustes de Bruno em 07/11)
 
 Público: donos de terreno em área turística que querem começar na hospedagem, e quem já hospeda (casa, pousada, glamping) e quer organizar e ampliar o que tem.
-Objetivo: explicar o que é o Club (comunidade, não curso), o que a pessoa recebe ao entrar, as três trilhas, o Land Bank como vitrine, a expansão da Zion e o banco de investidores, e levar à inscrição.
-Regras: sem promessa de renda, retorno, parceria ou investimento. "Possibilidade", "a Zion avalia cada caso", "cadastro de interesse, não é oferta pública de investimento". Sem a palavra Airbnb (usamos "quem já hospeda"). "Equipe Zion", "acompanhamento".
-Fonte: a página do Club (`docs/land-members/index.html`): três coisas ao entrar, Trilha de Desenvolvimento (Marco Zero e 7 pilares, 43 aulas), planos Base, Master e Pro, "Para quem é", perguntas frequentes e os avisos legais.
+Objetivo: espelhar o que a pessoa escreveu no formulário (tem a terra, falta capital ou parceiro), explicar o que é o Club (ecossistema, não curso), o como (jornada na área de membros, trilha por trilha), o resultado (raio-x e conta própria), para que serve (capital próprio, sócio, parceiro como a Zion, investidores), o Land Bank como triagem com reunião, a expansão da Zion e o banco de investidores, e levar à inscrição pelo link.
+Regras: "ecossistema", nunca "comunidade" nem "curso". Sem preço no vídeo e no texto (os planos ficam no link, para poder mudar e fazer upgrade). Sem promessa de renda, retorno, parceria ou investimento: "viabilizar o começo", "serve para atrair", "a Zion avalia cada caso". Sem a palavra Airbnb. "Equipe Zion", "acompanhamento". Dizemos "a sua própria conta, em três cenários" e "o tempo de volta", nunca "rentabilidade" ou "quanto retornaria" como afirmação nossa.
 
-## 1. A espinha da narrativa
+## 1. A espinha
 
 | Momento | O que dizemos |
 |---|---|
-| Espelho | Você tem um terreno. Ou já hospeda. E quer fazer isso com ordem, método e gente ao lado. |
-| O que é | Uma comunidade, não um curso: o ecossistema de quem desenvolve, gere e opera hospedagem, na língua de quem não é do ramo. |
-| Ao entrar | Acesso ao ecossistema, primeira trilha, terreno no Land Bank. |
-| Trilha 1 | Desenvolvimento: do terreno ao projeto viável. Marco Zero + 7 pilares, 43 aulas, planilhas, Dossiê. |
-| Trilha 2 | Gestão, operação e aceleração de vendas, para quem já hospeda. Calendário Vazio e Plano de 90 dias. |
-| Trilha Pro | Reuniões semanais de acompanhamento com a equipe Zion. |
-| Land Bank | A vitrine onde a Zion olha cada caso: terreno, projeto e dono, do jeito que o mercado lê. |
-| Quem está do outro lado | A Zion em expansão, selecionando áreas; banco de investidores (empresários, empresas, fundos de turismo). Para ser avaliado: estar no Club e ter o terreno estruturado. |
-| Para quem é | Tenho terreno · Tenho um projeto · Já hospedo. |
-| Degraus | Base 6x R$ 45 · Master 12x R$ 81,67 · Pro 12x R$ 241,67. Acesso anual. |
-| Chamada | Entre para o clube e inscreva o seu terreno. Responda esta mensagem. |
+| Espelho | Você tem um terreno, ou já hospeda. |
+| Espelho do formulário | Tem a terra, falta o capital ou falta um parceiro. Há quanto tempo essa terra está parada? |
+| O que é | Criamos o Club para viabilizar o começo: um ecossistema, não um curso, para profissionalizar o setor e abrir investimentos na área. |
+| O como | Inscreve, entra na área de membros, segue o passo a passo com ferramentas, fichas e anexos, trilha por trilha. |
+| Trilha 1 | Desenvolvimento: Marco Zero e 7 pilares, do terreno ao projeto viável. |
+| O resultado | Raio-x do terreno e do mercado, e a própria conta: o que cabe, quanto custa, quanto investiria, tempo de volta em três cenários. |
+| Para que serve | Investir o próprio capital com critério, trazer um sócio, atrair um parceiro como a Zion, apresentar a investidores. |
+| Land Bank | Critério: viabilidade estruturada. Triagem da Zion. Projeto no Land Bank, reunião com a equipe Zion para o próximo passo. |
+| Quem está do outro lado | Zion em expansão, banco de investidores do turismo. Para ser avaliado: Club + terreno estruturado. |
+| Para quem é | Tenho terreno, tenho um projeto, já hospedo. |
+| Chamada | Inscreva o seu terreno, o seu projeto ou a sua hospedagem. Vamos juntos buscar o melhor resultado. Inscrição e planos no link. |
 
 ## 2. Texto do disparo (vai junto com o vídeo)
 
-### Versão A · apresentação do Club
-
 > Oi, {{nome}}. Aqui é a equipe Zion.
 >
-> Muita gente nos pergunta o que é, de fato, o Club Zion Collection. Gravamos um vídeo de 2 minutos para responder.
+> No formulário, você contou que tem a terra e que falta capital ou um parceiro. É a resposta mais comum que recebemos. E a pergunta que fazemos de volta é: há quanto tempo essa terra está parada?
 >
-> Em resumo: não é um curso. É uma comunidade de quem desenvolve, gere e opera hospedagem, feita para quem tem terreno e não é do ramo, e para quem já hospeda e quer organizar e ampliar o que tem.
+> Nós criamos o Club Zion Collection justamente para viabilizar esse começo. É um ecossistema de quem desenvolve e opera hospedagem, feito para profissionalizar o setor e abrir investimentos na área. Você entra na área de membros, segue o passo a passo com as nossas ferramentas e estrutura um plano para o seu lugar. O terreno entra no Land Bank, onde a Zion faz a triagem, olha o potencial de cada área e marca uma reunião para avaliar o seu caso.
 >
-> Ao entrar, você recebe acesso ao ecossistema Zion, à Trilha de Desenvolvimento (do terreno ao projeto viável) e inscreve o seu terreno no Land Bank, a vitrine onde a equipe Zion olha cada caso. A Zion está em expansão, selecionando áreas, e mantém um banco de investidores do setor de turismo.
+> Para que serve? Para você investir o seu capital com critério, trazer um sócio, atrair um parceiro como a Zion e apresentar o projeto a investidores.
 >
-> Assista e me diga qual é o seu momento:
->
-> 1 · Tenho terreno
-> 2 · Tenho um projeto
-> 3 · Já hospedo
+> O vídeo explica tudo. Inscreva o seu terreno, o seu projeto ou a sua hospedagem, e vamos juntos buscar o melhor resultado.
 
-### Versão B · lembrete (2 dias depois)
+Botões: "Quero me inscrever" (abre a página do Club, com os planos) e "Não me interessa". Rodapé: "Cadastro de interesse. Não é oferta de investimento. A Zion avalia cada caso."
 
-> {{nome}}, uma dúvida que ouvimos muito: "estar no Land Bank garante parceria ou investimento?"
->
-> Não. Abre a possibilidade de conversar. A Zion avalia cada caso, e o que pesa é o projeto: terreno estruturado, conta feita e Dossiê pronto. É exatamente isso que o Club ensina a montar, na ordem certa.
->
-> O vídeo que mandei mostra as três trilhas e o que acontece quando você entra. Quer que eu te explique o degrau Base? Responde "QUERO".
+Lembrete, 2 dias depois, para quem não respondeu: "{{nome}}, uma dúvida que ouvimos muito: estar no Land Bank garante parceria ou investimento? Não. Abre a possibilidade de conversar. A Zion avalia cada caso, e o que pesa é o projeto estruturado. É exatamente isso que o Club ensina a montar, na ordem certa. Quer que eu te mostre por onde começar? Responde QUERO."
 
-### Versão C · para quem respondeu (a Zaya continua)
-
-> Perfeito. O Base é o primeiro degrau: Trilha de Desenvolvimento, Dossiê do seu terreno, reunião de diagnóstico com a equipe Zion, masterclass ao vivo e a inscrição no Land Bank. Acesso anual, 6x de R$ 45 ou R$ 270 à vista.
->
-> Conteúdo educacional: cenários, não promessas de renda, retorno ou sociedade. Posso te mandar o link de inscrição?
-
-## 3. Roteiro de locução (11 cenas · ~2 min)
+## 3. Roteiro de locução (11 cenas · ~2 min 30)
 
 | # | Tela | Locução |
 |---|---|---|
-| 0 | Foto · "Você tem um terreno. Ou já hospeda." | Você tem um terreno em área turística. Ou já recebe hóspedes numa casa, pousada ou glamping. E quer transformar o que tem num negócio de hospedagem com ordem, método e gente ao lado. |
-| 1 | Logo · "Uma comunidade, não um curso." | O Club Zion Collection não é um curso. É uma comunidade: o ecossistema de quem desenvolve, gere e opera hospedagem, falando a língua de quem tem a terra e não é do ramo. |
-| 2 | Foto · três coisas ao entrar | Ao entrar, três coisas acontecem. Você recebe acesso ao ecossistema Zion. Recebe a primeira trilha, a de Desenvolvimento. E o seu terreno entra no Land Bank, o banco de áreas turísticas da Zion. |
-| 3 | Telas das ferramentas · Trilha 1 | A Trilha de Desenvolvimento vai do terreno ao projeto viável: Marco Zero e sete pilares, quarenta e três aulas, planilhas, ferramentas interativas e o Dossiê de Desenvolvimento do seu terreno, página a página. |
-| 4 | Foto · Trilha 2 | A Trilha dois é para quem já hospeda: gestão, operação e aceleração de vendas. O Mapa do Calendário Vazio e o Plano de noventa dias, para organizar e crescer o que você já tem. |
-| 5 | Foto · Trilha Pro | E a Trilha Pro coloca a Zion ao lado do seu projeto: tudo das duas trilhas, mais reuniões semanais de acompanhamento com a equipe. |
-| 6 | Musgo · Land Bank | Com o Dossiê pronto, o seu terreno entra no Land Bank: a vitrine onde a equipe Zion olha cada caso. Terreno, projeto e dono, apresentados do jeito que o mercado lê. |
-| 7 | Foto · "A Zion está em expansão." | Do outro lado, a Zion está em plena expansão, selecionando áreas e terrenos para novos projetos. E mantém um banco de investidores: empresários, empresas e fundos que investem em turismo. Para ser avaliado, o caminho é um só: estar no Club e ter o terreno estruturado no Land Bank. A Zion avalia cada caso. |
-| 8 | Foto · Para quem é | Não existe modelo certo ou errado. Existe o que serve para a sua região. Serve para quem tem terreno, para quem tem um projeto e para quem já hospeda e quer ampliar. |
-| 9 | Musgo · Três degraus | São três degraus, com acesso anual e parcelado no cartão. Base: a Trilha de Desenvolvimento, o Dossiê, a reunião de diagnóstico, a masterclass e o Land Bank, em seis vezes de quarenta e cinco reais. Master: tudo do Base, mais as trilhas de gestão, operação e vendas, com aulas ao vivo. Pro: tudo isso, mais as reuniões semanais de acompanhamento. |
-| 10 | Foto · "Entre para o clube. Inscreva o seu terreno." | Club Zion Collection. Entre para o clube, aprenda o passo a passo e inscreva o seu terreno. Responda esta mensagem e a equipe Zion te orienta no próximo passo. |
+| 0 | Foto · "Você tem um terreno. Ou já hospeda." | Você tem um terreno em área turística. Ou já recebe hóspedes numa casa, pousada ou glamping. |
+| 1 | Foto · "Tem a terra. Falta o capital, ou falta um parceiro." | Você escreveu no formulário: tem a terra, mas falta o capital. Ou falta um parceiro. E a pergunta que fica é: há quanto tempo essa terra está parada? |
+| 2 | Logo · "Um ecossistema, não um curso." | Nós criamos o Club Zion Collection justamente para isso: viabilizar o começo. Não é um curso. É um ecossistema de quem desenvolve, gere e opera hospedagem, feito para profissionalizar o setor e abrir investimentos na área, na língua de quem tem a terra e não é do ramo. |
+| 3 | Foto · "E como você faz isso?" · 4 passos | E como você faz isso? Você se inscreve, entra na área de membros e segue o passo a passo: aulas, ferramentas e planilhas, trilha por trilha. Em cada etapa você responde a ficha, anexa o que tem na mão, e o resultado vai se formando. |
+| 4 | Telas · Trilha 1 | A primeira trilha é a de Desenvolvimento: Marco Zero e sete pilares, do terreno ao projeto viável. Território, mercado, produto, modelo de negócio, masterplan, pré-viabilidade e capital. |
+| 5 | Foto · "A sua conta, com os seus números." · 4 itens | No fim dela, você tem um raio-x do seu terreno e do mercado, e a sua própria conta: o que é possível fazer na área, quanto custa, quanto você investiria, sozinho ou com alguém, e o tempo de volta, em três cenários. Uma visão inicial, feita com os seus números. |
+| 6 | Foto · "Estruturar abre portas." · 4 itens | Para que serve isso? Para você mesmo investir o seu capital com critério. Para trazer um sócio, que pode ser um amigo ou alguém perto de você, com as palavras certas na mão. Para atrair um parceiro como a Zion, com os produtos e todo o ecossistema. E para apresentar o projeto a investidores. |
+| 7 | Foto · "Projeto pronto, reunião com a Zion." | Com o Dossiê pronto, você envia para o Land Bank. O critério para entrar é a viabilidade estruturada: não há como investir numa área sem saber o que pode ser feito nela. É assim que a Zion faz a triagem e encontra o potencial de cada lugar. E, com o projeto no Land Bank, você tem uma reunião com a equipe Zion, onde avaliamos o seu caso para o próximo passo. |
+| 8 | Foto · "A Zion está em expansão." · 3 itens | Do outro lado, a Zion está em plena expansão, selecionando áreas e terrenos para novos projetos. E mantém um banco de investidores: empresários, empresas e fundos que investem em turismo. Para ser avaliado, o caminho é um só: estar no Club e ter o terreno estruturado no Land Bank. A Zion avalia cada caso. |
+| 9 | Foto · Para quem é | Não existe modelo certo ou errado. Existe o que serve para a sua região. Para quem tem terreno, para quem tem um projeto e para quem já hospeda e quer ampliar. |
+| 10 | Foto · "Inscreva o seu terreno, o seu projeto ou a sua hospedagem." | Club Zion Collection. Inscreva o seu terreno, o seu projeto ou a sua hospedagem. E vamos juntos buscar o melhor resultado. A inscrição e os planos estão no link abaixo. |
 
-Rodapés fixos: cena 7, "Cadastro de interesse. Não é oferta pública de investimento. A Zion avalia cada caso e não garante parceria ou investimento."; cena 10, "Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade. A Zion avalia cada caso."
+Rodapés fixos: cena 8, "Cadastro de interesse. Não é oferta pública de investimento. A Zion avalia cada caso e não garante parceria ou investimento."; cena 10, "Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade. A Zion avalia cada caso."
+
+As trilhas Master e Pro ficaram fora do vídeo por decisão de Bruno: a pessoa vê os planos no link.
 
 ## 4. Como usar
 
 - Arquivo: `docs/trilha1/trailer/trailer-club-whatsapp.mp4` (1080×1920) e capa `capa-trailer-club.jpg`.
 - Para refazer: `club.html` (as 11 cenas), `spec-club.json` (locução) e `make_trailer.py` nesta pasta.
-- Sugestão de sequência no WhatsApp: primeiro o trailer da Trilha (o porquê e o passo a passo), dois dias depois o trailer do Club (o que é e os degraus). Os dois terminam com botões de resposta rápida que a Zaya usa para qualificar.
+- Sequência sugerida no WhatsApp: primeiro o trailer da Trilha (o porquê e o passo a passo), dois dias depois o trailer do Club (o que é, o como e o resultado).
