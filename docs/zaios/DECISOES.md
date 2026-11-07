@@ -55,7 +55,8 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 07/11/2026 | Etapa 5 · P6 Viabilidade | Fluxo de 10 anos, paybacks, VPL e TIR com e sem saída, três cenários, sensibilidade, estresse, curva de caixa de 36 meses, regra de decisão Zion em 5 passos (selo Redesenhar). Casos do F03 conferidos. Dossiê seção 10. 361 testes | 18,4 |
 | 07/11/2026 | Etapa 6 · Consolidação, parte 1 | Auditoria de segurança (acessos públicos às funções revogados; análises básica e profunda sem problemas), limite de tentativas no link, Termos e Privacidade (versão 0, revisão jurídica pendente) com aceite obrigatório, baixar e excluir dados do membro, exportação do Admin com alerta de 7 dias. 394 testes | 19,4 |
 | 07/11/2026 | Etapa 6 · Consolidação, parte 2 | Identidade oficial Zion (cores, Cormorant e Aventa locais, logo oficial, favicon, PDF com as fontes). Linguagem: associado virou membro, sem Airbnb/mentoria/curso/comunidade/consultoria, "Exemplo com dados fictícios", "Cenários, não promessas.", voz "nós". 394 testes | 6,7 |
-| | **Total até aqui** | | **161,3** |
+| 07/11/2026 | Publicação para teste fechado | Publicado em https://zaios.lovable.app (autorizado pelo Bruno: "vamos provar"). Origem do link de acesso ajustada para o endereço publicado; Lovable Cloud confirmado. 396 testes | 1,3 |
+| | **Total até aqui** | | **162,6** |
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
@@ -63,4 +64,3 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 ## Ao publicar
 - Revisão jurídica de Termos e Privacidade e e-mail de contato da Zion (Bruno).
 - Revisar os e-mails automáticos de acesso (texto e remetente com domínio Zion), que ficam nas configurações do Lovable Cloud, fora do código.
-- Incluir o endereço publicado na lista fixa de origens do link de acesso.
