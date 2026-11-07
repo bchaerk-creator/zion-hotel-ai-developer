@@ -1,0 +1,20 @@
+{"product":"A02","title":"Tutorial · Precificador Inteligente Zion",
+"segments":[
+ {"id":"s01","say":"Olá! Neste tutorial você vai ver, na prática, como usar o Precificador Inteligente Zion. No final, você terá a sua diária mínima, a sua diária-alvo e um plano de preços em PDF.","do":[["move",".za-hero h1"]]},
+ {"id":"s02","say":"No topo fica a barra de progresso. São quarenta telas, organizadas em sete pilares. Tudo o que você responde fica salvo automaticamente neste navegador.","do":[["move",".za-prog"]]},
+ {"id":"s03","say":"O botão Telas abre o índice. Por ele, você volta a qualquer etapa já visitada para revisar ou corrigir uma resposta.","do":[["click","#za-menu"],["wait",2500],["click","#za-close"]]},
+ {"id":"s04","say":"As primeiras telas mostram o problema e a ideia central do método. Leia com calma e clique em Continuar.","do":[["wait",1500],["click","#za-next"],["wait",2500],["click","#za-next"]]},
+ {"id":"s05","say":"Aqui você se apresenta: o seu nome, o nome da hospedagem, o tipo, a cidade e quantas unidades você aluga.","do":[["type","#f_nome","Ana"],["type","#f_propriedade","Cabana Vale Verde"],["select","#f_tipo","cabana"],["type","#f_destino","Urubici, SC"],["type","#f_unidades","1"]]},
+ {"id":"s06","say":"Clique em Continuar. Se algum campo obrigatório ficar vazio, a ferramenta avisa antes de avançar.","do":[["click","#za-next"]]},
+ {"id":"s07","say":"Cada pilar tem cinco momentos. O primeiro é Aprenda: uma explicação curta, sempre com um exemplo.","do":[["scroll",300],["wait",1200],["move",".za-example"],["wait",800],["click","#za-next"]]},
+ {"id":"s08","say":"Depois vem Compare: o jeito arriscado e o jeito certo, lado a lado.","do":[["move",".za-col.bad"],["wait",1200],["move",".za-col.good"],["wait",800],["click","#za-next"]]},
+ {"id":"s09","say":"Em seguida, Preencha. É o exercício do pilar, sempre com os seus números. Informe a diária que você cobra hoje e como chegou a esse valor.","do":[["type","#f_diaria_atual","280"],["check","[data-f=metodo] input[value=concorrente]"],["check","[data-f=objetivo] input[value=equilibrio]"]]},
+ {"id":"s10","say":"No momento Feedback, a ferramenta lê as suas respostas e mostra o que elas revelam.","do":[["click","#za-next"],["wait",900],["move",".za-fb li"]]},
+ {"id":"s11","say":"E em Aplique, você marca as ações que vai colocar em prática. Elas entram no seu plano final.","do":[["click","#za-next"],["wait",900],["check","[data-act=a1_1]"],["check","[data-act=a1_3]"]]},
+ {"id":"s12","say":"Vamos adiantar até o pilar três, de custos variáveis, para ver um recurso importante.","do":[["prefill",15]]},
+ {"id":"s13","say":"Se você não tiver algum dado, marque Não sei. A ferramenta continua, usa uma premissa e avisa no relatório que aquele ponto é uma hipótese.","do":[["type","#f_limpeza","100"],["type","#f_lavanderia","30"],["type","#f_amenities","20"],["type","#f_extra_noite","25"],["check","[data-unk=estadia_media]"],["type","#f_comissao","15"],["type","#f_imposto","6"],["type","#f_taxa_pag","0"]]},
+ {"id":"s14","say":"Veja o feedback: o custo por noite, as deduções e o peso da limpeza, calculados na hora.","do":[["click","#za-next"],["wait",900],["move",".za-metric"]]},
+ {"id":"s15","say":"Agora, a consolidação. Aqui aparecem os indicadores, os pontos de atenção e as prioridades OP3D: do que mais pesa até a sua ação essencial agora.","do":[["prefill",38],["wait",1500],["scroll",500],["wait",1200],["scroll",700],["wait",1200],["scroll",700]]},
+ {"id":"s16","say":"Por fim, o relatório personalizado. Clique em Baixar PDF e escolha Salvar como PDF. Você também pode exportar os seus dados para continuar em outro aparelho.","do":[["go",39],["wait",1000],["move","#za-print"],["wait",1800],["move","#za-export"],["wait",1500],["scroll",600],["wait",1000],["scroll",700]]},
+ {"id":"s17","say":"Pronto. Agora é com você: preencha com os números reais da sua hospedagem e use o plano para decidir o seu preço com segurança. Aprenda o passo a passo, utilize as ferramentas e construa o seu resultado.","do":[["scroll",-3000],["move",".za-hero h1"]]}
+]}
