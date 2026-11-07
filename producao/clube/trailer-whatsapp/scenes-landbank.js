@@ -1,0 +1,10 @@
+window.TOPO="Land Bank Zion";
+window.S=[
+ {foto:"op07.webp",k:"Land Bank Zion",h:"As pessoas não compram terra. Compram <i>projetos e planos</i>.",p:"O banco de áreas turísticas da Zion: o lugar onde ficam os terrenos e projetos inscritos."},
+ {foto:"op12.webp",k:"Por que ele existe",h:"A Zion está em expansão. E o mercado pede <i>projeto, não terreno</i>.",p:"Quem seleciona áreas, quem é parceiro e quem investe quer saber o que pode ser feito nela antes de qualquer conversa. O critério para entrar é a viabilidade estruturada."},
+ {foto:"deck.webp",k:"Os quatro degraus",lista:[["01","Terreno inscrito: você entra no Club e, na reunião de diagnóstico, o terreno é inscrito",""],["02","Projeto estruturado: o que pode virar, em que ordem e com quais próximos passos",""],["03","No radar da Zion e do setor: áreas organizadas ficam visíveis",""],["04","A conversa: quando faz sentido para os dois lados, a Zion chama",""]]},
+ {musgo:1,meio:1,k:"Como se estrutura",h:"Pela Trilha de Desenvolvimento, <i>trilha por trilha</i>.",telas:["tela-pilar1.png","tela-pilar2.png","tela-pilar6.png","tela-pilar7.png"],p:"Fichas, planilhas e ferramentas que geram o Dossiê do seu terreno, página a página."},
+ {foto:"op10.webp",k:"O que o Dossiê mostra",lista:[["01","Área útil de verdade e o que pode travar",""],["02","Mercado: quem paga, quanto e quantas unidades cabem",""],["03","Produto, modelo de negócio e fase um",""],["04","A conta em três cenários e de onde vem o capital",""]]},
+ {foto:"op11.webp",k:"Para que serve",h:"Estruturar <i>abre portas</i>.",p:"Para investir o seu capital com critério, trazer um sócio, atrair um parceiro como a Zion e apresentar o projeto a investidores. A Zion avalia cada caso: possibilidade não é promessa."},
+ {foto:"op04.webp",k:"Land Bank Zion",h:"Inscreva o seu terreno, o seu projeto <i>ou a sua hospedagem</i>.",p:"O caminho é pelo Club Zion Collection. E vamos juntos buscar o melhor resultado.",cta:"Quero inscrever meu terreno",rodape:"A Zion avalia cada caso. Possibilidade não é promessa. Não há garantia de parceria, investimento, compra ou sociedade."}
+];

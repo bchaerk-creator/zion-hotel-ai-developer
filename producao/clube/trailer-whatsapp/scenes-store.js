@@ -1,0 +1,13 @@
+window.TOPO="Glamping Store · Bubble Zion";
+window.S=[
+ {foto:"hero.webp",k:"Glamping Store",h:"Sabe aquela área de mata onde <i>nunca entraria</i> uma construção?",p:"A encosta, o meio das árvores, o ponto com a melhor vista do seu terreno."},
+ {foto:"noite.webp",k:"O que é o glamping",h:"É acampar <i>com luxo</i>.",p:"De dia, o hóspede vive o lugar. À noite, deita na cama e o teto é o céu. É aí que ele entende por que veio."},
+ {foto:"dentro.webp",k:"Bubble Zion",h:"Uma cabana premium de glamping. <i>Não é uma casa</i>.",cx:[["É","Removível, leve, de uso fácil. Um veículo de hospedagem."],["Não é","Construção nem patrimônio imobiliário."],["Vem","Só a bolha. Deck, luz e água você prepara, com a nossa orientação."]]},
+ {foto:"op07.webp",k:"Onde a Bubble mora",h:"Onde uma obra seria cara ou <i>impossível</i>.",p:"Ela chega sobre um deck de madeira. Não substitui a sua pousada, o seu chalé ou a sua casa de temporada: soma um produto novo num pedaço do terreno que hoje não gera nada."},
+ {foto:"deck.webp",k:"Sem a dor da obra",lista:[["01","Deck, energia e água prontos: até 90 dias para operar",""],["02","Sem fundação profunda, sem mão de obra pesada",""],["03","Entra na encosta, na mata e no acesso difícil",""],["04","Removível: o deck fica pronto para outra cabana",""]]},
+ {foto:"ceu.webp",k:"Duas formas de olhar",h:"Para o hóspede, uma vista que casa nenhuma tem. Para quem opera, <i>um negócio sem obra</i>.",p:"Ninguém esquece a primeira noite dentro de uma bolha."},
+ {musgo:1,meio:1,k:"Os modelos",h:"Suite e <i>Suite Premium</i>.",telas:["suite-foto.webp","premium-foto.webp"],p:"A Suite, compacta e envolvente. A Premium, com tudo da Suite e uma banheira. Plantas e medidas na página."},
+ {foto:"op12.webp",k:"Quem vende, opera",h:"Antes de vender a Bubble, <i>nós operamos a Bubble</i>.",p:"Desde 2020, em duas operações próprias, Urubici e Florianópolis. O que ensinamos e vendemos é o que fazemos todo dia."},
+ {musgo:1,k:"Como funciona a compra",lista:[["01","Você conta onde fica o terreno e quantas unidades imagina",""],["02","A Zion envia a proposta da bolha",""],["03","Você recebe a orientação do deck e um projeto básico",""],["04","Você prepara deck, energia, água e esgoto. A bolha chega e é instalada",""]]},
+ {foto:"noturna.webp",k:"Glamping Store",h:"Receba o valor e a condição da sua Bubble <i>no WhatsApp</i>.",p:"Preencha o pedido em 1 minuto e a Zaya, da equipe Zion, segue o atendimento por lá. Ainda não sabe se o seu terreno está pronto? Comece pelo diagnóstico prévio gratuito.",cta:"Pedir orçamento",rodape:"Cada terreno tem as suas regras: licenciamento e zoneamento são analisados caso a caso. Conteúdo educacional, sem promessa de resultado."}
+];
