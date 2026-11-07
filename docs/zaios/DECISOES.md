@@ -20,6 +20,13 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 06/11/2026 | Fazer o Dossiê preliminar antes da Jornada Operação | Bruno Chaerk |
 | 07/11/2026 | Construir P5 e P6 com a metodologia dos planos F01 a F03 como versão 0 | Bruno Chaerk ("pode começar") |
 
+## Regras de linguagem e marca para a ZAIOS (contexto do Bruno, 07/11/2026)
+- Nunca prometer renda, retorno, rentabilidade, ocupação, crédito, investimento, investidor, parceria ou sociedade. Usar "possibilidade", "a Zion avalia cada caso", "cenários, não promessas".
+- Dizer "equipe Zion", "ecossistema", "trilha", "acompanhamento", "membros". Não dizer consultoria, curso, comunidade, mentoria, sócios (dos membros) nem Airbnb.
+- Identidade: preto #040605, musgo #1B2117, creme #FEF5F0, areia #DED6BF, terra #8B714E, dourado #C9B37E; fontes Cormorant e Aventa; logo oficial de docs/brand/; só fotos reais da Zion.
+- Exemplos sempre marcados como "dados fictícios".
+- Prioridade 1 depois do MVP: ligar os resultados que a ZAIOS já guarda no servidor ao lead (chave única por e-mail e telefone). Os ids e endereços de integração ficam no documento de contexto do Bruno, não neste repositório público.
+
 ## Depois do MVP (pedido do Bruno, 07/11/2026)
 - Consumir o documento de visão aos poucos, na ordem do roadmap.
 - Construir a identidade própria da ZAIOS: logo, narrativa e linguagem, dentro do padrão da marca Zion.
