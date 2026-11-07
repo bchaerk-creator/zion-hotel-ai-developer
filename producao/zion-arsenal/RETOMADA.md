@@ -30,6 +30,10 @@
 - A01 sem landing nova (oferta antiga; depende de aprovado).
 - Publicação: só quando a oferta estiver ativa (vendedor ainda em análise).
 
+## Vídeos de apresentação (07/11/2026)
+- 19 vídeos 9:16 (8 cenas ECROI, narração pt-BR, telas reais) em `docs/p/adbc67069af26ae0/apresentacao/zar-xxx-apresentacao.mp4` + `zar-xxx-capa.jpg`. Gerador: `promo/gen.js` → `promo/run_all.sh`.
+- As 19 landings no ClickMax foram atualizadas com o vídeo no topo (rascunho). ClickMax mantém `<video>` (testado em página publicada e despublicada).
+
 ## Próximos passos
 1. ~~Nome~~ resolvido: Zion Collection Club · Hotel Business Academy.
 2. Ajustar `app/engine.css` e as landings às cores oficiais do CLAUDE.md (#040605, #1B2117, #FEF5F0, #DED6BF, #8B714E, #C9B37E; Cormorant + Jost) e dar cor explícita aos spans.
