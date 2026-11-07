@@ -1,0 +1,10 @@
+window.TOPO="Club Zion Collection";
+window.S=[
+ {foto:"dentro.webp",k:"Você escreveu no formulário",h:"“Quero <i>um parceiro</i> para desenvolver comigo.”",p:"É a resposta mais comum de quem tem terreno em área turística e fala com a gente."},
+ {foto:"op07.webp",k:"O custo invisível",h:"Esperar o parceiro certo <i>também é esperar</i>.",p:"Enquanto isso, o terreno segue parado, e o parceiro certo está olhando outro projeto, que já tem conta e papel."},
+ {musgo:1,k:"O colapso",h:"Parceiro não aparece para dividir uma ideia. <i>Aparece para dividir papéis</i>.",p:"Quem tem a terra, quem opera e quem coloca capital. Sem isso definido, toda conversa termina em “vamos ver”."},
+ {foto:"op12.webp",k:"O reencadramento",h:"Parceria é um modelo de negócio, <i>não um favor</i>.",p:"Renda, venda ou híbrido. O que cada um entra, o que cada um recebe e em que fase. Isso se escreve antes de sentar à mesa."},
+ {musgo:1,meio:1,k:"O caminho",h:"Pilar 4: <i>Modelo de negócio</i>.",telas:["tela-pilar4.png","tela-pilar7.png"],p:"A ficha define o modelo e a divisão de papéis. O Dossiê mostra ao parceiro o que ele quer ver: terreno, mercado, produto, conta e capital."},
+ {foto:"op11.webp",k:"O que isso abre",lista:[["01","Um sócio perto de você: um amigo, um vizinho, alguém da cidade, com as palavras certas na mão",""],["02","Um parceiro como a Zion, com os produtos e o ecossistema",""],["03","O terreno na vitrine do Land Bank, onde a Zion avalia cada caso",""]]},
+ {foto:"op04.webp",k:"Club Zion Collection",h:"Antes de procurar o parceiro, <i>prepare o projeto</i>.",p:"Entre para o ecossistema e inscreva o seu terreno. Vamos juntos buscar o melhor resultado.",cta:"Responda esta mensagem",rodape:"Conteúdo educacional. Não é promessa de parceria, sociedade ou investimento. A Zion avalia cada caso."}
+];
