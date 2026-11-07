@@ -1,0 +1,251 @@
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: página de venda editorial em sete bandas, preto profundo, fotografia real da Zion sangrada nas bandas de desejo; coluna de leitura de 640px, grade de 1120px nas fotos. */
+:root{
+  --preto:#040605; --preto-2:#0C100C; --musgo:#1B2117; --creme:#FEF5F0; --areia:#DED6BF; --terra:#8B714E;
+  --champanhe:#C9B37E; --muted:#A39E8E; --linha:rgba(222,214,191,.16); --ok:#9FC0A0; --alerta:#F0A27A;
+  --f-display:"Cormorant Garamond",Georgia,"Times New Roman",serif;
+  --f-corpo:"Jost","Helvetica Neue",Arial,system-ui,sans-serif;
+  color-scheme:dark;
+}
+.zl *{box-sizing:border-box}
+.zl{background:var(--preto);color:var(--creme);font-family:var(--f-corpo);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body{background:var(--preto);margin:0}
+.zl .gut{padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.zl .col{max-width:640px;margin:0 auto}
+.zl .larga{max-width:1120px;margin:0 auto}
+.zl section{padding-block:88px}
+.zl h1,.zl h2,.zl h3{font-family:var(--f-display);font-weight:400;line-height:1.02;margin:0 0 20px;text-wrap:balance;color:var(--creme)}
+.zl h1{font-size:clamp(52px,12vw,104px);letter-spacing:-.01em}
+.zl h2{font-size:clamp(38px,8vw,64px)}
+.zl h3{font-size:28px;line-height:1.1;margin-bottom:8px}
+.zl h1 em,.zl h2 em{font-style:italic;color:var(--champanhe)}
+.zl p{margin:0 0 16px;color:var(--areia);max-width:60ch}
+.zl .lead{font-size:20px;line-height:1.5;color:var(--creme)}
+.zl .eyebrow{display:block;font-size:12px;letter-spacing:.24em;text-transform:uppercase;color:var(--champanhe);margin-bottom:22px;font-weight:500}
+.zl .small{font-size:14px;color:var(--muted)}
+.zl .btn{display:inline-block;background:var(--champanhe);color:var(--preto);font-weight:600;text-decoration:none;padding:20px 34px;border-radius:2px;font-size:16px;letter-spacing:.08em;text-transform:uppercase;min-height:56px}
+.zl .btn:hover{background:#D8C493}
+.zl .btn:focus-visible{outline:2px solid var(--creme);outline-offset:3px}
+.zl .micro{display:block;font-size:13px;color:var(--muted);margin-top:14px;letter-spacing:.02em}
+.zl .rule{height:1px;background:var(--linha);border:0;margin:0}
+
+/* HERO */
+.zl .hero{position:relative;min-height:min(94vh,900px);display:flex;align-items:flex-end;padding-block:120px 72px;overflow:hidden}
+.zl .hero .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 40%}
+.zl .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.15) 0%,rgba(4,6,5,.25) 30%,rgba(4,6,5,.88) 70%,var(--preto) 100%)}
+.zl .hero .larga{position:relative;z-index:1;width:100%}
+.zl .hero .marca{position:absolute;top:28px;left:0;z-index:1;height:30px;width:auto}
+.zl .hero .sub{font-family:var(--f-display);font-style:italic;font-size:clamp(26px,5.4vw,40px);line-height:1.15;color:var(--areia);margin:-4px 0 22px;max-width:22ch}
+.zl .hero .lead{max-width:34ch}
+.zl .credito{position:absolute;right:max(20px,env(safe-area-inset-right,0px));bottom:16px;z-index:1;font-size:11px;letter-spacing:.08em;color:var(--muted)}
+
+/* DOR */
+.zl .sinais{list-style:none;padding:0;margin:30px 0;display:grid;gap:0}
+.zl .sinais li{display:grid;grid-template-columns:auto 1fr;gap:18px;padding:18px 0;border-top:1px solid var(--linha);align-items:baseline}
+.zl .sinais li:last-child{border-bottom:1px solid var(--linha)}
+.zl .sinais b{font-family:var(--f-display);font-weight:400;font-size:24px;color:var(--champanhe);min-width:1.6em}
+.zl .sinais span{color:var(--creme);font-size:18px}
+.zl .virada{font-family:var(--f-display);font-size:clamp(28px,6vw,40px);line-height:1.15;color:var(--creme);margin-top:36px;max-width:24ch}
+.zl .virada em{color:var(--champanhe)}
+
+/* OPORTUNIDADE */
+.zl .op{background:var(--preto-2)}
+.zl .tres{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:40px}
+.zl .tres figure{margin:0;position:relative;overflow:hidden;border-radius:2px;aspect-ratio:3/4;background:var(--musgo)}
+.zl .tres img{width:100%;height:100%;object-fit:cover;display:block}
+.zl .tres figcaption{position:absolute;inset:auto 0 0 0;padding:40px 16px 16px;background:linear-gradient(180deg,transparent,rgba(4,6,5,.85));font-family:var(--f-display);font-size:26px;font-style:italic;color:var(--creme)}
+@media (max-width:640px){.zl .tres{grid-template-columns:1fr 1fr}.zl .tres figure:first-child{grid-column:1/-1;aspect-ratio:4/3}}
+.zl .op .fecho{font-size:20px;color:var(--creme);margin-top:36px;max-width:40ch}
+
+/* O QUE VOCÊ VAI FAZER */
+.zl .comofunc{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;margin:34px 0 54px;border-top:1px solid var(--linha)}
+.zl .comofunc div{padding:18px 16px 0 0;min-width:0}
+.zl .comofunc b{display:block;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--champanhe);margin-bottom:6px}
+.zl .comofunc span{font-size:15px;color:var(--areia)}
+@media (max-width:640px){.zl .comofunc{grid-template-columns:1fr 1fr;row-gap:18px}}
+.zl .pilares{display:grid;grid-template-columns:1fr;gap:0;counter-reset:p}
+.zl .pilar{display:grid;grid-template-columns:72px 1fr;gap:18px;padding:22px 0;border-top:1px solid var(--linha)}
+.zl .pilar::before{counter-increment:p;content:counter(p);font-family:var(--f-display);font-size:56px;line-height:.9;color:var(--champanhe)}
+.zl .pilar h3{margin-bottom:6px}
+.zl .pilar p{margin:0;font-size:16px}
+.zl .pilar .ent{display:inline-block;margin-top:10px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ok)}
+.zl .vitrine{display:grid;grid-template-columns:1fr 300px;gap:56px;align-items:center}
+@media (max-width:860px){.zl .vitrine{grid-template-columns:1fr}}
+.zl .tel{width:100%;max-width:300px;margin:0 auto;border:1px solid rgba(222,214,191,.3);border-radius:34px;padding:14px;background:#000;box-shadow:0 30px 80px rgba(0,0,0,.6)}
+.zl .tel-tela{border-radius:22px;background:var(--preto);padding:22px 18px;min-height:480px;border:1px solid var(--linha)}
+.zl .tel .demo{display:inline-block;font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--preto);background:#E8C56E;padding:3px 6px;border-radius:2px;margin-bottom:14px}
+.zl .tel .rot{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+.zl .tel .num{font-family:var(--f-display);font-size:72px;line-height:1;color:var(--champanhe);margin:4px 0}
+.zl .tel .num small{font-size:.35em;color:var(--areia)}
+.zl .tel .f{font-size:11px;color:var(--muted)}
+.zl .tel .ln{display:flex;justify-content:space-between;padding:9px 0;border-top:1px solid var(--linha);font-size:13px;color:var(--areia)}
+.zl .tel .ln b{color:var(--creme);font-weight:500}
+.zl .tel .ln span{color:var(--areia)}
+.zl .tel .fb{margin-top:16px;border:1px solid var(--linha);border-radius:4px;padding:12px}
+.zl .tel .fb .t{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)}
+.zl .tel .fb p{font-size:12px;line-height:1.45;margin:4px 0 0;color:var(--areia)}
+
+/* PROVA */
+.zl .prova .grade{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:auto auto;gap:14px;margin-top:40px}
+.zl .prova figure{margin:0;overflow:hidden;border-radius:2px;background:var(--musgo);position:relative}
+.zl .prova figure img{width:100%;height:100%;object-fit:cover;display:block;aspect-ratio:1/1}
+.zl .prova figure:first-child{grid-row:span 2}
+.zl .prova figure:first-child img{aspect-ratio:auto;min-height:100%}
+.zl .prova figcaption{position:absolute;left:12px;bottom:10px;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--creme);text-shadow:0 1px 8px rgba(0,0,0,.8)}
+@media (max-width:640px){.zl .prova .grade{grid-template-columns:1fr 1fr}.zl .prova figure:first-child{grid-column:1/-1;grid-row:auto}.zl .prova figure:first-child img{aspect-ratio:4/3}}
+.zl .assinatura{display:flex;gap:18px;align-items:center;margin-top:40px;padding-top:24px;border-top:1px solid var(--linha)}
+.zl .assinatura b{display:block;font-family:var(--f-display);font-size:26px;font-weight:400;color:var(--creme)}
+.zl .assinatura span{font-size:13px;color:var(--muted);letter-spacing:.06em}
+
+/* PARA QUEM */
+.zl .quem{display:grid;grid-template-columns:1fr 1fr;gap:40px;margin-top:30px}
+@media (max-width:700px){.zl .quem{grid-template-columns:1fr;gap:10px}}
+.zl .quem h3{font-size:14px;font-family:var(--f-corpo);letter-spacing:.18em;text-transform:uppercase;font-weight:600;color:var(--champanhe);margin:0 0 12px}
+.zl .quem ul{list-style:none;padding:0;margin:0}
+.zl .quem li{padding:13px 0 13px 30px;border-top:1px solid var(--linha);position:relative;color:var(--creme)}
+.zl .quem li::before{content:"";position:absolute;left:2px;top:22px;width:12px;height:6px;border-left:1.5px solid var(--ok);border-bottom:1.5px solid var(--ok);transform:rotate(-45deg)}
+.zl .quem .nao li{color:var(--areia)}
+.zl .quem .nao li::before{width:12px;height:0;border-left:0;border-bottom:1.5px solid var(--alerta);transform:none;top:25px}
+.zl .quem .nao h3{color:var(--alerta)}
+
+/* OFERTA */
+.zl .oferta{background:linear-gradient(180deg,var(--preto) 0%,var(--musgo) 100%)}
+.zl .caixa{border:1px solid var(--champanhe);border-radius:2px;padding:44px 28px;background:rgba(4,6,5,.7)}
+.zl .caixa .tit{font-family:var(--f-display);font-size:clamp(34px,7vw,48px);line-height:1.05;color:var(--creme);margin:0 0 6px}
+.zl .caixa ul{list-style:none;padding:0;margin:28px 0}
+.zl .caixa li{display:grid;grid-template-columns:auto 1fr;gap:14px;padding:13px 0;border-top:1px solid var(--linha);color:var(--creme)}
+.zl .caixa li::before{content:"";width:8px;height:8px;margin-top:9px;background:var(--champanhe);transform:rotate(45deg)}
+.zl .caixa li span{color:var(--creme)}
+.zl .caixa li small{display:block;color:var(--muted);font-size:14px}
+.zl .preco{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin:8px 0 4px}
+.zl .preco b{font-family:var(--f-display);font-weight:400;font-size:clamp(76px,18vw,112px);line-height:1;color:var(--champanhe)}
+.zl .preco span{color:var(--areia);font-size:15px}
+.zl [data-cx-checkout]{margin-top:24px}
+.zl [data-cx-checkout]:empty{min-height:120px;border:1px dashed var(--linha);border-radius:2px;display:grid;place-items:center}
+.zl [data-cx-checkout]:empty::before{content:"Checkout ClickMax · R$ 27 · Pix ou cartão";color:var(--muted);font-size:14px}
+.zl .nao-inclui{font-size:14px;color:var(--muted);margin-top:22px}
+.zl .garantia{display:grid;grid-template-columns:auto 1fr;gap:16px;align-items:start;margin-top:26px;padding-top:22px;border-top:1px solid var(--linha)}
+.zl .garantia b{font-family:var(--f-display);font-size:44px;line-height:1;color:var(--champanhe);font-weight:400}
+
+/* FAQ */
+.zl details{border-top:1px solid var(--linha);padding:4px 0}
+.zl details:last-of-type{border-bottom:1px solid var(--linha)}
+.zl summary{cursor:pointer;list-style:none;padding:18px 34px 18px 0;position:relative;font-size:18px;color:var(--creme)}
+.zl summary::-webkit-details-marker{display:none}
+.zl summary::after{content:"+";position:absolute;right:4px;top:14px;font-size:26px;color:var(--champanhe);font-weight:300}
+.zl details[open] summary::after{content:"−"}
+.zl details p{padding-bottom:12px}
+
+/* CTA FINAL */
+.zl .final{text-align:center}
+.zl .final p{margin-left:auto;margin-right:auto}
+.zl .rodape{padding-block:36px;border-top:1px solid var(--linha);text-align:center}
+.zl .rodape img{height:24px;width:auto;opacity:.85}
+.zl .rodape p{font-size:12px;color:var(--muted);margin:14px auto 0;max-width:70ch}
+@media (prefers-reduced-motion:reduce){.zl *{transition:none!important;animation:none!important}}
+</style>
+<style>
+.zl .plan{border:1px solid var(--linha);border-radius:3px;background:#0C100C;overflow:hidden;font-variant-numeric:tabular-nums}
+.zl .plan .h{background:#1B2117;padding:12px 16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--champanhe)}
+.zl .plan .r{display:flex;justify-content:space-between;gap:12px;padding:11px 16px;border-top:1px solid var(--linha);font-size:15px}
+.zl .plan .r span{color:var(--areia)} .zl .plan .r b{font-weight:500;color:#040605;background:#FFF4C7;padding:1px 8px;border-radius:2px}
+.zl .plan .r.c b{background:#E3EEDF} .zl .plan .r.big b{font-size:22px;font-family:var(--f-display);font-weight:500}
+.zl .plan .demo{display:inline-block;margin:12px 16px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;background:#E8C56E;color:#040605;padding:3px 7px;border-radius:2px}
+</style>
+<div class="zl">
+<section class="hero gut" data-cx-section="hero">
+  <img class="bg cm-image" data-cx-image-slot="hero" data-cx-image-hint="Foto do produto, 16:9" data-cx-image-kind="brand" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op12.webp" alt="Bolha da Zion Bubble Glamping em dia de céu aberto">
+  <div class="larga" style="position:relative">
+    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International" width="114" height="30" style="display:block;margin-bottom:56px;height:30px;width:auto">
+    <span class="eyebrow">Zion Hotel Academy · Ferramenta 01</span>
+    <h1>Qual é a menor diária que cobre os seus custos?</h1>
+    <p class="sub">Uma planilha pronta para anfitriões.</p>
+    <p class="lead">Você digita os seus custos e a taxa da plataforma. Ela mostra a diária mínima, a diária para a sua meta e quanto sobrou no mês.</p>
+    <a class="btn" href="#oferta" data-cx-cta>Quero a minha planilha</a>
+    <span class="micro">R$ 19 · pagamento único · Excel, Google Sheets e LibreOffice</span>
+  </div>
+  <span class="credito">Zion Bubble Glamping</span>
+</section>
+<section class="gut" data-cx-section="problem">
+  <div class="col">
+    <span class="eyebrow">O problema</span>
+    <h2>Desconto sem conta <em>é chute.</em></h2>
+    <p class="lead">Baixar a diária para encher o calendário pode fazer você trabalhar mais e ganhar menos.</p>
+    <ul class="sinais">
+      <li><b>i.</b><span>A taxa da plataforma muda conforme o modelo de cobrança da sua conta.</span></li>
+      <li><b>ii.</b><span>A limpeza pesa diferente em estadias curtas e longas.</span></li>
+      <li><b>iii.</b><span>No fim do mês, o extrato não diz quanto sobrou de verdade.</span></li>
+    </ul>
+    <p class="virada">Com os seus números na planilha, <em>cada decisão de preço tem conta.</em></p>
+  </div>
+</section>
+<section class="op gut" data-cx-section="solution">
+  <div class="larga"><div class="vitrine">
+    <div>
+      <span class="eyebrow">O que você recebe</span>
+      <h2>Quatro ferramentas <em>numa planilha.</em></h2>
+      <div class="pilares">
+        <div class="pilar"><div><h3>Calculadora de diária mínima</h3><p>A diária que empata os seus custos e a diária para a sua meta, com a conta aberta.</p></div></div>
+        <div class="pilar"><div><h3>Simulador de desconto</h3><p>Quantas noites a mais um desconto exige para manter a margem.</p></div></div>
+        <div class="pilar"><div><h3>Controle de reservas</h3><p>Cada reserva com taxa por canal: Airbnb, Booking ou direto.</p></div></div>
+        <div class="pilar"><div><h3>Resumo do mês</h3><p>Ocupação, diária efetiva, margem e quanto sobrou.</p></div></div>
+      </div>
+      <p style="margin-top:22px"><a class="btn" href="#oferta" data-cx-cta>Quero a minha planilha</a></p>
+    </div>
+    <div class="plan" aria-label="Exemplo da calculadora com dados fictícios">
+      <span class="demo">Exemplo · dados fictícios</span>
+      <div class="h">Seus números do mês</div>
+      <div class="r"><span>Custos fixos</span><b>R$ 1.850</b></div>
+      <div class="r"><span>Limpeza por estadia</span><b>R$ 120</b></div>
+      <div class="r"><span>Taxa da plataforma</span><b>16%</b></div>
+      <div class="r"><span>Noites no mês</span><b>14</b></div>
+      <div class="h">Resultado</div>
+      <div class="r c big"><span>Diária mínima</span><b>R$ 243,67</b></div>
+      <div class="r c big"><span>Diária para a meta</span><b>R$ 472,61</b></div>
+      <div class="r c"><span>Desconto de 15% exige</span><b>17,1 noites</b></div>
+    </div>
+  </div></div>
+</section>
+<section class="gut">
+  <div class="col" style="max-width:900px">
+    <span class="eyebrow">Para quem é</span>
+    <h2>Para quem <em>anuncia.</em></h2>
+    <div class="quem">
+      <div><h3>É para você que</h3><ul><li>Anuncia uma ou poucas unidades</li><li>Quer saber o mínimo que pode cobrar</li><li>Pensa em dar desconto na baixa temporada</li></ul></div>
+      <div class="nao"><h3>Não é para você que</h3><ul><li>Procura previsão de demanda</li><li>Quer preço automático por região</li></ul></div>
+    </div>
+  </div>
+</section>
+<section class="oferta gut" id="oferta" data-cx-section="offer">
+  <div class="col"><div class="caixa">
+    <span class="eyebrow">Ferramenta 01</span>
+    <p class="tit">Planilha Diária Mínima e Controle do Mês</p>
+    <ul>
+      <li><span>Versão em branco<small>Para os seus números.</small></span></li>
+      <li><span>Versão com exemplo<small>Preenchida com dados fictícios, para ver cada aba funcionando.</small></span></li>
+      <li><span>Aba "Comece aqui"<small>O passo a passo em 3 etapas, cerca de 10 minutos.</small></span></li>
+    </ul>
+    <div class="preco"><b>R$ 19</b><span>pagamento único<br>Pix ou cartão</span></div>
+    <div data-cx-checkout></div>
+    <div class="garantia"><b>7</b><p class="small" style="margin:0">Você tem 7 dias, a contar da compra, para pedir o reembolso, como prevê o Código de Defesa do Consumidor.</p></div>
+  </div></div>
+</section>
+<section class="gut" data-cx-section="faq">
+  <div class="col">
+    <span class="eyebrow">Perguntas frequentes</span>
+    <details><summary>Preciso saber Excel?</summary><p>Não. Você só preenche as células amarelas. O resto é calculado.</p></details>
+    <details><summary>Funciona no Google Sheets?</summary><p>Sim. Importe o arquivo no Google Sheets e use normalmente.</p></details>
+    <details><summary>Ela diz quanto cobrar?</summary><p>Ela mostra o mínimo que cobre os seus custos e a diária para a sua meta. O preço final depende também do mercado e da época.</p></details>
+    <details><summary>"Sobra no mês" é lucro?</summary><p>Não. Não inclui depreciação, imposto de renda pessoal nem o seu tempo, a menos que você os some nos custos fixos.</p></details>
+  </div>
+</section>
+<section class="final gut" data-cx-section="cta">
+  <div class="col">
+    <h2>Antes de baixar a diária, <em>faça a conta.</em></h2>
+    <p style="margin-top:26px"><a class="btn" href="#oferta" data-cx-cta>Quero a minha planilha</a></p>
+    <span class="micro">R$ 19 · pagamento único</span>
+  </div>
+</section>
+<footer class="rodape gut"><p>Zion Hotel Academy · Material educativo: não garante reservas, ocupação nem faturamento. Fotos: Zion Bubble Glamping. Os números de exemplo são fictícios.</p></footer>
+</div>
