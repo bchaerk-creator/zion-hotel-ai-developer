@@ -77,3 +77,9 @@ Rodapé fixo da última cena: "Conteúdo educacional. Cenários, não promessas 
 - URL pública: `https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/trailer/trailer-trilha-whatsapp.mp4`.
 - No ClickMax, o disparo com vídeo precisa de um template de WhatsApp com cabeçalho de vídeo (Gupshup). Esse template passa por aprovação da Meta e depende do "aprovado" do Bruno para ser criado e disparado.
 - Para refazer o vídeo (mudar texto, foto ou locução): `producao/clube/trailer-whatsapp/` tem `trailer.html` (as 12 cenas), `spec.json` (locução) e `make_trailer.py`.
+
+## 5. Registro (07/11/2026)
+
+- Template WhatsApp `zion_trailer_trilha` (id `2bbe84ee-0371-4f14-8b0e-59bd7e6c5dd0`, número Zion Collection, MARKETING, vídeo no cabeçalho, 3 respostas rápidas: "Ainda é só o terreno", "Já tenho uma ideia", "Tenho números"). Enviado para a aprovação da Meta às 14h57 UTC com o "aprovado" do Bruno; status `pending`.
+- Lista `Trailer Trilha · leads do form Meta (Land Bank)` (id `8ca6301b-13cf-4a75-a50e-b11aeb423ad2`), 77 leads com telefone (tag META | FORM LAND BANK).
+- Disparo em rascunho `Trailer Trilha de Desenvolvimento · leads do form Meta` (id `2d877d19-2d00-4da5-af18-d1ecf2c46a15`), 77 destinatários, 20 por vez a cada 10 minutos. Não enviado: depende da aprovação do template e de crédito de mensagem no ClickMax.
