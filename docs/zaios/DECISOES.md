@@ -27,11 +27,8 @@
 | 06/11/2026 | Etapa 4 · Parte 2 | G1 Maturidade da gestão e Plano de Melhoria (sincronizado com as pendências). 260 testes | 13,3 |
 | 06/11/2026 | Etapa 4 · Parte 3 | INCOMPLETA. G2 Finanças e G3 Indicadores construídos, mas com erro de build: a prévia não abre. Testes desta parte não escritos. Parou porque o workspace ficou sem créditos | 8,8 |
 | 07/11/2026 | Etapa 4 · Parte 3 (continuação) | Testes de G2 e G3 escritos (50 de cálculo e dossiê, 18 de segurança, todos passando) e FORMULAS.md atualizado. Ainda resta 1 erro de compilação na tela de Finanças (campo opcional id). Parou de novo por falta de créditos | 5,0 |
-| | **Total até aqui** | | **90,5** |
-
-## Para retomar (quando houver créditos)
-- Corrigir o erro de compilação em src/routes/_authenticated/empreendimentos.$id_.financas.tsx: tipo Form com `id?: string | undefined` e passar o id só quando existir (`...(form.id ? { id: form.id } : {})`, idem no botão Editar com l.id). Pedido pronto, estimativa de 2 a 4 créditos.
-- Rodar a suíte inteira, conferir Finanças e Indicadores em 390px e conferir o PDF do Dossiê de Operação.
+| 07/11/2026 | Etapa 4 · Parte 3 (fechamento) | Erro de compilação corrigido, prévia abrindo. 315 testes passando (inclui segurança). Finanças e Indicadores conferidos em 390px. PDF do Dossiê de Operação baixado e conferido (seções 8, 9, 10 e Plano) | 3,4 |
+| | **Total até aqui** | | **93,9** |
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
