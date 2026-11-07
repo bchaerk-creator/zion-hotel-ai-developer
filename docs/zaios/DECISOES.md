@@ -53,7 +53,8 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 07/11/2026 | Etapa 5 · P5 CAPEX | Sete linhas com evidência, contingência por perfil, giro mínimo, necessidade total, cronograma de desembolso, faixas de referência Zion (F01). Caso de referência F01 conferido (CAPEX 1.237.400). 332 testes | 12,3 |
 | 07/11/2026 | Etapa 5 · P6 Receitas | Cascata F02 (receita bruta até geração de caixa), retirada do dono, régua de margem, ponto de equilíbrio, primeiro ano com rampa, capital de giro pelas duas regras. Caso conferido à mão. 352 testes | 10,6 |
 | 07/11/2026 | Etapa 5 · P6 Viabilidade | Fluxo de 10 anos, paybacks, VPL e TIR com e sem saída, três cenários, sensibilidade, estresse, curva de caixa de 36 meses, regra de decisão Zion em 5 passos (selo Redesenhar). Casos do F03 conferidos. Dossiê seção 10. 361 testes | 18,4 |
-| | **Total até aqui** | | **135,2** |
+| 07/11/2026 | Etapa 6 · Consolidação, parte 1 | Auditoria de segurança (acessos públicos às funções revogados; análises básica e profunda sem problemas), limite de tentativas no link, Termos e Privacidade (versão 0, revisão jurídica pendente) com aceite obrigatório, baixar e excluir dados do membro, exportação do Admin com alerta de 7 dias. 394 testes | 19,4 |
+| | **Total até aqui** | | **154,6** |
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
