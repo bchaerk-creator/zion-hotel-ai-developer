@@ -1,5 +1,8 @@
 # ZAIOS · Registro de decisões
 
+## Visão (Bruno Chaerk, 07/11/2026)
+A ZAIOS será a maior plataforma de desenvolvimento, gestão e operação hoteleira do mundo, com sistema de inteligência, para profissionalizar o setor: de quem quer aprender a ter uma hospedagem a quem já opera e quer se profissionalizar. A plataforma vai reunir planilhas, agentes de IA, aulas e ferramentas. Ordem combinada: terminar o MVP atual (consolidação e lançamento) e depois seguir para o restante.
+
 | Data | Decisão | Quem decidiu |
 |---|---|---|
 | 05/11/2026 | O MVP atende as jornadas Desenvolvimento e Operação desde o lançamento | Bruno Chaerk |
