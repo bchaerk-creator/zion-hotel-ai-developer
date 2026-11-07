@@ -32,6 +32,15 @@ PRODUTOS = [
                    ("Controle-Enxoval-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Controle-Enxoval-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Contagem.pdf", "Ficha de contagem semanal", "PDF · para imprimir")]),
+    dict(pasta="ocorrencias-14", num="14", telas=["producao/utilitarios/14-quadro-ocorrencias/dist/demonstracao/demo-ocorrencias.png", "producao/utilitarios/14-quadro-ocorrencias/dist/demonstracao/demo-painel.png"],
+         titulo="Quadro de Ocorrências e Manutenção",
+         promessa="Aprenda o passo a passo para registrar cada problema com responsável, prioridade e prazo, acompanhar até resolver e saber quais unidades não podem receber hóspede.",
+         itens=["Responsável, prioridade e prazo", "Atrasos destacados", "Unidades bloqueadas", "Ficha de ronda"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Painel.", "Na planilha em branco, ajuste os prazos e cadastre unidades e responsáveis.", "Lance cada problema, feche com data e descrição e confira o Painel antes de cada entrada."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Quadro-Ocorrencias-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Quadro-Ocorrencias-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Ronda.pdf", "Ficha de ronda", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}

@@ -34,7 +34,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
   - e-mail de suporte da conta;
   - reembolso em 7 dias, como prevê o Código de Defesa do Consumidor.
 - Carregue a skill do ClickMax antes de usar as ferramentas, e confira a conta de vendedor com `sellers_status`.
-  - Status em nov/2026: em análise; conta bancária aprovada.
+  - Status em 07/11/2026: vendedor em análise. A conta bancária aparece como aprovada, mas com o motivo "Comprovante bancário inválido; faltou Contrato Social ou Contrato MEI e o Cartão CNPJ".
   - Com o vendedor pendente, nenhum checkout vende.
 - Página de vendas: `pages_generation_context_get` → `pages_validate_html` → `pages_import_html_draft`, com o `offerId`.
   - Marque `data-cx-section` (hero, problem, solution, offer, cta, faq, social-proof), `data-cx-cta` nos botões e `<div data-cx-checkout></div>`.
@@ -57,6 +57,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 | Ferramenta 17 · Checklist de Limpeza, Inspeção e Liberação | `producao/utilitarios/17-checklist-limpeza/` | Oferta `08ad22e8-9f9a-4244-856f-1bca05234924` (R$ 19, checkout `uB0Db7Gpg4`), página `023476bb-0ea7-41b2-ba99-73c62a5aa94c` (rascunho, `/checklist-limpeza`). Entrega por arquivo: `p/adbc67069af26ae0/checklist-17/` |
 | Ferramenta 11 · Kit de Mensagens de Chegada e Saída | `producao/utilitarios/11-mensagens-chegada-saida/` | Oferta `fad5df5a-49fa-442e-aed7-c08cf2f6f92f` (R$ 19, checkout `X4mTsfhUtb`), página `545010c0-a48c-4555-9b73-d501dac3c6a7` (rascunho, `/kit-mensagens`). Entrega por arquivo: `p/adbc67069af26ae0/kit-mensagens-11/` |
 | Ferramenta 13 · Controle de Enxoval e Reposição | `producao/utilitarios/13-controle-enxoval/` | Oferta `b667369e-f024-47b8-a8d9-46020897b95b` (R$ 19, checkout `aIN6h2A0bT`), página `d816d6db-9283-43f7-b493-ea3afbc419cc` (rascunho, `/controle-enxoval`). Entrega por arquivo: `p/adbc67069af26ae0/enxoval-13/` |
+| Ferramenta 14 · Quadro de Ocorrências e Manutenção | `producao/utilitarios/14-quadro-ocorrencias/` | Oferta `74460a23-4459-4b82-8d45-70d683d02002` (R$ 19, checkout `sdDDSurhAZ`), página `feb343db-8860-4bbf-891c-e6b359e37ea0` (rascunho, `/quadro-ocorrencias`). Entrega por arquivo: `p/adbc67069af26ae0/ocorrencias-14/` |
 | Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 

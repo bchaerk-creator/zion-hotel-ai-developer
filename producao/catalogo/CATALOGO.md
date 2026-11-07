@@ -55,7 +55,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 11 | Kit de mensagens de chegada e saída | B | K + P | **Pronto** (`producao/utilitarios/11-mensagens-chegada-saida/`) |
 | 12 | Checklist de fotos e comodidades do anúncio | B | D | A fazer |
 | 13 | Controle de enxoval e reposição | B | P | **Pronto** (`producao/utilitarios/13-controle-enxoval/`) |
-| 14 | Quadro de ocorrências e manutenção | B | P | A fazer |
+| 14 | Quadro de ocorrências e manutenção | B | P | **Pronto** (`producao/utilitarios/14-quadro-ocorrencias/`) |
 | 15 | Comparador de fornecedores | B | P | A fazer |
 | 16 | Kit operacional de parcerias | C | D + P | A fazer |
 | 17 | **Checklist de limpeza, inspeção e liberação** | B | P + PDF | **Pronto** (`producao/utilitarios/17-checklist-limpeza/`) |
@@ -94,7 +94,7 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 1. **17 · Checklist de limpeza, inspeção e liberação** (pronto, em rascunho no ClickMax).
 2. **11 · Kit de mensagens de chegada e saída** (pronto, em rascunho no ClickMax).
 3. **13 · Controle de enxoval e reposição** (pronto, em rascunho no ClickMax).
-4. 14 · Quadro de ocorrências e manutenção.
+4. **14 · Quadro de ocorrências e manutenção** (pronto, em rascunho no ClickMax).
 5. 29 · Calculadora de custos de experiências.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
