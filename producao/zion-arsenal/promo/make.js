@@ -45,7 +45,7 @@ li b{font-family:Cormorant,serif;font-weight:500;font-size:44px;color:#C9B37E;mi
 .rule{width:150px;height:3px;background:#C9B37E;margin-top:44px}
 .btn{display:inline-block;margin-top:40px;background:#C9B37E;color:#040605;font-size:38px;font-weight:600;padding:30px 54px;border-radius:999px}
 .shots{position:absolute;top:190px;left:0;right:0;height:760px;display:flex;justify-content:center;gap:40px;z-index:1}
-.shot{height:760px;border-radius:34px;box-shadow:0 40px 90px rgba(0,0,0,.6);border:2px solid rgba(201,179,126,.35)}
+.shot{height:100%;border-radius:34px;box-shadow:0 40px 90px rgba(0,0,0,.6);border:2px solid rgba(201,179,126,.35)}
 .shots .s0{transform:rotate(-4deg) translateY(20px)}.shots .s1{transform:rotate(4deg) translateY(-10px)}
 .has-shots h1{font-size:92px}.has-shots li{padding:16px 0;font-size:35px}
 .cap{position:absolute;top:150px;left:90px;font-size:24px;letter-spacing:.12em;color:#DED6BF;opacity:.9;z-index:2}
@@ -53,7 +53,7 @@ li b{font-family:Cormorant,serif;font-weight:500;font-size:44px;color:#C9B37E;mi
 [data-a]{opacity:0;transform:translateY(34px);transition:opacity .8s ease,transform .8s ease}.sc.on [data-a]{opacity:1;transform:none}
 ${[0, 1, 2, 3, 4, 5, 6, 7].map(n => `.sc.on [data-a="${n}"]{transition-delay:${0.25 + n * 0.32}s}`).join('')}
 .shots [data-a]{transform:translateY(60px)}.sc.on .shots .s0{transform:rotate(-4deg) translateY(20px)}.sc.on .shots .s1{transform:rotate(4deg) translateY(-10px)}
-</style></head><body>${cfg.scenes.map(scene).join('')}<script>window.show=i=>{document.querySelectorAll('.sc').forEach((s,k)=>s.classList.toggle('on',k===i));}</script></body></html>`;
+</style></head><body>${cfg.scenes.map(scene).join('')}<script>function fit(){document.querySelectorAll('.sc').forEach(s=>{const sh=s.querySelector('.shots');if(!sh)return;const was=s.classList.contains('on');s.classList.add('on');const t=s.querySelector('.txt');t.querySelectorAll('[data-a]').forEach(e=>e.style.transition='none');const top=t.getBoundingClientRect().top;if(!was)s.classList.remove('on');t.querySelectorAll('[data-a]').forEach(e=>e.style.transition='');sh.style.height=Math.max(420,Math.min(760,top-190-50))+'px';});}document.fonts.ready.then(fit);window.show=i=>{document.querySelectorAll('.sc').forEach((s,k)=>s.classList.toggle('on',k===i));}</script></body></html>`;
 fs.writeFileSync(path.join(OUT, 'cenas.html'), html);
 // 3) gravação
 (async () => {

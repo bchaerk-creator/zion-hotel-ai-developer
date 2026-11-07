@@ -29,6 +29,7 @@ ul.x li:before{content:"✕";color:#A3432F}
 .faq details{background:#fff;border:1px solid #DED6BF;border-radius:12px;padding:14px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}
 .small{font-size:13px;opacity:.8}
 img.cm-image{width:100%;border-radius:16px;display:block}
+.vid{width:100%;max-width:380px;aspect-ratio:9/16;display:block;margin:30px auto 0;border-radius:18px;background:#040605;box-shadow:0 24px 60px rgba(0,0,0,.45);border:1px solid rgba(201,179,126,.35)}
 </style></head><body>
 
 <section data-cx-section="hero" class="dark"><div class="w">
@@ -36,7 +37,7 @@ img.cm-image{width:100%;border-radius:16px;display:block}
 <h1>${d.headline}</h1><p class="lead">${d.subheadline}</p>
 <a class="btn" data-cx-cta href="#oferta">${esc(d.cta)}</a>
 <p class="small">Mini mentoria interativa + ${esc(d.tool)} · R$ 27 · pagamento único</p>
-<img class="cm-image" alt="${esc(d.tool)} em uso" data-cx-image-slot="hero" data-cx-image-hint="Tela da ferramenta ${esc(d.tool)} com resultado, 16:9" data-cx-image-kind="brand">
+${d.video ? `<video class="vid" controls playsinline preload="metadata" poster="${esc(d.poster||"")}" src="${esc(d.video)}"></video><p class="small" style="text-align:center;margin-top:10px">Veja em 1 minuto o que você vai aprender</p>` : `<img class="cm-image" alt="${esc(d.tool)} em uso" data-cx-image-slot="hero" data-cx-image-hint="Tela da ferramenta ${esc(d.tool)} com resultado, 16:9" data-cx-image-kind="brand">`}
 </div></section>
 
 <section data-cx-section="problem"><div class="w">
