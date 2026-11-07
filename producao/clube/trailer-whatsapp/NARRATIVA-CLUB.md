@@ -85,3 +85,16 @@ Todos vão embutidos na própria página, em seção "Em 2 minutos", como vídeo
 - `video-dor-{parada,capital,parceiro,medo,comecar}.mp4` (1 min 37 a 1 min 46): cada um com a cena "A solução prática: glamping" (Bubble removível, escalável, até 90 dias para operar, @zionbubble) antes de "O que isso abre".
 - Páginas: galeria com os seis na `/land-members` (seção "Para ver com calma"); "Conheça a Zion" em `/store`, `/investidores` e `/fundador`.
 - Nada disparado no WhatsApp: os vídeos ficam prontos para template quando Bruno aprovar.
+
+## 8. Templates e disparos por dor (07/11/2026, 18h20 UTC, "aprovado" de Bruno)
+
+| Template | id | Lista | Rascunho de disparo |
+|---|---|---|---|
+| zion_conheca_a_zion (vídeo Conheça a Zion, botão "Conhecer a Zion" → /sobre) | 2cd1f3cf-3b08-416a-99ff-f5f75146cbbc | Trailer Trilha · leads do form Meta (77) | 10e1c2b5-1e6a-4361-a067-97b854993093 |
+| zion_dor_terra_parada | 6bad6076-0980-4e89-987d-5dd4be710216 | mesma (77) | 8db294cd-cf31-4e39-9cb5-0ab989917973 |
+| zion_dor_capital | c04b530a-0498-4c33-886a-b598690c7833 | Dor · Falta capital (22) f073ad1f | ver registro abaixo |
+| zion_dor_parceiro | bbf661e4-ebec-4650-bbfc-02145ce71ef8 | Dor · Quero um parceiro (31) 689befd8 | ver registro abaixo |
+| zion_dor_medo | 4eae853b-6b10-4c20-a253-dc8eaf9fdff4 | Dor · Medo de errar (12) 20ac1b10 | ver registro abaixo |
+| zion_dor_comecar | 6cbcbe29-f4ba-4cb0-b5cf-3b90d195c7d2 | Dor · Por onde começar (9) 4cf56f18 | ver registro abaixo |
+
+Todos MARKETING, vídeo no cabeçalho, pt_BR, botões "Quero me inscrever" (→ /land-members) e "Não me interessa"; enviados à Meta, status pending. As listas por dor vêm do campo `falta_papel_meta` (resposta "o que você busca para tirar o projeto do papel") salvo em cada lead; 3 leads sem resposta ficaram só na lista geral. Nenhum disparo enviado: dependem da aprovação da Meta, do crédito de mensagem (renova 09/11) e da hora que Bruno escolher.
