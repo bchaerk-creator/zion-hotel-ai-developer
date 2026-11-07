@@ -3,6 +3,13 @@
 ## Visão (Bruno Chaerk, 07/11/2026)
 A ZAIOS será a maior plataforma de desenvolvimento, gestão e operação hoteleira do mundo, com sistema de inteligência, para profissionalizar o setor: de quem quer aprender a ter uma hospedagem a quem já opera e quer se profissionalizar. A plataforma vai reunir planilhas, agentes de IA, aulas e ferramentas. Ordem combinada: terminar o MVP atual (consolidação e lançamento) e depois seguir para o restante.
 
+Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude Docs privado do Bruno, 07/11/2026). Não foi copiado para este repositório porque traz detalhes internos (endereços de entregáveis pagos, dados de funil e da Zaya). Resumo do que importa para o roadmap depois do MVP:
+- Seis camadas de ativos: conteúdo e trilhas (Trilha 1 com 58 aulas; trilhas 2 a 4 com estrutura sem aulas), 31 ferramentas interativas e 2 planilhas, 23 vídeos, páginas, comunicação (templates, fluxos e a Zaya no ClickMax), dados do lead e a fábrica de peças.
+- Quatro blocos da inteligência: registro de ferramentas, base de conhecimento, modelo único do lead e orquestrador por dor.
+- Ordem sugerida: (1) registro de ferramentas e base de conhecimento; (2) captura do progresso das fichas no servidor e chave única do lead; (3) orquestrador por dor; (4) conteúdo das trilhas 2 a 4 pela fábrica; (5) medição.
+- O MVP do ZAIOS já resolve parte do passo 2: as respostas dos pilares e o Dossiê ficam no servidor, por associado.
+- Regras de produção a herdar: identidade Zion com Cormorant e Aventa e o logo oficial; nenhuma promessa de renda, retorno ou parceria; exemplos marcados como fictícios; "equipe Zion" e "ecossistema" no lugar de consultoria, curso ou comunidade.
+
 | Data | Decisão | Quem decidiu |
 |---|---|---|
 | 05/11/2026 | O MVP atende as jornadas Desenvolvimento e Operação desde o lançamento | Bruno Chaerk |
