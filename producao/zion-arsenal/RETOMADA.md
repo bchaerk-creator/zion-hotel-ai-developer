@@ -25,10 +25,15 @@
 - Tutorial anexado às 21 aulas de bônus e acrescentado como 2ª entrega nas 19 ofertas novas.
 - Bônus nas 5 trilhas: Desenvolvimento (módulo 9 da Trilha 1, 11 aulas) e cursos de bônus de Gestão, Operação, Aceleração de Vendas e Identidade e Branding (sem turma ainda). IDs em `control/clickmax.json`.
 
+## Landings (07/11/2026)
+- 19 landings simples (6 blocos) em rascunho no ClickMax, `/zar-a02` … `/zar-b10`, cada uma com o checkout da sua oferta (conferido: 19/19 com a oferta certa). IDs em `control/landings.json`; copy em `landings/<ID>.json`. Números da demonstração tirados da ferramenta real (perfil 1), com aviso de dados fictícios.
+- A01 sem landing nova (oferta antiga; depende de aprovado).
+- Publicação: só quando a oferta estiver ativa (vendedor ainda em análise).
+
 ## Próximos passos
 1. ~~Nome~~ resolvido: Zion Collection Club · Hotel Business Academy.
 2. Ajustar `app/engine.css` e as landings às cores oficiais do CLAUDE.md (#040605, #1B2117, #FEF5F0, #DED6BF, #8B714E, #C9B37E; Cormorant + Jost) e dar cor explícita aos spans.
 3. ~~Publicar as 20 ferramentas e ligar as entregas~~ (feito em 07/11).
-4. 18 landings restantes, área de membros, funis, automações, criativos, e-books, Gamma, campanhas pausadas.
+4. ~~18 landings~~ feitas (07/11). Faltam: vídeo de apresentação no topo de cada landing, capas, funis, automações, criativos, e-books, Gamma, campanhas pausadas.
 5. Vendedor ClickMax ainda em análise: nenhum checkout vende.
 6. Apagar a página técnica `/zar-teste-script` (rascunho, despublicada).
