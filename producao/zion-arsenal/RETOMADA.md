@@ -17,8 +17,11 @@
 - Entregas por link ligadas nas 19 ofertas novas (A02–B10). A01: oferta antiga mantida com a entrega `arsenal-01` (trocar só com aprovação).
 - Bloqueio restante das ofertas: apenas `sellerStatus`.
 
+## Nome (07/11/2026)
+- Novo nome: **Zion Collection Club**, slogan **Hotel Business Academy** (substitui "Zion Arsenal"). Aplicado nas 20 ferramentas, nas 19 ofertas/produtos, na landing do A02 e na vitrine (agora `/zion-collection-club`). Códigos internos ZAR-xxx e pastas `zar-xxx` mantidos.
+
 ## Próximos passos
-1. Esclarecer a correção "Zion Arsenal → Zion Collection" (onde aplicar).
+1. ~~Nome~~ resolvido: Zion Collection Club · Hotel Business Academy.
 2. Ajustar `app/engine.css` e as landings às cores oficiais do CLAUDE.md (#040605, #1B2117, #FEF5F0, #DED6BF, #8B714E, #C9B37E; Cormorant + Jost) e dar cor explícita aos spans.
 3. ~~Publicar as 20 ferramentas e ligar as entregas~~ (feito em 07/11).
 4. 18 landings restantes, área de membros, funis, automações, criativos, e-books, Gamma, campanhas pausadas.

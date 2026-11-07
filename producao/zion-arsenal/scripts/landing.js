@@ -5,34 +5,34 @@ const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;',
 function build(d) {
   const li = a => a.map(x => `<li>${x}</li>`).join('');
   return `<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>${esc(d.seoTitle)}</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;600;700&display=swap" rel="stylesheet"><meta name="description" content="${esc(d.seoDescription)}">
+<title>${esc(d.seoTitle)}</title><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Jost:wght@400;500;600&display=swap" rel="stylesheet"><meta name="description" content="${esc(d.seoDescription)}">
 <style>
-:root{--cx-color-background:#F5F1E8;--cx-color-headline:#0E0F0C;--cx-color-subheadline:#2F3B2A;--cx-color-content:#3a3d33;--cx-color-colored:#C9A84C;--cx-color-on-colored:#0E0F0C;--cx-color-surface:#ffffff;--cx-color-hairline:#e1dacb;--cx-font-headline:"Cormorant Garamond";--cx-font-content:"Inter";--musgo:#2F3B2A}
-*{box-sizing:border-box}body{margin:0;background:#F5F1E8;color:#3a3d33;font-family:Inter,system-ui,sans-serif;line-height:1.6}
+:root{--cx-color-background:#FEF5F0;--cx-color-headline:#040605;--cx-color-subheadline:#1B2117;--cx-color-content:#2a2c25;--cx-color-colored:#C9B37E;--cx-color-on-colored:#040605;--cx-color-surface:#ffffff;--cx-color-hairline:#DED6BF;--cx-font-headline:"Cormorant Garamond";--cx-font-content:"Jost";--musgo:#1B2117}
+*{box-sizing:border-box}body{margin:0;background:#FEF5F0;color:#2a2c25;font-family:Jost,system-ui,sans-serif;line-height:1.6}
 .w{max-width:960px;margin:0 auto;padding:56px 20px}
-h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:#0E0F0C;line-height:1.12;margin:0 0 14px}
+h1,h2,h3{font-family:"Cormorant Garamond",Georgia,serif;color:#040605;line-height:1.12;margin:0 0 14px}
 h1{font-size:clamp(34px,6vw,56px)}h2{font-size:clamp(28px,4.5vw,40px)}h3{font-size:22px}
-.k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B8963C;font-weight:700;margin-bottom:10px;display:block}
-.dark{background:linear-gradient(160deg,#2F3B2A,#0E0F0C);color:#E9E1D2}.dark h1,.dark h2,.dark h3,.dark p,.dark li,.dark span{color:#F5F1E8}
+.k{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#8B714E;font-weight:700;margin-bottom:10px;display:block}
+.dark{background:linear-gradient(160deg,#1B2117,#040605);color:#DED6BF}.dark h1,.dark h2,.dark h3,.dark p,.dark li,.dark span{color:#FEF5F0}
 .lead{font-size:20px;max-width:720px}
-.btn{display:inline-block;background:#C9A84C;color:#0E0F0C;text-decoration:none;font-weight:700;padding:16px 28px;border-radius:12px;margin-top:10px}
+.btn{display:inline-block;background:#C9B37E;color:#040605;text-decoration:none;font-weight:700;padding:16px 28px;border-radius:12px;margin-top:10px}
 .grid{display:grid;gap:16px;grid-template-columns:1fr}@media(min-width:760px){.grid.c2{grid-template-columns:1fr 1fr}.grid.c3{grid-template-columns:1fr 1fr 1fr}}
-.card{background:#fff;border:1px solid #e1dacb;border-radius:16px;padding:22px}
+.card{background:#fff;border:1px solid #DED6BF;border-radius:16px;padding:22px}
 .card h3{margin-top:0}
-ul.chk{list-style:none;padding:0}ul.chk li{padding:8px 0 8px 30px;position:relative}ul.chk li:before{content:"✓";position:absolute;left:0;color:#2F3B2A;font-weight:700}
+ul.chk{list-style:none;padding:0}ul.chk li{padding:8px 0 8px 30px;position:relative}ul.chk li:before{content:"✓";position:absolute;left:0;color:#1B2117;font-weight:700}
 ul.x li:before{content:"✕";color:#A3432F}
-.steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;padding:12px 0 12px 52px;position:relative;border-bottom:1px solid #e1dacb}.steps li:before{content:counter(s);position:absolute;left:0;top:10px;width:36px;height:36px;border-radius:50%;background:#2F3B2A;color:#F5F1E8;display:flex;align-items:center;justify-content:center;font-weight:700}
-.demo{background:#0E0F0C;border-radius:18px;padding:18px;color:#E9E1D2}
-.demo .row{display:flex;justify-content:space-between;border-bottom:1px solid #2c2e27;padding:9px 4px;font-size:15px}.demo .row b{color:#C9A84C}
-.demo .res{background:#2F3B2A;border:1px solid #C9A84C;border-radius:12px;padding:14px;margin-top:12px}
-.price{font-family:"Cormorant Garamond",serif;font-size:64px;color:#0E0F0C;font-weight:600}
-.faq details{background:#fff;border:1px solid #e1dacb;border-radius:12px;padding:14px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}
+.steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;padding:12px 0 12px 52px;position:relative;border-bottom:1px solid #DED6BF}.steps li:before{content:counter(s);position:absolute;left:0;top:10px;width:36px;height:36px;border-radius:50%;background:#1B2117;color:#FEF5F0;display:flex;align-items:center;justify-content:center;font-weight:700}
+.demo{background:#040605;border-radius:18px;padding:18px;color:#DED6BF}
+.demo .row{display:flex;justify-content:space-between;border-bottom:1px solid #1f2419;padding:9px 4px;font-size:15px}.demo .row b{color:#C9B37E}
+.demo .res{background:#1B2117;border:1px solid #C9B37E;border-radius:12px;padding:14px;margin-top:12px}
+.price{font-family:"Cormorant Garamond",serif;font-size:64px;color:#040605;font-weight:600}
+.faq details{background:#fff;border:1px solid #DED6BF;border-radius:12px;padding:14px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}
 .small{font-size:13px;opacity:.8}
 img.cm-image{width:100%;border-radius:16px;display:block}
 </style></head><body>
 
 <section data-cx-section="hero" class="dark"><div class="w">
-<span class="k">Zion Hotel Academy · Zion Arsenal · ${esc(d.code)}</span>
+<span class="k">Zion Collection Club · Hotel Business Academy</span>
 <h1>${d.headline}</h1><p class="lead">${d.subheadline}</p>
 <a class="btn" data-cx-cta href="#oferta">${esc(d.cta)}</a>
 <p class="small">Mini mentoria interativa + ${esc(d.tool)} · R$ 27 · pagamento único</p>
@@ -46,7 +46,7 @@ img.cm-image{width:100%;border-radius:16px;display:block}
 <ul class="chk x">${li(d.symptoms)}</ul>
 </div></section>
 
-<section data-cx-section="solution" style="background:#E9E1D2"><div class="w">
+<section data-cx-section="solution" style="background:#DED6BF"><div class="w">
 <span class="k">O caminho</span>
 <h2>${esc(d.solutionTitle)}</h2><p class="lead">${d.solution}</p>
 <div class="grid c2" style="margin-top:22px">${d.pillars.map((p, i) => `<div class="card"><span class="k">Pilar ${i + 1}</span><h3>${esc(p[0])}</h3><p>${p[1]}</p></div>`).join('')}</div>
@@ -56,13 +56,13 @@ img.cm-image{width:100%;border-radius:16px;display:block}
 <span class="k">Veja a ferramenta funcionando</span>
 <h2>${esc(d.demoTitle)}</h2>
 <div class="grid c2"><div><ol class="steps">${li(d.demoSteps)}</ol></div>
-<div class="demo"><div class="k" style="color:#C9A84C">${esc(d.tool)} · exemplo ilustrativo</div>
+<div class="demo"><div class="k" style="color:#C9B37E">${esc(d.tool)} · exemplo ilustrativo</div>
 ${d.demoInputs.map(r => `<div class="row"><span>${r[0]}</span><b>${r[1]}</b></div>`).join('')}
 <div class="res">${d.demoResult}</div></div></div>
 <p class="small">Números fictícios, apenas para demonstrar o funcionamento. Na mini mentoria você usa os seus.</p>
 </div></section>
 
-<section data-cx-section="solution" style="background:#E9E1D2"><div class="w">
+<section data-cx-section="solution" style="background:#DED6BF"><div class="w">
 <span class="k">O que você vai fazer</span><h2>Responda, calcule, decida.</h2><p class="lead">${d.implementation}</p>
 <div class="grid c3" style="margin-top:20px">
 <div class="card"><h3>40 telas</h3><p>Aprenda, compare, preencha, receba feedback e aplique, em 7 pilares.</p></div>
@@ -86,7 +86,7 @@ ${d.faq.map(f => `<details><summary>${esc(f[0])}</summary><p>${f[1]}</p></detail
 <section data-cx-section="cta" class="dark"><div class="w" style="text-align:center">
 <h2>${d.finalHeadline}</h2><p class="lead" style="margin:0 auto">Aprenda o passo a passo. Utilize as ferramentas. Construa seu resultado.</p>
 <a class="btn" data-cx-cta href="#oferta">${esc(d.cta)}</a>
-<p class="small" style="margin-top:26px">${d.disclaimer}<br>Zion Hotel Academy · uma iniciativa Zion Hotel Group International.</p>
+<p class="small" style="margin-top:26px">${d.disclaimer}<br>Zion Collection Club · Hotel Business Academy · uma iniciativa Zion Hotel Group International.</p>
 </div></section>
 </body></html>`;
 }
