@@ -1,4 +1,4 @@
-/* Zion Arsenal — motor interativo · identidade: verde musgo, preto, areia, champagne */
+/* Zion Collection Club — motor interativo · identidade: verde musgo, preto, areia, champagne */
 :root{
   --musgo:#1B2117; --musgo-2:#2A3324; --musgo-claro:#4A5640;
   --preto:#040605; --grafite:#1B1D18;
@@ -18,6 +18,7 @@ button{font:inherit;cursor:pointer}
 .za-top{position:sticky;top:0;z-index:20;background:var(--preto);color:var(--areia);padding:10px 16px;display:flex;align-items:center;gap:12px}
 .za-brand{font-family:var(--serif);font-size:18px;letter-spacing:.04em;white-space:nowrap}
 .za-brand b{color:var(--champ);font-weight:600}
+@media(max-width:480px){.za-brand{font-size:14px;letter-spacing:.02em}.za-top{gap:8px;padding:10px 12px}.za-prog-txt{font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}}
 .za-prog{flex:1;min-width:60px}
 .za-prog-bar{height:6px;background:#2c2e27;border-radius:99px;overflow:hidden}
 .za-prog-bar i{display:block;height:100%;background:linear-gradient(90deg,var(--champ-2),var(--champ));width:0;transition:width .3s}

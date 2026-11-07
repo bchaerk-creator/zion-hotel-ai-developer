@@ -1,0 +1,408 @@
+{
+ "product": "B03",
+ "title": "Tutorial · Construtor de Projeto Turístico",
+ "segments": [
+  {
+   "id": "s01",
+   "say": "Olá! Neste tutorial você vai ver, na prática, como usar a ferramenta Construtor de Projeto Turístico. No final, você recebe em PDF: Projeto Conceitual de Hospedagem.",
+   "do": [
+    [
+     "move",
+     ".za-hero h1"
+    ]
+   ]
+  },
+  {
+   "id": "s02",
+   "say": "No topo fica a barra de progresso. São quarenta telas, organizadas em sete pilares. Tudo o que você responde fica salvo automaticamente neste navegador.",
+   "do": [
+    [
+     "move",
+     ".za-prog"
+    ]
+   ]
+  },
+  {
+   "id": "s03",
+   "say": "O botão Telas abre o índice. Por ele, você volta a qualquer etapa já visitada para revisar ou corrigir uma resposta.",
+   "do": [
+    [
+     "click",
+     "#za-menu"
+    ],
+    [
+     "wait",
+     2500
+    ],
+    [
+     "click",
+     "#za-close"
+    ]
+   ]
+  },
+  {
+   "id": "s04",
+   "say": "As primeiras telas mostram o problema e a ideia central do método. Leia com calma e clique em Continuar.",
+   "do": [
+    [
+     "wait",
+     1500
+    ],
+    [
+     "click",
+     "#za-next"
+    ],
+    [
+     "wait",
+     2500
+    ],
+    [
+     "click",
+     "#za-next"
+    ]
+   ]
+  },
+  {
+   "id": "s05",
+   "say": "Nesta tela você faz a sua apresentação. Preencha os dados pedidos, sempre com a sua realidade.",
+   "do": [
+    [
+     "fill",
+     "nome",
+     "Rosa"
+    ],
+    [
+     "fill",
+     "propriedade",
+     "Sítio Recanto do Rio"
+    ],
+    [
+     "fill",
+     "cidade",
+     "São Bento do Sapucaí (SP)"
+    ],
+    [
+     "fill",
+     "area_ha",
+     8
+    ],
+    [
+     "fill",
+     "recursos_hoje",
+     "pouco"
+    ]
+   ]
+  },
+  {
+   "id": "s06",
+   "say": "Clique em Continuar. Se algum campo obrigatório ficar vazio, a ferramenta avisa antes de avançar.",
+   "do": [
+    [
+     "click",
+     "#za-next"
+    ]
+   ]
+  },
+  {
+   "id": "s07",
+   "say": "Cada pilar tem cinco momentos. O primeiro é Aprenda: uma explicação curta, com um exemplo. Aqui, o primeiro pilar é: Conhecendo o terreno.",
+   "do": [
+    [
+     "scroll",
+     300
+    ],
+    [
+     "wait",
+     1200
+    ],
+    [
+     "move",
+     ".za-example"
+    ],
+    [
+     "wait",
+     800
+    ],
+    [
+     "click",
+     "#za-next"
+    ]
+   ]
+  },
+  {
+   "id": "s08",
+   "say": "Depois vem Compare: duas formas de fazer, lado a lado, para você enxergar a diferença.",
+   "do": [
+    [
+     "move",
+     ".za-col"
+    ],
+    [
+     "wait",
+     1500
+    ],
+    [
+     "click",
+     "#za-next"
+    ]
+   ]
+  },
+  {
+   "id": "s09",
+   "say": "Em seguida, Preencha. É o exercício do pilar, sempre com os seus números e as suas respostas.",
+   "do": [
+    [
+     "fill",
+     "atributos",
+     [
+      "agua",
+      "mata",
+      "silencio",
+      "clima"
+     ]
+    ],
+    [
+     "fill",
+     "topografia",
+     "ondulado"
+    ],
+    [
+     "fill",
+     "area_util",
+     30
+    ],
+    [
+     "fill",
+     "infra",
+     [
+      "energia",
+      "agua"
+     ]
+    ]
+   ]
+  },
+  {
+   "id": "s10",
+   "say": "No momento Feedback, a ferramenta lê as suas respostas e mostra o que elas revelam.",
+   "do": [
+    [
+     "click",
+     "#za-next"
+    ],
+    [
+     "wait",
+     900
+    ],
+    [
+     "move",
+     ".za-fb li"
+    ]
+   ]
+  },
+  {
+   "id": "s11",
+   "say": "E em Aplique, você marca as ações que vai colocar em prática. Elas entram no seu plano final.",
+   "do": [
+    [
+     "click",
+     "#za-next"
+    ],
+    [
+     "wait",
+     900
+    ],
+    [
+     "check",
+     "[data-act=a1_1]"
+    ],
+    [
+     "check",
+     "[data-act=a1_2]"
+    ]
+   ]
+  },
+  {
+   "id": "s12",
+   "say": "Vamos adiantar até o pilar 6: Investimento preliminar.",
+   "do": [
+    [
+     "prefill",
+     30
+    ]
+   ]
+  },
+  {
+   "id": "s13",
+   "say": "Se você não tiver algum dado, marque Não sei. A ferramenta continua e avisa no relatório que aquele ponto é uma hipótese, não um diagnóstico.",
+   "do": [
+    [
+     "unk",
+     "custo_unidade"
+    ],
+    [
+     "fill",
+     "mobiliario",
+     15000
+    ],
+    [
+     "fill",
+     "infra_lista",
+     [
+      {
+       "name": "Energia",
+       "value": 25000
+      },
+      {
+       "name": "Água / poço",
+       "value": 18000
+      },
+      {
+       "name": "Saneamento",
+       "value": ""
+      },
+      {
+       "name": "Acesso interno",
+       "value": 12000
+      }
+     ]
+    ],
+    [
+     "fill",
+     "projetos",
+     [
+      {
+       "name": "Levantamento topográfico",
+       "value": 4000
+      },
+      {
+       "name": "Projeto arquitetônico",
+       "value": 15000
+      },
+      {
+       "name": "Consultas e licenças",
+       "value": 6000
+      }
+     ]
+    ],
+    [
+     "fill",
+     "contingencia",
+     10
+    ],
+    [
+     "fill",
+     "recursos",
+     20000
+    ]
+   ]
+  },
+  {
+   "id": "s14",
+   "say": "Veja o feedback deste pilar: os números são calculados na hora, a partir do que você informou.",
+   "do": [
+    [
+     "click",
+     "#za-next"
+    ],
+    [
+     "wait",
+     900
+    ],
+    [
+     "move",
+     ".za-fb li"
+    ]
+   ]
+  },
+  {
+   "id": "s15",
+   "say": "Agora, a consolidação. Aqui aparecem os indicadores, os pontos de atenção e as prioridades OP3D: do que mais pesa até a sua ação essencial agora.",
+   "do": [
+    [
+     "prefill",
+     38
+    ],
+    [
+     "wait",
+     1500
+    ],
+    [
+     "scroll",
+     500
+    ],
+    [
+     "wait",
+     1200
+    ],
+    [
+     "scroll",
+     700
+    ],
+    [
+     "wait",
+     1200
+    ],
+    [
+     "scroll",
+     700
+    ]
+   ]
+  },
+  {
+   "id": "s16",
+   "say": "Por fim, o relatório personalizado. Clique em Baixar PDF e escolha Salvar como PDF. Você também pode exportar os seus dados para continuar em outro aparelho.",
+   "do": [
+    [
+     "go",
+     39
+    ],
+    [
+     "wait",
+     1000
+    ],
+    [
+     "move",
+     "#za-print"
+    ],
+    [
+     "wait",
+     1800
+    ],
+    [
+     "move",
+     "#za-export"
+    ],
+    [
+     "wait",
+     1500
+    ],
+    [
+     "scroll",
+     600
+    ],
+    [
+     "wait",
+     1000
+    ],
+    [
+     "scroll",
+     700
+    ]
+   ]
+  },
+  {
+   "id": "s17",
+   "say": "Pronto. Agora é com você: preencha com a sua situação real e use o relatório para decidir os próximos passos. Aprenda o passo a passo, utilize as ferramentas e construa o seu resultado.",
+   "do": [
+    [
+     "scroll",
+     -4000
+    ],
+    [
+     "move",
+     ".za-hero h1"
+    ]
+   ]
+  }
+ ]
+}

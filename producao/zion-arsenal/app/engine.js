@@ -1,4 +1,4 @@
-/* Zion Arsenal — motor interativo reutilizável (v1)
+/* Zion Collection Club — motor interativo reutilizável (v1)
  * Um único motor; cada mini mentoria é um arquivo products/<ID>.js que chama ZA.register({...}).
  * Estrutura obrigatória: 3 telas de abertura + 7 pilares × 5 momentos + consolidação + relatório = 40 telas.
  * Sem dependências externas. Estado salvo no navegador (localStorage) a cada alteração.
@@ -228,7 +228,7 @@ function render(){
   var n=ZA.screens.length;
   document.querySelector('.za-prog-bar i').style.width=Math.round((st.pos+1)/n*100)+'%';
   document.querySelector('.za-prog-txt').textContent='Tela '+(st.pos+1)+' de '+n+(sc.pillar>=1&&sc.pillar<=7?' · Pilar '+sc.pillar+' de 7':'');
-  h+='<div class="za-print-head"><b>ZION HOTEL ACADEMY · ZION ARSENAL</b><br>'+esc(cfg.code)+' · '+esc(cfg.title)+'</div>';
+  h+='<div class="za-print-head"><b>ZION COLLECTION CLUB · HOTEL BUSINESS ACADEMY</b><br>'+esc(cfg.code)+' · '+esc(cfg.title)+'</div>';
   if(sc.pillar>=1&&sc.pillar<=7) h+='<div class="za-pillar-tag">Pilar '+sc.pillar+' · '+esc(sc.pillarTitle)+'<span class="za-moment">'+MOMENTS[sc.kind]+'</span></div>';
   switch(sc.kind){
     case 'mirror': case 'collapse':
@@ -275,7 +275,7 @@ function render(){
   nx.disabled=st.pos===n-1;
   renderIndex();
   window.scrollTo(0,0);
-  document.title=cfg.code+' · '+(sc.idx)+' · Zion Arsenal';
+  document.title=cfg.code+' · '+(sc.idx)+' · Zion Collection Club';
 }
 function reportHTML(r){
   var cfg=ZA.cfg, s=r.s, c=r.c, rep={};
@@ -294,7 +294,7 @@ function reportHTML(r){
   var fb=allFeedback(r).filter(function(x){return x.lv==='bad'||x.lv==='warn';});
   if(fb.length) h+='<h2>Pontos de atenção</h2>'+fbHTML(fb);
   var miss=missingList(); if(miss.length) h+='<h2>Dados ausentes</h2><div class="za-missing">Itens marcados como “não sei”: '+miss.map(esc).join('; ')+'. Conclusões que dependem deles são hipóteses, não diagnóstico.</div>';
-  h+='<div class="za-disclaimer"><b>Como ler este relatório.</b> “Informado” = dado que você digitou. “Calculado” = resultado de fórmula sobre seus dados. “Estimativa” e “hipótese” = premissas que precisam ser confirmadas. “Recomendação” = orientação da metodologia Zion. '+(cfg.disclaimer||'Este material é educacional e orientativo. Não constitui garantia de resultado, reservas, faturamento, lucro ou retorno.')+'<br>Zion Hotel Academy · Zion Arsenal · Metodologias ECROI e OP3D.</div>';
+  h+='<div class="za-disclaimer"><b>Como ler este relatório.</b> “Informado” = dado que você digitou. “Calculado” = resultado de fórmula sobre seus dados. “Estimativa” e “hipótese” = premissas que precisam ser confirmadas. “Recomendação” = orientação da metodologia Zion. '+(cfg.disclaimer||'Este material é educacional e orientativo. Não constitui garantia de resultado, reservas, faturamento, lucro ou retorno.')+'<br>Zion Collection Club · Hotel Business Academy · Metodologias ECROI e OP3D.</div>';
   return h;
 }
 function renderIndex(){
@@ -329,7 +329,7 @@ ZA.boot = function(mount){
   var cfg=ZA.cfg; KEY='za:v1:'+cfg.code; st=load();
   if(st.pos>=ZA.screens.length) st.pos=0;
   mount.innerHTML=
-   '<header class="za-top"><div class="za-brand">ZION <b>ARSENAL</b></div><div class="za-prog"><div class="za-prog-bar"><i></i></div><div class="za-prog-txt"></div></div><button class="za-menu-btn" id="za-menu">Telas</button></header>'+
+   '<header class="za-top"><div class="za-brand">ZION <b>COLLECTION CLUB</b></div><div class="za-prog"><div class="za-prog-bar"><i></i></div><div class="za-prog-txt"></div></div><button class="za-menu-btn" id="za-menu">Telas</button></header>'+
    '<main class="za-wrap" id="za-root"></main>'+
    '<nav class="za-nav"><div class="za-nav-in"><button class="za-btn ghost" id="za-prev">Voltar</button><span class="za-saved" id="za-saved"></span><button class="za-btn" id="za-next">Continuar</button></div></nav>'+
    '<div class="za-drawer" id="za-drawer"><div class="za-drawer-in"><div style="display:flex;justify-content:space-between;align-items:center"><b>'+esc(cfg.code)+'</b><button class="za-menu-btn" style="color:var(--texto);border-color:#ccc" id="za-close">Fechar</button></div>'+

@@ -36,6 +36,18 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
       if (op === 'move') await moveTo(a);
       else if (op === 'click') { await moveTo(a); await page.mouse.down(); await page.mouse.up(); await wait(500); }
       else if (op === 'type') { await moveTo(a); await page.locator(a).click(); await page.locator(a).pressSequentially(v, { delay: 85 }); await wait(250); }
+      else if (op === 'unk') { await moveTo(`[data-unk=${a}]`); await page.locator(`[data-unk=${a}]`).check(); await wait(500); }
+      else if (op === 'fill') {
+        const t = await page.evaluate(fid => (ZA.allFields().find(f => f.id === fid) || {}).type, a); const sel = `#f_${a}`, wrap = `[data-f=${a}]`;
+        if (!t || !(await page.locator(wrap).count())) continue;
+        if (['number', 'money', 'percent', 'text', 'textarea'].includes(t)) { const txt = String(v); await moveTo(sel); await page.locator(sel).click();
+          if (txt.length > 28) { await page.locator(sel).pressSequentially(txt.slice(0, 20), { delay: 70 }); await page.locator(sel).fill(txt); await page.locator(sel).dispatchEvent('input'); }
+          else await page.locator(sel).pressSequentially(txt, { delay: 85 }); await wait(250); }
+        else if (t === 'select') { await moveTo(sel); await page.locator(sel).selectOption(String(v)); await wait(300); }
+        else if (t === 'radio' || t === 'scale') { const s2 = `${wrap} input[value="${v}"]`; await moveTo(s2); await page.locator(s2).check(); await wait(350); }
+        else if (t === 'checks') { for (const x of v) { const s2 = `${wrap} input[value="${x}"]`; await moveTo(s2); await page.locator(s2).check(); await wait(250); } }
+        else if (t === 'list') { await moveTo(wrap); await page.evaluate(([fid, rows]) => { ZA.state().v[fid] = rows.map(r => ({ name: r.name, value: r.value === '' ? null : r.value })); ZA.go(ZA.state().pos); }, [a, v]); await wait(900); }
+      }
       else if (op === 'select') { await moveTo(a); await page.locator(a).selectOption(v); await wait(300); }
       else if (op === 'check') { await moveTo(a); await page.locator(a).first().check(); await wait(350); }
       else if (op === 'scroll') { await page.mouse.wheel(0, a); await wait(400); }
