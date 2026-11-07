@@ -20,6 +20,10 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 06/11/2026 | Fazer o Dossiê preliminar antes da Jornada Operação | Bruno Chaerk |
 | 07/11/2026 | Construir P5 e P6 com a metodologia dos planos F01 a F03 como versão 0 | Bruno Chaerk ("pode começar") |
 
+## Depois do MVP (pedido do Bruno, 07/11/2026)
+- Consumir o documento de visão aos poucos, na ordem do roadmap.
+- Construir a identidade própria da ZAIOS: logo, narrativa e linguagem, dentro do padrão da marca Zion.
+
 ## Decisões pendentes
 - Fonte oficial das fórmulas financeiras (planilhas e simuladores Zion de referência).
 - Definição de "receita de hospedagem": inclui ou não a taxa de limpeza; antes ou depois dos impostos. Hoje a taxa de limpeza está fora.
