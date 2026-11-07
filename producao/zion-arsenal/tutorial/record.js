@@ -26,7 +26,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   const page = await ctx.newPage(); const t0 = Date.now();
   await page.goto(`http://127.0.0.1:${srv.address().port}/index.html?p=${id}`); await page.waitForSelector('#za-next');
   let mx = 640, my = 360; await page.mouse.move(mx, my);
-  const moveTo = async sel => { const el = page.locator(sel).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); const bb = await el.boundingBox(); if (!bb) return;
+  const moveTo = async sel => { if (!(await page.locator(sel).count())) return; const el = page.locator(sel).first(); await el.scrollIntoViewIfNeeded().catch(() => {}); const bb = await el.boundingBox(); if (!bb) return;
     const x = bb.x + Math.min(bb.width / 2, 60), y = bb.y + bb.height / 2; await page.mouse.move(x, y, { steps: 28 }); mx = x; my = y; await wait(250); };
   const starts = {};
   await wait(800);
