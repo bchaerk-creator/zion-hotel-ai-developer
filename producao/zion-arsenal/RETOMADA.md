@@ -20,6 +20,11 @@
 ## Nome (07/11/2026)
 - Novo nome: **Zion Collection Club**, slogan **Hotel Business Academy** (substitui "Zion Arsenal"). Aplicado nas 20 ferramentas, nas 19 ofertas/produtos, na landing do A02 e na vitrine (agora `/zion-collection-club`). Códigos internos ZAR-xxx e pastas `zar-xxx` mantidos.
 
+## Tutoriais e bônus (07/11/2026)
+- 20 tutoriais narrados (voz Piper pt-BR + cursor, ~2min10s cada) em `docs/p/adbc67069af26ae0/tutoriais/zar-xxx-tutorial.mp4`.
+- Tutorial anexado às 21 aulas de bônus e acrescentado como 2ª entrega nas 19 ofertas novas.
+- Bônus nas 5 trilhas: Desenvolvimento (módulo 9 da Trilha 1, 11 aulas) e cursos de bônus de Gestão, Operação, Aceleração de Vendas e Identidade e Branding (sem turma ainda). IDs em `control/clickmax.json`.
+
 ## Próximos passos
 1. ~~Nome~~ resolvido: Zion Collection Club · Hotel Business Academy.
 2. Ajustar `app/engine.css` e as landings às cores oficiais do CLAUDE.md (#040605, #1B2117, #FEF5F0, #DED6BF, #8B714E, #C9B37E; Cormorant + Jost) e dar cor explícita aos spans.
