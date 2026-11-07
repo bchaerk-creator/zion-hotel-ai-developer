@@ -61,3 +61,9 @@ As trilhas Master e Pro ficaram fora do vídeo por decisão de Bruno: a pessoa v
 - Arquivo: `docs/trilha1/trailer/trailer-club-whatsapp.mp4` (1080×1920) e capa `capa-trailer-club.jpg`.
 - Para refazer: `club.html` (as 11 cenas), `spec-club.json` (locução) e `make_trailer.py` nesta pasta.
 - Sequência sugerida no WhatsApp: primeiro o trailer da Trilha (o porquê e o passo a passo), dois dias depois o trailer do Club (o que é, o como e o resultado).
+
+## 5. Registro (07/11/2026)
+
+- Template WhatsApp `zion_club_ecossistema` (id `f9a4719f-5d9e-4d5d-8c67-556adbad8420`, número Zion Collection, MARKETING, vídeo no cabeçalho, botões "Quero me inscrever" → https://www.zionhotelgroup.com/land-members e "Não me interessa"). Enviado para a aprovação da Meta às 15h40 UTC com o "aprovado" do Bruno.
+- Disparo em rascunho `Trailer Club Zion Collection · leads do form Meta` (id `b252fdaa-a93c-4c2f-84be-1fb5b88a3971`), 77 destinatários (mesma lista do trailer da Trilha), 20 por vez a cada 10 minutos. Não enviado.
+- O template do trailer da Trilha (`zion_trailer_trilha`) foi aprovado pela Meta no mesmo dia.
