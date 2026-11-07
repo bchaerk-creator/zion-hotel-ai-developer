@@ -43,17 +43,13 @@ img.cm-image{width:100%;border-radius:16px;display:block}
 <span class="k">Talvez o problema não seja o que você pensa</span>
 <h2>${d.collapseTitle}</h2><p class="lead">${d.collapse}</p>
 <h3 style="margin-top:34px">Você se reconhece em alguma destas situações?</h3>
-<ul class="chk x">${li(d.symptoms)}</ul>
+<ul class="chk x">${li(d.symptoms.slice(0,3))}</ul>
 </div></section>
 
-<section data-cx-section="solution" style="background:#DED6BF"><div class="w">
-<span class="k">O caminho</span>
-<h2>${esc(d.solutionTitle)}</h2><p class="lead">${d.solution}</p>
-<div class="grid c2" style="margin-top:22px">${d.pillars.map((p, i) => `<div class="card"><span class="k">Pilar ${i + 1}</span><h3>${esc(p[0])}</h3><p>${p[1]}</p></div>`).join('')}</div>
-</div></section>
+
 
 <section data-cx-section="solution"><div class="w">
-<span class="k">Veja a ferramenta funcionando</span>
+<span class="k">Como funciona</span>
 <h2>${esc(d.demoTitle)}</h2>
 <div class="grid c2"><div><ol class="steps">${li(d.demoSteps)}</ol></div>
 <div class="demo"><div class="k" style="color:#C9B37E">${esc(d.tool)} · exemplo ilustrativo</div>
@@ -62,13 +58,7 @@ ${d.demoInputs.map(r => `<div class="row"><span>${r[0]}</span><b>${r[1]}</b></di
 <p class="small">Números fictícios, apenas para demonstrar o funcionamento. Na mini mentoria você usa os seus.</p>
 </div></section>
 
-<section data-cx-section="solution" style="background:#DED6BF"><div class="w">
-<span class="k">O que você vai fazer</span><h2>Responda, calcule, decida.</h2><p class="lead">${d.implementation}</p>
-<div class="grid c3" style="margin-top:20px">
-<div class="card"><h3>40 telas</h3><p>Aprenda, compare, preencha, receba feedback e aplique, em 7 pilares.</p></div>
-<div class="card"><h3>7 exercícios</h3><p>Cada pilar transforma o conteúdo em uma decisão sobre o seu caso.</p></div>
-<div class="card"><h3>Prioridades OP3D</h3><p>Do que mais pesa até a sua ação essencial agora.</p></div></div>
-</div></section>
+
 
 <section data-cx-section="offer" id="oferta"><div class="w">
 <span class="k">O que você recebe</span><h2>Tudo em uma compra só</h2>
@@ -80,7 +70,7 @@ ${d.demoInputs.map(r => `<div class="row"><span>${r[0]}</span><b>${r[1]}</b></di
 
 <section data-cx-section="faq" class="faq"><div class="w">
 <span class="k">Perguntas frequentes</span><h2>Antes de comprar</h2>
-${d.faq.map(f => `<details><summary>${esc(f[0])}</summary><p>${f[1]}</p></details>`).join('')}
+${d.faq.slice(0,3).concat(d.faq.filter(f=>/acesso/i.test(f[0])).slice(0,1)).filter((f,i,a)=>a.indexOf(f)===i).map(f => `<details><summary>${esc(f[0])}</summary><p>${f[1]}</p></details>`).join('')}
 </div></section>
 
 <section data-cx-section="cta" class="dark"><div class="w" style="text-align:center">
