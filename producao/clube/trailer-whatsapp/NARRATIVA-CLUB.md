@@ -67,3 +67,14 @@ As trilhas Master e Pro ficaram fora do vídeo por decisão de Bruno: a pessoa v
 - Template WhatsApp `zion_club_ecossistema` (id `f9a4719f-5d9e-4d5d-8c67-556adbad8420`, número Zion Collection, MARKETING, vídeo no cabeçalho, botões "Quero me inscrever" → https://www.zionhotelgroup.com/land-members e "Não me interessa"). Enviado para a aprovação da Meta às 15h40 UTC com o "aprovado" do Bruno.
 - Disparo em rascunho `Trailer Club Zion Collection · leads do form Meta` (id `b252fdaa-a93c-4c2f-84be-1fb5b88a3971`), 77 destinatários (mesma lista do trailer da Trilha), 20 por vez a cada 10 minutos. Não enviado.
 - O template do trailer da Trilha (`zion_trailer_trilha`) foi aprovado pela Meta no mesmo dia.
+
+## 6. Trailers das outras páginas (07/11/2026)
+
+| Página | Vídeo | Duração | Cenas (arquivo) |
+|---|---|---|---|
+| Glamping Store (`docs/store/`) | `docs/trilha1/trailer/trailer-store-whatsapp.mp4` | 2 min 12 | `scenes-store.js` + `spec-store.json` |
+| Investidores (`docs/investidores/`) | `trailer-investidores-whatsapp.mp4` | 2 min 00 | `scenes-investidores.js` + `spec-investidores.json` |
+| Land Bank (site Lovable `/land-bank`) | `trailer-landbank-whatsapp.mp4` | 1 min 40 | `scenes-landbank.js` + `spec-landbank.json` |
+| Club (`docs/land-members/`) | `trailer-club-whatsapp.mp4` | 2 min 42 | `club.html` + `spec-club.json` |
+
+Todos vão embutidos na própria página, em seção "Em 2 minutos", como vídeo vertical com capa. Gerador comum: `gen.html?d=<nome>` lê `scenes-<nome>.js`; `make_trailer.py spec-<nome>.json saida.mp4`.
