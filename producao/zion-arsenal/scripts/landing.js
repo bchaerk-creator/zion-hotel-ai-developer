@@ -23,7 +23,7 @@ ul.chk{list-style:none;padding:0}ul.chk li{padding:8px 0 8px 30px;position:relat
 ul.x li:before{content:"✕";color:#A3432F}
 .steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;padding:12px 0 12px 52px;position:relative;border-bottom:1px solid #DED6BF}.steps li:before{content:counter(s);position:absolute;left:0;top:10px;width:36px;height:36px;border-radius:50%;background:#1B2117;color:#FEF5F0;display:flex;align-items:center;justify-content:center;font-weight:700}
 .demo{background:#040605;border-radius:18px;padding:18px;color:#DED6BF}
-.demo .row{display:flex;justify-content:space-between;border-bottom:1px solid #1f2419;padding:9px 4px;font-size:15px}.demo .row b{color:#C9B37E}
+.demo .row{display:flex;justify-content:space-between;border-bottom:1px solid #1f2419;padding:9px 4px;font-size:15px}.demo .row span{color:#DED6BF}.demo .row b{color:#C9B37E}.demo p{color:#DED6BF}
 .demo .res{background:#1B2117;border:1px solid #C9B37E;border-radius:12px;padding:14px;margin-top:12px}
 .price{font-family:"Cormorant Garamond",serif;font-size:64px;color:#040605;font-weight:600}
 .faq details{background:#fff;border:1px solid #DED6BF;border-radius:12px;padding:14px 18px;margin:10px 0}.faq summary{font-weight:700;cursor:pointer}
@@ -32,7 +32,7 @@ img.cm-image{width:100%;border-radius:16px;display:block}
 </style></head><body>
 
 <section data-cx-section="hero" class="dark"><div class="w">
-<span class="k">Zion Collection Club · Hotel Business Academy</span>
+<span class="k" style="color:#C9B37E">Zion Collection Club · Hotel Business Academy</span>
 <h1>${d.headline}</h1><p class="lead">${d.subheadline}</p>
 <a class="btn" data-cx-cta href="#oferta">${esc(d.cta)}</a>
 <p class="small">Mini mentoria interativa + ${esc(d.tool)} · R$ 27 · pagamento único</p>
@@ -73,7 +73,7 @@ ${d.demoInputs.map(r => `<div class="row"><span>${r[0]}</span><b>${r[1]}</b></di
 <section data-cx-section="offer" id="oferta"><div class="w">
 <span class="k">O que você recebe</span><h2>Tudo em uma compra só</h2>
 <div class="grid c2"><div><ul class="chk">${li(d.deliverables)}</ul></div>
-<div class="card" style="text-align:center"><img class="cm-image" alt="${esc(d.title)}" data-cx-image-slot="offer" data-cx-image-hint="Mockup do produto ${esc(d.code)}, 1:1" data-cx-image-kind="brand">
+<div class="card" style="text-align:center"><img class="cm-image" alt="${esc(d.title)}" data-cx-image-slot="offer" data-cx-image-hint="Mockup do produto, 1:1" data-cx-image-kind="brand">
 <div class="price">R$ 27</div><p>Pagamento único · sem assinatura · acesso após a aprovação do pagamento</p>
 <div data-cx-checkout></div></div></div>
 </div></section>
