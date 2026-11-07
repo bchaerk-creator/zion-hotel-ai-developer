@@ -7,10 +7,10 @@ const [,, specPath, outDir]=process.argv; const spec=JSON.parse(fs.readFileSync(
   const ctx=await b.newContext({viewport:{width:1080,height:1920},recordVideo:{dir:outDir,size:{width:1080,height:1920}},deviceScaleFactor:1});
   const page=await ctx.newPage(); const T0=Date.now();
   // aquece fontes e imagens antes de começar a contar
-  await page.goto(`file://${__dirname}/trailer.html?s=0`); await page.waitForTimeout(800);
+  await page.goto(`file://${__dirname}/${process.env.PAGE||"trailer.html"}?s=0`); await page.waitForTimeout(800);
   for(let i=0;i<spec.scenes.length;i++){
     const sc=spec.scenes[i];
-    await page.goto(`file://${__dirname}/trailer.html?s=${i}`);
+    await page.goto(`file://${__dirname}/${process.env.PAGE||"trailer.html"}?s=${i}`);
     await page.evaluate(async()=>{await document.fonts.ready; await Promise.all([...document.images].map(im=>im.complete?1:new Promise(r=>{im.onload=im.onerror=r})));});
     const t0=Date.now();
     await page.waitForTimeout(sc.minMs||4000);

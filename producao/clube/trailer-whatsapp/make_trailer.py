@@ -14,7 +14,7 @@ async def tts():
 asyncio.run(tts())
 rec = work / "rec.json"; json.dump({"scenes": spec["scenes"]}, open(rec, "w"), ensure_ascii=False)
 shutil.rmtree(work / "rec", ignore_errors=True)
-subprocess.run(["node", str(HERE / "record_v.js"), str(rec), str(work / "rec")], check=True)
+subprocess.run(["node", str(HERE / "record_v.js"), str(rec), str(work / "rec")], check=True, env={**os.environ, "PAGE": spec.get("page", "trailer.html")})
 TJ = json.load(open(work / "rec" / "timings.json")); tim = TJ["scenes"]; VID = TJ["video"]
 parts = []
 for t, sc in zip(tim, spec["scenes"]):
