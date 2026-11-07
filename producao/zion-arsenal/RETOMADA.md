@@ -41,3 +41,6 @@
 4. ~~18 landings~~ feitas (07/11). Faltam: vídeo de apresentação no topo de cada landing, capas, funis, automações, criativos, e-books, Gamma, campanhas pausadas.
 5. Vendedor ClickMax ainda em análise: nenhum checkout vende.
 6. Apagar a página técnica `/zar-teste-script` (rascunho, despublicada).
+
+## Criativos Meta (07/11/2026)
+- 190 criativos 1080×1350 (A02–B10, 10 ângulos cada) em `producao/zion-arsenal/criativos/` com copies e UTMs; gerador em `producao/zion-arsenal/creatives/`. Nenhuma campanha criada.
