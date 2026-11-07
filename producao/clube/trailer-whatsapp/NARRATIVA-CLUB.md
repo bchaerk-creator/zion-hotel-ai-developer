@@ -78,3 +78,10 @@ As trilhas Master e Pro ficaram fora do vídeo por decisão de Bruno: a pessoa v
 | Club (`docs/land-members/`) | `trailer-club-whatsapp.mp4` | 2 min 42 | `club.html` + `spec-club.json` |
 
 Todos vão embutidos na própria página, em seção "Em 2 minutos", como vídeo vertical com capa. Gerador comum: `gen.html?d=<nome>` lê `scenes-<nome>.js`; `make_trailer.py spec-<nome>.json saida.mp4`.
+
+## 7. Conheça a Zion e série por dor (07/11/2026, versão 2)
+
+- `video-zion.mp4` (2 min 06): operações reais, fundador, palcos e imprensa, método, expansão, modelo e os perfis @zionbubble, @zionglampingcollection, @brunochaerkofc. Fotos do próprio site (Bruno no palco, Clube de Negócios).
+- `video-dor-{parada,capital,parceiro,medo,comecar}.mp4` (1 min 37 a 1 min 46): cada um com a cena "A solução prática: glamping" (Bubble removível, escalável, até 90 dias para operar, @zionbubble) antes de "O que isso abre".
+- Páginas: galeria com os seis na `/land-members` (seção "Para ver com calma"); "Conheça a Zion" em `/store`, `/investidores` e `/fundador`.
+- Nada disparado no WhatsApp: os vídeos ficam prontos para template quando Bruno aprovar.
