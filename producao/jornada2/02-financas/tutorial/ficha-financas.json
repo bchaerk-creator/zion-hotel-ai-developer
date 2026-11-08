@@ -7,7 +7,8 @@
     {
      "card": {
       "t": "Jornada de Gestão · Módulo 2 · Folha Única do Mês",
-      "s": "Do que o hóspede pagou ao que de fato sobrou, em uma folha"
+      "s": "Do que o hóspede pagou ao que de fato sobrou, em uma folha",
+      "k": "Jornada de Gestão · Módulo 2 · Finanças"
      }
     }
    ]
@@ -23,14 +24,38 @@
      "wait": 1200
     },
     {
-     "auto": 1,
-     "pick": 1,
-     "pace": 450,
-     "values": {
-      "input#nome": "Ana Exemplo",
-      "input#email": "ana@exemplo.com",
-      "input#hospedagem": "Cabanas do Vale (exemplo)"
-     },
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#hospedagem": "Cabanas do Vale (exemplo)"
+     }
+    },
+    {
+     "click": "input[name=sit][value=dono]",
+     "wait": 600
+    },
+    {
+     "click": "input[name=d-conta][value=sim]",
+     "wait": 350
+    },
+    {
+     "click": "input[name=d-custo][value=nao]",
+     "wait": 350
+    },
+    {
+     "click": "input[name=d-retirada][value=nao]",
+     "wait": 350
+    },
+    {
+     "click": "input[name=d-reserva][value=nao]",
+     "wait": 700
+    },
+    {
+     "show": "#nivel",
+     "wait": 900
+    },
+    {
+     "click": "#vai",
      "wait": 900
     }
    ]
@@ -256,7 +281,8 @@
     {
      "card": {
       "t": "A sua Folha Única do Mês",
-      "s": "Baixe o PDF, faça a prioridade 1 e siga para o Módulo 3 · Preço"
+      "s": "Baixe o PDF, faça a prioridade 1 e siga para o Módulo 3 · Preço",
+      "k": "Jornada de Gestão · Módulo 2 · Finanças"
      },
      "wait": 2500
     }
