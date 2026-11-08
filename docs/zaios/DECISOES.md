@@ -63,6 +63,15 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 07/11/2026 | Publicação para teste fechado | Publicado em https://zaios.lovable.app (autorizado pelo Bruno: "vamos provar"). Origem do link de acesso ajustada para o endereço publicado; Lovable Cloud confirmado. 396 testes | 1,3 |
 | | **Total até aqui** | | **162,6** |
 
+## Validação das premissas e dos recursos (08/11/2026)
+- Teste fechado de 15 itens aprovado para execução. A plataforma só conta como validada depois do teste humano registrado.
+- Premissas de F01, F02 e F03 apresentadas em `PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md`, nenhuma aprovada ainda. A taxa de desconto é a mais sensível: 12% muda a decisão do caso F03 2.
+- Proposta (não autorizada): tabela "Parâmetros Zion" editável pelo admin, com versões.
+- 10 ferramentas e 5 vídeos verificados: todos os testes passaram. Os vídeos mostram "Zion Collection Club" (confirmar o nome).
+- Planilha por imóvel suspensa. O G2 atende em parte; ampliar só se o teste confirmar a necessidade.
+- Bíblia Operacional: só referência interna, depois de revisão e anonimização.
+- Sem produção de e-books, aulas ou POPs e sem alteração de plataformas até o resultado do teste e a validação das premissas.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
