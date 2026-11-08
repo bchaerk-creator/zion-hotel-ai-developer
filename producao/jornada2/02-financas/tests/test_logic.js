@@ -140,4 +140,10 @@ log(!proibidas.test(textos), "nenhuma promessa proibida nos textos");
 log(!/\b(DRE|EBITDA|KPI|ADR|RevPAR)\b/.test(textos), "nenhuma sigla nos textos da ficha");
 log(/dados fictícios|exemplo/i.test(EX.hospedagem) && /Outubro/.test(EX.mes), "exemplo rotulado como exemplo");
 
+// Modo da retirada sem gravação: a tela mostra "Calcular por horas" marcado, então a lógica tem de assumir horas.
+{ const S = { ...EX, retiradaModo: undefined, retiradaHoras: "20", retiradaValorHora: "40", retirada: "" }; const r = Z.calcular(S);
+  log(Math.abs(r.retirada - 20 * 40 * 4.33) < 0.01, "retirada por horas vale mesmo sem retiradaModo gravado (" + r.retirada.toFixed(2) + ")"); }
+{ const S = { ...EX, retiradaModo: "valor", retirada: "3000", retiradaHoras: "20", retiradaValorHora: "40" }; const r = Z.calcular(S);
+  log(r.retirada === 3000, "retiradaModo valor usa o valor informado"); }
+
 console.log(`\n${ok} ok, ${fal} falhou`); process.exit(fal ? 1 : 0);

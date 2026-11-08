@@ -124,7 +124,7 @@
     N.vaiAbrir = S.situacao === "abrir" || !!S.vaiAbrir;
     N.cancelamentosRef = !!S.cancelamentosRef; N.deducoesRef = !!S.deducoesRef; N.quebraRef = !!S.quebraRef;
     N.retiradaDecidida = !!S.retiradaDecidida;
-    N.retiradaModo = S.retiradaModo === "horas" ? "horas" : "valor";
+    N.retiradaModo = S.retiradaModo === "valor" ? "valor" : "horas";
     N.retiradaHoras = num(S.retiradaHoras) || 0; N.retiradaValorHora = num(S.retiradaValorHora) || 0;
     if (N.retiradaModo === "horas") { N.retirada = N.retiradaHoras * N.retiradaValorHora * REF.semanasPorMes; N.informado.retirada = informado(S.retiradaHoras) && informado(S.retiradaValorHora); }
     if (N.retiradaDecidida) { N.retirada = 0; N.informado.retirada = true; }
