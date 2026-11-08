@@ -27,6 +27,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Exemplos sempre marcados como "dados fictícios".
 - Prioridade 1 depois do MVP: ligar os resultados que a ZAIOS já guarda no servidor ao lead (chave única por e-mail e telefone). Os ids e endereços de integração ficam no documento de contexto do Bruno, não neste repositório público.
 
+## Ordem de trabalho (Bruno, 08/11/2026)
+1. Teste fechado da ZAIOS em https://zaios.lovable.app (com o Bruno e 2 ou 3 membros).
+2. Protótipo da Zion Hotel Academy (prompt do GPT), como camada de aprendizado da ZAIOS, em cópia isolada. Pendente: aprovar o formato e definir a grade oficial.
+3. Integração com o ClickMax, depois: webhooks de compra, cancelamento e reembolso para liberar e bloquear acesso; API v0 para gravar o progresso no lead; botões "Fazer no ZAIOS" nas aulas; MCP só para agentes de IA.
+
 ## Depois do MVP (pedido do Bruno, 07/11/2026)
 - Consumir o documento de visão aos poucos, na ordem do roadmap.
 - Construir a identidade própria da ZAIOS: logo, narrativa e linguagem, dentro do padrão da marca Zion.
