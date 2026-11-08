@@ -77,6 +77,12 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Achado: R$ 270 e R$ 2.900 já são preços de planos do Club Zion Collection (o de R$ 2.900 com acompanhamento semanal). Aguarda decisão antes de qualquer oferta nova.
 - Recomendação: 2 agentes novos (arquiteto de módulo, curador de fontes), 1 ampliado e 2 scripts; piloto O03.
 
+## Comando 04 · Reestruturação estratégica (08/11/2026)
+- Plano em `docs/academy/comando-04/` (PLANO_REESTRUTURACAO, TECH_STACK_E_FORNECEDORES, PESQUISA_JURIDICA_E_MERCADO). Nada implementado.
+- Achado: "Jornada R$ 270" e "Acompanhamento R$ 2.900" já existem como Club Base e Club Pro/Mentoria. Recomendação: uma escada só (Club como marca, Academy como conteúdo). Aguarda decisão do Bruno.
+- Primeiro experimento sugerido: experiência gratuita "Venda pelo WhatsApp" para operadores, testada com convidados, sem anúncio.
+- Limite: fontes externas lidas por busca indexada (sites bloqueados na rede da sessão); conferir antes de produzir aulas.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
