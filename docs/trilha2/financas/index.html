@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Folha Única do Mês</title>
+<meta name="description" content="Ferramenta do Módulo 2 da Jornada 2 · Gestão: feche o mês da sua hospedagem em uma folha, do que o hóspede pagou ao que de fato sobrou, com o custo por noite vendida, o ponto de equilíbrio e as prioridades do mês seguinte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme)}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.zero i{background:var(--critico);color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao)}
+.dupla{display:grid;gap:10px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .dupla{grid-template-columns:1fr 1fr}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<style>
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+.campo details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+.campo summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+.campo details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.95rem}
+.calc b{color:var(--verde)}
+table.casc{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+table.casc td{padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.casc td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.casc tr.forte td{font-weight:600}
+table.casc tr.destaque td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.modo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.modo label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modo input{position:absolute;opacity:0;pointer-events:none}
+.modo label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:720px){.ind{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 2 · Finanças<br>Folha Única do Mês</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="logic.js"></script>
+<script>
+const Z = window.ZF;
+const CHAVE = "zion-t2-financas";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const nomeAnterior = () => { try { const x = JSON.parse(localStorage.getItem("zion-t2-marco-zero")); if (x && x.nome) return x; } catch (e) {} return {}; };
+
+const TELAS = Z.TELAS;
+const vazio = () => { const a = nomeAnterior(); const s = { tela: 0, nome: a.nome || "", email: a.email || "", hospedagem: a.hospedagem || "", situacao: "", diag: {}, retiradaModo: "horas", retiradaDecidida: false, quebraRef: false, cancelamentosRef: false, deducoesRef: false, reservaPct: "4" }; Z.CAMPOS.forEach((c) => { if (s[c.id] == null) s[c.id] = ""; }); return s; };
+let S = ler() || vazio();
+S.diag = S.diag || {};
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 15 a 25 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(ok, rot) {
+  return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai" ${ok ? "" : "disabled"}>${rot || "Avançar"}</button></div>`;
+}
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+function proximaVazia() {
+  for (const t of ["mes", "entrou", "variaveis", "fixos", "modelo", "caixa"]) {
+    const obrig = Z.CAMPOS.filter((c) => c.tela === t && c.obrig);
+    if (!Z.validar(S, t).ok || obrig.some((c) => !String(S[c.id] == null ? "" : S[c.id]).trim())) return t;
+  }
+  return "resultado";
+}
+
+function campoHtml(c) {
+  const v = S[c.id] == null ? "" : S[c.id];
+  const im = c.tipo === "int" ? "numeric" : "decimal";
+  const inp = c.tipo === "texto" ? `<input type="text" id="${c.id}" value="${esc(v)}" placeholder="Ex.: ${esc(c.ex)}">`
+    : `<input type="text" id="${c.id}" inputmode="${im}" autocomplete="off" value="${esc(v)}" placeholder="${c.tipo === "pct" ? "0" : c.tipo === "int" ? "0" : "0,00"}">`;
+  return `<div class="campo"><label for="${c.id}">${c.r}${c.obrig ? "" : ' <span class="dica">(opcional)</span>'}</label>${inp}
+  <details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${c.pq}</p><p><b>Onde conseguir:</b> ${c.onde}</p><p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${c.ex}</p></details></div>`;
+}
+function ligaCampos(tela, extra) {
+  Z.CAMPOS.filter((c) => c.tela === tela).forEach((c) => {
+    const el = document.getElementById(c.id); if (!el) return;
+    el.addEventListener("input", (e) => {
+      S[c.id] = e.target.value;
+      if (c.id === "cancelamentos") S.cancelamentosRef = false;
+      if (["comissoesPct", "processamentoPct", "impostoPct", "cancelamentos"].includes(c.id)) S.deducoesRef = false;
+      if (c.id === "quebra" && e.target.value.trim()) S.quebraRef = false;
+      gravar(); atualiza(tela); if (extra) extra();
+    });
+  });
+}
+function atualiza(tela) {
+  const v = Z.validar(S, tela);
+  const obrig = Z.CAMPOS.filter((c) => c.tela === tela && c.obrig).some((c) => !String(S[c.id] == null ? "" : S[c.id]).trim());
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.map(esc).join("<br>");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok || obrig;
+  const q = document.getElementById("quebraRef"); if (q) q.checked = !!S.quebraRef;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(tela);
+}
+function liveHtml(tela) {
+  const r = Z.calcular(S);
+  if (tela === "mes") return r.noitesDisponiveis ? `Noites disponíveis: <b>${r.noitesDisponiveis}</b> · Ocupação: <b>${Z.pct(r.ocupacao)}</b>${r.mediaNoitesPorEstadia ? ` · ${Z.dec(r.mediaNoitesPorEstadia, 2)} noites por estadia` : ""}` : "Preencha dias e unidades para ver as noites disponíveis.";
+  if (tela === "entrou") return `Deduções: <b>${Z.brl(r.deducoes)}</b> (${Z.pct(r.taxaDeducaoReal)} da receita) · Receita real de hospedagem: <b>${Z.brl(r.receitaRealHospedagem)}</b> · Diária média real: <b>${Z.brl(r.diariaMediaReal)}</b>${r.excedenteLimpeza ? ` · Excedente da limpeza em outras receitas: ${Z.brl(r.excedenteLimpeza)}` : ""}`;
+  if (tela === "variaveis") return `Limpeza líquida (paga − cobrada): <b>${Z.brl(r.limpezaLiquida)}</b> · Quebra: <b>${Z.brl(r.quebraValor)}</b>${S.quebraRef ? " (referência)" : ""} · Custos variáveis: <b>${Z.brl(r.variaveis)}</b> · Custo variável por noite: <b>${Z.brl(r.custoVariavelPorNoite)}</b>`;
+  if (tela === "fixos") return `Retirada: <b>${Z.brl(r.retirada)}</b>${S.retiradaDecidida ? " (decidida como zero por enquanto)" : S.retiradaModo === "horas" ? ` (${Z.num(S.retiradaHoras) || 0} h × ${Z.brl(Z.num(S.retiradaValorHora) || 0)} × 4,33)` : ""} · Custos fixos do mês: <b>${Z.brl(r.fixosOperacionais)}</b> · Quanto sobrou até aqui: <b>${Z.brl(r.resultadoOperacional)}</b>`;
+  if (tela === "modelo") return `Custos do modelo: <b>${Z.brl(r.custosModelo)}</b> · Reserva de reposição: <b>${Z.brl(r.reservaReposicao)}</b> · O que ficou no caixa para o negócio: <b>${Z.brl(r.geracaoCaixa)}</b>`;
+  if (tela === "caixa") return `Saldo no fim do mês: <b>${Z.brl(r.saldoFinal)}</b> (${r.variacaoCaixa >= 0 ? "subiu" : "caiu"} ${Z.brl(Math.abs(r.variacaoCaixa))}) · Meses de fôlego: <b>${r.mesesFolego == null ? "não calculável" : Z.dec(r.mesesFolego, 1)}</b>`;
+  return "";
+}
+function telaDados(tela, intro, antes, depois, rot, semCampo) {
+  const campos = Z.CAMPOS.filter((c) => c.tela === tela && c.id !== semCampo);
+  const i = TELAS.indexOf(tela);
+  return `<div class="card"><div class="eyebrow">Tela ${i} · ${Z.TITULOS[tela]}</div><h2 class="pergunta">${intro.t}</h2><p class="explica">${intro.p}</p>
+  ${antes || ""}${campos.map(campoHtml).join("")}${depois || ""}
+  <div class="calc" id="live">${liveHtml(tela)}</div>
+  <div id="avisos"></div><p class="erro" id="erro"></p>${nav(true, rot)}</div>`;
+}
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || S.receitaHospedagem;
+    const nivel = Z.nivelSeparacao(S), respondeu = S.situacao && Z.DIAG.every((q) => S.diag[q.id]);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 2 · Faça agora</div><h1>A minha Folha Única do Mês</h1>
+    <p class="lead">Aprenda o passo a passo para fechar o mês da sua hospedagem em uma folha: do que o hóspede pagou ao que de fato sobrou, separando resultado de caixa, com o custo por noite vendida, o ponto de equilíbrio e as prioridades do mês seguinte.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Faturamento, lucro, caixa e margem são quatro coisas diferentes. Quem olha só o que entrou acha que está lucrando e descobre o contrário na baixa temporada.</div>
+    <div><b>Como vamos fazer</b>Seis telas com os números do mês passado: o mês, o que entrou, o que saiu com cada noite, o que sai todo mês, os custos do modelo e o caixa. Cada pergunta diz por que, onde conseguir e um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com a sua Folha Única em PDF: a cascata do mês, os indicadores, as leituras pelas réguas Zion, a causa principal e três prioridades. É a página 2 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    <div class="opcoes">${Z.SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quatro perguntas antes de começar</h2>
+    <p class="explica">É a Linha de Separação entre o seu dinheiro e o da hospedagem. Responda como está hoje, não como gostaria.</p>
+    <div class="grade">${Z.DIAG.map((q) => `<div class="item"><b>${q.r}</b><div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.SIMNAO.map((o) => `<label><input type="radio" name="d-${q.id}" value="${o.v}" ${S.diag[q.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    <div class="calc" id="nivel">${respondeu ? `Nível ${nivel.n} de 4 · <b>${nivel.r}</b>. ${nivel.t}` : "Responda as quatro perguntas para ver o seu nível."}</div>
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: preencha com os números previstos do seu plano. A Folha vai tratar tudo como projeção. A conta de abertura (obra, mobília, capital inicial) fica na Jornada 1.</div>` : ""}
+    <p class="dica" style="margin-top:10px">Os números ficam só neste aparelho. Nada é enviado.</p>
+    <p class="erro" id="erro"></p>
+    <div class="nav"><button class="btn btn-p" id="vai" ${respondeu ? "" : "disabled"}>Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver a Folha pronta antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const okAb = () => { document.getElementById("vai").disabled = !(S.situacao && Z.DIAG.every((q) => S.diag[q.id])); const n = Z.nivelSeparacao(S); document.getElementById("nivel").innerHTML = Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${n.n} de 4 · <b>${n.r}</b>. ${n.t}` : "Responda as quatro perguntas para ver o seu nível."; };
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    Z.DIAG.forEach((q) => app.querySelectorAll(`input[name=d-${q.id}]`).forEach((x) => x.onchange = () => { S.diag[q.id] = x.value; gravar(); okAb(); }));
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(proximaVazia())); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => { const base = vazio(); S = { ...base, ...Z.EXEMPLO, nome: S.nome, email: S.email, tela: 1, acao: undefined, prazo: undefined, pdf: undefined }; Z.CAMPOS.map((c) => c.id).concat(["retiradaHoras", "retiradaValorHora"]).forEach((k) => { if (typeof S[k] === "number") S[k] = String(S[k]).replace(".", ","); }); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("vai").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "mes") {
+    h += telaDados("mes", { t: "Qual mês você vai fechar?", p: "Use o mês passado inteiro. Se ainda vai abrir, use um mês previsto." });
+    app.innerHTML = h; ligaCampos("mes");
+  }
+  if (t === "entrou") {
+    const ref = `<div class="campo" style="background:var(--creme)"><b>Deduções sobre a hospedagem</b><p class="dica" style="margin:4px 0 8px">Descontos, comissões, processamento, imposto e cancelamentos saem antes de qualquer custo. Se não tem o extrato à mão, use a referência.</p>
+    <button type="button" class="btn btn-s" id="refZion" style="width:100%">Não sei: usar a referência Zion (15% + 2%)</button>
+    <p class="ref">Referência Zion: 15% de impostos sobre receita e comissões + 2% de cancelamento e não comparecimento = 17%. Referência ajustável, nunca universal: ajuste com o seu extrato.${S.deducoesRef ? " <b>Aplicada.</b>" : ""}</p></div>`;
+    h += telaDados("entrou", { t: "O que entrou no mês?", p: "Separe o que é diária do que é repasse (taxa de limpeza) e do que é outra receita (café, cestas)." }, "", ref);
+    app.innerHTML = h; ligaCampos("entrou");
+    document.getElementById("refZion").onclick = () => { S = Z.aplicarReferenciaDeducoes(S); gravar(); render(); };
+  }
+  if (t === "variaveis") {
+    const q = `<label class="check"><input type="checkbox" id="quebraRef" ${S.quebraRef ? "checked" : ""}>Não mede quebra e perda: usar a referência Zion de 1% da receita de hospedagem <span class="dica">(referência ajustável, nunca universal)</span></label>`;
+    h += telaDados("variaveis", { t: "O que saiu com cada noite?", p: "Só o que sai porque houve hóspede. O que sai todo mês, com ou sem hóspede, vai na próxima tela." }, "", q);
+    app.innerHTML = h; ligaCampos("variaveis");
+    document.getElementById("quebraRef").onchange = (e) => { S.quebraRef = e.target.checked; if (S.quebraRef) S.quebra = ""; gravar(); render(); };
+  }
+  if (t === "fixos") {
+    const ret = `<div class="campo" style="background:var(--creme)"><b>Conta da Retirada</b><p class="dica" style="margin:4px 0 8px">O que custaria pagar alguém para fazer o que você faz. Sem ela, o resultado mente.</p>
+    <div class="modo"><label><input type="radio" name="rmodo" value="horas" ${S.retiradaModo !== "valor" ? "checked" : ""}>Calcular por horas</label><label><input type="radio" name="rmodo" value="valor" ${S.retiradaModo === "valor" ? "checked" : ""}>Informar o valor</label></div>
+    ${S.retiradaModo === "valor" ? `<label for="retirada">Retirada do mês (R$)</label><input type="text" id="retirada" inputmode="decimal" value="${esc(S.retirada)}" placeholder="0,00">`
+    : `<div class="dois"><div><label for="retiradaHoras">Horas por semana</label><input type="text" id="retiradaHoras" inputmode="decimal" value="${esc(S.retiradaHoras || "")}" placeholder="Ex.: 20"></div><div><label for="retiradaValorHora">Valor da hora (R$)</label><input type="text" id="retiradaValorHora" inputmode="decimal" value="${esc(S.retiradaValorHora || "")}" placeholder="Ex.: 40,00"></div></div><p class="dica">Horas × valor da hora × 4,33 semanas.</p>`}
+    <label class="check"><input type="checkbox" id="retDec" ${S.retiradaDecidida ? "checked" : ""}>Decidi retirada zero por enquanto <span class="dica">(fica registrado na Folha; a conta aparece como prioridade só se você não decidir)</span></label>
+    <details style="margin-top:6px;font-size:.86rem;color:var(--texto-2)"><summary style="color:var(--dourado-escuro);font-weight:600;cursor:pointer">Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${Z.CAMPO.retirada.pq}</p><p><b>Onde conseguir:</b> ${Z.CAMPO.retirada.onde}</p><p><b>Exemplo didático · dados fictícios:</b> ${Z.CAMPO.retirada.ex}</p></details></div>`;
+    h += telaDados("fixos", { t: "O que sai todo mês, com ou sem hóspede?", p: "Inclua a sua retirada e as despesas anuais divididas por 12." }, "", ret, "Avançar", "retirada");
+    app.innerHTML = h; ligaCampos("fixos");
+    app.querySelectorAll("input[name=rmodo]").forEach((x) => x.onchange = () => { S.retiradaModo = x.value; gravar(); render(); });
+    ["retirada", "retiradaHoras", "retiradaValorHora"].forEach((k) => { const el = document.getElementById(k); if (el) el.addEventListener("input", (e) => { S[k] = e.target.value; gravar(); atualiza("fixos"); }); });
+    document.getElementById("retDec").onchange = (e) => { S.retiradaDecidida = e.target.checked; gravar(); atualiza("fixos"); };
+  }
+  if (t === "modelo") {
+    const nota = `<p class="ref">Reserva de reposição: referência Zion de 3 a 6% da receita real, padrão 4%. Referência ajustável, nunca universal: ajuste com o seu extrato. Reserva (caixa) e depreciação (contábil) nunca entram na mesma conta: a Folha usa a reserva e mostra a depreciação só como informação.</p>`;
+    h += telaDados("modelo", { t: "Custos do modelo, reserva e depreciação", p: "Custos do modelo são os que existem por causa do contrato (aluguel, gestão, marca), não da operação. Se não tem, deixe em branco." }, nota);
+    app.innerHTML = h; ligaCampos("modelo");
+  }
+  if (t === "caixa") {
+    h += telaDados("caixa", { t: "E o caixa do mês?", p: "Caixa é o extrato: o que caiu e o que saiu da conta, independente do mês a que se refere. É diferente do resultado." }, "", "", "Ver a minha Folha");
+    app.innerHTML = h; ligaCampos("caixa");
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  atualiza(t);
+  const v = document.getElementById("volta"), f = document.getElementById("vai");
+  if (v) v.onclick = () => ir(-1);
+  if (f) f.onclick = () => { if (!Z.validar(S, t).ok) return; if (t === "caixa" && !Z.completo(S)) { document.getElementById("erro").textContent = "Ainda falta: " + Z.pendencias(S)[0] + "."; return; } ir(1); };
+}
+
+function resultado() {
+  const r = Z.calcular(S), L = Z.leituras(r), P = Z.prioridades(r, S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const concl = Z.concluido({ ...S, acao }), pend = Z.pendencias({ ...S, acao });
+  const nivel = Z.nivelSeparacao(S);
+  const proj = S.situacao === "abrir" ? `<div class="aviso">Esta Folha é uma projeção: você ainda vai abrir. Refaça com os números reais no primeiro mês de operação.</div>` : "";
+  return `<div class="card"><div class="eyebrow">A minha Folha Única do Mês${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}${r.N.mes ? " · " + esc(r.N.mes) : ""}</div>
+  <div class="leitura"><div class="rot">Quanto sobrou do mês</div><div class="nota" id="sobrou">${Z.brl(r.resultadoOperacional)}</div><p>De ${Z.brl(r.receitaBrutaTotal)} faturados, ${Z.brl(r.receitaReal)} entraram de verdade e ${Z.brl(r.geracaoCaixa)} ficaram no caixa para o negócio, depois da reserva de reposição.</p></div>
+  ${proj}
+  <section class="bloco"><h2>1 · O resultado</h2><p>A cascata do mês: do que o hóspede pagou ao que de fato sobrou.</p>
+  <table class="casc" id="cascata">${Z.cascata(r).map((l) => `<tr class="${l.forte ? "forte" : ""} ${l.destaque ? "destaque" : ""}"><td>${l.r}</td><td>${Z.brl(l.v)}</td></tr>`).join("")}</table>
+  ${r.resultadoContabilIndicativo != null ? `<p class="dica">Resultado contábil indicativo (antes de juros e impostos sobre o lucro, com a depreciação informada no lugar da reserva): ${Z.brl(r.resultadoContabilIndicativo)}.</p>` : ""}
+  <div class="ind" id="indicadores">${Z.indicadores(r).map((i) => `<div data-id="${i.id}"><small>${i.r}</small><strong>${i.v}</strong>${i.n ? `<em>${i.n}</em>` : ""}</div>`).join("")}</div>
+  ${r.estadiasAssumidas ? `<p class="dica">Você não informou estadias: a Folha assumiu uma estadia por noite.</p>` : ""}
+  <p class="dica">Caixa do mês: saldo de ${Z.brl(r.N.saldoInicial)} no dia 1, ${Z.brl(r.N.entradasCaixa)} entraram, ${Z.brl(r.N.saidasCaixa)} saíram, saldo final ${Z.brl(r.saldoFinal)}.</p></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${L.noite.t}</p><p>${L.equilibrio.t}</p><p>${L.margem.t}</p><p>${L.folego.t}</p></div>
+  <div class="caixa c-sig"><h3>A regra do desconto em três faixas</h3><p>${r.custoPorNoiteVendida == null ? "Sem noite vendida, não há custo por noite para comparar." : `Acima de <b>${Z.brl(r.custoPorNoiteVendida)}</b> (custo por noite vendida): pode dar o desconto. Entre <b>${Z.brl(r.custoVariavelPorNoite)}</b> e <b>${Z.brl(r.custoPorNoiteVendida)}</b>: só para noite que ficaria vazia. Abaixo de <b>${Z.brl(r.custoVariavelPorNoite)}</b> (custo variável por noite): não dê.`}</p></div>
+  <p class="dica">Linha de Separação: nível ${nivel.n} de 4 · ${nivel.r}. Os parâmetros Zion (17%, 1%, 4%) são referência ajustável, nunca universal.</p></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div class="fragil" id="causa"><b>Causa principal: ${esc(P[0].r)}.</b> ${P[0].id === "ok" ? "Nenhuma das sete causas de \"faturar muito e não sobrar\" disparou neste mês." : "É a primeira, na ordem de correção da fonte, entre as causas de \"faturar muito e não sobrar\"."}</div>
+  <div class="caixa c-at" id="caixa-x"><h3>Caixa × resultado</h3><p>${L.caixa.t}</p></div>
+  ${r.bloqueios.length ? `<div class="caixa c-at"><h3>Dados a conferir</h3><p>${r.bloqueios.map(esc).join("<br>")}</p></div>` : ""}</section>
+  <section class="bloco"><h2>4 · O que fazer no mês seguinte</h2><div class="prio" id="prioridades">${P.map((p, i) => `<div><i>${i + 1}</i><div><b>${esc(p.r)}</b><br><span class="dica">${esc(p.acao)}</span></div></div>`).join("")}</div>
+  <div class="caixa c-faz" style="margin-top:12px"><p>O plano abaixo veio das prioridades. Ajuste o texto se quiser, e marque até quando.</p></div>
+  <label for="acao">O meu plano de ação</label><textarea id="acao">${esc(acao)}</textarea>
+  <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(P))}</p><p>A lição está concluída quando a Folha está preenchida (receita, noites, um custo variável, um fixo, a retirada e o caixa), o plano de ação tem texto e prazo e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: lá a diária é calculada a partir do custo por noite vendida desta Folha.</p>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Painel do Mês e Folha Única do Mês</a> (12 meses de caixa e histórico) e a Ferramenta 01 · Diária Mínima.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Folha Única em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Refazer a Folha</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  const atualizaSelo = () => { const r = Z.calcular(S), P = Z.prioridades(r, S); const T = { ...S, acao: S.acao != null ? S.acao : Z.planoSugerido(P) }; const ok = Z.concluido(T); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(T).join("; "); s.className = "selo" + (ok ? "" : " pend"); };
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").oninput = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { gerarPDF(); atualizaSelo(); };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = Z.calcular(S), L = Z.leituras(r), P = Z.prioridades(r, S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const rodape = () => { d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem. Parâmetros Zion são referência ajustável, nunca universal. Zion Hospitality Business.", M, 286, { maxWidth: CW }); };
+  const fx = (s) => String(s).replace(/\u2212/g, "-");
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  const linha = (a, b, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); const ls = d.splitTextToSize(fx(a), CW - 40); quebra(ls.length * 4.2); d.text(ls, M, y); d.text(fx(b), W - M, y, { align: "right" }); y += ls.length * 4.2 + 1.2; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("ZION · JORNADA 2 · GESTÃO · MÓDULO 2 · FINANÇAS", M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text("A minha Folha Única do Mês", M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text([S.nome, S.hospedagem, r.N.mes, S.situacao === "abrir" ? "projeção" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · "), M, 35);
+  y = 54;
+  txt("1 · O resultado", 9, [122, 94, 18], true);
+  txt(`Quanto sobrou do mês: ${Z.brl(r.resultadoOperacional)}`, 14, null, true);
+  Z.cascata(r).forEach((l) => linha(l.r, Z.brl(l.v), l.forte));
+  if (r.resultadoContabilIndicativo != null) linha("Resultado contábil indicativo (com depreciação, sem reserva)", Z.brl(r.resultadoContabilIndicativo));
+  y += 3; txt("Indicadores", 9, [122, 94, 18], true);
+  Z.indicadores(r).forEach((i) => linha(i.r + (i.n ? " (" + i.n + ")" : ""), i.v));
+  linha("Caixa: saldo inicial / entradas / saídas / saldo final", `${Z.brl(r.N.saldoInicial)} / ${Z.brl(r.N.entradasCaixa)} / ${Z.brl(r.N.saidasCaixa)} / ${Z.brl(r.saldoFinal)}`);
+  y += 3; txt("2 · O que isso significa", 9, [122, 94, 18], true); [L.noite, L.equilibrio, L.margem, L.folego].forEach((l) => txt(l.t, 10));
+  if (r.custoPorNoiteVendida != null) txt(`Regra do desconto: acima de ${Z.brl(r.custoPorNoiteVendida)} pode; entre ${Z.brl(r.custoVariavelPorNoite)} e ${Z.brl(r.custoPorNoiteVendida)} só para noite que ficaria vazia; abaixo de ${Z.brl(r.custoVariavelPorNoite)} não dê.`, 10);
+  y += 3; txt("3 · Atenção", 9, [122, 94, 18], true); txt("Causa principal: " + P[0].r + ".", 11, null, true); txt("Caixa × resultado: " + L.caixa.t, 10);
+  y += 3; txt("4 · O que fazer no mês seguinte", 9, [122, 94, 18], true);
+  P.forEach((p, i) => txt(`${i + 1}. ${p.r}: ${p.acao}`, 10));
+  txt("O meu plano de ação:", 10, null, true); txt(acao, 11);
+  if (S.prazo) txt("Até " + S.prazo.split("-").reverse().join("/"), 10);
+  y += 3; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(P), 10);
+  y += 3; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: a diária calculada a partir do custo por noite vendida desta Folha.`, 10, null, true);
+  txt("Deduções, quebra e reserva: " + (S.deducoesRef || S.quebraRef ? "parte dos valores veio da referência Zion (17% = 15% + 2%; quebra 1%; reserva 4%), ajustável com o seu extrato." : "valores informados por você; reserva de " + Z.dec(r.N.reservaPct, 1) + "%."), 9, [90, 90, 90]);
+  rodape();
+  d.save("folha-unica-do-mes.pdf");
+  S.pdf = new Date().toISOString(); gravar();
+}
+render();
+</script>
+</body>
+</html>
