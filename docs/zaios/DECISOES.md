@@ -72,6 +72,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Bíblia Operacional: só referência interna, depois de revisão e anonimização.
 - Sem produção de e-books, aulas ou POPs e sem alteração de plataformas até o resultado do teste e a validação das premissas.
 
+## Fábrica Educacional · Comando 01 (08/11/2026)
+- Auditoria e arquitetura em `docs/academy/COMANDO_01_AUDITORIA_FABRICA.md`. Ciclo de trabalho: GPT define, Claude executa e testa, Bruno encaminha, GPT avalia, Bruno aprova.
+- Achado: R$ 270 e R$ 2.900 já são preços de planos do Club Zion Collection (o de R$ 2.900 com acompanhamento semanal). Aguarda decisão antes de qualquer oferta nova.
+- Recomendação: 2 agentes novos (arquiteto de módulo, curador de fontes), 1 ampliado e 2 scripts; piloto O03.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
