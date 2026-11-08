@@ -19,6 +19,7 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 | 06/11/2026 | Iniciar a Etapa 3 por P1, P2 e P3, que não dependem das planilhas | Bruno Chaerk |
 | 06/11/2026 | Fazer o Dossiê preliminar antes da Jornada Operação | Bruno Chaerk |
 | 07/11/2026 | Construir P5 e P6 com a metodologia dos planos F01 a F03 como versão 0 | Bruno Chaerk ("pode começar") |
+| 08/11/2026 | Premissas financeiras decididas para a versão 0, com material e ZAIOS iguais: referências editáveis, sem taxa de desconto sugerida, Zion Score fora da ZAIOS, taxa de limpeza fora da receita de hospedagem (detalhe em PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md) | Claude, por delegação do Bruno ("você decide, tem que estar em harmonia") |
 
 ## Regras de linguagem e marca para a ZAIOS (contexto do Bruno, 07/11/2026)
 - Nunca prometer renda, retorno, rentabilidade, ocupação, crédito, investimento, investidor, parceria ou sociedade. Usar "possibilidade", "a Zion avalia cada caso", "cenários, não promessas".
@@ -38,7 +39,6 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 
 ## Decisões pendentes
 - Fonte oficial das fórmulas financeiras (planilhas e simuladores Zion de referência).
-- Definição de "receita de hospedagem": inclui ou não a taxa de limpeza; antes ou depois dos impostos. Hoje a taxa de limpeza está fora.
 - P5 e P6 foram construídos sobre a metodologia dos planos F01, F02 e F03 (ainda marcados para revisão do Bruno). Validar as faixas e regras de referência quando os planos forem aprovados.
 
 ## Andamento

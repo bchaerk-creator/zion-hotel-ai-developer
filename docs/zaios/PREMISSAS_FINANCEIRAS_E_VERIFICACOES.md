@@ -185,13 +185,30 @@ Estimativa: 6 a 10 créditos. **Não autorizado e não iniciado.** Antes, o Brun
 
 ---
 
+## Decisões tomadas (08/11/2026, por delegação do Bruno: "Você decide, tem que estar em harmonia")
+
+Princípio: **uma regra só**. O material da Academy e a ZAIOS usam os mesmos números, os mesmos nomes e o mesmo jeito de pontuar. O Bruno pode rever qualquer item.
+
+| # | Tema | Decisão | Por quê |
+|---|---|---|---|
+| 1 | Deduções 17% e quebra 1% | Mantidos como **Referência Zion**, sempre editáveis. O material passa a explicar que as deduções mudam com o regime tributário e o canal de venda, e para de citar "0,82" como número fixo: fala em "fator = 1 − deduções − quebra" | É exatamente o que a ZAIOS já faz. Material e plataforma ficam iguais |
+| 2 | Taxa de desconto | **A Zion não sugere taxa.** O membro informa a sua. O material F03 marca os 10% como "taxa ilustrativa", explica como escolher (custo do dinheiro do membro + prêmio de risco) e mostra o caso com 8%, 10% e 12% | É a premissa mais sensível. Sugerir um número viraria promessa disfarçada |
+| 3 | Múltiplo de saída 6× | Mantido como botão de referência. O resultado **sem saída** vem sempre primeiro, e o material avisa que, quando só a venda do ativo salva o projeto, a decisão é "ajustar" | Já é a regra do passo 4 na ZAIOS |
+| 4 | Regra de decisão (8 e 12 anos, 3 meses, colchão de 10%) | Mantida como está nos dois lugares | F03 e ZAIOS já são iguais |
+| 5 | Cenários e estresse | Mantidos | Iguais nos dois lugares |
+| 6 | Faixas de CAPEX, giro e régua de margem | Mantidas | Iguais nos dois lugares |
+| 7 | Zion Score | **Não entra na ZAIOS.** No material, onde houver Zion Score, usar os indicadores da ZAIOS: semáforo (Território), Índice de Maturidade (Gestão), Nota do Raio-X (Operação) e o veredito Avançar, Testar, Ajustar, Pausar ou Redesenhar | Dois placares para a mesma coisa confundem o membro |
+| 8 | Vídeos com "Zion Collection Club" | Não entram nos módulos novos como estão. Serão regravados com o nome atual do ecossistema quando a produção for liberada. Até lá, ficam onde já estão | O membro não pode ver um nome na aula e outro na plataforma |
+| 9 | Tabela "Parâmetros Zion" | Aprovada como **próximo passo técnico depois do teste fechado** (5 a 8 créditos, pedir autorização antes de gastar) | Permite trocar uma referência sem nova versão do código e guarda qual versão gerou cada Dossiê |
+| 10 | Ampliação do G2 | Só se o teste mostrar a necessidade | Evita construir antes de saber |
+| 11 | Taxa de limpeza | **Fora da receita de hospedagem** (como a ZAIOS já faz); se cobrada, aparece separada da diária. O material segue a mesma regra | Mantém a diária comparável entre imóveis |
+
+Status: premissas **decididas para a versão 0**. A plataforma continua não validada até o teste fechado ser registrado. Os ajustes de texto nos materiais F02 e F03 (itens 1, 2, 3 e 7) entram na revisão deles, não agora.
+
 ## O que espera decisão
 
 1. Resultado do teste fechado de 15 itens (Bruno e 2 ou 3 membros).
-2. Aprovação, ajuste ou troca de cada premissa da tabela 1.1.
-3. Se o Zion Score entra na ZAIOS ou fica só no material.
-4. Se o nome "Zion Collection Club" nos vídeos ainda vale.
-5. Se a ampliação do G2 é necessária.
-6. Pendências anteriores: taxa de limpeza na receita, e-mail de contato nos Termos, revisão jurídica, texto e remetente do e-mail de acesso.
+2. Qual é o nome atual do ecossistema a usar nos vídeos regravados.
+3. Pendências anteriores: e-mail de contato nos Termos, revisão jurídica, texto e remetente do e-mail de acesso.
 
 Nada será produzido (e-books, aulas, POPs) e nenhuma plataforma será alterada até essas respostas.
