@@ -46,7 +46,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 02 | Checklist de levantamento inicial da área | A | P | A fazer |
 | 03 | Comparador de alternativas de uso turístico | A | P | A fazer |
 | 04 | Organizador de documentos do terreno | A | P + pastas | A fazer |
-| 05 | Planilha de preparação da primeira unidade | A | P | A fazer (usar estudos das Cabanas Zion só como referência) |
+| 05 | Planilha de preparação da primeira unidade · **Orçamento da Cabana** | A | P | **Pronto** (`producao/utilitarios/05-orcamento-cabana/`) |
 | 06 | Planner de implantação e abertura | A | P | A fazer |
 | 07 | Checklist para conversão de imóvel em hospedagem | A | D | A fazer |
 | 08 | Kit do primeiro anúncio | A | D + aula curta | A fazer (Arsenal 01 Pilar 4 tem base) |
@@ -96,6 +96,7 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 3. **13 · Controle de enxoval e reposição** (pronto, em rascunho no ClickMax).
 4. **14 · Quadro de ocorrências e manutenção** (pronto, em rascunho no ClickMax).
 5. **29 · Calculadora de custos de experiências** (pronto, em rascunho no ClickMax).
+5b. **05 · Orçamento da Cabana** (pronto, em rascunho no ClickMax; pedido de Bruno em 08/11).
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

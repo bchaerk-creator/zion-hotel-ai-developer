@@ -59,6 +59,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 | Ferramenta 13 · Controle de Enxoval e Reposição | `producao/utilitarios/13-controle-enxoval/` | Oferta `b667369e-f024-47b8-a8d9-46020897b95b` (R$ 19, checkout `aIN6h2A0bT`), página `d816d6db-9283-43f7-b493-ea3afbc419cc` (rascunho, `/controle-enxoval`). Entrega por arquivo: `p/adbc67069af26ae0/enxoval-13/` |
 | Ferramenta 14 · Quadro de Ocorrências e Manutenção | `producao/utilitarios/14-quadro-ocorrencias/` | Oferta `74460a23-4459-4b82-8d45-70d683d02002` (R$ 19, checkout `sdDDSurhAZ`), página `feb343db-8860-4bbf-891c-e6b359e37ea0` (rascunho, `/quadro-ocorrencias`). Entrega por arquivo: `p/adbc67069af26ae0/ocorrencias-14/` |
 | Ferramenta 29 · Calculadora de Custos de Experiências | `producao/utilitarios/29-custos-experiencias/` | Oferta `a52ce33e-5340-43df-9318-bc6f4803145f` (R$ 19, checkout `zMFmcFiYq_`), página `9aadd649-0b23-4755-a7c7-cc083b344290` (rascunho, `/custos-experiencias`). Entrega por arquivo: `p/adbc67069af26ae0/experiencias-29/` |
+| Ferramenta 05 · Orçamento da Cabana | `producao/utilitarios/05-orcamento-cabana/` | Oferta `a09778db-bc80-4b2a-bf32-be27e7c4a9e5` (R$ 19, checkout `aQxGaFEShH`), página `618d5a9b-fd2f-401f-953c-c35f762787c5` (rascunho, `/orcamento-cabana`). Entrega por arquivo: `p/adbc67069af26ae0/orcamento-05/` |
 | Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 

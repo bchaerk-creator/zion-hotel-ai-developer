@@ -50,6 +50,15 @@ PRODUTOS = [
                    ("Custos-Experiencias-Zion-EM-BRANCO.xlsx", "Calculadora · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Custos-Experiencias-Zion-EXEMPLO.xlsx", "Calculadora · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-da-Experiencia.pdf", "Ficha da experiência", "PDF · para imprimir")]),
+    dict(pasta="orcamento-05", num="05", telas=["producao/utilitarios/05-orcamento-cabana/dist/demonstracao/demo-cotacoes.png", "producao/utilitarios/05-orcamento-cabana/dist/demonstracao/demo-resumo.png"],
+         titulo="Orçamento da Cabana",
+         promessa="Aprenda o passo a passo para montar o orçamento da sua cabana de Airbnb, do projeto à abertura, com 3 cotações por item, reserva para imprevistos e cronograma de pagamentos.",
+         itens=["Lista sugerida em 10 etapas", "3 cotações por item", "Reserva e comparação com a verba", "Cronograma de pagamentos"],
+         passos=["Leia o guia (cerca de 20 minutos).", "Abra o exemplo e veja as abas Orçamento, Resumo e Cronograma.", "Imprima a ficha de cotação e peça 3 cotações com a mesma especificação.", "Lance tudo na planilha em branco e compare o total com a sua verba."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Orcamento-Cabana-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Orcamento-Cabana-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Cotacao.pdf", "Ficha de cotação", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}

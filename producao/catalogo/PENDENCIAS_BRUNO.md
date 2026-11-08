@@ -20,6 +20,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 13 | `docs/p/adbc67069af26ae0/enxoval-13/capa.jpg` |
 | Ferramenta 14 | `docs/p/adbc67069af26ae0/ocorrencias-14/capa.jpg` |
 | Ferramenta 29 | `docs/p/adbc67069af26ae0/experiencias-29/capa.jpg` |
+| Ferramenta 05 | `docs/p/adbc67069af26ae0/orcamento-05/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Quando quiser
