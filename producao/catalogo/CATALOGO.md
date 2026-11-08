@@ -70,7 +70,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 26 | Kit de reuniões de projeto | A, C | D + P | A fazer |
 | 27 | Template de apresentação do projeto turístico | A, C | D (Gamma) | A fazer, sem projeções |
 | 28 | Planner de capacidade e atendimento | C | P | A fazer |
-| 29 | Calculadora de custos de experiências | C | P | A fazer |
+| 29 | Calculadora de custos de experiências | C | P | **Pronto** (`producao/utilitarios/29-custos-experiencias/`) |
 | 30 | Gerador de briefing de experiência | C | D | A fazer |
 
 Regra das ofertas: cada ferramenta é vendida sozinha e cumpre a sua promessa sozinha. Quando entrar num e-book ou pacote, a página diz que ela também é vendida separadamente. Nenhuma oferta liga ao Clube, à mentoria ou à assessoria.
@@ -95,7 +95,7 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 2. **11 · Kit de mensagens de chegada e saída** (pronto, em rascunho no ClickMax).
 3. **13 · Controle de enxoval e reposição** (pronto, em rascunho no ClickMax).
 4. **14 · Quadro de ocorrências e manutenção** (pronto, em rascunho no ClickMax).
-5. 29 · Calculadora de custos de experiências.
+5. **29 · Calculadora de custos de experiências** (pronto, em rascunho no ClickMax).
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

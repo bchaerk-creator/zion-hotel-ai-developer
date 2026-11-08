@@ -41,6 +41,15 @@ PRODUTOS = [
                    ("Quadro-Ocorrencias-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Quadro-Ocorrencias-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Ronda.pdf", "Ficha de ronda", "PDF · para imprimir")]),
+    dict(pasta="experiencias-29", num="29", telas=["producao/utilitarios/29-custos-experiencias/dist/demonstracao/demo-resultado.png", "producao/utilitarios/29-custos-experiencias/dist/demonstracao/demo-cenarios.png"],
+         titulo="Calculadora de Custos de Experiências",
+         promessa="Aprenda o passo a passo para calcular quanto custa cada sessão de uma experiência, quanto sobra depois das taxas e a partir de quantos participantes ela se paga.",
+         itens=["Custos da sessão e por pessoa", "Taxas e impostos", "Mínimo de participantes", "Preço mínimo"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja os resultados e os cenários.", "Preencha a ficha da experiência à mão com os seus custos.", "Passe os números para a calculadora em branco e defina o mínimo para confirmar a saída."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Custos-Experiencias-Zion-EM-BRANCO.xlsx", "Calculadora · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Custos-Experiencias-Zion-EXEMPLO.xlsx", "Calculadora · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-da-Experiencia.pdf", "Ficha da experiência", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}

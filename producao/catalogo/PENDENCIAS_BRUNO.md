@@ -5,10 +5,11 @@ Atualizado pelas sessões de produção. Tudo o mais é feito automaticamente.
 ## Uma vez só
 - [ ] Ligar o GitHub Pages (GitHub → Settings → Pages → branch `main`, pasta `/docs`). Sem isso as fotos das páginas e os links de download das entregas não abrem. (Não consigo conferir daqui: o acesso ao github.io é bloqueado neste ambiente.)
 - [ ] Concluir a análise de vendedor no ClickMax (Carteira → `/sales/wallet`). Sem isso nenhum checkout vende.
-  - **Novo em 07/11/2026:** o ClickMax registrou na conta bancária: "Comprovante bancário inválido. Faltou documento: Contrato Social ou Contrato MEI. Faltou o Cartão CNPJ (emitido no site da Receita Federal)." Envie esses documentos pela Carteira.
+  - **Atualização 08/11/2026:** o motivo de recusa da conta bancária não aparece mais; a conta de vendedor segue em análise pelo ClickMax.
+  - Em 07/11/2026: o ClickMax registrou na conta bancária: "Comprovante bancário inválido. Faltou documento: Contrato Social ou Contrato MEI. Faltou o Cartão CNPJ (emitido no site da Receita Federal)." Envie esses documentos pela Carteira.
 
 ## Arquivos de entrega
-Não dependem mais de Bruno: ficam em `docs/p/adbc67069af26ae0/<produto>/` e são ligados à oferta automaticamente (Ferramentas 01, 11, 13, 14 e 17 já ligadas).
+Não dependem mais de Bruno: ficam em `docs/p/adbc67069af26ae0/<produto>/` e são ligados à oferta automaticamente (Ferramentas 01, 11, 13, 14, 17 e 29 já ligadas).
 
 ## Imagem do produto no checkout (opcional, 1 minuto por produto)
 O ClickMax só aceita a imagem do produto se ela for enviada para o armazenamento dele, e o módulo de upload que eu usaria (posts sociais) está desligado nesta conta. As capas já estão prontas e em uso na página de vendas e na página de acesso. Para o checkout: Produtos → oferta → imagem do produto → subir o arquivo.
@@ -18,6 +19,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 11 | `docs/p/adbc67069af26ae0/kit-mensagens-11/capa.jpg` |
 | Ferramenta 13 | `docs/p/adbc67069af26ae0/enxoval-13/capa.jpg` |
 | Ferramenta 14 | `docs/p/adbc67069af26ae0/ocorrencias-14/capa.jpg` |
+| Ferramenta 29 | `docs/p/adbc67069af26ae0/experiencias-29/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Quando quiser
