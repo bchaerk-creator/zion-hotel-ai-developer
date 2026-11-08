@@ -1,0 +1,251 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Diagnóstico de Gestão, a ferramenta Faça agora do Marco Zero da Jornada 2. Em uns oito minutos, ela mostra como está a gestão da sua hospedagem, a área mais frágil e a primeira ação para os próximos trinta dias.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada 2 · Marco Zero · Diagnóstico de Gestão",
+      "s": "A sua nota de gestão, a área mais frágil e a ação de 30 dias"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na tela inicial, você preenche nome, e-mail, o nome da hospedagem, a cidade, o tipo e quantas unidades tem. As respostas ficam só no seu aparelho: nada é enviado. Depois, Começar.",
+   "actions": [
+    {
+     "goto": "http://localhost:8790/trilha2/marco-zero/"
+    },
+    {
+     "show": "h1",
+     "wait": 1200
+    },
+    {
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#hospedagem": "Cabanas do Vale (exemplo)",
+      "#cidade": "Urubici, SC"
+     }
+    },
+    {
+     "select": "#tipo",
+     "value": "Cabanas ou chalés"
+    },
+    {
+     "type": "#unidades",
+     "text": "4"
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Primeiro, a sua situação: vai abrir, já opera a própria hospedagem, ou cuida da hospedagem de outra pessoa. A jornada serve para os três. Marque e avance.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1200
+    },
+    {
+     "click": "label.op:nth-child(2)",
+     "wait": 700
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Depois, quem responde pela gestão hoje. Gestão é decidir preço, olhar os números, cuidar das pessoas e das compras. Não é a mesma coisa que atender e limpar.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1200
+    },
+    {
+     "click": "label.op:nth-child(1)",
+     "wait": 700
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Agora, as cinco perguntas do gestor, sobre o mês passado: quanto entrou, quanto sobrou, a ocupação, a diária média e o custo por noite vendida. Para cada uma, três respostas: sei com número, tenho uma ideia, ou não sei. Não sei também é diagnóstico.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1500
+    },
+    {
+     "eval": "document.querySelector('input[name=c-entrou][value=\"2\"]').click();document.querySelector('input[name=c-sobrou][value=\"0\"]').click();",
+     "wait": 900
+    },
+    {
+     "show": ".grade .item:nth-child(3)",
+     "wait": 600
+    },
+    {
+     "eval": "document.querySelector('input[name=c-ocupacao][value=\"1\"]').click();document.querySelector('input[name=c-diaria][value=\"2\"]').click();document.querySelector('input[name=c-custo][value=\"0\"]').click();",
+     "wait": 900
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Em seguida, as oito áreas da gestão, em duas telas. Para cada área, você marca um de três níveis: não existe ou não sei; funciona, mas só na minha cabeça; ou funciona com padrão e registro. Com padrão e registro é quando existe por escrito e outra pessoa conseguiria fazer igual.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1500
+    },
+    {
+     "eval": "document.querySelector('input[name=a-metas][value=\"0\"]').click();document.querySelector('input[name=a-financas][value=\"1\"]').click();",
+     "wait": 900
+    },
+    {
+     "show": ".grade .item:nth-child(3)",
+     "wait": 500
+    },
+    {
+     "eval": "document.querySelector('input[name=a-preco][value=\"1\"]').click();document.querySelector('input[name=a-vendas][value=\"2\"]').click();",
+     "wait": 800
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    },
+    {
+     "show": ".pergunta",
+     "wait": 800
+    },
+    {
+     "eval": "document.querySelector('input[name=a-pessoas][value=\"1\"]').click();document.querySelector('input[name=a-compras][value=\"2\"]').click();document.querySelector('input[name=a-operacao][value=\"1\"]').click();document.querySelector('input[name=a-qualidade][value=\"0\"]').click();",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A última tela é a sua rotina: com que frequência você olha os números, para onde vai o seu tempo, e a pergunta que separa negócio de emprego: se você contratasse alguém para fazer o que faz e saísse da operação, sobraria alguma coisa?",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1200
+    },
+    {
+     "click": "input[name=rot][value=as-vezes]",
+     "wait": 600
+    },
+    {
+     "text": "E o seu tempo",
+     "sel": "h2",
+     "wait": 800
+    },
+    {
+     "click": "input[name=tmp][value=operacao]",
+     "wait": 600
+    },
+    {
+     "text": "Se você contratasse",
+     "sel": "h2",
+     "wait": 1000
+    },
+    {
+     "click": "input[name=sai][value=acho]",
+     "wait": 600
+    },
+    {
+     "click": "#vai",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "E este é o seu diagnóstico, em cinco partes. O resultado: a nota de zero a cem e a faixa. No exemplo, cinquenta: gestão em construção. As oito áreas aparecem coloridas, e a área por onde começar fica destacada.",
+   "actions": [
+    {
+     "show": ".leitura",
+     "wait": 2500
+    },
+    {
+     "show": ".jornada",
+     "wait": 2000
+    }
+   ]
+  },
+  {
+   "say": "Depois, o que isso significa, a atenção, com a área mais frágil e os números que você ainda não sabe, e o que fazer: uma ação só para os próximos trinta dias. Você pode ajustar o texto e marcar até quando.",
+   "actions": [
+    {
+     "text": "2 · O que isso significa",
+     "sel": "h2",
+     "wait": 1800
+    },
+    {
+     "text": "3 · Atenção",
+     "sel": "h2",
+     "wait": 1800
+    },
+    {
+     "text": "4 · O que fazer",
+     "sel": "h2",
+     "wait": 1200
+    },
+    {
+     "eval": "const e=document.getElementById('prazo');e.value='2026-12-15';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz o critério de conclusão: quando a ação estiver escrita com prazo e o PDF baixado, o selo muda para pronto para avançar. E a próxima etapa mostra o módulo por onde você começa a jornada.",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#selo",
+     "wait": 1500
+    },
+    {
+     "text": "A próxima etapa",
+     "sel": "h2",
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "say": "Por fim, baixe o seu diagnóstico em PDF. É a página zero do seu Plano de Gestão. Guarde, e releia daqui a trinta dias, quando a ação estiver feita. Bom trabalho!",
+   "actions": [
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "O seu Diagnóstico de Gestão",
+      "s": "Baixe o PDF, faça a ação de 30 dias e siga para o módulo indicado"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}
