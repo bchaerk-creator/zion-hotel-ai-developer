@@ -1,0 +1,266 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial da Folha Única do Mês, a ferramenta Faça agora do Módulo 2 da Jornada de Gestão. Em sete telas, você lança o mês passado e sai com a cascata do resultado, os quatro indicadores, a leitura do caixa e três prioridades para o mês seguinte. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 2 · Folha Única do Mês",
+      "s": "Do que o hóspede pagou ao que de fato sobrou, em uma folha"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, você preenche nome, e-mail e o nome da hospedagem. Depois, a sua situação: vai abrir, já opera, ou cuida da hospedagem de outra pessoa. E quatro perguntas rápidas: conta separada, custo por noite, retirada fixa e reserva para a baixa. Elas mostram o seu nível de separação entre o dinheiro do negócio e o seu. As respostas ficam só no seu aparelho.",
+   "actions": [
+    {
+     "goto": "http://localhost:8790/trilha2/financas/"
+    },
+    {
+     "show": "h1",
+     "wait": 1200
+    },
+    {
+     "auto": 1,
+     "pick": 1,
+     "pace": 450,
+     "values": {
+      "input#nome": "Ana Exemplo",
+      "input#email": "ana@exemplo.com",
+      "input#hospedagem": "Cabanas do Vale (exemplo)"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A primeira tela é o mês. Qual mês, quantos dias, quantas unidades, quantas noites você vendeu e em quantas estadias. Nas Cabanas: outubro, trinta e um dias, quatro unidades, cinquenta e oito noites em vinte e cinco estadias. Com isso a ficha já sabe a ocupação e a média de noites por estadia.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1200
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#mes": "Outubro",
+      "input#dias": "31",
+      "input#unidades": "4",
+      "input#noites": "58",
+      "input#estadias": "25"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "O que entrou. A receita de hospedagem é só o que o hóspede pagou pelas diárias: dezesseis mil, duzentos e quarenta. A taxa de limpeza cobrada entra separada, porque é repasse, não receita. Café e cestas vão em outras receitas, com o custo delas. Nas deduções, você lança descontos, comissões, taxa de processamento e imposto. Se não souber, o botão da referência Zion preenche quinze por cento mais dois de cancelamentos: ajuste depois com o seu extrato.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1000
+    },
+    {
+     "text": "referência Zion",
+     "sel": "button, label, b, span",
+     "wait": 1500
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#receitaHospedagem": "16240",
+      "input#taxaLimpezaCobrada": "1500",
+      "input#outrasReceitas": "980",
+      "input#custoOutrasReceitas": "420",
+      "input#descontos": "650",
+      "input#comissoesPct": "11",
+      "input#processamentoPct": "1.5",
+      "input#impostoPct": "6",
+      "input#cancelamentos": "0"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "O que saiu com cada noite: os custos variáveis do mês. Limpeza paga, dois mil. Enxoval, trezentos e oitenta. Amenidades, duzentos e sessenta. Energia da unidade, trezentos e quarenta. Café fica zero, porque já está em outras receitas. Na quebra e perda, dá para usar a referência Zion de um por cento da receita de hospedagem.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1000
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#limpezaPaga": "2000",
+      "input#enxoval": "380",
+      "input#amenidades": "260",
+      "input#energiaVariavel": "340",
+      "input#cafe": "0",
+      "input#quebra": "162.40",
+      "input#outrosVariaveis": "0"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "O que sai todo mês: os custos fixos. Equipe, contas comuns, software, contador, marketing, as despesas anuais divididas por doze e a manutenção contratada. E a retirada: a calculadora multiplica as suas horas por semana pelo valor de contratar alguém e por quatro vírgula trinta e três. Nas Cabanas, vinte horas a quarenta reais dão três mil, quatrocentos e sessenta e quatro. Se você decidiu não retirar por enquanto, marque isso de propósito.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1000
+    },
+    {
+     "text": "Conta da Retirada",
+     "sel": "h2, h3, b, label, legend",
+     "wait": 1200
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#equipe": "1800",
+      "input#comuns": "620",
+      "input#software": "190",
+      "input#contador": "300",
+      "input#marketingFixo": "150",
+      "input#duodecimos": "460",
+      "input#manutencaoContratada": "250",
+      "input#horas": "20",
+      "input#valorHora": "40",
+      "input#retHoras": "20",
+      "input#retHora": "40",
+      "input#retiradaHoras": "20",
+      "input#retiradaHora": "40",
+      "input#retirada": "3464",
+      "input#outrosFixos": "0"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Custos do modelo, reserva e depreciação. Aluguel, taxa de gestão e marca só se você paga. Nas Cabanas, zero. A reserva de reposição fica em quatro por cento da receita, dentro da faixa de três a seis da fonte. A depreciação é opcional e só informativa: a ficha nunca soma reserva e depreciação na mesma conta.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1000
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#aluguel": "0",
+      "input#taxaGestao": "0",
+      "input#marca": "0",
+      "input#reservaPct": "4",
+      "input#depreciacao": "0"
+     },
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A última tela é o caixa do mês, que é outra conta. Saldo inicial, nove mil e oitocentos. Entradas, dezoito mil, quatrocentos e setenta. Saídas, quatorze mil, seiscentos e cinquenta. E as reservas já separadas: nas Cabanas, zero. É daqui que saem os meses de fôlego.",
+   "actions": [
+    {
+     "show": "h1, .pergunta",
+     "wait": 1000
+    },
+    {
+     "auto": 1,
+     "pace": 450,
+     "values": {
+      "input#saldoInicial": "9800",
+      "input#entradasCaixa": "18470",
+      "input#saidasCaixa": "14650",
+      "input#reservasSeparadas": "0",
+      "input#aReceber": "0"
+     },
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "E esta é a sua Folha Única, em cinco partes. O resultado traz a cascata em tabela: receita bruta, deduções, receita real, variáveis, margem de contribuição, fixos com a retirada, e o resultado operacional. No exemplo, quatro mil, duzentos e sessenta e nove reais. Logo abaixo, os indicadores: diária média real, custo por noite vendida, margem por noite e meses de fôlego.",
+   "actions": [
+    {
+     "text": "1 · O resultado",
+     "sel": "h2",
+     "wait": 2200
+    },
+    {
+     "text": "Resultado operacional",
+     "sel": "td, th, b, li, span",
+     "wait": 1600
+    },
+    {
+     "text": "Custo por noite vendida",
+     "sel": "td, th, b, li, span",
+     "wait": 1600
+    }
+   ]
+  },
+  {
+   "say": "O que isso significa lê cada indicador pela régua da fonte: a diária real contra o custo por noite, a ocupação de equilíbrio e o fôlego. A atenção cruza caixa com resultado e aponta a causa principal: nas Cabanas, sem reserva para a baixa. E o que fazer lista até três prioridades na ordem da fonte, para você transformar em uma ação com prazo.",
+   "actions": [
+    {
+     "text": "2 ·",
+     "sel": "h2",
+     "wait": 2000
+    },
+    {
+     "text": "3 ·",
+     "sel": "h2",
+     "wait": 2000
+    },
+    {
+     "text": "4 ·",
+     "sel": "h2",
+     "wait": 1200
+    },
+    {
+     "type": "#acao",
+     "text": "Abrir a conta de reservas e programar a transferência de 4% no dia em que a receita entra.",
+     "delay": 22,
+     "wait": 600
+    },
+    {
+     "eval": "const e=document.getElementById('prazo');if(e){e.value='2026-12-15';e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));e.scrollIntoView({block:'center'});}",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz o critério de conclusão: noites informadas, um custo variável e um fixo, a retirada informada ou decidida, o caixa do mês, uma ação com prazo e o PDF baixado. Quando tudo estiver feito, o selo muda para pronto para avançar. Baixe a Folha em PDF: é a página dois do seu Plano de Gestão. Repita todo mês, e compare com o mesmo mês do ano anterior. Bom trabalho!",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#selo",
+     "wait": 1500
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "A sua Folha Única do Mês",
+      "s": "Baixe o PDF, faça a prioridade 1 e siga para o Módulo 3 · Preço"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}
