@@ -19,7 +19,7 @@ const fonte = (f) => `data:font/woff2;base64,` + fs.readFileSync(path.join(D, "a
 const fonts = `@font-face{font-family:Cormorant;src:url(${fonte("cormorant.woff2")})}@font-face{font-family:Cormorant;font-style:italic;src:url(${fonte("cormorant-italic.woff2")})}@font-face{font-family:Aventa;src:url(${fonte("aventa.woff2")})}`;
 
 // Fundo provisório: foto própria da Zion. Fundo final: arquivo gerado (sem texto) com o mesmo nome-base.
-const CAPAS = [
+let CAPAS = [
   { id: "01-desenvolvimento", kicker: "Trilha 1 · Desenvolvimento", titulo: "Desenvolvimento", titulo2: "Hoteleiro", sub: "Do terreno ao empreendimento turístico",
     foto: "trilha1/apresentacao/fotos/c8d0eb086b.jpg", posH: "70% 50%", posV: "38% 50%" },
   { id: "02-gestao", kicker: "Jornada 2 · Gestão", titulo: "Gestão", titulo2: "Hoteleira", sub: "O empreendimento administrado com método",
@@ -27,11 +27,13 @@ const CAPAS = [
   { id: "03-land-bank", kicker: "Zion Land Bank · Banco de áreas", titulo: "Land", titulo2: "Bank", sub: "O potencial do terreno, estruturado em projeto",
     foto: "trilha1/apresentacao/fotos/901904223c.jpg", posH: "50% 10%", posV: "70% 0%" },
 ];
+if (Array.isArray(MAPA.capas)) CAPAS = MAPA.capas; // lista completa de capas no .json (id, kicker, titulo, titulo2, sub, foto, posH, posV, modoH...)
+for (const c of CAPAS) if (c.foto && path.isAbsolute(c.foto)) MAPA[c.id] = Object.assign({}, c, MAPA[c.id] || {});
 const FORMATOS = [ { suf: "h", W: 1920, H: 1080, v: false }, { suf: "v", W: 1080, H: 1620, v: true } ];
 
 function fundo(c, suf) {
   const m = MAPA[c.id];
-  if (m && m.foto) return { src: data(m.foto), provisorio: false, escolhida: true };
+  if (m && m.foto && path.isAbsolute(m.foto)) return { src: data(m.foto), provisorio: false, escolhida: true };
   if (GERADOS) for (const ext of [".png", ".jpg", ".jpeg", ".webp"]) {
     for (const nome of [`${c.id}-${suf}${ext}`, `${c.id}${ext}`]) { const f = path.join(GERADOS, nome); if (fs.existsSync(f)) return { src: data(f), provisorio: false }; }
   }
