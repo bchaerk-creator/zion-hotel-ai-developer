@@ -9,7 +9,7 @@ Pedido de Bruno em 09/11/2026 (`/ads www.zionbubbleglamping.com`). Destino: rese
 - **Nas duas:** café da manhã incluído em todas as tarifas e levado até a bubble; Bubble Service e Bubble Bar com custo extra; ar condicionado, lençol térmico, Wi-Fi, banheiro privativo; check-in das 15h às 18h, check-out às 11h.
 - **Regras que o anúncio precisa respeitar:** só para maiores de 18 anos, bubbles para 2 pessoas, sem pets, sem acessibilidade para mobilidade reduzida.
 - **Reserva:** motor Omnibees (`book.omnibees.com/hotel/19198`), acessado pelo botão "Valores & Reserva" das páginas. **Voucher presente:** `/category/all-products`.
-- **Medição:** o site já tem pixel da Meta instalado (encontrado no código da página). Não há Google Tag no HTML lido.
+- **Medição:** o site tem pixel da Meta, e a conta já registra compras atribuídas às campanhas de vendas (lido no Windsor em 09/11), então a reserva no Omnibees chega como compra. Não há Google Tag no HTML lido.
 - **Não usamos** preço (o site não mostra) nem a frase do site "Bellatrix é a primeira bubble do Brasil" (afirmação sem fonte; só entra se Bruno confirmar).
 
 ## 2. Público sugerido
@@ -72,7 +72,7 @@ UTM padrão: `utm_source=meta&utm_medium=paid&utm_campaign=zion-bubble-reservas&
 
 ## 5. Como medir
 - Custo por reserva comparado com a diária média menos taxas do Omnibees, comissões e impostos. Faturamento não é lucro.
-- Conferir antes de ligar: se a reserva concluída no Omnibees dispara o evento `Purchase` no pixel (o motor fica em outro domínio). Sem isso, a Meta só enxerga cliques.
+- A Meta já recebe compras do Omnibees; confira de vez em quando se o número bate com as reservas do próprio Omnibees.
 
 ## 6. Pendências de Bruno
 1. Confirmar a conta de anúncio (Zion Bubble `1767208367384473`?).

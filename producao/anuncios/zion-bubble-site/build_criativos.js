@@ -29,7 +29,7 @@ const C = [
    apoio:'Incluído em todas as tarifas, com produtos frescos da região.', cta:'Ver valores e datas'},
 ];
 
-const html = c => `<!doctype html><html><head><meta charset="utf-8"><style>
+const html = (c, story) => `<!doctype html><html><head><meta charset="utf-8"><style>
 @font-face{font-family:Cormorant;src:url('${url('docs/assets/fonts/cormorant.woff2')}')}
 @font-face{font-family:CormorantI;src:url('${url('docs/assets/fonts/cormorant-italic.woff2')}')}
 @font-face{font-family:Aventa;src:url('${url('docs/assets/fonts/aventa.woff2')}')}
@@ -45,23 +45,36 @@ h1 em{font-family:CormorantI,serif;font-style:italic;color:#DED6BF}
 p{margin-top:26px;font-size:32px;line-height:1.35;color:#DED6BF;max-width:900px}
 .cta{display:inline-block;margin-top:40px;padding:24px 44px;background:#C9B37E;color:#040605;font-size:30px;letter-spacing:.04em;border-radius:2px}
 .cta:after{content:"  →"}
-</style></head><body><div class="foto"></div><div class="veu"></div>
+${story ? `body{height:1920px}.veu{background:linear-gradient(180deg,rgba(4,6,5,.2) 0%,rgba(4,6,5,.55) 30%,rgba(4,6,5,.85) 50%,rgba(4,6,5,.85) 66%,rgba(4,6,5,.2) 100%)}.marca{top:300px}.selo{top:302px}.txt{bottom:auto;top:760px}` : ''}</style></head><body><div class="foto"></div><div class="veu"></div>
 <div class="marca">ZION BUBBLE</div><div class="selo">${c.selo}</div>
 <div class="txt"><h1>${c.titulo}</h1><p>${c.apoio}</p><span class="cta">${c.cta}</span></div></body></html>`;
+
+// Formatos: feed 1080x1350 (padrão do repositório), feed 1440x1800 e stories 1440x2560
+// (área segura do 9:16: nada de texto nos 14% de cima e nos 35% de baixo).
+const FORMATOS = [
+  {suf:'', w:1080, h:1350, scale:1, story:false, todos:true},
+  {suf:'-1440x1800', w:1080, h:1350, scale:4/3, story:false},
+  {suf:'-1440x2560', w:1080, h:1920, scale:4/3, story:true},
+];
+const PRINCIPAIS = ['CR01-urubici-estrelas', 'CR02-floripa-piscina', 'CR05-presente'];
 
 (async () => {
   fs.mkdirSync(OUT, {recursive: true});
   const b = await chromium.launch();
-  const p = await b.newPage({viewport: {width: 1080, height: 1350}, deviceScaleFactor: 1});
-  for (const c of C) {
-    const f = path.join(OUT, c.id + '.html');
-    fs.writeFileSync(f, html(c));
-    await p.goto('file://' + f);
-    await p.evaluate(() => document.fonts.ready);
-    await p.waitForTimeout(300);
-    await p.screenshot({path: path.join(OUT, c.id + '.jpg'), type: 'jpeg', quality: 90});
-    fs.unlinkSync(f);
-    console.log('ok', c.id);
+  for (const fmt of FORMATOS) {
+    const p = await b.newPage({viewport: {width: fmt.w, height: fmt.h}, deviceScaleFactor: fmt.scale});
+    for (const c of C) {
+      if (!fmt.todos && !PRINCIPAIS.includes(c.id)) continue;
+      const f = path.join(OUT, c.id + fmt.suf + '.html');
+      fs.writeFileSync(f, html(c, fmt.story));
+      await p.goto('file://' + f);
+      await p.evaluate(() => document.fonts.ready);
+      await p.waitForTimeout(300);
+      await p.screenshot({path: path.join(OUT, c.id + fmt.suf + '.jpg'), type: 'jpeg', quality: 90});
+      fs.unlinkSync(f);
+      console.log('ok', c.id + fmt.suf);
+    }
+    await p.close();
   }
   await b.close();
 })();
