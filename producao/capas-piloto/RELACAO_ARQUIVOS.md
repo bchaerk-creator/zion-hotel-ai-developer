@@ -36,3 +36,19 @@ As imagens ficam fora do repositório público e fora de `docs/`, que vai para o
 | Land Bank | `docs/trilha1/apresentacao/fotos/901904223c.jpg` (vale com araucárias e montanhas) | 1179×1362 | A vertical mostra uma pessoa deitada no deck, no terço inferior. Precisa da imagem gerada ou de outra foto |
 
 **Os fundos provisórios só mostram a moldura.** As imagens definitivas dependem do gerador externo (`PROMPTS_GERACAO.md`), que só será usado com autorização.
+
+## Versão 2 (09/11/2026) · fotos do Bruno
+
+O Bruno não aprovou os fundos provisórios e enviou retratos de estúdio. A versão 2 usa:
+
+| Capa | Retrato |
+|---|---|
+| Desenvolvimento | Com o globo estendido |
+| Gestão | Braços cruzados, olhando para o lado |
+| Land Bank | Horizontal, mão no queixo |
+
+Ajustes de composição:
+- tom musgo aplicado sobre o fundo cinza do estúdio, para unificar as três;
+- na horizontal, a foto ocupa um painel à direita com borda esfumada.
+
+O script ganhou um 3º argumento opcional: um `.json` com a foto e o enquadramento de cada capa. Os retratos e as prévias ficam fora do repositório.
