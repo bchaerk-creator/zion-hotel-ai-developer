@@ -104,6 +104,40 @@ Compradores da linha B: nenhum. A sessão confirmou zero transações no ClickMa
 
 Responsável pela matriz final: sessão Zion Arsenal (cópia para Produtos Zion configuration). O resultado volta para a sessão ZAIOS platform development. Nada implementado.
 
+### 4.1 Matriz final da linha B · consolidação (09/11/2026)
+
+Fonte: `producao/zion-arsenal/MATRIZ_FINAL_LINHA_B.md` (sessão Zion Arsenal, commit 288fa52). Verificação desta sessão (arquitetura Academy/ZAIOS) abaixo. **Status: proposta, não aprovada.**
+
+| Produto | Destino proposto pelo Arsenal | Verificação da arquitetura |
+|---|---|---|
+| B03 Construtor de Projeto | Venda individual, "primeiro rascunho" | De acordo |
+| B05 Raio-X do Potencial | Venda individual, autodiagnóstico, **se** o diagnóstico do Land Bank não for gratuito | **Ele é gratuito:** a página pública `docs/raio-x/` ("Diagnóstico prévio gratuito", jornada do Land Bank de 03/11). Pela regra do próprio Arsenal, o B05 passa para a **categoria 3** (uso interno ou benefício), salvo decisão contrária do Bruno |
+| B06 Calculadora de Implantação | Principal da linha de orçamento; F05 como complemento de R$ 19 | De acordo. Antes de vender, conferir as linhas e faixas de CAPEX contra a ZAIOS P5 (OS&E 12%, pré-abertura 5%, contingência 20–25% / 10–15%) para manter uma regra só |
+| B07 Comparador de Modelos | Venda individual + exercício do Pilar 3 | De acordo |
+| B09 Implantação Progressiva | Venda individual + instrumento do plano por etapas | De acordo |
+| B01, B02, B04, B10 | Ferramenta interna ou benefício (Trilha 1 módulo 9, Land Bank, ZAIOS); sem campanha individual | De acordo. Já são bônus do Club Base; nenhum direito contratado é afetado |
+| B08 Simulador de Viabilidade | Ferramenta interna | De acordo com o destino. **Harmonização obrigatória:** B08, A09 e a ZAIOS P6 Viabilidade fazem a mesma conta (VPL, TIR, payback). Antes de qualquer uso, o B08 precisa seguir `docs/zaios/PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md`: taxa de desconto informada pelo membro, múltiplo de saída editável, regra de decisão em 5 passos. Ou o B08 aponta para a ZAIOS, que é a decisão de "B08 x A09 x ZAIOS" |
+
+**Nomes propostos:**
+- **B01** "Sua Terra Está Pronta para Ser Apresentada?" (Índice de Prontidão da Terra): **de acordo.**
+- **B10** "Como Apresentar o Projeto da Sua Terra com Clareza?" (Roteiro de Apresentação do Projeto): **de acordo.**
+- **B08** "Quanto Custa e Quanto Pode Gerar o Seu Projeto Turístico?": **ressalva.** "Quanto pode gerar" sugere projeção de renda, o que as regras da Zion evitam. Alternativas:
+  - "Como Fica a Conta do Seu Projeto Turístico? · Simulador de Cenários (estimativas, não garantia)";
+  - "Simule os Cenários do Seu Projeto Turístico: Custos, Receitas e Prazos".
+
+**B06 x Ferramenta 05:** recomendação do Arsenal (B06 principal, F05 complemento de execução, sem campanha própria) é coerente com a arquitetura C. Usar a F05 como "order bump" exige configurar o checkout: só depois do "aprovado" e da conta de vendedor.
+
+**Criativos:** os 190 estão preservados. A lista do que revisar depois das decisões está na matriz do Arsenal (B01, B08 e B10 com o nome; CR01, CR03 e CR10 de B03, B05, B07 e B09; os 10 do B06; o A09 junto com o B08).
+
+**Observação fora da linha B (não alterar sem "aprovado"):** a página pública `docs/raio-x/` chama os membros de "sócio do Clube Zion Collection", contra a regra de linguagem ("membros", nunca "sócios").
+
+**Decisões do Bruno para fechar a linha B:**
+1. Destinos (com B05 na categoria 3, pela verificação acima).
+2. B06 ou F05 como principal.
+3. Nomes de B01, B08 (com a ressalva) e B10.
+4. B08 x A09 x ZAIOS: qual simulador é a referência.
+
+
 ---
 
 ## 5. Mapa de sobreposições e proposta de diferenciação
