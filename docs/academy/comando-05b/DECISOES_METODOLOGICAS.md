@@ -30,7 +30,7 @@ Situação **atual**, sem nenhuma alteração. Legenda:
 | Decisão | ZAIOS (P5/P6, G2/G3) | Folha Única J2 | B08 | A09 | B06 | F05 |
 |---|---|---|---|---|---|---|
 | **D1** retorno anual x acumulado | **Parcial:** tem "retorno anual"; falta o acumulado em 10 anos | N/A (mensal) | **Não adere:** "ROI10" acumulado sem o retorno anual com o nome novo; rótulo "ROI" | **Não adere:** "ROI" anual sem qualificador | N/A | N/A |
-| **D2-C** reserva 4% da receita bruta realizada, separada da emergência | **Não adere:** 3% da receita bruta | **Parcial:** 4% e faixa 3–6% certos, mas sobre a **receita real**; reserva de emergência separada nas "reservas separadas" | **Não adere:** reserva **dentro das deduções** | **Não adere:** não tem reserva | N/A | N/A |
+| **D2-C** reserva 4% da receita bruta realizada, separada da emergência | **Não adere:** 3% da receita bruta, faixa 3–5% (achado do Comando 05C) | **Parcial:** 4% e faixa 3–6% certos, mas sobre a **receita real**; reserva de emergência separada nas "reservas separadas" | **Não adere:** reserva **dentro das deduções** | **Não adere:** não tem reserva | N/A | N/A |
 | **D3-A** quebra como custo variável, 1%, medido primeiro | **Parcial:** 1% das diárias como custo variável; não aceita valor medido em R$ | **Adere:** prefere o valor medido; 1% só em branco | **Não adere:** não tem quebra nem rótulo | **Não adere:** não tem quebra nem rótulo | N/A | N/A |
 | **D4** pró-labore, distribuição, caixa | **Parcial:** pró-labore como custo fixo ("retirada"); não separa distribuição nem caixa disponível | **Parcial:** pró-labore e bloco de caixa; "distribuição" não tem nome próprio | **Não adere:** sem pró-labore nem rótulo | **Não adere:** sem pró-labore nem rótulo | N/A | N/A |
 | **D7-C** saída por 3 métodos, sem venda ao lado, valor líquido | **Parcial:** só o múltiplo × EBITDA; mostra com e sem saída; não desconta custos nem tributos | N/A | **Não adere:** residual em % do investimento (até 100%), sem método nem valor líquido | N/A (sem saída) | N/A | N/A |
@@ -91,7 +91,7 @@ Cada etapa só começa com autorização expressa do Bruno.
 | Etapa | O que | Onde | Depende de | Custo |
 |---|---|---|---|---|
 | 0 | Teste fechado da ZAIOS (roteiro de 15 itens) | ZAIOS | Bruno | 0 |
-| 1 | Escrever os testes T1 a T12 como arquivos, **sem mudar ferramentas** (os testes vão falhar onde há não aderência, e isso serve de prova) | Repositório (cada pasta) | Autorização para "preparação de testes" (já dada para documentar) | Tempo de sessão |
+| 1 | Escrever os testes T1 a T12 como arquivos, **sem mudar ferramentas** (os testes vão falhar onde há não aderência, e isso serve de prova) · **FEITO em 09/11 (Comando 05C): `testes/financeiro/`** | Repositório (cada pasta) | Autorização para "preparação de testes" (já dada para documentar) | Tempo de sessão |
 | 2 | Homologação **matemática** da ZAIOS v0 (casos F01, F02, F03, T1, T2) e do dicionário v0.4 → v1.0 nas fórmulas | Bruno + contador | Etapa 1 | 0 |
 | 3 | ZAIOS: ocultar o veredito até a homologação (D11) e trocar os rótulos (D1) | Lovable | Etapa 2 + autorização | Créditos Lovable (estimativa baixa) |
 | 4 | ZAIOS: reserva 4% (D2-C), quebra medida (D3-A), distribuição e caixa (D4), saída (D7-C) | Lovable | Etapa 3 | Créditos Lovable (estimativa média) |

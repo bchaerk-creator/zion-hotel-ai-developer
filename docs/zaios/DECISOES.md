@@ -103,6 +103,12 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - **D11-A:** Régua Única de Viabilidade com cinco critérios (geração de caixa, resistência ao conservador, prazo de recuperação, criação de valor com e sem saída, colchão). Ferramentas simples mostram "X de 5 critérios avaliados. Sinal parcial, não representa aprovação do projeto." Avançar, Ajustar e Redesenhar só com os cinco critérios e após homologação. Metas do A09 separadas. Limites provisórios, a validar por tipo, porte e perfil. Nenhuma classificação garante viabilidade, financiamento ou retorno.
 - Consolidação: dicionário v0.4, `docs/academy/comando-05b/DECISOES_METODOLOGICAS.md` (registro, aderência, pendências, sequência) e plano de testes v0.2. Nenhuma ferramenta alterada.
 
+## Comando 05C · Testes financeiros (09/11/2026)
+- Suíte em `testes/financeiro/` (separada da produção): 139 casos T1 a T12, rastreados por teste, indicador, decisão e ferramenta.
+- Execução de referência com o motor da ZAIOS (cópia local lida do Lovable, sem créditos, não versionada): 96 OK, 25 divergências confirmadas (metodologia aprovada não implementada), 3 limitações (D5, D6, D8 pendentes), 15 parâmetros pendentes de validação econômica, 0 falhas de fórmula.
+- Achado novo: na ZAIOS a faixa da reserva é 3–5% (RESERVA_FAIXA); a D2-C aprovou 3–6%.
+- Nenhuma fórmula, ferramenta ou plataforma alterada; nada homologado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
