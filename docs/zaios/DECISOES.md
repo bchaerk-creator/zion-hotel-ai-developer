@@ -123,6 +123,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Observações novas: O6 (Folha J2 recebe custos do modelo em R$, o dicionário usa % da receita); O7 (G2 trata impostos como despesa variável). Correção: o A09 aceita até 372 dias/ano, não "no máximo 360".
 - Nada corrigido, nada homologado em definitivo; implementação bloqueada.
 
+## Comando 05F · Composição em 3 cenários (09/11/2026)
+- 3 cenários (conservador, intermediário com sazonalidade e outras receitas, maior porte) mais o estresse do 3º, executados na cópia da composição (commit ec21ad5) e comparados com cálculo independente em Python: 288 campos, 0 divergências matemáticas, 32 divergências metodológicas (base de gestão e royalties sobre a receita bruta; capital de giro calculado em vez de informado), 7 não aplicáveis (payback e TIR inexistentes, mostrados sem número).
+- Observações novas, para classificar: O8 (régua de margem e selo do P6 antes dos custos do modelo); O9 (valor de saída negativo com EBITDA negativo); O10 (horizonte de 36 meses no colchão e no atraso); O11 (base de gestão e royalties); O12 (giro A sem aluguel); O13 (sem campo de capital de giro informado); O14 (outras receitas como % das diárias).
+- Proposta: a composição segue H2; a mecânica (demonstrativo, giro, fluxo, VPL, TIR, payback simples, curva, cenários) passa a H1 proposto, condicionado à integridade. Integridade não comprovada. Nada corrigido, nada homologado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 

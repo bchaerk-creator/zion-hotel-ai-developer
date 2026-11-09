@@ -195,6 +195,18 @@ ZAIOS_CALC_DIR=<cópia de src/calc> ZAIOS_SRC_DIR=<cópia da raiz> node testes/f
 
 Execução de referência: `resultados/2026-11-09-05e-com-zaios/` (237 casos, 0 falhas) e `resultados/2026-11-09-05e-sem-zaios/`. Relatórios: `docs/academy/comando-05e/`.
 
+## Composição da ZAIOS em 3 cenários (Comando 05F)
+
+- Entradas: `composicao_05f/cenarios_05f.json`. Executor separado: `composicao_05f/run_05f.js` (não altera a suíte T1–T12 nem os casos C).
+- Esperados independentes: `independente/composicao_05f_referencia.py` → `independente/esperados_05f.json`, em duas famílias: regra do comando (R1) e regra documentada da ZAIOS (R2).
+
+```
+python3 testes/financeiro/independente/composicao_05f_referencia.py
+ZAIOS_SRC_DIR=<cópia da raiz> node testes/financeiro/composicao_05f/run_05f.js --saida <pasta>
+```
+
+Execução de referência: `resultados/2026-11-09-05f/` (288 campos: 249 OK, 32 divergências metodológicas, 7 não aplicáveis, 0 divergências matemáticas). Relatórios: `docs/academy/comando-05f/`.
+
 ## Limitações dos testes
 
 1. **Interface não testada.** Os testes chamam o cálculo, não as telas. O que só aparece na tela é verificado pela presença de campos e textos no código-fonte das ferramentas (casos T7, T8, T11 de B08/A09): é um indicador, não prova de exibição. Isso inclui a seleção de veredito na ZAIOS, rótulos e leitura de números como "500.50".
