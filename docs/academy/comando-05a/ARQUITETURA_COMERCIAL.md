@@ -53,7 +53,7 @@ Este repositório é público: as contagens de compradores aparecem em faixas, s
 | **Inscrição no Land Bank** | R$ 97 (modelo antigo) e R$ 270 (`inscreva`, `previa/trilha1`) | R$ 97 encerrado; R$ 270 = Club Base na prática | Donos de terreno | Inscrever a área no banco de áreas | Inscrição + Dossiê prévio + Trilha 1 | Land Bank | Avaliação pela equipe | Club Base | **Manter o Land Bank como benefício** (do Base e da Mentoria), não como produto separado | Quem pagou R$ 97 ou R$ 270 nos modelos antigos mantém a inscrição (tag "RAIOX \| PAGOU R$270", menos de 5) |
 | **Ferramentas de R$ 19** (01, 05, 11, 13, 14, 17, 29) | R$ 19, pagamento único, Pix e cartão | Rascunho no ClickMax (vendedor em análise) | Anfitriões e operadores | "Aprenda o passo a passo para..." (um problema) | Planilha, guia e PDF, testados | Arquivo ou link | Não | Pequena: algumas tocam a Jornada 3 (limpeza, enxoval, ocorrências) e a ZAIOS (custos) | **Manter** como produto digital autônomo | Sem vendas (checkout não vende) |
 | **Mini mentorias A01–A10** (anfitriões) | R$ 27 | Rascunho no ClickMax | Anfitriões com calendário vazio | Um problema por produto | 40 telas, cálculo, PDF | Link | Não | Jornadas 2 e 3 (complementar); Club Master (futuro) | **Manter** como produto digital autônomo e porta para a Jornada 2 | Sem vendas |
-| **Mini mentorias B01–B10** (donos de terra) | R$ 27 | Rascunho no ClickMax | Donos de terreno | Investimento, sócio, capital, viabilidade, pitch | 40 telas, cálculo, PDF | Link | Não | **Já inclusas como bônus na Trilha 1 (Club Base)**; tocam Land Bank, Mentoria e ZAIOS | **Aguardando a classificação** pedida ao Arsenal (seção 4) | Sem vendas avulsas; quem tem o Base já recebe |
+| **Mini mentorias B01–B10** (donos de terra) | R$ 27 | Rascunho no ClickMax | Donos de terreno | Investimento, sócio, capital, viabilidade, pitch | 40 telas, cálculo, PDF | Link | Não | **Já inclusas como bônus na Trilha 1 (Club Base)**; tocam Land Bank, Mentoria e ZAIOS | Categoria 2 (B03, B05, B06, B07, B09): **diferenciar**. Categoria 3 (B01, B02, B04, B08, B10): **reposicionar** como ferramenta interna ou bônus (seção 4) | Sem vendas avulsas; quem tem o Base já recebe |
 | **Mentoria de Desenvolvimento Hoteleiro Zion 360°** (premium) | **A definir** | Não existe como oferta | Projetos qualificados (candidatura) | Programa de 12 semanas, 8 módulos, 8 entregáveis, revisões, defesa final | **Aguarda o Blueprint Mestre** | Próprios do programa | Sim (central) | Club Pro; "Mentoria R$ 2.900" | **Criar só a partir do Blueprint**, sem incluir em plano do Club | Nenhum |
 | **ZAIOS** | Não é produto vendido | Teste fechado (lista de liberados) | Membros | — | Desenvolvimento e Operação; Dossiê | Hoje só por liberação manual | — | Planilhas que fazem a mesma conta | **Plataforma compartilhada** com permissão por produto (seção 6) | Ninguém pagou por ela |
 
@@ -83,7 +83,17 @@ Pedido feito à sessão responsável: classificar B01 a B10 em:
 
 Vender a linha B avulsa continua possível como produto de entrada. A promessa precisa deixar claro que é uma ferramenta pontual, e não a trilha, o Land Bank nem a Mentoria.
 
-*(Classificação da sessão: pendente; será acrescentada aqui.)*
+**Classificação da sessão Zion Arsenal (09/11, detalhe em `producao/zion-arsenal/CLASSIFICACAO_LINHA_B.md`):**
+
+| Categoria | Produtos | Proposta da sessão (para decisão do Bruno) |
+|---|---|---|
+| 1 · Autônomo | Nenhum | — |
+| 2 · Complementar, diferenciar a promessa | B03 Construtor de Projeto, B05 Raio-X do Potencial, B06 Calculadora de Implantação, B07 Comparador de Modelos, B09 Planejador por Etapas | Seguir avulsos a R$ 27 como "primeiro rascunho / autodiagnóstico", com chamada para a Jornada 1. B06 sobrepõe a Ferramenta 05 (Orçamento da Cabana): escolher uma ou separar a promessa |
+| 3 · Sobreposição significativa | B01 Investor Ready, B02 Sociedade e Parcerias, B04 Alternativas de Capital, B08 Viabilidade Econômica, B10 Pitch e Dossiê | Sair da venda avulsa no tráfego pago e virar ferramenta dentro da Jornada 1, do Land Bank ou da ZAIOS (com permissão por produto), ou ficar só como bônus do Club |
+
+Linguagem: os criativos já foram revisados. Os nomes das ofertas B01 ("Como Atrair Investimentos…"), B08 ("Como Calcular o Retorno…") e B10 ("…para Sócios e Investidores") e as headlines dessas landings ainda usam "investimento", "investidor" e "retorno". Trocar depende do "aprovado" do Bruno.
+
+Compradores da linha B: nenhum. A sessão confirmou zero transações no ClickMax no workspace inteiro.
 
 ---
 
@@ -143,7 +153,7 @@ Princípio: **cada oferta libera um conjunto fixo de direitos**, gravado no mome
 
 ## 7. Impacto sobre clientes atuais
 
-- **Compradores registrados no ClickMax:** poucos (menos de 10 por tag), todos na entrada do terreno (Trilha 1 + Land Bank, inclusive os modelos de R$ 97 e R$ 270). Membros nas turmas da Trilha 1 e no portal do Land Bank.
+- **Transações no checkout do ClickMax: zero** no workspace inteiro (o vendedor está em análise). Os compradores existentes pagaram por fora (Asaas e modelos antigos) e estão marcados por tag: poucos (menos de 10 por tag), todos na entrada do terreno (Trilha 1 + Land Bank, inclusive os modelos de R$ 97 e R$ 270). Membros nas turmas da Trilha 1 e no portal do Land Bank.
 - **Club Master, Club Pro, Mentoria R$ 2.900, Trilha + Clube R$ 490, Consultoria R$ 490:** nenhum comprador registrado.
 - **Pagamentos pelo Asaas** (Club Base) não aparecem no ClickMax. **O Bruno precisa confirmar a lista** para que ninguém perca o acesso.
 - **Direitos a preservar:**
@@ -168,6 +178,8 @@ Princípio: **cada oferta libera um conjunto fixo de direitos**, gravado no mome
 8. **Lista de compradores pelo Asaas e pela Hotmart** ("Zion Start" e e-books), para preservar acessos.
 9. **Land Bank na Mentoria:** a Mentoria inclui inscrição no Land Bank?
 10. **Prazo de acesso à ZAIOS** depois das 12 semanas da Mentoria.
+11. **Linha B:** aceitar a proposta da sessão Arsenal (categoria 2 avulsa com promessa de autodiagnóstico; categoria 3 fora do tráfego pago, como ferramenta interna ou bônus) e escolher entre B06 e a Ferramenta 05.
+12. **Nomes das ofertas B01, B08 e B10** ("investimentos", "retorno", "investidores"): trocar?
 
 ---
 
