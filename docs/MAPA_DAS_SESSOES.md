@@ -86,6 +86,10 @@ Fora do escopo Zion e não mapeadas: rescisão trabalhista, contrato de zeladori
 
 **Decisão de 09/11/2026 (Bruno):** arquitetura comercial C. Academy é a marca educacional; Club é assinatura com benefícios por plano; ferramentas e mini mentorias são vendidas individualmente; a Mentoria de Desenvolvimento Zion 360° é premium e independente (não entra em plano do Club); ZAIOS é plataforma compartilhada com permissões por produto. Detalhes e pendências em `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md`. O conflito 8 abaixo passa a ser tratado lá. **Linha B:** diretriz comercial do Bruno (09/11) repassada à sessão Zion Arsenal, que prepara a matriz final; detalhes na seção 4 do mesmo documento.
 
+**Duas frentes em paralelo (Bruno, 09/11/2026), só planejamento:**
+1. **Arquitetura comercial.** Zion Arsenal classifica e posiciona a linha B. Produtos Zion configuration fornece os dados, sem mexer nos 26 rascunhos. ZAIOS platform development consolida, verifica sobreposições e prepara as decisões.
+2. **Produção pedagógica da Mentoria de Desenvolvimento.** Marketing da Zion install compara o Blueprint aprovado com a Trilha 1: aproveitar, atualizar ou produzir do zero, sem alterar as 58 aulas nem os acessos. Já monta o inventário da Trilha 1; a comparação começa quando o Blueprint chegar.
+
 
 | # | Conflito | Sessões | Proposta |
 |---|---|---|---|
