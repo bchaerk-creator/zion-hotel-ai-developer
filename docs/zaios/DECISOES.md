@@ -98,7 +98,8 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - **D4:** diferenciar pró-labore (custo fixo), distribuição de resultados (depois de custos e reservas, não é custo) e caixa disponível.
 - **D2-C:** reserva de reposição de 4% provisórios sobre a receita bruta efetivamente realizada, faixa ajustável de 3% a 6%; separada da reserva de emergência; sem descontar o mesmo custo duas vezes; validar o percentual por tipo de hospedagem.
 - Efeito futuro (só após homologação): ZAIOS hoje usa 3% da receita bruta; Folha Única J2 usa 4% da receita real; B08 trata a reserva como dedução; A09 não tem reserva. Nenhuma ferramenta alterada.
-- Próxima: D3 (quebra e perda).
+- **D7-C:** valor de saída por três métodos (múltiplo do EBITDA, avaliação patrimonial, valor estimado informado), sempre com o método identificado, o cenário sem venda ao lado e o valor líquido de custos de venda, tributos e obrigações. Efeito futuro: o B08 hoje usa residual em % do investimento (até 100%); a ZAIOS usa só o múltiplo. Nenhuma ferramenta alterada.
+- D3 (quebra e perda): apresentada, ainda sem decisão. Próxima apresentada: D11 (regra de decisão).
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).

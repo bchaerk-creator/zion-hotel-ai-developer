@@ -1,6 +1,6 @@
 # Dicionário financeiro Zion · Academy e ZAIOS
 
-**Versão 0.2 · 09/11/2026 · NÃO homologado** (decisões metodológicas D1, D2 e D4 aprovadas pelo Bruno; nenhuma ferramenta alterada até a homologação). Comando 05B. Nada foi alterado em ferramentas ou na ZAIOS.
+**Versão 0.3 · 09/11/2026 · NÃO homologado** (decisões metodológicas D1, D2, D4 e D7 aprovadas pelo Bruno; nenhuma ferramenta alterada até a homologação). Comando 05B. Nada foi alterado em ferramentas ou na ZAIOS.
 
 ## Regras do dicionário
 
@@ -103,7 +103,7 @@
 | Payback simplificado | anos | Atalho sem rampa | investimento ÷ resultado anual | A09 | Proposto (rótulo obrigatório) |
 | Retorno anual sobre o investimento | % a.a. | Resultado de um ano de regime sobre o investimento | geração de caixa do regime ÷ investimento total | ZAIOS, A09 | **Aprovado D1**: substitui "ROI" sem qualificador |
 | Retorno acumulado em 10 anos | % | Ganho total sobre o investimento no horizonte | (Σ fluxos dos anos 1 a 10 − investimento) ÷ investimento; com valor de saída, mostrar as duas versões | B08 | **Aprovado D1** |
-| Valor de saída | R$ | Valor estimado de venda do ativo no fim do horizonte; **sempre mostrado à parte** | múltiplo × EBITDA do regime | Referência Zion 6× (ajustável) | **Divergente (D7)**: o B08 usa % do investimento |
+| Valor de saída | R$ | Valor estimado de venda do ativo no fim do horizonte; **sempre mostrado à parte**, ao lado do cenário **sem venda** | três métodos, sempre identificados: (1) **múltiplo do EBITDA** = múltiplo × EBITDA do regime; (2) **avaliação patrimonial** (laudo ou avaliação do imóvel e benfeitorias); (3) **valor estimado informado** pelo aluno, com a fonte. Valor líquido de saída = valor bruto − custos de venda (corretagem, documentação) − tributos (ex.: ganho de capital) − obrigações (dívidas, garantias) | Referência Zion 6× EBITDA (ajustável), só para o método 1 | **Aprovado D7-C** |
 | Cenários | — | Variações de diária e ocupação | conservador: diária −10%, ocupação −20%; otimista: +10%, +15% | ZAIOS | Proposto como referência (D10) |
 | Regra de decisão Zion | — | 5 passos: geração ≥ 0; conservador aguenta até 3 meses de fixo; payback ≤ 8 (passa), ≤ 12 (ajustar); VPL sem saída ≥ 0; colchão ≥ 10% do CAPEX | — | F03, ZAIOS | Decidido v0 (D11: ferramentas simples mostram "sinal", não veredito) |
 
@@ -112,7 +112,7 @@
 - **"Cenários, não promessas."** junto de qualquer projeção.
 - **"Referência Zion (ajustável)"** junto de cada referência, com a versão do dicionário.
 - **"Resultado antes da sua retirada"** quando a ferramenta não tiver retirada.
-- **"Valor de saída: estimativa, mostrada à parte"** quando houver.
+- **"Valor de saída: estimativa, mostrada à parte"** quando houver, com o **método** usado (múltiplo do EBITDA, avaliação patrimonial ou valor informado) e o resultado **sem venda** ao lado.
 - **"Exemplo com dados fictícios"** em exemplos.
 - Nunca "retorno garantido", "renda passiva", "captação assegurada", "acesso a investidores".
 
@@ -122,3 +122,4 @@
 |---|---|---|
 | 0.1 | 09/11/2026 | Proposta inicial (Comando 05B), a partir da ZAIOS v0, da Folha Única J2, de B06, B08, A09 e F05 |
 | 0.2 | 09/11/2026 | Aprovadas pelo Bruno: D1 (retorno anual x acumulado em 10 anos), D2-C (reserva de reposição 4% provisória sobre a receita bruta realizada, faixa 3–6%, separada da reserva de emergência, sem dupla dedução, validar por tipo de hospedagem), D4 (pró-labore x distribuição de resultados x caixa disponível). Nenhuma ferramenta alterada |
+| 0.3 | 09/11/2026 | Aprovada pelo Bruno: D7-C (valor de saída por múltiplo do EBITDA, avaliação patrimonial ou valor estimado informado; sempre com o método identificado, o cenário sem venda e o valor líquido de custos, tributos e obrigações). Nenhuma ferramenta alterada |
