@@ -1,0 +1,169 @@
+{
+ "vitest": "4.1.10",
+ "ambiente": "node (harness de auditoria; componentes de interface e cliente Supabase substituídos por stubs)",
+ "totais": {
+  "numTotalTests": 135,
+  "numPassedTests": 134,
+  "numFailedTests": 1,
+  "numPendingTests": 0
+ },
+ "arquivos": [
+  {
+   "arquivo": "test/capex.test.ts",
+   "status": "passed",
+   "aprovados": 17,
+   "falhas": []
+  },
+  {
+   "arquivo": "test/financas-indicadores.test.ts",
+   "status": "failed",
+   "aprovados": 49,
+   "falhas": [
+    {
+     "teste": "Dossiê de Operação G2 e G3 monta seções 8, 9 e 10 completas sem alterar a foto",
+     "motivo": "esperado 'R$ 1.300,00' (espaço comum) x obtido 'R$\\u00a01.300,00' (espaço não separável gerado por toLocaleString pt-BR)"
+    }
+   ]
+  },
+  {
+   "arquivo": "test/operacao.test.ts",
+   "status": "passed",
+   "aprovados": 21,
+   "falhas": []
+  },
+  {
+   "arquivo": "test/receitas.test.ts",
+   "status": "passed",
+   "aprovados": 20,
+   "falhas": []
+  },
+  {
+   "arquivo": "test/viabilidade.test.ts",
+   "status": "passed",
+   "aprovados": 27,
+   "falhas": []
+  }
+ ],
+ "cobertura": {
+  "TOTAL": {
+   "lines": 85.45,
+   "functions": 85.85,
+   "branches": 79.19,
+   "statements": 83.01
+  },
+  "calc/capex.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 87.87,
+   "statements": 95.94
+  },
+  "calc/convencoes.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 100,
+   "statements": 100
+  },
+  "calc/estatisticas.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 75,
+   "statements": 96
+  },
+  "calc/formatar.ts": {
+   "lines": 22.22,
+   "functions": 42.85,
+   "branches": 18.18,
+   "statements": 21.05
+  },
+  "calc/funcoes.ts": {
+   "lines": 41.44,
+   "functions": 31.81,
+   "branches": 46.42,
+   "statements": 34.96
+  },
+  "calc/operacao.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 83.33,
+   "statements": 96.15
+  },
+  "calc/receitas.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 83.87,
+   "statements": 98.41
+  },
+  "calc/tipos.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 100,
+   "statements": 100
+  },
+  "calc/viabilidade.ts": {
+   "lines": 98.8,
+   "functions": 100,
+   "branches": 97.4,
+   "statements": 97.74
+  },
+  "exercicios/capex-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 90.16,
+   "statements": 100
+  },
+  "exercicios/financas-calculo.ts": {
+   "lines": 96.92,
+   "functions": 93.87,
+   "branches": 89.55,
+   "statements": 96.29
+  },
+  "exercicios/maturidade-calculo.ts": {
+   "lines": 17.85,
+   "functions": 0,
+   "branches": 0,
+   "statements": 11.62
+  },
+  "exercicios/mercado-calculo.ts": {
+   "lines": 100,
+   "functions": 95.45,
+   "branches": 84.74,
+   "statements": 94.11
+  },
+  "exercicios/posicionamento-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 85,
+   "statements": 100
+  },
+  "exercicios/produto-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 89.18,
+   "statements": 83.33
+  },
+  "exercicios/raio-x-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 94.11,
+   "statements": 100
+  },
+  "exercicios/receitas-calculo.ts": {
+   "lines": 96.29,
+   "functions": 92.3,
+   "branches": 95.68,
+   "statements": 97.22
+  },
+  "exercicios/territorio-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 61.76,
+   "statements": 100
+  },
+  "exercicios/viabilidade-calculo.ts": {
+   "lines": 100,
+   "functions": 100,
+   "branches": 87.23,
+   "statements": 96.96
+  }
+ }
+}

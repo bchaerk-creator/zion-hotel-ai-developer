@@ -133,6 +133,12 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Matriz de impacto (arquivos e linhas no commit ec21ad5), plano em 8 etapas, 20 testes de aceite + 1 de integração com esperados independentes; linha de base: 10 de 11 verificações falham hoje, como esperado.
 - Pendências anteriores continuam abertas; perguntas novas P-O8 a P-O14 para o Bruno. Nada implementado, nada homologado.
 
+## Comando 05G-B · Fechamento e preparação da O9 (09/11/2026)
+- Segunda transcrição independente da composição (6 arquivos) idêntica à primeira. Ressalva nova: leituras pela mesma fonte podem normalizar caracteres invisíveis; integridade só com hash na origem (GitHub privado, plano pronto, não conectado).
+- Composição com pró-labore, reserva 4%, quebra 1% (hipóteses de teste), contingência e taxas e múltiplos alternativos: 188 campos, 0 divergências.
+- Testes próprios da ZAIOS (5 de 19 arquivos): 134 de 135; a falha é um espaço não separável no texto do dossiê, não é cálculo.
+- O9 simulada em cópia descartável: só as 6 mudanças previstas. Propostas P-O8 a P-O14 registradas como propostas. Nada implementado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 

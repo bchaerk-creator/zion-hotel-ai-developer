@@ -1,0 +1,13 @@
+{
+  "_nota": "Comando 05G-B, Teste B. Hipóteses EXCLUSIVAMENTE de teste (reserva 4% e quebra 1% não são parâmetros aprovados para uso; servem só para exercitar as fórmulas). Base: cenários C1 e C2 do 05F (composicao_05f/cenarios_05f.json), com os acréscimos abaixo.",
+  "cenarios": [
+    {"id": "B1", "base": "C2", "descricao": "C2 + pró-labore 40 h/sem × R$ 40/h + reserva 4% + quebra 1% + contingência 20%; taxa 10%, múltiplo 6×",
+     "horas_semana": 40, "custo_hora": 40, "reserva_pct": 0.04, "quebra_pct": 0.01, "contingencia_pct": 0.20, "taxa_desconto": 0.10, "multiplo_saida": 6},
+    {"id": "B2", "base": "C2", "descricao": "Igual a B1 com taxa 12% e múltiplo 5×",
+     "horas_semana": 40, "custo_hora": 40, "reserva_pct": 0.04, "quebra_pct": 0.01, "contingencia_pct": 0.20, "taxa_desconto": 0.12, "multiplo_saida": 5},
+    {"id": "B3", "base": "C2", "descricao": "Igual a B1 com taxa 8% e múltiplo 8×",
+     "horas_semana": 40, "custo_hora": 40, "reserva_pct": 0.04, "quebra_pct": 0.01, "contingencia_pct": 0.20, "taxa_desconto": 0.08, "multiplo_saida": 8},
+    {"id": "B4", "base": "C1", "descricao": "C1 (resultado negativo) + pró-labore 20 h/sem × R$ 40/h + reserva 4% + quebra 1% + contingência 25%; taxa 12%, múltiplo 5×",
+     "horas_semana": 20, "custo_hora": 40, "reserva_pct": 0.04, "quebra_pct": 0.01, "contingencia_pct": 0.25, "taxa_desconto": 0.12, "multiplo_saida": 5}
+  ]
+}
