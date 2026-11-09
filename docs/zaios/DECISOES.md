@@ -89,6 +89,10 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Blueprint Mestre da Mentoria ainda não recebido. Nada implementado.
 - Diretriz da linha B (09/11): B03, B05, B06, B07 e B09 seguem candidatos à venda individual; B01, B02, B04, B08 e B10 sem novas campanhas pagas, uso interno ou como benefício; comparar B06 x Ferramenta 05; novos nomes para B01, B08 e B10; criativos preservados. Matriz final com a sessão Zion Arsenal.
 
+## Comando 05B · Consolidação comercial e financeira (09/11/2026)
+- Decisões do Bruno: linha B (venda individual B03, B06, B07, B09; uso interno B01, B02, B04, B05, B08, B10); B06 e F05 como duas soluções distintas; nomes aprovados para B01, B08 e B10 (revisão futura); ZAIOS como referência financeira central, sem homologação automática.
+- Auditoria em `docs/academy/comando-05b/`: com premissas idênticas, ZAIOS e B08 coincidem até o centavo (VPL −103.917,01; TIR 7,24%; payback 6,95). Divergências são de premissa e rótulo (D1 a D14), não de fórmula. Dicionário financeiro v0.1 e plano de testes propostos. Nada alterado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 

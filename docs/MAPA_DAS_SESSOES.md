@@ -20,6 +20,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | Regras do repositório, marca, ClickMax, moldes | `CLAUDE.md` (main) | — |
 | **ZAIOS** (plataforma no Lovable, zaios.lovable.app) | `docs/zaios/` (decisões, premissas financeiras, roteiro de teste, passagem) | ZAIOS platform development |
 | **Premissas financeiras** (fator, deduções 17%, quebra 1%, reserva 3%, múltiplo 6×, regra de decisão) | `docs/zaios/PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md` | ZAIOS platform development |
+| **Metodologia financeira única** (dicionário v0.1, auditoria das fórmulas, plano de testes; ZAIOS como referência central, homologação pendente) | `docs/academy/comando-05b/` | ZAIOS platform development |
 | **Arquitetura comercial** (decisão de 09/11: C · ecossistema integrado com ofertas independentes; matriz de ofertas, sobreposições, regras de acesso) | `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md` | ZAIOS platform development |
 | **Academy · arquitetura, Tech Stack, plano comercial** | `docs/academy/` (Comando 01 e Comando 04) | ZAIOS platform development |
 | **Fábrica educacional** (rotinas e agentes) | `producao/fabrica/FABRICA.md`, `ROTINAS.md`, `.claude/agents/` (9 agentes) | Marketing da Zion install |
@@ -85,6 +86,8 @@ Fora do escopo Zion e não mapeadas: rescisão trabalhista, contrato de zeladori
 ## 3. Sobreposições e conflitos a resolver
 
 **Decisão de 09/11/2026 (Bruno):** arquitetura comercial C. Academy é a marca educacional; Club é assinatura com benefícios por plano; ferramentas e mini mentorias são vendidas individualmente; a Mentoria de Desenvolvimento Zion 360° é premium e independente (não entra em plano do Club); ZAIOS é plataforma compartilhada com permissões por produto. Detalhes e pendências em `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md`. O conflito 8 abaixo passa a ser tratado lá. **Linha B:** diretriz comercial do Bruno (09/11) repassada à sessão Zion Arsenal, que prepara a matriz final; detalhes na seção 4 do mesmo documento.
+
+**Comando 05B (Bruno, 09/11/2026), decisões:** (1) arquitetura C preservada; (2) linha B: venda individual B03, B06, B07, B09; uso interno ou benefício B01, B02, B04, B05, B08, B10, sem campanhas novas e sem retirar acessos; (3) B06 = orçamento do empreendimento completo e F05 = orçamento de uma cabana (R$ 19 a validar), sem duplicar promessa; (4) nomes aprovados: B01 "Sua Terra Está Pronta para Ser Apresentada?", B08 "Simule os Cenários do Seu Projeto Turístico: Custos, Receitas e Prazos", B10 "Como Apresentar o Projeto da Sua Terra com Clareza?" (só para revisão futura); (5) ZAIOS como referência financeira central, sem homologação automática. Auditoria em `docs/academy/comando-05b/`.
 
 **Duas frentes em paralelo (Bruno, 09/11/2026), só planejamento:**
 1. **Arquitetura comercial.** Zion Arsenal classifica e posiciona a linha B. Produtos Zion configuration fornece os dados, sem mexer nos 26 rascunhos. ZAIOS platform development consolida, verifica sobreposições e prepara as decisões.
