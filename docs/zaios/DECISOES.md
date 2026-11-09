@@ -109,6 +109,13 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Achado novo: na ZAIOS a faixa da reserva é 3–5% (RESERVA_FAIXA); a D2-C aprovou 3–6%.
 - Nenhuma fórmula, ferramenta ou plataforma alterada; nada homologado.
 
+## Comando 05D · Parecer de homologação matemática condicionada (09/11/2026)
+- Revisão dos 139 casos: íntegros, categorias exclusivas, 0 falhas. Verificação independente em Python (sem ler o código das ferramentas) confere 79 de 79 valores numéricos com o plano e com as ferramentas; 17 casos lógicos conferidos por definição.
+- Proposta (para revisão do Bruno): H1 para os grupos principais da ZAIOS (primitivas de `src/calc`, commit Lovable ec21ad5), núcleo de B08 e A09 e orçamento da F05; H2 para EBITDA com custos do modelo, B08 fora do cenário testado, A09 (360 dias, payback), B06 e Folha J2; nenhum H3; parâmetros e limites da régua em H4.
+- Ressalvas: camada de exercícios e G2/G3 da ZAIOS não executadas; cópia da ZAIOS transcrita (confirmar por hash); telas não testadas.
+- Observações novas: A09 lança gestão como dedução; B08 calcula o equilíbrio com a reserva dentro das deduções; convenção do payback a registrar.
+- Nada corrigido, nada homologado em definitivo; implementação bloqueada.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
