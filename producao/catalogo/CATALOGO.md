@@ -59,7 +59,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 15 | Comparador de fornecedores | B | P | A fazer |
 | 16 | Kit operacional de parcerias | C | D + P | A fazer |
 | 17 | **Checklist de limpeza, inspeção e liberação** | B | P + PDF | **Pronto** (`producao/utilitarios/17-checklist-limpeza/`) |
-| 18 | Planner de manutenção preventiva | B | P | A fazer (base: Manual Técnico da Zion) |
+| 18 | Planner de manutenção preventiva | B | P | **Pronto** (`producao/utilitarios/18-manutencao-preventiva/`) |
 | 19 | Controle de compras e consumo interno | B | P | A fazer |
 | 20 | Kit de treinamento do primeiro turno | B | D | A fazer (base: Onboarding da Zion) |
 | 21 | Kit de mensagens de reservas | B | K | A fazer |
@@ -97,6 +97,7 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 4. **14 · Quadro de ocorrências e manutenção** (pronto, em rascunho no ClickMax).
 5. **29 · Calculadora de custos de experiências** (pronto, em rascunho no ClickMax).
 5b. **05 · Orçamento da Cabana** (pronto, em rascunho no ClickMax; pedido de Bruno em 08/11).
+5c. **18 · Planner de manutenção preventiva** (pronto, em rascunho no ClickMax, 09/11). Passou à frente da 01 e da 21 porque, após o Comando 05A/05B (promessas sem duplicação), a 01 se sobrepõe a B05/B10/Land Bank e a 21 à A07: **Bruno decide** se seguem, mudam de promessa ou saem do catálogo.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

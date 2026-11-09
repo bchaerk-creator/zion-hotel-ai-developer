@@ -59,6 +59,15 @@ PRODUTOS = [
                    ("Orcamento-Cabana-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Orcamento-Cabana-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Cotacao.pdf", "Ficha de cotação", "PDF · para imprimir")]),
+    dict(pasta="manutencao-18", num="18", telas=["producao/utilitarios/18-manutencao-preventiva/dist/demonstracao/demo-plano.png", "producao/utilitarios/18-manutencao-preventiva/dist/demonstracao/demo-painel.png"],
+         titulo="Planner de Manutenção Preventiva",
+         promessa="Aprenda o passo a passo para montar um plano de manutenção preventiva da sua hospedagem: o que conferir, de quanto em quanto tempo, quem faz e o que está atrasado.",
+         itens=["21 tarefas sugeridas", "Próxima data calculada", "Atrasadas e em breve", "Ficha de ronda"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Plano, Registro e Painel.", "Na planilha em branco, ajuste a lista e anote a última vez de cada tarefa.", "Use a ficha de ronda e passe o que foi feito para a aba Registro; abra o Painel toda semana."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Manutencao-Preventiva-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Manutencao-Preventiva-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Ronda-Preventiva.pdf", "Ficha de ronda preventiva", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
