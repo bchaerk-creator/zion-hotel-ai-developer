@@ -1,6 +1,6 @@
 # Dicionário financeiro Zion · Academy e ZAIOS
 
-**Versão 0.1 · proposta de 09/11/2026 · NÃO homologado.** Comando 05B. Nada foi alterado em ferramentas ou na ZAIOS.
+**Versão 0.2 · 09/11/2026 · NÃO homologado** (decisões metodológicas D1, D2 e D4 aprovadas pelo Bruno; nenhuma ferramenta alterada até a homologação). Comando 05B. Nada foi alterado em ferramentas ou na ZAIOS.
 
 ## Regras do dicionário
 
@@ -63,14 +63,17 @@
 | Custo variável | R$ | Sai com cada noite ou estadia vendida | noites × custo por noite + estadias × custo por estadia + quebra | ZAIOS, J2 | Decidido v0 (D9: ferramentas simples podem ter um componente, com rótulo) |
 | Quebra e perda | % | Itens quebrados ou perdidos | diárias × % (custo variável) | **Referência Zion 1%** | Decidido v0 (D3: faltando em B08/A09) |
 | Margem de contribuição | R$ | O que sobra para pagar os fixos | receita real − custos variáveis | ZAIOS, J2 | Decidido v0 |
-| Retirada do dono | R$/mês | O custo do trabalho do proprietário | horas por semana × valor da hora × 4,33 | **Referência Zion R$ 40/h** | Decidido v0 (D4: faltando em B08/A09) |
+| Pró-labore (retirada do dono) | R$/mês | Remuneração do trabalho do proprietário na operação; **é custo fixo** e entra antes do resultado operacional | horas por semana × valor da hora × 4,33, ou valor fixo definido | **Referência Zion R$ 40/h** | **Aprovado D4** (faltando em B08/A09) |
+| Distribuição de resultados | R$ | Parte do resultado que o proprietário retira **depois** de pagos todos os custos, o pró-labore e as reservas; **não é custo** | decisão do proprietário, limitada ao caixa disponível | — | **Aprovado D4** |
+| Caixa disponível | R$ | Dinheiro que sobra depois da operação, das reservas e da distribuição | saldo inicial + geração de caixa − reserva de emergência separada − distribuição de resultados | — | **Aprovado D4** |
 | Custos fixos | R$ | Saem com casa cheia ou vazia; incluem a retirada | soma | ZAIOS, J2 | Decidido v0 |
 | Resultado operacional | R$ | O que sobra da operação ("quanto sobrou") | margem de contribuição − custos fixos | ZAIOS, J2 | Decidido v0 |
 | Margem operacional | % | — | resultado operacional ÷ receita bruta | ZAIOS | Decidido v0 |
 | Custos do modelo | R$ | Aluguel, taxa de gestão, royalty | aluguel + receita bruta × (gestão + royalty) | ZAIOS | Decidido v0 |
 | EBITDA | R$ | Resultado antes de juros, impostos sobre o lucro, depreciação e amortização | resultado operacional − custos do modelo | ZAIOS | Decidido v0 |
-| Reserva de reposição | R$ / % | Dinheiro guardado para trocar bens que se desgastam; **não é dedução** | receita bruta × % (abaixo do EBITDA) | Referência Zion **3%** (ZAIOS) ou **4%** (J2), faixa 3–6% | **Divergente (D2)** |
-| Geração de caixa | R$ | O que fica no caixa da operação | EBITDA − reserva de reposição | ZAIOS | Decidido v0 |
+| Reserva de reposição | R$ / % | Dinheiro guardado para trocar bens que se desgastam (colchões, enxoval de longa duração, eletros, ar-condicionado); **não é dedução nem custo variável** | **receita bruta efetivamente realizada × %** (abaixo do EBITDA) | **Referência Zion 4% (provisória)**, faixa ajustável **3% a 6%**, a validar por tipo de hospedagem | **Aprovado D2-C** |
+| Reserva de emergência | R$ | Caixa separado para meses de baixa e imprevistos; **diferente da reserva de reposição** e nunca somado a ela na mesma conta | meta em meses de custo fixo (ver meses de fôlego) | — | **Aprovado D2-C** (separação); meta a definir |
+| Geração de caixa | R$ | O que fica no caixa da operação | EBITDA − reserva de reposição | ZAIOS | Decidido v0 (sem descontar duas vezes: a reserva de reposição sai aqui e só aqui) |
 | Equilíbrio (noites) | noites | Noites que empatam o resultado | (fixos + aluguel) ÷ contribuição por noite | ZAIOS | Decidido v0 |
 | Ocupação de equilíbrio | % | — | equilíbrio ÷ noites disponíveis | ZAIOS | Decidido v0 |
 | Meses de fôlego | meses | Quantos meses o caixa paga os fixos | (saldo + reservas separadas) ÷ fixo do mês | J2 | Proposto (D12, convive com "cobertura da reserva" da ZAIOS G2) |
@@ -98,8 +101,8 @@
 | Payback simples | anos | Quando o acumulado vira positivo | acumulado com fração; **estendido** pelo regime além do horizonte e marcado | ZAIOS | Proposto como padrão (D8) |
 | Payback descontado | anos | Idem com fluxos descontados | só dentro do horizonte | ZAIOS | Decidido v0 |
 | Payback simplificado | anos | Atalho sem rampa | investimento ÷ resultado anual | A09 | Proposto (rótulo obrigatório) |
-| Retorno anual | % a.a. | Resultado de um ano sobre o investimento | resultado (ou geração) do regime ÷ investimento | ZAIOS, A09 | **Proposto (D1)**: substitui "ROI" sem qualificador |
-| Retorno acumulado em 10 anos | % | Ganho total sobre o investimento no horizonte | (Σ fluxos 1–10 + saída − investimento) ÷ investimento | B08 | **Proposto (D1)** |
+| Retorno anual sobre o investimento | % a.a. | Resultado de um ano de regime sobre o investimento | geração de caixa do regime ÷ investimento total | ZAIOS, A09 | **Aprovado D1**: substitui "ROI" sem qualificador |
+| Retorno acumulado em 10 anos | % | Ganho total sobre o investimento no horizonte | (Σ fluxos dos anos 1 a 10 − investimento) ÷ investimento; com valor de saída, mostrar as duas versões | B08 | **Aprovado D1** |
 | Valor de saída | R$ | Valor estimado de venda do ativo no fim do horizonte; **sempre mostrado à parte** | múltiplo × EBITDA do regime | Referência Zion 6× (ajustável) | **Divergente (D7)**: o B08 usa % do investimento |
 | Cenários | — | Variações de diária e ocupação | conservador: diária −10%, ocupação −20%; otimista: +10%, +15% | ZAIOS | Proposto como referência (D10) |
 | Regra de decisão Zion | — | 5 passos: geração ≥ 0; conservador aguenta até 3 meses de fixo; payback ≤ 8 (passa), ≤ 12 (ajustar); VPL sem saída ≥ 0; colchão ≥ 10% do CAPEX | — | F03, ZAIOS | Decidido v0 (D11: ferramentas simples mostram "sinal", não veredito) |
@@ -118,3 +121,4 @@
 | Versão | Data | Mudança |
 |---|---|---|
 | 0.1 | 09/11/2026 | Proposta inicial (Comando 05B), a partir da ZAIOS v0, da Folha Única J2, de B06, B08, A09 e F05 |
+| 0.2 | 09/11/2026 | Aprovadas pelo Bruno: D1 (retorno anual x acumulado em 10 anos), D2-C (reserva de reposição 4% provisória sobre a receita bruta realizada, faixa 3–6%, separada da reserva de emergência, sem dupla dedução, validar por tipo de hospedagem), D4 (pró-labore x distribuição de resultados x caixa disponível). Nenhuma ferramenta alterada |

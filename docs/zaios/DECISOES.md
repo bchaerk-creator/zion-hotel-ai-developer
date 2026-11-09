@@ -93,6 +93,13 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Decisões do Bruno: linha B (venda individual B03, B06, B07, B09; uso interno B01, B02, B04, B05, B08, B10); B06 e F05 como duas soluções distintas; nomes aprovados para B01, B08 e B10 (revisão futura); ZAIOS como referência financeira central, sem homologação automática.
 - Auditoria em `docs/academy/comando-05b/`: com premissas idênticas, ZAIOS e B08 coincidem até o centavo (VPL −103.917,01; TIR 7,24%; payback 6,95). Divergências são de premissa e rótulo (D1 a D14), não de fórmula. Dicionário financeiro v0.1 e plano de testes propostos. Nada alterado.
 
+## Dicionário financeiro · decisões metodológicas (09/11/2026, Bruno)
+- **D1:** separar retorno anual sobre o investimento e retorno acumulado em 10 anos ("ROI" sem qualificador deixa de ser usado).
+- **D4:** diferenciar pró-labore (custo fixo), distribuição de resultados (depois de custos e reservas, não é custo) e caixa disponível.
+- **D2-C:** reserva de reposição de 4% provisórios sobre a receita bruta efetivamente realizada, faixa ajustável de 3% a 6%; separada da reserva de emergência; sem descontar o mesmo custo duas vezes; validar o percentual por tipo de hospedagem.
+- Efeito futuro (só após homologação): ZAIOS hoje usa 3% da receita bruta; Folha Única J2 usa 4% da receita real; B08 trata a reserva como dedução; A09 não tem reserva. Nenhuma ferramenta alterada.
+- Próxima: D3 (quebra e perda).
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
