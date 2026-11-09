@@ -182,6 +182,19 @@ Todos do tipo `formula`. Se algum falhar, é erro real de fórmula ou de ambient
 | Node 22.6+ | casos da ZAIOS (TypeScript) | Node anterior não carrega `.ts` |
 | Estrutura atual de B06, B08, A09 e Folha J2 | casos dessas ferramentas | Se os campos ou os nomes de saída mudarem numa correção aprovada, os casos de divergência devem ser revisados junto, sem mudar os valores esperados |
 
+## Testes complementares (Comando 05E)
+
+- `casos/c01_complementares.js`: B08 (rampa, reajuste, residual, equilíbrio), A09 (payback, gestão, 372 dias), B06 (3 perfis), F05 (diferença, R$/m², em branco), Folha J2 (indicadores, custos do modelo).
+- `casos/c02_zaios_complementares.js`: ZAIOS (custos do modelo e EBITDA, outras receitas, estadia, sazonalidade, composição de `src/exercicios`, G2/G3).
+- Esperados independentes: `independente/complementares_referencia.py` → `independente/esperados_complementares.json`.
+- A composição precisa de uma cópia local da raiz do projeto ZAIOS (com `src/`), apontada por `ZAIOS_SRC_DIR`. O carregador `lib/zaios_comp.js` copia para uma pasta temporária e só ajusta os imports. O código não fica no repositório.
+
+```
+ZAIOS_CALC_DIR=<cópia de src/calc> ZAIOS_SRC_DIR=<cópia da raiz> node testes/financeiro/run.js --saida <pasta>
+```
+
+Execução de referência: `resultados/2026-11-09-05e-com-zaios/` (237 casos, 0 falhas) e `resultados/2026-11-09-05e-sem-zaios/`. Relatórios: `docs/academy/comando-05e/`.
+
 ## Limitações dos testes
 
 1. **Interface não testada.** Os testes chamam o cálculo, não as telas. O que só aparece na tela é verificado pela presença de campos e textos no código-fonte das ferramentas (casos T7, T8, T11 de B08/A09): é um indicador, não prova de exibição. Isso inclui a seleção de veredito na ZAIOS, rótulos e leitura de números como "500.50".

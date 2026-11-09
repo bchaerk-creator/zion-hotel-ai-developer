@@ -11,7 +11,8 @@ subprocess.run(["soffice", "--headless", "--calc", "--convert-to", "xlsx", "--ou
                check=True, capture_output=True, timeout=180)
 wb = load_workbook(out / "in.xlsx", data_only=True)
 rot = {"Subtotal dos itens": "subtotal", "Reserva para imprevistos": "reserva", "Total com reserva": "total",
-       "Verba disponível": "verba", "Diferença (verba − total com reserva)": "diferenca", "Leitura": "leitura"}
+       "Verba disponível": "verba", "Diferença (verba − total com reserva)": "diferenca", "Leitura": "leitura",
+       "Custo por m² de área interna": "porM2Interna", "Custo por m² de área total (interna + deck)": "porM2Total"}
 res = {}
 for ws in wb.worksheets:
     for row in ws.iter_rows(min_col=1, max_col=2):

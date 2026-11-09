@@ -116,6 +116,13 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Observações novas: A09 lança gestão como dedução; B08 calcula o equilíbrio com a reserva dentro das deduções; convenção do payback a registrar.
 - Nada corrigido, nada homologado em definitivo; implementação bloqueada.
 
+## Comando 05E · Integridade e testes complementares (09/11/2026)
+- Integridade: três transcrições dos 4 arquivos de `src/calc` (commit ec21ad5) são idênticas byte a byte, e a cópia reproduz os valores dos testes da própria ZAIOS. Não há hash calculado na origem (sem GitHub sincronizado). **Integridade não comprovada; ressalva aberta.**
+- 98 casos novos (ZAIOS: custos do modelo, outras receitas, estadia, sazonalidade, composição de `src/exercicios`, G2/G3; B08 com rampa e residual; A09 com gestão e contingência; 3 perfis do B06; F05; Folha J2): 93 OK, 2 divergências (veredito sem trava; equilíbrio do B08 com reserva), 3 limitações (gestão no A09, 372 dias no A09, impostos na G2). 0 falhas. Os 139 casos anteriores não mudaram.
+- Proposta (para revisão do Bruno): EBITDA da ZAIOS, G2/G3, VPL/TIR do B08, payback do A09 e indicadores da Folha J2 passam a H1; composição da ZAIOS em H2 (cenário único); B06 segue H2 (independência parcial).
+- Observações novas: O6 (Folha J2 recebe custos do modelo em R$, o dicionário usa % da receita); O7 (G2 trata impostos como despesa variável). Correção: o A09 aceita até 372 dias/ano, não "no máximo 360".
+- Nada corrigido, nada homologado em definitivo; implementação bloqueada.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 

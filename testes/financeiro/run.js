@@ -10,8 +10,9 @@ const { carregarZaios } = require("./lib/zaios");
 const arsenal = require("./lib/arsenal");
 const { carregarFolha } = require("./lib/folha_j2");
 const { resumoF05 } = require("./lib/f05");
+const { carregarComposicao } = require("./lib/zaios_comp");
 
-const ARQS = ["t01_zbase", "t02_zcompleto", "t03_referencia", "t04_orcamento", "t05_mes_real", "t06_limites", "t07_regua", "t08_omissoes", "t09_reserva_quebra", "t10_prolabore", "t11_saida", "t12_parametros"];
+const ARQS = ["t01_zbase", "t02_zcompleto", "t03_referencia", "t04_orcamento", "t05_mes_real", "t06_limites", "t07_regua", "t08_omissoes", "t09_reserva_quebra", "t10_prolabore", "t11_saida", "t12_parametros", "c01_complementares", "c02_zaios_complementares"];
 
 function classificar(caso, obtido) {
   const passou = iguais(obtido, caso.esperado, caso.tol);
@@ -26,16 +27,17 @@ async function main() {
   const saida = iSaida > 0 ? process.argv[iSaida + 1] : path.join(__dirname, "resultados", "ultima");
   const z = await carregarZaios();
   const folha = carregarFolha();
+  const zc = await carregarComposicao(["exercicios/capex-calculo", "exercicios/receitas-calculo", "exercicios/viabilidade-calculo", "exercicios/financas-calculo", "calc/operacao"]);
   const deps = {
     zaios: z.ok ? z : null, zaiosFontes: z.ok ? z.fontes : {},
     arsenal: fs.existsSync(arsenal.APP) ? arsenal : null,
-    folha, f05: resumoF05,
+    folha, f05: resumoF05, f05BRANCO: require("./lib/f05").BRANCO, zaiosComp: zc.ok ? zc : null,
   };
   const disponivel = {
     zaios: !!deps.zaios, arsenal: !!deps.arsenal, folha: !!folha,
-    "folha+zaios": !!folha && !!deps.zaios, f05: (() => { const r = resumoF05(); return r.ok; })(),
+    "folha+zaios": !!folha && !!deps.zaios, zaiosComp: zc.ok, f05: (() => { const r = resumoF05(); return r.ok; })(),
   };
-  const motivo = { zaios: z.ok ? "" : z.motivo, arsenal: "Pasta do Zion Arsenal ausente.", folha: "Folha Única J2 ausente.", "folha+zaios": "Precisa da Folha J2 e da ZAIOS.", f05: resumoF05().ok ? "" : resumoF05().motivo };
+  const motivo = { zaiosComp: zc.ok ? "" : zc.motivo, zaios: z.ok ? "" : z.motivo, arsenal: "Pasta do Zion Arsenal ausente.", folha: "Folha Única J2 ausente.", "folha+zaios": "Precisa da Folha J2 e da ZAIOS.", f05: resumoF05().ok ? "" : resumoF05().motivo };
 
   const linhas = [];
   for (const a of ARQS) {

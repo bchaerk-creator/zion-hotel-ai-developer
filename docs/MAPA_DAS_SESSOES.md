@@ -21,6 +21,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **ZAIOS** (plataforma no Lovable, zaios.lovable.app) | `docs/zaios/` (decisões, premissas financeiras, roteiro de teste, passagem) | ZAIOS platform development |
 | **Premissas financeiras** (fator, deduções 17%, quebra 1%, reserva 3%, múltiplo 6×, regra de decisão) | `docs/zaios/PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md` | ZAIOS platform development |
 | **Parecer de homologação matemática condicionada** (Comando 05D; para revisão do Bruno, nada homologado em definitivo) | `docs/academy/comando-05d/` | ZAIOS platform development |
+| **Integridade da ZAIOS e testes complementares** (Comando 05E; 237 casos, 0 falhas; integridade não comprovada; H1/H2 atualizados como proposta) | `docs/academy/comando-05e/` | ZAIOS platform development |
 | **Testes financeiros automatizados** (T1 a T12, Comando 05C; somente preparação, nada homologado) | `testes/financeiro/` (README, run.js, resultados) | ZAIOS platform development |
 | **Metodologia financeira única** (dicionário v0.1, auditoria das fórmulas, plano de testes; ZAIOS como referência central, homologação pendente) | `docs/academy/comando-05b/` | ZAIOS platform development |
 | **Arquitetura comercial** (decisão de 09/11: C · ecossistema integrado com ofertas independentes; matriz de ofertas, sobreposições, regras de acesso) | `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md` | ZAIOS platform development |
