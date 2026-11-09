@@ -44,3 +44,14 @@
 
 ## Criativos Meta (07/11/2026)
 - 190 criativos 1080×1350 (A02–B10, 10 ângulos cada) em `producao/zion-arsenal/criativos/` com copies e UTMs; gerador em `producao/zion-arsenal/creatives/`. Nenhuma campanha criada.
+
+## Comando 05B · decisões do Bruno (09/11/2026, via sessão ZAIOS)
+- **Venda individual:** B03, B06, B07, B09.
+- **Uso interno ou benefício:** B01, B02, B04, B05, B08, B10. Sem campanhas novas e sem retirar acessos (o módulo 9 da Trilha 1 fica como está).
+- **Escopos:** B06 = orçamento do empreendimento completo; Ferramenta 05 = uma cabana.
+- **Nomes aprovados para revisão futura:**
+  - B01 "Sua Terra Está Pronta para Ser Apresentada?"
+  - B08 "Simule os Cenários do Seu Projeto Turístico: Custos, Receitas e Prazos"
+  - B10 "Como Apresentar o Projeto da Sua Terra com Clareza?"
+- **Auditoria financeira de B06, B08 e A09:** `docs/academy/comando-05b/`, divergências D1–D14 de premissa e rótulo.
+- **Até o "aprovado" de cada correção** (virão uma por vez): não alterar fórmulas, páginas, nomes nem criativos.
