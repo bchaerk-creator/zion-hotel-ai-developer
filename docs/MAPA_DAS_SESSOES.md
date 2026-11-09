@@ -55,6 +55,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **Produtos Zion configuration** | 26 produtos em rascunho no ClickMax; campanha Arsenal 01 pausada | `producao/CATALOGO_REVISAO.md` | Documentos do vendedor ClickMax |
 | **7 volumes e ebook Zion** (hub de mídia) | Coleção de e-books e, desde outubro, rotina diária de mídia e CRM | Branch `claude/zion-volumes-ebook-creation-*` (não está no remoto); artifacts | Número de disparo; teto de anúncios; pagamento de contas de anúncio; pixel |
 | **Automação de reservas Zion** | Noite Mágica: landing e formulário no ClickMax, pixel próprio, campanha de teste **pausada** | Branch `claude/noite-magica-assets` | Ok para ativar; faturamento do canal site |
+| **Anúncios do site Zion Bubble** (09/11) | 6 criativos Meta 1080×1350 com fotos reais e textos com UTMs para reservas em Urubici e Floripa e voucher presente, tudo a partir do que o site diz. Nenhuma campanha criada | `producao/anuncios/zion-bubble-site/` (`ANUNCIOS.md`, `criativos/`) | Conta de anúncio; "aprovado" para campanha pausada e orçamento |
 | **Zion Cocoon e Glamp Store** | Projetos da linha de glamping e Cabin 28 | `projects/zion-glamping-line/` (branch própria) | Escolher opção A ou B; engenheiro; cotações |
 
 ### Anteriores (agosto a outubro)
