@@ -23,6 +23,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **Parecer de homologação matemática condicionada** (Comando 05D; para revisão do Bruno, nada homologado em definitivo) | `docs/academy/comando-05d/` | ZAIOS platform development |
 | **Integridade da ZAIOS e testes complementares** (Comando 05E; 237 casos, 0 falhas; integridade não comprovada; H1/H2 atualizados como proposta) | `docs/academy/comando-05e/` | ZAIOS platform development |
 | **Composição da ZAIOS em 3 cenários** (Comando 05F; 288 campos, 0 divergências matemáticas; integridade não comprovada; composição segue H2) | `docs/academy/comando-05f/` | ZAIOS platform development |
+| **Decisões O8 a O14 e plano de implementação** (Comando 05G-A; aprovadas, não implementadas; matriz de impacto, plano em 8 etapas, testes de aceite com linha de base) | `docs/academy/comando-05g-a/` | ZAIOS platform development |
 | **Testes financeiros automatizados** (T1 a T12, Comando 05C; somente preparação, nada homologado) | `testes/financeiro/` (README, run.js, resultados) | ZAIOS platform development |
 | **Metodologia financeira única** (dicionário v0.1, auditoria das fórmulas, plano de testes; ZAIOS como referência central, homologação pendente) | `docs/academy/comando-05b/` | ZAIOS platform development |
 | **Arquitetura comercial** (decisão de 09/11: C · ecossistema integrado com ofertas independentes; matriz de ofertas, sobreposições, regras de acesso) | `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md` | ZAIOS platform development |

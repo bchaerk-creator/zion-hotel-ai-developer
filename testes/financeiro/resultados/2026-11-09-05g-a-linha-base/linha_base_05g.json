@@ -1,0 +1,68 @@
+[
+ {
+  "id": "O8-1",
+  "verificacao": "P6 sem selo de aprovação (C2)",
+  "resultado": "FALHA",
+  "evidencia": "selo do P6 = \"Avançar\""
+ },
+ {
+  "id": "O8-2",
+  "verificacao": "Conflito P6 x viabilidade explicitado (C3E)",
+  "resultado": "FALHA",
+  "evidencia": "P6 \"Avançar\" x viabilidade \"Redesenhar\"; alertas da viabilidade: 0"
+ },
+ {
+  "id": "O8-3",
+  "verificacao": "Margem antes e depois dos custos do modelo com nomes distintos (C1)",
+  "resultado": "FALHA",
+  "evidencia": "modelo do P6 expõe só margemOperacional = 0.199332"
+ },
+ {
+  "id": "O9-1",
+  "verificacao": "Saída não negativa com EBITDA < 0 (C1)",
+  "resultado": "FALHA",
+  "evidencia": "saída = R$ -92517.75; VPL com saída = R$ -927012.89"
+ },
+ {
+  "id": "O9-2",
+  "verificacao": "Saída inalterada com EBITDA > 0 (C2)",
+  "resultado": "PASSA",
+  "evidencia": "saída = R$ 3312531.36"
+ },
+ {
+  "id": "O10-1",
+  "verificacao": "Necessidade de caixa no ano 5 aparece (C1)",
+  "resultado": "FALHA",
+  "evidencia": "curva com 36 meses; menor saldo R$ 22704.75; esperado: 1º mês negativo 54"
+ },
+ {
+  "id": "O10-2",
+  "verificacao": "Atraso não melhora o projeto sem explicação (C2)",
+  "resultado": "FALHA",
+  "evidencia": "menor saldo com atraso R$ 148656.29 > sem atraso R$ 132524.00"
+ },
+ {
+  "id": "O11-1",
+  "verificacao": "Bases de gestão e royalties configuráveis (C2)",
+  "resultado": "FALHA",
+  "evidencia": "sem campo de base; EBITDA = R$ 552088.56 (= combinação bruta/bruta 552088.56)"
+ },
+ {
+  "id": "O12-1",
+  "verificacao": "Aluguel na base do giro (C1)",
+  "resultado": "FALHA",
+  "evidencia": "giro A = R$ 54000.00 (6 × fixo sem aluguel)"
+ },
+ {
+  "id": "O13-1",
+  "verificacao": "Necessário x disponível com déficit (C1)",
+  "resultado": "FALHA",
+  "evidencia": "sem campo de capital disponível; captação = R$ 859095.26"
+ },
+ {
+  "id": "O14-1",
+  "verificacao": "Receita independente não cai com a ocupação (C3 → C3E, percentual mantido)",
+  "resultado": "FALHA",
+  "evidencia": "outras no C3E com o mesmo percentual = R$ 345600.00 (esperado R$ 480.000,00 para a categoria C)"
+ }
+]

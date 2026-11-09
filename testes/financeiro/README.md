@@ -207,6 +207,12 @@ ZAIOS_SRC_DIR=<cópia da raiz> node testes/financeiro/composicao_05f/run_05f.js 
 
 Execução de referência: `resultados/2026-11-09-05f/` (288 campos: 249 OK, 32 divergências metodológicas, 7 não aplicáveis, 0 divergências matemáticas). Relatórios: `docs/academy/comando-05f/`.
 
+## Testes de aceite das decisões O8 a O14 (Comando 05G-A)
+
+- Esperados independentes: `aceite_05g/aceite_05g_referencia.py` → `aceite_05g/esperados_aceite_05g.json` (20 testes + integração; usa as entradas do 05F).
+- Linha de base contra a ZAIOS atual: `ZAIOS_SRC_DIR=<cópia> node testes/financeiro/aceite_05g/linha_base_05g.js --saida <pasta>`. Antes da implementação, FALHA é o esperado.
+- Execução de referência: `resultados/2026-11-09-05g-a-linha-base/` (11 verificações: 10 FALHA, 1 PASSA). Plano: `docs/academy/comando-05g-a/PLANO_TESTES_REGRESSAO.md`.
+
 ## Limitações dos testes
 
 1. **Interface não testada.** Os testes chamam o cálculo, não as telas. O que só aparece na tela é verificado pela presença de campos e textos no código-fonte das ferramentas (casos T7, T8, T11 de B08/A09): é um indicador, não prova de exibição. Isso inclui a seleção de veredito na ZAIOS, rótulos e leitura de números como "500.50".

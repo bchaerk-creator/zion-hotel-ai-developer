@@ -1,0 +1,326 @@
+{
+ "_gerado_por": "aceite_05g_referencia.py",
+ "testes": {
+  "O8-1": {
+   "descricao": "P6 nunca apresenta selo de aprovação definitiva",
+   "entrada": "C2 (margem operacional 59,06%)",
+   "esperado": {
+    "selo_p6_permitido": [
+     "Indicação preliminar"
+    ],
+    "selos_proibidos_no_p6": [
+     "Avançar",
+     "Ajustar",
+     "Redesenhar",
+     "Aprovado",
+     "Viável"
+    ],
+    "texto_obrigatorio": "indicação inicial, subordinada à análise financeira completa"
+   }
+  },
+  "O8-2": {
+   "descricao": "Contradição entre P6 e viabilidade é explicitada",
+   "entrada": "C3E",
+   "esperado": {
+    "indicacao_p6": "positiva (margem operacional 45,40%)",
+    "decisao_viabilidade": "Redesenhar",
+    "conflito_sinalizado": true,
+    "prevalece": "análise financeira completa"
+   }
+  },
+  "O8-3": {
+   "descricao": "Margem antes e depois dos custos do modelo aparecem com nomes distintos",
+   "entrada": "C1",
+   "esperado": {
+    "margem_operacional_antes_custos_modelo": 0.19933246357903886,
+    "margem_ebitda": -0.08940856707980006
+   }
+  },
+  "O9-1": {
+   "descricao": "EBITDA negativo não gera valor de saída negativo",
+   "entrada": "C1 (EBITDA −15.419,63)",
+   "esperado": {
+    "valor_saida": 0.0,
+    "vpl_com_saida": -891343.2955573016,
+    "vpl_sem_saida": -891343.2955573016,
+    "vpl_com_igual_sem": true,
+    "tir_com_saida": null
+   },
+   "atual_05f": {
+    "valor_saida": -92517.7500000001,
+    "vpl_com_saida": -927012.8932229207
+   }
+  },
+  "O9-2": {
+   "descricao": "EBITDA positivo: valor de saída inalterado",
+   "entrada": "C2",
+   "esperado": {
+    "valor_saida": 3312531.3600000003,
+    "vpl_com_saida": 2225674.446120301,
+    "tir_com_saida": 0.2414413278976687
+   }
+  },
+  "O9-3": {
+   "descricao": "Borda: EBITDA = 0 gera saída 0",
+   "entrada": "EBITDA 0, múltiplo 6",
+   "esperado": {
+    "valor_saida": 0.0
+   }
+  },
+  "O10-1": {
+   "descricao": "Necessidade de caixa depois do mês 36 aparece na análise (36 primeiros meses positivos)",
+   "entrada": "C1 com o giro calculado pela regra atual",
+   "esperado": {
+    "saldo_mes36": 22704.75000000003,
+    "menor_36": 22704.75000000003,
+    "menor_120": -85232.62500000007,
+    "mes_menor_120": 120,
+    "primeiro_mes_negativo": 54,
+    "ano_primeiro_negativo": 5,
+    "capital_adicional_necessario": 85232.62500000007,
+    "saldo_final_120": -85232.62500000007,
+    "saldos_anuais_fim_de_ano": [
+     85777.16250000006,
+     38124.375000000044,
+     22704.75000000003,
+     7285.125000000012,
+     -8134.500000000005,
+     -23554.125000000022,
+     -38973.75000000004,
+     -54393.37500000003,
+     -69813.00000000003,
+     -85232.62500000007
+    ]
+   },
+   "verificacao": "menor_36 > 0 e primeiro_mes_negativo > 36"
+  },
+  "O10-2": {
+   "descricao": "Atraso de 6 meses não pode parecer melhorar o projeto",
+   "entrada": "C2 com e sem atraso (horizonte fixo de 120 meses do calendário do projeto)",
+   "esperado": {
+    "saldo_final_120_base": 4850461.784847238,
+    "saldo_final_120_atraso": 4593922.632847994,
+    "perda_de_caixa_no_horizonte": 256539.15199924447,
+    "menor_36_base": 132524.00340935288,
+    "menor_36_atraso": 148656.29199962213,
+    "regra": "o relatório mostra o efeito do atraso sobre receitas, despesas, investimento, financiamento e valor presente; o saldo final em 10 anos com atraso é menor"
+   },
+   "condicional": "convenção de desconto mensal do atraso ainda não aprovada (ver PENDENCIAS_METODOLOGICAS.md, P-O10)"
+  },
+  "O10-3": {
+   "descricao": "Saldos de fim de ano 1 a 10 (visão anual)",
+   "entrada": "C2",
+   "esperado": [
+    139935.6961632499,
+    433753.30484723666,
+    985841.8648472363,
+    1537930.424847236,
+    2090018.9848472355,
+    2642107.544847236,
+    3194196.1048472365,
+    3746284.664847237,
+    4298373.224847238,
+    4850461.784847238
+   ]
+  },
+  "O11-1": {
+   "descricao": "Gestão e royalties com bases diferentes e independentes",
+   "entrada": "C2 (hospedagem 1.168.584; bruta 1.348.584)",
+   "esperado": {
+    "gestao_hospedagem__royalty_hospedagem": {
+     "gestao": 81800.88,
+     "royalty": 46743.36,
+     "custos_modelo": 224544.24,
+     "ebitda": 571888.56
+    },
+    "gestao_hospedagem__royalty_bruta": {
+     "gestao": 81800.88,
+     "royalty": 53943.36,
+     "custos_modelo": 231744.24,
+     "ebitda": 564688.56
+    },
+    "gestao_bruta__royalty_hospedagem": {
+     "gestao": 94400.88,
+     "royalty": 46743.36,
+     "custos_modelo": 237144.24,
+     "ebitda": 559288.56
+    },
+    "gestao_bruta__royalty_bruta": {
+     "gestao": 94400.88,
+     "royalty": 53943.36,
+     "custos_modelo": 244344.24,
+     "ebitda": 552088.56
+    }
+   },
+   "verificacao": "diferença entre combinações = percentual × outras receitas (180.000); nenhuma dupla incidência"
+  },
+  "O11-2": {
+   "descricao": "Sem base contratual definida: premissa marcada como hipótese",
+   "esperado": {
+    "rotulo": "hipótese",
+    "base_exibida": true,
+    "percentual_exibido": true
+   }
+  },
+  "O12-1": {
+   "descricao": "Aluguel entra na base mensal do capital de giro uma única vez",
+   "esperado": {
+    "C1": 12000,
+    "C2": 36000,
+    "C3": 125000
+   },
+   "atual_05f": {
+    "C1": 9000,
+    "C2": 28000,
+    "C3": 95000
+   }
+  },
+  "O12-2": {
+   "descricao": "Giro B com a base nova (déficit e sazonalidade já incluem o aluguel pela geração; o componente de meses fixos usa a base com aluguel)",
+   "entrada": "C1",
+   "esperado": {
+    "giro_b": 118095.26250000003
+   },
+   "condicional": "mantém 3 meses só para conferência; o prazo não está aprovado (O12 não aprova 6 meses universais)"
+  },
+  "O12-3": {
+   "descricao": "Sem duplicidade: aluguel digitado também dentro do custo fixo deve gerar alerta, não soma dupla",
+   "esperado": {
+    "alerta_duplicidade": true
+   }
+  },
+  "O13-1": {
+   "descricao": "Disponível menor que o necessário gera déficit e necessidade de captação, sem duplicidade",
+   "entrada": "C1, disponível 45.000",
+   "esperado": {
+    "necessario": 109095.26250000003,
+    "disponivel": 45000,
+    "diferenca": -64095.262500000026,
+    "deficit": 64095.262500000026,
+    "excedente": 0.0,
+    "usos_totais": 859095.2625000001,
+    "fontes_do_empreendedor_para_giro": 45000,
+    "captacao_adicional_para_giro": 64095.262500000026
+   }
+  },
+  "O13-2": {
+   "descricao": "Déficit em C2 e C3",
+   "esperado": {
+    "C2": {
+     "necessario": 168000,
+     "disponivel": 120000,
+     "diferenca": -48000,
+     "deficit": 48000,
+     "excedente": 0.0,
+     "usos_totais": 2268000.0,
+     "fontes_do_empreendedor_para_giro": 120000,
+     "captacao_adicional_para_giro": 48000
+    },
+    "C3": {
+     "necessario": 570000,
+     "disponivel": 420000,
+     "diferenca": -150000,
+     "deficit": 150000,
+     "excedente": 0.0,
+     "usos_totais": 7370000.0,
+     "fontes_do_empreendedor_para_giro": 420000,
+     "captacao_adicional_para_giro": 150000
+    }
+   }
+  },
+  "O13-3": {
+   "descricao": "Excedente",
+   "entrada": "C2, disponível 200.000",
+   "esperado": {
+    "necessario": 168000,
+    "disponivel": 200000,
+    "diferenca": 32000,
+    "deficit": 0.0,
+    "excedente": 32000,
+    "usos_totais": 2268000.0,
+    "fontes_do_empreendedor_para_giro": 168000,
+    "captacao_adicional_para_giro": 0.0
+   }
+  },
+  "O13-4": {
+   "descricao": "Disponível não substitui o necessário na curva de caixa",
+   "entrada": "C1",
+   "esperado": {
+    "curva_com_necessario_menor_36": 22704.75000000003,
+    "curva_com_disponivel_menor_36": -41390.512500000026,
+    "regra": "a curva técnica usa o necessário; o disponível aparece como fonte e o déficit como captação adicional"
+   }
+  },
+  "O14-1": {
+   "descricao": "Receita independente da ocupação não cai quando a ocupação cai",
+   "entrada": "C3 → C3E (hipóteses de teste: A R$ 40/noite; B R$ 250 × 35% das estadias; C R$ 480.000/ano)",
+   "hipoteses": {
+    "A_por_noite": 40.0,
+    "B_ticket_por_estadia": 250.0,
+    "B_taxa_adesao": 0.35,
+    "C_fixa_anual": 480000.0,
+    "custo_A": 0.4,
+    "custo_B": 0.5,
+    "custo_C": 0.3
+   },
+   "esperado": {
+    "C3": {
+     "noites": 4526.0,
+     "estadias": 1508.6666666666665,
+     "hospedagem": 4299700.0,
+     "A": 181040.0,
+     "B": 132008.3333333333,
+     "C": 480000.0,
+     "complementares": 793048.3333333333,
+     "receita_bruta": 5092748.333333333,
+     "tributos": 611129.7999999999,
+     "custos_complementares": 282420.1666666666
+    },
+    "C3E": {
+     "noites": 3620.8,
+     "estadias": 1206.9333333333334,
+     "hospedagem": 3095784.0,
+     "A": 144832.0,
+     "B": 105606.66666666667,
+     "C": 480000.0,
+     "complementares": 730438.6666666667,
+     "receita_bruta": 3826222.666666667,
+     "tributos": 459146.72000000003,
+     "custos_complementares": 254736.13333333333
+    },
+    "C_inalterada": true,
+    "A_variacao": -0.19999999999999996,
+    "B_variacao": -0.19999999999999984
+   }
+  },
+  "O14-2": {
+   "descricao": "Sem duplicidade: a receita de hospedagem não muda ao incluir complementares",
+   "esperado": {
+    "hospedagem_C3": 4299700.0
+   }
+  },
+  "INT-1": {
+   "descricao": "Integração no C1: gestão sobre hospedagem, royalty sobre bruta (iguais em C1, sem complementares), saída MAX(0), giro necessário x disponível, horizonte de 10 anos",
+   "esperado": {
+    "ebitda": -15419.625000000016,
+    "valor_saida": 0.0,
+    "o13": {
+     "necessario": 109095.26250000003,
+     "disponivel": 45000,
+     "diferenca": -64095.262500000026,
+     "deficit": 64095.262500000026,
+     "excedente": 0.0,
+     "usos_totais": 859095.2625000001,
+     "fontes_do_empreendedor_para_giro": 45000,
+     "captacao_adicional_para_giro": 64095.262500000026
+    },
+    "horizonte": {
+     "primeiro_mes_negativo": 54,
+     "capital_adicional_necessario": 85232.62500000007
+    },
+    "p6": "indicação preliminar, conflito sinalizado com a decisão Redesenhar"
+   },
+   "condicional": "base do giro com aluguel (O12) muda o necessário; prazo não aprovado"
+  }
+ }
+}

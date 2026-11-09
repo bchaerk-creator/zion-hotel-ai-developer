@@ -128,6 +128,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Observações novas, para classificar: O8 (régua de margem e selo do P6 antes dos custos do modelo); O9 (valor de saída negativo com EBITDA negativo); O10 (horizonte de 36 meses no colchão e no atraso); O11 (base de gestão e royalties); O12 (giro A sem aluguel); O13 (sem campo de capital de giro informado); O14 (outras receitas como % das diárias).
 - Proposta: a composição segue H2; a mecânica (demonstrativo, giro, fluxo, VPL, TIR, payback simples, curva, cenários) passa a H1 proposto, condicionado à integridade. Integridade não comprovada. Nada corrigido, nada homologado.
 
+## Comando 05G-A · Decisões O8 a O14 (09/11/2026)
+- Aprovadas pelo Bruno, não implementadas: O8 (P6 só com indicação preliminar, sem selo de aprovação, subordinado à análise completa, conflitos explícitos); O9 (saída por múltiplo = MAX(0, EBITDA × múltiplo)); O10 (horizonte de 10 anos: mensal até o mês 36 e anual do 4º ao 10º; alertas de caixa negativo, capital adicional, atraso explicado); O11 (bases independentes de gestão e royalties: hospedagem ou receita bruta, conforme o contrato; hipótese marcada); O12 (giro com fixos, aluguel e obrigações recorrentes, sem duplicidade; 6 meses não aprovados como regra universal); O13 (giro necessário x disponível, déficit ou excedente, sem dupla contagem); O14 (receitas complementares por categoria: ocupação, consumo, independentes).
+- Matriz de impacto (arquivos e linhas no commit ec21ad5), plano em 8 etapas, 20 testes de aceite + 1 de integração com esperados independentes; linha de base: 10 de 11 verificações falham hoje, como esperado.
+- Pendências anteriores continuam abertas; perguntas novas P-O8 a P-O14 para o Bruno. Nada implementado, nada homologado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
