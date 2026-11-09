@@ -87,6 +87,7 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - **Decisão do Bruno:** arquitetura C, ecossistema integrado com ofertas independentes (Academy marca educacional; Club assinatura por plano; produtos digitais avulsos; Mentoria de Desenvolvimento Zion 360° premium e independente; ZAIOS com permissão por produto). Integração comercial não é unificação.
 - Matriz, sobreposições, regras de acesso e impacto em `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md`. Sobreposições principais: Club Pro x Mentoria (ambos R$ 2.900); "Trilha + Clube R$ 490" x Consultoria prévia R$ 490.
 - Blueprint Mestre da Mentoria ainda não recebido. Nada implementado.
+- Diretriz da linha B (09/11): B03, B05, B06, B07 e B09 seguem candidatos à venda individual; B01, B02, B04, B08 e B10 sem novas campanhas pagas, uso interno ou como benefício; comparar B06 x Ferramenta 05; novos nomes para B01, B08 e B10; criativos preservados. Matriz final com a sessão Zion Arsenal.
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).

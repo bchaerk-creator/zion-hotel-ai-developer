@@ -95,6 +95,15 @@ Linguagem: os criativos já foram revisados. Os nomes das ofertas B01 ("Como Atr
 
 Compradores da linha B: nenhum. A sessão confirmou zero transações no ClickMax no workspace inteiro.
 
+**Diretriz comercial da linha B (Bruno, 09/11/2026, só planejamento):**
+- B03, B05, B06, B07 e B09: candidatos à venda individual, como autodiagnóstico ou primeiro rascunho.
+- B01, B02, B04, B08 e B10: sem novas campanhas pagas individuais; propor uso como ferramenta interna ou benefício de produtos existentes, sem alterar direitos contratados.
+- B06 x Ferramenta 05: comparar e priorizar uma, sem excluir nenhuma antes da decisão.
+- B01, B08 e B10: propor novos nomes e subtítulos.
+- Os 190 criativos ficam preservados.
+
+Responsável pela matriz final: sessão Zion Arsenal (cópia para Produtos Zion configuration). O resultado volta para a sessão ZAIOS platform development. Nada implementado.
+
 ---
 
 ## 5. Mapa de sobreposições e proposta de diferenciação
