@@ -60,3 +60,10 @@ Botões: "Reservar diagnóstico" (link de pagamento) e "Tenho uma dúvida". Roda
 - **Roteiro da reunião (playbook "Reunião Estratégica Zion Land Bank"):** escrito para quem pagou os R$ 97 do Land Bank; apresenta a mentoria com o "valor oficial" e a Trilha gravada de R$ 970 como plano B. **As ofertas de mentoria no ClickMax estão arquivadas** e a Mentoria de Desenvolvimento aguarda o Blueprint: falta preço e link para vender na reunião.
 - **Inscrição Club + Land Bank R$ 270 no ClickMax:** incompleta (vendedor em análise). O pagamento hoje é pelo Asaas.
 - **Créditos:** 5.473 disponíveis.
+
+## 6. Página pública de agendamento (lida pelo código de incorporação, 09/11)
+- `api.clickmax.io/public/booking/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt`: agenda "Equipe  Zion", **45 minutos**, Bruno.
+- Dias com horário em novembro: todos os dias úteis a partir de 10/11 (10, 11, 12, 13, 16 a 20, 23 a 27 e 30).
+- Horários de 10/11: **14h, 15h, 16h e 17h** (Brasília), 45 min cada. Confere com o que o Bruno disse.
+- O modelo `zion_reuniao_qualificado` passou a dizer 45 minutos (a Zaya fala em 30: alinhar).
+- Ainda falta confirmar se o agendamento pela página gera o link do Google Meet (pelo CRM não gera).
