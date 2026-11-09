@@ -131,6 +131,12 @@ Fonte: `producao/zion-arsenal/MATRIZ_FINAL_LINHA_B.md` (sessão Zion Arsenal, co
 
 **Observação fora da linha B (não alterar sem "aprovado"):** a página pública `docs/raio-x/` chama os membros de "sócio do Clube Zion Collection", contra a regra de linguagem ("membros", nunca "sócios").
 
+**Atualização do Arsenal (09/11, commit 75355b3):**
+- B05 movido para a categoria 3.
+- B08 passa a se chamar "Como Fica a Conta do Seu Projeto Turístico?", com a segunda opção como alternativa; B08, A09 e ZAIOS P6 devem seguir as premissas financeiras.
+- O B06 não usa faixas de CAPEX nem preços de mercado, só soma as cotações do comprador; a conferência com a ZAIOS P5 fica restrita aos grupos de custo e à contingência.
+- **Candidatos à venda individual: B03, B06, B07 e B09.**
+
 **Decisões do Bruno para fechar a linha B:**
 1. Destinos (com B05 na categoria 3, pela verificação acima).
 2. B06 ou F05 como principal.
