@@ -20,6 +20,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | Regras do repositório, marca, ClickMax, moldes | `CLAUDE.md` (main) | — |
 | **ZAIOS** (plataforma no Lovable, zaios.lovable.app) | `docs/zaios/` (decisões, premissas financeiras, roteiro de teste, passagem) | ZAIOS platform development |
 | **Premissas financeiras** (fator, deduções 17%, quebra 1%, reserva 3%, múltiplo 6×, regra de decisão) | `docs/zaios/PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md` | ZAIOS platform development |
+| **Arquitetura comercial** (decisão de 09/11: C · ecossistema integrado com ofertas independentes; matriz de ofertas, sobreposições, regras de acesso) | `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md` | ZAIOS platform development |
 | **Academy · arquitetura, Tech Stack, plano comercial** | `docs/academy/` (Comando 01 e Comando 04) | ZAIOS platform development |
 | **Fábrica educacional** (rotinas e agentes) | `producao/fabrica/FABRICA.md`, `ROTINAS.md`, `.claude/agents/` (9 agentes) | Marketing da Zion install |
 | **Método Zion 360°** (52 unidades; 17 e-books Z, D, F) | `docs/escola/`, `escola/`, `producao/fila.json`, skill `zion-learning-design` | Zion Hospitality mentoria produção + produção autônoma |
@@ -82,6 +83,9 @@ Fora do escopo Zion e não mapeadas: rescisão trabalhista, contrato de zeladori
 ---
 
 ## 3. Sobreposições e conflitos a resolver
+
+**Decisão de 09/11/2026 (Bruno):** arquitetura comercial C. Academy é a marca educacional; Club é assinatura com benefícios por plano; ferramentas e mini mentorias são vendidas individualmente; a Mentoria de Desenvolvimento Zion 360° é premium e independente (não entra em plano do Club); ZAIOS é plataforma compartilhada com permissões por produto. Detalhes e pendências em `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md`. O conflito 8 abaixo passa a ser tratado lá.
+
 
 | # | Conflito | Sessões | Proposta |
 |---|---|---|---|

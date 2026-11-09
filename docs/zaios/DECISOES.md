@@ -83,6 +83,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Primeiro experimento sugerido: experiência gratuita "Venda pelo WhatsApp" para operadores, testada com convidados, sem anúncio.
 - Limite: fontes externas lidas por busca indexada (sites bloqueados na rede da sessão); conferir antes de produzir aulas.
 
+## Comando 05A · Arquitetura comercial (09/11/2026)
+- **Decisão do Bruno:** arquitetura C, ecossistema integrado com ofertas independentes (Academy marca educacional; Club assinatura por plano; produtos digitais avulsos; Mentoria de Desenvolvimento Zion 360° premium e independente; ZAIOS com permissão por produto). Integração comercial não é unificação.
+- Matriz, sobreposições, regras de acesso e impacto em `docs/academy/comando-05a/ARQUITETURA_COMERCIAL.md`. Sobreposições principais: Club Pro x Mentoria (ambos R$ 2.900); "Trilha + Clube R$ 490" x Consultoria prévia R$ 490.
+- Blueprint Mestre da Mentoria ainda não recebido. Nada implementado.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
