@@ -12,7 +12,7 @@ Base usada: `REATIVACAO_DORES_BASE.md` (objeções e números da base) e o que a
 
 | Resposta | Caminho | Mensagem |
 |---|---|---|
-| Capital "Acima de R$ 100 mil" **e** terreno regularizado ou já opera | Reunião de 45 min com o Bruno, sem custo (Calendly `calendly.com/contato-zionglampingcollection/1h`) | `zion_reuniao_qualificado` (rascunho) |
+| Capital "Acima de R$ 100 mil" **e** terreno regularizado ou já opera | Reunião de 30 min com o Bruno, sem custo, na **agenda nativa do ClickMax** ("Equipe Zion", link público `app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt`) | `zion_reuniao_qualificado` (rascunho, corrigido em 09/11: sai o Calendly) |
 | Capital de R$ 10 mil a R$ 100 mil, ou terreno sem documentação completa | Reunião de diagnóstico com a equipe por R$ 97 | Texto da seção 3 (falta o link de pagamento) |
 | "Ainda não tenho capital" ou até R$ 10 mil, ou "prefiro seguir sozinho" | Conteúdo e Club Base (Asaas), sem reunião | Disparo `zion_club_ecossistema` (já aprovado) |
 
@@ -51,3 +51,11 @@ Botões: "Reservar diagnóstico" (link de pagamento) e "Tenho uma dúvida". Roda
 5. Link do Asaas para os R$ 97 e criar o modelo da seção 3.
 6. Conferir créditos (09/11: 5.473 disponíveis, com o extra) e criar os 5 disparos em rascunho, um por lista, com envio em lotes.
 7. Disparar com "aprovado". Medir: entregues, cliques no formulário, formulários enviados, reuniões marcadas, pagamentos de R$ 97.
+
+## 5. Auditoria do ClickMax (09/11, só leitura)
+- **Agenda:** nativa do ClickMax, "Equipe Zion" (`2c00db1e-89bc-468b-bf17-4bf2a21fe443`), atendente Bruno, reuniões de 30 min com Google Meet. A grade de horários não aparece pela integração e a página pública de agendamento é bloqueada neste ambiente: **não deu para confirmar seg a sex, 14h às 17h**. Indício contra: há agendamento público para 11/11 às 10h (Brasília). Há dois bloqueios "Time Zion" do próprio Bruno (11/11 10h–12h e 13/11 16h–18h).
+- **Teste de agendamento:** a criação de uma reunião de teste foi bloqueada pela regra de segurança desta sessão (escrita em sistema externo). Precisa da autorização do Bruno.
+- **Zaya (SDR, ativa):** qualifica por capital e agenda na agenda nativa, nunca Calendly. **O corte dela é R$ 5 mil** para ser qualificado, bem abaixo do filtro que o Bruno quer. 69 conversas, 0 reuniões marcadas por ela, 20 escaladas.
+- **Roteiro da reunião (playbook "Reunião Estratégica Zion Land Bank"):** escrito para quem pagou os R$ 97 do Land Bank; apresenta a mentoria com o "valor oficial" e a Trilha gravada de R$ 970 como plano B. **As ofertas de mentoria no ClickMax estão arquivadas** e a Mentoria de Desenvolvimento aguarda o Blueprint: falta preço e link para vender na reunião.
+- **Inscrição Club + Land Bank R$ 270 no ClickMax:** incompleta (vendedor em análise). O pagamento hoje é pelo Asaas.
+- **Créditos:** 5.473 disponíveis.
