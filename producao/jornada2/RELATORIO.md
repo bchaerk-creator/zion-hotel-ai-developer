@@ -48,14 +48,14 @@ Produzido com a Fábrica Educacional Zion 360° (arquiteto → construtor → ro
 - Resumo da aula: `materiais/Modulo-2-Financas-resumo.pdf` (8 páginas A4, citações com fonte, exemplo rotulado como fictício).
 - Prompt de IA: `materiais/Modulo-2-Prompt-de-IA.txt`.
 - Vídeo da aula: `videos/aula-financas.mp4` (6:39, 13 cenas, narração sintética pt-BR, foto op11 sem pessoas).
-- Tutorial da ficha: `videos/tutoriais/tutorial-ficha-financas.mp4` (6:32, gravação automática da ficha).
+- Tutorial da ficha: `videos/tutoriais/tutorial-ficha-financas.mp4` (4:36, gravação automática da ficha; regravado três vezes até percorrer as 7 telas e fechar no exemplo, 4.269,20).
 - Capas: `capas/g2-h.jpg`, `g2-v.jpg`, `g2-c-aula.jpg`, `g2-c-faca.jpg`, `g2-c-resumo.jpg`, `g2-c-planilha.jpg`.
 - Página de ferramentas `index.html` atualizada com o Módulo 2 e os materiais.
 
 ### Testes (todos executados nesta sessão)
 | Teste | Resultado |
 |---|---|
-| `tests/test_logic.js` (Node, lógica pura, exemplo Cabanas do Vale, réguas, prioridades, conclusão) | 90 ok, 0 falhou |
+| `tests/test_logic.js` (Node, lógica pura, exemplo Cabanas do Vale, réguas, prioridades, conclusão, modo da retirada) | 92 ok, 0 falhou |
 | `tests/e2e.js` (Playwright, iPhone 13, 8 telas, persistência, PDF, exemplo) | 52 ok, 0 falhou |
 | `tests/test_planilha.py` (recálculo no LibreOffice × conta independente) | 49 ok, 0 falhou |
 | Revisão de conformidade (vocabulário, promessas, 17%/1% como referência ajustável, limpeza como repasse, números iguais em lógica/roteiro/resumo, sem travessões) | sem achados bloqueantes |
@@ -69,6 +69,11 @@ Exemplo didático (dados fictícios): deduções 3.654,40; receita real 12.585,6
 - Resumo (PDF): `638ef9ff-406c-47d7-bc46-ef807af7db6a` (enabled=false).
 - Planilha (link + 2 anexos): `6440a510-7118-4ac8-8ba6-05eb1409643d` (enabled=false).
 - Nenhuma turma ligada; Trilha 1, conteúdos "Arquivo", Land Bank, Zaya e automações intactos.
+
+### Correções feitas na revisão
+- Ficha: quando o modo da retirada não estava gravado, a tela mostrava "Calcular por horas" marcado mas a lógica tratava como "Informar o valor" e zerava a retirada. Corrigido em `logic.js` com dois testes novos.
+- Tutorial da Folha: o preenchimento automático não respondia as quatro perguntas Sim/Não (ficava preso na abertura) e marcava "Decidi retirada zero"; cena 1 e cena 5 agora são explícitas.
+- Tutoriais do Marco Zero e da Folha: abertura dizia "Club Zion Collection · Trilha de Desenvolvimento"; agora diz "Jornada de Gestão".
 
 ### Decisões e pendências
 - `PREMISSAS_FINANCEIRAS_E_VERIFICACOES.md` e `DECISOES.md` citados no comando não existem no repositório; as convenções vieram de `producao/planos/F02.md` e da Etapa 09 e estão declaradas na seção 11 do `PLANO.md`.
