@@ -3,6 +3,9 @@
 Regras fixas para toda sessão neste repositório. Responsável: Bruno Chaerk · Zion Hotel Group International.
 O prompt de cada produto só precisa dizer o que muda: produto, público, dor, preço, formato e autorizações.
 
+## 0. Antes de começar
+- Leia `docs/MAPA_DAS_SESSOES.md`: o que cada sessão do Claude Code já fez, onde está e qual é a fonte da verdade de cada tema. Ao terminar uma entrega, atualize a sua linha no mapa.
+
 ## 1. Regras inegociáveis
 - **Autorização permanente de Bruno (06/11/2026), sem pedir "aprovado" a cada produto:**
   - produzir os produtos do catálogo, um por vez, e criar produto, oferta e página no ClickMax;
