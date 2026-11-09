@@ -99,7 +99,9 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - **D2-C:** reserva de reposição de 4% provisórios sobre a receita bruta efetivamente realizada, faixa ajustável de 3% a 6%; separada da reserva de emergência; sem descontar o mesmo custo duas vezes; validar o percentual por tipo de hospedagem.
 - Efeito futuro (só após homologação): ZAIOS hoje usa 3% da receita bruta; Folha Única J2 usa 4% da receita real; B08 trata a reserva como dedução; A09 não tem reserva. Nenhuma ferramenta alterada.
 - **D7-C:** valor de saída por três métodos (múltiplo do EBITDA, avaliação patrimonial, valor estimado informado), sempre com o método identificado, o cenário sem venda ao lado e o valor líquido de custos de venda, tributos e obrigações. Efeito futuro: o B08 hoje usa residual em % do investimento (até 100%); a ZAIOS usa só o múltiplo. Nenhuma ferramenta alterada.
-- D3 (quebra e perda): apresentada, ainda sem decisão. Próxima apresentada: D11 (regra de decisão).
+- **D3-A** (correção de registro: já estava aprovada): quebra e perdas são custo variável operacional sobre a receita realizada com hospedagem; referência provisória 1%; prioridade para valores medidos; rótulo quando a ferramenta não calcular; sem dupla contagem com deduções ou reservas.
+- **D11-A:** Régua Única de Viabilidade com cinco critérios (geração de caixa, resistência ao conservador, prazo de recuperação, criação de valor com e sem saída, colchão). Ferramentas simples mostram "X de 5 critérios avaliados. Sinal parcial, não representa aprovação do projeto." Avançar, Ajustar e Redesenhar só com os cinco critérios e após homologação. Metas do A09 separadas. Limites provisórios, a validar por tipo, porte e perfil. Nenhuma classificação garante viabilidade, financiamento ou retorno.
+- Consolidação: dicionário v0.4, `docs/academy/comando-05b/DECISOES_METODOLOGICAS.md` (registro, aderência, pendências, sequência) e plano de testes v0.2. Nenhuma ferramenta alterada.
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
