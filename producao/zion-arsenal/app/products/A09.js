@@ -125,7 +125,8 @@ pillars:[
   fields:[
    {id:'rc_diaria',label:'Diária média prevista (média do ano)',type:'money',required:true,min:1},
    {id:'rc_ocup',label:'Ocupação média anual prevista',type:'percent',required:true,min:1,max:100,help:'Noites vendidas ÷ noites disponíveis. Use uma média anual prudente.'},
-   {id:'rc_noites',label:'Noites disponíveis por mês, por unidade',type:'number',required:true,min:1,max:31,step:1,unit:'noites'},
+   {id:'rc_noites',label:'Noites disponíveis por mês, por unidade (opcional)',type:'number',required:false,min:1,max:31,step:1,unit:'noites',help:'Em branco, o simulador usa o calendário real: os dias de cada mês, 365 por ano (366 em ano bissexto). Se preencher, o total do ano nunca passa dos dias reais.'},
+   {id:'rc_ano',label:'Ano de referência (opcional)',type:'number',required:false,min:2000,max:2100,step:1,help:'Usado para saber se o ano tem 366 dias. Em branco, 365.'},
    {id:'rc_meses',label:'Meses de operação por ano',type:'number',required:true,min:1,max:12,step:1,unit:'meses'},
    {id:'rc_extras',label:'Receitas extras por mês de operação (café, experiências etc.)',type:'money',required:false,help:'Valor total do projeto; deixe em branco se não houver. O simulador ajusta esse valor proporcionalmente à ocupação de cada cenário.'}
   ]},
@@ -233,19 +234,23 @@ compute:function(s){
  c.invItens=ZA.listSum(inv); c.infra=ZA.listSum(inf); c.invBase=c.invItens+c.infra;
  c.invMaior=inv.slice().sort(function(a,b){return b.value-a.value;})[0]||null;
  c.cont=s.n('inv_cont',0)/100; c.invCont=c.invBase*c.cont; c.invTotal=c.invBase+c.invCont;
- c.d=s.n('rc_diaria',0); c.occ=s.n('rc_ocup',1)/100; c.N=s.n('rc_noites',30); c.M=s.n('rc_meses',12); c.ext=s.n('rc_extras',0)||0;
+ c.d=s.n('rc_diaria',0); c.occ=s.n('rc_ocup',1)/100; c.N=s.n('rc_noites',0); c.M=s.n('rc_meses',12);
+ // A09 · calendário real (proposta técnica provisória do Comando Mestre, até aprovação): 365 dias, ou 366 em ano bissexto,
+ // distribuídos pelos meses de operação. Noites informadas por mês ficam limitadas aos dias reais (31 × 12 não vira 372).
+ var anoRef=s.n('rc_ano',0); c.diasAno=(anoRef&&((anoRef%4===0&&anoRef%100!==0)||anoRef%400===0))?366:365;
+ c.noitesUnAno=c.N>0?Math.min(c.N*c.M,c.diasAno*c.M/12):c.diasAno*c.M/12; c.ext=s.n('rc_extras',0)||0;
  c.cfMes=ZA.listSum(rowsOk(s,'co_fixos')); c.cfAno=c.cfMes*12;
  c.ce=s.n('co_estadia',0); c.est=s.n('co_estmedia',2)||2;
  c.ded=(s.n('co_comissao',0)+s.n('co_imposto',0)+(s.n('co_gestao',0)||0))/100;
  function cen(nome,occ,d){
-  var noites=c.U*c.N*c.M*occ, recHosp=noites*d, recExtra=c.occ>0?c.ext*c.M*(occ/c.occ):0, recBruta=recHosp+recExtra;
+  var noites=c.U*c.noitesUnAno*occ, recHosp=noites*d, recExtra=c.occ>0?c.ext*c.M*(occ/c.occ):0, recBruta=recHosp+recExtra;
   var dedV=recBruta*c.ded, estadias=noites/c.est, cVar=estadias*c.ce, res=recBruta-dedV-cVar-c.cfAno;
   return {nome:nome,occ:occ,diaria:d,noites:noites,recHosp:recHosp,recExtra:recExtra,recBruta:recBruta,ded:dedV,cVar:cVar,cFix:c.cfAno,resultado:res,
    margem:recBruta>0?res/recBruta:null,roi:c.invTotal>0?res/c.invTotal:null,payback:(res>0&&c.invTotal>0)?c.invTotal/res:null};
  }
  var vo=s.n('ce_var_ocup',0)/100, vd=s.n('ce_var_diaria',0)/100;
  c.cen=[cen('Conservador',Math.max(0.01,c.occ-vo),c.d*(1-vd)),cen('Intermediário',c.occ,c.d),cen('Otimista',Math.min(1,c.occ+vo),c.d*(1+vd))];
- var K=c.U*c.N*c.M*(c.d*(1-c.ded)-c.ce/c.est)+(c.occ>0?c.ext*c.M/c.occ*(1-c.ded):0);
+ var K=c.U*c.noitesUnAno*(c.d*(1-c.ded)-c.ce/c.est)+(c.occ>0?c.ext*c.M/c.occ*(1-c.ded):0);
  c.occBE=K>0?c.cfAno/K:null;
  var b=c.cen[1]; var den=b.noites*(1-c.ded);
  c.dBE=den>0?(c.cfAno+b.cVar-c.ext*c.M*(1-c.ded))/den:null;
@@ -293,7 +298,7 @@ report:function(s,c){
   ['Contingência',F.pct(c.cont*100,0)+' = '+F.brl0(c.invCont),tg('informado')],
   ['Diária média',F.brl(c.d),tg('estimativa','premissa sua')],
   ['Ocupação média anual',F.pct(c.occ*100,0),tg('estimativa','premissa sua')],
-  ['Noites disponíveis/mês por unidade · meses de operação',F.num(c.N)+' · '+F.num(c.M),tg('informado')],
+  ['Noites disponíveis por unidade no ano · meses de operação',F.num(c.noitesUnAno,1)+' · '+F.num(c.M),tg(c.N>0?'informado':'calculado')],
   ['Receitas extras por mês de operação',F.brl(c.ext),tg('estimativa','premissa sua')],
   ['Custos fixos mensais',F.brl(c.cfMes)+' (12 meses no ano)',tg('informado')],
   ['Custo por estadia · estadia média',F.brl(c.ce)+' · '+F.num(c.est,1)+' noites',s.unknown('co_estmedia')?tg('hipotese','estadia: hipótese'):tg('informado')],

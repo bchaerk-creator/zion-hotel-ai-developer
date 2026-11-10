@@ -143,7 +143,7 @@ pillars:[
    {id:'ocup_fonte',label:'De onde vem a ocupação estabilizada?',type:'radio',required:true,options:[{v:'dados',l:'Dados de hospedagens do destino que eu conheço'},{v:'estimativa',l:'Estimativa própria'}]}
   ]},
  {kind:'feedback', title:'Sua ocupação ano a ano',
-  metrics:function(s,c){return [{label:'Ano 1',value:F.pct(c.base.occ[0]*100,0),tag:'informado'},{label:'Ano 2',value:F.pct(c.base.occ[1]*100,0),tag:'calculado'},{label:'Estabilizada (a partir do ano '+c.anoEstab+')',value:F.pct(c.oe*100,0),tag:'informado'},{label:'Ocupação de equilíbrio (ano 1)',value:c.occBE==null?'inalcançável':F.pct(c.occBE*100,0),tag:'calculado'}];},
+  metrics:function(s,c){return [{label:'Ano 1',value:F.pct(c.base.occ[0]*100,0),tag:'informado'},{label:'Ano 2',value:F.pct(c.base.occ[1]*100,0),tag:'calculado'},{label:'Estabilizada (a partir do ano '+c.anoEstab+')',value:F.pct(c.oe*100,0),tag:'informado'},{label:'Equilíbrio operacional (ano 1)',value:c.occBE==null?'inalcançável':F.pct(c.occBE*100,0),tag:'calculado'},{label:'Equilíbrio de caixa, com a reserva (ano 1)',value:c.occBECaixa==null?'inalcançável':F.pct(c.occBECaixa*100,0),tag:'calculado'}];},
   feedback:function(s,c){var o=[];
    if(c.o1>c.oe) o.push({lv:'warn',t:'A ocupação do ano 1 está acima da estabilizada. Isso significa que a ocupação cai ao longo do tempo. Confira se é intencional.'});
    if(c.oe>0.75) o.push({lv:'warn',t:'Ocupação estabilizada de '+F.pct(c.oe*100,0)+' é uma premissa exigente para média anual. Teste o resultado com o cenário conservador.'});
@@ -152,6 +152,7 @@ pillars:[
    else if(c.occBE>1) o.push({lv:'bad',t:'Seria preciso mais de 100% de ocupação para cobrir os custos do ano 1. Revise diária ou custos fixos.'});
    else if(c.occBE>c.o1) o.push({lv:'warn',t:'No ano 1 o projeto precisa de '+F.pct(c.occBE*100,0)+' de ocupação para empatar, acima dos '+F.pct(c.o1*100,0)+' previstos: o primeiro ano deve fechar no negativo. Planeje caixa para isso.'});
    else o.push({lv:'ok',t:'A ocupação de equilíbrio ('+F.pct(c.occBE*100,0)+') está abaixo da ocupação do ano 1.'});
+   if(c.rr>0&&c.occBECaixa!=null) o.push({lv:c.occBECaixa>c.o1?'warn':'ok',t:'Com a reserva de reposição guardada, o equilíbrio de caixa sobe para '+F.pct(c.occBECaixa*100,0)+' de ocupação. O equilíbrio operacional não trata a reserva como despesa.'});
    return o;}},
  {kind:'apply', title:'Compromissos do Pilar 4',
   actions:[{id:'a4_1',text:'Conversar com 3 operadores do destino sobre ocupação média anual'},{id:'a4_2',text:'Planejar caixa para os anos de rampa'},{id:'a4_3',text:'Definir ações de lançamento para acelerar a rampa (fotos, avaliações, parcerias)'}]}
@@ -281,8 +282,11 @@ compute:function(s){
  // indicadores de atalho para o cenário intermediário
  c.vpl=c.base.vpl; c.tir=c.base.tir; c.paybackS=c.base.paybackS; c.paybackD=c.base.paybackD; c.roi10=c.base.roi10;
  c.fc1=c.base.anos[0].fc; c.fcEstab=c.base.fcEstab;
- var contrib=c.d*(1+c.x)*(1-c.ded)-c.cv;
- c.occBE=(contrib>0&&c.cap>0)?c.cf/(c.cap*contrib):null;
+ // B08 · dois indicadores de equilíbrio (Comando Mestre): o operacional não trata a reserva de reposição como dedução
+ // (regra aprovada D2-C, O3); o de caixa inclui a reserva, que é dinheiro guardado para reposição.
+ var contribOp=c.d*(1+c.x)*(1-c.com-c.imp)-c.cv, contribCx=c.d*(1+c.x)*(1-c.ded)-c.cv;
+ c.occBE=(contribOp>0&&c.cap>0)?c.cf/(c.cap*contribOp):null;
+ c.occBECaixa=(contribCx>0&&c.cap>0)?c.cf/(c.cap*contribCx):null;
  var ye=c.base.anos[c.anoEstab-1]; c.cfPeso=ye.receita>0?ye.cf/ye.receita:0;
  return c;
 },
