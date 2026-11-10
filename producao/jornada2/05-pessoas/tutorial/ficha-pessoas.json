@@ -1,0 +1,401 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Mapa de Pessoas e Alçadas, a ferramenta Faça agora do Módulo 5 da Jornada de Gestão. Em cinco telas, você sai com o mapa de quem faz o quê, até quanto cada pessoa decide sem consultar você, e um plano de quatro semanas para entregar a primeira atividade. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 5 · Mapa de Pessoas e Alçadas",
+      "s": "Quem faz o quê, até quanto decide, e as quatro semanas",
+      "k": "Jornada de Gestão · Módulo 5 · Pessoas"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, preencha nome, e-mail e o nome da hospedagem. Escolha a frase que mais parece com você: vai abrir, já opera, ou cuida da hospedagem de outra pessoa. Informe as unidades, quantas pessoas trabalham com você, quantos dias de férias tirou nos últimos dois anos, e quando foi a última vez que ficou sete dias sem atender mensagem. Nas Cabanas: nunca. As respostas ficam só no seu aparelho.",
+   "actions": [
+    {
+     "goto": "http://localhost:8815/trilha2/pessoas/"
+    },
+    {
+     "eval": "localStorage.clear();localStorage.setItem('zion-t2-financas',JSON.stringify(Object.assign({},window.ZF.EXEMPLO,{nome:'Ana Exemplo',email:'ana@exemplo.com'})));",
+     "wait": 300
+    },
+    {
+     "goto": "http://localhost:8815/trilha2/pessoas/"
+    },
+    {
+     "show": "h1",
+     "wait": 900
+    },
+    {
+     "fillStart": {
+      "#hospedagem": "Cabanas do Vale (exemplo)"
+     }
+    },
+    {
+     "click": "label.op:has(input[name=sit][value=dono])",
+     "wait": 600
+    },
+    {
+     "type": "#unidades",
+     "text": "4",
+     "wait": 300
+    },
+    {
+     "type": "#equipeHoje",
+     "text": "2",
+     "wait": 300
+    },
+    {
+     "type": "#feriasDias",
+     "text": "0",
+     "wait": 300
+    },
+    {
+     "click": "label.op:has(input[name=sete][value=nunca])",
+     "wait": 800
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A primeira tela é o que só você sabe. Marque a força das quatro dependências: conhecimento, decisão, relação e acesso. Cada uma diz o que resolve e em que prazo. Se a de acesso não for fraca, marque a tarde desta semana em que você resolve as senhas e o telefone da operação. O inventário é opcional: se já anotou durante uma semana o que só você sabe, informe as linhas. Nas Cabanas, cinquenta e duas linhas, setenta e nove por cento de resolução rápida.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "click": "label:has(input[name=dep-conhecimento][value=media])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=dep-decisao][value=forte])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=dep-relacao][value=media])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=dep-acesso][value=forte])",
+     "wait": 700
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('acessoData');if(e){e.value=\"2026-11-14\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "show": "#acessoData",
+     "wait": 700
+    },
+    {
+     "type": "#invTotal",
+     "text": "52",
+     "wait": 250
+    },
+    {
+     "type": "#invSimples",
+     "text": "18",
+     "wait": 250
+    },
+    {
+     "type": "#invDecisao",
+     "text": "14",
+     "wait": 250
+    },
+    {
+     "type": "#invAcesso",
+     "text": "9",
+     "wait": 500
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Quem faz o quê. Para cada uma das oito atividades, agrupadas nos seis setores da operação, escreva quem faz hoje, Eu se for você, e quantas horas suas ela leva por semana. O julgamento já vem com a sugestão da fonte; ajuste ao seu caso. A ficha soma as horas e aponta a primeira atividade a delegar: a que tem mais horas e menos julgamento. Nas Cabanas, vinte horas da dona, e o primeiro passo é o check-in e o check-out.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 800
+    },
+    {
+     "type": "#resp-limpeza",
+     "text": "Diarista",
+     "wait": 200
+    },
+    {
+     "type": "#horas-limpeza",
+     "text": "0",
+     "wait": 200
+    },
+    {
+     "type": "#resp-checkin",
+     "text": "Eu",
+     "wait": 200
+    },
+    {
+     "type": "#horas-checkin",
+     "text": "5",
+     "wait": 400
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('resp-mensagens');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-mensagens');if(e){e.value=\"6\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('resp-manutencao');if(e){e.value=\"Auxiliar de manuten\\u00e7\\u00e3o\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-manutencao');if(e){e.value=\"1\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('resp-compras');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-compras');if(e){e.value=\"2\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('resp-financeiro');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-financeiro');if(e){e.value=\"2\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('resp-preco');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-preco');if(e){e.value=\"2\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('resp-avaliacoes');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('horas-avaliacoes');if(e){e.value=\"2\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "show": "#live",
+     "wait": 2500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Até quanto cada um decide. Para cada uma das sete situações que fogem do padrão, escreva quem decide, a regra, quando é sim, quando é não, quando consulta, e a alçada em reais quando envolve dinheiro. No fim, a alçada inicial e a do segundo mês: comece baixo e suba com a confiança. Nas Cabanas, seis regras escritas, cem reais na largada e trezentos no segundo mês.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 800
+    },
+    {
+     "type": "#quem-cortesia",
+     "text": "Diarista",
+     "wait": 200
+    },
+    {
+     "type": "#regra-cortesia",
+     "text": "Problema reconhecido na unidade: oferece cortesia de até 15% da diária.",
+     "delay": 16,
+     "wait": 200
+    },
+    {
+     "type": "#alc-cortesia",
+     "text": "42",
+     "wait": 300
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('quem-ultimaHora');if(e){e.value=\"Quem estiver no plant\\u00e3o\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-ultimaHora');if(e){e.value=\"Aceita at\\u00e9 2 horas antes do check-in, se a unidade estiver pronta e houver algu\\u00e9m para receber.\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-ultimaHora');if(e){e.value=\"\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('quem-cancelamento');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-cancelamento');if(e){e.value=\"Motivo de sa\\u00fade com comprova\\u00e7\\u00e3o: devolve at\\u00e9 50%. Qualquer outro motivo: consulta a dona.\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-cancelamento');if(e){e.value=\"\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('quem-manutencao');if(e){e.value=\"Auxiliar de manuten\\u00e7\\u00e3o\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-manutencao');if(e){e.value=\"Resolve na hora o que n\\u00e3o para a unidade. O que para a unidade: avisa a dona na hora.\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-manutencao');if(e){e.value=\"100\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('quem-compra');if(e){e.value=\"Diarista\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-compra');if(e){e.value=\"Item de reposi\\u00e7\\u00e3o da lista padr\\u00e3o compra sem perguntar. Fora da lista: consulta.\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-compra');if(e){e.value=\"100\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('quem-hospede');if(e){e.value=\"Quem estiver no plant\\u00e3o\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-hospede');if(e){e.value=\"Faz a advert\\u00eancia verbal e registra. Encerrar a estadia, s\\u00f3 com a dona.\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-hospede');if(e){e.value=\"\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('quem-calendario');if(e){e.value=\"Eu\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('regra-calendario');if(e){e.value=\"\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();(function(){const e=document.getElementById('alc-calendario');if(e){e.value=\"\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "type": "#alcadaInicial",
+     "text": "100",
+     "wait": 300
+    },
+    {
+     "type": "#alcada2mes",
+     "text": "300",
+     "wait": 400
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Como acompanhar de fora. A ficha lista os seis indicadores da semana. Você define as quatro exceções que acionam você na hora: a nota mínima das avaliações e o percentual de gasto acima do previsto; as outras duas valem sempre. Escolha o dia da leitura semanal e marque em que nível de presença você está hoje. Nas Cabanas: nota mínima quatro vírgula sete, dez por cento, segunda-feira, nível um, operando.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 800
+    },
+    {
+     "show": ".c-sig",
+     "wait": 1200
+    },
+    {
+     "type": "#notaMin",
+     "text": "4,7",
+     "wait": 250
+    },
+    {
+     "type": "#gastoPct",
+     "text": "10",
+     "wait": 250
+    },
+    {
+     "select": "#diaSemanal",
+     "value": "segunda",
+     "wait": 400
+    },
+    {
+     "type": "#conversaMensal",
+     "text": "Primeira segunda-feira do mês",
+     "delay": 14,
+     "wait": 300
+    },
+    {
+     "click": "label.op:has(input[name=nivel][value='1'])",
+     "wait": 600
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "As quatro semanas. A atividade sugerida já vem marcada. Diga quem vai assumir, o formato, a data de início e quem substitui se a pessoa faltar. Se você fez a Folha Única do Módulo 2 neste aparelho, a ficha testa se o custo cabe: nas Cabanas, com quinhentos reais a mais, a ocupação de equilíbrio vai de vinte e oito e meio para trinta vírgula sete por cento. Marque o que já está pronto antes da semana um.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 800
+    },
+    {
+     "type": "#pessoa",
+     "text": "Diarista, que já faz a limpeza",
+     "delay": 16,
+     "wait": 300
+    },
+    {
+     "click": "label.op:has(input[name=formato][value=diarista])",
+     "wait": 500
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('inicio');if(e){e.value=\"2026-11-16\";e.dispatchEvent(new Event('input',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "type": "#custoMes",
+     "text": "500",
+     "wait": 300
+    },
+    {
+     "type": "#cobertura",
+     "text": "Eu (dona), nas folgas da diarista",
+     "delay": 16,
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=pre-preAcesso][value=nao])",
+     "wait": 250
+    },
+    {
+     "click": "label:has(input[name=pre-preProc][value=nao])",
+     "wait": 250
+    },
+    {
+     "click": "label:has(input[name=pre-preCrit][value=sim])",
+     "wait": 400
+    },
+    {
+     "show": "#live",
+     "wait": 2500
+    },
+    {
+     "click": "#vai",
+     "wait": 1000
+    }
+   ]
+  },
+  {
+   "say": "O resultado abre com as horas que passam por você e a primeira atividade a delegar. Logo abaixo, o mapa de quem faz o quê com a alçada de cada pessoa: é a página cinco do seu Plano de Gestão. A linha do check-in já mostra quem assume depois do plano. Em seguida, os indicadores e a tabela de critérios.",
+   "actions": [
+    {
+     "show": ".leitura",
+     "wait": 2000
+    },
+    {
+     "text": "1 · O resultado",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#mapa",
+     "wait": 2500
+    },
+    {
+     "show": "#indicadores",
+     "wait": 1500
+    },
+    {
+     "show": "#criterios",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "O que isso significa lê o seu caso pelas regras da fonte: horas por julgamento, setores que dependem só de você, a dependência mais forte e o seu nível de presença. A atenção lista os alertas na ordem certa: nas Cabanas, nunca ter ficado sete dias fora, os acessos e o procedimento que ainda faltam. E o que fazer traz as quatro semanas com datas, de dezesseis de novembro a treze de dezembro, com a conversa e o sinal para avançar de cada uma.",
+   "actions": [
+    {
+     "text": "2 ·",
+     "sel": "h2",
+     "wait": 2000
+    },
+    {
+     "text": "3 ·",
+     "sel": "h2",
+     "wait": 2200
+    },
+    {
+     "text": "4 ·",
+     "sel": "h2",
+     "wait": 1200
+    },
+    {
+     "show": "#semanas",
+     "wait": 2500
+    },
+    {
+     "show": "#excecoes",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz a avaliação do primeiro mês, com três perguntas, e os sete itens do critério de conclusão. Com tudo pronto, baixe o PDF: o selo muda para pronto para avançar. Depois, use a planilha Tarefas, Escala e Alçadas para a escala da semana e o painel por exceção. Bom trabalho!",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#itens",
+     "wait": 1800
+    },
+    {
+     "show": "#selo",
+     "wait": 1200
+    },
+    {
+     "show": "#pdf",
+     "wait": 1500
+    },
+    {
+     "card": {
+      "t": "O seu Mapa de Pessoas e Alçadas",
+      "s": "Baixe o PDF, comece a semana 1 e siga para o Módulo 6 · Compras",
+      "k": "Jornada de Gestão · Módulo 5 · Pessoas"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}

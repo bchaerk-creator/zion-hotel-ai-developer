@@ -1,0 +1,441 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Mapa de Pessoas e Alçadas</title>
+<meta name="description" content="Ferramenta do Módulo 5 da Jornada 2 · Gestão: o mapa de quem faz o quê na sua hospedagem, até quanto cada um decide sem consultar, e o plano de quatro semanas para tirar você do operacional.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.op small{display:block;color:var(--texto-2);font-weight:400;font-size:.86rem;margin-top:2px}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme);margin-bottom:8px}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;min-width:0}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.item label{font-size:.9rem;margin:10px 0 4px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao);text-transform:none;letter-spacing:0;font-weight:600}
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.95rem}
+.calc b{color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dois>div{min-width:0}
+table.tab{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem;table-layout:fixed}
+table.tab th{background:var(--verde);color:var(--creme);text-align:left;font-weight:600;padding:7px 6px;font-size:.78rem}
+table.tab td{padding:7px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+table.tab td small{display:block;color:var(--texto-2);font-size:.76rem}
+table.tab td.n{text-align:right;white-space:nowrap}
+table.tab tr.plano td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio>div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px;min-width:0}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.prio>div>div{min-width:0;overflow-wrap:anywhere}
+.lista{margin:6px 0 0;padding-left:20px}
+.lista li{margin-bottom:4px}
+.ok-i{color:var(--ok);font-weight:700}
+.no-i{color:var(--critico);font-weight:700}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .ind{grid-template-columns:repeat(3,1fr)}
+  table.tab{font-size:.92rem}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 5 · Pessoas<br>Mapa de Pessoas e Alçadas</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="../financas/logic.js"></script>
+<script src="logic.js"></script>
+<script>
+const Z = window.ZP;
+const CHAVE = "zion-t2-pessoas";
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const anterior = () => { for (const k of ["zion-t2-financas", "zion-t2-marco-zero"]) { const x = lerChave(k); if (x && x.nome) return x; } return {}; };
+// Números da Folha Única (Módulo 2), se o membro já fez: servem para o teste de viabilidade da contratação
+function folha() {
+  try {
+    const f = lerChave("zion-t2-financas"); if (!f || !window.ZF || !window.ZF.completo(f)) return null;
+    const r = window.ZF.calcular(f); if (!(r.margemPorNoite > 0) || !r.noitesDisponiveis) return null;
+    return { fixoTotalMes: r.fixoTotalMes, margemOutras: r.margemOutras, margemPorNoite: r.margemPorNoite, noitesDisponiveis: r.noitesDisponiveis, ocupacaoEquilibrio: r.ocupacaoEquilibrio, mes: r.N.mes };
+  } catch (e) { return null; }
+}
+const FIN = folha();
+const TELAS = Z.TELAS;
+const vazio = () => { const a = anterior(); const s = Z.base(); s.nome = a.nome || ""; s.email = a.email || ""; s.hospedagem = a.hospedagem || ""; if (a.unidades) s.unidades = String(a.unidades); return s; };
+let S = Z.completar(lerChave(CHAVE) || vazio());
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 20 a 30 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div id="avisos"></div><p class="erro" id="erro"></p><div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+const radios = (name, ops, val, cls) => `<div class="${cls || "trio"}" role="radiogroup">${ops.map((o) => `<label><input type="radio" name="${name}" value="${o.v}" ${String(val) === String(o.v) ? "checked" : ""}>${o.r}</label>`).join("")}</div>`;
+const ops = (name, lista, val) => `<div class="opcoes">${lista.map((o) => `<label class="op"><input type="radio" name="${name}" value="${o.v}" ${String(val) === String(o.v) ? "checked" : ""}><span>${o.r}${o.t ? `<small>${o.t}</small>` : ""}</span></label>`).join("")}</div>`;
+const txt = (id, v, ph, tipo) => `<input type="${tipo || "text"}" id="${id}" value="${esc(v)}"${ph ? ` placeholder="${esc(ph)}"` : ""}${tipo === "num" ? "" : ""}>`;
+const numIn = (id, v, ph) => `<input type="text" id="${id}" inputmode="decimal" autocomplete="off" value="${esc(v)}" placeholder="${esc(ph || "0")}">`;
+const det = (pq, onde, ex) => `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${pq}</p>${onde ? `<p><b>Onde conseguir:</b> ${onde}</p>` : ""}<p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${ex}</p></details>`;
+
+function atualiza(tela) {
+  const v = Z.validar(S, tela);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.slice(0, 3).map(esc).join("<br>") + (v.erros.length > 3 ? `<br>e mais ${v.erros.length - 3} item(ns).` : "");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(tela);
+}
+function liveHtml(tela) {
+  const r = Z.calcular(S, FIN);
+  if (tela === "cabeca") return (r.depMaisForte ? `Dependência mais forte: <b>${r.depMaisForte.r}</b> · resolve com ${r.depMaisForte.resolve}.` : "Marque as quatro dependências.") + (r.inventario ? `<br>Inventário: <b>${r.inventario.total}</b> linhas, <b>${Z.pct(r.inventario.parteRapida, 0)}</b> de resolução rápida.` : "");
+  if (tela === "mapa") return `Horas suas por semana: <b>${Z.dec(r.horasTotal, 1).replace(/,0$/, "")}</b> (segue roteiro ${Z.dec(r.horasPorJulg.baixo, 1).replace(/,0$/, "")} · com modelos ${Z.dec(r.horasPorJulg.medio, 1).replace(/,0$/, "")} · exige decisão ${Z.dec(r.horasPorJulg.alto, 1).replace(/,0$/, "")})` + (r.primeira ? `<br>Primeira a delegar, pela regra da fonte: <b>${esc(r.primeira.r)}</b>` : "") + `<br>Setores que dependem só de você: <b>${r.setoresSoDono.length} de 6</b>`;
+  if (tela === "alcadas") return `Situações com regra escrita: <b>${r.criteriosEscritos} de 7</b>` + (r.alcadaInicial ? ` · alçada inicial <b>${Z.brl(r.alcadaInicial)}</b>` : "") + (r.alcada2mes ? ` → segundo mês <b>${Z.brl(r.alcada2mes)}</b>` : "");
+  if (tela === "painel") return `As quatro exceções que acionam você na hora:<ol class="lista">${r.excecoes.map((e) => `<li>${esc(e)}</li>`).join("")}</ol>O resto espera o relatório semanal.`;
+  if (tela === "plano") {
+    let h = r.semanas[0].de ? `<b>Semanas:</b> ${r.semanas.map((s) => `${s.n} · ${Z.brCurto(s.de)} a ${Z.brCurto(s.ate)}`).join(" · ")}<br>Avaliação do primeiro mês: <b>${Z.br(r.avaliacao)}</b>` : "Marque a data de início para ver as quatro semanas.";
+    if (r.ativPlano) h += `<br>Horas que saem de você: <b>${Z.horasTxt(r.horasLiberadas)}</b> por semana${r.parteLiberada != null ? ` (${Z.pct(r.parteLiberada, 0)} das suas horas)` : ""}`;
+    if (r.equilibrio && r.equilibrio.calculado) h += `<br>Com ${Z.brl(r.custoMes)} a mais por mês, a ocupação de equilíbrio da sua Folha Única vai de <b>${Z.pct(r.equilibrio.antes)}</b> para <b>${Z.pct(r.equilibrio.depois)}</b> (${r.equilibrio.k === "sim" ? "passa de 70%" : "abaixo de 70%"}).`;
+    return h;
+  }
+  return "";
+}
+function liga(ids) { ids.forEach((k) => { const el = document.getElementById(k); if (el) el.addEventListener("input", (e) => { S[k] = e.target.value; gravar(); atualiza(TELAS[S.tela]); }); }); }
+function ligaNav(t, onVai) {
+  atualiza(t);
+  document.getElementById("volta").onclick = () => ir(-1);
+  document.getElementById("vai").onclick = () => { if (!Z.validar(S, t).ok) return; if (onVai) onVai(); ir(1); };
+}
+function cab(t, titulo, explica) { return `<div class="card"><div class="eyebrow">Tela ${TELAS.indexOf(t)} · ${Z.TITULOS[t]}</div><h2 class="pergunta">${titulo}</h2><p class="explica">${explica}</p>`; }
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || Object.values(S.ativ).some((a) => a.resp);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 5 · Faça agora</div><h1>O meu Mapa de Pessoas e Alçadas</h1>
+    <p class="lead">Aprenda o passo a passo para tirar a operação da sua cabeça: quem faz o quê, até quanto cada pessoa decide sem consultar você, e um plano de quatro semanas para entregar a primeira atividade.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Estar presente não é gerir. Se tudo passa por você, a hospedagem para quando você para, e você atende mensagem no domingo à noite.</div>
+    <div><b>Como vamos fazer</b>Cinco telas: o que só você sabe, quem faz o quê, até quanto cada um decide, como acompanhar de fora e as quatro semanas. Cada pergunta diz por que importa e traz um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com o seu mapa de quem faz o quê com alçada e o plano de quatro semanas, em PDF. É a página 5 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    ${ops("sit", Z.SITUACOES, S.situacao)}
+    <div class="dois" style="margin-top:6px"><div><label for="unidades">Unidades</label>${numIn("unidades", S.unidades, "Ex.: 4")}</div><div><label for="equipeHoje">Pessoas que trabalham com você <span class="dica">(opcional)</span></label>${numIn("equipeHoje", S.equipeHoje, "Ex.: 2")}</div></div>
+    <label for="feriasDias">Dias de férias que você tirou nos últimos 24 meses <span class="dica">(opcional)</span></label>${numIn("feriasDias", S.feriasDias, "Ex.: 0")}
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">A última vez que você ficou 7 dias sem atender mensagem da hospedagem</h2>
+    ${ops("sete", Z.SETE_DIAS, S.seteDias)}
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: preencha com o que está desenhado. As horas são as que você prevê dedicar, e o plano de quatro semanas vale para a primeira pessoa que você vai treinar.</div>` : ""}
+    ${S.situacao === "operador" ? `<div class="aviso">Você cuida da hospedagem de outra pessoa: use o mapa para combinar com o dono até quanto você decide sozinho, e o painel para prestar contas por exceção.</div>` : ""}
+    <p class="dica" style="margin-top:10px">As respostas ficam só neste aparelho. Nada é enviado.</p>
+    <p class="erro" id="erro"></p>
+    <div class="nav"><button class="btn btn-p" id="vai">Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver o mapa pronto antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    liga(["unidades", "equipeHoje", "feriasDias"]);
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    app.querySelectorAll("input[name=sete]").forEach((x) => x.onchange = () => { S.seteDias = x.value; gravar(); atualiza("abertura"); });
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(Z.proximaVazia(S))); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => { S = Z.completar({ ...Z.exemplo(), nome: S.nome, email: S.email, tela: 1 }); gravar(); render(); window.scrollTo(0, 0); };
+    atualiza("abertura");
+    document.getElementById("vai").onclick = () => { if (!Z.validar(S, "abertura").ok) return; S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "cabeca") {
+    h += cab(t, "O que só você sabe?", "Quase todo dono subestima quanto da operação existe só na própria memória, porque o que é automático para você é invisível para você.");
+    h += `<h3 style="margin-top:16px;font-size:1.05rem">As quatro dependências</h3><p class="dica">Cada uma se resolve de um jeito diferente. Marque a força de cada uma hoje.</p><div class="grade">`;
+    h += Z.DEPENDENCIAS.map((d) => `<div class="item"><b>${d.r}</b><small>"${d.frase}". Resolve com ${d.resolve}. Prazo: ${d.prazo}.</small>${radios("dep-" + d.id, Z.FORCA, S.dep[d.id])}</div>`).join("");
+    h += `</div><div class="campo"><label for="acessoData">A tarde desta semana em que eu resolvo os acessos <span class="dica">(se a dependência de acesso não for fraca)</span></label>${txt("acessoData", S.acessoData, "", "date")}
+    ${det("A de acesso é a mais rápida de resolver e a mais perigosa de ignorar: se o seu celular sumir, a operação para. A fonte manda resolver esta semana, seja qual for a mais forte.", "Liste senhas de canal, conta bancária, domínio, perfis e o telefone que recebe as mensagens. Cofre de senhas compartilhado, acessos nominais e um número da operação separado do pessoal.", "sábado, 14/11/2026, à tarde.")}</div>
+    <h3 style="margin-top:18px;font-size:1.05rem">O Inventário da Cabeça <span class="dica" style="font-family:Inter;font-weight:400">(opcional nesta ficha)</span></h3>
+    <p class="dica">Durante uma semana, anote toda vez que você souber de cabeça algo que outra pessoa não saberia: onde fica a chave reserva, qual fornecedor entrega no sábado, quando dar cortesia, as senhas. Costuma dar de 40 a 80 linhas. Se ainda não fez, deixe em branco e volte depois.</p>
+    <div class="dois"><div><label for="invTotal">Linhas no total</label>${numIn("invTotal", S.invTotal, "Ex.: 52")}</div><div><label for="invSimples">Diárias e simples</label>${numIn("invSimples", S.invSimples, "Ex.: 18")}</div>
+    <div><label for="invDecisao">Decisões sem critério</label>${numIn("invDecisao", S.invDecisao, "Ex.: 14")}</div><div><label for="invAcesso">Acessos e contatos</label>${numIn("invAcesso", S.invAcesso, "Ex.: 9")}</div></div>
+    ${det("Classificar mostra o tamanho do problema e a ordem de escrita. Boa parte do que parece conhecimento é decisão sem critério, e isso se resolve com uma linha escrita.", "Um caderno ou uma nota no celular, durante uma semana comum.", "52 linhas: 18 diárias e simples, 14 decisões sem critério, 9 acessos.")}
+    <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    Z.DEPENDENCIAS.forEach((d) => app.querySelectorAll(`input[name=dep-${d.id}]`).forEach((x) => x.onchange = () => { S.dep[d.id] = x.value; gravar(); atualiza(t); }));
+    liga(["acessoData", "invTotal", "invSimples", "invDecisao", "invAcesso"]);
+    ligaNav(t); return;
+  }
+  if (t === "mapa") {
+    h += cab(t, "Quem faz o quê hoje?", "Para cada atividade: quem faz hoje (escreva Eu se for você), quantas horas suas ela leva por semana e quanto julgamento ela exige. O julgamento já vem com a sugestão da fonte: ajuste ao seu caso.");
+    h += `<div class="grade">` + Z.ATIVIDADES.map((a) => { const x = S.ativ[a.id]; const setor = Z.SETORES.find((s) => s.id === a.setor).r; return `<div class="item"><b>${a.r}</b><small>Setor: ${setor}</small>
+      <div class="dois"><div><label for="resp-${a.id}">Quem faz hoje</label><input type="text" id="resp-${a.id}" value="${esc(x.resp)}" placeholder="Eu, ou a função"></div><div><label for="horas-${a.id}">Horas suas por semana</label><input type="text" id="horas-${a.id}" inputmode="decimal" value="${esc(x.horas)}" placeholder="0"></div></div>
+      <label>Julgamento que exige</label>${radios("julg-" + a.id, Z.JULG, x.julg)}
+      <details><summary>Exemplo didático · dados fictícios</summary><p>Cabanas do Vale: ${esc(a.ex.resp)}, ${a.ex.horas} hora(s) da dona por semana, ${Z.JULG.find((j) => j.v === a.julg).r.toLowerCase()}.</p></details></div>`; }).join("") + `</div>
+      <p class="ref">Regra da fonte para a primeira contratação: a atividade que mais consome o seu tempo com menor exigência de julgamento. O que exige julgamento (preço, compra, negociação, relação com fornecedor) fica com você por mais tempo.</p>
+      <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    Z.ATIVIDADES.forEach((a) => {
+      ["resp", "horas"].forEach((k) => document.getElementById(`${k}-${a.id}`).addEventListener("input", (e) => { S.ativ[a.id][k] = e.target.value; gravar(); atualiza(t); }));
+      app.querySelectorAll(`input[name=julg-${a.id}]`).forEach((x) => x.onchange = () => { S.ativ[a.id].julg = x.value; gravar(); atualiza(t); });
+    });
+    ligaNav(t, () => { if (!S.ativPlano) S.ativPlano = Z.sugerirAtividade(S); }); return;
+  }
+  if (t === "alcadas") {
+    h += cab(t, "Até quanto cada um decide sem consultar você?", "Procedimento permite executar; critério permite resolver. Para cada situação: quem decide, a regra (quando é sim, quando é não, quando consulta) e a alçada em reais, se houver dinheiro envolvido.");
+    h += `<div class="grade">` + Z.SITUACOES_CRITERIO.map((s) => { const c = S.crit[s.id]; return `<div class="item"><b>${s.r}</b><small>${s.dica}</small>
+      <label for="quem-${s.id}">Quem decide</label><input type="text" id="quem-${s.id}" value="${esc(c.quem)}" placeholder="Função ou nome">
+      <label for="regra-${s.id}">A regra</label><textarea id="regra-${s.id}" placeholder="Decide sozinho quando... Consulta quando...">${esc(c.regra)}</textarea>
+      <label for="alc-${s.id}">Alçada em R$ <span class="dica">(deixe em branco se não envolve dinheiro)</span></label><input type="text" id="alc-${s.id}" inputmode="decimal" value="${esc(c.alcada)}" placeholder="0,00">
+      <details><summary>Exemplo didático · dados fictícios</summary><p>${esc(s.ex.quem)}: ${s.ex.regra ? esc(s.ex.regra) : "regra ainda não escrita."}${s.ex.alcada ? ` Alçada: R$ ${esc(s.ex.alcada)}.` : ""}</p></details></div>`; }).join("") + `</div>
+      <div class="campo" style="background:var(--creme)"><b>A alçada que sobe com a confiança</b><p class="dica" style="margin:4px 0 8px">Comece baixo e suba conforme a confiança: a fonte sugere cem reais na primeira semana e trezentos no segundo mês. Alçada baixa demais mantém você preso; alta demais cria risco.</p>
+      <div class="dois"><div><label for="alcadaInicial">Alçada inicial (R$)</label>${numIn("alcadaInicial", S.alcadaInicial, "Ex.: 100")}</div><div><label for="alcada2mes">No segundo mês (R$) <span class="dica">(opcional)</span></label>${numIn("alcada2mes", S.alcada2mes, "Ex.: 300")}</div></div>
+      <p class="ref">Registre as decisões tomadas dentro da alçada para revisar junto depois. Isso é treino, não controle.</p></div>
+      <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    Z.SITUACOES_CRITERIO.forEach((s) => [["quem", "quem"], ["regra", "regra"], ["alc", "alcada"]].forEach(([pre, k]) => document.getElementById(`${pre}-${s.id}`).addEventListener("input", (e) => { S.crit[s.id][k] = e.target.value; gravar(); atualiza(t); })));
+    liga(["alcadaInicial", "alcada2mes"]);
+    ligaNav(t); return;
+  }
+  if (t === "painel") {
+    h += cab(t, "Como você vai acompanhar de fora?", "Acompanhar tudo é o mesmo que continuar operando. Acompanhamento sustentável é por exceção: você olha seis indicadores por semana e só entra quando algo sai do esperado.");
+    h += `<div class="caixa c-sig"><h3>Os seis indicadores da semana</h3><ol class="lista">${Z.INDICADORES.map((i) => `<li>${i}</li>`).join("")}</ol></div>
+    <label for="quemEnvia">Quem envia e quando <span class="dica">(opcional)</span></label>${txt("quemEnvia", S.quemEnvia, "Ex.: a diarista, toda segunda de manhã")}
+    <h3 style="margin-top:18px;font-size:1.05rem">As quatro exceções que acionam você na hora</h3><p class="dica">Escreva com precisão: exceção vaga vira ligação por qualquer coisa.</p>
+    <div class="dois"><div><label for="notaMin">Nota mínima das avaliações</label>${numIn("notaMin", S.notaMin, "Ex.: 4,7")}</div><div><label for="gastoPct">Gasto acima do previsto (%)</label>${numIn("gastoPct", S.gastoPct, "Ex.: 10")}</div></div>
+    <p class="dica">As outras duas valem sempre: decisão fora da alçada que precisou ser tomada, e ocorrência de segurança ou dano.</p>
+    <div class="dois"><div><label for="diaSemanal">Dia da leitura semanal (15 minutos)</label><select id="diaSemanal"><option value="">Escolha</option>${Z.DIAS_SEMANA.map((d) => `<option value="${d.v}" ${S.diaSemanal === d.v ? "selected" : ""}>${d.r}</option>`).join("")}</select></div>
+    <div><label for="conversaMensal">Conversa mensal (40 minutos) <span class="dica">(opcional)</span></label>${txt("conversaMensal", S.conversaMensal, "Ex.: primeira segunda do mês")}</div></div>
+    <h3 style="margin-top:18px;font-size:1.05rem">Em que nível de presença você está hoje?</h3>${ops("nivel", Z.NIVEIS.map((n) => ({ v: String(n.n), r: n.n + " · " + n.r, t: n.t })), S.nivel)}
+    <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    liga(["quemEnvia", "notaMin", "gastoPct", "conversaMensal"]);
+    document.getElementById("diaSemanal").onchange = (e) => { S.diaSemanal = e.target.value; gravar(); atualiza(t); };
+    app.querySelectorAll("input[name=nivel]").forEach((x) => x.onchange = () => { S.nivel = x.value; gravar(); atualiza(t); });
+    ligaNav(t); return;
+  }
+  if (t === "plano") {
+    if (!S.ativPlano) S.ativPlano = Z.sugerirAtividade(S);
+    const r0 = Z.calcular(S, FIN);
+    h += cab(t, "As quatro semanas para entregar a primeira atividade", "Sombra, execução acompanhada, sozinha com conferência e autonomia com alçada. Vinte minutos de conversa por dia, cerca de sete horas no mês inteiro.");
+    h += `<label for="ativPlano">A atividade que sai de você primeiro</label><select id="ativPlano">${Z.ATIVIDADES.map((a) => `<option value="${a.id}" ${S.ativPlano === a.id ? "selected" : ""}>${a.r}${r0.primeira && r0.primeira.id === a.id ? " (sugerida pela regra da fonte)" : ""}</option>`).join("")}</select>
+    <label for="pessoa">Quem vai assumir</label>${txt("pessoa", S.pessoa, "Nome ou função; ou \"a contratar\"")}
+    <h3 style="margin-top:16px;font-size:1.05rem">Formato</h3>${ops("formato", Z.FORMATOS, S.formato)}
+    <div class="dois" style="margin-top:4px"><div><label for="inicio">Início da semana 1</label>${txt("inicio", S.inicio, "", "date")}</div><div><label for="custoMes">Custo a mais por mês (R$) <span class="dica">(opcional)</span></label>${numIn("custoMes", S.custoMes, "Ex.: 500")}</div></div>
+    <label for="cobertura">Quem substitui se a pessoa faltar</label>${txt("cobertura", S.cobertura, "Defina a cobertura antes de precisar dela")}
+    ${FIN ? `<p class="ref">Teste de viabilidade da fonte: a contratação precisa caber no custo fixo sem levar o ponto de equilíbrio acima de 70% de ocupação. A ficha usa a sua Folha Única${FIN.mes ? " de " + esc(FIN.mes) : ""} (Módulo 2).</p>`
+      : `<div class="campo"><b>Com o custo dessa pessoa, o ponto de equilíbrio passa de 70% de ocupação?</b><p class="dica" style="margin:4px 0 8px">É o teste de viabilidade da fonte. A conta está na Folha Única do Módulo 2.</p>${radios("equi", Z.EQUILIBRIO, S.equilibrio)}</div>`}
+    <h3 style="margin-top:18px;font-size:1.05rem">Antes da semana 1</h3><p class="dica">A ordem que funciona: escrever antes de contratar. Marque o que já está pronto.</p>
+    <div class="grade">${[["preAcesso", "Acessos resolvidos: cofre de senhas, acessos nominais e telefone da operação"], ["preProc", "Procedimento da atividade escrito nos seis blocos (quando usar, o que ter em mãos, passos, padrão com foto, o que fazer quando foge, quem chamar) e testado por quem não sabe"], ["preCrit", "Tabela de critérios impressa e entregue a quem opera"]].map(([k, r]) => `<div class="item"><b style="font-weight:500">${r}</b>${radios("pre-" + k, Z.SIMNAO, S[k], "trio\" style=\"grid-template-columns:1fr 1fr")}</div>`).join("")}</div>
+    <label for="tempoLivre">O que vou fazer com as horas que sobrarem <span class="dica">(opcional)</span></label><textarea id="tempoLivre" placeholder="Preço e marca, segunda unidade, ou viver: as três são legítimas">${esc(S.tempoLivre)}</textarea>
+    <p class="ref">Quem sai da operação sem decidir isso antes acaba voltando para ela por falta do que fazer.</p>
+    <div class="calc" id="live"></div>` + nav("Ver o meu mapa");
+    app.innerHTML = h;
+    document.getElementById("ativPlano").onchange = (e) => { S.ativPlano = e.target.value; gravar(); atualiza(t); };
+    liga(["pessoa", "inicio", "custoMes", "cobertura", "tempoLivre"]);
+    app.querySelectorAll("input[name=formato]").forEach((x) => x.onchange = () => { S.formato = x.value; gravar(); atualiza(t); });
+    app.querySelectorAll("input[name=equi]").forEach((x) => x.onchange = () => { S.equilibrio = x.value; gravar(); atualiza(t); });
+    ["preAcesso", "preProc", "preCrit"].forEach((k) => app.querySelectorAll(`input[name=pre-${k}]`).forEach((x) => x.onchange = () => { S[k] = x.value; gravar(); atualiza(t); }));
+    ligaNav(t); return;
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); }
+}
+
+function resultado() {
+  const r = Z.calcular(S, FIN), L = Z.leituras(r, S), M = Z.mapa(r, S);
+  const concl = Z.concluido(S, FIN), pend = Z.pendencias(S, FIN);
+  const proj = S.situacao === "abrir" ? `<div class="aviso">Este mapa é um desenho: você ainda vai abrir. Refaça com as horas reais depois do primeiro mês de operação.</div>` : "";
+  const exPrim = r.primeira ? esc(r.primeira.r) : "nenhuma atividade de baixo ou médio julgamento";
+  return `<div class="card"><div class="eyebrow">O meu Mapa de Pessoas e Alçadas${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">Horas por semana que passam por você</div><div class="nota" id="horas">${Z.dec(r.horasTotal, 1).replace(/,0$/, "")} h <small>· ${r.prontos} de 7 itens prontos</small></div><p id="primeira">${esc(L.primeira)}</p></div>
+  ${proj}
+  <section class="bloco"><h2>1 · O resultado</h2><p>O mapa de quem faz o quê, com a alçada de cada pessoa. É o documento 14 do Manual Mínimo da fonte, revisado a cada contratação.</p>
+  <table class="tab" id="mapa"><thead><tr><th style="width:38%">Atividade</th><th style="width:27%">Quem faz hoje</th><th style="width:13%">Horas suas</th><th style="width:22%">Alçada</th></tr></thead><tbody>
+  ${M.map((m) => `<tr class="${m.depois ? "plano" : ""}" data-id="${m.id}"><td>${esc(m.atividade)}<small>${esc(m.setor)} · entra na delegação: ${esc(m.entra.toLowerCase())}</small></td><td>${esc(m.resp)}${m.depois ? `<small>Depois: ${esc(m.depois)}</small>` : ""}</td><td class="n">${Z.dec(m.horas, 1).replace(/,0$/, "")} h</td><td>${esc(m.alcada)}</td></tr>`).join("")}</tbody></table>
+  <div class="ind" id="indicadores">
+    <div data-id="horas"><small>Horas suas por semana</small><strong>${Z.dec(r.horasTotal, 1).replace(/,0$/, "")} h</strong><em>roteiro ${Z.dec(r.horasPorJulg.baixo, 1).replace(/,0$/, "")} · modelos ${Z.dec(r.horasPorJulg.medio, 1).replace(/,0$/, "")} · decisão ${Z.dec(r.horasPorJulg.alto, 1).replace(/,0$/, "")}</em></div>
+    <div data-id="setores"><small>Setores que dependem só de você</small><strong>${r.setoresSoDono.length} de 6</strong></div>
+    <div data-id="criterios"><small>Situações com regra escrita</small><strong>${r.criteriosEscritos} de 7</strong></div>
+    <div data-id="alcada"><small>Alçada inicial</small><strong>${Z.brl(r.alcadaInicial)}</strong>${r.alcada2mes ? `<em>segundo mês ${Z.brl(r.alcada2mes)}</em>` : ""}</div>
+    <div data-id="liberadas"><small>Horas que saem de você no plano</small><strong>${Z.horasTxt(r.horasLiberadas)}</strong>${r.parteLiberada != null ? `<em>${Z.pct(r.parteLiberada, 0)} das suas horas</em>` : ""}</div>
+    <div data-id="nivel"><small>Nível de presença hoje</small><strong>${r.nivel ? r.nivel.n + " · " + r.nivel.r : "a definir"}</strong></div>
+  </div>
+  <h3 style="font-size:1.05rem;margin-top:14px">A tabela de critérios</h3>
+  <table class="tab" id="criterios"><thead><tr><th style="width:32%">Situação</th><th style="width:48%">Quem decide e a regra</th><th style="width:20%">Alçada</th></tr></thead><tbody>
+  ${r.criterios.map((c) => `<tr><td>${esc(c.r)}</td><td>${c.quem ? `<b>${esc(c.quem)}</b>: ` : ""}${c.escrito ? esc(c.regra) : `<span class="no-i">regra a escrever</span>`}</td><td>${c.alcada != null && c.alcada > 0 ? Z.brl(c.alcada) : "sem valor"}</td></tr>`).join("")}</tbody></table></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${esc(L.horas)}</p><p>${esc(L.setores)}</p><p>${esc(L.dependencia)}</p><p>${esc(L.inventario)}</p><p>${esc(L.criterios)}</p><p>${esc(L.nivel)}</p></div></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div class="prio" id="atencao">${L.atencao.map((a, i) => `<div data-id="${a.id}"><i>${i + 1}</i><div>${esc(a.t)}</div></div>`).join("")}</div>
+  ${r.equilibrio && r.equilibrio.calculado ? `<div class="caixa c-sig"><h3>Teste de viabilidade</h3><p id="viabilidade">Com ${Z.brl(r.custoMes)} a mais por mês, a ocupação de equilíbrio da sua Folha Única vai de ${Z.pct(r.equilibrio.antes)} para ${Z.pct(r.equilibrio.depois)}: ${r.equilibrio.k === "sim" ? "passa de 70%, ajuste preço ou custo antes de contratar." : "abaixo de 70%, a contratação cabe pela régua da fonte."}</p></div>` : ""}</section>
+  <section class="bloco"><h2>4 · O que fazer: as quatro semanas</h2>
+  <p><b>${r.ativPlano ? esc(r.ativPlano.r) : "Atividade a escolher"}</b> sai de você para <b>${esc(S.pessoa || "a pessoa a definir")}</b>${r.formato ? ` (${esc(r.formato.r.toLowerCase())})` : ""}. Cobertura de falta: ${esc(S.cobertura || "a definir")}.</p>
+  <table class="tab" id="semanas"><thead><tr><th style="width:24%">Semana</th><th style="width:46%">O que acontece</th><th style="width:30%">Sinal para avançar</th></tr></thead><tbody>
+  ${r.semanas.map((s) => `<tr><td><b>${s.n} · ${s.r}</b><small>${Z.brCurto(s.de)} a ${Z.brCurto(s.ate)}</small><small>Conversa: ${s.conversa}</small></td><td>${s.faz}</td><td>${s.sinal}</td></tr>`).join("")}</tbody></table>
+  <div class="caixa c-faz"><h3>Antes da semana 1</h3><ul class="lista" id="prereq">${r.preReq.map((p) => `<li><span class="${p.ok ? "ok-i" : "no-i"}">${p.ok ? "Pronto" : "Falta"}</span> · ${esc(p.r)}</li>`).join("")}</ul>
+  <p style="margin-top:8px">Na chegada da pessoa, as seis etapas de integração da Bíblia Operacional Zion: ${Z.ONBOARDING.map((o, i) => `${i + 1}) ${o}`).join("; ")}.</p></div>
+  <div class="caixa c-sig" id="excecoes"><h3>O painel por exceção</h3><p>Leitura semanal${S.diaSemanal ? " na " + esc(Z.DIAS_SEMANA.find((d) => d.v === S.diaSemanal).r.toLowerCase()) : ""}, 15 minutos, com os seis indicadores${S.quemEnvia ? " (" + esc(S.quemEnvia) + ")" : ""}. Conversa mensal de 40 minutos${S.conversaMensal ? ": " + esc(S.conversaMensal) : ""}. Contato imediato só nas quatro exceções:</p><ol class="lista">${r.excecoes.map((e) => `<li>${esc(e)}</li>`).join("")}</ol></div>
+  ${S.tempoLivre ? `<p class="dica">Com as horas que sobrarem: ${esc(S.tempoLivre)}</p>` : ""}</section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>A avaliação do primeiro mês</h3><p id="verificar">${esc(L.verificar)}</p>
+  <h3 style="margin-top:10px">Critério de conclusão</h3><p>O módulo está concluído com os sete itens prontos e o PDF baixado:</p><ul class="lista" id="itens">${r.itens.map((i) => `<li><span class="${i.ok ? "ok-i" : "no-i"}">${i.ok ? "Pronto" : "Falta"}</span> · ${esc(i.r)}</li>`).join("")}</ul>
+  <p><span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + esc(pend.join("; "))}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: as compras de reposição e a manutenção preventiva viram procedimento e critério, com a alçada que você acabou de definir.</p>
+  <p class="dica">Complemento: a planilha <a href="../materiais/planilhas/">Tarefas, Escala e Alçadas</a> (em branco e exemplo), com a escala da semana e o painel por exceção semana a semana.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar o meu mapa e o plano em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Revisar as respostas</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { if (gerarPDF()) { const ok = Z.concluido(S, FIN); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(S, FIN).join("; "); s.className = "selo" + (ok ? "" : " pend"); } };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return false; }
+  const r = Z.calcular(S, FIN), L = Z.leituras(r, S), M = Z.mapa(r, S);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, MG = 18, CW = W - 2 * MG; let y = 0;
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem. Zion Hospitality Business.", MG, 286, { maxWidth: CW }); };
+  const fx = (s) => String(s == null ? "" : s).replace(/−/g, "-").replace(/[→]/g, "->");
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  const tx = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.text(ls, MG, y); y += ls.length * size * 0.42 + 2.6; };
+  const tit = (s) => { y += 2; tx(s, 9, [122, 94, 18], true); };
+  // tabela simples: colunas com larguras em mm
+  const tabela = (cols, linhas) => {
+    const lh = 3.9; d.setFontSize(8.6);
+    const desenha = (cells, bold, fundo) => {
+      d.setFont("helvetica", bold ? "bold" : "normal");
+      const ls = cells.map((c, i) => d.splitTextToSize(fx(c), cols[i] - 2)); const h = Math.max(...ls.map((l) => l.length)) * lh + 2;
+      quebra(h); if (fundo) { d.setFillColor(...fundo); d.rect(MG, y - 3.4, CW, h, "F"); }
+      let x = MG; ls.forEach((l, i) => { d.setTextColor(...(bold && fundo ? [245, 241, 232] : [22, 38, 28])); d.text(l, x + 1, y); x += cols[i]; });
+      y += h; d.setDrawColor(214, 205, 184); d.line(MG, y - 3.2, MG + CW, y - 3.2);
+    };
+    desenha(linhas[0], true, [22, 38, 28]); linhas.slice(1).forEach((l) => desenha(l, false));
+    y += 2;
+  };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFont("helvetica", "normal"); d.setFontSize(9); d.text("ZION · JORNADA 2 · GESTÃO · MÓDULO 5 · PESSOAS", MG, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(19); d.text("O meu Mapa de Pessoas e Alçadas", MG, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(fx([S.nome, S.hospedagem, S.situacao === "abrir" ? "desenho antes de abrir" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · ")), MG, 35);
+  y = 54;
+  tit("1 · O RESULTADO");
+  tx(`${Z.dec(r.horasTotal, 1).replace(/,0$/, "")} horas por semana passam por você · ${r.prontos} de 7 itens prontos`, 13, null, true);
+  tx(L.primeira, 10);
+  tx("Quem faz o quê, com alçada (página 5 do Plano de Gestão)", 10, null, true);
+  tabela([62, 52, 18, 42], [["Atividade (setor)", "Quem faz hoje", "Horas suas", "Alçada"]].concat(M.map((m) => [m.atividade + " (" + m.setor + ")", m.resp + (m.depois ? " | Depois: " + m.depois : ""), Z.dec(m.horas, 1).replace(/,0$/, "") + " h", m.alcada])));
+  tx("Tabela de critérios", 10, null, true);
+  tabela([46, 100, 28], [["Situação", "Quem decide e a regra", "Alçada"]].concat(r.criterios.map((c) => [c.r, (c.quem ? c.quem + ": " : "") + (c.escrito ? c.regra : "regra a escrever"), c.alcada != null && c.alcada > 0 ? Z.brl(c.alcada) : "sem valor"])));
+  tx(`Alçada inicial: ${Z.brl(r.alcadaInicial)}${r.alcada2mes ? " · no segundo mês: " + Z.brl(r.alcada2mes) : ""}. Decisões dentro da alçada são registradas para revisar juntos: treino, não controle.`, 9.5);
+  tit("2 · O QUE ISSO SIGNIFICA"); [L.horas, L.setores, L.dependencia, L.inventario, L.criterios, L.nivel].forEach((s) => tx(s, 9.5));
+  tit("3 · ATENÇÃO"); L.atencao.forEach((a, i) => tx(`${i + 1}. ${a.t}`, 9.5));
+  if (r.equilibrio && r.equilibrio.calculado) tx(`Teste de viabilidade: com ${Z.brl(r.custoMes)} a mais por mês, a ocupação de equilíbrio vai de ${Z.pct(r.equilibrio.antes)} para ${Z.pct(r.equilibrio.depois)} (${r.equilibrio.k === "sim" ? "passa de 70%" : "abaixo de 70%"}).`, 9.5);
+  tit("4 · O QUE FAZER: AS QUATRO SEMANAS");
+  tx(`${r.ativPlano ? r.ativPlano.r : "Atividade a escolher"} sai de você para ${S.pessoa || "a pessoa a definir"}${r.formato ? " (" + r.formato.r.toLowerCase() + ")" : ""}. Cobertura de falta: ${S.cobertura || "a definir"}. Horas que saem de você: ${Z.horasTxt(r.horasLiberadas)} por semana.`, 10, null, true);
+  tabela([40, 86, 48], [["Semana", "O que acontece", "Sinal para avançar"]].concat(r.semanas.map((s) => [`${s.n} · ${s.r} (${Z.brCurto(s.de)} a ${Z.brCurto(s.ate)}) · conversa: ${s.conversa}`, s.faz, s.sinal])));
+  tx("Antes da semana 1: " + r.preReq.map((p) => (p.ok ? "[pronto] " : "[falta] ") + p.r).join("; ") + ".", 9.5);
+  tx("Integração da pessoa (seis etapas da Bíblia Operacional Zion): " + Z.ONBOARDING.map((o, i) => `${i + 1}) ${o}`).join("; ") + ".", 9.5);
+  tx(`Painel por exceção: leitura semanal${S.diaSemanal ? " na " + Z.DIAS_SEMANA.find((x) => x.v === S.diaSemanal).r.toLowerCase() : ""} (15 min, seis indicadores); conversa mensal de 40 min${S.conversaMensal ? " (" + S.conversaMensal + ")" : ""}. Exceções: ` + r.excecoes.join("; ") + ".", 9.5);
+  if (S.tempoLivre) tx("Com as horas que sobrarem: " + S.tempoLivre, 9.5);
+  tit("5 · COMO VERIFICAR"); tx(L.verificar, 9.5);
+  tx("Itens prontos: " + r.itens.map((i) => (i.ok ? "[pronto] " : "[falta] ") + i.r).join("; ") + ".", 9);
+  tit("A PRÓXIMA ETAPA"); tx(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: compras e manutenção viram procedimento e critério, com a alçada deste mapa.`, 10, null, true);
+  rodape();
+  d.save("mapa-de-pessoas-e-alcadas.pdf");
+  S.pdf = new Date().toISOString(); gravar(); return true;
+}
+render();
+</script>
+</body>
+</html>
