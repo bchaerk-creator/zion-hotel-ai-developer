@@ -42,6 +42,8 @@ em{font-style:italic;color:var(--ouro)}
 .offer .p{font-family:var(--display);font-size:clamp(40px,6vw,56px);line-height:1;color:var(--creme);margin-top:6px}.offer .p small{font-family:var(--body);font-size:15px;color:rgba(254,245,240,.8);margin-left:8px}
 .offer ul{list-style:none;margin-top:10px;display:grid;gap:4px;font-size:15px;color:rgba(254,245,240,.85)}.offer li::before{content:"✓ ";color:var(--ouro)}
 @media(max-width:860px){.hero{grid-template-columns:1fr;min-height:0}.hero-txt{padding:26px 20px 40px}h1{font-size:clamp(34px,9vw,46px)}.lead{font-size:17px}}
+.mark{font-family:var(--display);font-size:clamp(34px,5.4vw,58px);line-height:1;letter-spacing:.06em;text-transform:uppercase;color:var(--creme);margin:14px 0 18px}.mark span{color:var(--ouro);font-weight:600}.mark small{display:block;font-family:var(--body);font-size:clamp(13px,1.4vw,16px);letter-spacing:.42em;color:var(--ouro);margin-top:6px}
+.ops{display:grid;grid-template-columns:1fr 1fr;gap:clamp(20px,4vw,48px);align-items:center;margin-top:30px}@media(max-width:760px){.ops{grid-template-columns:1fr}}.map svg{width:100%;height:auto;max-width:420px;display:block;margin:0 auto}
 /* cards */
 .cards{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:32px}@media(min-width:760px){.cards.c4{grid-template-columns:repeat(4,1fr)}}
 .card{border:1px solid var(--linha-clara);border-radius:10px;padding:18px 16px;background:rgba(254,245,240,.04)}
@@ -103,7 +105,8 @@ fbq('init','903918118859018');fbq('track','PageView');fbq('track','ViewContent',
 <section class="dark hero" id="topo">
   <div class="hero-img" role="img" aria-label="Bolha da Zion Bubble Glamping integrada à mata, com jacuzzi e deck"></div>
   <div class="hero-txt"><div class="in">
-    <p class="eyebrow">Zion Collection Club · Desenvolvimento Hoteleiro</p>
+    <p class="eyebrow">Desenvolvimento Hoteleiro</p>
+    <div class="mark"><span>Zion</span> Collection <small>Club</small></div>
     <h1 data-h="a">Transforme seu terreno em um <em>destino turístico.</em></h1>
     <h1 data-h="b" hidden>Tem terreno, mas não tem capital para construir? <em>Aprenda a estruturar uma oportunidade</em> para possíveis investidores.</h1>
     <p class="lead soft">Aprenda com a Zion a estruturar seu projeto de hospedagem, preparar propostas para atrair sócios e investidores e apresentar seu terreno ao radar de futuros destinos da Zion.</p>
@@ -116,6 +119,19 @@ fbq('init','903918118859018');fbq('track','PageView');fbq('track','ViewContent',
     <a class="btn" href="https://payments.clickmax.io/v_4pU5zNYj" data-cta="hero">Quero entrar para o clube <span aria-hidden="true">→</span></a>
     <p class="note soft">Comece pela área de Desenvolvimento Hoteleiro. Pix ou cartão. Reembolso em 7 dias.</p>
   </div></div>
+</section>
+
+<!-- 01a VÍDEO -->
+<section class="dark" id="video" style="padding:clamp(40px,6vw,72px) 0">
+  <div class="wrap">
+    <p class="eyebrow">Em 2 minutos</p>
+    <h2>Conheça a nossa visão <em>da Zion Collection.</em></h2>
+    <p class="lead soft">O filme oficial: as operações reais, a expansão pelo Brasil e o que a Zion ensina para quem tem um terreno.</p>
+    <video id="filme" controls playsinline preload="metadata" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/capas-hd/07-zion-collection-filme.webp" style="display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#040605;margin-top:26px;box-shadow:0 24px 60px rgba(0,0,0,.4)">
+      <source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/videos-web/videos/07-zion-collection-filme.mp4" type="video/mp4">
+    </video>
+    <a class="btn" href="https://payments.clickmax.io/v_4pU5zNYj" data-cta="video">Quero entrar para o clube <span aria-hidden="true">→</span></a>
+  </div>
 </section>
 
 <!-- 01b ACESSOS -->
@@ -214,23 +230,35 @@ fbq('init','903918118859018');fbq('track','PageView');fbq('track','ViewContent',
 <!-- 07 AUTORIDADE -->
 <section class="dark" id="autoridade">
   <div class="wrap">
-    <p class="eyebrow">Quem ensina</p>
-    <h2>Aprenda com a experiência de quem <em>desenvolve e opera hospedagens.</em></h2>
-    <p class="lead soft">A Zion Hotel Group International opera a Zion Bubble Glamping em Urubici e em Florianópolis desde 2020. O que está no clube é o caminho que a equipe usa nas próprias unidades.</p>
-    <div class="founder">
-      <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection/hero-bruno-bolha.jpg" alt="Bruno Chaerk, fundador da Zion, diante de uma bolha da Zion Bubble Glamping" loading="lazy" width="930" height="1024">
-      <div><p class="eyebrow">Quem está por trás</p><h3 style="font-size:30px;margin-top:10px">Bruno Chaerk</h3><p class="soft" style="margin-top:8px;font-size:16px">Fundador da Zion Hotel Group International. Desenvolve, gere e opera hospedagens desde 2020, com as unidades de Urubici e Florianópolis, e conduz a sessão estratégica e a masterclass do clube.</p></div>
+    <p class="eyebrow">Operações reais · Brasil em expansão</p>
+    <h2>Aprenda com quem <em>desenvolve, gere e opera</em> hospedagens de verdade.</h2>
+    <div class="ops">
+      <div class="map">
+        <svg viewBox="0 0 400 400" role="img" aria-label="Mapa do Brasil com as operações da Zion em Santa Catarina e destinos em desenvolvimento pelo país">
+          <defs><pattern id="dots" width="14" height="14" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2" fill="rgba(201,179,126,.35)"/></pattern></defs>
+          <path d="M222 11 L235 37 L240 53 L255 69 L270 63 L297 80 L322 84 L355 92 L370 104 L388 113 L391 135 L388 151 L370 165 L355 185 L350 205 L348 232 L337 258 L330 273 L308 284 L293 289 L277 295 L255 310 L254 331 L243 348 L238 359 L220 377 L206 392 L184 364 L164 357 L180 343 L183 329 L194 310 L198 295 L183 280 L164 245 L159 225 L138 207 L135 190 L109 180 L87 163 L62 161 L44 164 L34 149 L13 131 L2 128 L11 106 L41 97 L40 80 L46 65 L69 50 L71 43 L80 30 L100 16 L122 8 L135 3 L140 12 L144 30 L160 40 L175 36 L195 32 L214 32 Z" fill="url(#dots)" stroke="rgba(201,179,126,.7)" stroke-width="1.5"/>
+          <g class="pin"><circle cx="244" cy="335" r="14" fill="rgba(201,179,126,.18)"><animate attributeName="r" values="10;20;10" dur="2.4s" repeatCount="indefinite"/></circle><circle cx="244" cy="335" r="5" fill="#C9B37E"/><text x="166" y="353" font-size="12" fill="#FEF5F0">Urubici · SC</text></g>
+          <g class="pin"><circle cx="255" cy="331" r="14" fill="rgba(201,179,126,.18)"><animate attributeName="r" values="10;20;10" dur="2.4s" begin=".8s" repeatCount="indefinite"/></circle><circle cx="255" cy="331" r="5" fill="#C9B37E"/><text x="267" y="327" font-size="12" fill="#FEF5F0">Florianópolis · SC</text></g>
+        </svg>
+      </div>
+      <div class="opsx">
+        <div class="facts" style="margin-top:0;grid-template-columns:1fr 1fr">
+          <div><b>Desde 2020</b><span>operando hospedagens próprias</span></div>
+          <div><b>Urubici e Florianópolis</b><span>as unidades Zion Bubble Glamping</span></div>
+          <div><b>Mais de 23 destinos</b><span>em desenvolvimento pelo Brasil</span></div>
+          <div><b>20 anos</b><span>de hotelaria internacional do fundador</span></div>
+        </div>
+        <p class="soft" style="margin-top:18px;font-size:15px">O que está no clube é o caminho que a Zion usa nas próprias unidades e nos destinos que está desenvolvendo. Você aprende com quem faz, não com quem só ensina.</p>
+      </div>
     </div>
     <div class="auth">
       <figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="Bolha da Zion vista de cima, com deck de madeira e espreguiçadeiras" loading="lazy" width="900" height="675"><figcaption>Zion Bubble Glamping · Florianópolis</figcaption></figure>
       <figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op12.webp" alt="Interior de uma bolha da Zion com cama, cortinas e vista para a mata" loading="lazy" width="900" height="599"><figcaption>Interior de uma unidade em operação</figcaption></figure>
       <figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/noturna.webp" alt="Bolha da Zion iluminada à noite entre palmeiras" loading="lazy" width="900" height="600"><figcaption>Zion Bubble Glamping à noite</figcaption></figure>
     </div>
-    <div class="facts">
-      <div><b>Desde 2020</b><span>operando hospedagens próprias</span></div>
-      <div><b>2 destinos</b><span>Urubici e Florianópolis</span></div>
-      <div><b>Desenvolve, gere e opera</b><span>as três frentes na prática</span></div>
-      <div><b>Método em uso</b><span>as mesmas planilhas das unidades</span></div>
+    <div class="founder">
+      <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection/hero-bruno-bolha.jpg" alt="Bruno Chaerk, fundador e mentor da Zion, diante de uma bolha da Zion Bubble Glamping" loading="lazy" width="930" height="1024">
+      <div><p class="eyebrow">Fundador e mentor</p><h3 style="font-size:30px;margin-top:10px">Bruno Chaerk</h3><p class="soft" style="margin-top:8px;font-size:16px">Fundador da Zion Hotel Group International, com 20 anos de hotelaria internacional. Desenvolve, gere e opera as unidades de Urubici e Florianópolis, lidera a expansão da Zion pelo Brasil e conduz a sessão estratégica e a masterclass do clube.</p></div>
     </div>
   </div>
 </section>
