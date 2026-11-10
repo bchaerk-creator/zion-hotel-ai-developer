@@ -65,6 +65,11 @@ h2{font-family:Cormorant,Georgia,serif;font-style:italic;font-weight:400;font-si
     const bg = fundo(c, f.suf), nome = `${c.id}-${f.suf}${bg.provisorio ? "-provisoria" : ""}.jpg`, o = MAPA[c.id] || {};
     const p = await b.newPage({ viewport: { width: f.W, height: f.H } }); await p.setContent(html(c, f, bg.src, f.v ? (o.posV || c.posV) : (o.posH || c.posH)));
     await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(200);
+    // Opcional por capa: "larguraTitulo": { "h": px, "v": px }. Reduz só a fonte do título até cada linha caber
+    // nessa largura (títulos longos em 2 linhas, sem invadir o retrato). Sem o campo, nada muda.
+    const lt = (o.larguraTitulo || c.larguraTitulo || {})[f.suf];
+    if (lt) await p.evaluate((max) => { const h = document.querySelector("h1"); h.style.whiteSpace = "nowrap"; h.style.width = "max-content";
+      let fs = parseFloat(getComputedStyle(h).fontSize); while (h.getBoundingClientRect().width > max && fs > 40) { fs -= 2; h.style.fontSize = fs + "px"; } h.dataset.fs = fs; }, lt);
     await p.screenshot({ path: path.join(OUT, nome), type: "jpeg", quality: 88 }); await p.close();
     relacao.push({ arquivo: nome, largura: f.W, altura: f.H, fundo: bg.escolhida ? `foto escolhida: ${path.basename(o.foto)}` : bg.provisorio ? `provisório: docs/${c.foto}` : "imagem gerada (sem texto)" });
     console.log("capa", nome);
