@@ -219,6 +219,19 @@ cxs('track', 'page_view');
 .e.destaque{background:var(--floresta);color:var(--papel);border-color:var(--ouro)}
 .e.destaque p{color:rgba(254,245,240,.8)}
 .e.destaque::after{content:"GRÁTIS NA INSCRIÇÃO";position:absolute;top:18px;right:18px;font-size:11px;letter-spacing:.16em;color:var(--floresta);background:#FFED00;padding:5px 9px;border-radius:999px;font-weight:600}
+.bul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:18px;padding:0}
+.bul li{border:1px solid var(--ouro);border-radius:999px;padding:7px 14px;font-size:14px;color:var(--papel)}
+.bul li::before{content:"✓ ";color:var(--ouro)}
+.cards4{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:34px}
+@media(min-width:760px){.cards4{grid-template-columns:repeat(4,1fr)}}
+.c4{border:1px solid var(--linha);border-radius:8px;padding:18px 16px;background:#fff}
+.c4 .n{font-family:var(--display);font-size:30px;color:var(--ouro);line-height:1;display:block}
+.c4 h3{font-size:21px;margin-top:8px;line-height:1.1}
+.c4 p{color:var(--cinza);font-size:14px;margin-top:6px;line-height:1.4}
+.pain{grid-template-columns:repeat(2,1fr)}.pain div{padding:18px 16px}.pain b{font-size:20px}.pain p{font-size:14px}
+.entr{grid-template-columns:repeat(2,1fr);gap:12px}.e{padding:18px 16px}.e .n{font-size:30px}.e h3{font-size:20px}.e p{font-size:14px}
+.e.destaque{grid-column:1/-1}
+@media(max-width:340px){.pain,.cards4,.entr{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -228,7 +241,8 @@ cxs('track', 'page_view');
   <div class="wrap">
     <p class="eyebrow">Zion Collection · o clube</p>
     <h1>Entre no clube e agende a sua <em>reunião estratégica</em> com a Zion.</h1>
-    <p class="lead soft">Captar recurso, trazer um sócio ou investidor, ser parceiro da Zion ou fazer você mesmo: o clube de quem desenvolve, gere e opera hospedagens te ensina o passo a passo e inscreve o seu terreno no Land Bank. Na sessão inicial, a equipe olha o seu projeto com você.</p>
+    <p class="lead soft">Aprenda o passo a passo, inscreva o seu terreno no Land Bank e saia da sessão inicial com o próximo passo definido.</p>
+    <ul class="bul"><li>Captar recurso</li><li>Trazer um sócio ou investidor</li><li>Ser parceiro da Zion</li><li>Fazer você mesmo</li></ul>
     <a class="btn" href="#inscricao">Entre no clube <span aria-hidden="true">→</span></a>
     <p class="note" style="color:#FFED00;font-size:16px;font-weight:500">Na inscrição você ganha uma sessão de direcionamento inicial com a equipe Zion, sem custo adicional.</p>
     <p class="note soft">2x de R$ 48,50 ou R$ 97 à vista. Acesso anual.</p>
@@ -241,12 +255,12 @@ cxs('track', 'page_view');
   <div class="wrap">
     <p class="eyebrow">A dor que chega nos formulários</p>
     <h2>Terreno parado, projeto na cabeça, <em>e ninguém para entrar junto.</em></h2>
-    <p class="lead soft">Entre as centenas de donos de terreno que responderam aos nossos formulários, a maioria diz a mesma coisa: falta capital ou um sócio, e não sabe por onde começar. O que ninguém diz é que investidor não coloca dinheiro num terreno. Coloca num projeto que ele entende.</p>
+    <p class="lead soft">Investidor não coloca dinheiro num terreno. Coloca num projeto que ele entende.</p>
     <div class="pain">
-      <div><b>"Não tenho o dinheiro."</b><p>A terra já é capital. O que falta é o projeto no papel que faz alguém entrar junto.</p></div>
-      <div><b>"Não sei por onde começar."</b><p>Não é falta de informação. É falta de sequência: território, mercado, produto, modelo, masterplan, conta e capital.</p></div>
-      <div><b>"Será que o meu terreno serve?"</b><p>Área pequena não é problema, é modelo. O diagnóstico responde isso antes de qualquer gasto.</p></div>
-      <div><b>"Tenho medo de errar depois de pronto."</b><p>Errar no papel custa zero. Errar na obra custa o projeto.</p></div>
+      <div><b>"Não tenho o dinheiro."</b><p>A terra é o capital. Falta o projeto no papel.</p></div>
+      <div><b>"Não sei por onde começar."</b><p>Não falta informação. Falta sequência.</p></div>
+      <div><b>"Será que o meu terreno serve?"</b><p>Área pequena é questão de modelo, não de impedimento.</p></div>
+      <div><b>"Tenho medo de errar depois de pronto."</b><p>Errar no papel custa zero. Na obra, custa o projeto.</p></div>
     </div>
     <p class="note soft" style="margin-top:22px">Frases reais, sem nomes, dos formulários recebidos pela Zion em 2026.</p>
   </div>
@@ -256,12 +270,12 @@ cxs('track', 'page_view');
   <div class="wrap">
     <p class="eyebrow">O seu objetivo</p>
     <h2>Diga o que você quer com o terreno. <em>O clube te leva até lá.</em></h2>
-    <p class="lead soft">Cada membro entra com um objetivo claro. O clube ensina o caminho, a sessão inicial define o seu próximo passo e a inscrição no Land Bank coloca o seu terreno no radar da Zion.</p>
-    <div class="three">
-      <div><span class="k">OBJETIVO 1</span><h3>Captar recurso para o projeto</h3><p>Aprenda a montar a conta, o Dossiê e a apresentação que um investidor ou um banco espera ver. Ninguém coloca dinheiro em terreno: coloca em projeto legível.</p></div>
-      <div><span class="k">OBJETIVO 2</span><h3>Trazer um sócio ou investidor</h3><p>Aprenda a dividir papéis entre quem tem a terra, quem opera e quem coloca capital, e a apresentar o projeto a quem pode entrar junto.</p></div>
-      <div><span class="k">OBJETIVO 3</span><h3>Ser parceiro da Zion</h3><p>Com o terreno inscrito no Land Bank e o projeto estruturado, a Zion conhece a sua área de perto. Parceria e investimento são caminhos possíveis, avaliados caso a caso.</p></div>
-      <div><span class="k">OBJETIVO 4</span><h3>Fazer você mesmo, na ordem certa</h3><p>Território, mercado, produto, modelo, masterplan, conta e capital: o passo a passo de quem opera desde 2020, para você desenvolver, gerir e operar.</p></div>
+    <p class="lead soft">Escolha o seu. O clube ensina o caminho e a sessão inicial define o próximo passo.</p>
+    <div class="cards4">
+      <div class="c4"><span class="n">01</span><h3>Captar recurso</h3><p>Conta, Dossiê e apresentação que um investidor espera ver.</p></div>
+      <div class="c4"><span class="n">02</span><h3>Trazer um sócio</h3><p>Quem tem a terra, quem opera e quem coloca capital: papéis claros.</p></div>
+      <div class="c4"><span class="n">03</span><h3>Ser parceiro da Zion</h3><p>Terreno no Land Bank e projeto estruturado, no radar da equipe.</p></div>
+      <div class="c4"><span class="n">04</span><h3>Fazer você mesmo</h3><p>O passo a passo, na ordem certa, de quem opera desde 2020.</p></div>
     </div>
     <p class="note soft" style="margin-top:22px">Aprender o caminho não garante investidor, sócio ou parceria. Cada terreno é um caso, e a Zion avalia cada um.</p>
   </div>
@@ -285,14 +299,14 @@ cxs('track', 'page_view');
   <div class="wrap">
     <p class="eyebrow">O que você recebe</p>
     <h2>Seis entregáveis. <em>Tudo na inscrição.</em></h2>
-    <p class="lead soft">Não é só conteúdo para assistir. Cada bloco é uma coisa que você sai tendo em mãos.</p>
+    <p class="lead soft">Cada bloco é uma coisa que você sai tendo em mãos.</p>
     <div class="entr">
-      <div class="e destaque"><span class="n">01</span><h3>Sessão de direcionamento inicial, grátis</h3><p>Reunião online com a equipe Zion, inclusa na inscrição: você sai com o plano de ação e o mapa dos próximos passos do seu terreno.</p></div>
-      <div class="e"><span class="n">02</span><h3>Trilha de Desenvolvimento completa</h3><p>Marco Zero e 7 pilares, 43 aulas gravadas e interativas, do terreno à captação.</p></div>
-      <div class="e"><span class="n">03</span><h3>Planilhas e ferramentas</h3><p>Uma ferramenta por pilar: mercado, produto, modelo, masterplan, pré-viabilidade e captação.</p></div>
-      <div class="e"><span class="n">04</span><h3>Dossiê de Desenvolvimento do seu terreno</h3><p>O documento que você monta ao longo da trilha, pronto para apresentar a um sócio, investidor ou parceiro.</p></div>
-      <div class="e"><span class="n">05</span><h3>Área de membros e masterclass ao vivo</h3><p>Acesso anual, com masterclass com o Bruno às quintas, 20h, suporte da equipe e novos conteúdos de gestão e operação ao longo do ano.</p></div>
-      <div class="e"><span class="n">06</span><h3>Terreno inscrito no Land Bank</h3><p>Seu terreno e projeto entram no banco de áreas turísticas da Zion, no radar de parcerias e investimentos do setor.</p></div>
+      <div class="e destaque"><span class="n">01</span><h3>Sessão de direcionamento inicial, grátis</h3><p>Reunião online com a equipe Zion. Você sai com o plano de ação do seu terreno.</p></div>
+      <div class="e"><span class="n">02</span><h3>Trilha de Desenvolvimento completa</h3><p>Marco Zero + 7 pilares. 43 aulas, do terreno à captação.</p></div>
+      <div class="e"><span class="n">03</span><h3>Planilhas e ferramentas</h3><p>Uma ferramenta por pilar, pronta para preencher.</p></div>
+      <div class="e"><span class="n">04</span><h3>Dossiê de Desenvolvimento do seu terreno</h3><p>Montado na trilha. Pronto para apresentar a sócio ou investidor.</p></div>
+      <div class="e"><span class="n">05</span><h3>Área de membros e masterclass ao vivo</h3><p>Acesso anual. Masterclass às quintas, 20h. Novos conteúdos no ano.</p></div>
+      <div class="e"><span class="n">06</span><h3>Terreno inscrito no Land Bank</h3><p>Seu terreno no banco de áreas da Zion, no radar do setor.</p></div>
     </div>
     <p class="note soft" style="margin-top:22px">A Zion avalia cada caso. Parceria e investimento são possibilidades, não garantia.</p>
   </div>
