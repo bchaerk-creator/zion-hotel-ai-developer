@@ -61,3 +61,7 @@ Módulo "6 · Compras, estoque e manutenção" (posição 6), todas as aulas `en
 2. **Faça agora · A minha Matriz de Compras e Manutenção** · link externo `trilha2/compras/` · capa `g6-c-faca.jpg` · anexos: tutorial (`videos/tutoriais/tutorial-ficha-compras.mp4`), as duas planilhas, o prompt de IA.
 3. **Resumo** · documento `materiais/Modulo-6-Compras-resumo.pdf` · capa `g6-c-resumo.jpg`.
 4. **Planilha · Matriz de Compras e Manutenção** · link + 2 anexos (em branco e exemplo) · capa `g6-c-planilha.jpg`.
+
+## Decisões do Bruno aplicadas em 10/11/2026
+- **Reserva única de 3%** em toda a Jornada 2: a Folha do Módulo 2 passou a 3% (reserva de reposição R$ 406,97, a mesma reserva de manutenção deste módulo). Pendência 1 resolvida; nada muda neste módulo.
+- **Ferramentas pagas apontam para a página de vendas** (pendência 2): Ferramenta 13 → `https://infoprodutos-zion.clickmax.space/controle-enxoval`; Ferramenta 14 → `https://infoprodutos-zion.clickmax.space/quadro-ocorrencias`; Ferramenta 18 → `https://infoprodutos-zion.clickmax.space/manutencao-preventiva`, na ficha, no resumo e nas notas da planilha, com o texto "vendida(s) à parte na loja Zion".

@@ -174,7 +174,7 @@ def montar(exemplo):
     rotulo(es, 23, "Situação dos dados")
     situacao(es, 23, f'=IF(COUNTA(A{E1}:A{E2})=0,"Informe pelo menos um item do estoque",IF(SUMPRODUCT((A{E1}:A{E2}<>"")*((C{E1}:C{E2}<=0)+(D{E1}:D{E2}="")+(E{E1}:E{E2}="")+(F{E1}:F{E2}="")+(G{E1}:G{E2}<=0)))>0,"Complete uso, entrega, segurança, estoque de hoje e intervalo de cada item",IF(MIN(C{E1}:G{E2})<0,"Há valor negativo",IF(AND(N(B17)>0,B18=""),"Informe os jogos de cama","OK"))))')
     nota(es, 25, "Consumo por dia = uso do mês ÷ 30. Mínimo e ponto de pedido: definição-padrão de gestão de estoque, arredondados para cima. Rotina Zion: contagem toda segunda-feira; chegou ao mínimo, aciona o fornecedor.")
-    nota(es, 26, "Para o controle peça por peça do enxoval, use a Ferramenta 13 · Controle de Enxoval e Reposição.")
+    nota(es, 26, "Para o controle peça por peça do enxoval, use a Ferramenta 13 · Controle de Enxoval e Reposição (vendida à parte na loja Zion: infoprodutos-zion.clickmax.space/controle-enxoval).")
     dve = DataValidation(type="decimal", operator="greaterThanOrEqual", formula1="0", showErrorMessage=True, errorTitle="Valor inválido", error="Use um número maior ou igual a zero."); es.add_data_validation(dve); dve.add(f"C{E1}:G{E2}"); dve.add("B17:B18")
 
     # ---------- Manutenção 12 meses ----------
@@ -239,7 +239,7 @@ def montar(exemplo):
     rotulo(ro, 5, "Quem faz as compras", "Uma pessoa, com nome."); entrada(ro, 5, e.get("quem"), "@")
     rotulo(ro, 6, "Até quanto a equipe compra fora do previsto sem perguntar (R$)", "Na fonte, o exemplo é R$ 300."); entrada(ro, 6, e.get("alcada"))
     rotulo(ro, 7, "Faço a ronda técnica diária com lista? (Sim/Não)"); entrada(ro, 7, e.get("ronda"), "@")
-    rotulo(ro, 8, "Registro cada problema num quadro de ocorrências? (Sim/Não)", "Ferramenta 14 · Quadro de Ocorrências e Manutenção."); entrada(ro, 8, e.get("ocorr"), "@")
+    rotulo(ro, 8, "Registro cada problema num quadro de ocorrências? (Sim/Não)", "Ferramenta 14 · Quadro de Ocorrências e Manutenção (vendida à parte: infoprodutos-zion.clickmax.space/quadro-ocorrencias)."); entrada(ro, 8, e.get("ocorr"), "@")
     dvd = DataValidation(type="list", formula1='"segunda-feira,terça-feira,quarta-feira,quinta-feira,sexta-feira,sábado,domingo"', allow_blank=True); ro.add_data_validation(dvd); dvd.add("B4")
     dvr = DataValidation(type="list", formula1='"Sim,Não"', allow_blank=True); ro.add_data_validation(dvr); dvr.add("B7:B8")
     faixa(ro, 10, "CHECKLIST DO MÊS (10 itens)")

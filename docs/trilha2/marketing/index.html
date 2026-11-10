@@ -292,7 +292,7 @@ function render() {
     <div class="campo">${area("nunca", "O que a sua hospedagem nunca faz", "Ex.: " + E.nunca, true)}<p class="dica">Uma hospedagem que aceita tudo não promete nada.</p></div>
     <div class="campo" style="background:var(--creme)"><b>Onde a promessa já aparece?</b><p class="dica" style="margin:4px 0 0">Promessa que aparece só no site não é promessa, é texto.</p>
     ${Z.PONTOS.map((x) => `<div class="ponto"><b>${x.r}</b><div class="trio" role="radiogroup">${Z.PONTO_OP.map((o) => `<label><input type="radio" name="p-${x.id}" value="${o.v}" ${S.pontos[x.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}
-    <p class="dica" style="margin-top:8px">As mensagens de boas-vindas e de agradecimento já estão prontas no <a href="../../p/adbc67069af26ae0/kit-mensagens-11/">Kit de Mensagens (Ferramenta 11)</a>: ajuste ao seu tom.</p></div>`;
+    <p class="dica" style="margin-top:8px">As mensagens de boas-vindas e de agradecimento já estão prontas no <a href="https://infoprodutos-zion.clickmax.space/kit-mensagens" target="_blank" rel="noopener">Kit de Mensagens (Ferramenta 11)</a>, vendido à parte na loja Zion: ajuste ao seu tom.</p></div>`;
     h += card("prova", { t: "Como a promessa chega antes da reserva?", p: "A prova que a mostra, o jeito de escrever e os lugares onde ela precisa aparecer." }, c);
     app.innerHTML = h; ligar(["prova", "tom", "banidas", "nunca"]);
     Z.PONTOS.forEach((x) => app.querySelectorAll(`input[name=p-${x.id}]`).forEach((el) => el.onchange = () => { S.pontos[x.id] = el.value; gravar(); atualiza(); }));
@@ -370,7 +370,7 @@ function resultado() {
   <label for="prazo">Data do primeiro check-in com o pedido de autorização</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
   <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(r, S))}</p><p>A lição está concluída quando a marca em uma folha tem para quem, promessa, prova e tom; a lista tem os números de hoje, o lugar, a frase de autorização e a meta; os canais têm o custo por reserva; a meta de venda direta tem prazo; o plano está escrito com a data e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
   <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: quem pede a autorização no check-in, quem responde o WhatsApp e quem registra o canal de cada reserva vira tarefa com dono.</p>
-  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Plano de Captação</a> (marca, captação do mês, lista própria e 12 meses) e o <a href="../../p/adbc67069af26ae0/kit-mensagens-11/">Kit de Mensagens (Ferramenta 11)</a>.</p></section>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Plano de Captação</a> (marca, captação do mês, lista própria e 12 meses) e, vendido à parte na loja Zion, o <a href="https://infoprodutos-zion.clickmax.space/kit-mensagens" target="_blank" rel="noopener">Kit de Mensagens (Ferramenta 11)</a>.</p></section>
   <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Marca e Captação em PDF</button>
   <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
   <button class="btn btn-s" id="refaz">Refazer</button></div>

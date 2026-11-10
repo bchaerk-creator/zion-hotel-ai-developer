@@ -60,7 +60,7 @@ CLASSIF = [
     ("Custo variável", "Sai com cada noite vendida e não sairia com a unidade vazia.", "Limpeza (líquida do repasse), enxoval, amenidades, energia da unidade, café, quebra e perda, custo das outras receitas."),
     ("Custo fixo operacional", "Sai todo mês, com casa cheia ou vazia. A sua retirada está aqui.", "Equipe, contas comuns, software, contador, marketing fixo, despesas anuais ÷ 12, manutenção contratada, retirada do dono."),
     ("Custo do modelo", "Depende de como a hospedagem foi montada, não de como ela opera.", "Aluguel ou arrendamento, taxa de gestão, uso de marca."),
-    ("Reserva ou depreciação", "Repõe o que se desgasta. Reserva é caixa; depreciação é conta contábil. Nunca as duas juntas.", "Reserva de reposição de 3 a 6% da receita (padrão 4%), ou a depreciação do contador."),
+    ("Reserva ou depreciação", "Repõe o que se desgasta. Reserva é caixa; depreciação é conta contábil. Nunca as duas juntas.", "Reserva de reposição de 3 a 6% da receita (padrão 3%), ou a depreciação do contador."),
 ]
 INDIC = [
     ("Receita real", "receita bruta de hospedagem − deduções (+ outras receitas)", "O que de fato chegou."),
@@ -83,15 +83,15 @@ CASCATA = [  # rótulo, valor, classe
     ("− Fixos: equipe 1.800, comuns 620, software 190, contador 300, marketing 150, duodécimos 460, manutenção 250, retirada 3.464", "7.234,00", "sub"),
     ("= Resultado operacional (quanto sobrou do mês)", "4.269,20", "tot"),
     ("− Custos do modelo (aluguel, gestão, marca)", "0,00", "sub"),
-    ("− Reserva de reposição (4% da receita real)", "542,62", "sub"),
-    ("= O que ficou no caixa para o negócio", "3.726,58", "tot"),
+    ("− Reserva de reposição (3% da receita real)", "406,97", "sub"),
+    ("= O que ficou no caixa para o negócio", "3.862,23", "tot"),
 ]
 EX_IND = [
     ("Diária média real", "12.585,60 ÷ 58", "R$ 216,99"),
     ("Custo variável por noite", "(2.062,40 − 420) ÷ 58", "R$ 28,32"),
-    ("Custo por noite vendida", "28,32 + 7.234 ÷ 58", "R$ 153,03"),
-    ("Margem por noite", "216,99 − 28,32", "R$ 188,67"),
-    ("Ponto de equilíbrio", "(7.234 − 560) ÷ 188,67", "35,4 noites"),
+    ("Custo por noite vendida", "(1.642,40 + 7.234) ÷ 58", "R$ 153,04"),
+    ("Margem por noite", "(12.585,60 − 1.642,40) ÷ 58", "R$ 188,68"),
+    ("Ponto de equilíbrio", "(7.234 − 560) ÷ 188,68", "35,4 noites"),
     ("Ocupação de equilíbrio", "35,4 ÷ 124", "28,5%"),
     ("Meses de fôlego", "(13.620 + 0) ÷ 7.234", "1,9 meses"),
 ]
@@ -141,7 +141,7 @@ html = f"""<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>
 <div class="cita">“A retirada tem valor definido, data definida e sai sempre igual, como um salário.”<small>Jornada do COMO · Etapa 09 · Passo 03 · Conta da Retirada</small></div>
 <p>Conta da Retirada: horas por semana × custo por hora × 4,33. Se decidir não retirar nada por enquanto, marque isso de propósito na Folha. Retirada em branco não é fechamento; retirada zero decidida é.</p>
 <div class="caixa"><h3>Parâmetros de referência Zion <span class="ref">referência ajustável, nunca universal</span></h3>
-<ul><li><b>Deduções sobre as diárias: 17%</b>, sendo 15% de impostos sobre a receita e comissões mais 2% de cancelamentos e faltas. Serve para começar sem o extrato na mão; o seu número sai do relatório de repasse de cada canal.</li><li><b>Quebra e perda: 1%</b> da receita bruta de diárias, como custo variável, até medir três meses de notas.</li><li><b>Reserva de reposição: 3 a 6%</b> da receita, padrão 4%. <span class="fonte">(Etapa 09 · Passo 06)</span></li></ul></div>
+<ul><li><b>Deduções sobre as diárias: 17%</b>, sendo 15% de impostos sobre a receita e comissões mais 2% de cancelamentos e faltas. Serve para começar sem o extrato na mão; o seu número sai do relatório de repasse de cada canal.</li><li><b>Quebra e perda: 1%</b> da receita bruta de diárias, como custo variável, até medir três meses de notas.</li><li><b>Reserva de reposição: 3 a 6%</b> da receita, padrão 3%. <span class="fonte">(Etapa 09 · Passo 06)</span></li></ul></div>
 <p class="fonte">Convenção declarada: as comissões de canal entram na dedução, como na cascata do modelo financeiro Zion; a Etapa 09 as põe no custo variável. O resultado do mês é o mesmo; muda só o bloco.</p>{ROD}</section>
 
 <section class="pg"><h2>3. A cascata e os indicadores</h2>

@@ -60,7 +60,7 @@ Produzido com a Fábrica Educacional Zion 360° (arquiteto → construtor → ro
 | `tests/test_planilha.py` (recálculo no LibreOffice × conta independente) | 49 ok, 0 falhou |
 | Revisão de conformidade (vocabulário, promessas, 17%/1% como referência ajustável, limpeza como repasse, números iguais em lógica/roteiro/resumo, sem travessões) | sem achados bloqueantes |
 
-Exemplo didático (dados fictícios): deduções 3.654,40; receita real 12.585,60; variáveis 2.062,40; margem de contribuição 11.503,20; fixos 7.234,00; resultado operacional 4.269,20; reserva 542,62; geração de caixa 3.726,58; custo por noite vendida 153,03; ponto de equilíbrio 35,4 noites; ocupação de equilíbrio 28,5%; fôlego 1,9 meses.
+Exemplo didático (dados fictícios): deduções 3.654,40; receita real 12.585,60; variáveis 2.062,40; margem de contribuição 11.503,20; fixos 7.234,00; resultado operacional 4.269,20; reserva 406,97 (3%, decisão de 10/11/2026; era 542,62 com 4%); geração de caixa 3.862,23; custo por noite vendida 153,04; ponto de equilíbrio 35,4 noites; ocupação de equilíbrio 28,5%; fôlego 1,9 meses.
 
 ### ClickMax (rascunhos, tudo desativado; conteúdo Jornada 2 `f1d16209-776d-45c0-a57a-de1c8ce7dd41`, availableForSale=false)
 - Módulo 2 · Finanças, fluxo de caixa e fechamento: `3496fb39-270c-4355-a33f-905bfd76522a` (posição 2).
@@ -117,11 +117,19 @@ Nenhuma oferta, preço, checkout, e-mail, WhatsApp ou membro criado ou alterado.
 ### Pendências e decisões para Bruno (consolidadas dos registros)
 1. **Player mp4 do ClickMax**: todas as aulas em vídeo apontam para o mp4 direto (como o Marco Zero e o Módulo 2). Se o player não tocar, subir no YouTube não listado e trocar a URL das oito aulas.
 2. **Descrição do conteúdo no ClickMax** ainda diz "Já liberados: Marco Zero do Gestor e Módulo 2"; atualizar para os oito módulos (não alterada nesta entrega).
-3. **Reserva de manutenção 3% (Módulo 6) × reserva de reposição 4% (Módulo 2)**: decidir um número único.
+3. ~~Reserva 3% × 4%~~: resolvido em 10/11/2026 (3% em toda a jornada).
 4. **Links para produtos vendidos à parte**: o Módulo 4 aponta para o Kit de Mensagens (Ferramenta 11, também anexado no ClickMax conforme o plano do registro), o Módulo 3 para o Precificador (A02) e a Ferramenta 01, o Módulo 6 para as Ferramentas 13, 14 e 18. Confirmar se a Jornada 2 pode apontar para elas.
 5. Cinco indicadores fixos e regra da meta para o mesmo mês daqui a 12 meses (Módulo 1); "Pilar 07 reputação" × Volume 07 Lançamento (Módulo 7); temas trabalhistas remetidos ao contador (Módulo 5).
-6. Capas da jornada saem com a fonte serifada do sistema (Cormorant e Aventa não carregam no gerador); corrigir todas de uma vez embutindo as fontes no `build_capas.js`.
-7. Correções de molde ainda não levadas ao Módulo 2: `num("13.000")` lido como 13 e fonte do PDF depois da quebra de página (`docs/trilha2/financas/logic.js`).
+6. ~~Fonte das capas~~: resolvido em 10/11/2026 (fontes embutidas em base64 no `build_capas.js` de cada módulo; capas g0 a g7 regeradas).
+7. ~~Correções de molde no Módulo 2~~: resolvido em 10/11/2026 (`num("13.000")` = 13000 e estilo do PDF reaplicado depois da quebra de página).
 8. Foto `op10` tem uma pessoa e está listada no `CLAUDE.md` como sem pessoas.
 9. Narração sintética em todas as aulas e tutoriais; regravação possível pelos `ROTEIRO.md`.
 10. Persistência só no aparelho: o Montador do Módulo 7 só junta as páginas feitas no mesmo navegador (proposta de consolidação no ZAIOS em `LIMITACOES.md`).
+
+## Entrega 4 · decisões do Bruno (10/11/2026)
+1. **Reserva única de 3%.** A Folha Única do Módulo 2 passou de 4% para 3% de reserva de reposição (padrão da ficha, da planilha, do resumo, do prompt, do roteiro e do tutorial), igual à reserva de manutenção do Módulo 6. Exemplo das Cabanas: reserva 542,62 → **406,97**; geração de caixa 3.726,58 → **3.862,23**. Nenhum outro módulo lia a reserva da Folha; o Módulo 6 já usava 3% de 13.565,60 = 406,97.
+2. **Custo por noite vendida = R$ 153,04** em toda a jornada ((1.642,40 + 7.234) ÷ 58 = 153,0414; 153,03 era soma de parcelas arredondadas). Margem por noite do Módulo 2 alinhada pelo mesmo motivo: 188,67 → **188,68**. Módulo 3: custo no canal mais caro 200,04 → **200,05**, piso calculado 220,04 → **220,06**, sobra da referência 99,96 → 99,95, custo fixo por noite 124,71 → 124,72; piso escrito R$ 225 sem mudança.
+3. **Módulo 2: correções de molde** (`num("13.000")` = treze mil; fonte do PDF reaplicada depois da quebra de página, testada no PDF do e2e).
+4. **Ferramentas vendidas à parte → página de vendas** (ClickMax, `infoprodutos-zion.clickmax.space`, páginas ainda em rascunho): Precificador `https://infoprodutos-zion.clickmax.space/zar-a02`, Ferramenta 01 `https://infoprodutos-zion.clickmax.space/diaria-minima`, Ferramenta 11 `https://infoprodutos-zion.clickmax.space/kit-mensagens`, Ferramenta 13 `https://infoprodutos-zion.clickmax.space/controle-enxoval`, Ferramenta 14 `https://infoprodutos-zion.clickmax.space/quadro-ocorrencias`, Ferramenta 18 `https://infoprodutos-zion.clickmax.space/manutencao-preventiva`. Pendência no ClickMax (não alterado): anexo "Kit de Mensagens (Ferramenta 11)" da aula Faça agora do Módulo 4 (`90019d3d-…`, anexo `90cb3e82-…`) → `https://infoprodutos-zion.clickmax.space/kit-mensagens`.
+5. **Capas com a fonte da marca**: Cormorant e Aventa embutidas em base64 (o `setContent` abre em about:blank e não lia `file://`), verificação de carregamento com `document.fonts.check` (o gerador falha se a fonte não carregar) e algarismos alinhados. Capas g0 a g7 regeradas nos mesmos tamanhos; corrigido também o número da capa da aula do Módulo 2 (mostrava 0).
+6. Vídeos re-renderizados: aula e tutorial do Módulo 2 (tela da ficha e narração com 3%), aula e tutorial do Módulo 3 (153,04 / 200,05 / 220,06).

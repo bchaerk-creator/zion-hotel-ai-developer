@@ -39,7 +39,7 @@ def conta(d):
                 comFica=d["receita"] * (d["meta"] - diretaAt) / 100 * comPagos / 100 if d.get("receita") and d["meta"] > diretaAt else None,
                 dia=dia, nf=nf, meses=meses, media=somaR / somaN, total=somaN, mercado=sorted(d["conc"])[1:-1])
 
-EX = dict(cv=28.32, cpn=153.03, ne=2.32, imposto=6, receita=16240, atual=280, conc=[270, 280, 290, 300, 310, 320, 360], terco="Meio", ref=300,
+EX = dict(cv=28.32, cpn=153.04, ne=2.32, imposto=6, receita=16240, atual=280, conc=[270, 280, 290, 300, 310, 320, 360], terco="Meio", ref=300,
           canais=[("Plataforma A", 50, 16, 1.5, 0, "Não"), ("Plataforma B", 20, 15, 1.5, 0, "Não"), ("Venda direta (site e WhatsApp)", 30, 0, 1.5, 0, "Sim")],
           meta=40, prazo="30/06/2027", gestor="Sim", motor="Não", margem=10, piso=225, quem="Eu e quem responde o WhatsApp",
           fatores=dict(Vale=0.75, Baixa=0.90, Alta=1.50, Pico=2.20), ano=2027, inicio=1,
@@ -72,7 +72,7 @@ log(all(perto(mc.cell(5 + i, 8).value, c["liq"]) and perto(mc.cell(5 + i, 9).val
 log(perto(mc["B13"].value, 11) and mc["B14"].value == 30 and perto(mc["B15"].value, r["comPagos"]) and mc["B16"].value == 2, "comissão média 11%, venda direta 30%, comissão dos pagos 15,71%, 2 canais pagos")
 log(perto(mc["B19"].value, 255.20) and perto(mc["B19"].value, r["comFica"]), f"meta 40%: comissão que deixaria de sair {mc['B19'].value:.2f} (ref 255,20)")
 log(mc["B22"].value == "Venda direta (site e WhatsApp)" and mc["B23"].value == "Plataforma A", "canal de maior e de menor margem")
-log(perto(pi["B5"].value, r["pc"]) and perto(pi["B5"].value, 200.04) and perto(pi["B7"].value, 220.04) and perto(pi["B19"].value, 37.02), "custo no canal mais caro 200,04; piso calculado 220,04; limite do variável 37,02")
+log(perto(pi["B5"].value, r["pc"]) and perto(pi["B5"].value, 200.05) and perto(pi["B7"].value, 220.06) and perto(pi["B19"].value, 37.02), "custo no canal mais caro 200,05; piso calculado 220,06; limite do variável 37,02")
 log(perto(pi["B9"].value, 0.75) and pi["B20"].value == "Piso cobre o custo com a sua margem mínima", "piso 225 = 75% da referência; leitura do piso")
 log(all(perto(ca.cell(4 + k, 3).value, v) for k, v in enumerate([225, 270, 300, 450, 660])), "diárias das faixas 225 / 270 / 300 / 450 / 660")
 log(all(ca.cell(14 + i, 3).value == m["dias"] and ca.cell(14 + i, 4).value == m["fds"] for i, m in enumerate(r["meses"])), "dias e noites de sexta e sábado de cada mês = calendário do Python")
@@ -118,5 +118,5 @@ w = cenario("dentro", dict(EX, motor="Sim")); log(w["Resumo"]["B15"].value == "T
 dj = dict(EX, inicio=7); rj = conta(dj); w = cenario("julho", dj); c2 = w["Calendário 12 meses"]
 log(c2["B33"].value == 366 == rj["total"] and perto(c2["B34"].value, rj["media"], 1e-6) and c2["A20"].value == "jan/2028", f"começando em julho de 2027: 366 noites (fev/2028 bissexto) e média {c2['B34'].value:.2f} = conta independente")
 de = dict(EX, canais=[("Plataforma A", 100, 15, 0, 46.4, "Não"), ("Venda direta", 0, 0, 0, 0, "Sim")]); re_ = conta(de); w = cenario("extra", de)
-log(perto(w["Mapa de Canais"]["H5"].value, re_["canais"][0]["liq"]) and perto(w["Piso"]["B5"].value, re_["pc"]) and perto(w["Piso"]["B5"].value, (153.03 + 20) / 0.79), "custo por reserva 46,40 ÷ 2,32 noites entra no líquido e no piso")
+log(perto(w["Mapa de Canais"]["H5"].value, re_["canais"][0]["liq"]) and perto(w["Piso"]["B5"].value, re_["pc"]) and perto(w["Piso"]["B5"].value, (153.04 + 20) / 0.79), "custo por reserva 46,40 ÷ 2,32 noites entra no líquido e no piso")
 print(f"\n{ok} ok, {fal} falhou"); sys.exit(1 if fal else 0)

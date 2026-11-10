@@ -1,12 +1,12 @@
 /* Jornada 2 · Gestão · Módulo 2 · Finanças, fluxo de caixa e fechamento
    Lógica pura da ficha "A minha Folha Única do Mês". Sem DOM: roda no navegador (window.ZF) e no Node (testes).
    Regra: tudo que a ficha afirma sai daqui, para ser testado. Nenhuma pontuação ou nota: só as réguas da fonte.
-   Parâmetros Zion (17% = 15% + 2%, quebra 1%, reserva 4% entre 3 e 6) são referência ajustável, nunca universal. */
+   Parâmetros Zion (17% = 15% + 2%, quebra 1%, reserva 3% entre 3 e 6) são referência ajustável, nunca universal. */
 (function (raiz) {
   "use strict";
 
   var REF = {
-    deducoesPct: 15, cancelamentosPct: 2, quebraPct: 1, reservaPct: 4, reservaMin: 3, reservaMax: 6, semanasPorMes: 4.33,
+    deducoesPct: 15, cancelamentosPct: 2, quebraPct: 1, reservaPct: 3, reservaMin: 3, reservaMax: 6, semanasPorMes: 4.33,
     nota: "referência Zion, ajuste com o seu extrato",
   };
 
@@ -76,7 +76,7 @@
     { id: "aluguel", tela: "modelo", tipo: "brl", r: "Aluguel ou arrendamento do imóvel", pq: "É custo do modelo, não da operação: muda se o imóvel fosse seu.", onde: "Contrato.", ex: "0,00" },
     { id: "taxaGestao", tela: "modelo", tipo: "brl", r: "Taxa de gestão ou administração", pq: "Quando alguém administra por você.", onde: "Contrato.", ex: "0,00" },
     { id: "marca", tela: "modelo", tipo: "brl", r: "Marca, franquia ou rede", pq: "Taxas de uso de marca.", onde: "Contrato.", ex: "0,00" },
-    { id: "reservaPct", tela: "modelo", tipo: "pct", r: "Reserva de reposição (% da receita real)", pq: "Guarda dinheiro para trocar colchão, ar-condicionado e eletrodomésticos quando chegar a hora.", onde: "Referência Zion: 3 a 6%, padrão 4%.", ex: "4" },
+    { id: "reservaPct", tela: "modelo", tipo: "pct", r: "Reserva de reposição (% da receita real)", pq: "Guarda dinheiro para trocar colchão, ar-condicionado e eletrodomésticos quando chegar a hora.", onde: "Referência Zion: 3 a 6%, padrão 3%.", ex: "3" },
     { id: "depreciacao", tela: "modelo", tipo: "brl", r: "Depreciação (só informativa)", pq: "Conta contábil. Nunca entra junto com a reserva na mesma conta.", onde: "O seu contador.", ex: "0,00" },
 
     { id: "saldoInicial", tela: "caixa", tipo: "brl", r: "Saldo no dia 1", pq: "O caixa começa aqui.", onde: "Extrato da conta da hospedagem no primeiro dia do mês.", ex: "9.800,00", obrig: true },
@@ -96,7 +96,7 @@
     limpezaPaga: 2000, enxoval: 380, amenidades: 260, energiaVariavel: 340, cafe: 0, quebra: "", quebraRef: true, outrosVariaveis: 0,
     equipe: 1800, comuns: 620, software: 190, contador: 300, marketingFixo: 150, duodecimos: 460, manutencaoContratada: 250,
     retiradaModo: "horas", retiradaHoras: 20, retiradaValorHora: 40, retirada: "", retiradaDecidida: false, outrosFixos: 0,
-    aluguel: 0, taxaGestao: 0, marca: 0, reservaPct: 4, depreciacao: "",
+    aluguel: 0, taxaGestao: 0, marca: 0, reservaPct: 3, depreciacao: "",
     saldoInicial: 9800, entradasCaixa: 18470, saidasCaixa: 14650, reservasSeparadas: 0, aReceber: 0,
   };
 
@@ -105,8 +105,10 @@
     if (v == null) return null;
     if (typeof v === "number") return isFinite(v) ? v : null;
     var s = String(v).trim(); if (!s) return null;
-    s = s.replace(/\s|R\$|%/g, "");
+    s = s.replace(/\s|R\$|%/g, "").replace(/−/g, "-");
     if (/,/.test(s)) s = s.replace(/\./g, "").replace(",", "."); // formato brasileiro
+    else if (/^-?\d{1,3}(\.\d{3})+$/.test(s)) s = s.replace(/\./g, ""); // "13.000" = treze mil
+    if (!/^-?\d*\.?\d+$/.test(s)) return null;
     var n = Number(s); return isFinite(n) ? n : null;
   }
   function informado(v) { return v != null && String(v).trim() !== ""; }

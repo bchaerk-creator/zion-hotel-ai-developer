@@ -41,7 +41,7 @@ EX = dict(dias=31, unidades=4, noites=58, estadias=25, receita=16240, limpezaCob
           limpezaPaga=2000, enxoval=380, amenidades=260, energia=340, cafe=0, quebra=None, outrosVar=0,
           equipe=1800, comuns=620, software=190, contador=300, marketing=150, duodecimos=460, manutencao=250, retirada=None, retiradaZero="Não", outrosFixos=0,
           aluguel=0, taxaGestao=0, marca=0, saldoInicial=9800, entradas=18470, saidas=14650, reservas=0)
-PAR = dict(comissoes=11, processamento=1.5, imposto=6, cancelamentos=0, quebra=1, reserva=4, horas=20, valorHora=40)
+PAR = dict(comissoes=11, processamento=1.5, imposto=6, cancelamentos=0, quebra=1, reserva=3, horas=20, valorHora=40)
 # mapa das células da Folha (mesmo layout do build_planilha.py)
 CEL = dict(dias="B6", unidades="B7", noites="B8", estadias="B9", receita="B11", limpezaCobrada="B12", outras="B13", custoOutras="B14", descontos="B15",
            limpezaPaga="B17", enxoval="B18", amenidades="B19", energia="B20", cafe="B21", quebra="B22", outrosVar="B23",
@@ -63,10 +63,10 @@ log(perto(f["B58"].value, 13565.60) and perto(f["B57"].value, 17220), f"receita 
 log(perto(f["B61"].value, 11503.20), f"margem de contribuição = {f['B61'].value:.2f} (ref 11.503,20)")
 log(perto(f["B62"].value, 3464) and perto(wb["Parâmetros"]["B16"].value, 3464) and perto(f["B63"].value, 7234), f"retirada {f['B62'].value:.2f} (20 × 40 × 4,33); fixos {f['B63'].value:.2f} (ref 7.234)")
 log(perto(f["B64"].value, 4269.20) and perto(f["B64"].value, r["ro"]), f"quanto sobrou do mês = {f['B64'].value:.2f} (ref 4.269,20)")
-log(perto(f["B67"].value, 542.62) and perto(f["B68"].value, 3726.58), f"reserva {f['B67'].value:.2f}; geração de caixa {f['B68'].value:.2f} (ref 542,62 e 3.726,58)")
+log(perto(f["B67"].value, 406.97) and perto(f["B68"].value, 3862.23), f"reserva {f['B67'].value:.2f}; geração de caixa {f['B68'].value:.2f} (ref 406,97 e 3.862,23)")
 log(f["B69"].value in (None, ""), "depreciação em branco: resultado contábil indicativo vazio")
 log(perto(f["B71"].value, 280) and perto(f["B72"].value, 216.99) and perto(f["B73"].value, 0.225, 1e-4), f"diária bruta {f['B71'].value:.2f}, real {f['B72'].value:.2f}, dedução {f['B73'].value:.1%}")
-log(perto(f["B74"].value, 28.32) and perto(f["B76"].value, 153.03, 0.05) and perto(f["B76"].value, r["cpn"]), f"custo variável por noite {f['B74'].value:.2f}; custo por noite vendida {f['B76'].value:.2f} (ref 153,03)")
+log(perto(f["B74"].value, 28.32) and perto(f["B76"].value, 153.04) and perto(f["B76"].value, r["cpn"]), f"custo variável por noite {f['B74'].value:.2f}; custo por noite vendida {f['B76'].value:.2f} (ref 153,04)")
 log(perto(f["B78"].value, 35.4, 0.05) and perto(f["B79"].value, 0.285, 0.0015) and perto(f["B78"].value, r["pe"]), f"ponto de equilíbrio {f['B78'].value:.1f} noites; ocupação de equilíbrio {f['B79'].value:.1%}")
 log(perto(f["B80"].value, 0.2479, 0.0005), f"margem do mês {f['B80'].value:.1%} (ref 24,8%)")
 log(f["B82"].value == 13620 and perto(f["B83"].value, 1.88, 0.005) and perto(f["B83"].value, r["fol"]), f"saldo final {f['B82'].value}; fôlego {f['B83'].value:.2f} (ref 1,88)")
@@ -117,7 +117,7 @@ log(f["B62"].value == 0 and f["B90"].value != "Retirada não lançada", f"retira
 f = cenario("duod", {**base, "B30": 0}, par)["Folha do Mês"]; log(f["B90"].value == "Despesas anuais sem provisão", "despesas anuais 0 vem antes da reserva na ordem da fonte")
 f = cenario("dentro", {**base, "B44": 5000}, par)["Folha do Mês"]; log(str(f["B90"].value).startswith("Mês dentro das réguas") and f["B87"].value == "Apertado", "nada dispara: mês dentro das réguas; fôlego 2,6 = apertado")
 f = cenario("naofecha", {**base, "B18": 15000, "B44": 5000}, par)["Folha do Mês"]; log(f["B78"].value == "não fecha" and f["B79"].value == "não fecha" and f["B85"].value.startswith("Cada noite vendida consome valor"), "margem por noite negativa: não fecha")
-f = cenario("depr", {**base, "B39": 800}, par)["Folha do Mês"]; log(perto(f["B69"].value, 4269.20 - 800) and perto(f["B68"].value, 3726.58), "depreciação informada: só o indicativo muda; reserva não soma com ela")
+f = cenario("depr", {**base, "B39": 800}, par)["Folha do Mês"]; log(perto(f["B69"].value, 4269.20 - 800) and perto(f["B68"].value, 3862.23), "depreciação informada: só o indicativo muda; reserva não soma com ela")
 f = cenario("caixa", {**base, "B43": 20000}, par)["Folha do Mês"]; log(f["B89"].value.startswith("Caixa ruim e resultado bom"), "saldo caiu e resultado positivo")
 f = cenario("quebraR", {**base, "B22": 300}, par)["Folha do Mês"]; log(f["B59"].value == 300 and perto(f["B60"].value, 2062.40 - 162.40 + 300), "quebra em R$ substitui a referência")
 print(f"\n{ok} ok, {fal} falhou"); sys.exit(1 if fal else 0)

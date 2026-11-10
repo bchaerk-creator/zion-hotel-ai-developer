@@ -163,7 +163,7 @@ const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&":
 const nomeAnterior = () => { try { const x = JSON.parse(localStorage.getItem("zion-t2-marco-zero")); if (x && x.nome) return x; } catch (e) {} return {}; };
 
 const TELAS = Z.TELAS;
-const vazio = () => { const a = nomeAnterior(); const s = { tela: 0, nome: a.nome || "", email: a.email || "", hospedagem: a.hospedagem || "", situacao: "", diag: {}, retiradaModo: "horas", retiradaDecidida: false, quebraRef: false, cancelamentosRef: false, deducoesRef: false, reservaPct: "4" }; Z.CAMPOS.forEach((c) => { if (s[c.id] == null) s[c.id] = ""; }); return s; };
+const vazio = () => { const a = nomeAnterior(); const s = { tela: 0, nome: a.nome || "", email: a.email || "", hospedagem: a.hospedagem || "", situacao: "", diag: {}, retiradaModo: "horas", retiradaDecidida: false, quebraRef: false, cancelamentosRef: false, deducoesRef: false, reservaPct: "3" }; Z.CAMPOS.forEach((c) => { if (s[c.id] == null) s[c.id] = ""; }); return s; };
 let S = ler() || vazio();
 S.diag = S.diag || {};
 const app = document.getElementById("app");
@@ -302,7 +302,7 @@ function render() {
     document.getElementById("retDec").onchange = (e) => { S.retiradaDecidida = e.target.checked; gravar(); atualiza("fixos"); };
   }
   if (t === "modelo") {
-    const nota = `<p class="ref">Reserva de reposição: referência Zion de 3 a 6% da receita real, padrão 4%. Referência ajustável, nunca universal: ajuste com o seu extrato. Reserva (caixa) e depreciação (contábil) nunca entram na mesma conta: a Folha usa a reserva e mostra a depreciação só como informação.</p>`;
+    const nota = `<p class="ref">Reserva de reposição: referência Zion de 3 a 6% da receita real, padrão 3%. Referência ajustável, nunca universal: ajuste com o seu extrato. Reserva (caixa) e depreciação (contábil) nunca entram na mesma conta: a Folha usa a reserva e mostra a depreciação só como informação.</p>`;
     h += telaDados("modelo", { t: "Custos do modelo, reserva e depreciação", p: "Custos do modelo são os que existem por causa do contrato (aluguel, gestão, marca), não da operação. Se não tem, deixe em branco." }, nota);
     app.innerHTML = h; ligaCampos("modelo");
   }
@@ -334,7 +334,7 @@ function resultado() {
   <p class="dica">Caixa do mês: saldo de ${Z.brl(r.N.saldoInicial)} no dia 1, ${Z.brl(r.N.entradasCaixa)} entraram, ${Z.brl(r.N.saidasCaixa)} saíram, saldo final ${Z.brl(r.saldoFinal)}.</p></section>
   <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${L.noite.t}</p><p>${L.equilibrio.t}</p><p>${L.margem.t}</p><p>${L.folego.t}</p></div>
   <div class="caixa c-sig"><h3>A regra do desconto em três faixas</h3><p>${r.custoPorNoiteVendida == null ? "Sem noite vendida, não há custo por noite para comparar." : `Acima de <b>${Z.brl(r.custoPorNoiteVendida)}</b> (custo por noite vendida): pode dar o desconto. Entre <b>${Z.brl(r.custoVariavelPorNoite)}</b> e <b>${Z.brl(r.custoPorNoiteVendida)}</b>: só para noite que ficaria vazia. Abaixo de <b>${Z.brl(r.custoVariavelPorNoite)}</b> (custo variável por noite): não dê.`}</p></div>
-  <p class="dica">Linha de Separação: nível ${nivel.n} de 4 · ${nivel.r}. Os parâmetros Zion (17%, 1%, 4%) são referência ajustável, nunca universal.</p></section>
+  <p class="dica">Linha de Separação: nível ${nivel.n} de 4 · ${nivel.r}. Os parâmetros Zion (17%, 1%, 3%) são referência ajustável, nunca universal.</p></section>
   <section class="bloco"><h2>3 · Atenção</h2><div class="fragil" id="causa"><b>Causa principal: ${esc(P[0].r)}.</b> ${P[0].id === "ok" ? "Nenhuma das sete causas de \"faturar muito e não sobrar\" disparou neste mês." : "É a primeira, na ordem de correção da fonte, entre as causas de \"faturar muito e não sobrar\"."}</div>
   <div class="caixa c-at" id="caixa-x"><h3>Caixa × resultado</h3><p>${L.caixa.t}</p></div>
   ${r.bloqueios.length ? `<div class="caixa c-at"><h3>Dados a conferir</h3><p>${r.bloqueios.map(esc).join("<br>")}</p></div>` : ""}</section>
@@ -344,7 +344,7 @@ function resultado() {
   <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
   <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(P))}</p><p>A lição está concluída quando a Folha está preenchida (receita, noites, um custo variável, um fixo, a retirada e o caixa), o plano de ação tem texto e prazo e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
   <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: lá a diária é calculada a partir do custo por noite vendida desta Folha.</p>
-  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Painel do Mês e Folha Única do Mês</a> (12 meses de caixa e histórico) e a Ferramenta 01 · Diária Mínima.</p></section>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Painel do Mês e Folha Única do Mês</a> (12 meses de caixa e histórico) e, vendida à parte, a <a href="https://infoprodutos-zion.clickmax.space/diaria-minima" target="_blank" rel="noopener">Ferramenta 01 · Diária Mínima</a>.</p></section>
   <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Folha Única em PDF</button>
   <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
   <button class="btn btn-s" id="refaz">Refazer a Folha</button></div>
@@ -365,11 +365,11 @@ function gerarPDF() {
   const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
   const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
   const W = 210, M = 18, CW = W - 2 * M; let y = 0;
-  const rodape = () => { d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem. Parâmetros Zion são referência ajustável, nunca universal. Zion Hospitality Business.", M, 286, { maxWidth: CW }); };
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem. Parâmetros Zion são referência ajustável, nunca universal. Zion Hospitality Business.", M, 286, { maxWidth: CW }); };
   const fx = (s) => String(s).replace(/\u2212/g, "-");
   const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
-  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
-  const linha = (a, b, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); const ls = d.splitTextToSize(fx(a), CW - 40); quebra(ls.length * 4.2); d.text(ls, M, y); d.text(fx(b), W - M, y, { align: "right" }); y += ls.length * 4.2 + 1.2; };
+  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  const linha = (a, b, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); const ls = d.splitTextToSize(fx(a), CW - 40); quebra(ls.length * 4.2); d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); d.text(ls, M, y); d.text(fx(b), W - M, y, { align: "right" }); y += ls.length * 4.2 + 1.2; };
   d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("ZION · JORNADA 2 · GESTÃO · MÓDULO 2 · FINANÇAS", M, 14);
   d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text("A minha Folha Única do Mês", M, 26);
   d.setFont("helvetica", "normal"); d.setFontSize(10); d.text([S.nome, S.hospedagem, r.N.mes, S.situacao === "abrir" ? "projeção" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · "), M, 35);
@@ -390,7 +390,7 @@ function gerarPDF() {
   if (S.prazo) txt("Até " + S.prazo.split("-").reverse().join("/"), 10);
   y += 3; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(P), 10);
   y += 3; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: a diária calculada a partir do custo por noite vendida desta Folha.`, 10, null, true);
-  txt("Deduções, quebra e reserva: " + (S.deducoesRef || S.quebraRef ? "parte dos valores veio da referência Zion (17% = 15% + 2%; quebra 1%; reserva 4%), ajustável com o seu extrato." : "valores informados por você; reserva de " + Z.dec(r.N.reservaPct, 1) + "%."), 9, [90, 90, 90]);
+  txt("Deduções, quebra e reserva: " + (S.deducoesRef || S.quebraRef ? "parte dos valores veio da referência Zion (17% = 15% + 2%; quebra 1%; reserva 3%), ajustável com o seu extrato." : "valores informados por você; reserva de " + Z.dec(r.N.reservaPct, 1) + "%."), 9, [90, 90, 90]);
   rodape();
   d.save("folha-unica-do-mes.pdf");
   S.pdf = new Date().toISOString(); gravar();

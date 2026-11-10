@@ -69,8 +69,8 @@ const EX = Z.EXEMPLO, esperado = Z.calcular(EX), LE = Z.leituras(esperado), PE =
   await shot("f05-fixos"); await p.click("#vai");
 
   // Tela 5 · Modelo
-  log(/referência Zion de 3 a 6%/.test(await p.textContent(".ref")) && (await p.inputValue("#reservaPct")) === "4", "tela 5: reserva padrão 4% marcada como referência ajustável");
-  log(/542,62/.test(await p.textContent("#live")) && /3\.726,58/.test(await p.textContent("#live")), "reserva 542,62 e geração de caixa 3.726,58");
+  log(/referência Zion de 3 a 6%/.test(await p.textContent(".ref")) && (await p.inputValue("#reservaPct")) === "3", "tela 5: reserva padrão 3% marcada como referência ajustável");
+  log(/406,97/.test(await p.textContent("#live")) && /3\.862,23/.test(await p.textContent("#live")), "reserva 406,97 e geração de caixa 3.862,23");
   await shot("f06-modelo"); await p.click("#vai");
 
   // Tela 6 · Caixa

@@ -1,6 +1,6 @@
 # Módulo 4 · Marketing e vendas · Registro de produção (10/11/2026)
 
-Entregável: **Marca e Captação** (página 4 do Plano de Gestão): marca em uma folha (para quem, promessa, prova, tom), lista própria de contatos com autorização e custo por reserva de cada canal, com a meta de venda direta. Nada publicado no ClickMax, nada ativado, nenhum commit. Nada fora de `producao/jornada2/04-marketing/` e dos arquivos novos com o número 4 ou o slug `marketing` em `docs/trilha2/`. O Kit de Mensagens (Ferramenta 11) foi reaproveitado sem alteração: a ficha, o resumo e a planilha apontam para `docs/p/adbc67069af26ae0/kit-mensagens-11/`.
+Entregável: **Marca e Captação** (página 4 do Plano de Gestão): marca em uma folha (para quem, promessa, prova, tom), lista própria de contatos com autorização e custo por reserva de cada canal, com a meta de venda direta. Nada publicado no ClickMax, nada ativado, nenhum commit. Nada fora de `producao/jornada2/04-marketing/` e dos arquivos novos com o número 4 ou o slug `marketing` em `docs/trilha2/`. O Kit de Mensagens (Ferramenta 11) foi reaproveitado sem alteração: a ficha e o resumo apontam para a página de vendas `https://infoprodutos-zion.clickmax.space/kit-mensagens` (decisão de 10/11/2026; antes, página de acesso `docs/p/adbc67069af26ae0/kit-mensagens-11/`).
 
 ## Arquivos publicados (`docs/trilha2/`)
 | Peça | Arquivo |
@@ -67,3 +67,6 @@ node src/build_capas.js ../../../docs/trilha2/capas
 (vídeos: ver ROTEIRO.md, "Como regerar")
 ```
 Demonstração no celular: `demonstracao/` (capturas do e2e e o PDF do exemplo).
+
+## Decisões do Bruno aplicadas em 10/11/2026
+- **Kit de Mensagens (Ferramenta 11) aponta para a página de vendas** `https://infoprodutos-zion.clickmax.space/kit-mensagens` na ficha (tela 2 e complementos) e no resumo, com o texto "vendido à parte na loja Zion". No ClickMax, o anexo "Kit de Mensagens (Ferramenta 11)" da aula Faça agora (`90019d3d-…`, anexo `90cb3e82-…`) ainda aponta para a página de acesso: trocar pela URL acima (não alterado aqui).

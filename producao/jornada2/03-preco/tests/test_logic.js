@@ -9,14 +9,14 @@ const com = (mud) => Object.assign(clone(EX), mud);
 console.log("1. Exemplo didático (Cabanas do Vale, dados fictícios, PLANO seção 9)");
 let r = Z.calcular(EX);
 log(r.bloqueios.length === 0 && r.avisos.length === 0, "exemplo sem bloqueio nem aviso" + (r.bloqueios.length + r.avisos.length ? ": " + r.bloqueios.concat(r.avisos).join(" | ") : ""));
-log(EX.custoNoiteVendida === 153.03 && EX.custoVariavelNoite === 28.32 && EX.diariaAtual === 280 && EX.receitaMes === 16240, "custos e receita vêm da Folha do Módulo 2 (153,03; 28,32; 280; 16.240)");
+log(EX.custoNoiteVendida === 153.04 && EX.custoVariavelNoite === 28.32 && EX.diariaAtual === 280 && EX.receitaMes === 16240, "custos e receita vêm da Folha do Módulo 2 (153,04; 28,32; 280; 16.240)");
 log(perto(r.comissaoMedia, 11) && r.diretaAtual === 30, `comissão média ponderada ${r.comissaoMedia.toFixed(2)}% (= 11% do Módulo 2); venda direta hoje 30%`);
 log(r.canais.map((c) => c.ded).join("|") === "23.5|22.5|7.5", "deduções por canal: 23,5% / 22,5% / 7,5% (comissão + pagamento 1,5 + imposto 6)");
 log(r.canais.map((c) => c.liquidoNoite.toFixed(2)).join("|") === "229.50|232.50|277.50", "líquido por noite na referência: 229,50 / 232,50 / 277,50");
 log(r.canais.map((c) => c.margemNoite.toFixed(2)).join("|") === "201.18|204.18|249.18", "depois do custo variável: 201,18 / 204,18 / 249,18");
 log(r.melhorCanal.direta && r.piorCanal.nome === "Plataforma A" && perto(r.diferencaMelhorPior, 48), "maior margem: venda direta; menor: Plataforma A; diferença 48,00 por noite");
-log(r.canalCritico.nome === "Plataforma A" && perto(r.pisoCusto, 153.03 / 0.765, 1e-9) && r.pisoCusto.toFixed(2) === "200.04", `custo da noite no canal mais caro = 153,03 ÷ 0,765 = ${r.pisoCusto.toFixed(2)}`);
-log(r.pisoCalculado.toFixed(2) === "220.04" && r.limiteVariavel.toFixed(2) === "37.02", "piso calculado com margem de 10% = 220,04; limite do variável = 37,02");
+log(r.canalCritico.nome === "Plataforma A" && perto(r.pisoCusto, 153.04 / 0.765, 1e-9) && r.pisoCusto.toFixed(2) === "200.05", `custo da noite no canal mais caro = 153,04 ÷ 0,765 = ${r.pisoCusto.toFixed(2)}`);
+log(r.pisoCalculado.toFixed(2) === "220.06" && r.limiteVariavel.toFixed(2) === "37.02", "piso calculado com margem de 10% = 220,06; limite do variável = 37,02");
 log(r.mercado.media === 300 && r.mercado.usados === 5 && r.mercado.descartados.join() === "270,360" && r.mercado.sugerida === 300, "referência: descarta 270 e 360, média de 5 = 300, terço do meio = 300");
 log(Z.FAIXAS.map((f) => r.diaria[f.id].toFixed(2)).join("|") === "225.00|270.00|300.00|450.00|660.00", "diárias das faixas: 225 / 270 / 300 / 450 / 660");
 log(r.meses.length === 12 && r.meses[0].ano === 2027 && r.meses[0].mes === 1 && r.totalNoites === 365, "janela jan a dez de 2027, 365 noites");
@@ -34,7 +34,7 @@ log(P.length === 1 && P[0].id === "motor", `causa principal: ${P[0].r} (única)`
 log(/motor de reservas/.test(Z.planoSugerido(P)) && !/^1\. /.test(Z.planoSugerido(P)), "plano sugerido sem numeração quando é uma prioridade só");
 let L = Z.leituras(r);
 log(L.custo.k === "cobre" && L.piso.k === "ok" && L.calendario.k === "faixas" && L.fds.k === "dif" && L.direta.k === "meta", `leituras: ${L.custo.k}, ${L.piso.k}, ${L.calendario.k}, ${L.fds.k}, ${L.direta.k}`);
-log(/R\$ 37,02/.test(L.desconto.t) && /R\$ 200,04/.test(L.desconto.t) && /primeira faixa/.test(L.desconto.t), "regra do desconto em três faixas com os limites do canal mais caro");
+log(/R\$ 37,02/.test(L.desconto.t) && /R\$ 200,05/.test(L.desconto.t) && /primeira faixa/.test(L.desconto.t), "regra do desconto em três faixas com os limites do canal mais caro");
 log(/não uma previsão/.test(L.direta.t) && /não uma previsão de receita/.test(L.calendario.t), "leituras deixam claro que não são previsão");
 log(Z.completo(EX) && !Z.concluido(EX) && Z.concluido({ ...EX, acao: "Instalar o motor de reservas no site.", prazo: "2027-01-31", pdf: "x" }), "exemplo completo; concluído só com ação, prazo e PDF");
 log(Z.nivel(EX).n === 1 && Z.nivel({ diag: { varia: "sim", piso: "sim", liquido: "sim", direta: "sim" } }).n === 4 && Z.nivel({}).n === 1, "nível: 1 sim → 1; quatro → 4; nenhum → 1");
@@ -47,8 +47,8 @@ r = Z.calcular(com({ mesInicio: 7 }));
 log(r.meses[0].mes === 7 && r.meses[6].ano === 2028 && r.totalNoites === 366, "começando em julho de 2027: 366 noites (inclui fevereiro de 2028)");
 
 console.log("3. Entradas com vírgula, vazio e conversão");
-let S = com({ custoNoiteVendida: "153,03", custoVariavelNoite: "28,32", referencia: "300,00", pisoDeclarado: "225", fatores: { vale: "0,75", baixa: "0,90", alta: "1,50", pico: "2,20" } });
-r = Z.calcular(S); log(perto(r.pisoCusto, 200.0392, 1e-4) && r.diaria.vale === 225, "aceita vírgula decimal");
+let S = com({ custoNoiteVendida: "153,04", custoVariavelNoite: "28,32", referencia: "300,00", pisoDeclarado: "225", fatores: { vale: "0,75", baixa: "0,90", alta: "1,50", pico: "2,20" } });
+r = Z.calcular(S); log(perto(r.pisoCusto, 200.0523, 1e-4) && r.diaria.vale === 225, "aceita vírgula decimal");
 log(Z.num("abc") === null && Z.num("") === null && Z.num(" 1.234,5 ") === 1234.5 && Z.num("R$ 300") === 300 && Z.num("12.5") === 12.5, "conversor de número");
 r = Z.calcular(com({ fatores: {} })); log(r.diaria.vale === 225 && r.diaria.pico === 660, "fatores vazios usam o ponto de partida da fonte");
 
@@ -97,7 +97,7 @@ L = Z.leituras(r); log(L.custo.k === "na" && L.calendario.k === "na" && L.canais
 r = Z.calcular(com({ metaDireta: 20 })); log(Z.leituras(r).direta.k === "sem-meta" && !Z.completo(com({ metaDireta: 20 })), "meta abaixo da venda direta atual: leitura e Tabela incompleta");
 r = Z.calcular(com({ receitaMes: "" })); log(r.comissaoQueFica === null && !/deixaria de pagar/.test(Z.leituras(r).direta.t), "sem receita do mês: não mostra o valor da comissão");
 r = Z.calcular(com({ canais: [{ nome: "A", mix: 100, comissao: 15, pagamento: 0, extra: 46.4 }], noitesPorEstadia: 2.32 }));
-log(perto(r.canais[0].liquidoNoite, 300 * 0.79 - 20) && perto(r.pisoCusto, (153.03 + 20) / 0.79), "custo por reserva de 46,40 ÷ 2,32 noites = 20 por noite, no líquido e no piso");
+log(perto(r.canais[0].liquidoNoite, 300 * 0.79 - 20) && perto(r.pisoCusto, (153.04 + 20) / 0.79), "custo por reserva de 46,40 ÷ 2,32 noites = 20 por noite, no líquido e no piso");
 r = Z.calcular(com({ noitesPorEstadia: "" })); log(r.N.nE === 1, "noites por estadia vazias = 1");
 r = Z.calcular(com({ situacao: "abrir" })); log(r.N.vaiAbrir && Z.completo(com({ situacao: "abrir" })), "quem vai abrir também conclui a Tabela (preço de entrada)");
 log(Z.pendencias({}).length === 4 && /PDF/.test(Z.pendencias({}).join()), "pendências listam as quatro faltas");

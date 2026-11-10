@@ -44,8 +44,8 @@ const EX = Z.EXEMPLO, esp = Z.calcular(EX), LE = Z.leituras(esp), PE = Z.priorid
   const rf = ZF.calcular(ZF.EXEMPLO);
   log((await p.inputValue("#custoNoiteVendida")) === String(Math.round(rf.custoPorNoiteVendida * 100) / 100).replace(".", ",") && (await p.inputValue("#custoVariavelNoite")) === "28,32" && (await p.inputValue("#noitesPorEstadia")) === "2,32" && /Trazido da sua Folha/.test(await p.textContent(".card")), "botão traz os números da Folha do Módulo 2 (custo " + (await p.inputValue("#custoNoiteVendida")) + ")");
   await f("custoNoiteVendida", "20"); log(await vaiOff() && /não pode ser menor/.test(await p.textContent("#erro")), "custo por noite menor que o variável bloqueia");
-  await f("custoNoiteVendida", "153,03"); await f("diariaAtual", "280"); await f("receitaMes", "16.240,00");
-  log(!(await vaiOff()) && /124,71/.test(await live()), "exemplo do plano (153,03): custo fixo por noite 124,71");
+  await f("custoNoiteVendida", "153,04"); await f("diariaAtual", "280"); await f("receitaMes", "16.240,00");
+  log(!(await vaiOff()) && /124,72/.test(await live()), "exemplo do plano (153,04): custo fixo por noite 124,72");
   await confereScroll(); await shot("p02-custo"); await p.click("#vai");
 
   // Tela 2 · Canais
@@ -73,7 +73,7 @@ const EX = Z.EXEMPLO, esp = Z.calcular(EX), LE = Z.leituras(esp), PE = Z.priorid
 
   // Tela 4 · Piso
   await f("margemMinima", "10");
-  log(/R\$ 200,04/.test(await live()) && /R\$ 220,04/.test(await live()), "custo no canal mais caro 200,04; piso calculado 220,04");
+  log(/R\$ 200,05/.test(await live()) && /R\$ 220,06/.test(await live()), "custo no canal mais caro 200,05; piso calculado 220,06");
   await f("pisoDeclarado", "350"); log(await vaiOff() && /maior que a diária de referência/.test(await p.textContent("#erro")), "piso acima da referência bloqueia");
   await f("pisoDeclarado", "180"); log(!(await vaiOff()) && /abaixo do custo/.test(await p.textContent("#avisos")), "piso abaixo do custo: aviso");
   await f("pisoDeclarado", "225"); await f("quemConhece", "Eu e quem responde o WhatsApp");
@@ -119,7 +119,7 @@ const EX = Z.EXEMPLO, esp = Z.calcular(EX), LE = Z.leituras(esp), PE = Z.priorid
   log(/Causa principal: Venda direta sem motor de reservas/.test(await p.textContent("#causa")), "causa principal: venda direta sem motor de reservas");
   log((await p.inputValue("#acao")) === Z.planoSugerido(PE), "plano de ação sugerido preenchido");
   log(!/\b(ADR|RevPAR|OTA|PMS|KPI|DRE)\b/.test(card), "sem sigla na tela de resultado");
-  log(/Módulo 4 · Marketing e vendas/.test(card) && (await p.locator('a[href="../../p/adbc67069af26ae0/zar-a02/"]').count()) === 1 && (await p.locator('a[href*="planilha-01/Diaria-Minima"]').count()) === 1, "próxima etapa e complementos (Precificador e Ferramenta 01)");
+  log(/Módulo 4 · Marketing e vendas/.test(card) && (await p.locator('a[href="https://infoprodutos-zion.clickmax.space/zar-a02"]').count()) === 1 && (await p.locator('a[href="https://infoprodutos-zion.clickmax.space/diaria-minima"]').count()) === 1 && (await p.locator('a[href*="adbc67069af26ae0"]').count()) === 0, "próxima etapa e complementos (Precificador e Ferramenta 01) apontando para a página de vendas");
   log(/Falta:.*PDF/.test(await p.textContent("#selo")), "selo pendente antes do prazo e do PDF");
   await p.fill("#prazo", "2027-01-31"); log(/Falta: o PDF baixado/.test(await p.textContent("#selo")), "com prazo, falta só o PDF");
   await p.fill("#acao", "curta"); log(/10 letras/.test(await p.textContent("#selo")), "ação curta volta a pendente");
@@ -134,14 +134,14 @@ const EX = Z.EXEMPLO, esp = Z.calcular(EX), LE = Z.leituras(esp), PE = Z.priorid
   log((await p.textContent("#piso")).trim() === "R$ 225,00" && (await p.inputValue("#prazo")) === "2027-01-31" && /Pronto/.test(await p.textContent("#selo")), "recarregar mantém resultado, prazo e selo");
   const salvo = await p.evaluate(() => JSON.parse(localStorage.getItem("zion-t2-preco")));
   log(salvo && salvo.pisoDeclarado === "225" && salvo.canais.length === 3 && salvo.pdf && salvo.situacao === "dono", "chave zion-t2-preco guarda os dados como digitados");
-  await p.click("#refaz"); log(/Tela 1 de 6/.test(await p.textContent(".progresso")) && (await p.inputValue("#custoNoiteVendida")) === "153,03", "refazer volta à tela 1 com as respostas");
+  await p.click("#refaz"); log(/Tela 1 de 6/.test(await p.textContent(".progresso")) && (await p.inputValue("#custoNoiteVendida")) === "153,04", "refazer volta à tela 1 com as respostas");
   await p.evaluate(() => { const s = JSON.parse(localStorage.getItem("zion-t2-preco")); s.tela = 0; localStorage.setItem("zion-t2-preco", JSON.stringify(s)); });
   await p.reload(); await p.waitForFunction(() => !!window.ZP);
   log(await p.locator("#retoma").isVisible(), "abertura oferece continuar de onde parei");
   await p.click("#retoma"); log(/A minha Tabela de Preço e Canais/.test(await p.textContent(".eyebrow")), "continuar leva ao resultado quando tudo está preenchido");
   // exemplo didático pelo botão
   await p.evaluate(() => localStorage.clear()); await p.reload(); await p.waitForFunction(() => !!window.ZP);
-  await p.click("#exemplo"); log(/Tela 1 de 6/.test(await p.textContent(".progresso")) && (await p.inputValue("#custoNoiteVendida")) === "153,03", "botão do exemplo leva à tela 1 preenchida");
+  await p.click("#exemplo"); log(/Tela 1 de 6/.test(await p.textContent(".progresso")) && (await p.inputValue("#custoNoiteVendida")) === "153,04", "botão do exemplo leva à tela 1 preenchida");
   for (let i = 0; i < 6; i++) { await p.click("#vai"); await confereScroll(); }
   log((await p.textContent("#piso")).trim() === "R$ 225,00" && /Cabanas do Vale \(exemplo\)/.test(await p.textContent(".eyebrow")) && /R\$ 305,92/.test(await p.textContent(".card")), "exemplo percorre as seis telas e dá o mesmo resultado");
   // preço fixo: todas as faixas base, sem picos

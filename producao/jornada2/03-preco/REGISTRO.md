@@ -27,10 +27,10 @@ Pasta de produção: `PLANO.md`, `CHECKLIST.md`, `ROTEIRO.md`, `PROMPT_IA.md`, `
 Reproduzir: `node tests/test_logic.js`; `python3 -I src/build_planilha.py ../../../docs/trilha2/materiais/planilhas && python3 -I tests/test_planilha.py ../../../docs/trilha2/materiais/planilhas`; `(cd ../../../docs && python3 -m http.server 8813 &)`; `node tests/e2e.js <saida> <jspdf.umd.min.js>`; `python3 -I src/build_resumo.py build && node src/render_pdf.js build/resumo.html ../../../docs/trilha2/materiais/Modulo-3-Preco-resumo.pdf`; `node src/build_capas.js ../../../docs/trilha2/capas`; `node video/shots.js && node video/shot_xl.js <html da planilha exportado pelo LibreOffice> && python3 video/make_video.py video/spec-g03.json ../../../docs/trilha2/videos/aula-preco.mp4`; `(cd ../../clube/tutoriais-video && python3 make.py ../../jornada2/03-preco/tutorial/ficha-preco.json ../../../docs/trilha2/videos/tutoriais/tutorial-ficha-preco.mp4)`.
 
 ## Exemplo didático (dados fictícios, Cabanas do Vale, coerente com os módulos 0 e 2)
-- Da Folha do Módulo 2: custo variável por noite 28,32; custo por noite vendida 153,03; diária praticada 280; 2,32 noites por estadia; receita de hospedagem 16.240.
+- Da Folha do Módulo 2: custo variável por noite 28,32; custo por noite vendida 153,04; diária praticada 280; 2,32 noites por estadia; receita de hospedagem 16.240.
 - Canais: Plataforma A 50% (16%), Plataforma B 20% (15%), venda direta 30% (0%); pagamento 1,5%, imposto 6%. Comissão média **11,0%** (= Módulo 2). Líquido por noite na referência 229,50 / 232,50 / 277,50; depois do variável 201,18 / 204,18 / 249,18.
 - Referência: média de 5 concorrentes (sem 270 e 360) = **300**.
-- Piso: custo da noite na Plataforma A 153,03 ÷ 0,765 = **200,04**; margem 10% → 220,04; **piso escrito 225** (75% da referência). Limite do variável 37,02.
+- Piso: custo da noite na Plataforma A 153,04 ÷ 0,765 = **200,05**; margem 10% → 220,06; **piso escrito 225** (75% da referência). Limite do variável 37,02.
 - Faixas 225 / 270 / 300 / 450 / 660; noites 84 / 122 / 99 / 44 / 16 = 365 (2027). Picos: Carnaval 660, Corpus Christi 570, Festival de inverno 600, Réveillon 720 (mínimo 5). Outubro 279,68 (≈ diária de 280 da Folha). **Diária média do calendário 305,92**.
 - Meta de venda direta 30% → **40% até 30/06/2027**; comissão que deixaria de sair num mês ≈ **255,20** (conta, não previsão).
 - Causa principal: **venda direta sem motor de reservas**.
@@ -60,3 +60,7 @@ Módulo "3 · Preço, reservas e distribuição" (posição 3), todas as aulas `
 3. **Resumo** · documento `materiais/Modulo-3-Preco-resumo.pdf` · capa `g3-c-resumo.jpg`.
 4. **Planilha · Tabela de Preço e Canais** · link + 2 anexos (em branco e exemplo) · capa `g3-c-planilha.jpg`.
 Capas do módulo: `g3-h.jpg` e `g3-v.jpg`.
+
+## Decisões do Bruno aplicadas em 10/11/2026
+- **Custo por noite vendida = R$ 153,04** (conta certa: (1.642,40 + 7.234) ÷ 58 = 153,0414; o 153,03 vinha de somar as parcelas já arredondadas). Exemplo, planilha, resumo, testes, vídeo e tutorial alinhados: custo no canal mais caro 153,04 ÷ 0,765 = **R$ 200,05** (era 200,04); piso calculado **R$ 220,06** (era 220,04); sobra da referência R$ 99,95 (era 99,96); custo fixo por noite 124,72 (era 124,71). Piso escrito (R$ 225), faixas e calendário não mudam. Pendência 1 resolvida.
+- **Ferramentas pagas apontam para a página de vendas** (pendência 2): Precificador Inteligente → `https://infoprodutos-zion.clickmax.space/zar-a02`; Ferramenta 01 · Diária Mínima → `https://infoprodutos-zion.clickmax.space/diaria-minima`. Texto: "vendidos à parte na loja Zion".

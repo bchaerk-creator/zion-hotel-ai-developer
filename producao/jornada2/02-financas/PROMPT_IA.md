@@ -25,7 +25,7 @@ receita bruta de hospedagem (só diárias; a taxa de limpeza cobrada do hóspede
 − custos fixos operacionais (equipe, contas comuns, software, contador, marketing fixo, despesas anuais ÷ 12, manutenção contratada, retirada do dono)
 = resultado operacional ("quanto sobrou do mês")
 − custos do modelo (aluguel, taxa de gestão, marca)
-− reserva de reposição (3 a 6% da receita) OU depreciação, nunca as duas
+− reserva de reposição (padrão Zion de 3% da receita real, faixa de 3 a 6%) OU depreciação, nunca as duas
 Bloco de caixa separado: saldo inicial + entradas − saídas = saldo final; meses de fôlego = (saldo final + reservas separadas) ÷ custo fixo do mês.
 
 RÉGUAS (as únicas que você pode usar)

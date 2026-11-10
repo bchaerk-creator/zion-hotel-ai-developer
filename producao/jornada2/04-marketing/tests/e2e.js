@@ -57,7 +57,7 @@ const EX = Z.EXEMPLO;
   log(await vaiOff() && /ponto de contato/.test(await erro()), "pontos de contato sem resposta bloqueiam");
   for (const [k, v] of Object.entries(EX.pontos)) await radio("p-" + k, v);
   log(!(await vaiOff()) && /aparece em 2/.test(await live()) && /falta em 4/.test(await live()), "2 pontos com a promessa, 4 faltando");
-  log((await p.locator('a[href="../../p/adbc67069af26ae0/kit-mensagens-11/"]').count()) === 1, "aponta para o Kit de Mensagens (Ferramenta 11)");
+  log((await p.locator('a[href="https://infoprodutos-zion.clickmax.space/kit-mensagens"]').count()) === 1 && (await p.locator('a[href*="adbc67069af26ae0"]').count()) === 0, "aponta para a página de vendas do Kit de Mensagens (Ferramenta 11)");
   await shot("p03-prova"); await p.click("#vai");
 
   // Tela 3 · lista própria

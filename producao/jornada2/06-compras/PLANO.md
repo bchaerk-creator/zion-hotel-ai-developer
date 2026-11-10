@@ -1,6 +1,6 @@
 # Jornada 2 · Gestão · Módulo 6 · Compras, estoque e manutenção · Plano da lição (G06)
 
-Status: plano de produção (10/11/2026). Entregável: **Matriz de Compras e Manutenção** (página 6 do Plano de Gestão): Matriz de Compras com os itens que mais pesam, três cotações, consumo por noite e por hóspede, contrato, estoque mínimo e ponto de pedido, e o calendário de manutenção preventiva de 12 meses com a reserva de manutenção. Não altera outros módulos nem ferramentas existentes; aponta, sem alterar, para as Ferramentas 13 (Controle de Enxoval e Reposição, `docs/p/adbc67069af26ae0/enxoval-13/`), 14 (Quadro de Ocorrências e Manutenção, `ocorrencias-14/`) e 18 (Planner de Manutenção Preventiva, `manutencao-18/`).
+Status: plano de produção (10/11/2026). Entregável: **Matriz de Compras e Manutenção** (página 6 do Plano de Gestão): Matriz de Compras com os itens que mais pesam, três cotações, consumo por noite e por hóspede, contrato, estoque mínimo e ponto de pedido, e o calendário de manutenção preventiva de 12 meses com a reserva de manutenção. Não altera outros módulos nem ferramentas existentes; aponta, sem alterar, para as Ferramentas 13 (Controle de Enxoval e Reposição), 14 (Quadro de Ocorrências e Manutenção) e 18 (Planner de Manutenção Preventiva), produtos vendidos à parte: os links vão para as páginas de vendas (`https://infoprodutos-zion.clickmax.space/controle-enxoval`, `quadro-ocorrencias`, `manutencao-preventiva`), decisão de 10/11/2026.
 
 ## 1. A lição em uma frase
 Aprenda o passo a passo para listar o que você mais compra, comparar três cotações, saber o consumo por noite e por hóspede, definir o estoque mínimo e o ponto de pedido, e montar o calendário de manutenção preventiva de doze meses.
@@ -91,7 +91,7 @@ Mesmo conteúdo; no acompanhamento a Matriz é revisada pela equipe Zion no marc
 - A fonte não dá frequências de manutenção além da ronda diária da Bíblia e das frequências de pragas e dedetização da página de fornecedores: as do exemplo são didáticas, e a ficha manda seguir o manual do fabricante e o profissional responsável.
 - O pilar O4 Manutenção e Ativos aparece só pelo nome no Panorama extraído (sem conteúdo): o calendário apoia-se na Etapa 10, na Etapa 09 e na Bíblia.
 - A fonte não fixa prazo de contrato nem quantas cotações por período; a ficha exige data para os contratos marcados "vou fechar".
-- A reserva de manutenção do exemplo é de 3% (mínimo da faixa da fonte, pedido para este módulo); a Folha do Módulo 2 usa 4% como reserva de reposição. Pendência para o Bruno (REGISTRO.md).
+- A reserva de manutenção do exemplo é de 3% (mínimo da faixa da fonte), a mesma reserva de reposição da Folha do Módulo 2 (decisão do Bruno de 10/11/2026: 3% em toda a jornada). Pendência para o Bruno (REGISTRO.md).
 - Regra do calendário por frequência, conferência com a Folha, "mês cheio" e ordem dos oito sinais: elaborações desta lição.
 
 ## 12. Compatibilidade com o ZAIOS

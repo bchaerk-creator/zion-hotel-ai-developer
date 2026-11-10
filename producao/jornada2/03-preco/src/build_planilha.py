@@ -39,7 +39,7 @@ def nota(ws, l, texto):
     c = ws.cell(l, 1, texto); c.font = T(9, c="5F5F55", i=True); c.alignment = Alignment(wrap_text=True)
 
 # Exemplo didático · dados fictícios (Cabanas do Vale). Mesmos valores da ficha (src/logic.js) e do PLANO seção 9.
-EX = dict(cv=28.32, cpn=153.03, ne=2.32, imposto=6, receita=16240, atual=280, conc=[270, 280, 290, 300, 310, 320, 360], terco="Meio", ref=300,
+EX = dict(cv=28.32, cpn=153.04, ne=2.32, imposto=6, receita=16240, atual=280, conc=[270, 280, 290, 300, 310, 320, 360], terco="Meio", ref=300,
           canais=[("Plataforma A", 50, 16, 1.5, 0, "Não"), ("Plataforma B", 20, 15, 1.5, 0, "Não"), ("Venda direta (site e WhatsApp)", 30, 0, 1.5, 0, "Sim")],
           meta=40, prazo="30/06/2027", gestor="Sim", motor="Não", margem=10, piso=225, quem="Eu e quem responde o WhatsApp",
           cond=["Terceira noite com café da manhã incluso", "Saída tardia até as 14 h", "Cesta de boas-vindas com produtos da região"],

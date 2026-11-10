@@ -52,7 +52,7 @@
   // Campos simples (os canais, os meses e as datas de pico são listas à parte)
   var CAMPOS = [
     { id: "custoVariavelNoite", tela: "custo", tipo: "brl", obrig: true, r: "Custo variável por noite", pq: "O que cada noite leva embora ao ser vendida: limpeza por estadia, enxoval, amenidades, energia da unidade, quebra.", onde: "Na sua Folha Única do Mês (Módulo 2), linha \"custo variável por noite\".", ex: "28,32" },
-    { id: "custoNoiteVendida", tela: "custo", tipo: "brl", obrig: true, r: "Custo por noite vendida", pq: "Variável por noite mais todo o custo fixo dividido pelas noites vendidas. Abaixo dele, vender não paga tudo.", onde: "Na sua Folha Única do Mês (Módulo 2). Para decidir a tabela do ano, o ideal é a média do ano.", ex: "153,03" },
+    { id: "custoNoiteVendida", tela: "custo", tipo: "brl", obrig: true, r: "Custo por noite vendida", pq: "Variável por noite mais todo o custo fixo dividido pelas noites vendidas. Abaixo dele, vender não paga tudo.", onde: "Na sua Folha Única do Mês (Módulo 2). Para decidir a tabela do ano, o ideal é a média do ano.", ex: "153,04" },
     { id: "diariaAtual", tela: "custo", tipo: "brl", r: "Diária média que você pratica hoje", pq: "Para comparar com a diária média do calendário que você vai montar.", onde: "Receita de hospedagem ÷ noites vendidas de um mês comum.", ex: "280,00" },
     { id: "noitesPorEstadia", tela: "custo", tipo: "dec", r: "Noites por estadia (média)", pq: "Custos por reserva, como uma taxa fixa de canal, se dividem pelas noites da estadia.", onde: "Noites vendidas ÷ número de estadias do mês.", ex: "2,32" },
     { id: "receitaMes", tela: "custo", tipo: "brl", r: "Receita de hospedagem de um mês comum", pq: "Serve só para mostrar, em reais, o que a meta de venda direta muda na comissão.", onde: "Na Folha Única do Mês: receita de hospedagem (bruta).", ex: "16.240,00" },
@@ -70,7 +70,7 @@
   // Exemplo didático · dados fictícios (Cabanas do Vale, a mesma do Marco Zero e da Folha Única)
   var EXEMPLO = {
     situacao: "dono", hospedagem: "Cabanas do Vale (exemplo)", diag: { varia: "nao", piso: "nao", liquido: "nao", direta: "sim" },
-    custoVariavelNoite: 28.32, custoNoiteVendida: 153.03, diariaAtual: 280, noitesPorEstadia: 2.32, receitaMes: 16240,
+    custoVariavelNoite: 28.32, custoNoiteVendida: 153.04, diariaAtual: 280, noitesPorEstadia: 2.32, receitaMes: 16240,
     impostoPct: 6, gestorCanais: true, motorReservas: false,
     canais: [
       { nome: "Plataforma A", mix: 50, comissao: 16, pagamento: 1.5, extra: 0, direta: false },

@@ -36,7 +36,7 @@ EX = dict(mes="Outubro de 2026 (exemplo)", dias=31, unidades=4, noites=58, estad
           equipe=1800, comuns=620, software=190, contador=300, marketing=150, duodecimos=460, manutencao=250, retirada=None, retiradaZero="Não", outrosFixos=0,
           aluguel=0, taxaGestao=0, marca=0, depreciacao=None,
           saldoInicial=9800, entradas=18470, saidas=14650, reservas=0, aReceber=0)
-PAR = dict(comissoes=11, processamento=1.5, imposto=6, cancelamentos=0, quebra=1, reserva=4, horas=20, valorHora=40)
+PAR = dict(comissoes=11, processamento=1.5, imposto=6, cancelamentos=0, quebra=1, reserva=3, horas=20, valorHora=40)
 
 def montar(exemplo):
     wb = Workbook()
@@ -80,7 +80,7 @@ def montar(exemplo):
     rotulo(pr, 7, "Cancelamentos e não comparecimento (%)", "Referência Zion: 2% da receita. Se você tem o valor real em R$, converta para % aqui."); entrada(pr, 7, px.get("cancelamentos"), "0.0")
     faixa(pr, 9, "CUSTO VARIÁVEL E RESERVA")
     rotulo(pr, 10, "Quebra e perda (% da receita de hospedagem)", "Referência Zion: 1%. Usado só quando a quebra em R$ da Folha fica em branco."); entrada(pr, 10, px.get("quebra"), "0.0")
-    rotulo(pr, 11, "Reserva de reposição (% da receita real)", "Referência Zion: 3 a 6%, padrão 4%."); entrada(pr, 11, px.get("reserva"), "0.0")
+    rotulo(pr, 11, "Reserva de reposição (% da receita real)", "Referência Zion: 3 a 6%, padrão 3%."); entrada(pr, 11, px.get("reserva"), "0.0")
     faixa(pr, 13, "CONTA DA RETIRADA (o que custaria pagar alguém para fazer o que você faz)")
     rotulo(pr, 14, "Horas por semana na operação e na gestão", "Some as horas que você dedica à hospedagem numa semana comum."); entrada(pr, 14, px.get("horas"), "0.0")
     rotulo(pr, 15, "Valor da sua hora (R$)", "O que você pagaria a alguém para fazer o mesmo."); entrada(pr, 15, px.get("valorHora"))
@@ -236,7 +236,7 @@ def montar(exemplo):
             x = h.cell(l, col); x.fill = ENTRADA; x.border = borda
             x.number_format = {2: BRL, 3: BRL, 4: "0.0%", 5: BRL, 6: BRL, 7: "0.0"}.get(col, "@")
     if exemplo:
-        for col, v in zip(range(1, 9), ("Outubro (exemplo)", 13565.6, 4269.2, 58 / 124, 216.99, 153.03, 1.9, "Sem reserva para a baixa")): h.cell(3, col, v)
+        for col, v in zip(range(1, 9), ("Outubro (exemplo)", 13565.6, 4269.2, 58 / 124, 216.99, 153.04, 1.9, "Sem reserva para a baixa")): h.cell(3, col, v)
 
     # ---------- Checklist do fechamento ----------
     ck = wb.create_sheet("Checklist do fechamento"); ck.sheet_view.showGridLines = False

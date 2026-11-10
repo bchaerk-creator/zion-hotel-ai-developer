@@ -4,7 +4,9 @@ const OUT = path.resolve(process.argv[2]); fs.mkdirSync(OUT, { recursive: true }
 const D = path.resolve(__dirname, "../../../../docs");
 const data = (f, mime) => `data:${mime};base64,` + fs.readFileSync(f).toString("base64");
 const LOGO_C = data(path.join(D, "brand/zion-logo-claro.png"), "image/png"), LOGO_E = data(path.join(D, "brand/zion-logo-escuro.png"), "image/png"), FOTO = data(path.join(D, "assets/operacoes/op11.webp"), "image/webp");
-const fonts = `@font-face{font-family:Cormorant;src:url(file://${D}/assets/fonts/cormorant.woff2)}@font-face{font-family:Cormorant;font-style:italic;src:url(file://${D}/assets/fonts/cormorant-italic.woff2)}@font-face{font-family:Aventa;src:url(file://${D}/assets/fonts/aventa.woff2)}`;
+// Fontes da marca embutidas em base64: setContent abre a página em about:blank, que não pode ler file://, e as capas saíam com a fonte do sistema.
+const fonte = (n) => data(path.join(D, "assets/fonts", n), "font/woff2");
+const fonts = `@font-face{font-family:Cormorant;font-weight:300 700;src:url(${fonte("cormorant.woff2")}) format("woff2")}@font-face{font-family:Cormorant;font-style:italic;font-weight:300 700;src:url(${fonte("cormorant-italic.woff2")}) format("woff2")}@font-face{font-family:Aventa;font-weight:100 900;src:url(${fonte("aventa.woff2")}) format("woff2")}h1,h2,.num,.k,.s{font-variant-numeric:lining-nums}`;
 const modulo = (W, H, v) => `<!doctype html><html><head><meta charset="utf-8"><style>${fonts}
 *{margin:0;box-sizing:border-box}body{width:${W}px;height:${H}px;position:relative;overflow:hidden;background:#16261C;color:#F5F1E8;font-family:Aventa,Arial,sans-serif}
 .f{position:absolute;inset:0;background:url(${FOTO}) center/cover}
@@ -39,7 +41,10 @@ h2{font-family:Cormorant,Georgia,serif;font-style:italic;font-weight:400;font-si
     ["g6-c-planilha.jpg", 1280, 720, aula("Jornada 2 · Módulo 6", "Matriz de Compras", "Cotações, estoque mínimo e manutenção de 12 meses", "Planilha · Em branco e exemplo", "ic")],
   ];
   for (const [n, W, H, html] of shots) {
-    const p = await b.newPage({ viewport: { width: W, height: H } }); await p.setContent(html); await p.evaluate(() => document.fonts.ready); await p.waitForTimeout(150);
+    const p = await b.newPage({ viewport: { width: W, height: H } }); await p.setContent(html, { waitUntil: "load" }); await p.evaluate(() => document.fonts.ready);
+    const faltam = await p.evaluate(async () => { const t = ["500 100px Cormorant", "italic 400 40px Cormorant", "700 20px Aventa"]; for (const f of t) await document.fonts.load(f); return t.filter((f) => !document.fonts.check(f)); });
+    if (faltam.length) throw new Error("fonte da marca não carregou em " + n + ": " + faltam.join(", "));
+    await p.waitForTimeout(150);
     await p.screenshot({ path: path.join(OUT, n), type: "jpeg", quality: 86 }); await p.close(); console.log("capa", n);
   }
   await b.close();

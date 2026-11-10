@@ -98,7 +98,7 @@ const vg = (n) => String(n).replace(".", ",");
   await confereScroll(); await shot("p05-manutencao"); await p.click("#vai");
 
   // Tela 5 · Rotina
-  log(/Quem compra/.test(await p.textContent("h2")) && (await p.locator('a[href="../../p/adbc67069af26ae0/ocorrencias-14/"]').count()) === 1 && (await p.locator('a[href="../../p/adbc67069af26ae0/manutencao-18/"]').count()) === 1, "tela 5: rotina com as Ferramentas 14 e 18");
+  log(/Quem compra/.test(await p.textContent("h2")) && (await p.locator('a[href="https://infoprodutos-zion.clickmax.space/quadro-ocorrencias"]').count()) === 1 && (await p.locator('a[href="https://infoprodutos-zion.clickmax.space/manutencao-preventiva"]').count()) === 1, "tela 5: rotina com as Ferramentas 14 e 18");
   await p.selectOption("#diaContagem", "segunda-feira"); await f("quemCompra", "Ana (dona)"); await f("alcada", "300"); await p.check("#ronda"); await p.check("#ocorrencias");
   log(/segunda-feira/.test(await live()) && /R\$ 300,00/.test(await live()) && /Ronda diária: sim/.test(await live()), "rotina: segunda-feira, limite de R$ 300, ronda");
   log((await p.textContent("#vai")).trim() === "Ver a minha Matriz", "botão final: Ver a minha Matriz");
@@ -120,7 +120,7 @@ const vg = (n) => String(n).replace(".", ",");
   log((await p.locator("#prioridades > div").count()) === 3 && /Item no ponto de pedido/.test(await p.textContent("#prioridades")) && /três jogos por cama/.test(await p.textContent("#prioridades")), "três prioridades: contrato, pedido, enxoval");
   log((await p.inputValue("#acao")) === Z.planoSugerido(PE), "plano de ação sugerido preenchido");
   log(!/\b(ADR|RevPAR|OTA|PMS|KPI|DRE|EOQ)\b/.test(card), "sem sigla na tela de resultado");
-  log(/Módulo 7 · Qualidade, reputação e plano de crescimento/.test(card) && (await p.locator('a[href="../../p/adbc67069af26ae0/enxoval-13/"]').count()) === 1 && (await p.locator('a[href*="Matriz-de-Compras-e-Manutencao-Zion-EM-BRANCO.xlsx"]').count()) === 1, "próxima etapa, planilha e Ferramenta 13");
+  log(/Módulo 7 · Qualidade, reputação e plano de crescimento/.test(card) && (await p.locator('a[href="https://infoprodutos-zion.clickmax.space/controle-enxoval"]').count()) === 1 && (await p.locator('a[href*="adbc67069af26ae0"]').count()) === 0 && (await p.locator('a[href*="Matriz-de-Compras-e-Manutencao-Zion-EM-BRANCO.xlsx"]').count()) === 1, "próxima etapa, planilha e Ferramenta 13");
   log(/Falta:.*PDF/.test(await p.textContent("#selo")), "selo pendente antes do prazo e do PDF");
   await p.fill("#prazo", "2027-01-31"); log(/Falta: o PDF baixado/.test(await p.textContent("#selo")), "com prazo, falta só o PDF");
   await p.fill("#acao", "curta"); log(/10 letras/.test(await p.textContent("#selo")), "ação curta volta a pendente");
