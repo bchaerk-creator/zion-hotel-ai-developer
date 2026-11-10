@@ -1,0 +1,18 @@
+{
+ "_nota": "Comando Mestre. Variações de teste sobre os cenários do 05F (cenarios_05f.json). Valores exclusivamente de teste, não são parâmetros comerciais aprovados. Reais; frações entre 0 e 1. Campos ausentes = regra anterior (compatibilidade).",
+ "casos": [
+  {"id": "M-C1", "base": "C1"},
+  {"id": "M-C2", "base": "C2"},
+  {"id": "M-C3", "base": "C3"},
+  {"id": "M-C3E", "base": "C3E"},
+  {"id": "M-C2-bases", "base": "C2", "gestao_base": "hospedagem", "royalty_base": "bruta", "gestao_contrato": true},
+  {"id": "M-C2-fixo", "base": "C2", "gestao_base": "fixo", "gestao_fixo": 5000, "royalty_base": "hospedagem"},
+  {"id": "M-C3-ABC", "base": "C3", "outras_pct_zero": true, "compl": {"a_noite": 40, "a_custo": 0.4, "b_ticket": 250, "b_adesao": 0.35, "b_custo": 0.5, "c_anual": 480000, "c_custo": 0.3}},
+  {"id": "M-C3E-ABC", "base": "C3E", "outras_pct_zero": true, "compl": {"a_noite": 40, "a_custo": 0.4, "b_ticket": 250, "b_adesao": 0.35, "b_custo": 0.5, "c_anual": 480000, "c_custo": 0.3}},
+  {"id": "M-C3-ABC-sazC", "base": "C3", "outras_pct_zero": true, "compl": {"a_noite": 40, "a_custo": 0.4, "b_ticket": 250, "b_adesao": 0.35, "b_custo": 0.5, "c_anual": 480000, "c_custo": 0.3, "c_meses": ["Janeiro", "Julho"], "c_rampa": true, "aliquota": 0.06}},
+  {"id": "M-C1-disp", "base": "C1", "giro_disponivel": 45000},
+  {"id": "M-C2-disp", "base": "C2", "giro_disponivel": 200000},
+  {"id": "M-C2-res6", "base": "C2", "reserva_meses": 6, "outras_obrigacoes": 1500},
+  {"id": "M-C1-aluguel-no-fixo", "base": "C1", "fixo_inclui_aluguel": true}
+ ]
+}

@@ -144,6 +144,12 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - P-O8 a P-O14 aprovadas; reserva operacional de 3 meses (P-O12), sem soma em dobro com o giro calculado.
 - Canal: GitHub privado (o Bruno conecta no Lovable). Depois: prova de integridade, testes restantes e O9 em commit isolado. Registro: `docs/academy/comando-05g-b/DECISOES_BRUNO_2026-11-10.md`.
 
+### Comando Mestre (10/11/2026)
+- O8 a O14 e O7 implementadas na cópia de desenvolvimento (privada), um commit por decisão; B08 (dois equilíbrios) e A09 (calendário real, provisório) na branch `dev/mestre-arsenal`. Nada aplicado na ZAIOS ativa.
+- Testes: esperados independentes 673/673; aceite 22/22; compatibilidade 256/256 campos inalterados; Vitest 175/176 (falha antiga do espaço não separável, diagnosticada).
+- Premissas provisórias que precisam do Bruno: custos mantidos no atraso, categoria C sem rampa, necessidade técnica do giro, estimativa de 6 meses no P5, limite da indicação "atenção", calendário do A09, D2-C na ZAIOS.
+- Registro: `docs/academy/comando-mestre/`.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
