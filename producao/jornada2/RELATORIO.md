@@ -81,3 +81,47 @@ Exemplo didático (dados fictícios): deduções 3.654,40; receita real 12.585,6
 - Player de mp4 no ClickMax: a aula aponta para o mp4 público; se o player não aceitar mp4 direto, subir no YouTube (não listado) e trocar a URL.
 - Narração sintética (edge-tts); Bruno pode regravar com a própria voz usando o `ROTEIRO.md`.
 - Persistência fora do aparelho (ZAIOS): a ficha salva só no navegador; a proposta de registro de parâmetros e persistência está em `LIMITACOES.md`.
+
+## 10/11/2026 · Entrega 3 · Módulos 1, 3, 4, 5, 6 e 7 e integração da Jornada 2
+
+Os seis módulos restantes foram produzidos cada um na sua pasta, com o mesmo padrão do Módulo 2 (ficha + planilha em branco e exemplo + aula em vídeo + tutorial da ficha + resumo em PDF + prompt de IA + capas). Detalhes, testes e pendências de cada um no respectivo `REGISTRO.md`. Todos os arquivos públicos já estão em `origin/main` (GitHub Pages, `docs/trilha2/`); cada URL usada no ClickMax respondeu 200 antes da criação.
+
+| Módulo | Entregável (página do Plano) | Ficha e chave local | Planilha | Registro | Testes (lógica / e2e / planilha) |
+|---|---|---|---|---|---|
+| 1 · Planejamento, metas e indicadores | Painel de Gestão (p. 1) | `planejamento/` · `zion-t2-planejamento` | Painel de Gestão | `01-planejamento/REGISTRO.md` | 72 / 66 / 38 |
+| 3 · Preço, reservas e distribuição | Tabela de Preço e Canais (p. 3) | `preco/` · `zion-t2-preco` | Tabela de Preço e Canais | `03-preco/REGISTRO.md` | 75 / 61 / 43 |
+| 4 · Marketing e vendas | Marca e Captação (p. 4) | `marketing/` · `zion-t2-marketing` | Plano de Captação | `04-marketing/REGISTRO.md` | 72 / 58 / 51 |
+| 5 · Pessoas e organização das áreas | Mapa de Pessoas e Alçadas (p. 5) | `pessoas/` · `zion-t2-pessoas` | Tarefas, Escala e Alçadas | `05-pessoas/REGISTRO.md` | 85 / 63 / 41 |
+| 6 · Compras, estoque e manutenção | Matriz de Compras e Manutenção (p. 6) | `compras/` · `zion-t2-compras` | Matriz de Compras e Manutenção | `06-compras/REGISTRO.md` | 76 / 60 / 74 |
+| 7 · Qualidade, reputação e plano de crescimento | Montador do Plano de Gestão (Plano completo em PDF) | `qualidade/` · `zion-t2-qualidade` | Qualidade e Reputação | `07-qualidade/REGISTRO.md` | 88 / 64 / 39 |
+
+Exemplo didático único (Cabanas do Vale, dados fictícios) atravessa os oito módulos com os mesmos números (Folha de outubro de 2026: resultado 4.269,20; ocupação de equilíbrio 28,5%; venda direta 30% com meta de 40% até 30/06/2027; comissão média 11,0%).
+
+### Página de ferramentas (`docs/trilha2/index.html`)
+Atualizada: os oito itens (Marco Zero e Módulos 1 a 7) agora são links para as fichas, cada um com a sua chave local para a marca "Feita / Em andamento" (`zion-t2-marco-zero`, `-planejamento`, `-financas`, `-preco`, `-marketing`, `-pessoas`, `-compras`, `-qualidade`); um bloco de materiais por módulo (planilhas em branco e exemplo, resumo, prompt de IA e tutorial da ficha). Todos os links relativos conferidos contra os arquivos.
+
+### ClickMax (conteúdo Jornada 2 `f1d16209-776d-45c0-a57a-de1c8ce7dd41`, turma "Jornada 2 · Gestão")
+Mesmo molde e mesma liberação do Módulo 2 publicado: módulos e aulas `DAYS_AFTER_PURCHASE` sem prazo (liberados na hora), aulas `enabled=true`, `startAutomatically=false`, comentários ligados, avaliações só nas aulas de vídeo e Faça agora; capa horizontal em cada aula; vídeo apontando para o mp4 público no GitHub Pages (como o Módulo 2). Módulos novos com capa horizontal e vertical. Ordem final: Marco Zero, 1, 2, 3, 4, 5, 6, 7 (Marco Zero e Módulo 2 só mudaram de posição).
+
+| Módulo | id | Aulas (4 em cada: vídeo, Faça agora com 5 anexos, resumo PDF, planilha com 2 anexos) |
+|---|---|---|
+| 1 · Planejamento | `7ed5bd04-b6e4-410e-850b-0777f9d24ef3` | vídeo `9141e861-…`, Faça agora `b20a4a7a-…`, resumo `109ad47d-…`, planilha `3e51caa1-…` |
+| 3 · Preço | `7ce82c79-0af5-4d96-83e9-8754d4676183` | `3ac29b8d-…`, `1e975eef-…`, `76f4f71b-…`, `43d229cc-…` |
+| 4 · Marketing | `b2889c4d-c784-41ee-990f-79b261577890` | `0c83ca54-…`, `90019d3d-…` (6 anexos: inclui o Kit de Mensagens, Ferramenta 11), `58402aa0-…`, `e7f953e5-…` |
+| 5 · Pessoas | `3de01223-9ee4-4db4-a7ae-e9dc3326ef0c` | `f90436c3-…`, `c27ec0f6-…`, `4d2d667f-…`, `f9bb3323-…` |
+| 6 · Compras | `4862fff3-7a07-4209-a788-4370e6e6553c` | `4cdf1533-…`, `9ff48944-…`, `1c6c1e9a-…`, `f7110b47-…` |
+| 7 · Qualidade | `ac130f16-1142-45cd-b517-f2cfbf5aaf92` | `d004fba7-…`, `d27ab0e0-…`, `6acc0483-…`, `7601a3e7-…` |
+
+Nenhuma oferta, preço, checkout, e-mail, WhatsApp ou membro criado ou alterado. O conteúdo `a28341aa-…` da mesma turma não foi tocado.
+
+### Pendências e decisões para Bruno (consolidadas dos registros)
+1. **Player mp4 do ClickMax**: todas as aulas em vídeo apontam para o mp4 direto (como o Marco Zero e o Módulo 2). Se o player não tocar, subir no YouTube não listado e trocar a URL das oito aulas.
+2. **Descrição do conteúdo no ClickMax** ainda diz "Já liberados: Marco Zero do Gestor e Módulo 2"; atualizar para os oito módulos (não alterada nesta entrega).
+3. **Reserva de manutenção 3% (Módulo 6) × reserva de reposição 4% (Módulo 2)**: decidir um número único.
+4. **Links para produtos vendidos à parte**: o Módulo 4 aponta para o Kit de Mensagens (Ferramenta 11, também anexado no ClickMax conforme o plano do registro), o Módulo 3 para o Precificador (A02) e a Ferramenta 01, o Módulo 6 para as Ferramentas 13, 14 e 18. Confirmar se a Jornada 2 pode apontar para elas.
+5. Cinco indicadores fixos e regra da meta para o mesmo mês daqui a 12 meses (Módulo 1); "Pilar 07 reputação" × Volume 07 Lançamento (Módulo 7); temas trabalhistas remetidos ao contador (Módulo 5).
+6. Capas da jornada saem com a fonte serifada do sistema (Cormorant e Aventa não carregam no gerador); corrigir todas de uma vez embutindo as fontes no `build_capas.js`.
+7. Correções de molde ainda não levadas ao Módulo 2: `num("13.000")` lido como 13 e fonte do PDF depois da quebra de página (`docs/trilha2/financas/logic.js`).
+8. Foto `op10` tem uma pessoa e está listada no `CLAUDE.md` como sem pessoas.
+9. Narração sintética em todas as aulas e tutoriais; regravação possível pelos `ROTEIRO.md`.
+10. Persistência só no aparelho: o Montador do Módulo 7 só junta as páginas feitas no mesmo navegador (proposta de consolidação no ZAIOS em `LIMITACOES.md`).
