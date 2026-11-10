@@ -9,7 +9,7 @@
   - P6 Viabilidade: saída nunca negativa; curva de 10 anos (36 meses em detalhe e anos 4 a 10); primeiro mês negativo e capital adicional; atraso de 6 meses no horizonte fixo, com CAPEX no cronograma original, custos mantidos, receita não realizada e perda de VPL; capital disponível x necessário com déficit e excedente; conflito com o P6 explícito.
   - G2: impostos sobre a receita como dedução e tributos fixos como despesa fixa.
   - Telas e dossiê com os textos das regras novas, sem mudança de marca.
-- **Arsenal** (branch `dev/mestre-arsenal`): B08 com equilíbrio operacional e de caixa; A09 com calendário real (proposta provisória).
+- **Arsenal** (branch `dev/mestre-arsenal`): B08 com equilíbrio operacional e de caixa; A09 com calendário real (aprovado em 10/11/2026).
 - **Testes novos no repositório:** referência independente das regras aprovadas (Python), comparação com a ZAIOS, aceite por valor e compatibilidade (`testes/financeiro/mestre/`). Na cópia: 41 testes Vitest novos.
 - **Documentos:** inventário de pendências, decisões consolidadas, registro da implementação, resultados, testes alterados e diagnóstico (esta pasta).
 
@@ -42,7 +42,7 @@ Esperados independentes das regras aprovadas, aceite O8 a O14, compatibilidade c
 ## 5. Pendências que realmente permanecem
 
 1. **Integridade da origem** (hash do código original): depende do GitHub privado.
-2. **Premissas provisórias** a confirmar: custos mantidos no atraso (aluguel e taxas fixas), categoria C sem rampa por padrão, necessidade técnica pelo déficit e pela sazonalidade, estimativa de 6 meses no P5, limite de 10% da indicação "atenção", calendário real do A09.
+2. ~~Premissas provisórias~~ **aprovadas pelo Bruno em 10/11/2026** (custos mantidos no atraso, categoria C sem rampa, necessidade técnica do giro, 6 meses no P5, limite da indicação "atenção", calendário real do A09, reserva da ZAIOS mantida em 3–5%).
 3. **Parâmetros H4** (taxa, múltiplo, colchão, 8/12 anos, cenários, rampa, atraso de 6 meses, estresses).
 4. **Aprovadas e ainda não implementadas** (fora das O8 a O14): D1, D2-C (faixa 3–6% e padrão 4%), D3-A, D4, D7-C.
 5. **Recomendações sem decisão:** D5 (fixos com menos meses no A09), D6, D8, D12, O2 (gestão no A09), O6 (Folha J2), D14 (alíquota por fonte).
@@ -55,9 +55,9 @@ Esperados independentes das regras aprovadas, aceite O8 a O14, compatibilidade c
 | # | Ação | Por quê |
 |---|---|---|
 | 1 | Conectar a ZAIOS ao GitHub privado (Lovable: Configurações do projeto → Git → GitHub) | Integridade, leitura dos testes restantes e aplicação dos patches numa branch |
-| 2 | Confirmar ou ajustar as 7 premissas provisórias (`DECISOES_CONSOLIDADAS.md`, seção 3) | Não puderam ser inferidas |
+| 2 | ~~Confirmar as 7 premissas provisórias~~ **Feito em 10/11/2026: aprovadas como estão** | — |
 | 3 | Validar os parâmetros H4 | São regras da Zion, não técnicas |
-| 4 | Autorizar a D2-C na ZAIOS (reserva 3–6%, padrão 4%) | Muda o resultado de projetos salvos com o padrão |
+| 4 | Autorizar a D2-C na ZAIOS (reserva 3–6%, padrão 4%), se quiser mudar a premissa 7 aprovada (manter 3–5%) | Muda o resultado de projetos salvos com o padrão |
 | 5 | Mandar o documento de origem do B06 | Sem ele a regra não pode ser conferida |
 | 6 | Decidir se B08 e A09 da branch de desenvolvimento vão para a main (publica no GitHub Pages) | Publicação |
 | 7 | Homologar e autorizar a publicação da ZAIOS | Etapa irreversível |
@@ -74,5 +74,5 @@ Esperados independentes das regras aprovadas, aceite O8 a O14, compatibilidade c
 1. Conexão do GitHub e conferência de integridade (hash por arquivo da cópia x repositório).
 2. Branch de desenvolvimento no repositório privado com os 14 patches; rodar todos os testes da ZAIOS, inclusive os 14 arquivos restantes.
 3. Teste das telas novas no navegador (preview da branch, sem publicar).
-4. Decisões do Bruno sobre as premissas provisórias e H4; conferência externa recomendada.
+4. Decisões do Bruno sobre os parâmetros H4 (as premissas foram aprovadas em 10/11/2026); conferência externa recomendada.
 5. Revisão e homologação pelo Bruno; só então merge e publicação, com autorização específica.

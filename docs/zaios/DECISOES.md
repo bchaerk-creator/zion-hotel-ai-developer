@@ -149,6 +149,7 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Testes: esperados independentes 673/673; aceite 22/22; compatibilidade 256/256 campos inalterados; Vitest 175/176 (falha antiga do espaço não separável, diagnosticada).
 - Premissas provisórias que precisam do Bruno: custos mantidos no atraso, categoria C sem rampa, necessidade técnica do giro, estimativa de 6 meses no P5, limite da indicação "atenção", calendário do A09, D2-C na ZAIOS.
 - Registro: `docs/academy/comando-mestre/`.
+- 10/11/2026: o Bruno aprovou as 7 premissas como estão (custos mantidos no atraso = aluguel e taxas fixas; categoria C sem rampa por padrão; necessidade técnica do giro = déficit da rampa + meses negativos; P5 com estimativa de 6 meses; indicação "atenção" abaixo de 10% de margem EBITDA; A09 com calendário real; reserva da ZAIOS mantida em 3–5%, padrão 3%).
 
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).

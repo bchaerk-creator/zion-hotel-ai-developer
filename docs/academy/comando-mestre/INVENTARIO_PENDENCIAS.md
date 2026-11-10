@@ -17,7 +17,7 @@
 | O14 · receitas complementares A, B, C (com P-O14) | Concluído | Custos, alíquota, meses e rampa próprios |
 | O7 · impostos por natureza na G2 | Concluído | Impostos sobre a receita como dedução; tributos fixos como despesa fixa |
 | B08 · dois pontos de equilíbrio (Arsenal) | Concluído (branch de desenvolvimento) | Operacional (sem reserva) e de caixa (com reserva). Branch `dev/mestre-arsenal`, fora da main |
-| A09 · calendário real (Arsenal) | Concluído como **proposta provisória** | 365/366 dias; 31 × 12 deixa de virar 372. Aguarda aprovação |
+| A09 · calendário real (Arsenal) | Concluído (branch de desenvolvimento) | 365/366 dias; 31 × 12 deixa de virar 372. Aprovado em 10/11/2026 |
 | A09 · gestão nas deduções (O2) | Pendente, com solução recomendada | Mostrar o resultado antes da gestão e a gestão como custo do modelo, como na ZAIOS |
 | O6 · modalidade em R$ x % (Folha J2) | Pendente, com solução recomendada | A ZAIOS já aceita as duas (O11). Falta alinhar a Folha J2 ao mesmo dicionário |
 | D5 · fixos × 12 com menos meses no A09 | Pendente, com solução recomendada | Fixos proporcionais aos meses de operação, ou aviso. Exige decisão (ver consolidação) |
@@ -61,7 +61,7 @@
 ## 5. O que impede a conclusão
 
 1. **Integridade da origem**: sem o GitHub privado, a cópia é transcrição; não há hash do código original.
-2. **Homologação do Bruno** das premissas provisórias (A09 calendário real, custos mantidos no atraso, categoria C sem rampa por padrão, P5 com estimativa de 6 meses) e dos parâmetros H4.
+2. **Homologação do Bruno** dos parâmetros H4. As premissas provisórias foram aprovadas em 10/11/2026.
 3. **Aplicação no projeto real** por branch no repositório privado, com testes da plataforma e revisão, antes de qualquer publicação.
 
 ## 6. O que depende do Bruno
