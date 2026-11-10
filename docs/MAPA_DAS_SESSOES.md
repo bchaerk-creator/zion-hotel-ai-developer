@@ -38,6 +38,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **Jornada 2 · Gestão** (Marco Zero de Gestão e Módulo 2 Finanças prontos) | `producao/jornada2/`, `docs/trilha2/` | Marketing da Zion install |
 | **Mentoria de Desenvolvimento Zion 360° (redesenho)** | `producao/mentoria-desenvolvimento-360/INVENTARIO.md`; aguarda o "Blueprint Mestre" | Marketing da Zion install |
 | **Ferramentas de R$ 19** (01, 05, 11, 13, 14, 17, 18, 20, 29) | `producao/utilitarios/`, `producao/low-ticket/`, `producao/catalogo/` | Zion infoprodutos catálogo |
+| **Kit Inicial de Captação** (entrada de R$ 47 no Club Zion Collection, 10/11/2026: guia PDF de 16 páginas, planilha Mapa das Fontes, vídeo tutorial, teaser vertical, capas, área do kit e textos; inclui 1 sessão de direcionamento de 30 min; nada publicado no ClickMax nem enviado) | `producao/clube/kit-captacao/` (fontes, `COPY.md`); entrega em `docs/p/adbc67069af26ae0/kit-captacao/` | Conexão sessões |
 | **Mini mentorias Zion Collection Club** (A01–A10, B01–B10, R$ 27) e criativos | `producao/zion-arsenal/` | Zion Arsenal infoprodutos |
 | **26 produtos em rascunho no ClickMax** | `producao/CATALOGO_REVISAO.md` | Produtos Zion configuration |
 | **Sync Meta → ClickMax** (de hora em hora) | `producao/clube/sync-meta-form/` | Marketing da Zion install |

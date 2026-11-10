@@ -1,0 +1,55 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Teaser vertical · Kit Inicial de Captação</title>
+<style>
+@font-face{font-family:Cormorant;src:url(../../../../docs/assets/fonts/cormorant.woff2) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;src:url(../../../../docs/assets/fonts/cormorant-italic.woff2) format("woff2");font-style:italic;font-weight:300 700}
+@font-face{font-family:Aventa;src:url(../../../../docs/assets/fonts/aventa.woff2) format("woff2");font-weight:300 700}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box}html,body{margin:0;width:1080px;height:1920px;overflow:hidden;background:var(--musgo);color:var(--creme);font-family:Aventa,Arial,sans-serif}
+.cena{position:absolute;inset:0;animation:fade .5s ease both}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center;animation:kb 12s ease-out both}
+.veu{position:absolute;inset:0;background:linear-gradient(0deg,rgba(22,38,28,.98) 0%,rgba(22,38,28,.9) 48%,rgba(22,38,28,.35) 78%,rgba(22,38,28,.25) 100%)}
+.musgo .veu{background:var(--musgo)}
+.topo{position:absolute;top:90px;left:84px;right:84px;display:flex;justify-content:space-between;align-items:center}
+.topo img{height:64px}.topo span{font-size:24px;letter-spacing:.22em;text-transform:uppercase;color:var(--ouro);font-weight:600}
+.txt{position:absolute;left:84px;right:84px;bottom:300px}
+.musgo .txt{top:50%;bottom:auto;transform:translateY(-46%)}
+.k{color:var(--ouro);letter-spacing:.2em;text-transform:uppercase;font-size:30px;font-weight:700;margin-bottom:28px;animation:up .6s .15s ease both}
+h1{font-family:Cormorant,Georgia,serif;font-weight:500;font-size:112px;line-height:1.02;margin:0 0 34px;animation:up .7s .3s ease both}
+h1 i{font-style:italic;color:var(--ouro)}
+p{font-size:44px;line-height:1.35;color:var(--areia);margin:0;animation:up .7s .55s ease both}
+.bar{width:150px;height:6px;background:var(--ouro);margin:0 0 40px;animation:up .7s .45s ease both}
+ul{list-style:none;padding:0;margin:40px 0 0;display:grid;gap:22px}
+li{font-size:42px;line-height:1.25;padding:28px 32px;border-radius:18px;background:rgba(254,245,240,.08);border:1px solid rgba(201,179,126,.5);display:flex;gap:26px;align-items:center;animation:up .6s ease both}
+li:nth-child(1){animation-delay:.5s}li:nth-child(2){animation-delay:.8s}li:nth-child(3){animation-delay:1.1s}li:nth-child(4){animation-delay:1.4s}
+li b{color:var(--ouro);font-family:Cormorant,serif;font-size:64px;line-height:1;min-width:52px}
+li.d{background:rgba(201,179,126,.22);border:2px solid var(--ouro)}
+.cta{display:inline-block;margin-top:44px;background:var(--ouro);color:var(--preto);font-weight:700;font-size:44px;padding:30px 46px;border-radius:14px;animation:up .7s .8s ease both}
+.preco{font-family:Cormorant,serif;font-size:190px;line-height:1;color:var(--ouro);margin:10px 0 10px;animation:up .7s .5s ease both}
+.rod{position:absolute;bottom:90px;left:84px;right:84px;font-size:24px;line-height:1.35;color:var(--areia);opacity:.8}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1.08)}to{transform:scale(1)}}
+</style></head><body>
+<script>
+const F="../../../../docs/";
+const S=[
+ {foto:"assets/operacoes/op09.webp",k:"Club Zion Collection",h:"Você tem a terra, <i>mas não tem o dinheiro?</i>"},
+ {musgo:1,k:"O que quase ninguém diz",h:"Terreno parado quase nunca é falta de dinheiro. <i>É falta de ordem.</i>",p:"Panorama do Desenvolvimento Hoteleiro · Método Zion 360°"},
+ {musgo:1,k:"Kit Inicial de Captação",h:"O que vem <i>no kit</i>",lista:[["1","Guia: as seis fontes de capital"],["2","Planilha Mapa das Fontes"],["3","Vídeo tutorial passo a passo"],["+","1 sessão de direcionamento de 30 min com a equipe Zion","d"]]},
+ {musgo:1,k:"Você aprende",h:"De onde vem o capital <i>e o que cada fonte pede</i>",lista:[["1","A ordem certa antes de pedir"],["2","Quanto falta, no número exato"],["3","Como montar o primeiro pedido"]]},
+ {foto:"assets/operacoes/op12.webp",k:"Quem é a Zion",h:"O seu destino <i>pode ser o próximo.</i>",p:"A Zion já operou vários glampings, tem os dois primeiros glampings pioneiros de referência no Brasil (Urubici e Florianópolis) e está desenvolvendo mais de 23 destinos."},
+ {musgo:1,k:"Entre no Club Zion Collection",h:"Kit + sessão de direcionamento de 30 min",preco:"R$ 47",cta:"Quero o kit por R$ 47"}
+];
+const i=+(new URLSearchParams(location.search).get("s")||0); const c=S[i];
+let h=`<div class="cena ${c.musgo?"musgo":""}">`;
+if(c.foto) h+=`<div class="foto" style="background-image:url(${F}${c.foto})"></div>`;
+h+=`<div class="veu"></div><div class="topo"><img src="${F}brand/zion-logo-claro.png" alt="Zion"><span>Kit Inicial</span></div><div class="txt">`;
+if(c.k) h+=`<div class="k">${c.k}</div>`;
+if(c.preco) h+=`<div class="preco">${c.preco}</div>`;
+if(c.h) h+=`<h1>${c.h}</h1><div class="bar"></div>`;
+if(c.p) h+=`<p>${c.p}</p>`;
+if(c.lista) h+=`<ul>`+c.lista.map(x=>`<li class="${x[2]||""}"><b>${x[0]}</b><span>${x[1]}</span></li>`).join("")+`</ul>`;
+if(c.cta) h+=`<div class="cta">${c.cta}</div>`;
+h+=`</div><div class="rod">${i===4?"Foto real: operação Zion Bubble Glamping. ":""}Conteúdo educacional. Não é promessa de crédito, investidor, renda ou retorno. A Zion avalia cada caso.</div></div>`;
+document.body.innerHTML=h;
+</script></body></html>
