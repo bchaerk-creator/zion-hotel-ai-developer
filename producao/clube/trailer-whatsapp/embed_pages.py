@@ -35,7 +35,7 @@ def bloco_zion(k_cls, h_html, lead_cls, wrap_cls, sec_cls, anchor='conheca-a-zio
     <div>
       <div class="{k_cls}">Conheça a Zion</div>
       <h2>{h_html}</h2>
-      <p class="{lead_cls}">Duas operações de glamping desde 2020, o fundador com 20 anos de hotelaria internacional, o método e a expansão: o que está do outro lado antes de você confiar o seu terreno a alguém.</p>
+      <p class="{lead_cls}">Vários glampings operados, os dois pioneiros do Brasil e mais de 23 destinos em desenvolvimento, o fundador com 20 anos de hotelaria internacional e o método: o que está do outro lado antes de você confiar o seu terreno a alguém.</p>
       <p class="{lead_cls}" style="font-size:13px;margin-top:14px;opacity:.75">Instagram: @zionbubble · @zionglampingcollection · @brunochaerkofc</p>
     </div>
     <div style="justify-self:center;width:min(100%,360px)">{video('video-zion','capa-zion')}</div>
