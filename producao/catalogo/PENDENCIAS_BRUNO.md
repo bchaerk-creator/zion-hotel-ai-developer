@@ -22,7 +22,13 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 29 | `docs/p/adbc67069af26ae0/experiencias-29/capa.jpg` |
 | Ferramenta 05 | `docs/p/adbc67069af26ae0/orcamento-05/capa.jpg` |
 | Ferramenta 18 | `docs/p/adbc67069af26ae0/manutencao-18/capa.jpg` |
+| Ferramenta 20 | `docs/p/adbc67069af26ae0/treinamento-20/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
+
+## Ofertas enviadas para aprovação (10/11)
+- 17, 11, 13, 14, 29, 18 e 20 estão em `pending` (análise do ClickMax). A 05 ficou de fora até a decisão sobre contingência e "para uma cabana".
+- **Erro de sincronização com o gateway** nas ofertas criadas antes de 10/11 (17, 11, 13, 14, 29, 18): "Não autorizado. Token inválido ou ausente." A 20, criada hoje, sincronizou. Vale perguntar ao suporte do ClickMax se essas precisam ser sincronizadas de novo.
+- Páginas de vendas ficam em rascunho até cada oferta ficar `active`; a rodada diária publica assim que aprovar.
 
 ## Decidir (09/11)
 - **Ferramentas 01 e 21 do catálogo:** com as promessas sem duplicação (Comando 05A/05B), a 01 (ficha de apresentação do terreno) se sobrepõe a B05, B10 e ao Dossiê do Land Bank, e a 21 (mensagens de reservas) à A07. Seguir, mudar a promessa ou tirar do catálogo? Até a decisão, a rodada diária segue com 20, 15, 19.

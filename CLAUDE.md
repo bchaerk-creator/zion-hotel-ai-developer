@@ -37,7 +37,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
   - e-mail de suporte da conta;
   - reembolso em 7 dias, como prevê o Código de Defesa do Consumidor.
 - Carregue a skill do ClickMax antes de usar as ferramentas, e confira a conta de vendedor com `sellers_status`.
-  - Status em 09/11/2026: vendedor em análise; conta bancária aprovada e sem motivo de recusa (em 07/11 havia pedido de Contrato Social/MEI e Cartão CNPJ).
+  - Status em 10/11/2026: vendedor em análise, mas `offers_get_incomplete_reason` voltou vazio para todas as ofertas; 17, 11, 13, 14, 29, 18 e 20 enviadas para aprovação (status `pending`). As ofertas criadas antes de 10/11 voltaram com erro de sincronização do gateway ("Token inválido ou ausente"); a 20, criada já com o gateway, não. conta bancária aprovada e sem motivo de recusa (em 07/11 havia pedido de Contrato Social/MEI e Cartão CNPJ).
   - Com o vendedor pendente, nenhum checkout vende.
 - Página de vendas: `pages_generation_context_get` → `pages_validate_html` → `pages_import_html_draft`, com o `offerId`.
   - Marque `data-cx-section` (hero, problem, solution, offer, cta, faq, social-proof), `data-cx-cta` nos botões e `<div data-cx-checkout></div>`.
@@ -64,6 +64,7 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
 | Ferramenta 29 · Calculadora de Custos de Experiências | `producao/utilitarios/29-custos-experiencias/` | Oferta `a52ce33e-5340-43df-9318-bc6f4803145f` (R$ 19, checkout `zMFmcFiYq_`), página `9aadd649-0b23-4755-a7c7-cc083b344290` (rascunho, `/custos-experiencias`). Entrega por arquivo: `p/adbc67069af26ae0/experiencias-29/` |
 | Ferramenta 05 · Orçamento da Cabana | `producao/utilitarios/05-orcamento-cabana/` | Oferta `a09778db-bc80-4b2a-bf32-be27e7c4a9e5` (R$ 19, checkout `aQxGaFEShH`), página `618d5a9b-fd2f-401f-953c-c35f762787c5` (rascunho, `/orcamento-cabana`). Entrega por arquivo: `p/adbc67069af26ae0/orcamento-05/` |
 | Ferramenta 18 · Planner de Manutenção Preventiva | `producao/utilitarios/18-manutencao-preventiva/` | Oferta `a7beacee-6e6a-458a-aff4-6d7a62a4f94a` (R$ 19, checkout `9EgkyYXxs_`), página `5c8911fb-ab5d-4c81-be8e-b9f5dcc3c560` (rascunho, `/manutencao-preventiva`). Entrega por arquivo: `p/adbc67069af26ae0/manutencao-18/` |
+| Ferramenta 20 · Kit de Treinamento do Primeiro Turno | `producao/utilitarios/20-treinamento-primeiro-turno/` | Oferta `e1cda5e6-af69-4c0e-84cf-12245e07022a` (R$ 19, checkout `AzLhCjcBtK`), página `c3670c67-fe99-4ca1-8522-ef50d204577e` (rascunho, `/treinamento-primeiro-turno`). Entrega por arquivo: `p/adbc67069af26ae0/treinamento-20/` |
 | Catálogo de 10 e-books e 30 ferramentas | `producao/catalogo/CATALOGO.md` | Ordem de produção e pendências |
 | Mapa de 30 oportunidades e priorização | `producao/low-ticket/MAPA_OPORTUNIDADES.md` | Fila dos próximos produtos |
 

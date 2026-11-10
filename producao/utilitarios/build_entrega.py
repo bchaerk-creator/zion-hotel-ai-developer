@@ -68,6 +68,15 @@ PRODUTOS = [
                    ("Manutencao-Preventiva-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Manutencao-Preventiva-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Ronda-Preventiva.pdf", "Ficha de ronda preventiva", "PDF · para imprimir")]),
+    dict(pasta="treinamento-20", num="20", telas=["producao/utilitarios/20-treinamento-primeiro-turno/dist/demonstracao/demo-tarefas.png", "producao/utilitarios/20-treinamento-primeiro-turno/dist/demonstracao/demo-painel.png"],
+         titulo="Kit de Treinamento do Primeiro Turno",
+         promessa="Aprenda o passo a passo para treinar a primeira pessoa da sua equipe: o que mostrar, o que fazer junto, quando ela pode trabalhar sozinha e quem conferiu cada tarefa.",
+         itens=["6 etapas, 16 tarefas sugeridas", "Mostrar, fazer junto, fazer sozinha", "Liberação do turno sozinha", "Ficha do primeiro turno"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Treinamento e Painel.", "Na planilha em branco, ajuste a lista e marque as tarefas obrigatórias.", "Use a ficha no primeiro dia e passe as datas para a planilha; libere o turno sozinha quando o Painel disser Sim."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Treinamento-Primeiro-Turno-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Treinamento-Primeiro-Turno-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-do-Primeiro-Turno.pdf", "Ficha do primeiro turno", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}

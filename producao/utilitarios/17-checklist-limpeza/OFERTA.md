@@ -108,3 +108,6 @@ python3 -I src/build_docs.py dist build       # HTML do guia, imprimível e demo
 node src/render.js build dist                 # PDF e PNG (Playwright)
 bash src/empacotar.sh                         # ZIP do produto
 ```
+
+## Envio para aprovação
+10/11/2026 (rodada diária): `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`. O ClickMax devolveu erro de sincronização do gateway ("Não autorizado. Token inválido ou ausente."); registrado em PENDENCIAS_BRUNO.md. Página segue em rascunho até a oferta ficar ativa.
