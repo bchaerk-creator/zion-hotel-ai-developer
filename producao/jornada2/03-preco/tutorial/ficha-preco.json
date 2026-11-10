@@ -1,0 +1,391 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial da Tabela de Preço e Canais, a ferramenta Faça agora do Módulo 3 da Jornada de Gestão. Em seis telas, você sai com o piso escrito, o calendário de doze meses, as datas de pico, o que cada canal deixa por noite e a meta de venda direta. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 3 · Tabela de Preço e Canais",
+      "s": "Piso por escrito, calendário de doze meses e canais",
+      "k": "Jornada de Gestão · Módulo 3 · Preço"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, você preenche nome, e-mail e a hospedagem, escolhe a sua situação e responde quatro perguntas: o preço muda ao longo do ano? Existe piso escrito? Você sabe quanto sobra em cada canal? Tem meta de venda direta? Elas mostram o seu nível. As respostas ficam só no seu aparelho.",
+   "actions": [
+    {
+     "goto": "http://localhost:8813/trilha2/preco/"
+    },
+    {
+     "eval": "localStorage.clear();location.reload();",
+     "wait": 1200
+    },
+    {
+     "show": "h1",
+     "wait": 1000
+    },
+    {
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#hospedagem": "Cabanas do Vale (exemplo)"
+     }
+    },
+    {
+     "click": "input[name=sit][value=dono]",
+     "wait": 600
+    },
+    {
+     "click": "label:has(input[name=d-varia][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-piso][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-liquido][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-direta][value=sim])",
+     "wait": 700
+    },
+    {
+     "show": "#nivel",
+     "wait": 900
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela um: o custo da noite. O preço começa pelo custo, não pelo concorrente. Os números vêm da sua Folha Única do Mês, no Módulo 2; se você já fez a Folha neste aparelho, um botão traz tudo. Nas Cabanas: vinte e oito e trinta e dois de custo variável por noite, cento e cinquenta e três e três centavos de custo por noite vendida, diária praticada de duzentos e oitenta, duas vírgula trinta e duas noites por estadia, e a receita de um mês comum.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1000
+    },
+    {
+     "fillStart": {
+      "#custoVariavelNoite": "28,32",
+      "#custoNoiteVendida": "153,03",
+      "#diariaAtual": "280",
+      "#noitesPorEstadia": "2,32",
+      "#receitaMes": "16240"
+     }
+    },
+    {
+     "show": "#live",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela dois: os seus canais. Para cada um, quanto da receita entrou nos últimos três meses, a comissão, a taxa de pagamento e qualquer outro custo por reserva. A última linha já vem marcada como venda direta. Nas Cabanas: Plataforma A com cinquenta por cento e dezesseis de comissão, Plataforma B com vinte e quinze, e venda direta com trinta. O mix precisa somar cem. Embaixo, o básico técnico: gestor de canais e motor de reservas.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "fillStart": {
+      "#c-0-nome": "Plataforma A",
+      "#c-0-mix": "50",
+      "#c-0-comissao": "16",
+      "#c-0-pagamento": "1,5",
+      "#c-1-nome": "Plataforma B",
+      "#c-1-mix": "20",
+      "#c-1-comissao": "15",
+      "#c-1-pagamento": "1,5",
+      "#c-2-nome": "Venda direta (site e WhatsApp)",
+      "#c-2-mix": "30",
+      "#c-2-comissao": "0",
+      "#c-2-pagamento": "1,5",
+      "#impostoPct": "6"
+     }
+    },
+    {
+     "click": "#gestorCanais",
+     "wait": 600
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela três: a diária de referência. Anote o preço de seis a nove concorrentes diretos num fim de semana comum. A ficha descarta o mais caro e o mais barato e tira a média: nas Cabanas, trezentos reais. Escolha a posição, aqui o meio, e use a diária sugerida como referência.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "fillStart": {
+      "#conc-0": "270",
+      "#conc-1": "280",
+      "#conc-2": "290",
+      "#conc-3": "300",
+      "#conc-4": "310",
+      "#conc-5": "320",
+      "#conc-6": "360"
+     }
+    },
+    {
+     "show": "#live",
+     "wait": 1200
+    },
+    {
+     "click": "#usaSug",
+     "wait": 900
+    },
+    {
+     "show": "#referencia",
+     "wait": 1000
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela quatro: o piso. Escolha a margem mínima, aqui dez por cento. A ficha mostra o custo da noite na plataforma mais cara, duzentos reais e quatro centavos, e o piso calculado, duzentos e vinte. O piso escrito das Cabanas ficou em duzentos e vinte e cinco. Diga quem já sabe dele e escreva três condições para oferecer no lugar de desconto.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "fillStart": {
+      "#margemMinima": "10",
+      "#pisoDeclarado": "225",
+      "#quemConhece": "Eu e quem responde o WhatsApp",
+      "#cond-0": "Terceira noite com café da manhã incluso",
+      "#cond-1": "Saída tardia até as 14 h",
+      "#cond-2": "Cesta de boas-vindas com produtos da região"
+     }
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela cinco: as cinco faixas e os doze meses. Os fatores vêm com o ponto de partida da fonte: ajuste pelo levantamento do seu destino. Escreva o ano e, para cada mês, a faixa do meio de semana e a do fim de semana. Nas Cabanas, o inverno é alta e o outono é vale. A ficha mostra as diárias de cada faixa e avisa se alguma ficar abaixo do piso.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "fillStart": {
+      "#ano": "2027"
+     }
+    },
+    {
+     "select": "#m-0-sem",
+     "value": "baixa",
+     "wait": 300
+    },
+    {
+     "select": "#m-0-fds",
+     "value": "base",
+     "wait": 300
+    },
+    {
+     "select": "#m-1-sem",
+     "value": "baixa",
+     "wait": 300
+    },
+    {
+     "select": "#m-1-fds",
+     "value": "base",
+     "wait": 300
+    },
+    {
+     "select": "#m-2-sem",
+     "value": "vale",
+     "wait": 300
+    },
+    {
+     "select": "#m-2-fds",
+     "value": "baixa",
+     "wait": 300
+    },
+    {
+     "eval": "const M=[[\"baixa\", \"base\"], [\"baixa\", \"base\"], [\"vale\", \"baixa\"], [\"vale\", \"baixa\"], [\"vale\", \"base\"], [\"base\", \"alta\"], [\"alta\", \"alta\"], [\"base\", \"alta\"], [\"baixa\", \"base\"], [\"baixa\", \"base\"], [\"vale\", \"baixa\"], [\"baixa\", \"base\"]];M.forEach((m,i)=>{if(i<3)return;['sem','fds'].forEach((k,j)=>{const e=document.getElementById('m-'+i+'-'+k);e.value=m[j];e.dispatchEvent(new Event('change',{bubbles:true}));});});document.getElementById('m-11-fds').scrollIntoView({block:'center'});",
+     "wait": 1200
+    },
+    {
+     "show": "#live",
+     "wait": 1600
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Tela seis: as datas de pico e a meta de venda direta. Cada data tem nome, mês, noites, fator e mínimo de noites. Nas Cabanas: carnaval, Corpus Christi, um festival de inverno e o réveillon, com cinco noites e mínimo de cinco. Por fim, a meta: de trinta para quarenta por cento de venda direta, até junho.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "click": "#addPico",
+     "wait": 500
+    },
+    {
+     "click": "#addPico",
+     "wait": 500
+    },
+    {
+     "fillStart": {
+      "#p-0-nome": "Carnaval",
+      "#p-0-noites": "4",
+      "#p-0-fator": "2,20",
+      "#p-0-minimo": "4",
+      "#p-1-nome": "Corpus Christi (feriado prolongado)",
+      "#p-1-noites": "4",
+      "#p-1-fator": "1,90",
+      "#p-1-minimo": "3",
+      "#p-2-nome": "Festival de inverno (evento local)",
+      "#p-2-noites": "3",
+      "#p-2-fator": "2,00",
+      "#p-2-minimo": "2",
+      "#p-3-nome": "Réveillon",
+      "#p-3-noites": "5",
+      "#p-3-fator": "2,40",
+      "#p-3-minimo": "5"
+     }
+    },
+    {
+     "eval": "const ms=['2','5','7','12'];ms.forEach((v,i)=>{const e=document.getElementById('p-'+i+'-mes');e.value=v;e.dispatchEvent(new Event('change',{bubbles:true}));});",
+     "wait": 600
+    },
+    {
+     "fillStart": {
+      "#metaDireta": "40"
+     }
+    },
+    {
+     "eval": "const e=document.getElementById('prazoMeta');e.value='2027-06-30';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});",
+     "wait": 900
+    },
+    {
+     "show": "#live",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "E esta é a sua Tabela. No topo, o piso por escrito. Na parte um, as cinco faixas com as noites do ano, o calendário mês a mês, as datas de pico e o que cada canal deixa por noite, além da folha do piso. A diária média do calendário das Cabanas ficou em trezentos e cinco reais e noventa e dois centavos: é a média das diárias-alvo, não uma previsão.",
+   "actions": [
+    {
+     "show": "#piso",
+     "wait": 1600
+    },
+    {
+     "text": "1 · A tabela",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#calendario",
+     "wait": 1800
+    },
+    {
+     "show": "#canais",
+     "wait": 1800
+    },
+    {
+     "show": "#pisobox",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "O que isso significa lê a Tabela pelas regras da fonte: a referência contra o custo, o piso, o calendário, o fim de semana, os canais e a meta. A atenção aponta a causa principal: nas Cabanas, a venda direta sem motor de reservas. O plano de ação já vem escrito; ajuste e marque o prazo.",
+   "actions": [
+    {
+     "text": "2 ·",
+     "sel": "h2",
+     "wait": 1800
+    },
+    {
+     "text": "3 ·",
+     "sel": "h2",
+     "wait": 1600
+    },
+    {
+     "text": "4 ·",
+     "sel": "h2",
+     "wait": 900
+    },
+    {
+     "type": "#acao",
+     "text": "Instalar o motor de reservas no site ligado ao calendário.",
+     "delay": 22,
+     "wait": 600
+    },
+    {
+     "eval": "const e=document.getElementById('prazo');e.value='2027-01-31';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz o critério de conclusão: a referência, o piso escrito, os doze meses, o mix de canais, a meta de venda direta com prazo, uma ação com prazo e o PDF baixado. Baixe a Tabela em PDF: é a página três do seu Plano de Gestão. Revise a cada trimestre. Bom trabalho!",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#selo",
+     "wait": 1500
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "A sua Tabela de Preço e Canais",
+      "s": "Baixe o PDF, faça a prioridade 1 e siga para o Módulo 4 · Marketing e vendas",
+      "k": "Jornada de Gestão · Módulo 3 · Preço"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}

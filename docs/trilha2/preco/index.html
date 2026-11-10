@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Tabela de Preço e Canais</title>
+<meta name="description" content="Ferramenta do Módulo 3 da Jornada 2 · Gestão: piso de tarifa por escrito, calendário de doze meses com cinco faixas, datas de pico, mix de canais com o líquido de cada um e meta de venda direta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme)}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.zero i{background:var(--critico);color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao)}
+.dupla{display:grid;gap:10px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .dupla{grid-template-columns:1fr 1fr}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<style>
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+.campo details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+.campo summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+.campo details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.95rem}
+.calc b{color:var(--verde)}
+table.casc{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+table.casc td{padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.casc td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.casc tr.forte td{font-weight:600}
+table.casc tr.destaque td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.modo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.modo label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modo input{position:absolute;opacity:0;pointer-events:none}
+.modo label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:720px){.ind{grid-template-columns:repeat(3,1fr)}}
+</style>
+<style>
+.lin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lin3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.lin label,.lin3 label{margin:6px 0 4px;font-size:.84rem;font-weight:600}
+.canal,.pico{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.canal .topo-c,.pico .topo-c{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mini{appearance:none;border:1.5px solid var(--verde);background:transparent;color:var(--verde);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;min-height:36px}
+.mes{display:grid;grid-template-columns:76px 1fr 1fr;gap:6px;align-items:center;margin-top:6px}
+.mes b{font-size:.9rem;text-transform:capitalize}
+.mes select{min-height:44px;padding:8px;font-size:.9rem}
+.mes.cab{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2);margin-top:12px}
+.conc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.conc input{min-height:44px}
+.fat{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tabw{overflow-x:auto;max-width:100%}
+table.t{width:100%;border-collapse:collapse;margin:10px 0;font-size:.86rem}
+table.t th{background:var(--verde);color:var(--creme);font-weight:600;text-align:left;padding:6px 5px}
+table.t td{padding:6px 5px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.t td.n,table.t th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.t td:first-child{text-transform:none}
+.cards{display:grid;gap:8px;margin:10px 0}
+.cards div{border:1px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff}
+.cards b{display:block}
+.cards span{display:block;font-size:.88rem;color:var(--texto-2)}
+.pisobox{background:var(--creme);border:2px solid var(--dourado);border-radius:12px;padding:12px 14px;margin-top:10px}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr 1fr}.conc{grid-template-columns:repeat(5,1fr)}.fat{grid-template-columns:repeat(4,1fr)}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 3 · Preço<br>Tabela de Preço e Canais</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado: a gestão depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="logic.js"></script>
+<script src="../financas/logic.js"></script>
+<script>
+const Z = window.ZP;
+const CHAVE = "zion-t2-preco";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const anterior = () => { for (const k of ["zion-t2-financas", "zion-t2-marco-zero"]) { const x = lerChave(k); if (x && x.nome) return x; } return {}; };
+const vg = (n) => typeof n === "number" ? String(n).replace(".", ",") : n;
+const canalVazio = (direta) => ({ nome: "", mix: "", comissao: "", pagamento: "", extra: "", direta: !!direta });
+const picoVazio = (fz) => ({ nome: "", mes: "", noites: "", fator: fz || "2,20", minimo: "" });
+
+const TELAS = Z.TELAS;
+const vazio = () => {
+  const a = anterior();
+  const s = { tela: 0, nome: a.nome || "", email: a.email || "", hospedagem: a.hospedagem || "", situacao: "", diag: {}, gestorCanais: false, motorReservas: false,
+    canais: [canalVazio(), canalVazio(), canalVazio(true)], concorrentes: Array(9).fill(""), terco: "meio", condicoes: ["", "", ""],
+    fatores: { vale: "0,75", baixa: "0,90", alta: "1,50", pico: "2,20" }, mesInicio: "1", meses: Array.from({ length: 12 }, () => ({ sem: "", fds: "" })), picos: [picoVazio(), picoVazio()] };
+  Z.CAMPOS.forEach((c) => { if (s[c.id] == null) s[c.id] = ""; });
+  return s;
+};
+let S = ler() || vazio();
+S.diag = S.diag || {};
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 20 a 30 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+function proximaVazia() {
+  for (const t of ["custo", "canais", "referencia", "piso", "calendario", "picos"]) if (!Z.validar(S, t).ok) return t;
+  return Z.completo(S) ? "resultado" : "picos";
+}
+function ajuda(c) { return `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${c.pq}</p><p><b>Onde conseguir:</b> ${c.onde}</p><p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${c.ex}</p></details>`; }
+function campoHtml(c) {
+  const v = S[c.id] == null ? "" : S[c.id];
+  const im = c.tipo === "int" ? "numeric" : "decimal";
+  const inp = c.tipo === "texto" ? `<input type="text" id="${c.id}" value="${esc(v)}" placeholder="Ex.: ${esc(c.ex)}">`
+    : c.tipo === "data" ? `<input type="date" id="${c.id}" value="${esc(v)}">`
+    : `<input type="text" id="${c.id}" inputmode="${im}" autocomplete="off" value="${esc(v)}" placeholder="${c.tipo === "brl" ? "0,00" : "0"}">`;
+  return `<div class="campo"><label for="${c.id}">${c.r}${c.obrig ? "" : ' <span class="dica">(opcional)</span>'}</label>${inp}${ajuda(c)}</div>`;
+}
+function ligaCampos(tela) {
+  Z.CAMPOS.filter((c) => c.tela === tela).forEach((c) => {
+    const el = document.getElementById(c.id); if (!el) return;
+    el.addEventListener("input", (e) => { S[c.id] = e.target.value; gravar(); atualiza(tela); });
+  });
+}
+function atualiza(tela) {
+  const v = Z.validar(S, tela);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.map(esc).join("<br>");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(tela);
+}
+function liveHtml(tela) {
+  const r = Z.calcular(S), N = r.N;
+  if (tela === "custo") return N.custoNoiteVendida ? `Custo fixo por noite (custo por noite vendida − variável): <b>${Z.brl(N.custoNoiteVendida - N.custoVariavelNoite)}</b>${N.diariaAtual ? ` · Diária praticada hoje: <b>${Z.brl(N.diariaAtual)}</b>` : ""}` : "Preencha o custo por noite vendida para seguir.";
+  if (tela === "canais") { const soma = N.canais.reduce((s, c) => s + c.mix, 0); return `Mix informado: <b>${Z.dec(soma, 1)}%</b> de 100% · Comissão média ponderada: <b>${Z.pct(r.comissaoMedia / 100)}</b> · Venda direta hoje: <b>${Z.dec(r.diretaAtual, 1)}%</b>`; }
+  if (tela === "referencia") { const m = r.mercado; return m.media == null ? "Informe pelo menos três concorrentes para ver a média do mercado (a fonte pede de seis a nove)." : `Sem o mais barato (${Z.brl(m.descartados[0])}) e o mais caro (${Z.brl(m.descartados[1])}): média de <b>${Z.brl(m.media)}</b> em ${m.usados} concorrentes · Na posição escolhida: <b>${Z.brl(m.sugerida)}</b>`; }
+  if (tela === "piso") return r.pisoCusto == null ? "Preencha o custo e os canais para ver o piso." : `Custo da noite no canal mais caro (${esc(r.canalCritico ? r.canalCritico.nome : "imposto")}, ${Z.dec(r.canalCritico ? r.canalCritico.ded : N.impostoPct, 1)}% de deduções): <b>${Z.brl(r.pisoCusto)}</b> · Com a margem mínima de ${Z.dec(N.margemMinima, 1)}%: piso calculado <b>${Z.brl(r.pisoCalculado)}</b>${N.pisoDeclarado ? ` · Piso escrito: <b>${Z.brl(N.pisoDeclarado)}</b> (${Z.pct(N.pisoDeclarado / (N.referencia || 1))} da referência)` : ""}`;
+  if (tela === "calendario") return `Diárias: ${Z.FAIXAS.map((f) => `${f.r} <b>${Z.brl(r.diaria[f.id])}</b>`).join(" · ")}${r.mediaAno != null ? ` · Diária média do calendário: <b>${Z.brl(r.mediaAno)}</b>` : ""}${r.abaixoDoPiso.length ? ` · <b>Abaixo do piso:</b> ${esc(r.abaixoDoPiso.join(", "))}` : ""}`;
+  if (tela === "picos") return `Noites de pico no ano: <b>${r.noitesFaixa.pico}</b> · Diária média do calendário: <b>${Z.brl(r.mediaAno)}</b> · Venda direta hoje: <b>${Z.dec(r.diretaAtual, 1)}%</b>${N.metaDireta ? `, meta <b>${Z.dec(N.metaDireta, 1)}%</b>` : ""}`;
+  return "";
+}
+function telaDados(tela, intro, antes, depois, rot) {
+  const campos = Z.CAMPOS.filter((c) => c.tela === tela && !c.fora);
+  const i = TELAS.indexOf(tela);
+  return `<div class="card"><div class="eyebrow">Tela ${i} · ${Z.TITULOS[tela]}</div><h2 class="pergunta">${intro.t}</h2><p class="explica">${intro.p}</p>
+  ${antes || ""}${campos.map(campoHtml).join("")}${depois || ""}
+  <div class="calc" id="live">${liveHtml(tela)}</div>
+  <div id="avisos"></div><p class="erro" id="erro"></p>${nav(rot)}</div>`;
+}
+function ligaNav(t) {
+  atualiza(t);
+  const v = document.getElementById("volta"), f = document.getElementById("vai");
+  if (v) v.onclick = () => ir(-1);
+  if (f) f.onclick = () => { if (!Z.validar(S, t).ok) return; if (t === "picos" && !Z.completo(S)) { document.getElementById("erro").textContent = "Ainda falta: " + Z.pendencias(S)[0] + "."; return; } ir(1); };
+}
+
+function importarFolha() {
+  const f = lerChave("zion-t2-financas");
+  if (!f || !window.ZF) return false;
+  const r = window.ZF.calcular(f);
+  if (r.custoPorNoiteVendida == null) return false;
+  const d2 = (x) => x == null ? "" : String(Math.round(x * 100) / 100).replace(".", ",");
+  S.custoVariavelNoite = d2(r.custoVariavelPorNoite); S.custoNoiteVendida = d2(r.custoPorNoiteVendida); S.diariaAtual = d2(r.diariaMediaBruta);
+  S.noitesPorEstadia = d2(r.mediaNoitesPorEstadia); S.receitaMes = d2(r.N.receitaHospedagem); if (!S.impostoPct && r.N.impostoPct) S.impostoPct = d2(r.N.impostoPct);
+  S.importado = true; return true;
+}
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || S.referencia;
+    const respondeu = S.situacao && Z.DIAG.every((q) => S.diag[q.id]); const nv = Z.nivel(S);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 3 · Faça agora</div><h1>A minha Tabela de Preço e Canais</h1>
+    <p class="lead">Aprenda o passo a passo para declarar o piso da sua diária por escrito, montar o calendário de doze meses com cinco faixas e as datas de pico, e saber quanto cada canal deixa por noite, com uma meta de venda direta.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Sem piso, a diária cai sozinha nos meses fracos e não volta nos fortes. E a mesma reserva vale valores diferentes conforme o canal por onde entrou.</div>
+    <div><b>Como vamos fazer</b>Seis telas: o custo da noite, os seus canais, a diária de referência, o piso, as cinco faixas nos doze meses e as datas de pico com a meta de venda direta. Cada pergunta diz por que, onde conseguir e um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com a sua Tabela de Preço e Canais em PDF: piso escrito, calendário, líquido por canal, meta de venda direta e as prioridades. É a página 3 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    <div class="opcoes">${Z.SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quatro perguntas antes de começar</h2>
+    <p class="explica">Responda como está hoje, não como gostaria.</p>
+    <div class="grade">${Z.DIAG.map((q) => `<div class="item"><b>${q.r}</b><div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.SIMNAO.map((o) => `<label><input type="radio" name="d-${q.id}" value="${o.v}" ${S.diag[q.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    <div class="calc" id="nivel">${respondeu ? `Nível ${nv.n} de 4 · <b>${nv.r}</b>. ${nv.t}` : "Responda as quatro perguntas para ver o seu nível."}</div>
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: use o custo previsto do seu plano e os preços dos concorrentes. A Tabela vira o preço de entrada e o piso declarado antes da primeira reserva.</div>` : ""}
+    <p class="dica" style="margin-top:10px">Os números ficam só neste aparelho. Nada é enviado.</p>
+    <p class="erro" id="erro"></p>
+    <div class="nav"><button class="btn btn-p" id="vai" ${respondeu ? "" : "disabled"}>Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver a Tabela pronta antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const okAb = () => { const ok = S.situacao && Z.DIAG.every((q) => S.diag[q.id]); document.getElementById("vai").disabled = !ok; const n = Z.nivel(S); document.getElementById("nivel").innerHTML = Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${n.n} de 4 · <b>${n.r}</b>. ${n.t}` : "Responda as quatro perguntas para ver o seu nível."; };
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    Z.DIAG.forEach((q) => app.querySelectorAll(`input[name=d-${q.id}]`).forEach((x) => x.onchange = () => { S.diag[q.id] = x.value; gravar(); okAb(); }));
+    const rt = document.getElementById("retoma");
+    if (rt) rt.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(proximaVazia())); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => {
+      const E = JSON.parse(JSON.stringify(Z.EXEMPLO));
+      Z.CAMPOS.forEach((c) => { E[c.id] = vg(E[c.id]); });
+      E.canais = E.canais.map((c) => ({ ...c, mix: vg(c.mix), comissao: vg(c.comissao), pagamento: vg(c.pagamento), extra: vg(c.extra) }));
+      E.concorrentes = E.concorrentes.map(vg).concat(Array(9).fill("")).slice(0, 9);
+      E.fatores = { vale: "0,75", baixa: "0,90", alta: "1,50", pico: "2,20" };
+      E.picos = E.picos.map((p) => ({ nome: p.nome, mes: String(p.mes), noites: String(p.noites), fator: p.fator.toFixed(2).replace(".", ","), minimo: String(p.minimo) }));
+      E.mesInicio = String(E.mesInicio);
+      S = { ...vazio(), ...E, nome: S.nome, email: S.email, tela: 1, acao: undefined, prazo: undefined, pdf: undefined };
+      gravar(); render(); window.scrollTo(0, 0);
+    };
+    document.getElementById("vai").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "custo") {
+    const temFolha = !!(lerChave("zion-t2-financas") && window.ZF);
+    const imp = temFolha ? `<div class="campo" style="background:var(--creme)"><b>Já fez a Folha Única do Mês (Módulo 2)?</b><p class="dica" style="margin:4px 0 8px">A ficha pode trazer o custo variável por noite, o custo por noite vendida, a diária praticada, as noites por estadia e a receita do mês da sua Folha, salva neste aparelho.</p><button type="button" class="btn btn-s" id="importa" style="width:100%">Trazer os números da minha Folha Única</button>${S.importado ? '<p class="ref"><b>Trazido da sua Folha.</b> Confira e ajuste se quiser.</p>' : ""}</div>` : `<p class="dica">Os dois custos saem da Folha Única do Mês (Módulo 2). Se ainda não fez, faça antes: sem custo, o piso é chute.</p>`;
+    h += telaDados("custo", { t: "Quanto custa cada noite vendida?", p: "O preço começa pelo custo, não pelo concorrente. Abaixo do custo por noite vendida, vender dá prejuízo." }, imp);
+    app.innerHTML = h; ligaCampos("custo");
+    const bi = document.getElementById("importa"); if (bi) bi.onclick = () => { importarFolha(); gravar(); render(); };
+  }
+  if (t === "canais") {
+    const linhas = S.canais.map((c, i) => `<div class="canal" data-i="${i}"><div class="topo-c"><b>Canal ${i + 1}</b>${S.canais.length > 1 ? `<button type="button" class="mini" data-rm="${i}">Remover</button>` : ""}</div>
+      <label for="c-${i}-nome">Nome do canal</label><input type="text" id="c-${i}-nome" value="${esc(c.nome)}" placeholder="${c.direta ? "Ex.: Venda direta (site e WhatsApp)" : "Ex.: Plataforma A"}">
+      <div class="lin"><div><label for="c-${i}-mix">% da receita</label><input type="text" inputmode="decimal" id="c-${i}-mix" value="${esc(c.mix)}" placeholder="0"></div><div><label for="c-${i}-comissao">Comissão (%)</label><input type="text" inputmode="decimal" id="c-${i}-comissao" value="${esc(c.comissao)}" placeholder="0"></div></div>
+      <div class="lin"><div><label for="c-${i}-pagamento">Taxa de pagamento (%)</label><input type="text" inputmode="decimal" id="c-${i}-pagamento" value="${esc(c.pagamento)}" placeholder="0"></div><div><label for="c-${i}-extra">Outro custo por reserva (R$)</label><input type="text" inputmode="decimal" id="c-${i}-extra" value="${esc(c.extra)}" placeholder="0,00"></div></div>
+      <label class="check"><input type="checkbox" id="c-${i}-direta" ${c.direta ? "checked" : ""}>É venda direta (sem comissão de plataforma)</label></div>`).join("");
+    const antes = `<p class="dica">Use os últimos três meses: quanto da receita de hospedagem entrou por cada canal. A maioria dos donos erra esse número quando chuta: confira no extrato de cada canal.</p>${linhas}
+      ${S.canais.length < 5 ? `<button type="button" class="btn btn-s" id="addCanal" style="width:100%;margin-top:10px">Adicionar canal</button>` : ""}`;
+    const depois = `<div class="campo" style="background:var(--creme)"><b>O básico técnico</b>
+      <label class="check"><input type="checkbox" id="gestorCanais" ${S.gestorCanais ? "checked" : ""}>Tenho um gestor de canais que fecha a data em todos os canais quando entra uma reserva</label>
+      <label class="check"><input type="checkbox" id="motorReservas" ${S.motorReservas ? "checked" : ""}>Tenho motor de reservas no site (ou link de reserva com pagamento)</label>
+      <p class="dica" style="margin-top:6px">Sem isso, a fonte avisa: venda direta vira trabalho manual e risco de reserva duplicada.</p></div>`;
+    h += telaDados("canais", { t: "Por onde a sua casa é vendida?", p: "Estar em todos os canais não é distribuição. A conta que importa não é a diária anunciada: é o que sobra dela depois da comissão." }, antes, depois);
+    app.innerHTML = h; ligaCampos("canais");
+    S.canais.forEach((c, i) => {
+      ["nome", "mix", "comissao", "pagamento", "extra"].forEach((k) => document.getElementById(`c-${i}-${k}`).addEventListener("input", (e) => { S.canais[i][k] = e.target.value; gravar(); atualiza("canais"); }));
+      document.getElementById(`c-${i}-direta`).onchange = (e) => { S.canais[i].direta = e.target.checked; gravar(); atualiza("canais"); };
+    });
+    app.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { S.canais.splice(+b.dataset.rm, 1); gravar(); render(); });
+    const ad = document.getElementById("addCanal"); if (ad) ad.onclick = () => { S.canais.push(canalVazio()); gravar(); render(); };
+    document.getElementById("gestorCanais").onchange = (e) => { S.gestorCanais = e.target.checked; gravar(); };
+    document.getElementById("motorReservas").onchange = (e) => { S.motorReservas = e.target.checked; gravar(); };
+  }
+  if (t === "referencia") {
+    const antes = `<div class="campo"><b>O preço de seis a nove concorrentes diretos</b><p class="dica" style="margin:4px 0 8px">Mesmo porte, mesmo público, mesma região. O preço final, com taxas, numa data de demanda média: um fim de semana comum, nem pico nem baixa. A ficha descarta o mais caro e o mais barato.</p>
+      <div class="conc">${S.concorrentes.map((v, i) => `<div><label for="conc-${i}" style="margin:0 0 4px;font-size:.8rem">Concorrente ${i + 1}</label><input type="text" inputmode="decimal" id="conc-${i}" value="${esc(v)}" placeholder="0,00"></div>`).join("")}</div></div>
+      <div class="campo"><b>Em que posição você quer estar?</b><p class="dica" style="margin:4px 0 8px">É uma decisão de marca: o que as suas fotos e as suas avaliações sustentam.</p><div class="opcoes">${Z.TERCOS.map((o) => `<label class="op"><input type="radio" name="terco" value="${o.v}" ${S.terco === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+      <button type="button" class="btn btn-s" id="usaSug" style="width:100%;margin-top:10px">Usar a diária da posição escolhida como referência</button></div>`;
+    h += telaDados("referencia", { t: "Qual é a sua diária de referência?", p: "É o preço cheio, sem desconto e sem condição. Ela cai em uma semana de desconto e leva de seis meses a um ano para voltar." }, antes);
+    app.innerHTML = h; ligaCampos("referencia");
+    S.concorrentes.forEach((v, i) => document.getElementById(`conc-${i}`).addEventListener("input", (e) => { S.concorrentes[i] = e.target.value; gravar(); atualiza("referencia"); }));
+    app.querySelectorAll("input[name=terco]").forEach((x) => x.onchange = () => { S.terco = x.value; gravar(); atualiza("referencia"); });
+    document.getElementById("usaSug").onclick = () => { const m = Z.mercado(Z.normalizar(S)); if (m.sugerida != null) { S.referencia = String(Math.round(m.sugerida * 100) / 100).replace(".", ","); gravar(); render(); } };
+  }
+  if (t === "piso") {
+    const depois = `<div class="campo"><b>Três condições no lugar de desconto</b><p class="dica" style="margin:4px 0 8px">Quando precisar ceder, ceda em data, em noite extra ou em serviço. Desconto em diária vira a tabela nova; condição não.</p>
+      ${S.condicoes.map((v, i) => `<label for="cond-${i}" style="margin:6px 0 4px;font-size:.85rem">Condição ${i + 1}</label><input type="text" id="cond-${i}" value="${esc(v)}" placeholder="${["Ex.: terceira noite com café da manhã incluso", "Ex.: saída tardia", "Ex.: cesta de boas-vindas"][i]}">`).join("")}</div>
+      <p class="ref">Desconto, só em quatro situações e nunca abaixo do piso nem nas datas de pico: estadia longa (10 a 20% a partir da quinta noite), reserva com grande antecedência (8 a 15%), hóspede da base própria ou recorrente (10 a 15%) e último minuto dentro da janela curta.</p>`;
+    h += telaDados("piso", { t: "Qual é o seu piso?", p: "O menor valor pelo qual você vende, em qualquer situação. Piso decidido em mês fraco é piso que não existe: escreva agora, com a cabeça fria." }, "", depois);
+    app.innerHTML = h; ligaCampos("piso");
+    S.condicoes.forEach((v, i) => document.getElementById(`cond-${i}`).addEventListener("input", (e) => { S.condicoes[i] = e.target.value; gravar(); }));
+  }
+  if (t === "calendario") {
+    const N = Z.normalizar(S);
+    const fat = `<div class="campo"><b>Os fatores das cinco faixas</b><p class="dica" style="margin:4px 0 8px">Cada faixa multiplica a sua diária de referência. Os valores abaixo são o ponto de partida da fonte; o levantamento do seu destino é que decide os seus. A base é sempre 1,00.</p>
+      <div class="fat">${["vale", "baixa", "alta", "pico"].map((k) => `<div><label for="f-${k}" style="margin:0 0 4px;font-size:.85rem">${Z.FAIXA[k].r} (${Z.dec(Z.FAIXA[k].min, 2)} a ${Z.dec(Z.FAIXA[k].max, 2)})</label><input type="text" inputmode="decimal" id="f-${k}" value="${esc(S.fatores[k])}"></div>`).join("")}</div></div>
+      <div class="lin"><div class="campo" style="margin-top:12px"><label for="ano">${Z.CAMPO.ano.r}</label><input type="text" inputmode="numeric" id="ano" value="${esc(S.ano)}" placeholder="Ex.: 2027"></div>
+      <div class="campo" style="margin-top:12px"><label for="mesInicio">Primeiro mês</label><select id="mesInicio">${Z.MESES.map((m, i) => `<option value="${i + 1}" ${String(S.mesInicio) === String(i + 1) ? "selected" : ""}>${m}</option>`).join("")}</select></div></div>`;
+    const ordem = Array.from({ length: 12 }, (_, i) => ((N.mesInicio - 1 + i) % 12));
+    const opts = (sel) => `<option value="">Escolha</option>` + Z.FAIXAS_MES.map((k) => `<option value="${k}" ${sel === k ? "selected" : ""}>${Z.FAIXA[k].r}</option>`).join("");
+    const meses = `<div class="campo"><b>A faixa de cada mês</b><p class="dica" style="margin:4px 0 8px">Meio de semana: de domingo a quinta. Fim de semana: as noites de sexta e de sábado. As datas de pico vêm na próxima tela, em linha própria.</p>
+      <div class="mes cab"><span>Mês</span><span>Meio de semana</span><span>Fim de semana</span></div>
+      ${ordem.map((m, i) => `<div class="mes"><b>${Z.MESES[m]}</b><select id="m-${i}-sem" aria-label="${Z.MESES[m]}, meio de semana">${opts(S.meses[i].sem)}</select><select id="m-${i}-fds" aria-label="${Z.MESES[m]}, fim de semana">${opts(S.meses[i].fds)}</select></div>`).join("")}</div>`;
+    h += `<div class="card"><div class="eyebrow">Tela 5 · ${Z.TITULOS.calendario}</div><h2 class="pergunta">Como o preço muda ao longo do ano?</h2><p class="explica">Cinco números resolvem o ano inteiro: vale, baixa, base, alta e pico. Preço fixo o ano inteiro erra nas duas direções ao mesmo tempo.</p>
+      ${fat}${meses}<div class="calc" id="live">${liveHtml("calendario")}</div><div id="avisos"></div><p class="erro" id="erro"></p>${nav()}</div>`;
+    app.innerHTML = h;
+    ["vale", "baixa", "alta", "pico"].forEach((k) => document.getElementById(`f-${k}`).addEventListener("input", (e) => { S.fatores[k] = e.target.value; gravar(); atualiza("calendario"); }));
+    document.getElementById("ano").addEventListener("input", (e) => { S.ano = e.target.value; gravar(); atualiza("calendario"); });
+    document.getElementById("mesInicio").onchange = (e) => { S.mesInicio = e.target.value; gravar(); render(); };
+    for (let i = 0; i < 12; i++) ["sem", "fds"].forEach((k) => document.getElementById(`m-${i}-${k}`).onchange = (e) => { S.meses[i][k] = e.target.value; gravar(); atualiza("calendario"); });
+  }
+  if (t === "picos") {
+    const linhas = S.picos.map((p, i) => `<div class="pico"><div class="topo-c"><b>Data ${i + 1}</b><button type="button" class="mini" data-rm="${i}">Remover</button></div>
+      <label for="p-${i}-nome">Nome da data</label><input type="text" id="p-${i}-nome" value="${esc(p.nome)}" placeholder="Ex.: Réveillon, Carnaval, festival local">
+      <div class="lin"><div><label for="p-${i}-mes">Mês</label><select id="p-${i}-mes"><option value="">Escolha</option>${Z.MESES.map((m, k) => `<option value="${k + 1}" ${String(p.mes) === String(k + 1) ? "selected" : ""}>${m}</option>`).join("")}</select></div><div><label for="p-${i}-noites">Noites</label><input type="text" inputmode="numeric" id="p-${i}-noites" value="${esc(p.noites)}" placeholder="0"></div></div>
+      <div class="lin"><div><label for="p-${i}-fator">Fator sobre a referência</label><input type="text" inputmode="decimal" id="p-${i}-fator" value="${esc(p.fator)}" placeholder="Ex.: 2,20"></div><div><label for="p-${i}-minimo">Mínimo de noites</label><input type="text" inputmode="numeric" id="p-${i}-minimo" value="${esc(p.minimo)}" placeholder="0"></div></div></div>`).join("");
+    const antes = `<div class="campo" style="background:var(--creme)"><b>As datas de pico</b><p class="dica" style="margin:4px 0 0">Réveillon, carnaval, feriados prolongados, as semanas mais concorridas da temporada e os eventos locais. Cada uma com preço próprio, mínimo de noites e data de abertura. Pontos de partida da fonte: réveillon fator 2,2 a 3,0 e mínimo de 5 a 7 noites; carnaval 1,9 a 2,5 e 4 a 5; feriado prolongado 1,7 a 2,2 e 3 a 4; evento local, levantar, e 2 a 3.</p></div>${linhas}
+      ${S.picos.length < 8 ? `<button type="button" class="btn btn-s" id="addPico" style="width:100%;margin-top:10px">Adicionar data de pico</button>` : ""}
+      <h3 style="margin-top:20px;font-family:Inter,sans-serif;font-size:1rem">Meta de venda direta</h3><p class="dica">Hoje você vende direto ${Z.dec(Z.calcular(S).diretaAtual, 1)}% da receita (tela 2).</p>`;
+    h += telaDados("picos", { t: "Quais são as datas de pico, e onde você quer chegar na venda direta?", p: "Poucas noites do ano decidem uma fatia enorme da receita. Bloqueie as datas até elas terem preço." }, antes, "", "Ver a minha Tabela");
+    app.innerHTML = h; ligaCampos("picos");
+    S.picos.forEach((p, i) => {
+      ["nome", "noites", "fator", "minimo"].forEach((k) => document.getElementById(`p-${i}-${k}`).addEventListener("input", (e) => { S.picos[i][k] = e.target.value; gravar(); atualiza("picos"); }));
+      document.getElementById(`p-${i}-mes`).onchange = (e) => { S.picos[i].mes = e.target.value; gravar(); atualiza("picos"); };
+    });
+    app.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { S.picos.splice(+b.dataset.rm, 1); gravar(); render(); });
+    const ap = document.getElementById("addPico"); if (ap) ap.onclick = () => { S.picos.push(picoVazio(S.fatores && S.fatores.pico)); gravar(); render(); };
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  ligaNav(t);
+}
+
+function resultado() {
+  const r = Z.calcular(S), N = r.N, L = Z.leituras(r), P = Z.prioridades(r);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const concl = Z.concluido({ ...S, acao }), pend = Z.pendencias({ ...S, acao });
+  const nv = Z.nivel(S);
+  const proj = S.situacao === "abrir" ? `<div class="aviso">Esta Tabela é o seu preço de entrada: você ainda vai abrir. A fonte pede a diária de abertura e o piso por escrito antes da primeira reserva; revise no primeiro trimestre de operação.</div>` : "";
+  return `<div class="card"><div class="eyebrow">A minha Tabela de Preço e Canais${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">O meu piso, por escrito</div><div class="nota" id="piso">${Z.brl(N.pisoDeclarado)}</div><p>Diária de referência ${Z.brl(N.referencia)} · diária média do calendário ${Z.brl(r.mediaAno)} · venda direta de ${Z.dec(r.diretaAtual, 1)}% para ${Z.dec(N.metaDireta, 1)}% até ${Z.dataBR(N.prazoMeta)}.</p></div>
+  ${proj}
+  <section class="bloco"><h2>1 · A tabela</h2><p>As cinco faixas, sobre a referência de ${Z.brl(N.referencia)}.</p>
+  <div class="tabw"><table class="t" id="faixas"><tr><th>Faixa</th><th class="n">Fator</th><th class="n">Diária</th><th class="n">Noites no ano</th></tr>${Z.FAIXAS.map((f) => `<tr data-f="${f.id}"><td>${f.r}</td><td class="n">${f.id === "pico" ? "por data" : Z.dec(N.fatores[f.id], 2)}</td><td class="n">${f.id === "pico" ? "por data" : Z.brl(r.diaria[f.id])}</td><td class="n">${r.noitesFaixa[f.id]}</td></tr>`).join("")}<tr><td><b>Total</b></td><td></td><td></td><td class="n"><b>${r.totalNoites}</b></td></tr></table></div>
+  <h3 style="font-family:Inter,sans-serif;font-size:1rem;margin:14px 0 4px">O calendário de ${r.meses.length ? esc(r.meses[0].curto + "/" + r.meses[0].ano + " a " + r.meses[11].curto + "/" + r.meses[11].ano) : "12 meses"}</h3>
+  <div class="tabw"><table class="t" id="calendario"><tr><th>Mês</th><th class="n">Semana</th><th class="n">Fim de semana</th><th class="n">Média</th></tr>${r.meses.map((m) => `<tr><td style="text-transform:capitalize">${m.curto}${m.picos.length ? " *" : ""}</td><td class="n">${Z.brl(m.diariaSem)}</td><td class="n">${Z.brl(m.diariaFds)}</td><td class="n">${Z.brl(m.media)}</td></tr>`).join("")}</table></div>
+  <p class="dica">* mês com data de pico. A média do mês pondera as noites de meio de semana, de fim de semana e de pico.</p>
+  ${r.picos.length ? `<div class="tabw"><table class="t" id="picos"><tr><th>Data de pico</th><th class="n">Noites</th><th class="n">Diária</th><th class="n">Mínimo</th></tr>${r.picos.map((p) => `<tr><td>${esc(p.nome)} <span class="dica">(${Z.MESES_C[p.mes - 1] || ""})</span></td><td class="n">${p.noites}</td><td class="n">${Z.brl(p.diaria)}</td><td class="n">${p.minimo}</td></tr>`).join("")}</table></div>` : ""}
+  <h3 style="font-family:Inter,sans-serif;font-size:1rem;margin:14px 0 4px">O que cada canal deixa por noite, na diária de referência</h3>
+  <div class="cards" id="canais">${r.canais.map((c) => `<div><b>${esc(c.nome)}${c.direta ? " · venda direta" : ""}</b><span>${Z.dec(c.mix, 1)}% da receita · deduções ${Z.dec(c.ded, 1)}%</span><span>Líquido: <b style="display:inline">${Z.brl(c.liquidoNoite)}</b> · depois do custo variável: <b style="display:inline">${Z.brl(c.margemNoite)}</b></span></div>`).join("")}</div>
+  <div class="pisobox" id="pisobox"><b>Folha do piso</b><br>Piso: ${Z.brl(N.pisoDeclarado)} · vale para todos os canais, inclusive na véspera.<br>Quem já sabe: ${esc(N.quemConhece || "ninguém ainda")}.<br>No lugar de desconto: ${N.condicoes.length ? esc(N.condicoes.join("; ")) : "nenhuma condição escrita"}.</div></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${L.custo.t}</p><p>${L.piso.t}</p><p>${L.calendario.t}</p><p>${L.fds.t}</p><p>${L.canais.t}</p><p>${esc(L.direta.t)}</p></div>
+  <div class="caixa c-sig"><h3>A regra do desconto em três faixas</h3><p id="desconto">${L.desconto.t}</p></div>
+  <p class="dica">Nível de preço e canais: ${nv.n} de 4 · ${nv.r}. Os fatores das faixas são ponto de partida da fonte, ajustáveis pelo levantamento do seu destino.</p></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div class="fragil" id="causa"><b>Causa principal: ${esc(P[0].r)}.</b> ${P[0].id === "ok" ? "Nenhum dos sinais de atenção disparou." : "É o primeiro sinal, na ordem custo, piso, calendário, canais, que precisa de correção."}</div>
+  ${r.abaixoDoPiso.length ? `<div class="caixa c-at"><h3>Abaixo do piso</h3><p>${esc(r.abaixoDoPiso.join("; "))}</p></div>` : ""}
+  ${r.avisos.length ? `<div class="caixa c-at"><h3>Para conferir</h3><p>${r.avisos.map(esc).join("<br>")}</p></div>` : ""}</section>
+  <section class="bloco"><h2>4 · O que fazer agora</h2><div class="prio" id="prioridades">${P.map((p, i) => `<div><i>${i + 1}</i><div><b>${esc(p.r)}</b><br><span class="dica">${esc(p.acao)}</span></div></div>`).join("")}</div>
+  <div class="caixa c-faz" style="margin-top:12px"><p>O plano abaixo veio das prioridades. Ajuste o texto se quiser, e marque até quando. Leve o calendário para os canais com pelo menos seis meses abertos.</p></div>
+  <label for="acao">O meu plano de ação</label><textarea id="acao">${esc(acao)}</textarea>
+  <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(P))}</p><p>A lição está concluída quando a Tabela tem o piso escrito, a diária de referência, os doze meses com faixa, o mix de canais somando 100% e uma meta de venda direta acima da atual com prazo; o plano de ação tem texto e prazo; e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: lá a meta de venda direta desta Tabela vira lista própria de hóspedes e custo por reserva.</p>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Tabela de Preço e Canais</a> (calendário de doze meses, datas de pico e mapa de canais), o <a href="../../p/adbc67069af26ae0/zar-a02/">Precificador Inteligente</a> (bônus) e a <a href="../../p/adbc67069af26ae0/planilha-01/Diaria-Minima-Zion-EM-BRANCO.xlsx">Ferramenta 01 · Diária Mínima</a>.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Tabela em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Refazer a Tabela</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  const atualizaSelo = () => { const r = Z.calcular(S), P = Z.prioridades(r); const T = { ...S, acao: S.acao != null ? S.acao : Z.planoSugerido(P) }; const ok = Z.concluido(T); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(T).join("; "); s.className = "selo" + (ok ? "" : " pend"); };
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").oninput = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { gerarPDF(); atualizaSelo(); };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = Z.calcular(S), N = r.N, L = Z.leituras(r), P = Z.prioridades(r);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const rodape = () => { d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado. Fatores das faixas: ponto de partida da fonte, ajustável pelo levantamento do destino. Zion Hospitality Business.", M, 286, { maxWidth: CW }); };
+  const fx = (s) => String(s).replace(/−/g, "-");
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  const linha = (a, b, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); const ls = d.splitTextToSize(fx(a), CW - 50); quebra(ls.length * 4.2); d.text(ls, M, y); d.text(fx(b), W - M, y, { align: "right" }); y += ls.length * 4.2 + 1.2; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text("ZION · JORNADA 2 · GESTÃO · MÓDULO 3 · PREÇO", M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text("A minha Tabela de Preço e Canais", M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text([S.nome, S.hospedagem, S.situacao === "abrir" ? "preço de entrada" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · "), M, 35);
+  y = 54;
+  txt("1 · A tabela", 9, [122, 94, 18], true);
+  txt(`O meu piso, por escrito: ${Z.brl(N.pisoDeclarado)}`, 14, null, true);
+  linha("Diária de referência", Z.brl(N.referencia));
+  linha("Custo da noite no canal mais caro (custo por noite vendida e deduções)", Z.brl(r.pisoCusto));
+  linha(`Piso calculado com margem mínima de ${Z.dec(N.margemMinima, 1)}%`, Z.brl(r.pisoCalculado));
+  linha("Quem já sabe do piso", N.quemConhece || "ninguém ainda");
+  if (N.condicoes.length) txt("No lugar de desconto: " + N.condicoes.join("; ") + ".", 10);
+  y += 2; txt("Cinco faixas", 9, [122, 94, 18], true);
+  Z.FAIXAS.forEach((f) => linha(`${f.r} (fator ${f.id === "pico" ? "por data" : Z.dec(N.fatores[f.id], 2)})`, `${f.id === "pico" ? "por data" : Z.brl(r.diaria[f.id])} · ${r.noitesFaixa[f.id]} noites`));
+  y += 2; txt("Calendário de doze meses (meio de semana / fim de semana / média do mês)", 9, [122, 94, 18], true);
+  r.meses.forEach((m) => linha(`${m.nome} de ${m.ano}${m.picos.length ? " (pico: " + m.picos.join(", ") + ")" : ""}`, `${Z.brl(m.diariaSem)} / ${Z.brl(m.diariaFds)} / ${Z.brl(m.media)}`));
+  linha("Diária média do calendário, ponderada pelas noites do ano", Z.brl(r.mediaAno), true);
+  if (r.picos.length) { y += 2; txt("Datas de pico", 9, [122, 94, 18], true); r.picos.forEach((p) => linha(`${p.nome} · ${Z.MESES[p.mes - 1] || ""} · ${p.noites} noites · mínimo ${p.minimo}`, Z.brl(p.diaria))); }
+  y += 2; txt("Mapa de canais (na diária de referência)", 9, [122, 94, 18], true);
+  r.canais.forEach((c) => { linha(`${c.nome}${c.direta ? " (venda direta)" : ""} · ${Z.dec(c.mix, 1)}% da receita · deduções ${Z.dec(c.ded, 1)}%`, ""); linha("    líquido por noite · depois do custo variável", `${Z.brl(c.liquidoNoite)} · ${Z.brl(c.margemNoite)}`); });
+  linha("Comissão média ponderada do mix", Z.pct(r.comissaoMedia / 100));
+  linha("Meta de venda direta", `${Z.dec(r.diretaAtual, 1)}% para ${Z.dec(N.metaDireta, 1)}% até ${Z.dataBR(N.prazoMeta)}`, true);
+  y += 3; txt("2 · O que isso significa", 9, [122, 94, 18], true); [L.custo, L.piso, L.desconto, L.calendario, L.fds, L.canais, L.direta].forEach((l) => l.t && txt(l.t, 10));
+  y += 3; txt("3 · Atenção", 9, [122, 94, 18], true); txt("Causa principal: " + P[0].r + ".", 11, null, true);
+  if (r.abaixoDoPiso.length) txt("Abaixo do piso: " + r.abaixoDoPiso.join("; ") + ".", 10);
+  y += 3; txt("4 · O que fazer agora", 9, [122, 94, 18], true);
+  P.forEach((p, i) => txt(`${i + 1}. ${p.r}: ${p.acao}`, 10));
+  txt("O meu plano de ação:", 10, null, true); txt(acao, 11);
+  if (S.prazo) txt("Até " + Z.dataBR(S.prazo), 10);
+  y += 3; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(P), 10);
+  y += 3; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: a meta de venda direta vira lista própria e custo por reserva.`, 10, null, true);
+  rodape();
+  d.save("tabela-de-preco-e-canais.pdf");
+  S.pdf = new Date().toISOString(); gravar();
+}
+render();
+</script>
+</body>
+</html>
