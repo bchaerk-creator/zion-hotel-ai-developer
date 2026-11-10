@@ -139,6 +139,11 @@ Documento de visão: "ZAIOS · Mapa de ativos e visão de integração" (Claude 
 - Testes próprios da ZAIOS (5 de 19 arquivos): 134 de 135; a falha é um espaço não separável no texto do dossiê, não é cálculo.
 - O9 simulada em cópia descartável: só as 6 mudanças previstas. Propostas P-O8 a P-O14 registradas como propostas. Nada implementado.
 
+## 10/11/2026 · Decisões após o 05G-B
+- Brand Kit ZAIOS SYSTEM v1.1 aprovado (Z oficial de três barras, paleta preto, dourado, marfim, verde Zion e grafite, Aventa). Arquivos em `producao/brand-zaios/kit-v1.1/`. Aplicação nas plataformas exige autorização própria.
+- P-O8 a P-O14 aprovadas; reserva operacional de 3 meses (P-O12), sem soma em dobro com o giro calculado.
+- Canal: GitHub privado (o Bruno conecta no Lovable). Depois: prova de integridade, testes restantes e O9 em commit isolado. Registro: `docs/academy/comando-05g-b/DECISOES_BRUNO_2026-11-10.md`.
+
 ## Ainda não verificado
 - Entrada real pelo link no e-mail (teste do Bruno).
 
