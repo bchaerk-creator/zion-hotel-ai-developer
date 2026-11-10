@@ -154,7 +154,8 @@ footer p+p{margin-top:8px}
 .btn.ghost{margin-top:auto;display:block;text-align:center;border:1px dashed var(--cinza);color:var(--cinza);padding:14px 18px;font-size:15px;background:transparent}
 @media(max-width:900px){.acc{grid-template-columns:1fr!important}}
 
-.hero{display:block!important;min-height:0!important}
+.hero{display:grid!important;grid-template-columns:1fr 1fr;min-height:92vh}
+@media(max-width:860px){.hero{grid-template-columns:1fr!important}}
 .hero-photo{background:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/club-zion-collection/img/img2.jpg) center/cover no-repeat!important;aspect-ratio:3/2;min-height:0!important;width:100%;max-width:1700px;margin:0 auto}
 .hero-photo::before{display:none!important}
 .hero-text{padding:clamp(40px,6vw,84px) 20px!important;display:block!important}
@@ -232,8 +233,9 @@ cxs('track', 'page_view');
 .entr{grid-template-columns:repeat(2,1fr);gap:12px}.e{padding:18px 16px}.e .n{font-size:30px}.e h3{font-size:20px}.e p{font-size:14px}
 .e.destaque{grid-column:1/-1}
 @media(max-width:340px){.pain,.cards4,.entr{grid-template-columns:1fr}}
-@media(max-width:860px){.hero-photo{min-height:52vh!important}.hero-text{padding:28px 20px 36px}.hero h1{font-size:clamp(34px,9vw,44px)}.hero .lead{font-size:17px;margin-top:14px}.hero .btn{margin-top:20px}}
-@media(min-width:861px){.hero{grid-template-columns:1fr 1fr;min-height:92vh}.hero-photo{min-height:92vh}}
+@media(max-width:860px){.hero-photo{min-height:52vh!important;background-position:62% center!important}.hero-text{padding:28px 20px 36px}.hero h1{font-size:clamp(34px,9vw,44px)}.hero .lead{font-size:17px;margin-top:14px}.hero .btn{margin-top:20px}}
+@media(min-width:861px){.hero{grid-template-columns:1fr 1fr;min-height:92vh}.hero-photo{aspect-ratio:auto!important;min-height:92vh!important;height:100%}.hero-text{display:flex!important;align-items:center}}
+@media(max-width:860px){.hero-photo{aspect-ratio:auto!important}}
 </style>
 </head>
 <body>
