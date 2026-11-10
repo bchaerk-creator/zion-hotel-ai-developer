@@ -41,7 +41,7 @@ Esperados independentes das regras aprovadas, aceite O8 a O14, compatibilidade c
 
 ## 5. Pendências que realmente permanecem
 
-1. **Integridade da origem** (hash do código original): depende do GitHub privado.
+1. ~~Integridade da origem~~ **Comprovada em 10/11/2026** pelo GitHub: 57 de 59 arquivos idênticos, 2 diferentes só por caracteres da transcrição. Testes completos: original 370/0 (26 de integração pulados); desenvolvimento 411/0. Ver .
 2. ~~Premissas provisórias~~ **aprovadas pelo Bruno em 10/11/2026** (custos mantidos no atraso, categoria C sem rampa, necessidade técnica do giro, 6 meses no P5, limite da indicação "atenção", calendário real do A09, reserva da ZAIOS mantida em 3–5%).
 3. **Parâmetros H4** (taxa, múltiplo, colchão, 8/12 anos, cenários, rampa, atraso de 6 meses, estresses).
 4. **Aprovadas e ainda não implementadas** (fora das O8 a O14): D1, D2-C (faixa 3–6% e padrão 4%), D3-A, D4, D7-C.
@@ -54,7 +54,7 @@ Esperados independentes das regras aprovadas, aceite O8 a O14, compatibilidade c
 
 | # | Ação | Por quê |
 |---|---|---|
-| 1 | Conectar a ZAIOS ao GitHub privado (Lovable: Configurações do projeto → Git → GitHub) | Integridade, leitura dos testes restantes e aplicação dos patches numa branch |
+| 1 | ~~Conectar a ZAIOS ao GitHub privado~~ **Feito em 10/11/2026.** Falta autorizar o envio da branch  ao repositório | Revisão e preview da branch |
 | 2 | ~~Confirmar as 7 premissas provisórias~~ **Feito em 10/11/2026: aprovadas como estão** | — |
 | 3 | Validar os parâmetros H4 | São regras da Zion, não técnicas |
 | 4 | Autorizar a D2-C na ZAIOS (reserva 3–6%, padrão 4%), se quiser mudar a premissa 7 aprovada (manter 3–5%) | Muda o resultado de projetos salvos com o padrão |

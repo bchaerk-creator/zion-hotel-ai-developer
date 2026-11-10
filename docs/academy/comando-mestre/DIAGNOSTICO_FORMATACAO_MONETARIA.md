@@ -20,3 +20,7 @@ A diferença é **um caractere invisível**, não um erro de cálculo nem de for
 2. O teste também falha no repositório original.
 
 A confirmação depende do arquivo original, pelo GitHub privado. O teste **não foi alterado**. Se a hipótese 2 se confirmar, a correção recomendada é o teste comparar com o próprio formatador (ou normalizar U+00A0), sem mudar o formatador, que segue o padrão do idioma.
+
+## Atualização · 10/11/2026 (GitHub ligado)
+
+Confirmado no repositório original: o texto esperado do teste tem U+00A0. **A falha era da transcrição; no original o teste passa** (370 de 370 testes executáveis passam na main). Ver .
