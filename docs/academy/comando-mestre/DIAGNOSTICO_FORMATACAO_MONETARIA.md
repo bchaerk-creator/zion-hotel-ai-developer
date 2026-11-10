@@ -23,4 +23,4 @@ A confirmação depende do arquivo original, pelo GitHub privado. O teste **não
 
 ## Atualização · 10/11/2026 (GitHub ligado)
 
-Confirmado no repositório original: o texto esperado do teste tem U+00A0. **A falha era da transcrição; no original o teste passa** (370 de 370 testes executáveis passam na main). Ver .
+Confirmado no repositório original: o texto esperado do teste tem U+00A0. **A falha era da transcrição; no original o teste passa** (370 de 370 testes executáveis passam na main). Ver `INTEGRIDADE_GITHUB.md`.
