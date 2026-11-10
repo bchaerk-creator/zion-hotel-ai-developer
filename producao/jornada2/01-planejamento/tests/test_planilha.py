@@ -27,7 +27,7 @@ def compara(real, ant):
     if real is None or ant is None: return None
     return "Melhorou" if real > ant else "Igual" if real == ant else "Piorou"
 M = "Metas e donos"
-BASE = [46.8, 280, 11890, 4.7, 12]; META = [50, 300, 13000, 4.8, 20]
+BASE = [46.8, 280, 11890, 4.7, 30]; META = [50, 300, 13000, 4.8, 40]
 def preenche(base=BASE, meta=META, dono=("Ana",) * 5, dias=31, un=4, escala=5, extra=()):
     c = [(M, "B4", "Outubro de 2026"), (M, "B5", dias), (M, "B6", un), (M, "B8", escala)]
     for k in range(5):
@@ -52,7 +52,7 @@ log(m["B24"].value.startswith("Sem ocupação de equilíbrio") and m["B25"].valu
 log(all(m[f"I{12+k}"].value in (None, "") for k in range(5)), "meta atingida em branco antes do mês de chegada")
 p = wb["Painel 12 meses"]
 ex_out = (["Melhorou"] * 5, ["Piorou", "Melhorou", "Piorou", "Melhorou", "Melhorou"])
-real = ([46.8, 280, 11890, 4.7, 12], [38.3, 285, 8950, 4.8, 14]); ant = ([41.9, 265, 10400, 4.6, 8], [40.0, 270, 9300, 4.6, 9])
+real = ([46.8, 280, 11890, 4.7, 30], [38.3, 285, 8950, 4.8, 31]); ant = ([41.9, 265, 10400, 4.6, 24], [40.0, 270, 9300, 4.6, 26])
 for i in range(2):
     esperado = [compara(real[i][k], ant[i][k]) for k in range(5)]
     obtido = [p.cell(5 + i, 12 + k).value for k in range(5)]
@@ -75,28 +75,28 @@ casos = [
     ("dias32", preenche(dias=32), "Dias do mês: use 28 a 31"),
     ("unidades0", preenche(un=0), "Unidades: número inteiro a partir de 1"),
     ("escala7", preenche(escala=7), "Escala da nota: 5 ou 10"),
-    ("semmeta", preenche(meta=[50, 300, None, 4.8, 20]), "Falta meta em algum indicador"),
+    ("semmeta", preenche(meta=[50, 300, None, 4.8, 40]), "Falta meta em algum indicador"),
     ("semdono", preenche(dono=("Ana", "Ana", "Ana", None, "Ana")), "Falta o dono de algum indicador"),
-    ("ocup120", preenche(meta=[120, 300, 13000, 4.8, 20]), "Ocupação e venda direta: de 0 a 100"),
+    ("ocup120", preenche(meta=[120, 300, 13000, 4.8, 40]), "Ocupação e venda direta: de 0 a 100"),
     ("vdneg", preenche(base=[46.8, 280, 11890, 4.7, -1]), "Ocupação e venda direta: de 0 a 100"),
-    ("diaria0", preenche(meta=[50, 0, 13000, 4.8, 20]), "Diária não pode ser negativa; metas de ocupação e diária maiores que zero"),
-    ("nota6", preenche(meta=[50, 300, 13000, 6, 20]), "Nota fora da escala"),
-    ("nota10", preenche(base=[46.8, 280, 11890, 9.2, 12], meta=[50, 300, 13000, 9.4, 20], escala=10), "OK"),
-    ("resultadoNeg", preenche(base=[46.8, 280, -2500, 4.7, 12], meta=[50, 300, -500, 4.8, 20]), "OK"),
+    ("diaria0", preenche(meta=[50, 0, 13000, 4.8, 40]), "Diária não pode ser negativa; metas de ocupação e diária maiores que zero"),
+    ("nota6", preenche(meta=[50, 300, 13000, 6, 40]), "Nota fora da escala"),
+    ("nota10", preenche(base=[46.8, 280, 11890, 9.2, 30], meta=[50, 300, 13000, 9.4, 40], escala=10), "OK"),
+    ("resultadoNeg", preenche(base=[46.8, 280, -2500, 4.7, 30], meta=[50, 300, -500, 4.8, 40]), "OK"),
 ]
 for nome, cel, esperado in casos:
     w = cenario(nome, cel); v = w[M]["B27"].value
     log(v == esperado, f"{nome}: situação = {v!r}")
-w = cenario("semBase", preenche(base=[None, None, 11890, None, 12])); mm = w[M]
+w = cenario("semBase", preenche(base=[None, None, 11890, None, 30])); mm = w[M]
 log(mm["B27"].value == "OK" and mm["G12"].value == leitura(None, 50) and mm["F12"].value in (None, "") and mm["B21"].value in (None, "") and perto(mm["B20"].value, 18600), "sem ponto de partida: aceita, leitura própria, sem variação e com a receita pedida")
-w = cenario("abaixoIgual", preenche(meta=[40, 280, 13000, 4.8, 20])); mm = w[M]
+w = cenario("abaixoIgual", preenche(meta=[40, 280, 13000, 4.8, 40])); mm = w[M]
 log(mm["G12"].value == leitura(46.8, 40) and mm["G13"].value == leitura(280, 280) and perto(mm["F12"].value, -6.8) and mm["F13"].value == 0, "meta abaixo e meta igual ao ponto de partida")
 log(perto(mm["B21"].value, (40 * 280) / (46.8 * 280) - 1, 1e-6), f"variação negativa da receita por noite disponível = {mm['B21'].value:.4f}")
 w = cenario("conferencias", preenche(extra=[(M, "B22", 55), (M, "B23", 15000)])); mm = w[M]
 log(mm["B24"].value == "Atenção: a meta de ocupação não paga o custo fixo" and mm["B25"].value == "Atenção: a meta de resultado fica abaixo do corte", "meta abaixo do equilíbrio (55%) e do corte (R$ 15.000) alertam")
 w = cenario("conferenciasOk", preenche(extra=[(M, "B22", 28.5), (M, "B23", 2000)])); mm = w[M]
 log(mm["B24"].value.startswith("OK") and mm["B25"].value.startswith("OK"), "equilíbrio 28,5% e corte R$ 2.000: OK")
-w = cenario("chegada", preenche(extra=[(M, "H12", 51.2), (M, "H13", 295), (M, "H16", 20)])); mm = w[M]
+w = cenario("chegada", preenche(extra=[(M, "H12", 51.2), (M, "H13", 295), (M, "H16", 40)])); mm = w[M]
 log(mm["I12"].value == "Sim" and mm["I13"].value == "Ainda não" and mm["I16"].value == "Sim" and mm["I14"].value in (None, ""), "mês de chegada: meta atingida (≥) ou ainda não")
 pc = [("Painel 12 meses", "A5", "Dez"), ("Painel 12 meses", "B5", 50), ("Painel 12 meses", "G5", 50), ("Painel 12 meses", "C5", 250), ("Painel 12 meses", "H5", 300)]
 w = cenario("painel", pc); pp = w["Painel 12 meses"]

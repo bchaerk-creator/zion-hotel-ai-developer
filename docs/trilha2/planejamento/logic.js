@@ -43,7 +43,7 @@
     { id: "diaria", r: "Diária média", tipo: "brl", un: "R$", def: "Receita de hospedagem ÷ noites vendidas.", onde: "Relatório de ganhos das plataformas + reservas diretas, sem a taxa de limpeza, dividido pelas noites vendidas.", ex: "280,00", exMeta: "300,00", mz: "diaria" },
     { id: "resultado", r: "Resultado do mês (quanto sobrou)", tipo: "brlneg", un: "R$", def: "Tudo o que entrou menos tudo o que saiu, com a sua retirada dentro (Folha Única, Módulo 2).", onde: "Folha Única do Mês (Módulo 2) ou Painel do Mês (Marco Zero). Pode ser negativo.", ex: "11.890,00 (antes da retirada)", exMeta: "13.000,00", mz: "sobrou" },
     { id: "nota", r: "Nota das avaliações", tipo: "nota", un: "", def: "Média das avaliações do mês no seu principal canal (definição-padrão de hotelaria).", onde: "Painel de avaliações do canal onde você mais vende. Use sempre o mesmo canal.", ex: "4,7 (escala de 5)", exMeta: "4,8", mz: null },
-    { id: "vendaDireta", r: "Taxa de venda direta", tipo: "pct", un: "%", def: "Parte da receita de hospedagem que entrou sem plataforma: site, WhatsApp, indicação, hóspede que volta (definição-padrão de hotelaria).", onde: "Some a receita das reservas diretas do mês e divida pela receita de hospedagem.", ex: "12", exMeta: "20", mz: null },
+    { id: "vendaDireta", r: "Taxa de venda direta", tipo: "pct", un: "%", def: "Parte da receita de hospedagem que entrou sem plataforma: site, WhatsApp, indicação, hóspede que volta (definição-padrão de hotelaria).", onde: "Some a receita das reservas diretas do mês e divida pela receita de hospedagem.", ex: "30", exMeta: "40", mz: null },
   ];
   var IND_ID = {}; IND.forEach(function (i) { IND_ID[i.id] = i; });
 
@@ -71,8 +71,8 @@
   var EXEMPLO = {
     situacao: "dono", quem: "so", hospedagem: "Cabanas do Vale (exemplo)", diag: { painel: "nao", metas: "nao", donos: "nao", reuniao: "nao" },
     mesBase: "Outubro de 2026", dias: 31, unidades: 4,
-    base_ocupacao: 46.8, base_diaria: 280, base_resultado: 11890, resultadoSemRetirada: true, base_nota: 4.7, escalaNota: "5", base_vendaDireta: 12,
-    meta_ocupacao: 50, meta_diaria: 300, meta_resultado: 13000, meta_nota: 4.8, meta_vendaDireta: 20, numeroCorte: "", ocupacaoEquilibrio: "",
+    base_ocupacao: 46.8, base_diaria: 280, base_resultado: 11890, resultadoSemRetirada: true, base_nota: 4.7, escalaNota: "5", base_vendaDireta: 30,
+    meta_ocupacao: 50, meta_diaria: 300, meta_resultado: 13000, meta_nota: 4.8, meta_vendaDireta: 40, numeroCorte: "", ocupacaoEquilibrio: "",
     dono_ocupacao: "Ana", dono_diaria: "Ana", dono_resultado: "Ana", dono_nota: "Ana", dono_vendaDireta: "Ana",
     reuniaoDia: "Segunda-feira", reuniaoHora: "08:00", reuniaoDuracao: 30, reuniaoQuem: "Ana, sozinha, com a planilha", reuniaoOnde: "Planilha Painel de Gestão",
     sumisse: "As respostas aos hóspedes e a liberação das cabanas depois da limpeza.",

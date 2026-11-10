@@ -43,14 +43,14 @@ L0 = 12  # primeira linha dos indicadores
 
 # Exemplo didático · dados fictícios (Cabanas do Vale). Mesmos valores da ficha (logic.js EXEMPLO) e do PLANO seção 9.
 EX = dict(mes="Outubro de 2026 (exemplo)", dias=31, unidades=4, escala=5,
-          base=[46.8, 280, 11890, 4.7, 12], meta=[50, 300, 13000, 4.8, 20], dono=["Ana"] * 5, corte=None, equilibrio=None)
+          base=[46.8, 280, 11890, 4.7, 30], meta=[50, 300, 13000, 4.8, 40], dono=["Ana"] * 5, corte=None, equilibrio=None)
 EX_MESES = [  # Painel 12 meses: realizado e mesmo mês do ano anterior (dados fictícios)
-    ("Outubro de 2026 (exemplo)", [46.8, 280, 11890, 4.7, 12], [41.9, 265, 10400, 4.6, 8]),
-    ("Novembro de 2026 (exemplo)", [38.3, 285, 8950, 4.8, 14], [40.0, 270, 9300, 4.6, 9]),
+    ("Outubro de 2026 (exemplo)", [46.8, 280, 11890, 4.7, 30], [41.9, 265, 10400, 4.6, 24]),
+    ("Novembro de 2026 (exemplo)", [38.3, 285, 8950, 4.8, 31], [40.0, 270, 9300, 4.6, 26]),
 ]
 EX_REUNIOES = [
-    ("16/11/2026", 46.8, 280, 11890, 4.7, 12, "Venda direta sem registro por canal", "Anotar o canal de cada reserva nova", "Ana", "23/11/2026"),
-    ("23/11/2026", 46.8, 280, 11890, 4.8, 13, "Duas avaliações da semana citaram o chuveiro", "Chamar a manutenção para os chuveiros", "Ana", "27/11/2026"),
+    ("16/11/2026", 46.8, 280, 11890, 4.7, 30, "Venda direta sem registro por canal", "Anotar o canal de cada reserva nova", "Ana", "23/11/2026"),
+    ("23/11/2026", 46.8, 280, 11890, 4.8, 31, "Duas avaliações da semana citaram o chuveiro", "Chamar a manutenção para os chuveiros", "Ana", "27/11/2026"),
 ]
 EX_PLANO = [("Módulo 2 · Finanças, fluxo de caixa e fechamento", "O pilar mais fraco: não sei quanto sobra com a minha retirada.", "Fechar outubro na Folha Única e lançar a minha retirada.", "Sim"),
             ("Módulo 3 · Preço, reservas e distribuição", "Destrava a meta de diária.", "Calcular o piso da diária antes de subir para R$ 300.", "Não"),

@@ -89,13 +89,14 @@ Abas: Comece aqui · Metas e donos (mês de partida, noites disponíveis, escala
 
 ## 9. Exemplo didático (dados fictícios, conferidos duas vezes)
 Cabanas do Vale, 4 unidades, dona que opera sozinha (Ana). Continuação do Marco Zero: a área frágil foi 1 · Planejamento e metas e ela ainda não fez a Folha Única. Mês de partida outubro de 2026, 31 dias, 124 noites disponíveis.
-- Ponto de partida (do Painel do Mês do Marco Zero): ocupação 46,8% (58 de 124); diária média R$ 280,00; resultado R$ 11.890,00 **antes da retirada**; nota 4,7 de 5; venda direta 12%. Sabe 5 de 5.
-- Metas (outubro de 2027): ocupação 50% (+3,2 pontos); diária R$ 300,00 (+R$ 20,00, +7,1%); resultado R$ 13.000,00 (+R$ 1.110,00, +9,3%); nota 4,8 (+0,1 ponto, +2,1%); venda direta 20% (+8 pontos).
+- Ponto de partida (do Painel do Mês do Marco Zero): ocupação 46,8% (58 de 124); diária média R$ 280,00; resultado R$ 11.890,00 **antes da retirada**; nota 4,7 de 5; venda direta 30%. Sabe 5 de 5.
+- Metas (outubro de 2027): ocupação 50% (+3,2 pontos); diária R$ 300,00 (+R$ 20,00, +7,1%); resultado R$ 13.000,00 (+R$ 1.110,00, +9,3%); nota 4,8 (+0,1 ponto, +2,1%); venda direta 40% (+10 pontos).
 - O que as metas pedem: 50% × 124 = 62 noites; 62 × R$ 300 = R$ 18.600,00 de hospedagem; receita por noite disponível de R$ 131,04 (46,8% × 280) para R$ 150,00 (50% × 300): +14,5%.
 - Donos: Ana nos cinco. Reunião: segunda-feira, 08:00, 30 minutos, "Ana, sozinha, com a planilha".
 - Seis semanas: 1-2 Módulo 2 · Finanças (fechar outubro e lançar a retirada); 3-4 Módulo 3 · Preço (piso antes de subir para R$ 300); 5-6 Módulo 4 · Marketing e vendas (anotar o canal de cada reserva). Depois, de propósito: compras e estoque.
 - Atenção: só "resultado sem a sua retirada". Primeira reunião: 16/11/2026.
-- Planilha, aba Painel 12 meses (fictício): outubro de 2026 contra outubro de 2025 (41,9%; R$ 265; R$ 10.400; 4,6; 8%) → cinco "Melhorou"; novembro de 2026 (38,3%; R$ 285; R$ 8.950; 4,8; 14%) contra novembro de 2025 (40,0%; R$ 270; R$ 9.300; 4,6; 9%) → Piorou, Melhorou, Piorou, Melhorou, Melhorou (3 melhoraram). Reunião semanal: duas linhas (16/11 e 23/11).
+- Planilha, aba Painel 12 meses (fictício): outubro de 2026 contra outubro de 2025 (41,9%; R$ 265; R$ 10.400; 4,6; 24%) → cinco "Melhorou"; novembro de 2026 (38,3%; R$ 285; R$ 8.950; 4,8; 31%) contra novembro de 2025 (40,0%; R$ 270; R$ 9.300; 4,6; 26%) → Piorou, Melhorou, Piorou, Melhorou, Melhorou (3 melhoraram). Reunião semanal: duas linhas (16/11 e 23/11).
+- Coerência com o Módulo 3: venda direta de partida 30% (Plataforma A 50% com 16%, Plataforma B 20% com 15%; comissão média 11,0%, igual ao Módulo 2) e meta de 40% até 30/06/2027; no painel, a meta de 40% vale para outubro de 2027.
 - Coerência com o Módulo 2: quando a Ana fizer a Folha, o resultado de outubro com a retirada é R$ 4.269,20 e a ocupação de equilíbrio 28,5%; o botão "usar a minha Folha Única" traz esses números e a meta de resultado precisa ser refeita (é o que a atenção pede).
 
 ## 10. Versão autônoma e acompanhada

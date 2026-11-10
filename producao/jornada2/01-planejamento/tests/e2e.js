@@ -51,7 +51,7 @@ const EX = Z.EXEMPLO;
   log(/não sei/.test(await p.textContent("#avisos")), "aviso de não sei aparece");
   await p.fill("#base_ocupacao", "120"); log(await vaiOff() && /0 a 100/.test(await p.textContent("#erro")), "ocupação acima de 100% bloqueia");
   await p.fill("#base_ocupacao", "46,8"); await p.fill("#base_diaria", "280,00"); await p.fill("#base_resultado", "11.890,00"); await p.check("#semRet");
-  await p.fill("#base_nota", "4,7"); await p.fill("#base_vendaDireta", "12");
+  await p.fill("#base_nota", "4,7"); await p.fill("#base_vendaDireta", "30");
   log(!(await vaiOff()) && /5 de 5/.test(await live()), "cinco números do exemplo: 5 de 5");
   await shot("p02-partida"); await p.click("#vai");
 
@@ -59,7 +59,7 @@ const EX = Z.EXEMPLO;
   log(await telaOk(2, /12 meses/), "tela 2: metas de 12 meses");
   log(/Ponto de partida: R\$ 280,00/.test(await p.textContent(".card")) && /mesmo mês daqui a 12 meses/.test(await p.textContent(".aviso")), "mostra o ponto de partida e a regra do mesmo mês");
   log(await vaiOff(), "tela 2 bloqueada sem as metas");
-  await p.fill("#meta_ocupacao", "50"); await p.fill("#meta_diaria", "300"); await p.fill("#meta_resultado", "13.000"); await p.fill("#meta_nota", "5,5"); await p.fill("#meta_vendaDireta", "20");
+  await p.fill("#meta_ocupacao", "50"); await p.fill("#meta_diaria", "300"); await p.fill("#meta_resultado", "13.000"); await p.fill("#meta_nota", "5,5"); await p.fill("#meta_vendaDireta", "40");
   log(await vaiOff() && /0 a 5/.test(await p.textContent("#erro")), "meta de nota acima da escala bloqueia");
   await p.fill("#meta_nota", "4,8");
   log(!(await vaiOff()) && /62 noites/.test(await live()) && /R\$ 18\.600,00/.test(await live()) && /14,5% acima/.test(await live()), "metas pedem 62 noites e R$ 18.600 (14,5% acima)");

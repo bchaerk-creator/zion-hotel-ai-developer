@@ -35,7 +35,7 @@ t(pn[0].base === "46,8%" && pn[0].meta === "50,0%" && pn[0].variacao === "+ 3,2 
 t(pn[1].base === "R$ 280,00" && pn[1].meta === "R$ 300,00" && pn[1].variacao === "+ R$ 20,00 (+7,1%)", "diária R$ 280 → R$ 300 (+7,1%)");
 t(pn[2].base === "R$ 11.890,00" && pn[2].meta === "R$ 13.000,00" && pn[2].variacao === "+ R$ 1.110,00 (+9,3%)", "resultado R$ 11.890 → R$ 13.000 (+9,3%)");
 t(pn[3].base === "4,7 de 5" && pn[3].meta === "4,8 de 5" && pn[3].variacao === "+ 0,1 ponto (+2,1%)", "nota 4,7 → 4,8 de 5");
-t(pn[4].base === "12,0%" && pn[4].meta === "20,0%" && pn[4].variacao === "+ 8,0 pontos", "venda direta 12% → 20% (+ 8 pontos)");
+t(pn[4].base === "30,0%" && pn[4].meta === "40,0%" && pn[4].variacao === "+ 10,0 pontos", "venda direta 30% → 40% (+ 10 pontos)");
 t(pn.every((l) => l.dono === "Ana" && l.leitura === "meta acima do ponto de partida"), "cinco donos (Ana) e cinco metas acima do ponto de partida");
 const at = Z.atencao(r, EX);
 t(at.length === 1 && at[0].id === "semRetirada", "atenção no exemplo: só o resultado sem a retirada");

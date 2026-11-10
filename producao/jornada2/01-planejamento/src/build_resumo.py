@@ -112,11 +112,11 @@ def paginas(BR, ROD):
 <tr><td>Diária média</td><td class="n">R$ 280,00</td><td class="n">R$ 300,00</td><td class="n">+ R$ 20,00 (+7,1%)</td><td>Ana</td></tr>
 <tr><td>Resultado (antes da retirada)</td><td class="n">R$ 11.890,00</td><td class="n">R$ 13.000,00</td><td class="n">+ R$ 1.110,00 (+9,3%)</td><td>Ana</td></tr>
 <tr><td>Nota (escala de 5)</td><td class="n">4,7</td><td class="n">4,8</td><td class="n">+ 0,1 ponto (+2,1%)</td><td>Ana</td></tr>
-<tr><td>Taxa de venda direta</td><td class="n">12,0%</td><td class="n">20,0%</td><td class="n">+ 8,0 pontos</td><td>Ana</td></tr></table>
+<tr><td>Taxa de venda direta</td><td class="n">30,0%</td><td class="n">40,0%</td><td class="n">+ 10,0 pontos</td><td>Ana</td></tr></table>
 <p><b>O que as metas pedem:</b> 50% de 124 noites = <b>62 noites</b>; 62 × R$ 300 = <b>R$ 18.600,00</b> de hospedagem no mês de chegada. A receita por noite disponível passa de R$ 131,04 (46,8% × R$ 280) para R$ 150,00 (50% × R$ 300): <b>+14,5%</b>.</p>
 <p><b>Reunião:</b> toda segunda-feira, 08:00, 30 minutos, Ana sozinha com a planilha. Primeira reunião: 16/11/2026.</p>
 <p><b>Atenção:</b> o resultado está antes da retirada da dona. Quando ela fizer a Folha Única, o resultado de outubro com a retirada é R$ 4.269,20 e a ocupação de equilíbrio 28,5%: ela refaz o ponto de partida e a meta de resultado.</p>
-<p><b>Na planilha (fictício):</b> outubro de 2026 contra outubro de 2025 (41,9%; R$ 265; R$ 10.400; 4,6; 8%): os cinco melhoraram. Novembro de 2026 (38,3%; R$ 285; R$ 8.950; 4,8; 14%) contra novembro de 2025 (40,0%; R$ 270; R$ 9.300; 4,6; 9%): três melhoraram, ocupação e resultado pioraram.</p></div>
+<p><b>Na planilha (fictício):</b> outubro de 2026 contra outubro de 2025 (41,9%; R$ 265; R$ 10.400; 4,6; 24%): os cinco melhoraram. Novembro de 2026 (38,3%; R$ 285; R$ 8.950; 4,8; 31%) contra novembro de 2025 (40,0%; R$ 270; R$ 9.300; 4,6; 26%): três melhoraram, ocupação e resultado pioraram.</p></div>
 <p>Repare no que o exemplo não diz: ele não promete que as metas serão atingidas. Ele mostra como escrevê-las, conferi-las e acompanhá-las. O resultado depende da execução.</p>{ROD}</section>
 
 <section class="pg"><h2>6. O plano de seis semanas</h2>
