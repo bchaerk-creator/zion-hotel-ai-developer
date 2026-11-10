@@ -1,0 +1,515 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Matriz de Compras e Manutenção</title>
+<meta name="description" content="Ferramenta do Módulo 6 da Jornada 2 · Gestão: Matriz de Compras com três cotações, consumo por noite e por hóspede, estoque mínimo e ponto de pedido, e calendário de manutenção preventiva de doze meses.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme)}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.zero i{background:var(--critico);color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao)}
+.dupla{display:grid;gap:10px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .dupla{grid-template-columns:1fr 1fr}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<style>
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+.campo details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+.campo summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+.campo details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.95rem}
+.calc b{color:var(--verde)}
+table.casc{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+table.casc td{padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.casc td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.casc tr.forte td{font-weight:600}
+table.casc tr.destaque td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.modo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.modo label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modo input{position:absolute;opacity:0;pointer-events:none}
+.modo label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:720px){.ind{grid-template-columns:repeat(3,1fr)}}
+</style>
+<style>
+.lin{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.lin3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.lin label,.lin3 label{margin:6px 0 4px;font-size:.84rem;font-weight:600}
+.canal,.pico{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.canal .topo-c,.pico .topo-c{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.mini{appearance:none;border:1.5px solid var(--verde);background:transparent;color:var(--verde);border-radius:999px;padding:6px 12px;font:inherit;font-size:.85rem;cursor:pointer;min-height:36px}
+.mes{display:grid;grid-template-columns:76px 1fr 1fr;gap:6px;align-items:center;margin-top:6px}
+.mes b{font-size:.9rem;text-transform:capitalize}
+.mes select{min-height:44px;padding:8px;font-size:.9rem}
+.mes.cab{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--texto-2);margin-top:12px}
+.conc{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.conc input{min-height:44px}
+.fat{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.tabw{overflow-x:auto;max-width:100%}
+table.t{width:100%;border-collapse:collapse;margin:10px 0;font-size:.86rem}
+table.t th{background:var(--verde);color:var(--creme);font-weight:600;text-align:left;padding:6px 5px}
+table.t td{padding:6px 5px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.t td.n,table.t th.n{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.t td:first-child{text-transform:none}
+.cards{display:grid;gap:8px;margin:10px 0}
+.cards div{border:1px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff}
+.cards b{display:block}
+.cards span{display:block;font-size:.88rem;color:var(--texto-2)}
+.pisobox{background:var(--creme);border:2px solid var(--dourado);border-radius:12px;padding:12px 14px;margin-top:10px}
+@media (min-width:720px){.cards{grid-template-columns:1fr 1fr 1fr}.conc{grid-template-columns:repeat(5,1fr)}.fat{grid-template-columns:repeat(4,1fr)}}
+</style>
+<style>
+.lin4{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.item6{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.item6 .topo-c{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.item6 label{margin:6px 0 4px;font-size:.84rem;font-weight:600}
+.item6 select{min-height:44px;padding:8px;font-size:.92rem}
+.meses12{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.meses12 label{margin:0;font-weight:500;font-size:.85rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:8px 2px;cursor:pointer;background:#fff;min-height:42px;display:flex;align-items:center;justify-content:center;text-transform:capitalize}
+.meses12 input{position:absolute;opacity:0;pointer-events:none}
+.meses12 label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.tag{display:inline-block;font-size:.72rem;border-radius:99px;padding:1px 8px;font-weight:700;background:var(--critico-bg);color:var(--critico)}
+.tag.ok{background:var(--ok-bg);color:var(--ok)}
+.mx{display:grid;gap:8px;margin:10px 0}
+.mxi{border:1px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff;font-size:.9rem}
+.mxi>b{display:block;margin-bottom:2px}
+.mxi>span{display:block;color:var(--texto-2)}
+.mxi.tot{background:#EEF3EC}
+.prio div div{display:block;border:0;padding:0;background:none;border-radius:0}
+@media (min-width:720px){.lin4{grid-template-columns:repeat(4,1fr)}.meses12{grid-template-columns:repeat(6,1fr)}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 6 · Compras<br>Matriz de Compras e Manutenção</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado: a gestão depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="logic.js"></script>
+<script src="../financas/logic.js"></script>
+<script>
+const Z = window.ZC;
+const CHAVE = "zion-t2-compras";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const anterior = () => { for (const k of ["zion-t2-preco", "zion-t2-financas", "zion-t2-marco-zero"]) { const x = lerChave(k); if (x && x.nome) return x; } return {}; };
+const vg = (n) => typeof n === "number" ? String(n).replace(".", ",") : n;
+const itemVazio = () => ({ nome: "", unidade: "", gasto: "", tipo: "variavel", precoAtual: "", cot: ["", "", ""], contrato: "" });
+const estoqueVazio = () => ({ nome: "", unidade: "", usoMes: "", entrega: "", seguranca: "7", atual: "", ciclo: "30" });
+const tarefaVazia = () => ({ nome: "", freq: "", inicio: "", custo: "", quem: "" });
+const TELAS = Z.TELAS;
+const vazio = () => {
+  const a = anterior();
+  const s = { tela: 0, nome: a.nome || "", email: a.email || "", hospedagem: a.hospedagem || "", situacao: "", diag: {}, mesesPeriodo: "3",
+    itens: [itemVazio(), itemVazio(), itemVazio(), itemVazio(), itemVazio()], estoque: [estoqueVazio(), estoqueVazio()], tarefas: [tarefaVazia(), tarefaVazia(), tarefaVazia()],
+    mesInicio: "1", casaCheia: [], ronda: false, ocorrencias: false, diaContagem: "" };
+  Z.CAMPOS.forEach((c) => { if (s[c.id] == null) s[c.id] = ""; });
+  return s;
+};
+let S = ler() || vazio();
+S.diag = S.diag || {};
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 25 a 40 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+function proximaVazia() {
+  for (const t of ["consumo", "matriz", "estoque", "manutencao", "rotina"]) if (!Z.validar(S, t).ok) return t;
+  return Z.completo(S) ? "resultado" : "manutencao";
+}
+function ajuda(c) { return `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${c.pq}</p><p><b>Onde conseguir:</b> ${c.onde}</p><p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${c.ex}</p></details>`; }
+function campoHtml(c) {
+  const v = S[c.id] == null ? "" : S[c.id];
+  const im = c.tipo === "int" ? "numeric" : "decimal";
+  const inp = c.tipo === "texto" ? `<input type="text" id="${c.id}" value="${esc(v)}" placeholder="Ex.: ${esc(c.ex)}">`
+    : c.tipo === "data" ? `<input type="date" id="${c.id}" value="${esc(v)}">`
+    : `<input type="text" id="${c.id}" inputmode="${im}" autocomplete="off" value="${esc(v)}" placeholder="${c.tipo === "brl" ? "0,00" : "0"}">`;
+  return `<div class="campo"><label for="${c.id}">${c.r}${c.obrig ? "" : ' <span class="dica">(opcional)</span>'}</label>${inp}${ajuda(c)}</div>`;
+}
+function ligaCampos(tela) {
+  Z.CAMPOS.filter((c) => c.tela === tela).forEach((c) => {
+    const el = document.getElementById(c.id); if (!el) return;
+    el.addEventListener("input", (e) => { S[c.id] = e.target.value; gravar(); atualiza(tela); });
+  });
+}
+function atualiza(tela) {
+  const v = Z.validar(S, tela);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.map(esc).join("<br>");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(tela);
+}
+function liveHtml(tela) {
+  const r = Z.calcular(S), N = r.N;
+  if (tela === "consumo") return N.noitesPeriodo > 0 ? `Noites vendidas por mês no período: <b>${Z.dec(N.noitesPeriodo / (N.mesesPeriodo || 1), 1)}</b>${N.hospedesPeriodo ? ` · Hóspedes por noite vendida: <b>${Z.dec(N.hospedesPeriodo / N.noitesPeriodo, 2)}</b>` : ""}${N.unidades ? ` · Noites num mês cheio de 30 dias: <b>${N.unidades * 30}</b>` : ""}` : "Preencha as noites vendidas no período para seguir.";
+  if (tela === "matriz") return `Total do período: <b>${Z.brl(r.totalPeriodo)}</b> · Itens variáveis por noite vendida: <b>${Z.brl(r.variavelNoite)}</b>${r.cobertura != null ? ` (${Z.pct(r.cobertura)} do custo variável da Folha)` : ""} · Diferença para a menor cotação: <b>${Z.brl(r.diferencaPeriodo)}</b> no período · Itens com três cotações: <b>${r.comTres}</b>`;
+  if (tela === "estoque") return r.estoque.length ? `${r.estoque.map((e) => `${esc(e.nome || "Item")}: mínimo <b>${e.minimo}</b>, ponto de pedido <b>${e.pontoPedido}</b>${e.pedir ? ` <span class="tag">pedir ${e.pedido}</span>` : ` <span class="tag ok">ok</span>`}`).join(" · ")}${r.porCama != null ? ` · Enxoval: <b>${Z.dec(r.porCama, 1)}</b> jogos por cama` : ""}` : "Informe pelo menos um item do estoque.";
+  if (tela === "manutencao") return r.calendarioCompleto ? `Tarefas no ano: <b>${r.ocorrencias}</b> · Custo do plano: <b>${Z.brl(r.totalAno)}</b> · Reserva no ano: <b>${Z.brl(r.reservaAno)}</b>${r.primeiroDescoberto ? ` · <b>Reserva não cobre em ${r.primeiroDescoberto.nome}</b>` : ""}${r.pesadaCasaCheia.length ? ` · <b>Na casa cheia:</b> ${esc(r.pesadaCasaCheia.join(", "))}` : ""}` : "Preencha o ano, a reserva e as tarefas para ver o calendário.";
+  if (tela === "rotina") return `Contagem do estoque: <b>${esc(N.diaContagem || "sem dia")}</b> · Limite de compra fora do previsto: <b>${N.alcada > 0 ? Z.brl(N.alcada) : "sem limite"}</b> · Ronda diária: <b>${N.ronda ? "sim" : "não"}</b> · Registro de ocorrências: <b>${N.ocorrencias ? "sim" : "não"}</b>`;
+  return "";
+}
+function telaDados(tela, intro, antes, depois, rot) {
+  const campos = Z.CAMPOS.filter((c) => c.tela === tela);
+  const i = TELAS.indexOf(tela);
+  return `<div class="card"><div class="eyebrow">Tela ${i} · ${Z.TITULOS[tela]}</div><h2 class="pergunta">${intro.t}</h2><p class="explica">${intro.p}</p>
+  ${antes || ""}${campos.map(campoHtml).join("")}${depois || ""}
+  <div class="calc" id="live">${liveHtml(tela)}</div>
+  <div id="avisos"></div><p class="erro" id="erro"></p>${nav(rot)}</div>`;
+}
+function ligaNav(t) {
+  atualiza(t);
+  const v = document.getElementById("volta"), f = document.getElementById("vai");
+  if (v) v.onclick = () => ir(-1);
+  if (f) f.onclick = () => { if (!Z.validar(S, t).ok) return; if (t === "rotina" && !Z.completo(S)) { document.getElementById("erro").textContent = "Ainda falta: " + Z.pendencias(S)[0] + "."; return; } ir(1); };
+}
+const sel = (id, opts, val, vazioTxt) => `<select id="${id}">${vazioTxt ? `<option value="">${vazioTxt}</option>` : ""}${opts.map((o) => `<option value="${o.v}" ${String(val) === String(o.v) ? "selected" : ""}>${o.r}</option>`).join("")}</select>`;
+const MESES_OPT = Z.MESES.map((m, i) => ({ v: String(i + 1), r: m }));
+const txtIn = (id, v, ph, num) => `<input type="text" id="${id}" ${num ? `inputmode="${num}" autocomplete="off"` : ""} value="${esc(v)}" placeholder="${esc(ph || "")}">`;
+
+function importarFolha() {
+  const f = lerChave("zion-t2-financas");
+  if (!f || !window.ZF) return false;
+  const r = window.ZF.calcular(f);
+  if (r.custoVariavelPorNoite == null) return false;
+  const d2 = (x) => x == null ? "" : String(Math.round(x * 100) / 100).replace(".", ",");
+  S.custoVariavelNoite = d2(r.custoVariavelPorNoite); if (r.N.unidades) S.unidades = String(r.N.unidades);
+  S.receitaReserva = d2(r.receitaReal); S.folhaNoites = r.N.noites; S.importado = true; return true;
+}
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || (S.itens || []).some((x) => x.nome);
+    const respondeu = S.situacao && Z.DIAG.every((q) => S.diag[q.id]); const nv = Z.nivel(S);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 6 · Faça agora</div><h1>A minha Matriz de Compras e Manutenção</h1>
+    <p class="lead">Aprenda o passo a passo para listar o que você mais compra, comparar três cotações, saber o consumo por noite e por hóspede, definir o estoque mínimo e o ponto de pedido, e montar o calendário de manutenção preventiva de doze meses.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Compras não é detalhe administrativo: é onde a margem some sem fazer barulho. E manutenção adiada vira conserto, quase sempre com hóspede dentro.</div>
+    <div><b>Como vamos fazer</b>Cinco telas: o período e o consumo, a Matriz de Compras com três cotações, o estoque mínimo e o ponto de pedido, o calendário de manutenção e a rotina. Cada pergunta diz por que, onde conseguir e um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com a sua Matriz de Compras e o calendário de manutenção em PDF, com as prioridades. É a página 6 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    <div class="opcoes">${Z.SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quatro perguntas antes de começar</h2>
+    <p class="explica">Responda como está hoje, não como gostaria.</p>
+    <div class="grade">${Z.DIAG.map((q) => `<div class="item"><b>${q.r}</b><div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.SIMNAO.map((o) => `<label><input type="radio" name="d-${q.id}" value="${o.v}" ${S.diag[q.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    <div class="calc" id="nivel">${respondeu ? `Nível ${nv.n} de 4 · <b>${nv.r}</b>. ${nv.t}` : "Responda as quatro perguntas para ver o seu nível."}</div>
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: use o consumo previsto e cotações reais dos fornecedores da região. A Matriz vira a lista de compras de abertura e o calendário do primeiro ano.</div>` : ""}
+    <p class="dica" style="margin-top:10px">Os números ficam só neste aparelho. Nada é enviado.</p>
+    <p class="erro" id="erro"></p>
+    <div class="nav"><button class="btn btn-p" id="vai" ${respondeu ? "" : "disabled"}>Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver a Matriz pronta antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const okAb = () => { const ok = S.situacao && Z.DIAG.every((q) => S.diag[q.id]); document.getElementById("vai").disabled = !ok; const n = Z.nivel(S); document.getElementById("nivel").innerHTML = Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${n.n} de 4 · <b>${n.r}</b>. ${n.t}` : "Responda as quatro perguntas para ver o seu nível."; };
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    Z.DIAG.forEach((q) => app.querySelectorAll(`input[name=d-${q.id}]`).forEach((x) => x.onchange = () => { S.diag[q.id] = x.value; gravar(); okAb(); }));
+    const rt = document.getElementById("retoma");
+    if (rt) rt.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(proximaVazia())); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => {
+      const E = JSON.parse(JSON.stringify(Z.EXEMPLO));
+      Z.CAMPOS.forEach((c) => { E[c.id] = vg(E[c.id]); });
+      E.itens = E.itens.map((x) => ({ ...x, gasto: vg(x.gasto), precoAtual: vg(x.precoAtual), cot: x.cot.map(vg) }));
+      E.estoque = E.estoque.map((x) => ({ ...x, usoMes: vg(x.usoMes), entrega: vg(x.entrega), seguranca: vg(x.seguranca), atual: vg(x.atual), ciclo: vg(x.ciclo) }));
+      E.tarefas = E.tarefas.map((x) => ({ ...x, inicio: String(x.inicio), custo: vg(x.custo) }));
+      E.mesInicio = String(E.mesInicio); E.casaCheia = E.casaCheia.map(String);
+      S = { ...vazio(), ...E, nome: S.nome, email: S.email, tela: 1, acao: undefined, prazo: undefined, pdf: undefined };
+      gravar(); render(); window.scrollTo(0, 0);
+    };
+    document.getElementById("vai").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "consumo") {
+    const temFolha = !!(lerChave("zion-t2-financas") && window.ZF);
+    const imp = temFolha ? `<div class="campo" style="background:var(--creme)"><b>Já fez a Folha Única do Mês (Módulo 2)?</b><p class="dica" style="margin:4px 0 8px">A ficha pode trazer o custo variável por noite, as unidades e a receita real do mês da sua Folha, salva neste aparelho.</p><button type="button" class="btn btn-s" id="importa" style="width:100%">Trazer os números da minha Folha Única</button>${S.importado ? `<p class="ref"><b>Trazido da sua Folha.</b> A Folha tem um mês (${esc(S.folhaNoites)} noites vendidas): as noites e os gastos desta ficha são de ${esc(S.mesesPeriodo || 3)} meses, tirados das notas.</p>` : ""}</div>` : `<p class="dica">O custo variável por noite sai da Folha Única do Mês (Módulo 2). Sem ela, a ficha funciona, mas não confere quanto do custo a Matriz explica.</p>`;
+    h += telaDados("consumo", { t: "Em quantas noites o seu consumo foi gasto?", p: "Consumo por hóspede é o número que permite prever o custo do mês cheio. A conta da fonte: some o gasto de cada item em três meses e divida pelas noites vendidas no mesmo período." }, imp);
+    app.innerHTML = h; ligaCampos("consumo");
+    const bi = document.getElementById("importa"); if (bi) bi.onclick = () => { importarFolha(); gravar(); render(); };
+  }
+  if (t === "matriz") {
+    const linhas = S.itens.map((x, i) => `<div class="item6" data-i="${i}"><div class="topo-c"><b>Item ${i + 1}</b>${S.itens.length > 1 ? `<button type="button" class="mini" data-rm="${i}">Remover</button>` : ""}</div>
+      <label for="i-${i}-nome">O que você compra</label>${txtIn(`i-${i}-nome`, x.nome, i === 0 ? "Ex.: Lavanderia do enxoval" : "Ex.: Amenidades")}
+      <div class="lin"><div><label for="i-${i}-gasto">Gasto no período (R$)</label>${txtIn(`i-${i}-gasto`, x.gasto, "0,00", "decimal")}</div><div><label for="i-${i}-tipo">Tipo</label>${sel(`i-${i}-tipo`, Z.TIPOS.map((o) => ({ v: o.v, r: o.v === "variavel" ? "Custo variável" : "Vendido à parte" })), x.tipo)}</div></div>
+      <div class="lin"><div><label for="i-${i}-unidade">Unidade de compra</label>${txtIn(`i-${i}-unidade`, x.unidade, "Ex.: kg lavado")}</div><div><label for="i-${i}-precoAtual">Preço que paga hoje (R$)</label>${txtIn(`i-${i}-precoAtual`, x.precoAtual, "0,00", "decimal")}</div></div>
+      <div class="lin3">${[0, 1, 2].map((k) => `<div><label for="i-${i}-c${k}">Cotação ${k + 1}</label>${txtIn(`i-${i}-c${k}`, (x.cot || [])[k], "0,00", "decimal")}</div>`).join("")}</div>
+      <label for="i-${i}-contrato">Contrato</label>${sel(`i-${i}-contrato`, Z.CONTRATOS, x.contrato, "Escolha")}</div>`).join("");
+    const antes = `<p class="dica">Liste por valor, não por frequência: os cinco primeiros itens costumam responder pela maior parte do custo variável. As cotações são o preço da mesma unidade, com o mesmo prazo de entrega. Uma delas pode ser o seu fornecedor de hoje.</p>${linhas}
+      ${S.itens.length < 8 ? `<button type="button" class="btn btn-s" id="addItem" style="width:100%;margin-top:10px">Adicionar item</button>` : ""}`;
+    h += telaDados("matriz", { t: "O que você mais compra, de quem e sob que contrato?", p: "Comprar sempre do mesmo fornecedor sem cotar, por comodidade, custa mais caro todo mês. A diferença aparece diluída em doze meses e por isso nunca é percebida." }, antes);
+    app.innerHTML = h; ligaCampos("matriz");
+    S.itens.forEach((x, i) => {
+      ["nome", "gasto", "unidade", "precoAtual"].forEach((k) => document.getElementById(`i-${i}-${k}`).addEventListener("input", (e) => { S.itens[i][k] = e.target.value; gravar(); atualiza("matriz"); }));
+      [0, 1, 2].forEach((k) => document.getElementById(`i-${i}-c${k}`).addEventListener("input", (e) => { S.itens[i].cot = S.itens[i].cot || ["", "", ""]; S.itens[i].cot[k] = e.target.value; gravar(); atualiza("matriz"); }));
+      ["tipo", "contrato"].forEach((k) => document.getElementById(`i-${i}-${k}`).onchange = (e) => { S.itens[i][k] = e.target.value; gravar(); atualiza("matriz"); });
+    });
+    app.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { S.itens.splice(+b.dataset.rm, 1); gravar(); render(); });
+    const ad = document.getElementById("addItem"); if (ad) ad.onclick = () => { S.itens.push(itemVazio()); gravar(); render(); };
+  }
+  if (t === "estoque") {
+    const linhas = S.estoque.map((x, i) => `<div class="item6"><div class="topo-c"><b>Item de estoque ${i + 1}</b>${S.estoque.length > 1 ? `<button type="button" class="mini" data-rm="${i}">Remover</button>` : ""}</div>
+      <div class="lin"><div><label for="e-${i}-nome">Item</label>${txtIn(`e-${i}-nome`, x.nome, "Ex.: Papel higiênico")}</div><div><label for="e-${i}-unidade">Unidade</label>${txtIn(`e-${i}-unidade`, x.unidade, "Ex.: rolo")}</div></div>
+      <div class="lin"><div><label for="e-${i}-usoMes">Uso por mês</label>${txtIn(`e-${i}-usoMes`, x.usoMes, "0", "decimal")}</div><div><label for="e-${i}-atual">Estoque de hoje</label>${txtIn(`e-${i}-atual`, x.atual, "0", "decimal")}</div></div>
+      <div class="lin3"><div><label for="e-${i}-entrega">Entrega (dias)</label>${txtIn(`e-${i}-entrega`, x.entrega, "0", "numeric")}</div><div><label for="e-${i}-seguranca">Segurança (dias)</label>${txtIn(`e-${i}-seguranca`, x.seguranca, "7", "numeric")}</div><div><label for="e-${i}-ciclo">Compra a cada (dias)</label>${txtIn(`e-${i}-ciclo`, x.ciclo, "30", "numeric")}</div></div></div>`).join("");
+    const antes = `<div class="campo" style="background:var(--creme)"><b>Como a ficha calcula</b><p class="dica" style="margin:4px 0 0">Consumo por dia = uso do mês ÷ 30. Estoque mínimo = consumo por dia × dias de segurança. Ponto de pedido = consumo por dia × (dias de entrega + dias de segurança), arredondado para cima. Chegou no ponto de pedido, faça o pedido: ele cobre o prazo de entrega e o intervalo até a próxima compra. São definições-padrão de gestão de estoque; a fonte Zion manda acionar o fornecedor quando o item atinge o mínimo e contar o estoque toda semana.</p></div>${linhas}
+      ${S.estoque.length < 10 ? `<button type="button" class="btn btn-s" id="addEst" style="width:100%;margin-top:10px">Adicionar item de estoque</button>` : ""}
+      <h3 style="margin-top:20px;font-family:Inter,sans-serif;font-size:1rem">O enxoval</h3><p class="dica">Três jogos por cama custam mais na compra e menos por ano: cada peça descansa e a virada para de depender da lavanderia. Para o controle peça por peça, use a Ferramenta 13 · Controle de Enxoval e Reposição.</p>`;
+    h += telaDados("estoque", { t: "Quando pedir, e quanto?", p: "Comprar no susto custa mais caro e atrasa a virada. Com um mínimo escrito, o pedido sai antes de faltar." }, antes);
+    app.innerHTML = h; ligaCampos("estoque");
+    S.estoque.forEach((x, i) => ["nome", "unidade", "usoMes", "atual", "entrega", "seguranca", "ciclo"].forEach((k) => document.getElementById(`e-${i}-${k}`).addEventListener("input", (e) => { S.estoque[i][k] = e.target.value; gravar(); atualiza("estoque"); })));
+    app.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { S.estoque.splice(+b.dataset.rm, 1); gravar(); render(); });
+    const ad = document.getElementById("addEst"); if (ad) ad.onclick = () => { S.estoque.push(estoqueVazio()); gravar(); render(); };
+  }
+  if (t === "manutencao") {
+    const N = Z.normalizar(S);
+    const cheia = (S.casaCheia || []).map(String);
+    const ordem = Array.from({ length: 12 }, (_, i) => ((N.mesInicio - 1 + i) % 12) + 1);
+    const antes = `<div class="campo"><label for="mesInicio">Primeiro mês do calendário</label>${sel("mesInicio", MESES_OPT, S.mesInicio)}</div>`;
+    const linhas = S.tarefas.map((x, i) => `<div class="item6"><div class="topo-c"><b>Tarefa ${i + 1}</b>${S.tarefas.length > 1 ? `<button type="button" class="mini" data-rm="${i}">Remover</button>` : ""}</div>
+      <label for="t-${i}-nome">O que fazer</label>${txtIn(`t-${i}-nome`, x.nome, "Ex.: Limpeza da caixa d'água")}
+      <div class="lin"><div><label for="t-${i}-freq">Frequência</label>${sel(`t-${i}-freq`, Z.FREQS, x.freq, "Escolha")}</div><div><label for="t-${i}-inicio">Primeiro mês</label>${sel(`t-${i}-inicio`, MESES_OPT, x.inicio, "Escolha")}</div></div>
+      <div class="lin"><div><label for="t-${i}-custo">Custo por vez (R$)</label>${txtIn(`t-${i}-custo`, x.custo, "0,00", "decimal")}</div><div><label for="t-${i}-quem">Quem faz</label>${txtIn(`t-${i}-quem`, x.quem, "Ex.: Eletricista")}</div></div></div>`).join("");
+    const depois = `<div class="campo"><b>Meses de casa cheia</b><p class="dica" style="margin:4px 0 8px">Marque os meses de alta e de datas de pico (a sua Tabela do Módulo 3 mostra quais). A regra da Zion: obra e manutenção pesada na baixa ocupação, de preferência de segunda a quinta.</p>
+      <div class="meses12">${ordem.map((m) => `<label><input type="checkbox" data-cheia="${m}" ${cheia.includes(String(m)) ? "checked" : ""}>${Z.MESES_C[m - 1]}</label>`).join("")}</div></div>
+      <h3 style="margin-top:20px;font-family:Inter,sans-serif;font-size:1rem">As tarefas preventivas do ano</h3><p class="dica">Aquecimento, elétrica, caixa d'água, pragas, extintores, telhado e calhas, ar-condicionado, deck. Frequência e custo vêm do manual do fabricante e do profissional responsável. A ronda diária fica na próxima tela.</p>${linhas}
+      ${S.tarefas.length < 15 ? `<button type="button" class="btn btn-s" id="addTar" style="width:100%;margin-top:10px">Adicionar tarefa</button>` : ""}`;
+    h += telaDados("manutencao", { t: "O que a casa precisa, e em que mês?", p: "Manutenção adiada vira conserto, e conserto quase sempre acontece com hóspede dentro. Com o calendário do ano, cada tarefa tem mês, custo e dono, e a reserva sabe quanto separar." }, antes, depois);
+    app.innerHTML = h; ligaCampos("manutencao");
+    document.getElementById("mesInicio").onchange = (e) => { S.mesInicio = e.target.value; gravar(); render(); };
+    app.querySelectorAll("[data-cheia]").forEach((x) => x.onchange = () => { const m = x.dataset.cheia; S.casaCheia = (S.casaCheia || []).map(String).filter((v) => v !== m); if (x.checked) S.casaCheia.push(m); gravar(); atualiza("manutencao"); });
+    S.tarefas.forEach((x, i) => {
+      ["nome", "custo", "quem"].forEach((k) => document.getElementById(`t-${i}-${k}`).addEventListener("input", (e) => { S.tarefas[i][k] = e.target.value; gravar(); atualiza("manutencao"); }));
+      ["freq", "inicio"].forEach((k) => document.getElementById(`t-${i}-${k}`).onchange = (e) => { S.tarefas[i][k] = e.target.value; gravar(); atualiza("manutencao"); });
+    });
+    app.querySelectorAll("[data-rm]").forEach((b) => b.onclick = () => { S.tarefas.splice(+b.dataset.rm, 1); gravar(); render(); });
+    const ad = document.getElementById("addTar"); if (ad) ad.onclick = () => { S.tarefas.push(tarefaVazia()); gravar(); render(); };
+  }
+  if (t === "rotina") {
+    const antes = `<div class="campo"><label for="diaContagem">Dia da contagem semanal do estoque</label>${sel("diaContagem", Z.DIAS.map((d) => ({ v: d, r: d })), S.diaContagem, "Escolha")}<p class="ref">Na Zion, a contagem é toda segunda-feira, e item que chega ao mínimo aciona o fornecedor na hora.</p></div>`;
+    const depois = `<div class="campo" style="background:var(--creme)"><b>A ronda e o registro</b>
+      <label class="check"><input type="checkbox" id="ronda" ${S.ronda ? "checked" : ""}>Faço uma ronda técnica diária com lista (aquecimento, ar-condicionado, iluminação, bombas, área externa)</label>
+      <label class="check"><input type="checkbox" id="ocorrencias" ${S.ocorrencias ? "checked" : ""}>Registro cada problema num quadro de ocorrências, com data e solução</label>
+      <p class="dica" style="margin-top:8px">Ferramentas de apoio da Zion: <a href="../../p/adbc67069af26ae0/ocorrencias-14/">Ferramenta 14 · Quadro de Ocorrências e Manutenção</a> e <a href="../../p/adbc67069af26ae0/manutencao-18/">Ferramenta 18 · Planner de Manutenção Preventiva</a>.</p></div>`;
+    h += telaDados("rotina", { t: "Quem compra, quando se conta e até quanto se gasta sem perguntar?", p: "Compras e reposição é um procedimento semanal; manutenção preventiva, mensal. Sem dono e sem dia, os dois voltam para a sua cabeça." }, antes, depois, "Ver a minha Matriz");
+    app.innerHTML = h; ligaCampos("rotina");
+    document.getElementById("diaContagem").onchange = (e) => { S.diaContagem = e.target.value; gravar(); atualiza("rotina"); };
+    ["ronda", "ocorrencias"].forEach((k) => document.getElementById(k).onchange = (e) => { S[k] = e.target.checked; gravar(); atualiza("rotina"); });
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  ligaNav(t);
+}
+
+function resultado() {
+  const r = Z.calcular(S), N = r.N, L = Z.leituras(r), P = Z.prioridades(r);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const concl = Z.concluido({ ...S, acao }), pend = Z.pendencias({ ...S, acao });
+  const nv = Z.nivel(S);
+  const proj = S.situacao === "abrir" ? `<div class="aviso">Esta Matriz é a sua lista de compras de abertura: você ainda vai abrir. Refaça o consumo com três meses reais de operação e revise o calendário no primeiro trimestre.</div>` : "";
+  const ctr = { sim: "tem", fechar: "fechar até " + Z.dataBR(N.prazoContratos), nao: "sem contrato", "": "—" };
+  return `<div class="card"><div class="eyebrow">A minha Matriz de Compras e Manutenção${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">Itens variáveis por noite vendida</div><div class="nota" id="porNoite">${Z.brl(r.variavelNoite)}</div><p>${r.itens.length} itens na Matriz · diferença para a menor cotação de ${Z.brl(r.diferencaPeriodo)} no período · calendário de ${Z.brl(r.totalAno)} no ano, com reserva de ${Z.brl(r.reservaAno)}.</p></div>
+  ${proj}
+  <section class="bloco"><h2>1 · A Matriz</h2><p>Por valor, do maior para o menor. Cotações por unidade de compra; a diferença é na mesma quantidade do período.</p>
+  <div class="mx" id="matriz">${r.itens.map((it) => `<div class="mxi"><b>${it.posicao}. ${esc(it.nome)}${it.tipo === "outras" ? ' <span class="dica">(vendido à parte)</span>' : ""}</b><span>${Z.brl(it.gasto)} no período · ${Z.pct(it.peso)} do total${it.unidade ? " · por " + esc(it.unidade) : ""}</span><span>Por noite vendida: <b>${Z.brl(it.porNoite)}</b>${it.porHospede != null ? ` · por hóspede: <b>${Z.brl(it.porHospede)}</b>` : ""}</span><span>Hoje ${Z.brl(it.precoAtual)} · cotações ${it.cot.length ? it.cot.map((c) => Z.brl(c)).join(" / ") : "nenhuma"}${it.tresCotacoes ? "" : ` <span class="tag">${it.cot.length} de 3</span>`}</span><span>Diferença para a menor: <b>${Z.brl(it.diferenca)}</b> · contrato: ${esc(ctr[it.contrato] || "—")}</span></div>`).join("")}<div class="mxi tot"><b>Total: ${Z.brl(r.totalPeriodo)}</b><span>Itens variáveis por noite vendida: <b>${Z.brl(r.variavelNoite)}</b> · diferença para a menor cotação: <b>${Z.brl(r.diferencaPeriodo)}</b> no período</span></div></div>
+  <h3 style="font-family:Inter,sans-serif;font-size:1rem;margin:14px 0 4px">Estoque mínimo e ponto de pedido</h3>
+  <div class="tabw"><table class="t" id="estoque"><tr><th>Item</th><th class="n">Hoje</th><th class="n">Mín.</th><th class="n">Ponto</th><th class="n">Pedir</th></tr>${r.estoque.map((e) => `<tr><td>${esc(e.nome)} <span class="dica">(${esc(e.unidade || "")})</span></td><td class="n">${Z.dec(e.atual, 0)}</td><td class="n">${e.minimo}</td><td class="n">${e.pontoPedido}</td><td class="n">${e.pedir ? `<span class="tag">${e.pedido}</span>` : `<span class="tag ok">ok</span>`}</td></tr>`).join("")}</table></div>
+  <p class="dica">Mín. = estoque mínimo · Ponto = ponto de pedido · Pedir = quantidade sugerida para o pedido de hoje.</p>
+  ${r.porCama != null ? `<p class="dica" id="enxoval">Enxoval: ${N.jogos} jogos para ${N.camas} camas (${Z.dec(r.porCama, 1)} por cama; a fonte recomenda três).</p>` : ""}
+  <h3 style="font-family:Inter,sans-serif;font-size:1rem;margin:14px 0 4px">O calendário de manutenção preventiva de ${r.meses.length ? esc(r.meses[0].curto + "/" + r.meses[0].ano + " a " + r.meses[11].curto + "/" + r.meses[11].ano) : "12 meses"}</h3>
+  <div class="tabw"><table class="t" id="calendario"><tr><th>Mês</th><th>Tarefas</th><th class="n">Custo</th></tr>${r.meses.map((m) => `<tr><td style="text-transform:capitalize">${m.curto}${m.casaCheia ? " *" : ""}</td><td>${m.tarefas.length ? esc(m.tarefas.join("; ")) : '<span class="dica">nenhuma</span>'}</td><td class="n">${Z.brl(m.custo)}</td></tr>`).join("")}<tr><td><b>Ano</b></td><td>${r.ocorrencias} tarefas</td><td class="n"><b>${Z.brl(r.totalAno)}</b></td></tr></table></div>
+  <p class="dica">* mês de casa cheia. Ronda técnica diária: ${N.ronda ? "sim" : "não"} · contagem do estoque: ${esc(N.diaContagem || "sem dia")} · quem compra: ${esc(N.quemCompra || "sem dono")} · limite fora do previsto: ${N.alcada > 0 ? Z.brl(N.alcada) : "sem limite"}.</p></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${esc(L.peso.t)}</p><p>${esc(L.consumo.t)}</p>${L.mesCheio.t ? `<p>${esc(L.mesCheio.t)}</p>` : ""}<p>${esc(L.cotacao.t)}</p><p>${esc(L.contrato.t)}</p><p>${esc(L.estoque.t)}</p><p>${esc(L.enxoval.t)}</p><p>${esc(L.manutencao.t)}</p>${L.reserva.t ? `<p>${esc(L.reserva.t)}</p>` : ""}<p>${esc(L.casaCheia.t)}</p></div>
+  <p class="dica">Nível de compras e manutenção: ${nv.n} de 4 · ${nv.r}. Frequências e custos de manutenção são decisões suas com o profissional responsável; a ficha não substitui laudos nem manuais do fabricante.</p></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div class="fragil" id="causa"><b>Causa principal: ${esc(P[0].r)}.</b> ${P[0].id === "ok" ? "Nenhum dos sinais de atenção disparou." : "É o primeiro sinal, na ordem cotar, contratar, estoque, enxoval, manutenção e rotina, que precisa de correção."}</div>
+  ${r.avisos.length ? `<div class="caixa c-at"><h3>Para conferir</h3><p>${r.avisos.map(esc).join("<br>")}</p></div>` : ""}</section>
+  <section class="bloco"><h2>4 · O que fazer agora</h2><div class="prio" id="prioridades">${P.map((p, i) => `<div><i>${i + 1}</i><div><b>${esc(p.r)}</b><br><span class="dica">${esc(p.acao)}</span></div></div>`).join("")}</div>
+  <div class="caixa c-faz" style="margin-top:12px"><p>O plano abaixo veio das prioridades. Ajuste o texto se quiser, e marque até quando.</p></div>
+  <label for="acao">O meu plano de ação</label><textarea id="acao">${esc(acao)}</textarea>
+  <label for="prazo">Até quando</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(P))}</p><p>A lição está concluída quando a Matriz tem pelo menos três itens com o preço de hoje e três cotações, um item de estoque com ponto de pedido e um calendário de doze meses com pelo menos três tarefas; o plano de ação tem texto e prazo; e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: lá as páginas do seu Plano de Gestão se juntam, com a rotina semanal e o teste de prontidão.</p>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/Matriz-de-Compras-e-Manutencao-Zion-EM-BRANCO.xlsx">Matriz de Compras e Manutenção</a> e, da Zion, a <a href="../../p/adbc67069af26ae0/enxoval-13/">Ferramenta 13 · Controle de Enxoval e Reposição</a>, a <a href="../../p/adbc67069af26ae0/ocorrencias-14/">Ferramenta 14 · Quadro de Ocorrências e Manutenção</a> e a <a href="../../p/adbc67069af26ae0/manutencao-18/">Ferramenta 18 · Planner de Manutenção Preventiva</a>.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Matriz em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Refazer a Matriz</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  const atualizaSelo = () => { const r = Z.calcular(S), P = Z.prioridades(r); const T = { ...S, acao: S.acao != null ? S.acao : Z.planoSugerido(P) }; const ok = Z.concluido(T); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(T).join("; "); s.className = "selo" + (ok ? "" : " pend"); };
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").oninput = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { gerarPDF(); atualizaSelo(); };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = Z.calcular(S), N = r.N, L = Z.leituras(r), P = Z.prioridades(r);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(P);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const fx = (s) => String(s).replace(/−/g, "-").replace(/→/g, "->");
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text(fx("Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado. Frequências e custos de manutenção: decisão sua com o profissional responsável. Zion Hospitality Business."), M, 286, { maxWidth: CW }); };
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  const estilo = (size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); };
+  const txt = (s, size, cor, bold) => { estilo(size, cor, bold); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); estilo(size, cor, bold); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  const linha = (a, b, bold) => { estilo(9.5, null, bold); const ls = d.splitTextToSize(fx(a), CW - 52); quebra(ls.length * 4.2); estilo(9.5, null, bold); d.text(ls, M, y); d.text(fx(b), W - M, y, { align: "right" }); y += ls.length * 4.2 + 1.2; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text(fx("ZION · JORNADA 2 · GESTÃO · MÓDULO 6 · COMPRAS"), M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(19); d.text(fx("A minha Matriz de Compras e Manutenção"), M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(fx([S.nome, S.hospedagem, S.situacao === "abrir" ? "lista de abertura" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · ")), M, 35);
+  y = 54;
+  txt("1 · A Matriz de Compras", 9, [122, 94, 18], true);
+  txt(`Itens variáveis por noite vendida: ${Z.brl(r.variavelNoite)}`, 14, null, true);
+  linha(`Período do levantamento: ${N.mesesPeriodo} meses, ${N.noitesPeriodo} noites vendidas${N.hospedesPeriodo ? ", " + N.hospedesPeriodo + " hóspedes" : ""}`, Z.brl(r.totalPeriodo));
+  r.itens.forEach((it) => { linha(`${it.posicao}. ${it.nome}${it.tipo === "outras" ? " (vendido à parte)" : ""} · ${it.unidade || ""} · ${Z.pct(it.peso)}`, Z.brl(it.gasto), true); linha(`    por noite ${Z.brl(it.porNoite)}${it.porHospede != null ? " · por hóspede " + Z.brl(it.porHospede) : ""} · hoje ${Z.brl(it.precoAtual)} · cotações ${it.cot.map((c) => Z.brl(c)).join(" / ") || "nenhuma"} · contrato: ${({ sim: "tem", fechar: "fechar até " + Z.dataBR(N.prazoContratos), nao: "sem contrato" })[it.contrato] || "-"}`, `dif. ${Z.brl(it.diferenca)}`); });
+  linha("Diferença para a menor cotação, na mesma quantidade (período · doze meses)", `${Z.brl(r.diferencaPeriodo)} · ${Z.brl(r.diferencaAno)}`, true);
+  if (r.mesCheio != null) linha(`Itens variáveis num mês cheio de 30 dias (${N.unidades} unidades)`, Z.brl(r.mesCheio));
+  y += 2; txt("Estoque mínimo e ponto de pedido", 9, [122, 94, 18], true);
+  r.estoque.forEach((e) => linha(`${e.nome} (${e.unidade || ""}) · uso ${Z.dec(e.usoMes, 1)} por mês · entrega ${e.entrega} d · segurança ${e.seguranca} d · hoje ${Z.dec(e.atual, 0)}`, `mín. ${e.minimo} · ponto ${e.pontoPedido}${e.pedir ? " · PEDIR " + e.pedido : ""}`));
+  if (r.porCama != null) linha("Enxoval: jogos de cama por cama (a fonte recomenda três)", `${Z.dec(r.porCama, 1)} (${N.jogos} jogos, ${N.camas} camas)`);
+  y += 2; txt("Calendário de manutenção preventiva de doze meses", 9, [122, 94, 18], true);
+  r.meses.forEach((m) => linha(`${m.nome} de ${m.ano}${m.casaCheia ? " (casa cheia)" : ""}: ${m.tarefas.join("; ") || "nenhuma"}`, Z.brl(m.custo)));
+  linha(`Total do ano (${r.ocorrencias} tarefas) · reserva de ${Z.dec(N.reservaPct, 1)}% no ano`, `${Z.brl(r.totalAno)} · ${Z.brl(r.reservaAno)}`, true);
+  r.tarefas.forEach((tk) => linha(`    ${tk.nome} · ${tk.freqR} · ${tk.meses.join(", ")} · ${tk.quem || "sem dono"}`, Z.brl(tk.custoAno)));
+  linha("Rotina", `contagem ${N.diaContagem || "sem dia"} · ronda ${N.ronda ? "sim" : "não"} · ocorrências ${N.ocorrencias ? "sim" : "não"}`);
+  linha("Quem compra · limite de compra fora do previsto", `${N.quemCompra || "sem dono"} · ${N.alcada > 0 ? Z.brl(N.alcada) : "sem limite"}`);
+  y += 3; txt("2 · O que isso significa", 9, [122, 94, 18], true); [L.peso, L.consumo, L.mesCheio, L.cotacao, L.contrato, L.estoque, L.enxoval, L.manutencao, L.reserva, L.casaCheia].forEach((l) => l.t && txt(l.t, 10));
+  y += 3; txt("3 · Atenção", 9, [122, 94, 18], true); txt("Causa principal: " + P[0].r + ".", 11, null, true);
+  y += 3; txt("4 · O que fazer agora", 9, [122, 94, 18], true);
+  P.forEach((p, i) => txt(`${i + 1}. ${p.r}: ${p.acao}`, 10));
+  txt("O meu plano de ação:", 10, null, true); txt(acao, 11);
+  if (S.prazo) txt("Até " + Z.dataBR(S.prazo), 10);
+  y += 3; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(P), 10);
+  y += 3; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: as páginas do Plano de Gestão se juntam, com a rotina semanal e o teste de prontidão.`, 10, null, true);
+  rodape();
+  d.save("matriz-de-compras-e-manutencao.pdf");
+  S.pdf = new Date().toISOString(); gravar();
+}
+render();
+</script>
+</body>
+</html>
