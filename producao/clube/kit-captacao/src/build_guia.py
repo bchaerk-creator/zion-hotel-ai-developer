@@ -11,7 +11,7 @@ def data(p, mime): return f"data:{mime};base64," + base64.b64encode(p.read_bytes
 F = {k: data(D / "assets/fonts" / f"{k}.woff2", "font/woff2") for k in ("cormorant", "cormorant-italic", "aventa")}
 LOGO_C = data(D / "brand/zion-logo-claro.png", "image/png"); LOGO_E = data(D / "brand/zion-logo-escuro.png", "image/png")
 FOTO = {k: data(D / "assets" / v, "image/webp") for k, v in {"capa": "operacoes/op09.webp", "zion": "operacoes/op08.webp", "fim": "operacoes/op12.webp"}.items()}
-LINK = "https://app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt"
+LINK = "https://wa.me/554861371061?text=Oi%21%20Preenchi%20o%20meu%20Mapa%20das%20Fontes%20do%20Kit%20de%20Capta%C3%A7%C3%A3o%20e%20quero%20agendar%20a%20minha%20sess%C3%A3o%20estrat%C3%A9gica."  # WhatsApp da Zion com mensagem pronta
 
 CSS = f"""
 @font-face{{font-family:Cormorant;src:url({F['cormorant']})}} @font-face{{font-family:Cormorant;font-style:italic;src:url({F['cormorant-italic']})}} @font-face{{font-family:Aventa;src:url({F['aventa']})}}
@@ -80,7 +80,7 @@ P = []
 P.append(f'''<section class="pg capa"><div class="foto" style="background-image:url({FOTO['capa']})"></div><div class="veu"></div><div class="w"><img class="logo" src="{LOGO_C}" alt="Zion Hotel Group International">
 <div><div class="k">Club Zion Collection · Kit Inicial</div><h1>Você tem a terra.<br><i>Falta a ordem.</i></h1><div class="bar"></div>
 <p><b style="color:var(--creme)">Como captar recursos para o seu projeto.</b> Aprenda o passo a passo para entender as fontes de capital, saber o que cada uma pede e montar o seu primeiro pedido.</p>
-<p style="font-size:10.5pt">Guia · Planilha Mapa das Fontes (em branco e exemplo) · Vídeo tutorial · Sessão de direcionamento de 30 minutos com a equipe Zion</p></div>
+<p style="font-size:10.5pt">Guia · Planilha Mapa das Fontes (em branco e exemplo) · Vídeo tutorial · 1 sessão estratégica de 45 minutos com a equipe Zion</p></div>
 <div class="k" style="font-size:8.5pt">Zion Hotel Group International · Método Zion 360° · Foto: operação Zion Bubble Glamping</div></div></section>''')
 
 # 2 · como usar
@@ -91,7 +91,7 @@ P.append(f'''<section class="pg"><div class="sec">Antes de começar</div><h2>Com
 <div class="grid"><div class="card"><b>1 · Este guia</b><small>16 páginas. Leia em cerca de 40 minutos. As páginas 13 e 14 são para preencher.</small></div>
 <div class="card"><b>2 · Planilha Mapa das Fontes</b><small>Versão em branco e versão com exemplo fictício. Faz a conta do quanto falta e compara as seis fontes.</small></div>
 <div class="card"><b>3 · Vídeo tutorial</b><small>Cerca de 9 minutos. Explica o caminho e mostra a planilha preenchida.</small></div>
-<div class="card"><b>4 · Sessão de direcionamento</b><small>30 minutos com a equipe Zion, incluída no Club Zion Collection. Você leva o seu mapa; a equipe olha o caso e indica o próximo passo.</small></div></div>
+<div class="card"><b>4 · Sessão estratégica</b><small>45 minutos com a equipe Zion, incluída no Club Zion Collection. Você preenche o seu Mapa e envia no WhatsApp; depois agenda a sessão, em que a equipe indica o próximo passo.</small></div></div>
 <h3>O caminho em quatro passos</h3>
 <ol class="passos"><li><b>Entenda por que a terra fica parada</b> (página 3). Quase nunca é só dinheiro.</li>
 <li><b>Conheça as seis fontes de capital</b> (páginas 5 a 9): o que cada uma pede, o que leva e o risco.</li>
@@ -269,7 +269,7 @@ P.append(f'''<section class="pg"><div class="sec">Exercício · exemplo</div><h2
 <tr><td>5 · Permuta</td><td>Possível</td><td class="n">0</td><td>Não sabe se construtores da região fazem permuta.</td></tr>
 <tr><td>6 · Círculo</td><td>Fora</td><td class="n">0</td><td>O irmão ofereceu, mas sem contrato escrito não conta.</td></tr>
 <tr class="tot"><td colspan="2">Soma das possíveis</td><td class="n">293.000</td><td>Cobre 93,9% da lacuna. Ainda faltam R$ 19.000.</td></tr></table>
-<p style="margin:0"><b>Prontidão:</b> 4 de 10 itens. Leitura: estruturar antes de captar. <b>Primeiro passo:</b> agendar a sessão de direcionamento. Depois: matrícula (20/11), orçamento escrito (30/11), três bancos (05/12) e diária de cinco concorrentes (10/12).</p></div>
+<p style="margin:0"><b>Prontidão:</b> 4 de 10 itens. Leitura: estruturar antes de captar. <b>Primeiro passo:</b> enviar o Mapa preenchido e agendar a sessão estratégica. Depois: matrícula (20/11), orçamento escrito (30/11), três bancos (05/12) e diária de cinco concorrentes (10/12).</p></div>
 <h3>O que o exemplo ensina</h3>
 <ul><li><b>Nenhuma fonte sozinha cobre a lacuna.</b> A combinação é a regra, não a exceção.</li>
 <li><b>"Possível" não é "contratado".</b> Os R$ 293.000 são hipóteses. Cada um precisa virar proposta por escrito.</li>
@@ -296,10 +296,10 @@ P.append(f'''<section class="pg"><div class="sec">Capítulo 5</div><h2>Erros com
 # 16 · próximo passo
 P.append(f'''<section class="pg fim escuro"><div class="foto" style="background-image:url({FOTO['fim']})"></div><div class="veu"></div><div class="w">
 <img src="{LOGO_C}" alt="Zion" style="height:13mm;align-self:flex-start;margin-bottom:auto">
-<div class="sec">Seu próximo passo</div><h2 style="font-size:34pt">Agende a sua <i>sessão de direcionamento</i></h2>
-<p style="font-size:12pt">A sua entrada no Club Zion Collection inclui <b style="color:var(--creme)">uma sessão individual de direcionamento de 30 minutos</b> com a equipe Zion. Leve o seu Mapa das Fontes, mesmo incompleto. Na sessão, a equipe olha o seu caso e indica o próximo passo.</p>
-<p style="margin:5mm 0 2mm"><a class="btn" href="{LINK}">Agendar minha sessão de direcionamento</a></p>
-<p class="url">{LINK}</p>
+<div class="sec">Seu próximo passo</div><h2 style="font-size:34pt">Envie o seu Mapa e agende a sua <i>sessão estratégica</i></h2>
+<p style="font-size:12pt">A sua entrada no Club Zion Collection inclui <b style="color:var(--creme)">1 sessão estratégica individual de 45 minutos</b> com a equipe Zion. Preencha o seu Mapa das Fontes de Capital e envie pelo WhatsApp da Zion. No WhatsApp, a Zaya, assistente virtual da Zion, confere o Mapa e envia o link da agenda. Na sessão, a equipe olha o seu caso e indica o próximo passo.</p>
+<p style="margin:5mm 0 2mm"><a class="btn" href="{LINK}">Enviar meu Mapa no WhatsApp</a></p>
+<p class="url">WhatsApp da Zion: +55 48 6137-1061 · wa.me/554861371061</p>
 <h3 style="color:var(--ouro);margin-top:6mm">Quem é a Zion</h3>
 <p>A Zion já operou vários glampings, tem os dois primeiros glampings pioneiros de referência no Brasil (Urubici e Florianópolis) e está desenvolvendo mais de 23 destinos. <b style="color:var(--creme)">O seu destino pode ser o próximo.</b></p>
 <h3 style="color:var(--ouro)">Mentoria Zion</h3>

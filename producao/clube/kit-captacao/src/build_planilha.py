@@ -90,7 +90,7 @@ def montar(ex):
         ("1. Aba Necessidade: preencha o custo da etapa 1, o giro, a reserva e o custo da captação. A planilha mostra o total e a lacuna (o que falta).", None),
         ("2. Aba Fontes: marque cada uma das seis fontes como Disponível, Possível ou Fora, com uma linha de justificativa. \"Fora também é informação.\"", None),
         ("3. Aba Prontidão: responda os 10 itens com Sim ou Não. Um Não basta para estruturar antes de captar.", None),
-        ("4. Aba Próximos passos: escreva até 5 ações com data. A primeira pode ser agendar a sua sessão de direcionamento com a equipe Zion.", None),
+        ("4. Aba Próximos passos: escreva até 5 ações com data. A primeira pode ser enviar este Mapa preenchido para a equipe Zion no WhatsApp e agendar a sua sessão estratégica de 45 min.", None),
         ("", None),
         ("CORES", T(12, True, MUSGO)),
         ("Amarelo = você preenche.   Verde = calculado pela planilha (não digite por cima).", None),
@@ -228,7 +228,7 @@ def montar(ex):
         c = s.cell(5, j, h); c.font = T(10, True, CREME); c.fill = CAB; c.border = borda
     dvf = DataValidation(type="list", formula1='"Sim,Não"', allow_blank=True); s.add_data_validation(dvf)
     dvd = DataValidation(type="date", operator="greaterThan", formula1="36526", allow_blank=True, showErrorMessage=True, error="Use uma data (dd/mm/aaaa)."); s.add_data_validation(dvd)
-    EXS = [("Agendar a sessão de direcionamento com a equipe Zion (30 min, incluída no Clube)", "Eu", datetime.date(2026, 11, 18), "Sim"),
+    EXS = [("Enviar o Mapa preenchido e agendar a sessão estratégica (45 min, incluída no Clube)", "Eu", datetime.date(2026, 11, 18), "Sim"),
            ("Pedir a certidão de matrícula atualizada no cartório", "Eu", datetime.date(2026, 11, 20), "Não"),
            ("Pedir orçamento escrito da etapa 1 a dois fornecedores, com data", "Eu", datetime.date(2026, 11, 30), "Não"),
            ("Perguntar a três bancos taxa, carência e garantia, por escrito", "Eu", datetime.date(2026, 12, 5), "Não"),
@@ -239,7 +239,7 @@ def montar(ex):
         for col in "AB": s[f"{col}{l}"].font = T(10)
         dvf.add(f"D{l}"); dvd.add(f"C{l}")
         calc(s, f"E{l}", f'=IF(A{l}="","",IF(D{l}="Sim","Concluído",IF(C{l}="","Defina a data","Em aberto")))', '@')
-    s["A12"] = "Sessão de direcionamento (30 min, incluída no Club Zion Collection): https://app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt"
+    s["A12"] = "Sessão estratégica (45 min, incluída no Club Zion Collection): envie este Mapa preenchido no WhatsApp da Zion, +55 48 6137-1061 (wa.me/554861371061). A equipe confere e manda o link da agenda."
     s["A12"].font = T(10, True, TERRA); s.merge_cells("A12:E12")
     s["A13"] = "Na sessão, a equipe Zion olha o seu caso e indica o próximo passo. A Zion avalia cada caso; não há promessa de crédito, sócio ou resultado."
     s["A13"].font = T(9, c="5F5F55", i=True); s.merge_cells("A13:E13")
