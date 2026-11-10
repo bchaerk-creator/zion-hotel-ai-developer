@@ -235,7 +235,7 @@ compute:function(s){
  c.invMaior=inv.slice().sort(function(a,b){return b.value-a.value;})[0]||null;
  c.cont=s.n('inv_cont',0)/100; c.invCont=c.invBase*c.cont; c.invTotal=c.invBase+c.invCont;
  c.d=s.n('rc_diaria',0); c.occ=s.n('rc_ocup',1)/100; c.N=s.n('rc_noites',0); c.M=s.n('rc_meses',12);
- // A09 · calendário real (proposta técnica provisória do Comando Mestre, até aprovação): 365 dias, ou 366 em ano bissexto,
+ // A09 · calendário real (premissa aprovada pelo Bruno em 10/11/2026): 365 dias, ou 366 em ano bissexto,
  // distribuídos pelos meses de operação. Noites informadas por mês ficam limitadas aos dias reais (31 × 12 não vira 372).
  var anoRef=s.n('rc_ano',0); c.diasAno=(anoRef&&((anoRef%4===0&&anoRef%100!==0)||anoRef%400===0))?366:365;
  c.noitesUnAno=c.N>0?Math.min(c.N*c.M,c.diasAno*c.M/12):c.diasAno*c.M/12; c.ext=s.n('rc_extras',0)||0;
