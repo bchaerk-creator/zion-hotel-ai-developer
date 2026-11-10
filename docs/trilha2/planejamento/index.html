@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Painel de Gestão</title>
+<meta name="description" content="Ferramenta do Módulo 1 da Jornada 2 · Gestão: monte o Painel de Gestão da sua hospedagem com cinco indicadores, o dono e a meta de 12 meses de cada um, a reunião semanal e o plano de seis semanas.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme)}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.zero i{background:var(--critico);color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao)}
+.dupla{display:grid;gap:10px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .dupla{grid-template-columns:1fr 1fr}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<style>
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+.campo details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+.campo summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+.campo details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.95rem}
+.calc b{color:var(--verde)}
+table.casc{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+table.casc td{padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.casc td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.casc tr.forte td{font-weight:600}
+table.casc tr.destaque td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.modo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.modo label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modo input{position:absolute;opacity:0;pointer-events:none}
+.modo label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:720px){.ind{grid-template-columns:repeat(3,1fr)}}
+</style>
+
+<style>
+table.painel{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem}
+table.painel th{background:var(--verde);color:var(--creme);text-align:left;padding:7px 6px;font-weight:600;font-size:.78rem}
+table.painel td{padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+table.painel td small{display:block;color:var(--texto-2);font-size:.76rem}
+table.painel td.n{font-variant-numeric:tabular-nums;width:52%}
+.base{font-size:.82rem;color:var(--texto-2);margin:2px 0 6px}
+.semana{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.semana b{display:block}
+.semana small{display:block;color:var(--texto-2);margin-bottom:6px}
+.pauta{margin:6px 0 0;padding-left:20px}
+.pauta li{margin-bottom:4px}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 1 · Planejamento<br>Painel de Gestão</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado: metas são decisões de gestão, e o resultado depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="../financas/logic.js"></script>
+<script src="logic.js"></script>
+<script>
+const Z = window.ZP;
+const CHAVE = "zion-t2-planejamento";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const anterior = () => { const a = lerChave("zion-t2-marco-zero") || {}; const f = lerChave("zion-t2-financas") || {}; return { nome: a.nome || f.nome || "", email: a.email || f.email || "", hospedagem: a.hospedagem || f.hospedagem || "" }; };
+const folhaPronta = () => window.ZF ? Z.daFolha(lerChave("zion-t2-financas"), window.ZF) : null;
+
+const TELAS = Z.TELAS;
+const vazio = () => { const a = anterior(); return { tela: 0, nome: a.nome, email: a.email, hospedagem: a.hospedagem, situacao: "", quem: "", diag: {}, escalaNota: "5", resultadoSemRetirada: false, reuniaoDuracao: "30", reuniaoOnde: "Planilha Painel de Gestão" }; };
+let S = ler() || vazio();
+S.diag = S.diag || {};
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 15 a 20 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+const vazioTxt = (v) => (v == null ? "" : String(v));
+function inp(id, rot, opt) {
+  opt = opt || {};
+  const tipo = opt.tipo || "text";
+  const extra = opt.im ? ` inputmode="${opt.im}" autocomplete="off"` : "";
+  return `<label for="${id}">${rot}${opt.opcional ? ' <span class="dica">(opcional)</span>' : ""}</label><input type="${tipo}" id="${id}"${extra} value="${esc(vazioTxt(S[id]))}" placeholder="${esc(opt.ph || "")}">`;
+}
+function detalhes(pq, onde, ex) { return `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${pq}</p>${onde ? `<p><b>Onde conseguir:</b> ${onde}</p>` : ""}<p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${ex}</p></details>`; }
+function ligar(ids) { ids.forEach((k) => { const el = document.getElementById(k); if (el) el.addEventListener("input", (e) => { S[k] = e.target.value; gravar(); atualiza(); }); }); }
+function atualiza() {
+  const t = TELAS[S.tela]; const v = Z.validar(S, t);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.map(esc).join("<br>");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(t);
+}
+function liveHtml(t) {
+  const r = Z.calcular(S);
+  if (t === "partida") return r.noitesDisponiveis ? `Noites disponíveis no mês: <b>${r.noitesDisponiveis}</b> · Números que você já sabe: <b>${r.sabidos} de 5</b>` : "Preencha dias e unidades para ver as noites disponíveis.";
+  if (t === "metas") return r.receitaMeta != null ? `As metas de ocupação e diária pedem cerca de <b>${Z.dec(r.noitesMeta, 0)} noites</b> e <b>${Z.brl(r.receitaMeta)}</b> de hospedagem no mês de chegada${r.variacaoReceita != null ? ` (${Z.pct(Math.abs(r.variacaoReceita))} ${r.variacaoReceita >= 0 ? "acima" : "abaixo"} do ponto de partida)` : ""}.` : "Preencha as metas de ocupação e de diária para ver o que elas pedem.";
+  if (t === "donos") { const d = Z.IND.filter((i) => String(S["dono_" + i.id] || "").trim().length >= 2).length; return `Indicadores com dono: <b>${d} de 5</b>`; }
+  if (t === "reuniao") return S.reuniaoDia && S.reuniaoHora ? `Toda <b>${esc(S.reuniaoDia.toLowerCase())}</b> às <b>${esc(S.reuniaoHora)}</b>, <b>${esc(S.reuniaoDuracao || "30")} minutos</b>, mesmos cinco números.` : "Escolha o dia e a hora.";
+  if (t === "seis") { const n = Z.SEMANAS.filter((s) => Z.PILAR[S[s.id]]).length; return `Pilares escolhidos: <b>${n} de 3</b>`; }
+  return "";
+}
+function card(tela, intro, corpo, rot) {
+  return `<div class="card"><div class="eyebrow">Tela ${TELAS.indexOf(tela)} · ${Z.TITULOS[tela]}</div><h2 class="pergunta">${intro.t}</h2><p class="explica">${intro.p}</p>${corpo}<div class="calc" id="live">${liveHtml(tela)}</div><div id="avisos"></div><p class="erro" id="erro"></p>${nav(rot)}</div>`;
+}
+const rotUn = (i) => i.tipo === "pct" ? " (%)" : i.tipo === "nota" ? "" : " (R$)";
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || S.meta_ocupacao;
+    const respondeu = S.situacao && S.quem && Z.DIAG.every((q) => S.diag[q.id]);
+    const n = Z.nivelPainel(S);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 1 · Faça agora</div><h1>O meu Painel de Gestão</h1>
+    <p class="lead">Aprenda o passo a passo para montar o Painel de Gestão da sua hospedagem: cinco números, quem olha cada um, as metas para os próximos 12 meses e a reunião semanal que mantém tudo vivo.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Estar presente não é gerir. Presença resolve o caso de hoje; uma rotina de trinta minutos por semana com os mesmos cinco números revela a tendência do trimestre.</div>
+    <div><b>Como vamos fazer</b>Cinco telas: o ponto de partida, as metas de 12 meses, quem olha cada número, a reunião semanal e o plano das próximas seis semanas. Cada pergunta diz por que, onde conseguir e um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com o Painel de Gestão em PDF: os cinco indicadores, o dono e a meta de cada um, a reunião marcada e o plano de seis semanas. É a página 1 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    <div class="opcoes">${Z.SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quem cuida da gestão?</h2>
+    <div class="opcoes">${Z.QUEM.map((o) => `<label class="op"><input type="radio" name="quem" value="${o.v}" ${S.quem === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quatro perguntas antes de começar</h2>
+    <p class="explica">Responda como está hoje, não como gostaria.</p>
+    <div class="grade">${Z.DIAG.map((q) => `<div class="item"><b>${q.r}</b><div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.SIMNAO.map((o) => `<label><input type="radio" name="d-${q.id}" value="${o.v}" ${S.diag[q.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}</div>
+    <div class="calc" id="nivel">${Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${n.n} de 4 · <b>${n.r}</b>. ${n.t}` : "Responda as quatro perguntas para ver o nível do seu painel."}</div>
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: use números previstos do seu plano. O ponto de partida pode ficar em "não sei" e as metas valem para o primeiro ano de operação.</div>` : ""}
+    <p class="dica" style="margin-top:10px">As respostas ficam só neste aparelho. Nada é enviado.</p>
+    <div class="nav"><button class="btn btn-p" id="vai" ${respondeu ? "" : "disabled"}>Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver o painel pronto antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const okAb = () => { document.getElementById("vai").disabled = !(S.situacao && S.quem && Z.DIAG.every((q) => S.diag[q.id])); const m = Z.nivelPainel(S); document.getElementById("nivel").innerHTML = Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${m.n} de 4 · <b>${m.r}</b>. ${m.t}` : "Responda as quatro perguntas para ver o nível do seu painel."; };
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    app.querySelectorAll("input[name=quem]").forEach((x) => x.onchange = () => { S.quem = x.value; gravar(); okAb(); });
+    Z.DIAG.forEach((q) => app.querySelectorAll(`input[name=d-${q.id}]`).forEach((x) => x.onchange = () => { S.diag[q.id] = x.value; gravar(); okAb(); }));
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(Z.proximaVazia(S))); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => { const base = vazio(); S = Object.assign({}, base, JSON.parse(JSON.stringify(Z.EXEMPLO)), { nome: S.nome, email: S.email, tela: 1 }); Object.keys(S).forEach((k) => { if (typeof S[k] === "number" && k !== "tela") S[k] = String(S[k]).replace(".", ","); }); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("vai").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "partida") {
+    const f = folhaPronta();
+    let c = f ? `<div class="campo" style="background:var(--creme)"><b>Você já fez a Folha Única do Mês (Módulo 2)</b><p class="dica" style="margin:4px 0 8px">Ela tem a ocupação, a diária média, o resultado com a sua retirada e a ocupação de equilíbrio.</p><button type="button" class="btn btn-s" id="daFolha" style="width:100%">Usar os números da minha Folha Única</button></div>` : "";
+    c += `<div class="campo">${inp("mesBase", "Mês de partida", { ph: "Ex.: Outubro de 2026" })}${detalhes("As metas valem para o mesmo mês daqui a 12 meses. Em hospedagem sazonal, só o mesmo mês informa.", "Use o mês passado inteiro.", "Outubro de 2026")}</div>
+    <div class="campo"><div class="dois"><div>${inp("dias", "Dias do mês", { im: "numeric", ph: "31" })}</div><div>${inp("unidades", "Unidades à venda", { im: "numeric", ph: "4" })}</div></div>${detalhes("Dias × unidades = noites disponíveis: é o tamanho do mês.", "Só as unidades abertas para reserva no mês.", "31 dias e 4 unidades = 124 noites")}</div>
+    <p class="dica" style="margin-top:14px">Os cinco números do mês de partida. Não sabe algum? Deixe em branco: "não sei" é informação igual.</p>`;
+    Z.IND.forEach((i) => {
+      let extra = "";
+      if (i.id === "nota") extra = `<div class="modo" style="margin-top:8px"><label><input type="radio" name="escala" value="5" ${S.escalaNota !== "10" ? "checked" : ""}>Escala de 0 a 5</label><label><input type="radio" name="escala" value="10" ${S.escalaNota === "10" ? "checked" : ""}>Escala de 0 a 10</label></div>`;
+      if (i.id === "resultado") extra = `<label class="check"><input type="checkbox" id="semRet" ${S.resultadoSemRetirada ? "checked" : ""}><span>Este resultado está antes da minha retirada <span class="dica">(ainda não fiz a Folha Única do Módulo 2)</span></span></label>`;
+      c += `<div class="campo">${inp("base_" + i.id, i.r + rotUn(i), { im: "decimal", opcional: true, ph: "não sei" })}${extra}${detalhes(i.def, i.onde, i.ex)}</div>`;
+    });
+    h += card("partida", { t: "De onde você parte?", p: "Os cinco números do Pilar G7 do Método Zion: ocupação, diária média, resultado, nota e taxa de venda direta. Use o mês passado." }, c);
+    app.innerHTML = h; ligar(["mesBase", "dias", "unidades"].concat(Z.IND.map((i) => "base_" + i.id)));
+    app.querySelectorAll("input[name=escala]").forEach((x) => x.onchange = () => { S.escalaNota = x.value; gravar(); atualiza(); });
+    document.getElementById("semRet").onchange = (e) => { S.resultadoSemRetirada = e.target.checked; gravar(); };
+    const bf = document.getElementById("daFolha"); if (bf) bf.onclick = () => { Object.assign(S, Z.daFolha(lerChave("zion-t2-financas"), window.ZF)); ["dias", "unidades", "base_ocupacao", "base_diaria", "base_resultado", "ocupacaoEquilibrio"].forEach((k) => { if (typeof S[k] === "number") S[k] = String(S[k]).replace(".", ","); }); gravar(); render(); };
+  }
+  if (t === "metas") {
+    const r = Z.calcular(S);
+    let c = `<div class="aviso" style="margin-top:12px">Cada meta vale para o <b>mesmo mês daqui a 12 meses</b>${S.mesBase ? " (o mês de partida é " + esc(S.mesBase) + ")" : ""}. Um número, não uma intenção, e o prazo para chegar nele.</div>`;
+    Z.IND.forEach((i) => {
+      const l = r.L[i.id];
+      c += `<div class="campo">${inp("meta_" + i.id, "Meta · " + i.r + rotUn(i), { im: "decimal", ph: i.exMeta })}<p class="base">Ponto de partida: <b>${esc(Z.valor(i.tipo, l.base, r.escala))}</b></p>${detalhes("Uma meta escrita vira referência para cada reunião: o número da semana está indo na direção dela ou não?", i.id === "ocupacao" ? "Se já fez a Folha Única, a meta precisa ficar acima da sua ocupação de equilíbrio." : i.id === "resultado" ? "A meta de resultado precisa ficar acima do seu número de corte (Módulo 2)." : "Olhe o mesmo mês do ano passado, se tiver, e decida um número possível.", i.exMeta)}</div>`;
+    });
+    c += `<div class="campo" style="background:var(--creme)"><b>Duas conferências (opcionais, do Módulo 2)</b>
+    ${inp("ocupacaoEquilibrio", "Ocupação de equilíbrio (%)", { im: "decimal", opcional: true, ph: "Ex.: 28,5" })}
+    ${inp("numeroCorte", "Número de corte mensal (R$)", { im: "decimal", opcional: true, ph: "Ex.: 2.000,00" })}
+    ${detalhes("A ocupação de equilíbrio é quantas noites pagam o mês; o número de corte é o resultado mínimo abaixo do qual você muda alguma coisa. A meta precisa ficar acima dos dois.", "Folha Única do Mês (Módulo 2). Se ainda não tem, deixe em branco.", "em branco: a Ana faz a Folha nas semanas 1 e 2")}</div>`;
+    h += card("metas", { t: "Onde você quer chegar em 12 meses?", p: "Uma meta para cada um dos cinco números. Manter também é meta, desde que escrita." }, c);
+    app.innerHTML = h; ligar(Z.IND.map((i) => "meta_" + i.id).concat(["ocupacaoEquilibrio", "numeroCorte"]));
+  }
+  if (t === "donos") {
+    let c = Z.IND.map((i) => `<div class="campo">${inp("dono_" + i.id, "Quem olha · " + i.r, { ph: "Nome de quem traz o número" })}<p class="base">Meta: <b>${esc(Z.valor(i.tipo, Z.num(S["meta_" + i.id]), Z.calcular(S).escala))}</b> · ${esc(i.onde)}</p></div>`).join("");
+    c += `<p class="dica" style="margin-top:10px">${S.quem === "so" ? "Se você cuida de tudo sozinho, escreva o seu nome: no começo o dono de tudo é você, e tudo bem." : "Dê cada número a quem cuida daquela área: a nota a quem cuida da limpeza e do atendimento, a venda direta a quem responde as mensagens."}</p>`;
+    h += card("donos", { t: "Quem olha cada número?", p: "Indicador sem dono não é acompanhado, é arquivado. O dono traz o número na reunião e explica o que mudou." }, c);
+    app.innerHTML = h; ligar(Z.IND.map((i) => "dono_" + i.id));
+  }
+  if (t === "reuniao") {
+    const c = `<div class="campo"><label for="reuniaoDia">Dia da semana</label><select id="reuniaoDia"><option value="">Escolha</option>${Z.DIAS.map((d) => `<option ${S.reuniaoDia === d ? "selected" : ""}>${d}</option>`).join("")}</select>
+    <div class="dois"><div><label for="reuniaoHora">Hora</label><input type="time" id="reuniaoHora" value="${esc(S.reuniaoHora || "")}"></div><div>${inp("reuniaoDuracao", "Minutos", { im: "numeric", ph: "30" })}</div></div>
+    ${detalhes("Trinta minutos, mesmos cinco números, mesma hora. O que importa é a rotina existir.", "Escolha um horário que não briga com check-in e check-out.", "segunda-feira, 08:00, 30 minutos")}</div>
+    <div class="campo">${inp("reuniaoQuem", "Quem participa", { opcional: true, ph: "Ex.: eu, sozinho, com a planilha" })}
+    <label for="reuniaoOnde">Onde os números ficam anotados</label><select id="reuniaoOnde">${Z.ONDE.map((d) => `<option ${S.reuniaoOnde === d ? "selected" : ""}>${d}</option>`).join("")}</select></div>
+    <div class="campo" style="background:var(--creme)"><b>A pauta dos trinta minutos</b><ol class="pauta"><li>Os cinco números, na mesma ordem, cada um pelo seu dono.</li><li>O que saiu do esperado, comparado com a meta e com o mesmo mês do ano anterior.</li><li>Uma decisão, com dono e prazo.</li><li>Anotar na planilha, na aba Reunião semanal.</li></ol></div>
+    <div class="campo"><label for="sumisse">Se você sumisse por 30 dias, o que quebraria primeiro? <span class="dica">(opcional)</span></label><textarea id="sumisse" placeholder="Ex.: as respostas aos hóspedes">${esc(S.sumisse || "")}</textarea>
+    <p class="dica">Fica registrado para o Módulo 5 · Pessoas, onde entram as alçadas: até que valor cada pessoa decide sem consultar.</p></div>`;
+    h += card("reuniao", { t: "Quando é a reunião semanal?", p: "No começo pode ser você sozinho. O valor vem de repetir: mesmo dia, mesma hora, mesmos números." }, c);
+    app.innerHTML = h; ligar(["reuniaoDuracao", "reuniaoQuem", "sumisse"]);
+    ["reuniaoDia", "reuniaoHora", "reuniaoOnde"].forEach((k) => { const el = document.getElementById(k); const f = (e) => { S[k] = e.target.value; gravar(); atualiza(); }; el.addEventListener("change", f); el.addEventListener("input", f); });
+  }
+  if (t === "seis") {
+    let c = Z.SEMANAS.map((s) => `<div class="semana"><b>${s.r}</b><small>${s.p}</small><label for="${s.id}" class="sr">${s.r}</label><select id="${s.id}"><option value="">Escolha o pilar</option>${Z.PILARES.map((p) => `<option value="${p.v}" ${S[s.id] === p.v ? "selected" : ""}>${p.r}</option>`).join("")}</select>
+    <label for="${s.id}Por">Primeiro exercício <span class="dica">(opcional)</span></label><input type="text" id="${s.id}Por" value="${esc(S[s.id + "Por"] || "")}" placeholder="Ex.: ${esc(Z.EXEMPLO[s.id + "Por"])}"></div>`).join("");
+    c += `<div class="campo"><label for="depois">O que eu vou deixar para depois, de propósito</label><textarea id="depois" placeholder="Ex.: ${esc(Z.EXEMPLO.depois)}">${esc(S.depois || "")}</textarea><p class="dica">Escrever isso evita culpa e evita dispersão.</p></div>`;
+    h += card("seis", { t: "O seu plano para as próximas seis semanas", p: "Um pilar por semana não funciona para todo mundo. Escolha três e faça bem. O painel mede se eles estão funcionando." }, c, "Ver o meu Painel");
+    app.innerHTML = h; ligar(["s12Por", "s34Por", "s56Por", "depois"]);
+    Z.SEMANAS.forEach((s) => { document.getElementById(s.id).onchange = (e) => { S[s.id] = e.target.value; gravar(); atualiza(); }; });
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  atualiza();
+  document.getElementById("volta").onclick = () => ir(-1);
+  document.getElementById("vai").onclick = () => { if (!Z.validar(S, t).ok) return; if (t === "seis" && !Z.completo(S)) { document.getElementById("erro").textContent = "Ainda falta preencher a tela: " + Z.TITULOS[Z.proximaVazia(S)] + "."; return; } ir(1); };
+}
+
+function resultado() {
+  const r = Z.calcular(S), P = Z.painel(r), L = Z.leituras(r, S), A = Z.atencao(r, S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(S, r);
+  const T = Object.assign({}, S, { acao }); const concl = Z.concluido(T), pend = Z.pendencias(T);
+  const nivel = Z.nivelPainel(S);
+  return `<div class="card"><div class="eyebrow">O meu Painel de Gestão${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">Cinco números, cinco donos</div><div class="nota" id="resumoNota">${r.sabidos}<small> de 5 com ponto de partida</small></div><p>Reunião toda ${esc(String(S.reuniaoDia || "").toLowerCase())} às ${esc(S.reuniaoHora || "")}, ${esc(S.reuniaoDuracao || "30")} minutos. Metas para o mesmo mês daqui a 12 meses${S.mesBase ? " (partida: " + esc(S.mesBase) + ")" : ""}.</p></div>
+  ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: as metas são do primeiro ano de operação. Refaça o ponto de partida no primeiro mês aberto.</div>` : ""}
+  <section class="bloco"><h2>1 · O resultado</h2><p>O seu Painel de Gestão: cada número com o ponto de partida, a meta e quem olha.</p>
+  <table class="painel" id="painel"><tr><th>Indicador e dono</th><th>Partida → meta em 12 meses</th></tr>${P.map((l) => `<tr data-id="${l.id}"><td><b>${esc(l.r)}</b><small>Dono: ${esc(l.dono)}</small></td><td class="n">${esc(l.base)} → <b>${esc(l.meta)}</b><small>${esc(l.variacao)}</small><small>${esc(l.leitura)}</small></td></tr>`).join("")}</table>
+  <p class="dica">Reunião semanal: toda ${esc(String(S.reuniaoDia || "").toLowerCase())} às ${esc(S.reuniaoHora || "")}, ${esc(S.reuniaoDuracao || "30")} minutos${S.reuniaoQuem ? ", " + esc(S.reuniaoQuem) : ""}. Números anotados em: ${esc(S.reuniaoOnde || "planilha")}.</p></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras">${L.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
+  <p class="dica">Nível do painel hoje: ${nivel.n} de 4 · ${esc(nivel.r)}. Os cinco números vêm do Pilar G7 do Método Zion; as metas são decisões suas, não previsões.</p></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div id="atencao">${A.length ? A.map((a) => `<div class="fragil" style="margin-top:8px" data-id="${a.id}"><b>${esc(a.r)}.</b> ${esc(a.t)}</div>`).join("") : `<div class="caixa c-sig" data-id="ok"><p>Nenhum alerta nas metas, nos donos e na reunião. Confira só o erro comum abaixo.</p></div>`}</div>
+  <div class="caixa c-at" id="erroComum"><h3>O erro mais comum</h3><p>${esc(Z.ERRO_COMUM)}</p></div></section>
+  <section class="bloco"><h2>4 · O que fazer nas próximas seis semanas</h2>
+  <div class="prio" id="seis">${Z.SEMANAS.map((s, k) => `<div><i>${k + 1}</i><div><b>${esc(s.r.split(" · ")[0])}</b><br><span class="dica">${esc(Z.PILAR[S[s.id]] || "")}${S[s.id + "Por"] ? ": " + esc(S[s.id + "Por"]) : ""}</span></div></div>`).join("")}</div>
+  ${S.depois ? `<p class="dica" style="margin-top:8px"><b>Fica para depois, de propósito:</b> ${esc(S.depois)}</p>` : ""}
+  <div class="caixa c-faz" style="margin-top:12px"><p>O plano abaixo veio da reunião e das seis semanas. Ajuste o texto se quiser e marque a data da primeira reunião.</p></div>
+  <label for="acao">O meu plano</label><textarea id="acao" style="min-height:150px">${esc(acao)}</textarea>
+  <label for="prazo">Data da primeira reunião</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(r, S))}</p><p>A lição está concluída quando o painel tem as cinco metas, os cinco donos, a reunião com dia e hora, o plano de seis semanas, o plano escrito com a data da primeira reunião e o PDF baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: lá o resultado do painel ganha a conta completa, com a sua retirada, a ocupação de equilíbrio e o número de corte.</p>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Painel de Gestão</a> (metas, 12 meses comparados com o ano anterior, reunião semanal e plano de seis semanas).</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar o meu Painel de Gestão em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Refazer o Painel</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  const atualizaSelo = () => { const T = Object.assign({}, S, { acao: S.acao != null ? S.acao : Z.planoSugerido(S) }); const ok = Z.concluido(T); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(T).join("; "); s.className = "selo" + (ok ? "" : " pend"); };
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").oninput = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").onchange = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { gerarPDF(); atualizaSelo(); };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = Z.calcular(S), P = Z.painel(r), L = Z.leituras(r, S), A = Z.atencao(r, S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(S, r);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const fx = (s) => String(s).replace(/−/g, "-").replace(/→/g, "->");
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text(fx("Conteúdo educacional. Não é promessa de renda, retorno, ocupação ou resultado: metas são decisões de gestão. Exemplo didático sempre com dados fictícios. Zion Hospitality Business."), M, 286, { maxWidth: CW }); };
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  const txt = (s, size, cor, bold) => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text(fx("ZION · JORNADA 2 · GESTÃO · MÓDULO 1 · PLANEJAMENTO"), M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text(fx("O meu Painel de Gestão"), M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(fx([S.nome, S.hospedagem, S.mesBase ? "partida: " + S.mesBase : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · ")), M, 35);
+  y = 54;
+  txt("1 · O resultado: Painel de Gestão (página 1 do Plano de Gestão)", 9, [122, 94, 18], true);
+  const cols = [M, M + 58, M + 98, M + 136];
+  const cab = () => { d.setFont("helvetica", "bold"); d.setFontSize(9); d.setTextColor(22, 38, 28); ["Indicador", "Ponto de partida", "Meta 12 meses", "Dono"].forEach((c, k) => d.text(fx(c), cols[k], y)); y += 5; };
+  cab();
+  P.forEach((l) => { quebra(10); d.setFont("helvetica", "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); d.text(fx(l.r), cols[0], y, { maxWidth: 56 }); d.text(fx(l.base), cols[1], y); d.setFont("helvetica", "bold"); d.text(fx(l.meta), cols[2], y); d.setFont("helvetica", "normal"); d.text(fx(l.dono), cols[3], y, { maxWidth: CW - 118 }); y += 4.2; d.setFontSize(8); d.setTextColor(100); d.text(fx(l.variacao + " · " + l.leitura), cols[1], y, { maxWidth: CW - 58 }); d.setTextColor(22, 38, 28); y += 5.5; });
+  y += 2; txt(`Reunião semanal: toda ${String(S.reuniaoDia || "").toLowerCase()} às ${S.reuniaoHora || ""}, ${S.reuniaoDuracao || 30} minutos${S.reuniaoQuem ? ", " + S.reuniaoQuem : ""}. Números anotados em: ${S.reuniaoOnde || "planilha"}. Pauta: os cinco números pelo dono; o que saiu do esperado; uma decisão com dono e prazo; anotar.`, 10);
+  if (S.sumisse) txt("Se eu sumisse por 30 dias, quebraria primeiro: " + S.sumisse, 10);
+  y += 2; txt("2 · O que isso significa", 9, [122, 94, 18], true); L.forEach((x) => txt(x, 10));
+  y += 2; txt("3 · Atenção", 9, [122, 94, 18], true);
+  if (A.length) A.forEach((a) => txt(a.r + ": " + a.t, 10)); else txt("Nenhum alerta nas metas, nos donos e na reunião.", 10);
+  txt("Erro comum: " + Z.ERRO_COMUM, 10);
+  y += 2; txt("4 · O que fazer nas próximas seis semanas", 9, [122, 94, 18], true);
+  Z.SEMANAS.forEach((s) => txt(s.r + ": " + (Z.PILAR[S[s.id]] || "") + (S[s.id + "Por"] ? ". " + S[s.id + "Por"] : ""), 10));
+  if (S.depois) txt("Fica para depois, de propósito: " + S.depois, 10);
+  txt("O meu plano:", 10, null, true); txt(acao, 10.5);
+  if (S.prazo) txt("Primeira reunião: " + S.prazo.split("-").reverse().join("/"), 10, null, true);
+  y += 2; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(r, S), 10);
+  y += 2; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: o resultado do painel com a conta completa, a ocupação de equilíbrio e o número de corte.`, 10, null, true);
+  rodape();
+  d.save("painel-de-gestao.pdf");
+  S.pdf = new Date().toISOString(); gravar();
+}
+render();
+</script>
+</body>
+</html>

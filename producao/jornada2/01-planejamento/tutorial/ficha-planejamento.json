@@ -1,0 +1,344 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Painel de Gestão, a ferramenta Faça agora do Módulo 1 da Jornada de Gestão. Em cinco telas, você escreve os cinco números do seu ponto de partida, as metas para os próximos doze meses, quem olha cada número, a reunião semanal e o plano das próximas seis semanas. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 1 · Painel de Gestão",
+      "s": "Cinco números, cinco donos, metas de 12 meses e a reunião semanal",
+      "k": "Jornada de Gestão · Módulo 1 · Planejamento"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, preencha nome, e-mail e o nome da hospedagem. Se você fez o Marco Zero neste aparelho, eles já aparecem. Depois, a sua situação, quem cuida da gestão e quatro perguntas rápidas: mesmos números todo mês, metas escritas, um dono para cada número e um horário fixo na semana. Elas mostram o nível do seu painel hoje. As respostas ficam só no seu aparelho.",
+   "actions": [
+    {
+     "goto": "http://localhost:8811/trilha2/planejamento/"
+    },
+    {
+     "eval": "localStorage.removeItem('zion-t2-planejamento');location.reload()",
+     "wait": 1200
+    },
+    {
+     "show": "h1",
+     "wait": 1000
+    },
+    {
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#hospedagem": "Cabanas do Vale (exemplo)"
+     }
+    },
+    {
+     "click": "input[name=sit][value=dono]",
+     "wait": 600
+    },
+    {
+     "click": "input[name=quem][value=so]",
+     "wait": 500
+    },
+    {
+     "click": "label:has(input[name=d-painel][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-metas][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-donos][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-reuniao][value=nao])",
+     "wait": 600
+    },
+    {
+     "show": "#nivel",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A primeira tela é o ponto de partida: o mês, os dias e as unidades, e os cinco números desse mês. Ocupação, diária média, resultado, nota e taxa de venda direta. Não sabe algum? Deixe em branco: não sei é informação. Nas Cabanas, a dona ainda não fez a Folha Única, então marca que o resultado está antes da retirada dela. Se você já fez a Folha do Módulo 2, um botão traz esses números para cá.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "type": "#mesBase",
+     "text": "Outubro de 2026",
+     "delay": 30
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"dias\");if(e){e.value=\"31\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"unidades\");if(e){e.value=\"4\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 400
+    },
+    {
+     "type": "#base_ocupacao",
+     "text": "46,8",
+     "delay": 40
+    },
+    {
+     "type": "#base_diaria",
+     "text": "280,00",
+     "delay": 40
+    },
+    {
+     "type": "#base_resultado",
+     "text": "11.890,00",
+     "delay": 40
+    },
+    {
+     "click": "#semRet",
+     "wait": 600
+    },
+    {
+     "type": "#base_nota",
+     "text": "4,7",
+     "delay": 40
+    },
+    {
+     "type": "#base_vendaDireta",
+     "text": "12",
+     "delay": 40
+    },
+    {
+     "show": "#live",
+     "wait": 1400
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Agora, as metas. Cada uma vale para o mesmo mês daqui a doze meses, e o ponto de partida aparece embaixo de cada campo. Nas Cabanas: cinquenta por cento de ocupação, diária de trezentos reais, treze mil de resultado, nota quatro vírgula oito e vinte por cento de venda direta. A ficha mostra o que as metas pedem: sessenta e duas noites e dezoito mil e seiscentos reais de hospedagem no mês. Se tiver a ocupação de equilíbrio e o número de corte do Módulo 2, preencha para conferir.",
+   "actions": [
+    {
+     "show": ".aviso",
+     "wait": 1200
+    },
+    {
+     "type": "#meta_ocupacao",
+     "text": "50",
+     "delay": 40
+    },
+    {
+     "type": "#meta_diaria",
+     "text": "300,00",
+     "delay": 40
+    },
+    {
+     "type": "#meta_resultado",
+     "text": "13.000,00",
+     "delay": 40
+    },
+    {
+     "type": "#meta_nota",
+     "text": "4,8",
+     "delay": 40
+    },
+    {
+     "type": "#meta_vendaDireta",
+     "text": "20",
+     "delay": 40
+    },
+    {
+     "show": "#live",
+     "wait": 2200
+    },
+    {
+     "show": "#ocupacaoEquilibrio",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Quem olha cada número? Indicador sem dono não é acompanhado, é arquivado. Quem cuida de tudo sozinho escreve o próprio nome nos cinco, como a Ana. Quando houver equipe, dê cada número a quem cuida daquela área.",
+   "actions": [
+    {
+     "show": ".explica",
+     "wait": 1200
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"dono_ocupacao\");if(e){e.value=\"Ana\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"dono_diaria\");if(e){e.value=\"Ana\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"dono_resultado\");if(e){e.value=\"Ana\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"dono_nota\");if(e){e.value=\"Ana\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "type": "#dono_vendaDireta",
+     "text": "Ana",
+     "delay": 60
+    },
+    {
+     "show": "#live",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A reunião semanal: dia, hora e trinta minutos, mesmos cinco números. A pauta já vem pronta, com quatro itens. E uma pergunta opcional: se você sumisse por trinta dias, o que quebraria primeiro? Ela fica registrada para o Módulo 5, das pessoas e das alçadas.",
+   "actions": [
+    {
+     "select": "#reuniaoDia",
+     "value": "Segunda-feira",
+     "wait": 600
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"reuniaoHora\");if(e){e.value=\"08:00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 500
+    },
+    {
+     "type": "#reuniaoQuem",
+     "text": "Ana, sozinha, com a planilha",
+     "delay": 25
+    },
+    {
+     "text": "A pauta dos trinta minutos",
+     "sel": "b",
+     "wait": 1800
+    },
+    {
+     "type": "#sumisse",
+     "text": "As respostas aos hóspedes e a liberação das cabanas depois da limpeza.",
+     "delay": 18
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Por último, o plano de seis semanas. Escolha três pilares e faça bem: nas semanas um e dois, o mais fraco; nas três e quatro, o que destrava o seguinte; nas cinco e seis, o que te dá um número. Nas Cabanas: finanças, preço e marketing e vendas. E escreva o que fica para depois, de propósito.",
+   "actions": [
+    {
+     "select": "#s12",
+     "value": "2",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"s12Por\");if(e){e.value=\"Fechar outubro na Folha \\u00danica e lan\\u00e7ar a minha retirada.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 400
+    },
+    {
+     "select": "#s34",
+     "value": "3",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"s34Por\");if(e){e.value=\"Calcular o piso da di\\u00e1ria antes de subir para R$ 300.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 400
+    },
+    {
+     "select": "#s56",
+     "value": "4",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"s56Por\");if(e){e.value=\"Anotar o canal de cada reserva para medir a venda direta.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 400
+    },
+    {
+     "type": "#depois",
+     "text": "Compras e estoque: fica para depois da alta temporada.",
+     "delay": 20
+    },
+    {
+     "click": "#vai",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "Pronto: o seu Painel de Gestão. A tabela mostra cada número com o ponto de partida, a meta, a variação e o dono. Logo abaixo, o que isso significa: quantos números você já sabe, o que as metas pedem e a regra de comparar sempre o mesmo mês.",
+   "actions": [
+    {
+     "show": ".leitura",
+     "wait": 1500
+    },
+    {
+     "show": "#painel",
+     "wait": 2500
+    },
+    {
+     "text": "2 · O que isso significa",
+     "sel": "h2",
+     "wait": 2200
+    }
+   ]
+  },
+  {
+   "say": "Em atenção, a ficha avisa o que precisa de cuidado. Nas Cabanas, o resultado está antes da retirada: a meta será refeita depois da Folha Única. E o erro mais comum: trocar de indicador antes de doze semanas. Depois, o plano das seis semanas e o seu plano escrito, que você pode ajustar. Marque a data da primeira reunião.",
+   "actions": [
+    {
+     "text": "3 · Atenção",
+     "sel": "h2",
+     "wait": 1800
+    },
+    {
+     "show": "#erroComum",
+     "wait": 1500
+    },
+    {
+     "text": "4 · O que fazer",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#acao",
+     "wait": 1500
+    },
+    {
+     "eval": "const e=document.getElementById('prazo');if(e){e.value='2026-11-16';e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));e.scrollIntoView({block:'center'});}",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz o critério de conclusão: as cinco metas, os cinco donos, a reunião marcada, o plano com a data da primeira reunião, e o PDF baixado. Quando tudo estiver feito, o selo muda para pronto para avançar. Baixe o painel em PDF: é a página um do seu Plano de Gestão. Depois, use a planilha para registrar as reuniões. Bom trabalho!",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#selo",
+     "wait": 1500
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "O seu Painel de Gestão",
+      "s": "Baixe o PDF, faça a primeira reunião e siga para o Módulo 2 · Finanças",
+      "k": "Jornada de Gestão · Módulo 1 · Planejamento"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}
