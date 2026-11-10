@@ -1,0 +1,393 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial da Marca e Captação, a ferramenta Faça agora do Módulo 4 da Jornada de Gestão. Em cinco telas, você escreve a marca da sua hospedagem em uma folha, começa a sua lista própria de contatos e calcula quanto custa cada reserva em cada canal. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 4 · Marca e Captação",
+      "s": "Marca em uma folha, lista própria e custo por reserva",
+      "k": "Jornada de Gestão · Módulo 4 · Marketing e vendas"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, preencha nome, e-mail e o nome da hospedagem. Se você fez outro módulo neste aparelho, eles já aparecem. Depois, a sua situação e quatro perguntas rápidas: promessa escrita, lista com autorização, o canal de cada reserva e o custo por reserva. Elas mostram o nível do seu marketing próprio hoje. As respostas ficam só no seu aparelho.",
+   "actions": [
+    {
+     "goto": "http://localhost:8814/trilha2/marketing/"
+    },
+    {
+     "eval": "localStorage.removeItem('zion-t2-marketing');location.reload()",
+     "wait": 1200
+    },
+    {
+     "show": "h1",
+     "wait": 1000
+    },
+    {
+     "fillStart": {
+      "#nome": "Ana Exemplo",
+      "#email": "ana@exemplo.com",
+      "#hospedagem": "Cabanas do Vale (exemplo)"
+     }
+    },
+    {
+     "click": "input[name=sit][value=dono]",
+     "wait": 600
+    },
+    {
+     "click": "label:has(input[name=d-promessa][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-lista][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-canal][value=nao])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=d-custo][value=nao])",
+     "wait": 600
+    },
+    {
+     "show": "#nivel",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A primeira tela é para quem e a promessa. Escreva quem é o seu hóspede e quem não é. Depois, a promessa em uma frase: a ocasião, o que acontece e o que torna aquilo possível, sem adjetivo genérico. Se você usar aconchegante ou único, a ficha avisa. Responda os quatro testes e diga quantas de cinco pessoas de fora entenderam a frase.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 900
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"publico\");if(e){e.value=\"Casais que v\\u00eam de carro, de at\\u00e9 tr\\u00eas horas de dist\\u00e2ncia, para duas ou tr\\u00eas noites.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"naoPublico\");if(e){e.value=\"Grupos, festas e quem procura agito \\u00e0 noite.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 700
+    },
+    {
+     "type": "#promessa",
+     "text": "Duas noites a dois, com a lareira acesa e o vale na janela da cama, sem vizinho à vista.",
+     "delay": 22
+    },
+    {
+     "click": "label:has(input[name=t-recusa][value=sim])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=t-cumprimento][value=sim])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=t-diferenca][value=sim])",
+     "wait": 350
+    },
+    {
+     "click": "label:has(input[name=t-memoria][value=sim])",
+     "wait": 500
+    },
+    {
+     "select": "#cinco",
+     "value": "4",
+     "wait": 700
+    },
+    {
+     "show": "#live",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Na segunda tela, a prova e o tom. A prova é a foto de capa que mostra exatamente o que a frase diz. O tom cabe em três palavras, com a lista do que você nunca escreve. E, em cada ponto de contato, marque se a promessa já aparece. As mensagens de boas-vindas e de agradecimento estão prontas no Kit de Mensagens, a Ferramenta 11.",
+   "actions": [
+    {
+     "type": "#prova",
+     "text": "Foto de capa: a cama de frente para a janela do vale, com a lareira acesa ao lado.",
+     "delay": 18
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"tom\");if(e){e.value=\"Pr\\u00f3ximo, concreto, calmo.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"banidas\");if(e){e.value=\"aconchegante, \\u00fanico, inesquec\\u00edvel, ref\\u00fagio, experi\\u00eancia \\u00fanica\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"nunca\");if(e){e.value=\"N\\u00e3o aceitamos festas nem mais de duas pessoas por cabana.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 800
+    },
+    {
+     "click": "label:has(input[name=p-anuncio][value=sim])",
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=p-site][value=nao])",
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=p-redes][value=sim])",
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=p-whatsapp][value=nao])",
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=p-boasvindas][value=nao])",
+     "wait": 300
+    },
+    {
+     "click": "label:has(input[name=p-placa][value=nao])",
+     "wait": 500
+    },
+    {
+     "text": "As mensagens de boas-vindas",
+     "sel": "p",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A terceira tela é a lista própria. Quantos contatos você tem e quantos têm autorização: nas Cabanas, sessenta e quatro, nenhum autorizado, todos no celular. Escreva a frase para pedir a autorização no check-in, escolha um canal para fazer bem e a meta para doze meses. A ficha mostra o ritmo: dez autorizações por mês, quarenta por cento das estadias.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 700
+    },
+    {
+     "type": "#contatos",
+     "text": "64",
+     "delay": 80
+    },
+    {
+     "type": "#autorizados",
+     "text": "0",
+     "delay": 80
+    },
+    {
+     "select": "#onde",
+     "value": "celular",
+     "wait": 500
+    },
+    {
+     "type": "#acesso",
+     "text": "Só a Ana",
+     "delay": 40
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"frase\");if(e){e.value=\"Posso guardar o seu WhatsApp e o seu e-mail para avisar quando abrirmos datas e condi\\u00e7\\u00f5es? Voc\\u00ea pode sair quando quiser.\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();document.getElementById('frase').scrollIntoView({block:'center'});",
+     "wait": 1000
+    },
+    {
+     "click": "label:has(input[name=canalLista][value=WhatsApp])",
+     "wait": 500
+    },
+    {
+     "type": "#metaLista",
+     "text": "120",
+     "delay": 70
+    },
+    {
+     "type": "#estadiasMes",
+     "text": "25",
+     "delay": 70
+    },
+    {
+     "show": "#live",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A quarta tela é a dos canais. Para cada canal do último mês: nome, tipo, reservas, receita de hospedagem, a comissão da plataforma e o que você gastou para trazer o hóspede. Use o botão para adicionar outro canal. Nas Cabanas, duas plataformas e três canais diretos. Embaixo, a ficha mostra as vinte e cinco reservas, o custo médio de setenta e sete reais e quarenta e seis centavos por reserva e a venda direta de trinta por cento.",
+   "actions": [
+    {
+     "type": "#mesCanais",
+     "text": "Outubro de 2026",
+     "delay": 30
+    },
+    {
+     "type": "#c0_nome",
+     "text": "Plataforma A",
+     "delay": 35
+    },
+    {
+     "select": "#c0_tipo",
+     "value": "plataforma",
+     "wait": 400
+    },
+    {
+     "type": "#c0_reservas",
+     "text": "12",
+     "delay": 60
+    },
+    {
+     "type": "#c0_receita",
+     "text": "8.120,00",
+     "delay": 45
+    },
+    {
+     "type": "#c0_comissao",
+     "text": "16",
+     "delay": 60
+    },
+    {
+     "type": "#c0_gasto",
+     "text": "0",
+     "delay": 60
+    },
+    {
+     "click": "#maisCanal",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"c1_nome\");if(e){e.value=\"Plataforma B\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c1_tipo\");if(e){e.value=\"plataforma\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c1_reservas\");if(e){e.value=\"5\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c1_receita\");if(e){e.value=\"3.248,00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c1_comissao\");if(e){e.value=\"15\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c1_gasto\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();document.getElementById('c1_nome').scrollIntoView({block:'center'});",
+     "wait": 900
+    },
+    {
+     "click": "#maisCanal",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"c2_nome\");if(e){e.value=\"Instagram com impulsionamento\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c2_tipo\");if(e){e.value=\"direto\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c2_reservas\");if(e){e.value=\"2\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c2_receita\");if(e){e.value=\"1.120,00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c2_comissao\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c2_gasto\");if(e){e.value=\"150,00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();document.getElementById('c2_nome').scrollIntoView({block:'center'});",
+     "wait": 900
+    },
+    {
+     "click": "#maisCanal",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"c3_nome\");if(e){e.value=\"H\\u00f3spede que volta (WhatsApp)\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c3_tipo\");if(e){e.value=\"direto\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c3_reservas\");if(e){e.value=\"3\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c3_receita\");if(e){e.value=\"1.848,00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c3_comissao\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c3_gasto\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();document.getElementById('c3_nome').scrollIntoView({block:'center'});",
+     "wait": 900
+    },
+    {
+     "click": "#maisCanal",
+     "wait": 500
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"c4_nome\");if(e){e.value=\"Indica\\u00e7\\u00e3o\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c4_tipo\");if(e){e.value=\"direto\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c4_reservas\");if(e){e.value=\"3\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c4_receita\");if(e){e.value=\"1.904,00\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c4_comissao\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();(()=>{const e=document.getElementById(\"c4_gasto\");if(e){e.value=\"0\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();document.getElementById('c4_nome').scrollIntoView({block:'center'});",
+     "wait": 900
+    },
+    {
+     "show": "#live",
+     "wait": 1800
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Por último, a meta de venda direta. A ficha mostra a venda direta de hoje e, se você fez o Painel de Gestão do Módulo 1 neste aparelho, oferece usar a mesma meta. Nas Cabanas: quarenta por cento até trinta de junho de dois mil e vinte e sete. A ficha calcula o que a meta pede num mês com a mesma receita e a comissão que deixaria de sair, sempre como conta, não previsão.",
+   "actions": [
+    {
+     "show": ".calc",
+     "wait": 1000
+    },
+    {
+     "type": "#metaDireta",
+     "text": "40",
+     "delay": 80
+    },
+    {
+     "eval": "(()=>{const e=document.getElementById(\"prazoMeta\");if(e){e.value=\"2027-06-30\";e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));}})();",
+     "wait": 800
+    },
+    {
+     "show": "#live",
+     "wait": 2200
+    },
+    {
+     "click": "#vai",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "Pronto: a sua Marca e Captação. No topo, a venda direta de hoje e a meta. Depois, a marca em uma folha, com para quem, promessa, prova, tom e o que nunca fazemos. E a tabela de canais, com o custo e o custo por reserva de cada um.",
+   "actions": [
+    {
+     "show": ".leitura",
+     "wait": 1500
+    },
+    {
+     "show": "#folha",
+     "wait": 2500
+    },
+    {
+     "show": "#canais",
+     "wait": 2500
+    }
+   ]
+  },
+  {
+   "say": "Em o que isso significa, as quatro leituras: o custo por reserva, a venda direta com a meta, o ritmo da lista e a marca. Em atenção, a ficha avisa: a lista ainda não existe, ela mora só no celular e nem todos entenderam a promessa. E o erro mais comum: trocar a lista própria por seguidores.",
+   "actions": [
+    {
+     "text": "2 · O que isso significa",
+     "sel": "h2",
+     "wait": 2200
+    },
+    {
+     "text": "3 · Atenção",
+     "sel": "h2",
+     "wait": 2000
+    },
+    {
+     "show": "#erroComum",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "O plano vem pronto e você pode ajustar. Marque a data do primeiro check-in com o pedido de autorização. Como verificar traz o critério de conclusão; quando tudo estiver feito e o PDF baixado, o selo muda para pronto para avançar. O PDF é a página quatro do seu Plano de Gestão. Depois, use a planilha Plano de Captação para registrar a lista e medir os canais todo mês. Bom trabalho!",
+   "actions": [
+    {
+     "show": "#acao",
+     "wait": 1800
+    },
+    {
+     "eval": "const e=document.getElementById('prazo');if(e){e.value='2026-11-20';e.dispatchEvent(new Event('input',{bubbles:true}));e.dispatchEvent(new Event('change',{bubbles:true}));e.scrollIntoView({block:'center'});}",
+     "wait": 1200
+    },
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#selo",
+     "wait": 1500
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "A sua Marca e Captação",
+      "s": "Baixe o PDF, peça a autorização no próximo check-in e siga para o Módulo 5 · Pessoas",
+      "k": "Jornada de Gestão · Módulo 4 · Marketing e vendas"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}

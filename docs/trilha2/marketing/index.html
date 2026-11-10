@@ -1,0 +1,429 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Marca e Captação</title>
+<meta name="description" content="Ferramenta do Módulo 4 da Jornada 2 · Gestão: a marca da sua hospedagem em uma folha (para quem, promessa, prova e tom), a lista própria de contatos com autorização e o custo por reserva de cada canal, com a meta de venda direta.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:96px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px;min-width:0}
+.num small{display:block;font-size:.75rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.6rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme)}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.jornada{display:grid;gap:6px;margin:10px 0}
+.passo{display:flex;gap:10px;align-items:center;padding:8px 10px;border-radius:10px;background:var(--creme);font-size:.95rem}
+.passo i{flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem;background:var(--creme-2);color:var(--texto-2)}
+.passo.ok i{background:var(--ok);color:#fff}
+.passo.meio i{background:#B98A1C;color:#fff}
+.passo.zero i{background:var(--critico);color:#fff}
+.passo.aqui{background:var(--verde);color:var(--creme)}
+.passo.aqui i{background:var(--dourado);color:var(--verde)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao)}
+.dupla{display:grid;gap:10px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .dupla{grid-template-columns:1fr 1fr}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<style>
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+.campo details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+.campo summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+.campo details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:8px;font-size:.95rem}
+.calc b{color:var(--verde)}
+table.casc{width:100%;border-collapse:collapse;margin:10px 0;font-size:.92rem}
+table.casc td{padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top}
+table.casc td:last-child{text-align:right;white-space:nowrap;font-variant-numeric:tabular-nums}
+table.casc tr.forte td{font-weight:600}
+table.casc tr.destaque td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.check{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:10px;cursor:pointer}
+.check input{width:20px;height:20px;margin-top:2px;accent-color:var(--verde);flex:none}
+.modo{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:8px}
+.modo label{margin:0;font-weight:500;font-size:.88rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;min-height:44px;display:flex;align-items:center;justify-content:center}
+.modo input{position:absolute;opacity:0;pointer-events:none}
+.modo label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:720px){.ind{grid-template-columns:repeat(3,1fr)}}
+</style>
+
+<style>
+table.painel{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem}
+table.painel th{background:var(--verde);color:var(--creme);text-align:left;padding:7px 6px;font-weight:600;font-size:.78rem}
+table.painel td{padding:8px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+table.painel td small{display:block;color:var(--texto-2);font-size:.76rem}
+table.painel td.n{font-variant-numeric:tabular-nums;width:52%}
+.base{font-size:.82rem;color:var(--texto-2);margin:2px 0 6px}
+.semana{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.semana b{display:block}
+.semana small{display:block;color:var(--texto-2);margin-bottom:6px}
+.pauta{margin:6px 0 0;padding-left:20px}
+.pauta li{margin-bottom:4px}
+</style>
+<style>
+.folha{background:var(--verde);color:var(--creme);border-radius:14px;padding:14px 16px;border:2px solid var(--dourado);margin-top:10px}
+.folha div{padding:8px 0;border-bottom:1px solid rgba(224,190,94,.35)}
+.folha div:last-child{border-bottom:0}
+.folha b{display:block;font-size:.74rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado)}
+.folha span{overflow-wrap:anywhere}
+.canal{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.canal .tit{font-weight:700;color:var(--dourado-escuro);font-size:.85rem;text-transform:uppercase;letter-spacing:.06em}
+.ponto{border:1px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff;margin-top:8px}
+.ponto b{display:block;margin-bottom:6px;font-weight:600}
+table.painel td.n b{white-space:nowrap}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 4 · Marketing e vendas<br>Marca e Captação</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno, ocupação, reservas ou resultado: metas são decisões de gestão, e o resultado depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="logic.js"></script>
+<script>
+const Z = window.ZM;
+const CHAVE = "zion-t2-marketing";
+const ler = () => { try { return JSON.parse(localStorage.getItem(CHAVE)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const anterior = () => { const ks = ["zion-t2-marco-zero", "zion-t2-planejamento", "zion-t2-financas", "zion-t2-preco"].map(lerChave).filter(Boolean); const pega = (c) => (ks.find((x) => x[c]) || {})[c] || ""; return { nome: pega("nome"), email: pega("email"), hospedagem: pega("hospedagem") }; };
+const painel = () => Z.daPainel(lerChave("zion-t2-planejamento"));
+const canalVazio = () => ({ nome: "", tipo: "", comissao: "", gasto: "", reservas: "", receita: "" });
+const paraTexto = (o) => { if (typeof o === "number") return String(o).replace(".", ","); if (Array.isArray(o)) return o.map(paraTexto); if (o && typeof o === "object") { const r = {}; Object.keys(o).forEach((k) => { r[k] = paraTexto(o[k]); }); return r; } return o; };
+
+const TELAS = Z.TELAS;
+const vazio = () => { const a = anterior(); return { tela: 0, nome: a.nome, email: a.email, hospedagem: a.hospedagem, situacao: "", diag: {}, testes: {}, pontos: {}, canais: Array.from({ length: Z.NCANAIS }, canalVazio), nCanais: 1 }; };
+let S = ler() || vazio();
+S.diag = S.diag || {}; S.testes = S.testes || {}; S.pontos = S.pontos || {};
+S.canais = S.canais || []; while (S.canais.length < Z.NCANAIS) S.canais.push(canalVazio());
+const app = document.getElementById("app");
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 20 a 25 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+function inp(id, rot, opt) {
+  opt = opt || {};
+  const extra = opt.im ? ` inputmode="${opt.im}" autocomplete="off"` : "";
+  return `<label for="${id}">${rot}${opt.opcional ? ' <span class="dica">(opcional)</span>' : ""}</label><input type="${opt.tipo || "text"}" id="${id}"${extra} value="${esc(S[id] == null ? "" : S[id])}" placeholder="${esc(opt.ph || "")}">`;
+}
+function area(id, rot, ph, opcional) { return `<label for="${id}">${rot}${opcional ? ' <span class="dica">(opcional)</span>' : ""}</label><textarea id="${id}" placeholder="${esc(ph || "")}">${esc(S[id] || "")}</textarea>`; }
+function detalhes(pq, onde, ex) { return `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${pq}</p>${onde ? `<p><b>Onde conseguir:</b> ${onde}</p>` : ""}<p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${ex}</p></details>`; }
+function ligar(ids) { ids.forEach((k) => { const el = document.getElementById(k); if (el) el.addEventListener("input", (e) => { S[k] = e.target.value; gravar(); atualiza(); }); }); }
+function simnao(nome, valor) { return `<div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.SIMNAO.map((o) => `<label><input type="radio" name="${nome}" value="${o.v}" ${valor === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>`; }
+function atualiza() {
+  const t = TELAS[S.tela]; const v = Z.validar(S, t);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.map(esc).join("<br>");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(t);
+}
+function liveHtml(t) {
+  const r = Z.calcular(S);
+  if (t === "marca") return `Testes da promessa com Sim: <b>${r.testesSim} de 4</b>${r.adjetivos.length ? ` · adjetivos genéricos: <b>${esc(r.adjetivos.join(", "))}</b>` : ""}`;
+  if (t === "prova") return `A promessa já aparece em <b>${r.pontosSim.length}</b> pontos de contato e falta em <b>${r.pontosFaltando.length}</b>.`;
+  if (t === "lista") return r.porMesLista != null && r.estadiasMes ? `Para chegar à meta em 12 meses: cerca de <b>${Z.dec(r.porMesLista, 0)} autorizações por mês</b>, <b>${Z.pct(r.pctEstadiasLista, 0)}</b> das estadias de um mês típico.` : "Preencha os contatos, a meta e as estadias para ver o ritmo da lista.";
+  if (t === "canais") return r.reservas > 0 && r.receita > 0 ? `Reservas: <b>${Z.dec(r.reservas, 0)}</b> · custo médio por reserva: <b>${Z.brl(r.custoPorReserva)}</b> · venda direta: <b>${Z.pct(r.vendaDireta)}</b> da receita` : "Lance as reservas e a receita de cada canal para ver o custo por reserva.";
+  if (t === "meta") return r.receitaDiretaMeta != null ? `Venda direta hoje: <b>${Z.pct(r.vendaDireta)}</b>. A meta pede <b>${Z.brl(r.receitaDiretaMeta)}</b> de venda direta num mês com a mesma receita${r.comissaoEvitada != null ? `; deixariam de sair cerca de <b>${Z.brl(r.comissaoEvitada)}</b> de comissão (conta, não previsão)` : ""}.` : `Venda direta hoje: <b>${Z.pct(r.vendaDireta)}</b>. Escreva a meta.`;
+  return "";
+}
+function card(tela, intro, corpo, rot) {
+  return `<div class="card"><div class="eyebrow">Tela ${TELAS.indexOf(tela)} · ${Z.TITULOS[tela]}</div><h2 class="pergunta">${intro.t}</h2><p class="explica">${intro.p}</p>${corpo}<div class="calc" id="live">${liveHtml(tela)}</div><div id="avisos"></div><p class="erro" id="erro"></p>${nav(rot)}</div>`;
+}
+function textoNivel() { const n = Z.nivel(S); return Z.DIAG.every((q) => S.diag[q.id]) ? `Nível ${n.n} de 4 · <b>${n.r}</b>. ${n.t}` : "Responda as quatro perguntas para ver o nível do seu marketing próprio."; }
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const comecou = S.situacao || S.promessa;
+    const respondeu = S.situacao && Z.DIAG.every((q) => S.diag[q.id]);
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 4 · Faça agora</div><h1>A minha Marca e Captação</h1>
+    <p class="lead">Aprenda o passo a passo para dizer por que alguém escolheria a sua hospedagem, começar a sua lista própria de contatos e saber quanto custa cada reserva em cada canal.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Audiência alugada não é audiência. Sem motivo declarado, a comparação volta para preço; sem lista própria, toda reserva nova paga comissão, até a do hóspede que já veio.</div>
+    <div><b>Como vamos fazer</b>Cinco telas: para quem e a promessa, a prova e o tom, a lista própria, os canais com o custo por reserva e a meta de venda direta. Cada pergunta diz por que, onde conseguir e um exemplo.</div>
+    <div><b>Para que serve</b>Você sai com a marca em uma folha, a lista começada e o custo por reserva de cada canal, em PDF. É a página 4 do seu Plano de Gestão.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    <div class="opcoes">${Z.SITUACOES.map((o) => `<label class="op"><input type="radio" name="sit" value="${o.v}" ${S.situacao === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div>
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Quatro perguntas antes de começar</h2>
+    <p class="explica">Responda como está hoje, não como gostaria.</p>
+    <div class="grade">${Z.DIAG.map((q) => `<div class="item"><b>${q.r}</b>${simnao("d-" + q.id, S.diag[q.id])}</div>`).join("")}</div>
+    <div class="calc" id="nivel">${textoNivel()}</div>
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: escreva a promessa e a frase de autorização agora, e use números previstos nos canais. A lista começa no primeiro hóspede.</div>` : ""}
+    <p class="dica" style="margin-top:10px">As respostas ficam só neste aparelho. Nada é enviado.</p>
+    <div class="nav"><button class="btn btn-p" id="vai" ${respondeu ? "" : "disabled"}>Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver pronto antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    const okAb = () => { document.getElementById("vai").disabled = !(S.situacao && Z.DIAG.every((q) => S.diag[q.id])); document.getElementById("nivel").innerHTML = textoNivel(); };
+    app.querySelectorAll("input[name=sit]").forEach((x) => x.onchange = () => { S.situacao = x.value; gravar(); render(); });
+    Z.DIAG.forEach((q) => app.querySelectorAll(`input[name=d-${q.id}]`).forEach((x) => x.onchange = () => { S.diag[q.id] = x.value; gravar(); okAb(); }));
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(Z.proximaVazia(S))); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => { S = Object.assign(vazio(), paraTexto(JSON.parse(JSON.stringify(Z.EXEMPLO))), { nome: S.nome, email: S.email, tela: 1, nCanais: 6 }); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("vai").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "marca") {
+    const E = Z.EXEMPLO;
+    let c = `<div class="campo">${area("publico", "Para quem é a sua hospedagem", "Ex.: " + E.publico)}${detalhes("Marca é feita de três decisões: o que você promete, para quem e o que nunca faz. O público dito com clareza faz quem não é dele entender que não é.", "Quem mais reserva hoje: de onde vem, com quem, quantas noites. Use as suas últimas reservas.", E.publico)}
+    ${area("naoPublico", "E para quem não é", "Ex.: " + E.naoPublico, true)}</div>
+    <div class="campo">${area("promessa", "A promessa, em uma frase", "Ex.: " + E.promessa)}${detalhes("A promessa diz o que o hóspede vive, não a lista do que existe. A ocasião, o que acontece e o que torna aquilo possível. Sem adjetivo, sem palavra bonita, uma coisa concreta.", "Comece pela ocasião mais frequente do seu público. Corte aconchegante, único, especial, exclusivo, inesquecível, incrível e perfeito.", E.promessa)}</div>
+    <div class="campo" style="background:var(--creme)"><b>Os quatro testes da promessa</b><div class="grade">${Z.TESTES.map((q) => `<div class="item"><b>${q.r}</b><small>${q.p}</small>${simnao("t-" + q.id, S.testes[q.id])}</div>`).join("")}</div></div>
+    <div class="campo"><label for="cinco">Mostrei a frase a cinco pessoas de fora. Quantas entenderam sem perguntar?</label><select id="cinco"><option value="">Escolha</option>${Z.CINCO.map((o) => `<option value="${o.v}" ${S.cinco === o.v ? "selected" : ""}>${o.r}</option>`).join("")}</select>
+    ${detalhes("Se precisarem perguntar o que é, a frase ainda não existe.", "Quem não conhece a hospedagem: um vizinho, um colega, um parente distante.", "4 de 5 entenderam; a Ana vai reescrever e testar de novo")}</div>`;
+    h += card("marca", { t: "Por que alguém escolheria a sua casa?", p: "O hóspede não compara quartos. Compara motivos. Primeiro, para quem é a sua hospedagem e o que ela promete." }, c);
+    app.innerHTML = h; ligar(["publico", "naoPublico", "promessa"]);
+    Z.TESTES.forEach((q) => app.querySelectorAll(`input[name=t-${q.id}]`).forEach((x) => x.onchange = () => { S.testes[q.id] = x.value; gravar(); atualiza(); }));
+    document.getElementById("cinco").onchange = (e) => { S.cinco = e.target.value; gravar(); atualiza(); };
+  }
+  if (t === "prova") {
+    const E = Z.EXEMPLO;
+    let c = `<div class="campo">${area("prova", "A foto (ou a prova) que mostra a promessa", "Ex.: " + E.prova)}${detalhes("A foto de capa do anúncio tem que mostrar exatamente o que a frase diz. Quando as duas discordam, a reserva não acontece.", "A primeira foto do seu anúncio. Se ela não mostra a promessa, escreva qual foto mostraria.", E.prova)}</div>
+    <div class="campo">${inp("tom", "O tom de voz, em três palavras", { ph: "Ex.: " + E.tom })}${area("banidas", "Palavras que você nunca escreve", "Ex.: " + E.banidas, true)}${detalhes("O jeito de escrever o anúncio, as mensagens e as respostas às avaliações é marca tanto quanto o logotipo. E é de graça.", "Três decisões: formal ou próximo; descritivo ou evocativo; o que nunca se escreve.", E.tom + " Nunca: " + E.banidas)}</div>
+    <div class="campo">${area("nunca", "O que a sua hospedagem nunca faz", "Ex.: " + E.nunca, true)}<p class="dica">Uma hospedagem que aceita tudo não promete nada.</p></div>
+    <div class="campo" style="background:var(--creme)"><b>Onde a promessa já aparece?</b><p class="dica" style="margin:4px 0 0">Promessa que aparece só no site não é promessa, é texto.</p>
+    ${Z.PONTOS.map((x) => `<div class="ponto"><b>${x.r}</b><div class="trio" role="radiogroup">${Z.PONTO_OP.map((o) => `<label><input type="radio" name="p-${x.id}" value="${o.v}" ${S.pontos[x.id] === o.v ? "checked" : ""}>${o.r}</label>`).join("")}</div></div>`).join("")}
+    <p class="dica" style="margin-top:8px">As mensagens de boas-vindas e de agradecimento já estão prontas no <a href="../../p/adbc67069af26ae0/kit-mensagens-11/">Kit de Mensagens (Ferramenta 11)</a>: ajuste ao seu tom.</p></div>`;
+    h += card("prova", { t: "Como a promessa chega antes da reserva?", p: "A prova que a mostra, o jeito de escrever e os lugares onde ela precisa aparecer." }, c);
+    app.innerHTML = h; ligar(["prova", "tom", "banidas", "nunca"]);
+    Z.PONTOS.forEach((x) => app.querySelectorAll(`input[name=p-${x.id}]`).forEach((el) => el.onchange = () => { S.pontos[x.id] = el.value; gravar(); atualiza(); }));
+  }
+  if (t === "lista") {
+    const E = Z.EXEMPLO;
+    let c = `<div class="campo"><div class="dois"><div>${inp("contatos", "Contatos de hóspedes hoje", { im: "numeric", ph: "Ex.: " + E.contatos })}</div><div>${inp("autorizados", "Desses, com autorização", { im: "numeric", ph: "Ex.: " + E.autorizados })}</div></div>
+    ${detalhes("A diferença entre seguidor e contato é que o contato você alcança quando quiser, sem pedir licença ao algoritmo nem pagar comissão. Sem autorização, a lista não pode ser usada.", "Conte os telefones e e-mails guardados. Autorização é a pessoa ter dito sim a receber comunicação sua.", "64 contatos no celular, 0 com autorização")}</div>
+    <div class="campo"><label for="onde">Onde a lista fica guardada</label><select id="onde"><option value="">Escolha</option>${Z.ONDE.map((o) => `<option value="${o.v}" ${S.onde === o.v ? "selected" : ""}>${o.r}</option>`).join("")}</select>
+    ${inp("acesso", "Quem mais tem acesso", { ph: "Ex.: " + E.acesso })}${detalhes("Guarde num lugar que não seja o seu celular, com cópia de segurança. Contato que só existe dentro da plataforma não é seu.", "A aba Lista própria da planilha deste módulo já tem os oito campos.", "só no celular da Ana")}</div>
+    <div class="campo">${area("frase", "A frase para pedir a autorização no check-in", "Ex.: " + E.frase)}${detalhes("Peça e-mail e WhatsApp no check-in, com autorização explícita, e registre a resposta. Quem não aceita fica só no histórico e não recebe nada.", "Uma frase curta, dita pessoalmente. Confira também as regras da plataforma por onde a reserva veio.", E.frase)}</div>
+    <div class="campo"><label>Um canal para fazer bem</label><div class="trio" style="grid-template-columns:1fr 1fr" role="radiogroup">${Z.CANAIS_LISTA.map((o) => `<label><input type="radio" name="canalLista" value="${o}" ${S.canalLista === o ? "checked" : ""}>${o}</label>`).join("")}</div><p class="dica" style="margin-top:6px">Uma régua de WhatsApp bem feita vale mais que presença fraca em cinco redes.</p></div>
+    <div class="campo"><div class="dois"><div>${inp("metaLista", "Meta de contatos com autorização em 12 meses", { im: "numeric", ph: "Ex.: " + E.metaLista })}</div><div>${inp("estadiasMes", "Estadias num mês típico", { im: "numeric", ph: "Ex.: " + E.estadiasMes })}</div></div>${detalhes("A meta da lista mostra o ritmo: quantas autorizações por mês e que parte das estadias isso pede.", "As estadias (reservas) de um mês comum, no calendário das plataformas.", "120 contatos em 12 meses, com 25 estadias por mês")}</div>`;
+    h += card("lista", { t: "A sua lista própria de contatos", p: "Audiência alugada não é audiência. A lista com autorização é o ativo de marketing mais barato que uma hospedagem pode ter." }, c);
+    app.innerHTML = h; ligar(["contatos", "autorizados", "acesso", "frase", "metaLista", "estadiasMes"]);
+    document.getElementById("onde").onchange = (e) => { S.onde = e.target.value; gravar(); atualiza(); };
+    app.querySelectorAll("input[name=canalLista]").forEach((x) => x.onchange = () => { S.canalLista = x.value; gravar(); atualiza(); });
+  }
+  if (t === "canais") {
+    const usados = S.canais.reduce((m, c, k) => (c.nome || c.reservas || c.receita ? k + 1 : m), 0);
+    const n = Math.min(Z.NCANAIS, Math.max(1, S.nCanais || 1, usados));
+    let c = `<div class="campo">${inp("mesCanais", "Mês dos números", { ph: "Ex.: Outubro de 2026" })}${detalhes("Custo por reserva é quanto você gastou dividido por quantas reservas vieram daquele esforço. Sem esse número, investir em captação é aposta.", "Plataformas: relatório de ganhos (receita e comissão). Direto: a pergunta \"como você chegou até nós?\" e o que você gastou no mês (impulsionamento, anúncio, brinde).", "outubro de 2026: duas plataformas e três canais diretos")}</div>`;
+    for (let k = 0; k < n; k++) {
+      const x = S.canais[k];
+      c += `<div class="canal" data-k="${k}"><div class="tit">Canal ${k + 1}</div>
+      <label for="c${k}_nome">Nome do canal</label><input type="text" id="c${k}_nome" data-k="${k}" data-f="nome" value="${esc(x.nome)}" placeholder="${k === 0 ? "Ex.: Plataforma A" : "Ex.: Indicação"}">
+      <label for="c${k}_tipo">Tipo</label><select id="c${k}_tipo" data-k="${k}" data-f="tipo"><option value="">Escolha</option>${Z.TIPOS.map((o) => `<option value="${o.v}" ${x.tipo === o.v ? "selected" : ""}>${o.r}</option>`).join("")}</select>
+      <div class="dois"><div><label for="c${k}_reservas">Reservas no mês</label><input type="text" inputmode="numeric" id="c${k}_reservas" data-k="${k}" data-f="reservas" value="${esc(x.reservas)}" placeholder="Ex.: 12"></div><div><label for="c${k}_receita">Receita de hospedagem (R$)</label><input type="text" inputmode="decimal" id="c${k}_receita" data-k="${k}" data-f="receita" value="${esc(x.receita)}" placeholder="Ex.: 8.120,00"></div></div>
+      <div class="dois"><div><label for="c${k}_comissao">Comissão (%)</label><input type="text" inputmode="decimal" id="c${k}_comissao" data-k="${k}" data-f="comissao" value="${esc(x.comissao)}" placeholder="0 se direto"></div><div><label for="c${k}_gasto">Gasto no mês (R$)</label><input type="text" inputmode="decimal" id="c${k}_gasto" data-k="${k}" data-f="gasto" value="${esc(x.gasto)}" placeholder="Ex.: 150,00"></div></div></div>`;
+    }
+    if (n < Z.NCANAIS) c += `<button type="button" class="btn btn-s" id="maisCanal" style="width:100%;margin-top:12px">Adicionar outro canal</button>`;
+    c += `<p class="dica" style="margin-top:10px">Taxa de cartão e imposto ficam fora: eles estão na Folha Única (Módulo 2). Aqui entra só o que custou trazer o hóspede.</p>`;
+    h += card("canais", { t: "Quanto custa cada reserva?", p: "Para cada canal do mês: reservas, receita de hospedagem, comissão da plataforma e o que você gastou para trazer o hóspede." }, c);
+    app.innerHTML = h; ligar(["mesCanais"]);
+    app.querySelectorAll("[data-f]").forEach((el) => { const f = (e) => { S.canais[+el.dataset.k][el.dataset.f] = e.target.value; gravar(); atualiza(); }; el.addEventListener("input", f); el.addEventListener("change", f); });
+    const mc = document.getElementById("maisCanal"); if (mc) mc.onclick = () => { S.nCanais = n + 1; gravar(); render(); };
+  }
+  if (t === "meta") {
+    const r = Z.calcular(S), P = painel();
+    let c = `<div class="campo" style="background:var(--creme)"><b>Venda direta hoje (dos seus canais): ${Z.pct(r.vendaDireta)}</b><p class="dica" style="margin:4px 0 0">${Z.brl(r.receitaDireta)} de ${Z.brl(r.receita)} de hospedagem; ${Z.dec(r.reservasDiretas, 0)} de ${Z.dec(r.reservas, 0)} reservas.</p></div>`;
+    if (P) c += `<div class="campo"><b>No seu Painel de Gestão (Módulo 1)</b><p class="dica" style="margin:4px 0 8px">Venda direta de partida: ${P.base == null ? "não sei" : Z.dec(P.base, 1) + "%"} · meta: ${P.meta == null ? "sem meta" : Z.dec(P.meta, 1) + "%"}.</p>${P.meta != null ? `<button type="button" class="btn btn-s" id="doPainel" style="width:100%">Usar a meta do meu Painel</button>` : ""}</div>`;
+    c += `<div class="campo">${inp("metaDireta", "Meta de venda direta (%)", { im: "decimal", ph: "Ex.: 40" })}${inp("prazoMeta", "Até quando", { tipo: "date" })}${detalhes("Um número, não uma intenção. E o prazo para chegar nele. A mesma meta do seu Painel de Gestão, para a reunião semanal olhar um número só.", "O seu Painel (Módulo 1) ou a Tabela de Preço e Canais (Módulo 3).", "de 30% para 40% até 30/06/2027")}</div>`;
+    h += card("meta", { t: "Quanto da receita vai entrar sem plataforma?", p: "A venda direta é um dos cinco números do Painel. Aqui ela ganha uma meta, um prazo e a conta do que muda." }, c, "Ver a minha Marca e Captação");
+    app.innerHTML = h; ligar(["metaDireta"]);
+    const pz = document.getElementById("prazoMeta"); const fz = (e) => { S.prazoMeta = e.target.value; gravar(); atualiza(); }; pz.addEventListener("input", fz); pz.addEventListener("change", fz);
+    const bp = document.getElementById("doPainel"); if (bp) bp.onclick = () => { S.metaDireta = String(P.meta).replace(".", ","); gravar(); render(); };
+  }
+  if (t === "resultado") { app.innerHTML = resultado(); ligaResultado(); return; }
+  atualiza();
+  document.getElementById("volta").onclick = () => ir(-1);
+  document.getElementById("vai").onclick = () => { if (!Z.validar(S, t).ok) return; if (t === "meta" && !Z.completo(S)) { document.getElementById("erro").textContent = "Ainda falta preencher a tela: " + Z.TITULOS[Z.proximaVazia(S)] + "."; return; } ir(1); };
+}
+
+function resultado() {
+  const r = Z.calcular(S), L = Z.leituras(r, S), A = Z.atencao(r, S, painel()), F = Z.folha(S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(S, r);
+  const T = Object.assign({}, S, { acao }); const concl = Z.concluido(T), pend = Z.pendencias(T);
+  const nv = Z.nivel(S);
+  return `<div class="card"><div class="eyebrow">A minha Marca e Captação${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">Promessa, lista e custo por reserva</div><div class="nota" id="resumoNota">${Z.pct(r.vendaDireta)}<small> de venda direta hoje · meta ${Z.dec(r.metaDireta, 1)}%${r.prazoMeta ? " até " + r.prazoMeta : ""}</small></div><p>Custo médio por reserva: ${Z.brl(r.custoPorReserva)}. Lista própria: ${Z.dec(r.autorizados, 0)} contatos com autorização, meta de ${Z.dec(r.metaLista, 0)} em 12 meses.</p></div>
+  ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: os canais são previsão. Refaça a tela de canais com o primeiro mês aberto.</div>` : ""}
+  <section class="bloco"><h2>1 · O resultado</h2><p>A marca em uma folha:</p>
+  <div class="folha" id="folha">${F.map((l) => `<div data-id="${l.id}"><b>${esc(l.r)}</b><span>${esc(l.t)}</span></div>`).join("")}</div>
+  <p style="margin-top:14px">O custo por reserva de cada canal (${esc(S.mesCanais || "")}):</p>
+  <table class="painel" id="canais"><tr><th>Canal</th><th>Reservas · custo · por reserva</th></tr>${r.linhas.map((l) => `<tr data-nome="${esc(l.nome)}"><td><b>${esc(l.nome)}</b><small>${l.tipo === "direto" ? "direto" : "plataforma, " + Z.dec(l.comissaoPct, 1) + "%"}</small></td><td class="n">${Z.dec(l.reservas, 0)} · ${Z.brl(l.custo)} · <b>${Z.brl(l.custoPorReserva)}</b><small>${l.pctReceita == null ? "" : Z.pct(l.pctReceita) + " da receita do canal"}</small></td></tr>`).join("")}
+  <tr><td><b>Total</b></td><td class="n">${Z.dec(r.reservas, 0)} · ${Z.brl(r.custo)} · <b>${Z.brl(r.custoPorReserva)}</b></td></tr></table>
+  <p class="dica">Lista própria: ${Z.dec(r.contatos, 0)} contatos, ${Z.dec(r.autorizados, 0)} com autorização; guardada em: ${esc(Z.ONDE_R[S.onde] || "")}; acesso: ${esc(S.acesso || "")}. Canal para fazer bem: ${esc(S.canalLista || "")}.</p></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras">${L.map((x) => `<p>${esc(x)}</p>`).join("")}</div>
+  <p class="dica">Nível do marketing próprio hoje: ${nv.n} de 4 · ${esc(nv.r)}. As contas são feitas com os seus números; nenhuma delas é previsão de reservas.</p></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div id="atencao">${A.length ? A.map((a) => `<div class="fragil" style="margin-top:8px" data-id="${a.id}"><b>${esc(a.r)}.</b> ${esc(a.t)}</div>`).join("") : `<div class="caixa c-sig" data-id="ok"><p>Nenhum alerta na marca, na lista e nos canais. Confira só o erro comum abaixo.</p></div>`}</div>
+  <div class="caixa c-at" id="erroComum"><h3>O erro mais comum</h3><p>${esc(Z.ERRO_COMUM)}</p></div></section>
+  <section class="bloco"><h2>4 · O que fazer</h2>
+  <div class="caixa c-faz"><p>O plano abaixo veio das suas respostas. Ajuste o texto se quiser e marque a data do primeiro check-in com o pedido de autorização.</p></div>
+  <label for="acao">O meu plano</label><textarea id="acao" style="min-height:190px">${esc(acao)}</textarea>
+  <label for="prazo">Data do primeiro check-in com o pedido de autorização</label><input type="date" id="prazo" value="${esc(S.prazo || "")}"></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Critério de conclusão</h3><p>${esc(Z.comoVerificar(r, S))}</p><p>A lição está concluída quando a marca em uma folha tem para quem, promessa, prova e tom; a lista tem os números de hoje, o lugar, a frase de autorização e a meta; os canais têm o custo por reserva; a meta de venda direta tem prazo; o plano está escrito com a data e o PDF foi baixado. <span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Pronto para avançar" : "Falta: " + pend.join("; ")}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Siga para o <b>Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}</b>: quem pede a autorização no check-in, quem responde o WhatsApp e quem registra o canal de cada reserva vira tarefa com dono.</p>
+  <p class="dica">Complementos: a planilha <a href="../materiais/planilhas/">Plano de Captação</a> (marca, captação do mês, lista própria e 12 meses) e o <a href="../../p/adbc67069af26ae0/kit-mensagens-11/">Kit de Mensagens (Ferramenta 11)</a>.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar a minha Marca e Captação em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Refazer</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  const atualizaSelo = () => { const T = Object.assign({}, S, { acao: S.acao != null ? S.acao : Z.planoSugerido(S) }); const ok = Z.concluido(T); const s = document.getElementById("selo"); s.textContent = ok ? "Pronto para avançar" : "Falta: " + Z.pendencias(T).join("; "); s.className = "selo" + (ok ? "" : " pend"); };
+  document.getElementById("acao").oninput = (e) => { S.acao = e.target.value; gravar(); atualizaSelo(); };
+  const fp = (e) => { S.prazo = e.target.value; gravar(); atualizaSelo(); };
+  document.getElementById("prazo").oninput = fp; document.getElementById("prazo").onchange = fp;
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { gerarPDF(); atualizaSelo(); };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return; }
+  const r = Z.calcular(S), L = Z.leituras(r, S), A = Z.atencao(r, S, painel()), F = Z.folha(S);
+  const acao = S.acao != null ? S.acao : Z.planoSugerido(S, r);
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, M = 18, CW = W - 2 * M; let y = 0;
+  const fx = (s) => String(s).replace(/−/g, "-").replace(/→/g, "->");
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text(fx("Conteúdo educacional. Não é promessa de renda, retorno, ocupação, reservas ou resultado. Exemplo didático sempre com dados fictícios. Zion Hospitality Business."), M, 286, { maxWidth: CW }); };
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  // a fonte é aplicada de novo depois da quebra, porque o rodapé muda o tamanho (correção do Módulo 1)
+  const txt = (s, size, cor, bold) => { const set = () => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); }; set(); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); set(); d.text(ls, M, y); y += ls.length * size * 0.42 + 3; };
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 42, "F"); d.setTextColor(224, 190, 94); d.setFontSize(9); d.text(fx("ZION · JORNADA 2 · GESTÃO · MÓDULO 4 · MARKETING E VENDAS"), M, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(20); d.text(fx("A minha Marca e Captação"), M, 26);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(fx([S.nome, S.hospedagem, new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · ")), M, 35);
+  y = 54;
+  txt("1 · O resultado: marca, lista e custo por reserva (página 4 do Plano de Gestão)", 9, [122, 94, 18], true);
+  txt("A marca em uma folha", 11, null, true);
+  F.forEach((l) => txt(l.r + ": " + l.t, 10));
+  txt("A lista própria", 11, null, true);
+  txt(`${Z.dec(r.contatos, 0)} contatos, ${Z.dec(r.autorizados, 0)} com autorização. Guardada em: ${Z.ONDE_R[S.onde] || ""}. Acesso: ${S.acesso || ""}. Canal para fazer bem: ${S.canalLista || ""}. Meta: ${Z.dec(r.metaLista, 0)} contatos com autorização em 12 meses. Frase no check-in: "${S.frase || ""}"`, 10);
+  txt("O custo por reserva" + (S.mesCanais ? " · " + S.mesCanais : ""), 11, null, true);
+  const cols = [M, M + 76, M + 98, M + 136];
+  quebra(8); d.setFont("helvetica", "bold"); d.setFontSize(9); d.setTextColor(22, 38, 28); ["Canal", "Reservas", "Custo de captação", "Por reserva"].forEach((c, k) => d.text(fx(c), cols[k], y)); y += 5;
+  r.linhas.concat([{ nome: "Total", reservas: r.reservas, custo: r.custo, custoPorReserva: r.custoPorReserva, total: true }]).forEach((l) => { quebra(6); d.setFont("helvetica", l.total ? "bold" : "normal"); d.setFontSize(9.5); d.setTextColor(22, 38, 28); d.text(fx(l.nome + (l.total ? "" : l.tipo === "direto" ? " (direto)" : " (plataforma)")), cols[0], y, { maxWidth: 74 }); d.text(fx(Z.dec(l.reservas, 0)), cols[1], y); d.text(fx(Z.brl(l.custo)), cols[2], y); d.text(fx(Z.brl(l.custoPorReserva)), cols[3], y); y += 5.5; });
+  y += 2; txt(`Venda direta hoje: ${Z.pct(r.vendaDireta)} da receita de hospedagem. Meta: ${Z.dec(r.metaDireta, 1)}%${r.prazoMeta ? " até " + r.prazoMeta : ""}.`, 10, null, true);
+  y += 2; txt("2 · O que isso significa", 9, [122, 94, 18], true); L.forEach((x) => txt(x, 10));
+  y += 2; txt("3 · Atenção", 9, [122, 94, 18], true);
+  if (A.length) A.forEach((a) => txt(a.r + ": " + a.t, 10)); else txt("Nenhum alerta na marca, na lista e nos canais.", 10);
+  txt("Erro comum: " + Z.ERRO_COMUM, 10);
+  y += 2; txt("4 · O que fazer", 9, [122, 94, 18], true); txt(acao, 10.5);
+  if (S.prazo) txt("Primeiro check-in com o pedido de autorização: " + S.prazo.split("-").reverse().join("/"), 10, null, true);
+  y += 2; txt("5 · Como verificar", 9, [122, 94, 18], true); txt(Z.comoVerificar(r, S), 10);
+  y += 2; txt("A próxima etapa", 9, [122, 94, 18], true); txt(`Módulo ${Z.PROXIMO.n} · ${Z.PROXIMO.t}: o pedido de autorização, a resposta do WhatsApp e o registro do canal viram tarefa com dono.`, 10, null, true);
+  rodape();
+  d.save("marca-e-captacao.pdf");
+  S.pdf = new Date().toISOString(); gravar();
+}
+render();
+</script>
+</body>
+</html>
