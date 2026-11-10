@@ -1,0 +1,413 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Montador do Plano de Gestão, a ferramenta Faça agora do Módulo 7, o último da Jornada de Gestão. Ele junta as páginas que você fez nos módulos anteriores, acrescenta a página de qualidade e reputação, a rotina semanal e o teste de prontidão, e entrega tudo num único PDF. Vamos usar o exemplo didático das Cabanas do Vale, com dados fictícios.",
+   "actions": [
+    {
+     "card": {
+      "t": "Jornada de Gestão · Módulo 7 · Montador do Plano",
+      "s": "As oito páginas, a reputação, a rotina e o teste de prontidão",
+      "k": "Jornada de Gestão · Módulo 7 · Qualidade"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Na abertura, o Montador já traz o seu nome, o e-mail, a hospedagem e a sua situação, lidos das fichas que você fez neste mesmo aparelho. Confira e toque em Começar. As respostas ficam só no seu aparelho; nada é enviado.",
+   "actions": [
+    {
+     "goto": "http://localhost:8817/trilha2/qualidade/"
+    },
+    {
+     "eval": "localStorage.clear();const st={\"zion-t2-marco-zero\":{\"situacao\":\"dono\",\"quem\":\"so\",\"tipo\":\"Cabanas ou chalés\",\"unidades\":\"4\",\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"cinco\":{\"entrou\":2,\"sobrou\":0,\"ocupacao\":1,\"diaria\":2,\"custo\":0},\"areas\":{\"metas\":0,\"financas\":1,\"preco\":1,\"vendas\":2,\"pessoas\":1,\"compras\":2,\"operacao\":1,\"qualidade\":0},\"rotina\":\"as-vezes\",\"tempo\":\"operacao\",\"saida\":\"acho\",\"prazo\":\"2026-12-15\",\"pdf\":\"2026-11-09T10:00:00.000Z\",\"tela\":6},\"zion-t2-planejamento\":{\"situacao\":\"dono\",\"quem\":\"so\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"diag\":{\"painel\":\"nao\",\"metas\":\"nao\",\"donos\":\"nao\",\"reuniao\":\"nao\"},\"mesBase\":\"Outubro de 2026\",\"dias\":31,\"unidades\":4,\"base_ocupacao\":46.8,\"base_diaria\":280,\"base_resultado\":11890,\"resultadoSemRetirada\":true,\"base_nota\":4.7,\"escalaNota\":\"5\",\"base_vendaDireta\":30,\"meta_ocupacao\":50,\"meta_diaria\":300,\"meta_resultado\":13000,\"meta_nota\":4.8,\"meta_vendaDireta\":40,\"numeroCorte\":\"\",\"ocupacaoEquilibrio\":\"\",\"dono_ocupacao\":\"Ana\",\"dono_diaria\":\"Ana\",\"dono_resultado\":\"Ana\",\"dono_nota\":\"Ana\",\"dono_vendaDireta\":\"Ana\",\"reuniaoDia\":\"Segunda-feira\",\"reuniaoHora\":\"08:00\",\"reuniaoDuracao\":30,\"reuniaoQuem\":\"Ana, sozinha, com a planilha\",\"reuniaoOnde\":\"Planilha Painel de Gestão\",\"sumisse\":\"As respostas aos hóspedes e a liberação das cabanas depois da limpeza.\",\"s12\":\"2\",\"s34\":\"3\",\"s56\":\"4\",\"s12Por\":\"Fechar outubro na Folha Única e lançar a minha retirada.\",\"s34Por\":\"Calcular o piso da diária antes de subir para R$ 300.\",\"s56Por\":\"Anotar o canal de cada reserva para medir a venda direta.\",\"depois\":\"Compras e estoque: já funciona com lista; fica para depois da alta temporada.\",\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"},\"zion-t2-financas\":{\"situacao\":\"dono\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"diag\":{\"conta\":\"sim\",\"custo\":\"nao\",\"retirada\":\"sim\",\"reserva\":\"nao\"},\"mes\":\"Outubro de 2026\",\"dias\":31,\"unidades\":4,\"noites\":58,\"estadias\":25,\"receitaHospedagem\":16240,\"taxaLimpezaCobrada\":1500,\"outrasReceitas\":980,\"custoOutrasReceitas\":420,\"descontos\":650,\"comissoesPct\":11,\"processamentoPct\":1.5,\"impostoPct\":6,\"cancelamentos\":0,\"limpezaPaga\":2000,\"enxoval\":380,\"amenidades\":260,\"energiaVariavel\":340,\"cafe\":0,\"quebra\":\"\",\"quebraRef\":true,\"outrosVariaveis\":0,\"equipe\":1800,\"comuns\":620,\"software\":190,\"contador\":300,\"marketingFixo\":150,\"duodecimos\":460,\"manutencaoContratada\":250,\"retiradaModo\":\"horas\",\"retiradaHoras\":20,\"retiradaValorHora\":40,\"retirada\":\"\",\"retiradaDecidida\":false,\"outrosFixos\":0,\"aluguel\":0,\"taxaGestao\":0,\"marca\":0,\"reservaPct\":4,\"depreciacao\":\"\",\"saldoInicial\":9800,\"entradasCaixa\":18470,\"saidasCaixa\":14650,\"reservasSeparadas\":0,\"aReceber\":0,\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"},\"zion-t2-preco\":{\"situacao\":\"dono\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"diag\":{\"varia\":\"nao\",\"piso\":\"nao\",\"liquido\":\"nao\",\"direta\":\"sim\"},\"custoVariavelNoite\":28.32,\"custoNoiteVendida\":153.03,\"diariaAtual\":280,\"noitesPorEstadia\":2.32,\"receitaMes\":16240,\"impostoPct\":6,\"gestorCanais\":true,\"motorReservas\":false,\"canais\":[{\"nome\":\"Plataforma A\",\"mix\":50,\"comissao\":16,\"pagamento\":1.5,\"extra\":0,\"direta\":false},{\"nome\":\"Plataforma B\",\"mix\":20,\"comissao\":15,\"pagamento\":1.5,\"extra\":0,\"direta\":false},{\"nome\":\"Venda direta (site e WhatsApp)\",\"mix\":30,\"comissao\":0,\"pagamento\":1.5,\"extra\":0,\"direta\":true}],\"concorrentes\":[270,280,290,300,310,320,360],\"terco\":\"meio\",\"referencia\":300,\"margemMinima\":10,\"pisoDeclarado\":225,\"quemConhece\":\"Eu e quem responde o WhatsApp\",\"condicoes\":[\"Terceira noite com café da manhã incluso\",\"Saída tardia até as 14 h\",\"Cesta de boas-vindas com produtos da região\"],\"fatores\":{\"vale\":0.75,\"baixa\":0.9,\"alta\":1.5,\"pico\":2.2},\"ano\":2027,\"mesInicio\":1,\"meses\":[{\"sem\":\"baixa\",\"fds\":\"base\"},{\"sem\":\"baixa\",\"fds\":\"base\"},{\"sem\":\"vale\",\"fds\":\"baixa\"},{\"sem\":\"vale\",\"fds\":\"baixa\"},{\"sem\":\"vale\",\"fds\":\"base\"},{\"sem\":\"base\",\"fds\":\"alta\"},{\"sem\":\"alta\",\"fds\":\"alta\"},{\"sem\":\"base\",\"fds\":\"alta\"},{\"sem\":\"baixa\",\"fds\":\"base\"},{\"sem\":\"baixa\",\"fds\":\"base\"},{\"sem\":\"vale\",\"fds\":\"baixa\"},{\"sem\":\"baixa\",\"fds\":\"base\"}],\"picos\":[{\"nome\":\"Carnaval\",\"mes\":2,\"noites\":4,\"fator\":2.2,\"minimo\":4},{\"nome\":\"Corpus Christi (feriado prolongado)\",\"mes\":5,\"noites\":4,\"fator\":1.9,\"minimo\":3},{\"nome\":\"Festival de inverno (evento local)\",\"mes\":7,\"noites\":3,\"fator\":2,\"minimo\":2},{\"nome\":\"Réveillon\",\"mes\":12,\"noites\":5,\"fator\":2.4,\"minimo\":5}],\"metaDireta\":40,\"prazoMeta\":\"2027-06-30\",\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"},\"zion-t2-marketing\":{\"situacao\":\"dono\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"diag\":{\"promessa\":\"nao\",\"lista\":\"nao\",\"canal\":\"nao\",\"custo\":\"nao\"},\"publico\":\"Casais que vêm de carro, de até três horas de distância, para duas ou três noites.\",\"naoPublico\":\"Grupos, festas e quem procura agito à noite.\",\"promessa\":\"Duas noites a dois, com a lareira acesa e o vale na janela da cama, sem vizinho à vista.\",\"testes\":{\"recusa\":\"sim\",\"cumprimento\":\"sim\",\"diferenca\":\"sim\",\"memoria\":\"sim\"},\"cinco\":\"4\",\"prova\":\"Foto de capa: a cama de frente para a janela do vale, com a lareira acesa ao lado.\",\"tom\":\"Próximo, concreto, calmo.\",\"banidas\":\"aconchegante, único, inesquecível, refúgio, experiência única\",\"nunca\":\"Não aceitamos festas nem mais de duas pessoas por cabana.\",\"pontos\":{\"anuncio\":\"sim\",\"site\":\"nao\",\"redes\":\"sim\",\"whatsapp\":\"nao\",\"boasvindas\":\"nao\",\"placa\":\"nao\"},\"contatos\":64,\"autorizados\":0,\"onde\":\"celular\",\"acesso\":\"Só a Ana\",\"canalLista\":\"WhatsApp\",\"frase\":\"Posso guardar o seu WhatsApp e o seu e-mail para avisar quando abrirmos datas e condições? Você pode sair quando quiser.\",\"metaLista\":120,\"estadiasMes\":25,\"mesCanais\":\"Outubro de 2026\",\"canais\":[{\"nome\":\"Plataforma A\",\"tipo\":\"plataforma\",\"comissao\":16,\"gasto\":0,\"reservas\":12,\"receita\":8120},{\"nome\":\"Plataforma B\",\"tipo\":\"plataforma\",\"comissao\":15,\"gasto\":0,\"reservas\":5,\"receita\":3248},{\"nome\":\"Instagram com impulsionamento\",\"tipo\":\"direto\",\"comissao\":0,\"gasto\":150,\"reservas\":2,\"receita\":1120},{\"nome\":\"Hóspede que volta (WhatsApp)\",\"tipo\":\"direto\",\"comissao\":0,\"gasto\":0,\"reservas\":3,\"receita\":1848},{\"nome\":\"Indicação\",\"tipo\":\"direto\",\"comissao\":0,\"gasto\":0,\"reservas\":3,\"receita\":1904},{\"nome\":\"\",\"tipo\":\"\",\"comissao\":\"\",\"gasto\":\"\",\"reservas\":\"\",\"receita\":\"\"}],\"metaDireta\":40,\"prazoMeta\":\"2027-06-30\",\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"},\"zion-t2-pessoas\":{\"situacao\":\"dono\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"unidades\":\"4\",\"equipeHoje\":\"2\",\"feriasDias\":\"0\",\"seteDias\":\"nunca\",\"dep\":{\"conhecimento\":\"media\",\"decisao\":\"forte\",\"relacao\":\"media\",\"acesso\":\"forte\"},\"acessoData\":\"2026-11-14\",\"invTotal\":\"52\",\"invSimples\":\"18\",\"invDecisao\":\"14\",\"invAcesso\":\"9\",\"ativ\":{\"limpeza\":{\"resp\":\"Diarista\",\"horas\":\"0\",\"julg\":\"baixo\"},\"checkin\":{\"resp\":\"Eu\",\"horas\":\"5\",\"julg\":\"baixo\"},\"mensagens\":{\"resp\":\"Eu\",\"horas\":\"6\",\"julg\":\"medio\"},\"manutencao\":{\"resp\":\"Auxiliar de manutenção\",\"horas\":\"1\",\"julg\":\"medio\"},\"compras\":{\"resp\":\"Eu\",\"horas\":\"2\",\"julg\":\"alto\"},\"financeiro\":{\"resp\":\"Eu\",\"horas\":\"2\",\"julg\":\"alto\"},\"preco\":{\"resp\":\"Eu\",\"horas\":\"2\",\"julg\":\"alto\"},\"avaliacoes\":{\"resp\":\"Eu\",\"horas\":\"2\",\"julg\":\"medio\"}},\"crit\":{\"ultimaHora\":{\"quem\":\"Quem estiver no plantão\",\"regra\":\"Aceita até 2 horas antes do check-in, se a unidade estiver pronta e houver alguém para receber.\",\"alcada\":\"\"},\"cortesia\":{\"quem\":\"Diarista\",\"regra\":\"Problema reconhecido na unidade: oferece cortesia de até 15% da diária.\",\"alcada\":\"42\"},\"cancelamento\":{\"quem\":\"Eu\",\"regra\":\"Motivo de saúde com comprovação: devolve até 50%. Qualquer outro motivo: consulta a dona.\",\"alcada\":\"\"},\"manutencao\":{\"quem\":\"Auxiliar de manutenção\",\"regra\":\"Resolve na hora o que não para a unidade. O que para a unidade: avisa a dona na hora.\",\"alcada\":\"100\"},\"compra\":{\"quem\":\"Diarista\",\"regra\":\"Item de reposição da lista padrão compra sem perguntar. Fora da lista: consulta.\",\"alcada\":\"100\"},\"hospede\":{\"quem\":\"Quem estiver no plantão\",\"regra\":\"Faz a advertência verbal e registra. Encerrar a estadia, só com a dona.\",\"alcada\":\"\"},\"calendario\":{\"quem\":\"Eu\",\"regra\":\"\",\"alcada\":\"\"}},\"alcadaInicial\":\"100\",\"alcada2mes\":\"300\",\"notaMin\":\"4,7\",\"gastoPct\":\"10\",\"diaSemanal\":\"segunda\",\"conversaMensal\":\"Primeira segunda-feira do mês, 40 minutos, com a Folha Única\",\"nivel\":\"1\",\"quemEnvia\":\"Diarista, por mensagem, toda segunda de manhã\",\"ativPlano\":\"checkin\",\"pessoa\":\"Diarista, que já faz a limpeza\",\"formato\":\"diarista\",\"inicio\":\"2026-11-16\",\"cobertura\":\"Eu (dona), nas folgas da diarista\",\"preAcesso\":\"nao\",\"preProc\":\"nao\",\"preCrit\":\"sim\",\"custoMes\":\"500\",\"equilibrio\":\"nao\",\"tempoLivre\":\"Duas horas por semana para preço e venda direta (módulos 3 e 4).\",\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"},\"zion-t2-compras\":{\"situacao\":\"dono\",\"hospedagem\":\"Cabanas do Vale (exemplo)\",\"diag\":{\"lista\":\"nao\",\"cotacao\":\"nao\",\"minimo\":\"sim\",\"calendario\":\"nao\"},\"mesesPeriodo\":3,\"noitesPeriodo\":174,\"hospedesPeriodo\":150,\"unidades\":4,\"custoVariavelNoite\":28.32,\"itens\":[{\"nome\":\"Café da manhã e cestas (insumos)\",\"unidade\":\"cesta montada\",\"gasto\":1260,\"tipo\":\"outras\",\"precoAtual\":28,\"cot\":[28,25.5,26.9],\"contrato\":\"fechar\"},{\"nome\":\"Lavanderia do enxoval\",\"unidade\":\"kg lavado\",\"gasto\":900,\"tipo\":\"variavel\",\"precoAtual\":3,\"cot\":[3,2.6,3.2],\"contrato\":\"sim\"},{\"nome\":\"Amenidades (sabonete, xampu, papel, água)\",\"unidade\":\"kit por estadia\",\"gasto\":780,\"tipo\":\"variavel\",\"precoAtual\":10.4,\"cot\":[10.4,8.9,9.8],\"contrato\":\"fechar\"},{\"nome\":\"Gás do aquecimento da água\",\"unidade\":\"botijão de 13 kg\",\"gasto\":720,\"tipo\":\"variavel\",\"precoAtual\":120,\"cot\":[120,112,118],\"contrato\":\"nao\"},{\"nome\":\"Reposição de enxoval\",\"unidade\":\"jogo de cama de casal\",\"gasto\":240,\"tipo\":\"variavel\",\"precoAtual\":120,\"cot\":[120,98,135],\"contrato\":\"fechar\"}],\"prazoContratos\":\"2027-03-31\",\"estoque\":[{\"nome\":\"Kit de amenidades\",\"unidade\":\"kit\",\"usoMes\":25,\"entrega\":7,\"seguranca\":7,\"atual\":14,\"ciclo\":30},{\"nome\":\"Papel higiênico\",\"unidade\":\"rolo\",\"usoMes\":100,\"entrega\":5,\"seguranca\":7,\"atual\":30,\"ciclo\":30},{\"nome\":\"Botijão de gás de 13 kg\",\"unidade\":\"botijão\",\"usoMes\":2,\"entrega\":2,\"seguranca\":7,\"atual\":2,\"ciclo\":15},{\"nome\":\"Café em pó (pacote de 500 g)\",\"unidade\":\"pacote\",\"usoMes\":8,\"entrega\":3,\"seguranca\":7,\"atual\":6,\"ciclo\":15}],\"camas\":4,\"jogos\":10,\"ano\":2027,\"mesInicio\":1,\"receitaReserva\":13565.6,\"reservaPct\":3,\"casaCheia\":[6,7,8,12],\"tarefas\":[{\"nome\":\"Limpar os filtros do ar-condicionado\",\"freq\":\"trimestral\",\"inicio\":1,\"custo\":0,\"quem\":\"Equipe\"},{\"nome\":\"Controle de pragas\",\"freq\":\"trimestral\",\"inicio\":2,\"custo\":180,\"quem\":\"Empresa contratada\"},{\"nome\":\"Revisão do aquecedor a gás\",\"freq\":\"anual\",\"inicio\":3,\"custo\":280,\"quem\":\"Técnico de aquecimento\"},{\"nome\":\"Revisão elétrica (quadro e tomadas)\",\"freq\":\"anual\",\"inicio\":4,\"custo\":350,\"quem\":\"Eletricista\"},{\"nome\":\"Limpeza das calhas\",\"freq\":\"semestral\",\"inicio\":4,\"custo\":150,\"quem\":\"Equipe\"},{\"nome\":\"Limpeza da caixa d'água\",\"freq\":\"semestral\",\"inicio\":5,\"custo\":250,\"quem\":\"Empresa contratada\"},{\"nome\":\"Revisão do ar-condicionado por técnico\",\"freq\":\"anual\",\"inicio\":9,\"custo\":480,\"quem\":\"Técnico de ar-condicionado\"},{\"nome\":\"Inspeção e recarga dos extintores\",\"freq\":\"anual\",\"inicio\":10,\"custo\":160,\"quem\":\"Empresa credenciada\"},{\"nome\":\"Tratamento do deck (óleo e vedação)\",\"freq\":\"anual\",\"inicio\":11,\"custo\":900,\"quem\":\"Marceneiro\"}],\"ronda\":true,\"ocorrencias\":true,\"diaContagem\":\"segunda-feira\",\"quemCompra\":\"Ana (dona)\",\"alcada\":300,\"nome\":\"Ana Exemplo\",\"email\":\"ana@exemplo.com\",\"pdf\":\"2026-11-09T12:00:00.000Z\"}};for(const k in st)localStorage.setItem(k,JSON.stringify(st[k]));",
+     "wait": 300
+    },
+    {
+     "goto": "http://localhost:8817/trilha2/qualidade/"
+    },
+    {
+     "show": "h1",
+     "wait": 1200
+    },
+    {
+     "show": "#nome",
+     "wait": 900
+    },
+    {
+     "show": "#hospedagem",
+     "wait": 900
+    },
+    {
+     "show": "label.op:has(input[name=sit][value=dono])",
+     "wait": 1200
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A primeira tela mostra as páginas que você já fez. Cada ficha da jornada salvou a sua página neste aparelho: a página pronta é a que chegou ao PDF. Se faltar alguma, aparece ainda não feita, com o botão para abrir a ficha. Você pode seguir mesmo assim; para concluir, as sete precisam estar prontas. Nas Cabanas, estão todas.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1000
+    },
+    {
+     "show": "#paginas .pag[data-n='0']",
+     "wait": 1200
+    },
+    {
+     "show": "#paginas .pag[data-n='6']",
+     "wait": 1200
+    },
+    {
+     "show": "#contagem",
+     "wait": 1500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A nota e as avaliações. A nota e a meta já vêm do seu Painel de Gestão. Informe as avaliações acumuladas e, se tiver, as estadias e as avaliações dos últimos três meses: a ficha calcula quantos hóspedes avaliam. Marque a dimensão mais baixa, a nota dos concorrentes e a crítica que mais se repetiu. Nas Cabanas, trinta e oito avaliações, trinta e cinco por cento avaliando, e o ralo da cabana três citado três vezes: problema de produto.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 700
+    },
+    {
+     "show": "#notaAtual",
+     "wait": 600
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('prazoMeta');e.value='2027-10-31';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});})()",
+     "wait": 700
+    },
+    {
+     "type": "#avaliacoes",
+     "text": "38",
+     "wait": 250
+    },
+    {
+     "type": "#tempoResposta",
+     "text": "40",
+     "wait": 250
+    },
+    {
+     "type": "#estadias3m",
+     "text": "72",
+     "wait": 250
+    },
+    {
+     "type": "#avaliacoes3m",
+     "text": "25",
+     "wait": 300
+    },
+    {
+     "select": "#dimensao",
+     "value": "limpeza",
+     "wait": 300
+    },
+    {
+     "type": "#dimensaoNota",
+     "text": "4,6",
+     "wait": 200
+    },
+    {
+     "type": "#concorrentes",
+     "text": "4,6",
+     "wait": 200
+    },
+    {
+     "type": "#criticas3m",
+     "text": "7",
+     "wait": 200
+    },
+    {
+     "type": "#criticaRepetida",
+     "text": "Ralo do chuveiro com cheiro na cabana 3",
+     "delay": 14,
+     "wait": 200
+    },
+    {
+     "type": "#repeticoes",
+     "text": "3",
+     "wait": 400
+    },
+    {
+     "show": "#live",
+     "wait": 2500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Agora o protocolo e o padrão mínimo. Escreva a frase do pedido na saída, confirme que não pede avaliação quando houve problema não resolvido, e escreva os modelos de resposta: a positiva, curta e específica; a negativa, reconhecendo e dizendo o que mudou. Adote a regra das vinte e quatro horas. No padrão mínimo, a nota mínima vem do seu Mapa de Pessoas; a resposta em até sessenta minutos e a taxa de quarenta por cento são referências da fonte. Como a crítica se repetiu, escreva o ajuste e o prazo.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 700
+    },
+    {
+     "type": "#pedido",
+     "text": "Avaliações são o que faz uma casa pequena ser encontrada. Se a estadia foi boa, a sua ajudaria muito.",
+     "delay": 10,
+     "wait": 200
+    },
+    {
+     "click": "label:has(input[name=naoPedir][value=sim])",
+     "wait": 400
+    },
+    {
+     "type": "#respPositiva",
+     "text": "Obrigada pela visita! Que bom que a lareira e o café na varanda marcaram a estadia. Vamos esperar vocês de volta no inverno.",
+     "delay": 8,
+     "wait": 200
+    },
+    {
+     "type": "#respNegativa",
+     "text": "Obrigada por contar. Você tem razão sobre o ralo do chuveiro: trocamos a peça e o ralo entrou no checklist de limpeza de cada troca.",
+     "delay": 8,
+     "wait": 200
+    },
+    {
+     "click": "label:has(input[name=regra24][value=sim])",
+     "wait": 300
+    },
+    {
+     "type": "#quemResponde",
+     "text": "Ana (dona)",
+     "wait": 200
+    },
+    {
+     "show": "#notaMin",
+     "wait": 700
+    },
+    {
+     "click": "label:has(input[name=auditoria][value=sim])",
+     "wait": 300
+    },
+    {
+     "type": "#ajuste",
+     "text": "Trocar o sifão do chuveiro da cabana 3 e incluir o ralo no checklist de limpeza",
+     "delay": 10,
+     "wait": 200
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('ajustePrazo');e.value='2026-11-30';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});})()",
+     "wait": 700
+    },
+    {
+     "show": "#live",
+     "wait": 2500
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "A rotina semanal. O dia e a hora da reunião vêm do Painel de Gestão, e o dia da leitura do painel por exceção vem do Mapa de Pessoas. Escolha o dia do mês da Folha Única, a primeira revisão trimestral e a revisão anual: as outras trimestrais saem sozinhas, de três em três meses. Nas Cabanas: segunda-feira às oito, Folha no dia cinco, trimestrais a partir de onze de janeiro.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 700
+    },
+    {
+     "show": "#reuniaoDia",
+     "wait": 800
+    },
+    {
+     "show": "#painelDia",
+     "wait": 800
+    },
+    {
+     "type": "#folhaDia",
+     "text": "5",
+     "wait": 300
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('trimestral1');e.value='2027-01-11';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});})()",
+     "wait": 700
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('anual');e.value='2027-11-08';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});})()",
+     "wait": 700
+    },
+    {
+     "show": "#live",
+     "wait": 2800
+    },
+    {
+     "click": "#vai",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "O teste de prontidão e o plano de crescimento. O início da fase um vem do Mapa de Pessoas. Ajuste as semanas das fases um e dois e marque o início do teste das duas semanas: a ficha calcula a fase três e confere se ela tem pelo menos oito semanas. Diga quem fica responsável, a ocupação projetada e a nota de referência, e confirme que o período é de ocupação média. Depois, decida o que fazer com o tempo que sobra e responda as quatro condições da segunda unidade. Nas Cabanas: teste de catorze a vinte e sete de junho, sete vírgula quatro meses, e segunda unidade agora não.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 600
+    },
+    {
+     "show": "#inicioF1",
+     "wait": 600
+    },
+    {
+     "eval": "(function(){const e=document.getElementById('inicioTeste');e.value='2027-06-14';e.dispatchEvent(new Event('input',{bubbles:true}));e.scrollIntoView({block:'center'});})()",
+     "wait": 700
+    },
+    {
+     "type": "#responsavel",
+     "text": "Diarista, com o auxiliar de manutenção",
+     "delay": 12,
+     "wait": 200
+    },
+    {
+     "type": "#ocupProjetada",
+     "text": "50",
+     "wait": 200
+    },
+    {
+     "type": "#notaMedia3m",
+     "text": "4,7",
+     "wait": 200
+    },
+    {
+     "click": "label:has(input[name=periodoMedio][value=sim])",
+     "wait": 400
+    },
+    {
+     "click": "label.op:has(input[name=tempoSobra][value=negocio])",
+     "wait": 400
+    },
+    {
+     "type": "#tempoSobraTxt",
+     "text": "Duas horas por semana para preço e venda direta",
+     "delay": 10,
+     "wait": 200
+    },
+    {
+     "click": "label:has(input[name=cond-teste][value=nao])",
+     "wait": 250
+    },
+    {
+     "click": "label:has(input[name=cond-retirada][value=sim])",
+     "wait": 250
+    },
+    {
+     "click": "label:has(input[name=cond-reserva][value=nao])",
+     "wait": 250
+    },
+    {
+     "click": "label:has(input[name=cond-supervisao][value=nao])",
+     "wait": 400
+    },
+    {
+     "show": "#live",
+     "wait": 2800
+    },
+    {
+     "click": "#vai",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "O resultado abre com o número de páginas no Plano: oito de oito. Logo abaixo, a lista das páginas, o padrão mínimo de qualidade e reputação e os indicadores: nota, volume, taxa de avaliação, tempo de resposta, a distância para os concorrentes e os meses até o teste.",
+   "actions": [
+    {
+     "show": ".leitura",
+     "wait": 2200
+    },
+    {
+     "show": "#paginas",
+     "wait": 1800
+    },
+    {
+     "show": "#padrao",
+     "wait": 2200
+    },
+    {
+     "show": "#indicadores",
+     "wait": 2200
+    }
+   ]
+  },
+  {
+   "say": "O que isso significa lê o seu caso pelas regras da fonte. A atenção lista os alertas na ordem certa: nas Cabanas, a crítica repetida e a taxa de avaliação baixa. E o que fazer traz as próximas quatro semanas, a rotina semanal completa, as quatro fases do plano de saída com datas, o teste das duas semanas e o plano de crescimento, com as metas de nota e de venda direta.",
+   "actions": [
+    {
+     "text": "2 ·",
+     "sel": "h2",
+     "wait": 1800
+    },
+    {
+     "show": "#atencao",
+     "wait": 2200
+    },
+    {
+     "show": "#fazer",
+     "wait": 1800
+    },
+    {
+     "show": "#rotina",
+     "wait": 2000
+    },
+    {
+     "show": "#fases",
+     "wait": 2000
+    },
+    {
+     "show": "#teste",
+     "wait": 1500
+    },
+    {
+     "show": "#crescimento",
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "say": "Como verificar traz as perguntas das próximas quatro semanas e os sete itens do critério de conclusão. Com tudo pronto, baixe o PDF: ele junta as oito páginas, a rotina, o teste e o plano de saída num documento só, e o selo muda para Plano completo. Depois, use a planilha Qualidade e Reputação toda semana. Parabéns por fechar a Jornada de Gestão!",
+   "actions": [
+    {
+     "text": "5 · Como verificar",
+     "sel": "h2",
+     "wait": 1500
+    },
+    {
+     "show": "#itens",
+     "wait": 2000
+    },
+    {
+     "show": "#selo",
+     "wait": 1400
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "card": {
+      "t": "O seu Plano de Gestão Profissional",
+      "s": "Baixe o PDF, marque a rotina e siga para a Jornada 3 · Operação",
+      "k": "Jornada de Gestão · Módulo 7 · Qualidade"
+     },
+     "wait": 2500
+    }
+   ]
+  }
+ ]
+}

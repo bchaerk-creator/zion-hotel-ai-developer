@@ -1,0 +1,494 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Montador do Plano de Gestão</title>
+<meta name="description" content="Ferramenta do Módulo 7 da Jornada 2 · Gestão: junta as oito páginas do seu Plano de Gestão Profissional, acrescenta a página de qualidade e reputação, a rotina semanal e o teste de prontidão, em um único PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:680px;margin:0 auto}
+main{padding:20px 16px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 18px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=email],input[type=date],input[type=number],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px 12px;min-height:48px}
+textarea{min-height:84px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.btn{appearance:none;border:0;border-radius:999px;padding:13px 22px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.45rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+.op small{display:block;color:var(--texto-2);font-weight:400;font-size:.86rem;margin-top:2px}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+section.bloco{margin-top:18px}
+.bloco h2{font-size:1.3rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.leitura{background:var(--verde);color:var(--creme);border-radius:14px;padding:16px;border:2px solid var(--dourado)}
+.leitura .rot{font-family:"Playfair Display",Georgia,serif;font-size:1.3rem;color:var(--dourado);margin:2px 0 6px}
+.leitura .nota{font-family:"Playfair Display",Georgia,serif;font-size:3rem;line-height:1;color:var(--creme);margin-bottom:8px}
+.leitura .nota small{font-size:1rem;color:var(--dourado);font-family:Inter,sans-serif}
+.leitura p{margin:0}
+.fragil{background:var(--critico-bg);border-radius:12px;padding:14px;border-left:5px solid var(--critico);overflow-wrap:anywhere}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:10px;font-size:.95rem}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child{margin-bottom:0}
+.c-sig{background:var(--creme);border:1px solid var(--linha)}
+.c-at{background:var(--atencao-bg);border:1px solid #E7C980}
+.c-faz{background:#EEF3EC;border:1px solid #C9D8C6}
+.c-ver{background:#fff;border:1px dashed var(--dourado-escuro)}
+.c-ver h3{color:var(--dourado-escuro)}
+.acoes{display:grid;gap:10px;margin-top:20px}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.grade{display:grid;gap:14px;margin-top:10px}
+.item{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;min-width:0}
+.item>b{display:block;margin-bottom:2px}
+.item>small{display:block;color:var(--texto-2);margin-bottom:8px}
+.item label{font-size:.9rem;margin:10px 0 4px}
+.trio{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.trio label{margin:0;font-weight:500;font-size:.84rem;text-align:center;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 4px;cursor:pointer;background:#fff;display:flex;align-items:center;justify-content:center;min-height:48px;line-height:1.25}
+.trio input{position:absolute;opacity:0;pointer-events:none}
+.trio label:has(input:checked){background:var(--verde);color:var(--creme);border-color:var(--verde)}
+.trio label:has(input:focus-visible){outline:3px solid var(--dourado)}
+.selo{display:inline-block;border-radius:99px;padding:3px 10px;font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.05em;background:var(--ok-bg);color:var(--ok)}
+.selo.pend{background:var(--atencao-bg);color:var(--atencao);text-transform:none;letter-spacing:0;font-weight:600}
+.campo{border:1px solid var(--linha);border-radius:12px;padding:12px;background:#fff;margin-top:12px}
+.campo label{margin:0 0 6px}
+details{margin-top:6px;font-size:.86rem;color:var(--texto-2)}
+summary{cursor:pointer;color:var(--dourado-escuro);font-weight:600}
+details p{margin:4px 0 0}
+.ref{font-size:.82rem;color:var(--dourado-escuro);margin-top:6px}
+.aviso{background:var(--atencao-bg);border:1px solid #E7C980;border-radius:10px;padding:10px 12px;font-size:.9rem;margin-top:10px}
+.calc{background:var(--creme);border-radius:10px;padding:10px 12px;margin-top:12px;font-size:.95rem}
+.calc b{color:var(--verde)}
+.dois{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.dois>div{min-width:0}
+table.tab{width:100%;border-collapse:collapse;margin:10px 0;font-size:.88rem;table-layout:fixed}
+table.tab th{background:var(--verde);color:var(--creme);text-align:left;font-weight:600;padding:7px 6px;font-size:.78rem}
+table.tab td{padding:7px 6px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+table.tab td small{display:block;color:var(--texto-2);font-size:.76rem}
+table.tab td.n{text-align:right;white-space:nowrap}
+table.tab tr.plano td{background:#EEF3EC}
+.ind{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0}
+.ind div{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;min-width:0}
+.ind small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.ind strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:3px;overflow-wrap:anywhere}
+.ind em{display:block;font-size:.7rem;opacity:.8;font-style:normal;margin-top:2px}
+.prio{display:grid;gap:8px;margin-top:8px}
+.prio>div{display:flex;gap:10px;background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px;min-width:0}
+.prio i{flex:none;width:26px;height:26px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.8rem}
+.prio>div>div{min-width:0;overflow-wrap:anywhere}
+.lista{margin:6px 0 0;padding-left:20px}
+.lista li{margin-bottom:4px}
+.ok-i{color:var(--ok);font-weight:700}
+.no-i{color:var(--critico);font-weight:700}
+.pag{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--linha);border-radius:12px;padding:10px 12px;background:#fff;min-width:0}
+.pag i{flex:none;width:30px;height:30px;border-radius:50%;background:var(--verde);color:var(--dourado);display:grid;place-items:center;font-style:normal;font-weight:700}
+.pag>div{min-width:0;overflow-wrap:anywhere;flex:1}
+.pag small{display:block;color:var(--texto-2)}
+.pag .st{display:inline-block;margin-top:4px;border-radius:99px;padding:2px 9px;font-size:.76rem;font-weight:700}
+.st.pronta{background:var(--ok-bg);color:var(--ok)}.st.andamento{background:var(--atencao-bg);color:var(--atencao)}.st.falta{background:var(--critico-bg);color:var(--critico)}
+.pag.falta{border-color:#E8B9AE}
+.dois{align-items:end}
+input[type=time]{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:12px;min-height:48px}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:32px 34px}
+  .pergunta{font-size:1.75rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .acoes{grid-template-columns:1fr 1fr}
+  .acoes .btn-ouro{grid-column:1/-1}
+  .ind{grid-template-columns:repeat(3,1fr)}
+  table.tab{font-size:.92rem}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+</head>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><b>Zion</b> · Jornada 2 · Gestão</div><div class="etiqueta">Módulo 7 · Qualidade<br>Montador do Plano</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape">Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem.<br>Zion Hospitality Business · Do terreno ao negócio que funciona.</footer>
+<script src="logic.js"></script>
+<script>
+const Z = window.ZQ;
+const CHAVE = "zion-t2-qualidade";
+const lerChave = (k) => { try { return JSON.parse(localStorage.getItem(k)) || null; } catch (e) { return null; } };
+const gravar = () => { try { localStorage.setItem(CHAVE, JSON.stringify(S)); } catch (e) {} };
+const esc = (s) => String(s == null ? "" : s).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+// As páginas anteriores, lidas do mesmo aparelho (cada ficha salva a sua chave)
+const estados = () => { const o = {}; Z.PAGINAS.slice(0, 7).forEach((p) => { o[p.slug] = lerChave(p.chave); }); return o; };
+let EST = estados();
+// A lógica de cada módulo, carregada uma a uma (três módulos usam o mesmo nome global, por isso a captura logo depois de cada carga)
+const APIS = {}; window.APIS = APIS; let apisProntas = false;
+async function carregaApis() {
+  for (const p of Z.PAGINAS.slice(0, 7)) {
+    await new Promise((ok) => { const s = document.createElement("script"); s.src = `../${p.slug}/logic.js`; s.onload = () => { APIS[p.slug] = window[p.glob] || null; ok(); }; s.onerror = () => { APIS[p.slug] = null; ok(); }; document.head.appendChild(s); });
+  }
+  apisProntas = true; window.__apis = true;
+  const t = TELAS[S.tela]; if (t === "paginas" || t === "resultado") render();
+}
+const TELAS = Z.TELAS;
+const vazio = () => { const s = Z.base(); Object.assign(s, Z.daAnteriores(EST)); delete s.metaDireta; delete s.prazoDireta; return Z.completar(s); };
+let S = Z.completar(lerChave(CHAVE) || vazio());
+const app = document.getElementById("app");
+const pags = () => Z.paginas(EST);
+
+function progresso() {
+  const i = S.tela, tot = TELAS.length - 2;
+  if (i === 0 || i === TELAS.length - 1) return "";
+  return `<div class="progresso"><div class="txt"><span>Tela ${i} de ${tot}</span><span>De 25 a 35 minutos</span></div><div class="barra"><i style="width:${(i / tot) * 100}%"></i></div></div>`;
+}
+function nav(rot) { return `<div id="avisos"></div><p class="erro" id="erro"></p><div class="nav"><button class="btn btn-s" id="volta">Voltar</button><button class="btn btn-p" id="vai">${rot || "Avançar"}</button></div>`; }
+function ir(d) { S.tela = Math.max(0, Math.min(TELAS.length - 1, S.tela + d)); gravar(); render(); window.scrollTo(0, 0); }
+const radios = (name, ops, val, cls) => `<div class="${cls || "trio"}" role="radiogroup">${ops.map((o) => `<label><input type="radio" name="${name}" value="${o.v}" ${String(val) === String(o.v) ? "checked" : ""}>${o.r}</label>`).join("")}</div>`;
+const ops = (name, lista, val) => `<div class="opcoes">${lista.map((o) => `<label class="op"><input type="radio" name="${name}" value="${o.v}" ${String(val) === String(o.v) ? "checked" : ""}><span>${o.r}${o.t ? `<small>${o.t}</small>` : ""}</span></label>`).join("")}</div>`;
+const txt = (id, v, ph, tipo) => `<input type="${tipo || "text"}" id="${id}" value="${esc(v)}"${ph ? ` placeholder="${esc(ph)}"` : ""}>`;
+const numIn = (id, v, ph) => `<input type="text" id="${id}" inputmode="decimal" autocomplete="off" value="${esc(v)}" placeholder="${esc(ph || "0")}">`;
+const area = (id, v, ph) => `<textarea id="${id}" placeholder="${esc(ph || "")}">${esc(v)}</textarea>`;
+const sel = (id, lista, v) => `<select id="${id}"><option value="">Escolha</option>${lista.map((o) => `<option value="${o.v}" ${String(v) === String(o.v) ? "selected" : ""}>${o.r}</option>`).join("")}</select>`;
+const det = (pq, onde, ex) => `<details><summary>Por que, onde conseguir e exemplo</summary><p><b>Por que:</b> ${pq}</p>${onde ? `<p><b>Onde conseguir:</b> ${onde}</p>` : ""}<p><b>Exemplo didático · dados fictícios (Cabanas do Vale):</b> ${ex}</p></details>`;
+const sim = (name, val) => radios(name, Z.SIMNAO, val, 'trio" style="grid-template-columns:1fr 1fr');
+
+function atualiza(tela) {
+  const v = Z.validar(S, tela);
+  const er = document.getElementById("erro"); if (er) er.innerHTML = v.erros.slice(0, 3).map(esc).join("<br>") + (v.erros.length > 3 ? `<br>e mais ${v.erros.length - 3} item(ns).` : "");
+  const av = document.getElementById("avisos"); if (av) av.innerHTML = v.avisos.map((a) => `<div class="aviso">${esc(a)}</div>`).join("");
+  const b = document.getElementById("vai"); if (b) b.disabled = !v.ok;
+  const live = document.getElementById("live"); if (live) live.innerHTML = liveHtml(tela);
+}
+function liveHtml(tela) {
+  const r = Z.calcular(S, pags()), E = r.escala;
+  if (tela === "nota") {
+    let h = r.notaAtual != null ? `Nota de hoje: <b>${Z.notaTxt(r.notaAtual, E)}</b>` + (r.notaMeta != null ? ` · meta <b>${Z.notaTxt(r.notaMeta, E)}</b>` : "") : "Informe a nota de hoje.";
+    if (r.apos3 != null) h += `<br>Com ${r.avaliacoes} avaliações, uma única de ${E === 10 ? 6 : 3} leva a média para <b>${Z.dec(r.apos3, 2)}</b>.`;
+    if (r.taxa != null) h += `<br>Hóspedes que avaliam: <b>${Z.pct(r.taxa, 0)}</b>` + (r.taxa < 0.4 ? " (abaixo de 40%: a fonte lê que o pedido não está funcionando)" : "");
+    if (r.difConc != null) h += `<br>Diferença para os concorrentes diretos: <b>${r.difConc >= 0 ? "+" : "−"}${Z.dec(Math.abs(r.difConc), 1)}</b> ponto`;
+    if (r.produto) h += `<br><b>Três menções ou mais ao mesmo item: é problema de produto.</b> O ajuste entra na próxima tela.`;
+    return h;
+  }
+  if (tela === "protocolo") return `<b>O seu padrão mínimo</b><ol class="lista">${r.padrao.map((p) => `<li>${esc(p.r)}: <b>${esc(p.v)}</b></li>`).join("")}</ol>`;
+  if (tela === "rotina") return `<b>Toda semana</b><ol class="lista">${r.rotina.semanal.map((x) => `<li>${esc(x.r)} · ${esc(x.q)} · ${x.d}</li>`).join("")}</ol>` + (r.rotina.trimestral.length ? `Revisões trimestrais: <b>${r.rotina.trimestral.map(Z.br).join(" · ")}</b>` : "Marque a primeira revisão trimestral para ver as quatro datas.") + (r.rotina.anual ? `<br>Revisão anual: <b>${Z.br(r.rotina.anual)}</b>` : "");
+  if (tela === "prontidao") {
+    const F = r.fases; let h = F.lista.map((f) => `Fase ${f.n} · ${f.r}: <b>${f.de ? Z.br(f.de) + " a " + Z.br(f.ate) : "a definir"}</b>${f.semanas != null ? ` (${f.semanas} semanas)` : ""}`).join("<br>");
+    if (F.meses != null) h += `<br>Do início ao fim do teste: <b>${Z.dec(F.meses, 1)} meses</b>${F.noPrazo ? " (dentro dos seis a oito meses da fonte)" : ""}`;
+    if (r.veredito) h += `<br>Leitura do teste: <b>${esc(r.veredito.r)}</b>. ${esc(r.veredito.t)}`;
+    h += `<br>Segunda unidade: <b>${esc(r.segunda.r)}</b>`;
+    return h;
+  }
+  return "";
+}
+function liga(ids) { ids.forEach((k) => { const el = document.getElementById(k); if (el) el.addEventListener("input", (e) => { S[k] = e.target.value; gravar(); atualiza(TELAS[S.tela]); }); }); }
+function ligaSel(ids, rerender) { ids.forEach((k) => { const el = document.getElementById(k); if (el) el.onchange = (e) => { S[k] = e.target.value; gravar(); rerender ? render() : atualiza(TELAS[S.tela]); }; }); }
+function ligaRad(name, k, rerender) { app.querySelectorAll(`input[name=${name}]`).forEach((x) => x.onchange = () => { S[k] = x.value; gravar(); rerender ? render() : atualiza(TELAS[S.tela]); }); }
+function ligaNav(t) {
+  atualiza(t);
+  document.getElementById("volta").onclick = () => ir(-1);
+  document.getElementById("vai").onclick = () => { if (!Z.validar(S, t).ok) return; ir(1); };
+}
+function cab(t, titulo, explica) { return `<div class="card"><div class="eyebrow">Tela ${TELAS.indexOf(t)} · ${Z.TITULOS[t]}</div><h2 class="pergunta">${titulo}</h2><p class="explica">${explica}</p>`; }
+function listaPaginas() {
+  return `<div class="grade" id="paginas">` + pags().map((p) => `<div class="pag ${p.estado}" data-n="${p.n}"><i>${p.n}</i><div><b>${esc(p.r)}</b><small>Módulo ${p.n === 0 ? "0 · Marco Zero" : p.n + " · " + esc(p.m)}</small><span class="st ${p.estado}">${esc(Z.rotuloEstado(p))}</span>${p.estado !== "pronta" ? ` <a href="${p.link}">Abrir a ficha</a>` : ""}</div></div>`).join("")
+    + `<div class="pag pronta" data-n="7"><i>7</i><div><b>Qualidade, reputação e plano de crescimento</b><small>Módulo 7 · esta ficha</small><span class="st andamento">Você monta agora</span></div></div></div>`;
+}
+
+function render() {
+  const t = TELAS[S.tela];
+  let h = progresso();
+  if (t === "abertura") {
+    const salvo = lerChave(CHAVE); const comecou = !!(salvo && (salvo.pedido || salvo.avaliacoes || salvo.tela > 1));
+    h += `<div class="card"><div class="eyebrow">Jornada 2 · Gestão · Módulo 7 · Faça agora</div><h1>O Montador do Plano de Gestão</h1>
+    <p class="lead">Aprenda o passo a passo para juntar o que você construiu na jornada num único Plano de Gestão Profissional: as oito páginas, a qualidade e a reputação, a rotina semanal e o teste de prontidão.</p>
+    <div class="tres"><div><b>Por que fazer isso</b>Estar presente não é gerir. A nota que você recebe sustenta a diária que você cobra, e só um plano com rotina e data mostra se a operação roda sem você.</div>
+    <div><b>Como vamos fazer</b>Cinco telas: as páginas que você já fez, a nota e as avaliações, a resposta às avaliações com o padrão mínimo, a rotina semanal, e o teste de prontidão com o plano de crescimento.</div>
+    <div><b>Para que serve</b>Você sai com o Plano de Gestão Profissional completo em um único PDF: páginas 0 a 7, rotina semanal, teste das duas semanas e plano de saída com datas.</div></div>
+    ${comecou ? `<div class="retomar">Você já tinha começado. <button class="btn btn-s" id="retoma" style="margin-top:8px;width:100%">Continuar de onde parei</button></div>` : ""}
+    <label for="nome">Seu nome</label><input type="text" id="nome" autocomplete="name" value="${esc(S.nome)}">
+    <label for="email">Seu e-mail</label><input type="email" id="email" autocomplete="email" value="${esc(S.email)}">
+    <label for="hospedagem">Nome da hospedagem (ou da ideia)</label><input type="text" id="hospedagem" value="${esc(S.hospedagem)}" placeholder="Ex.: Cabanas do Vale">
+    <h2 class="pergunta" style="margin-top:22px;font-size:1.2rem">Qual destas frases mais parece com você hoje?</h2>
+    ${ops("sit", Z.SITUACOES, S.situacao)}
+    ${S.situacao === "abrir" ? `<div class="aviso">Você ainda vai abrir: a nota e o volume de avaliações ficam em branco. A meta e o protocolo valem para as primeiras avaliações, que são permanentes, e o plano de saída começa com a abertura.</div>` : ""}
+    ${S.situacao === "operador" ? `<div class="aviso">Você cuida da hospedagem de outra pessoa: o Plano vira a sua prestação de contas, e o teste das duas semanas é combinado com o dono.</div>` : ""}
+    <p class="dica" style="margin-top:10px">As respostas ficam só neste aparelho. O Montador lê as fichas dos módulos anteriores feitas aqui mesmo. Nada é enviado.</p>
+    <p class="erro" id="erro"></p>
+    <div class="nav"><button class="btn btn-p" id="vai">Começar</button></div>
+    <p class="dica" style="margin-top:12px">Quer ver a página 7 pronta antes? <button type="button" class="btn btn-s" id="exemplo" style="min-height:40px;padding:8px 14px">Preencher com o exemplo didático (dados fictícios)</button></p></div>`;
+    app.innerHTML = h;
+    ["nome", "email", "hospedagem"].forEach((k) => document.getElementById(k).addEventListener("input", (e) => { S[k] = e.target.value; gravar(); }));
+    ligaRad("sit", "situacao", true);
+    const r = document.getElementById("retoma");
+    if (r) r.onclick = () => { S.tela = Math.max(1, TELAS.indexOf(Z.proximaVazia(S))); gravar(); render(); window.scrollTo(0, 0); };
+    document.getElementById("exemplo").onclick = () => { S = Z.completar({ ...Z.exemplo(), nome: S.nome, email: S.email, tela: 1 }); gravar(); render(); window.scrollTo(0, 0); };
+    atualiza("abertura");
+    document.getElementById("vai").onclick = () => { if (!Z.validar(S, "abertura").ok) return; S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+    return;
+  }
+  if (t === "paginas") {
+    EST = estados(); const P = pags(); const prontas = P.filter((p) => p.estado === "pronta").length;
+    h += cab(t, "As páginas que você já fez", "Cada ficha da jornada salvou a sua página neste aparelho. O Montador lê todas e junta no Plano. Página pronta é a que chegou ao PDF na ficha do módulo.");
+    h += listaPaginas();
+    h += `<div class="calc" id="contagem">Páginas prontas: <b>${prontas} de 7</b>, mais a página 7, que você monta agora.</div>`;
+    h += prontas < 7 ? `<div class="aviso">Você pode seguir e montar a página 7 agora. As páginas que faltam aparecem no PDF como "página ainda não feita", com o endereço da ficha. Para concluir o módulo, as sete precisam estar prontas.</div>` : `<div class="caixa c-faz"><p>As sete páginas estão prontas. Falta a página 7: qualidade, reputação e o plano de crescimento.</p></div>`;
+    h += `<p class="dica">Fez alguma ficha em outro celular ou computador? As respostas ficam no aparelho onde foram feitas: refaça a ficha aqui ou monte o Plano lá.</p>` + nav();
+    app.innerHTML = h; ligaNav(t); return;
+  }
+  if (t === "nota") {
+    h += cab(t, "Como está a sua nota hoje?", "A avaliação é o segundo elemento que o hóspede vê numa lista de resultados, depois da foto e junto com o preço. Nota alta protege; volume crescente impulsiona. As duas pedem ações diferentes.");
+    h += `<label>Escala da nota no seu principal canal</label>${radios("escala", Z.ESCALAS, S.escala, 'trio" style="grid-template-columns:1fr 1fr')}
+    <div class="dois"><div><label for="notaAtual">Nota média de hoje${S.situacao === "abrir" ? ' <span class="dica">(em branco se ainda não abriu)</span>' : ""}</label>${numIn("notaAtual", S.notaAtual, "Ex.: 4,7")}</div><div><label for="notaMeta">Meta da nota</label>${numIn("notaMeta", S.notaMeta, "Ex.: 4,8")}</div></div>
+    <label for="prazoMeta">Prazo da meta <span class="dica">(opcional; o Painel de Gestão usa 12 meses)</span></label>${txt("prazoMeta", S.prazoMeta, "", "date")}
+    ${det("A nota é o fator de maior peso em posição e conversão em praticamente todos os canais. A meta vem do seu Painel de Gestão (Módulo 1), quando você já fez.", "No painel de cada canal, ou na média ponderada da aba Avaliações por canal da planilha.", "nota 4,7 de 5, meta 4,8 até outubro de 2027 (a mesma do Painel de Gestão).")}
+    <div class="dois"><div><label for="avaliacoes">Avaliações acumuladas</label>${numIn("avaliacoes", S.avaliacoes, "Ex.: 38")}</div><div><label for="tempoResposta">Tempo médio de resposta (min) <span class="dica">(opcional)</span></label>${numIn("tempoResposta", S.tempoResposta, "Ex.: 40")}</div></div>
+    <div class="dois"><div><label for="estadias3m">Estadias nos últimos 3 meses <span class="dica">(opcional)</span></label>${numIn("estadias3m", S.estadias3m, "Ex.: 72")}</div><div><label for="avaliacoes3m">Avaliações recebidas nos 3 meses <span class="dica">(opcional)</span></label>${numIn("avaliacoes3m", S.avaliacoes3m, "Ex.: 25")}</div></div>
+    ${det("Com as duas, a ficha calcula a taxa de avaliação: quantos de cada cem hóspedes avaliam. Abaixo de 40%, a fonte lê que o pedido não está sendo feito ou não está funcionando.", "Conte as estadias no calendário e as avaliações no painel do canal, no mesmo período.", "72 estadias e 25 avaliações em três meses: 34,7%.")}
+    <h3 style="margin-top:18px;font-size:1.05rem">Onde está o trabalho</h3>
+    <div class="dois"><div><label for="dimensao">Dimensão mais baixa <span class="dica">(opcional)</span></label>${sel("dimensao", Z.DIMENSOES, S.dimensao)}</div><div><label for="dimensaoNota">Nota dessa dimensão</label>${numIn("dimensaoNota", S.dimensaoNota, "Ex.: 4,6")}</div></div>
+    <div class="dois"><div><label for="concorrentes">Nota média dos concorrentes diretos <span class="dica">(opcional)</span></label>${numIn("concorrentes", S.concorrentes, "Ex.: 4,6")}</div><div><label for="criticas3m">Críticas registradas no trimestre <span class="dica">(opcional)</span></label>${numIn("criticas3m", S.criticas3m, "Ex.: 7")}</div></div>
+    <div class="campo"><label for="criticaRepetida">A crítica que mais se repetiu <span class="dica">(anote toda crítica, mesmo dentro de avaliação boa)</span></label>${txt("criticaRepetida", S.criticaRepetida, "Ex.: ralo do chuveiro com cheiro")}
+    <label for="repeticoes" style="margin-top:10px">Quantas vezes ela apareceu no trimestre</label>${numIn("repeticoes", S.repeticoes, "Ex.: 3")}
+    ${det("A nota cai por padrões, não por casos isolados. Três menções ao mesmo item em um trimestre é um problema de produto, não de hóspede.", "A aba Críticas da planilha conta sozinha as menções por item.", "\"ralo do chuveiro com cheiro na cabana 3\", três vezes no trimestre.")}</div>
+    <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    ligaRad("escala", "escala");
+    liga(["notaAtual", "notaMeta", "prazoMeta", "avaliacoes", "tempoResposta", "estadias3m", "avaliacoes3m", "dimensaoNota", "concorrentes", "criticas3m", "criticaRepetida", "repeticoes"]);
+    ligaSel(["dimensao"]); ligaNav(t); return;
+  }
+  if (t === "protocolo") {
+    const rep = (Z.num(S.repeticoes) || 0) >= 3;
+    h += cab(t, "Como você pede, responde e o que nunca abaixa?", "A resposta a uma avaliação é lida mais por quem está decidindo reservar do que por quem escreveu. E o padrão mínimo é o que dispara a sua atenção antes de a nota cair.");
+    h += `<h3 style="margin-top:12px;font-size:1.05rem">O protocolo de avaliação</h3>
+    <label for="pedido">A frase do pedido, na saída, pessoalmente</label>${area("pedido", S.pedido, "Honesta e verdadeira. Nunca em mensagem genérica em massa.")}
+    ${det("O momento certo é na saída, quando a estadia foi boa e o hóspede demonstrou isso. A formulação da fonte: avaliações são o que faz uma casa nova ser encontrada, e a sua ajudaria muito.", "", "\"Avaliações são o que faz uma casa pequena ser encontrada. Se a estadia foi boa, a sua ajudaria muito.\"")}
+    <div class="campo"><b>Problema não resolvido: eu não peço avaliação</b><p class="dica" style="margin:4px 0 8px">Resolva primeiro, peça depois, ou não peça. Pedir a quem teve problema não resolvido é pedir a avaliação ruim por escrito.</p>${sim("naoPedir", S.naoPedir)}</div>
+    <label for="respPositiva">Modelo de resposta à avaliação positiva</label>${area("respPositiva", S.respPositiva, "Curta e específica: cite algo da estadia.")}
+    <label for="respNegativa">Modelo de resposta à avaliação negativa</label>${area("respNegativa", S.respNegativa, "Reconheça, não discuta, diga o que mudou.")}
+    <div class="campo"><b>A regra das 24 horas: nunca respondo uma negativa no mesmo dia</b><p class="dica" style="margin:4px 0 8px">Resposta defensiva em avaliação negativa afasta mais reserva que a própria avaliação.</p>${sim("regra24", S.regra24)}</div>
+    <label for="quemResponde">Quem responde as avaliações <span class="dica">(opcional)</span></label>${txt("quemResponde", S.quemResponde, "Ex.: eu, toda segunda")}
+    <h3 style="margin-top:20px;font-size:1.05rem">O padrão mínimo</h3><p class="dica">Os números que você não deixa abaixar. Abaixo deles, você age na semana, sem esperar a nota cair.</p>
+    <div class="dois"><div><label for="notaMin">Nota mínima (exceção)</label>${numIn("notaMin", S.notaMin, "Ex.: 4,7")}</div><div><label for="respostaMax">Resposta em até (min)</label>${numIn("respostaMax", S.respostaMax, "60")}</div></div>
+    <label for="taxaMin">Taxa mínima de hóspedes que avaliam (%)</label>${numIn("taxaMin", S.taxaMin, "40")}
+    ${det("A nota mínima é a mesma exceção do painel do Módulo 5: abaixo dela, contato na hora. A fonte pede resposta em menos de uma hora e lê taxa abaixo de 40% como pedido que não funciona.", "A nota mínima vem do seu Mapa de Pessoas (Módulo 5), quando você já fez.", "nota mínima 4,7; resposta em até 60 minutos; taxa mínima de 40%.")}
+    <div class="campo"><b>Auditoria por amostragem: uma unidade sorteada por semana, contra a foto do padrão</b><p class="dica" style="margin:4px 0 8px">Dá o mesmo controle que conferir tudo, sem prender você e sem tirar a autonomia de quem opera.</p>${sim("auditoria", S.auditoria)}</div>
+    ${rep ? `<div class="campo" style="background:var(--critico-bg)"><b>O ajuste de produto</b><p class="dica" style="margin:4px 0 8px">"${esc(S.criticaRepetida)}" apareceu ${esc(S.repeticoes)} vezes: o que muda no produto, e até quando.</p>
+      <label for="ajuste">O ajuste</label>${area("ajuste", S.ajuste, "O que muda na unidade ou no procedimento")}<label for="ajustePrazo">Prazo</label>${txt("ajustePrazo", S.ajustePrazo, "", "date")}</div>` : ""}
+    <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    liga(["pedido", "respPositiva", "respNegativa", "quemResponde", "notaMin", "respostaMax", "taxaMin", "ajuste", "ajustePrazo"]);
+    ligaRad("naoPedir", "naoPedir"); ligaRad("regra24", "regra24"); ligaRad("auditoria", "auditoria");
+    ligaNav(t); return;
+  }
+  if (t === "rotina") {
+    h += cab(t, "Quando você olha a gestão?", "Uma rotina de trinta minutos por semana olhando os mesmos números faz mais pela gestão do que estar presente todos os dias: presença resolve o caso de hoje, rotina revela a tendência do trimestre.");
+    h += `<h3 style="margin-top:12px;font-size:1.05rem">Toda semana</h3>
+    <div class="dois"><div><label for="reuniaoDia">Dia da reunião (30 min)</label>${sel("reuniaoDia", Z.DIAS, S.reuniaoDia)}</div><div><label for="reuniaoHora">Hora</label>${txt("reuniaoHora", S.reuniaoHora, "", "time")}</div></div>
+    <label for="painelDia">Dia da leitura do painel por exceção (15 min)</label>${sel("painelDia", Z.DIAS, S.painelDia)}
+    <div class="caixa c-sig"><h3>Os seis indicadores da leitura semanal</h3><ol class="lista">${Z.INDICADORES.map((i) => `<li>${i}</li>`).join("")}</ol></div>
+    ${det("A reunião olha os cinco números do Painel de Gestão (Módulo 1); a leitura do painel olha os seis indicadores do Módulo 5. No mesmo dia, entram cinco minutos de caixa: saldo, entradas e transferências para as reservas.", "O dia e a hora vêm das suas fichas dos Módulos 1 e 5, quando você já fez.", "segunda-feira, 08:00, com a leitura do painel no mesmo dia.")}
+    <h3 style="margin-top:18px;font-size:1.05rem">Todo mês, trimestre e ano</h3>
+    <label for="folhaDia">Dia do mês da Folha Única (10 min)</label>${numIn("folhaDia", S.folhaDia, "Ex.: 5")}
+    <div class="dois"><div><label for="trimestral1">Primeira revisão trimestral (2 h)</label>${txt("trimestral1", S.trimestral1, "", "date")}</div><div><label for="anual">Revisão anual (meio dia)</label>${txt("anual", S.anual, "", "date")}</div></div>
+    ${det("O controle financeiro de uma operação pequena não falha por falta de conhecimento: falha por falta de data no calendário. A trimestral recalcula custos, equilíbrio e reservas, junto da revisão de preço.", "Escolha datas reais e ponha alarme no celular. As outras três trimestrais saem sozinhas, de três em três meses.", "Folha no dia 5; trimestrais em 11/01, 11/04, 11/07 e 11/10/2027; revisão anual em 08/11/2027.")}
+    <div class="calc" id="live"></div>` + nav();
+    app.innerHTML = h;
+    liga(["reuniaoHora", "folhaDia", "trimestral1", "anual"]); ligaSel(["reuniaoDia", "painelDia"]);
+    ligaNav(t); return;
+  }
+  if (t === "prontidao") {
+    h += cab(t, "Quando você testa a saída, e o que vem depois?", "Todo o resto pode ser cumprido no papel e ainda assim não funcionar. O teste das duas semanas é o único que não admite autoengano: você sai por catorze dias e a operação continua.");
+    h += `<h3 style="margin-top:12px;font-size:1.05rem">O plano de saída em quatro fases</h3>
+    <div class="dois"><div><label for="inicioF1">Início da Fase 1 · Escrever</label>${txt("inicioF1", S.inicioF1, "", "date")}</div><div><label for="semanasF1">Semanas da Fase 1 (6 a 10)</label>${numIn("semanasF1", S.semanasF1, "8")}</div></div>
+    <div class="dois"><div><label for="semanasF2">Semanas da Fase 2 · Contratar e treinar</label>${numIn("semanasF2", S.semanasF2, "8")}</div><div><label for="inicioTeste">Início do teste (Fase 4)</label>${txt("inicioTeste", S.inicioTeste, "", "date")}</div></div>
+    <p class="ref">A Fase 3, acompanhar por exceção, é o tempo entre o fim do treino e o teste: pelo menos oito semanas. Do início ao teste, a fonte prevê de seis a oito meses.</p>
+    <h3 style="margin-top:18px;font-size:1.05rem">O teste das duas semanas</h3>
+    <div class="caixa c-sig"><h3>As regras</h3><ol class="lista">${Z.REGRAS_TESTE.map((x) => `<li>${x}</li>`).join("")}</ol></div>
+    <label for="responsavel">Quem fica responsável durante o teste</label>${txt("responsavel", S.responsavel, "Ex.: a diarista, com o auxiliar de manutenção")}
+    <div class="dois"><div><label for="ocupProjetada">Ocupação projetada para o período (%)</label>${numIn("ocupProjetada", S.ocupProjetada, "Ex.: 50")}</div><div><label for="notaMedia3m">Nota média dos 3 meses anteriores</label>${numIn("notaMedia3m", S.notaMedia3m, "Ex.: 4,7")}</div></div>
+    <div class="campo"><b>O período é de ocupação média, nem vale nem pico?</b><p class="dica" style="margin:4px 0 8px">É o movimento real que produz as situações fora do roteiro, e são elas que revelam se os critérios funcionam.</p>${sim("periodoMedio", S.periodoMedio)}</div>
+    <div class="campo"><b>Você já fez o teste?</b>${sim("feito", S.feito)}
+    ${S.feito === "sim" ? `<div class="dois" style="margin-top:8px"><div><label for="ocupReal">Ocupação do período (%)</label>${numIn("ocupReal", S.ocupReal, "Ex.: 52")}</div><div><label for="notaPeriodo">Nota do período</label>${numIn("notaPeriodo", S.notaPeriodo, "Ex.: 4,8")}</div></div><label for="contatos">Contatos por exceção durante o teste</label>${numIn("contatos", S.contatos, "Ex.: 1")}
+      <label>A ocupação caiu por causa externa (estrada, clima, evento)?</label>${sim("causaExterna", S.causaExterna)}` : `<p class="dica" style="margin:6px 0 0">Depois do teste, volte aqui e marque Sim: a ficha lê o resultado pela régua da fonte.</p>`}</div>
+    <h3 style="margin-top:18px;font-size:1.05rem">O plano de crescimento: o tempo que sobra</h3><p class="dica">Decida antes. Quem sai da operação sem decidir isso acaba voltando para ela por falta do que fazer.</p>
+    ${ops("tempoSobra", Z.TEMPO_SOBRA, S.tempoSobra)}
+    <label for="tempoSobraTxt">Em uma linha, o que você vai fazer <span class="dica">(opcional)</span></label>${txt("tempoSobraTxt", S.tempoSobraTxt, "Ex.: duas horas por semana para preço e venda direta")}
+    <h3 style="margin-top:18px;font-size:1.05rem">A segunda unidade: as quatro condições</h3><div class="grade">
+    ${Z.CONDICOES.map((c) => `<div class="item"><b>${c.r}</b><small>${c.t}</small>${sim("cond-" + c.id, S.cond[c.id])}</div>`).join("")}</div>
+    <div class="calc" id="live"></div>` + nav("Ver o meu Plano");
+    app.innerHTML = h;
+    liga(["inicioF1", "semanasF1", "semanasF2", "inicioTeste", "responsavel", "ocupProjetada", "notaMedia3m", "ocupReal", "notaPeriodo", "contatos", "tempoSobraTxt"]);
+    ligaRad("periodoMedio", "periodoMedio"); ligaRad("feito", "feito", true); ligaRad("causaExterna", "causaExterna"); ligaRad("tempoSobra", "tempoSobra");
+    Z.CONDICOES.forEach((c) => app.querySelectorAll(`input[name=cond-${c.id}]`).forEach((x) => x.onchange = () => { S.cond[c.id] = x.value; gravar(); atualiza(t); }));
+    ligaNav(t); return;
+  }
+  if (t === "resultado") { EST = estados(); app.innerHTML = resultado(); ligaResultado(); }
+}
+
+function metas() {
+  const m = []; const r = Z.calcular(S, pags());
+  if (r.notaMeta != null) m.push(`Nota: ${r.notaAtual != null ? Z.notaTxt(r.notaAtual, r.escala) + " → " : ""}${Z.notaTxt(r.notaMeta, r.escala)}${S.prazoMeta ? " até " + Z.br(S.prazoMeta) : ""}`);
+  const pr = EST.preco; if (pr && Z.num(pr.metaDireta) != null) { const atual = APIS.preco ? (() => { try { return APIS.preco.calcular(pr).diretaAtual; } catch (e) { return null; } })() : null; m.push(`Venda direta: ${atual != null ? Z.dec(atual, 0) + "% → " : ""}${Z.dec(Z.num(pr.metaDireta), 0)}%${pr.prazoMeta ? " até " + Z.br(pr.prazoMeta) : ""} (Módulo 3)`); }
+  return m;
+}
+function resultado() {
+  const P = pags(), r = Z.calcular(S, P), L = Z.leituras(r, S), E = r.escala;
+  const concl = Z.concluido(S, P), pend = Z.pendencias(S, P), M = metas();
+  return `<div class="card"><div class="eyebrow">O meu Plano de Gestão Profissional${S.hospedagem ? " · " + esc(S.hospedagem) : S.nome ? " · " + esc(S.nome) : ""}</div>
+  <div class="leitura"><div class="rot">${esc(L.titulo)}</div><div class="nota" id="paginasN">${r.presentes + 1} de 8 <small>· páginas no Plano</small></div><p id="leituraNota">${esc(L.nota)}</p></div>
+  ${S.situacao === "abrir" ? `<div class="aviso">Este Plano é um desenho: você ainda vai abrir. Refaça a página 7 com a nota real depois das primeiras trinta avaliações.</div>` : ""}
+  <section class="bloco"><h2>1 · O resultado</h2><p>As oito páginas do seu Plano de Gestão Profissional, lidas deste aparelho.</p>${listaPaginas()}
+  <h3 style="font-size:1.05rem;margin-top:16px">Página 7 · O padrão mínimo de qualidade e reputação</h3>
+  <table class="tab" id="padrao"><thead><tr><th style="width:60%">Regra</th><th style="width:40%">O seu número</th></tr></thead><tbody>${r.padrao.map((p) => `<tr><td>${esc(p.r)}</td><td>${esc(p.v)}</td></tr>`).join("")}</tbody></table>
+  <div class="ind" id="indicadores">
+    <div data-id="nota"><small>Nota de hoje</small><strong>${r.notaAtual != null ? Z.dec(r.notaAtual, 1) : "sem nota"}</strong><em>meta ${r.notaMeta != null ? Z.dec(r.notaMeta, 1) : "a definir"} · mínima ${r.notaMin != null ? Z.dec(r.notaMin, 1) : "a definir"}</em></div>
+    <div data-id="volume"><small>Avaliações acumuladas</small><strong>${r.avaliacoes != null ? r.avaliacoes : "a informar"}</strong>${r.apos3 != null ? `<em>uma de ${E === 10 ? 6 : 3} leva a ${Z.dec(r.apos3, 2)}</em>` : ""}</div>
+    <div data-id="taxa"><small>Hóspedes que avaliam</small><strong>${r.taxa != null ? Z.pct(r.taxa, 0) : "a medir"}</strong><em>mínimo ${r.taxaMin != null ? Z.dec(r.taxaMin, 0) + "%" : "a definir"}</em></div>
+    <div data-id="resposta"><small>Tempo médio de resposta</small><strong>${r.tempoResposta != null ? Z.dec(r.tempoResposta, 0) + " min" : "a medir"}</strong><em>máximo ${r.respostaMax != null ? Z.dec(r.respostaMax, 0) + " min" : "a definir"}</em></div>
+    <div data-id="concorrentes"><small>Contra os concorrentes diretos</small><strong>${r.difConc != null ? (r.difConc >= 0 ? "+" : "−") + Z.dec(Math.abs(r.difConc), 1) : "a medir"}</strong></div>
+    <div data-id="saida"><small>Do início ao teste</small><strong>${r.fases.meses != null ? Z.dec(r.fases.meses, 1) + " meses" : "a definir"}</strong><em>teste em ${Z.br(r.teste.de)}</em></div>
+  </div></section>
+  <section class="bloco"><h2>2 · O que isso significa</h2><div class="caixa c-sig" id="leituras"><p>${esc(L.volume)}</p><p>${esc(L.taxa)}</p><p>${esc(L.dimensao)}</p>${L.concorrentes ? `<p>${esc(L.concorrentes)}</p>` : ""}<p>${esc(L.saida)}</p></div></section>
+  <section class="bloco"><h2>3 · Atenção</h2><div class="prio" id="atencao">${L.atencao.map((a, i) => `<div data-id="${a.id}"><i>${i + 1}</i><div>${esc(a.t)}</div></div>`).join("")}</div></section>
+  <section class="bloco"><h2>4 · O que fazer</h2><div class="caixa c-faz"><h3>Nas próximas quatro semanas</h3><ol class="lista" id="fazer">${L.fazer.map((f) => `<li>${esc(f)}</li>`).join("")}</ol></div>
+  <h3 style="font-size:1.05rem;margin-top:14px">A rotina semanal</h3>
+  <table class="tab" id="rotina"><thead><tr><th style="width:52%">O quê</th><th style="width:30%">Quando ou quem</th><th style="width:18%">Tempo</th></tr></thead><tbody>${r.rotina.semanal.map((x) => `<tr><td>${esc(x.r)}<small>${esc(x.f)}</small></td><td>${esc(x.q)}</td><td>${x.d}</td></tr>`).join("")}${r.rotina.mensal.map((x) => `<tr><td>${esc(x.r)}<small>Todo mês</small></td><td>${esc(x.q)}</td><td>${x.d}</td></tr>`).join("")}</tbody></table>
+  <p class="dica">Revisões trimestrais (2 h): ${r.rotina.trimestral.map(Z.br).join(", ") || "a definir"}. Revisão anual (meio dia): ${Z.br(r.rotina.anual)}.</p>
+  <h3 style="font-size:1.05rem;margin-top:14px">O plano de saída e o teste de prontidão</h3>
+  <table class="tab" id="fases"><thead><tr><th style="width:30%">Fase</th><th style="width:40%">O que acontece</th><th style="width:30%">Datas e sinal</th></tr></thead><tbody>${r.fases.lista.map((f) => `<tr><td><b>${f.n} · ${f.r}</b><small>${f.ref}</small></td><td>${f.o}</td><td>${f.de ? Z.br(f.de) + " a " + Z.br(f.ate) : "a definir"}<small>${f.sinal}</small></td></tr>`).join("")}</tbody></table>
+  <div class="caixa c-sig" id="teste"><h3>O teste das duas semanas</h3><p>De <b>${Z.br(r.teste.de)}</b> a <b>${Z.br(r.teste.ate)}</b>. Responsável: ${esc(S.responsavel || "a definir")}. Referências: ocupação projetada ${r.teste.ocup != null ? Z.dec(r.teste.ocup, 0) + "%" : "a definir"}, nota média ${r.teste.nota != null ? Z.notaTxt(r.teste.nota, E) : "a definir"}.</p><p><b>O que medir:</b> ${Z.MEDIR.join("; ")}.</p>
+  <p id="veredito">${r.veredito ? `<b>Leitura: ${esc(r.veredito.r)}.</b> ${esc(r.veredito.t)}` : "Depois do teste, volte à ficha e lance o resultado: passou, falta critério, falta padrão ou falta quem trabalhe a demanda. Cada resultado é um diagnóstico com endereço, e nenhum é fracasso."}</p></div>
+  <div class="caixa c-faz" id="crescimento"><h3>O plano de crescimento</h3>${M.length ? `<p><b>Metas:</b> ${M.map(esc).join(" · ")}.</p>` : ""}<p><b>O tempo que sobra:</b> ${r.tempoSobra ? esc(r.tempoSobra.r) : "a decidir"}${S.tempoSobraTxt ? ": " + esc(S.tempoSobraTxt.trim().replace(/[.!]+$/, "")) : ""}.</p><p><b>Segunda unidade:</b> ${esc(r.segunda.r)}. ${esc(r.segunda.t)}</p></div></section>
+  <section class="bloco"><h2>5 · Como verificar</h2><div class="caixa c-ver"><h3>Daqui a quatro semanas</h3><p id="verificar">${esc(L.verificar)}</p>
+  <h3 style="margin-top:10px">Critério de conclusão</h3><p>O módulo e a jornada estão concluídos com os sete itens prontos e o PDF do Plano baixado:</p><ul class="lista" id="itens">${r.itens.map((i) => `<li><span class="${i.ok ? "ok-i" : "no-i"}">${i.ok ? "Pronto" : "Falta"}</span> · ${esc(i.r)}</li>`).join("")}</ul>
+  <p><span class="selo ${concl ? "" : "pend"}" id="selo">${concl ? "Plano completo · pronto para a Jornada 3" : "Falta: " + esc(pend.join("; "))}</span></p></div></section>
+  <section class="bloco"><h2>A próxima etapa</h2><p>Com o Plano de Gestão Profissional fechado, a jornada segue para a <b>${Z.PROXIMO.t}</b>: ${Z.PROXIMO.d}</p>
+  <p class="dica">Complemento: a planilha <a href="../materiais/planilhas/">Qualidade e Reputação</a> (em branco e exemplo), com as avaliações por canal, o registro de críticas, o painel semanal e o teste de prontidão.</p></section>
+  <div class="acoes"><button class="btn btn-ouro" id="pdf">Baixar o Plano de Gestão completo em PDF</button>
+  <a class="btn btn-p" href="../">Voltar às ferramentas da Jornada 2</a>
+  <button class="btn btn-s" id="refaz">Revisar as respostas</button></div>
+  <p class="erro" id="erro"></p></div>`;
+}
+function ligaResultado() {
+  document.getElementById("refaz").onclick = () => { S.tela = 1; gravar(); render(); window.scrollTo(0, 0); };
+  document.getElementById("pdf").onclick = () => { if (gerarPDF()) { const P = pags(); const ok = Z.concluido(S, P); const s = document.getElementById("selo"); s.textContent = ok ? "Plano completo · pronto para a Jornada 3" : "Falta: " + Z.pendencias(S, P).join("; "); s.className = "selo" + (ok ? "" : " pend"); } };
+}
+
+function gerarPDF() {
+  const er = document.getElementById("erro");
+  if (!window.jspdf) { er.textContent = "O gerador de PDF ainda está carregando. Tente de novo em alguns segundos."; return false; }
+  EST = estados(); const P = pags(), r = Z.calcular(S, P), L = Z.leituras(r, S), E = r.escala, M = metas();
+  const { jsPDF } = window.jspdf; const d = new jsPDF({ unit: "mm", format: "a4" });
+  const W = 210, MG = 18, CW = W - 2 * MG; let y = 0;
+  const rodape = () => { d.setFont("helvetica", "normal"); d.setFontSize(8); d.setTextColor(90); d.text("Conteúdo educacional. Não é promessa de renda, retorno ou resultado: a gestão depende da execução de cada hospedagem. Zion Hospitality Business.", MG, 286, { maxWidth: CW }); };
+  const fx = (s) => String(s == null ? "" : s).replace(/−/g, "-").replace(/[→]/g, "->");
+  const quebra = (alt) => { if (y + alt > 272) { rodape(); d.addPage(); y = 20; } };
+  // a fonte é definida de novo depois da quebra (o rodapé muda o tamanho): correção dos Módulos 1 e 5
+  const tx = (s, size, cor, bold) => { const f = () => { d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(size); d.setTextColor(...(cor || [22, 38, 28])); }; f(); const ls = d.splitTextToSize(fx(s), CW); quebra(ls.length * size * 0.42); f(); d.text(ls, MG, y); y += ls.length * size * 0.42 + 2.6; };
+  const tit = (s) => { quebra(20); y += 2; tx(s, 9, [122, 94, 18], true); };
+  const pagTit = (s) => { quebra(22); y += 3; d.setFillColor(22, 38, 28); d.rect(MG, y - 5, CW, 8, "F"); d.setFont("helvetica", "bold"); d.setFontSize(10.5); d.setTextColor(224, 190, 94); d.text(fx(s), MG + 2.5, y); y += 7; };
+  const tabela = (cols, linhas) => {
+    const lh = 3.9;
+    const desenha = (cells, bold, fundo) => {
+      d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(8.6);
+      const ls = cells.map((c, i) => d.splitTextToSize(fx(c), cols[i] - 2)); const h = Math.max(...ls.map((l) => l.length)) * lh + 2;
+      quebra(h); d.setFont("helvetica", bold ? "bold" : "normal"); d.setFontSize(8.6);
+      if (fundo) { d.setFillColor(...fundo); d.rect(MG, y - 3.4, CW, h, "F"); }
+      let x = MG; ls.forEach((l, i) => { d.setTextColor(...(bold && fundo ? [245, 241, 232] : [22, 38, 28])); d.text(l, x + 1, y); x += cols[i]; });
+      y += h; d.setDrawColor(214, 205, 184); d.line(MG, y - 3.2, MG + CW, y - 3.2);
+    };
+    desenha(linhas[0], true, [22, 38, 28]); linhas.slice(1).forEach((l) => desenha(l, false));
+    y += 2;
+  };
+  // Capa e índice
+  d.setFillColor(22, 38, 28); d.rect(0, 0, W, 48, "F"); d.setTextColor(224, 190, 94); d.setFont("helvetica", "normal"); d.setFontSize(9); d.text("ZION · JORNADA 2 · GESTÃO · MÓDULO 7 · O PLANO COMPLETO", MG, 14);
+  d.setTextColor(245, 241, 232); d.setFont("helvetica", "bold"); d.setFontSize(19); d.text("Plano de Gestão Profissional", MG, 27);
+  d.setFont("helvetica", "normal"); d.setFontSize(10); d.text(fx([S.nome, S.hospedagem, S.situacao === "abrir" ? "desenho antes de abrir" : "", new Date().toLocaleDateString("pt-BR")].filter(Boolean).join(" · ")), MG, 37);
+  y = 60;
+  tit("AS OITO PÁGINAS DO PLANO");
+  tabela([14, 92, 68], [["Página", "Entregável (módulo)", "Situação"]].concat(P.map((p) => [String(p.n), p.r + " (" + p.m + ")", Z.rotuloEstado(p)])).concat([["7", "Qualidade, reputação e plano de crescimento", "Montada no Módulo 7"]]));
+  tx("As páginas 0 a 6 aparecem resumidas, com os números de cada ficha. O PDF completo de cada ficha continua valendo como anexo do Plano.", 9);
+  // Páginas 0 a 6
+  Z.PAGINAS.slice(0, 7).forEach((p) => {
+    const R = Z.resumoPagina(p.n, EST[p.slug], APIS[p.slug]);
+    pagTit(`PÁGINA ${p.n} · ${p.r.toUpperCase()}`);
+    tx(p.m + (EST[p.slug] ? "" : " · página ainda não feita"), 8.6, [90, 90, 90]);
+    R.linhas.forEach((l) => tx("• " + l, 9.5));
+  });
+  // Página 7
+  pagTit("PÁGINA 7 · QUALIDADE, REPUTAÇÃO E PLANO DE CRESCIMENTO");
+  tit("1 · A NOTA E AS AVALIAÇÕES"); tx(L.nota, 10, null, true); [L.volume, L.taxa, L.dimensao, L.concorrentes].filter(Boolean).forEach((s) => tx(s, 9.5));
+  if (r.produto) tx(`Crítica que se repetiu ${r.repeticoes} vezes no trimestre: ${S.criticaRepetida}. Ajuste de produto: ${S.ajuste || "a definir"}${S.ajustePrazo ? " (até " + Z.br(S.ajustePrazo) + ")" : ""}.`, 9.5);
+  tit("2 · A RESPOSTA ÀS AVALIAÇÕES");
+  tx("Pedido na saída, pessoalmente: " + (S.pedido || "a escrever"), 9.5);
+  tx("Problema não resolvido: " + (S.naoPedir === "sim" ? "não peço avaliação; resolvo primeiro." : "regra a adotar."), 9.5);
+  tx("Resposta à positiva: " + (S.respPositiva || "a escrever"), 9.5);
+  tx("Resposta à negativa (reconhecer, não discutir, dizer o que mudou): " + (S.respNegativa || "a escrever"), 9.5);
+  tx("Regra das 24 horas: " + (S.regra24 === "sim" ? "nunca respondo uma negativa no mesmo dia." : "a adotar.") + (S.quemResponde ? " Quem responde: " + S.quemResponde + "." : ""), 9.5);
+  tit("3 · O PADRÃO MÍNIMO");
+  tabela([110, 64], [["Regra", "O meu número"]].concat(r.padrao.map((p) => [p.r, p.v])));
+  tit("4 · O PLANO DE CRESCIMENTO");
+  if (M.length) tx("Metas: " + M.join(" · ") + ".", 9.5);
+  tx("O tempo que sobra: " + (r.tempoSobra ? r.tempoSobra.r : "a decidir") + (S.tempoSobraTxt ? ": " + S.tempoSobraTxt.trim().replace(/[.!]+$/, "") : "") + ".", 9.5);
+  tx("Segunda unidade: " + r.segunda.r + ". " + r.segunda.t + " Condições: " + Z.CONDICOES.map((c) => c.r + " (" + (S.cond[c.id] === "sim" ? "sim" : S.cond[c.id] === "nao" ? "não" : "a responder") + ")").join("; ") + ".", 9.5);
+  pagTit("A ROTINA SEMANAL");
+  tabela([96, 52, 26], [["O quê", "Quando ou quem", "Tempo"]].concat(r.rotina.semanal.map((x) => [x.r + " (" + x.f + ")", x.q, x.d])).concat(r.rotina.mensal.map((x) => [x.r + " (todo mês)", x.q, x.d])));
+  tx("Revisões trimestrais (2 h): " + (r.rotina.trimestral.map(Z.br).join(", ") || "a definir") + ". Revisão anual (meio dia): " + Z.br(r.rotina.anual) + ". Nada diário, exceto as quatro exceções do painel.", 9.5);
+  pagTit("O TESTE DE PRONTIDÃO E O PLANO DE SAÍDA");
+  tabela([40, 80, 54], [["Fase", "O que acontece", "Datas · sinal de conclusão"]].concat(r.fases.lista.map((f) => [f.n + " · " + f.r + " (" + f.ref + ")", f.o, (f.de ? Z.br(f.de) + " a " + Z.br(f.ate) : "a definir") + " · " + f.sinal])));
+  tx(L.saida, 9.5);
+  tx(`O teste das duas semanas: ${Z.br(r.teste.de)} a ${Z.br(r.teste.ate)}. Responsável: ${S.responsavel || "a definir"}. Ocupação projetada ${r.teste.ocup != null ? Z.dec(r.teste.ocup, 0) + "%" : "a definir"}; nota média dos três meses ${r.teste.nota != null ? Z.notaTxt(r.teste.nota, E) : "a definir"}; período de ocupação média: ${S.periodoMedio === "sim" ? "sim" : "a confirmar"}.`, 9.5, null, true);
+  tx("Regras: " + Z.REGRAS_TESTE.join("; ") + ".", 9);
+  tx("O que medir: " + Z.MEDIR.join("; ") + ".", 9);
+  tx(r.veredito ? `Leitura do teste: ${r.veredito.r}. ${r.veredito.t}` : "Como ler: ocupação e nota mantidas, com no máximo dois contatos por exceção, passou. Muitos contatos: falta critério. Nota caiu: falta padrão ou treino. Ocupação caiu sem causa externa: falta quem trabalhe a demanda.", 9.5);
+  tit("ATENÇÃO"); L.atencao.forEach((a, i) => tx(`${i + 1}. ${a.t}`, 9.5));
+  tit("O QUE FAZER NAS PRÓXIMAS QUATRO SEMANAS"); L.fazer.forEach((f, i) => tx(`${i + 1}. ${f}`, 9.5));
+  tit("COMO VERIFICAR"); tx(L.verificar, 9.5);
+  tx("Critério de conclusão: " + r.itens.map((i) => (i.ok ? "[pronto] " : "[falta] ") + i.r).join("; ") + ".", 9);
+  tit("A PRÓXIMA ETAPA"); tx(`${Z.PROXIMO.t}: ${Z.PROXIMO.d}`, 10, null, true);
+  rodape();
+  d.save("plano-de-gestao-profissional.pdf");
+  S.pdf = new Date().toISOString(); gravar(); return true;
+}
+render();
+carregaApis();
+</script>
+</body>
+</html>

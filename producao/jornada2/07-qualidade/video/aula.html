@@ -1,0 +1,76 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Aula em vídeo · Jornada 2 · Gestão</title>
+<style>
+@font-face{font-family:Cormorant;src:url(../../../../docs/assets/fonts/cormorant.woff2) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;src:url(../../../../docs/assets/fonts/cormorant-italic.woff2) format("woff2");font-style:italic;font-weight:300 700}
+@font-face{font-family:Aventa;src:url(../../../../docs/assets/fonts/aventa.woff2) format("woff2");font-weight:300 700}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box}html,body{margin:0;width:1920px;height:1080px;overflow:hidden;background:var(--musgo);color:var(--creme);font-family:Aventa,Arial,sans-serif}
+.cena{position:absolute;inset:0;display:grid;grid-template-columns:1fr 1fr;gap:80px;padding:120px 110px 130px;animation:fade .6s ease both;align-items:center}
+.cena.uma{grid-template-columns:1fr;max-width:1500px}
+.cena.centro{grid-template-columns:1fr;justify-items:center;text-align:center}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center;animation:kb 16s ease-out both}
+.veu{position:absolute;inset:0;background:linear-gradient(90deg,rgba(4,6,5,.92) 0%,rgba(4,6,5,.75) 55%,rgba(4,6,5,.35) 100%)}
+.musgo .veu{background:var(--musgo)}
+.txt{position:relative}
+.k{color:var(--ouro);letter-spacing:.22em;text-transform:uppercase;font-size:24px;font-weight:600;margin-bottom:26px;animation:up .7s .2s ease both}
+h1{font-family:Cormorant,Georgia,serif;font-weight:500;font-size:84px;line-height:1.05;margin:0 0 28px;animation:up .8s .35s ease both}
+h1 i{font-style:italic;color:var(--ouro)}
+.centro h1{font-size:96px;max-width:1500px}
+p{font-size:36px;line-height:1.4;color:var(--areia);margin:0;animation:up .8s .6s ease both;max-width:900px}
+.centro p{max-width:1200px}
+.bar{width:140px;height:5px;background:var(--ouro);margin:36px 0 0;animation:up .8s .8s ease both}
+.centro .bar{margin:36px auto 0}
+.topo{position:absolute;top:56px;left:110px;right:110px;display:flex;justify-content:space-between;align-items:center;font-size:22px;letter-spacing:.2em;text-transform:uppercase;color:var(--areia);opacity:.85}
+.topo img{height:46px}
+.rodape{position:absolute;bottom:52px;left:110px;right:110px;font-size:20px;color:var(--areia);opacity:.7;line-height:1.4;display:flex;justify-content:space-between}
+.lado{position:relative;display:grid;gap:18px;align-content:center}
+ul{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+li{font-size:32px;line-height:1.3;color:var(--creme);padding:20px 26px;border-radius:14px;background:rgba(254,245,240,.07);border:1px solid rgba(201,179,126,.45);display:flex;gap:22px;align-items:flex-start;animation:up .7s ease both}
+li:nth-child(1){animation-delay:.5s}li:nth-child(2){animation-delay:.8s}li:nth-child(3){animation-delay:1.1s}li:nth-child(4){animation-delay:1.4s}li:nth-child(5){animation-delay:1.7s}li:nth-child(6){animation-delay:2s}li:nth-child(7){animation-delay:2.3s}li:nth-child(8){animation-delay:2.6s}
+li b{color:var(--ouro);font-family:Cormorant,serif;font-size:46px;line-height:1;min-width:56px}
+li small{display:block;font-size:24px;color:var(--areia);margin-top:4px}
+.cx{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.cx div{background:rgba(254,245,240,.08);border:1px solid rgba(201,179,126,.5);border-radius:16px;padding:30px 26px;font-size:27px;line-height:1.3;animation:up .7s ease both}
+.cx div:nth-child(1){animation-delay:.5s}.cx div:nth-child(2){animation-delay:.8s}.cx div:nth-child(3){animation-delay:1.1s}
+.cx b{display:block;font-family:Cormorant,serif;font-size:44px;color:var(--ouro);margin-bottom:10px;font-weight:500}
+.cita{font-family:Cormorant,serif;font-style:italic;font-size:60px;line-height:1.2;color:var(--creme);border-left:6px solid var(--ouro);padding-left:36px;animation:up .8s .4s ease both;max-width:1300px}
+.cita small{display:block;font-family:Aventa,sans-serif;font-style:normal;font-size:24px;color:var(--areia);margin-top:18px;letter-spacing:.1em;text-transform:uppercase}
+.tela{position:relative;border-radius:22px;overflow:hidden;border:3px solid rgba(201,179,126,.6);box-shadow:0 30px 60px rgba(0,0,0,.5);background:#F5F1E8;animation:up .8s .4s ease both;justify-self:center}
+.tela img{display:block;width:100%}
+.tela.cel{width:420px;height:800px;align-self:center}
+.tela.cel img{animation:pan 14s linear both}
+.nota{font-family:Cormorant,serif;font-size:220px;line-height:1;color:var(--ouro);animation:up .8s .4s ease both}
+.nota small{font-family:Aventa,sans-serif;font-size:30px;color:var(--areia);display:block;letter-spacing:.1em}
+.compacta ul{gap:9px}.compacta li{font-size:28px;padding:11px 22px;align-items:center}.compacta li b{font-size:36px;min-width:44px}
+.logo{width:380px;margin-bottom:40px;animation:up .8s .2s ease both}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+@keyframes up{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:none}}
+@keyframes kb{from{transform:scale(1.07)}to{transform:scale(1)}}
+@keyframes pan{from{transform:translateY(0)}to{transform:translateY(-45%)}}
+</style></head><body>
+<script>const D=new URLSearchParams(location.search).get("d")||"g00";document.write(`<script src="scenes-${D}.js"><\/script>`);</script>
+<script>
+const S=window.S; const i=+(new URLSearchParams(location.search).get("s")||0); const c=S[i];
+const F="../../../../docs/";
+let h=`<div class="cena ${c.musgo?"musgo":""} ${c.centro?"centro":""} ${c.uma?"uma":""} ${c.compacta?"compacta":""}">`;
+if(c.foto) h+=`<div class="foto" style="background-image:url(${F}${c.foto})"></div>`;
+h+=`<div class="veu"></div><div class="topo"><img src="${F}brand/zion-logo-claro.png" alt="Zion"><span>${window.TOPO||"Jornada 2 · Gestão"}</span></div>`;
+h+=`<div class="txt">`;
+if(c.logo) h+=`<img class="logo" src="${F}brand/zion-logo-claro.png" alt="Zion">`;
+if(c.k) h+=`<div class="k">${c.k}</div>`;
+if(c.h) h+=`<h1>${c.h}</h1>`;
+if(c.cita) h+=`<div class="cita">“${c.cita[0]}”<small>${c.cita[1]}</small></div>`;
+if(c.p) h+=`<p>${c.p}</p>`;
+if(c.k||c.h) h+=`<div class="bar"></div>`;
+h+=`</div>`;
+if(c.lista||c.cx||c.tela||c.nota){
+  h+=`<div class="lado">`;
+  if(c.nota) h+=`<div class="nota">${c.nota[0]}<small>${c.nota[1]}</small></div>`;
+  if(c.lista) h+=`<ul>`+c.lista.map(x=>`<li><b>${x[0]}</b><span>${x[1]}${x[2]?`<small>${x[2]}</small>`:""}</span></li>`).join("")+`</ul>`;
+  if(c.cx) h+=`<div class="cx">`+c.cx.map(x=>`<div><b>${x[0]}</b>${x[1]}</div>`).join("")+`</div>`;
+  if(c.tela) h+=`<div class="tela ${c.tela[1]||""}"><img src="${c.tela[0]}"></div>`;
+  h+=`</div>`;
+}
+h+=`<div class="rodape"><span>${c.rodape||"Conteúdo educacional. Não é promessa de renda, retorno ou resultado."}</span><span>zionhotelgroup.com</span></div></div>`;
+document.body.innerHTML=h;
+</script></body></html>
