@@ -1,6 +1,6 @@
 # Ferramenta 20 · Kit de Treinamento do Primeiro Turno
 
-Status: arquivos prontos e testados; **oferta enviada para aprovação em 10/11/2026** (rodada diária automática). Página em rascunho; será publicada quando a oferta estiver ativa.
+Status: arquivos prontos e testados; **oferta enviada para aprovação em 10/11/2026** (rodada diária automática). **Oferta aprovada e página publicada em 11/11/2026.**
 
 **ClickMax:** produto `fcb2b52e-b4ec-4bfb-8cb9-516294255a38`; oferta `e1cda5e6-af69-4c0e-84cf-12245e07022a` (R$ 19, checkout `AzLhCjcBtK`, status `pending` desde 10/11 04h57 UTC, sem erro de sincronização); página `c3670c67-fe99-4ca1-8522-ef50d204577e` em `/treinamento-primeiro-turno` (rascunho). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/treinamento-20/`, ligados à oferta.
 
@@ -54,3 +54,6 @@ python3 -I src/build_planilha.py dist && python3 -I tests/test_planilha.py dist
 python3 -I src/build_docs.py dist build && node src/render.js build dist && node src/render.js build dist
 bash src/empacotar.sh && python3 -I landing/build_landing.py
 ```
+
+## Publicação (11/11/2026)
+Oferta aprovada (`canSell` true, sem erro de sincronização). Página publicada e conferida no ar com Playwright: https://infoprodutos-zion.clickmax.space/treinamento-primeiro-turno (conteúdo correto; o checkout é um iframe bloqueado neste ambiente, então a compra não foi testada).

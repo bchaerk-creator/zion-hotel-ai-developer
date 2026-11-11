@@ -23,6 +23,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 05 | `docs/p/adbc67069af26ae0/orcamento-05/capa.jpg` |
 | Ferramenta 18 | `docs/p/adbc67069af26ae0/manutencao-18/capa.jpg` |
 | Ferramenta 20 | `docs/p/adbc67069af26ae0/treinamento-20/capa.jpg` |
+| Ferramenta 30 | `docs/p/adbc67069af26ae0/briefing-30/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -30,8 +31,15 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - **Erro de sincronização com o gateway** nas ofertas criadas antes de 10/11 (17, 11, 13, 14, 29, 18): "Não autorizado. Token inválido ou ausente." A 20, criada hoje, sincronizou. Vale perguntar ao suporte do ClickMax se essas precisam ser sincronizadas de novo.
 - Páginas de vendas ficam em rascunho até cada oferta ficar `active`; a rodada diária publica assim que aprovar.
 
+## Ofertas aprovadas (11/11)
+- 17, 11, 13, 14, 29, 18 e 20 aprovadas pelo ClickMax (`canSell` true). A conta de vendedor segue `pending`.
+- **Publicada:** só a página da 20 (`https://infoprodutos-zion.clickmax.space/treinamento-primeiro-turno`), que não tem erro de sincronização.
+- **Seguradas em rascunho:** 17, 11, 13, 14, 29 e 18, porque ainda mostram "Não autorizado. Token inválido ou ausente." no gateway. Publicar nelas pode levar alguém a um checkout que não cobra. **Bruno:** perguntar ao suporte do ClickMax como ressincronizar.
+- 30 enviada para aprovação em 11/11, sem erro de sincronização.
+
 ## Decidir (09/11)
 - **Ferramentas 01 e 21 do catálogo:** com as promessas sem duplicação (Comando 05A/05B), a 01 (ficha de apresentação do terreno) se sobrepõe a B05, B10 e ao Dossiê do Land Bank, e a 21 (mensagens de reservas) à A07. Seguir, mudar a promessa ou tirar do catálogo? Até a decisão, a rodada diária segue com 20, 15, 19.
+- **E-book E08 (Gestão e operação):** sobrepõe-se à Jornada 2 (Gestão) da Fábrica Educacional. Seguir como e-book separado, virar material da Jornada 2 ou sair do catálogo? A rodada diária pulou o E08 em 11/11.
 - **Ferramenta 05:** contingência no lugar de "reserva" e percentual inicial (dicionário financeiro D6), e a frase "para uma cabana" separando da B06. Só com "aprovado".
 
 ## Quando quiser

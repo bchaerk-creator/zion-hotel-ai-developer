@@ -71,7 +71,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 27 | Template de apresentação do projeto turístico | A, C | D (Gamma) | A fazer, sem projeções |
 | 28 | Planner de capacidade e atendimento | C | P | A fazer |
 | 29 | Calculadora de custos de experiências | C | P | **Pronto** (`producao/utilitarios/29-custos-experiencias/`) |
-| 30 | Gerador de briefing de experiência | C | D | A fazer |
+| 30 | Gerador de briefing de experiência | C | D | **Pronto** (`producao/utilitarios/30-briefing-experiencia/`) |
 
 Regra das ofertas: cada ferramenta é vendida sozinha e cumpre a sua promessa sozinha. Quando entrar num e-book ou pacote, a página diz que ela também é vendida separadamente. Nenhuma oferta liga ao Clube, à mentoria ou à assessoria.
 
@@ -98,7 +98,8 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5. **29 · Calculadora de custos de experiências** (pronto, em rascunho no ClickMax).
 5b. **05 · Orçamento da Cabana** (pronto, em rascunho no ClickMax; pedido de Bruno em 08/11).
 5c. **18 · Planner de manutenção preventiva** (pronto, em rascunho no ClickMax, 09/11). Passou à frente da 01 e da 21 porque, após o Comando 05A/05B (promessas sem duplicação), a 01 se sobrepõe a B05/B10/Land Bank e a 21 à A07: **Bruno decide** se seguem, mudam de promessa ou saem do catálogo.
-5d. **20 · Kit de treinamento do primeiro turno** (pronto e enviado para aprovação, 10/11).
+5d. **20 · Kit de treinamento do primeiro turno** (pronto, aprovado em 11/11, página publicada em `/treinamento-primeiro-turno`).
+5e. **30 · Gerador de briefing de experiência** (pronto e enviado para aprovação, 11/11). Passou à frente do E08 porque o e-book se sobrepõe à Jornada 2 (Gestão) da Fábrica Educacional: **Bruno decide** se o E08 segue como e-book separado ou vira material da Jornada 2.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

@@ -111,3 +111,6 @@ bash src/empacotar.sh                         # ZIP do produto
 
 ## Envio para aprovação
 10/11/2026 (rodada diária): `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`. O ClickMax devolveu erro de sincronização do gateway ("Não autorizado. Token inválido ou ausente."); registrado em PENDENCIAS_BRUNO.md. Página segue em rascunho até a oferta ficar ativa.
+
+## Aprovação (11/11/2026)
+Oferta aprovada pelo ClickMax (`canSell` true). Página **segurada em rascunho** porque a oferta ainda mostra erro de sincronização do gateway ("Não autorizado. Token inválido ou ausente."); publicar só depois que o suporte do ClickMax resolver, para ninguém cair num checkout que não cobra.
