@@ -56,3 +56,8 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 - Criativos 1080×1350 na narrativa (espelho → crença → prova → mecanismo → próximo passo): `docs/ads/clube-narrativa/01..05.jpg`.
 - Meta (conta 1271873041294684), tudo **pausado**: campanha `120250330194890016` → conjunto `120250331856590016` (R$ 30/dia, BR 25–65, mesmo público do Diagnóstico, visualizações da landing) → anúncio carrossel `120250331865540016` e anúncio de vídeo (id no resumo da sessão). Vídeo na conta: `1044832475285192`. Ativação só com "aprovado" de Bruno.
 - Rota no site (zionhotelgroup.com/clube) ainda não existe: exige uma mensagem ao agente da Lovable (consome créditos). Aguarda aprovação.
+
+### Atualização 11/11 · versão 2 (pedido do Bruno)
+- Vídeo refeito: "como funciona o clube e as suas etapas", sem preço; o capital "pode vir da própria Zion ou do pool de investidores e parceiros". Arquivos substituídos nos mesmos caminhos. Vídeo na conta Meta: `4079419749029366`.
+- Anúncios v1 renomeados como DESCARTADO (ids `120250331865540016` e `120250331873620016`), continuam pausados. Novos anúncios, pausados, no mesmo conjunto `120250331856590016`: carrossel v2 `120250331912530016` e vídeo v2 (id no resumo da sessão).
+- Copy dos anúncios: "Transforme seu terreno em um destino turístico. Aprenda o passo a passo com a Zion…", com "melhores produtos do mercado" e "referência" por decisão do Bruno.
