@@ -1,10 +1,10 @@
 import asyncio,edge_tts,os,json,subprocess
 V=os.path.dirname(os.path.abspath(__file__))
-S=["A Zion é referência em hospedagens na natureza e em hospedagens de experiência. Desenvolvemos, gerimos e operamos as nossas unidades desde 2020, e estamos em busca dos melhores destinos por todo o Brasil. O seu pode ser o próximo.",
-"O Zion Collection Club é a porta de entrada. Dentro do clube você entende mais sobre o setor, se prepara para ele e tem acesso aos melhores produtos do mercado: a formação, uma sessão estratégica de direcionamento inicial com a nossa equipe e o Radar do Land Bank.",
-"Como funciona: em cinco etapas, nesta ordem. Potencial do terreno, modelo de hospedagem, números, proposta e apresentação. Cada etapa produz um documento. No fim, o seu projeto está pronto para ser apresentado.",
-"E de onde vem o capital? Com o projeto no radar, ele pode vir da própria Zion, que avalia novas sedes pelo Brasil, ou do pool de investidores e parceiros que a Zion reúne. O clube abre o caminho para o parceiro, o sócio ou o investidor certo.",
-"A Zion está em busca dos melhores destinos por todo o Brasil, e o seu pode ser o próximo. Entre para o clube e faça parte dessa oportunidade."]
+S=["Com mais de vinte anos no mercado internacional e cinco anos no Brasil, desde 2020, a Zion é referência no setor de glamping no país. Estamos buscando novos parceiros e pessoas que queiram entrar nesse setor e aprender a faturar com hospedagem.",
+"Você tem o terreno, a vontade e a ideia. O que falta é o caminho: por onde começar, com quem contar e como transformar isso em um destino que recebe hóspedes e gera receita.",
+"Dentro do Zion Collection Club você ganha o que precisa para chegar lá: conhecimento, acesso aos melhores produtos do mercado, acesso a investimentos e a possibilidade de fazer parcerias e receber investidores. O seu terreno entra no Radar do Land Bank, e o capital pode vir da própria Zion ou do pool de investidores que a Zion reúne.",
+"O nosso clube é o maior clube de glamping do Brasil, referência no setor. A Zion está em busca dos melhores destinos por todo o país. O seu pode ser o próximo destino da nossa expansão.",
+"Entre para o clube. Transforme seu terreno em um destino turístico e faça parte dessa oportunidade."]
 async def main():
     out=[]
     for i,t in enumerate(S):
