@@ -41,6 +41,8 @@ css = """<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond
 .zl .faq .q{border-top:1px solid rgba(201,179,126,.2);padding:14px 0}.zl .faq .cm-accordion-header{color:#FEF5F0;font-weight:600;cursor:pointer}.zl .faq .cm-accordion-content p{margin:8px 0 0;font-size:15px}
 .zl .fixa{position:fixed;left:0;right:0;bottom:0;z-index:50;background:rgba(4,6,5,.96);border-top:1px solid rgba(201,179,126,.35);padding:10px 16px}
 .zl .fixa .btn{max-width:640px;margin:0 auto;padding:14px 16px;font-size:17px}
+.zl .heroimg{position:relative;background:#040605 url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/hero.webp) center 35%/cover no-repeat;padding:0}.zl .heroimg:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.25) 0%,rgba(4,6,5,.55) 38%,#040605 78%)}.zl .heroimg .w{position:relative;padding-top:180px;padding-bottom:40px}.zl .leg{display:block;font-size:11px;color:#A39E8E;margin:14px 0 0;text-align:center}
+.zl .faixa{width:100%;height:220px;border-radius:14px;background:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op12.webp) center/cover;margin:18px 0 6px}
 .zl .rod{text-align:center;font-size:12px;padding:24px 16px}.zl .rod span{color:#7d796d}
 </style>"""
 
@@ -54,13 +56,14 @@ faq_html = "".join(f'<div class="q"><div class="cm-accordion-header">{q}</div><d
 
 corpo = f"""
 <div class="zl">
-<section class="sec" data-cx-section="hero"><div class="w">
+<section class="sec heroimg" data-cx-section="hero" data-cx-image-slot="hero" data-cx-image-hint="Foto do produto, 16:9" data-cx-image-kind="ambient"><div class="w">
 <span class="k">Zion Collection · Zion Hotel Group International</span>
 <h1>Seu Airbnb está vazio? <em>O problema pode estar na sua oferta.</em></h1>
 <p style="font-size:19px;color:#FEF5F0">Aprenda o passo a passo para descobrir o que mudar primeiro: dê 7 notas à sua oferta, veja as 3 prioridades e saia com um plano de 30 dias.</p>
 <div class="preco"><b>R$ 47</b><span>pagamento único · Pix ou cartão</span></div>
 <a class="btn" href="#oferta" data-cx-cta>{CTA}</a>
 <div class="confia"><span>✓ Acesso na área de membros após o pagamento</span><span>✓ 7 dias para reembolso</span><span>✓ Para Airbnb, casas, apartamentos, pousadas e glampings</span></div>
+<span class="leg">Foto real · Zion Bubble Glamping (SC), onde nasceu o método</span>
 </div></section>
 
 <section class="sec musgo" data-cx-section="problem"><div class="w">
@@ -82,6 +85,7 @@ corpo = f"""
 <span class="k">O que você recebe</span>
 <h2>Tudo em <em>um só lugar.</em></h2>
 <ul class="itens"><li>Diagnóstico Zion de Oferta<small>No celular e em planilha: 7 notas, 3 prioridades e o plano.</small></li><li>E-book de 60 páginas<small>10 capítulos do sintoma ao plano, com um exercício por capítulo.</small></li><li>Aula introdutória e videoaula prática<small>A ferramenta preenchida tela por tela, com legenda.</small></li><li>Fichas para imprimir<small>Diagnóstico, plano de ação e registro diário de 30 dias.</small></li></ul>
+<div class="faixa" role="img" aria-label="Foto real da Zion Bubble Glamping"></div><span class="leg" style="text-align:left;margin:0 0 12px">Foto real · Zion Bubble Glamping (SC)</span>
 <p style="margin-top:16px;font-size:15px">Método que parte da rotina usada nas unidades da Zion Hotel Group International: evidência, poucas prioridades, execução com prazo e medição.</p>
 </div></section>
 
