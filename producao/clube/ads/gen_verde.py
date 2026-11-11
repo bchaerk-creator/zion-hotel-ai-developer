@@ -14,6 +14,10 @@ h1 em{font-style:italic}
 cards={
 'clube':('Transforme seu terreno em um destino <em>turístico</em> e aprenda o passo a passo.','Entre para o clube','Tenha acesso aos melhores investimentos e aos melhores produtos para viabilizar o seu projeto',410,610,830,1070,1215),
 'parceiro':('Transforme seu terreno em um destino <em>turístico.</em> Seja um parceiro Zion.','Parceiro Zion','Tenha acesso aos melhores investimentos e aos melhores produtos para viabilizar o seu projeto',410,610,830,1070,1215),
+# v2 · narrativa "Descubra e receba" (11/11)
+'diagnostico':('Descubra o potencial do seu <em>terreno.</em> Receba o caminho até o destino.','Seja um parceiro Zion','Diagnóstico gratuito. Ao entrar para o clube, receba formação, sessão estratégica, produtos, investimentos e a parceria Zion',400,590,810,1050,1200),
+'clube_v2':('Descubra o potencial do seu <em>terreno.</em> Receba o passo a passo.','Entre para o clube','Ao entrar, receba formação, sessão estratégica, os melhores produtos, o radar de investimentos e a parceria Zion',400,590,810,1050,1200),
+'parceiro_v2':('Descubra se o seu local pode ter uma <em>unidade Zion.</em> Receba a parceria.','Seja um parceiro Zion','Ao entrar para o clube, receba formação, sessão estratégica, produtos, investimentos e a reunião de parceria',400,590,810,1050,1200),
 }
 for k,(h,b,c,top,hp,cab,btn,cap) in cards.items():
     html=tpl.replace('RR',R).replace('__TOP__',f'{top}px').replace('__HPX__',f'{hp}px').replace('__CAB__',f'{cab}px').replace('__BTNT__',f'{btn}px').replace('__CAPT__',f'{cap}px').replace('__HEAD__',h).replace('__BTN__',b).replace('__CAP__',c)
