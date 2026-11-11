@@ -91,3 +91,8 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 ## Formulário de adesão do Meta (11/11/2026)
 - Nome: "Club Zion Collection- ficha e adesão" · form_id `1379327397411218` (página `576944608845537`), idioma English (US), 0 leads até agora.
 - A sincronização horária já o reconhece pelo nome (contém "adesão", formulário B). Falta um lead de teste para confirmar que ele aparece no Windsor.
+
+## Decisão de Bruno (11/11/2026): não existe inscrição de R$ 97
+- A inscrição do clube será vendida na reunião, por R$ 970, com tudo o que ela inclui. A narrativa e a oferta serão trabalhadas depois.
+- Nenhuma página pública mostra preço do clube. O valor só é apresentado na reunião. Não escrever R$ 970 em página, anúncio, e-mail ou WhatsApp até Bruno aprovar a narrativa.
+- Ainda citam R$ 97 (revisar quando Bruno decidir): `producao/clube/diagnostico/ROTEIRO_REUNIAO.md` e `brief_reuniao.py` (oferta do mínimo na reunião), `producao/clube/email/reativacao_clube.html` (e o template ClickMax `f2a47ad6…`: não enviar), prompt e automações da Zaya, a oferta `72924971…` no ClickMax (R$ 97) e as páginas `docs/clube/kit-captacao/`, `docs/zion-collection/`, `docs/escola/d04/`, `docs/raio-x/` (só aparece com `?diag=1`).
