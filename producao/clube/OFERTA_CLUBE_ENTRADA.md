@@ -91,3 +91,8 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 ### 11/11 · Parceria com o carrossel campeão e copy v2 (sem preço)
 - Anúncios de parceria, **pausados**: carrossel campeão (7 cards de `docs/ads/campeao`) `120250333765310016` (conjunto formulário) e `120250333775750016` (conjunto inscrição). Copy em `producao/clube/ads/COPY_PARCEIRO.md`. O número "até R$ 400 mil por ano em uma única cabana" entra como resultado da operação própria da Zion, com a frase "não uma promessa para o seu caso". Cards gerados anteriores marcados DESCARTADO.
 - Funis ClickMax em rascunho: Club Collection `2b735292` e Parceiros Club `f1b9b440`. Cards do clube no estilo campeão em `docs/ads/clube-campeao` (card 1 = criativo verde GLAMPING).
+
+### 11/11 · Campanha de parceria NO AR e funis publicados (aprovado pelo Bruno: "pode ligar ela")
+- Campanha Parceiro Zion `120250332392690016` ativada ~00h50 Brasília (12/11): conjunto formulário `120250332422580016` (carrossel campeão `120250333765310016` + vídeo `120250333274220016`) e conjunto inscrição `120250332487350016` (carrossel `120250333775750016` + vídeo `120250333404560016`), R$ 30/dia cada.
+- Campanhas ativas na conta agora: Diagnóstico (form, 03/11), CLUB · D (link direto, 06/11), Clube R$ 97 (11/11) e Parceiro Zion (11/11). Pausada: Checkout direto R$ 270.
+- Funis ClickMax publicados: Club Collection e Parceiros Club. Script do SDK instalado em `docs/zion-collection/` e `docs/parceiro-zion/` (+ inscricao). Checkout do funil de parceria registrado como página própria (`5e0d2e63`).
