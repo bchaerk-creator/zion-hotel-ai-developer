@@ -87,3 +87,7 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 - Testado no navegador: abertura, 5 perguntas e tela de dados (7 telas). A tela final com a agenda e a devolutiva condicional NÃO foi percorrida, porque exige enviar um lead de teste.
 - `brief_reuniao.py` e `test_brief.py` atualizados para essas 5 respostas + campos do Meta (documentação, dificuldade).
 - Anúncios (pausados) ainda dependem do ID do formulário do Meta duplicado; cards quadrados feitos para os carrosséis; faltam trocar o carrossel do parceiro com inscrição R$ 97 e o carrossel da campanha nova.
+
+## Formulário de adesão do Meta (11/11/2026)
+- Nome: "Club Zion Collection- ficha e adesão" · form_id `1379327397411218` (página `576944608845537`), idioma English (US), 0 leads até agora.
+- A sincronização horária já o reconhece pelo nome (contém "adesão", formulário B). Falta um lead de teste para confirmar que ele aparece no Windsor.
