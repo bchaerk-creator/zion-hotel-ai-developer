@@ -1,31 +1,32 @@
-# Copy · Campanha Parceiros Club (carrossel campeão) · 11/11/2026
+# Copy · Campanha Parceiros Club (carrossel campeão) · versão 2, 11/11/2026 · sem preço
 
 ## Texto principal
-Transforme seu terreno em um destino turístico. Seja um parceiro Zion.
+Transforme seu terreno em um destino turístico e aprenda o passo a passo entrando no Zion Collection Club.
 
-Tem uma pousada, um camping ou um terreno com infraestrutura? Sabe aquela área de natureza que hoje não rende nada? É o lugar certo para oferecer experiências de glamping, com a marca que o hóspede já procura.
+Seu destino tem demanda? Você já é um operador? Seja um parceiro da Zion Collection e faça parte desse novo movimento no Brasil inteiro. Pare de vender quartos. Comece a vender experiência.
+
+A Zion, com mais de 20 anos no setor, chega a faturar até R$ 400 mil por ano em uma única cabana, somando hospedagem, gastronomia e experiências. É o resultado da nossa própria operação desde 2020, não uma promessa para o seu caso. E estamos em plena expansão por todo o Brasil.
 
 Como funciona a parceria: você entra com a área e a infraestrutura (deck, luz, água, internet, fossa e mobília). A Zion entra com a bubble, a marca e a reputação, o sistema e a gestão das reservas, a formação da equipe e o padrão de operação. Quem opera é um gerente local, contratado e formado pela Zion.
 
-Todo parceiro entra pelo Zion Collection Club. Lá dentro você tem acesso:
+Entre para o clube e tenha acesso:
+✓ a uma reunião estratégica inicial com a equipe Zion, para viabilizar o seu projeto
 ✓ aos melhores produtos de glamping do Brasil, da Zion Glamping Store
-✓ a investimentos: seu local no Radar do Land Bank, e o capital pode vir da própria Zion ou do pool de investidores que a Zion reúne
-✓ ao conhecimento: a formação completa, as ferramentas e uma sessão estratégica com a equipe
-✓ à própria parceria: a reunião em que desenhamos a parceria no seu local
+✓ a investimentos: seu local no Radar do Land Bank, com a própria Zion e o pool de investidores que a Zion reúne
+✓ ao conhecimento: a formação completa, as ferramentas e os conteúdos semanais
+✓ à parceria Zion: o desenho da parceria no seu local
 
-A Zion tem mais de 20 anos no mercado internacional e 5 no Brasil, com unidades em Urubici e Florianópolis, e está transformando terrenos em destinos turísticos por todo o país, com um padrão de franquia.
-
-Responda 6 perguntas e agende a reunião com a equipe Zion. A Zion avalia cada caso.
+Seja o próximo destino. A Zion avalia cada caso.
 
 ## Título e descrição
 Título: Seja um parceiro Zion
-Descrição: Você entra com o local. A Zion entra com o destino.
+Descrição: Pare de vender quartos. Comece a vender experiência.
 
-## Cards (carrossel campeão, docs/ads/campeao)
-1. 01-destino · Seja um parceiro Zion · Transforme seu terreno em um destino turístico.
-2. 02-mercado · Um mercado que cresce no mundo inteiro · Cabanas, tendas e bubbles: o produto que o hóspede procura.
-3. 03-quem-disse · Quem disse que precisa construir um hotel? · Com a área e a infraestrutura, a Zion entra com a bubble e a gestão.
-4. 04-glamping · Glamour + camping = glamping · Acesso aos melhores produtos de glamping do Brasil.
-5. 05-experiencia · Mais que uma hospedagem, uma experiência · O padrão Zion no seu local, com a marca e a reputação.
-6. 06-especialistas · Te ajudamos a desenvolver o seu projeto · Conhecimento, investimentos e a própria parceria, dentro do clube.
-7. 07-cta · Responda 6 perguntas e agende a reunião · Entre para o clube e seja um parceiro Zion.
+## Cards (carrossel campeão)
+1. Seja um parceiro Zion · Transforme seu terreno em um destino turístico.
+2. Um mercado que cresce no mundo inteiro · Seu destino tem demanda? Você já é um operador?
+3. Quem disse que precisa construir um hotel? · Você entra com a área e a infraestrutura. A Zion entra com a bubble e a gestão.
+4. Glamour + camping = glamping · Acesso aos melhores produtos de glamping do Brasil.
+5. Pare de vender quartos. Venda experiência. · O padrão Zion no seu local, com a marca e a reputação.
+6. Te ajudamos a desenvolver o seu projeto · Conhecimento, investimentos e uma reunião estratégica inicial.
+7. Seja o próximo destino · Entre para o clube e seja um parceiro Zion.
