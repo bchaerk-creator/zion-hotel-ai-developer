@@ -77,6 +77,15 @@ PRODUTOS = [
                    ("Treinamento-Primeiro-Turno-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Treinamento-Primeiro-Turno-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-do-Primeiro-Turno.pdf", "Ficha do primeiro turno", "PDF · para imprimir")]),
+    dict(pasta="briefing-30", num="30", telas=["producao/utilitarios/30-briefing-experiencia/dist/demonstracao/demo-briefing.png", "producao/utilitarios/30-briefing-experiencia/dist/demonstracao/demo-mensagens.png"],
+         titulo="Gerador de Briefing de Experiência",
+         promessa="Aprenda o passo a passo para escrever o briefing da sua experiência uma vez e gerar, para cada saída, a descrição, as mensagens ao cliente e o briefing de quem conduz.",
+         itens=["Briefing escrito uma vez", "8 textos por saída", "Datas de envio", "Aviso do que falta"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Ficha e Mensagens.", "Na planilha em branco, escreva o briefing da sua experiência.", "A cada saída, preencha cliente, data, horário e participantes e siga as datas de envio."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Briefing-Experiencia-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Briefing-Experiencia-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Mensagens-Modelo-Experiencia.pdf", "Modelos de texto", "PDF · para copiar à mão")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
