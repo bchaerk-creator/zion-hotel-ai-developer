@@ -61,3 +61,8 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 - Vídeo refeito: "como funciona o clube e as suas etapas", sem preço; o capital "pode vir da própria Zion ou do pool de investidores e parceiros". Arquivos substituídos nos mesmos caminhos. Vídeo na conta Meta: `4079419749029366`.
 - Anúncios v1 renomeados como DESCARTADO (ids `120250331865540016` e `120250331873620016`), continuam pausados. Novos anúncios, pausados, no mesmo conjunto `120250331856590016`: carrossel v2 `120250331912530016` e vídeo v2 (id no resumo da sessão).
 - Copy dos anúncios: "Transforme seu terreno em um destino turístico. Aprenda o passo a passo com a Zion…", com "melhores produtos do mercado" e "referência" por decisão do Bruno.
+
+### Atualização 11/11 · versão 3 (aprovada pelo Bruno: "agora ficou bom")
+- Vídeo v3 (71 s, dor e troféu, sem preço) nos mesmos caminhos; vídeo na conta Meta `1805169497317625`.
+- Anúncios v3, pausados, no conjunto `120250331856590016`: carrossel `120250331969970016` e vídeo `120250331971600016`. v1 e v2 renomeados DESCARTADO.
+- Textos com "acesso a investimentos", "melhores produtos do mercado", "referência" e "maior clube de glamping do Brasil" por decisão do Bruno.
