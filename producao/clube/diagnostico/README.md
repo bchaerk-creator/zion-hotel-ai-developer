@@ -25,7 +25,7 @@ Caminho: criativo → formulário Meta "Clube Zion Collection Adesão Terreno" �
 4. "Aprovado" para ligar a campanha.
 
 ## 11/11 · Narrativa "Descubra e receba" (correção de Bruno)
-Regra: o lead só avança se descobre algo e recebe algo. O que ele descobre (o potencial do terreno / se o local pode receber uma unidade) é o que ele recebe ao entrar para o clube (formação, sessão estratégica, produtos, investimentos, parceria). Aplicada em:
+Regra: o lead só avança se descobre algo e recebe algo. Frase oficial (Bruno, 11/11): "Receba acesso e tenha a possibilidade de ter investimentos e parceria com a Zion." O que ele descobre (o potencial do terreno / se o local pode receber uma unidade) é o que ele recebe ao entrar para o clube.
 - Heros das landings `/clube`, `/parceiro` e `/parceiro/inscricao` (parágrafo "Descubra … Receba …" e a linha "O que você descobre aqui é o que você recebe lá dentro").
 - Página de resultado do diagnóstico ("Você descobriu …" → "Agora receba").
 - Card verde do diagnóstico: botão amarelo "Seja um parceiro Zion" (`docs/ads/diagnostico/01.jpg`).
