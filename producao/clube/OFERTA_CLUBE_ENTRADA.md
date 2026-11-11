@@ -66,3 +66,11 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 - Vídeo v3 (71 s, dor e troféu, sem preço) nos mesmos caminhos; vídeo na conta Meta `1805169497317625`.
 - Anúncios v3, pausados, no conjunto `120250331856590016`: carrossel `120250331969970016` e vídeo `120250331971600016`. v1 e v2 renomeados DESCARTADO.
 - Textos com "acesso a investimentos", "melhores produtos do mercado", "referência" e "maior clube de glamping do Brasil" por decisão do Bruno.
+
+### 11/11 · Pós-compra e alinhamento (aprovado pelo Bruno)
+- Compra de teste confirmada (Pix, R$ 97, e-mail de teste, acesso liberado na hora; venda sem UTM porque a landing foi aberta sem parâmetros).
+- Turma mantida com acesso completo: Panorama Marco Zero (12 aulas) + Trilha 1 completa (58 aulas, 1 ano) com 7 pilares, fichas "Faça agora", 2 planilhas, Kit do Investidor e 11 ferramentas bônus.
+- Fluxo **ativo** `575dd0b9-264d-40f3-b96d-eebf8a9253d7`: venda paga da oferta 72924971 → tag LAND BANK | INSCRIÇÃO R$97 PAGA → tarefa para a equipe no contato. (Aviso interno "notifyOwner" não aceitou o formato pela API; a tarefa cumpre o papel.)
+- Formulário de alinhamento **ativo** `61490f4e-9512-4cd7-aaa8-1d101543e504` (`https://api.clickmax.io/forms/MHCNk9obRDrvvYeea_Wfr2EH`): 7 perguntas → campos zion_investe_estruturacao, zion_documentacao, zion_infraestrutura, zion_valor_terreno, zion_aporte_dividido, zion_garantia_fundo; aplica CLUBE | ALINHAMENTO RESPONDIDO (56316e2d) e, quando entra com infraestrutura e tem matrícula própria, CLUBE | PERFIL PARCERIA ZION (d73c525b); no fim, botão para a agenda da equipe. Aviso por e-mail ao Bruno a cada resposta.
+- Página `docs/agendar/` (aula 4 do Marco Zero) agora pede o alinhamento antes do calendário.
+- Template WhatsApp `zion_clube_boas_vindas` criado como rascunho; envio ao Meta só depois que o Bruno confirmar o texto.
