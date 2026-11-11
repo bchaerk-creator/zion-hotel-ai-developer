@@ -49,3 +49,10 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 3. Bruno: formulário v2 com os gatilhos (producao/clube/FORMULARIO_META_GATILHOS.md).
 4. Eu: anúncio pausado com carrossel campeão + card 8 → landing; conjunto B de compra direta → landing. Ativação com "aprovado" e teto diário.
 5. Medir por 7 dias: CPL, conversão lead→compra, compra→sessão, sessão→Master/Pro. Decidir R$ 47 só com esses dados.
+
+## Registro · 11/11/2026 (sessão de lançamento)
+- Landing nova publicada em `docs/zion-collection/` (GitHub Pages, sem noindex), com filme oficial, tours, vídeo de 2 minutos e checkout `https://payments.clickmax.io/v_4pU5zNYj`.
+- Vídeo 2 min: `docs/zion-collection-club/video/clube-2min.mp4` (16:9) e `docs/ads/clube-narrativa/clube-2min-4x5.mp4` (4:5). Narração provisória sintética; fonte em `producao/clube/video-2min/`.
+- Criativos 1080×1350 na narrativa (espelho → crença → prova → mecanismo → próximo passo): `docs/ads/clube-narrativa/01..05.jpg`.
+- Meta (conta 1271873041294684), tudo **pausado**: campanha `120250330194890016` → conjunto `120250331856590016` (R$ 30/dia, BR 25–65, mesmo público do Diagnóstico, visualizações da landing) → anúncio carrossel `120250331865540016` e anúncio de vídeo (id no resumo da sessão). Vídeo na conta: `1044832475285192`. Ativação só com "aprovado" de Bruno.
+- Rota no site (zionhotelgroup.com/clube) ainda não existe: exige uma mensagem ao agente da Lovable (consome créditos). Aguarda aprovação.
