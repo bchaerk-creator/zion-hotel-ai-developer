@@ -1,6 +1,17 @@
 # Zion Collection 06 · Seu Airbnb Está Vazio? O Problema Pode Estar na Sua Oferta
 
-**Status em 11/11/2026: produto completo em ambiente de teste, para aprovação de Bruno. Nada publicado, nada enviado para aprovação do ClickMax, nenhuma campanha.**
+**Status em 11/11/2026 (tarde):** produto validado por Bruno. A pedido dele, tudo passou para dentro do ClickMax: landing nova curta (low ticket), checkout com bump e entrega por **área de membros** (portal Zion Collection). As duas ofertas aparecem como `approved` no ClickMax (não foram enviadas por nós; o vendedor segue `pending`, então o checkout ainda não processa pagamento). Landing **não publicada**. Falta Bruno subir os arquivos nas aulas (`UPLOAD_CLICKMAX.md`).
+
+### Área de membros (11/11)
+| Item | Id |
+|---|---|
+| Portal Zion Collection (`zion-collection`) | `a8e2157a-4b62-40de-955e-72662d99c195` |
+| Curso Seu Airbnb Está Vazio? · módulo Comece aqui (6 aulas) | curso `5d3c9a1b-e00b-4540-8777-e666bf006832`, módulo `02e9869b-71a0-4fcc-a3fb-e2209d94a8c1` |
+| Turma Compradores · Seu Airbnb Está Vazio? → entrega da oferta principal | `75cf8dc3-250e-43f9-bce4-439d15ed5343` |
+| Curso Calendário comercial de 30 dias · módulo Seu calendário (2 aulas) | curso `3edca845-63b3-4283-86fe-0b9b6e4c00ca`, módulo `984e1ffb-d0ab-4e06-b970-f7a1185066d3` |
+| Turma Compradores · Calendário → entrega da oferta do bump | `ecdb5762-21e8-4a50-bd90-82ecad32c7a0` |
+
+Landing v2 (`landing/build_landing_lt.py` → `landing/dist/clickmax_lt.html`): sem imagens externas, preço e botão na primeira tela (testado em iPhone 13), barra de compra fixa, um só rótulo de botão, bump opcional, selo de 7 dias, 5 perguntas. A versão longa (`build_landing.py`) fica como referência.
 Auditoria do projeto e sobreposição com o Arsenal 01 (mesmo título, R$ 27): `../AUDITORIA.md`.
 
 ## 1. ClickMax (Bruno's Workspace › Infoprodutos Zion)
@@ -10,7 +21,7 @@ Auditoria do projeto e sobreposição com o Arsenal 01 (mesmo título, R$ 27): `
 | Oferta principal R$ 47 | `75c27213-9c35-44c3-9825-9bbab1e6bafa` · checkout `QiaIwmZOFC` | `incomplete` (não enviada), `incompleteReason` vazio, sem erro de sincronização |
 | Produto bump | `b14ae411-1a77-4d7c-9787-7af986b2c130` | criado |
 | Oferta bump R$ 19 | `ef27848a-37cc-4804-9941-52ac87f8d9ef` · checkout `f0KLWuYxRC` | `incomplete` (não enviada), `incompleteReason` vazio |
-| Landing | `14ab1a6a-34c0-44a8-892c-9bbd43ef079f` · `/seu-airbnb-esta-vazio` | **rascunho** (`lastPublishedAt` nulo), checkout embutido da oferta principal, bump ligado e opcional (desmarcado) |
+| Landing (v2 low ticket desde 11/11 à tarde) | `14ab1a6a-34c0-44a8-892c-9bbd43ef079f` · `/seu-airbnb-esta-vazio` | **rascunho** (`lastPublishedAt` nulo), checkout embutido da oferta principal, bump ligado e opcional (desmarcado) |
 | Entrega principal | link → `p/adbc67069af26ae0/zc06-airbnb-vazio/` | ligada à oferta principal |
 | Entrega bump | link → `p/adbc67069af26ae0/zc06-calendario-30/` | ligada só à oferta do bump |
 
