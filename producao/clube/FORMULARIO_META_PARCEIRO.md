@@ -19,3 +19,8 @@ Para o Bruno criar no Gerenciador de Anúncios (a integração não cria formul�
 **Tela de conclusão:** "Obrigado. A equipe Zion vai olhar o seu caso. Se quiser adiantar, escolha já o horário da reunião." Botão → `https://www.zionhotelgroup.com/parceiro?utm_source=meta&utm_medium=lead_ads&utm_campaign=parceiro-form&utm_content=conclusao` (a landing leva às 6 perguntas e à agenda)
 
 **Aviso:** a sincronização horária só lê formulários com "Diagnóstico do terreno" no nome. Quando este formulário existir, me avise com o nome exato para eu incluir na rotina e mapear as perguntas.
+
+## Versão final no Meta (11/11, criada pelo Bruno)
+- Formulário do clube: **"Clube Zion Collection Adesão Terreno"** (cópia do Diagnóstico; conclusão → zionhotelgroup.com/clube com UTM clube-97-form).
+- Formulário de parceiro: **"Zion Collection Copy"** (conclusão → zionhotelgroup.com/parceiro com UTM parceiro-form). Perguntas: situação hoje; cidade e estado; o que já existe no local; área de natureza livre; região recebe turistas; na parceria você entra com a infraestrutura?; aporte inicial (até 5 mil / 5 a 10 mil / mais de 10 mil / sem reserva); disposto a passar por seleção.
+- Sincronização horária atualizada: lê os três formulários; A/B recebem META | FORM LAND BANK (Zaya); C recebe META | FORM PARCEIRO (f050ffa8) e, se entra com infraestrutura, CLUBE | PERFIL PARCERIA ZION. Campos de C mapeados para zion_localizacao, ativ_terreno, zion_infraestrutura, zion_op_area_sobrando, club_demanda, zion_aporte_dividido, zion_investe_estruturacao.
