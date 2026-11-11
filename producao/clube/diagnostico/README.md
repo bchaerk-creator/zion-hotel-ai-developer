@@ -36,3 +36,13 @@ Regra: o lead só avança se descobre algo e recebe algo. Frase oficial (Bruno, 
 ### Copy do anúncio do diagnóstico (para quando o ID do formulário chegar)
 Texto principal: "Descubra o potencial do seu terreno. Faça o diagnóstico gratuito: 8 perguntas, e a equipe Zion devolve em que ponto o seu projeto está e qual é o próximo passo.\n\nO que você descobre aqui é o que você recebe ao entrar para o Zion Collection Club: a formação em cinco etapas, uma sessão estratégica com a equipe, acesso aos melhores produtos de glamping do Brasil, o seu terreno no Radar do Land Bank e a possibilidade de parceria e investimento.\n\nCom mais de 20 anos no mercado internacional e 5 no Brasil, a Zion é referência em glamping no país e busca os próximos destinos. Seja um parceiro Zion."
 Título: "Descubra o potencial do seu terreno" · Descrição: "Diagnóstico gratuito. Seja um parceiro Zion." · Botão: Saiba mais.
+
+## 11/11 (tarde) · Fórmula "Diagnóstico grátis → reunião → venda na reunião" (pedido de Bruno)
+Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pausada hoje) pedindo o diagnóstico gratuito, e a devolutiva leva à reunião. A oferta (clube R$ 97, parceria, investimento) é feita na reunião, não no chat.
+- Campanha nova, PAUSADA: `120250343378940016` "[LAND BANK][LEADS][DIAGNÓSTICO GRÁTIS → REUNIÃO] [11/11]", objetivo Leads, formulário Meta "Land Bank | Diagnóstico do terreno" (1779605203334486, o mesmo que trouxe 57 leads a R$ 6,70 em 7 dias).
+  - Conjunto `120250343393440016` (Brasil 25–65, mesma segmentação, R$ 30/dia), PAUSADO.
+  - Anúncios pausados: `120250343405660016` CAMPEÃO VÍDEO Investidores (vídeo 1475116091178850) e `120250343406610016` CARROSSEL v3 Fotos novas (7 cards; 25 leads a R$ 4,68 na campanha antiga). Copy: "Comece pelo diagnóstico gratuito: 8 perguntas… Se tiver potencial, você agenda uma reunião com a equipe, sem custo."
+- Caminho do lead: formulário → sync horária → classificação → tag DIAG (só ela; sem a tag da Zaya, para não vender R$ 97 no chat) → WhatsApp + e-mail de devolutiva → página de resultado → botão "Agendar minha reunião com a equipe Zion" → formulário de alinhamento (7 perguntas) → agenda. Link secundário na página: "Conhecer o Zion Collection Club".
+- Página de resultado e os três e-mails já apontam para a reunião. Os templates de WhatsApp v2 (pendentes na Meta) apontam para a página, que leva à reunião.
+- A campanha antiga de Diagnóstico (120250113109820016) segue pausada; seus leads antigos continuam com a Zaya.
+- Depende de Bruno: ativar os três fluxos de devolutiva (quando os templates aprovarem) e dar "aprovado" para ligar a campanha nova.
