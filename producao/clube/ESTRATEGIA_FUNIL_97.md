@@ -33,3 +33,20 @@ Fontes: Panda Video (low ticket funnel), Focus Digital (upsell 2025), winmassive
 - Entrega por link: `docs/p/adbc67069af26ae0/kit-captacao-47/` (mesmos guia, planilhas e vídeo do kit; sem o bloco da sessão; com convite para o clube). Não inclui sessão estratégica nem Radar do Land Bank.
 - Fluxo "Checkout abandonado" (`c5092264`): 1 h → lembrete do clube; +23 h → template `zion_clube_downsell_47` (enviado ao Meta) com botão para o checkout de R$ 47 e "Prefiro o clube".
 - Decisões do Bruno: preço aparece na landing e no checkout, não no anúncio; sem botão de WhatsApp na landing; WhatsApp só na recuperação.
+
+## 11/11 · Remarketing 180d + reativação da base por e-mail (pedido de Bruno)
+
+### Remarketing no Meta (180 dias)
+- O conector do Windsor.ai não cria públicos personalizados. Bruno cria no Gerenciador de Anúncios (Públicos → Criar público personalizado), todos com 180 dias:
+  1. Site: visitantes do pixel 903918118859018 (todos, 180d) e visitantes de /clube, /parceiro, /land-members, /metodo, /raio-x.
+  2. Vídeo: quem assistiu 25%+ dos vídeos das campanhas Zion Collection (filme, tours, clube v3, parceiro).
+  3. Engajamento: página 576944608845537 + Instagram Zion (180d).
+  4. Formulários de lead: abriu ou enviou os formulários Meta (Land Bank, Clube, Parceiro) — 90d é o máximo do Meta para esse tipo.
+- Com os IDs dos públicos, criamos (pausado) um conjunto de remarketing em cada campanha nova (Clube e Parceiro), com os vídeos de 2 min, excluindo compradores (pixel Purchase 180d) e inscritos.
+- Orçamento sugerido: R$ 15/dia por conjunto; só liga com "aprovado".
+
+### Reativação da base do ClickMax por e-mail
+- Base: 2761 contatos. Listas: Lote 1 base quente `90a53d73…` (258 e-mails válidos), Lote 2 restante `90379a6a…` (2400 válidos), total 2658.
+- Bloqueio: nenhum remetente verificado (`email_sender_signatures_list` vazio) e nenhuma caixa de e-mail conectada. Sem isso o ClickMax não envia.
+- Modelo salvo no ClickMax: "Clube · Reativação da base · E-mail 1 (clube + parceiro)" (fonte: `producao/clube/email/reativacao_clube.html`). Links com UTM `email/broadcast/reativacao-clube` e `reativacao-parceiro`.
+- Plano de envio (rascunhos, Bruno aprova cada disparo): E-mail 1 Lote 1 → 48h → E-mail 1 Lote 2 (lotes de 300 a cada 30 min) → dia 4: E-mail 2 "Como funciona a parceria" (vídeo) → dia 7: E-mail 3 kit R$47 para quem abriu e não comprou.
