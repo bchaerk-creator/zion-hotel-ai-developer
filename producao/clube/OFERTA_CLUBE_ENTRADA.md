@@ -87,3 +87,7 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 ### 11/11 · Vídeo "Como funciona a parceria Zion"
 - 59 s, 6 cenas, narração provisória. Na landing `/parceiro` (16:9, `docs/parceiro-zion/video/`) e no anúncio 4:5 (`docs/ads/parceiro/parceiro-2min-4x5.mp4`). Vídeo na conta Meta `1601266224600999`.
 - Anúncios de vídeo, **pausados**: `120250333274220016` (conjunto formulário, link zionhotelgroup.com/parceiro) e `120250333404560016` (conjunto inscrição R$ 97, link GitHub Pages parceiro-zion/inscricao). Roteiro em `producao/clube/video-2min/ROTEIRO_PARCEIRO.md`.
+
+### 11/11 · Parceria com o carrossel campeão e copy v2 (sem preço)
+- Anúncios de parceria, **pausados**: carrossel campeão (7 cards de `docs/ads/campeao`) `120250333765310016` (conjunto formulário) e `120250333775750016` (conjunto inscrição). Copy em `producao/clube/ads/COPY_PARCEIRO.md`. O número "até R$ 400 mil por ano em uma única cabana" entra como resultado da operação própria da Zion, com a frase "não uma promessa para o seu caso". Cards gerados anteriores marcados DESCARTADO.
+- Funis ClickMax em rascunho: Club Collection `2b735292` e Parceiros Club `f1b9b440`. Cards do clube no estilo campeão em `docs/ads/clube-campeao` (card 1 = criativo verde GLAMPING).
