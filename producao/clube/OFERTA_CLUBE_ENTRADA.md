@@ -74,3 +74,7 @@ Por que não travar metade da trilha: quem paga R$ 97 e encontra cadeado na aula
 - Formulário de alinhamento **ativo** `61490f4e-9512-4cd7-aaa8-1d101543e504` (`https://api.clickmax.io/forms/MHCNk9obRDrvvYeea_Wfr2EH`): 7 perguntas → campos zion_investe_estruturacao, zion_documentacao, zion_infraestrutura, zion_valor_terreno, zion_aporte_dividido, zion_garantia_fundo; aplica CLUBE | ALINHAMENTO RESPONDIDO (56316e2d) e, quando entra com infraestrutura e tem matrícula própria, CLUBE | PERFIL PARCERIA ZION (d73c525b); no fim, botão para a agenda da equipe. Aviso por e-mail ao Bruno a cada resposta.
 - Página `docs/agendar/` (aula 4 do Marco Zero) agora pede o alinhamento antes do calendário.
 - Template WhatsApp `zion_clube_boas_vindas` criado como rascunho; envio ao Meta só depois que o Bruno confirmar o texto.
+
+### 11/11 · Campanha do clube no ar e campanha Parceiro Zion (pausada)
+- **Clube no ar** a pedido do Bruno ("por a campanha"): campanha `120250330194890016`, conjunto `120250331856590016` (R$ 30/dia) e anúncios v3 (carrossel `120250331969970016`, vídeo `120250331971600016`) ativados em 11/11 ~22h40 Brasília.
+- **Parceiro Zion**: landing `docs/parceiro-zion/` (sem preço; CTA → formulário ClickMax `iCznj0mY-tVqF9gO3OYtbVcv`, que leva à agenda; sem infraestrutura → clube). Cards `docs/ads/parceiro/01..05.jpg`. Campanha `120250332392690016` **pausada**, conjunto `120250332422580016` (R$ 30/dia, mesmo público), anúncio carrossel (id no resumo). Spec do formulário do Meta em `producao/clube/FORMULARIO_META_PARCEIRO.md`.
