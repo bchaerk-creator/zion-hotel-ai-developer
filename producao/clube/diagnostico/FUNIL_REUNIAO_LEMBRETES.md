@@ -18,7 +18,7 @@ REUNIÃO | AGENDADA `2d67f01c…` · CONFIRMADA `6d00c8fc…` · NO-SHOW `a00241
 | Dia da reunião, 8h | Lembrete com pedido de confirmação ("SIM"). A Zaya marca CONFIRMADA se responder SIM | `lembrete_reuniao_dia` |
 | 1 hora antes | Lembrete | `lembrete_reuniao_1h` |
 | 15 minutos antes | Lembrete final | `lembrete_reuniao_15min` |
-| 10 min após o horário sem entrar | No-show: mensagem com botão para novo horário. Tag NO-SHOW. Card volta à etapa 2 | `noshow_reuniao` (botão para a agenda) |
+| **30 min após o horário** sem entrar (regra do Bruno, 11/11) | Marcar como no-show. Mensagem com botão para novo horário. Tag NO-SHOW. Card volta à etapa 2 | `noshow_reuniao` (botão para a agenda) |
 | No-show + 1 dia | A Zaya oferece 2 novos horários | conversa da Zaya |
 | No-show + 3 dias | Última tentativa. Sem resposta: card vai à etapa 6 | Zaya |
 | Cancelou ou remarcou | Tag REAGENDAR. Mensagem com botão e a Zaya oferece 2 horários | `reagendar_reuniao` |
@@ -27,7 +27,7 @@ REUNIÃO | AGENDADA `2d67f01c…` · CONFIRMADA `6d00c8fc…` · NO-SHOW `a00241
 
 ## Onde cada peça é configurada no ClickMax
 - **Lembretes e confirmação:** na aba **Notificações da agenda** (ver docs "Como mandar o lembrete da reunião"). Criar notificações: ao agendar, 1 dia antes às 10:00, no dia às 08:00, 1 hora antes e 15 minutos antes, usando os templates acima. Inserir "Data da reunião" e "Horário da reunião" nas variáveis.
-- **No-show:** ligar **No-Show Automático** nas configurações de agendamento. O gatilho "Contato não entrou" dispara 10 minutos após o horário.
+- **No-show:** regra de Bruno: esperar **30 minutos** e depois marcar. Ligar **No-Show Automático** nas configurações de agendamento e, se a tela permitir, ajustar a espera para 30 minutos. O gatilho "Contato não entrou" dispara por padrão 10 minutos após o horário, então até ajustar, marcar manualmente aos 30 minutos.
 - **Automações de tag e etapa (fluxos):** gatilhos "Reunião agendada", "reagendada", "cancelada", "não compareceu" e "realizada" aplicam as tags e movem o card. Só são ativadas com "aprovado".
 
 ## Templates de WhatsApp (rascunhos, ainda não enviados à Meta)
