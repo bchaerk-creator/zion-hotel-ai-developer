@@ -1,0 +1,174 @@
+<title>Diagnóstico Zion de Oferta</title>
+<meta name="robots" content="noindex">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<style>
+@font-face{font-family:Cormorant;src:url(data:font/woff2;base64,{{FONT_CORM}}) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;font-style:italic;src:url(data:font/woff2;base64,{{FONT_CORM_I}}) format("woff2")}
+@font-face{font-family:Aventa;src:url(data:font/woff2;base64,{{FONT_AVENTA}}) format("woff2")}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E;--erro:#C2643F;--ok:#7E9B6B;--f-display:Cormorant,Georgia,serif;--f-text:Aventa,"Jost",system-ui,sans-serif}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--preto);color:var(--areia);font-family:var(--f-text);font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.wrap{max-width:760px;margin:0 auto;padding:0 16px 96px}
+header.top{display:flex;align-items:center;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(201,179,126,.25)}
+header.top img{height:30px}
+header.top .etapas{display:flex;gap:6px}
+header.top .etapas button{all:unset;cursor:pointer;width:30px;height:30px;border-radius:50%;border:1px solid rgba(201,179,126,.4);display:grid;place-items:center;font-size:13px;color:var(--areia)}
+header.top .etapas button.ativa{background:var(--ouro);color:var(--preto);border-color:var(--ouro)}
+h1,h2,h3{font-family:var(--f-display);font-weight:400;color:var(--creme);line-height:1.08;margin:0}
+h1{font-size:44px;margin:28px 0 10px}
+h2{font-size:34px;margin:26px 0 8px}
+h3{font-size:24px}
+.kicker{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--ouro)}
+p{margin:0 0 12px}
+.muted{color:rgba(222,214,191,.72);font-size:14px}
+section.tela{display:none}section.tela.ativa{display:block}
+.cartao{background:var(--musgo);border:1px solid rgba(201,179,126,.18);border-radius:14px;padding:18px;margin:14px 0}
+label.campo{display:block;margin:14px 0}
+label.campo>span{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro);margin-bottom:6px}
+input[type=text],input[type=date],textarea,select{width:100%;font:inherit;color:var(--creme);background:#0d110b;border:1px solid rgba(222,214,191,.25);border-radius:10px;padding:12px}
+textarea{min-height:76px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--ouro);outline-offset:1px}
+.escala{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;margin:10px 0 4px}
+.escala button{all:unset;cursor:pointer;text-align:center;padding:12px 0;border-radius:10px;border:1px solid rgba(222,214,191,.25);font-size:18px;color:var(--creme)}
+.escala button[aria-pressed=true]{background:var(--ouro);color:var(--preto);border-color:var(--ouro);font-weight:600}
+.escala-rot{font-size:13px;color:var(--ouro);min-height:20px}
+.erro{color:var(--erro);font-size:13px;min-height:0}
+.btns{display:flex;flex-wrap:wrap;gap:10px;margin:22px 0}
+.btn{all:unset;cursor:pointer;padding:14px 22px;border-radius:999px;background:var(--ouro);color:var(--preto);font-weight:600;font-size:15px;text-align:center}
+.btn.sec{background:transparent;color:var(--creme);border:1px solid rgba(222,214,191,.4)}
+.btn:focus-visible{outline:2px solid var(--creme);outline-offset:2px}
+.placar{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.anel{width:150px;height:150px;flex:none}
+.anel text{font-family:var(--f-display);fill:var(--creme)}
+.barra{margin:10px 0}
+.barra .rot{display:flex;justify-content:space-between;font-size:14px}
+.barra .trilho{height:8px;border-radius:8px;background:rgba(222,214,191,.14);overflow:hidden;margin-top:4px}
+.barra .trilho i{display:block;height:100%;background:var(--ouro);border-radius:8px}
+.barra.pri .trilho i{background:var(--erro)}
+.pri-lista{counter-reset:p;list-style:none;padding:0;margin:0}
+.pri-lista li{counter-increment:p;padding:12px 0 12px 44px;position:relative;border-top:1px solid rgba(222,214,191,.12)}
+.pri-lista li:before{content:counter(p);position:absolute;left:0;top:12px;width:30px;height:30px;border-radius:50%;background:var(--ouro);color:var(--preto);display:grid;place-items:center;font-weight:600}
+.foco{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px}
+.foco div{border:1px solid rgba(201,179,126,.3);border-radius:10px;padding:10px;font-size:13px}
+.foco b{display:block;font-family:var(--f-display);font-size:26px;color:var(--ouro);font-weight:400}
+.aviso{border-left:3px solid var(--ouro);padding:8px 12px;background:rgba(201,179,126,.07);font-size:14px;margin:12px 0;border-radius:0 8px 8px 0}
+.linha-plano{border-top:1px solid rgba(222,214,191,.14);padding-top:12px;margin-top:12px}
+.grade2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.remover{all:unset;cursor:pointer;font-size:13px;color:var(--erro)}
+#status{font-size:14px;color:var(--ouro);min-height:20px}
+footer{font-size:12px;color:rgba(222,214,191,.55);border-top:1px solid rgba(222,214,191,.12);padding-top:14px;margin-top:30px}
+@media (max-width:520px){h1{font-size:36px}.grade2{grid-template-columns:1fr}.foco{grid-template-columns:1fr}}
+@media print{body{background:#fff;color:#111}.btns,header.top .etapas,#status{display:none!important}section.tela{display:block!important}.cartao{background:#fff;border-color:#bbb;break-inside:avoid}h1,h2,h3,.anel text{color:#111;fill:#111}input,textarea,select{color:#111;background:#fff;border-color:#999}}
+</style>
+<div class="wrap">
+<header class="top"><img src="data:image/png;base64,{{LOGO}}" alt="Zion Hotel Group International"><nav class="etapas" aria-label="Etapas">
+<button data-ir="1" class="ativa" aria-label="Etapa 1: sua hospedagem">1</button><button data-ir="2" aria-label="Etapa 2: notas">2</button><button data-ir="3" aria-label="Etapa 3: resultado">3</button><button data-ir="4" aria-label="Etapa 4: plano de ação">4</button></nav></header>
+
+<section class="tela ativa" id="t1">
+  <p class="kicker" style="margin-top:26px">Zion Collection · Ferramenta do Produto 06</p>
+  <h1>Diagnóstico Zion de Oferta</h1>
+  <p>Dê uma nota de 0 a 5 para as sete dimensões da sua oferta, sempre com uma evidência. Em 15 minutos você sabe por onde começar e sai com um plano de ação.</p>
+  <div class="aviso">A pontuação é um <b>indicador orientativo</b> para priorizar melhorias. Não é previsão de reservas, ocupação ou faturamento.</div>
+  <div class="cartao">
+    <label class="campo"><span>Nome da hospedagem (opcional)</span><input type="text" id="p_nome" maxlength="80" placeholder="Ex.: Casa da Serra"></label>
+    <label class="campo"><span>Período de referência</span><input type="text" id="p_periodo" maxlength="60" placeholder="Ex.: últimos 90 dias"></label>
+    <label class="campo"><span>Observações (opcional)</span><textarea id="p_obs" maxlength="500" placeholder="O que está acontecendo com o seu calendário?"></textarea></label>
+  </div>
+  <p class="muted">Suas respostas ficam salvas só neste aparelho. Nada é enviado para servidores.</p>
+  <div class="btns"><button class="btn" data-ir="2">Começar o diagnóstico</button><button class="btn sec" id="btnExemplo">Ver com exemplo (dados fictícios)</button></div>
+</section>
+
+<section class="tela" id="t2">
+  <p class="kicker" style="margin-top:26px">Etapa 2 de 4</p>
+  <h2>Notas com evidência</h2>
+  <p class="muted">0 ausente · 1 muito fraco · 2 fraco · 3 parcial · 4 bom · 5 consistente e comprovado. Sem evidência, a nota é só uma hipótese.</p>
+  <div id="dims"></div>
+  <p class="erro" id="e_notas"></p>
+  <div class="btns"><button class="btn" id="btnCalcular">Ver meu resultado</button><button class="btn sec" data-ir="1">Voltar</button></div>
+</section>
+
+<section class="tela" id="t3">
+  <p class="kicker" style="margin-top:26px">Etapa 3 de 4</p>
+  <h2>Seu resultado</h2>
+  <div id="resultado"></div>
+  <div class="btns"><button class="btn" id="btnPlano">Montar meu plano de ação</button><button class="btn sec" data-ir="2">Revisar notas</button></div>
+</section>
+
+<section class="tela" id="t4">
+  <p class="kicker" style="margin-top:26px">Etapa 4 de 4</p>
+  <h2>Plano de ação</h2>
+  <p class="muted">Sugerimos uma ação para cada prioridade. Ajuste o texto, defina responsável, prazo e como vai medir.</p>
+  <div id="plano"></div>
+  <button class="btn sec" id="btnAddLinha" style="margin-top:12px">+ Adicionar ação</button>
+  <p class="erro" id="e_plano"></p>
+  <div class="btns"><button class="btn" id="btnPDF">Baixar PDF</button><button class="btn sec" id="btnCSV">Baixar CSV</button><button class="btn sec" id="btnImprimir">Imprimir</button><button class="btn sec" id="btnLimpar">Apagar e recomeçar</button></div>
+  <p id="status" role="status"></p>
+</section>
+
+<footer>Diagnóstico Zion de Oferta · Zion Hotel Group International. Material educativo: aprenda o passo a passo para diagnosticar e priorizar melhorias na sua oferta. Resultados dependem do contexto e da execução.</footer>
+</div>
+<script>{{LOGIC}}</script>
+<script>
+(function(){
+"use strict";
+var K="zion-dzo-06", $=function(i){return document.getElementById(i)}, D=window.DZO;
+var E=carregar();
+function carregar(){try{var s=JSON.parse(localStorage.getItem(K));if(s&&s.respostas)return s}catch(e){}return {perfil:{nome:"",periodo:"",obs:""},respostas:{},plano:[]}}
+function salvar(){try{localStorage.setItem(K,JSON.stringify(E))}catch(e){}}
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
+function ir(n){document.querySelectorAll("section.tela").forEach(function(s){s.classList.toggle("ativa",s.id==="t"+n)});document.querySelectorAll(".etapas button").forEach(function(b){b.classList.toggle("ativa",b.dataset.ir==n)});
+  if(n==3)renderResultado(); if(n==4)renderPlano(); window.scrollTo(0,0)}
+document.addEventListener("click",function(ev){var b=ev.target.closest("[data-ir]");if(b){var n=+b.dataset.ir;if(n>=3&&!D.calcular(E.respostas).completo){ir(2);validarNotas(true);return}if(n==4&&!E.plano.length)E.plano=D.sugestaoPlano(D.calcular(E.respostas));ir(n)}});
+["nome","periodo","obs"].forEach(function(k){var el=$("p_"+k);el.value=E.perfil[k]||"";el.addEventListener("input",function(){E.perfil[k]=el.value;salvar()})});
+function renderDims(){$("dims").innerHTML=D.DIMENSOES.map(function(d,i){var r=E.respostas[d.id]||{};return '<div class="cartao" id="c_'+d.id+'"><p class="kicker">Dimensão '+(i+1)+' de 7</p><h3>'+esc(d.nome)+'</h3><p class="muted" style="margin-top:6px">'+esc(d.pergunta)+'</p>'+
+  '<div class="escala" role="group" aria-label="Nota de '+esc(d.nome)+'">'+[0,1,2,3,4,5].map(function(n){return '<button type="button" data-dim="'+d.id+'" data-nota="'+n+'" aria-pressed="'+(r.nota===n)+'">'+n+'</button>'}).join("")+'</div>'+
+  '<div class="escala-rot" id="r_'+d.id+'">'+(r.nota!=null&&r.nota!==""?esc(D.ESCALA[r.nota]):"")+'</div>'+
+  '<label class="campo"><span>Evidência</span><textarea data-ev="'+d.id+'" maxlength="400" placeholder="O que comprova a nota? Ex.: foto, avaliação, mensagem, número.">'+esc(r.evidencia||"")+'</textarea></label><p class="erro" id="e_'+d.id+'"></p></div>'}).join("")}
+document.addEventListener("click",function(ev){var b=ev.target.closest("[data-nota]");if(!b)return;var id=b.dataset.dim,n=+b.dataset.nota;E.respostas[id]=E.respostas[id]||{};E.respostas[id].nota=n;salvar();
+  document.querySelectorAll('[data-dim="'+id+'"]').forEach(function(x){x.setAttribute("aria-pressed",+x.dataset.nota===n)});$("r_"+id).textContent=D.ESCALA[n];$("e_"+id).textContent="";E.plano=[]});
+document.addEventListener("input",function(ev){var t=ev.target;if(t.dataset.ev){E.respostas[t.dataset.ev]=E.respostas[t.dataset.ev]||{};E.respostas[t.dataset.ev].evidencia=t.value;salvar()}});
+function validarNotas(mostrar){var r=D.calcular(E.respostas);D.DIMENSOES.forEach(function(d){$("e_"+d.id).textContent=mostrar&&r.erros[d.id]?r.erros[d.id]:""});
+  $("e_notas").textContent=mostrar&&!r.completo?"Faltam "+r.faltam+" nota(s). Toque no número de cada dimensão.":"";if(mostrar&&!r.completo){var p=D.DIMENSOES.filter(function(d){return r.erros[d.id]})[0];if(p)$("c_"+p.id).scrollIntoView({block:"center"})}return r.completo}
+$("btnCalcular").onclick=function(){if(validarNotas(true))ir(3)};
+function anel(p){var c=2*Math.PI*62,o=c*(1-p/100);return '<svg class="anel" viewBox="0 0 150 150" role="img" aria-label="Pontuação '+p+' de 100"><circle cx="75" cy="75" r="62" fill="none" stroke="rgba(222,214,191,.15)" stroke-width="12"/><circle cx="75" cy="75" r="62" fill="none" stroke="#C9B37E" stroke-width="12" stroke-linecap="round" stroke-dasharray="'+c.toFixed(1)+'" stroke-dashoffset="'+o.toFixed(1)+'" transform="rotate(-90 75 75)"/><text x="75" y="84" text-anchor="middle" font-size="44">'+p+'</text><text x="75" y="106" text-anchor="middle" font-size="14" style="fill:#DED6BF">de 100</text></svg>'}
+function renderResultado(){var r=D.calcular(E.respostas);if(!r.completo){$("resultado").innerHTML="";return}var pri=r.prioridades.map(function(x){return x.id});
+  var h='<div class="cartao"><div class="placar">'+anel(r.pontuacao)+'<div><p class="kicker">Faixa</p><h3 id="faixa">'+esc(r.faixa.nome)+'</h3><p style="margin-top:8px">'+esc(r.faixa.texto)+'</p><p class="muted">Soma das notas: '+r.soma+' de 35.</p></div></div></div>';
+  if(r.todasMaximas)h+='<div class="aviso">Todas as notas no máximo. Confira se cada uma tem evidência; se tiver, mantenha e acompanhe os indicadores todo mês.</div>';
+  if(r.criticas.length)h+='<div class="aviso" id="critica"><b>Atenção:</b> nota 0 ou 1 em '+esc(r.criticas.join(", "))+'. Trate como prioridade, mesmo que a pontuação geral pareça boa.</div>';
+  if(r.semEvidencia)h+='<div class="aviso">'+r.semEvidencia+' nota(s) sem evidência. Elas contam no cálculo, mas são hipóteses até você registrar uma prova.</div>';
+  h+='<div class="cartao"><p class="kicker">As sete dimensões</p>'+r.itens.map(function(x){return '<div class="barra'+(pri.indexOf(x.id)>=0?" pri":"")+'"><div class="rot"><span>'+esc(x.nome)+'</span><span>'+x.nota+'/5</span></div><div class="trilho"><i style="width:'+x.pct+'%"></i></div></div>'}).join("")+'</div>';
+  h+='<div class="cartao"><p class="kicker">Suas três prioridades</p><ol class="pri-lista" id="prioridades">'+r.prioridades.map(function(x){return '<li><b style="color:var(--creme)">'+esc(x.nome)+'</b> · nota '+x.nota+'<br><span class="muted">'+esc(x.evidencia||"Sem evidência registrada.")+'</span></li>'}).join("")+'</ol>'+
+   '<div class="foco"><div><b>20%</b>As três prioridades acima: o que mais pesa na decisão do hóspede agora.</div><div><b>4%</b>A ação da semana: comece por '+esc(r.prioridades[0].nome)+'.</div><div><b>0,8%</b>O primeiro passo de hoje, em menos de 1 hora. Escreva no plano.</div></div></div>';
+  h+='<p class="muted">Empate de notas: a prioridade segue a ordem das dimensões. Refaça o diagnóstico em 30 dias com a mesma base de datas.</p>';
+  $("resultado").innerHTML=h}
+$("btnPlano").onclick=function(){if(!E.plano.length)E.plano=D.sugestaoPlano(D.calcular(E.respostas));salvar();ir(4)};
+function renderPlano(){$("plano").innerHTML=E.plano.map(function(l,i){return '<div class="cartao linha-plano"><p class="kicker">Ação '+(i+1)+(l.dimensao?" · "+esc(l.dimensao):"")+'</p>'+
+  '<label class="campo"><span>Ação</span><textarea data-pl="'+i+'" data-k="acao" maxlength="300">'+esc(l.acao)+'</textarea></label>'+
+  '<div class="grade2"><label class="campo"><span>Responsável</span><input type="text" data-pl="'+i+'" data-k="responsavel" maxlength="60" value="'+esc(l.responsavel)+'"></label><label class="campo"><span>Prazo</span><input type="date" data-pl="'+i+'" data-k="prazo" value="'+esc(l.prazo)+'"></label>'+
+  '<label class="campo"><span>Custo estimado (R$, opcional)</span><input type="text" inputmode="decimal" data-pl="'+i+'" data-k="custo" maxlength="14" value="'+esc(l.custo)+'"></label><label class="campo"><span>Status</span><select data-pl="'+i+'" data-k="status">'+D.STATUS.map(function(s){return '<option'+(s===l.status?" selected":"")+'>'+s+'</option>'}).join("")+'</select></label></div>'+
+  '<label class="campo"><span>Indicador (como vai medir)</span><input type="text" data-pl="'+i+'" data-k="indicador" maxlength="120" value="'+esc(l.indicador)+'"></label>'+
+  (E.plano.length>1?'<button class="remover" data-rem="'+i+'">Remover esta ação</button>':"")+'</div>'}).join("")}
+document.addEventListener("input",function(ev){var t=ev.target;if(t.dataset.pl!=null){E.plano[+t.dataset.pl][t.dataset.k]=t.value;salvar()}});
+document.addEventListener("change",function(ev){var t=ev.target;if(t.dataset.pl!=null){E.plano[+t.dataset.pl][t.dataset.k]=t.value;salvar()}});
+document.addEventListener("click",function(ev){var b=ev.target.closest("[data-rem]");if(b){E.plano.splice(+b.dataset.rem,1);salvar();renderPlano()}});
+$("btnAddLinha").onclick=function(){E.plano.push({dimensao:"",acao:"",responsavel:"",prazo:"",custo:"",indicador:"",status:"A fazer"});salvar();renderPlano()};
+function checarPlano(){var v=D.validarPlano(E.plano);$("e_plano").innerHTML=v.valido?"":v.erros.map(esc).join("<br>");return v.valido}
+function baixar(nome,conteudo,tipo){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([conteudo],{type:tipo}));a.download=nome;document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},500)}
+$("btnCSV").onclick=function(){if(!checarPlano())return;baixar("diagnostico-zion-de-oferta.csv",D.gerarCSV(E.perfil,D.calcular(E.respostas),E.plano),"text/csv;charset=utf-8");$("status").textContent="CSV gerado."};
+$("btnImprimir").onclick=function(){window.print()};
+$("btnPDF").onclick=function(){if(!checarPlano())return;if(!window.jspdf){$("status").textContent="Não foi possível carregar o gerador de PDF. Verifique a internet e tente de novo, ou use Imprimir.";return}
+  var r=D.calcular(E.respostas),doc=new window.jspdf.jsPDF({unit:"mm",format:"a4",compress:true}),y=20,W=170;
+  function txt(s,sz,cor,neg){doc.setFont("helvetica",neg?"bold":"normal");doc.setFontSize(sz);doc.setTextColor.apply(doc,cor||[30,30,30]);var ls=doc.splitTextToSize(String(s),W);ls.forEach(function(l){if(y>280){doc.addPage();y=20}doc.text(l,20,y);y+=sz*0.45});y+=2}
+  doc.setFillColor(27,33,23);doc.rect(0,0,210,12,"F");
+  txt("DIAGNÓSTICO ZION DE OFERTA",9,[139,113,78],true);txt(E.perfil.nome||"Minha hospedagem",20,[4,6,5],true);txt("Período: "+(E.perfil.periodo||"não informado")+"  ·  Gerado em "+new Date().toLocaleDateString("pt-BR"),9,[90,90,90]);
+  y+=2;txt("Pontuação geral: "+r.pontuacao+" de 100  ·  "+r.faixa.nome,14,[4,6,5],true);txt(r.faixa.texto,10);
+  y+=2;txt("As sete dimensões",12,[139,113,78],true);r.itens.forEach(function(x){txt(x.nome+": "+x.nota+"/5"+(x.evidencia?" · "+x.evidencia:" · sem evidência (hipótese)"),10)});
+  y+=2;txt("Prioridades (foco 20% · 4% · 0,8%)",12,[139,113,78],true);r.prioridades.forEach(function(x,i){txt((i+1)+". "+x.nome+" (nota "+x.nota+")",10,null,true)});
+  y+=2;txt("Plano de ação",12,[139,113,78],true);E.plano.forEach(function(l,i){txt((i+1)+". "+l.acao,10,null,true);txt("Responsável: "+l.responsavel+"  ·  Prazo: "+l.prazo.split("-").reverse().join("/")+"  ·  Custo: "+(l.custo?"R$ "+l.custo:"não estimado")+"  ·  Status: "+l.status,9);txt("Indicador: "+l.indicador,9)});
+  y+=4;txt("Indicador orientativo para priorizar melhorias. Não é previsão de reservas, ocupação ou faturamento. Zion Hotel Group International.",8,[110,110,110]);
+  doc.save("diagnostico-zion-de-oferta.pdf");$("status").textContent="PDF gerado."};
+$("btnLimpar").onclick=function(){if(!confirm("Apagar todas as respostas deste aparelho?"))return;try{localStorage.removeItem(K)}catch(e){}E={perfil:{nome:"",periodo:"",obs:""},respostas:{},plano:[]};["nome","periodo","obs"].forEach(function(k){$("p_"+k).value=""});renderDims();ir(1)};
+$("btnExemplo").onclick=function(){var ex=D.exemplo();E={perfil:ex.perfil,respostas:ex.respostas,plano:[]};salvar();["nome","periodo","obs"].forEach(function(k){$("p_"+k).value=E.perfil[k]||""});renderDims();ir(2)};
+renderDims();
+})();
+</script>

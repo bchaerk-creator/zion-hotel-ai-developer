@@ -1,6 +1,6 @@
 # Mapa das sessões do Claude Code · Zion Hotel Group
 
-Atualizado em 09/11/2026. Inventário feito só por leitura dos registros de cada sessão e do repositório.
+Atualizado em 11/11/2026. Inventário feito só por leitura dos registros de cada sessão e do repositório.
 
 **Regra para toda sessão nova:** antes de produzir qualquer coisa, procure aqui se o tema já existe. Ao terminar uma entrega, acrescente uma linha neste mapa (sessão, o que fez, onde está).
 
@@ -39,6 +39,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **Mentoria de Desenvolvimento Zion 360° (redesenho)** | `producao/mentoria-desenvolvimento-360/INVENTARIO.md`; aguarda o "Blueprint Mestre" | Marketing da Zion install |
 | **Ferramentas de R$ 19** (01, 05, 11, 13, 14, 17, 18, 20, 29, 30) | `producao/utilitarios/`, `producao/low-ticket/`, `producao/catalogo/` | Zion infoprodutos catálogo |
 | **Kit Inicial de Captação** (entrada de R$ 97 no Club Zion Collection, preço aprovado pelo Bruno em 10/11/2026: guia PDF de 16 páginas, planilha Mapa das Fontes, vídeo tutorial, teaser vertical, capas, área do kit, página de venda `docs/clube/kit-captacao/` e textos; inclui 1 sessão estratégica de 45 min, liberada depois que o cliente envia o Mapa preenchido pelo WhatsApp e a Zaya manda a agenda. ClickMax: oferta 5b89a932 em R$ 97 (voltou para `pending_corrections` após a troca de preço; reenvio para aprovação pendente), curso, pipeline 311e9521 e persona da Zaya v56 atualizados; nada enviado) | `producao/clube/kit-captacao/` (fontes, `COPY.md`); entrega em `docs/p/adbc67069af26ae0/kit-captacao/` | Conexão sessões |
+| **Zion Collection · kit mestre de 20 produtos (R$ 47 + bump R$ 19)** (11/11: auditoria do ClickMax e Produto 06 "Seu Airbnb Está Vazio?" completo em teste: e-book 60 p., Diagnóstico Zion de Oferta, planilhas, bump Calendário 30 dias, aula e videoaula legendadas, 5 criativos, landing e ofertas em rascunho; nada publicado; mesmo título do Arsenal 01, Bruno decide) | `producao/zion-collection/` (`AUDITORIA.md`, `06-airbnb-vazio/OFERTA.md`); entrega em `docs/p/adbc67069af26ae0/zc06-*` | Zion Collection kit mestre |
 | **Mini mentorias Zion Collection Club** (A01–A10, B01–B10, R$ 27) e criativos | `producao/zion-arsenal/` | Zion Arsenal infoprodutos |
 | **26 produtos em rascunho no ClickMax** | `producao/CATALOGO_REVISAO.md` | Produtos Zion configuration |
 | **Sync Meta → ClickMax** (de hora em hora) | `producao/clube/sync-meta-form/` | Marketing da Zion install |
@@ -57,6 +58,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 
 | Sessão | O que fez | Onde | O que espera do Bruno |
 |---|---|---|---|
+| **Zion Collection kit mestre** | 11/11: auditoria do projeto Infoprodutos (44 produtos, 36 ofertas com erro de sincronização, vendedor `pending`) e Produto 06 completo em teste (e-book, ferramenta 34+26 testes, planilhas 42 testes, bump, aulas, criativos, landing e 2 ofertas em rascunho, entrega por link) | `producao/zion-collection/` | Decidir sobreposição com o Arsenal 01; aprovar o padrão; narração; "aprovado" para merge, envio das ofertas e publicação |
 | **ZAIOS platform development** | ZAIOS no Lovable (jornadas Desenvolvimento e Operação, 396 testes, Dossiê); premissas financeiras; Comando 01 (fábrica) e Comando 04 (reestruturação, Tech Stack, pesquisa jurídica) | `docs/zaios/`, `docs/academy/` | Teste fechado da ZAIOS; decisão comercial (Club x Academy); primeiro experimento |
 | **Marketing da Zion install** | Sync Meta → ClickMax; Fábrica Educacional (9 agentes); Jornada 2 · Gestão (Marco Zero e Módulo 2 Finanças, testados, rascunhos desativados no ClickMax); inventário da Mentoria de Desenvolvimento | `producao/jornada2/`, `docs/trilha2/`, `producao/fabrica/`, `producao/mentoria-desenvolvimento-360/` | "Blueprint Mestre"; "aprovado" para a turma de revisão do Módulo 2 |
 | **Zion infoprodutos catálogo** | Rodada diária de ferramentas de R$ 19; última: Ferramenta 30 Gerador de Briefing de Experiência (27 testes, 11/11, enviada para aprovação); 11/11: 7 ofertas aprovadas, página da 20 publicada, as outras seguradas por erro de sincronização; antes: 20 Kit de Treinamento do Primeiro Turno; antes: 18 Planner de Manutenção Preventiva; antes: 05 Orçamento da Cabana. 09/11, a pedido do Bruno: funil de reativação por dor (vídeo → formulário de qualificação → reunião ou R$ 97), 6 modelos de WhatsApp em rascunho, nada enviado | `producao/utilitarios/30-briefing-experiencia/`; reativação em `producao/clube/REATIVACAO_POR_DOR.md` | Conta de vendedor ClickMax; erro de sincronização do gateway (suporte ClickMax); decidir 01, 21 e E08 (sobreposições); próxima: 15 |

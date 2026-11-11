@@ -1,0 +1,103 @@
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+.zl{background:#040605;color:#DED6BF;font-family:Jost,Arial,sans-serif;font-size:18px;line-height:1.6}
+.zl *{box-sizing:border-box}.zl p,.zl li,.zl span,.zl label,.zl small{font-family:Jost,Arial,sans-serif}
+.zl .gut{padding:64px 16px}.zl .col{max-width:720px;margin:0 auto}
+.zl h1,.zl h2,.zl h3{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;line-height:1.05;color:#FEF5F0;margin:0 0 18px}
+.zl h1{font-size:clamp(42px,9vw,68px)}.zl h2{font-size:clamp(34px,7vw,50px)}.zl h3{font-size:28px}.zl em{color:#C9B37E;font-style:italic}
+.zl p{color:#DED6BF;margin:0 0 16px}.zl .eyebrow{display:block;font-size:13px;letter-spacing:.24em;text-transform:uppercase;color:#C9B37E;margin:0 0 14px;font-weight:600}
+.zl .micro{display:block;font-size:14px;color:#A39E8E;margin-top:12px}
+.zl .btn{display:inline-block;background:#C9B37E;color:#040605;font-weight:600;font-size:18px;padding:18px 30px;border-radius:999px;text-decoration:none;text-align:center}
+.zl .musgo{background:#1B2117}.zl .creme{background:#FEF5F0}.zl .creme h2,.zl .creme h3{color:#1B2117}.zl .creme p,.zl .creme li,.zl .creme span{color:#1B2117}
+.zl ul.lista{list-style:none;padding:0;margin:0 0 16px}.zl ul.lista li{color:#DED6BF;padding:10px 0 10px 30px;position:relative;border-top:1px solid rgba(201,179,126,.2)}
+.zl ul.lista li:before{content:"—";position:absolute;left:0;color:#C9B37E}
+.zl .creme ul.lista li{color:#1B2117;border-color:#DED6BF}
+.zl .demo{background:#0d110b;border:1px solid rgba(201,179,126,.3);border-radius:16px;padding:20px;margin:24px 0}
+.zl .demo .top{display:flex;gap:18px;align-items:center;margin-bottom:12px}
+.zl .anel{width:96px;height:96px;border-radius:50%;flex:none;display:grid;place-items:center;background:conic-gradient(#C9B37E 0 63%,rgba(222,214,191,.15) 63% 100%)}
+.zl .anel span{width:76px;height:76px;border-radius:50%;background:#0d110b;display:grid;place-items:center;font-family:"Cormorant Garamond",serif;font-size:34px;color:#FEF5F0}
+.zl .bar{display:flex;justify-content:space-between;font-size:14px;color:#DED6BF;margin-top:8px}.zl .bar span{color:#DED6BF}
+.zl .tr{height:6px;border-radius:6px;background:rgba(222,214,191,.15);overflow:hidden}.zl .tr i{display:block;height:100%;background:#C9B37E}.zl .tr i.p{background:#C2643F}
+.zl .grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:20px 0}.zl .card{border:1px solid rgba(201,179,126,.3);border-radius:14px;padding:18px}
+.zl .card b{display:block;font-family:"Cormorant Garamond",serif;font-size:24px;font-weight:400;color:#FEF5F0}.zl .card span{font-size:15px;color:#DED6BF}
+.zl .passos{counter-reset:p;list-style:none;padding:0}.zl .passos li{counter-increment:p;padding:12px 0 12px 52px;position:relative;color:#1B2117;border-top:1px solid #DED6BF}
+.zl .passos li:before{content:counter(p);position:absolute;left:0;top:10px;width:34px;height:34px;border-radius:50%;background:#1B2117;color:#FEF5F0;display:grid;place-items:center;font-weight:600}
+.zl figure{margin:24px 0}.zl figure img{width:100%;border-radius:14px;display:block}.zl figcaption{font-size:13px;color:#A39E8E;margin-top:8px}
+.zl .oferta{border:1px solid #C9B37E;border-radius:18px;padding:22px;background:#0d110b}.zl .preco{font-family:"Cormorant Garamond",serif;font-size:64px;color:#FEF5F0;line-height:1}
+.zl .bump{display:flex;gap:12px;align-items:flex-start;border:1px dashed #C9B37E;border-radius:12px;padding:16px;margin:18px 0;background:rgba(201,179,126,.06)}
+.zl .bump span{color:#DED6BF;font-size:15px}.zl .bump b{color:#FEF5F0}
+.zl .faq .q{border-top:1px solid rgba(201,179,126,.25);padding:16px 0}.zl .faq .cm-accordion-header{font-weight:600;color:#FEF5F0;cursor:pointer}.zl .faq .cm-accordion-content p{margin:10px 0 0}
+.zl .rod{font-size:13px;color:#A39E8E;text-align:center;padding:32px 16px}
+@media(max-width:560px){.zl .grid{grid-template-columns:1fr}.zl .gut{padding:48px 16px}}
+</style>
+<div class="zl">
+<section class="gut" data-cx-section="hero"><div class="col">
+<img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International" style="height:28px;margin-bottom:36px">
+<span class="eyebrow">Zion Collection · Guia prático + ferramenta</span>
+<h1>Seu Airbnb está vazio? <em>O problema pode estar na sua oferta.</em></h1>
+<p style="font-size:20px;color:#FEF5F0">Aprenda o passo a passo para diagnosticar a sua oferta em sete dimensões, descobrir as três prioridades que mais pesam na decisão do hóspede e montar um plano de 30 dias.</p>
+<img class="cm-image" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/zc06-airbnb-vazio/capa.jpg" alt="Capa: Seu Airbnb Está Vazio? com telas reais do Diagnóstico Zion de Oferta" data-cx-image-slot="hero" data-cx-image-hint="Foto do produto, 16:9" data-cx-image-kind="brand" style="width:100%;border-radius:14px;margin:8px 0 24px">
+<a class="btn" href="#oferta" data-cx-cta>Quero aprender o passo a passo</a>
+<span class="micro">R$ 47 · pagamento único · acesso digital após o pagamento confirmado</span>
+<span class="micro" style="color:#C9B37E">Para Airbnb, casas, apartamentos, pousadas e glampings.</span>
+</div></section>
+
+<section class="gut musgo" data-cx-section="problem"><div class="col">
+<span class="eyebrow">Você conhece essa cena</span>
+<h2>Semanas inteiras livres <em>e nenhuma pista do porquê.</em></h2>
+<p>Você abre o aplicativo e vê de novo: datas e mais datas disponíveis. Muda a diária, troca uma foto, pergunta para um amigo. Às vezes aparece uma reserva e você não sabe se foi pela mudança ou por sorte.</p>
+<p>A primeira reação costuma ser baixar o preço. Só que o hóspede não escolhe só pela diária: ele compara fotos, título, avaliações, a rapidez da sua resposta e a sensação de que vai receber o que viu. Com a oferta confusa, baixar o preço é ganhar menos pelo mesmo problema.</p>
+<ul class="lista"><li>Mudanças feitas no escuro, várias ao mesmo tempo.</li><li>Nenhum número para comparar antes e depois.</li><li>A sensação de que algo está errado, sem saber o quê.</li></ul>
+</div></section>
+
+<section class="gut" data-cx-section="solution"><div class="col">
+<span class="eyebrow">A solução</span>
+<h2>Troque o palpite <em>por um processo.</em></h2>
+<p>Você dá uma nota de 0 a 5 para sete dimensões da sua oferta, sempre com uma evidência: uma foto, uma avaliação, uma mensagem, um número do painel. O Diagnóstico Zion de Oferta calcula uma pontuação de 0 a 100, mostra as três menores notas e já sugere uma ação para cada uma.</p>
+<div class="demo"><div class="top"><div class="anel"><span>63</span></div><div><span class="eyebrow" style="margin:0 0 4px">Faixa</span><h3 style="margin:0">Ajustes prioritários</h3><span style="font-size:14px;color:#A39E8E">Soma das notas: 22 de 35</span></div></div><div class="bar"><span>Fotos e apresentação</span><span>2/5</span></div><div class="tr"><i class="p" style="width:40%"></i></div><div class="bar"><span>Título e descrição</span><span>3/5</span></div><div class="tr"><i class="p" style="width:60%"></i></div><div class="bar"><span>Preço e posicionamento</span><span>3/5</span></div><div class="tr"><i class="" style="width:60%"></i></div><div class="bar"><span>Diferenciais e experiência</span><span>4/5</span></div><div class="tr"><i class="" style="width:80%"></i></div><div class="bar"><span>Avaliações e confiança</span><span>4/5</span></div><div class="tr"><i class="" style="width:80%"></i></div><div class="bar"><span>Atendimento e comunicação</span><span>2/5</span></div><div class="tr"><i class="p" style="width:40%"></i></div><div class="bar"><span>Conforto e infraestrutura</span><span>4/5</span></div><div class="tr"><i class="" style="width:80%"></i></div>
+<p style="font-size:13px;color:#A39E8E;margin:14px 0 0">Exemplo com dados fictícios, calculado pela ferramenta. Em destaque, as três prioridades.</p></div>
+<p>A pontuação é um indicador para priorizar, não uma previsão de reservas ou faturamento. Depois vem a nossa lente de foco: as três prioridades (20%), a ação da semana (4%) e o primeiro passo de hoje, em menos de uma hora (0,8%).</p>
+<a class="btn" href="#oferta" data-cx-cta>Quero aprender o passo a passo</a>
+</div></section>
+
+<section class="gut creme"><div class="col">
+<span class="eyebrow" style="color:#8B714E">O que você recebe</span>
+<h2>Tudo para aprender, <em style="color:#8B714E">aplicar e medir.</em></h2>
+<ul class="lista"><li><b>E-book de 60 páginas</b> em 10 capítulos, do sintoma ao plano, com exemplos e um exercício por capítulo.</li>
+<li><b>Diagnóstico Zion de Oferta</b>: ferramenta no navegador (celular ou computador) que exporta PDF e CSV, e a mesma ferramenta em planilha.</li>
+<li><b>Aula introdutória</b> (5 min) e <b>videoaula prática</b> com a ferramenta sendo usada tela por tela, ambas legendadas.</li>
+<li><b>Fichas para imprimir</b>: diagnóstico, plano de ação e registro diário de 30 dias.</li></ul>
+<h3 style="margin-top:28px">Como funciona</h3>
+<ol class="passos"><li>Compre por R$ 47 e receba o link de acesso por e-mail.</li><li>Assista à aula e leia o e-book na ordem.</li><li>Preencha o diagnóstico e monte o plano.</li><li>Execute a prioridade 1 nesta semana e refaça o diagnóstico em 30 dias.</li></ol>
+</div></section>
+
+<section class="gut musgo"><div class="col">
+<span class="eyebrow">De onde vem o método</span>
+<h2>Da operação <em>para o seu calendário.</em></h2>
+<p>O guia parte da rotina usada nas unidades da Zion Hotel Group International: olhar a oferta com evidência, escolher poucas prioridades, executar com responsável e prazo e medir antes de mudar de novo. Adaptamos essa rotina para quem cuida de um apartamento, uma casa, uma pousada pequena ou um glamping.</p>
+<figure><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op05.webp" alt="Foto real da Zion Bubble Glamping"><figcaption>Foto real · Zion Bubble Glamping (SC), uma das unidades da Zion. Ilustra a origem do método; o guia vale para qualquer tipo de hospedagem.</figcaption></figure>
+</div></section>
+
+<section class="gut" id="oferta" data-cx-section="offer"><div class="col">
+<span class="eyebrow">Sua oferta</span>
+<h2>Seu Airbnb Está Vazio? <em>Guia + ferramenta.</em></h2>
+<div class="oferta">
+<img class="cm-image" src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/zc06-airbnb-vazio/capa.jpg" alt="Capa do produto" data-cx-image-slot="offer" data-cx-image-hint="Foto do produto ou do pacote da oferta, 1:1" data-cx-image-kind="brand" style="width:100%;border-radius:12px;margin-bottom:18px">
+<span class="preco">R$ 47</span><span class="micro">Pagamento único no Pix ou cartão à vista · acesso digital após o pagamento confirmado · reembolso em até 7 dias</span>
+<ul class="lista" style="margin-top:16px"><li>E-book de 60 páginas</li><li>Diagnóstico Zion de Oferta (navegador e planilha)</li><li>Aula introdutória e videoaula prática</li><li>Fichas para imprimir</li></ul>
+<label class="bump"><input class="cm-checkmark-checkbox" type="checkbox" data-orderbump-id="ef27848a-37cc-4804-9941-52ac87f8d9ef"><span><b>Adicione o Calendário comercial de 30 dias por R$ 19.</b> Uma ação curta por dia para colocar o diagnóstico em prática, com planilha de datas automáticas e versão para imprimir. Opcional: o guia funciona sem ele.</span></label>
+<div data-cx-checkout></div>
+</div>
+</div></section>
+
+<section class="gut musgo faq" data-cx-section="faq"><div class="col">
+<span class="eyebrow">Perguntas frequentes</span><h2>Antes de comprar</h2><div class="q"><div class="cm-accordion-header">É para iniciantes?</div><div class="cm-accordion-content"><p>Sim. Cada conceito vem explicado com exemplo, e cada capítulo termina com um exercício para fazer na sua hospedagem.</p></div></div><div class="q"><div class="cm-accordion-header">Serve para casa, apartamento, pousada ou glamping?</div><div class="cm-accordion-content"><p>Sim. O método olha a oferta do ponto de vista do hóspede e vale para qualquer hospedagem de temporada ou pequena pousada.</p></div></div><div class="q"><div class="cm-accordion-header">Preciso saber usar planilhas?</div><div class="cm-accordion-content"><p>Não. A ferramenta abre no navegador do celular ou do computador e faz as contas sozinha. Quem preferir tem a mesma ferramenta em planilha.</p></div></div><div class="q"><div class="cm-accordion-header">O resultado é garantido?</div><div class="cm-accordion-content"><p>Não. Nenhum material consegue garantir reservas, ocupação ou faturamento: isso depende da região, da época, da concorrência e da execução. O que você leva é clareza para decidir e um plano para executar e medir.</p></div></div><div class="q"><div class="cm-accordion-header">Como recebo?</div><div class="cm-accordion-content"><p>Logo depois do pagamento confirmado, você recebe por e-mail o link da sua página de acesso, com todos os materiais para baixar ou abrir.</p></div></div><div class="q"><div class="cm-accordion-header">Por quanto tempo tenho acesso?</div><div class="cm-accordion-content"><p>Os arquivos são seus: baixe e guarde. A página de acesso fica disponível para novos downloads.</p></div></div><div class="q"><div class="cm-accordion-header">E se eu não gostar?</div><div class="cm-accordion-content"><p>Você pode pedir reembolso em até 7 dias após a compra, como prevê o Código de Defesa do Consumidor.</p></div></div><div class="q"><div class="cm-accordion-header">O que é o Calendário comercial de 30 dias?</div><div class="cm-accordion-content"><p>Um complemento opcional de R$ 19 com uma ação curta por dia. O guia e a ferramenta funcionam sem ele.</p></div></div><div class="q"><div class="cm-accordion-header">Tem suporte?</div><div class="cm-accordion-content"><p>Sim, pelo WhatsApp +55 48 6137-1061.</p></div></div>
+</div></section>
+
+<section class="gut" data-cx-section="cta"><div class="col" style="text-align:center">
+<h2>Primeiro clareza. <em>Depois ação. Depois medição.</em></h2>
+<p>Aprenda o passo a passo para descobrir o que mudar primeiro na sua oferta.</p>
+<a class="btn" href="#oferta" data-cx-cta>Quero aprender o passo a passo</a>
+</div></section>
+<div class="rod"><span style="color:#A39E8E">Zion Hotel Group International · Material educativo: resultados dependem do contexto e da execução. Suporte: WhatsApp +55 48 6137-1061.</span></div>
+</div>
