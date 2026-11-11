@@ -46,3 +46,9 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 - Página de resultado e os três e-mails já apontam para a reunião. Os templates de WhatsApp v2 (pendentes na Meta) apontam para a página, que leva à reunião.
 - A campanha antiga de Diagnóstico (120250113109820016) segue pausada; seus leads antigos continuam com a Zaya.
 - Depende de Bruno: ativar os três fluxos de devolutiva (quando os templates aprovarem) e dar "aprovado" para ligar a campanha nova.
+
+### 11/11 (tarde) · Caminho rápido: o formulário do Meta é o diagnóstico, e a tela final já agenda a conversa
+- Página de agendamento direto: `docs/diagnostico/agendar/index.html` → https://bchaerk-creator.github.io/zion-hotel-ai-developer/diagnostico/agendar/ (botão para a agenda da equipe, sem formulário intermediário).
+- Tela de conclusão do formulário Meta "Land Bank | Diagnóstico do terreno" (Bruno configura no Business Suite): título "Diagnóstico recebido. Agende uma conversa com a nossa equipe.", descrição "Na conversa, a equipe Zion olha o seu terreno, mostra o caminho e as formas de entrar. Seja um parceiro Zion e aprenda o passo a passo.", botão "Agendar minha conversa" → a página acima.
+- Anúncios da campanha `120250343378940016` atualizados: "Faça o seu diagnóstico gratuito aqui mesmo, em 8 perguntas, e já agende uma conversa com a nossa equipe. Seja um parceiro Zion e aprenda o passo a passo."
+- A devolutiva por WhatsApp/e-mail vira reforço (para quem não agenda na hora), não o caminho principal.
