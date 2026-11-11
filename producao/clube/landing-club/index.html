@@ -74,6 +74,12 @@ em{font-style:italic;color:var(--ouro)}
 .facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:26px}@media(min-width:760px){.facts{grid-template-columns:repeat(4,1fr)}}
 .facts div{border-left:2px solid var(--ouro);padding-left:12px}.facts b{display:block;font-family:var(--display);font-size:24px;line-height:1.1}.facts span{font-size:13px;color:rgba(254,245,240,.75)}
 .founder{display:grid;grid-template-columns:150px 1fr;gap:20px;align-items:center;margin-top:30px;border:1px solid var(--linha-clara);border-radius:12px;padding:18px;background:rgba(254,245,240,.04)}.founder img{border-radius:10px;width:150px;height:188px;object-fit:cover;object-position:35% 15%;align-self:center;filter:brightness(1.22) contrast(1.04)}@media(max-width:600px){.founder{grid-template-columns:120px 1fr;gap:14px;align-items:start}.founder img{width:120px;height:150px;align-self:start}}
+.insta{display:grid;grid-template-columns:300px 1fr;gap:clamp(24px,5vw,64px);align-items:center}@media(max-width:760px){.insta{grid-template-columns:1fr}.phone{margin:0 auto}}
+.phone{width:260px;border-radius:38px;background:#0b0d0a;padding:12px;box-shadow:0 30px 60px rgba(0,0,0,.5),inset 0 0 0 2px #2a2f24}
+.screen{border-radius:28px;overflow:hidden;background:#fff;color:#111}
+.ig-top{display:flex;align-items:center;gap:10px;padding:14px 12px 10px;font-family:var(--body);font-size:13px}.ig-av{width:34px;height:34px;border-radius:50%;background:conic-gradient(#C9B37E,#8B714E,#1B2117,#C9B37E)}
+.ig-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px}.ig-grid img{aspect-ratio:1;object-fit:cover;width:100%}
+.handles{display:grid;gap:10px;margin-top:22px}.handles a{display:block;text-decoration:none;color:var(--creme);border:1px solid var(--linha-clara);border-radius:12px;padding:14px 16px;background:rgba(254,245,240,.04)}.handles a:hover{border-color:var(--ouro)}.handles span{display:block;font-family:var(--display);font-size:24px;color:var(--ouro)}.handles small{display:block;font-size:13px;color:rgba(254,245,240,.72);margin-top:2px}
 /* comparação */
 .cmp{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:30px}@media(max-width:700px){.cmp{grid-template-columns:1fr}}
 .cmp div{border-radius:12px;padding:22px 20px}.cmp .no{background:var(--branco);border:1px solid var(--linha)}.cmp .yes{background:var(--musgo);color:var(--creme)}
@@ -264,6 +270,28 @@ fbq('init','903918118859018');fbq('track','PageView');fbq('track','ViewContent',
     <div class="founder">
       <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection/hero-bruno-bolha.jpg" alt="Bruno Chaerk, fundador e mentor da Zion, diante de uma bolha da Zion Bubble Glamping" loading="lazy" width="930" height="1024">
       <div><p class="eyebrow">Fundador e mentor</p><h3 style="font-size:30px;margin-top:10px">Bruno Chaerk</h3><p class="soft" style="margin-top:8px;font-size:16px">Fundador da Zion Hotel Group International, com 20 anos de hotelaria internacional. Desenvolve, gere e opera as unidades de Urubici e Florianópolis, lidera a expansão da Zion pelo Brasil e conduz a sessão estratégica e a masterclass do clube.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 07b INSTAGRAM -->
+<section class="panel" id="instagram">
+  <div class="wrap insta">
+    <div class="phone" aria-hidden="true">
+      <div class="screen">
+        <div class="ig-top"><span class="ig-av"></span><b>zionglampingcollection</b></div>
+        <div class="ig-grid"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/noite.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op12.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/deck.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op09.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/ceu.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/noturna.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op07.webp" alt="" loading="lazy"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/dentro.webp" alt="" loading="lazy"></div>
+      </div>
+    </div>
+    <div>
+      <p class="eyebrow">Prova social</p>
+      <h2>Conheça <em>nossas operações.</em></h2>
+      <p class="lead soft">Siga a Zion no Instagram e veja as unidades, os hóspedes e os destinos em desenvolvimento, em tempo real.</p>
+      <div class="handles">
+        <a href="https://www.instagram.com/zionbubble" target="_blank" rel="noopener"><span>@zionbubble</span><small>Zion Bubble Glamping · as unidades</small></a>
+        <a href="https://www.instagram.com/zionglampingcollection" target="_blank" rel="noopener"><span>@zionglampingcollection</span><small>Zion Collection · a expansão</small></a>
+        <a href="https://www.instagram.com/brunochaerkofc" target="_blank" rel="noopener"><span>@brunochaerkofc</span><small>Bruno Chaerk · fundador e mentor</small></a>
+      </div>
     </div>
   </div>
 </section>
