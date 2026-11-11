@@ -22,3 +22,8 @@
 - **Templates** pendentes de confirmação do texto e envio ao Meta; **créditos** de WhatsApp a comprar.
 
 Fontes: Panda Video (low ticket funnel), Focus Digital (upsell 2025), winmassiveimpact (playbook 2026), HeroSpark (funil de vendas), Outsider School (checkout), Estúdio Site (low ticket R$ 27–97).
+
+## 12/11 ~01h30 · "Vamos aplicar" (Bruno)
+- 9 templates enviados ao Meta para aprovação (status pending): zion_clube_form_1/2/3, zion_parceiro_form_1/2/3, zion_clube_pix_pendente, zion_clube_carrinho, zion_clube_boas_vindas.
+- Boas-vindas adicionado ao fluxo pós-compra `575dd0b9` (depois da tarefa).
+- Fluxos a ativar quando os templates forem aprovados: pós-compra, Pix pendente, checkout abandonado, formulário terreno, formulário parceiro. Antes: comprar créditos de WhatsApp e adicionar no canvas do pós-compra o passo "Remover de outras automações".
