@@ -16,6 +16,6 @@ Para o Bruno criar no Gerenciador de Anúncios (a integração não cria formul�
 
 **Dados:** nome, WhatsApp, e-mail.
 
-**Tela de conclusão:** "Obrigado. A equipe Zion vai olhar o seu caso. Se quiser adiantar, escolha já o horário da reunião." Botão → `https://app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt`
+**Tela de conclusão:** "Obrigado. A equipe Zion vai olhar o seu caso. Se quiser adiantar, escolha já o horário da reunião." Botão → `https://www.zionhotelgroup.com/parceiro?utm_source=meta&utm_medium=lead_ads&utm_campaign=parceiro-form&utm_content=conclusao` (a landing leva às 6 perguntas e à agenda)
 
 **Aviso:** a sincronização horária só lê formulários com "Diagnóstico do terreno" no nome. Quando este formulário existir, me avise com o nome exato para eu incluir na rotina e mapear as perguntas.
