@@ -73,3 +73,17 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 - Removido da página de agendamento "por vídeo, 30 minutos" (sem fonte).
 - Pendente de Bruno: escopo e preço da mentoria; duração e formato da reunião; quem conduz.
 - A landing do clube (R$ 97) segue como está; uma versão "clube → reunião" depende de tirar o preço dos blocos e do FAQ.
+
+### 11/11 (tarde) · Caminho definitivo (Bruno): formulário do Meta → quiz de 5 perguntas → agenda
+- O formulário do Meta cobre o terreno (tipo, tamanho, valor, documentação, investimento previsto, o que busca, dificuldade). O quiz do ClickMax cobre só o que falta para saber se o lead tem capacidade de parceria. Tela final do formulário do Meta aponta para o quiz.
+- Quiz `1e8726ee-cd53-48ca-a731-a2d1cf1366da` "Parceiro/Clube · 5 perguntas + agenda (site e Meta)" · https://api.clickmax.io/forms/yQKzJ18d-G2LklTVamZ9Nqir
+  1. Você já opera alguma hospedagem hoje? (opera / tem terreno e não opera / sem terreno) → ativ_terreno
+  2. Você poderia entrar com a infraestrutura (deck, luz, água e mobília)? → zion_aporte_dividido
+  3. Quanto teria para investir na estrutura inicial? (acima de R$ 400 mil / 150–400 mil / até 150 mil / ainda não) → investimento
+  4. Disposto a aprender e estruturar para receber parceria ou investimento? → lb_status_preparacao
+  5. Investiria em conhecimento hoje (até R$ 5 mil)? → zion_investe_estruturacao
+  Depois: nome, WhatsApp, e-mail (mesclam com o lead do Meta por e-mail/telefone) e a tela final com a devolutiva por perfil e o botão da agenda.
+- Pontuação 0–10: quente ≥ 7, morno 4–6, frio ≤ 3. Tags: infra sim/parte + disposto → PERFIL PARCERIA ZION + DIAG | POTENCIAL ALTO; "preciso entender" → DIAG | POTENCIAL COM AJUSTES; sem capital e sem infraestrutura → DIAG | EM PREPARAÇÃO.
+- Testado no navegador: abertura, 5 perguntas e tela de dados (7 telas). A tela final com a agenda e a devolutiva condicional NÃO foi percorrida, porque exige enviar um lead de teste.
+- `brief_reuniao.py` e `test_brief.py` atualizados para essas 5 respostas + campos do Meta (documentação, dificuldade).
+- Anúncios (pausados) ainda dependem do ID do formulário do Meta duplicado; cards quadrados feitos para os carrosséis; faltam trocar o carrossel do parceiro com inscrição R$ 97 e o carrossel da campanha nova.
