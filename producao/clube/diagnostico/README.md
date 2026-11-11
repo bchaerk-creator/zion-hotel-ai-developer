@@ -60,3 +60,8 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 - Landing `docs/diagnostico/index.html` (molde da landing do parceiro, todos os botões → quiz): https://bchaerk-creator.github.io/zion-hotel-ai-developer/diagnostico/ . Página de resultado dos templates de WhatsApp movida para `docs/diagnostico/resultado/` (a landing redireciona `?n=`).
 - Lovable: rota /diagnostico (+ /agendar e /resultado) pedida, para www.zionhotelgroup.com/diagnostico.
 - A devolutiva "com IA" é por regra de pontuação, não por modelo: é previsível, auditável e não inventa. Um agente de IA do ClickMax pode entrar depois no WhatsApp, se Bruno quiser.
+
+### 11/11 (tarde) · Campanha de tráfego para o diagnóstico no site (PAUSADA)
+- Campanha `120250344201770016` "[LAND BANK][TRÁFEGO][DIAGNÓSTICO NO SITE → QUIZ → REUNIÃO] [11/11]", conjunto `120250344204390016` (Brasil 25–65, R$ 30/dia), anúncios `120250344215460016` (card verde) e `120250344217930016` (vídeo campeão). Destino: https://bchaerk-creator.github.io/zion-hotel-ai-developer/diagnostico/ (landing → quiz ClickMax → devolutiva → agenda). UTM `diagnostico-site`.
+- Lovable: o agente concluiu as rotas /diagnostico/agendar e /diagnostico/resultado (nada publicado). `/diagnostico` já existe no site (página atual dos anúncios, com formulário nome/WhatsApp), então NÃO foi substituída: depende de Bruno escolher outro endereço (sugestão: /diagnostico-gratuito) ou autorizar a troca. O Lovable ainda precisa de "publicar" para as rotas novas irem ao ar.
+- Para anunciar hoje, o link do GitHub Pages funciona (200). Quando o endereço do site estiver definido, trocar o link dos anúncios.
