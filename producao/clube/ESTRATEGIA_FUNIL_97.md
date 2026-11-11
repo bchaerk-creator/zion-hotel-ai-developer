@@ -50,3 +50,6 @@ Fontes: Panda Video (low ticket funnel), Focus Digital (upsell 2025), winmassive
 - Bloqueio: nenhum remetente verificado (`email_sender_signatures_list` vazio) e nenhuma caixa de e-mail conectada. Sem isso o ClickMax não envia.
 - Modelo salvo no ClickMax: "Clube · Reativação da base · E-mail 1 (clube + parceiro)" (fonte: `producao/clube/email/reativacao_clube.html`). Links com UTM `email/broadcast/reativacao-clube` e `reativacao-parceiro`.
 - Plano de envio (rascunhos, Bruno aprova cada disparo): E-mail 1 Lote 1 → 48h → E-mail 1 Lote 2 (lotes de 300 a cada 30 min) → dia 4: E-mail 2 "Como funciona a parceria" (vídeo) → dia 7: E-mail 3 kit R$47 para quem abriu e não comprou.
+
+## 11/11 · Isca "Diagnóstico gratuito" (aprovado) — ver `producao/clube/diagnostico/README.md`
+Campanha 3 (Leads, formulário Meta Adesão Terreno) → classificação em 3 níveis → devolutiva por WhatsApp e e-mail → página de resultado → checkout R$ 97. Campanha `120250335430180016` e conjunto `120250335463470016` criados pausados; anúncios aguardam o ID do formulário.
