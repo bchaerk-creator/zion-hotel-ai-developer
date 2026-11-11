@@ -65,3 +65,11 @@ Volta ao que dava certo: os criativos campeões da campanha de Diagnóstico (pau
 - Campanha `120250344201770016` "[LAND BANK][TRÁFEGO][DIAGNÓSTICO NO SITE → QUIZ → REUNIÃO] [11/11]", conjunto `120250344204390016` (Brasil 25–65, R$ 30/dia), anúncios `120250344215460016` (card verde) e `120250344217930016` (vídeo campeão). Destino: https://bchaerk-creator.github.io/zion-hotel-ai-developer/diagnostico/ (landing → quiz ClickMax → devolutiva → agenda). UTM `diagnostico-site`.
 - Lovable: o agente concluiu as rotas /diagnostico/agendar e /diagnostico/resultado (nada publicado). `/diagnostico` já existe no site (página atual dos anúncios, com formulário nome/WhatsApp), então NÃO foi substituída: depende de Bruno escolher outro endereço (sugestão: /diagnostico-gratuito) ou autorizar a troca. O Lovable ainda precisa de "publicar" para as rotas novas irem ao ar.
 - Para anunciar hoje, o link do GitHub Pages funciona (200). Quando o endereço do site estiver definido, trocar o link dos anúncios.
+
+### 11/11 (tarde) · Correção de rumo (Bruno): a landing NÃO muda; muda só o processo (reunião em vez de pagar)
+- `docs/diagnostico/index.html` agora é a landing do parceiro, com a mesma narrativa, e só troca o destino dos 7 botões: vão para o quiz (https://api.clickmax.io/forms/yQKzJ18d-G2LklTVamZ9Nqir) e as UTMs são repassadas. Único ajuste de texto: "6 perguntas" virou "algumas perguntas". SDK do funil Parceiros removido da cópia, para não poluir o funil.
+- Quiz renomeado "Parceiro/Clube · Quiz de agendamento da reunião (site)", abertura "Queremos saber um pouco mais sobre você para fazer o seu agendamento", e duas perguntas novas para a reunião: documentação (documentacao_meta) e quem decide (sem pontuação, só para o roteiro). 10 perguntas + dados.
+- Roteiro da reunião, objeções e perfis: `ROTEIRO_REUNIAO.md`. Resumo automático por lead: `brief_reuniao.py` (testado em 4 perfis: `test_brief.py`).
+- Removido da página de agendamento "por vídeo, 30 minutos" (sem fonte).
+- Pendente de Bruno: escopo e preço da mentoria; duração e formato da reunião; quem conduz.
+- A landing do clube (R$ 97) segue como está; uma versão "clube → reunião" depende de tirar o preço dos blocos e do FAQ.
