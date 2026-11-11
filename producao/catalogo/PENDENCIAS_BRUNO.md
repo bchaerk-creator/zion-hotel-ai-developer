@@ -42,5 +42,13 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - **E-book E08 (Gestão e operação):** sobrepõe-se à Jornada 2 (Gestão) da Fábrica Educacional. Seguir como e-book separado, virar material da Jornada 2 ou sair do catálogo? A rodada diária pulou o E08 em 11/11.
 - **Ferramenta 05:** contingência no lugar de "reserva" e percentual inicial (dicionário financeiro D6), e a frase "para uma cabana" separando da B06. Só com "aprovado".
 
+## Zion Collection 06 · Seu Airbnb Está Vazio? (11/11)
+Detalhes em `producao/zion-collection/06-airbnb-vazio/OFERTA.md`, seção 8.
+- **Sobreposição com o Arsenal 01** (mesmo título, R$ 27): A) o 06 vira a oferta do tema e o Arsenal 01 sai de venda ou vira bônus; B) manter os dois com nomes diferentes.
+- Aprovar o produto completo (padrão para os outros 19) ou pedir ajustes.
+- Gravar a narração das aulas (`aula/TELEPROMPTER.md`), por Bruno ou locutor com voz licenciada.
+- "Aprovado" para: merge na `main` (entrega no ar), enviar as 2 ofertas para aprovação do ClickMax, publicar a landing quando estiverem ativas.
+- Pixel do Meta / API de conversões para infoprodutos.
+
 ## Quando quiser
 - Teto de verba para anúncios (hoje R$ 0; campanhas só pausadas).
