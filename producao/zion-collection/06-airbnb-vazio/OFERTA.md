@@ -1,6 +1,6 @@
 # Zion Collection 06 · Seu Airbnb Está Vazio? O Problema Pode Estar na Sua Oferta
 
-**Status em 11/11/2026 (tarde):** produto validado por Bruno. A pedido dele, tudo passou para dentro do ClickMax: landing nova curta (low ticket), checkout com bump e entrega por **área de membros** (portal Zion Collection). As duas ofertas aparecem como `approved` no ClickMax (não foram enviadas por nós; o vendedor segue `pending`, então o checkout ainda não processa pagamento). Landing **não publicada**. Falta Bruno subir os arquivos nas aulas (`UPLOAD_CLICKMAX.md`).
+**Status em 11/11/2026 (tarde):** produto validado por Bruno. A pedido dele, tudo passou para dentro do ClickMax: landing nova curta (low ticket), checkout com bump e entrega por **área de membros** (portal Zion Collection). As duas ofertas aparecem como `approved` no ClickMax (não foram enviadas por nós; o vendedor segue `pending`, então o checkout ainda não processa pagamento). Landing **não publicada**. Arquivos das aulas ligados automaticamente ao site publicado (merge na `main` autorizado por Bruno em 11/11; ver `UPLOAD_CLICKMAX.md`). Landing v3: topo dividido (foto real da bolha de um lado, texto do outro), blocos "o que você ganha", "o que você recebe" e resumo da oferta.
 
 ### Área de membros (11/11)
 | Item | Id |
