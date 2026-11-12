@@ -86,6 +86,15 @@ PRODUTOS = [
                    ("Briefing-Experiencia-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Briefing-Experiencia-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Mensagens-Modelo-Experiencia.pdf", "Modelos de texto", "PDF · para copiar à mão")]),
+    dict(pasta="fornecedores-15", num="15", telas=["producao/utilitarios/15-comparador-fornecedores/dist/demonstracao/demo-cotacoes.png", "producao/utilitarios/15-comparador-fornecedores/dist/demonstracao/demo-resumo.png"],
+         titulo="Comparador de Fornecedores",
+         promessa="Aprenda o passo a passo para comparar fornecedores da sua hospedagem pelo custo real, pelo prazo e pelo que importa para você, e escolher com critério.",
+         itens=["Custo real por unidade", "Frete e pedido mínimo na conta", "Notas com os seus pesos", "Melhor nota × menor custo"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Resumo.", "Na planilha em branco, ajuste os pesos e liste as necessidades.", "Peça 3 cotações com o roteiro e lance cada uma na aba Cotações."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Comparador-Fornecedores-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel 2019+, Google Sheets ou LibreOffice"),
+                   ("Comparador-Fornecedores-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Roteiro-de-Cotacao.pdf", "Roteiro de cotação", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
