@@ -14,15 +14,16 @@ Fluxo: página → ficha de adesão (ClickMax) → pagamento no Asaas → webhoo
 
 ## Testado (12/11)
 - Ficha abre (200), envio com contato de teste (resposta 201), contato criado com a etiqueta, redirecionamento para o link do Asaas (o Asaas é bloqueado neste ambiente: só se viu a navegação).
-- **O cartão NÃO entra sozinho no funil.** O formulário não cria cartão; precisa de automação.
-- Contato de teste criado: `Teste Adesão Club` (e-mail de teste do Bruno). Pode ser excluído.
+- Automação de entrada ativa (aprovada por Bruno em 12/11): segundo envio de teste criou o cartão "Teste Adesão Club 2" na etapa 1 do funil novo (origem: tag aplicada).
+- Observação: o formulário mescla por e-mail e também reconhece o mesmo telefone. Um segundo envio com o mesmo telefone não atualizou o contato nem criou cartão.
+- Contatos de teste criados: `Teste Adesão Club` e `Teste Adesão Club 2` (e-mails de teste). Podem ser excluídos.
 
-## Pendente de "aprovado" de Bruno (automações)
-1. Entrada: etiqueta da ficha → cartão na etapa 1.
-2. Pagamento: tag `MÉTODO | COMPROU TRILHA 1` → etapa 3.
-3. (Opcional) quem não paga em X horas → etapa 5.
-Nenhuma mensagem é enviada por essas automações.
+## Automações ativas (aprovadas por Bruno em 12/11, só movem cartões, não enviam mensagem)
+1. Entrada: tag `CLUBE | ADESÃO · FICHA PREENCHIDA` → cartão na etapa 1. managedFlow `a0a5dd32-461a-44d6-87c4-12406822309a`, flow `a473a722-d459-40d2-bdbb-5dffb754f00c`. Testada.
+2. Passagem: tag `MÉTODO | COMPROU TRILHA 1` → etapa 3. managedFlow `174e6d57-f512-42ba-af7a-e29fdd0b5df7`, flow `4cf03b0c-4ea5-4b3b-b367-1ad3cc9790f9`. Filtro da tag conferido na estrutura do fluxo; **não testada com pagamento real** (aplicar a tag de compra dispararia também fluxos antigos de "Comprou Trilha 1").
+3. Não criadas: etapa 2 (foi ao pagamento) e etapa 5 (não pagou); hoje são manuais.
 
 ## Ainda não verificado
 - Primeiro pagamento real pelo link de R$ 970 (webhook nunca recebeu um pagamento desse link).
 - Parcelas do link no Asaas (slide antigo diz "até 10x"; Bruno diz 12x).
+- A etapa 4 (entrou na área) não tem automação; é manual.
