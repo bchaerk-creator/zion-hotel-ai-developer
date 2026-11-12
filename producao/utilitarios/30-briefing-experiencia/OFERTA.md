@@ -1,6 +1,6 @@
 # Ferramenta 30 · Gerador de Briefing de Experiência
 
-Status: arquivos prontos e testados; **oferta enviada para aprovação em 11/11/2026** (rodada diária automática). Página em rascunho; será publicada quando a oferta estiver ativa.
+Status: arquivos prontos e testados; **oferta enviada para aprovação em 11/11/2026** (rodada diária automática). **Oferta aprovada e página publicada em 12/11/2026.**
 
 **ClickMax:** produto `ba7395b4-56d6-455b-ae7c-82575f9a6274`; oferta `f28b840b-cd7d-457f-bff5-6fd6636212e2` (R$ 19, checkout `IO3t7_0ZHV`, status `pending` desde 11/11 04h58 UTC, sem erro de sincronização); página `7531d1b2-1f19-44f3-a3ad-7d87c9b0911f` em `/briefing-experiencia` (rascunho). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/briefing-30/`, ligados à oferta.
 
@@ -58,3 +58,6 @@ python3 -I src/build_planilha.py dist && python3 -I tests/test_planilha.py dist
 python3 -I src/build_docs.py dist build && node src/render.js build dist && node src/render.js build dist
 bash src/empacotar.sh && python3 -I landing/build_landing.py
 ```
+
+## Publicação (12/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada e conferida no ar com Playwright: https://infoprodutos-zion.clickmax.space/briefing-experiencia (status 200, título, preço, reembolso e capa carregando; o checkout é um iframe bloqueado neste ambiente, então a compra não foi testada).
