@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Adesão ao Club Zion Collection · Jornada do Desenvolvimento</title>
-<meta name="description" content="Aprenda o passo a passo para transformar o seu terreno em um projeto de hospedagem: 7 pilares, aulas interativas, fichas e 11 ferramentas. Zion Hotel Group International.">
+<meta name="description" content="Transforme seu terreno em um destino turístico. Entre no Club Zion Collection: relacionamento, network, mentoria e a Jornada do Desenvolvimento completa. Zion Hotel Group International.">
 <meta property="og:title" content="Adesão ao Club Zion Collection · Jornada do Desenvolvimento">
 <meta property="og:description" content="Do terreno ao dossiê: 7 pilares, aulas interativas, fichas e ferramentas para estruturar o seu projeto de hospedagem.">
 <meta property="og:image" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capas-zion/trilha-1-h.jpg">
@@ -70,6 +70,24 @@ summary::after{content:"+";color:var(--terra);font-size:24px;line-height:1}detai
 details p{margin-top:10px;color:var(--cinza);font-size:16px;max-width:64ch}
 footer{background:var(--preto);color:rgba(254,245,240,.72);padding:40px 0;font-size:13.5px;line-height:1.7}
 footer img{height:28px;width:auto;margin-bottom:14px}footer a{color:var(--ouro)}
+
+/* hero dividido: texto + bolha */
+.hero-split{display:grid;grid-template-columns:1fr 1fr;min-height:92vh}
+.hero-split .hero-img{position:relative;min-height:52vh;background:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/hero.webp) center/cover no-repeat}
+.hero-split .hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(4,6,5,.05),rgba(4,6,5,.35))}
+.hero-split .hero-txt{display:flex;align-items:center;padding:clamp(28px,5vw,64px) clamp(20px,4vw,56px)}
+.hero-split .hero-txt .in{max-width:560px}
+.topbar{padding:0 20px}
+.hero-split .btn{margin-top:20px;width:100%}
+video.filme{display:block;width:100%;aspect-ratio:16/9;border-radius:14px;background:#040605;margin-top:22px;box-shadow:0 24px 60px rgba(0,0,0,.4)}
+.tours{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}.tours video{display:block;width:100%;aspect-ratio:9/16;border-radius:12px;background:#040605;object-fit:cover}.tours figcaption{font-size:13px;color:rgba(254,245,240,.75);margin-top:6px}
+.club{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:32px}
+.club .it{background:#fff;border:1px solid var(--linha);border-radius:12px;padding:22px}
+.club .it h3{font-size:23px;margin-bottom:6px}.club .it p{font-size:15.5px;color:var(--cinza)}
+.club .it.hi{background:var(--musgo);color:var(--creme);border-color:var(--ouro)}.club .it.hi p{color:rgba(254,245,240,.82)}
+.club .it.hi h3{color:var(--ouro)}
+.aviso{margin-top:22px;font-size:14px;color:var(--cinza);max-width:70ch}
+@media(max-width:820px){.hero-split{grid-template-columns:1fr;min-height:0}.hero-split .hero-img{min-height:44vh;order:-1}.club{grid-template-columns:1fr}.tours{gap:8px}.tours figcaption{font-size:11px}}
 .sticky{display:none}
 @media(max-width:820px){
  .hero-grid,.how{grid-template-columns:1fr}.g2,.g3{grid-template-columns:1fr}.pilares{grid-template-columns:repeat(2,1fr)}
@@ -81,31 +99,58 @@ footer img{height:28px;width:auto;margin-bottom:14px}footer a{color:var(--ouro)}
 <body>
 
 <header class="dark" data-cx-section="hero">
- <div class="wrap">
+ <div class="wrap topbar">
   <div class="top">
    <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International">
    <a href="#oferta">Aderir ao Club</a>
   </div>
-  <div class="hero">
-   <div class="hero-grid">
-    <div>
-     <div class="eyebrow">Adesão ao Club Zion Collection</div>
-     <h1 style="margin-top:16px">Transforme o seu terreno em um <em>projeto de hospedagem.</em></h1>
-     <p class="lead">Ao aderir, você entra no <strong>Club Zion Collection</strong> e começa pela <strong>Jornada do Desenvolvimento</strong>: aprenda o passo a passo para ler o lugar, desenhar o produto, montar o masterplan e fechar a conta, em aulas interativas que terminam no seu Dossiê de Desenvolvimento.</p>
-     <p class="para">Para Airbnb, casas, apartamentos, pousadas e glampings</p>
-     <div class="offer">
-      <div class="t">Você está entrando no Club</div>
-      <div class="p">Club Zion Collection</div>
-      <div class="s">Primeiro programa: Jornada do Desenvolvimento. Acesso por e-mail depois da confirmação.</div>
-     </div>
-     <a class="btn" data-cx-cta="hero" href="https://api.clickmax.io/forms/dcSUhl5BbcqmbFrhXY8oGHdF" rel="noopener">Quero aderir ao Club →</a>
-     <p class="note soft">Primeiro uma ficha rápida; depois o pagamento. O acesso chega por e-mail.</p>
-    </div>
-    <div class="cover"><img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/capas-zion/trilha-1-h.jpg" alt="Capa da Jornada do Desenvolvimento" width="1280" height="720"></div>
-   </div>
-  </div>
+ </div>
+ <div class="hero-split">
+  <div class="hero-img" role="img" aria-label="Bolha da Zion Bubble Glamping integrada à mata, com jacuzzi e deck"></div>
+  <div class="hero-txt"><div class="in">
+   <div class="eyebrow">Adesão ao Club Zion Collection</div>
+   <h1 style="margin-top:16px">Transforme seu terreno em um <em>destino turístico.</em></h1>
+   <p class="lead">Entre no <strong>Club Zion Collection</strong>: relacionamento com a equipe Zion, network, mentoria e a <strong>Jornada do Desenvolvimento</strong> completa, do terreno ao seu Dossiê. A Zion também avalia possibilidades de investimento e de parceria, caso a caso.</p>
+   <p class="para">Para Airbnb, casas, apartamentos, pousadas e glampings</p>
+   <a class="btn" data-cx-cta="hero" href="https://api.clickmax.io/forms/dcSUhl5BbcqmbFrhXY8oGHdF" rel="noopener">Quero aderir ao Club →</a>
+   <p class="note soft">Primeiro uma ficha rápida; depois o pagamento. O acesso chega por e-mail.</p>
+  </div></div>
  </div>
 </header>
+
+<section class="dark" id="video" style="padding:clamp(40px,6vw,72px) 0">
+ <div class="wrap">
+  <div class="eyebrow">Em 2 minutos</div>
+  <h2>Conheça a nossa visão <em>da Zion Collection.</em></h2>
+  <p class="lead soft">O filme oficial da Zion Collection: as operações reais, os destinos e a visão de expansão pelo Brasil.</p>
+  <video class="filme" controls playsinline preload="metadata" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/zion-collection-filme.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/zion-collection-filme.mp4" type="video/mp4"></video>
+  <div class="eyebrow" style="margin-top:36px">Como funciona o Club</div>
+  <h3 style="margin-top:8px;font-size:clamp(24px,3vw,34px)">O que você ganha dentro do Club. <em>Em 2 minutos.</em></h3>
+  <video class="filme" controls playsinline preload="metadata" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/clube-2min.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/clube-2min-v2.mp4" type="video/mp4"></video>
+  <div class="eyebrow" style="margin-top:36px">Tour pelas unidades</div>
+  <div class="tours">
+   <figure><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-1.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-1.mp4" type="video/mp4"></video><figcaption>Tour · a unidade por dentro</figcaption></figure>
+   <figure><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-2.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-2.mp4" type="video/mp4"></video><figcaption>Tour · deck, jacuzzi e vista</figcaption></figure>
+   <figure><video controls playsinline preload="none" poster="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-3.jpg"><source src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection-club/video/tour-3.mp4" type="video/mp4"></video><figcaption>Tour · a chegada e a suíte</figcaption></figure>
+  </div>
+ </div>
+</section>
+
+<section class="sand light" id="o-club">
+ <div class="wrap">
+  <div class="eyebrow">O que é o Club</div>
+  <h2>Uma comunidade para o seu terreno virar <em>um projeto de verdade.</em></h2>
+  <p class="lead">O Club Zion Collection reúne quem quer desenvolver hospedagem com ordem e ao lado de quem já faz isso. A finalidade é nos conhecermos, aprender juntos e abrir caminhos para o seu projeto.</p>
+  <div class="club">
+   <div class="it"><h3>Relacionamento</h3><p>Você passa a falar com a equipe Zion e a ser conhecido por ela. A gente entende o seu projeto e o seu momento.</p></div>
+   <div class="it"><h3>Network</h3><p>Conexão com outros donos de terreno, operadores e desenvolvedores que estão no mesmo caminho.</p></div>
+   <div class="it"><h3>Mentoria</h3><p>Direcionamento da equipe Zion para o seu projeto sair do papel, com base na rotina usada nas nossas unidades.</p></div>
+   <div class="it hi"><h3>Jornada do Desenvolvimento completa</h3><p>Sete pilares, aulas interativas, fichas e o seu Dossiê de Desenvolvimento, do terreno à primeira conta fechada.</p></div>
+   <div class="it"><h3>Possibilidade de investimento</h3><p>Caminhos para preparar e apresentar o seu projeto a investidores. A Zion avalia cada caso; não há garantia de investimento.</p></div>
+   <div class="it"><h3>Possibilidade de parceria</h3><p>A Zion pode avaliar parceria em novos destinos, caso a caso. Não há garantia de parceria.</p></div>
+  </div>
+ </div>
+</section>
 
 <section class="light" data-cx-section="problem">
  <div class="wrap">
@@ -166,7 +211,7 @@ footer img{height:28px;width:auto;margin-bottom:14px}footer a{color:var(--ouro)}
    <p class="lead soft">O método nasceu da rotina de quem opera e desenvolve hospedagem. A Zion Hotel Group International leva essa experiência para o passo a passo da Jornada.</p>
   </div>
   <div>
-   <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/hero.webp" alt="Hospedagem real da Zion Bubble Glamping" loading="lazy" width="960" height="640">
+   <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/noite.webp" alt="Hospedagem real da Zion Bubble Glamping à noite" loading="lazy" width="960" height="640">
    <p class="cap">Foto real da Zion Bubble Glamping, uma das operações da Zion. A Jornada serve para qualquer tipo de hospedagem.</p>
   </div>
  </div>
@@ -200,7 +245,7 @@ footer img{height:28px;width:auto;margin-bottom:14px}footer a{color:var(--ouro)}
    <details><summary>Como recebo o acesso?</summary><p>Depois que o pagamento é confirmado, você recebe um e-mail com o código de acesso e o endereço da sua área de membros. Use o mesmo e-mail que informou no pagamento.</p></details>
    <details><summary>Preciso ter um terreno?</summary><p>Não. A Jornada serve para quem tem terreno, casa, apartamento ou pousada, e também para quem quer entender o setor antes de começar.</p></details>
    <details><summary>Em quanto tempo eu faço?</summary><p>No seu ritmo. As aulas e as fichas ficam disponíveis para você voltar quando quiser. O tempo para começar a usar é imediato, e o que você consegue depois depende do seu projeto e da sua execução.</p></details>
-   <details><summary>A Jornada garante resultado?</summary><p>Não. É um conteúdo educacional. Ela não é oferta de investimento e não promete renda, retorno, ocupação, crédito ou sociedade. Os resultados dependem do contexto e da execução de cada pessoa.</p></details>
+   <details><summary>A Jornada garante resultado?</summary><p>Não. Não. É um conteúdo educacional com mentoria e network. Investimento e parceria são possibilidades que a Zion avalia caso a caso; não há garantia de investimento, parceria, renda, retorno, ocupação ou crédito. Os resultados dependem do contexto e da execução de cada pessoa.</p></details>
    
    <details><summary>Como funciona o suporte técnico?</summary><p>O suporte técnico é feito pela equipe Zaya. Se tiver dúvida sobre o acesso, a ficha ou o pagamento, fale com a gente pelo WhatsApp +55 48 6137-1061.</p></details>
   </div>
@@ -218,7 +263,7 @@ footer img{height:28px;width:auto;margin-bottom:14px}footer a{color:var(--ouro)}
 <footer>
  <div class="wrap">
   <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International">
-  <p>Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. Os resultados dependem do contexto e da execução.</p>
+  <p>Conteúdo educacional. Investimento e parceria com a Zion são possibilidades avaliadas caso a caso, sem garantia de investimento, parceria, renda, retorno, ocupação ou crédito. Os resultados dependem do contexto e da execução.</p>
   <p style="margin-top:8px">© Zion Hotel Group International · <a href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/privacidade/">Privacidade</a> · WhatsApp +55 48 6137-1061</p>
  </div>
 </footer>
