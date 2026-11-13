@@ -25,6 +25,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 20 | `docs/p/adbc67069af26ae0/treinamento-20/capa.jpg` |
 | Ferramenta 30 | `docs/p/adbc67069af26ae0/briefing-30/capa.jpg` |
 | Ferramenta 15 | `docs/p/adbc67069af26ae0/fornecedores-15/capa.jpg` |
+| Ferramenta 19 | `docs/p/adbc67069af26ae0/compras-19/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -42,6 +43,11 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 30 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/briefing-experiencia`).
 - 17, 11, 13, 14, 29 e 18 continuam com "Token inválido ou ausente": páginas seguem seguradas. 05 segue fora (decisão de Bruno).
 - 15 criada e enviada para aprovação.
+
+## Rodada de 13/11
+- 15 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/comparador-fornecedores`).
+- 13, 14, 29 e 18 conferidas hoje: aprovadas, mas ainda com "Token inválido ou ausente"; 17 e 11 tinham o mesmo erro na conferência de 12/11. Páginas seguem seguradas.
+- 19 criada e enviada para aprovação.
 
 ## Decidir (09/11)
 - **Ferramentas 01 e 21 do catálogo:** com as promessas sem duplicação (Comando 05A/05B), a 01 (ficha de apresentação do terreno) se sobrepõe a B05, B10 e ao Dossiê do Land Bank, e a 21 (mensagens de reservas) à A07. Seguir, mudar a promessa ou tirar do catálogo? Até a decisão, a rodada diária segue com 20, 15, 19.

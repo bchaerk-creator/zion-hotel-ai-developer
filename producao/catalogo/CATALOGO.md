@@ -60,7 +60,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 16 | Kit operacional de parcerias | C | D + P | A fazer |
 | 17 | **Checklist de limpeza, inspeção e liberação** | B | P + PDF | **Pronto** (`producao/utilitarios/17-checklist-limpeza/`) |
 | 18 | Planner de manutenção preventiva | B | P | **Pronto** (`producao/utilitarios/18-manutencao-preventiva/`) |
-| 19 | Controle de compras e consumo interno | B | P | A fazer |
+| 19 | Controle de compras e consumo interno | B | P | **Pronto** (`producao/utilitarios/19-controle-compras/`) |
 | 20 | Kit de treinamento do primeiro turno | B | P + PDF | **Pronto** (`producao/utilitarios/20-treinamento-primeiro-turno/`) |
 | 21 | Kit de mensagens de reservas | B | K | A fazer |
 | 22 | Planner de campanhas para períodos de baixa procura | B | P | A fazer |
@@ -100,8 +100,9 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5c. **18 · Planner de manutenção preventiva** (pronto, em rascunho no ClickMax, 09/11). Passou à frente da 01 e da 21 porque, após o Comando 05A/05B (promessas sem duplicação), a 01 se sobrepõe a B05/B10/Land Bank e a 21 à A07: **Bruno decide** se seguem, mudam de promessa ou saem do catálogo.
 5d. **20 · Kit de treinamento do primeiro turno** (pronto, aprovado em 11/11, página publicada em `/treinamento-primeiro-turno`).
 5e. **30 · Gerador de briefing de experiência** (pronto, aprovado e página publicada em `/briefing-experiencia`, 12/11). Passou à frente do E08 porque o e-book se sobrepõe à Jornada 2 (Gestão) da Fábrica Educacional: **Bruno decide** se o E08 segue como e-book separado ou vira material da Jornada 2.
-5f. **15 · Comparador de fornecedores** (pronto e enviado para aprovação, 12/11). Próximo da ordem enquanto 01, 21 e E08 aguardam Bruno.
+5f. **15 · Comparador de fornecedores** (pronto, aprovado e página publicada em `/comparador-fornecedores`, 13/11).
+5g. **19 · Controle de compras e consumo interno** (pronto e enviado para aprovação, 13/11). Controla o dinheiro das compras; a 13 segue com quantidades e a 15 com a escolha do fornecedor.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).
-9. Depois: 19, E05, E06, e assim por diante, um pacote completo por vez.
+9. Depois: E05, E06, e assim por diante, um pacote completo por vez.
