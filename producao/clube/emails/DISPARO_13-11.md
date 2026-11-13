@@ -28,3 +28,8 @@ Plano sugerido (a aprovar): seg 16/11 Terreno restante; ter 17 e qua 18 Operador
 ## Lote 2 · segunda 16/11/2026, 9h (aprovado por Bruno em 13/11)
 Campanha `d210b510-1e67-4da1-ba65-4fcc40ee50a0` · status `scheduled` · 286 contatos (segmento "REATIVAÇÃO · Terreno · restante") · mesmo e-mail "hotel bolha" (`utm_content=diagnostico-lote2`).
 O público do ClickMax é congelado na criação do rascunho: quem agendar ou preencher o formulário até segunda ainda estaria incluído. Lembrete automático marcado para segunda 07h (`trig_01C67gocEAqjJF3XDyj6mUJt`): conferir o resultado de sexta, o custo por e-mail em créditos e refazer o público se for preciso.
+
+## Operadores · terça 17/11 e quarta 18/11, 9h (agendado a pedido de Bruno em 13/11)
+Campanha `525e05bc-142d-4bea-977a-707982435d68` · 547 contatos (segmento "REATIVAÇÃO · Operadores · sem terreno") · lotes de 274 a cada 24 h (limitação do próprio ClickMax: 1º lote terça 9h, 2º quarta 9h).
+Corpo: `producao/clube/emails/operadores-expansao.html`. Assunto: "Você já opera hospedagem? A Zion está em expansão". Botão: formulário do pré-diagnóstico (`utm_campaign=operadores-expansao`).
+O teste 16 foi enviado só para Bruno. O texto ainda não foi lido por ele: pode cancelar ou voltar a rascunho até terça 9h.
