@@ -21,7 +21,7 @@ Data da leitura: 13/11/2026. Relógio da máquina na leitura: 13/11 02:33 UTC = 
 | 7 dias (07/11 a 13/11) | 38 | 34 | 4 |
 | Antigos (antes de 07/11) | 2.737 | não separado | não verificado |
 
-Critério de teste: nome com "Teste" (3, origem CxForms, e-mails example.com ou b.chaerk+) e o contato do próprio Bruno (b.chaerk@, CxCalendar, 11/11). Não contados como leads reais.
+Critério de teste: nome com "Teste" (3, origem CxForms, e-mails example.com ou e-mail de teste) e o contato do próprio Bruno (contato do Bruno, CxCalendar, 11/11). Não contados como leads reais.
 
 Reais dos 7 dias por dia de entrada (BRT): 07/11 7 · 08/11 9 · 09/11 5 · 10/11 2 · 11/11 7 · 12/11 4 · 13/11 0.
 
@@ -41,7 +41,7 @@ Land Bank, todos os tempos (filtro utmCampaign): 109 leads; "DIAGNÓSTICO" 76; "
 | Data/hora BRT | Primeiro nome | Status | Origem | Teste? |
 |---|---|---|---|---|
 | 13/11 14:00 | Lead 22 | scheduled | crm | não (diagnóstico de parceria, lead de 04/11) |
-| 13/11 16:00 | Bruno (b.chaerk+teste97) | scheduled | public_booking | **TESTE** |
+| 13/11 16:00 | Bruno (contato de teste) | scheduled | public_booking | **TESTE** |
 | 23/11 14:00 | Lead 09 | scheduled | public_booking | não (lead de 07/11; card em Mentoria) |
 
 **Tem reunião amanhã (sábado 14/11)? Não.** A agenda "Equipe Zion" não tem nenhum registro entre 14/11 e 22/11.
@@ -134,7 +134,7 @@ Blocos: **Hoje** · **Esta semana (7 dias)** · **Antigos (resumo)** · **Reuni�
 - Antigos: só total por origem e quantos têm reunião; sem lista.
 - Reuniões: próximas (data/hora BRT, primeiro nome, status, origem), "amanhã", vencidas sem desfecho, no-show. Marcar teste.
 - Parados sem contato: primeiro nome, entrou em, campanha, tag DIAG, funil·etapa, última atividade, contato (sem/falhou/enviada/respondeu), horas parado, ordenado do maior parado, destacando Land Bank diagnóstico com REUNIÃO.
-Regra de teste sugerida: nome contém "Teste" ou e-mail com `b.chaerk` ou `example.com`; reuniões do lead `b.chaerk+teste97`.
+Regra de teste sugerida: nome contém "Teste" ou e-mail com `e-mail do Bruno` ou `example.com`; reuniões do lead `contato de teste`.
 
 Dados que **não dá para obter** (ou não verifiquei):
 - UTM de 17 leads individualmente (o filtro dá só contagem); utm de leads antigos além dos totais Land Bank.
