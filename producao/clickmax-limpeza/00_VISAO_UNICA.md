@@ -45,3 +45,13 @@ Não mexer: turma a490c3c8 (ligada ao webhook do Asaas), pagamentos Asaas, formu
 6. Nome do portal único e certificado.
 7. Remetente/domínio de e-mail e texto aprovado.
 8. Textos de risco (renda, retorno, "maior banco/clube do Brasil", R$ 400 mil por cabana): revisar antes de qualquer disparo ou publicação.
+
+## 6. Decisões do Bruno registradas (13/11/2026)
+1. R$ 970 = Jornada 1 com acesso ao Club (oferta única do primeiro degrau pago; o Club deixa de ser produto separado).
+2. Jornada real do funil de reuniões: Mentoria (funil "★ EM USO AGORA"; Parceria Zion vira etapa ou lista dentro dele).
+3. Corte de R$ 5 mil: tirar de vez (fluxos, quiz e etapas).
+4. Reunião de diagnóstico: 45 minutos (alinhar Zaya e modelos).
+5. Checkout da Jornada 1: Asaas agora, ClickMax depois (teste de pagamento real antes; oferta nova e limpa no ClickMax em paralelo).
+6. Área de membros única: "Zion Academy" (renomear o portal mentoria-zion; renomear não muda ids).
+7. Site fora do ar: preparar o passo a passo (07_PASSO_A_PASSO_SITE_FORA_DO_AR.md).
+Nada disso foi executado no ClickMax; são decisões para as próximas fases, cada uma com "aprovado".
