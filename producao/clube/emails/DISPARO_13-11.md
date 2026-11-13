@@ -24,3 +24,7 @@ Todos com e-mail válido, sem reunião agendada/realizada, ficha de adesão, com
 | 🏨 REATIVAÇÃO · Operadores · sem terreno | `e0f6bf93-e40f-4cee-a488-f4b376826248` (lista `b3a6997d-7fc9-4fbe-be54-dc4f153454dd`) | 547 | precisa de e-mail próprio (a aprovar) |
 Fora: corretores (tag DISPARO E1, 170 com e-mail válido) e triagem/pesquisando (D1 e C1, 553), que precisam de mensagens próprias.
 Plano sugerido (a aprovar): seg 16/11 Terreno restante; ter 17 e qua 18 Operadores em dois lotes; só aumentar o ritmo se o disparo de 13/11 não gerar descadastro, reclamação nem rejeição.
+
+## Lote 2 · segunda 16/11/2026, 9h (aprovado por Bruno em 13/11)
+Campanha `d210b510-1e67-4da1-ba65-4fcc40ee50a0` · status `scheduled` · 286 contatos (segmento "REATIVAÇÃO · Terreno · restante") · mesmo e-mail "hotel bolha" (`utm_content=diagnostico-lote2`).
+O público do ClickMax é congelado na criação do rascunho: quem agendar ou preencher o formulário até segunda ainda estaria incluído. Lembrete automático marcado para segunda 07h (`trig_01C67gocEAqjJF3XDyj6mUJt`): conferir o resultado de sexta, o custo por e-mail em créditos e refazer o público se for preciso.
