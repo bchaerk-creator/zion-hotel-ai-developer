@@ -15,3 +15,12 @@ Regra do público: e-mail válido; com a etiqueta FUNIL TERRENO · RESPONDEU, CL
 
 Fora deste envio: os ~290 outros proprietários de terreno e os ~2.150 contatos sem marca de terreno.
 Medir (por `utm_content=diagnostico`): entregas, cliques, formulários enviados, sessões agendadas, descadastros e respostas.
+
+## Próximos públicos da base antiga (segmentos prontos, nada agendado)
+Todos com e-mail válido, sem reunião agendada/realizada, ficha de adesão, compra, cliente, tag DIAG e etiqueta do formulário novo; sem repetir quem está no disparo das 9h.
+| Segmento | id (lista) | Contatos | Observação |
+|---|---|---|---|
+| 🏞️ REATIVAÇÃO · Terreno · restante | `0357c548-38f8-41b2-8515-068b26936d1e` (lista `eb1f1199-fdaf-4ce1-b7d6-4237f9b8f37f`) | 286 | mesmo e-mail "hotel bolha" |
+| 🏨 REATIVAÇÃO · Operadores · sem terreno | `e0f6bf93-e40f-4cee-a488-f4b376826248` (lista `b3a6997d-7fc9-4fbe-be54-dc4f153454dd`) | 547 | precisa de e-mail próprio (a aprovar) |
+Fora: corretores (tag DISPARO E1, 170 com e-mail válido) e triagem/pesquisando (D1 e C1, 553), que precisam de mensagens próprias.
+Plano sugerido (a aprovar): seg 16/11 Terreno restante; ter 17 e qua 18 Operadores em dois lotes; só aumentar o ritmo se o disparo de 13/11 não gerar descadastro, reclamação nem rejeição.
