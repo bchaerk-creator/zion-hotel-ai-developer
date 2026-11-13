@@ -95,6 +95,15 @@ PRODUTOS = [
                    ("Comparador-Fornecedores-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel 2019+, Google Sheets ou LibreOffice"),
                    ("Comparador-Fornecedores-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Roteiro-de-Cotacao.pdf", "Roteiro de cotação", "PDF · para imprimir")]),
+    dict(pasta="compras-19", num="19", telas=["producao/utilitarios/19-controle-compras/dist/demonstracao/demo-compras.png", "producao/utilitarios/19-controle-compras/dist/demonstracao/demo-mes.png"],
+         titulo="Controle de Compras e Consumo Interno",
+         promessa="Aprenda o passo a passo para registrar as compras da sua hospedagem, comparar cada categoria com o orçamento do mês e saber quanto os insumos custam por noite ocupada.",
+         itens=["Compras num lugar só", "Orçamento por categoria", "Custo por noite ocupada", "Visão do ano"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Mês.", "Na planilha em branco, ajuste as categorias e o orçamento.", "Lance cada compra no dia e olhe a aba Mês uma vez por semana."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Controle-Compras-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Controle-Compras-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Folha-de-Compras.pdf", "Folha de compras do mês", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}

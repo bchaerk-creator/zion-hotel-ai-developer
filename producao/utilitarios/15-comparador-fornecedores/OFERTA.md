@@ -61,3 +61,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 
 ## Envio para aprovação
 12/11/2026 (rodada diária): 4 arquivos e página de acesso conferidos no ar (status 200) e ligados à oferta; `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`, sem erro de sincronização. Página segue em rascunho até a oferta ficar ativa.
+
+## Publicação (13/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada; no primeiro acesso deu 404 (propagação) e, minutos depois, status 200 com título e reembolso: https://infoprodutos-zion.clickmax.space/comparador-fornecedores. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.
