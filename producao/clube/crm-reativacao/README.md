@@ -25,3 +25,8 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 
 ## Testes
 `node tests/e2e.js` (dados fictícios): normalização de telefone, CSV, importação sem duplicar, mensagem e link do WhatsApp por oferta, abertura do WhatsApp, avanço da fila, persistência e exportação. Resultado em 14/11: 18 de 18.
+
+## Marcar o que já foi enviado e levar para o ClickMax
+- Tocar em **Abrir WhatsApp** já marca o lead como contatado, com data e hora. **Já mandei** marca sem abrir o WhatsApp (para quem você chamou por outro caminho). **Voltar para novo** desfaz.
+- **Dados → Baixar CSV** exporta com o `id` do ClickMax, status, oferta e data de envio. Reimportar esse CSV restaura o andamento.
+- Organização no ClickMax (tags e lista a partir desse CSV): só depois do "aprovado" do Bruno, porque altera contatos que já existem.

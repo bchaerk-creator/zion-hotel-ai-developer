@@ -136,17 +136,15 @@ function normFone(raw){let d=String(raw||'').replace(/\D/g,'');if(!d)return '';d
  if(d.startsWith('55')&&(d.length===12||d.length===13))return d;return ''}
 function primeiroNome(n){const p=String(n||'').trim().split(/\s+/)[0]||'';
  if(!p||/^(teste|test)/i.test(p))return p;return p.charAt(0).toUpperCase()+p.slice(1).toLowerCase()}
+function marcarEnviado(l){if(l.status==='novo')l.status='contatado';if(!l.enviado)l.enviado=new Date().toISOString();l.ultimo=new Date().toLocaleDateString('pt-BR')}
 function nomeBonito(n){return String(n||'').trim().split(/\s+/).map(w=>/^(da|de|do|das|dos|e)$/i.test(w)?w.toLowerCase():w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join(' ')}
 function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
 
-// semente embutida opcional (leads-data.js define window.ZION_LEADS)
-if(!leads.length&&Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length){juntar(window.ZION_LEADS);}
-else if(Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length&&!ler('zion_crm_seeded_'+window.ZION_LEADS.length,false)){juntar(window.ZION_LEADS);gravar('zion_crm_seeded_'+window.ZION_LEADS.length,true)}
-
+// semente embutida opcional (leads-data.js define window.ZION_LEADS): completa dados sem apagar o andamento
 function juntar(novos){let criados=0,unidos=0,semFone=0;const porFone=new Map(leads.filter(l=>l.fone).map(l=>[l.fone,l]));
- for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),criado:n.criado||'',temp:n.temp||0,imp:!!n.imp,ctx:n.ctx||'',obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
+ for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),criado:n.criado||'',temp:n.temp||0,imp:!!n.imp,enviado:n.enviado||'',ctx:n.ctx||'',obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
   if(!fone)semFone++;
-  if(fone&&porFone.has(fone)){const e=porFone.get(fone);for(const k of ['nome','email','cidade','estado','origem','tags'])if(!e[k]&&base[k])e[k]=base[k];unidos++}
+  if(fone&&porFone.has(fone)){const e=porFone.get(fone);for(const k of ['nome','email','cidade','estado','origem','tags','criado'])if(!e[k]&&base[k])e[k]=base[k];if(!e.temp&&base.temp)e.temp=base.temp;if(e.imp===undefined)e.imp=base.imp;unidos++}
   else{leads.push(base);if(fone)porFone.set(fone,base);criados++}}
  gravar(K.leads,leads);return {criados,unidos,semFone}}
 
@@ -160,9 +158,9 @@ function csvParse(t){const rows=[];let r=[],c='',q=false;t=t.replace(/^﻿/,'');
  if(c!==''||r.length){r.push(c);rows.push(r)}return rows}
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
 function mapear(rows){const h=rows[0].map(norm);const acha=(...ns)=>h.findIndex(x=>ns.some(n=>x===n||x.includes(n)));
- const ix={nome:acha('nome','name'),fone:acha('whatsapp','celular','telefone','phone','tel'),email:acha('e-mail','email'),cidade:acha('cidade','city'),estado:acha('estado','state','uf'),origem:acha('origem','origin','lista'),tags:acha('tags','tag'),status:acha('status crm','status_crm'),criado:acha('criado em','data de cria','created')};
+ const ix={nome:acha('nome','name'),fone:acha('whatsapp','celular','telefone','phone','tel'),email:acha('e-mail','email'),cidade:acha('cidade','city'),estado:acha('estado','state','uf'),origem:acha('origem','origin','lista'),tags:acha('tags','tag'),status:acha('status crm','status_crm','status'),id:h.findIndex(x=>x==='id'),enviado:h.findIndex(x=>x==='enviado'),oferta:h.findIndex(x=>x==='oferta'),criado:acha('criado em','data de cria','created')};
  if(ix.fone<0&&ix.email<0)throw new Error('Não achei coluna de telefone nem de e-mail. Confira o cabeçalho do CSV.');
- return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags),criado:(()=>{const v=g(ix.criado);const m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})/);return m?`${m[3]}-${m[2]}-${m[1]}T12:00:00Z`:(v&&!isNaN(Date.parse(v))?new Date(v).toISOString():'')})()}}).filter(x=>x.nome||x.fone||x.email)}
+ return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags),id:g(ix.id),enviado:g(ix.enviado),oferta:g(ix.oferta),status:(()=>{const v=g(ix.status);return STATUS[v]?v:''})(),criado:(()=>{const v=g(ix.criado);const m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})/);return m?`${m[3]}-${m[2]}-${m[1]}T12:00:00Z`:(v&&!isNaN(Date.parse(v))?new Date(v).toISOString():'')})()}}).filter(x=>x.nome||x.fone||x.email)}
 
 async function prepararFoto(){const id=foto;fotoBlob=null;fotoId=id;
  try{const img=new Image();img.crossOrigin='anonymous';await new Promise((ok,er)=>{img.onload=ok;img.onerror=er;img.src=BASE+id+'.webp'});
@@ -198,7 +196,7 @@ function fila(){const fs=$('#fStatus').value,fo=$('#fOrigem').value;
 function proximo(){const f=fila().filter(l=>!pulados.has(l.id));atual=f[0]||null;render()}
 
 function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,novos=leads.filter(l=>l.status==='novo'&&l.fone).length,cont=leads.filter(l=>l.status!=='novo'&&l.status!=='numero_invalido').length;
- $('#resumo').textContent=total?`${total} leads`:'';
+ const hoje=new Date().toDateString();const hj=leads.filter(l=>l.enviado&&new Date(l.enviado).toDateString()===hoje).length;$('#resumo').textContent=total?`${total} leads · ${hj} enviados hoje`:'';
  $('#stats').innerHTML=[['Novos',novos],['Contatados',cont],['Responderam',leads.filter(l=>l.status==='respondeu').length],['Agendaram',leads.filter(l=>l.status==='agendou').length]].map(([a,b])=>`<div><b>${b}</b><span>${a}</span></div>`).join('');
  const origens=[...new Set(leads.map(l=>l.origem).filter(Boolean))].sort();const so=$('#fOrigem'),v=so.value;so.innerHTML='<option value="">Todas as origens</option>'+origens.map(o=>`<option ${o===v?'selected':''}>${esc(o)}</option>`).join('');
  const c=$('#cardLead');
@@ -219,6 +217,7 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  <p class="muted" id="avFoto" style="margin:6px 0 0"></p>
  <div class="row" style="margin-top:12px"><a class="btn primary" id="abrir" target="_blank" rel="noopener">Abrir WhatsApp com a mensagem</a></div>
  <div class="row" style="margin-top:8px"><button id="copiar">Copiar mensagem</button><button id="pular">Pular</button></div>
+ <div class="row" style="margin-top:8px"><button id="jaMandei">Já mandei (sem abrir o WhatsApp)</button>${l.status!=='novo'?'<button id="voltarNovo">Voltar para novo</button>':''}</div>
  <label>Depois de enviar</label>
  <div class="row"><button data-st="respondeu">Respondeu</button><button data-st="agendou">Agendou</button><button data-st="comprou">Comprou</button><button data-st="sem_interesse">Sem interesse</button><button data-st="numero_invalido">Número errado</button></div>
  <label>Anotação</label><input id="obs" value="${esc(l.obs)}" placeholder="Ex.: pediu para falar semana que vem">
@@ -230,11 +229,13 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  $('#cpFoto').onclick=async()=>{$('#avFoto').textContent=(await copiarFoto())?'Foto copiada. No chat, toque e segure no campo de mensagem e escolha Colar.':'Não consegui copiar neste navegador. Use Salvar foto e anexe pelo clipe do WhatsApp.'};
  $('#svFoto').onclick=async()=>{if(!fotoBlob)await prepararFoto();salvarFoto();$('#avFoto').textContent='Foto baixada. No WhatsApp, toque no clipe e escolha a foto.'};
  $('#shFoto').onclick=async()=>{if(!fotoBlob)await prepararFoto();const ok=await compartilharFoto($('#msg').value);$('#avFoto').textContent=ok?'Compartilhado. Escolha o contato no WhatsApp.':'Este aparelho não compartilha foto com texto. Use Copiar foto ou Salvar foto.'};
- abrir.onclick=()=>{if(comFoto)copiarFoto();l.obs=$('#obs').value;l.oferta=oferta;if(l.status==='novo')l.status='contatado';l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);setTimeout(()=>{pulados.add(l.id);proximo()},400)};
+ abrir.onclick=()=>{if(comFoto)copiarFoto();l.obs=$('#obs').value;l.oferta=oferta;marcarEnviado(l);gravar(K.leads,leads);setTimeout(()=>{pulados.add(l.id);proximo()},400)};
  $('#copiar').onclick=async()=>{try{await navigator.clipboard.writeText($('#msg').value);$('#copiar').textContent='Copiado ✓'}catch(e){$('#msg').select();document.execCommand('copy')}};
+ $('#jaMandei').onclick=()=>{l.oferta=oferta;l.obs=$('#obs').value;marcarEnviado(l);gravar(K.leads,leads);pulados.add(l.id);proximo()};
+ const vn=$('#voltarNovo');if(vn)vn.onclick=()=>{l.status='novo';l.enviado='';l.ultimo='';gravar(K.leads,leads);render()};
  $('#pular').onclick=()=>{pulados.add(l.id);proximo()};
  c.querySelectorAll('[data-of]').forEach(b=>b.onclick=()=>{oferta=b.dataset.of;comFoto=oferta==='bubble';render()});
- c.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{l.status=b.dataset.st;l.obs=$('#obs').value;l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);pulados.add(l.id);proximo()});
+ c.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{l.status=b.dataset.st;l.obs=$('#obs').value;if(!l.enviado&&b.dataset.st!=='numero_invalido'&&b.dataset.st!=='sem_interesse')l.enviado=new Date().toISOString();l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);pulados.add(l.id);proximo()});
 }
 
 function tabela(){const q=norm($('#busca').value);const f=leads.filter(l=>!q||norm([l.nome,l.fone,l.cidade,l.origem,l.email].join(' ')).includes(q)).slice(0,300);
@@ -251,12 +252,13 @@ $('#salvarCfg').onclick=()=>{cfg.remetente=$('#cfgRemetente').value;for(const k 
 $('#resetCfg').onclick=()=>{if(confirm('Voltar aos textos originais?')){cfg=Object.assign({},CFG_PADRAO);gravar(K.cfg,cfg);cfgPreencher()}};
 $('#arquivo').onchange=async e=>{const f=e.target.files[0];if(!f)return;const t=await f.text();
  try{const novos=f.name.endsWith('.json')?JSON.parse(t):mapear(csvParse(t));const r=juntar(novos);$('#resImport').textContent=`${r.criados} novos, ${r.unidos} unidos a telefones já existentes, ${r.semFone} sem telefone válido.`;pulados.clear();proximo()}catch(err){$('#resImport').textContent='Erro: '+err.message}};
-$('#exportar').onclick=()=>{const cols=['nome','fone','email','cidade','estado','origem','tags','status','oferta','ultimo','obs'];const q=v=>'"'+String(v||'').replaceAll('"','""')+'"';
+$('#exportar').onclick=()=>{const cols=['id','nome','fone','email','cidade','estado','origem','tags','status','oferta','enviado','obs'];const q=v=>'"'+String(v||'').replaceAll('"','""')+'"';
  const csv=[cols.join(',')].concat(leads.map(l=>cols.map(c=>q(l[c])).join(','))).join('\n');
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='reativacao-zion.csv';a.click()};
 $('#limpar').onclick=()=>{if(confirm('Apagar todos os leads deste aparelho?')){leads=[];gravar(K.leads,leads);proximo()}};
 // expõe para testes
 window.__crm={lembrete,prioridade,fila,normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
+if(Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length){const antes=leads.length;juntar(window.ZION_LEADS);void antes}
 proximo();
 </script>
 </body>

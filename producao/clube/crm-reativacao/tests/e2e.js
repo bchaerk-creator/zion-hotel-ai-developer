@@ -39,6 +39,12 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  ok(JSON.stringify(ordem[0])===JSON.stringify(['Novo Hoje','Novo Ontem','Quente Etiqueta','Form Antigo','Antigo Morno','Antigo Frio']),'ordem da fila: '+ordem[0].join(' > '));
  ok(/ontem/.test(ordem[1])&&/ontem/.test(ordem[2]),'rótulo e lembrete usam a data real: '+ordem[2]);
  await p.evaluate(()=>{const c=window.__crm;for(const l of c.leads.filter(l=>/^(Antigo|Quente|Novo|Form)/.test(l.nome)))l.status='sem_interesse'});
+ // já mandei / voltar para novo
+ await p.click('[data-tab=fila]');
+ const antes=await p.textContent('.big');await p.click('#jaMandei');
+ const jm=await p.evaluate(n=>window.__crm.leads.find(l=>l.nome.toLowerCase()===n.toLowerCase().trim()||l.nome===n),antes);
+ ok(jm&&jm.status==='contatado'&&!!jm.enviado,'"Já mandei" marca contatado com carimbo de data');
+ ok(/enviados hoje/.test(await p.textContent('#resumo')),'contador de enviados hoje: '+await p.textContent('#resumo'));
  // lembrete
  const lm=await p.evaluate(()=>[window.__crm.lembrete({tags:'DISPARO A1 · OPERADOR PARCERIA',imp:true}),window.__crm.lembrete({tags:'FUNIL TERRENO | RESPONDEU',imp:true}),window.__crm.lembrete({tags:''}),window.__crm.lembrete({tags:'x',ctx:'Você pediu a diária da cabana.'})]);
  ok(/não lembre/.test(lm[0])&&/não lembre/.test(lm[1])&&/não lembre/.test(lm[2])&&lm[3]==='Você pediu a diária da cabana.','lembrete por etiqueta, padrão e edição manual');
@@ -65,5 +71,9 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  await p.reload();ok((await p.evaluate(()=>window.__crm.leads.length))===9,'dados persistem após recarregar');
  // exportação
  await p.click('[data-tab=dados]');const [dl]=await Promise.all([p.waitForEvent('download'),p.click('#exportar')]);
- const csv=fs.readFileSync(await dl.path(),'utf8');ok(csv.includes('contatado')&&csv.split('\n').length===10,'exporta CSV com status');
+ const csv=fs.readFileSync(await dl.path(),'utf8');ok(csv.includes('contatado')&&csv.replace(/^\uFEFF/,'').startsWith('id,nome,fone')&&csv.split('\n').length===10,'exporta CSV com status');
+ // semente completa dados de uma versão antiga sem apagar status
+ await p.evaluate(()=>{window.ZION_LEADS=[{id:'old1',nome:'Velho Salvo',fone:'48955550001',criado:'2026-11-13T10:00:00Z',temp:40,imp:false}];localStorage.setItem('zion_crm_leads_v1',JSON.stringify([{id:'old1',nome:'Velho Salvo',fone:'5548955550001',status:'respondeu',tags:'',origem:''}]))});
+ const sem=await p.evaluate(()=>{const ls=JSON.parse(localStorage.getItem('zion_crm_leads_v1'));return ls.length});
+ ok(sem===1,'preparou versão antiga salva');
  await b.close();console.log(falhas?`\n${falhas} falha(s)`:'\nTudo certo');process.exit(falhas?1:0)})();
