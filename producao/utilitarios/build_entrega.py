@@ -104,6 +104,15 @@ PRODUTOS = [
                    ("Controle-Compras-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Controle-Compras-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Folha-de-Compras.pdf", "Folha de compras do mês", "PDF · para imprimir")]),
+    dict(pasta="fotos-12", num="12", telas=["producao/utilitarios/12-fotos-comodidades/dist/demonstracao/demo-fotos.png", "producao/utilitarios/12-fotos-comodidades/dist/demonstracao/demo-comodidades.png"],
+         titulo="Checklist de Fotos e Comodidades do Anúncio",
+         promessa="Aprenda o passo a passo para planejar as fotos do seu anúncio, acompanhar cada uma até a publicação e conferir se o que está marcado no anúncio existe de verdade na hospedagem.",
+         itens=["Lista de fotos por ambiente", "Situação e ordem de cada foto", "Casa × anúncio", "O que corrigir primeiro"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Painel.", "Na planilha em branco, ajuste a lista de fotos e responda as comodidades andando pela casa.", "No dia das fotos, leve o roteiro e atualize a situação de cada foto."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Fotos-Comodidades-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Fotos-Comodidades-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Roteiro-do-Dia-das-Fotos.pdf", "Roteiro do dia das fotos", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
