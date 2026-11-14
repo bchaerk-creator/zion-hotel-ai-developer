@@ -17,6 +17,9 @@ Os links levam UTM (`utm_source=whatsapp&utm_medium=reativacao_manual&utm_campai
 - Os dados ficam só no navegador (localStorage) de quem abre a página. Não hospede a página com os leads em endereço público.
 - Os textos têm uma linha para quem não quiser mais receber mensagens. Quem pedir para sair deve ser marcado "Sem interesse" na hora.
 
+## Ordem da fila
+1. Entrou nos últimos 14 dias por formulário ou página (os mais novos primeiro). 2. Quentes pela etiqueta (lead quente, potencial alto, 5 mil ou mais, respondeu). 3. Entrou por formulário ou página antes disso. 4. Base antiga importada, por temperatura. A data só entra na mensagem para o grupo 1, porque nos importados por CSV a data não é a do cadastro.
+
 ## Regras de texto
 Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência falsa. As mensagens só convidam para conversar, ver a Bubble ou conhecer o Clube.
 

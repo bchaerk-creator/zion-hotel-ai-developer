@@ -144,7 +144,7 @@ if(!leads.length&&Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length){ju
 else if(Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length&&!ler('zion_crm_seeded_'+window.ZION_LEADS.length,false)){juntar(window.ZION_LEADS);gravar('zion_crm_seeded_'+window.ZION_LEADS.length,true)}
 
 function juntar(novos){let criados=0,unidos=0,semFone=0;const porFone=new Map(leads.filter(l=>l.fone).map(l=>[l.fone,l]));
- for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),ctx:n.ctx||'',obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
+ for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),criado:n.criado||'',temp:n.temp||0,imp:!!n.imp,ctx:n.ctx||'',obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
   if(!fone)semFone++;
   if(fone&&porFone.has(fone)){const e=porFone.get(fone);for(const k of ['nome','email','cidade','estado','origem','tags'])if(!e[k]&&base[k])e[k]=base[k];unidos++}
   else{leads.push(base);if(fone)porFone.set(fone,base);criados++}}
@@ -160,9 +160,9 @@ function csvParse(t){const rows=[];let r=[],c='',q=false;t=t.replace(/^﻿/,'');
  if(c!==''||r.length){r.push(c);rows.push(r)}return rows}
 const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
 function mapear(rows){const h=rows[0].map(norm);const acha=(...ns)=>h.findIndex(x=>ns.some(n=>x===n||x.includes(n)));
- const ix={nome:acha('nome','name'),fone:acha('whatsapp','celular','telefone','phone','tel'),email:acha('e-mail','email'),cidade:acha('cidade','city'),estado:acha('estado','state','uf'),origem:acha('origem','origin','lista'),tags:acha('tags','tag'),status:acha('status crm','status_crm')};
+ const ix={nome:acha('nome','name'),fone:acha('whatsapp','celular','telefone','phone','tel'),email:acha('e-mail','email'),cidade:acha('cidade','city'),estado:acha('estado','state','uf'),origem:acha('origem','origin','lista'),tags:acha('tags','tag'),status:acha('status crm','status_crm'),criado:acha('criado em','data de cria','created')};
  if(ix.fone<0&&ix.email<0)throw new Error('Não achei coluna de telefone nem de e-mail. Confira o cabeçalho do CSV.');
- return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags)}}).filter(x=>x.nome||x.fone||x.email)}
+ return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags),criado:(()=>{const v=g(ix.criado);const m=v.match(/^(\d{2})\/(\d{2})\/(\d{4})/);return m?`${m[3]}-${m[2]}-${m[1]}T12:00:00Z`:(v&&!isNaN(Date.parse(v))?new Date(v).toISOString():'')})()}}).filter(x=>x.nome||x.fone||x.email)}
 
 async function prepararFoto(){const id=foto;fotoBlob=null;fotoId=id;
  try{const img=new Image();img.crossOrigin='anonymous';await new Promise((ok,er)=>{img.onload=ok;img.onerror=er;img.src=BASE+id+'.webp'});
@@ -176,8 +176,17 @@ function salvarFoto(){if(!fotoBlob)return;const a=document.createElement('a');a.
 async function compartilharFoto(texto){if(!fotoBlob)return false;const f=new File([fotoBlob],'zion-bubble.jpg',{type:'image/jpeg'});
  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:texto});return true}catch(e){return false}}return false}
 const LEMBRETE_GERAL='Pode ser que você não lembre de nós, então me apresento de novo: você deixou seu contato com a Zion.';
-const MAPA_LEMBRETE=[[/NOITEMAGICA/i,'Você se interessou pela Noite Mágica na Zion Bubble.'],[/FORMS FACEBOOK|FORM LAND BANK/i,'Você preencheu um formulário nosso no Facebook/Instagram.'],[/TERRENO/i,'A gente já te mandou mensagem sobre o seu terreno e projetos de hospedagem.'],[/DISPARO [A-E]1|PARCERIA/i,'A gente já te mandou mensagem sobre parceria com a Zion e projetos de hospedagem.']];
-function lembrete(l){if(l.ctx)return l.ctx;for(const [re,t] of MAPA_LEMBRETE)if(re.test(l.tags||''))return t;return LEMBRETE_GERAL}
+function lembrete(l){if(l.ctx)return l.ctx;const pr=prioridade(l);if(pr.n===1)return 'Você deixou seu contato com a gente '+pr.quando+'.';return LEMBRETE_GERAL}
+const QUENTE=/LEAD QUENTE|POTENCIAL (ALTO|COM AJUSTES)|5 MIL OU MAIS|FUNIL TERRENO \| (RESPONDEU|CLICOU|FALAR)|ZAYA ASSUMIR|REUNIÃO GRÁTIS|PERFIL PARCERIA|RAIOX/i;
+function dd(iso){const d=new Date(iso);return String(d.getDate()).padStart(2,'0')+'/'+String(d.getMonth()+1).padStart(2,'0')}
+function prioridade(l){const dias=l.criado?Math.floor((Date.now()-Date.parse(l.criado))/864e5):null;
+ if(dias!==null&&dias<=14&&!l.imp)return {n:1,rotulo:'1 · Entrou '+(dias<=0?'hoje':dias===1?'ontem':'há '+dias+' dias'),quando:dias<=0?'hoje':dias===1?'ontem':'no dia '+dd(l.criado)};
+ if(QUENTE.test(l.tags||''))return {n:2,rotulo:'2 · Quente'};
+ if(!l.imp&&l.criado)return {n:3,rotulo:'3 · Entrou em '+dd(l.criado)};
+ return {n:4,rotulo:'4 · Base antiga'}}
+function porPrioridade(a,b){const pa=prioridade(a).n,pb=prioridade(b).n;if(pa!==pb)return pa-pb;
+ if(pa===2||pa===4){const t=(b.temp||0)-(a.temp||0);if(t)return t}
+ return String(b.criado||'').localeCompare(String(a.criado||''))}
 function montar(l,of){const link=(cfg['link'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]]||'').trim();
  const u=new URL(link,'https://x.invalid');let url=link;
  if(/^https?:/.test(link)){u.searchParams.set('utm_source','whatsapp');u.searchParams.set('utm_medium','reativacao_manual');u.searchParams.set('utm_campaign','reativacao-'+of);u.searchParams.set('utm_content',String(l.id).slice(0,8));url=u.toString()}
@@ -185,7 +194,7 @@ function montar(l,of){const link=(cfg['link'+{agenda:'Agenda',bubble:'Bubble',cl
  return cfg['msg'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]].replaceAll('{{nome}}',nome).replaceAll('{{lembrete}}',lembrete(l)).replaceAll('{{remetente}}',cfg.remetente||'').replaceAll('{{link}}',url)}
 
 function fila(){const fs=$('#fStatus').value,fo=$('#fOrigem').value;
- return leads.filter(l=>l.fone&&(!fs||l.status===fs)&&(!fo||l.origem===fo)&&l.status!=='sem_interesse'&&l.status!=='comprou'&&l.status!=='numero_invalido')}
+ return leads.filter(l=>l.fone&&(!fs||l.status===fs)&&(!fo||l.origem===fo)&&l.status!=='sem_interesse'&&l.status!=='comprou'&&l.status!=='numero_invalido').sort(porPrioridade)}
 function proximo(){const f=fila().filter(l=>!pulados.has(l.id));atual=f[0]||null;render()}
 
 function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,novos=leads.filter(l=>l.status==='novo'&&l.fone).length,cont=leads.filter(l=>l.status!=='novo'&&l.status!=='numero_invalido').length;
@@ -199,7 +208,7 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  c.innerHTML=`<div class="card"><div class="muted">${fila().length-pulados.size} na fila</div>
  <div class="big">${esc(nomeBonito(l.nome)||'(sem nome)')}</div>
  <div class="muted">${esc(l.fone.replace(/^55(\d\d)(\d{4,5})(\d{4})$/,'+55 ($1) $2-$3'))}${l.cidade?' · '+esc(l.cidade)+(l.estado?'/'+esc(l.estado):''):''}</div>
- <div>${l.origem?`<span class="pill">${esc(l.origem)}</span>`:''}${l.tags?esc(l.tags).split(/[;|]/).slice(0,3).map(t=>`<span class="pill">${t.trim()}</span>`).join(''):''}<span class="pill s-${l.status}">${STATUS[l.status]}</span>${l.ultimo?`<span class="pill">último: ${esc(l.ultimo)}</span>`:''}</div>
+ <div>${l.origem?`<span class="pill">${esc(l.origem)}</span>`:''}${l.tags?esc(l.tags).split(/[;|]/).slice(0,3).map(t=>`<span class="pill">${t.trim()}</span>`).join(''):''}<span class="pill" style="border-color:var(--ouro);color:var(--ouro)">${prioridade(l).rotulo}</span><span class="pill s-${l.status}">${STATUS[l.status]}</span>${l.ultimo?`<span class="pill">último: ${esc(l.ultimo)}</span>`:''}</div>
  <div class="offers">${Object.entries(OFERTAS).map(([k,n])=>`<button data-of="${k}" class="${k===oferta?'on':''}">${n}</button>`).join('')}</div>
  <label>Como esse lead chegou (entra na mensagem)</label><input id="ctx" value="${esc(lembrete(l))}">
  <label>Mensagem (pode editar antes de enviar)</label><textarea id="msg">${esc(msg)}</textarea>
@@ -247,7 +256,7 @@ $('#exportar').onclick=()=>{const cols=['nome','fone','email','cidade','estado',
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='reativacao-zion.csv';a.click()};
 $('#limpar').onclick=()=>{if(confirm('Apagar todos os leads deste aparelho?')){leads=[];gravar(K.leads,leads);proximo()}};
 // expõe para testes
-window.__crm={lembrete,normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
+window.__crm={lembrete,prioridade,fila,normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
 proximo();
 </script>
 </body>
