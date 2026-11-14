@@ -30,3 +30,8 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 - Tocar em **Abrir WhatsApp** já marca o lead como contatado, com data e hora. **Já mandei** marca sem abrir o WhatsApp (para quem você chamou por outro caminho). **Voltar para novo** desfaz.
 - **Dados → Baixar CSV** exporta com o `id` do ClickMax, status, oferta e data de envio. Reimportar esse CSV restaura o andamento.
 - Organização no ClickMax (tags e lista a partir desse CSV): só depois do "aprovado" do Bruno, porque altera contatos que já existem.
+
+## Pipeline de reuniões no ClickMax (14/11/2026)
+- Criado o pipeline **Reuniões agendadas · Zion** (`0983f37b-572b-443c-8f7b-d31170c1a556`, grupo "Reuniões"), separado dos funis existentes. Etapas: 1 · Agendada, 2 · Passou do horário · marcar resultado, 3 · Reunião feita, 4 · Não compareceu · reagendar, 5 · Cancelada ou remarcada.
+- 9 cards, um por reunião real da agenda "Equipe Zion": 2 em Agendada (16/11 e 23/11), 6 em "Passou do horário" (reuniões de 05 a 13/11 ainda com status "agendada" na agenda) e 1 em "Não compareceu". Ficaram de fora os testes, as reuniões do próprio Bruno e as canceladas.
+- Sem automação nem disparo: conferido que as automações que escutam entrada em etapa são restritas a etapas de outros pipelines. As reuniões da agenda e os cards dos funis originais não foram alterados.
