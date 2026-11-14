@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>CRM de reativação · Zion</title>
+<style>
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E;--ok:#8fc08a;--alerta:#e0b66a;--erro:#d98a7e}
+*{box-sizing:border-box}
+body{margin:0;background:var(--preto);color:var(--creme);font:16px/1.5 Jost,system-ui,-apple-system,"Segoe UI",sans-serif;padding:0 16px 80px}
+h1,h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:500;margin:0}
+.w{max-width:760px;margin:0 auto}
+header{padding:20px 0 8px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+h1{font-size:28px;color:var(--ouro)}
+.tabs{display:flex;gap:8px;margin:12px 0}
+.tabs button{flex:1}
+button,.btn{font:600 15px/1.2 inherit;font-family:inherit;border:1px solid var(--ouro);background:transparent;color:var(--ouro);padding:13px 16px;border-radius:10px;cursor:pointer;text-decoration:none;text-align:center;display:inline-block}
+button.on{background:var(--ouro);color:var(--preto)}
+.primary{background:#25D366;border-color:#25D366;color:#04210f;font-size:18px;padding:18px;width:100%}
+.card{background:var(--musgo);border:1px solid #2c3626;border-radius:14px;padding:16px;margin:12px 0}
+.row{display:flex;gap:8px;flex-wrap:wrap}
+.row>*{flex:1;min-width:120px}
+input,select,textarea{width:100%;background:var(--preto);color:var(--creme);border:1px solid #3a4532;border-radius:8px;padding:11px;font:inherit}
+textarea{min-height:150px;resize:vertical}
+label{font-size:13px;color:var(--areia);display:block;margin:10px 0 4px}
+.muted{color:var(--areia);font-size:14px}
+.big{font-family:"Cormorant Garamond",Georgia,serif;font-size:30px;line-height:1.1}
+.pill{display:inline-block;font-size:12px;padding:3px 9px;border-radius:99px;border:1px solid #4a5640;color:var(--areia);margin:2px 4px 2px 0}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0}
+.stats div{background:var(--musgo);border-radius:10px;padding:10px;text-align:center}
+.stats b{display:block;font-size:22px;color:var(--ouro)}
+.stats span{font-size:11px;color:var(--areia)}
+.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:10px 0}
+.offers button{padding:12px 6px;font-size:14px}
+table{width:100%;border-collapse:collapse;font-size:14px}
+td,th{padding:8px 6px;border-bottom:1px solid #2c3626;text-align:left;vertical-align:top}
+.s-novo{color:var(--areia)}.s-contatado{color:var(--alerta)}.s-respondeu{color:var(--ok)}.s-agendou{color:var(--ok)}.s-comprou{color:var(--ok)}.s-sem_interesse,.s-numero_invalido{color:var(--erro)}
+.hide{display:none}
+.aviso{border-left:3px solid var(--alerta);padding:8px 12px;background:#221f12;border-radius:6px;font-size:14px}
+@media(max-width:480px){.stats{grid-template-columns:repeat(2,1fr)}}
+</style>
+</head>
+<body>
+<div class="w">
+<header><h1>Reativação · Zion</h1><span class="muted" id="resumo"></span></header>
+<div class="tabs">
+  <button data-tab="fila" class="on">Fila</button>
+  <button data-tab="lista">Todos</button>
+  <button data-tab="config">Textos</button>
+  <button data-tab="dados">Dados</button>
+</div>
+
+<!-- FILA -->
+<section id="t-fila">
+  <div class="stats" id="stats"></div>
+  <div class="row">
+    <select id="fStatus"><option value="novo">Só os novos</option><option value="">Todos os status</option><option value="contatado">Já contatados</option><option value="respondeu">Responderam</option></select>
+    <select id="fOrigem"><option value="">Todas as origens</option></select>
+  </div>
+  <div id="cardLead"></div>
+</section>
+
+<!-- LISTA -->
+<section id="t-lista" class="hide">
+  <input id="busca" placeholder="Buscar por nome, telefone, cidade ou origem">
+  <div class="card" style="padding:4px 8px;overflow:auto"><table id="tabela"></table></div>
+</section>
+
+<!-- CONFIG -->
+<section id="t-config" class="hide">
+  <div class="card">
+    <h2>Seu nome nas mensagens</h2>
+    <input id="cfgRemetente" placeholder="Bruno">
+  </div>
+  <div class="card"><h2>1 · Agendamento</h2><p class="muted">Agenda nativa do ClickMax (reunião de 45 min).</p>
+    <label>Link</label><input id="cfgLinkAgenda">
+    <label>Mensagem ({{nome}}, {{remetente}}, {{link}})</label><textarea id="cfgMsgAgenda"></textarea></div>
+  <div class="card"><h2>2 · Bubble</h2><p class="muted">Página "Comprar a Bubble Zion".</p>
+    <label>Link</label><input id="cfgLinkBubble">
+    <label>Mensagem</label><textarea id="cfgMsgBubble"></textarea></div>
+  <div class="card"><h2>3 · Clube</h2><p class="muted">Zion Collection Club.</p>
+    <label>Link</label><input id="cfgLinkClube">
+    <label>Mensagem</label><textarea id="cfgMsgClube"></textarea></div>
+  <button id="salvarCfg" class="primary" style="background:var(--ouro);border-color:var(--ouro);color:var(--preto)">Salvar</button>
+  <button id="resetCfg" style="margin-top:10px;width:100%">Voltar aos textos originais</button>
+</section>
+
+<!-- DADOS -->
+<section id="t-dados" class="hide">
+  <div class="card">
+    <h2>Importar leads</h2>
+    <p class="muted">Aceita o CSV exportado do ClickMax (Contatos → Exportar) ou qualquer CSV com colunas de nome, telefone/WhatsApp, e-mail, cidade, estado, origem e tags. Telefones repetidos são unidos.</p>
+    <input type="file" id="arquivo" accept=".csv,.json,.txt">
+    <p class="muted" id="resImport"></p>
+  </div>
+  <div class="card">
+    <h2>Exportar</h2>
+    <p class="muted">Baixe o CSV com o status de cada lead para guardar ou voltar ao ClickMax.</p>
+    <button id="exportar" style="width:100%">Baixar CSV</button>
+    <button id="limpar" style="width:100%;margin-top:10px;border-color:var(--erro);color:var(--erro)">Apagar todos os leads deste aparelho</button>
+  </div>
+  <p class="aviso">Os dados ficam só neste navegador. Não suba esta página com leads para um endereço público.</p>
+</section>
+</div>
+
+<script src="leads-data.js" onerror="void 0"></script>
+<script>
+const STATUS={novo:'Novo',contatado:'Contatado',respondeu:'Respondeu',agendou:'Agendou',comprou:'Comprou',sem_interesse:'Sem interesse',numero_invalido:'Número inválido'};
+const OFERTAS={agenda:'Agendamento',bubble:'Bubble',clube:'Clube'};
+const CFG_PADRAO={
+ remetente:'Bruno',
+ linkAgenda:'https://app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt',
+ linkBubble:'https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/comprar/',
+ linkClube:'https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection/',
+ msgAgenda:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você deixou seu contato com a gente e eu queria entender em que pé está o seu projeto.\n\nSe fizer sentido, escolha um horário para uma conversa de 45 minutos comigo: {{link}}\n\nSe preferir, é só me responder por aqui. E, se não quiser mais receber mensagens nossas, me avise que eu tiro seu contato.',
+ msgBubble:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você já mostrou interesse na Zion e eu queria te mostrar a Bubble: a cabana de glamping que a gente opera desde 2020 e que você pode ter no seu terreno.\n\nEstá aqui, com as opções de suíte: {{link}}\n\nTem alguma dúvida? Me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.',
+ msgClube:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você deixou seu contato com a gente e preparamos o Zion Collection Club: o passo a passo para tirar um terreno do papel e transformar em destino turístico.\n\nDá uma olhada: {{link}}\n\nQualquer dúvida, me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.'
+};
+const K={leads:'zion_crm_leads_v1',cfg:'zion_crm_cfg_v1',idx:'zion_crm_idx_v1'};
+const $=s=>document.querySelector(s);
+const ler=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
+const gravar=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch(e){alert('Não consegui salvar neste navegador.')}};
+let leads=ler(K.leads,[]);let cfg=Object.assign({},CFG_PADRAO,ler(K.cfg,{}));let oferta='agenda';let atual=null;let pulados=new Set();
+
+function normFone(raw){let d=String(raw||'').replace(/\D/g,'');if(!d)return '';d=d.replace(/^0+/,'');
+ if((d.length===10||d.length===11))d='55'+d;
+ if(d.startsWith('55')&&(d.length===12||d.length===13))return d;return ''}
+function primeiroNome(n){const p=String(n||'').trim().split(/\s+/)[0]||'';
+ if(!p||/^(teste|test)/i.test(p))return p;return p.charAt(0).toUpperCase()+p.slice(1).toLowerCase()}
+function nomeBonito(n){return String(n||'').trim().split(/\s+/).map(w=>/^(da|de|do|das|dos|e)$/i.test(w)?w.toLowerCase():w.charAt(0).toUpperCase()+w.slice(1).toLowerCase()).join(' ')}
+function esc(s){return String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]))}
+
+// semente embutida opcional (leads-data.js define window.ZION_LEADS)
+if(!leads.length&&Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length){juntar(window.ZION_LEADS);}
+else if(Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length&&!ler('zion_crm_seeded_'+window.ZION_LEADS.length,false)){juntar(window.ZION_LEADS);gravar('zion_crm_seeded_'+window.ZION_LEADS.length,true)}
+
+function juntar(novos){let criados=0,unidos=0,semFone=0;const porFone=new Map(leads.filter(l=>l.fone).map(l=>[l.fone,l]));
+ for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
+  if(!fone)semFone++;
+  if(fone&&porFone.has(fone)){const e=porFone.get(fone);for(const k of ['nome','email','cidade','estado','origem','tags'])if(!e[k]&&base[k])e[k]=base[k];unidos++}
+  else{leads.push(base);if(fone)porFone.set(fone,base);criados++}}
+ gravar(K.leads,leads);return {criados,unidos,semFone}}
+
+function csvParse(t){const rows=[];let r=[],c='',q=false;t=t.replace(/^﻿/,'');
+ const sep=(t.split('\n')[0].match(/;/g)||[]).length>(t.split('\n')[0].match(/,/g)||[]).length?';':',';
+ for(let i=0;i<t.length;i++){const ch=t[i];
+  if(q){if(ch==='"'){if(t[i+1]==='"'){c+='"';i++}else q=false}else c+=ch}
+  else if(ch==='"')q=true;else if(ch===sep){r.push(c);c=''}
+  else if(ch==='\n'||ch==='\r'){if(ch==='\r'&&t[i+1]==='\n')i++;r.push(c);c='';if(r.some(x=>x!==''))rows.push(r);r=[]}
+  else c+=ch}
+ if(c!==''||r.length){r.push(c);rows.push(r)}return rows}
+const norm=s=>String(s||'').normalize('NFD').replace(/[̀-ͯ]/g,'').toLowerCase().trim();
+function mapear(rows){const h=rows[0].map(norm);const acha=(...ns)=>h.findIndex(x=>ns.some(n=>x===n||x.includes(n)));
+ const ix={nome:acha('nome','name'),fone:acha('whatsapp','celular','telefone','phone','tel'),email:acha('e-mail','email'),cidade:acha('cidade','city'),estado:acha('estado','state','uf'),origem:acha('origem','origin','lista'),tags:acha('tags','tag'),status:acha('status crm','status_crm')};
+ if(ix.fone<0&&ix.email<0)throw new Error('Não achei coluna de telefone nem de e-mail. Confira o cabeçalho do CSV.');
+ return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags)}}).filter(x=>x.nome||x.fone||x.email)}
+
+function montar(l,of){const link=(cfg['link'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]]||'').trim();
+ const u=new URL(link,'https://x.invalid');let url=link;
+ if(/^https?:/.test(link)){u.searchParams.set('utm_source','whatsapp');u.searchParams.set('utm_medium','reativacao_manual');u.searchParams.set('utm_campaign','reativacao-'+of);u.searchParams.set('utm_content',String(l.id).slice(0,8));url=u.toString()}
+ const nome=primeiroNome(l.nome)||'tudo bem';
+ return cfg['msg'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]].replaceAll('{{nome}}',nome).replaceAll('{{remetente}}',cfg.remetente||'').replaceAll('{{link}}',url)}
+
+function fila(){const fs=$('#fStatus').value,fo=$('#fOrigem').value;
+ return leads.filter(l=>l.fone&&(!fs||l.status===fs)&&(!fo||l.origem===fo)&&l.status!=='sem_interesse'&&l.status!=='comprou'&&l.status!=='numero_invalido')}
+function proximo(){const f=fila().filter(l=>!pulados.has(l.id));atual=f[0]||null;render()}
+
+function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,novos=leads.filter(l=>l.status==='novo'&&l.fone).length,cont=leads.filter(l=>l.status!=='novo'&&l.status!=='numero_invalido').length;
+ $('#resumo').textContent=total?`${total} leads`:'';
+ $('#stats').innerHTML=[['Novos',novos],['Contatados',cont],['Responderam',leads.filter(l=>l.status==='respondeu').length],['Agendaram',leads.filter(l=>l.status==='agendou').length]].map(([a,b])=>`<div><b>${b}</b><span>${a}</span></div>`).join('');
+ const origens=[...new Set(leads.map(l=>l.origem).filter(Boolean))].sort();const so=$('#fOrigem'),v=so.value;so.innerHTML='<option value="">Todas as origens</option>'+origens.map(o=>`<option ${o===v?'selected':''}>${esc(o)}</option>`).join('');
+ const c=$('#cardLead');
+ if(!total){c.innerHTML='<div class="card"><p>Ainda não há leads aqui. Vá em <b>Dados</b> e carregue o CSV do ClickMax.</p></div>';return}
+ if(!atual){c.innerHTML='<div class="card"><p>Fila vazia para este filtro. 🎉</p><button id="reiniciar">Rever os pulados</button></div>';const b=$('#reiniciar');if(b)b.onclick=()=>{pulados.clear();proximo()};return}
+ const l=atual,msg=montar(l,oferta);
+ c.innerHTML=`<div class="card"><div class="muted">${fila().length-pulados.size} na fila</div>
+ <div class="big">${esc(nomeBonito(l.nome)||'(sem nome)')}</div>
+ <div class="muted">${esc(l.fone.replace(/^55(\d\d)(\d{4,5})(\d{4})$/,'+55 ($1) $2-$3'))}${l.cidade?' · '+esc(l.cidade)+(l.estado?'/'+esc(l.estado):''):''}</div>
+ <div>${l.origem?`<span class="pill">${esc(l.origem)}</span>`:''}${l.tags?esc(l.tags).split(/[;|]/).slice(0,3).map(t=>`<span class="pill">${t.trim()}</span>`).join(''):''}<span class="pill s-${l.status}">${STATUS[l.status]}</span>${l.ultimo?`<span class="pill">último: ${esc(l.ultimo)}</span>`:''}</div>
+ <div class="offers">${Object.entries(OFERTAS).map(([k,n])=>`<button data-of="${k}" class="${k===oferta?'on':''}">${n}</button>`).join('')}</div>
+ <label>Mensagem (pode editar antes de enviar)</label><textarea id="msg">${esc(msg)}</textarea>
+ <div class="row" style="margin-top:12px"><a class="btn primary" id="abrir" target="_blank" rel="noopener">Abrir WhatsApp com a mensagem</a></div>
+ <div class="row" style="margin-top:8px"><button id="copiar">Copiar mensagem</button><button id="pular">Pular</button></div>
+ <label>Depois de enviar</label>
+ <div class="row"><button data-st="respondeu">Respondeu</button><button data-st="agendou">Agendou</button><button data-st="comprou">Comprou</button><button data-st="sem_interesse">Sem interesse</button><button data-st="numero_invalido">Número errado</button></div>
+ <label>Anotação</label><input id="obs" value="${esc(l.obs)}" placeholder="Ex.: pediu para falar semana que vem">
+ </div>`;
+ const abrir=$('#abrir');const atualizarLink=()=>{abrir.href='https://wa.me/'+l.fone+'?text='+encodeURIComponent($('#msg').value)};atualizarLink();$('#msg').oninput=atualizarLink;
+ abrir.onclick=()=>{l.obs=$('#obs').value;l.oferta=oferta;if(l.status==='novo')l.status='contatado';l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);setTimeout(()=>{pulados.add(l.id);proximo()},400)};
+ $('#copiar').onclick=async()=>{try{await navigator.clipboard.writeText($('#msg').value);$('#copiar').textContent='Copiado ✓'}catch(e){$('#msg').select();document.execCommand('copy')}};
+ $('#pular').onclick=()=>{pulados.add(l.id);proximo()};
+ c.querySelectorAll('[data-of]').forEach(b=>b.onclick=()=>{oferta=b.dataset.of;render()});
+ c.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{l.status=b.dataset.st;l.obs=$('#obs').value;l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);pulados.add(l.id);proximo()});
+}
+
+function tabela(){const q=norm($('#busca').value);const f=leads.filter(l=>!q||norm([l.nome,l.fone,l.cidade,l.origem,l.email].join(' ')).includes(q)).slice(0,300);
+ $('#tabela').innerHTML='<tr><th>Nome</th><th>Telefone</th><th>Status</th></tr>'+f.map(l=>`<tr data-id="${l.id}"><td>${esc(l.nome)}<div class="muted">${esc(l.origem)}</div></td><td>${esc(l.fone||'—')}</td><td class="s-${l.status}">${STATUS[l.status]}</td></tr>`).join('')+(leads.length>300&&!q?`<tr><td colspan="3" class="muted">Mostrando 300 de ${leads.length}. Use a busca.</td></tr>`:'');
+ $('#tabela').querySelectorAll('tr[data-id]').forEach(tr=>tr.onclick=()=>{atual=leads.find(l=>l.id===tr.dataset.id);document.querySelector('[data-tab=fila]').click();render()})}
+
+document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('[data-tab]').forEach(x=>x.classList.toggle('on',x===b));
+ for(const t of ['fila','lista','config','dados'])$('#t-'+t).classList.toggle('hide',t!==b.dataset.tab);
+ if(b.dataset.tab==='lista')tabela();if(b.dataset.tab==='config')cfgPreencher();if(b.dataset.tab==='fila'&&!atual)proximo()});
+$('#fStatus').onchange=$('#fOrigem').onchange=()=>{pulados.clear();proximo()};
+$('#busca').oninput=tabela;
+function cfgPreencher(){$('#cfgRemetente').value=cfg.remetente;for(const k of ['Agenda','Bubble','Clube']){$('#cfgLink'+k).value=cfg['link'+k];$('#cfgMsg'+k).value=cfg['msg'+k]}}
+$('#salvarCfg').onclick=()=>{cfg.remetente=$('#cfgRemetente').value;for(const k of ['Agenda','Bubble','Clube']){cfg['link'+k]=$('#cfgLink'+k).value;cfg['msg'+k]=$('#cfgMsg'+k).value}gravar(K.cfg,cfg);alert('Salvo.')};
+$('#resetCfg').onclick=()=>{if(confirm('Voltar aos textos originais?')){cfg=Object.assign({},CFG_PADRAO);gravar(K.cfg,cfg);cfgPreencher()}};
+$('#arquivo').onchange=async e=>{const f=e.target.files[0];if(!f)return;const t=await f.text();
+ try{const novos=f.name.endsWith('.json')?JSON.parse(t):mapear(csvParse(t));const r=juntar(novos);$('#resImport').textContent=`${r.criados} novos, ${r.unidos} unidos a telefones já existentes, ${r.semFone} sem telefone válido.`;pulados.clear();proximo()}catch(err){$('#resImport').textContent='Erro: '+err.message}};
+$('#exportar').onclick=()=>{const cols=['nome','fone','email','cidade','estado','origem','tags','status','oferta','ultimo','obs'];const q=v=>'"'+String(v||'').replaceAll('"','""')+'"';
+ const csv=[cols.join(',')].concat(leads.map(l=>cols.map(c=>q(l[c])).join(','))).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='reativacao-zion.csv';a.click()};
+$('#limpar').onclick=()=>{if(confirm('Apagar todos os leads deste aparelho?')){leads=[];gravar(K.leads,leads);proximo()}};
+// expõe para testes
+window.__crm={normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
+proximo();
+</script>
+</body>
+</html>
