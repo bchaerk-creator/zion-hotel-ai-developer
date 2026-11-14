@@ -117,9 +117,9 @@ const CFG_PADRAO={
  linkAgenda:'https://app.clickmax.io/book/projeto-de-bruno-25763216/xpfd5s9qv4gbiywp-mjuwbwt',
  linkBubble:'https://bchaerk-creator.github.io/zion-hotel-ai-developer/store/comprar/',
  linkClube:'https://bchaerk-creator.github.io/zion-hotel-ai-developer/zion-collection/',
- msgAgenda:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você deixou seu contato com a gente e eu queria entender em que pé está o seu projeto.\n\nSe fizer sentido, escolha um horário para uma conversa de 45 minutos comigo: {{link}}\n\nSe preferir, é só me responder por aqui. E, se não quiser mais receber mensagens nossas, me avise que eu tiro seu contato.',
- msgBubble:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você já mostrou interesse na Zion e eu queria te mostrar a Bubble: a cabana de glamping que a gente opera desde 2020 e que você pode ter no seu terreno.\n\nEstá aqui, com as opções de suíte: {{link}}\n\nTem alguma dúvida? Me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.',
- msgClube:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você deixou seu contato com a gente e preparamos o Zion Collection Club: o passo a passo para tirar um terreno do papel e transformar em destino turístico.\n\nDá uma olhada: {{link}}\n\nQualquer dúvida, me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.'
+ msgAgenda:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion Bubble Glamping (Urubici e Florianópolis). {{lembrete}}\n\nQueria entender em que pé está o seu projeto. Se fizer sentido, escolha um horário para uma conversa de 45 minutos comigo: {{link}}\n\nSe preferir, é só me responder por aqui. E, se não quiser mais receber mensagens nossas, me avise que eu tiro seu contato.',
+ msgBubble:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion Bubble Glamping (Urubici e Florianópolis). {{lembrete}}\n\nQueria te mostrar a Bubble: a cabana de glamping que a gente opera desde 2020 e que você pode ter no seu terreno.\n\nEstá aqui, com as opções de suíte: {{link}}\n\nTem alguma dúvida? Me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.',
+ msgClube:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion Bubble Glamping (Urubici e Florianópolis). {{lembrete}}\n\nPreparamos o Zion Collection Club: o passo a passo para tirar um terreno do papel e transformar em destino turístico.\n\nDá uma olhada: {{link}}\n\nQualquer dúvida, me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.'
 };
 const BASE='https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/';
 const FOTOS=[['hero','Suíte com jacuzzi'],['noturna','À noite'],['dentro','Por dentro'],['deck','Vista de cima'],['ceu','Cama com vista'],['noite','Céu estrelado'],['suite-foto','Suíte'],['premium-foto','Suíte Premium']];
@@ -144,7 +144,7 @@ if(!leads.length&&Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length){ju
 else if(Array.isArray(window.ZION_LEADS)&&window.ZION_LEADS.length&&!ler('zion_crm_seeded_'+window.ZION_LEADS.length,false)){juntar(window.ZION_LEADS);gravar('zion_crm_seeded_'+window.ZION_LEADS.length,true)}
 
 function juntar(novos){let criados=0,unidos=0,semFone=0;const porFone=new Map(leads.filter(l=>l.fone).map(l=>[l.fone,l]));
- for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
+ for(const n of novos){const fone=normFone(n.fone||n.telefone);const base={id:n.id||('l'+Math.random().toString(36).slice(2,10)),nome:n.nome||'',fone,email:n.email||'',cidade:n.cidade||'',estado:n.estado||'',origem:n.origem||'',tags:n.tags||'',status:n.status&&STATUS[n.status]?n.status:(fone?'novo':'numero_invalido'),ctx:n.ctx||'',obs:n.obs||'',ultimo:n.ultimo||'',oferta:n.oferta||''};
   if(!fone)semFone++;
   if(fone&&porFone.has(fone)){const e=porFone.get(fone);for(const k of ['nome','email','cidade','estado','origem','tags'])if(!e[k]&&base[k])e[k]=base[k];unidos++}
   else{leads.push(base);if(fone)porFone.set(fone,base);criados++}}
@@ -175,11 +175,14 @@ async function copiarFoto(){if(!fotoBlob)await prepararFoto();if(!fotoBlob)retur
 function salvarFoto(){if(!fotoBlob)return;const a=document.createElement('a');a.href=URL.createObjectURL(fotoBlob);a.download='zion-bubble-'+foto+'.jpg';a.click()}
 async function compartilharFoto(texto){if(!fotoBlob)return false;const f=new File([fotoBlob],'zion-bubble.jpg',{type:'image/jpeg'});
  if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:texto});return true}catch(e){return false}}return false}
+const LEMBRETE_GERAL='Pode ser que você não lembre de nós, então me apresento de novo: você deixou seu contato com a Zion.';
+const MAPA_LEMBRETE=[[/NOITEMAGICA/i,'Você se interessou pela Noite Mágica na Zion Bubble.'],[/FORMS FACEBOOK|FORM LAND BANK/i,'Você preencheu um formulário nosso no Facebook/Instagram.'],[/TERRENO/i,'A gente já te mandou mensagem sobre o seu terreno e projetos de hospedagem.'],[/DISPARO [A-E]1|PARCERIA/i,'A gente já te mandou mensagem sobre parceria com a Zion e projetos de hospedagem.']];
+function lembrete(l){if(l.ctx)return l.ctx;for(const [re,t] of MAPA_LEMBRETE)if(re.test(l.tags||''))return t;return LEMBRETE_GERAL}
 function montar(l,of){const link=(cfg['link'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]]||'').trim();
  const u=new URL(link,'https://x.invalid');let url=link;
  if(/^https?:/.test(link)){u.searchParams.set('utm_source','whatsapp');u.searchParams.set('utm_medium','reativacao_manual');u.searchParams.set('utm_campaign','reativacao-'+of);u.searchParams.set('utm_content',String(l.id).slice(0,8));url=u.toString()}
  const nome=primeiroNome(l.nome)||'tudo bem';
- return cfg['msg'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]].replaceAll('{{nome}}',nome).replaceAll('{{remetente}}',cfg.remetente||'').replaceAll('{{link}}',url)}
+ return cfg['msg'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]].replaceAll('{{nome}}',nome).replaceAll('{{lembrete}}',lembrete(l)).replaceAll('{{remetente}}',cfg.remetente||'').replaceAll('{{link}}',url)}
 
 function fila(){const fs=$('#fStatus').value,fo=$('#fOrigem').value;
  return leads.filter(l=>l.fone&&(!fs||l.status===fs)&&(!fo||l.origem===fo)&&l.status!=='sem_interesse'&&l.status!=='comprou'&&l.status!=='numero_invalido')}
@@ -198,6 +201,7 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  <div class="muted">${esc(l.fone.replace(/^55(\d\d)(\d{4,5})(\d{4})$/,'+55 ($1) $2-$3'))}${l.cidade?' · '+esc(l.cidade)+(l.estado?'/'+esc(l.estado):''):''}</div>
  <div>${l.origem?`<span class="pill">${esc(l.origem)}</span>`:''}${l.tags?esc(l.tags).split(/[;|]/).slice(0,3).map(t=>`<span class="pill">${t.trim()}</span>`).join(''):''}<span class="pill s-${l.status}">${STATUS[l.status]}</span>${l.ultimo?`<span class="pill">último: ${esc(l.ultimo)}</span>`:''}</div>
  <div class="offers">${Object.entries(OFERTAS).map(([k,n])=>`<button data-of="${k}" class="${k===oferta?'on':''}">${n}</button>`).join('')}</div>
+ <label>Como esse lead chegou (entra na mensagem)</label><input id="ctx" value="${esc(lembrete(l))}">
  <label>Mensagem (pode editar antes de enviar)</label><textarea id="msg">${esc(msg)}</textarea>
  <label>Foto da Bubble</label>
  <div class="fotos">${FOTOS.map(([id,n])=>`<img src="${BASE}${id}.webp" alt="${n}" title="${n}" data-foto="${id}" class="${id===foto?'on':''}">`).join('')}</div>
@@ -210,7 +214,7 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  <div class="row"><button data-st="respondeu">Respondeu</button><button data-st="agendou">Agendou</button><button data-st="comprou">Comprou</button><button data-st="sem_interesse">Sem interesse</button><button data-st="numero_invalido">Número errado</button></div>
  <label>Anotação</label><input id="obs" value="${esc(l.obs)}" placeholder="Ex.: pediu para falar semana que vem">
  </div>`;
- const abrir=$('#abrir');const atualizarLink=()=>{abrir.href='https://wa.me/'+l.fone+'?text='+encodeURIComponent($('#msg').value)};atualizarLink();$('#msg').oninput=atualizarLink;
+ const abrir=$('#abrir');const atualizarLink=()=>{abrir.href='https://wa.me/'+l.fone+'?text='+encodeURIComponent($('#msg').value)};atualizarLink();$('#msg').oninput=atualizarLink;$('#ctx').oninput=()=>{l.ctx=$('#ctx').value.trim();$('#msg').value=montar(l,oferta);atualizarLink();gravar(K.leads,leads)};
  if(fotoId!==foto||!fotoBlob)prepararFoto();
  c.querySelectorAll('[data-foto]').forEach(i=>i.onclick=()=>{foto=i.dataset.foto;try{localStorage.setItem('zion_crm_foto',foto)}catch(e){}c.querySelectorAll('[data-foto]').forEach(x=>x.classList.toggle('on',x===i));prepararFoto()});
  $('#comFoto').onchange=e=>{comFoto=e.target.checked};
@@ -243,7 +247,7 @@ $('#exportar').onclick=()=>{const cols=['nome','fone','email','cidade','estado',
  const a=document.createElement('a');a.href=URL.createObjectURL(new Blob(['﻿'+csv],{type:'text/csv'}));a.download='reativacao-zion.csv';a.click()};
 $('#limpar').onclick=()=>{if(confirm('Apagar todos os leads deste aparelho?')){leads=[];gravar(K.leads,leads);proximo()}};
 // expõe para testes
-window.__crm={normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
+window.__crm={lembrete,normFone,csvParse,mapear,montar,juntar,primeiroNome,get leads(){return leads},set cfg(v){cfg=v}};
 proximo();
 </script>
 </body>

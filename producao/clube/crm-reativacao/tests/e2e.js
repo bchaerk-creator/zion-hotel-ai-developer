@@ -34,6 +34,11 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  ok(href.startsWith('https://wa.me/5548988880001?text=')&&decodeURIComponent(href).includes('Oi, Ana!'),'link do WhatsApp com mensagem');
  await p.click('[data-of=bubble]');ok((await p.inputValue('#msg')).includes('store/comprar')&&(await p.inputValue('#msg')).includes('Bubble'),'oferta Bubble');
  await p.click('[data-of=clube]');ok((await p.inputValue('#msg')).includes('zion-collection')&&(await p.inputValue('#msg')).includes('Club'),'oferta Clube');
+ // lembrete
+ const lm=await p.evaluate(()=>[window.__crm.lembrete({tags:'DISPARO A1 · OPERADOR PARCERIA'}),window.__crm.lembrete({tags:'FUNIL TERRENO | RESPONDEU'}),window.__crm.lembrete({tags:''}),window.__crm.lembrete({tags:'x',ctx:'Você pediu a diária da cabana.'})]);
+ ok(/parceria/.test(lm[0])&&/terreno/.test(lm[1])&&/não lembre/.test(lm[2])&&lm[3]==='Você pediu a diária da cabana.','lembrete por etiqueta, padrão e edição manual');
+ ok((await p.inputValue('#msg')).includes('Zion Bubble Glamping (Urubici e Florianópolis)'),'mensagem se apresenta (Zion Bubble Glamping)');
+ await p.fill('#ctx','Você pediu informações no nosso Instagram.');ok((await p.inputValue('#msg')).includes('pediu informações no nosso Instagram'),'editar o lembrete muda a mensagem');
  // foto da Bubble
  await p.click('[data-of=bubble]');
  ok(await p.isChecked('#comFoto'),'foto marcada por padrão na oferta Bubble');
