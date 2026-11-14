@@ -53,7 +53,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 09 | Calculadora "Quanto sobra da reserva?" | B | P | **Grande parte já existe** na Ferramenta 01 (aba Reservas). Fazer só se trouxer o que falta: descontos, receitas extras e rateio |
 | 10 | Planilha financeira por imóvel | B | P | **Parte já existe** na Ferramenta 01 (Resumo do mês). Falta: categorias, fechamento, conciliação, vários imóveis |
 | 11 | Kit de mensagens de chegada e saída | B | K + P | **Pronto** (`producao/utilitarios/11-mensagens-chegada-saida/`) |
-| 12 | Checklist de fotos e comodidades do anúncio | B | D | A fazer |
+| 12 | Checklist de fotos e comodidades do anúncio | B | D | **Pronto** (`producao/utilitarios/12-fotos-comodidades/`) |
 | 13 | Controle de enxoval e reposição | B | P | **Pronto** (`producao/utilitarios/13-controle-enxoval/`) |
 | 14 | Quadro de ocorrências e manutenção | B | P | **Pronto** (`producao/utilitarios/14-quadro-ocorrencias/`) |
 | 15 | Comparador de fornecedores | B | P | **Pronto** (`producao/utilitarios/15-comparador-fornecedores/`) |
@@ -101,7 +101,8 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5d. **20 · Kit de treinamento do primeiro turno** (pronto, aprovado em 11/11, página publicada em `/treinamento-primeiro-turno`).
 5e. **30 · Gerador de briefing de experiência** (pronto, aprovado e página publicada em `/briefing-experiencia`, 12/11). Passou à frente do E08 porque o e-book se sobrepõe à Jornada 2 (Gestão) da Fábrica Educacional: **Bruno decide** se o E08 segue como e-book separado ou vira material da Jornada 2.
 5f. **15 · Comparador de fornecedores** (pronto, aprovado e página publicada em `/comparador-fornecedores`, 13/11).
-5g. **19 · Controle de compras e consumo interno** (pronto e enviado para aprovação, 13/11). Controla o dinheiro das compras; a 13 segue com quantidades e a 15 com a escolha do fornecedor.
+5g. **19 · Controle de compras e consumo interno** (pronto, aprovado e página publicada em `/controle-compras`, 14/11).
+5h. **12 · Checklist de fotos e comodidades do anúncio** (pronto e enviado para aprovação, 14/11). Execução (fotos e comodidades); o diagnóstico do anúncio inteiro segue no Arsenal 01 e na Zion Collection 06. E05 e E06 aguardam os PDFs A01 a A10. Controla o dinheiro das compras; a 13 segue com quantidades e a 15 com a escolha do fornecedor.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).
