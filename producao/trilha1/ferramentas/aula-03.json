@@ -1,0 +1,225 @@
+{
+  "id": "t1-a03",
+  "slug": "1-3",
+  "nome_curto": "mercado",
+  "titulo": "Mercado · Quem paga, quanto e quando",
+  "aula": 3,
+  "objetivo": "Você sai sabendo a diária média de verdade da sua região, a ocupação do ano e quantas unidades o mercado aguenta agora.",
+  "campos": [
+    {
+      "id": "unidades_comparaveis",
+      "rotulo": "Quantas unidades somam os seus comparáveis?",
+      "tipo": "numero",
+      "ajuda": "Some as unidades dos seus 10 a 20 comparáveis, no raio de 30 minutos. Exemplo: 20 comparáveis com 96 unidades.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "ocup_fds",
+      "rotulo": "Ocupação de sexta e sábado nos calendários",
+      "tipo": "percentual",
+      "ajuda": "Do dia 30 ao 90, pesada pelas unidades. Exemplo: 78%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "ocup_semana",
+      "rotulo": "Ocupação de domingo a quinta nos calendários",
+      "tipo": "percentual",
+      "ajuda": "Mesma janela, pesada pelas unidades. Exemplo: 26%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "diaria_fds",
+      "rotulo": "Diária do meio no fim de semana (R$)",
+      "tipo": "moeda",
+      "ajuda": "A do meio (mediana) dos que vendem exatamente o mesmo que você. Exemplo: R$ 700.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "diaria_semana",
+      "rotulo": "Diária do meio de domingo a quinta (R$)",
+      "tipo": "moeda",
+      "ajuda": "A mediana dos mesmos comparáveis. Exemplo: R$ 580.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "amplitude",
+      "rotulo": "Amplitude da região: diária mais cara ÷ mais barata",
+      "tipo": "numero",
+      "ajuda": "No fim de semana, no seu raio. Exemplo: 1.150 ÷ 380 = 3,0.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "meses_alta",
+      "rotulo": "Quantos meses de alta no ano",
+      "tipo": "numero",
+      "ajuda": "Pela série de visitantes e pelas conversas na cidade. Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "meses",
+      "minimo": 0,
+      "maximo": 12
+    },
+    {
+      "id": "ocup_alta",
+      "rotulo": "Ocupação nos meses de alta",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 64%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "meses_fraco",
+      "rotulo": "Quantos meses fracos no ano",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 5. Os meses que sobram são os médios.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "meses",
+      "minimo": 0,
+      "maximo": 12
+    },
+    {
+      "id": "ocup_fraco",
+      "rotulo": "Ocupação nos meses fracos",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 22%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "ocup_media",
+      "rotulo": "Ocupação nos meses médios",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 40%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "crescimento_ate_abrir",
+      "rotulo": "Quanto a procura cresce até você abrir (total, %)",
+      "tipo": "percentual",
+      "ajuda": "Pela série de visitantes da secretaria de turismo. Exemplo: 7% ao ano por 3 anos dá 22,5%. Se a série não existe, marque Não sei.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "unidades_em_obra",
+      "rotulo": "Unidades em obra ou licença na região",
+      "tipo": "numero",
+      "ajuda": "Peça os alvarás na prefeitura. Exemplo: 18.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "unidades_pretendidas",
+      "rotulo": "Quantas unidades você pensava em abrir",
+      "tipo": "numero",
+      "ajuda": "O número que você trouxe da Aula 2. Exemplo: 5.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    }
+  ],
+  "calculos": [
+    {
+      "id": "conta_semana",
+      "nome": "A conta da semana",
+      "formula": "noites_semana = 2 × ocup_fds + 5 × ocup_semana; receita_semana = 2 × ocup_fds × diaria_fds + 5 × ocup_semana × diaria_semana; ocup_janela = noites_semana / 7; diaria_media = receita_semana / noites_semana; por_noite_disponivel = receita_semana / 7",
+      "saida": "noites, R$, %",
+      "fonte": "E-book Aula 3, cap. 3 (Marina: 2,86 noites, R$ 1.846, 40,9%, R$ 645, R$ 264)"
+    },
+    {
+      "id": "fds_vs_semana",
+      "nome": "Quantas vezes o fim de semana enche mais",
+      "formula": "ocup_fds / ocup_semana",
+      "saida": "vezes",
+      "fonte": "E-book Aula 3, cap. 3 (Marina: 78 ÷ 26 = 3)"
+    },
+    {
+      "id": "regua_amplitude",
+      "nome": "Leitura da amplitude",
+      "formula": "amplitude",
+      "leitura": "Acima de 3: o destino paga pela diferença. Abaixo de 2: a briga é de preço. Entre 2 e 3: a fonte não traz leitura; mostrar só o número.",
+      "fonte": "E-book Aula 3, cap. 3 (régua da faixa)"
+    },
+    {
+      "id": "ocup_ano",
+      "nome": "Ocupação média do ano",
+      "formula": "meses_medios = 12 - meses_alta - meses_fraco; ocup_ano = (meses_alta × ocup_alta + meses_medios × ocup_media + meses_fraco × ocup_fraco) / 12",
+      "saida": "%",
+      "leitura": "35% a 40%: vende só nos fins de semana. 50% a 60%: fins de semana, feriados e datas. 65% a 85%: só com procura extraordinária comprovada. Entre faixas: mostrar a faixa mais próxima abaixo.",
+      "fonte": "E-book Aula 3, cap. 4 (Marina: 462 ÷ 12 = 38,5%)"
+    },
+    {
+      "id": "erro_mes_cheio",
+      "nome": "Quanto a conta sairia maior usando o mês mais cheio",
+      "formula": "ocup_alta / ocup_ano - 1",
+      "saida": "%",
+      "fonte": "E-book Aula 3, cap. 4 (Marina: 66%)"
+    },
+    {
+      "id": "receita_bruta_unidade",
+      "nome": "Receita bruta por unidade no ano (não é retorno)",
+      "formula": "receita_bruta_unidade = ocup_ano × 365 × diaria_media",
+      "saida": "R$",
+      "fonte": "E-book Aula 3, cap. 4 (Marina: R$ 90.703; sempre com a caixa \"anos de receita bruta não é retorno\")"
+    },
+    {
+      "id": "mes_fraco_unidade",
+      "nome": "Quanto entra num mês fraco, por unidade",
+      "formula": "30 × ocup_fraco × diaria_media",
+      "saida": "R$",
+      "fonte": "E-book Aula 3, cap. 4 (Marina: cerca de R$ 4.260)"
+    },
+    {
+      "id": "absorcao",
+      "nome": "Quantas unidades o mercado aguenta agora",
+      "formula": "noites_hoje = unidades_comparaveis × 365 × ocup_ano; mais = noites_hoje × crescimento_ate_abrir; menos = unidades_em_obra × 365 × ocup_ano; sobra = noites_hoje + mais - menos; noites_por_unidade = 365 × ocup_ano; cabem_agora = arredondar_para_baixo(sobra / noites_por_unidade)",
+      "saida": "unidades",
+      "se_nao_sei": "Crescimento em Não sei entra como zero (lado prudente) e a conta sai \"sem a série\". Unidades em obra em Não sei: conta marcada \"sem os alvarás\".",
+      "fonte": "E-book Aula 3, cap. 6 (Marina: 13.315 + 2.996 - 2.497 = 499 noites; 499 ÷ 138,7 = 3,6; cabem 3)"
+    },
+    {
+      "id": "checa_regua",
+      "nome": "Prova exigida acima de 65%",
+      "formula": "alerta = ocup_ano >= 65%",
+      "fonte": "E-book Aula 3, cap. 4 (\"se passou de 65%, que prova eu tenho de procura extraordinária?\")"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se cabem_agora < 1 entao 'pausar'; senao se ocup_ano >= 65% ou crescimento_ate_abrir == nao_sei ou unidades_em_obra == nao_sei entao 'testar'; senao se cabem_agora < unidades_pretendidas entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 3, caps. 6 e 7 (três saídas; Marina: ajusta, abre com 3 e desenha para 5)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Seguir com condições: o mercado aguenta as unidades pretendidas, desde que se entregue o que o topo da faixa entrega. As condições viram o pedido da Aula 4.",
+    "testar": "A medida ainda depende de dado que falta (série de visitantes, alvarás, releitura dos calendários em 30 dias) ou a ocupação do ano passou de 65% sem prova de procura extraordinária.",
+    "ajustar": "Mudar alguma coisa: cabem menos unidades do que o pretendido. Molde da Marina: desenha a infraestrutura para o total e abre com as que cabem agora.",
+    "pausar": "Parar: a sobra do destino não cabe nem uma unidade; não existe procura para o que se quer fazer ali.",
+    "criterio_para_parar": "Molde da Marina: se a releitura dos calendários, 30 dias depois, ou a série de visitantes mostrar que a sobra do destino não cabe nem as noites das unidades de abertura, pausa e revê público e produto antes de desenhar.",
+    "fonte": "E-book Aula 3, caps. 6 e 7; auditoria-aula-3-mercado.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 3 da Trilha 1 da Mentoria Zion (Mercado), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 2 · Estudo de Mercado\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Comparável é quem vende o mesmo motivo de viagem, na mesma faixa de preço: mesmo porte, mesma proposta, mesmo motivo, faixa até 30% acima ou abaixo. Raio de 30 minutos de carro, cronometrados. Meta: de 10 a 20 comparáveis, anotados à mão.\n- Calendário: olhe do dia 30 ao 90; separe sexta e sábado de domingo a quinta; dia ocupado nem sempre é reserva; pese pelas unidades, não pelos anúncios; leia de novo 30 dias depois.\n- A conta da semana: noites vendidas = 2 × ocupação de sexta e sábado + 5 × ocupação de domingo a quinta. Ocupação = noites vendidas ÷ 7. Diária média = o que entra ÷ noites vendidas, nunca a média simples dos preços.\n- Régua da faixa: diária mais cara ÷ mais barata. Acima de 3, o destino paga pela diferença; abaixo de 2, a briga é de preço.\n- Régua de ocupação média do ano: 35% a 40% vende só nos fins de semana; 50% a 60% fins de semana, feriados, festas e datas festivas; 65% a 85% só com procura extraordinária, comprovada pelo mercado. Use a média do ano, nunca o mês mais cheio. A régua é referência para conferir, não promessa de ocupação.\n- A média do ano se faz pelos 12 meses (meses × ocupação ÷ 12), não pela média simples das estações.\n- Mês fraco pede produto, não desconto.\n- Absorção: noites que os comparáveis vendem hoje (unidades × 365 × ocupação do ano), mais o crescimento da procura até abrir, menos as noites das unidades em obra ou licença. A sobra dividida pelas noites que cada unidade precisa (365 × ocupação do ano) diz quantas cabem agora. Se a série de visitantes não existir, escreva \"não sei\" e o calendário dos comparáveis vira a fonte principal.\n- Anos de receita bruta não é retorno: ainda saem impostos, comissões, custos e a retirada do dono. Impostos e custos não entram nesta aula.\n- Três saídas: seguir com condições (o mercado compra, desde que se entregue o que o topo entrega); mudar alguma coisa (produto, número de unidades ou público); parar (não existe procura para o que se quer fazer ali). O mais comum é o do meio. A decisão mais lucrativa de um developer pode ser desistir de um projeto.\n- Ferramentas como AirDNA e AirROI trabalham com estimativas; confira sempre alguns comparáveis à mão.\n\nCOMO DECIDIR O VEREDITO:\nAs três saídas da fonte viram o veredito: seguir com condições = avancar; mudar alguma coisa = ajustar; parar = pausar. Use testar quando a medida ainda não fecha por dado que falta. Parta de \"calculos.veredito_sugerido\". Se a ocupação do ano passou de 65% e o aluno não trouxe prova de procura extraordinária, não passe de testar. Ao falar de receita bruta por unidade, diga sempre que não é retorno.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se a releitura dos calendários em 30 dias, ou a série de visitantes, mostrar que a sobra do destino não cabe nem [noites das unidades de abertura] noites, eu pauso e revejo público e produto antes de desenhar.\" Use os números de \"calculos.absorcao\".\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nLer o calendário de cinco comparáveis, do dia 30 ao 90, com sexta e sábado separados, e fazer a conta da semana. Responsável: o aluno, com o celular e a folha. Prazo: 7 dias, antes da Aula 4. Evidência: a folha com as noites ocupadas e os três números (ocupação, diária média e amplitude). Se já fez, troque por: pedir a série de visitantes à secretaria de turismo e os alvarás à prefeitura.\n\nONDE A ZION ENTRA (só se couber, uma frase, sem promessa):\nTerreno com território lido e mercado medido pode entrar no Land Bank Zion, a vitrine de projetos estruturados; a Zion avalia cada caso, não é promessa.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 2 · Estudo de Mercado",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-3-mercado.md",
+    "/home/claude/mz-trilha/ebook-03-mercado.txt",
+    "/home/claude/mz-trilha/aula-03-mercado.txt"
+  ],
+  "pendente_bruno": [
+    "Teto da régua de ocupação: 65% (Marco Zero) ou 70% (Estimador de Ocupação do D02). A página usa 65% (auditoria Aula 3, itens 4.9 e 7.6).",
+    "A ferramenta \"Leitura do seu mercado\" proposta na auditoria (item 4.11) não existe; esta página faz as contas do e-book.",
+    "Regra de \"testar\" quando faltam série ou alvarás: leitura da página; a fonte manda escrever \"não sei\" e usar o calendário como fonte principal."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

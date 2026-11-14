@@ -1,0 +1,369 @@
+{
+  "id": "t1-a05",
+  "slug": "1-5",
+  "nome_curto": "modelo",
+  "titulo": "Modelo de negócio · Quem opera, e como ganha",
+  "aula": 5,
+  "objetivo": "Você sai sabendo quem opera a sua fase um, o que fica com você, quais receitas preparar já e qual porta de saída deixar aberta.",
+  "campos": [
+    {
+      "id": "quer_operar",
+      "rotulo": "Você quer estar dentro de uma operação de hospedagem nos próximos cinco anos?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim"
+        },
+        {
+          "valor": "em_parte",
+          "rotulo": "Em parte: quero decidir, não fazer a rotina"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Responda sem pensar em retorno. Exemplo: quero estar dentro, mas não quero trocar lençol.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "horas_hospede",
+      "rotulo": "Horas livres por semana em horário de hóspede",
+      "tipo": "numero",
+      "ajuda": "Conte só noite, fim de semana e feriado. Exemplo: 8 horas.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "horas por semana"
+    },
+    {
+      "id": "horas_anotadas",
+      "rotulo": "Essas horas foram anotadas, dia a dia, durante uma semana?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim_cobrem",
+          "rotulo": "Sim, e cobrem o horário de hóspede"
+        },
+        {
+          "valor": "sim_nao_cobrem",
+          "rotulo": "Sim, e não cobrem"
+        },
+        {
+          "valor": "nao_anotei",
+          "rotulo": "Ainda não anotei"
+        }
+      ],
+      "ajuda": "É o primeiro dado com evidência do seu modelo.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "unidades_fase1",
+      "rotulo": "Quantas unidades na fase um",
+      "tipo": "numero",
+      "ajuda": "Da Aula 4. Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "unidades"
+    },
+    {
+      "id": "quem_opera",
+      "rotulo": "Quem opera a fase um",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "eu",
+          "rotulo": "Eu mesmo"
+        },
+        {
+          "valor": "eu_com_local",
+          "rotulo": "Eu, com uma pessoa local na rotina"
+        },
+        {
+          "valor": "pessoa_contratada",
+          "rotulo": "Uma pessoa contratada (gerente ou responsável local)"
+        },
+        {
+          "valor": "gestora",
+          "rotulo": "Uma empresa de gestão"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Exemplo: eu, com uma pessoa local na rotina.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "quem_faz_momento",
+      "rotulo": "Quem prepara o seu momento assinatura, e a que horas",
+      "tipo": "texto",
+      "ajuda": "Exemplo: a pessoa local deixa a cesta do café na varanda antes das sete.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "fica_comigo",
+      "rotulo": "O que fica com você no primeiro ano",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "preco",
+          "rotulo": "O preço"
+        },
+        {
+          "valor": "excecao",
+          "rotulo": "A resposta ao hóspede numa exceção"
+        },
+        {
+          "valor": "produto",
+          "rotulo": "A decisão de produto"
+        }
+      ],
+      "ajuda": "Marque o que você não delega. Exemplo: preço e exceção com hóspede.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "rotina_escrita",
+      "rotulo": "A rotina do momento está escrita?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "repetida",
+          "rotulo": "Escrita, e outra pessoa repetiu"
+        },
+        {
+          "valor": "nao_testada",
+          "rotulo": "Escrita, ainda não testada"
+        },
+        {
+          "valor": "falhou",
+          "rotulo": "Outra pessoa tentou e não conseguiu repetir"
+        },
+        {
+          "valor": "cabeca",
+          "rotulo": "Ainda está só na minha cabeça"
+        }
+      ],
+      "ajuda": "Do jeito que outra pessoa consiga repetir: quem faz, a que horas, com o quê, o que fazer quando der errado.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "naturezas_receita",
+      "rotulo": "Quais naturezas de receita o seu projeto vai ter, ou deixar preparadas?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "hospedagem",
+          "rotulo": "Hospedagem"
+        },
+        {
+          "valor": "cessao",
+          "rotulo": "Cessão de espaço"
+        },
+        {
+          "valor": "arrendamento_interno",
+          "rotulo": "Arrendamento interno"
+        },
+        {
+          "valor": "marca_sistema",
+          "rotulo": "Marca e sistema"
+        },
+        {
+          "valor": "ganho_patrimonial",
+          "rotulo": "Ganho patrimonial, como cenário"
+        }
+      ],
+      "ajuda": "Hospedagem é a base. Exemplo: hospedagem, e cessão de espaço preparada para um retiro silencioso.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "valorizacao_na_conta",
+      "rotulo": "A sua conta depende da valorização do terreno para fechar?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "nao",
+          "rotulo": "Não, ela fica como cenário"
+        },
+        {
+          "valor": "sim",
+          "rotulo": "Sim, a conta só fecha com ela"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Valorização é cenário, nunca premissa.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "saida_pretendida",
+      "rotulo": "A sua saída pretendida",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "operar",
+          "rotulo": "Operar indefinidamente"
+        },
+        {
+          "valor": "vender",
+          "rotulo": "Vender o ativo"
+        },
+        {
+          "valor": "refinanciar",
+          "rotulo": "Refinanciar e retirar"
+        },
+        {
+          "valor": "socio",
+          "rotulo": "Receber um sócio e diluir"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Saída se desenha no começo. Exemplo: operar indefinidamente, com a alternativa de vender um dia.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "receita_formal",
+      "rotulo": "A receita vai ser toda formal desde a primeira reserva?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "toda",
+          "rotulo": "Toda, desde a primeira reserva"
+        },
+        {
+          "valor": "parte",
+          "rotulo": "Só uma parte"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "O comprador só paga pelo que pode comprovar. O enquadramento é com o contador.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "nao_faco",
+      "rotulo": "O que você escolhe não fazer, com o motivo e o que reabre a conversa",
+      "tipo": "texto",
+      "ajuda": "Até sete linhas. Exemplo: restaurante próprio, porque é outro negócio; reabre se a parceria com a região não der conta.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "requisitos_licenciar",
+      "rotulo": "Se um dia pensar em licenciar: quais requisitos você já tem?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "processos",
+          "rotulo": "Processos escritos"
+        },
+        {
+          "valor": "marca",
+          "rotulo": "Marca registrada"
+        },
+        {
+          "valor": "numeros",
+          "rotulo": "Números provados, 12 meses reais"
+        },
+        {
+          "valor": "suporte",
+          "rotulo": "Suporte estruturado"
+        }
+      ],
+      "ajuda": "Deixe em branco se não pensa nisso. Exemplo: nenhum ainda, porque não há operação.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    }
+  ],
+  "calculos": [
+    {
+      "id": "alerta_escala",
+      "nome": "Você mesmo, acima de quatro unidades",
+      "formula": "alerta = quem_opera in ['eu','eu_com_local'] e unidades_fase1 > 4",
+      "leitura": "Alerta aceso: a partir daí, ou contrata gente e vira gestor, ou o negócio para no tamanho da sua semana.",
+      "fonte": "E-book Aula 5, cap. 3 (Panorama: \"funciona bem até três ou quatro unidades\")"
+    },
+    {
+      "id": "tres_decisoes",
+      "nome": "O que fica com o dono no primeiro ano",
+      "formula": "faltam = ['preco','excecao','produto'] - fica_comigo",
+      "leitura": "Qualquer uma faltando: delegar cedo é delegar o aprendizado.",
+      "fonte": "E-book Aula 5, cap. 3 (Jornada do COMO, Etapa 01)"
+    },
+    {
+      "id": "adequacao",
+      "nome": "Quer operar contra quem opera",
+      "formula": "alerta = quer_operar == 'nao' e quem_opera in ['eu','eu_com_local']",
+      "fonte": "E-book Aula 5, cap. 2 (adequação, não retorno)"
+    },
+    {
+      "id": "valorizacao",
+      "nome": "Valorização como premissa",
+      "formula": "alerta = valorizacao_na_conta == 'sim'",
+      "leitura": "Se só fecha contando valorização, não fecha.",
+      "fonte": "E-book Aula 5, cap. 4 (Volume 04: cenário, nunca premissa)"
+    },
+    {
+      "id": "portas_saida",
+      "nome": "Informalidade e portas de saída",
+      "formula": "alerta = receita_formal == 'parte'",
+      "fonte": "E-book Aula 5, cap. 5 (Volume 04: três das quatro portas fecham)"
+    },
+    {
+      "id": "licenciar",
+      "nome": "Requisitos para licenciar",
+      "formula": "tem = contar(requisitos_licenciar); pode_licenciar = tem == 4",
+      "leitura": "Menos de 4: licenciar não é opção hoje.",
+      "fonte": "E-book Aula 5, cap. 6 (Volume 04, cap. 14: três de quatro é zero)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "opera_sozinho = quem_opera in ['eu','eu_com_local']; se (opera_sozinho e horas_anotadas == 'sim_nao_cobrem') ou rotina_escrita == 'falhou' entao 'pausar'; senao se horas_anotadas == 'nao_anotei' ou rotina_escrita in ['nao_testada','cabeca'] ou quem_opera == nao_sei entao 'testar'; senao se valorizacao_na_conta == 'sim' ou adequacao.alerta ou alerta_escala.alerta ou receita_formal == 'parte' entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 5, cap. 7 (veredito da Marina: avança; critério para parar)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Quem opera está decidido por adequação, as horas cobrem o horário de hóspede, a rotina escrita foi repetida por outra pessoa e a conta não depende de valorização.",
+    "testar": "As horas ainda não foram anotadas, ou a rotina do momento não foi escrita e testada com outra pessoa.",
+    "ajustar": "O modelo não combina com a vida (não quer operar e vai operar), passa de quatro unidades operando sozinho, conta com valorização como premissa ou deixa receita informal.",
+    "pausar": "As horas anotadas não cobrem o horário de hóspede, ou a pessoa local não conseguiu repetir a rotina escrita: não opera sozinho; pausa e volta ao Quadrante antes de abrir.",
+    "criterio_para_parar": "Molde da Marina: se as horas livres anotadas não cobrirem o horário de hóspede, ou se a pessoa local não conseguir repetir a rotina escrita do momento, ela não opera sozinha: pausa e volta ao Quadrante antes de abrir.",
+    "fonte": "E-book Aula 5, cap. 7; auditoria-aula-5-modelo.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 5 da Trilha 1 da Mentoria Zion (Modelo de negócio), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 4 · Modelo de Negócio\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Três decisões independentes: o que se constrói (produto, Aula 4), quem opera (esta aula), de quem é o dinheiro (Aula 10). Escolher cabanas não obriga a operar; operar não obriga a pôr todo o capital.\n- Se não há salário para quem opera nem taxa de gestão, quem opera é o dono, de graça. Uma operação que depende do dono é um emprego: ninguém compra, nenhum banco empresta contra, e não se tira férias dela.\n- O que decide o modelo não é retorno: é adequação ao que a pessoa quer fazer nos próximos anos. Pergunta da vida: você quer estar dentro de uma operação de hospedagem nos próximos cinco anos? O recurso que mais falta é tempo em horário de hóspede: noite, fim de semana e feriado.\n- Quadrante de Modelos (Volume 04): operar; contratar gestão; franquear ou licenciar; vender a unidade e operar. Os quatro são viáveis em pequeno porte.\n- Operar você mesmo funciona bem até três ou quatro unidades; depois disso, ou contrata gente e vira gestor, ou o negócio para de crescer no tamanho da sua semana (Panorama). Pessoa contratada só funciona com a rotina escrita.\n- Operar não é administrar: quem contrata gestão continua administrando, pelos números.\n- Três decisões que ficam com o dono no primeiro ano (Jornada do COMO): o preço, a resposta ao hóspede numa exceção, a decisão de produto.\n- Taxa de gestão não tem número nas fontes: apura-se com duas ou três propostas por escrito, no destino. A pergunta certa é quanto ela vende a mais, e onde está a prova. Contrato de gestão se lê com advogado.\n- Cinco naturezas de receita: hospedagem; cessão de espaço; arrendamento interno; marca e sistema; ganho patrimonial. Natureza se acrescenta com papel (atividade da empresa, contrato, licença); estruturar não é ganhar, é deixar a porta destrancada. Evento com público pode pedir outra licença: confirmar com advogado e prefeitura.\n- A valorização entra como cenário, nunca como premissa: se o projeto só fecha contando valorização, ele não fecha.\n- Sociedade, venda de unidades, condo-hotel, multipropriedade e pool são temas regulados: só em introdução, com advogado e contador. Primeiro nasce o negócio, depois o investimento.\n- Quatro destinos de saída: operar indefinidamente (processo escrito e equipe), vender o ativo (documentação impecável e histórico), refinanciar (receita formal e histórico), receber sócio (empresa e acordo). A informalidade fecha três das quatro portas; receita não declarada é irregularidade fiscal, assunto do contador.\n- Licenciar exige quatro requisitos: processos escritos, marca registrada, números provados com doze meses reais, suporte estruturado. Faltou um, licenciar não é opção hoje: três de quatro é zero.\n- Estratégia é escolher o que não fazer. O preço é sintoma do posicionamento. Não fazer é \"não agora, com motivo\", com a condição que reabre a conversa.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". O critério da fonte manda pausar quando as horas não cobrem o horário de hóspede ou a rotina escrita não se repete sem o dono. Nunca escolha o modelo pelo retorno: escolha por adequação. Não cite taxa de gestão: ela só existe nas propostas por escrito.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se as horas que eu anotei não cobrirem noite, fim de semana e feriado, ou se outra pessoa não conseguir repetir a rotina escrita do meu momento, eu não opero sozinho: pauso e volto ao Quadrante antes de abrir.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nEscrever em uma página a rotina do momento assinatura, do jeito que outra pessoa consiga repetir: quem faz, a que horas, com o quê, e o que fazer quando der errado. Responsável: o aluno, mesmo que outra pessoa vá executar. Prazo: 7 dias, antes da Aula 6. Evidência: a página impressa, com data, lida por alguém que não conhece o projeto. Se já existe, troque por: anotar dia a dia as horas livres em horário de hóspede, ou pedir proposta por escrito a duas empresas de gestão do destino.\n\nONDE A ZION ENTRA (só se couber, uma frase, sem promessa):\nSó se o modelo pedir gestão profissional, agora ou com mais unidades: a Zion Hotel Management é um dos caminhos e a Zion avalia cada caso. A mesma pergunta vale para ela: quanto vende a mais, e onde está a prova.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 4 · Modelo de Negócio",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-5-modelo.md",
+    "/home/claude/mz-trilha/ebook-05-modelo.txt"
+  ],
+  "pendente_bruno": [
+    "A fonte não dá número mínimo de horas em horário de hóspede; a página só registra se as horas anotadas cobrem esse horário.",
+    "Citação da Zion Hotel Management para alunos da Trilha 1 (auditoria Aula 5, item 4.3).",
+    "Veredito \"avança\" e critério para parar da Marina (auditoria item 13)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

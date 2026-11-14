@@ -1,0 +1,430 @@
+{
+  "id": "t1-a09",
+  "slug": "1-9",
+  "nome_curto": "viabilidade",
+  "titulo": "Viabilidade · Vale a pena, e o caixa atravessa?",
+  "aula": 9,
+  "objetivo": "Você sai sabendo quanto o seu primeiro ano tira do banco, de quanto giro precisa, em quantos anos o dinheiro volta e se o cenário conservador fecha.",
+  "campos": [
+    {
+      "id": "capex_piso",
+      "rotulo": "CAPEX da fase, piso (R$)",
+      "tipo": "moeda",
+      "ajuda": "Da Aula 7, sem o giro e sem o terreno. Exemplo: R$ 963.240.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "capex_teto",
+      "rotulo": "CAPEX da fase, teto (R$)",
+      "tipo": "moeda",
+      "ajuda": "Da Aula 7. Exemplo: R$ 1.531.800. Se tem um número só, repita.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "unidades",
+      "rotulo": "Unidades",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "unidades"
+    },
+    {
+      "id": "diaria_media",
+      "rotulo": "Diária média usada na Aula 8 (R$)",
+      "tipo": "moeda",
+      "ajuda": "Exemplo: R$ 645.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "contribuicao_noite",
+      "rotulo": "Quanto cada noite deixa, da Aula 8 (R$)",
+      "tipo": "moeda",
+      "ajuda": "A contribuição por noite. Exemplo: R$ 408,90.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "fixo_completo_mes",
+      "rotulo": "Fixo completo do mês, com retirada e reserva (R$)",
+      "tipo": "moeda",
+      "ajuda": "Da Aula 8. Exemplo: R$ 13.000.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "ocup_alta",
+      "rotulo": "Ocupação de regime na alta",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 64%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "ocup_media",
+      "rotulo": "Ocupação de regime nos meses médios",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 40%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "ocup_vale",
+      "rotulo": "Ocupação de regime no vale",
+      "tipo": "percentual",
+      "ajuda": "Exemplo: 22%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "meses_alta",
+      "rotulo": "Quais são os meses de alta?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "jan",
+          "rotulo": "Janeiro"
+        },
+        {
+          "valor": "fev",
+          "rotulo": "Fevereiro"
+        },
+        {
+          "valor": "mar",
+          "rotulo": "Março"
+        },
+        {
+          "valor": "abr",
+          "rotulo": "Abril"
+        },
+        {
+          "valor": "mai",
+          "rotulo": "Maio"
+        },
+        {
+          "valor": "jun",
+          "rotulo": "Junho"
+        },
+        {
+          "valor": "jul",
+          "rotulo": "Julho"
+        },
+        {
+          "valor": "ago",
+          "rotulo": "Agosto"
+        },
+        {
+          "valor": "set",
+          "rotulo": "Setembro"
+        },
+        {
+          "valor": "out",
+          "rotulo": "Outubro"
+        },
+        {
+          "valor": "nov",
+          "rotulo": "Novembro"
+        },
+        {
+          "valor": "dez",
+          "rotulo": "Dezembro"
+        }
+      ],
+      "ajuda": "Pela sua curva da Aula 3. Exemplo: junho, julho e agosto.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "meses_vale",
+      "rotulo": "Quais são os meses de vale?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "jan",
+          "rotulo": "Janeiro"
+        },
+        {
+          "valor": "fev",
+          "rotulo": "Fevereiro"
+        },
+        {
+          "valor": "mar",
+          "rotulo": "Março"
+        },
+        {
+          "valor": "abr",
+          "rotulo": "Abril"
+        },
+        {
+          "valor": "mai",
+          "rotulo": "Maio"
+        },
+        {
+          "valor": "jun",
+          "rotulo": "Junho"
+        },
+        {
+          "valor": "jul",
+          "rotulo": "Julho"
+        },
+        {
+          "valor": "ago",
+          "rotulo": "Agosto"
+        },
+        {
+          "valor": "set",
+          "rotulo": "Setembro"
+        },
+        {
+          "valor": "out",
+          "rotulo": "Outubro"
+        },
+        {
+          "valor": "nov",
+          "rotulo": "Novembro"
+        },
+        {
+          "valor": "dez",
+          "rotulo": "Dezembro"
+        }
+      ],
+      "ajuda": "Os que sobram são os médios. Exemplo: fevereiro, março, abril, outubro e novembro.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "mes_abertura",
+      "rotulo": "Mês de abertura",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "jan",
+          "rotulo": "Janeiro"
+        },
+        {
+          "valor": "fev",
+          "rotulo": "Fevereiro"
+        },
+        {
+          "valor": "mar",
+          "rotulo": "Março"
+        },
+        {
+          "valor": "abr",
+          "rotulo": "Abril"
+        },
+        {
+          "valor": "mai",
+          "rotulo": "Maio"
+        },
+        {
+          "valor": "jun",
+          "rotulo": "Junho"
+        },
+        {
+          "valor": "jul",
+          "rotulo": "Julho"
+        },
+        {
+          "valor": "ago",
+          "rotulo": "Agosto"
+        },
+        {
+          "valor": "set",
+          "rotulo": "Setembro"
+        },
+        {
+          "valor": "out",
+          "rotulo": "Outubro"
+        },
+        {
+          "valor": "nov",
+          "rotulo": "Novembro"
+        },
+        {
+          "valor": "dez",
+          "rotulo": "Dezembro"
+        }
+      ],
+      "ajuda": "A regra da fonte é abrir no começo da alta, nunca no meio do vale. Exemplo: junho.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "rampa",
+      "rotulo": "A sua rampa do primeiro ano",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "escola",
+          "rotulo": "Exemplo da escola: 40%, 50% e 75%"
+        },
+        {
+          "valor": "piso",
+          "rotulo": "Piso da faixa: 25%, 45% e 65%"
+        },
+        {
+          "valor": "teto",
+          "rotulo": "Teto da faixa: 40%, 60% e 85%"
+        }
+      ],
+      "ajuda": "Escolha dentro da faixa da fonte e escreva por quê. Exemplo: a da escola, 40%, 50% e 75%.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "diaria_testada",
+      "rotulo": "A diária do seu produto já foi testada?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "so_mercado",
+          "rotulo": "Só medi a do mercado"
+        },
+        {
+          "valor": "testada",
+          "rotulo": "Testei a do meu produto, com evidência"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Medida no mercado não é o mesmo que paga pelo seu produto. Exemplo: medi R$ 645 nos comparáveis, mas ninguém pagou a minha ainda.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "regime",
+      "nome": "O ano de regime, mês a mês",
+      "formula": "estacao(m) = alta se m em meses_alta; vale se m em meses_vale; média nos outros; noites_regime(m) = unidades × 30 × ocup_estacao(m); resultado_regime(m) = noites_regime(m) × contribuicao_noite - fixo_completo_mes; sobra_regime = soma(resultado_regime)",
+      "saida": "R$",
+      "fonte": "E-book Aula 9, caps. 2 e 4 (mesma convenção da Aula 8; Marina: +R$ 14.020,62)"
+    },
+    {
+      "id": "ano1",
+      "nome": "O ano 1 com a rampa",
+      "formula": "rampa = {escola: [40,50,75], piso: [25,45,65], teto: [40,60,85]}; para idade i = 1..12, m = mes_abertura + i - 1; fator = rampa[0] se i<=3, rampa[1] se i<=6, rampa[2] senao; noites_ano1(i) = noites_regime(m) × fator; resultado_ano1(i) = noites_ano1(i) × contribuicao_noite - fixo_completo_mes; ano1 = soma; mes_mais_fundo = menor resultado_ano1",
+      "saida": "R$ por mês e no ano",
+      "fonte": "E-book Aula 9, cap. 4 (Curva de Rampa, Etapa 02; Marina abrindo em junho: -R$ 60.943,02)"
+    },
+    {
+      "id": "ano1_vs_regime",
+      "nome": "Quanto a receita do ano 1 fica abaixo da de regime",
+      "formula": "1 - soma(noites_ano1) / soma(noites_regime)",
+      "leitura": "A fonte espera de 35% a 45% abaixo. Fora disso, conferir a rampa.",
+      "fonte": "E-book Aula 9, cap. 4 (Marina: 44,1%)"
+    },
+    {
+      "id": "retorno_simples",
+      "nome": "Retorno simples",
+      "formula": "sobra_regime / capex_piso; sobra_regime / capex_teto",
+      "saida": "% ao ano",
+      "leitura": "Sem taxa de comparação nas fontes: comparar com a alternativa do próprio aluno.",
+      "fonte": "E-book Aula 9, cap. 3 (Marina: 1,5% e 0,9% ao ano)"
+    },
+    {
+      "id": "giro",
+      "nome": "Capital de giro pelas duas regras",
+      "formula": "buraco_ano1 = soma dos meses negativos do ano 1; reserva_vale = soma dos meses negativos do regime; seguranca = 3 × fixo_completo_mes; etapa02 = buraco_ano1 + reserva_vale + seguranca; etapa01 = 6 × fixo_completo_mes; giro = maior(etapa02, etapa01), arredondado para cima a múltiplo de R$ 500",
+      "saida": "R$",
+      "leitura": "Piso: três meses de fixo no dia da abertura, nunca a conta inteira.",
+      "fonte": "E-book Aula 9, cap. 5 (Marina: 60.943,02 + 24.518,90 + 39.000 = R$ 124.500)"
+    },
+    {
+      "id": "reserva_sazonalidade",
+      "nome": "Reserva por mês de alta",
+      "formula": "reserva_vale / contar(meses_alta)",
+      "saida": "R$",
+      "fonte": "E-book Aula 9, cap. 5 (Reserva de Sazonalidade; Marina: R$ 8.172,97)"
+    },
+    {
+      "id": "curva_caixa",
+      "nome": "Saldo do giro nos 24 meses e o menor saldo",
+      "formula": "saldo(0) = giro; saldo(t) = saldo(t-1) + resultado_ano1(t) para t = 1..12 e + resultado_regime(m) para t = 13..24; menor_saldo = mínimo(saldo); folego = menor_saldo / fixo_completo_mes",
+      "saida": "R$, meses",
+      "leitura": "Abaixo de 2 meses: zona de risco. De 4 a 6: confortável (Etapa 09).",
+      "fonte": "E-book Aula 9, cap. 5 (Curva de Caixa Acumulado; Marina: R$ 63.556,98, 4,9 meses)"
+    },
+    {
+      "id": "colchao",
+      "nome": "Colchão sobre o CAPEX",
+      "formula": "menor_saldo / capex_piso; menor_saldo / capex_teto; falta_para_10 = 10% × capex - menor_saldo",
+      "saida": "%, R$",
+      "leitura": "Abaixo de 10%: recalcular quanto captar na Aula 10. Hipótese: obra paga até a abertura e giro intacto no dia 1.",
+      "fonte": "E-book Aula 9, cap. 5 (Volume 5: pelo menos 10% do CAPEX; Marina: 6,6% e 4,1%)"
+    },
+    {
+      "id": "payback",
+      "nome": "Payback acumulado",
+      "formula": "se sobra_regime <= 0 entao 'não volta'; senao anos = 1 + (capex - ano1) / sobra_regime (no piso e no teto)",
+      "saida": "anos",
+      "leitura": "Até 5: muito bom. 5 a 8: bom. 8 a 12: aceitável com valorização relevante. Acima de 12: só com patrimônio, uso próprio ou projeto de vida declarados (Etapa 02).",
+      "fonte": "E-book Aula 9, cap. 6 (Calculadora de Payback; Marina: 74,0 e 114,6 anos)"
+    },
+    {
+      "id": "cenarios",
+      "nome": "Conservador e otimista no regime",
+      "formula": "variavel = 0,82 × diaria_media - contribuicao_noite; noites = soma(noites_regime); conservador = noites × 0,8 × (0,82 × 0,9 × diaria_media - variavel) - 12 × fixo_completo_mes; otimista = noites × 1,15 × (0,82 × 1,1 × diaria_media - variavel) - 12 × fixo_completo_mes",
+      "saida": "R$ por ano",
+      "leitura": "Conservador positivo: pode seguir com segurança. Levemente negativo com base positivo: siga com reserva maior. Muito negativo: mude alguma coisa antes. Base negativo: o modelo não fecha. A fonte não dá número para \"levemente\" e \"muito\"; a página mostra a razão conservador ÷ base.",
+      "fonte": "E-book Aula 9, cap. 6 (Teste dos Três Cenários, Volume 5; convenção 0,82 da Aula 8; Marina: -R$ 37.576,83 e +R$ 64.814,12)"
+    },
+    {
+      "id": "diaria_conservador_fecha",
+      "nome": "A diária que faz o conservador fechar",
+      "formula": "diaria = (12 × fixo_completo_mes / (0,8 × noites) + variavel) / (0,82 × 0,9)",
+      "saida": "R$",
+      "leitura": "É o que o teste de preço precisa mostrar. Não é premissa: é hipótese a testar.",
+      "fonte": "E-book Aula 9, cap. 7 (conferência dos R$ 798,07 da Marina)"
+    },
+    {
+      "id": "ruptura",
+      "nome": "Ponto de ruptura",
+      "formula": "ocup_ruptura = (12 × fixo_completo_mes / contribuicao_noite) / (unidades × 360)",
+      "saida": "%",
+      "fonte": "E-book Aula 9, cap. 6 (Etapa 02; Marina: 35,3%)"
+    },
+    {
+      "id": "dor",
+      "nome": "O que dói mais: diária ou ocupação 10% pior",
+      "formula": "perda_diaria = noites × 0,10 × diaria_media × 0,82; perda_ocupacao = 0,10 × noites × contribuicao_noite",
+      "saida": "R$ por ano",
+      "fonte": "E-book Aula 9, cap. 6 (hierarquia da dor, Volume 5; Marina: R$ 21.991,66 e R$ 17.002,06)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se sobra_regime < 0 entao 'pausar'; senao se conservador < 0 e diaria_testada != 'testada' entao 'testar'; senao se conservador < 0 ou colchao < 10% ou folego < 2 ou payback > 12 entao 'ajustar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 9, caps. 5 a 7 (regras da Etapa 02; veredito da Marina: testa, e não assina a obra)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Conservador positivo, colchão de pelo menos 10% do CAPEX, fôlego fora da zona de risco e payback dentro da régua da Etapa 02 (ou razão de patrimônio declarada por escrito).",
+    "testar": "O base fecha, mas o conservador não, e a diária do produto ainda não foi testada: testa o preço antes de qualquer contrato e cota o que falta no CAPEX (é o caso da Marina).",
+    "ajustar": "Com a diária já testada, o conservador continua negativo (mude alguma coisa antes, ou siga com reserva maior se for leve), ou o colchão ficou abaixo de 10%, ou o fôlego abaixo de 2 meses, ou o payback passa de 12 anos sem razão declarada.",
+    "pausar": "O base é negativo: o modelo não fecha. Pausa e redesenha (o desenho, a fase ou o modelo), ou declara por escrito que é projeto de patrimônio e de vida.",
+    "criterio_para_parar": "Molde da Marina: se o teste não mostrar a diária que faz o conservador fechar (na Marina, cerca de R$ 800), ela pausa e redesenha, ou declara por escrito que é um projeto de patrimônio e de vida. As duas são decisões legítimas.",
+    "fonte": "E-book Aula 9, caps. 5 a 7; auditoria-aula-9-viabilidade.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 9 da Trilha 1 da Mentoria Zion (Viabilidade), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 8 · Estudo de Viabilidade\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Resultado não é retorno. Retorno simples = o que sobra por ano depois da reserva ÷ o CAPEX da fase, sem o giro e sem o terreno. É o primeiro filtro, não o último. Só é retorno do capital o que sobra depois do trabalho do dono. O terreno, mesmo próprio, é capital empregado.\n- A valorização fica fora do retorno e do payback; entra declarada por escrito quando for razão do projeto. Projeto que depende só de valorização para fechar é especulação com custo de operação.\n- Um retorno se compara com o que o mesmo dinheiro faria fora do projeto (custo de oportunidade). Nenhuma fonte da escola dá o número de uma aplicação: não cite taxa.\n- Valores em dinheiro de hoje, sem inflação na receita nem no custo.\n- Curva de Rampa do Primeiro Ano (Jornada do COMO, Etapa 02): meses 1 a 3, de 25% a 40% da ocupação de regime; 4 a 6, de 45% a 60%; 7 a 12, de 65% a 85%; patamar do destino nos meses 13 a 18 (sem demanda consolidada, de 18 a 30). A receita do ano 1 fica de 35% a 45% abaixo da de regime. Nenhuma hospedagem nova abre na ocupação do destino. Abra no começo da alta, nunca no meio da baixa.\n- Capital de giro: calcule pelas duas regras e fique com a maior. Etapa 02: o buraco do ano 1, mais a reserva de sazonalidade (os meses que no regime não cobrem o custo), mais três meses de custo fixo. Etapa 01: seis meses de custo fixo. Piso: três meses de fixo no dia da abertura, nunca a conta inteira. O fixo é o completo, com a retirada e a reserva.\n- Reserva de Sazonalidade: o que falta nos meses de vale ÷ meses de alta, separado no dia em que o dinheiro entra, numa conta própria. A alta financia a baixa por decisão, não por sobra.\n- Meses de fôlego = saldo ÷ fixo completo do mês. Abaixo de dois meses, em operação sazonal, é zona de risco; de quatro a seis é confortável (Jornada do COMO, Etapa 09). Projeto não quebra por prejuízo: quebra por falta de caixa num mês específico.\n- Colchão (Volume 5): o ponto mais baixo da curva de caixa deve ser pelo menos 10% do CAPEX. Abaixo disso, recalcule quanto captar (Aula 10).\n- Payback: acumule ano a ano a partir do investimento negativo no ano zero, com o ano 1 da rampa; nunca divida de cabeça. Régua da Etapa 02 (hospedagem pequena, operação própria): até 5 anos, muito bom e raro; 5 a 8, bom; 8 a 12, aceitável quando há valorização patrimonial relevante; acima de 12, só justificado por patrimônio, uso próprio ou projeto de vida, declarados.\n- Três cenários (Volume 5): conservador com diária 10% abaixo e ocupação 20% abaixo, \"o cenário que precisa funcionar\"; base; otimista com diária 10% acima e ocupação 15% acima, que é teto teórico, não meta.\n- Regras da Etapa 02 para o conservador: positivo, pode seguir com segurança; levemente negativo com base positivo, siga com reserva maior; muito negativo, mude alguma coisa antes; base negativo, o modelo não fecha. \"Se o conservador não paga as contas, o projeto ainda não está pronto.\" (Panorama)\n- Ponto de ruptura: a ocupação em que o ano normal empata. Hierarquia da dor: diária, ocupação, custo fixo, CAPEX. O que precisa ser verdade, e isso é verdade aqui? Uma diária muito acima do mercado não é premissa: é hipótese a testar.\n- VPL e TIR pedem uma taxa de desconto declarada antes da conta, que nenhuma fonte da escola fixa: ficam fora desta aula.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". O conservador é o cenário que precisa funcionar: se ele não paga as contas, o projeto ainda não está pronto, e o veredito não passa de testar ou ajustar. Nunca use o cenário otimista como argumento. Não fale em VPL nem TIR. Se o payback passar de 12 anos, diga que só se justifica por patrimônio, uso próprio ou projeto de vida declarados por escrito.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se o teste de preço não mostrar diária média de pelo menos R$ [calculos.diaria_conservador_fecha], o conservador não fecha: eu pauso e redesenho, ou declaro por escrito que é um projeto de patrimônio e de vida.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nRodar o cenário conservador no caixa, mês a mês, até o fim do ano 2, com o giro na partida. Responsável: o aluno, não o contador nem o arquiteto. Prazo: 7 dias, antes da Aula 10. Evidência: a folha impressa, com data, com o menor saldo e o mês dele, ao lado do palpite inicial. Se já fez, troque por: a escada do payback no base, lida pela régua da Etapa 02; ou a frase da decisão com o veredito e o critério para parar.\n\nFRASE DA DECISÃO: no resumo, use o molde \"Com investimento de R$ X, o dinheiro volta em Y anos no base e Z no conservador; atravessa até Q; decisão: ...\", com os números de \"calculos\".\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 8 · Estudo de Viabilidade",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-9-viabilidade.md",
+    "/home/claude/mz-trilha/ebook-09-viabilidade.txt",
+    "/home/claude/mz-trilha/aula-09-viabilidade.txt"
+  ],
+  "pendente_bruno": [
+    "Limite entre conservador \"levemente\" e \"muito\" negativo não tem número na fonte (auditoria Aula 9, item 6); a página mostra a razão e a IA julga.",
+    "Rampa ilustrativa 40%, 50% e 75% (item 2) e mês de abertura no começo da alta (item 3; ver também Aula 11, item 3).",
+    "Giro pela soma das três partes da Etapa 02 com o fixo completo (item 4) e arredondamento a múltiplo de R$ 500 (convenção do exemplo).",
+    "VPL e TIR fora (item 10). Veredito \"testa\" com critério de cerca de R$ 800 (item 7)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

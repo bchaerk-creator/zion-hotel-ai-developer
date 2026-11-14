@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Aula 1 · prévia 3D da Fala 1</title>
+<link rel="stylesheet" href="base.css">
+<style>
+  #gl { left: 0; top: 0; width: 1920px; height: 1080px; }
+  #t1 { right: 120px; top: 420px; width: 700px; text-align: right; text-shadow: 0 4px 30px rgba(0,0,0,.45); }
+  #t2 { left: 120px; top: 820px; width: 1100px; font-family: 'Playfair Display', serif; font-size: 64px; text-shadow: 0 4px 30px rgba(0,0,0,.6); }
+  #t2 em { color: var(--ouro); }
+  #t3 { left: 120px; top: 120px; width: 1680px; text-shadow: 0 4px 30px rgba(0,0,0,.5); }
+  #veu { inset: 0; background: var(--verde); opacity: 0; }
+  #sombra { inset: 0; background: linear-gradient(270deg, rgba(22,38,28,.88), rgba(22,38,28,0) 50%); opacity: 0; }
+</style>
+</head>
+<body>
+<div id="cena">
+  <canvas id="gl" width="1920" height="1080"></canvas>
+  <div id="sombra"></div>
+  <div id="veu"></div>
+  <div id="selo"></div>
+  <div id="barra"></div>
+</div>
+<script src="assets/gsap.min.js"></script>
+<script src="base.js"></script>
+<script type="module">
+import * as THREE from './assets/three.module.min.js';
+
+const R = new THREE.WebGLRenderer({ canvas: document.querySelector('#gl'), antialias: true, preserveDrawingBuffer: true });
+R.setSize(1920, 1080, false);
+R.outputColorSpace = THREE.SRGBColorSpace;
+const cam = new THREE.PerspectiveCamera(42, 1920 / 1080, 0.1, 200);
+const carregar = arq => new Promise(r => new THREE.TextureLoader().load(`fotos/${arq}.jpg`, t => {
+  t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8; r(t); }));
+const OURO = 0xE0BE5E;
+
+// cena A · o terreno visto de cima, como um mapa, e o lote que se levanta
+const A = new THREE.Scene(); A.background = new THREE.Color(0x16261C); A.fog = new THREE.Fog(0x16261C, 14, 40);
+const tA = await carregar('15-aerea-araucarias-urubici');
+const mapa = new THREE.Mesh(new THREE.PlaneGeometry(42, 28), new THREE.MeshBasicMaterial({ map: tA }));
+mapa.rotation.x = -Math.PI / 2; A.add(mapa);
+const pts = [[2.2, -2.6], [5.6, -2.2], [6.1, 0.6], [4.2, 2.4], [1.8, 1.7], [1.4, -0.5]].map(([x, z]) => new THREE.Vector2(x, z));
+const forma = new THREE.Shape(pts.map(p => new THREE.Vector2(p.x, -p.y)));
+const paredes = new THREE.Mesh(new THREE.ExtrudeGeometry(forma, { depth: 1, bevelEnabled: false }),
+  new THREE.MeshBasicMaterial({ color: OURO, transparent: true, opacity: 0.38, depthWrite: false }));
+paredes.rotation.x = -Math.PI / 2; paredes.position.y = 0.01; A.add(paredes);
+const caminho = new THREE.CurvePath();
+[...pts, pts[0]].forEach((p, i, a) => { if (i) caminho.add(new THREE.LineCurve3(new THREE.Vector3(a[i - 1].x, 0.05, a[i - 1].y), new THREE.Vector3(p.x, 0.05, p.y))); });
+const contorno = new THREE.Mesh(new THREE.TubeGeometry(caminho, 240, 0.07, 8, false), new THREE.MeshBasicMaterial({ color: OURO }));
+A.add(contorno);
+const topo = contorno.clone(); A.add(topo);
+const NTUBO = contorno.geometry.index.count;
+const pino = new THREE.Group();
+pino.add(new THREE.Mesh(new THREE.ConeGeometry(0.28, 0.9, 24), new THREE.MeshBasicMaterial({ color: OURO })));
+pino.children[0].rotation.x = Math.PI; pino.children[0].position.y = 0.45;
+const bola = new THREE.Mesh(new THREE.SphereGeometry(0.34, 24, 16), new THREE.MeshBasicMaterial({ color: OURO }));
+bola.position.y = 1.0; pino.add(bola); pino.position.set(3.8, 0, 0); A.add(pino);
+
+// cena B · um corredor de fotos reais da Zion
+const B = new THREE.Scene(); B.background = new THREE.Color(0x16261C); B.fog = new THREE.Fog(0x16261C, 6, 26);
+const fotosB = ['10-bubble-mata-araucarias', '02-hospede-banheira-vista-serra', '05-bubble-noite-urubici', '13-deck-na-floresta',
+  '18-casal-hospedes', '11-floripa-piscina-entre-bolhas', '09-rede-sobre-a-mata', '16-floripa-aerea', '07-interior-suite-bolha',
+  '01-urubici-aerea-primeira-sede', '12-bubble-iluminada-noite', '08-floripa-piscina-segunda-sede', '06-interior-bubble', '03-mata-nativa'];
+const quadros = [];
+for (const [i, arq] of fotosB.entries()) {
+  const t = await carregar(arq), r = t.image.width / t.image.height, h = 3.2;
+  const m = new THREE.Mesh(new THREE.PlaneGeometry(h * r, h), new THREE.MeshBasicMaterial({ map: t, side: THREE.DoubleSide }));
+  const lado = i % 2 ? 1 : -1;
+  m.position.set(lado * (2.0 + (i % 3) * 0.3), (i % 3 - 1) * 0.6, -i * 1.9);
+  m.rotation.y = -lado * 0.5;
+  B.add(m); quadros.push(m);
+}
+
+// cena C · as duas perguntas em cartões que viram no espaço
+const C = new THREE.Scene(); C.background = new THREE.Color(0x16261C);
+const tC = await carregar('04-hospede-olhando-serra-deck');
+const fundo = new THREE.Mesh(new THREE.PlaneGeometry(30, 30 * tC.image.height / tC.image.width),
+  new THREE.MeshBasicMaterial({ map: tC, color: 0x55625a }));
+fundo.position.z = -14; C.add(fundo);
+await document.fonts.load('400 74px "Playfair Display"'); await document.fonts.load('600 30px Inter');
+function cartao(rotulo, texto) {
+  const cv = document.createElement('canvas'); cv.width = 1000; cv.height = 600;
+  const g = cv.getContext('2d');
+  g.fillStyle = '#F5F1E8'; g.beginPath(); g.roundRect(0, 0, 1000, 600, 40); g.fill();
+  g.fillStyle = '#E0BE5E'; g.fillRect(70, 96, 90, 6);
+  g.fillStyle = '#8A6D2F'; g.font = '600 30px Inter'; g.fillText(rotulo, 70, 160);
+  g.fillStyle = '#16261C'; g.font = '400 74px "Playfair Display"';
+  let y = 290, linha = '';
+  for (const w of texto.split(' ')) {
+    if (g.measureText(linha + w).width > 860) { g.fillText(linha, 70, y); y += 92; linha = ''; }
+    linha += w + ' ';
+  }
+  g.fillText(linha, 70, y);
+  const t = new THREE.CanvasTexture(cv); t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 8;
+  return new THREE.Mesh(new THREE.PlaneGeometry(5, 3), new THREE.MeshBasicMaterial({ map: t, transparent: true, side: THREE.DoubleSide }));
+}
+const c1 = cartao('PERGUNTA 1 · TERRITÓRIO', 'O meu terreno é apto para o que eu quero fazer?');
+const c2 = cartao('PERGUNTA 2 · MERCADO', 'E existe demanda para isso?');
+c1.position.set(-2.8, 0.2, 0); c2.position.set(2.8, -0.2, 0); C.add(c1, c2);
+
+// estado animado pela linha do tempo GSAP; cada quadro é desenhado de novo a partir dele
+const S = { cena: 'A', camA: 0, lote: 0, paredes: 0, pino: 0, camB: 0, camC: 0, c1: 0, c2: 0 };
+iniciar('V01', tl => {
+  const ent = (n, t) => tl.fromTo(n, { autoAlpha: 0, y: 36 }, { autoAlpha: 1, y: 0, duration: 0.8, ease: E }, t);
+  const fim = 20.6;
+  tl.fromTo(S, { camA: 0 }, { camA: 1, duration: W(1, 'Na Marco') + 0.4, ease: 'none' }, 0);
+  tl.fromTo(S, { lote: 0 }, { lote: 1, duration: 1.6, ease: 'power2.inOut' }, W(1, 'Aula 1'));
+  tl.fromTo(S, { paredes: 0 }, { paredes: 1, duration: 1.2, ease: E }, W(1, 'território'));
+  tl.fromTo(S, { pino: 0 }, { pino: 1, duration: 0.9, ease: 'bounce.out' }, W(1, 'território') + 0.4);
+  const t1 = el(`<div class="titulo" id="t1">Território <em>e mercado</em></div>`);
+  ent(t1, W(1, 'território'));
+  tl.to('#sombra', { opacity: 1, duration: 0.6 }, W(1, 'território') - 0.2).to('#sombra', { opacity: 0, duration: 0.3 }, W(1, 'Na Marco') - 0.35);
+  const tB = W(1, 'Na Marco');
+  tl.to('#veu', { opacity: 1, duration: 0.35 }, tB - 0.35).set(S, { cena: 'B' }, tB).to('#veu', { opacity: 0, duration: 0.45 }, tB);
+  tl.to(t1, { autoAlpha: 0, duration: 0.3 }, tB - 0.35);
+  tl.fromTo(S, { camB: 0 }, { camB: 1, duration: W(1, 'duas perguntas') - tB, ease: 'power1.inOut' }, tB);
+  const t2 = el(`<div id="t2">Na Marco Zero, <em>a jornada inteira</em>.</div>`);
+  ent(t2, W(1, 'a jornada')); tl.to(t2, { autoAlpha: 0, duration: 0.4 }, W(1, 'Agora') + 0.6);
+  const tC0 = W(1, 'duas perguntas') - 0.2;
+  tl.to('#veu', { opacity: 1, duration: 0.35 }, tC0 - 0.35).set(S, { cena: 'C' }, tC0).to('#veu', { opacity: 0, duration: 0.45 }, tC0);
+  tl.fromTo(S, { camC: 0 }, { camC: 1, duration: fim - tC0, ease: 'none' }, tC0);
+  const t3 = el(`<div class="titulo" id="t3">Duas perguntas <em>que andam juntas</em></div>`);
+  ent(t3, tC0 + 0.2);
+  tl.fromTo(S, { c1: 0 }, { c1: 1, duration: 0.9, ease: E }, W(1, 'o meu terreno'));
+  tl.fromTo(S, { c2: 0 }, { c2: 1, duration: 0.9, ease: E }, W(1, 'E existe'));
+});
+
+function desenhar() {
+  if (S.cena === 'A') {
+    const k = S.camA;
+    cam.position.set(-2 + 4.2 * k, 7.5 - 2.2 * k, 9 - 2.6 * k);
+    cam.lookAt(1.2 + 2.2 * k, 0, -1 - 0.5 * k);
+    contorno.geometry.setDrawRange(0, Math.floor(S.lote * NTUBO / 6) * 6);
+    paredes.scale.z = 0.001 + 1.1 * S.paredes; paredes.visible = S.paredes > 0;
+    topo.position.y = 1.1 * S.paredes; topo.visible = S.paredes > 0.02;
+    pino.visible = S.pino > 0; pino.position.y = 2.6 * (1 - S.pino) + 1.1 * S.paredes;
+    R.render(A, cam);
+  } else if (S.cena === 'B') {
+    const z = 5 - 25 * S.camB;
+    cam.position.set(0.6 * Math.sin(S.camB * 3), 0.25 * Math.sin(S.camB * 5), z);
+    cam.lookAt(0, 0, z - 6);
+    R.render(B, cam);
+  } else {
+    cam.position.set(-0.8 + 1.6 * S.camC, 0.3 - 0.3 * S.camC, 9.5 - 1.2 * S.camC);
+    cam.lookAt(0, -0.3, 0);
+    for (const [c, v, x] of [[c1, S.c1, -2.8], [c2, S.c2, 2.8]]) {
+      c.visible = v > 0; c.rotation.y = (1 - v) * -Math.PI / 2; c.position.y = (x < 0 ? -0.6 : -1.3) - (1 - v) * 0.6;
+      c.material.opacity = Math.min(1, v * 1.5);
+    }
+    R.render(C, cam);
+  }
+}
+const anterior = window.seek;
+window.seek = t => { window.TL.seek(t, true); desenhar(); };
+const espera = setInterval(() => { if (window.pronto) { clearInterval(espera); window.DURACAO = 20.6; desenhar(); window.pronto3d = true; } }, 50);
+</script>
+</body>
+</html>
