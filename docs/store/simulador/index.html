@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Simulador de investimento · Bubble Zion</title>
+<meta name="description" content="Simule o investimento em uma Bubble Zion: diária, ocupação, margem e o custo de bolha, deck, infraestrutura e enxoval. Veja a rentabilidade anual e o prazo de retorno. Exercício ilustrativo, sem promessa de resultado.">
+<meta property="og:title" content="Simulador de investimento · Bubble Zion">
+<meta property="og:description" content="Coloque o custo da bolha e da infraestrutura, a diária e a ocupação, e veja a rentabilidade anual da sua simulação.">
+<meta property="og:image" content="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/hero.webp">
+<style>
+:root{--musgo:#1B2117;--musgo2:#232B1D;--preto:#040605;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E;--tinta:#14170F;--cinza:#6B645C;--linha:rgba(20,23,15,.14);--display:"Cormorant Garamond",Georgia,serif;--body:Jost,"Helvetica Neue",Arial,sans-serif}
+@font-face{font-family:Cormorant Garamond;src:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/fonts/cormorant.woff2) format('woff2');font-weight:400 600;font-display:swap}
+@font-face{font-family:Cormorant Garamond;font-style:italic;src:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/fonts/cormorant-italic.woff2) format('woff2');font-display:swap}
+@font-face{font-family:Jost;src:url(https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/fonts/aventa.woff2) format('woff2');font-weight:300 600;font-display:swap}
+*{box-sizing:border-box;margin:0;padding:0}[hidden]{display:none!important}html{scroll-behavior:smooth}
+body{background:var(--creme);color:var(--tinta);font-family:var(--body);font-size:17px;line-height:1.55}
+img{max-width:100%;display:block}a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 20px}
+section{padding:clamp(40px,6vw,72px) 0}
+.dark{background:var(--musgo);color:var(--creme)}.sand{background:var(--areia)}
+h1,h2,h3{font-family:var(--display);font-weight:500;line-height:1.08;text-wrap:balance}
+h1{font-size:clamp(36px,7vw,64px);letter-spacing:-.01em}h2{font-size:clamp(28px,4.4vw,42px);margin-top:10px}h3{font-size:22px}
+em{font-style:italic;color:var(--ouro)}.sand em,.light em{color:var(--terra)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--ouro);font-weight:500}
+.eyebrow::before{content:"";width:34px;height:1px;background:currentColor}.light .eyebrow,.sand .eyebrow{color:var(--terra)}
+.lead{font-size:18px;max-width:62ch;margin-top:14px;opacity:.9}
+.top{display:flex;justify-content:space-between;align-items:center;padding:18px 0}.top img{height:30px;width:auto}.top a{font-size:14px;text-decoration:none;color:var(--ouro)}
+.hero{padding:clamp(20px,4vw,40px) 0 clamp(44px,7vw,80px)}
+.fic{display:inline-block;margin-top:16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:#FFED00;color:var(--musgo);padding:6px 10px;border-radius:6px;font-weight:600}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:clamp(18px,3vw,36px);align-items:start}
+.box{background:#fff;border:1px solid var(--linha);border-radius:14px;padding:22px}
+.box h3{margin-bottom:4px}.box .sub{font-size:14px;color:var(--cinza);margin-bottom:14px}
+.row{display:grid;grid-template-columns:1fr 150px;gap:12px;align-items:center;padding:9px 0;border-top:1px solid var(--linha)}
+.row:first-of-type{border-top:0}
+.row label{font-size:15.5px;line-height:1.3}.row small{display:block;font-size:12.5px;color:var(--cinza);margin-top:2px}
+.in{position:relative}
+.in input{width:100%;font:500 17px var(--body);padding:11px 12px 11px 38px;border:1px solid rgba(20,23,15,.28);border-radius:10px;background:#FFFBEA;color:var(--tinta);text-align:right;min-height:46px}
+.in input:focus{outline:3px solid var(--ouro);outline-offset:1px}
+.in span{position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--cinza);pointer-events:none}
+.in.pct input{padding-left:12px;padding-right:34px}.in.pct span{left:auto;right:12px}.in.un input{padding-left:12px;padding-right:12px}
+.presets{display:flex;flex-wrap:wrap;gap:8px;margin:2px 0 12px}
+.presets button{font:500 14px var(--body);border:1px solid var(--terra);background:transparent;color:var(--tinta);padding:9px 14px;border-radius:999px;cursor:pointer;min-height:40px}
+.presets button:hover{background:rgba(139,113,78,.12)}
+.tot{display:flex;justify-content:space-between;gap:12px;border-top:2px solid var(--tinta);margin-top:8px;padding-top:12px;font-weight:600}
+.alert{margin-top:12px;font-size:14.5px;background:#FFF3CD;border:1px solid #E6CC7A;border-radius:10px;padding:12px 14px;color:#5a4a12}
+.res{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:26px}
+.k{background:rgba(254,245,240,.06);border:1px solid rgba(201,179,126,.3);border-radius:12px;padding:16px 16px 14px}
+.k small{display:block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ouro)}
+.k b{display:block;font-family:var(--display);font-weight:500;font-size:clamp(26px,3.6vw,36px);line-height:1.1;margin-top:6px}
+.k span{display:block;font-size:13px;opacity:.78;margin-top:4px}
+.k.big{grid-column:1/-1;background:rgba(201,179,126,.12);border-color:var(--ouro)}
+.k.big b{font-size:clamp(44px,8vw,72px);color:var(--ouro)}
+.tw{overflow-x:auto;margin-top:18px;border:1px solid var(--linha);border-radius:12px;background:#fff}
+table{border-collapse:collapse;width:100%;min-width:480px;font-size:15px}
+th,td{padding:11px 12px;text-align:right;border-bottom:1px solid var(--linha)}th:first-child,td:first-child{text-align:left}
+thead th{background:var(--musgo);color:var(--creme);font-weight:500;font-size:13.5px}
+td.b{background:rgba(201,179,126,.28);font-weight:600}
+.note{font-size:14px;color:var(--cinza);margin-top:12px;max-width:80ch}
+.dark .note{color:rgba(254,245,240,.75)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:var(--ouro);color:var(--musgo);font:600 17px var(--body);text-decoration:none;padding:15px 26px;border-radius:999px;min-height:52px;border:0;cursor:pointer}
+.btn:hover{background:#d8c28c}.btn.ghost{background:transparent;color:var(--creme);border:1px solid var(--ouro)}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}
+ul.av{margin-top:12px;display:grid;gap:8px;font-size:15.5px;padding-left:18px;color:var(--tinta)}
+footer{background:var(--preto);color:rgba(254,245,240,.72);padding:36px 0;font-size:13.5px;line-height:1.7}
+footer img{height:28px;width:auto;margin-bottom:12px}footer a{color:var(--ouro)}
+@media(max-width:820px){.grid2{grid-template-columns:1fr}.res{grid-template-columns:1fr 1fr}.row{grid-template-columns:1fr 132px}}
+@media(max-width:420px){.res{grid-template-columns:1fr}}
+@media print{.top a,.cta,.presets,.no-print{display:none!important}body{background:#fff}section{padding:20px 0}.dark{background:#fff;color:#000}.k{border-color:#999}.k small,.k.big b,em{color:#000}}
+</style>
+</head>
+<body>
+
+<header class="dark">
+ <div class="wrap">
+  <div class="top">
+   <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International">
+   <a href="../">← Glamping Store</a>
+  </div>
+  <div class="hero">
+   <div class="eyebrow">Zion Glamping Store · Simulador</div>
+   <h1 style="margin-top:14px">Quanto a sua Bubble <em>poderia render por ano?</em></h1>
+   <p class="lead">Coloque o custo da bolha e da infraestrutura, a diária e a ocupação. O simulador mostra a receita, o resultado operacional (EBITDA) e a rentabilidade anual da <strong>sua simulação</strong>. Mude qualquer número.</p>
+   <p class="note" style="margin-top:12px">Exercício ilustrativo. Não é promessa de resultado nem oferta de investimento.</p>
+  </div>
+ </div>
+</header>
+
+<section class="light">
+ <div class="wrap">
+  <div class="eyebrow">1 · Preencha</div>
+  <h2>As premissas e o <em>custo da sua unidade</em></h2>
+  <div class="presets" role="group" aria-label="Premissas prontas">
+   <button type="button" id="pBruno">Premissas de trabalho (R$ 1.550 · 65% · 40%)</button>
+   <button type="button" id="pCase">Case validado da Zion (R$ 1.571 · 60% · 40%)</button>
+   <button type="button" id="pFic">Preencher exemplo com dados fictícios</button>
+  </div>
+  <div class="grid2">
+   <div class="box">
+    <h3>Receita e resultado</h3>
+    <p class="sub">Campos amarelos: você preenche.</p>
+    <div class="row"><label for="diaria">Diária média<small>Valor médio vendido por noite</small></label><div class="in"><span>R$</span><input id="diaria" inputmode="decimal" autocomplete="off" value="1.550"></div></div>
+    <div class="row"><label for="ocup">Ocupação média<small>Noites vendidas sobre 365</small></label><div class="in pct"><input id="ocup" inputmode="decimal" autocomplete="off" value="65"><span>%</span></div></div>
+    <div class="row"><label for="marg">Margem operacional (EBITDA)<small>Já desconta custos, impostos e comissões de forma simplificada</small></label><div class="in pct"><input id="marg" inputmode="decimal" autocomplete="off" value="40"><span>%</span></div></div>
+    <div class="row"><label for="unid">Número de bolhas<small>Cada uma com o mesmo custo</small></label><div class="in un"><input id="unid" inputmode="numeric" autocomplete="off" value="1"></div></div>
+    <p class="note">Referência da própria operação da Zion, em Urubici e Florianópolis: diária média validada de R$ 1.571 e 60% de ocupação média, base de 5 anos. O seu número depende do destino, do produto e da operação.</p>
+   </div>
+
+   <div class="box">
+    <h3>Investimento por unidade</h3>
+    <p class="sub">Itens 2 a 6: valores orientativos já publicados na Store. Itens 7 a 10 começam em zero: preencha com o seu orçamento.</p>
+    <div class="row"><label for="c0">1 · A bolha<small>Valor de referência. O orçamento oficial vem da equipe Zion.</small></label><div class="in"><span>R$</span><input class="cx" id="c0" inputmode="decimal" autocomplete="off" value="80.000"></div></div>
+    <div class="row"><label for="c1">2 · Deck de madeira<small>50 m² × R$ 250/m²</small></label><div class="in"><span>R$</span><input class="cx" id="c1" inputmode="decimal" autocomplete="off" value="12.500"></div></div>
+    <div class="row"><label for="c2">3 · Instalação de luz</label><div class="in"><span>R$</span><input class="cx" id="c2" inputmode="decimal" autocomplete="off" value="10.000"></div></div>
+    <div class="row"><label for="c3">4 · Água e esgoto ou fossa</label><div class="in"><span>R$</span><input class="cx" id="c3" inputmode="decimal" autocomplete="off" value="8.500"></div></div>
+    <div class="row"><label for="c4">5 · Mobiliário, equipamentos e enxoval<small>FF&amp;E, valor da operação da Zion</small></label><div class="in"><span>R$</span><input class="cx" id="c4" inputmode="decimal" autocomplete="off" value="25.915"></div></div>
+    <div class="row"><label for="c5">6 · Piso interno<small>Laminado ou vinílico</small></label><div class="in"><span>R$</span><input class="cx" id="c5" inputmode="decimal" autocomplete="off" value="3.931"></div></div>
+    <div class="row"><label for="c6">7 · Banheiro ou anexos<small>Se ficar fora da bolha</small></label><div class="in"><span>R$</span><input class="cx x" id="c6" inputmode="decimal" autocomplete="off" value="0"></div></div>
+    <div class="row"><label for="c7">8 · Projeto, licenças e taxas</label><div class="in"><span>R$</span><input class="cx x" id="c7" inputmode="decimal" autocomplete="off" value="0"></div></div>
+    <div class="row"><label for="c8">9 · Frete e instalação da bolha</label><div class="in"><span>R$</span><input class="cx x" id="c8" inputmode="decimal" autocomplete="off" value="0"></div></div>
+    <div class="row"><label for="c9">10 · Outros<small>Climatização, energia reserva, paisagismo, abertura</small></label><div class="in"><span>R$</span><input class="cx x" id="c9" inputmode="decimal" autocomplete="off" value="0"></div></div>
+    <div class="row"><label for="cont">Margem de segurança<small>Percentual extra sobre o total, para imprevistos</small></label><div class="in pct"><input id="cont" inputmode="decimal" autocomplete="off" value="0"><span>%</span></div></div>
+    <div class="tot"><span>Investimento por unidade</span><span id="tUn">R$ 0</span></div>
+    <div class="alert" id="alerta" hidden></div>
+   </div>
+  </div>
+ </div>
+</section>
+
+<section class="dark" id="resultado" aria-live="polite">
+ <div class="wrap">
+  <div class="eyebrow">2 · Resultado da simulação</div>
+  <h2>O que as <em>suas premissas</em> mostram</h2>
+  <div><span class="fic" id="ficTag" hidden>Dados fictícios · não são custos da Zion</span></div>
+  <div class="res">
+   <div class="k big"><small>Rentabilidade anual (EBITDA ÷ investimento)</small><b id="rRent">–</b><span id="rRentTxt"></span></div>
+   <div class="k"><small>Receita por ano</small><b id="rRec">–</b><span id="rNoites"></span></div>
+   <div class="k"><small>EBITDA por ano</small><b id="rEb">–</b><span id="rEbMes"></span></div>
+   <div class="k"><small>Investimento total</small><b id="rCapex">–</b><span id="rCapexTxt"></span></div>
+   <div class="k"><small>Prazo para recuperar</small><b id="rPay">–</b><span>Investimento ÷ EBITDA anual</span></div>
+  </div>
+  <p class="note">Conta simples e sem curva de ocupação do primeiro ano. Não considera imposto sobre o lucro, depreciação, financiamento, custo do terreno, marketing de abertura nem reposição da bolha.</p>
+ </div>
+</section>
+
+<section class="sand">
+ <div class="wrap">
+  <div class="eyebrow">3 · E se mudar?</div>
+  <h2>Rentabilidade anual <em>para outros cenários</em></h2>
+  <p class="lead">Ocupação nas linhas e diária nas colunas, com o seu investimento e a sua margem. A célula destacada é o seu cenário.</p>
+  <div class="tw"><table id="sens"></table></div>
+  <p class="note">Cada célula usa a mesma conta: diária × 365 × ocupação × margem ÷ investimento total.</p>
+ </div>
+</section>
+
+<section class="light">
+ <div class="wrap" style="max-width:820px">
+  <div class="eyebrow">Leia antes de decidir</div>
+  <h2>O que este simulador <em>não é</em></h2>
+  <ul class="av">
+   <li>É um exercício ilustrativo para você entender a conta. Não é promessa de resultado, de renda, de ocupação nem de valorização.</li>
+   <li>Não é oferta de investimento, de parceria ou de sociedade. A Zion avalia cada caso.</li>
+   <li>Os valores de deck, luz, água e esgoto, mobiliário e piso são orientativos, para uma unidade. O seu orçamento depende do terreno, da região e do padrão.</li>
+   <li>A diária, a ocupação e a margem são premissas editáveis. O seu número depende do destino, do produto e da operação.</li>
+  </ul>
+  <div class="cta no-print">
+   <a class="btn" id="wa" href="https://wa.me/554861371061" target="_blank" rel="noopener">Conversar com a equipe Zion</a>
+   <button class="btn" type="button" id="imp" style="background:transparent;border:1px solid var(--terra);color:var(--tinta)">Salvar em PDF</button>
+  </div>
+ </div>
+</section>
+
+<footer>
+ <div class="wrap">
+  <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/brand/zion-logo-claro.png" alt="Zion Hotel Group International">
+  <p>Exercício ilustrativo. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade. Os resultados dependem do contexto e da execução.</p>
+  <p style="margin-top:8px">© Zion Hotel Group International · WhatsApp +55 48 6137-1061</p>
+ </div>
+</footer>
+
+<script src="logic.js"></script>
+<script>
+(function(){
+  var S=window.ZionSim,$=function(i){return document.getElementById(i)};
+  var brl=new Intl.NumberFormat('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+  var num=new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1});
+  var pct=function(v){return v==null?'–':new Intl.NumberFormat('pt-BR',{maximumFractionDigits:1}).format(v*100)+'%'};
+  var cx=[].slice.call(document.querySelectorAll('.cx'));
+  var fic=false;
+
+  function ler(){
+    return {diaria:S.parseBR($('diaria').value),ocupacao:S.parseBR($('ocup').value)/100,margem:S.parseBR($('marg').value)/100,
+      unidades:Math.max(1,Math.floor(S.parseBR($('unid').value))||1),itens:cx.map(function(i){return S.parseBR(i.value)}),
+      contingencia:S.parseBR($('cont').value)/100};
+  }
+  function fmtAnos(a){if(a==null)return '–';return a<1?num.format(a*12)+' meses':num.format(a)+' anos'}
+
+  function render(){
+    var p=ler(),r=S.simular(p);
+    $('tUn').textContent=brl.format(r.capexUnidade);
+    $('rRent').textContent=pct(r.rentabilidade);
+    $('rRentTxt').textContent=r.rentabilidade==null?'Preencha o investimento.':'Para cada R$ 100 investidos, '+brl.format(r.rentabilidade*100)+' de EBITDA por ano, nesta simulação.';
+    $('rRec').textContent=brl.format(r.receitaAno);
+    $('rNoites').textContent=num.format(r.noitesVendidas)+' noites vendidas por ano';
+    $('rEb').textContent=brl.format(r.ebitdaAno);
+    $('rEbMes').textContent=brl.format(r.ebitdaMes)+' por mês';
+    $('rCapex').textContent=brl.format(r.capexTotal);
+    $('rCapexTxt').textContent=p.unidades>1?p.unidades+' bolhas × '+brl.format(r.capexUnidade):'1 bolha';
+    $('rPay').textContent=fmtAnos(r.payback);
+    var faltam=[].slice.call(document.querySelectorAll('.cx.x')).every(function(i){return S.parseBR(i.value)===0});
+    var al=$('alerta');
+    if(faltam){al.hidden=false;al.textContent='Os itens 7 a 10 estão em zero. Banheiro ou anexos, licenças, frete e outros custos costumam existir: sem eles o investimento fica subestimado e a rentabilidade, superestimada.'}else al.hidden=true;
+    $('ficTag').hidden=!fic;
+
+    var dm=[.8,.9,1,1.1].map(function(f){return Math.round(p.diaria*f)});
+    var om=[-.2,-.1,0,.1].map(function(d){return Math.min(1,Math.max(0.05,p.ocupacao+d))});
+    var m=S.sensibilidade(p,dm,om);
+    var h='<thead><tr><th>Ocupação \\ Diária</th>'+dm.map(function(d){return '<th>'+brl.format(d)+'</th>'}).join('')+'</tr></thead><tbody>';
+    om.forEach(function(o,i){h+='<tr><td>'+pct(o)+'</td>'+m[i].map(function(v,j){return '<td'+(i===2&&j===2?' class="b"':'')+'>'+pct(v)+'</td>'}).join('')+'</tr>'});
+    $('sens').innerHTML=h+'</tbody>';
+
+    var t='Oi! Fiz a simulação da Bubble no site da Zion Glamping Store.\nDiária R$ '+num.format(p.diaria)+', ocupação '+num.format(p.ocupacao*100)+'%, margem '+num.format(p.margem*100)+'%.\nInvestimento '+brl.format(r.capexTotal)+', EBITDA '+brl.format(r.ebitdaAno)+' por ano, rentabilidade '+pct(r.rentabilidade)+' ao ano.\nQuero conversar com a equipe sobre o meu caso.'+(fic?'\n(Simulação com dados fictícios.)':'');
+    $('wa').href='https://wa.me/554861371061?text='+encodeURIComponent(t);
+  }
+
+  function setV(v){$('diaria').value=v[0];$('ocup').value=v[1];$('marg').value=v[2]}
+  var FIC=['0','0','0','0'];
+  $('pBruno').onclick=function(){fic=false;setV(['1.550','65','40']);render()};
+  $('pCase').onclick=function(){fic=false;setV(['1.571','60','40']);render()};
+  $('pFic').onclick=function(){fic=true;setV(['1.550','65','40']);
+    ['c6','c7','c8','c9'].forEach(function(id,i){$(id).value=['12.000','6.000','4.000','5.000'][i]});$('cont').value='10';render()};
+  [].slice.call(document.querySelectorAll('input')).forEach(function(i){i.addEventListener('input',function(){
+    if(i.classList.contains('x')||i.id==='cont')fic=false;render()})});
+  $('imp').onclick=function(){window.print()};
+  render();
+})();
+</script>
+</body>
+</html>
