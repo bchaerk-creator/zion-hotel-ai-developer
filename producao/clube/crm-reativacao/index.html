@@ -38,6 +38,10 @@ td,th{padding:8px 6px;border-bottom:1px solid #2c3626;text-align:left;vertical-a
 .s-novo{color:var(--areia)}.s-contatado{color:var(--alerta)}.s-respondeu{color:var(--ok)}.s-agendou{color:var(--ok)}.s-comprou{color:var(--ok)}.s-sem_interesse,.s-numero_invalido{color:var(--erro)}
 .hide{display:none}
 .aviso{border-left:3px solid var(--alerta);padding:8px 12px;background:#221f12;border-radius:6px;font-size:14px}
+.fotos{display:flex;gap:6px;overflow-x:auto;padding:4px 0}
+.fotos img{width:64px;height:64px;object-fit:cover;border-radius:8px;border:2px solid transparent;cursor:pointer;flex:none}
+.fotos img.on{border-color:var(--ouro)}
+.chk{display:flex;gap:8px;align-items:center;margin:8px 0;font-size:14px}.chk input{width:auto}
 @media(max-width:480px){.stats{grid-template-columns:repeat(2,1fr)}}
 </style>
 </head>
@@ -117,6 +121,10 @@ const CFG_PADRAO={
  msgBubble:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você já mostrou interesse na Zion e eu queria te mostrar a Bubble: a cabana de glamping que a gente opera desde 2020 e que você pode ter no seu terreno.\n\nEstá aqui, com as opções de suíte: {{link}}\n\nTem alguma dúvida? Me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.',
  msgClube:'Oi, {{nome}}! Aqui é o {{remetente}}, da Zion. Você deixou seu contato com a gente e preparamos o Zion Collection Club: o passo a passo para tirar um terreno do papel e transformar em destino turístico.\n\nDá uma olhada: {{link}}\n\nQualquer dúvida, me responda por aqui. Se não quiser mais receber mensagens nossas, é só avisar.'
 };
+const BASE='https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/store/';
+const FOTOS=[['hero','Suíte com jacuzzi'],['noturna','À noite'],['dentro','Por dentro'],['deck','Vista de cima'],['ceu','Cama com vista'],['noite','Céu estrelado'],['suite-foto','Suíte'],['premium-foto','Suíte Premium']];
+let foto=ler0('zion_crm_foto','hero'),comFoto=false,fotoBlob=null,fotoId='';
+function ler0(k,d){try{return localStorage.getItem(k)||d}catch(e){return d}}
 const K={leads:'zion_crm_leads_v1',cfg:'zion_crm_cfg_v1',idx:'zion_crm_idx_v1'};
 const $=s=>document.querySelector(s);
 const ler=(k,d)=>{try{const v=localStorage.getItem(k);return v?JSON.parse(v):d}catch(e){return d}};
@@ -156,6 +164,17 @@ function mapear(rows){const h=rows[0].map(norm);const acha=(...ns)=>h.findIndex(
  if(ix.fone<0&&ix.email<0)throw new Error('Não achei coluna de telefone nem de e-mail. Confira o cabeçalho do CSV.');
  return rows.slice(1).map(r=>{const g=i=>i>=0?(r[i]||'').trim():'';return {nome:g(ix.nome),fone:g(ix.fone),email:g(ix.email),cidade:g(ix.cidade),estado:g(ix.estado),origem:g(ix.origem),tags:g(ix.tags)}}).filter(x=>x.nome||x.fone||x.email)}
 
+async function prepararFoto(){const id=foto;fotoBlob=null;fotoId=id;
+ try{const img=new Image();img.crossOrigin='anonymous';await new Promise((ok,er)=>{img.onload=ok;img.onerror=er;img.src=BASE+id+'.webp'});
+  const c=document.createElement('canvas');const m=Math.min(1,1280/Math.max(img.naturalWidth,img.naturalHeight));c.width=Math.round(img.naturalWidth*m);c.height=Math.round(img.naturalHeight*m);
+  c.getContext('2d').fillStyle='#fff';c.getContext('2d').fillRect(0,0,c.width,c.height);c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+  const b=await new Promise(r=>c.toBlob(r,'image/jpeg',.9));if(id===fotoId)fotoBlob=b}catch(e){fotoBlob=null}}
+async function copiarFoto(){if(!fotoBlob)await prepararFoto();if(!fotoBlob)return false;
+ try{const png=await new Promise(r=>{const i=new Image();i.onload=()=>{const c=document.createElement('canvas');c.width=i.width;c.height=i.height;c.getContext('2d').drawImage(i,0,0);c.toBlob(r,'image/png')};i.src=URL.createObjectURL(fotoBlob)});
+  await navigator.clipboard.write([new ClipboardItem({'image/png':png})]);return true}catch(e){return false}}
+function salvarFoto(){if(!fotoBlob)return;const a=document.createElement('a');a.href=URL.createObjectURL(fotoBlob);a.download='zion-bubble-'+foto+'.jpg';a.click()}
+async function compartilharFoto(texto){if(!fotoBlob)return false;const f=new File([fotoBlob],'zion-bubble.jpg',{type:'image/jpeg'});
+ if(navigator.canShare&&navigator.canShare({files:[f]})){try{await navigator.share({files:[f],text:texto});return true}catch(e){return false}}return false}
 function montar(l,of){const link=(cfg['link'+{agenda:'Agenda',bubble:'Bubble',clube:'Clube'}[of]]||'').trim();
  const u=new URL(link,'https://x.invalid');let url=link;
  if(/^https?:/.test(link)){u.searchParams.set('utm_source','whatsapp');u.searchParams.set('utm_medium','reativacao_manual');u.searchParams.set('utm_campaign','reativacao-'+of);u.searchParams.set('utm_content',String(l.id).slice(0,8));url=u.toString()}
@@ -180,6 +199,11 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  <div>${l.origem?`<span class="pill">${esc(l.origem)}</span>`:''}${l.tags?esc(l.tags).split(/[;|]/).slice(0,3).map(t=>`<span class="pill">${t.trim()}</span>`).join(''):''}<span class="pill s-${l.status}">${STATUS[l.status]}</span>${l.ultimo?`<span class="pill">último: ${esc(l.ultimo)}</span>`:''}</div>
  <div class="offers">${Object.entries(OFERTAS).map(([k,n])=>`<button data-of="${k}" class="${k===oferta?'on':''}">${n}</button>`).join('')}</div>
  <label>Mensagem (pode editar antes de enviar)</label><textarea id="msg">${esc(msg)}</textarea>
+ <label>Foto da Bubble</label>
+ <div class="fotos">${FOTOS.map(([id,n])=>`<img src="${BASE}${id}.webp" alt="${n}" title="${n}" data-foto="${id}" class="${id===foto?'on':''}">`).join('')}</div>
+ <label class="chk"><input type="checkbox" id="comFoto" ${comFoto?'checked':''}> Copiar a foto ao abrir o WhatsApp (depois é só colar no chat)</label>
+ <div class="row"><button id="cpFoto">Copiar foto</button><button id="svFoto">Salvar foto</button><button id="shFoto">Enviar foto + texto…</button></div>
+ <p class="muted" id="avFoto" style="margin:6px 0 0"></p>
  <div class="row" style="margin-top:12px"><a class="btn primary" id="abrir" target="_blank" rel="noopener">Abrir WhatsApp com a mensagem</a></div>
  <div class="row" style="margin-top:8px"><button id="copiar">Copiar mensagem</button><button id="pular">Pular</button></div>
  <label>Depois de enviar</label>
@@ -187,10 +211,16 @@ function render(){const total=leads.length,com=leads.filter(l=>l.fone).length,no
  <label>Anotação</label><input id="obs" value="${esc(l.obs)}" placeholder="Ex.: pediu para falar semana que vem">
  </div>`;
  const abrir=$('#abrir');const atualizarLink=()=>{abrir.href='https://wa.me/'+l.fone+'?text='+encodeURIComponent($('#msg').value)};atualizarLink();$('#msg').oninput=atualizarLink;
- abrir.onclick=()=>{l.obs=$('#obs').value;l.oferta=oferta;if(l.status==='novo')l.status='contatado';l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);setTimeout(()=>{pulados.add(l.id);proximo()},400)};
+ if(fotoId!==foto||!fotoBlob)prepararFoto();
+ c.querySelectorAll('[data-foto]').forEach(i=>i.onclick=()=>{foto=i.dataset.foto;try{localStorage.setItem('zion_crm_foto',foto)}catch(e){}c.querySelectorAll('[data-foto]').forEach(x=>x.classList.toggle('on',x===i));prepararFoto()});
+ $('#comFoto').onchange=e=>{comFoto=e.target.checked};
+ $('#cpFoto').onclick=async()=>{$('#avFoto').textContent=(await copiarFoto())?'Foto copiada. No chat, toque e segure no campo de mensagem e escolha Colar.':'Não consegui copiar neste navegador. Use Salvar foto e anexe pelo clipe do WhatsApp.'};
+ $('#svFoto').onclick=async()=>{if(!fotoBlob)await prepararFoto();salvarFoto();$('#avFoto').textContent='Foto baixada. No WhatsApp, toque no clipe e escolha a foto.'};
+ $('#shFoto').onclick=async()=>{if(!fotoBlob)await prepararFoto();const ok=await compartilharFoto($('#msg').value);$('#avFoto').textContent=ok?'Compartilhado. Escolha o contato no WhatsApp.':'Este aparelho não compartilha foto com texto. Use Copiar foto ou Salvar foto.'};
+ abrir.onclick=()=>{if(comFoto)copiarFoto();l.obs=$('#obs').value;l.oferta=oferta;if(l.status==='novo')l.status='contatado';l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);setTimeout(()=>{pulados.add(l.id);proximo()},400)};
  $('#copiar').onclick=async()=>{try{await navigator.clipboard.writeText($('#msg').value);$('#copiar').textContent='Copiado ✓'}catch(e){$('#msg').select();document.execCommand('copy')}};
  $('#pular').onclick=()=>{pulados.add(l.id);proximo()};
- c.querySelectorAll('[data-of]').forEach(b=>b.onclick=()=>{oferta=b.dataset.of;render()});
+ c.querySelectorAll('[data-of]').forEach(b=>b.onclick=()=>{oferta=b.dataset.of;comFoto=oferta==='bubble';render()});
  c.querySelectorAll('[data-st]').forEach(b=>b.onclick=()=>{l.status=b.dataset.st;l.obs=$('#obs').value;l.ultimo=new Date().toLocaleDateString('pt-BR');gravar(K.leads,leads);pulados.add(l.id);proximo()});
 }
 

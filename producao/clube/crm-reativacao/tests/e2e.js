@@ -3,7 +3,8 @@ const {chromium}=require('playwright');const path=require('path');const fs=requi
 const page_=path.resolve(process.argv[2]||path.join(__dirname,'..','index.html'));
 let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++};
 (async()=>{
- const b=await chromium.launch();const p=await b.newPage();
+ const b=await chromium.launch();const ctx=await b.newContext({permissions:['clipboard-read','clipboard-write']});const p=await ctx.newPage();
+ await ctx.route('https://bchaerk-creator.github.io/**/assets/store/*.webp',r=>r.fulfill({path:path.join(__dirname,'../../../../docs/assets/store',r.request().url().split('/').pop()),headers:{'access-control-allow-origin':'*'}}));
  await p.goto('file://'+page_);
  // funções puras
  const r=await p.evaluate(()=>{const c=window.__crm;return{
@@ -33,6 +34,16 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  ok(href.startsWith('https://wa.me/5548988880001?text=')&&decodeURIComponent(href).includes('Oi, Ana!'),'link do WhatsApp com mensagem');
  await p.click('[data-of=bubble]');ok((await p.inputValue('#msg')).includes('store/comprar')&&(await p.inputValue('#msg')).includes('Bubble'),'oferta Bubble');
  await p.click('[data-of=clube]');ok((await p.inputValue('#msg')).includes('zion-collection')&&(await p.inputValue('#msg')).includes('Club'),'oferta Clube');
+ // foto da Bubble
+ await p.click('[data-of=bubble]');
+ ok(await p.isChecked('#comFoto'),'foto marcada por padrão na oferta Bubble');
+ await p.click('[data-foto=noturna]');await p.waitForTimeout(800);
+ await p.click('#cpFoto');await p.waitForFunction(()=>document.querySelector('#avFoto').textContent.length>0);
+ ok(/Foto copiada/.test(await p.textContent('#avFoto')),'copiar foto: '+await p.textContent('#avFoto'));
+ const tipos=await p.evaluate(async()=>{const it=await navigator.clipboard.read();const t=it[0].types;const bl=await it[0].getType(t[0]);return [t,bl.size]});
+ ok(tipos[0].includes('image/png')&&tipos[1]>5000,'área de transferência tem imagem PNG ('+tipos[1]+' bytes)');
+ const [dlf]=await Promise.all([p.waitForEvent('download'),p.click('#svFoto')]);ok(/zion-bubble-noturna\.jpg/.test(dlf.suggestedFilename()),'salvar foto baixa o arquivo escolhido');
+ await p.click('[data-of=clube]');ok(!(await p.isChecked('#comFoto')),'foto desmarcada nas outras ofertas');
  // clicar abre o WhatsApp e marca contatado
  const [pop]=await Promise.all([p.context().waitForEvent('page',{timeout:5000}).catch(()=>null),p.click('#abrir')]);
  ok(!!pop,'abre nova aba do WhatsApp'); if(pop) await pop.close().catch(()=>{});
