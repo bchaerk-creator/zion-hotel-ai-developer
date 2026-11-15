@@ -63,7 +63,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 19 | Controle de compras e consumo interno | B | P | **Pronto** (`producao/utilitarios/19-controle-compras/`) |
 | 20 | Kit de treinamento do primeiro turno | B | P + PDF | **Pronto** (`producao/utilitarios/20-treinamento-primeiro-turno/`) |
 | 21 | Kit de mensagens de reservas | B | K | A fazer |
-| 22 | Planner de campanhas para períodos de baixa procura | B | P | A fazer |
+| 22 | Planner de campanhas para períodos de baixa procura | B | P | **Pronto** (`producao/utilitarios/22-campanhas-baixa-procura/`) |
 | 23 | Kit de roteiros de conteúdo e vídeos | B | K | A fazer |
 | 24 | Assistente de IA para atendimento | B | IA | A fazer (testar respostas com informação faltando) |
 | 25 | Organizador de premissas do projeto | A, C | P | A fazer |
@@ -102,7 +102,8 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5e. **30 · Gerador de briefing de experiência** (pronto, aprovado e página publicada em `/briefing-experiencia`, 12/11). Passou à frente do E08 porque o e-book se sobrepõe à Jornada 2 (Gestão) da Fábrica Educacional: **Bruno decide** se o E08 segue como e-book separado ou vira material da Jornada 2.
 5f. **15 · Comparador de fornecedores** (pronto, aprovado e página publicada em `/comparador-fornecedores`, 13/11).
 5g. **19 · Controle de compras e consumo interno** (pronto, aprovado e página publicada em `/controle-compras`, 14/11).
-5h. **12 · Checklist de fotos e comodidades do anúncio** (pronto e enviado para aprovação, 14/11). Execução (fotos e comodidades); o diagnóstico do anúncio inteiro segue no Arsenal 01 e na Zion Collection 06. E05 e E06 aguardam os PDFs A01 a A10. Controla o dinheiro das compras; a 13 segue com quantidades e a 15 com a escolha do fornecedor.
+5h. **12 · Checklist de fotos e comodidades do anúncio** (pronto, aprovado e página publicada em `/fotos-comodidades`, 15/11). Execução (fotos e comodidades); o diagnóstico do anúncio inteiro segue no Arsenal 01 e na Zion Collection 06. E05 e E06 aguardam os PDFs A01 a A10.
+5i. **22 · Planner de campanhas para períodos de baixa procura** (pronto e enviado para aprovação, 15/11). Usa o piso da Ferramenta 01 como trava; o bump da Zion Collection 06 (calendário de 30 dias do anúncio) segue separado. Controla o dinheiro das compras; a 13 segue com quantidades e a 15 com a escolha do fornecedor.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

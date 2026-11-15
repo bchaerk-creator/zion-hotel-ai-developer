@@ -27,6 +27,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 15 | `docs/p/adbc67069af26ae0/fornecedores-15/capa.jpg` |
 | Ferramenta 19 | `docs/p/adbc67069af26ae0/compras-19/capa.jpg` |
 | Ferramenta 12 | `docs/p/adbc67069af26ae0/fotos-12/capa.jpg` |
+| Ferramenta 22 | `docs/p/adbc67069af26ae0/campanhas-22/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -55,6 +56,11 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 17 e 11 conferidas hoje: ainda com "Token inválido ou ausente" (13, 14, 29 e 18 tinham o mesmo erro em 13/11). Páginas seguem seguradas.
 - 12 criada e enviada para aprovação. Próximos da fila: E05 e E06 precisam dos PDFs A01 a A10 (item 5 de "Uma vez só"); sem eles, a rodada segue com as ferramentas 22, 23, 16, 28.
 
+
+## Rodada de 15/11
+- 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
+- 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
+- 22 criada e enviada para aprovação.
 ## Decidir (09/11)
 - **Ferramentas 01 e 21 do catálogo:** com as promessas sem duplicação (Comando 05A/05B), a 01 (ficha de apresentação do terreno) se sobrepõe a B05, B10 e ao Dossiê do Land Bank, e a 21 (mensagens de reservas) à A07. Seguir, mudar a promessa ou tirar do catálogo? Até a decisão, a rodada diária segue com 20, 15, 19.
 - **E-book E08 (Gestão e operação):** sobrepõe-se à Jornada 2 (Gestão) da Fábrica Educacional. Seguir como e-book separado, virar material da Jornada 2 ou sair do catálogo? A rodada diária pulou o E08 em 11/11.

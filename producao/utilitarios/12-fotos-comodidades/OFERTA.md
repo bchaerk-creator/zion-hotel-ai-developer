@@ -1,6 +1,6 @@
 # Ferramenta 12 · Checklist de Fotos e Comodidades do Anúncio
 
-Status: arquivos prontos e testados; **oferta enviada para aprovação em 14/11/2026** (rodada diária automática). Página em rascunho; será publicada quando a oferta estiver ativa.
+Status: arquivos prontos e testados; **oferta enviada para aprovação em 14/11/2026** (rodada diária automática). **Oferta aprovada e página publicada em 15/11/2026.**
 
 **ClickMax:** produto `d2c18a5d-04e6-4b61-b7c2-881001227801`; oferta `1651f122-ea41-417d-abb1-2838c6b793d3` (R$ 19, checkout `BduC1TgySd`, status `pending` desde 14/11 04h54 UTC, sem erro de sincronização); página `ee0a4b0e-4381-44ba-a6d0-7400b9c38e9f` em `/fotos-comodidades` (rascunho). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/fotos-12/`, ligados à oferta.
 
@@ -63,3 +63,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 
 ## Envio para aprovação
 14/11/2026 (rodada diária): 4 arquivos e página de acesso conferidos no ar (status 200) e ligados à oferta; `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`, sem erro de sincronização.
+
+## Publicação (15/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada; 404 nos primeiros dois minutos (propagação), depois status 200 com título, reembolso e capa: https://infoprodutos-zion.clickmax.space/fotos-comodidades. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.
