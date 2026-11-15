@@ -113,6 +113,15 @@ PRODUTOS = [
                    ("Fotos-Comodidades-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Fotos-Comodidades-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Roteiro-do-Dia-das-Fotos.pdf", "Roteiro do dia das fotos", "PDF · para imprimir")]),
+    dict(pasta="campanhas-22", num="22", telas=["producao/utilitarios/22-campanhas-baixa-procura/dist/demonstracao/demo-periodos.png", "producao/utilitarios/22-campanhas-baixa-procura/dist/demonstracao/demo-campanhas.png"],
+         titulo="Planner de Campanhas para Períodos de Baixa Procura",
+         promessa="Aprenda o passo a passo para encontrar os períodos fracos da sua hospedagem, planejar campanhas sem vender abaixo do piso e acompanhar o que cada campanha trouxe.",
+         itens=["Períodos fracos × meta", "Campanhas com antecedência", "Trava do piso da diária", "O que cada campanha trouxe"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Painel.", "Na planilha em branco, preencha a Base e liste os períodos fracos.", "Planeje uma campanha por período com a ficha e anote as noites vendidas."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Campanhas-Baixa-Procura-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Campanhas-Baixa-Procura-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Campanha.pdf", "Ficha de campanha", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
