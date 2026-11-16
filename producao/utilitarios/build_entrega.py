@@ -122,6 +122,15 @@ PRODUTOS = [
                    ("Campanhas-Baixa-Procura-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Campanhas-Baixa-Procura-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Campanha.pdf", "Ficha de campanha", "PDF · para imprimir")]),
+    dict(pasta="roteiros-23", num="23", telas=["producao/utilitarios/23-roteiros-conteudo/dist/demonstracao/demo-roteiro.png", "producao/utilitarios/23-roteiros-conteudo/dist/demonstracao/demo-calendario.png"],
+         titulo="Kit de Roteiros de Conteúdo e Vídeos",
+         promessa="Aprenda o passo a passo para preencher uma ficha da sua hospedagem e receber 8 roteiros curtos de vídeo, com gancho, cenas, texto na tela, legenda e o dia de postar cada um.",
+         itens=["Ficha da hospedagem", "8 roteiros prontos", "Gancho, cenas e legenda", "Calendário de postagem"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Ficha e Roteiros.", "Na planilha em branco, preencha a ficha da sua hospedagem e o calendário.", "Grave cada vídeo no dia indicado e cole a legenda pronta."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Roteiros-Conteudo-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Roteiros-Conteudo-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Roteiros-Modelo.pdf", "Roteiros-modelo", "PDF · para usar sem planilha")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
