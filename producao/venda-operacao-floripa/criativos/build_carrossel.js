@@ -1,6 +1,6 @@
 const {chromium}=require('playwright');const path=require('path');const fs=require('fs');
 const R=path.resolve(__dirname,'../../../docs');
-const foto=n=>n.startsWith('IMG')?'file://'+path.resolve(__dirname,'../fotos/'+n):'file://'+R+'/lancamento/img/resultados/'+n;
+const foto=n=>require('fs').existsSync(path.resolve(__dirname,'../fotos/'+n))?'file://'+path.resolve(__dirname,'../fotos/'+n):'file://'+R+'/lancamento/img/resultados/'+n;
 const font='file://'+R+'/assets/fonts/';
 const base=`@font-face{font-family:C;src:url(${font}cormorant.woff2);font-weight:300 700}
 @font-face{font-family:A;src:url(${font}aventa.woff2);font-weight:300 700}
@@ -19,7 +19,7 @@ const strip=(n)=>`<div style="position:absolute;left:64px;right:64px;bottom:110p
 const foot=(r)=>`<div class=f><span>ZION HOTEL GROUP INTERNATIONAL</span><span>${r||'Fotos reais'}</span></div>`;
 const S=1080;
 const CARDS=[
- {id:'c1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_1914.jpg')});background-position:center 40%}
+ {id:'c1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('AEREA.jpg')});background-position:center 30%}
  .sh{position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(4,6,5,.92) 62%,#040605)}
  .t{position:absolute;left:64px;right:64px;bottom:120px}h1{font-size:92px;margin:16px 0 22px}.s{font-size:36px;color:#DED6BF;line-height:1.3}</style>
  <div class=bg></div><div class=sh></div><div class=n>1/8</div>
@@ -36,7 +36,7 @@ const CARDS=[
  .sub{font-size:27px;color:#DED6BF;margin-bottom:10px;line-height:1.3}</style>
  <div class=n>3/8</div><div class=t><div class=k>Estrutura completa</div><h1>Todas as cabanas equipadas. E a operação pronta.</h1>
  <div class=g><div class=bx><h3>Cada cabana</h3><div>Piscina</div><div>Jacuzzi</div><div>Chill-out</div><div>Banheiro</div><div>Decoração boho chic</div><div>Enxoval</div></div>
- <div class=bx><h3>Operação completa</h3><div>Recepção</div><div>Copa gourmet</div><div>Área de operações</div><div>Lavanderia</div><div>Casa do caseiro</div></div></div></div>${strip('IMG_1908.jpg')}${foot('Fotos reais')}`},
+ <div class=bx><h3>Operação completa</h3><div>Recepção</div><div>Copa gourmet</div><div>Área de operações</div><div>Lavanderia</div><div>Casa do caseiro</div></div></div></div>${strip('BANHEIRA.jpg')}${foot('Fotos reais')}`},
  {id:'c2',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#1B2117}.t{position:absolute;left:64px;right:64px;top:100px}h1{font-size:76px;margin:14px 0 38px}</style>
  <div class=n>4/8</div><div class=t><div class=k>O que está à venda</div><h1>Você leva a operação inteira</h1>
  <div class=li><div class="ic ok">✓</div><div><b>3 cabanas em operação</b><span>Ativas e recebendo hóspedes hoje</span></div></div>
@@ -47,7 +47,7 @@ const CARDS=[
  <div class=li><div class="ic no">✕</div><div><b>O terreno</b><span>É arrendado. Você não compra o imóvel.</span></div></div>
  <div class=li><div class="ic no">✕</div><div><b>Venda de imóvel</b><span>É transpasso de operação, não escritura</span></div></div>
  <div class=li><div class="ic no">✕</div><div><b>A expansão para mais 3 cabanas</b><span>É uma possibilidade, sujeita à autorização do proprietário e às licenças</span></div></div></div>${strip('IMG_1916.jpg')}${foot('Sem letra miúda')}`},
- {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_1908.jpg')});background-position:center 20%}
+ {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('NOITE.jpg')});background-position:center 30%}
  .sh{position:absolute;inset:0;background:linear-gradient(rgba(4,6,5,.25),rgba(4,6,5,.88) 32%,#040605 52%)}.t{position:absolute;left:64px;right:64px;top:70px}h1{font-size:72px;margin:12px 0 28px}
  .li{margin:0 0 20px}.li .ic{flex:0 0 58px;height:58px;font-size:28px}.li b{font-size:42px}.li span{font-size:27px;margin-top:2px}</style>
  <div class=bg></div><div class=sh></div><div class=n>6/8</div>
