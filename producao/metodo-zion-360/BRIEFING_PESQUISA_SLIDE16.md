@@ -73,3 +73,31 @@ Busca na web feita; as páginas das entidades **não puderam ser abertas** (a re
 2. Bruno (ou quem ele indicar) baixa os PDFs (tabelas registradas no CREA-SC, Tabela CAU/BR, tabela OAB/SC) e coloca em `producao/metodo-zion-360/fontes/`; eu extraio as faixas com os cinco campos; ou
 3. Aceitar que o slide 16 sai do deck por falta de fonte (regra acordada).
 Em qualquer caso, a conferência por uma segunda pessoa continua obrigatória.
+
+## 10. Resultado da 2ª rodada (16/11/2026, rede liberada, leitura direta)
+Lidas as 11 tabelas da página "Tabelas de Honorários Registradas no Crea-SC" (`portal.crea-sc.org.br/profissional/honorarios/`). Não abriram: `honorario.caubr.gov.br` e `causc.gov.br` (403), `caubr.gov.br` (sem resposta). A tabela da OAB/SC fica numa calculadora online (`calculadora-honorarios.oab-sc.org.br`), sem documento para baixar; não extraída.
+
+### Faixa que passou nas regras (1 de 6 linhas), conferência humana pendente
+| Campo | Registro |
+|---|---|
+| Serviço | 1 · Levantamento topográfico |
+| Faixa | **R$ 630,00 por hectare** (valor **mínimo**), levantamento topográfico planialtimétrico |
+| Fonte | AGESC (Associação Profissional de Geólogos de Santa Catarina), "Tabela de Honorários Profissionais para Geólogos ou Engenheiros Geólogos 2024 2025", item 11 "Trabalhos Específicos". Registrada no CREA-SC. Cópia em `fontes/AGESC_tabela_honorarios_2024-2025.pdf`; origem: `portal.crea-sc.org.br/download/tabela-de-honorarios-da-agesc/` |
+| Data | Aprovada em assembleia de 20/05/2024; valores "atualizados até maio de 2024", com reajuste anual previsto por IGP-M (não aplicado). Consulta: 16/11/2026 |
+| Escopo | Valor mínimo; exclui encargos fiscais, viagens, hospedagem, alimentação e diárias de campo. Não inclui mobilização |
+| Região e porte | Santa Catarina; por hectare (o terreno hipotético de 10.000 m² tem 1 ha, mas a faixa vale para o serviço, não para o cenário) |
+| Comparável ao Clube? | **Parcial.** É tabela de associação de geólogos, não de agrimensores, e o Clube não faz topografia; serve só como referência de um serviço que o proprietário contrata à parte |
+| Conferido por | **pendente** (segunda pessoa) |
+
+### Linhas sem fonte comparável (saem do slide pela regra)
+- **2 Estudo de mercado / viabilidade:** as tabelas registradas só trazem viabilidade ambiental (AEFsul: R$ 2.000 a R$ 15.000) e viabilidade de água mineral/balneário (AGESC: R$ 12.500). Nenhuma é viabilidade econômica de empreendimento de hospedagem.
+- **3 Estudo preliminar de arquitetura / masterplan:** nenhuma tabela de arquitetura entre as registradas; a do CAU/BR não abriu (e é fórmula).
+- **4 Estimativa de CAPEX, 5 Modelagem financeira, 6 Due diligence fundiária:** nada nas tabelas lidas; OAB/SC não extraída.
+
+### Achados fora das 6 linhas (não usar sem decisão de Bruno)
+- AREA/IT (Itajaí, 04/11/2024): hora técnica de consultoria R$ 375 (júnior), R$ 600 (sênior), R$ 750 (máster); mínimo de 8 horas por consulta.
+- AEFsul (dez/2025): avaliação de imóvel rural de 0,05% a 3% do valor do imóvel; parecer a R$ 400 por matrícula.
+- SEAGRO: topografia em SMP por km/ha (precisa do valor do SMP vigente para virar R$).
+
+### Efeito no slide 16
+Com a regra "linha sem fonte sai", sobra **uma** linha (topografia, comparabilidade parcial). Uma tabela de uma linha não sustenta o slide. Opções em aberto para Bruno: (a) tirar o slide 16 e seguir com 19; (b) manter com 1 linha e a nota de parcial; (c) ampliar a busca (OAB/SC, CAU/SC, editais) antes de decidir.
