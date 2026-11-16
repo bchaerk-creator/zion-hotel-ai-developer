@@ -18,6 +18,20 @@ h1{font-family:C;font-weight:500;line-height:1.02}
 const strip=(n)=>`<div style="position:absolute;left:64px;right:64px;bottom:110px;height:250px;border-radius:22px;background:url(${foto(n)}) center/cover"></div>`;
 const foot=(r)=>`<div class=f><span>ZION HOTEL GROUP INTERNATIONAL</span><span>${r||'Fotos reais'}</span></div>`;
 const S=1080;
+const ph=(n,x,y,w,h,pos)=>`<div style="position:absolute;left:${x}px;top:${y}px;width:${w}px;height:${h}px;border-radius:18px;background:url(${foto(n)}) ${pos||'center'}/cover"></div>`;
+const cap=(k,t,s)=>`<div style="position:absolute;left:64px;right:64px;bottom:118px"><div class=k>${k}</div><div style="font-family:C;font-size:70px;line-height:1.02;margin-top:10px">${t}</div>${s?`<div style="font-size:31px;color:#DED6BF;margin-top:12px;line-height:1.3">${s}</div>`:''}</div>`;
+const full=(img,pos,grad)=>`<div class=bg style="background-image:url(${foto(img)});background-position:${pos}"></div><div style="position:absolute;inset:0;background:linear-gradient(transparent ${grad||55}%,rgba(4,6,5,.92) 88%,#040605)"></div>`;
+const NEW={
+ hero:{id:'hero',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-size:cover}</style>${full('floripa-deck-piscina-pronto.jpg','center 55%',62)}<div class=n>1/10</div>${cap('À venda · Florianópolis (SC)','Glamping em operação, com piscina e deck prontos','3 cabanas funcionando hoje')}${foot()}`},
+ col1:{id:'col1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#040605}</style><div class=n>2/10</div>
+ ${ph('floripa-bolhas-deck.jpg',64,80,560,420)}${ph('BANHEIRA.jpg',644,80,372,420,'center 40%')}${ph('floripa-interior-quarto.jpg',64,520,372,300)}${ph('AEREA.jpg',456,520,270,300,'center 35%')}${ph('NOITE.jpg',746,520,270,300,'center 55%')}
+ <div style="position:absolute;left:64px;right:64px;bottom:118px"><div class=k>Hospedagem de experiência</div><div style="font-family:C;font-size:58px;line-height:1.05;margin-top:8px">Cada detalhe pensado para o hóspede</div></div>${foot()}`},
+ noite:{id:'noite',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}</style>${full('NOITE.jpg','center 30%',55)}<div class=n>3/10</div>${cap('Mais de 2 anos de operação','Noites sob as estrelas','Experiência que o hóspede lembra e comenta')}${foot()}`},
+ banho:{id:'banho',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}</style>${full('BANHEIRA.jpg','center 45%',58)}<div class=n>4/10</div>${cap('Wellness e luxo natural','Banheira com vista para a piscina','Piscina, jacuzzi e chill-out em cada cabana')}${foot()}`},
+ col2:{id:'col2',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#1B2117}</style><div class=n>6/10</div>
+ ${ph('IMG_1908.jpg',64,80,310,420)}${ph('IMG_1907.jpg',394,80,310,420)}${ph('IMG_1916.jpg',724,80,292,420)}${ph('IMG_1914.jpg',64,520,470,300,'center 40%')}${ph('IMG_8101.jpg',554,520,462,300,'center 50%')}
+ <div style="position:absolute;left:64px;right:64px;bottom:118px"><div class=k>Decoração boho chic</div><div style="font-family:C;font-size:58px;line-height:1.05;margin-top:8px">Enxoval, ambiente e detalhes prontos</div></div>${foot()}`}
+};
 const CARDS=[
  {id:'c1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('AEREA.jpg')});background-position:center 30%}
  .sh{position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(4,6,5,.92) 62%,#040605)}
@@ -72,6 +86,8 @@ const CARDS=[
  <div class=bg></div><div class=sh></div><div class=n>8/8</div>
  <div class=t><div class=k>Interessado?</div><h1>Receba valor e condições</h1><div class=s style="font-size:42px">Responda a triagem e enviamos o valor e as condições da operação.</div><div class=b>Faça a triagem e saiba mais</div></div>${foot()}`}
 ];
+const BYID=Object.fromEntries(CARDS.map(x=>[x.id,x]));Object.assign(BYID,NEW);
+const ORDER=['hero','col1','noite','banho','eq','col2','c4','c2','c3','c6'].map(k=>BYID[k]).filter(Boolean);
 const ESTATICO={id:'estatico-4x5',w:1080,h:1350,html:`<style>${base}body{width:1080px;height:1350px}.bg{background-image:url(${foto('IMG_1908.jpg')});background-position:center;height:520px;position:absolute;left:0;right:0;top:0}
  .sh{position:absolute;left:0;right:0;top:270px;height:250px;background:linear-gradient(transparent,#040605)}.t{position:absolute;left:64px;right:64px;top:480px}
  h1{font-size:80px;margin:10px 0 24px}.c{display:flex;gap:30px}.col{flex:1;border:2px solid rgba(201,179,126,.5);border-radius:20px;padding:26px 28px}
@@ -83,8 +99,8 @@ const ESTATICO={id:'estatico-4x5',w:1080,h:1350,html:`<style>${base}body{width:1
  <div class="col n2"><h3>✕ Não está</h3><div>O terreno (arrendado)</div><div>Venda de imóvel</div><div>A expansão para mais 3 cabanas</div></div></div>
  <div class=pr><b>Glamping · Wellness · Luxo natural</b><br>Mais de 2 anos de operação, ocupação e DRE demonstráveis. Valor e condições na triagem.</div></div>${foot()}`};
 (async()=>{const b=await chromium.launch();
- [...CARDS].forEach((x,i)=>x.id='c'+(i+1));
- for(const c of [...CARDS,ESTATICO]){const p=await b.newPage({viewport:{width:c.w,height:c.h}});const fp=path.resolve(__dirname,'_t_'+c.id+'.html');
+ ORDER.forEach((x,i)=>{x.id='c'+(i+1);x.html=x.html.replace(/<div class=n>\d+\/\d+<\/div>/,`<div class=n>${i+1}/${ORDER.length}</div>`)});
+ for(const c of [...ORDER,ESTATICO]){const p=await b.newPage({viewport:{width:c.w,height:c.h}});const fp=path.resolve(__dirname,'_t_'+c.id+'.html');
   fs.writeFileSync(fp,'<!doctype html><meta charset=utf-8>'+c.html);await p.goto('file://'+fp);await p.waitForTimeout(900);
   await p.screenshot({path:path.resolve(__dirname,'carrossel-'+c.id+'.jpg'),type:'jpeg',quality:90});fs.unlinkSync(fp);console.log('ok',c.id)}
  await b.close()})();
