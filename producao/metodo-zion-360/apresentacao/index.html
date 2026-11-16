@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>MÉTODO ZION 360° · Apresentação</title>
+<style>
+@font-face{font-family:"Cormorant";src:url("../../../docs/assets/fonts/cormorant.woff2") format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Cormorant";src:url("../../../docs/assets/fonts/cormorant-italic.woff2") format("woff2");font-style:italic;font-weight:300 700;font-display:swap}
+@font-face{font-family:"Aventa";src:url("../../../docs/assets/fonts/aventa.woff2") format("woff2");font-weight:300 700;font-display:swap}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;background:var(--preto);color:var(--creme);font-family:"Aventa",system-ui,sans-serif;overflow:hidden}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#deck{width:min(100vw,calc(100vh*16/9));height:min(100vh,calc(100vw*9/16));position:relative;background:var(--musgo);overflow:hidden;container-type:size}
+.slide{position:absolute;inset:0;padding:6cqh 6cqw 15cqh;display:none;flex-direction:column;gap:2.4cqh;background:radial-gradient(120% 90% at 80% 0%,#26301f 0%,var(--musgo) 55%,var(--preto) 130%)}
+.slide.on{display:flex;animation:in .5s ease}
+@keyframes in{from{opacity:0;transform:translateY(1.2cqh)}to{opacity:1;transform:none}}
+.kicker{font-size:1.9cqh;letter-spacing:.28em;text-transform:uppercase;color:var(--ouro)}
+h1,h2{font-family:"Cormorant",serif;font-weight:500;line-height:1.05;color:var(--creme)}
+h1{font-size:11cqh}h2{font-size:6.4cqh}
+h3{font-family:"Cormorant",serif;font-size:3.6cqh;font-weight:600;color:var(--areia)}
+p,li{font-size:2.7cqh;line-height:1.45;color:var(--creme)}
+.mut{color:var(--areia);opacity:.85}.ouro{color:var(--ouro)}
+.grid{display:grid;gap:2cqw;flex:1;min-height:0}
+.card{border:1px solid rgba(201,179,126,.35);border-radius:1.4cqh;padding:2.4cqh 1.8cqw;background:rgba(4,6,5,.35)}
+.card b{color:var(--ouro);font-weight:600;font-size:2.5cqh;line-height:1.25;display:block}
+.foto{border-radius:1.4cqh;overflow:hidden;background:#000;min-height:0;position:relative}
+.foto img{width:100%;height:100%;object-fit:cover;display:block}
+.foto small{position:absolute;left:0;right:0;bottom:0;padding:1cqh 1cqw;font-size:1.6cqh;background:linear-gradient(transparent,rgba(0,0,0,.8))}
+.logo{position:absolute;top:3cqh;right:3cqw;height:4.4cqh}
+.fonte{position:absolute;left:6cqw;right:6cqw;bottom:8.5cqh;font-size:1.55cqh;color:var(--areia);opacity:.75;line-height:1.3}
+.tag{display:inline-block;padding:.5cqh 1cqw;border:1px solid var(--ouro);border-radius:2cqh;font-size:1.6cqh;color:var(--ouro);letter-spacing:.12em;text-transform:uppercase}
+.aval{border:1px dashed var(--terra);color:#e6c9a0}
+ul{list-style:none;display:grid;gap:1.2cqh}ul li::before{content:"· ";color:var(--ouro)}
+table{width:100%;border-collapse:collapse;font-size:2cqh}th,td{border-bottom:1px solid rgba(201,179,126,.25);padding:1.1cqh .8cqw;text-align:left;vertical-align:top}th{color:var(--ouro);font-weight:600}
+td.v{color:#e6c9a0;font-style:italic}
+.ecroi{display:flex;gap:.8cqw;margin-bottom:.5cqh}.ecroi span{flex:1;text-align:center;padding:.7cqh 0;border-bottom:3px solid rgba(201,179,126,.25);font-size:1.7cqh;letter-spacing:.14em;color:var(--areia);opacity:.6}.ecroi span.a{border-color:var(--ouro);color:var(--ouro);opacity:1}
+/* cena 3D (CSS 3D) */
+.cena{perspective:1400px;flex:1;display:flex;align-items:center;justify-content:center;min-height:0}
+.piso{position:relative;width:62cqw;height:30cqh;transform:rotateX(58deg) rotateZ(-38deg);transform-style:preserve-3d;background:linear-gradient(135deg,#2f3a26,#161c12);border:1px solid var(--ouro);border-radius:1cqh;box-shadow:0 6cqh 8cqh rgba(0,0,0,.6)}
+.no{position:absolute;width:6.2cqw;height:6.2cqw;transform-style:preserve-3d;transform:translateZ(0);transition:transform .5s}
+.no .topo{position:absolute;inset:0;background:var(--musgo);border:1px solid var(--ouro);display:flex;align-items:center;justify-content:center;color:var(--ouro);font-family:"Cormorant",serif;font-size:3.4cqh;transform:translateZ(var(--h));transition:background .4s}
+.no .lado1,.no .lado2{position:absolute;background:#0c110a;border:1px solid rgba(201,179,126,.4)}
+.no .lado1{left:0;bottom:0;width:100%;height:var(--h);transform-origin:bottom;transform:rotateX(-90deg)}
+.no .lado2{right:0;top:0;width:var(--h);height:100%;transform-origin:right;transform:rotateY(90deg)}
+.no.on .topo{background:var(--ouro);color:var(--preto)}
+.no.on{transform:translateZ(2.4cqh)}
+.peq .cena{transform:scale(.52);transform-origin:left center;width:190%;margin-left:-4%}.peq .legenda span{font-size:1.5cqh}
+.legenda{display:flex;gap:1cqw;flex-wrap:wrap;justify-content:center}
+.legenda span{font-size:1.9cqh;padding:.7cqh 1cqw;border-radius:2cqh;border:1px solid rgba(201,179,126,.35);color:var(--areia)}
+.legenda span.on{background:var(--ouro);color:var(--preto);border-color:var(--ouro)}
+/* UI */
+#hud{position:absolute;left:0;right:0;bottom:0;height:7cqh;display:flex;align-items:center;justify-content:space-between;padding:0 3cqw;z-index:5;font-size:1.8cqh;color:var(--areia)}
+#hud button{background:none;border:1px solid rgba(201,179,126,.5);color:var(--ouro);border-radius:2cqh;padding:.8cqh 1.6cqw;font:inherit;cursor:pointer}
+#bar{position:absolute;left:0;bottom:0;height:.5cqh;background:var(--ouro);transition:width .4s;z-index:6}
+#notas{position:absolute;left:3cqw;right:3cqw;bottom:8cqh;background:rgba(4,6,5,.94);border:1px solid var(--ouro);border-radius:1.2cqh;padding:1.8cqh 1.6cqw;font-size:2cqh;display:none;z-index:7;line-height:1.4}
+#notas.on{display:block}
+@media (max-aspect-ratio:1/1){#deck{width:100vw;height:56.25vw;margin:auto}}
+</style>
+</head>
+<body>
+<div id="stage"><div id="deck">
+<img class="logo" src="../../../docs/brand/zion-logo-claro.png" alt="Zion Hotel Group International">
+<div id="slides"></div>
+<div id="notas" aria-live="polite"></div>
+<div id="hud"><button id="prev" aria-label="Slide anterior">←</button><span id="cont">1 / 20</span><span>N notas · ← → navegar</span><button id="next" aria-label="Próximo slide">→</button></div>
+<div id="bar"></div>
+</div></div>
+<script>
+const IMG="../../../docs/assets/operacoes/", ST="../../../docs/assets/store/", FD="../../../docs/fundador/img/";
+const ECROI=(a)=>`<div class="ecroi">${["Espelhamento","Confronto","Reconhecimento","Orientação","Implementação"].map((x,i)=>`<span class="${i===a?"a":""}">${x}</span>`).join("")}</div>`;
+const PIL=[
+ ["1","Inteligência territorial",["Roteiro de verificação territorial e regulatória","Checklist de documentos","Orientação para as consultas de viabilidade"]],
+ ["2","Mercado e posicionamento",["Modelo de pesquisa de concorrência e preços","Matriz de posicionamento","Orientação na leitura do destino"]],
+ ["3","Produto e masterplan",["Diretrizes de produto Zion","Exercício de implantação conceitual","Orientação sobre tipologias e faseamento"]],
+ ["4","CAPEX e engenharia financeira",["Planilha de CAPEX Zion","Categorias de investimento","Orientação para buscar orçamentos reais"]],
+ ["5","Receita, operação e rentabilidade",["Simulador econômico-financeiro Zion","Premissas de referência","Orientação na construção dos cenários"]],
+ ["6","Estratégia de capital e parcerias",["Mesa de estruturação","Papéis de cada parte","Lista do que falta para negociar"]],
+ ["7","Dossiê e preparação para decisão",["Estrutura do Dossiê Zion","Mapa de direcionamento"]]
+];
+const NOS=["Terreno","Território","Mercado","Produto","CAPEX","Viabilidade","Parcerias"];
+function cena(ativo){
+ const pos=[[3,70],[17,55],[31,42],[45,32],[59,22],[73,12],[85,2]];
+ return `<div class="cena"><div class="piso">${NOS.map((n,i)=>`<div class="no ${i<=ativo?"on":""}" style="--h:${2+i*0.9}cqh;left:${pos[i][0]}%;top:${pos[i][1]}%"><div class="lado1"></div><div class="lado2"></div><div class="topo">${i+1}</div></div>`).join("")}</div></div><div class="legenda">${NOS.map((n,i)=>`<span class="${i===ativo?"on":""}">${i+1} · ${n}</span>`).join("")}</div>`;
+}
+const S=[
+// 1
+{n:"Capa. Dê boas-vindas e diga o que vai acontecer: uma conversa sobre o terreno, sem pressa.",h:`<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3cqh"><span class="kicker">Zion Hotel Group International</span><h1>MÉTODO<br>ZION 360°</h1><p class="mut" style="max-width:55cqw">A ordem certa para transformar um terreno em um projeto que você consegue explicar, medir e apresentar.</p></div>`},
+// 2
+{n:"Autoridade da Zion. Dados vêm do site institucional; confirmar a data antes de cada apresentação.",h:`<span class="kicker">Quem somos</span><h2>A Zion nasceu de um terreno vazio.</h2><div class="grid" style="grid-template-columns:1.1fr 1fr 1fr"><div class="card"><h3>Urubici (SC) · desde 2020</h3><p class="mut">Primeira sede, num bosque de araucárias. O laboratório onde se definiram experiência, design e operação.</p></div><div class="card"><h3>Florianópolis (SC) · desde 2024</h3><p class="mut">Segunda sede, em Vargem Pequena, com conceito tropical e deck sobre pilares.</p></div><div class="card"><h3>+23 destinos em desenvolvimento</h3><p class="mut">Número informado no site institucional da Zion.</p></div></div><div class="fonte">Fonte: site institucional Zion (páginas Cases e Fundador). Validar números e data na apresentação.</div>`},
+// 3
+{n:"Bruno. Trajetória como consta no site. Sem acrescentar resultados.",h:`<div class="grid" style="grid-template-columns:34% 1fr;align-items:stretch"><div class="foto"><img src="${FD}retrato.webp" alt="Bruno Chaerk" style="object-position:top"></div><div style="display:flex;flex-direction:column;gap:2.2cqh;justify-content:center"><span class="kicker">Fundador</span><h2>Bruno Chaerk</h2><ul><li>Mais de 20 anos de hotelaria internacional (Meliá, Barceló, Wyndham)</li><li>Voltou ao Brasil e construiu a primeira Zion do zero</li><li>Fundador e CEO da Zion Hotel Group International</li><li>Idealizador do Método Zion 360 e do Destination Opening Framework™</li></ul></div></div><div class="fonte">Fonte: zion site, página do Fundador. Foto: acervo da Zion.</div>`},
+// 4
+{n:"Cases. Fotos reais da Zion Bubble Glamping. Sem pessoas apresentadas como clientes.",h:`<span class="kicker">Cases reais</span><h2>Dois pioneiros, um mesmo método.</h2><div class="grid" style="grid-template-columns:1fr 1fr 1fr"><div class="foto"><img src="${IMG}op04.webp" alt="Zion Bubble"><small>Zion Bubble Glamping · Urubici (SC)</small></div><div class="foto"><img src="${IMG}op08.webp" alt="Zion Bubble"><small>Zion Bubble Glamping · Florianópolis (SC)</small></div><div class="foto"><img src="${IMG}op10.webp" alt="Zion Bubble"><small>Registro de operação</small></div></div><div class="fonte">Fotos reais da Zion (docs/assets/operacoes). Não são fotos de clientes do Clube.</div>`},
+// 5
+{n:"Dados reais: só os que o site já publica. Marque a data da conferência. Nada de projeção.",h:`<span class="kicker">Dados reais</span><h2>O que cinco anos de operação já mostraram.</h2><div class="grid" style="grid-template-columns:repeat(4,1fr)"><div class="card"><b>Booking 9,8</b><p class="mut">nota exibida no site</p></div><div class="card"><b>Airbnb 5/5</b><p class="mut">Superhost, conforme o site</p></div><div class="card"><b>Expedia 10 · Google 4,7</b><p class="mut">notas exibidas no site</p></div><div class="card"><b>+260 mil</b><p class="mut">seguidores na comunidade Zion Bubble no Instagram</p></div></div><p class="mut">Chuva, vento, granizo e neve: quem ensina a ordem das coisas é quem já errou primeiro e opera todo dia.</p><div class="fonte">Fonte: site institucional Zion, página Cases. <span class="tag aval">Validar com prints e data antes de apresentar</span></div>`},
+// 6
+{n:"E: Espelhamento. Fale do dono do terreno com as palavras dele. Pergunte, deixe responder.",h:`${ECROI(0)}<span class="kicker">Espelhamento</span><h2>Você tem um terreno.<br>Você sente o potencial.</h2><p class="mut" style="max-width:60cqw">E toda vez que tenta começar, alguém diz uma coisa diferente: glamping, chalé, bolha, pousada. Parece que falta alguém que mostre a ordem.</p>`},
+// 7
+{n:"C: Confronto. As três perguntas que travam. Não responda ainda.",h:`${ECROI(1)}<span class="kicker">Confronto</span><h2>Três perguntas que travam qualquer projeto.</h2><div class="grid" style="grid-template-columns:repeat(3,1fr)"><div class="card"><h3>O que o terreno permite?</h3><p class="mut">Zoneamento, restrições ambientais, acessos. Só se confirma com consulta oficial.</p></div><div class="card"><h3>Quem pagaria por isso?</h3><p class="mut">Demanda, concorrência, sazonalidade e posicionamento.</p></div><div class="card"><h3>Quanto custa e como se sustenta?</h3><p class="mut">Investimento, operação e cenários, com premissas claras.</p></div></div>`},
+// 8
+{n:"R: Reconhecimento. Valide a dificuldade antes de apresentar o método. Sem promessa.",h:`${ECROI(2)}<span class="kicker">Reconhecimento</span><h2>Não é falta de vontade.<br>É falta de ordem.</h2><p class="mut" style="max-width:60cqw">Quem já abriu um empreendimento sabe: decidir fora de ordem custa tempo e dinheiro. O que falta, na maioria dos casos, é um caminho em etapas.</p>`},
+// 9
+{n:"O: Orientação. Marco Zero e sete pilares. Cada pilar gera uma página do dossiê.",h:`${ECROI(3)}<span class="kicker">Orientação</span><h2>Marco Zero e sete pilares.</h2><div class="grid" style="grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr"><div class="card" style="border-color:var(--ouro)"><b>Marco Zero</b><p class="mut">Onde você está e para onde quer ir.</p></div>${PIL.map(p=>`<div class="card"><b>${p[0]} · ${p[1]}</b></div>`).join("")}</div>`},
+// 10
+{n:"I: Implementação. A jornada acontece dentro do Clube, em até 12 meses de acesso. Quem faz é o proprietário, com orientação.",h:`${ECROI(4)}<span class="kicker">Implementação</span><h2>Como acontece, na prática.</h2><div class="grid" style="grid-template-columns:repeat(4,1fr)"><div class="card"><b>1 · Adesão</b><p class="mut">Você entra no Clube e recebe acesso por 12 meses.</p></div><div class="card"><b>2 · Diagnóstico inicial</b><p class="mut">Organizamos os dados do terreno e os documentos disponíveis.</p></div><div class="card"><b>3 · Jornada pelos 7 pilares</b><p class="mut">Metodologia, ferramentas e orientação, etapa por etapa.</p></div><div class="card"><b>4 · Dossiê e direcionamento</b><p class="mut">Um dossiê orientativo e um mapa de próximos passos.</p></div></div><div class="fonte">Fonte: artefato "Clube Zion Collection" (13/11).</div>`},
+// 11
+{n:"Jornada visual em 3D. Cena em CSS 3D (não há motor 3D no repositório). Clique para avançar cada ponto.",h:`<span class="kicker">Jornada visual</span><h2>Do terreno à viabilidade e às parcerias.</h2><div id="cena11" style="flex:1;display:flex;flex-direction:column;gap:1.5cqh;min-height:0">${cena(6)}</div>`},
+// 12
+{n:"O que acontece em cada ponto da jornada. Parcerias é o último degrau, depois de entender o terreno e os números.",h:`<span class="kicker">Jornada visual</span><h2>Cada ponto responde uma pergunta.</h2><div class="grid" style="grid-template-columns:1fr 1.2fr"><div id="cena12" class="peq" style="display:flex;flex-direction:column;gap:1.5cqh;min-height:0">${cena(2)}</div><div style="display:grid;gap:1.2cqh;align-content:start">${PIL.slice(0,6).map(p=>`<div class="card" style="padding:1.2cqh 1cqw"><b>${p[1]}</b></div>`).join("")}<p class="mut" style="font-size:2.1cqh">A parceria é uma das alternativas do pilar 6. Não é promessa nem ponto de partida.</p></div></div>`},
+// 13
+{n:"Troféu aspiracional: o dossiê é a diferença entre 'tenho um terreno bonito' e apresentar uma oportunidade estruturada. Não promete que alguém vai investir.",h:`<span class="kicker">O troféu</span><h2>Seu dossiê, organizado.</h2><div class="grid" style="grid-template-columns:1fr 1fr"><div class="card"><h3>Em vez de dizer</h3><p class="mut">“Tenho um terreno bonito.”</p></div><div class="card" style="border-color:var(--ouro)"><h3 class="ouro">Você apresenta</h3><ul><li>Diagnóstico e pendências</li><li>Mercado e conceito</li><li>Masterplan e CAPEX</li><li>Cenários e modelo operacional</li><li>Possibilidades de capital</li><li>Riscos e próximos passos</li></ul></div></div><div class="fonte">Dossiê orientativo, montado com as informações que o proprietário levantar. Não é laudo nem promessa de captação.</div>`},
+// 14
+{n:"Sete conquistas, 20 entregáveis. Distribuição derivada do artefato Clube Zion Collection. Conferir com a lista aprovada por Bruno.",h:`<span class="kicker">Sete conquistas · 20 entregáveis</span><h2>O que você leva em cada pilar.</h2><div class="grid" style="grid-template-columns:repeat(4,1fr);grid-auto-rows:1fr;gap:1.2cqw">${PIL.map(p=>`<div class="card" style="padding:1.4cqh 1cqw"><b style="font-size:2.2cqh">${p[0]} · ${p[1]} (${p[2].length})</b><ul style="margin-top:.8cqh;gap:.4cqh">${p[2].map(x=>`<li style="font-size:1.85cqh;line-height:1.25">${x}</li>`).join("")}</ul></div>`).join("")}<div class="card" style="display:flex;align-items:center;justify-content:center;border-color:var(--ouro)"><b style="font-size:5cqh" id="tot">20</b></div></div><div class="fonte"><span class="tag aval">A confirmar: lista oficial dos 20 entregáveis</span> Fonte: artefato "Clube Zion Collection" (13/11).</div>`},
+// 15
+{n:"Cenário hipotético. Nada aqui é presumido: zoneamento, APP, licenças, implantação, custo e crédito ficam em aberto.",h:`<span class="kicker">Cenário hipotético · dados fictícios</span><h2>Um terreno de 10.000 m².</h2><div class="grid" style="grid-template-columns:1fr 1fr"><div class="card"><h3>O exemplo</h3><ul><li>Terreno: 10.000 m²</li><li>Município brasileiro: não especificado</li><li>Seis suítes Premium de 45 m²</li><li>6 × 45 m² = <b class="ouro">270 m²</b> apenas das suítes</li></ul></div><div class="card aval"><h3>Não presumimos</h3><ul><li>Zoneamento e uso do solo</li><li>APP e restrições ambientais</li><li>Licenças e implantação permitida</li><li>Custo da obra</li><li>Disponibilidade de crédito</li></ul></div></div><div class="fonte">Os 270 m² somam só as suítes. Não incluem áreas comuns, acessos nem infraestrutura, e não indicam o que a legislação permite.</div>`},
+// 16
+{n:"Faixas públicas de custo. Esta tela só entra com fonte, data, escopo e comparabilidade preenchidos. Não somar serviços sobrepostos.",h:`<span class="kicker">Referências públicas · a validar</span><h2>Quanto custam serviços profissionais comparáveis.</h2><table><tr><th>Serviço comparável</th><th>Faixa pública</th><th>Fonte</th><th>Data</th><th>Escopo</th><th>Comparável?</th></tr>${["Levantamento topográfico","Estudo de mercado / viabilidade","Estudo preliminar de arquitetura e masterplan","Estimativa preliminar de CAPEX","Modelagem econômico-financeira","Consulta e due diligence fundiária"].map(x=>`<tr><td>${x}</td><td class="v">a validar</td><td class="v">a validar</td><td class="v">a validar</td><td class="v">a validar</td><td class="v">a validar</td></tr>`).join("")}</table><p class="mut" style="font-size:2.1cqh">Regras: não somar serviços sobrepostos; não confundir projeto executivo com entregável orientativo; o CAPEX da obra não é o preço dos estudos.</p>`},
+// 17
+{n:"Limites claros antes do preço. O Clube não é taxa de candidatura a investimento.",h:`<span class="kicker">Transparência</span><h2>O que o Clube é, e o que não é.</h2><div class="grid" style="grid-template-columns:1fr 1fr"><div class="card"><h3 class="ouro">É</h3><ul><li>Método, ferramentas e orientação para estruturar o seu terreno</li><li>Acesso por 12 meses</li><li>Um dossiê orientativo ao final</li></ul></div><div class="card"><h3 class="ouro">Não é</h3><ul><li>Taxa para candidatura a investimento</li><li>Obras, licenças ou projetos executivos</li><li>Garantia de parceria, crédito, captação ou resultado</li></ul></div></div>`},
+// 18
+{n:"Oferta. R$ 970 por 12 meses de acesso. Parcelamento: confirmar as condições no checkout antes de falar de parcela. Apresentar só após Bruno aprovar a narrativa.",h:`<span class="kicker">Oferta</span><h2>Clube Zion Collection</h2><div class="grid" style="grid-template-columns:1fr 1fr;align-items:center"><div class="card" style="text-align:center;border-color:var(--ouro);padding:5cqh 2cqw"><div style="font-family:Cormorant,serif;font-size:11cqh;color:var(--ouro);line-height:1">R$ 970</div><p class="mut">12 meses de acesso</p><p class="mut" style="font-size:1.9cqh">Condições de pagamento: conforme a página de pagamento.</p></div><ul><li>Método Zion 360°: Marco Zero e 7 pilares</li><li>Ferramentas e orientação da equipe</li><li>Dossiê orientativo</li></ul></div><div class="fonte"><span class="tag aval">R$ 970 só aparece após a aprovação da narrativa por Bruno</span></div>`},
+// 19
+{n:"Zion é a primeira possível parceira, nunca investimento garantido. Sem prometer sociedade.",h:`<span class="kicker">Próximo passo</span><h2>A Zion pode ser a primeira possível parceira.</h2><p class="mut" style="max-width:62cqw">Depois do seu dossiê, a Zion avalia cada caso. Pode haver conversa de parceria, ou não. Não há garantia de investimento, de sociedade ou de crédito, e a decisão depende de documentos, viabilidade e análise jurídica.</p>`},
+// 20
+{n:"Fechamento. Uma pergunta, uma ação.",h:`<div style="flex:1;display:flex;flex-direction:column;justify-content:center;gap:3cqh"><span class="kicker">MÉTODO ZION 360°</span><h1>Comece pela ordem certa.</h1><p class="mut" style="max-width:55cqw">Vamos montar o seu dossiê, passo a passo?</p></div><div class="fonte">Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, ocupação, crédito ou sociedade.</div>`}
+];
+const root=document.getElementById("slides");
+S.forEach((s,i)=>{const d=document.createElement("section");d.className="slide";d.dataset.i=i+1;d.innerHTML=s.h;root.appendChild(d)});
+let cur=0,notas=false;
+function go(i){cur=Math.max(0,Math.min(S.length-1,i));[...root.children].forEach((e,k)=>e.classList.toggle("on",k===cur));
+ document.getElementById("cont").textContent=(cur+1)+" / "+S.length;
+ document.getElementById("bar").style.width=((cur+1)/S.length*100)+"%";
+ document.getElementById("notas").textContent=S[cur].n;history.replaceState(null,"","#"+(cur+1))}
+document.getElementById("prev").onclick=()=>go(cur-1);document.getElementById("next").onclick=()=>go(cur+1);
+addEventListener("keydown",e=>{if(["ArrowRight"," ","PageDown"].includes(e.key))go(cur+1);else if(["ArrowLeft","PageUp"].includes(e.key))go(cur-1);else if(e.key==="n"||e.key==="N")document.getElementById("notas").classList.toggle("on")});
+let tx=null;addEventListener("touchstart",e=>tx=e.touches[0].clientX);addEventListener("touchend",e=>{if(tx===null)return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>50)go(cur+(d<0?1:-1));tx=null});
+// slide 11: clicar avança o ponto da cena; slide 12: idem
+let p11=6;document.getElementById("cena11").addEventListener("click",e=>{e.stopPropagation();p11=(p11+1)%7;document.getElementById("cena11").innerHTML=cena(p11)});
+let p12=2;document.getElementById("cena12").addEventListener("click",e=>{e.stopPropagation();p12=(p12+1)%7;document.getElementById("cena12").innerHTML=cena(p12)});
+document.getElementById("tot").textContent=PIL.reduce((a,p)=>a+p[2].length,0)+" entregáveis";
+go((parseInt(location.hash.slice(1))||1)-1);
+</script>
+</body>
+</html>

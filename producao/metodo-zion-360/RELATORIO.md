@@ -1,0 +1,18 @@
+# MÉTODO ZION 360° · deck de 20 slides (rascunho local)
+
+Construído em 16/11/2026 a partir dos artefatos "ZION 360" e "Clube Zion Collection" e do site institucional. Nada publicado, nada enviado, nenhum sistema existente alterado. Abrir: `apresentacao/index.html` (setas ou toque; N mostra as notas do apresentador).
+
+## Ordem
+1 Capa · 2 Zion · 3 Bruno · 4 Cases (fotos reais) · 5 Dados reais · 6–10 ECROI (espelhamento, confronto, reconhecimento, orientação, implementação) · 11–12 jornada 3D · 13 troféu + dossiê · 14 sete conquistas / 20 entregáveis · 15 cenário hipotético · 16 faixas públicas de custo · 17 o que o Clube é e não é · 18 oferta · 19 próximo passo · 20 fechamento.
+
+## Testes (`tests/test_deck.js`, Playwright, executado)
+20 slides; contador e navegação em desktop e celular; cena 3D reage ao clique; slide 14 soma 20; sem erro de página ou recurso; sem "ZAI 360", "155.000", "69%" ou "49.000". Capturas em `tests/shots/`.
+Aviso conhecido: no celular em pé, slides 9, 10 e 12 têm elementos além da borda (deck é 16:9, pensado para tela cheia ou projeção).
+
+## O que NÃO é verdade ainda (para Bruno decidir)
+1. **3D:** não existe motor 3D no repositório, no Lovable nem nos artefatos. A jornada é uma cena em CSS 3D (isométrica, 7 pontos). Se existir outro sistema 3D, preciso do acesso.
+2. **Slide 14:** a lista aprovada dos 20 entregáveis não foi encontrada. Montei 20 (3+3+3+3+3+3+2) a partir do campo "no Clube" de cada pilar do artefato. Marcado "A confirmar".
+3. **Slide 16:** sem números. Tabela com fonte, data, escopo e comparabilidade "a validar". Nenhuma faixa de preço foi inventada. O empilhamento de R$ 49.000 / R$ 155.000 / 69% dos artefatos foi removido (sem fonte).
+4. **Slide 18:** mostra R$ 970 por 12 meses de acesso, sem parcela. O artefato diz 12x de R$ 80,83; o repositório registra dúvida (10x ou 12x) e primeiro pagamento real não verificado. Pela decisão de 11/11, só apresentar após Bruno aprovar a narrativa.
+5. **Slides 2 e 5:** números (+23 destinos, notas Booking/Airbnb/Expedia/Google, 260 mil seguidores) vêm do site. Conferir data antes de usar.
+6. **Escopo do pilar 6:** parceria aparece só como alternativa, "Zion pode ser a primeira possível parceira", sem garantia. Revisão jurídica (CVM/LGPD) antes de usar com leads.
