@@ -1,11 +1,11 @@
 const {chromium}=require('playwright');const path=require('path');
 const R=path.resolve(__dirname,'../../../docs');
-const foto=n=>'file://'+R+'/lancamento/img/resultados/'+n;
+const foto=n=>n.startsWith('IMG')?'file://'+path.resolve(__dirname,'../fotos/'+n):'file://'+R+'/lancamento/img/resultados/'+n;
 const font='file://'+R+'/assets/fonts/';
 const ADS=[
- {id:'01-formato',img:'floripa-bolhas-deck.jpg',pos:'center 40%',k:'À venda · Florianópolis (SC)',h:'Operação de glamping à venda em Florianópolis',s:'3 cabanas em operação · mobiliário · a operação inteira'},
- {id:'02-comprador',img:'floripa-aerea-pronta.jpg',pos:'center 50%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'À venda por R$ 1,5 milhão · condições negociáveis'},
- {id:'03-transparencia',img:'floripa-deck-piscina-pronto.jpg',pos:'center 45%',k:'Transpasso',h:'Transpasso de operação, não venda de imóvel.',s:'Terreno arrendado · 3 cabanas e mobiliário'}
+ {id:'01-formato',img:'IMG_1914.jpg',pos:'center 45%',k:'À venda · Florianópolis (SC)',h:'Operação de glamping à venda em Florianópolis',s:'3 cabanas em operação · mobiliário · a operação inteira'},
+ {id:'02-comprador',img:'IMG_1908.jpg',pos:'center 40%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'À venda por R$ 1,5 milhão · condições negociáveis'},
+ {id:'03-transparencia',img:'IMG_1916.jpg',pos:'center 50%',k:'Transpasso',h:'Transpasso de operação, não venda de imóvel.',s:'Terreno arrendado · 3 cabanas e mobiliário'}
 ];
 const html=a=>`<!doctype html><meta charset=utf-8><style>
 @font-face{font-family:C;src:url(${font}cormorant.woff2);font-weight:300 700}

@@ -1,6 +1,6 @@
 const {chromium}=require('playwright');const path=require('path');const fs=require('fs');
 const R=path.resolve(__dirname,'../../../docs');
-const foto=n=>'file://'+R+'/lancamento/img/resultados/'+n;
+const foto=n=>n.startsWith('IMG')?'file://'+path.resolve(__dirname,'../fotos/'+n):'file://'+R+'/lancamento/img/resultados/'+n;
 const font='file://'+R+'/assets/fonts/';
 const base=`@font-face{font-family:C;src:url(${font}cormorant.woff2);font-weight:300 700}
 @font-face{font-family:A;src:url(${font}aventa.woff2);font-weight:300 700}
@@ -19,7 +19,7 @@ const strip=(n)=>`<div style="position:absolute;left:64px;right:64px;bottom:110p
 const foot=(r)=>`<div class=f><span>ZION HOTEL GROUP INTERNATIONAL</span><span>${r||'Fotos reais'}</span></div>`;
 const S=1080;
 const CARDS=[
- {id:'c1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('floripa-bolhas-deck.jpg')});background-position:center 35%}
+ {id:'c1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_1914.jpg')});background-position:center 40%}
  .sh{position:absolute;inset:0;background:linear-gradient(transparent 20%,rgba(4,6,5,.92) 62%,#040605)}
  .t{position:absolute;left:64px;right:64px;bottom:130px}h1{font-size:98px;margin:16px 0 22px}.s{font-size:36px;color:#DED6BF;line-height:1.3}</style>
  <div class=bg></div><div class=sh></div><div class=n>1/6</div>
@@ -28,13 +28,13 @@ const CARDS=[
  <div class=n>2/6</div><div class=t><div class=k>O que está à venda</div><h1>Você leva a operação inteira</h1>
  <div class=li><div class="ic ok">✓</div><div><b>3 cabanas em operação</b><span>Ativas e recebendo hóspedes hoje</span></div></div>
  <div class=li><div class="ic ok">✓</div><div><b>Todo o mobiliário</b><span>Dos 3 glampings, como estão operando</span></div></div>
- <div class=li><div class="ic ok">✓</div><div><b>O transpasso da operação</b><span>Você assume o negócio que já funciona</span></div></div></div>${strip('floripa-banheira-vista-piscina.jpg')}${foot('Venda do negócio')}`},
+ <div class=li><div class="ic ok">✓</div><div><b>O transpasso da operação</b><span>Você assume o negócio que já funciona</span></div></div></div>${strip('IMG_1907.jpg')}${foot('Venda do negócio')}`},
  {id:'c3',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#040605}.t{position:absolute;left:64px;right:64px;top:100px}h1{font-size:76px;margin:14px 0 38px}</style>
  <div class=n>3/6</div><div class=t><div class=k>O que NÃO está na venda</div><h1>Fica claro desde o início</h1>
  <div class=li><div class="ic no">✕</div><div><b>O terreno</b><span>É arrendado. Você não compra o imóvel.</span></div></div>
  <div class=li><div class="ic no">✕</div><div><b>Venda de imóvel</b><span>É transpasso de operação, não escritura</span></div></div>
- <div class=li><div class="ic no">✕</div><div><b>A expansão para mais 3 cabanas</b><span>É uma possibilidade, sujeita à autorização do proprietário e às licenças</span></div></div></div>${strip('floripa-deck-piscina-pronto.jpg')}${foot('Sem letra miúda')}`},
- {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('floripa-interior-quarto.jpg')});background-position:center}
+ <div class=li><div class="ic no">✕</div><div><b>A expansão para mais 3 cabanas</b><span>É uma possibilidade, sujeita à autorização do proprietário e às licenças</span></div></div></div>${strip('IMG_1916.jpg')}${foot('Sem letra miúda')}`},
+ {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_1908.jpg')});background-position:center}
  .sh{position:absolute;inset:0;background:linear-gradient(transparent 45%,rgba(4,6,5,.92) 78%,#040605)}.t{position:absolute;left:64px;right:64px;bottom:120px}h1{font-size:78px;margin:12px 0 14px}.s{font-size:34px;color:#DED6BF;line-height:1.3}</style>
  <div class=bg></div><div class=sh></div><div class=n>4/6</div>
  <div class=t><div class=k>Operação ativa</div><h1>Hospedagem funcionando, não um projeto no papel</h1><div class=s>Fotos reais da operação em Florianópolis.</div></div>${foot()}`},
@@ -46,14 +46,14 @@ const CARDS=[
  <div class=p><i>3</i><div>Termo de confidencialidade<span>Antes de abrir os dados</span></div></div>
  <div class=p><i>4</i><div>Dados da operação<span>Com documentos</span></div></div>
  <div class=p><i>5</i><div>Visita<span>Conhecer de perto</span></div></div></div>${foot('Processo reservado')}`},
- {id:'c6',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('floripa-deck-piscina-pronto.jpg')});background-position:center 60%}
+ {id:'c6',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_8101.jpg')});background-position:center 45%}
  .sh{position:absolute;inset:0;background:linear-gradient(rgba(4,6,5,.35),rgba(4,6,5,.9) 55%,#040605)}.t{position:absolute;left:64px;right:64px;top:150px}h1{font-size:92px;margin:16px 0 26px}
  .pr{font-family:C;font-size:110px;color:#C9B37E;line-height:1}.s{font-size:34px;color:#DED6BF;margin-top:14px}
  .b{display:inline-block;margin-top:44px;padding:26px 52px;background:#C9B37E;color:#040605;border-radius:60px;font-size:36px;font-weight:700}</style>
  <div class=bg></div><div class=sh></div><div class=n>6/6</div>
  <div class=t><div class=k>Quer saber mais?</div><h1>Receba as condições</h1><div class=pr>R$ 1,5 milhão</div><div class=s>Condições negociáveis na conversa.</div><div class=b>Faça a triagem e saiba mais</div></div>${foot()}`}
 ];
-const ESTATICO={id:'estatico-4x5',w:1080,h:1350,html:`<style>${base}body{width:1080px;height:1350px}.bg{background-image:url(${foto('floripa-aerea-pronta.jpg')});background-position:center;height:560px;position:absolute;left:0;right:0;top:0}
+const ESTATICO={id:'estatico-4x5',w:1080,h:1350,html:`<style>${base}body{width:1080px;height:1350px}.bg{background-image:url(${foto('IMG_1908.jpg')});background-position:center;height:560px;position:absolute;left:0;right:0;top:0}
  .sh{position:absolute;left:0;right:0;top:300px;height:260px;background:linear-gradient(transparent,#040605)}.t{position:absolute;left:64px;right:64px;top:520px}
  h1{font-size:80px;margin:10px 0 24px}.c{display:flex;gap:30px}.col{flex:1;border:2px solid rgba(201,179,126,.5);border-radius:20px;padding:26px 28px}
  .col h3{font-family:C;font-size:42px;color:#C9B37E;margin-bottom:14px}.col div{font-size:29px;line-height:1.35;margin:8px 0;color:#FEF5F0}.col.n2 h3{color:#e6c9a0}
