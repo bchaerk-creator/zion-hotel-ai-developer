@@ -17,7 +17,7 @@ const {chromium}=require('playwright');const path=require('path');const fs=requi
   chk((await p.locator('#cont').innerText())==='19 / 19',nome+': não passa do último slide');
   const txt=await p.evaluate(()=>document.body.innerText);
   if(nome==='desktop'){
-   for(const bad of [/ZAI 360/i,/Quanto custam serviços/,/garantid[ao]/i,/155\.000/,/69%/,/49\.000/]) {
+   for(const bad of [/\+23 destinos/,/260 mil/,/Booking 9,8/,/ZAI 360/i,/Quanto custam serviços/,/garantid[ao]/i,/155\.000/,/69%/,/49\.000/]) {
      const m=txt.match(bad); chk(!m||(bad.source==='garantid[ao]/i'), 'texto sem '+bad);
    }
   }
