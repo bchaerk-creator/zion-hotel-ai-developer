@@ -51,3 +51,25 @@ Pesquisa e preenchimento: pessoa indicada por Bruno (ou uma sessão de pesquisa 
 1. Quem pesquisa e quem confere?
 2. Estado ou região de referência: Santa Catarina (onde a Zion opera) ou faixa nacional?
 3. Quantas linhas manter no slide, se algumas ficarem sem fonte comparável?
+
+## 7. Decisões de Bruno (16/11/2026)
+- Referência: **Santa Catarina**.
+- Linha sem fonte comparável **sai do slide**. Se nenhuma linha tiver fonte, o slide 16 sai do deck (a ordem dos 20 slides só muda com nova autorização).
+
+## 8. Resultado da 1ª rodada (16/11/2026): nenhuma faixa qualificada ainda
+Busca na web feita; as páginas das entidades **não puderam ser abertas** (a rede da sessão bloqueou `portal.crea-sc.org.br` e `honorario.caubr.gov.br`). Nenhum valor foi tirado de memória. Estado das seis linhas:
+
+| # | Serviço | Estado | O que a busca indicou (a verificar abrindo a fonte) |
+|---|---|---|---|
+| 1 | Levantamento topográfico | sem faixa qualificada | O CREA-SC tem uma página "Tabelas de Honorários registradas" (IBAPE, ACEST, AEAO, SENGE). Não vi se alguma cobre topografia. Um orçamento de contrato em Goiás (2021) citou R$ 0,43 a R$ 0,49 por m² no levantamento planialtimétrico: é de outro estado e de um contrato específico, **não serve** para o slide |
+| 2 | Estudo de mercado / viabilidade | sem faixa qualificada | Nenhum edital catarinense com preço de referência foi achado. Pistas: Portal de Compras SC, Compras.gov.br, chamamento de Itapema (estudos em cadernos) |
+| 3 | Estudo preliminar de arquitetura | sem faixa qualificada | A Tabela de Honorários do CAU/BR existe (Resoluções 64/2013 e 76/2014, segundo um documento do TRT-3), mas é **fórmula** (área, valor-base por m², fator), não faixa em R$. Para virar faixa seria preciso aplicar a fórmula a um caso, o que é cálculo nosso e não fonte pública pronta |
+| 4 | Estimativa preliminar de CAPEX | sem faixa qualificada | Nada localizado |
+| 5 | Modelagem econômico-financeira | sem faixa qualificada | Nada localizado |
+| 6 | Consulta e due diligence fundiária | sem faixa qualificada | A tabela da OAB/SC existe (TJ-SC já a aplicou em 2022; uma página não oficial cita versão de 2025). Não achei item de due diligence imobiliária com valor. Tabelas de outros estados não valem para SC |
+
+## 9. Próximos passos possíveis
+1. Liberar a rede da sessão para `portal.crea-sc.org.br` e `honorario.caubr.gov.br` (e o site da OAB/SC e do CAU/SC) e refazer a leitura; ou
+2. Bruno (ou quem ele indicar) baixa os PDFs (tabelas registradas no CREA-SC, Tabela CAU/BR, tabela OAB/SC) e coloca em `producao/metodo-zion-360/fontes/`; eu extraio as faixas com os cinco campos; ou
+3. Aceitar que o slide 16 sai do deck por falta de fonte (regra acordada).
+Em qualquer caso, a conferência por uma segunda pessoa continua obrigatória.
