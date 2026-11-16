@@ -13,6 +13,6 @@ Aviso conhecido: no celular em pé, slides 9, 10 e 12 têm elementos além da bo
 1. **3D:** não existe motor 3D no repositório, no Lovable nem nos artefatos. A jornada é uma cena em CSS 3D (isométrica, 7 pontos). Se existir outro sistema 3D, preciso do acesso.
 2. **Slide 14:** resolvido. Bruno validou em 16/11/2026 a lista de 20 entregáveis (3+3+3+3+3+3+2) derivada do campo "no Clube" de cada pilar do artefato.
 3. **Faixas de custo:** slide removido (decisão de Bruno, 16/11/2026). Valores só voltam com fonte, data, escopo e comparabilidade, conferidos por Bruno.
-4. **Slide 17 (oferta):** mostra R$ 970 por 12 meses de acesso, sem parcela. O artefato diz 12x de R$ 80,83; o repositório registra dúvida (10x ou 12x) e primeiro pagamento real não verificado. Pela decisão de 11/11, só apresentar após Bruno aprovar a narrativa.
+4. **Slide 17 (oferta):** resolvido em 16/11/2026. Bruno aprovou a narrativa e o parcelamento em 12x. O slide mostra 12x de R$ 80,83, valor total R$ 970 e 12 meses de acesso (970 ÷ 12 = 80,83 arredondado), sem dizer "sem juros". A decisão de 11/11 de não mostrar o R$ 970 em páginas, anúncios e mensagens fica suspensa só para este deck; para página, anúncio e mensagem vale a aprovação específica de cada peça.
 5. **Slides 2 e 5:** números (+23 destinos, notas Booking/Airbnb/Expedia/Google, 260 mil seguidores) vêm do site. Conferir data antes de usar.
 6. **Escopo do pilar 6:** parceria aparece só como alternativa, "Zion pode ser a primeira possível parceira", sem garantia. Revisão jurídica (CVM/LGPD) antes de usar com leads.

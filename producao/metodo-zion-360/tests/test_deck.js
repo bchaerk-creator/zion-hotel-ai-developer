@@ -25,6 +25,7 @@ const {chromium}=require('playwright');const path=require('path');const fs=requi
  const p=await b.newPage({viewport:{width:1600,height:900}});await p.goto(f+'#11');await p.waitForTimeout(300);
  const antes=await p.locator('#cena11 .no.on').count();await p.locator('#cena11').click();const dep=await p.locator('#cena11 .no.on').count();
  chk(antes===7&&dep===1,'cena 3D reage ao clique ('+antes+'→'+dep+' pontos acesos)');
+ await p.goto(f+'#14');await p.evaluate(()=>go(16));await p.waitForTimeout(700);{const tx=await p.locator('.slide.on').innerText();chk(/12x de/.test(tx)&&/R\$ 80,83/.test(tx)&&/R\$ 970/.test(tx)&&!/sem juros/i.test(tx),'slide 17: 12x de R$ 80,83, total R$ 970, sem "sem juros"')}
  await p.goto(f+'#14');chk((await p.locator('#tot').innerText()).startsWith('20'),'slide 14 soma 20 entregáveis');
  chk(errs.length===0,'sem erros de página/recursos'+(errs.length?': '+errs.slice(0,3).join(' | '):''));
  await b.close();process.exit(ok?0:1)})();
