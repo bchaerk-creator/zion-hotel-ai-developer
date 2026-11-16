@@ -13,3 +13,10 @@ Virada diária (primeira rodada depois das 0h, na rotina horária `trig_01Uydzp4
 Meta (conta Zion Collection 2): campanha `[LAND BANK][LEADS][FORM CLUBE → WHATSAPP] [16/11]` `120250421516840016` e conjunto `120250421538380016` ATIVADOS em 16/11 com "aprovado" de Bruno. O conjunto está sem anúncios: Bruno coloca os anúncios (Campeão Vídeo Investidores, Carrossel v3 Fotos novas, Carrossel terrenos) com o formulário "Land Bank | Diagnóstico do terreno-copy" `980880014665552`. Sem anúncio, não há gasto.
 
 Pendente de decisão: base antiga (1.657) virar listas de disparo e arquivar o funil; ordem das ondas; e-mail de 286 de hoje; modelo de WhatsApp com a foto da bolha; ligar as respostas do formulário novo às tags.
+
+## Atualização 16/11 (noite) · base antiga e disparo (aprovado por Bruno)
+- 5 listas de disparo criadas a partir das etapas da Base antiga (os mesmos contatos, nada alterado nos cartões): P1 Operadores 589 `f983157e-77db-4c59-902d-9612d0ac1d21`; P2 Terreno + capital 99 `148c1531-5d14-438c-a191-f67ca8cf1cfb`; P3 Terreno e interessados 217 `861c90d7-d10f-4485-ba9c-c0ccea8e1901`; P4 Triagem 562 `f52e88eb-bde9-476a-a74d-1af398712b3f`; Corretores 190 `3ea288cc-7cfd-4cfd-bc9d-b57849a90443`. Total 1.657.
+- Funil "Base antiga · Reativação → Reunião" `4c0b85a6…` ARQUIVADO (nada apagado).
+- Ordem das ondas aprovada: teste (Bruno + ~20) → P1 → P2 → P3 → P4 → Corretores. Cada onda só sobe sem bloqueios nem queda de qualidade do número (limite de 2.000 contatos por 24h).
+- E-mails de 16/11 (286, `d210b510…`) e 17-18/11 (547, `525e05bc…`) seguem como RASCUNHO, sem agendamento (WhatsApp tem prioridade; não mandar os dois à mesma pessoa no mesmo dia).
+- Modelo de WhatsApp candidato, aprovado e com a foto real da bolha no cabeçalho: `zion_sessao_bolha` (dacf64ab-07a6-49b9-bd15-ad13328c47ab; botões Marcar minha sessão / Conhecer produtos / Não quero receber). Nenhum disparo feito; envio só com "aprovado" por lote.
