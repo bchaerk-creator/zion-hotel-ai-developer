@@ -55,3 +55,14 @@
   - B10 "Como Apresentar o Projeto da Sua Terra com Clareza?"
 - **Auditoria financeira de B06, B08 e A09:** `docs/academy/comando-05b/`, divergências D1–D14 de premissa e rótulo.
 - **Até o "aprovado" de cada correção** (virão uma por vez): não alterar fórmulas, páginas, nomes nem criativos.
+
+## 16/11/2026 · ofertas enviadas para aprovação
+- `sellers_status`: vendedor ainda `pending`, mas `canSell: true`. `offers_get_incomplete_reason` voltou vazio.
+- Pela autorização permanente do CLAUDE.md, enviei para aprovação 11 ofertas: A02, A03, A04, A05, A06, A07, A08, A10, B03, B07 e B09. Status: `pending` (moderação ClickMax).
+- **Não enviadas:**
+  - A01: oferta antiga, depende de aprovado.
+  - A09 e B06: correções da auditoria 05B pendentes.
+  - B01, B02, B04, B05, B08 e B10: uso interno, Comando 05B.
+- Todas as ofertas mostram `providerSyncError: "Não autorizado. Token inválido ou ausente."` (sincronização com o gateway Ticto), que pode travar a ativação.
+- Landings /zar-* seguem em rascunho: publicar cada uma só quando a oferta ficar `active`.
+- Transações: zero.
