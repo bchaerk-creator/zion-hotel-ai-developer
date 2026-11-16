@@ -1,6 +1,6 @@
 # Ferramenta 22 · Planner de Campanhas para Períodos de Baixa Procura
 
-Status: arquivos prontos e testados; **oferta enviada para aprovação em 15/11/2026** (rodada diária automática). Página em rascunho; será publicada quando a oferta estiver ativa.
+Status: arquivos prontos e testados; **oferta enviada para aprovação em 15/11/2026** (rodada diária automática). **Oferta aprovada e página publicada em 16/11/2026.**
 
 **ClickMax:** produto `e9a5c19f-134e-495c-84f9-6bb5bbf7caf5`; oferta `b34854f5-1848-4596-ac9c-e592090db377` (R$ 19, checkout `DVd1Z5pOef`, status `pending` desde 15/11 04h53 UTC, sem erro de sincronização); página `e23ecfe2-8ea0-4120-9232-8491fa061b86` em `/campanhas-baixa-procura` (rascunho). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/campanhas-22/`, ligados à oferta.
 
@@ -61,3 +61,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 
 ## Envio para aprovação
 15/11/2026 (rodada diária): 4 arquivos e página de acesso conferidos no ar (status 200) e ligados à oferta; `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`, sem erro de sincronização.
+
+## Publicação (16/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada; 404 no primeiro minuto e meio (propagação), depois status 200 com título, reembolso e capa: https://infoprodutos-zion.clickmax.space/campanhas-baixa-procura. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.

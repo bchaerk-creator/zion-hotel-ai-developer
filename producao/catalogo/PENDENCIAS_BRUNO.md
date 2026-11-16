@@ -28,6 +28,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 19 | `docs/p/adbc67069af26ae0/compras-19/capa.jpg` |
 | Ferramenta 12 | `docs/p/adbc67069af26ae0/fotos-12/capa.jpg` |
 | Ferramenta 22 | `docs/p/adbc67069af26ae0/campanhas-22/capa.jpg` |
+| Ferramenta 23 | `docs/p/adbc67069af26ae0/roteiros-23/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -61,6 +62,12 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
+
+## Rodada de 16/11
+- 22 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/campanhas-baixa-procura`).
+- 18 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 29 com o mesmo erro nas conferências de 13 a 15/11). Páginas seguem seguradas.
+- 23 criada e enviada para aprovação.
+- Em 15/11 o painel do ClickMax mostrava 0 visitas nas páginas das ferramentas e nenhuma venda delas (a única venda de novembro no projeto foi a entrada do Clube, R$ 97): falta tráfego, que depende de Bruno (orçamento e conta de anúncio, ou envio para a base).
 ## Decidir (09/11)
 - **Ferramentas 01 e 21 do catálogo:** com as promessas sem duplicação (Comando 05A/05B), a 01 (ficha de apresentação do terreno) se sobrepõe a B05, B10 e ao Dossiê do Land Bank, e a 21 (mensagens de reservas) à A07. Seguir, mudar a promessa ou tirar do catálogo? Até a decisão, a rodada diária segue com 20, 15, 19.
 - **E-book E08 (Gestão e operação):** sobrepõe-se à Jornada 2 (Gestão) da Fábrica Educacional. Seguir como e-book separado, virar material da Jornada 2 ou sair do catálogo? A rodada diária pulou o E08 em 11/11.
