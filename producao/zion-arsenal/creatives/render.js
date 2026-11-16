@@ -5,17 +5,17 @@ const REPO = '/home/user/zion-hotel-ai-developer/docs';
 const esc = s => String(s == null ? '' : s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const ttl = t => esc(t).replace(/\*(.+?)\*/g, '<em>$1</em>');
 const csv = v => '"' + String(v == null ? '' : v).replace(/"/g, '""') + '"';
-function art(c, assets) {
+function art(c, assets, price, brand) {
   const L = c.layout || 'text';
   const shot = c.shot ? `<img class="shot" src="${assets}/tela-${c.shot}.png">` : '';
   const list = (c.list || []).map((t, k) => `<li><b>${c.listMark === 'x' ? '✕' : c.listMark === 'check' ? '✓' : String(k + 1).padStart(2, '0')}</b><span>${esc(t)}</span></li>`).join('');
   const cmp = c.compare ? `<div class="cmp"><div class="c bad"><h4>${esc(c.compare[0].h)}</h4>${c.compare[0].items.map(i => `<p>✕ ${esc(i)}</p>`).join('')}</div><div class="c good"><h4>${esc(c.compare[1].h)}</h4>${c.compare[1].items.map(i => `<p>✓ ${esc(i)}</p>`).join('')}</div></div>` : '';
   return `<div class="cr L-${L}${c.photo ? ' ph' : ''}">${c.photo ? `<div class="bg" style="background-image:url(${REPO}/assets/operacoes/${c.photo}.webp)"></div><div class="veil"></div>` : ''}
-<div class="top"><img src="${REPO}/brand/zion-logo-claro.png" class="logo"><span>Zion Collection Club</span></div>
+<div class="top"><img src="${REPO}/brand/zion-logo-claro.png" class="logo"><span>${esc(brand)}</span></div>
 ${L === 'shot-right' || L === 'shot-top' ? `<div class="shots">${shot}</div>` : ''}
 <div class="txt"><div class="k">${esc(c.kicker)}</div>${c.big ? `<div class="big">${esc(c.big)}</div>` : ''}<h1>${ttl(c.title)}</h1>${c.text ? `<p class="t">${esc(c.text)}</p>` : ''}${list ? `<ol>${list}</ol>` : ''}${cmp}</div>
 ${c.caption ? `<div class="cap">${esc(c.caption)}</div>` : ''}
-<div class="bar"><span class="pill">${esc(c.button || 'Saiba mais')}</span><span class="price">R$ 27 · pagamento único</span></div>
+<div class="bar"><span class="pill">${esc(c.button || 'Saiba mais')}</span><span class="price">${esc(price)} · pagamento único</span></div>
 ${c.note ? `<div class="note">${esc(c.note)}</div>` : ''}</div>`;
 }
 const CSS = `@font-face{font-family:Cormorant;src:url(${REPO}/assets/fonts/cormorant.woff2)}@font-face{font-family:Cormorant;font-style:italic;src:url(${REPO}/assets/fonts/cormorant-italic.woff2)}@font-face{font-family:Aventa;src:url(${REPO}/assets/fonts/aventa.woff2)}
@@ -46,12 +46,12 @@ ol{list-style:none;padding:0}li{display:flex;gap:22px;align-items:baseline;paddi
   for (const id of process.argv.slice(2)) {
     const cfg = JSON.parse(fs.readFileSync(path.join(__dirname, id + '.json'), 'utf8'));
     const out = path.join(__dirname, '..', 'out', 'criativos', id); fs.mkdirSync(out, { recursive: true });
-    const assets = path.join(__dirname, '..', 'out', 'promo', id);
+    const assets = path.join(__dirname, '..', 'out', 'promo', id); const price = cfg.price || 'R$ 27';
     const rows = [['codigo', 'angulo', 'arquivo', 'texto_principal', 'titulo', 'descricao', 'botao', 'url']];
     const problems = [];
     for (const [k, c] of cfg.creatives.entries()) {
-      const code = `ZAR-${id}-CR${String(k + 1).padStart(2, '0')}`;
-      const hf = path.join(out, '_tmp.html'); fs.writeFileSync(hf, `<!doctype html><html><head><meta charset="utf-8"><style>${CSS}</style></head><body>${art(c, assets)}</body></html>`); await p.goto('file://' + hf, { waitUntil: 'load' });
+      const code = `${cfg.prefix || 'ZAR-' + id}-CR${String(k + 1).padStart(2, '0')}`;
+      const hf = path.join(out, '_tmp.html'); fs.writeFileSync(hf, `<!doctype html><html><head><meta charset="utf-8"><style>${CSS}</style></head><body>${art(c, assets, price, cfg.brand || 'Zion Collection Club')}</body></html>`); await p.goto('file://' + hf, { waitUntil: 'load' });
       await p.evaluate(() => document.fonts.ready);
       // ajusta o título até o texto caber sem invadir a tela da ferramenta nem o topo
       const fit = await p.evaluate(() => { const t = document.querySelector('.txt'), h = document.querySelector('h1'), sh = document.querySelector('.shots');
@@ -60,8 +60,8 @@ ol{list-style:none;padding:0}li{display:flex;gap:22px;align-items:baseline;paddi
         return { ok: t.getBoundingClientRect().top >= limit(), fs }; });
       if (!fit.ok) problems.push(code + ' texto não coube');
       await p.screenshot({ path: path.join(out, code + '.png') });
-      const utm = `?utm_source=meta&utm_medium=paid&utm_campaign=zar-${id.toLowerCase()}&utm_content=${code.toLowerCase()}`;
-      rows.push([code, c.angle, code + '.png', c.primary, c.headline, c.description, 'Saiba mais', `https://infoprodutos-zion.clickmax.space/zar-${id.toLowerCase()}${utm}`]);
+      const camp = cfg.campaign || `zar-${id.toLowerCase()}`; const utm = `?utm_source=meta&utm_medium=paid&utm_campaign=${camp}&utm_content=${code.toLowerCase()}`;
+      rows.push([code, c.angle, code + '.png', c.primary, c.headline, c.description, 'Saiba mais', `https://infoprodutos-zion.clickmax.space/${cfg.path || 'zar-' + id.toLowerCase()}${utm}`]);
       for (const [f, max] of [['headline', 40], ['description', 30]]) if ((c[f] || '').length > max) problems.push(`${code} ${f} com ${c[f].length} caracteres (máx. ${max})`);
     }
     fs.rmSync(path.join(out, '_tmp.html'), { force: true }); fs.writeFileSync(path.join(out, 'copies.csv'), '﻿' + rows.map(r => r.map(csv).join(';')).join('\n'));

@@ -55,3 +55,10 @@ python3 -I src/build_planilha.py dist && python3 -I tests/test_planilha.py dist
 python3 -I src/build_docs.py dist build && node src/render.js build dist && node src/render.js build dist
 bash src/empacotar.sh && python3 -I landing/build_landing.py
 ```
+
+## 10. Lançamento (16/11/2026, pedido do Bruno: "lançar só a aprenda a calcular quanto custa sua cabana")
+- Oferta `a09778db-bc80-4b2a-bf32-be27e7c4a9e5` enviada para aprovação do ClickMax (`offers_get_incomplete_reason` vazio; status `pending`). Testes refeitos hoje: 33 de 33.
+- **10 criativos 1080×1350** (10 ângulos, R$ 19, marca Zion Hotel Academy) em `criativos/` com `copies.csv` (texto principal, título, descrição, "Saiba mais", URL `/orcamento-cabana?utm_source=meta&utm_medium=paid&utm_campaign=ferramenta05&utm_content=f05-crnn`). O número do criativo 8 vem do exemplo fictício da planilha (R$ 216.744 com reserva × verba de R$ 200.000).
+- **Próximos passos:**
+  - publicar a página `/orcamento-cabana` quando a oferta ficar `active`;
+  - criar a campanha **pausada** (Zion Collection 2, R$ 30/dia), só com o "aprovado" do Bruno.
