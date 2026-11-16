@@ -34,3 +34,15 @@ Sem promessa de renda, ocupação, retorno, valorização ou investimento. Sem n
 - Responder os 9 itens acima.
 - Aprovar a landing, os anúncios e o formulário antes de criar no ClickMax e no Meta.
 - Escolher a conta de anúncio (Zion Bubble 1767208367384473 ou outra) e o teto de gasto.
+
+## Criado em 16/11/2026 (ClickMax, workspace e87e8ba9…, tudo novo e em rascunho)
+- **Formulário** "Venda da operação de Florianópolis · triagem": `fd5e0912-6547-43d5-999c-2150b3c81ff5`, status **draft** (não ativo). Endereço previsto: `https://api.clickmax.io/forms/fOLBDk4M5kyQSOQSODjBIEF1`. 8 perguntas, LGPD obrigatório. Ao enviar: aplica a tag e mostra o botão "Ver a apresentação" (link do Gamma).
+- **Tag** `VENDA FLORIPA | TRIAGEM RESPONDIDA`: `e9e59b09-186d-450e-b460-41c3e7d4b66c`.
+- **Campos do lead** (grupo "Venda operação Floripa"): `venda_flo_opera` 5285901e…, `venda_flo_comprador` 4c7b027e…, `venda_flo_capacidade` 0d7398fe…, `venda_flo_prazo` ba52aed5…, `venda_flo_nda` c35863d7….
+- **Criativos** (1080×1350, fotos reais sem pessoas): `criativos/venda-floripa-01-formato.jpg`, `-02-comprador.jpg`, `-03-transparencia.jpg` (gerados por `criativos/build_criativos.js`).
+- Não criados: funil/etapas próprios, automação, campanha no Meta, mensagem a leads.
+
+## Antes de ativar o formulário
+1. O Gamma ligado ao botão ("FLO. Ativo Imobiliário Premium + Glamping") ainda traz "ativo imobiliário", retorno (ROI, payback, margem), números de mercado sem fonte e imagens editadas por IA. Corrigir ou trocar o botão (ver COPY.md) antes de ativar.
+2. Confirmar os 9 fatos do contrato e das licenças.
+3. "Aprovado" de Bruno para ativar o formulário e criar a campanha pausada no Meta.
