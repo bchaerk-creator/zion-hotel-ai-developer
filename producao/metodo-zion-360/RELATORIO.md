@@ -11,7 +11,7 @@ Aviso conhecido: no celular em pé, slides 9, 10 e 12 têm elementos além da bo
 
 ## O que NÃO é verdade ainda (para Bruno decidir)
 1. **3D:** não existe motor 3D no repositório, no Lovable nem nos artefatos. A jornada é uma cena em CSS 3D (isométrica, 7 pontos). Se existir outro sistema 3D, preciso do acesso.
-2. **Slide 14:** a lista aprovada dos 20 entregáveis não foi encontrada. Montei 20 (3+3+3+3+3+3+2) a partir do campo "no Clube" de cada pilar do artefato. Marcado "A confirmar".
+2. **Slide 14:** resolvido. Bruno validou em 16/11/2026 a lista de 20 entregáveis (3+3+3+3+3+3+2) derivada do campo "no Clube" de cada pilar do artefato.
 3. **Slide 16:** sem números. Tabela com fonte, data, escopo e comparabilidade "a validar". Nenhuma faixa de preço foi inventada. O empilhamento de R$ 49.000 / R$ 155.000 / 69% dos artefatos foi removido (sem fonte).
 4. **Slide 18:** mostra R$ 970 por 12 meses de acesso, sem parcela. O artefato diz 12x de R$ 80,83; o repositório registra dúvida (10x ou 12x) e primeiro pagamento real não verificado. Pela decisão de 11/11, só apresentar após Bruno aprovar a narrativa.
 5. **Slides 2 e 5:** números (+23 destinos, notas Booking/Airbnb/Expedia/Google, 260 mil seguidores) vêm do site. Conferir data antes de usar.
