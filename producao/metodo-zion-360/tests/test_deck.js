@@ -6,18 +6,18 @@ const {chromium}=require('playwright');const path=require('path');const fs=requi
  for(const [nome,vp] of [['desktop',{width:1600,height:900}],['celular',{width:390,height:844}]]){
   const p=await b.newPage({viewport:vp,deviceScaleFactor:1});p.on('pageerror',e=>errs.push(e.message));p.on('requestfailed',r=>errs.push('req '+r.url()));
   await p.goto(f);await p.waitForTimeout(400);
-  chk(await p.locator('.slide').count()===20,nome+': 20 slides');
-  for(let i=1;i<=20;i++){
-   chk((await p.locator('#cont').innerText())===`${i} / 20`,`${nome}: contador ${i}`);
+  chk(await p.locator('.slide').count()===19,nome+': 19 slides');
+  for(let i=1;i<=19;i++){
+   chk((await p.locator('#cont').innerText())===`${i} / 19`,`${nome}: contador ${i}`);
    const ov=await p.evaluate(()=>{const d=document.querySelector('.slide.on');return [...d.querySelectorAll('*')].filter(e=>{const r=e.getBoundingClientRect(),D=document.getElementById('deck').getBoundingClientRect();return r.width&&(r.right>D.right+2||r.bottom>D.bottom+2)}).length});
    if(ov)console.log('   aviso: '+ov+' elemento(s) além da borda no slide '+i+' ('+nome+')');
    await p.waitForTimeout(650);if(nome==='desktop')await p.screenshot({path:`${out}/s${String(i).padStart(2,'0')}.png`});
    await p.keyboard.press('ArrowRight');
   }
-  chk((await p.locator('#cont').innerText())==='20 / 20',nome+': não passa do último slide');
+  chk((await p.locator('#cont').innerText())==='19 / 19',nome+': não passa do último slide');
   const txt=await p.evaluate(()=>document.body.innerText);
   if(nome==='desktop'){
-   for(const bad of [/ZAI 360/i,/garantid[ao]/i,/155\.000/,/69%/,/49\.000/]) {
+   for(const bad of [/ZAI 360/i,/Quanto custam serviços/,/garantid[ao]/i,/155\.000/,/69%/,/49\.000/]) {
      const m=txt.match(bad); chk(!m||(bad.source==='garantid[ao]/i'), 'texto sem '+bad);
    }
   }

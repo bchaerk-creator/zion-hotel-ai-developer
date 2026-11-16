@@ -101,3 +101,6 @@ Lidas as 11 tabelas da página "Tabelas de Honorários Registradas no Crea-SC" (
 
 ### Efeito no slide 16
 Com a regra "linha sem fonte sai", sobra **uma** linha (topografia, comparabilidade parcial). Uma tabela de uma linha não sustenta o slide. Opções em aberto para Bruno: (a) tirar o slide 16 e seguir com 19; (b) manter com 1 linha e a nota de parcial; (c) ampliar a busca (OAB/SC, CAU/SC, editais) antes de decidir.
+
+## 11. Decisão final (16/11/2026)
+Bruno decidiu **tirar o slide de faixas de custo**; o deck fica com 19 slides. Conferência de qualquer valor futuro: Bruno. A faixa de topografia (R$ 630/ha, AGESC) fica registrada aqui, fora do deck.
