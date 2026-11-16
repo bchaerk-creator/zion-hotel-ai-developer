@@ -4,7 +4,7 @@ const foto=n=>n.startsWith('IMG')?'file://'+path.resolve(__dirname,'../fotos/'+n
 const font='file://'+R+'/assets/fonts/';
 const ADS=[
  {id:'01-formato',img:'IMG_1914.jpg',pos:'center 45%',k:'À venda · Florianópolis (SC)',h:'Operação de glamping à venda em Florianópolis',s:'3 cabanas em operação · mobiliário · a operação inteira',chips:['Glamping','Wellness e luxo natural','Hospedagem de experiência','Demanda consolidada']},
- {id:'02-comprador',img:'IMG_1908.jpg',pos:'center 40%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'Mais de 2 anos de operação, com demanda turística comprovada.',chips:['Faturamento consolidado','Taxa de ocupação demonstrável','DRE e documentos']},
+ {id:'02-comprador',img:'IMG_1908.jpg',pos:'center 40%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'Mais de 2 anos de operação, com demanda turística comprovada.',chips:['Piscina, jacuzzi e chill-out','Operação completa','DRE e documentos']},
  {id:'03-transparencia',img:'IMG_1916.jpg',pos:'center 50%',k:'Transpasso',h:'Transpasso de operação, não venda de imóvel.',s:'Terreno arrendado · 3 cabanas e mobiliário',chips:['Luxo natural','Faturamento consolidado','Ocupação e DRE demonstráveis']}
 ];
 const html=a=>`<!doctype html><meta charset=utf-8><style>
