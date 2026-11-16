@@ -1,0 +1,53 @@
+# Briefing de pesquisa · Slide 16 · faixas públicas de custo
+
+Objetivo: preencher a tabela do slide 16 com faixas de preço de **serviços profissionais comparáveis** aos entregáveis orientativos do Clube. Nenhum número entra no deck sem os cinco campos abaixo preenchidos e conferidos por uma segunda pessoa.
+
+Este briefing não traz valores. As fontes abaixo são **candidatas**: a existência, a vigência e o escopo de cada uma precisam ser verificados na hora da pesquisa.
+
+## 1. Regras (valem para todas as linhas)
+1. **Cinco campos obrigatórios por faixa:** faixa (mínimo e máximo, em R$), fonte (documento e link), data de publicação e de consulta, escopo do que a faixa cobre, e nota de comparabilidade.
+2. **Só fonte pública e citável.** Orçamento recebido por telefone ou e-mail não vale como faixa pública. Pode ir para uma pasta de apoio, nunca para o slide.
+3. **Comparável é o que entrega algo equivalente ao entregável do Clube** (orientativo, preliminar). Projeto executivo, laudo com responsabilidade técnica ou obra **não** são comparáveis: se a única fonte for desse tipo, a linha fica "sem referência comparável" e sai do slide.
+4. **Não somar** serviços que se sobrepõem. Cada linha vale sozinha. Nenhum total, nenhum "economia", nenhum desconto.
+5. **CAPEX da obra não é preço dos estudos.** Custo de construir (m², infraestrutura, mobiliário) fica fora desta tabela. Só entra o preço de **estimar** o CAPEX.
+6. **Dados de cenário.** O terreno de 10.000 m² e as seis suítes de 45 m² do slide 15 são hipotéticos. A faixa deve valer para o tipo de serviço, não para um município ou uma obra específica. Se a fonte varia por região ou área, citar a região e a área da faixa.
+7. **Anotar a data.** Preços envelhecem: no slide, escrever "referência de [mês/ano]". Revisar a cada seis meses.
+8. **Sem promessa.** A tabela mostra o que serviços parecidos custam no mercado. Não diz que o Clube substitui esses serviços, nem que o proprietário "economiza".
+
+## 2. Linhas da tabela e onde procurar
+| # | Serviço comparável | Entregável do Clube que ele se parece | Tipos de fonte candidatos (verificar) |
+|---|---|---|---|
+| 1 | Levantamento topográfico | Roteiro de verificação territorial (só como contexto; o Clube não faz topografia) | Tabelas ou referenciais de entidades de agrimensura e topografia; conselhos profissionais (CREA, CFT); tabelas de preço de órgãos públicos, se houver |
+| 2 | Estudo de mercado / viabilidade | Modelo de pesquisa de concorrência, matriz de posicionamento | Entidades de economia e administração; SEBRAE (materiais sobre estudo de viabilidade); editais públicos de contratação de estudo de viabilidade turística |
+| 3 | Estudo preliminar de arquitetura e masterplan | Diretrizes de produto, exercício de implantação conceitual | Tabela referencial de honorários do conselho de arquitetura e urbanismo (CAU/BR); referenciais de entidades de projetistas (por exemplo SINAENCO) |
+| 4 | Estimativa preliminar de CAPEX (orçamento paramétrico) | Planilha de CAPEX Zion | Referenciais de honorários de engenharia de custos; editais públicos de orçamento. Para **custo de obra** (não entra na tabela): CUB (Sinduscon) e SINAPI, só como contexto |
+| 5 | Modelagem econômico-financeira | Simulador econômico-financeiro Zion | Referenciais de entidades de economia e finanças; editais públicos de consultoria de modelagem |
+| 6 | Consulta e due diligence fundiária | Checklist de documentos, roteiro regulatório | Tabela de honorários da seccional da OAB do estado escolhido (advocacia); emolumentos de certidões em cartórios, que são taxas públicas e estão em tabelas oficiais |
+
+Fontes mais fortes: tabelas publicadas por conselho ou entidade de classe e **editais públicos** (preço de referência de contratação). Fontes mais fracas: sites de empresas e blogs. Estes só servem para localizar uma fonte melhor, não para citar.
+
+## 3. Modelo de registro (uma linha por faixa encontrada)
+| Campo | Preencher |
+|---|---|
+| Serviço | (uma das 6 linhas) |
+| Faixa | R$ ___ a R$ ___ (e a unidade: por projeto, por hora, por m²) |
+| Fonte | nome do documento + entidade + link |
+| Data da fonte / data da consulta | ___ / ___ |
+| Escopo coberto | o que está incluído e o que não está |
+| Região e porte | estado, área ou tamanho a que a faixa se refere |
+| Comparável ao Clube? | sim, parcial ou não, e por quê |
+| Conferido por | nome e data (segunda pessoa) |
+
+## 4. Como entra no slide 16
+- Colunas: serviço, faixa, fonte, data, escopo, comparável.
+- Linha com "não" em comparável ou sem fonte: sai do slide.
+- Rodapé fixo: "Referências públicas de [mês/ano]. Serviços diferentes do Clube, que é orientativo e não substitui projeto, laudo nem licença. Valores variam por região e escopo."
+- Atualizar o `index.html` do deck (slide 16) e rodar `tests/test_deck.js`.
+
+## 5. Quem faz e quanto tempo
+Pesquisa e preenchimento: pessoa indicada por Bruno (ou uma sessão de pesquisa com acesso à web, com a conferência final humana). Estimativa de esforço, sem prazo prometido: um dia de trabalho para seis linhas, mais a conferência.
+
+## 6. Perguntas para Bruno antes de começar
+1. Quem pesquisa e quem confere?
+2. Estado ou região de referência: Santa Catarina (onde a Zion opera) ou faixa nacional?
+3. Quantas linhas manter no slide, se algumas ficarem sem fonte comparável?
