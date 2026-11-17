@@ -1,8 +1,8 @@
 # Ferramenta 23 · Kit de Roteiros de Conteúdo e Vídeos
 
-Status: arquivos prontos e testados; **oferta enviada para aprovação em 16/11/2026** (rodada diária automática). Página em rascunho; será publicada quando a oferta estiver ativa.
+Status: arquivos prontos e testados; **oferta enviada para aprovação em 16/11/2026** (rodada diária automática). **Oferta aprovada e página publicada em 17/11/2026.**
 
-**ClickMax:** produto `74ea712d-8186-4011-9bd7-76af916ef87b`; oferta `b0f2a1e3-424b-424d-a00b-74284182f210` (R$ 19, checkout `ujYWp_XYpj`, status `pending` desde 16/11 04h53 UTC, sem erro de sincronização); página `cc7b6b14-5777-42ed-a708-4a39770c3836` em `/roteiros-conteudo` (rascunho). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/roteiros-23/`, ligados à oferta.
+**ClickMax:** produto `74ea712d-8186-4011-9bd7-76af916ef87b`; oferta `b0f2a1e3-424b-424d-a00b-74284182f210` (R$ 19, checkout `ujYWp_XYpj`, status `pending` desde 16/11 04h53 UTC, sem erro de sincronização); página `cc7b6b14-5777-42ed-a708-4a39770c3836` em `/roteiros-conteudo` (publicada em 17/11). Entrega: 4 arquivos e página de acesso em `docs/p/adbc67069af26ae0/roteiros-23/`, ligados à oferta.
 
 **Por que a 23 nesta rodada:** 01, 21 e E08 aguardam decisão de Bruno; E05 e E06 aguardam os PDFs A01 a A10. A 23 é a próxima ferramenta "A fazer" (E09).
 **Sobreposição verificada:** os criativos da Zion Collection 06 são anúncios do próprio produto da Zion, não roteiros para o anfitrião gravar a hospedagem dele. A 23 usa a mecânica de textos das Ferramentas 11 e 30 (campo vazio vira [PREENCHA], opcionais somem). Nenhuma alegação de que vem da rotina das unidades da Zion e nenhuma regra de rede social apresentada como fato.
@@ -61,3 +61,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 
 ## Envio para aprovação
 16/11/2026 (rodada diária): 4 arquivos e página de acesso conferidos no ar (status 200) e ligados à oferta; `offers_get_incomplete_reason` vazio; oferta enviada para aprovação, status `pending`, sem erro de sincronização.
+
+## Publicação (17/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada; depois da propagação, status 200 com título, reembolso e capa: https://infoprodutos-zion.clickmax.space/roteiros-conteudo. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.

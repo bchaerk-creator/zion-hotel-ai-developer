@@ -29,6 +29,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 12 | `docs/p/adbc67069af26ae0/fotos-12/capa.jpg` |
 | Ferramenta 22 | `docs/p/adbc67069af26ae0/campanhas-22/capa.jpg` |
 | Ferramenta 23 | `docs/p/adbc67069af26ae0/roteiros-23/capa.jpg` |
+| Ferramenta 16 | `docs/p/adbc67069af26ae0/parcerias-16/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -62,6 +63,11 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
+
+## Rodada de 17/11
+- 23 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/roteiros-conteudo`).
+- 14 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas.
+- 16 (Kit Operacional de Parcerias) criada e enviada para aprovação; página em rascunho em `/kit-parcerias`.
 
 ## Rodada de 16/11
 - 22 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/campanhas-baixa-procura`).
