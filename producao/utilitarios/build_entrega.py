@@ -131,6 +131,15 @@ PRODUTOS = [
                    ("Roteiros-Conteudo-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Roteiros-Conteudo-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Roteiros-Modelo.pdf", "Roteiros-modelo", "PDF · para usar sem planilha")]),
+    dict(pasta="parcerias-16", num="16", telas=["producao/utilitarios/16-parcerias/dist/demonstracao/demo-parceiros.png", "producao/utilitarios/16-parcerias/dist/demonstracao/demo-indicacoes.png"],
+         titulo="Kit Operacional de Parcerias",
+         promessa="Aprenda o passo a passo para organizar as parcerias da sua hospedagem com restaurantes, guias, spas e transportes: o que cada um oferece, o que foi combinado, as indicações feitas e o que você tem a receber.",
+         itens=["Parceiros e acordos", "Indicações sem dados pessoais", "Comissão a receber", "Acordos para revisar"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Painel.", "Na planilha em branco, cadastre os parceiros e preencha a ficha de acordo com cada um.", "Registre cada indicação pelo código da reserva e cobre uma vez por mês."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Parcerias-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Parcerias-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Acordo-com-Parceiro.pdf", "Ficha de acordo com parceiro", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
