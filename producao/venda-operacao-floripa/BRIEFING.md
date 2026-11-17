@@ -46,3 +46,27 @@ Sem promessa de renda, ocupação, retorno, valorização ou investimento. Sem n
 1. O Gamma ligado ao botão ("FLO. Ativo Imobiliário Premium + Glamping") ainda traz "ativo imobiliário", retorno (ROI, payback, margem), números de mercado sem fonte e imagens editadas por IA. Corrigir ou trocar o botão (ver COPY.md) antes de ativar.
 2. Confirmar os 9 fatos do contrato e das licenças.
 3. "Aprovado" de Bruno para ativar o formulário e criar a campanha pausada no Meta.
+
+## Atualização de 17/11/2026 · Venda de Florianópolis e de Urubici pela Zion Collection
+Decisões do Bruno: as duas vendas saem da Zion Collection (conta de anúncio Zion Collection 2, `1271873041294684`). Urubici usa o formulário que ele já criou; Florianópolis terá um formulário novo. O lead de cada cidade entra numa coluna da cidade, num funil novo de venda de imóveis. O formulário de Urubici perde a promessa de percentual ("rentabilidade entre 30% e 35%") e passa a falar em faturamento e DRE demonstráveis.
+
+### Funil novo no CRM
+Funil **Venda de imóveis · Florianópolis e Urubici**, id `a07e2221-f5d7-498e-ac48-4a8e51ea03f4`.
+| Coluna | id |
+|---|---|
+| Florianópolis · novo lead | `e3331a6d-9b3f-4579-8839-efd485ffcbcf` |
+| Urubici · novo lead | `99a3e33c-0e46-4dea-ad71-aa7cfe9b372e` |
+| Triagem feita · conversa agendada | `d9851145-63dd-49e6-9b3b-b45c7f1773c4` |
+| Termo de confidencialidade enviado | `76d5e0bf-921d-4e8c-bb54-b210271c1e4d` |
+| Pasta de dados enviada | `c133c534-2dc0-47ad-96c7-62a31db2ce5a` |
+| Visita agendada | `c32e3fe6-6c75-478e-84a6-daec2811eb2a` |
+| Proposta | `b6596c06-aa2b-4b04-865f-632fb343f269` |
+| Fechou | `4c059bdf-2096-41e4-a7f0-7951312c5e58` |
+| Agora não | `f0db281a-7cd4-4b08-81b5-3c39371cc698` |
+
+Tags: `VENDA | FLORIANÓPOLIS` `4bb271e9-d9c8-42a0-8318-edfa706f1761` e `VENDA | URUBICI` `348d0d76-0fbc-4089-8054-e8ccd24db91d`.
+
+### Pendente
+- Nomes dos formulários do Meta (Urubici e Florianópolis) para ligar a entrada automática dos leads à rotina horária. Até 17/11 a Windsor não tinha leads dessas perguntas nos últimos 30 dias.
+- Texto novo das perguntas de Urubici, sem percentual de retorno.
+- Campanhas na Zion Collection 2, sempre pausadas, teto R$ 0.
