@@ -13,7 +13,8 @@ const {chromium}=require('playwright');const path=require('path');const fs=requi
   if(n==='desktop'){
    const t=await p.evaluate(()=>document.body.innerText);
    for(const bad of [/980/,/desconto/i,/\bvale\b/i,/retorno\s+(garant|atrativ)/i,/lucro/i,/ROI/,/ocupação de \d/i,/oportunidade única/i,/última chance/i]) chk(!bad.test(t),'texto sem '+bad);
-   chk(/R\$ 1,5 milhão/.test(t),'preço pedido presente');
+   chk(!/R\$ 1,5 milhão/.test(t),'preço fora da página (vai só no formulário)');
+   chk(/Piscina, jacuzzi, chill-out/.test(t)&&/Mais de 2 anos de operação/.test(t),'atributos presentes');
    for(const s of ['hero','solution','problem','offer','faq','cta']) chk(await p.locator(`[data-cx-section="${s}"]`).count()===1,'seção '+s);
    chk(await p.locator('[data-cx-checkout]').count()===1,'marcador data-cx-checkout');
   }
