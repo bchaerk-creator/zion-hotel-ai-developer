@@ -70,3 +70,6 @@ Tags: `VENDA | FLORIANÓPOLIS` `4bb271e9-d9c8-42a0-8318-edfa706f1761` e `VENDA |
 - Nomes dos formulários do Meta (Urubici e Florianópolis) para ligar a entrada automática dos leads à rotina horária. Até 17/11 a Windsor não tinha leads dessas perguntas nos últimos 30 dias.
 - Texto novo das perguntas de Urubici, sem percentual de retorno.
 - Campanhas na Zion Collection 2, sempre pausadas, teto R$ 0.
+
+## Campanha de Florianópolis (17/11/2026)
+Formulário do Meta "Vendas operação- Glamping Florianopolis", id `1095670386850939` (página `576944608845537`). Campanha `120250439943320016` (Zion Collection 2, pausada, sem categoria Moradia), conjunto `120250439944510016` (R$ 30 por dia, público Investidor/Empresário da Zion Collection). Anúncios pausados: 01 `120250439967500016`, 02 `120250439968170016`, 03 `120250439969400016`, 04 `120250439970760016`, carrossel de 10 cards (id no Meta). Arquivos em `docs/p/adbc67069af26ae0/venda-floripa/`. Preço só no formulário. A rotina horária ainda precisa incluir esse formulário (D, coluna "Florianópolis · novo lead"). Atenção: no Meta existe também um formulário "Vendas imóvel + operação-Urubici", diferente do id `4028782467263540` usado nos anúncios de Urubici; confirmar qual vale.
