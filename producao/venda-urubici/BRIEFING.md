@@ -16,3 +16,9 @@ Formulário do Meta de Urubici criado pelo Bruno. As perguntas trazem "rentabili
 
 ## Formulário do Meta (confirmado em 17/11/2026)
 Nome "Vendas imóvel + operação", id `4028782467263540`, idioma English (US), página `576944608845537`. Sem leads até 17/11. A rotina horária já inclui esse formulário (leads entram em "Urubici · novo lead" do funil `a07e2221-f5d7-498e-ac48-4a8e51ea03f4`, com a tag `VENDA | URUBICI`, e na lista da semana). O formulário de Florianópolis entra pela mesma regra quando existir.
+
+## Copy e campanha (17/11/2026)
+- Decisão do Bruno: o preço (R$ 4,5 milhões, negociável) aparece **só no formulário**, não nos criativos. Oferta: imóvel mais operação hoteleira.
+- Mensagens usadas: operação com mais de 5 anos (informação do Bruno), neva no inverno (PDF), 3 hectares escriturados, glamping de luxo natural. Fora das peças, por falta de fonte: "até 50% de desconto" (precisa de laudo ou valor de referência), "um dos destinos que mais crescem" e "um dos mais turísticos do Brasil".
+- Campanha `120250438713460016` (Zion Collection 2, pausada, Moradia, R$ 30 por dia), conjunto `120250438715250016`. Anúncios: 01 `120250438758620016`, 02 `120250438759480016`, 03 `120250438760680016`, carrossel `120250438797430016`. Arquivos `-v2` em `docs/p/adbc67069af26ae0/venda-urubici/`.
+- Para ativar: formulário sem promessa de rentabilidade e aprovação do Bruno.
