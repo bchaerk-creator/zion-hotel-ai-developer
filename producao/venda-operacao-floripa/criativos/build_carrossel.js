@@ -24,9 +24,9 @@ const full=(img,pos,grad)=>`<div class=bg style="background-image:url(${foto(img
 const NEW={
  hero:{id:'hero',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-size:cover}</style>${full('floripa-deck-piscina-pronto.jpg','center 55%',62)}<div class=n>1/10</div>${cap('À venda · Florianópolis (SC)','Glamping em operação, com piscina e deck prontos','3 cabanas funcionando hoje')}${foot()}`},
  col1:{id:'col1',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#040605}</style><div class=n>2/10</div>
- ${ph('floripa-bolhas-deck.jpg',64,80,560,420)}${ph('BANHEIRA.jpg',644,80,372,420,'center 40%')}${ph('floripa-interior-quarto.jpg',64,520,372,300)}${ph('AEREA.jpg',456,520,270,300,'center 35%')}${ph('NOITE.jpg',746,520,270,300,'center 55%')}
+ ${ph('floripa-bolhas-deck.jpg',64,80,560,420)}${ph('BANHEIRA.jpg',644,80,372,420,'center 40%')}${ph('floripa-interior-quarto.jpg',64,520,372,300)}${ph('AEREA.jpg',456,520,270,300,'center 35%')}${ph('IMG_1914.jpg',746,520,270,300,'center 45%')}
  <div style="position:absolute;left:64px;right:64px;bottom:118px"><div class=k>Hospedagem de experiência</div><div style="font-family:C;font-size:58px;line-height:1.05;margin-top:8px">Cada detalhe pensado para o hóspede</div></div>${foot()}`},
- noite:{id:'noite',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}</style>${full('NOITE.jpg','center 30%',55)}<div class=n>3/10</div>${cap('Mais de 2 anos de operação','Noites sob as estrelas','Experiência que o hóspede lembra e comenta')}${foot()}`},
+ noite:{id:'noite',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}</style>${full('IMG_1914.jpg','center 40%',55)}<div class=n>3/10</div>${cap('Mais de 2 anos de operação','Bolhas em meio à vegetação','Hospedagem de experiência em Florianópolis')}${foot()}`},
  banho:{id:'banho',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}</style>${full('BANHEIRA.jpg','center 45%',58)}<div class=n>4/10</div>${cap('Wellness e luxo natural','Banheira com vista para a piscina','Piscina, jacuzzi e chill-out em cada cabana')}${foot()}`},
  col2:{id:'col2',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px;background:#1B2117}</style><div class=n>6/10</div>
  ${ph('IMG_1908.jpg',64,80,310,420)}${ph('IMG_1907.jpg',394,80,310,420)}${ph('IMG_1916.jpg',724,80,292,420)}${ph('IMG_1914.jpg',64,520,470,300,'center 40%')}${ph('IMG_8101.jpg',554,520,462,300,'center 50%')}
@@ -61,7 +61,7 @@ const CARDS=[
  <div class=li><div class="ic no">✕</div><div><b>O terreno</b><span>É arrendado. Você não compra o imóvel.</span></div></div>
  <div class=li><div class="ic no">✕</div><div><b>Venda de imóvel</b><span>É transpasso de operação, não escritura</span></div></div>
  <div class=li><div class="ic no">✕</div><div><b>A expansão para mais 3 cabanas</b><span>É uma possibilidade, sujeita à autorização do proprietário e às licenças</span></div></div></div>${strip('IMG_1916.jpg')}${foot('Sem letra miúda')}`},
- {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('NOITE.jpg')});background-position:center 30%}
+ {id:'c4',w:S,h:S,html:`<style>${base}body{width:${S}px;height:${S}px}.bg{background-image:url(${foto('IMG_1908.jpg')});background-position:center 30%}
  .sh{position:absolute;inset:0;background:linear-gradient(rgba(4,6,5,.25),rgba(4,6,5,.88) 32%,#040605 52%)}.t{position:absolute;left:64px;right:64px;top:70px}h1{font-size:72px;margin:12px 0 28px}
  .li{margin:0 0 20px}.li .ic{flex:0 0 58px;height:58px;font-size:28px}.li b{font-size:42px}.li span{font-size:27px;margin-top:2px}</style>
  <div class=bg></div><div class=sh></div><div class=n>6/8</div>

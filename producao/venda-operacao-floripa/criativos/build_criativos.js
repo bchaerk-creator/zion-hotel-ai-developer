@@ -4,7 +4,7 @@ const foto=n=>require('fs').existsSync(path.resolve(__dirname,'../fotos/'+n))?'f
 const font='file://'+R+'/assets/fonts/';
 const ADS=[
  {id:'01-formato',img:'floripa-deck-piscina-pronto.jpg',pos:'center 85%',gh:52,k:'À venda · Florianópolis (SC)',h:'Bolhas, piscina e deck. Tudo pronto.',s:'Glamping em operação, com 3 cabanas funcionando hoje.',chips:['Glamping','Wellness e luxo natural','Demanda consolidada']},
- {id:'02-comprador',img:'NOITE.jpg',pos:'center 35%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'Mais de 2 anos de operação, com demanda turística comprovada.',chips:['Piscina, jacuzzi e chill-out','Operação completa','DRE e documentos']},
+ {id:'02-comprador',img:'IMG_1908.jpg',pos:'center 35%',k:'Operação em funcionamento',h:'Quer ser dono de um glamping sem construir do zero?',s:'Mais de 2 anos de operação, com demanda turística comprovada.',chips:['Piscina, jacuzzi e chill-out','Operação completa','DRE e documentos']},
  {id:'03-transparencia',img:'BANHEIRA.jpg',pos:'center 40%',k:'Transpasso',h:'Transpasso de operação, não venda de imóvel.',s:'Terreno arrendado · 3 cabanas e mobiliário',chips:['Luxo natural','Faturamento consolidado','Ocupação e DRE demonstráveis']}
 ];
 const html=a=>`<!doctype html><meta charset=utf-8><style>
@@ -35,7 +35,7 @@ h1{position:absolute;left:70px;right:70px;top:760px;font-family:C;font-weight:50
 </style><div class=k>À venda · Florianópolis (SC)</div>
 <div class=p style="left:70px;top:120px;width:610px;height:620px;background-image:url(${foto('floripa-bolhas-deck.jpg')})"></div>
 <div class=p style="left:700px;top:120px;width:310px;height:300px;background-image:url(${foto('BANHEIRA.jpg')});background-position:center 40%"></div>
-<div class=p style="left:700px;top:440px;width:310px;height:300px;background-image:url(${foto('NOITE.jpg')});background-position:center 55%"></div>
+<div class=p style="left:700px;top:440px;width:310px;height:300px;background-image:url(${foto('IMG_1914.jpg')});background-position:center 45%"></div>
 <h1>Tudo equipado. Tudo funcionando.</h1>
 <div class=ch><i>✓ Piscina</i><i>✓ Jacuzzi</i><i>✓ Chill-out</i><i>✓ Enxoval</i><i>✓ Recepção</i><i>✓ Copa gourmet</i><i>✓ Lavanderia</i></div>
 <div class=s>Faça a triagem e receba valor e condições.</div>
