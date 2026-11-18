@@ -53,7 +53,20 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  await p.click('#cpDiag');await p.waitForFunction(()=>/Copiado/.test(document.querySelector('#avLinks').textContent));const cb=await p.evaluate(()=>navigator.clipboard.readText());ok(cb.includes('/raio-x/')&&cb.includes('utm_source=whatsapp'),'botão copia o link do diagnóstico para a área de transferência');
  // ligação + reunião marcada
  const lg=await p.evaluate(()=>{const c=window.__crm;c.juntar([{id:'r1',nome:'Com Reuniao',fone:'48944440001',criado:new Date().toISOString(),reuniao:new Date(Date.now()+864e5).toISOString()},{id:'r2',nome:'Sem Reuniao',fone:'48944440002',criado:new Date().toISOString()}]);const f=c.fila().map(l=>l.nome);const r1=c.leads.find(l=>l.nome==='Com Reuniao');return [f.includes('Com Reuniao'),f.includes('Sem Reuniao'),r1.status]});
- ok(lg[0]===false&&lg[1]===true&&lg[2]==='agendou','quem já tem reunião sai da fila (status agendou)');
+ ok(lg[0]===true&&lg[1]===true&&lg[2]==='agendou','quem tem reunião futura continua na fila (status agendou)');
+ const ord=await p.evaluate(()=>{const c=window.__crm;const dia=h=>new Date(Date.now()+h*3600e3).toISOString();c.juntar([{id:'r3',nome:'Reuniao Tarde',fone:'48944440003',reuniao:dia(5)},{id:'r4',nome:'Reuniao Cedo',fone:'48944440004',reuniao:dia(2)},{id:'r5',nome:'Reuniao Passada',fone:'48944440005',reuniao:dia(-30)}]);const f=c.fila().map(l=>l.nome);return [f.slice(0,3),f.includes('Reuniao Passada'),c.prioridade(c.leads.find(l=>l.nome==='Reuniao Cedo')).rotulo,c.montar(c.leads.find(l=>l.nome==='Reuniao Cedo'),'conf')]});
+ ok(JSON.stringify(ord[0])===JSON.stringify(['Reuniao Cedo','Reuniao Tarde','Com Reuniao'])||ord[0][0]==='Reuniao Cedo','primeiro as reuniões por horário: '+ord[0].join(' > '));
+ ok(ord[1]===false,'reunião que já passou não entra na fila de confirmação');
+ ok(/^0 · Confirmar reunião/.test(ord[2]),'rótulo: '+ord[2]);
+ ok(/Passando para confirmar a nossa conversa de hoje, às \d{1,2}h/.test(ord[3])&&/horário de Brasília/.test(ord[3]),'mensagem de confirmação com dia e hora: '+ord[3].split('\n')[0]);
+ await p.click('[data-tab=fila]');await p.evaluate(()=>{});
+ await p.selectOption('#fStatus','agendou');await p.waitForFunction(()=>document.querySelector('.big')&&/Reuniao Cedo/.test(document.querySelector('.big').textContent));
+ ok(await p.isVisible('.aviso')&&/Reunião/.test(await p.textContent('.aviso')),'card mostra o banner da reunião');
+ ok((await p.inputValue('#msg')).includes('confirmar a nossa conversa'),'oferta Confirmar reunião vem selecionada para quem tem reunião');
+ await p.click('[data-st=confirmado]');
+ const cf=await p.evaluate(()=>window.__crm.leads.find(l=>l.nome==='Reuniao Cedo').status);
+ ok(cf==='confirmado','botão Confirmou ✓ marca a reunião como confirmada');
+ await p.selectOption('#fStatus','hoje');
  await p.evaluate(()=>{const c=window.__crm;for(const l of c.leads.filter(l=>/^(Antigo|Quente|Novo|Form|Com|Sem)/.test(l.nome)&&l.nome!=='Sem Reuniao'))l.status=l.status==='agendou'?'agendou':'sem_interesse'});
  await p.click('[data-tab=fila]');await p.click('#fStatus');await p.selectOption('#fStatus','novo');
  await p.waitForFunction(()=>document.querySelector('.big')&&document.querySelector('.big').textContent.includes('Sem Reuniao'));

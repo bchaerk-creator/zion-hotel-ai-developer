@@ -48,3 +48,9 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 - Página 1 pronta: `docs/diagnostico-previo/` (descrição + calendário do ClickMax embutido + fallback + WhatsApp). Testada em celular (sem rolagem lateral, sem erro). O calendário não carrega neste ambiente de teste (SDK bloqueado), então falta conferir no ar.
 - Página 2 (estruturação + checkout, R$ 470): aguarda o nome completo, o que inclui e o link de pagamento. Não existe oferta de R$ 470 no ClickMax.
 - Publicação no Lovable (rotas novas): só com "aprovado" do Bruno.
+
+## 18/11/2026 · Fila "Ligar hoje": confirmar reuniões primeiro
+- A fila abre em **"Ligar hoje: reuniões e novos"**. Primeiro vêm as reuniões futuras da agenda "Equipe Zion", por horário (rótulo "0 · Confirmar reunião · hoje às 14h"); depois os novos e quentes, na ordem de prioridade.
+- Card da reunião: banner com dia e hora (Brasília), **Ligar agora**, mensagem de confirmação pronta e botões **Confirmou ✓**, **Quer remarcar** e **Cancelou**. "Liguei · não atendeu" põe "Tentei te ligar agora há pouco" na mensagem.
+- Reunião que já passou não entra na fila. Confirmadas e canceladas saem da fila.
+- 18/11 12h30: 7 reuniões à frente (4 hoje, 2 amanhã, 1 em 23/11). As reuniões da agenda saem sem link de vídeo.
