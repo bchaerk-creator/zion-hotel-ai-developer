@@ -30,6 +30,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 22 | `docs/p/adbc67069af26ae0/campanhas-22/capa.jpg` |
 | Ferramenta 23 | `docs/p/adbc67069af26ae0/roteiros-23/capa.jpg` |
 | Ferramenta 16 | `docs/p/adbc67069af26ae0/parcerias-16/capa.jpg` |
+| Ferramenta 28 | `docs/p/adbc67069af26ae0/capacidade-28/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -63,6 +64,13 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
+
+## Rodada de 18/11
+- 16 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/kit-parcerias`).
+- 29 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas.
+- Vendedor ainda `pending` (`canSell` true, conta bancária aprovada).
+- 28 (Planner de Capacidade e Atendimento) criada e enviada para aprovação; página em rascunho em `/capacidade-atendimento`.
+- Fila "A fazer" que resta: 24 (assistente de IA), 25, 26 e 27. A 27 é Gamma e a 24 é instrução de IA: formatos diferentes do molde de planilha.
 
 ## Rodada de 17/11
 - 23 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/roteiros-conteudo`).

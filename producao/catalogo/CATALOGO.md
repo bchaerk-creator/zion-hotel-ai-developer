@@ -69,7 +69,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 25 | Organizador de premissas do projeto | A, C | P | A fazer |
 | 26 | Kit de reuniões de projeto | A, C | D + P | A fazer |
 | 27 | Template de apresentação do projeto turístico | A, C | D (Gamma) | A fazer, sem projeções |
-| 28 | Planner de capacidade e atendimento | C | P | A fazer |
+| 28 | Planner de capacidade e atendimento | C | P | Pronto |
 | 29 | Calculadora de custos de experiências | C | P | **Pronto** (`producao/utilitarios/29-custos-experiencias/`) |
 | 30 | Gerador de briefing de experiência | C | D | **Pronto** (`producao/utilitarios/30-briefing-experiencia/`) |
 
@@ -105,7 +105,8 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5h. **12 · Checklist de fotos e comodidades do anúncio** (pronto, aprovado e página publicada em `/fotos-comodidades`, 15/11). Execução (fotos e comodidades); o diagnóstico do anúncio inteiro segue no Arsenal 01 e na Zion Collection 06. E05 e E06 aguardam os PDFs A01 a A10.
 5i. **22 · Planner de campanhas para períodos de baixa procura** (pronto, aprovado e página publicada em `/campanhas-baixa-procura`, 16/11). Usa o piso da Ferramenta 01 como trava; o bump da Zion Collection 06 (calendário de 30 dias do anúncio) segue separado.
 5j. **23 · Kit de roteiros de conteúdo e vídeos** (pronto e enviado para aprovação, 16/11; aprovado e página publicada em 17/11). Mesma mecânica de textos da 11 e da 30.
-5k. **16 · Kit operacional de parcerias** (pronto e enviado para aprovação, 17/11). Parceiros, acordos, indicações pelo código da reserva e comissão; ficha de acordo para imprimir.
+5k. **16 · Kit operacional de parcerias** (pronto e enviado para aprovação, 17/11; aprovado e página publicada em 18/11). Parceiros, acordos, indicações pelo código da reserva e comissão; ficha de acordo para imprimir.
+5l. **28 · Planner de capacidade e atendimento** (pronto e enviado para aprovação, 18/11). Regras de cada experiência, saídas só com quantidades, condutores necessários, mínimo e prazo para decidir; ficha de saída para imprimir.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

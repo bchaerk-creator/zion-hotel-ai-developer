@@ -1,11 +1,11 @@
 # Ferramenta 16 · Kit Operacional de Parcerias
 
-Status: arquivos prontos e testados. **Oferta enviada para aprovação em 17/11/2026** na rodada diária automática. A página fica em rascunho até a oferta estar ativa.
+Status: arquivos prontos e testados. **Oferta enviada para aprovação em 17/11/2026** na rodada diária automática. **Oferta aprovada e página publicada em 18/11/2026.**
 
 **ClickMax:**
 - produto `f106fa17-e00d-4af9-81a6-afa170a2e67b`;
 - oferta `eca8f010-c236-4c55-ab0e-5db125661687` (R$ 19, checkout `pAGdV-2yw1`), com status `pending` desde 17/11 às 04h55 UTC e sem erro de sincronização;
-- página `ba973c0c-9dd5-4f47-b22d-3475d469000d` em `/kit-parcerias` (rascunho).
+- página `ba973c0c-9dd5-4f47-b22d-3475d469000d` em `/kit-parcerias` (publicada em 18/11).
 
 Entrega: 4 arquivos e a página de acesso, em `docs/p/adbc67069af26ae0/parcerias-16/`, ligados à oferta.
 
@@ -108,3 +108,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 - os 4 arquivos e a página de acesso foram conferidos no ar (status 200) e ligados à oferta;
 - `offers_get_incomplete_reason` voltou vazio;
 - a oferta foi enviada para aprovação e está `pending`, sem erro de sincronização.
+
+## Publicação (18/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada e conferida: status 200 com título, reembolso e capa em https://infoprodutos-zion.clickmax.space/kit-parcerias. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.
