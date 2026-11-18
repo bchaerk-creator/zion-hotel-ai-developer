@@ -54,3 +54,9 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 - Card da reunião: banner com dia e hora (Brasília), **Ligar agora**, mensagem de confirmação pronta e botões **Confirmou ✓**, **Quer remarcar** e **Cancelou**. "Liguei · não atendeu" põe "Tentei te ligar agora há pouco" na mensagem.
 - Reunião que já passou não entra na fila. Confirmadas e canceladas saem da fila.
 - 18/11 12h30: 7 reuniões à frente (4 hoje, 2 amanhã, 1 em 23/11). As reuniões da agenda saem sem link de vídeo.
+
+## 18/11/2026 · Diagnóstico prévio publicado (aprovado pelo Bruno)
+- Página na `main` (GitHub Pages): `docs/diagnostico-previo/` → https://bchaerk-creator.github.io/zion-hotel-ai-developer/diagnostico-previo/ (200 conferido).
+- Rota no Lovable (projeto Zion Hospitality Platform): `src/routes/diagnostico-previo.tsx`, commit `9174df6`, padrão de proxy estático (título, descrição e canonical ajustados; noindex da origem mantido). Na prévia do Lovable o calendário do ClickMax apareceu com datas disponíveis. Publicação iniciada às ~16h (deployment `9f5177a1`). Nenhuma outra rota, menu ou rodapé alterado.
+- **Falta conferir no ar:** https://www.zionhotelgroup.com/diagnostico-previo (este ambiente não alcança o domínio). O botão "Diagnóstico prévio" do CRM continua em `/raio-x/` até essa conferência.
+- Página 2 (estruturação + checkout, R$ 470): aguardando nome completo, entregas e link de pagamento. Outra sessão publicou hoje a "Plataforma de Estruturação Zion Collection" (commit `48096c8`); conferir se é a base antes de criar uma nova.
