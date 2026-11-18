@@ -53,6 +53,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | **Site institucional e Zion Capital** | `docs/` (main); branches `claude/web-bruno-*`, `claude/zion-capital-webpage-*` | Web para Bruno / Zion Capital |
 
 ---
+| **E-books de entrada R$ 13 · Biblioteca do Desenvolvedor Hoteleiro** (18/11: 3 e-books + kits na marca oficial; produtos e combos R$ 19 no ClickMax, turmas no portal Zion Collection, 3 páginas de venda em rascunho; ofertas ainda não enviadas para aprovação) | entregáveis em `docs/p/adbc67069af26ae0/ebook-terreno-parado/`, `ebook-terreno-airbnb/`, `ebook-qual-cabana/`; ClickMax projeto Infoprodutos Zion (páginas `/ebook-terreno-parado-socio`, `/ebook-do-terreno-ao-airbnb`, `/ebook-qual-cabana`) | Controle de campanhas Zion (Meta + ClickMax) |
 
 ## 2. Sessões e o que cada uma produziu
 
