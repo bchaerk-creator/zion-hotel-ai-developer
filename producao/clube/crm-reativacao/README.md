@@ -35,3 +35,10 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 - Criado o pipeline **Reuniões agendadas · Zion** (`0983f37b-572b-443c-8f7b-d31170c1a556`, grupo "Reuniões"), separado dos funis existentes. Etapas: 1 · Agendada, 2 · Passou do horário · marcar resultado, 3 · Reunião feita, 4 · Não compareceu · reagendar, 5 · Cancelada ou remarcada.
 - 9 cards, um por reunião real da agenda "Equipe Zion": 2 em Agendada (16/11 e 23/11), 6 em "Passou do horário" (reuniões de 05 a 13/11 ainda com status "agendada" na agenda) e 1 em "Não compareceu". Ficaram de fora os testes, as reuniões do próprio Bruno e as canceladas.
 - Sem automação nem disparo: conferido que as automações que escutam entrada em etapa são restritas a etapas de outros pipelines. As reuniões da agenda e os cards dos funis originais não foram alterados.
+
+## 18/11/2026 · Ligações e dois links de agendamento
+- Fila com **Ligar agora** (`tel:`), **Liguei · não atendeu** (conta a ligação; a mensagem passa a começar com "Tentei te ligar agora há pouco…") e **Liguei · falamos**.
+- Ofertas: **Diagnóstico prévio** (página /raio-x do site, "Diagnóstico prévio gratuito"), **Agendar reunião** (calendário nativo do ClickMax, reunião de 45 min), Bubble e Clube.
+- Topo da fila: botões para copiar os dois links com UTM (`utm_medium=ligacao_manual`).
+- Quem já tem reunião na agenda "Equipe Zion" (21 leads em 18/11) entra como "Já agendaram" e sai da fila, para não receber convite de novo. Quem não compareceu continua na fila.
+- Base atualizada em 18/11: 2.733 leads com telefone (30 novos desde 14/11).

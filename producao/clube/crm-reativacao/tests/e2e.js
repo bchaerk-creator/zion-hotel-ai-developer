@@ -29,7 +29,9 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  await p.click('[data-tab=fila]');
  ok((await p.textContent('.big')).includes('Ana Souza'),'primeiro da fila é a Ana');
  const msg=await p.inputValue('#msg');
- ok(msg.startsWith('Oi, Ana!')&&msg.includes('utm_campaign=reativacao-agenda')&&msg.includes('app.clickmax.io/book'),'mensagem de agendamento com link e UTM');
+ ok(msg.startsWith('Oi, Ana!')&&msg.includes('utm_campaign=reativacao-diag')&&msg.includes('/raio-x/')&&/diagnóstico prévio gratuito/.test(msg),'oferta padrão: diagnóstico prévio com link e UTM');
+ await p.click('[data-of=agenda]');const msgA=await p.inputValue('#msg');
+ ok(msgA.includes('utm_campaign=reativacao-agenda')&&msgA.includes('app.clickmax.io/book')&&/45 minutos/.test(msgA),'oferta agendar reunião com link do calendário ClickMax e UTM');
  let href=await p.getAttribute('#abrir','href');
  ok(href.startsWith('https://wa.me/5548988880001?text=')&&decodeURIComponent(href).includes('Oi, Ana!'),'link do WhatsApp com mensagem');
  await p.click('[data-of=bubble]');ok((await p.inputValue('#msg')).includes('store/comprar')&&(await p.inputValue('#msg')).includes('Bubble'),'oferta Bubble');
@@ -44,7 +46,23 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  const antes=await p.textContent('.big');await p.click('#jaMandei');
  const jm=await p.evaluate(n=>window.__crm.leads.find(l=>l.nome.toLowerCase()===n.toLowerCase().trim()||l.nome===n),antes);
  ok(jm&&jm.status==='contatado'&&!!jm.enviado,'"Já mandei" marca contatado com carimbo de data');
- ok(/enviados hoje/.test(await p.textContent('#resumo')),'contador de enviados hoje: '+await p.textContent('#resumo'));
+ ok(/1 enviados/.test(await p.textContent('#resumo')),'contador de enviados hoje: '+await p.textContent('#resumo'));
+ // links rápidos
+ const lr=await p.evaluate(()=>[window.__crm.linkRapido('diag'),window.__crm.linkRapido('agenda')]);
+ ok(lr[0].includes('/raio-x/')&&lr[0].includes('utm_medium=ligacao_manual')&&lr[1].startsWith('https://app.clickmax.io/book/')&&lr[1].includes('utm_campaign=reativacao-agenda'),'links rápidos: '+lr.join(' | '));
+ await p.click('#cpDiag');await p.waitForFunction(()=>/Copiado/.test(document.querySelector('#avLinks').textContent));const cb=await p.evaluate(()=>navigator.clipboard.readText());ok(cb.includes('/raio-x/')&&cb.includes('utm_source=whatsapp'),'botão copia o link do diagnóstico para a área de transferência');
+ // ligação + reunião marcada
+ const lg=await p.evaluate(()=>{const c=window.__crm;c.juntar([{id:'r1',nome:'Com Reuniao',fone:'48944440001',criado:new Date().toISOString(),reuniao:new Date(Date.now()+864e5).toISOString()},{id:'r2',nome:'Sem Reuniao',fone:'48944440002',criado:new Date().toISOString()}]);const f=c.fila().map(l=>l.nome);const r1=c.leads.find(l=>l.nome==='Com Reuniao');return [f.includes('Com Reuniao'),f.includes('Sem Reuniao'),r1.status]});
+ ok(lg[0]===false&&lg[1]===true&&lg[2]==='agendou','quem já tem reunião sai da fila (status agendou)');
+ await p.evaluate(()=>{const c=window.__crm;for(const l of c.leads.filter(l=>/^(Antigo|Quente|Novo|Form|Com|Sem)/.test(l.nome)&&l.nome!=='Sem Reuniao'))l.status=l.status==='agendou'?'agendou':'sem_interesse'});
+ await p.click('[data-tab=fila]');await p.click('#fStatus');await p.selectOption('#fStatus','novo');
+ await p.waitForFunction(()=>document.querySelector('.big')&&document.querySelector('.big').textContent.includes('Sem Reuniao'));
+ await p.click('#ligueiNao');await p.waitForTimeout(200);
+ const lp=await p.evaluate(()=>{const l=window.__crm.leads.find(l=>l.nome==='Sem Reuniao');return [l.status,l.ligacoes,window.__crm.lembrete(l)]});
+ ok(lp[0]==='ligou'&&lp[1]===1&&/Tentei te ligar/.test(lp[2]),'"Liguei · não atendeu" conta a ligação e muda o lembrete: '+lp[2]);
+ ok((await p.inputValue('#msg')).includes('Tentei te ligar agora há pouco'),'mensagem depois da ligação cita a tentativa');
+ ok((await p.getAttribute('#ligar','href'))==='tel:+5548944440002','botão Ligar usa tel: com o número');
+ await p.evaluate(()=>{const l=window.__crm.leads.find(l=>l.nome==='Sem Reuniao');l.status='sem_interesse'});
  // lembrete
  const lm=await p.evaluate(()=>[window.__crm.lembrete({tags:'DISPARO A1 · OPERADOR PARCERIA',imp:true}),window.__crm.lembrete({tags:'FUNIL TERRENO | RESPONDEU',imp:true}),window.__crm.lembrete({tags:''}),window.__crm.lembrete({tags:'x',ctx:'Você pediu a diária da cabana.'})]);
  ok(/não lembre/.test(lm[0])&&/não lembre/.test(lm[1])&&/não lembre/.test(lm[2])&&lm[3]==='Você pediu a diária da cabana.','lembrete por etiqueta, padrão e edição manual');
@@ -68,10 +86,10 @@ let falhas=0;const ok=(c,m)=>{console.log((c?'OK   ':'FALHA ')+m);if(!c)falhas++
  const st=await p.evaluate(()=>window.__crm.leads.find(l=>l.nome==='Ana Souza'));
  ok(st.status==='contatado'&&st.oferta==='clube'&&st.ultimo,'Ana ficou como contatada, oferta clube');
  // persistência
- await p.reload();ok((await p.evaluate(()=>window.__crm.leads.length))===9,'dados persistem após recarregar');
+ const n0=await p.evaluate(()=>window.__crm.leads.length);await p.reload();ok((await p.evaluate(()=>window.__crm.leads.length))===n0,'dados persistem após recarregar');
  // exportação
  await p.click('[data-tab=dados]');const [dl]=await Promise.all([p.waitForEvent('download'),p.click('#exportar')]);
- const csv=fs.readFileSync(await dl.path(),'utf8');ok(csv.includes('contatado')&&csv.replace(/^\uFEFF/,'').startsWith('id,nome,fone')&&csv.split('\n').length===10,'exporta CSV com status');
+ const csv=fs.readFileSync(await dl.path(),'utf8');ok(csv.includes('contatado')&&csv.replace(/^\uFEFF/,'').startsWith('id,nome,fone')&&csv.split('\n').length===n0+1,'exporta CSV com status');
  // semente completa dados de uma versão antiga sem apagar status
  await p.evaluate(()=>{window.ZION_LEADS=[{id:'old1',nome:'Velho Salvo',fone:'48955550001',criado:'2026-11-13T10:00:00Z',temp:40,imp:false}];localStorage.setItem('zion_crm_leads_v1',JSON.stringify([{id:'old1',nome:'Velho Salvo',fone:'5548955550001',status:'respondeu',tags:'',origem:''}]))});
  const sem=await p.evaluate(()=>{const ls=JSON.parse(localStorage.getItem('zion_crm_leads_v1'));return ls.length});
