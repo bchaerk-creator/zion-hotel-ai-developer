@@ -140,6 +140,15 @@ PRODUTOS = [
                    ("Parcerias-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Parcerias-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Acordo-com-Parceiro.pdf", "Ficha de acordo com parceiro", "PDF · para imprimir")]),
+    dict(pasta="capacidade-28", num="28", telas=["producao/utilitarios/28-capacidade-atendimento/dist/demonstracao/demo-saidas.png", "producao/utilitarios/28-capacidade-atendimento/dist/demonstracao/demo-painel.png"],
+         titulo="Planner de Capacidade e Atendimento",
+         promessa="Aprenda o passo a passo para planejar as saídas das suas experiências: quantas pessoas cabem, quantos condutores escalar, quando confirmar ou cancelar e o que fazer com a lista de espera.",
+         itens=["Capacidade por saída", "Condutores necessários", "Mínimo e prazo para decidir", "Lista de espera"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Saídas e Painel.", "Na planilha em branco, cadastre as experiências e as saídas das próximas duas semanas.", "Siga o \"O que fazer agora\" do painel e imprima a ficha de cada saída confirmada."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Capacidade-Atendimento-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Capacidade-Atendimento-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Ficha-de-Saida.pdf", "Ficha de saída", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
