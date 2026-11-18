@@ -42,3 +42,9 @@ Sem promessa de reserva, renda ou valorização, sem preço "de" e sem urgência
 - Topo da fila: botões para copiar os dois links com UTM (`utm_medium=ligacao_manual`).
 - Quem já tem reunião na agenda "Equipe Zion" (21 leads em 18/11) entra como "Já agendaram" e sai da fila, para não receber convite de novo. Quem não compareceu continua na fila.
 - Base atualizada em 18/11: 2.733 leads com telefone (30 novos desde 14/11).
+
+## 18/11/2026 · Páginas novas do diagnóstico prévio (em construção)
+- O diagnóstico prévio **é a reunião** (45 min, agenda "Equipe Zion", sem custo para agendar). O CRM ainda aponta a oferta "Diagnóstico prévio" para `/raio-x/`; trocar para a página nova quando ela estiver no ar.
+- Página 1 pronta: `docs/diagnostico-previo/` (descrição + calendário do ClickMax embutido + fallback + WhatsApp). Testada em celular (sem rolagem lateral, sem erro). O calendário não carrega neste ambiente de teste (SDK bloqueado), então falta conferir no ar.
+- Página 2 (estruturação + checkout, R$ 470): aguarda o nome completo, o que inclui e o link de pagamento. Não existe oferta de R$ 470 no ClickMax.
+- Publicação no Lovable (rotas novas): só com "aprovado" do Bruno.
