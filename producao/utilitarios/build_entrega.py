@@ -149,6 +149,15 @@ PRODUTOS = [
                    ("Capacidade-Atendimento-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Capacidade-Atendimento-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Ficha-de-Saida.pdf", "Ficha de saída", "PDF · para imprimir")]),
+    dict(pasta="financeiro-10", num="10", telas=["producao/utilitarios/10-fechamento-mensal/dist/demonstracao/demo-lancamentos.png", "producao/utilitarios/10-fechamento-mensal/dist/demonstracao/demo-fechamento.png"],
+         titulo="Fechamento Mensal por Imóvel",
+         promessa="Aprenda o passo a passo para fechar o mês de cada imóvel: o que entrou por canal, o que saiu por categoria, as despesas divididas entre os imóveis e o que ainda falta conferir no extrato.",
+         itens=["Receitas por canal", "Despesas por categoria", "Despesas divididas", "Conferência com o extrato"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja a aba Fechamento.", "Na planilha em branco, cadastre os imóveis e lance o mês passado com o extrato aberto.", "Todo mês, siga a folha de fechamento."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Fechamento-Mensal-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Fechamento-Mensal-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
+                   ("Folha-de-Fechamento.pdf", "Folha de fechamento do mês", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
