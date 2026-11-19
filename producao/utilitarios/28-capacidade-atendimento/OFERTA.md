@@ -1,11 +1,11 @@
 # Ferramenta 28 · Planner de Capacidade e Atendimento
 
-Status: arquivos prontos e testados. **Oferta enviada para aprovação em 18/11/2026** na rodada diária automática. A página fica em rascunho até a oferta estar ativa.
+Status: arquivos prontos e testados. **Oferta enviada para aprovação em 18/11/2026** na rodada diária automática. **Oferta aprovada e página publicada em 19/11/2026.**
 
 **ClickMax:**
 - produto `0cf14c74-2d04-449c-ba9c-ddf689359d9b`;
 - oferta `2f851e16-746d-44e6-8448-a33c4cba92ae` (R$ 19, checkout `rcTdhslLRC`), com status `pending` desde 18/11 às 04h56 UTC e sem erro de sincronização;
-- página `4a1b7c4c-6c59-4d30-bb15-726754360ae9` em `/capacidade-atendimento` (rascunho).
+- página `4a1b7c4c-6c59-4d30-bb15-726754360ae9` em `/capacidade-atendimento` (publicada em 19/11).
 
 Entrega: 4 arquivos e a página de acesso, em `docs/p/adbc67069af26ae0/capacidade-28/`, ligados à oferta.
 
@@ -120,3 +120,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 - os 4 arquivos e a página de acesso foram conferidos no ar (status 200) e ligados à oferta;
 - `offers_get_incomplete_reason` voltou vazio;
 - a oferta foi enviada para aprovação e está `pending`, sem erro de sincronização.
+
+## Publicação (19/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada e conferida: status 200 com título, reembolso e capa em https://infoprodutos-zion.clickmax.space/capacidade-atendimento. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.

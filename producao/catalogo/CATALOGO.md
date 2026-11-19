@@ -51,7 +51,7 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 07 | Checklist para conversão de imóvel em hospedagem | A | D | A fazer |
 | 08 | Kit do primeiro anúncio | A | D + aula curta | A fazer (Arsenal 01 Pilar 4 tem base) |
 | 09 | Calculadora "Quanto sobra da reserva?" | B | P | **Grande parte já existe** na Ferramenta 01 (aba Reservas). Fazer só se trouxer o que falta: descontos, receitas extras e rateio |
-| 10 | Planilha financeira por imóvel | B | P | **Parte já existe** na Ferramenta 01 (Resumo do mês). Falta: categorias, fechamento, conciliação, vários imóveis |
+| 10 | Planilha financeira por imóvel · **Fechamento Mensal por Imóvel** | B | P | **Pronto** (`producao/utilitarios/10-fechamento-mensal/`): categorias, fechamento, conciliação com o extrato e vários imóveis; a Ferramenta 01 segue com a diária |
 | 11 | Kit de mensagens de chegada e saída | B | K + P | **Pronto** (`producao/utilitarios/11-mensagens-chegada-saida/`) |
 | 12 | Checklist de fotos e comodidades do anúncio | B | D | **Pronto** (`producao/utilitarios/12-fotos-comodidades/`) |
 | 13 | Controle de enxoval e reposição | B | P | **Pronto** (`producao/utilitarios/13-controle-enxoval/`) |
@@ -66,9 +66,9 @@ Formato: **P** = planilha (xlsx, versões em branco e exemplo), **D** = document
 | 22 | Planner de campanhas para períodos de baixa procura | B | P | **Pronto** (`producao/utilitarios/22-campanhas-baixa-procura/`) |
 | 23 | Kit de roteiros de conteúdo e vídeos | B | K | **Pronto** (`producao/utilitarios/23-roteiros-conteudo/`) |
 | 24 | Assistente de IA para atendimento | B | IA | A fazer (testar respostas com informação faltando) |
-| 25 | Organizador de premissas do projeto | A, C | P | A fazer |
-| 26 | Kit de reuniões de projeto | A, C | D + P | A fazer |
-| 27 | Template de apresentação do projeto turístico | A, C | D (Gamma) | A fazer, sem projeções |
+| 25 | Organizador de premissas do projeto | A, C | P | **Bruno decide** (sobreposição com Clube, Kit de Captação, ZAIOS F01–F03 e Linha B) |
+| 26 | Kit de reuniões de projeto | A, C | D + P | **Bruno decide** (sobreposição com Kit de Captação e Clube) |
+| 27 | Template de apresentação do projeto turístico | A, C | D (Gamma) | **Bruno decide** (sobreposição com o kit do investidor do Clube); sem projeções |
 | 28 | Planner de capacidade e atendimento | C | P | Pronto |
 | 29 | Calculadora de custos de experiências | C | P | **Pronto** (`producao/utilitarios/29-custos-experiencias/`) |
 | 30 | Gerador de briefing de experiência | C | D | **Pronto** (`producao/utilitarios/30-briefing-experiencia/`) |
@@ -106,7 +106,8 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5i. **22 · Planner de campanhas para períodos de baixa procura** (pronto, aprovado e página publicada em `/campanhas-baixa-procura`, 16/11). Usa o piso da Ferramenta 01 como trava; o bump da Zion Collection 06 (calendário de 30 dias do anúncio) segue separado.
 5j. **23 · Kit de roteiros de conteúdo e vídeos** (pronto e enviado para aprovação, 16/11; aprovado e página publicada em 17/11). Mesma mecânica de textos da 11 e da 30.
 5k. **16 · Kit operacional de parcerias** (pronto e enviado para aprovação, 17/11; aprovado e página publicada em 18/11). Parceiros, acordos, indicações pelo código da reserva e comissão; ficha de acordo para imprimir.
-5l. **28 · Planner de capacidade e atendimento** (pronto e enviado para aprovação, 18/11). Regras de cada experiência, saídas só com quantidades, condutores necessários, mínimo e prazo para decidir; ficha de saída para imprimir.
+5l. **28 · Planner de capacidade e atendimento** (pronto e enviado para aprovação, 18/11; aprovado e página publicada em 19/11). Regras de cada experiência, saídas só com quantidades, condutores necessários, mínimo e prazo para decidir; ficha de saída para imprimir.
+5m. **10 · Fechamento mensal por imóvel** (pronto e enviado para aprovação, 19/11). Lançamentos de vários imóveis, despesas comuns divididas, conferência com o extrato, resultado de cada imóvel e do ano. 25, 26 e 27 foram para a decisão de Bruno pela mesma razão da 01.
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).

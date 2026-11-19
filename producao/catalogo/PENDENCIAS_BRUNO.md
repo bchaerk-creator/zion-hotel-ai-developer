@@ -31,6 +31,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 23 | `docs/p/adbc67069af26ae0/roteiros-23/capa.jpg` |
 | Ferramenta 16 | `docs/p/adbc67069af26ae0/parcerias-16/capa.jpg` |
 | Ferramenta 28 | `docs/p/adbc67069af26ae0/capacidade-28/capa.jpg` |
+| Ferramenta 10 | `docs/p/adbc67069af26ae0/financeiro-10/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -64,6 +65,16 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
+
+## Rodada de 19/11
+- 28 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/capacidade-atendimento`).
+- 13 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas. Vendedor ainda `pending`.
+- 10 (Fechamento Mensal por Imóvel) criada e enviada para aprovação; página em rascunho em `/fechamento-mensal`.
+- **Decidir: ferramentas 25, 26 e 27 (projeto).** Antes de produzir, encontrei sobreposição com o que já existe:
+  - 25 (premissas) com as abas Premissas e Viabilidade das planilhas do Clube, a ZAIOS F01–F03 e a Linha B (B08);
+  - 26 (reuniões de projeto) com o Kit de Captação;
+  - 27 (apresentação) com o kit do investidor (one-pager e apresentação).
+  Seguir com promessa diferente, virar material do Clube ou sair do catálogo? Até a decisão, a rodada diária segue com o que sobra do público B: 09 (o que falta na Ferramenta 01) e 24 (assistente de IA).
 
 ## Rodada de 18/11
 - 16 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/kit-parcerias`).
