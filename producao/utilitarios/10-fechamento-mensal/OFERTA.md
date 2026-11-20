@@ -1,11 +1,11 @@
 # Ferramenta 10 · Fechamento Mensal por Imóvel
 
-Status: arquivos prontos e testados. **Oferta enviada para aprovação em 19/11/2026** na rodada diária automática. A página fica em rascunho até a oferta estar ativa.
+Status: arquivos prontos e testados. **Oferta enviada para aprovação em 19/11/2026** na rodada diária automática. **Oferta aprovada e página publicada em 20/11/2026.**
 
 **ClickMax:**
 - produto `2446ba99-5aea-4202-945f-1db04c8ced80`;
 - oferta `2e335c78-25a4-411d-8f81-380b692f5648` (R$ 19, checkout `2BpmmqQLeG`), com status `pending` desde 19/11 às 04h55 UTC e sem erro de sincronização;
-- página `e150beeb-37a2-4527-833f-140c2c5c7711` em `/fechamento-mensal` (rascunho).
+- página `e150beeb-37a2-4527-833f-140c2c5c7711` em `/fechamento-mensal` (publicada em 20/11).
 
 Entrega: 4 arquivos e a página de acesso, em `docs/p/adbc67069af26ae0/financeiro-10/`, ligados à oferta.
 
@@ -132,3 +132,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 - os 4 arquivos e a página de acesso foram conferidos no ar (status 200) e ligados à oferta;
 - `offers_get_incomplete_reason` voltou vazio;
 - a oferta foi enviada para aprovação e está `pending`, sem erro de sincronização.
+
+## Publicação (20/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada; 404 nos primeiros segundos (propagação), depois status 200 com título, reembolso e capa em https://infoprodutos-zion.clickmax.space/fechamento-mensal. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.

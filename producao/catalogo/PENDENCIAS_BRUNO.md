@@ -32,6 +32,7 @@ O ClickMax só aceita a imagem do produto se ela for enviada para o armazenament
 | Ferramenta 16 | `docs/p/adbc67069af26ae0/parcerias-16/capa.jpg` |
 | Ferramenta 28 | `docs/p/adbc67069af26ae0/capacidade-28/capa.jpg` |
 | Ferramenta 10 | `docs/p/adbc67069af26ae0/financeiro-10/capa.jpg` |
+| Ferramenta 24 | `docs/p/adbc67069af26ae0/assistente-24/capa.jpg` |
 Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozinho.
 
 ## Ofertas enviadas para aprovação (10/11)
@@ -65,6 +66,17 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 12 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fotos-comodidades`).
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
+
+## Rodada de 20/11
+- 10 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fechamento-mensal`).
+- 14 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas. Vendedor ainda `pending`.
+- 24 (Assistente de IA para Atendimento) criada e enviada para aprovação; página em rascunho em `/assistente-atendimento`. Instrução do exemplo testada com um modelo de IA: 12 de 12.
+- **A fila de ferramentas sem decisão pendente acabou.** Só resta a 09, que repetiria quase tudo da Ferramenta 01. Para a rodada diária continuar, preciso de uma decisão sobre:
+  - 01, 21, 25, 26 e 27 (sobreposições);
+  - E08 (Jornada 2);
+  - os PDFs A01–A10 (E05/E06);
+  - ou uma nova lista de produtos.
+  Até lá, as próximas rodadas só fazem o passo 1 (conferir ofertas e publicar páginas aprovadas) e avisam.
 
 ## Rodada de 19/11
 - 28 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/capacidade-atendimento`).
