@@ -6,10 +6,12 @@ Link: <SITE>?utm_source=meta&utm_medium=paid&utm_campaign=black-friday-2026&utm_
 
 ## Texto principal
 Black Friday Zion: até 25% OFF em Urubici e Florianópolis.
-Use o cupom BLACKFRIDAY na sua reserva e viva uma noite dentro de uma bolha.
+Na hora de reservar, digite o cupom BLACKFRIDAY no campo de cupons e veja o desconto.
 
 ## Título (por card)
 1 Black Friday: até 25% OFF · 2 Uma noite dentro de uma bolha · 3 Momentos que ficam · 4 Duas unidades, um jeito Zion · 5 Cupom BLACKFRIDAY
+
+Cupom BLACKFRIDAY (uma palavra): sem validade, vale para reservas em qualquer data, digitado no campo de cupons do Omnibees.
 
 ## Pendente de Bruno
 - Validade da promoção e período de estadias válido (não coloquei data na arte)
