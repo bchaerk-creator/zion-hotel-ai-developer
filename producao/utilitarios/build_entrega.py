@@ -158,6 +158,15 @@ PRODUTOS = [
                    ("Fechamento-Mensal-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
                    ("Fechamento-Mensal-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios"),
                    ("Folha-de-Fechamento.pdf", "Folha de fechamento do mês", "PDF · para imprimir")]),
+    dict(pasta="assistente-24", num="24", telas=["producao/utilitarios/24-assistente-atendimento/dist/demonstracao/demo-ficha.png", "producao/utilitarios/24-assistente-atendimento/dist/demonstracao/demo-teste.png"],
+         titulo="Assistente de IA para Atendimento",
+         promessa="Aprenda o passo a passo para montar e testar as instruções de um assistente de IA que responde hóspedes só com as informações da sua hospedagem, sem inventar e sem prometer o que você não autorizou.",
+         itens=["Ficha sem senhas nem códigos", "Instrução pronta para colar", "8 regras fixas de segurança", "Teste de 12 perguntas"],
+         passos=["Leia o guia (cerca de 15 minutos).", "Abra o exemplo e veja as abas Ficha, Instrução e Teste.", "Na planilha em branco, preencha a ficha e copie a instrução para o seu assistente.", "Faça os 12 testes com o roteiro antes de usar com hóspedes."],
+         arquivos=[("Guia-Aprenda-o-Passo-a-Passo.pdf", "Guia Aprenda o passo a passo", "PDF · comece por aqui"),
+                   ("Assistente-Atendimento-Zion-EM-BRANCO.xlsx", "Planilha · versão em branco", "Excel, Google Sheets ou LibreOffice"),
+                   ("Assistente-Atendimento-Zion-EXEMPLO.xlsx", "Planilha · exemplo preenchido", "Dados fictícios e teste real"),
+                   ("Roteiro-de-Teste.pdf", "Roteiro de teste do assistente", "PDF · para imprimir")]),
 ]
 
 FONTES_LOCAIS = f"""@font-face{{font-family:Cormorant;src:url('{(R/'docs/assets/fonts/cormorant.woff2').as_uri()}')}}
