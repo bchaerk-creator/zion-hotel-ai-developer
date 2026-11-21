@@ -35,8 +35,14 @@ def main():
     fim = total - 57.03
     destino = saida / ('Black Friday Zion - conferencia.mp4' if a.quadros else 'Black Friday Zion - Reels.mp4')
     entrada_overlay = ['-framerate', str(FPS) if not a.quadros else '1', '-i', str(quadros / '%05d.png')]
-    filtro = (f"[0:v]scale=1080:1920:flags=lanczos,setsar=1,fps={FPS},tpad=stop_mode=clone:stop_duration={fim:.2f}[v];"
-              f"[v][1:v]overlay=0:0:shortest=0:eof_action=pass[o];"
+    # o vídeo base, já esticado com o último quadro por baixo do cartão final, sai antes num arquivo próprio:
+    # dentro do mesmo grafo do overlay o tpad não esticava a imagem
+    base = AQUI / 'trabalho/base.mp4'
+    if not a.quadros:
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', a.video, '-vf',
+                        f'scale=1080:1920:flags=lanczos,setsar=1,fps={FPS},tpad=stop_mode=clone:stop_duration={fim:.2f}',
+                        '-c:v', 'libx264', '-crf', '14', '-preset', 'fast', '-c:a', 'copy', str(base)], check=True)
+    filtro = (f"[0:v][1:v]overlay=0:0[o];"
               f"[0:a]afade=t=out:st=55.6:d=1.4,apad,atrim=0:{total:.2f},loudnorm=I=-14:TP=-1.0:LRA=11[a]")
     if a.quadros:  # um quadro do vídeo para cada tempo pedido, com a camada por cima
         for i, t in enumerate(tempos):
@@ -46,7 +52,7 @@ def main():
                             '-frames:v', '1', str(saida / f'quadro-{t:05.1f}.jpg')], check=True)
         print('quadros em', saida)
         return
-    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', a.video, *entrada_overlay, '-filter_complex', filtro,
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', str(base), *entrada_overlay, '-filter_complex', filtro,
                     '-map', '[o]', '-map', '[a]', '-t', f'{total:.2f}', '-c:v', 'libx264', '-crf', '18', '-preset', 'medium',
                     '-pix_fmt', 'yuv420p', '-r', str(FPS), '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
                     '-movflags', '+faststart', str(destino)], check=True)
