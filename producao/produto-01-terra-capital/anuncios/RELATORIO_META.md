@@ -7,12 +7,14 @@
 |---|---|
 | 6 anúncios 1080×1350 (um card = um anúncio) | `dist/feed/` |
 | 6 adaptações 9:16 (Stories/Reels), card inteiro, sem esticar nem cortar, topo e base livres para a interface do Meta | `dist/stories/` |
-| Vídeo vertical de 30 s (dor 0–5 s, demonstração real 5–20 s, entregáveis 20–27 s, chamada 27–30 s), silencioso, com texto na tela | `dist/video/reels_30s_1080x1920.mp4` |
+| Vídeo vertical de 30 s (dor 0–5 s, demonstração real 5–20 s, entregáveis 20–27 s, chamada 27–30 s), com locução sintética em português e texto na tela | `dist/video/reels_30s_1080x1920.mp4` |
 | Card 04 com a **ferramenta real** no lugar da tela ilustrada | `dist/feed/anuncio_04_*` (captura em `src/tela-real-notebook.png`) |
 | Copies, título, descrição e UTM por anúncio | `COPIES.md` |
 | Parâmetros prontos de campanha, 3 conjuntos e 7 anúncios | `meta_payloads.json` (gerado de `anuncios.json`) |
 | Testes | `tests/anuncios.test.js`: 13 ok, 0 falhas (medidas, termos proibidos, UTMs únicas, orçamento 40/40/20, tudo pausado) |
 Os arquivos já estão no site em `docs/p/adbc67069af26ae0/terra-capital/anuncios/` (URL pública só depois do merge, necessária para o Meta buscar as imagens).
+
+**Voz do vídeo (21/11):** locução sintética em português do Brasil, masculina, normalizada em -16 LUFS, sem música. A voz do ClickMax (`speech_generate`, todas as vozes e modelos) devolveu erro 502 em 7 tentativas, então usei a voz neural `pt-BR-AntonioNeural` (serviço de voz da Microsoft acessado por biblioteca de terceiros, `tts_edge.py`). **Pendência:** confirmar se a licença desse serviço serve para anúncio pago; se não, regravar com a voz do ClickMax quando voltar, com locução humana de Bruno (com autorização) ou outro serviço licenciado. Anúncios com voz sintética podem exigir aviso de conteúdo gerado por IA conforme as regras do Meta (confirmar). Roteiro da locução: `src/voz/` e `montar_reels.sh`.
 
 ## 2. Ajustes feitos nos criativos (e por quê)
 Li `PROMPT_E_ESTRATEGIA.md` por inteiro. Logo e design oficiais preservados; só troquei texto onde a política do Meta ou as regras do repositório pediam.

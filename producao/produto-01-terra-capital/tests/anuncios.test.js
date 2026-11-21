@@ -16,5 +16,6 @@ t('divisão 40/40/20 soma o orçamento', () => { const s = P.conjuntos.reduce((x
 t('conjuntos otimizam para Purchase, pausados, com exclusão de compradores', () => { for (const c of P.conjuntos) { assert.equal(c.params.promoted_object.custom_event_type, 'PURCHASE'); assert.equal(c.params.status, 'paused'); assert(c.params.targeting.excluded_custom_audiences.length === 1); } });
 t('remarketing usa só públicos existentes da própria conta (sem dados patrimoniais)', () => { const r = P.conjuntos.find(c => c.chave === 'remarketing').params.targeting.custom_audiences; assert.equal(r.length, 3); r.forEach(x => assert(/^\d{15,}$/.test(x.id))); });
 t('vídeo vertical 1080x1920 de ~30 s existe', () => { const f = A + '/dist/video/reels_30s_1080x1920.mp4'; assert(fs.statSync(f).size > 100000); });
+t('vídeo tem faixa de áudio AAC de ~30 s', () => { const o = require('child_process').execSync('ffprobe -v error -show_entries stream=codec_name,codec_type -of csv=p=0 ' + A + '/dist/video/reels_30s_1080x1920.mp4').toString(); assert(/aac,audio/.test(o) || /audio,aac/.test(o), o); });
 t('card 04 mostra a tela real (arquivo de captura existe)', () => { assert(fs.existsSync(A + '/src/tela-real-notebook.png') && fs.existsSync(A + '/src/card_04_real.jpg')); });
 console.log(ok + ' testes de anúncios ok');
