@@ -7,7 +7,7 @@ V = {"boas-vindas": [
   ("A Zion Hotel Group International é um grupo de desenvolvimento hoteleiro, fundado por Bruno Chaerk.", None, "foto", "docs/assets/bruno/palco-azul.webp|Bruno Chaerk, founder e CEO"),
   ("Se você tem um terreno e não tem capital para investir, esta jornada foi feita para você.", None, "texto", None),
   ("Aqui você aprende o passo a passo para organizar o seu projeto: quanto falta, o que precisa estar documentado, que caminhos existem para completar o capital e como apresentar tudo com clareza.", "Você aprende o passo a passo para organizar o projeto: quanto falta, o que documentar, que caminhos existem e como apresentar.", "foto", "docs/assets/operacoes/op09.webp|Foto real · Zion Bubble Glamping"),
-  ("Nós não prometemos crédito, sócio ou investidor. Prometemos método.", None, "texto", None),
+  ("A Zion está em plena expansão e abre a oportunidade de estruturar projetos, e também a possibilidade de criar investimentos e parcerias.", None, "texto", None),
   ("Cada aula tem cerca de um minuto e uma tarefa curta, com a ferramenta aberta logo abaixo. Comece pela aula um.", "Cada aula tem cerca de um minuto e uma tarefa curta. Comece pela aula 1.", "texto", None)],
  "encerramento": [
   ("Você chegou ao fim da jornada.", None, "titulo", None),

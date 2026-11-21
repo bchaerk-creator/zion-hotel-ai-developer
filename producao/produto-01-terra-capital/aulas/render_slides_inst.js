@@ -9,6 +9,6 @@ h1{font:500 italic 76px/1.06 Cormorant,serif}.t{font:400 42px/1.3 Aventa,sans-se
 (async () => { const b = await chromium.launch(), p = await b.newPage({ viewport: { width: 1280, height: 720 } });
   for (const s of J.segs) { const [img, cap] = (s.img || '|').split('|');
     const mid = (s.tipo === 'titulo' ? `<div class="tx"><h1>${s.tela}</h1></div>` : `<div class="tx"><div class="t" style="font-size:${s.tela.length > 120 ? 36 : 42}px">${s.tela}</div></div>`) + (img ? `<div class="im"><img src="file://${path.join(R, img)}"><span>${cap}</span></div>` : '');
-    const f = W + '/i.html'; fs.writeFileSync(f, `<!doctype html><meta charset="utf-8"><style>${CSS}</style><div class="top"><img src="file://${path.join(R, 'docs/brand/zion-logo-claro.png')}"></div><div class="c">${mid}</div><div class="f"><span>Zion Hotel Academy · Você tem terra. Falta capital?</span><span>Material educativo · sem promessa de crédito, sócio ou retorno · narração sintética</span></div>`);
+    const f = W + '/i.html'; fs.writeFileSync(f, `<!doctype html><meta charset="utf-8"><style>${CSS}</style><div class="top"><img src="file://${path.join(R, 'docs/brand/zion-logo-claro.png')}"></div><div class="c">${mid}</div><div class="f"><span>Zion Hotel Academy · Você tem terra. Falta capital?</span><span>Material educativo · narração sintética</span></div>`);
     await p.goto('file://' + f); await p.evaluate(() => document.fonts.ready); await p.screenshot({ path: `${W}/${s.v}_${s.k}.png` }); }
   await b.close(); })();
