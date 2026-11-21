@@ -1,7 +1,8 @@
 // Ponta a ponta do portal. Uso: node tests/e2e.js <saida> <jspdf.umd.min.js>
 const { chromium } = require('playwright'); const fs = require('fs'), path = require('path'), assert = require('assert');
 const _tc=null; const OUT = process.argv[2], JSPDF = fs.readFileSync(process.argv[3], 'utf8'); fs.mkdirSync(OUT, { recursive: true });
-const URL = 'file://' + path.resolve(__dirname, '../dist/index.html'); let ok = 0; const t = (m) => { ok++; console.log('ok', m); };
+// testa a cópia empacotada (mesma estrutura do site: index.html + aulas/), gerada por empacotar.sh
+const PUB = path.resolve(__dirname, '../../../docs/p/adbc67069af26ae0/terra-capital'); const URL = 'file://' + PUB + '/index.html'; let ok = 0; const t = (m) => { ok++; console.log('ok', m); };
 (async () => {
   const b = await chromium.launch();
   const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 1, acceptDownloads: true });
@@ -21,6 +22,7 @@ const URL = 'file://' + path.resolve(__dirname, '../dist/index.html'); let ok = 
   // abrir cada aula direto
   for (let n = 1; n <= 20; n++) { const ok2 = await p.evaluate(n => { document.querySelector('#tabs button[data-t=jornada]').click(); document.querySelectorAll('details.pilar').forEach(d => d.open = true); const e = document.querySelector(`[data-aula="${n}"]`); e.click(); return document.querySelector('.pergunta') !== null && document.querySelector('main').innerText.toLowerCase().includes('faça agora'); }, n); assert(ok2, 'aula ' + n); }
   t('20 aulas abrem com pergunta e tarefa');
+  { const srcs = await p.evaluate(() => { const o = []; for (let n = 1; n <= 20; n++) { document.querySelector('#tabs button[data-t=jornada]').click(); document.querySelectorAll('details.pilar').forEach(d => d.open = true); document.querySelector(`[data-aula="${n}"]`).click(); const v = document.querySelector('main video'); o.push(v ? v.getAttribute('src') : null); } return o; }); srcs.forEach((s, i) => { assert.equal(s, 'aulas/aula-' + String(i + 1).padStart(2, '0') + '.mp4'); assert(fs.existsSync(path.join(PUB, s)), s); }); t('20 aulas têm vídeo e o arquivo existe'); }
   // lacuna: números do guia
   await p.evaluate(() => { document.querySelector('#tabs button[data-t=ferramentas]').click(); document.querySelector('[data-tool=lacuna]').click(); });
   const fill = async (id, v) => { await p.fill(`[data-f="${id}"]`, String(v)); };
