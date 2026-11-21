@@ -6,7 +6,18 @@
 | Campanha `[P01 TERRA-CAPITAL][VENDAS][PURCHASE] [21/11]` | `120250503993280016` | Vendas, sem categoria especial, orçamento por conjunto |
 | Conjunto ABERTO · Advantage+ · Brasil 25-55 | `120250503994630016` | R$ 40/dia, Purchase, pixel `903918118859018` |
 | Conjunto REMARKETING · base existente (LGPD) | `120250503995570016` | R$ 20/dia, Purchase, 3 públicos existentes |
-**Ainda não criados:** conjunto Lookalike 1% (falta a fonte de leads qualificados; R$ 40/dia ficam reservados) e os **anúncios** (o Meta busca as imagens por URL pública; o site ainda dá 404 porque a branch não foi para a `main`). Exclusão de compradores entra depois da 1ª venda.
+**Merge na `main` feito por ordem de Bruno (commit `e41442c`); URLs públicas conferidas (200).** Depois disso criei **14 anúncios, todos PAUSADOS** (7 em cada conjunto: 6 imagens + 1 vídeo com voz), com link para a página A (R$ 47) e UTM por anúncio (`utm_content` = criativo, `utm_term` = aberto/remarketing):
+| Anúncio | Conjunto aberto | Conjunto remarketing |
+|---|---|---|
+| AD01 terreno/planejar | `120250504061040016` | `120250504069740016` |
+| AD02 documentação | `120250504061680016` | `120250504070860016` |
+| AD03 proposta/parceiros | `120250504062640016` | `120250504071220016` |
+| AD04 ferramenta/capital (tela real) | `120250504064020016` | `120250504072320016` |
+| AD05 dossiê | `120250504064890016` | `120250504073570016` |
+| AD06 da terra ao negócio | `120250504066160016` | `120250504074390016` |
+| AD07 vídeo com voz (vídeo `1151872447387954`) | `120250504069010016` | `120250504075380016` |
+Os anúncios apontam para a página A, que **ainda está em rascunho no ClickMax**: o anúncio não deve ser ativado até a página ser publicada.
+**Ainda não criado:** conjunto Lookalike 1% (falta a fonte de leads qualificados; R$ 40/dia ficam reservados). Exclusão de compradores entra depois da 1ª venda. Os 14 anúncios usam a página A; o teste de preço (página B) é a fase 2.
 Decisões suas (21/11): paleta oficial; Produto 01 como oferta principal; voz atual; 3 conjuntos 40/40/20; pixel 903918118859018; campanha "LAND BANK · Diagnóstico Grátis" ativa fica como está.
 Não alterei campanhas existentes e não iniciei gasto (R$ 0). Os parâmetros estão prontos em `meta_payloads.json` (tudo `paused`) e os criativos, copies e vídeo estão prontos. A criação dentro do Meta ficou parada por bloqueios que só você resolve (seção 6); fazer só a casca da campanha agora deixaria objetos incompletos na conta.
 

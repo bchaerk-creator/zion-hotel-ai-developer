@@ -1,6 +1,8 @@
 # Produto 01 · Você tem terra. Falta capital? · Oferta A (R$ 47) × Oferta B (R$ 67)
 
-**Estado: rascunho. Nada publicado, nada enviado para aprovação, nenhuma campanha criada.**
+**Atualização 21/11 (tarde), por ordem de Bruno:** ofertas A e B `approved`; curso ativado e portal publicado; páginas A (`/terra-capital-a`, checkout `Yqp_fxiRJl`) e B (`/terra-capital-b`, checkout `k5ETStF7A7`) publicadas e conferidas no ar (HTTP 200, checkout certo em cada uma). A B foi corrigida: o clone tinha herdado o checkout da oferta A; reimportada com a oferta B. Falta: compra de teste, reembolso de teste, rastreamento real. Anúncios seguem pausados.
+
+**Estado anterior (21/11): ofertas A e B ENVIADAS PARA APROVAÇÃO por ordem de Bruno (status `pending`; `providerSyncError` vazio nas duas). Páginas e portal seguem em rascunho; campanha e 14 anúncios no Meta pausados.** A página só deve ser publicada quando a oferta estiver `active`.
 
 ## Público, dor, promessa
 - **Público:** quem tem terreno em destino turístico e não tem capital para desenvolver.
