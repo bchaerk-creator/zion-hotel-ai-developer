@@ -23,6 +23,9 @@ Branch: `claude/zion-hotel-academy-produto-01-sul1ay`. **Nada publicado, nada en
 Não testado: vídeos (não existem), acessibilidade formal (WCAG) além de contraste/alvos de 44 px, navegadores além do Chromium, ClickMax em produção.
 Observação: o jsPDF vem do cdnjs (bloqueado neste ambiente); o teste serviu o pacote npm.
 
+## Atualização 21/11 · vídeos das microaulas
+Gerados 20 vídeos narrados (1280×720, 40 a 62 s cada, 16,3 min no total), com voz sintética pt-BR, texto na tela e tela real da ferramenta: `aulas/gerar_videos.py` → `aulas/dist/aula-NN.mp4`, publicados em `docs/p/adbc67069af26ae0/terra-capital/aulas/`. O portal toca o vídeo em cada aula e mantém o texto abaixo. Pendente: boas-vindas e encerramento (texto em primeira pessoa de Bruno, não gerado com voz sintética), licença comercial da voz, e a landing ainda diz "vídeos em produção".
+
 ## Pendências audiovisuais
 - 20 microaulas: roteiros em `aulas/ROTEIROS.md` (25 a 50 s cada; ≈ 11 min no total). Gravar com legenda; validar duração.
 - Vídeo de boas-vindas (≈36 s) e de encerramento (≈30 s): textos prontos, **aguardam Bruno** (gravar ou autorizar narração; direitos de voz e imagem).

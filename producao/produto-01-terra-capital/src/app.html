@@ -60,7 +60,7 @@ svg text{font-family:Aventa,sans-serif}
 <script>{{LOGIC}}</script>
 <script>
 var DATA={{AULAS}};
-var VIDEOS={}; /* {numeroDaAula:"url do vídeo"} preenchido quando os vídeos forem gravados e aprovados */
+var VIDEOS={};for(var _i=1;_i<=20;_i++)VIDEOS[_i]="aulas/aula-"+(_i<10?"0":"")+_i+".mp4"; /* 20 microaulas narradas (voz sintética); 0 = boas-vindas e 21 = encerramento ainda sem vídeo. */ /* {numeroDaAula:"url do vídeo"} preenchido quando os vídeos forem gravados e aprovados */
 var CFG={pdfNome:"Dossie-Preliminar-Zion-Terra-Capital.pdf",ebook:"Voce-tem-terra-falta-capital-Zion.pdf",versao:(window.ZION_PRICE_VERSION||"")};
 var KEY="zion_p01_v1", ZL=window.ZL;
 var S; try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
@@ -211,7 +211,7 @@ function vInicio(){var pr=proxima(),p=ZL.progresso(done(),20);
 function vJornada(){return PIL.map(function(p){var i=pilarInfo(p);return '<details class="card pilar" '+(i.d<i.t&&i.auto!=="pendente"||p.n===1?"open":"")+'><summary><span>Pilar '+p.n+" · "+p.nome+'</span><span class="n">'+i.d+"/"+i.t+"</span></summary>"+DATA.aulas.filter(function(a){return a.pilar===p.n}).map(function(a){return '<div class="aula'+(S.aulas[a.n]?" done":"")+'" data-aula="'+a.n+'" role="button" tabindex="0"><span class="dot">'+(S.aulas[a.n]?"✓":"")+'</span><span><b>Aula '+a.n+" · "+E(a.titulo)+"</b><small>Faça agora: "+E(a.acao)+"</small></span></div>"}).join("")+"</details>"}).join("")}
 function vAula(n){var a=DATA.aulas[n-1],p=PIL[a.pilar-1],t=TOOLS.filter(function(x){return x.k===a.ferramenta})[0];
  var fr=a.texto.split(/(?<=[.;])\s+/).filter(Boolean),cards=[];for(var i=0;i<fr.length;i+=2)cards.push(fr.slice(i,i+2).join(" "));
- return '<div class="kick">Pilar '+p.n+" · "+p.nome+" · aula "+n+' de 20</div><div class="pergunta">'+E(a.pergunta)+'</div><h2 style="margin-bottom:12px">'+E(a.titulo)+"</h2>"+(VIDEOS[n]?'<video controls playsinline style="width:100%;border-radius:8px;margin-bottom:14px" src="'+VIDEOS[n]+'"></video>':'<div class="video">Vídeo da aula (até 2 min) · em produção. O conteúdo completo está abaixo.</div>')+
+ return '<div class="kick">Pilar '+p.n+" · "+p.nome+" · aula "+n+' de 20</div><div class="pergunta">'+E(a.pergunta)+'</div><h2 style="margin-bottom:12px">'+E(a.titulo)+"</h2>"+(VIDEOS[n]?'<video controls playsinline preload="metadata" style="width:100%;border-radius:8px;margin-bottom:6px;background:#1B2117" src="'+VIDEOS[n]+'"></video><p style="font-size:12.5px;color:#666;margin:0 0 14px">Narração sintética. O mesmo conteúdo está escrito abaixo.</p>':'<div class="video">Vídeo da aula (até 2 min) · em produção. O conteúdo completo está abaixo.</div>')+
  '<div class="card">'+cards.map(function(c,i){return '<div class="passo"><b>'+(i+1)+"</b><div>"+E(c)+"</div></div>"}).join("")+"</div>"+
  '<div class="card fazer"><div class="kick">Faça agora</div><h3>'+E(a.acao)+'</h3><p style="font-size:13px;color:#555">Ferramenta: '+E(t.t)+' (também na aba Ferramentas)</p>'+T[t.k]()+'</div>'+
  '<p><button class="btn ouro" id="conc">'+(S.aulas[n]?"✓ Aula concluída (desmarcar)":"Marcar como concluída")+'</button> '+(n<20?'<button class="btn ghost" data-aula="'+(n+1)+'">Próxima aula →</button>':"")+' <button class="btn ghost" data-tab="jornada">Jornada</button></p>'}

@@ -7,4 +7,5 @@ mkdir -p "$D/img"; cp "$P/dist/index.html" "$D/index.html"; cp "$P/dist/Voce-tem
 cp "$P"/landing/img/*.jpg "$P"/landing/img/demo.mp4 "$P"/landing/img/demo-voz.mp4 "$D/img/"
 mkdir -p "$D/anuncios/feed" "$D/anuncios/stories" "$D/anuncios/video"
 cp "$P"/anuncios/dist/feed/*.jpg "$D/anuncios/feed/"; cp "$P"/anuncios/dist/stories/*.jpg "$D/anuncios/stories/"; cp "$P/anuncios/dist/video/reels_30s_1080x1920.mp4" "$D/anuncios/video/"
+mkdir -p "$D/aulas"; cp "$P"/aulas/dist/aula-*.mp4 "$D/aulas/"
 echo "ok: $D"; ls -la "$D" "$D/img" | head -30
