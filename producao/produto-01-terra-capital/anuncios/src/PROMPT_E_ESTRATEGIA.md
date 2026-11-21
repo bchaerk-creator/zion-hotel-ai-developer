@@ -1,0 +1,14 @@
+# Produto 01 | Complemento comercial Zion
+Use os seis JPGs como anúncios independentes, nunca como colagem. Preserve o logotipo oficial incorporado. As imagens são ilustrativas, não cases reais. Card 04 contém números ilustrativos: substituir a tela por captura da ferramenta real validada e indicar cenário hipotético antes de publicar.
+## Copy por card
+01 — Você tem terra. Falta capital? Aprenda a planejar seu projeto turístico, calcular recursos e avaliar alternativas de parceria. Conheça a mini mentoria.
+02 — Uma matrícula regular pode ajudar a preparar um projeto. Aprenda a avaliar documentação, riscos e alternativas de capital. Não é oferta de crédito.
+03 — Aprenda a organizar uma proposta para potenciais parceiros, definir aportes e responsabilidades. Conheça a mini mentoria.
+04 — Calcule investimento, recursos próprios e capital necessário com nossas ferramentas educativas. Aprenda o passo a passo.
+05 — Antes de conversar com investidores, organize mercado, orçamento e plano de ação. Construa seu dossiê preliminar.
+06 — Da terra ao negócio: microaulas, manual, ferramentas e plano de ação para estruturar um projeto turístico.
+CTA Meta: Saiba mais. Destino: landing page Produto 01, checkout direto.
+## Comando ao Code / gestor Meta
+Complementar o pacote anterior sem alterar o conteúdo ou funis existentes. Auditar conta Zion Collection 2 (1271873041294684), permissões, fontes de dados, públicos e campanhas. Verificar política de categoria especial de anúncios financeiros; se aplicável, cumprir restrições e não usar públicos incompatíveis. Revisar linguagem sobre condição financeira pessoal, substituir por formulação neutra se necessário. Usar listas autorizadas LGPD, sem dados patrimoniais ou financeiros.
+Preparar campanha em rascunho: Vendas, site, Purchase confirmado, posicionamentos Advantage+. Testar público semelhante de leads qualificados 1% quando elegível, público aberto Advantage+ e remarketing de leads/visitantes/engajados. Excluir compradores do produto quando disponível. Orçamento experimental sujeito a aprovação: R$100/dia, 40/40/20; simplificar ou testar sequencialmente se volume insuficiente. Não dividir entre oito produtos. Testar criativos e depois preço R$47 versus R$67 com entregáveis iguais. Preparar adaptações 9:16 sem esticar ou cortar textos. Usar gravação real da ferramenta para vídeo: dor 0–5s, demonstração 5–20s, entregáveis 20–30s, CTA final. Não simular depoimentos.
+Validar Pixel, CAPI, UTMs por anúncio, ViewContent, InitiateCheckout, Purchase somente após pagamento confirmado Asaas/ClickMax, ID único, deduplicação, reembolsos e entrega automática. CPA, ROAS, margem, checkout e progresso interno. CPL histórico R$7; fixos R$1500/mês; CPA alvo experimental R$20–30. Não enviar dados sensíveis ao Meta. Não anunciar crédito garantido, sócios garantidos ou retorno garantido. Entregar relatório e prévias; não publicar, ativar orçamento nem alterar campanhas sem aprovação.

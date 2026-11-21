@@ -1,0 +1,304 @@
+{
+ "aviso": "Nada foi executado. Todos os itens nascem com status paused. Substitua os marcadores <...> antes de rodar; o orçamento exige \"aprovado\" de Bruno.",
+ "campanha": {
+  "action": "create_campaign",
+  "account": "1271873041294684",
+  "params": {
+   "name": "[P01 TERRA-CAPITAL][VENDAS][PURCHASE] [21/11]",
+   "objective": "OUTCOME_SALES",
+   "special_ad_categories": [],
+   "status": "paused",
+   "is_adset_budget_sharing_enabled": false
+  }
+ },
+ "conjuntos": [
+  {
+   "chave": "aberto",
+   "params": {
+    "optimization_goal": "OFFSITE_CONVERSIONS",
+    "billing_event": "IMPRESSIONS",
+    "promoted_object": {
+     "pixel_id": "903918118859018",
+     "custom_event_type": "PURCHASE"
+    },
+    "status": "paused",
+    "extra_params": {
+     "attribution_spec": [
+      {
+       "event_type": "CLICK_THROUGH",
+       "window_days": 7
+      },
+      {
+       "event_type": "VIEW_THROUGH",
+       "window_days": 1
+      }
+     ]
+    },
+    "name": "ABERTO · Advantage+ · Brasil 25-65",
+    "campaign_id": "<ID_CAMPANHA>",
+    "advantage_audience": true,
+    "targeting": {
+     "geo_locations": {
+      "countries": [
+       "BR"
+      ],
+      "location_types": [
+       "home",
+       "recent"
+      ]
+     },
+     "age_range": [
+      25,
+      55
+     ],
+     "excluded_custom_audiences": [
+      {
+       "id": "<AUDIENCIA_COMPRADORES_P01>",
+       "name": "Compradores do Produto 01 (criar após a 1ª venda)"
+      }
+     ]
+    },
+    "daily_budget": 4000
+   }
+  },
+  {
+   "chave": "lookalike",
+   "params": {
+    "optimization_goal": "OFFSITE_CONVERSIONS",
+    "billing_event": "IMPRESSIONS",
+    "promoted_object": {
+     "pixel_id": "903918118859018",
+     "custom_event_type": "PURCHASE"
+    },
+    "status": "paused",
+    "extra_params": {
+     "attribution_spec": [
+      {
+       "event_type": "CLICK_THROUGH",
+       "window_days": 7
+      },
+      {
+       "event_type": "VIEW_THROUGH",
+       "window_days": 1
+      }
+     ]
+    },
+    "name": "LOOKALIKE 1% · leads qualificados",
+    "campaign_id": "<ID_CAMPANHA>",
+    "targeting": {
+     "geo_locations": {
+      "countries": [
+       "BR"
+      ],
+      "location_types": [
+       "home",
+       "recent"
+      ]
+     },
+     "age_min": 25,
+     "age_max": 65,
+     "custom_audiences": [
+      {
+       "id": "<LOOKALIKE_1PCT_LEADS_QUALIFICADOS>"
+      }
+     ],
+     "excluded_custom_audiences": [
+      {
+       "id": "<AUDIENCIA_COMPRADORES_P01>",
+       "name": "Compradores do Produto 01 (criar após a 1ª venda)"
+      }
+     ]
+    },
+    "daily_budget": 4000
+   }
+  },
+  {
+   "chave": "remarketing",
+   "params": {
+    "optimization_goal": "OFFSITE_CONVERSIONS",
+    "billing_event": "IMPRESSIONS",
+    "promoted_object": {
+     "pixel_id": "903918118859018",
+     "custom_event_type": "PURCHASE"
+    },
+    "status": "paused",
+    "extra_params": {
+     "attribution_spec": [
+      {
+       "event_type": "CLICK_THROUGH",
+       "window_days": 7
+      },
+      {
+       "event_type": "VIEW_THROUGH",
+       "window_days": 1
+      }
+     ]
+    },
+    "name": "REMARKETING · base existente (LGPD)",
+    "campaign_id": "<ID_CAMPANHA>",
+    "targeting": {
+     "geo_locations": {
+      "countries": [
+       "BR"
+      ],
+      "location_types": [
+       "home",
+       "recent"
+      ]
+     },
+     "age_min": 25,
+     "age_max": 65,
+     "custom_audiences": [
+      {
+       "id": "120250455830270016"
+      },
+      {
+       "id": "120250455897500016"
+      },
+      {
+       "id": "120250455931010016"
+      }
+     ],
+     "excluded_custom_audiences": [
+      {
+       "id": "<AUDIENCIA_COMPRADORES_P01>",
+       "name": "Compradores do Produto 01 (criar após a 1ª venda)"
+      }
+     ]
+    },
+    "daily_budget": 2000
+   }
+  }
+ ],
+ "anuncios": [
+  {
+   "n": 1,
+   "params": {
+    "name": "AD01 · c01_terreno_planejar",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_01_neutro_1080x1350.jpg",
+    "message": "Tem um terreno em destino turístico? Aprenda a planejar seu projeto, calcular o capital necessário e avaliar alternativas de parceria. Conheça a jornada.",
+    "headline": "Planeje seu projeto turístico",
+    "description": "Imagem ilustrativa. Material educativo.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c01_terreno_planejar&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_01_neutro_1080x1920.jpg"
+  },
+  {
+   "n": 2,
+   "params": {
+    "name": "AD02 · c02_documentacao",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_02_neutro_1080x1350.jpg",
+    "message": "Uma matrícula regular pode ajudar a preparar um projeto. Aprenda a avaliar documentação, riscos e alternativas de capital. Não é oferta de crédito.",
+    "headline": "Organize a documentação do projeto",
+    "description": "Imagem ilustrativa. Não é oferta de crédito.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c02_documentacao&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_02_neutro_1080x1920.jpg"
+  },
+  {
+   "n": 3,
+   "params": {
+    "name": "AD03 · c03_proposta_parceiros",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_03_neutro_1080x1350.jpg",
+    "message": "Aprenda a organizar uma proposta para potenciais parceiros, definir aportes e responsabilidades. Conheça a jornada.",
+    "headline": "Uma proposta clara para parceiros",
+    "description": "Imagem ilustrativa. Sem promessa de sócio.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c03_proposta_parceiros&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_03_neutro_1080x1920.jpg"
+  },
+  {
+   "n": 4,
+   "params": {
+    "name": "AD04 · c04_ferramenta_capital",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_04_neutro_1080x1350.jpg",
+    "message": "Calcule investimento, recursos próprios e capital necessário com nossas ferramentas educativas. Aprenda o passo a passo.",
+    "headline": "Calcule o capital necessário",
+    "description": "Tela real da ferramenta, dados fictícios.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c04_ferramenta_capital&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_04_neutro_1080x1920.jpg"
+  },
+  {
+   "n": 5,
+   "params": {
+    "name": "AD05 · c05_dossie",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_05_1080x1350.jpg",
+    "message": "Antes de conversar com investidores, organize mercado, orçamento e plano de ação. Construa seu dossiê preliminar.",
+    "headline": "Monte seu dossiê preliminar",
+    "description": "Imagem ilustrativa. Material educativo.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c05_dossie&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_05_1080x1920.jpg"
+  },
+  {
+   "n": 6,
+   "params": {
+    "name": "AD06 · c06_da_terra_ao_negocio",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_06_1080x1350.jpg",
+    "message": "Da terra ao negócio: microaulas, manual, ferramentas e plano de ação para estruturar um projeto turístico.",
+    "headline": "Da terra ao negócio",
+    "description": "Imagem ilustrativa. Aprenda o passo a passo.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=c06_da_terra_ao_negocio&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "stories": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/stories/anuncio_06_1080x1920.jpg"
+  },
+  {
+   "n": 7,
+   "tipo": "video",
+   "params": {
+    "name": "AD07 · v01_reels_ferramenta",
+    "adset_id": "<ID_CONJUNTO>",
+    "page_id": "576944608845537",
+    "video_id": "<VIDEO_ID_APOS_create_ad_video>",
+    "image_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/feed/anuncio_04_neutro_1080x1350.jpg",
+    "link": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+    "message": "Veja a ferramenta funcionando: calcule o capital necessário para o seu projeto turístico e aprenda o passo a passo.",
+    "headline": "Veja a ferramenta funcionando",
+    "description": "Dados fictícios. Material educativo.",
+    "call_to_action_type": "LEARN_MORE",
+    "status": "paused"
+   },
+   "url_tags": "utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=v01_reels_ferramenta&utm_id={{campaign.id}}&utm_term={{adset.name}}",
+   "video_url": "https://bchaerk-creator.github.io/zion-hotel-ai-developer/p/adbc67069af26ae0/terra-capital/anuncios/video/reels_30s_1080x1920.mp4"
+  }
+ ],
+ "teste_de_preco": {
+  "quando": "Fase 2, depois de escolher criativo e público",
+  "como": "A/B test do Meta (Experimentos) com dois conjuntos iguais, um para a página A (R$ 47) e outro para a página B (R$ 67); url_tags igual + price_version via parâmetro da página",
+  "paginas": {
+   "A47": "https://infoprodutos-zion.clickmax.space/terra-capital-a",
+   "B67": "https://infoprodutos-zion.clickmax.space/terra-capital-b"
+  }
+ }
+}

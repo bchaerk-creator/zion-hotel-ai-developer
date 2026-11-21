@@ -1,0 +1,30 @@
+const assert = require('assert'); const L = require('../src/logic.js'); let ok = 0;
+const t = (nome, f) => { try { f(); ok++; } catch (e) { console.error('FALHA:', nome, e.message); process.exitCode = 1; } };
+const near = (a, b, e = 0.01) => assert(Math.abs(a - b) <= e, `${a} != ${b}`);
+t('patrimônio ≠ caixa', () => { const r = L.patrimonio({ valorTerra: 300000, dividas: 0, caixa: 10000 }); assert.equal(r.caixaDisponivel, 10000); assert.equal(r.valorEstimado, 300000); });
+t('lacuna exemplo do guia', () => { const r = L.lacuna({ investimento: 220000, reserva: 30000, proprios: 50000 }); assert.equal(r.necessario, 250000); assert.equal(r.lacuna, 200000); });
+t('lacuna zero e negativos', () => { assert.equal(L.lacuna({ investimento: 0, reserva: 0, proprios: 0 }).lacuna, 0); assert.equal(L.lacuna({ investimento: -5, reserva: 'x', proprios: 10 }).lacuna, 0); assert.equal(L.lacuna({ investimento: 100, reserva: 0, proprios: 300 }).sobra, 200); });
+t('capex e giro', () => { assert.equal(L.capex({ a: 150000, b: 70000 }), 220000); assert.equal(L.reservaGiro({ despesaMensal: 8000, meses: 3 }), 24000); });
+t('operação do guia: 1 un, 30 noites, 40%, R$500 = R$6000', () => { const r = L.operacao({ unidades: 1, noites: 30, ocupacao: 40, diaria: 500, varPct: 15, fixos: 3000 }); assert.equal(r.receita, 6000); assert.equal(r.variaveis, 900); assert.equal(r.revPAN, 200); });
+t('equilíbrio ≈ 9 noites com margem 350', () => { const r = L.operacao({ unidades: 1, noites: 30, ocupacao: 50, diaria: 500, varPct: 30, fixos: 3000 }); near(r.margemPorNoite, 350); near(r.equilibrioNoites, 8.57); });
+t('ocupação 0 sem divisão por zero', () => { const r = L.operacao({ unidades: 1, noites: 30, ocupacao: 0, diaria: 500, varPct: 30, fixos: 3000 }); assert.equal(r.receita, 0); assert.equal(r.caixaAntesDivida, -3000); assert(Number.isFinite(r.equilibrioNoites)); });
+t('ocupação >100 limitada', () => { assert.equal(L.operacao({ unidades: 1, noites: 30, ocupacao: 250, diaria: 100, varPct: 0, fixos: 0 }).receita, 3000); });
+t('variáveis 100% → equilíbrio nulo', () => { assert.equal(L.operacao({ unidades: 1, noites: 30, ocupacao: 50, diaria: 100, varPct: 100, fixos: 10 }).equilibrioNoites, null); });
+t('Price confere com fórmula independente (iteração do saldo)', () => {
+  const P = 200000, i = 0.015, T = 120; const r = L.price({ principal: P, taxaMensalPct: 1.5, meses: T });
+  let lo = 0, hi = P; for (let k = 0; k < 200; k++) { const m = (lo + hi) / 2; let s = P; for (let q = 0; q < T; q++) s = s * (1 + i) - m; if (s > 0) lo = m; else hi = m; }
+  near(r.parcela, (lo + hi) / 2, 0.02); });
+t('Price taxa zero', () => { assert.equal(L.price({ principal: 12000, taxaMensalPct: 0, meses: 12 }).parcela, 1000); });
+t('SAC: primeira e total (independente)', () => { const r = L.sac({ principal: 120000, taxaMensalPct: 1, meses: 12 }); near(r.primeiraParcela, 10000 + 1200); near(r.ultimaParcela, 10000 + 100); near(r.total, 120000 + 1200 * (12 + 1) / 2 * 1); });
+t('SAC < Price em juros totais', () => { const a = L.sac({ principal: 200000, taxaMensalPct: 1.5, meses: 120 }), b = L.price({ principal: 200000, taxaMensalPct: 1.5, meses: 120 }); assert(a.jurosTotais < b.jurosTotais); });
+t('cobertura 4000/5000 = 0,8 insuficiente', () => { const c = L.cobertura(4000, 5000); assert.equal(c.indice, 0.8); assert.equal(c.nivel, 'insuficiente'); });
+t('cobertura negativa e sem dívida', () => { assert.equal(L.cobertura(-100, 500).nivel, 'insuficiente'); assert.equal(L.cobertura(1000, 0).indice, null); });
+t('cenário adverso', () => { const b = { unidades: 1, noites: 30, ocupacao: 40, diaria: 500, varPct: 15, fixos: 3000, investimento: 220000 }; const a = L.adverso(b, { quedaDiariaPct: 20, quedaOcupacaoPontos: 10, altaObraPct: 20, atrasoMeses: 2 }); assert.equal(a.investimentoAdverso, 264000); assert.equal(a.capitalExtra, 44000 + 6000); assert.equal(a.receita, 30 * 0.3 * 400); });
+t('parceria 300k terra + 200k aporte = 60/40', () => { const r = L.parceria({ valorTerra: 300000, aporte: 200000 }); assert.equal(r.partTerra, 60); assert.equal(r.partAporte, 40); assert.equal(L.parceria({ valorTerra: 0, aporte: 0 }).partTerra, 0); });
+t('arrendamento 12 meses com reajuste 10% em 24 meses', () => { assert.equal(L.arrendamento({ aluguelMensal: 1000, meses: 24, reajustePctAno: 10 }).totalContrato, 12000 + 13200); });
+t('progresso', () => { assert.equal(L.progresso(5, 10).pct, 50); assert.equal(L.progresso(20, 10).pct, 100); });
+t('priorizar: destrava vence e determinismo', () => { const r = L.priorizar([{ nome: 'Decoração', impacto: 2, urgencia: 2, destrava: 0 }, { nome: 'Uso permitido', impacto: 5, urgencia: 4, destrava: 1 }, { nome: 'Fotos', impacto: 3, urgencia: 3 }]); assert.equal(r.critica.nome, 'Uso permitido'); assert.equal(r.ordenadas[2].nome, 'Decoração'); assert.equal(L.priorizar([]).critica, null); });
+t('dossiê status', () => { const r = L.statusDossie([{ nome: 'a', status: 'pronto' }, { nome: 'b', status: 'parcial' }, { nome: 'c', status: 'pendente' }, { nome: 'd', status: 'pendente' }]); assert.equal(r.pct, 38); assert.deepEqual(r.pendentes, ['b', 'c', 'd']); });
+t('decisão', () => { assert.equal(L.decisao({ itensCheck: 2, itensTotal: 10, coberturaIdx: 0.5, adversoCapitalExtra: 0, proprios: 0 }).rotulo, 'interromper e reorganizar'); assert.equal(L.decisao({ itensCheck: 9, itensTotal: 10, coberturaIdx: 1.5, adversoCapitalExtra: 1, proprios: 10 }).rotulo, 'avançar com cautela'); });
+t('economia: números do ZIP conferem (R$47/R$67, 15%, fixos 1500, 150/mês)', () => { const a = L.economia({ preco: 47, provisaoPct: 15, fixosMensais: 1500, compradoresMes: 150, cpl: 7, reembolsoPct: 0 }), b = L.economia({ preco: 67, provisaoPct: 15, fixosMensais: 1500, compradoresMes: 150, cpl: 7, reembolsoPct: 0 }); near(a.liquidoPorVenda, 39.95); near(b.liquidoPorVenda, 56.95); near(a.cpaMaximo, 29.95); near(b.cpaMaximo, 46.95); near(a.conversaoLeadCompraNecessariaPct, 23.37); near(b.conversaoLeadCompraNecessariaPct, 14.91); });
+console.log(ok + ' testes ok');
