@@ -1,0 +1,247 @@
+<style>
+@font-face{font-family:Cormorant;src:url(data:font/woff2;base64,{{FONT_CORM}}) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;font-style:italic;src:url(data:font/woff2;base64,{{FONT_CORM_I}}) format("woff2")}
+@font-face{font-family:Aventa;src:url(data:font/woff2;base64,{{FONT_AVENTA}}) format("woff2")}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E;--ok:#2f6b3a;--alerta:#9a5b13;--erro:#8e2b2b;--amarelo:#fff3c4;--verde:#dff0df}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Aventa,Jost,system-ui,sans-serif;background:var(--creme);color:#1d211b;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:Cormorant,Georgia,serif;font-weight:500;line-height:1.1;margin:0;color:var(--musgo)}
+div.stk{position:sticky;top:0;z-index:20}header.top{background:var(--musgo);color:var(--creme);padding:10px 16px;display:flex;align-items:center;gap:12px}
+header.top img{height:26px}header.top .tt{font-family:Cormorant,serif;font-size:19px;flex:1;line-height:1.1}
+header.top .pg{font-size:12px;color:var(--ouro);white-space:nowrap}
+.bar{height:5px;background:rgba(222,214,191,.25);position:relative}.bar i{display:block;height:100%;background:var(--ouro);width:0;transition:width .3s}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;background:var(--musgo);padding:0 10px 8px}
+nav.tabs button{flex:none;background:transparent;border:0;color:var(--areia);font:inherit;font-size:14px;padding:8px 12px;border-radius:18px;cursor:pointer;min-height:40px}
+nav.tabs button.on{background:var(--ouro);color:var(--preto)}
+main{max-width:860px;margin:0 auto;padding:18px 16px 70px}
+.card{background:#fff;border:1px solid var(--areia);border-radius:10px;padding:16px;margin:0 0 14px}
+.card h2{font-size:28px;margin-bottom:6px}.card h3{font-size:22px;margin:4px 0 8px}
+.kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.hero{background:var(--musgo);color:var(--creme);border:0}.hero h1{color:var(--creme);font-size:36px}.hero p{color:var(--areia)}
+.btn{display:inline-block;background:var(--musgo);color:var(--creme);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-size:15px;cursor:pointer;min-height:44px;text-decoration:none}
+.btn.ouro{background:var(--ouro);color:var(--preto)}.btn.ghost{background:transparent;color:var(--musgo);border:1px solid var(--musgo)}
+.btn:disabled{opacity:.5}
+.pilar{border-left:4px solid var(--ouro)}.pilar summary{cursor:pointer;font-family:Cormorant,serif;font-size:22px;color:var(--musgo);list-style:none;display:flex;justify-content:space-between;gap:8px;align-items:center;min-height:44px}
+.pilar summary::-webkit-details-marker{display:none}.pilar .n{font-size:13px;font-family:Aventa,sans-serif;color:var(--terra)}
+.aula{display:flex;gap:10px;align-items:center;padding:10px 0;border-top:1px solid #eee;cursor:pointer;min-height:48px}
+.aula .dot{width:22px;height:22px;border-radius:50%;border:2px solid var(--terra);flex:none;display:grid;place-items:center;font-size:13px;color:#fff}
+.aula.done .dot{background:var(--ok);border-color:var(--ok)}
+.aula small{display:block;color:#666}
+.pergunta{font-family:Cormorant,serif;font-style:italic;font-size:28px;color:var(--musgo);line-height:1.15;margin:6px 0 14px}
+.video{background:var(--musgo);color:var(--areia);border-radius:8px;padding:26px 16px;text-align:center;font-size:14px;margin:0 0 14px}
+.passo{display:flex;gap:12px;margin:0 0 10px}.passo b{font-family:Cormorant,serif;font-size:26px;color:var(--ouro);line-height:1}
+.fazer{background:#fbf6ea;border-left:4px solid var(--ouro)}
+label.f{display:block;margin:10px 0}label.f span.l{display:block;font-size:14px;color:#444;margin-bottom:3px}
+input[type=number],input[type=text],select,textarea{width:100%;font:inherit;font-size:16px;padding:10px;border:1px solid #c9bfa5;border-radius:6px;background:var(--amarelo)}
+textarea{min-height:84px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr;gap:0 14px}@media(min-width:620px){.grid2{grid-template-columns:1fr 1fr}}
+.res{background:var(--verde);border-radius:8px;padding:12px 14px;margin:12px 0}
+.res .linha{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dotted #9bb89b}.res .linha b{font-variant-numeric:tabular-nums}
+.res .destaque{font-family:Cormorant,serif;font-size:30px;color:var(--musgo)}
+.fb{border:1px solid var(--areia);border-radius:8px;margin:10px 0;overflow:hidden}.fb div{padding:8px 12px;border-top:1px solid #eee;font-size:14.5px}.fb div:first-child{border:0}.fb div b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.aviso{font-size:13px;color:#555;background:#f3eee0;border-radius:6px;padding:8px 10px;margin:10px 0}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:10px;background:var(--areia);color:var(--musgo)}
+.tag.ok{background:var(--verde)}.tag.al{background:#fde6c2}.tag.er{background:#f6d0d0}
+.chk{display:grid;grid-template-columns:28px 1fr;gap:6px 10px;padding:10px 0;border-top:1px solid #eee}
+.chk input[type=checkbox]{width:24px;height:24px;margin-top:2px}
+.chk .ex{grid-column:2;display:grid;grid-template-columns:1fr;gap:6px}@media(min-width:620px){.chk .ex{grid-template-columns:2fr 1fr}}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:6px 8px;border-bottom:1px solid #e6dfcc;text-align:left}th{background:var(--musgo);color:var(--creme);font-weight:400}
+.tools{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:620px){.tools{grid-template-columns:1fr 1fr}}
+.tools button{text-align:left;background:#fff;border:1px solid var(--areia);border-radius:10px;padding:14px;font:inherit;cursor:pointer;min-height:64px}
+.tools button b{display:block;font-family:Cormorant,serif;font-size:21px;color:var(--musgo)}
+svg text{font-family:Aventa,sans-serif}
+.rodape{font-size:12px;color:#666;text-align:center;margin-top:20px}
+@media print{div.stk,.noprint{display:none!important}main{padding:0}.card{border:0}body{background:#fff}}
+</style>
+<div class="stk"><header class="top"><img alt="Zion" src="data:image/png;base64,{{LOGO}}"><div class="tt">Você tem terra. Falta capital?</div><div class="pg" id="pgTxt"></div></header>
+<div class="bar"><i id="pgBar"></i></div>
+<nav class="tabs" id="tabs"></nav></div>
+<main id="v"></main>
+<script>{{LOGIC}}</script>
+<script>
+var DATA={{AULAS}};
+var VIDEOS={}; /* {numeroDaAula:"url do vídeo"} preenchido quando os vídeos forem gravados e aprovados */
+var CFG={pdfNome:"Dossie-Preliminar-Zion-Terra-Capital.pdf",ebook:"Voce-tem-terra-falta-capital-Zion.pdf",versao:(window.ZION_PRICE_VERSION||"")};
+var KEY="zion_p01_v1", ZL=window.ZL;
+var S; try{S=JSON.parse(localStorage.getItem(KEY)||"null")}catch(e){S=null}
+if(!S)S={aulas:{},f:{},check:{},prio:[],plano:[{},{},{}],pilar:{},estagio:1,dossie:{}};
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}}
+function track(ev,p){ /* só contadores; nunca valores patrimoniais ou documentos */
+  try{if(window.fbq)window.fbq("trackCustom",ev,Object.assign({produto:"p01_terra_capital",versao_preco:CFG.versao},p||{}))}catch(e){}
+  try{(window.dataLayer=window.dataLayer||[]).push(Object.assign({event:ev,produto:"p01_terra_capital"},p||{}))}catch(e){}}
+var $=function(s){return document.querySelector(s)};
+var R=function(x){return (Number(x)||0).toLocaleString("pt-BR",{style:"currency",currency:"BRL"})};
+var P1=function(x){return x===null||x===undefined?"—":(Number(x)).toLocaleString("pt-BR",{maximumFractionDigits:2})};
+var E=function(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var DEF={pa_vt:300000,pa_di:0,pa_cx:10000,pa_pj:0,cx_ac:150000,cx_ob:40000,cx_in:30000,cx_pr:0,cx_mo:0,cx_ct:0,gi_dm:10000,gi_me:3,pr_pp:50000,op_un:2,op_no:30,op_oc:40,op_di:500,op_va:25,op_fx:5000,ad_qd:20,ad_qo:10,ad_ao:20,ad_at:2,dv_pr:200000,dv_tx:1.5,dv_me:120,dv_qf:15,pc_ap:200000,ar_al:3000,ar_me:60,ar_rj:5,dv_sis:"price"};
+var NOEX=false; /* true: ignora os exemplos fictícios (dossiê só usa o que o aluno preencheu) */
+var N=function(id){var v=(S.f||{})[id];if(v===undefined)return NOEX?0:Number(DEF[id])||0;return Number(v)||0};
+var V=function(id,d){var v=(S.f||{})[id];return v===undefined?(DEF[id]!==undefined?DEF[id]:d):v};
+function sem(fn){NOEX=true;try{return fn()}finally{NOEX=false}}
+function done(){return Object.keys(S.aulas).filter(function(k){return S.aulas[k]}).length}
+function header(){var p=ZL.progresso(done(),20);$("#pgTxt").textContent=done()+" de 20 aulas";$("#pgBar").style.width=p.pct+"%"}
+
+var TOOLS=[
+ {k:"patrimonio",t:"Patrimônio ≠ caixa",d:"Separe valor da terra, dívidas e dinheiro disponível."},
+ {k:"lacuna",t:"Lacuna de capital",d:"Investimento, reserva e recursos próprios."},
+ {k:"operacao",t:"Operação e equilíbrio",d:"Receita, custos, equilíbrio e cenário adverso."},
+ {k:"divida",t:"Dívida e cobertura",d:"Parcela Price e SAC e cobertura do caixa."},
+ {k:"parceria",t:"Parceria e arrendamento",d:"Proporções de conversa e fluxo de arrendamento."},
+ {k:"checklist",t:"Checklist documental",d:"12 itens com evidência e responsável."},
+ {k:"pareto",t:"Prioridades (20 · 4 · 0,8)",d:"Ordene ações por impacto, urgência e dependência."},
+ {k:"plano",t:"Plano de ação de 30 dias",d:"Três ações, responsáveis e datas."},
+ {k:"mapa",t:"Mapa mental e mapa de desenvolvimento",d:"Veja seus sete pilares e o estágio atual."},
+ {k:"dossie",t:"Gerador de Dossiê (PDF)",d:"Monte o dossiê preliminar e exporte."}];
+var TAB="inicio",AULA=null,TOOL=null;
+function nav(){var T=[["inicio","Início"],["jornada","Jornada"],["ferramentas","Ferramentas"],["dossie","Dossiê"],["materiais","Materiais"]];
+ $("#tabs").innerHTML=T.map(function(t){return '<button data-t="'+t[0]+'" class="'+(TAB===t[0]?"on":"")+'">'+t[1]+'</button>'}).join("");
+ [].forEach.call(document.querySelectorAll("#tabs button"),function(b){b.onclick=function(){TAB=b.dataset.t;AULA=null;TOOL=TAB==="dossie"?"dossie":null;draw();window.scrollTo(0,0)}})}
+function proxima(){for(var i=1;i<=20;i++)if(!S.aulas[i])return i;return null}
+
+function fld(id,l,o){o=o||{};var v=V(id,o.d===undefined?"":o.d);
+ if(o.sel)return '<label class="f"><span class="l">'+l+'</span><select data-f="'+id+'">'+o.sel.map(function(x){return '<option value="'+x[0]+'"'+(String(v)===String(x[0])?" selected":"")+'>'+x[1]+'</option>'}).join("")+'</select></label>';
+ if(o.ta)return '<label class="f"><span class="l">'+l+'</span><textarea data-f="'+id+'" placeholder="'+E(o.ph||"")+'">'+E(v)+'</textarea></label>';
+ return '<label class="f"><span class="l">'+l+'</span><input data-f="'+id+'" type="'+(o.txt?"text":"number")+'" '+(o.txt?"":'min="0" step="any" inputmode="decimal"')+' value="'+E(v)+'"'+(o.ph?' placeholder="'+E(o.ph)+'"':"")+'></label>'}
+function ln(a,b,c){return '<div class="linha"><span>'+a+'</span><b'+(c?' style="color:'+c+'"':"")+'>'+b+'</b></div>'}
+function fb5(a){return '<div class="fb"><div><b>Resultado</b>'+a[0]+'</div><div><b>O que significa</b>'+a[1]+'</div><div><b>Atenção</b>'+a[2]+'</div><div><b>O que fazer</b>'+a[3]+'</div><div><b>Como verificar</b>'+a[4]+'</div></div>'}
+var ILUS='<div class="aviso">Valores iniciais são <b>dados fictícios</b> só para você ver a ferramenta funcionar. Troque pelos seus. Nada aqui é laudo, promessa de crédito, de sócio ou de retorno.</div>';
+
+function opIn(){return {unidades:N("op_un")||1,noites:N("op_no")||30,ocupacao:N("op_oc"),diaria:N("op_di"),varPct:N("op_va"),fixos:N("op_fx")}}
+function calcOp(){return ZL.operacao(opIn())}
+function lacunaCalc(){var inv=ZL.capex({a:N("cx_ac"),b:N("cx_ob"),c:N("cx_in"),d:N("cx_pr"),e:N("cx_mo"),f:N("cx_ct")});var res=ZL.reservaGiro({despesaMensal:N("gi_dm"),meses:N("gi_me")});return {inv:inv,res:res,g:ZL.lacuna({investimento:inv,reserva:res,proprios:N("pr_pp")})}}
+
+var T={};
+T.patrimonio=function(){var r=ZL.patrimonio({valorTerra:N("pa_vt"),dividas:N("pa_di"),caixa:N("pa_cx")});
+ return ILUS+'<div class="grid2">'+fld("pa_vt","Valor estimado da terra (R$)",{d:300000})+fld("pa_di","Dívidas sobre ela (R$)",{d:0})+fld("pa_cx","Caixa disponível hoje (R$)",{d:10000})+fld("pa_pj","Quanto você pode perder sem comprometer a família? (R$)",{d:0})+'</div>'+
+ '<div class="res">'+ln("Valor estimado",R(r.valorEstimado))+ln("Valor líquido (menos dívidas)",R(r.liquido))+ln("Dinheiro disponível",'<span class="destaque">'+R(r.caixaDisponivel)+'</span>')+'</div>'+
+ fb5(["Você tem "+R(r.valorEstimado)+" em terra e "+R(r.caixaDisponivel)+" em caixa.","Terra só vira dinheiro numa transação ou numa receita. Somar os dois números engana.","O valor da terra é uma estimativa sua, não uma avaliação.","Registre o limite de perda e use só o caixa para decidir o ritmo.","Peça avaliação a profissional habilitado antes de usar o valor numa conversa."])};
+T.lacuna=function(){var c=lacunaCalc(),g=c.g;
+ return ILUS+'<h3>Investimento (CAPEX)</h3><div class="grid2">'+fld("cx_ac","Acomodação (R$)",{d:150000})+fld("cx_ob","Obras (R$)",{d:40000})+fld("cx_in","Infraestrutura: água, esgoto, energia (R$)",{d:30000})+fld("cx_pr","Projetos e licenças (R$)",{d:0})+fld("cx_mo","Mobiliário (R$)",{d:0})+fld("cx_ct","Contingência (R$)",{d:0})+'</div>'+
+ '<h3>Capital de giro</h3><div class="grid2">'+fld("gi_dm","Despesa mensal na pré-abertura e meses fracos (R$)",{d:10000})+fld("gi_me","Meses de reserva",{d:3})+'</div>'+
+ '<h3>Recursos próprios</h3>'+fld("pr_pp","Recursos próprios disponíveis, sem contar valorização futura (R$)",{d:50000})+
+ '<div class="res">'+ln("Investimento total",R(c.inv))+ln("Reserva de giro",R(c.res))+ln("Total necessário",R(g.necessario))+ln("Recursos próprios",R(g.proprios))+ln("Lacuna de capital",'<span class="destaque">'+R(g.lacuna)+'</span>')+'</div>'+
+ fb5(["Faltam "+R(g.lacuna)+" para começar ("+Math.round(g.coberturaPropria*100)+"% cobertos por recursos próprios).","É o valor que precisa vir de crédito, parceiro, arrendamento ou de um projeto menor.","Sem contingência, o número está otimista: obra costuma custar mais que a primeira conta.","Teste um escopo piloto menor e veja a lacuna cair antes de pedir dinheiro.","Refaça com três cotações comparáveis por item."])};
+T.operacao=function(){var o=calcOp(),ad=ZL.adverso(Object.assign({},opIn(),{investimento:lacunaCalc().inv}),{quedaDiariaPct:N("ad_qd"),quedaOcupacaoPontos:N("ad_qo"),altaObraPct:N("ad_ao"),atrasoMeses:N("ad_at")});
+ var oc=N("op_oc"),tr=[["Conservador",Math.max(0,oc-15)],["Base",oc],["Otimista",Math.min(100,oc+10)]].map(function(x){var r=ZL.operacao(Object.assign({},opIn(),{ocupacao:x[1]}));return "<tr><td>"+x[0]+"</td><td>"+x[1]+"%</td><td>"+R(r.receita)+"</td><td>"+R(r.caixaAntesDivida)+"</td></tr>"}).join("");
+ return ILUS+'<div class="grid2">'+fld("op_un","Unidades",{d:2})+fld("op_no","Noites por mês",{d:30})+fld("op_oc","Ocupação (%)",{d:40})+fld("op_di","Diária média (R$)",{d:500})+fld("op_va","Custos variáveis (% da receita: comissão, limpeza, lavanderia)",{d:25})+fld("op_fx","Custos fixos mensais (R$)",{d:5000})+'</div>'+
+ '<div class="res">'+ln("Receita bruta mensal",R(o.receita))+ln("Margem após custos variáveis",R(o.margem))+ln("Caixa antes da dívida",R(o.caixaAntesDivida),o.caixaAntesDivida<0?"#8e2b2b":"")+ln("Receita por noite disponível",R(o.revPAN))+ln("Ponto de equilíbrio",o.equilibrioNoites===null?"sem margem":P1(o.equilibrioNoites)+" noites ("+P1(o.equilibrioOcupacao)+"% de ocupação)")+'</div>'+
+ '<h3>Três cenários de ocupação</h3><table><tr><th>Cenário</th><th>Ocupação</th><th>Receita</th><th>Caixa</th></tr>'+tr+'</table>'+
+ '<h3>Cenário adverso</h3><div class="grid2">'+fld("ad_qd","Queda da diária (%)",{d:20})+fld("ad_qo","Queda da ocupação (pontos)",{d:10})+fld("ad_ao","Obra mais cara (%)",{d:20})+fld("ad_at","Atraso (meses sem receita)",{d:2})+'</div>'+
+ '<div class="res">'+ln("Receita no adverso",R(ad.receita))+ln("Caixa no adverso",R(ad.caixaAntesDivida),ad.caixaAntesDivida<0?"#8e2b2b":"")+ln("Investimento no adverso",R(ad.investimentoAdverso))+ln("Capital extra necessário",'<span class="destaque">'+R(ad.capitalExtra)+'</span>')+'</div>'+
+ fb5(["Caixa mensal de "+R(o.caixaAntesDivida)+" no cenário base e "+R(ad.caixaAntesDivida)+" no adverso.","O equilíbrio mostra quantas noites pagam o básico antes de qualquer lucro.","Lucro operacional não inclui parcela de principal. Veja a aba Dívida.","Defina um limite de desistência: a partir de quanto de capital extra você redimensiona ou espera.","Compare com 10 anúncios parecidos, em datas equivalentes, e com os seus custos reais."])};
+T.divida=function(){var oi=opIn(),sis=V("dv_sis","price");var pr=ZL.price({principal:N("dv_pr"),taxaMensalPct:N("dv_tx"),meses:N("dv_me")}),sa=ZL.sac({principal:N("dv_pr"),taxaMensalPct:N("dv_tx"),meses:N("dv_me")});
+ var caixaN=calcOp().caixaAntesDivida;var fraca=ZL.operacao(Object.assign({},oi,{ocupacao:Math.max(0,oi.ocupacao-N("dv_qf"))})).caixaAntesDivida;
+ var par=sis==="sac"?sa.primeiraParcela:pr.parcela;var cv=ZL.cobertura(caixaN,par),cf=ZL.cobertura(fraca,par);
+ var cls=function(c){return c.nivel==="insuficiente"?"er":c.nivel==="apertada"?"al":"ok"};
+ return ILUS+'<div class="aviso">Usa os dados da aba “Operação e equilíbrio”. Parcela ilustrativa, sem tarifas, seguros ou indexação. Compare o CET do contrato real.</div><div class="grid2">'+fld("dv_pr","Principal (R$)",{d:200000})+fld("dv_tx","Juros efetivos mensais (%)",{d:1.5})+fld("dv_me","Prazo (meses)",{d:120})+fld("dv_sis","Sistema",{sel:[["price","Price (parcela fixa)"],["sac","SAC (parcela decrescente)"]],d:"price"})+fld("dv_qf","Mês fraco: queda de ocupação (pontos)",{d:15})+'</div>'+
+ '<div class="res">'+ln("Parcela Price",R(pr.parcela))+ln("Primeira parcela SAC",R(sa.primeiraParcela))+ln("Total pago (Price)",R(pr.total))+ln("Total pago (SAC)",R(sa.total))+ln("Caixa antes da dívida",R(caixaN))+ln("Cobertura no mês base",(cv.indice===null?"—":P1(cv.indice)+"x")+' <span class="tag '+cls(cv)+'">'+cv.nivel+'</span>')+ln("Cobertura no mês fraco",(cf.indice===null?"—":P1(cf.indice)+"x")+' <span class="tag '+cls(cf)+'">'+cf.nivel+'</span>')+'</div>'+
+ fb5(["Parcela de "+R(par)+"; cobertura "+(cv.indice===null?"—":P1(cv.indice)+"x")+" no mês base e "+(cf.indice===null?"—":P1(cf.indice)+"x")+" no mês fraco.","Cobertura abaixo de 1 significa que o caixa do mês não paga a parcela.","Prazo maior baixa a parcela e sobe o custo total. Imóvel de R$ 300 mil não garante empréstimo de R$ 300 mil.","Simule valores menores de principal e peça propostas escritas, sem assumir aprovação.","Confirme a conta com a instituição e leia o contrato com advogado antes de assinar."])};
+T.parceria=function(){var vt=N("pa_vt"),r=ZL.parceria({valorTerra:vt,aporte:N("pc_ap")}),a=ZL.arrendamento({aluguelMensal:N("ar_al"),meses:N("ar_me"),reajustePctAno:N("ar_rj")});
+ return ILUS+'<h3>Sociedade: proporção de referência</h3><div class="aviso">Usa o valor da terra da aba Patrimônio ('+R(vt)+'). Divisão real depende de contrato, controle, prazo e saída.</div>'+fld("pc_ap","Aporte do parceiro (R$)",{d:200000})+
+ '<div class="res">'+ln("Parte da terra",P1(r.partTerra)+"%")+ln("Parte do aporte",P1(r.partAporte)+"%")+'</div>'+
+ '<h3>Arrendamento</h3><div class="grid2">'+fld("ar_al","Aluguel mensal (R$)",{d:3000})+fld("ar_me","Prazo (meses)",{d:60})+fld("ar_rj","Reajuste anual (%)",{d:5})+'</div><div class="res">'+ln("Total no contrato",R(a.totalContrato))+ln("Média mensal",R(a.mediaMensal))+'</div>'+
+ '<h3>Matriz de responsabilidades</h3>'+["Quem vende","Quem opera","Quem mantém","Quem contrata","Quem paga as despesas"].map(function(x,i){return fld("mr_"+i,x,{txt:1,ph:"eu, parceiro ou ambos"})}).join("")+
+ fb5(["Referência: "+P1(r.partTerra)+"% terra e "+P1(r.partAporte)+"% aporte; arrendamento soma "+R(a.totalContrato)+".","Números iniciam a conversa. Controle, garantias e saída pesam tanto quanto a porcentagem.","Investidor passivo não substitui gestão diária. Sem estrutura jurídica, não receba aporte nem prometa retorno.","Liste itens negociáveis e inegociáveis e consulte advogado e contador.","Peça minuta e confira com profissional."])};
+var CHK=[["Matrícula atualizada","Solicite a certidão ao registro competente. Não envie documentos pessoais em canais públicos."],["Ônus e titulares revisados","Restrições, garantias, usufruto, coproprietários."],["Consulta de uso do solo","Resposta da prefeitura por escrito."],["Avaliação ambiental","Água, vegetação, áreas protegidas, riscos."],["Infraestrutura orçada","Água, esgoto, energia, internet, resíduos."],["Comparáveis de mercado","Dez comparáveis com fonte e data."],["Orçamento completo","Três cotações comparáveis."],["Cenário adverso","Teste feito e limite de desistência."],["Reserva financeira","Capital de giro definido."],["Alternativas de capital comparadas","Crédito, parceria, arrendamento, implantação gradual."],["Dossiê montado","Territorial e financeiro, com pendências visíveis."],["Revisão profissional","Advogado, contador, engenheiro conforme o caso."]];
+function chkDone(){return CHK.filter(function(c,i){return (S.check[i]||{}).d}).length}
+T.checklist=function(){var p=ZL.progresso(chkDone(),CHK.length);
+ return '<div class="aviso">Pendência não é aprovação. Marque só o que tem evidência. Evite digitar números de documentos: anote apenas “certidão de dd/mm, arquivo X”.</div><div class="res"><div class="linha"><span>Itens com evidência</span><b>'+p.marcados+" de "+p.total+" ("+p.pct+"%)</b></div></div>"+
+ CHK.map(function(c,i){var s=S.check[i]||{};return '<div class="chk"><input type="checkbox" data-c="'+i+'" '+(s.d?"checked":"")+' aria-label="'+E(c[0])+'"><div><b>'+c[0]+'</b><br><small>'+c[1]+'</small></div><div class="ex"><input type="text" data-ce="'+i+'" value="'+E(s.e||"")+'" placeholder="Evidência (ex.: certidão de 12/11, arquivo X)"><input type="text" data-cr="'+i+'" value="'+E(s.r||"")+'" placeholder="Responsável"></div></div>'}).join("")+
+ '<div class="aviso">Este checklist organiza sua preparação. Não é parecer jurídico, ambiental ou financeiro.</div>'};
+function prioRes(){return ZL.priorizar((S.prio||[]).map(function(a){return {nome:a.nome,impacto:a.impacto,urgencia:a.urgencia,destrava:a.destrava}}))}
+T.pareto=function(){var r=prioRes();
+ return '<div class="aviso">20%, 4% e 0,8% são uma heurística para filtrar atividades, não uma promessa matemática. Uma pendência registral pode dominar todo o cronograma.</div><h3>Nova ação</h3><div class="grid2"><label class="f"><span class="l">Ação</span><input type="text" id="pn" placeholder="ex.: confirmar uso permitido na prefeitura"></label><label class="f"><span class="l">Impacto (1 a 5)</span><input type="number" id="pi" min="1" max="5" value="3"></label><label class="f"><span class="l">Urgência (1 a 5)</span><input type="number" id="pu" min="1" max="5" value="3"></label><label class="f"><span class="l">Destrava outras ações?</span><select id="pd"><option value="0">Não</option><option value="1">Sim</option></select></label></div><button class="btn" id="pAdd">Adicionar</button>'+
+ (r.ordenadas.length?'<h3 style="margin-top:16px">Ordem de prioridade</h3><table><tr><th>#</th><th>Ação</th><th>Pontos</th><th></th></tr>'+r.ordenadas.map(function(a,i){var f=r.faixa4.indexOf(a)>=0?"4%":r.faixa20.indexOf(a)>=0?"20%":"";return "<tr><td>"+(i+1)+"</td><td>"+E(a.nome)+(i===0?' <span class="tag ok">prioridade crítica</span>':f?' <span class="tag">'+f+"</span>":"")+"</td><td>"+a.score+'</td><td><button class="btn ghost" data-pdel="'+E(a.nome)+'">remover</button></td></tr>'}).join("")+"</table>":'<p>Adicione ao menos três ações para ver a ordem.</p>')};
+T.plano=function(){var r=prioRes();
+ return '<div class="aviso">Escolha poucas ações que removem os maiores bloqueios. Confirmar uso permitido vem antes de escolher decoração.</div>'+(r.ordenadas.length?'<button class="btn ghost" id="plSug">Sugerir pelas minhas 3 prioridades</button>':"")+
+ [0,1,2].map(function(i){var p=S.plano[i]||{};return '<div class="card"><h3>Ação '+(i+1)+'</h3><label class="f"><span class="l">O que fazer</span><input type="text" data-pl="'+i+'.a" value="'+E(p.a||"")+'"></label><div class="grid2"><label class="f"><span class="l">Responsável</span><input type="text" data-pl="'+i+'.r" value="'+E(p.r||"")+'"></label><label class="f"><span class="l">Data</span><input type="text" data-pl="'+i+'.d" value="'+E(p.d||"")+'" placeholder="dd/mm"></label></div></div>'}).join("")};
+var PIL=DATA.pilares;
+function pilarInfo(p){var ls=DATA.aulas.filter(function(a){return a.pilar===p.n});var d=ls.filter(function(a){return S.aulas[a.n]}).length;return {d:d,t:ls.length,auto:d===ls.length?"pronto":d>0?"parcial":"pendente"}}
+function pilarSt(p){return S.pilar[p.n]||pilarInfo(p).auto}
+var COR={pronto:"#2f6b3a",parcial:"#c9962e",pendente:"#9a9a9a"};
+T.mapa=function(){var cx=300,cy=210,svg='<svg viewBox="0 0 600 420" width="100%" role="img" aria-label="Mapa mental dos sete pilares"><rect width="600" height="420" fill="#fff"/>';
+ PIL.forEach(function(p,i){var a=-Math.PI/2+i*2*Math.PI/7,x=cx+Math.cos(a)*195,y=cy+Math.sin(a)*150,st=pilarSt(p);svg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x+'" y2="'+y+'" stroke="#C9B37E" stroke-width="2"/><rect x="'+(x-62)+'" y="'+(y-20)+'" width="124" height="40" rx="8" fill="'+COR[st]+'"/><text x="'+x+'" y="'+(y-3)+'" text-anchor="middle" font-size="13" fill="#fff">'+p.n+". "+E(p.nome.length>16?p.nome.slice(0,15)+"…":p.nome)+'</text><text x="'+x+'" y="'+(y+13)+'" text-anchor="middle" font-size="11" fill="#fff">'+st+"</text>"});
+ svg+='<circle cx="'+cx+'" cy="'+cy+'" r="52" fill="#1B2117"/><text x="'+cx+'" y="'+(cy-4)+'" text-anchor="middle" font-size="14" fill="#FEF5F0">Meu</text><text x="'+cx+'" y="'+(cy+14)+'" text-anchor="middle" font-size="14" fill="#FEF5F0">projeto</text></svg>';
+ var ET=["Diagnóstico","Mercado","Projeto","Números","Capital","Negociação","Execução"];var cur=S.estagio||1;
+ var dev=ET.map(function(e,i){var s=i+1<cur?"pronto":i+1===cur?"parcial":"pendente";return '<div style="flex:1;min-width:84px;text-align:center"><div style="height:8px;background:'+COR[s]+';border-radius:4px"></div><div style="font-size:13px;margin-top:4px"><b>'+(i+1)+"</b> "+e+"</div></div>"}).join("");
+ return '<div class="aviso">Cada pilar fica verde quando você conclui as aulas dele; você pode ajustar à mão.</div>'+svg+'<h3>Seus pilares</h3>'+PIL.map(function(p){var i=pilarInfo(p);return fld("pil_"+p.n,p.n+". "+p.nome+" ("+i.d+"/"+i.t+" aulas)",{sel:[["auto","automático: "+i.auto],["pronto","pronto"],["parcial","parcial"],["pendente","pendente"]],d:S.pilar[p.n]||"auto"})}).join("")+
+ '<h3 style="margin-top:14px">Mapa de desenvolvimento</h3><div style="display:flex;gap:6px;flex-wrap:wrap">'+dev+'</div><p><label class="f"><span class="l">Estágio atual</span><select id="est">'+ET.map(function(e,i){return '<option value="'+(i+1)+'"'+(cur===i+1?" selected":"")+">"+(i+1)+". "+e+"</option>"}).join("")+"</select></label></p><div class=\"aviso\">Cada etapa depende de evidências da anterior. Diagnóstico → mercado → projeto → números → capital → negociação → execução.</div>"};
+var DOSS=[["d_proj","Projeto e público","Quem é o hóspede, por que viaja, qual experiência o terreno oferece."],["d_esc","Escopo piloto","O menor projeto que já funciona e itens indispensáveis."],["d_comp","Comparáveis e demanda","Fontes, datas e grau de confiança."],["d_alt","Alternativas de capital","Crédito, parceria, arrendamento, implantação gradual: o que você compara."],["d_risc","Riscos e pendências","O que ainda não está resolvido e quem cuida."],["d_ped","Pedido e destinação","Quanto precisa, para quê e em quais etapas."]];
+function dossieData(){return sem(dossieData0)}
+function dossieData0(){var l=lacunaCalc(),o=calcOp();var ad=ZL.adverso(Object.assign({},opIn(),{investimento:l.inv}),{quedaDiariaPct:N("ad_qd"),quedaOcupacaoPontos:N("ad_qo"),altaObraPct:N("ad_ao"),atrasoMeses:N("ad_at")});
+ var par=ZL.price({principal:N("dv_pr"),taxaMensalPct:N("dv_tx"),meses:N("dv_me")}).parcela;var cv=ZL.cobertura(o.caixaAntesDivida,par);
+ var secs=PIL.map(function(p){return {nome:p.n+". "+p.nome,status:pilarSt(p)}});var st=ZL.statusDossie(secs);
+ var dec=ZL.decisao({lacunaValor:l.g.lacuna,coberturaIdx:cv.indice,itensCheck:chkDone(),itensTotal:CHK.length,adversoCapitalExtra:ad.capitalExtra,proprios:N("pr_pp")});
+ return {l:l,o:o,ad:ad,par:par,cv:cv,secs:secs,st:st,dec:dec,pr:prioRes()}}
+T.dossie=function(){var d=dossieData();
+ return '<div class="aviso">Dossiê <b>preliminar</b>, preenchido por você. Não é laudo nem garante crédito, sócio ou retorno. O conteúdo fica só neste aparelho; o PDF é gerado aqui, sem envio a servidor.</div><div class="res">'+ln("Pilares prontos",d.st.pct+"%")+ln("Lacuna de capital",R(d.l.g.lacuna))+ln("Checklist",chkDone()+" de "+CHK.length)+'</div>'+
+ fld("d_nome","Nome do projeto",{txt:1,ph:"ex.: Refúgio da Serra (nome fictício)"})+fld("d_local","Cidade e UF (sem endereço)",{txt:1})+DOSS.map(function(x){return fld(x[0],x[1],{ta:1,ph:x[2]})}).join("")+
+ fld("d_dec","Minha decisão agora",{sel:[["","escolher"],["avançar","avançar"],["investigar","investigar mais"],["interromper","interromper e reorganizar"]]})+
+ '<div class="fb"><div><b>Apoio à decisão (automático)</b>'+E(d.dec.rotulo)+": "+E(d.dec.motivos.join(" "))+'</div></div><div class="noprint"><button class="btn ouro" id="pdf">Gerar PDF do dossiê</button> <button class="btn ghost" id="prt">Imprimir</button> <button class="btn ghost" id="bk">Baixar backup (.json)</button> <label class="btn ghost" style="cursor:pointer">Restaurar backup<input type="file" id="rs" accept="application/json" hidden></label><p id="pdfSt" role="status"></p></div>'};
+function pdfLinhas(){return sem(pdfLinhas0)}
+function pdfLinhas0(){var d=dossieData0(),L=[];var h=function(t){L.push({h:t})},p=function(t){L.push({p:t})};
+ h("Dossiê preliminar de desenvolvimento e captação de capital");p((S.f.d_nome||"Projeto sem nome")+(S.f.d_local?" · "+S.f.d_local:""));
+ p("Campos não preenchidos aparecem como R$ 0,00 ou vazios: os exemplos fictícios das telas não entram neste dossiê.");p("Documento preparado pelo próprio aluno com as ferramentas da Zion Hotel Academy. Não é laudo, parecer jurídico ou financeiro e não garante crédito, sócio, investimento ou retorno. Valores são estimativas do aluno.");
+ h("1. Patrimônio");p("Valor estimado da terra: "+R(N("pa_vt"))+" · Dívidas: "+R(N("pa_di"))+" · Caixa disponível: "+R(N("pa_cx"))+". Patrimônio não é caixa.");
+ h("2. Território e documentos");p("Checklist: "+chkDone()+" de "+CHK.length+" itens com evidência.");CHK.forEach(function(c,i){var s=S.check[i]||{};p((s.d?"[x] ":"[ ] ")+c[0]+(s.d?(s.e?" — "+s.e:"")+(s.r?" ("+s.r+")":""):" — PENDENTE"))});
+ h("3. Mercado, produto e escopo");p("Projeto e público: "+(S.f.d_proj||"não preenchido"));p("Comparáveis e demanda: "+(S.f.d_comp||"não preenchido"));p("Escopo piloto: "+(S.f.d_esc||"não preenchido"));
+ h("4. Finanças");p("Investimento: "+R(d.l.inv)+" · Reserva de giro: "+R(d.l.res)+" · Recursos próprios: "+R(N("pr_pp"))+" · Lacuna de capital: "+R(d.l.g.lacuna)+".");
+ p("Operação (base): receita "+R(d.o.receita)+"/mês, caixa antes da dívida "+R(d.o.caixaAntesDivida)+", equilíbrio "+(d.o.equilibrioNoites===null?"sem margem":P1(d.o.equilibrioNoites)+" noites")+".");
+ p("Cenário adverso: caixa "+R(d.ad.caixaAntesDivida)+", capital extra necessário "+R(d.ad.capitalExtra)+".");
+ p("Dívida simulada (Price, ilustrativa): parcela "+R(d.par)+", cobertura "+(d.cv.indice===null?"—":P1(d.cv.indice)+"x")+" ("+d.cv.nivel+").");
+ h("5. Capital e parcerias");p("Alternativas comparadas: "+(S.f.d_alt||"não preenchido"));p("Pedido e destinação: "+(S.f.d_ped||"não preenchido"));
+ h("6. Riscos e pendências");p(S.f.d_risc||"não preenchido");
+ h("7. Pilares");d.secs.forEach(function(s){p(s.nome+": "+s.status)});
+ h("8. Plano de 30 dias");S.plano.forEach(function(x,i){if(x&&x.a)p((i+1)+". "+x.a+" — "+(x.r||"responsável a definir")+" — "+(x.d||"data a definir"))});
+ h("Decisão");p("Decisão do aluno: "+(S.f.d_dec||"não registrada")+". Apoio automático: "+d.dec.rotulo+". "+d.dec.motivos.join(" "));
+ p("Gerado em "+new Date().toLocaleDateString("pt-BR")+" · Zion Hotel Academy");return L}
+function gerarPdf(){var st=$("#pdfSt");if(!window.jspdf){st.textContent="Não foi possível carregar o gerador de PDF. Verifique a internet ou use Imprimir.";return}
+ var doc=new window.jspdf.jsPDF({unit:"mm",format:"a4",compress:true}),y=20,W=170;doc.setFillColor(27,33,23);doc.rect(0,0,210,14,"F");doc.setTextColor(222,214,191);doc.setFontSize(9);doc.text("ZION HOTEL ACADEMY · DOSSIÊ PRELIMINAR",15,9);doc.setTextColor(30,30,30);
+ pdfLinhas().forEach(function(l){var t=l.h||l.p,sz=l.h?13:10;doc.setFont("helvetica",l.h?"bold":"normal");doc.setFontSize(sz);var ls=doc.splitTextToSize(t,W);var need=ls.length*(l.h?6:5)+(l.h?4:2);if(y+need>282){doc.addPage();y=20}if(l.h)y+=3;doc.text(ls,20,y);y+=ls.length*(l.h?6:5)+(l.h?1:2)});
+ doc.save(CFG.pdfNome);st.textContent="PDF gerado.";track("dossie_exportado")}
+function view(){
+ if(AULA)return vAula(AULA);
+ if(TAB==="inicio")return vInicio();if(TAB==="jornada")return vJornada();if(TAB==="materiais")return vMat();
+ if(TAB==="dossie"||TOOL)return '<div class="card"><div class="kick">Ferramenta</div><h2>'+E((TOOLS.filter(function(t){return t.k===TOOL})[0]||{}).t||"")+'</h2>'+T[TOOL]()+'</div>'+(TAB==="ferramentas"?'<button class="btn ghost" id="back">← Todas as ferramentas</button>':"");
+ return '<div class="card"><h2>Ferramentas</h2><p>Sempre abertas. Use quando quiser, com ou sem aula.</p><div class="tools">'+TOOLS.map(function(t){return '<button data-tool="'+t.k+'"><b>'+t.t+'</b>'+t.d+"</button>"}).join("")+"</div></div>"}
+function vInicio(){var pr=proxima(),p=ZL.progresso(done(),20);
+ return '<div class="card hero"><div class="kick" style="color:var(--ouro)">Zion Hotel Academy · Produto 01</div><h1>Você tem terra.<br><i>Falta capital?</i></h1><p>Aprenda o passo a passo para transformar seu terreno em um projeto turístico e preparar seu patrimônio para buscar recursos, investidores e parceiros.</p><p>'+(pr?'<button class="btn ouro" data-aula="'+pr+'">'+(done()?"Continuar: aula "+pr:"Começar pela aula 1")+"</button>":'<button class="btn ouro" data-tab="dossie">Montar meu dossiê</button>')+'</p><div class="kick" style="color:var(--areia)">'+p.pct+'% da jornada · 70 a 100 minutos de aprendizado e prática, no seu ritmo</div></div>'+
+ '<div class="card"><div class="kick">Boas-vindas</div><h3>Quem somos</h3>'+(VIDEOS[0]?'<video controls playsinline style="width:100%" src="'+VIDEOS[0]+'"></video>':'<div class="video">Vídeo de boas-vindas · em produção</div>')+'<p>A Zion Hotel Group International é um grupo de desenvolvimento hoteleiro. Bruno Chaerk é fundador e CEO e formou sua visão dentro de grandes redes hoteleiras internacionais, na Espanha. Esta jornada ensina o método Zion de organizar um projeto turístico antes de pedir dinheiro a alguém.</p><div class="aviso">Este curso ensina e organiza. Não aprova crédito, não encontra sócio, não garante investimento nem resultado, e não substitui advogado, contador ou engenheiro.</div></div>'+
+ '<div class="card"><h3>Como funciona</h3><div class="passo"><b>1</b><div>Aulas de até 2 minutos, cada uma com uma tarefa curta.</div></div><div class="passo"><b>2</b><div>As ferramentas ficam abertas durante as aulas e constroem seu dossiê aos poucos.</div></div><div class="passo"><b>3</b><div>Seu progresso fica salvo neste aparelho (veja Materiais para backup).</div></div></div>'}
+function vJornada(){return PIL.map(function(p){var i=pilarInfo(p);return '<details class="card pilar" '+(i.d<i.t&&i.auto!=="pendente"||p.n===1?"open":"")+'><summary><span>Pilar '+p.n+" · "+p.nome+'</span><span class="n">'+i.d+"/"+i.t+"</span></summary>"+DATA.aulas.filter(function(a){return a.pilar===p.n}).map(function(a){return '<div class="aula'+(S.aulas[a.n]?" done":"")+'" data-aula="'+a.n+'" role="button" tabindex="0"><span class="dot">'+(S.aulas[a.n]?"✓":"")+'</span><span><b>Aula '+a.n+" · "+E(a.titulo)+"</b><small>Faça agora: "+E(a.acao)+"</small></span></div>"}).join("")+"</details>"}).join("")}
+function vAula(n){var a=DATA.aulas[n-1],p=PIL[a.pilar-1],t=TOOLS.filter(function(x){return x.k===a.ferramenta})[0];
+ var fr=a.texto.split(/(?<=[.;])\s+/).filter(Boolean),cards=[];for(var i=0;i<fr.length;i+=2)cards.push(fr.slice(i,i+2).join(" "));
+ return '<div class="kick">Pilar '+p.n+" · "+p.nome+" · aula "+n+' de 20</div><div class="pergunta">'+E(a.pergunta)+'</div><h2 style="margin-bottom:12px">'+E(a.titulo)+"</h2>"+(VIDEOS[n]?'<video controls playsinline style="width:100%;border-radius:8px;margin-bottom:14px" src="'+VIDEOS[n]+'"></video>':'<div class="video">Vídeo da aula (até 2 min) · em produção. O conteúdo completo está abaixo.</div>')+
+ '<div class="card">'+cards.map(function(c,i){return '<div class="passo"><b>'+(i+1)+"</b><div>"+E(c)+"</div></div>"}).join("")+"</div>"+
+ '<div class="card fazer"><div class="kick">Faça agora</div><h3>'+E(a.acao)+'</h3><p style="font-size:13px;color:#555">Ferramenta: '+E(t.t)+' (também na aba Ferramentas)</p>'+T[t.k]()+'</div>'+
+ '<p><button class="btn ouro" id="conc">'+(S.aulas[n]?"✓ Aula concluída (desmarcar)":"Marcar como concluída")+'</button> '+(n<20?'<button class="btn ghost" data-aula="'+(n+1)+'">Próxima aula →</button>':"")+' <button class="btn ghost" data-tab="jornada">Jornada</button></p>'}
+function vMat(){return '<div class="card"><h2>Materiais</h2><p><a class="btn" href="'+CFG.ebook+'" download>Baixar o e-book (PDF, 60 páginas)</a></p><p><button class="btn ghost" id="bk">Baixar backup do meu progresso (.json)</button> <label class="btn ghost" style="cursor:pointer">Restaurar backup<input type="file" id="rs" accept="application/json" hidden></label></p><div class="aviso">Seu progresso e suas respostas ficam salvos só neste navegador. Se trocar de aparelho ou limpar os dados, use o backup. O progresso das aulas também é registrado na área de membros do ClickMax ao marcar a aula como concluída lá.</div><h3>Referências para consulta</h3><p>Ministério do Turismo: gov.br/turismo · Cadastur: cadastur.turismo.gov.br · Banco Central: bcb.gov.br · CVM: gov.br/cvm · Sebrae: sebrae.com.br. Consulte condições atuais direto nos órgãos e agentes financeiros.</p></div><div class="card"><h3>Encerramento</h3>'+(VIDEOS[21]?'<video controls playsinline style="width:100%" src="'+VIDEOS[21]+'"></video>':'<div class="video">Vídeo de encerramento · em produção</div>')+"<p>Da terra ao negócio: o patrimônio é um ponto de partida. O projeto precisa demonstrar demanda, viabilidade e capacidade de execução. Revise seu plano todo mês.</p></div>"}
+
+function bind(){var v=$("#v");
+ [].forEach.call(v.querySelectorAll("[data-aula]"),function(e){e.onclick=function(){AULA=+e.dataset.aula;TAB="jornada";draw();window.scrollTo(0,0);track("aula_iniciada",{aula:AULA})};e.onkeydown=function(ev){if(ev.key==="Enter")e.click()}});
+ [].forEach.call(v.querySelectorAll("[data-tool]"),function(e){e.onclick=function(){TOOL=e.dataset.tool;AULA=null;TAB="ferramentas";draw();window.scrollTo(0,0);track("ferramenta_aberta",{ferramenta:TOOL})}});
+ [].forEach.call(v.querySelectorAll("[data-tab]"),function(e){e.onclick=function(){TAB=e.dataset.tab;AULA=null;TOOL=TAB==="dossie"?"dossie":null;draw()}});
+ var b=$("#back");if(b)b.onclick=function(){TOOL=null;draw()};
+ var c=$("#conc");if(c)c.onclick=function(){S.aulas[AULA]=!S.aulas[AULA];save();if(S.aulas[AULA])track("aula_concluida",{aula:AULA});draw()};
+ [].forEach.call(v.querySelectorAll("[data-f]"),function(e){e.oninput=function(){S.f[e.dataset.f]=e.value;save();if(e.dataset.f.indexOf("pil_")===0){}if(e.tagName==="SELECT"&&e.dataset.f.indexOf("pil_")===0){var n=+e.dataset.f.slice(4);if(e.value==="auto")delete S.pilar[n];else S.pilar[n]=e.value;save()}liveRedraw(e)}});
+ [].forEach.call(v.querySelectorAll("[data-c]"),function(e){e.onchange=function(){var i=e.dataset.c;S.check[i]=S.check[i]||{};S.check[i].d=e.checked;save();draw()}});
+ [].forEach.call(v.querySelectorAll("[data-ce]"),function(e){e.oninput=function(){var i=e.dataset.ce;S.check[i]=S.check[i]||{};S.check[i].e=e.value;save()}});
+ [].forEach.call(v.querySelectorAll("[data-cr]"),function(e){e.oninput=function(){var i=e.dataset.cr;S.check[i]=S.check[i]||{};S.check[i].r=e.value;save()}});
+ [].forEach.call(v.querySelectorAll("[data-pl]"),function(e){e.oninput=function(){var k=e.dataset.pl.split(".");S.plano[k[0]]=S.plano[k[0]]||{};S.plano[k[0]][k[1]]=e.value;save()}});
+ var pa=$("#pAdd");if(pa)pa.onclick=function(){var n=$("#pn").value.trim();if(!n)return;S.prio.push({nome:n,impacto:+$("#pi").value,urgencia:+$("#pu").value,destrava:+$("#pd").value});save();draw()};
+ [].forEach.call(v.querySelectorAll("[data-pdel]"),function(e){e.onclick=function(){S.prio=S.prio.filter(function(a){return a.nome!==e.dataset.pdel});save();draw()}});
+ var ps=$("#plSug");if(ps)ps.onclick=function(){prioRes().ordenadas.slice(0,3).forEach(function(a,i){S.plano[i]=Object.assign({},S.plano[i],{a:a.nome})});save();draw()};
+ var es=$("#est");if(es)es.onchange=function(){S.estagio=+es.value;save();draw()};
+ var pf=$("#pdf");if(pf)pf.onclick=gerarPdf;var pr=$("#prt");if(pr)pr.onclick=function(){window.print()};
+ [].forEach.call(v.querySelectorAll("#bk"),function(e){e.onclick=function(){var a=document.createElement("a");a.href=URL.createObjectURL(new Blob([JSON.stringify(S)],{type:"application/json"}));a.download="backup-zion-terra-capital.json";a.click()}});
+ var rs=$("#rs");if(rs)rs.onchange=function(){var f=rs.files[0];if(!f)return;var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);if(!o||typeof o!=="object"||!o.aulas||!o.f)throw 0;S=o;save();draw()}catch(e){alert("Arquivo de backup inválido.")}};r.readAsText(f)}}
+function liveRedraw(el){ /* recalcula resultados sem perder o foco */
+ var id=el.dataset.f,pos=el.selectionStart;var sc=window.scrollY;draw(true);var n=document.querySelector('[data-f="'+id+'"]');if(n&&n.tagName!=="SELECT"){n.focus();try{n.setSelectionRange(pos,pos)}catch(e){}}window.scrollTo(0,sc)}
+function draw(keep){nav();$("#v").innerHTML=view();bind();header()}
+window.ZION_APP={S:function(){return S},T:T,CHK:CHK,dossieData:dossieData,pdfLinhas:pdfLinhas};
+(function(){var h=(location.hash||"").slice(1),m;
+ if(m=h.match(/^aula-(\d+)$/)){var n=+m[1];if(n>=1&&n<=20){AULA=n;TAB="jornada"}}
+ else if(m=h.match(/^ferramenta-(\w+)$/)){if(T[m[1]]){TOOL=m[1];TAB=m[1]==="dossie"?"dossie":"ferramentas"}}
+ else if(h==="materiais"||h==="jornada"||h==="ferramentas"||h==="dossie"){TAB=h;if(h==="dossie")TOOL="dossie"}})();
+draw();
+</script>
