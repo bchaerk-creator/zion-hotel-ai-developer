@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>Black Friday Zion · camada gráfica</title>
+<!--
+  Camada gráfica da edição de Black Friday (1080x1920, fundo transparente), por cima do vídeo do casal.
+  editar.py grava quadro a quadro com window.seek(t) e junta no ffmpeg. Tempos dos destaques: a fala do vídeo.
+-->
+<style>
+  @font-face { font-family: Inter; font-weight: 500; src: url(fonts/inter-latin-500-normal.woff2); }
+  @font-face { font-family: Inter; font-weight: 600; src: url(fonts/inter-latin-600-normal.woff2); }
+  @font-face { font-family: Inter; font-weight: 800; src: url(fonts/inter-latin-800-normal.woff2); }
+  @font-face { font-family: Playfair; font-weight: 600; src: url(fonts/playfair-display-latin-600-normal.woff2); }
+  @font-face { font-family: Playfair; font-style: italic; src: url(fonts/playfair-display-latin-400-italic.woff2); }
+  :root { --ouro: #E0BE5E; --creme: #F5F1E8; --preto: #0B0B0A; }
+  html, body { margin: 0; background: transparent; }
+  #c { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: Inter, sans-serif; }
+  #c > * { position: absolute; }
+  #veu { inset: 0; background: radial-gradient(circle at 50% 45%, rgba(0,0,0,.55), rgba(0,0,0,.86)); }
+  #abre { left: 0; right: 0; top: 560px; text-align: center; }
+  #abre small { display: block; font-weight: 600; font-size: 34px; letter-spacing: 12px; color: var(--ouro); }
+  .bf { font-weight: 800; font-size: 210px; line-height: .92; letter-spacing: -4px; }
+  .bf.b { color: var(--creme); }
+  .bf.f { color: transparent; -webkit-text-stroke: 4px var(--ouro); }
+  #abre .linha { width: 0; height: 4px; margin: 42px auto 30px; background: var(--ouro); }
+  #abre p { margin: 0; font-family: Playfair; font-style: italic; font-size: 54px; color: var(--creme); }
+  #selo { left: 50%; top: 96px; transform: translateX(-50%); display: flex; align-items: center; gap: 16px; padding: 16px 30px;
+          border-radius: 60px; background: rgba(11,11,10,.82); border: 2px solid var(--ouro); white-space: nowrap; }
+  #selo b { font-weight: 800; font-size: 30px; letter-spacing: 4px; color: var(--creme); }
+  #selo b i { font-style: normal; color: var(--ouro); }
+  #selo u { width: 14px; height: 14px; border-radius: 50%; background: var(--ouro); text-decoration: none;
+            box-shadow: 0 0 18px var(--ouro); }
+  .chip { left: 50%; top: 230px; transform: translateX(-50%); padding: 20px 36px; border-radius: 18px; white-space: nowrap;
+          background: var(--creme); color: var(--preto); font-weight: 600; font-size: 40px;
+          box-shadow: 0 18px 50px rgba(0,0,0,.35); }
+  .chip::before { content: ''; display: inline-block; width: 14px; height: 14px; margin-right: 18px; border-radius: 50%;
+                  background: var(--ouro); vertical-align: middle; position: relative; top: -3px; }
+  #fim { inset: 0; background: radial-gradient(circle at 50% 38%, #2a2416 0%, #0B0B0A 62%); text-align: center; }
+  #fim .logo { position: absolute; left: 50%; top: 300px; width: 380px; transform: translateX(-50%); }
+  #fim .tit { position: absolute; left: 0; right: 0; top: 520px; }
+  #fim .tit small { display: block; font-weight: 600; font-size: 32px; letter-spacing: 12px; color: var(--ouro); margin-bottom: 26px; }
+  #fim .tit p { margin: 52px 90px 0; font-family: Playfair; font-weight: 600; font-size: 66px; line-height: 1.15; color: var(--creme); }
+  #fim .tit p em { font-style: italic; font-weight: 400; color: var(--ouro); }
+  #fim .cta { position: absolute; left: 50%; top: 1290px; transform: translateX(-50%); padding: 34px 64px; border-radius: 80px;
+              background: var(--ouro); color: var(--preto); font-weight: 800; font-size: 46px; letter-spacing: 1px; white-space: nowrap; }
+  #fim .ig { position: absolute; left: 0; right: 0; top: 1470px; font-weight: 600; font-size: 40px; color: var(--creme); letter-spacing: 2px; }
+  #fim .tempo { position: absolute; left: 0; right: 0; top: 1545px; font-weight: 500; font-size: 30px; color: rgba(245,241,232,.6); }
+</style>
+</head>
+<body>
+<div id="c">
+  <div id="veu"></div>
+  <div id="abre">
+    <small>ZION BUBBLE GLAMPING</small>
+    <div class="bf b">BLACK</div><div class="bf f">FRIDAY</div>
+    <div class="linha"></div>
+    <p>Glamping na natureza, a dois.</p>
+  </div>
+  <div id="selo"><u></u><b>BLACK FRIDAY <i>·</i> ZION</b></div>
+  <div id="fim">
+    <img class="logo" src="logo_cream.png" alt="Zion">
+    <div class="tit"><small>BLACK FRIDAY</small><div class="bf b" style="font-size:150px">ZION</div>
+      <p>Condições especiais de <em>Black Friday</em><br>para viver tudo isso.</p></div>
+    <div class="cta">Reserve pelo link da bio</div>
+    <div class="ig">@zionbubble</div>
+    <div class="tempo">Por tempo limitado</div>
+  </div>
+</div>
+<script src="gsap.min.js"></script>
+<script>
+// destaques no ritmo da fala do vídeo (segundos da narração)
+const CHIPS = [[5.3, 'Glamping: natureza com conforto'], [10.0, 'Suíte bolha transparente'], [16.4, 'Banheiro cheio de charme'],
+  [22.4, 'Piscina e lounge'], [25.0, 'Jacuzzi na temperatura certa'], [30.0, 'Privacidade total para o casal'],
+  [34.4, 'A noite se transforma'], [38.0, 'Café da manhã na cesta']];
+const VIDEO = 57.03, FIM = 4.6, E = 'power2.out';
+const tl = gsap.timeline({ paused: true });
+const c = document.querySelector('#c');
+
+// abertura: BLACK / FRIDAY entram, a linha se desenha e tudo sobe para virar o selo
+tl.set('#fim', { autoAlpha: 0 }, 0).set('#selo', { autoAlpha: 0 }, 0);
+tl.fromTo('#veu', { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.6 }, 2.6);
+tl.from('#abre small', { autoAlpha: 0, y: 30, duration: 0.5, ease: E }, 0.05);
+tl.from('#abre .b', { autoAlpha: 0, x: -140, duration: 0.55, ease: 'power3.out' }, 0.2);
+tl.from('#abre .f', { autoAlpha: 0, x: 140, duration: 0.55, ease: 'power3.out' }, 0.35);
+tl.to('#abre .linha', { width: 520, duration: 0.6, ease: 'power2.inOut' }, 0.8);
+tl.from('#abre p', { autoAlpha: 0, y: 24, duration: 0.6, ease: E }, 1.1);
+tl.to('#abre', { autoAlpha: 0, y: -380, scale: 0.4, duration: 0.6, ease: 'power2.in' }, 2.55);
+tl.fromTo('#selo', { autoAlpha: 0, y: -30 }, { autoAlpha: 1, y: 0, duration: 0.5, ease: 'back.out(2)' }, 3.0);
+tl.to('#selo u', { opacity: 0.25, duration: 0.6, repeat: Math.floor((VIDEO - 3) / 1.2), yoyo: true, ease: 'sine.inOut' }, 3.2);
+
+for (const [t, txt] of CHIPS) {
+  const ch = document.createElement('div'); ch.className = 'chip'; ch.textContent = txt; c.appendChild(ch);
+  tl.fromTo(ch, { autoAlpha: 0, y: -24, scale: 0.85 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.45, ease: 'back.out(2.2)' }, t);
+  tl.to(ch, { autoAlpha: 0, y: -14, duration: 0.35, ease: 'power2.in' }, t + 2.6);
+}
+
+// cartão final, depois da última fala
+tl.to('#selo', { autoAlpha: 0, duration: 0.3 }, VIDEO - 0.3);
+tl.fromTo('#fim', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, VIDEO - 0.35);
+tl.from('#fim .logo', { autoAlpha: 0, y: 30, duration: 0.6, ease: E }, VIDEO);
+tl.from('#fim .tit > *', { autoAlpha: 0, y: 40, duration: 0.6, ease: E, stagger: 0.18 }, VIDEO + 0.2);
+tl.from('#fim .cta', { autoAlpha: 0, scale: 0.8, duration: 0.55, ease: 'back.out(2)' }, VIDEO + 1.0);
+tl.to('#fim .cta', { scale: 1.05, duration: 0.5, yoyo: true, repeat: 3, ease: 'sine.inOut' }, VIDEO + 1.7);
+tl.from(['#fim .ig', '#fim .tempo'], { autoAlpha: 0, y: 20, duration: 0.5, ease: E, stagger: 0.15 }, VIDEO + 1.3);
+tl.set({}, {}, VIDEO + FIM);
+
+window.DURACAO = VIDEO + FIM;
+window.seek = t => { tl.seek(t, true); };
+document.fonts.ready.then(() => { window.pronto = true; });
+</script>
+</body>
+</html>
