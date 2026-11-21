@@ -22,3 +22,6 @@
 Já pausadas (nada a fazer, só preservar): 120248742070580016, 120248809006140016, 120249218934280016, 120250173411950016 (form → checkout R$ 270), 120250257012540016, 120250330194890016, 120250332392690016, 120250343378940016, 120250421516840016, 120250438713460016, 120250439943320016, 120250455991130016.
 A campanha do Produto 01 (`120250503993280016`) não aparece no relatório de 90 dias (sem gasto); conferir no Gerenciador.
 **Nenhuma campanha foi alterada.** A pausa da 120250113109820016 fica pronta para executar com "aprovado".
+
+## Atualização 21/11 (Bruno)
+Não haverá Raio-X gratuito: só compra direta. Quiz apagado; botão "Fazer meu Raio-X gratuito" removido da landing. O `QUIZZES.md` em `insumos/` ficou só como registro do pacote recebido (a seção do formulário Meta e o formulário privado pós-compra continuam úteis).

@@ -8,7 +8,7 @@
 | Área de membros: conteúdo + módulo "Comece aqui" + 2 aulas de texto | conteúdo `16f37c16…`, módulo `b4dbcda8…` |
 | Turma nova no portal Zion Collection (não padrão, sem membros; turmas existentes intactas) | `a6db275c-eeb1-4a78-a9a2-dadc24339006` |
 | Entrega da oferta = essa turma (`offers_add_membership_delivery`) | entrega `a02a9f10…` |
-| Quiz "Raio-X Zion 360° gratuito" (draft, 8 perguntas, 4 perfis, contato e consentimento de marketing separado, oferta no fim) | `963286c9-8511-4061-8318-d6a0626df47c` |
+| ~~Quiz Raio-X~~ | **Removido em 21/11 por decisão do Bruno: não haverá Raio-X gratuito. O rascunho `963286c9…` foi apagado (0 respostas).** |
 | Landing (draft, `/sessao-zion-360`) | página `3bf6dd22-051e-4f1a-92b0-0686ee168a96` |
 
 **Ocorrência:** ao salvar o preço com `offers_update`, a oferta passou sozinha para `approved` (`moderatedAt` 21/11 23:04). Eu não enviei para aprovação. Ela ainda não está em nenhuma página publicada nem anúncio.
@@ -32,7 +32,7 @@ Dossiê: fatos, resumo, diagnóstico, potencial, riscos, lacunas, hipóteses de 
 A transcrição "autorizada da consultoria" citada no pedido **não veio no pacote**; sem ela não montei dossiê.
 
 ## Eventos e UTMs
-Entrada A (landing): `utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&utm_content=<criativo>`. Entrada C (quiz): mesmo padrão, `utm_content=<criativo>-quiz`. Entrada B (formulário Meta): ver `META.md`. Pixel/CAPI: ViewContent, Lead, InitiateCheckout; **Purchase só com pagamento real** (não configurado; depende de pixel e aprovação). Nada de dado financeiro ou documento em evento Meta.
+Entrada A (landing): `utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&utm_content=<criativo>`. Entrada B (formulário Meta): ver `META.md`. Pixel/CAPI: ViewContent, Lead, InitiateCheckout; **Purchase só com pagamento real** (não configurado; depende de pixel e aprovação). Nada de dado financeiro ou documento em evento Meta.
 
 ## Pendências de Bruno (decisões)
 1. Enviar `00_VIDEO_ORIGINAL.mp4`, os 6 JPG e a transcrição autorizada (ou confirmar que `expansao-zion.mp4` é o vídeo).

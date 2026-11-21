@@ -48,7 +48,7 @@ html = CSS + f"""<div class="zs">
 <span class="eyebrow">Sessão individual · 60 minutos · online</span>
 <h1>Seu terreno pode ser o <em>próximo destino da Zion.</em></h1>
 <p style="font-size:20px">Tem um terreno em um destino turístico e quer entrar no Airbnb, mas falta capital ou não sabe por onde começar? Conheça nossas estratégias para estruturar projetos, buscar recursos, sócios e investidores.</p>
-{cta('hero')}{quiz('hero-secundario')}
+{cta('hero')}
 <div class="aviso" style="margin-top:26px"><b>Bruno Chaerk</b> · CEO e fundador da Zion Hotel Group International · mais de 20 anos em turismo e hotelaria</div>
 <span class="micro">O calendário só abre após a confirmação do pagamento. Parceria não é garantida: a Zion avalia cada caso.</span>
 </div></section>
@@ -78,7 +78,7 @@ html = CSS + f"""<div class="zs">
 <section class="alt" data-cx-section="faq"><div class="col"><span class="eyebrow">Perguntas frequentes</span>
 {''.join(f'<details><summary>{q}</summary><p>{a}</p></details>' for q, a in FAQ)}</div></section>
 <section data-cx-section="cta"><div class="col" style="text-align:center"><h2>Comece pela <em>estratégia.</em></h2>
-{cta('final')}{quiz('final-secundario')}
+{cta('final')}
 <span class="micro">Zion Hotel Group International · material e sessão de natureza educativa e consultiva.</span></div></section>
 <div class="fixo"><a class="btn" href="#oferta" data-cx-cta>Contratar minha sessão — R$270</a></div>
 </div>"""
