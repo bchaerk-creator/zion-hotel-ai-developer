@@ -76,6 +76,8 @@ def build(preco, utm_v):
 <section class="gut" data-cx-section="social-proof"><div class="wide duo"><div><img class="r" src="{BASE}assets/bruno/palco-azul.webp" alt="Bruno Chaerk em palestra" style="max-height:560px;object-fit:cover;object-position:top"></div>
 <div><span class="eyebrow">Quem ensina</span><h2>Zion Hotel Group <em>International</em></h2>
 <p>Bruno Chaerk é founder e CEO da Zion Hotel Group International. Formado dentro de grandes redes hoteleiras internacionais, na Espanha, ele trouxe ao Brasil uma leitura de hotelaria como ativo estruturado, com marca, tese e saída.</p>
+<p>Com mais de 20 anos no setor, Bruno criou um método a partir dos grandes projetos de hotéis e resorts que desenvolveu. Hoje ele também ajuda pequenos, médios e grandes empreendedores que querem entrar no setor de hospedagem de uma maneira simples, como ter a primeira casa de aluguel por temporada ou o primeiro Airbnb.</p>
+<p style="color:#FEF5F0">Se você está começando, com um terreno e uma ideia, este método também foi pensado para você.</p>
 <p>O método desta jornada parte da forma como a Zion organiza projetos antes de pedir dinheiro a alguém.</p></div></div>
 <div class="col" style="margin-top:40px"><img src="{BASE}assets/operacoes/op09.webp" alt="Vista aérea de uma unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><p class="cap">Foto real · Zion Bubble Glamping. Mostra de onde vem o método; o conteúdo vale para outros tipos de hospedagem. Não indica resultado que você terá.</p></div></section>
 
