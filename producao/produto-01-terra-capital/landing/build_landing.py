@@ -65,15 +65,15 @@ def build(preco, utm_v):
 <section class="gut" data-cx-section="solution"><div class="wide"><div class="col"><span class="eyebrow">Veja funcionando</span>
 <h2>A ferramenta de verdade, <em>antes de comprar</em>.</h2>
 <p>É a tela real do portal, com <b style="color:#FEF5F0">dados fictícios</b>: investimento de R$ 220 mil, reserva de R$ 30 mil e recursos próprios de R$ 50 mil. A ferramenta mostra a lacuna de R$ 200 mil. Depois testa uma parcela e a cobertura do caixa em um mês fraco.</p></div>
-<video controls playsinline muted preload="metadata" poster="{HOST}img/tela-lacuna-resultado.jpg" src="{HOST}img/demo.mp4"></video>
-<p class="cap" style="text-align:center">Gravação da ferramenta, 18 segundos. Valores ilustrativos; parcela sem tarifas, seguros ou indexação.</p>
+<video controls playsinline preload="metadata" poster="{HOST}img/tela-lacuna-resultado.jpg" src="{HOST}img/demo-voz.mp4"></video>
+<p class="cap" style="text-align:center">Gravação da ferramenta, 20 segundos, com narração (voz sintética). Toque para ouvir. Valores ilustrativos; parcela sem tarifas, seguros ou indexação.</p>
 <div class="shots"><figure style="margin:0"><img src="{HOST}img/tela-lacuna.jpg" alt="Investimento e capital de giro"><figcaption>Lacuna de capital</figcaption></figure><figure style="margin:0"><img src="{HOST}img/tela-divida.jpg" alt="Dívida e cobertura"><figcaption>Dívida e cobertura</figcaption></figure><figure style="margin:0"><img src="{HOST}img/tela-aula.jpg" alt="Microaula com atividade"><figcaption>Microaula + tarefa</figcaption></figure></div></div></section>
 
 <section class="gut" style="background:#0b0f0a"><div class="wide duo"><div><span class="eyebrow">Os entregáveis</span><h2>Você não compra só um e-book. Você <em>monta um dossiê</em>.</h2>
 <ul class="lista"><li><b style="color:#C9B37E">20 microaulas</b> de até 2 minutos, cada uma com uma tarefa (vídeos em produção; o conteúdo completo já está no portal)</li><li><b style="color:#C9B37E">Guia em PDF de 60 páginas</b> com atividade e anotações</li><li><b style="color:#C9B37E">Simuladores</b> de lacuna de capital, operação e dívida (Price e SAC)</li><li><b style="color:#C9B37E">Checklist documental</b> com evidência e responsável</li><li><b style="color:#C9B37E">Mapa mental</b> e <b style="color:#C9B37E">mapa de desenvolvimento</b></li><li><b style="color:#C9B37E">Plano de ação</b> de 30 dias e priorização 20% · 4% · 0,8%</li><li><b style="color:#C9B37E">Gerador de Dossiê</b> com exportação em PDF</li></ul></div>
 <div><img class="r" src="{HOST}img/ebook-capa.jpg" alt="Capa do guia Você tem terra. Falta capital?"><p class="cap">Capa do guia em PDF. As telas mostradas têm dados fictícios.</p></div></div></section>
 
-<section class="gut" data-cx-section="social-proof"><div class="wide duo"><div><img class="r" src="{BASE}assets/bruno/retrato.webp" alt="Bruno Chaerk" style="max-height:520px;object-fit:cover;object-position:top"></div>
+<section class="gut" data-cx-section="social-proof"><div class="wide duo"><div><img class="r" src="{BASE}assets/bruno/palco-azul.webp" alt="Bruno Chaerk em palestra" style="max-height:560px;object-fit:cover;object-position:top"></div>
 <div><span class="eyebrow">Quem ensina</span><h2>Zion Hotel Group <em>International</em></h2>
 <p>Bruno Chaerk é founder e CEO da Zion Hotel Group International. Formado dentro de grandes redes hoteleiras internacionais, na Espanha, ele trouxe ao Brasil uma leitura de hotelaria como ativo estruturado, com marca, tese e saída.</p>
 <p>O método desta jornada parte da forma como a Zion organiza projetos antes de pedir dinheiro a alguém.</p></div></div>
