@@ -12,11 +12,10 @@
 | AD01 terreno/planejar | `120250504061040016` | `120250504069740016` |
 | AD02 documentação | `120250504061680016` | `120250504070860016` |
 | AD03 proposta/parceiros | `120250504062640016` | `120250504071220016` |
-| AD04 ferramenta/capital (tela real) | `120250504064020016` | `120250504071220016`→ ver nota |
-| AD05 dossiê | `120250504064890016` | `120250504072320016` |
-| AD06 da terra ao negócio | `120250504066160016` | `120250504073570016` |
+| AD04 ferramenta/capital (tela real) | `120250504064020016` | `120250504072320016` |
+| AD05 dossiê | `120250504064890016` | `120250504073570016` |
+| AD06 da terra ao negócio | `120250504066160016` | `120250504074390016` |
 | AD07 vídeo com voz (vídeo `1151872447387954`) | `120250504069010016` | `120250504075380016` |
-Nota: AD04 no remarketing é o `120250504071220016`, e AD03 no remarketing é o `120250504070860016`; conferir os nomes no Gerenciador, a ordem de retorno das chamadas foi em lote.
 Os anúncios apontam para a página A, que **ainda está em rascunho no ClickMax**: o anúncio não deve ser ativado até a página ser publicada.
 **Ainda não criado:** conjunto Lookalike 1% (falta a fonte de leads qualificados; R$ 40/dia ficam reservados). Exclusão de compradores entra depois da 1ª venda. Os 14 anúncios usam a página A; o teste de preço (página B) é a fase 2.
 Decisões suas (21/11): paleta oficial; Produto 01 como oferta principal; voz atual; 3 conjuntos 40/40/20; pixel 903918118859018; campanha "LAND BANK · Diagnóstico Grátis" ativa fica como está.
