@@ -1,6 +1,6 @@
 # Produto 01 · Você tem terra. Falta capital? · Oferta A (R$ 47) × Oferta B (R$ 67)
 
-**Estado: rascunho. Nada publicado, nada enviado para aprovação, nenhuma campanha criada.**
+**Estado (21/11): ofertas A e B ENVIADAS PARA APROVAÇÃO por ordem de Bruno (status `pending`; `providerSyncError` vazio nas duas). Páginas e portal seguem em rascunho; campanha e 14 anúncios no Meta pausados.** A página só deve ser publicada quando a oferta estiver `active`.
 
 ## Público, dor, promessa
 - **Público:** quem tem terreno em destino turístico e não tem capital para desenvolver.
