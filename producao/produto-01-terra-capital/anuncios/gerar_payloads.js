@@ -3,12 +3,12 @@ const fs = require('fs'), path = require('path'); const A = __dirname; const J =
 const tags = (slug) => `utm_source=meta&utm_medium=paid&utm_campaign=p01_terra_capital&utm_content=${slug}&utm_id={{campaign.id}}&utm_term={{adset.name}}`;
 const centavos = (r) => Math.round(r * 100);
 const orc = J.campanha.orcamentoDiarioReais, d = J.campanha.divisao;
-const base = { optimization_goal: 'OFFSITE_CONVERSIONS', billing_event: 'IMPRESSIONS', promoted_object: { pixel_id: '<PIXEL_ID_CONFIRMADO_POR_BRUNO>', custom_event_type: 'PURCHASE' }, status: 'paused', extra_params: { attribution_spec: [{ event_type: 'CLICK_THROUGH', window_days: 7 }, { event_type: 'VIEW_THROUGH', window_days: 1 }] } };
+const base = { optimization_goal: 'OFFSITE_CONVERSIONS', billing_event: 'IMPRESSIONS', promoted_object: { pixel_id: '903918118859018', custom_event_type: 'PURCHASE' }, status: 'paused', extra_params: { attribution_spec: [{ event_type: 'CLICK_THROUGH', window_days: 7 }, { event_type: 'VIEW_THROUGH', window_days: 1 }] } };
 const excl = [{ id: '<AUDIENCIA_COMPRADORES_P01>', name: 'Compradores do Produto 01 (criar após a 1ª venda)' }];
 const geo = { countries: ['BR'], location_types: ['home', 'recent'] };
 const payloads = {
   aviso: 'Nada foi executado. Todos os itens nascem com status paused. Substitua os marcadores <...> antes de rodar; o orçamento exige "aprovado" de Bruno.',
-  campanha: { action: 'create_campaign', account: '1271873041294684', params: { name: J.campanha.nome, objective: J.campanha.objetivo, special_ad_categories: [], status: 'paused', daily_budget: centavos(orc), bid_strategy: 'LOWEST_COST_WITHOUT_CAP' } },
+  campanha: { action: 'create_campaign', account: '1271873041294684', params: { name: J.campanha.nome, objective: J.campanha.objetivo, special_ad_categories: [], status: 'paused', is_adset_budget_sharing_enabled: false } },
   conjuntos: [
     { chave: 'aberto', params: { ...base, name: 'ABERTO · Advantage+ · Brasil 25-65', campaign_id: '<ID_CAMPANHA>', advantage_audience: true, targeting: { geo_locations: geo, age_range: [25, 55], excluded_custom_audiences: excl }, daily_budget: centavos(orc * d.aberto / 100) } },
     { chave: 'lookalike', params: { ...base, name: 'LOOKALIKE 1% · leads qualificados', campaign_id: '<ID_CAMPANHA>', targeting: { geo_locations: geo, age_min: 25, age_max: 65, custom_audiences: [{ id: '<LOOKALIKE_1PCT_LEADS_QUALIFICADOS>' }], excluded_custom_audiences: excl }, daily_budget: centavos(orc * d.lookalike / 100) } },

@@ -1,6 +1,14 @@
 # Relatório de configuração Meta · Produto 01 (21/11/2026)
 
-**Estado: preparado, NADA criado no Meta.** Não alterei campanhas existentes, não publiquei anúncios e não iniciei gasto (R$ 0). Os parâmetros estão prontos em `meta_payloads.json` (tudo `paused`) e os criativos, copies e vídeo estão prontos. A criação dentro do Meta ficou parada por bloqueios que só você resolve (seção 6); fazer só a casca da campanha agora deixaria objetos incompletos na conta.
+**Atualização 21/11 (após as suas respostas):** criei no Meta, na conta Zion Collection 2, **só estas peças, todas PAUSADAS** (pelo pedido `status: paused`; a leitura do Windsor ainda não mostra linhas, então **confirme no Gerenciador**):
+| Peça | Id | Detalhe |
+|---|---|---|
+| Campanha `[P01 TERRA-CAPITAL][VENDAS][PURCHASE] [21/11]` | `120250503993280016` | Vendas, sem categoria especial, orçamento por conjunto |
+| Conjunto ABERTO · Advantage+ · Brasil 25-55 | `120250503994630016` | R$ 40/dia, Purchase, pixel `903918118859018` |
+| Conjunto REMARKETING · base existente (LGPD) | `120250503995570016` | R$ 20/dia, Purchase, 3 públicos existentes |
+**Ainda não criados:** conjunto Lookalike 1% (falta a fonte de leads qualificados; R$ 40/dia ficam reservados) e os **anúncios** (o Meta busca as imagens por URL pública; o site ainda dá 404 porque a branch não foi para a `main`). Exclusão de compradores entra depois da 1ª venda.
+Decisões suas (21/11): paleta oficial; Produto 01 como oferta principal; voz atual; 3 conjuntos 40/40/20; pixel 903918118859018; campanha "LAND BANK · Diagnóstico Grátis" ativa fica como está.
+Não alterei campanhas existentes e não iniciei gasto (R$ 0). Os parâmetros estão prontos em `meta_payloads.json` (tudo `paused`) e os criativos, copies e vídeo estão prontos. A criação dentro do Meta ficou parada por bloqueios que só você resolve (seção 6); fazer só a casca da campanha agora deixaria objetos incompletos na conta.
 
 ## 1. O que foi entregue
 | Item | Onde |
@@ -40,7 +48,7 @@ Nome do produto nas copies: troquei "mini mentoria" por "jornada", como na landi
 - **Sobreposição de público:** os conjuntos existentes usam "Investidor/Empresário 25-65"; o remarketing vai alcançar parte do mesmo público. O Produto 01 foi desenhado com exclusão de compradores.
 - **Públicos existentes (ids lidos de um conjunto de remarketing):** Público Zion 90 `120250455830270016`, Público vídeo `120250455897500016`, Zion collection 365 `120250455931010016`. Já usados no remarketing do Land Bank; confirme que a origem das listas é autorizada (LGPD).
 - **Página usada nos conjuntos existentes:** `576944608845537` (consta no Windsor como "Zion Glamping Collection"). Confirme se é a página certa para este anúncio.
-- **Pixel:** nenhum conjunto da conta otimiza por conversão, então não há pixel para reaproveitar na conta. O pixel `903918118859018` citado em docs do repositório é de outro contexto. **Preciso do id confirmado.**
+- **Pixel:** nenhum conjunto da conta otimiza por conversão. Usado o `903918118859018` (do repositório, por decisão de Bruno); o Meta pode não mostrar eventos de compra dele até a primeira venda, e é preciso conferir que o ClickMax/CAPI enviam Purchase para ele.
 - **Permissões da ferramenta (Windsor):** cria e pausa campanhas, conjuntos e anúncios; **não** lê pixels, públicos, identidades verificadas nem cria públicos lookalike; `create_ad_image` exige upload manual (usarei `image_url` pública).
 
 ## 5. Estrutura proposta (R$ 100/dia, sujeita a "aprovado")
