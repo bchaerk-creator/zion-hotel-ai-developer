@@ -49,18 +49,25 @@ html = CSS + f"""<div class="zs">
 <h1>Seu terreno pode ser o <em>próximo destino da Zion.</em></h1>
 <p style="font-size:20px">Tem um terreno em um destino turístico e quer entrar no Airbnb, mas falta capital ou não sabe por onde começar? Conheça nossas estratégias para estruturar projetos, buscar recursos, sócios e investidores.</p>
 {cta('hero')}{quiz('hero-secundario')}
+<div class="aviso" style="margin-top:26px"><b>Bruno Chaerk</b> · CEO e fundador da Zion Hotel Group International · mais de 20 anos em turismo e hotelaria</div>
 <span class="micro">O calendário só abre após a confirmação do pagamento. Parceria não é garantida: a Zion avalia cada caso.</span>
 </div></section>
 <section data-cx-section="problem"><div class="col"><span class="eyebrow">Você se reconhece?</span>
 <h2>Muita gente começa pela obra. <em>O certo é começar pela estratégia.</em></h2>
 <ul>{''.join(f'<li>{x}</li>' for x in ESPELHO)}</ul>
 <p>Também atendemos quem já tem hospedagem e quer vender melhor, e quem está começando e ainda não tem terreno.</p></div></section>
-<section class="alt" data-cx-section="solution"><div class="col"><span class="eyebrow">Quem conduz</span>
-<h2>Bruno Chaerk, <em>fundador da Zion.</em></h2>
-<img class="foto" src="{BASE}assets/bruno/retrato-sorriso.webp" alt="Bruno Chaerk, fundador da Zion Hotel Group">
-<p>A Zion nasceu da prática: operamos a Zion Bubble Glamping, em Urubici e Florianópolis, e o método que ensinamos vem dessa rotina. A sessão aplica esse olhar ao seu caso.</p>
+<section class="alt" data-cx-section="solution"><div class="col"><span class="eyebrow">Quem conduz a sua sessão</span>
+<h2>Bruno Chaerk, <em>CEO e fundador da Zion.</em></h2>
+<img class="foto" src="{BASE}assets/bruno/retrato-sorriso.webp" alt="Bruno Chaerk, CEO e fundador da Zion Hotel Group International">
+<p style="font-size:19px">Mais de 20 anos em turismo e hotelaria, entre a Europa e o Brasil. Hoje lidera a Zion Hotel Group International, que desenvolve e opera projetos de hospedagem de experiência em território nacional.</p>
+<div class="card"><b>Na Europa</b><ul style="margin:10px 0 0"><li>Mais de 10 anos trabalhando na região de Barcelona, em projetos hoteleiros de grande escala.</li><li>Projetos com grupos hoteleiros como Meliá, Barceló e Wyndham: fusão de marcas, reconversão de destino (Magaluf, em Maiorca) e rebranding de hotéis.</li><li>Atuação nas Ilhas Canárias e nas Ilhas Baleares.</li></ul></div>
+<img class="foto" src="{BASE}assets/bruno/b3.webp" alt="Bruno Chaerk em visita técnica a um hotel em obra, em Maiorca">
+<span class="micro" style="margin-top:-8px">Visita técnica a um hotel em obra, em Maiorca (Espanha).</span>
+<div class="card"><b>No Brasil</b><ul style="margin:10px 0 0"><li>Lidera a Zion Bubble Glamping, com sedes em Urubici e em Florianópolis (Santa Catarina).</li><li>Mapeou mais de 23 novos destinos para expansão no país.</li><li>Lidera a unidade que estrutura projetos desde a origem: estudo de viabilidade, estudo de massas, análise de mercado, modelagem societária e preparação para captação de investidores e financiamento.</li><li>Embaixador do Clube de Negócios Hotéis e Resorts, encontro presencial de proprietários, incorporadores e investidores do setor.</li></ul></div>
+<img class="foto" src="{BASE}assets/bruno/palco-azul.webp" alt="Bruno Chaerk palestrando" style="max-height:520px;object-fit:cover;object-position:top">
+<span class="micro" style="margin-top:-8px">Bruno em palestra para o mercado de hospedagem.</span>
 <span class="eyebrow" style="margin-top:28px">O que olhamos juntos</span>
-<p>Desenvolvimento, gestão, operação, identidade e vendas: as cinco frentes que decidem se um projeto de hospedagem sai do papel.</p></div></section>
+<p>Desenvolvimento, gestão, operação, identidade e vendas: as cinco frentes que decidem se um projeto de hospedagem sai do papel. Você leva o seu caso e sai com um plano, não com uma promessa.</p></div></section>
 <section data-cx-section="offer" id="oferta"><div class="col"><span class="eyebrow">O que você recebe</span>
 <h2>Uma hora, um diagnóstico, <em>um plano de ação.</em></h2>
 <div class="card"><ul style="margin:0">{''.join(f'<li>{x}</li>' for x in ENTREGA)}</ul></div>
