@@ -96,8 +96,8 @@ for (const [t, txt] of CHIPS) {
 }
 
 // cartão final, depois da última fala
-tl.to('#selo', { autoAlpha: 0, duration: 0.3 }, VIDEO - 0.3);
-tl.fromTo('#fim', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, VIDEO - 0.35);
+tl.to('#selo', { autoAlpha: 0, duration: 0.3 }, VIDEO - 0.1);  // a narração vai até o último segundo do vídeo
+tl.fromTo('#fim', { autoAlpha: 0 }, { autoAlpha: 1, duration: 0.5 }, VIDEO + 0.05);
 tl.from('#fim .logo', { autoAlpha: 0, y: 30, duration: 0.6, ease: E }, VIDEO);
 tl.from('#fim .tit > *', { autoAlpha: 0, y: 40, duration: 0.6, ease: E, stagger: 0.18 }, VIDEO + 0.2);
 tl.from('#fim .cta', { autoAlpha: 0, scale: 0.8, duration: 0.55, ease: 'back.out(2)' }, VIDEO + 1.0);

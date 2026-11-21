@@ -42,8 +42,13 @@ def main():
         subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', a.video, '-vf',
                         f'scale=1080:1920:flags=lanczos,setsar=1,fps={FPS},tpad=stop_mode=clone:stop_duration={fim:.2f}',
                         '-c:v', 'libx264', '-crf', '14', '-preset', 'fast', '-c:a', 'copy', str(base)], check=True)
-    filtro = (f"[0:v][1:v]overlay=0:0[o];"
-              f"[0:a]afade=t=out:st=55.6:d=1.4,apad,atrim=0:{total:.2f},loudnorm=I=-14:TP=-1.0:LRA=11[a]")
+    # a fala sai num arquivo à parte e entra pronta na montagem: no mesmo grafo do overlay, o fim da narração
+    # (a narradora fala até o último segundo do vídeo original) saía mudo
+    audio = AQUI / 'trabalho/audio.wav'
+    if not a.quadros:
+        subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', str(base), '-vn', '-af',
+                        f'loudnorm=I=-14:TP=-1.0:LRA=11,aresample=48000,afade=t=out:st=56.93:d=0.1,apad,atrim=0:{total:.2f}',
+                        '-c:a', 'pcm_s16le', str(audio)], check=True)
     if a.quadros:  # um quadro do vídeo para cada tempo pedido, com a camada por cima
         for i, t in enumerate(tempos):
             tv = min(t, 56.9)
@@ -52,8 +57,8 @@ def main():
                             '-frames:v', '1', str(saida / f'quadro-{t:05.1f}.jpg')], check=True)
         print('quadros em', saida)
         return
-    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', str(base), *entrada_overlay, '-filter_complex', filtro,
-                    '-map', '[o]', '-map', '[a]', '-t', f'{total:.2f}', '-c:v', 'libx264', '-crf', '18', '-preset', 'medium',
+    subprocess.run(['ffmpeg', '-y', '-loglevel', 'error', '-i', str(base), *entrada_overlay, '-i', str(audio),
+                    '-filter_complex', '[0:v][1:v]overlay=0:0[o]', '-map', '[o]', '-map', '2:a', '-t', f'{total:.2f}', '-c:v', 'libx264', '-crf', '18', '-preset', 'medium',
                     '-pix_fmt', 'yuv420p', '-r', str(FPS), '-c:a', 'aac', '-b:a', '192k', '-ar', '48000',
                     '-movflags', '+faststart', str(destino)], check=True)
     print(destino)
