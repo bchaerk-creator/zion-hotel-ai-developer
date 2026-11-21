@@ -1,11 +1,11 @@
 # Ferramenta 24 · Assistente de IA para Atendimento
 
-Status: arquivos prontos e testados. **Oferta enviada para aprovação em 20/11/2026** na rodada diária automática. A página fica em rascunho até a oferta estar ativa.
+Status: arquivos prontos e testados. **Oferta enviada para aprovação em 20/11/2026** na rodada diária automática. **Oferta aprovada e página publicada em 21/11/2026.**
 
 **ClickMax:**
 - produto `1dfce039-31a8-4266-b3be-9f212bb568ee`;
 - oferta `8ea1c87b-3309-475c-85e4-2764d3a7fbac` (R$ 19, checkout `VSiwxpwGew`), com status `pending` desde 20/11 às 04h56 UTC e sem erro de sincronização;
-- página `abfff20b-a876-4f2d-9e8e-5e915d1e2586` em `/assistente-atendimento` (rascunho).
+- página `abfff20b-a876-4f2d-9e8e-5e915d1e2586` em `/assistente-atendimento` (publicada em 21/11).
 
 Entrega: 4 arquivos e a página de acesso, em `docs/p/adbc67069af26ae0/assistente-24/`, ligados à oferta.
 
@@ -116,3 +116,6 @@ bash src/empacotar.sh && python3 -I landing/build_landing.py
 - os 4 arquivos e a página de acesso foram conferidos no ar (status 200) e ligados à oferta;
 - `offers_get_incomplete_reason` voltou vazio;
 - a oferta foi enviada para aprovação e está `pending`, sem erro de sincronização.
+
+## Publicação (21/11/2026)
+Oferta aprovada (`status` approved, sem erro de sincronização). Página publicada e conferida: status 200 com título, reembolso e capa em https://infoprodutos-zion.clickmax.space/assistente-atendimento. O checkout é um iframe bloqueado neste ambiente, então a compra não foi testada.

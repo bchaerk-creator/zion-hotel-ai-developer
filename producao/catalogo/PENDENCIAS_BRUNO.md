@@ -67,6 +67,11 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
 
+## Rodada de 21/11
+- 24 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/assistente-atendimento`). Todas as ofertas criadas desde 11/11 estão aprovadas e com página no ar.
+- 29 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas. Vendedor ainda `pending`.
+- Nenhum produto novo: a fila sem decisão pendente acabou em 20/11 e não houve decisão registrada sobre 01, 21, 25, 26, 27, E08 ou os PDFs A01–A10. A rodada diária segue só conferindo ofertas até uma dessas decisões.
+
 ## Rodada de 20/11
 - 10 aprovada, sem erro de sincronização: página publicada e conferida no ar (`https://infoprodutos-zion.clickmax.space/fechamento-mensal`).
 - 14 conferida hoje: ainda com "Token inválido ou ausente". As páginas de 17, 11, 13, 14, 29 e 18 seguem seguradas. Vendedor ainda `pending`.

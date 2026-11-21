@@ -108,7 +108,7 @@ Critério: tarefa mais clara, aplicação simples, demonstração fácil, base r
 5k. **16 · Kit operacional de parcerias** (pronto e enviado para aprovação, 17/11; aprovado e página publicada em 18/11). Parceiros, acordos, indicações pelo código da reserva e comissão; ficha de acordo para imprimir.
 5l. **28 · Planner de capacidade e atendimento** (pronto e enviado para aprovação, 18/11; aprovado e página publicada em 19/11). Regras de cada experiência, saídas só com quantidades, condutores necessários, mínimo e prazo para decidir; ficha de saída para imprimir.
 5m. **10 · Fechamento mensal por imóvel** (pronto e enviado para aprovação, 19/11; aprovado e página publicada em 20/11). Lançamentos de vários imóveis, despesas comuns divididas, conferência com o extrato, resultado de cada imóvel e do ano. 25, 26 e 27 foram para a decisão de Bruno pela mesma razão da 01.
-5n. **24 · Assistente de IA para atendimento** (pronto e enviado para aprovação, 20/11). Ficha sem senhas, instrução com 8 regras fixas e teste de 12 perguntas; instrução do exemplo testada com um modelo de IA (12 de 12).
+5n. **24 · Assistente de IA para atendimento** (pronto e enviado para aprovação, 20/11; aprovado e página publicada em 21/11). Ficha sem senhas, instrução com 8 regras fixas e teste de 12 perguntas; instrução do exemplo testada com um modelo de IA (12 de 12).
 6. 01 · Ficha de apresentação do terreno.
 7. 21 · Kit de mensagens de reservas.
 8. **Primeiro e-book: E08 Gestão e operação**, quando 13, 14, 17, 18 e 20 estiverem prontas (o e-book ensina a jornada, as ferramentas já existem).
