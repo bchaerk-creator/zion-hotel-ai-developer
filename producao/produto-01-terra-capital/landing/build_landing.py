@@ -49,7 +49,7 @@ def build(preco, utm_v):
 <h1>Você tem um terreno em um destino turístico, mas <em>não tem capital</em> para investir?</h1>
 <p style="font-size:20px;color:#FEF5F0">Aprenda o passo a passo de como transformar seu terreno em um projeto turístico e preparar seu patrimônio para buscar recursos, investidores e parceiros.</p>
 <p style="margin:26px 0 0"><a class="btn" href="#oferta" data-cx-cta>Quero estruturar meu projeto</a></p>
-<span class="micro">Pagamento único, Pix ou cartão à vista. Reembolso em até 7 dias. Material educativo: não garante crédito, sócio ou investimento.</span></div>
+<span class="micro">Pagamento único, Pix ou cartão à vista. Reembolso em até 7 dias.</span></div>
 <div class="phones"><div class="ph a"><img src="{HOST}img/tela-lacuna-resultado.jpg" alt="Tela do simulador de lacuna de capital, com dados fictícios"></div><div class="ph b"><img src="{HOST}img/tela-mapa.jpg" alt="Tela do mapa mental dos sete pilares"></div></div></div></section>
 
 <section class="gut" data-cx-section="problem"><div class="col"><span class="eyebrow">A dor</span>
@@ -76,14 +76,17 @@ def build(preco, utm_v):
 <section class="gut" data-cx-section="social-proof"><div class="wide duo"><div><img class="r" src="{BASE}assets/bruno/palco-azul.webp" alt="Bruno Chaerk em palestra" style="max-height:560px;object-fit:cover;object-position:top"></div>
 <div><span class="eyebrow">Quem ensina</span><h2>Zion Hotel Group <em>International</em></h2>
 <p>Bruno Chaerk é founder e CEO da Zion Hotel Group International. Formado dentro de grandes redes hoteleiras internacionais, na Espanha, ele trouxe ao Brasil uma leitura de hotelaria como ativo estruturado, com marca, tese e saída.</p>
-<p>O método desta jornada parte da forma como a Zion organiza projetos antes de pedir dinheiro a alguém.</p></div></div>
+<p>Com mais de 20 anos no setor, Bruno criou um método a partir dos grandes projetos de hotéis e resorts que desenvolveu. Hoje ele também ajuda pequenos, médios e grandes empreendedores que querem entrar no setor de hospedagem de uma maneira simples, como ter a primeira casa de aluguel por temporada ou o primeiro Airbnb.</p>
+<p style="color:#FEF5F0">Se você está começando, com um terreno e uma ideia, este método também foi pensado para você.</p>
+<p>O método desta jornada parte da forma como a Zion organiza projetos antes de pedir dinheiro a alguém.</p>
+<p style="color:#FEF5F0"><b style="color:#C9B37E">A Zion está em plena expansão</b> e abre a oportunidade de estruturar projetos e também a possibilidade de criar investimentos e parcerias. Cada projeto é avaliado caso a caso.</p></div></div>
 <div class="col" style="margin-top:40px"><img src="{BASE}assets/operacoes/op09.webp" alt="Vista aérea de uma unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><p class="cap">Foto real · Zion Bubble Glamping. Mostra de onde vem o método; o conteúdo vale para outros tipos de hospedagem. Não indica resultado que você terá.</p></div></section>
 
 <section class="gut" style="background:#0b0f0a"><div class="col"><span class="eyebrow">Conteúdo</span><h2>Sete pilares, <em>20 microaulas</em>.</h2><p>Cada aula tem uma pergunta de abertura, o conteúdo em passos curtos e uma tarefa com a ferramenta aberta ao lado.</p>{pilares()}</div></section>
 
 <section class="gut"><div class="col"><span class="eyebrow">Benefícios práticos</span><h2>O que muda <em>na prática</em>.</h2>
 <ul class="lista"><li>Você sabe quanto falta, com premissas escritas.</li><li>Sabe quanto o projeto aguenta no cenário ruim, e quando parar.</li><li>Sabe o que perguntar à prefeitura, ao advogado e ao banco.</li><li>Chega a uma conversa com sócio ou instituição com documentos e pendências organizados.</li><li>Decide com evidência: avançar, investigar mais ou interromper.</li></ul>
-<p class="aviso">A jornada ensina e organiza. Não aprova crédito, não encontra sócio, não garante investimento nem retorno, e não substitui advogado, contador ou engenheiro.</p></div></section>
+<p class="aviso">A jornada ensina e organiza o seu projeto. As decisões jurídicas, contábeis e de engenharia continuam com os profissionais habilitados.</p></div></section>
 
 <section class="gut" data-cx-section="offer" id="oferta" style="background:#0b0f0a"><div class="col"><span class="eyebrow">A oferta</span><h2>Comece seu <em>plano de ação</em> hoje.</h2>
 <div class="caixa"><ul class="lista" style="margin-top:0"><li>20 microaulas em vídeo, com tarefa e área de membros</li><li>Guia em PDF de 60 páginas</li><li>Simuladores, checklist, mapas e plano de 30 dias</li><li>Gerador de Dossiê preliminar em PDF</li></ul>
@@ -92,17 +95,17 @@ def build(preco, utm_v):
 
 <section class="gut" data-cx-section="faq"><div class="col"><span class="eyebrow">Perguntas frequentes</span><h2>Antes de decidir</h2>
 <details><summary>Preciso ter dinheiro?</summary><p>Não para estudar e organizar o projeto. Mas desenvolver exige recursos e viabilidade, e a jornada mostra como calcular quanto falta.</p></details>
-<details><summary>O curso garante financiamento?</summary><p>Não. Ninguém pode prometer crédito aprovado, sócio ou investidor. Você aprende a comparar caminhos e preparar sua proposta.</p></details>
+<details><summary>A Zion pode investir ou fazer parceria no meu projeto?</summary><p>A Zion está em plena expansão e abre a oportunidade de estruturar projetos e também a possibilidade de criar investimentos e parcerias. Cada projeto é avaliado caso a caso, e a jornada prepara você para essa conversa.</p></details>
 <details><summary>Preciso dar meu terreno em garantia?</summary><p>Não. A jornada compara também alternativas sem garantia, como parceria, arrendamento e começar menor.</p></details>
 <details><summary>Recebo um projeto arquitetônico?</summary><p>Não. O resultado é um plano e um dossiê preliminares, preenchidos por você.</p></details>
 <details><summary>O curso é personalizado?</summary><p>As ferramentas são preenchidas por você. Não inclui consultoria individual.</p></details>
 <details><summary>As aulas são em vídeo?</summary><p>Sim. As 20 microaulas têm vídeo narrado de cerca de um minuto (narração sintética), com o mesmo conteúdo por escrito e a ferramenta na mesma tela.</p></details>
 <details><summary>Meus dados ficam seguros?</summary><p>Suas respostas ficam salvas no seu aparelho; o PDF é gerado no seu navegador. Não peça nem envie documentos pessoais: anote só o que for necessário.</p></details>
-<details><summary>Em quanto tempo uso?</summary><p>O acesso é liberado depois da confirmação do pagamento. Estimamos de 70 a 100 minutos de aprendizado e prática. O resultado externo, como crédito ou parceria, depende de terceiros e não é prometido.</p></details>
+<details><summary>Em quanto tempo uso?</summary><p>O acesso é liberado depois da confirmação do pagamento. Estimamos de 70 a 100 minutos de aprendizado e prática. O resultado externo, como crédito ou parceria, depende da análise de cada projeto.</p></details>
 <details><summary>Como funciona o reembolso?</summary><p>Você pode pedir reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor.</p></details></div></section>
 
 <section class="gut" data-cx-section="cta" style="text-align:center"><div class="col"><h2>Antes de pedir dinheiro, <em>descubra quanto falta</em>.</h2>
-<a class="btn" href="#oferta" data-cx-cta>Quero estruturar meu projeto</a><span class="micro">Material educativo. Não promete crédito aprovado, sócio, investidores nem rentabilidade.</span></div></section>
+<a class="btn" href="#oferta" data-cx-cta>Quero estruturar meu projeto</a><span class="micro">Zion Hotel Academy · material educativo.</span></div></section>
 </div>"""
 (A/"dist").mkdir(exist_ok=True)
 for nome, preco, v in (("A", "47", "A47"), ("B", "67", "B67")):
