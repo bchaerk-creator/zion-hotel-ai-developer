@@ -8,6 +8,7 @@
 | Área de membros: conteúdo + módulo "Comece aqui" + 2 aulas de texto | conteúdo `16f37c16…`, módulo `b4dbcda8…` |
 | Turma nova no portal Zion Collection (não padrão, sem membros; turmas existentes intactas) | `a6db275c-eeb1-4a78-a9a2-dadc24339006` |
 | Entrega da oferta = essa turma (`offers_add_membership_delivery`) | entrega `a02a9f10…` |
+| Diagnóstico rápido das 7 frentes (quiz em rascunho, termina na oferta de R$ 270; gerado por `diagnostico/build_quiz.py`) | `016a7296-0db1-4bdf-a174-fcbe5ce79d7a` |
 | ~~Quiz Raio-X~~ | **Removido em 21/11 por decisão do Bruno: não haverá Raio-X gratuito. O rascunho `963286c9…` foi apagado (0 respostas).** |
 | Landing (draft, `/sessao-zion-360`) | página `3bf6dd22-051e-4f1a-92b0-0686ee168a96` |
 

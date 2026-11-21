@@ -20,3 +20,8 @@ Título, introdução, 6 perguntas e tela final conforme o arquivo. Contato: nom
 - A: `https://infoprodutos-zion.clickmax.space/sessao-zion-360` (página em rascunho, **ainda não publicada**).
 - B: depende do formulário Meta (não criado).
 As entradas levam à mesma oferta `037959a0…`.
+
+## Atualização 21/11 · diagnóstico rápido (decisão do Bruno)
+Não existe "Raio-X gratuito" como produto. Existe um diagnóstico rápido de lacunas (7 frentes: demanda, sazonalidade, ticket médio, ocupação, orçamento, investimento e retorno, estrutura jurídica) que mostra, frente por frente, o que a pessoa ainda não sabe e leva à sessão paga (pague para liberar o calendário). Sem nota de viabilidade e sem dizer que o terreno "tem potencial".
+Rota recomendada: anúncio → quiz do ClickMax (`016a7296…`, rascunho) → resultado → checkout. O formulário instantâneo do Meta fica como alternativa, só se Bruno quiser. Link do quiz: `https://api.clickmax.io/forms/xGxHHe2Xgp_aUGb86YFUQGTF` (só funciona depois de ativar).
+UTM: acrescentar `?utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&utm_content=<criativo>` ao link do quiz.
