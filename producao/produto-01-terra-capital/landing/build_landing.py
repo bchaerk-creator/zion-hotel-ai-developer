@@ -40,6 +40,7 @@ def build(preco, utm_v):
 .zl .duo{{display:grid;grid-template-columns:1fr;gap:24px;align-items:center}}@media(min-width:760px){{.zl .duo{{grid-template-columns:1fr 1fr}}}}
 .zl .duo img.r{{width:100%;border-radius:6px;display:block}}
 .zl .aviso{{font-size:14px;color:#A39E8E;border-left:2px solid #C9B37E;padding-left:12px;margin:18px 0}}
+.zl .gal{{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}} .zl .gal img{{width:100%;aspect-ratio:3/4;object-fit:cover;border-radius:6px;display:block}}
 .zl .cap{{font-size:13px;color:#A39E8E;margin-top:8px}}
 </style>
 <div class="zl">
@@ -80,6 +81,7 @@ def build(preco, utm_v):
 <p style="color:#FEF5F0">Se você está começando, com um terreno e uma ideia, este método também foi pensado para você.</p>
 <p>O método desta jornada parte da forma como a Zion organiza projetos antes de pedir dinheiro a alguém.</p>
 <p style="color:#FEF5F0"><b style="color:#C9B37E">A Zion está em plena expansão</b> e abre a oportunidade de estruturar projetos e também a possibilidade de criar investimentos e parcerias. Cada projeto é avaliado caso a caso.</p></div></div>
+<div class="wide gal" style="margin-top:28px"><img src="{HOST}img/bruno-palco-1.jpg" alt="Bruno Chaerk em palestra"><img src="{HOST}img/bruno-palco-2.jpg" alt="Bruno Chaerk no palco"><img src="{HOST}img/bruno-palco-3.jpg" alt="Bruno Chaerk em palestra" style="object-position:30% center"></div>
 <div class="col" style="margin-top:40px"><img src="{BASE}assets/operacoes/op09.webp" alt="Vista aérea de uma unidade da Zion Bubble Glamping" style="width:100%;aspect-ratio:16/9;object-fit:cover;border-radius:6px;display:block"><p class="cap">Foto real · Zion Bubble Glamping. Mostra de onde vem o método; o conteúdo vale para outros tipos de hospedagem. Não indica resultado que você terá.</p></div></section>
 
 <section class="gut" style="background:#0b0f0a"><div class="col"><span class="eyebrow">Conteúdo</span><h2>Sete pilares, <em>20 microaulas</em>.</h2><p>Cada aula tem uma pergunta de abertura, o conteúdo em passos curtos e uma tarefa com a ferramenta aberta ao lado.</p>{pilares()}</div></section>
