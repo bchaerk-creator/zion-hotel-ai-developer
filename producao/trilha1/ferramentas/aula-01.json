@@ -1,0 +1,272 @@
+{
+  "id": "t1-a01",
+  "slug": "1-1",
+  "nome_curto": "marco-zero",
+  "titulo": "Marco Zero · O seu diagnóstico prévio",
+  "aula": 1,
+  "objetivo": "Você sai sabendo em que situação está, quantas das cinco perguntas do investidor já responde e por qual etapa da Ordem Zion começar.",
+  "campos": [
+    {
+      "id": "situacao_letra",
+      "rotulo": "Qual é a sua situação hoje?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "A",
+          "rotulo": "A · Tenho a terra e o capital, não sei onde gastar primeiro"
+        },
+        {
+          "valor": "B",
+          "rotulo": "B · Tenho a terra, não o capital; procuro sócio ou investidor"
+        },
+        {
+          "valor": "C",
+          "rotulo": "C · Já opero e quero mais unidades"
+        },
+        {
+          "valor": "D",
+          "rotulo": "D · Tenho uma visão, ou uma casa de sítio, e quero investir"
+        },
+        {
+          "valor": "E",
+          "rotulo": "E · Estou pesquisando para entrar no setor"
+        },
+        {
+          "valor": "F",
+          "rotulo": "F · Sou corretor e quero vender terra melhor"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Escolha a letra que mais parece com você. Exemplo: tenho o terreno, mas não o dinheiro para construir, é a letra B.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "obj_hospedagem",
+      "rotulo": "Qual é o seu principal objetivo com a hospedagem?",
+      "tipo": "texto",
+      "ajuda": "Uma linha, sem pensar demais. Exemplo: ter uma renda da terra que está parada e um lugar para a família.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "problema_mercado",
+      "rotulo": "Que problema do mercado você atende?",
+      "tipo": "texto",
+      "ajuda": "Quem precisa do que você vai oferecer, e por quê. Exemplo: casais da capital que querem silêncio a duas horas de casa.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "recursos_limites",
+      "rotulo": "Que recursos você tem, e quais são os seus limites?",
+      "tipo": "texto",
+      "ajuda": "Terra, dinheiro, tempo, contatos, e o que falta. Exemplo: tenho o terreno e fins de semana livres; não tenho capital para a obra.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "competencia",
+      "rotulo": "Que competência você precisa desenvolver?",
+      "tipo": "texto",
+      "ajuda": "O que você ainda não sabe fazer e vai precisar. Exemplo: fazer a conta do investimento antes de falar com o banco.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "perguntas_investidor",
+      "rotulo": "Das cinco perguntas do investidor, quais você responde hoje, com número?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "produto",
+          "rotulo": "Qual é o melhor produto para o meu terreno"
+        },
+        {
+          "valor": "custo",
+          "rotulo": "Quanto custa"
+        },
+        {
+          "valor": "retorno",
+          "rotulo": "Quanto retorna"
+        },
+        {
+          "valor": "lucro",
+          "rotulo": "Quanto de lucro dá"
+        },
+        {
+          "valor": "tempo",
+          "rotulo": "Em quanto tempo"
+        }
+      ],
+      "ajuda": "Marque só as que você responde com número e de onde ele veio. Exemplo: sei quanto custa, mas não sei em quanto tempo volta.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "vitrine",
+      "rotulo": "Na vitrine, a sua terra hoje é a A ou a B?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "A",
+          "rotulo": "A · Terra crua"
+        },
+        {
+          "valor": "B",
+          "rotulo": "B · Terra com plano aprovado"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "A é a terra crua, só com a matrícula. B é a terra com mercado, viabilidade e aprovação prontos.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "etapa_ordem",
+      "rotulo": "Em que etapa da Ordem Zion você está?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "1",
+          "rotulo": "1 · Ler o terreno"
+        },
+        {
+          "valor": "2",
+          "rotulo": "2 · Desenhar o negócio"
+        },
+        {
+          "valor": "3",
+          "rotulo": "3 · Estruturar o capital"
+        },
+        {
+          "valor": "4",
+          "rotulo": "4 · Lançar"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Pense no que você já tem por escrito. Exemplo: já tenho orçamento de obra, mas nunca medi o mercado, então ainda está na etapa 1.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "nota_21_pontos",
+      "rotulo": "A sua nota no diagnóstico de 21 pontos",
+      "tipo": "numero",
+      "ajuda": "O diagnóstico abre pelo link do chat. Escreva a nota de 0 a 21. Exemplo: 8.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true,
+      "minimo": 0,
+      "maximo": 21
+    },
+    {
+      "id": "custo_espera",
+      "rotulo": "Quanto a sua espera já custou, pela calculadora da aula?",
+      "tipo": "moeda",
+      "ajuda": "Copie o número que a calculadora mostrou com os seus dados. Se não abriu a calculadora, marque Não sei.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "perfil_demanda",
+      "rotulo": "Na sua região, o movimento acontece quando?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "fds",
+          "rotulo": "Só nos fins de semana"
+        },
+        {
+          "valor": "fds_feriados",
+          "rotulo": "Fins de semana, feriados, festas e datas festivas"
+        },
+        {
+          "valor": "extraordinaria",
+          "rotulo": "Procura extraordinária, com prova do mercado"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Pense no ano todo, não no mês mais cheio. Exemplo: só enche em feriado e fim de semana.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "ocupacao_imaginada",
+      "rotulo": "Que ocupação média do ano você imagina para o seu projeto?",
+      "tipo": "percentual",
+      "ajuda": "A média dos 12 meses, não a do mês mais cheio. Exemplo: 40%.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "primeira_decisao",
+      "rotulo": "Qual é a sua primeira decisão concreta?",
+      "tipo": "texto",
+      "ajuda": "Uma ação que você consegue fazer nesta semana. Exemplo: pedir a matrícula atualizada do terreno no cartório.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "respostas_investidor",
+      "nome": "Quantas das cinco perguntas você responde",
+      "formula": "respostas_investidor = contar(perguntas_investidor)",
+      "saida": "número de 0 a 5",
+      "fonte": "Marco Zero, slide pergunta (as cinco perguntas do investidor)"
+    },
+    {
+      "id": "linha_ficha",
+      "nome": "A sua ficha em uma linha",
+      "formula": "linha_ficha = situacao_letra + ', ' + respostas_investidor + ' de 5, ' + vitrine + ', etapa ' + etapa_ordem",
+      "saida": "texto",
+      "fonte": "Marco Zero, slide ficha (formato pedido no chat: \"B, 1 de 5, A, etapa 1\")"
+    },
+    {
+      "id": "comeco_recomendado",
+      "nome": "Por onde começar pela nota de 21 pontos",
+      "formula": "se nota_21_pontos < 10 entao 'Começar pela etapa 1 da Ordem, Ler o terreno' senao 'Seguir a etapa marcada, conferindo a anterior'",
+      "se_nao_sei": "Sem nota: mostrar o link do diagnóstico de 21 pontos e não sugerir etapa.",
+      "fonte": "Marco Zero, nota do slide diagnostico (\"quem tirou menos de 10 começa pela primeira etapa da Ordem\")"
+    },
+    {
+      "id": "regua_ocupacao",
+      "nome": "A sua ocupação imaginada contra a régua",
+      "formula": "faixa = {fds: 35 a 40, fds_feriados: 50 a 60, extraordinaria: 65 a 85}[perfil_demanda]; alerta_alto = ocupacao_imaginada > maximo(faixa); alerta_extra = ocupacao_imaginada >= 65 e perfil_demanda != 'extraordinaria'",
+      "leitura": "Dentro da faixa: coerente. Acima da faixa: provavelmente é o mês mais cheio, não a média do ano. 65% ou mais sem procura extraordinária comprovada: alerta.",
+      "se_nao_sei": "Sem perfil ou sem ocupação: mostrar a régua e não comparar.",
+      "fonte": "Marco Zero, slide calculadora (régua de ocupação e regra de ouro)"
+    }
+  ],
+  "regras_veredito": {
+    "observacao": "A fonte não dá veredito para a página 0. A ficha devolve só a situação, as respostas e a etapa de início. O primeiro veredito da trilha nasce na Aula 2.",
+    "nao_se_aplica": "Sempre. A página mostra a etapa de início (pela nota de 21 pontos e pela Ordem Zion) no lugar do veredito.",
+    "regra_geral": "Nenhuma etapa avança sem a anterior concluída (Ordem Zion, Marco Zero).",
+    "criterio_para_parar": "Não se aplica nesta página. O critério para parar é escrito a partir da Aula 2, no Diagnóstico de Território."
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 1 da Trilha 1 da Mentoria Zion (Marco Zero), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 0 · A ficha de entrada (O seu diagnóstico prévio)\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: nao_se_aplica (só nesta página). Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- O Diagnóstico 360° do Empreendedor Hoteleiro tem cinco perguntas, uma linha cada: o principal objetivo com a hospedagem; o problema do mercado que atende; os recursos e os limites; a competência que precisa desenvolver; a primeira decisão concreta. Não tem resposta certa: tem a do aluno.\n- As seis situações: A tem a terra e o capital, não sabe onde gastar primeiro; B tem a terra, não o capital, procura sócio, parceiro ou investidor; C já opera e quer mais unidades; D tem uma visão ou uma casa de sítio e quer investir; E está pesquisando para entrar no setor; F é corretor. B e E precisam da mesma coisa: um plano antes do produto.\n- As cinco perguntas do investidor: qual é o melhor produto para o meu terreno; quanto custa; quanto retorna; quanto de lucro dá; em quanto tempo. Valem até para quem vai investir sozinho.\n- A vitrine: A é a terra crua (uma matrícula e uma promessa); B é a terra com plano aprovado (mercado, viabilidade e aprovação prontos).\n- A Ordem Zion em 4 etapas: 1 Ler o terreno (território e mercado); 2 Desenhar o negócio (produto e estratégia); 3 Estruturar o capital (investimento); 4 Lançar (implantação e lançamento). Nenhuma etapa avança sem a anterior concluída. Quase todo mundo começa pela etapa 4, a obra.\n- Diagnóstico de 21 pontos: quem tirou menos de 10 começa pela primeira etapa da Ordem, Ler o terreno.\n- Régua de ocupação média do ano: 35% a 40% vende só nos fins de semana; 50% a 60% com fins de semana, feriados, festas e datas festivas; 65% a 85% só com procura extraordinária, comprovada pelo mercado. Regra de ouro: ocupação e diária médias do ano, nunca o mês mais cheio. Quatro meses cheios não querem dizer o ano todo cheio.\n- A conta da espera é uma simulação educativa com os números do aluno, não é promessa de renda, retorno ou ocupação. Nunca fale em faturamento perdido.\n- O diagnóstico completo é o fechamento da Trilha 1 (Aula 12). Esta ficha é a página 0.\n\nCOMO DECIDIR O VEREDITO:\nEsta página não tem veredito na fonte. Devolva \"veredito\": \"nao_se_aplica\" e diga no resumo por qual etapa da Ordem Zion o aluno começa: se a nota de 21 pontos for menor que 10, ou se ele não responde nenhuma das cinco perguntas do investidor com número, a etapa 1, Ler o terreno; se ele marcou uma etapa mais adiantada sem ter as anteriores por escrito, lembre que nenhuma etapa avança sem a anterior concluída.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nNão se aplica nesta página. Escreva em \"criterio_para_parar\": \"Ainda não se aplica: o seu primeiro critério para parar nasce na Aula 2, com o Diagnóstico de Território.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nA primeira decisão concreta que o aluno escreveu, ajustada para caber em 7 dias e para a etapa de início. Se ela for de obra ou de compra, troque por um passo da etapa 1 (por exemplo, pedir a matrícula atualizada e baixar o CAR, que é a ação da Aula 2). Responsável: o aluno. Prazo: 7 dias, antes da Aula 2. Evidência: o documento ou a anotação na mão.\n\nLEITURA DA OCUPAÇÃO: se \"calculos.regua_ocupacao\" acusar alerta, diga em uma frase que a conta do ano usa a média dos 12 meses, nunca o mês mais cheio. Não estime ocupação para o aluno.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 0 · A ficha de entrada (O seu diagnóstico prévio)",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-marco-zero-escada.md",
+    "scratchpad/mz-escada/project/slides/diag360.html, diagnostico.html, calculadora.html, ficha.html, perfis.html, pergunta.html, vitrine.html, ordem.html",
+    "/home/claude/mz-trilha/BRIEF-producao-trilha1.md"
+  ],
+  "pendente_bruno": [
+    "A fórmula da calculadora \"quanto a espera já custou\" não está nos slides; a página só recebe o número da calculadora existente.",
+    "Os 21 pontos do diagnóstico não estão nas fontes desta tarefa; a página só recebe a nota.",
+    "A página 0 não tem veredito na fonte; a IA devolve \"nao_se_aplica\" e a etapa de início."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

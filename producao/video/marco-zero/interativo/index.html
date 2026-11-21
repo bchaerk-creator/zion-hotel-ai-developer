@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Qual É a Sua Letra</title>
+<!--
+  Teste de 10 s · momento interativo da Marco Zero (página 08, "Qual é a sua situação?").
+  window.seek(t) desenha o quadro do instante t (sem timers nem estado), para gravar quadro a quadro.
+  Aberto no navegador toca em loop; clicar numa letra marca a escolha.
+-->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;1,500&family=Inter:wght@400;500;600;700&display=swap">
+<style>
+:root{--verde:#16261C;--verde2:#1F3527;--creme:#F5F1E8;--areia:#D9D3C4;--ouro:#E0BE5E;--linha:#3A5444}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{background:#0d140f}
+body{display:grid;place-items:center;min-height:100vh;overflow:hidden}
+#palco{position:relative;width:1920px;height:1080px;overflow:hidden;background:radial-gradient(1400px 900px at 50% 30%,var(--verde2),var(--verde) 60%);
+  font-family:Inter,sans-serif;color:var(--creme);transform-origin:0 0}
+.abs{position:absolute}
+#selo{left:56px;top:48px;padding:10px 16px;background:rgba(22,38,28,.8);color:var(--ouro);font:600 28px Inter}
+#kicker{left:160px;top:150px;font:600 24px Inter;letter-spacing:7px;text-transform:uppercase;color:var(--ouro)}
+#titulo{left:160px;top:196px;font:500 96px/1.05 'Playfair Display',serif;white-space:nowrap}
+#titulo i{color:var(--ouro)}
+#titulo span{display:inline-block}
+#cards{left:160px;top:380px;width:1600px;display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.card{position:relative;height:220px;padding:34px 34px 30px 132px;border:1.5px solid var(--linha);border-radius:22px;background:rgba(245,241,232,.04);cursor:pointer}
+.card b{position:absolute;left:32px;top:34px;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;background:var(--ouro);color:var(--verde);font:700 40px Inter}
+.card h3{font:600 32px/1.2 Inter;margin-bottom:10px}
+.card p{font:400 25px/1.35 Inter;color:var(--areia)}
+.card.luz{border-color:var(--ouro);background:rgba(224,190,94,.12);box-shadow:0 0 0 4px rgba(224,190,94,.25)}
+#pausa{left:50%;top:880px;display:flex;align-items:center;gap:26px;transform:translateX(-50%);white-space:nowrap}
+#anel{width:96px;height:96px}
+#pausa span{font:700 40px Inter}
+#pausa small{display:block;font:500 24px Inter;color:var(--areia);margin-top:4px}
+#fecho{left:0;top:0;width:1920px;height:1080px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:40px;background:rgba(13,20,15,.97)}
+#fecho .k{font:600 26px Inter;letter-spacing:8px;color:var(--ouro);text-transform:uppercase}
+#linha{display:flex;align-items:center;gap:30px;font:500 64px 'Playfair Display',serif}
+#caixa{width:130px;height:130px;border:3px solid var(--ouro);border-radius:20px;display:grid;place-items:center;font:700 72px Inter;color:var(--ouro)}
+#fecho p{font:500 34px Inter;color:var(--areia)}
+#ok{display:inline-grid;place-items:center;width:52px;height:52px;border-radius:50%;background:var(--ouro);color:var(--verde);font:700 32px Inter;margin-right:16px;vertical-align:middle}
+</style>
+</head>
+<body>
+<div id="palco">
+  <div id="selo" class="abs">Marco Zero · 2 de 14</div>
+  <div id="kicker" class="abs">Seu diagnóstico prévio · linha 1</div>
+  <h1 id="titulo" class="abs"></h1>
+  <div id="cards" class="abs"></div>
+  <div id="pausa" class="abs">
+    <svg id="anel" viewBox="0 0 100 100"><circle cx="50" cy="50" r="44" fill="none" stroke="#3A5444" stroke-width="8"/>
+      <circle id="arco" cx="50" cy="50" r="44" fill="none" stroke="#E0BE5E" stroke-width="8" stroke-linecap="round" transform="rotate(-90 50 50)" stroke-dasharray="276.5"/>
+      <text id="num" x="50" y="62" text-anchor="middle" font-family="Inter" font-weight="700" font-size="36" fill="#F5F1E8"></text></svg>
+    <div><span>Pause o vídeo e escolha</span><small>Qual destas letras é você hoje?</small></div>
+  </div>
+  <div id="fecho" class="abs">
+    <div class="k">Anote no seu caderno</div>
+    <div id="linha">Minha letra é <div id="caixa"></div></div>
+    <p><span id="ok">✓</span>A primeira linha do seu diagnóstico prévio</p>
+  </div>
+</div>
+<script>
+const DURACAO = 10;
+const OPCOES = [
+  ['A', 'Terra e capital', 'Não sei onde gastar primeiro'],
+  ['B', 'Terra, sem capital', 'Procuro sócio ou investidor'],
+  ['C', 'Já opero', 'Quero crescer'],
+  ['D', 'Tenho uma visão', 'Ou uma casa de sítio, e quero investir'],
+  ['E', 'Estou pesquisando', 'Bubble, estrutura modular ou outro modelo'],
+  ['F', 'Sou corretor', 'Quero vender terra melhor'],
+];
+const $ = id => document.getElementById(id);
+$('titulo').innerHTML = ['Qual', 'é', 'a', 'sua', '<i>situação?</i>'].map(p => `<span>${p}</span>`).join(' ');
+$('cards').innerHTML = OPCOES.map(([l, h, p]) => `<div class="card"><b>${l}</b><h3>${h}</h3><p>${p}</p></div>`).join('');
+const cards = [...document.querySelectorAll('.card')];
+const palavras = [...$('titulo').querySelectorAll('span')];
+
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const ease = x => 1 - Math.pow(1 - x, 3);
+const mola = (t, t0) => { const x = Math.max(0, t - t0); return x === 0 ? 0 : 1 - Math.exp(-7 * x) * Math.cos(9 * x); };
+let escolha = null;  // só no navegador: clique numa letra
+
+function seek(t) {
+  t = clamp(t, 0, DURACAO);
+  const fim = 1 - prog(t, 9.6, 10);
+  $('palco').style.opacity = Math.min(prog(t, 0, .4), fim) ;
+  $('selo').style.opacity = t < 3.6 ? 1 : 1 - prog(t, 3.6, 4);
+  // título palavra por palavra, junto com "Qual é a sua situação?"
+  $('kicker').style.opacity = prog(t, .2, .6);
+  palavras.forEach((w, i) => {
+    const s = clamp(mola(t, .55 + i * .14), 0, 1.15);
+    w.style.opacity = clamp(s * 2); w.style.transform = `translateY(${(1 - s) * 40}px)`;
+  });
+  // as seis letras entram com "Escolha a sua letra, de A a F"
+  cards.forEach((c, i) => {
+    const s = clamp(mola(t, 2.3 + i * .18), 0, 1.12);
+    c.style.opacity = clamp(s * 2.5); c.style.transform = `scale(${.82 + .18 * s})`;
+  });
+  // destaque percorre as letras, desacelerando, de 3,9 s a 7,2 s
+  let luz = -1;
+  if (escolha !== null) luz = escolha;
+  else if (t >= 3.9 && t < 7.3) { const k = prog(t, 3.9, 7.3); luz = Math.floor(Math.pow(k, .55) * 12) % 6; }
+  cards.forEach((c, i) => c.classList.toggle('luz', i === luz));
+  // contagem 3, 2, 1 com "Pause o vídeo e anote"
+  const p = prog(t, 4.6, 4.9) * (1 - prog(t, 7.2, 7.45));
+  $('pausa').style.opacity = p;
+  $('pausa').style.transform = `translateX(-50%) translateY(${(1 - ease(prog(t, 4.6, 4.9))) * 30}px)`;
+  $('num').textContent = t < 6 ? '3' : t < 7 ? '2' : '1';
+  $('arco').style.strokeDashoffset = 276.5 * prog(t, 5, 7.4);
+  // fecho com "É a primeira linha do seu diagnóstico"
+  const f = ease(prog(t, 7.3, 7.7));
+  $('fecho').style.opacity = f; $('fecho').style.display = f > 0 ? 'flex' : 'none';
+  $('caixa').textContent = escolha !== null ? OPCOES[escolha][0] : (Math.floor(t * 2.5) % 2 ? '_' : '');
+  const ok = clamp(mola(t, 9.0), 0, 1.15);
+  $('ok').style.transform = `scale(${ok})`;
+}
+window.seek = seek; window.DURACAO = DURACAO;
+
+function ajustar() { const s = Math.min(innerWidth / 1920, innerHeight / 1080); const p = $('palco');
+  p.style.transform = `scale(${s})`; document.body.style.width = 1920 * s + 'px'; document.body.style.height = 1080 * s + 'px'; }
+window.pronto = document.fonts.ready.then(() => {
+  const q = new URLSearchParams(location.search);
+  if (q.has('render')) { document.body.style.cssText = 'display:block;width:1920px;height:1080px'; seek(0); return; }
+  ajustar(); addEventListener('resize', ajustar);
+  cards.forEach((c, i) => c.addEventListener('click', () => { escolha = i; }));
+  const t0 = performance.now();
+  const tocar = agora => { seek(((agora - t0) / 1000) % DURACAO); requestAnimationFrame(tocar); };
+  requestAnimationFrame(tocar);
+});
+</script>
+</body>
+</html>
