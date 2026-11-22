@@ -60,5 +60,5 @@ settings = {"dedupRule": "merge", "dedupKey": "email_phone", "mergeStrategy": "i
    {"id": "r_alto", "min": 10, "max": 14, "badge": "Bem mapeado", "title": "Você já tem boa parte das informações", "message": "Você já reuniu muita informação. Esta nota mede só o que você já sabe, não a viabilidade do seu terreno. Na sessão validamos os números e preparamos a sua abordagem."}],
   "buttons": [{"label": "Contratar sessão e liberar calendário", "url": "https://payments.clickmax.io/W11sGasqD2?utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&utm_content=diagnostico-resultado"}]},
  "lgpdText": "Aceito que a Zion use estas respostas para gerar o meu resultado e falar comigo sobre ele. O consentimento para receber conteúdos e novidades é separado e opcional."}
-q = {"version": 1, "kind": "quiz", "name": "Diagnóstico rápido Zion · 7 frentes", "title": "O que você já sabe sobre o seu projeto de hospedagem?", "steps": steps, "theme": theme, "settings": settings}
+q = {"version": 1, "kind": "quiz", "name": "Diagnóstico rápido Zion · 7 frentes", "title": "Diagnóstico rápido Zion", "steps": steps, "theme": theme, "settings": settings}
 (A / "quiz.json").write_text(json.dumps(q, ensure_ascii=False)); print(len(json.dumps(q, ensure_ascii=False)), "chars;", len(steps), "etapas;", len(res), "blocos no resultado")
