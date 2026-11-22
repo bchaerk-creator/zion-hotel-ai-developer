@@ -25,3 +25,8 @@ As entradas levam à mesma oferta `037959a0…`.
 Não existe "Raio-X gratuito" como produto. Existe um diagnóstico rápido de lacunas (7 frentes: demanda, sazonalidade, ticket médio, ocupação, orçamento, investimento e retorno, estrutura jurídica) que mostra, frente por frente, o que a pessoa ainda não sabe e leva à sessão paga (pague para liberar o calendário). Sem nota de viabilidade e sem dizer que o terreno "tem potencial".
 Rota recomendada: anúncio → quiz do ClickMax (`016a7296…`, rascunho) → resultado → checkout. O formulário instantâneo do Meta fica como alternativa, só se Bruno quiser. Link do quiz: `https://api.clickmax.io/forms/xGxHHe2Xgp_aUGb86YFUQGTF` (só funciona depois de ativar).
 UTM: acrescentar `?utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&utm_content=<criativo>` ao link do quiz.
+
+## Atualização 22/11 · duas entradas (decisão do Bruno)
+1. **Formulário instantâneo do Meta** (id `1823491885591057`, criado por Bruno): botão final → checkout com `utm_content=form-instantaneo`.
+2. **Diagnóstico das 7 frentes** (quiz `016a7296…`, rascunho): agora com nota de 0 a 14 ("informações do projeto em mãos"), faixas Muito a mapear (0–4), Parcialmente mapeado (5–9) e Bem mapeado (10–14), lista dos 9 entregáveis e botão para o checkout. A nota mede o que a pessoa já sabe, nunca a viabilidade nem o "potencial" do terreno.
+Pendências: testar o quiz no navegador (3 perfis), confirmar a ordem das telas (nota × bloco da oferta), ligar a sincronização dos leads do formulário Meta ao ClickMax, ativar com "aprovado".
