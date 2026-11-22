@@ -42,3 +42,9 @@ Entrada A (landing): `utm_source=meta&utm_medium=paid&utm_campaign=sessao-270&ut
 4. Escolher o desenho da agenda paga (link na aula + guarda, ou reserva feita pela equipe).
 5. Liberar o vendedor ClickMax (hoje pending) para testar compras.
 6. "Aprovado" para: ativar o quiz, publicar a landing, mudar a Zaya, pausar a campanha ativa, criar campanhas, ligar Land Bank.
+
+## Atualização 22/11 · no ar por pedido do Bruno (sem anúncios, gasto R$ 0)
+- Quiz do diagnóstico **ativo**: `https://api.clickmax.io/forms/xGxHHe2Xgp_aUGb86YFUQGTF`.
+- Landing **publicada** às 00h, `https://infoprodutos-zion.clickmax.space/sessao-zion-360` (levou ~20 s para sair do 404; conferida no celular: entregáveis, preço, Bruno, perguntas frequentes e checkout).
+- **Continua sem agenda paga.** Quem pagar hoje entra na turma sem link de agenda. A agenda "Equipe Zion" (pública, grátis) não deve ser usada para a Sessão de R$ 270.
+- Pausar quiz/landing: `forms_update status=paused` e `pages_unpublish`.
