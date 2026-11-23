@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Kit de prompts do Dossiê · Zion Collection</title>
+<style>
+@font-face { font-family: "Cormorant"; src: url("../../../assets/fonts/cormorant.woff2") format("woff2"); font-weight: 400 700; }
+@font-face { font-family: "Aventa"; src: url("../../../assets/fonts/aventa.woff2") format("woff2"); font-weight: 300 700; }
+:root { --preto: #040605; --musgo: #1B2117; --creme: #FEF5F0; --areia: #DED6BF; --terra: #8B714E; --ouro: #C9B37E; }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--creme); color: var(--musgo); font-family: "Aventa", Arial, sans-serif; font-size: 17px; line-height: 1.55; }
+header { background: var(--musgo); color: var(--creme); padding: 40px 20px 36px; }
+.wrap { max-width: 760px; margin: 0 auto; }
+.logo { height: 44px; display: block; margin-bottom: 28px; }
+.sobre { font-size: 13px; letter-spacing: 3px; text-transform: uppercase; color: var(--ouro); margin: 0 0 10px; }
+h1 { font-family: "Cormorant", Georgia, serif; font-weight: 600; font-size: 42px; line-height: 1.05; margin: 0 0 14px; }
+header p { margin: 0; color: var(--areia); }
+main { padding: 28px 20px 60px; }
+h2 { font-family: "Cormorant", Georgia, serif; font-weight: 600; font-size: 30px; line-height: 1.1; margin: 36px 0 12px; }
+.passos { counter-reset: p; list-style: none; padding: 0; margin: 0; }
+.passos li { counter-increment: p; position: relative; padding: 12px 0 12px 46px; border-top: 1px solid var(--areia); }
+.passos li::before { content: counter(p); position: absolute; left: 0; top: 10px; width: 32px; height: 32px; border-radius: 50%; background: var(--musgo); color: var(--creme); display: flex; align-items: center; justify-content: center; font-weight: 600; }
+.aviso { background: #fff; border: 1.5px solid var(--ouro); border-radius: 12px; padding: 16px 18px; margin: 20px 0; }
+.aviso strong { display: block; margin-bottom: 4px; }
+.cartao { background: #fff; border: 1px solid var(--areia); border-radius: 14px; padding: 20px 18px; margin: 18px 0; }
+.cartao h3 { font-family: "Cormorant", Georgia, serif; font-weight: 600; font-size: 25px; line-height: 1.15; margin: 0 0 4px; }
+.cartao .num { font-size: 13px; letter-spacing: 2px; text-transform: uppercase; color: var(--terra); margin: 0 0 6px; }
+.cartao .anexe { margin: 0 0 12px; font-size: 15px; color: #4a5144; }
+pre { white-space: pre-wrap; word-break: break-word; background: var(--creme); border: 1px solid var(--areia); border-radius: 10px; padding: 14px; font-family: "Aventa", Arial, sans-serif; font-size: 15px; line-height: 1.5; margin: 0 0 12px; }
+button { font: inherit; font-weight: 600; background: var(--musgo); color: var(--creme); border: 0; border-radius: 999px; padding: 12px 22px; min-height: 46px; cursor: pointer; }
+button.ok { background: var(--terra); }
+footer { background: var(--musgo); color: var(--areia); padding: 26px 20px; font-size: 14px; }
+footer a { color: var(--ouro); }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <img class="logo" src="../../../brand/zion-logo-claro.png" alt="Zion Hotel Group International">
+    <p class="sobre">Zion Collection | Projetos &amp; Oportunidades</p>
+    <h1>Kit de prompts do Dossiê</h1>
+    <p>Nove comandos prontos para você usar no ChatGPT ou no Claude, com os PDFs que gerou nas fichas “Faça agora”. A inteligência artificial organiza o que você informou e devolve um rascunho de cada parte do seu projeto.</p>
+  </div>
+</header>
+<main>
+  <div class="wrap">
+    <h2>Como usar, em quatro passos</h2>
+    <ol class="passos">
+      <li>Preencha a ficha “Faça agora” da etapa e baixe o PDF.</li>
+      <li>Abra o ChatGPT ou o Claude e anexe o PDF. Anexe também fotos do terreno e o print do mapa, se tiver.</li>
+      <li>Toque em “Copiar” no comando da etapa e cole na conversa.</li>
+      <li>Responda às perguntas que a IA fizer. Salve o resultado em PDF e guarde junto com os outros.</li>
+    </ol>
+
+    <div class="aviso">
+      <strong>O que a inteligência artificial faz, e o que ela não faz</strong>
+      Ela organiza e escreve com base no que você informou. Ela não confirma mercado, documentação, topografia nem licença, e pode errar. Trate tudo como rascunho. Este material é educativo: não é laudo, não é parecer jurídico e não é promessa de investimento, parceria ou resultado. A Zion avalia cada caso.
+    </div>
+
+    <div class="aviso">
+      <strong>Cuide dos seus dados</strong>
+      Antes de anexar matrícula, escritura ou documentos pessoais em uma ferramenta de IA, confira as regras de privacidade dela. Se preferir, cubra CPF e endereço. Para enviar documentos à Zion, use sempre a ficha do terreno, na sua área de membros.
+    </div>
+
+    <h2>Os comandos</h2>
+    <div id="lista"></div>
+  </div>
+</main>
+<footer>
+  <div class="wrap">
+    Zion Hotel Group International · Material educativo: resultados dependem do contexto e da execução. Dúvidas: <a href="https://wa.me/554861371061">WhatsApp da equipe Zion</a>.
+  </div>
+</footer>
+<script>
+var REGRAS = "Regras para esta conversa:\n- Use somente as informações dos arquivos que anexei e do que eu escrever aqui.\n- Quando faltar um dado, escreva A CONFIRMAR e me faça a pergunta. Faça no máximo cinco perguntas por vez.\n- Não invente números de mercado, diárias, ocupação, custos, prazos nem nomes de concorrentes.\n- Não prometa resultado, renda, valorização, investimento ou parceria.\n- Escreva em português simples e marque o texto final como RASCUNHO PARA REVISÃO.";
+
+var PROMPTS = [
+  { n: "Página 0 · Marco Zero", t: "Resumo do ponto de partida", a: "Anexe: o PDF do Diagnóstico prévio.",
+    p: "Você vai me ajudar a organizar o ponto de partida do meu projeto de hospedagem.\n\nLeia o PDF do meu Diagnóstico prévio e escreva:\n1. Um resumo de até 10 linhas de onde eu estou hoje.\n2. O meu ponto mais frágil, com as minhas próprias respostas como base.\n3. Um plano de 7 dias com no máximo cinco tarefas, cada uma com o que fazer e como eu sei que terminou.\n4. A lista do que ainda não sei responder.\n\n" },
+  { n: "Página 1 · Território", t: "Leitura do território e dos papéis", a: "Anexe: o PDF da Ficha do Território, fotos do terreno e o print do mapa.",
+    p: "Você vai me ajudar a descrever o território do meu projeto de hospedagem.\n\nCom a Ficha do Território, as fotos e o mapa que anexei, escreva:\n1. A descrição do terreno em um parágrafo: onde fica, como se chega, tamanho e o que já existe.\n2. Os pontos fortes do lugar para receber hóspedes, citando só o que aparece nos arquivos.\n3. Os pontos de atenção: acesso, água, energia, internet, relevo e áreas que podem ter restrição.\n4. Uma lista de verificação dos documentos (matrícula, CAR, zoneamento, licenças), com três colunas: tenho, não tenho, a confirmar com profissional.\n5. As perguntas que devo levar a um engenheiro, a um topógrafo e a um advogado.\n\n" },
+  { n: "Página 2 · Mercado", t: "Mapa dos comparáveis", a: "Anexe: o PDF da Ficha do Mercado e os prints dos anúncios que você pesquisou.",
+    p: "Você vai me ajudar a organizar a pesquisa de mercado do meu projeto de hospedagem.\n\nUse somente os comparáveis que eu informei na Ficha do Mercado e nos prints anexados. Escreva:\n1. Uma tabela dos comparáveis: nome, tipo de hospedagem, distância do meu terreno, diária que eu anotei e o que cada um oferece.\n2. O que os comparáveis têm em comum e o que nenhum deles oferece.\n3. Os meses de alta e de baixa procura, conforme o que eu informei.\n4. O perfil do hóspede que a região atrai, só com base nas minhas anotações.\n5. O que ainda falta pesquisar, e onde eu posso conferir cada dado.\n\nNão complete a tabela com dados que eu não informei.\n\n" },
+  { n: "Página 3 · Produto", t: "Conceito do produto", a: "Anexe: os PDFs das páginas 1, 2 e 3 e fotos de referência.",
+    p: "Você vai me ajudar a escrever o conceito do meu produto de hospedagem.\n\nCom as fichas anexadas, escreva:\n1. Para quem é a hospedagem e em que momento essa pessoa viaja.\n2. A promessa da estadia em uma frase, sem exagero.\n3. A unidade: tipo, capacidade, o que tem dentro e o que tem fora.\n4. As três experiências que fazem sentido no meu terreno, com o que cada uma exige.\n5. O que eu decidi e o que ainda está em aberto.\n\n" },
+  { n: "Página 4 · Modelo de negócio", t: "Comparação dos modelos", a: "Anexe: o PDF do Modelo de Negócio e as páginas anteriores.",
+    p: "Você vai me ajudar a comparar modelos de negócio para o meu projeto de hospedagem.\n\nCom as fichas anexadas, monte uma tabela com os modelos que eu marquei e, para cada um: o que eu preciso ter, quem opera, de onde vem o dinheiro para abrir, quais são os riscos e para que tipo de dono ele costuma servir.\n\nDepois escreva qual modelo combina mais com as minhas respostas e por quê, deixando claro que a decisão é minha e que cada caso precisa ser avaliado.\n\n" },
+  { n: "Página 5 · Masterplan faseado", t: "Programa por fases", a: "Anexe: o PDF do Masterplan faseado, o mapa e as fotos.",
+    p: "Você vai me ajudar a escrever o programa por fases do meu projeto de hospedagem.\n\nCom a ficha, o mapa e as fotos, escreva:\n1. Onde não se deve construir no terreno, conforme o que eu marquei, e o motivo.\n2. O que precisa existir antes da primeira unidade: acesso, água, energia, esgoto e apoio.\n3. A fase 1: quantas unidades, onde ficam e o que entra junto.\n4. As fases seguintes, em ordem, e o que libera cada uma.\n5. As dúvidas que um arquiteto precisa resolver.\n\nNão desenhe planta nem defina medidas que eu não informei.\n\n" },
+  { n: "Página 6 · Pré-viabilidade", t: "Revisão das premissas e dos cenários", a: "Anexe: o PDF da Pré-viabilidade e as duas planilhas preenchidas.",
+    p: "Você vai revisar a pré-viabilidade do meu projeto de hospedagem. Use somente os meus números.\n\nCom a ficha e as planilhas anexadas, escreva:\n1. A lista de todas as premissas que eu usei, separando: fonte confirmada, estimativa minha e A CONFIRMAR.\n2. As contas que não fecham ou os itens que parecem faltar no orçamento de abertura.\n3. Os três cenários que eu montei, lado a lado, em uma tabela.\n4. Quais premissas mais mudam o resultado se estiverem erradas.\n5. O que eu preciso validar com um contador e com um engenheiro antes de mostrar a alguém.\n\nNão troque os meus números por outros e não diga se o projeto é viável: mostre o que os meus dados indicam e o que falta confirmar.\n\n" },
+  { n: "Página 7 · Capital e Dossiê", t: "Resumo executivo de uma página", a: "Anexe: os PDFs de todas as páginas, de 0 a 7.",
+    p: "Você vai me ajudar a escrever o resumo executivo do meu projeto de hospedagem, em uma página.\n\nCom todas as fichas anexadas, escreva:\n1. O projeto em três linhas.\n2. O terreno e a documentação, com o que está confirmado e o que está pendente.\n3. O produto e para quem ele é.\n4. O investimento da fase 1 e de onde eu pretendo que ele venha, com os meus números.\n5. O que eu busco: sócio, investidor, parceiro de operação ou crédito.\n6. As dez perguntas que um investidor ou parceiro vai me fazer, com a resposta que eu já tenho ou A CONFIRMAR.\n\nNão escreva projeção de retorno que não esteja nas minhas planilhas.\n\n" },
+  { n: "Fechamento", t: "Dossiê completo, em um documento só", a: "Anexe: todos os PDFs e os rascunhos que você gerou com os comandos anteriores.",
+    p: "Você vai juntar o meu Dossiê de Desenvolvimento em um documento só.\n\nCom todos os arquivos anexados, monte o dossiê nesta ordem: resumo executivo; terreno e território; mercado; produto; modelo de negócio; masterplan por fases; pré-viabilidade; capital; pendências e próximos passos.\n\nEm cada parte, mantenha o que eu já aprovei, corrija repetições e contradições entre as fichas e avise quando duas respostas minhas não combinarem. Termine com uma lista única de tudo o que está A CONFIRMAR, por ordem de importância.\n\n" }
+];
+
+var lista = document.getElementById("lista");
+PROMPTS.forEach(function (x, i) {
+  var texto = x.p + REGRAS;
+  var c = document.createElement("section");
+  c.className = "cartao";
+  c.innerHTML = '<p class="num"></p><h3></h3><p class="anexe"></p><pre></pre><button type="button">Copiar o comando</button>';
+  c.querySelector(".num").textContent = x.n;
+  c.querySelector("h3").textContent = x.t;
+  c.querySelector(".anexe").textContent = x.a;
+  var pre = c.querySelector("pre");
+  pre.textContent = texto;
+  pre.id = "cmd-" + i;
+  var b = c.querySelector("button");
+  b.addEventListener("click", function () {
+    function feito() { b.textContent = "Copiado"; b.className = "ok"; setTimeout(function () { b.textContent = "Copiar o comando"; b.className = ""; }, 2500); }
+    function selecionar() { var r = document.createRange(); r.selectNodeContents(pre); var s = window.getSelection(); s.removeAllRanges(); s.addRange(r); b.textContent = "Texto selecionado: copie"; }
+    if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(texto).then(feito, selecionar); } else { selecionar(); }
+  });
+  lista.appendChild(c);
+});
+</script>
+</body>
+</html>
