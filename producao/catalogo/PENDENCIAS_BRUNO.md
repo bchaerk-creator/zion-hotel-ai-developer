@@ -67,6 +67,10 @@ Se o módulo de posts sociais for ligado no ClickMax, eu passo a fazer isso sozi
 - 29 conferida hoje: ainda com "Token inválido ou ausente" (17, 11, 13, 14 e 18 com o mesmo erro nas conferências de 13 e 14/11). Páginas seguem seguradas.
 - 22 criada e enviada para aprovação.
 
+## Rodada de 23/11
+- Só conferência: 17 ainda com "Token inválido ou ausente"; vendedor ainda `pending` (`canSell` true, conta bancária aprovada). Nenhuma oferta nova a enviar ou publicar.
+- Nenhum produto novo: continua sem decisão sobre 01, 21, 25, 26, 27, E08 ou os PDFs A01–A10.
+
 ## Rodada de 22/11
 - Só conferência: 18 ainda com "Token inválido ou ausente"; vendedor ainda `pending` (`canSell` true, conta bancária aprovada). Nenhuma oferta nova a enviar ou publicar.
 - Nenhum produto novo: continua sem decisão sobre 01, 21, 25, 26, 27, E08 ou os PDFs A01–A10.
