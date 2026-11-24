@@ -23,3 +23,12 @@ Aprenda o passo a passo para estruturar o projeto de hospedagem do seu terreno. 
 - Capturas da tela de login e do painel não existem.
 - Prazo de 12 meses: está no texto, mas a turma nova não tem prazo de acesso configurado. Confirmar com o Bruno e ajustar.
 - Troca da página no ar: só com a oferta aprovada e com o "aprovado" do Bruno.
+
+## Registro · 24/11/2026 (troca aprovada por Bruno)
+
+- Página `/inscricao` (`77c286e6-c3d2-4492-8fd9-8d5db7921ef8`) republicada às 01:01 UTC com a oferta `c298aaed-88ac-46dd-b6f3-f3c07ae08513` (R$ 97, checkout `1ApwIsdYSy`). Conferido no ar: preço, vídeo (8:36, toca), três botões, nenhum "270". Não conferido: o formulário de pagamento (o domínio de pagamento é bloqueado no ambiente de teste).
+- Landing do site (`zionhotelgroup.com/inscricao`) reescrita para a oferta de R$ 97 e publicada.
+- Bela: texto novo (venda direta, sem reunião, 12 meses) e uma base de 29 perguntas; as quatro bases de R$ 270 foram removidas.
+- Turma `69345987-7679-41e5-8e66-27281afa6892`: acesso de 12 meses ao conteúdo `fa9a6c54-e40c-4ee0-99cc-ee6ec70e68fb`.
+- Modelo de WhatsApp `clube_plataforma_d0` (`65598eac-57de-43d8-bc5e-fa24378d743c`): aprovado pelo Meta.
+- Pendente: trocar o modelo no fluxo de abertura `bc86b069-5cb8-4620-b985-aaaeeeabd850` (ainda `inscricao_novo_d0`); fluxos de recuperação e de pagamento confirmado para a oferta nova; teste de compra real; imagem do produto; campanha de vendas (só pausada).
