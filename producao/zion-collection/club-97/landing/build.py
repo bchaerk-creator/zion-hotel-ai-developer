@@ -82,6 +82,13 @@ footer p{color:#ded6bf;margin:0 0 8px}
 #hero p.aval{text-align:center;color:#fef5f0;font-size:15.5px;line-height:1.55;margin-top:22px}
 #hero p.nota{text-align:center;margin-top:8px}
 #pagar{padding-top:44px}
+.passos{display:grid;gap:10px;margin-top:18px}
+.passo{border:1px solid #c9b37e59;border-radius:14px;padding:14px 16px;display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:center}
+.passo .n{color:#c9b37e;font-family:"Playfair Display",Georgia,serif;font-size:30px;line-height:1}
+.sec .passo p{margin:0;font-size:16px;line-height:1.35;color:#fef5f0}
+.lista li strong.t{display:block;color:#c9b37e;font-weight:500;font-size:17px;line-height:1.35}
+.sec p.frase.fecho{border-left:2px solid #c9b37e;padding-left:16px;margin-top:26px;color:#fef5f0}
+.sec p.frase.ouro{color:#c9b37e;margin-top:20px}
 @media (min-width:820px){
  .cards{grid-template-columns:1fr 1fr}
  h1{font-size:44px}h2{font-size:34px}.sec{padding:76px 0}
@@ -90,6 +97,7 @@ footer p{color:#ded6bf;margin:0 0 8px}
  .telas{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible}
  .tela{max-width:none}
  .jornada{grid-template-columns:repeat(3,1fr);gap:18px 14px}
+ .passos{grid-template-columns:repeat(3,1fr)}
  .jornada li{border-left:0;border-top:1px solid #c9b37e;padding:14px 0 0}
  .jornada li:before{left:0;top:-5px}
  .btn{display:flex;width:fit-content;min-width:380px}
@@ -211,24 +219,30 @@ blocos.append(sec("solution", "creme",
     '<h2>Os sete pilares</h2>'
     f'<div class="cards">{cards}</div>'))
 
-# B07 · Entregáveis
+# B07 · O que você constrói na plataforma
+PASSOS = ["Assista aos nossos vídeos", "Preencha os formulários", "Anexe o que você tem"]
+CONSTROI = [
+    ("A sua ideia", "o diagnóstico do Marco Zero"),
+    ("O seu terreno", "território e infraestrutura que já existe"),
+    ("O seu produto", "mercado, hospedagem e modelo de negócio"),
+    ("O seu orçamento", "quanto custa abrir a primeira etapa"),
+    ("A sua pré-viabilidade", "a conta do seu próprio caso"),
+]
+passos = "".join(
+    f'<div class="passo"><div class="n">{i}</div><p>{e(t)}</p></div>'
+    for i, t in enumerate(PASSOS, 1))
+constroi = "".join(
+    f'<li><strong class="t">{e(t)}</strong>{e(d)}</li>' for t, d in CONSTROI)
 blocos.append(sec("offer", "escuro",
-    '<p class="k">Acesso à plataforma · R$ 97</p>'
-    '<h2>Tudo o que você recebe</h2>'
-    f'<img class="capa" src="{BASE}capas-zion/trilha-1-h.jpg" alt="Capa do curso da plataforma Zion Collection" width="1920" height="1080" loading="lazy" data-cx-image-slot="offer" data-cx-image-hint="Capa do curso da plataforma" data-cx-image-kind="brand">'
-    + lista([
-        "Acesso individual à plataforma",
-        "Instruções de acesso por e-mail",
-        "Marco Zero",
-        "Metodologia dos sete pilares",
-        "Vídeos e aulas interativas",
-        "Fichas guiadas e ferramentas de estruturação",
-        "Planilhas de orçamento e de viabilidade",
-        "Kit de prompts para usar com ChatGPT ou Claude",
-        "Construção progressiva do Dossiê de Desenvolvimento",
-        "Cadastro no banco de áreas da Zion",
-        "12 meses de acesso",
-    ]) + btn()))
+    '<p class="k">A plataforma é a sua ferramenta</p>'
+    '<h2>O que você constrói na plataforma</h2>'
+    '<p>Simples e guiado, como um tutorial:</p>'
+    f'<div class="passos">{passos}</div>'
+    f'<ol class="lista">{constroi}</ol>'
+    '<p class="frase fecho">Cada formulário que você preenche gera uma página. Juntas, elas formam o seu Dossiê de Desenvolvimento.</p>'
+    '<p class="frase ouro">Você constrói. A Zion conhece e avalia.</p>'
+    '<p class="nota">Aulas, vídeos e e-books em cada pilar · 12 meses de acesso · cadastro do seu terreno no banco de áreas da Zion.</p>'
+    + btn()))
 
 # B08 · Dossiê
 blocos.append(sec("solution", "creme",
