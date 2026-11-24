@@ -38,3 +38,13 @@ Aprenda o passo a passo para estruturar o projeto de hospedagem do seu terreno. 
 - 24/11: página `/inscricao` com o aviso "Avaliamos cada ideia, cada região e cada terreno…" e o bloco "O que você constrói na plataforma" (3 passos: vídeos, formulários, anexos; 5 itens; "Você constrói. A Zion conhece e avalia."). A capa da trilha saiu do bloco.
 - 24/11 ~02:45 UTC: Meta (conta Zion Collection 2), tudo PAUSADO: campanha `120250538444300016` "[ZION COLLECTION][TRÁFEGO][PLATAFORMA R$97]" (tráfego, porque a página não tem pixel com compra utilizável), conjunto `120250538447120016` (R$ 30/dia provisório), anúncios `120250538459670016` (carrossel 10 A com preço), `120250538464160016` (carrossel 10 B sem preço), `120250538465770016` e `120250538466090016` (vídeo com texto novo; os dois usam o mesmo vídeo). Destino `/inscricao` com UTMs `utm_campaign=plataforma97`. Ativar só com "aprovado".
 - 24/11: disparo "nova oportunidade" agendado para 24/11 09h30 (12:30Z), 32 leads de 22 e 23/11: fluxo `c84db4a6-8dd4-4ab6-9dea-b30b8f01815b`, execução `7f756892-7742-4c38-a99e-962aceabcbef`, modelo `clube_nova_oport_d1` (`a96cd456-8307-452b-8b90-6930a8038c0d`, em análise no Meta; conferência às 09h05).
+
+## Registro de 24/11/2026 (tarde) · teste de venda direta
+
+- Página curta publicada: `/inscricao-curta` (id `1597b2cc-d4e8-4ced-9c4d-a23a1d6d7053`), oferta `c298aaed…` (checkout `1ApwIsdYSy`). Texto: "Queremos te conhecer. Faça a sua inscrição. Seja um parceiro Zion." + vídeo + plataforma de estruturação + checkout. A página longa `/inscricao` não foi alterada.
+- Meta, conta Zion Collection 2, campanha de vendas `120250538576770016` (R$ 97, checkout direto, sem formulário):
+  - conjunto interesses `120250538578280016` (R$ 30/dia): Vídeo 01 narrativa, Carrossel 10 A v2, Vídeo 02 longa (`120250554660270016`) e Vídeo 02 curta com `#pagar` (`120250554662510016`) ligados; Carrossel 10 B v2 pausado.
+  - conjunto remarketing `120250555057580016` (R$ 20/dia, públicos Zion 90, Público video, Zion collection 365): Vídeo 01 (`120250555107730016`) e Vídeo 02 curta (`120250555108170016`) ligados. Vídeo 02 longa não criado no remarketing.
+  - Carrossel C para site: não criado (faltam título e descrição dos 7 cartões do original).
+- Aprovação de Bruno em 24/11: ligar os anúncios e subir a verba da campanha de vendas para R$ 50/dia (30 + 20). A campanha de formulário (R$ 270 / leads) segue como estava.
+- Plano: R$ 97 hoje; se não converter, versão de R$ 47 (a preparar, pausada).
