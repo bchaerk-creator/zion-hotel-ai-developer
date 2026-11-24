@@ -32,3 +32,4 @@ Aprenda o passo a passo para estruturar o projeto de hospedagem do seu terreno. 
 - Turma `69345987-7679-41e5-8e66-27281afa6892`: acesso de 12 meses ao conteúdo `fa9a6c54-e40c-4ee0-99cc-ee6ec70e68fb`.
 - Modelo de WhatsApp `clube_plataforma_d0` (`65598eac-57de-43d8-bc5e-fa24378d743c`): aprovado pelo Meta.
 - Pendente: trocar o modelo no fluxo de abertura `bc86b069-5cb8-4620-b985-aaaeeeabd850` (ainda `inscricao_novo_d0`); fluxos de recuperação e de pagamento confirmado para a oferta nova; teste de compra real; imagem do produto; campanha de vendas (só pausada).
+- 24/11 01:33 UTC: página `/inscricao` republicada com a frase de convite de Bruno no topo ("Faça a sua inscrição. Queremos te conhecer. Seja um parceiro Zion."); conferida no ar por curl. Mesma frase na landing do site e no convite oficial da Bela.
