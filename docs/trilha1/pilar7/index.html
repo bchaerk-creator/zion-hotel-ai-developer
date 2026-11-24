@@ -226,7 +226,7 @@ cxs('track', 'page_view');
 const ZION_WEBHOOK_URL = "https://zion-dossie-aulas.lovable.app/api/dossie";
 /** Endereço do mentor virtual (o mesmo das ferramentas dos Pilares 1 a 3). Vazia: a seção mostra "Disponível em breve". */
 const FEEDBACK_URL = "https://zion-dossie-aulas.lovable.app/api/feedback";
-const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento, recomendação de financiamento, de sociedade ou de qualquer fonte de capital, e não promete renda, retorno, crédito, investidor, sócio, venda ou entrada no Land Bank Zion. A Zion avalia cada caso.";
+const RODAPE = "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento, recomendação de financiamento, de sociedade ou de qualquer fonte de capital, e não promete renda, retorno, crédito, investidor, sócio, venda ou entrada no banco de áreas da Zion. A Zion avalia cada caso.";
 const CURSO = "Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso";
 const SUBTITULO = "Aprenda o passo a passo com o Método Zion.";
 /** As páginas do Dossiê de Desenvolvimento e onde cada ferramenta guarda as respostas neste aparelho. */
@@ -607,7 +607,7 @@ const QUESTOES = [
     pergunta: "Com o Dossiê na mão, qual é o seu caminho agora?",
     explica: "Nenhum é melhor por definição. O que muda é quem lê a sua pasta, e a página que essa pessoa lê primeiro. O caminho segue a decisão, e não o contrário.",
     porque: "Se a decisão é ajustar ou parar, o caminho quase sempre é o 1, por enquanto. Banco e investidor avaliam o seu caso com os critérios deles; nenhum dos dois é garantido. A Zion avalia cada caso.",
-    onde: "<p>Na sua decisão, logo antes. Projetos maiores, ou quem quer um olhar de fora, podem pedir uma reunião com o nosso fundador, Bruno Chaerk.</p>",
+    onde: "<p>Na sua decisão, logo antes. Projetos maiores, ou quem quer um olhar de fora, podem apresentar o projeto à Zion, enviando o Dossiê.</p>",
     marina: "Primeiro o caminho 1: com o Dossiê como régua, ela cota e escreve o limite de perda. Com as cotações na mão e a página 6 refeita, decide entre o banco, um investidor ou uma conversa com a Zion.",
     ondeCurto: "escolher o caminho pela decisão",
     opcoes: [
@@ -755,7 +755,7 @@ function alertas(L) {
   if (PESO_D[L.d] < PESO_D[L.dSug]) a.push({ t: "atencao", tit: "Mais otimista que as páginas", txt: `A sua decisão (${NOME_D[L.d]}) é mais otimista que a sugerida pelas páginas (${NOME_D[L.dSug]}). Pode ser, desde que a razão fique escrita no critério.` });
   if (L.pags[6].ajustado) a.push({ t: "info", tit: "Página 6 ajustada", txt: "A sua Pré-viabilidade foi salva com números ajustados no simulador. O pedido usa o que você respondeu aqui." });
   if (P.ajustado) a.push({ t: "atencao", tit: "Ajustado no simulador", txt: `Esta página mostra os números que você equalizou (${juntar(P.ajustes.map((x) => ROT_SIM[x.k] || x.k))}). Para voltar às suas respostas, toque em Voltar ao meu número.` });
-  if (r.caminho === "zion") a.push({ t: "info", tit: "Conversar com a Zion", txt: "A reunião e o Land Bank Zion (uma lista de terrenos com o Dossiê feito, organizada pela Zion) são caminhos possíveis, não promessas. Estar na lista não garante investimento, venda ou sociedade. A Zion avalia cada caso." });
+  if (r.caminho === "zion") a.push({ t: "info", tit: "Conversar com a Zion", txt: "O banco de áreas da Zion (uma lista de terrenos com o Dossiê feito, organizada pela Zion) é um caminho possível, não uma promessa. Estar na lista não garante investimento, venda ou sociedade. A Zion avalia cada caso." });
   a.push({ t: "info", tit: "Para conferir", txt: "Garantias, aval, financiamento, sociedade, aporte de terra, trabalho ou conhecimento, pré-venda, contratos e impostos variam por caso. Quem confirma no seu caso é o advogado, o contador e o banco. A Zion avalia cada caso." });
   return a;
 }
@@ -1249,7 +1249,7 @@ function telaResultado() {
     </section>
     <section class="bloco"><h2>O caminho Zion</h2><div class="caixa porque">
       <p>Com o Dossiê pronto, existem três caminhos: fazer sozinho, usando o Dossiê como régua; levar a um banco ou a um investidor; ou conversar com a Zion.</p>
-      <p>Nós, da Zion, organizamos o Land Bank Zion, uma lista de terrenos com o Dossiê feito. Estar na lista quer dizer que o seu projeto pode ser olhado. Não quer dizer que ele será escolhido, financiado ou vendido, nem que terá sócio. A Zion avalia cada caso, com os seus critérios.</p>
+      <p>Nós, da Zion, organizamos o banco de áreas da Zion, uma lista de terrenos com o Dossiê feito. Estar na lista quer dizer que o seu projeto pode ser olhado. Não quer dizer que ele será escolhido, financiado ou vendido, nem que terá sócio. A Zion avalia cada caso, com os seus critérios.</p>
       <p>E qualquer decisão sobre o seu terreno, inclusive usá-lo como garantia, quem confirma é o advogado, o contador e o banco.</p></div></section>
     <div class="acoes">
       <button class="btn btn-ouro" id="pdf">Baixar o meu Dossiê de Desenvolvimento completo (PDF)</button>
@@ -1531,7 +1531,7 @@ function gerarDossiePDF(L) {
   P.titulo("O caminho Zion");
   P.par("Com as sete páginas e a decisão escritas, o seu Dossiê está pronto para ser lido.", { bold: true, after: 3 });
   P.par("Cada página do Dossiê de Desenvolvimento deixa o seu projeto mais fácil de ler para quem pode avaliá-lo: você mesmo, um banco, um sócio, um investidor ou a Zion. Com o Dossiê pronto, existem três caminhos: fazer sozinho, usando o Dossiê como régua; levar a um banco ou a um investidor; ou conversar com a Zion.", { after: 3 });
-  P.par("Nós, da Zion, organizamos o Land Bank Zion, uma lista de terrenos com o Dossiê feito. Estar na lista quer dizer que o seu projeto pode ser olhado. Não quer dizer que ele será escolhido, financiado ou vendido, nem que terá sócio. A Zion avalia cada caso, com os seus critérios. E qualquer decisão sobre o seu terreno, inclusive usá-lo como garantia, quem confirma é o advogado, o contador e o banco.", { after: 5 });
+  P.par("Nós, da Zion, organizamos o banco de áreas da Zion, uma lista de terrenos com o Dossiê feito. Estar na lista quer dizer que o seu projeto pode ser olhado. Não quer dizer que ele será escolhido, financiado ou vendido, nem que terá sócio. A Zion avalia cada caso, com os seus critérios. E qualquer decisão sobre o seu terreno, inclusive usá-lo como garantia, quem confirma é o advogado, o contador e o banco.", { after: 5 });
   P.par("Você começou com um terreno e uma dúvida. Termina com sete páginas e uma decisão escrita. Do terreno ao negócio que funciona.", { bold: true, after: 6 });
   P.par("A Marina, citada nas explicações das ferramentas, é um exemplo ilustrativo: os números dela ensinam a conta e não são proposta nem previsão. Toda conta deste Dossiê é de referência: receita bruta não é lucro, e nenhum cenário é promessa de renda, retorno, ocupação, crédito, investidor, sócio ou venda. As participações são contas ilustrativas, para ver o tamanho: não existe percentual universal. Garantias, aval, financiamento, sociedade, aporte, pré-venda, contratos e impostos variam por caso: quem confirma no seu caso é o advogado, o contador e o banco.", { size: 8.5, cor: CINZA });
   return P.fechar("Dossie-de-Desenvolvimento");

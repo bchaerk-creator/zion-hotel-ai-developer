@@ -136,10 +136,10 @@ ul.lista{padding-left:20px;margin:6px 0}
     <section class="bloco" id="b-proximos"><h2>7 · Leve para o Pilar 2</h2><div id="r-proximos"></div></section>
     <div class="aviso" id="r-aviso">Leitura orientativa, feita com fontes públicas e IA. Não substitui a visita, o estudo de mercado nem arquiteto, advogado, contador ou órgão ambiental. Não é promessa de renda, retorno, ocupação, crédito ou sociedade. A Zion avalia cada caso.</div>
     <div class="caixa" id="lb" style="background:#FBF6E8;border:1.5px solid #B08D3A">
-      <h3>Zion Land Members</h3>
+      <h3>Banco de áreas da Zion</h3>
       <p>Guarde esta leitura no seu cadastro do banco de áreas da Zion, junto da página 1 do seu Dossiê. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade.</p>
-      <label style="display:flex;gap:8px;align-items:flex-start;font-size:.92rem"><input type="checkbox" id="lb-ok" style="margin-top:4px;width:18px;height:18px;accent-color:#16261C"><span>Autorizo a Zion a guardar esta leitura no meu cadastro do Zion Land Members, conforme o <a href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/privacidade/" target="_blank" rel="noopener">Aviso de Privacidade</a>.</span></label>
-      <button class="btn btn-p" id="lb-btn" style="margin-top:10px">Enviar ao Land Bank da Zion</button>
+      <label style="display:flex;gap:8px;align-items:flex-start;font-size:.92rem"><input type="checkbox" id="lb-ok" style="margin-top:4px;width:18px;height:18px;accent-color:#16261C"><span>Autorizo a Zion a guardar esta leitura no meu cadastro do banco de áreas da Zion, conforme o <a href="https://bchaerk-creator.github.io/zion-hotel-ai-developer/land-members/privacidade/" target="_blank" rel="noopener">Aviso de Privacidade</a>.</span></label>
+      <button class="btn btn-p" id="lb-btn" style="margin-top:10px">Enviar ao banco de áreas da Zion</button>
       <p class="dica" id="lb-msg" role="status" style="margin-top:8px"></p>
     </div>
     <div class="acoes">
@@ -415,7 +415,7 @@ $("lb-btn").onclick=function(){
   var link=FORM_LM+"?prefill_"+encodeURIComponent("LM · Nome do membro")+"="+encodeURIComponent(dados.nome)+"&prefill_"+encodeURIComponent("LM · E-mail do membro")+"="+encodeURIComponent(dados.email);
   msg.textContent="Enviando...";
   fetch(DOSSIE_API,{method:"POST",headers:{"Content-Type":"application/json"},body:txt})
-   .then(function(res){ msg.innerHTML=(res.ok?"Enviado. A leitura já está no seu cadastro do Land Bank. ":"Não conseguimos enviar agora. Tente de novo em alguns minutos. ")+"<a href='"+link+"' target='_blank' rel='noopener'><b>Completar o cadastro do meu terreno</b></a>"; })
+   .then(function(res){ msg.innerHTML=(res.ok?"Enviado. A leitura já está no seu cadastro do banco de áreas da Zion. ":"Não conseguimos enviar agora. Tente de novo em alguns minutos. ")+"<a href='"+link+"' target='_blank' rel='noopener'><b>Completar o cadastro do meu terreno</b></a>"; })
    .catch(function(){ msg.innerHTML="Não conseguimos enviar agora. <a href='"+link+"' target='_blank' rel='noopener'>Completar o cadastro do meu terreno</a>"; });
 };
 

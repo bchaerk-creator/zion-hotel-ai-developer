@@ -59,10 +59,10 @@
     e.stopImmediatePropagation();
     e.preventDefault();
     if (guardada()) { location.href = destino; return; }
-    if (!prox) { aviso("O seu dossiê só está completo depois de enviado à Zion. Volte um slide, gere o dossiê e toque em Enviar ao Land Bank da Zion."); return; }
+    if (!prox) { aviso("O seu dossiê só está completo depois de enviado à Zion. Volte um slide, gere o dossiê e toque em Enviar ao banco de áreas da Zion."); return; }
     if (Date.now() < armado) { location.href = destino; return; }
     armado = Date.now() + 9000;
-    aviso("A sua Ficha deste bloco ainda não foi guardada na Zion. Volte um slide, gere a Ficha e toque em Enviar ao Land Bank. Se preferir seguir assim mesmo, toque de novo em " + rotulo.replace(" ›", "") + ".");
+    aviso("A sua Ficha deste bloco ainda não foi guardada na Zion. Volte um slide, gere a Ficha e toque em Enviar ao banco de áreas da Zion. Se preferir seguir assim mesmo, toque de novo em " + rotulo.replace(" ›", "") + ".");
   }, true);
   function iniciar() {
     var b = document.getElementById("n-prox");

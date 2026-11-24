@@ -790,7 +790,7 @@ const AULA = {
     return { acao: "Levar o arquiteto ao terreno e entregar o briefing de uma página depois da visita, pedindo que ele devolva comentado.", evidencia: "O briefing devolvido, com os comentários do arquiteto." };
   },
   dicaCompromisso: "Nenhuma precisa de arquiteto contratado ainda.",
-  depoisLeitura: (L) => (L.v === "avancar" ? `<p class="dica" style="margin-top:8px">Terreno com território lido, mercado medido e negócio desenhado pode entrar no Land Bank Zion, a vitrine de terrenos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""),
+  depoisLeitura: (L) => (L.v === "avancar" ? `<p class="dica" style="margin-top:8px">Terreno com território lido, mercado medido e negócio desenhado pode entrar no banco de áreas da Zion, a vitrine de terrenos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""),
   payloadExtra: (L) => ({ dossie: dossie(L).paginas.map((p) => ({ aula: p.n, status: p.status, leitura: p.v })), veredito_projeto: dossie(L).v }),
   secaoFinal(L) {
     const D = dossie(L);
@@ -855,7 +855,7 @@ function gerarDossiePDF(L) {
   P.y += 4;
   P.caixa("Veredito do projeto, pela página mais fraca", `${NOME_V[D.v]}. ${D.texto} Ordem: pausar, testar, ajustar, avançar.`, COR_V[D.v]);
   P.caixa("O critério para parar do projeto", S.extra.criterioProjeto || D.criterioSug || "Em branco", [122, 94, 18]);
-  P.par(D.v === "avancar" ? "Próximo passo: a Trilha 2, Estruturação: quanto custa, quanto dá e quem paga. Terreno com território lido, mercado medido e negócio desenhado pode entrar no Land Bank Zion; a Zion avalia cada caso, não é promessa." : "Com testar ou pausar, o próximo passo é resolver as páginas que dão o ritmo, a maior lacuna primeiro. Decidir não fazer também é um resultado válido.", { size: 9.5, cor: CINZA });
+  P.par(D.v === "avancar" ? "Próximo passo: a Trilha 2, Estruturação: quanto custa, quanto dá e quem paga. Terreno com território lido, mercado medido e negócio desenhado pode entrar no banco de áreas da Zion; a Zion avalia cada caso, não é promessa." : "Com testar ou pausar, o próximo passo é resolver as páginas que dão o ritmo, a maior lacuna primeiro. Decidir não fazer também é um resultado válido.", { size: 9.5, cor: CINZA });
   // Uma página por aula
   for (const p of D.paginas) {
     P.novaPagina();

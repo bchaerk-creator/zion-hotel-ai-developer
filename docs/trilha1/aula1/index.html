@@ -1078,7 +1078,7 @@ function telaResultado() {
     <section class="bloco"><h2>A leitura</h2>
       <div class="leitura" id="leitura"><div class="eyebrow" style="color:var(--creme)">Leitura do método</div><div class="rot">${esc(leit.rot)}</div><p><b>${esc(leit.sub)}</b></p><p style="margin-top:6px">${esc(L.motivo)}</p></div>
       ${S.respostas.caminho_leitura && S.respostas.caminho_leitura !== "nao_sei" ? `<p class="dica" style="margin-top:8px">O caminho que você escolheu: ${esc(respostaTexto(Q("caminho_leitura")))}. A leitura pode ser mais cautelosa que a sua escolha, nunca mais otimista.</p>` : ""}
-      ${L.v === "avancar" ? `<p class="dica">Terreno com território lido e mercado medido pode entrar no Land Bank Zion, a vitrine de terrenos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""}
+      ${L.v === "avancar" ? `<p class="dica">Terreno com território lido e mercado medido pode entrar no banco de áreas da Zion, a vitrine de terrenos estruturados. A Zion avalia cada caso: é um dos caminhos possíveis, não uma promessa.</p>` : ""}
     </section>
 
     ${htmlSecaoMentor(L)}
