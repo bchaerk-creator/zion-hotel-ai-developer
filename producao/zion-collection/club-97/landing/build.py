@@ -9,7 +9,7 @@ from html import escape
 from pathlib import Path
 
 BASE = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/"
-BTN = "COMECE A ESTRUTURAR SEU PROJETO"
+BTN = "FAÇA A SUA INSCRIÇÃO"
 
 # CSS da página /inscricao (mesmas classes), mais o que os blocos novos pedem.
 CSS = """
@@ -70,10 +70,20 @@ footer{color:#ded6bf;background:#0d1512;padding:28px 0 50px;font-size:12.5px}
 footer p{color:#ded6bf;margin:0 0 8px}
 #hero{padding-bottom:36px}
 .video{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;margin-top:20px;border:1px solid #c9b37e59}
+#hero h1{font-size:min(33px,8.4vw);line-height:1.18}
+.sec p.sub{font-family:"Playfair Display",Georgia,serif;font-size:21px;line-height:1.3;color:#fef5f0;margin-top:18px}
+.sec p strong.d{display:block;color:#c9b37e;font-weight:500;font-size:17.5px;line-height:1.35;margin-bottom:8px}
+.sec p.mini{text-align:center;font-size:14px;color:#fef5f0;margin:26px 0 0}
+.sec p.mini.ouro{color:#c9b37e;margin-top:12px;font-weight:400;letter-spacing:.03em}
+#hero .btn{margin-top:10px}
+.centro{text-align:center}
+#hero p.nota{text-align:center;margin-top:12px}
 #pagar{padding-top:44px}
 @media (min-width:820px){
  .cards{grid-template-columns:1fr 1fr}
  h1{font-size:44px}h2{font-size:34px}.sec{padding:76px 0}
+ #hero h1{font-size:48px}.sec p.sub{font-size:25px}
+ #hero .btn{margin-left:auto;margin-right:auto}
  .telas{display:grid;grid-template-columns:repeat(3,1fr);overflow:visible}
  .tela{max-width:none}
  .jornada{grid-template-columns:repeat(3,1fr);gap:18px 14px}
@@ -141,15 +151,18 @@ blocos.append(
 # B01 · Abertura
 blocos.append(sec("hero", "escuro",
     '<p class="k">Zion Collection Club</p>'
-    '<h1>O seu terreno pode ser o próximo <em>destino da Zion</em>.</h1>'
-    '<p>Faça a sua inscrição. Queremos te conhecer. Seja um parceiro Zion.</p>'
-    '<p>Entenda como funciona a nossa plataforma e inscreva-se agora mesmo.</p>'
+    '<h1>Faça a sua inscrição.<br>Queremos te conhecer.<br>Seja um <em>parceiro Zion</em>.</h1>'
+    '<p class="sub">Transforme o seu terreno em destino turístico com a nossa plataforma.</p>'
+    '<p><strong class="d">Não tem capital? Não sabe por onde começar?</strong>'
+    'A nossa plataforma ajuda a estruturar a sua ideia, para conhecermos o potencial do seu terreno e a visão das possibilidades. '
+    'Isso abre a oportunidade de você ser nosso parceiro e receber investimentos na sua área.</p>'
     f'<video class="video" controls playsinline preload="metadata" poster="{BASE}zion-collection/club/video/poster.jpg" src="{BASE}zion-collection/club/video/plataforma-v02.mp4">O seu navegador não reproduz este vídeo.</video>'
     '<p class="leg">Vídeo: a plataforma Zion Collection por dentro (8 minutos).</p>'
-    '<p class="selo">Acesso à plataforma · R$ 97 · Pagamento único</p>'
+    '<p class="mini">Faça a sua inscrição. Queremos te conhecer.</p>'
     + btn() +
-    '<p>Acesse a plataforma, comece a estruturar seu projeto e tenha uma visão clara do seu empreendimento para receber possíveis parceiros e investidores.</p>'
-    '<p>Abra a possibilidade de ser um parceiro Zion e receber investimentos na sua área.</p>',
+    '<p class="mini ouro">Seja um parceiro Zion.</p>'
+    '<div class="centro"><p class="selo">Acesso à plataforma · R$ 97 · Pagamento único</p></div>'
+    '<p class="nota">Parcerias e investimentos sujeitos à análise de cada projeto.</p>',
     sid="hero"))
 
 # B02 + B06 · Por dentro (a galeria sobe para o lugar do vídeo, que ainda não existe)
