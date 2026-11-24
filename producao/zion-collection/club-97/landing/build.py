@@ -69,6 +69,7 @@ h1 em{font-style:italic;color:#c9b37e!important}
 footer{color:#ded6bf;background:#0d1512;padding:28px 0 50px;font-size:12.5px}
 footer p{color:#ded6bf;margin:0 0 8px}
 #hero{padding-bottom:36px}
+.video{display:block;width:100%;aspect-ratio:16/9;background:#000;border-radius:14px;margin-top:20px;border:1px solid #c9b37e59}
 #pagar{padding-top:44px}
 @media (min-width:820px){
  .cards{grid-template-columns:1fr 1fr}
@@ -141,12 +142,13 @@ blocos.append(
 blocos.append(sec("hero", "escuro",
     '<p class="k">Zion Collection Club</p>'
     '<h1>O seu terreno pode ser o próximo <em>destino da Zion</em>.</h1>'
-    '<p>Acesse a plataforma, comece a estruturar seu projeto e tenha uma visão clara do seu empreendimento para receber possíveis parceiros e investidores.</p>'
-    '<p>Abra a possibilidade de ser um parceiro Zion e receber investimentos na sua área.</p>'
+    '<p>Entenda como funciona a nossa plataforma e inscreva-se agora mesmo.</p>'
+    f'<video class="video" controls playsinline preload="metadata" poster="{BASE}zion-collection/club/video/poster.jpg" src="{BASE}zion-collection/club/video/plataforma-v02.mp4">O seu navegador não reproduz este vídeo.</video>'
+    '<p class="leg">Vídeo: a plataforma Zion Collection por dentro (8 minutos).</p>'
     '<p class="selo">Acesso à plataforma · R$ 97 · Pagamento único</p>'
     + btn() +
-    f'<img class="foto" src="{BASE}assets/operacoes/op08.webp" alt="Zion Bubble Glamping vista de cima, com deck de madeira" width="900" height="675" data-cx-image-slot="hero" data-cx-image-hint="Foto real da Zion Bubble Glamping" data-cx-image-kind="brand">'
-    '<p class="leg">Foto real: Zion Bubble Glamping, operação própria da Zion.</p>',
+    '<p>Acesse a plataforma, comece a estruturar seu projeto e tenha uma visão clara do seu empreendimento para receber possíveis parceiros e investidores.</p>'
+    '<p>Abra a possibilidade de ser um parceiro Zion e receber investimentos na sua área.</p>',
     sid="hero"))
 
 # B02 + B06 · Por dentro (a galeria sobe para o lugar do vídeo, que ainda não existe)
