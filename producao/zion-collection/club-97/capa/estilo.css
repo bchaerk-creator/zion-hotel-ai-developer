@@ -1,0 +1,19 @@
+/* Capa e banner do Zion Collection Club · identidade Zion (CLAUDE.md, seção 2) */
+@font-face{font-family:"Cormorant";src:url("../../../../docs/assets/fonts/cormorant.woff2") format("woff2");font-weight:300 700;font-style:normal}
+@font-face{font-family:"Cormorant";src:url("../../../../docs/assets/fonts/cormorant-italic.woff2") format("woff2");font-weight:300 700;font-style:italic}
+@font-face{font-family:"Aventa";src:url("../../../../docs/assets/fonts/aventa.woff2") format("woff2");font-weight:300 800}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:"Aventa",sans-serif;color:var(--creme);overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#263021 0%,var(--musgo) 45%,var(--preto) 100%)}
+.moldura{position:absolute;inset:22px;border:1px solid rgba(201,179,126,.38);pointer-events:none;z-index:5}
+.logo{display:block;height:auto}
+.sobre{font-size:21px;letter-spacing:.34em;color:var(--ouro);font-weight:500}
+.fio{width:64px;height:1px;background:var(--ouro);opacity:.8}
+h1{font-family:"Cormorant",serif;font-weight:500;color:var(--creme);line-height:1}
+.linha{color:var(--areia);line-height:1.4}
+.rodape{color:var(--areia);opacity:.85;letter-spacing:.04em}
+.cel{position:absolute;border-radius:34px;background:#0b0e0b;padding:9px;border:1px solid rgba(201,179,126,.55);
+  box-shadow:0 30px 60px rgba(0,0,0,.55),0 0 0 1px rgba(0,0,0,.6)}
+.cel img{display:block;width:100%;border-radius:26px}
+.cel::before{content:"";position:absolute;top:17px;left:50%;transform:translateX(-50%);width:56px;height:7px;border-radius:6px;background:#0b0e0b;z-index:2}
