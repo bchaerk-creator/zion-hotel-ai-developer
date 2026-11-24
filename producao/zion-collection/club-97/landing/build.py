@@ -149,9 +149,9 @@ FAQ = [
     ("Preciso ter capital para começar?", "Não. A plataforma serve justamente para organizar o projeto antes de buscar capital."),
     ("Preciso ter um projeto pronto?", "Não. Você começa do Marco Zero."),
     ("Preciso ter experiência em hotelaria?", "Não. O conteúdo é passo a passo."),
-    ("O que estou contratando?", "Acesso por 12 meses à plataforma, com aulas, fichas, ferramentas e a construção do seu dossiê. Não inclui reunião individual."),
+    ("O que estou contratando?", "Acesso à plataforma, com aulas, fichas, ferramentas e a construção do seu dossiê. Não inclui reunião individual."),
     ("Como recebo o meu acesso?", "No e-mail da compra, assim que o pagamento é confirmado."),
-    ("Por quanto tempo tenho acesso?", "12 meses."),
+    ("Por quanto tempo tenho acesso?", "O acesso desta inscrição vale por 12 meses."),
     ("Posso cadastrar o meu terreno no banco de áreas?", "Sim, pela ficha do terreno dentro da plataforma."),
     ("A Zion garante investimento no meu terreno?", "Não. Não existe garantia de parceria, investimento ou aprovação automática. " + AVAL1 + " " + AVAL2),
 ]
@@ -245,7 +245,7 @@ blocos.append(sec("offer", "escuro",
     f'<ol class="lista">{constroi}</ol>'
     '<p class="frase fecho">Cada formulário que você preenche gera uma página. Juntas, elas formam o seu Dossiê de Desenvolvimento.</p>'
     '<p class="frase ouro">Você constrói. A Zion conhece e avalia.</p>'
-    '<p class="nota">Aulas, vídeos e e-books em cada pilar · 12 meses de acesso · cadastro do seu terreno no banco de áreas da Zion.</p>'
+    '<p class="nota">Aulas, vídeos e e-books em cada pilar · cadastro do seu terreno no banco de áreas da Zion.</p>'
     + btn()))
 
 # B08 · Dossiê
@@ -299,7 +299,7 @@ blocos.append(sec("cta", "escuro",
     '<div class="resumo"><div class="preco">R$ 97</div><div>Pagamento único · sem mensalidade</div></div>'
     + lista([
         "Pagamento por Pix ou cartão",
-        "12 meses de acesso",
+        "Acesso individual à plataforma",
         "O acesso chega no e-mail da compra assim que o pagamento é confirmado",
         "Reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor",
     ]) +
