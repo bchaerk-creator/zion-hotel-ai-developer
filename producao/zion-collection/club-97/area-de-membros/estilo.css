@@ -1,0 +1,61 @@
+/* Área de membros Zion Collection · banner do portal, capa do curso e capas dos módulos.
+   Identidade Zion (CLAUDE.md, seção 2). Mesmo padrão de ../capa/estilo.css */
+@font-face{font-family:"Cormorant";src:url("../../../../docs/assets/fonts/cormorant.woff2") format("woff2");font-weight:300 700;font-style:normal}
+@font-face{font-family:"Cormorant";src:url("../../../../docs/assets/fonts/cormorant-italic.woff2") format("woff2");font-weight:300 700;font-style:italic}
+@font-face{font-family:"Aventa";src:url("../../../../docs/assets/fonts/aventa.woff2") format("woff2");font-weight:300 800}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%}
+body{font-family:"Aventa",sans-serif;color:var(--creme);overflow:hidden;position:relative;
+  background:radial-gradient(120% 90% at 50% 0%,#263021 0%,var(--musgo) 45%,var(--preto) 100%)}
+.foto{position:absolute;inset:0;background-size:cover;background-position:center;filter:saturate(.7) blur(calc(var(--u)*.25))}
+.veu{position:absolute;inset:0}
+.moldura{position:absolute;inset:calc(var(--u)*2.2);border:1px solid rgba(201,179,126,.38);z-index:5}
+.logo{display:block;height:auto}
+.sobre{letter-spacing:.34em;color:var(--ouro);font-weight:500;text-transform:uppercase}
+.fio{height:1px;background:var(--ouro);opacity:.8}
+h1{font-family:"Cormorant",serif;font-weight:500;color:var(--creme);line-height:1.02}
+h1 em{font-style:italic;color:var(--ouro)}
+.linha{color:var(--areia);line-height:1.4}
+/* algarismo em Aventa: o "1" do Cormorant se confunde com "I" */
+.num{position:absolute;font-family:"Aventa",sans-serif;font-weight:300;line-height:.8;color:transparent;
+  -webkit-text-stroke:2px rgba(201,179,126,.7)}
+
+/* ---------- banner do portal ---------- */
+.banner .veu{background:radial-gradient(60% 80% at 50% 50%,rgba(4,6,5,.74) 0%,rgba(27,33,23,.66) 60%,rgba(4,6,5,.86) 100%)}
+.banner .centro{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);text-align:center;width:calc(var(--u)*92);z-index:4}
+.banner .logo{width:calc(var(--u)*30);margin:0 auto calc(var(--u)*3.4)}
+.banner .fio{width:calc(var(--u)*6.4);margin:0 auto calc(var(--u)*2.6)}
+.banner h1{font-size:calc(var(--u)*13)}
+.banner .linha{font-size:calc(var(--u)*3);margin-top:calc(var(--u)*2.2)}
+
+/* ---------- capa do curso e dos módulos ---------- */
+.capa .foto{left:38%}
+.capa .veu{background:linear-gradient(90deg,var(--musgo) 0%,var(--musgo) 40%,rgba(27,33,23,.80) 68%,rgba(4,6,5,.72) 100%)}
+.capa .texto{position:absolute;left:calc(var(--u)*7);right:calc(var(--u)*7);top:calc(var(--u)*6.4);bottom:calc(var(--u)*6.4);z-index:4;display:flex;flex-direction:column}
+.capa .logo{width:calc(var(--u)*26)}
+.capa .meio{margin-top:auto;margin-bottom:auto;max-width:calc(var(--u)*72)}
+.capa .sobre{font-size:calc(var(--u)*2.4)}
+.capa .fio{width:calc(var(--u)*6.4);margin:calc(var(--u)*2) 0 calc(var(--u)*2.2)}
+.capa h1{font-size:calc(var(--u)*11)}
+.capa.mod h1{font-size:calc(var(--u)*14)}
+.capa .linha{font-size:calc(var(--u)*3.4);margin-top:calc(var(--u)*2.4);max-width:calc(var(--u)*52)}
+.capa .rodape{font-size:calc(var(--u)*1.9);letter-spacing:.3em;color:var(--areia);opacity:.8;text-transform:uppercase}
+.capa .num{right:calc(var(--u)*9);top:50%;transform:translateY(-54%);font-size:calc(var(--u)*50);z-index:3}
+.capa.mod{background:radial-gradient(110% 120% at 0% 0%,#2a3524 0%,var(--musgo) 50%,#0c100b 100%)}
+
+/* vertical: tudo empilhado */
+.v.capa .foto{left:0;top:42%}
+.v.capa .veu{background:linear-gradient(180deg,var(--musgo) 0%,var(--musgo) 44%,rgba(27,33,23,.78) 72%,rgba(4,6,5,.80) 100%)}
+.v.capa .meio{margin-top:calc(var(--u)*13);margin-bottom:0}
+.v.capa h1{font-size:calc(var(--u)*12)}
+.v.capa.mod h1{font-size:calc(var(--u)*14.5)}
+.v.capa .linha{font-size:calc(var(--u)*4)}
+.v.capa .sobre{font-size:calc(var(--u)*2.9)}
+.v.capa .rodape{margin-top:auto;font-size:calc(var(--u)*2.3)}
+.v.capa .logo{width:calc(var(--u)*34)}
+.v.capa .num{right:calc(var(--u)*8);top:auto;bottom:calc(var(--u)*14);transform:none;font-size:calc(var(--u)*58)}
+/* O Cormorant deste repositório desenha o agudo e o circunflexo deslocados para a direita:
+   a letra vai sem acento e o acento (´ ou ˆ) é centrado por cima. */
+.ac{position:relative;display:inline-block}
+.ac i{position:absolute;left:50%;top:0;transform:translateX(-50%);font-style:inherit}

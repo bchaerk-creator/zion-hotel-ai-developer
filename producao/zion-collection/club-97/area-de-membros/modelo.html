@@ -1,0 +1,16 @@
+<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><link rel="stylesheet" href="estilo.css"></head>
+<body><script>
+// Uma página só: os dados chegam pela URL (render.js). u = 1% do menor lado útil.
+const d = JSON.parse(decodeURIComponent(location.hash.slice(1)));
+const L = '../../../../docs/brand/zion-logo-claro.png';
+document.documentElement.style.setProperty('--u', d.u + 'px');
+document.body.className = d.tipo + (d.v ? ' v' : '') + (d.mod ? ' mod' : '');
+const ac = t => t.replace(/[éóêíúâô]/g, c => { const [b, m] = c.normalize('NFD'); return `<span class="ac">${b === 'i' ? 'ı' : b}<i>${m === '\u0301' ? '´' : 'ˆ'}</i></span>`; });
+d.titulo = ac(d.titulo);
+const foto = d.foto ? `<div class="foto" style="background-image:url('../../../../docs/assets/${d.foto}')"></div><div class="veu"></div>` : '';
+document.body.innerHTML = d.tipo === 'banner'
+  ? `${foto}${d.moldura ? '<div class="moldura"></div>' : ''}<div class="centro"><img class="logo" src="${L}" alt=""><div class="fio"></div><h1>${d.titulo}</h1><p class="linha">${d.linha}</p></div>`
+  : `${foto}<div class="moldura"></div>${d.num ? `<div class="num">${d.num}</div>` : ''}<div class="texto"><img class="logo" src="${L}" alt="">
+     <div class="meio"><div class="sobre">${d.sobre}</div><div class="fio"></div><h1>${d.titulo}</h1>${d.linha ? `<p class="linha">${d.linha}</p>` : ''}</div>
+     <div class="rodape">Zion Collection</div></div>`;
+</script></body></html>
