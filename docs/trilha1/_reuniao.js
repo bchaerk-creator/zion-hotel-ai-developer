@@ -1,5 +1,5 @@
 /* Zion · bloco de próximo passo no fim da ficha do Pilar 7.
-   Desde 22/11/2026 não leva mais à agenda pública: a sessão é agendada dentro da área de membros do Clube. */
+   Desde 24/11/2026 não fala mais em reunião: o Clube de R$ 97 não inclui sessão. Leva ao cadastro do terreno. */
 (function () {
   "use strict";
   function montar() {
@@ -12,9 +12,9 @@
     document.head.appendChild(st);
     var box = document.createElement("section");
     box.id = "reuniao-zion"; box.className = "zrn";
-    box.innerHTML = "<h3>Leve o seu Dossiê para a Sessão de onboarding e estratégia</h3>" +
-      "<p>Com o seu Dossiê de Viabilidade em mãos, converse com a equipe Zion sobre os próximos passos do seu projeto. O agendamento da sessão fica dentro da área de membros do Clube Zion Collection.</p>" +
-      "<small>A sessão ajuda a definir os próximos passos. Ela não garante investimento nem parceria: a Zion avalia cada projeto, caso a caso.</small>";
+    box.innerHTML = "<h3>Envie o seu Dossiê ao banco de áreas da Zion</h3>" +
+      "<p>Preencha os formulários e envie as páginas do seu dossiê para a Zion conhecer o seu projeto. O cadastro do terreno fica na área de membros do Clube Zion Collection, no Pilar 7.</p>" +
+      "<small>A Zion avalia cada ideia, cada região e cada terreno. O envio não garante investimento nem parceria.</small>";
     (document.querySelector("main") || document.body).appendChild(box);
   }
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", montar); else montar();
