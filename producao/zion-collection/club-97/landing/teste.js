@@ -11,6 +11,7 @@ const path = require('path');
     await p.goto('file://' + path.join(__dirname, 'index.html'), {waitUntil:'networkidle'});
     await p.evaluate(() => document.querySelectorAll('img').forEach(i => i.loading = 'eager'));
     await p.waitForFunction(() => [...document.images].every(i => i.complete), null, {timeout: 30000}).catch(()=>{});
+    await p.evaluate(() => document.fonts.ready);
     const r = await p.evaluate(() => ({
       scrollWidth: document.documentElement.scrollWidth,
       imgs: document.images.length,
@@ -21,12 +22,25 @@ const path = require('path');
       checkout: document.querySelectorAll('[data-cx-checkout]').length,
       spans: document.querySelectorAll('span').length,
       fonte: getComputedStyle(document.querySelector('h1')).fontFamily,
-      fontesOk: document.fonts.check('16px Jost') && document.fonts.check('16px "Playfair Display"'),
+      fontesCarregadas: [...new Set([...document.fonts].filter(f => f.status === 'loaded').map(f => f.family.replace(/"/g, '')))],
+      familias: [...new Set([...document.querySelectorAll('body *')].filter(e => e.children.length === 0 && e.innerText && e.innerText.trim()).map(e => getComputedStyle(e).fontFamily))],
+      botao: getComputedStyle(document.querySelector('[data-cx-cta]')).fontFamily,
+      pagamento: getComputedStyle([...document.querySelectorAll('.resumo div')].find(d => d.innerText.includes('Pagamento único'))).fontFamily,
+      playfair: document.documentElement.outerHTML.includes('Playfair'),
+      h1Linhas: Math.round(document.querySelector('h1').getBoundingClientRect().height / parseFloat(getComputedStyle(document.querySelector('h1')).lineHeight)),
+      h1Px: getComputedStyle(document.querySelector('h1')).fontSize,
       altura: document.documentElement.scrollHeight,
     }));
     console.log(nome, JSON.stringify(r), 'errosDePagina=' + erros.length, 'requisicoesFalhas=' + JSON.stringify(falhas));
     await p.screenshot({path: `previa-${nome}-topo.png`});
     await p.screenshot({path: `previa-${nome}.png`, fullPage: true});
+    await p.evaluate(() => { document.documentElement.style.scrollBehavior = 'auto'; });
+    await p.evaluate(() => document.querySelector('#pagar').scrollIntoView({block: 'start', behavior: 'instant'}));
+    await p.screenshot({path: `previa-${nome}-oferta.png`});
+    await p.evaluate(() => [...document.querySelectorAll('h2')].find(h => h.innerText.includes('O que você constrói')).scrollIntoView({block: 'start', behavior: 'instant'}));
+    await p.screenshot({path: `previa-${nome}-constroi.png`});
+    await p.evaluate(() => document.querySelector('p.frase.fecho').scrollIntoView({block: 'start', behavior: 'instant'}));
+    await p.screenshot({path: `previa-${nome}-frase.png`});
     await ctx.close();
   }
   await b.close();
