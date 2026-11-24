@@ -10,6 +10,8 @@ from pathlib import Path
 
 BASE = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/"
 BTN = "FAÇA A SUA INSCRIÇÃO"
+AVAL1 = "Avaliamos cada ideia, cada região e cada terreno: o potencial de cada um, a infraestrutura que já existe e o que ainda precisa ser investido."
+AVAL2 = "Parcerias e investimentos dependem dessa avaliação."
 
 # CSS da página /inscricao (mesmas classes), mais o que os blocos novos pedem.
 CSS = """
@@ -77,7 +79,8 @@ footer p{color:#ded6bf;margin:0 0 8px}
 .sec p.mini.ouro{color:#c9b37e;margin-top:12px;font-weight:400;letter-spacing:.03em}
 #hero .btn{margin-top:10px}
 .centro{text-align:center}
-#hero p.nota{text-align:center;margin-top:12px}
+#hero p.aval{text-align:center;color:#fef5f0;font-size:15.5px;line-height:1.55;margin-top:22px}
+#hero p.nota{text-align:center;margin-top:8px}
 #pagar{padding-top:44px}
 @media (min-width:820px){
  .cards{grid-template-columns:1fr 1fr}
@@ -138,7 +141,7 @@ FAQ = [
     ("Como recebo o meu acesso?", "No e-mail da compra, assim que o pagamento é confirmado."),
     ("Por quanto tempo tenho acesso?", "12 meses."),
     ("Posso cadastrar o meu terreno no banco de áreas?", "Sim, pela ficha do terreno dentro da plataforma."),
-    ("A Zion garante investimento no meu terreno?", "Não. Não existe garantia de parceria, investimento ou aprovação automática. A Zion avalia cada caso."),
+    ("A Zion garante investimento no meu terreno?", "Não. Não existe garantia de parceria, investimento ou aprovação automática. " + AVAL1 + " " + AVAL2),
 ]
 
 blocos = []
@@ -162,7 +165,8 @@ blocos.append(sec("hero", "escuro",
     + btn() +
     '<p class="mini ouro">Seja um parceiro Zion.</p>'
     '<div class="centro"><p class="selo">Acesso à plataforma · R$ 97 · Pagamento único</p></div>'
-    '<p class="nota">Parcerias e investimentos sujeitos à análise de cada projeto.</p>',
+    f'<p class="aval">{AVAL1}</p>'
+    f'<p class="nota">{AVAL2}</p>',
     sid="hero"))
 
 # B02 + B06 · Por dentro (a galeria sobe para o lugar do vídeo, que ainda não existe)
@@ -243,7 +247,7 @@ blocos.append(sec("solution", "escuro",
     '<p>A Zion está buscando novos destinos e novos parceiros no Brasil. Ao entrar para a plataforma, você cadastra o seu terreno no banco de áreas e começa a estruturar o seu projeto.</p>'
     '<p>Quanto mais organizado estiver o empreendimento, melhores as condições para apresentar a oportunidade.</p>'
     f'<ol class="jornada">{jornada}</ol>'
-    '<p class="nota">Parcerias e investimentos dependem da análise e da viabilidade de cada projeto.</p>'))
+    f'<p class="nota">{AVAL1} {AVAL2}</p>'))
 
 # B10 · Autoridade
 blocos.append(sec("social-proof", "creme",
@@ -295,7 +299,7 @@ blocos.append(sec("faq", "creme",
 
 blocos.append(
     '<footer><div class="w"><p>Zion Hotel Group International · Conteúdo educacional. Resultados dependem do contexto e da execução. '
-    'Parcerias e investimentos sujeitos à análise e viabilidade de cada projeto.</p>'
+    f'{AVAL1} {AVAL2}</p>'
     '<p>Suporte: WhatsApp +55 48 6137-1061</p></div></footer>')
 
 HTML = f"""<!doctype html>
