@@ -1,0 +1,348 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Do Terreno ao Destino</title>
+<!--
+  Vídeo 01 · Do terreno ao destino (20 s).
+  Técnica: um arquivo HTML, um canvas, uma função seek(t) que desenha o quadro do instante t.
+  Sem timers, sem transições CSS, sem estado entre quadros: o mesmo t sempre gera o mesmo quadro.
+  Abrir no navegador toca em loop. ?formato=16x9 troca para horizontal. render.js grava em MP4.
+-->
+<style>
+@font-face{font-family:'Aventa';src:url(../../../../docs/assets/fonts/aventa.woff2) format('woff2');font-weight:100 900}
+@font-face{font-family:'Cormorant Garamond';src:url(../../../../docs/assets/fonts/cormorant.woff2) format('woff2');font-weight:300 700}
+@font-face{font-family:'Cormorant Garamond';src:url(../../../../docs/assets/fonts/cormorant-italic.woff2) format('woff2');font-weight:300 700;font-style:italic}
+:root{--bg:#0d120f}
+html,body{margin:0;height:100%;background:var(--bg)}
+body{display:grid;place-items:center;overflow:hidden}
+canvas{display:block;max-width:100vw;max-height:100vh;width:auto;height:auto}
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<script>
+const DURACAO = 20;
+const params = new URLSearchParams(location.search);
+const FORMATO = params.get('formato') === '16x9' ? '16x9' : '9x16';
+const W = FORMATO === '16x9' ? 1920 : 1080;
+const H = FORMATO === '16x9' ? 1080 : 1920;
+const S = Math.min(W, H) / 1080;
+
+const C = {
+  bg: '#121814', deep: '#16261C', card: '#1C2520', line: '#2F3B33',
+  ink: '#EEE8DD', mute: '#A9A598', gold: '#D9B865', green: '#9CCBAE'
+};
+const F = {
+  disp: '"Cormorant Garamond", Georgia, serif',
+  body: 'Aventa, system-ui, sans-serif'
+};
+
+const cv = document.getElementById('c');
+cv.width = W; cv.height = H;
+const ctx = cv.getContext('2d');
+
+// ---------- utilidades de movimento ----------
+const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+// mola em forma fechada, overshoot pequeno (cerca de 7%)
+const spring = (t, t0) => { const x = Math.max(0, t - t0); return x === 0 ? 0 : 1 - Math.exp(-6 * x) * Math.cos(7 * x); };
+const lerp = (a, b, k) => a + (b - a) * k;
+const alpha = (hex, a) => {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${n >> 16},${(n >> 8) & 255},${n & 255},${a})`;
+};
+// janela de visibilidade: entra em [a, a+fi], sai em [b, b+fo]
+const janela = (t, a, b, fi = .4, fo = .4) => easeOut(prog(t, a, a + fi)) * (1 - easeInOut(prog(t, b, b + fo)));
+
+// ---------- layout por formato ----------
+const L = FORMATO === '9x16'
+  ? { ilu: { x: W / 2, y: H * .38, r: W * .45 }, txt: { x: W / 2, y: H * .72, w: W * .86, align: 'center' }, marca: { x: W / 2, y: H * .065, align: 'center' } }
+  : { ilu: { x: W * .29, y: H * .5, r: H * .40 }, txt: { x: W * .56, y: H * .40, w: W * .38, align: 'left' }, marca: { x: W * .05, y: H * .09, align: 'left' } };
+
+function quebrar(texto, larg) {
+  const linhas = []; let atual = '';
+  for (const p of texto.split(' ')) {
+    const teste = atual ? atual + ' ' + p : p;
+    if (ctx.measureText(teste).width > larg && atual) { linhas.push(atual); atual = p; } else atual = teste;
+  }
+  if (atual) linhas.push(atual);
+  return linhas;
+}
+
+// texto com entrada linha a linha (mola) e saída por fade; devolve a altura usada
+function texto(t, { str, y, t0, t1 = 99, tam = 64, fonte = F.disp, estilo = '', peso = 400, cor = C.ink, ls = 0, x = L.txt.x, larg = L.txt.w, align = L.txt.align, lh = 1.12 }) {
+  ctx.font = `${estilo} ${peso} ${tam * S}px ${fonte}`;
+  ctx.letterSpacing = `${ls * S}px`;
+  ctx.textAlign = align; ctx.textBaseline = 'alphabetic';
+  const linhas = quebrar(str, larg);
+  const saida = 1 - easeInOut(prog(t, t1, t1 + .35));
+  linhas.forEach((ln, i) => {
+    const ti = t0 + i * .09;
+    const a = clamp((t - ti) / .3) * saida;
+    if (a <= 0) return;
+    const dy = (1 - clamp(spring(t, ti))) * 34 * S;
+    ctx.fillStyle = alpha(cor, a);
+    ctx.fillText(ln, x, y + i * tam * lh * S + dy);
+  });
+  ctx.letterSpacing = '0px';
+  return { linhas, h: linhas.length * tam * lh * S };
+}
+
+// ---------- cenário ----------
+function fundo(t) {
+  ctx.fillStyle = C.bg; ctx.fillRect(0, 0, W, H);
+  const g = ctx.createRadialGradient(L.ilu.x, L.ilu.y, 0, L.ilu.x, L.ilu.y, Math.max(W, H) * .75);
+  g.addColorStop(0, alpha(C.deep, 1)); g.addColorStop(1, alpha(C.bg, 0));
+  ctx.fillStyle = g; ctx.fillRect(0, 0, W, H);
+  // grade de pontos, deriva lenta
+  const passo = 54 * S, dx = (t * 6 * S) % passo;
+  ctx.fillStyle = alpha(C.line, .9);
+  for (let x = -passo + dx; x < W + passo; x += passo)
+    for (let y = 0; y < H + passo; y += passo) ctx.fillRect(x, y, 2 * S, 2 * S);
+}
+
+function marca(t) {
+  const a = janela(t, .2, 16.4, .6, .5);
+  if (a <= 0) return;
+  ctx.font = `600 ${20 * S}px ${F.body}`;
+  ctx.letterSpacing = `${7 * S}px`;
+  ctx.textAlign = L.marca.align; ctx.fillStyle = alpha(C.gold, a);
+  ctx.fillText('ZION HOTEL GROUP', L.marca.x, L.marca.y);
+  ctx.letterSpacing = '0px';
+}
+
+// terreno: polígono irregular desenhado pelo perímetro
+const TERRENO = [[-40, -20], [28, -32], [42, 16], [-28, 30]];
+function caminhoParcial(pts, k) {
+  const segs = pts.map((p, i) => [p, pts[(i + 1) % pts.length]]);
+  const comp = segs.map(([a, b]) => Math.hypot(b[0] - a[0], b[1] - a[1]));
+  let resta = comp.reduce((s, c) => s + c, 0) * k;
+  ctx.beginPath(); ctx.moveTo(...pts[0]);
+  for (let i = 0; i < segs.length && resta > 0; i++) {
+    const [a, b] = segs[i], f = Math.min(1, resta / comp[i]);
+    ctx.lineTo(lerp(a[0], b[0], f), lerp(a[1], b[1], f));
+    resta -= comp[i];
+  }
+}
+
+function ilustracao(t) {
+  const { x, y, r } = L.ilu, u = r / 50;
+  const sumir = 1 - easeInOut(prog(t, 10.4, 11.0));
+  if (sumir <= 0) return;
+  ctx.save(); ctx.translate(x, y); ctx.globalAlpha = sumir;
+
+  // câmera: afasta em 6.4 s, o terreno vira um lote dentro do lugar
+  const zoom = lerp(1, .34, clamp(spring(t, 6.4)));
+  const desenho = easeInOut(prog(t, .5, 2.6));
+
+  // lugar ao redor (aparece com o afastamento)
+  const el = (a, b) => easeOut(prog(t, a, b));
+  ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+  // morros
+  let k = el(7.0, 8.4);
+  if (k > 0) {
+    ctx.strokeStyle = alpha(C.green, .75 * k); ctx.lineWidth = 3 * S;
+    ctx.beginPath();
+    for (let i = 0; i <= 60 * k; i++) { const px = -50 + i * (100 / 60); ctx.lineTo(px * u, (-22 - 9 * Math.sin(px / 9) - 6 * Math.sin(px / 4)) * u); }
+    ctx.stroke();
+  }
+  // sol
+  k = el(7.4, 8.4);
+  if (k > 0) {
+    ctx.strokeStyle = alpha(C.gold, k); ctx.lineWidth = 3 * S;
+    ctx.beginPath(); ctx.arc(30 * u, -38 * u, 7 * u * clamp(spring(t, 7.4)), 0, Math.PI * 2); ctx.stroke();
+    for (let i = 0; i < 8; i++) {
+      const ang = i * Math.PI / 4 + t * .25, r0 = 9.5 * u, r1 = (9.5 + 3.5 * k) * u;
+      ctx.beginPath(); ctx.moveTo(30 * u + Math.cos(ang) * r0, -38 * u + Math.sin(ang) * r0);
+      ctx.lineTo(30 * u + Math.cos(ang) * r1, -38 * u + Math.sin(ang) * r1); ctx.stroke();
+    }
+  }
+  // árvores
+  [[-38, 4], [-31, 10], [-42, 14], [34, 22], [40, 28]].forEach(([px, py], i) => {
+    const s = clamp(spring(t, 7.6 + i * .12));
+    if (s <= 0) return;
+    ctx.fillStyle = alpha(C.green, .9);
+    ctx.beginPath(); ctx.moveTo(px * u, (py - 7 * s) * u); ctx.lineTo((px - 3.2 * s) * u, py * u); ctx.lineTo((px + 3.2 * s) * u, py * u); ctx.closePath(); ctx.fill();
+  });
+  // água
+  k = el(8.0, 9.0);
+  if (k > 0) {
+    ctx.strokeStyle = alpha('#7FB3C8', .8 * k); ctx.lineWidth = 2.5 * S;
+    for (let j = 0; j < 3; j++) {
+      ctx.beginPath();
+      for (let i = 0; i <= 24 * k; i++) { const px = -44 + i; ctx.lineTo(px * u, (32 + j * 4 + 1.2 * Math.sin(px * .9 + t * 3 + j)) * u); }
+      ctx.stroke();
+    }
+  }
+  // estrada até o lote
+  k = el(8.2, 9.4);
+  if (k > 0) {
+    ctx.strokeStyle = alpha(C.mute, .8); ctx.lineWidth = 3 * S; ctx.setLineDash([8 * S, 9 * S]);
+    ctx.beginPath();
+    for (let i = 0; i <= 40 * k; i++) { const f = i / 40; ctx.lineTo(lerp(10, 2, f) * u + Math.sin(f * 3) * 8 * u, lerp(50, 8, f) * u); }
+    ctx.stroke(); ctx.setLineDash([]);
+  }
+
+  // terreno (com zoom)
+  ctx.save(); ctx.scale(zoom * u, zoom * u);
+  if (desenho > 0) {
+    ctx.fillStyle = alpha(C.gold, .10 * desenho);
+    ctx.beginPath(); TERRENO.forEach((p, i) => i ? ctx.lineTo(...p) : ctx.moveTo(...p)); ctx.closePath(); ctx.fill();
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 3 * S / (zoom * u);
+    caminhoParcial(TERRENO, desenho); if (desenho >= 1) ctx.closePath(); ctx.stroke();
+    // marcos nos vértices
+    TERRENO.forEach((p, i) => {
+      const s = clamp(spring(t, .7 + i * .45));
+      if (s <= 0) return;
+      ctx.fillStyle = C.gold; ctx.beginPath(); ctx.arc(p[0], p[1], 1.6 * s, 0, Math.PI * 2); ctx.fill();
+    });
+  }
+  ctx.restore();
+
+  // pino sobre o lote
+  const pin = clamp(spring(t, 9.2));
+  if (pin > 0) {
+    const py = -2 * u - (1 - pin) * 14 * u;
+    ctx.fillStyle = C.gold;
+    ctx.beginPath(); ctx.arc(0, py - 7 * u, 3.6 * u, Math.PI, 0); ctx.lineTo(0, py); ctx.closePath(); ctx.fill();
+    ctx.fillStyle = C.bg; ctx.beginPath(); ctx.arc(0, py - 7 * u, 1.4 * u, 0, Math.PI * 2); ctx.fill();
+  }
+  ctx.restore();
+}
+
+// Pirâmide Invertida: as 7 etapas do método, em palavras simples
+const ETAPAS = ['Nota do território', 'Mercado', 'Números', 'Produto', 'Estrutura do negócio', 'Investidores', 'Implantação'];
+function piramide(t) {
+  const vis = janela(t, 10.8, 16.4, .3, .5);
+  if (vis <= 0) return;
+  const { x, y, r } = L.ilu;
+  const alt = Math.min(r * 1.9, H * .74), topo = Math.min(alt * 1.13, W * .9), base = topo * .4;
+  const y0 = y - alt / 2, hb = alt / ETAPAS.length, gap = 6 * S;
+  const meia = f => lerp(topo, base, f) / 2;
+  ctx.save(); ctx.globalAlpha = vis;
+  ETAPAS.forEach((nome, i) => {
+    const ti = 11.0 + i * .5, s = clamp(spring(t, ti)), a = clamp((t - ti) / .25);
+    if (a <= 0) return;
+    const ya = y0 + i * hb + gap / 2 - (1 - s) * 40 * S, yb = ya + hb - gap;
+    const fa = (i * hb) / alt, fb = ((i + 1) * hb - gap) / alt;
+    ctx.globalAlpha = vis * a;
+    ctx.beginPath();
+    ctx.moveTo(x - meia(fa), ya); ctx.lineTo(x + meia(fa), ya);
+    ctx.lineTo(x + meia(fb), yb); ctx.lineTo(x - meia(fb), yb); ctx.closePath();
+    const primeira = i === 0;
+    ctx.fillStyle = primeira ? C.gold : C.card; ctx.fill();
+    ctx.strokeStyle = alpha(C.gold, primeira ? 1 : .55); ctx.lineWidth = 2 * S; ctx.stroke();
+    ctx.font = `${primeira ? 600 : 500} ${Math.min(34 * S, hb * .36)}px ${F.body}`;
+    ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
+    ctx.fillStyle = primeira ? C.bg : C.ink;
+    ctx.fillText(nome, x, (ya + yb) / 2 + 1 * S);
+    ctx.font = `600 ${24 * S}px ${F.body}`;
+    ctx.fillStyle = primeira ? alpha(C.bg, .7) : alpha(C.gold, .9);
+    ctx.textAlign = 'left';
+    ctx.fillText(String(i + 1), x - meia((fa + fb) / 2) + 22 * S, (ya + yb) / 2 + 1 * S);
+  });
+  // ponta: a obra vem no fim
+  const p = easeOut(prog(t, 14.6, 15.2));
+  if (p > 0) {
+    const yb = y0 + alt, yt = yb + 30 * S * p;
+    ctx.globalAlpha = vis * p; ctx.fillStyle = C.gold;
+    ctx.beginPath(); ctx.moveTo(x - 16 * S, yb + 4 * S); ctx.lineTo(x + 16 * S, yb + 4 * S); ctx.lineTo(x, yt + 4 * S); ctx.closePath(); ctx.fill();
+  }
+  ctx.textBaseline = 'alphabetic';
+  ctx.restore();
+}
+
+function legendas(t) {
+  const y = L.txt.y, v = FORMATO === '9x16';
+  // cena 1
+  texto(t, { str: 'Você tem um terreno.', y, t0: 1.0, t1: 3.0, tam: v ? 92 : 80 });
+  // cena 2
+  texto(t, { str: 'A primeira pergunta de quase todo mundo:', y, t0: 3.4, t1: 6.2, tam: v ? 40 : 34, fonte: F.body, cor: C.mute, lh: 1.3 });
+  const q = texto(t, { str: 'Quanto ele rende?', y: y + 110 * S, t0: 3.9, t1: 6.2, tam: v ? 104 : 92, estilo: 'italic' });
+  const risco = easeInOut(prog(t, 5.0, 5.6)) * (1 - easeInOut(prog(t, 6.2, 6.55)));
+  if (risco > 0) {
+    ctx.font = `italic 400 ${(v ? 104 : 92) * S}px ${F.disp}`;
+    const w = ctx.measureText(q.linhas[0]).width;
+    const x0 = L.txt.align === 'center' ? L.txt.x - w / 2 : L.txt.x;
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 5 * S; ctx.lineCap = 'round';
+    const yq = y + 110 * S;
+    ctx.beginPath(); ctx.moveTo(x0 - 10 * S, yq - 28 * S); ctx.lineTo(x0 - 10 * S + (w + 20 * S) * risco, yq - 32 * S); ctx.stroke();
+  }
+  // cena 3
+  texto(t, { str: 'Agora olhe o lugar.', y, t0: 6.8, t1: 10.3, tam: v ? 40 : 34, fonte: F.body, cor: C.mute });
+  texto(t, { str: 'Que negócio ele sustenta, e para quem?', y: y + (v ? 100 : 80) * S, t0: 8.4, t1: 10.3, tam: v ? 88 : 72, estilo: 'italic', cor: C.ink });
+  // cena 4
+  const yP = v ? H * .845 : y;
+  texto(t, { str: 'PIRÂMIDE INVERTIDA©', y: yP, t0: 11.2, t1: 16.3, tam: 22, fonte: F.body, peso: 600, cor: C.gold, ls: 6 });
+  texto(t, { str: 'Primeiro o lugar e os números. A obra vem por último.', y: yP + 72 * S, t0: 12.0, t1: 16.3, tam: v ? 62 : 64 });
+}
+
+function encerramento(t) {
+  const a = easeOut(prog(t, 16.7, 17.4));
+  if (a <= 0) return;
+  const cx = W / 2, cy = H * (FORMATO === '9x16' ? .44 : .42);
+  const s = clamp(spring(t, 16.7));
+  ctx.save(); ctx.globalAlpha = a; ctx.textAlign = 'center';
+  // linha dourada que abre
+  const lw = 220 * S * easeInOut(prog(t, 16.8, 17.6));
+  ctx.strokeStyle = C.gold; ctx.lineWidth = 2 * S;
+  ctx.beginPath(); ctx.moveTo(cx - lw, cy + 40 * S); ctx.lineTo(cx + lw, cy + 40 * S); ctx.stroke();
+  ctx.fillStyle = C.ink;
+  ctx.font = `300 ${150 * S}px ${F.body}`; ctx.letterSpacing = `${36 * S}px`;
+  ctx.fillText('ZION', cx + 18 * S, cy - (1 - s) * 40 * S);
+  ctx.font = `600 ${20 * S}px ${F.body}`; ctx.letterSpacing = `${9 * S}px`; ctx.fillStyle = C.gold;
+  ctx.fillText('HOTEL GROUP INTERNATIONAL', cx + 4 * S, cy + 90 * S);
+  ctx.letterSpacing = '0px';
+  texto(t, { str: 'Desenvolvemos Destinos', x: cx, y: cy + 190 * S, t0: 17.4, tam: 64, estilo: 'italic', align: 'center', larg: W * .9 });
+  // chamada
+  const b = clamp(spring(t, 18.2)), ba = clamp((t - 18.2) / .3);
+  if (ba > 0) {
+    const txt = 'Descubra a nota da sua terra';
+    ctx.font = `500 ${30 * S}px ${F.body}`;
+    const bw = ctx.measureText(txt).width + 80 * S, bh = 78 * S, by = cy + 270 * S + (1 - b) * 30 * S;
+    ctx.globalAlpha = a * ba;
+    ctx.strokeStyle = C.gold; ctx.lineWidth = 2 * S;
+    ctx.beginPath(); ctx.roundRect(cx - bw / 2, by, bw, bh, bh / 2); ctx.stroke();
+    ctx.fillStyle = C.ink; ctx.textBaseline = 'middle';
+    ctx.fillText(txt, cx, by + bh / 2 + 1 * S);
+  }
+  ctx.restore();
+}
+
+function seek(t) {
+  t = clamp(t, 0, DURACAO);
+  ctx.save();
+  fundo(t);
+  marca(t);
+  ilustracao(t);
+  piramide(t);
+  legendas(t);
+  encerramento(t);
+  // fade de entrada e saída em preto
+  const f = Math.max(1 - prog(t, 0, .5), prog(t, DURACAO - .5, DURACAO));
+  if (f > 0) { ctx.fillStyle = alpha('#000000', f); ctx.fillRect(0, 0, W, H); }
+  ctx.restore();
+}
+window.seek = seek;
+window.DURACAO = DURACAO;
+
+window.pronto = Promise.all([
+  document.fonts.load(`300 40px Aventa`), document.fonts.load(`600 40px Aventa`),
+  document.fonts.load(`400 40px "Cormorant Garamond"`), document.fonts.load(`italic 400 40px "Cormorant Garamond"`)
+]).catch(() => {}).then(() => document.fonts.ready);
+
+window.pronto.then(() => {
+  if (params.has('render')) { seek(0); return; }
+  if (params.has('t')) { seek(parseFloat(params.get('t'))); return; }
+  const inicio = performance.now();
+  const tocar = agora => { seek(((agora - inicio) / 1000) % DURACAO); requestAnimationFrame(tocar); };
+  requestAnimationFrame(tocar);
+});
+</script>
+</body>
+</html>

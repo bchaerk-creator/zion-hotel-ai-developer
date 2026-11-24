@@ -1,0 +1,278 @@
+{
+  "id": "t1-a07",
+  "slug": "1-7",
+  "nome_curto": "capex",
+  "titulo": "CAPEX · Quanto custa abrir a porta",
+  "aula": 7,
+  "objetivo": "Você sai com o Mapa do CAPEX em oito linhas, com a origem de cada número, e sabe o que ninguém orçou.",
+  "campos": [
+    {
+      "id": "unidades",
+      "rotulo": "Unidades da fase um",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "unidades"
+    },
+    {
+      "id": "area_fechada_unidade",
+      "rotulo": "Área fechada de cada unidade (m²)",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 38 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "m²"
+    },
+    {
+      "id": "area_deck_unidade",
+      "rotulo": "Deck ou varanda de cada unidade (m²)",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 16 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "area_apoio",
+      "rotulo": "Área de apoio (m²)",
+      "tipo": "numero",
+      "ajuda": "Da Aula 6. Exemplo: 30 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "custo_m2_piso",
+      "rotulo": "Custo por m² de construção, piso (R$)",
+      "tipo": "moeda",
+      "ajuda": "Use cotação escrita da sua região. Sem cotação, a faixa ilustrativa do Volume 5 para glamping premium começa em R$ 3.500, marcada como faixa.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "custo_m2_teto",
+      "rotulo": "Custo por m² de construção, teto (R$)",
+      "tipo": "moeda",
+      "ajuda": "Sem cotação, o teto da faixa ilustrativa é R$ 5.000.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "ffe_unidade_piso",
+      "rotulo": "Mobiliário e equipamentos (FF&E) por unidade, piso (R$)",
+      "tipo": "moeda",
+      "ajuda": "O que o hóspede vê e toca. Sem cotação, a faixa ilustrativa começa em R$ 40.000.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "ffe_unidade_teto",
+      "rotulo": "FF&E por unidade, teto (R$)",
+      "tipo": "moeda",
+      "ajuda": "Sem cotação, o teto da faixa ilustrativa é R$ 80.000.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "infraestrutura",
+      "rotulo": "Infraestrutura de sítio, por cotação escrita (R$)",
+      "tipo": "moeda",
+      "ajuda": "Energia, água, efluente, drenagem e estradas internas. Não tem faixa: só cotação. Se ainda não chegou, marque Não sei.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "projetos_consultas",
+      "rotulo": "Projetos e consultas, por proposta escrita (R$)",
+      "tipo": "moeda",
+      "ajuda": "Arquitetura, engenharia, aprovações. Se ainda não tem proposta, marque Não sei.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "fatores_risco",
+      "rotulo": "Quais fatores de risco o seu projeto tem?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "remoto",
+          "rotulo": "Território remoto ou de acesso difícil"
+        },
+        {
+          "valor": "sistema_inedito",
+          "rotulo": "Sistema construtivo novo para a equipe"
+        },
+        {
+          "valor": "importados",
+          "rotulo": "Dependência de itens importados"
+        },
+        {
+          "valor": "area_sensivel",
+          "rotulo": "Licenciamento em área sensível"
+        },
+        {
+          "valor": "prazo_apertado",
+          "rotulo": "Prazo apertado pela temporada"
+        }
+      ],
+      "ajuda": "Cada fator soma incerteza, e incerteza tem preço.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "contingencia_pct",
+      "rotulo": "Contingência escolhida, sobre a soma das outras linhas",
+      "tipo": "percentual",
+      "ajuda": "A faixa é de 10% a 15%. Exemplo: 15%, com dois fatores de risco e primeira obra.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "origem_numeros",
+      "rotulo": "De onde vem a maior parte dos seus números hoje?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "palpite",
+          "rotulo": "Palpite ou número redondo"
+        },
+        {
+          "valor": "faixa",
+          "rotulo": "Faixa do livro, marcada como faixa"
+        },
+        {
+          "valor": "cotacao",
+          "rotulo": "Cotação escrita nas maiores linhas"
+        }
+      ],
+      "ajuda": "Só três respostas valem ao lado de cada linha: faixa do livro, cotação escrita (com escopo e data) ou em branco.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "corte_experiencia",
+      "rotulo": "Para caber, você teria que cortar algum item que move a diária ou a vista?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "nao",
+          "rotulo": "Não"
+        },
+        {
+          "valor": "sim",
+          "rotulo": "Sim"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Exemplo: a banheira, a lareira ou a vista da cama.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "area_total",
+      "nome": "Área construída total, e quanto ficaria de fora orçando só as unidades",
+      "formula": "area_total = unidades × (area_fechada_unidade + area_deck_unidade) + area_apoio; esquecida = area_total - unidades × area_fechada_unidade; pct_esquecida = esquecida / area_total",
+      "saida": "m², %",
+      "fonte": "E-book Aula 7, caps. 2 e 4 (Marina: 192 m², 78 m² de fora, 40,6%)"
+    },
+    {
+      "id": "obra",
+      "nome": "Obra pela área total",
+      "formula": "obra_piso = area_total × custo_m2_piso; obra_teto = area_total × custo_m2_teto",
+      "saida": "R$",
+      "fonte": "E-book Aula 7, cap. 4 (Volume 5: área construída × custo por m²)"
+    },
+    {
+      "id": "ffe_ose",
+      "nome": "FF&E e OS&E",
+      "formula": "ffe_piso = unidades × ffe_unidade_piso; ffe_teto = unidades × ffe_unidade_teto; ose_piso = 10% × ffe_piso; ose_teto = 15% × ffe_teto",
+      "saida": "R$",
+      "fonte": "E-book Aula 7, cap. 5 (Volume 5: OS&E de 10% a 15% do FF&E)"
+    },
+    {
+      "id": "pre_abertura",
+      "nome": "Pré-abertura",
+      "formula": "hard_piso = obra_piso + infraestrutura; hard_teto = obra_teto + infraestrutura; pre_piso = 5% × hard_piso; pre_teto = 10% × hard_teto",
+      "saida": "R$",
+      "se_nao_sei": "Infraestrutura em Não sei entra como zero e a linha fica marcada \"em branco, cotação pedida\"; a pré-abertura sobe quando ela entrar.",
+      "fonte": "E-book Aula 7, cap. 5 (Volume 5: 5% a 10% dos hard costs)"
+    },
+    {
+      "id": "contingencia",
+      "nome": "Contingência e CAPEX",
+      "formula": "base_piso = hard_piso + projetos_consultas + ffe_piso + ose_piso + pre_piso; base_teto = hard_teto + projetos_consultas + ffe_teto + ose_teto + pre_teto; cont_piso = contingencia_pct × base_piso; cont_teto = contingencia_pct × base_teto; capex_piso = base_piso + cont_piso; capex_teto = base_teto + cont_teto",
+      "saida": "R$",
+      "se_nao_sei": "Com infraestrutura ou projetos em Não sei, o CAPEX sai rotulado \"parcial\" e as linhas aparecem \"em branco\".",
+      "fonte": "E-book Aula 7, caps. 5 e 6 (Marina: R$ 963.240 a R$ 1.531.800, parcial)"
+    },
+    {
+      "id": "sanidade",
+      "nome": "As proporções contra a tabela de sanidade",
+      "formula": "pct_hard = hard / capex; pct_ffe = ffe / capex; pct_ose = ose / capex; pct_pre = pre / capex; pct_cont = cont / capex (no piso e no teto)",
+      "leitura": "Hard costs 60% a 70% (acima de 80%: faltou algo). FF&E 15% a 20% (abaixo de 10%: alerta em produto premium). OS&E 2% a 4%. Pré-abertura 3% a 5%. Contingência 10% a 15%. Com linhas em branco, é aviso, não veredito.",
+      "fonte": "E-book Aula 7, cap. 6 (Volume 5: tabela de sanidade)"
+    },
+    {
+      "id": "contingencia_faixa",
+      "nome": "Contingência na faixa e fatores de risco",
+      "formula": "na_faixa = 10% <= contingencia_pct <= 15%; fatores = contar(fatores_risco)",
+      "leitura": "Fora de 10% a 15%: ajustar. Dois ou mais fatores com contingência abaixo de 15%: considerar o teto (Marina: dois fatores, 15%).",
+      "fonte": "E-book Aula 7, cap. 5 (Volume 5: suba para o teto quando somar fatores de risco)"
+    },
+    {
+      "id": "custo_por_unidade",
+      "nome": "Custo por unidade (custo por chave)",
+      "formula": "capex_piso / unidades; capex_teto / unidades; infraestrutura / unidades",
+      "saida": "R$",
+      "fonte": "E-book Aula 7, cap. 6 (Marina: R$ 321.080 a R$ 510.600 por cabana, sem rede e projetos)"
+    },
+    {
+      "id": "teto_briefing",
+      "nome": "Teto provisório por unidade para o briefing",
+      "formula": "obra_unidade = (area_fechada_unidade + area_deck_unidade) × custo_m2_teto; ffe_unidade = ffe_unidade_teto",
+      "saida": "R$",
+      "leitura": "Não é preço: é o limite acima do qual uma cotação precisa vir com explicação escrita.",
+      "fonte": "E-book Aula 7, cap. 6 (Marina: até R$ 270 mil de obra e R$ 80 mil de FF&E)"
+    },
+    {
+      "id": "degrau",
+      "nome": "Degrau na régua de maturidade",
+      "formula": "{palpite: 'estimador', faixa: 'estimador, saindo', cotacao: 'calculista'}[origem_numeros]",
+      "fonte": "E-book Aula 7, cap. 3 (Volume 5: régua de maturidade financeira)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se corte_experiencia == 'sim' entao 'pausar'; senao se nao contingencia_faixa.na_faixa ou pct_ffe_piso < 10% entao 'ajustar'; senao se origem_numeros == 'palpite' entao 'testar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 7, cap. 7 (veredito da Marina: avança, pedindo as cotações; critério para parar)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "As oito linhas existem com origem escrita (faixa, cotação ou em branco declarado), a contingência está na faixa e nada da experiência precisa ser cortado. Pede as cotações das maiores linhas, com o escopo congelado anexado.",
+    "testar": "Os números ainda são palpite: falta abrir as linhas e escrever a origem de cada uma.",
+    "ajustar": "A contingência está fora de 10% a 15%, ou o mobiliário ficou abaixo de 10% do CAPEX num produto que promete experiência.",
+    "pausar": "Para caber, a infraestrutura cotada obrigaria a cortar um item que move a diária ou a vista: pausa e volta ao masterplan. Corta metros, nunca a experiência.",
+    "criterio_para_parar": "Molde da Marina: se, para caber, a infraestrutura cotada obrigar a cortar a banheira, a lareira ou a vista, ela pausa e volta ao masterplan.",
+    "fonte": "E-book Aula 7, caps. 5 a 7; auditoria-aula-7-capex.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 7 da Trilha 1 da Mentoria Zion (CAPEX), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 6 · Mapa do CAPEX\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- CAPEX é tudo o que precisa existir até o primeiro hóspede, com a origem de cada número escrita. O orçamento do construtor cobre a obra; o que fica de fora costuma somar tanto quanto ela.\n- Cinco erros do orçamento amador (Volume 5): orçar só as unidades; usar o custo por m² de outra região ou de outro ano; ignorar o OS&E; tratar a contingência como opcional; esquecer a pré-abertura.\n- Componentes (Volume 5): hard costs = área construída total × custo por m², mais infraestrutura por cotação; FF&E = unidades × custo por unidade; OS&E = 10% a 15% do FF&E; pré-abertura = 5% a 10% dos hard costs; contingência = 10% a 15%. Projetos e consultas em linha própria, por proposta escrita. Cada item mora numa linha só.\n- Terreno e capital de giro ficam fora do CAPEX, mas fora não é de graça: o terreno é capital empregado; o giro é calculado na Aula 9.\n- A área é a total: unidades, decks, apoio, caminhos, reservatórios, efluente. Faixa ilustrativa do Volume 5 para glamping premium: R$ 3.500 a R$ 5.000 por m² de construção e R$ 40 mil a R$ 80 mil de FF&E por unidade. Faixa sem data e sem lugar dá ordem de grandeza, não fecha orçamento; valide com cotação real da região.\n- A infraestrutura invisível (energia, água, efluente, drenagem, estradas internas) não tem faixa: se orça por distância e capacidade, com cotação. É a linha de maior variação entre terrenos. Cada real dela arrasta a pré-abertura e a contingência.\n- Régua de maturidade: sonhador (sem números), estimador (números por alto, o degrau mais perigoso), calculista (CAPEX aberto e premissas escritas), developer (mais cenários e estrutura).\n- Contingência: suba para o teto, ou acima, quando o projeto somar fatores de risco (território remoto ou de acesso difícil; sistema construtivo inédito para a equipe; itens importados; licenciamento em área sensível; prazo apertado pela temporada). Ela tem regra de uso escrita: para quê, quem autoriza, como se registra, quando se confere. Não cobre escopo novo nem resultado negativo dos primeiros meses.\n- Faixas de sanidade do CAPEX (Volume 5): hard costs 60% a 70% (acima de 80%, faltou algo); FF&E 15% a 20% (abaixo de 10% em produto premium é alerta); OS&E 2% a 4% (ausente, surpresa garantida); pré-abertura 3% a 5% (ausente, obra pronta e negócio parado); contingência 10% a 15% (zero, aditivo sem cobertura). Desvio explicado pela tipologia é assinatura; sem explicação, é erro. Percentuais de conta incompleta servem de aviso, não de veredito.\n- Custo por chave = CAPEX da fase ÷ unidades que ela põe à venda. É lente, não argumento para construir mais.\n- O dinheiro sai no tempo: projetos antes, infraestrutura nos primeiros meses, FF&E e OS&E na reta final, pré-abertura nos últimos 60 a 90 dias; desembolso no mês do marco, não linear. Saiba em que marco o seu capital acaba.\n- Corte metros quadrados no projeto, nunca a experiência dentro deles. Licenças, contrato e medição se fazem com engenheiro, arquiteto e, se houver dúvida jurídica, advogado.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". Linha em branco declarada, com cotação pedida, não impede avançar: é o caso da Marina. Mostre o CAPEX como intervalo e diga que ele é parcial enquanto houver linha em branco; nunca apresente só o piso.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se, para caber, a infraestrutura cotada me obrigar a cortar [o item que move a diária ou a vista], eu pauso e volto ao masterplan.\"\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nMontar o Mapa do CAPEX em oito linhas, com a origem escrita ao lado de cada número. Responsável: o aluno, não o construtor. Prazo: 7 dias, antes da Aula 8. Evidência: a folha impressa, com data, ao lado do palpite inicial. Se já existe, troque por: pedir por escrito a cotação da infraestrutura, com o escopo anexado; ou escrever a regra de uso da contingência em quatro linhas.\n\nAs faixas de custo são ilustrativas do Volume 5 e não dizem quanto custa o projeto do aluno: diga sempre que a cotação real da região substitui a faixa.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 6 · Mapa do CAPEX",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-7-capex.md",
+    "/home/claude/mz-trilha/ebook-07-capex.txt"
+  ],
+  "pendente_bruno": [
+    "Base da contingência: 15% sobre a soma das outras linhas (13,0% do CAPEX) ou outra régua da Etapa 02 (auditoria Aula 7, item 3).",
+    "Deck orçado pela mesma faixa por m² da área fechada (item 5).",
+    "Infraestrutura e projetos sem faixa nas fontes: ficam em branco até a cotação (item 2).",
+    "Quantos fatores de risco disparam o teto da contingência: a fonte diz \"somar fatores\"; a página usa dois ou mais, como na Marina."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

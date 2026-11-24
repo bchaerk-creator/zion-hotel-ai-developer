@@ -1,0 +1,23 @@
+C.__end=END_T;
+SC.forEach((s,i)=>{s.a=i==0?0:C[s.cue]-.15;});SC.forEach((s,i)=>{s.b=i<SC.length-1?SC[i+1].a:TOTAL+1});
+// chapters
+const CH=[['A visão',SC.find(s=>s.id=='title').a],['Quem somos',C.quem-.15],['O terrenista',C.sindrome-.15],['O setor',C.mercado-.15]];
+const bars=document.querySelector('#hud .bars');CH.forEach(()=>{const i=document.createElement('i');i.innerHTML='<u></u>';bars.appendChild(i)});
+// captions from marks
+const CAPS=[];MK.marks.forEach(([s0,e0,txt,f])=>{if(f==0)return;const w=txt.split(' ');const ch=[];let cur=[];w.forEach(x=>{if((cur.join(' ')+' '+x).length>62&&cur.length){ch.push(cur.join(' '));cur=[x]}else cur.push(x)});if(cur.length)ch.push(cur.join(' '));const tot=ch.reduce((a,c)=>a+c.length,0);let t0=s0;ch.forEach(c=>{const d=(e0-s0)*c.length/tot;CAPS.push([t0,t0+d,c]);t0+=d})});
+// static sfx
+sfx(.05,'boom',.7);SC.forEach(s=>{if(s.id!='hook')sfx(s.a,'whoosh',.45)});sfx(END_T,'shutter',.5);
+window.render=async(t)=>{
+  let cur=null;for(const s of SC){const on=t>=s.a&&t<s.b;s.g.visible=on;const p=prog(t,s.a,.45),o=1-prog(t,s.b-.35,.35);s.dom.style.opacity=on?Math.min(eout(p),o):0;s.dom.style.display=on?'block':'none';if(on)cur=s}
+  hemi.intensity=1.2;sun.intensity=2.4;sun.color.setHex(0xffe6bd);
+  if(cur&&cur.up){cur.up(t,t-cur.a);const p=prog(t,cur.a,.45),o=1-prog(t,cur.b-.35,.35);const k=Math.min(eout(p),o);cur.g.scale.setScalar(Math.max(.001,lerp(.9,1,k)));$('gl').style.opacity=k}
+  R.render(scene,cam);
+  // hud
+  const hon=t>=SC[1].a+.5&&t<END_T;$('hud').style.opacity=hon?1:0;const ci=CH.reduce((a,c,k)=>t>=c[1]?k:a,0);[...bars.children].forEach((b,k)=>{const a=CH[k][1],bb=k<CH.length-1?CH[k+1][1]:END_T;b.querySelector('u').style.width=(100*clamp((t-a)/(bb-a)))+'%'});
+  document.querySelector('#hud .ch').textContent=String(ci+1).padStart(2,'0')+' · '+CH[ci][0].toUpperCase();
+  const cc=CAPS.find(c=>t>=c[0]-.05&&t<c[1]+.15);$('cap').innerHTML=cc?`<span>${cc[2]}</span>`:'';
+  let fl=Math.max(0,1-prog(t,SC[1].a,.35))*(t>=SC[1].a-.12?1:prog(t,SC[1].a-.12,.12));$('flash').style.opacity=fl*.9;
+  $('bar').style.width=(1920*Math.min(1,t/TOTAL))+'px';
+  return true};
+window.ready=true;
+</script></body></html>

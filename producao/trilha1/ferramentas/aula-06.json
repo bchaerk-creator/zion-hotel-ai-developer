@@ -1,0 +1,307 @@
+{
+  "id": "t1-a06",
+  "slug": "1-6",
+  "nome_curto": "masterplan",
+  "titulo": "Masterplan · O terreno inteiro, no tempo",
+  "aula": 6,
+  "objetivo": "Você sai com o seu terreno decidido no papel: onde nunca construir, o que entra na fase um, o apoio escondido e o briefing para o arquiteto.",
+  "campos": [
+    {
+      "id": "zonas_nunca",
+      "rotulo": "O que nunca será construído, zona por zona, com o motivo (lei ou produto)",
+      "tipo": "texto",
+      "ajuda": "Exemplo: a margem do riacho (lei); o bosque que segura o vento da tarde (produto).",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "tres_gestos",
+      "rotulo": "O seu \"nunca\" já tem quais gestos?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "marcado",
+          "rotulo": "Marcado no desenho"
+        },
+        {
+          "valor": "fotografado",
+          "rotulo": "Terreno fotografado com data"
+        },
+        {
+          "valor": "clausula",
+          "rotulo": "Cláusula pedida ao advogado"
+        }
+      ],
+      "ajuda": "Sem os três, preservar é só intenção.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "unidades_fase1",
+      "rotulo": "Unidades na fase um",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 3.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "unidades"
+    },
+    {
+      "id": "area_fechada_unidade",
+      "rotulo": "Área fechada de cada unidade (m²)",
+      "tipo": "numero",
+      "ajuda": "Só o interior; o deck aberto fica fora. Exemplo: 38 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "m²"
+    },
+    {
+      "id": "area_apoio",
+      "rotulo": "Área de apoio construída na fase um (m²)",
+      "tipo": "numero",
+      "ajuda": "Rouparia, depósito, resíduo, copa e vestiário somados. Exemplo: 12 + 6 + 4 + 8 = 30 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "apoio_resolvido",
+      "rotulo": "Da lista do que quase sempre falta, o que já está resolvido (tem lugar ou foi deixado de fora por decisão)?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "rouparia_lavanderia",
+          "rotulo": "Rouparia e lavanderia"
+        },
+        {
+          "valor": "deposito",
+          "rotulo": "Depósito seco"
+        },
+        {
+          "valor": "residuo",
+          "rotulo": "Resíduo com acesso externo"
+        },
+        {
+          "valor": "copa_vestiario",
+          "rotulo": "Copa e vestiário da equipe"
+        },
+        {
+          "valor": "estac_servico",
+          "rotulo": "Estacionamento de serviço"
+        },
+        {
+          "valor": "oficina",
+          "rotulo": "Oficina e ferramentas"
+        },
+        {
+          "valor": "gas_reservatorio",
+          "rotulo": "Abrigo de gás e reservatório"
+        }
+      ],
+      "ajuda": "Deixar de fora pode, por decisão escrita; esquecer, não. Exemplo: lavanderia terceirizada, por decisão.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "dia_simulado",
+      "rotulo": "Você simulou um dia de troca de hóspede no papel?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim, e anotei o que faltou"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Ainda não"
+        }
+      ],
+      "ajuda": "Chegada, limpeza, fornecedor, resíduo, refeição da equipe. Exemplo: às 13h a van chega, e não havia vaga de serviço.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "caminhos",
+      "rotulo": "O caminho do hóspede e o do serviço se cruzam em algum ponto visível?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "nao_cruzam",
+          "rotulo": "Não se cruzam"
+        },
+        {
+          "valor": "cruzam",
+          "rotulo": "Cruzam em algum ponto"
+        },
+        {
+          "valor": "nao_desenhei",
+          "rotulo": "Ainda não desenhei"
+        }
+      ],
+      "ajuda": "Desenhe os dois em duas cores.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "caminhada_estacas",
+      "rotulo": "Você marcou as unidades com estacas e caminhou de manhã e no fim da tarde?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "sim",
+          "rotulo": "Sim"
+        },
+        {
+          "valor": "nao",
+          "rotulo": "Ainda não"
+        }
+      ],
+      "ajuda": "Custa quatro estacas e mostra o que a planta esconde. Exemplo: da janela da 3 dava para ver o deck da 2.",
+      "obrigatorio": true,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "unidades_projeto_completo",
+      "rotulo": "Unidades no projeto completo (todas as fases)",
+      "tipo": "numero",
+      "ajuda": "Exemplo: 5.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "rede_para",
+      "rotulo": "A rede (água, energia, efluente, acesso) está dimensionada para quantas unidades?",
+      "tipo": "numero",
+      "ajuda": "Exemplo: para 5, já na fase um.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "gatilho_escrito",
+      "rotulo": "O seu gatilho da fase dois: quais condições já estão escritas?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "demanda",
+          "rotulo": "Demanda: 12 meses de dado real, número escrito antes"
+        },
+        {
+          "valor": "caixa",
+          "rotulo": "Caixa: parte própria e 3 meses de fixo"
+        },
+        {
+          "valor": "maturidade",
+          "rotulo": "Maturidade: processos, equipe estável, avaliações em dia"
+        }
+      ],
+      "ajuda": "As três precisam acender juntas.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "condicionantes",
+      "rotulo": "Quantas condicionantes numeradas, cada uma com o motivo, o seu briefing tem?",
+      "tipo": "numero",
+      "ajuda": "Condicionante é o que não pode mudar; preferência fica em outra lista. Exemplo: 9.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "condicionantes"
+    },
+    {
+      "id": "consulta_previa",
+      "rotulo": "A consulta prévia e o mapa ambiental",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "nao_feita",
+          "rotulo": "Ainda não fiz"
+        },
+        {
+          "valor": "protocolada",
+          "rotulo": "Protocolada, sem resposta"
+        },
+        {
+          "valor": "mantem",
+          "rotulo": "Respondida: as unidades ficam no ponto principal"
+        },
+        {
+          "valor": "tira",
+          "rotulo": "Respondida: tira as unidades do ponto principal"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Quem responde é a prefeitura e o técnico ambiental.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "pct_apoio",
+      "nome": "Área de apoio sobre a área fechada",
+      "formula": "area_fechada_total = unidades_fase1 × area_fechada_unidade + area_apoio; pct_apoio = area_apoio / area_fechada_total",
+      "saida": "%",
+      "leitura": "Entre 15% e 25%: dentro da faixa. Abaixo de 15%: o apoio vai faltar e virar puxadinho. Acima de 25%: conferir a base.",
+      "fonte": "E-book Aula 6, cap. 4 (Volume 3: 15% a 25%; Marina: 30 ÷ 144 = 20,8%)"
+    },
+    {
+      "id": "rede_vs_projeto",
+      "nome": "Rede contra o projeto completo",
+      "formula": "alerta = rede_para < unidades_projeto_completo",
+      "leitura": "Alerta: a fase dois vai reabrir vala e refazer caminho com hóspede ao lado.",
+      "fonte": "E-book Aula 6, cap. 5 (construa menos unidades, nunca menos infraestrutura)"
+    },
+    {
+      "id": "gestos",
+      "nome": "Gestos do nunca",
+      "formula": "faltam = ['marcado','fotografado','clausula'] - tres_gestos",
+      "leitura": "Faltando qualquer um: preservar ainda é só intenção.",
+      "fonte": "E-book Aula 6, cap. 3 (ESG Territorial, Volume 1)"
+    },
+    {
+      "id": "esquecidos",
+      "nome": "Itens de apoio sem decisão",
+      "formula": "faltam = os sete itens da lista - apoio_resolvido",
+      "saida": "lista",
+      "fonte": "E-book Aula 6, cap. 4 (Volume 03, cap. 06)"
+    },
+    {
+      "id": "gatilho",
+      "nome": "Condições do gatilho escritas",
+      "formula": "escritas = contar(gatilho_escrito)",
+      "leitura": "Menos de 3: uma ou duas não bastam.",
+      "fonte": "E-book Aula 6, cap. 5 (Gatilho de Expansão Zion, Volume 04, cap. 08)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se consulta_previa == 'tira' entao 'pausar'; senao se caminhos == 'cruzam' ou pct_apoio < 15% ou rede_vs_projeto.alerta entao 'ajustar'; senao se dia_simulado == 'nao' ou caminhada_estacas == 'nao' ou caminhos == 'nao_desenhei' ou condicionantes == 0 entao 'testar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 6, cap. 7 (veredito da Marina: avança, com pendências; critério para parar)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "O nunca está escrito, o apoio está na faixa, os caminhos não se cruzam, a rede é para o projeto completo e o briefing tem as condicionantes com motivo. Leva o briefing ao arquiteto, com as pendências nomeadas (custo, gatilho, capital).",
+    "testar": "Falta pôr à prova no papel e no chão: o dia simulado, a caminhada com estacas, as duas cores ou as condicionantes.",
+    "ajustar": "Os caminhos se cruzam, o apoio ficou abaixo de 15% ou a rede foi feita só para a fase um.",
+    "pausar": "A consulta prévia ou o mapa ambiental tiraram as unidades do ponto que sustenta a promessa: pausa e volta ao produto.",
+    "criterio_para_parar": "Molde da Marina: se a consulta prévia ou o mapa ambiental tirarem as cabanas da meia encosta virada para o nascente, ela pausa e volta ao produto. Sem aquela linha, a promessa não se sustenta.",
+    "fonte": "E-book Aula 6, caps. 4 a 7; auditoria-aula-6-masterplan.md"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 6 da Trilha 1 da Mentoria Zion (Masterplan e quem contratar), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 5 · Masterplan Faseado\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Ordem do Volume 3: conceito, programa, jornada, briefing, projeto. Os quatro primeiros não exigem arquiteto; o arquiteto é o quinto passo e resolve o que recebe. Antes do projeto, corrigir custa papel.\n- Os quatro erros comuns: construir sem prever expansão; misturar fluxos de hóspedes e de serviços; ignorar insolação e ventos; planejar só para a inauguração.\n- Movimento 1, onde nunca: o primeiro desenho mostra onde não construir. O \"nunca\" só existe com três gestos: marcar no desenho, fotografar com data e localização, pôr em contrato (cláusula redigida pelo advogado). Áreas que a lei protege se confirmam com profissional habilitado; o masterplan pode preservar além da lei, nunca aquém. A área livre também é produto: não se ocupa o terreno inteiro.\n- Movimento 2, o programa em quatro áreas (hospedagem, convivência, apoio operacional, infraestrutura). Regra do apoio (Volume 3): reserve entre 15% e 25% da área construída total para apoio operacional e infraestrutura; na trilha, a base é a área fechada (interior das unidades mais o apoio construído; deck aberto fica fora). O apoio é o que não pode ser faseado.\n- Lista do que quase sempre falta: rouparia e lavanderia dimensionadas; depósito seco; área de resíduo com acesso externo; vestiário e copa da equipe; estacionamento de serviço; oficina e ferramentas; abrigo de gás e reservatório (norma própria, profissional habilitado). Deixar de fora pode, por decisão; esquecer, não. Simule um dia de troca de hóspede: cada passo revela um ambiente faltando.\n- Movimento 3, duas cores: o caminho do hóspede e o do serviço não podem se cruzar em nenhum ponto visível. Caminhada com estacas antes de aprovar. Rede para o projeto completo já na fase um, com duto vazio: construa menos unidades, nunca menos infraestrutura. A reserva da fase dois é protegida de virar estacionamento ou canteiro.\n- Gatilho de Expansão (Volume 04): três condições escritas antes, que precisam acender juntas: demanda (doze meses de dado real, com o número escrito antes), caixa (a parte própria da fase dois e reserva de três meses de custo fixo), maturidade (processos escritos, equipe estável, avaliações em dia). Uma ou duas acesas não bastam; se as três não acenderem em 24 meses, revise produto ou preço.\n- Escopo congelado: três listas, entra, espera e nunca, somadas, assinadas e datadas.\n- Movimento 4, o briefing condicionante: condicionante (o que não pode mudar, com o motivo ao lado) é diferente de preferência (negociável). A seção do que não pode acontecer vira cláusula com quem constrói.\n- Portões: antes de cada cheque grande, uma verificação. Reprovado num portão, não se avança, muda-se a premissa (Panorama). Antes do projeto executivo: consulta prévia feita, documentação do terreno em dia, capital da fase um com fonte escrita.\n- Escopo escrito com arquiteto e construtora; cotação com mais de noventa dias precisa ser refeita; pagamento no marco medido. Contrato é do advogado.\n\nCOMO DECIDIR O VEREDITO:\nParta de \"calculos.veredito_sugerido\". A consulta prévia ainda não feita não impede levar o briefing ao arquiteto, mas é portão antes do projeto executivo: diga isso. Se a resposta tirou as unidades do ponto principal, o veredito é pausar.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nMolde: \"Se a consulta prévia ou o mapa ambiental tirarem as unidades de [o ponto que sustenta a promessa], eu pauso e volto ao produto antes do projeto executivo.\" Use o ponto que o aluno descreveu no nunca ou nas condicionantes.\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nEscrever o briefing de uma página, com as condicionantes numeradas e o motivo ao lado de cada uma. Responsável: o aluno, não o arquiteto. Prazo: 7 dias, antes da Aula 7. Evidência: o briefing impresso, com data, e a folha do nunca fotografada. Se já existe, troque por: estacas e caminhada às sete da manhã e às cinco da tarde, com foto; ou pedir à concessionária, por escrito, ponto e tensão de energia para o projeto completo.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 5 · Masterplan Faseado",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-6-masterplan.md",
+    "/home/claude/mz-trilha/ebook-06-masterplan.txt"
+  ],
+  "pendente_bruno": [
+    "Veredito da Marina \"avança\" e o critério da meia encosta (auditoria Aula 6, item 4.8).",
+    "\"Cotação de até noventa dias\" e \"pagamento no marco medido\" na Trilha 1 (item 4.11).",
+    "A base da régua de 15% a 25% (área fechada, sem deck) é escolha do e-book, porque a fonte não diz o que entra na área construída total."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}

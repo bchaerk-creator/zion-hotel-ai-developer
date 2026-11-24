@@ -1,0 +1,263 @@
+{
+  "id": "t1-a02",
+  "slug": "1-2",
+  "nome_curto": "territorio",
+  "titulo": "Território · Quanto do seu terreno vira negócio",
+  "aula": 2,
+  "objetivo": "Você sai sabendo quanto do seu terreno você pode usar de verdade, quantas unidades o lugar aguenta e quanto o terreno pesa no investimento.",
+  "campos": [
+    {
+      "id": "area_matricula",
+      "rotulo": "Área da matrícula (m²)",
+      "tipo": "numero",
+      "ajuda": "O número que está na matrícula do cartório. Exemplo: 50.000 m² (5 hectares).",
+      "obrigatorio": true,
+      "aceita_nao_sei": false,
+      "unidade": "m²"
+    },
+    {
+      "id": "sub_preservacao",
+      "rotulo": "Área de preservação: riacho, nascente, topo de morro (m²)",
+      "tipo": "numero",
+      "ajuda": "Veja no mapa do CAR. Exemplo: 12.000 m². Se não tem o mapa, marque Não sei.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "sub_reserva_legal",
+      "rotulo": "Reserva legal (m²)",
+      "tipo": "numero",
+      "ajuda": "A mata nativa que fica; o CAR mostra. Exemplo: 10.000 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "sub_encosta",
+      "rotulo": "Encosta forte (m²)",
+      "tipo": "numero",
+      "ajuda": "Área muito inclinada; quem mede é o topógrafo. Exemplo: 8.000 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "sub_recuos",
+      "rotulo": "Recuos e faixas: divisa, estrada, rede elétrica (m²)",
+      "tipo": "numero",
+      "ajuda": "A prefeitura e a concessionária dizem as distâncias. Exemplo: 1.500 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "sub_servico",
+      "rotulo": "Área de serviço: acesso, estacionamento, reservatório, esgoto (m²)",
+      "tipo": "numero",
+      "ajuda": "O que o projeto vai precisar ocupar fora das unidades. Exemplo: 3.500 m².",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "m²"
+    },
+    {
+      "id": "preco_terreno",
+      "rotulo": "Valor do terreno (R$)",
+      "tipo": "moeda",
+      "ajuda": "O preço pedido ou o valor do terreno, mesmo que já seja seu. Exemplo: R$ 600.000.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "investimento_total",
+      "rotulo": "Quanto você imagina investir no total (R$)",
+      "tipo": "moeda",
+      "ajuda": "Terreno, mais construir e equipar, mais o dinheiro do começo da operação. Exemplo: R$ 2.200.000. Se não sabe, marque Não sei.",
+      "obrigatorio": false,
+      "aceita_nao_sei": true
+    },
+    {
+      "id": "limite_fisico",
+      "rotulo": "Limite físico: quantas unidades cabem com afastamento",
+      "tipo": "numero",
+      "ajuda": "Contando espaço entre as unidades e os caminhos. Exemplo: 12.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "limite_infra",
+      "rotulo": "Limite de infraestrutura: para quantas unidades dá água, energia e esgoto",
+      "tipo": "numero",
+      "ajuda": "Água medida no mês mais seco, energia que chega e esgoto que dá para tratar. Exemplo: 10.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "limite_experiencia",
+      "rotulo": "Limite de experiência: a partir de quantas um hóspede vê ou ouve o outro",
+      "tipo": "numero",
+      "ajuda": "Ande o terreno e conte. Exemplo: 7.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "limite_mercado",
+      "rotulo": "Limite de mercado: quantas unidades o destino compra",
+      "tipo": "numero",
+      "ajuda": "Ainda é estimativa; a Aula 3 mede. Exemplo: 5. Se não tem ideia, marque Não sei.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true,
+      "unidade": "unidades"
+    },
+    {
+      "id": "documentos",
+      "rotulo": "Quais documentos você já tem na mão?",
+      "tipo": "multipla",
+      "opcoes": [
+        {
+          "valor": "matricula",
+          "rotulo": "Matrícula atualizada"
+        },
+        {
+          "valor": "car",
+          "rotulo": "CAR com o mapa"
+        },
+        {
+          "valor": "zoneamento",
+          "rotulo": "Zona confirmada: permite hospedagem"
+        },
+        {
+          "valor": "consulta_previa",
+          "rotulo": "Consulta prévia protocolada"
+        }
+      ],
+      "ajuda": "Marque só o que está com você, em papel ou arquivo. Exemplo: matrícula atualizada e CAR.",
+      "obrigatorio": false,
+      "aceita_nao_sei": false
+    },
+    {
+      "id": "caminho_leitura",
+      "rotulo": "Pela leitura do seu terreno, qual caminho faz sentido hoje?",
+      "tipo": "escolha",
+      "opcoes": [
+        {
+          "valor": "seguir",
+          "rotulo": "Seguir: está tudo verificado e a conta cabe"
+        },
+        {
+          "valor": "renegociar",
+          "rotulo": "Renegociar: o terreno pesa demais"
+        },
+        {
+          "valor": "investigar",
+          "rotulo": "Investigar antes: ainda tenho não sei que importa"
+        },
+        {
+          "valor": "trocar",
+          "rotulo": "Trocar de terreno: tem um limite que não se resolve"
+        },
+        {
+          "valor": "nao_sei",
+          "rotulo": "Não sei"
+        }
+      ],
+      "ajuda": "Use a ferramenta Leitura do seu terreno, na área de aluno. Exemplo: ainda tenho não sei que importa, então investigar antes.",
+      "obrigatorio": true,
+      "aceita_nao_sei": true
+    }
+  ],
+  "calculos": [
+    {
+      "id": "area_usavel",
+      "nome": "Área que você pode usar",
+      "formula": "area_usavel = area_matricula - (sub_preservacao + sub_reserva_legal + sub_encosta + sub_recuos + sub_servico)",
+      "saida": "m²",
+      "se_nao_sei": "Subtração em Não sei entra como zero e a área sai marcada \"no máximo\" e \"provisória\"; cada Não sei vira tarefa.",
+      "fonte": "E-book Aula 2, cap. 2 (as subtrações; exemplo da Marina: 50.000 - 35.000 = 15.000 m²)"
+    },
+    {
+      "id": "pct_usavel",
+      "nome": "Quanto da matrícula vira negócio",
+      "formula": "pct_usavel = area_usavel / area_matricula",
+      "saida": "%",
+      "fonte": "E-book Aula 2, cap. 2 (Marina: 30%)"
+    },
+    {
+      "id": "tres_precos",
+      "nome": "Os três preços do terreno",
+      "formula": "preco_m2_total = preco_terreno / area_matricula; preco_m2_usavel = preco_terreno / area_usavel; preco_por_unidade = preco_terreno / capacidade",
+      "saida": "R$",
+      "leitura": "O preço por m² usável é o número da negociação; o preço por unidade conversa com o investimento.",
+      "fonte": "E-book Aula 2, cap. 2 (Marina: R$ 12, R$ 40 e R$ 120 mil por unidade)"
+    },
+    {
+      "id": "capacidade",
+      "nome": "Quantas unidades o lugar aguenta, e qual limite manda",
+      "formula": "capacidade = minimo(limite_fisico, limite_infra, limite_experiencia, limite_mercado); limite_que_manda = o campo com o menor valor",
+      "saida": "unidades",
+      "se_nao_sei": "Limite em Não sei fica fora do mínimo e a capacidade sai \"provisória, falta o limite X\". Se o de mercado faltar: \"medir na Aula 3\".",
+      "fonte": "E-book Aula 2, cap. 3 (\"a capacidade é o menor dos quatro, não a média\")"
+    },
+    {
+      "id": "ilusao_preco",
+      "nome": "Quanto o terreno parece mais barato se contar pelo que cabe",
+      "formula": "ilusao = limite_fisico / capacidade",
+      "saida": "vezes",
+      "fonte": "E-book Aula 2, cap. 3 (Marina: 12 ÷ 5 = 2,4 vezes)"
+    },
+    {
+      "id": "peso_terreno",
+      "nome": "Quanto o terreno pesa no investimento total",
+      "formula": "peso_terreno = preco_terreno / investimento_total",
+      "saida": "%",
+      "leitura": "Até 10%: fora do alerta. De 10% a 20%: zona da regra de bolso, sensível. Acima de 20%: alerta aceso.",
+      "se_nao_sei": "Sem investimento total: mostrar a regra e marcar \"peso a calcular\".",
+      "fonte": "E-book Aula 2, cap. 2 (regra de bolso, alerta e não lei)"
+    },
+    {
+      "id": "documentos_faltando",
+      "nome": "Documentos que faltam",
+      "formula": "faltam = ['matricula','car','zoneamento','consulta_previa'] - documentos",
+      "saida": "lista",
+      "fonte": "E-book Aula 2, cap. 5 (os quatro documentos)"
+    },
+    {
+      "id": "conta_nao_sei",
+      "nome": "Quantos Não sei",
+      "formula": "conta_nao_sei = contar(campos com nao_sei)",
+      "saida": "número",
+      "fonte": "E-book Aula 2, cap. 6 (\"não sei\" vale zero; cada um vira tarefa)"
+    },
+    {
+      "id": "veredito_sugerido",
+      "nome": "Veredito sugerido pela página",
+      "formula": "se caminho_leitura == 'trocar' entao 'pausar'; senao se caminho_leitura == 'renegociar' ou peso_terreno > 20% entao 'ajustar'; senao se caminho_leitura == 'investigar' ou conta_nao_sei > 0 ou 'matricula' ou 'car' faltam entao 'testar'; senao 'avancar'",
+      "saida": "avancar | testar | ajustar | pausar",
+      "fonte": "E-book Aula 2, cap. 6 (os quatro caminhos) e cap. 7 (veredito da Marina: testa)"
+    }
+  ],
+  "regras_veredito": {
+    "avancar": "Caminho \"seguir\": área usável com fonte (matrícula e CAR na mão), os quatro limites preenchidos e o peso do terreno fora do alerta.",
+    "testar": "Caminho \"investigar antes\", ou ainda há Não sei que importa (falta matrícula, CAR ou o limite de mercado). É o veredito da Marina: não desenha nem põe dinheiro antes de medir o mercado.",
+    "ajustar": "Caminho \"renegociar\": o terreno pesa demais no investimento (acima de 20%, pela regra de bolso).",
+    "pausar": "Caminho \"trocar de terreno\": existe um limite que não se resolve. \"Reprovado neste ponto, não se avança. Muda-se o terreno, não o projeto.\" (Panorama)",
+    "criterio_para_parar": "Molde da Marina: se o produto não sustentar uma diária acima da média da região, o peso do terreno não se justifica; pausa e renegocia, ou troca de terreno.",
+    "fonte": "E-book Aula 2, caps. 6 e 7; auditoria-aula-2-escada.md (veredito testa)"
+  },
+  "prompt_ia": "Você é a leitura do Método Zion para a Aula 2 da Trilha 1 da Mentoria Zion (Território), dentro da Metodologia Zion de Desenvolvimento de Negócios de Hospedagem. O aluno preencheu a página \"Página 1 · Diagnóstico de Território\" do Dossiê. Você recebe um JSON com duas chaves: \"respostas\" (o que o aluno escreveu, com \"nao_sei\" onde ele não sabe) e \"calculos\" (as contas que a página já fez, sem IA, e o veredito sugerido pela página).\n\nCOMO FALAR: português do Brasil, simples, frases curtas, como um mentor direto falando com um adulto leigo. Sem jargão sem explicar, sem travessão, sem adjetivos de propaganda, sem falar em quanto o aluno vai ganhar. Trate o aluno por você.\n\nREGRAS QUE VOCÊ NUNCA QUEBRA:\n1. Use só as regras desta aula, coladas abaixo, e os números que o aluno e a página trouxeram. Não use conhecimento de fora, não traga dado de mercado, preço, taxa, alíquota, prazo ou pesquisa que não esteja aqui. Se faltar dado, diga que falta e transforme em pergunta em aberto.\n2. Não refaça as contas da página e não crie conta nova. Cite os números de \"calculos\" como estão.\n3. Nunca prometa renda, retorno, lucro, ocupação, diária, reserva, venda, crédito, captação, investidor ou sociedade. Nunca diga que o projeto vai dar certo. Fale em leitura, hipótese, teste e decisão.\n4. Nunca afirme o que diz uma lei, norma, licença, imposto ou regra do município. Quando o assunto for jurídico, ambiental, urbanístico, tributário, contábil ou técnico, diga para confirmar com profissional habilitado (advogado, contador, técnico ambiental, topógrafo, engenheiro, arquiteto, prefeitura, conforme o caso).\n5. Quando mencionar a Zion, diga só que a Zion avalia cada caso. Nunca ofereça condição, preço, vaga, parceria ou resultado.\n6. \"Não sei\" também é diagnóstico: trate cada \"nao_sei\" como lacuna que vira tarefa, sem tom de crítica.\n7. A Marina é um exemplo ilustrativo da trilha, não é meta nem média de mercado. Não compare o aluno com ela como se fosse referência.\n8. Aponte um único ponto mais frágil: o que, se continuar assim, mais pesa na decisão.\n9. O veredito é uma palavra: avancar | testar | ajustar | pausar. Siga as regras de veredito abaixo. Você pode ser mais cauteloso que o veredito sugerido pela página, nunca mais otimista.\n10. O critério para parar é um fato concreto e verificável que mudaria a decisão, escrito antes, no molde da aula.\n11. A próxima ação é de 7 dias, uma só, com responsável, prazo e evidência (o que o aluno vai ter na mão).\n\nREGRAS DA AULA (só estas valem):\n- Entre a área da matrícula e a área que se pode usar existem subtrações: área de preservação (margem de rio, nascente, topo de morro), reserva legal, encosta forte, recuos e faixas, área de serviço. Quem confirma é o CAR, o topógrafo, o técnico ambiental e a prefeitura, nunca o vendedor nem o olho.\n- O mesmo terreno tem três preços: por m² total (o que o mercado usa e o que menos informa), por m² que se pode usar (o número da negociação) e por unidade possível (o que conversa com o investimento).\n- Capacidade de carga é o menor de quatro limites, todos ao mesmo tempo: físico, infraestrutura (água no mês mais seco, energia, esgoto), experiência (a partir de quantas um hóspede vê ou ouve o outro) e mercado (quantas noites o destino compra). É o menor, não a média. Contar pelo que cabe faz o terreno parecer mais barato do que é.\n- Quando quem manda é o mercado, não falta terreno: falta demanda. Construa menos unidades, nunca menos infraestrutura.\n- Regra de bolso, que é alerta e não é lei: quando o terreno passa de algo entre 10% e 20% do investimento total (terreno, mais construir e equipar, mais o capital de giro do começo), o projeto fica sensível. Terreno que já é seu entra pelo valor dele.\n- Quatro documentos antes da visita séria: matrícula atualizada, CAR, plano diretor e zoneamento, consulta prévia protocolada na prefeitura. Quase ninguém faz a última, e é ela que troca \"acho que pode\" por \"a prefeitura respondeu que pode\".\n- Na leitura do terreno, não saber custa igual a estar errado: \"não sei\" vale zero. Primeiro os alertas, depois a soma, depois a decisão. Nota sem evidência não vale.\n- Os quatro caminhos depois da leitura: seguir (tudo verificado e a conta cabe); renegociar (o terreno pesa demais no investimento); investigar antes (ainda tem \"não sei\" que importa); trocar de terreno (existe um limite que não se resolve).\n- \"Depois a gente resolve\" é a crença mais cara: quase tudo o que se ignora antes da compra custa muito mais caro depois.\n- A pergunta mais importante: se este terreno não fosse seu, você o compraria hoje, depois desta leitura?\n\nCOMO DECIDIR O VEREDITO:\nOs quatro caminhos viram o veredito: seguir = avancar; investigar antes = testar; renegociar = ajustar; trocar de terreno = pausar. Use \"calculos.veredito_sugerido\" como ponto de partida. Se a matrícula ou o CAR não estão na mão, ou o limite de mercado é Não sei, o veredito não passa de testar. Se o peso do terreno passa de 20%, não passa de ajustar.\n\nCRITÉRIO PARA PARAR DESTA AULA (molde da fonte):\nEscreva no molde: \"Se [o fato], então [pauso e renegocio / troco de terreno].\" O fato da fonte é: o produto não sustentar diária acima da média da região, com o peso do terreno acima da regra de bolso. Se o ponto frágil for outro limite (água, acesso legal, zoneamento), use-o: \"se a consulta prévia ou o CAR mostrarem que [o limite] não se resolve\".\n\nPRÓXIMA AÇÃO DE 7 DIAS (a ação essencial da aula; adapte ao caso do aluno):\nPegar a matrícula atualizada e o mapa do CAR e fazer as subtrações com eles. Responsável: o aluno. Prazo: 7 dias, antes da Aula 3. Evidência: os dois documentos impressos, com as áreas pintadas e a área que pode usar escrita. Se os dois já estão na mão, troque pela tarefa de apoio que mais tira Não sei: ligar para a concessionária e anotar distância até o poste e tensão, com data e nome; ou as duas visitas, às 7h e às 17h, com fotos.\n\nONDE A ZION ENTRA (só se couber, uma frase, sem promessa):\nSó se o caminho for \"seguir\": o terreno pode entrar no Land Bank Zion, a vitrine de terrenos estruturados; a Zion avalia cada caso, não é promessa.\n\nSAÍDA: responda só com um JSON válido, sem texto antes ou depois, neste formato: {\"resumo\": \"texto\", \"pontos_fortes\": [\"texto\"], \"ponto_fragil\": \"texto\", \"veredito\": \"avancar | testar | ajustar | pausar\", \"criterio_para_parar\": \"texto\", \"proxima_acao\": {\"acao\": \"texto\", \"responsavel\": \"texto\", \"prazo\": \"texto\", \"evidencia\": \"texto\"}, \"perguntas_em_aberto\": [\"texto\"]}. resumo: até 4 frases. pontos_fortes: de 1 a 3 itens, só o que tem evidência nas respostas. perguntas_em_aberto: de 1 a 5 itens, começando pelos \"não sei\" que mais pesam. Não escreva o rodapé: a página já mostra \"Leitura do método, não promessa.\"",
+  "saida_dossie": "Página 1 · Diagnóstico de Território",
+  "fontes": [
+    "/home/claude/mz-trilha/auditoria-aula-2-escada.md",
+    "/home/claude/mz-trilha/ebook-02-territorio.txt",
+    "scratchpad/a2-escada/project/slides/mostrar.html, demo.html, resultado.html"
+  ],
+  "pendente_bruno": [
+    "A escala de pontos da ferramenta Leitura do seu terreno (11 perguntas) não está nas fontes; a página só recebe o caminho escolhido.",
+    "Correspondência dos quatro caminhos com os quatro vereditos (seguir = avançar, investigar = testar, renegociar = ajustar, trocar = pausar): leitura da página, a confirmar.",
+    "Veredito da Marina \"testa\" e o critério para parar estão na lista de confirmação da auditoria da Aula 2 (item 4)."
+  ],
+  "rodape": "Leitura do método, não promessa. Conteúdo educacional. Não é oferta de investimento nem promessa de renda, retorno, crédito ou sociedade."
+}
