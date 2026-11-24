@@ -48,3 +48,12 @@ Aprenda o passo a passo para estruturar o projeto de hospedagem do seu terreno. 
   - Carrossel C para site: não criado (faltam título e descrição dos 7 cartões do original).
 - Aprovação de Bruno em 24/11: ligar os anúncios e subir a verba da campanha de vendas para R$ 50/dia (30 + 20). A campanha de formulário (R$ 270 / leads) segue como estava.
 - Plano: R$ 97 hoje; se não converter, versão de R$ 47 (a preparar, pausada).
+
+## Pós-compra R$ 97 (24/11/2026, noite) · tudo em rascunho/desligado
+- Anúncios de venda direta PAUSADOS (campanha `120250538576770016`) até o teste de ponta a ponta. Campanha de formulário (leads) segue ligada.
+- Duas compras reais de R$ 97 (Pix) em 24/11: o acesso foi criado sozinho nas duas turmas (nova e antiga) em poucos minutos. Cartões movidos à mão para "8 · Comprou" (Funil Zion) e criados no funil "Inscritos" (`8b4405c0-f50a-40ba-abfd-11ab80e1ec41`, etapa 1).
+- Funil "Inscritos · Plataforma Zion Collection" criado (6 etapas), sem automação de entrada.
+- Tags: CLUB 97 | COMPROU, FICHA PREENCHIDA, PIX NÃO PAGO, CHECKOUT ABANDONADO.
+- Fluxo de compra aprovada `fcc14b4d-ff0f-433c-ad9e-655e76519cd1` (rascunho, desligado) e fluxos de recuperação `01b4967a…` e `deb2de62…` (só tag). Falta teste de execução e "aprovado" de Bruno para ligar.
+- Formulário de pós-compra `75ee0a3a-b17b-4fcf-be66-8eb97f6064ad` (ativo, sem automação) e página de obrigado `/obrigado-plataforma` (`d7166fc3-4f27-483b-8d9e-ca636c7facf0`, publicada). O formulário não pôde ser embutido na página de obrigado (validação do ClickMax): abre em link separado.
+- Pendências de Bruno no painel: redirecionar o checkout da oferta para `/obrigado-plataforma`; remover a entrega do portal antigo (`zion-collection`); decidir sobre "Acesso por 12 meses" na descrição da oferta.
