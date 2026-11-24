@@ -142,6 +142,7 @@ blocos.append(
 blocos.append(sec("hero", "escuro",
     '<p class="k">Zion Collection Club</p>'
     '<h1>O seu terreno pode ser o próximo <em>destino da Zion</em>.</h1>'
+    '<p>Faça a sua inscrição. Queremos te conhecer. Seja um parceiro Zion.</p>'
     '<p>Entenda como funciona a nossa plataforma e inscreva-se agora mesmo.</p>'
     f'<video class="video" controls playsinline preload="metadata" poster="{BASE}zion-collection/club/video/poster.jpg" src="{BASE}zion-collection/club/video/plataforma-v02.mp4">O seu navegador não reproduz este vídeo.</video>'
     '<p class="leg">Vídeo: a plataforma Zion Collection por dentro (8 minutos).</p>'
