@@ -50,3 +50,4 @@ Aprovado quando passa na checagem de conformidade, tem preço explícito no CTA,
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
 |  |  |  |  |
+| 25/11/2026 | Fase 03: auditoria de conteúdo, 10 conceitos, 7 peças (16 PNG) em `docs/ads/mm47-fase03/`, roteiro de VSL e pacote para o ChatGPT, em `06-criativos/`. Nada enviado ao Meta. | Preparar criativos compatíveis com a Mini Mentoria R$ 47 | Aguarda 'aprovado' de Bruno para subir |

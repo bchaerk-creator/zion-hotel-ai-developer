@@ -5,6 +5,13 @@ Só acrescentar entradas novas no topo. Ids de oferta e produto aparecem com 8 c
 
 ---
 
+## 25/11/2026 · Fase 03 · ZION CREATIVE
+- Criados em `zion-sales-engine/06-criativos/`: `AUDITORIA_CONTEUDO.md`, `CONCEITOS_DIFERENTES.md`, `ROTEIRO_VSL.md`, `PACOTE_PARA_CHATGPT.md` e os geradores. Criadas 16 imagens (7 peças) em `docs/ads/mm47-fase03/` com `COPIES.md` e `manifesto.json`.
+- Sem alteração em produção, Meta ou ClickMax. Gravação do vídeo depende de Bruno ou de produção. Subir ao Meta exige 'aprovado'.
+- Reverter: `git revert` do commit.
+
+---
+
 ## 25/11/2026
 
 ### Neste repositório
