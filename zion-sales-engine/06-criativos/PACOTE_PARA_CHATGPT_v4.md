@@ -98,3 +98,13 @@ Verificador `check_termos.py` (scratchpad `cap/`): procura por linha `R\$ ?97|R\
 Resultado, executado nesta sessão: ver linha "Resultado do teste" abaixo.
 **Resultado do teste (executado em 25/11/2026):** `build_video_entrada_wa.js` (textos de cena e cartela): **2 achados, os dois da frase "queremos te conhecer"**, liberada por ordem de Bruno (25/11) e usada só como convite, sem promessa. `ENTRADA_WHATSAPP.md`, `ROTEIRO_GRAVACAO_HOJE.md` e este pacote: 39 linhas sinalizadas, **todas** em linhas que listam termos proibidos, descrevem o que foi removido, negam ("não é reunião nem consultoria", "Garante parceria? Não") ou citam a fala antiga reprovada; nenhuma está em texto de anúncio, de tela, de cartela ou de fala proposta. Os 12 anúncios de venda não foram alterados (já passaram pela checagem P0).
 **Teste visual:** conferi a olho o contato dos 12 anúncios de venda (preço na arte, rodapé, sem pessoas, sem texto sobre foto) e 12 quadros dos vídeos mudos novos (texto no painel, cartela final correta).
+
+## Criativos de venda a partir dos campeões originais (v5)
+Ordem de Bruno (25/11): todo criativo parte do que já funciona, editando o arquivo ORIGINAL e trocando só os textos. As peças `vp0-carrossel-c-narrativa-1..7` e `vp0-a1-dor-direta-1..5` (`docs/ads/mm47-p0/`) estão **SUBSTITUÍDAS** por estas (reconstruíam os cartões com painéis novos).
+| Peça | Pasta | Conteúdo |
+|---|---|---|
+| Carrossel C de venda (7 cartões 1080×1350) | `docs/ads/venda-carrossel-c/` | `carrossel-c-venda-1..7.png`, `painel-comparacao.jpg` (original × novo), `COPIES.md`, `manifesto.json`, `build.js`, `troca_fotos.py`. Mesmas imagens, blocos, fontes e ordem do campeão; cartões 4 e 7 com foto real sem pessoas |
+| Curso Terreno A1 de venda (5 cartões) | `docs/ads/venda-a1/` | `carrossel-a1-venda-1..5.png`, `painel-comparacao.jpg`, `COPIES.md`, `manifesto.json`, `build.js` (mesmo gerador do A1 v2) |
+Destino: `/mini-mentoria`; botão do Meta "Saiba mais"; arte do último cartão "QUERO ACESSAR A PLATAFORMA POR R$47"; UTM do PADRAO_UTM §9 (`venda-fria` ou `venda-quente`, `utm_content` = id do criativo). Nada enviado ao Meta; criar pausado e ativar só com "aprovado".
+**Teste:** grep de termos proibidos (R$97, R$270, inscri*, taxa, banco de áreas, Land Bank, agend*, sócio, sessão, reunião, consultoria, garantido, 20 anos, equipe, renda) nos textos das artes e nos COPIES: limpo (as únicas ocorrências estão nas linhas "o que mudou", que citam o texto antigo). Texto primário 464 e 301 caracteres; título 25. Conferido a olho nos 12 cartões: sem texto vazando, legível no celular.
+**Sinalização:** cartões 2 e 6 do Carrossel C mantêm imagens do campeão de origem não verificada (legenda "ilustrativa"); Bruno pode pedir troca por foto da biblioteca.
