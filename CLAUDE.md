@@ -12,7 +12,8 @@ O prompt de cada produto só precisa dizer o que muda: produto, público, dor, p
   - enviar a oferta para aprovação assim que `offers_get_incomplete_reason` voltar vazio;
   - publicar a página de vendas quando a oferta estiver **ativa** (aprovada), para ninguém cair num checkout que não vende;
   - usar nas copies que a sequência ou os scripts "partem da rotina usada nas unidades da Zion" (quando for verdade para o produto).
-  - **Continua exigindo "aprovado" de Bruno:** gastar com anúncio (teto atual: R$ 0; campanhas só pausadas), disparar mensagens para leads, ativar automações, mexer em qualquer coisa que já existe.
+  - **Continua exigindo "aprovado" de Bruno:** gastar com anúncio, disparar mensagens para leads, ativar automações, mexer em qualquer coisa que já existe.
+  - **Teto de anúncio (decisão de Bruno, 25/11/2026): Fase 1 · somente venda fria da Mini Mentoria de Estruturação Zion (R$ 47), até R$ 30 por dia e R$ 420 em 14 dias**, na conta de anúncios que Bruno confirmar. **Fora disso o teto continua R$ 0** (captação, venda quente, WhatsApp, outros produtos, outras contas, aumento de orçamento e prorrogação). Campanhas e anúncios nascem sempre pausados; ativar, aumentar orçamento ou religar só com "aprovado" de Bruno. Não tocar nas campanhas da Zion Bubble.
   - Depois de cada publicação ou envio, registrar no `OFERTA.md` e no resumo da sessão.
 - **Não mexa no que já existe:** produtos, páginas, funis, automações, checkouts, Land Bank, Zion Collection, integrações com Asaas, o site institucional (`docs/`) e o Clube. Crie tudo novo e separado.
 - **Sem invenção:** nada de números de mercado, depoimentos, resultados, garantias, preço "de" falso, bônus ou urgência falsa. Exemplos sempre marcados como "dados fictícios".
