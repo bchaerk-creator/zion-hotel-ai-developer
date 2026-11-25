@@ -49,4 +49,4 @@ Aprova quando: números conferidos na fonte, regras fixas cumpridas, nenhuma alt
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
-|  |  |  |  |
+| 25/11/2026 | Fase 03: auditoria independente das entregas de FUNNEL, CONVERSION, DATA, CREATIVE, FINANCE, MARKET e TRAFFIC (`13-relatorios/AUDITORIA_FASE03.md`) e análise do risco do repositório público (`13-relatorios/RISCO_REPOSITORIO_PUBLICO.md`). Veredito: aprovado com ajustes; 4 pontos P0 para Bruno; 2 itens bloqueados (envio real da recuperação; segurança do repositório). Somente leitura; nada executado em produção. | Missão da Fase 03 | Bruno (briefing da Fase 03) |
