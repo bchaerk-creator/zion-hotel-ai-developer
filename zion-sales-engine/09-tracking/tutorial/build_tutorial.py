@@ -89,9 +89,9 @@ A += step("A5", "Leia o Histórico de envio: a resposta de \"por que não chegou
           "<tr><td>Não enviado</td><td>Alguma configuração impediu; o motivo está na linha (evento desligado, falta token, espera dados pessoais, Meta recusou, passou de 7 dias)</td></tr><tr><td>Em andamento</td><td>Ainda enviando</td></tr></table>",
           onde="Menu de ações do pixel &rsaquo; <b>Histórico de envio</b> (ou, em <b>Ver detalhes</b>, role até o bloco de histórico). Use os botões <b>Todos / Enviados / Falharam / Não enviados</b>. " + E,
           ver="Depois da correção: linhas <b>Purchase &middot; Enviado</b> e, na linha aceita, o <b>ID de rastreio (fbtrace_id)</b>. Hoje o esperado é o oposto: vazio ou \"Não enviado\" com motivo.",
-          print_="Print do histórico das <b>linhas de 24/11 em diante</b> (com data, evento, resultado e motivo). Se houver linha de Purchase, mande print dela aberta.",
+          print_="Print do histórico das <b>linhas da data das compras reais em diante</b> (com data, evento, resultado e motivo). Se houver linha de Purchase, mande print dela aberta.",
           mock=mock(['<span>Todos 0 &middot; Enviados 0 &middot; Falharam 0 &middot; Não enviados 0</span>',
-                     '<span>Purchase &middot; 24/11 17:50</span><span class="pill p-no">Não enviado</span><span>motivo na linha</span>',
+                     '<span>Purchase &middot; dd/mm hh:mm (exemplo)</span><span class="pill p-no">Não enviado</span><span>motivo na linha</span>',
                      '<span>Purchase &middot; data</span><span class="pill p-ok">Enviado</span><span class="mono">fbtrace_id</span>'], "Histórico de envio"))
 A += step("A6", "Marque o pixel no produto e na oferta (aba Pixels)",
           "<p>O checkout segue o pixel marcado no <b>produto/oferta</b>, não o da página. Se o evento aparece na página e não no checkout, é este o motivo.</p>",
@@ -119,9 +119,9 @@ B += step("B2", "Escolha o dataset do pixel " + PIXEL + " e veja a ligação",
           onde="Gerenciador de Eventos &rsaquo; clique na fonte de dados <b>" + PIXEL + "</b> &rsaquo; aba <b>Configurações</b>. Procure o ID do pixel/conjunto de dados, <b>API de Conversões</b> e <b>contas de anúncios/ativos</b> vinculados " + NC + ".",
           ver="O mesmo ID do pixel que está no ClickMax; a conta de anúncios das campanhas aparece como vinculada; a API de Conversões mostra o método de conexão (parceiro/manual).",
           print_="Print do topo da Visão geral (com o ID) e da área de Configurações que mostra contas vinculadas e a API de Conversões.")
-B += step("B3", "Visão geral: o Purchase de 24/11 existe?",
-          "<p>Esta é a <b>pergunta 1</b> antes de qualquer reenvio das compras de 24/11. Se o Purchase já está lá, não reenvie.</p>",
-          onde="Gerenciador de Eventos &rsaquo; fonte de dados &rsaquo; <b>Visão geral</b> &rsaquo; ajuste o período para <b>24/11 a hoje</b> &rsaquo; clique no evento <b>Purchase</b> (ou <b>Compra</b>). Procure a coluna de <b>Origem</b> (Navegador, Servidor, Navegador e Servidor), o <b>valor</b> e a <b>moeda</b> " + NC + ".",
+B += step("B3", "Visão geral: o Purchase das compras reais existe?",
+          "<p>Esta é a <b>pergunta 1</b> antes de qualquer reenvio das compras reais sem UTM. Se o Purchase já está lá, não reenvie.</p>",
+          onde="Gerenciador de Eventos &rsaquo; fonte de dados &rsaquo; <b>Visão geral</b> &rsaquo; ajuste o período para <b>da data da primeira compra real até hoje</b> &rsaquo; clique no evento <b>Purchase</b> (ou <b>Compra</b>). Procure a coluna de <b>Origem</b> (Navegador, Servidor, Navegador e Servidor), o <b>valor</b> e a <b>moeda</b> " + NC + ".",
           ver="Esperado depois da correção: Purchase com <b>Navegador e Servidor</b> (ou só <b>Servidor</b> para Pix), valor 47,00 ou 97,00, BRL. Hoje, pela auditoria, o esperado é nenhum Purchase.",
           print_="Print da Visão geral com o intervalo e a linha do Purchase (ou da falta dele); se existir, print dos detalhes com valor e moeda.")
 B += step("B4", "Testar eventos: ver o evento chegando em tempo real",
@@ -143,7 +143,7 @@ B += step("B6", "Qualidade de correspondência e Deduplicação",
 B += step("B7", "Parâmetros de URL no anúncio (para a UTM padrão)",
           "<p>O Meta preenche as macros por anúncio. O texto padrão fica em <span class=\"mono\">PLANO_EXECUTAVEL.md</span> (seção 1.7). Mexer em anúncio ativo exige \"aprovado\" e pode reiniciar a revisão do anúncio.</p>",
           onde="Gerenciador de Anúncios &rsaquo; edite o <b>anúncio</b> &rsaquo; seção de rastreamento &rsaquo; <b>Parâmetros de URL</b> " + NC + ".",
-          ver="O campo de parâmetros com o texto padrão (utm_source=meta&amp;utm_medium=paid&amp;&hellip;&amp;adset_id={{adset.id}}). Veja o padrão completo no plano.",
+          ver="O campo de parâmetros com o texto padrão (utm_source=meta&amp;utm_medium=paid&amp;&hellip;&amp;adset_id={{adset.id}}). Veja o padrão completo em <code>09-tracking/PADRAO_UTM.md</code> (<code>utm_campaign=mm47</code>; os ids de teste do passo D abaixo são fictícios).",
           print_="Por ora, print do campo <b>Parâmetros de URL</b> de 1 anúncio de cada campanha ativa (para eu comparar com o padrão).")
 
 # ---------------------------------------------------------------- C) Ticto
@@ -261,9 +261,9 @@ prints = """
 <li><b>P1</b>: A1 e A2 (lista de pixels; Credencial; onde o pixel está).</li>
 <li><b>P2</b>: A3 (estado do token, sem o token).</li>
 <li><b>P3</b>: A4 (Comprou com Formas de pagamento; Abriu o checkout).</li>
-<li><b>P4</b>: A5 (Histórico de envio de 24/11 em diante).</li>
+<li><b>P4</b>: A5 (Histórico de envio da data das compras reais em diante).</li>
 <li><b>P5</b>: A6 (aba Pixels do produto e da oferta).</li>
-<li><b>P6</b>: B2, B3 (dataset e Visão geral do Purchase desde 24/11).</li>
+<li><b>P6</b>: B2, B3 (dataset e Visão geral do Purchase desde a primeira compra real).</li>
 <li><b>P7</b>: C1 a C5 (extrato Ticto, filtros, webhooks, pixel Ticto).</li>
 <li><b>P8</b>: durante o teste: D1 a D5 (barra de endereço, Testar eventos em cada fase, Purchase aberto).</li>
 <li><b>P9</b>: D6, D7 (venda com UTMs, histórico, Eventos de pixel, acesso).</li>

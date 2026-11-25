@@ -1,12 +1,15 @@
 import hashlib
 import io
 import json
+import sys
 import tempfile
 import threading
 import unittest
 from http.server import BaseHTTPRequestHandler, HTTPServer
 from pathlib import Path
 from types import SimpleNamespace
+
+sys.path.insert(0, Path(__file__).resolve().parent.as_posix())  # necessario com python3 -I (modo isolado)
 
 import reenviar_compras as R
 
@@ -67,7 +70,7 @@ class Tests(unittest.TestCase):
             self.assertNotIn(bad, text.lower())
 
     def test_hash_e_valor_corretos(self):
-        row = {"event_id": "T1", "paid_at": "2026-11-24T17:48:00Z", "value_brl": "97.00", "currency": "BRL",
+        row = {"event_id": "T1", "paid_at": "2026-11-23T10:05:00Z", "value_brl": "97.00", "currency": "BRL",
                "email": "  Maria.Exemplo@Example.COM ", "phone": "(48) 99999-0000", "fullname": "Maria Exemplo da Silva"}
         ev, why = R.build_event(row, NOW)
         self.assertIsNone(why)
@@ -76,11 +79,11 @@ class Tests(unittest.TestCase):
         self.assertEqual(ev["custom_data"]["value"], 97.0)
         self.assertEqual(ev["custom_data"]["currency"], "BRL")
         self.assertEqual(ev["event_id"], "T1")
-        self.assertEqual(ev["event_time"], R.parse_time("2026-11-24T17:48:00Z"))
+        self.assertEqual(ev["event_time"], R.parse_time("2026-11-23T10:05:00Z"))
         self.assertEqual(ev["action_source"], "website")
 
     def test_valor_com_virgula_e_faixa(self):
-        base = {"event_id": "T", "paid_at": "2026-11-24T17:48:00Z", "email": "a@example.com"}
+        base = {"event_id": "T", "paid_at": "2026-11-23T10:05:00Z", "email": "a@example.com"}
         ev, _ = R.build_event({**base, "value_brl": "97,00"}, NOW)
         self.assertEqual(ev["custom_data"]["value"], 97.0)
         self.assertEqual(R.build_event({**base, "value_brl": "0.97"}, NOW)[1][:19], "valor_fora_da_faixa")
@@ -89,14 +92,14 @@ class Tests(unittest.TestCase):
     def test_bloqueia_mais_de_7_dias_e_sem_correspondencia(self):
         base = {"event_id": "T", "value_brl": "97", "email": "a@example.com"}
         self.assertEqual(R.build_event({**base, "paid_at": "2026-11-10T00:00:00Z"}, NOW)[1], "mais_de_7_dias_o_meta_recusa")
-        self.assertEqual(R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-24T17:48:00Z"}, NOW)[1], "sem_dado_para_correspondencia")
+        self.assertEqual(R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-23T10:05:00Z"}, NOW)[1], "sem_dado_para_correspondencia")
 
     def test_nao_atribui_sem_dado(self):
-        ev, _ = R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-24T17:48:00Z", "email": "a@example.com"}, NOW)
+        ev, _ = R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-23T10:05:00Z", "email": "a@example.com"}, NOW)
         for k in R.UTM_COLS:
             self.assertNotIn(k, ev["custom_data"])
         self.assertNotIn("fbc", ev["user_data"])
-        ev2, _ = R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-24T17:48:00Z", "email": "a@example.com", "utm_campaign": "c1", "fbc": "fb.1.1.AB"}, NOW)
+        ev2, _ = R.build_event({"event_id": "T", "value_brl": "97", "paid_at": "2026-11-23T10:05:00Z", "email": "a@example.com", "utm_campaign": "c1", "fbc": "fb.1.1.AB"}, NOW)
         self.assertEqual(ev2["custom_data"]["utm_campaign"], "c1")
         self.assertEqual(ev2["user_data"]["fbc"], "fb.1.1.AB")
 

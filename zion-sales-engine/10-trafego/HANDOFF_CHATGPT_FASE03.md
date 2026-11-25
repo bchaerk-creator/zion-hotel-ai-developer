@@ -47,11 +47,11 @@ Leitura Windsor, conta Zion Collection 2 (`1271873041294684`), somente `get_data
 A estrutura mínima que testa **uma hipótese por vez**: primeiro "qual criativo leva compra qualificada", com o mesmo destino e o mesmo público. Teste de landing A/B só depois (seção 3.4).
 
 ### 2.2 Objetivo e evento de otimização (o Purchase ainda não funciona)
-Fatos [E, auditoria e `09-tracking/PLANO_EXECUTAVEL.md`]: o Meta registrou 0 compras mesmo com vendas reais; o início de checkout dispara no **carregamento** do iframe (≈ visualização de página); ViewContent desligado; as vendas reais de 24/11 vieram sem UTM; CAPI, dataset e token não são legíveis por MCP.
+Fatos [E, auditoria e `09-tracking/PLANO_EXECUTAVEL.md`]: o Meta não registrou compra atribuída mesmo com vendas reais; o início de checkout dispara no **carregamento** do iframe (≈ visualização de página); ViewContent desligado; as vendas reais recentes vieram sem UTM; CAPI, dataset e token não são legíveis por MCP.
 
 **Fase 0 · enquanto o Purchase não for provado (R1 a R6 do plano de rastreamento):**
 - Objetivo **Tráfego**, otimização por **visualização da página de destino**, ou equivalente. É o único evento que o pixel entrega de forma reconhecível agora. **Não** otimizar por início de checkout (infla), nem por ViewContent (desligado), nem por Purchase (não chega: o Meta não aprenderia).
-- Aceitar a limitação: otimizar por visualização atrai cliques baratos e **tráfego de servidor/bot** (cerca de 40% das visitas de 24/11 vieram de infraestrutura, sessão ≤ 3 s [E, auditoria]). Por isso a **decisão nunca usa a métrica do Meta**: usa **Pix gerado e venda paga no ClickMax por UTM** (seção 4).
+- Aceitar a limitação: otimizar por visualização atrai cliques baratos e **tráfego de servidor/bot** (uma parcela relevante das visitas de um dia, de uma ordem de grandeza de um quarto a metade, veio de infraestrutura, sessão ≤ 3 s [E, auditoria; percentual exato fica fora do repositório]). Por isso a **decisão nunca usa a métrica do Meta**: usa **Pix gerado e venda paga no ClickMax por UTM** (seção 4).
 - Duração curta e limitada a uma amostra definida (seção 5). Não é campanha de escala.
 
 **Fase 1 · depois que Purchase for provado** (R1 a R4: só após pago, valor/moeda corretos, CAPI funcionando, deduplicação; Teste de eventos com Pix de teste de Bruno) **e a UTM estiver gravada em venda real (R5, R6):**
@@ -105,7 +105,7 @@ Todos: botão **Saiba mais**; descrição "Mini Mentoria de Estruturação · R$
 
 Arquivos: `c03-custo-escondido.png`, `c06-obra-ultimo-passo.png`, `c09-objecoes.png`, `c08-oferta-47.png`, `c10-obra-ou-estrutura.png`; carrosséis `c02-plataforma-1..5.png` e `c04-ordem-certa-1..6.png`. Não editar a arte (o rodapé com condições é parte da peça). Copy completa: copiar da seção do `id` em `COPIES.md`, sem reescrever.
 
-### 3.2 URL de destino com UTM (padrão definitivo, `09-tracking/PLANO_EXECUTAVEL.md` §1.7)
+### 3.2 Tags de URL (padrão único: `09-tracking/PADRAO_UTM.md`)
 Colar em **Parâmetros de URL** (nível do anúncio); o destino do anúncio é só `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem `#pagar`: o que vem depois do `#` não repassa a UTM):
 ```
 utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<id do criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}
@@ -127,7 +127,7 @@ Colar as macros `{{ad.id}}` etc. exatamente assim (o Meta preenche). **Não** mu
 - Se Bruno aprovar mesmo assim, caminho preferido: divisão 50/50 no ClickMax (teste A/B de funil, uma URL no anúncio). Caminho alternativo: **anúncios separados por variante** com o mesmo criativo:
   - A: `…/mini-mentoria-a?` + parâmetros do 3.2 com `utm_content=<id>-varA`
   - B: `…/mini-mentoria-b?` + parâmetros do 3.2 com `utm_content=<id>-varB`
-  - Mantém `utm_term={{ad.id}}` e `sck`. **Divergência a alinhar com DATA/CONVERSION:** o plano A/B cita `utm_term=varA|varB`; aqui a variante vai em `utm_content` para preservar o id do anúncio em `utm_term`. Escolher um dos dois e usar o mesmo nos dois anúncios. O Meta não garante 50/50 entre anúncios: analisar por **visitantes únicos recebidos por variante**.
+  - Mantém `utm_term={{ad.id}}` e `sck`. **Decidido (A09, `09-tracking/PADRAO_UTM.md` §3):** a variante vai só no sufixo do `utm_content`; `utm_term` nunca leva a variante e não existe `utm_variant`. O plano A/B usa o mesmo padrão. O Meta não garante 50/50 entre anúncios: analisar por **visitantes únicos recebidos por variante**.
 
 ## 4. Evento de conversão e cadência de leitura
 - **Evento de decisão (hoje):** venda **paga** (Pix pago ou cartão aprovado) no ClickMax, atribuída por UTM; compras de teste de Bruno e reembolsadas excluídas. **Evento de acompanhamento:** Pix gerado (`pix_generated`). **Ruído conhecido:** início de checkout (dispara ao carregar), cliques no botão isolados, CTR, tempo na página.
@@ -136,7 +136,7 @@ Colar as macros `{{ad.id}}` etc. exatamente assim (o Meta preenche). **Não** mu
   - **Diária (5 min, anotar a hora da leitura; o cache do Windsor atrasa):** gasto × teto; anúncios reprovados ou sem entrega; vendas pagas e Pix gerados no ClickMax por `utm_content`; vendas **sem UTM** (separar como "não atribuível"). Sem decisão de escala/pausa por mérito nesta leitura; só segurança (estouro de teto, reprovação, checkout fora do ar).
   - **A cada 3 a 4 dias:** conferir distribuição de entrega por anúncio, posicionamento (sem Audience Network), % de tráfego de servidor e sobreposição A/B.
   - **Semanal:** relatório de decisão com amostra, CPA contra a faixa do modelo, e proposta a Bruno (formato do agente: mapa, leitura por evento, problemas por prioridade, proposta com risco e reversão).
-  - **Conciliação ClickMax × Ticto × Meta** diária enquanto R1 a R6 não passarem (`09-tracking/conciliacao/`); prazo para reenviar as vendas reais de 24/11 ao Meta: **01/12**.
+  - **Conciliação ClickMax × Ticto × Meta** diária enquanto R1 a R6 não passarem (`09-tracking/conciliacao/`); prazo para reenviar as vendas reais sem UTM ao Meta: **hora do pagamento + 7 dias** (Bruno confere a data no ClickMax).
 
 ## 5. Critérios de escala, pausa e manutenção (ligados a `08-financeiro/MODELO_FINANCEIRO.md`)
 Decisão final **sempre de Bruno**. Valores abaixo são fórmulas e parâmetros; o que depender de dado real é preenchido fora do repositório.
@@ -176,7 +176,7 @@ Legenda: OK = evidência lida; BLOQUEIA = impede ligar com gasto; ATENÇÃO = n�
 | — | Pasta de anúncios no GitHub Pages abre (URLs públicas das artes) | conferir antes de subir | ChatGPT |
 | — | Revisão de política do Meta (categoria de oportunidade de negócio/financeira; textos de investidor/parceria) | ATENÇÃO: se pedirem, tratar como infoproduto educacional | ChatGPT/Bruno |
 | — | Formulários antigos citam "R$ 350 mil de faturamento por bubble" e rentabilidade [H: ainda em anúncio ativo] | promessa proibida; conferir e pausar | Bruno |
-| — | Tráfego de servidor/bot (~40% das visitas num dia) | ATENÇÃO: filtrar na leitura | TRAFFIC/DATA |
+| — | Tráfego de servidor/bot (parcela relevante das visitas num dia) | ATENÇÃO: filtrar na leitura | TRAFFIC/DATA |
 
 **Regra de liberação:** com os itens BLOQUEIA ainda abertos, a campanha pode ser **criada pausada e conferida**, mas **ligar com gasto** só com "aprovado" de Bruno, ciente do que fica sem prova. Sugestão: ligar a Fase 0 apenas depois da compra de teste com UTM gravada e entrega confirmada.
 

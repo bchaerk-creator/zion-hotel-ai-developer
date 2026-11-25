@@ -38,7 +38,7 @@ Colunas completas no CSV. Aqui: preço, status, potencial de venda direta e risc
 | id | produto | preço | status | potencial direto | risco |
 |---|---|---|---|---|---|
 | MM47 | Mini Mentoria de Estruturação | R$ 47 (líquido Pix R$ 44,51 [E]) | ativo | Alto | Rastreamento sem compra confirmada; promessa ampla; sem CPA real |
-| ACE97 | Acesso à plataforma Zion Collection (R$ 97) | R$ 97 (líquido Pix R$ 87,73 [E]) | ativo (duplicado) | Médio | Duplicidade com MM47; CPA máximo maior mas 0 compras no Meta |
+| ACE97 | Acesso à plataforma Zion Collection (R$ 97) | R$ 97 (líquido Pix R$ 87,73 [E]) | ativo (duplicado) | Médio | Duplicidade com MM47; CPA máximo maior mas sem compra atribuída no Meta |
 | ACE47 | Acesso à plataforma (R$ 47, clones 668391e7 e 74a3f8c6) | R$ 47 | ativo (redundante) | Baixo | Fragmenta a medição |
 | TC-A | Você tem terra. Falta capital? (oferta A) | R$ 47 | ativo | Alto | Competir pelo mesmo público da MM47; promessa de capital exige cuidado (nunca prometer investimento) |
 | TC-B | Você tem terra. Falta capital? (oferta B) | R$ 67 | ativo | Baixo | Dividir amostra pequena |
@@ -173,7 +173,7 @@ Fórmula: `CPA máximo = líquido por venda − impostos − custos variáveis`,
 | R$ 47 | R$ 44,51 | (R$ 44,51) | [E] |
 | R$ 97 | R$ 87,73 | - | [E] |
 
-Leitura: um CPA de equilíbrio menor que R$ 18 em tráfego frio é um teto apertado para os tickets baixos; **não há CPA real** (0 compras confirmadas no Meta) [E], então qualquer afirmação sobre ser viável ou não é [H] até haver dado. Quem decide o CPA-alvo é o ZION FINANCE.
+Leitura: um CPA de equilíbrio menor que R$ 18 em tráfego frio é um teto apertado para os tickets baixos; **não há CPA real** (nenhuma compra confirmada e atribuída no Meta) [E], então qualquer afirmação sobre ser viável ou não é [H] até haver dado. Quem decide o CPA-alvo é o ZION FINANCE.
 
 ### 4.2 Ranking (critérios: CPA viável, demonstração visual, clareza da dor, público já atingido, oferta que vende hoje)
 | # | Produto | Preço | Teto de equilíbrio | Demo | Dor clara | Público atingido | Vende hoje? | Veredito |

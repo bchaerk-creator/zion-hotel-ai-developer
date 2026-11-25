@@ -1,6 +1,6 @@
 # Conciliação ClickMax × gateway × Meta (critério R7)
 
-Script: `conciliar.py` (Python 3, só biblioteca padrão). Testes: `python3 test_conciliar.py`. Os `MODELO_*.csv` têm **dados fictícios**. Dados reais ficam fora do repositório.
+Script: `conciliar.py` (Python 3, só biblioteca padrão). Testes: `python3 -I test_conciliar.py`. Os `MODELO_*.csv` têm **dados fictícios**. Dados reais ficam fora do repositório.
 
 ## Como alimentar (dados reais, fora do repositório)
 | Fonte | Como obter | Colunas |
@@ -19,6 +19,6 @@ Alinhe o fuso das três fontes (diga qual usou). Valor em reais com ponto (o Cli
 - ClickMax × gateway: lista ordem ausente de um lado, status diferente e valor diferente.
 
 ```bash
-python3 conciliar.py --clickmax /fora/do/repo/clickmax.csv --gateway /fora/do/repo/ticto.csv --meta /fora/do/repo/meta.csv --json /fora/do/repo/resultado.json
+python3 -I conciliar.py --clickmax /fora/do/repo/clickmax.csv --gateway /fora/do/repo/ticto.csv --meta /fora/do/repo/meta.csv --json /fora/do/repo/resultado.json
 ```
 Saída 1 se houver ALERTA. O resultado vai para o relatório de rotina de `13-relatorios/` **sem dados pessoais e sem números reais de vendas no repositório público** (guardar o relatório real fora).

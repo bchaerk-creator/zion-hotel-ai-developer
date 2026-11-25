@@ -1,6 +1,6 @@
 # Copies MM47 · Fase 03 (Mini Mentoria R$ 47)
 
-Botão em todos: **Saiba mais**. Destino: https://infoprodutos-zion.clickmax.space/mini-mentoria. UTM padrão no manifesto. Nada foi enviado ao Meta: material para aprovação de Bruno.
+Botão em todos: **Saiba mais**. Destino: https://infoprodutos-zion.clickmax.space/mini-mentoria. Padrão único de UTM, `sck` e ids em `zion-sales-engine/09-tracking/PADRAO_UTM.md`: a URL abaixo é só o destino, e as **Tags de URL** vão coladas uma vez no campo de parâmetros do anúncio (não cole na URL). Nada foi enviado ao Meta: material para aprovação de Bruno.
 Artes: fundo sólido, sem foto e sem pessoas; telas reais da plataforma onde aparecem. Rodapé de cada arte traz as condições.
 
 ## mm47f3-c03-custo-escondido
@@ -15,7 +15,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Quanto custa deixar tudo pronto? · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c03-custo-escondido&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c03-custo-escondido&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Dor concreta de custo gera mais cliques qualificados que a dor genérica de capital. Métrica: CTR de link e custo por visualização da página.
 
 ## mm47f3-c06-obra-ultimo-passo
@@ -30,7 +31,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Estruture antes de construir · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c06-obra-ultimo-passo&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c06-obra-ultimo-passo&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Confrontar a crença "construir primeiro" atrai quem ainda não estruturou. Métrica: CTR de link e taxa de início de checkout por clique.
 
 ## mm47f3-c08-oferta-47
@@ -43,7 +45,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Mini Mentoria por R$ 47 · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c08-oferta-47&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c08-oferta-47&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Oferta direta converte melhor em público quente (remarketing) do que em frio. Métrica: início de checkout e compra em remarketing.
 
 ## mm47f3-c09-objecoes
@@ -56,7 +59,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Quatro perguntas honestas · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c09-objecoes&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c09-objecoes&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Responder objeções antes do clique reduz abandono no checkout. Métrica: razão compra/início de checkout.
 
 ## mm47f3-c10-obra-ou-estrutura
@@ -71,7 +75,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Obra primeiro ou estrutura primeiro? · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c10-obra-ou-estrutura&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c10-obra-ou-estrutura&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Comparar abordagens (não concorrentes) ajuda quem está decidindo como começar. Métrica: CTR de link e tempo na página.
 
 ## mm47f3-c02-plataforma-por-dentro
@@ -84,7 +89,8 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** Veja por dentro da plataforma · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c02-plataforma-por-dentro&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c02-plataforma-por-dentro&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Mostrar o produto funcionando reduz a desconfiança de infoproduto. Métrica: CTR de link e deslizes por impressão.
 
 ## mm47f3-c04-ordem-certa
@@ -99,5 +105,6 @@ O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: a
 
 Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.
 **Título:** A ordem certa para estruturar · **Descrição:** Mini Mentoria de Estruturação · R$ 47
-**URL:** https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c04-ordem-certa&utm_term={{ad.id}}
+**URL de destino (sem parâmetros):** https://infoprodutos-zion.clickmax.space/mini-mentoria
+**Tags de URL (colar só no campo de parâmetros do anúncio):** `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c04-ordem-certa&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
 **Hipótese:** Conteúdo educativo entrega valor antes do pedido e filtra curiosos. Métrica: CTR de link e custo por início de checkout.

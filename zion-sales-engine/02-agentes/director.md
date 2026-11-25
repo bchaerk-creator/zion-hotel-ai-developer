@@ -51,3 +51,4 @@ Recomendação pronta para Bruno quando: (a) todo número tem fonte e data; (b) 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
 |  |  |  |  |
+| 25/11/2026 | Fase 03 consolidada: auditoria "aprovado com ajustes"; ajustes A05 a A12 corrigidos no repositório; criados a matriz de aprovações (M01 a M31, com o caminho mais curto para vender), o resumo para Bruno e o Manual Mestre v2. Nenhuma ação em produção além do novo import no rascunho do obrigado. Aguarda as decisões de Bruno (resumo, seção 2). | Auditoria da Fase 03 e `RISCO_REPOSITORIO_PUBLICO.md` | Pendente de Bruno (nenhum "aprovado" recebido ainda) |

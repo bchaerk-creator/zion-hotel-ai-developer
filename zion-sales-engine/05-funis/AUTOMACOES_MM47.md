@@ -66,7 +66,9 @@ Tudo acima só com "aprovado" de Bruno, exceto o que está dentro do mandato (ap
 
 ## 7. Aprovação necessária para ligar
 
+**BLOQUEIO DE ATIVAÇÃO (A08, auditoria da Fase 03):** a condição "já comprou" (tag `MM47 | COMPROU` ausente antes de cada e-mail de recuperação) é **pré-requisito para ligar** os fluxos de Pix não pago e de recuperação. Sem ela, quem paga depois de o Pix expirar recebe um e-mail de recuperação por engano, e o debounce de 3.600 s permite repetir. A mitigação só por texto ("se já pagou, ignore") **não libera** a ativação. Nenhum fluxo de recuperação é ligado até a condição ser inserida no editor e provada com uma compra de teste (compra depois do Pix expirar: nenhum e-mail sai).
+
 1. Teste de compra de Bruno (entrega e quadro).
-2. Inserir condição "já comprou" nos dois fluxos de recuperação.
+2. Inserir condição "já comprou" nos dois fluxos de recuperação (**bloqueia a ativação**).
 3. Ajustar debounce.
 4. "Aprovado" de Bruno para `flows_activate` em cada fluxo (um de cada vez, começando por Pós-compra).

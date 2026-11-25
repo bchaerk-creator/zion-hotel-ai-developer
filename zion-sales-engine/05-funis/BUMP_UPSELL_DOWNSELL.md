@@ -47,7 +47,7 @@ Escolha provisória [H, [BRUNO]]: **Ferramenta 05 (Orçamento da Cabana)** como 
 - Sem "de/por" falso, sem bônus inventado, sem urgência falsa. Preço sempre visível.
 - Não oferecer no mesmo e-mail do acesso. Primeiro entregar, depois oferecer.
 - Quem pediu reembolso da Mini Mentoria **não recebe** oferta complementar.
-- Cada oferta complementar leva UTM própria para medir (`utm_campaign=mm47_complemento`).
+- Cada oferta complementar leva UTM própria para medir (mesmo `utm_campaign=mm47` do padrão `09-tracking/PADRAO_UTM.md`, com `utm_content=complemento-<oferta>` para separar).
 - Medir efeito real: ticket médio **e** número de pedidos, como recomenda a documentação do ClickMax. Se o bump derrubar a conversão da Mini Mentoria, desligar.
 
 ## 5. O que precisa de validação de Bruno

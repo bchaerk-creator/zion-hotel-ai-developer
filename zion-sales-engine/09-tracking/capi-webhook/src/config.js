@@ -28,7 +28,9 @@ function loadConfig(env = process.env) {
     fieldMapJson: env.FIELD_MAP_JSON || '',
     amountUnit: (env.AMOUNT_UNIT || 'cents').toLowerCase(),
     eventQueryParam: env.EVENT_QUERY_PARAM || 'evento',
-    paidStatuses: list(env.PAID_STATUSES, 'paid,approved,completed,authorized,captured'),
+    // Pago = so o que esta aqui. Padrao conservador (auditoria A05): 'authorized' (cartao nao capturado) e
+    // 'completed' NAO contam. Ampliar so via PAID_STATUSES, com evidencia do payload real do gateway.
+    paidStatuses: list(env.PAID_STATUSES, 'paid,approved'),
     refundStatuses: list(env.REFUND_STATUSES, 'refunded,refunding,chargedback,chargeback,canceled,cancelled'),
     minValue: num(env.MIN_VALUE, 1),
     maxValue: num(env.MAX_VALUE, 2000),

@@ -13,10 +13,10 @@ SEGURANCA E REGRAS
 - Idempotencia: arquivo de controle (so event_id) ao lado do CSV; linha ja enviada e pulada.
 
 Uso:
-  python3 reenviar_compras.py --csv /caminho/fora/do/repo/compras.csv            # dry-run
+  python3 -I reenviar_compras.py --csv /caminho/fora/do/repo/compras.csv            # dry-run
   META_TEST_EVENT_CODE=TESTxxxx META_PIXEL_ID=... META_ACCESS_TOKEN=... \
-      python3 reenviar_compras.py --csv ... --send                                # envio de teste
-  META_PIXEL_ID=... META_ACCESS_TOKEN=... python3 reenviar_compras.py --csv ... --send   # envio real
+      python3 -I reenviar_compras.py --csv ... --send                                # envio de teste
+  META_PIXEL_ID=... META_ACCESS_TOKEN=... python3 -I reenviar_compras.py --csv ... --send   # envio real
 """
 import argparse
 import csv

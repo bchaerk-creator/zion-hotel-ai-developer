@@ -146,6 +146,33 @@ test('Pix gerado / transacao criada / pendente / expirado sao ignorados', async 
   await graph.close();
 });
 
+test('A05: authorized e completed NAO sao pagos por padrao; paid_pending nunca vira compra', async () => {
+  const { graph, send } = await setup();
+  const cases = [
+    { id: 'A1', event: 'checkout.transaction.updated.v1', transaction: { amount: 4700, status: 'authorized' } },
+    { id: 'A2', event: 'checkout.transaction.updated.v1', transaction: { amount: 4700, status: 'completed' } },
+    { id: 'A3', event: 'checkout.transaction.updated.v1', transaction: { amount: 4700, status: 'captured' } },
+    { id: 'A4', event: 'paid_pending', transaction: { amount: 4700, status: 'paid_pending' } },
+    { id: 'A5', event: 'paid_pending', transaction: { amount: 4700 } },
+    { id: 'A6', event: 'checkout.transaction.paid_pending.v1', transaction: { amount: 4700, status: 'pending' } },
+  ];
+  for (const c of cases) {
+    const out = await send(deliveryPayload(c));
+    assert.equal(out.json.status, 'ignored', c.id);
+  }
+  assert.equal(graph.calls.length, 0);
+  await graph.close();
+});
+
+test('A05: o pago exige status explicitamente configurado (PAID_STATUSES amplia so se Bruno/DATA decidir)', async () => {
+  const cfg = loadConfig({});
+  assert.deepEqual(cfg.paidStatuses, ['paid', 'approved']);
+  const s = await setup({ PAID_STATUSES: 'paid,approved,authorized' });
+  const out = await s.send(deliveryPayload({ id: 'A7', event: 'checkout.transaction.updated.v1', transaction: { amount: 4700, status: 'authorized' } }));
+  assert.equal(out.json.status, 'sent');
+  await s.graph.close();
+});
+
 test('Pix gerado e depois pago: so o pago vira Purchase', async () => {
   const { graph, send } = await setup();
   await send(deliveryPayload({ event: 'checkout.pix.generated.v1', transaction: { amount: 9700, status: 'pending' } }));

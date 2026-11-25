@@ -1,7 +1,8 @@
 import json,os
 BASE='https://bchaerk-creator.github.io/zion-hotel-ai-developer/ads/mm47-fase03/'
 DEST='https://infoprodutos-zion.clickmax.space/mini-mentoria'
-UTM='?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content={id}&utm_term={{{{ad.id}}}}'
+# Padrao unico em 09-tracking/PADRAO_UTM.md: URL de destino SEM parametros; as tags vao em campo separado (colar so nas Tags de URL do Meta).
+TAGS='utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content={id}&utm_term={{{{ad.id}}}}&sck={{{{campaign.id}}}}&ad_id={{{{ad.id}}}}&campaign_id={{{{campaign.id}}}}&adset_id={{{{adset.id}}}}'
 DESC='Mini Mentoria de Estruturação · R$ 47'
 CORPO=("O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: aulas gravadas, fichas \"Faça agora\", e-books, "
 "planilhas de cálculo em branco, kit do investidor (modelos), kit de prompts e Dossiê de Desenvolvimento.\n\n"
@@ -50,12 +51,12 @@ out=[]
 for a in A:
     d=dict(a);d['arquivos']=[dict(arquivo='docs/ads/mm47-fase03/'+f,url_publica=BASE+f) for f in a['files']];del d['files']
     d['cta_meta']='Saiba mais';d['cta_arte']='Aprenda o passo a passo · R$ 47'
-    d['url_destino']=DEST+UTM.format(id=a['id']);d['descricao']=DESC;d['status']='pronto para aprovação de Bruno; não enviado ao Meta'
+    d['url_destino']=DEST;d['url_tags']=TAGS.format(id=a['id']);d['url_tags_teste_ab']={'A':TAGS.format(id=a['id']+'-varA'),'B':TAGS.format(id=a['id']+'-varB')};d['descricao']=DESC;d['status']='pronto para aprovação de Bruno; não enviado ao Meta'
     out.append(d)
 os.makedirs('docs/ads/mm47-fase03',exist_ok=True)
 json.dump(out,open('docs/ads/mm47-fase03/manifesto.json','w'),ensure_ascii=False,indent=2)
-md=['# Copies MM47 · Fase 03 (Mini Mentoria R$ 47)\n','Botão em todos: **Saiba mais**. Destino: '+DEST+'. UTM padrão no manifesto. Nada foi enviado ao Meta: material para aprovação de Bruno.\nArtes: fundo sólido, sem foto e sem pessoas; telas reais da plataforma onde aparecem. Rodapé de cada arte traz as condições.\n']
+md=['# Copies MM47 · Fase 03 (Mini Mentoria R$ 47)\n','Botão em todos: **Saiba mais**. Destino: '+DEST+'. Padrão único de UTM, `sck` e ids em `zion-sales-engine/09-tracking/PADRAO_UTM.md`: a URL abaixo é só o destino, e as **Tags de URL** vão coladas uma vez no campo de parâmetros do anúncio (não cole na URL). Nada foi enviado ao Meta: material para aprovação de Bruno.\nArtes: fundo sólido, sem foto e sem pessoas; telas reais da plataforma onde aparecem. Rodapé de cada arte traz as condições.\n']
 for a in out:
-    md+=['## '+a['id'],'**Conceito:** '+a['conceito']+' · **ECROI:** '+a['ecroi']+' · **Formato:** '+a['formato'],'**Primeira linha:** '+a['primeira'],'**Texto principal**\n'+a['texto'],'**Título:** '+a['headline']+' · **Descrição:** '+a['descricao'],'**URL:** '+a['url_destino'],'**Hipótese:** '+a['hipotese'],'']
+    md+=['## '+a['id'],'**Conceito:** '+a['conceito']+' · **ECROI:** '+a['ecroi']+' · **Formato:** '+a['formato'],'**Primeira linha:** '+a['primeira'],'**Texto principal**\n'+a['texto'],'**Título:** '+a['headline']+' · **Descrição:** '+a['descricao'],'**URL de destino (sem parâmetros):** '+a['url_destino'],'**Tags de URL (colar só no campo de parâmetros do anúncio):** `'+a['url_tags']+'`','**Hipótese:** '+a['hipotese'],'']
 open('docs/ads/mm47-fase03/COPIES.md','w').write('\n'.join(md))
 print(len(out),max(len(a['headline']) for a in out))

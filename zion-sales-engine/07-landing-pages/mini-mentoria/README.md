@@ -41,3 +41,8 @@ Depois: `pages_validate_html` e `pages_import_html_draft` (manifest `sales`; `th
 
 ## Reverter
 Nada a reverter em produção. Para descartar: apagar as 3 páginas rascunho no painel (ou `pages_delete` com "aprovado"). Arquivos: `git revert` do commit.
+
+## Correção A06 (auditoria da Fase 03, 25/11)
+A página de obrigado dizia "Se o e-mail não aparecer em alguns minutos, confira a caixa de spam". Como o fluxo de boas-vindas ainda é rascunho (não envia e-mail) e o ciclo compra → acesso nunca foi provado, a frase foi **removida** do fonte (`obrigado/build.py`) e trocada por "Se não conseguir entrar, fale com a gente pelo WhatsApp no fim desta página". O texto continua dizendo só o que foi verificado (acesso liberado para o e-mail da compra, primeiro acesso sem criar senha). Os fontes das páginas A e B não prometem e-mail e não mudaram (os `index.html` seguem idênticos ao build).
+
+**Registro de reimportação.** Reimportar numa página **rascunho** (nunca publicada) exige novo `pages_import_html_draft` na mesma `pageId`, com o `offerId` correto quando for página de vendas. Feito em 25/11 só no obrigado (`1a0aed43…`, sem oferta): `lastPublishedAt` conferido como nulo antes e depois. A (`f690b2c4…`) e B (`299947bf…`) não precisaram de reimportação (fonte inalterado). **Nunca** importar em `/mini-mentoria` (`be23f04a…`) sem "aprovado": a publicada é atualizada ao vivo.

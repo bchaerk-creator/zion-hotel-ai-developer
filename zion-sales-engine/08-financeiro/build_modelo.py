@@ -104,7 +104,7 @@ def build(path, inputs=None):
     P(17, "liq_medio", "Líquido médio ponderado pelo mix (R$)", "=#mix_pix*#liq_pix+(1-#mix_pix)*#liq_cartao", BRL, "calc", "", "")
     P(18, "imposto", "Imposto sobre a venda (% do preço)", 0.0, PCT, "in", "a definir", "Sem alíquota definida. Não há valor padrão: preencher com o regime tributário real.")
     P(19, "custos_var", "Custos variáveis por venda (R$)", 0, BRL, "in", "a definir", "Ex.: suporte por venda, ferramentas por aluno. Sem valor definido.")
-    P(20, "reemb", "Taxa de reembolso em 7 dias (% das vendas)", 0.0, PCT, "in", "a definir", "Zero reembolsos registrados, mas a amostra é muito pequena (2 compradores externos). Reserva = taxa × líquido (perda da taxa do gateway no reembolso é [NC]).")
+    P(20, "reemb", "Taxa de reembolso em 7 dias (% das vendas)", 0.0, PCT, "in", "a definir", "Zero reembolsos registrados, mas a amostra é muito pequena (poucos compradores externos). Reserva = taxa × líquido (perda da taxa do gateway no reembolso é [NC]).")
     P(21, "margem_alvo", "Margem alvo sobre a contribuição (%)", 0.30, PCT, "in", "[H]", "Decisão de Bruno. CPA desejado = CPA máximo × (1 − margem alvo).")
     P(22, "teto", "Teto de mídia por dia (R$)", 60, BRL, "in", "[E]", "Teto definido para a fase de teste.")
     P(23, "cpc", "Custo por clique no link (R$)", None, BRL, "in", "dado real", "Vazio: preencher com o dado real do período (fora do repositório).")

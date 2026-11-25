@@ -1,9 +1,9 @@
 # MANUAL MESTRE · ZION SALES ENGINE
 
-Versão 1 · 25/11/2026 · Responsável: Bruno Chaerk · Zion Hotel Group International.
-Fonte: Comando Mestre ZION SALES ENGINE (25/11/2026), `CLAUDE.md` e a auditoria de 25/11 (`13-relatorios/`).
+**Versão 2 · 25/11/2026** (v1: 25/11/2026, Comando Mestre; v2: incorpora a Fase 03 e a auditoria da Fase 03) · Responsável: Bruno Chaerk · Zion Hotel Group International.
+Fonte: Comando Mestre ZION SALES ENGINE (25/11/2026), `CLAUDE.md`, a auditoria de 25/11 e a Fase 03 (`13-relatorios/`, entregas linkadas em cada pilar).
 
-**Como ler este manual.** O texto literal do Comando Mestre de Bruno está aqui, sem acréscimos. O que o comando não trouxe é o conteúdo interno das cinco metodologias (e o significado de cada etapa do ECROI), marcado **"detalhe a ser fornecido por Bruno"**. Nenhum agente deve preencher esse espaço por suposição. Marcação de evidência: [E] lido, [H] hipótese, [NC] não confirmado.
+**Como ler este manual.** O texto literal do Comando Mestre de Bruno está aqui, sem acréscimos. O ECROI e o Low Ticket Raiz têm definição de Bruno (seção 2). O conteúdo interno de OP3D, Pareto em cascata, Método Zion 360° e Engenharia de Vendas Perpétuas **não foi entregue**: marcado **"conteúdo detalhado pendente de Bruno"**. Nenhum agente deve preencher esse espaço por suposição nem inventar o significado das siglas. Marcação de evidência: [E] lido, [H] hipótese, [NC] não confirmado.
 
 ---
 
@@ -15,15 +15,24 @@ Os agentes são internos e ficam descritos em `02-agentes/`. Não substituem nem
 
 ## 2. Metodologias obrigatórias
 
-Todas devem orientar o trabalho. O comando traz os nomes; o detalhe interno de cada uma **não foi entregue**: registra-se nome e papel. Do ECROI, o comando traz o nome das etapas.
+Todas orientam o trabalho. Para as duas primeiras há definição de Bruno; para as demais só o nome.
 
-| Metodologia | Papel no motor | Detalhe |
+| Metodologia | Papel no motor | Definição |
 |---|---|---|
-| **Low Ticket Raiz** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
-| **ECROI** | Nome conforme o comando. Etapas: **E**spelhamento → **C**olapso de Crença → **R**econhecimento → **O**rientação → **I**mplementação | Nome das etapas e ordem: literais do comando. Significado de cada etapa: detalhe a ser fornecido por Bruno (a skill `ecroi` do ambiente não substitui o detalhe de Bruno) |
-| **OP3D e Pareto em cascata** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
-| **Método Zion 360°** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
-| **Engenharia de Vendas Perpétuas de Resposta Direta** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
+| **Low Ticket Raiz** | Base dos produtos de entrada | Definição de Bruno: **produto tangível, dor específica, compra simples, demonstração visual e entrega prática.** |
+| **ECROI** | Estrutura de toda comunicação persuasiva (landing, anúncio, roteiro, e-mail). Depois das cinco etapas vêm: oferta, entregáveis, preço e CTA | Definição de Bruno: **E · Espelhamento** = identificação com a dor do cliente. **C · Colapso de Crença** = confrontar a ideia equivocada que impede o cliente de avançar. **R · Reconhecimento** = fazer o cliente compreender o verdadeiro problema e reconhecer a necessidade de uma solução. **O · Orientação** = apresentar o método e o caminho correto. **I · Implementação** = demonstrar como o cliente aplicará o conhecimento pela plataforma. |
+| **OP3D** | Nome conforme o comando | **Conteúdo detalhado pendente de Bruno.** Não interpretar a sigla. |
+| **Pareto em cascata** | Nome conforme o comando | **Conteúdo detalhado pendente de Bruno.** |
+| **Método Zion 360°** | Nome conforme o comando | **Conteúdo detalhado pendente de Bruno.** |
+| **Engenharia de Vendas Perpétuas** (de Resposta Direta) | Nome conforme o comando | **Conteúdo detalhado pendente de Bruno.** |
+
+Como a Fase 03 aplicou: as landings A e B (`07-landing-pages/mini-mentoria/`) seguem E → C → R → O → I → oferta → entregáveis → preço → CTA (a variante A põe o CTA com preço antes da narrativa, como teste pedido; exige "sim" explícito de Bruno); os 7 criativos (`06-criativos/CONCEITOS_DIFERENTES.md`) variam ângulo ECROI, formato e prova, não só o gancho. "Aprenda o passo a passo" é a expressão-padrão dos infoprodutos.
+
+## Princípios permanentes
+1. **Ética:** nada de promessa de renda, ocupação, reserva, investimento ou valorização; sem depoimento, caso ou número de mercado inventado; sem urgência ou preço "de" falsos.
+2. **Transparência:** preço, condições, limitações e o que está fora do produto (reunião, atendimento individual, consultoria, parceria, investimento) sempre claros, antes do pagamento.
+3. **Sustentabilidade comercial:** o produto financia a própria aquisição (CPA dentro do líquido, margem positiva, reembolso e custos considerados); não escalar sem rastreamento, compra real e margem; faturamento não é lucro.
+4. **Proteção da marca:** identidade Zion oficial, fotos reais sem inventar pessoas como clientes ou equipe, nada que a plataforma de anúncios possa reprovar, dados de clientes protegidos (LGPD), repositório público sem número real.
 
 ## 3. Os 7 pilares
 
@@ -33,6 +42,8 @@ Todas devem orientar o trabalho. O comando traz os nomes; o detalhe interno de c
 - **Sem formulário de captação obrigatório.**
 - **Sem reunião obrigatória.**
 - **Não misturar venda direta com captação high ticket.**
+
+**Fase 03 (Engenharia de funis):** funil canônico, automações em rascunho (Pós-compra, Pix não pago, recuperação), bump/upsell/downsell, relacionamento e textos de WhatsApp (só texto), plano de consolidação do R$ 97 com travas de acesso: `05-funis/` (`FUNIL_CANONICO.md`, `AUTOMACOES_MM47.md`, `BUMP_UPSELL_DOWNSELL.md`, `RELACIONAMENTO_BASE.md`, `MM47_WHATSAPP_TEXTOS_PROPOSTOS.md`, `CONSOLIDACAO_OFERTA_97.md`). Condição "já comprou" bloqueia ligar os fluxos de recuperação.
 
 ### 3.2 Engenharia financeira
 
@@ -55,6 +66,8 @@ Na prática da auditoria, imposto e custo sem valor definido ficam "indisponíve
 
 Faturamento não é lucro. Taxas só entram se comprovadas, com a origem do dado.
 
+**Fase 03 (Engenharia financeira):** modelo parametrizado (cenários rotulados como hipótese, imposto e custo sem valor ficam "indisponíveis") com teste independente: `08-financeiro/` (`MODELO_FINANCEIRO.md`, `modelo_financeiro.xlsx`, `test_modelo.py`). Pendente de Bruno: imposto, custos variáveis e tributos da veiculação.
+
 ### 3.3 Criativos
 
 - **CTA com preço explícito.**
@@ -74,9 +87,13 @@ Faturamento não é lucro. Taxas só entram se comprovadas, com a origem do dado
 - No Meta o botão vem de lista fixa ("Saiba mais"); a chamada personalizada vai na arte e na primeira linha do texto.
 - Fotos reais da Zion, sem pessoas; texto não vai por cima da foto quando Bruno pedir foto nítida. Imagem gerada nunca é apresentada como foto real. Imagens de referência de terceiros ou de IA servem só de inspiração.
 
+**Fase 03 (Engenharia criativa):** conceitos diferentes (ângulo ECROI, formato e prova), roteiro de VSL, 7 peças 1080×1350, copies e manifesto, auditoria de conteúdo e pacote para o ChatGPT: `06-criativos/` e `docs/ads/mm47-fase03/`. UTM no padrão único `09-tracking/PADRAO_UTM.md` (URL de destino sem parâmetros; tags à parte).
+
 ### 3.4 Inteligência de mercado
 
 Entender público, dor, linguagem, concorrência e oferta antes de mexer. Sem números de mercado inventados: toda afirmação com fonte e data, ou marcada como hipótese.
+
+**Fase 03 (Inteligência de mercado):** inventário, filtros, ranking de produtos e escada de preços, tudo marcado [E]/[H]/[NC]: `04-mercado/MAPA_PRODUTOS.md` e `mapa_produtos.csv`.
 
 ### 3.5 Dados e rastreamento
 
@@ -91,6 +108,8 @@ Regras de eventos (alinhadas aos requisitos R1 a R8 do plano técnico, `13-relat
 - **UTM:** persistente até a venda, com campanha, conjunto e anúncio (ids), para atribuir cada venda a um criativo.
 - **Conciliação:** vendas do ClickMax × gateway × Meta com diferença de até 10% (critério R7 do plano).
 
+**Fase 03 (Inteligência de dados):** plano executável e tutorial visual, receptor CAPI (Purchase só com `paid`/`approved` por padrão; testes passam), recuperação de compras sem UTM, conciliação, snippet de UTM e padrão único de UTM, `sck` e ids: `09-tracking/` (`PLANO_EXECUTAVEL.md`, `PADRAO_UTM.md`, `tutorial/`, `capi-webhook/`, `recuperacao/`, `conciliacao/`, `snippets/`). Base legal e finalidade (LGPD) em `09-tracking/README.md`.
+
 ### 3.6 Conversão
 
 **Landing (Pilar 06, ECROI).** A página deve, nesta ordem: 1 promessa específica; 2 identificação com a dor; 3 construir desejo; 4 demonstrar o produto; 5 apresentar os entregáveis; 6 autoridade verdadeira; 7 explicar como funciona; 8 apresentar a oferta; 9 informar o preço claramente; 10 conduzir ao checkout.
@@ -102,6 +121,8 @@ Regras de eventos (alinhadas aos requisitos R1 a R8 do plano técnico, `13-relat
 **Checkout.** Limpo, objetivo, mobile: nome do produto, preço explícito, condições de pagamento, dados estritamente necessários, segurança, garantia aplicável, botão claro, velocidade, Pix e cartão funcionando. Sem excesso de banners, cronômetros artificiais, pop-ups, formulários desnecessários. **A landing page vende, o checkout facilita a compra.** Revisar agradecimento, confirmações, entrega de acessos e recuperação de pagamentos pendentes.
 
 Em campo: página que explica o que a pessoa compra, o preço e o que recebe logo na primeira dobra, no celular, com CTA claro e checkout que funciona. Uma tag isolada não comprova pagamento nem entrega: verificar o caminho completo, do pagamento confirmado ao acesso.
+
+**Fase 03 (Engenharia de conversão):** landings A e B (ECROI, CTA sempre com preço), obrigado sem promessa de e-mail, checkout enxuto e checklists de entrega e recuperação: `07-landing-pages/mini-mentoria/` e `08-checkouts/`. Rascunhos não publicados; nada foi importado em `/mini-mentoria`.
 
 ### 3.7 Otimização e escala
 
@@ -116,6 +137,8 @@ Em campo: página que explica o que a pessoa compra, o preço e o que recebe log
 - Escala progressiva e monitorada, e com "aprovado" de Bruno.
 
 Pré-condições que a auditoria de 25/11 mostrou necessárias para o rastreamento ser confiável: Purchase só após pago, value/currency, deduplicação, UTM com ids; conciliação dentro do limite do plano; compra real de teste concluída, com reembolso; oferta e entrega coerentes com a promessa da página.
+
+**Fase 03 (Otimização e escala):** plano e calculadora de amostra do teste A/B (recomendação: não executar no teto atual), handoff de tráfego para o ChatGPT com critérios de pausa/escala, e a matriz de aprovações: `11-testes-ab/`, `10-trafego/HANDOFF_CHATGPT_FASE03.md`, `13-relatorios/MATRIZ_ALTERACOES_APROVACAO.md`. Auditoria: `13-relatorios/AUDITORIA_FASE03.md`.
 
 ## 4. Governança e autorizações
 
@@ -191,6 +214,14 @@ Esta etapa de 25/11 entregou a estrutura `zion-sales-engine/` (15 pastas), este 
 - **Gasto, mensagem a leads, automação e mexer no existente:** só com "aprovado" de Bruno.
 - **Medição:** comparar custo por venda com o preço menos taxas e impostos.
 
+### Regras permanentes adicionais (Fase 03)
+- **CTA com preço:** todo botão que leva ao pagamento mostra o preço (ex.: "QUERO ACESSAR A MINI MENTORIA POR R$47"); no Meta o botão é "Saiba mais" e o preço vai na arte e na primeira linha.
+- **Sem promessa:** "Aprenda o passo a passo"; reunião, atendimento individual, parceria e investimento não fazem parte do produto (no máximo "possibilidade sujeita à análise").
+- **Dados reais fora do repositório:** sem número de venda, gasto, ROAS/CAC ou resultado real, sem e-mail, telefone ou nome de cliente; exemplos marcados "dados fictícios"; CSV de compradores fora do repo.
+- **Governança de aprovação:** toda alteração em produção depende de "aprovado: <id>" da matriz (`13-relatorios/MATRIZ_ALTERACOES_APROVACAO.md`); silêncio não é aprovação; nada é publicado, ligado ou enviado por agente sem isso.
+- **Padrão único de UTM:** `09-tracking/PADRAO_UTM.md` (`utm_campaign=mm47`, `utm_content=<id do criativo>`, variante só como sufixo `-varA`/`-varB` no `utm_content`).
+- **Testes:** `python3 -I` e `node --test`; nunca dizer que funciona sem executar.
+
 ## 8. Regras aprendidas na auditoria de 25/11
 
 Fatos de `13-relatorios/`. Os itens marcados (*) foram informados no comando e não aparecem nos relatórios copiados; confirmar na próxima auditoria.
@@ -200,11 +231,11 @@ Fatos de `13-relatorios/`. Os itens marcados (*) foram informados no comando e n
 3. **Script colado em HTML é removido pelo ClickMax**(*): rastreamento não entra por script na página; usar a configuração nativa de pixel/CAPI do ClickMax.
 4. **`pages_publish` pode devolver sucesso sem publicar**(*): conferir `lastPublishedAt` e abrir a URL pública depois de publicar.
 5. **R$ 47 e R$ 97 entregam o mesmo conteúdo** (mesmo conteúdo, 9 módulos, 70 aulas). O de R$ 97 só ganha uma segunda porta de acesso. Não há diferença real de produto. [E]
-6. **Nenhuma campanha otimizava para compra** e o Meta registrou 0 compras contra 2 vendas reais; as vendas vieram sem UTM. Não se atribui venda a anúncio sem UTM e ids. [E]
+6. **Nenhuma campanha otimizava para compra** e o Meta não registrou compra atribuída para as vendas reais recentes; elas vieram sem UTM. Não se atribui venda a anúncio sem UTM e ids. [E]
 7. **A campanha otimizada para ViewContent não entregava aprendizado**: o ViewContent está desligado nas páginas. Conferir o evento de otimização antes de ligar. [E]
 8. **O ClickMax só enxerga o que a Ticto repassa**: recusa, Pix expirado e abandono ficam invisíveis. Falta extrato do gateway. [E]
-9. **Pix gerado × pago se distinguem no ClickMax** (pendente → pago em 51 a 91 segundos); falta garantir o mesmo no Meta. [E]
-10. **Cerca de 40% das visitas de um dia eram tráfego de servidor** (sessão de até 3 s); filtrar na análise de conversão. [E/H]
+9. **Pix gerado × pago se distinguem no ClickMax** (pendente → pago em poucos minutos); falta garantir o mesmo no Meta. [E]
+10. **Parcela relevante das visitas de um dia era tráfego de servidor** (sessão de até 3 s); filtrar na análise de conversão. [E/H]
 11. **Audience Network concentrou a maior parte do gasto dos melhores vídeos**, com CPM muito alto; excluir nas campanhas novas (precisa de "aprovado"). [E/H]
 12. **Rótulo e destino precisam bater:** a campanha rotulada "R$ 97" levava a página de R$ 47. Um preço, um nome, uma entrega por campanha. [E]
 13. **Promessas que a oferta não entrega** (reunião, "entrará em contato", "receber investimentos", "parceiro/sócio") devem sair de anúncios e páginas. [E]
@@ -217,4 +248,4 @@ Fatos de `13-relatorios/`. Os itens marcados (*) foram informados no comando e n
 
 ## 9. Pendências do próprio manual
 
-Detalhe a ser fornecido por Bruno: o conteúdo interno de cada uma das cinco metodologias (Low Ticket Raiz; ECROI, incluindo o significado de cada etapa; OP3D e Pareto em cascata; Método Zion 360°; Engenharia de Vendas Perpétuas de Resposta Direta). O restante do Comando Mestre está incorporado neste manual.
+**Conteúdo detalhado pendente de Bruno:** OP3D, Pareto em cascata, Método Zion 360° e Engenharia de Vendas Perpétuas (de Resposta Direta). ECROI e Low Ticket Raiz já têm a definição de Bruno (seção 2). O restante do Comando Mestre está incorporado neste manual.

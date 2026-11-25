@@ -1,6 +1,6 @@
 # Conceitos criativos realmente diferentes · Mini Mentoria R$ 47 (Fase 03)
 
-Cada conceito muda **ângulo ECROI, formato, prova e pedido**, não só o gancho. Todos: promessa "Aprenda o passo a passo", botão do Meta **Saiba mais**, preço na primeira linha e na arte, destino `https://infoprodutos-zion.clickmax.space/mini-mentoria`, UTM padrão `?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<id>&utm_term={{ad.id}}`.
+Cada conceito muda **ângulo ECROI, formato, prova e pedido**, não só o gancho. Todos: promessa "Aprenda o passo a passo", botão do Meta **Saiba mais**, preço na primeira linha e na arte, destino `https://infoprodutos-zion.clickmax.space/mini-mentoria`, UTM padrão nas Tags de URL do anúncio (fonte única `09-tracking/PADRAO_UTM.md`: `utm_campaign=mm47`, `utm_content=<id>`, `utm_term={{ad.id}}`, `sck`, `ad_id`, `campaign_id`, `adset_id`); a URL de destino fica sem parâmetros.
 ECROI (definição de Bruno): E Espelhamento · C Colapso de Crença · R Reconhecimento · O Orientação · I Implementação. Textos completos, ids e arquivos: `docs/ads/mm47-fase03/COPIES.md` e `manifesto.json`.
 
 ## Matriz (prioridade de teste)

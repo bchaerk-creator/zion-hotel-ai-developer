@@ -7,7 +7,7 @@
 - Destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (não usar /inscricao, /inscricao-47, /inscricao-curta, /parceiro-zion nesta campanha).
 - Botão do Meta: **Saiba mais** (a chamada com preço está na arte e na primeira linha).
 - Descrição de todos: "Mini Mentoria de Estruturação · R$ 47".
-- UTM padrão: `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<id>&utm_term={{ad.id}}` (o campo `{{ad.id}}` é macro do Meta: colar como está nas "Tags de URL"; não substituir).
+- UTM padrão (fonte única: `09-tracking/PADRAO_UTM.md`): `utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<id do criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`. Colar **só** no campo "Parâmetros de URL" do anúncio, como está (as `{{ }}` são macros do Meta; não substituir). A URL de destino fica **sem parâmetros**. Teste A/B de landing: `utm_content=<id>-varA` ou `-varB`.
 - Nome do anúncio sugerido: o próprio `id` abaixo.
 
 ## 2. Criativos prontos (usar)
@@ -19,7 +19,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · Você sabe o preço da cabana. Sabe quanto custa deixar tudo pronto?
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c03-custo-escondido`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c03-custo-escondido&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c03-custo-escondido` (tags completas no padrão acima)
 
 ### mm47f3-c06-obra-ultimo-passo
 - Conceito: C06 Colapso de crença · formato: imagem 1080x1350
@@ -29,7 +29,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · "Primeiro eu construo, depois eu vejo se dá certo." Começar pela obra é começar pelo último passo.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c06-obra-ultimo-passo`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c06-obra-ultimo-passo&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c06-obra-ultimo-passo` (tags completas no padrão acima)
 
 ### mm47f3-c08-oferta-47
 - Conceito: C10 Apresentação objetiva da oferta · formato: imagem 1080x1350
@@ -39,7 +39,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · Mini Mentoria de Estruturação: aprenda o passo a passo para estruturar o seu empreendimento turístico.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c08-oferta-47`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c08-oferta-47&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c08-oferta-47` (tags completas no padrão acima)
 
 ### mm47f3-c09-objecoes
 - Conceito: C08 Quebra de objeções · formato: imagem 1080x1350
@@ -49,7 +49,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · É reunião? Preciso de capital? E se eu não gostar? Garante parceria? Respostas diretas.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c09-objecoes`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c09-objecoes&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c09-objecoes` (tags completas no padrão acima)
 
 ### mm47f3-c10-obra-ou-estrutura
 - Conceito: C07 Comparação de alternativas · formato: imagem 1080x1350
@@ -59,7 +59,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · Obra primeiro ou estrutura primeiro? A Mini Mentoria ensina a segunda forma, em sete pilares.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c10-obra-ou-estrutura`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c10-obra-ou-estrutura&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c10-obra-ou-estrutura` (tags completas no padrão acima)
 
 ### mm47f3-c02-plataforma-por-dentro
 - Conceito: C02 Demonstração real da plataforma (carrossel 5 cartões) · formato: carrossel 1080x1350, 5 cartões
@@ -73,7 +73,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · Veja por dentro da plataforma: capturas reais das telas da Mini Mentoria de Estruturação.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c02-plataforma-por-dentro`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c02-plataforma-por-dentro&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c02-plataforma-por-dentro` (tags completas no padrão acima)
 
 ### mm47f3-c04-ordem-certa
 - Conceito: C04 Tutorial prático / carrossel educativo (6 cartões) · formato: carrossel 1080x1350, 6 cartões
@@ -88,7 +88,7 @@
 - Descrição: Mini Mentoria de Estruturação · R$ 47
 - Primeira linha do texto: R$ 47 · A ordem certa para estruturar um empreendimento turístico, em sete pilares.
 - Texto principal completo: ver `docs/ads/mm47-fase03/COPIES.md` (seção `mm47f3-c04-ordem-certa`)
-- URL com UTM: `https://infoprodutos-zion.clickmax.space/mini-mentoria?utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=mm47f3-c04-ordem-certa&utm_term={{ad.id}}`
+- URL de destino: `https://infoprodutos-zion.clickmax.space/mini-mentoria` (sem parâmetros) · `utm_content` deste anúncio: `mm47f3-c04-ordem-certa` (tags completas no padrão acima)
 
 ## 3. Ordem sugerida de teste (detalhe em `CONCEITOS_DIFERENTES.md`)
 Rodada 1 (prospecção, mesmo público, orçamento igual): custo-escondido, obra-ultimo-passo, plataforma-por-dentro, objecoes. Rodada 2: oferta-47 em remarketing; ordem-certa; obra-ou-estrutura. Vídeos (jornada do Dossiê, autoridade do fundador, VSL curta): ainda não existem; dependem de Bruno ou de produção (`ROTEIRO_VSL.md`).

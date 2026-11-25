@@ -1,5 +1,8 @@
+import sys
 import unittest
 from pathlib import Path
+
+sys.path.insert(0, Path(__file__).resolve().parent.as_posix())  # necessario com python3 -I (modo isolado)
 
 import conciliar as C
 

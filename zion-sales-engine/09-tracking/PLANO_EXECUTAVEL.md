@@ -11,7 +11,7 @@ Tutorial passo a passo, com telas esquemáticas: `tutorial/index.html` (PDF: `tu
 ## 0. Fluxo e onde cada coisa acontece
 Anúncio (Meta, `url_tags`) → Página `…clickmax.space` (UTMs na URL) → Checkout embutido (iframe `payments.clickmax.io/custom/<pageId>/<hash>`, recebe **todos** os parâmetros da URL da página [A]) → Ticto (processa Pix/cartão por trás do checkout do ClickMax; `gatewayName: ticto` [A]) → ClickMax (venda `paid`, eventos `checkout.*`, entrega) → Meta (pixel no navegador + API de Conversões a partir do servidor do ClickMax).
 
-Estado hoje [A]: Purchase atribuído = 0 nas campanhas; `ads.pixel.event` vazio no workspace; vendas reais de 24/11 sem UTM, `sck`, `src` ou id de anúncio; só os anúncios LT47 têm o conjunto completo de parâmetros.
+Estado hoje [A]: Purchase atribuído = 0 nas campanhas; `ads.pixel.event` vazio no workspace; vendas reais recentes sem UTM, `sck`, `src` ou id de anúncio; só os anúncios LT47 têm o conjunto completo de parâmetros.
 
 ## 1. Quadro por requisito
 
@@ -57,12 +57,12 @@ Estado hoje [A]: Purchase atribuído = 0 nas campanhas; `ads.pixel.event` vazio 
 - **Aceite (R4):** Purchase de teste aparece como Navegador + Servidor com o **mesmo `event_id`** e conta 1; nenhum alerta de duplicidade ou de `event_id` ausente em Diagnóstico.
 - **Teste:** tutorial D6 (anotar `event_id` do navegador e do servidor).
 
-### 1.7 UTMs (padrão definitivo)
+### 1.7 UTMs (padrão definitivo; fonte única em `PADRAO_UTM.md`, que prevalece em caso de divergência)
 - **Padrão de `url_tags` (todos os anúncios, nível do anúncio):**
 ```
-utm_source=meta&utm_medium=paid&utm_campaign=<campanha>&utm_content=<nome do criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}
+utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<id do criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}
 ```
-  `<campanha>` = slug fixo do produto/oferta (ex.: `mini-mentoria`), `<nome do criativo>` = nome curto sem espaço (`video01`). As macros `{{ad.id}}`, `{{campaign.id}}`, `{{adset.id}}` são preenchidas pelo Meta [A: LT47 já usa `{{ad.id}}`/`{{campaign.id}}`]. Sem `src` nos anúncios (o `src` fica livre para canal, abaixo).
+  `mm47` = slug fixo da oferta R$ 47 (um por oferta; nunca muda entre criativos nem variantes), `<id do criativo>` = id do arquivo da arte (ex.: `mm47f3-c03-custo-escondido`). Variante de landing no teste A/B: sufixo `-varA`/`-varB` no `utm_content` (`PADRAO_UTM.md` §3). As macros `{{ad.id}}`, `{{campaign.id}}`, `{{adset.id}}` são preenchidas pelo Meta [A: LT47 já usa `{{ad.id}}`/`{{campaign.id}}`]. Sem `src` nos anúncios (o `src` fica livre para canal, abaixo).
 - **Regras de URL:**
   - **Parâmetros ANTES do `#`**: `https://…/inscricao-47?utm_…#pagar`. Depois de `#` o navegador não os trata como query e a página não os repassa [H, teste D2]. Preferir tirar o `#pagar` dos destinos dos anúncios.
   - **Iframe/checkout:** a página repassa ao iframe todos os parâmetros da URL em que está e a URL completa [A]. Logo: (1) a UTM tem de estar na URL da **página de vendas** quando o comprador abre o checkout; (2) não colar UTM no link do iframe; (3) links internos entre páginas devem levar a mesma query; (4) o campo `src`/`sck` só é gravado se o parâmetro existia na URL no momento da abertura [E].
@@ -107,14 +107,14 @@ utm_source=meta&utm_medium=paid&utm_campaign=<campanha>&utm_content=<nome do cri
 ## 2. Opção C em uma tela: quando e como
 Só se o roteiro D mostrar que o Purchase pago **não** chega por Servidor, ou que gerar Pix cria Purchase. Código pronto e testado (25 testes automáticos) em `capi-webhook/`. Ao ligar: **desligar o Purchase nativo** do ClickMax (navegador e servidor), porque o `event_id` do navegador do ClickMax não é o id da transação e o Meta contaria duas compras. Reverter: religar os interruptores. Passo a passo e checklist de segurança: `capi-webhook/README.md`.
 
-## 3. Recuperação das compras de 24/11
-Ver `recuperacao/RECUPERACAO_COMPRAS_24-11.md` (passo 0: confirmar se o Meta realmente não tem; envio de teste antes do real; prazo prático 30/11, limite 01/12; sem atribuir a anúncio sem dado). Roda o `reenviar_compras.py` em dry-run por padrão.
+## 3. Recuperação das compras reais sem UTM
+Ver `recuperacao/RECUPERACAO_COMPRAS_SEM_UTM.md` (passo 0: confirmar se o Meta realmente não tem; envio de teste antes do real; prazo = hora do pagamento de cada compra + 7 dias, com 1 dia de margem; sem atribuir a anúncio sem dado). Roda o `reenviar_compras.py` em dry-run por padrão.
 
 ## 4. Ordem de execução
 | Dia | Fase | O que | Quem | Altera produção? |
 |---|---|---|---|---|
-| Hoje e amanhã | 0 · Leitura | Tutorial A1–A5, B1–B3, C1–C3: prints (estado do pixel, histórico de envio, eventos 24/11, extrato Ticto) + passo 0 da recuperação | Bruno → Claude | Não |
-| até 30/11 | 0b · Recuperação | Se o Meta não tem Purchase de 24/11: dry-run → teste → real (aprovado) | Bruno | Sim, só Purchase dessas compras |
+| Hoje e amanhã | 0 · Leitura | Tutorial A1–A5, B1–B3, C1–C3: prints (estado do pixel, histórico de envio, eventos desde a primeira compra real, extrato Ticto) + passo 0 da recuperação | Bruno → Claude | Não |
+| até pagamento + 7 dias (1 dia de margem) | 0b · Recuperação | Se o Meta não tem Purchase dessas compras: dry-run → teste → real (aprovado) | Bruno | Sim, só Purchase dessas compras |
 | Em seguida | 1 · Opção A | Token/CAPI, Comprou com Pix e cartão, IC após dados pessoais, pixel no produto/oferta, código de teste vazio | Bruno | **Sim (aprovado)** |
 | Em seguida | 1b · UTM | `url_tags` padrão nos anúncios, links de WhatsApp com UTM de canal, `#pagar` | Bruno + Claude | **Sim (aprovado)** |
 | Depois da fase 1 | 2 · Compra de teste | Roteiro D (Pix e cartão, reembolso) com critérios R1–R8 | Bruno → Claude | Compra real reembolsável |

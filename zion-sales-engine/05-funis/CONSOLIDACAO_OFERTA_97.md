@@ -25,6 +25,13 @@ Os dois portais entregam o mesmo conteúdo (auditoria I). Os compradores reais d
 
 ## 3. Plano passo a passo (cada passo com "aprovado")
 
+**TRAVAS OBRIGATÓRIAS DE ACESSO (A07, auditoria da Fase 03). Valem para todos os passos abaixo e prevalecem sobre qualquer texto do plano:**
+1. **Retrato antes/depois dos membros.** Antes de cada passo que toque oferta, página, entrega ou turma, registrar (fora do repositório) a lista de membros de **cada** turma dos dois portais (`member_users_list_by_classroom`) e, depois do passo, comparar. Qualquer diferença: reverter na hora e avisar Bruno. Sem retrato, o passo não começa.
+2. **Confirmação escrita do ClickMax.** Antes de arquivar **qualquer** oferta que tenha compradores, obter por escrito do suporte do ClickMax que arquivar a oferta não revoga o acesso dos compradores. A documentação ou o teste com canário não substitui essa confirmação.
+3. **Proibido mexer nas entregas de `c298aaed` e `668391e7`** (oferta dos compradores reais e a oferta de R$ 97 ligada à página de parceria) em qualquer hipótese: nem remover, nem trocar, nem renomear turma ligada a elas. Isto vale para os Passos 1, 6 e 7: os trechos desses passos que sugerem alterar essas entregas ficam **suspensos**.
+4. **O canário fica fora dessas ofertas.** Compra de teste de Bruno **não** é feita em `c298aaed` nem em `668391e7`; o teste de "arquivar não corta acesso" usa uma oferta de teste isolada, criada só para isso, com um comprador de teste. O Passo 1 abaixo, que usa essas ofertas como canário, fica **substituído** por esta regra.
+5. **Reembolso só a pedido do comprador** (a Opção B do e-mail da seção 6 informa, não cancela); nenhum acesso é removido por este plano.
+
 **Passo 0 · Congelar o que sobe de risco (sem mudar nada em produção).**
 Confirmar com TRAFFIC que nenhum anúncio ativo aponta para `/inscricao`, `/inscricao-curta`, `/inscricao-47`, `/parceiro-zion` ou `/inscricao-dossie`. Hoje a regra é campanhas pausadas e teto R$ 0 [E, CLAUDE.md], então o risco de tráfego pago nas páginas antigas é baixo [H]; confirmar de qualquer forma.
 
@@ -43,7 +50,7 @@ Preferência [H]: (a) para `/inscricao`, `/inscricao-curta`, `/inscricao-47` e `
 
 **Passo 4 · Redirecionar o tráfego sem quebrar nada.**
 1. Ordem: primeiro garantir que `/mini-mentoria` vende (teste de compra e entrega, fluxos de rascunho aprovados); só depois mover o tráfego.
-2. Anúncios: trocar a URL de destino no Meta, **pelo TRAFFIC e com "aprovado"**, para `/mini-mentoria` com UTM (`utm_source=meta&utm_medium=paid&utm_campaign=mini-mentoria&utm_content=<criativo>`). Criar anúncio novo em vez de editar o antigo preserva o histórico de aprendizado [H].
+2. Anúncios: trocar a URL de destino no Meta, **pelo TRAFFIC e com "aprovado"**, para `/mini-mentoria` com UTM (`utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content=<criativo>` (padrão único `09-tracking/PADRAO_UTM.md`: nas Tags de URL, com `utm_term`, `sck` e ids; destino sem parâmetros)). Criar anúncio novo em vez de editar o antigo preserva o histórico de aprendizado [H].
 3. Links já distribuídos (bio, mensagens da Bela/Zaya): listar com o DATA e trocar um a um. Textos da Bela/Zaya com "R$ 97" **não são alterados por este agente**: apenas informar o responsável.
 4. Link curto de transição: `redirect_links_create` (domínio de redirecionamento do ClickMax) para um endereço novo e estável que aponte para `/mini-mentoria`, para os próximos materiais usarem. Os endereços antigos continuam como estão até o passo 3.
 5. Medir 7 dias: visitas em `/mini-mentoria`, visitas residuais nas páginas antigas. Só despublicar as antigas quando a visita residual for desprezível.
@@ -63,7 +70,7 @@ Preferência [H]: (a) para `/inscricao`, `/inscricao-curta`, `/inscricao-47` e `
 | Link antigo cair numa página despublicada | Venda perdida | Preferir editar a despublicar; manter 7 dias |
 | Anúncio apontando para página antiga | Tráfego pago em promessa antiga | Passo 0 |
 | `/mini-mentoria` com o texto do botão sem preço | Fricção e regra violada | Trocar texto do botão (aprovado) |
-| Rastreamento: compra sem UTM | Meta registra 0 compras | TRACKING; prazo de reenvio ao Meta 01/12 |
+| Rastreamento: compra sem UTM | Meta sem compra atribuída | TRACKING; prazo de reenvio ao Meta = pagamento + 7 dias |
 | Duplicar fluxos para a mesma compra | E-mail duplo | Fluxos novos têm escopo de oferta; fluxos antigos estão presos a outras ofertas [E] |
 
 ## 5. Reversão
@@ -77,13 +84,13 @@ Preferência [H]: (a) para `/inscricao`, `/inscricao-curta`, `/inscricao-47` e `
 | Redirect link | `redirect_links_delete` |
 | Acesso removido por engano | `member_users_enable` e conceder de novo na turma |
 
-## 6. Rascunho de comunicação aos 2 compradores de R$ 97 (NÃO ENVIAR)
+## 6. Rascunho de comunicação aos compradores reais de R$ 97 (NÃO ENVIAR)
 
 Quem envia: Bruno, em nome da Zion, só depois de "aprovado". Canal: e-mail. Sem WhatsApp (modelos não submetidos). Sem nome nem e-mail no repositório: personalizar na hora.
 
 **Antes de enviar, Bruno decide (uma das opções, ou outra):**
 - **A. Só informar** e confirmar que o acesso continua.
-- **B. Informar e oferecer o reembolso integral** a quem pedir, dentro do prazo legal de 7 dias (as compras foram em 24/11 [E, fatos-chave]; o prazo vai até cerca de 01/12, conferir a data exata no ClickMax).
+- **B. Informar e oferecer o reembolso integral** a quem pedir, dentro do prazo legal de 7 dias (as compras são recentes [E, fatos-chave]; o prazo é a data de cada compra + 7 dias, conferir a data exata no ClickMax).
 - **C. Informar e devolver a diferença de preço.** Exige conferir se o ClickMax permite reembolso parcial [NC]; é decisão financeira de Bruno.
 
 **Assunto:** Uma informação sobre o seu acesso à plataforma Zion

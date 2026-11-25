@@ -23,7 +23,8 @@ function classify(record, cfg, hint) {
     return { decision: 'refund', reason: nameRefund ? `evento:${name}` : `status:${status}` };
   }
 
-  if (PENDING_NAME.test(name) && !PAID_NAME.test(name.replace(PENDING_NAME, ''))) {
+  // Qualquer palavra de pendencia no nome vence a palavra 'paid' (ex.: 'paid_pending' nunca e compra; A05).
+  if (PENDING_NAME.test(name)) {
     return { decision: 'ignore', reason: `evento_sem_pagamento:${name}` };
   }
 
