@@ -1,6 +1,6 @@
 # 12 · Dashboard (especificação)
 
-**Dono:** DATA. **Situação:** só especificação. O painel **não foi construído** (25/11/2026). Construir exige 'aprovado' de Bruno.
+**Dono:** DATA (indicadores: FINANCE). **Situação (25/11/2026):** painel comercial P0 preparado em `dashboard.html` (somente leitura, sem dados reais no repositório). Definições em `INDICADORES_P0.md`. Publicar ou conectar a produção continua exigindo 'aprovado' de Bruno.
 
 ## Objetivo
 Responder, todo dia e em um só lugar, se estamos vendendo, quanto custa vender e onde o funil perde, sem misturar o que foi medido com o que foi suposto.
@@ -62,3 +62,14 @@ Número sem selo não aparece. Indisponível nunca vira zero.
 - Sem dado pessoal: nada de nome, e-mail ou telefone de lead ou comprador; só contagens e ids de plataforma.
 - Painel só de leitura: não altera produção.
 - Construção: tipo e ferramenta a definir com Bruno (por exemplo, um dashboard publicado ou dashboards nativos do ClickMax). Não escolhido.
+
+
+## Painel P0 pronto para uso (25/11/2026)
+Arquivos: `dashboard.html` (página única, mobile-first, sem CDN), `gerar_dados.py`, `dados_exemplo.json` (**dados fictícios**), `exemplos/MODELO_*.csv` (fictícios), `INDICADORES_P0.md`, testes `test_gerar_dados.py` e `test_dashboard.js`.
+
+1. Exporte (fora do repositório) Meta por dia e anúncio, vendas do ClickMax, eventos do funil (ClickMax/GTM) e, se tiver, o extrato da Ticto. Colunas em `exemplos/MODELO_*.csv` e no topo de `gerar_dados.py`.
+2. Gere o JSON: `python3 -I gerar_dados.py --meta meta.csv --vendas vendas.csv --eventos eventos.csv --ticto ticto.csv --saida dados.json --checkout-start efetivo|carregamento|desconhecido` (sem `--ficticio`: o rótulo vira "dados reais").
+3. Abra `dashboard.html` por um servidor local (`python3 -m http.server`) ou carregue o arquivo no botão da página. Para abrir por duplo clique: acrescente `--html-base dashboard.html --html-saida painel.html` (JSON embutido).
+4. `dados.json`, `painel*.html` e CSVs reais ficam **fora** do repositório (`.gitignore`).
+
+Testes: `python3 -I test_gerar_dados.py` e `node test_dashboard.js` (Playwright, 390×844 e 1366×800).

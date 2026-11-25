@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Gera modelo_financeiro.xlsx (ZION FINANCE · Fase 03).
+"""Gera modelo_financeiro.xlsx (v1) ou modelo_financeiro_v2.xlsx com --v2 (aba Funil P0). (ZION FINANCE · Fase 03).
 Sem dados reais de venda/gasto: células de entrada vazias ou parâmetros rotulados.
-Uso: python3 -I build_modelo.py [saida.xlsx]   (build(path, inputs) também é usado pelo teste)"""
+Uso: python3 -I build_modelo.py [--v2] [saida.xlsx]   (build(path, inputs) também é usado pelo teste)"""
 import re, sys, json
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
@@ -53,7 +53,7 @@ def put(ws, row, name, label, value, fmt, kind, tag="", note="", local=None, sto
     CELLS_LOCAL = None
     return ref
 
-def build(path, inputs=None):
+def build(path, inputs=None, p0=False):
     inputs = inputs or {}
     wb = Workbook()
     # ---------------- Comece aqui
@@ -360,10 +360,214 @@ def build(path, inputs=None):
     wk.merge_cells(start_row=t + 2, start_column=1, end_row=t + 2, end_column=12); wk.row_dimensions[t + 2].height = 34
     for i, w in enumerate([12, 40, 14, 18, 12, 14, 14, 18, 14, 12, 16, 20], start=1): wk.column_dimensions[get_column_letter(i)].width = w
 
+    if p0:
+        ws["A15"] = "Aba Funil P0 (v2)"; ws["A15"].font = Font(bold=True)
+        ws["B15"] = "Funil de 7 eventos (landing → oferta → clique no CTA com preço → início efetivo de checkout → Pix gerado → pagamento aprovado → entrega), custo por etapa, CPA, ROAS, margem, ponto de equilíbrio, projeção e quadro curioso × comprador. Entradas em amarelo ficam VAZIAS até haver dado real (fora do repositório)."
+        ws["B15"].alignment = Alignment(wrap_text=True, vertical="top")
+        add_funil_p0(wb, inputs)
     for w_ in wb.worksheets: w_.sheet_view.showGridLines = False
     wb.save(path)
     return CELLS
 
+
+S_FUN = "Funil P0"
+ETAPAS = [
+    ("Visualização da landing", "landing_view"),
+    ("Visualização da oferta", "offer_view"),
+    ("Clique no CTA com preço (clique qualificado)", "cta_price_click"),
+    ("Início efetivo de checkout (NÃO é o carregamento do iframe)", "checkout_start"),
+    ("Pix gerado", "pix_generated"),
+    ("Pagamento aprovado", "purchase_approved"),
+    ("Entrega do produto (acesso liberado)", "product_delivered"),
+]
+
+
+def add_funil_p0(wb, inputs):
+    """Aba 'Funil P0' (v2). Entradas em amarelo ficam vazias (sem dado real); calculados em verde."""
+    wf = wb.create_sheet(S_FUN)
+    title(wf, "Funil P0 · 7 eventos, custo por etapa, CPA, ROAS, margem e curioso × comprador",
+          "Amarelo = entrada (vazia até haver dado real, fora do repositório). Verde = calculado. 'indisponível' = falta dado; nunca vira zero. Taxas e limiares [H] são hipóteses que Bruno ajusta.")
+    lf = {}
+    # ---- 1) funil de 7 etapas
+    wf["A3"] = "1) Funil de 7 eventos: quantidade observada (amarelo), taxas entre etapas (verde) e projeção a partir de taxas de entrada (amarelo)"
+    wf["A3"].font = Font(bold=True, color="8B714E")
+    hdr(wf, 4, ["Etapa", "Evento (nome proposto [H])", "Quantidade observada", "Taxa vs etapa anterior", "Taxa vs visitas à landing",
+                "PROJEÇÃO: taxa de entrada vs etapa anterior", "Projetado (a partir do gasto e custo por visita planejados)", "Observação"])
+    wf.row_dimensions[4].height = 58
+    obs = ["Denominador do funil. Fonte: ClickMax (visitantes da página).",
+           "Fonte: evento de visualização do bloco de oferta [NC: ainda não existe].",
+           "Clique no botão que mostra o preço. Fonte: evento específico no ClickMax/GTM [NC: ainda não existe].",
+           "Só vale com início efetivo medido (hoje o Meta dispara InitiateCheckout no carregamento do iframe [E]: não usar como intenção).",
+           "Cadeia assume Pix. Com cartão, o aprovado inclui vendas que não passaram por 'Pix gerado': use Pix gerado → pago do bloco 3.",
+           "Pagamento aprovado e conciliado (ClickMax × Ticto), sem compras de teste.",
+           "Acesso liberado na plataforma (verificar o caminho completo)."]
+    first = 5
+    keys = ["v_land", "v_oferta", "v_cta", "v_chk", "v_pix", "v_aprov", "v_entr"]
+    for i, (nome, ev) in enumerate(ETAPAS):
+        r = first + i
+        wf.cell(row=r, column=1, value=f"{i+1}. {nome}").alignment = Alignment(wrap_text=True, vertical="top")
+        wf.cell(row=r, column=2, value=ev)
+        c = wf.cell(row=r, column=3, value=inputs.get(keys[i])); c.fill = YEL; c.number_format = INT; c.border = BOX
+        lf[keys[i]] = f"$C${r}"
+        if i == 0:
+            wf.cell(row=r, column=4, value="—"); wf.cell(row=r, column=5, value="—")
+        else:
+            c = wf.cell(row=r, column=4, value=f'=IF(OR(C{r}="",C{r-1}="",N(C{r-1})=0),"{IND}",C{r}/C{r-1})'); c.fill = GRN; c.number_format = PCT; c.border = BOX
+            c = wf.cell(row=r, column=5, value=f'=IF(OR(C{r}="",$C${first}="",N($C${first})=0),"{IND}",C{r}/$C${first})'); c.fill = GRN; c.number_format = '0.00%'; c.border = BOX
+            c = wf.cell(row=r, column=6, value=inputs.get(["t1", "t2", "t3", "t4", "t5", "t6"][i - 1])); c.fill = YEL; c.number_format = PCT; c.border = BOX
+        wf.cell(row=r, column=8, value=obs[i]).alignment = Alignment(wrap_text=True, vertical="top")
+        wf.row_dimensions[r].height = 44
+    last = first + len(ETAPAS) - 1
+    wf["A13"] = "2) Entradas do período e da projeção (dados reais ficam fora do repositório)"; wf["A13"].font = Font(bold=True, color="8B714E")
+    hdr(wf, 14, ["Entrada", "Valor", "Etiqueta", "Fonte / observação"])
+
+    def F(row, name, label, value, fmt, kind, tag, note):
+        put(wf, row, name, label, value, fmt, kind, tag, note, local=lf)
+        CELLS["f_" + name] = f"{q(S_FUN)}!$B${row}"
+    F(15, "gasto", "Gasto de mídia no período (R$)", inputs.get("gasto"), BRL, "in", "dado real", "Meta (Windsor/Gerenciador). Vazio.")
+    F(16, "cliques", "Cliques no link (Meta)", inputs.get("cliques"), INT, "in", "dado real", "Meta. Auxiliar: clique no link não é visita nem intenção.")
+    F(17, "pix_pagos", "Pagamentos aprovados no Pix (qtd)", inputs.get("pix_pagos"), INT, "in", "dado real", "Ticto/ClickMax. Para a taxa Pix gerado → pago.")
+    F(18, "reemb_n", "Reembolsos no período (qtd)", inputs.get("reemb_n"), INT, "in", "dado real", "Ticto/ClickMax. Janela de 7 dias: compras recentes ainda podem ser reembolsadas.")
+    F(19, "gasto_plan", "PROJEÇÃO: gasto planejado (R$)", inputs.get("gasto_plan"), BRL, "in", "[H]", "Cenário. Vazio. O teto atual de anúncio é R$ 0 (campanhas só pausadas) até 'aprovado' de Bruno.")
+    F(20, "cpv_plan", "PROJEÇÃO: custo por visita planejado (R$)", inputs.get("cpv_plan"), BRL, "in", "[H]", "Cenário. Vazio.")
+    wf.cell(row=first, column=7, value=f'=IF(OR({lf["gasto_plan"]}="",{lf["cpv_plan"]}="",N({lf["cpv_plan"]})=0),"{IND}",{lf["gasto_plan"]}/{lf["cpv_plan"]})')
+    for i in range(1, len(ETAPAS)):
+        r = first + i
+        wf.cell(row=r, column=7, value=f'=IF(OR(NOT(ISNUMBER(G{r-1})),F{r}=""),"{IND}",G{r-1}*F{r})')
+    for r in range(first, last + 1):
+        c = wf.cell(row=r, column=7); c.fill = GRN; c.number_format = '#,##0.0'; c.border = BOX
+    for k, nm in ((0, "pv_land"), (2, "pv_cta"), (3, "pv_chk"), (5, "pv_aprov")):
+        lf[nm] = f"$G${first+k}"
+    for k, rr in enumerate(range(first, last + 1)):
+        CELLS[f"f_stage_row_{k+1}"] = rr
+    # ---- 3) indicadores observados
+    wf["A22"] = "3) Indicadores observados (calculados com as quantidades acima)"; wf["A22"].font = Font(bold=True, color="8B714E")
+    hdr(wf, 23, ["Indicador", "Valor", "Etiqueta", "Fórmula / leitura"])
+
+    def ok(*names):
+        return ",".join(f'{lf[n]}=""' for n in names)
+
+    def D(row, name, label, f, fmt, tag, note):
+        put(wf, row, name, label, f, fmt, "calc", tag, note, local=lf)
+        CELLS["f_" + name] = f"{q(S_FUN)}!$B${row}"
+
+    def ratio(num, den):
+        return f'=IF(OR({ok(num, den)},N({lf[den]})=0),"{IND}",{lf[num]}/{lf[den]})'
+    r = 24
+    D(r, "cpv", "Custo por visita (R$)", ratio("gasto", "v_land"), BRL, "dado real", "gasto ÷ visualizações da landing. Diferente do CPC: o clique pode não virar visita."); r += 1
+    D(r, "cpc_link", "Custo por clique no link (R$)", ratio("gasto", "cliques"), BRL, "dado real", "gasto ÷ cliques no link (auxiliar; NÃO decide vencedor)."); r += 1
+    D(r, "conv_land", "Conversão da landing (visita → clique qualificado no CTA)", ratio("v_cta", "v_land"), PCT, "dado real", "cliques qualificados no CTA com preço ÷ visitas à landing."); r += 1
+    D(r, "cp_cliqueq", "Custo por clique qualificado no CTA (R$)", ratio("gasto", "v_cta"), BRL, "dado real", "gasto ÷ cliques qualificados."); r += 1
+    D(r, "cp_chk", "Custo por checkout efetivo (R$)", ratio("gasto", "v_chk"), BRL, "dado real", "gasto ÷ início efetivo de checkout (não o carregamento do iframe)."); r += 1
+    D(r, "conv_chk", "Conversão do checkout em pagamento aprovado", ratio("v_aprov", "v_chk"), PCT, "dado real", "pagamentos aprovados ÷ checkouts efetivos."); r += 1
+    D(r, "cpa", "CPA: custo por comprador (R$)", f'=IF(OR({ok("gasto", "v_aprov")}),"{IND}",IF({lf["v_aprov"]}=0,"sem venda",{lf["gasto"]}/{lf["v_aprov"]}))', BRL, "dado real", "gasto ÷ pagamentos aprovados (sem testes)."); r += 1
+    D(r, "vis_compra", "Taxa visita → compra", ratio("v_aprov", "v_land"), '0.00%', "dado real", "aprovados ÷ visitas."); r += 1
+    D(r, "pix_pago", "Taxa Pix gerado → pago", ratio("pix_pagos", "v_pix"), PCT, "dado real", "aprovados no Pix ÷ Pix gerados. Pix gerado não é compra."); r += 1
+    D(r, "reemb_taxa", "Taxa de reembolso", ratio("reemb_n", "v_aprov"), PCT, "dado real", "reembolsos ÷ aprovados."); r += 1
+    rb = f'N({lf["reemb_n"]})'
+    D(r, "rec_bruta", "Receita bruta aprovada (R$)", f'=IF({lf["v_aprov"]}="","{IND}",{lf["v_aprov"]}*@preco)', BRL, "dado real", "aprovados × preço (preço único do Parâmetros)."); r += 1
+    D(r, "rec_liq", "Receita líquida (R$)", f'=IF({lf["v_aprov"]}="","{IND}",({lf["v_aprov"]}-{rb})*@liq_medio)', BRL, "dado real", "(aprovados − reembolsos) × líquido médio após taxas (R$ 44,51 no Pix de R$ 47 [E]; a taxa pode seguir regra por faixa [NC]: confirmar no extrato da Ticto)."); r += 1
+    D(r, "mc_real", "Margem de contribuição realizada, antes da mídia (R$)", f'=IF({lf["v_aprov"]}="","{IND}",({lf["v_aprov"]}-{rb})*(@liq_medio-@imposto*@preco-@custos_var))', BRL, "a definir", "(aprovados − reembolsos) × (líquido − imposto − custo variável). Imposto e custo variável 'a definir' em 0: o valor é teto superior."); r += 1
+    D(r, "mc_pct", "Margem de contribuição (% da receita bruta líquida de reembolso)", f'=IF(OR({ok("v_aprov")},(N({lf["v_aprov"]})-{rb})<=0),"{IND}",{lf["mc_real"]}/((N({lf["v_aprov"]})-{rb})*@preco))', PCT, "a definir", ""); r += 1
+    D(r, "res_midia", "Resultado de mídia (R$)", f'=IF(OR({ok("gasto")},NOT(ISNUMBER({lf["mc_real"]}))),"{IND}",{lf["mc_real"]}-{lf["gasto"]})', BRL, "a definir", "margem de contribuição − gasto. Faturamento não é lucro."); r += 1
+    D(r, "roas_bruto", "ROAS (receita bruta ÷ gasto)", f'=IF(OR({ok("gasto")},N({lf["gasto"]})=0,NOT(ISNUMBER({lf["rec_bruta"]}))),"{IND}",{lf["rec_bruta"]}/{lf["gasto"]})', NUM, "dado real", ""); r += 1
+    D(r, "roas_liq", "ROAS líquido (receita líquida ÷ gasto)", f'=IF(OR({ok("gasto")},N({lf["gasto"]})=0,NOT(ISNUMBER({lf["rec_liq"]}))),"{IND}",{lf["rec_liq"]}/{lf["gasto"]})', NUM, "dado real", ""); r += 1
+    D(r, "roas_be", "ROAS de equilíbrio (referência do modelo)", "=@mm_roasbe", NUM, "[E]", "preço ÷ CPA máximo (aba Mini Mentoria 47)."); r += 1
+    D(r, "cpamax", "CPA máximo (referência, R$)", "=@mm_cpamax", BRL, "[E]", "Aba Mini Mentoria 47. Sem imposto/custo definidos, é o líquido."); r += 1
+    D(r, "cpades", "CPA desejado (referência, R$)", "=@mm_cpades", BRL, "[H]", ""); r += 1
+    D(r, "cpa_vs", "CPA observado × referências", f'=IF(NOT(ISNUMBER({lf["cpa"]})),"{IND}",IF({lf["cpa"]}<={lf["cpades"]},"abaixo do CPA desejado",IF({lf["cpa"]}<={lf["cpamax"]},"entre o desejado e o máximo","acima do CPA máximo")))', "General", "", "Leitura da faixa; escalar/pausar só com amostra mínima e 'aprovado' de Bruno."); r += 1
+    wf.cell(row=r, column=1, value="Ponto de equilíbrio (com o CPA máximo do modelo)").font = Font(bold=True, color="8B714E"); r += 1
+    D(r, "pe_vendas", "Vendas necessárias para cobrir o gasto do período", f'=IF(OR({ok("gasto")},@mm_cpamax<=0),"{IND}",{lf["gasto"]}/@mm_cpamax)', NUM, "", "gasto ÷ CPA máximo (= margem de contribuição por venda)."); r += 1
+    D(r, "pe_visitas", "Visitas necessárias para essas vendas", f'=IF(OR(NOT(ISNUMBER({lf["pe_vendas"]})),NOT(ISNUMBER({lf["vis_compra"]})),N({lf["vis_compra"]})=0),"{IND}",{lf["pe_vendas"]}/{lf["vis_compra"]})', '#,##0', "", "vendas de equilíbrio ÷ taxa visita → compra observada."); r += 1
+    D(r, "cpv_max", "Custo máximo por visita no equilíbrio (R$)", f'=IF(NOT(ISNUMBER({lf["vis_compra"]})),"{IND}",@mm_cpamax*{lf["vis_compra"]})', BRL, "", "CPA máximo × taxa visita → compra."); r += 1
+    D(r, "cpq_max", "Custo máximo por clique qualificado no equilíbrio (R$)", f'=IF(OR({ok("v_aprov", "v_cta")},N({lf["v_cta"]})=0),"{IND}",@mm_cpamax*{lf["v_aprov"]}/{lf["v_cta"]})', BRL, "", "CPA máximo × aprovados ÷ cliques qualificados."); r += 1
+    D(r, "cpchk_max", "Custo máximo por checkout efetivo no equilíbrio (R$)", f'=IF(NOT(ISNUMBER({lf["conv_chk"]})),"{IND}",@mm_cpamax*{lf["conv_chk"]})', BRL, "", "CPA máximo × conversão do checkout."); r += 1
+    # ---- 4) projeção
+    r += 1
+    wf.cell(row=r, column=1, value="4) Projeção a partir das taxas de entrada (coluna F) · TUDO hipótese [H], não é resultado").font = Font(bold=True, color="8B714E"); r += 1
+    hdr(wf, r, ["Indicador projetado", "Valor", "Etiqueta", "Fórmula / leitura"]); r += 1
+    g = lf["gasto_plan"]
+
+    def PJ(row, name, label, f, fmt, note):
+        put(wf, row, name, label, f, fmt, "calc", "[H]", note, local=lf)
+        CELLS["f_" + name] = f"{q(S_FUN)}!$B${row}"
+
+    def pdiv(den):
+        return f'=IF(OR({g}="",NOT(ISNUMBER({lf[den]}))),"{IND}",IF({lf[den]}<=0,"{IND}",{g}/{lf[den]}))'
+    PJ(r, "p_cpa", "CPA projetado (R$)", pdiv("pv_aprov"), BRL, "gasto planejado ÷ pagamentos aprovados projetados."); r += 1
+    PJ(r, "p_cpchk", "Custo por checkout efetivo projetado (R$)", pdiv("pv_chk"), BRL, ""); r += 1
+    PJ(r, "p_cpq", "Custo por clique qualificado projetado (R$)", pdiv("pv_cta"), BRL, ""); r += 1
+    PJ(r, "p_roas", "ROAS projetado (receita bruta ÷ gasto)", f'=IF(OR({g}="",N({g})=0,NOT(ISNUMBER({lf["pv_aprov"]}))),"{IND}",{lf["pv_aprov"]}*@preco/{g})', NUM, ""); r += 1
+    PJ(r, "p_mc", "Margem de contribuição projetada (R$)", f'=IF(NOT(ISNUMBER({lf["pv_aprov"]})),"{IND}",{lf["pv_aprov"]}*@mm_mc)', BRL, "aprovados projetados × margem de contribuição por venda do modelo (inclui reserva de reembolso)."); r += 1
+    PJ(r, "p_res", "Resultado de mídia projetado (R$)", f'=IF(OR({g}="",NOT(ISNUMBER({lf["p_mc"]}))),"{IND}",{lf["p_mc"]}-{g})', BRL, "margem de contribuição − gasto planejado."); r += 1
+    PJ(r, "p_faixa", "Faixa do CPA projetado", f'=IF(NOT(ISNUMBER({lf["p_cpa"]})),"{IND}",IF({lf["p_cpa"]}<={lf["cpades"]},"abaixo do CPA desejado",IF({lf["p_cpa"]}<={lf["cpamax"]},"entre o desejado e o máximo","acima do CPA máximo")))', "General", "Só orienta o teste; não decide."); r += 1
+    # ---- 5) curioso x comprador
+    r += 1
+    wf.cell(row=r, column=1, value="5) Curioso × comprador: até 3 criativos lado a lado (entradas vazias)").font = Font(bold=True, color="8B714E"); r += 1
+    wf.cell(row=r, column=1, value="Curioso = gera checkout em proporção maior do que gera compra. Comprador = gera compra em proporção maior do que gera checkout. Vencedor = menor CPA com amostra mínima, não menor CPC nem mais checkouts.").alignment = Alignment(wrap_text=True)
+    wf.merge_cells(start_row=r, start_column=1, end_row=r, end_column=6); wf.row_dimensions[r].height = 34; r += 1
+    for name, label, dflt, fmt, note in (
+            ("min_chk_cr", "Mínimo de checkouts efetivos por criativo para classificar", 30, INT, "Trava de amostra por criativo (Bruno ajusta)."),
+            ("idx_curioso", "Índice de curiosidade a partir do qual é CURIOSO", 1.5, NUM, "índice = participação nos checkouts ÷ participação nas compras."),
+            ("idx_comprador", "Índice até o qual é COMPRADOR", 0.67, NUM, "Entre os dois = MISTO.")):
+        put(wf, r, name, label, inputs.get(name, dflt), fmt, "in", "[H]", note, local=lf)
+        CELLS["f_" + name] = f"{q(S_FUN)}!$B${r}"; r += 1
+    hdr(wf, r, ["Item", "Criativo 1", "Criativo 2", "Criativo 3", "Leitura"]); r += 1
+    cols = "BCD"
+    rows = {}
+    for key, label, fmt in [("nome", "Nome do criativo (utm_content)", "General"), ("gasto", "Gasto (R$)", BRL), ("visitas", "Visitas à landing", INT),
+                            ("cliq", "Cliques qualificados no CTA", INT), ("chk", "Checkouts efetivos", INT), ("vend", "Compras aprovadas", INT), ("reemb", "Reembolsos", INT)]:
+        wf.cell(row=r, column=1, value=label); rows[key] = r
+        for j, col in enumerate(cols):
+            c = wf[f"{col}{r}"]; c.fill = YEL; c.border = BOX; c.number_format = fmt
+            c.value = inputs.get(f"cr{j+1}_{key}")
+        r += 1
+
+    def X(k, col):
+        return f"{col}{rows[k]}"
+
+    def rowcalc(key, label, fn, fmt, note=""):
+        nonlocal r
+        wf.cell(row=r, column=1, value=label); rows[key] = r
+        for col in cols:
+            c = wf[f"{col}{r}"]; c.value = fn(col); c.fill = GRN; c.border = BOX; c.number_format = fmt
+        wf.cell(row=r, column=5, value=note).alignment = Alignment(wrap_text=True, vertical="top")
+        r += 1
+
+    def div(a, b):
+        return lambda col: f'=IF(OR({X(a,col)}="",{X(b,col)}="",N({X(b,col)})=0),"{IND}",{X(a,col)}/{X(b,col)})'
+    rowcalc("cpv", "Custo por visita (R$)", div("gasto", "visitas"), BRL)
+    rowcalc("cpq", "Custo por clique qualificado (R$)", div("gasto", "cliq"), BRL)
+    rowcalc("cpchk", "Custo por checkout efetivo (R$)", div("gasto", "chk"), BRL)
+    rowcalc("cpa", "CPA: custo por comprador (R$)", lambda col: f'=IF(OR({X("gasto",col)}="",{X("vend",col)}=""),"{IND}",IF({X("vend",col)}=0,"sem venda",{X("gasto",col)}/{X("vend",col)}))', BRL)
+    rowcalc("conv", "Conversão checkout → aprovado", div("vend", "chk"), PCT)
+    rowcalc("rr", "Taxa de reembolso", div("reemb", "vend"), PCT)
+
+    def share(key):
+        return lambda col: f'=IF(OR({X(key,col)}="",SUM($B{rows[key]}:$D{rows[key]})=0),"{IND}",{X(key,col)}/SUM($B{rows[key]}:$D{rows[key]}))'
+    rowcalc("sh_chk", "Participação nos checkouts", share("chk"), PCT)
+    rowcalc("sh_vend", "Participação nas compras", share("vend"), PCT)
+    rowcalc("idx", "Índice de curiosidade (checkouts ÷ compras)", lambda col: f'=IF(OR(NOT(ISNUMBER({X("sh_chk",col)})),NOT(ISNUMBER({X("sh_vend",col)}))),"{IND}",IF({X("sh_vend",col)}=0,"sem compra",{X("sh_chk",col)}/{X("sh_vend",col)}))', NUM, "Acima de 1 = gera mais checkout do que compra.")
+    mc_, ic_, ip_ = lf["min_chk_cr"], lf["idx_curioso"], lf["idx_comprador"]
+    rowcalc("sinal", "Sinalização", lambda col: (
+        f'=IF(OR({X("chk",col)}="",{X("vend",col)}=""),"{IND}",IF({X("chk",col)}<{mc_},"AMOSTRA PEQUENA",'
+        f'IF({X("vend",col)}=0,"CURIOSO (checkouts sem compra)",IF(NOT(ISNUMBER({X("idx",col)})),"{IND}",'
+        f'IF({X("idx",col)}>={ic_},"CURIOSO",IF({X("idx",col)}<={ip_},"COMPRADOR","MISTO"))))))'), "General")
+    rowcalc("elig", "CPA elegível (compras ≥ mínimo de compras)", lambda col: f'=IF(AND(ISNUMBER({X("cpa",col)}),N({X("vend",col)})>={CELLS["min_vendas"]}),{X("cpa",col)},"")', BRL, "Só entra na disputa quem tem o mínimo de compras (Parâmetros).")
+    rowcalc("venc", "Vencedor por CPA", lambda col: f'=IF({X("elig",col)}="","—",IF({X("elig",col)}=MIN($B{rows["elig"]}:$D{rows["elig"]}),"MENOR CPA","não"))', "General", "Menor CPA elegível. Reembolso e conversão do checkout ainda precisam estar sob controle (INDICADORES_P0.md).")
+    rowcalc("barato", "Menor custo por checkout?", lambda col: f'=IF(NOT(ISNUMBER({X("cpchk",col)})),"—",IF({X("cpchk",col)}=MIN($B{rows["cpchk"]}:$D{rows["cpchk"]}),"sim","não"))', "General")
+    rowcalc("arm", "Alerta de armadilha", lambda col: f'=IF(AND({X("barato",col)}="sim",COUNT($B{rows["elig"]}:$D{rows["elig"]})>0,{X("venc",col)}<>"MENOR CPA"),"checkout barato, mas NÃO é o menor CPA","")', "General", "Checkout barato não paga a conta: é o sinal do curioso.")
+    for k, v in rows.items():
+        CELLS[f"f_cr_{k}"] = v
+    wf.column_dimensions["A"].width = 60
+    for col, w in zip("BCDEFGH", (24, 22, 22, 18, 22, 26, 60)):
+        wf.column_dimensions[col].width = w
+    wf.freeze_panes = "B5"
+    return wf
+
+
 if __name__ == "__main__":
-    out = sys.argv[1] if len(sys.argv) > 1 else "modelo_financeiro.xlsx"
-    build(out); print("ok", out)
+    args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    v2 = "--v2" in sys.argv
+    out = args[0] if args else ("modelo_financeiro_v2.xlsx" if v2 else "modelo_financeiro.xlsx")
+    build(out, p0=v2); print("ok", out, "(v2 com aba Funil P0)" if v2 else "(v1)")

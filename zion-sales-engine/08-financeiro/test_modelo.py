@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Teste do modelo: recalcula no LibreOffice e compara com conta independente (Python).
-Usa DADOS FICTÍCIOS só para exercitar as fórmulas. Uso: python3 -I test_modelo.py"""
+Usa DADOS FICTÍCIOS só para exercitar as fórmulas. Uso: python3 -I test_modelo.py
+Testes 1 a 5: modelo v1. Testes 6 e 7: aba Funil P0 do v2 (em branco e com dados fictícios)."""
 import os, subprocess, tempfile, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from openpyxl import load_workbook
@@ -124,6 +125,111 @@ for cvv, exp in ((0.40, "ESCALAR (com aprovado de Bruno)"), ):
 cv_m = 3.0 / ((des + mc) / 2)
 p5 = os.path.join(tmp, "man.xlsx"); C5 = bm.build(p5, dict(inp, conv_chk=cv_m)); wb5 = recalc(p5, out)
 chk("faixa manter", val(wb5, C5["mm_decisao"]), "MANTER")
+
+# ---------- Teste 6 (P0): aba Funil P0, v2 (em branco, depois dados FICTÍCIOS)
+print("== Teste 6: aba Funil P0 (v2) em branco ==")
+IND = "indisponível"
+pv = os.path.join(tmp, "v2blank.xlsx"); CV = bm.build(pv, p0=True); wbv = recalc(pv, out)
+wf = wbv["Funil P0"]
+chk_v1 = "Funil P0" not in load_workbook(p1).sheetnames
+print(("OK   " if chk_v1 else "FALHA"), "v1 (build sem p0) não ganhou a aba Funil P0"); fails += 0 if chk_v1 else 1
+for nm in ("f_cpv", "f_conv_land", "f_cp_chk", "f_cp_cliqueq", "f_conv_chk", "f_cpa", "f_pix_pago", "f_reemb_taxa", "f_rec_bruta", "f_rec_liq", "f_mc_real",
+           "f_res_midia", "f_roas_bruto", "f_roas_liq", "f_pe_vendas", "f_cpv_max", "f_p_cpa", "f_p_roas", "f_p_res", "f_p_faixa", "f_cpa_vs"):
+    chk("em branco: %s" % nm, val(wbv, CV[nm]), IND)
+chk("em branco: referência CPA máximo = 44,51", val(wbv, CV["f_cpamax"]), 44.51)
+chk("em branco: sinalização do criativo 1", wf["B%d" % CV["f_cr_sinal"]].value, IND)
+chk("em branco: vencedor", wf["B%d" % CV["f_cr_venc"]].value, "—")
+for k in range(1, 8):
+    cell = wf["C%d" % CV["f_stage_row_%d" % k]]
+    assert cell.value is None, "entrada do funil deveria estar vazia"
+print("OK   entradas de dados reais do funil estão VAZIAS (7 etapas)")
+
+print("== Teste 7: aba Funil P0 com dados FICTÍCIOS ==")
+fi = dict(inp, v_land=2000, v_oferta=1100, v_cta=260, v_chk=100, v_pix=70, v_aprov=30, v_entr=29, gasto=600.0, cliques=3100, pix_pagos=28, reemb_n=3,
+          gasto_plan=500.0, cpv_plan=0.5, t1=0.55, t2=0.25, t3=0.4, t4=0.7, t5=0.4, t6=0.95,
+          cr1_nome="criativo-1", cr1_gasto=200.0, cr1_visitas=800, cr1_cliq=120, cr1_chk=70, cr1_vend=3, cr1_reemb=0,
+          cr2_nome="criativo-2", cr2_gasto=220.0, cr2_visitas=700, cr2_cliq=60, cr2_chk=30, cr2_vend=9, cr2_reemb=1,
+          cr3_nome="criativo-3", cr3_gasto=180.0, cr3_visitas=500, cr3_cliq=40, cr3_chk=20, cr3_vend=2, cr3_reemb=0)
+pw = os.path.join(tmp, "v2fict.xlsx"); CW = bm.build(pw, fi, p0=True); wbw = recalc(pw, out); wf = wbw["Funil P0"]
+# conta independente
+P = 47.0; liq_pix = P - 2.49; liq_c = P - 2.49 - 0.0499 * P; liq = 0.8 * liq_pix + 0.2 * liq_c
+mc_sale = liq - 0.04 * P - 1.5 - 0.03 * liq            # margem de contribuição por venda (modelo, inclui reserva)
+cpamax = mc_sale; cpades = cpamax * 0.7
+land, oferta, cta, chk_, pix, aprov, entr = 2000, 1100, 260, 100, 70, 30, 29
+g, cl, pixp, rb = 600.0, 3100, 28, 3
+chk("taxa oferta/landing", wf["D%d" % CW["f_stage_row_2"]].value, oferta / land)
+chk("taxa CTA/oferta", wf["D%d" % CW["f_stage_row_3"]].value, cta / oferta)
+chk("taxa checkout/CTA", wf["D%d" % CW["f_stage_row_4"]].value, chk_ / cta)
+chk("taxa Pix/checkout", wf["D%d" % CW["f_stage_row_5"]].value, pix / chk_)
+chk("taxa aprovado/Pix", wf["D%d" % CW["f_stage_row_6"]].value, aprov / pix)
+chk("taxa entrega/aprovado", wf["D%d" % CW["f_stage_row_7"]].value, entr / aprov)
+chk("aprovado vs visitas", wf["E%d" % CW["f_stage_row_6"]].value, aprov / land)
+chk("custo por visita", val(wbw, CW["f_cpv"]), g / land)
+chk("custo por clique no link", val(wbw, CW["f_cpc_link"]), g / cl)
+chk("conversão da landing", val(wbw, CW["f_conv_land"]), cta / land)
+chk("custo por clique qualificado", val(wbw, CW["f_cp_cliqueq"]), g / cta)
+chk("custo por checkout efetivo", val(wbw, CW["f_cp_chk"]), g / chk_)
+chk("conversão checkout → aprovado", val(wbw, CW["f_conv_chk"]), aprov / chk_)
+chk("CPA", val(wbw, CW["f_cpa"]), g / aprov)
+chk("visita → compra", val(wbw, CW["f_vis_compra"]), aprov / land)
+chk("Pix gerado → pago", val(wbw, CW["f_pix_pago"]), pixp / pix)
+chk("taxa de reembolso", val(wbw, CW["f_reemb_taxa"]), rb / aprov)
+chk("receita bruta", val(wbw, CW["f_rec_bruta"]), aprov * P)
+chk("receita líquida", val(wbw, CW["f_rec_liq"]), (aprov - rb) * liq)
+mcr = (aprov - rb) * (liq - 0.04 * P - 1.5)
+chk("margem de contribuição realizada", val(wbw, CW["f_mc_real"]), mcr)
+chk("margem de contribuição %", val(wbw, CW["f_mc_pct"]), mcr / ((aprov - rb) * P))
+chk("resultado de mídia", val(wbw, CW["f_res_midia"]), mcr - g)
+chk("ROAS bruto", val(wbw, CW["f_roas_bruto"]), aprov * P / g)
+chk("ROAS líquido", val(wbw, CW["f_roas_liq"]), (aprov - rb) * liq / g)
+chk("ROAS de equilíbrio (modelo)", val(wbw, CW["f_roas_be"]), P / cpamax)
+cpa_o = g / aprov
+chk("CPA × referências", val(wbw, CW["f_cpa_vs"]), "abaixo do CPA desejado" if cpa_o <= cpades else ("entre o desejado e o máximo" if cpa_o <= cpamax else "acima do CPA máximo"))
+pev = g / cpamax
+chk("vendas de equilíbrio", val(wbw, CW["f_pe_vendas"]), pev)
+chk("visitas de equilíbrio", val(wbw, CW["f_pe_visitas"]), pev / (aprov / land))
+chk("custo máx. por visita", val(wbw, CW["f_cpv_max"]), cpamax * aprov / land)
+chk("custo máx. por clique qualificado", val(wbw, CW["f_cpq_max"]), cpamax * aprov / cta)
+chk("custo máx. por checkout efetivo", val(wbw, CW["f_cpchk_max"]), cpamax * aprov / chk_)
+# projeção
+gp, cpvp = 500.0, 0.5; vis = gp / cpvp
+st = [vis]
+for t in (0.55, 0.25, 0.4, 0.7, 0.4, 0.95): st.append(st[-1] * t)
+for k in range(7): chk("projetado etapa %d" % (k + 1), wf["G%d" % CW["f_stage_row_%d" % (k + 1)]].value, st[k])
+chk("CPA projetado", val(wbw, CW["f_p_cpa"]), gp / st[5])
+chk("custo por checkout projetado", val(wbw, CW["f_p_cpchk"]), gp / st[3])
+chk("custo por clique qualificado projetado", val(wbw, CW["f_p_cpq"]), gp / st[2])
+chk("ROAS projetado", val(wbw, CW["f_p_roas"]), st[5] * P / gp)
+chk("margem projetada", val(wbw, CW["f_p_mc"]), st[5] * mc_sale)
+chk("resultado projetado", val(wbw, CW["f_p_res"]), st[5] * mc_sale - gp)
+cpap = gp / st[5]
+chk("faixa projetada", val(wbw, CW["f_p_faixa"]), "abaixo do CPA desejado" if cpap <= cpades else ("entre o desejado e o máximo" if cpap <= cpamax else "acima do CPA máximo"))
+# curioso x comprador
+cr = [dict(g=200.0, v=800, q=120, c=70, s=3, r=0), dict(g=220.0, v=700, q=60, c=30, s=9, r=1), dict(g=180.0, v=500, q=40, c=20, s=2, r=0)]
+tc, ts = sum(x["c"] for x in cr), sum(x["s"] for x in cr)
+elig = [x["g"] / x["s"] if x["s"] >= 5 else None for x in cr]
+mn = min(e for e in elig if e is not None)
+cheap = min(x["g"] / x["c"] for x in cr)
+for j, (col, x) in enumerate(zip("BCD", cr)):
+    R = lambda k: wf["%s%d" % (col, CW["f_cr_" + k])].value
+    chk("criativo %d custo por visita" % (j + 1), R("cpv"), x["g"] / x["v"])
+    chk("criativo %d custo por clique qualificado" % (j + 1), R("cpq"), x["g"] / x["q"])
+    chk("criativo %d custo por checkout" % (j + 1), R("cpchk"), x["g"] / x["c"])
+    chk("criativo %d CPA" % (j + 1), R("cpa"), x["g"] / x["s"])
+    chk("criativo %d conversão checkout→aprovado" % (j + 1), R("conv"), x["s"] / x["c"])
+    chk("criativo %d reembolso" % (j + 1), R("rr"), x["r"] / x["s"])
+    idx = (x["c"] / tc) / (x["s"] / ts)
+    chk("criativo %d índice de curiosidade" % (j + 1), R("idx"), idx)
+    exp_sig = "AMOSTRA PEQUENA" if x["c"] < 30 else ("CURIOSO" if idx >= 1.5 else ("COMPRADOR" if idx <= 0.67 else "MISTO"))
+    chk("criativo %d sinalização" % (j + 1), R("sinal"), exp_sig)
+    e = elig[j]
+    chk("criativo %d vencedor por CPA" % (j + 1), R("venc"), "—" if e is None else ("MENOR CPA" if abs(e - mn) < 1e-9 else "não"))
+    chk("criativo %d menor custo por checkout" % (j + 1), R("barato"), "sim" if abs(x["g"] / x["c"] - cheap) < 1e-9 else "não")
+    arm = "checkout barato, mas NÃO é o menor CPA" if (abs(x["g"] / x["c"] - cheap) < 1e-9 and not (e is not None and abs(e - mn) < 1e-9)) else None
+    got = R("arm")
+    ok_arm = (got or None) == arm
+    print(("OK   " if ok_arm else "FALHA"), "criativo %d alerta de armadilha | planilha: %r | independente: %r" % (j + 1, got, arm)); fails += 0 if ok_arm else 1
+
 print("\nRESULTADO:", "TODOS OS TESTES PASSARAM" if fails == 0 else "%d FALHA(S)" % fails)
 shutil.rmtree(tmp); shutil.rmtree(out)
 sys.exit(1 if fails else 0)

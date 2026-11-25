@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>Painel comercial Zion</title>
+<style>
+:root{
+  --preto:#040605; --musgo:#1B2117; --musgo2:#232B1E; --creme:#FEF5F0; --areia:#DED6BF; --terra:#8B714E; --ouro:#C9B37E;
+  --ok:#8CCB98; --warn:#E6C468; --bad:#EE8C7D; --na:#A9A593; --linha:rgba(222,214,191,.18);
+  --serif:'Cormorant Garamond',Cormorant,Georgia,'Times New Roman',serif; --sans:Jost,'Segoe UI',system-ui,-apple-system,Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{color-scheme:dark}
+body{margin:0;background:var(--preto);color:var(--creme);font:16px/1.45 var(--sans);-webkit-text-size-adjust:100%}
+.wrap{max-width:1180px;margin:0 auto;padding:16px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;margin:0;color:var(--creme)}
+h1{font-size:30px;line-height:1.1}
+h2{font-size:25px;margin:34px 0 4px;color:var(--ouro)}
+.sub{color:var(--areia);margin:0 0 14px;font-size:15px}
+.topo{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:6px}
+.topo img{height:34px;width:auto}
+.faixa{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 0}
+.selo-fic{background:var(--ouro);color:var(--preto);font-weight:600;padding:5px 12px;border-radius:999px;letter-spacing:.04em;font-size:14px}
+.selo-real{background:var(--musgo2);color:var(--areia);border:1px solid var(--ouro);padding:5px 12px;border-radius:999px;font-size:14px}
+.chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:12px;border:1px solid var(--linha);color:var(--areia);white-space:nowrap}
+.chip.real{color:var(--ok);border-color:rgba(140,203,152,.5)}
+.chip.est{color:var(--warn);border-color:rgba(230,196,104,.5)}
+.chip.ind{color:var(--na);border-style:dashed}
+.carrega{background:var(--musgo);border:1px dashed var(--terra);border-radius:12px;padding:14px;margin:14px 0}
+.carrega p{margin:0 0 8px;color:var(--areia)}
+button,.btn{font:inherit;background:var(--ouro);color:var(--preto);border:0;border-radius:10px;padding:11px 16px;font-weight:600;cursor:pointer;min-height:44px}
+button:focus-visible,.btn:focus-visible,input:focus-visible{outline:3px solid var(--creme);outline-offset:2px}
+input[type=file]{position:absolute;left:-9999px}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kpi{background:var(--musgo);border:1px solid var(--linha);border-radius:12px;padding:12px;min-width:0}
+.kpi .t{color:var(--areia);font-size:13px;margin-bottom:4px;display:flex;justify-content:space-between;gap:6px;align-items:flex-start}
+.kpi .v{font-family:var(--serif);font-size:30px;line-height:1.05;color:var(--creme);overflow-wrap:anywhere}
+.kpi .v.na{color:var(--na);font-size:20px;font-family:var(--sans)}
+.kpi .n{font-size:12.5px;color:var(--areia);margin-top:6px}
+.kpi.destaque{border-color:var(--ouro)}
+.funil{display:grid;gap:8px}
+.et{background:var(--musgo);border:1px solid var(--linha);border-radius:12px;padding:10px 12px}
+.et .l{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;align-items:baseline}
+.et .l b{font-weight:600}
+.et .q{font-family:var(--serif);font-size:24px}
+.barra{height:12px;background:var(--preto);border-radius:6px;margin:6px 0;overflow:hidden}
+.barra i{display:block;height:100%;background:linear-gradient(90deg,var(--terra),var(--ouro));border-radius:6px}
+.barra.na i{width:100%!important;background:repeating-linear-gradient(45deg,var(--linha) 0 6px,transparent 6px 12px)}
+.et .tx{font-size:13.5px;color:var(--areia)}
+.nota{font-size:13.5px;color:var(--areia)}
+table{width:100%;border-collapse:collapse}
+.tabela th{font-weight:600;text-align:right;color:var(--ouro);font-size:13px;padding:8px 8px;border-bottom:1px solid var(--linha);white-space:nowrap}
+.tabela th:first-child,.tabela td:first-child{text-align:left}
+.tabela td{padding:9px 8px;text-align:right;border-bottom:1px solid var(--linha);font-size:15px}
+.tabela td.na{color:var(--na)}
+.rolagem{overflow-x:auto}
+.tag{display:inline-block;white-space:nowrap;padding:2px 10px;border-radius:999px;font-size:12.5px;font-weight:600;border:1px solid}
+.tag.escalar{color:var(--ok);border-color:var(--ok)}
+.tag.manter{color:var(--warn);border-color:var(--warn)}
+.tag.pausar{color:var(--bad);border-color:var(--bad)}
+.tag.sem{color:var(--na);border-color:var(--na);border-style:dashed}
+.tag.curioso{color:var(--bad);border-color:var(--bad)}
+.tag.comprador{color:var(--ok);border-color:var(--ok)}
+.tag.misto{color:var(--warn);border-color:var(--warn)}
+.cards{display:grid;gap:10px}
+.card{background:var(--musgo);border:1px solid var(--linha);border-radius:12px;padding:12px}
+.card h3{font-size:21px;margin-bottom:4px;overflow-wrap:anywhere}
+.card p{margin:6px 0 0;font-size:14.5px;color:var(--areia)}
+.card.venc{border-color:var(--ouro);box-shadow:0 0 0 1px var(--ouro) inset}
+.par{display:grid;grid-template-columns:110px 1fr 56px;gap:8px;align-items:center;font-size:13.5px;margin-top:6px}
+.par .b{height:12px;background:var(--preto);border-radius:6px;overflow:hidden}
+.par .b i{display:block;height:100%}
+.par .c1{background:var(--areia)} .par .c2{background:var(--ok)}
+.par span:last-child{text-align:right}
+.q4{display:grid;gap:10px}
+.st{font-weight:600}
+.st.ok{color:var(--ok)} .st.alerta{color:var(--bad)} .st.sem{color:var(--na)} .st.am{color:var(--warn)}
+details{background:var(--musgo);border:1px solid var(--linha);border-radius:12px;padding:10px 12px;margin-top:10px}
+summary{cursor:pointer;color:var(--ouro);font-weight:600;min-height:32px}
+ul{margin:8px 0 0;padding-left:20px}
+li{margin:4px 0}
+svg{max-width:100%;height:auto;display:block}
+.leg{display:flex;gap:14px;flex-wrap:wrap;font-size:13px;color:var(--areia);margin:6px 0 0}
+.leg i{display:inline-block;width:12px;height:12px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+footer{margin:36px 0 12px;color:var(--areia);font-size:13.5px;border-top:1px solid var(--linha);padding-top:12px}
+@media (min-width:700px){
+  .wrap{padding:24px}
+  h1{font-size:38px}
+  .kpis{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .cards.tres{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .q4{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (min-width:1100px){
+  .kpis{grid-template-columns:repeat(4,minmax(0,1fr))}
+  .cards.tres{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .q4{grid-template-columns:repeat(4,minmax(0,1fr))}
+}
+@media (max-width:699px){
+  .tabela thead{display:none}
+  .tabela,.tabela tbody,.tabela tr,.tabela td{display:block;width:100%}
+  .tabela tr{background:var(--musgo);border:1px solid var(--linha);border-radius:12px;padding:8px 12px;margin-bottom:10px}
+  .tabela td{display:flex;justify-content:space-between;gap:12px;text-align:right;border:0;padding:5px 0}
+  .tabela td:first-child{font-family:var(--serif);font-size:21px;color:var(--ouro);text-align:left;overflow-wrap:anywhere}
+  .tabela td::before{content:attr(data-l);color:var(--areia);font-size:13px;text-align:left}
+  .tabela td:first-child::before{content:""}
+}
+</style>
+</head>
+<body>
+<script id="dados-embutidos" type="application/json"></script>
+<div class="wrap">
+  <header>
+    <div class="topo">
+      <img src="../../docs/brand/zion-logo-claro.png" alt="Zion Hotel Group" onerror="this.style.display='none'">
+      <h1>Painel comercial · Mini Mentoria</h1>
+    </div>
+    <p class="sub" id="sub">Somente leitura. Nenhum botão aqui altera anúncio, página, preço ou oferta.</p>
+    <div class="faixa" id="faixa" aria-live="polite"></div>
+  </header>
+
+  <section class="carrega" id="carrega" hidden>
+    <p id="carrega-msg">Não consegui abrir o arquivo de dados automaticamente (navegador bloqueia leitura de arquivo local). Escolha o <b>dados.json</b> (ou <b>dados_exemplo.json</b>).</p>
+    <label class="btn" for="arq" tabindex="0" id="arq-label">Escolher arquivo de dados</label>
+    <input type="file" id="arq" accept=".json,application/json">
+  </section>
+
+  <main id="app" hidden>
+    <h2>Resultado do período</h2>
+    <p class="sub" id="kpi-sub"></p>
+    <div class="kpis" id="kpis"></div>
+
+    <h2>Funil de 7 etapas</h2>
+    <p class="sub">Cada etapa é um evento próprio. Pix gerado não é compra; o carregamento do checkout não é intenção.</p>
+    <div class="funil" id="funil"></div>
+
+    <h2>Anúncios: o que atrai × o que vende</h2>
+    <p class="sub">Vencedor é o menor custo por <b>comprador</b> (CPA), com conversão do checkout e reembolso sob controle e amostra mínima. Não é CPC baixo nem muitos checkouts.</p>
+    <div class="rolagem">
+      <table class="tabela" id="tab">
+        <thead><tr><th>Anúncio</th><th>Gasto</th><th>Visitas</th><th>Cliques no CTA</th><th>Checkouts efetivos</th><th>Vendas</th><th>CPA</th><th>ROAS</th><th>Reembolso</th><th>Perfil</th><th>Decisão</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h2>Curioso × comprador</h2>
+    <p class="sub">Participação de cada anúncio nos checkouts (areia) ao lado da participação nas vendas (verde). Barra de checkout maior que a de vendas = atrai curiosos.</p>
+    <div class="cards tres" id="cxc"></div>
+
+    <h2>Semáforo de decisão</h2>
+    <p class="sub">Recomendação do painel. Subir orçamento, ligar ou pausar campanha só com <b>aprovado</b> de Bruno.</p>
+    <div class="cards tres" id="sem"></div>
+    <details><summary>Regras e limiares usados (hipóteses [H] que Bruno ajusta)</summary><ul id="regras"></ul></details>
+
+    <h2>Evolução diária</h2>
+    <p class="sub">Gasto (barras) e vendas aprovadas (pontos) por dia.</p>
+    <div id="serie"></div>
+
+    <h2>Qualidade dos dados</h2>
+    <p class="sub">O painel mostra o que falta em vez de esconder.</p>
+    <div class="q4" id="qual"></div>
+  </main>
+
+  <footer>
+    <p><b>Selos:</b> <span class="chip real">Real</span> lido na fonte · <span class="chip est">Estimado</span> calculado por regra declarada (ex.: margem parcial) · <span class="chip ind">Indisponível</span> sem dado hoje; nunca vira zero.</p>
+    <p>Fontes: Meta (gasto), ClickMax (visitas, eventos, vendas), Ticto (status de pagamento). Definições e limites: <code>INDICADORES_P0.md</code>. Sem dado pessoal: só contagens e ids de plataforma.</p>
+  </footer>
+</div>
+<script>
+(function () {
+  "use strict";
+  var $ = function (id) { return document.getElementById(id); };
+  var D = null;
+
+  function el(tag, attrs, kids) {
+    var e = document.createElement(tag);
+    Object.keys(attrs || {}).forEach(function (k) {
+      if (k === "class") e.className = attrs[k]; else if (k === "text") e.textContent = attrs[k]; else e.setAttribute(k, attrs[k]);
+    });
+    (kids || []).forEach(function (c) { if (c != null) e.appendChild(typeof c === "string" ? document.createTextNode(c) : c); });
+    return e;
+  }
+  var nf0 = new Intl.NumberFormat("pt-BR", { maximumFractionDigits: 0 });
+  var nf2 = new Intl.NumberFormat("pt-BR", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  var brl = new Intl.NumberFormat("pt-BR", { style: "currency", currency: "BRL" });
+  function isN(v) { return v !== null && v !== undefined && typeof v === "number" && isFinite(v); }
+  function fInt(v) { return isN(v) ? nf0.format(v) : null; }
+  function fBrl(v) { return isN(v) ? brl.format(v).replace(/ /g, " ") : null; }
+  function fPct(v, d) { return isN(v) ? new Intl.NumberFormat("pt-BR", { style: "percent", minimumFractionDigits: d == null ? 1 : d, maximumFractionDigits: d == null ? 1 : d }).format(v) : null; }
+  function fX(v) { return isN(v) ? nf2.format(v) + "x" : null; }
+  var NA = "indisponível";
+
+  // ---------- carregamento
+  function boot() {
+    var emb = $("dados-embutidos").textContent.trim();
+    if (emb) { try { return show(JSON.parse(emb)); } catch (e) { /* cai para fetch */ } }
+    tentar(["dados.json", "dados_exemplo.json"]);
+  }
+  function tentar(lista) {
+    if (!lista.length) return pedir();
+    var u = lista[0];
+    fetch(u, { cache: "no-store" }).then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(show).catch(function () { tentar(lista.slice(1)); });
+  }
+  function pedir(msg) {
+    $("app").hidden = true; $("carrega").hidden = false;
+    if (msg) $("carrega-msg").textContent = msg;
+  }
+  $("arq").addEventListener("change", function (ev) {
+    var f = ev.target.files && ev.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () { try { show(JSON.parse(r.result)); } catch (e) { pedir("Esse arquivo não é um dados.json válido do painel."); } };
+    r.readAsText(f, "utf-8");
+  });
+  $("arq-label").addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); $("arq").click(); } });
+  document.addEventListener("dragover", function (e) { e.preventDefault(); });
+  document.addEventListener("drop", function (e) {
+    e.preventDefault(); var f = e.dataTransfer.files && e.dataTransfer.files[0]; if (!f) return;
+    var r = new FileReader(); r.onload = function () { try { show(JSON.parse(r.result)); } catch (x) { pedir("Arquivo inválido."); } }; r.readAsText(f, "utf-8");
+  });
+
+  function show(d) {
+    if (!d || !d.meta || !d.analise) return pedir("Formato inesperado: gere o arquivo com gerar_dados.py.");
+    D = d; $("carrega").hidden = true; $("app").hidden = false;
+    document.title = "Painel comercial Zion" + (d.meta.ficticio ? " (dados fictícios)" : "");
+    renderFaixa(); renderKpis(); renderFunil(); renderTabela(); renderCxC(); renderSemaforo(); renderSerie(); renderQualidade();
+    document.body.setAttribute("data-pronto", "1");
+  }
+
+  function renderFaixa() {
+    var m = D.meta, f = $("faixa"); f.textContent = "";
+    f.appendChild(el("span", { class: m.ficticio ? "selo-fic" : "selo-real", text: m.ficticio ? "DADOS FICTÍCIOS · exemplo para testar o painel" : "Dados reais · não publicar" }));
+    var p = m.periodo || {};
+    f.appendChild(el("span", { class: "nota", text: "Período: " + (p.de || "?") + " a " + (p.ate || "?") + " · fuso " + (m.fuso || "?") + " · gerado em " + (m.gerado_em || "?") }));
+  }
+
+  // ---------- KPIs
+  function kpi(titulo, valor, selo, nota, destaque) {
+    var na = valor == null;
+    var s = selo === "Real" ? "real" : selo === "Estimado" ? "est" : "ind";
+    return el("div", { class: "kpi" + (destaque ? " destaque" : ""), "data-kpi": titulo }, [
+      el("div", { class: "t" }, [el("span", { text: titulo }), el("span", { class: "chip " + (na ? "ind" : s), text: na ? "Indisponível" : selo })]),
+      el("div", { class: "v" + (na ? " na" : ""), text: na ? NA : valor }),
+      nota ? el("div", { class: "n", text: nota }) : null]);
+  }
+  function renderKpis() {
+    var T = D.analise.totais, F = D.meta.financeiro, K = $("kpis"); K.textContent = "";
+    $("kpi-sub").textContent = "Produto: " + D.meta.produto + " · preço R$ " + nf2.format(F.preco) + " · líquido por venda no Pix " + brl.format(F.liquido).replace(/ /g, " ") + " [E] (a taxa pode seguir regra por faixa; confirmar no extrato da Ticto).";
+    var cpaNota = isN(T.cpa) ? ("CPA máximo " + fBrl(F.cpa_max) + " · desejado " + fBrl(F.cpa_desejado)) : (T.sem_venda ? "sem venda no período" : null);
+    var parc = F.parcial ? "parcial: imposto e custo variável 'a definir'" : null;
+    [
+      kpi("Gasto de mídia", fBrl(T.gasto), "Real"),
+      kpi("Visitas à landing", fInt(T.visitas), "Real", isN(T.cpv) ? "custo por visita " + fBrl(T.cpv) : "custo por visita " + NA),
+      kpi("Cliques qualificados no CTA", fInt(T.cliques_cta), "Real", isN(T.conv_landing) ? "conversão da landing " + fPct(T.conv_landing) : "conversão da landing " + NA),
+      kpi("Checkouts efetivos", fInt(T.checkouts), "Real", isN(T.cp_chk) ? "custo por checkout " + fBrl(T.cp_chk) : "custo por checkout " + NA),
+      kpi("Conversão checkout → aprovado", fPct(T.conv_checkout), "Real"),
+      kpi("Vendas aprovadas", fInt(T.compras), "Real", "sem testes · inclui reembolsadas"),
+      kpi("CPA (custo por comprador)", fBrl(T.cpa), "Real", cpaNota, true),
+      kpi("Receita líquida", fBrl(T.receita_liquida), "Real", "após taxas e reembolsos"),
+      kpi("ROAS", fX(T.roas), "Real", isN(T.roas_liquido) ? "líquido " + fX(T.roas_liquido) + " · equilíbrio " + fX(F.roas_equilibrio) : null),
+      kpi("Margem de contribuição", fBrl(T.margem_contribuicao), F.parcial ? "Estimado" : "Real", parc),
+      kpi("Resultado de mídia", fBrl(T.resultado_midia), F.parcial ? "Estimado" : "Real", parc || "margem − gasto"),
+      kpi("Reembolsos", isN(T.reembolsos) ? fInt(T.reembolsos) + (isN(T.taxa_reembolso) ? " (" + fPct(T.taxa_reembolso) + ")" : "") : null, "Real", "janela de 7 dias"),
+      kpi("Pix gerado → pago", fPct(T.pix_pago), "Real", "Pix gerado não é compra")
+    ].forEach(function (k) { K.appendChild(k); });
+  }
+
+  // ---------- funil
+  function renderFunil() {
+    var F = $("funil"); F.textContent = "";
+    var base = (D.analise.funil[0] || {}).quantidade;
+    D.analise.funil.forEach(function (e, i) {
+      var q = e.quantidade, na = !isN(q);
+      var w = na ? 100 : (isN(base) && base > 0 ? Math.max(1.5, q / base * 100) : 0);
+      var tx = [];
+      if (i > 0) tx.push("vs etapa anterior: " + (fPct(e.taxa_anterior, e.taxa_anterior != null && e.taxa_anterior < 0.1 ? 2 : 1) || NA));
+      if (i > 0) tx.push("vs visitas: " + (fPct(e.taxa_visitas, 2) || NA));
+      F.appendChild(el("div", { class: "et", "data-etapa": e.etapa }, [
+        el("div", { class: "l" }, [el("b", { text: (i + 1) + ". " + e.etapa }), el("span", { class: "q", text: na ? NA : nf0.format(q) })]),
+        el("div", { class: "barra" + (na ? " na" : ""), role: "img", "aria-label": na ? e.etapa + ": indisponível" : e.etapa + ": " + nf0.format(q) }, [el("i", { style: "width:" + w.toFixed(1) + "%" })]),
+        el("div", { class: "tx", text: tx.join(" · ") })]));
+    });
+  }
+
+  // ---------- tabela
+  function tagDec(d) {
+    var c = d === "ESCALAR" ? "escalar" : d === "MANTER" ? "manter" : d === "PAUSAR" ? "pausar" : "sem";
+    var ic = d === "ESCALAR" ? "▲ " : d === "MANTER" ? "● " : d === "PAUSAR" ? "■ " : "○ ";
+    return el("span", { class: "tag " + c, text: ic + d });
+  }
+  function tagPerfil(p) {
+    if (!p) return el("span", { class: "chip ind", text: NA });
+    var c = p === "CURIOSO" ? "curioso" : p === "COMPRADOR" ? "comprador" : p === "MISTO" ? "misto" : "sem";
+    return el("span", { class: "tag " + c, text: p });
+  }
+  function renderTabela() {
+    var tb = document.querySelector("#tab tbody"); tb.textContent = "";
+    D.analise.criativos.forEach(function (c) {
+      var cells = [
+        ["Anúncio", c.criativo + (c.vencedor ? "  ★" : ""), null],
+        ["Gasto", fBrl(c.gasto), c.gasto],
+        ["Visitas", fInt(c.visitas), c.visitas],
+        ["Cliques no CTA", fInt(c.cliques_cta), c.cliques_cta],
+        ["Checkouts efetivos", fInt(c.checkouts), c.checkouts],
+        ["Vendas", fInt(c.compras), c.compras],
+        ["CPA", c.sem_venda ? "sem venda" : fBrl(c.cpa), c.cpa],
+        ["ROAS", fX(c.roas), c.roas],
+        ["Reembolso", fPct(c.taxa_reembolso), c.taxa_reembolso]
+      ];
+      var tr = el("tr", { "data-anuncio": c.criativo });
+      cells.forEach(function (x, i) {
+        var txt = x[1], na = txt == null && i > 0, sa = c.criativo.indexOf("(sem") === 0;
+        tr.appendChild(el("td", { "data-l": x[0], class: na ? "na" : "", text: na ? (sa ? "—" : NA) : txt }));
+      });
+      var tdp = el("td", { "data-l": "Perfil" }); tdp.appendChild(tagPerfil(c.perfil)); tr.appendChild(tdp);
+      var tdd = el("td", { "data-l": "Decisão" }); tdd.appendChild(tagDec(c.decisao)); tr.appendChild(tdd);
+      tb.appendChild(tr);
+    });
+  }
+
+  // ---------- curioso x comprador
+  function renderCxC() {
+    var box = $("cxc"); box.textContent = "";
+    D.analise.criativos.filter(function (c) { return c.criativo.indexOf("(sem") !== 0; }).forEach(function (c) {
+      var pc = c.part_checkouts, pv = c.part_compras, ok = isN(pc) && isN(pv);
+      var card = el("div", { class: "card", "data-anuncio": c.criativo }, [
+        el("h3", { text: c.criativo }),
+        el("div", {}, [tagPerfil(c.perfil)])]);
+      if (ok) {
+        card.appendChild(el("div", { class: "par" }, [el("span", { text: "Checkouts" }), el("div", { class: "b" }, [el("i", { class: "c1", style: "width:" + Math.max(1, pc * 100).toFixed(1) + "%" })]), el("span", { text: fPct(pc, 0) })]));
+        card.appendChild(el("div", { class: "par" }, [el("span", { text: "Vendas" }), el("div", { class: "b" }, [el("i", { class: "c2", style: "width:" + Math.max(1, pv * 100).toFixed(1) + "%" })]), el("span", { text: fPct(pv, 0) })]));
+      } else card.appendChild(el("p", { text: "Sem evento de início efetivo de checkout: quadro " + NA + "." }));
+      card.appendChild(el("p", { text: "Cliques no link: " + (fInt(c.cliques_link) || NA) + " · visitas: " + (fInt(c.visitas) || NA) + " · checkouts: " + (fInt(c.checkouts) || NA) + " · vendas: " + (fInt(c.compras) || NA) + (isN(c.indice_curiosidade) ? " · índice " + nf2.format(c.indice_curiosidade) : "") }));
+      if (c.armadilha) card.appendChild(el("p", { class: "st alerta", text: "Atenção: " + c.armadilha + "." }));
+      box.appendChild(card);
+    });
+  }
+
+  // ---------- semaforo
+  function renderSemaforo() {
+    var box = $("sem"); box.textContent = "";
+    D.analise.criativos.forEach(function (c) {
+      var card = el("div", { class: "card" + (c.vencedor ? " venc" : ""), "data-anuncio": c.criativo }, [
+        el("h3", { text: c.criativo + (c.vencedor ? "  ★ menor CPA" : "") }), el("div", {}, [tagDec(c.decisao)]), el("p", { text: c.motivo })]);
+      box.appendChild(card);
+    });
+    var L = D.meta.limiares, F = D.meta.financeiro, ul = $("regras"); ul.textContent = "";
+    [
+      "CPA máximo " + fBrl(F.cpa_max) + " (= margem de contribuição por venda; " + (F.parcial ? "imposto e custo variável ainda a definir: é teto superior" : "com imposto e custo definidos") + "). CPA desejado " + fBrl(F.cpa_desejado) + " (margem alvo " + fPct(F.margem_alvo, 0) + " [H]).",
+      "Amostra mínima por anúncio: " + L.min_visitas + " visitas, " + L.min_checkouts + " checkouts efetivos e " + L.min_compras + " compras [H].",
+      "Escalar: CPA ≤ desejado, conversão checkout → aprovado ≥ " + fPct(L.conv_checkout_min, 0) + " e reembolso ≤ " + fPct(L.reembolso_max, 0) + " [H].",
+      "Pausar: CPA > CPA máximo, ou corte de perda (gasto ≥ " + L.stop_loss_mult + " × CPA máximo sem compras que paguem a mídia) [H].",
+      "Curioso: índice (participação nos checkouts ÷ participação nas vendas) ≥ " + L.idx_curioso + "; comprador: ≤ " + L.idx_comprador + " [H].",
+      "Sem decisão: amostra abaixo do mínimo ou evento ausente. Nunca decidir por \"parece que vai\"."
+    ].forEach(function (t) { ul.appendChild(el("li", { text: t })); });
+  }
+
+  // ---------- serie diaria (SVG)
+  function renderSerie() {
+    var box = $("serie"); box.textContent = "";
+    var por = {};
+    D.linhas.forEach(function (x) { var o = por[x.data] || (por[x.data] = { g: 0, c: 0 }); o.g += x.gasto || 0; o.c += x.compras || 0; });
+    var dias = Object.keys(por).sort();
+    if (!dias.length) { box.appendChild(el("p", { class: "nota", text: "Sem linhas diárias." })); return; }
+    var W = 720, H = 240, m = { l: 46, r: 40, t: 14, b: 40 }, iw = W - m.l - m.r, ih = H - m.t - m.b;
+    var gmax = Math.max.apply(null, dias.map(function (d) { return por[d].g; })) || 1, cmax = Math.max.apply(null, dias.map(function (d) { return por[d].c; })) || 1;
+    var NS = "http://www.w3.org/2000/svg";
+    function s(tag, a, txt) { var e = document.createElementNS(NS, tag); Object.keys(a).forEach(function (k) { e.setAttribute(k, a[k]); }); if (txt != null) e.textContent = txt; return e; }
+    var svg = s("svg", { viewBox: "0 0 " + W + " " + H, role: "img", "aria-label": "Gasto e vendas por dia" });
+    var bw = iw / dias.length;
+    svg.appendChild(s("line", { x1: m.l, y1: m.t + ih, x2: W - m.r, y2: m.t + ih, stroke: "#DED6BF", "stroke-opacity": ".35" }));
+    svg.appendChild(s("text", { x: m.l - 6, y: m.t + 10, "text-anchor": "end", fill: "#DED6BF", "font-size": "12" }, "R$ " + nf0.format(gmax)));
+    svg.appendChild(s("text", { x: m.l - 6, y: m.t + ih, "text-anchor": "end", fill: "#DED6BF", "font-size": "12" }, "0"));
+    svg.appendChild(s("text", { x: W - m.r + 6, y: m.t + 10, fill: "#8CCB98", "font-size": "12" }, nf0.format(cmax)));
+    var pts = [];
+    dias.forEach(function (d, i) {
+      var x = m.l + i * bw, h = por[d].g / gmax * ih, cx = x + bw / 2, cy = m.t + ih - por[d].c / cmax * ih;
+      svg.appendChild(s("rect", { x: x + bw * .18, y: m.t + ih - h, width: bw * .64, height: Math.max(h, 0), fill: "#8B714E" }));
+      svg.appendChild(s("text", { x: cx, y: H - 22, "text-anchor": "middle", fill: "#DED6BF", "font-size": "12" }, d.slice(5)));
+      pts.push([cx, cy]);
+    });
+    svg.appendChild(s("polyline", { points: pts.map(function (p) { return p.join(","); }).join(" "), fill: "none", stroke: "#8CCB98", "stroke-width": "2" }));
+    pts.forEach(function (p, i) {
+      svg.appendChild(s("circle", { cx: p[0], cy: p[1], r: 4, fill: "#8CCB98" }));
+      svg.appendChild(s("text", { x: p[0], y: p[1] - 8, "text-anchor": "middle", fill: "#FEF5F0", "font-size": "12" }, String(por[dias[i]].c)));
+    });
+    box.appendChild(svg);
+    box.appendChild(el("div", { class: "leg" }, [el("span", {}, [el("i", { style: "background:#8B714E" }), "Gasto (R$)"]), el("span", {}, [el("i", { style: "background:#8CCB98" }), "Vendas aprovadas"])]));
+  }
+
+  // ---------- qualidade
+  function stCls(s) { return s === "OK" ? "ok" : s === "ALERTA" ? "alerta" : s === "AMOSTRA PEQUENA" ? "am" : "sem"; }
+  function renderQualidade() {
+    var Q = D.qualidade, box = $("qual"); box.textContent = "";
+    function card(t, status, linhas) {
+      var c = el("div", { class: "card", "data-q": t }, [el("h3", { text: t }), el("div", { class: "st " + stCls(status), text: status })]);
+      linhas.forEach(function (l) { if (l) c.appendChild(el("p", { text: l })); });
+      return c;
+    }
+    var px = Q.pixel;
+    box.appendChild(card("Pixel e eventos", px.status, [
+      px.eventos_ausentes.length ? "Eventos ausentes: " + px.eventos_ausentes.join(", ") + "." : "Os 5 eventos do funil chegam.",
+      "Início de checkout: " + px.checkout_start_definicao + ". " + px.nota]));
+    var u = Q.utm;
+    box.appendChild(card("UTM e origem", u.status, [
+      isN(u.pct_com_origem) ? fPct(u.pct_com_origem, 0) + " das compras têm origem (" + (u.compras_aprovadas - u.sem_origem) + " de " + u.compras_aprovadas + ")." : "Sem compras na base.", u.nota]));
+    var c = Q.conciliacao, ls = [];
+    if (c.gateway) ls.push("ClickMax × Ticto: " + c.gateway.clickmax_compras + " × " + c.gateway.gateway_compras + " compras · " + c.gateway.veredito + (c.gateway.divergencias.length ? " · " + c.gateway.divergencias.length + " divergência(s): " + c.gateway.divergencias.map(function (d) { return d.order_id + " (" + d.problema + ")"; }).join("; ") : ""));
+    if (c.meta) ls.push("ClickMax × Meta: " + c.meta.total.clickmax_compras + " × " + c.meta.total.meta_compras + " compras (" + (c.meta.total.dif_compras_pct == null ? "n/d" : c.meta.total.dif_compras_pct + "%") + ", tolerância ±10%) · " + c.meta.total.veredito + (c.por_dia_alertas ? " · " + c.por_dia_alertas + " dia(s) em alerta" : ""));
+    if (!ls.length) ls.push("Sem arquivo do gateway nem do Meta para conciliar.");
+    box.appendChild(card("Conciliação", c.status, ls));
+    box.appendChild(card("Amostra", Q.amostra.status, [Q.amostra.compras + " compras na base. Abaixo de 10, explicar venda a venda."]));
+  }
+
+  boot();
+})();
+</script>
+</body>
+</html>
