@@ -40,6 +40,13 @@ function loadConfig(env = process.env) {
     eventSourceUrlDefault: env.EVENT_SOURCE_URL_DEFAULT || '',
     sendRefundEvent: bool(env.SEND_REFUND_EVENT, false),
     refundEventName: env.REFUND_EVENT_NAME || 'ZionRefund',
+    // Eventos opcionais do funil P0. DESLIGADOS por padrao. Pix gerado NUNCA e Purchase.
+    sendPixGenerated: bool(env.SEND_PIX_GENERATED, false),
+    pixGeneratedEventName: env.PIX_GENERATED_EVENT_NAME || 'PixGenerated',
+    sendAccessDelivered: bool(env.SEND_ACCESS_DELIVERED, false),
+    accessDeliveredEventName: env.ACCESS_DELIVERED_EVENT_NAME || 'AccessDelivered',
+    contentName: env.CONTENT_NAME || 'Mini Mentoria de Estruturação Zion',
+    contentId: env.CONTENT_ID || 'mm47',
     dedupeStore: env.DEDUPE_STORE || 'memory',
     port: num(env.PORT, 8787),
     maxBodyBytes: num(env.MAX_BODY_BYTES, 262144),

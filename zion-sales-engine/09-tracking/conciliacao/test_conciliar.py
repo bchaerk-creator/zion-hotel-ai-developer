@@ -74,5 +74,56 @@ class T(unittest.TestCase):
         self.assertFalse(C.has_alert(res2))
 
 
+FU = C.read(H / "MODELO_funil.csv")
+
+
+class TFunil(unittest.TestCase):
+    def setUp(self):
+        self.res = {f["data"]: f for f in C.reconcile_funil(FU, CM)}
+
+    def test_dia_coerente_sem_alerta(self):
+        f = self.res["2026-11-20"]  # ClickMax tem 2 compras pagas/reembolsadas em 20/11 (F-001, F-002)
+        self.assertEqual(f["veredito"], "OK")
+        self.assertEqual(f["taxas_pct"]["oferta/visita"], 45.0)
+        self.assertEqual(f["taxas_pct"]["clique CTA/visita"], 15.0)
+        self.assertEqual(f["taxas_pct"]["checkout efetivo/clique CTA"], 33.3)
+        self.assertEqual(f["taxas_pct"]["aprovado/checkout efetivo"], 10.0)
+        self.assertEqual(f["taxas_pct"]["entregue/aprovado"], 100.0)
+
+    def test_entrega_menor_que_aprovado_gera_motivo(self):
+        f = self.res["2026-11-21"]  # funil diz 2 aprovados; ClickMax base de 21/11 = 2 (F-004, F-005); entregues 1
+        self.assertEqual(f["veredito"], "ALERTA")
+        self.assertTrue(any("entrega pendente" in m for m in f["motivos_divergencia"]))
+        self.assertFalse(any("diferentes da base ClickMax" in m for m in f["motivos_divergencia"]))
+
+    def test_checkout_maior_que_clique_e_indisponivel_nao_vira_zero(self):
+        f = self.res["2026-11-22"]
+        self.assertTrue(any("carregamento do iframe" in m for m in f["motivos_divergencia"]))
+        self.assertIn("Pix gerado", f["indisponiveis"])
+        self.assertIn("entregue", f["indisponiveis"])
+        self.assertEqual(f["approved"], 0)  # vazio no CSV: usa a base ClickMax (0 em 22/11), fonte registrada
+        self.assertEqual(f["approved_fonte"], "clickmax")
+        self.assertIsNone(f["taxas_pct"]["entregue/aprovado"])
+
+    def test_aprovado_do_funil_diferente_do_clickmax(self):
+        rows = [dict(r) for r in FU]
+        rows[0]["approved"] = "5"
+        f = {x["data"]: x for x in C.reconcile_funil(rows, CM)}["2026-11-20"]
+        self.assertTrue(any("diferentes da base ClickMax" in m for m in f["motivos_divergencia"]))
+
+    def test_pix_nao_e_compra_e_aprovado_acima_do_checkout(self):
+        rows = [dict(r) for r in FU]
+        rows[0]["approved"] = "30"
+        rows[0]["delivered"] = "30"
+        f = {x["data"]: x for x in C.reconcile_funil(rows, CM)}["2026-11-20"]
+        self.assertTrue(any("aprovados maiores que checkout efetivo" in m for m in f["motivos_divergencia"]))
+
+    def test_relatorio_com_funil(self):
+        lines = []
+        res = C.report(CM, None, None, out=lines.append, funil=FU)
+        self.assertTrue(C.has_alert(res))
+        self.assertTrue(any(l.strip().startswith("motivo:") for l in lines))
+
+
 if __name__ == "__main__":
     unittest.main(verbosity=2)

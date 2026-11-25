@@ -14,6 +14,14 @@ Quando usar: só se o roteiro de teste da opção A (config nativa do ClickMax) 
 7. Respostas de rejeição por regra (valor fora da faixa, sem dado de correspondência, evento antigo) voltam **200** de propósito: o ClickMax desativa a integração depois de 15 falhas seguidas, e tentar de novo não resolve.
 8. Logs só com `event_id`, motivo, valor e moeda. **Sem e-mail, telefone, nome ou token** (teste automático confere).
 
+## Funil P0: o que vira Purchase e os eventos opcionais (atualizado em 25/11/2026)
+Ver `../FUNIL_DE_EVENTOS_P0.md`. Resumo do que o código garante (34 testes automáticos):
+- **Só pagamento aprovado vira `Purchase`** (`paid`/`approved`, `value` em reais com ponto, `currency=BRL`, `event_id` = id do pedido, UTMs, `content_name`, `content_ids`). Pix gerado, pendente, autorizado e `paid_pending` não.
+- **Pix gerado**: ignorado por padrão. Com `SEND_PIX_GENERATED=true` envia o evento **custom** `PixGenerated` (nome em `PIX_GENERATED_EVENT_NAME`; o servidor **recusa** o nome `Purchase`), com `event_id` próprio `pix-<id do pedido>`, `value` do pedido (informativo, não é receita) e as mesmas UTMs. **DESLIGADO por padrão.** Serve para medir "gerou Pix e não pagou"; não otimize campanha por ele.
+- **Acesso entregue**: ignorado por padrão. Com `SEND_ACCESS_DELIVERED=true` envia o evento custom `AccessDelivered` (`event_id` = `access-<id>`). **DESLIGADO por padrão.** Só faz sentido se a entrega (ou outro webhook) avisar o receptor com um nome de evento contendo `access.delivered`/`acesso entregue`, ou se você acrescentar `?evento=access.delivered` na URL: o momento em que o ClickMax dispara esse aviso **[NC]**, confirme com **Enviar teste** e uma compra de teste.
+- Variáveis novas: `CONTENT_NAME` (padrão "Mini Mentoria de Estruturação Zion") e `CONTENT_ID` (padrão `mm47`).
+- Os dois eventos opcionais usam `event_id` diferente do `Purchase`, então não se deduplicam entre si nem inflam compras.
+
 ## Rodar os testes (sem rede, sem token)
 ```bash
 cd zion-sales-engine/09-tracking/capi-webhook

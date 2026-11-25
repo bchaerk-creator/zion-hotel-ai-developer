@@ -232,6 +232,79 @@ D += step("D10", "Reembolse as compras de teste",
           cuidado="Nunca remova acesso de comprador real. O acesso do contato de teste é decisão sua.",
           print_="Print da venda reembolsada e do Histórico de envio depois do reembolso.")
 
+
+# ---------------------------------------------------------------- E) Funil P0
+EVT = """
+<table><tr><th>#</th><th>Evento</th><th>Nome</th><th>Hoje</th><th>Onde conferir</th></tr>
+<tr><td>1</td><td>Visualização da landing</td><td>PageView</td><td>ok</td><td>Testar eventos</td></tr>
+<tr><td>2</td><td>Visualização da oferta</td><td>ViewContent (pixel) / element_visible (ClickMax)</td><td>desligado</td><td>Testar eventos / análise ClickMax</td></tr>
+<tr><td>3</td><td>Clique no CTA com preço</td><td>button_click do botão (só no ClickMax)</td><td>mede no ClickMax</td><td>Análise de visitantes ClickMax</td></tr>
+<tr><td>4</td><td>Início efetivo de checkout</td><td>InitiateCheckout</td><td>errado (iframe)</td><td>Testar eventos, Histórico de envio</td></tr>
+<tr><td>5</td><td>Pix gerado</td><td>pix_generated (interno); PixGenerated só se o receptor for ligado</td><td>só interno</td><td>Vendas (pendente Pix), ficha do contato</td></tr>
+<tr><td>6</td><td>Pagamento aprovado</td><td>Purchase</td><td>só após pago</td><td>Testar eventos, Histórico de envio, Vendas</td></tr>
+<tr><td>7</td><td>Entrega do produto</td><td>membro na turma + e-mail de acesso</td><td>sem evento no Meta</td><td>Turma do portal, e-mail</td></tr></table>
+<div class="box ver"><b class="t">Regras</b>O carregamento do checkout <b>não</b> é intenção. Pix gerado <b>não</b> é compra. Clique no CTA <b>com preço</b> é o clique qualificado.</div>"""
+
+E_ = ""
+E_ += step("E1", "Entenda os 7 eventos (leia antes de mexer)",
+           "<p>O funil P0 separa quem viu, quem clicou sabendo o preço, quem começou a comprar, quem gerou Pix, quem pagou e quem recebeu. Esquema abaixo; detalhes no arquivo <span class=\"mono\">FUNIL_DE_EVENTOS_P0.md</span>.</p>" + EVT,
+           print_="Nada a enviar neste passo.")
+E_ += step("E2", "Confirme que o clique qualificado é medido no ClickMax (sem mexer em nada)",
+           "<p>O ClickMax mede sozinho o clique em cada botão da página publicada (<code>button_click</code>, com o código do botão). Os 6 botões com preço da página nova de teste aparecem como <b>cta-0 a cta-5</b>. Esse número fica no ClickMax; <b>não vai ao Meta</b>. " + E + "</p>"
+           "<p>Para ver: abra a página publicada em janela anônima, clique em um botão com preço e confira a lista de ações recentes.</p>",
+           onde="<b>Visitantes</b> (análise e ações recentes) &rsaquo; ações das últimas 24 h, ou o funil da página em <b>Funis</b> &rsaquo; análise. A tela exata que lista cliques por botão: " + NC + ".",
+           ver="Uma linha de clique com a página e (se identificado) o contato, logo depois do seu clique. Se você clicar em botões diferentes, o código do botão muda.",
+           print_="Print da lista de ações recentes com o seu clique (borre nomes). Se a tela mostrar cliques por botão, print dela também.",
+           mock=mock(['<span>Visitantes &rsaquo; Ações recentes</span><span class="btn">24 h</span>',
+                      '<span>página /mini-mentoria-a</span><span class="pill p-ok">clique no botão</span><span class="mono">cta-2</span>'], "Esquema"))
+E_ += step("E3", "Ligue \"Só contar depois dos dados pessoais\" (início efetivo de checkout)",
+           "<p>Hoje o evento de início de checkout dispara ao <b>carregar</b> o checkout. Com a opção ligada, só conta quando a pessoa informa nome e e-mail. É a mesma chave do passo A4. " + E + "</p>",
+           onde="<b>Marketing</b> &rsaquo; <b>Tráfego</b> &rsaquo; <b>Pixel e trackeamento</b> &rsaquo; &#8943; &rsaquo; <b>Editar</b> &rsaquo; passo <b>Eventos</b> &rsaquo; linha <b>Abriu o checkout</b> &rsaquo; <b>Só contar depois dos dados pessoais</b>. " + E,
+           ver="Interruptor ligado. No teste: abrir o checkout sem preencher nada <b>não</b> gera o evento; depois de nome e e-mail, gera <b>um</b>.",
+           cuidado="Não clique em <b>Ativar eventos novos</b> (troca <code>InitiateCheckout</code> por <code>AddToCart</code>). Só com \"aprovado\" e aviso a quem cuida dos anúncios.",
+           print_="Print da linha <b>Abriu o checkout</b> com a opção ligada.")
+E_ += step("E4", "Visualização da oferta: marque \"Página de conteúdo\" SÓ numa página de oferta nova",
+           "<p>O ClickMax só envia <b>ViewContent</b> para a Meta se a página estiver marcada como <b>Página de conteúdo</b>; o evento sai quando a página <b>abre</b>. Numa landing única isso seria igual ao PageView, então a marcação faz sentido só numa <b>página de oferta separada</b> (landing &rarr; clique no botão com preço &rarr; página da oferta com o checkout). " + E + "</p>"
+           "<p><b>Não marque</b> a página de checkout, de obrigado nem as páginas existentes (<span class=\"mono\">/mini-mentoria</span>, <span class=\"mono\">/inscricao-47</span>).</p>",
+           onde="Página nova &rsaquo; editor &rsaquo; <b>Configurações da Página</b> &rsaquo; <b>Scripts</b> &rsaquo; ligue <b>Página de conteúdo</b> (salva na hora). Ou, no canvas do funil, abra a etapa &rsaquo; <b>Rastreamento</b>. " + E,
+           ver="Na página publicada: <b>ViewContent</b> no Testar eventos ao abrir a página de oferta, e <b>nenhum</b> ViewContent na landing.",
+           cuidado="Só em página <b>nova</b> e com \"aprovado\". Testar sempre na página publicada, nunca no preview do editor. Se a UTM some ao passar da landing para a oferta: " + NC + " (anote e me envie a URL antes e depois).",
+           print_="Print da chave <b>Página de conteúdo</b> ligada na página de oferta e do Testar eventos mostrando ViewContent.",
+           mock=mock(['<span>Landing (PageView)</span><span class="arrow-s">&rarr; botão R$47 &rarr;</span>',
+                      '<span>Oferta <span class="pill p-ok hl">Página de conteúdo</span> (ViewContent)</span>',
+                      '<span>Checkout (InitiateCheckout só após nome e e-mail)</span>'], "Esquema do desenho (d)"))
+E_ += step("E5", "Pergunta ao painel: o funil tem ação \"enviar evento ao pixel\" no clique ou na rolagem?",
+           "<p>Pela documentação, os gatilhos de página (clique no botão, rolagem, tempo na página) <b>só levam o contato para a próxima etapa do funil</b>; não há ação que dispare evento do pixel. Pode haver algo na tela que a documentação não cita. " + NC + "</p>",
+           onde="<b>Funis</b> &rsaquo; abra o funil &rsaquo; clique na conexão entre duas etapas (ou nas configurações da etapa) &rsaquo; lista de <b>gatilhos</b> e de <b>ações</b>.",
+           ver="A lista mostra gatilhos como <b>Clique no Botão</b>, <b>Scroll</b>, <b>Tempo na Página</b>. Se existir um campo \"enviar evento ao pixel\" ou \"evento personalizado\", é novidade: me mande o print.",
+           print_="Print da tela de gatilhos/ações de uma conexão do funil (aberta, sem salvar nada).")
+E_ += step("E6", "Visualização da oferta dentro da própria landing (opcional, só página nova)",
+           "<p>Marcar a <b>seção da oferta</b> com <code>data-cx-track=\"visible\"</code> faz o ClickMax registrar <b>element_visible</b> quando a seção aparece na tela. " + E + " (mecanismo). Se o importador de páginas mantém o atributo: " + NC + ". Quem faz: o agente de páginas, <b>em página nova</b>, e depois você confere no E2 se a ação aparece.</p>",
+           ver="Na lista de ações recentes, uma ação do tipo \"elemento visível\" ao rolar até a oferta. Se não aparecer, use o desenho do E4.",
+           print_="Print da ação de elemento visível (ou da ausência dela).")
+E_ += step("E7", "Pix gerado e Purchase: o que NÃO pode acontecer",
+           "<ul><li>Gerar o Pix <b>não</b> pode criar <code>Purchase</code>. No Testar eventos pode aparecer <b>AddPaymentInfo</b> (escolheu a forma de pagamento), que <b>não é</b> Pix gerado nem compra.</li>"
+           "<li>O ClickMax <b>não</b> manda \"Pix gerado\" ao Meta como evento próprio. Medimos o Pix gerado no ClickMax (venda pendente por Pix). A versão para a Meta (<code>PixGenerated</code>) existe no receptor e fica <b>desligada</b>.</li>"
+           "<li>Purchase só depois que o Pix é <b>pago</b> ou o cartão é aprovado, com valor 47,00 e moeda BRL.</li></ul>",
+           ver="Pix gerado e não pago: nenhum Purchase, venda pendente. Pix pago: um Purchase, 47,00 BRL.",
+           print_="Prints no roteiro E8 abaixo.")
+E_ += step("E8", "Roteiro da compra de teste cobrindo os 7 eventos",
+           "<p>Use a página <b>publicada</b> em janela anônima, sem bloqueador, com o link de teste (UTMs do passo D1). Com o pixel em <b>Código de teste</b> (A3) preenchido, os eventos vão só para a aba Testar eventos. Faça na ordem; <b>anote a hora de cada passo</b>.</p>"
+           "<ol class=\"prints\">"
+           "<li><b>Visita</b>: abra a landing. Esperado: <b>PageView</b> no Testar eventos. (evento 1)</li>"
+           "<li><b>Oferta</b>: role até a oferta (ou chegue à página de oferta). Esperado: <b>ViewContent</b> só se a página de oferta estiver marcada; ou ação de <b>elemento visível</b> no ClickMax. (evento 2)</li>"
+           "<li><b>Clique no CTA</b>: clique em <b>um</b> botão com preço. Esperado: clique registrado no ClickMax (E2). Clique antes em um botão <b>sem</b> preço (se houver) e confira que ele <b>não</b> conta como qualificado. (evento 3)</li>"
+           "<li><b>Checkout carregado, sem preencher</b>: espere 30 segundos. Esperado: <b>nenhum</b> InitiateCheckout. (evento 4, parte 1)</li>"
+           "<li><b>Nome e e-mail preenchidos</b> (dados seus de teste): Esperado: <b>um</b> InitiateCheckout. (evento 4, parte 2)</li>"
+           "<li><b>Gerar Pix, sem pagar</b>: espere 5 minutos. Esperado: <b>nenhum Purchase</b>; venda pendente (Pix) no ClickMax; AddPaymentInfo é normal. (evento 5)</li>"
+           "<li><b>Pagar o Pix</b> (valor de R$ 47): espere até 5 minutos. Esperado: <b>um</b> Purchase, 47,00 BRL, origem navegador e servidor com o <b>mesmo event_id</b>; venda <b>Paga</b> com UTMs. (evento 6)</li>"
+           "<li><b>Entrega</b>: confira o e-mail de acesso, a presença do contato de teste na turma do portal e o login. Esperado: acesso liberado em minutos; a página de obrigado mostra o produto e R$ 47 (sem R$ 97, R$ 270 nem reunião). (evento 7)</li>"
+           "<li><b>Reembolse</b> a compra de teste (A8/D10). Esperado: <b>nenhum Purchase novo</b>.</li></ol>",
+           cuidado="Nunca remova acesso de comprador real. Limpe o <b>Código de teste</b> depois (A3). Dados do teste: só seus.",
+           print_="<b>P11</b>: prints de 1 a 3 (Testar eventos com PageView; ViewContent ou elemento visível; clique registrado). <b>P12</b>: passos 4 e 5 (sem IC antes, um IC depois). <b>P13</b>: passos 6 e 7 (venda pendente; Purchase aberto com value, currency, event_id; Histórico de envio). <b>P14</b>: passo 8 (e-mail de acesso, turma, obrigado) e 9 (reembolso, Histórico).")
+E_ += ('<div class="box cuidado"><b class="t">[NC] resumo</b>O que a documentação não confirma e este roteiro resolve: (1) se o relatório separa cliques por botão; (2) se o importador mantém <code>data-cx-track</code>; (3) se há ação de funil que envie evento ao pixel; '
+       '(4) se o ClickMax manda <code>content_name</code>/<code>content_ids</code> nos eventos nativos; (5) se a UTM atravessa landing &rarr; oferta; (6) quando o webhook de entrega dispara para o evento de acesso entregue.</div>')
+
 # tabela de conferencia por ponto
 points = """
 <table><tr><th>Ponto da jornada</th><th>O que conferir</th><th>Onde</th></tr>
@@ -268,6 +341,7 @@ prints = """
 <li><b>P8</b>: durante o teste: D1 a D5 (barra de endereço, Testar eventos em cada fase, Purchase aberto).</li>
 <li><b>P9</b>: D6, D7 (venda com UTMs, histórico, Eventos de pixel, acesso).</li>
 <li><b>P10</b>: D9, D10 (Visão geral, Deduplicação, Diagnóstico, reembolso).</li>
+<li><b>P11 a P14</b>: capítulo E (E2, E3, E4, E5, E6 e o roteiro E8 com os 7 eventos).</li>
 </ol>
 <div class="box cuidado"><b class="t">Não envie</b>Token, código de acesso, senha, QR, código de teste depois de usado, e-mail, telefone ou CPF de terceiros. Borre dados pessoais nos prints. O chat não é lugar de segredo.</div>"""
 
@@ -296,13 +370,14 @@ html = f"""<!doctype html>
 <title>Guia visual de rastreamento Zion</title><link rel="stylesheet" href="style.css"></head><body>
 <header class="top"><div class="wrap"><img src="../../../docs/brand/zion-logo-claro.png" alt="Zion Hotel Group"><span class="tag">Fase 03 &middot; P0 &middot; 25/11/2026</span>
 <h1>Guia visual de rastreamento</h1><p>Onde ver, onde ligar e o que me enviar, passo a passo. Anúncio, página, checkout, Ticto, ClickMax e Meta, com a compra de teste no final.</p></div></header>
-<div class="wrap"><nav class="toc"><a href="#fluxo">Fluxo</a><a href="#a">A ClickMax</a><a href="#b">B Meta</a><a href="#c">C Ticto</a><a href="#d">D Compra de teste</a><a href="#criterios">Critérios R1 a R8</a><a href="#prints">Prints</a></nav>
+<div class="wrap"><nav class="toc"><a href="#fluxo">Fluxo</a><a href="#a">A ClickMax</a><a href="#b">B Meta</a><a href="#c">C Ticto</a><a href="#d">D Compra de teste</a><a href="#e">E Funil P0</a><a href="#criterios">Critérios R1 a R8</a><a href="#prints">Prints</a></nav>
 {sec("como", "Como usar", "Cada passo tem um número curto e quatro caixas.", intro)}
 {sec("fluxo", "O caminho de uma venda", "Esquema simples. Cada seta diz o que viaja.", flow + '<p>O pixel <span class="mono">' + PIXEL + '</span> roda dentro do checkout. O ClickMax guarda a URL do momento em que o checkout abre; por isso a UTM precisa estar na URL da página nessa hora.</p>')}
 {sec("a", "A &middot; ClickMax", "Onde ver e ligar pixel, API de Conversões, token, histórico de envio e regras de Purchase e checkout.", A, True)}
 {sec("b", "B &middot; Meta", "Gerenciador de Eventos: o que o Meta realmente recebeu. Os nomes dos menus do Meta mudam; onde está NC, procure o termo indicado.", B, True)}
 {sec("c", "C &middot; Ticto", "O gateway por trás do checkout. Menus da Ticto: não confirmados, mande print do que encontrar.", C, True)}
 {sec("d", "D &middot; Roteiro da compra de teste", "Duas compras pequenas e reembolsáveis (Pix e cartão), com tudo o que conferir em cada ponto.", D + "<h3>O que conferir em cada ponto</h3>" + points, True)}
+{sec("e", "E &middot; Eventos do funil P0", "Os 7 eventos separados (visita, oferta, clique com preço, checkout efetivo, Pix gerado, pagamento, entrega): o que configurar, o que o ClickMax não permite e como provar na compra de teste.", E_, True)}
 {sec("criterios", "Critérios R1 a R8", "Marque cada um ao final do teste. Se algum falhar, me envie os prints do passo indicado.", crit)}
 {sec("prints", "O que me enviar, na ordem", "Um print por item. Pode mandar tudo junto.", prints)}
 </div>

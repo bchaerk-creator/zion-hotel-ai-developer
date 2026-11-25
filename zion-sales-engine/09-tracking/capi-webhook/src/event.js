@@ -46,8 +46,9 @@ function toEpoch(raw, cfg, nowSec) {
 
 const UTM_KEYS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'src', 'sck', 'ad_id', 'campaign_id', 'adset_id'];
 
-function buildCustomData(record, value, currency, eventId) {
+function buildCustomData(record, value, currency, eventId, cfg) {
   const cd = { value, currency, order_id: String(eventId) };
+  if (cfg) { cd.content_name = cfg.contentName; cd.content_ids = [cfg.contentId]; cd.content_type = 'product'; }
   if (record.paymentMethod) cd.payment_method = String(record.paymentMethod);
   for (const k of UTM_KEYS) if (record[k] !== undefined) cd[k] = String(record[k]);
   // Ids numericos que ja vieram na URL do anuncio: utm_term={{ad.id}} e sck={{campaign.id}}. Nada e inventado.
@@ -95,11 +96,37 @@ function buildPurchase(record, cfg, nowSec) {
     event_id: eventId,
     action_source: 'website',
     user_data: ud,
-    custom_data: buildCustomData(record, v.value, currency, eventId),
+    custom_data: buildCustomData(record, v.value, currency, eventId, cfg),
   };
   const url = record.url || cfg.eventSourceUrlDefault;
   if (url) event.event_source_url = String(url);
   return { event, timeFallback: Boolean(t.fallback) };
+}
+
+// Evento custom opcional (Pix gerado, acesso entregue). event_id proprio (prefixo + id do pedido): nunca igual ao do Purchase.
+// 'value' so vai se o valor existir e passar na mesma validacao do Purchase (reais, ponto decimal). Nao e conversao de compra.
+function buildCustomEvent(record, cfg, nowSec, { name, prefix }) {
+  if (!record.eventId) return { error: 'sem_event_id' };
+  const ud = buildUserData(record);
+  if (!hasMatchKey(ud)) return { error: 'sem_dado_para_correspondencia' };
+  const eventId = `${prefix}-${record.eventId}`;
+  const cd = buildCustomData(record, undefined, undefined, record.eventId);
+  delete cd.value; delete cd.currency; delete cd.payment_method;
+  cd.order_id = String(record.eventId);
+  cd.content_name = cfg.contentName;
+  cd.content_ids = [cfg.contentId];
+  cd.content_type = 'product';
+  if (record.amount !== undefined && record.amount !== null && record.amount !== '') {
+    const v = toValue(record.amount, cfg.amountUnit, cfg);
+    if (v.error) return { error: v.error };
+    cd.value = v.value;
+    cd.currency = /^[A-Za-z]{3}$/.test(String(record.currency || '')) ? String(record.currency).toUpperCase() : cfg.currency;
+  }
+  if (record.paymentMethod) cd.payment_method = String(record.paymentMethod);
+  const event = { event_name: name, event_time: nowSec, event_id: eventId, action_source: 'website', user_data: ud, custom_data: cd };
+  const url = record.url || cfg.eventSourceUrlDefault;
+  if (url) event.event_source_url = String(url);
+  return { event };
 }
 
 function buildRefundEvent(record, cfg, nowSec) {
@@ -111,4 +138,4 @@ function buildRefundEvent(record, cfg, nowSec) {
   return { event: e };
 }
 
-module.exports = { buildPurchase, buildRefundEvent, toValue, toEpoch };
+module.exports = { buildCustomEvent, buildPurchase, buildRefundEvent, toValue, toEpoch };

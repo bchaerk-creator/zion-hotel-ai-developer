@@ -342,3 +342,104 @@ test('ponta a ponta por HTTP real (servidor + Graph simulado)', async () => {
   await new Promise((r) => srv.close(r));
   await graph.close();
 });
+
+// ---------- Funil P0: eventos opcionais (Pix gerado, acesso entregue) e regra do Purchase ----------
+
+test('P0: Pix gerado com tudo no padrao (opcional desligado) nao chama o Meta', async () => {
+  const { graph, send } = await setup();
+  const out = await send(deliveryPayload({ id: 'PX1', event: 'checkout.pix.generated.v1', transaction: { amount: 4700, status: 'pending', paymentMethod: 'pix' } }));
+  assert.equal(out.json.status, 'ignored');
+  assert.equal(graph.calls.length, 0);
+  await graph.close();
+});
+
+test('P0: SEND_PIX_GENERATED=true envia evento custom PixGenerated, nunca Purchase, com value em reais e event_id proprio', async () => {
+  const { graph, send } = await setup({ SEND_PIX_GENERATED: 'true' });
+  const out = await send(deliveryPayload({ id: 'PX2', event: 'checkout.pix.generated.v1', transaction: { amount: 4700, status: 'pending', currency: 'BRL', paymentMethod: 'pix' } }));
+  assert.equal(out.json.status, 'sent');
+  assert.equal(graph.calls.length, 1);
+  const ev = graph.calls[0].body.data[0];
+  assert.equal(ev.event_name, 'PixGenerated');
+  assert.notEqual(ev.event_name, 'Purchase');
+  assert.equal(ev.event_id, 'pix-PX2');
+  assert.equal(ev.custom_data.value, 47);
+  assert.equal(ev.custom_data.currency, 'BRL');
+  assert.equal(ev.custom_data.order_id, 'PX2');
+  assert.equal(ev.custom_data.content_name, 'Mini Mentoria de Estruturação Zion');
+  assert.deepEqual(ev.custom_data.content_ids, ['mm47']);
+  assert.equal(ev.custom_data.utm_campaign, 'campanha-teste');
+  // repetir nao reenvia
+  const again = await send(deliveryPayload({ id: 'PX2', event: 'checkout.pix.generated.v1', transaction: { amount: 4700, status: 'pending' } }));
+  assert.equal(again.json.status, 'duplicate');
+  assert.equal(graph.calls.length, 1);
+  await graph.close();
+});
+
+test('P0: Pix gerado e depois pago: 1 PixGenerated (pix-ID) e 1 Purchase (event_id = ID), ids distintos', async () => {
+  const { graph, send } = await setup({ SEND_PIX_GENERATED: 'true' });
+  await send(deliveryPayload({ id: 'PX3', event: 'checkout.pix.generated.v1', transaction: { amount: 4700, status: 'pending', paymentMethod: 'pix' } }));
+  await send(deliveryPayload({ id: 'PX3', transaction: { amount: 4700, status: 'paid', paymentMethod: 'pix' } }));
+  const evs = graph.calls.map((c) => c.body.data[0]);
+  assert.deepEqual(evs.map((e) => e.event_name), ['PixGenerated', 'Purchase']);
+  assert.deepEqual(evs.map((e) => e.event_id), ['pix-PX3', 'PX3']);
+  assert.equal(evs[1].custom_data.value, 47);
+  await graph.close();
+});
+
+test('P0: PIX_GENERATED_EVENT_NAME=Purchase e recusado (Pix gerado nunca pode ser Purchase)', async () => {
+  const { graph, send } = await setup({ SEND_PIX_GENERATED: 'true', PIX_GENERATED_EVENT_NAME: 'Purchase' });
+  const out = await send(deliveryPayload({ id: 'PX4', event: 'checkout.pix.generated.v1', transaction: { amount: 4700, status: 'pending' } }));
+  assert.equal(out.status, 500);
+  assert.equal(graph.calls.length, 0);
+  await graph.close();
+});
+
+test('P0: AccessDelivered desligado por padrao; ligado envia evento proprio sem tratar como compra', async () => {
+  const off = await setup();
+  const o1 = await off.send(deliveryPayload({ id: 'AD1', event: 'access.delivered.v1', transaction: { amount: 4700, status: 'paid' } }));
+  assert.equal(o1.json.status, 'ignored');
+  assert.equal(off.graph.calls.length, 0);
+  await off.graph.close();
+  const on = await setup({ SEND_ACCESS_DELIVERED: 'true' });
+  const o2 = await on.send(deliveryPayload({ id: 'AD1', event: 'access.delivered.v1', transaction: { amount: 4700, status: 'paid' } }));
+  assert.equal(o2.json.status, 'sent');
+  const ev = on.graph.calls[0].body.data[0];
+  assert.equal(ev.event_name, 'AccessDelivered');
+  assert.equal(ev.event_id, 'access-AD1');
+  await on.graph.close();
+});
+
+test('P0: so pagamento aprovado vira Purchase (matriz de nomes e status)', async () => {
+  const { graph, send } = await setup({ SEND_PIX_GENERATED: 'true', SEND_ACCESS_DELIVERED: 'true' });
+  const cases = [
+    ['A1', 'checkout.pix.generated.v1', 'pending', false],
+    ['A2', 'checkout.transaction.created.v1', 'pending', false],
+    ['A3', 'access.delivered.v1', 'paid', false],
+    ['A4', 'checkout.transaction.paid.v1', 'pending', false],
+    ['A5', 'checkout.transaction.paid.v1', 'authorized', false],
+    ['A6', 'checkout.transaction.paid.v1', 'paid', true],
+    ['A7', 'checkout.transaction.paid.v1', 'approved', true],
+  ];
+  for (const [id, event, status, isPurchase] of cases) {
+    const before = graph.calls.length;
+    await send(deliveryPayload({ id, event, transaction: { amount: 4700, status, paymentMethod: 'pix' } }));
+    const names = graph.calls.slice(before).map((c) => c.body.data[0].event_name);
+    assert.equal(names.includes('Purchase'), isPurchase, `${id} ${event} ${status}`);
+  }
+  await graph.close();
+});
+
+test('P0: Purchase carrega content_name, content_ids, value em reais, currency, event_id = id do pedido e UTMs', async () => {
+  const { graph, send } = await setup();
+  await send(deliveryPayload({ id: 'PU1', transaction: { amount: 4700, status: 'paid', currency: 'BRL', paymentMethod: 'pix' } }));
+  const ev = graph.calls[0].body.data[0];
+  assert.equal(ev.event_name, 'Purchase');
+  assert.equal(ev.event_id, 'PU1');
+  assert.equal(ev.custom_data.value, 47);
+  assert.equal(ev.custom_data.currency, 'BRL');
+  assert.equal(ev.custom_data.content_name, 'Mini Mentoria de Estruturação Zion');
+  assert.deepEqual(ev.custom_data.content_ids, ['mm47']);
+  assert.equal(ev.custom_data.utm_source, 'meta');
+  assert.equal(ev.custom_data.utm_content, 'criativo-teste');
+  await graph.close();
+});

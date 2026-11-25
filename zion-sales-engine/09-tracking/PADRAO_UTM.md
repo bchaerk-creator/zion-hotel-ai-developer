@@ -50,3 +50,28 @@ Anúncio que passar a apontar para `/mini-mentoria` usa o mesmo padrão (`utm_ca
 
 ## 7. Aceite
 Uma compra de teste pelo link de um anúncio de teste deve gravar na venda `utm_source`, `utm_medium`, `utm_campaign`, `utm_content`, `utm_term` e `sck` (conferir com `sales_get_utms`). Sem isso a venda não é atribuível e o CPA é só limite superior.
+
+## 8. Acréscimos P0 (25/11/2026): criativo, variante e seção da página (não quebram o padrão acima)
+O padrão das seções 1 a 7 continua valendo sem mudança. Os acréscimos abaixo são **regras de preenchimento**, não chaves novas.
+
+**`utm_content` = `<criativo>-<variante>`** (a variante é do criativo/promessa, não da página):
+- `<criativo>` = id do arquivo da arte ou vídeo (ex.: `mm47f3-c03-custo-escondido`).
+- `-varA` / `-varB` (seção 3) = **variante de landing** no teste A/B. Quando o criativo também tem variantes de texto/promessa, use `-v1`, `-v2` **antes** do sufixo de landing: `mm47f3-c03-v2-varB`. Ordem fixa: `criativo` `-v<n>` (opcional) `-varA|varB` (opcional). Nada de espaço, maiúscula ou acento.
+- Formato de vídeo/carrossel: o sufixo de formato vai no id do criativo (`...-vid`, `...-car`), nunca em outra chave.
+
+**Parâmetro de página/seção: só se fizer sentido, e por âncora, não por chave nova.**
+- Quando o destino do anúncio é uma seção específica (ex.: a oferta), use a **âncora depois da query**: `https://.../mini-mentoria?utm_...#oferta`. A âncora **não** vai ao servidor nem ao ClickMax; ela só rola a página [H]. Serve para o visitante cair no ponto certo, **não** para medir. Para medir, veja `FUNIL_DE_EVENTOS_P0.md` (clique no CTA e visualização da oferta por elemento marcado).
+- Se um dia for preciso gravar a seção na venda, a chave seria `utm_term` ou `utm_content`? **Não**: ambas já têm dono (ad id e criativo). Uma chave nova (`sec=`) só entra se a venda a gravar [NC: testar com compra de teste] e **só depois de Bruno aprovar**. Hoje: **não use**.
+- Padrão de quem **não** vem de anúncio mas passa pela oferta (ex.: botão de e-mail ou WhatsApp para a oferta): `utm_source=<canal>&utm_medium=<tipo>&utm_campaign=mm47&utm_content=<mensagem>-oferta` (o `-oferta` no fim do `utm_content` diz que o link já cai na seção da oferta).
+
+**O que dá para obter SEM script (nada instalado):** [E = documentação lida; NC = a confirmar na compra de teste]
+| Dado | Sem script | Limite |
+|---|---|---|
+| UTM, `sck`, ids na venda | O ClickMax grava a URL do momento em que o checkout abre; os parâmetros precisam estar na URL da página nessa hora [E/A] | Se o visitante sai e volta por link sem UTM, perde (por isso o snippet é proposta) |
+| Origem da visita (canal, utm) em análises | `visitors_analytics` e `visitors_attribution` agrupam por canal e UTM; o canal usa a **primeira sessão** do visitante [E] | Depende da UTM estar na URL da primeira visita |
+| Clique em CTA | O ClickMax mede `button_click` com o `elementId` do botão nas páginas publicadas, sem instalar nada [E]; os CTAs da página aparecem no mapa de gatilhos com `button_click` [E] | O dado fica no ClickMax (visitantes/funil), **não** vai ao Meta como evento próprio [NC se aparece por CTA nos relatórios] |
+| Visualização da oferta | Marcar a seção com `data-cx-track="visible"` gera `element_visible` com o id do elemento [E, SDK]; ou usar página separada de oferta marcada "Página de conteúdo" (ViewContent) [E] | Se o importador de página mantém o atributo: [NC] |
+| `fbc`/`fbp` | O ClickMax completa a CAPI com o clique no anúncio que o contato tem [E] | Quando a compra volta sem clique registrado, fica sem |
+| Persistência entre sessões e aparelhos | Não há | Só o snippet (mesmo navegador) ou o lead identificado no ClickMax (e-mail) resolvem; entre aparelhos só com identificação |
+
+`snippets/persistir-utm.js` continua **proposta, não instalada** (aprovação de Bruno, aviso de privacidade atualizado, teste em página de teste). O padrão de UTM acima funciona sem ele.

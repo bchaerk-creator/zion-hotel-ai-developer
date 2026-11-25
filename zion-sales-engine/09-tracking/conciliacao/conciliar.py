@@ -5,6 +5,8 @@ Entradas (CSV, modelos em MODELO_*.csv, dados FICTICIOS):
   --clickmax  order_id,paid_at,value_brl,status,is_test,utm_campaign,utm_content,ad_id,campaign_id,adset_id
   --gateway   order_id,paid_at,value_brl,status,payment_method
   --meta      date,campaign_id,campaign_name,purchases,purchase_value_brl
+  --funil     date,campaign_id,landing_view,offer_view,qualified_click,checkout_effective,pix_generated,approved,delivered
+              (funil de 7 eventos P0, ver ../FUNIL_DE_EVENTOS_P0.md; celula vazia = indisponivel, nunca zero)
 
 Regras (criterio R7):
 - Base de compras = vendas do ClickMax com status paid ou refunded (foram pagas), sem is_test=1.
@@ -15,6 +17,9 @@ Regras (criterio R7):
 - Compras do ClickMax SEM campaign_id nao entram na comparacao por campanha: ficam em 'sem atribuicao'
   (nunca se atribui a anuncio sem dado).
 - Datas precisam estar no mesmo fuso nas tres fontes (informe qual fuso foi usado no relatorio).
+Funil P0 (--funil): taxas entre etapas e MOTIVO DE DIVERGENCIA quando a conta nao fecha (etapa posterior
+maior que a anterior, aprovado diferente do ClickMax, entregue menor que aprovado). 'approved' do CSV e
+conferido contra a base do ClickMax (mesmo dia); se vazio, usa a base do ClickMax.
 Saida: tabelas no terminal; --json grava o resultado. Codigo de saida 1 se houver ALERTA.
 """
 import argparse
@@ -126,11 +131,88 @@ def reconcile_by_campaign(cm_rows, meta_rows):
     return out, {"compras_sem_atribuicao": len(without), "ids": [r["order_id"] for r in without]}
 
 
+FUNIL_ETAPAS = ["landing_view", "offer_view", "qualified_click", "checkout_effective", "pix_generated", "approved", "delivered"]
+FUNIL_ROTULO = {"landing_view": "visita", "offer_view": "oferta", "qualified_click": "clique CTA", "checkout_effective": "checkout efetivo",
+                "pix_generated": "Pix gerado", "approved": "aprovado", "delivered": "entregue"}
+# (etapa, etapa anterior que ela nao pode superar, motivo se superar)
+FUNIL_LIMITES = [
+    ("offer_view", "landing_view", "visualizacao da oferta maior que visitas: evento da oferta dispara fora da landing ou conta mais de uma vez por visita"),
+    ("qualified_click", "landing_view", "cliques no CTA maiores que visitas: clique contado em dobro ou visita sem PageView (bloqueador/consentimento)"),
+    ("checkout_effective", "qualified_click", "checkout efetivo maior que cliques no CTA: checkout abre sem passar pelo CTA (link direto) ou o evento ainda conta o carregamento do iframe"),
+    ("pix_generated", "checkout_effective", "Pix gerado maior que checkout efetivo: checkout efetivo subcontado (dados pessoais nao capturados) ou Pix contado em dobro"),
+    ("approved", "checkout_effective", "aprovados maiores que checkout efetivo: compra sem checkout registrado (pagamento fora do site, UTM/ID perdido ou evento mal configurado)"),
+]
+FUNIL_TAXAS = [("offer_view", "landing_view"), ("qualified_click", "landing_view"), ("checkout_effective", "qualified_click"),
+               ("approved", "checkout_effective"), ("delivered", "approved")]
+
+
+def cell(v):
+    """None = indisponivel (celula vazia). Zero e zero de verdade."""
+    s = str(v if v is not None else "").strip()
+    return None if s == "" else int(float(s.replace(",", ".")))
+
+
+def rate(num, den):
+    if num is None or den is None or den == 0:
+        return None
+    return round(num / den * 100, 1)
+
+
+def funil_aggregate(funil_rows):
+    """Soma por data+campanha; uma etapa so e numero se TODAS as linhas a informaram (senao n/d)."""
+    groups = {}
+    for r in funil_rows:
+        groups.setdefault((r["date"], (r.get("campaign_id") or "").strip()), []).append(r)
+    out = []
+    for (d, cid), rows in sorted(groups.items()):
+        rec = {"data": d, "campaign_id": cid}
+        for e in FUNIL_ETAPAS:
+            vals = [cell(x.get(e)) for x in rows]
+            rec[e] = None if any(v is None for v in vals) else sum(vals)
+        out.append(rec)
+    return out
+
+
+def reconcile_funil(funil_rows, cm_rows):
+    base = clickmax_base(cm_rows)
+    cm_by_day = defaultdict(int)
+    for r in base:
+        cm_by_day[day(r["paid_at"])] += 1
+    lines = []
+    for rec in funil_aggregate(funil_rows):
+        motivos = []
+        for etapa, anterior, motivo in FUNIL_LIMITES:
+            if rec[etapa] is not None and rec[anterior] is not None and rec[etapa] > rec[anterior]:
+                motivos.append(motivo)
+        cm_n = cm_by_day.get(rec["data"], 0)
+        # aprovado do funil x base ClickMax: so quando a linha e do dia inteiro (sem campaign_id) ou ha uma unica campanha no dia
+        if rec["approved"] is None:
+            rec["approved_fonte"] = "clickmax"
+            rec["approved"] = cm_n if not rec["campaign_id"] else None
+        else:
+            rec["approved_fonte"] = "funil"
+            if not rec["campaign_id"] and rec["approved"] != cm_n:
+                motivos.append(f"aprovados do funil ({rec['approved']}) diferentes da base ClickMax ({cm_n}): fonte de evento diferente da venda (Purchase no Meta atrasado, teste nao marcado ou reembolso contado)")
+        if rec["delivered"] is not None and rec["approved"] is not None:
+            if rec["delivered"] < rec["approved"]:
+                motivos.append(f"entregues ({rec['delivered']}) menos que aprovados ({rec['approved']}): entrega pendente ou falha de acesso, verificar compra a compra")
+            elif rec["delivered"] > rec["approved"]:
+                motivos.append("entregues maiores que aprovados: acesso liberado sem pagamento aprovado (teste, cortesia ou erro de regra)")
+        if rec["pix_generated"] is not None and rec["approved"] is not None and rec["approved"] > 0 and rec["pix_generated"] == 0:
+            motivos.append("aprovados sem nenhum Pix gerado: todas as compras foram no cartao ou o evento de Pix gerado esta desligado (padrao)")
+        rec["taxas_pct"] = {f"{FUNIL_ROTULO[n]}/{FUNIL_ROTULO[d]}": rate(rec[n], rec[d]) for n, d in FUNIL_TAXAS}
+        rec["indisponiveis"] = [FUNIL_ROTULO[e] for e in FUNIL_ETAPAS if rec[e] is None]
+        rec["motivos_divergencia"] = motivos
+        rec["veredito"] = "ALERTA" if motivos else "OK"
+        lines.append(rec)
+    return lines
+
+
 def fmt_pct(v):
     return "n/d" if v is None else f"{v:+.1f}%"
 
 
-def report(cm, gw, me, out=print):
+def report(cm, gw, me, out=print, funil=None):
     res = {}
     if gw is not None:
         res["gateway"] = reconcile_gateway(cm, gw)
@@ -153,6 +235,15 @@ def report(cm, gw, me, out=print):
         for c in camps:
             out(f"{c['campaign_id']} {c['campanha']} | ClickMax {c['clickmax_compras']} | Meta {c['meta_compras']} | {fmt_pct(c['dif_pct'])} | {c['veredito']}")
         out(f"Compras sem atribuicao (sem campaign_id no ClickMax): {sem['compras_sem_atribuicao']} {sem['ids']}")
+    if funil is not None:
+        res["funil"] = reconcile_funil(funil, cm)
+        out("== Funil P0 (7 eventos), por dia e campanha ==")
+        for f in res["funil"]:
+            cols = " | ".join(f"{FUNIL_ROTULO[e]} {'n/d' if f[e] is None else f[e]}" for e in FUNIL_ETAPAS)
+            out(f"{f['data']} {f['campaign_id'] or 'todas'} | {cols} | {f['veredito']}")
+            out("   taxas: " + "; ".join(f"{k} {'n/d' if v is None else str(v) + '%'}" for k, v in f["taxas_pct"].items()))
+            for m in f["motivos_divergencia"]:
+                out(f"   motivo: {m}")
     return res
 
 
@@ -163,6 +254,8 @@ def has_alert(res):
         return True
     if "meta_total" in res and res["meta_total"]["veredito"] == "ALERTA":
         return True
+    if any(f["veredito"] == "ALERTA" for f in res.get("funil", [])):
+        return True
     return any(d["veredito"] == "ALERTA" for d in res.get("meta_por_dia", []))
 
 
@@ -171,9 +264,11 @@ def main(argv=None):
     ap.add_argument("--clickmax", required=True)
     ap.add_argument("--gateway")
     ap.add_argument("--meta")
+    ap.add_argument("--funil")
     ap.add_argument("--json")
     a = ap.parse_args(argv)
-    res = report(read(a.clickmax), read(a.gateway) if a.gateway else None, read(a.meta) if a.meta else None)
+    res = report(read(a.clickmax), read(a.gateway) if a.gateway else None, read(a.meta) if a.meta else None,
+                 funil=read(a.funil) if a.funil else None)
     if a.json:
         with open(a.json, "w", encoding="utf-8") as f:
             json.dump(res, f, ensure_ascii=False, indent=2)

@@ -2,7 +2,7 @@
 const crypto = require('node:crypto');
 const { buildMap, extract, getPath } = require('./mapping');
 const { classify } = require('./classify');
-const { buildPurchase, buildRefundEvent } = require('./event');
+const { buildPurchase, buildRefundEvent, buildCustomEvent } = require('./event');
 const { sendEvents } = require('./capi');
 
 function safeEqual(a, b) {
@@ -46,6 +46,36 @@ function createHandler({ cfg, store, fetchImpl, now = () => Math.floor(Date.now(
     if (verdict.decision === 'ignore') {
       log({ level: 'info', msg: 'ignorado', event_id: eid, reason: verdict.reason });
       return reply(200, { status: 'ignored', reason: verdict.reason });
+    }
+
+    if (verdict.decision === 'pix_generated' || verdict.decision === 'access_delivered') {
+      const isPix = verdict.decision === 'pix_generated';
+      const enabled = isPix ? cfg.sendPixGenerated : cfg.sendAccessDelivered;
+      if (!enabled) {
+        log({ level: 'info', msg: 'ignorado', event_id: eid, reason: 'evento_opcional_desligado' });
+        return reply(200, { status: 'ignored', reason: 'evento_opcional_desligado', event: verdict.decision });
+      }
+      if (!cfg.pixelId || !cfg.accessToken) return reply(500, { error: 'servidor_sem_pixel_ou_token' });
+      const name = isPix ? cfg.pixGeneratedEventName : cfg.accessDeliveredEventName;
+      if (name === 'Purchase') return reply(500, { error: 'nome_de_evento_opcional_nao_pode_ser_Purchase' });
+      const built = buildCustomEvent(record, cfg, nowSec, { name, prefix: isPix ? 'pix' : 'access' });
+      if (built.error) return reply(200, { status: 'rejected', reason: built.error });
+      const key = `${isPix ? 'pix' : 'access'}:${eid}`;
+      if (store.get(key) === 'sent') return reply(200, { status: 'duplicate' });
+      if (inflight.has(key)) return reply(200, { status: 'duplicate_in_flight' });
+      inflight.add(key);
+      try {
+        const r = await sendEvents(cfg, [built.event], fetchImpl);
+        if (!r.ok) {
+          log({ level: 'error', msg: 'meta_recusou', event_id: eid, http: r.httpStatus, err: r.errorMessage });
+          return reply(502, { error: 'meta_recusou' });
+        }
+        store.set(key, 'sent');
+        log({ level: 'info', msg: `${verdict.decision}_enviado`, event_id: eid, test_mode: Boolean(cfg.testEventCode) });
+        return reply(200, { status: 'sent', event_name: name, event_id: built.event.event_id, fbtrace_id: r.fbtraceId });
+      } finally {
+        inflight.delete(key);
+      }
     }
 
     if (!cfg.pixelId || !cfg.accessToken) return reply(500, { error: 'servidor_sem_pixel_ou_token' });

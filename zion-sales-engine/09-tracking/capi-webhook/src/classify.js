@@ -5,6 +5,9 @@
 
 const REFUND_NAME = /(refund|reembols|chargeback|estorn|sale_cancel|cancel)/i;
 const PENDING_NAME = /(unpaid|not[_ .-]?paid|waiting|pending|aguard|pix[_.]generated|pix[_ ]gerado|created|expired|expirad|failed|falh|refused|recusad|abandon)/i;
+// Eventos OPCIONAIS do funil P0 (desligados por padrao no handler). Nunca viram Purchase.
+const PIX_NAME = /pix[_ .-]?(generated|gerado)/i;
+const ACCESS_NAME = /(access[_ .-]?delivered|acesso[_ .-]?entregue|entrega[_ .-]?(realizada|concluida)|delivery[_ .-]?(done|completed))/i;
 const PAID_NAME = /(paid|sale_made|venda[_ ]realizada|approved|aprovad|pago)/i;
 
 function lower(v) { return v === undefined || v === null ? '' : String(v).trim().toLowerCase(); }
@@ -22,6 +25,10 @@ function classify(record, cfg, hint) {
   if (nameRefund || statusRefund) {
     return { decision: 'refund', reason: nameRefund ? `evento:${name}` : `status:${status}` };
   }
+
+  // Pix gerado e entrega do acesso: eventos proprios, decididos ANTES da regra de pendencia (que ignora o Pix gerado).
+  if (ACCESS_NAME.test(name)) return { decision: 'access_delivered', reason: `evento:${name}` };
+  if (PIX_NAME.test(name)) return { decision: 'pix_generated', reason: `evento:${name}` };
 
   // Qualquer palavra de pendencia no nome vence a palavra 'paid' (ex.: 'paid_pending' nunca e compra; A05).
   if (PENDING_NAME.test(name)) {
