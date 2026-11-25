@@ -7,4 +7,4 @@
 - `MANUAL_MESTRE.md`: o manual do comando (fonte da verdade do motor).
 - Detalhes de cada metodologia (Low Ticket Raiz, ECROI, OP3D e Pareto em cascata, Método Zion 360°, Engenharia de Vendas Perpétuas de Resposta Direta), quando Bruno fornecer.
 
-O que faltar no manual está marcado 'detalhe a ser fornecido por Bruno'. Não preencher por suposição.
+O que faltar no manual (o conteúdo interno das cinco metodologias) está marcado 'detalhe a ser fornecido por Bruno'. Não preencher por suposição.

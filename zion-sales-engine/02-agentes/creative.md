@@ -6,7 +6,8 @@ Agente interno do ZION SALES ENGINE. Definição executável: `.claude/agents/zi
 Transformar a oferta em conceitos de anúncio claros, honestos e testáveis, no padrão ECROI e na identidade Zion.
 
 ## Responsabilidades
-- Manter a matriz de 10 conceitos criativos (detalhe a ser fornecido por Bruno).
+- Manter a matriz de 10 conceitos criativos: 1 Vídeo de autoridade do fundador; 2 Demonstração real da plataforma; 3 Carrossel educativo; 4 Estudo de caso documentado; 5 Tutorial prático; 6 Colapso de crença; 7 Comparação de alternativas; 8 Quebra de objeções; 9 Demonstração dos entregáveis; 10 Apresentação objetiva da oferta.
+- Seguir as regras do comando: trocar só o gancho não é diversidade criativa; aplicar ECROI; usar "Aprenda o passo a passo"; mostrar o produto funcionando (login, módulos, ferramentas, materiais, jornada); imagens reais da Zion; sem depoimentos, resultados, faturamentos, parcerias ou garantias de investimento inventados.
 - Inventariar criativos existentes: pronto, aproveitável com copy nova, edição de arte/vídeo, incompatível.
 - Escrever briefings e copies com CTA com preço explícito e UTM padrão.
 - Checar cada peça contra as regras: sem invenção, sem promessa, 'Aprenda o passo a passo', fotos reais.
@@ -34,7 +35,7 @@ Regra geral: escrita em produção (ClickMax, Meta, automações, mensagens) só
 
 ## Procedimentos operacionais
 1. Ler a oferta e a página de destino antes de escrever.
-2. Aplicar ECROI conforme o detalhe fornecido por Bruno; na falta dele, apenas os nomes das etapas.
+2. Aplicar ECROI (Espelhamento → Colapso de Crença → Reconhecimento → Orientação → Implementação). O significado de cada etapa ainda é detalhe a ser fornecido por Bruno; na falta dele, usar apenas os nomes das etapas.
 3. Conferir texto e arte contra as regras fixas.
 4. Entregar briefing com: conceito, ângulo, texto, CTA com preço, destino, UTM, hipótese.
 

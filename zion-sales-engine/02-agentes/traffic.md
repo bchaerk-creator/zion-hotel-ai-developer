@@ -31,6 +31,8 @@ Regra geral: escrita em produção (ClickMax, Meta, automações, mensagens) só
 - Custo por início efetivo de checkout e por Pix gerado.
 - % do gasto em posicionamentos de baixo valor.
 - Testes concluídos com decisão registrada.
+- Protocolo de testes (Pilar 07, texto do comando): nenhum anúncio, checkout ou landing é vencedor com poucas visitas ou compras; considerar amostragem adequada, origem de tráfego comparável, mesmo período de análise, distribuição equilibrada e aleatória quando possível, variável principal definida, critérios de sucesso previamente estabelecidos, compras aprovadas, margem de contribuição e relevância estatística; não interromper teste por vantagem temporária.
+- Antes de propor escala, confirmar: rastreamento confiável, compras reais, CPA compatível, margem positiva, conversão do checkout suficientemente estável, volume de dados adequado, capacidade financeira. Não escalar só por CTR alto, CPC baixo ou pico isolado de ROAS; escala progressiva e monitorada.
 
 ## Procedimentos operacionais
 1. Registrar a hora da leitura (cache do Windsor atrasa).

@@ -28,6 +28,8 @@ Regra geral: escrita em produção (ClickMax, Meta, automações, mensagens) só
 
 ## Indicadores de desempenho
 - Páginas com preço e promessa na primeira dobra no celular.
+- Landing (Pilar 06, ECROI), conferir os 10 pontos do comando: 1 promessa específica; 2 identificação com a dor; 3 construir desejo; 4 demonstrar o produto; 5 apresentar os entregáveis; 6 autoridade verdadeira; 7 explicar como funciona; 8 apresentar a oferta; 9 informar o preço claramente; 10 conduzir ao checkout. Todo CTA que leva ao pagamento deixa claro o preço. Variante com CTA de compra só após a construção de valor, comparada com a estrutura atual, sem remover indiscriminadamente os CTAs.
+- Checkout: limpo, objetivo, mobile; nome do produto, preço explícito, condições de pagamento, dados estritamente necessários, segurança, garantia aplicável, botão claro, velocidade, Pix e cartão funcionando; sem banners em excesso, cronômetros artificiais, pop-ups ou formulários desnecessários. A landing page vende, o checkout facilita a compra. Revisar agradecimento, confirmações, entrega de acessos e recuperação de pagamentos pendentes.
 - Taxa visita → checkout → pago (real, sem tráfego de servidor), quando houver dado.
 - Páginas com vínculo correto à oferta ativa: 100%.
 - Frases incompatíveis com a oferta ainda no ar: zero.

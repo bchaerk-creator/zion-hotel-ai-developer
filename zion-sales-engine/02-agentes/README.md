@@ -65,6 +65,10 @@ Se algo não foi gravado, o agente seguinte não sabe. Rotinas (por exemplo, rel
 
 No Claude Code, chame o agente pelo nome (por exemplo, `zion-sales-director`) ou peça ao DIRECTOR para acionar os outros. Para reverter qualquer mudança nesta pasta: `git revert <commit>` (ver `zion-sales-engine/README.md`).
 
+## O que cada agente tem (comando)
+
+Cada agente tem: missão, responsabilidades, limites, ferramentas autorizadas, indicadores de desempenho, procedimentos operacionais, formato de relatório, critérios de aprovação e histórico de decisões. São internos e não substituem os agentes de atendimento.
+
 ## Rascunho a revisar
 
 Missão e limites seguem o comando e o `CLAUDE.md`. **Indicadores, procedimentos e critérios de aprovação de cada agente são uma primeira versão** escrita a partir do manual e da auditoria, e esperam revisão de Bruno.

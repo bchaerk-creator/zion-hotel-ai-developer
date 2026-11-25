@@ -3,7 +3,7 @@
 Versão 1 · 25/11/2026 · Responsável: Bruno Chaerk · Zion Hotel Group International.
 Fonte: Comando Mestre ZION SALES ENGINE (25/11/2026), `CLAUDE.md` e a auditoria de 25/11 (`13-relatorios/`).
 
-**Como ler este manual.** Onde o comando trouxe o texto, ele está aqui. Onde o texto detalhado ainda não foi entregue, está escrito **"detalhe a ser fornecido por Bruno"**. Nenhum agente deve preencher esse espaço por suposição. Marcação de evidência: [E] lido, [H] hipótese, [NC] não confirmado.
+**Como ler este manual.** O texto literal do Comando Mestre de Bruno está aqui, sem acréscimos. O que o comando não trouxe é o conteúdo interno das cinco metodologias (e o significado de cada etapa do ECROI), marcado **"detalhe a ser fornecido por Bruno"**. Nenhum agente deve preencher esse espaço por suposição. Marcação de evidência: [E] lido, [H] hipótese, [NC] não confirmado.
 
 ---
 
@@ -15,15 +15,15 @@ Os agentes são internos e ficam descritos em `02-agentes/`. Não substituem nem
 
 ## 2. Metodologias obrigatórias
 
-Todas devem orientar o trabalho. O conteúdo detalhado de cada uma **não foi entregue**: registra-se nome e papel.
+Todas devem orientar o trabalho. O comando traz os nomes; o detalhe interno de cada uma **não foi entregue**: registra-se nome e papel. Do ECROI, o comando traz o nome das etapas.
 
 | Metodologia | Papel no motor | Detalhe |
 |---|---|---|
-| **Low Ticket Raiz** | Base da oferta de entrada: produto de preço baixo, pagamento único, venda direta | Detalhe a ser fornecido por Bruno |
-| **ECROI** | Estrutura de persuasão de copy, páginas e criativos: **E**spelhamento → **C**olapso de Crença → **R**econhecimento → **O**rientação → **I**mplementação | Os cinco nomes e a ordem vêm do comando. O significado de cada etapa: detalhe a ser fornecido por Bruno (existe também a skill `ecroi` no ambiente, mas ela não substitui o detalhe de Bruno) |
-| **OP3D e Pareto em cascata** | Priorização do que mexer primeiro | Detalhe a ser fornecido por Bruno |
-| **Método Zion 360°** | Metodologia da casa que ancora produto e linguagem | Detalhe a ser fornecido por Bruno |
-| **Engenharia de Vendas Perpétuas de Resposta Direta** | Sistema de venda contínua, medido e otimizável, sem depender de reunião | Detalhe a ser fornecido por Bruno |
+| **Low Ticket Raiz** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
+| **ECROI** | Nome conforme o comando. Etapas: **E**spelhamento → **C**olapso de Crença → **R**econhecimento → **O**rientação → **I**mplementação | Nome das etapas e ordem: literais do comando. Significado de cada etapa: detalhe a ser fornecido por Bruno (a skill `ecroi` do ambiente não substitui o detalhe de Bruno) |
+| **OP3D e Pareto em cascata** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
+| **Método Zion 360°** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
+| **Engenharia de Vendas Perpétuas de Resposta Direta** | Nome conforme o comando | Detalhe a ser fornecido por Bruno |
 
 ## 3. Os 7 pilares
 
@@ -43,20 +43,33 @@ Fórmulas do comando:
 
 "Início efetivo de checkout" é o início por intenção (ver 3.5), não o evento que dispara no carregamento do checkout (ver seção 8).
 
-Indicadores financeiros a acompanhar. O comando traz uma lista própria, cujo texto literal **deve ser conferido com Bruno**. Os que já aparecem nos relatórios da auditoria e valem como base:
+Indicadores financeiros do Pilar 02, por produto (lista literal do comando):
 
-- preço, taxa do gateway e valor líquido por oferta;
-- margem de contribuição = líquido − imposto − custos variáveis (imposto e custos sem valor definido ficam "indisponíveis", nunca zero);
-- CPA máximo (ponto de equilíbrio por venda) e CAC real (só quando há atribuição);
-- custo por visita, por checkout e por Pix gerado;
-- resultado de mídia do período (venda líquida − gasto), com cenários rotulados como hipótese.
+preço bruto; receita após taxas; impostos aplicáveis; reembolsos; custos variáveis; CPA máximo; CPA desejado; margem de contribuição; ticket médio; ROAS de equilíbrio; ROAS realizado; ROI quando houver dados suficientes; LTV em 30, 60, 90, 180 e 365 dias; custo de aquisição de clientes; capital de giro necessário para escalar.
+
+**Prioridade:** infoprodutos financiarem a própria aquisição e, progressivamente, contribuir para financiar as demais campanhas. Sem modelo de prejuízo na primeira venda sem evidência de recuperação e aprovação expressa.
+
+**Projeções não são resultados comprovados.**
+
+Na prática da auditoria, imposto e custo sem valor definido ficam "indisponíveis", nunca zero, e cenários vão rotulados como hipótese.
 
 Faturamento não é lucro. Taxas só entram se comprovadas, com a origem do dado.
 
 ### 3.3 Criativos
 
 - **CTA com preço explícito.**
-- **Matriz de 10 conceitos criativos.** Os dez conceitos: detalhe a ser fornecido por Bruno.
+- **10 conceitos criativos (Pilar 03):**
+  1. Vídeo de autoridade do fundador;
+  2. Demonstração real da plataforma;
+  3. Carrossel educativo;
+  4. Estudo de caso documentado;
+  5. Tutorial prático;
+  6. Colapso de crença;
+  7. Comparação de alternativas;
+  8. Quebra de objeções;
+  9. Demonstração dos entregáveis;
+  10. Apresentação objetiva da oferta.
+- **Regras dos criativos (comando):** trocar só o gancho não é diversidade criativa; aplicar ECROI; usar "Aprenda o passo a passo"; mostrar o produto funcionando (login, módulos, ferramentas, materiais, jornada); imagens reais da Zion; sem depoimentos, resultados, faturamentos, parcerias ou garantias de investimento inventados.
 - Cada criativo 1080×1350 é um anúncio. Todos levam à landing com `utm_source=meta&utm_medium=paid&utm_campaign=<produto>&utm_content=<criativo>`.
 - No Meta o botão vem de lista fixa ("Saiba mais"); a chamada personalizada vai na arte e na primeira linha do texto.
 - Fotos reais da Zion, sem pessoas; texto não vai por cima da foto quando Bruno pedir foto nítida. Imagem gerada nunca é apresentada como foto real. Imagens de referência de terceiros ou de IA servem só de inspiração.
@@ -80,17 +93,29 @@ Regras de eventos (alinhadas aos requisitos R1 a R8 do plano técnico, `13-relat
 
 ### 3.6 Conversão
 
-Página que explica o que a pessoa compra, o preço e o que recebe logo na primeira dobra, no celular, com CTA claro e checkout que funciona. Uma tag isolada não comprova pagamento nem entrega: verificar o caminho completo, do pagamento confirmado ao acesso.
+**Landing (Pilar 06, ECROI).** A página deve, nesta ordem: 1 promessa específica; 2 identificação com a dor; 3 construir desejo; 4 demonstrar o produto; 5 apresentar os entregáveis; 6 autoridade verdadeira; 7 explicar como funciona; 8 apresentar a oferta; 9 informar o preço claramente; 10 conduzir ao checkout.
+
+- Variante com CTA de compra só após a construção de valor, para comparar com a estrutura atual, sem remover indiscriminadamente os CTAs.
+- Todo CTA que leva ao pagamento deixa claro o preço (ex.: "QUERO ACESSAR A MINI MENTORIA POR R$47").
+- Sem esconder preço, condições ou limitações.
+
+**Checkout.** Limpo, objetivo, mobile: nome do produto, preço explícito, condições de pagamento, dados estritamente necessários, segurança, garantia aplicável, botão claro, velocidade, Pix e cartão funcionando. Sem excesso de banners, cronômetros artificiais, pop-ups, formulários desnecessários. **A landing page vende, o checkout facilita a compra.** Revisar agradecimento, confirmações, entrega de acessos e recuperação de pagamentos pendentes.
+
+Em campo: página que explica o que a pessoa compra, o preço e o que recebe logo na primeira dobra, no celular, com CTA claro e checkout que funciona. Uma tag isolada não comprova pagamento nem entrega: verificar o caminho completo, do pagamento confirmado ao acesso.
 
 ### 3.7 Otimização e escala
 
-- **Protocolo científico de testes:** hipótese, variável, métrica, duração e critério de decisão registrados antes do teste (`11-testes-ab/`). Detalhe do protocolo: **a ser fornecido por Bruno**.
-- **Critérios antes de escalar:** o comando exige critérios; o texto literal **deve ser conferido com Bruno**. Pré-condições já provadas como necessárias pela auditoria:
-  1. rastreamento provado (Purchase só após pago, value/currency, deduplicação, UTM com ids);
-  2. conciliação dentro do limite do plano;
-  3. compra real de teste concluída, com reembolso;
-  4. oferta e entrega coerentes com a promessa da página.
-- Só depois disso, escalar orçamento, e com "aprovado".
+**Protocolo científico de testes (Pilar 07):**
+- Nenhum anúncio, checkout ou landing é vencedor com poucas visitas ou compras.
+- Considerar: amostragem adequada, origem de tráfego comparável, mesmo período de análise, distribuição equilibrada e aleatória quando possível, variável principal definida, critérios de sucesso previamente estabelecidos, compras aprovadas, margem de contribuição, relevância estatística.
+- Não interromper teste por vantagem temporária.
+- Registro em `11-testes-ab/`: hipótese, variável, métrica, duração e critério de decisão antes do teste.
+
+**Antes de escalar, confirmar:** rastreamento confiável, compras reais, CPA compatível, margem positiva, conversão do checkout suficientemente estável, volume de dados adequado, capacidade financeira.
+- Não escalar só por CTR alto, CPC baixo ou pico isolado de ROAS.
+- Escala progressiva e monitorada, e com "aprovado" de Bruno.
+
+Pré-condições que a auditoria de 25/11 mostrou necessárias para o rastreamento ser confiável: Purchase só após pago, value/currency, deduplicação, UTM com ids; conciliação dentro do limite do plano; compra real de teste concluída, com reembolso; oferta e entrega coerentes com a promessa da página.
 
 ## 4. Governança e autorizações
 
@@ -108,31 +133,49 @@ Página que explica o que a pessoa compra, o preço e o que recebe logo na prime
 - compra real de teste e reembolso;
 - despublicar, arquivar ou consolidar páginas e ofertas.
 
+**Governança do comando.** Autorizado: auditoria, organização documental, planejamento, rascunhos e preparação dos agentes. **Não sem aprovação específica:** publicar alterações em produção, ativar campanhas, aumentar orçamentos, pausar campanhas existentes, alterar preços, enviar mensagens a clientes, realizar compras reais. Campanhas novas nascem pausadas. Preservar fluxos aprovados até a substituição ser validada. Não contornar políticas das plataformas. Sem promessa de retorno garantido. Sem ações destrutivas.
+
 **Fluxo:** AUDITOR valida → DIRECTOR consolida → Bruno aprova → execução → registro em `14-historico-alteracoes/LOG.md`.
 Depois de toda alteração em produção, registrar. Nunca pedir senha ou credencial no chat; tokens entram só pelo painel, por Bruno.
 
 ## 5. Fases 01 a 08
 
-O comando organiza o trabalho em oito fases. **Os nomes e o conteúdo literal das fases 01 a 08 não foram entregues a este documento: detalhe a ser fornecido por Bruno.** Nesse meio-tempo, a ordem de trabalho em vigor vem do plano da auditoria (`RELATORIO_CONSOLIDADO_FASE2.md`, seção 6): medição → correção da configuração de rastreamento → compra real de teste → limpeza de páginas e ofertas → reestruturação de campanhas → análise semanal e escala.
+O comando organiza o trabalho em oito fases:
 
 | Fase | Nome | Conteúdo |
 |---|---|---|
-| 01 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 02 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 03 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 04 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 05 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 06 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 07 | A fornecer | Detalhe a ser fornecido por Bruno |
-| 08 | A fornecer | Detalhe a ser fornecido por Bruno |
+| 01 | Inventário completo | Levantar tudo o que existe |
+| 02 | Diagnóstico | Gargalos técnicos, comerciais, financeiros e de conversão |
+| 03 | Arquitetura | Funis, agentes, campanhas e integrações propostos |
+| 04 | Preparação | Versões revisadas de landing pages, checkouts, criativos, agentes, dashboards e configurações, em ambiente de desenvolvimento ou rascunho |
+| 05 | Validação | Testes de infraestrutura, coerência das ofertas, eventos, pagamentos e entrega; ambientes de teste quando disponíveis |
+| 06 | Aprovação consolidada | Modificações propostas, impactos, custos, dependências, reversão |
+| 07 | Implementação | Só após aprovação expressa |
+| 08 | Otimização contínua | Monitorar, relatar, gargalos, melhorias |
 
 ## 6. Primeira entrega (15 itens)
 
-O comando define uma primeira entrega de 15 itens. **A lista literal não foi entregue a este documento: detalhe a ser fornecido por Bruno.** Esta etapa de 25/11 entregou: estrutura `zion-sales-engine/` (15 pastas), este manual, os 9 agentes (documentação e definições executáveis), relatórios da auditoria sanitizados, log de alterações e especificação do dashboard.
+O comando define uma primeira entrega de 15 itens:
 
-| Item | Descrição | Situação |
-|---|---|---|
-| 1 a 15 | A fornecer | Detalhe a ser fornecido por Bruno |
+| Item | Descrição |
+|---|---|
+| 1 | Tudo que já construímos |
+| 2 | Tudo que está funcionando |
+| 3 | Tudo que está errado |
+| 4 | Produtos e ofertas existentes |
+| 5 | Mapa dos funis atuais |
+| 6 | Diagnóstico das landing pages |
+| 7 | Diagnóstico dos checkouts |
+| 8 | Diagnóstico do rastreamento |
+| 9 | Diagnóstico das campanhas |
+| 10 | Oportunidades financeiras |
+| 11 | Arquitetura dos agentes especializados |
+| 12 | Proposta de funis revisados |
+| 13 | Plano de implementação por prioridade |
+| 14 | Alterações que dependem de aprovação |
+| 15 | Limitações técnicas e dados ainda indisponíveis |
+
+Esta etapa de 25/11 entregou a estrutura `zion-sales-engine/` (15 pastas), este manual, os 9 agentes (documentação e definições executáveis), relatórios da auditoria sanitizados, log de alterações e especificação do dashboard. O andamento de cada um dos 15 itens fica nos relatórios em `13-relatorios/`.
 
 ## 7. Regras fixas do repositório (`CLAUDE.md`)
 
@@ -174,4 +217,4 @@ Fatos de `13-relatorios/`. Os itens marcados (*) foram informados no comando e n
 
 ## 9. Pendências do próprio manual
 
-Detalhe a ser fornecido por Bruno: texto de Low Ticket Raiz, significado de cada etapa do ECROI, OP3D e Pareto em cascata, Método Zion 360°, Engenharia de Vendas Perpétuas de Resposta Direta; lista literal de indicadores financeiros; os 10 conceitos criativos; protocolo científico de testes; critérios literais antes de escalar; fases 01 a 08; os 15 itens da primeira entrega; perguntas diárias do painel (`12-dashboard/README.md`).
+Detalhe a ser fornecido por Bruno: o conteúdo interno de cada uma das cinco metodologias (Low Ticket Raiz; ECROI, incluindo o significado de cada etapa; OP3D e Pareto em cascata; Método Zion 360°; Engenharia de Vendas Perpétuas de Resposta Direta). O restante do Comando Mestre está incorporado neste manual.

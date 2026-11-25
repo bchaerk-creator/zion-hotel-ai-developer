@@ -4,7 +4,7 @@
 **Dono:** CREATIVE.
 
 **O que vai aqui:**
-- Matriz de 10 conceitos criativos (detalhe a ser fornecido por Bruno).
+- Matriz de 10 conceitos criativos (os dez conceitos estão em `01-metodologia/MANUAL_MESTRE.md`, seção 3.3).
 - Inventário de criativos com classificação (pronto, aproveitável com copy nova, edição, incompatível).
 - Briefings e copies, sempre com CTA com preço explícito e sem promessa de resultado.
 

@@ -28,6 +28,8 @@ Regra geral: escrita em produção (ClickMax, Meta, automações, mensagens) só
 
 ## Indicadores de desempenho
 - Cálculos reproduzíveis: fórmula, entradas e fonte em cada número.
+- Indicadores por produto (Pilar 02, texto do comando): preço bruto; receita após taxas; impostos aplicáveis; reembolsos; custos variáveis; CPA máximo; CPA desejado; margem de contribuição; ticket médio; ROAS de equilíbrio; ROAS realizado; ROI quando houver dados suficientes; LTV em 30, 60, 90, 180 e 365 dias; custo de aquisição de clientes; capital de giro necessário para escalar.
+- Prioridade do comando: infoprodutos financiarem a própria aquisição e, progressivamente, contribuir para financiar as demais campanhas; sem modelo de prejuízo na primeira venda sem evidência de recuperação e aprovação expressa. Projeções não são resultados comprovados.
 - Divergência entre vendas do ClickMax e do gateway.
 - CPA real × CPA máximo, quando houver atribuição.
 - Cenários rotulados: 100%.

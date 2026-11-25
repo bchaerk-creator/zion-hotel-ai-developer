@@ -28,6 +28,7 @@ Regra geral: escrita em produção (ClickMax, Meta, automações, mensagens) só
 
 ## Indicadores de desempenho
 - Diferença de conciliação entre fontes (meta: até 10%, critério R7).
+- Dashboard: responder as 13 perguntas diárias do comando (`12-dashboard/README.md`), diferenciando dados reais, estimativas, hipóteses e dados indisponíveis; priorizar compras aprovadas e receita conciliada; indicadores por conta, campanha, conjunto, anúncio, produto e origem de tráfego.
 - Vendas com UTM e ids de campanha/conjunto/anúncio.
 - Eventos Purchase do Meta × vendas pagas do ClickMax.
 - Dados 'indisponíveis' com dono e prazo para resolver.

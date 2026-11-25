@@ -6,18 +6,26 @@
 Responder, todo dia e em um só lugar, se estamos vendendo, quanto custa vender e onde o funil perde, sem misturar o que foi medido com o que foi suposto.
 
 ## Perguntas diárias
-A lista literal de perguntas diárias do Comando Mestre **deve ser conferida e colada aqui por Bruno ou pelo DIRECTOR**. Até lá, as perguntas abaixo derivam dos indicadores do comando e da auditoria:
+Lista literal do Comando Mestre (13 perguntas):
 
-1. Quanto foi gasto ontem, por campanha e no total?
-2. Quantas vendas pagas houve (ClickMax e gateway), de qual oferta e por qual anúncio (UTM)?
-3. Qual o custo por venda atribuída, comparado ao líquido da oferta?
-4. Quantas visitas reais (sem tráfego de servidor), visualizações da oferta, inícios efetivos de checkout, Pix gerados e Pix pagos?
-5. Onde está a maior perda entre uma etapa e a seguinte?
-6. O Meta recebeu os mesmos Purchase que o ClickMax registrou? Qual a diferença em %?
-7. Há reembolso, recusa ou Pix expirado no período?
-8. Algum anúncio ou página ativa promete algo que a oferta não entrega?
-9. Quais campanhas estão ligadas, com qual orçamento e qual evento de otimização?
-10. O que mudou em produção desde ontem (conforme o LOG) e o que aguarda 'aprovado' de Bruno?
+1. Quanto investimos?
+2. Quantas vendas foram aprovadas?
+3. Qual produto vendeu?
+4. Qual anúncio vendeu?
+5. Qual foi o CPA?
+6. Qual foi o custo por checkout?
+7. Qual foi a conversão do checkout?
+8. Qual foi a receita após taxas?
+9. Qual foi a margem?
+10. Onde estamos perdendo compradores?
+11. Quais criativos precisam ser renovados?
+12. Quais campanhas possuem condições de escala?
+13. Qual é o próximo gargalo a resolver?
+
+**Regras do comando para o painel:**
+- diferenciar dados reais, estimativas, hipóteses e dados indisponíveis;
+- priorizar compras aprovadas e receita conciliada;
+- mostrar indicadores por conta, campanha, conjunto, anúncio, produto e origem de tráfego.
 
 ## Fontes de dados
 
