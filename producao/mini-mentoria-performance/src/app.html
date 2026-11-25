@@ -1,0 +1,236 @@
+<style>
+@font-face{font-family:Cormorant;src:url(data:font/woff2;base64,{{FONT_CORM}}) format("woff2");font-weight:300 700}
+@font-face{font-family:Cormorant;font-style:italic;src:url(data:font/woff2;base64,{{FONT_CORM_I}}) format("woff2")}
+@font-face{font-family:Aventa;src:url(data:font/woff2;base64,{{FONT_AVENTA}}) format("woff2")}
+:root{--preto:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--terra:#8B714E;--ouro:#C9B37E;--ok:#2f6b3a;--al:#9a5b13;--er:#8e2b2b;--amarelo:#fff3c4;--verde:#dff0df}
+*{box-sizing:border-box}html,body{margin:0}
+body{font-family:Aventa,Jost,system-ui,sans-serif;background:var(--creme);color:#1d211b;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%;overflow-x:hidden}
+h1,h2,h3{font-family:Cormorant,Georgia,serif;font-weight:500;line-height:1.1;margin:0;color:var(--musgo)}
+div.stk{position:sticky;top:0;z-index:20}header.top{background:var(--musgo);color:var(--creme);padding:10px 16px;display:flex;align-items:center;gap:12px}
+header.top img{height:26px}header.top .tt{font-family:Cormorant,serif;font-size:19px;flex:1;line-height:1.1}header.top .pg{font-size:12px;color:var(--ouro);white-space:nowrap}
+.bar{height:5px;background:rgba(222,214,191,.25)}.bar i{display:block;height:100%;background:var(--ouro);width:0;transition:width .3s}
+nav.tabs{display:flex;gap:4px;overflow-x:auto;background:var(--musgo);padding:0 10px 8px}
+nav.tabs button{flex:none;background:transparent;border:0;color:var(--areia);font:inherit;font-size:14px;padding:8px 12px;border-radius:18px;cursor:pointer;min-height:44px}
+nav.tabs button.on{background:var(--ouro);color:var(--preto)}
+main{max-width:880px;margin:0 auto;padding:18px 16px 70px}
+.card{background:#fff;border:1px solid var(--areia);border-radius:10px;padding:16px;margin:0 0 14px}
+.card h2{font-size:28px;margin-bottom:6px}.card h3{font-size:22px;margin:4px 0 8px}
+.kick{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--terra)}
+.hero{background:var(--musgo);color:var(--creme);border:0}.hero h1{color:var(--creme);font-size:36px}.hero p{color:var(--areia)}
+.btn{display:inline-block;background:var(--musgo);color:var(--creme);border:0;border-radius:6px;padding:12px 18px;font:inherit;font-size:15px;cursor:pointer;min-height:44px;text-decoration:none;margin:2px 4px 2px 0}
+.btn.ouro{background:var(--ouro);color:var(--preto)}.btn.ghost{background:transparent;color:var(--musgo);border:1px solid var(--musgo)}.btn:disabled{opacity:.5}
+.mods{display:grid;grid-template-columns:1fr;gap:10px}@media(min-width:620px){.mods{grid-template-columns:1fr 1fr}}
+.mod{text-align:left;background:#fff;border:1px solid var(--areia);border-radius:10px;padding:14px;font:inherit;cursor:pointer;min-height:70px}
+.mod b{display:block;font-family:Cormorant,serif;font-size:21px;color:var(--musgo)}.mod small{color:#666}
+.pergunta{font-family:Cormorant,serif;font-style:italic;font-size:25px;color:var(--musgo);line-height:1.15;margin:4px 0 8px}
+.video{background:var(--musgo);color:var(--areia);border-radius:8px;padding:22px 16px;text-align:center;font-size:14px;margin:0 0 14px}
+.opts{display:grid;grid-template-columns:1fr;gap:6px;margin:8px 0}@media(min-width:620px){.opts{grid-template-columns:repeat(5,1fr)}}
+.opts label{display:flex;align-items:center;gap:8px;border:1px solid #c9bfa5;border-radius:8px;padding:10px;min-height:44px;cursor:pointer;font-size:14px;background:#fff}
+.opts input{width:20px;height:20px;flex:none}.opts label.sel{background:var(--amarelo);border-color:var(--terra)}
+details.ajuda{background:#fbf6ea;border-left:4px solid var(--ouro);border-radius:6px;padding:8px 12px;margin:8px 0;font-size:14.5px}details.ajuda summary{cursor:pointer;min-height:36px;display:flex;align-items:center;color:var(--musgo)}
+details.ajuda ol{margin:6px 0 6px 18px;padding:0}
+label.f{display:block;margin:10px 0}label.f span.l{display:block;font-size:14px;color:#444;margin-bottom:3px}
+input[type=text],select,textarea,input[type=month]{width:100%;font:inherit;font-size:16px;padding:10px;border:1px solid #c9bfa5;border-radius:6px;background:var(--amarelo)}
+textarea{min-height:70px;resize:vertical}
+.grid2{display:grid;grid-template-columns:1fr;gap:0 14px}@media(min-width:620px){.grid2{grid-template-columns:1fr 1fr}}
+.rows{display:grid;gap:8px}.row{display:grid;grid-template-columns:1fr;gap:6px;padding:8px 0;border-top:1px dotted #d8cdb0}@media(min-width:620px){.row{grid-template-columns:repeat(var(--c),1fr)}}
+.row label span{font-size:12px;color:#555;display:block}
+.mes{display:grid;grid-template-columns:42px repeat(3,1fr);gap:6px;align-items:center;margin:4px 0}.mes b{font-size:13px}
+.res{background:var(--verde);border-radius:8px;padding:12px 14px;margin:12px 0}
+.res .l{display:flex;justify-content:space-between;gap:10px;padding:3px 0;border-bottom:1px dotted #9bb89b}.res .l b{font-variant-numeric:tabular-nums;text-align:right}
+.res .dest{font-family:Cormorant,serif;font-size:30px;color:var(--musgo)}
+.av{font-size:13.5px;background:#fdebd0;border-left:4px solid var(--al);border-radius:6px;padding:7px 10px;margin:6px 0}
+.fb{border:1px solid var(--areia);border-radius:8px;margin:10px 0;overflow:hidden}.fb div{padding:8px 12px;border-top:1px solid #eee;font-size:14.5px}.fb div:first-child{border:0}.fb div b{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--terra)}
+.aviso{font-size:13px;color:#555;background:#f3eee0;border-radius:6px;padding:8px 10px;margin:10px 0}
+.tag{display:inline-block;font-size:12px;padding:2px 8px;border-radius:10px;background:var(--areia);color:var(--musgo);margin:0 4px 2px 0}
+.tag.ok{background:var(--verde)}.tag.al{background:#fde6c2}.tag.er{background:#f6d0d0}
+.pil{display:grid;grid-template-columns:96px 1fr 56px;gap:8px;align-items:center;margin:8px 0;font-size:14px}.pil .t{height:14px;background:#eee7d4;border-radius:7px;position:relative;overflow:hidden}.pil .t i{display:block;height:100%;background:var(--musgo)}.pil .t u{position:absolute;left:0;top:0;height:100%;background:rgba(201,179,126,.45)}
+table{border-collapse:collapse;width:100%;font-size:14px}th,td{padding:6px 8px;border-bottom:1px solid #e6dfcc;text-align:left;vertical-align:top}th{background:var(--musgo);color:var(--creme);font-weight:400}
+.pl{border:1px solid var(--areia);border-radius:8px;padding:10px;margin:8px 0;background:#fff}.pl h4{margin:0 0 4px;font-family:Aventa,sans-serif;font-weight:700;font-size:15.5px;line-height:1.35;color:var(--musgo)}
+.pl .m{font-size:13.5px;color:#444}.pl .ed{display:grid;grid-template-columns:1fr;gap:6px;margin-top:6px}@media(min-width:620px){.pl .ed{grid-template-columns:2fr 1fr}}
+.rodape{font-size:12px;color:#666;text-align:center;margin-top:20px}
+@media print{div.stk,.noprint{display:none!important}main{padding:0}.card{border:0}body{background:#fff}}
+</style>
+<div class="stk"><header class="top"><img alt="Zion" src="data:image/png;base64,{{LOGO}}"><div class="tt">Raio-X da Hospedagem</div><div class="pg" id="pgTxt"></div></header>
+<div class="bar"><i id="pgBar"></i></div><nav class="tabs" id="tabs"></nav></div>
+<main id="v"></main>
+<script>{{LOGIC}}</script>
+<script>
+(function(){
+"use strict";
+var Q={{QUESTOES}}.questions,META={{META}},GUIA={{GUIA}},AULAS={{AULAS}},VIDEOS={{VIDEOS}};
+var $=function(s,r){return(r||document).querySelector(s)};
+var esc=function(s){return String(s==null?"":s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})};
+var MODS=[null,"Identidade","Vendas","Experiência","Finanças","Operação","Expansão","Parcerias"];
+var CK={C1:1,C2:2,C3:3,C4:4,C5:5,C6:6,C7:7};
+var PFX="zion_rx_v1:",perfilId=null,P=null,view="inicio";
+/* ---------- armazenamento local, uma chave por perfil ---------- */
+function lsGet(k){try{return window.localStorage.getItem(k)}catch(e){return null}}
+function lsSet(k,v){try{window.localStorage.setItem(k,v);return true}catch(e){return false}}
+function indice(){try{return JSON.parse(lsGet(PFX+"indice")||"[]")}catch(e){return[]}}
+function novoPerfil(nome){return{nome:nome,criado:hoje(),identificacao:{},respostas:{},notas:{},calculadoras:{},edicoesPlano:{},consentimento:false,aulasVistas:{}}}
+function hoje(){return new Date().toISOString().slice(0,10)}
+function carregar(id){var raw=lsGet(PFX+"p:"+id);var p=null;try{p=raw?JSON.parse(raw):null}catch(e){}return p}
+function salvar(){if(!perfilId)return;lsSet(PFX+"p:"+perfilId,JSON.stringify(P))}
+function entrar(nome){nome=(nome||"").trim().slice(0,40);if(!nome)return false;var id=nome.toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"")||"perfil";var ix=indice();if(ix.indexOf(id)<0){ix.push(id);lsSet(PFX+"indice",JSON.stringify(ix))}
+ perfilId=id;P=carregar(id)||novoPerfil(nome);P.nome=P.nome||nome;lsSet(PFX+"ativo",id);salvar();return true}
+function sair(){perfilId=null;P=null;lsSet(PFX+"ativo","");render()}
+/* ---------- progresso ---------- */
+function respondidas(){return Q.filter(function(q){return P.respostas[q.id]!==undefined&&P.respostas[q.id]!==null}).length}
+function progresso(){var n=respondidas(),c=Object.keys(P.calculadoras).filter(function(k){return Object.keys(P.calculadoras[k]).length}).length;return Math.round((n+c)/(Q.length+7)*100)}
+function atualizaTopo(){var p=P?progresso():0;$("#pgBar").style.width=p+"%";$("#pgTxt").textContent=P?p+"% concluído":""}
+/* ---------- utilidades de tela ---------- */
+function fmt(v,suf,dec){if(v===null||v===undefined||(typeof v==="number"&&!isFinite(v)))return"—";return Number(v).toLocaleString("pt-BR",{minimumFractionDigits:dec===undefined?(Number.isInteger(v)?0:2):dec,maximumFractionDigits:dec===undefined?2:dec})+(suf||"")}
+function brl(v){return v===null||v===undefined?"—":"R$ "+Number(v).toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2})}
+function nivelTxt(n){return{construir:"base a construir",desenvolvimento:"em desenvolvimento",consolidado:"consolidado",sem_dados:"sem dados"}[n]}
+function nivelCls(n){return n==="consolidado"?"ok":n==="desenvolvimento"?"al":n==="construir"?"er":""}
+function confTxt(c){return{baixa:"cobertura baixa: nota provisória",media:"cobertura média",alta:"cobertura alta",sem_dados:"sem dados"}[c]}
+function dx(){return RX.diagnostico(Q,P.respostas)}
+function pl(){return RX.plano(Q,META,P.respostas,{inicio:P.inicioPlano||hoje(),edits:P.edicoesPlano})}
+/* ---------- abas ---------- */
+var TABS=[["inicio","Início"],["ficha","Ficha"]].concat([1,2,3,4,5,6,7].map(function(i){return["aula"+i,i+" · "+MODS[i]]})).concat([["diag","Diagnóstico"],["plano","Plano"],["dossie","Dossiê"],["convite","Convite"]]);
+function abas(){$("#tabs").innerHTML=P?TABS.map(function(t){return'<button data-v="'+t[0]+'" class="'+(view===t[0]?"on":"")+'">'+esc(t[1])+"</button>"}).join(""):"";document.querySelectorAll("#tabs button").forEach(function(b){b.onclick=function(){ir(b.dataset.v)}})}
+function ir(v){view=v;history.replaceState(null,"","#"+v);render();window.scrollTo(0,0)}
+/* ---------- telas ---------- */
+function telaEntrada(){var ix=indice(),h='<div class="card hero"><div class="kick" style="color:var(--ouro)">Zion Hotel Academy · Mini Mentoria de Performance Hoteleira</div><h1>Raio-X da Hospedagem</h1><p>Descubra o que pode estar impedindo sua hospedagem de crescer e seu calendário de reservas de estar cheio. Responda, calcule e receba um plano de ação personalizado.</p></div>';
+ h+='<div class="card"><h2>Quem vai usar?</h2><p>Seus dados ficam <b>só neste aparelho</b>, em um perfil com o nome que você escolher. Nada é enviado à Zion. Use "Dossiê" para guardar uma cópia de segurança.</p>';
+ if(ix.length){h+='<p>Perfis neste aparelho:</p>'+ix.map(function(id){var p=carregar(id);return'<button class="btn ghost" data-pf="'+esc(id)+'">'+esc(p?p.nome:id)+"</button>"}).join("")}
+ h+='<label class="f"><span class="l">Novo perfil (nome ou apelido)</span><input type="text" id="nomePf" maxlength="40" autocomplete="off"></label><button class="btn ouro" id="criaPf">Começar</button></div>';
+ $("#v").innerHTML=h;$("#criaPf").onclick=function(){if(entrar($("#nomePf").value))ir("inicio")};document.querySelectorAll("[data-pf]").forEach(function(b){b.onclick=function(){entrar(carregar(b.dataset.pf)?carregar(b.dataset.pf).nome:b.dataset.pf);ir("inicio")}})}
+function telaInicio(){var d=dx(),h='<div class="card hero"><div class="kick" style="color:var(--ouro)">Olá, '+esc(P.nome)+'</div><h1>Seu Raio-X da Hospedagem</h1><p>Percurso: ficha, 7 módulos (aula, formulário e calculadora), diagnóstico, plano de ação e dossiê em PDF.</p><button class="btn ouro" data-ir="'+(P.identificacao.nome?"aula1":"ficha")+'">'+(respondidas()?"Continuar":"Começar pela ficha")+'</button></div>';
+ h+='<div class="card"><div class="kick">Os 7 módulos</div><div class="mods">'+[1,2,3,4,5,6,7].map(function(i){var p=d.pilares[i-1];return'<button class="mod" data-ir="aula'+i+'"><b>'+i+" · "+esc(AULAS[i].titulo)+"</b><small>"+p.validos+" de "+p.aplicaveis+" respondidas com dados"+(P.calculadoras["C"+i]&&Object.keys(P.calculadoras["C"+i]).length?" · calculadora usada":"")+"</small></button>"}).join("")+"</div></div>";
+ h+='<div class="aviso">Orientação educacional baseada nos dados que você declarar. Não é auditoria nem parecer profissional e não garante reservas, ocupação, renda ou investimento. Marque "não sei" quando não souber: desconhecido não vale zero.</div>';
+ h+='<p class="noprint"><button class="btn ghost" id="trocaPf">Trocar de perfil</button></p>';
+ $("#v").innerHTML=h;ligaIr();$("#trocaPf").onclick=sair}
+function ligaIr(){document.querySelectorAll("[data-ir]").forEach(function(b){b.onclick=function(){ir(b.dataset.ir)}})}
+var TIPOS=["Airbnb / casa / apartamento","Chalé","Pousada","Glamping / cabana","Hotel pequeno","Outro"],ESTAGIOS=["Ainda não opera (projeto)","Opera há menos de 1 ano","Opera de 1 a 3 anos","Opera há mais de 3 anos"],OBJ=["Encher o calendário","Aumentar a diária","Melhorar a margem","Organizar a operação","Expandir","Buscar parceria ou capital","Ainda não sei"];
+function telaFicha(){var i=P.identificacao,h='<div class="card"><div class="kick">Ficha inicial</div><h2>Sobre o seu empreendimento</h2><p>Só o que for útil para o seu diagnóstico. Não coletamos CPF, e-mail nem telefone aqui.</p><div class="grid2">';
+ function sel(k,l,o){return'<label class="f"><span class="l">'+l+'</span><select data-id="'+k+'"><option value="">Escolha</option>'+o.map(function(x){return"<option"+(i[k]===x?" selected":"")+">"+esc(x)+"</option>"}).join("")+"</select></label>"}
+ function tx(k,l,ph){return'<label class="f"><span class="l">'+l+'</span><input type="text" data-id="'+k+'" value="'+esc(i[k]||"")+'" placeholder="'+esc(ph||"")+'"></label>'}
+ h+=tx("nome","Nome do empreendimento (opcional)")+sel("tipo","Tipo de hospedagem",TIPOS)+tx("municipio","Município e UF")+sel("estagio","Estágio",ESTAGIOS)+sel("objetivo","Objetivo principal",OBJ)+tx("unidades","Quantidade de unidades","ex.: 4")+tx("periodo","Período dos dados","ex.: jan a dez de 2026")+tx("fonte","Fonte dos dados","ex.: planilha própria, extrato, sistema de reservas")+tx("infra","Infraestrutura disponível (água, energia, acesso, áreas)")+tx("ativos","Ativos principais (camas, equipamentos, marca, site)")+tx("canais","Canais de venda usados")+tx("tipoInfo","Observações")+"</div>";
+ h+='<div class="aviso">Se uma informação for desconhecida, deixe em branco. Em branco não é zero.</div></div>';
+ $("#v").innerHTML=h;document.querySelectorAll("[data-id]").forEach(function(e){e.oninput=e.onchange=function(){P.identificacao[e.dataset.id]=e.value;salvar()}})}
+var OPC=[["2","Implementado e comprovado"],["1","Parcial"],["0","Ausente"],["unknown","Não sei"],["na","Não se aplica"]];
+function telaAula(m){var a=AULAS[m],g=GUIA[m],qs=Q.filter(function(q){return q.module===m});
+ var h='<div class="card"><div class="kick">Módulo '+m+" · "+esc(MODS[m])+'</div><h2>'+esc(a.titulo)+'</h2>';
+ var vd=VIDEOS[m];h+=vd?'<video controls preload="none" style="width:100%;border-radius:8px;margin:8px 0" src="'+esc(vd)+'"></video>':'<div class="video">Vídeo da aula em gravação. Enquanto isso, acompanhe o roteiro em texto e o guia deste módulo.</div>';
+ h+='<details class="ajuda"><summary>Roteiro da aula (texto)</summary>'+a.paragrafos.map(function(p){return"<p>"+esc(p)+"</p>"}).join("")+"</details>";
+ h+='<p><a class="btn ghost" href="guia-'+m+'.pdf" target="_blank" rel="noopener">Abrir o guia do módulo (PDF)</a></p>';
+ h+='<details class="ajuda"><summary>Para que serve · o que ter em mãos</summary><p>'+esc(g.abertura.para_que_serve)+"</p><ul>"+g.abertura.tenha_em_maos.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+"</ul><p>"+esc(g.abertura.como_trabalhar)+"</p></details></div>";
+ h+='<div class="card"><div class="kick">Formulário do módulo '+m+"</div><h3>Responda com evidências</h3><p>Escolha a situação real. Se não souber, marque <b>Não sei</b>: isso não conta como zero.</p>";
+ qs.forEach(function(q,i){var r=P.respostas[q.id],gq=g.perguntas[i],mt=META[q.id];
+  h+='<div style="border-top:1px solid #eee;padding-top:10px;margin-top:10px"><div class="kick">'+q.topic+(mt.critico?' · <span style="color:var(--er)">segurança/legalidade</span>':"")+'</div><div class="pergunta">'+esc(q.question)+'</div><div style="font-size:14.5px"><b>Como fazer:</b> '+esc(q.procedure)+" <b>Evidência:</b> "+esc(q.evidence)+".</div>";
+  h+='<details class="ajuda"><summary>Passo a passo, exemplo e como pontuar</summary><p>'+esc(gq.por_que_importa)+"</p><ol>"+gq.como_coletar.map(function(x){return"<li>"+esc(x)+"</li>"}).join("")+'</ol><p><b>'+esc(gq.exemplo.titulo)+".</b> "+esc(gq.exemplo.texto)+"</p><p><b>Erro comum:</b> "+esc(gq.erro_comum)+"</p><p><b>Ausente:</b> "+esc(gq.como_ler.ausente)+"<br><b>Parcial:</b> "+esc(gq.como_ler.parcial)+"<br><b>Comprovado:</b> "+esc(gq.como_ler.comprovado)+"</p><p><b>Como verificar:</b> "+esc(gq.verificacao)+"</p></details>";
+  h+='<div class="opts" data-q="'+q.id+'">'+OPC.map(function(o){return'<label class="'+(String(r)===o[0]?"sel":"")+'"><input type="radio" name="'+q.id+'" value="'+o[0]+'"'+(String(r)===o[0]?" checked":"")+">"+o[1]+"</label>"}).join("")+"</div>";
+  h+='<label class="f"><span class="l">Evidência ou observação (opcional)</span><textarea data-n="'+q.id+'" maxlength="400">'+esc(P.notas[q.id]||"")+"</textarea></label></div>"});
+ h+='<div id="fbMod"></div></div><div class="card"><div class="kick">Calculadora do módulo '+m+"</div><h2>"+esc(RX.CALC_NOMES["C"+m])+'</h2><div id="calcBox"></div><div id="calcRes"></div></div>';
+ h+='<p class="noprint">'+(m>1?'<button class="btn ghost" data-ir="aula'+(m-1)+'">← Módulo anterior</button>':"")+(m<7?'<button class="btn ouro" data-ir="aula'+(m+1)+'">Próximo módulo →</button>':'<button class="btn ouro" data-ir="diag">Ver meu diagnóstico →</button>')+"</p>";
+ $("#v").innerHTML=h;ligaIr();
+ document.querySelectorAll(".opts input").forEach(function(e){e.onchange=function(){P.respostas[e.name]=e.value;salvar();e.closest(".opts").querySelectorAll("label").forEach(function(l){l.classList.toggle("sel",l.firstChild.checked)});feedbackModulo(m);atualizaTopo()}});
+ document.querySelectorAll("[data-n]").forEach(function(e){e.oninput=function(){P.notas[e.dataset.n]=e.value;salvar()}});
+ feedbackModulo(m);montaCalc(m)}
+function feedbackModulo(m){var d=dx().pilares[m-1],box=$("#fbMod");if(!box)return;
+ if(d.score===null){box.innerHTML='<div class="aviso">Responda ao menos uma pergunta com dados (implementado, parcial ou ausente) para ver o resultado do módulo. Respostas "não sei" não pontuam.</div>';return}
+ var qs=Q.filter(function(q){return q.module===m}),sub={};qs.forEach(function(q){sub[q.id]=P.respostas[q.id]});var pp=RX.plano(qs,META,sub,{inicio:P.inicioPlano||hoje()}),todas=[7,30,60,90].reduce(function(a,h){return a.concat(pp.horizontes[h])},[]).concat(pp.backlog).sort(function(a,b){return b.prioridade-a.prioridade}).slice(0,3);
+ var alerta=[];if(d.desconhecidos)alerta.push(d.desconhecidos+' resposta(s) "não sei": viram ação de coleta e reduzem a cobertura.');if(d.pendentes)alerta.push(d.pendentes+" pergunta(s) ainda sem resposta.");if(d.confianca==="baixa")alerta.push("Cobertura baixa: a nota é provisória.");
+ box.innerHTML='<div class="fb"><div><b>Resultado</b>Nota do módulo: <strong>'+fmt(d.score,"%",1)+'</strong> · cobertura '+fmt(d.cobertura,"%",1)+" ("+d.validos+" de "+d.aplicaveis+" aplicáveis)</div><div><b>O que significa</b>Faixa <span class=\"tag "+nivelCls(d.nivel)+'">'+nivelTxt(d.nivel)+"</span> (hipótese inicial de faixas, em validação). A nota mostra o quanto do módulo está comprovado, não o seu resultado de vendas.</div><div><b>Atenção</b>"+(alerta.length?alerta.map(esc).join("<br>"):"Sem alertas de cobertura neste módulo.")+"</div><div><b>O que fazer agora</b>"+(todas.length?todas.map(function(x){return"• "+esc(x.acao)}).join("<br>"):"Nenhuma lacuna aberta neste módulo. Mantenha a evidência atualizada.")+"</div><div><b>Como verificar</b>"+(todas.length?todas.map(function(x){return"• "+esc(x.indicador)}).join("<br>"):"Reabra o formulário no próximo período e compare com períodos equivalentes.")+"</div></div>"}
+/* ---------- calculadoras: especificações ---------- */
+var CS={
+C1:[{t:"nums",k:"motivos",l:"Motivo da viagem nas últimas 20 reservas (quantidade)",rot:RX.MOTIVOS},{t:"num",k:"meuPreco",l:"Seu preço total da estadia (datas iguais às dos concorrentes, R$)"},{t:"nums",k:"concorrentes",l:"Preço total de hospedagens equivalentes (R$, de 3 a 5)",rot:["Concorrente 1","Concorrente 2","Concorrente 3","Concorrente 4","Concorrente 5"]},{t:"num",k:"visitas",l:"Visitas ao anúncio ou site no período (mesmo canal)"},{t:"num",k:"reservas",l:"Reservas desse canal no mesmo período"}],
+C2:[{t:"meses"},{t:"rows",k:"canais",n:4,l:"Canais de venda",cols:[["nome","Canal","text"],["receita","Receita bruta (R$)"],["comissaoPct","Comissão (%)"],["custoAquisicao","Custo de aquisição (R$)"]]},{t:"nums",k:"janela",l:"Dias entre reserva e chegada (de 5 a 10 reservas recentes)",rot:["1","2","3","4","5","6","7","8","9","10"].map(function(x){return"Reserva "+x})}],
+C3:[{t:"num",k:"receita",l:"Receita de hospedagem do período (R$, sem extras)"},{t:"num",k:"vendidas",l:"Noites vendidas"},{t:"num",k:"disponiveis",l:"Noites disponíveis (unidades × dias − bloqueios)"},{t:"rows",k:"extras",n:4,l:"Extras (café, passeios, cestas...)",cols:[["nome","Extra","text"],["preco","Preço (R$)"],["custo","Custo incremental (R$)"],["qtd","Vendas no mês"]]}],
+C4:[{t:"num",k:"disponiveis",l:"Noites disponíveis no período"},{t:"num",k:"vendidas",l:"Noites vendidas"},{t:"num",k:"receita",l:"Receita de hospedagem (R$)"},{t:"rows",k:"fixos",n:5,l:"Custos fixos do período (aluguel, salários, sistemas, contratos)",cols:[["nome","Custo","text"],["valor","Valor (R$)"]]},{t:"num",k:"limpeza",l:"Limpeza por estadia (R$)"},{t:"num",k:"insumos",l:"Insumos por estadia (R$)"},{t:"num",k:"comissoes",l:"Comissões e taxas por estadia (R$)"},{t:"num",k:"outrosVar",l:"Outros custos por estadia (R$; 0 só se não existe)"},{t:"num",k:"noitesPorEstadia",l:"Noites por estadia (média)"},{t:"num",k:"quedaOcupacaoPct",l:"Cenário adverso: queda de ocupação (%) — hipótese sua"},{t:"num",k:"quedaPrecoPct",l:"Cenário adverso: queda de diária (%) — hipótese sua"},{t:"num",k:"altaCustosPct",l:"Cenário adverso: alta de custos (%) — hipótese sua"},{t:"rows",k:"ativos",n:3,l:"Ativos a repor (provisão mensal)",cols:[["nome","Ativo","text"],["custo","Custo de reposição (R$)"],["vidaAnos","Vida útil (anos)"]]}],
+C5:[{t:"num",k:"horasDisponiveis",l:"Horas disponíveis no turno (pessoas × horas)"},{t:"rows",k:"tarefas",n:5,l:"Tarefas do turno",cols:[["nome","Tarefa","text"],["minutos","Minutos por tarefa"],["qtd","Quantidade por turno"]]},{t:"rows",k:"estoque",n:4,l:"Itens de estoque",cols:[["nome","Item","text"],["consumoDia","Consumo por dia"],["prazoDias","Prazo do fornecedor (dias)"],["margemDias","Margem de segurança (dias)"],["saldo","Saldo atual"]]},{t:"rows",k:"divergencias",n:4,l:"Conferência sistema × extrato (por reserva)",cols:[["ref","Reserva","text"],["pms","Valor no sistema (R$)"],["extrato","Valor no extrato (R$)"]]}],
+C6:[{t:"num",k:"unidade",l:"Custo da unidade (R$)"},{t:"num",k:"obras",l:"Obras e infraestrutura (R$)"},{t:"num",k:"licencas",l:"Licenças e projetos (R$)"},{t:"num",k:"mobiliario",l:"Mobiliário e equipamentos (R$)"},{t:"num",k:"contingenciaPct",l:"Contingência (%)"},{t:"num",k:"limpeza",l:"Limpeza extra por mês (R$)"},{t:"num",k:"energia",l:"Energia e água extras por mês (R$)"},{t:"num",k:"equipe",l:"Equipe extra por mês (R$)"},{t:"num",k:"manutencao",l:"Manutenção extra por mês (R$)"},{t:"num",k:"outros",l:"Outros custos mensais (R$)"},{t:"num",k:"custoVarNoite",l:"Custo variável por noite vendida (R$)"},{t:"num",k:"unidades",l:"Unidades novas"},{t:"num",k:"diaria",l:"Diária média esperada (R$)"},{t:"num",k:"ocupacaoPct",l:"Ocupação esperada (%)"},{t:"num",k:"deltaOcPontos",l:"Cenários: variação de ocupação (pontos) — hipótese sua"},{t:"num",k:"deltaDiariaPct",l:"Cenários: variação de diária (%) — hipótese sua"}],
+C7:[{t:"num",k:"investimento",l:"Investimento total previsto (R$)"},{t:"num",k:"contingenciaPct",l:"Contingência (%)"},{t:"num",k:"capitalGiro",l:"Capital de giro (R$)"},{t:"num",k:"recursosProprios",l:"Recursos próprios disponíveis (R$)"}]};
+var MES=["Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out","Nov","Dez"];
+function setPath(o,path,v){var k=path.split(".");for(var i=0;i<k.length-1;i++){var kk=isNaN(k[i])?k[i]:Number(k[i]);if(o[kk]===undefined||o[kk]===null)o[kk]=isNaN(k[i+1])?{}:[];o=o[kk]}var l=isNaN(k[k.length-1])?k[k.length-1]:Number(k[k.length-1]);o[l]=v}
+function getPath(o,path){var k=path.split(".");for(var i=0;i<k.length;i++){if(o==null)return"";o=o[isNaN(k[i])?k[i]:Number(k[i])]}return o==null?"":o}
+function inp(c,path,ph,tp){return'<input type="text" inputmode="'+(tp==="text"?"text":"decimal")+'" data-c="'+c+'" data-p="'+path+'" value="'+esc(getPath(P.calculadoras[c]||{},path))+'" placeholder="'+esc(ph||"")+'" autocomplete="off">'}
+function montaCalc(m){var c="C"+m,spec=CS[c],h="";
+ spec.forEach(function(s){
+  if(s.t==="num")h+='<label class="f"><span class="l">'+esc(s.l)+"</span>"+inp(c,s.k)+"</label>";
+  else if(s.t==="nums")h+='<div class="kick" style="margin-top:8px">'+esc(s.l)+'</div><div class="grid2">'+s.rot.map(function(r,i){return'<label class="f"><span class="l">'+esc(r)+"</span>"+inp(c,s.k+"."+i)+"</label>"}).join("")+"</div>";
+  else if(s.t==="rows"){h+='<div class="kick" style="margin-top:10px">'+esc(s.l)+'</div><div class="rows">';for(var i=0;i<s.n;i++){h+='<div class="row" style="--c:'+s.cols.length+'">'+s.cols.map(function(cl){return"<label><span>"+esc(cl[1])+"</span>"+inp(c,s.k+"."+i+"."+cl[0],"",cl[2])+"</label>"}).join("")+"</div>"}h+="</div>"}
+  else if(s.t==="meses"){h+='<div class="kick">Dados dos últimos 12 meses (deixe em branco o que não souber)</div><div class="mes"><b></b><b>Disponíveis</b><b>Vendidas</b><b>Receita R$</b></div>';for(var j=0;j<12;j++)h+='<div class="mes"><b>'+MES[j]+"</b>"+["disponiveis","vendidas","receita"].map(function(k){return inp(c,"meses."+j+"."+k)}).join("")+"</div>"}});
+ $("#calcBox").innerHTML=h+'<div class="aviso">Campo em branco = desconhecido (não vira zero). Valores negativos e textos inválidos são recusados com aviso.</div>';
+ document.querySelectorAll("#calcBox input").forEach(function(e){e.oninput=function(){var o=P.calculadoras[e.dataset.c]=P.calculadoras[e.dataset.c]||{};setPath(o,e.dataset.p,e.value);salvar();mostraCalc(m);atualizaTopo()}});mostraCalc(m)}
+function L(l,v){return'<div class="l"><span>'+esc(l)+"</span><b>"+v+"</b></div>"}
+function avs(r){return(r.avisos||[]).map(function(a){return'<div class="av">'+esc(a)+"</div>"}).join("")+((r.faltam||[]).length?'<div class="av">Ainda faltam dados: '+esc(r.faltam.join("; "))+".</div>":"")}
+function mostraCalc(m){var c="C"+m,i=P.calculadoras[c]||{},r=RX.calcular(c,i),h="";if(!Object.keys(i).length){$("#calcRes").innerHTML="";return}
+ if(c==="C1"){h+=(r.distribuicao?r.distribuicao.map(function(x){return L(x.motivo,x.qtd+" ("+fmt(x.pct,"%",1)+")")}).join(""):"")+L("Preço mediano dos comparáveis",brl(r.precoMediano))+L("Seu preço ÷ mediana",fmt(r.indicePreco,"",2))+L("Conversão (reservas ÷ visitas)",fmt(r.conversaoPct,"%",2))}
+ if(c==="C2"){h+='<div class="dest">'+fmt(r.ocupacaoAnualPct,"%",1)+"</div><div>Ocupação anual (soma das vendidas ÷ soma das disponíveis, "+r.mesesValidos+" de 12 meses)</div>"+(r.mesesBaixos.length?L("Meses de menor ocupação",r.mesesBaixos.map(function(x){return MES[x-1]}).join(", ")):"")+r.meses.filter(function(x){return x.ocupacaoPct!==null}).map(function(x){return L(MES[x.mes-1],fmt(x.ocupacaoPct,"%",1))}).join("")+r.canais.map(function(x){return L(x.nome+" · receita líquida",brl(x.liquida)+(x.participacaoPct!==null?" ("+fmt(x.participacaoPct,"%",1)+" da receita)":""))}).join("")+L("Janela de compra (mediana)",r.janelaMediana===null?"—":fmt(r.janelaMediana," dias",1))}
+ if(c==="C3"){h+=L("Diária realizada (ADR)",brl(r.adr))+L("RevPAR",brl(r.revpar))+L("Ocupação",fmt(r.ocupacaoPct,"%",1))+r.extras.map(function(x){return L(x.nome+" · margem",x.margemUnit===null?"—":brl(x.margemUnit)+" ("+fmt(x.margemPct,"%",1)+")"+(x.alerta?" · "+x.alerta:""))}).join("")}
+ if(c==="C4"){h+=L("ADR",brl(r.adr))+L("Custo variável por noite",brl(r.custoVarNoite))+L("Contribuição por noite",brl(r.contribuicaoNoite))+L("Margem de contribuição",fmt(r.margemContribPct,"%",1))+L("Custos fixos do período",brl(r.custoFixoTotal))+L("Ocupação atual",fmt(r.ocupacaoPct,"%",1))+L("Ocupação de equilíbrio",fmt(r.equilibrioPct,"%",1))+(r.equilibrioMsg?'<div class="av">'+esc(r.equilibrioMsg)+"</div>":"")+L("Resultado operacional do período",brl(r.resultado))+(r.adverso?L("Cenário adverso · resultado",brl(r.adverso.resultado)+(r.adverso.deficit?" (déficit)":"")):"")+L("Provisão de reposição por mês",brl(r.provisaoReposicaoMensal))}
+ if(c==="C5"){h+=L("Horas necessárias no turno",fmt(r.horasNecessarias," h",2))+L("Carga de trabalho",fmt(r.cargaPct,"%",1))+r.estoque.map(function(x){return L(x.nome+" · mínimo / ponto de pedido",fmt(x.estoqueMinimo)+" / "+fmt(x.pontoPedido)+(x.situacao==="repor"?" · repor":""))}).join("")+L("Reservas comparadas / divergentes",r.conciliacao.comparadas+" / "+r.conciliacao.divergentes)+L("Soma das divergências",brl(r.conciliacao.totalAbsoluto))}
+ if(c==="C6"){function cen(n,x){return x?L(n+" · resultado anual",brl(x.resultadoAnual)+" · retorno "+fmt(x.retornoPct,"%",1)+" · payback "+(x.paybackAnos===null?"não se paga":fmt(x.paybackAnos," anos",1))):""}h+=L("Custo total instalado",brl(r.custoTotalInstalado))+L("Custos adicionais por mês",brl(r.custosAdicionaisMensais))+cen("Pessimista",r.pessimista)+cen("Base",r.base)+cen("Otimista",r.otimista)}
+ if(c==="C7"){h+=L("Total com contingência e capital de giro",brl(r.totalComContingencia))+L("Necessidade de capital",brl(r.necessidadeCapital))+L("Cobertura pelos recursos próprios",fmt(r.coberturaPropriaPct,"%",1))}
+ $("#calcRes").innerHTML='<div class="res">'+h+"</div>"+avs(r)}
+function telaDiag(){var d=dx(),h='<div class="card"><div class="kick">Motor de diagnóstico</div><h2>Seu Raio-X</h2>';
+ if(d.geral.score===null)h+='<div class="aviso">Ainda não há respostas com dados. Responda os formulários dos módulos (pode marcar "não sei").</div>';
+ else h+='<div style="font-family:Cormorant,serif;font-size:44px;color:var(--musgo)">'+fmt(d.geral.score,"%",1)+'</div><div>Pontuação geral, com cobertura de '+fmt(d.geral.cobertura,"%",1)+" ("+d.geral.validos+" de "+d.geral.aplicaveis+" perguntas aplicáveis respondidas com dados).</div>"+(d.geral.cobertura<50?'<div class="av"><b>Pontuação provisória:</b> menos da metade das perguntas tem dados. Complete os módulos para uma leitura confiável.</div>':"");
+ h+="<h3 style=\"margin-top:14px\">Por pilar</h3>"+d.pilares.map(function(p){return'<div class="pil"><span>'+p.modulo+" · "+MODS[p.modulo]+'</span><div class="t"><u style="width:'+(p.cobertura||0)+'%"></u><i style="width:'+(p.score||0)+'%"></i></div><b>'+(p.score===null?"—":fmt(p.score,"%",0))+"</b></div><div style=\"font-size:12.5px;color:#555;margin:-4px 0 6px 0\"><span class=\"tag "+nivelCls(p.nivel)+'">'+nivelTxt(p.nivel)+"</span> cobertura "+fmt(p.cobertura,"%",0)+" · "+confTxt(p.confianca)+(p.desconhecidos?" · "+p.desconhecidos+' "não sei"':"")+(p.naoAplica?" · "+p.naoAplica+" não se aplica":"")+"</div>"}).join("");
+ h+='<div class="aviso">A barra escura é a nota (respostas válidas); a faixa clara é a cobertura. "Não sei" e "não se aplica" não pontuam. Pesos iguais e faixas (40 e 70) são hipóteses iniciais em validação pela equipe.</div></div>';
+ function lista(ids,tit){return ids.length?'<div class="card"><h3>'+tit+" ("+ids.length+")</h3>"+ids.map(function(id){var q=Q.filter(function(x){return x.id===id})[0];return"<div style=\"padding:4px 0;border-top:1px dotted #ddd;font-size:14.5px\"><b>"+q.module+" · "+esc(q.topic)+":</b> "+esc(q.question)+"</div>"}).join("")+"</div>":""}
+ h+=lista(d.pontosFortes,"Pontos fortes")+lista(d.lacunas,"Lacunas")+lista(d.aColetar,"Dados a coletar (você marcou não sei)");
+ var al=RX.montarDossie(P,Q,META,{inicio:P.inicioPlano||hoje()}).alertasDeDados;if(al.length)h+='<div class="card"><h3>Alertas de dados</h3>'+al.map(function(a){return'<div class="av">'+esc(a)+"</div>"}).join("")+"</div>";
+ h+='<p class="noprint"><button class="btn ouro" data-ir="plano">Ver meu plano de ação →</button></p>';$("#v").innerHTML=h;ligaIr()}
+function telaPlano(){var p=pl(),h='<div class="card"><div class="kick">Plano de ação personalizado</div><h2>7 · 30 · 60 · 90 dias</h2><p>Itens de segurança e legalidade vêm primeiro; depois, impacto ÷ esforço, com foco OP3D. Ajuste responsável e prazo.</p>';
+ h+='<label class="f"><span class="l">Início do plano</span><input type="text" id="ini" value="'+esc(P.inicioPlano||hoje())+'" placeholder="AAAA-MM-DD"></label>';
+ if(!p.total)h+='<div class="aviso">Não há lacunas nem dados a coletar. Responda os formulários ou mantenha a evidência em dia.</div>';
+ h+='<div class="aviso">'+esc(p.op3d.nota)+" Foco: nível 1 = "+p.op3d.nivel1+" · nível 2 = "+p.op3d.nivel2+" · nível 3 = "+p.op3d.nivel3+" ação(ões). Impacto e esforço são estimativas editoriais a validar.</div></div>";
+ [7,30,60,90].forEach(function(hz){if(!p.horizontes[hz].length)return;h+='<div class="card"><h3>Em até '+hz+" dias</h3>"+p.horizontes[hz].map(function(x){return'<div class="pl"><h4>'+esc(x.acao)+'</h4><div class="m">'+(x.critico?'<span class="tag er">segurança/legalidade</span>':"")+(x.tipo==="coletar"?'<span class="tag al">coletar dado</span>':"")+(x.op3d?'<span class="tag">OP3D nível '+x.op3d+"</span>":"")+'<span class="tag">Módulo '+x.modulo+" · "+esc(x.topico)+'</span></div><div class="m"><b>Motivo:</b> '+esc(x.motivo)+"</div><div class=\"m\"><b>Indicador:</b> "+esc(x.indicador)+"</div><div class=\"m\"><b>Evidência:</b> "+esc(x.evidencia)+'</div><div class="ed"><label><span class="kick">Responsável</span><input type="text" data-pe="'+x.id+'.responsavel" value="'+esc(x.responsavel)+'"></label><label><span class="kick">Prazo</span><input type="text" data-pe="'+x.id+'.prazo" value="'+esc(x.prazo)+'"></label></div></div>'}).join("")+"</div>"});
+ if(p.backlog.length)h+='<div class="card"><h3>Próximos ciclos ('+p.backlog.length+")</h3><p>Ficaram fora dos 90 dias para o plano caber na rotina. Retome depois:</p>"+p.backlog.map(function(x){return"<div style=\"font-size:14px;padding:3px 0;border-top:1px dotted #ddd\">"+x.modulo+" · "+esc(x.topico)+": "+esc(x.acao)+"</div>"}).join("")+"</div>";
+ $("#v").innerHTML=h;$("#ini").onchange=function(){if(/^\d{4}-\d{2}-\d{2}$/.test(this.value)&&!isNaN(new Date(this.value)))P.inicioPlano=this.value;salvar();telaPlano()};
+ document.querySelectorAll("[data-pe]").forEach(function(e){e.onchange=function(){var a=e.dataset.pe.split("."),id=a[0],k=a[1];P.edicoesPlano[id]=P.edicoesPlano[id]||{};P.edicoesPlano[id][k]=e.value.slice(0,120);salvar()}})}
+function telaDossie(){var d=RX.montarDossie(P,Q,META,{inicio:P.inicioPlano||hoje()}),h='<div class="card"><div class="kick">Gerador de dossiê</div><h2>Dossiê do Raio-X</h2><p>PDF com identificação, dados declarados, cálculos, cobertura, pontos fortes, lacunas, plano 7/30/60/90, hipóteses e limitações. Recomendações educacionais ficam separadas de qualquer convite comercial.</p>';
+ h+='<p><button class="btn ouro" id="pdf">Baixar dossiê em PDF</button><button class="btn ghost" id="imp">Imprimir</button></p><div id="pdfSt" class="aviso" style="display:none"></div></div>';
+ h+='<div class="card"><h3>Cópia de segurança</h3><p>Seus dados ficam neste aparelho. Baixe uma cópia para guardar ou levar a outro aparelho.</p><button class="btn ghost" id="bk">Baixar cópia (JSON)</button><label class="f"><span class="l">Restaurar cópia (substitui os dados deste perfil)</span><input type="file" id="rs" accept="application/json"></label><div id="bkSt" class="aviso" style="display:none"></div></div>';
+ h+='<div class="card"><h3>Pré-visualização</h3><p>Pontuação geral: <b>'+fmt(d.diagnostico.geral.score,"%",1)+"</b> · cobertura "+fmt(d.diagnostico.geral.cobertura,"%",1)+" · "+d.plano.total+" ação(ões) no plano · "+Object.keys(d.calculos).length+" calculadora(s) com dados.</p></div>";
+ $("#v").innerHTML=h;$("#imp").onclick=function(){window.print()};$("#pdf").onclick=function(){gerarPdf(d)};
+ $("#bk").onclick=function(){var b=new Blob([JSON.stringify({versao:1,perfil:P},null,1)],{type:"application/json"}),a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="raio-x-copia-"+perfilId+".json";document.body.appendChild(a);a.click();a.remove()};
+ $("#rs").onchange=function(){var f=this.files[0],st=$("#bkSt");st.style.display="block";if(!f)return;var r=new FileReader();r.onload=function(){try{var o=JSON.parse(r.result);if(!o||o.versao!==1||!o.perfil||typeof o.perfil.respostas!=="object")throw 0;var n=novoPerfil(P.nome);["identificacao","respostas","notas","calculadoras","edicoesPlano"].forEach(function(k){if(o.perfil[k]&&typeof o.perfil[k]==="object")n[k]=o.perfil[k]});n.consentimento=false;n.inicioPlano=/^\d{4}-\d{2}-\d{2}$/.test(o.perfil.inicioPlano||"")?o.perfil.inicioPlano:undefined;P=n;salvar();st.textContent="Cópia restaurada. O consentimento de envio volta para desmarcado.";atualizaTopo()}catch(e){st.textContent="Arquivo inválido: nada foi alterado."}};r.readAsText(f)}}
+function gerarPdf(d){var st=$("#pdfSt");st.style.display="block";if(!window.jspdf){st.textContent="Não foi possível carregar o gerador de PDF. Verifique a internet ou use Imprimir.";return}
+ var doc=new window.jspdf.jsPDF({unit:"mm",format:"a4",compress:true}),y=22,W=176,pg=1;
+ function cab(){doc.setFillColor(27,33,23);doc.rect(0,0,210,14,"F");doc.setTextColor(222,214,191);doc.setFontSize(9);doc.setFont("helvetica","normal");doc.text("ZION HOTEL ACADEMY · RAIO-X DA HOSPEDAGEM · DOSSIÊ",17,9);doc.text("pág. "+pg,185,9);doc.setTextColor(30,30,30)}
+ function nova(){doc.addPage();pg++;cab();y=22}
+ function esp(h){if(y+h>282)nova()}
+ function T(s,sz,b,cor){doc.setFont("helvetica",b?"bold":"normal");doc.setFontSize(sz||10);if(cor)doc.setTextColor(cor[0],cor[1],cor[2]);else doc.setTextColor(30,30,30);var ls=doc.splitTextToSize(String(s),W);ls.forEach(function(l){esp((sz||10)*0.45);doc.text(l,17,y);y+=(sz||10)*0.45});y+=1.2}
+ function H(s){esp(14);y+=3;T(s,14,true,[27,33,23]);doc.setDrawColor(201,179,126);doc.line(17,y-1.2,193,y-1.2);y+=3.6}
+ cab();T("Dossiê do Raio-X da Hospedagem",20,true,[27,33,23]);T("Gerado em "+d.geradoEm+" · Mini Mentoria de Performance Hoteleira",10);
+ H("1. Identificação");var id=d.identificacao;[["Empreendimento",id.nome],["Tipo",id.tipo],["Município",id.municipio],["Estágio",id.estagio],["Objetivo",id.objetivo],["Unidades",id.unidades],["Período dos dados",id.periodo],["Fonte dos dados",id.fonte]].forEach(function(x){T(x[0]+": "+(x[1]||"não informado"),10)});
+ H("2. Resultado e cobertura");var g=d.diagnostico.geral;T("Pontuação geral: "+(g.score===null?"sem dados":fmt(g.score,"%",1))+" · cobertura "+(g.cobertura===null?"—":fmt(g.cobertura,"%",1))+" ("+g.validos+" de "+g.aplicaveis+" perguntas aplicáveis com dados).",11,true);
+ d.diagnostico.pilares.forEach(function(p){T(p.modulo+" · "+MODS[p.modulo]+": nota "+(p.score===null?"sem dados":fmt(p.score,"%",1))+" ("+nivelTxt(p.nivel)+"), cobertura "+(p.cobertura===null?"—":fmt(p.cobertura,"%",1))+", "+p.desconhecidos+' "não sei", '+p.naoAplica+" não se aplica, "+p.pendentes+" sem resposta.",10)});
+ function nomes(ids){return ids.map(function(i){var q=Q.filter(function(x){return x.id===i})[0];return"• "+q.module+" · "+q.topic+": "+q.question})}
+ H("3. Pontos fortes");(d.diagnostico.pontosFortes.length?nomes(d.diagnostico.pontosFortes):["Nenhum ponto marcado como implementado e comprovado."]).forEach(function(s){T(s,10)});
+ H("4. Lacunas");(d.diagnostico.lacunas.length?nomes(d.diagnostico.lacunas):["Nenhuma lacuna marcada."]).forEach(function(s){T(s,10)});
+ if(d.diagnostico.aColetar.length){H("5. Dados a coletar (marcados como não sei)");nomes(d.diagnostico.aColetar).forEach(function(s){T(s,10)})}
+ H("6. Dados declarados e cálculos");var ks=Object.keys(d.calculos);if(!ks.length)T("Nenhuma calculadora preenchida.",10);
+ ks.forEach(function(k){var r=d.calculos[k];T(RX.CALC_NOMES[k],11,true);var ln=resumoCalc(k,r);ln.forEach(function(s){T(s,10)});(r.avisos||[]).filter(function(a){return!/^Cenários são ilustrativos|^Esta conta não atribui/.test(a)}).forEach(function(a){T("Atenção: "+a,9,false,[142,43,43])});if((r.faltam||[]).length)T("Dados que faltaram (não tratados como zero): "+r.faltam.join("; "),9)});
+ H("7. Plano de ação 7/30/60/90 dias");var pp=d.plano;T("Foco OP3D (heurística, não é proporção comprovada): nível 1 = "+pp.op3d.nivel1+", nível 2 = "+pp.op3d.nivel2+", nível 3 = "+pp.op3d.nivel3+" ação(ões).",9);
+ [7,30,60,90].forEach(function(hz){if(!pp.horizontes[hz].length)return;T("Em até "+hz+" dias",12,true,[139,113,78]);pp.horizontes[hz].forEach(function(x){T("• "+x.acao,10,true);T("Motivo: "+x.motivo,9);T("Responsável: "+x.responsavel+" · Prazo: "+x.prazo+" · Indicador: "+x.indicador,9);T("Evidência: "+x.evidencia,9)})});
+ if(pp.backlog.length){T("Próximos ciclos",12,true,[139,113,78]);pp.backlog.forEach(function(x){T("• "+x.modulo+" · "+x.topico+": "+x.acao,9)})}
+ H("8. Hipóteses e limitações");d.limitacoes.forEach(function(s){T("• "+s,9.5)});
+ H("9. Convite opcional");T(d.convite.texto,10);T(d.convite.consentimento?"Você marcou que autoriza o envio à Zion. O envio é manual: você mesmo decide quando e como compartilhar este arquivo.":"Você não autorizou o envio. Este dossiê é só seu.",10,true);
+ doc.save("dossie-raio-x-"+perfilId+".pdf");st.textContent="PDF gerado.";window.__pdfOk=true}
+function resumoCalc(k,r){var o=[];function a(l,v){o.push(l+": "+v)}
+ if(k==="C1"){if(r.distribuicao)r.distribuicao.forEach(function(x){a(x.motivo,x.qtd+" ("+fmt(x.pct,"%",1)+")")});a("Preço mediano dos comparáveis",brl(r.precoMediano));a("Seu preço ÷ mediana",fmt(r.indicePreco,"",2));a("Conversão",fmt(r.conversaoPct,"%",2))}
+ if(k==="C2"){a("Ocupação anual",fmt(r.ocupacaoAnualPct,"%",1)+" ("+r.mesesValidos+" de 12 meses)");r.canais.forEach(function(x){a(x.nome+" · receita líquida",brl(x.liquida))});a("Janela de compra (mediana)",r.janelaMediana===null?"—":fmt(r.janelaMediana," dias",1))}
+ if(k==="C3"){a("ADR",brl(r.adr));a("RevPAR",brl(r.revpar));a("Ocupação",fmt(r.ocupacaoPct,"%",1));r.extras.forEach(function(x){a(x.nome+" · margem",x.margemUnit===null?"—":brl(x.margemUnit)+(x.alerta?" ("+x.alerta+")":""))})}
+ if(k==="C4"){a("ADR",brl(r.adr));a("Contribuição por noite",brl(r.contribuicaoNoite));a("Ocupação de equilíbrio",fmt(r.equilibrioPct,"%",1));if(r.equilibrioMsg)a("Leitura",r.equilibrioMsg);a("Resultado do período",brl(r.resultado));if(r.adverso)a("Cenário adverso",brl(r.adverso.resultado));a("Provisão de reposição/mês",brl(r.provisaoReposicaoMensal))}
+ if(k==="C5"){a("Carga de trabalho",fmt(r.cargaPct,"%",1));a("Reservas divergentes",r.conciliacao.divergentes+" de "+r.conciliacao.comparadas);r.estoque.forEach(function(x){a(x.nome,"mínimo "+fmt(x.estoqueMinimo)+", ponto de pedido "+fmt(x.pontoPedido))})}
+ if(k==="C6"){a("Custo total instalado",brl(r.custoTotalInstalado));["pessimista","base","otimista"].forEach(function(n){var x=r[n];if(x)a("Cenário "+n,"resultado anual "+brl(x.resultadoAnual)+", payback "+(x.paybackAnos===null?"não se paga":fmt(x.paybackAnos," anos",1)))})}
+ if(k==="C7"){a("Total com contingência e giro",brl(r.totalComContingencia));a("Necessidade de capital",brl(r.necessidadeCapital))}
+ return o}
+function telaConvite(){var h='<div class="card"><div class="kick">Convite opcional</div><h2>Queremos conhecer seu empreendimento</h2><p>Depois de gerar seu dossiê, você <b>pode</b> escolher compartilhá-lo com a Zion para avaliarmos possíveis soluções e parcerias. É totalmente opcional: o seu diagnóstico, o plano e o PDF são seus de qualquer forma.</p><div class="aviso">Não há garantia de investimento, de parceria ou de resposta favorável. Cada caso passa por análise. Nada é enviado automaticamente por esta página.</div>';
+ h+='<label class="f" style="display:flex;gap:10px;align-items:flex-start"><input type="checkbox" id="cons" style="width:24px;height:24px;flex:none"'+(P.consentimento?" checked":"")+'><span>Autorizo que a Zion avalie o meu dossiê, caso eu decida enviá-lo. Sei que posso mudar de ideia e pedir a exclusão pelo WhatsApp de suporte. Meus dados serão tratados conforme a LGPD.</span></label>';
+ h+='<p><a class="btn ouro" id="zap" href="#" '+(P.consentimento?"":'style="display:none"')+'target="_blank" rel="noopener">Abrir WhatsApp e enviar o PDF</a></p><div class="aviso" style="'+(P.consentimento?"":"display:none")+'" id="zapInfo">O WhatsApp abre com uma mensagem sem nenhum dado seu. Anexe o PDF do dossiê se quiser. Para parar de receber contato, responda "parar".</div></div>';
+ $("#v").innerHTML=h;var z=$("#zap");z.href="https://wa.me/554861371061?text="+encodeURIComponent("Olá! Fiz meu Raio-X da Hospedagem na Mini Mentoria e autorizo a Zion a avaliar meu dossiê. Vou anexar o PDF.");
+ $("#cons").onchange=function(){P.consentimento=this.checked;salvar();z.style.display=this.checked?"":"none";$("#zapInfo").style.display=this.checked?"":"none"}}
+function render(){abas();atualizaTopo();if(!P){telaEntrada();return}
+ if(view==="inicio")telaInicio();else if(view==="ficha")telaFicha();else if(/^aula[1-7]$/.test(view))telaAula(+view.slice(4));else if(view==="diag")telaDiag();else if(view==="plano")telaPlano();else if(view==="dossie")telaDossie();else if(view==="convite")telaConvite();else telaInicio();
+ var f=document.createElement("div");f.className="rodape";f.textContent="Zion Hotel Academy · Mini Mentoria de Performance Hoteleira · Raio-X da Hospedagem. Orientação educacional, sem garantia de resultado.";$("#v").appendChild(f)}
+window.RX_APP={ir:ir,state:function(){return{P:P,perfilId:perfilId}},entrar:entrar,render:render,sair:sair};
+var h=(location.hash||"").slice(1);if(h)view=h;var at=lsGet(PFX+"ativo");if(at&&carregar(at)){entrar(carregar(at).nome)}render();
+})();
+</script>
