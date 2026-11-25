@@ -14,9 +14,11 @@ Sem projeto, orçamento e estudo de viabilidade, fica mais difícil conversar so
 
 O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso. Aulas gravadas, fichas e formulários interativos, e-books, planilhas de cálculo, kits e modelos (Kit do Investidor e kit de prompts) e o Dossiê de Desenvolvimento.
 
+A Zion está em expansão e quer te conhecer. Ao estruturar o seu projeto na mentoria, você pode cadastrar o seu terreno no banco de áreas da Zion (é opcional, e o seu projeto só é apresentado com a sua autorização). Se fizer sentido, podemos conversar sobre parceria e, a critério da Zion, apresentar você a investidores e à nossa rede.
+
 O caminho: inscreva-se, receba o acesso, aprenda, estruture, gere seu Dossiê e apresente à Zion.
 
-A Zion está em expansão e avalia cada projeto. Parcerias e investimentos são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
+Cada projeto passa por análise da Zion. Parcerias, investimentos e conexões são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
 
 **Headline:** Estruture antes de buscar capital (33)
 **Descrição:** Mini Mentoria de Estruturação · R$ 47
@@ -31,9 +33,11 @@ Na Mini Mentoria de Estruturação você aprende o passo a passo para estruturar
 
 O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso. Aulas gravadas, fichas e formulários interativos, e-books, planilhas de cálculo, kits e modelos (Kit do Investidor e kit de prompts) e o Dossiê de Desenvolvimento.
 
+A Zion está em expansão e quer te conhecer. Ao estruturar o seu projeto na mentoria, você pode cadastrar o seu terreno no banco de áreas da Zion (é opcional, e o seu projeto só é apresentado com a sua autorização). Se fizer sentido, podemos conversar sobre parceria e, a critério da Zion, apresentar você a investidores e à nossa rede.
+
 O caminho: inscreva-se, receba o acesso, aprenda, estruture, gere seu Dossiê e apresente à Zion.
 
-A Zion está em expansão e avalia cada projeto. Parcerias e investimentos são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
+Cada projeto passa por análise da Zion. Parcerias, investimentos e conexões são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
 
 **Headline:** Do terreno ao destino turístico (31)
 **Descrição:** Mini Mentoria de Estruturação · R$ 47
@@ -48,9 +52,11 @@ Para chegar a essa conversa, o terreno precisa virar projeto. Na Mini Mentoria d
 
 O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso. Aulas gravadas, fichas e formulários interativos, e-books, planilhas de cálculo, kits e modelos (Kit do Investidor e kit de prompts) e o Dossiê de Desenvolvimento.
 
+A Zion está em expansão e quer te conhecer. Ao estruturar o seu projeto na mentoria, você pode cadastrar o seu terreno no banco de áreas da Zion (é opcional, e o seu projeto só é apresentado com a sua autorização). Se fizer sentido, podemos conversar sobre parceria e, a critério da Zion, apresentar você a investidores e à nossa rede.
+
 O caminho: inscreva-se, receba o acesso, aprenda, estruture, gere seu Dossiê e apresente à Zion.
 
-Parcerias e investimentos são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
+Cada projeto passa por análise da Zion. Parcerias, investimentos e conexões são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
 
 **Headline:** Sua terra pode entrar no projeto (32)
 **Descrição:** Mini Mentoria de Estruturação · R$ 47
@@ -65,9 +71,11 @@ Na Mini Mentoria de Estruturação você aprende o passo a passo para estruturar
 
 O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso. Aulas gravadas, fichas e formulários interativos, e-books, planilhas de cálculo, kits e modelos (Kit do Investidor e kit de prompts) e o Dossiê de Desenvolvimento.
 
+A Zion está em expansão e quer te conhecer. Ao estruturar o seu projeto na mentoria, você pode cadastrar o seu terreno no banco de áreas da Zion (é opcional, e o seu projeto só é apresentado com a sua autorização). Se fizer sentido, podemos conversar sobre parceria e, a critério da Zion, apresentar você a investidores e à nossa rede.
+
 O caminho: inscreva-se, receba o acesso, aprenda, estruture, gere seu Dossiê e apresente à Zion.
 
-A Zion está em expansão e avalia cada projeto. Parcerias e investimentos são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
+Cada projeto passa por análise da Zion. Parcerias, investimentos e conexões são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
 
 **Headline:** Por onde começar seu Airbnb (27)
 **Descrição:** Mini Mentoria de Estruturação · R$ 47
@@ -82,9 +90,11 @@ Na Mini Mentoria de Estruturação você aprende o passo a passo para estruturar
 
 O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso. Aulas gravadas, fichas e formulários interativos, e-books, planilhas de cálculo, kits e modelos (Kit do Investidor e kit de prompts) e o Dossiê de Desenvolvimento.
 
+A Zion está em expansão e quer te conhecer. Ao estruturar o seu projeto na mentoria, você pode cadastrar o seu terreno no banco de áreas da Zion (é opcional, e o seu projeto só é apresentado com a sua autorização). Se fizer sentido, podemos conversar sobre parceria e, a critério da Zion, apresentar você a investidores e à nossa rede.
+
 O caminho: inscreva-se, receba o acesso, aprenda, estruture, gere seu Dossiê e apresente à Zion.
 
-Parcerias e investimentos são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
+Cada projeto passa por análise da Zion. Parcerias, investimentos e conexões são possibilidades, não garantias. R$ 47, pagamento único, Pix ou cartão à vista, com reembolso em 7 dias.
 
 **Headline:** Seja um potencial parceiro Zion (31)
 **Descrição:** Mini Mentoria de Estruturação · R$ 47
