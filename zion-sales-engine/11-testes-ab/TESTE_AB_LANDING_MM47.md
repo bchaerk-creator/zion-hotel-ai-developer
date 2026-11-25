@@ -2,6 +2,18 @@
 
 Agente: ZION CONVERSION · 25/11/2026 · **Plano. Nada foi publicado nem ligado.** Rodar o teste exige "aprovado" de Bruno (publicar as páginas, anúncios, orçamento). Marcação: [E] evidência, [H] hipótese, [NC] não confirmado. Nenhuma taxa de conversão real aparece aqui (repositório público).
 
+## 0. Atualização P0 de coerência (25/11/2026): o teste passa a usar as variantes v2
+As variantes v1 (`/mini-mentoria-a` e `/mini-mentoria-b`) ficam como histórico e **não** entram mais no teste. O teste usa as **v2**, geradas por `07-landing-pages/mini-mentoria/comum_v2.py` (rascunhos não publicados, oferta `0c71eeba…`):
+| Variante | Página (id) | Slug | Estado |
+|---|---|---|---|
+| A v2 | `98ef3607-d18b-4bff-924f-6a5e6897b570` | `/mini-mentoria-a-v2` | rascunho, `lastPublishedAt` null |
+| B v2 | `1dba4c0f-61d4-43fa-99ec-0698dfad7a9d` | `/mini-mentoria-b-v2` | rascunho, `lastPublishedAt` null |
+- **CTA padrão:** `QUERO ACESSAR A PLATAFORMA POR R$47` em todo botão que leva ao checkout. Botões anteriores à oferta só **rolam** (âncoras): na A, "VER A PLATAFORMA POR DENTRO" (topo) e "VER O QUE ESTÁ INCLUÍDO" (após as telas); na B não há botão antes da oferta.
+- **Variável principal (continua única):** na **A** o preço aparece desde o topo ("Mini Mentoria de Estruturação Zion · R$47 · pagamento único") e o primeiro botão de pagamento vem junto da oferta completa; na **B** o topo não mostra preço nem botão, e o primeiro botão com preço vem só depois da oferta e dos entregáveis. Em ambas, o bloco de oferta (produto, R$47, pagamento único, sem mensalidade, 12 meses, 9 módulos, 70 aulas e materiais, garantia de 7 dias, Pix e cartão à vista) aparece **antes** de qualquer botão que leve ao pagamento.
+- **Eventos:** o clique em "QUERO ACESSAR A PLATAFORMA POR R$47" é o clique qualificado (rótulo único); os cliques de rolagem têm rótulos próprios e não contam como intenção de compra. Todos usam `data-cx-cta`; separar por texto do botão no ClickMax/`09-tracking`.
+- **Rótulos concorrentes:** o validador do ClickMax avisa que A usa 3 rótulos (2 de rolagem + 1 de compra). É intencional (ordem P0: botão antes da oferta não pode levar ao pagamento).
+- Os critérios, a amostra e a regra de decisão das seções 1 a 7 permanecem; onde o texto abaixo cita `-a`/`-b` e `comum.py`, leia `-a-v2`/`-b-v2` e `comum_v2.py`. Pré-condição nova: Bruno confere no celular o checkout limpo (`08-checkouts/CHECKOUT_LIMPO_MM47.md`) antes de qualquer tráfego.
+
 ## 1. Hipótese e variável
 - **Hipótese [H]:** quem chega por anúncio frio decide melhor depois de ver a dor, a quebra da crença, o método, a aplicação e a oferta; mostrar o botão com preço já no topo (A) pode captar quem já está decidido, mas tirar o botão do topo (B) pode aumentar a compra por visitante porque o clique ocorre com mais entendimento. A direção do efeito é **desconhecida**; o teste existe para medir, não para confirmar.
 - **Variável principal (única):** posição do primeiro CTA de compra. **A:** `/mini-mentoria-a` (CTA com preço no hero). **B:** `/mini-mentoria-b` (primeiro CTA após a oferta e os entregáveis). Todo o resto é idêntico (mesmo gerador `07-landing-pages/mini-mentoria/comum.py`): copy, fotos, telas, preço, checkout, oferta `0c71eeba…`.
