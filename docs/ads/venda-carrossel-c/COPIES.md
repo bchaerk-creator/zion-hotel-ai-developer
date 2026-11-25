@@ -37,3 +37,11 @@ Original = `docs/ads/inscricao-270/campeao-narrativa/carrossel-c-card-N.png` (ca
 O carrossel passou a ter 8 cartões: o novo é o cartão 5 (os antigos 5, 6 e 7 viraram 6, 7 e 8). Mesmo layout do cartão 4, outra foto real sem pessoas (store/deck).
 Texto: "Fazer a mentoria abre a porta da plataforma Zion" / "A plataforma faz parte da expansão Zion" / "Estruture o seu projeto lá dentro e, a partir do resultado, você pode se tornar um próximo parceiro Zion*" / "*Possibilidade sujeita à análise, sem garantia de parceria ou investimento."
 Observação: manifesto.json e painel-comparacao.jpg ainda descrevem a versão de 7 cartões.
+
+## Atualização (25/11, respostas de Bruno): 9 cartões
+- **Faixa fixa no topo de TODOS os cartões:** "FORMAÇÃO PAGA · MINI MENTORIA ZION · R$ 47" (para ninguém achar que é grátis).
+- **Cartão 5 (gancho):** "Estruture o seu projeto e faça parte da nossa expansão*" / "Depois, nós queremos te conhecer" / "A mentoria dá acesso à plataforma Zion, que faz parte da nossa expansão. Primeiro você estrutura; depois nós conhecemos o seu projeto." / nota "*Possibilidade sujeita à análise, sem garantia de parceria ou investimento."
+- **Cartão 8 (novo, tangível):** "O que você leva da mentoria": telas reais (aula/Marco Zero, diagnóstico prévio, Pré-viabilidade) e "No fim, você monta o seu Dossiê de Desenvolvimento em PDF". Rodapé: "Formação digital paga · 12 meses de acesso".
+- **Cartão 4:** mantém a frase da plataforma (decisão de Bruno).
+- **Texto primário:** abrir a primeira linha com "Formação digital paga, R$ 47:" e usar verbo "acesse/adquira", nunca "inscreva-se" nem "cadastre". Frase "mesmo que não vire parceria..." NÃO entra (decisão de Bruno).
+- manifesto.json e painel-comparacao.jpg ainda descrevem a versão anterior (7 cartões).

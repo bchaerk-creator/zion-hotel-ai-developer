@@ -43,9 +43,9 @@ const cards=[
 <div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
 // 4b gancho da plataforma (cartão extra, a pedido de Bruno): mesmo layout do cartão 4, outra foto real sem pessoas
 [`o8.png`,`<div class="b" style="left:445px;top:795px;width:635px;height:555px;background:${PU}"></div><div class="b" style="left:150px;top:1160px;width:930px;height:190px;background:${PU}"></div>
-<div class="b s" style="left:455px;width:600px;top:830px;font-size:44px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.06">Fazer a mentoria abre a porta da plataforma Zion</div>
-<div class="b s" style="left:455px;width:600px;top:1010px;font-size:30px;font-weight:700;color:#f6ecc4;text-transform:uppercase;line-height:1.1">A plataforma faz parte da expansão Zion</div>
-<div class="b s" style="left:160px;width:880px;top:1125px;font-size:34px;color:#fff;line-height:1.18">Estruture o seu projeto lá dentro e, a partir do resultado, você pode se tornar um próximo parceiro Zion*</div>
+<div class="b s" style="left:455px;width:600px;top:830px;font-size:44px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.06">Estruture o seu projeto e faça parte da nossa expansão*</div>
+<div class="b s" style="left:455px;width:600px;top:1030px;font-size:28px;font-weight:700;color:#f6ecc4;text-transform:uppercase;line-height:1.1">Depois, nós queremos te conhecer</div>
+<div class="b s" style="left:160px;width:880px;top:1135px;font-size:33px;color:#fff;line-height:1.18">A mentoria dá acesso à plataforma Zion, que faz parte da nossa expansão. Primeiro você estrutura; depois nós conhecemos o seu projeto.</div>
 <div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
 // 5 oportunidade (original 5): o que recebe
 [`o5.png`,`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
@@ -56,6 +56,18 @@ const cards=[
 <div class="b s" style="left:618px;width:400px;top:165px;height:815px;border-radius:44px;background:#000;color:#fff;font-size:63px;display:flex;align-items:center;justify-content:center;line-height:1.16;padding:0 26px">Você não precisa começar construindo um hotel</div>
 <div class="b s" style="left:590px;width:460px;top:1060px;font-size:40px;color:#fff;line-height:1.12">Aulas gravadas, fichas “Faça agora”, e-books por pilar, 2 planilhas em branco, Kit do Investidor e Dossiê em PDF</div>
 <div class="b" style="left:562px;top:1318px;width:518px;height:30px;display:flex;align-items:center;justify-content:center;font-family:A;font-size:20px;color:#fff;background:transparent">Imagem ilustrativa</div>`],
+// 6b tangível (a pedido de Bruno): o que a pessoa leva, com telas reais da plataforma (sem mapa/agendar)
+[`o1.png`,`<div class="b" style="left:0;top:0;width:1080px;height:1350px;background:#0e1f09"></div>
+<div class="b w" style="left:60px;right:60px;top:120px;font-size:48px;color:#e8d28a">O que você leva da mentoria</div>
+<div class="b s" style="left:80px;right:80px;top:225px;font-size:30px;color:#fff">Telas reais da plataforma Zion</div>
+<img class="b" src="file://${R}/zion-collection/club/telas/aula.jpg" style="left:45px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
+<img class="b" src="file://${R}/zion-collection/club/telas/diagnostico.jpg" style="left:385px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
+<img class="b" src="file://${R}/zion-collection/club/telas/previab.jpg" style="left:725px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
+<div class="b s" style="left:45px;width:310px;top:950px;font-size:26px;color:#fff">Aulas e fichas "Faça agora"</div>
+<div class="b s" style="left:385px;width:310px;top:950px;font-size:26px;color:#fff">Diagnóstico do seu projeto</div>
+<div class="b s" style="left:725px;width:310px;top:950px;font-size:26px;color:#fff">Pré-viabilidade com os seus números</div>
+<div class="b s" style="left:70px;right:70px;top:1090px;font-size:42px;font-weight:700;color:#fff;line-height:1.12">No fim, você monta o seu Dossiê de Desenvolvimento em PDF</div>
+<div class="b s" style="left:70px;right:70px;top:1260px;font-size:26px;color:#e8d28a">Formação digital paga · 12 meses de acesso</div>`],
 // 7 conversao (original 7, foto trocada por foto real sem pessoas)
 [`o7.png`,`<div class="b" style="left:0;top:0;width:572px;height:1030px;background:${Y}"></div>
 <div class="b s" style="left:40px;width:492px;top:70px;font-size:46px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.08">Mini Mentoria de Estruturação Zion</div>
@@ -64,6 +76,6 @@ const cards=[
 <div class="b s" style="left:40px;width:492px;top:590px;font-size:30px;color:#0b0b0b;line-height:1.18">Pagamento único, sem mensalidade<br>Pix ou cartão · 12 meses de acesso<br>Garantia de 7 dias</div>
 <div class="b s" style="left:46px;width:480px;top:790px;height:216px;border-radius:52px;background:#ffed00;color:#0b0b0b;font-size:44px;display:flex;align-items:center;justify-content:center;line-height:1.02;letter-spacing:-.01em;padding:0 22px;font-weight:700;text-transform:uppercase">Quero acessar a plataforma por R$47</div>`]];
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1350}});
-for(let i=0;i<cards.length;i++){const f=`${D}/_t.html`;fs.writeFileSync(f,`<!doctype html><meta charset=utf-8><style>${css}</style><body><img class="o" src="file://${SRC}/${cards[i][0]}">${cards[i][1]}</body>`);
+for(let i=0;i<cards.length;i++){const f=`${D}/_t.html`;fs.writeFileSync(f,`<!doctype html><meta charset=utf-8><style>${css}</style><body><img class="o" src="file://${SRC}/${cards[i][0]}">${cards[i][1]}<div style="position:absolute;left:0;top:0;width:1080px;height:54px;background:#0b0b0b;color:#e8d28a;font-family:A;font-weight:800;font-size:24px;letter-spacing:.2em;display:flex;align-items:center;justify-content:center;text-transform:uppercase;z-index:9">Formação paga · Mini Mentoria Zion · R$ 47</div></body>`);
  await p.goto('file://'+f);await p.evaluate(()=>document.fonts.ready);await p.waitForTimeout(400);await p.screenshot({path:`${D}/carrossel-c-venda-${i+1}.png`});}
 fs.unlinkSync(`${D}/_t.html`);await b.close();})();
