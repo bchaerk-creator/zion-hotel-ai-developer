@@ -1,0 +1,268 @@
+{
+ "modulo": 2,
+ "titulo": "Por que seu calendário está vazio?",
+ "subtitulo": "Guia para entender noites, canais, preço e atendimento antes de mudar qualquer coisa",
+ "abertura": {
+  "para_que_serve": "Calendário vazio quase nunca tem uma única causa. Pode ser pouca demanda, mas também pode ser bloqueio esquecido, canal caro, estadia mínima que impede a venda, preço fora do que o hóspede compara ou consulta que ficou sem resposta. Este guia ajuda você a separar essas hipóteses com dados do seu próprio negócio, antes de gastar com anúncio, reforma ou desconto. Você vai medir inventário, ocupação, sazonalidade, canais, receita líquida, antecedência de compra, regras, preço, atendimento e testes, sempre no mesmo período e sem misturar números.",
+  "tenha_em_maos": [
+   "Calendários e extratos de reservas de todos os canais, do período escolhido",
+   "Lista de bloqueios, com motivo e datas",
+   "Comissões, taxas e gastos de divulgação de cada canal",
+   "Histórico de consultas e mensagens recebidas",
+   "Preços praticados e preços totais de hospedagens comparáveis"
+  ],
+  "como_trabalhar": "Defina um período fechado, por exemplo os últimos três meses, e use o mesmo período em todas as respostas. Use só dados que você consegue comprovar com extrato, calendário ou registro. Desconhecido não é zero: se não souber, marque não sei e organize a coleta. O diagnóstico é orientativo, mostra onde olhar primeiro e não substitui auditoria nem análise de um profissional."
+ },
+ "perguntas": [
+  {
+   "id": "m2q1",
+   "por_que_importa": "Toda taxa de ocupação depende do número de noites disponíveis. Se você conta bloqueios como noites à venda, a ocupação parece menor do que é. Se esquece bloqueios que ainda existem, parece maior. Sem esse número certo, qualquer decisão sobre preço ou divulgação parte de uma base errada. Por isso o inventário vem primeiro: ele é o denominador de quase todas as contas deste módulo.",
+   "como_coletar": [
+    "Escolha um mês fechado e liste todas as unidades que poderiam receber hóspedes nele, mesmo as que estavam vazias o mês inteiro.",
+    "Multiplique o número de unidades pelos dias do mês. Esse é o total de unidades-noite, antes de qualquer desconto.",
+    "Abra o calendário de cada canal e anote cada bloqueio com data, unidade e motivo: manutenção, uso pessoal, reforma ou esquecimento.",
+    "Confira se cada bloqueio ainda faz sentido. Bloqueio sem motivo claro deve ser investigado e, se for indevido, liberado.",
+    "Calcule noites disponíveis como unidades vezes dias menos bloqueios. Registre os números na Calculadora de Ocupação e Canais."
+   ],
+   "exemplo": {
+    "titulo": "Bloqueio esquecido muda a ocupação",
+    "texto": "Dados fictícios: uma pousada tem 4 unidades em um mês de 30 dias, ou seja, 120 unidades-noite. O calendário mostra 12 noites bloqueadas: 4 de manutenção, 3 de uso pessoal e 5 sem motivo, esquecidas em um canal. Disponíveis contando tudo: 120 menos 12 dá 108, e com 62 noites vendidas a ocupação é 62 dividido por 108, cerca de 57,4%. Depois de liberar as 5 noites indevidas, os bloqueios reais são 7 e as disponíveis passam a 113. A ocupação vira 62 dividido por 113, cerca de 54,9%. A diferença mostra que havia noites à venda que ninguém conseguia comprar."
+   },
+   "erro_comum": "Tratar o calendário como se todo dia vazio fosse noite à venda, ou o oposto: deixar bloqueios antigos acumulados sem revisar. Outro erro é bloquear uma unidade em um canal e esquecer de liberar quando o motivo acabou.",
+   "como_ler": {
+    "ausente": "Você não sabe quantas noites estavam abertas à venda e não separa bloqueios de noites vazias. A ocupação, se existir, é estimada de cabeça.",
+    "parcial": "Você conta unidades e dias, mas os bloqueios aparecem misturados, sem motivo ou só em alguns canais. O número de disponíveis tem margem de erro.",
+    "comprovado": "Existe inventário mensal com unidades, dias, bloqueios separados por motivo e noites disponíveis, conferido nos calendários de todos os canais."
+   },
+   "verificacao": "Compare o inventário do mês com o calendário de cada canal e confira se os totais batem. Depois de liberar bloqueios indevidos, acompanhe nas semanas seguintes se as noites liberadas receberam consultas ou reservas e se não surgiram reservas duplicadas ou conflitos de data."
+  },
+  {
+   "id": "m2q2",
+   "por_que_importa": "Noites vendidas divididas por noites disponíveis mostram quanto do que você oferece realmente é comprado. Sem esse número mensal, você só sente que está vazio. Com ele, você enxerga em quais períodos e dias a venda falha e evita decidir por impressão. Registrar todo mês também cria histórico, e é o histórico que permite comparar períodos com justiça mais adiante.",
+   "como_coletar": [
+    "Usando o mesmo mês do inventário, some as noites realmente vendidas. Conte cada noite de cada unidade uma única vez.",
+    "Retire cancelamentos e reservas que não aconteceram. Mantenha só noites efetivamente vendidas ou confirmadas para o período.",
+    "Divida noites vendidas por noites disponíveis, no mesmo período e no mesmo conjunto de unidades. Acima de 100% indica dado inconsistente.",
+    "Repita a conta separando noites de fim de semana e noites de dias úteis, cada uma com o seu próprio total de disponíveis.",
+    "Registre os resultados mensais na Calculadora de Ocupação e Canais e guarde a planilha para comparar com os próximos meses."
+   ],
+   "exemplo": {
+    "titulo": "Ocupação geral esconde o fim de semana",
+    "texto": "Dados fictícios: uma casa com 3 unidades tem, em um mês de 31 dias, 93 unidades-noite e 3 bloqueios em dias úteis, o que dá 90 disponíveis. Foram vendidas 54 noites, então a ocupação geral é 54 dividido por 90, ou 60%. Separando: fins de semana têm 24 noites disponíveis e 22 vendidas, cerca de 91,7%. Dias úteis têm 66 disponíveis e 32 vendidas, cerca de 48,5%. A soma fecha: 24 mais 66 dá 90, e 22 mais 32 dá 54. O problema está nos dias úteis, não no mês inteiro."
+   },
+   "erro_comum": "Dividir pelo total de dias do mês sem descontar bloqueios, ou somar reservas em vez de noites. Uma reserva de cinco noites conta cinco vezes. Também é comum olhar só a média e não perceber que um tipo de dia está lotado e outro vazio.",
+   "como_ler": {
+    "ausente": "Você não sabe quantas noites vendeu em cada mês. A sensação de calendário cheio ou vazio é a única referência que você usa.",
+    "parcial": "Você conta reservas ou noites, mas em períodos diferentes, sem separar bloqueios ou sem dividir por disponíveis. O resultado aparece, mas não é comparável.",
+    "comprovado": "Você tem ocupação mensal calculada com noites vendidas e disponíveis do mesmo período, com recorte de fim de semana e dias úteis."
+   },
+   "verificacao": "Confira se noites vendidas nunca passam das disponíveis e se o total geral é a soma dos recortes. Compare a ocupação de cada tipo de dia mês a mês, e só tire conclusões depois de pelo menos três meses de registro consistente."
+  },
+  {
+   "id": "m2q3",
+   "por_que_importa": "Um mês só faz sentido quando comparado com o equivalente: janeiro com janeiro, feriado com feriado. Comparar fevereiro com janeiro pode assustar ou enganar. Um calendário anual mostra seus períodos fortes e fracos e dá tempo para preparar a divulgação antes da baixa. Registrar os 12 meses também ajuda a perceber padrões que a memória costuma apagar, como um mês fraco que se repete.",
+   "como_coletar": [
+    "Monte uma tabela com os 12 meses nas linhas e, nas colunas, noites disponíveis, noites vendidas e ocupação de cada mês.",
+    "Acrescente uma coluna com eventos e feriados locais que mexem na procura, como festas da cidade, feriados prolongados e férias escolares, conferidos em calendários oficiais.",
+    "Acrescente o preço médio praticado em cada mês, calculado como receita de hospedagem dividida por noites vendidas, para ver se o preço acompanhou a procura.",
+    "Compare cada mês com o mesmo mês do ano anterior, se houver histórico, e marque diferenças que podem vir de feriado trocado de mês.",
+    "Marque os meses fracos e a data para começar a preparar divulgação. Registre os números na Calculadora de Ocupação e Canais."
+   ],
+   "exemplo": {
+    "titulo": "Comparar fevereiro com fevereiro",
+    "texto": "Dados fictícios: uma pousada com 3 unidades tem 84 noites disponíveis em fevereiro de 28 dias. Neste ano vendeu 42 noites, ocupação de 50%. No fevereiro do ano passado vendeu 50, ocupação de 50 dividido por 84, cerca de 59,5%. À primeira vista parece queda. Ao olhar o calendário de eventos, o feriado prolongado que caiu em fevereiro no ano passado caiu em março neste ano. A comparação justa inclui março dos dois anos, e a decisão muda: em vez de baixar preço, vale preparar a divulgação para o feriado que mudou de lugar."
+   },
+   "erro_comum": "Comparar um mês com o anterior e concluir que a procura caiu, sem considerar feriados, férias e eventos que mudam de data de um ano para o outro. Também é comum guardar só ocupação e esquecer o preço do período.",
+   "como_ler": {
+    "ausente": "Você não tem os meses organizados lado a lado e compara de memória ou apenas com o mês anterior. Eventos e feriados não aparecem no seu registro.",
+    "parcial": "Você tem parte dos meses registrados ou só a ocupação, sem eventos e preços. A comparação com o mesmo mês do ano anterior é rara ou incompleta.",
+    "comprovado": "Existe um calendário anual com ocupação, eventos e preço por mês, comparado ao mesmo mês anterior, com meses fracos marcados e data de preparação definida."
+   },
+   "verificacao": "Quando houver ações para a baixa temporada, compare a ocupação daquele mês com o mesmo mês do ano anterior, ajustando por feriados e eventos. Confira também se a ação não reduziu a contribuição por noite, e só repita o que mostrou resultado."
+  },
+  {
+   "id": "m2q4",
+   "por_que_importa": "Se você não sabe de onde vêm as reservas, não sabe quais canais sustentam o negócio nem quais só parecem importantes. Conhecer a participação de cada canal mostra dependência, ajuda a negociar e evita cortar um canal que traz hóspedes que você não conseguiria de outro jeito. Também ajuda a perceber se você depende de um único canal e o que aconteceria se as regras dele mudassem.",
+   "como_coletar": [
+    "Reúna os extratos ou listas de reservas de cada canal: plataformas, site próprio, mensagens diretas, telefone e indicações. Use o mesmo período para todos.",
+    "Padronize uma tabela com data da reserva, data de chegada, noites, valor e canal. Preencha uma linha por reserva, nunca por noite.",
+    "Procure duplicidades: a mesma reserva que aparece em dois canais por sincronização de calendário, ou lançada duas vezes à mão. Remova uma das linhas.",
+    "Para reservas sem origem clara, pergunte ao hóspede ou marque como origem desconhecida. Desconhecido não é zero e não deve ser empurrado para o direto.",
+    "Calcule a participação de cada canal em reservas e em noites. Registre os números na Calculadora de Ocupação e Canais."
+   ],
+   "exemplo": {
+    "titulo": "Reserva duplicada distorce a conta",
+    "texto": "Dados fictícios: a planilha de um mês tem 42 linhas de reservas. Ao conferir, 2 são a mesma reserva lançada em dois canais, então o correto é 40 reservas. Por canal: direto 12, plataforma A 20 e plataforma B 8, somando 40. A participação fica em 30% direto, 50% plataforma A e 20% plataforma B. Sem a limpeza, o total seria 42 e as porcentagens sairiam erradas. Com a conta certa, o dono vê que metade das reservas depende de uma única plataforma e decide como proteger essa fonte."
+   },
+   "erro_comum": "Somar reservas de cada canal sem conferir duplicidade, ou classificar toda reserva sem origem como direta. Também é comum olhar só o número de reservas e esquecer que um canal pode trazer estadias mais curtas ou mais longas.",
+   "como_ler": {
+    "ausente": "Você não registra a origem das reservas. Quando alguém pergunta de onde vêm os hóspedes, a resposta é uma impressão, sem número.",
+    "parcial": "Você conhece a origem de parte das reservas ou de alguns canais, mas há reservas sem origem, duplicidades não conferidas ou períodos diferentes entre canais.",
+    "comprovado": "Existe uma tabela por canal, com um período único, sem duplicidade e com reservas de origem desconhecida identificadas à parte."
+   },
+   "verificacao": "Compare o total de reservas da tabela com o total dos extratos, canal por canal, e confirme que nenhuma reserva aparece duas vezes. Refaça a participação todo mês e observe se mudanças de preço ou divulgação alteram a distribuição, sem prejudicar a ocupação total."
+  },
+  {
+   "id": "m2q5",
+   "por_que_importa": "A receita bruta de um canal engana. O que fica depois de comissão e custo de divulgação é o que paga a operação. Um canal com comissão alta pode ainda valer a pena pela demanda que traz, e um canal sem comissão pode ter custos escondidos. Só a conta mostra.",
+   "como_coletar": [
+    "Pegue a receita bruta de hospedagem de cada canal no período, a partir dos extratos e do que o hóspede pagou de diária.",
+    "Registre a comissão cobrada em cada reserva, conforme o extrato do canal, e some por canal. Se houver taxa de pagamento própria, anote à parte.",
+    "Some os custos de aquisição que você consegue atribuir ao canal: anúncios, taxas do meio de pagamento, ferramenta de reservas, comissão de parceiros.",
+    "Calcule receita líquida do canal como receita bruta menos comissão menos custo de aquisição atribuível. Calcule também a porcentagem que sobra da bruta.",
+    "Registre os valores na Calculadora de Ocupação e Canais e compare os canais por receita líquida, sem esquecer a ocupação que cada um traz."
+   ],
+   "exemplo": {
+    "titulo": "O canal direto também tem custo",
+    "texto": "Dados fictícios: no mês, a plataforma A vendeu R$ 10.000 brutos e cobrou R$ 1.500 de comissão, sem outro custo atribuível, então a receita líquida é 10.000 menos 1.500, ou R$ 8.500, 85% da bruta. O canal direto vendeu R$ 6.000 brutos, sem comissão, mas teve R$ 600 de anúncios e R$ 180 de taxa de pagamento, somando R$ 780. A receita líquida é 6.000 menos 780, ou R$ 5.220, 87% da bruta. O direto sobra um pouco mais por real vendido, mas a plataforma A traz bem mais volume."
+   },
+   "erro_comum": "Achar que reserva direta é de graça e esquecer anúncios, taxas de pagamento e tempo de atendimento. O erro oposto é cortar um canal só porque a comissão parece alta, sem medir quantas noites ele traz que você não venderia de outro jeito.",
+   "como_ler": {
+    "ausente": "Você olha só a receita bruta ou o valor depositado, sem separar comissão e custo de aquisição. Não sabe quanto sobra de cada canal.",
+    "parcial": "Você conhece a comissão dos principais canais, mas não soma custos de aquisição, ou calcula só para alguns canais, ou mistura períodos diferentes.",
+    "comprovado": "Você tem receita líquida por canal, com bruta, comissão e custo de aquisição atribuível documentados em extratos e notas, no mesmo período."
+   },
+   "verificacao": "Confira se a soma das receitas brutas dos canais bate com a receita de hospedagem total. Ao rever um canal caro, compare por três meses a ocupação total e a receita líquida somada, para ver se a mudança não derrubou a demanda útil."
+  },
+  {
+   "id": "m2q6",
+   "por_que_importa": "Se a maioria das pessoas reserva com poucos dias de antecedência, uma oferta lançada com dois meses de folga pode passar despercebida, e uma lançada em cima da hora chega tarde. Conhecer a janela de compra ajuda a escolher o momento certo de divulgar. Essa informação também ajuda a decidir quando abrir datas novas no calendário e quando reforçar mensagens de última hora.",
+   "como_coletar": [
+    "Liste as reservas do período com a data em que foram feitas e a data de chegada. Use a data de criação da reserva, não a de pagamento.",
+    "Calcule, para cada reserva, quantos dias existem entre a data da reserva e a data de chegada, contando os dias do calendário.",
+    "Ordene os números do menor para o maior e pegue o valor do meio. Esse valor é a mediana. Com quantidade par, use a média dos dois do meio.",
+    "Separe por segmento quando houver volume: fim de semana e dias úteis, feriados, estadias curtas e longas. Cada grupo pode ter janela diferente.",
+    "Registre as janelas na Calculadora de Ocupação e Canais e anote o menor número de reservas que sustenta cada resultado."
+   ],
+   "exemplo": {
+    "titulo": "Mediana e média contam histórias diferentes",
+    "texto": "Dados fictícios: sete reservas de um mês tiveram antecedência de 3, 5, 9, 14, 20, 30 e 45 dias. Em ordem, o valor do meio é o quarto: 14 dias, que é a mediana. A média seria a soma, 126, dividida por 7, ou 18 dias, puxada pelas reservas mais distantes. Metade das reservas aconteceu com até 14 dias de antecedência. A decisão possível é publicar a oferta de uma data com pelo menos três semanas de folga, para alcançar quem decide com 14 dias ou mais. Com apenas sete reservas, trate o resultado como pista, não como regra."
+   },
+   "erro_comum": "Usar a média em vez da mediana e deixar uma reserva muito antecipada distorcer o resultado. Outro erro é calcular a janela com poucas reservas e tratá-la como regra, ou misturar feriado e dia comum no mesmo cálculo.",
+   "como_ler": {
+    "ausente": "Você não sabe com quanta antecedência as pessoas reservam e divulga sempre no mesmo momento, sem relação com o comportamento dos hóspedes.",
+    "parcial": "Você tem uma noção geral da antecedência, ou calcula a média sem separar tipos de estadia, ou usa poucas reservas para sustentar a conclusão.",
+    "comprovado": "Você calcula a mediana de dias entre reserva e chegada, por segmento quando há volume, e usa o resultado para definir quando lançar ofertas."
+   },
+   "verificacao": "Depois de ajustar o momento da oferta, compare as reservas feitas para as datas seguintes com as datas anteriores, no mesmo tipo de período. Confira se a janela observada mudou e se a mudança de calendário não trouxe só reservas de menor valor."
+  },
+  {
+   "id": "m2q7",
+   "por_que_importa": "Estadia mínima protege você de reservas curtas que dão muito trabalho, mas também pode deixar noites soltas entre duas reservas sem possibilidade de venda. Revisar a regra com datas concretas mostra quanto você está deixando de vender e se vale testar algo diferente. A regra certa depende da sua operação, da equipe de limpeza e do tipo de hóspede, e por isso precisa ser testada, não copiada.",
+   "como_coletar": [
+    "Abra o calendário dos últimos meses e procure intervalos livres entre duas reservas que sejam menores que a estadia mínima exigida.",
+    "Para cada intervalo, anote unidade, datas, número de noites livres e a regra de estadia mínima que valia naquele dia.",
+    "Verifique no histórico de consultas se alguém perguntou por essas datas e desistiu por causa da regra, quando a informação estiver registrada.",
+    "Calcule a contribuição possível: noites do intervalo multiplicadas pela diária menos o custo variável por noite, para saber o ganho potencial.",
+    "Escolha poucas datas para testar uma regra mais flexível e anote como a limpeza e a operação ficam. Defina quando o teste termina."
+   ],
+   "exemplo": {
+    "titulo": "Quatro lacunas de duas noites",
+    "texto": "Dados fictícios: duas unidades têm 60 noites disponíveis no mês, e a estadia mínima é de 3 noites. O calendário mostra 4 lacunas de 2 noites entre reservas, 8 noites que a regra impede de vender. A diária é R$ 300 e o custo variável por noite é R$ 90, então cada noite vendida deixa R$ 210. O dono testa estadia mínima de 2 noites só nessas datas e vende 2 lacunas, ou 4 noites. A contribuição é 4 vezes 210, ou R$ 840. As outras 2 lacunas continuam abertas e o teste segue por mais um mês."
+   },
+   "erro_comum": "Manter a mesma regra o ano todo por costume, ou o oposto: derrubar a estadia mínima em todas as datas de uma vez. A mudança sem teste pode encher o calendário de estadias curtas que custam mais para limpar e atender.",
+   "como_ler": {
+    "ausente": "Você não sabe se a regra de estadia mínima deixa noites sem venda. A regra foi definida no começo e nunca foi revisada com dados.",
+    "parcial": "Você percebe lacunas no calendário, mas não as lista nem calcula o que poderia ganhar. As regras mudam por sensação, sem data de teste.",
+    "comprovado": "Existe lista de lacunas com datas, regras em vigor e contribuição potencial, e há testes planejados em datas selecionadas, com início e fim."
+   },
+   "verificacao": "Compare, nas datas testadas e em datas parecidas sem teste, as noites vendidas e a contribuição por noite. Confira também o custo de limpeza e o esforço da equipe, e volte à regra anterior se o ganho não cobrir o custo extra."
+  },
+  {
+   "id": "m2q8",
+   "por_que_importa": "Mudar o preço por palpite pode custar caro: baixar demais corrói a margem, e manter alto demais deixa a noite vazia. Comparar ocupação futura com o preço total de hospedagens parecidas dá uma base para testar mudanças pequenas e medir o que acontece. O objetivo não é ser o mais barato, e sim vender noites que fazem sentido para a sua margem e para a experiência que você entrega.",
+   "como_coletar": [
+    "Escolha datas futuras e anote quantas unidades já estão reservadas para elas e quantas ainda estão livres. Isso é a ocupação futura.",
+    "Pesquise o preço total de hospedagens comparáveis para as mesmas datas, incluindo taxas de limpeza e serviço, do jeito que o hóspede vê. Anote a data da consulta.",
+    "Compare seu preço total com os comparáveis considerando o que cada um entrega: tamanho, localização, comodidades, avaliações e regras. Evite comparar itens muito diferentes.",
+    "Defina um ajuste pequeno e limitado, uma data de início e fim e o piso abaixo do qual você não vende, conferido com o custo variável.",
+    "Registre cada mudança em um histórico de preços, com data, valor anterior, valor novo e resultado de consultas e reservas."
+   ],
+   "exemplo": {
+    "titulo": "Quanto precisa vender a mais?",
+    "texto": "Dados fictícios: faltam 14 dias para um sábado e 3 de 10 quartos estão reservados. Comparáveis cobram de R$ 380 a R$ 420 no total, e o preço do dono é R$ 450, com custo variável de R$ 100 por noite. Cada noite vendida a 450 deixa 350, então 3 noites rendem R$ 1.050. Baixando para R$ 420, cada noite deixa 320. Para superar 1.050 são necessárias 4 noites, que somam R$ 1.280, pois 3 noites dariam só R$ 960. O dono testa por duas semanas e confere se a quarta noite aparece."
+   },
+   "erro_comum": "Copiar o preço do concorrente sem comparar o que cada hospedagem entrega, ou baixar o preço sem calcular quantas noites a mais são necessárias para compensar. Também é comum esquecer de registrar a mudança e não conseguir avaliar depois.",
+   "como_ler": {
+    "ausente": "Você muda preço por impulso ou mantém o mesmo valor o ano todo. Não há registro de ocupação futura nem comparação com outras hospedagens.",
+    "parcial": "Você olha preços de outras hospedagens de vez em quando, mas não compara o preço total nem registra as mudanças. Os ajustes são feitos sem limite e sem data de revisão.",
+    "comprovado": "Existe histórico de preços ligado à ocupação futura e a comparáveis, com ajustes pequenos, limites definidos e conta de quantas noites extras pagam a mudança."
+   },
+   "verificacao": "Ao fim do teste, compare noites vendidas, diária realizada e contribuição total das datas ajustadas com datas parecidas sem ajuste. Se a contribuição caiu, volte ao preço anterior. Confira também se as avaliações e o perfil dos hóspedes não mudaram de forma negativa."
+  },
+  {
+   "id": "m2q9",
+   "por_que_importa": "Parte do calendário vazio pode vir de quem perguntou e não reservou. Se você não registra consultas, não sabe se perdeu por preço, por data indisponível ou por demora na resposta. Registrar esses casos mostra onde uma resposta melhor pode fazer diferença. Muitas vezes a perda está na resposta, e não no preço ou no produto, e essa é uma das correções mais baratas de testar.",
+   "como_coletar": [
+    "Reúna as consultas do período em todos os canais: mensagens de plataformas, WhatsApp, e-mail, redes sociais e telefone. Use uma tabela, com uma linha por consulta.",
+    "Para cada consulta, anote data e hora em que chegou, data e hora da primeira resposta, datas pedidas, número de pessoas e se virou reserva.",
+    "Calcule o tempo até a primeira resposta de cada consulta e veja quais passaram de um limite que você definiu, como 24 horas.",
+    "Quando o hóspede informar por que não reservou, registre o motivo em poucas categorias: preço, data, regra, localização, sem resposta, outro.",
+    "Calcule quantas consultas viraram reserva e quantas se perderam em cada categoria. Marque os motivos desconhecidos à parte."
+   ],
+   "exemplo": {
+    "titulo": "Vinte e cinco consultas, dez reservas",
+    "texto": "Dados fictícios: em um mês chegaram 25 consultas e 10 viraram reserva, o que dá 10 dividido por 25, ou 40%. As outras 15 se perderam: 6 foram respondidas depois de 24 horas, 5 desistiram por causa do preço e 4 não deram motivo. A soma fecha, pois 6 mais 5 mais 4 dá 15. O motivo mais frequente foi a demora, e não o preço. A ação possível é preparar respostas prontas para as perguntas mais comuns e testar responder em até 2 horas durante o próximo mês."
+   },
+   "erro_comum": "Registrar só quem reservou e perder de vista quem perguntou. Outro erro é supor que toda desistência foi por preço, sem olhar o tempo de resposta. Também é comum guardar as conversas em vários aplicativos sem juntar os números.",
+   "como_ler": {
+    "ausente": "Você não registra consultas que não viraram reserva e não sabe quanto tempo leva para responder. Só vê as reservas que deram certo.",
+    "parcial": "Você guarda algumas conversas ou lembra de casos marcantes, mas não mede tempo de resposta nem organiza os motivos de perda. O registro cobre só um canal.",
+    "comprovado": "Existe registro de consultas com horário de chegada, tempo de resposta, resultado e motivo de perda quando informado, reunindo os canais usados."
+   },
+   "verificacao": "Depois de criar respostas prontas e metas de tempo, compare por pelo menos um mês o tempo de resposta e a proporção de consultas que viram reserva. Confira também se a equipe consegue manter a rapidez sem prejudicar a qualidade do atendimento."
+  },
+  {
+   "id": "m2q10",
+   "por_que_importa": "Uma ação pode parecer boa porque a receita subiu e ainda assim reduzir o que sobra. Medir o resultado comercial com a mesma régua antes e depois evita manter mudanças que enchem o calendário mas não ajudam o negócio. Também evita concluir algo por efeito de temporada. Um bom teste tem começo, fim, indicador definido e decisão registrada, para que a experiência vire aprendizado e não opinião.",
+   "como_coletar": [
+    "Antes de mudar qualquer coisa, escreva o que será testado, a data de início, a data de fim e qual indicador vai julgar o resultado.",
+    "Registre no período anterior as noites disponíveis, as noites vendidas, a receita de hospedagem e o custo variável por noite vendida.",
+    "Registre os mesmos dados no período do teste, com as mesmas unidades e o mesmo número de dias, ou ajuste a comparação para refletir a diferença.",
+    "Calcule receita por noite disponível, diária realizada e contribuição total nos dois períodos. Compare também com o mesmo período do ano anterior, quando houver.",
+    "Escreva a decisão: manter, ajustar ou interromper, com data. Guarde o relatório do teste para consultar nas próximas mudanças."
+   ],
+   "exemplo": {
+    "titulo": "Receita subiu, contribuição caiu",
+    "texto": "Dados fictícios: 4 unidades por 28 dias dão 112 noites disponíveis. Antes da promoção foram vendidas 56 noites a R$ 300, receita de R$ 16.800 e receita por noite disponível de R$ 150. Com a promoção foram 70 noites a R$ 256, receita de R$ 17.920 e R$ 160 por noite disponível. Com custo variável de R$ 100, a contribuição antes foi 56 vezes 200, ou R$ 11.200. Depois foi 70 vezes 156, ou R$ 10.920. A receita subiu, mas a contribuição caiu. Se a temporada for parecida nos dois períodos, a decisão é interromper."
+   },
+   "erro_comum": "Julgar o teste só pela receita ou pela ocupação, sem descontar o custo variável, e esquecer que o período seguinte pode ter outra demanda por feriado ou estação. Também é comum mudar várias coisas ao mesmo tempo e não saber o que funcionou.",
+   "como_ler": {
+    "ausente": "Você muda preço, regras ou divulgação sem registrar o antes e o depois. Não há relatório, e a avaliação é feita pela sensação do mês.",
+    "parcial": "Você compara receita ou ocupação antes e depois, mas sem custo variável, sem considerar a temporada ou mudando várias coisas ao mesmo tempo.",
+    "comprovado": "Existe relatório de teste com período, indicador, comparação de receita por noite disponível e contribuição, cuidado com a temporada e decisão registrada."
+   },
+   "verificacao": "Depois de manter ou interromper a mudança, acompanhe por mais um período a receita por noite disponível e a contribuição total. Confira se os resultados se mantêm fora do teste e se avaliações e atendimento não pioraram por causa da mudança."
+  }
+ ],
+ "fechamento": {
+  "resumo": "Calendário vazio é um sintoma, e o diagnóstico começa pelo básico: saber quantas noites estavam realmente à venda, quantas foram vendidas e em quais dias, meses e canais. Depois vêm a receita líquida de cada canal, a antecedência de compra, as regras de estadia, o preço comparado e as consultas que não viraram reserva. Cada resposta indica onde agir primeiro. Antes de mudar algo, defina o indicador, o período e a data de revisão, e interrompa o que reduzir a contribuição por noite.",
+  "glossario": [
+   {
+    "termo": "Noites disponíveis",
+    "definicao": "Unidades multiplicadas por dias do período, menos os bloqueios."
+   },
+   {
+    "termo": "Ocupação",
+    "definicao": "Noites vendidas divididas por noites disponíveis, no mesmo período."
+   },
+   {
+    "termo": "Receita líquida do canal",
+    "definicao": "Receita bruta menos comissão e custo de aquisição atribuível ao canal."
+   },
+   {
+    "termo": "Janela de compra",
+    "definicao": "Mediana dos dias entre a data da reserva e a data de chegada."
+   },
+   {
+    "termo": "Contribuição por noite",
+    "definicao": "Diária realizada menos o custo variável por noite vendida."
+   },
+   {
+    "termo": "Estadia mínima",
+    "definicao": "Número menor de noites que uma reserva precisa ter para ser aceita."
+   }
+  ],
+  "limites": "Este módulo organiza dados e ajuda a fazer perguntas melhores. Ele não substitui auditoria, consultoria de preços, contabilidade ou análise de um profissional, e não garante reservas, ocupação, receita ou lucro. Os exemplos usam dados fictícios e servem para treinar o raciocínio. Decida sempre com os números do seu negócio."
+ }
+}
