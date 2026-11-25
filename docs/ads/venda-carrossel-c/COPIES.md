@@ -32,3 +32,8 @@ Original = `docs/ads/inscricao-270/campeao-narrativa/carrossel-c-card-N.png` (ca
 - Cartão 5 usa o logo "Zion Glamping Collection" do original; Cartão 1 e 3 usam fotos parecidas com op08/op07 (aparentam ser da Zion).
 - Originais brutos (o1..o7.png) ficam fora do repositório; `SRC=<pasta> node build.js` regenera após `python3 -I troca_fotos.py <pasta_originais> <pasta>`.
 
+
+## Cartão extra (pedido de Bruno, 25/11): gancho da plataforma Zion
+O carrossel passou a ter 8 cartões: o novo é o cartão 5 (os antigos 5, 6 e 7 viraram 6, 7 e 8). Mesmo layout do cartão 4, outra foto real sem pessoas (store/deck).
+Texto: "Fazer a mentoria abre a porta da plataforma Zion" / "A plataforma faz parte da expansão Zion" / "Estruture o seu projeto lá dentro e, a partir do resultado, você pode se tornar um próximo parceiro Zion*" / "*Possibilidade sujeita à análise, sem garantia de parceria ou investimento."
+Observação: manifesto.json e painel-comparacao.jpg ainda descrevem a versão de 7 cartões.

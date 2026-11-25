@@ -41,6 +41,12 @@ const cards=[
 <div class="b s" style="left:455px;width:590px;top:968px;font-size:30px;font-weight:700;color:#0b0b0b;text-transform:uppercase;line-height:1.1">e somos referência em glamping no Brasil</div>
 <div class="b s" style="left:160px;width:880px;top:1120px;font-size:34px;color:#fff;line-height:1.18">Ao fazer a mentoria, você acessa a plataforma Zion, que faz parte da nossa expansão. E pode ser um próximo parceiro Zion a partir do resultado do seu projeto*</div>
 <div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
+// 4b gancho da plataforma (cartão extra, a pedido de Bruno): mesmo layout do cartão 4, outra foto real sem pessoas
+[`o8.png`,`<div class="b" style="left:445px;top:795px;width:635px;height:555px;background:${PU}"></div><div class="b" style="left:150px;top:1160px;width:930px;height:190px;background:${PU}"></div>
+<div class="b s" style="left:455px;width:600px;top:830px;font-size:44px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.06">Fazer a mentoria abre a porta da plataforma Zion</div>
+<div class="b s" style="left:455px;width:600px;top:1010px;font-size:30px;font-weight:700;color:#f6ecc4;text-transform:uppercase;line-height:1.1">A plataforma faz parte da expansão Zion</div>
+<div class="b s" style="left:160px;width:880px;top:1125px;font-size:34px;color:#fff;line-height:1.18">Estruture o seu projeto lá dentro e, a partir do resultado, você pode se tornar um próximo parceiro Zion*</div>
+<div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
 // 5 oportunidade (original 5): o que recebe
 [`o5.png`,`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
 <div class="b w" style="left:60px;right:60px;top:1128px;font-size:40px;color:#232c0a;font-weight:500">9 módulos, 70 aulas e materiais</div>

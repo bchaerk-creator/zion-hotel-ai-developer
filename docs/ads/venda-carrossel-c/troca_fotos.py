@@ -31,4 +31,6 @@ def troca(orig, foto, box, swirl_box, saida, cx=.5, cy=.5):
 troca('o6', 'store/dentro.webp', (0, 0, 1080, 795), (0, 240, 480, 1110), 'o6')
 # cartão 7: foto da direita (x 572..1080), meia-lua do pé preservada
 troca('o7', 'store/hero.webp', (572, 0, 1080, 1350), (370, 1020, 740, 1350), 'o7', cx=.3, cy=.55)
+# cartão extra (gancho da plataforma Zion): mesmo layout do cartão 4 com outra foto real sem pessoas
+troca('o6', 'store/deck.webp', (0, 0, 1080, 795), (0, 240, 480, 1110), 'o8')
 print('ok')
