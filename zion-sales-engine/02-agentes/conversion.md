@@ -50,4 +50,4 @@ Aprovado quando a página abre clara no celular, o vínculo e o preço estão ce
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
-|  |  |  |  |
+| 25/11/2026 | Fase 03: criadas 2 variantes de landing (`/mini-mentoria-a` CTA com preço no topo; `/mini-mentoria-b` CTA após oferta e entregáveis) e `/obrigado-mini-mentoria`, todas em rascunho, sem publicar e sem tocar na página ao vivo; plano A/B, especificação de checkout, checklists de entrega e recuperação. Vídeo demo e tela `mapa` fora das variantes (quadros com Land Bank / "receber investimentos" / "sócio"). Ver `07-landing-pages/mini-mentoria/README.md`, `11-testes-ab/TESTE_AB_LANDING_MM47.md`, `08-checkouts/` | Pedido da Fase 03; ECROI; CTA com preço; auditoria de conteúdo do CREATIVE | Rascunhos dentro da autorização da Fase 03; publicar/ligar depende de "aprovado" de Bruno |
