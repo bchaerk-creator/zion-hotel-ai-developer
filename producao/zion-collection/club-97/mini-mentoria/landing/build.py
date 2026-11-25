@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Landing /mini-mentoria · Mini Mentoria de Estruturação (R$ 47) · oferta 74a3f8c6-fc1d-4aa8-9ac9-7769a1c49aa5.
+"""Landing /mini-mentoria · Mini Mentoria de Estruturação (R$ 47) · oferta 0c71eeba-2654-432c-9701-0a31e6113a08 (produto cbbb5fb1-550f-4a8d-b269-5122c17b7780).
 Reaproveita o CSS de club-97/landing/build.py e os extras de lt47/build.py. Uso: python3 -I build.py"""
 from html import escape
 from pathlib import Path
