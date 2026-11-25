@@ -48,4 +48,4 @@ Aprovado quando o funil tem todas as etapas do manual, preço explícito, entreg
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
-|  |  |  |  |
+| 25/11/2026 | Fase 03: funil canônico da Mini Mentoria R$ 47 documentado (`05-funis/FUNIL_CANONICO.md`); plano de consolidação da oferta e preservação dos compradores de R$ 97 (`CONSOLIDACAO_OFERTA_97.md`, só plano); 3 fluxos em rascunho no ClickMax (Pós-compra, Pix não pago, Carrinho abandonado), 3 modelos de e-mail e 3 tags, nada ativo (`AUTOMACOES_MM47.md`); estudo de bump, upsell e downsell (`BUMP_UPSELL_DOWNSELL.md`); relacionamento e webinário (`RELACIONAMENTO_BASE.md`); textos de WhatsApp só propostos (`MM47_WHATSAPP_TEXTOS_PROPOSTOS.md`). Recomendado o quadro Alunos Zion para os compradores da Mini Mentoria (e não o quadro Inscritos). Condição "já comprou" nos fluxos de recuperação não coube na API: pendência para o editor | Fase 03 aprovada por Bruno; escrita limitada a rascunhos | Bruno (Fase 03); ligar fluxos e executar a consolidação dependem de novo "aprovado" |
