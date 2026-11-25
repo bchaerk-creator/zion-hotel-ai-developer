@@ -22,10 +22,13 @@ Ver `../FUNIL_DE_EVENTOS_P0.md`. Resumo do que o código garante (34 testes auto
 - Variáveis novas: `CONTENT_NAME` (padrão "Mini Mentoria de Estruturação Zion") e `CONTENT_ID` (padrão `mm47`).
 - Os dois eventos opcionais usam `event_id` diferente do `Purchase`, então não se deduplicam entre si nem inflam compras.
 
+## Achado do teste e2e (25/11/2026): `EVENT_SOURCE_URL_DEFAULT` é obrigatório na prática
+O webhook de entrega do ClickMax não traz a URL da página. Para `action_source=website` a Conversions API exige `event_source_url`; o Graph simulado recusa o evento sem ela (teste `sem EVENT_SOURCE_URL_DEFAULT`). **Defina `EVENT_SOURCE_URL_DEFAULT=https://infoprodutos-zion.clickmax.space/mini-mentoria` (ou a URL da página de vendas usada)** no cofre da hospedagem. Contrato exato da Meta: [NC, developers.facebook.com bloqueado aqui]; o simulado reproduz a regra conhecida e deve ser conferido no teste com `META_TEST_EVENT_CODE`.
+
 ## Rodar os testes (sem rede, sem token)
 ```bash
 cd zion-sales-engine/09-tracking/capi-webhook
-node --test tests/*.test.js     # Node 18+; sem npm install
+node --test tests/*.test.js     # Node 18+; sem npm install (inclui tests/e2e_ciclo.test.js: servidor real + Graph simulado)
 ```
 
 ## Configurar o ClickMax (caminho recomendado: webhook de entrega com payload personalizado)

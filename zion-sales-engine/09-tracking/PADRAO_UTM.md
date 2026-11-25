@@ -75,3 +75,47 @@ O padrão das seções 1 a 7 continua valendo sem mudança. Os acréscimos abaix
 | Persistência entre sessões e aparelhos | Não há | Só o snippet (mesmo navegador) ou o lead identificado no ClickMax (e-mail) resolvem; entre aparelhos só com identificação |
 
 `snippets/persistir-utm.js` continua **proposta, não instalada** (aprovação de Bruno, aviso de privacidade atualizado, teste em página de teste). O padrão de UTM acima funciona sem ele.
+
+## 9. Funil híbrido (25/11/2026): `utm_campaign` por CAMINHO, `utm_content` por criativo, coorte por etiqueta
+**Esta seção atualiza as seções 2, 3 e 6 para o funil de dois caminhos e vale sobre elas onde houver conflito.** Motivo: `lead_comprador.py` precisa separar **captação, venda quente e venda fria** só pela UTM, e hoje `utm_campaign=mm47` não separa nada. O produto deixa de ir na UTM enquanto houver **um** produto anunciado (a venda já diz a oferta: `offerId`).
+
+| Chave | Valor | Quando |
+|---|---|---|
+| `utm_source` | `meta` | todo anúncio. No formulário nativo do Meta o ClickMax grava `facebook` [E, leitura de contatos recentes]: aceitar os dois como Meta |
+| `utm_medium` | `paid` (venda) · `lead_ads` (captação por formulário nativo) | fixo |
+| `utm_campaign` | **`captacao`** · **`venda-quente`** · **`venda-fria`** | **caminho**, nunca o nome do produto nem da campanha. Vale o mesmo valor em todas as campanhas daquele caminho |
+| `utm_content` | `<id do criativo>` (sem espaço, maiúscula, acento nem `|`), mais `-v<n>`/`-varA|varB` do §8 | ex.: `mm47-c03-custo-escondido-vid` |
+| `utm_term` | `{{ad.id}}` | venda (site). Na captação por formulário nativo vem o texto que o ClickMax grava [E]: ver abaixo |
+| `sck` | `{{campaign.id}}` | venda (site) |
+
+### 9.1 URLs de tags (venda quente e venda fria; colar uma vez no anúncio, sem repetir na URL de destino)
+```
+venda quente: utm_source=meta&utm_medium=paid&utm_campaign=venda-quente&utm_content=<criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}
+venda fria  : utm_source=meta&utm_medium=paid&utm_campaign=venda-fria&utm_content=<criativo>&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}
+```
+**Captação (formulário nativo do Meta):** o ClickMax **não usa as tags de URL**; ele grava o **nome da campanha** em `utm_campaign` e o **nome do anúncio** em `utm_content` [E: contato recente: `utm_campaign` = nome da campanha, `utm_content` = nome do anúncio, `utm_medium=lead_ads`, `utm_source=facebook`]. Portanto, para a captação, **o padrão é de nomenclatura no Meta**:
+- **Nome da campanha** de captação = `captacao | AAAA-MM-DD` (o `captacao` no início; a data é a de criação/coorte).
+- **Nome do anúncio** = `<id do criativo>` no mesmo formato do `utm_content` (ex.: `mm47-c03-custo-escondido-car`).
+- Renomear no Meta **depois** de gerar leads quebra a ligação (o lead guarda o nome antigo). Crie campanha/anúncio **novos** com o nome certo; **não renomeie** os existentes. [H: o ClickMax copia o nome no momento do envio do lead.]
+- Enquanto os nomes antigos existirem (ex.: `ZC2 | INSCRICAO 270 | CARROSSEL C | ...`), `lead_comprador.py` aceita o `utm_content` como está; o `captacao` só é exigido nas campanhas novas.
+
+### 9.2 Etiquetas de coorte (CRM)
+Uma etiqueta por **data de entrada e caminho**: `COORTE | AAAA-MM-DD | captacao`. Aplicar:
+- **Retroativa, sem automação:** `tags_batch_apply_to_leads` com os leads do filtro `createdAt` do dia e `utmCampaign` da captação (escrita no CRM: **"aprovado" de Bruno**).
+- **Daqui em diante:** passo do fluxo de boas-vindas **em rascunho** (nada ativado sem aprovação).
+- A coorte também sai **sem etiqueta**, pelo filtro `createdAt` (é o que `lead_comprador.py` usa); a etiqueta serve para exclusão e segmentação (`ARQUITETURA_DE_PUBLICOS.md`).
+- A etiqueta existente `INSCRIÇÃO 270 | LEAD DO FORMULÁRIO` é **por formulário** (nome legado "270"): não é coorte.
+
+### 9.3 Lacunas lidas em 25/11/2026 que impedem hoje medir CPL por criativo e coorte (e o que fecha cada uma)
+| # | Lacuna [E = lido nesta sessão] | Efeito | Correção |
+|---|---|---|---|
+| 1 | O lead grava **nomes**, sem id de campanha, conjunto ou anúncio; `src` e `sck` vazios [E] | Ligação com o gasto do Meta só **por nome** | Nomenclatura do §9.1; ligar por nome com conferência de duplicidade |
+| 2 | Nome de anúncio **repetido com ad_id diferente** na conta (ex.: o mesmo anúncio em dois conjuntos) [E, Windsor] | Gasto/leads de dois anúncios se misturam por nome | Nome único por anúncio **dentro da campanha**, ou somar os dois ids de propósito |
+| 3 | Na campanha "Form R$47 direto" o `utm_campaign` gravado (`FORM R$47 DIRETO`) **não é igual** ao nome da campanha no Meta [E] | Join por nome falha nessa campanha | Pelo §9.1, nome de campanha novo = `captacao | data`; para a antiga, de-para manual |
+| 4 | `utm_campaign` mistura **nomes e ids numéricos** em contatos antigos [E, lista de valores] | Agrupar por campanha exige normalizar | Só dados novos; não retrabalhar o histórico |
+| 5 | Origem do contato é `CxExternalPages`, não `MetaLeadAds` [E] | Não dá para isolar leads de anúncio por origem | Filtrar por `utm_medium=lead_ads` + `utm_campaign` |
+| 6 | **Sem etiqueta de coorte**; a etiqueta existente é por formulário [E] | Coorte só pelo filtro de data | Etiqueta do §9.2 (opcional) |
+| 7 | `leads_export_csv` **não tem colunas de UTM** [E] | Export em massa perde criativo | Um export por criativo (filtro `utmContent`) ou leitura por `leads_get` |
+| 8 | O formulário nativo do Meta **não aparece** em `forms_list` (só formulários próprios do ClickMax) [E] | `forms_submissions_list` não serve para esses leads | Medir por contato (tag/UTM), não por formulário |
+| 9 | Contato de captação com `lgpdApproved=false` e `emailConsent` vazio, mas preferências de mensagem todas **ligadas** por padrão [E, contato recente] | Consentimento não registrado: afeta público personalizado e disparos | Textos separados de consentimento (comunicação × publicidade) **antes** de usar a base; ver `ARQUITETURA_DE_PUBLICOS.md` §4 |
+| 10 | As vendas reais de 24/11 vieram **sem UTM** [E, auditoria] | Compra sem origem: "não atribuída" | Só com UTM na venda (compra de teste, §7) ou lead por e-mail |

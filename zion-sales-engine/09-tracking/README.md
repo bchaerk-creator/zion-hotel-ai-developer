@@ -6,7 +6,8 @@
 **O que vai aqui:**
 - Estado do pixel, da API de Conversões, das UTMs e da deduplicação.
 - Requisitos de aceite (R1 a R8 em `13-relatorios/H_rastreamento.md`).
-- Conciliações ClickMax × gateway × Meta.
+- Conciliações ClickMax × gateway × Meta e lead × comprador (`conciliacao/`).
+- Funil de 8 eventos (`FUNIL_DE_EVENTOS_P0.md` §7), validação local do receptor (`VALIDACAO_EM_TESTE.md`) e públicos (`ARQUITETURA_DE_PUBLICOS.md`).
 
 Configurar pixel, CAPI ou webhook em produção exige 'aprovado'. Tokens nunca entram no repositório nem no chat.
 

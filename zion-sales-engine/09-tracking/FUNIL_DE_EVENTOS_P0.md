@@ -1,4 +1,6 @@
-# Funil de 7 eventos (P0) · Mini Mentoria de Estruturação Zion
+# Funil de eventos (P0) · Mini Mentoria de Estruturação Zion
+
+> **Atualização 25/11/2026 (funil híbrido): são 8 eventos.** Foram acrescentados **Lead** (antes de tudo) e **Reembolso** (depois de tudo). A tabela de 8 etapas, o proxy recomendado e o estado de cada evento estão no **§7**, que vale sobre as seções 1 a 6 (7 eventos, mantidas como histórico). A prova em ambiente de teste está em `VALIDACAO_EM_TESTE.md`.
 
 Autor: DATA · 25/11/2026 · Cumpre a regra P0 de Bruno: **nenhum cliente chega ao checkout sem saber o que compra, quanto paga e o que recebe**, e a medição precisa separar quem **viu**, quem **demonstrou intenção qualificada**, quem **começou a comprar**, quem **gerou Pix**, quem **pagou** e quem **recebeu**.
 Legenda: **[E]** confirmado em documentação oficial do ClickMax lida em 25/11/2026 ou em leitura de ferramenta · **[NC]** não confirmado (diz o teste que resolve) · **[H]** hipótese. Estado **ATUAL** = antes de qualquer correção; nada aqui foi aplicado em produção.
@@ -71,3 +73,39 @@ Fontes: `docs.clickmax.io` (guias de eventos do pixel, escolha de pixels por tel
 | Página de oferta nova (rascunho) | Agente de páginas, **só página nova** | Não publicar |
 | Implantar `capi-webhook` e ligar `SEND_PIX_GENERATED` / `SEND_ACCESS_DELIVERED` | Bruno + hospedagem, após compra de teste | Variáveis `false`; desligar o webhook |
 | Qualquer script na página | Bruno, "aprovado" explícito | Remover o script |
+
+
+## 7. Funil de 8 eventos (v2, 25/11/2026): Lead e Reembolso entram
+
+Dois caminhos usam a mesma Mini Mentoria R$ 47: **quente** (anúncio de captação → formulário → CRM → educação → remarketing → landing → checkout) e **frio** (anúncio de venda direta → landing → checkout). Os 8 eventos valem nos dois; o que muda é o **ponto de entrada** (Lead só existe no quente) e a **atribuição** (`PADRAO_UTM.md` §9; `conciliacao/lead_comprador.py`).
+Legenda: **[E]** evidência (leitura nesta sessão ou documentação lida) · **[H]** hipótese · **[NC]** não confirmado.
+
+| # | Evento | Sistema (onde nasce) | Nome | Parâmetros | Deduplicação | Estado atual | Quem executa |
+|---|---|---|---|---|---|---|---|
+| 1 | **Lead** (envio do formulário de captação) | Formulário nativo do Meta (anúncio de cadastro) → ClickMax (contato). O Meta conta o Lead **na origem**; o ClickMax grava o contato e, no formulário próprio do ClickMax, existe o campo `pixelLeadEvent` [E, `forms_list`] | `Lead` (padrão Meta) | Origem do lead = `utm_source=facebook`, `utm_medium=lead_ads`, `utm_campaign` (nome da campanha), `utm_content` (nome do anúncio/criativo), data de entrada (coorte) [E, leitura de contato recente] | Um Lead por envio; o contato do ClickMax é único por e-mail. **Não** enviar Lead também por CAPI para o mesmo envio (duplicaria) [H] | **Funciona** na origem: os contatos recentes chegam com origem, campanha e criativo [E]. Lacunas: sem `sck`/`src`, sem ids numéricos de campanha/anúncio, sem etiqueta de coorte (ver `ARQUITETURA_DE_PUBLICOS.md` §2) | Meta/ChatGPT (anúncio) e Bruno (etiquetas, "aprovado"); medição: `lead_comprador.py` |
+| 2 | **Visita** | Pixel no navegador (ClickMax insere na página publicada) | `PageView` | UTMs da URL; `fbc/fbp` | Contagem simples (só navegador) [E] | **[E] funciona** em página publicada | Nada a fazer |
+| 3 | **Visualização da oferta** | `element_visible` (ClickMax, seção da oferta marcada) ou `ViewContent` (página de oferta separada marcada "Página de conteúdo") | `element_visible` / `ViewContent` | `content_name`, `content_ids=["mm47"]`, `value 47.00`, `BRL` (ViewContent: [NC] se o nativo aceita) | `event_id` do navegador [NC] | **Desligado** (`pixelViewContent=false`) [E] | Agente de páginas (página NOVA) + Bruno (chave "Página de conteúdo") |
+| 4 | **Clique no CTA com preço** | ClickMax, `button_click` com `elementId` do botão (SDK, sem script) | `button_click` (interno; custom `QualifiedCtaClick` só com script, **fora do escopo**) | `elementId` cta-0…cta-5; UTMs da sessão | Não se aplica | **Mecanismo existe** [E]; relatório por botão [NC]. Não chega ao Meta | Leitura por `visitors_*`/funil (DATA) |
+| 5 | **Início efetivo de checkout** | Pixel do ClickMax (navegador e servidor) com "Só contar depois dos dados pessoais" | `InitiateCheckout` | `value`, `currency`; UTMs | Mesmo id navegador/servidor; Meta conta 1 [E] | **Errado hoje**: dispara ao **carregar o iframe**, a opção está desligada [E, auditoria H]. **Não use como indicador** até ligar a opção e provar (tutorial A4 e E3) | Bruno (painel ClickMax, "aprovado") |
+| 6 | **Pix gerado** | ClickMax `pix_generated` (interno); Meta só pelo receptor opcional | `PixGenerated` (custom, **desligado**) | `value`, `BRL`, `order_id`, UTMs; `event_id=pix-<pedido>` | Id próprio, distinto do Purchase | Só interno [E]. Provado no teste local: **nunca vira Purchase** | Bruno + hospedagem, só se for preciso medir abandono de Pix |
+| 7 | **Compra aprovada** | Pixel + CAPI do ClickMax (nativo) **ou** `capi-webhook` (alternativa, **no lugar** do nativo) | `Purchase` | `value` em **reais** (47.00), `BRL`, `order_id`, `content_name`, `content_ids`, UTMs, `event_id` = **id do pedido** | Navegador + servidor com o mesmo id (nativo); no receptor, idempotência por `event_id` (provado: reentrega = 1 envio) | **Só após pago** [E doc]; porém o Meta registrou 0 compras das vendas reais de 24/11 (sem UTM e sem token CAPI legível) [E, auditoria]. Receptor pronto e provado em teste local | Bruno (token/Comprou Pix e cartão); implantar o receptor só se o nativo falhar |
+| 8 | **Reembolso** | ClickMax (venda `refunded`; webhook de reembolso) → receptor registra | Registro interno; evento custom `ZionRefund` **opcional e desligado** (nunca `Purchase`, nunca negativo) | `order_id`, `value`, `BRL`; `event_id=refund-<pedido>` | Um registro por pedido (provado: 2ª notificação = `duplicate`) | O receptor registra sem enviar Purchase [provado em teste local]. No ClickMax a venda muda para `refunded` [E]. Na conciliação o comprador reembolsado é **marcado**, não apagado | DATA (conciliação); Bruno só decide ligar `SEND_REFUND_EVENT` |
+
+### 7.1 Regras que não mudam
+1. **Purchase só depois de aprovado** (`paid`/`approved`). Pix gerado, pendente, autorizado e `paid_pending` nunca. Provado em `VALIDACAO_EM_TESTE.md`.
+2. **O `InitiateCheckout` atual NÃO é indicador confiável**: dispara no carregamento do iframe. Não calcule "custo por checkout" com ele nem otimize campanha por ele hoje.
+3. **Lead não é Purchase e Reembolso não é Purchase negativo.** Reembolso reduz a receita líquida na conciliação (e no financeiro), não "apaga" a venda do Meta.
+4. **Dedupe:** um evento, um `event_id`; o id do Purchase é o id do pedido; Pix e reembolso têm prefixo próprio.
+
+### 7.2 Proxy recomendado do funil (enquanto o `InitiateCheckout` não for corrigido e provado)
+| Etapa do funil | Proxy hoje | Onde ler |
+|---|---|---|
+| Interesse qualificado | **Cliques por botão do ClickMax** (`button_click` dos CTAs com preço, ids cta-0…cta-5) | ClickMax, visitantes/funil [E mecanismo; relatório por botão NC] |
+| Início efetivo de checkout | **"Só contar depois dos dados pessoais"** ligado (A4): o `InitiateCheckout` passa a contar só quem informou nome e e-mail | Histórico de envio do pixel e Gerenciador de Eventos (após ligar) |
+| Intenção forte | Pix gerado (venda `pending` Pix no ClickMax) | Vendas |
+| Receita | Venda `paid` do ClickMax conciliada com o gateway | `conciliar.py` |
+Até a opção estar ligada, **use cliques por botão como proxy de intenção** e rotule "proxy"; o custo por checkout efetivo só entra no painel depois do passo A4 e de uma compra de teste (E3).
+
+### 7.3 Quem decide o quê
+- **Executa sem aprovação:** leitura, conciliação, testes locais (feito).
+- **Precisa de "aprovado" de Bruno:** ligar a opção de dados pessoais (A4), token CAPI, "Página de conteúdo", implantar o receptor, ligar `PixGenerated`/`ZionRefund`, etiquetas de coorte, criar públicos no Meta.

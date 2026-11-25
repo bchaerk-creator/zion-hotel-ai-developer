@@ -305,6 +305,50 @@ E_ += step("E8", "Roteiro da compra de teste cobrindo os 7 eventos",
 E_ += ('<div class="box cuidado"><b class="t">[NC] resumo</b>O que a documentação não confirma e este roteiro resolve: (1) se o relatório separa cliques por botão; (2) se o importador mantém <code>data-cx-track</code>; (3) se há ação de funil que envie evento ao pixel; '
        '(4) se o ClickMax manda <code>content_name</code>/<code>content_ids</code> nos eventos nativos; (5) se a UTM atravessa landing &rarr; oferta; (6) quando o webhook de entrega dispara para o evento de acesso entregue.</div>')
 
+
+# ---------------------------------------------------------------- F) Lead, Reembolso e públicos (funil híbrido, 25/11/2026)
+F_ = ""
+F_ += step("F1", "Lead: confirme que o contato chega com origem, campanha e criativo",
+           "<p>O Lead nasce no formulário do anúncio. No ClickMax, o contato guarda o <b>nome da campanha</b> e o <b>nome do anúncio</b>. É isso que permite saber o custo por lead de cada criativo.</p>",
+           onde="ClickMax &rsaquo; <b>Contatos</b> &rsaquo; abra um contato recente da captação &rsaquo; seção de <b>origem/UTM</b> (ou peça ao Claude: <span class=\"mono\">leads_get</span>, campo <span class=\"mono\">submissions</span>). " + E,
+           ver="<code>utm_source=facebook</code>, <code>utm_medium=lead_ads</code>, <code>utm_campaign</code> com o nome da campanha e <code>utm_content</code> com o nome do anúncio. Hoje <b>não</b> vêm <code>sck</code>, <code>src</code> nem ids de campanha/anúncio (lacunas 1 a 5 de <code>PADRAO_UTM.md</code> &sect;9.3).",
+           cuidado="Não renomeie campanha ou anúncio que já gerou lead: o lead guarda o nome antigo e a ligação com o gasto se perde. Crie campanha nova com o nome do padrão (<code>captacao | AAAA-MM-DD</code>).",
+           print_="Print do contato (borre nome, e-mail e telefone) mostrando só a parte de UTM.",
+           mock=mock(['<span>utm_source &middot; utm_medium</span><span class="mono">facebook &middot; lead_ads</span>', '<span>utm_campaign</span><span class="mono">nome da campanha</span>', '<span>utm_content</span><span class="mono">nome do anúncio (criativo)</span>'], "Contato da captação (esquema)"))
+F_ += step("F2", "Reembolso: confirme que não gera Purchase novo",
+           "<p>Reembolso é o 8&ordm; evento. Ele <b>reduz a receita líquida</b>; não apaga a venda no Meta e <b>nunca</b> vira Purchase. O receptor de teste já provou isso (<span class=\"mono\">VALIDACAO_EM_TESTE.md</span>); a prova real é o passo 8 da compra de teste.",
+           onde="ClickMax &rsaquo; <b>Vendas</b> &rsaquo; a compra de teste &rsaquo; status <b>Reembolsada</b>; Meta &rsaquo; Gerenciador de Eventos &rsaquo; <b>Testar eventos</b> (nenhum Purchase novo).",
+           ver="Venda <b>Reembolsada</b>; <b>nenhum</b> evento Purchase extra. Na conciliação o comprador aparece em <code>reembolsados_entre_compradores</code>.",
+           print_="Print da venda reembolsada e do Testar eventos depois do reembolso.")
+F_ += step("F3", "Etiquetas de coorte (com aprovação)",
+           "<p>Coorte = leads que entraram no mesmo dia. Serve para <b>não comparar lead novo com lead que já teve tempo de comprar</b>. A coorte também sai sem etiqueta (pelo filtro de data); a etiqueta ajuda a excluir e segmentar.</p>",
+           onde="ClickMax &rsaquo; <b>Contatos</b> &rsaquo; <b>Etiquetas</b> &rsaquo; criar <code>COORTE | AAAA-MM-DD | captacao</code> e aplicar aos contatos do dia (ou pedir ao Claude, com seu \"aprovado\"). " + NC + " (nome exato dos menus).",
+           ver="Etiqueta com a contagem de contatos do dia. A etiqueta antiga <b>INSCRIÇÃO 270 | LEAD DO FORMULÁRIO</b> continua sendo por formulário, não por coorte.",
+           cuidado="Escrever etiqueta em contatos é mudança no CRM: só com \"aprovado\". Não ative fluxo nenhum para isso.")
+F_ += step("F4", "Exportar listas (fora do Git, sem PII no repositório)",
+           "<p>Duas listas: <b>compradores</b> (para excluir dos anúncios) e <b>leads</b> (público quente, só depois da base legal). O arquivo fica em <span class=\"mono\">~/zion-privado/</span>, nunca no repositório, no chat ou em print.</p>",
+           onde="ClickMax &rsaquo; <b>Contatos</b> &rsaquo; filtro (compradores: com compras; leads: etiqueta/UTM da captação) &rsaquo; <b>Exportar CSV</b>. Pelo Claude: <span class=\"mono\">leads_export_csv</span>. O export <b>não traz colunas de UTM</b>. " + E,
+           ver="Um CSV com e-mail e telefone. Apague depois do upload.",
+           cuidado="Não suba lista de leads como público de anúncio enquanto não houver consentimento de publicidade registrado (hoje os contatos novos chegam sem ele). Exclusão de compradores é o primeiro público seguro.")
+F_ += step("F5", "Criar o público de exclusão de compradores no Gerenciador de Anúncios",
+           "<p>O Windsor <b>não cria públicos</b> (não há essa ação). A criação e a exclusão são feitas por você no Gerenciador de Anúncios. Depois o Claude/ChatGPT só confere o conjunto.</p>",
+           onde="Gerenciador de Anúncios &rsaquo; <b>Públicos</b> &rsaquo; <b>Criar público</b> &rsaquo; <b>Público personalizado</b> &rsaquo; <b>Lista de clientes</b> &rsaquo; envie o CSV de compradores (e-mail e telefone) &rsaquo; nome <code>EXCL | compradores MM47 | AAAA-MM-DD</code>. Depois, no conjunto de anúncios &rsaquo; <b>Público</b> &rsaquo; <b>Excluir</b> &rsaquo; escolha esse público. " + NC + " (menus de memória; a documentação da Meta não abriu nesta sessão).",
+           ver="O público com status de processamento, tamanho e taxa de correspondência; o conjunto mostrando a exclusão.",
+           cuidado="A lista é estática: reenvie quando houver compra nova. Mexer em conjunto de campanha ativa só com \"aprovado\".",
+           print_="Print da tela do público (sem mostrar o arquivo) e do bloco Excluir no conjunto.")
+F_ += step("F6", "Rodar a conciliação lead × comprador",
+           "<p>Um comando, dados fora do repositório. Responde: quantos compradores únicos vieram do funil quente, do frio e quantos ficaram sem origem; tempo até a compra; coortes com 7 e 14 dias.</p>",
+           onde="Terminal, na pasta <span class=\"mono\">09-tracking/conciliacao</span>: <span class=\"mono\">python3 -I lead_comprador.py --leads ~/zion-privado/leads.csv --compras ~/zion-privado/compras.csv --as-of AAAA-MM-DD</span>.",
+           ver="JSON agregado, sem e-mail nem telefone. <code>soma_confere: true</code>. Coortes com menos de 7/14 dias aparecem como <b>imatura</b>; coorte com menos de 10 leads, <b>amostra_pequena</b>.",
+           cuidado="Correspondência só por e-mail igual. E-mail diferente com telefone igual vira lista de <b>revisão humana</b>, nunca atribuição automática.")
+F_ += step("F7", "Recuperar as compras de 24/11: a condição exata (B3)",
+           "<p>A recuperação é <b>elegível com condição</b>. Prazo duro: pagamento + 7 dias (01/12/2026, no horário do pagamento); execute até 29/11.</p>"
+           "<ol><li><b>B3:</b> Visão geral do pixel de 23/11 até hoje: <b>nenhum</b> Purchase dessas compras. Se houver, pare.</li><li><b>A5:</b> Histórico de envio: <b>Falhou</b> ou <b>Não enviado</b>. Se \"Enviado\", pare.</li><li>Teste com código de teste, depois real, só com seu \"aprovado\".</li></ol>",
+           onde="Detalhes e comando em <span class=\"mono\">recuperacao/RECUPERACAO_COMPRAS_SEM_UTM.md</span> &sect;8.",
+           ver="Um Purchase por compra, valor real em BRL, na data real; nenhuma UTM inventada.",
+           cuidado="Nunca preencha UTM, campanha ou anúncio por dedução. Um Purchase enviado não se apaga.")
+F_ += '<div class="box cuidado"><b class="t">[NC] resumo do capítulo F</b>Menus do Gerenciador de Anúncios e de etiquetas do ClickMax, hash aceito no upload da lista, aplicação de exclusão via <code>update_adset</code>, base legal para público de leads e hora exata dos pagamentos de 24/11.</div>'
+
 # tabela de conferencia por ponto
 points = """
 <table><tr><th>Ponto da jornada</th><th>O que conferir</th><th>Onde</th></tr>
@@ -341,7 +385,7 @@ prints = """
 <li><b>P8</b>: durante o teste: D1 a D5 (barra de endereço, Testar eventos em cada fase, Purchase aberto).</li>
 <li><b>P9</b>: D6, D7 (venda com UTMs, histórico, Eventos de pixel, acesso).</li>
 <li><b>P10</b>: D9, D10 (Visão geral, Deduplicação, Diagnóstico, reembolso).</li>
-<li><b>P11 a P14</b>: capítulo E (E2, E3, E4, E5, E6 e o roteiro E8 com os 7 eventos).</li>
+<li><b>P11 a P14</b>: capítulo E (E2, E3, E4, E5, E6 e o roteiro E8 com os 7 eventos).</li>\n<li><b>P15</b>: capítulo F (F1 contato com UTM, borrado; F2 reembolso; F5 público de exclusão; F7 B3 e A5).</li>
 </ol>
 <div class="box cuidado"><b class="t">Não envie</b>Token, código de acesso, senha, QR, código de teste depois de usado, e-mail, telefone ou CPF de terceiros. Borre dados pessoais nos prints. O chat não é lugar de segredo.</div>"""
 
@@ -370,7 +414,7 @@ html = f"""<!doctype html>
 <title>Guia visual de rastreamento Zion</title><link rel="stylesheet" href="style.css"></head><body>
 <header class="top"><div class="wrap"><img src="../../../docs/brand/zion-logo-claro.png" alt="Zion Hotel Group"><span class="tag">Fase 03 &middot; P0 &middot; 25/11/2026</span>
 <h1>Guia visual de rastreamento</h1><p>Onde ver, onde ligar e o que me enviar, passo a passo. Anúncio, página, checkout, Ticto, ClickMax e Meta, com a compra de teste no final.</p></div></header>
-<div class="wrap"><nav class="toc"><a href="#fluxo">Fluxo</a><a href="#a">A ClickMax</a><a href="#b">B Meta</a><a href="#c">C Ticto</a><a href="#d">D Compra de teste</a><a href="#e">E Funil P0</a><a href="#criterios">Critérios R1 a R8</a><a href="#prints">Prints</a></nav>
+<div class="wrap"><nav class="toc"><a href="#fluxo">Fluxo</a><a href="#a">A ClickMax</a><a href="#b">B Meta</a><a href="#c">C Ticto</a><a href="#d">D Compra de teste</a><a href="#e">E Funil P0</a><a href="#f">F Lead, Reembolso, públicos</a><a href="#criterios">Critérios R1 a R8</a><a href="#prints">Prints</a></nav>
 {sec("como", "Como usar", "Cada passo tem um número curto e quatro caixas.", intro)}
 {sec("fluxo", "O caminho de uma venda", "Esquema simples. Cada seta diz o que viaja.", flow + '<p>O pixel <span class="mono">' + PIXEL + '</span> roda dentro do checkout. O ClickMax guarda a URL do momento em que o checkout abre; por isso a UTM precisa estar na URL da página nessa hora.</p>')}
 {sec("a", "A &middot; ClickMax", "Onde ver e ligar pixel, API de Conversões, token, histórico de envio e regras de Purchase e checkout.", A, True)}
@@ -378,6 +422,7 @@ html = f"""<!doctype html>
 {sec("c", "C &middot; Ticto", "O gateway por trás do checkout. Menus da Ticto: não confirmados, mande print do que encontrar.", C, True)}
 {sec("d", "D &middot; Roteiro da compra de teste", "Duas compras pequenas e reembolsáveis (Pix e cartão), com tudo o que conferir em cada ponto.", D + "<h3>O que conferir em cada ponto</h3>" + points, True)}
 {sec("e", "E &middot; Eventos do funil P0", "Os 7 eventos separados (visita, oferta, clique com preço, checkout efetivo, Pix gerado, pagamento, entrega): o que configurar, o que o ClickMax não permite e como provar na compra de teste.", E_, True)}
+{sec("f", "F &middot; Lead, Reembolso e públicos", "Os 8 eventos (Lead e Reembolso entram), origem e coorte do lead, exportação de listas, públicos no Gerenciador, conciliação lead × comprador e a condição para recuperar as compras de 24/11.", F_, True)}
 {sec("criterios", "Critérios R1 a R8", "Marque cada um ao final do teste. Se algum falhar, me envie os prints do passo indicado.", crit)}
 {sec("prints", "O que me enviar, na ordem", "Um print por item. Pode mandar tudo junto.", prints)}
 </div>

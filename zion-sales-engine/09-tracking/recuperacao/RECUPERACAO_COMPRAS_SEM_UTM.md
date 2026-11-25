@@ -56,3 +56,27 @@ Confirmação final: Visão geral > Purchase na data real da compra e, em até 2
 - Risco de duplicidade: se o ClickMax enviar o Purchase depois (reenvio do histórico dele): ele só reenvia até 7 dias e com o id dele; confira o Histórico de envio. Se houver dois, o Meta mostra em Diagnóstico e a conciliação explica.
 - Risco legal: e-mail/telefone saem com hash; a base legal e a política de privacidade precisam cobrir o uso para mensuração [NC, orientação jurídica de Zion].
 - Reversão: um Purchase enviado não é apagado pelo script. Por isso o teste vem antes.
+
+
+## 8. Decisão de elegibilidade (reavaliada em 25/11/2026) · **ELEGÍVEL COM CONDIÇÃO**
+Conclusão: **elegível com condição.** Não é "elegível" simples porque o risco de duplicar só se descarta com a leitura B3; não é "não elegível" porque a janela está aberta e há dados mínimos (e-mail/telefone) para correspondência.
+
+| Critério | Avaliação |
+|---|---|
+| **Janela de 7 dias** da CAPI | As 2 compras reais são de **24/11** (R$ 97, Pix, sem UTM) [E, auditoria]. Limite duro = hora do pagamento + 7 dias = **01/12/2026, no mesmo horário** do pagamento. A hora exata de cada pagamento fica no ClickMax e não foi lida aqui [NC]. |
+| **Prazo restante hoje (25/11)** | **Cerca de 6 dias menos a hora do dia em que cada pagamento ocorreu** (entre 5 e 6 dias, a conferir). Prazo prático com margem de 1 dia: **executar até 29/11**; decisão de Bruno e passo B3 **até 27/11** para sobrar tempo ao teste. O script bloqueia sozinho linhas com mais de 7 dias. |
+| **`event_time`** | Hora **real** do pagamento (`paid_at`), nunca a hora do reenvio. Reenviar com `event_time` de agora seria inventar a data da compra. |
+| **Dados disponíveis** | E-mail, telefone e nome (ficha da compra). **Sem** `fbc`/`fbp` e **sem UTM** na venda [E]. Portanto a correspondência é só por e-mail/telefone com hash (EMQ baixo); **atribuição a anúncio não é garantida e não deve ser prometida**. |
+| **Risco de duplicar** | Alto **se** o Purchase nativo já chegou (o ClickMax usa id próprio, diferente do id da transação que o script usa: o Meta **não** deduplica os dois). Só se descarta com B3 (Gerenciador de Eventos) e A5 (Histórico de envio). |
+| **Valor** | O valor real da venda (R$ 97,00 nas duas), em reais. A oferta atual é R$ 47, mas **o evento reflete o que foi pago**; nunca corrigir para 47. |
+| **Atribuição** | Nenhuma UTM, campanha ou criativo é preenchido. Se o Meta atribuir, é por correspondência dele; se não, fica "compra sem atribuição" e a conciliação registra "não atribuída". |
+
+### Condição exata (passo B3 do tutorial) para executar
+Executar o reenvio **somente se TODAS** forem verdadeiras, nesta ordem:
+1. **B3:** Gerenciador de Eventos › pixel `903918118859018` › Visão geral › evento **Purchase**, período de 23/11 até hoje: **não há Purchase** das duas compras (nem do navegador, nem do servidor, com valor 97,00 BRL). Se houver qualquer um, **PARE** (a recuperação vira "não reenviar").
+2. **A5:** ClickMax › pixel › **Histórico de envio**: o Purchase dessas datas está **Falhou** ou **Não enviado** (e o motivo está anotado). "Enviado" = PARE.
+3. Hoje ≤ 29/11 e cada `paid_at` + 7 dias ainda no futuro (o dry-run do script confirma).
+4. Bruno diz **"aprovado"** por escrito, roda no terminal dele, com o token em variável de ambiente, **primeiro com `META_TEST_EVENT_CODE`** e só depois sem.
+5. O CSV real está **fora** do repositório e só tem o que a venda gravou (UTM vazia, `fbc`/`fbp` vazios).
+Se qualquer uma falhar: **opção 3** (registrar como venda sem atribuição). **Não elegível** passa a valer automaticamente em **01/12/2026** (ou antes, na hora de cada pagamento + 7 dias).
+Ajuste de documentação nesta rodada: o **valor `97.00`** do exemplo e do texto é o valor **real das duas compras** (oferta antiga); não confundir com o preço atual R$ 47.
