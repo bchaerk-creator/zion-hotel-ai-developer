@@ -22,3 +22,5 @@ Decisão de Bruno (25/11): produto separado, com entrega só da turma nova.
 
 ## Meta (25/11/2026)
 Campanha MM47 criada TUDO PAUSADA na conta Zion Collection 2: campanha 120250559484620016, conjunto 120250559488770016 (R$ 30/dia, LANDING_PAGE_VIEWS), 5 anúncios em meta-ids.json. Ativação aguarda "aprovado" de Bruno; LT47 não foi alterada.
+
+- 25/11 (noite): campanha Mini Mentoria 120250559484620016, conjunto 120250559488770016 (R$ 30/dia) e os 5 anúncios LIGADOS (aprovado por Bruno); LT47 120250557994600016 PAUSADA. Status lido de volta: não confirmado (cache do Windsor).
