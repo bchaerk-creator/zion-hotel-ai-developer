@@ -3,6 +3,16 @@
 Formato: data · o que mudou · onde · ids · aprovado por · como reverter.
 Só acrescentar entradas novas no topo. Ids de oferta e produto aparecem com 8 caracteres, como nos relatórios.
 
+
+---
+
+## 25/11/2026 · Fase 03 · AUDITOR + CONVERSION/DATA (correções do produto, só preparação)
+
+- Criada `15-correcoes-produto/`: `CORRECOES_PRODUTO.md`, `PLANO_APLICACAO.md`, `gerar_patch.py`, `patch/docs/trilha1/` (8 fichas + 3 scripts corrigidos, arquivos novos), `patch/diffs/` (um `.diff` por ficha) e `testes/teste_fichas.js` com `RESULTADO_ANTES_DEPOIS.txt`.
+- Teste (Playwright 390x844, rede interceptada, dados fictícios): originais com 46 falhas, incluindo POST ao host externo ao baixar o PDF nas 8 fichas; com o patch, aprovado e 0 requisições de saída.
+- **Nada aplicado:** `docs/`, turma, portal, lições e ofertas do ClickMax, Bela/Zaya e mensagens intactos. Aplicar, ocultar o vídeo de boas-vindas, renomear a turma e anexar arquivos exigem "aprovado" de Bruno. Regra de 25/11 aplicada (só "Acesso à plataforma digital").
+- Reverter: `git revert` do commit "Fase 03: correções do produto preparadas".
+
 ---
 
 ## 25/11/2026 · Fase 03 · DATA (rastreamento)

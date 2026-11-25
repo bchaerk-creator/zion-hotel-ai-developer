@@ -1,0 +1,175 @@
+===== ANTES (arquivos originais em docs/) =====
+ficha | resultado | salvo | PDF (páginas/bytes) | Land Bank (bloco/botão) | anexos/reunião | req. de SAÍDA ao baixar PDF | req. de saída carga+preenchimento
+marco-zero | ok | 1 chave(s) | 1p/8029B | 1/1 | 0(upload 0)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+aula1 | ok | 3 chave(s) | 4p/36550B | 1/1 | 1(upload 1)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+aula2 | ok | 5 chave(s) | 4p/38280B | 1/1 | 0(upload 0)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+aula3 | ok | 7 chave(s) | 4p/36025B | 1/1 | 0(upload 0)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+pilar4 | ok | 9 chave(s) | 4p/47960B | 1/1 | 0(upload 0)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+pilar5 | ok | 11 chave(s) | 6p/75069B | 1/1 | 1(upload 1)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+pilar6 | ok | 13 chave(s) | 6p/73502B | 1/1 | 0(upload 0)/0 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+pilar7 | ok | 15 chave(s) | 15p/177857B | 1/1 | 0(upload 0)/1 | POST zion-dossie-aulas.lovable.app | GET api.clickmax.io
+
+-- frase "Nada é enviado" (tela inicial da ficha / tela do resultado):
+  marco-zero: inicial: Nada é enviado. ; resultado: (não aparece)
+  aula1: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  aula2: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  aula3: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar4: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar5: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar6: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar7: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+-- termos antigos na tela:
+  marco-zero: banco de áreas, enviar ao
+  aula1: banco de áreas, enviar ao, montar o seu estudo
+  aula2: banco de áreas, enviar ao
+  aula3: banco de áreas, enviar ao
+  pilar4: banco de áreas, enviar ao
+  pilar5: banco de áreas, enviar ao, montar o seu estudo
+  pilar6: banco de áreas, enviar ao
+  pilar7: banco de áreas, enviar ao
+-- bloco de anexos/reunião/Land Bank na tela:
+  marco-zero: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  aula1: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  aula2: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  aula3: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  pilar4: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  pilar5: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  pilar6: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+  pilar7: Banco de áreas da Zion Guarde esta página do seu Dossiê no seu cadastro do banco de áreas da Zion. A Zion avalia cada caso: não é promessa de investimento, crédito, compra ou sociedade. Autorizo a Zion a guardar esta página no meu cadastro do banco de áreas da
+-- clique em "Enviar ao Land Bank" (requisições geradas):
+  marco-zero: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  aula1: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  aula2: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  aula3: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  pilar4: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  pilar5: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  pilar6: POST https://zion-dossie-aulas.lovable.app/api/dossie
+  pilar7: POST https://zion-dossie-aulas.lovable.app/api/dossie
+-- mentor virtual (clique opcional do aluno; fora do critério de aprovação):
+  aula1: POST zion-dossie-aulas.lovable.app/api/feedback
+  aula2: POST zion-dossie-aulas.lovable.app/api/feedback
+  aula3: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar4: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar5: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar6: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar7: POST zion-dossie-aulas.lovable.app/api/feedback
+-- varredura do código servido (termos antigos / envio):
+  trilha1/marco-zero/index.html: api.clickmax.io, cxs(, zx-lead, lovable.app [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/aula1/index.html: api.clickmax.io, cxs(, lovable.app, zx-lead, banco de áreas [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/aula2/index.html: api.clickmax.io, cxs(, lovable.app, banco de áreas, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/aula3/index.html: api.clickmax.io, cxs(, lovable.app, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar4/index.html: api.clickmax.io, cxs(, lovable.app, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar5/index.html: api.clickmax.io, cxs(, lovable.app, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar6/index.html: api.clickmax.io, cxs(, lovable.app, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar7/index.html: api.clickmax.io, cxs(, lovable.app, banco de áreas, zx-lead [fetch POST: 2; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/_landbank.js: land bank, land members, banco de áreas, enviar ao
+  trilha1/_anexos.js: lovable.app, montar o seu estudo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/_reuniao.js: banco de áreas
+
+-- total de requisições externas interceptadas: 47 (estáticas permitidas GET fontes/jsPDF: 16; DEMAIS: 31)
+   hosts das demais: GET api.clickmax.io; POST zion-dossie-aulas.lovable.app
+   erros de JS: nenhum
+
+ANTES: 46 falha(s) de critério (esperado: várias, é a prova do achado)
+  - marco-zero: bloco/botão Land Bank presente
+  - marco-zero: requisição de saída ao baixar o PDF
+  - marco-zero: requisição de saída na carga/preenchimento
+  - marco-zero: termo antigo na tela: banco de áreas,enviar ao
+  - aula1: bloco/botão Land Bank presente
+  - aula1: bloco de anexos ainda tem upload
+  - aula1: requisição de saída ao baixar o PDF
+  - aula1: requisição de saída na carga/preenchimento
+  - aula1: termo antigo na tela: banco de áreas,enviar ao,montar o seu estudo
+  - aula2: bloco/botão Land Bank presente
+  - aula2: requisição de saída ao baixar o PDF
+  - aula2: requisição de saída na carga/preenchimento
+  - aula2: termo antigo na tela: banco de áreas,enviar ao
+  - aula3: bloco/botão Land Bank presente
+  - aula3: requisição de saída ao baixar o PDF
+  - aula3: requisição de saída na carga/preenchimento
+  - aula3: termo antigo na tela: banco de áreas,enviar ao
+  - pilar4: bloco/botão Land Bank presente
+  - pilar4: requisição de saída ao baixar o PDF
+  - pilar4: requisição de saída na carga/preenchimento
+  - pilar4: termo antigo na tela: banco de áreas,enviar ao
+  - pilar5: bloco/botão Land Bank presente
+  - pilar5: bloco de anexos ainda tem upload
+  - pilar5: requisição de saída ao baixar o PDF
+  - pilar5: requisição de saída na carga/preenchimento
+  - pilar5: termo antigo na tela: banco de áreas,enviar ao,montar o seu estudo
+  - pilar6: bloco/botão Land Bank presente
+  - pilar6: requisição de saída ao baixar o PDF
+  - pilar6: requisição de saída na carga/preenchimento
+  - pilar6: termo antigo na tela: banco de áreas,enviar ao
+  - pilar7: bloco/botão Land Bank presente
+  - pilar7: requisição de saída ao baixar o PDF
+  - pilar7: requisição de saída na carga/preenchimento
+  - pilar7: termo antigo na tela: banco de áreas,enviar ao
+  - trilha1/marco-zero/index.html: termo antigo no código: api.clickmax.io,cxs(,zx-lead,lovable.app
+  - trilha1/aula1/index.html: termo antigo no código: api.clickmax.io,cxs(,lovable.app,zx-lead,banco de áreas
+  - trilha1/aula2/index.html: termo antigo no código: api.clickmax.io,cxs(,lovable.app,banco de áreas,zx-lead
+  - trilha1/aula3/index.html: termo antigo no código: api.clickmax.io,cxs(,lovable.app,zx-lead
+  - trilha1/pilar4/index.html: termo antigo no código: api.clickmax.io,cxs(,lovable.app,zx-lead
+  - trilha1/pilar5/index.html: termo antigo no código: api.clickmax.io,cxs(,lovable.app,zx-lead
+
+===== DEPOIS (patch/docs/ sobre docs/) =====
+ficha | resultado | salvo | PDF (páginas/bytes) | Land Bank (bloco/botão) | anexos/reunião | req. de SAÍDA ao baixar PDF | req. de saída carga+preenchimento
+marco-zero | ok | 1 chave(s) | 1p/8029B | 0/0 | 0(upload 0)/0 | 0 | 0
+aula1 | ok | 2 chave(s) | 4p/36550B | 0/0 | 1(upload 0)/0 | 0 | 0
+aula2 | ok | 3 chave(s) | 4p/38280B | 0/0 | 0(upload 0)/0 | 0 | 0
+aula3 | ok | 4 chave(s) | 4p/36025B | 0/0 | 0(upload 0)/0 | 0 | 0
+pilar4 | ok | 5 chave(s) | 4p/47960B | 0/0 | 0(upload 0)/0 | 0 | 0
+pilar5 | ok | 6 chave(s) | 6p/75069B | 0/0 | 1(upload 0)/0 | 0 | 0
+pilar6 | ok | 7 chave(s) | 6p/73502B | 0/0 | 0(upload 0)/0 | 0 | 0
+pilar7 | ok | 8 chave(s) | 15p/176945B | 0/0 | 0(upload 0)/1 | 0 | 0
+
+-- frase "Nada é enviado" (tela inicial da ficha / tela do resultado):
+  marco-zero: inicial: Nada é enviado. ; resultado: (não aparece)
+  aula1: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  aula2: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  aula3: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar4: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar5: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar6: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+  pilar7: inicial: Nada é enviado sem você pedir. ; resultado: (não aparece)
+-- termos antigos na tela:
+  marco-zero: limpo
+  aula1: limpo
+  aula2: limpo
+  aula3: limpo
+  pilar4: limpo
+  pilar5: limpo
+  pilar6: limpo
+  pilar7: limpo
+-- bloco de anexos/reunião/Land Bank na tela:
+  aula1: Depois do Dossiê: solicite a Sessão de diagnóstico estratégico Ao concluir o Dossiê, você pode solicitar a Sessão de diagnóstico estratégico com a nossa equipe para apresentar o seu projeto, terreno ou empreendimento. É a sua oportunidade de buscar parceiros e
+  pilar5: Depois do Dossiê: solicite a Sessão de diagnóstico estratégico Ao concluir o Dossiê, você pode solicitar a Sessão de diagnóstico estratégico com a nossa equipe para apresentar o seu projeto, terreno ou empreendimento. É a sua oportunidade de buscar parceiros e
+  pilar7: Depois do Dossiê: solicite a Sessão de diagnóstico estratégico Ao concluir o Dossiê, você pode solicitar a Sessão de diagnóstico estratégico com a nossa equipe para apresentar o seu projeto, terreno ou empreendimento. É a sua oportunidade de buscar parceiros e
+-- clique em "Enviar ao Land Bank" (requisições geradas):
+-- mentor virtual (clique opcional do aluno; fora do critério de aprovação):
+  aula1: POST zion-dossie-aulas.lovable.app/api/feedback
+  aula2: POST zion-dossie-aulas.lovable.app/api/feedback
+  aula3: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar4: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar5: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar6: POST zion-dossie-aulas.lovable.app/api/feedback
+  pilar7: POST zion-dossie-aulas.lovable.app/api/feedback
+-- varredura do código servido (termos antigos / envio):
+  trilha1/marco-zero/index.html: limpo
+  trilha1/aula1/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/aula2/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/aula3/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar4/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar5/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar6/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/pilar7/index.html: limpo [fetch POST: 1; no DEPOIS o único é pedirMentor, por clique]
+  trilha1/_landbank.js: limpo
+  trilha1/_anexos.js: limpo
+  trilha1/_reuniao.js: limpo
+
+-- total de requisições externas interceptadas: 23 (estáticas permitidas GET fontes/jsPDF: 16; DEMAIS: 7)
+   hosts das demais: POST zion-dossie-aulas.lovable.app
+   erros de JS: nenhum
+
+DEPOIS: APROVADO (0 falha(s))
+exit=0
