@@ -37,8 +37,8 @@ const cards=[
 <div class="b w" style="left:560px;width:470px;top:1100px;font-size:28px;color:#fff;font-weight:500;text-transform:none;line-height:1.25">Possibilidade de parcerias e investimento sujeita à análise de cada interessado. Sem garantia.</div>`],
 // 4 autoridade (original 6, foto trocada por foto real sem pessoas)
 [`o6.png`,`<div class="b" style="left:445px;top:795px;width:635px;height:555px;background:${PU}"></div><div class="b" style="left:150px;top:1160px;width:930px;height:190px;background:${PU}"></div>
-<div class="b s" style="left:455px;width:590px;top:828px;font-size:46px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.06">Operamos hospedagens há mais de 20 anos</div>
-<div class="b s" style="left:455px;width:590px;top:985px;font-size:30px;font-weight:700;color:#0b0b0b;text-transform:uppercase;line-height:1.1">e somos referência em glamping no Brasil</div>
+<div class="b s" style="left:455px;width:600px;top:830px;font-size:37px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.06">Desenvolvemos projetos de hospedagem e turismo há mais de 20 anos</div>
+<div class="b s" style="left:455px;width:590px;top:968px;font-size:30px;font-weight:700;color:#0b0b0b;text-transform:uppercase;line-height:1.1">e somos referência em glamping no Brasil</div>
 <div class="b s" style="left:160px;width:880px;top:1120px;font-size:34px;color:#fff;line-height:1.18">Ao fazer a mentoria, você acessa a plataforma Zion, que faz parte da nossa expansão. E pode ser um próximo parceiro Zion a partir do resultado do seu projeto*</div>
 <div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
 // 5 oportunidade (original 5): o que recebe
