@@ -25,8 +25,17 @@ section#hero.hero{padding-bottom:0}
 .sec.hero p.sub{font-size:20px;margin-top:14px}
 .sec.hero p.selo{background:#1B2117;margin-top:14px}
 @media(min-width:760px){.sec.hero .htop{padding:48px 20px 22px}.sec.hero p.sub{font-size:25px}.hero .hbot{padding:10px 20px 56px}}
+.barra{display:none}
+@media(max-width:760px){
+.barra{display:flex;align-items:center;justify-content:space-between;gap:12px;position:fixed;left:0;right:0;bottom:0;z-index:50;background:#1B2117;border-top:2px solid #C9B37E;padding:10px max(16px,env(safe-area-inset-right,0px)) calc(10px + env(safe-area-inset-bottom,0px)) max(16px,env(safe-area-inset-left,0px));transform:translateY(110%);visibility:hidden;transition:transform .25s ease,visibility .25s}
+.barra.on{transform:none;visibility:visible}
+.barra .btn{flex:1 1 auto;margin:0;padding:13px 10px;font-size:13.5px;line-height:1.2;text-align:center;white-space:normal}
+.barra .bp{flex:0 0 auto;margin:0;font-family:Jost,sans-serif;font-size:11.5px;line-height:1.3;color:#DED6BF;text-align:right}
+.barra .bp b{display:block;font-size:15px;color:#FEF5F0;font-weight:600}
+body{padding-bottom:calc(88px + env(safe-area-inset-bottom,0px))}
+}
 """
-BASE = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/"
+BASE ="https://bchaerk-creator.github.io/zion-hotel-ai-developer/"
 CTA = "QUERO TRANSFORMAR MEU TERRENO"
 AVISO = ("O valor corresponde ao acesso ao conteúdo digital. Não garante parceria nem investimento: "
          "a Zion avalia cada caso, e qualquer possibilidade de parceria ou investimento depende dessa análise.")
@@ -146,6 +155,8 @@ FAQ = [
 faq = "".join(f'<div><div class="cm-accordion-header">{e(q)}</div><div class="cm-accordion-content">{e(a)}</div></div>' for q, a in FAQ)
 B.append(sec("faq", "creme", '<p class="k">Perguntas frequentes</p><h2>Clareza para começar</h2>'
              f'<div style="margin-top:20px">{faq}</div>', extra=" faq"))
+BARRA = ('<div class="barra" id="barra" aria-hidden="true">' + btn().replace('class="btn"','class="btn" tabindex="-1"') +
+    '<p class="bp"><b>R$ 47</b>pagamento único</p></div>')
 B.append('<footer><div class="w"><p>Zion Hotel Group International · Conteúdo educacional. Resultados dependem do contexto e da execução. '
          f'{e(AVISO)}</p><p>Suporte: WhatsApp +55 48 6137-1061</p></div></footer>')
 
@@ -163,6 +174,16 @@ HTML = f"""<!doctype html>
 </head>
 <body>
 {"".join(B)}
+{BARRA}
+<script>
+(function(){{var b=document.getElementById("barra"),h=document.getElementById("hero"),p=document.getElementById("pagar");
+if(!b||!h||!p||!window.IntersectionObserver)return;
+var hv=true,pv=false;
+function u(){{var on=!hv&&!pv;b.classList.toggle("on",on);b.setAttribute("aria-hidden",on?"false":"true");var a=b.querySelector("a");if(a)a.tabIndex=on?0:-1}}
+new IntersectionObserver(function(e){{hv=e[0].isIntersecting;u()}}).observe(h);
+new IntersectionObserver(function(e){{pv=e[0].isIntersecting;u()}},{{threshold:0.05}}).observe(p);
+}})();
+</script>
 </body>
 </html>
 """
