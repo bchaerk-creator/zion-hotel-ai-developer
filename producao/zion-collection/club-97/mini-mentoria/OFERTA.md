@@ -19,3 +19,6 @@ Decisão de Bruno (25/11): produto separado, com entrega só da turma nova.
 
 ## Oferta antiga (sem alteração)
 - `74a3f8c6-fc1d-4aa8-9ac9-7769a1c49aa5` (checkout `lbpKjFcTMy`), dentro do produto `072083e8…`, ainda entrega as duas turmas (antiga e nova). Ficou sem uso, sem arquivar, a pedido.
+
+## Meta (25/11/2026)
+Campanha MM47 criada TUDO PAUSADA na conta Zion Collection 2: campanha 120250559484620016, conjunto 120250559488770016 (R$ 30/dia, LANDING_PAGE_VIEWS), 5 anúncios em meta-ids.json. Ativação aguarda "aprovado" de Bruno; LT47 não foi alterada.
