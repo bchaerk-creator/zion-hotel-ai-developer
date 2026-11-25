@@ -14,7 +14,7 @@ A verificação dos entregáveis (o que existe na turma) é do CONVERSION e não
 | 4 | E-mail de acesso | "Acesso à área liberado": nome da área ("Plataforma Zion Collection"), botão que abre a tela de login **com o e-mail já preenchido**, e-mail de suporte da área (ou o da conta, se a área não tem) | ClickMax, e-mail automático da área de membros (usa nome, logo e cor da área) | [E] regra documentada: sai quando a pessoa ganha acesso a uma área que ainda não tinha, por compra. [NC] remetente exato e assunto: a documentação só diz que, com até 500 pessoas, sai "pelo endereço de sempre" (o de e-mails automáticos); o endereço e o assunto não estão na documentação nem em nenhuma ferramenta. [NC] chegada real nesta oferta | Spam; e-mail digitado errado; vem do ClickMax e não da Zion (o comprador pode não reconhecer) | Compra de teste; `member_users_send_access_link` reenvia (com "aprovado") |
 | 5 | Login | Tela de login do portal `zion-plataforma.clickmax.space` | ClickMax, portal `3ef7a340` | [E] `firstAccessWithoutPass` true e `allowSimplePass` true: o primeiro acesso é sem senha criada antes. O link do e-mail abre o login com o e-mail preenchido [E, documentação]. [NC] se o link entra direto, sem digitar nada, ou se pede um código/senha simples: o passo exato da tela não foi visto (login bloqueado aqui). Há ainda a rota de código de 6 dígitos por e-mail ("pedido de código de acesso") [E, doc] | Comprador usa outro e-mail; confunde com a área "Zion Collection" (Club) | Compra de teste, no celular |
 | 6 | Orientação inicial | Primeiro módulo "Comece aqui · Onboarding": 3 itens (vídeo "Bem-vindo à plataforma Zion Collection", "Monte o seu dossiê inicial", "Suporte") | ClickMax, turma `087479a3` | [E] existe, mas **tem lacunas** (seção 3) | Ver seção 3 | Leitura das lições (feita) e teste de Bruno |
-| 7 | Plataforma | 9 módulos e 70 aulas e materiais, todos habilitados; acesso de 12 meses | ClickMax, conteúdo `79d3e792` | [E] 9 módulos, 70 itens, `defaultAccessDuration` 12 meses, liberação "dias após a compra" sem prazo configurado (tudo liberado) | Vídeo e links externos (GitHub Pages, YouTube, Airtable) fora do ClickMax | Percorrer 1 aula de cada tipo |
+| 7 | Plataforma | 9 módulos e 70 conteúdos, todos habilitados; acesso à plataforma digital | ClickMax, conteúdo `79d3e792` | [E] 9 módulos, 70 itens, `defaultAccessDuration` 12 meses, liberação "dias após a compra" sem prazo configurado (tudo liberado) | Vídeo e links externos (GitHub Pages, YouTube, Airtable) fora do ClickMax | Percorrer 1 aula de cada tipo |
 
 ### Como o acesso é criado após a compra [E]
 - A oferta `0c71eeba` tem 1 entrega `internal_membership` (portal `3ef7a340`, turma `087479a3`) [E, `offers_get`]. Pagamento aprovado cria o usuário de membro e o coloca na turma, sem fluxo e sem liberação manual (documentação do ClickMax, "Como entrego meu curso na área de membros", passo 3).
@@ -54,9 +54,9 @@ Outras lições citam "enviar ao banco de áreas" e "mentor de IA" (CONVERSION, 
 
 ### Texto A · Aula-texto proposta, nova lição 0 do Onboarding ("Leia primeiro: o que você comprou e por onde começar")
 > **Você está na plataforma da Mini Mentoria de Estruturação Zion.**
-> Esta é uma formação digital autônoma: você estuda no seu ritmo, durante 12 meses, e monta o seu Dossiê passo a passo.
+> Esta é uma formação digital autônoma: você estuda no seu ritmo e monta o seu Dossiê passo a passo.
 >
-> **O que você tem aqui:** 9 módulos e 70 aulas e materiais: aulas gravadas, aulas interativas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos para você preencher), kit com 9 comandos de IA e o Dossiê, que você gera em PDF no final.
+> **O que você tem aqui:** 9 módulos e 70 conteúdos: aulas gravadas, aulas interativas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos para você preencher), kit com 9 comandos de IA e o Dossiê, que você gera em PDF no final.
 >
 > **O que não está incluído:** reunião e atendimento individual. Não prometemos investimento, parceria, ocupação ou renda: o que você leva é o conhecimento e o seu Dossiê.
 >
@@ -96,7 +96,7 @@ Compra real de Bruno (já descrita em `CHECKLIST_ENTREGA_E_RECUPERACAO_MM47.md`)
 ## 6. O que foi criado ou alterado em rascunho (tudo não ativo, nada enviado)
 | Item | Id | Alteração |
 |---|---|---|
-| Modelo `[RASCUNHO] MM47 · Boas-vindas e acesso` | `97330e1d-0975-4ef2-99e9-a836a7750465` | Reescrito no padrão P0: nome Zion, R$ 47, 12 meses, o que comprou, como acessar, onde começar (Onboarding, Marco Zero, Pilares), suporte, garantia |
+| Modelo `[RASCUNHO] MM47 · Boas-vindas e acesso` | `97330e1d-0975-4ef2-99e9-a836a7750465` | Reescrito no padrão P0: nome Zion, R$ 47, acesso à plataforma digital, o que comprou, como acessar, onde começar (Onboarding, Marco Zero, Pilares), suporte, garantia |
 | Fluxo `[RASCUNHO] MM47 · Pós-compra`, passo de e-mail | fluxo `50e32512-e263-4074-ada4-8f3d3d347ed7`, passo `e2793276-c5c0-4a60-97ef-b5c1031f1089` | Mesmo conteúdo do modelo |
 | Modelo **novo** `[RASCUNHO] MM47 · Confirmação da compra (o que você comprou)` | `ef272b75-47b2-4880-8c8a-4c48543a024d` | Biblioteca apenas, **não ligado a fluxo** (evita 4 e-mails seguidos). Usar no lugar da boas-vindas só se Bruno quiser separar confirmação e acesso |
 | Modelo `[RASCUNHO] MM47 · Pix expirado` | `0f78a232-d2e3-490c-b848-6e8243fbad47` | Padrão P0 e botão "QUERO ACESSAR A PLATAFORMA POR R$47" |

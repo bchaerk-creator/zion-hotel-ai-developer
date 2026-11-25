@@ -6,7 +6,7 @@ TAGS='utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content={id}&utm_ter
 DESC='Mini Mentoria Zion · R$ 47 · pagamento único'
 CTA='Acesse a plataforma por R$ 47'
 CURTO='R$ 47, pagamento único, Pix ou cartão à vista. Reembolso em 7 dias.'
-LONGO=('Mini Mentoria de Estruturação Zion: formação digital autônoma com 9 módulos e 70 aulas e materiais, 12 meses de acesso. '
+LONGO=('Mini Mentoria de Estruturação Zion: formação digital autônoma com 9 módulos e 70 conteúdos, e acesso à plataforma digital. '
 'Você recebe aulas gravadas, fichas interativas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (guia e modelos), '
 'kit com 9 comandos prontos para usar com IA e Dossiê em PDF.\n\nR$ 47, pagamento único, sem mensalidade. Pix ou cartão à vista. Reembolso em até 7 dias. '
 'Sem reunião e sem atendimento individual. Parcerias e investimentos não são garantidos nem fazem parte da compra.')
@@ -53,7 +53,7 @@ dict(id='mm47p0-n05-ponto-de-partida',conceito='Transformação do conhecimento 
  hipotese='Mostra o processo e separa o que a plataforma entrega do resultado externo. Métrica: CTR e tempo na página.'),
 dict(id='mm47p0-n06-entregaveis-numeros',conceito='Demonstração dos entregáveis (oferta em números)',ecroi='O, I',formato='imagem',files=['n06-entregaveis-numeros.jpg'],
  hook='O que vem dentro, em números.',headline='O que vem dentro, em números',
- primeira='Acesse a plataforma por R$ 47 · 9 módulos, 70 aulas e materiais, 12 meses de acesso e o Dossiê em PDF.',
+ primeira='Acesse a plataforma por R$ 47 · 9 módulos, 70 conteúdos, acesso à plataforma digital e o Dossiê em PDF.',
  texto='Todos os números vêm do conteúdo verificado da turma (ver ENTREGAVEIS_VERIFICADOS.md).\n\n'+LONGO,
  hipotese='Concreto e verificável; bom para remarketing. Métrica: início de checkout e compra.'),
 dict(id='mm47p0-n07-para-quem-e',conceito='Quebra de objeções / filtro (para quem é e para quem não é)',ecroi='R, C',formato='imagem',files=['n07-para-quem-e.jpg'],

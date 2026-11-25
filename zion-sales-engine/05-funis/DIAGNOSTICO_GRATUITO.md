@@ -98,7 +98,7 @@ Enviado só depois que a pessoa toca "Quero saber como estruturar" (ou 2 h depoi
 
 > Pelo que você nos contou, o próximo passo é completar e juntar as informações do seu projeto num só lugar.
 > Para isso existe a **Mini Mentoria de Estruturação Zion**: uma formação digital, gravada, em que você aprende o passo a passo para estruturar o seu projeto e prepará-lo para apresentar a potenciais parceiros e investidores. Ela já inclui a ficha de Pré-viabilidade e o Dossiê do seu projeto.
-> **O que você recebe:** acesso à plataforma por 12 meses, 9 módulos, 70 aulas e materiais (aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, modelos do Kit do Investidor, kit com 9 comandos prontos para IA e o Dossiê em PDF).
+> **O que você recebe:** acesso à plataforma digital, 9 módulos, 70 conteúdos (aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, modelos do Kit do Investidor, kit com 9 comandos prontos para IA e o Dossiê em PDF).
 > **Valor: R$ 47, pagamento único**, Pix ou cartão à vista, sem mensalidade, com garantia de 7 dias.
 > É formação autônoma: não é consultoria, não tem reunião nem atendimento individual, e não prometemos investimento nem parceria.
 > Veja a plataforma por dentro e, se fizer sentido, finalize pela página: {link da landing v2}
@@ -123,7 +123,7 @@ Depois do T5 a sequência **termina**. Nova mensagem só com nova decisão e nov
 
 **T4 · e-mail dia 2** · assunto: `O resumo do seu diagnóstico de estágio`
 > Olá, {nome}. Você pediu o resumo do seu diagnóstico gratuito. Em uma frase: o seu projeto está na faixa "{faixa_nome}". Pontos que mais pedem atenção: {prioridades}. Como a nota foi calculada: {link ou texto do explicar()}.
-> A Mini Mentoria de Estruturação Zion (R$ 47, pagamento único, 12 meses de acesso, garantia de 7 dias) é uma formação gravada com 9 módulos e 70 aulas e materiais. **Não inclui** reunião, atendimento individual, consultoria nem promessa de investimento ou parceria.
+> A Mini Mentoria de Estruturação Zion (R$ 47, pagamento único, acesso à plataforma digital, garantia de 7 dias) é uma formação gravada com 9 módulos e 70 conteúdos. **Não inclui** reunião, atendimento individual, consultoria nem promessa de investimento ou parceria.
 > [QUERO ACESSAR A PLATAFORMA POR R$47] → landing v2
 > Este diagnóstico é um retrato do estágio das informações que você nos enviou, não é avaliação do terreno nem promessa de investimento. Para não receber mais e-mails: {link de descadastro}.
 

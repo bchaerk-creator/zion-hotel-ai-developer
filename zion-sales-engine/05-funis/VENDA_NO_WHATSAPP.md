@@ -48,7 +48,7 @@ Roteiro em 3 blocos curtos (ou uma única mensagem se o lead já pediu o preço)
 > {Espelho em 1 frase: ex. "Pelo que você contou, o seu desafio é sair do 'tenho o terreno' para um projeto estruturado."}
 > Para isso temos a **Mini Mentoria de Estruturação Zion**: uma formação digital, gravada, em que você aprende o passo a passo para estruturar o seu projeto e preparar a apresentação a potenciais parceiros e investidores.
 >
-> O que você recebe: acesso à plataforma por 12 meses, 9 módulos, 70 aulas e materiais (aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, modelos do Kit do Investidor, kit de prompts e o Dossiê do seu projeto em PDF).
+> O que você recebe: acesso à plataforma digital, 9 módulos, 70 conteúdos (aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, modelos do Kit do Investidor, kit de prompts e o Dossiê do seu projeto em PDF).
 >
 > Valor: **R$ 47, pagamento único** (Pix ou cartão à vista), sem mensalidade, com **garantia de 7 dias**. É um curso, não é reunião nem consultoria, e não prometemos investimento nem parceria.
 > Veja tudo e, se fizer sentido, finalize aqui: {link da landing v2 ou do checkout limpo}

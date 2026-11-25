@@ -62,7 +62,7 @@ ${H('Mini Mentoria<br>de Estruturação',190,96)}
 ${T('pagamento único<br>Pix ou cartão à vista<br>reembolso em 7 dias',650,38,C.creme)}
 ${tela('aula',650,420,350,470)}
 <div class="b" style="left:650px;top:900px;width:350px;font-size:20px;text-align:center;color:${C.areia}">Tela real da plataforma</div>
-<div class="b" style="left:80px;top:940px;width:560px;font-size:30px;line-height:1.3;font-weight:700;color:${C.ouro}">9 módulos · 70 aulas e materiais<br>12 meses de acesso</div>
+<div class="b" style="left:80px;top:940px;width:560px;font-size:30px;line-height:1.3;font-weight:700;color:${C.ouro}">9 módulos · 70 conteúdos<br>acesso à plataforma digital</div>
 ${T('Aulas gravadas, fichas “Faça agora”, e-books, planilhas em branco, modelos e Dossiê.',1030,26,C.areia,'right:380px')}
 ${cta(1142,'Aprenda o passo a passo · R$ 47')}${foot()}`]);
 
@@ -112,8 +112,8 @@ dem(4,'3 · PILAR 6','A sua pré-viabilidade','Quanto custa abrir, quanto entra,
 `${bg(C.musgo)}${logo()}${tag()}
 ${H('Mini Mentoria<br>de Estruturação',200,96)}
 <div class="b co" style="left:80px;top:430px;font-size:190px;line-height:1;font-weight:700;color:${C.ouro}">R$ 47</div>
-${T('pagamento único · Pix ou cartão à vista<br>reembolso em 7 dias · 12 meses de acesso',660,36,C.creme)}
-${T('9 módulos · 70 aulas e materiais: aulas gravadas, fichas “Faça agora”, e-books, planilhas em branco, kit do investidor (modelos) e Dossiê.',820,31,C.areia)}
+${T('pagamento único · Pix ou cartão à vista<br>reembolso em 7 dias · acesso à plataforma digital',660,36,C.creme)}
+${T('9 módulos · 70 conteúdos: aulas gravadas, fichas “Faça agora”, e-books, planilhas em branco, kit do investidor (modelos) e Dossiê.',820,31,C.areia)}
 ${cta(1040,'Aprenda o passo a passo · R$ 47')}${foot()}`]);
 
 // C04 · carrossel educativo/tutorial: a ordem certa (conteúdo da trilha da plataforma)
@@ -131,7 +131,7 @@ edu('PILARES 6 E 7','A conta e o Dossiê','Pré-viabilidade com planilhas para a
 `${bg(C.musgo)}${logo()}${tag()}
 ${H('Aprenda esse passo a passo na Mini Mentoria',200,92)}
 <div class="b co" style="left:80px;top:560px;font-size:170px;line-height:1;font-weight:700;color:${C.ouro}">R$ 47</div>
-${T('9 módulos · 70 aulas e materiais · 12 meses de acesso<br>pagamento único · Pix ou cartão à vista · reembolso em 7 dias',760,32,C.creme)}
+${T('9 módulos · 70 conteúdos · acesso à plataforma digital<br>pagamento único · Pix ou cartão à vista · reembolso em 7 dias',760,32,C.creme)}
 ${cta(1010,'Aprenda o passo a passo · R$ 47')}${foot()}`]);
 
 module.exports={P};

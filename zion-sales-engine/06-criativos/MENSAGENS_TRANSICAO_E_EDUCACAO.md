@@ -13,7 +13,7 @@
 - **Corpo:**
 > Olá, {{1}}! Seu cadastro gratuito na Zion foi recebido. Você vai receber conteúdos sobre como estruturar um projeto turístico, sem obrigação de compra.
 >
-> A Zion também tem formações pagas, como a Mini Mentoria de Estruturação Zion: R$ 47, pagamento único, 12 meses de acesso. Não é reunião nem consultoria, e não garantimos investimento nem parceria.
+> A Zion também tem formações pagas, como a Mini Mentoria de Estruturação Zion: R$ 47, pagamento único, com acesso à plataforma digital. Não é reunião nem consultoria, e não garantimos investimento nem parceria.
 >
 > Quer ver o que vem na formação? Toque no botão abaixo. Se preferir não receber mensagens, toque em "Não quero receber".
 - **Rodapé (opcional):** Zion · Mensagem de marketing
@@ -55,7 +55,7 @@ Regras: remetente identificado; link de saída em um clique em todos; e-mail de 
 ### E3 · Dia 6 · "Conheça a Mini Mentoria de Estruturação Zion (R$ 47)"
 > Olá, {{nome}}. Como prometemos, aqui está a formação paga, com tudo às claras.
 >
-> **Mini Mentoria de Estruturação Zion** · formação digital autônoma · **R$ 47, pagamento único**, sem mensalidade · Pix ou cartão à vista · **12 meses de acesso** · 9 módulos, 70 aulas e materiais: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos), kit de prompts e Dossiê em PDF · **reembolso em até 7 dias**.
+> **Mini Mentoria de Estruturação Zion** · formação digital autônoma · **R$ 47, pagamento único**, sem mensalidade · Pix ou cartão à vista · **acesso à plataforma digital** · 9 módulos, 70 conteúdos: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos), kit de prompts e Dossiê em PDF · **reembolso em até 7 dias**.
 >
 > **O que não é:** reunião, atendimento individual ou consultoria. Não inclui avaliação do seu terreno nem promete reservas, renda, parceria ou investimento. Você aprende o passo a passo e aplica no seu projeto.
 >

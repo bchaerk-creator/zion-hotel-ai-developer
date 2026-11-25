@@ -7,8 +7,8 @@ Para: Bruno Chaerk. De: ZION CREATIVE. Gravar hoje, no celular, na vertical. **N
 
 ## 1. O que é verdade e pode ser dito (conferido nas peças aprovadas P0 e Fase 03 [E]; **não improvise fora disso**)
 - Nome: **Mini Mentoria de Estruturação Zion**, formação digital autônoma. Frase-padrão: "Aprenda o passo a passo para estruturar o seu empreendimento turístico."
-- **R$ 47, pagamento único, sem mensalidade. Pix ou cartão à vista. Reembolso em até 7 dias** (Código de Defesa do Consumidor). **12 meses de acesso.**
-- **9 módulos, 70 aulas e materiais.** Você recebe: aulas gravadas; fichas interativas "Faça agora"; e-books por pilar; 2 planilhas de cálculo em branco; Kit do Investidor (guia e modelos); kit com 9 comandos prontos para usar com IA; **Dossiê** em PDF (cada ficha vira uma página).
+- **R$ 47, pagamento único, sem mensalidade. Pix ou cartão à vista. Reembolso em até 7 dias** (Código de Defesa do Consumidor). **Acesso à plataforma digital.**
+- **9 módulos, 70 conteúdos.** Você recebe: aulas gravadas; fichas interativas "Faça agora"; e-books por pilar; 2 planilhas de cálculo em branco; Kit do Investidor (guia e modelos); kit com 9 comandos prontos para usar com IA; **Dossiê** em PDF (cada ficha vira uma página).
 - A Zion opera hospedagens em Urubici e Florianópolis (fato). O método vem dessa operação.
 - Parcerias e investimentos: **possibilidades sujeitas à análise, fora da compra**. A frase permitida é "para apresentar a potenciais parceiros e investidores".
 - Honestidade sobre o acesso: a pessoa recebe o acesso por e-mail depois do pagamento aprovado [NC: o primeiro acesso do portal é sem senha; se for falar de login, confirmar o texto com a página].
@@ -29,7 +29,7 @@ Uso: venda fria (público que não conhece a Zion). Contagem: 150 palavras, ~55 
 | 3 · 14 a 22 s | R | "O que falta quase sempre é o projeto estruturado: quanto custa abrir, quem é o hóspede, quanto precisa entrar por mês." | Você; eu coloco três palavras-chave na tela |
 | 4 · 22 a 32 s | O | "Por isso existe a Mini Mentoria de Estruturação Zion: uma formação digital em que você aprende o passo a passo para estruturar o seu empreendimento turístico." | Corte para a **gravação de tela** da plataforma (tela inicial / Marco Zero) |
 | 5 · 32 a 40 s | I | "Na plataforma, você preenche as fichas Faça agora, e cada ficha vira uma página do seu Dossiê, em PDF." | Tela: uma ficha "Faça agora" sendo preenchida; depois a página do Dossiê |
-| 6 · 40 a 47 s | oferta | "São 9 módulos, 70 aulas e materiais e 12 meses de acesso." | Eu coloco a lista do que recebe (peça `n06`) |
+| 6 · 40 a 47 s | oferta | "São 9 módulos, 70 conteúdos e acesso à plataforma digital." | Eu coloco a lista do que recebe (peça `n06`) |
 | 7 · 47 a 55 s | preço | "Tudo por 47 reais, pagamento único, Pix ou cartão, com reembolso em 7 dias. Não é reunião nem consultoria, e não prometemos investimento nem parceria." | Cartela com **R$ 47**, condições e rodapé |
 | 8 · 55 a 60 s | CTA | "Toque em Saiba mais, veja a página completa e decida." | Você em câmera; cartela "Saiba mais · R$ 47" |
 
@@ -43,7 +43,7 @@ Uso: venda quente (já conhece a Zion) e fria como teste. Contagem: 171 palavras
 | 4 · 29 a 42 s | I | "Aqui, no pilar 6, estão as planilhas de cálculo em branco: você coloca os seus números e vê quanto custa abrir, quanto entra, quanto sobra e o tempo de volta." | Pilar 6, pré-viabilidade, planilha **em branco** |
 | 5 · 42 a 55 s | I | "E cada ficha que você preenche vira uma página do seu Dossiê. No final, você baixa tudo em PDF, organizado, para apresentar a potenciais parceiros e investidores." | Dossiê: fichas viram páginas; PDF final |
 | 6 · 55 a 60 s | clareza | "Isso não é garantia de parceria nem de investimento: é o seu projeto estruturado." | Tela parada no Dossiê; legenda destaca |
-| 7 · 60 a 70 s | preço | "São 9 módulos, 70 aulas e materiais, 12 meses de acesso, por 47 reais, pagamento único, Pix ou cartão, reembolso em 7 dias." | Cartela com R$ 47 e condições |
+| 7 · 60 a 70 s | preço | "São 9 módulos, 70 conteúdos e acesso à plataforma digital, por 47 reais, pagamento único, Pix ou cartão, reembolso em 7 dias." | Cartela com R$ 47 e condições |
 | 8 · 70 a 75 s | CTA | "Toque em Saiba mais e veja a página completa." | Cartela "Saiba mais · R$ 47" |
 **Telas que NÃO podem aparecer:** agendar, mapa, raio-X, implantação (não são da turma); **aula 1 do Onboarding** (vídeo cita Land Bank e "receber investimentos"); a lição do dossiê que manda "enviar à Zion"; qualquer calculadora/simulador; nome, e-mail ou foto de aluno; barra do navegador com e-mail logado. Se a plataforma tiver mudado de nome de menu, **diga o que está na tela**, sem inventar.
 
@@ -56,7 +56,7 @@ Uso: venda quente (remarketing), também serve a fria. Contagem: 128 palavras, ~
 | 3 · 16 a 26 s | R | "Preciso ter capital? Não para começar. O passo a passo começa no Marco Zero, com um diagnóstico do ponto em que você está." | Legenda; imagem do Marco Zero |
 | 4 · 26 a 35 s | O | "E se eu não gostar? Você tem reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor." | Legenda: "Reembolso em 7 dias" |
 | 5 · 35 a 45 s | C | "Vocês garantem parceria ou investimento? Não. Parcerias e investimentos são possibilidades sujeitas à análise e não fazem parte da compra." | Legenda: "Sem garantia de parceria ou investimento" |
-| 6 · 45 a 55 s | oferta | "Então o que você leva? 9 módulos, 70 aulas e materiais, 12 meses de acesso, por 47 reais, pagamento único." | Lista do que recebe + R$ 47 |
+| 6 · 45 a 55 s | oferta | "Então o que você leva? 9 módulos, 70 conteúdos e acesso à plataforma digital, por 47 reais, pagamento único." | Lista do que recebe + R$ 47 |
 | 7 · 55 a 60 s | CTA | "Toque em Saiba mais, veja a página completa e decida." | Cartela "Saiba mais · R$ 47" |
 
 ## 4. Enquadramento no celular (9:16)

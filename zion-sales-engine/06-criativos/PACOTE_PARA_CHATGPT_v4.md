@@ -9,7 +9,7 @@ Substitui `PACOTE_PARA_CHATGPT_v3.md` (v3 vira histórico; o que ele diz sobre c
 | **B · Venda quente** | 6 anúncios (carrosséis e imagens) | Mini Mentoria R$ 47, com preço | Página `/mini-mentoria` (landing v2), depois checkout limpo | A página |
 | **B · Venda fria** | 6 anúncios (carrosséis e imagens) | Mini Mentoria R$ 47, com preço | idem | A página |
 | **C · Vídeos novos de venda de Bruno** | 3 vídeos (gravação hoje) | Mini Mentoria R$ 47, com preço | idem | A página. **Reservado, ver §5** |
-Produto único: **Mini Mentoria de Estruturação Zion**, R$ 47, pagamento único, sem mensalidade, Pix ou cartão à vista, 12 meses, 9 módulos e 70 aulas e materiais, reembolso em 7 dias. Nome comercial único. Não criar produto novo.
+Produto único: **Mini Mentoria de Estruturação Zion**, R$ 47, pagamento único, sem mensalidade, Pix ou cartão à vista, acesso à plataforma digital, 9 módulos e 70 conteúdos, reembolso em 7 dias. Nome comercial único. Não criar produto novo.
 
 ## 1. BLOCO A · Entrada por WhatsApp (Vídeos 01 e 02) · detalhes completos em `ENTRADA_WHATSAPP.md`
 - **Objetivo da campanha:** mensagens (clique para WhatsApp). **Sem formulário, sem site.** Nome da campanha `entrada-whatsapp | AAAA-MM-DD`; nome do anúncio = id do criativo.
@@ -30,7 +30,7 @@ Público: quem visitou a página ou a oferta; quem conversou no WhatsApp **se** 
 | Q1 | `mm47f3-c02-plataforma-por-dentro` | **Carrossel 5** | `docs/ads/mm47-fase03/c02-plataforma-1..5.png` | Veja por dentro da plataforma | R$ 47 · Veja por dentro da plataforma: capturas reais das telas da Mini Mentoria de Estruturação. | Mini Mentoria Zion · R$ 47 |
 | Q2 | `mm47p0-n02-dossie-passeio` | **Carrossel 4** | `docs/ads/mm47-p0/n02-dossie-passeio-1..4.jpg` | Veja a plataforma por dentro | Acesse a plataforma por R$ 47 · Cada ficha vira uma página do seu Dossiê. Veja em três telas reais. | idem |
 | Q3 | `mm47f3-c08-oferta-47` | Imagem | `docs/ads/mm47-fase03/c08-oferta-47.png` | Mini Mentoria por R$ 47 | R$ 47 · Mini Mentoria de Estruturação: aprenda o passo a passo para estruturar o seu empreendimento turístico. | idem |
-| Q4 | `mm47p0-n06-entregaveis-numeros` | Imagem | `docs/ads/mm47-p0/n06-entregaveis-numeros.jpg` | O que vem dentro, em números | Acesse a plataforma por R$ 47 · 9 módulos, 70 aulas e materiais, 12 meses de acesso e o Dossiê em PDF. | idem |
+| Q4 | `mm47p0-n06-entregaveis-numeros` | Imagem | `docs/ads/mm47-p0/n06-entregaveis-numeros.jpg` | O que vem dentro, em números | Acesse a plataforma por R$ 47 · 9 módulos, 70 conteúdos, acesso à plataforma digital e o Dossiê em PDF. | idem |
 | Q5 | `mm47p0-n07-para-quem-e` | Imagem | `docs/ads/mm47-p0/n07-para-quem-e.jpg` | É para você? | Acesse a plataforma por R$ 47 · É para você? Quem tem terreno ou ideia, quer entender custo e topa estudar. Não é reunião nem garantia de resultado. | idem |
 | Q6 | `mm47f3-c09-objecoes` | Imagem | `docs/ads/mm47-fase03/c09-objecoes.png` | Quatro perguntas honestas | R$ 47 · É reunião? Preciso de capital? E se eu não gostar? Garante parceria? Respostas diretas. | idem |
 **Reserva (não entra nas 6):** `mm47p0-n03-exemplo-ficticio` (exemplo com dados fictícios; o botão da arte diz "FAÇA A SUA CONTA", que pode ser lido como "criar conta": trocar o texto do botão antes de usar [NC, a arte é minha: ajusto se Bruno quiser]).
@@ -60,7 +60,7 @@ fria  : utm_source=meta&utm_medium=paid&utm_campaign=venda-fria&utm_content=<id>
 ```
   `<id>` = a coluna "id" das tabelas (sem espaço, maiúscula nem acento). Exemplo: `utm_content=mm47f3-c02-plataforma-por-dentro`.
 - URL pública da arte: `https://bchaerk-creator.github.io/zion-hotel-ai-developer/<caminho a partir de docs/>`.
-- **Coerência (5 respostas):** o anúncio promete a Mini Mentoria R$ 47 e o aprender do passo a passo; a página mostra produto, telas e preço; o cliente vê R$ 47 na arte, na página e no checkout; o checkout cobra R$ 47; o cliente recebe o acesso à turma (9 módulos, 70 aulas e materiais).
+- **Coerência (5 respostas):** o anúncio promete a Mini Mentoria R$ 47 e o aprender do passo a passo; a página mostra produto, telas e preço; o cliente vê R$ 47 na arte, na página e no checkout; o checkout cobra R$ 47; o cliente recebe o acesso à turma (9 módulos, 70 conteúdos).
 
 ## 5. ESPAÇO RESERVADO · vídeos novos de venda de Bruno (gravação hoje; `ROTEIRO_GRAVACAO_HOJE.md`)
 **Ainda não existem arquivos.** Quando Bruno enviar e eu editar, o ChatGPT recebe **uma atualização deste pacote (v4.1)** preenchendo a tabela:

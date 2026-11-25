@@ -41,7 +41,7 @@ const H1=(t,s=84)=>`<div class="co" style="font-size:${s}px;line-height:1.02;fon
 const S=(t,s=36)=>`<div style="font-size:${s}px;line-height:1.3;font-weight:500;color:${C.areia};margin-top:20px">${t}</div>`;
 const em=t=>`<i style="color:${C.ouro}">${t}</i>`;
 // cartão de oferta (último de cada carrossel). Faixa dourada reta, sem aparência de botão.
-const OFERTA=(n,tot,img,pos,ph)=>PT(n,tot,img,pos,ph,`${K('Mini Mentoria de Estruturação Zion')}<div class="co" style="font-size:150px;line-height:1;font-weight:700;color:${C.ouro};margin-top:4px">R$ 47</div><div style="font-size:30px;line-height:1.3;color:${C.creme};margin-top:6px">pagamento único · 12 meses de acesso<br>Pix ou cartão à vista · reembolso em 7 dias</div><div style="font-size:30px;font-weight:700;color:${C.ouro};margin-top:18px">9 módulos · 70 aulas e materiais</div>`).replace(foot(DISCF),band(1156,'Acesse a plataforma por R$ 47')+foot(DISCF).replace('top:1252px;height:98px','top:1252px;height:98px'));
+const OFERTA=(n,tot,img,pos,ph)=>PT(n,tot,img,pos,ph,`${K('Mini Mentoria de Estruturação Zion')}<div class="co" style="font-size:150px;line-height:1;font-weight:700;color:${C.ouro};margin-top:4px">R$ 47</div><div style="font-size:30px;line-height:1.3;color:${C.creme};margin-top:6px">pagamento único · acesso à plataforma digital<br>Pix ou cartão à vista · reembolso em 7 dias</div><div style="font-size:30px;font-weight:700;color:${C.ouro};margin-top:18px">9 módulos · 70 conteúdos</div>`).replace(foot(DISCF),band(1156,'Acesse a plataforma por R$ 47')+foot(DISCF).replace('top:1252px;height:98px','top:1252px;height:98px'));
 
 const P=[];const add=(id,file,fmt,cards,meta={})=>P.push({id,file,fmt,cards,...meta});
 
@@ -88,7 +88,7 @@ lat('1 · VOCÊ PREENCHE A FICHA','O diagnóstico prévio','Em uns seis minutos,
 lat('2 · A FICHA VIRA PÁGINA','A pré-viabilidade','Quanto custa abrir, quanto entra, quanto sobra e o tempo de volta, em três cenários.','previab'),
 `${bg(C.musgo)}${logo()}${tag()}${H('No final, você gera o Dossiê em PDF.',200,92)}
 <div class="b co" style="left:80px;top:520px;font-size:170px;line-height:1;font-weight:700;color:${C.ouro}">R$ 47</div>
-${T('Mini Mentoria de Estruturação Zion<br>pagamento único · 12 meses de acesso<br>Pix ou cartão à vista · reembolso em 7 dias',730,34,C.creme)}${band(1010,'Acesse a plataforma por R$ 47')}${foot()}`],{conceito:'Demonstração / passeio pela plataforma (Dossiê)'});
+${T('Mini Mentoria de Estruturação Zion<br>pagamento único · acesso à plataforma digital<br>Pix ou cartão à vista · reembolso em 7 dias',730,34,C.creme)}${band(1010,'Acesse a plataforma por R$ 47')}${foot()}`],{conceito:'Demonstração / passeio pela plataforma (Dossiê)'});
 // N03 · Exemplo resolvido com dados fictícios (no lugar de caso real: não há caso documentado)
 const ROWS=[['Acesso e infraestrutura','R$ 40.000'],['Projeto e taxas','R$ 15.000'],['3 unidades','R$ 180.000'],['Mobiliário e enxoval','R$ 30.000'],['Imprevistos','R$ 20.000']];
 add('mm47p0-n03-exemplo-ficticio','n03-exemplo-ficticio','imagem',[
@@ -116,7 +116,7 @@ ${H('Do terreno e das dúvidas <i style="color:'+C.ouro+'">ao Dossiê organizado
 ${T('É a transformação do seu conhecimento e dos seus documentos. O resultado externo depende de você e do mercado.',1030,27,C.areia)}
 ${band(1130,'Acesse a plataforma por R$ 47')}${foot()}`],{conceito:'Transformação (processo)'});
 // N06 · Entregáveis em números (verificados em ENTREGAVEIS_VERIFICADOS.md)
-const GR=[['9','módulos'],['70','aulas e materiais'],['12','meses de acesso'],['10','fichas “Faça agora”'],['8','e-books por pilar'],['2','planilhas em branco'],['9','comandos de IA (kit de prompts)'],['8','tutoriais em vídeo das fichas'],['1','Dossiê em PDF']];
+const GR=[['9','módulos'],['70','conteúdos'],['1','acesso à plataforma digital'],['10','fichas “Faça agora”'],['8','e-books por pilar'],['2','planilhas em branco'],['9','comandos de IA (kit de prompts)'],['8','tutoriais em vídeo das fichas'],['1','Dossiê em PDF']];
 add('mm47p0-n06-entregaveis-numeros','n06-entregaveis-numeros','imagem',[
 `${bg(C.musgo)}${logo()}${tag()}${H('O que vem dentro, <i style="color:'+C.ouro+'">em números.</i>',190,80)}
 ${GR.map((g,i)=>`<div class="b" style="left:${80+(i%3)*313}px;top:${380+Math.floor(i/3)*240}px;width:293px;height:222px;border-radius:24px;background:${i%2?C.preto:C.creme};padding:22px 24px;border:3px solid ${C.ouro}"><div class="co" style="font-size:100px;line-height:.95;font-weight:700;color:${i%2?C.ouro:C.terra}">${g[0]}</div><div style="font-size:27px;line-height:1.2;font-weight:700;margin-top:10px;color:${i%2?C.creme:C.preto}">${g[1]}</div></div>`).join('')}

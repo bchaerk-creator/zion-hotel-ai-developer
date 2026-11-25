@@ -84,7 +84,7 @@ def build(variante, saida):
         hero_bot += (f'<div class="centro"><p class="selo">{NOME} · R$47 · pagamento único</p></div>'
                      + ancora("VER A PLATAFORMA POR DENTRO", "demonstracao"))
     else:
-        hero_bot += ('<div class="centro"><p class="selo">Formação digital · acesso por 12 meses</p></div>'
+        hero_bot += ('<div class="centro"><p class="selo">Formação digital · pagamento único · sem mensalidade</p></div>'
                      '<p class="aviso-rolar">Role para ver como funciona e o que você recebe</p>')
     hero_img = (f'<img src="{BASE}zion-collection/club/fotos/bolha-aerea.jpg" alt="Bolha da Zion Bubble Glamping vista de cima" width="730" height="981" fetchpriority="high">')
     B.append(f'<section data-cx-section="hero" id="hero" class="sec escuro hero"><div class="w htop">{hero_top}</div>'
@@ -180,7 +180,7 @@ def build(variante, saida):
     # ---- OFERTA completa (preço antes de qualquer botão de pagamento)
     inclui = ('<ul class="inclui">'
               '<li><b>R$47</b> em pagamento único, sem mensalidade</li>'
-              '<li><b>12 meses</b> de acesso à plataforma</li>'
+              '<li>Acesso à plataforma digital, com o e-mail da compra</li>'
               '<li><b>9 módulos</b> e <b>70 conteúdos</b> entre vídeos, fichas, e-books, planilhas e kits</li>'
               '<li>Formação digital autônoma, no seu ritmo</li>'
               f'<li>Depois de concluir o Dossiê: solicitação da <b>{SESSAO}</b> gratuita*</li>'
@@ -191,7 +191,7 @@ def build(variante, saida):
         '<p class="k">A oferta</p>'
         f'<h2>{NOME}</h2>'
         '<p>Uma formação digital para estruturar um empreendimento turístico no seu terreno: vídeo-aulas, fichas, e-books, planilhas, Kit do Investidor, comandos de IA e o Dossiê em PDF.</p>'
-        '<div class="resumo"><div class="preco">R$ 47</div><div>Pagamento único · sem mensalidade · acesso por 12 meses</div></div>'
+        '<div class="resumo"><div class="preco">R$ 47</div><div>Pagamento único · sem mensalidade · acesso à plataforma digital</div></div>'
         + inclui + f'<p class="nota" style="color:#ded6bf">{NOTA}</p>' + (pagar() if A else ""), sid="oferta")
     B.append(oferta)
     ent = ('<section data-cx-section="solution" id="entregaveis" class="sec ent-sec"><div class="w">'
@@ -205,7 +205,7 @@ def build(variante, saida):
     B.append(ent)
     cta_fim = sec("cta", "escuro",
         '<h2>Pronto para começar?</h2>'
-        f'<div class="resumo"><div class="preco">R$ 47</div><div>{NOME} · pagamento único · 12 meses de acesso · Pix ou cartão à vista</div></div>'
+        f'<div class="resumo"><div class="preco">R$ 47</div><div>{NOME} · pagamento único · acesso à plataforma digital · Pix ou cartão à vista</div></div>'
         + pagar(), extra=" cta2")
     B.append(cta_fim)
     barra_ini = len(B) - 3  # oferta, entregáveis, cta2: a barra fixa só existe daqui até o checkout
@@ -223,7 +223,7 @@ def build(variante, saida):
         f'<p class="k">{NOME}</p>'
         '<h2>Finalize o seu acesso</h2>'
         '<div class="resumo"><div class="preco">R$ 47</div><div>Pagamento único · sem mensalidade</div></div>'
-        + lista(["12 meses de acesso à formação digital",
+        + lista(["Acesso à plataforma digital da formação",
                  "9 módulos e 70 conteúdos entre vídeos, fichas, e-books, planilhas e kits",
                  f"Depois do Dossiê: {SESSAO} gratuita, por solicitação*",
                  "Pagamento por Pix ou cartão de crédito à vista",
@@ -234,7 +234,7 @@ def build(variante, saida):
         '<div class="pagar"><div data-cx-checkout></div></div>', sid="pagar"))
 
     FAQ = [
-        ("O que estou comprando?", f"A {NOME}: uma formação digital autônoma, com 9 módulos e 70 conteúdos (vídeo-aulas e 8 tutoriais em vídeo, 8 fichas interativas, 8 e-books em PDF, 2 planilhas de cálculo com fórmulas, Kit do Investidor, 9 comandos de IA e o Dossiê para baixar em PDF). Acesso por 12 meses, pagamento único de R$47, sem mensalidade. É uma formação paga."),
+        ("O que estou comprando?", f"A {NOME}: uma formação digital autônoma, com 9 módulos e 70 conteúdos (vídeo-aulas e 8 tutoriais em vídeo, 8 fichas interativas, 8 e-books em PDF, 2 planilhas de cálculo com fórmulas, Kit do Investidor, 9 comandos de IA e o Dossiê para baixar em PDF). Você acessa tudo na plataforma digital, com pagamento único de R$47 e sem mensalidade. É uma formação paga."),
         ("Quanto custa e como pago?", "R$47, em pagamento único, por Pix ou cartão de crédito à vista. Não há mensalidade nem boleto."),
         ("Preciso ter capital para começar?", "Não. A formação serve para organizar o projeto antes de buscar capital."),
         ("Preciso ter um projeto pronto?", "Não. Você começa do Marco Zero."),
@@ -243,7 +243,7 @@ def build(variante, saida):
         ("A Sessão de Diagnóstico Estratégico é a mesma coisa que a Sessão de onboarding e estratégia?", "Não. A Sessão de onboarding e estratégia é de outro produto. A Sessão de Diagnóstico Estratégico é uma etapa opcional depois do Dossiê da Mini Mentoria, gratuita, por solicitação."),
         ("A Zion garante parceria ou investimento?", "Não. A formação ensina a preparar o seu projeto para apresentá-lo a potenciais parceiros e investidores, e a sessão é a oportunidade de apresentá-lo à nossa equipe. Parceria e investimento não são garantidos."),
         ("Como recebo o acesso?", "O acesso é liberado com o e-mail usado na compra. O primeiro acesso é sem criar senha. Se algo não funcionar, fale com o suporte pelo WhatsApp +55 48 6137-1061."),
-        ("Por quanto tempo tenho acesso?", "Por 12 meses."),
+        ("Quais são as condições de acesso?", "O acesso à plataforma digital é liberado com o e-mail da compra. Pelas condições técnicas atuais da turma, o acesso dura 12 meses a partir da liberação."),
         ("E se eu não gostar?", "Você pode pedir reembolso em até 7 dias, como prevê o Código de Defesa do Consumidor."),
     ]
     faq = "".join(f'<div><div class="cm-accordion-header">{e(q)}</div><div class="cm-accordion-content">{e(a)}</div></div>' for q, a in FAQ)
@@ -258,7 +258,7 @@ def build(variante, saida):
              + "".join(B[idx_check:]) + rodape)
 
     titulo = f"{NOME} | R$47"
-    desc = "Seu terreno está parado. Aprenda o passo a passo para estruturar o seu projeto. Formação digital autônoma, R$47, pagamento único, 12 meses de acesso."
+    desc = "Seu terreno está parado. Aprenda o passo a passo para estruturar o seu projeto. Formação digital autônoma, R$47, pagamento único, acesso à plataforma digital."
     html = f"""<!doctype html>
 <html lang="pt-BR">
 <head>

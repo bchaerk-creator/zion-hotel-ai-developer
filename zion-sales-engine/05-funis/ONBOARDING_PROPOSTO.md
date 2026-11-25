@@ -15,10 +15,10 @@ Agente: FUNNEL · 25/11/2026. **Somente proposta.** (Atualizado em 25/11 com a d
 Título: **Leia primeiro: o que você comprou e por onde começar**
 
 > **Você está na plataforma da Mini Mentoria de Estruturação Zion.**
-> Esta é uma formação digital autônoma. Você estuda no seu ritmo, durante 12 meses, e monta o Dossiê do seu projeto passo a passo.
+> Esta é uma formação digital autônoma. Você estuda no seu ritmo e monta o Dossiê do seu projeto passo a passo.
 >
 > **O que você tem aqui**
-> 9 módulos e 70 aulas e materiais: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, o Kit do Investidor (modelos para você preencher), um kit de prompts e o Dossiê, que você gera em PDF no final.
+> 9 módulos e 70 conteúdos: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, o Kit do Investidor (modelos para você preencher), um kit de prompts e o Dossiê, que você gera em PDF no final.
 >
 > **O que não está incluído**
 > Atendimento individual contínuo e consultoria. Calculadoras e simuladores também não fazem parte. Não prometemos investimento, parceria, ocupação, renda ou valorização: o que você leva é o conhecimento e o seu Dossiê.
@@ -55,7 +55,7 @@ Tom: voz "nós", direto, sem promessa. Imagem: telas reais da plataforma (`docs/
 
 | Tempo | Fala | Imagem |
 |---|---|---|
-| 0:00 a 0:10 | "Bem-vindo à Mini Mentoria de Estruturação Zion. Você tem acesso por 12 meses e estuda no seu ritmo." | Tela de entrada da plataforma com os módulos |
+| 0:00 a 0:10 | "Bem-vindo à Mini Mentoria de Estruturação Zion. Você tem acesso à plataforma digital e estuda no seu ritmo." | Tela de entrada da plataforma com os módulos |
 | 0:10 a 0:30 | "Aqui você aprende o passo a passo para estruturar o seu projeto de hospedagem: aulas gravadas, fichas Faça agora, e-books, planilhas em branco, modelos e um kit de prompts." | Passeio pelos módulos, abrir uma ficha "Faça agora" |
 | 0:30 a 0:45 | "No final, cada ficha vira uma página do seu Dossiê, que você gera em PDF. O Dossiê é seu, para organizar o projeto e, se quiser, apresentar a potenciais parceiros e investidores." | Tela do Dossiê e do PDF |
 | 0:45 a 1:00 | "[SUBSTITUÍDA, ver a linha seguinte] Para ser claro: não há atendimento individual contínuo, e não prometemos investimento nem parceria." | Cartela simples com a frase (fundo musgo, sem foto) |

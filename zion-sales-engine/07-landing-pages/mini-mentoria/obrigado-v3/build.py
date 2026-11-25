@@ -25,7 +25,7 @@ HTML = f"""<!doctype html>
 <div class="escuro"><div class="w topo"><img src="{BASE}brand/zion-logo-claro.png" alt="Zion Hotel Group International" width="170" height="34"></div></div>
 <section data-cx-section="confirmation" class="sec escuro"><div class="w"><p class="k">Mini Mentoria de Estruturação Zion</p>
 <h1>Pagamento aprovado. Bem-vindo.</h1>
-<p>Você adquiriu a <b>Mini Mentoria de Estruturação Zion</b>: formação digital autônoma, com 9 módulos, 70 conteúdos e acesso por 12 meses.</p>
+<p>Você adquiriu a <b>Mini Mentoria de Estruturação Zion</b>: formação digital autônoma, com 9 módulos, 70 conteúdos e acesso à plataforma digital.</p>
 <p><b>Como acessar:</b> o acesso é liberado com o e-mail usado na compra. Você entra na plataforma com esse e-mail; o primeiro acesso é sem criar senha.</p>
 <a class="btn" href="{PLAT}" data-cx-cta>ENTRAR NA PLATAFORMA</a></div></section>
 <section data-cx-section="next-step" class="sec creme"><div class="w"><p class="k">Do pagamento ao primeiro passo</p>

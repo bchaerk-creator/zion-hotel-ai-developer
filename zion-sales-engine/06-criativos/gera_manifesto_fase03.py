@@ -4,7 +4,7 @@ DEST='https://infoprodutos-zion.clickmax.space/mini-mentoria'
 # Padrao unico em 09-tracking/PADRAO_UTM.md: URL de destino SEM parametros; as tags vao em campo separado (colar so nas Tags de URL do Meta).
 TAGS='utm_source=meta&utm_medium=paid&utm_campaign=mm47&utm_content={id}&utm_term={{{{ad.id}}}}&sck={{{{campaign.id}}}}&ad_id={{{{ad.id}}}}&campaign_id={{{{campaign.id}}}}&adset_id={{{{adset.id}}}}'
 DESC='Mini Mentoria de Estruturação · R$ 47'
-CORPO=("O que você recebe: 9 módulos e 70 aulas e materiais, com 12 meses de acesso: aulas gravadas, fichas \"Faça agora\", e-books, "
+CORPO=("O que você recebe: 9 módulos e 70 conteúdos, com acesso à plataforma digital: aulas gravadas, fichas \"Faça agora\", e-books, "
 "planilhas de cálculo em branco, kit do investidor (modelos), kit de prompts e Dossiê de Desenvolvimento.\n\n"
 "Sem reunião e sem atendimento individual. Parcerias e investimentos não fazem parte do produto; são possibilidades sujeitas à análise. "
 "R$ 47, pagamento único, Pix ou cartão à vista, reembolso em 7 dias.")
@@ -22,7 +22,7 @@ dict(id='mm47f3-c06-obra-ultimo-passo',conceito='C06 Colapso de crença',ecroi='
 dict(id='mm47f3-c08-oferta-47',conceito='C10 Apresentação objetiva da oferta',ecroi='O (Orientação) com I',formato='imagem 1080x1350',files=['c08-oferta-47.png'],
  headline='Mini Mentoria por R$ 47',
  primeira='R$ 47 · Mini Mentoria de Estruturação: aprenda o passo a passo para estruturar o seu empreendimento turístico.',
- texto='Pagamento único, Pix ou cartão à vista, reembolso em 7 dias e 12 meses de acesso.\n\n'+CORPO,
+ texto='Pagamento único, Pix ou cartão à vista, reembolso em 7 dias e acesso à plataforma digital.\n\n'+CORPO,
  hipotese='Oferta direta converte melhor em público quente (remarketing) do que em frio. Métrica: início de checkout e compra em remarketing.'),
 dict(id='mm47f3-c09-objecoes',conceito='C08 Quebra de objeções',ecroi='R (Reconhecimento) com C',formato='imagem 1080x1350',files=['c09-objecoes.png'],
  headline='Quatro perguntas honestas',

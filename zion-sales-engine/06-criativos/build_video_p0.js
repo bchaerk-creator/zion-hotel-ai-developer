@@ -23,10 +23,10 @@ const S=[
  {tp:'tela',img:'aula',d:6,html:panel('Implementação · 1','Comece pelo <i>Marco Zero.</i>','Você vê onde está e por qual pilar começar.','Tela real da plataforma')},
  {tp:'tela',img:'diagnostico',d:6,html:panel('Implementação · 2','Preencha a ficha <i>“Faça agora”.</i>','Cada ficha vira uma página do seu Dossiê, que você gera em PDF.','Tela real da plataforma')},
  {tp:'tela',img:'previab',d:6,html:panel('Implementação · 3','Faça a conta <i>da pré-viabilidade.</i>','Quanto custa abrir, quanto entra, quanto sobra e o tempo de volta, com planilhas em branco.','Tela real da plataforma')},
- {tp:'br',ss:38,d:7,html:panel('O que você recebe','9 módulos, 70 aulas e materiais, <i>12 meses de acesso.</i>','Aulas gravadas, e-books por pilar, 2 planilhas em branco, kit de prompts e Dossiê em PDF.')},
+ {tp:'br',ss:38,d:7,html:panel('O que você recebe','9 módulos, 70 conteúdos, <i>acesso à plataforma digital.</i>','Aulas gravadas, e-books por pilar, 2 planilhas em branco, kit de prompts e Dossiê em PDF.')},
  {tp:'fim',d:9,html:`<div style="position:absolute;inset:0;background:${C.musgo}"></div><img src="${F('brand/zion-logo-claro.png')}" style="position:absolute;left:64px;top:90px;width:260px">
  <div style="position:absolute;left:64px;right:64px;top:380px"><div class="k">Mini Mentoria de Estruturação Zion</div><div style="font-family:Co;font-size:300px;line-height:1;font-weight:700;color:${C.ouro};margin-top:10px">R$ 47</div>
- <div style="font-size:42px;line-height:1.35;color:${C.creme};margin-top:20px">pagamento único · sem mensalidade<br>12 meses de acesso<br>Pix ou cartão à vista · reembolso em 7 dias</div>
+ <div style="font-size:42px;line-height:1.35;color:${C.creme};margin-top:20px">pagamento único · sem mensalidade<br>acesso à plataforma digital<br>Pix ou cartão à vista · reembolso em 7 dias</div>
  <div style="font-size:34px;line-height:1.35;color:${C.areia};margin-top:40px">Formação digital: sem reunião e sem atendimento individual. Não promete renda, parceria ou investimento.</div></div>
  <div style="position:absolute;left:0;top:1560px;width:1080px;height:130px;background:${C.ouro};color:${C.preto};display:flex;align-items:center;justify-content:center;font-weight:800;font-size:46px;text-transform:uppercase">Acesse a plataforma por R$ 47</div>`}];
 (async()=>{fs.mkdirSync(OUT,{recursive:true});const T=path.join(OUT,'_cenas');fs.mkdirSync(T,{recursive:true});
