@@ -139,3 +139,11 @@ Bloqueio de qualidade: toda conversa fora do roteiro (promessa, desconto inventa
 - Regra vigente de janela/tarifa do Meta para conversa aberta por anúncio.
 - Gatilhos reais dos fluxos ativos diante de uma conversa nova por anúncio (ver conflito em `../10-trafego/ESTRUTURA_NOVA_COLLECTION.md` §7).
 - Volume real de conversas e, portanto, a capacidade humana necessária (comece com limite de orçamento baixo).
+
+
+## Modelo de abertura NOVO para o formulário "inscrição-Whatsapp" (RASCUNHO · 25/11/2026 · decisão de Bruno)
+Substitui `clube_plataforma_d0` (diz "R$ 97", banco de áreas e leva à página antiga). **Nada foi enviado ao Meta**; modelo novo exige aprovação do Meta, e a abertura automática fica **pausada** até lá (atendimento humano nas primeiras 20 conversas, sem a Bela). O texto abaixo só vale depois de conferir, pelos prints do formulário, que o cadastro não promete avaliação, investimento nem taxa [NC].
+- **Categoria:** Marketing · **Idioma:** pt_BR · **Variável:** {{1}} = primeiro nome.
+- **Corpo:** "Olá, {{1}}! Aqui é a equipe da Zion. Você se cadastrou pelo nosso formulário. O cadastro é gratuito e não obriga a nenhuma compra. Para ser claro: não avaliamos terreno e não prometemos investimento. Temos uma formação digital paga, a Mini Mentoria de Estruturação Zion: R$ 47, pagamento único, acesso à plataforma digital e garantia de 7 dias. Quer ver o conteúdo e o preço?"
+- **Botões:** URL "Ver a Mini Mentoria" → `https://infoprodutos-zion.clickmax.space/mini-mentoria-b-v3?utm_source=whatsapp&utm_medium=form&utm_campaign=form-whatsapp&utm_content=abertura` · resposta rápida "Não quero receber".
+- **Condições:** só para quem consentiu receber WhatsApp no formulário (caixa de comunicação) [NC: conferir]; quem responder "Não quero receber" sai da lista.
