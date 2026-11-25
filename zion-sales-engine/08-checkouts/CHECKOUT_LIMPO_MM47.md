@@ -15,7 +15,7 @@ Agente: ZION CONVERSION · 25/11/2026 · ordem P0. **Nada foi alterado** (oferta
 | `name` (oferta) | Mini Mentoria de Estruturação | **Mini Mentoria de Estruturação Zion** | igual ao anúncio e à página; é o "nome exato único" |
 | Nome do produto (painel) | Mini Mentoria de Estruturação | **Mini Mentoria de Estruturação Zion** | sem API; o checkout pode mostrar o nome do produto ou da oferta [NC], por isso igualar os dois |
 | `checkoutTitle` | null | **Mini Mentoria de Estruturação Zion** | título explícito no checkout |
-| `description` | texto atual (sem reunião, parceria como possibilidade) | texto da seção 3 | resumo objetivo dos entregáveis com 9 módulos, 70 aulas e materiais; sem "Metodologia Zion" solta |
+| `description` | texto atual (sem reunião, parceria como possibilidade) | texto da seção 3 (v3) | resumo objetivo com 9 módulos e 70 conteúdos, redação segura da vistoria e a Sessão de Diagnóstico Estratégico como etapa opcional posterior; sem "Metodologia Zion" solta |
 | `originalPrice` | 4700 | 4700 (manter) | R$47 |
 | `paymentConfig` | pix ativo, cartão 1x, boleto off, sem recorrência | manter | Pix e cartão à vista; pagamento único |
 | `limitToRefund` | 7 | 7 (manter) | garantia de 7 dias |
@@ -35,7 +35,7 @@ Enviar todos os campos abaixo; um campo omitido pode voltar ao padrão [H]. Ante
   "id": "0c71eeba-2654-432c-9701-0a31e6113a08",
   "name": "Mini Mentoria de Estruturação Zion",
   "checkoutTitle": "Mini Mentoria de Estruturação Zion",
-  "description": "Formação digital autônoma para estruturar um empreendimento turístico no seu terreno: 9 módulos e 70 aulas e materiais (aulas gravadas, fichas interativas, e-books por pilar, 2 planilhas em branco, Kit do Investidor e kit de comandos para IA, como modelos) e o Dossiê em PDF. Acesso por 12 meses. Pagamento único de R$47, sem mensalidade. Pix ou cartão à vista. Reembolso em 7 dias. Sem reunião e sem atendimento individual. Parcerias e investimentos não são garantidos nem fazem parte da compra.",
+  "description": "Formação digital autônoma para estruturar um empreendimento turístico no seu terreno: 9 módulos e 70 conteúdos (vídeo-aulas e 8 tutoriais em vídeo, 8 fichas interativas, 8 e-books em PDF, 2 planilhas de cálculo com fórmulas, Kit do Investidor com guia das 6 peças, 9 comandos de IA e Dossiê para baixar em PDF). Acesso por 12 meses. Pagamento único de R$47, sem mensalidade. Pix ou cartão à vista. Reembolso em 7 dias. Etapa opcional depois de concluir o Dossiê: solicitação da Sessão de Diagnóstico Estratégico, gratuita, sujeita à análise e à agenda. Não há atendimento individual contínuo. Parceria e investimento não são garantidos.",
   "type": "course",
   "productType": "internal",
   "productClass": "Curso",
@@ -75,7 +75,7 @@ Pontos de atenção: (a) a descrição acima tem 496 caracteres (limite 1000); (
 |---|---|---|
 | Nome | Mini Mentoria de Estruturação | Mini Mentoria de Estruturação Zion |
 | Imagem | placeholder do ClickMax | capa com tela real da plataforma e "R$47" |
-| Descrição | boa, mas sem a contagem de módulos | 9 módulos, 70 aulas e materiais, 12 meses, R$47, Pix/cartão, 7 dias |
+| Descrição | boa, mas sem a contagem de módulos | 9 módulos, 70 conteúdos, 12 meses, R$47, Pix/cartão, 7 dias, Sessão de Diagnóstico Estratégico opcional |
 | Preço, pagamento | R$ 47, Pix e cartão 1x | igual |
 | Distrações | nenhuma | nenhuma |
 
@@ -93,10 +93,17 @@ Reenviar o mesmo payload com `name` "Mini Mentoria de Estruturação", `checkout
 
 ## 8. Roteiro de validação no celular (Bruno)
 Use o celular com 4G, janela anônima, **sem pagar** (a menos que escolha testar o Pix, ver item 7).
-1. Abra a página rascunho (A ou B v2) pelo painel → "Visualizar". Confira: preço, 12 meses, 9 módulos, 70 aulas e materiais, Pix e cartão, garantia 7 dias aparecem **antes** do botão de pagar.
+1. Abra a página rascunho (A ou B v2) pelo painel → "Visualizar". Confira: preço, 12 meses, 9 módulos, 70 conteúdos, Pix e cartão, garantia 7 dias aparecem **antes** do botão de pagar.
 2. Toque no botão do topo (A): deve **rolar** até a demonstração, nunca abrir pagamento. Na B, não há botão no topo.
 3. Role até a oferta e toque em "QUERO ACESSAR A PLATAFORMA POR R$47": deve descer até o checkout.
 4. No checkout: nome do produto = "Mini Mentoria de Estruturação Zion"; valor R$ 47; sem cronômetro, sem endereço, sem campo estranho; imagem da capa; descrição legível; botão de finalizar visível sem esforço; Pix e cartão só à vista.
 5. Anote: quantos campos pede, se o teclado cobre o botão, se a página rola sem travar.
-6. Confira se aparece alguma palavra "inscrição", "cadastro", "reunião" ou "Club" em qualquer ponto. Se aparecer, fotografe.
+6. Confira se aparece alguma palavra "inscrição", "cadastro", "consultoria", "R$ 97"/"R$ 270" ou "Club" (a "reunião" só pode aparecer como Sessão de Diagnóstico Estratégico, opcional, após o Dossiê) em qualquer ponto. Se aparecer, fotografe.
 7. (Teste de ponta a ponta, exige "aprovado" e uma compra real de R$ 47 com reembolso depois) Pagar por Pix; conferir: pagamento aprovado → página de obrigado → e-mail de acesso [NC] → login no portal → módulo Comece aqui. Qualquer etapa que falhar, registrar o horário.
+
+## 9. v3 (25/11/2026): Sessão de Diagnóstico Estratégico e redação segura
+- **Descrição da oferta** (seção 3) reescrita: "70 conteúdos" (não "70 aulas"), "vídeo-aulas e 8 tutoriais em vídeo", "8 fichas interativas", "8 e-books em PDF", "2 planilhas de cálculo com fórmulas", "Kit do Investidor com guia das 6 peças", "9 comandos de IA", "Dossiê para baixar em PDF" (vistoria `13-relatorios/VISTORIA_ENTREGAVEIS.md`). Saiu "Sem reunião e sem atendimento individual".
+- **Sessão de Diagnóstico Estratégico** = a reunião pós-mentoria (decisão de Bruno, 25/11): gratuita a quem concluir o Dossiê, por solicitação (formulário, sem agenda pública), sujeita à análise e à agenda; parceria e investimento não são garantidos; **não** é a "Sessão de onboarding e estratégia" (outro produto). Entra como etapa opcional posterior, não como serviço contínuo.
+- **Payload NÃO enviado.** Impacto: descrição visível no checkout; oferta `approved` pode exigir nova revisão [NC]. Reversão: texto anterior da seção 7 ou o payload da v2 (a descrição v2 está na versão anterior deste arquivo no Git).
+- **Antes de publicar qualquer v3**, o checkout (descrição) e o obrigado v3 devem estar alinhados e o formulário de solicitação precisa existir (ver README, `{{LINK_SOLICITACAO}}`).
+- **Obrigado v3** (`1a0aed43…`, rascunho): bloco "Depois da mentoria" com a Sessão e o botão para `{{LINK_SOLICITACAO}}` (marcador; o FUNNEL cria o formulário em rascunho e informa a URL).
