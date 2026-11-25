@@ -57,3 +57,7 @@ Cartão 8 reescrito com a redação segura confirmada: 9 módulos · 70 conteúd
 
 ## Reunião após a mentoria (decisão de Bruno, 25/11)
 Cartão 5 atualizado: "Depois, apresente o projeto à nossa equipe" / "Ao concluir o Dossiê, você pode solicitar uma reunião com a nossa equipe: é a sua oportunidade de buscar parceiros e investimentos para tirar o plano do papel." / nota "*Reunião sujeita à análise e à agenda. Parceria e investimento não são garantidos." A reunião é gratuita para quem comprou e concluiu o Dossiê, por solicitação (sem calendário público). O texto primário do anúncio deve acompanhar essa regra.
+
+## Nome da reunião (decisão de Bruno, 25/11): "Sessão de diagnóstico estratégico", entregável
+Cartão 5: "Depois, a sessão de diagnóstico estratégico" / "Ao concluir o Dossiê, você pode solicitar a sua sessão de diagnóstico estratégico com a nossa equipe: é a sua oportunidade de buscar parceiros e investimentos para tirar o plano do papel." / nota "*Sessão sujeita à análise e à agenda. Parceria e investimento não são garantidos."
+Cartão 8 (lista): nova linha "Sessão de diagnóstico estratégico*" com nota "*Sessão gratuita ao concluir o Dossiê, mediante solicitação, sujeita à análise e à agenda. Parceria e investimento não são garantidos." Não é a "Sessão de onboarding e estratégia" paga do Club R$ 270 (outro produto).
