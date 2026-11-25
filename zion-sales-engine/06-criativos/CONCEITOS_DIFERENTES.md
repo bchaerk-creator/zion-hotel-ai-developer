@@ -66,3 +66,24 @@ O id é a chave estável; o número no nome do arquivo segue a ordem de produç�
 - Regra [H]: nenhuma decisão antes de ~100 cliques no link por anúncio; compra ainda é rara com R$ 47, então a leitura inicial é CTR e início de checkout, **sabendo que o início de checkout dispara ao carregar** o iframe (ruído conhecido). Priorizar compra só depois que o Purchase estiver chegando ao Meta.
 - Rodada 1: C03, C06, C02, C08 (prospecção). Rodada 2: C10 em remarketing; C04 e C07. Rodada 3: vídeos (C09, C01) quando existirem.
 - Registrar decisão no LOG e no histórico do agente CREATIVE.
+
+---
+# Atualização P0 (25/11/2026): 9 conceitos com arte pronta + campeões corrigidos
+Conceitos realmente distintos: mudam **ângulo ECROI, formato, prova e pedido**, não só a primeira frase. Todos: promessa "Aprenda o passo a passo", produto "Mini Mentoria de Estruturação Zion", **CTA padrão "Acesse a plataforma por R$ 47"** na arte e na primeira linha (botão Meta: Saiba mais), destino `/mini-mentoria` sem parâmetros, UTM do `09-tracking/PADRAO_UTM.md` (`utm_campaign=mm47`, `utm_content=<id>`, `utm_term={{ad.id}}`, `sck={{campaign.id}}`). Textos e Tags de URL por peça: `docs/ads/mm47-p0/COPIES.md` e `manifesto.json`. Compliance Meta comum: sem antes/depois, sem atributo pessoal, sem renda/ocupação/investimento prometidos, sem pessoas como cliente, "dados fictícios" rotulado, parceria só como "potenciais parceiros e investidores" (apresentar, nunca prometer).
+
+| Conceito | ECROI | Hook 3 s | Formato | Prova usada | Peça (`docs/ads/mm47-p0/`) |
+|---|---|---|---|---|---|
+| Autoridade | E, O | A Zion opera hospedagens em Urubici e Florianópolis | imagem foto+painel | fato documentado da operação; "anos de mercado" só com confirmação [NC] | `n01-autoridade-operacao` |
+| Demonstração / passeio | I, O | Cada ficha vira uma página do seu Dossiê | carrossel 4, telas reais | telas aula, diagnóstico, pré-viabilidade | `n02-dossie-passeio`; (fase 03) `c02-plataforma` |
+| Dor específica | E | Você sabe o preço da cabana. Sabe quanto custa deixar tudo pronto? | imagem | tela Raio-X da plataforma | (fase 03) `c03`; v-P0 `vp0-a1-dor-direta`, `vp0-a3-saiba-o-custo` |
+| Tutorial | E, R | Responda antes de gastar com a obra (3 perguntas) | imagem creme | método da plataforma | `n04-tres-perguntas`; (fase 03) `c04-ordem-certa` |
+| Colapso de crença | C, R | Primeiro eu construo, depois eu vejo | imagem | argumento | (fase 03) `c06`, `c10` |
+| Caso real | R, I | Como a conta do projeto vira uma tabela | imagem | **sem caso documentado**: exemplo resolvido com **dados fictícios** rotulados | `n03-exemplo-ficticio` |
+| Transformação | R, O, I | Do terreno e das dúvidas ao Dossiê organizado | imagem 2 caixas | processo do conhecimento, nunca resultado externo | `n05-ponto-de-partida` |
+| Oferta direta com preço | O, I | R$ 47 · o que vem dentro, em números | imagem bento | só entregáveis verificados | `n06-entregaveis-numeros`; (fase 03) `c08-oferta-47` |
+| Quebra de objeções / filtro | R, C | É para você? Seja direto | imagem 2 colunas | negações explícitas | `n07-para-quem-e`; (fase 03) `c09-objecoes` |
+| Narrativa em 7 passos (campeão recuperado) | E, C, R, O, I | Você tem um terreno em um destino turístico, mas não tem capital? | carrossel 7 | estrutura do Carrossel C campeão | `vp0-carrossel-c-narrativa` |
+| Vídeo curto sem áudio | E, C, O, I | Você sabe o preço da cabana... | vídeo 9:16 52 s | imagens reais + telas reais | `vp0-v02-passeio-mm47-sem-audio.mp4` (scratchpad, 9 MB) |
+| Autoridade em vídeo (Bruno) | E, O | Você aí, dono de terreno (hook preservado) | vídeo 9:16 | **depende de Bruno gravar** com `ROTEIRO_VSL_v2.md` | a produzir |
+
+Prioridade de teste P0 (mesmo público, orçamento igual, uma variável por vez; sem concluir antes de ~100 cliques no link por anúncio): 1) `vp0-a3-saiba-o-custo`, `c03`, `n04`; 2) `vp0-carrossel-c-narrativa`, `n02`; 3) `n06`, `n07` (qualificam comprador); 4) remarketing: `c08`, `n06`. Indicador P0: não é vencedor só por CPC baixo ou muitos checkouts; contar visita qualificada e compra.
