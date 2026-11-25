@@ -51,3 +51,4 @@ Aprovado quando a proposta tem hipótese, métrica real, orçamento dentro do te
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
 |  |  |  |  |
+| 25/11/2026 | Proposta (não executada): `10-trafego/HANDOFF_CHATGPT_FASE03.md`. Uma campanha MM47 (a do ChatGPT, se passar na conferência), pausar a Mini Mentoria Tráfego e as campanhas R$ 97 e Form 47 (orçamento ativo configurado excede o teto); Fase 0 por visualização da página até o Purchase ser provado, depois campanha de Vendas por Purchase; conjuntos A frio e B quente, só feed; decisão por venda paga no ClickMax por UTM; escala/pausa por fórmulas do modelo financeiro. | Teto de R$ 60/dia; Purchase ainda sem prova; vazamento em Audience Network; criativos antigos com linguagem de parceria. | Pendente: 'aprovado' de Bruno |
