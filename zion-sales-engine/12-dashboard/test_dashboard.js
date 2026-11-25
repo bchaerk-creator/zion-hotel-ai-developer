@@ -63,6 +63,23 @@ const srv = http.createServer((req, res) => {
     ok(await page.locator('#serie svg').count() === 1, 'gráfico SVG da série diária');
     ok(await page.locator('#qual .card').count() === 4, 'seção qualidade dos dados com 4 cartões');
     ok((await page.textContent('#qual')).includes('TX-X-099'), 'divergência de conciliação aparece');
+    // funil híbrido (exemplo FICTÍCIO): quente x frio x global, coortes, CPL, tempo até a compra
+    const Hb = D.hibrido;
+    ok(await page.isVisible('#hib-sec'), 'seção Funil híbrido visível');
+    ok((await page.textContent('#hib-rotulo')).includes('EXEMPLO FICTÍCIO'), 'funil híbrido rotulado como exemplo fictício');
+    for (const k of ['quente', 'frio', 'global']) {
+      const t = await page.textContent(`[data-caminho="${k}"] [data-campo="CPA"]`);
+      ok(t.includes(brl(Hb.caminhos[k].cpa)), 'CPA ' + k + ' = ' + brl(Hb.caminhos[k].cpa));
+    }
+    ok((await page.textContent('[data-kpi="CPL (custo por lead)"] .v')).trim() === brl(Hb.cpl), 'KPI CPL = ' + brl(Hb.cpl));
+    ok(await page.locator('#tab-coortes tbody tr').count() === Hb.coortes.length, 'tabela de coortes com ' + Hb.coortes.length + ' linhas');
+    const pctf = v => new Intl.NumberFormat('pt-BR', { style: 'percent', minimumFractionDigits: 1, maximumFractionDigits: 1 }).format(v);
+    ok((await page.textContent(`#tab-coortes tr[data-coorte="${Hb.coortes[0].data}"]`)).includes(pctf(Hb.coortes[0].conv_7d)), 'conversão 7d da coorte 1 = ' + pctf(Hb.coortes[0].conv_7d));
+    ok((await page.textContent(`#tab-coortes tr[data-coorte="${Hb.coortes[3].data}"]`)).includes('indisponível'), 'coorte imatura aparece "indisponível" (não zero)');
+    ok((await page.textContent('[data-kpi="Conversão lead → comprador 7d"] .v')).trim() === pctf(Hb.coortes_total.conv_7d), 'KPI conversão 7d agregada só de coortes maduras');
+    ok((await page.textContent('[data-kpi="Tempo até a compra (dias, média)"] .v')).trim().length > 0, 'KPI tempo até a compra presente');
+    const thc = await page.evaluate(() => getComputedStyle(document.querySelector('#tab-coortes thead')).display);
+    ok(nome.startsWith('mobile') ? thc === 'none' : thc !== 'none', 'tabela de coortes responsiva');
     // mobile: cartões (thead oculto); desktop: tabela
     const thead = await page.evaluate(() => getComputedStyle(document.querySelector('#tab thead')).display);
     ok(nome.startsWith('mobile') ? thead === 'none' : thead !== 'none', 'tabela responsiva (' + (nome.startsWith('mobile') ? 'cartões' : 'tabela') + ')');
@@ -93,6 +110,10 @@ const srv = http.createServer((req, res) => {
   await page.waitForTimeout(200);
   ok((await page.textContent('[data-kpi="Visitas à landing"] .v')).trim() === 'indisponível', 'visitas ausentes aparecem como "indisponível" (não zero)');
   ok((await page.textContent('[data-etapa="Início efetivo de checkout"]')).includes('indisponível'), 'etapa sem dado aparece "indisponível"');
+  const semh = JSON.parse(JSON.stringify(D)); delete semh.hibrido;
+  const tmph = path.join(OUT, 'sem_hibrido.json'); fs.writeFileSync(tmph, JSON.stringify(semh));
+  await page.setInputFiles('#arq', tmph); await page.waitForTimeout(200);
+  ok(await page.isHidden('#hib-sec'), 'sem dados do funil híbrido, a seção fica escondida (nada de zeros)');
   ok(erros.length === 0, 'sem erros de página no estado vazio/seletor');
   await ctx.close(); await browser.close(); srv.close();
   console.log(falhas ? '\nRESULTADO: ' + falhas + ' FALHA(S)' : '\nRESULTADO: TODOS OS TESTES DO DASHBOARD PASSARAM');

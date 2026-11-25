@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """Teste do modelo: recalcula no LibreOffice e compara com conta independente (Python).
 Usa DADOS FICTÍCIOS só para exercitar as fórmulas. Uso: python3 -I test_modelo.py
-Testes 1 a 5: modelo v1. Testes 6 e 7: aba Funil P0 do v2 (em branco e com dados fictícios)."""
+Testes 1 a 5: modelo v1. Testes 6 e 7: aba Funil P0 do v2 (em branco e com dados fictícios).
+Testes 8 a 10: aba Funil Híbrido do v3 (em branco, dados fictícios, duplicidade e limite de perda)."""
 import os, subprocess, tempfile, shutil, sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from openpyxl import load_workbook
@@ -229,6 +230,88 @@ for j, (col, x) in enumerate(zip("BCD", cr)):
     got = R("arm")
     ok_arm = (got or None) == arm
     print(("OK   " if ok_arm else "FALHA"), "criativo %d alerta de armadilha | planilha: %r | independente: %r" % (j + 1, got, arm)); fails += 0 if ok_arm else 1
+
+# ---------- Teste 8 (v3): aba Funil Híbrido em branco
+import datetime
+print("== Teste 8: aba Funil Híbrido (v3) em branco ==")
+p8 = os.path.join(tmp, "v3blank.xlsx"); C8 = bm.build(p8, p0=True, hib=True); wb8 = recalc(p8, out)
+for nome_, wbk_ in (("v1", p1), ("v2", pv)):
+    ok_ = "Funil Híbrido" not in load_workbook(wbk_).sheetnames
+    print(("OK   " if ok_ else "FALHA"), nome_, "intacto: sem a aba Funil Híbrido"); fails += 0 if ok_ else 1
+ok_ = "Funil P0" in wb8.sheetnames and "Funil Híbrido" in wb8.sheetnames
+print(("OK   " if ok_ else "FALHA"), "v3 contém Funil P0 e Funil Híbrido"); fails += 0 if ok_ else 1
+for nm in ("inv", "inv_q", "cpl", "cpa_q", "cpa_f", "cpa_g", "soma_c", "dup", "rtot", "taxa_r", "rl_q", "rl_f", "rl_g", "mc_q", "mc_f", "mc_g", "res_q", "res_f", "res_g",
+           "roas_q", "roas_f", "roas_g", "pe_q", "pe_f", "pe_g", "vs_q", "vs_f", "vs_g", "perda_q", "perda_f", "perda_g", "orc_uso", "orc_rest"):
+    chk("em branco: %s" % nm, val(wb8, C8["h_" + nm]), IND)
+chk("orçamento do teste R$ 60 × 14", val(wb8, C8["h_orc_teste"]), 840)
+chk("soma dos papéis = teto", val(wb8, C8["h_chk_soma"]), "OK: soma = teto")
+chk("limite de perda = 3 × CPA máximo", val(wb8, C8["h_perda"]), 3 * 44.51)
+chk("referência CPA máximo = 44,51", val(wb8, C8["h_cpamax"]), 44.51)
+wh8 = wb8["Funil Híbrido"]
+hc = C8["hc_first"]; ht = C8["hc_total"]
+for rr in range(hc, C8["hc_last"] + 1):
+    for col in (10, 11, 12):
+        assert wh8.cell(row=rr, column=col).value == IND, "coorte em branco deveria ser indisponível"
+chk("coortes em branco: conversão 7d total", wh8.cell(row=ht, column=10).value, IND)
+chk("coortes em branco: conversão 14d total", wh8.cell(row=ht, column=11).value, IND)
+wl = load_workbook(p8)["Funil Híbrido"]
+vazias = all(wl["B%d" % int(C8["h_" + n].split("$")[-1])].value is None for n in ("gcap", "gq", "gf", "leads", "cq", "cf", "cn", "cu", "rq", "rf", "rn"))
+print(("OK   " if vazias else "FALHA"), "entradas reais do funil híbrido estão VAZIAS"); fails += 0 if vazias else 1
+
+# ---------- Teste 9 (v3): dados FICTÍCIOS, conta independente
+print("== Teste 9: aba Funil Híbrido com dados FICTÍCIOS ==")
+H9 = dict(inp, gcap=300.0, gq=120.0, gf=200.0, leads=150, cq=6, cf=4, cn=1, cu=11, rq=1, rf=0, rn=0, leitura=datetime.date(2030, 1, 20))
+coh = [(datetime.date(2030, 1, 2), 40, 3, 4, 5, 25), (datetime.date(2030, 1, 8), 50, 2, None, 2, 9),
+       (datetime.date(2030, 1, 14), 30, 1, None, 1, 4), (datetime.date(2030, 1, 19), 30, None, None, 0, None)]
+for i, (d_, ld, c7, c14, ch, sd) in enumerate(coh, start=1):
+    for col, v in zip(range(1, 7), (d_, ld, c7, c14, ch, sd)): H9["coorte%d_%d" % (i, col)] = v
+p9 = os.path.join(tmp, "v3fict.xlsx"); C9 = bm.build(p9, H9, p0=True, hib=True); wb9 = recalc(p9, out)
+P = 47.0; liq_pix = P - 2.49; liq_c = P - 2.49 - 0.0499 * P; liq = 0.8 * liq_pix + 0.2 * liq_c
+mcu = liq - 0.04 * P - 1.5 - 0.03 * liq; cmax = mcu; cdes = cmax * 0.7; mc_real_unit = liq - 0.04 * P - 1.5
+gc, gq, gf = 300.0, 120.0, 200.0; cq, cf, cn, cu = 6, 4, 1, 11; rq, rf, rn = 1, 0, 0
+inv, inv_q = gc + gq + gf, gc + gq
+V = lambda n: val(wb9, C9["h_" + n])
+chk("investimento total", V("inv"), inv); chk("investimento quente", V("inv_q"), inv_q)
+chk("CPL", V("cpl"), gc / 150)
+chk("CPA quente = (captação+quente)/quentes", V("cpa_q"), inv_q / cq)
+chk("CPA frio = frio/frios", V("cpa_f"), gf / cf)
+chk("CPA global = total/únicos", V("cpa_g"), inv / cu)
+chk("soma por grupo", V("soma_c"), 11); chk("sem duplicidade", V("dup"), "OK: sem duplicidade")
+chk("reembolsos totais", V("rtot"), 1); chk("taxa de reembolso", V("taxa_r"), 1 / 11)
+chk("receita líquida quente", V("rl_q"), (cq - rq) * liq); chk("receita líquida fria", V("rl_f"), cf * liq); chk("receita líquida global", V("rl_g"), (cu - 1) * liq)
+chk("margem quente", V("mc_q"), (cq - rq) * mc_real_unit); chk("margem fria", V("mc_f"), cf * mc_real_unit); chk("margem global", V("mc_g"), (cu - 1) * mc_real_unit)
+chk("resultado quente", V("res_q"), (cq - rq) * mc_real_unit - inv_q); chk("resultado frio", V("res_f"), cf * mc_real_unit - gf); chk("resultado global", V("res_g"), (cu - 1) * mc_real_unit - inv)
+chk("ROAS quente", V("roas_q"), cq * P / inv_q); chk("ROAS frio", V("roas_f"), cf * P / gf); chk("ROAS global", V("roas_g"), cu * P / inv)
+chk("equilíbrio quente", V("pe_q"), inv_q / mcu); chk("equilíbrio frio", V("pe_f"), gf / mcu); chk("equilíbrio global", V("pe_g"), inv / mcu)
+faixa = lambda c: "abaixo do CPA desejado" if c <= cdes else ("entre o desejado e o máximo" if c <= cmax else "acima do CPA máximo")
+chk("faixa quente", V("vs_q"), faixa(inv_q / cq)); chk("faixa fria", V("vs_f"), faixa(gf / cf)); chk("faixa global", V("vs_g"), faixa(inv / cu))
+chk("limite de perda dentro (com compras)", V("perda_q"), "dentro do limite")
+chk("orçamento consumido", V("orc_uso"), inv / 840); chk("orçamento restante", V("orc_rest"), 840 - inv)
+# coortes: idades 18, 12, 6, 1 -> maduras 7d: coortes 1 e 2; maduras 14d: coorte 1
+w9 = wb9["Funil Híbrido"]; hc = C9["hc_first"]; ht = C9["hc_total"]
+chk("idade coorte 1", w9.cell(row=hc, column=7).value, 18); chk("idade coorte 4", w9.cell(row=hc + 3, column=7).value, 1)
+chk("conversão 7d coorte 1", w9.cell(row=hc, column=10).value, 3 / 40); chk("conversão 14d coorte 1", w9.cell(row=hc, column=11).value, 4 / 40)
+chk("conversão 7d coorte 2", w9.cell(row=hc + 1, column=10).value, 2 / 50)
+chk("conversão 14d coorte 2 (imatura)", w9.cell(row=hc + 1, column=11).value, IND)
+chk("conversão 7d coorte 3 (imatura)", w9.cell(row=hc + 2, column=10).value, IND)
+chk("conversão 7d coorte 4 (imatura)", w9.cell(row=hc + 3, column=10).value, IND)
+chk("conversão 7d agregada (só maduras)", w9.cell(row=ht, column=10).value, (3 + 2) / (40 + 50))
+chk("conversão 14d agregada (só maduras)", w9.cell(row=ht, column=11).value, 4 / 40)
+chk("dias médios coorte 1", w9.cell(row=hc, column=12).value, 25 / 5); chk("dias médios coorte 4 (sem compra)", w9.cell(row=hc + 3, column=12).value, IND)
+chk("dias médios total", w9.cell(row=ht, column=12).value, (25 + 9 + 4) / (5 + 2 + 1))
+
+# ---------- Teste 10 (v3): duplicidade e limite de perda
+print("== Teste 10: duplicidade e limite de perda ==")
+p10 = os.path.join(tmp, "v3dup.xlsx"); C10 = bm.build(p10, dict(H9, cu=9), p0=True, hib=True); wb10 = recalc(p10, out)
+chk("duplicidade detectada", val(wb10, C10["h_dup"]), "DUPLICIDADE: soma maior que únicos")
+p11 = os.path.join(tmp, "v3falta.xlsx"); C11 = bm.build(p11, dict(H9, cu=13), p0=True, hib=True); wb11 = recalc(p11, out)
+chk("falta detectada", val(wb11, C11["h_dup"]), "FALTA: soma menor que únicos")
+p12 = os.path.join(tmp, "v3perda.xlsx"); C12 = bm.build(p12, dict(H9, gf=3 * 44.51 + 1, cf=0, cu=7), p0=True, hib=True); wb12 = recalc(p12, out)
+chk("limite de perda frio atingido", val(wb12, C12["h_perda_f"]), "LIMITE ATINGIDO: propor interrupção a Bruno")
+chk("CPA frio sem compra", val(wb12, C12["h_cpa_f"]), "sem compra")
+chk("limite de perda quente segue dentro", val(wb12, C12["h_perda_q"]), "dentro do limite")
+p13 = os.path.join(tmp, "v3teto.xlsx"); C13 = bm.build(p13, dict(H9, cap_dia=40), p0=True, hib=True); wb13 = recalc(p13, out)
+chk("soma dos papéis acima do teto", val(wb13, C13["h_chk_soma"]), "ACIMA DO TETO")
 
 print("\nRESULTADO:", "TODOS OS TESTES PASSARAM" if fails == 0 else "%d FALHA(S)" % fails)
 shutil.rmtree(tmp); shutil.rmtree(out)

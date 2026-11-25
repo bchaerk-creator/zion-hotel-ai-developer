@@ -6,6 +6,9 @@ Entradas (CSV; modelos FICTICIOS em exemplos/MODELO_*.csv; dados reais ficam FOR
   --vendas     ClickMax: order_id,paid_at,value_brl,status,is_test,utm_campaign,utm_content,ad_id,campaign_id,adset_id[,payment_method,delivered,net_brl]
   --eventos    ClickMax/GTM (opcional): date,ad_id,utm_content,landing_view,offer_view,cta_price_click,checkout_start,pix_generated
   --ticto      Gateway (opcional, so para conciliar): order_id,paid_at,value_brl,status,payment_method
+  --hibrido    Funil hibrido (opcional): campo,valor (gasto_captacao, gasto_quente, gasto_fria, leads, compradores_quente, compradores_frio,
+               compradores_nao_atribuidos, compradores_unicos, reembolsos_quente, reembolsos_frio, reembolsos_nao_atribuidos, data_leitura)
+  --coortes    Coortes diarias de leads (opcional): data,leads,comp_7d,comp_14d,comp_hoje,soma_dias_ate_compra
 Saida: --saida dados.json (e, com --html-base e --html-saida, uma copia do dashboard com o JSON embutido para abrir por duplo clique).
 
 Regras (ver INDICADORES_P0.md):
@@ -353,7 +356,7 @@ def conciliacao(vendas, ticto, meta_rows):
 
 def gerar(meta_rows, venda_rows, evento_rows=None, ticto_rows=None, *, ficticio, periodo=None, preco=47.0, taxa_fixa=2.49, taxa_pct_alta=0.0699,
           limite_faixa=47.0, imposto=0.0, custos_var=0.0, reembolso_reserva=0.0, margem_alvo=0.30, limiares=None, checkout_def="desconhecido",
-          rotulo=None, fuso="America/Sao_Paulo", gerado_em=None):
+          rotulo=None, fuso="America/Sao_Paulo", gerado_em=None, hibrido_rows=None, coorte_rows=None, hib_params=None):
     lim = dict(LIMIARES_PADRAO, **(limiares or {}))
     p = {"taxa_fixa": taxa_fixa, "taxa_pct_alta": taxa_pct_alta, "limite_faixa": limite_faixa}
     liquido = liquido_venda(preco, taxa_fixa, taxa_pct_alta, limite_faixa)
@@ -381,6 +384,99 @@ def gerar(meta_rows, venda_rows, evento_rows=None, ticto_rows=None, *, ficticio,
         "analise": an,
         "qualidade": qualidade(info, linhas, conc, checkout_def, lim, venda_rows, meta_rows),
     }
+    hb = hibrido(hibrido_rows, coorte_rows, F, hib_params)
+    if hb is not None:
+        hb["rotulo"] = out["meta"]["rotulo"]
+        out["hibrido"] = hb
+    return out
+
+
+HIB_PADRAO = {"teto_dia": 60.0, "dias": 14, "cap_dia": 30.0, "q_dia": 15.0, "f_dia": 15.0, "k": 3.0}  # [H] proposta de Bruno de 25/11; parametros
+HIB_CAMPOS = ["gasto_captacao", "gasto_quente", "gasto_fria", "leads", "compradores_quente", "compradores_frio", "compradores_nao_atribuidos",
+              "compradores_unicos", "reembolsos_quente", "reembolsos_frio", "reembolsos_nao_atribuidos"]
+
+
+def _idade(data, leitura):
+    if not data or not leitura:
+        return None
+    return (datetime.strptime(leitura, "%Y-%m-%d") - datetime.strptime(data, "%Y-%m-%d")).days
+
+
+def hibrido(hib_rows, coorte_rows, F, params=None):
+    """Funil hibrido: quente (captacao + venda quente), frio (venda fria) e global (compradores unicos). Mesmas formulas da aba
+    'Funil Hibrido' do modelo v3. Campo sem dado = None (indisponivel, nunca zero). Retorna None se nao houver arquivo."""
+    if hib_rows is None and coorte_rows is None:
+        return None
+    P = dict(HIB_PADRAO, **(params or {}))
+    e = {k: None for k in HIB_CAMPOS}
+    e["data_leitura"] = None
+    for r in hib_rows or []:
+        c = (r.get("campo") or "").strip()
+        v = (r.get("valor") or "").strip()
+        if c in e:
+            e[c] = v if c == "data_leitura" and v else (num(v) if c != "data_leitura" else None)
+    unit = F["liquido"] - F["imposto"] * F["preco"] - F["custos_var"]  # margem realizada por venda (sem reserva de reembolso)
+    perda = P["k"] * F["cpa_max"]
+
+    def dif(a, b):
+        return None if a is None or b is None else a - b
+
+    gastos = [e["gasto_captacao"], e["gasto_quente"], e["gasto_fria"]]
+    inv = soma(gastos)
+    inv_q = soma([e["gasto_captacao"], e["gasto_quente"]])
+    reemb_tot = soma([e["reembolsos_quente"], e["reembolsos_frio"], e["reembolsos_nao_atribuidos"]])
+    soma_c = soma([e["compradores_quente"], e["compradores_frio"], e["compradores_nao_atribuidos"]])
+
+    def faixa(cpa):
+        if cpa is None:
+            return None
+        return "abaixo do CPA desejado" if cpa <= F["cpa_desejado"] else ("entre o desejado e o máximo" if cpa <= F["cpa_max"] else "acima do CPA máximo")
+
+    def caminho(nome, invest, comp, reemb):
+        liq = None if comp is None else (comp - (reemb or 0))
+        d = {"caminho": nome, "investimento": invest, "compradores": comp, "reembolsos": reemb,
+             "cpa": div(invest, comp) if comp else None, "sem_compra": comp == 0 and invest is not None}
+        d["receita_liquida"] = None if liq is None else round(liq * F["liquido"], 2)
+        d["margem_contribuicao"] = None if liq is None else round(liq * unit, 2)
+        d["resultado_midia"] = None if d["margem_contribuicao"] is None or invest is None else round(d["margem_contribuicao"] - invest, 2)
+        d["roas"] = div(None if comp is None else comp * F["preco"], invest)
+        d["equilibrio_compradores"] = div(invest, F["cpa_max"]) if F["cpa_max"] > 0 else None
+        d["faixa"] = faixa(d["cpa"])
+        d["limite_perda"] = None if invest is None or comp is None else ("LIMITE ATINGIDO" if (invest >= perda and comp == 0) else "dentro do limite")
+        return d
+    out = {
+        "rotulo": None,
+        "parametros": {**P, "orcamento_teste": P["teto_dia"] * P["dias"], "soma_papeis_dia": P["cap_dia"] + P["q_dia"] + P["f_dia"], "limite_perda": round(perda, 2)},
+        "entradas": e,
+        "cpl": div(e["gasto_captacao"], e["leads"]),
+        "caminhos": {"quente": caminho("quente", inv_q, e["compradores_quente"], e["reembolsos_quente"]),
+                     "frio": caminho("frio", e["gasto_fria"], e["compradores_frio"], e["reembolsos_frio"]),
+                     "global": caminho("global", inv, e["compradores_unicos"], reemb_tot)},
+        "duplicidade": (None if soma_c is None or e["compradores_unicos"] is None else
+                        ("OK: sem duplicidade" if soma_c == e["compradores_unicos"] else
+                         ("DUPLICIDADE: soma maior que únicos" if soma_c > e["compradores_unicos"] else "FALTA: soma menor que únicos"))),
+        "soma_grupos": soma_c,
+        "orcamento": {"consumido": div(inv, P["teto_dia"] * P["dias"]), "restante": dif(P["teto_dia"] * P["dias"], inv)},
+    }
+    cs = []
+    for r in coorte_rows or []:
+        d = (r.get("data") or "").strip()
+        leads, c7, c14, hoje, sd = (num(r.get(k)) for k in ("leads", "comp_7d", "comp_14d", "comp_hoje", "soma_dias_ate_compra"))
+        idade = _idade(d, e["data_leitura"])
+        m7 = idade is not None and idade >= 7
+        m14 = idade is not None and idade >= 14
+        cs.append({"data": d, "leads": leads, "comp_7d": c7, "comp_14d": c14, "comp_hoje": hoje, "soma_dias": sd, "idade": idade,
+                   "madura_7d": m7, "madura_14d": m14,
+                   "conv_7d": div(c7, leads) if m7 else None, "conv_14d": div(c14, leads) if m14 else None,
+                   "dias_medios": div(sd, hoje) if hoje else None})
+    out["coortes"] = cs
+
+    def agg(flag, campo):
+        sel = [c for c in cs if c[flag] and c["leads"] and c[campo] is not None]
+        return div(sum(c[campo] for c in sel), sum(c["leads"] for c in sel)) if sel else None
+    out["coortes_total"] = {"conv_7d": agg("madura_7d", "comp_7d"), "conv_14d": agg("madura_14d", "comp_14d"),
+                            "dias_medios": div(soma([c["soma_dias"] for c in cs]), soma([c["comp_hoje"] for c in cs])),
+                            "coortes_maduras_7d": sum(1 for c in cs if c["madura_7d"]), "coortes_maduras_14d": sum(1 for c in cs if c["madura_14d"])}
     return out
 
 
@@ -401,6 +497,8 @@ def main(argv=None):
     ap.add_argument("--vendas", required=True)
     ap.add_argument("--eventos")
     ap.add_argument("--ticto")
+    ap.add_argument("--hibrido", help="CSV campo,valor do funil híbrido (opcional)")
+    ap.add_argument("--coortes", help="CSV de coortes diárias de leads (opcional)")
     ap.add_argument("--saida", required=True)
     ap.add_argument("--ficticio", action="store_true", help="marca como 'dados fictícios' (use só nos modelos)")
     ap.add_argument("--rotulo")
@@ -418,7 +516,8 @@ def main(argv=None):
     lim = json.load(open(a.limiares, encoding="utf-8")) if a.limiares else None
     d = gerar(ler(a.meta), ler(a.vendas), ler(a.eventos) if a.eventos else None, ler(a.ticto) if a.ticto else None,
               ficticio=a.ficticio, rotulo=a.rotulo, preco=a.preco, taxa_fixa=a.taxa_fixa, taxa_pct_alta=a.taxa_pct_alta, imposto=a.imposto,
-              custos_var=a.custos_var, margem_alvo=a.margem_alvo, limiares=lim, checkout_def=a.checkout_start)
+              custos_var=a.custos_var, margem_alvo=a.margem_alvo, limiares=lim, checkout_def=a.checkout_start,
+              hibrido_rows=ler(a.hibrido) if a.hibrido else None, coorte_rows=ler(a.coortes) if a.coortes else None)
     with open(a.saida, "w", encoding="utf-8") as f:
         json.dump(d, f, ensure_ascii=False, indent=1)
     print("ok", a.saida, "| rótulo:", d["meta"]["rotulo"], "| anúncios:", len(d["analise"]["criativos"]))

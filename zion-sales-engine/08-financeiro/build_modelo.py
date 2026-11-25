@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Gera modelo_financeiro.xlsx (v1) ou modelo_financeiro_v2.xlsx com --v2 (aba Funil P0). (ZION FINANCE · Fase 03).
 Sem dados reais de venda/gasto: células de entrada vazias ou parâmetros rotulados.
-Uso: python3 -I build_modelo.py [--v2] [saida.xlsx]   (build(path, inputs) também é usado pelo teste)"""
+Uso: python3 -I build_modelo.py [--v2 | --v3] [saida.xlsx]   (--v3 = v2 + aba Funil Híbrido; v1 e v2 ficam intactas)   (build(path, inputs) também é usado pelo teste)"""
 import re, sys, json
 from openpyxl import Workbook
 from openpyxl.styles import PatternFill, Font, Alignment, Border, Side
@@ -53,7 +53,7 @@ def put(ws, row, name, label, value, fmt, kind, tag="", note="", local=None, sto
     CELLS_LOCAL = None
     return ref
 
-def build(path, inputs=None, p0=False):
+def build(path, inputs=None, p0=False, hib=False):
     inputs = inputs or {}
     wb = Workbook()
     # ---------------- Comece aqui
@@ -360,11 +360,16 @@ def build(path, inputs=None, p0=False):
     wk.merge_cells(start_row=t + 2, start_column=1, end_row=t + 2, end_column=12); wk.row_dimensions[t + 2].height = 34
     for i, w in enumerate([12, 40, 14, 18, 12, 14, 14, 18, 14, 12, 16, 20], start=1): wk.column_dimensions[get_column_letter(i)].width = w
 
-    if p0:
+    if p0 or hib:
         ws["A15"] = "Aba Funil P0 (v2)"; ws["A15"].font = Font(bold=True)
         ws["B15"] = "Funil de 7 eventos (landing → oferta → clique no CTA com preço → início efetivo de checkout → Pix gerado → pagamento aprovado → entrega), custo por etapa, CPA, ROAS, margem, ponto de equilíbrio, projeção e quadro curioso × comprador. Entradas em amarelo ficam VAZIAS até haver dado real (fora do repositório)."
         ws["B15"].alignment = Alignment(wrap_text=True, vertical="top")
         add_funil_p0(wb, inputs)
+    if hib:
+        ws["A16"] = "Aba Funil Híbrido (v3)"; ws["A16"].font = Font(bold=True)
+        ws["B16"] = "Dois caminhos (A quente: captação + venda quente; B frio: venda fria) e global: CPL, CPA quente/frio/global, receita líquida, margem, ROAS, equilíbrio, limite de perda, orçamento do teste (R$ 60/dia × 14) e tabela de coortes (conversão lead→comprador em 7 e 14 dias). Comprador único conta uma vez. Entradas em amarelo ficam VAZIAS até haver dado real (fora do repositório)."
+        ws["B16"].alignment = Alignment(wrap_text=True, vertical="top")
+        add_funil_hibrido(wb, inputs)
     for w_ in wb.worksheets: w_.sheet_view.showGridLines = False
     wb.save(path)
     return CELLS
@@ -566,8 +571,154 @@ def add_funil_p0(wb, inputs):
     return wf
 
 
+S_HIB = "Funil Híbrido"
+N_COORTES = 14
+
+
+def add_funil_hibrido(wb, inputs):
+    """Aba 'Funil Híbrido' (v3). Amarelo = entrada (vazia até haver dado real); verde = calculado; 'indisponível' nunca vira zero."""
+    wh = wb.create_sheet(S_HIB)
+    title(wh, "Funil híbrido · quente (A) × frio (B) × global",
+          "Amarelo = entrada (vazia, dado real fica fora do repositório). Verde = calculado. Teste de 14 dias só começa após validação técnica e 'aprovado' de Bruno. [NC] = não confirmado.")
+    lh = {}
+
+    def H(row, name, label, value, fmt, kind, tag, note):
+        v = inputs.get(name, value) if kind == "in" else value
+        put(wh, row, name, label, v, fmt, kind, tag, note, local=lh)
+        CELLS["h_" + name] = f"{q(S_HIB)}!$B${row}"
+
+    def nz(*names):
+        return ",".join(f'{lh[n]}=""' for n in names)
+
+    wh["A4"] = "1) Parâmetros do teste (hipótese [H]: Bruno ajusta)"; wh["A4"].font = Font(bold=True, color="8B714E")
+    hdr(wh, 5, ["Parâmetro", "Valor", "Etiqueta", "Fonte / observação"])
+    H(6, "teto_dia", "Teto diário do teste (R$/dia)", 60, BRL, "in", "[H]", "Proposta de Bruno de 25/11. Parâmetro; o teto vigente no CLAUDE.md é outro: ver DIVERGENCIAS_ORCAMENTO.md.")
+    H(7, "dias", "Duração do teste (dias)", 14, INT, "in", "[H]", "Contagem só começa após validação técnica e autorização.")
+    H(8, "orc_teste", "Orçamento máximo planejado do teste (R$)", "=#teto_dia*#dias", BRL, "calc", "[H]", "teto/dia × dias (R$ 60 × 14 = R$ 840).")
+    H(9, "cap_dia", "Captação (R$/dia)", 30, BRL, "in", "[H]", "Anúncio de captação (formulário).")
+    H(10, "q_dia", "Venda quente (R$/dia)", 15, BRL, "in", "[H]", "Remarketing para leads elegíveis, excluindo compradores.")
+    H(11, "f_dia", "Venda fria (R$/dia)", 15, BRL, "in", "[H]", "Brasil amplo, excluindo leads e compradores quando tecnicamente possível.")
+    H(12, "soma_dia", "Soma dos três papéis (R$/dia)", "=#cap_dia+#q_dia+#f_dia", BRL, "calc", "", "")
+    H(13, "chk_soma", "Conferência da soma com o teto", '=IF(ABS(#soma_dia-#teto_dia)<0.005,"OK: soma = teto",IF(#soma_dia>#teto_dia,"ACIMA DO TETO","abaixo do teto"))', "General", "calc", "", "")
+    H(14, "k", "k: múltiplo do CPA máximo para o limite de perda", 3, NUM, "in", "[H]", "Limite de perda por caminho sem compra atribuída = k × CPA máximo (mesmo k do stop-loss do painel).")
+    H(15, "leitura", "Data da leitura (para a idade das coortes)", inputs.get("leitura"), "dd/mm/yyyy", "in", "dado real", "Vazio. Preencher com a data em que os dados foram lidos.")
+    H(16, "cpamax", "CPA máximo (referência, R$)", "=@mm_cpamax", BRL, "calc", "[E]", "Aba Mini Mentoria 47: líquido Pix R$ 44,51 [E] menos imposto, custos e reserva (a definir, em 0 = teto superior).")
+    H(17, "cpades", "CPA desejado (referência, R$)", "=@mm_cpades", BRL, "calc", "[H]", "CPA máximo × (1 − margem alvo).")
+    H(18, "liq", "Líquido médio por venda (R$)", "=@liq_medio", BRL, "calc", "[E]", "Pix R$ 44,51 [E]. Cartão (taxa), imposto, reembolso e custos: [NC] (Parâmetros).")
+    H(19, "mcu", "Margem de contribuição por venda, antes da mídia (R$)", "=@mm_mc", BRL, "calc", "[E]", "Inclui reserva de reembolso do Parâmetros.")
+    H(20, "perda", "Limite de perda por caminho sem compra (R$)", "=#k*#cpamax", BRL, "calc", "[H]", "k × CPA máximo.")
+
+    wh["A22"] = "2) Entradas do período (dados reais ficam FORA do repositório)"; wh["A22"].font = Font(bold=True, color="8B714E")
+    hdr(wh, 23, ["Entrada", "Valor", "Etiqueta", "Fonte / observação"])
+    ent = [("gcap", "Gasto de captação (R$)", BRL, "Meta."), ("gq", "Gasto de venda quente (R$)", BRL, "Meta."),
+           ("gf", "Gasto de venda fria (R$)", BRL, "Meta."), ("leads", "Leads captados (qtd)", INT, "ClickMax (contatos novos com etiqueta de coorte)."),
+           ("cq", "Compradores atribuídos ao funil quente (qtd)", INT, "Pagamento aprovado, sem teste; regra de atribuição abaixo."),
+           ("cf", "Compradores atribuídos ao funil frio (qtd)", INT, "Idem."),
+           ("cn", "Compradores não atribuídos (qtd)", INT, "Compra sem origem: fica 'não atribuída', nunca é distribuída."),
+           ("cu", "Compradores únicos (qtd)", INT, "Contagem independente por e-mail normalizado (ClickMax × Ticto). Deve bater com a soma dos três."),
+           ("rq", "Reembolsos entre os compradores quentes (qtd)", INT, "Janela de 7 dias."), ("rf", "Reembolsos entre os compradores frios (qtd)", INT, "Idem."),
+           ("rn", "Reembolsos entre os não atribuídos (qtd)", INT, "Idem.")]
+    r = 24
+    for nm, lb, fm, nt in ent:
+        H(r, nm, lb, None, fm, "in", "dado real", nt + " Vazio."); r += 1
+    # r = 35
+    wh.cell(row=r, column=1, value="Regra de não duplicidade e precedência da atribuição (comprador único conta UMA vez)").font = Font(bold=True, color="8B714E"); r += 1
+    regra = ("1) Cada comprador (e-mail normalizado) entra em UM só grupo. 2) Precedência: (a) última campanha paga com clique (UTM/sck) da venda; se for de venda fria, vai para o frio; "
+             "se for de venda quente, vai para o quente. (b) Sem UTM, mas o lead da coorte entrou antes da compra e dentro da janela de 14 dias: quente, 'atribuição por etiqueta'. "
+             "(c) Nenhuma das duas: não atribuído. 3) Lead que também recebeu anúncio frio e comprou pela frio conta no frio (não nos dois). 4) O CPA global usa compradores únicos; "
+             "a soma dos três grupos deve ser igual aos únicos (conferência abaixo). 5) E-mail ou telefone diferente do lead: não presumir correspondência; fica não atribuído [NC].")
+    c = wh.cell(row=r, column=1, value=regra); c.alignment = Alignment(wrap_text=True, vertical="top")
+    wh.merge_cells(start_row=r, start_column=1, end_row=r, end_column=4); wh.row_dimensions[r].height = 92; r += 2
+
+    wh.cell(row=r, column=1, value="3) Indicadores (calculados)").font = Font(bold=True, color="8B714E"); r += 1
+    hdr(wh, r, ["Indicador", "Valor", "Etiqueta", "Fórmula / leitura"]); r += 1
+
+    def D(name, label, f, fmt, tag, note):
+        nonlocal r
+        put(wh, r, name, label, f, fmt, "calc", tag, note, local=lh)
+        CELLS["h_" + name] = f"{q(S_HIB)}!$B${r}"; r += 1
+
+    def ratio(a, b):
+        return f'=IF(OR({nz(a, b)},N({lh[b]})=0),"{IND}",{lh[a]}/{lh[b]})'
+    D("inv", "Investimento total (R$)", f'=IF(COUNT({lh["gcap"]},{lh["gq"]},{lh["gf"]})=0,"{IND}",N({lh["gcap"]})+N({lh["gq"]})+N({lh["gf"]}))', BRL, "dado real", "captação + quente + fria.")
+    D("inv_q", "Investimento do caminho quente (R$)", f'=IF(COUNT({lh["gcap"]},{lh["gq"]})=0,"{IND}",N({lh["gcap"]})+N({lh["gq"]}))', BRL, "dado real", "captação + venda quente.")
+    D("cpl", "CPL: custo por lead (R$)", ratio("gcap", "leads"), BRL, "dado real", "gasto de captação ÷ leads.")
+    D("cpa_q", "CPA quente (R$)", f'=IF(OR(NOT(ISNUMBER({lh["inv_q"]})),{nz("cq")}),"{IND}",IF({lh["cq"]}=0,"sem compra",{lh["inv_q"]}/{lh["cq"]}))', BRL, "dado real", "(captação + venda quente) ÷ compradores quentes.")
+    D("cpa_f", "CPA frio (R$)", f'=IF(OR({nz("gf", "cf")}),"{IND}",IF({lh["cf"]}=0,"sem compra",{lh["gf"]}/{lh["cf"]}))', BRL, "dado real", "venda fria ÷ compradores frios.")
+    D("cpa_g", "CPA global (R$)", f'=IF(OR(NOT(ISNUMBER({lh["inv"]})),{nz("cu")}),"{IND}",IF({lh["cu"]}=0,"sem compra",{lh["inv"]}/{lh["cu"]}))', BRL, "dado real", "investimento total ÷ compradores únicos.")
+    D("soma_c", "Soma dos compradores por grupo", f'=IF(COUNT({lh["cq"]},{lh["cf"]},{lh["cn"]})=0,"{IND}",N({lh["cq"]})+N({lh["cf"]})+N({lh["cn"]}))', INT, "dado real", "quente + frio + não atribuído.")
+    D("dup", "Conferência de duplicidade (soma × únicos)", f'=IF(OR(NOT(ISNUMBER({lh["soma_c"]})),{nz("cu")}),"{IND}",IF({lh["soma_c"]}={lh["cu"]},"OK: sem duplicidade",IF({lh["soma_c"]}>{lh["cu"]},"DUPLICIDADE: soma maior que únicos","FALTA: soma menor que únicos")))', "General", "dado real", "Se não bater, corrigir a atribuição antes de ler o CPA.")
+    D("rtot", "Reembolsos totais (qtd)", f'=IF(COUNT({lh["rq"]},{lh["rf"]},{lh["rn"]})=0,"{IND}",N({lh["rq"]})+N({lh["rf"]})+N({lh["rn"]}))', INT, "dado real", "")
+    D("taxa_r", "Taxa de reembolso global", f'=IF(OR(NOT(ISNUMBER({lh["rtot"]})),{nz("cu")},N({lh["cu"]})=0),"{IND}",{lh["rtot"]}/{lh["cu"]})', PCT, "dado real", "reembolsos ÷ compradores únicos.")
+    for suf, cnt, rb, lab in (("q", "cq", "rq", "quente"), ("f", "cf", "rf", "frio")):
+        D("rl_" + suf, f"Receita líquida · {lab} (R$)", f'=IF({nz(cnt)},"{IND}",({lh[cnt]}-N({lh[rb]}))*@liq_medio)', BRL, "dado real", "(compradores − reembolsos) × líquido médio (R$ 44,51 no Pix [E]).")
+    D("rl_g", "Receita líquida · global (R$)", f'=IF({nz("cu")},"{IND}",({lh["cu"]}-N({lh["rtot"]}))*@liq_medio)', BRL, "dado real", "(únicos − reembolsos) × líquido médio.")
+    for suf, cnt, rb, lab in (("q", "cq", "rq", "quente"), ("f", "cf", "rf", "frio")):
+        D("mc_" + suf, f"Margem de contribuição · {lab}, antes da mídia (R$)", f'=IF({nz(cnt)},"{IND}",({lh[cnt]}-N({lh[rb]}))*(@liq_medio-@imposto*@preco-@custos_var))', BRL, "a definir", "Imposto e custo variável 'a definir' em 0: teto superior.")
+    D("mc_g", "Margem de contribuição · global, antes da mídia (R$)", f'=IF({nz("cu")},"{IND}",({lh["cu"]}-N({lh["rtot"]}))*(@liq_medio-@imposto*@preco-@custos_var))', BRL, "a definir", "")
+    D("res_q", "Resultado de mídia · quente (R$)", f'=IF(OR(NOT(ISNUMBER({lh["mc_q"]})),NOT(ISNUMBER({lh["inv_q"]}))),"{IND}",{lh["mc_q"]}-{lh["inv_q"]})', BRL, "a definir", "margem − (captação + venda quente).")
+    D("res_f", "Resultado de mídia · frio (R$)", f'=IF(OR(NOT(ISNUMBER({lh["mc_f"]})),{nz("gf")}),"{IND}",{lh["mc_f"]}-{lh["gf"]})', BRL, "a definir", "margem − venda fria.")
+    D("res_g", "Resultado de mídia · global (R$)", f'=IF(OR(NOT(ISNUMBER({lh["mc_g"]})),NOT(ISNUMBER({lh["inv"]}))),"{IND}",{lh["mc_g"]}-{lh["inv"]})', BRL, "a definir", "Faturamento não é lucro. Inclui não atribuídos.")
+    D("roas_q", "ROAS · quente (receita bruta ÷ investimento)", f'=IF(OR({nz("cq")},NOT(ISNUMBER({lh["inv_q"]})),N({lh["inv_q"]})=0),"{IND}",{lh["cq"]}*@preco/{lh["inv_q"]})', NUM, "dado real", "")
+    D("roas_f", "ROAS · frio", f'=IF(OR({nz("cf", "gf")},N({lh["gf"]})=0),"{IND}",{lh["cf"]}*@preco/{lh["gf"]})', NUM, "dado real", "")
+    D("roas_g", "ROAS · global", f'=IF(OR({nz("cu")},NOT(ISNUMBER({lh["inv"]})),N({lh["inv"]})=0),"{IND}",{lh["cu"]}*@preco/{lh["inv"]})', NUM, "dado real", "")
+    D("roas_be", "ROAS de equilíbrio (referência)", "=@mm_roasbe", NUM, "[E]", "preço ÷ CPA máximo.")
+    D("pe_q", "Ponto de equilíbrio · compradores quentes necessários", f'=IF(OR(NOT(ISNUMBER({lh["inv_q"]})),{lh["mcu"]}<=0),"{IND}",{lh["inv_q"]}/{lh["mcu"]})', NUM, "", "investimento do caminho ÷ margem por venda.")
+    D("pe_f", "Ponto de equilíbrio · compradores frios necessários", f'=IF(OR({nz("gf")},{lh["mcu"]}<=0),"{IND}",{lh["gf"]}/{lh["mcu"]})', NUM, "", "")
+    D("pe_g", "Ponto de equilíbrio · compradores únicos necessários", f'=IF(OR(NOT(ISNUMBER({lh["inv"]})),{lh["mcu"]}<=0),"{IND}",{lh["inv"]}/{lh["mcu"]})', NUM, "", "")
+    for suf, nm in (("q", "quente"), ("f", "frio"), ("g", "global")):
+        D("vs_" + suf, f"CPA {nm} × referências", f'=IF(NOT(ISNUMBER({lh["cpa_" + suf]})),"{IND}",IF({lh["cpa_" + suf]}<={lh["cpades"]},"abaixo do CPA desejado",IF({lh["cpa_" + suf]}<={lh["cpamax"]},"entre o desejado e o máximo","acima do CPA máximo")))', "General", "", "Leitura da faixa; decidir só com amostra mínima (protocolo) e 'aprovado' de Bruno.")
+    for suf, g, c_, nm in (("q", "inv_q", "cq", "quente"), ("f", "gf", "cf", "frio"), ("g", "inv", "cu", "global")):
+        D("perda_" + suf, f"Limite de perda · {nm}", f'=IF(OR(NOT(ISNUMBER({lh[g]})),{nz(c_)}),"{IND}",IF(AND({lh[g]}>={lh["perda"]},{lh[c_]}=0),"LIMITE ATINGIDO: propor interrupção a Bruno","dentro do limite"))', "General", "[H]", "gasto acumulado ≥ k × CPA máximo sem compra atribuída. Não pausa nada sozinho.")
+    D("orc_uso", "Orçamento do teste consumido (% do máximo planejado)", f'=IF(NOT(ISNUMBER({lh["inv"]})),"{IND}",{lh["inv"]}/{lh["orc_teste"]})', PCT, "dado real", "investimento ÷ orçamento máximo planejado.")
+    D("orc_rest", "Orçamento restante do teste (R$)", f'=IF(NOT(ISNUMBER({lh["inv"]})),"{IND}",{lh["orc_teste"]}-{lh["inv"]})', BRL, "dado real", "Negativo = passou do máximo planejado.")
+    r += 1
+
+    wh.cell(row=r, column=1, value="4) Coortes diárias de leads: conversão lead → comprador em 7 e 14 dias (só coorte com a idade completa entra)").font = Font(bold=True, color="8B714E"); r += 1
+    heads = ["Coorte (data de entrada)", "Leads da coorte", "Compradores até 7 dias", "Compradores até 14 dias", "Compradores até hoje", "Soma dos dias até a compra",
+             "Idade (dias)", "Madura 7d (1/0)", "Madura 14d (1/0)", "Conversão 7 dias", "Conversão 14 dias", "Dias médios até a compra"]
+    hdr(wh, r, heads); wh.row_dimensions[r].height = 46; r += 1
+    c0 = r
+    c1 = c0 + N_COORTES - 1
+    L = lh["leitura"]
+    for i in range(N_COORTES):
+        rr = c0 + i
+        for col, fm in ((1, "dd/mm/yyyy"), (2, INT), (3, INT), (4, INT), (5, INT), (6, INT)):
+            c = wh.cell(row=rr, column=col); c.fill = YEL; c.border = BOX; c.number_format = fm
+            c.value = inputs.get(f"coorte{i+1}_{col}")
+        F = {7: f'=IF(OR(A{rr}="",{L}=""),"",{L}-A{rr})',
+             8: f'=IF(ISNUMBER(G{rr}),IF(G{rr}>=7,1,0),0)', 9: f'=IF(ISNUMBER(G{rr}),IF(G{rr}>=14,1,0),0)',
+             10: f'=IF(OR(H{rr}=0,B{rr}="",N(B{rr})=0,C{rr}=""),"{IND}",C{rr}/B{rr})',
+             11: f'=IF(OR(I{rr}=0,B{rr}="",N(B{rr})=0,D{rr}=""),"{IND}",D{rr}/B{rr})',
+             12: f'=IF(OR(E{rr}="",F{rr}="",N(E{rr})=0),"{IND}",F{rr}/E{rr})'}
+        fm = {7: INT, 8: INT, 9: INT, 10: PCT, 11: PCT, 12: NUM}
+        for col, f in F.items():
+            c = wh.cell(row=rr, column=col, value=f); c.fill = GRN; c.border = BOX; c.number_format = fm[col]
+    t = c1 + 1
+    wh.cell(row=t, column=1, value="TOTAL (coortes maduras)").font = Font(bold=True)
+    for col, Lc in ((2, "B"), (3, "C"), (4, "D"), (5, "E"), (6, "F")):
+        c = wh.cell(row=t, column=col, value=f'=IF(COUNT({Lc}{c0}:{Lc}{c1})=0,"{IND}",SUM({Lc}{c0}:{Lc}{c1}))'); c.fill = GRN; c.border = BOX; c.number_format = INT
+    c = wh.cell(row=t, column=10, value=f'=IF(SUMPRODUCT(H{c0}:H{c1},B{c0}:B{c1})=0,"{IND}",SUMPRODUCT(H{c0}:H{c1},C{c0}:C{c1})/SUMPRODUCT(H{c0}:H{c1},B{c0}:B{c1}))'); c.fill = GRN; c.border = BOX; c.number_format = PCT
+    c = wh.cell(row=t, column=11, value=f'=IF(SUMPRODUCT(I{c0}:I{c1},B{c0}:B{c1})=0,"{IND}",SUMPRODUCT(I{c0}:I{c1},D{c0}:D{c1})/SUMPRODUCT(I{c0}:I{c1},B{c0}:B{c1}))'); c.fill = GRN; c.border = BOX; c.number_format = PCT
+    c = wh.cell(row=t, column=12, value=f'=IF(OR(NOT(ISNUMBER(E{t})),NOT(ISNUMBER(F{t})),N(E{t})=0),"{IND}",F{t}/E{t})'); c.fill = GRN; c.border = BOX; c.number_format = NUM
+    CELLS.update(hc_first=c0, hc_last=c1, hc_total=t)
+    wh.cell(row=t + 2, column=1, value="Como ler: compare coortes com a MESMA idade. Coorte com menos de 7 dias não entra na conversão de 7 dias; menos de 14 dias não entra na de 14. Compradores até 7/14 dias = pagamentos aprovados até esse prazo depois da entrada do lead. Conversão sem leads ou sem idade = indisponível, nunca zero.").alignment = Alignment(wrap_text=True)
+    wh.merge_cells(start_row=t + 2, start_column=1, end_row=t + 2, end_column=12); wh.row_dimensions[t + 2].height = 46
+    wh.column_dimensions["A"].width = 56
+    for col, w in zip("BCDEFGHIJKL", (22, 14, 16, 16, 16, 12, 12, 12, 14, 14, 14)):
+        wh.column_dimensions[col].width = w
+    wh.column_dimensions["D"].width = 60
+    return wh
+
+
+
 if __name__ == "__main__":
     args = [a for a in sys.argv[1:] if not a.startswith("--")]
+    v3 = "--v3" in sys.argv
     v2 = "--v2" in sys.argv
-    out = args[0] if args else ("modelo_financeiro_v2.xlsx" if v2 else "modelo_financeiro.xlsx")
-    build(out, p0=v2); print("ok", out, "(v2 com aba Funil P0)" if v2 else "(v1)")
+    if v3:
+        out = args[0] if args else "modelo_financeiro_v3.xlsx"
+        build(out, p0=True, hib=True); print("ok", out, "(v3: Funil P0 + Funil Híbrido)")
+    else:
+        out = args[0] if args else ("modelo_financeiro_v2.xlsx" if v2 else "modelo_financeiro.xlsx")
+        build(out, p0=v2); print("ok", out, "(v2 com aba Funil P0)" if v2 else "(v1)")

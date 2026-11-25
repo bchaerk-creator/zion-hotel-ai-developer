@@ -157,6 +157,23 @@ footer{margin:36px 0 12px;color:var(--areia);font-size:13.5px;border-top:1px sol
     <p class="sub">Gasto (barras) e vendas aprovadas (pontos) por dia.</p>
     <div id="serie"></div>
 
+    <section id="hib-sec" hidden>
+    <h2>Funil híbrido</h2>
+    <p class="sub">Dois caminhos para o mesmo comprador: <b>quente</b> (captação + venda quente) e <b>frio</b> (venda fria), mais o <b>global</b> por comprador único. Comprador conta uma vez; compra sem origem fica "não atribuída".</p>
+    <div id="hib-rotulo" class="faixa"></div>
+    <div class="cards tres" id="hib-cam"></div>
+    <div class="kpis" id="hib-kpis" style="margin-top:10px"></div>
+    <h3 style="margin:22px 0 4px;font-size:22px;color:var(--ouro)">Coortes diárias de leads</h3>
+    <p class="sub">Conversão lead → comprador em 7 e 14 dias. Só coorte com a idade completa entra; a mais nova mostra "indisponível". Compare coortes da mesma idade.</p>
+    <div class="rolagem">
+      <table class="tabela" id="tab-coortes">
+        <thead><tr><th>Coorte</th><th>Leads</th><th>Idade (dias)</th><th>Compradores 7d</th><th>Conversão 7d</th><th>Compradores 14d</th><th>Conversão 14d</th><th>Dias até a compra (média)</th></tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="nota" id="hib-nota"></p>
+    </section>
+
     <h2>Qualidade dos dados</h2>
     <p class="sub">O painel mostra o que falta em vez de esconder.</p>
     <div class="q4" id="qual"></div>
@@ -224,7 +241,7 @@ footer{margin:36px 0 12px;color:var(--areia);font-size:13.5px;border-top:1px sol
     if (!d || !d.meta || !d.analise) return pedir("Formato inesperado: gere o arquivo com gerar_dados.py.");
     D = d; $("carrega").hidden = true; $("app").hidden = false;
     document.title = "Painel comercial Zion" + (d.meta.ficticio ? " (dados fictícios)" : "");
-    renderFaixa(); renderKpis(); renderFunil(); renderTabela(); renderCxC(); renderSemaforo(); renderSerie(); renderQualidade();
+    renderFaixa(); renderKpis(); renderFunil(); renderTabela(); renderCxC(); renderSemaforo(); renderSerie(); renderHibrido(); renderQualidade();
     document.body.setAttribute("data-pronto", "1");
   }
 
@@ -387,6 +404,49 @@ footer{margin:36px 0 12px;color:var(--areia);font-size:13.5px;border-top:1px sol
     });
     box.appendChild(svg);
     box.appendChild(el("div", { class: "leg" }, [el("span", {}, [el("i", { style: "background:#8B714E" }), "Gasto (R$)"]), el("span", {}, [el("i", { style: "background:#8CCB98" }), "Vendas aprovadas"])]));
+  }
+
+  // ---------- funil hibrido
+  function renderHibrido() {
+    var H = D.hibrido, sec = $("hib-sec");
+    if (!H) { sec.hidden = true; return; }
+    sec.hidden = false;
+    var r = $("hib-rotulo"); r.textContent = "";
+    r.appendChild(el("span", { class: D.meta.ficticio ? "selo-fic" : "selo-real", text: D.meta.ficticio ? "EXEMPLO FICTÍCIO · funil híbrido" : "Dados reais · não publicar" }));
+    var P = H.parametros;
+    r.appendChild(el("span", { class: "nota", text: "Teste planejado: R$ " + nf0.format(P.teto_dia) + "/dia × " + P.dias + " dias = " + fBrl(P.orcamento_teste) + " (captação " + fBrl(P.cap_dia) + ", quente " + fBrl(P.q_dia) + ", fria " + fBrl(P.f_dia) + " por dia) [H]" }));
+    var box = $("hib-cam"); box.textContent = "";
+    [["quente", "Quente (captação + venda quente)"], ["frio", "Frio (venda fria)"], ["global", "Global (compradores únicos)"]].forEach(function (x) {
+      var c = H.caminhos[x[0]];
+      var card = el("div", { class: "card", "data-caminho": x[0] }, [el("h3", { text: x[1] })]);
+      var perda = c.limite_perda;
+      var cpaTxt = c.sem_compra ? "sem compra" : (fBrl(c.cpa) || NA);
+      [["CPA", cpaTxt], ["Investimento", fBrl(c.investimento) || NA], ["Compradores", isN(c.compradores) ? nf0.format(c.compradores) : NA],
+       ["ROAS", fX(c.roas) || NA], ["Resultado de mídia", fBrl(c.resultado_midia) || NA], ["Faixa do CPA", c.faixa || NA]].forEach(function (kv) {
+        card.appendChild(el("p", { "data-campo": kv[0] }, [el("b", { text: kv[0] + ": " }), document.createTextNode(kv[1])]));
+      });
+      card.appendChild(el("p", { class: "st " + (perda === "LIMITE ATINGIDO" ? "alerta" : perda ? "ok" : "sem"), "data-campo": "Limite de perda", text: "Limite de perda: " + (perda ? perda.toLowerCase() : NA) }));
+      box.appendChild(card);
+    });
+    var K = $("hib-kpis"); K.textContent = "";
+    var dup = H.duplicidade;
+    [kpi("CPL (custo por lead)", fBrl(H.cpl), "Real", "captação ÷ leads"),
+     kpi("Orçamento consumido", fPct(H.orcamento.consumido), "Real", isN(H.orcamento.restante) ? "restante " + fBrl(H.orcamento.restante) : null),
+     kpi("Tempo até a compra (dias, média)", isN(H.coortes_total.dias_medios) ? nf2.format(H.coortes_total.dias_medios) : null, "Real", "média entre a entrada do lead e o pagamento"),
+     kpi("Conversão lead → comprador 7d", fPct(H.coortes_total.conv_7d), "Real", H.coortes_total.coortes_maduras_7d + " coorte(s) madura(s)"),
+     kpi("Conversão lead → comprador 14d", fPct(H.coortes_total.conv_14d), "Real", H.coortes_total.coortes_maduras_14d + " coorte(s) madura(s)"),
+     kpi("Duplicidade entre caminhos", dup ? (dup.indexOf("OK") === 0 ? "sem duplicidade" : dup) : null, "Real", isN(H.soma_grupos) ? "soma dos grupos: " + nf0.format(H.soma_grupos) : null)
+    ].forEach(function (k) { K.appendChild(k); });
+    var tb = document.querySelector("#tab-coortes tbody"); tb.textContent = "";
+    H.coortes.forEach(function (c) {
+      var vals = [["Coorte", c.data], ["Leads", fInt(c.leads)], ["Idade (dias)", fInt(c.idade)], ["Compradores 7d", c.madura_7d ? fInt(c.comp_7d) : null],
+        ["Conversão 7d", fPct(c.conv_7d)], ["Compradores 14d", c.madura_14d ? fInt(c.comp_14d) : null], ["Conversão 14d", fPct(c.conv_14d)],
+        ["Dias até a compra (média)", isN(c.dias_medios) ? nf2.format(c.dias_medios) : null]];
+      var tr = el("tr", { "data-coorte": c.data });
+      vals.forEach(function (x, i) { var na = x[1] == null; tr.appendChild(el("td", { "data-l": x[0], class: na ? "na" : "", text: na ? (i > 0 && (x[0].indexOf("7d") > 0 || x[0].indexOf("14d") > 0) ? "indisponível (imatura)" : NA) : x[1] })); });
+      tb.appendChild(tr);
+    });
+    $("hib-nota").textContent = "Receita e margem usam o líquido por venda no Pix (R$ " + nf2.format(D.meta.financeiro.liquido) + " [E]); cartão, imposto, reembolso e custos seguem [NC]. Veredito do teste: ver PROTOCOLO_VALIDACAO_14_DIAS.md (inconclusivo é um resultado válido).";
   }
 
   // ---------- qualidade

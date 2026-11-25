@@ -1122,5 +1122,152 @@
    "compras": 33,
    "status": "OK"
   }
+ },
+ "hibrido": {
+  "rotulo": "dados fictícios",
+  "parametros": {
+   "teto_dia": 60.0,
+   "dias": 14,
+   "cap_dia": 30.0,
+   "q_dia": 15.0,
+   "f_dia": 15.0,
+   "k": 3.0,
+   "orcamento_teste": 840.0,
+   "soma_papeis_dia": 60.0,
+   "limite_perda": 133.53
+  },
+  "entradas": {
+   "gasto_captacao": 300.0,
+   "gasto_quente": 120.0,
+   "gasto_fria": 200.0,
+   "leads": 150.0,
+   "compradores_quente": 6.0,
+   "compradores_frio": 4.0,
+   "compradores_nao_atribuidos": 1.0,
+   "compradores_unicos": 11.0,
+   "reembolsos_quente": 1.0,
+   "reembolsos_frio": 0.0,
+   "reembolsos_nao_atribuidos": 0.0,
+   "data_leitura": "2030-01-20"
+  },
+  "cpl": 2.0,
+  "caminhos": {
+   "quente": {
+    "caminho": "quente",
+    "investimento": 420.0,
+    "compradores": 6.0,
+    "reembolsos": 1.0,
+    "cpa": 70.0,
+    "sem_compra": false,
+    "receita_liquida": 222.55,
+    "margem_contribuicao": 222.55,
+    "resultado_midia": -197.45,
+    "roas": 0.6714285714285714,
+    "equilibrio_compradores": 9.43608177937542,
+    "faixa": "acima do CPA máximo",
+    "limite_perda": "dentro do limite"
+   },
+   "frio": {
+    "caminho": "frio",
+    "investimento": 200.0,
+    "compradores": 4.0,
+    "reembolsos": 0.0,
+    "cpa": 50.0,
+    "sem_compra": false,
+    "receita_liquida": 178.04,
+    "margem_contribuicao": 178.04,
+    "resultado_midia": -21.96,
+    "roas": 0.94,
+    "equilibrio_compradores": 4.493372275893058,
+    "faixa": "acima do CPA máximo",
+    "limite_perda": "dentro do limite"
+   },
+   "global": {
+    "caminho": "global",
+    "investimento": 620.0,
+    "compradores": 11.0,
+    "reembolsos": 1.0,
+    "cpa": 56.36363636363637,
+    "sem_compra": false,
+    "receita_liquida": 445.1,
+    "margem_contribuicao": 445.1,
+    "resultado_midia": -174.9,
+    "roas": 0.8338709677419355,
+    "equilibrio_compradores": 13.92945405526848,
+    "faixa": "acima do CPA máximo",
+    "limite_perda": "dentro do limite"
+   }
+  },
+  "duplicidade": "OK: sem duplicidade",
+  "soma_grupos": 11.0,
+  "orcamento": {
+   "consumido": 0.7380952380952381,
+   "restante": 220.0
+  },
+  "coortes": [
+   {
+    "data": "2030-01-02",
+    "leads": 40.0,
+    "comp_7d": 3.0,
+    "comp_14d": 4.0,
+    "comp_hoje": 5.0,
+    "soma_dias": 25.0,
+    "idade": 18,
+    "madura_7d": true,
+    "madura_14d": true,
+    "conv_7d": 0.075,
+    "conv_14d": 0.1,
+    "dias_medios": 5.0
+   },
+   {
+    "data": "2030-01-08",
+    "leads": 50.0,
+    "comp_7d": 2.0,
+    "comp_14d": null,
+    "comp_hoje": 2.0,
+    "soma_dias": 9.0,
+    "idade": 12,
+    "madura_7d": true,
+    "madura_14d": false,
+    "conv_7d": 0.04,
+    "conv_14d": null,
+    "dias_medios": 4.5
+   },
+   {
+    "data": "2030-01-14",
+    "leads": 30.0,
+    "comp_7d": 1.0,
+    "comp_14d": null,
+    "comp_hoje": 1.0,
+    "soma_dias": 4.0,
+    "idade": 6,
+    "madura_7d": false,
+    "madura_14d": false,
+    "conv_7d": null,
+    "conv_14d": null,
+    "dias_medios": 4.0
+   },
+   {
+    "data": "2030-01-19",
+    "leads": 30.0,
+    "comp_7d": null,
+    "comp_14d": null,
+    "comp_hoje": 0.0,
+    "soma_dias": null,
+    "idade": 1,
+    "madura_7d": false,
+    "madura_14d": false,
+    "conv_7d": null,
+    "conv_14d": null,
+    "dias_medios": null
+   }
+  ],
+  "coortes_total": {
+   "conv_7d": 0.05555555555555555,
+   "conv_14d": 0.1,
+   "dias_medios": 4.75,
+   "coortes_maduras_7d": 2,
+   "coortes_maduras_14d": 1
+  }
  }
 }

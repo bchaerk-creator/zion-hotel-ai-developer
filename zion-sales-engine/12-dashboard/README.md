@@ -73,3 +73,6 @@ Arquivos: `dashboard.html` (página única, mobile-first, sem CDN), `gerar_dados
 4. `dados.json`, `painel*.html` e CSVs reais ficam **fora** do repositório (`.gitignore`).
 
 Testes: `python3 -I test_gerar_dados.py` e `node test_dashboard.js` (Playwright, 390×844 e 1366×800).
+
+## Funil híbrido (25/11/2026)
+`gerar_dados.py --hibrido hibrido.csv --coortes coortes.csv` acrescenta ao `dados.json` a chave `hibrido` (quente × frio × global, CPL, tempo até a compra, coortes com conversão de 7 e 14 dias só para coorte madura). Sem esses arquivos a seção fica escondida. Modelos fictícios: `exemplos/MODELO_hibrido.csv` e `MODELO_coortes.csv`. Dados reais só no scratchpad. Fórmulas iguais às da aba Funil Híbrido de `../08-financeiro/modelo_financeiro_v3.xlsx`; protocolo em `../10-trafego/PROTOCOLO_VALIDACAO_14_DIAS.md`.
