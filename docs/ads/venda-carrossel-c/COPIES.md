@@ -45,3 +45,9 @@ Observação: manifesto.json e painel-comparacao.jpg ainda descrevem a versão d
 - **Cartão 4:** mantém a frase da plataforma (decisão de Bruno).
 - **Texto primário:** abrir a primeira linha com "Formação digital paga, R$ 47:" e usar verbo "acesse/adquira", nunca "inscreva-se" nem "cadastre". Frase "mesmo que não vire parceria..." NÃO entra (decisão de Bruno).
 - manifesto.json e painel-comparacao.jpg ainda descrevem a versão anterior (7 cartões).
+
+## Atualização (25/11, entregáveis mais claros): 10 cartões
+- **Cartão 8 (reescrito): lista "O que você recebe"**, com contagens verificadas (ENTREGAVEIS_VERIFICADOS.md): 9 módulos · 70 aulas e materiais; 26 aulas gravadas em vídeo; 10 fichas interativas "Faça agora"; 8 e-books, um por pilar (PDF); 2 planilhas de cálculo em branco; Kit do Investidor: 6 modelos; 9 comandos de IA prontos para usar; Dossiê de Desenvolvimento em PDF. Rodapé: "R$ 47 · pagamento único", "Pix ou cartão · 12 meses de acesso · garantia de 7 dias".
+- **Cartão 9 (novo): "Por dentro da plataforma"**, com duas telas reais maiores (Diagnóstico prévio e Pré-viabilidade) e "Cada ficha vira uma página do seu Dossiê de Desenvolvimento".
+- **Cartão 10:** conversão (botão "QUERO ACESSAR A PLATAFORMA POR R$47").
+- Não afirmar "70 aulas em vídeo" (só 26 são vídeo) nem calculadoras/simuladores.

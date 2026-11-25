@@ -56,18 +56,29 @@ const cards=[
 <div class="b s" style="left:618px;width:400px;top:165px;height:815px;border-radius:44px;background:#000;color:#fff;font-size:63px;display:flex;align-items:center;justify-content:center;line-height:1.16;padding:0 26px">Você não precisa começar construindo um hotel</div>
 <div class="b s" style="left:590px;width:460px;top:1060px;font-size:40px;color:#fff;line-height:1.12">Aulas gravadas, fichas “Faça agora”, e-books por pilar, 2 planilhas em branco, Kit do Investidor e Dossiê em PDF</div>
 <div class="b" style="left:562px;top:1318px;width:518px;height:30px;display:flex;align-items:center;justify-content:center;font-family:A;font-size:20px;color:#fff;background:transparent">Imagem ilustrativa</div>`],
-// 6b tangível (a pedido de Bruno): o que a pessoa leva, com telas reais da plataforma (sem mapa/agendar)
+// 6b entregáveis claros (a pedido de Bruno): lista objetiva do que a pessoa recebe (contagens verificadas em ENTREGAVEIS_VERIFICADOS.md)
 [`o1.png`,`<div class="b" style="left:0;top:0;width:1080px;height:1350px;background:#0e1f09"></div>
-<div class="b w" style="left:60px;right:60px;top:120px;font-size:48px;color:#e8d28a">O que você leva da mentoria</div>
-<div class="b s" style="left:80px;right:80px;top:225px;font-size:30px;color:#fff">Telas reais da plataforma Zion</div>
-<img class="b" src="file://${R}/zion-collection/club/telas/aula.jpg" style="left:45px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
-<img class="b" src="file://${R}/zion-collection/club/telas/diagnostico.jpg" style="left:385px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
-<img class="b" src="file://${R}/zion-collection/club/telas/previab.jpg" style="left:725px;top:310px;width:310px;height:620px;object-fit:cover;object-position:top;border-radius:18px;border:3px solid #e8d28a">
-<div class="b s" style="left:45px;width:310px;top:950px;font-size:26px;color:#fff">Aulas e fichas "Faça agora"</div>
-<div class="b s" style="left:385px;width:310px;top:950px;font-size:26px;color:#fff">Diagnóstico do seu projeto</div>
-<div class="b s" style="left:725px;width:310px;top:950px;font-size:26px;color:#fff">Pré-viabilidade com os seus números</div>
-<div class="b s" style="left:70px;right:70px;top:1090px;font-size:42px;font-weight:700;color:#fff;line-height:1.12">No fim, você monta o seu Dossiê de Desenvolvimento em PDF</div>
-<div class="b s" style="left:70px;right:70px;top:1260px;font-size:26px;color:#e8d28a">Formação digital paga · 12 meses de acesso</div>`],
+<div class="b w" style="left:60px;right:60px;top:92px;font-size:56px;color:#e8d28a">O que você recebe</div>
+<div class="b" style="left:70px;top:205px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:219px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:218px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">9 módulos · 70 aulas e materiais</div>
+<div class="b" style="left:70px;top:309px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:323px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:322px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">26 aulas gravadas em vídeo</div>
+<div class="b" style="left:70px;top:413px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:427px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:426px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">10 fichas interativas "Faça agora"</div>
+<div class="b" style="left:70px;top:517px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:531px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:530px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">8 e-books, um por pilar (PDF)</div>
+<div class="b" style="left:70px;top:621px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:635px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:634px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">2 planilhas de cálculo em branco</div>
+<div class="b" style="left:70px;top:725px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:739px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:738px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">Kit do Investidor: 6 modelos</div>
+<div class="b" style="left:70px;top:829px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:843px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:842px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">9 comandos de IA prontos para usar</div>
+<div class="b" style="left:70px;top:933px;width:940px;height:86px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:947px;font-family:A;font-weight:900;font-size:44px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:946px;font-family:A;font-weight:800;font-size:38px;color:#fff;line-height:1.1">Dossiê de Desenvolvimento em PDF</div>
+<div class="b s" style="left:60px;right:60px;top:1062px;font-size:60px;font-weight:900;color:#e8d28a">R$ 47 · pagamento único</div>
+<div class="b s" style="left:60px;right:60px;top:1160px;font-size:32px;color:#fff;line-height:1.2">Pix ou cartão · 12 meses de acesso · garantia de 7 dias</div>
+<div class="b s" style="left:60px;right:60px;top:1255px;font-size:26px;color:#e8d28a">Mini Mentoria de Estruturação Zion · formação digital autônoma</div>`],
+// 6c telas reais maiores (dossiê página a página)
+[`o1.png`,`<div class="b" style="left:0;top:0;width:1080px;height:1350px;background:#0e1f09"></div>
+<div class="b w" style="left:60px;right:60px;top:92px;font-size:46px;color:#e8d28a">Por dentro da plataforma</div>
+<img class="b" src="file://${R}/zion-collection/club/telas/diagnostico.jpg" style="left:55px;top:210px;width:455px;height:800px;object-fit:cover;object-position:top;border-radius:20px;border:4px solid #e8d28a">
+<img class="b" src="file://${R}/zion-collection/club/telas/previab.jpg" style="left:570px;top:210px;width:455px;height:800px;object-fit:cover;object-position:top;border-radius:20px;border:4px solid #e8d28a">
+<div class="b s" style="left:55px;width:455px;top:1030px;font-size:30px;font-weight:700;color:#fff">Diagnóstico prévio</div>
+<div class="b s" style="left:570px;width:455px;top:1030px;font-size:30px;font-weight:700;color:#fff">Pré-viabilidade</div>
+<div class="b s" style="left:70px;right:70px;top:1115px;font-size:40px;font-weight:700;color:#fff;line-height:1.12">Cada ficha vira uma página do seu Dossiê de Desenvolvimento</div>
+<div class="b s" style="left:70px;right:70px;top:1270px;font-size:24px;color:#e8d28a">Telas reais da plataforma Zion</div>`],
 // 7 conversao (original 7, foto trocada por foto real sem pessoas)
 [`o7.png`,`<div class="b" style="left:0;top:0;width:572px;height:1030px;background:${Y}"></div>
 <div class="b s" style="left:40px;width:492px;top:70px;font-size:46px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.08">Mini Mentoria de Estruturação Zion</div>
