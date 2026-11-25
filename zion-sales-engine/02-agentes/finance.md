@@ -50,4 +50,4 @@ Aprovado quando todo número tem fonte, a conta bate em dois cálculos e cenári
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
-|  |  |  |  |
+| 25/11/2026 | Entregue o modelo financeiro (`08-financeiro/`: planilha-molde, MODELO_FINANCEIRO.md, build e teste). Regra escrita: a venda precisa financiar a aquisição; LTV só de compra única comprovada; decisão escalar/manter/pausar por faixa de CPA projetado, com amostra mínima. | Fase 03: modelo por produto, prioridade Mini Mentoria R$ 47; taxa Ticto observada: só 2,49 em R$ 19/47 e 2,49 + 6,99% em R$ 97/270 (regra por faixa NC) | Fase 03 aprovada por Bruno; execução de escalar/pausar continua dependendo de 'aprovado' |

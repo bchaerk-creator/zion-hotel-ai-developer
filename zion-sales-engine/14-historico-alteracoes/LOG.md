@@ -14,6 +14,9 @@ Só acrescentar entradas novas no topo. Ids de oferta e produto aparecem com 8 c
 
 ## 25/11/2026
 
+### Fase 03 · FINANCE (25/11/2026)
+- Criada `zion-sales-engine/08-financeiro/`: `modelo_financeiro.xlsx` (6 abas, molde sem dados reais), `MODELO_FINANCEIRO.md`, `build_modelo.py` e `test_modelo.py` (137 conferências contra conta independente, todas OK). Só leitura no ClickMax e no Windsor; nada alterado em produção. Reverter: apagar a pasta.
+
 ### Neste repositório
 - Criada a estrutura `zion-sales-engine/` (15 pastas, README raiz, `MANUAL_MESTRE.md`, 9 agentes documentados, relatórios da auditoria sanitizados, especificação do dashboard) e as 9 definições executáveis `.claude/agents/zion-sales-director`, `-funnel`, `-finance`, `-creative`, `-market`, `-data`, `-conversion`, `-traffic`, `-auditor`.
 - Autorizado por: Bruno Chaerk (Comando Mestre ZION SALES ENGINE, 25/11/2026).
