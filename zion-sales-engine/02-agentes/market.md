@@ -45,4 +45,4 @@ Aprovado quando cada afirmação tem fonte verificável e nada é número de mer
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
-|  |  |  |  |
+| 25/11/2026 | Fase 03: criado `04-mercado/` com MAPA_PRODUTOS.md e mapa_produtos.csv (inventário por segmento, Low Ticket Raiz 0/1, ranking por CPA de equilíbrio, escada). OP3D e Pareto em cascata: só princípio Pareto geral, marcado provisório, com perguntas para Bruno. Fila de tráfego proposta: MM47, Terra-Capital A (teste), ZC06 (após publicar). Nenhuma alteração em produção | Priorizar o que vender por tráfego direto | Entrega ao DIRECTOR; aguarda decisão de Bruno |

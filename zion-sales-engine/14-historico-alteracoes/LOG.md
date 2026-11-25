@@ -28,3 +28,5 @@ Só acrescentar entradas novas no topo. Ids de oferta e produto aparecem com 8 c
 - O horário exato de cada linha, exceto o bloco de entregáveis (01:37Z), não consta nos relatórios; só a data.
 - A lista de ids foi tirada de `13-relatorios/HANDOFF_CHATGPT.md`, `RELATORIO_FINAL.md` e `I_inventario_ofertas.md`. Ids completos das ofertas e do produto estão no ClickMax.
 - Como reverter cada item: no painel da própria plataforma (pausar campanha, despublicar página, arquivar oferta). Reverter via Git não desfaz produção. Qualquer desfazer em produção também exige 'aprovado' de Bruno.
+
+- 25/11/2026 · ZION MARKET (Fase 03): criados `zion-sales-engine/04-mercado/MAPA_PRODUTOS.md` e `mapa_produtos.csv` (inventário, filtros, ranking, escada). Só arquivos novos e atualização da seção do agente; sem alteração em produção. Reverter: `git revert` do commit.
