@@ -51,3 +51,6 @@ Observação: manifesto.json e painel-comparacao.jpg ainda descrevem a versão d
 - **Cartão 9 (novo): "Por dentro da plataforma"**, com duas telas reais maiores (Diagnóstico prévio e Pré-viabilidade) e "Cada ficha vira uma página do seu Dossiê de Desenvolvimento".
 - **Cartão 10:** conversão (botão "QUERO ACESSAR A PLATAFORMA POR R$47").
 - Não afirmar "70 aulas em vídeo" (só 26 são vídeo) nem calculadoras/simuladores.
+
+## Correção após a vistoria (25/11, VISTORIA_ENTREGAVEIS.md)
+Cartão 8 reescrito com a redação segura confirmada: 9 módulos · 70 conteúdos; Vídeo-aulas + 8 tutoriais em vídeo; 8 fichas interativas "Faça agora"; 8 e-books em PDF (um por pilar); 2 planilhas de cálculo com fórmulas; Kit do Investidor: guia das 6 peças; 9 comandos de IA prontos; Seu Dossiê para baixar em PDF. Saíram "70 aulas", "26 aulas gravadas" (eram 17 vídeo-aulas + 8 tutoriais + 1 boas-vindas, os 17 do YouTube não foram conferidos), "10 fichas" (são 8) e "6 modelos" (só 2 arquivos-modelo, não anexados). Termo para o total: "conteúdos"; "vídeo-aulas" só para vídeos; evitar "aulas" sem qualificar.
