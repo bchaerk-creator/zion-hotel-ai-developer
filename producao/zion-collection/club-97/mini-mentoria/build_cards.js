@@ -47,6 +47,13 @@ const N={
  c4h:'A Zion pode ser a sua parceira',c4t:'Estamos em expansão e avaliamos cada projeto. Se fizer sentido, podemos conversar sobre parceria e conexão com investidores.',c4f:'Já operamos hospedagens em Urubici e Florianópolis'}};
 for(const k in N)Object.assign(N[k],{c3a:'Você não precisa ter todo o capital para começar.',btn:'CONHEÇA A MENTORIA',sub:'Mini Mentoria de Estruturação'});
 
+const ENT=[
+{t:'Aulas gravadas',d:'Vídeos por pilar, boas-vindas e tutoriais de cada ficha',i:'<circle cx="24" cy="24" r="18"/><path d="M20 16l13 8-13 8z" fill="#111"/>'},
+{t:'Fichas e formulários interativos',d:'Fichas "Faça agora" de cada etapa e cadastro do terreno',i:'<rect x="9" y="7" width="30" height="34" rx="4"/><path d="M15 17l3 3 5-6M15 29l3 3 5-6M28 18h6M28 30h6"/>'},
+{t:'E-books',d:'Um e-book por pilar da estruturação',i:'<path d="M24 12c-5-4-12-4-16-3v27c4-1 11-1 16 3 5-4 12-4 16-3V9c-4-1-11-1-16 3zM24 12v27"/>'},
+{t:'Planilhas de cálculo',d:'Orçamento de Abertura e Pré-viabilidade (versões em branco)',i:'<rect x="8" y="9" width="32" height="30" rx="3"/><path d="M8 19h32M8 29h32M20 9v30"/>'},
+{t:'Kits e modelos',d:'Kit do Investidor (modelos) e kit de prompts do Dossiê',i:'<path d="M6 15a3 3 0 013-3h10l4 5h16a3 3 0 013 3v17a3 3 0 01-3 3H9a3 3 0 01-3-3z"/>'},
+{t:'Dossiê de Desenvolvimento',d:'Cada ficha vira uma página, com PDF no final',i:'<path d="M12 6h17l9 9v27H12z"/><path d="M29 6v9h9M18 25h14M18 32h14"/>'}];
 const foot=()=>`<div class="foot">${DISC}</div>`;
 const cards=n=>{const d=N[n],p=d.ph;return[
 // 1 desejo
@@ -82,16 +89,18 @@ ${lua(-30,300,330,-10)}
 <div class="b s" style="left:60px;right:60px;top:740px;font-size:50px;font-weight:900;color:#111;text-transform:uppercase;line-height:1.08">${d.c4h}</div>
 <div class="b t" style="left:80px;right:80px;top:880px;font-size:35px;color:#fff;font-weight:500">${d.c4t}</div>
 <div class="b pill" style="left:120px;top:1150px;width:840px;height:80px;border-radius:40px;background:#000;font-family:A;font-weight:700;font-size:29px;color:#fff">${d.c4f}</div>${foot()}`,
-// 5 mentoria por dentro (capturas reais)
+// 5 o que você recebe (entregáveis reais da turma + capturas reais)
 `<div class="b" style="left:0;top:0;width:1080px;height:1274px;background:linear-gradient(180deg,#0c1608,${C.preto})"></div>
-<img class="b" src="${LOGO}" style="left:460px;top:30px;width:160px">
-<div class="b w" style="left:60px;right:60px;top:108px;font-size:28px;letter-spacing:.2em;color:${C.ouro};font-weight:700">A mentoria por dentro</div>
-<div class="b s" style="left:40px;right:40px;top:152px;font-size:56px;font-weight:700;color:${C.creme}">Mini Mentoria de Estruturação</div>
-${['aula','diagnostico','previab'].map((t,i)=>`<div class="ph" style="left:${45+i*345}px;top:260px;width:300px;height:400px;border-radius:26px;border:3px solid ${C.ouro};background-image:${img(TELA(t))};background-position:top"></div>`).join('')}
-${['Marco Zero','Diagnóstico prévio','Pré-viabilidade'].map((t,i)=>`<div class="b t" style="left:${45+i*345}px;width:300px;top:672px;font-size:26px;color:${C.ouro};font-weight:600">${t}</div>`).join('')}
-<div class="b t" style="left:60px;right:60px;top:712px;font-size:21px;color:#b9b19a">Capturas reais da plataforma</div>
-<div class="b w" style="left:60px;right:60px;top:768px;font-size:30px;letter-spacing:.12em;color:${C.creme};font-weight:700">O que você aprende</div>
-${['Potencial territorial','Inteligência de mercado','Conceito do empreendimento','Estruturação do projeto','Viabilidade financeira','Preparação para potenciais investidores','Possibilidade de parceria com a Zion'].map((t,i)=>`<div class="b" style="left:${i==6?60:60+(i%2)*500}px;top:${830+Math.floor(i/2)*108}px;width:${i==6?960:470}px;height:96px;display:flex;align-items:center;gap:14px;font-size:28px;font-weight:600;color:${C.creme};line-height:1.15">${star(30,C.ouro)}<span style="color:${C.creme}">${t}</span></div>`).join('')}${foot()}`,
+<img class="b" src="${LOGO}" style="left:470px;top:22px;width:140px">
+<div class="b w" style="left:60px;right:60px;top:84px;font-size:24px;letter-spacing:.2em;color:${C.ouro};font-weight:700">Mini Mentoria de Estruturação</div>
+<div class="b s" style="left:40px;right:40px;top:122px;font-size:62px;font-weight:700;color:${C.creme}">O que você recebe</div>
+<div class="b pill" style="left:60px;top:208px;width:960px;height:54px;border-radius:27px;background:${C.ouro};color:#111;font-family:A;font-weight:800;font-size:24px;letter-spacing:.04em">9 MÓDULOS · 70 AULAS E MATERIAIS · 12 MESES DE ACESSO</div>
+${['aula','diagnostico','previab'].map((t,i)=>`<div class="ph" style="left:${45+i*345}px;top:288px;width:300px;height:196px;border-radius:20px;border:3px solid ${C.ouro};background-image:${img(TELA(t))};background-position:top"></div>`).join('')}
+<div class="b t" style="left:60px;right:60px;top:492px;font-size:20px;color:#b9b19a">Capturas reais da plataforma</div>
+${ENT.map((e,i)=>`<div class="b" style="left:${45+(i%2)*500}px;top:${534+Math.floor(i/2)*242}px;width:490px;height:228px;border-radius:26px;background:${C.musgo};border:2px solid ${C.ouro}"></div>
+<div class="b pill" style="left:${65+(i%2)*500}px;top:${554+Math.floor(i/2)*242}px;width:84px;height:84px;border-radius:50%;background:${C.ouro}"><svg width="48" height="48" viewBox="0 0 48 48" fill="none" stroke="#111" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round">${e.i}</svg></div>
+<div class="b" style="left:${165+(i%2)*500}px;width:350px;top:${556+Math.floor(i/2)*242}px;height:82px;display:flex;align-items:center;font-family:A;font-weight:800;font-size:29px;line-height:1.08;color:${C.ouro};text-transform:uppercase">${e.t}</div>
+<div class="b" style="left:${65+(i%2)*500}px;width:450px;top:${656+Math.floor(i/2)*242}px;font-size:25px;line-height:1.25;color:${C.creme};font-weight:500">${e.d}</div>`).join('')}${foot()}`,
 // 6 jornada
 `<div class="b" style="left:0;top:0;width:1080px;height:1274px;background:${C.ocre}"></div>
 <div class="b w" style="left:70px;right:70px;top:60px;font-size:48px;color:#0b0b0b;font-weight:800">Da inscrição ao seu projeto apresentado</div>
@@ -110,7 +119,8 @@ ${lua(500,780,250,200)}
 <div class="b s pill" style="left:50px;width:490px;top:660px;height:290px;border-radius:56px;background:${C.amar};color:#0b0b0b;font-size:50px;line-height:1.05;letter-spacing:-.01em;font-weight:700;padding:0 24px;text-transform:uppercase">Quero transformar meu terreno</div>
 <div class="b" style="left:0;top:1020px;width:1080px;height:330px;background:${C.preto}"></div>
 <div class="b t" style="left:70px;right:70px;top:1062px;font-size:34px;color:${C.creme};font-weight:500;line-height:1.3">${DISC}</div>
-<div class="b t" style="left:70px;right:70px;top:1262px;font-size:26px;color:${C.ouro};font-weight:600">A Zion está em expansão e avalia cada projeto.</div>`
+<div class="b t" style="left:50px;right:50px;top:1205px;font-size:25px;color:${C.ouro};font-weight:700">Aulas gravadas, fichas, e-books, planilhas, kits e Dossiê · 12 meses de acesso</div>
+<div class="b t" style="left:70px;right:70px;top:1268px;font-size:26px;color:${C.creme};font-weight:600">A Zion está em expansão e avalia cada projeto.</div>`
 ];};
 
 (async()=>{const b=await chromium.launch();const pg=await b.newPage({viewport:{width:1080,height:1350},deviceScaleFactor:1});
