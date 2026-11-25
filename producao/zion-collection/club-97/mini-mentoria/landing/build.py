@@ -14,6 +14,16 @@ CSS += re.search(r'CSS \+= """(.*?)"""', (C97 / "lt47" / "build.py").read_text(e
 CSS += BCSS
 CSS += """
 .sec h2 em,.sec h1 em{font-style:italic}
+.sec.herofoto{position:relative;overflow:hidden;padding:34px 0 30px;background:#0d1512}
+.herofoto .bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:30% 55%;display:block;z-index:0}
+.herofoto:before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(4,6,5,.30) 0%,rgba(4,6,5,.42) 50%,rgba(4,6,5,.70) 100%)}
+.herofoto .w{position:relative;z-index:2}
+.herofoto h1{text-shadow:0 2px 16px rgba(4,6,5,.9),0 0 4px rgba(4,6,5,.6)}
+.herofoto p.sub,.herofoto p.k{text-shadow:0 1px 10px rgba(4,6,5,.7)}
+.sec.herofoto p.sub{font-size:22px;margin-top:14px}
+.sec.herofoto p.selo{background:rgba(4,6,5,.55);margin-top:14px}
+.sec.herofoto p.legfoto{margin:12px 0 0;text-align:center;font-size:11.5px;color:#fef5f0;opacity:.85;text-shadow:0 1px 6px rgba(4,6,5,.8)}
+@media(min-width:760px){.sec.herofoto{padding:70px 0 56px}.sec.herofoto p.sub{font-size:27px}}
 """
 BASE = "https://bchaerk-creator.github.io/zion-hotel-ai-developer/"
 CTA = "QUERO TRANSFORMAR MEU TERRENO"
@@ -41,13 +51,14 @@ def lista(itens):
 B = []
 B.append(f'<div class="escuro"><div class="w topo"><img src="{BASE}brand/zion-logo-claro.png" alt="Zion Hotel Group International" width="170" height="34"></div></div>')
 
-# Hero (sem foto de hospedagem)
-B.append(sec("hero", "escuro",
-    '<p class="k">Mini Mentoria de Estruturação · formação digital</p>'
+# Hero com foto real da bolha (decisão de Bruno, 25/11)
+HERO_IMG = (f'<img class="bg" src="{BASE}zion-collection/club/fotos/bolha-aerea.jpg" alt="Bolha da Zion Bubble Glamping vista de cima" width="730" height="981" fetchpriority="high">')
+HERO = ('<p class="k">Mini Mentoria de Estruturação · formação digital</p>'
     '<h1>Transforme seu terreno em um <em>destino turístico.</em></h1>'
     '<p class="sub">Aprenda o passo a passo para estruturar seu empreendimento e preparar seu projeto para possíveis parcerias e investimentos.</p>'
     '<div class="centro"><p class="selo">R$ 47 · pagamento único · acesso por 12 meses</p></div>'
-    + btn(), sid="hero"))
+    + btn() + '<p class="legfoto">Foto real: Zion Bubble Glamping</p>')
+B.append(f'<section data-cx-section="hero" id="hero" class="sec escuro herofoto">{HERO_IMG}<div class="w">{HERO}</div></section>')
 
 # Dor, capital, conhecimento
 B.append(sec("problem", "creme",
