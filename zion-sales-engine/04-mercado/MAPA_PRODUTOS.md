@@ -147,16 +147,10 @@ Pontuação 0/1 por critério, julgamento do agente [H] com regra: tangível = a
 
 Leitura: o critério sozinho **não separa** as ferramentas prontas (muitas com 5/5); separa as ferramentas dos cursos (Mini Mentoria 3/5 por compra menos simples e entrega não imediata). Por isso o ranking da seção 4 usa também CPA viável, público atingido e se a oferta vende hoje.
 
-### 3.2 OP3D e Pareto em cascata (aplicação provisória)
-Bruno ainda **não** forneceu o conteúdo detalhado de OP3D nem de Pareto em cascata. Não foi inventado significado de nenhuma sigla nem etapa. O que se aplicou foi **apenas o princípio Pareto geral** (poucos itens concentram a maior parte do resultado), como regra de priorização: concentrar a fila de tráfego em 1 a 3 produtos e segurar o resto. **Esta aplicação é provisória e não é OP3D nem Pareto em cascata.** Evidência que sustenta o princípio aqui: das 6 ofertas com venda, 4 são de R$ 47 a R$ 97 do mesmo público (terreno); as 11 ferramentas R$ 19 publicadas somam 1 venda (que pode ser teste) [E, contagem no scratchpad].
+### 3.2 OP3D (definido por Bruno em 25/11/2026)
+**OP3D:** priorização progressiva baseada na Lei de Pareto, concentrando esforços nos 20%, depois nos 4% e finalmente nos 0,8% de maior relevância. Sem expansão da sigla. A definição substitui a aplicação provisória da primeira versão deste mapa (que usava só o princípio Pareto geral). A aplicação ao ranking está na **seção 8**. **Low Ticket Raiz** também mudou (definição de Bruno de 25/11: dor específica, produto tangível, compra simples, demonstração real, entrega autônoma e engenharia de margem): a pontuação da seção 3.1 usou os cinco critérios da primeira lista; **os dois novos (entrega autônoma e engenharia de margem) ainda não foram pontuados [NC]**.
 
-Perguntas que Bruno precisa responder para refinar:
-1. **OP3D:** o que cada letra/número representa? É um filtro de produto, de oferta ou de público? Quais são os critérios e como se pontua?
-2. **OP3D:** é aplicado antes de produzir (decide o que fazer) ou depois (decide o que escalar)?
-3. **Pareto em cascata:** qual é a unidade da cascata (produto, público, anúncio, criativo, etapa do funil)? Quantos níveis?
-4. **Pareto em cascata:** qual a métrica que ordena (vendas, margem, CPA, número de leads)? Qual o corte (por exemplo, o que conta como "poucos")?
-5. Há exemplo de aplicação feito por Bruno (um produto já classificado) que sirva de gabarito?
-6. Os três filtros (Low Ticket Raiz, OP3D, Pareto em cascata) têm ordem fixa? Um produto reprovado em um é eliminado?
+Ainda em aberto, sem bloquear nada: (1) se o "Pareto em cascata" do Comando Mestre é o mesmo método que a cascata 20% → 4% → 0,8% do OP3D [NC]; (2) se Bruno quer outra métrica de relevância além da usada na seção 8 [H].
 
 ## 4. Ranking de potencial de venda direta por tráfego pago
 ### 4.1 CPA máximo viável (ponto de equilíbrio, antes de impostos e custos variáveis)
@@ -233,9 +227,21 @@ Candidatos a order bump, upsell e downsell **entre o que já existe** (sem criar
 - **Pós-compra do Arsenal/ZC06:** ferramentas 12, 11 e 22 (mesma dor, execução).
 
 ## 7. Pendências e o que depende de Bruno
-- Fornecer o conteúdo de OP3D e Pareto em cascata (perguntas na seção 3.2) para trocar a aplicação provisória.
+- ~~Fornecer o conteúdo de OP3D e Pareto em cascata~~: **definido por Bruno em 25/11/2026** e aplicado na seção 8. Em aberto: confirmar a métrica de relevância (seção 8) e pontuar os dois critérios novos do Low Ticket Raiz.
 - Decidir a consolidação de R$ 97 e clones R$ 47 (hoje fragmentam a medição).
 - Aprovar (ou não) a publicação da página da ZC06 e qualquer mudança na fila de tráfego.
 - Resolver o erro de sincronização do gateway nas ofertas de 01/11 e a oferta incompleta do Arsenal 01.
 - Auditar os não auditados (Kit Primeira Cabana, Kit de Captação, MM Performance Hoteleira, ZAR, Glamping) antes de priorizar.
 - Conferir os links de pesquisa de 06/11 antes de usar em copy.
+
+## 8. OP3D aplicado ao ranking de produtos (25/11/2026)
+**Regra de Bruno:** priorização progressiva baseada na Lei de Pareto, concentrando esforços nos 20%, depois nos 4% e finalmente nos 0,8% de maior relevância. **Método desta seção [H, aplicação do agente a dados já existentes; nenhum dado novo foi inventado]:** o universo é o das 40 linhas de `mapa_produtos.csv`; a relevância é a ordem do ranking da seção 4.2, que já combina CPA viável (teto de equilíbrio), demonstração visual, clareza da dor, público já atingido e se a oferta vende hoje, desempatada pela nota do Low Ticket Raiz da seção 3.1. Cortes aritméticos sobre 40 itens: 20% = 8, 4% = 1,6 (arredonda para 2), 0,8% = 0,32 (arredonda para 1, o primeiro do ranking).
+
+| Faixa | Itens | Quem entra | Como se lê |
+|---|---|---|---|
+| **20% (8 itens): onde concentrar produção, oferta e CRM** | 8 | 1 Mini Mentoria de Estruturação; 2 Terra-capital A; 3 ZC06 (kit mestre + bump R$ 19); 4 Arsenal 01; 5 a 8 Ferramentas 10, 22, 17 e 11 (as quatro primeiras do bloco "ferramentas mais fortes" da seção 4.2; 10 e 22 já vendem, 17 e 11 não; a Ferramenta 01 é a 9ª e fica na fronteira) | Recebem melhoria de página, entrega e oferta complementar. Os que dependem de correção antes de vender (Arsenal 01, ZC06) entram aqui para serem **corrigidos**, não para receber tráfego |
+| **4% (2 itens): onde concentrar tráfego pago** | 2 | Mini Mentoria de Estruturação (fila 1) e Terra-capital A (fila 2, **como teste depois** da Mini Mentoria: não rodar os dois no mesmo público ao mesmo tempo) | É a fila de tráfego da seção 4.3, inalterada. ZC06 é a primeira reserva, condicionada à publicação da página |
+| **0,8% (1 item): o foco do teste atual** | 1 | **Mini Mentoria de Estruturação Zion (R$ 47)** | É o produto do funil híbrido (14 dias, teto R$ 60/dia): todo o esforço de medição e de decisão vai para ele até o veredito |
+
+**Fica fora das três faixas (não anunciar, segundo a seção 4.3):** R$ 97 e clones de R$ 47 (mesmo conteúdo, medição fragmentada); linha ZAR; qualquer oferta incompleta ou com erro de sincronização; Etapa de Desenvolvimento e oferta de R$ 97 com sessão; ferramentas e e-books em tráfego frio enquanto o teto de equilíbrio for incerto.
+**Limites honestos:** (1) a classificação depende de julgamento sobre dados com pouca venda [E: 8 vendas no histórico, incluindo testes [H]]; é hipótese e muda quando houver compra atribuída. (2) A Lei de Pareto aqui orienta **onde gastar esforço**; não prova que 20% dos produtos geram 80% do resultado neste negócio. (3) Os dois critérios novos do Low Ticket Raiz não entraram na nota [NC]. (4) Bruno aprova a fila (matriz, M59); este mapa não altera campanha nem oferta.
