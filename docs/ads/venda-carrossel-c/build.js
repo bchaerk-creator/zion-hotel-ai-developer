@@ -44,9 +44,9 @@ const cards=[
 // 4b gancho da plataforma (cartão extra, a pedido de Bruno): mesmo layout do cartão 4, outra foto real sem pessoas
 [`o8.png`,`<div class="b" style="left:445px;top:795px;width:635px;height:555px;background:${PU}"></div><div class="b" style="left:150px;top:1160px;width:930px;height:190px;background:${PU}"></div>
 <div class="b s" style="left:455px;width:600px;top:830px;font-size:44px;font-weight:900;color:#fff;text-transform:uppercase;line-height:1.06">Estruture o seu projeto e faça parte da nossa expansão*</div>
-<div class="b s" style="left:455px;width:600px;top:1030px;font-size:28px;font-weight:700;color:#f6ecc4;text-transform:uppercase;line-height:1.1">Depois, nós queremos te conhecer</div>
-<div class="b s" style="left:160px;width:880px;top:1135px;font-size:33px;color:#fff;line-height:1.18">A mentoria dá acesso à plataforma Zion, que faz parte da nossa expansão. Primeiro você estrutura; depois nós conhecemos o seu projeto.</div>
-<div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Possibilidade sujeita à análise, sem garantia de parceria ou investimento.</div>`],
+<div class="b s" style="left:455px;width:600px;top:1030px;font-size:28px;font-weight:700;color:#f6ecc4;text-transform:uppercase;line-height:1.1">Depois, apresente o projeto à nossa equipe</div>
+<div class="b s" style="left:160px;width:880px;top:1135px;font-size:33px;color:#fff;line-height:1.18">Ao concluir o Dossiê, você pode solicitar uma reunião com a nossa equipe: é a sua oportunidade de buscar parceiros e investimentos para tirar o plano do papel.</div>
+<div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Reunião sujeita à análise e à agenda. Parceria e investimento não são garantidos.</div>`],
 // 5 oportunidade (original 5): o que recebe
 [`o5.png`,`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
 <div class="b w" style="left:60px;right:60px;top:1128px;font-size:40px;color:#232c0a;font-weight:500">9 módulos, 70 aulas e materiais</div>
