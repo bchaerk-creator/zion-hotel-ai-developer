@@ -49,4 +49,5 @@ Aprovado quando todo número tem fonte e horário, a conciliação está dentro 
 
 | Data | Decisão | Motivo | Aprovado por |
 |---|---|---|---|
+| 25/11/2026 | Fase 03: criados plano executável de rastreamento, tutorial visual (HTML e PDF), receptor de webhook para Purchase na API de Conversões (testado com dados fictícios), script de recuperação das compras de 24/11 e conciliação ClickMax × Meta × gateway. Nada aplicado em produção. | Preparar correções executáveis (P0) sem mexer no pixel, CAPI ou webhook | Aguarda "aprovado" de Bruno para qualquer aplicação |
 |  |  |  |  |

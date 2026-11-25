@@ -5,6 +5,14 @@ Só acrescentar entradas novas no topo. Ids de oferta e produto aparecem com 8 c
 
 ---
 
+## 25/11/2026 · Fase 03 · DATA (rastreamento)
+
+- Criados em `09-tracking/`: `PLANO_EXECUTAVEL.md`, `tutorial/` (HTML e PDF), `capi-webhook/` (receptor Node sem dependências, 25 testes automáticos com Graph simulado), `recuperacao/` (script `reenviar_compras.py` em dry-run por padrão, 11 testes, e o documento de opções), `conciliacao/` (script e 7 testes), `snippets/persistir-utm.js` (proposta testada localmente, não instalada).
+- Autorizado por: Comando Mestre da Fase 03. **Sem alterações em produção** (nenhum pixel, CAPI, webhook, anúncio, página ou oferta foi alterado; nada foi enviado à Meta; nenhum token foi usado).
+- Reverter: `git revert` do commit "Fase 03 DATA: rastreamento executável".
+
+---
+
 ## 25/11/2026 · Fase 03 · ZION CONVERSION
 - Criadas no ClickMax, **só em rascunho** (nada publicado, nada ligado, página ao vivo intocada): `/mini-mentoria-a` (`f690b2c4`), `/mini-mentoria-b` (`299947bf`), ambas com a oferta `0c71eeba`, e `/obrigado-mini-mentoria` (`1a0aed43`).
 - Neste repositório: `07-landing-pages/mini-mentoria/` (geradores, HTML, testes Playwright, README), `11-testes-ab/TESTE_AB_LANDING_MM47.md` + `amostra.py` + `test_amostra.py`, `08-checkouts/CHECKOUT_E_AGRADECIMENTO_MM47.md` e `CHECKLIST_ENTREGA_E_RECUPERACAO_MM47.md`.
