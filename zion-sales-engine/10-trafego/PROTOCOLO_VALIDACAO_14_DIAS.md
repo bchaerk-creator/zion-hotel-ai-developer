@@ -107,3 +107,18 @@ Prioridade em conflito: **Pausar (perda) > Inconclusivo > Manter > Escalar**.
 
 ## 11. Registro durante o teste
 Diário: gasto por papel, leads, compradores por grupo (modelo v3, **fora do repositório** com dados reais), coortes, anotações de mudanças. Nenhuma alteração de criativo, público, página ou checkout no meio (cada edição invalida a comparação e reinicia aprendizado); se for inevitável, registrar e tratar como novo teste.
+
+---
+
+## Apêndice · versão WhatsApp (25/11/2026) · PROPOSTA, sem apagar nada acima
+
+Decisão de Bruno de 25/11: Vídeos 01 e 02 viram entrada por **WhatsApp direto**; carrosséis viram **venda direta** (quente e fria). Este apêndice adapta o protocolo; o conteúdo anterior (formulário) fica como histórico. Estrutura de campanhas: `ESTRUTURA_NOVA_COLLECTION.md`. Processo: `../05-funis/VENDA_NO_WHATSAPP.md`. Medição: `../05-funis/CRM_WHATSAPP_ENTRADA.md`. Valores em R$ são **parâmetros**; o teto de R$ 60/dia e os R$ 840 **precisam ser reconfirmados por Bruno** (o desenho muda: o gargalo passa a ser a capacidade de atendimento).
+
+**W1. Caminhos.** **W** (conversa): C1 vídeos 01/02 → WhatsApp → venda na conversa → checkout. **B-quente** (C2) e **B-frio** (C3): carrossel → landing v2 → checkout. **C4**: vídeos novos de venda (quando existirem).
+**W2. Condição de início** (substitui o item 2 só no que difere): além da validação técnica de rastreamento, exigir número de WhatsApp correto, teste do CRM (clique do anúncio registrado), equipe/Bela corrigida ou atendimento humano, landing v2 e checkout limpo publicados, boas-vindas criadas, teto aprovado por escrito.
+**W3. Métricas.** Custo por conversa iniciada (Meta); contatos com clique registrado (ClickMax); conversa qualificada; conversa→venda em D+7 e D+14; **CPA por caminho** (W, B-quente, B-frio, C4); CPA global = investimento total ÷ compradores únicos; tempo até a compra; margem; reembolso. "CPL" de formulário não se aplica ao caminho W.
+**W4. Coortes** pelo **dia da 1ª mensagem** (D0). Não comparar conversa nova com antiga; separar por vídeo (01 × 02).
+**W5. Limites e interrupção (parâmetros).** Perda máxima do teste = `T × 14` (teto reconfirmado). Interromper C1 se: custo por conversa muito acima do esperado sem qualificação; mais conversas do que a equipe atende no SLA; **qualquer promessa fora do roteiro** em conversa; reclamação de "isso é cobrança/taxa"; reembolso acima do aceito (Bruno define). Interromper B se: checkout sem pagamento aprovado provado, ou UTM não chega à venda.
+**W6. Sucesso.** Declarar só com amostra mínima definida antes (nº de conversas e de compradores por caminho) e **CPA global abaixo do líquido por venda menos demais custos** (R$ 44,51 no Pix é teto superior; impostos/cartão/reembolso [NC]). Sem amostra, "inconclusivo".
+**W7. Exclusão mútua e dupla contagem.** Um comprador conta uma vez (último clique do ClickMax, 28 dias); conflito W×B anotado; compras de teste internas e compradores antigos fora da conta.
+**W8. Registro diário (fora do Git):** conversas, qualificadas, ofertas enviadas, compras, tempo de 1ª resposta, motivos de objeção agregados (sem nomes).
