@@ -1,116 +1,100 @@
 #!/usr/bin/env python3
-"""Gera bloco_entregaveis.html: seção 'Entregáveis pilar a pilar' (HTML + CSS inline, sem JS, sem base64, sem <span>).
-Fatos: INVENTARIO.md seção 1 e classrooms_details da turma 087479a3 (25/11/2026). Uso: python3 -I build_bloco.py"""
+"""Gera bloco_entregaveis.html: seção 'Entregáveis' enxuta, um cartão por etapa (HTML + CSS inline, sem JS, sem base64, sem <span>).
+Fatos: INVENTARIO.md seção 1 e classrooms_details da turma 087479a3 (25/11/2026): 2 vídeos e 1 ficha por pilar; e-book por pilar;
+Pilar 6 com 2 planilhas de cálculo; Pilar 7 com Kit do Investidor (modelos); Marco Zero com diagnóstico prévio (Página 0).
+Uso: python3 -I build_bloco.py"""
 from html import escape
 from pathlib import Path
 
 def e(t):
     return escape(t, quote=False)
 
-# (rótulo, nome, aulas, assiste, preenche, leva, para_que)
+IC = {  # ícones simples em SVG inline (sem imagem externa)
+    "video": '<path d="M8 5v14l11-7z"/>',
+    "ficha": '<path d="M6 3h9l4 4v14H6zM9 12h7M9 16h7"/>',
+    "ebook": '<path d="M5 4h10a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3zM8 8h6"/>',
+    "planilha": '<path d="M4 5h16v14H4zM4 10h16M4 15h16M10 5v14"/>',
+    "kit": '<path d="M4 8h16v11H4zM9 8V5h6v3M4 13h16"/>',
+    "chat": '<path d="M4 5h16v11H9l-5 4z"/>',
+}
+
+def chip(ic, txt):
+    return (f'<li class="ent-chip"><svg viewBox="0 0 24 24" width="15" height="15" aria-hidden="true" fill="none" '
+            f'stroke="#c9b37e" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">{IC[ic]}</svg>'
+            f'<b>{e(txt)}</b></li>')
+
+V2, F1, EB = ("video", "2 vídeos"), ("ficha", "1 ficha"), ("ebook", "e-book")
+
+# (selo, nome, o que é, para quê, selinhos)
 CARDS = [
-    ("Comece aqui", "Onboarding", 3,
-     "Bem-vindo à plataforma Zion Collection (vídeo).",
-     "Monte o seu dossiê inicial (formulário de entrada).",
-     "O caminho da plataforma e o chat de suporte para tirar dúvidas.",
-     "Entender como tudo funciona antes de começar."),
-    ("Marco Zero", "A visão de toda a jornada", 10,
-     "Vídeo 1 · A visão, quem somos e o setor. Vídeo 2 · As dores, a jornada e o seu diagnóstico.",
-     "Faça agora · O seu diagnóstico prévio (cerca de 6 minutos). Opcional: a ficha do seu terreno, com dados, fotos e documentos.",
-     "Página 0 do Dossiê: o diagnóstico prévio, em PDF. E-book Vol. 1, mapa de direcionamento da jornada e Kit de prompts do Dossiê.",
-     "Ver a jornada inteira e saber por onde começar."),
-    ("Pilar 1", "Território e destino", 8,
-     "Vídeo 3 · O destino e a chegada. Vídeo 4 · O chão, a área e os papéis.",
-     "Faça agora · A sua Ficha do Território.",
-     "Página 1 do Dossiê: Território, em PDF. E-book do Pilar 1, e-book completo e aula de 40 slides para ir mais fundo.",
-     "Descrever o seu terreno e o destino em volta, numa página só."),
-    ("Pilar 2", "Mercado e demanda", 8,
-     "Vídeo 5 · Os comparáveis, a diária e a ocupação. Vídeo 6 · A curva do ano, quem paga e quantas cabem.",
-     "Faça agora · A sua Ficha do Mercado.",
-     "Página 2 do Dossiê: Mercado, em PDF. E-book do Pilar 2, e-book completo e aula de 40 slides.",
-     "Aprender a levantar comparáveis, diária e ocupação da sua região."),
-    ("Pilar 3", "Produto e tipologias", 8,
-     "Vídeo 7 · O nicho, para quem e o momento. Vídeo 8 · A estadia, a promessa e a unidade.",
-     "Faça agora · A sua Ficha do Produto.",
-     "Página 3 do Dossiê: Produto, em PDF. E-book do Pilar 3, e-book completo e aula de 40 slides.",
-     "Definir o que você vai oferecer e para quem."),
-    ("Pilar 4", "Modelo de negócio", 9,
-     "Vídeo 9 · O modelo de renda. Vídeo 10 · O modelo de venda. Extra · O mapa dos modelos.",
-     "Faça agora · O seu Modelo de Negócio.",
-     "Página 4 do Dossiê: Modelo de Negócio, em PDF. E-book do Pilar 4, e-book completo e aula de 40 slides.",
-     "Escolher como o projeto gera resultado: renda ou venda."),
-    ("Pilar 5", "Masterplan faseado", 8,
-     "Vídeo 11 · O masterplan, onde nunca e o que precisa existir. Vídeo 12 · O que cabe, o que se vende e a fase um.",
-     "Faça agora · O seu Masterplan faseado.",
-     "Página 5 do Dossiê: Masterplan, em PDF. E-book do Pilar 5, e-book completo e aula de 40 slides.",
-     "Pôr o terreno no papel: onde não construir, o que cabe e o que fica para a fase um."),
-    ("Pilar 6", "Pré-viabilidade", 8,
-     "Vídeo 13 · Quanto custa o projeto inteiro. Vídeo 14 · A conta, os três cenários e o tempo de volta.",
-     "Faça agora · A sua Pré-viabilidade.",
-     "Página 6 do Dossiê: Pré-viabilidade, em PDF. E-book do Pilar 6 e duas planilhas de cálculo: Orçamento de Abertura e Pré-viabilidade (Estudo de Massas).",
-     "Fazer a conta do seu projeto com as suas próprias premissas. É material educativo: o resultado depende do que você informa."),
-    ("Pilar 7", "Capital e Dossiê", 8,
-     "Vídeo 15 · De onde vem o capital, e com quem. Vídeo 16 · O Dossiê e a decisão.",
-     "Faça agora · O seu Dossiê de Desenvolvimento.",
-     "Página 7 do Dossiê: Capital e Dossiê. O Dossiê completo, em PDF. Kit do Investidor: guia e modelos de pitch, teaser e one-pager.",
-     "Fechar o Dossiê e decidir o próximo passo: avançar, ajustar ou parar."),
+    ("Comece aqui", "Onboarding", "Boas-vindas e o seu dossiê inicial.", "Entender como a plataforma funciona.",
+     [("video", "1 vídeo"), ("ficha", "1 formulário"), ("chat", "suporte")]),
+    ("Marco Zero", "A visão da jornada", "Visão da jornada e diagnóstico prévio (Página 0).", "Saber por onde começar.",
+     [V2, F1, EB]),
+    ("Dossiê 1", "Território", "O seu terreno e o destino em volta.", "Descrever o terreno numa página só.", [V2, F1, EB]),
+    ("Dossiê 2", "Mercado", "Comparáveis, diária, ocupação e demanda.", "Levantar esses dados da sua região.", [V2, F1, EB]),
+    ("Dossiê 3", "Produto", "Nicho, público, promessa e unidade.", "Definir o que oferecer e para quem.", [V2, F1, EB]),
+    ("Dossiê 4", "Modelo de Negócio", "Como o projeto gera resultado: renda ou venda.", "Escolher o caminho do projeto.", [V2, F1, EB]),
+    ("Dossiê 5", "Masterplan", "O terreno no papel, em fases.", "Ver o que cabe e começar pela fase um.", [V2, F1, EB]),
+    ("Dossiê 6", "Pré-viabilidade", "O custo e a conta, com três cenários.", "Fazer a conta com as suas premissas.",
+     [V2, F1, EB, ("planilha", "planilhas")]),
+    ("Dossiê 7", "Capital", "De onde vem o capital e o Dossiê final.", "Decidir: avançar, ajustar ou parar.",
+     [V2, F1, EB, ("kit", "Kit do Investidor")]),
 ]
 
 CSS = """
-.ent-sec{background:#ded6bf;color:#1b2117;padding:44px 0 40px;font-family:'Jost',sans-serif}
-.ent-sec .w{max-width:760px;margin:0 auto;padding:0 20px}
-.ent-sec p.ent-k{font-family:'Jost',sans-serif;font-size:11.5px;font-weight:400;letter-spacing:.18em;text-transform:uppercase;color:#6b5636;margin:0 0 14px;line-height:1.5}
-.ent-sec h2.ent-h{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:32px;line-height:1.1;color:#1b2117!important;margin:0}
-.ent-sec p.ent-intro{font-family:'Jost',sans-serif;font-size:16.5px;font-weight:400;line-height:1.55;color:#1b2117;margin:14px 0 0}
-.ent-lista{display:grid;grid-template-columns:minmax(0,1fr);gap:14px;margin:24px 0 0;padding:0}
-.ent-card{background:#1b2117;border:1px solid #c9b37e66;border-radius:16px;padding:18px 18px 16px;margin:0;min-width:0}
-.ent-sec p.ent-eb{font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.16em;text-transform:uppercase;color:#c9b37e;margin:0;line-height:1.4}
-.ent-sec h3.ent-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:27px;line-height:1.1;color:#fef5f0!important;margin:4px 0 0}
-.ent-row{border-top:1px solid #c9b37e33;margin:12px 0 0;padding:10px 0 0}
-.ent-sec p.ent-l{font-family:'Jost',sans-serif;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:#c9b37e;margin:0;line-height:1.4}
-.ent-sec p.ent-v{font-family:'Jost',sans-serif;font-size:15.5px;font-weight:300;line-height:1.5;color:#fef5f0;margin:3px 0 0;overflow-wrap:anywhere}
-.ent-sec p.ent-pq{font-family:'Jost',sans-serif;font-size:15px;font-weight:400;line-height:1.5;color:#1b2117;background:#c9b37e;border-radius:10px;margin:14px 0 0;padding:10px 12px}
-.ent-sec p.ent-pq strong{font-weight:600;color:#1b2117}
-.ent-fim{background:#040605;border:1px solid #c9b37e;border-radius:18px;padding:22px 20px;margin:20px 0 0}
+.ent-sec{background:#ded6bf;color:#1b2117;padding:36px 0 32px;font-family:'Jost',sans-serif}
+.ent-sec .w{max-width:860px;margin:0 auto;padding:0 18px}
+.ent-sec p.ent-k{font-family:'Jost',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#6b5636;margin:0 0 10px;line-height:1.4}
+.ent-sec h2.ent-h{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;line-height:1.1;color:#1b2117!important;margin:0}
+.ent-sec p.ent-intro{font-family:'Jost',sans-serif;font-size:16px;font-weight:400;line-height:1.45;color:#1b2117;margin:10px 0 0}
+.ent-lista{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;margin:18px 0 0;padding:0}
+.ent-card{background:#1b2117;border:1px solid #c9b37e66;border-radius:14px;padding:14px 14px 12px;margin:0;min-width:0}
+.ent-top{display:flex;align-items:center;gap:10px;margin:0}
+.ent-sec p.ent-selo{font-family:'Jost',sans-serif;font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#040605;background:#c9b37e;border-radius:8px;padding:6px 10px;margin:0;line-height:1.1;white-space:nowrap}
+.ent-sec h3.ent-t{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:23px;line-height:1.1;color:#fef5f0!important;margin:0;min-width:0}
+.ent-sec p.ent-ln{font-family:'Jost',sans-serif;font-size:14.5px;font-weight:300;line-height:1.35;color:#fef5f0;margin:8px 0 0}
+.ent-sec p.ent-ln b{font-weight:500;color:#c9b37e}
+.ent-chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;margin:10px 0 0;padding:0}
+.ent-sec li.ent-chip{display:inline-flex;align-items:center;gap:5px;font-family:'Jost',sans-serif;font-size:12.5px;line-height:1;color:#fef5f0;background:#040605;border:1px solid #c9b37e55;border-radius:99px;padding:6px 10px 6px 8px;margin:0}
+.ent-sec li.ent-chip::before,.ent-sec li.ent-chip::marker{content:none}
+.ent-sec li.ent-chip b{font-weight:400;color:#fef5f0}
+.ent-fim{background:#040605;border:1px solid #c9b37e;border-radius:16px;padding:18px 16px;margin:12px 0 0}
 .ent-sec p.ent-fk{font-family:'Jost',sans-serif;font-size:11.5px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:#c9b37e;margin:0;line-height:1.4}
-.ent-sec h3.ent-fh{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:30px;line-height:1.1;color:#fef5f0!important;margin:6px 0 0}
-.ent-sec p.ent-fp{font-family:'Jost',sans-serif;font-size:16px;font-weight:300;line-height:1.55;color:#fef5f0;margin:12px 0 0}
-.ent-sec p.ent-fp strong{font-weight:500;color:#c9b37e}
-.ent-sec p.ent-opc{font-family:'Jost',sans-serif;font-size:14.5px;font-weight:300;line-height:1.5;color:#ded6bf;border-top:1px solid #c9b37e40;margin:16px 0 0;padding:14px 0 0}
-.ent-sec p.ent-nota{font-family:'Jost',sans-serif;font-size:12.5px;font-weight:400;line-height:1.5;color:#4a3d28;margin:14px 0 0}
-@media (min-width:820px){.ent-sec{padding:70px 0}.ent-sec h2.ent-h{font-size:42px}.ent-card{padding:22px 24px 20px}.ent-sec h3.ent-t{font-size:30px}.ent-sec h3.ent-fh{font-size:36px}}
+.ent-sec p.ent-fp{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:500;line-height:1.2;color:#fef5f0;margin:6px 0 0}
+.ent-sec p.ent-fp b{font-weight:700;color:#c9b37e}
+.ent-sec p.ent-opc{font-family:'Jost',sans-serif;font-size:13.5px;font-weight:300;line-height:1.4;color:#ded6bf;border-top:1px solid #c9b37e40;margin:12px 0 0;padding:10px 0 0}
+.ent-sec p.ent-opc b{font-weight:500;color:#c9b37e}
+.ent-sec p.ent-nota{font-family:'Jost',sans-serif;font-size:12.5px;font-weight:400;line-height:1.4;color:#4a3d28;margin:10px 0 0}
+@media (min-width:820px){.ent-sec{padding:56px 0}.ent-sec h2.ent-h{font-size:40px}.ent-lista{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.ent-card:last-child{grid-column:1/-1}.ent-sec h3.ent-t{font-size:25px}.ent-sec p.ent-fp{font-size:28px}}
 """
 
 def card(c):
-    eb, nome, n, a, p, l, q = c
+    selo, nome, o, p, chips = c
     return (
         '<article class="ent-card">'
-        f'<p class="ent-eb">{e(eb)} · {n} aulas</p>'
-        f'<h3 class="ent-t">{e(nome)}</h3>'
-        f'<div class="ent-row"><p class="ent-l">Você assiste</p><p class="ent-v">{e(a)}</p></div>'
-        f'<div class="ent-row"><p class="ent-l">Você preenche</p><p class="ent-v">{e(p)}</p></div>'
-        f'<div class="ent-row"><p class="ent-l">Você leva</p><p class="ent-v">{e(l)}</p></div>'
-        f'<p class="ent-pq"><strong>Para quê:</strong> {e(q)}</p>'
+        f'<div class="ent-top"><p class="ent-selo">{e(selo)}</p><h3 class="ent-t">{e(nome)}</h3></div>'
+        f'<p class="ent-ln"><b>O que é:</b> {e(o)}</p>'
+        f'<p class="ent-ln"><b>Para quê:</b> {e(p)}</p>'
+        '<ul class="ent-chips">' + "".join(chip(i, t) for i, t in chips) + '</ul>'
         '</article>')
 
 FIM = (
     '<div class="ent-fim">'
-    '<p class="ent-fk">O que você tem no final</p>'
-    '<h3 class="ent-fh">O seu Dossiê de Desenvolvimento completo.</h3>'
-    '<p class="ent-fp">As páginas de cada pilar reunidas em um só documento, com <strong>PDF no final</strong>: Território, Mercado, Produto, Modelo de Negócio, Masterplan, Pré-viabilidade e Capital.</p>'
-    '<p class="ent-fp">Ele fica organizado para você apresentar a sócios, parceiros ou investidores, junto com o Kit do Investidor e as planilhas de cálculo.</p>'
-    '<p class="ent-opc"><strong>Opcional:</strong> você pode cadastrar o seu terreno no banco de áreas da Zion. A Zion avalia cada caso. O cadastro não garante parceria nem investimento.</p>'
+    '<p class="ent-fk">No final você tem</p>'
+    '<p class="ent-fp"><b>O seu Dossiê completo (PDF)</b>, pronto para apresentar a sócios, parceiros ou investidores.</p>'
+    '<p class="ent-opc"><b>Opcional:</b> cadastre seu terreno no banco de áreas da Zion (a Zion avalia cada caso; sem garantia de parceria ou investimento).</p>'
     '</div>')
 
 def bloco(sec_id="entregaveis", css=True):
     body = (
         f'<section data-cx-section="solution" id="{sec_id}" class="sec ent-sec"><div class="w">'
-        '<p class="ent-k">Entregáveis pilar a pilar</p>'
-        '<h2 class="ent-h">O que você recebe em cada módulo.</h2>'
-        '<p class="ent-intro">Em cada pilar são 2 vídeos, 1 ficha “Faça agora” e 1 página do seu Dossiê. Veja o que tem em cada um.</p>'
+        '<p class="ent-k">Etapa por etapa</p>'
+        '<h2 class="ent-h">O que você recebe em cada etapa.</h2>'
+        '<p class="ent-intro">Em cada etapa você assiste, preenche uma ficha e monta uma página do seu Dossiê.</p>'
         '<div class="ent-lista">' + "".join(card(c) for c in CARDS) + '</div>'
         + FIM +
-        '<p class="ent-nota">Material educativo. O resultado depende das informações e das premissas que você preencher. Não prometemos reservas, renda, investimento nem parceria.</p>'
+        '<p class="ent-nota">Material educativo. O resultado depende do que você preencher.</p>'
         '</div></section>')
     return (f'<style>{CSS}</style>' if css else '') + body
 

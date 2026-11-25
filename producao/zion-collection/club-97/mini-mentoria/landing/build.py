@@ -3,12 +3,15 @@
 Reaproveita o CSS de club-97/landing/build.py e os extras de lt47/build.py. Uso: python3 -I build.py"""
 from html import escape
 from pathlib import Path
-import re
+import re, sys
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
+from build_bloco import bloco, CSS as BCSS
 
 AQUI = Path(__file__).parent
 C97 = AQUI.parents[1]
 CSS = re.search(r'CSS = """(.*?)"""', (C97 / "landing" / "build.py").read_text(encoding="utf-8"), re.S).group(1)
 CSS += re.search(r'CSS \+= """(.*?)"""', (C97 / "lt47" / "build.py").read_text(encoding="utf-8"), re.S).group(1)
+CSS += BCSS
 CSS += """
 .sec h2 em,.sec h1 em{font-style:italic}
 """
@@ -75,20 +78,15 @@ B.append(sec("offer", "escuro",
     '<p class="k">A Mini Mentoria</p>'
     '<h2>Uma formação digital, no seu ritmo.</h2>'
     '<p>A Mini Mentoria de Estruturação é uma formação digital: você assiste, preenche e aplica sozinho, quando quiser. Não há acompanhamento individual nem reunião.</p>'
-    '<p class="k" style="margin-top:28px">O que está dentro</p>'
-    + lista([
-        "9 módulos e 70 aulas e materiais, com acesso por 12 meses",
-        "Aulas gravadas, em vídeo",
-        "Fichas e formulários interativos, os “Faça agora”, um por etapa da jornada",
-        "E-books por pilar",
-        "Planilhas de cálculo: orçamento de abertura e pré-viabilidade (modelos em branco)",
-        "Kit do Investidor e kit de prompts do Dossiê, como modelos para você preencher",
-    ]) +
+    '<p>9 módulos e 70 aulas e materiais, com acesso por 12 meses. Veja abaixo a plataforma por dentro e, logo depois, o que você recebe em cada pilar.</p>'
     '<h2 style="margin-top:34px">Veja a plataforma por dentro.</h2>'
     f'<video class="video" controls playsinline preload="none" poster="{BASE}zion-collection/club/video/poster.jpg" src="{BASE}zion-collection/club/video/plataforma-v02.mp4">O seu navegador não reproduz este vídeo.</video>'
     '<p class="leg">Vídeo de demonstração da plataforma Zion Collection (8 minutos).</p>'
     f'<div class="telas quatro">{telas}</div>'
     + btn()))
+
+# Entregáveis pilar a pilar
+B.append(bloco(css=False))
 
 # Dossiê, cadastro, parceria
 B.append(sec("solution", "creme",
