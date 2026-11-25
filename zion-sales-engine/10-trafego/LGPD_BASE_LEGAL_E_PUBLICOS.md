@@ -202,7 +202,7 @@ Não promete reunião, parceria ou investimento. Não é anúncio nem lista subi
 >
 > Olá, {{nome}}.
 > Há um tempo você deixou seus dados em um formulário da Zion. Queremos ser claros sobre o que fazemos hoje.
-> A Zion oferece a **Mini Mentoria de Estruturação Zion**: uma formação digital, **sem reunião e sem atendimento individual**. Por **R$ 47**, em pagamento único, você acessa por 12 meses 9 módulos com 70 aulas e materiais para aprender o passo a passo de estruturar o seu projeto. Parcerias e investimentos não fazem parte da compra.
+> A Zion oferece a **Mini Mentoria de Estruturação Zion**: uma formação digital, **sem reunião e sem atendimento individual**. Por **R$ 47**, em pagamento único, você tem acesso à plataforma digital com 9 módulos com 70 aulas e materiais para aprender o passo a passo de estruturar o seu projeto. Parcerias e investimentos não fazem parte da compra.
 > Você **não precisa fazer nada**. Se quiser saber mais, esta é a página com preço e conteúdo: {URL_MINI_MENTORIA}.
 > Se preferir **não receber mais mensagens da Zion**, [clique aqui para sair]({LINK_DESCADASTRO}) ou responda este e-mail com SAIR. Seus dados seguem a nossa [Política de Privacidade]({URL_POLITICA_PRIVACIDADE}).
 > Se quiser receber conteúdo e ofertas por e-mail daqui para frente, pode [confirmar aqui]({LINK_CONSENTIMENTO_EMAIL}).
@@ -213,7 +213,7 @@ Condições: enviar só a quem **não** pediu para sair e **não** é comprador;
 Todos os fatos já estabelecidos e verificados (`08-checkouts/ENTREGAVEIS_VERIFICADOS.md`); conferir antes de publicar.
 > **Mini Mentoria de Estruturação Zion** · formação digital autônoma.
 > **R$ 47**, pagamento único, **sem mensalidade**. Pix ou cartão de crédito à vista.
-> Acesso por **12 meses** a 9 módulos, com 70 aulas e materiais: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos), kit de prompts e Dossiê com PDF.
+> Acesso à plataforma digital: 9 módulos, com 70 aulas e materiais: aulas gravadas, fichas "Faça agora", e-books por pilar, 2 planilhas de cálculo em branco, Kit do Investidor (modelos), kit de prompts e Dossiê com PDF.
 > **Garantia de 7 dias**: se não for para você, peça o reembolso em até 7 dias após a compra.
 > Não inclui reunião, atendimento individual, consultoria, investimento, parceria nem rede de investidores. Não promete reservas, ocupação, renda, aprovação de projeto ou captação de recurso. Resultados dependem da aplicação e de fatores externos.
 > O cadastro gratuito não é necessário para comprar. Seus dados são tratados conforme a [Política de Privacidade]({URL_POLITICA_PRIVACIDADE}).

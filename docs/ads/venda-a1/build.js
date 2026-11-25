@@ -29,7 +29,7 @@ const ADS={
   ['','store/ceu.webp','center',600,`<h1>Terreno parado <em>não vira projeto sozinho.</em></h1><div class=s>Projeto com números e proposta clara se aprende, passo a passo.</div>`],
   ['','operacoes/op05.webp','center',600,`<h1>Você já tem a parte mais difícil: <em>a terra.</em></h1><div class=s>Falta o conhecimento para estruturá-la em projeto.</div>`],
   ['','store/deck.webp','center',560,`<div class=k>O que você recebe</div>${list(['Aulas gravadas e fichas “Faça agora”','E-books por pilar','2 planilhas em branco e Kit do Investidor','Dossiê do projeto em PDF'])}`],
-  ['','store/noturna.webp','center',480,cta('Mini Mentoria de Estruturação Zion','R$ 47','Pagamento único · Pix ou cartão · 12 meses de acesso · garantia de 7 dias').replace('<div class=btn>','<div class=btn style="font-size:33px;height:104px">').replace('Saiba mais','QUERO ACESSAR A PLATAFORMA POR R$47')]
+  ['','store/noturna.webp','center',480,cta('Mini Mentoria de Estruturação Zion','R$ 47','Pagamento único · Pix ou cartão · Acesso à plataforma digital · garantia de 7 dias').replace('<div class=btn>','<div class=btn style="font-size:33px;height:104px">').replace('Saiba mais','QUERO ACESSAR A PLATAFORMA POR R$47')]
  ],
 };
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:W,height:H},deviceScaleFactor:1});

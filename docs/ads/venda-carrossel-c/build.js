@@ -49,8 +49,8 @@ const cards=[
 <div class="b s" style="left:160px;width:880px;top:1290px;font-size:24px;color:#fff;line-height:1.1">*Sessão sujeita à análise e à agenda. Parceria e investimento não são garantidos.</div>`],
 // 5 oportunidade (original 5): o que recebe
 [`o5.png`,`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
-<div class="b w" style="left:60px;right:60px;top:1128px;font-size:40px;color:#232c0a;font-weight:500">9 módulos, 70 aulas e materiais</div>
-<div class="b w" style="left:60px;right:60px;top:1228px;font-size:30px;color:#232c0a;font-weight:500">12 meses de acesso · pagamento único</div>`],
+<div class="b w" style="left:60px;right:60px;top:1128px;font-size:40px;color:#232c0a;font-weight:500">9 módulos, 70 conteúdos</div>
+<div class="b w" style="left:60px;right:60px;top:1228px;font-size:30px;color:#232c0a;font-weight:500">Acesso à plataforma digital · pagamento único</div>`],
 // 6 orientacao (original 3)
 [`o3.png`,`<div class="b" style="left:562px;top:0;width:518px;height:1350px;background:${Y}"></div>
 <div class="b s" style="left:618px;width:400px;top:165px;height:815px;border-radius:44px;background:#000;color:#fff;font-size:63px;display:flex;align-items:center;justify-content:center;line-height:1.16;padding:0 26px">Você não precisa começar construindo um hotel</div>
@@ -69,7 +69,7 @@ const cards=[
 <div class="b" style="left:70px;top:862px;width:940px;height:80px;background:#16300f;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:875px;font-family:A;font-weight:900;font-size:40px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:875px;font-family:A;font-weight:800;font-size:36px;color:#fff;line-height:1.1">Seu Dossiê para baixar em PDF</div>
 <div class="b" style="left:70px;top:958px;width:940px;height:80px;background:#2a3a10;border-left:8px solid #e8d28a;border-radius:10px"></div><div class="b" style="left:104px;top:971px;font-family:A;font-weight:900;font-size:40px;color:#e8d28a">✔</div><div class="b" style="left:170px;width:830px;top:971px;font-family:A;font-weight:800;font-size:36px;color:#fff;line-height:1.1">Sessão de diagnóstico estratégico*</div>
 <div class="b s" style="left:60px;right:60px;top:1066px;font-size:54px;font-weight:900;color:#e8d28a">R$ 47 · pagamento único</div>
-<div class="b s" style="left:60px;right:60px;top:1146px;font-size:28px;color:#fff;line-height:1.2">Pix ou cartão · 12 meses de acesso · garantia de 7 dias</div>
+<div class="b s" style="left:60px;right:60px;top:1146px;font-size:28px;color:#fff;line-height:1.2">Pix ou cartão · Acesso à plataforma digital · garantia de 7 dias</div>
 <div class="b s" style="left:60px;right:60px;top:1198px;font-size:22px;color:#fff;line-height:1.2">*Sessão gratuita ao concluir o Dossiê, mediante solicitação, sujeita à análise e à agenda. Parceria e investimento não são garantidos.</div>
 <div class="b s" style="left:60px;right:60px;top:1288px;font-size:24px;color:#e8d28a">Mini Mentoria de Estruturação Zion · formação digital autônoma</div>`],
 // 6c telas reais maiores (dossiê página a página)
@@ -86,7 +86,7 @@ const cards=[
 <div class="b s" style="left:40px;width:492px;top:70px;font-size:46px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.08">Mini Mentoria de Estruturação Zion</div>
 <div class="b s" style="left:40px;width:492px;top:330px;font-size:34px;color:#0b0b0b;line-height:1.12">Aprenda o passo a passo para estruturar o seu projeto</div>
 <div class="b s" style="left:40px;width:492px;top:470px;font-size:96px;color:#0b0b0b;line-height:1">R$ 47</div>
-<div class="b s" style="left:40px;width:492px;top:590px;font-size:30px;color:#0b0b0b;line-height:1.18">Pagamento único, sem mensalidade<br>Pix ou cartão · 12 meses de acesso<br>Garantia de 7 dias</div>
+<div class="b s" style="left:40px;width:492px;top:590px;font-size:30px;color:#0b0b0b;line-height:1.18">Pagamento único, sem mensalidade<br>Pix ou cartão · Acesso à plataforma digital<br>Garantia de 7 dias</div>
 <div class="b s" style="left:46px;width:480px;top:790px;height:216px;border-radius:52px;background:#ffed00;color:#0b0b0b;font-size:44px;display:flex;align-items:center;justify-content:center;line-height:1.02;letter-spacing:-.01em;padding:0 22px;font-weight:700;text-transform:uppercase">Quero acessar a plataforma por R$47</div>`]];
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1350}});
 for(let i=0;i<cards.length;i++){const f=`${D}/_t.html`;fs.writeFileSync(f,`<!doctype html><meta charset=utf-8><style>${css}</style><body><img class="o" src="file://${SRC}/${cards[i][0]}">${cards[i][1]}<div style="position:absolute;left:0;top:0;width:1080px;height:54px;background:#0b0b0b;color:#e8d28a;font-family:A;font-weight:800;font-size:24px;letter-spacing:.2em;display:flex;align-items:center;justify-content:center;text-transform:uppercase;z-index:9">Formação paga · Mini Mentoria Zion · R$ 47</div></body>`);

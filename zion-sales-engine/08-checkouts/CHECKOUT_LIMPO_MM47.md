@@ -35,7 +35,7 @@ Enviar todos os campos abaixo; um campo omitido pode voltar ao padrão [H]. Ante
   "id": "0c71eeba-2654-432c-9701-0a31e6113a08",
   "name": "Mini Mentoria de Estruturação Zion",
   "checkoutTitle": "Mini Mentoria de Estruturação Zion",
-  "description": "Formação digital autônoma para estruturar um empreendimento turístico no seu terreno: 9 módulos e 70 conteúdos (vídeo-aulas e 8 tutoriais em vídeo, 8 fichas interativas, 8 e-books em PDF, 2 planilhas de cálculo com fórmulas, Kit do Investidor com guia das 6 peças, 9 comandos de IA e Dossiê para baixar em PDF). Acesso por 12 meses. Pagamento único de R$47, sem mensalidade. Pix ou cartão à vista. Reembolso em 7 dias. Etapa opcional depois de concluir o Dossiê: solicitação da Sessão de Diagnóstico Estratégico, gratuita, sujeita à análise e à agenda. Não há atendimento individual contínuo. Parceria e investimento não são garantidos.",
+  "description": "Formação digital autônoma para estruturar um empreendimento turístico no seu terreno: 9 módulos e 70 conteúdos (vídeo-aulas e 8 tutoriais em vídeo, 8 fichas interativas, 8 e-books em PDF, 2 planilhas de cálculo com fórmulas, Kit do Investidor com guia das 6 peças, 9 comandos de IA e Dossiê para baixar em PDF). Acesso à plataforma digital. Pagamento único de R$47, sem mensalidade. Pix ou cartão à vista. Reembolso em 7 dias. Etapa opcional depois de concluir o Dossiê: solicitação da Sessão de Diagnóstico Estratégico, gratuita, sujeita à análise e à agenda. Não há atendimento individual contínuo. Parceria e investimento não são garantidos.",
   "type": "course",
   "productType": "internal",
   "productClass": "Curso",
@@ -75,12 +75,12 @@ Pontos de atenção: (a) a descrição acima tem 496 caracteres (limite 1000); (
 |---|---|---|
 | Nome | Mini Mentoria de Estruturação | Mini Mentoria de Estruturação Zion |
 | Imagem | placeholder do ClickMax | capa com tela real da plataforma e "R$47" |
-| Descrição | boa, mas sem a contagem de módulos | 9 módulos, 70 conteúdos, 12 meses, R$47, Pix/cartão, 7 dias, Sessão de Diagnóstico Estratégico opcional |
+| Descrição | boa, mas sem a contagem de módulos | 9 módulos, 70 conteúdos, acesso à plataforma digital, R$47, Pix/cartão, 7 dias, Sessão de Diagnóstico Estratégico opcional |
 | Preço, pagamento | R$ 47, Pix e cartão 1x | igual |
 | Distrações | nenhuma | nenhuma |
 
 ## 5. Capa do produto (500×500)
-Arquivos: `capa/capa.html` (molde), `capa/render.js`, `capa/capa-1080.jpg` e `capa/capa-500.jpg`. Fundo musgo `#1B2117`, logo oficial claro, tela real da plataforma (aula do Marco Zero), texto "Mini Mentoria de Estruturação Zion · R$47 · pagamento único · 12 meses de acesso" e a linha "Para Airbnb, casas, apartamentos, pousadas e glampings". Sem pessoas e sem foto de hospedagem de destaque (a única imagem de hospedagem é o fundo da própria tela real). Revisada visualmente em 25/11. Regerar: `NODE_PATH=$(npm root -g) node zion-sales-engine/08-checkouts/capa/render.js` e reduzir para 500×500.
+Arquivos: `capa/capa.html` (molde), `capa/render.js`, `capa/capa-1080.jpg` e `capa/capa-500.jpg`. Fundo musgo `#1B2117`, logo oficial claro, tela real da plataforma (aula do Marco Zero), texto "Mini Mentoria de Estruturação Zion · R$47 · pagamento único · Acesso à plataforma digital" e a linha "Para Airbnb, casas, apartamentos, pousadas e glampings". Sem pessoas e sem foto de hospedagem de destaque (a única imagem de hospedagem é o fundo da própria tela real). Revisada visualmente em 25/11. Regerar: `NODE_PATH=$(npm root -g) node zion-sales-engine/08-checkouts/capa/render.js` e reduzir para 500×500.
 **Como aplicar (Bruno):** painel → Produtos → Mini Mentoria → oferta → Imagem do produto → enviar `capa-500.jpg` (JPG até 2 MB). `offers_set_product_image` só aceita uma URL do armazenamento do ClickMax; depois do upload no painel posso conferir por `offers_get` (`thumbnail`).
 
 ## 6. Obrigado, entrega e eventos (ligações do checkout)
@@ -89,11 +89,11 @@ Arquivos: `capa/capa.html` (molde), `capa/render.js`, `capa/capa-1080.jpg` e `ca
 3. Reversão: apagar o campo (volta à página padrão).
 
 ## 7. Reversão do `offers_update`
-Reenviar o mesmo payload com `name` "Mini Mentoria de Estruturação", `checkoutTitle` null e a `description` anterior (guardada na seção 1 por `offers_get` de 25/11: "Formação digital para estruturar um empreendimento turístico no seu terreno. Aulas gravadas, fichas e formulários interativos, e-books por pilar, planilhas de cálculo e kits (Kit do Investidor e kit de prompts, como modelos para você preencher). Metodologia Zion: Marco Zero e sete pilares. Acesso por 12 meses. Pagamento único. Sem acompanhamento individual e sem reunião. Parcerias e investimentos são possibilidades sujeitas à análise da Zion, não garantias. Reembolso em 7 dias."). Os acessos de compradores não dependem do nome da oferta.
+Reenviar o mesmo payload com `name` "Mini Mentoria de Estruturação", `checkoutTitle` null e a `description` anterior (guardada na seção 1 por `offers_get` de 25/11: "Formação digital para estruturar um empreendimento turístico no seu terreno. Aulas gravadas, fichas e formulários interativos, e-books por pilar, planilhas de cálculo e kits (Kit do Investidor e kit de prompts, como modelos para você preencher). Metodologia Zion: Marco Zero e sete pilares. Acesso à plataforma digital. Pagamento único. Sem acompanhamento individual e sem reunião. Parcerias e investimentos são possibilidades sujeitas à análise da Zion, não garantias. Reembolso em 7 dias. Condições de acesso (termos da oferta): o acesso é liberado após a confirmação do pagamento e permanece ativo por 12 meses a partir da liberação."). Os acessos de compradores não dependem do nome da oferta.
 
 ## 8. Roteiro de validação no celular (Bruno)
 Use o celular com 4G, janela anônima, **sem pagar** (a menos que escolha testar o Pix, ver item 7).
-1. Abra a página rascunho (A ou B v2) pelo painel → "Visualizar". Confira: preço, 12 meses, 9 módulos, 70 conteúdos, Pix e cartão, garantia 7 dias aparecem **antes** do botão de pagar.
+1. Abra a página rascunho (A ou B v2) pelo painel → "Visualizar". Confira: preço, acesso à plataforma digital, 9 módulos, 70 conteúdos, Pix e cartão, garantia 7 dias aparecem **antes** do botão de pagar.
 2. Toque no botão do topo (A): deve **rolar** até a demonstração, nunca abrir pagamento. Na B, não há botão no topo.
 3. Role até a oferta e toque em "QUERO ACESSAR A PLATAFORMA POR R$47": deve descer até o checkout.
 4. No checkout: nome do produto = "Mini Mentoria de Estruturação Zion"; valor R$ 47; sem cronômetro, sem endereço, sem campo estranho; imagem da capa; descrição legível; botão de finalizar visível sem esforço; Pix e cartão só à vista.

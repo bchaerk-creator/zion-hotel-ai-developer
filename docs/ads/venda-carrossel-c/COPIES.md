@@ -4,13 +4,13 @@ Status: arte pronta para revisão. Nada enviado ao Meta nem ao ClickMax; nada at
 **Criativo:** `mm47-vc-carrossel-c-venda` (carrossel 7 cartões, 1080x1350) · **Destino:** https://infoprodutos-zion.clickmax.space/mini-mentoria (landing da Mini Mentoria; só o botão da página leva ao checkout) · **Botão do Meta:** Saiba mais · **ECROI:** E, C, R, O, I
 
 ## Texto primário (464 caracteres)
-Você tem um terreno e quer desenvolver o seu primeiro empreendimento de hospedagem, mas não sabe por onde começar? Aprenda o passo a passo para estruturar o seu projeto, conhecer alternativas de desenvolvimento e prepará-lo para apresentar a potenciais parceiros e investidores (possibilidade sujeita à análise deles, sem garantia). Mini Mentoria de Estruturação Zion: 9 módulos, 70 aulas e materiais, 12 meses de acesso. R$47, pagamento único, garantia de 7 dias.
+Você tem um terreno e quer desenvolver o seu primeiro empreendimento de hospedagem, mas não sabe por onde começar? Aprenda o passo a passo para estruturar o seu projeto, conhecer alternativas de desenvolvimento e prepará-lo para apresentar a potenciais parceiros e investidores (possibilidade sujeita à análise deles, sem garantia). Mini Mentoria de Estruturação Zion: 9 módulos, 70 aulas e materiais, Acesso à plataforma digital. R$47, pagamento único, garantia de 7 dias.
 
 ## Título (25 caracteres)
 Mini Mentoria Zion · R$47
 
 ## Descrição (52 caracteres)
-Pagamento único · Pix ou cartão · 12 meses de acesso
+Pagamento único · Pix ou cartão · Acesso à plataforma digital
 
 ## UTM (PADRAO_UTM §9; tags de URL coladas uma vez no anúncio)
 - venda-fria: `utm_source=meta&utm_medium=paid&utm_campaign=venda-fria&utm_content=mm47-vc-carrossel-c-venda&utm_term={{ad.id}}&sck={{campaign.id}}&ad_id={{ad.id}}&campaign_id={{campaign.id}}&adset_id={{adset.id}}`
@@ -22,9 +22,9 @@ Original = `docs/ads/inscricao-270/campeao-narrativa/carrossel-c-card-N.png` (ca
 2. "Sozinho, isso não vira um negócio" -> "Estruturar o projeto se aprende, passo a passo". Acrescentado "Imagens ilustrativas".
 3. "conversar com investidores" -> "apresentar o terreno a potenciais parceiros e investidores"; "Terreno + Projeto = Destino" -> "Terreno + passo a passo = Projeto"; botão "Inscreva seu terreno" -> "Mini Mentoria Zion"; "Apresente o que você já tem" -> "Estruture o que você já tem"; "Projetos & oportunidades" -> "Aulas, fichas & ferramentas"; aviso "A Zion avalia cada caso" -> "Possibilidade de parcerias e investimento sujeita à análise de cada interessado. Sem garantia."
 4. FOTO TROCADA (original tinha mulher): foto real sem pessoas (store/dentro). Meia-lua e estrela do original preservadas. Texto (ordem de Bruno, 25/11): "Desenvolvemos projetos de hospedagem e turismo há mais de 20 anos" + "e somos referência em glamping no Brasil" (afirmações do dono, sem citar Urubici/Florianópolis) + "Ao fazer a mentoria, você acessa a plataforma Zion, que faz parte da nossa expansão. E pode ser um próximo parceiro Zion a partir do resultado do seu projeto*" com nota "*Possibilidade sujeita à análise, sem garantia de parceria ou investimento." (painel-comparacao.jpg ainda mostra a versão anterior do cartão 4).
-5. "Inscrições abertas para terrenos e projetos turísticos" -> "9 módulos, 70 aulas e materiais" / "12 meses de acesso · pagamento único".
+5. "Inscrições abertas para terrenos e projetos turísticos" -> "9 módulos, 70 aulas e materiais" / "Acesso à plataforma digital · pagamento único".
 6. Caixa preta mantida ("Você não precisa começar construindo um hotel"); "Apresente seu projeto em uma sessão estratégica" -> "Aulas gravadas, fichas “Faça agora”, e-books por pilar, 2 planilhas em branco, Kit do Investidor e Dossiê em PDF". Acrescentado "Imagem ilustrativa".
-7. FOTO TROCADA (original tinha mulher): foto real sem pessoas (store/hero). "Inscrição R$ 270" / "Cadastre seu terreno ou projeto" -> "Mini Mentoria de Estruturação Zion", "R$ 47", "Pagamento único, sem mensalidade · Pix ou cartão · 12 meses de acesso · Garantia de 7 dias" e botão amarelo "QUERO ACESSAR A PLATAFORMA POR R$47".
+7. FOTO TROCADA (original tinha mulher): foto real sem pessoas (store/hero). "Inscrição R$ 270" / "Cadastre seu terreno ou projeto" -> "Mini Mentoria de Estruturação Zion", "R$ 47", "Pagamento único, sem mensalidade · Pix ou cartão · Acesso à plataforma digital · Garantia de 7 dias" e botão amarelo "QUERO ACESSAR A PLATAFORMA POR R$47".
 
 ## Sinalizações
 - Ordem dos cartões = a do campeão narrativo (originais 1,2,4,6,5,3,7 do campeão bruto).
@@ -41,13 +41,13 @@ Observação: manifesto.json e painel-comparacao.jpg ainda descrevem a versão d
 ## Atualização (25/11, respostas de Bruno): 9 cartões
 - **Faixa fixa no topo de TODOS os cartões:** "FORMAÇÃO PAGA · MINI MENTORIA ZION · R$ 47" (para ninguém achar que é grátis).
 - **Cartão 5 (gancho):** "Estruture o seu projeto e faça parte da nossa expansão*" / "Depois, nós queremos te conhecer" / "A mentoria dá acesso à plataforma Zion, que faz parte da nossa expansão. Primeiro você estrutura; depois nós conhecemos o seu projeto." / nota "*Possibilidade sujeita à análise, sem garantia de parceria ou investimento."
-- **Cartão 8 (novo, tangível):** "O que você leva da mentoria": telas reais (aula/Marco Zero, diagnóstico prévio, Pré-viabilidade) e "No fim, você monta o seu Dossiê de Desenvolvimento em PDF". Rodapé: "Formação digital paga · 12 meses de acesso".
+- **Cartão 8 (novo, tangível):** "O que você leva da mentoria": telas reais (aula/Marco Zero, diagnóstico prévio, Pré-viabilidade) e "No fim, você monta o seu Dossiê de Desenvolvimento em PDF". Rodapé: "Formação digital paga · Acesso à plataforma digital".
 - **Cartão 4:** mantém a frase da plataforma (decisão de Bruno).
 - **Texto primário:** abrir a primeira linha com "Formação digital paga, R$ 47:" e usar verbo "acesse/adquira", nunca "inscreva-se" nem "cadastre". Frase "mesmo que não vire parceria..." NÃO entra (decisão de Bruno).
 - manifesto.json e painel-comparacao.jpg ainda descrevem a versão anterior (7 cartões).
 
 ## Atualização (25/11, entregáveis mais claros): 10 cartões
-- **Cartão 8 (reescrito): lista "O que você recebe"**, com contagens verificadas (ENTREGAVEIS_VERIFICADOS.md): 9 módulos · 70 aulas e materiais; 26 aulas gravadas em vídeo; 10 fichas interativas "Faça agora"; 8 e-books, um por pilar (PDF); 2 planilhas de cálculo em branco; Kit do Investidor: 6 modelos; 9 comandos de IA prontos para usar; Dossiê de Desenvolvimento em PDF. Rodapé: "R$ 47 · pagamento único", "Pix ou cartão · 12 meses de acesso · garantia de 7 dias".
+- **Cartão 8 (reescrito): lista "O que você recebe"**, com contagens verificadas (ENTREGAVEIS_VERIFICADOS.md): 9 módulos · 70 aulas e materiais; 26 aulas gravadas em vídeo; 10 fichas interativas "Faça agora"; 8 e-books, um por pilar (PDF); 2 planilhas de cálculo em branco; Kit do Investidor: 6 modelos; 9 comandos de IA prontos para usar; Dossiê de Desenvolvimento em PDF. Rodapé: "R$ 47 · pagamento único", "Pix ou cartão · Acesso à plataforma digital · garantia de 7 dias".
 - **Cartão 9 (novo): "Por dentro da plataforma"**, com duas telas reais maiores (Diagnóstico prévio e Pré-viabilidade) e "Cada ficha vira uma página do seu Dossiê de Desenvolvimento".
 - **Cartão 10:** conversão (botão "QUERO ACESSAR A PLATAFORMA POR R$47").
 - Não afirmar "70 aulas em vídeo" (só 26 são vídeo) nem calculadoras/simuladores.

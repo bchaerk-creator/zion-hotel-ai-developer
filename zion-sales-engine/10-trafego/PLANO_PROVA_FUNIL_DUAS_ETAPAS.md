@@ -332,7 +332,7 @@ Públicos personalizados abaixo do mínimo de pessoas correspondidas não entreg
 ### 6.4 Quebra de expectativa nos leads que vieram com promessa de consultoria (mensagem de transição honesta)
 Quem preencheu formulário vendo "reunião", "diagnóstico", "inscrição" ou "avaliação" não deve receber a oferta como se nada tivesse acontecido. Proposta de texto (sujeita a CREATIVE, Bruno e aprovação do Meta se for modelo de WhatsApp; **não enviar sem "aprovado"**):
 
-> Olá, {{nome}}. Você deixou seus dados em um formulário da Zion. Queremos ser claros sobre o que oferecemos hoje: a Mini Mentoria de Estruturação Zion é uma formação digital, sem reunião e sem atendimento individual. Por R$ 47, em pagamento único, você acessa por 12 meses 9 módulos com 70 aulas e materiais para aprender o passo a passo de estruturar o seu projeto. Parcerias e investimentos não fazem parte da compra. Se preferir não receber mais mensagens, é só avisar.
+> Olá, {{nome}}. Você deixou seus dados em um formulário da Zion. Queremos ser claros sobre o que oferecemos hoje: a Mini Mentoria de Estruturação Zion é uma formação digital, sem reunião e sem atendimento individual. Por R$ 47, em pagamento único, você tem acesso à plataforma digital com 9 módulos e 70 conteúdos para aprender o passo a passo de estruturar o seu projeto. Parcerias e investimentos não fazem parte da compra. Se preferir não receber mais mensagens, é só avisar.
 
 Regras: não prometer reunião, contato de equipe, parceria, investimento ou avaliação; dizer o que mudou; oferecer saída ("Não quero receber"); preço e entregáveis na primeira mensagem.
 Medir também a **taxa de saída e de reclamação** como risco de qualidade da conta.

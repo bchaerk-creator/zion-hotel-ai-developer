@@ -276,6 +276,8 @@ Fatos de `13-relatorios/`. Os itens marcados (*) foram informados no comando e n
 23. **O receptor da API de Conversões precisa de `EVENT_SOURCE_URL_DEFAULT`**: o webhook do ClickMax não traz a URL da página. [E, teste]
 24. **Mensagem antiga ativa contradiz a captação nova** (modelo de abertura com "R$ 97" e botão para a página antiga): revisitar antes de ligar a captação corrigida (risco aceito por Bruno em 25/11 para a captação religada). [E]
 
+25. **Prazo de acesso fora da comunicação comercial (decisão de Bruno, 25/11).** Nunca escreva "12 meses de acesso", "acesso vitalício", "ilimitado" ou qualquer duração em anúncio, copy, VSL, landing, checkout, obrigado, e-mail ou automação. Use "Acesso à plataforma digital". A condição efetiva (turma com acesso de 12 meses a partir da liberação, conferido no ClickMax) aparece só nos termos da oferta, antes da compra. Não reduzir nem alterar o acesso de quem já comprou.
+
 ## 9. Pendências do próprio manual
 
 Sem conteúdo pendente: as seis metodologias têm a definição exata de Bruno (seção 2). Em aberto: confirmar com Bruno se **Pareto em cascata** e a cascata 20% → 4% → 0,8% do **OP3D** são o mesmo método [NC]; reavaliar os critérios do Low Ticket Raiz no mapa de produtos com os dois novos (entrega autônoma e engenharia de margem) [NC]; parâmetros do protocolo (`k`, `Nmin`, margem, reembolso) são hipóteses até Bruno confirmar. O restante do Comando Mestre está incorporado neste manual.
