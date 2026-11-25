@@ -18,3 +18,8 @@ Se uma sessão custasse R$ 80 (1 hora de equipe a R$ 80) e s×a = 10%: custo esp
 
 ## Regra do teste de 14 dias
 O saldo simulado (R$ 420 de mídia, líquido R$ 44,51) NÃO inclui a sessão. Com sessão, o ponto de equilíbrio de 10 vendas sobe conforme s×a e o custo por sessão. Medir s, a e o tempo real por sessão desde a primeira venda.
+
+## Decisão de Bruno (25/11)
+- Política: **só projetos qualificados, por solicitação** (Dossiê concluído; análise; agenda). Não é bônus individual para todos.
+- Limite semanal de sessões: **a definir depois da compra de teste** (o texto do anúncio não cita limite; segue "sujeita à análise e à agenda"). Até lá, a equipe aprova com cautela e mede s, a e o tempo real por sessão.
+- Duração, prazo de resposta e responsável: ainda a confirmar (sugestão: 30 min por vídeo; resposta em até 5 dias úteis).
