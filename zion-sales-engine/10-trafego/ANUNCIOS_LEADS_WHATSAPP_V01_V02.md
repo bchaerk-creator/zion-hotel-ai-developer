@@ -62,3 +62,9 @@ Retirado dos textos atuais: R$ 270, sessão de 45 minutos com Bruno, "possibilid
 - **Anúncios (pausados):** Carrossel C de venda, 10 cartões (`120250575390240016`) e Carrossel A1 de venda, 5 cartões (`120250575391770016`). Texto principal dos manifestos (A1 com o prefixo "Formação digital paga, R$ 47:"), botão Saiba mais, destino **`https://infoprodutos-zion.clickmax.space/mini-mentoria-clube-47`**, UTM `utm_campaign=venda-fria` + `utm_content` por criativo (parâmetros de URL no criativo).
 - **Teto:** captação R$ 10 + venda fria R$ 20 = R$ 30 por dia (Fase 1). Para ligar: `aprovado` de Bruno (campanha, conjunto e anúncios).
 - Os manifestos `docs/ads/venda-carrossel-c/manifesto.json` e `docs/ads/venda-a1/manifesto.json` ainda citam a landing B v3 e `/mini-mentoria`; **vale a URL acima**.
+
+## Atendimento (decisão de Bruno, 26/11)
+- Os leads dos formulários entram automaticamente no CRM e **ficam acumulados até a equipe comercial atender no dia seguinte**. Sem mensagem automática e **sem a Bela** nesses leads. A IA do CRM fica disponível para Bruno dentro do ClickMax.
+- A rotina horária já cria o cartão em "Leads de hoje" e a virada diária move para "Leads do dia anterior" e "Não respondeu / Acumulados".
+- Atenção: mensagem de WhatsApp enviada PELA EMPRESA fora da janela de 24 h exige modelo aprovado pelo Meta (o modelo novo ainda não foi enviado). Contato manual pelo aplicativo do WhatsApp não tem essa limitação.
+- Os textos dos anúncios e do formulário dizem "a nossa equipe fala com você pelo WhatsApp"; se quiser, trocar por "no próximo dia útil" (o formulário não edita; o texto do anúncio sim).
