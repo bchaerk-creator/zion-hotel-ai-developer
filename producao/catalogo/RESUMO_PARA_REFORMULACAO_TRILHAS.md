@@ -169,6 +169,50 @@ A Fábrica Educacional e os moldes do repositório já produzem esse formato. O 
 ### Trilha 1 · Desenvolvimento (do terreno ao projeto)
 Base existente: Jornada 1 (7 pilares e dossiê), linha B do Arsenal, Produto 01 Terra-Capital, e-books de R$ 13, Ferramenta 05 e ZAIOS Desenvolvimento.
 
+**Ordem da trilha (pedido de Bruno, 26/11): antes de construir, entender.**
+1. Território
+2. Demanda
+3. Conceito e marca
+4. Tipo de hospedagem
+5. Projeto e dinheiro
+6. Construção
+
+Cada minicurso termina numa página do dossiê, e o seguinte usa o que ela trouxe.
+
+| Ordem | Minicurso | Ideia central (frase de Bruno) |
+|---|---|---|
+| 1 | **D9 · Leitura do território** | "Antes de construir, faça a leitura do território e entenda o que existe no local e qual é o melhor produto para a sua região." |
+| 2 | **D10 · Demanda: o que o público está pedindo** | "Antes de construir, entenda qual é a demanda e o que o público está pedindo." |
+| 3 | **D11 · Conceito e marca do seu hotel** | "Antes de construir, desenhe o seu conceito e a sua marca, para depois desenhar o seu produto." |
+| 4 | D2 · Tipos de hospedagem e o que implantar | Escolher o tipo a partir das três páginas anteriores |
+| 5 | D1, D3, D4, D5, D8 | Renda × venda, estrutura jurídica, crédito, incorporação, parceiro |
+| 6 | D6, D7 | Primeira cabana, glamping |
+
+**D9 · Leitura do território**
+- **Promessa:** aprenda o passo a passo para ler o seu território (acesso, entorno, atrativos, o que já existe por perto, restrições) e descobrir qual produto faz sentido para a sua região.
+- **Aproveitar:** pilar Território e Aula 1 da Jornada 1 (ficha "Faça agora"), B05 (potencial turístico da terra), volume A01 Território da coleção e ferramentas 02 e 03, ainda não feitas.
+- **Produzir:**
+  - ficha de leitura do local, com fotos e anexos (o Pilar 1 já aceita);
+  - mapa do que existe num raio definido pelo aluno;
+  - lista do que falta na região.
+- **Cuidado:** não dizer "o melhor produto" como certeza. A ficha aponta caminhos, e a escolha é do aluno.
+
+**D10 · Demanda: o que o público está pedindo**
+- **Promessa:** aprenda o passo a passo para descobrir quem procura hospedagem na sua região e o que essas pessoas pedem, antes de decidir o que construir.
+- **Aproveitar:** pilar Mercado da Jornada 1, volume A02 Mercado e o "Mapa de 30 oportunidades" (`producao/low-ticket/MAPA_OPORTUNIDADES.md`), que mostra como pesquisar com fonte e data.
+- **Produzir:**
+  - roteiro de pesquisa sem custo (anúncios concorrentes, avaliações, buscas, conversas com quem já opera);
+  - planilha que organiza o que o público elogia, reclama e pede.
+- **Cuidado:** nenhum número de mercado sem fonte. O aluno coleta os próprios dados.
+
+**D11 · Conceito e marca do seu hotel**
+- **Promessa:** aprenda o passo a passo para desenhar o conceito e a marca da sua hospedagem (para quem é, qual a promessa, qual o nome, o tom e a experiência) antes de desenhar o produto.
+- **Aproveitar:** pilar Produto da Jornada 1, volume A04 Estratégia, "Marca em uma folha" do módulo 04 Marketing da Jornada 2, A05 "Como Fazer Sua Hospedagem Valer Mais?" e o próprio caso Zion Bubble como exemplo de conceito.
+- **Produzir:**
+  - canvas de conceito: público, promessa, experiência, diferencial, nome, tom;
+  - checklist "o conceito decide o produto", que liga o conceito ao tipo de hospedagem (D2) e ao orçamento.
+- **Ponte:** este minicurso pode ser vendido também na Trilha 4 (Branding), com a mesma promessa e sem duplicar.
+
 **Minicursos novos pedidos.** Para cada um: a promessa, o que já existe para aproveitar, o que é preciso produzir e onde há cuidado ou validação.
 
 **D1 · Hotel de renda × hotel de venda**
@@ -236,6 +280,25 @@ Base existente: Jornada 1 (7 pilares e dossiê), linha B do Arsenal, Produto 01 
 - **Outras fontes:** Acelerador de Vendas (WhatsApp, CRM, venda direta) do Comando 04, módulo 04 Marketing da Jornada 2, criativos e roteiros prontos.
 - **Falta:** branding (identidade da hospedagem), venda direta pelo WhatsApp (ferramenta 21 e e-book E07, hoje parados) e o funil de reservas próprio.
 
+**Temas novos pedidos (26/11):**
+
+**M1 · E-book "Pare de vender paredes e comece a vender experiência"**
+- **Promessa:** aprenda o passo a passo para transformar o que a sua hospedagem tem em uma experiência que o hóspede quer viver, e mostrar isso no anúncio e no atendimento.
+- **Aproveitar:**
+  - A05 "Como Fazer Sua Hospedagem Valer Mais? (Pare de Competir Apenas pelo Preço)" e A06 (5 estrelas);
+  - e-book E10 Experiências, ainda não feito;
+  - ferramentas 28, 29 e 30 (experiências) e 12 (fotos e comodidades);
+  - o caso Zion Bubble.
+- **Atenção:** é o mesmo terreno da A05. Decidir se o e-book substitui a A05, a complementa ou vira a porta de entrada dela.
+
+**M2 · "Calendário vazio talvez não seja falta de hóspedes, seja falta de estratégia"**
+- **Promessa:** aprenda o passo a passo para encher o seu calendário: diagnóstico do anúncio, preço com piso, períodos fracos, campanhas e atendimento.
+- **Aproveitar** (já é o tema mais coberto do repositório):
+  - Arsenal 01 e Zion Collection 06 "Seu Airbnb Está Vazio?" (e-book de 60 p., diagnóstico de oferta, calendário de 30 dias);
+  - A01;
+  - ferramentas 01 (piso), 12, 22 (períodos de baixa procura), 23 e 11.
+- **Atenção:** antes de produzir algo novo, decidir qual versão fica: Arsenal 01 ou ZC06, hoje com o mesmo título. A frase de Bruno pode virar o novo título ou a nova página dessa versão, em vez de um produto a mais.
+
 ---
 
 ## Parte 3 · O que decidir antes de produzir
@@ -253,8 +316,10 @@ Base existente: Jornada 1 (7 pilares e dossiê), linha B do Arsenal, Produto 01 
 6. **Revisão jurídica e financeira:** D1, D3, D4 e D5 precisam de um advogado e de alguém de crédito antes de ir ao ar.
 7. **Gravação:** quem grava os vídeos e onde (Urubici e Florianópolis rendem as melhores imagens reais).
 
-**Sugestão de ordem:**
-1. D6 Primeira cabana e D2 Tipos de hospedagem: mais material pronto e maior público.
-2. D7 Glamping.
-3. D8 Parceiro.
-4. D1, D3, D4 e D5, depois da revisão jurídica.
+**Sugestão de ordem de produção (atualizada em 26/11):**
+1. D9 Território, D10 Demanda e D11 Conceito e marca: abrem a trilha e já têm base na Jornada 1.
+2. D2 Tipos de hospedagem e D6 Primeira cabana.
+3. M2 Calendário vazio: reaproveita Arsenal 01 e ZC06, depois da decisão sobre qual fica.
+4. M1 Vender experiência: depois de decidir a relação com a A05.
+5. D7 Glamping e D8 Parceiro.
+6. D1, D3, D4 e D5, depois da revisão jurídica.
