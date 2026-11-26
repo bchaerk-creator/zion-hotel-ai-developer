@@ -93,7 +93,7 @@ Este repositório é público. O mapa não traz dados de leads, números de camp
 | Modelo de financiamento, Black Finance | Escada de capital e crédito privado (submarca) | Repositório `manus-github-test` |
 | Plano de negócio Zion e Ecogrupo | Plano com Ecogrupo e tokenização a partir do banco de áreas | Branch `claude/zion-ecogropo-business-plan-*` |
 | Zion editorial carrossel | Sistema de carrossel editorial, edição 01 | Branch `claude/zion-editorial-carrossel-*` |
-| Zion cinematographic video editing, Reel, Edição de vídeos | Edição de vídeo (só ambiente local) | — |
+| Zion cinematographic video editing, Reel, Edição de vídeos | Edição de vídeo (só ambiente local). 25/11: ZION SALES ENGINE, criativos de venda da plataforma Zion Collection (R$47/mês por assinatura, Trilha Desenvolvimento): os 5 conceitos prontos na vertical (V01 Terreno parado, aprovado; V02 Demonstração; V03 Oportunidade de mercado; V04 Quero começar; V05 Autoridade), cada um com MP4, SRT, transcrição, copy e thumbnail, todos com o cartão A de R$47/mês. Faltam os formatos 1080×1350 e 1920×1080 e os cortes de 30 e 15 s. Nada publicado, nenhuma campanha, nada alterado no ClickMax. A assinatura de R$47 ainda não existe como oferta no ClickMax | Kit e entregas no ambiente da sessão (`ZionVideoKit/`), fora do repositório |
 | Túnel, Capota da Bubble, Prompts FLO | Projetos de estrutura e prompts | Branches próprias |
 | Indique e Ganhe | Afiliado ClickMax no Instagram pessoal; **fora da marca Zion** | Artifact |
 
