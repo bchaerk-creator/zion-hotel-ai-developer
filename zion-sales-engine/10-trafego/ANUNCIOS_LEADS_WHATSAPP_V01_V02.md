@@ -43,3 +43,8 @@ Retirado dos textos atuais: R$ 270, sessão de 45 minutos com Bruno, "possibilid
 - A abertura automática da mensagem de R$ 97 está pausada para esse formulário; falta o modelo novo aprovado pelo Meta e a pessoa que atende o WhatsApp.
 - A descrição da oferta Club R$ 47 (aparece no checkout) ainda diz "Acesso por 12 meses" e "banco de áreas da Zion".
 - A landing `bd612549…` está em rascunho; só vai ao ar com "aprovado".
+
+## Atualização 26/11 (decisões de Bruno)
+- **Botão da tela final do formulário → landing de R$ 47** (não o WhatsApp): `https://infoprodutos-zion.clickmax.space/mini-mentoria-clube-47?utm_source=meta&utm_medium=paid&utm_campaign=leads-whatsapp&utm_content=form-whatsapp`. A página `bd612549…` está em RASCUNHO (nunca publicar por `pages_update`/`pages_update_config`: publicam sozinhas; conferir `lastPublishedAt`). O link também pode ir escrito no texto do anúncio e na 1ª mensagem do WhatsApp (modelo novo, pendente no Meta).
+- **Descrição da oferta Club R$ 47 CORRIGIDA** (26/11 01:20Z, só a descrição; sem "banco de áreas", sem "12 meses" como promessa; linha de condições de acesso: 12 meses a partir da liberação, conferido nas duas turmas). A oferta continuou `approved`, sem erro de sincronização. Diferença para a Mini Mentoria: aqui o nome da oferta não foi alterado.
+- **Ainda trava:** tela final, perguntas e idioma do formulário `4295158260660606` (prints); política de privacidade (URL, pendência M20) se for preciso criar um formulário novo em português; modelo de WhatsApp aprovado; atendente; rastreamento (M79).
