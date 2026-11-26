@@ -55,3 +55,10 @@ Retirado dos textos atuais: R$ 270, sessão de 45 minutos com Bruno, "possibilid
 - **Anúncio Vídeo 01 (pausado):** `120250574637440016`, vídeo `1105173169013482`, texto corrigido, formulário novo.
 - **Falta:** anúncio do Vídeo 02. O registro de 22/11 mostra que o anúncio "Vídeo 02 · Dono de terreno" foi criado com o MESMO `video_id` do Vídeo 01; preciso do arquivo (ou id) do Vídeo 02 para não duplicar o vídeo.
 - **Ainda pausados e a conferir antes de ligar:** conjunto do Carrossel C (R$ 25/dia, anúncio ativo) e a campanha inteira; landing `bd612549…` em rascunho (precisa estar publicada quando o botão do formulário for usado); consentimento de WhatsApp no formulário (o Meta via API não cria caixas de consentimento: revisão jurídica [NC]).
+
+## Campanha de VENDA FRIA criada em 26/11 (tudo PAUSADO)
+- **Campanha:** `120250575381950016` "[ZION COLLECTION][VENDA FRIA][MINI MENTORIA R$47 → LANDING CLUB] [26/11]" (objetivo tráfego, pausada).
+- **Conjunto:** `120250575383730016` (cópia do público aberto Advantage+ Brasil 25-65 do Curso Terreno; otimização visitas à página; **R$ 20/dia**; pausado).
+- **Anúncios (pausados):** Carrossel C de venda, 10 cartões (`120250575390240016`) e Carrossel A1 de venda, 5 cartões (`120250575391770016`). Texto principal dos manifestos (A1 com o prefixo "Formação digital paga, R$ 47:"), botão Saiba mais, destino **`https://infoprodutos-zion.clickmax.space/mini-mentoria-clube-47`**, UTM `utm_campaign=venda-fria` + `utm_content` por criativo (parâmetros de URL no criativo).
+- **Teto:** captação R$ 10 + venda fria R$ 20 = R$ 30 por dia (Fase 1). Para ligar: `aprovado` de Bruno (campanha, conjunto e anúncios).
+- Os manifestos `docs/ads/venda-carrossel-c/manifesto.json` e `docs/ads/venda-a1/manifesto.json` ainda citam a landing B v3 e `/mini-mentoria`; **vale a URL acima**.
