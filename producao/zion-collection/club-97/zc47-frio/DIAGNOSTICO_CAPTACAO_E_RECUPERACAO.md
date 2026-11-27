@@ -43,7 +43,7 @@ Regras propostas: gatilhos `cart.abandonment.v1` e `pix.expired.v1` da oferta `6
 Botões: todos para `https://www.zionhotelgroup.com/inscricao`.
 
 ## 5. Pendências para implementar (só depois da aprovação do diagnóstico)
-1. Bruno envia o link de captura (ou o recria em ClickMax › integrações › link de captação e cola o ID no chat privado... **melhor: guardar como segredo** e a rotina lê da variável).
+1. O link de captura NÃO deve ir pelo chat. Bruno guarda o link como segredo do ambiente (Configurações do ambiente › segredos) ou indica qual link do ClickMax usar; a rotina lê da variável.
 2. Recriar o script de ingestão com: duplicado por e-mail/telefone, UTMs a partir do Windsor, tag `META | FORM ZC47 TERRENO`/`POUSADA` (nunca `d3053721…`), cartão em "Leads de hoje", `processados.json`.
 3. Ler as perguntas dos dois formulários novos (Gerenciador de Anúncios › Formulários) para montar o mapeamento em campos personalizados.
 4. Aprovação dos 3 modelos novos de WhatsApp na Meta e do texto acima.
