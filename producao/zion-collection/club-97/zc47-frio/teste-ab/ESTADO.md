@@ -14,3 +14,8 @@ Progresso (IDs):
 - Anúncio A2 Carrossel 01 120250607339110016 (pausado)
 - Anúncio B1 V06 120250607340000016 (pausado, formulário 1959234188381295)
 - Anúncio B2 Carrossel 02 120250607343490016 (pausado)
+
+## LANÇAMENTO 27/11 ~20:00 UTC (autorização de Bruno: "Pode usar esta autorização")
+- Ligados: campanhas A 120250606891890016 e B 120250606931740016, conjuntos 120250606936870016 e 120250607328680016 (R$30/dia cada, fim 2026-11-30T20:00Z) e os 4 anúncios.
+- Pausada: campanha fria ZC47 120250595856880016 (substituída pelo teste).
+- Pendente: lead de teste do formulário (Bruno, ferramenta do Meta); frase do preço mantida "Adesão inicial R$ 47".

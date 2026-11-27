@@ -68,3 +68,8 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 - Ficam **ativos** na campanha fria (R$ 30/dia, sem mudança de orçamento): V17C `120250606395340016`, V12B `120250606489560016`, V14 `120250606507590016` e V15 `120250606512390016`. V12b, V14 e V15 têm a Camila Reis; Bruno pediu explicitamente para ativá-los.
 - **Pausados como reserva:** V18B, V19B, V17LONGO e V06.
 - O teste A/B (campanhas ZC2 A e B, `teste-ab/`) continua pausado. Os carrosséis campeões estão em outra conversa; os que fiz aqui são uma versão para comparar.
+
+## 27/11 ~20:00 UTC · Substituição pelo teste A/B (autorizado por Bruno)
+- ZC47 Frio `120250595856880016` **pausada**.
+- **Ativas:** ZC2 A Venda direta `120250606891890016` e ZC2 B Formulário `120250606931740016`, R$ 30/dia cada, até 30/11 20:00 UTC (no máximo ~R$ 180). Detalhes em `teste-ab/`.
+- As demais campanhas da conta seguem pausadas.
