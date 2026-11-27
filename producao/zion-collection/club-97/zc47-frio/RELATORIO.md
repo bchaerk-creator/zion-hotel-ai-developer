@@ -38,6 +38,12 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 - V18 `120250600891600016`: o arquivamento foi recusado na tela de permissão; segue **pausado** (não gasta).
 - V17 `120250600889160016`: único anúncio do teste, pausado até o "aprovado" para ativar.
 
+## Ativação (27/11, "APROVADO" de Bruno)
+- Campanha `120250595856880016` com limite total (`spend_cap`) de **R$ 420** gravado no Meta antes de ligar.
+- Ligados: anúncio V17 `120250600889160016`, conjunto `120250595901940016` (R$ 30/dia, Tráfego, visualização da página), campanha `120250595856880016`.
+- V18 pausado; V19 arquivado; demais campanhas sem alteração. Nenhuma outra campanha da conta com gasto em 27/11 (leitura do Windsor, sujeita a cache).
+- Atenção: a landing não repassa UTM ao checkout (ver `RASTREAMENTO_AUDITORIA.md`, Etapa A).
+
 ## Pendências e o que depende do Bruno
 1. **Ativar:** só com "aprovado" (teto Fase 1: R$ 30/dia, R$ 420 em 14 dias).
 2. **Conferir no Gerenciador** o estado e a prévia dos 3 anúncios (o Windsor não relê o estado na hora; a leitura pode vir do cache).
