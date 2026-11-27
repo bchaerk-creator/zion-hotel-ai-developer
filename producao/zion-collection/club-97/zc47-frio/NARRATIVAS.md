@@ -47,3 +47,21 @@ Quanto tempo você tem esse terreno parado? Talvez a falta de conhecimento e a f
 Dono de área em destino turístico.
 De repente você tem essa área parada. Por falta de capital ou por falta de conhecimento. Nós da Zion criamos uma plataforma onde vai te ajudar a estruturar a tua ideia para poder apresentar para você conseguir captar um sócio investidor. Você entra dentro da plataforma, você começa a estruturar o teu projeto, preencher os formulários, ter acesso a vídeos e conteúdos que vão te ensinar o passo a passo de um desenvolvimento de um projeto. Você sai com o seu dossiê na mão de viabilidade de projeto de hospedagem. Nós da Zion estamos em plena expansão, somos referência do Glam no Brasil. Através da tua estruturação, nós queremos te conhecer. Você tem também o acesso a possíveis parcerias e sociedade com a Zion. Vem comigo, vem com a Zion, nós estamos te esperando, se inscreve na plataforma e bora fazer o negócio acontecer!
 
+
+## Recuperadas do Drive (legendas SRT e LEIA-ME 2, pasta "04 · Copies, legendas (SRT) e capas")
+Os arquivos de vídeo destas versões **não estão** no Drive nem no repositório (as pastas 01, 02, 03 e 06 estão vazias); só o texto foi recuperado.
+
+### V05 · Autoridade Zion
+Somos referência do Glamping no Brasil. Nós da Zion estamos em plena expansão por todo o Brasil. Você foge do produto de vender paredes e começa a vender experiência para o hóspede. Nós criamos a plataforma Zion Collection, onde você vai ter acesso a conteúdos para se profissionalizar no setor. Você entra dentro da plataforma, você começa a estruturar o teu projeto, preencher os formulários, ter acesso a vídeos e conteúdos que vão te ensinar o passo a passo de um desenvolvimento de um projeto de hospedagem. Entender como funciona o jogo. Você sai com o seu dossiê na mão de viabilidade de projeto de hospedagem. Se inscreve aqui na plataforma, estrutura o seu projeto. Vem comigo, vem com a Zion, o glamping só está começando no Brasil.
+
+### V07 · Capital e sócio
+Você sabia que muitas vezes você não precisa ter o capital para desenvolver um projeto em destino turístico? Através da sua matrícula, através do seu terreno, nós temos várias estratégias para atrair esse sócio, para atrair esse capital. Nós criamos uma plataforma onde você vai poder anexar o teu projeto, colocar tudo o que corresponde para nós te conhecermos. Lá dentro você vai encontrar conteúdos, vídeos, formação para você estruturar o teu negócio, ter os dossiês correspondentes de viabilidade. Você se inscrevendo na plataforma Zion, você tem também o acesso a possíveis parcerias e sociedade com a Zion. E quem sabe você ou não é o próximo destino da Zion, o próximo destino em expansão. Vem comigo, vem com a Zion, se inscreve na plataforma.
+
+### V08 · Parceria com vinheta (69 s) / V09 · Parceria, Bubble e Diagnóstico (81 s, principal) / V11 · Narrativa curta (47 s)
+Gancho "Ei, você aí! Dono de terreno em área turística." Narrativa: terreno parado → Zion em expansão, o terreno pode ser o próximo parceiro → plataforma (conteúdos, vídeos, formação, dossiês) → anexar requisitos e reunião estratégica com a equipe, diagnóstico caso a caso → parceria e sociedade com as bubbles, sujeita a análise. V11 é a versão curta.
+
+### V10 · Capital e Parceria (82 s)
+Gancho "Você sabia que muitas vezes você não precisa ter o capital para desenvolver um projeto em destino turístico? Através da sua matrícula e do seu terreno, existem estratégias para atrair o sócio e o capital." Depois segue a narrativa do V09 (expansão, plataforma, reunião estratégica, diagnóstico, parceria sujeita a análise).
+
+### V12, V13 e V16
+Sem texto recuperado: V12 e V13 eram versões com a Camila (V12b, V14 e V15 são as que restaram); V16 era a montagem só com a Camila para captação de investidores.
