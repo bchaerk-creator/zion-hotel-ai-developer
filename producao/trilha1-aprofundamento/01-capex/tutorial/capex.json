@@ -1,0 +1,389 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "_todo": "Seletores provisórios: a ficha docs/trilha1/capex/index.html está sendo construída em paralelo. Toda ação com a chave \"todo\" depende dela e deve ser conferida antes de gravar. O record.js ignora as chaves \"todo\" e \"_todo\". Números: só o caso fictício dos Chalés do Ribeirão (PLANO.md, seção 7), carregado pelo botão de exemplo. Narração: cerca de 590 palavras, 3,5 a 4 minutos.",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial do Faça agora, O meu CAPEX, o aprofundamento do Pilar seis. CAPEX é o custo de abrir a porta: tudo o que precisa existir até o primeiro hóspede. No fim, você sai com a página seis A do seu Dossiê.",
+   "actions": [
+    {
+     "card": {
+      "t": "Faça agora · O meu CAPEX",
+      "s": "Quanto custa o seu projeto inteiro, bloco por bloco"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Vamos usar o botão de exemplo, com o caso fictício dos Chalés do Ribeirão, da Helena. Não são preços de referência: o aviso fica na tela o tempo todo. Na abertura, ela marca: tenho terreno e ainda não construí.",
+   "actions": [
+    {
+     "goto": "http://localhost:8790/trilha1/capex/"
+    },
+    {
+     "show": "h1",
+     "wait": 1200
+    },
+    {
+     "click": "#exemplo",
+     "wait": 1200,
+     "todo": "id do botão que carrega o exemplo fictício"
+    },
+    {
+     "show": ".selo-ficticio",
+     "wait": 1800,
+     "todo": "selo 'Exemplo com dados fictícios. Não são preços de referência.'"
+    },
+    {
+     "show": "label.op input[value='abrir']:checked + span",
+     "wait": 1500,
+     "todo": "opção marcada da situação (abrir)"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900,
+     "todo": "botão de avançar da ficha (o record.js já reconhece #avancar)"
+    }
+   ]
+  },
+  {
+   "say": "Antes de qualquer conta, o palpite. A Helena multiplicou o que um construtor falou: quatro chalés de cento e setenta e cinco mil reais. Setecentos mil. A data fica gravada, e no fim a ficha compara o palpite com a conta.",
+   "actions": [
+    {
+     "show": ".pergunta",
+     "wait": 1200,
+     "todo": "título da tela do palpite"
+    },
+    {
+     "type": "#palpite",
+     "text": "700000",
+     "wait": 900,
+     "todo": "campo do palpite (número)"
+    },
+    {
+     "show": "#dataPalpite",
+     "wait": 1500,
+     "todo": "data gravada do palpite"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Depois, a fase. Quatro chalés agora, seis no projeto completo. É a primeira obra dela, e isso conta como fator de risco. Toda a conta é da fase um, mas a rede é pensada para os seis.",
+   "actions": [
+    {
+     "show": "#unidadesFase",
+     "wait": 1300,
+     "todo": "campo unidades da fase"
+    },
+    {
+     "show": "#unidadesProjeto",
+     "wait": 1300,
+     "todo": "campo unidades do projeto completo"
+    },
+    {
+     "show": "#primeiraObra",
+     "wait": 1500,
+     "todo": "marcação primeira obra"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Agora, um bloco por tela. No bloco um, projetos, licenças e documentação, cada linha tem uma origem: cotação escrita, estimativa minha ou em branco. A licença ambiental ficou em branco. Ela vale zero na soma, mas aparece como risco. Uma linha em branco vale mais do que um número inventado.",
+   "actions": [
+    {
+     "text": "Projetos, licenças e documentação",
+     "sel": "h2",
+     "wait": 1500,
+     "todo": "título do bloco 1"
+    },
+    {
+     "show": ".linha .origem",
+     "wait": 2000,
+     "todo": "seletor de origem da primeira linha"
+    },
+    {
+     "text": "Licença ambiental",
+     "up": ".linha",
+     "wait": 2500,
+     "todo": "linha da licença ambiental, origem em branco"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "No bloco dois, a infraestrutura. A primeira pergunta é a distância até o ponto de energia: cento e oitenta metros, informados pela concessionária. E a capacidade: a rede é dimensionada para seis unidades. Assim, ela é construída uma vez só.",
+   "actions": [
+    {
+     "text": "Infraestrutura",
+     "sel": "h2",
+     "wait": 1200,
+     "todo": "título do bloco 2"
+    },
+    {
+     "show": "#distanciaEnergiaM",
+     "wait": 2000,
+     "todo": "campo distância até o ponto de energia"
+    },
+    {
+     "show": "#infraDimensionadaPara",
+     "wait": 2000,
+     "todo": "campo 'para quantas unidades a rede é dimensionada'"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "No bloco três, as unidades e as áreas comuns. Os chalés entram pela área vezes o custo do metro quadrado cotado. Depois, o deck e a área de apoio: área comum também custa.",
+   "actions": [
+    {
+     "text": "Unidades e áreas comuns",
+     "sel": "h2",
+     "wait": 1200,
+     "todo": "título do bloco 3"
+    },
+    {
+     "show": ".tipologia",
+     "wait": 2000,
+     "todo": "linha da tipologia chalé (modo área)"
+    },
+    {
+     "text": "Área de apoio",
+     "up": ".linha",
+     "wait": 2000,
+     "todo": "linha da área de apoio e lavanderia"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Nos blocos quatro e cinco, a mobília e o enxoval. A Helena cota uma unidade-modelo e multiplica por quatro. O enxoval tem três jogos por cama: um em uso, um na lavanderia e um no estoque. E ela confirma que o enxoval não está também na cotação da mobília.",
+   "actions": [
+    {
+     "text": "Mobiliário e equipamentos",
+     "sel": "h2",
+     "wait": 1200,
+     "todo": "título do bloco 4"
+    },
+    {
+     "show": ".unidade-modelo",
+     "wait": 1800,
+     "todo": "quadro da unidade-modelo"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "text": "Enxoval, utensílios e suprimentos",
+     "sel": "h2",
+     "wait": 1000,
+     "todo": "título do bloco 5"
+    },
+    {
+     "show": ".linha-enxoval",
+     "wait": 1800,
+     "todo": "linha especial do enxoval (três jogos)"
+    },
+    {
+     "show": "#enxovalNaoDuplicado",
+     "wait": 1500,
+     "todo": "confirmação 'o enxoval não está na cotação do mobiliário'"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "No bloco seis, a pré-abertura: fotos, site, lançamento, treinamento e abertura de teste. Depois, a reserva do imprevisto. A Helena digita doze por cento, e a ficha avisa: na primeira obra, a fonte pede o teto da faixa, ou mais. Ela sobe para quinze.",
+   "actions": [
+    {
+     "text": "Pré-abertura",
+     "sel": "h2",
+     "wait": 1500,
+     "todo": "título do bloco 6"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "type": "#contingenciaPct",
+     "text": "12",
+     "wait": 900,
+     "todo": "campo percentual da reserva"
+    },
+    {
+     "show": ".alerta",
+     "wait": 2200,
+     "todo": "aviso A4 (primeira obra abaixo de 15%)"
+    },
+    {
+     "type": "#contingenciaPct",
+     "text": "15",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "A reserva só fecha com a regra de uso, em quatro linhas: para quê, quem autoriza, como se registra e quando se confere. Ela cobre o imprevisto da obra orçada. Não paga escopo novo.",
+   "actions": [
+    {
+     "show": "#regraParaQue",
+     "wait": 1200,
+     "todo": "campo 'para quê'"
+    },
+    {
+     "show": "#regraQuemAutoriza",
+     "wait": 1000,
+     "todo": "campo 'quem autoriza'"
+    },
+    {
+     "show": "#regraComoRegistra",
+     "wait": 1000,
+     "todo": "campo 'como se registra'"
+    },
+    {
+     "show": "#regraQuandoConfere",
+     "wait": 1000,
+     "todo": "campo 'quando se confere'"
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    }
+   ]
+  },
+  {
+   "say": "Por fim, o giro e o terreno. O giro veio da página seis: quarenta e cinco mil reais, somado no investimento total. O terreno já é dela. Aparece ao lado, como capital empregado, e não entra na soma.",
+   "actions": [
+    {
+     "show": "#giro",
+     "wait": 1800,
+     "todo": "campo do giro, com a origem 'veio da página 6'"
+    },
+    {
+     "show": "#terrenoSituacao",
+     "wait": 1800,
+     "todo": "escolha da situação do terreno"
+    },
+    {
+     "click": "#avancar",
+     "wait": 1200
+    }
+   ]
+  },
+  {
+   "say": "O resultado tem cinco partes. Primeiro, o número: o custo de abrir a porta da fase, um milhão, cento e sessenta e dois mil e setenta e cinco reais, no exemplo. O palpite cobria cerca de sessenta por cento da conta.",
+   "actions": [
+    {
+     "text": "Resultado",
+     "sel": "h2",
+     "wait": 1200,
+     "todo": "título da parte 1 do feedback"
+    },
+    {
+     "show": "#capexFase",
+     "wait": 2000,
+     "todo": "valor do CAPEX da fase"
+    },
+    {
+     "show": "#investimentoTotal",
+     "wait": 1500,
+     "todo": "valor do investimento total"
+    },
+    {
+     "show": "#palpiteCobre",
+     "wait": 1500,
+     "todo": "leitura palpite × conta"
+    }
+   ]
+  },
+  {
+   "say": "Depois, o significado: dezessete das trinta e duas linhas têm cotação, incluindo as três maiores. Degrau Calculista. E três alertas: pré-abertura abaixo da faixa citada, uma cotação vencida e dez linhas com menos de três propostas.",
+   "actions": [
+    {
+     "text": "Significado",
+     "sel": "h2",
+     "wait": 1800,
+     "todo": "título da parte 2"
+    },
+    {
+     "scroll": 360,
+     "wait": 600
+    },
+    {
+     "text": "Atenção",
+     "sel": "h2",
+     "wait": 1200,
+     "todo": "título da parte 3"
+    },
+    {
+     "show": "#alertas",
+     "wait": 2800,
+     "todo": "lista dos três alertas"
+    }
+   ]
+  },
+  {
+   "say": "A ação de trinta dias vem sugerida: pedir cotação escrita das cinco linhas em branco, com prazo e o jeito de verificar. Baixe o PDF da página seis A. O quadro, Como levar para a página seis, mostra o que copiar na ficha do Pilar seis.",
+   "actions": [
+    {
+     "text": "O que fazer",
+     "sel": "h2",
+     "wait": 1500,
+     "todo": "título da parte 4"
+    },
+    {
+     "show": "#acao30",
+     "wait": 1500,
+     "todo": "campo da ação de 30 dias"
+    },
+    {
+     "show": "#prazo",
+     "wait": 1000,
+     "todo": "data do prazo; se precisar mudar, usar eval, nunca type"
+    },
+    {
+     "show": "#pdf",
+     "wait": 1500,
+     "todo": "botão de baixar o PDF"
+    },
+    {
+     "text": "Como levar para a página 6",
+     "sel": "h2,h3",
+     "wait": 2200,
+     "todo": "quadro de transposição"
+    }
+   ]
+  },
+  {
+   "say": "Agora é a sua vez. Faça a primeira versão com os seus números, mesmo com linhas em branco. Depois, volte ao Pilar seis, refaça a página seis e abra a Planilha dois. Até a próxima.",
+   "actions": [
+    {
+     "card": {
+      "t": "Próximo passo: volte ao Pilar 6 e refaça a página 6.",
+      "s": "Club Zion Collection · Trilha de Desenvolvimento"
+     }
+    }
+   ]
+  }
+ ]
+}

@@ -104,7 +104,7 @@ A ficha salva no aparelho, então o membro pode voltar a cada cotação que cheg
 - **Rodapé fixo:** "Material educativo. Não é orçamento, projeto nem estudo de viabilidade definitivo. Custos, licenças e impostos se confirmam com engenheiro, arquiteto, prefeitura e contador."
 
 ### 5.2 Apresentação interativa (molde `docs/trilha1/apresentacao/pilar6-aula/`, motor `_motor/deck.js`)
-- Caminho: `docs/trilha1/apresentacao/pilar6-capex/index.html`. Entre 28 e 34 slides, 15 a 20 min, até cerca de 40 palavras por slide, explicação nas notas do apresentador.
+- Caminho: `docs/trilha1/apresentacao/capex-aula/index.html`. Entre 28 e 34 slides, 15 a 20 min, até cerca de 40 palavras por slide, explicação nas notas do apresentador.
 - **Sequência:**
   1. Abertura: previsão "quanto custa abrir a porta?" (o aluno escreve o palpite).
   2. Mapa da aula.
@@ -153,7 +153,7 @@ Na ordem do esmaecimento, do resolvido ao em branco:
 - **Caminhos:**
   - lógica pura em `producao/trilha1-aprofundamento/01-capex/src/logic.js`, sem DOM, no molde de `producao/jornada2/00-marco-zero/src/logic.js`;
   - testes em `tests/test_logic.js`, escritos antes da interface;
-  - interface em `docs/trilha1/pilar6-capex/index.html`, no molde das fichas `docs/trilha1/pilar6/`: uma pergunta por tela, "por que", "onde conseguir", exemplo dos Chalés do Ribeirão em caixa rotulada e PDF com jsPDF.
+  - interface em `docs/trilha1/capex/index.html`, no molde das fichas `docs/trilha1/pilar6/`: uma pergunta por tela, "por que", "onde conseguir", exemplo dos Chalés do Ribeirão em caixa rotulada e PDF com jsPDF.
 - **Reaproveitar** da ficha do Pilar 6 as funções de leitura e formatação pt-BR (`paraNumero`, `arred` com empate para o par, `brl`, `fmtPct`, `div`) e a leitura tolerante das páginas do Dossiê (`carregarChave`, `dadosDaPagina`).
 - **Salvamento:** chave `zion-t1-pilar6a`, com `respostas` e `resumo.dados`, no mesmo formato das outras páginas, para que a página 7 e um futuro montador do Dossiê consigam ler.
 - **Sem envio de dados.** A ficha do Pilar 6 tem um `FEEDBACK_URL`; esta não terá, como manda a FABRICA seção 7 **[a confirmar por Bruno]**.
@@ -239,7 +239,7 @@ Na ordem do esmaecimento, do resolvido ao em branco:
   4. Faça agora · O meu CAPEX: link externo, com o checklist e o roteiro do tutorial anexos e os comentários ligados.
   5. Vídeo tutorial: vídeo, só depois de gravado.
   6. Checklist: documento PDF.
-- Hospedagem: `docs/trilha1/pilar6-capex/` (ficha e PDFs) e `docs/trilha1/apresentacao/pilar6-capex/`.
+- Hospedagem: `docs/trilha1/capex/` (ficha e PDFs) e `docs/trilha1/apresentacao/capex-aula/`.
 - O curso está em 5 turmas: ligar só com o "aprovado" de Bruno **[a confirmar por Bruno: aulas novas dentro do módulo Pilar 6 (Opção A do plano do curso) em vez de módulo separado]**.
 
 ---
@@ -610,8 +610,8 @@ Conferência: 724.500 × 1,15 = 833.175; + 40.000 + 288.900 = **1.162.075** = CA
 - `RELATORIO.md`, com testes e ids.
 
 Publicação:
-- `docs/trilha1/pilar6-capex/`: `index.html` e os PDFs do e-book, dos exercícios e do checklist;
-- `docs/trilha1/apresentacao/pilar6-capex/index.html`.
+- `docs/trilha1/capex/`: `index.html` e os PDFs do e-book, dos exercícios e do checklist;
+- `docs/trilha1/apresentacao/capex-aula/index.html`.
 
 ---
 
