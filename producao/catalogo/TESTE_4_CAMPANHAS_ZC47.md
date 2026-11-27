@@ -49,3 +49,9 @@ Regras: sem pedir documento nem dado financeiro; o texto deve dizer que parceria
 - Pixel: a landing tem o pixel `1378530017570073` e o checkout o `903918118859018`; o Purchase de R$ 47 ainda não foi visto no Meta. Até confirmar, os braços sem formulário começam por Tráfego (visualização da landing).
 - Exclusão de compradores: falta a lista de clientes no Meta.
 - Formulário pós-compra: precisa ser ligado ao acesso (mexe no que já existe), então só com "aprovado".
+
+## Criado no Meta em 27/11/2026 (conta 1271873041294684, tudo PAUSADO, sem conjunto nem anúncio ainda)
+- Campanha 1 · Terreno · Direto (OUTCOME_SALES): `120250606242900016`
+- Campanha 4 · Pousada/Airbnb · Formulário (OUTCOME_LEADS): `120250606245620016`
+- Campanhas 2 e 3: criação **negada pelo usuário** na sessão; não recriar sem novo pedido de Bruno.
+- Configuração de público/pixel herdada dos conjuntos que já venderam: Brasil 25-65; interesse "Inversiones inmobiliarias" `6003446239080` + cargo "Empresário" `108611555829523`; pixel `903918118859018` (evento INITIATED_CHECKOUT nos conjuntos de venda; Land Bank/formulários usam só page_id `576944608845537`).
