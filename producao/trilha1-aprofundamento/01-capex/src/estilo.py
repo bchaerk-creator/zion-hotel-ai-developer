@@ -45,6 +45,7 @@ p{margin:0 0 2.6mm} ul,ol{margin:0 0 3mm;padding-left:5.5mm} li{margin-bottom:1.
 b{font-weight:700}
 .k{font-size:8pt;letter-spacing:.2em;text-transform:uppercase;color:var(--terra);font-weight:700}
 .cab{position:relative;border-top:1px solid var(--areia);padding-top:3mm;margin-bottom:4mm}
+.cab h2{max-width:138mm}
 .cab .n{position:absolute;right:0;top:-2mm;font-family:Titulo,serif;font-size:78pt;line-height:1;color:var(--ouro);opacity:.32}
 .lead{font-family:Titulo,serif;font-style:italic;font-size:14pt;line-height:1.3;color:var(--cinza);max-width:140mm;margin:0 0 3mm}
 .regua{width:22mm;height:2px;background:var(--ouro);margin:3mm 0 4mm}
@@ -59,7 +60,7 @@ b{font-weight:700}
 .neste{display:grid;grid-template-columns:1fr 1fr;gap:1mm 6mm;font-size:9.6pt;margin:0;padding-left:5mm}
 .rev{font-size:9.6pt} .rev .resp{font-size:8.6pt;color:var(--cinza);margin-top:1.5mm}
 table{width:100%;border-collapse:collapse;font-size:9.3pt;margin:2.5mm 0 3.5mm}
-th,td{text-align:left;padding:1.7mm 2.4mm;border-bottom:1px solid var(--areia);vertical-align:top}
+th,td{text-align:left;padding:1.45mm 2.4mm;border-bottom:1px solid var(--areia);vertical-align:top}
 th{background:var(--musgo);color:var(--creme);font-weight:600;font-size:8.8pt}
 td.v,th.v{text-align:right;white-space:nowrap}
 tr.tot td{font-weight:700;border-top:1.5px solid var(--musgo);background:var(--creme)}

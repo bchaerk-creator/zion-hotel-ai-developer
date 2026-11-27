@@ -140,7 +140,6 @@ pg("<h3 style='margin-top:0'>Os sete blocos: o que entra e o que não entra</h3>
        ["<b>6 · Pré-abertura</b>", "Licença de funcionamento e cadastros; fotos e site; identidade e marketing de lançamento; treinamento e contratação; seguro do primeiro ano; abertura de teste", "O caixa dos primeiros meses (é o giro)"],
        ["<b>7 · Reserva do imprevisto</b>", "Um percentual sobre a soma dos blocos 1 a 6, com regra de uso escrita", "Escopo novo, linha esquecida e caixa da operação"]])
    + box("Uma regra que vale para todos os blocos", "<p><b>Cada item numa linha só.</b> Se o mobiliário já veio com o enxoval, o enxoval não se soma de novo no bloco 5. Contar duas vezes engorda a conta; não contar nenhuma esconde um custo. Na dúvida, escreva ao lado da linha o que ela inclui.</p>")
-   + box("Para levar", "<ul><li>Sete blocos somados dão o CAPEX da fase.</li><li>CAPEX mais giro dá o investimento total.</li><li>O terreno fica ao lado, com valor e forma de entrada, e não entra na soma.</li></ul>", "escuro")
    + revise(["O capital de giro entra no CAPEX?", "Em que bloco fica a licença de funcionamento?", "O que acontece com o terreno na conta?"],
             "1 · não: fica à parte e se soma no investimento total; 2 · no bloco 6, pré-abertura, porque autoriza operar; 3 · fica ao lado, como capital empregado, sem entrar na soma."))
 
@@ -176,22 +175,22 @@ pg("<h3 style='margin-top:0'>Como pedir três cotações comparáveis, passo a p
 
 # ---------------------------------------------------------------- 04
 pg(cab("04", "Capítulo 04 · Blocos 1 e 2", "Projetos, licenças e <i>infraestrutura por fase</i>",
-       "O bloco 1 aprova o projeto e a obra. O bloco 2 leva energia, água e caminho até cada unidade, e é o que mais varia de um terreno para outro.")
+       "O bloco 1 aprova o projeto e a obra. O bloco 2 leva energia, água e caminho até cada unidade.")
    + neste(["O que entra no bloco 1", "As perguntas do terreno", "Distância e capacidade", "Dimensionar para o total, pagar por fase"])
    + "<h3>Bloco 1 · Projetos, licenças e documentação</h3><p>Entram aqui os projetos e as aprovações que permitem construir: arquitetura, engenharias, levantamento do terreno, taxas da prefeitura e licença ambiental, se o lugar exigir. A licença que autoriza <b>operar</b> a hospedagem fica no bloco 6, porque só vem depois da obra.</p>"
    + "<h3>Bloco 2 · As perguntas do terreno, antes de cotar</h3>"
-   + '<div class="grid2"><div class="card">Qual a distância até o ponto de energia, e de que tipo é a rede? A concessionária informa; confirme com a concessionária local.</div>'
+   + '<div class="grid3"><div class="card">Qual a distância até o ponto de energia, e de que tipo é a rede? A concessionária informa; confirme com a concessionária local.</div>'
    '<div class="card">De onde vem a água: rede, poço ou nascente? Qual a vazão, e precisa de outorga?</div>'
    '<div class="card">O solo pede fundação especial?</div><div class="card">Um caminhão chega até as unidades em dia de chuva?</div>'
    '<div class="card">Qual a declividade do terreno?</div><div class="card">Quanto tempo leva a licença?</div></div>'
    + cita("O amador orça o chalé. O developer orça o que faz o chalé funcionar.", "Volume 05 · Investimento, cap. 4")
-   + "<p>A infraestrutura comum não se orça por unidade. Ela se orça por <b>distância</b> (quantos metros de rede até a unidade mais distante) e por <b>capacidade</b> (para quantas unidades cada sistema é dimensionado). Por isso a primeira pergunta do orçamento é a distância até o ponto de energia.</p>")
+   + "<p>A infraestrutura comum não se orça por unidade. Ela se orça por <b>distância</b> (quantos metros de rede até a unidade mais distante) e por <b>capacidade</b> (para quantas unidades cada sistema é dimensionado). Por isso a primeira pergunta do orçamento é a distância até o ponto de energia.</p>"
+   + "<h3>Dimensionar para o projeto completo</h3>" + "<p>Quem planeja seis unidades e abre com quatro tem duas escolhas. Pode fazer a rede só para quatro e refazer vala, cabo e caminho quando vierem as outras duas. Ou pode dimensionar a rede para as seis e construí-la uma vez, pagando agora o tronco comum e as ligações das quatro. A segunda escolha custa um pouco mais hoje e evita a obra mais cara do projeto, que é desmanchar o que já está pronto.</p>")
 
 infra = """<div class="infra"><div class="poste">Ponto de energia<small>180 m</small></div><div class="tronco">Rede comum dimensionada para 6 unidades</div>
 <div class="uns"><div class="u f">1</div><div class="u f">2</div><div class="u f">3</div><div class="u f">4</div><div class="u">5</div><div class="u">6</div></div>
 <div class="leg"><span><i class="f"></i>Fase um: paga a rede comum e as ligações destas 4</span><span><i></i>Fase dois: paga só as ligações destas 2</span></div></div>"""
-pg("<h3 style='margin-top:0'>Dimensionar para o projeto completo, pagar por fase</h3>"
-   + "<p>Quem planeja seis unidades e abre com quatro tem duas escolhas. Pode fazer a rede só para quatro e refazer vala, cabo e caminho quando vierem as outras duas. Ou pode dimensionar a rede para as seis e construí-la uma vez, pagando agora o tronco comum e as ligações das quatro. A segunda escolha custa um pouco mais hoje e evita a obra mais cara do projeto, que é desmanchar o que já está pronto.</p>"
+pg("<h3 style='margin-top:0'>Construir uma vez, pagar por fase</h3>"
    + FICT + infra
    + cita("Nunca desenhe um projeto que só funciona inteiro. Desenhe um organismo que cresce.", "Volume 05 · Investimento, cap. 12")
    + tabela(["Na conta da fase um", "Fica anotado para as próximas fases"], [
@@ -206,12 +205,11 @@ pg("<h3 style='margin-top:0'>Dimensionar para o projeto completo, pagar por fase
 pg(cab("05", "Capítulo 05 · Bloco 3", "Unidades e áreas comuns: <i>o metro quadrado inteiro</i>",
        "O custo do bloco 3 é a área construída total vezes o custo do m² cotado para o seu padrão, no seu terreno, neste ano.")
    + neste(["A área construída total", "O custo do m² que vale", "A estrutura pronta como unidade", "Áreas comuns também custam"])
-   + "<h3>A conta</h3>" + box("Bloco 3", "<p style='font-size:12pt;margin:0'><b>área construída total</b> × <b>custo do m² cotado</b> &nbsp;+&nbsp; extras cotados à parte (deck, piso)</p>")
-   + "<p>A área total não é só a das unidades. Ela inclui recepção, apoio, lavanderia, cozinha, deck, trilhas, casa de máquinas, reservatórios e tratamento de esgoto. Cada metro quadrado construído tem custo, mesmo o que o hóspede não vê.</p>"
+   + box("A conta do bloco 3", "<p style='font-size:12pt;margin:0'><b>área construída total</b> × <b>custo do m² cotado</b> &nbsp;+&nbsp; extras cotados à parte (deck, piso)</p>")
+   + "<p>A área total não é só a das unidades. Ela inclui recepção, apoio, lavanderia, cozinha, deck, trilhas, casa de máquinas, reservatórios e tratamento de esgoto.</p>"
    + "<h3>O custo do m² que vale é o seu</h3><p>O custo do m² muda com o padrão construtivo, com o terreno e com a região. Nunca use o custo de outra região ou de outro ano. Peça ao engenheiro ou ao construtor o custo do m² para o sistema que você escolheu, com escopo e data, e pergunte o que ele inclui.</p>"
    + "<h3>A estrutura pronta conta como unidade</h3><p>Bolha, domo, cabana pré-fabricada ou módulo entram no bloco 3, como unidade, e não como mobiliário. Na cotação, confirme por escrito se frete, fundação e montagem estão incluídos. Se não estiverem, viram linhas próprias.</p>"
    + cita("Corte metros quadrados no projeto. Nunca corte a experiência dentro deles.", "Volume 05 · Investimento, cap. 5")
-   + box("Para levar", "<ul><li>Área total inclui as áreas comuns e de apoio.</li><li>Custo do m² cotado, do seu padrão, da sua região, com data.</li><li>Estrutura pronta é unidade; frete, fundação e montagem por escrito.</li></ul>", "escuro")
    + revise(["O que entra na área construída total?", "Em que bloco entra uma bolha ou um domo?", "Que três itens confirmar na cotação da estrutura pronta?"],
             "1 · unidades, apoio, recepção, cozinha, deck, trilhas, casa de máquinas, reservatórios e tratamento; 2 · no bloco 3, como unidade; 3 · frete, fundação e montagem."))
 
@@ -222,7 +220,9 @@ pg(cab("06", "Capítulo 06 · Blocos 4 e 5", "Mobiliário, enxoval <i>e suprimen
    + "<h3>Bloco 4 · Mobiliário e equipamentos</h3><p>Monte primeiro uma <b>unidade-modelo</b> completa, item a item, com especificação escrita: cama e colchão, móveis, iluminação, cozinha compacta e eletrodomésticos, banheiro. Só depois multiplique pelo número de unidades e peça cotação em lote. Somam-se aqui os equipamentos gerais, como os da lavanderia e das áreas comuns.</p>"
    + '<div class="grid2"><div class="card"><b class="t">Compre no tempo certo</b>Alguns itens têm prazo de fornecimento longo. Faça a lista de compra de trás para a frente, a partir da data de abertura, para não ter de escolher entre atrasar ou abrir com o que tinha na loja.</div>'
    '<div class="card"><b class="t">Não corte no fim</b>Quando o caixa aperta no fim da obra, o mobiliário costuma ser o primeiro corte. É a parte que o hóspede toca. Se for preciso cortar, corte área no projeto, antes de construir.</div></div>'
-   + "<h3>Bloco 5 · Enxoval, utensílios e suprimentos</h3>"
+   + box("Exemplo de unidade-modelo (dados fictícios)", "<p style='margin:0'>No caso do capítulo 11, a unidade-modelo de um chalé tem cama e colchão, mobiliário, iluminação e cozinha compacta com eletrodomésticos. Somadas, as quatro linhas dão R$ 19.200 por chalé, que se multiplicam pelos 4 chalés da fase. Os equipamentos da lavanderia entram uma vez só, como equipamento geral.</p>", "ex"))
+
+pg("<h3 style='margin-top:0'>Bloco 5 · Enxoval, utensílios e suprimentos</h3>"
    + "<p><b>Três jogos de roupa por cama:</b> um em uso, um na lavanderia e um no estoque. A conta do enxoval é: unidades × camas por unidade × 3 jogos × custo do jogo cotado.</p>"
    + "<p><b>Um dia de operação em cinco listas.</b> Simule um dia inteiro, da chegada à saída do hóspede, e anote cada objeto que alguém toca. Separe em cinco listas:</p>"
    + '<div class="grid3" style="grid-template-columns:repeat(5,1fr)">' + "".join(f'<div class="card" style="text-align:center"><b>{x}</b></div>' for x in ["Governança e limpeza", "Cozinha", "Recepção", "Manutenção", "Segurança"]) + "</div>"
@@ -242,25 +242,25 @@ pg(cab("07", "Capítulo 07 · Blocos 6 e 7", "Pré-abertura e <i>a reserva do im
    + '<div class="grid2"><div class="card"><b class="t">Cobre</b>O imprevisto da obra que foi orçada: solo diferente do esperado, chuva, reajuste de preço, exigência da licença.</div>'
    '<div class="card"><b class="t">Não cobre</b>Escopo novo (o ofurô decidido no meio da obra), linha esquecida no orçamento e o caixa dos primeiros meses.</div></div>'
    + cita("A contingência não é pessimismo. É maturidade.", "Volume 05 · Investimento, caps. 1 e 7")
-   + "<p><b>Quanto reservar.</b> As fontes do método citam uma faixa de conferência de 10% a 15% sobre a soma dos blocos 1 a 6. Com fator de risco, a fonte pede o teto ou acima: território remoto, sistema construtivo novo para a equipe, itens importados, licenciamento em área sensível, prazo apertado pela temporada, ou a sua primeira obra. Em imóvel pronto que será adequado, as fontes citam faixas maiores, de 15% a 25%. A reserva nunca é zero. Acima de 25%, confira se ela não está cobrindo linha esquecida.</p>"
-   + '<p class="cap">Faixas citadas pelas fontes (Volume 05 · Investimento, caps. 3 e 7; Pilar 6, cap. 03; Jornada do COMO, Etapas 02 e 04). São faixas de conferência, não regra fixa.</p>')
+)
 
-pg("<h3 style='margin-top:0'>A regra de uso, em quatro linhas</h3><p>A reserva sem regra vira o dinheiro de qualquer coisa. Escreva, antes da obra começar, as quatro linhas abaixo. Na ficha, as quatro são obrigatórias.</p>"
+pg("<h3 style='margin-top:0'>Quanto reservar</h3>"
+   + "<p>As fontes do método citam uma faixa de conferência de 10% a 15% sobre a soma dos blocos 1 a 6. Com fator de risco, a fonte pede o teto ou acima: território remoto, sistema construtivo novo para a equipe, itens importados, licenciamento em área sensível, prazo apertado pela temporada, ou a sua primeira obra. Em imóvel pronto que será adequado, as fontes citam faixas maiores, de 15% a 25%. A reserva nunca é zero. Acima de 25%, confira se ela não está cobrindo linha esquecida.</p>"
+   + '<p class="cap">Faixas citadas pelas fontes (Volume 05 · Investimento, caps. 3 e 7; Pilar 6, cap. 03; Jornada do COMO, Etapas 02 e 04). São faixas de conferência, não regra fixa.</p>'
+   + "<h3>A regra de uso, em quatro linhas</h3><p>A reserva sem regra vira o dinheiro de qualquer coisa. Escreva, antes da obra começar, as quatro linhas abaixo. Na ficha, as quatro são obrigatórias.</p>"
    + tabela(["Linha", "Pergunta", "Exemplo (dados fictícios)"], [
        ["1 · Para quê", "O que a reserva pode pagar?", "Imprevisto da obra orçada: solo, chuva, reajuste, exigência da licença"],
        ["2 · Quem autoriza", "Quem decide usar?", "A dona, depois de ouvir o engenheiro"],
        ["3 · Como se registra", "Onde fica anotado cada uso?", "Planilha com data, motivo e valor"],
        ["4 · Quando se confere", "Em que momento se olha o saldo?", "A cada medição da obra"]])
-   + box("Escreva a sua", '<p style="margin-bottom:1mm">Para quê:</p><div class="campo"></div><p style="margin:2mm 0 1mm">Quem autoriza:</p><div class="campo"></div><p style="margin:2mm 0 1mm">Como se registra:</p><div class="campo"></div><p style="margin:2mm 0 1mm">Quando se confere:</p><div class="campo"></div>', "linha")
+   + box("Escreva a sua", '<div class="grid2">' + "".join(f'<div><p style="margin:0">{x}:</p><div class="campo"></div></div>' for x in ["Para quê", "Quem autoriza", "Como se registra", "Quando se confere"]) + "</div>", "linha")
    + "<h3>E se sobrar?</h3><p>A reserva que não for usada na obra vira capital de giro adicional. Ela não vira mobiliário mais caro nem obra nova. Quem tem regra escrita sabe o que fazer com a sobra antes de ela existir.</p>"
-   + box("Para levar", "<ul><li>Pré-abertura é obra pronta até o primeiro hóspede; não é o caixa.</li><li>Reserva sobre a soma dos blocos 1 a 6, nunca zero, no teto com fator de risco.</li><li>Regra em quatro linhas; a sobra vira giro.</li></ul>", "escuro")
    + revise(["A reserva paga o ofurô decidido no meio da obra?", "Quais são as quatro linhas da regra de uso?", "Para onde vai a reserva que sobra?"],
             "1 · não: escopo novo é linha nova e decisão; 2 · para quê, quem autoriza, como se registra, quando se confere; 3 · vira capital de giro adicional."))
 
 # ---------------------------------------------------------------- 08
 pg(cab("08", "Capítulo 08 · À parte", "Terreno, giro e <i>o investimento total</i>",
        "Dois valores ficam fora do CAPEX por motivos diferentes: o giro porque é caixa da operação, o terreno porque já é capital empregado.")
-   + neste(["O capital de giro", "O investimento total", "O terreno como capital empregado", "O que vai para o Pilar 7"])
    + box("As contas", "<p style='font-size:12pt;margin:0 0 1.5mm'><b>CAPEX da fase</b> = blocos 1 a 6 + reserva do imprevisto</p><p style='font-size:12pt;margin:0 0 1.5mm'><b>Investimento total da fase</b> = CAPEX da fase + capital de giro</p><p style='font-size:12pt;margin:0'><b>Terreno</b> = anotado ao lado, com valor e forma de entrada, sem somar</p>")
    + "<h3>O capital de giro</h3><p>É o dinheiro para pagar a operação enquanto as reservas ainda não pagam tudo. Ele precisa estar no banco no dia da abertura, em conta separada. Três meses de custo fixo são o piso citado pelas fontes; a conta completa do giro é a que você fez no Pilar 6. Aqui você só traz o valor de lá.</p>"
    + "<h3>O terreno</h3><p>O terreno fica fora do CAPEX, mas não é de graça: é capital empregado, dinheiro que já está no projeto. Anote o valor estimado e a forma de entrada: já é seu, vai comprar, permuta, sociedade ou arrendamento. A forma de entrada se decide com advogado e contador. Se você vai comprar, escritura, imposto de transmissão (ITBI), registro e certidões não estão nesta conta: pergunte ao contador.</p>"
@@ -370,12 +370,16 @@ pg(FICT + "<h3 style='margin-top:1mm'>A leitura do resultado</h3>"
        ["Rede", "Dimensionada para 6 = projeto completo", "Sem alerta"]])
    + box("Os três pontos de atenção", "<ol style='margin:0'><li><b>Pré-abertura abaixo da faixa citada.</b> Duas linhas estão em branco: licença de funcionamento e seguro do primeiro ano.</li><li><b>Uma cotação vencida:</b> a da água, com 130 dias.</li><li><b>Dez linhas com menos de três cotações</b> ou sem a mesma especificação (energia e apoio com uma; oito com duas).</li></ol>")
    + box("A ação de 30 dias", "<p><b>Ação:</b> pedir cotação escrita da licença ambiental, da internet, da segurança, da licença de funcionamento e do seguro do primeiro ano. <b>Prazo:</b> 27/12/2026. <b>Como verificar:</b> as cinco propostas, com data e escopo, lançadas na ficha.</p>", "ex")
-   + "<h3>Como levar para a página 6</h3>"
+   , "")
+
+pg(FICT + "<h3 style='margin-top:1mm'>Como levar para a página 6</h3>"
+   + "<p>A ficha do Pilar 6 tem poucas linhas: as da unidade pronta, licenças, reserva e infraestrutura comum. Para levar a página 6A até ela, dividimos o que é de cada unidade pelo número de unidades e juntamos o resto no campo de infraestrutura comum, com uma nota escrita.</p>"
    + tabela(["Campo da página 6", "Valor"], [["Unidades", "4"], ["Unidade (chalé)", "R$ 144.000"], ["Deck", "R$ 9.000"], ["Luz", "R$ 3.500"], ["Água e esgoto", "R$ 2.500"],
                                              ["Mobiliário, equipamentos e enxoval: (76.800 + 11.700) ÷ 4", "R$ 22.125"], ["Piso", "R$ 0 (incluído no custo do m²)"],
                                              ["Licenças e projetos", "R$ 40.000"], ["Reserva", "15%"], ["Infraestrutura comum, à parte (inclui áreas comuns, equipamentos gerais, pré-abertura e a reserva dessa parte)", "R$ 288.900"],
                                              ["Giro / terreno", "R$ 45.000 / R$ 300.000"]], (1,))
-   + '<p class="cap">Conferência: unidade pronta 181.125 × 4 = 724.500; × 1,15 = 833.175; + 40.000 + 288.900 = 1.162.075, o mesmo CAPEX da fase.</p>')
+   + box("A conferência", "<p style='margin:0'>Unidade pronta: 144.000 + 9.000 + 3.500 + 2.500 + 22.125 = <b>R$ 181.125</b>. Vezes 4 unidades = 724.500; com a reserva de 15%, 833.175; mais licenças e projetos (40.000) e infraestrutura comum (288.900) = <b>R$ 1.162.075</b>, o mesmo CAPEX da fase. Se a sua conta não fechar assim, alguma linha ficou fora ou foi contada duas vezes.</p>")
+   + "<p>Na página 6, as linhas com cotação levam nota 3; as estimativas, nota 1; as linhas em branco, “Não sei”. Assim a página 6 mostra o mesmo grau de confiança da 6A.</p>")
 
 # ---------------------------------------------------------------- 12 exercícios
 pg(cab("12", "Capítulo 12 · Agora é com você", "Exercícios <i>e gabarito</i>",
@@ -395,7 +399,7 @@ pg(FICT
          "<p><b>b)</b> Reserva a 8%: ______________ &nbsp;&nbsp; <b>c)</b> Diferença para a reserva a 15%: ______________</p>"
          "<p><b>d)</b> Escreva a regra de uso em quatro linhas:</p><p>Para quê: ______________________________________________</p><p>Quem autoriza: _________________________________________</p><p>Como se registra: _______________________________________</p><p>Quando se confere: ______________________________________</p>")
    + box("Exercício 5 · Em branco: o seu bloco 2", "<p>Liste as linhas da infraestrutura do <b>seu</b> projeto e a quem você vai pedir cada cotação. É a ponte para a ficha.</p>"
-         + tabela(["Linha", "A quem pedir", "Pedido enviado em"], [["", "", ""] for _ in range(7)]), "linha")
+         + tabela(["Linha", "A quem pedir", "Pedido enviado em"], [['<div style="height:6.5mm"></div>', "", ""] for _ in range(7)]), "linha")
    + '<p class="cap">Dica do exercício 5: comece pela concessionária (ponto de energia) e pelo projetista (para quantas unidades a rede será dimensionada).</p>')
 
 pg("<div class='k'>Capítulo 12 · Gabarito comentado</div><h2 style='margin-bottom:3mm'>Gabarito</h2>" + FICT
@@ -433,8 +437,6 @@ pg(cab("14", "Capítulo 14 · A página 6A", "A página 6A e <i>a próxima etapa
    + "<p>A primeira versão honesta, com estimativas e linhas em branco nomeadas, já conclui a lição. O degrau e a ação de 30 dias mostram o que falta.</p>"
    + "<h3>Depois da página 6A</h3><ol><li><b>Volte à ficha do Pilar 6</b> e refaça a página 6 com os números do quadro “Como levar para a página 6”. Linhas com cotação levam nota 3; estimativas, nota 1; em branco, “Não sei”.</li><li><b>Abra a Planilha 2 · Investimento</b> com o CAPEX da fase, para seguir para a viabilidade.</li><li><b>No Pilar 7</b> ficam a necessidade de capital, o custo da captação e a frase do pedido.</li></ol>"
    + "<p style='font-size:9.4pt'>Ferramentas extras, se você quiser ir além: a Planilha 1 · Orçamento de Abertura (várias tipologias), a Ferramenta 05 · Orçamento da Cabana (três cotações por item, uma unidade) e a Calculadora de Implantação (cenários e desembolso).</p>"
-   + revise(["O que entra no CAPEX da fase?", "O que se soma a ele para dar o investimento total?", "Qual a primeira coisa a fazer depois de baixar a página 6A?"],
-            "1 · os blocos 1 a 6 e a reserva do imprevisto; 2 · o capital de giro; 3 · voltar à ficha do Pilar 6 e refazer a página 6.")
    + '<p style="font-size:8.4pt;color:var(--cinza);margin-top:3mm">Fontes do método: Volume 05 · Investimento; Pilar 6 · Pré-viabilidade (Trilha 1); Jornada do COMO, Etapas 01, 02 e 04; Volume 06 · Implantação; F01 · CAPEX e Necessidade de Capital. Faixas apresentadas como conferência citada pela fonte, sem base estatística declarada. O caso dos Chalés do Ribeirão, a personagem Helena e todos os seus números são fictícios. Material educativo da Zion Hospitality Business: não é orçamento, projeto, estudo de viabilidade definitivo nem promessa de resultado, e não substitui engenheiro, arquiteto, contador, advogado, prefeitura ou concessionária.</p>')
 
 # ---------------------------------------------------------------- montagem
@@ -445,7 +447,7 @@ EXTRA = """
 .capa h1{font-size:60pt;line-height:1;margin:5mm 0 6mm;font-weight:500} .capa h1 i{color:var(--ouro);font-size:38pt;line-height:1.08;display:block;margin-top:2mm}
 .capa .sub{color:var(--areia);font-size:13pt;line-height:1.45;max-width:150mm}
 .capa .pub{display:inline-block;margin-top:8mm;border:1px solid var(--ouro);color:var(--ouro);border-radius:99px;padding:2mm 6mm;font-size:10pt;letter-spacing:.06em}
-.capa .pe{font-size:8.5pt;color:var(--areia);opacity:.85;max-width:120mm}
+.capa .pe{font-size:8.5pt;color:var(--areia);opacity:.85;max-width:92mm}
 .capa .marca{position:absolute;right:-4mm;bottom:-10mm;font-family:Titulo,serif;font-size:170pt;line-height:1;color:var(--ouro);opacity:.14}
 table.sum td{font-size:11pt;padding:2.6mm 2mm} table.sum td.sn{font-family:Titulo,serif;color:var(--terra);font-size:14pt;width:14mm}
 ol.passos li{margin-bottom:2.2mm}
@@ -479,6 +481,7 @@ for i, (conteudo, classe) in enumerate(paginas, 1):
     corpo += f'<section class="pg {classe}"><div class="in">{conteudo}</div>{rod}</section>\n'
 html = (f'<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>CAPEX · Aprenda o passo a passo para calcular quanto custa o seu projeto inteiro</title>'
         f'<style>{css(OUT)}{EXTRA}</style></head><body>\n{corpo}</body></html>')
+html = html.replace("R$ ", "R$\u00a0")
 assert "—" not in html and " – " not in html, "travessão no texto"
 (OUT / "ebook.html").write_text(html, encoding="utf-8")
 print("ok", OUT / "ebook.html", len(paginas), "páginas")
