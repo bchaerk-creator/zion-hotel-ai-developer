@@ -110,3 +110,61 @@ Teto global já aprovado por Bruno: R$ 400 (5 dias). Sugestão de divisão diár
 - Imagens: o Meta busca as imagens pelo endereço público (`picture`); **image_hash e prévia NÃO foram recuperados** (o Windsor não lê o criativo): conferir a prévia no Gerenciador. Ordem enviada: cartões 1 a 7.
 - Destino das campanhas de venda: `https://www.zionhotelgroup.com/inscricao` com `utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.id}}&utm_content={{ad.id}}&utm_term={{adset.id}}&utm_placement={{placement}}`; CTA "Saiba mais".
 - Ainda sem anúncio: campanha 3 / B Recuperação; campanhas 2 e 4 (sem conjunto); versão V2 pousada/Airbnb (falta público); vídeos.
+
+### Atualização 27/11 (noite) · persona pousada/Airbnb, tudo PAUSADO
+- Conjunto criado: **C2 Pousada Direto · A Quente** `120250606574100016` (campanha 2). Inclui Público Instagram `120250592672940016` e Zion Collection 365 `120250455931010016`; exclui Top Collection, Collection campeão, Zion 90 e Instagram não, só os de terreno de maior intenção. Orçamento placeholder R$ 6/dia. **ATENÇÃO: são públicos gerais da conta (incluem donos de terreno), não de pousada/Airbnb. Usei como ponte porque o comando proíbe público aberto, mas é decisão que depende da aprovação de Bruno/ChatGPT; se não aprovado, arquivar este conjunto.**
+- Anúncio criado: `120250606583090016` (carrossel V2 pousada/Airbnb, cartões `zc47v2-card-1..7`). Corrigido o link do cartão 7, que saiu com `utm_content=x` fixo; criativo novo `4283918998407261`.
+- Anúncio criado: `120250606583390016` (campanha 3 · B Recuperação · formulário Land Bank `1627911948376725`).
+- Campanha 4 (pousada/Airbnb formulário): continua SEM conjunto e SEM anúncio. Uma tentativa de conjunto com interesses Airbnb/Lodging não rodou e **não foi refeita**, por violar a regra de não usar interesses genéricos sem aprovação. Formulário `1127602653227754` (conteúdo não validado por API).
+- Pixel das campanhas de venda: `903918118859018` (o do ClickMax, usado nos conjuntos que venderam); `1378530017570073` é o do site. Evento configurado: Compra, pendente de validação.
+- Orçamento: R$ 6/dia por CONJUNTO é só placeholder, não é aprovação.
+
+## FASE 01 · CARROSSÉIS E FORMULÁRIOS (27/11/2026, noite) · tudo PAUSADO
+Escopo: só campanhas com formulário (3 e 4). Vendas diretas e vídeos fora desta etapa. Investimento proposto da fase: R$ 40/dia (os outros R$ 40/dia ficam para vídeos). Rotina de leads continua pausada.
+
+### Campanha 3 · Terreno (`120250606268260016`), formulário `1627911948376725` (Land Bank | Diagnóstico do terreno - Dono terreno)
+| Conjunto | ID | Público | Exclui | Orçamento |
+|---|---|---|---|---|
+| A Aquisição Lookalike 1% | `120250606282700016` | Lookalike `120250593921040016` | Top Collection, Collection campeão, Zion 90 | proposto R$ 20/dia; **no Meta ainda R$ 6** (aumento pendente de aprovação) |
+| B Recuperação (abriu sem enviar) | `120250606283690016` | Look a like formulário `120250593835770016`, similar personalizado `120250592781330016` | Top Collection, Collection campeão | proposto R$ 10/dia; **no Meta ainda R$ 6** |
+Anúncios (carrossel V1, cartões 1 a 7 na ordem): A `120250606477690016`; B `120250606583390016`.
+
+### Campanha 4 · Pousada/Airbnb (`120250606245620016`), formulário `1127602653227754` (Land Bank | Diagnóstico do terreno - Dono pousada)
+- Conjunto de teste: `120250606978700016` · Brasil 25-65 · orçamento proposto R$ 10/dia; **no Meta R$ 10/dia** (criado já com esse valor, pausado).
+- Público: (Bed and breakfast `6003196503578` OU VRBO `6003646743113` OU Alquiler vacacional `6003175542014` OU Airbnb `6003252231836` OU Hospitality management studies `6003359052437`) **E** (cargo Empresário `108611555829523` OU Entrepreneurship `105587479474873`). Exclui Top Collection, Collection campeão e Zion 90.
+- Tamanhos globais estimados pelo Meta (não só Brasil): B&B 18-21 mi; VRBO 2,6-3,0 mi; Alquiler vacacional 128-151 mi; Airbnb 406-478 mi; Hospitality management studies 34-40 mi; Entrepreneurship (cargo) 570-670 mil. Nenhum interesse identifica "dono de pousada" com precisão: o corte por cargo reduz o público a quem se declara empresário/empreendedor. Interesses de maior pertinência: B&B e VRBO. Pouco pertinentes (não usados): Lodging, Sector hotelero, Hoteles (consumidores amplos); "Hospitality industry" como empregador (10 mil, funcionários, não donos); formação "Hotel and Restaurant Management" (111 mil, estudantes).
+- Anúncio: `120250606981070016` (carrossel V2, 7 cartões na ordem 1 a 7; formulário `1127602653227754`).
+
+### Limitações encontradas (não contornadas)
+1. **Públicos de quem abriu/enviou formulário:** o Windsor não tem ação para criar públicos de formulário (só site e Lookalike). Criar no Gerenciador (Públicos > Criar > Público personalizado > Formulário instantâneo): "abriu" e "enviou", um para o `1627911948376725` e outro para o `1127602653227754`. Sem eles, **não há exclusão de quem já enviou** nos conjuntos de aquisição.
+2. **UTMs nos anúncios de formulário:** o link vai no próprio formulário (tela final) e é fixo (`utm_campaign=zc47-terreno-form` / `zc47-pousada-airbnb-form`); não aceita `{{ad.id}}`. Atribuição por anúncio só pela origem do lead no Meta.
+3. **Formulários e prévias:** o conteúdo, a tela final e o idioma (English US) não são legíveis por API; as imagens foram buscadas por URL pública (sem `image_hash`) e a prévia dos anúncios não foi conferida.
+4. **Landing/pixel:** a landing `/inscricao` não foi aberta em produção; nenhum pixel ou integração foi alterado.
+5. **Orçamento:** aumentos para R$ 20 e R$ 10 na campanha 3 exigem aprovação via token do Windsor; não confirmados.
+
+## FINALIZAÇÃO DA FASE 01 · configuração proposta para aprovação (27/11/2026) · NADA APLICADO, NADA ATIVADO
+Ativar exclusivamente as campanhas de formulário (3 e 4). Campanhas de venda direta (1 e 2) e vídeos fora desta etapa.
+
+| Conjunto | ID | R$/dia proposto | Hoje no Meta |
+|---|---|---|---|
+| C3 A Terreno · Lookalike 1% | `120250606282700016` | 20 | 6 (pendente de aprovação) |
+| C3 B Terreno · Remarketing | `120250606283690016` | 10 | 6 (pendente de aprovação) |
+| C4 Pousada/Airbnb · teste | `120250606978700016` | 10 | 10 |
+Total R$ 40/dia. Limite efetivo de 5 dias (proposto): teto de gasto da campanha 3 = R$ 150 (R$ 30 × 5) e da campanha 4 = R$ 50 (R$ 10 × 5), ou seja R$ 200 na fase; `spend_cap` ainda NÃO aplicado (Windsor exige aprovação). Alternativa: data final do conjunto no momento da ativação.
+Orçamento global: R$ 40/dia da fase + R$ 30/dia da campanha de vídeos (a campanha `ZC47 | Frio | Fase 1` aparece ativa) = R$ 70/dia, dentro de R$ 80/dia (R$ 400 em 5 dias).
+Rastreio de origem: o Windsor (`facebook_leads`) devolve campaign_id, adset_id, adset_name, ad_name, form_id e form_name por lead; não devolve ad_id.
+Pendências antes de ligar (dependem de Bruno no Meta): validar os dois formulários em português, a tela de agradecimento e o link para `/inscricao`; criar os públicos de quem abriu e enviou cada formulário (e depois aplicar as exclusões); conferir a prévia dos três anúncios e dos sete cartões de cada um.
+
+### Ajuste de copy (27/11, pedido de Bruno) · só o texto principal dos 3 anúncios de formulário; cartões e narrativa dos cartões intactos; tudo PAUSADO
+Frase acrescentada: "Por meio da nossa plataforma, você poderá apresentar o seu terreno, o seu projeto ou a sua visão à equipe Zion, de forma estruturada. Isso abre a possibilidade de parcerias e investimentos no seu terreno ou empreendimento*." (pousada: "o seu negócio, o seu terreno de expansão ou a sua visão"). Nota: "*Contato, parceria e investimento sujeitos à análise e à agenda. Não são garantidos."
+Novos criativos (o Meta não edita criativo, cria um novo): C3-A `1417382006855324` (anúncio `120250606477690016`), C3-B `1833781987860428` (anúncio `120250606583390016`), C4 `1507212061318804` (anúncio `120250606981070016`).
+Redação de Bruno "você tem acesso à equipe Zion" foi escrita como "poderá apresentar à equipe Zion" + asterisco, para não soar como garantia de reunião.
+
+### Regra de Bruno (27/11): o carrossel de pousada/Airbnb sempre abre com o cartão da bolha
+O primeiro cartão do anúncio de pousada `120250606981070016` passou a ser o MESMO cartão 1 do carrossel de terrenos (`zc47-card-1.png`, bolha). Novo criativo `1795962314851759`. O cartão persona antigo ("Dono de pousada ou Airbnb: pensando em diferenciação...") ficou fora do anúncio e guardado em `docs/ads/zc47-carrossel/zc47v2-card-1-original-persona.png`; `zc47v2-card-1.png` agora é igual ao `zc47-card-1.png`. Carrossel segue com 7 cartões (bolha + V2 cartões 2 a 7). Ponto de atenção: o texto do cartão da bolha fala de "terreno" e "capital"; o título do cartão no Meta continua "Dono de pousada ou Airbnb". Tudo PAUSADO.
+
+## ATIVAÇÃO · 27/11/2026 (aprovação expressa de Bruno: "Pode ligar, está aprovado")
+Ligados (campanha, conjunto e anúncio): campanhas 3 `120250606268260016` e 4 `120250606245620016`; conjuntos `120250606282700016` (R$ 20/dia), `120250606283690016` (R$ 10/dia), `120250606978700016` (R$ 10/dia); anúncios `120250606477690016`, `120250606583390016`, `120250606981070016`.
+Orçamento total R$ 40/dia. **Limite efetivo:** o teto de gasto por campanha (`spend_cap`) de R$ 150 e R$ 50 foi RECUSADO pelo Meta (mínimo R$ 300). Alternativa aplicada: data final dos 3 conjuntos em 02/12/2026 20h (Brasília). Gasto máximo previsto na fase: cerca de R$ 200.
+Continuam PAUSADAS: campanhas 1 e 2 (venda direta) e seus conjuntos e anúncios. Não alterado: Bela, ClickMax, automações, `ZC47 | Frio | Fase 1`. Rotina de leads: pausada (reativar para os leads entrarem no ClickMax).
+Pendências de conferência manual: prévia dos 3 anúncios; formulários em português e telas de agradecimento; links para /inscricao; públicos de quem abriu/enviou para exclusão.
