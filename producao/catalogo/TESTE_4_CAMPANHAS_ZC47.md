@@ -184,3 +184,12 @@ Ativadas as campanhas 3 `120250606268260016` e 4 `120250606245620016` (com confi
 | C4 Pousada/Airbnb | conjunto `120250606978700016` · anúncio `120250606981070016` (criativo `1510524187592289`) | R$ 10/dia | idem |
 Total R$ 40/dia · máximo pretendido R$ 200. Orçamento vitalício inviável (Meta recusa trocar diário por vitalício em conjunto existente); teto por campanha recusado (mínimo R$ 300). Controle do teto: data final de 5 dias a partir da ativação. Gasto antes da ativação: R$ 0.
 Intocados: campanhas 1 e 2 (pausadas), campanha de vídeos `ZC47 | Frio | Fase 1`, Bela, ClickMax, automações. Rotina de leads: pausada (leads só no Meta até reativar).
+
+## "Aprovado todos" · do balcão para dentro · 27/11/2026 (ClickMax + site)
+Feito (nada de anúncio foi tocado):
+- **Etiquetas novas** (6) e **4 fluxos de alerta ativos**: compra R$ 47, compra R$ 97, abandono/Pix expirado (só etiqueta, sem mensagem) e dossiê enviado.
+- **Questionário pós-compra:** formulário `f4522f48-a8b2-45e0-9432-13d50f0fb1ff` (URL pública `https://api.clickmax.io/forms/De2lY18SLvK9f2C-rfF5N5zM`, responde 200), 14 campos personalizados `zc_*`, etiqueta `ZC | QUESTIONÁRIO RESPONDIDO` `1453313b…`. Entra como aula 2 (`169c0f89…`, liberada na compra) do módulo de boas-vindas `3da96f78…`; posições 1 a 4 corrigidas. Todos os compradores (R$ 47 e R$ 97, mesmo produto `072083e8…`) recebem o mesmo acesso.
+- **Fluxo F6** `22da874f…` (ativo): etiqueta do questionário → alerta ao dono + tarefa "ler e classificar".
+- **Site (Lovable, projeto `dd227afd…`):** commit `ae9cd0eb` aplica `ZC | DOSSIÊ ENVIADO` (`ca4bcd40…`) ao lead depois de salvar o dossiê (falha só vai ao log). 4 testes passaram. **NÃO publicado**: depende de Bruno publicar o site.
+- **Rotina horária `trig_01Uydzp4XuTKYuk8TPvxTWFM`: continua PAUSADA.** Os scripts de ingestão (`ingest_E.py`, `campos_inscricao.json`) estavam só no scratchpad e se perderam; sem eles a rotina não cria os leads no CRM. Precisa recriar o script de captura antes de reativar.
+- **Não feito:** réplica das mensagens de recuperação do R$ 270 para o R$ 47 (exige modelos de WhatsApp e disparo; só com "aprovado" de Bruno).

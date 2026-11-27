@@ -9,7 +9,7 @@ async function hl(page,sel,on=true){ await page.evaluate(([s,o])=>{const e=docum
 (async()=>{
   fs.mkdirSync(outDir,{recursive:true});
   const b=await chromium.launch(); const timings=[];
-  const ctx=await b.newContext({viewport:{width:1280,height:720},recordVideo:{dir:outDir,size:{width:1280,height:720}},deviceScaleFactor:1});
+  const ctx=await b.newContext({viewport:{width:1280,height:720},recordVideo:{dir:outDir,size:{width:1280,height:720}},deviceScaleFactor:1,...(process.env.REC_LOCALE?{locale:process.env.REC_LOCALE}:{})});
   const page=await ctx.newPage(); page.__pos={x:640,y:360}; const T0=Date.now();
   for(let i=0;i<spec.scenes.length;i++){
     const sc=spec.scenes[i];

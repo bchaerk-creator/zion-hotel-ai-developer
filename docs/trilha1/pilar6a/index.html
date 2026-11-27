@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faça agora · O seu CAPEX</title>
+<meta name="description" content="Faça agora do Aprofundamento 6A do Pilar 6: O seu CAPEX. Parte por parte, com a origem de cada número, você abre as linhas da sua página 6, confere o limite que ela escreveu e baixa a página 6A do seu Dossiê de Desenvolvimento em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:720px;margin:0 auto}
+main{padding:20px 14px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 14px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 12px;min-height:46px}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:6px}
+.campo-num input{flex:1;min-width:0;font-weight:600}
+.campo-num.grande input{font-size:1.25rem}
+.campo-num .un{display:flex;align-items:center;padding:0 10px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap;font-size:.9rem}
+.btn{appearance:none;border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:8px;min-height:44px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.btn-ex{background:#FFF7E6;color:var(--verde);border:1.5px solid #E7C980;border-radius:10px;width:100%;margin-top:10px}
+.btn-mini{min-height:40px;padding:8px 14px;font-size:.9rem}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.35rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem;overflow-wrap:anywhere}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.exemplo{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.exemplo h3{color:var(--dourado-escuro)}
+.faixa-ex{background:var(--dourado);color:var(--verde);border-radius:10px;padding:8px 12px;font-size:.85rem;font-weight:700;margin-bottom:12px}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.88rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:11px 12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+fieldset{border:0;padding:0;margin:14px 0 0;min-width:0}
+legend{font-weight:600;padding:0;margin-bottom:6px}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+.falta{color:var(--texto-2);font-size:.88rem;margin-top:10px;min-height:1.2em}
+section.bloco{margin-top:22px}
+.bloco h2{font-size:1.25rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px;min-width:0}
+.num.largo{grid-column:1/-1}
+.num small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.93rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.alerta small{display:block;opacity:.75;margin-top:4px;font-size:.75rem}
+.a-bloqueia,.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.88rem;table-layout:fixed}
+th,td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--texto-2)}
+td.v,th.v{text-align:right}
+td small{display:block;color:var(--texto-2);font-size:.75rem}
+tr.tot td{font-weight:700;border-top:2px solid var(--verde)}
+tr.parte td{color:var(--texto-2);font-style:italic}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.aviso{font-size:.85rem;color:var(--texto-2);border-top:1px solid var(--linha);margin-top:18px;padding-top:12px}
+/* linhas dos blocos */
+.lin{border:1.5px solid var(--linha);border-radius:12px;padding:10px 10px 8px;margin-top:12px;background:#fff}
+.lin.na{opacity:.7;background:#FAF7F0}
+.lin-cab{display:flex;gap:6px;align-items:center}
+.lin-cab input{flex:1;min-width:0;font-weight:600}
+.lin-x{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--linha);background:#fff;color:var(--critico);font-size:1.2rem;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #B9AE95;border-radius:99px;padding:6px 10px;font-size:.82rem;font-weight:600;margin:0;cursor:pointer;background:#fff}
+.chip input{accent-color:var(--verde);margin:0}
+.chip:has(input:checked){border-color:var(--verde);background:var(--verde);color:var(--creme)}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+.grade .inteiro{grid-column:1/-1}
+.lin label{font-size:.8rem;margin:8px 0 3px;font-weight:600;color:var(--texto-2)}
+.lin .check{display:flex;gap:8px;align-items:flex-start;font-weight:500;font-size:.85rem;color:var(--texto);margin-top:8px}
+.lin .check input{width:20px;height:20px;flex:none;accent-color:var(--verde)}
+.lin-tot{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:.9rem;border-top:1px dashed var(--linha);padding-top:6px}
+.lin-tot b{white-space:nowrap}
+.lin-err{color:var(--critico);font-size:.82rem}
+.lin details{margin-top:6px;font-size:.85rem}
+.lin summary{cursor:pointer;color:var(--texto-2);min-height:32px;display:flex;align-items:center}
+.total-bloco{position:sticky;bottom:0;z-index:2;background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;margin-top:14px;display:flex;justify-content:space-between;gap:10px;align-items:center;box-shadow:0 -4px 10px rgba(22,38,28,.15)}
+.total-bloco b{color:var(--dourado);font-family:"Playfair Display",Georgia,serif;font-size:1.2rem;white-space:nowrap}
+.check-lg{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:14px;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:11px 12px}
+.check-lg input{width:20px;height:20px;flex:none;accent-color:var(--verde);margin-top:2px}
+.regua{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:10px 0}
+.regua span{text-align:center;font-size:.78rem;font-weight:700;padding:8px 2px;border-radius:8px;background:var(--creme-2);color:var(--texto-2)}
+.regua span.on{background:var(--verde);color:var(--dourado)}
+.regua span.diag{outline:2px dashed var(--dourado-escuro);outline-offset:-3px}
+.crit{list-style:none;padding:0;margin:8px 0}
+.crit li{padding:6px 0 6px 30px;position:relative;border-bottom:1px solid var(--linha);font-size:.92rem}
+.crit li::before{content:"";position:absolute;left:4px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--critico-bg);border:2px solid var(--critico)}
+.crit li.ok::before{background:var(--ok);border-color:var(--ok)}
+.selo{display:flex;gap:12px;align-items:center;background:var(--verde);color:var(--creme);border:2px solid var(--dourado);border-radius:14px;padding:14px;margin-top:14px}
+.selo .med{flex:none;width:56px;height:56px;border-radius:50%;background:var(--dourado);color:var(--verde);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.1rem}
+.selo b{font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);display:block}
+.acoes{display:grid;gap:10px;margin-top:18px}
+.kv{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--linha);padding:6px 0;font-size:.9rem}
+.kv span:last-child{font-weight:600;text-align:right;white-space:nowrap}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.ref{background:#F3EEE2;border:1px solid var(--linha);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.85rem;color:var(--texto-2)}
+.duas{display:grid;gap:8px;margin:12px 0}
+.duas div{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.passos{padding-left:20px;margin:6px 0}
+.passos li{margin-bottom:6px;font-size:.92rem}
+.num.ok strong{color:#B9E3C2}
+.num.ruim{background:var(--critico)}
+.num.ruim strong{color:#FFE1D9}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:30px 32px}
+  .pergunta{font-size:1.65rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .num.largo{grid-column:auto}
+  .acoes{grid-template-columns:1fr 1fr}
+  .grade{grid-template-columns:repeat(3,1fr)}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+</style>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 6<br>Aprofundamento 6A · CAPEX</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script src="logic.js"></script>
+<script>
+/* =====================================================================
+   Zion · Trilha 1 · Pilar 6 · Aprofundamento 6A · "Faça agora · O seu CAPEX" (página 6A)
+   Toda conta, alerta e texto de leitura vem de logic.js (a mesma lógica testada em Node).
+   Lê, sem alterar: zion-t1-pilar6 (a página 6), zion-t1-pilar5 (unidades e rede) e zion-t1-marco-zero (situação).
+   Grava só em zion-t1-pilar6a (respostas + resumo.dados), sem apagar o que a aula interativa guardou ali.
+   Nada é enviado: as respostas ficam só neste aparelho (localStorage).
+   ===================================================================== */
+"use strict";
+const Z = window.ZCAPEX;
+const { brl, brl0, fmtPct, fmtN, paraNumero, dataBR } = Z;
+const NS = Z.NS, NF = Z.NAO_FIZ;
+const CHAVE = "zion-t1-pilar6a";
+const CHAVE_P6 = "zion-t1-pilar6", CHAVE_P5 = "zion-t1-pilar5", CHAVE_MZ = "zion-t1-marco-zero";
+const OUTRAS = ["zion-t1-pilar7", CHAVE_P6, CHAVE_P5, "zion-t1-pilar4", "zion-t1-aula3", "zion-t1-aula2", "zion-t1-aula1", CHAVE_MZ];
+const TELAS = Z.TELAS;
+const app = document.getElementById("app");
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === NS;
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); const p = (n) => String(n).padStart(2, "0"); return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
+const HOJE = hojeISO();
+const TURMA = (() => { try { return new URLSearchParams(window.location.search).get("turma") === "acompanhamento" ? "acompanhamento" : "autonomo"; } catch (e) { return "autonomo"; } })();
+document.getElementById("rodape").textContent = Z.TEXTOS.aviso + " " + Z.TEXTOS.naoEnvia;
+
+/* ---------- estado e salvamento no aparelho ---------- */
+function estadoVazio() {
+  const r = Z.estadoInicial(HOJE); r.turma = TURMA;
+  return { versao: 2, pilar: "6A", pagina: Z.TEXTOS.pagina, perfil: { nome: "", cidade: "" }, respostas: r, passo: 0, iniciado: false, semeado: {}, veio: {}, lido: false, pagina6Achada: false, resumo: null, atualizado: null };
+}
+let S = estadoVazio();
+function rawDe(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function carregarChave(k) { try { const raw = rawDe(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; } }
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d) return null;
+  const e = Object.assign(estadoVazio(), d);
+  let resp = {}; try { resp = Z.migrar(JSON.parse(JSON.stringify(d.respostas || {}))); } catch (x) { resp = {}; }
+  e.respostas = Object.assign(Z.estadoInicial(HOJE), resp);
+  e.respostas.partes = Object.assign({ 1: [], 2: [], 3: [], 4: [], 5: [], 6: [] }, resp.partes || {});
+  e.respostas.turma = TURMA;
+  e.semeado = Object.assign({}, d.semeado || {}); e.veio = Object.assign({}, d.veio || {});
+  e.passo = Number.isInteger(d.passo) ? d.passo : 0;
+  return e;
+}
+const E = () => S.respostas;
+const calc = () => Z.calcular(E(), HOJE);
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  S.perfil.nome = E().nome || ""; S.perfil.cidade = E().cidadeUF || "";
+  try { const C = calc(); S.resumo = { pagina: "6A", tema: "CAPEX", ficha: Z.TEXTOS.tituloCompleto, data: HOJE, dados: Z.resumoDados(E(), C), selo: Z.criterio(E(), C, HOJE).ok }; } catch (e) { S.resumo = null; }
+  const copia = Object.assign({}, S, { passo: S.retomar ? S.passoSalvo : S.passo }); delete copia.retomar; delete copia.passoSalvo;
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(copia)); } catch (e) { /* sem armazenamento: a ficha segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+/** Recomeça do zero, sem apagar o que a aula interativa guardou na mesma chave. */
+function recomecar() {
+  const extras = S.aulaExtras;
+  apagar(); S = estadoVazio();
+  if (extras) S.aulaExtras = extras;
+  semear(); salvar(); S.retomar = false;
+}
+/** Qualquer mudança de resposta pede um PDF novo para o selo. */
+function mudou() { E().pdfBaixado = false; salvar(); }
+
+/* ---------- leituras de outras páginas do Dossiê neste aparelho (tolerante: se falhar, fica vazio) ---------- */
+const dadosDe = (k) => { const d = carregarChave(k); return (d && d.resumo && d.resumo.dados) || (d && d.dados) || {}; };
+function nomeDoPerfil() {
+  let melhor = null;
+  for (const k of OUTRAS) {
+    const d = carregarChave(k); if (!d) continue;
+    const nome = (d.perfil && typeof d.perfil.nome === "string" && d.perfil.nome.trim()) || (typeof d.nome === "string" && d.nome.trim()) || "";
+    if (nome && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { nome, at: d.atualizado };
+  }
+  return melhor ? melhor.nome : "";
+}
+/** Lê uma vez, ao começar: Marco Zero (situação), perfil (nome), página 6 e página 5. Só preenche o que está vazio. */
+function semear() {
+  if (S.lido || E().exemplo) return;
+  S.lido = true;
+  const r = E();
+  try {
+    const mz = Z.lerMarcoZero(rawDe(CHAVE_MZ));
+    if (mz && mz.situacao && !r.situacao) { r.situacao = mz.situacao; S.veio.situacao = "Marco Zero"; }
+    const nome = nomeDoPerfil();
+    if (nome && !r.nome && nome.length >= 2 && nome.length <= 60) { r.nome = nome; S.veio.nome = "perfil salvo nas outras fichas"; }
+    const P6 = Z.lerPagina6(rawDe(CHAVE_P6));
+    S.pagina6Achada = !!(P6 && P6.temDados);
+    if (P6) { const v = Z.aplicarPagina6(r, P6, HOJE); Object.assign(S.veio, v); if (v.unidadesFase) S.veio.unidadesFase = "página 6"; }
+    const d5 = dadosDe(CHAVE_P5);
+    const u1 = paraNumero(d5.unidades_fase1), uc = paraNumero(d5.unidades_projeto_completo), rede = paraNumero(d5.rede_para);
+    if (u1 !== null && (Z.falta(r.unidadesFase) || S.veio.unidadesFase === "página 6")) { r.unidadesFase = String(u1); S.veio.unidadesFase = "página 5"; }
+    if (uc !== null && Z.falta(r.unidadesProjeto) && !ehNS(r.unidadesProjeto)) { r.unidadesProjeto = String(uc); S.veio.unidadesProjeto = "página 5"; }
+    if (rede !== null && Z.falta(r.infraDimensionadaPara) && !ehNS(r.infraDimensionadaPara)) { r.infraDimensionadaPara = String(rede); S.veio.infraDimensionadaPara = "página 5"; }
+  } catch (e) { /* leitura tolerante: segue com os campos vazios */ }
+}
+const veioHTML = (c) => (S.veio[c] && !Z.falta(E()[c]) && !ehNS(E()[c]) ? `<div class="veio" data-veio="${c}">Veio da ${esc(S.veio[c])} do seu Dossiê. Confira e corrija se mudou.</div>` : "");
+
+/* ---------- navegação ---------- */
+function render() {
+  const t = TELAS[S.passo] || "abertura";
+  if (t === "abertura") return telaAbertura();
+  if (t === "pagina6") return telaPagina6();
+  if (t === "fase") return telaFase();
+  if (/^p[1-6]$/.test(t)) return telaParte(Number(t.slice(1)));
+  if (t === "reserva") return telaReserva();
+  if (t === "giro") return telaGiro();
+  if (t === "resultado") return telaResultado();
+  return telaAcao();
+}
+function irPara(p) { S.passo = Math.max(0, Math.min(p, TELAS.length - 1)); salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+function rerender() { const y = window.scrollY; render(); window.scrollTo(0, y); }
+const faixaExemplo = () => (E().exemplo ? `<div class="faixa-ex" role="note">${esc(Z.TEXTOS.exemplo)}</div>` : "");
+function progresso(i) {
+  const n = TELAS.length;
+  return `<div class="progresso" aria-label="Progresso"><div class="txt"><span>Tela ${i + 1} de ${n}</span><span>${Math.round((i / (n - 1)) * 100)}%</span></div><div class="barra"><i style="width:${(i / (n - 1)) * 100}%"></i></div></div>`;
+}
+function caixasAjuda(k) {
+  const a = Z.AJUDA[k]; if (!a) return "";
+  return `<div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(a.porque)}</p></div>
+    <div class="caixa onde"><h3>Onde conseguir essa informação</h3><p>${esc(a.onde)}</p></div>
+    <div class="caixa exemplo"><h3>Marina · Exemplo ilustrativo</h3><p>${esc(a.exemplo)}</p><p class="dica">${esc(Z.TEXTOS.exemplo)}</p></div>`;
+}
+const navHTML = (i, rotulo) => `<div class="falta" id="falta" role="status"></div><div class="nav"><button type="button" class="btn btn-s" id="voltar" ${i === 0 ? "disabled" : ""}>Voltar</button><button type="button" class="btn btn-p" id="avancar">${rotulo || "Avançar"}</button></div>`;
+function ligarNav(tela, aoAvancar) {
+  const i = TELAS.indexOf(tela);
+  const bt = document.getElementById("avancar"), vt = document.getElementById("voltar");
+  vt.onclick = () => irPara(i - 1);
+  bt.onclick = () => { const er = Z.validarTela(tela, E(), HOJE); if (er) return; if (aoAvancar) aoAvancar(); irPara(i + 1); };
+  atualizarNav(tela);
+}
+function atualizarNav(tela) {
+  const bt = document.getElementById("avancar"); if (!bt) return;
+  const er = Z.validarTela(tela, E(), HOJE);
+  bt.disabled = !!er;
+  document.getElementById("falta").textContent = er ? "Para avançar: " + er : "";
+}
+/** Liga os campos simples (data-campo). */
+function ligarCampos(tela, depois) {
+  app.querySelectorAll("[data-campo]").forEach((el) => {
+    const c = el.dataset.campo;
+    const ev = el.type === "radio" || el.type === "checkbox" || el.tagName === "SELECT" || el.type === "date" ? "change" : "input";
+    el.addEventListener(ev, () => {
+      if (el.type === "radio") E()[c] = el.dataset.bool ? el.value === "true" : el.value;
+      else if (el.type === "checkbox" && el.dataset.lista) { const L = new Set(E()[c] || []); el.checked ? L.add(el.value) : L.delete(el.value); E()[c] = Array.from(L); }
+      else if (el.type === "checkbox") E()[c] = el.checked;
+      else E()[c] = el.value;
+      mudou(); atualizarNav(tela); if (depois) depois(c, el);
+    });
+  });
+  app.querySelectorAll("[data-ns]").forEach((b) => b.addEventListener("click", () => { const c = b.dataset.ns, v = b.dataset.v || NS; E()[c] = E()[c] === v ? "" : v; mudou(); rerender(); }));
+}
+const valorCampo = (c) => (ehNS(E()[c]) || E()[c] === NF || E()[c] === undefined || E()[c] === null ? "" : esc(E()[c]));
+const botaoNS = (c, v = NS, rot = "Não sei") => { const on = E()[c] === v; return `<button type="button" class="btn btn-ns" data-ns="${c}" data-v="${v}" id="${v === NS ? "ns" : "nf"}-${c}" aria-pressed="${on}">${on ? "Marcado: " + rot + " (toque para desfazer)" : rot}</button>`; };
+function campoNum(c, rot, o = {}) {
+  const on = ehNS(E()[c]) || E()[c] === NF;
+  return `<label for="f-${c}">${esc(rot)}</label><div class="campo-num ${o.grande ? "grande" : ""}">${o.pre ? `<span class="un">${o.pre}</span>` : ""}<input type="text" id="f-${c}" data-campo="${c}" inputmode="decimal" autocomplete="off" placeholder="${esc(o.ph || "")}" value="${valorCampo(c)}" ${on ? "disabled" : ""}>${o.pos ? `<span class="un">${o.pos}</span>` : ""}</div>${o.nf ? botaoNS(c, NF, "Não fiz a página 6") : ""}${o.ns ? botaoNS(c) : ""}${veioHTML(c)}${o.dica ? `<p class="dica" style="margin:6px 0 0">${esc(o.dica)}</p>` : ""}`;
+}
+const radios = (c, opcoes, o = {}) => `<fieldset><legend>${esc(o.legenda || "")}</legend><div class="opcoes">${opcoes.map((x) => `<label class="op"><input type="radio" name="r-${c}" data-campo="${c}" ${o.bool ? 'data-bool="1"' : ""} value="${esc(String(x.v))}" ${String(E()[c]) === String(x.v) && E()[c] !== null ? "checked" : ""}><span>${esc(x.r)}</span></label>`).join("")}</div></fieldset>`;
+
+/* ---------- tela 0 · abertura ---------- */
+function telaAbertura() {
+  semear();
+  const temSalvo = !!S.retomar;
+  const r = E();
+  app.innerHTML = `${progresso(0)}
+  <div class="card">
+    <div class="eyebrow">Pilar 6 · Aprofundamento 6A · Faça agora</div>
+    <h1 tabindex="-1">${esc(Z.TEXTOS.titulo)}</h1>
+    ${faixaExemplo()}
+    <p class="lead">${esc(Z.TEXTOS.retomada)}</p>
+    <p>${esc(Z.TEXTOS.promessa)}</p>
+    <p class="dica">${esc(Z.TEXTOS.capex)} ${esc(Z.TEXTOS.assinatura)}</p>
+    <div class="tres">
+      <div><b>Por que</b>Na página 6, a infraestrutura comum ficou à parte, a cotar, e a pré-abertura não estava. Aqui elas entram, e cada referência vira cotação ou linha em branco.</div>
+      <div><b>Como</b>Sete partes do custo, uma tela para cada uma. Cada número com a origem: cotação escrita, estimativa sua ou em branco.</div>
+      <div><b>Para que</b>Sair com a página 6A do seu Dossiê em PDF, saber se a conta ainda cabe no limite da página 6 e refazer a página 6 campo a campo.</div>
+    </div>
+    <p class="dica">${esc(Z.TEXTOS.tempo)} ${esc(Z.TEXTOS.naoPromete)}</p>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta página.</b><br>As suas respostas ficaram salvas neste aparelho.<div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <button type="button" class="btn btn-ex" id="ver-exemplo">Ver a Marina preencher (exemplo ilustrativo)</button>
+    <p class="dica" style="margin-top:6px">O botão preenche a ficha com a Marina, que parte da página 6 dela. ${esc(Z.TEXTOS.exemplo)} Para fazer o seu, toque em Refazer do zero no fim da ficha.</p>
+    <label for="f-nome">O seu nome (opcional)</label>
+    <input type="text" id="f-nome" data-campo="nome" autocomplete="name" value="${valorCampo("nome")}">${veioHTML("nome")}
+    <label for="f-projeto">O nome do projeto</label>
+    <input type="text" id="f-projeto" data-campo="projeto" value="${valorCampo("projeto")}" placeholder="Ex.: Cabanas da Serra">
+    <label for="f-cidadeUF">Terreno em (cidade/UF, opcional)</label>
+    <input type="text" id="f-cidadeUF" data-campo="cidadeUF" autocomplete="address-level2" value="${valorCampo("cidadeUF")}" placeholder="Ex.: Urubici/SC">${veioHTML("cidadeUF")}
+    ${radios("situacao", Z.SITUACOES, { legenda: "Qual frase descreve a sua situação?" })}
+    ${S.veio.situacao && r.situacao ? `<div class="veio">Veio do seu Marco Zero. Confira e corrija se mudou.</div>` : ""}
+    <label class="check-lg"><input type="checkbox" data-campo="paraOutro" id="f-paraOutro" ${r.paraOutro === true ? "checked" : ""}><span>Estou fazendo para o projeto de outra pessoa</span></label>
+    ${radios("tipo", Z.TIPOS, { legenda: "Que tipo de hospedagem?" })}
+    <label class="check-lg"><input type="checkbox" data-campo="imovelPronto" id="f-imovelPronto" ${r.imovelPronto === true ? "checked" : ""}><span>O imóvel já existe e será adequado</span></label>
+    <h2 style="font-size:1.15rem;margin-top:22px">Quatro perguntas sobre a sua página 6</h2>
+    ${Z.DIAG.map((d) => radios(d.id, d.op, { legenda: d.p })).join("")}
+    ${navHTML(0, "Começar")}
+    <p class="aviso">${esc(Z.TEXTOS.aviso)} ${esc(Z.TEXTOS.naoEnvia)} As respostas ficam salvas só neste aparelho, para você parar e voltar a cada cotação que chega.</p>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { const p = S.passoSalvo; S.retomar = false; irPara(p); };
+    document.getElementById("zerar").onclick = () => { recomecar(); render(); };
+  }
+  document.getElementById("ver-exemplo").onclick = () => {
+    if (temSalvo && !E().exemplo && !confirm("Carregar o exemplo da Marina apaga as respostas salvas neste aparelho. Continuar?")) return;
+    const extras = S.aulaExtras;
+    S = estadoVazio(); if (extras) S.aulaExtras = extras;
+    S.respostas = Z.exemplo(HOJE); S.respostas.turma = TURMA; S.iniciado = true; S.lido = true; S.semeado = { 1: true, 2: true, 3: true, 4: true, 5: true, 6: true };
+    S.veio = { pagina6Total: "página 6", pagina6Data: "página 6", limite6: "página 6", giro: "página 6", terrenoValor: "página 6", unidadesFase: "página 5", unidadesProjeto: "página 5" };
+    salvar(); render(); window.scrollTo(0, 0);
+  };
+  ligarCampos("abertura");
+  ligarNav("abertura", () => { S.iniciado = true; S.retomar = false; });
+}
+
+/* ---------- tela 1 · a sua página 6 ---------- */
+function telaPagina6() {
+  const a = Z.AJUDA.pagina6, i = TELAS.indexOf("pagina6"), r = E();
+  const status = r.exemplo ? "" : S.pagina6Achada ? `<div class="veio" id="p6-status">Encontramos a sua página 6 neste aparelho e trouxemos os números. Confira com o PDF da pasta Meu Dossiê.</div>` : `<div class="ref" id="p6-status">Não encontramos a página 6 neste aparelho. Digite os números do PDF da sua página 6, ou toque em Não fiz a página 6.</div>`;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 1 · Diagnosticar</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${status}
+    ${campoNum("pagina6Total", "Investimento total da fase um, na página 6", { pre: "R$", ph: "Ex.: 690.000", nf: true, ns: true, grande: true })}
+    ${r.exemplo ? `<div class="ref" id="p6-ref">${esc(Z.TEXTOS.referencia)}</div>` : ""}
+    <label for="f-pagina6Data">Data da página 6 (opcional)</label><input type="date" id="f-pagina6Data" data-campo="pagina6Data" max="${HOJE}" value="${esc(r.pagina6Data || "")}">${veioHTML("pagina6Data")}
+    ${campoNum("pagina6Infra", "Infraestrutura comum na página 6 (opcional)", { pre: "R$", ph: "Em branco: à parte, a cotar", dica: "Em branco quer dizer que, na página 6, ela ficou à parte, a cotar. Aqui ela entra na Parte 2 e nas áreas comuns da Parte 3." })}
+    ${campoNum("limite6", "O limite da sua página 6", { pre: "R$", ph: "Ex.: 870.000", ns: true, dica: "O investimento total até onde a sua conta aguenta, dentro de 8 anos no conservador (página 6, o que precisa ser verdade)." })}
+    ${navHTML(i)}${caixasAjuda("pagina6")}</div>`;
+  ligarCampos("pagina6");
+  ligarNav("pagina6");
+}
+
+/* ---------- tela 2 · a fase ---------- */
+function telaFase() {
+  const a = Z.AJUDA.fase, i = TELAS.indexOf("fase"), r = E();
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">A fase um</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${campoNum("unidadesFase", "Unidades que a fase um abre", { pos: "unidades", ph: "Ex.: 3" })}
+    ${campoNum("unidadesProjeto", "Unidades do projeto completo", { pos: "unidades", ph: "Ex.: 5", ns: true })}
+    <fieldset><legend>Fatores de risco (marque os que valem)</legend><div class="opcoes">${Z.FATORES.map((f) => `<label class="op"><input type="checkbox" data-campo="fatoresRisco" data-lista="1" value="${f.v}" ${(r.fatoresRisco || []).includes(f.v) ? "checked" : ""}><span>${esc(f.r)}</span></label>`).join("")}</div></fieldset>
+    ${radios("primeiraObra", [{ v: true, r: "Sim, é a minha primeira obra" }, { v: false, r: "Não, já fiz obra antes" }], { legenda: "É a sua primeira obra?", bool: true })}
+    ${navHTML(i)}${caixasAjuda("fase")}</div>`;
+  ligarCampos("fase");
+  ligarNav("fase");
+}
+
+/* ---------- telas 3 a 8 · as Partes 1 a 6 ---------- */
+const ORIG_CURTO = { cotacao: "Cotação escrita", estimativa: "Estimativa minha", branco: "Em branco", naoAplica: "Não se aplica" };
+const TAG_ROT = { "": "Infraestrutura comum (o resto)", unidade: "A unidade", deck: "Deck", piso: "Piso interno", luz: "Luz", agua: "Água e esgoto", mobilia: "Mobiliário, equipamentos e enxoval" };
+function inputLinha(p, i, l, campo, rot, o = {}) {
+  const id = `l-${p}-${i}-${campo}`;
+  return `<div class="${o.cls || ""}"><label for="${id}">${esc(rot)}</label><div class="campo-num">${o.pre ? `<span class="un">${o.pre}</span>` : ""}<input type="text" id="${id}" data-l="${p}:${i}:${campo}" inputmode="decimal" autocomplete="off" placeholder="${esc(o.ph || "")}" value="${esc(l[campo] ?? "")}">${o.pos ? `<span class="un">${o.pos}</span>` : ""}</div></div>`;
+}
+function totalLinhaTexto(l) {
+  const v = Z.valorLinha(l, E());
+  if (l.origem === "naoAplica") return "não se aplica";
+  if (l.origem === "branco") return "em branco · vale 0 e conta como risco";
+  if (!l.origem) return "escolha a origem";
+  return v === null ? "falta completar" : brl(v);
+}
+function htmlLinha(p, i, l) {
+  const r = E(), u = Z.paraNumero(r.unidadesFase);
+  const cv = l.origem === "cotacao" || l.origem === "estimativa";
+  let campos = "";
+  if (cv) {
+    if (l.enxoval) campos = `<div class="grade">${inputLinha(p, i, l, "camasPorUnidade", "Camas por unidade", { ph: "Ex.: 1" })}${inputLinha(p, i, l, "custoJogo", "Custo de um jogo", { pre: "R$", ph: "Ex.: 780" })}</div><p class="dica" style="margin:6px 0 0">${u ? u : "Unidades da fase"} × camas × 3 jogos (um na cama, um na lavanderia, um no estoque) × custo do jogo.</p>`;
+    else {
+      const sel = l.tipologia ? "" : `<label for="l-${p}-${i}-modo">Como calcular</label><select id="l-${p}-${i}-modo" data-l="${p}:${i}:modo" data-estrutura="1">${Z.MODOS.map((m) => `<option value="${m.v}" ${l.modo === m.v ? "selected" : ""}>${esc(m.r)}</option>`).join("")}</select>`;
+      const phQ = l.porUnidade && u ? String(u) : "Ex.: 1";
+      let g = "";
+      if (l.modo === "valor") g = inputLinha(p, i, l, "valor", "Valor total", { pre: "R$", ph: "Ex.: 10.000", cls: "inteiro" });
+      else if (l.modo === "qtdUnit") g = inputLinha(p, i, l, "qtd", "Quantidade", { ph: phQ }) + inputLinha(p, i, l, "valorUnit", "Valor de cada", { pre: "R$", ph: "Ex.: 3.000" });
+      else g = inputLinha(p, i, l, "qtd", "Quantidade", { ph: phQ }) + inputLinha(p, i, l, "areaM2", "Área de cada", { pos: "m²", ph: "Ex.: 38" }) + inputLinha(p, i, l, "custoM2", "Custo do m²", { pre: "R$", ph: "Ex.: 2.800" });
+      if (p === 3 && l.modo !== "area") g += inputLinha(p, i, l, "areaM2", "Área de cada (opcional, para o custo por m²)", { pos: "m²", ph: "Ex.: 16", cls: "inteiro" });
+      campos = `${sel}<div class="grade">${g}</div>`;
+    }
+    if (l.origem === "cotacao") {
+      campos += `<div class="grade"><div><label for="l-${p}-${i}-nCotacoes">Quantas cotações</label><select id="l-${p}-${i}-nCotacoes" data-l="${p}:${i}:nCotacoes" data-estrutura="1"><option value="">Escolha</option>${[1, 2, 3].map((n) => `<option value="${n}" ${Number(l.nCotacoes) === n ? "selected" : ""}>${n === 3 ? "3 ou mais" : n}</option>`).join("")}</select></div>
+        <div><label for="l-${p}-${i}-dataCotacao">Data da cotação</label><input type="date" id="l-${p}-${i}-dataCotacao" data-l="${p}:${i}:dataCotacao" max="${HOJE}" value="${esc(l.dataCotacao || "")}"></div></div>
+        ${Number(l.nCotacoes) >= 2 ? `<label class="check"><input type="checkbox" data-l="${p}:${i}:mesmaEspec" ${l.mesmaEspec ? "checked" : ""}><span>As propostas têm a mesma especificação, e eu sei o que cada uma não inclui</span></label>` : ""}`;
+    }
+  }
+  if (l.tipologia && l.forma === "pronta" && l.origem !== "naoAplica") campos += `<label class="check"><input type="checkbox" data-l="${p}:${i}:freteMontagemConfirmados" ${l.freteMontagemConfirmados ? "checked" : ""}><span>Frete, fundação e montagem estão incluídos e confirmados por escrito</span></label>`;
+  const forma = l.tipologia ? `<label for="l-${p}-${i}-forma">Como é esta unidade</label><select id="l-${p}-${i}-forma" data-l="${p}:${i}:forma" data-estrutura="1">${Z.FORMAS.map((f) => `<option value="${f.v}" ${l.forma === f.v ? "selected" : ""}>${esc(f.r)}</option>`).join("")}</select>` : "";
+  const err = Z.erroLinha(l, r, HOJE);
+  return `<div class="lin ${l.origem === "naoAplica" ? "na" : ""}" id="lin-${p}-${i}">
+    <div class="lin-cab"><label class="sr" for="l-${p}-${i}-nome">Nome da linha</label><input type="text" id="l-${p}-${i}-nome" data-l="${p}:${i}:nome" value="${esc(l.nome)}" placeholder="Nome da linha"><button type="button" class="lin-x" data-apagar="${i}" aria-label="Apagar a linha ${esc(l.nome)}">×</button></div>
+    ${l.tipologia ? `<div class="dica" style="margin-top:4px">Tipologia de unidade</div>` : ""}
+    ${forma}
+    <div class="chips" role="radiogroup" aria-label="De onde vem o número">${Z.ORIGENS.map((o) => `<label class="chip"><input type="radio" name="o-${p}-${i}" data-l="${p}:${i}:origem" data-estrutura="1" value="${o.v}" ${l.origem === o.v ? "checked" : ""}>${esc(ORIG_CURTO[o.v])}</label>`).join("")}</div>
+    ${campos}
+    ${!l.tipologia && !l.enxoval && p !== 1 && p !== 5 ? `<details><summary>Levar para a página 6 como: ${esc(TAG_ROT[l.tagP6 || ""])}</summary><select data-l="${p}:${i}:tagP6" data-estrutura="1" aria-label="Linha da página 6">${Object.keys(TAG_ROT).map((k) => `<option value="${k}" ${(l.tagP6 || "") === k ? "selected" : ""}>${esc(TAG_ROT[k])}</option>`).join("")}</select></details>` : ""}
+    <div class="lin-tot"><span class="lin-err" id="le-${p}-${i}">${esc(l.origem ? err : "")}</span><b id="lt-${p}-${i}">${esc(totalLinhaTexto(l))}</b></div>
+  </div>`;
+}
+function telaParte(p) {
+  const tela = "p" + p, i = TELAS.indexOf(tela), r = E();
+  if (!S.semeado[p] && (!r.partes[p] || r.partes[p].length === 0)) { r.partes[p] = Z.linhasSugeridas(p, r); S.semeado[p] = true; salvar(); }
+  const L = r.partes[p], a = Z.AJUDA[tela];
+  let topo = "";
+  if (p === 2) topo = `${r.situacao === "ideia" ? `<div class="ref">A infraestrutura só se fecha com o terreno escolhido. Monte sobre o terreno candidato, ou deixe as linhas nomeadas e em branco.</div>` : ""}
+    ${campoNum("distanciaEnergiaM", "Distância até o ponto de energia", { pos: "m", ph: "Ex.: 260", ns: true, dica: "A concessionária informa o ponto e a tensão." })}
+    ${campoNum("infraDimensionadaPara", "Para quantas unidades a rede é dimensionada", { pos: "unidades", ph: "Ex.: 5", ns: true, dica: Z.paraNumero(r.unidadesProjeto) ? `O projeto completo tem ${fmtN(Z.paraNumero(r.unidadesProjeto), 0)} unidades.` : "" })}
+    ${campoNum("infraProjetoCompleto", "Valor da rede inteira, do projeto completo (opcional)", { pre: "R$", ph: "Ex.: 250.000", dica: "Informativo: a diferença para o que se paga agora fica para as próximas fases e não entra nesta conta." })}`;
+  const nTip = L.filter((l) => l.tipologia).length;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Parte ${p} de 7</div><h1 class="pergunta" tabindex="-1">Parte ${p} · ${esc(Z.nomeParte(p, r))}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <p class="dica">As linhas sugeridas vêm só com o nome. Renomeie, apague ou acrescente. Sem cotação, deixe Em branco. ${esc(Z.TEXTOS.linhaBranco)}</p>
+    ${topo}
+    ${p === 3 ? `<div class="veio" id="tip-soma"></div>` : ""}
+    <div id="linhas">${L.map((l, k) => htmlLinha(p, k, l)).join("")}</div>
+    <div class="acoes" style="margin-top:12px"><button type="button" class="btn btn-s btn-mini" id="mais-linha">Acrescentar linha</button>${p === 3 && nTip < 3 ? `<button type="button" class="btn btn-s btn-mini" id="mais-tip">Acrescentar tipologia</button>` : ""}</div>
+    ${p === 5 ? `<label class="check-lg"><input type="checkbox" data-campo="enxovalNaoDuplicado" ${r.enxovalNaoDuplicado === true ? "checked" : ""}><span>O enxoval não está também na cotação do mobiliário</span></label>` : ""}
+    <div class="total-bloco" aria-live="polite"><span>Total da Parte ${p}</span><b id="tot-parte"></b></div>
+    ${navHTML(i)}${caixasAjuda(tela)}</div>`;
+  const atualizarTotais = () => {
+    const C = calc();
+    document.getElementById("tot-parte").textContent = brl(C.totalParte[p]);
+    E().partes[p].forEach((l, k) => { const t = document.getElementById(`lt-${p}-${k}`), e = document.getElementById(`le-${p}-${k}`); if (t) t.textContent = totalLinhaTexto(l); if (e) e.textContent = l.origem ? Z.erroLinha(l, E(), HOJE) : ""; });
+    if (p === 3) { const ts = document.getElementById("tip-soma"); const u = Z.paraNumero(E().unidadesFase); ts.textContent = `As tipologias somam ${Z.somaTipologias(E())} de ${u === null ? "?" : fmtN(u, 0)} unidades da fase um.`; }
+    atualizarNav(tela);
+  };
+  app.querySelectorAll("[data-l]").forEach((el) => {
+    const [pp, k, campo] = el.dataset.l.split(":"); const l = E().partes[Number(pp)][Number(k)];
+    const estrutura = !!el.dataset.estrutura;
+    const ev = el.type === "radio" || el.type === "checkbox" || el.tagName === "SELECT" || el.type === "date" ? "change" : "input";
+    el.addEventListener(ev, () => {
+      if (el.type === "checkbox") l[campo] = el.checked;
+      else if (campo === "forma") { l.forma = el.value; l.modo = (Z.FORMAS.find((f) => f.v === el.value) || Z.FORMAS[0]).modo; }
+      else if (campo === "nCotacoes") l.nCotacoes = el.value ? Number(el.value) : null;
+      else if (campo === "tagP6") l.tagP6 = el.value || null;
+      else l[campo] = el.value;
+      if (campo === "nome") delete l.curto;
+      mudou();
+      if (estrutura) rerender(); else atualizarTotais();
+    });
+  });
+  app.querySelectorAll("[data-apagar]").forEach((x) => x.addEventListener("click", () => { E().partes[p].splice(Number(x.dataset.apagar), 1); mudou(); rerender(); }));
+  document.getElementById("mais-linha").onclick = () => { E().partes[p].push(Z.novaLinha({ nome: "", modo: "valor", tagP6: p === 5 ? "mobilia" : null })); mudou(); rerender(); const n = E().partes[p].length - 1; const inp = document.getElementById(`l-${p}-${n}-nome`); if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus({ preventScroll: true }); } };
+  const mt = document.getElementById("mais-tip");
+  if (mt) mt.onclick = () => { const Lp = E().partes[3]; const ult = Lp.map((l) => !!l.tipologia).lastIndexOf(true); const n = Lp.filter((l) => l.tipologia).length + 1; Lp.splice(ult + 1, 0, Z.novaLinha({ nome: "Unidade tipo " + n, tipologia: true, forma: E().imovelPronto ? "adequacao" : "construida" })); mudou(); rerender(); };
+  ligarCampos(tela, () => atualizarTotais());
+  ligarNav(tela);
+  atualizarTotais();
+}
+
+/* ---------- tela 9 · Parte 7, a reserva do imprevisto ---------- */
+function telaReserva() {
+  const a = Z.AJUDA.reserva, i = TELAS.indexOf("reserva"), r = E();
+  const risco = r.primeiraObra === true || (r.fatoresRisco || []).length > 0;
+  const regra = [["regraParaQue", "Para quê", "Ex.: imprevisto da obra orçada (solo, chuva, reajuste, exigência da licença)"], ["regraQuemAutoriza", "Quem autoriza", "Ex.: eu, depois de ouvir o engenheiro"], ["regraComoRegistra", "Como se registra", "Ex.: planilha com data, motivo e valor"], ["regraQuandoConfere", "Quando se confere", "Ex.: a cada medição da obra"]];
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Parte 7 de 7</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <div class="kv"><span>Subtotal das Partes 1 a 6</span><span id="res-subtotal"></span></div>
+    ${campoNum("reservaPct", "Reserva do imprevisto", { pos: "%", ph: "Ex.: 15", ns: true, grande: true })}
+    ${ehNS(r.reservaPct) ? `<div class="caixa porque"><h3>Os fatores de risco</h3><ul>${Z.FATORES.map((f) => `<li>${esc(f.r)}</li>`).join("")}<li>Primeira obra</li></ul><p>Com algum deles, a fonte pede o teto da faixa ou acima.</p></div>` : ""}
+    ${risco ? `<p class="dica">Você marcou ${r.primeiraObra === true ? "primeira obra" : ""}${r.primeiraObra === true && (r.fatoresRisco || []).length ? " e " : ""}${(r.fatoresRisco || []).length ? "fator de risco" : ""}: a fonte pede o teto da faixa (15%) ou acima.</p>` : ""}
+    <div class="kv"><span>Valor da reserva</span><span id="res-valor"></span></div>
+    <p class="dica" id="res-leitura"></p>
+    <div id="res-alertas"></div>
+    <h2 style="font-size:1.15rem;margin-top:20px">A regra de uso, em quatro linhas</h2>
+    <p class="dica">A reserva não paga escopo novo nem linha esquecida. Sem regra escrita, ela vira caixa. Cada linha com pelo menos 10 letras.</p>
+    ${regra.map(([c, rot, ph]) => `<label for="f-${c}">${rot}</label><textarea id="f-${c}" data-campo="${c}" maxlength="200" placeholder="${esc(ph)}" style="min-height:60px">${esc(r[c] || "")}</textarea>`).join("")}
+    ${navHTML(i)}${caixasAjuda("reserva")}</div>`;
+  const vivo = () => {
+    const C = calc();
+    document.getElementById("res-subtotal").textContent = brl(C.subtotal);
+    document.getElementById("res-valor").textContent = brl(C.reserva);
+    document.getElementById("res-leitura").textContent = Z.leituraReserva(E()) + " " + Z.NOTA_FAIXA;
+    const A = Z.alertas(E(), C).filter((x) => ["A3z", "A3", "A4", "A5"].includes(x.id));
+    document.getElementById("res-alertas").innerHTML = A.map((x) => `<div class="alerta a-${x.tipo}" data-id="${x.id}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("");
+  };
+  ligarCampos("reserva", vivo);
+  ligarNav("reserva");
+  vivo();
+}
+
+/* ---------- tela 10 · giro e terreno ---------- */
+function telaGiro() {
+  const a = Z.AJUDA.giro, i = TELAS.indexOf("giro"), r = E();
+  if (!r.terrenoSituacao && r.situacao === "ideia") { r.terrenoSituacao = "comprar"; salvar(); }
+  const calcUsada = Z.calculadoraGiroUsada(r);
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Ao lado da conta</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <h2 style="font-size:1.15rem;margin-top:16px">Capital de giro</h2>
+    ${calcUsada ? `<div class="kv"><span>Capital de giro (pela calculadora)</span><span id="giro-final"></span></div>` : campoNum("giro", "Capital de giro", { pre: "R$", ph: "Ex.: 40.000", ns: true })}
+    <div class="caixa onde"><h3>Calculadora de apoio (opcional)</h3><div class="grade">
+      <div><label for="f-giroMeses">Meses de custo</label><div class="campo-num"><input type="text" id="f-giroMeses" data-campo="giroMeses" inputmode="decimal" value="${valorCampo("giroMeses")}" placeholder="Ex.: 3"><span class="un">meses</span></div></div>
+      <div><label for="f-giroCustoMensal">Custo de um mês</label><div class="campo-num"><span class="un">R$</span><input type="text" id="f-giroCustoMensal" data-campo="giroCustoMensal" inputmode="decimal" value="${valorCampo("giroCustoMensal")}" placeholder="Ex.: 13.000"></div></div>
+    </div><p class="dica" id="giro-calc" style="margin:8px 0 0"></p></div>
+    <div id="giro-zero"></div>
+    <h2 style="font-size:1.15rem;margin-top:22px">Terreno</h2>
+    ${radios("terrenoSituacao", Z.TERRENO, { legenda: "Qual é a situação do terreno?" })}
+    ${campoNum("terrenoValor", "Valor do terreno (opcional)", { pre: "R$", ph: "Ex.: 600.000", ns: true, dica: "Fica ao lado e não entra na soma: fora da conta não quer dizer de graça (Pilar 6)." })}
+    ${navHTML(i)}${caixasAjuda("giro")}</div>`;
+  const vivo = (c) => {
+    const g = Z.giroUsado(E());
+    const usada = Z.calculadoraGiroUsada(E());
+    if (usada !== calcUsada && (c === "giroMeses" || c === "giroCustoMensal")) { if (usada) E().giro = String(g); salvar(); return rerender(); }
+    if (usada) { E().giro = String(g); salvar(); }
+    document.getElementById("giro-calc").textContent = usada ? `${fmtN(Z.paraNumero(E().giroMeses), 2)} meses × ${brl(Z.paraNumero(E().giroCustoMensal))} = ${brl(g)}. Três meses são o piso citado.` : "Se quiser, preencha os dois campos para a ficha calcular o giro. Se o giro veio da página 6, deixe a calculadora em branco.";
+    const gf = document.getElementById("giro-final"); if (gf) gf.textContent = brl(g);
+    const gz = document.getElementById("giro-zero");
+    if (g === 0 && (E().situacao === "opero" || E().paraOutro === true)) { if (!document.getElementById("f-giroZeroJustificativa")) { gz.innerHTML = `<label for="f-giroZeroJustificativa">Giro zero: escreva por quê</label><textarea id="f-giroZeroJustificativa" maxlength="200">${esc(E().giroZeroJustificativa || "")}</textarea>`; document.getElementById("f-giroZeroJustificativa").addEventListener("input", (e) => { E().giroZeroJustificativa = e.target.value; mudou(); atualizarNav("giro"); }); } }
+    else gz.innerHTML = "";
+    atualizarNav("giro");
+  };
+  ligarCampos("giro", vivo);
+  ligarNav("giro");
+  vivo();
+}
+
+/* ---------- tela 11 · resultado em cinco partes ---------- */
+function htmlNumeros(C) {
+  const lim = C.limite6 === null ? "sem o limite" : C.folga6 === null ? "falta o giro" : (C.dentroLimite ? "folga de " : "passou ") + brl(Math.abs(C.folga6));
+  return `<div class="numeros">
+    <div class="num largo"><small>Custo de abrir a porta da fase (CAPEX)</small><strong id="r-capex">${brl(C.capexFase)}</strong></div>
+    <div class="num largo"><small>Investimento total da fase um (CAPEX + capital de giro)</small><strong id="r-invest">${C.investimentoTotal === null ? "falta o giro" : brl(C.investimentoTotal)}</strong></div>
+    <div class="num largo ${C.dentroLimite === true ? "ok" : C.dentroLimite === false ? "ruim" : ""}"><small>Limite da página 6: <span id="r-limite">${C.limite6 === null ? "sem o limite" : brl(C.limite6)}</span></small><strong id="r-folga">${esc(lim)}</strong></div>
+    <div class="num"><small>Custo por unidade, sem terreno e sem giro</small><strong id="r-unidade">${C.custoPorUnidade === null ? "não se calcula" : brl(C.custoPorUnidade)}</strong></div>
+    <div class="num"><small>Investimento por unidade, com o giro (o custo por chave do Pilar 6)</small><strong id="r-invunidade">${C.investimentoPorUnidade === null ? "não se calcula" : brl(C.investimentoPorUnidade)}</strong></div>
+    <div class="num"><small>Custo por m² (área de ${C.areaTotal === null ? "?" : fmtN(C.areaTotal, 2)} m²)</small><strong id="r-m2">${C.custoPorM2 === null ? "falta a área" : brl(C.custoPorM2)}</strong></div>
+  </div>`;
+}
+function htmlTabelaPartes(C) {
+  const r = E();
+  const linhas = [1, 2, 3, 4, 5, 6].map((p) => { const pp = C.porParte[p]; return `<tr id="r-p${p}"><td>Parte ${p} · ${esc(Z.nomeParte(p, r))}<small>${pp.nCotadas} de ${pp.nLinhas} linhas com cotação</small></td><td class="v">${brl(C.totalParte[p])}</td><td class="v">${fmtPct(C.pctParte[p])}</td></tr>`; }).join("");
+  return `<table><thead><tr><th style="width:47%">Parte</th><th class="v" style="width:35%">Valor</th><th class="v" style="width:18%">Peso</th></tr></thead><tbody>
+    ${linhas}
+    <tr id="r-p7"><td>Parte 7 · Reserva do imprevisto (${fmtN(C.reservaPct, 2)}%)</td><td class="v">${brl(C.reserva)}</td><td class="v">${fmtPct(C.pctParte[7])}</td></tr>
+    <tr class="tot" id="r-total"><td>Custo de abrir a porta da fase (CAPEX)<small>${C.nCotadas} de ${C.nLinhas} linhas com cotação</small></td><td class="v">${brl(C.capexFase)}</td><td class="v">${C.capexFase > 0 ? "100%" : ""}</td></tr>
+    <tr><td>+ Capital de giro</td><td class="v">${C.giro === null ? "Não sei" : brl(C.giro)}</td><td></td></tr>
+    <tr class="tot"><td>= Investimento total da fase um</td><td class="v">${C.investimentoTotal === null ? "falta o giro" : brl(C.investimentoTotal)}</td><td></td></tr>
+    <tr class="parte"><td>À parte · Terreno (fora da conta, mas não de graça)</td><td class="v">${C.terreno === null ? "sem valor" : brl(C.terreno)}</td><td></td></tr>
+    ${C.infraFutura !== null ? `<tr class="parte"><td>Fica para as próximas fases · rede</td><td class="v">${brl(C.infraFutura)}</td><td></td></tr>` : ""}
+  </tbody></table>
+  <p class="dica">Subtotal das Partes 1 a 6: <span id="r-subtotal">${brl(C.subtotal)}</span>. Pesos com uma casa: a soma arredondada pode dar 99,9% ou 100,1%.</p>`;
+}
+function telaResultado() {
+  const i = TELAS.indexOf("resultado"), r = E(), C = calc(), A = Z.alertas(r, C), s = Z.acaoSugerida(r, C, A), top = Z.tresPrimeiros(A);
+  const degraus = ["Sonhador", "Estimador", "Calculista"];
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">${esc(Z.TEXTOS.pagina)} · Dossiê de Desenvolvimento</div><h1 tabindex="-1">${esc(Z.TEXTOS.titulo)} · ${esc(r.projeto)}</h1>${faixaExemplo()}
+    <p class="lead">${esc(Z.TEXTOS.assinatura)}</p>
+    <section class="bloco" id="p-resultado"><h2>1 · Resultado</h2>${htmlNumeros(C)}${htmlTabelaPartes(C)}</section>
+    <section class="bloco" id="p-significado"><h2>2 · O que significa</h2>
+      <p id="r-limite-leitura"><b>${esc(Z.leituraLimite(C))}</b></p>
+      <p id="r-pagina6">${esc(Z.leituraPagina6(C, r))}</p>
+      ${r.exemplo ? `<p class="dica">${esc(Z.TEXTOS.referencia)} A diferença é de escopo: a referência era de uma unidade pronta genérica; a cotação é da cabana do projeto dela, com a rede comum e as áreas comuns orçadas à parte, nas Partes 2 e 3.</p>` : ""}
+      <div class="regua" aria-label="Régua de maturidade">${degraus.map((d) => `<span class="${C.degrau === d ? "on" : ""} ${C.degrauDiagnostico === d ? "diag" : ""}">${d}</span>`).join("")}</div>
+      <p id="degrau">${esc(Z.leituraDegrau(C))}</p>
+      <p class="dica">O degrau Developer não é dado nesta ficha: ele pede cronograma de desembolso e captação (Pilar 7). A borda tracejada marca o degrau do diagnóstico.</p>
+      <div class="kv"><span>Linhas com cotação</span><span id="r-pctlinhas">${fmtPct(C.pctLinhasCotadas)} (${C.nCotadas} de ${C.nLinhas})</span></div>
+      <p class="dica">${esc(Z.leituraLinhasCotadas(C.pctLinhasCotadas))}</p>
+      <div class="kv"><span>Valor com cotação</span><span id="r-pctvalor">${fmtPct(C.pctValorCotado)} (${brl(C.valorCotado)})</span></div>
+      <div class="kv"><span>Reserva</span><span>${fmtN(C.reservaPct, 2)}%</span></div><p class="dica">${esc(Z.leituraReserva(r))}</p>
+    </section>
+    <section class="bloco" id="p-atencao"><h2>3 · Atenção</h2>
+      ${top.length ? top.map((x) => `<div class="alerta a-${x.tipo}" data-id="${x.id}"><b>${esc(x.tit)}</b>${esc(x.txt)}<small>Fonte: ${esc(x.fonte)}</small></div>`).join("") : `<div class="alerta a-info"><b>Nenhum alerta</b>Nenhuma das conferências disparou.</div>`}
+      ${A.length > 3 ? `<details><summary class="dica" style="cursor:pointer;min-height:40px;display:flex;align-items:center">Ver todos os alertas (${A.length})</summary>${A.slice(3).map((x) => `<div class="alerta a-${x.tipo}" data-id="${x.id}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("")}</details>` : ""}
+      <div class="alerta a-info" id="info"><b>${esc(Z.INFO.tit)}</b><ul style="margin:6px 0 0;padding-left:18px">${Z.INFO.engenheiro.concat(Z.INFO.contador, Z.INFO.concessionaria).map((q) => `<li>${esc(q)}</li>`).join("")}</ul><p style="margin:6px 0 0">${esc(Z.INFO.naoEnvia)}</p></div>
+    </section>
+    <section class="bloco" id="p-fazer"><h2>4 · O que fazer em 30 dias</h2><p id="r-acao"><b>${esc(s.acao)}</b></p><p class="dica">Na próxima tela você pode editar a ação e escolher o prazo.</p></section>
+    <section class="bloco" id="p-verificar"><h2>5 · Como verificar</h2><p id="r-verifica">${esc(s.verificacao)}</p></section>
+    ${navHTML(i, "Ação de 30 dias e PDF")}
+    <p class="aviso">${esc(Z.TEXTOS.aviso)}</p></div>`;
+  ligarNav("resultado");
+}
+
+/* ---------- tela 12 · ação de 30 dias, critério, selo, PDF e a volta à página 6 ---------- */
+const notaTxt = (n) => (n === null || n === undefined ? "sem linha" : n === NS ? "Não sei" : "nota " + n);
+function telaAcao() {
+  const i = TELAS.indexOf("acao"), r = E();
+  const C = calc(), A = Z.alertas(r, C), s = Z.acaoSugerida(r, C, A);
+  if (!r.acaoEditada) { r.acao30 = s.acao; r.verificacao = s.verificacao; }
+  if (!r.prazo) r.prazo = hojeISO(30);
+  salvar();
+  const T = C.transposicao, P1 = C.planilha1;
+  const kv = (k, v, id) => `<div class="kv"${id ? ` id="${id}"` : ""}><span>${esc(k)}</span><span>${esc(v)}</span></div>`;
+  const quadroP6 = T ? kv("Unidades", fmtN(T.unidades, 0)) + kv("1 · A unidade", brl(T.l_unidade) + " · " + notaTxt(T.notas.l_unidade), "q-unidade") + kv("2 · Deck", brl(T.l_deck) + " · " + notaTxt(T.notas.l_deck)) + kv("3 · Luz", brl(T.l_luz) + " · " + notaTxt(T.notas.l_luz)) + kv("4 · Água e esgoto", brl(T.l_agua) + " · " + notaTxt(T.notas.l_agua)) + kv("5 · Mobiliário, equipamentos e enxoval", brl(T.l_mobilia) + " · " + notaTxt(T.notas.l_mobilia), "q-mobilia") + kv("6 · Piso interno", T.pisoNoM2 && T.l_piso === 0 ? "0, digitado (no custo do m²)" : brl(T.l_piso) + " · " + notaTxt(T.notas.l_piso)) + kv("Unidade pronta (a ficha calcula)", brl(T.pronta), "q-pronta") + kv("7 · Licenças e projetos", brl(T.licencas) + " · " + notaTxt(T.notas.licencas)) + kv("8 · Reserva do imprevisto", fmtN(T.reserva_pct, 2) + "%") + kv("À parte · Infraestrutura comum", brl(T.infra) + " · " + notaTxt(T.notas.infra), "q-infra") + kv("Capital de giro", T.giro_meses !== null ? fmtN(T.giro_meses, 2) + " meses (não muda)" : "como está na página 6") + kv("Terreno", T.terreno === null ? "como está na página 6" : brl(T.terreno) + " (não muda)") : `<p class="dica">Falta o número de unidades da fase.</p>`;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 6 · Entregar</div><h1 class="pergunta" tabindex="-1">A sua ação de 30 dias e a página 6A</h1>${faixaExemplo()}
+    <label for="f-acao30">Ação de 30 dias</label><textarea id="f-acao30" maxlength="300">${esc(r.acao30)}</textarea>
+    <button type="button" class="btn btn-s btn-mini" id="usar-sug" style="margin-top:8px;width:100%">Voltar para a ação sugerida</button>
+    <label for="f-prazo">Prazo (até ${dataBR(hojeISO(30))})</label><input type="date" id="f-prazo" min="${HOJE}" max="${hojeISO(30)}" value="${esc(r.prazo)}">
+    <label for="f-verificacao">Como verificar</label><textarea id="f-verificacao" style="min-height:60px">${esc(r.verificacao)}</textarea>
+    <details style="margin-top:6px"><summary class="dica" style="cursor:pointer;min-height:40px;display:flex;align-items:center">Escolher uma verificação da lista</summary><div class="opcoes">${Z.VERIFICACOES.map((v, k) => `<button type="button" class="btn btn-s btn-mini" data-verif="${k}" style="justify-content:flex-start;text-align:left">${esc(v)}</button>`).join("")}</div></details>
+    <div class="falta" id="falta" role="status"></div>
+    <section class="bloco"><h2>Critério de conclusão</h2><ul class="crit" id="criterio"></ul><div id="selo"></div></section>
+    <div class="acoes"><button type="button" class="btn btn-ouro" id="pdf">Baixar a página 6A (PDF)</button></div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+    <div class="veio" id="lembrete"><b>${esc(Z.TEXTOS.dossie)}</b><br>${esc(Z.TEXTOS.naoEnvia)}</div>
+    <section class="bloco" id="quadro"><h2>Como levar para a página 6</h2>
+      <p class="dica"><b>${esc(Z.TEXTOS.transposicao)}</b></p>
+      ${quadroP6}
+      <p class="dica" style="margin-top:8px">${esc(Z.TEXTOS.transposicaoInfra)} ${T && T.confere ? "Conferência: as unidades prontas com a reserva, mais licenças, mais infraestrutura comum, dão o mesmo custo de abrir a porta. Bate." : ""} Nas notas da página 6: cotação vale 3, estimativa vale 1 e linha em branco é Não sei.</p>
+    </section>
+    <section class="bloco" id="quadro-pl1"><h2>Se você usa a Planilha 1</h2>
+      <table><thead><tr><th style="width:55%">Parte da 6A</th><th>Aba da Planilha 1</th></tr></thead><tbody>${Z.PL1_MAPA.map((x) => `<tr><td>${esc(x.parte)}</td><td>${esc(x.aba)}</td></tr>`).join("")}</tbody></table>
+      <div style="margin-top:10px">${kv("Aba Premissas (construção)", brl(P1.premissas), "pl1-premissas")}${kv("Aba Infraestrutura (total)", brl(P1.infraestrutura), "pl1-infra")}${kv("Aba FF&E", brl(P1.ffe), "pl1-ffe")}${kv("Aba OS&E", brl(P1.ose), "pl1-ose")}${kv("Resumo · Subtotal (B10)", brl(P1.subtotal))}${kv("Premissas B15 · contingência", fmtN(P1.contingenciaPct, 2) + "%")}${kv("Resumo · TOTAL (B12) = CAPEX da 6A", brl(P1.total), "pl1-total")}</div>
+      <p class="dica" style="margin-top:8px">${esc(Z.TEXTOS.pl1Aviso)}</p>
+    </section>
+    <section class="bloco"><h2>Próxima etapa</h2><p id="proxima">${esc(Z.proximaEtapa(r))}</p>
+      <ol class="passos">${Z.PROXIMOS.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+      <p class="dica">${esc(Z.TEXTOS.sensibilidade)}</p>
+      <div class="acoes"><a class="btn btn-p" href="../pilar6/index.html">Abrir a ficha do Pilar 6</a><button type="button" class="btn btn-s" id="revisar">Revisar as respostas</button><button type="button" class="btn btn-s" id="refazer">Refazer do zero</button><button type="button" class="btn btn-s" id="voltar">Voltar ao resultado</button></div>
+    </section>
+    <p class="aviso">${esc(Z.TEXTOS.aviso)} ${esc(Z.TEXTOS.naoPromete)}</p></div>`;
+  const vivo = () => {
+    const cr = Z.criterio(E(), calc(), HOJE);
+    document.getElementById("criterio").innerHTML = cr.itens.map((x) => `<li class="${x.ok ? "ok" : ""}" data-n="${x.n}">${esc(x.txt)}${x.ok ? "" : " <b>(falta)</b>"}</li>`).join("");
+    document.getElementById("selo").innerHTML = cr.ok ? `<div class="selo" id="selo-ok"><div class="med">6A</div><div><b>Pronto para levar à página 6</b>Página 6A baixada em ${dataBR(HOJE)}. ${esc(Z.proximaEtapa(E()))}</div></div>` : `<p class="dica">${cr.antesDoPdf ? "Tudo pronto: baixe o PDF para receber o selo." : "Enquanto falta algo, o selo espera. O PDF pode ser baixado a qualquer momento como rascunho."}</p>`;
+    const er = Z.validarTela("acao", E(), HOJE);
+    document.getElementById("falta").textContent = er;
+  };
+  const liga = (id, fn) => document.getElementById(id).addEventListener(id === "f-prazo" ? "change" : "input", (e) => { fn(e.target.value); mudou(); vivo(); });
+  liga("f-acao30", (x) => { E().acao30 = x; E().acaoEditada = true; });
+  liga("f-prazo", (x) => { E().prazo = x; });
+  liga("f-verificacao", (x) => { E().verificacao = x; E().acaoEditada = true; });
+  document.getElementById("usar-sug").onclick = () => { E().acaoEditada = false; mudou(); rerender(); };
+  app.querySelectorAll("[data-verif]").forEach((b) => b.addEventListener("click", () => { E().verificacao = Z.VERIFICACOES[Number(b.dataset.verif)]; E().acaoEditada = true; document.getElementById("f-verificacao").value = E().verificacao; mudou(); vivo(); }));
+  document.getElementById("revisar").onclick = () => irPara(1);
+  document.getElementById("voltar").onclick = () => irPara(i - 1);
+  document.getElementById("refazer").onclick = () => { if (confirm("Apagar as respostas desta página neste aparelho e começar de novo?")) { recomecar(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try {
+      const antes = Z.criterio(E(), calc(), HOJE).antesDoPdf;
+      const info = gerarPDF();
+      window.__ultimoPDF = info;
+      E().pdfBaixado = antes; salvar();
+      document.getElementById("erro-pdf").textContent = "";
+      vivo();
+    } catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+  vivo();
+}
+
+/* ---------------------------------------------------------------------
+   PDF A4 com jsPDF: página 1 = página 6A; página 2 = anexo (cotações a pedir, perguntas e abas da Planilha 1)
+   --------------------------------------------------------------------- */
+const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], CINZA = [70, 86, 75], VERM = [155, 44, 31], OK = [31, 90, 51];
+const COR_ALERTA = { bloqueia: VERM, critico: VERM, ns: [122, 83, 0], atencao: [150, 110, 20], info: OK };
+function gerarPDF() {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  const pt = (t) => String(t ?? "").replace(/²/g, "2").replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/…/g, "...").replace(/[–—−]/g, "-").replace(/≥/g, ">=").replace(/≤/g, "<=").replace(/→/g, "->");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const W = 210, H = 297, M = 12, CW = W - 2 * M, LIM = H - 15;
+  const r = E(), C = calc(), A = Z.alertas(r, C), top = Z.tresPrimeiros(A), T = C.transposicao, P1 = C.planilha1, cr = Z.criterio(r, C, HOJE);
+  let y = 0;
+  const fonte = (estilo, tam, cor) => { doc.setFont("helvetica", estilo); doc.setFontSize(tam); doc.setTextColor(...(cor || VERDE)); };
+  const par = (t, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 8, o.cor); const ls = doc.splitTextToSize(String(t), o.w || CW); const lh = (o.size || 8) * 0.42; ls.forEach((l, k) => doc.text(l, o.x || M, y + k * lh)); y += ls.length * lh + (o.after ?? 1.2); };
+  const titulo = (t, x = M) => { y += 1.8; doc.setFont("times", "bold"); doc.setFontSize(10.5); doc.setTextColor(...VERDE); doc.text(t, x, y); doc.setDrawColor(...OURO); doc.setLineWidth(0.5); doc.line(x, y + 1.2, x + 30, y + 1.2); y += 4.6; };
+  const terreno = r.cidadeUF ? "Terreno em " + r.cidadeUF : "";
+  const cabecalho = (sub) => {
+    doc.setFillColor(...CREME); doc.rect(0, 0, W, H, "F");
+    doc.setFillColor(...VERDE); doc.rect(0, 0, W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, W, 0.8, "F");
+    fonte("normal", 7.5, CREME); doc.text(sub, M, 7.8); doc.text([r.nome, terreno, dataBR(HOJE)].filter(Boolean).join(" · ").slice(0, 70), W - M, 7.8, { align: "right" });
+    y = 19.5;
+  };
+  // ---------- página 1 ----------
+  cabecalho("Zion · Dossiê de Desenvolvimento · Página 6A · CAPEX");
+  doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(doc.splitTextToSize("O seu CAPEX · " + r.projeto, CW)[0], M, y); y += 4.6;
+  par(`O custo de abrir a porta da fase um: ${fmtN(Z.paraNumero(r.unidadesFase) || 0, 0)} unidades agora${Z.paraNumero(r.unidadesProjeto) ? ", " + fmtN(Z.paraNumero(r.unidadesProjeto), 0) + " no projeto completo" : ""}. Cada número com a origem: cotação escrita, estimativa ou em branco. Página irmã da página 6.`, { size: 7.6, cor: CINZA, after: 1.3 });
+  if (r.exemplo) { doc.setFillColor(...OURO); doc.roundedRect(M, y - 3, CW, 5.2, 1, 1, "F"); fonte("bold", 7.3); doc.text(Z.TEXTOS.exemplo.toUpperCase(), M + 2.5, y + 0.7); y += 4.8; }
+  // caixas de números (3 × 2)
+  const limTxt = C.limite6 === null ? "sem o limite" : C.folga6 === null ? "falta o giro" : (C.dentroLimite ? "folga " : "passou ") + brl(Math.abs(C.folga6));
+  const box = [["Custo de abrir a porta da fase (CAPEX)", brl(C.capexFase)], ["Investimento total da fase um (com o giro)", C.investimentoTotal === null ? "falta o giro" : brl(C.investimentoTotal)], [`Limite da página 6: ${C.limite6 === null ? "sem o limite" : brl(C.limite6)}`, limTxt],
+    ["Custo por unidade (sem giro)", C.custoPorUnidade === null ? "-" : brl(C.custoPorUnidade)], ["Investimento por unidade (custo por chave)", C.investimentoPorUnidade === null ? "-" : brl(C.investimentoPorUnidade)], [`Custo por m² (${C.areaTotal === null ? "?" : fmtN(C.areaTotal, 2)} m²)`, C.custoPorM2 === null ? "falta a área" : brl(C.custoPorM2)]];
+  const bw = (CW - 2 * 2.5) / 3, bh = 11;
+  box.forEach(([k, v], n) => { const x = M + (n % 3) * (bw + 2.5), yy = y + Math.floor(n / 3) * (bh + 2); doc.setFillColor(...(n === 2 && C.dentroLimite === false ? VERM : VERDE)); doc.roundedRect(x, yy, bw, bh, 1.5, 1.5, "F"); fonte("normal", 6.2, CREME); doc.text(doc.splitTextToSize(k, bw - 4)[0], x + 2, yy + 3.6); fonte("bold", 9.2, OURO); doc.text(doc.splitTextToSize(v, bw - 3)[0], x + 2, yy + 8.6); });
+  y += 2 * bh + 2 + 4.2;
+  par(`${Z.leituraLimite(C)} ${Z.leituraPagina6(C, r)}`, { size: 7.4, bold: true, after: r.exemplo ? 0.6 : 1 });
+  if (r.exemplo) par(`O total da página 6: ${Z.TEXTOS.referencia.charAt(0).toLowerCase() + Z.TEXTOS.referencia.slice(1)} A diferença é de escopo, não de preço.`, { size: 6.5, cor: CINZA, after: 0.6 });
+  // tabela das sete partes
+  titulo("As sete partes do custo");
+  const larg = [96, 38, 22, 30];
+  const linhaT = (cols, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 7.6, o.cor); let x = M; cols.forEach((c, k) => { const al = k === 0 ? "left" : "right"; doc.text(doc.splitTextToSize(String(c), larg[k] - 2)[0], al === "left" ? x + 1 : x + larg[k] - 1, y, { align: al }); x += larg[k]; }); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.15); doc.line(M, y + 1.2, M + CW, y + 1.2); y += 3.8; };
+  linhaT(["Parte", "Valor", "Peso", "Linhas cotadas"], { bold: true, size: 6.6, cor: CINZA });
+  for (let p = 1; p <= 6; p++) linhaT([`Parte ${p} · ${Z.nomeParte(p, r)}`, brl(C.totalParte[p]), fmtPct(C.pctParte[p]), `${C.porParte[p].nCotadas} de ${C.porParte[p].nLinhas}`]);
+  linhaT([`Parte 7 · Reserva do imprevisto (${fmtN(C.reservaPct, 2)}% do subtotal de ${brl(C.subtotal)})`, brl(C.reserva), fmtPct(C.pctParte[7]), ""]);
+  linhaT(["Custo de abrir a porta da fase (CAPEX)", brl(C.capexFase), C.capexFase > 0 ? "100%" : "", `${C.nCotadas} de ${C.nLinhas}`], { bold: true });
+  linhaT(["+ Capital de giro", C.giro === null ? "Não sei" : brl(C.giro), "", ""]);
+  linhaT(["= Investimento total da fase um", C.investimentoTotal === null ? "falta o giro" : brl(C.investimentoTotal), "", ""], { bold: true });
+  linhaT([`À parte · Terreno (${(Z.TERRENO.find((x) => x.v === r.terrenoSituacao) || { r: "sem resposta" }).r.toLowerCase()}): fora da conta, mas não de graça`, C.terreno === null ? "sem valor" : brl(C.terreno), "", ""], { cor: CINZA });
+  if (C.infraFutura !== null) linhaT(["Fica para as próximas fases · rede", brl(C.infraFutura), "", ""], { cor: CINZA });
+  // significado e regra em duas colunas
+  const colW = (CW - 6) / 2, xR = M + colW + 6;
+  let y0 = y;
+  titulo("O que o número quer dizer");
+  par(Z.leituraDegrau(C), { size: 7.2, w: colW, after: 0.6 });
+  par(`Linhas com cotação: ${fmtPct(C.pctLinhasCotadas)} (${C.nCotadas} de ${C.nLinhas}). Valor com cotação: ${fmtPct(C.pctValorCotado)}.`, { size: 7.2, w: colW, after: 0.6 });
+  par(`Reserva: ${Z.leituraReserva(r)}`, { size: 7.2, w: colW, after: 0.6 });
+  let yE = y; y = y0;
+  titulo("Regra de uso da reserva", xR);
+  [["Para quê", r.regraParaQue], ["Quem autoriza", r.regraQuemAutoriza], ["Como se registra", r.regraComoRegistra], ["Quando se confere", r.regraQuandoConfere]].forEach(([k, v]) => par(`${k}: ${(v || "").trim() || "em branco"}`, { size: 7.2, w: colW, x: xR, after: 0.6 }));
+  y = Math.max(y, yE);
+  // atenção
+  titulo("Atenção");
+  if (!top.length) par("Nenhuma das conferências disparou.", { size: 7.2 });
+  top.forEach((a) => { fonte("normal", 7.2); const ls = doc.splitTextToSize(a.txt, CW - 6); const h = 3.4 + ls.length * 3.0 + 0.8; doc.setFillColor(...(COR_ALERTA[a.tipo] || VERDE)); doc.rect(M, y - 2.6, 1.2, h, "F"); fonte("bold", 7, COR_ALERTA[a.tipo] || VERDE); doc.text(a.tit.toUpperCase(), M + 3, y); fonte("normal", 7.2); ls.forEach((l, k) => doc.text(l, M + 3, y + 3.4 + k * 3.0)); y += h + 0.6; });
+  par("Pergunte ao seu engenheiro e ao seu contador: as perguntas estão no anexo.", { size: 6.6, cor: CINZA, after: 0.3 });
+  // ação
+  titulo("O que fazer em 30 dias");
+  par(`${(r.acao30 || "").trim() || "em branco"}  ·  Prazo: ${dataBR(r.prazo) || "em branco"}`, { bold: true, size: 7.6, after: 0.6 });
+  par(`Como verificar: ${(r.verificacao || "").trim() || "em branco"}`, { size: 7.2, after: 0.3 });
+  // quadro da página 6 e da Planilha 1, em duas colunas
+  y0 = y;
+  titulo("Como levar para a página 6");
+  const yq = y;
+  const linhasQ = T ? [["Unidades", fmtN(T.unidades, 0)], ["1 · A unidade", brl(T.l_unidade) + " (" + notaTxt(T.notas.l_unidade) + ")"], ["2 · Deck", brl(T.l_deck) + " (" + notaTxt(T.notas.l_deck) + ")"], ["3 · Luz", brl(T.l_luz) + " (" + notaTxt(T.notas.l_luz) + ")"], ["4 · Água e esgoto", brl(T.l_agua) + " (" + notaTxt(T.notas.l_agua) + ")"], ["5 · Mobiliário e enxoval", brl(T.l_mobilia) + " (" + notaTxt(T.notas.l_mobilia) + ")"], ["6 · Piso", T.pisoNoM2 && T.l_piso === 0 ? "0, digitado" : brl(T.l_piso)],
+    ["7 · Licenças e projetos", brl(T.licencas) + " (" + notaTxt(T.notas.licencas) + ")"], ["8 · Reserva", fmtN(T.reserva_pct, 2) + "%"], ["Infraestrutura comum", brl(T.infra) + " (" + notaTxt(T.notas.infra) + ")"], ["Giro e terreno", "não mudam"]] : [["Unidades", "falta"]];
+  linhasQ.forEach(([k, v], n) => { const yy = yq + n * 3.25; fonte("normal", 6.9, CINZA); doc.text(k, M, yy); fonte("bold", 6.9); doc.text(v, M + colW, yy, { align: "right" }); });
+  yE = yq + linhasQ.length * 3.25;
+  y = yE; par(Z.TEXTOS.transposicao, { size: 6.2, cor: CINZA, w: colW, after: 0.2 }); yE = y;
+  y = y0;
+  titulo("Se você usa a Planilha 1", xR);
+  const lp = [["Aba Premissas (construção)", brl(P1.premissas)], ["Aba Infraestrutura", brl(P1.infraestrutura)], ["Aba FF&E", brl(P1.ffe)], ["Aba OS&E", brl(P1.ose)], ["Resumo · Subtotal (B10)", brl(P1.subtotal)], ["Premissas B15 · contingência", fmtN(P1.contingenciaPct, 2) + "%"], ["Resumo · TOTAL (B12)", brl(P1.total)]];
+  lp.forEach(([k, v], n) => { const yy = y + n * 3.25; fonte(n === 6 ? "bold" : "normal", 6.9, n === 6 ? VERDE : CINZA); doc.text(k, xR, yy); fonte("bold", 6.9); doc.text(v, xR + colW, yy, { align: "right" }); });
+  y += lp.length * 3.25;
+  par("Planilha 2 · Estudo de Massas e Viabilidade, aba Investimento: CAPEX na B5, terreno em zero na B6, confira o giro da B9. A divisão das partes pelas abas está no anexo.", { size: 6.2, cor: CINZA, w: colW, x: xR, after: 0.2 });
+  y = Math.max(y, yE) + 4.2;
+  // selo e lembretes
+  if (cr.antesDoPdf) { doc.setFillColor(...VERDE); doc.roundedRect(M, y - 3.4, 66, 5.6, 1.5, 1.5, "F"); fonte("bold", 7.4, OURO); doc.text("PRONTO PARA LEVAR À PÁGINA 6", M + 3, y + 0.6); fonte("normal", 6.6, CINZA); doc.text(doc.splitTextToSize(Z.proximaEtapa(r), CW - 70).slice(0, 2), M + 69, y - 0.4); y += 5; }
+  else { par(`Primeira versão: ainda falta ${cr.faltas.length - (r.pdfBaixado ? 0 : 1)} item(ns) do critério de conclusão (veja a ficha).`, { size: 6.8, cor: VERM, after: 0.6 }); }
+  par(`${Z.TEXTOS.dossie} ${Z.TEXTOS.naoEnvia}`, { size: 6.8, bold: true, after: 0 });
+  const yPagina1 = y;
+  // ---------- página 2 · anexo ----------
+  const itensAnexo = [];
+  for (let p = 1; p <= 6; p++) r.partes[p].forEach((l) => {
+    let sit = "";
+    if (l.origem === "branco") sit = "em branco";
+    else if (l.origem === "estimativa") sit = "estimativa, sem cotação";
+    else if (l.origem === "cotacao" && Z.cotacaoVencida(l, HOJE)) sit = "cotação com mais de 90 dias";
+    else if (l.origem === "cotacao" && !Z.cotacaoCompleta(l)) sit = Number(l.nCotacoes) >= 3 ? "escopos diferentes" : `${Number(l.nCotacoes) || 0} de 3 cotações`;
+    if (sit) itensAnexo.push([String(p), l.nome, sit]);
+  });
+  doc.addPage(); cabecalho("Zion · Dossiê de Desenvolvimento · Página 6A · Anexo");
+  doc.setFont("times", "bold"); doc.setFontSize(14); doc.setTextColor(...VERDE); doc.text("Anexo · Lista de cotações a pedir", M, y); y += 5.5;
+  par("Peça três propostas com a mesma especificação escrita (material, medidas, quantidade, frete, instalação, entulho e prazo) e a lista do que cada uma não inclui. Anote a data: a cotação vale por 90 dias.", { size: 7.8, cor: CINZA, after: 2 });
+  const la = [14, 92, 44, 36];
+  const linhaA = (cols, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 7.4, o.cor); const partes = cols.map((c, k) => doc.splitTextToSize(String(c), la[k] - 2)); const h = Math.max(...partes.map((q) => q.length)) * 3.2 + 1.1; if (y + h > LIM - 6) { doc.addPage(); cabecalho("Zion · Dossiê de Desenvolvimento · Página 6A · Anexo"); } let x = M; partes.forEach((q, k) => { q.forEach((l, j) => doc.text(l, x + 1, y + j * 3.2)); x += la[k]; }); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.15); doc.line(M, y + h - 2.2, M + CW, y + h - 2.2); y += h; };
+  linhaA(["Parte", "Linha", "Situação", "A quem pedir e quando"], { bold: true, size: 6.6, cor: CINZA });
+  if (!itensAnexo.length) par("Nenhuma linha pendente: todas têm três cotações com a mesma especificação e dentro do prazo.", { size: 8 });
+  itensAnexo.forEach((x) => linhaA([x[0], x[1], x[2], ""]));
+  const blocoAnexo = (fn, altura) => { if (y + altura > LIM - 4) { doc.addPage(); cabecalho("Zion · Dossiê de Desenvolvimento · Página 6A · Anexo"); } fn(); };
+  y += 2;
+  blocoAnexo(() => { titulo(Z.INFO.tit); [["Ao engenheiro", Z.INFO.engenheiro], ["Ao contador (e ao advogado, na forma de entrada do terreno)", Z.INFO.contador], ["À concessionária e à prefeitura", Z.INFO.concessionaria]].forEach(([k, qs]) => { par(k, { bold: true, size: 7.6, after: 0.5 }); qs.forEach((q) => par("- " + q, { size: 7.2, after: 0.3 })); y += 0.6; }); }, 62);
+  blocoAnexo(() => { titulo("As partes da 6A nas abas da Planilha 1"); Z.PL1_MAPA.forEach((x) => par(`${x.parte} -> ${x.aba}`, { size: 7, after: 0.4 })); par(Z.TEXTOS.pl1Aviso, { size: 6.6, cor: CINZA, after: 0.5 }); }, 50);
+  blocoAnexo(() => { titulo("Próxima etapa, na ordem do Mapa"); Z.PROXIMOS.forEach((x, k) => par(`${k + 1}. ${x}`, { size: 7, after: 0.4 })); par(Z.TEXTOS.sensibilidade, { size: 6.6, cor: CINZA }); }, 42);
+  // rodapé em todas as páginas
+  const n = doc.getNumberOfPages();
+  for (let k = 1; k <= n; k++) {
+    doc.setPage(k); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(M, H - 12, W - M, H - 12);
+    fonte("normal", 6.2, CINZA); doc.text(doc.splitTextToSize(Z.TEXTOS.aviso + " " + Z.TEXTOS.naoEnvia, CW - 14), M, H - 9);
+    doc.text(`${k}/${n}`, W - M, H - 9, { align: "right" });
+  }
+  const arq = "Pagina-6A-CAPEX-" + (r.projeto || "projeto").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+  doc.save(arq);
+  return { arquivo: arq, paginas: n, yPagina1, limitePagina1: LIM };
+}
+
+/* ---------- início ---------- */
+window.ZionCapex = { get estado() { return S; }, calcular: calc };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) { S = salvo; if (salvo.passo > 0) { S.retomar = true; S.passoSalvo = salvo.passo; S.passo = 0; } }
+  semear();
+  render();
+})();
+</script>
+</body>
+</html>
