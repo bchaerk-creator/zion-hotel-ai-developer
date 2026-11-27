@@ -110,3 +110,11 @@ Teto global já aprovado por Bruno: R$ 400 (5 dias). Sugestão de divisão diár
 - Imagens: o Meta busca as imagens pelo endereço público (`picture`); **image_hash e prévia NÃO foram recuperados** (o Windsor não lê o criativo): conferir a prévia no Gerenciador. Ordem enviada: cartões 1 a 7.
 - Destino das campanhas de venda: `https://www.zionhotelgroup.com/inscricao` com `utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.id}}&utm_content={{ad.id}}&utm_term={{adset.id}}&utm_placement={{placement}}`; CTA "Saiba mais".
 - Ainda sem anúncio: campanha 3 / B Recuperação; campanhas 2 e 4 (sem conjunto); versão V2 pousada/Airbnb (falta público); vídeos.
+
+### Atualização 27/11 (noite) · persona pousada/Airbnb, tudo PAUSADO
+- Conjunto criado: **C2 Pousada Direto · A Quente** `120250606574100016` (campanha 2). Inclui Público Instagram `120250592672940016` e Zion Collection 365 `120250455931010016`; exclui Top Collection, Collection campeão, Zion 90 e Instagram não, só os de terreno de maior intenção. Orçamento placeholder R$ 6/dia. **ATENÇÃO: são públicos gerais da conta (incluem donos de terreno), não de pousada/Airbnb. Usei como ponte porque o comando proíbe público aberto, mas é decisão que depende da aprovação de Bruno/ChatGPT; se não aprovado, arquivar este conjunto.**
+- Anúncio criado: `120250606583090016` (carrossel V2 pousada/Airbnb, cartões `zc47v2-card-1..7`). Corrigido o link do cartão 7, que saiu com `utm_content=x` fixo; criativo novo `4283918998407261`.
+- Anúncio criado: `120250606583390016` (campanha 3 · B Recuperação · formulário Land Bank `1627911948376725`).
+- Campanha 4 (pousada/Airbnb formulário): continua SEM conjunto e SEM anúncio. Uma tentativa de conjunto com interesses Airbnb/Lodging não rodou e **não foi refeita**, por violar a regra de não usar interesses genéricos sem aprovação. Formulário `1127602653227754` (conteúdo não validado por API).
+- Pixel das campanhas de venda: `903918118859018` (o do ClickMax, usado nos conjuntos que venderam); `1378530017570073` é o do site. Evento configurado: Compra, pendente de validação.
+- Orçamento: R$ 6/dia por CONJUNTO é só placeholder, não é aprovação.
