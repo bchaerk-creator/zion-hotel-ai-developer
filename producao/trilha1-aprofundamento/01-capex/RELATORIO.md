@@ -18,14 +18,14 @@ CAPEX da fase R$ 791.131 · investimento total R$ 831.918,38 · folga até o lim
 | E-book (56 páginas, tamanho de letra do Pilar 6) | `docs/trilha1/materiais/Pilar-6A-CAPEX-ebook.pdf` | números conferidos por assert contra o plano; revisão visual lado a lado com o Pilar 6 |
 | Checklist (2 páginas) | `docs/trilha1/materiais/Pilar-6A-CAPEX-checklist.pdf` | idem |
 | Capas | `docs/trilha1/capas/p6a-c-*.jpg` | comparadas com as `p6-c-*` |
-| Tutorial em vídeo | `tutorial/capex.json` | em produção (voz e formato dos tutoriais do curso: edge-tts Francisca, `producao/clube/tutoriais-video/make.py`); **Bruno aprova antes de entrar** |
+| Tutorial em vídeo | `tutorial/capex.json` | `docs/trilha1/videos/tutoriais/tutorial-ficha-pilar6a.mp4`, 3 min 46 s, voz e formato dos tutoriais do curso; **aprovado por Bruno em 27/11** |
 
 ## ClickMax (Trilha 1 `fa9a6c54`, módulo Pilar 6 `6e06c29d`), todas **desligadas**, entre o e-book do Pilar 6 e a Planilha 1
 - `8e98bed7` Aprofundamento 6A · CAPEX · Aula interativa
 - `bccdfac4` Aprofundamento 6A · CAPEX · Faça agora · O seu CAPEX
 - `f1918e33` Aprofundamento 6A · CAPEX · E-book (PDF)
 - `758e9b1c` Aprofundamento 6A · CAPEX · Checklist (PDF)
-- (a criar) Tutorial da ficha, depois da aprovação do vídeo.
+- `b17d795c` Aprofundamento 6A · CAPEX · Tutorial da ficha (vídeo aprovado por Bruno em 27/11)
 
 Ligar só com o "aprovado" de Bruno: o curso está em 5 turmas. A Plataforma de estruturação (R$ 97) é cópia separada e não recebeu as aulas.
 
