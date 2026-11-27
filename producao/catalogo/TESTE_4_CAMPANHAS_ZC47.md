@@ -118,3 +118,26 @@ Teto global já aprovado por Bruno: R$ 400 (5 dias). Sugestão de divisão diár
 - Campanha 4 (pousada/Airbnb formulário): continua SEM conjunto e SEM anúncio. Uma tentativa de conjunto com interesses Airbnb/Lodging não rodou e **não foi refeita**, por violar a regra de não usar interesses genéricos sem aprovação. Formulário `1127602653227754` (conteúdo não validado por API).
 - Pixel das campanhas de venda: `903918118859018` (o do ClickMax, usado nos conjuntos que venderam); `1378530017570073` é o do site. Evento configurado: Compra, pendente de validação.
 - Orçamento: R$ 6/dia por CONJUNTO é só placeholder, não é aprovação.
+
+## FASE 01 · CARROSSÉIS E FORMULÁRIOS (27/11/2026, noite) · tudo PAUSADO
+Escopo: só campanhas com formulário (3 e 4). Vendas diretas e vídeos fora desta etapa. Investimento proposto da fase: R$ 40/dia (os outros R$ 40/dia ficam para vídeos). Rotina de leads continua pausada.
+
+### Campanha 3 · Terreno (`120250606268260016`), formulário `1627911948376725` (Land Bank | Diagnóstico do terreno - Dono terreno)
+| Conjunto | ID | Público | Exclui | Orçamento |
+|---|---|---|---|---|
+| A Aquisição Lookalike 1% | `120250606282700016` | Lookalike `120250593921040016` | Top Collection, Collection campeão, Zion 90 | proposto R$ 20/dia; **no Meta ainda R$ 6** (aumento pendente de aprovação) |
+| B Recuperação (abriu sem enviar) | `120250606283690016` | Look a like formulário `120250593835770016`, similar personalizado `120250592781330016` | Top Collection, Collection campeão | proposto R$ 10/dia; **no Meta ainda R$ 6** |
+Anúncios (carrossel V1, cartões 1 a 7 na ordem): A `120250606477690016`; B `120250606583390016`.
+
+### Campanha 4 · Pousada/Airbnb (`120250606245620016`), formulário `1127602653227754` (Land Bank | Diagnóstico do terreno - Dono pousada)
+- Conjunto de teste: `120250606978700016` · Brasil 25-65 · orçamento proposto R$ 10/dia; **no Meta R$ 10/dia** (criado já com esse valor, pausado).
+- Público: (Bed and breakfast `6003196503578` OU VRBO `6003646743113` OU Alquiler vacacional `6003175542014` OU Airbnb `6003252231836` OU Hospitality management studies `6003359052437`) **E** (cargo Empresário `108611555829523` OU Entrepreneurship `105587479474873`). Exclui Top Collection, Collection campeão e Zion 90.
+- Tamanhos globais estimados pelo Meta (não só Brasil): B&B 18-21 mi; VRBO 2,6-3,0 mi; Alquiler vacacional 128-151 mi; Airbnb 406-478 mi; Hospitality management studies 34-40 mi; Entrepreneurship (cargo) 570-670 mil. Nenhum interesse identifica "dono de pousada" com precisão: o corte por cargo reduz o público a quem se declara empresário/empreendedor. Interesses de maior pertinência: B&B e VRBO. Pouco pertinentes (não usados): Lodging, Sector hotelero, Hoteles (consumidores amplos); "Hospitality industry" como empregador (10 mil, funcionários, não donos); formação "Hotel and Restaurant Management" (111 mil, estudantes).
+- Anúncio: `120250606981070016` (carrossel V2, 7 cartões na ordem 1 a 7; formulário `1127602653227754`).
+
+### Limitações encontradas (não contornadas)
+1. **Públicos de quem abriu/enviou formulário:** o Windsor não tem ação para criar públicos de formulário (só site e Lookalike). Criar no Gerenciador (Públicos > Criar > Público personalizado > Formulário instantâneo): "abriu" e "enviou", um para o `1627911948376725` e outro para o `1127602653227754`. Sem eles, **não há exclusão de quem já enviou** nos conjuntos de aquisição.
+2. **UTMs nos anúncios de formulário:** o link vai no próprio formulário (tela final) e é fixo (`utm_campaign=zc47-terreno-form` / `zc47-pousada-airbnb-form`); não aceita `{{ad.id}}`. Atribuição por anúncio só pela origem do lead no Meta.
+3. **Formulários e prévias:** o conteúdo, a tela final e o idioma (English US) não são legíveis por API; as imagens foram buscadas por URL pública (sem `image_hash`) e a prévia dos anúncios não foi conferida.
+4. **Landing/pixel:** a landing `/inscricao` não foi aberta em produção; nenhum pixel ou integração foi alterado.
+5. **Orçamento:** aumentos para R$ 20 e R$ 10 na campanha 3 exigem aprovação via token do Windsor; não confirmados.
