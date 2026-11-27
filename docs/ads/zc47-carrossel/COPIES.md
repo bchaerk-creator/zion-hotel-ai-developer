@@ -10,10 +10,10 @@ Formato: carrossel de 7 cartões, 1080x1350 (`zc47-card-1.png` a `-7.png`), com 
 ## Texto primário
 Acesso pago à plataforma Zion Collection, R$ 47.
 
-Você tem um terreno em um destino turístico e quer desenvolver o seu projeto, mas não sabe por onde começar? Seja um parceiro Zion e inscreva seu terreno ou projeto, de forma estruturada, pela nossa plataforma*. Aprenda o passo a passo, receba conteúdo e informações contínuas e prepare a apresentação do seu projeto.
+Você tem um terreno em um destino turístico e quer desenvolver o seu projeto, mas não sabe por onde começar? Queremos te conhecer. Inscreva seu projeto na nossa plataforma, informe os atributos do seu terreno de forma organizada e nossa equipe poderá entrar em contato*. Aprenda o passo a passo, receba conteúdo e informações contínuas e tenha a possibilidade de ser parceiro Zion.
 
 R$ 47, pagamento único. Pix ou cartão. Reembolso em até 7 dias.
-*Parceria e investimento sujeitos à análise. Não são garantidos.
+*Contato sujeito à análise e à agenda. Parceria e investimento não são garantidos.
 
 ## Título / descrição
 Plataforma Zion Collection · R$ 47 / Pagamento único · Pix ou cartão
@@ -26,3 +26,6 @@ Plataforma Zion Collection · R$ 47 / Pagamento único · Pix ou cartão
 - Cartões 2 e 3 reaproveitam imagens do campeão que não estão na biblioteca da Zion (tendas/tipis, aéreo de domos): ficam como "imagens ilustrativas". Trocar por op/store sem pessoas se Bruno preferir.
 - "Mais de 20 anos" e "referência em glamping" no cartão 4 são afirmações do dono, já usadas no Carrossel C.
 - Sem "12 meses de acesso", sem "de R$ 97", sem urgência, sem promessa de parceria/investimento.
+
+## Cartão 5 (ajuste de Bruno, 27/11)
+"Queremos te conhecer. Inscreva seu projeto na nossa plataforma, informe os atributos do seu terreno de forma organizada e nossa equipe poderá entrar em contato*". Escrevi "poderá" (e não "entrará") porque o contato depende de análise e agenda; "entrará em contato" soaria como garantia.

@@ -43,8 +43,8 @@ const cards=[
 <div class="b s" style="left:150px;width:900px;top:1304px;font-size:23px;color:#fff;line-height:1.1">${NOTA}</div>`],
 // 5 plataforma
 [CN+'5.png',`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
-<div class="b w" style="left:70px;right:70px;top:1138px;font-size:40px;color:#232c0a;font-weight:500">Seja um parceiro Zion: inscreva seu terreno ou projeto, de forma estruturada, pela nossa plataforma*</div>
-<div class="b s" style="left:70px;right:70px;top:1290px;font-size:22px;color:#232c0a">${NOTA}</div>`],
+<div class="b w" style="left:70px;right:70px;top:1124px;font-size:33px;color:#232c0a;font-weight:500">Queremos te conhecer. Inscreva seu projeto na nossa plataforma, informe os atributos do seu terreno de forma organizada e nossa equipe poderá entrar em contato*</div>
+<div class="b s" style="left:70px;right:70px;top:1296px;font-size:21px;color:#232c0a">*Contato sujeito à análise e à agenda. Parceria e investimento não são garantidos.</div>`],
 // 6 como funciona
 [CN+'6.png',`<div class="b" style="left:562px;top:0;width:518px;height:1350px;background:${Y}"></div>
 <div class="b s" style="left:618px;width:400px;top:165px;height:815px;border-radius:44px;background:#000;color:#fff;font-size:68px;display:flex;align-items:center;justify-content:center;line-height:1.2;padding:0 26px">Aprenda.<br>Estruture.<br>Apresente.</div>
