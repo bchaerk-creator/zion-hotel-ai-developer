@@ -6,15 +6,16 @@ Responsável: Bruno Chaerk. Elaborado em 27/11/2026. Rascunho: nada aqui liga an
 - Conta de anúncio: **Zion Collection 2** (`1271873041294684`, BRL). Página: `576944608845537`.
 - Perguntas: **depois da compra**, como primeira tela da plataforma. Nas campanhas com formulário, as mesmas perguntas vão no formulário do Meta, antes da landing.
 
-## As 4 campanhas
-| # | Criativo | Formulário | Objetivo | Destino |
+## As 4 campanhas (confirmado por Bruno em 27/11)
+| # | Nome | Criativo | Entrada | Destino |
 |---|---|---|---|---|
-| 1 | V1 terreno (`zc47-card-1..7`) | Não | Vendas (ou Tráfego até confirmar o Purchase) | zionhotelgroup.com/inscricao |
-| 2 | V2 pousada/Airbnb (`zc47v2-card-1..7`) | Não | idem | idem |
-| 3 | V1 terreno | Sim (formulário do Meta, 15 perguntas) | Cadastros | formulário, depois a landing |
-| 4 | V2 pousada/Airbnb | Sim | Cadastros | idem |
+| 1 | ZC47 · Terreno · Direto | V1 terreno (`zc47-card-1..7`) | link direto | zionhotelgroup.com/inscricao (compra do acesso) |
+| 2 | ZC47 · Pousada/Airbnb · Direto | V2 pousada/Airbnb (`zc47v2-card-1..7`) | link direto | idem |
+| 3 | ZC47 · Terreno · Formulário | V1 terreno | formulário nativo do Meta **Land Bank** (já pronto) | tela final leva ao /inscricao |
+| 4 | ZC47 · Pousada/Airbnb · Formulário | V2 pousada/Airbnb | formulário nativo do Meta **novo para pousada** (Bruno está fazendo) | tela final leva ao /inscricao |
 
 UTM: `zc47-terreno`, `zc47-pousada-airbnb`, `zc47-terreno-form`, `zc47-pousada-airbnb-form`.
+Rotina horária de leads (`trig_01Uydzp4XuTKYuk8TPvxTWFM`): **pausada por Bruno em 27/11**; reativar antes de contar com leads no ClickMax (e mapear o formulário novo de pousada, que a rotina ainda não conhece).
 
 ## Como medir (mesma fonte para as 4)
 - Sem formulário: custo por compra paga (venda do ClickMax com UTM). Equilíbrio: **R$ 44,51 por venda** (líquido).
