@@ -373,6 +373,25 @@ html body{margin:0;background:#19291F;font-family:"Inter",system-ui,sans-serif}
 
 </div>
 <script>
-(function(){try{var q=window.location.search;if(!q)return;
-document.querySelectorAll('a[data-buy]').forEach(function(a){a.href=a.href.split('?')[0]+q;});}catch(e){}})();
+/* Repasse de rastreamento para o checkout (27/11/2026).
+   Copia da URL da landing para cada botao data-buy somente estes parametros,
+   sem apagar os que o link ja tiver e sem duplicar nenhum. */
+(function(){
+  var CHAVES=['utm_source','utm_medium','utm_campaign','utm_content','utm_term','utm_id','fbclid'];
+  function aplicar(){
+    try{
+      var origem=new URLSearchParams(window.location.search);
+      document.querySelectorAll('a[data-buy]').forEach(function(a){
+        var destino=new URL(a.getAttribute('href'),window.location.href);
+        CHAVES.forEach(function(k){
+          var v=origem.get(k);
+          if(v!==null&&v!==''&&!destino.searchParams.has(k)){destino.searchParams.set(k,v);}
+        });
+        a.href=destino.toString();
+      });
+    }catch(e){}
+  }
+  aplicar();
+  document.addEventListener('click',function(ev){var a=ev.target&&ev.target.closest&&ev.target.closest('a[data-buy]');if(a){aplicar();}},true);
+})();
 </script></body></html>
