@@ -141,3 +141,16 @@ Anúncios (carrossel V1, cartões 1 a 7 na ordem): A `120250606477690016`; B `12
 3. **Formulários e prévias:** o conteúdo, a tela final e o idioma (English US) não são legíveis por API; as imagens foram buscadas por URL pública (sem `image_hash`) e a prévia dos anúncios não foi conferida.
 4. **Landing/pixel:** a landing `/inscricao` não foi aberta em produção; nenhum pixel ou integração foi alterado.
 5. **Orçamento:** aumentos para R$ 20 e R$ 10 na campanha 3 exigem aprovação via token do Windsor; não confirmados.
+
+## FINALIZAÇÃO DA FASE 01 · configuração proposta para aprovação (27/11/2026) · NADA APLICADO, NADA ATIVADO
+Ativar exclusivamente as campanhas de formulário (3 e 4). Campanhas de venda direta (1 e 2) e vídeos fora desta etapa.
+
+| Conjunto | ID | R$/dia proposto | Hoje no Meta |
+|---|---|---|---|
+| C3 A Terreno · Lookalike 1% | `120250606282700016` | 20 | 6 (pendente de aprovação) |
+| C3 B Terreno · Remarketing | `120250606283690016` | 10 | 6 (pendente de aprovação) |
+| C4 Pousada/Airbnb · teste | `120250606978700016` | 10 | 10 |
+Total R$ 40/dia. Limite efetivo de 5 dias (proposto): teto de gasto da campanha 3 = R$ 150 (R$ 30 × 5) e da campanha 4 = R$ 50 (R$ 10 × 5), ou seja R$ 200 na fase; `spend_cap` ainda NÃO aplicado (Windsor exige aprovação). Alternativa: data final do conjunto no momento da ativação.
+Orçamento global: R$ 40/dia da fase + R$ 30/dia da campanha de vídeos (a campanha `ZC47 | Frio | Fase 1` aparece ativa) = R$ 70/dia, dentro de R$ 80/dia (R$ 400 em 5 dias).
+Rastreio de origem: o Windsor (`facebook_leads`) devolve campaign_id, adset_id, adset_name, ad_name, form_id e form_name por lead; não devolve ad_id.
+Pendências antes de ligar (dependem de Bruno no Meta): validar os dois formulários em português, a tela de agradecimento e o link para `/inscricao`; criar os públicos de quem abriu e enviou cada formulário (e depois aplicar as exclusões); conferir a prévia dos três anúncios e dos sete cartões de cada um.
