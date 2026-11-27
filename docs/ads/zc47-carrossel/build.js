@@ -22,7 +22,7 @@ const cards=[
 <div class="b w" style="left:90px;right:90px;top:188px;font-size:47px;color:#fff">Você tem um terreno em um destino <i>turístico</i>, mas não tem capital para desenvolver?</div>
 <div class="b" style="left:0;top:1020px;width:1080px;height:330px;background:${G}"></div>
 <div class="b s" style="left:65px;top:1080px;width:950px;height:122px;border-radius:26px;background:${Y};color:#fff;font-size:35px;display:flex;align-items:center;justify-content:center;line-height:1.1;padding:0 30px">INSCREVA SEU PROJETO OU TERRENO NA NOSSA PLATAFORMA</div>
-<div class="b w" style="left:60px;right:60px;top:1222px;font-size:26px;color:#fff;text-transform:none;line-height:1.2">Estruture de forma organizada, apresente à Zion e tenha a possibilidade de ser parceiro Zion*</div><div class="b w" style="left:60px;right:60px;top:1314px;font-size:17px;color:rgba(255,255,255,.8);text-transform:none;font-weight:500">Parceria sujeita à análise. Não é garantida. Acesso pago: R$ 47.</div>`],
+<div class="b w" style="left:60px;right:60px;top:1222px;font-size:26px;color:#fff;text-transform:none;line-height:1.2">Coloque a sua visão e o potencial do seu terreno de forma estruturada para começar a criar um projeto</div><div class="b w" style="left:60px;right:60px;top:1314px;font-size:17px;color:rgba(255,255,255,.8);text-transform:none;font-weight:500">Acesso pago: R$ 47. Material educativo.</div>`],
 // 2 confronto
 [CN+'2.png',`<div class="b" style="left:430px;top:0;width:650px;height:236px;background:${O}"></div>
 <div class="b w" style="left:470px;width:560px;top:70px;font-size:31px;color:#16210a">Seu terreno pode ter potencial turístico. Sozinho, isso não vira um projeto.</div><div class="ilus">Imagens ilustrativas</div>`],
