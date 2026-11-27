@@ -2,7 +2,7 @@
 Caso: a Marina abre a página 6 dela (PLANO.md v2, seção 7). Todos os números vêm de src/caso.py, que confere cada
 valor com o plano e falha se algum divergir.
 Saída: src/ebook/ebook.html. Depois:
-  node src/render.js src/ebook/ebook.html ../../../docs/trilha1/materiais/Pilar-6A-CAPEX-ebook.pdf
+  node src/render.js src/ebook/ebook.html ../../../docs/trilha1/materiais/Pilar-6A-CAPEX-ebook.pdf --min 45 --max 60
 Uso: python3 -I src/build_ebook.py"""
 import sys, pathlib, re
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
@@ -239,7 +239,6 @@ add("<p>A ficha nunca põe valor no lugar do «Não sei». Uma linha em branco v
 add("<h3>Três cotações com a mesma especificação</h3><p>Cotação boa é cotação comparável. Para isso, todos os fornecedores recebem o mesmo pacote: projeto, memorial e quantidades. E cada pedido traz a especificação escrita:</p>"
     "<ul><li>material, medidas e quantidade;</li><li>frete, instalação e retirada de entulho;</li><li>prazo e garantia;</li><li>a lista do que <b>não inclui</b>, por escrito.</li></ul><p>A menor proposta só vence onde o escopo é igual.</p>")
 add(cita("A frase «não inclui» é a mais importante de qualquer proposta.", "Jornada do COMO, Etapa 04, Passo 09"))
-add("<h3>A validade</h3>")
 add(cita("Cotação de mais de noventa dias precisa ser refeita.", "Volume 05 · Investimento, cap. 4"))
 add(ex("A cotação da água da Marina venceu", "<p>A Marina pediu a cotação do poço com teste de vazão, do reservatório e da rede para 5 no Pilar 5, em 15/07/2026: R$ 19.800, com duas propostas iguais. Hoje, no exemplo, é 27/11/2026.</p>"
        "<p>De 15/07 a 27/11: 16 + 31 + 30 + 31 + 27 = <b>135 dias</b>. Passou de 90. A linha continua na conta, mas a ficha acende o alerta «cotação com mais de 90 dias: refaça antes de usar».</p>"
@@ -248,7 +247,7 @@ add(pare("Duas propostas para o caminho do hóspede: uma inclui a luz baixa, a o
          "B. Sem o «não inclui» escrito, as propostas não são comparáveis. Primeiro iguala o escopo, depois compara."))
 add(aplic("separe as três maiores linhas da sua conta e escreva a especificação de cada uma antes de pedir proposta.",
           "use as notas da última obra: o que veio cobrado à parte vira item obrigatório do «não inclui»."))
-add(levar(["Três origens: cotação, estimativa, em branco.", "Na 6A a referência não entra na conta.", "Três propostas com a mesma especificação.", "O «não inclui» por escrito.", "Mais de 90 dias: refaça."]))
+add(levar(["Três origens: cotação, estimativa, em branco; a referência não entra.", "Três propostas com a mesma especificação e o «não inclui» por escrito.", "Mais de 90 dias: refaça."]))
 fim()
 
 # ---------------------------------------------------------------- 04

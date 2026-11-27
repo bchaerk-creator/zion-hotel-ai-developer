@@ -79,9 +79,9 @@ EBOOK = """
 .capa .k{color:var(--ouro);font-size:7pt;letter-spacing:.3em}
 .capa h1{color:#fff;font-size:31pt;line-height:1.12;margin:5mm 0 4mm}
 .capa h1 i{color:var(--ouro)}
-.capa .deck{font-size:10.6pt;line-height:1.62;color:var(--creme);max-width:132mm}
-.capa .pe{position:absolute;left:8mm;right:8mm;top:136mm;/*fixo*/font-size:8.4pt;letter-spacing:.04em;line-height:1.7;color:#C9C6B8;max-width:140mm}
-.capa .num{/*fixo*/position:absolute;right:-2mm;bottom:-16mm;font-family:'Playfair Display',serif;font-size:190pt;line-height:1;color:var(--escuro)}
+.capa .deck{font-size:10.6pt;line-height:1.62;color:var(--creme);max-width:104mm}
+.capa .pe{position:absolute;left:8mm;right:8mm;top:136mm;/*fixo*/font-size:9pt;letter-spacing:.04em;line-height:1.7;color:#C9C6B8;max-width:140mm}
+.capa .num{/*fixo*/position:absolute;right:-3mm;bottom:-24mm;font-family:'Playfair Display',serif;font-size:235pt;line-height:1;color:var(--escuro)}
 /* sumário */
 .sum{break-after:page;padding-top:16mm}
 .sum h2{font-size:24pt;margin:2mm 0 6mm}
@@ -147,5 +147,5 @@ h3+p{break-before:avoid}
 .dia>div.on{background:var(--verde);color:#fff;border-color:var(--verde)}
 .dia h4{font-size:11pt;margin-bottom:1mm} .dia .on h4{color:var(--ouro)}
 .dez li{margin-bottom:1.3mm}
-.fim{font-size:7.4pt;line-height:1.55;color:var(--texto2);border-top:1px solid var(--linha2);padding-top:3mm;margin-top:6mm}
+.fim{font-size:7.4pt;line-height:1.55;color:var(--texto2);border-top:1px solid var(--linha2);padding-top:3mm;margin-top:6mm;break-inside:avoid}
 """
