@@ -942,7 +942,7 @@ function htmlSecaoMentor(L) {
   let corpo;
   if (!urlDoMentor()) corpo = `<p id="mentor-estado"><b>Disponível em breve.</b></p><button type="button" class="btn btn-s" id="mentor-pedir" disabled>Pedir a leitura do mentor virtual</button>`;
   else if (mentorValido(L)) corpo = htmlMentorResultado(S.mentor.resultado);
-  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas e as contas que estão na tela.</p>
+  else corpo = `<p class="dica">Uma segunda leitura das suas respostas, com o método da Zion: o que está forte, o que está frágil e a próxima ação. Ao pedir, esta página envia ao mentor virtual da Zion o seu nome, o seu e-mail, as suas respostas e as contas que estão na tela. Esses dados vão para o servidor do mentor virtual da Zion, hospedado na Lovable (zion-dossie-aulas.lovable.app). Se preferir não enviar, não peça a leitura: a ficha e o PDF funcionam sem ela.</p>
     <button type="button" class="btn btn-s" id="mentor-pedir">Pedir a leitura do mentor virtual</button>
     <div id="mentor-estado" role="status" aria-live="polite"></div>`;
   return `<h2>O mentor virtual</h2><div id="mentor-corpo">${corpo}</div>`;

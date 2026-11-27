@@ -274,3 +274,22 @@ Legenda: ✓ tem · parcial · ✗ falta · NV não verificado.
 9. **Vídeos:** quem grava e com que voz.
 
 *Relatório somente leitura. Nenhuma alteração foi feita no ClickMax. Nada foi enviado a ninguém.*
+
+---
+
+# 8. Correções aplicadas em 27/11 (com o "aprovado" de Bruno)
+
+| # | O que foi feito | Onde |
+|---|---|---|
+| 1 | Ordem das aulas corrigida (sem posições repetidas) | Trilha 1 · Marco Zero `da251ac7` e Pilar 7 `430dbc2f`; conferido nos 10 módulos da Trilha 1 e nos 9 da Plataforma |
+| 2 | Masterclass com data vencida desligada (não apagada) | Panorama · aula `b8d87e02` |
+| 3 | Descrição da Biblioteca corrigida (sem "todos os volumes liberados", com aviso de material educativo) e "0 · Abertura" movida para o início do Z01 | Biblioteca `6ce56665`, módulo `0bcc016b` |
+| 4 | 4 tutoriais ligados nos dois cursos, logo depois do material que explicam (Mapa de direcionamento, Planilha 1, Planilha 2, Kit do Investidor); os tutoriais das fichas dos Pilares 6 e 7 passaram para logo depois do "Faça agora" | Trilha 1 e Plataforma: aulas `0a86bd37`, `1dc113cf`, `ad87430b`, `9ea4b91d`, `a96ce642`, `852fb0a7`, `9d016a8e`, `0d6b773f` |
+| 6 | Linha "A Bubble Zion e a condição exclusiva" retirada do PDF do diagnóstico | `docs/trilha1/marco-zero/index.html` |
+| 7 | Aviso de para onde vão os dados do mentor virtual (servidor na Lovable) e de que a ficha funciona sem enviar | `docs/trilha1/aula1…aula6`, `pilar4…pilar7` |
+
+**Não aplicado:**
+- **5 · Telefone da Bela.** A Bela atende no próprio número da Zion Collection (+55 48 6137-1061), mas cita outro número de suporte (+55 48 98872-9883). Trocar exige reescrever à mão o texto inteiro do agente ativo (cerca de 9 mil caracteres), com risco de alterar outras regras. Fica para Bruno confirmar qual número é o de suporte humano; a troca é uma linha.
+- **8 e 9** (nome do curso e capas): dependem de decisão e de produção.
+
+**Observado ao aplicar:** a tela de resultado do Marco Zero ainda oferece "mentoria em grupo ou individual com o Bruno" e a Bubble da loja, o que contradiz a oferta atual (sem mentoria). Precisa de decisão de Bruno.
