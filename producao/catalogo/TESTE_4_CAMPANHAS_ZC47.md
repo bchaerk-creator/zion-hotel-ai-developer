@@ -55,3 +55,47 @@ Regras: sem pedir documento nem dado financeiro; o texto deve dizer que parceria
 - Campanha 4 · Pousada/Airbnb · Formulário (OUTCOME_LEADS): `120250606245620016`
 - Campanhas 2 e 3: criação **negada pelo usuário** na sessão; não recriar sem novo pedido de Bruno.
 - Configuração de público/pixel herdada dos conjuntos que já venderam: Brasil 25-65; interesse "Inversiones inmobiliarias" `6003446239080` + cargo "Empresário" `108611555829523`; pixel `903918118859018` (evento INITIATED_CHECKOUT nos conjuntos de venda; Land Bank/formulários usam só page_id `576944608845537`).
+
+## ESTRATÉGIA CORRIGIDA (27/11/2026, autorização de Bruno / ChatGPT) · tudo PAUSADO
+Conta Zion Collection 2 `1271873041294684`. Não usar interesses genéricos no lugar dos públicos personalizados. Não usar o público salvo amplo (`120240025249270016`).
+
+### Campanhas (4, todas pausadas)
+| # | Nome | ID | Objetivo |
+|---|---|---|---|
+| 1 | ZC47 · Terreno · Direto | `120250606242900016` | Vendas |
+| 2 | ZC47 · Pousada/Airbnb · Direto | `120250606267250016` | Vendas |
+| 3 | ZC47 · Terreno · Formulário | `120250606268260016` | Cadastros |
+| 4 | ZC47 · Pousada/Airbnb · Formulário | `120250606245620016` | Cadastros |
+
+### Conjuntos criados (pausados, orçamento PLACEHOLDER de R$ 6/dia: não é o orçamento final)
+| Campanha | Conjunto | ID | Inclui | Exclui |
+|---|---|---|---|---|
+| 1 | A Quente | `120250606273670016` | Top Collection campeão `120250592796030016`, Collection campeão `120250592617440016`, Zion 90 `120250455830270016` | (compradores: lista inexistente) |
+| 1 | B Remarketing | `120250606275220016` | Vídeo novo `120250592676910016`, vídeo antigo `120250455897500016`, Look a like formulário `120250593835770016`, similar personalizado `120250592781330016`, Instagram `120250592672940016` | os 3 do conjunto A |
+| 1 | C Lookalike 1% | `120250606276400016` | `120250593921040016` | A e B |
+| 3 | A Aquisição Lookalike 1% | `120250606282700016` | `120250593921040016` | Top Collection, Collection campeão, Zion 90 |
+| 3 | B Recuperação (abriu formulário) | `120250606283690016` | Look a like formulário, similar personalizado | Top Collection, Collection campeão |
+Campanhas 2 e 4: SEM conjunto ainda (falta público específico da persona pousada/Airbnb).
+
+### Configuração técnica
+- Expansão de audiência (Advantage+): desligada. Posicionamentos automáticos. Brasil, 25-65.
+- Campanhas de vendas: otimização para Compra com o pixel `903918118859018`, conforme a ordem de Bruno. **Início de checkout NÃO foi herdado.** O Purchase ainda não está validado (ver pendências).
+- Campanhas de formulário: cadastros (LEAD_GENERATION), página `576944608845537`.
+
+### Validação do pixel (Windsor, últimos 14 dias)
+- Compra: 0 em todas as campanhas (inconclusivo: as vendas reais não vieram de clique em anúncio).
+- Início de checkout: 149 para 139 visitas à página na campanha R$ 97, passando de 100%: o evento dispara ao carregar a página (contaminado).
+- Ver conteúdo: 0 em todas.
+
+### Pendências técnicas (não resolvidas)
+1. **Anúncios não criados:** os 14 cartões ainda precisam ser carregados na biblioteca do Meta (upload pelo navegador de Bruno); depois recupero os `image_hash` e monto os carrosséis na ordem 1 a 7.
+2. **Vídeos:** o ZIP dos vídeos novos nunca chegou a esta sessão.
+3. **Regras dos públicos não validadas:** a API devolve só contagem; é preciso conferir no Gerenciador origem, retenção e se "Look a like formulário" e "Público similar personalizado" são mesmo "abriu sem enviar".
+4. **Falta público de quem enviou formulário** (para excluir na aquisição) e **lista de compradores** (exclusão).
+5. **Campanhas 2 e 4:** proposta de públicos da persona pousada/Airbnb: criar públicos a partir de quem viu o vídeo/página da versão V2, de quem abrir ou enviar o formulário `1127602653227754` e, com volume, um Lookalike deles. Conteúdo do formulário de pousada não validado por API.
+6. **Pixel/Purchase:** confirmar no Gerenciador de Eventos qual pixel (`903918118859018` ou `1378530017570073`) recebe a compra confirmada e se há CAPI/deduplicação com ClickMax/Asaas. Nenhuma integração foi alterada.
+7. **Orçamento:** proposta consolidada abaixo, aguardando aprovação; conjuntos têm só placeholder.
+8. **UTMs do comando oficial** (`utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.id}}&utm_content={{ad.id}}&utm_term={{adset.id}}&utm_placement={{placement}}`): serão aplicadas nos anúncios; verificar depois que chegam ao ClickMax.
+
+### Orçamento: proposta para aprovação (nada aplicado)
+Teto global já aprovado por Bruno: R$ 400 (5 dias). Sugestão de divisão diária de R$ 80: venda direta (campanhas 1 e 2) 50%, remarketing 35%, lookalike 15%, formulários dentro do mesmo teto. Detalhar por conjunto só depois do tamanho real das audiências (todas as personalizadas são menores que 1.000 pessoas, exceto vídeo novo ~2.500, vídeo antigo ~1.900 e Instagram/365 ~45 mil): públicos tão pequenos não absorvem R$ 20/dia sem frequência alta.
