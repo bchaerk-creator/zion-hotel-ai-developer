@@ -99,3 +99,14 @@ Campanhas 2 e 4: SEM conjunto ainda (falta público específico da persona pousa
 
 ### Orçamento: proposta para aprovação (nada aplicado)
 Teto global já aprovado por Bruno: R$ 400 (5 dias). Sugestão de divisão diária de R$ 80: venda direta (campanhas 1 e 2) 50%, remarketing 35%, lookalike 15%, formulários dentro do mesmo teto. Detalhar por conjunto só depois do tamanho real das audiências (todas as personalizadas são menores que 1.000 pessoas, exceto vídeo novo ~2.500, vídeo antigo ~1.900 e Instagram/365 ~45 mil): públicos tão pequenos não absorvem R$ 20/dia sem frequência alta.
+
+### Anúncios criados (27/11/2026, todos PAUSADOS) · carrossel V1 terreno, 7 cartões, imagens por URL pública do GitHub
+| Campanha / conjunto | Anúncio | ID |
+|---|---|---|
+| 1 / A Quente | ZC2 \| VENDAS \| V1 \| TERRENO \| CARROSSEL CAMPEÃO \| QUENTE | `120250606465070016` |
+| 1 / B Remarketing | ... \| REMARKETING | `120250606476200016` |
+| 1 / C Lookalike 1% | ... \| LOOKALIKE 1% | `120250606476980016` |
+| 3 / A Aquisição Lookalike | ZC2 \| CADASTROS \| ... \| FORM LAND BANK (formulário `1627911948376725`) | `120250606477690016` |
+- Imagens: o Meta busca as imagens pelo endereço público (`picture`); **image_hash e prévia NÃO foram recuperados** (o Windsor não lê o criativo): conferir a prévia no Gerenciador. Ordem enviada: cartões 1 a 7.
+- Destino das campanhas de venda: `https://www.zionhotelgroup.com/inscricao` com `utm_source={{site_source_name}}&utm_medium=paid_social&utm_campaign={{campaign.id}}&utm_content={{ad.id}}&utm_term={{adset.id}}&utm_placement={{placement}}`; CTA "Saiba mais".
+- Ainda sem anúncio: campanha 3 / B Recuperação; campanhas 2 e 4 (sem conjunto); versão V2 pousada/Airbnb (falta público); vídeos.
