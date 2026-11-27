@@ -48,8 +48,8 @@ const cards=[
 // 6 como funciona
 [CN+'6.png',`<div class="b" style="left:562px;top:0;width:518px;height:1350px;background:${Y}"></div>
 <div class="b s" style="left:618px;width:400px;top:165px;height:815px;border-radius:44px;background:#000;color:#fff;font-size:68px;display:flex;align-items:center;justify-content:center;line-height:1.2;padding:0 26px">Aprenda.<br>Estruture.<br>Apresente.</div>
-<div class="b s" style="left:590px;width:460px;top:1060px;font-size:36px;color:#fff;line-height:1.15">Preencha o formulário, assista aos vídeos e anexe fotos do seu terreno</div>
-<div class="b s" style="left:590px;width:460px;top:1235px;font-size:22px;color:#fff;line-height:1.15">*Sujeito à análise e à agenda. Parceria e investimento não são garantidos.</div>`],
+<div class="b s" style="left:590px;width:460px;top:1040px;font-size:32px;color:#fff;line-height:1.15">Preencha os formulários e gere o dossiê com os atributos do seu terreno, de forma profissional e organizada</div>
+<div class="b s" style="left:590px;width:460px;top:1236px;font-size:19px;color:#fff;line-height:1.15">*Nossa equipe poderá entrar em contato para um diagnóstico e uma possível parceria, sujeita à análise e à agenda. Não garantida.</div>`],
 // 7 conversão
 [VC+'10.png',`<div class="b" style="left:0;top:0;width:572px;height:1030px;background:${Y}"></div>
 <div class="b s" style="left:40px;width:492px;top:96px;font-size:50px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.1">Plataforma Zion Collection</div>

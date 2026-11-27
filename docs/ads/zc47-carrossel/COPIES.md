@@ -7,13 +7,17 @@ Formato: carrossel de 7 cartões, 1080x1350 (`zc47-card-1.png` a `-7.png`), com 
 
 **Destino:** https://www.zionhotelgroup.com/inscricao · **Botão do Meta:** Saiba mais
 
-## Texto primário
+## Texto primário (versão de 27/11, a partir do texto de Bruno)
 Acesso pago à plataforma Zion Collection, R$ 47.
 
-Você tem um terreno em um destino turístico e quer desenvolver o seu projeto, mas não sabe por onde começar? Queremos te conhecer. Inscreva seu projeto na nossa plataforma, informe os atributos do seu terreno de forma organizada e nossa equipe poderá entrar em contato*. Aprenda o passo a passo, receba conteúdo e informações contínuas e tenha a possibilidade de ser parceiro Zion.
+Queremos te conhecer. A plataforma serve para você apresentar os atributos do seu terreno ou projeto de forma profissional e organizada: você preenche os formulários e gera o seu dossiê. Com ele, a nossa equipe poderá entrar em contato para um diagnóstico e uma possível parceria em investimentos na sua área*.
+
+A Zion está em plena expansão pelo Brasil e o seu terreno pode ser o próximo destino.
 
 R$ 47, pagamento único. Pix ou cartão. Reembolso em até 7 dias.
 *Contato sujeito à análise e à agenda. Parceria e investimento não são garantidos.
+
+Notas de redação: "plano de negócio" ficou de fora (a plataforma entrega o Dossiê do terreno; plano de negócio não está confirmado no que ela gera) e "potencial do seu terreno" virou "atributos do seu terreno" (potencial seria promessa). "Entrará em contato" virou "poderá entrar em contato"; "viabilizar parceria" virou "possível parceria".
 
 ## Título / descrição
 Plataforma Zion Collection · R$ 47 / Pagamento único · Pix ou cartão
