@@ -21,8 +21,8 @@ const cards=[
 <div class="b" style="left:195px;top:84px;width:720px;height:70px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:A;font-weight:800;font-size:38px;letter-spacing:.42em;color:#111;padding-left:.42em">TERRENO</div>
 <div class="b w" style="left:90px;right:90px;top:188px;font-size:47px;color:#fff">Você tem um terreno em um destino <i>turístico</i>, mas não tem capital para desenvolver?</div>
 <div class="b" style="left:0;top:1020px;width:1080px;height:330px;background:${G}"></div>
-<div class="b s" style="left:65px;top:1080px;width:950px;height:122px;border-radius:26px;background:${Y};color:#fff;font-size:50px;display:flex;align-items:center;justify-content:center">ACESSE A PLATAFORMA · R$ 47</div>
-<div class="b w" style="left:60px;right:60px;top:1232px;font-size:31px;color:#fff;text-transform:none">Aprenda o passo a passo para estruturar o seu projeto</div>`],
+<div class="b s" style="left:65px;top:1080px;width:950px;height:122px;border-radius:26px;background:${Y};color:#fff;font-size:35px;display:flex;align-items:center;justify-content:center;line-height:1.1;padding:0 30px">INSCREVA SEU PROJETO OU TERRENO NA NOSSA PLATAFORMA</div>
+<div class="b w" style="left:60px;right:60px;top:1222px;font-size:26px;color:#fff;text-transform:none;line-height:1.2">Estruture de forma organizada, apresente à Zion e tenha a possibilidade de ser parceiro Zion*</div><div class="b w" style="left:60px;right:60px;top:1314px;font-size:17px;color:rgba(255,255,255,.8);text-transform:none;font-weight:500">Parceria sujeita à análise. Não é garantida. Acesso pago: R$ 47.</div>`],
 // 2 confronto
 [CN+'2.png',`<div class="b" style="left:430px;top:0;width:650px;height:236px;background:${O}"></div>
 <div class="b w" style="left:470px;width:560px;top:70px;font-size:31px;color:#16210a">Seu terreno pode ter potencial turístico. Sozinho, isso não vira um projeto.</div><div class="ilus">Imagens ilustrativas</div>`],
@@ -31,7 +31,7 @@ const cards=[
 <div class="b w" style="left:40px;width:434px;top:110px;font-size:33px;color:#fff">Sem projeto estruturado, fica difícil apresentar a sua visão</div>
 <div class="b s" style="left:30px;width:454px;top:500px;font-size:52px;color:#fff;line-height:1.05">TERRENO +<br>PASSO A PASSO =<br><span style="color:#111;font-size:76px">PROJETO</span></div>
 <div class="b s" style="left:30px;width:454px;top:790px;font-size:74px;color:#fff;letter-spacing:.02em">ZION</div>
-<div class="b s" style="left:48px;width:424px;top:980px;height:175px;border-radius:34px;background:#000;color:#fff;font-size:50px;display:flex;align-items:center;justify-content:center;line-height:1.05">Acesse a plataforma</div>
+<div class="b s" style="left:48px;width:424px;top:980px;height:175px;border-radius:34px;background:#000;color:#fff;font-size:44px;display:flex;align-items:center;justify-content:center;line-height:1.05">Inscreva seu terreno na nossa plataforma</div>
 <div class="b" style="left:514px;top:0;width:566px;height:340px;background:linear-gradient(180deg,#0c1608 84%,rgba(12,22,8,0))"></div>
 <div class="b w" style="left:560px;width:470px;top:120px;font-size:30px;color:#fff;font-weight:500">Estruture o que você já tem</div>
 <div class="b" style="left:514px;top:715px;width:566px;height:635px;background:linear-gradient(0deg,#0c1608 90%,rgba(12,22,8,0))"></div>
@@ -53,10 +53,10 @@ const cards=[
 // 7 conversão
 [VC+'10.png',`<div class="b" style="left:0;top:0;width:572px;height:1030px;background:${Y}"></div>
 <div class="b s" style="left:40px;width:492px;top:96px;font-size:50px;font-weight:900;color:#0b0b0b;text-transform:uppercase;line-height:1.1">Plataforma Zion Collection</div>
-<div class="b s" style="left:40px;width:492px;top:290px;font-size:34px;color:#0b0b0b">Aprenda o passo a passo para estruturar o seu projeto</div>
-<div class="b s" style="left:40px;width:492px;top:440px;font-size:120px;color:#0b0b0b;line-height:1.0">R$ 47</div>
-<div class="b s" style="left:40px;width:492px;top:590px;font-size:27px;color:#0b0b0b;line-height:1.3">Pagamento único, sem mensalidade<br>Pix ou cartão<br>Reembolso em até 7 dias</div>
-<div class="b s" style="left:46px;width:480px;top:790px;height:215px;border-radius:52px;background:#ffed00;color:#0b0b0b;font-size:50px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1.05;padding:0 20px">QUERO INICIAR MINHA JORNADA NA ZION</div>`]];
+<div class="b s" style="left:40px;width:492px;top:270px;font-size:30px;color:#0b0b0b;line-height:1.2">Estruture seu projeto de forma organizada, apresente à Zion e tenha a possibilidade de ser parceiro Zion*</div>
+<div class="b s" style="left:40px;width:492px;top:420px;font-size:110px;color:#0b0b0b;line-height:1.0">R$ 47</div>
+<div class="b s" style="left:40px;width:492px;top:560px;font-size:27px;color:#0b0b0b;line-height:1.3">Pagamento único, sem mensalidade<br>Pix ou cartão<br>Reembolso em até 7 dias</div><div class="b s" style="left:40px;width:492px;top:720px;font-size:19px;color:#0b0b0b">*Parceria sujeita à análise. Não é garantida.</div>
+<div class="b s" style="left:46px;width:480px;top:790px;height:215px;border-radius:52px;background:#ffed00;color:#0b0b0b;font-size:38px;font-weight:900;display:flex;align-items:center;justify-content:center;line-height:1.05;padding:0 20px">INSCREVA SEU PROJETO OU TERRENO NA NOSSA PLATAFORMA</div>`]];
 (async()=>{const b=await chromium.launch();const p=await b.newPage({viewport:{width:1080,height:1350}});
 for(let i=0;i<cards.length;i++){const f=`${D}/_t.html`;
  fs.writeFileSync(f,`<!doctype html><meta charset=utf-8><style>${css}</style><body><img class="o" src="file://${cards[i][0]}">${cards[i][1]}<div class="strip">Acesso pago · Plataforma Zion Collection · R$ 47</div></body>`);

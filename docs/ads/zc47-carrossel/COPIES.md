@@ -1,6 +1,8 @@
 # Carrossel campeão · Plataforma Zion Collection (R$ 47)
 Status: arte pronta para revisão. Nada enviado ao Meta; nada ativado. Campanha nasce pausada; ativar só com "aprovado" de Bruno.
 
+Botões das artes (ajuste de Bruno, 27/11): cartão 1 e 7 "Inscreva seu projeto ou terreno na nossa plataforma"; cartão 3 "Inscreva seu terreno na nossa plataforma". Linha de apoio: "Estruture de forma organizada, apresente à Zion e tenha a possibilidade de ser parceiro Zion*" (nota: parceria sujeita à análise, não garantida).
+
 Formato: carrossel de 7 cartões, 1080x1350 (`zc47-card-1.png` a `-7.png`), com faixa fixa "Acesso pago · Plataforma Zion Collection · R$ 47". Base: carrossel campeão (adset "CARROSSEL CAMPEAO") com a narrativa da oferta atual. Fotos sem pessoas; cartão 2 com "Imagens ilustrativas".
 
 **Destino:** https://www.zionhotelgroup.com/inscricao · **Botão do Meta:** Saiba mais
