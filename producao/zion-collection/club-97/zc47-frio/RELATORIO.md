@@ -50,3 +50,9 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 3. **IDs completos dos públicos** que faltam (Público vídeo novo, Lookalike 1% do Top Collection campeão, Top Collection campeão, Público similar de formulário). Sem eles, o conjunto segue com as 3 exclusões atuais; nada foi alterado no público.
 4. Purchase de R$ 47 no Gerenciador de Eventos e capa da oferta (itens 1 e 2 do funil).
 5. Identidade verificada (beneficiário/pagador) não foi pedida pelo Meta na criação.
+
+## 27/11 · Troca do V17 pelo V17B (sem "acesso por 12 meses")
+- Decisão de Bruno: tirar "acesso por 12 meses" do vídeo e do anúncio. Oferta no ClickMax e FAQ da landing continuam com "12 meses" até Bruno decidir.
+- Novo vídeo `zc47-v17b.mp4` (card: Plataforma Zion Collection · R$47 · pagamento único · Fase de Desenvolvimento), Meta video_id `1623948162813594`.
+- Anúncio novo **ZC47-FRIO-V17B-TERRENO** `120250605170410016`, mesmo conjunto `120250595901940016`, mesmo link e UTMs (`utm_content=v17-terreno`), texto sem "12 meses". **Ativado** em 27/11 (passa pela revisão do Meta).
+- Anúncio antigo V17 `120250600889160016` **pausado**. Orçamento, público, objetivo e campanha sem alteração (R$ 30/dia, teto R$ 420).
