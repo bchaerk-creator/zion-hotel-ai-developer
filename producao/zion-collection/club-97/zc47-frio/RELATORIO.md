@@ -56,3 +56,10 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 - Novo vídeo `zc47-v17b.mp4` (card: Plataforma Zion Collection · R$47 · pagamento único · Fase de Desenvolvimento), Meta video_id `1623948162813594`.
 - Anúncio novo **ZC47-FRIO-V17B-TERRENO** `120250605170410016`, mesmo conjunto `120250595901940016`, mesmo link e UTMs (`utm_content=v17-terreno`), texto sem "12 meses". **Ativado** em 27/11 (passa pela revisão do Meta).
 - Anúncio antigo V17 `120250600889160016` **pausado**. Orçamento, público, objetivo e campanha sem alteração (R$ 30/dia, teto R$ 420).
+
+## 27/11 · Teste de 1 dia com 8 vídeos ("Adesão inicial R$47")
+- Pedido de Bruno: subir os vídeos do V11 ao V18 para testar por 1 dia; nos vídeos e anúncios, o preço passa a ser "Adesão inicial R$47". Oferta e landing ficam como estão (Bruno explica depois).
+- Os previews que Bruno enviou (V12b, V14, V15, V17 longo de 92 s, V06) terminavam em "Trilha Desenvolvimento R$47/mês · assinatura mensal". Esse cartão foi trocado pelo novo: "Plataforma Zion Collection · Adesão inicial R$47 · Fase de Desenvolvimento" (sem o "/mês"). O V17, o V18 e o V19 foram renderizados de novo com o mesmo cartão.
+- **V12b, V14 e V15 mostram a Camila.** A autorização de imagem dela não está registrada no repositório; os vídeos subiram por ordem direta de Bruno.
+- Os 8 anúncios estão no conjunto `120250595901940016`, **ativos** (passam pela revisão do Meta) e com `utm_content` próprio cada um: V17C `120250606395340016`, V18B `120250606412810016`, V19B `120250606456490016`, V12B `120250606489560016`, V14 `120250606507590016`, V15 `120250606512390016`, V17LONGO `120250606515030016`, V06 `120250606519760016`.
+- **Pausados:** V17B `120250605170410016` e V17 `120250600889160016`. O orçamento continua R$ 30/dia (cerca de R$ 3,75 por vídeo num dia, pouco para dar resultado conclusivo) e o teto, R$ 420.
