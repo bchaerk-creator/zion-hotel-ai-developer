@@ -174,3 +174,13 @@ Pendências de conferência manual: prévia dos 3 anúncios; formulários em por
 - Causa do atraso do Pages: publicações canceladas por commits da outra sessão (vídeos); cada push novo cancela a publicação em andamento.
 - Orçamento vitalício **inviável nos conjuntos já criados**: o Meta recusa trocar orçamento diário por vitalício em conjunto existente ("o orçamento atual é periódico"). Só seria possível criando conjuntos novos, o que Bruno proibiu. Mantido o orçamento diário R$ 20, R$ 10 e R$ 10, data final 02/12/2026 20h.
 - Gasto já realizado nas campanhas 3 e 4: R$ 0.
+
+## LIBERAÇÃO DEFINITIVA · 27/11/2026 (aprovação expressa de Bruno: "Aprovado.") · para acompanhamento do ChatGPT
+Ativadas as campanhas 3 `120250606268260016` e 4 `120250606245620016` (com confirmação do Windsor). Conjuntos e anúncios já estavam ativos dentro delas.
+| Item | ID | Orçamento aplicado | Encerra |
+|---|---|---|---|
+| C3 A Terreno Lookalike 1% | conjunto `120250606282700016` · anúncio `120250606477690016` | R$ 20/dia | 02/12/2026 17h (Brasília) |
+| C3 B Terreno remarketing | conjunto `120250606283690016` · anúncio `120250606583390016` | R$ 10/dia | idem |
+| C4 Pousada/Airbnb | conjunto `120250606978700016` · anúncio `120250606981070016` (criativo `1510524187592289`) | R$ 10/dia | idem |
+Total R$ 40/dia · máximo pretendido R$ 200. Orçamento vitalício inviável (Meta recusa trocar diário por vitalício em conjunto existente); teto por campanha recusado (mínimo R$ 300). Controle do teto: data final de 5 dias a partir da ativação. Gasto antes da ativação: R$ 0.
+Intocados: campanhas 1 e 2 (pausadas), campanha de vídeos `ZC47 | Frio | Fase 1`, Bela, ClickMax, automações. Rotina de leads: pausada (leads só no Meta até reativar).
