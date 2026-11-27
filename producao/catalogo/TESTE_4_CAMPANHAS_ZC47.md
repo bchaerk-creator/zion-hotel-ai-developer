@@ -154,3 +154,8 @@ Total R$ 40/dia. Limite efetivo de 5 dias (proposto): teto de gasto da campanha 
 Orçamento global: R$ 40/dia da fase + R$ 30/dia da campanha de vídeos (a campanha `ZC47 | Frio | Fase 1` aparece ativa) = R$ 70/dia, dentro de R$ 80/dia (R$ 400 em 5 dias).
 Rastreio de origem: o Windsor (`facebook_leads`) devolve campaign_id, adset_id, adset_name, ad_name, form_id e form_name por lead; não devolve ad_id.
 Pendências antes de ligar (dependem de Bruno no Meta): validar os dois formulários em português, a tela de agradecimento e o link para `/inscricao`; criar os públicos de quem abriu e enviou cada formulário (e depois aplicar as exclusões); conferir a prévia dos três anúncios e dos sete cartões de cada um.
+
+### Ajuste de copy (27/11, pedido de Bruno) · só o texto principal dos 3 anúncios de formulário; cartões e narrativa dos cartões intactos; tudo PAUSADO
+Frase acrescentada: "Por meio da nossa plataforma, você poderá apresentar o seu terreno, o seu projeto ou a sua visão à equipe Zion, de forma estruturada. Isso abre a possibilidade de parcerias e investimentos no seu terreno ou empreendimento*." (pousada: "o seu negócio, o seu terreno de expansão ou a sua visão"). Nota: "*Contato, parceria e investimento sujeitos à análise e à agenda. Não são garantidos."
+Novos criativos (o Meta não edita criativo, cria um novo): C3-A `1417382006855324` (anúncio `120250606477690016`), C3-B `1833781987860428` (anúncio `120250606583390016`), C4 `1507212061318804` (anúncio `120250606981070016`).
+Redação de Bruno "você tem acesso à equipe Zion" foi escrita como "poderá apresentar à equipe Zion" + asterisco, para não soar como garantia de reunião.
