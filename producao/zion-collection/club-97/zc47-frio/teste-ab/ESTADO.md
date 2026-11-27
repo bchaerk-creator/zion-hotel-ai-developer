@@ -19,3 +19,9 @@ Progresso (IDs):
 - Ligados: campanhas A 120250606891890016 e B 120250606931740016, conjuntos 120250606936870016 e 120250607328680016 (R$30/dia cada, fim 2026-11-30T20:00Z) e os 4 anúncios.
 - Pausada: campanha fria ZC47 120250595856880016 (substituída pelo teste).
 - Pendente: lead de teste do formulário (Bruno, ferramenta do Meta); frase do preço mantida "Adesão inicial R$ 47".
+- 27/11 ~20:10 UTC: carrosséis A2 120250607339110016 e B2 120250607343490016 PAUSADOS (Bruno: nesta conversa só vídeos; carrosséis campeões são da outra conversa).
+- Criados no conjunto A (pausados, a ligar): V15 120250607482070016, V14 120250607486500016, V12B 120250607539490016
+- 27/11 ~20:20 UTC: V15 120250607482070016, V14 120250607486500016, V12B 120250607539490016 ATIVOS no conjunto A (utm_content a-v15/a-v14/a-v12b). Nesta conversa só vídeos.
+## Situação atual
+- A (R$30/dia, fim 30/11 20h UTC): V17C, V15, V14, V12B ativos; Carrossel 01 pausado.
+- B (R$30/dia, fim 30/11 20h UTC): V06 ativo; Carrossel 02 pausado.
