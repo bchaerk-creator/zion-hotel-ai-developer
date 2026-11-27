@@ -33,6 +33,11 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 - V19: "Área parada em destino turístico? Acesso à plataforma Zion Collection por R$ 47, pagamento único. Aprenda o passo a passo para estruturar a sua ideia e apresentar o seu projeto." Título "Sua área está parada?".
 - Todos: descrição "R$ 47 · pagamento único · acesso por 12 meses"; fecham com "Acesso por 12 meses. Pix ou cartão à vista. Reembolso em até 7 dias." e "*Parceria e investimento sujeitos à análise técnica e comercial. Não são garantidos."
 
+## Decisão de Bruno (27/11): subir só o V17
+- V19 `120250600896210016` **arquivado**.
+- V18 `120250600891600016`: o arquivamento foi recusado na tela de permissão; segue **pausado** (não gasta).
+- V17 `120250600889160016`: único anúncio do teste, pausado até o "aprovado" para ativar.
+
 ## Pendências e o que depende do Bruno
 1. **Ativar:** só com "aprovado" (teto Fase 1: R$ 30/dia, R$ 420 em 14 dias).
 2. **Conferir no Gerenciador** o estado e a prévia dos 3 anúncios (o Windsor não relê o estado na hora; a leitura pode vir do cache).
