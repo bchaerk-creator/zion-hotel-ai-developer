@@ -27,3 +27,4 @@ Progresso (IDs):
 - B (R$30/dia, fim 30/11 20h UTC): V06 ativo; Carrossel 02 pausado.
 - 27/11: Campanha B 120250606931740016 PAUSADA até o lead de teste do formulário ser validado (orientação da auditoria GPT + teto global R$80/dia). A segue ativa (R$30/dia).
 - Referência da fria anterior (Windsor, auditoria GPT): V15 R$3,77 / 209 impr / 19 cliques (9,09%) / 14 visitas; V17 original R$2,89 / 384 / 15 / 9; V17B R$0,68 / 58 / 5 / 4. Total R$7,65, 27 visitas, R$0,28 por visita. Amostra pequena; sem vencedor declarado.
+- 27/11: conjunto B 120250607328680016 reduzido de R$30 para R$10/dia (campanha B segue PAUSADA). Só o V06 120250607340000016 fica ativo dentro de B; Carrossel 02 pausado. Religar B depois do lead de teste + "aprovado" do Bruno. Orçamento global planejado: A R$30 + B R$10 + carrosséis 3 e 4 R$40 (outra conversa) = R$80/dia.
