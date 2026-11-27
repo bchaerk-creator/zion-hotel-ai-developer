@@ -162,3 +162,9 @@ Redação de Bruno "você tem acesso à equipe Zion" foi escrita como "poderá a
 
 ### Regra de Bruno (27/11): o carrossel de pousada/Airbnb sempre abre com o cartão da bolha
 O primeiro cartão do anúncio de pousada `120250606981070016` passou a ser o MESMO cartão 1 do carrossel de terrenos (`zc47-card-1.png`, bolha). Novo criativo `1795962314851759`. O cartão persona antigo ("Dono de pousada ou Airbnb: pensando em diferenciação...") ficou fora do anúncio e guardado em `docs/ads/zc47-carrossel/zc47v2-card-1-original-persona.png`; `zc47v2-card-1.png` agora é igual ao `zc47-card-1.png`. Carrossel segue com 7 cartões (bolha + V2 cartões 2 a 7). Ponto de atenção: o texto do cartão da bolha fala de "terreno" e "capital"; o título do cartão no Meta continua "Dono de pousada ou Airbnb". Tudo PAUSADO.
+
+## ATIVAÇÃO · 27/11/2026 (aprovação expressa de Bruno: "Pode ligar, está aprovado")
+Ligados (campanha, conjunto e anúncio): campanhas 3 `120250606268260016` e 4 `120250606245620016`; conjuntos `120250606282700016` (R$ 20/dia), `120250606283690016` (R$ 10/dia), `120250606978700016` (R$ 10/dia); anúncios `120250606477690016`, `120250606583390016`, `120250606981070016`.
+Orçamento total R$ 40/dia. **Limite efetivo:** o teto de gasto por campanha (`spend_cap`) de R$ 150 e R$ 50 foi RECUSADO pelo Meta (mínimo R$ 300). Alternativa aplicada: data final dos 3 conjuntos em 02/12/2026 20h (Brasília). Gasto máximo previsto na fase: cerca de R$ 200.
+Continuam PAUSADAS: campanhas 1 e 2 (venda direta) e seus conjuntos e anúncios. Não alterado: Bela, ClickMax, automações, `ZC47 | Frio | Fase 1`. Rotina de leads: pausada (reativar para os leads entrarem no ClickMax).
+Pendências de conferência manual: prévia dos 3 anúncios; formulários em português e telas de agradecimento; links para /inscricao; públicos de quem abriu/enviou para exclusão.
