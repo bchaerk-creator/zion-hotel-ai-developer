@@ -14,7 +14,7 @@ Responsável: Bruno Chaerk. Elaborado em 27/11/2026. Rascunho: nada aqui liga an
 | 3 | ZC47 · Terreno · Formulário | V1 terreno | formulário nativo do Meta **Land Bank** (já pronto) | tela final leva ao /inscricao |
 | 4 | ZC47 · Pousada/Airbnb · Formulário | V2 pousada/Airbnb | formulário nativo do Meta **novo para pousada** (Bruno está fazendo) | tela final leva ao /inscricao |
 
-Formulário nativo do terreno (campanha 3): **"Land Bank | Diagnóstico do terreno - Dono terreno"**, ID `1627911948376725` (página `576944608845537`; idioma cadastrado: English (US); 0 leads em 27/11). Formulário de pousada (campanha 4): ID a informar por Bruno.
+Formulário nativo do terreno (campanha 3): **"Land Bank | Diagnóstico do terreno - Dono terreno"**, ID `1627911948376725` (página `576944608845537`; idioma cadastrado: English (US); 0 leads em 27/11). Formulário de pousada (campanha 4): **"Land Bank | Diagnóstico do terreno - Dono pousada"**, ID `1127602653227754` (lido de foto borrada: confirmar os dígitos antes de criar o anúncio; idioma English (US); 0 leads em 27/11).
 
 UTM: `zc47-terreno`, `zc47-pousada-airbnb`, `zc47-terreno-form`, `zc47-pousada-airbnb-form`.
 Rotina horária de leads (`trig_01Uydzp4XuTKYuk8TPvxTWFM`): **pausada por Bruno em 27/11**; reativar antes de contar com leads no ClickMax (e mapear o formulário novo de pousada, que a rotina ainda não conhece).
