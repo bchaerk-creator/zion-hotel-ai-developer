@@ -25,3 +25,5 @@ Progresso (IDs):
 ## Situação atual
 - A (R$30/dia, fim 30/11 20h UTC): V17C, V15, V14, V12B ativos; Carrossel 01 pausado.
 - B (R$30/dia, fim 30/11 20h UTC): V06 ativo; Carrossel 02 pausado.
+- 27/11: Campanha B 120250606931740016 PAUSADA até o lead de teste do formulário ser validado (orientação da auditoria GPT + teto global R$80/dia). A segue ativa (R$30/dia).
+- Referência da fria anterior (Windsor, auditoria GPT): V15 R$3,77 / 209 impr / 19 cliques (9,09%) / 14 visitas; V17 original R$2,89 / 384 / 15 / 9; V17B R$0,68 / 58 / 5 / 4. Total R$7,65, 27 visitas, R$0,28 por visita. Amostra pequena; sem vencedor declarado.
