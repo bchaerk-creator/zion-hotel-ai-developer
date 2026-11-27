@@ -7,3 +7,10 @@ Decisões técnicas:
 - Vídeos: V17C 1758647026274663, V06 2410954612991521.
 Progresso (IDs):
 - Carrosséis 01 (a1-a5) e 02 (b1-b5) renderizados (car.html), publicados em docs/p/adbc67069af26ae0/zc47-videos/zc2-car-*.jpg e enviados ao Meta (hashes em carrossel-hashes.json).
+- Formulário 1959234188381295 (ZC2 | FORM | Cadastro de área | 27-11), tela final abre /inscricao?utm_medium=lead_form&utm_campaign=zc2-b-formulario
+- Campanha A 120250606891890016 (Tráfego, pausada); Campanha B 120250606931740016 (Leads, pausada)
+- Conjunto A 120250606936870016 (LPV, R$30/dia, pausado, 7 públicos quentes); Conjunto B 120250607328680016 (Lead, R$30/dia, pausado, LAL1% + 2 de formulário, exclui os 7 do A)
+- Anúncio A1 V17C 120250607336290016 (pausado)
+- Anúncio A2 Carrossel 01 120250607339110016 (pausado)
+- Anúncio B1 V06 120250607340000016 (pausado, formulário 1959234188381295)
+- Anúncio B2 Carrossel 02 120250607343490016 (pausado)
