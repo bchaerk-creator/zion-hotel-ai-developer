@@ -63,3 +63,8 @@ Sem promessa de reservas, renda, ocupação ou valorização; sem depoimento, n�
 - **V12b, V14 e V15 mostram a Camila.** A autorização de imagem dela não está registrada no repositório; os vídeos subiram por ordem direta de Bruno.
 - Os 8 anúncios estão no conjunto `120250595901940016`, **ativos** (passam pela revisão do Meta) e com `utm_content` próprio cada um: V17C `120250606395340016`, V18B `120250606412810016`, V19B `120250606456490016`, V12B `120250606489560016`, V14 `120250606507590016`, V15 `120250606512390016`, V17LONGO `120250606515030016`, V06 `120250606519760016`.
 - **Pausados:** V17B `120250605170410016` e V17 `120250600889160016`. O orçamento continua R$ 30/dia (cerca de R$ 3,75 por vídeo num dia, pouco para dar resultado conclusivo) e o teto, R$ 420.
+
+## 27/11 · Foco nos vídeos escolhidos por Bruno
+- Ficam **ativos** na campanha fria (R$ 30/dia, sem mudança de orçamento): V17C `120250606395340016`, V12B `120250606489560016`, V14 `120250606507590016` e V15 `120250606512390016`. V12b, V14 e V15 têm a Camila Reis; Bruno pediu explicitamente para ativá-los.
+- **Pausados como reserva:** V18B, V19B, V17LONGO e V06.
+- O teste A/B (campanhas ZC2 A e B, `teste-ab/`) continua pausado. Os carrosséis campeões estão em outra conversa; os que fiz aqui são uma versão para comparar.
