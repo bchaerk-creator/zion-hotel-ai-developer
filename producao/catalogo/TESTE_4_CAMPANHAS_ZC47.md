@@ -168,3 +168,9 @@ Ligados (campanha, conjunto e anúncio): campanhas 3 `120250606268260016` e 4 `1
 Orçamento total R$ 40/dia. **Limite efetivo:** o teto de gasto por campanha (`spend_cap`) de R$ 150 e R$ 50 foi RECUSADO pelo Meta (mínimo R$ 300). Alternativa aplicada: data final dos 3 conjuntos em 02/12/2026 20h (Brasília). Gasto máximo previsto na fase: cerca de R$ 200.
 Continuam PAUSADAS: campanhas 1 e 2 (venda direta) e seus conjuntos e anúncios. Não alterado: Bela, ClickMax, automações, `ZC47 | Frio | Fase 1`. Rotina de leads: pausada (reativar para os leads entrarem no ClickMax).
 Pendências de conferência manual: prévia dos 3 anúncios; formulários em português e telas de agradecimento; links para /inscricao; públicos de quem abriu/enviou para exclusão.
+
+## Estado em 27/11 (noite) · campanhas 3 e 4 PAUSADAS por Bruno até a aprovação visual definitiva
+- Cartão 1 de pousada/Airbnb final (`zc47v2-card-1-final.png`, no ar no Pages e idêntico ao arquivo local) aplicado ao anúncio `120250606981070016`: Meta confirmou novo criativo `1510524187592289` (cópia do `1795962314851759` com o cartão 1 trocado). `image_hash` e miniatura NÃO legíveis pelo Windsor (anúncio sem entrega devolve 0 linhas): conferir a prévia no Gerenciador.
+- Causa do atraso do Pages: publicações canceladas por commits da outra sessão (vídeos); cada push novo cancela a publicação em andamento.
+- Orçamento vitalício **inviável nos conjuntos já criados**: o Meta recusa trocar orçamento diário por vitalício em conjunto existente ("o orçamento atual é periódico"). Só seria possível criando conjuntos novos, o que Bruno proibiu. Mantido o orçamento diário R$ 20, R$ 10 e R$ 10, data final 02/12/2026 20h.
+- Gasto já realizado nas campanhas 3 e 4: R$ 0.
