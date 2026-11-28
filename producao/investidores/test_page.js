@@ -76,7 +76,7 @@ const RESP=['nao','empresario','participacao','redes','sul','agora','sim','sim']
  {const {ctx,p}=await novo(b,{width:390,height:844},{WA01:'',WA02:''});await responde(p,RESP);await p.fill('#nome','Caio Reis');await p.fill('#cidade','Salvador, BA');await p.fill('#fone','(71) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForSelector('.ok');
   ck('sem número configurado, nenhum link de WhatsApp aparece',(await p.locator('a[href*="wa.me"]').count())===0);await ctx.close()}
  // 6. conteúdo proibido
- {const {ctx,p}=await novo(b,{width:390,height:844});ck('vídeo sem URL aprovada não toca e não mostra botão de play',(await p.locator('#vbtn .play').count())===0&&(await p.locator('#vbtn video').count())===0);await ctx.close()}
+ {const {ctx,p}=await novo(b,{width:390,height:844});ck('vídeo institucional: botão de play presente e vídeo só carrega ao clicar',(await p.locator('#vbtn .play').count())===1&&(await p.locator('#vbtn video').count())===0);await p.click('#vbtn');await p.waitForTimeout(300);ck('vídeo institucional: toca ao clicar (16:9, controles)',(await p.locator('#vbtn video[controls]').count())===1&&/video-institucional\.mp4/.test(await p.getAttribute('#vbtn video','src')));await ctx.close()}
  const html=fs.readFileSync(path.join(DOCS,'investidores/index.html'),'utf8');
  ck('formulário não oferece investir nas operações atuais (Urubici/Florianópolis à parte)',!/Operações existentes|value="urubici"|\["urubici"|\["florianopolis"/.test(html));
  const vis=html.replace(/nem promessa de rentabilidade/,'').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'');

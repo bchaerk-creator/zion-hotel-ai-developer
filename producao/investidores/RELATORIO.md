@@ -36,3 +36,6 @@ Auditoria de 22 fluxos ativos, agentes, tags e sincronização Meta: ver `SEPARA
 
 ## 28/11 (noite, 2): publicada
 Landing no ar em `/oportunidades` (merge autorizado por Bruno; rollback = reverter o merge `0d7da8f`). Formulário do Meta `1143109468438825` criado. Detalhes e pendências: `MAPA_AUTOMACOES.md`, última atualização.
+
+## 28/11 · comando definitivo do formulário
+Pacote de aprovação em `META_FORM_V3_PARA_APROVACAO.md` (spec, prévia mobile, classificação A+/A/B/C/D/T/BUBBLE/PENDENTE com 24 testes, política do Meta, argumentos conferidos: 266.388 seguidores confirmados). Nada criado no Meta nem ativado.
