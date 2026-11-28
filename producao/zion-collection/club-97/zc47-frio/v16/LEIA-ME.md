@@ -28,3 +28,4 @@ Arquivos: docs/p/adbc67069af26ae0/zc47-videos/ZION-A1…A4-*.mp4 e zc47-v16b-inv
 
 ## M1 · Montagem dos atributos (55 s)
 A2 deck → A1 bubble completa → A3 experiência → "Investir em experiências…" → "Seja um investidor…" → "Junte-se a uma marca nacionalmente reconhecida…" → cartão "Invista em uma marca nacionalmente reconhecida". Arquivo ZION-M1-montagem-atributos.mp4.
+- M1 sem aviso (28/11, pedido de Bruno): ZION-M1-montagem-atributos-sem-aviso.mp4, sem a faixa de risco e sem o texto de risco no cartão; a versão original com aviso foi mantida.
