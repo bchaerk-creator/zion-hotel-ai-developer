@@ -4,7 +4,7 @@ const {chromium}=require('playwright');const fs=require('fs');const path=require
 const ROOT=path.resolve(__dirname,'../..'),DOCS=path.join(ROOT,'docs'),OUT=path.join(__dirname,'prints');
 const PAGES='https://bchaerk-creator.github.io/zion-hotel-ai-developer/';
 let pass=0,fail=0;const ck=(n,c,x='')=>{c?pass++:fail++;console.log((c?'OK  ':'FALHA ')+n+(x?'  '+x:''))};
-const TEST_CFG={WA01:'554861371061',WA02:'5548900000000',ENDPOINT:''}; // números de TESTE, não reais
+const TEST_CFG={ENDPOINT:''}; // WA01/WA02 usam os padrões da página (1061 e 98872-9883)
 async function novo(b,vp,cfg=TEST_CFG,url='file://'+DOCS+'/investidores/index.html'){
   const ctx=await b.newContext({viewport:vp,deviceScaleFactor:1,isMobile:vp.width<600,hasTouch:vp.width<600});
   await ctx.addInitScript(c=>{window.ZION_CONFIG=c},cfg);
@@ -57,6 +57,7 @@ const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora',
   ck('payload: id de submissão único',/\S{8,}/.test(d.submission_id||''));ck('payload: 9 respostas',Object.keys(d.respostas||{}).length===9);
   ck('payload sem CPF/patrimônio/faixa de capital',!/cpf|patrimonio|capital|faixa/i.test(JSON.stringify(d)));
   ck('tela final: dois canais de WhatsApp',(await p.locator('#go1').count())===1&&(await p.locator('#go2').count())===1);
+  ck('link 02 usa o número escolhido',(await p.getAttribute('#go2','href')).includes('5548988729883'));ck('link 01 usa o final 1061',(await p.getAttribute('#go1','href')).includes('554861371061'));
   ck('link 02 sem dados pessoais',!/Maria|9999|Florian/.test(await p.getAttribute('#go2','href')));
   await p.screenshot({path:`${OUT}/form-3-conclusao.png`});
   await p.reload();await p.waitForTimeout(400);ck('lead já cadastrado não vê o formulário de novo',(await p.textContent('#card')).includes('já está cadastrado'));
@@ -72,10 +73,11 @@ const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora',
   await p.fill('#nome','Beto Souza');await p.fill('#cidade','Recife, PE');await p.fill('#fone','(81) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForSelector('.ok');
   ck('comprador de Bubble vai para a loja, sem prospecção de investimento',(await p.textContent('#card')).includes('loja')&&(await p.locator('#go2').count())===0);await ctx.close()}
  // 5. sem config: nada quebra e não expõe link de WhatsApp
- {const {ctx,p}=await novo(b,{width:390,height:844},{});await responde(p,RESP);await p.fill('#nome','Caio Reis');await p.fill('#cidade','Salvador, BA');await p.fill('#fone','(71) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForSelector('.ok');
+ {const {ctx,p}=await novo(b,{width:390,height:844},{WA01:'',WA02:''});await responde(p,RESP);await p.fill('#nome','Caio Reis');await p.fill('#cidade','Salvador, BA');await p.fill('#fone','(71) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForSelector('.ok');
   ck('sem número configurado, nenhum link de WhatsApp aparece',(await p.locator('a[href*="wa.me"]').count())===0);await ctx.close()}
  // 6. conteúdo proibido
+ {const {ctx,p}=await novo(b,{width:390,height:844});ck('vídeo sem URL aprovada não toca e não mostra botão de play',(await p.locator('#vbtn .play').count())===0&&(await p.locator('#vbtn video').count())===0);await ctx.close()}
  const html=fs.readFileSync(path.join(DOCS,'investidores/index.html'),'utf8');
  const vis=html.replace(/nem promessa de rentabilidade/,'').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'');
- ck('sem preço, checkout, mensalidade ou rentabilidade prometida',!/R\$\s?\d|checkout|mensalidade|garantid|retorno de|rentabilidade/i.test(vis));
+ ck('sem preço, checkout, mensalidade ou rentabilidade prometida',!/R\$\s?\d|checkout|mensalidade|garantid|retorno de|rentabilidade|à venda|vendemos|compre/i.test(vis));
  console.log(`\n${pass} ok, ${fail} falhas`);await b.close();process.exit(fail?1:0)})();

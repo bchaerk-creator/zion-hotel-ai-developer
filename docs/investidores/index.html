@@ -106,7 +106,7 @@ footer a{text-decoration:underline}
 
 <section class="alt g"><div class="w duo">
   <img src="https://bchaerk-creator.github.io/zion-hotel-ai-developer/assets/operacoes/op08.webp" alt="Vista aérea de uma Bubble Zion" loading="lazy">
-  <div><div class="k">Urubici · Florianópolis</div><h2>Um modelo que já saiu do papel.</h2><p class="lead">Conheça nossas operações em Urubici e Florianópolis. A empresa está em plena expansão e as oportunidades podem envolver a expansão e também as operações atuais, caso a caso.</p></div>
+  <div><div class="k">Urubici · Florianópolis</div><h2>Um modelo que já saiu do papel.</h2><p class="lead">Conheça nossas operações em Urubici e Florianópolis.</p></div>
 </div></section>
 
 <section class="g"><div class="w duo rev">
@@ -147,9 +147,9 @@ footer a{text-decoration:underline}
 (function(){
 var CFG=Object.assign({
   ENDPOINT:"",            // URL do webhook/formulário do ClickMax (vazio = modo teste, nada é enviado)
-  WA01:"",                // WhatsApp 01 (disparo da Bela), só dígitos com DDI. A confirmar.
-  WA02:"",                // WhatsApp 02 (suporte comercial prioritário), só dígitos com DDI. A confirmar.
-  VIDEO:"https://bchaerk-creator.github.io/zion-hotel-ai-developer/trilha1/trailer/video-zion.mp4",
+  WA01:"554861371061",    // WhatsApp 01 (disparo da Bela, ClickMax, final 1061). Confirmado por Bruno.
+  WA02:"5548988729883",   // WhatsApp 02 (suporte comercial prioritário). Escolhido por Bruno em 28/11.
+  VIDEO:"",               // URL do vídeo institucional: só preencher depois que Bruno conferir o áudio (sem fala de promessa).
   CARDS:[1,2,3,4,5,6,7].map(function(n){return "https://bchaerk-creator.github.io/zion-hotel-ai-developer/ads/investidores-carrossel/card-"+n+".jpg"}),
   TERMO:"v1-2026-11-28"
 },window.ZION_CONFIG||{});
@@ -233,7 +233,8 @@ function pronto(ja,cls){
 }
 render();
 document.getElementById("ctaEquipe").addEventListener("click",function(e){if(jaCadastrado()&&CFG.WA02){e.preventDefault();window.open(wa(CFG.WA02,"Olá! Já me cadastrei no Zion Investors."),"_blank","noopener")}});
-document.getElementById("vbtn").addEventListener("click",function(){var b=this;var v=document.createElement("video");v.src=CFG.VIDEO;v.controls=true;v.autoplay=true;v.playsInline=true;b.appendChild(v);b.querySelector(".play").remove();b.onclick=null});
+var vb=document.getElementById("vbtn");if(!CFG.VIDEO){vb.querySelector(".play").remove();vb.style.cursor="default";vb.setAttribute("aria-label","Vídeo institucional em breve")}
+vb.addEventListener("click",function(){if(!CFG.VIDEO)return;var b=this;var v=document.createElement("video");v.src=CFG.VIDEO;v.controls=true;v.autoplay=true;v.playsInline=true;b.appendChild(v);b.querySelector(".play").remove();b.onclick=null});
 var car=document.getElementById("car");CFG.CARDS.forEach(function(u,i){var im=new Image();im.src=u;im.alt="Zion Investors, cartão "+(i+1)+" de "+CFG.CARDS.length;im.onerror=function(){im.remove()};car.appendChild(im)});
 })();
 </script>

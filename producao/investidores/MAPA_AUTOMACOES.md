@@ -49,3 +49,16 @@ Criar **um agente novo "Bela · Investidores" em rascunho** (persona própria: r
 3. `robots.txt` do Lovable bloqueia `/oportunidades` (ok para indexação; não afeta anúncio).
 4. Jurídico: oferta de "investir capital", venda de operações e participação em operações atuais (CVM 86/88/160). Reunião privada não sana oferta pública irregular.
 5. Números do carrossel (+266 mil, +23, +20, +6): ver `docs/ads/investidores-carrossel/PENDENCIAS.md`.
+
+## ATUALIZAÇÃO 28/11 · decisões de Bruno e rascunhos criados no ClickMax
+**Decisões:** WhatsApp 01 = final 1061 (ClickMax); WhatsApp 02 = +55 48 98872-9883 (link wa.me, fora do ClickMax); agente novo em rascunho; vídeo só após Bruno conferir o áudio; página fala só de expansão (sem "operações à venda"); pergunta 5 mantida; carrossel só com números documentados (+23 destinos, +20 anos, desde 2020, +260 mil seguidores; fotos originais do campeão mantidas; print do Instagram ainda pendente).
+
+**Criado no ClickMax (workspace Bruno's Workspace), tudo RASCUNHO, nada ativo, nada enviado, nenhum lead tocado:**
+| Item | ID | Estado |
+|---|---|---|
+| Tags ZI_NOVO_LEAD, ZI_ORIGEM_META, ZI_ORIGEM_WEB, ZI_BELA_DISPARO, ZI_ATENDIMENTO_PRIORITARIO, ZI_PERFIL_ADERENTE, ZI_REUNIAO_AGENDADA, ZI_EM_NEGOCIACAO | `046bec8d…`, `1ad1e6c3…`, `dcf3c47d…`, `945023c0…`, `fb0eb2b0…`, `c2a26139…`, `f4a002fc…`, `1a2b4d07…` | criadas |
+| Agente "Bela · Investidores (rascunho)" | `ac23f31d-2c64-42e3-87e3-f9ebb70a9dc5` | `draft`, sem publicação nem posto; escolta de 3 regras |
+| Modelo WhatsApp `investidores_boas_vindas` (UTILITY, pt_BR, canal 1061) | `814a0a86-9ff5-4f21-bdd5-a3bf202f8ac1` | `draft` local, **não enviado à Meta**; Bruno e jurídico revisam antes do `gupshup_templates_submit` (categoria UTILITY pode ser reclassificada para MARKETING pela Meta) |
+| Fluxo "Zion Investors · cadastro → CRM + Bela + fila prioritária (rascunho)" | `cd2fa28f-ab95-499c-a872-dee83e8dd151` | `draft` **vazio**: faltam gatilho (webhook do site / formulário Meta), passos e travas |
+
+**Ainda não feito:** gatilho webhook e passos do fluxo; campos personalizados (destino, prazo, preferência, intenção declarada, consentimento); ligação do `ZION_CONFIG.ENDPOINT`; tarefa prioritária e aviso ao responsável; roteamento de respostas da Bela atual (R$ 97) para a nova; nenhum teste real de disparo (exige "aprovado").

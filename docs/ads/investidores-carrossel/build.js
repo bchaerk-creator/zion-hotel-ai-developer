@@ -38,12 +38,12 @@ const cards=[
 <div class="b s" style="left:30px;width:454px;top:330px;font-size:104px;color:#111;line-height:1">+20</div>
 <div class="b s" style="left:30px;width:454px;top:440px;font-size:46px;color:#fff;letter-spacing:.06em">ANOS</div>
 <div class="b" style="left:50px;width:414px;top:510px;text-align:center;font-family:A;font-weight:600;font-size:23px;line-height:1.2;color:#fff">De experiência dos fundadores no mercado hoteleiro.</div>
-<div class="b s" style="left:30px;width:454px;top:640px;font-size:104px;color:#111;line-height:1">+6</div>
-<div class="b s" style="left:30px;width:454px;top:750px;font-size:46px;color:#fff;letter-spacing:.06em">ANOS</div>
+<div class="b s" style="left:30px;width:454px;top:646px;font-size:40px;color:#fff;letter-spacing:.1em">DESDE</div>
+<div class="b s" style="left:30px;width:454px;top:690px;font-size:100px;color:#111;line-height:1">2020</div>
 <div class="b" style="left:50px;width:414px;top:820px;text-align:center;font-family:A;font-weight:600;font-size:23px;line-height:1.2;color:#fff">De trajetória operacional da Zion no Brasil.</div>
 <div class="b s" style="left:36px;width:442px;top:960px;height:215px;border-radius:34px;background:#000;color:#fff;font-size:35px;display:flex;align-items:center;justify-content:center;line-height:1.12;padding:0 22px">Não estamos começando do zero. Estamos expandindo.</div>
 <div class="b" style="left:514px;top:0;width:566px;height:286px;background:#0c1608"></div><div class="b" style="left:514px;top:779px;width:566px;height:571px;background:#0c1608"></div>
-<div class="b w" style="left:560px;width:470px;top:112px;font-size:30px;color:#fff;font-weight:500">Desde 2020</div>
+<div class="b w" style="left:560px;width:470px;top:112px;font-size:30px;color:#fff;font-weight:500">Operação própria</div>
 <div class="b s" style="left:560px;width:470px;top:905px;font-size:46px;color:#fff;text-align:left;line-height:1.12">CONSOLIDANDO UM MODELO DE NEGÓCIO VALIDADO NA PRÁTICA.</div>`],
 // 05 · validação financeira (campeão 5)
 [5,`<div class="b" style="left:0;top:1102px;width:1080px;height:248px;background:${BE}"></div>
@@ -69,7 +69,7 @@ const card4=`<div class="b" style="left:0;top:0;width:1080px;height:795px;backgr
 <div class="b" style="left:445px;top:795px;width:635px;height:555px;background:${PU}"></div><div class="b" style="left:0;top:795px;width:445px;height:555px;background:${PU}"></div>
 <div class="b" style="left:52px;top:300px;width:400px;height:800px;border-radius:64px;background:#0b0b0b;padding:14px;box-shadow:0 30px 70px rgba(0,0,0,.6);border:3px solid #3a3a3a"><div style="width:100%;height:100%;border-radius:50px;overflow:hidden;background:#000;position:relative">${tela}<div style="position:absolute;top:12px;left:50%;transform:translateX(-50%);width:110px;height:30px;border-radius:20px;background:#000"></div></div></div>
 <div class="b s" style="left:500px;width:530px;top:120px;font-size:54px;font-weight:700;color:#fff;text-align:left;line-height:1.08">UMA REFERÊNCIA NACIONAL EM GLAMPING.</div>
-<div class="b s" style="left:500px;width:530px;top:420px;font-size:98px;font-weight:700;color:#c9b37e;text-align:left;line-height:.95">+266<br><span style="font-size:42px;letter-spacing:.05em;color:#fff">MIL SEGUIDORES</span></div>
+<div class="b s" style="left:500px;width:530px;top:420px;font-size:98px;font-weight:700;color:#c9b37e;text-align:left;line-height:.95">+260<br><span style="font-size:42px;letter-spacing:.05em;color:#fff">MIL SEGUIDORES</span></div>
 <div class="b" style="left:500px;top:640px;width:530px;font-family:A;font-weight:600;font-size:27px;line-height:1.5;color:#fff">• Forte posicionamento online<br>• Excelente reputação digital<br>• Reconhecimento nacional</div>
 <div class="b" style="left:480px;top:850px;width:560px;font-family:A;font-weight:400;font-size:23px;line-height:1.35;color:#0b0b0b;font-weight:600">A Zion tornou-se uma referência no mercado brasileiro de glamping e hotelaria de luxo natural.</div>
 <div class="b" style="left:0;top:1160px;width:1080px;height:190px;background:${PU}"></div>

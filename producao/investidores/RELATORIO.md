@@ -27,3 +27,6 @@ Classificação (aderente, em maturação, apenas pesquisa, comprador de Bubble)
 4. Texto "Operações": a página diz que as oportunidades "podem envolver a expansão e também as operações atuais, caso a caso" (você informou que Urubici e Florianópolis também estão à venda/investimento). **Revisão jurídica.**
 5. Pergunta 5 do Master V2 ("sede existente / nova / ambas"): interpretei como operações existentes / novas / ambas. Confirmar.
 6. Aprovação comercial e jurídica antes de ativar campanha ou disparo.
+
+## Atualização 28/11 (noite)
+Decisões de Bruno aplicadas na página (WA01 1061, WA02 98872-9883, só expansão, vídeo sem URL até conferência de áudio) e no carrossel (só números documentados). 43 testes ok. Rascunhos criados no ClickMax: ver `MAPA_AUTOMACOES.md`, seção Atualização. Nada ativado.
