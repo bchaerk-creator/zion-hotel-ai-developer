@@ -29,3 +29,14 @@ Arquivos: docs/p/adbc67069af26ae0/zc47-videos/ZION-A1…A4-*.mp4 e zc47-v16b-inv
 ## M1 · Montagem dos atributos (55 s)
 A2 deck → A1 bubble completa → A3 experiência → "Investir em experiências…" → "Seja um investidor…" → "Junte-se a uma marca nacionalmente reconhecida…" → cartão "Invista em uma marca nacionalmente reconhecida". Arquivo ZION-M1-montagem-atributos.mp4.
 - M1 sem aviso (28/11, pedido de Bruno): ZION-M1-montagem-atributos-sem-aviso.mp4, sem a faixa de risco e sem o texto de risco no cartão; a versão original com aviso foi mantida.
+
+## ZION-INVESTIDOR · Marca e potencial (28/11, 79 s, sem aviso de risco a pedido de Bruno)
+Foco no investidor (não no comprador de bolha). Sem "deck de madeira".
+1. A marca: Camila "O glamping representa um novo turismo de experiência. Zion Glamping Collection, referência no Brasil." + bubbles.
+2. Bruno (IMG_2377) "Nós da Zion estamos em plena expansão, somos referência do glamping no Brasil." + aérea.
+3. O potencial: Bruno (IMG_2379) "O setor do glamping só está começando no Brasil e você pode ser o próximo precursor desse momento de hospedagem."
+4. Bruno (IMG_2382) "Nós da Zion estamos abrindo a oportunidade de expansão do nosso modelo de negócio por todo o Brasil."
+5. Camila "…funcionando como um hotel premium… experiência única… locais exclusivos e deslumbrantes de todo o Brasil."
+6. Camila "…um modelo com um ecossistema de reservas e marketing já estabelecido para impulsionar o seu negócio."
+7. Camila "Investir em experiências é investir no futuro da hotelaria. E a Zion está pronta para caminhar ao seu lado nessa jornada."
+8. Camila "Seja um investidor e colecionador de paraísos…" + "Junte-se a uma marca nacionalmente reconhecida…" → cartão "Invista em uma marca nacionalmente reconhecida · Fale com a Zion".
