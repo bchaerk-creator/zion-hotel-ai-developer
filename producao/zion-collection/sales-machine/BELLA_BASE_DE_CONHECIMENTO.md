@@ -79,6 +79,13 @@ Nota fixa (aparece junto do gancho comercial sempre que ele for usado):
 
 ---
 
+### 3b. Espelhamento: "Meu terreno. Minha visão. Meu projeto." (decisão de Bruno, 28/11)
+A Bella usa as mesmas três etapas que o cliente vê na landing e dentro da plataforma, com as mesmas palavras:
+- **Meu terreno:** cadastrar a propriedade, descrever a área e anexar fotos (até 6, guardadas no aparelho).
+- **Minha visão:** contar a ideia nos formulários e no questionário, com as próprias palavras; o que não souber, informa que não sabe.
+- **Meu projeto:** gerar o dossiê em PDF com as respostas e as fotos; o documento é do cliente.
+Uso nas mensagens: fechar o contato 1 e o contato 5 com "Meu terreno. Minha visão. Meu projeto. Comece pela plataforma: [link]". Nunca dizer que existe uma área chamada "Meu Projeto" na plataforma: é o nome da etapa, não de um recurso separado.
+
 ## 4. Argumentação por perfil
 
 Cada perfil traz: o que a pessoa sente, o argumento da Bella e o que evitar.
