@@ -1,7 +1,7 @@
 <!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><title>Carrossel Zion</title>
 <style>
 @font-face{font-family:C;src:url(../../../../docs/assets/fonts/cormorant.woff2);font-weight:300 700}
-@font-face{font-family:A;src:url(__FONTS__/aventa.woff2);font-weight:300 700}
+@font-face{font-family:A;src:url(../../../../docs/assets/fonts/aventa.woff2);font-weight:300 700}
 :root{--bg:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--dest:#C9B37E;--m:96px}
 *{margin:0;box-sizing:border-box}
 body{background:#222;display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px}
@@ -66,6 +66,7 @@ td:first-child{font-weight:700;color:var(--dest);width:260px}
 .marca-ext{font-family:C;font-size:64px;letter-spacing:.14em;color:var(--creme);margin-bottom:28px}
 .rod{position:absolute;left:var(--m);right:var(--m);bottom:118px;font-size:24px;color:var(--areia);opacity:.85}
 .seta-l:before{content:"→  ";color:var(--dest)}
+.solo .visual{top:230px;bottom:auto}.com-rod .visual{bottom:190px}.com-rod.solo .visual{bottom:auto}.rod{bottom:112px}
 </style></head><body>
 <script id="dados" type="application/json">{"marca":"Zion Collection · Bruno Chaerk","tema":"passo a passo: carrossel pronto com o Claude","slides":[{"papel":"capa","kicker":"Passo a passo","titulo":"Carrossel pronto em 4 passos","texto":"Com o Claude, sem abrir editor de design."},{"papel":"texto","kicker":"O jeito antigo","titulo":"Uma tarde inteira ajustando fonte","texto":"Escrever num lugar, montar slide por slide em outro. No jeito novo, o Claude escreve e monta, e você só decide."},{"papel":"passo","kicker":"Passo 1","titulo":"Escolha o tipo pelo objetivo","texto":"Alcance pede opinião forte ou notícia, salvamento pede lista ou passo a passo, e venda pede estudo de caso.","visual":{"tipo":"tabela","colunas":["Objetivo","Tipos"],"linhas":[["Alcance","Opinião forte ou notícia"],["Salvamento","Lista ou passo a passo"],["Venda","Estudo de caso"]]}},{"papel":"passo","kicker":"Passo 2","titulo":"Peça o roteiro slide a slide","texto":"Diga o tipo, o público e quantos slides, com no máximo 30 palavras em cada um.","visual":{"tipo":"chat","texto":"Crie um carrossel passo a passo, com 8 slides, para donos de pousada e glamping. No máximo 30 palavras por slide.","legenda":"Exemplo de prompt no chat do Claude"}},{"papel":"passo","kicker":"Passo 3","titulo":"Peça a arte em HTML","texto":"Cada slide com 1080 por 1350 pixels, a sua fonte e uma cor de destaque só.","visual":{"tipo":"lado","esquerda":"Conversa","direita":"Carrossel","conversa":"Agora faça a arte em HTML. Cada slide com 1080 × 1350 px, minha fonte e uma cor de destaque.","minis":["01","02","03"],"legenda":"Ilustração: o carrossel aberto ao lado da conversa"}},{"papel":"passo","kicker":"Passo 4","titulo":"Exporte em PNG","texto":"No Claude Code, ele tira a foto de cada slide e salva slide-01.png, slide-02.png e assim por diante.","visual":{"tipo":"pasta","nome":"carrossel","arquivos":["slide-01.png","slide-02.png","slide-03.png","slide-04.png","slide-05.png","slide-06.png","slide-07.png","slide-08.png"],"legenda":"A pasta com os 8 arquivos"}},{"papel":"texto","kicker":"O resultado","titulo":"8 PNGs do tamanho do feed","texto":"A sua identidade em todos, e um HTML que vira o molde do próximo carrossel: você só troca o texto."},{"papel":"cta","kicker":"Salva e comenta","titulo":"Comenta PROMPT","texto":"Salva pra fazer o seu hoje e comenta PROMPT que eu te mando os 4 prompts no direct."}],"legenda":"Carrossel pronto em 4 passos com o Claude, sem abrir editor de design.\n\n1) Escolha o tipo pelo objetivo\n2) Peça o roteiro slide a slide\n3) Peça a arte em HTML\n4) Exporte em PNG\n\nSalva pra fazer o seu hoje e comenta PROMPT que eu te mando os 4 prompts no direct."}</script>
 <script>
@@ -98,7 +99,7 @@ function visual(v){
 }
 D.slides.forEach((s,i)=>{
  const el=document.createElement('section');
- el.className='slide '+s.papel+(!D.fundoUnico&&i%2?' alt':'')+(s.visual&&s.visual.tipo==='secao'?' sec':'');
+ el.className='slide '+s.papel+(!D.fundoUnico&&i%2?' alt':'')+(s.visual&&s.visual.tipo==='secao'?' sec':'')+(!s.titulo&&!s.texto?' solo':'')+(s.rodape?' com-rod':'');
  const seta=s.papel==='capa'?'<div class="seta">Arrasta pro lado →</div>':'';
  const img=s.imagem?'<div class="img" style="background-image:url('+e(s.imagem)+')"></div><div class="sh"></div>':'';
  const rod=s.rodape?'<div class="rod">'+e(s.rodape)+'</div>':'';
