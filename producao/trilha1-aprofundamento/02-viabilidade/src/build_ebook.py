@@ -37,7 +37,7 @@ def fim():
 
 def bx(k, titulo, corpo, cls=""):
     # caixas longas de texto podem continuar na página seguinte (como as tabelas longas); exemplo curto e «Pare e pense» não
-    if len(corpo) > 650 and not any(x in cls.split() for x in ("pare", "ex", "levar")):
+    if len(corpo) > 650 and "<table" not in corpo and not any(x in cls.split() for x in ("pare", "ex", "levar")):
         cls = (cls + " solta").strip()
     return f'<div class="bx {cls}"><span class="k">{k}</span>' + (f"<h4>{titulo}</h4>" if titulo else "") + corpo + "</div>"
 
@@ -194,7 +194,7 @@ add(cita("Se o investimento total, com a infraestrutura comum e as cotações, p
 add("<p>A 6A conferiu a primeira metade do critério: o investimento coube. A 6B confere a segunda: com a lista de custos dela, o conservador leva quantos anos?</p>")
 add(pare("De onde veio a margem de 40% da página 6 da Marina?", ["Da lista de custos dela", "Da margem de referência da Zion, uma simplificação para a primeira conta", "Do extrato de uma operação parecida"],
          "B. É a referência orientativa da página 6, não confirmada. A margem real sai da lista de custos, e é isso que a 6B monta."))
-add(faca("O meu ponto de partida", [("A margem da minha página 6, e de onde ela veio:", False), ("O CAPEX e o giro da minha 6A:", False), ("O meu critério para parar, como escrevi na página 6:", False)]))
+add(faca("O meu ponto de partida", [("A margem da minha página 6, de onde ela veio, e o CAPEX e o giro da minha 6A:", False), ("O meu critério para parar, como escrevi na página 6:", False)]))
 add(levar(["A 6B começa nas páginas 6 e 6A, não do zero.", "A margem da página 6 é referência: simplificação, não promessa.", "A margem real sai da sua lista de custos, com o seu trabalho e a reserva dentro.", "A 6B confere a segunda metade do critério que você escreveu."]))
 fim()
 
@@ -208,13 +208,13 @@ cap("02", "O mapa da conta", "Seis degraus <i>da receita ao que sobra</i>",
     "A página 6 fez a conta em uma linha: receita bruta vezes a margem. A 6B faz a mesma conta em seis degraus, para ver onde o dinheiro sai. No fim, a pergunta é a mesma: quanto sobra?")
 add(cita("Faturamento não é lucro, e o custo fixo não diminui na baixa.", "Pilar 6 · Pré-viabilidade, cap. 05"))
 add("<h3>Os seis degraus</h3>")
-add(tab(["Degrau", "O que entra", "A pergunta-chave"], [
-    ["1 · Receita bruta", "Hospedagem (noites × diária) e outras receitas (captura × ticket)", "Quanto o hóspede paga, no ano?"],
-    ["2 · Receita real", "Menos o imposto sobre a receita, a comissão, o cartão e o cancelamento", "Quanto chega de fato à sua conta?"],
-    ["3 · Margem de contribuição", "Menos os custos de cada noite e de cada estadia (lavanderia, amenidades, energia da noite, perdas)", "Quanto cada noite vendida deixa?"],
-    ["4 · Resultado antes da reserva", "Menos os custos fixos do mês, com o seu trabalho dentro", "A operação paga as contas do mês?"],
-    ["5 · Depois do modelo", "Menos aluguel do terreno, taxa de gestão ou royalty, se houver", "Quanto fica depois de quem divide a receita com você?"],
-    ["6 · O que sobra", "Menos a reserva de reposição", "Quanto sobra depois de guardar para trocar o que gasta?"]], larg=("26%", "44%", "30%"), leg="A conta em seis degraus (elaboração própria a partir do e-book «Receitas, Custos e Modelos de Rentabilidade»)"))
+add(tab(["Degrau", "O que sai antes dele", "A pergunta-chave"], [
+    ["1 · Receita bruta", "nada: hospedagem e outras receitas", "Quanto o hóspede paga, no ano?"],
+    ["2 · Receita real", "imposto, comissão, cartão, cancelamento", "Quanto chega à sua conta?"],
+    ["3 · Margem de contribuição", "custos de cada noite e de cada estadia", "Quanto cada noite deixa?"],
+    ["4 · Resultado antes da reserva", "custos fixos, com o seu trabalho", "A operação paga o mês?"],
+    ["5 · Depois do modelo", "aluguel, gestão ou royalty, se houver", "Quanto fica depois de quem divide?"],
+    ["6 · O que sobra", "reserva de reposição", "Quanto sobra de verdade?"]], larg=("30%", "36%", "34%"), leg="Elaboração própria a partir do e-book «Receitas, Custos e Modelos de Rentabilidade»"))
 add(ex("Os seis degraus da Marina, no conservador", degraus([
     ("1 · Receita bruta", "hospedagem", CO["bruta"], ""), ("Deduções", "imposto, comissão, cartão, cancelamento", CO["ded"], "sai"),
     ("2 · Receita real", "", CO["real"], ""), ("Custos de cada noite", "por noite e por estadia", CO["var"], "sai"),
@@ -229,11 +229,7 @@ add(bx("Do Pilar 6 para a 6B", "O que muda de uma página para a outra", tab(["N
     ["Tempo de volta = investimento total ÷ resultado do conservador, sem rampa", "Escada: o CAPEX no ano zero, o primeiro ano com rampa, o giro testado à parte no colchão. A conta do Pilar 6 aparece ao lado"],
     ["Régua de 5, 8 e 12 anos; vereditos avançar, testar, ajustar, pausar", "Régua da Zion em cinco passos (8 e 12 anos, colchão de 10%, valor presente); vereditos Avançar, Testar, Ajustar, Pausar ou Redesenhar. O «ajustar» acima de 12 anos do Pilar 6 se chama aqui «Redesenhar»"],
     ["«O que precisa ser verdade» com a margem fixa", "A mesma pergunta com o custo aberto: cada real de diária a mais fica quase inteiro"]], larg=("44%", "56%"))))
-add("<h3>O que fica fora desta conta</h3>"
-    "<ul><li><b>A parcela do empréstimo da obra:</b> é o custo da captação, e mora no Pilar 7. A 6B mede se a operação devolve o investimento; o Pilar 7 decide como pagá-lo.</li>"
-    "<li><b>O imposto sobre o lucro e a distribuição ao sócio:</b> dependem do regime, e quem responde é o contador.</li>"
-    "<li><b>O terreno:</b> fica ao lado, nunca somado sem dizer. A conta com ele aparece à parte, com a razão escrita (capítulo 08). Fora da conta não quer dizer de graça (Pilar 6).</li>"
-    "<li><b>A taxa de limpeza cobrada à parte do hóspede:</b> não é receita de hospedagem; ela paga a limpeza.</li></ul>")
+add("<h3>O que fica fora desta conta</h3><p>A <b>parcela do empréstimo da obra</b> é custo da captação e mora no Pilar 7. O <b>imposto sobre o lucro</b> e a distribuição ao sócio dependem do regime: quem responde é o contador. O <b>terreno</b> fica ao lado, nunca somado sem dizer: fora da conta não quer dizer de graça (Pilar 6). A <b>taxa de limpeza</b> cobrada à parte do hóspede não é receita de hospedagem: ela paga a limpeza.</p>")
 add(pare("A comissão da plataforma mora em qual degrau?", ["Degrau 3, nos custos de cada noite", "Degrau 2, nas deduções", "Nos dois, por segurança"],
          "B. A comissão sai antes de o dinheiro chegar: é dedução. Contá-la também nos custos de cada noite é o erro de contar duas vezes."))
 add(aplic("escreva as seis palavras da escada numa folha e, embaixo de cada uma, as saídas de dinheiro do seu projeto que você já conhece.",
@@ -287,13 +283,8 @@ cap("04", "Degrau 2", "Do bruto ao real: <i>o que sai antes de você ver o dinhe
     "Entre o que o hóspede paga e o que chega à sua conta existem quatro saídas. Elas não dependem de você gastar: saem de cada reserva vendida. Por isso moram no degrau 2, antes de qualquer custo.")
 add(cita("Imposto sobre a receita é a omissão mais frequente e a mais cara.", "Jornada do COMO, Etapa 02, citada no e-book «Receitas, Custos e Modelos de Rentabilidade»"))
 add("<h3>O imposto sobre a receita</h3>"
-    "<p>O imposto sobre a receita é sempre uma linha própria. A alíquota não vem deste e-book, nem da ficha, nem de uma faixa: vem do seu contador. Anote a resposta com a data e o nome de quem respondeu. <b>Até o contador responder, a linha fica em branco</b>, com o nome, e o resultado leva o rótulo «antes do imposto sobre a receita». O Pilar 6 já pedia esse compromisso: levar a conta ao contador e anotar a resposta.</p>")
-add(cita("Nada aqui substitui contador", "Volume 04 · Estratégia, cap. 13"))
-add(bx("Pergunte ao seu contador", "As quatro perguntas, sem pedir número a ninguém",
-       "<ul><li>Qual é o regime mais adequado para o meu caso, e qual imposto incide sobre a receita de hospedagem e sobre as outras receitas, com que alíquota efetiva?</li>"
-       "<li>Em que ponto do crescimento (fase dois, fase três) essa resposta muda?</li>"
-       "<li>Quais encargos incidem sobre a minha retirada e sobre o salário da pessoa local?</li>"
-       "<li>Imposto sobre o lucro e distribuição ao sócio: como entram?</li></ul><p class=\"nota\">Anote a data e o nome de quem respondeu. As perguntas estão também no Checklist da página 6B.</p>", "faca"))
+    "<p>O imposto sobre a receita é sempre uma linha própria. A alíquota não vem deste e-book, nem da ficha, nem de uma faixa: vem do seu contador. Anote a resposta com a data e o nome de quem respondeu. <b>Até o contador responder, a linha fica em branco</b>, com o nome, e o resultado leva o rótulo «antes do imposto sobre a receita». «Nada aqui substitui contador» (Volume 04 · Estratégia, cap. 13).</p>")
+add(bx("Pergunte ao seu contador", "", "<p>«Qual é o regime mais adequado para o meu caso, e qual imposto incide sobre a receita de hospedagem e sobre as outras receitas, com que alíquota efetiva?» e «Em que ponto do crescimento (fase dois, fase três) essa resposta muda?». Anote a data e o nome de quem respondeu. As outras perguntas (encargos, imposto sobre o lucro) estão no Checklist da página 6B.</p>", "faca"))
 add("<h3>Comissão: por reserva ou sobre o total?</h3>"
     "<p>A plataforma cobra uma porcentagem <b>por reserva</b>. Mas nem toda reserva vem dela. Na conta, o que importa é a comissão <b>sobre a receita total</b>: a parte das noites vendidas pela plataforma vezes a comissão dela. As vendas diretas pagam outra coisa: a taxa do cartão.</p>"
     "<p>O cancelamento e o não comparecimento entram como dedução, em porcentagem da receita de hospedagem. A faixa citada pela fonte é de 1% a 3% (e-book «Receitas, Custos e Modelos de Rentabilidade»): fora dela, confira.</p>")
@@ -305,7 +296,7 @@ add(ex("As deduções da Marina", tab(["Linha", "Conta", "% da receita", "R$ no 
     ["!Deduções", "", "18,2%", m2(CO["ded"])],
     ["!Receita real", "271.915,88 − 49.488,69", "81,8%", m2(CO["real"])]], v=(2, 3), larg=("30%", "36%", "14%", "20%"))
     + f'<p class="conf">Conferência: 6 + 9 + 1,2 + 2 = 18,2%; 0,182 × 271.915,88 = 49.488,69. Bate.</p><p class="nota">O imposto de 6%: {CONT[0].lower() + CONT[1:]} Você deixa a sua linha em branco até falar com o seu contador.</p>'))
-add("<h3>Não conte duas vezes</h3><p>A comissão e o cartão já saíram no degrau 2. Se a sua lista de custos de cada noite também tiver «comissão» ou «taxa da plataforma», tire de lá. A ficha pede a confirmação escrita: «a comissão não está também nos custos de cada noite».</p>")
+add("<p><b>Não conte duas vezes:</b> se a sua lista de custos de cada noite tiver «comissão», tire de lá. A ficha pede a confirmação escrita.</p>")
 add(pare("A Marina passa a vender 80% das noites pela plataforma, que cobra 15% por reserva. Qual é a comissão sobre a receita total?", ["15%", "12%", "9%"],
          "B. 0,80 × 15% = 12%. O exercício E2, no capítulo 12, refaz a conta inteira com esse número."))
 add(aplic("escreva a linha do imposto em branco, com o nome do contador e a data em que você vai perguntar. Depois a parte das noites que vem da plataforma e a comissão dela.",
@@ -356,15 +347,12 @@ cap("06", "Degrau 6", "Quanto sobra: <i>a margem que sai da sua lista</i>",
 add("<p>As fontes citam de 3% a 6% da receita bruta (Volume A05 · Investimento: 3% a 5%; Jornada do COMO, Etapa 09: 3% a 6%); a régua da Zion usa 3%. É faixa citada pela fonte, não meta. E uma regra: <b>reserva ou depreciação, nunca as duas</b>. Somar as duas cria um prejuízo que não existe.</p>")
 add(f"<p>Na Marina, cada noite deixa 645 × 0,778 − 97,50 = R$ 404,31; 421,575 × 404,31 = 170.446,99; menos os fixos de 112.627,20, sobram <b>{brl(c.SOBRA, 2)}</b>. Bate. A margem aberta dela, no conservador, é <b>21,3%</b>. É a margem que sai da lista dela. Na página 6, a margem de referência era 40%; o capítulo 10 mostra, linha por linha, de onde vem a diferença.</p>")
 add(cita("Receita é vaidade. Margem é sanidade. Caixa é realidade.", "Volume A05 · Investimento, cap. 09"))
-add("<h3>A régua da margem</h3>")
-add(tab(["Margem do que sobra, no conservador", "Leitura"], [["30% ou mais", "boa"], ["20% a 30%", "atenção"], ["10% a 20%", "risco"], ["abaixo de 10%", "o modelo não fecha"]],
-        larg=("50%", "50%"), leg="Faixa citada pela fonte; não é meta nem promessa. Vale para a margem medida depois do imposto, do cancelamento, da reserva e do trabalho do dono. Não compare com margens de outras réguas, medidas em outro degrau."))
+add("<p><b>A régua da margem</b> (faixa citada pela fonte; não é meta nem promessa): 30% ou mais, boa; 20% a 30%, atenção; 10% a 20%, risco; abaixo de 10%, o modelo não fecha. Vale para a margem medida depois do imposto, do cancelamento, da reserva e do trabalho do dono; não compare com margens de outras réguas.</p>")
 add("<h3>O ponto de equilíbrio, lido com a folga</h3>"
     "<p>O ponto de equilíbrio é a ocupação em que o ano empata: o que as noites deixam paga exatamente os custos fixos. Divide-se o fixo do ano pelo que cada noite deixa. Sozinho, ele diz pouco. Lido ao lado da sua ocupação medida, diz quanto a operação aguenta: essa distância é a <b>folga</b>. O ano precisa fechar; o mês, não.</p>")
 add(ex("O equilíbrio da Marina", f"<p>112.627,20 ÷ 404,31 = <b>{dec(c.N_EQ, 2)} noites</b>; ÷ 1.095 = <b>{pct(c.OCUP_EQ)}</b> de ocupação. A ocupação medida dela é 38,5%. Folga: 38,5 − 25,4 = <b>{dec(c.FOLGA_EQ * 100, 1)} pontos</b>.</p>"
        '<p class="conf">Conferência: 278,5665 × 404,31 = 112.627,20. Bate.</p>'
-       "<p>Leitura: com folga (mais de 5 pontos). Folga negativa seria crítica; de 0 a 5 pontos, fina. A operação da Marina se paga com folga. A pergunta seguinte é outra: e o investimento? O capítulo 08 responde.</p>"))
-add(cita("Acima de 70% de ocupação de equilíbrio, o problema é estrutural e não comercial.", "Jornada do COMO, Etapa 09, Passo 09"))
+       "<p>Leitura: com folga (mais de 5 pontos). Folga negativa seria crítica; de 0 a 5 pontos, fina; e «acima de 70% de ocupação de equilíbrio, o problema é estrutural e não comercial» (Jornada do COMO, Etapa 09, Passo 09). A operação da Marina se paga com folga. A pergunta seguinte é outra: e o investimento? O capítulo 08 responde.</p>"))
 add("<h3>O custo por diária vendida e as três zonas</h3>"
     "<p>Divida tudo o que sai no ano (deduções, custos de cada noite, fixos e reserva) pelas noites vendidas: é o custo de cada diária vendida. Ele cria três zonas de preço.</p>")
 add(ex("As três zonas da Marina", tab(["Zona", "Diária", "O que acontece"], [
@@ -452,10 +440,7 @@ add(ex("A escada da Marina (conservador)", tab(["Ano", "Fluxo do ano", "Acumulad
        '<p class="conf">Conferência: no fim do ano 15, −810.123,04 + 14 × 57.819,79 = −646,00; no ano 16 vira; 15 + 646,00 ÷ 57.819,79 = 15,01. Bate.</p>'))
 add("<h3>Como o Pilar 6 calcula, ao lado</h3>"
     f"<p>O Pilar 6 divide o investimento total (com o giro) pelo resultado do conservador, sem rampa. Com a conta aberta da Marina: 844.655,02 ÷ 57.819,79 = <b>{dec(c.VOLTA_P6['cons'], 1)} anos</b>. As duas contas seguem regras diferentes e dão números próximos, não iguais. Não misture: compare cada uma com a régua dela. Na Marina, as duas passam de 12 anos.</p>")
-add(tab(["Tempo de volta (escada)", "Leitura da régua da Zion", "Como o Pilar 6 lê"], [
-    ["até 8 anos", "passa", "até 5, muito bom e raro em construção do zero; 5 a 8, bom"],
-    ["de 8 a 12 anos", "ajustar", "aceitável quando há valorização relevante"],
-    ["acima de 12, ou «não se paga»", "redesenhar", "só com uma razão escrita"]], larg=("26%", "26%", "48%"), leg="Faixas citadas pela fonte; não são meta nem promessa"))
+add("<p><b>A régua</b> (faixas citadas pela fonte, não meta): até 8 anos, passa; de 8 a 12, ajustar; acima de 12, ou «não se paga», redesenhar. O Pilar 6 lê assim: até 5, muito bom e raro em construção do zero; 5 a 8, bom; 8 a 12, aceitável quando há valorização relevante; acima de 12, só com uma razão escrita.</p>")
 add("<h3>O valor presente dos próximos dez anos</h3>"
     "<p>Um real daqui a dez anos vale menos do que um real hoje, porque o seu dinheiro poderia render em outro lugar. O valor presente traz os dez anos de fluxo para hoje, com uma taxa, e desconta o CAPEX. Positivo: o projeto rende mais do que a sua taxa. Negativo: rende menos.</p>"
     "<p>A taxa é sua, e se escreve <b>antes</b> de ver o resultado. A Zion não sugere taxa. A sua taxa é o quanto o seu dinheiro renderia em outro lugar, mais o que você pede pelo risco. Mudar a taxa depois de ver o resultado é escolher a resposta.</p>")
@@ -463,7 +448,7 @@ add(ex("O valor presente da Marina", f"<p>A soma simples dos dez anos, sem desco
        f"<p><b>Com a venda do negócio no ano 10, ao lado:</b> pela referência da régua, 6 vezes o resultado antes da reserva (6 × 65.977,26 = {brl(c.SAIDA, 2)}). A soma simples sobe para {brl(c.SOMA10 + c.SAIDA, 2)}, e o valor presente fica negativo a partir de cerca de <b>{dec(c.TAXA_ZERO * 100, 1)}% ao ano</b> (a 1%: +38.816,74; a 2%: −22.319,65). Com qualquer taxa razoável para o dinheiro dela, o resultado é o mesmo.</p>"
        '<p class="nota">O múltiplo de 6 vezes é a referência da régua da Zion, sem origem estatística nas fontes. Ele aparece só ao lado da conta sem ele, nunca como valor do negócio.</p>'))
 add("<p>A venda do negócio fica sempre ao lado da conta sem ela. Se só a venda salva a conta, a decisão é ajustar, nunca avançar: o projeto passa a depender de alguém comprar.</p>")
-add(cita("Nenhuma das três decide sozinha.", "Volume A05 · Investimento, cap. 11, sobre o tempo de volta, o valor presente e a taxa interna de retorno"))
+add("<p>Tempo de volta, valor presente e taxa interna de retorno: «Nenhuma das três decide sozinha» (Volume A05 · Investimento, cap. 11).</p>")
 add("<h3>O terreno, ao lado e visível</h3>"
     f"<p>O terreno fica fora do tempo de volta, mas não some: refaça a escada com ele no ano zero e escreva a razão de seguir, se seguir. Na Marina: (791.131 + 600.000 + 18.992,04) ÷ 57.819,79 = 24,39 → <b>{dec(c.VOLTA_T, 1)} anos</b>. A razão que ela escreveu no Dossiê (patrimônio, família, projeto de vida) precisa ser revista com esse número.</p>")
 add(bx("Os nomes que você vai ver na Planilha 2", "Cada sigla, uma vez, explicada",
@@ -585,13 +570,11 @@ add(ex("As alavancas da Marina, uma por vez", tab(["Alavanca", "O que muda", "O 
     v=(2, 3, 4), larg=("22%", "24%", "15%", "14%", "13%", "12%"))
     + '<p class="conf">Conferências: diária R$ 695: 421,575 × 443,21 = 186.846,26; − 112.627,20 = 74.219,06; 1 + (791.131 + 9.983,09) ÷ 74.219,06 = 11,79. Ocupação 43,5%: 476,325 × 404,31 = 192.582,96; − 112.627,20 = 79.955,76. Fixo −10%: 170.446,99 − 101.364,48 = 69.082,51. Cesta: 126,47 cestas × 57,40 = 7.259,52. Duas cabanas: 281,05 noites × 404,31 = 113.631,33; − 112.627,20 = 1.004,13; CAPEX (687.940 − 146.940) × 1,15 = 622.150, com as linhas de uma cabana da 6A. Bate.</p>'))
 add("<h3>O que cada alavanca ensina</h3><ul>"
-    "<li><b>A diária pesa mais.</b> Cada real fica quase inteiro (77,8 centavos). R$ 50 a mais tiram a Marina do redesenhar. É o primeiro degrau da hierarquia da dor, e o que o posicionamento do Pilar 3 protege.</li>"
-    "<li><b>A ocupação vem logo atrás.</b> Cinco pontos a mais fazem quase o mesmo que R$ 50 de diária.</li>"
-    "<li><b>Custo e CAPEX ajudam pouco sozinhos.</b> Cortar 10% do fixo ou do CAPEX não tira a conta do redesenhar.</li>"
-    "<li><b>As outras receitas não sustentam a conta.</b> A cesta ajuda, mas a conta precisa fechar com as diárias.</li>"
-    "<li><b>A fase menor piora.</b> Com duas cabanas, o fixo não cai junto: a pessoa local, o contador e a manutenção continuam. A conta quase zera.</li></ul>")
+    "<li><b>A diária pesa mais:</b> cada real fica quase inteiro (77,8 centavos); R$ 50 a mais tiram a Marina do redesenhar.</li>"
+    "<li><b>A ocupação vem logo atrás:</b> cinco pontos fazem quase o mesmo que R$ 50.</li>"
+    "<li><b>Custo e CAPEX ajudam pouco sozinhos;</b> as outras receitas não sustentam a conta.</li>"
+    "<li><b>A fase menor piora:</b> com duas cabanas, o fixo não cai junto. Fase um paga fase dois; antecipar as cinco cabanas pede prova de mercado e mais capital, e fica fora destas alavancas.</li></ul>")
 add(cita("Primeiro prove a conta. Depois escolha como crescer.", "Pilar 6 · Pré-viabilidade, cap. 08"))
-add("<p>O Pilar 6 já ensinava: fase um paga fase dois. Antecipar as cinco cabanas de uma vez diluiria o fixo, mas pede prova de mercado e mais capital, e o Pilar 2 da Marina pôs o limite de mercado em cinco. Fica fora das alavancas desta conta.</p>")
 add("<h3>O cenário ajustado</h3><p>Três alavancas que o curso já anunciou, todas <b>a provar</b>: a diária de cerca de R$ 716 (a hipótese do produto, do Pilar 3, que a ficha do Pilar 6 pede para deixar «como folga, não como condição»); 42% de ocupação com um pacote de domingo a quinta para quem trabalha (a semana está em 26% no Pilar 2, e a internet para esse hóspede já está na lista da 6A); a cesta de café. CAPEX e custos fixos iguais.</p>")
 AJ = c.AJ
 add(ex("O cenário ajustado da Marina · o que precisaria ser verdade", tab(["Linha", "Valor"], [
@@ -639,7 +622,7 @@ add(tab(["E2", "Conta", "Resposta"], [
     ["O que sobra no ano", "421,575 × 388,83 − 112.627,20 = 163.921,01 − 112.627,20", brl(c.E2_SOBRA, 2)],
     ["Margem", "51.293,81 ÷ 271.915,88", pct(c.E2_MARGEM) + " → risco (10% a 20%)"],
     ["Equilíbrio e folga", "112.627,20 ÷ 388,83 = 289,66 noites", f"{pct(c.E2_OCUPEQ)}; folga {dec(c.E2_FOLGA * 100, 1)} pontos"]], v=(2,), larg=("24%", "50%", "26%"),
-    leg="Conferência: 421,575 × 388 = 163.571,10; 421,575 × 0,83 = 349,91; soma 163.921,01. 51.293,81 + 112.627,20 = 163.921,01. Bate. Repare: 20 pontos a mais de vendas pela plataforma custam cerca de R$ 6.500 por ano."))
+    leg="Conferência: 421,575 × 388 = 163.571,10; 421,575 × 0,83 = 349,91; soma 163.921,01. 51.293,81 + 112.627,20 = 163.921,01. Bate."))
 add(tab(["E3 · Item", "Onde mora", "Por quê"], [
     ["Comissão da plataforma", "Degrau 2", "Sai antes de o dinheiro chegar"], ["Imposto sobre a receita", "Degrau 2", "Linha própria; a alíquota vem do contador"],
     ["Cancelamento", "Degrau 2", "Dedução da receita de hospedagem"], ["Lavanderia por estadia", "Degrau 3", "Custo de cada estadia"],
@@ -654,7 +637,7 @@ add(tab(["E4", "Conta", "Resposta"], [
     ["Tempo de volta", "1 + (791.131 + 9.983,09) ÷ 74.219,06", f"{dec(c.E4_VOLTA, 2)} anos → passo 3 «ajustar»"],
     ["Os R$ 50, com o custo aberto", "50 × 421,575 × 0,778", brl(c.E4_VALOR50, 2) + " por ano"],
     ["Os R$ 50, na margem da página 6", "50 × 421,575 × 0,40", brl(c.E4_VALOR50_P6, 2) + " por ano"]], v=(2,), larg=("26%", "44%", "30%"),
-    leg="Por que a diferença: com o custo aberto, só as deduções, as perdas e a reserva crescem com a diária; o custo da noite e o fixo não. Na margem de referência, 60% de cada real some junto."))
+    leg="Por que a diferença: com o custo aberto, só as deduções, as perdas e a reserva crescem com a diária; o custo da noite e o fixo não."))
 fim()
 
 # ---------------------------------------------------------------- 13
@@ -672,7 +655,7 @@ add(ex("O quadro da Marina", tab(["Campo da ficha do Pilar 6", "O que digitar", 
     ["Capital de giro (meses de custo)", "giro da 6B ÷ ((1 − margem digitada) × receita do conservador ÷ 12), com 2 casas", "", f"{dec(c.GIRO_MESES_P6, 2)}"],
     ["Diária, ocupações, unidades, linhas da folha, infraestrutura comum, terreno", "não mudam (Pilares 2 e 4 e 6A)", "", ""]], larg=("26%", "36%", "22%", "16%"))
     + f"<p>Conferência: 53.524,02 ÷ (0,7874 × 271.915,88 ÷ 12) = 3,00. Bate. A ficha do Pilar 6 vai mostrar: resultado do conservador {brl(c.P6R_RES, 2)}; giro {brl(c.P6R_GIRO, 2)}; investimento total {brl(c.P6R_INV, 2)}; tempo de volta {dec(c.P6R_VOLTA, 1)} anos; limite de 8 anos {brl(c.P6R_LIM, 2)}; base e otimista {dec(c.P6R_BASE, 1)} e {dec(c.P6R_OTIM, 1)} anos; veredito sugerido pela página 6: «Ajustar». Na 6B o nome é «Redesenhar»: as duas dizem «não assine a obra neste desenho».</p>"))
-add(bx("Atenção", "A página 6 refeita e a 6B ficam próximas, não iguais", "<p>A página 6 mantém a margem igual nos três cenários e calcula o tempo de volta sem rampa: é a simplificação dela. Os números da página 6 refeita e os da 6B ficam próximos, não iguais. Os dois estão certos dentro da regra de cada um. Diferenças de alguns reais vêm da margem com duas casas.</p>", "escuro-b"))
+add("<p><b>Próximas, não iguais:</b> a página 6 mantém a margem igual nos três cenários e calcula o tempo de volta sem rampa, a simplificação dela. Os dois números estão certos dentro da regra de cada um.</p>")
 add("<h3>Planilha 2, célula a célula</h3><p>A Planilha 2 · Estudo de Massas e Viabilidade não tem linha para tudo o que a 6B abre. O quadro diz onde lançar cada número e como contornar o que falta.</p>")
 add(ex("A Planilha 2 da Marina", tab(["Aba e célula", "O que vai"], [
     ["Massas B9, B10, B11 (C e D: área e deck)", "as unidades da fase na tipologia certa; B12 tem de dar as unidades", "B11 = 3, C11 = 38, D11 = 16"],
@@ -691,14 +674,14 @@ add(ex("A Planilha 2 da Marina", tab(["Aba e célula", "O que vai"], [
     + "<p>Por quê: a Planilha 2 não tem linha de reserva (lançada por noite na B12, ela sai certa nos três cenários e a linha do resultado vira o que sobra), tem uma linha só para o que sai além do imposto (B11), não tem linha de retirada (B24) e calcula o giro como meses × custo fixo (a fórmula na B7 reproduz o giro da 6B).</p>"
     + f"<p><b>Resultado esperado:</b> a linha NOI (B41, C41, D41) dá {m2(CO['sobra'])} / {m2(BA['sobra'])} / {m2(OT['sobra'])}, o que sobra nos três cenários; margem 21,3%; equilíbrio 25,4%; investimento {m2(c.INVEST6B)}; payback de 14,6 anos (sem rampa, giro no ano zero); valor presente negativo com qualquer taxa.</p>"
     '<p class="conf">Conferência: 645 × (1 − 0,122 − 0,06) − 123,30 = 404,31. Bate. Fixos: 4.600 + 500 + 350 + 800 + 450 + 1.100 + 1.585,60 = 9.385,60. Bate.</p>'))
-add(bx("Atenção", "Não misture as duas réguas", "<p>A Planilha 2 põe o giro no ano zero e não tem rampa; a 6B põe o primeiro ano com rampa e testa o giro no colchão. Compare cada uma com a régua dela. As dicas da Planilha 2 (margem, taxa, múltiplo) são da planilha, não uma sugestão da Zion.</p>", "escuro-b"))
+add("<p><b>Não misture as duas réguas:</b> a Planilha 2 põe o giro no ano zero e não tem rampa; a 6B põe o primeiro ano com rampa e testa o giro no colchão. As dicas da Planilha 2 (margem, taxa, múltiplo) são da planilha, não uma sugestão da Zion.</p>")
 add("<h3>A ordem do Mapa, e a próxima etapa</h3><ol>"
     "<li><b>Salve</b> o PDF da página 6B na pasta Meu Dossiê, ao lado das páginas 6 e 6A.</li>"
     "<li><b>Refaça a página 6</b> com o quadro acima: a margem e os meses de giro.</li>"
     "<li><b>Planilha 1</b> (opcional, se ainda não fez pela 6A) e <b>Planilha 2</b> pelo quadro célula a célula.</li>"
     "<li><b>Pilar 7:</b> leve o veredito, o critério para parar e, se for Avançar ou Ajustar, o investimento refeito (CAPEX + giro da 6B) para o pedido. Se for Redesenhar ou Testar, os 90 dias do Pilar 7 servem para provar a premissa e refazer as páginas 6, 6A e 6B.</li></ol>")
 add(bx("Atenção", "No Pilar 7, a Marina decide com a página 6 de referência", "<p>No Pilar 7 você vê a Marina decidir «avançar» com a página 6 de referência, porque ele foi escrito antes da conta aberta. Com a 6B, o critério que ela mesma escreveu dispara: antes de pedir dinheiro a alguém, ela redesenha e prova preço e semana.</p>", "crit"))
-add("<h3>O que perguntar, sem número</h3><p>As perguntas ao contador (regime e imposto sobre a receita e as outras receitas; quando a resposta muda com a fase dois; encargos da retirada e do salário; imposto sobre o lucro e distribuição) e ao advogado (contratos de gestão, arrendamento ou sociedade) estão no <b>Checklist da página 6B</b>, que acompanha este e-book. Nenhuma delas pede número a quem responde de graça: quem traz o número é o contador, por escrito, com data.</p>")
+add("<p>As perguntas ao contador e ao advogado estão no <b>Checklist da página 6B</b>, que acompanha este e-book.</p>")
 fim()
 
 # ---------------------------------------------------------------- Confira o que ficou

@@ -41,9 +41,9 @@ h1 i,h2 i,h3 i,h4 i{color:var(--ouro-t)}
 p{margin:0 0 2.6mm} b{font-weight:650}
 ul,ol{margin:0 0 2.6mm;padding-left:5mm} li{margin-bottom:1mm}
 .k{font-size:6.6pt;letter-spacing:.22em;text-transform:uppercase;font-weight:700;color:var(--ouro-t)}
-table{width:100%;border-collapse:collapse;font-size:8.3pt;line-height:1.45;margin:2mm 0 1.2mm}
+table{width:100%;border-collapse:collapse;font-size:7.9pt;line-height:1.4;margin:2mm 0 1.2mm}
 th{background:var(--verde);color:#fff;font-weight:600;text-align:left;padding:2.2mm 2.4mm}
-td{padding:2mm 2.4mm;border-bottom:1px solid var(--linha);vertical-align:top}
+td{padding:1.6mm 2.2mm;border-bottom:1px solid var(--linha);vertical-align:top}
 td.v,th.v{text-align:right;white-space:nowrap}
 tr{break-inside:avoid}
 thead{display:table-header-group}
@@ -104,13 +104,13 @@ EBOOK = """
 /* parágrafo de abertura com capitular */
 .abre{font-size:11.2pt;line-height:1.6;margin:4mm 0 3mm}
 .abre:first-letter{font-family:'Playfair Display',serif;color:var(--ouro-t);float:left;font-size:40pt;line-height:.9;padding:1.2mm 2.2mm 0 0}
-h3{font-size:15pt;margin:6mm 0 2.4mm;break-after:avoid}
+h3{font-size:15pt;margin:5mm 0 2.2mm;break-after:avoid}
 h3+p{break-before:avoid}
 /* caixas (Pilar 6) */
-.bx{background:var(--caixa);border:1px solid var(--bege);border-left:3px solid var(--ouro-l);border-radius:1.5mm;padding:3.6mm 4.6mm 2.4mm;margin:3mm 0 3.4mm;break-inside:avoid}
+.bx{background:var(--caixa);border:1px solid var(--bege);border-left:3px solid var(--ouro-l);border-radius:1.5mm;padding:3.2mm 4.4mm 2mm;margin:2.6mm 0 3mm;break-inside:avoid}
 .bx>.k{display:block;margin-bottom:1.6mm}
 .bx h4{font-size:12.4pt;margin:0 0 2mm;break-after:avoid}
-.bx p,.bx li{font-size:8.6pt}
+.bx p,.bx li{font-size:8.2pt}
 .bx.escuro-b{border-left-color:var(--escuro)}
 .bx.crit{border-left-color:var(--crit)}
 .bx.faca{border-left-color:var(--ouro)}
@@ -124,7 +124,7 @@ h3+p{break-before:avoid}
 .bx.levar{background:var(--escuro);border-color:var(--escuro);color:#fff}
 .bx.levar .k{color:var(--ouro)} .bx.levar h4{color:#fff}
 .bx.levar li,.bx.levar p{font-size:8.4pt;color:#F2EFE6}
-.bx table{margin:1.5mm 0 1mm;font-size:7.7pt;line-height:1.38}
+.bx table{margin:1.5mm 0 1mm;font-size:7.4pt;line-height:1.34}
 .bx td{padding:1.35mm 2mm}.bx th{padding:1.7mm 2mm}
 .bx .leg{margin:0 0 1.6mm}
 .bx.ex table td{border-bottom-color:#D8CFBC}
@@ -140,7 +140,7 @@ h3+p{break-before:avoid}
 .tres ul{padding-left:3.6mm;margin:0} .tres li{font-size:7.1pt;margin-bottom:.6mm}
 .pergunta{background:var(--caixa);padding:5mm 6mm;margin:4mm 0;display:flex;gap:5mm;align-items:center;font-size:8.6pt;break-inside:avoid}
 .pergunta span{font-family:'Playfair Display',serif;font-size:24pt;color:var(--ouro-t);line-height:1}
-.cita{border-left:2px solid var(--ouro-l);padding:.6mm 0 .6mm 5mm;margin:4.5mm 0 4.5mm;break-inside:avoid}
+.cita{border-left:2px solid var(--ouro-l);padding:.6mm 0 .6mm 5mm;margin:3.6mm 0 3.6mm;break-inside:avoid}
 .cita q{display:block;font-family:'Playfair Display',serif;font-size:14.6pt;line-height:1.32;color:var(--ouro-t);quotes:none}
 .cita small{display:block;font-size:7pt;color:var(--texto2);letter-spacing:.04em;margin-top:1.6mm}
 .conf{font-size:8.3pt;color:var(--texto2)}

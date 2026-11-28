@@ -4,7 +4,7 @@
    390x844 (celular) e 1280x800 (computador), percorre os 40 slides e confere: zero erros de JS na aula,
    sem rolagem horizontal, nenhum texto transbordando do slide, número de slides igual ao do roteiro,
    data-bloco na lista do plano, sem sigla interna (ECROI) nem siglas técnicas na tela (NOI, EBITDA, VPL,
-   TIR, payback, ROI), sem «Bloco 3» a «Bloco 7», os números do caso da Marina (PLANO, seção 7), a nota
+   TIR, payback, ROI), sem a palavra «Bloco» na tela, nas notas nem no data-bloco (GUIA, item I8), os números do caso da Marina (PLANO, seção 7), a nota
    respeitosa sobre a margem de referência, interações (retomada, previsão que volta, quizzes, cartões,
    simulador das alavancas, resposta do contador, nome, ficha embutida), teclado, toque, notas, modo
    apresentador e salvamento local depois de recarregar, gravando só respostas.d2 e respostas.nome na
@@ -285,14 +285,17 @@ async function estrutura(page, rotulo) {
       blocos: Array.from(document.querySelectorAll('.s')).map((s) => s.dataset.bloco || ''),
       html: document.documentElement.outerHTML,
       tela: semNotas.textContent,
+      notas: Array.from(document.querySelectorAll('.s aside')).map((a) => a.textContent).join(' '),
+      visivel: document.body.innerText,
     };
   });
   confere(e.titulo === 'Aprofundamento 6B · Viabilidade' && e.deck === 'Aprofundamento 6B · Viabilidade', `${rotulo}: título «Aprofundamento 6B · Viabilidade»`, [e.titulo, e.deck]);
   confere(!/ECROI/i.test(e.html), `${rotulo}: nenhuma sigla ECROI na página (tela, notas e atributos)`);
   confere(!/\b(NOI|EBITDA|VPL|TIR|ROI)\b|payback/i.test(e.html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '')) , `${rotulo}: sem NOI, EBITDA, VPL, TIR, payback e ROI`);
-  confere(!e.blocos.some((b) => /Bloco [3-9]/.test(b)) && !/Bloco [3-9]/.test(e.tela), `${rotulo}: sem «Bloco 3» em diante`);
-  // ordem de primeira aparição (o «Quiz relâmpago» aparece no fim do Bloco 1, no meio e no fim do Bloco 2)
-  const esperados = ['Abertura', 'Como funciona esta aula', 'Retomada · Pilar 6 e 6A', 'Bloco 1 · Os seis degraus da conta', 'Quiz relâmpago', 'Bloco 2 · A conta da Marina', 'Resumo', 'A sua página 6B', 'Próximo'];
+  confere(!e.blocos.some((b) => /bloco/i.test(b)) && !/bloco/i.test(e.tela) && !/bloco/i.test(e.notas) && !/bloco/i.test(e.visivel), `${rotulo}: nenhuma ocorrência de «Bloco» (tela, barra do topo, notas e data-bloco)`, [e.blocos.filter((b) => /bloco/i.test(b)), (e.tela.match(/.{0,30}bloco.{0,30}/i) || [''])[0], (e.notas.match(/.{0,30}bloco.{0,30}/i) || [''])[0]]);
+  confere(e.blocos.filter((b) => /^Parte 1 · /.test(b)).length > 0 && e.blocos.filter((b) => /^Parte 2 · /.test(b)).length > 0 && /Parte 1 · Os seis degraus da conta/.test(e.tela) && /Parte 2 · A conta/.test(e.tela), `${rotulo}: as duas partes da aula se chamam «Parte 1» e «Parte 2»`);
+  // ordem de primeira aparição (o «Quiz relâmpago» aparece no fim da Parte 1, no meio e no fim da Parte 2)
+  const esperados = ['Abertura', 'Como funciona esta aula', 'Retomada · Pilar 6 e 6A', 'Parte 1 · Os seis degraus da conta', 'Quiz relâmpago', 'Parte 2 · A conta da Marina', 'Resumo', 'A sua página 6B', 'Próximo'];
   const unicos = Array.from(new Set(e.blocos));
   confere(JSON.stringify(unicos) === JSON.stringify(esperados), `${rotulo}: data-bloco na ordem do plano`, unicos);
   confere(!/Helena|Ribeir|Rodrigo/.test(e.html), `${rotulo}: sem Helena, Chalés do Ribeirão nem Rodrigo e Priscila`);
