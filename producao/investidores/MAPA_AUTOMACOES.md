@@ -93,3 +93,5 @@ Chamada oficial (Bruno): **"Quem disse que você tem que construir um grande hot
 **Ainda não existe:** roteamento da resposta no 1061 (hoje a Bela de R$ 97 responderia), classificação A+/A/B... dentro do ClickMax (a lógica está em `classificacao.js`), agenda própria, nada ativado.
 
 **Decisão de Bruno (28/11, noite):** o 9883 **não será conectado ao ClickMax por QR code agora** (ele faz depois). Por enquanto o aviso ao Bruno é só **push + e-mail do app ClickMax**, com o link `wa.me` do lead; o contato que escrever direto para o 9883 fica fora do CRM até a conexão.
+
+**Decisão de Bruno (28/11, noite, 2):** o **9883 é totalmente manual, para ligação**. O fluxo `cd2fa28f…` (rascunho) agora avisa por push/e-mail "ligar agora" e cria a tarefa "ligar em até 5 minutos, de forma manual, a partir do telefone comercial", sem nenhuma automação no 9883. Em aberto: manter ou tirar o link `wa.me/5548988729883` que a landing (tela de conclusão) e o modelo `investidores_boas_vindas` oferecem ao lead.
