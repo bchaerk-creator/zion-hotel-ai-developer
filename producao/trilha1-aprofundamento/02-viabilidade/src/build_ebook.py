@@ -207,7 +207,6 @@ cap("02", "O mapa da conta", "Seis degraus <i>da receita ao que sobra</i>",
     ["Os seis degraus", "Do Pilar 6 para a 6B", "O que fica fora desta conta"],
     "A página 6 fez a conta em uma linha: receita bruta vezes a margem. A 6B faz a mesma conta em seis degraus, para ver onde o dinheiro sai. No fim, a pergunta é a mesma: quanto sobra?")
 add(cita("Faturamento não é lucro, e o custo fixo não diminui na baixa.", "Pilar 6 · Pré-viabilidade, cap. 05"))
-add("<h3>Os seis degraus</h3>")
 add(tab(["Degrau", "O que sai antes dele", "A pergunta-chave"], [
     ["1 · Receita bruta", "nada: hospedagem e outras receitas", "Quanto o hóspede paga, no ano?"],
     ["2 · Receita real", "imposto, comissão, cartão, cancelamento", "Quanto chega à sua conta?"],
@@ -345,8 +344,7 @@ cap("06", "Degrau 6", "Quanto sobra: <i>a margem que sai da sua lista</i>",
     ["A reserva de reposição", "A margem aberta", "O ponto de equilíbrio e a folga", "O custo por diária vendida", "A diária de equilíbrio e o piso"],
     "O colchão, o enxoval, o deck e os eletrodomésticos se desgastam. A reserva de reposição guarda, todo ano, desde o primeiro, uma parte da receita para trocá-los quando chegar a hora.")
 add("<p>As fontes citam de 3% a 6% da receita bruta (Volume A05 · Investimento: 3% a 5%; Jornada do COMO, Etapa 09: 3% a 6%); a régua da Zion usa 3%. É faixa citada pela fonte, não meta. E uma regra: <b>reserva ou depreciação, nunca as duas</b>. Somar as duas cria um prejuízo que não existe.</p>")
-add(f"<p>Na Marina, cada noite deixa 645 × 0,778 − 97,50 = R$ 404,31; 421,575 × 404,31 = 170.446,99; menos os fixos de 112.627,20, sobram <b>{brl(c.SOBRA, 2)}</b>. Bate. A margem aberta dela, no conservador, é <b>21,3%</b>. É a margem que sai da lista dela. Na página 6, a margem de referência era 40%; o capítulo 10 mostra, linha por linha, de onde vem a diferença.</p>")
-add(cita("Receita é vaidade. Margem é sanidade. Caixa é realidade.", "Volume A05 · Investimento, cap. 09"))
+add(f"<p>Na Marina, cada noite deixa 645 × 0,778 − 97,50 = R$ 404,31; 421,575 × 404,31 = 170.446,99; menos os fixos de 112.627,20, sobram <b>{brl(c.SOBRA, 2)}</b>. Bate. A margem aberta dela, no conservador, é <b>21,3%</b>. É a margem que sai da lista dela. Na página 6, a margem de referência era 40%; o capítulo 10 mostra, linha por linha, de onde vem a diferença. «Receita é vaidade. Margem é sanidade. Caixa é realidade.» (Volume A05 · Investimento, cap. 09)</p>")
 add("<p><b>A régua da margem</b> (faixa citada pela fonte; não é meta nem promessa): 30% ou mais, boa; 20% a 30%, atenção; 10% a 20%, risco; abaixo de 10%, o modelo não fecha. Vale para a margem medida depois do imposto, do cancelamento, da reserva e do trabalho do dono; não compare com margens de outras réguas.</p>")
 add("<h3>O ponto de equilíbrio, lido com a folga</h3>"
     "<p>O ponto de equilíbrio é a ocupação em que o ano empata: o que as noites deixam paga exatamente os custos fixos. Divide-se o fixo do ano pelo que cada noite deixa. Sozinho, ele diz pouco. Lido ao lado da sua ocupação medida, diz quanto a operação aguenta: essa distância é a <b>folga</b>. O ano precisa fechar; o mês, não.</p>")
@@ -355,11 +353,7 @@ add(ex("O equilíbrio da Marina", f"<p>112.627,20 ÷ 404,31 = <b>{dec(c.N_EQ, 2)
        "<p>Leitura: com folga (mais de 5 pontos). Folga negativa seria crítica; de 0 a 5 pontos, fina; e «acima de 70% de ocupação de equilíbrio, o problema é estrutural e não comercial» (Jornada do COMO, Etapa 09, Passo 09). A operação da Marina se paga com folga. A pergunta seguinte é outra: e o investimento? O capítulo 08 responde.</p>"))
 add("<h3>O custo por diária vendida e as três zonas</h3>"
     "<p>Divida tudo o que sai no ano (deduções, custos de cada noite, fixos e reserva) pelas noites vendidas: é o custo de cada diária vendida. Ele cria três zonas de preço.</p>")
-add(ex("As três zonas da Marina", tab(["Zona", "Diária", "O que acontece"], [
-    ["Paga tudo", f"acima de {brl(c.CUSTO_DIARIA, 2)}", "A noite paga a si mesma e a sua parte do fixo"],
-    ["Paga a noite e parte do fixo", f"de {brl(c.PISO, 2)} a {brl(c.CUSTO_DIARIA, 2)}", "Melhor do que vazio num mês fraco; nunca nas datas de pico"],
-    ["Destrói valor", f"abaixo de {brl(c.PISO, 2)}", "Cada noite vendida aumenta o prejuízo"]], larg=("30%", "30%", "40%"))
-    + f"<p>Custo por diária: 214.096,09 ÷ 421,575 = {brl(c.CUSTO_DIARIA, 2)}. Piso que ainda paga a noite: 97,50 ÷ 0,778 = {brl(c.PISO, 2)}.</p>"
+add(ex("As três zonas da Marina", f"<p>Custo por diária vendida: 214.096,09 ÷ 421,575 = <b>{brl(c.CUSTO_DIARIA, 2)}</b>. Piso que ainda paga a noite: 97,50 ÷ 0,778 = <b>{brl(c.PISO, 2)}</b>. Acima de {brl(c.CUSTO_DIARIA, 2)}, a noite paga tudo. Entre os dois, paga a noite e parte do fixo: melhor do que vazio num mês fraco, nunca nas datas de pico. Abaixo de {brl(c.PISO, 2)}, cada noite vendida aumenta o prejuízo.</p>"
     f"<p><b>A diária de equilíbrio</b> (com 38,5%): cada R$ 1 de diária vale 421,575 × 0,778 = R$ 327,99 por ano. 645 − 57.819,79 ÷ 327,99 = 645 − 176,29 = <b>{brl(c.DIARIA_EQ, 2)}</b>. Abaixo disso, o ano não empata.</p>"
     '<p class="conf">Conferência: 468,71 × 0,778 − 97,50 = 267,16; × 421,575 = 112.627,20. Bate.</p>'))
 add("<p>Escreva o piso antes de precisar dele. Desconto nunca abaixo do piso, nem nas datas de pico: «Piso decidido em mês fraco é piso que não existe» (Jornada do COMO, Etapa 08, Passo 03).</p>")
@@ -623,21 +617,15 @@ add(tab(["E2", "Conta", "Resposta"], [
     ["Margem", "51.293,81 ÷ 271.915,88", pct(c.E2_MARGEM) + " → risco (10% a 20%)"],
     ["Equilíbrio e folga", "112.627,20 ÷ 388,83 = 289,66 noites", f"{pct(c.E2_OCUPEQ)}; folga {dec(c.E2_FOLGA * 100, 1)} pontos"]], v=(2,), larg=("24%", "50%", "26%"),
     leg="Conferência: 421,575 × 388 = 163.571,10; 421,575 × 0,83 = 349,91; soma 163.921,01. 51.293,81 + 112.627,20 = 163.921,01. Bate."))
-add(tab(["E3 · Item", "Onde mora", "Por quê"], [
-    ["Comissão da plataforma", "Degrau 2", "Sai antes de o dinheiro chegar"], ["Imposto sobre a receita", "Degrau 2", "Linha própria; a alíquota vem do contador"],
-    ["Cancelamento", "Degrau 2", "Dedução da receita de hospedagem"], ["Lavanderia por estadia", "Degrau 3", "Custo de cada estadia"],
-    ["Perdas e quebras de material", "Degrau 3", "Custo que cresce com a receita"], ["Salário da pessoa local", "Degrau 4", "Custo de cada mês"],
-    ["13º e férias", "Degrau 4, em duodécimos", "Anual dividido por 12"], ["Seguro anual", "Degrau 4, em duodécimos", "Anual dividido por 12"],
-    ["As horas da Marina", "Degrau 4 (retirada)", "O trabalho dela é custo"], ["Taxa de uma administradora", "Degrau 5", "Custo do modelo"],
-    ["Troca dos colchões daqui a seis anos", "Degrau 6 (reserva)", "É para isso que a reserva existe"], ["Depreciação somada à reserva", "Nunca as duas", "Somar cria um prejuízo que não existe"],
-    ["Parcela do empréstimo da obra", "Fora desta conta", "Custo da captação: Pilar 7"], ["Taxa de limpeza cobrada à parte", "Fora da receita de hospedagem", "Ela paga a limpeza"]], larg=("36%", "26%", "38%")))
+add(tab(["E3 · Item", "Onde mora, e por quê"], [
+    ["Comissão da plataforma", "Degrau 2: sai antes de o dinheiro chegar"], ["Imposto sobre a receita", "Degrau 2: linha própria; a alíquota vem do contador"], ["Cancelamento", "Degrau 2: dedução da receita de hospedagem"], ["Lavanderia por estadia", "Degrau 3: custo de cada estadia"], ["Perdas e quebras de material", "Degrau 3: custo que cresce com a receita"], ["Salário da pessoa local", "Degrau 4: custo de cada mês"], ["13º e férias", "Degrau 4, em duodécimos: anual dividido por 12"], ["Seguro anual", "Degrau 4, em duodécimos: anual dividido por 12"], ["As horas da Marina", "Degrau 4 (retirada): o trabalho dela é custo"], ["Taxa de uma administradora", "Degrau 5: custo do modelo"], ["Troca dos colchões daqui a seis anos", "Degrau 6 (reserva): é para isso que a reserva existe"], ["Depreciação somada à reserva", "Nunca as duas: somar cria um prejuízo que não existe"], ["Parcela do empréstimo da obra", "Fora desta conta: custo da captação: Pilar 7"], ["Taxa de limpeza cobrada à parte", "Fora da receita de hospedagem: ela paga a limpeza"]], larg=("34%", "66%")))
 add(tab(["E4", "Conta", "Resposta"], [
     ["O que fica de cada noite", "695 × 0,778 − 97,50", brl(c.E4_NOITE, 2)], ["O que sobra no ano", "421,575 × 443,21 − 112.627,20", brl(c.E4_SOBRA, 2)],
     ["Primeiro ano", "0,549351 × 186.846,26 − 112.627,20", brl(c.E4_ANO1, 2)],
     ["Tempo de volta", "1 + (791.131 + 9.983,09) ÷ 74.219,06", f"{dec(c.E4_VOLTA, 2)} anos → passo 3 «ajustar»"],
     ["Os R$ 50, com o custo aberto", "50 × 421,575 × 0,778", brl(c.E4_VALOR50, 2) + " por ano"],
-    ["Os R$ 50, na margem da página 6", "50 × 421,575 × 0,40", brl(c.E4_VALOR50_P6, 2) + " por ano"]], v=(2,), larg=("26%", "44%", "30%"),
-    leg="Por que a diferença: com o custo aberto, só as deduções, as perdas e a reserva crescem com a diária; o custo da noite e o fixo não."))
+    ["Os R$ 50, na margem da página 6", "50 × 421,575 × 0,40", brl(c.E4_VALOR50_P6, 2) + " por ano"],
+    ["Por que a diferença", "no custo aberto, só deduções, perdas e reserva crescem com a diária", "o custo da noite e o fixo não"]], v=(2,), larg=("26%", "44%", "30%")))
 fim()
 
 # ---------------------------------------------------------------- 13
@@ -705,7 +693,7 @@ add(bx("Resumo", "O 6B em dez linhas", '<ol class="dez">'
        "<li>Régua em cinco passos: Avançar, Testar, Ajustar, Pausar ou Redesenhar, com o critério para parar escrito.</li>"
        "<li>A 6B volta para a página 6 e para a Planilha 2, célula a célula, e leva a decisão ao Pilar 7.</li></ol>", "levar"))
 add(faca("A minha página 6B", [("Os seis degraus, com a origem de cada número, e o que sobra no conservador:", True), ("A minha margem aberta, ao lado da margem da página 6:", False),
-                               ("O equilíbrio e a folga; o menor saldo do primeiro ano; o giro e o colchão:", False), ("O tempo de volta em escada e os cinco passos:", False),
+                               ("O equilíbrio e a folga; o menor saldo; o giro e o colchão; o tempo de volta e os cinco passos:", False),
                                ("O meu veredito e o meu critério para parar:", False), ("A minha ação de 30 dias, o prazo e como verificar:", False)],
          nota="Depois de preencher, abra na plataforma do curso a aula «Faça agora · A sua conta» e passe as respostas para a ficha. Ela gera a página 6B do seu Dossiê em PDF."))
 add("<h3>Fontes deste e-book</h3><p style=\"font-size:8pt\">Pilar 6 · Pré-viabilidade (e-book e ficha: a margem de referência, a rampa, as duas contas do giro, o tempo de volta, as frases-assinatura); Pilares 2, 4 e 5 (diária, curva do ano, cenários, fase um); Pilar 7 · Capital e Dossiê (o plano de 90 dias); aprofundamento 6A · CAPEX; Marco Zero e Comece aqui (as situações, a pasta Meu Dossiê); e-books «Receitas, Custos e Modelos de Rentabilidade» e «Viabilidade e Análise de Investimentos» (os seis degraus, o equilíbrio, a escada); Jornada do COMO (Etapas 02, 08 e 09; nomes como Ponto de Equilíbrio Zion™ e Conta da Retirada™, usados como na fonte); Volume A05 · Investimento (caps. 08, 09, 11 e 12); Volume 05 · Investimento (cap. 08); Volume 04 · Estratégia (cap. 13); a régua da Zion de viabilidade (cinco passos, rampa de 40%, 50% e 75%, colchão de 10%, múltiplo de referência); Planilha 2 e Mapa de direcionamento, etapa 6. As faixas são citadas pelas fontes e não têm base estatística declarada. Os seis degraus com nomes próprios, as janelas da rampa, o colchão como giro mais o menor saldo, o corte de 5 pontos na folga e os mapeamentos para a página 6 e para a Planilha 2 são elaboração própria da Zion.</p>")
