@@ -7,3 +7,10 @@ Tela: selo "Zion · Investidores" no topo e, na parte 2, a faixa "Investimentos 
 Total 97,6 s, 1080x1920 (o material de origem é 480x848, então a imagem é menos nítida que a dos vídeos do Bruno).
 Pendências: autorização de imagem da Camila; as afirmações "líder nacionalmente reconhecida" e "alta rentabilidade" são da fala original e não devem ir para anúncio sem comprovação (regra sem promessa de rentabilidade). Ainda não existe destino definido para o botão "Fale com a Zion" (sugestão: página /investidores).
 Arquivo: docs/p/adbc67069af26ae0/zc47-videos/zc47-v16-investidores.mp4
+
+## V16B (28/11) · estrutura pedida por Bruno: emoção → expansão → modelo → CTA
+1. Emoção (0–13,5 s): Camila "O glamping representa um novo turismo de experiência. Zion Glamping Collection, referência no Brasil." + bubbles por dentro (jacuzzi, café) com "Memórias inesquecíveis em meio à natureza".
+2. Expansão (13,5–29,8 s): Bruno (IMG_2382) "Nós da Zion estamos abrindo a oportunidade de expansão do nosso modelo de negócio por todo o Brasil" + aérea + Bruno (IMG_2379) "O setor do glamping só está começando no Brasil e você pode ser o próximo precursor desse momento de hospedagem".
+3. Modelo (29,8–76,3 s): Camila "Imagina ser proprietário de um glamping… bubbles… totalmente equipadas… hotel premium… locais exclusivos e deslumbrantes de todo o Brasil" + "um modelo com um ecossistema de reservas e marketing já estabelecido… Investir em experiências é investir no futuro da hotelaria. E a Zion está pronta para caminhar ao seu lado nessa jornada." (removido "alta rentabilidade").
+4. CTA (76,3–99,5 s): "Seja um investidor e colecionador de paraísos…" + "Junte-se a uma marca nacionalmente reconhecida como líder no setor de glamping…" + texto e cartão final "Invista em uma marca nacionalmente reconhecida · Fale com a Zion" com aviso de risco.
+Trilha original Zion (music.py, 92 BPM) por baixo da voz. Arquivo: zc47-v16b-investidores.mp4 (99,5 s).
