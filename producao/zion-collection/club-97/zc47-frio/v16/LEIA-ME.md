@@ -22,3 +22,9 @@ Cada corte = atributo com título e etiquetas sincronizadas com a fala + chamada
 - A3 Experiência e natureza: "…experiência única de acampamento de luxo em meio à natureza, em locais exclusivos e deslumbrantes de todo o Brasil." → "Investir em experiências é investir no futuro da hotelaria…"
 - A4 Reservas e marketing: "…um modelo com um ecossistema de reservas e marketing já estabelecido para impulsionar o seu negócio." → "Junte-se a uma marca nacionalmente reconhecida…"
 Arquivos: docs/p/adbc67069af26ae0/zc47-videos/ZION-A1…A4-*.mp4 e zc47-v16b-investidores-leve.mp4.
+
+## Vídeo campeão do investidor (guardado, 28/11)
+`zc2-investidor-camila-campeao.mp4` (45 s, Camila: "Junte-se a uma marca nacionalmente reconhecida… Seja um investidor e colecionador de paraísos…", com legendas e logo Zion no fim). Vai na página web de investidores e, **depois que Bruno criar o formulário**, sobe inteiro numa campanha de formulário na Zion Collection 2. Ainda não enviado ao Meta.
+
+## M1 · Montagem dos atributos (55 s)
+A2 deck → A1 bubble completa → A3 experiência → "Investir em experiências…" → "Seja um investidor…" → "Junte-se a uma marca nacionalmente reconhecida…" → cartão "Invista em uma marca nacionalmente reconhecida". Arquivo ZION-M1-montagem-atributos.mp4.
