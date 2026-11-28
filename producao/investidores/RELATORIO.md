@@ -33,3 +33,6 @@ Decisões de Bruno aplicadas na página (WA01 1061, WA02 98872-9883, só expans�
 
 ## Separação plataforma × investidores (28/11)
 Auditoria de 22 fluxos ativos, agentes, tags e sincronização Meta: ver `SEPARACAO_PLATAFORMA_INVESTIDORES.md` (8 pontos de contato e a regra para cada). Nada foi alterado no que já existe.
+
+## 28/11 (noite, 2): publicada
+Landing no ar em `/oportunidades` (merge autorizado por Bruno; rollback = reverter o merge `0d7da8f`). Formulário do Meta `1143109468438825` criado. Detalhes e pendências: `MAPA_AUTOMACOES.md`, última atualização.

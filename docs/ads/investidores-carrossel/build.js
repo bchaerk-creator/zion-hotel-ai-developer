@@ -18,11 +18,10 @@ const G='#133107',Y='#947620',O='#5a5529',PU='#8f688f',BE='#d5c1bc';
 const cards=[
 // 01 · atenção e identificação (campeão 1)
 [1,`<div class="b" style="left:0;top:0;width:1080px;height:400px;background:${G}"></div>
-<div class="b" style="left:195px;top:44px;width:720px;height:62px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:A;font-weight:800;font-size:34px;letter-spacing:.42em;color:#111;padding-left:.42em">EI, VOCÊ,</div>
-<div class="b w" style="left:20px;right:20px;top:118px;font-size:96px;color:#fff;line-height:1">INVESTIDOR!</div>
-<div class="b w" style="left:70px;right:70px;top:262px;font-size:31px;color:#fff;text-transform:none;font-weight:600;line-height:1.2">Já pensou em investir no mercado de hospedagem sem precisar construir um grande hotel?</div>
+<div class="b" style="left:195px;top:44px;width:720px;height:62px;background:#fff;display:flex;align-items:center;justify-content:center;font-family:A;font-weight:800;font-size:34px;letter-spacing:.42em;color:#111;padding-left:.42em">INVESTIDOR</div>
+<div class="b w" style="left:50px;right:50px;top:128px;font-size:41px;color:#fff;line-height:1.1">Quem disse que você tem que construir um grande hotel para começar a faturar com hospedagem?</div>
 <div class="b" style="left:0;top:1020px;width:1080px;height:330px;background:${G}"></div>
-<div class="b s" style="left:45px;top:1090px;width:990px;height:122px;border-radius:26px;background:${Y};color:#fff;font-size:46px;display:flex;align-items:center;justify-content:center;letter-spacing:.01em">INVISTA NA EXPANSÃO DA ZION.</div>`],
+<div class="b s" style="left:45px;top:1090px;width:990px;height:122px;border-radius:26px;background:${Y};color:#fff;font-size:46px;display:flex;align-items:center;justify-content:center;letter-spacing:.01em">SEJA UM INVESTIDOR DA ZION.</div>`],
 // 02 · clareza da oportunidade (campeão 2)
 [2,`<div class="b" style="left:430px;top:0;width:650px;height:236px;background:${O}"></div>
 <div class="b w" style="left:470px;width:560px;top:26px;font-size:38px;color:#16210a;line-height:1.05">Não estamos vendendo Bubbles.</div>
