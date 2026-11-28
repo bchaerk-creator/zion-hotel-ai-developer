@@ -2,24 +2,24 @@
 <style>
 @font-face{font-family:C;src:url(../../../../docs/assets/fonts/cormorant.woff2);font-weight:300 700}
 @font-face{font-family:A;src:url(__FONTS__/aventa.woff2);font-weight:300 700}
-:root{--bg:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--dest:#C9B37E}
+:root{--bg:#040605;--musgo:#1B2117;--creme:#FEF5F0;--areia:#DED6BF;--dest:#C9B37E;--m:96px}
 *{margin:0;box-sizing:border-box}
 body{background:#222;display:flex;flex-direction:column;align-items:center;gap:24px;padding:24px}
 .slide{position:relative;width:1080px;height:1350px;background:var(--bg);color:var(--creme);font-family:A;overflow:hidden;flex:none}
 .slide.alt{background:var(--musgo)}
-.n{position:absolute;right:72px;top:64px;font-size:28px;letter-spacing:.12em;color:var(--dest)}
+.n{position:absolute;right:var(--m);top:64px;font-size:28px;letter-spacing:.12em;color:var(--dest)}
 .k{font-size:30px;letter-spacing:.26em;text-transform:uppercase;color:var(--dest)}
 h1{font-family:C;font-weight:600;line-height:1.02;color:var(--creme)}
 .txt{color:var(--areia);line-height:1.32}
-.body{position:absolute;left:72px;right:72px;top:150px}
-.f{position:absolute;left:72px;right:72px;bottom:56px;display:flex;justify-content:space-between;font-size:24px;letter-spacing:.08em;color:var(--dest);border-top:1px solid rgba(201,179,126,.45);padding-top:20px}
-.visual{position:absolute;left:72px;right:72px;bottom:130px}
+.body{position:absolute;left:var(--m);right:var(--m);top:150px}
+.f{position:absolute;left:var(--m);right:var(--m);bottom:56px;display:flex;justify-content:space-between;font-size:26px;letter-spacing:.08em;color:var(--dest);border-top:1px solid rgba(201,179,126,.45);padding-top:20px}
+.visual{position:absolute;left:var(--m);right:var(--m);bottom:130px}
 /* capa e cta */
 .capa .body,.cta .body{top:auto;bottom:170px}
 .capa h1{font-size:128px;margin:24px 0 32px}.cta h1{font-size:112px;margin:24px 0 32px}
 .capa .txt,.cta .txt{font-size:44px}
 .capa .seta{color:var(--dest);font-size:44px;margin-top:28px;letter-spacing:.06em}
-.barra{position:absolute;left:72px;top:150px;width:120px;height:6px;background:var(--dest)}
+.barra{position:absolute;left:var(--m);top:150px;width:120px;height:6px;background:var(--dest)}
 /* texto / passo */
 .texto h1,.passo h1{font-size:92px;margin:22px 0 28px}
 .texto .txt,.passo .txt{font-size:42px}
@@ -48,6 +48,24 @@ td:first-child{font-weight:700;color:var(--dest);width:260px}
 .pasta .nome{font-family:C;font-size:46px;color:var(--dest);margin-bottom:18px;font-weight:600}
 .pasta .arq{display:grid;grid-template-columns:1fr 1fr;gap:10px 28px;font-size:29px;color:var(--creme)}
 .pasta .arq div:before{content:"▢  ";color:var(--dest)}
+
+.img{position:absolute;inset:0;background-size:cover;background-position:center}
+.img+.sh{position:absolute;inset:0;background:linear-gradient(transparent 60%,rgba(4,6,5,.88))}
+.imagem .body{top:auto;bottom:170px}.imagem h1{font-size:110px;margin-top:0}
+.sec h1{font-size:72px;margin:18px 0 26px}.sec .body{top:130px}
+.sec ol{list-style:none;counter-reset:i}.sec li{counter-increment:i;font-size:36px;line-height:1.28;padding:20px 0 20px 64px;position:relative;border-bottom:1px solid rgba(222,214,191,.25);color:var(--creme)}
+.sec li:before{content:counter(i);position:absolute;left:0;font-family:C;color:var(--dest);font-size:44px;top:14px}
+.gr{color:var(--dest);font-size:22px;letter-spacing:.14em;border:1px solid var(--dest);border-radius:6px;padding:2px 8px;margin-left:12px}
+.div{display:flex;flex-direction:column;gap:0;border:2px solid rgba(201,179,126,.5);border-radius:22px;overflow:hidden}
+.div>div{padding:34px 36px 34px 120px;position:relative;font-size:38px;line-height:1.3;min-height:250px;display:flex;align-items:center}
+.div .ruim{background:#0c0f0b;color:var(--areia)}.div .bom{background:var(--musgo);color:var(--creme)}
+.div .ruim:before,.div .bom:before{position:absolute;left:34px;top:30px;font-size:58px;font-weight:700}
+.div .ruim:before{content:"✕";color:#D64545}.div .bom:before{content:"✓";color:#4CAF6A}
+.num{font-family:C;font-weight:600;font-size:150px;color:var(--dest);line-height:1}
+.num small{display:block;font-family:A;font-size:30px;letter-spacing:.2em;text-transform:uppercase;color:var(--areia);margin-top:14px}
+.marca-ext{font-family:C;font-size:64px;letter-spacing:.14em;color:var(--creme);margin-bottom:28px}
+.rod{position:absolute;left:var(--m);right:var(--m);bottom:118px;font-size:24px;color:var(--areia);opacity:.85}
+.seta-l:before{content:"→  ";color:var(--dest)}
 </style></head><body>
 <script id="dados" type="application/json">{"marca":"Zion Collection · Bruno Chaerk","tema":"passo a passo: carrossel pronto com o Claude","slides":[{"papel":"capa","kicker":"Passo a passo","titulo":"Carrossel pronto em 4 passos","texto":"Com o Claude, sem abrir editor de design."},{"papel":"texto","kicker":"O jeito antigo","titulo":"Uma tarde inteira ajustando fonte","texto":"Escrever num lugar, montar slide por slide em outro. No jeito novo, o Claude escreve e monta, e você só decide."},{"papel":"passo","kicker":"Passo 1","titulo":"Escolha o tipo pelo objetivo","texto":"Alcance pede opinião forte ou notícia, salvamento pede lista ou passo a passo, e venda pede estudo de caso.","visual":{"tipo":"tabela","colunas":["Objetivo","Tipos"],"linhas":[["Alcance","Opinião forte ou notícia"],["Salvamento","Lista ou passo a passo"],["Venda","Estudo de caso"]]}},{"papel":"passo","kicker":"Passo 2","titulo":"Peça o roteiro slide a slide","texto":"Diga o tipo, o público e quantos slides, com no máximo 30 palavras em cada um.","visual":{"tipo":"chat","texto":"Crie um carrossel passo a passo, com 8 slides, para donos de pousada e glamping. No máximo 30 palavras por slide.","legenda":"Exemplo de prompt no chat do Claude"}},{"papel":"passo","kicker":"Passo 3","titulo":"Peça a arte em HTML","texto":"Cada slide com 1080 por 1350 pixels, a sua fonte e uma cor de destaque só.","visual":{"tipo":"lado","esquerda":"Conversa","direita":"Carrossel","conversa":"Agora faça a arte em HTML. Cada slide com 1080 × 1350 px, minha fonte e uma cor de destaque.","minis":["01","02","03"],"legenda":"Ilustração: o carrossel aberto ao lado da conversa"}},{"papel":"passo","kicker":"Passo 4","titulo":"Exporte em PNG","texto":"No Claude Code, ele tira a foto de cada slide e salva slide-01.png, slide-02.png e assim por diante.","visual":{"tipo":"pasta","nome":"carrossel","arquivos":["slide-01.png","slide-02.png","slide-03.png","slide-04.png","slide-05.png","slide-06.png","slide-07.png","slide-08.png"],"legenda":"A pasta com os 8 arquivos"}},{"papel":"texto","kicker":"O resultado","titulo":"8 PNGs do tamanho do feed","texto":"A sua identidade em todos, e um HTML que vira o molde do próximo carrossel: você só troca o texto."},{"papel":"cta","kicker":"Salva e comenta","titulo":"Comenta PROMPT","texto":"Salva pra fazer o seu hoje e comenta PROMPT que eu te mando os 4 prompts no direct."}],"legenda":"Carrossel pronto em 4 passos com o Claude, sem abrir editor de design.\n\n1) Escolha o tipo pelo objetivo\n2) Peça o roteiro slide a slide\n3) Peça a arte em HTML\n4) Exporte em PNG\n\nSalva pra fazer o seu hoje e comenta PROMPT que eu te mando os 4 prompts no direct."}</script>
 <script>
@@ -66,17 +84,29 @@ function visual(v){
   '<div class="win"><div class="bar"><i></i><i></i><i></i></div><div class="tag">'+e(v.direita)+'</div><div class="minis">'+(v.minis||[]).map(m=>'<div style="border:1px solid rgba(201,179,126,.55);border-radius:12px;padding:14px;font-size:22px;color:#DED6BF;aspect-ratio:4/5;flex:1;display:flex;align-items:center;justify-content:center;text-align:center">'+e(m)+'</div>').join('')+'</div></div></div>';
  }else if(v.tipo==='pasta'){
   h='<div class="win pasta"><div class="nome">'+e(v.nome)+'/</div><div class="arq">'+v.arquivos.map(a=>'<div>'+e(a)+'</div>').join('')+'</div></div>';
+ }else if(v.tipo==='dividido'){
+  h='<div class="div"><div class="ruim">'+e(v.cima)+'</div><div class="bom">'+e(v.baixo)+'</div></div>';
+ }else if(v.tipo==='secao'){
+  h='<ol>'+v.itens.map(i=>{const g=/\s*\[GRÁTIS\]$/.test(i);return '<li>'+e(i.replace(/\s*\[GRÁTIS\]$/,''))+(g?'<span class="gr">GRÁTIS</span>':'')+'</li>'}).join('')+'</ol>';
+ }else if(v.tipo==='numero'){
+  h=(v.marca?'<div class="marca-ext">'+e(v.marca)+'</div>':'')+'<div class="num">'+e(v.numero)+(v.rotulo?'<small>'+e(v.rotulo)+'</small>':'')+'</div>';
+ }else if(v.tipo==='setas'){
+  h='<div>'+v.itens.map(i=>'<div class="txt seta-l" style="font-size:44px;margin:0 0 26px;color:var(--creme)">'+e(i)+'</div>').join('')+'</div>';
  }
  if(v.legenda)h+='<div class="leg">'+e(v.legenda)+'</div>';
  return '<div class="visual">'+h+'</div>';
 }
 D.slides.forEach((s,i)=>{
  const el=document.createElement('section');
- el.className='slide '+s.papel+(i%2?' alt':'');
+ el.className='slide '+s.papel+(!D.fundoUnico&&i%2?' alt':'')+(s.visual&&s.visual.tipo==='secao'?' sec':'');
  const seta=s.papel==='capa'?'<div class="seta">Arrasta pro lado →</div>':'';
- el.innerHTML=(s.papel==='capa'?'':'<div class="n">'+(i+1)+'/'+N+'</div>')+
-  '<div class="body"><div class="k">'+e(s.kicker||'')+'</div><h1>'+e(s.titulo)+'</h1>'+(s.texto?'<div class="txt">'+e(s.texto)+'</div>':'')+seta+'</div>'+
-  visual(s.visual)+'<div class="f"><span>'+e(D.marca)+'</span><span>'+(i+1)+' / '+N+'</span></div>';
+ const img=s.imagem?'<div class="img" style="background-image:url('+e(s.imagem)+')"></div><div class="sh"></div>':'';
+ const rod=s.rodape?'<div class="rod">'+e(s.rodape)+'</div>':'';
+ el.innerHTML=img+(s.papel==='capa'?'':'<div class="n">'+(i+1)+'/'+N+'</div>')+
+  '<div class="body">'+(s.kicker?'<div class="k">'+e(s.kicker)+'</div>':'')+(s.titulo?'<h1>'+e(s.titulo)+'</h1>':'')+(s.texto?'<div class="txt">'+e(s.texto)+'</div>':'')+seta+'</div>'+
+  visual(s.visual)+rod+'<div class="f"><span>'+e(D.marca)+'</span><span>'+(i+1)+' / '+N+'</span></div>';
  document.body.appendChild(el);
 });
+const q=new URLSearchParams(location.search).get('s');
+if(q){document.querySelectorAll('.slide').forEach((el,i)=>{if(i+1!==+q)el.remove()});document.body.style.cssText='padding:0;gap:0;display:block;background:none';}
 </script></body></html>

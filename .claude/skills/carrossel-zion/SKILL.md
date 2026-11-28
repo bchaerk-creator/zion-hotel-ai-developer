@@ -11,21 +11,32 @@ Rotina de postagem diária (glamping, desenvolvimento hoteleiro, hotéis) da con
 | Tipo | Slides | Objetivo | Arquivo |
 |---|---|---|---|
 | Passo a passo | 8 | Salvamento | `tipos/passo-a-passo.md` |
+| Lista | 8 | Salvamento e compartilhamento | `tipos/lista.md` |
+| Storytelling | 7 | Seguidor e conexão | `tipos/storytelling.md` |
+| Opinião forte | 6 | Alcance e comentários | `tipos/opiniao-forte.md` |
+| Estudo de caso | 7 | Venda e autoridade | `tipos/estudo-de-caso.md` |
+| Pra salvar | 8 | Salvamento | `tipos/pra-salvar.md` |
+| Notícia | 6 | Alcance e autoridade | `tipos/noticia.md` |
+| Vitrine | 6 | Venda de serviço visual | `tipos/vitrine.md` |
+| Isso contra aquilo | 7 | Compartilhamento | `tipos/isso-contra-aquilo.md` |
+
+**Prompts do público** (os que Bruno manda no direct a quem comenta "PROMPT"): `prompts/PROMPTS.md` (roteirista, um por tipo e arte em HTML). Envio manual de Bruno.
 
 Ao receber um comando novo (outro `TIPO:` ou novos SLIDEs), grave-o como `tipos/<nome>.md`, na mesma estrutura, e acrescente a linha na tabela acima. Não apague tipos existentes.
 
 ## Regras fixas (valem para todo tipo)
 1. **Identidade Zion** (CLAUDE.md §2): fundo preto `#040605`, creme `#FEF5F0`, **uma cor de destaque só: dourado champanhe `#C9B37E`**; Cormorant nos títulos, Aventa no texto (`docs/assets/fonts/`). Logo só os oficiais de `docs/brand/`.
-2. **Formato:** 1080 × 1350 px por slide (feed 4:5), no máximo **30 palavras por slide**, uma ideia por slide, texto grande, celular primeiro.
+2. **Formato:** 1080 × 1350 px por slide (feed 4:5), no máximo **30 palavras por slide** (cada tipo pode declarar outro limite em `maxPalavras`; vale o do tipo), uma ideia por slide, texto grande, celular primeiro.
 3. **Sem invenção:** nada de número de mercado, resultado, depoimento ou prazo sem fonte. Exemplos marcados "dados fictícios" ou "exemplo". Sem promessa de reserva, ocupação, renda, investimento ou valorização.
-4. **Números da Bubble** (diária, EBITDA, anos de operação) só com confirmação de Bruno registrada (mapa de sessões, pendência 6).
-5. **Fotos:** só reais da Zion (`docs/assets/operacoes/`, `docs/assets/store/`); fotos com pessoas só com autorização; nunca imagem gerada como foto real. O campo VISUAL do comando é mockup em HTML (tabela, tela de chat, pasta), nunca foto inventada.
-6. **Postar é com Bruno.** A skill gera roteiro, arte, PNGs e legenda. Publicar, agendar ou pagar impulsionamento só com "aprovado" de Bruno (anúncio continua com teto R$ 0 fora da Fase 1).
-7. **CTA com palavra-chave** (ex.: "comenta PROMPT"): o envio no direct é manual de Bruno; não dispare mensagens a leads.
+4. **Placeholders:** `[colchetes]` nos modelos (storytelling, vitrine) são fatos que Bruno ainda não deu; o `build.js` bloqueia a exportação enquanto sobrar colchete. **Fonte e data:** número ou fato de terceiros vai com `rodape` "Fonte: X, data"; notícia e recurso de produto se reconferem no dia de postar. **Logo de terceiros** não entra: nome em texto.
+5. **Números da Bubble** (diária, EBITDA, anos de operação) só com confirmação de Bruno registrada (mapa de sessões, pendência 6).
+6. **Fotos:** só reais da Zion (`docs/assets/operacoes/`, `docs/assets/store/`); fotos com pessoas só com autorização; nunca imagem gerada como foto real. O campo VISUAL do comando é mockup em HTML (tabela, tela de chat, pasta), nunca foto inventada.
+7. **Postar é com Bruno.** A skill gera roteiro, arte, PNGs e legenda. Publicar, agendar ou pagar impulsionamento só com "aprovado" de Bruno (anúncio continua com teto R$ 0 fora da Fase 1).
+8. **CTA com palavra-chave** (ex.: "comenta PROMPT"): o envio no direct é manual de Bruno; não dispare mensagens a leads.
 
 ## Fluxo de cada carrossel
 1. Ler o comando (tipo, slides, VISUAL). Se faltar tema, propor 3 ideias do dia (glamping, desenvolvimento hoteleiro, hotel) e seguir com a escolhida por Bruno.
-2. Montar `slides.json` (formato em `tipos/passo-a-passo.md`) em `producao/instagram/carrosseis/<nnn>-<tema>/`.
+2. Montar `slides.json` (formato em `tipos/passo-a-passo.md`; visuais disponíveis: `tabela`, `chat`, `lado`, `pasta`, `dividido`, `secao`, `numero`, `setas`; slide de foto: `imagem`; opções: `fundoUnico`, `maxPalavras`, `rodape` por slide; `carrossel.html?s=3` mostra só o slide 3) em `producao/instagram/carrosseis/<nnn>-<tema>/`.
 3. Exportar: `node .claude/skills/carrossel-zion/scripts/build.js producao/instagram/carrosseis/<pasta>`
    Gera `slide-01.png` a `slide-NN.png`, `carrossel.html` (molde: só troca o texto do `slides.json`) e `legenda.md`.
 4. Conferir visualmente pelo menos a capa, um slide com VISUAL e o CTA (Read nas imagens) e corrigir texto cortado.
