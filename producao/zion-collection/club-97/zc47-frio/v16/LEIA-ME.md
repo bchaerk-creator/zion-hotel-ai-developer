@@ -14,3 +14,11 @@ Arquivo: docs/p/adbc67069af26ae0/zc47-videos/zc47-v16-investidores.mp4
 3. Modelo (29,8–76,3 s): Camila "Imagina ser proprietário de um glamping… bubbles… totalmente equipadas… hotel premium… locais exclusivos e deslumbrantes de todo o Brasil" + "um modelo com um ecossistema de reservas e marketing já estabelecido… Investir em experiências é investir no futuro da hotelaria. E a Zion está pronta para caminhar ao seu lado nessa jornada." (removido "alta rentabilidade").
 4. CTA (76,3–99,5 s): "Seja um investidor e colecionador de paraísos…" + "Junte-se a uma marca nacionalmente reconhecida como líder no setor de glamping…" + texto e cartão final "Invista em uma marca nacionalmente reconhecida · Fale com a Zion" com aviso de risco.
 Trilha original Zion (music.py, 92 BPM) por baixo da voz. Arquivo: zc47-v16b-investidores.mp4 (99,5 s).
+
+## Cortes de atributos com a Camila (28/11, ~20 s cada)
+Cada corte = atributo com título e etiquetas sincronizadas com a fala + chamada na voz da Camila + cartão "Invista em uma marca nacionalmente reconhecida · Fale com a Zion".
+- A1 Bubble completa: "Cada uma delas totalmente equipadas com cama, decoração sofisticada, banheiro privativo e até uma jacuzzi, funcionando como um hotel premium." → "Junte-se a uma marca nacionalmente reconhecida como líder…"
+- A2 Deck de madeira: "Imagina ser proprietário de um glamping… simples deck de madeira… bubbles transparentes." → "Seja um investidor e colecionador de paraísos…"
+- A3 Experiência e natureza: "…experiência única de acampamento de luxo em meio à natureza, em locais exclusivos e deslumbrantes de todo o Brasil." → "Investir em experiências é investir no futuro da hotelaria…"
+- A4 Reservas e marketing: "…um modelo com um ecossistema de reservas e marketing já estabelecido para impulsionar o seu negócio." → "Junte-se a uma marca nacionalmente reconhecida…"
+Arquivos: docs/p/adbc67069af26ae0/zc47-videos/ZION-A1…A4-*.mp4 e zc47-v16b-investidores-leve.mp4.
