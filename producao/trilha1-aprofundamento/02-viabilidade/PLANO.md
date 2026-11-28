@@ -732,3 +732,10 @@ Publicação: `docs/trilha1/pilar6b/index.html` e `logic.js`; `docs/trilha1/apre
 16. E-book de 50 a 60 páginas; ficha com 30 a 45 min; aula pedindo só o nome; ficha sem envio de dados.
 17. Moeda constante (sem crescimento) e mês de 365 ÷ 12 noites.
 18. O nome do curso nas peças («Transforme Seu Terreno em um Projeto de Hospedagem de Sucesso») enquanto o nome comercial «… em um destino turístico» não for decidido (GUIA 1.1).
+
+---
+
+## 13. Decisões de Bruno (28/11)
+1. **A 6B mostra a conta real.** Com os custos abertos, a Marina chega a «Redesenhar»; a lição ensina as alavancas e mostra o cenário ajustado (fictício). Os Pilares 6 e 7 ficam como estão; a 6B traz uma nota curta explicando que a página 6 era a primeira conta, com a margem de referência, e que a conta aberta é a que decide (sem desmerecer o Pilar 6).
+2. **Imposto da Marina:** 6% como resposta fictícia do contador dela, rotulada «Exemplo ilustrativo». O aluno deixa em branco até falar com o contador dele.
+3. Os demais itens da seção 12 seguem como propostos no plano até nova decisão.
