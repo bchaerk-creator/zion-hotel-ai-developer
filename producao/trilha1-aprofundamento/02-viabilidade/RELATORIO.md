@@ -17,12 +17,13 @@ Receita R$ 271.915,88 · margem depois da reserva 21,3% (página 6: 40% de refer
 | E-book (59 p.) | `docs/trilha1/materiais/Pilar-6B-Viabilidade-ebook.pdf` | `src/caso.py` confere todos os números por assert; só Playfair e Inter; revisão visual |
 | Checklist (2 p.) | `docs/trilha1/materiais/Pilar-6B-Viabilidade-checklist.pdf` | altura de página conferida |
 | Capas | `docs/trilha1/capas/p6b-c-*.jpg` | comparadas com as p6a |
-| Tutorial em vídeo | `tutorial/viabilidade.json` | em produção; **Bruno aprova antes de entrar** |
+| Tutorial em vídeo | `docs/trilha1/videos/tutoriais/tutorial-ficha-pilar6b.mp4` | 4 min 12 s, voz e formato dos tutoriais do curso; **aprovado por Bruno em 28/11** |
 
 ## ClickMax, todas **desligadas**, depois das aulas do 6A e antes da Planilha 1
 - Trilha 1 (`6e06c29d`): `274964df` aula, `0cd342ac` Faça agora, `7a9fff5b` e-book, `5f835beb` checklist.
 - Plataforma de estruturação, entrega do R$ 47 (`b2800aa7`): `f0a5575b` aula, `8f52662d` Faça agora, `9246ca8e` e-book, `d8a0c869` checklist.
-- Tutorial: criar nos dois depois da aprovação do vídeo.
+- Tutorial: `100ea98e` (Trilha 1) e `306e69bd` (Plataforma), depois do Faça agora.
+- 28/11: vídeo aprovado; as 10 aulas da 6B seguem **desligadas** porque a ativação foi barrada pela verificação de segurança desta sessão; ligar quando Bruno confirmar de novo.
 
 ## A confirmar por Bruno
 Demais itens da seção 12 do plano (régua da ZAIOS aplicada ao cenário medido, giro, colchão, múltiplo de saída, fase dois como alavanca, frase na 6A).
