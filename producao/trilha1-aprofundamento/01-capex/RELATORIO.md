@@ -34,3 +34,8 @@ Ligar só com o "aprovado" de Bruno: o curso está em 5 turmas. A Plataforma de 
 - E-book com 56 páginas (mesmo tamanho de letra do Pilar 6) em vez de 30 a 40.
 - Pilar 6 atual: margem de referência de 40% e números da Zion Glamping Store na ficha (achado do mapa da viabilidade).
 - Aula do Pilar 6 com dois defeitos (voltar ao slide; janela do apresentador), corrigidos só na 6A.
+
+## 28/11 · Ligado para quem compra por R$ 47 (aprovado por Bruno)
+A Mini Mentoria de Estruturação (R$ 47, oferta `0c71eeba`) entrega a turma «Plataforma de estruturação (R$ 97)» `087479a3` (portal Plataforma Zion Collection), que usa a **cópia** do curso `79d3e792`, e não a Trilha 1. As 5 aulas foram criadas **ligadas** no Pilar 6 da cópia (`b2800aa7`), entre o e-book do Pilar 6 e a Planilha 1: `62ec25cd` aula, `e0cc4ceb` Faça agora, `a4047a7a` tutorial, `97c017e0` e-book, `78611d74` checklist. Todos os links conferidos no ar (28/11).
+A mesma cópia é entregue pelo Club de R$ 97 (turma `69345987`, portal Zion Collection), que portanto também passa a ver o 6A.
+Na Trilha 1 (`fa9a6c54`) as 5 aulas continuam **desligadas** (turmas: Curso · Transforme seu terreno, Estruturação · Viabilidade, Fundadores, Land Bank · Candidatos, Inscrição R$ 270).
