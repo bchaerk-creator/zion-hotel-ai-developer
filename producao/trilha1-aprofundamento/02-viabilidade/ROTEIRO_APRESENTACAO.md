@@ -19,8 +19,8 @@ Teste: `tests/test_aula.js` (celular 390 × 844 e computador 1280 × 800). Captu
   - Todo resultado: «Cenários, não promessas.»
 - **Como falar da página 6** (PLANO 5.1; decisão 1 de Bruno): «a página 6 respondeu com a margem de referência; agora a resposta vem da sua lista». Proibido: "estava errada", "inflada", "otimista demais" (o teste reprova).
 - **Sem sigla:** nenhum «ECROI» na tela, nas notas ou nos atributos. NOI, EBITDA, VPL, TIR, payback e ROI não aparecem (o teste reprova). «CAPEX» aparece como o nome que a 6A já explicou.
-- **«Parte 1» e «Parte 2»** para as duas partes da aula (GUIA, item I8, a pedido do coordenador em 28/11): «Parte 1 · Os seis degraus da conta» e «Parte 2 · A conta da Marina». A palavra «Bloco» não aparece em nenhum lugar da tela, das notas nem do `data-bloco` (o teste reprova). Os seis degraus da conta seguem como «Degrau 1 a 6 de 6» (vocabulário do PLANO, da ficha e do e-book), com a classe `parte` (número grande ao fundo, como na 6A).
-- **`data-bloco`**, na ordem: «Abertura», «Como funciona esta aula», «Retomada · Pilar 6 e 6A», «Parte 1 · Os seis degraus da conta», «Quiz relâmpago», «Parte 2 · A conta da Marina», «Quiz relâmpago», «Resumo», «A sua página 6B», «Próximo».
+- **«Bloco 1» e «Bloco 2»** são as duas partes da aula, no sentido do curso (Comece aqui; aulas do Pilar 6 e da 6A; GUIA 3.2 e I8): «Bloco 1 · Os seis degraus da conta» e «Bloco 2 · A conta da Marina». Nenhum «Bloco 3» em diante e nenhum «Bloco» com outro sentido (o teste reprova). Os seis degraus da conta são «Degrau 1 a 6 de 6» (vocabulário do PLANO, da ficha e do e-book), com a classe `parte` (número grande ao fundo, como na 6A).
+- **`data-bloco`**, na ordem: «Abertura», «Como funciona esta aula», «Retomada · Pilar 6 e 6A», «Bloco 1 · Os seis degraus da conta», «Quiz relâmpago», «Bloco 2 · A conta da Marina», «Quiz relâmpago», «Resumo», «A sua página 6B», «Próximo».
 - **Faixas** (margem 30/20/10, reserva 3% a 6%, tempo de volta 8 e 12, colchão 10%) sempre como «faixa citada pela fonte; não é meta nem promessa».
 - **Sem promessa** de retorno, renda, ocupação, crédito, parceria ou aprovação. Nenhuma alíquota sugerida; nenhuma taxa sugerida.
 - **Fotos:** nenhuma. Sem produto avulso nem bônus fora da turma (GUIA 5.10).
@@ -47,28 +47,28 @@ Só esses dois campos de `respostas` são gravados. Os valores `"sim"` e `"nao"`
 | 3 | Retomada · Pilar 6 e 6A | «Você já fez a página 6… mais uma irmã, a 6B» | — | 0,5 |
 | 4 a 6 | Retomada · Pilar 6 e 6A | três perguntas de cabeça | quiz que grava | 1,5 |
 | 7 | Retomada · Pilar 6 e 6A | previsão | escolha que grava | 0,7 |
-| 8 | Parte 1 · Os seis degraus da conta | «Faturamento não é lucro…» | — | 0,5 |
-| 9 | Parte 1 | Do Pilar 6 para a 6B | tabela clique a clique | 1,0 |
-| 10 | Parte 1 | os seis degraus | — | 0,4 |
-| 11 a 16 | Parte 1 | Degrau 1 a Degrau 6 | — | 0,6 cada |
+| 8 | Bloco 1 · Os seis degraus da conta | «Faturamento não é lucro…» | — | 0,5 |
+| 9 | Bloco 1 | Do Pilar 6 para a 6B | tabela clique a clique | 1,0 |
+| 10 | Bloco 1 | os seis degraus | — | 0,4 |
+| 11 a 16 | Bloco 1 | Degrau 1 a Degrau 6 | — | 0,6 cada |
 | 17 | Quiz relâmpago | classificar 6 itens no degrau | cartões | 1,0 |
-| 18 | Parte 1 | a rampa no calendário | — | 0,8 |
-| 19 | Parte 1 | o giro e o colchão | — | 0,8 |
-| 20 | Parte 1 | a escada do tempo de volta | — | 0,8 |
+| 18 | Bloco 1 | a rampa no calendário | — | 0,8 |
+| 19 | Bloco 1 | o giro e o colchão | — | 0,8 |
+| 20 | Bloco 1 | a escada do tempo de volta | — | 0,8 |
 | 21 | Quiz relâmpago | antes ou depois da reserva? | escolha | 0,5 |
-| 22 | Parte 2 · A conta da Marina | de onde ela parte | tabela clique a clique | 1,0 |
-| 23 | Parte 2 | degraus 1 a 3 | tabela clique a clique | 1,0 |
-| 24 | Parte 2 | degraus 4 a 6: 21,3% | tabela clique a clique | 1,2 |
-| 25 | Parte 2 | de onde vem a diferença (nota sobre a página 6) | tabela clique a clique | 1,0 |
-| 26 | Parte 2 | equilíbrio e folga | — | 1,0 |
-| 27 | Parte 2 | o primeiro ano mês a mês | tabela clique a clique | 1,2 |
-| 28 | Parte 2 | giro e colchão | — | 1,0 |
-| 29 | Parte 2 | a escada da Marina: 15,0 anos | tabela clique a clique | 1,0 |
-| 30 | Parte 2 | os cinco passos → Redesenhar | semáforo (cartões) | 1,2 |
-| 31 | Parte 2 | o critério da página 6 dispara; a previsão volta | — | 1,0 |
-| 32 | Parte 2 | semáforo das alavancas | cartões | 1,0 |
-| 33 | Parte 2 | mexa você: uma alavanca por vez | simulador | 1,2 |
-| 34 | Parte 2 | o cenário ajustado e por que dá Testar | tabela clique a clique | 1,0 |
+| 22 | Bloco 2 · A conta da Marina | de onde ela parte | tabela clique a clique | 1,0 |
+| 23 | Bloco 2 | degraus 1 a 3 | tabela clique a clique | 1,0 |
+| 24 | Bloco 2 | degraus 4 a 6: 21,3% | tabela clique a clique | 1,2 |
+| 25 | Bloco 2 | de onde vem a diferença (nota sobre a página 6) | tabela clique a clique | 1,0 |
+| 26 | Bloco 2 | equilíbrio e folga | — | 1,0 |
+| 27 | Bloco 2 | o primeiro ano mês a mês | tabela clique a clique | 1,2 |
+| 28 | Bloco 2 | giro e colchão | — | 1,0 |
+| 29 | Bloco 2 | a escada da Marina: 15,0 anos | tabela clique a clique | 1,0 |
+| 30 | Bloco 2 | os cinco passos → Redesenhar | semáforo (cartões) | 1,2 |
+| 31 | Bloco 2 | o critério da página 6 dispara; a previsão volta | — | 1,0 |
+| 32 | Bloco 2 | semáforo das alavancas | cartões | 1,0 |
+| 33 | Bloco 2 | mexa você: uma alavanca por vez | simulador | 1,2 |
+| 34 | Bloco 2 | o cenário ajustado e por que dá Testar | tabela clique a clique | 1,0 |
 | 35 | Quiz relâmpago | a ação de 30 dias | escolha | 0,5 |
 | 36 | Resumo | O 6B em cinco frases | — | 0,7 |
 | 37 | A sua página 6B | critério de conclusão; o contador | escolha que grava | 0,6 |
@@ -108,7 +108,7 @@ Total: cerca de 19 minutos de aula, mais a ficha.
 
 ### Slide 6 · Retomada · o limite (`aulaExtras.r_limite`)
 - **Pergunta:** «Até quanto a página 6 dizia que o investimento aguentava, em 8 anos no conservador?» · A) Cerca de R$ 690 mil · **B) Cerca de R$ 870 mil** · C) Cerca de R$ 1,2 milhão.
-- **Notas:** 8 × 108.766,35 = 870.130,80. Bate. Feito com a margem de 40%: volta no Parte 2.
+- **Notas:** 8 × 108.766,35 = 870.130,80. Bate. Feito com a margem de 40%: volta no Bloco 2.
 - **Fonte:** P6 cap. 07; PLANO 5.3 item 4.
 
 ### Slide 7 · Previsão (`aulaExtras.previsao`)
@@ -116,7 +116,7 @@ Total: cerca de 19 minutos de aula, mais a ficha.
 - **Opções:** Abaixo de 40%, e o limite de R$ 870 mil cai · Abaixo de 40%, e o limite continua de pé · Perto de 40% · Acima de 40%. Sem certo ou errado aqui; a previsão volta no slide 31.
 - **Fonte:** PLANO 4 (etapa 1) e 5.3 item 5.
 
-### Slide 8 · Parte 1 · Os seis degraus da conta (abertura)
+### Slide 8 · Bloco 1 · Os seis degraus da conta (abertura)
 - **Tela:** citação «"Faturamento não é lucro, e o custo fixo *não diminui na baixa.*"» · «Pilar 6 · Pré-viabilidade, capítulo 05» · lead (clique): «O Pilar 6 deixou escrito: "A margem real sai da sua lista de custos, com o seu trabalho e a reserva de reposição dentro." A 6B é esse passo.»
 - **Fonte:** P6 cap. 05; ficha do Pilar 6; PLANO 5.1.
 
@@ -175,7 +175,7 @@ Total: cerca de 19 minutos de aula, mais a ficha.
 - **Interação:** «O tempo de volta se calcula sobre o resultado antes ou depois da reserva de reposição?» · Antes · **Depois: sobre o que sobra**.
 - **Fonte:** PLANO 5.3 item 6; R20.
 
-### Slide 22 · Parte 2 · A conta da Marina
+### Slide 22 · Bloco 2 · A conta da Marina
 - **Tela:** selo «Exemplo ilustrativo»; tabela clique a clique: Pilar 2 R$ 645 · 38,5% · Pilar 4 R$ 271.915,88 · página 6, 40% → R$ 108.766,35 · 6A CAPEX R$ 791.131,00 · investimento total R$ 831.918,38. Rótulo da referência; novo e fictício: abertura em junho e estadia de 2 noites.
 - **Notas:** 1.095 × 0,385 × 645 = 271.915,88; × 0,40 = 108.766,35; 791.131 + 40.787,38 = 831.918,38. Bate.
 - **Fonte:** PLANO 7.1.

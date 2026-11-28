@@ -4,7 +4,7 @@
    390x844 (celular) e 1280x800 (computador), percorre os 40 slides e confere: zero erros de JS na aula,
    sem rolagem horizontal, nenhum texto transbordando do slide, número de slides igual ao do roteiro,
    data-bloco na lista do plano, sem sigla interna (ECROI) nem siglas técnicas na tela (NOI, EBITDA, VPL,
-   TIR, payback, ROI), sem a palavra «Bloco» na tela, nas notas nem no data-bloco (GUIA, item I8), os números do caso da Marina (PLANO, seção 7), a nota
+   TIR, payback, ROI), «Bloco» só como «Bloco 1 · Os seis degraus da conta» e «Bloco 2 · A conta da Marina» (nunca «Bloco 3» em diante nem com outro sentido), os números do caso da Marina (PLANO, seção 7), a nota
    respeitosa sobre a margem de referência, interações (retomada, previsão que volta, quizzes, cartões,
    simulador das alavancas, resposta do contador, nome, ficha embutida), teclado, toque, notas, modo
    apresentador e salvamento local depois de recarregar, gravando só respostas.d2 e respostas.nome na
@@ -292,10 +292,16 @@ async function estrutura(page, rotulo) {
   confere(e.titulo === 'Aprofundamento 6B · Viabilidade' && e.deck === 'Aprofundamento 6B · Viabilidade', `${rotulo}: título «Aprofundamento 6B · Viabilidade»`, [e.titulo, e.deck]);
   confere(!/ECROI/i.test(e.html), `${rotulo}: nenhuma sigla ECROI na página (tela, notas e atributos)`);
   confere(!/\b(NOI|EBITDA|VPL|TIR|ROI)\b|payback/i.test(e.html.replace(/<script[\s\S]*?<\/script>/g, '').replace(/<style[\s\S]*?<\/style>/g, '')) , `${rotulo}: sem NOI, EBITDA, VPL, TIR, payback e ROI`);
-  confere(!e.blocos.some((b) => /bloco/i.test(b)) && !/bloco/i.test(e.tela) && !/bloco/i.test(e.notas) && !/bloco/i.test(e.visivel), `${rotulo}: nenhuma ocorrência de «Bloco» (tela, barra do topo, notas e data-bloco)`, [e.blocos.filter((b) => /bloco/i.test(b)), (e.tela.match(/.{0,30}bloco.{0,30}/i) || [''])[0], (e.notas.match(/.{0,30}bloco.{0,30}/i) || [''])[0]]);
-  confere(e.blocos.filter((b) => /^Parte 1 · /.test(b)).length > 0 && e.blocos.filter((b) => /^Parte 2 · /.test(b)).length > 0 && /Parte 1 · Os seis degraus da conta/.test(e.tela) && /Parte 2 · A conta/.test(e.tela), `${rotulo}: as duas partes da aula se chamam «Parte 1» e «Parte 2»`);
-  // ordem de primeira aparição (o «Quiz relâmpago» aparece no fim da Parte 1, no meio e no fim da Parte 2)
-  const esperados = ['Abertura', 'Como funciona esta aula', 'Retomada · Pilar 6 e 6A', 'Parte 1 · Os seis degraus da conta', 'Quiz relâmpago', 'Parte 2 · A conta da Marina', 'Resumo', 'A sua página 6B', 'Próximo'];
+  // «Bloco» só no sentido do curso: as duas partes da aula, com estes nomes exatos (GUIA 3.2 e I8)
+  const BLOCOS_OK = ['Bloco 1 · Os seis degraus da conta', 'Bloco 2 · A conta da Marina'];
+  const blocosDA = Array.from(new Set(e.blocos.filter((b) => /bloco/i.test(b))));
+  confere(JSON.stringify(blocosDA) === JSON.stringify(BLOCOS_OK), `${rotulo}: data-bloco usa exatamente «Bloco 1» e «Bloco 2» como as duas partes da aula`, blocosDA);
+  const fora = (txt) => (txt.replace(/Bloco 1 · Os seis degraus da conta|Bloco 2 · A conta(?: da Marina)?|(?:no|o|ao) Bloco [12]\b/g, '').match(/.{0,30}\bbloco\b.{0,30}/gi) || []);
+  confere(!/Bloco\s*[3-9]/i.test(e.tela + e.notas + e.visivel + e.blocos.join(' ')), `${rotulo}: nenhum «Bloco 3» em diante`);
+  confere(fora(e.tela).length === 0 && fora(e.notas).length === 0 && fora(e.visivel).length === 0, `${rotulo}: nenhum «Bloco» com outro sentido (tela, barra do topo e notas)`, [fora(e.tela), fora(e.notas), fora(e.visivel)].flat().slice(0, 5));
+  confere(/Bloco 1 · Os seis degraus da conta/.test(e.tela) && /Bloco 2 · A conta/.test(e.tela) && !/Parte [12] · /.test(e.tela + e.blocos.join(' ')), `${rotulo}: os títulos das duas partes dizem «Bloco 1» e «Bloco 2», como na 6A`);
+  // ordem de primeira aparição (o «Quiz relâmpago» aparece no fim do Bloco 1, no meio e no fim do Bloco 2)
+  const esperados = ['Abertura', 'Como funciona esta aula', 'Retomada · Pilar 6 e 6A', 'Bloco 1 · Os seis degraus da conta', 'Quiz relâmpago', 'Bloco 2 · A conta da Marina', 'Resumo', 'A sua página 6B', 'Próximo'];
   const unicos = Array.from(new Set(e.blocos));
   confere(JSON.stringify(unicos) === JSON.stringify(esperados), `${rotulo}: data-bloco na ordem do plano`, unicos);
   confere(!/Helena|Ribeir|Rodrigo/.test(e.html), `${rotulo}: sem Helena, Chalés do Ribeirão nem Rodrigo e Priscila`);
