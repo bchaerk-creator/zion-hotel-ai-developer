@@ -65,3 +65,16 @@ Criar **um agente novo "Bela · Investidores" em rascunho** (persona própria: r
 
 ## Regra de escopo (Bruno, 28/11): só expansão e investimentos
 As opções de investimento ou venda das operações de Urubici e Florianópolis ficam **à parte**: não aparecem na página, no formulário, no carrossel nem nas mensagens. Urubici e Florianópolis aparecem apenas como prova de que o modelo já funciona. Formulário passou a 8 perguntas: saiu "operações existentes / novas / ambas" e a de destino virou região de interesse (Sul / outras regiões / qualquer destino / ainda não sei), **proposta minha, a confirmar**. Para o canal de conversa sobre as operações, criar depois um fluxo/lista separado, com aprovação e revisão jurídica próprias.
+
+## ATUALIZAÇÃO 28/11 (noite, 2) · landing publicada, formulário do Meta e estrutura no ClickMax
+**Landing publicada com "aprovado" de Bruno** (merge na `main`, sem campanha e sem disparo): origem `https://bchaerk-creator.github.io/zion-hotel-ai-developer/investidores/` conferida no ar (título, fonte, imagens, 390 px sem rolagem lateral); link para o Meta: **https://www.zionhotelgroup.com/oportunidades** (o wrapper do Lovable busca a origem a cada 30 s; este ambiente não alcança o domínio `www`, conferir no celular). Carrossel **fora** da página pública até o print do Instagram e o jurídico.
+**Formulário nativo do Meta (criado, não usado em anúncio):** `1143109468438825`, página Zion Glamping Collection `576944608845537`, conta de anúncios Zion Collection 2. 8 perguntas + autorização de WhatsApp (Sim/Não) + nome, telefone, cidade, estado; "Higher intent" ligado; privacidade `zionhotelgroup.com/privacidade`; botão final → `/oportunidades`; sem preço, sem faixa de capital. O Meta não deixa editar: para mudar, criar outro e arquivar este com `set_lead_form_status`. **A autorização é uma pergunta: o fluxo só pode disparar quando `autoriza_whatsapp` = "Sim, autorizo".**
+**ClickMax (tudo rascunho/inativo):**
+| Item | ID |
+|---|---|
+| Projeto "Zion Investors" | `1809f361-924d-4150-a0b6-b3ca89a00b1b` |
+| Pipeline "Zion Investors" (Novo cadastro, Contato feito, Apresentação agendada, Apresentação realizada, Em negociação, Sem interesse / descartado) | `05a8c52d-b761-46be-8df1-67de797e8e8e` |
+| Fluxo (movido para o projeto; ainda sem gatilho e passos) | `cd2fa28f-ab95-499c-a872-dee83e8dd151` |
+| Campos: ZI Destino, ZI Prazo, ZI Intenção declarada, ZI Respostas, ZI Consentimento | `526b84cb…`, `ca60c820…`, `355af2ce…`, `94db7a99…`, `1f9eb0fd…` |
+| Modelo `investidores_boas_vindas` agora **MARKETING** (botão "Sair"), draft, não enviado à Meta | `814a0a86…` |
+**Falta:** gatilho webhook e passos do fluxo (tags, modelo, tarefa, aviso ao Bruno); URL do webhook na landing; agenda própria de investidores; roteamento da resposta no 1061; ingestão do formulário do Meta (sem usar a sincronização do Land Bank); campanha (nada criado, teto R$ 0 para esta frente); evento de lead no pixel; carrossel na página.
