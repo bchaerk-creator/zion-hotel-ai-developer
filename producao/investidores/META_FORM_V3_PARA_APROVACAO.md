@@ -34,3 +34,9 @@
 
 ## 6. Aprovações que preciso
 (a) perguntas 5 e 6 fora do Meta (recomendado) ou dentro; (b) remover a opção "operações existentes" da pergunta 10 (recomendado); (c) criar o v3 e arquivar o `1177931711576787`; (d) texto de abertura aprovado pelo jurídico antes de anunciar.
+
+## ATUALIZAÇÃO · decisões de Bruno e criação (28/11)
+Decisões: (1) **12 perguntas no Meta**, incluindo capital e disponibilidade (5 e 6); (2) pergunta 10, opção 1 trocada por **"Operações da Zion."**; (3) terreno (T) = etiqueta + tarefa para uma pessoa, sem mensagem automática; (4) criar o v3 e arquivar o v2.
+**Criado: formulário `2402615837235072`** ("ZION INVESTORS | v3 (28/11)"), página Zion Glamping Collection, alta intenção, 12 perguntas + autorização de WhatsApp + nome, telefone, e-mail, cidade, estado; texto de abertura, tela final e botão conforme o comando. O Meta aceitou os limites (12 perguntas e até 9 opções por pergunta) **na criação**; a **análise de política do anúncio** acontece depois, quando um anúncio usar o formulário, e pode reprovar as perguntas 5 e 6. Se reprovar, criar o v4 sem elas e coletar na qualificação privada.
+**Arquivados:** `1177931711576787` (v2) e `1143109468438825` (v1). Nenhum anúncio usa nenhum dos três; nenhuma campanha foi ativada.
+**Atenção:** a faixa "R$ 150 mil" aparece em formulário público e pode ser lida como piso; "referência nacional" e o convite explícito a investir capital seguem para o jurídico.
