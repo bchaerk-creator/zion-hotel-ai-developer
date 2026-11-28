@@ -68,9 +68,9 @@ def cita(txt, fonte):
     return f'<div class="cita"><q>{txt}</q><small>{fonte}</small></div>'
 
 
-def tab(cab, linhas, v=(), leg="", larg=None):
+def tab(cab, linhas, v=(), leg="", larg=None, fixo=False):
     col = "".join(f'<col style="width:{w}">' for w in larg) if larg else ""
-    av = ' style="break-inside:avoid"' if len(linhas) <= 8 else ""
+    av = ' style="break-inside:avoid' + (';table-layout:fixed"' if fixo else '"') if len(linhas) <= 8 else (' style="table-layout:fixed"' if fixo else "")
     h = f"<table{av}>{col}<thead><tr>" + "".join(f'<th class="{"v" if i in v else ""}">{x}</th>' for i, x in enumerate(cab)) + "</tr></thead><tbody>"
     for ln in linhas:
         cls = ""
@@ -380,11 +380,11 @@ add("<p>Cada mês tem 1.095 ÷ 12 = 91,25 noites possíveis. As noites vendidas 
 rows = []
 for x in c.ANO1:
     rp = c.RAMPA[x["i"] - 1]
-    oc = f"{int(c.OCUP_TIPO[x['tipo']] * 100)}% × {dec(rp, 2)} = {dec(x['o'] * 100, 1)}%"
+    oc = f"{int(c.OCUP_TIPO[x['tipo']] * 100)} × {dec(rp, 2)} = {dec(x['o'] * 100, 1)}%"
     rows.append([str(x["i"]), x["mes"], x["tipo"], oc, dec(x["noites"], 2), m2(x["contrib"]), m2(x["res"]), ("<b>" + m2(x["acum"]) + "</b>") if x["i"] in (10, 12) else m2(x["acum"])])
-rows.append(["!Ano 1", "", "", f"média {dec(sum(x['o'] for x in c.ANO1) / 12 * 100, 2)}%", dec(sum(x["noites"] for x in c.ANO1), 2), m2(sum(x["contrib"] for x in c.ANO1)), m2(c.ANO1_RES), ""])
+rows.append(["!Total", "", "", f"média {dec(sum(x['o'] for x in c.ANO1) / 12 * 100, 2)}%", dec(sum(x["noites"] for x in c.ANO1), 2), m2(sum(x["contrib"] for x in c.ANO1)), m2(c.ANO1_RES), ""])
 add(ex("O primeiro ano da Marina, mês a mês (conservador)", tab(["Mês", "", "Tipo", "Ocupação × rampa", "Noites", "Contribuição", "Resultado", "Acumulado"], rows, v=(4, 5, 6, 7),
-    larg=("6%", "6%", "8%", "22%", "9%", "15%", "16%", "18%"))
+    larg=("7%", "6%", "8%", "24%", "9%", "15%", "14%", "17%"), fixo=True)
     + '<p class="conf">Conferência: Σ(ocupação × rampa) = 3 × 25,6 + 2 × 20 + 11 + 4 × 16,5 + 2 × 30 = 253,8 pontos; 253,8 ÷ 462 = 0,549351; 170.446,99 × 0,549351 = 93.635,16; − 112.627,20 = −18.992,04. Bate (as duas contas).</p>'))
 add("<h3>O mês que aperta</h3>")
 add(ex("O resultado de cada mês do primeiro ano, de junho a maio", barras(ano1_vals, c.ORDEM)
@@ -513,6 +513,7 @@ add(ex("As premissas", "<ul><li>Situação: «Tenho um terreno e ainda não hosp
        "<li>Imposto de 6%, resposta fictícia do contador dela em 20/11/2026; deduções de 18,2%; R$ 97,50 por noite e 1% de perdas; fixo de R$ 9.385,60 por mês com a retirada; reserva de reposição de 3%; sem custos do modelo.</li></ul>"))
 T = c.TAB73
 lin = lambda nome, k, cls="": [cls + nome, m2(CO[k]), m2(BA[k]), m2(OT[k])]
+add('<div style="break-before:page"></div>')
 add(ex("A conta em seis degraus, nos três cenários", tab(["Degrau", "Conservador 38,5%", "Base 50%", "Otimista 65%"], [
     ["Noites vendidas", dec(CO["noites"], 3), dec(BA["noites"], 1), dec(OT["noites"], 2)],
     ["Estadias", dec(CO["estadias"], 2), dec(BA["estadias"], 2), dec(OT["estadias"], 2)],
@@ -559,9 +560,9 @@ cap("11", "O redesenho", "Quando a conta não fecha: <i>uma alavanca por vez</i>
      "Para você saber o que precisaria ser verdade e o que provar antes de decidir de novo."],
     ["As alavancas, uma por vez", "O que cada uma ensina", "O cenário ajustado", "Por que ele dá «Testar»", "Os 90 dias do Pilar 7"],
     "Redesenhar não é desistir. É voltar à conta com uma pergunta precisa: o que precisaria mudar, e isso é possível de provar? A regra é mexer uma alavanca por vez.")
-add(ex("As alavancas da Marina, uma por vez", tab(["Alavanca", "O que muda", "O que sobra no ano", "Ano 1", "Tempo de volta", "Passo 3"],
-    [[n, mu if mu != "—" else "", m2(A[k]["sobra"]), m2(A[k]["ano1"]), anos(A[k]["volta"]), c.passo3(A[k]["volta"])] for k, n, mu in NOMES_AL],
-    v=(2, 3, 4), larg=("22%", "24%", "15%", "14%", "13%", "12%"))
+add(ex("As alavancas da Marina, uma por vez", tab(["Alavanca", "O que muda", "Sobra no ano", "Ano 1", "Volta", "Passo 3"],
+    [[n, mu if mu != "—" else "", m2(A[k]["sobra"]), m2(A[k]["ano1"]), anos(A[k]["volta"]).replace("mais de 100 anos", "+ de 100"), c.passo3(A[k]["volta"])] for k, n, mu in NOMES_AL],
+    v=(2, 3, 4), larg=("19%", "23%", "14%", "13%", "17%", "14%"), fixo=True)
     + '<p class="conf">Conferências: diária R$ 695: 421,575 × 443,21 = 186.846,26; − 112.627,20 = 74.219,06; 1 + (791.131 + 9.983,09) ÷ 74.219,06 = 11,79. Ocupação 43,5%: 476,325 × 404,31 = 192.582,96; − 112.627,20 = 79.955,76. Fixo −10%: 170.446,99 − 101.364,48 = 69.082,51. Cesta: 126,47 cestas × 57,40 = 7.259,52. Duas cabanas: 281,05 noites × 404,31 = 113.631,33; − 112.627,20 = 1.004,13; CAPEX (687.940 − 146.940) × 1,15 = 622.150, com as linhas de uma cabana da 6A. Bate.</p>'))
 add("<h3>O que cada alavanca ensina</h3><ul>"
     "<li><b>A diária pesa mais:</b> cada real fica quase inteiro (77,8 centavos); R$ 50 a mais tiram a Marina do redesenhar.</li>"
@@ -637,15 +638,14 @@ cap("13", "A sua página do Dossiê", "A página 6B <i>e a volta</i>",
     ["A ficha «Faça agora · A sua conta»", "Como levar para a página 6", "Planilha 2, célula a célula", "A ordem do Mapa", "Perguntas, no checklist"],
     "Tudo o que você fez neste e-book vira uma página: a Página 6B · Viabilidade, irmã das páginas 6 e 6A. A ficha «Faça agora · A sua conta» faz as contas, lê as suas páginas 2, 6 e 6A do aparelho e baixa o PDF.")
 add("<p>Na plataforma do curso, abra a aula «Faça agora · A sua conta». Ela lê o CAPEX e o giro da 6A e a margem da página 6 («veio da página 6A», «veio da página 6»), monta os seis degraus, o primeiro ano, os cinco passos, as alavancas, o veredito e a ação de 30 dias. Ela nunca põe um número no lugar do «Não sei». Esta ficha não envia nada: o PDF fica só com você. Salve o PDF da página 6B na pasta Meu Dossiê, ao lado das páginas 6 e 6A.</p>")
-add("<h3>Como levar para a página 6</h3><p>Nada é gravado na ficha do Pilar 6: você digita dois campos. O resto não muda.</p>")
-add(ex("O quadro da Marina", tab(["Campo da ficha do Pilar 6", "O que digitar", "Nota", "Marina"], [
-    ["Margem operacional", "a margem do conservador × 100, com 2 casas", "3, se o imposto tem a resposta do contador e nenhuma linha está em branco; senão 1", f"{dec(c.MARGEM_P6, 2)} · nota 3"],
+add(ex("Como levar para a página 6 · o quadro da Marina", "<p>Nada é gravado na ficha do Pilar 6: você digita dois campos. O resto não muda.</p>" + tab(["Campo da ficha do Pilar 6", "O que digitar", "Nota", "Marina"], [
+    ["Margem operacional", "a margem do conservador × 100, com 2 casas", "3 com o contador e sem linha em branco; senão 1", f"{dec(c.MARGEM_P6, 2)} · nota 3"],
     ["Capital de giro (meses de custo)", "giro da 6B ÷ ((1 − margem digitada) × receita do conservador ÷ 12), com 2 casas", "", f"{dec(c.GIRO_MESES_P6, 2)}"],
-    ["Diária, ocupações, unidades, linhas da folha, infraestrutura comum, terreno", "não mudam (Pilares 2 e 4 e 6A)", "", ""]], larg=("26%", "36%", "22%", "16%"))
+    ["Diária, ocupações, unidades, linhas da folha, infraestrutura comum, terreno", "não mudam (Pilares 2 e 4 e 6A)", "", ""]], larg=("24%", "38%", "22%", "16%"))
     + f"<p>Conferência: 53.524,02 ÷ (0,7874 × 271.915,88 ÷ 12) = 3,00. Bate. A ficha do Pilar 6 vai mostrar: resultado do conservador {brl(c.P6R_RES, 2)}; giro {brl(c.P6R_GIRO, 2)}; investimento total {brl(c.P6R_INV, 2)}; tempo de volta {dec(c.P6R_VOLTA, 1)} anos; limite de 8 anos {brl(c.P6R_LIM, 2)}; base e otimista {dec(c.P6R_BASE, 1)} e {dec(c.P6R_OTIM, 1)} anos; veredito sugerido pela página 6: «Ajustar». Na 6B o nome é «Redesenhar»: as duas dizem «não assine a obra neste desenho».</p>"))
 add("<p><b>Próximas, não iguais:</b> a página 6 mantém a margem igual nos três cenários e calcula o tempo de volta sem rampa, a simplificação dela. Os dois números estão certos dentro da regra de cada um.</p>")
 add("<h3>Planilha 2, célula a célula</h3><p>A Planilha 2 · Estudo de Massas e Viabilidade não tem linha para tudo o que a 6B abre. O quadro diz onde lançar cada número e como contornar o que falta.</p>")
-add(ex("A Planilha 2 da Marina", tab(["Aba e célula", "O que vai"], [
+add(ex("A Planilha 2 da Marina", tab(["Aba e célula", "O que vai", "Marina"], [
     ["Massas B9, B10, B11 (C e D: área e deck)", "as unidades da fase na tipologia certa; B12 tem de dar as unidades", "B11 = 3, C11 = 38, D11 = 16"],
     ["Investimento B5", "o CAPEX", "791.131"], ["Investimento B6", "0", "0"],
     ["Investimento B7", "=giro da 6B/B8 (sem arredondar)", "=53524,02/B8"],

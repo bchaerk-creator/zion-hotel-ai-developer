@@ -170,7 +170,7 @@ h3+p{break-before:avoid}
 .passos .s{display:inline-block;margin-top:1.2mm;padding:.5mm 1.8mm;border-radius:9mm;font-size:6.4pt;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
 .passos .ok .s{background:#E1EFE3;color:var(--ok)} .passos .aj .s{background:#F6EBCB;color:#7A5E12} .passos .rd .s{background:#F8E3DE;color:#9B2C1F}
 .veredito{background:var(--verde);color:#fff;border-radius:1.5mm;padding:3mm 4.6mm;margin:1mm 0 4mm;display:flex;gap:4mm;align-items:center;break-inside:avoid}
-.veredito .k{color:var(--ouro)} .veredito b{font-family:'Playfair Display',serif;font-weight:400;font-size:17pt;color:var(--ouro)}
+.veredito .k{color:var(--ouro)} .veredito>div>b{font-family:'Playfair Display',serif;font-weight:400;font-size:17pt;color:var(--ouro)}
 .veredito p{margin:0;font-size:8.4pt;color:#F2EFE6}
 .fim{font-size:7.4pt;line-height:1.55;color:var(--texto2);border-top:1px solid var(--linha2);padding-top:3mm;margin-top:6mm;break-inside:avoid}
 """
