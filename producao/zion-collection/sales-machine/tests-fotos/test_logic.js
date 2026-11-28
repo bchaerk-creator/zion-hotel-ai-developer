@@ -1,0 +1,26 @@
+const assert = require("assert");
+const Z = require("../../../../docs/trilha1/_fotos.js");
+let n = 0; const t = (nome, f) => { f(); n++; console.log("ok  " + nome); };
+const MB = 1024 * 1024;
+t("constantes", () => { assert.equal(Z.MAX_FOTOS, 6); assert.equal(Z.MAX_BYTES, 5 * MB); assert.equal(Z.MAX_LADO, 1200); assert.equal(Z.QUALIDADE, 0.8); });
+t("aceita jpg/png/webp", () => { for (const ty of ["image/jpeg", "image/png", "image/webp"]) assert(Z.validarArquivo({ type: ty, size: 1000, name: "a" }, 0).ok); });
+t("aceita por extensão se type vazio", () => { assert(Z.validarArquivo({ type: "", size: 10, name: "F.JPG" }, 0).ok); assert(!Z.validarArquivo({ type: "", size: 10, name: "f.gif" }, 0).ok); });
+t("recusa gif, pdf, svg, heic", () => { for (const ty of ["image/gif", "application/pdf", "image/svg+xml", "image/heic"]) { const r = Z.validarArquivo({ type: ty, size: 10, name: "x" }, 0); assert(!r.ok); assert(/JPG, PNG ou WEBP/.test(r.erro)); } });
+t("limite de 5 MB (borda)", () => { assert(Z.validarArquivo({ type: "image/png", size: 5 * MB, name: "a" }, 0).ok); const r = Z.validarArquivo({ type: "image/png", size: 5 * MB + 1, name: "a.png" }, 0); assert(!r.ok); assert(/5 MB/.test(r.erro)); });
+t("arquivo vazio e nulo", () => { assert(!Z.validarArquivo({ type: "image/png", size: 0, name: "a" }, 0).ok); assert(!Z.validarArquivo(null, 0).ok); });
+t("limite de 6 fotos", () => { assert(Z.validarArquivo({ type: "image/png", size: 9, name: "a" }, 5).ok); const r = Z.validarArquivo({ type: "image/png", size: 9, name: "a" }, 6); assert(!r.ok); assert(/limite/.test(r.erro)); assert.equal(Z.vagas(4), 2); assert.equal(Z.vagas(9), 0); });
+t("dimensões: reduz a 1200 mantendo proporção", () => { assert.deepEqual(Z.dimensoesFinais(4000, 3000), { w: 1200, h: 900 }); assert.deepEqual(Z.dimensoesFinais(3000, 4000), { w: 900, h: 1200 }); });
+t("dimensões: não aumenta", () => { assert.deepEqual(Z.dimensoesFinais(800, 600), { w: 800, h: 600 }); assert.deepEqual(Z.dimensoesFinais(1200, 1200), { w: 1200, h: 1200 }); });
+t("dimensões: extremos", () => { assert.deepEqual(Z.dimensoesFinais(0, 10), { w: 0, h: 0 }); assert.deepEqual(Z.dimensoesFinais(20000, 1), { w: 1200, h: 1 }); });
+t("encaixar na caixa", () => { const r = Z.encaixar(1200, 900, 85, 52); assert(r.w <= 85.0001 && r.h <= 52.0001); assert(Math.abs(r.w / r.h - 4 / 3) < 1e-9); assert.deepEqual(Z.encaixar(0, 5, 85, 52), { w: 0, h: 0 }); });
+t("legenda limpa e limitada", () => { assert.equal(Z.limparLegenda("  a\n\tb  "), "a b"); assert.equal(Z.limparLegenda(null), ""); assert.equal(Z.limparLegenda("x".repeat(500)).length, Z.MAX_LEGENDA); });
+t("serializar/interpretar ida e volta", () => { const f = [{ id: "1", legenda: "Entrada", dataUrl: "data:image/jpeg;base64,AAAA", w: 10, h: 5 }]; assert.deepEqual(Z.interpretar(Z.serializar(f)), f); });
+t("interpretar descarta lixo e limita a 6", () => {
+  assert.deepEqual(Z.interpretar("não é json"), []); assert.deepEqual(Z.interpretar("null"), []);
+  const ok = { dataUrl: "data:image/jpeg;base64,AAAA", w: 1, h: 1 };
+  const lista = [ok, { dataUrl: "javascript:alert(1)", w: 1, h: 1 }, { dataUrl: "data:image/svg+xml;base64,AAAA", w: 1, h: 1 }, { ...ok, w: 0 }, ok, ok, ok, ok, ok, ok];
+  assert.equal(Z.interpretar(JSON.stringify({ fotos: lista })).length, 6);
+});
+t("sem rede no módulo", () => { const src = require("fs").readFileSync(require.resolve("../../../../docs/trilha1/_fotos.js"), "utf8").replace(/\/\*[\s\S]*?\*\//, ""); assert(!/fetch\(|XMLHttpRequest|sendBeacon|WebSocket|FormData/.test(src)); });
+t("sem promessa proibida nos textos", () => { const src = require("fs").readFileSync(require.resolve("../../../../docs/trilha1/_fotos.js"), "utf8"); assert(!/garant(e|imos)|promet|retorno|renda|ocupação|valoriza/i.test(src)); });
+console.log("\n" + n + " testes passaram");

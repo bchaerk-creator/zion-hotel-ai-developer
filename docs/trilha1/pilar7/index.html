@@ -207,6 +207,7 @@ table.escada{font-size:.85rem}
 <main><div class="wrap" id="app" aria-live="polite"></div></main>
 <footer class="rodape" id="rodape"></footer>
 
+<script src="../_fotos.js"></script>
 <script>
 /* =====================================================================
    Zion · Pilar 7 · Capital e Dossiê · "Faça agora · O seu Dossiê de Desenvolvimento"
@@ -1434,6 +1435,27 @@ function paginaSalvaPDF(P, p) {
   if (p.mentor && p.mentor.resumo) P.caixa("Leitura do mentor virtual", `${p.mentor.resumo}${p.mentor.veredito_rot ? " Leitura: " + p.mentor.veredito_rot + "." : ""}`, CINZA);
   P.caixa("As quatro perguntas", `Completa? ${q.completa}. Veredito: ${q.veredito}. O que faria parar: ${q.criterio}. Maior lacuna: ${q.lacuna}.`, CINZA);
 }
+function paginaFotosPDF(P) {
+  const fotos = window.ZionFotos ? window.ZionFotos.ler() : [];
+  if (!fotos.length) return;
+  const doc = P.doc, GAP = 6, CW2 = (P.CW - GAP) / 2, BOX_H = 52, LEG_H = 9;
+  P.novaPagina();
+  P.titulo("Fotografias da propriedade");
+  P.par(window.ZionFotos.AVISO_PDF, { bold: true, size: 9, cor: CINZA, after: 4 });
+  for (let i = 0; i < fotos.length; i += 2) {
+    P.cabe(BOX_H + LEG_H + 6);
+    for (let c = 0; c < 2 && i + c < fotos.length; c++) {
+      const f = fotos[i + c], x = P.M + c * (CW2 + GAP);
+      const t = window.ZionFotos.encaixar(f.w, f.h, CW2, BOX_H);
+      doc.setFillColor(255, 253, 248); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.rect(x, P.y, CW2, BOX_H, "FD");
+      doc.addImage(f.dataUrl, "JPEG", x + (CW2 - t.w) / 2, P.y + (BOX_H - t.h) / 2, t.w, t.h);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...VERDE);
+      const leg = f.legenda ? doc.splitTextToSize(`${i + c + 1}. ${f.legenda}`, CW2).slice(0, 2) : [`${i + c + 1}.`];
+      leg.forEach((l, k) => doc.text(l, x, P.y + BOX_H + 4.5 + k * 4));
+    }
+    P.y += BOX_H + LEG_H + 3;
+  }
+}
 function gerarDossiePDF(L) {
   const P = criarPDF("Zion · Dossiê de Desenvolvimento");
   const feitas = L.pags.filter((p) => p.n >= 1 && p.status === "feita").length + 1;
@@ -1455,6 +1477,8 @@ function gerarDossiePDF(L) {
   P.caixa("Como ler", "Cada página responde às mesmas quatro perguntas: está completa? qual é o veredito? o que faria parar? qual é a maior lacuna? Uma linha em branco declarada vale; um número redondo sem fonte, não. Toda conta é de referência e é ilustrativa: receita bruta não é lucro.", CINZA);
   // Páginas 0 a 6
   L.pags.forEach((p) => paginaSalvaPDF(P, p));
+  // Fotografias da propriedade (só se o aluno anexou fotos na Ficha do Território)
+  paginaFotosPDF(P);
   // Página 7
   const { C } = L, r = S.respostas;
   abrirPagina(P, 7, "Capital e decisão", PAGINAS[7].pergunta, `Feita em ${dataBR(hojeISO())}${L.P.ajustado ? " · ajustada no simulador" : ""}`);
