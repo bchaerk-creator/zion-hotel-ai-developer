@@ -1380,6 +1380,30 @@ function criarPDF(cabecalho) {
     doc.text(`Gerada em ${dataBR(hojeISO())}`, P.M + 4, 229);
     doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, P.CW - 8), P.M + 4, P.H - 30);
   };
+  P.capaEntregavel = (feitas, ajustado, decisao) => {
+    const x = P.M + 4, w = P.CW - 8;
+    doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, P.H, "F");
+    doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, P.W - 20, P.H - 20);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ZION HOTEL ACADEMY  ·  MÉTODO ZION", x, 30);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(220, 214, 200); doc.text("Dossiê de estruturação do projeto", x, 36);
+    doc.setFont("times", "bolditalic"); doc.setFontSize(30); doc.setTextColor(...CREME);
+    doc.text("Meu terreno.", x, 76); doc.text("Minha visão.", x, 90); doc.setTextColor(...OURO); doc.text("Meu projeto.", x, 104);
+    doc.setFillColor(...OURO); doc.rect(x, 112, 50, 1.2, "F");
+    doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(...CREME);
+    doc.text(doc.splitTextToSize("O terreno, a ideia e o que falta, reunidos em um documento seu, feito a partir do que você preencheu na plataforma.", w), x, 124);
+    doc.setFontSize(9.5); doc.setTextColor(220, 214, 200);
+    doc.text(doc.splitTextToSize(`${feitas} de 7 páginas prontas neste aparelho · decisão do pilar 7: ${decisao.toLowerCase()}.`, w), x, 144);
+    if (ajustado) {
+      doc.setFillColor(...OURO); doc.roundedRect(x, 156, 108, 9, 2, 2, "F");
+      doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...VERDE); doc.text(`PÁGINA 7 AJUSTADA NO SIMULADOR · ${dataBR(hojeISO())}`, x + 3, 162);
+    }
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("EMPREENDEDOR(A)", x, 200);
+    doc.setFont("times", "bold"); doc.setFontSize(22); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", w), x, 210);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(11); doc.setTextColor(220, 214, 200);
+    doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}`, x, 222);
+    doc.text(`Gerado em ${dataBR(hojeISO())}`, x, 229);
+    doc.setFontSize(8); doc.text(doc.splitTextToSize("Documento de organização das informações declaradas por você. Não é promessa de investimento, parceria ou resultado. " + RODAPE, w), x, P.H - 32);
+  };
   P.fechar = (nomeArquivo) => {
     const n = doc.getNumberOfPages();
     for (let k = 1; k <= n; k++) {
@@ -1459,11 +1483,7 @@ function paginaFotosPDF(P) {
 function gerarDossiePDF(L) {
   const P = criarPDF("Zion · Dossiê de Desenvolvimento");
   const feitas = L.pags.filter((p) => p.n >= 1 && p.status === "feita").length + 1;
-  P.capa("MÉTODO ZION · O DOSSIÊ COMPLETO", "Dossiê de", "Desenvolvimento", `As sete páginas, uma por pilar, e a decisão: ${NOME_D[L.d].toLowerCase()}. ${feitas} de 7 páginas prontas neste aparelho.`, (doc) => {
-    if (!L.P.ajustado) return;
-    doc.setFillColor(...OURO); doc.roundedRect(P.M + 4, 138, 108, 9, 2, 2, "F");
-    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...VERDE); doc.text(`PÁGINA 7 AJUSTADA NO SIMULADOR · ${dataBR(hojeISO())}`, P.M + 7, 144);
-  });
+  P.capaEntregavel(feitas, !!L.P.ajustado, NOME_D[L.d]);
   // Sumário
   P.novaPagina();
   P.titulo("O que está nesta pasta");
