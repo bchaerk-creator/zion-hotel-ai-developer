@@ -8,3 +8,6 @@ Base: Carrossel C campeão (anúncio 120250522199990016), cartões renderizados 
 4. **Cartões 4 e 7:** o print mostra pessoas nas publicações do perfil e o cartão 7 tem foto com pessoa; confirmar autorização de imagem.
 5. "Seja um investidor", "Invista na Zion", "capital", "começar a faturar com hospedagem": revisão CVM 86/88/160 antes de qualquer veiculação.
 6. Desempenho histórico do campeão não consultado.
+
+## v4 PARA INVESTIDORES (28/11)
+Copy refeita pela direção de Bruno («Seja um investidor na expansão da Zion… Marca reconhecida»). Texto dos cartões, 3 textos de anúncio e pendências atualizadas em `COPY_ANUNCIO.md`. Saíram +23 destinos, +20 anos e pioneiros (sem comprovante); cartão 2 sem etiquetas e só com fotos da Zion; cartão 5 sem lista de indicadores; aviso no cartão 7 a validar com advogado. Novo: confirmar a origem das fotos herdadas dos cartões 5 e 6.
