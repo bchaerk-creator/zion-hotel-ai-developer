@@ -1484,7 +1484,7 @@ function paginaSalvaPDF(P, p) {
     return;
   }
   // Pilares 1 a 6, feitos: duas páginas. 1 de 2 = o que a pessoa declarou; 2 de 2 = leitura, veredito, o que verificar e próximo passo.
-  P.par("DECLARADO · o que você preencheu nesta ficha", { bold: true, size: 7.5, cor: OURO_E, after: 1 });
+  P.y += 2; P.par("DECLARADO · o que você preencheu nesta ficha", { bold: true, size: 7.5, cor: OURO_E, after: 1 });
   P.caixa("O critério para parar (escrito por você)", p.criterio && p.criterio.trim() ? p.criterio : "Em branco", OURO_E);
   for (const t of p.tabelas) { P.titulo(t.titulo || "Tabela"); P.tabela(Object.assign({}, t, { titulo: "" })); }
   if (p.compromisso && (p.compromisso.acao || p.compromisso.evidencia)) {
@@ -1493,10 +1493,10 @@ function paginaSalvaPDF(P, p) {
     P.y += 3;
   }
   abrirPagina(P, p.n, p.nome, p.pergunta, `${p.v ? NOME_V[p.v] : "Sem veredito"}${p.ajustado ? " · ajustada no simulador" : ""} · 2 de 2: leitura, veredito e próximo passo`);
-  P.par("ORIENTAÇÃO · veredito de referência, calculado com o que foi declarado", { bold: true, size: 7.5, cor: OURO_E, after: 1 });
+  P.y += 2; P.par("ORIENTAÇÃO · veredito de referência, calculado com o que foi declarado", { bold: true, size: 7.5, cor: OURO_E, after: 1 });
   P.caixa("O veredito", `${p.v ? NOME_V[p.v] : "Sem veredito"}.${p.rot && p.v && p.rot !== NOME_V[p.v] ? ` (${p.rot}.)` : ""} ${p.sub || ""} ${p.motivo || ""}`.replace(/\s+/g, " ").trim(), p.v ? COR_VP[p.v] : CINZA);
   if (p.mentor && p.mentor.resumo) P.caixa("Leitura do mentor virtual", `${p.mentor.resumo}${p.mentor.veredito_rot ? " Leitura: " + p.mentor.veredito_rot + "." : ""}`, CINZA);
-  P.par("A VERIFICAR · o que precisa ser conferido fora da plataforma", { bold: true, size: 7.5, cor: VERM, after: 1 });
+  P.y += 2; P.par("A VERIFICAR · o que precisa ser conferido fora da plataforma", { bold: true, size: 7.5, cor: VERM, after: 1 });
   P.caixa("O ponto mais frágil", p.fragil || "Em branco", VERM);
   P.caixa("As quatro perguntas", `Completa? ${q.completa}. Veredito: ${q.veredito}. O que faria parar: ${q.criterio}. Maior lacuna: ${q.lacuna}.`, CINZA);
   P.caixa("Próximo passo", p.compromisso && p.compromisso.acao ? p.compromisso.acao + (p.compromisso.prazo ? ` (até ${dataBR(p.compromisso.prazo)})` : "") : "Resolver o ponto mais frágil e gerar o Dossiê de novo.", VERDE);
