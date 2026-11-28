@@ -1,0 +1,445 @@
+{
+ "voice": "pt-BR-FranciscaNeural",
+ "scenes": [
+  {
+   "say": "Olá! Este é o tutorial da sua conta, a ferramenta Faça agora do Aprofundamento seis B. Ela abre a linha que faltava: quanto sobra. No fim, você sai com a página seis B do seu Dossiê, irmã das páginas seis e seis A.",
+   "actions": [
+    {
+     "card": {
+      "t": "Aprofundamento 6B · Viabilidade",
+      "s": "A conta em seis degraus, o primeiro ano e a decisão"
+     }
+    }
+   ]
+  },
+  {
+   "say": "Vamos acompanhar a Marina pelo botão de exemplo. São dados fictícios, não preços de referência: o aviso fica no alto de cada tela. Ela marca: tenho um terreno e ainda não hospedo ninguém. E a ficha não envia nada.",
+   "restore": {
+    "url": "http://localhost:8790/trilha1/pilar6b/",
+    "key": "zion-t1-pilar6b",
+    "value": ""
+   },
+   "actions": [
+    {
+     "goto": "http://localhost:8790/trilha1/pilar6b/"
+    },
+    {
+     "show": "h1",
+     "wait": 1000
+    },
+    {
+     "click": "#ver-exemplo",
+     "wait": 1200
+    },
+    {
+     "show": ".faixa-ex",
+     "wait": 1800
+    },
+    {
+     "text": "Tenho um terreno e ainda não hospedo ninguém",
+     "sel": "label.op",
+     "wait": 1800
+    },
+    {
+     "show": "p.aviso",
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "say": "Primeiro, de onde ela parte. Da seis A vem o CAPEX de setecentos e noventa e um mil, cento e trinta e um reais. Da página seis, a margem de referência de quarenta por cento e o limite de cerca de oitocentos e setenta mil.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-capex",
+     "wait": 1500
+    },
+    {
+     "show": ".veio[data-veio='capex']",
+     "wait": 1300
+    },
+    {
+     "show": "#f-margem6",
+     "wait": 1400
+    },
+    {
+     "show": "#ref-40",
+     "wait": 1800
+    },
+    {
+     "show": "#f-limite6",
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "say": "Agora, quanto entra. Diária média de seiscentos e quarenta e cinco reais. O calendário vem do Pilar dois: alta de junho a agosto e cinco meses fracos. A média do ano dá trinta e oito vírgula cinco por cento. Ela abre em junho, com a rampa.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-diaria",
+     "wait": 1500
+    },
+    {
+     "show": ".cal",
+     "wait": 2200
+    },
+    {
+     "show": "#cal-conta",
+     "wait": 1200
+    },
+    {
+     "show": "#ocup-cons",
+     "wait": 1800
+    },
+    {
+     "show": "#f-mesAbertura",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "Do bruto ao real. O imposto só se preenche com a resposta do contador. Os seis por cento são a resposta fictícia do contador dela: não valem para você. Sem resposta, a linha fica em branco. Depois, a comissão da plataforma, o cartão e o cancelamento.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-imposto",
+     "wait": 1500
+    },
+    {
+     "show": "#imposto-ficticio",
+     "wait": 1800
+    },
+    {
+     "show": "#br-imposto",
+     "wait": 1400
+    },
+    {
+     "show": "#f-pPlataforma",
+     "wait": 1100
+    },
+    {
+     "show": "#f-comissaoPlataforma",
+     "wait": 1100
+    },
+    {
+     "show": "#ded-pct",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "O custo de cada noite: de cada noite vendida, ficam quatrocentos e quatro reais. O custo de cada mês tem o seguro dividido por doze e o trabalho dela: oito horas por semana, a quarenta reais a hora. O fixo do mês: nove mil, trezentos e oitenta e cinco reais.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#lv-0 .chips",
+     "wait": 1600
+    },
+    {
+     "show": "#lv-0",
+     "wait": 1200
+    },
+    {
+     "show": "#cada-noite",
+     "wait": 1800
+    },
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#lf-6",
+     "wait": 1500
+    },
+    {
+     "show": "#f-horasSemana",
+     "wait": 1100
+    },
+    {
+     "show": "#f-valorHora",
+     "wait": 1100
+    },
+    {
+     "show": "#fixo-mes",
+     "wait": 1600
+    }
+   ]
+  },
+  {
+   "say": "Agora, a reserva de reposição, de três por cento; a ficha não preenche por você. No cenário medido, sobram cinquenta e sete mil, oitocentos e dezenove reais no ano. Margem de vinte e um vírgula três por cento, e não de quarenta.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-reservaRep",
+     "wait": 1600
+    },
+    {
+     "show": "#res-valor",
+     "wait": 1300
+    },
+    {
+     "show": "#res-sobra",
+     "wait": 2000
+    },
+    {
+     "show": "#res-margem",
+     "wait": 2000
+    },
+    {
+     "show": "#res-leitura",
+     "wait": 1400
+    }
+   ]
+  },
+  {
+   "say": "O primeiro ano, mês a mês. O saldo chega ao ponto mais baixo em março: menos vinte e dois mil, trezentos e cinquenta e seis reais. O giro sobe para cinquenta e três mil, quinhentos e vinte e quatro reais, e o colchão fica em três vírgula nove por cento.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#tab-meses",
+     "wait": 1800
+    },
+    {
+     "show": "#tab-meses tr.tot",
+     "wait": 2200
+    },
+    {
+     "show": "#menor",
+     "wait": 1300
+    },
+    {
+     "show": "#giro-a",
+     "wait": 1500
+    },
+    {
+     "show": "#giro-min",
+     "wait": 1300
+    },
+    {
+     "show": "#colchao",
+     "wait": 2000
+    }
+   ]
+  },
+  {
+   "say": "Vale a pena? Lucro e retorno são coisas diferentes. A taxa do seu dinheiro se escreve antes de ver o resultado; a Zion não sugere taxa. A Marina não precisou: a soma dos dez anos já é menor que o CAPEX.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-taxa",
+     "wait": 2000
+    },
+    {
+     "show": "#f-taxaAntes",
+     "wait": 1300
+    },
+    {
+     "show": "#usar-ref",
+     "wait": 1800
+    }
+   ]
+  },
+  {
+   "say": "O resultado vem em cinco partes. A operação se paga com folga: equilíbrio em vinte e cinco vírgula quatro por cento, treze pontos abaixo do medido. Mas o investimento não volta em doze anos: em escada, o tempo de volta é de quinze anos.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 1100
+    },
+    {
+     "text": "1 · Resultado",
+     "sel": "h2",
+     "wait": 900
+    },
+    {
+     "show": "#r-sobra",
+     "wait": 1300
+    },
+    {
+     "show": "#r-equilibrio",
+     "wait": 2200
+    },
+    {
+     "show": "#r-volta",
+     "wait": 2000
+    },
+    {
+     "show": "#d-volta",
+     "wait": 1600
+    }
+   ]
+  },
+  {
+   "say": "Na régua, os passos três e quatro dão redesenhar, e o veredito sugerido é Redesenhar: o critério da página seis dispara. E três alertas: o giro da seis A sobe, o colchão está curto e o limite da página seis era premissa.",
+   "actions": [
+    {
+     "show": "#passos li:nth-child(3)",
+     "wait": 1500
+    },
+    {
+     "show": "#passos li:nth-child(4)",
+     "wait": 1300
+    },
+    {
+     "show": "#r-veredito",
+     "wait": 1800
+    },
+    {
+     "text": "3 · Atenção",
+     "sel": "h2",
+     "wait": 800
+    },
+    {
+     "show": "#p-atencao [data-id='B5']",
+     "wait": 1300
+    },
+    {
+     "show": "#p-atencao [data-id='B7']",
+     "wait": 1200
+    },
+    {
+     "show": "#p-atencao [data-id='B11']",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "Quando a conta não fecha, uma alavanca por vez. Com a diária cinquenta reais maior, o tempo de volta cai para onze vírgula oito anos. O ajustado, com setecentos e dezesseis reais, quarenta e dois por cento e a cesta de café, mostra Testar: falta provar.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#alv-tipo",
+     "wait": 700
+    },
+    {
+     "show": "#alv-valor",
+     "wait": 700
+    },
+    {
+     "show": "#alv-volta",
+     "wait": 1500
+    },
+    {
+     "show": "#alv-passo3",
+     "wait": 1200
+    },
+    {
+     "show": "#aj-diaria",
+     "wait": 700
+    },
+    {
+     "show": "#aj-ocup",
+     "wait": 700
+    },
+    {
+     "show": "#aj-extras",
+     "wait": 700
+    },
+    {
+     "show": "#aj-volta",
+     "wait": 1600
+    },
+    {
+     "show": "#aj-veredito",
+     "wait": 2000
+    }
+   ]
+  },
+  {
+   "say": "A régua sugere; quem decide é você. A Marina escreve Redesenhar e o critério para parar: se nenhum redesenho passar de doze para oito anos com premissas provadas, ela não assina a obra.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#v-sugerido",
+     "wait": 1500
+    },
+    {
+     "text": "Redesenhar",
+     "sel": "label.op",
+     "wait": 1800
+    },
+    {
+     "show": "#f-criterioParar",
+     "wait": 2600
+    }
+   ]
+  },
+  {
+   "say": "A ação de trinta dias vem sugerida: três redesenhos, e nenhum contrato de obra. Aqui fica o botão para baixar a página seis B em PDF; salve na pasta Meu Dossiê. E os quadros mostram o que levar para a página seis e para a Planilha dois.",
+   "actions": [
+    {
+     "click": "#avancar",
+     "wait": 900
+    },
+    {
+     "show": "#f-acao30",
+     "wait": 1800
+    },
+    {
+     "show": "#f-prazo",
+     "wait": 1000
+    },
+    {
+     "show": "#pdf",
+     "wait": 1800
+    },
+    {
+     "show": "#lembrete",
+     "wait": 1500
+    },
+    {
+     "text": "Como levar para a página 6",
+     "sel": "h2",
+     "wait": 1000
+    },
+    {
+     "show": "#q-margem",
+     "wait": 1300
+    },
+    {
+     "show": "#quadro-pl2",
+     "wait": 1500
+    }
+   ]
+  },
+  {
+   "say": "Agora é a sua vez. Faça a primeira versão com os seus números, mesmo com o imposto em branco. Depois, volte à ficha do Pilar seis e refaça a página seis do seu Dossiê com a margem aberta. Até a próxima.",
+   "actions": [
+    {
+     "card": {
+      "t": "Próximo passo: refaça a página 6 do Dossiê com a margem aberta.",
+      "s": "Club Zion Collection · Trilha de Desenvolvimento"
+     }
+    }
+   ]
+  }
+ ]
+}

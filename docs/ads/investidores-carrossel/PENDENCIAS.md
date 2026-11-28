@@ -1,11 +1,13 @@
-# Zion Investors · carrossel (proposta, nada publicado)
-Base: Carrossel C campeão (anúncio 120250522199990016), cartões renderizados em `docs/ads/inscricao-270/campeao-narrativa/` (não alterados). Gerador: `build.js`. Comparativo: `comparativo.jpg`.
+# Zion Investors · carrossel (proposta, nada publicado em anúncio)
+Base: Carrossel C campeão (anúncio 120250522199990016), cartões renderizados em `docs/ads/inscricao-270/campeao-narrativa/` (não alterados). Gerador: `build.js`. Comparativo: `comparativo.jpg`. Cartão 1 com a chamada oficial; cartão 4 com o print real do Instagram (`ig-print.png`, enviado por Bruno em 28/11: 1196 publicações, 266 mil seguidores).
 
 ## Pendências antes de aprovar
-1. **Cartão 04**: falta o print real do Instagram @zionbubble (o ambiente não acessa o Instagram). Salvar como `ig-print.png` nesta pasta e rodar `node build.js`. Hoje a tela mostra "print pendente".
-2. **Números a comprovar**: +266 mil seguidores (o repositório tem 260 mil e 265 mil, em datas diferentes); +23 destinos (o projeto Lovable traz 29 no pipeline); +20 anos dos fundadores; +6 anos / "desde 2020"; "pioneiros do glamping no Brasil"; "excelente reputação"; "referência nacional".
-3. **Cartão 05**: "faturamento consolidado, ocupação, margem, rentabilidade histórica" sem valores. Os números da Bubble ainda não têm confirmação registrada de Bruno (Mapa, conflito 6). Revisão jurídica sobre "rentabilidade histórica".
-4. **Cartão 02**: a colagem do campeão tem fotos que não são da Zion (CABANAS/TENDAS) e etiquetas "BUBBLE/BUBBLES" ao lado de "Não estamos vendendo Bubbles". Mantido por ser o campeão; sugestão: trocar etiquetas/fotos.
-5. **Cartão 07**: foto com pessoa (autorização de uso de imagem a confirmar).
-6. "Invista na Zion", "capital", "Seja um investidor": revisão CVM 86/88/160 antes de qualquer veiculação.
-7. Desempenho histórico do campeão não consultado (conector de mídia indisponível nesta sessão).
+1. **Números:** +266 mil seguidores confirmado (print e Instagram, 266.388 em 28/11; revisar antes de veicular). +23 destinos, +20 anos, desde 2020 e "pioneiros do glamping" constam nos materiais, mas sem documento comprobatório no repositório.
+2. **Cartão 5:** "faturamento consolidado, ocupação, margem, rentabilidade histórica" sem valores; números da Bubble ainda sem confirmação registrada de Bruno; revisão jurídica sobre "rentabilidade histórica".
+3. **Cartão 2:** a colagem do campeão tem fotos que não são da Zion (CABANAS/TENDAS) e etiquetas BUBBLE/BUBBLES ao lado de "Não estamos vendendo Bubbles". Mantido por ser o campeão.
+4. **Cartões 4 e 7:** o print mostra pessoas nas publicações do perfil e o cartão 7 tem foto com pessoa; confirmar autorização de imagem.
+5. "Seja um investidor", "Invista na Zion", "capital", "começar a faturar com hospedagem": revisão CVM 86/88/160 antes de qualquer veiculação.
+6. Desempenho histórico do campeão não consultado.
+
+## v4 PARA INVESTIDORES (28/11)
+Copy refeita pela direção de Bruno («Seja um investidor na expansão da Zion… Marca reconhecida»). Texto dos cartões, 3 textos de anúncio e pendências atualizadas em `COPY_ANUNCIO.md`. Saíram +23 destinos, +20 anos e pioneiros (sem comprovante); cartão 2 sem etiquetas e só com fotos da Zion; cartão 5 sem lista de indicadores; aviso no cartão 7 a validar com advogado. Novo: confirmar a origem das fotos herdadas dos cartões 5 e 6.

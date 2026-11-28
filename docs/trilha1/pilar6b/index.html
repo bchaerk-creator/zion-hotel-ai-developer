@@ -1,0 +1,1009 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Faça agora · A sua conta</title>
+<meta name="description" content="Faça agora do Aprofundamento 6B do Pilar 6: A sua conta. Da receita bruta ao que sobra depois da reserva de reposição, o primeiro ano mês a mês, o tempo de volta e a régua da Zion, para baixar a página 6B do seu Dossiê de Desenvolvimento em PDF.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js" defer></script>
+<style>
+:root{
+  --verde:#16261C; --verde-2:#22382A; --creme:#F5F1E8; --creme-2:#EBE4D4; --dourado:#E0BE5E;
+  --dourado-escuro:#7A5E12; --texto:#16261C; --texto-2:#46564B; --linha:#D6CDB8; --branco:#FFFDF8;
+  --critico:#9B2C1F; --critico-bg:#F8E3DE; --atencao:#7A5300; --atencao-bg:#FBEFD2; --ok:#1F5A33; --ok-bg:#E1EFE3;
+  --raio:14px;
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--creme);color:var(--texto);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif;font-size:16px;line-height:1.55;overflow-x:hidden}
+h1,h2,h3{font-family:"Playfair Display",Georgia,"Times New Roman",serif;font-weight:600;line-height:1.2;margin:0 0 .5em}
+p{margin:0 0 .8em}
+a{color:var(--verde)}
+.topo{background:var(--verde);color:var(--creme);padding:14px 16px;border-bottom:3px solid var(--dourado)}
+.topo .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.marca{font-family:"Playfair Display",Georgia,serif;font-size:1.05rem;letter-spacing:.02em}
+.marca a{color:inherit;text-decoration:none}
+.marca b{color:var(--dourado);font-weight:600}
+.etiqueta{font-size:.78rem;opacity:.85;text-align:right}
+.wrap{max-width:720px;margin:0 auto}
+main{padding:20px 14px 32px}
+.card{background:var(--branco);border:1px solid var(--linha);border-radius:var(--raio);padding:20px 14px;box-shadow:0 1px 0 rgba(22,38,28,.04)}
+.eyebrow{font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--dourado-escuro);font-weight:600;margin-bottom:6px}
+.lead{font-size:1.05rem;color:var(--texto-2)}
+.tres{display:grid;gap:10px;margin:18px 0}
+.tres div{background:var(--creme);border-left:4px solid var(--dourado);border-radius:8px;padding:10px 12px}
+.tres b{display:block;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;color:var(--verde)}
+label{display:block;font-weight:600;margin:14px 0 6px}
+input[type=text],input[type=date],select,textarea{width:100%;font:inherit;color:var(--texto);background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:10px 12px;min-height:46px}
+textarea{min-height:80px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible{outline:3px solid var(--dourado);outline-offset:1px;border-color:var(--verde)}
+.campo-num{display:flex;align-items:stretch;gap:6px}
+.campo-num input{flex:1;min-width:0;font-weight:600}
+.campo-num.grande input{font-size:1.25rem}
+.campo-num .un{display:flex;align-items:center;padding:0 10px;background:var(--creme-2);border-radius:10px;font-weight:600;white-space:nowrap;font-size:.9rem}
+.btn{appearance:none;border:0;border-radius:999px;padding:12px 20px;font:inherit;font-weight:600;cursor:pointer;min-height:48px;text-align:center;text-decoration:none;display:inline-flex;align-items:center;justify-content:center}
+.btn-p{background:var(--verde);color:var(--creme)}
+.btn-p:hover{background:var(--verde-2)}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.btn-s{background:transparent;color:var(--verde);border:1.5px solid var(--verde)}
+.btn-ouro{background:var(--dourado);color:var(--verde)}
+.btn-ns{background:#fff;color:var(--verde);border:1.5px dashed var(--verde);border-radius:10px;width:100%;margin-top:8px;min-height:44px}
+.btn-ns[aria-pressed=true]{background:var(--verde);color:var(--creme);border-style:solid}
+.btn-ex{background:#FFF7E6;color:var(--verde);border:1.5px solid #E7C980;border-radius:10px;width:100%;margin-top:10px}
+.btn-mini{min-height:40px;padding:8px 14px;font-size:.9rem}
+.nav{display:flex;gap:10px;justify-content:space-between;margin-top:22px}
+.nav .btn{flex:1}
+.progresso{margin:0 0 16px}
+.progresso .txt{display:flex;justify-content:space-between;font-size:.85rem;color:var(--texto-2);margin-bottom:6px}
+.barra{height:8px;background:var(--creme-2);border-radius:99px;overflow:hidden}
+.barra i{display:block;height:100%;background:var(--verde);border-radius:99px;transition:width .25s}
+.pergunta{font-size:1.35rem}
+.explica{color:var(--texto-2);margin-top:-2px}
+.caixa{border-radius:12px;padding:12px 14px;margin-top:14px;font-size:.95rem;overflow-wrap:anywhere}
+.caixa h3{font-family:Inter,system-ui,sans-serif;font-size:.82rem;text-transform:uppercase;letter-spacing:.06em;margin:0 0 6px}
+.caixa p:last-child,.caixa ul:last-child{margin-bottom:0}
+.caixa ul{padding-left:20px;margin:0 0 .6em}
+.porque{background:var(--creme);border:1px solid var(--linha)}
+.onde{background:#EEF3EC;border:1px solid #C9D8C6}
+.exemplo{background:#fff;border:1px dashed var(--dourado-escuro);font-size:.9rem}
+.exemplo h3{color:var(--dourado-escuro)}
+.faixa-ex{background:var(--dourado);color:var(--verde);border-radius:10px;padding:8px 12px;font-size:.85rem;font-weight:700;margin-bottom:12px}
+.veio{background:#FFF7E6;border:1px solid #E7C980;border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.88rem}
+.opcoes{display:grid;gap:8px;margin-top:6px}
+.op{display:flex;gap:10px;align-items:flex-start;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:11px 12px;cursor:pointer;font-weight:500;margin:0}
+.op input{margin-top:3px;width:20px;height:20px;accent-color:var(--verde);flex:none}
+.op:has(input:checked){border-color:var(--verde);background:#F1F5EF}
+fieldset{border:0;padding:0;margin:14px 0 0;min-width:0}
+legend{font-weight:600;padding:0;margin-bottom:6px}
+.erro{color:var(--critico);font-size:.9rem;margin-top:8px;min-height:1.2em}
+.falta{color:var(--texto-2);font-size:.88rem;margin-top:10px;min-height:1.2em}
+section.bloco{margin-top:22px}
+.bloco h2{font-size:1.25rem;border-bottom:2px solid var(--dourado);padding-bottom:6px}
+.numeros{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0}
+.num{background:var(--verde);color:var(--creme);border-radius:12px;padding:10px;min-width:0}
+.num.largo{grid-column:1/-1}
+.num small{display:block;font-size:.72rem;opacity:.85;line-height:1.3}
+.num strong{display:block;font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);line-height:1.2;margin-top:4px;overflow-wrap:anywhere}
+.alerta{border-radius:10px;padding:10px 12px;margin:8px 0;font-size:.93rem;border-left:5px solid;overflow-wrap:anywhere}
+.alerta b{display:block;font-size:.78rem;text-transform:uppercase;letter-spacing:.05em}
+.alerta small{display:block;opacity:.75;margin-top:4px;font-size:.75rem}
+.a-bloqueia,.a-critico{background:var(--critico-bg);border-color:var(--critico);color:#4A140D}
+.a-ns{background:var(--atencao-bg);border-color:var(--atencao);color:#3F2B00}
+.a-atencao{background:#FFF7E6;border-color:#B98A1C;color:#3F2B00}
+.a-info{background:#EEF3EC;border-color:var(--ok);color:#173F25}
+table{width:100%;border-collapse:collapse;font-size:.88rem;table-layout:fixed}
+th,td{text-align:left;padding:7px 4px;border-bottom:1px solid var(--linha);vertical-align:top;overflow-wrap:anywhere}
+th{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--texto-2)}
+td.v,th.v{text-align:right}
+td small{display:block;color:var(--texto-2);font-size:.75rem}
+tr.tot td{font-weight:700;border-top:2px solid var(--verde)}
+tr.parte td{color:var(--texto-2);font-style:italic}
+.dica{font-size:.85rem;color:var(--texto-2)}
+.retomar{background:#EEF3EC;border:1px solid #C9D8C6;border-radius:12px;padding:12px 14px;margin:14px 0}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.aviso{font-size:.85rem;color:var(--texto-2);border-top:1px solid var(--linha);margin-top:18px;padding-top:12px}
+/* linhas dos blocos */
+.lin{border:1.5px solid var(--linha);border-radius:12px;padding:10px 10px 8px;margin-top:12px;background:#fff}
+.lin.na{opacity:.7;background:#FAF7F0}
+.lin-cab{display:flex;gap:6px;align-items:center}
+.lin-cab input{flex:1;min-width:0;font-weight:600}
+.lin-x{flex:none;width:40px;height:40px;border-radius:50%;border:1.5px solid var(--linha);background:#fff;color:var(--critico);font-size:1.2rem;cursor:pointer}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #B9AE95;border-radius:99px;padding:6px 10px;font-size:.82rem;font-weight:600;margin:0;cursor:pointer;background:#fff}
+.chip input{accent-color:var(--verde);margin:0}
+.chip:has(input:checked){border-color:var(--verde);background:var(--verde);color:var(--creme)}
+.grade{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+.grade .inteiro{grid-column:1/-1}
+.lin label{font-size:.8rem;margin:8px 0 3px;font-weight:600;color:var(--texto-2)}
+.lin .check{display:flex;gap:8px;align-items:flex-start;font-weight:500;font-size:.85rem;color:var(--texto);margin-top:8px}
+.lin .check input{width:20px;height:20px;flex:none;accent-color:var(--verde)}
+.lin-tot{display:flex;justify-content:space-between;gap:8px;margin-top:8px;font-size:.9rem;border-top:1px dashed var(--linha);padding-top:6px}
+.lin-tot b{white-space:nowrap}
+.lin-err{color:var(--critico);font-size:.82rem}
+.lin details{margin-top:6px;font-size:.85rem}
+.lin summary{cursor:pointer;color:var(--texto-2);min-height:32px;display:flex;align-items:center}
+.total-bloco{position:sticky;bottom:0;z-index:2;background:var(--verde);color:var(--creme);border-radius:12px;padding:10px 12px;margin-top:14px;display:flex;justify-content:space-between;gap:10px;align-items:center;box-shadow:0 -4px 10px rgba(22,38,28,.15)}
+.total-bloco b{color:var(--dourado);font-family:"Playfair Display",Georgia,serif;font-size:1.2rem;white-space:nowrap}
+.check-lg{display:flex;gap:10px;align-items:flex-start;font-weight:500;margin-top:14px;background:#fff;border:1.5px solid #B9AE95;border-radius:10px;padding:11px 12px}
+.check-lg input{width:20px;height:20px;flex:none;accent-color:var(--verde);margin-top:2px}
+.regua{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin:10px 0}
+.regua span{text-align:center;font-size:.78rem;font-weight:700;padding:8px 2px;border-radius:8px;background:var(--creme-2);color:var(--texto-2)}
+.regua span.on{background:var(--verde);color:var(--dourado)}
+.regua span.diag{outline:2px dashed var(--dourado-escuro);outline-offset:-3px}
+.crit{list-style:none;padding:0;margin:8px 0}
+.crit li{padding:6px 0 6px 30px;position:relative;border-bottom:1px solid var(--linha);font-size:.92rem}
+.crit li::before{content:"";position:absolute;left:4px;top:9px;width:16px;height:16px;border-radius:50%;background:var(--critico-bg);border:2px solid var(--critico)}
+.crit li.ok::before{background:var(--ok);border-color:var(--ok)}
+.selo{display:flex;gap:12px;align-items:center;background:var(--verde);color:var(--creme);border:2px solid var(--dourado);border-radius:14px;padding:14px;margin-top:14px}
+.selo .med{flex:none;width:56px;height:56px;border-radius:50%;background:var(--dourado);color:var(--verde);display:flex;align-items:center;justify-content:center;font-family:"Playfair Display",Georgia,serif;font-weight:700;font-size:1.1rem}
+.selo b{font-family:"Playfair Display",Georgia,serif;font-size:1.15rem;color:var(--dourado);display:block}
+.acoes{display:grid;gap:10px;margin-top:18px}
+.kv{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--linha);padding:6px 0;font-size:.9rem}
+.kv span:last-child{font-weight:600;text-align:right;white-space:nowrap}
+.rodape{font-size:.8rem;color:var(--texto-2);text-align:center;padding:18px 16px 28px;border-top:1px solid var(--linha);margin-top:10px}
+.ref{background:#F3EEE2;border:1px solid var(--linha);border-radius:10px;padding:8px 12px;margin-top:8px;font-size:.85rem;color:var(--texto-2)}
+.duas{display:grid;gap:8px;margin:12px 0}
+.duas div{background:#fff;border:1px solid var(--linha);border-radius:10px;padding:10px 12px;font-size:.9rem}
+.passos{padding-left:20px;margin:6px 0}
+.passos li{margin-bottom:6px;font-size:.92rem}
+.num.ok strong{color:#B9E3C2}
+.num.ruim{background:var(--critico)}
+.num.ruim strong{color:#FFE1D9}
+@media (min-width:720px){
+  main{padding:36px 16px 48px}
+  .card{padding:30px 32px}
+  .pergunta{font-size:1.65rem}
+  .tres{grid-template-columns:1fr 1fr 1fr}
+  .numeros{grid-template-columns:repeat(3,1fr)}
+  .num.largo{grid-column:auto}
+  .acoes{grid-template-columns:1fr 1fr}
+  .grade{grid-template-columns:repeat(3,1fr)}
+}
+@media print{.topo,.nav,.acoes{display:none}}
+/* ficha 6B: acréscimos ao molde da 6A */
+.cal{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px}
+.cal label{margin:0;font-size:.78rem;color:var(--texto-2);font-weight:600}
+.cal select{min-height:40px;padding:6px 8px;font-size:.9rem}
+.cal select.alta{background:#E1EFE3}.cal select.fraco{background:#F8E3DE}.cal select.medio{background:#FBF5E6}
+.passos5{list-style:none;padding:0;margin:8px 0}
+.passos5 li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--linha);font-size:.92rem}
+.passos5 li i{flex:none;width:18px;height:18px;border-radius:50%;margin-top:2px;background:var(--creme-2);border:2px solid #B9AE95}
+.passos5 li[data-status=passa] i{background:var(--ok);border-color:var(--ok)}
+.passos5 li[data-status=ajustar] i{background:#E0BE5E;border-color:#B98A1C}
+.passos5 li[data-status=redesenhar] i{background:var(--critico);border-color:var(--critico)}
+.passos5 li[data-status=pendente] i{background:#fff;border-style:dashed;border-color:var(--texto-2)}
+.passos5 li b{display:block}
+.veredito{background:var(--verde);color:var(--creme);border-radius:12px;padding:12px 14px;margin:10px 0}
+.veredito strong{font-family:"Playfair Display",Georgia,serif;color:var(--dourado);font-size:1.3rem;display:block}
+.rotulo{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;background:var(--creme-2);color:var(--texto-2);border-radius:6px;padding:2px 6px;margin-left:4px}
+.mini th,.mini td{padding:5px 3px;font-size:.8rem}
+.alv-res{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
+.kv{align-items:flex-start}
+.kv span:first-child{min-width:0;flex:1 1 50%}
+.kv span:last-child{white-space:normal;overflow-wrap:anywhere;max-width:58%}
+</style>
+<body>
+<header class="topo"><div class="wrap"><div class="marca"><a href="../index.html"><b>Zion</b> · Método Zion</a></div><div class="etiqueta">Pilar 6<br>Aprofundamento 6B · Viabilidade</div></div></header>
+<main><div class="wrap" id="app" aria-live="polite"></div></main>
+<footer class="rodape" id="rodape"></footer>
+
+<script src="logic.js"></script>
+<script>
+/* =====================================================================
+   Zion · Trilha 1 · Pilar 6 · Aprofundamento 6B · "Faça agora · A sua conta" (página 6B)
+   Toda conta, régua, alerta e texto de leitura vem de logic.js (a mesma lógica testada em Node).
+   Lê, sem alterar: zion-t1-pilar6a (a 6A), zion-t1-pilar6 (a página 6), zion-t1-aula2 (a página 2) e zion-t1-marco-zero.
+   Grava só em zion-t1-pilar6b (respostas + resumo.dados). Nada é enviado: tudo fica neste aparelho.
+   ===================================================================== */
+"use strict";
+const Z = window.ZVIAB;
+const { brl, fmtPct, fmtN, fmtNum, fmtVolta, paraNumero, dataBR } = Z;
+const NS = Z.NS, BR = Z.BRANCO;
+const CHAVE = "zion-t1-pilar6b";
+const CHAVE_6A = "zion-t1-pilar6a", CHAVE_P6 = "zion-t1-pilar6", CHAVE_P2 = "zion-t1-aula2", CHAVE_MZ = "zion-t1-marco-zero";
+const OUTRAS = [CHAVE_6A, CHAVE_P6, "zion-t1-pilar5", "zion-t1-pilar4", "zion-t1-aula3", CHAVE_P2, "zion-t1-aula1", CHAVE_MZ];
+const TELAS = Z.TELAS;
+const app = document.getElementById("app");
+const esc = (s) => String(s ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const ehNS = (v) => v === NS;
+function hojeISO(desloc = 0) { const d = new Date(); d.setHours(12, 0, 0, 0); d.setDate(d.getDate() + desloc); const p = (n) => String(n).padStart(2, "0"); return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate()); }
+const HOJE = hojeISO();
+const TURMA = (() => { try { return new URLSearchParams(window.location.search).get("turma") === "acompanhamento" ? "acompanhamento" : "autonomo"; } catch (e) { return "autonomo"; } })();
+document.getElementById("rodape").textContent = Z.TEXTOS.aviso + " " + Z.TEXTOS.naoEnvia;
+const STATUS_TXT = { passa: "passa", ajustar: "ajustar", redesenhar: "redesenhar", pendente: "pendente" };
+
+/* ---------- estado e salvamento no aparelho ---------- */
+function estadoVazio() {
+  const r = Z.estadoInicial(HOJE); r.turma = TURMA;
+  return { versao: 1, pilar: "6B", pagina: Z.TEXTOS.pagina, perfil: { nome: "", cidade: "" }, respostas: r, passo: 0, iniciado: false, semeado: {}, veio: {}, lido: false, achou: {}, alv: { tipo: "diaria", valor: "50" }, resumo: null, atualizado: null };
+}
+let S = estadoVazio();
+function rawDe(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function carregarChave(k) { try { const raw = rawDe(k); if (!raw) return null; const d = JSON.parse(raw); return d && typeof d === "object" ? d : null; } catch (e) { return null; } }
+function carregar() {
+  const d = carregarChave(CHAVE);
+  if (!d || !d.respostas) return null;
+  const e = Object.assign(estadoVazio(), d);
+  e.respostas = Object.assign(Z.estadoInicial(HOJE), d.respostas);
+  e.respostas.ajustado = Object.assign(Z.estadoInicial(HOJE).ajustado, d.respostas.ajustado || {});
+  e.respostas.turma = TURMA;
+  e.semeado = Object.assign({}, d.semeado || {}); e.veio = Object.assign({}, d.veio || {}); e.achou = Object.assign({}, d.achou || {}); e.alv = Object.assign({ tipo: "diaria", valor: "50" }, d.alv || {});
+  e.passo = Number.isInteger(d.passo) ? d.passo : 0;
+  return e;
+}
+const E = () => S.respostas;
+const calc = () => Z.calcular(E(), HOJE);
+function salvar() {
+  S.atualizado = new Date().toISOString();
+  S.perfil.nome = E().nome || ""; S.perfil.cidade = E().cidadeUF || "";
+  try { const C = calc(); S.resumo = { pagina: "6B", tema: "Viabilidade", ficha: Z.TEXTOS.tituloCompleto, data: HOJE, dados: Z.resumoDados(E(), C), selo: Z.criterio(E(), C, HOJE).ok }; } catch (e) { S.resumo = null; }
+  const copia = Object.assign({}, S, { passo: S.retomar ? S.passoSalvo : S.passo }); delete copia.retomar; delete copia.passoSalvo;
+  try { window.localStorage.setItem(CHAVE, JSON.stringify(copia)); } catch (e) { /* sem armazenamento: a ficha segue funcionando */ }
+}
+function apagar() { try { window.localStorage.removeItem(CHAVE); } catch (e) {} }
+function recomecar() { apagar(); S = estadoVazio(); semear(); salvar(); S.retomar = false; }
+function mudou() { E().pdfBaixado = false; salvar(); }
+
+/* ---------- leituras das outras páginas do Dossiê (tolerante: se falhar, fica vazio) ---------- */
+function nomeDoPerfil() {
+  let melhor = null;
+  for (const k of OUTRAS) {
+    const d = carregarChave(k); if (!d) continue;
+    const nome = (d.perfil && typeof d.perfil.nome === "string" && d.perfil.nome.trim()) || (typeof d.nome === "string" && d.nome.trim()) || "";
+    if (nome && (!melhor || String(d.atualizado || "") > String(melhor.at || ""))) melhor = { nome, at: d.atualizado };
+  }
+  return melhor ? melhor.nome : "";
+}
+function cidadeDoPerfil() { const d = carregarChave(CHAVE_P6); const p = d && d.perfil; return p && p.cidade ? p.cidade + (p.uf ? "/" + p.uf : "") : ""; }
+/** Lê uma vez: Marco Zero (situação), perfil (nome), 6A, página 6 e página 2. Só preenche o que está vazio. */
+function semear() {
+  if (S.lido || E().exemplo) return;
+  S.lido = true;
+  const r = E();
+  try {
+    const mz = Z.lerMarcoZero(rawDe(CHAVE_MZ));
+    if (mz && mz.situacao && !r.situacao) { r.situacao = mz.situacao; S.veio.situacao = "Marco Zero"; }
+    const nome = nomeDoPerfil();
+    if (nome && !r.nome && nome.length >= 2 && nome.length <= 60) { r.nome = nome; S.veio.nome = "perfil salvo nas outras fichas"; }
+    const cid = cidadeDoPerfil(); if (cid && !r.cidadeUF && cid.length <= 60) { r.cidadeUF = cid; S.veio.cidadeUF = "página 6"; }
+    const L = { p6a: Z.lerPagina6A(rawDe(CHAVE_6A)), p6: Z.lerPagina6(rawDe(CHAVE_P6)), p2: Z.lerPagina2(rawDe(CHAVE_P2)) };
+    S.achou = { p6a: !!(L.p6a && L.p6a.temDados), p6: !!(L.p6 && L.p6.temDados), p2: !!(L.p2 && L.p2.temDados) };
+    Object.assign(S.veio, Z.aplicarLeituras(r, L));
+  } catch (e) { /* leitura tolerante: segue com os campos vazios */ }
+}
+const veioHTML = (c) => (S.veio[c] && !Z.falta(E()[c]) && !ehNS(E()[c]) ? `<div class="veio" data-veio="${c}">Veio da ${esc(S.veio[c])} do seu Dossiê. Confira e corrija se mudou.</div>` : "");
+
+/* ---------- navegação ---------- */
+function render() {
+  const t = TELAS[S.passo] || "abertura";
+  const f = { abertura: telaAbertura, parte: telaParte, entra: telaEntra, real: telaReal, noite: telaNoite, mes: telaMes, reserva: telaReserva, caixa: telaCaixa, vale: telaVale, resultado: telaResultado, alavancas: telaAlavancas, veredito: telaVeredito, acao: telaAcao }[t];
+  return f();
+}
+function irPara(p) { S.passo = Math.max(0, Math.min(p, TELAS.length - 1)); salvar(); render(); window.scrollTo(0, 0); const h = app.querySelector("h1"); if (h) h.focus({ preventScroll: true }); }
+function rerender() { const y = window.scrollY; render(); window.scrollTo(0, y); }
+const faixaExemplo = () => (E().exemplo ? `<div class="faixa-ex" role="note">${esc(Z.TEXTOS.exemplo)}</div>` : "");
+function progresso(i) {
+  const n = TELAS.length;
+  return `<div class="progresso" aria-label="Progresso"><div class="txt"><span>Tela ${i + 1} de ${n} · ${esc(Z.NOMES_TELAS[i])}</span><span>${Math.round((i / (n - 1)) * 100)}%</span></div><div class="barra"><i style="width:${(i / (n - 1)) * 100}%"></i></div></div>`;
+}
+function caixasAjuda(k) {
+  const a = Z.AJUDA[k]; if (!a) return "";
+  return `<div class="caixa porque"><h3>Por que perguntamos isso</h3><p>${esc(a.porque)}</p></div>
+    <div class="caixa onde"><h3>Onde conseguir essa informação</h3><p>${esc(a.onde)}</p></div>
+    <div class="caixa exemplo"><h3>Marina · Exemplo ilustrativo</h3><p>${esc(a.exemplo)}</p><p class="dica">${esc(Z.TEXTOS.exemplo)}</p></div>`;
+}
+const navHTML = (i, rotulo) => `<div class="falta" id="falta" role="status"></div><div class="nav"><button type="button" class="btn btn-s" id="voltar" ${i === 0 ? "disabled" : ""}>Voltar</button><button type="button" class="btn btn-p" id="avancar">${rotulo || "Avançar"}</button></div>`;
+function ligarNav(tela, aoAvancar) {
+  const i = TELAS.indexOf(tela);
+  const bt = document.getElementById("avancar"), vt = document.getElementById("voltar");
+  vt.onclick = () => irPara(i - 1);
+  bt.onclick = () => { const er = Z.validarTela(tela, E(), HOJE); if (er) return; if (aoAvancar) aoAvancar(); irPara(i + 1); };
+  atualizarNav(tela);
+}
+function atualizarNav(tela) {
+  const bt = document.getElementById("avancar"); if (!bt) return;
+  const er = Z.validarTela(tela, E(), HOJE);
+  bt.disabled = !!er;
+  document.getElementById("falta").textContent = er ? "Para avançar: " + er : "";
+}
+function ligarCampos(tela, depois) {
+  app.querySelectorAll("[data-campo]").forEach((el) => {
+    const c = el.dataset.campo;
+    const ev = el.type === "radio" || el.type === "checkbox" || el.tagName === "SELECT" || el.type === "date" ? "change" : "input";
+    el.addEventListener(ev, () => {
+      if (el.type === "radio") E()[c] = el.dataset.bool ? el.value === "true" : el.value;
+      else if (el.type === "checkbox") E()[c] = el.checked;
+      else E()[c] = el.value;
+      mudou(); atualizarNav(tela); if (depois) depois(c, el);
+    });
+  });
+  app.querySelectorAll("[data-ns]").forEach((b) => b.addEventListener("click", () => { const c = b.dataset.ns, v = b.dataset.v || NS; E()[c] = E()[c] === v ? "" : v; mudou(); rerender(); }));
+}
+const valorCampo = (c) => (ehNS(E()[c]) || E()[c] === BR || E()[c] === undefined || E()[c] === null ? "" : esc(E()[c]));
+const botaoNS = (c, v = NS, rot = "Não sei") => { const on = E()[c] === v; return `<button type="button" class="btn btn-ns" data-ns="${c}" data-v="${v}" id="${v === NS ? "ns" : "br"}-${c}" aria-pressed="${on}">${on ? "Marcado: " + rot + " (toque para desfazer)" : rot}</button>`; };
+function campoNum(c, rot, o = {}) {
+  const on = ehNS(E()[c]) || E()[c] === BR;
+  return `<label for="f-${c}">${esc(rot)}</label><div class="campo-num ${o.grande ? "grande" : ""}">${o.pre ? `<span class="un">${o.pre}</span>` : ""}<input type="text" id="f-${c}" data-campo="${c}" inputmode="decimal" autocomplete="off" placeholder="${esc(o.ph || "")}" value="${valorCampo(c)}" ${on ? "disabled" : ""}>${o.pos ? `<span class="un">${o.pos}</span>` : ""}</div>${o.br ? botaoNS(c, BR, o.br) : ""}${o.ns ? botaoNS(c) : ""}${veioHTML(c)}${o.dica ? `<p class="dica" style="margin:6px 0 0">${esc(o.dica)}</p>` : ""}`;
+}
+const radios = (c, opcoes, o = {}) => `<fieldset><legend>${esc(o.legenda || "")}</legend><div class="opcoes">${opcoes.map((x) => `<label class="op"><input type="radio" name="r-${c}" data-campo="${c}" ${o.bool ? 'data-bool="1"' : ""} value="${esc(String(x.v))}" ${String(E()[c]) === String(x.v) && E()[c] !== null ? "checked" : ""}><span>${esc(x.r)}</span></label>`).join("")}</div></fieldset>`;
+const kv = (k, v, id) => `<div class="kv"${id ? ` id="${id}"` : ""}><span>${esc(k)}</span><span>${esc(v)}</span></div>`;
+const check = (c, rot) => `<label class="check-lg"><input type="checkbox" data-campo="${c}" id="f-${c}" ${E()[c] === true ? "checked" : ""}><span>${esc(rot)}</span></label>`;
+const pctTxt = (x) => (x === null || x === undefined ? "não se calcula" : fmtPct(x));
+
+/* ---------- tela 0 · abertura ---------- */
+function telaAbertura() {
+  semear();
+  const temSalvo = !!S.retomar, r = E();
+  app.innerHTML = `${progresso(0)}
+  <div class="card">
+    <div class="eyebrow">Pilar 6 · Aprofundamento 6B · Faça agora</div>
+    <h1 tabindex="-1">${esc(Z.TEXTOS.titulo)}</h1>
+    ${faixaExemplo()}
+    <p class="lead">${esc(Z.TEXTOS.retomada)}</p>
+    <p>${esc(Z.TEXTOS.promessa)}</p>
+    <p class="dica">${esc(Z.TEXTOS.notaP6)}</p>
+    <div class="tres">
+      <div><b>Por que</b>${esc(Z.TEXTOS.assinatura)} A margem de referência acerta a ordem de grandeza do ano e não mostra o mês que aperta.</div>
+      <div><b>Como</b>Seis degraus, da receita bruta ao que sobra depois da reserva de reposição, o primeiro ano mês a mês e a régua da Zion em cinco passos.</div>
+      <div><b>Para que</b>Sair com a página 6B do seu Dossiê em PDF, decidir por escrito se avança, ajusta ou redesenha, e refazer a página 6 com a margem aberta.</div>
+    </div>
+    <p class="dica">${esc(Z.TEXTOS.tempo)} ${esc(Z.TEXTOS.naoPromete)} ${esc(Z.TEXTOS.cenarios)}</p>
+    ${temSalvo ? `<div class="retomar"><b>Você já começou esta página.</b><br>As suas respostas ficaram salvas neste aparelho.<div class="nav" style="margin-top:10px"><button class="btn btn-p" id="continuar">Continuar de onde parei</button><button class="btn btn-s" id="zerar">Começar do zero</button></div></div>` : ""}
+    <button type="button" class="btn btn-ex" id="ver-exemplo">Exemplo ilustrativo: ver a Marina preencher</button>
+    <p class="dica" style="margin-top:6px">O botão preenche a ficha com a conta da Marina, que parte da 6A dela. ${esc(Z.TEXTOS.exemplo)} Para fazer a sua, toque em Refazer do zero no fim da ficha.</p>
+    <label for="f-nome">O seu nome (opcional)</label>
+    <input type="text" id="f-nome" data-campo="nome" autocomplete="name" value="${valorCampo("nome")}">${veioHTML("nome")}
+    <label for="f-projeto">O nome do projeto</label>
+    <input type="text" id="f-projeto" data-campo="projeto" value="${valorCampo("projeto")}" placeholder="Ex.: Cabanas da Serra">
+    <label for="f-cidadeUF">Terreno em (cidade/UF, opcional)</label>
+    <input type="text" id="f-cidadeUF" data-campo="cidadeUF" autocomplete="address-level2" value="${valorCampo("cidadeUF")}" placeholder="Ex.: Urubici/SC">${veioHTML("cidadeUF")}
+    ${radios("situacao", Z.SITUACOES, { legenda: "Qual frase descreve a sua situação?" })}
+    ${S.veio.situacao && r.situacao ? `<div class="veio">Veio do seu Marco Zero. Confira e corrija se mudou.</div>` : ""}
+    ${check("paraOutro", "Estou fazendo para o projeto de outra pessoa")}
+    ${r.situacao === "opero" ? check("contaAmpliacao", "Fazer a conta da ampliação: só a receita e os custos que a ampliação acrescenta") + check("extrato", "Usei o extrato de doze meses da operação") : ""}
+    ${r.situacao === "ideia" ? `<div class="ref">A 6A só se fecha com o terreno escolhido. Faça a conta sobre o terreno candidato.</div>` : ""}
+    <h2 style="font-size:1.15rem;margin-top:22px">Quatro perguntas antes da conta</h2>
+    ${Z.DIAG.map((d) => radios(d.id, d.op, { legenda: d.p })).join("")}
+    ${r.d1 === "sim" && r.d2 === "sim" ? `<p class="dica">Você já tem a lista de custos e a resposta do contador: pule para a ficha; o tutorial fica de consulta.</p>` : ""}
+    ${navHTML(0, "Começar")}
+    <p class="aviso">${esc(Z.TEXTOS.aviso)} ${esc(Z.TEXTOS.naoEnvia)} As respostas ficam salvas só neste aparelho.</p>
+  </div>`;
+  if (temSalvo) {
+    document.getElementById("continuar").onclick = () => { const p = S.passoSalvo; S.retomar = false; irPara(p); };
+    document.getElementById("zerar").onclick = () => { recomecar(); render(); };
+  }
+  document.getElementById("ver-exemplo").onclick = () => {
+    if (temSalvo && !E().exemplo && !confirm("Carregar o exemplo da Marina apaga as respostas salvas neste aparelho. Continuar?")) return;
+    S = estadoVazio();
+    S.respostas = Z.exemplo(HOJE); S.respostas.turma = TURMA; S.iniciado = true; S.lido = true; S.semeado = { noite: true, mes: true };
+    S.veio = { capex: "página 6A", giro6A: "página 6A", terreno: "página 6A", unidades: "página 6A", margem6: "página 6", limite6: "página 6", diaria: "página 6", ocupBase: "página 6", ocupOtim: "página 6", ocupAlta: "página 2", ocupMedia: "página 2", ocupFraco: "página 2" };
+    salvar(); render(); window.scrollTo(0, 0);
+  };
+  ligarCampos("abertura", (c) => { if (c === "situacao" || c === "d1" || c === "d2") rerender(); });
+  ligarNav("abertura", () => { S.iniciado = true; S.retomar = false; });
+}
+
+/* ---------- tela 1 · de onde você parte ---------- */
+function telaParte() {
+  const a = Z.AJUDA.parte, i = TELAS.indexOf("parte"), r = E();
+  const st = r.exemplo ? "" : S.achou.p6a ? `<div class="veio" id="p6a-status">Encontramos a sua página 6A neste aparelho e trouxemos o CAPEX e o giro. Confira com o PDF da pasta Meu Dossiê.</div>` : `<div class="alerta a-atencao" id="p6a-status" data-id="B2"><b>Sem a página 6A</b>Não encontramos a 6A neste aparelho. A 6B parte do CAPEX da 6A. Faça a 6A, ou digite o CAPEX e o giro com a origem.</div>`;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 1 · Diagnosticar</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${st}
+    ${campoNum("capex", "CAPEX da fase (o custo de abrir a porta, da 6A)", { pre: "R$", ph: "Ex.: 790.000", grande: true })}
+    ${campoNum("giro6A", "Capital de giro da 6A", { pre: "R$", ph: "Ex.: 40.000" })}
+    ${campoNum("unidades", "Unidades da fase", { pos: "unidades", ph: "Ex.: 3" })}
+    ${campoNum("terreno", "Terreno (fica ao lado, nunca somado)", { pre: "R$", ph: "Ex.: 600.000", ns: true, dica: "Fora da conta não quer dizer de graça (Pilar 6)." })}
+    <h2 style="font-size:1.1rem;margin-top:20px">O que a sua página 6 escreveu (opcional)</h2>
+    ${campoNum("margem6", "Margem da página 6", { pos: "%", ph: "Ex.: 40" })}
+    ${r.margem6Origem ? `<p class="dica" id="margem6-origem">Origem: ${esc(r.margem6Origem)}.</p>` : ""}
+    ${r.exemplo ? `<div class="ref" id="ref-40">${esc(Z.TEXTOS.referencia)}</div>` : ""}
+    ${campoNum("limite6", "O limite da página 6 (investimento até onde a conta aguenta em 8 anos)", { pre: "R$", ph: "Ex.: 870.000" })}
+    ${navHTML(i)}${caixasAjuda("parte")}</div>`;
+  ligarCampos("parte");
+  ligarNav("parte");
+}
+
+/* ---------- tela 2 · quanto entra ---------- */
+function telaEntra() {
+  const a = Z.AJUDA.entra, i = TELAS.indexOf("entra"), r = E();
+  if (!Array.isArray(r.calendario) || r.calendario.length !== 12) r.calendario = Array(12).fill(null);
+  const cal = Z.MESES.map((m, k) => `<div><label for="cal-${k}">${Z.MESES_LONGOS[k]}</label><select id="cal-${k}" data-cal="${k}" class="${r.calendario[k] || ""}"><option value="">Escolha</option>${Z.TIPOS_MES.map((t) => `<option value="${t.v}" ${r.calendario[k] === t.v ? "selected" : ""}>${t.r}</option>`).join("")}</select></div>`).join("");
+  const ex = (r.extras || []).map((x, k) => `<div class="lin" id="ext-${k}"><div class="lin-cab"><label class="sr" for="x-${k}-nome">Nome</label><input type="text" id="x-${k}-nome" data-x="${k}:nome" value="${esc(x.nome)}" placeholder="Ex.: cesta de café"><button type="button" class="lin-x" data-apagar-x="${k}" aria-label="Apagar">×</button></div>
+    <div class="grade"><div><label for="x-${k}-captura">Estadias que compram</label><div class="campo-num"><input type="text" id="x-${k}-captura" data-x="${k}:captura" inputmode="decimal" value="${esc(x.captura)}" placeholder="Ex.: 60"><span class="un">%</span></div></div>
+    <div><label for="x-${k}-ticket">Preço de cada venda</label><div class="campo-num"><span class="un">R$</span><input type="text" id="x-${k}-ticket" data-x="${k}:ticket" inputmode="decimal" value="${esc(x.ticket)}" placeholder="Ex.: 140"></div></div>
+    <div><label for="x-${k}-custoDireto">Custo de cada venda</label><div class="campo-num"><span class="un">R$</span><input type="text" id="x-${k}-custoDireto" data-x="${k}:custoDireto" inputmode="decimal" value="${esc(x.custoDireto)}" placeholder="Ex.: 70"></div></div></div>
+    <label class="check"><input type="checkbox" data-x="${k}:naConta" ${x.naConta !== false ? "checked" : ""}><span>Entra na conta (desmarcado: fica só como ideia, para a alavanca)</span></label></div>`).join("");
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Degrau 1 · Receita bruta</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${campoNum("diaria", "Diária média do ano", { pre: "R$", ph: "Ex.: 645", ns: true, grande: true })}
+    ${paraNumero(r.diariaMedida) !== null ? `<p class="dica" id="diaria-medida">Diária medida no Pilar 2: ${brl(paraNumero(r.diariaMedida))}. Acima de 5% dela, a régua pede Testar.</p>` : ""}
+    <h2 style="font-size:1.1rem;margin-top:20px">O calendário do ano</h2>
+    <p class="dica">Marque cada mês como alta, médio ou fraco, como no Pilar 2.</p>
+    <div class="cal">${cal}</div>
+    <p class="dica" id="cal-conta" style="margin-top:8px"></p>
+    <div class="grade">${campoNum("ocupAlta", "Ocupação na alta", { pos: "%", ph: "Ex.: 64" })}${campoNum("ocupMedia", "Nos meses médios", { pos: "%", ph: "Ex.: 40" })}${campoNum("ocupFraco", "Nos meses fracos", { pos: "%", ph: "Ex.: 22" })}</div>
+    ${kv("Ocupação do ano (o cenário medido, conservador)", "", "ocup-cons")}
+    <div class="grade">${campoNum("ocupBase", "Cenário base", { pos: "%", ph: "Ex.: 50" })}${campoNum("ocupOtim", "Cenário otimista", { pos: "%", ph: "Ex.: 65" })}</div>
+    <label for="f-mesAbertura">Mês de abertura</label><select id="f-mesAbertura" data-campo="mesAbertura"><option value="">Escolha</option>${Z.MESES_LONGOS.map((m, k) => `<option value="${k + 1}" ${String(r.mesAbertura) === String(k + 1) ? "selected" : ""}>${m}</option>`).join("")}</select>
+    ${campoNum("estadiaMedia", "Estadia média", { pos: "noites", ph: "Ex.: 2", ns: true })}
+    <h2 style="font-size:1.1rem;margin-top:20px">Outras receitas (opcional, até 4)</h2>
+    <p class="dica">Por captura × preço, com o custo de cada venda. A taxa de limpeza cobrada à parte do hóspede fica fora da receita.</p>
+    <div id="extras">${ex}</div><div id="extras-aviso"></div>
+    ${(r.extras || []).length < 4 ? `<button type="button" class="btn btn-s btn-mini" id="mais-extra" style="margin-top:10px;width:100%">Acrescentar outra receita</button>` : ""}
+    ${navHTML(i)}${caixasAjuda("entra")}</div>`;
+  const vivo = () => {
+    const ct = Z.contagens(E()), oc = Z.ocupConsDe(E());
+    const p2a = paraNumero(E().p2MesesAlta), p2f = paraNumero(E().p2MesesFraco);
+    document.getElementById("cal-conta").textContent = `${ct.alta} meses de alta, ${ct.medio} médios e ${ct.fraco} fracos.` + (p2a !== null || p2f !== null ? ` Na página 2: ${p2a ?? "?"} de alta e ${p2f ?? "?"} fracos.` : "");
+    document.querySelector("#ocup-cons span:last-child").textContent = oc === null ? "falta o calendário ou uma ocupação" : fmtN(oc, 2) + "%";
+    const sg = Z.extrasSemGanho(E());
+    document.getElementById("extras-aviso").innerHTML = sg.map((x) => `<div class="alerta a-atencao"><b>Preço menor ou igual ao custo</b>Em «${esc(x.nome)}», o preço não paga nem o custo de cada venda.</div>`).join("");
+    atualizarNav("entra");
+  };
+  app.querySelectorAll("[data-cal]").forEach((el) => el.addEventListener("change", () => { E().calendario[Number(el.dataset.cal)] = el.value || null; el.className = el.value; mudou(); vivo(); }));
+  app.querySelectorAll("[data-x]").forEach((el) => {
+    const [k, campo] = el.dataset.x.split(":");
+    el.addEventListener(el.type === "checkbox" ? "change" : "input", () => { const x = E().extras[Number(k)]; x[campo] = el.type === "checkbox" ? el.checked : el.value; mudou(); vivo(); });
+  });
+  app.querySelectorAll("[data-apagar-x]").forEach((b) => b.addEventListener("click", () => { E().extras.splice(Number(b.dataset.apagarX), 1); mudou(); rerender(); }));
+  const mx = document.getElementById("mais-extra"); if (mx) mx.onclick = () => { E().extras.push(Z.novoExtra({})); mudou(); rerender(); };
+  ligarCampos("entra", vivo);
+  ligarNav("entra");
+  vivo();
+}
+
+/* ---------- tela 3 · do bruto ao real ---------- */
+function telaReal() {
+  const a = Z.AJUDA.real, i = TELAS.indexOf("real"), r = E();
+  const branco = r.imposto === BR;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Degrau 2 · Receita real</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <h2 style="font-size:1.1rem;margin-top:16px">Imposto sobre a receita</h2>
+    <p class="dica">${esc(Z.TEXTOS.imposto)} ${esc(Z.TEXTOS.linhaBranco)}</p>
+    ${campoNum("imposto", "Imposto sobre a receita bruta (a resposta do seu contador)", { pos: "%", ph: "Resposta do contador", br: "Em branco, aguardando o contador" })}
+    ${r.exemplo ? `<div class="ref" id="imposto-ficticio">${esc(Z.TEXTOS.contador)} ${esc(Z.TEXTOS.exemplo)}</div>` : ""}
+    ${branco ? `<div class="alerta a-critico" data-id="B1"><b>Linha em branco</b>O resultado sai antes do imposto sobre a receita, e a régua fica em Testar. Leve a conta ao contador com as perguntas do fim da ficha.</div>` : `
+    <label for="f-impostoQuem">Quem respondeu</label><input type="text" id="f-impostoQuem" data-campo="impostoQuem" maxlength="80" value="${valorCampo("impostoQuem")}" placeholder="Nome do contador">
+    <label for="f-impostoData">Data da resposta</label><input type="date" id="f-impostoData" data-campo="impostoData" max="${HOJE}" value="${esc(r.impostoData || "")}">
+    <label for="f-impostoRegime">Regime (opcional)</label><input type="text" id="f-impostoRegime" data-campo="impostoRegime" maxlength="80" value="${valorCampo("impostoRegime")}">`}
+    <h2 style="font-size:1.1rem;margin-top:20px">Comissão, cartão e cancelamento</h2>
+    <div class="grade">${campoNum("pPlataforma", "Noites vendidas pela plataforma", { pos: "%", ph: "Ex.: 60" })}${campoNum("comissaoPlataforma", "Comissão por reserva", { pos: "%", ph: "Ex.: 15" })}${campoNum("cartaoDireto", "Cartão nas vendas diretas", { pos: "%", ph: "Ex.: 3" })}</div>
+    ${campoNum("cancelamento", "Cancelamento e não comparecimento", { pos: "%", ph: "Ex.: 2", dica: Z.TEXTOS.cancelamento })}
+    <p class="dica" id="canc-leitura"></p>
+    ${check("comissaoNaoDuplicada", "A comissão não está também nos custos de cada noite")}
+    ${kv("O que sai da hospedagem (comissão + cartão + cancelamento)", "", "ded-pct")}
+    ${navHTML(i)}${caixasAjuda("real")}</div>`;
+  const vivo = () => {
+    const pp = (v) => { const n = paraNumero(v); return n === null ? 0 : n / 100; };
+    const p = pp(E().pPlataforma), x = p * pp(E().comissaoPlataforma) + (1 - p) * pp(E().cartaoDireto) + pp(E().cancelamento);
+    document.querySelector("#ded-pct span:last-child").textContent = fmtPct(x) + " da hospedagem";
+    document.getElementById("canc-leitura").textContent = Z.leituraCancelamento(E());
+  };
+  ligarCampos("real", (c) => { if (c === "imposto") return; vivo(); });
+  ligarNav("real");
+  vivo();
+}
+
+/* ---------- linhas de custo (telas 4 e 5) ---------- */
+const ORIG = (pref, k, l) => `<div class="chips" role="radiogroup" aria-label="De onde vem o número">${Z.ORIGENS.map((o) => `<label class="chip"><input type="radio" name="o-${pref}-${k}" data-${pref}="${k}:origem" data-estrutura="1" value="${o.v}" ${l.origem === o.v ? "checked" : ""}>${esc(o.r)}</label>`).join("")}</div>`;
+function linhaVarHTML(l, k) {
+  const pct = l.base === "pctReceita";
+  return `<div class="lin" id="lv-${k}"><div class="lin-cab"><label class="sr" for="v-${k}-nome">Nome da linha</label><input type="text" id="v-${k}-nome" data-v="${k}:nome" value="${esc(l.nome)}" placeholder="Nome da linha"><button type="button" class="lin-x" data-apagar-v="${k}" aria-label="Apagar a linha ${esc(l.nome)}">×</button></div>
+    ${ORIG("v", k, l)}
+    <div class="grade"><div><label for="v-${k}-base">Como conta</label><select id="v-${k}-base" data-v="${k}:base" data-estrutura="1">${Z.BASES.map((x) => `<option value="${x.v}" ${l.base === x.v ? "selected" : ""}>${esc(x.r)}</option>`).join("")}</select></div>
+    ${l.origem !== BR ? `<div><label for="v-${k}-valor">Valor</label><div class="campo-num">${pct ? "" : `<span class="un">R$</span>`}<input type="text" id="v-${k}-valor" data-v="${k}:valor" inputmode="decimal" value="${esc(l.valor)}" placeholder="${pct ? "Ex.: 1" : "Ex.: 70"}">${pct ? `<span class="un">%</span>` : ""}</div></div>` : ""}</div>
+    <div class="lin-tot"><span class="lin-err" id="lve-${k}"></span><b id="lvt-${k}"></b></div></div>`;
+}
+function linhaFixHTML(l, k) {
+  const r = E();
+  return `<div class="lin" id="lf-${k}"><div class="lin-cab"><label class="sr" for="f-${k}-nome">Nome da linha</label><input type="text" id="fx-${k}-nome" data-f="${k}:nome" value="${esc(l.nome)}" placeholder="Nome da linha"><button type="button" class="lin-x" data-apagar-f="${k}" aria-label="Apagar a linha ${esc(l.nome)}">×</button></div>
+    ${ORIG("f", k, l)}
+    ${l.origem !== BR ? `<div class="grade"><div><label for="fx-${k}-valor">Valor</label><div class="campo-num"><span class="un">R$</span><input type="text" id="fx-${k}-valor" data-f="${k}:valor" inputmode="decimal" value="${esc(l.valor)}" placeholder="Ex.: 600"></div></div>
+    <div><label for="fx-${k}-periodo">Período</label><select id="fx-${k}-periodo" data-f="${k}:periodo" data-estrutura="1"><option value="mensal" ${l.periodo !== "anual" ? "selected" : ""}>por mês</option><option value="anual" ${l.periodo === "anual" ? "selected" : ""}>por ano (÷ 12)</option></select></div></div>` : ""}
+    ${r.contaAmpliacao && r.situacao === "opero" ? `<label class="check"><input type="checkbox" data-f="${k}:jaExiste" ${l.jaExiste ? "checked" : ""}><span>Já existe (fica fora da conta da ampliação)</span></label>` : ""}
+    <details><summary>Na Planilha 2: ${esc((Z.GRUPOS_P2.find((g) => g.v === l.grupo) || Z.GRUPOS_P2[6]).r)}</summary><select data-f="${k}:grupo" data-estrutura="1" aria-label="Linha da Planilha 2">${Z.GRUPOS_P2.map((g) => `<option value="${g.v}" ${l.grupo === g.v ? "selected" : ""}>${esc(g.r)}</option>`).join("")}</select></details>
+    <div class="lin-tot"><span class="lin-err" id="lfe-${k}"></span><b id="lft-${k}"></b></div></div>`;
+}
+function ligarLinhas(pref, lista, depois) {
+  app.querySelectorAll(`[data-${pref}]`).forEach((el) => {
+    const [k, campo] = el.dataset[pref].split(":"); const l = E()[lista][Number(k)];
+    const estrutura = !!el.dataset.estrutura;
+    const ev = el.type === "radio" || el.type === "checkbox" || el.tagName === "SELECT" ? "change" : "input";
+    el.addEventListener(ev, () => { l[campo] = el.type === "checkbox" ? el.checked : el.value; mudou(); if (estrutura) rerender(); else depois(); });
+  });
+  app.querySelectorAll(`[data-apagar-${pref}]`).forEach((x) => x.addEventListener("click", () => { E()[lista].splice(Number(x.getAttribute(`data-apagar-${pref}`)), 1); mudou(); rerender(); }));
+}
+
+/* ---------- tela 4 · o custo de cada noite ---------- */
+function telaNoite() {
+  const a = Z.AJUDA.noite, i = TELAS.indexOf("noite"), r = E();
+  if (!S.semeado.noite && (!r.varLinhas || !r.varLinhas.length)) { r.varLinhas = Z.linhasVarSugeridas(); S.semeado.noite = true; salvar(); }
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Degrau 3 · Margem de contribuição</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <p class="dica">As linhas sugeridas vêm só com o nome. Renomeie, apague ou acrescente (até 10). Sem número, marque Em branco.</p>
+    <div id="linhas">${r.varLinhas.map(linhaVarHTML).join("")}</div>
+    ${r.varLinhas.length < 10 ? `<button type="button" class="btn btn-s btn-mini" id="mais-linha" style="margin-top:12px;width:100%">Acrescentar linha</button>` : ""}
+    <div class="total-bloco" aria-live="polite"><span>O que fica de cada noite vendida</span><b id="cada-noite"></b></div>
+    ${navHTML(i)}${caixasAjuda("noite")}</div>`;
+  const vivo = () => {
+    E().varLinhas.forEach((l, k) => { const v = Z.valorVar(l), e = Z.erroVar(l); document.getElementById(`lve-${k}`).textContent = l.origem ? e : ""; document.getElementById(`lvt-${k}`).textContent = !l.origem ? "escolha a origem" : l.origem === BR ? "em branco · vale 0" : v === null ? "falta completar" : l.base === "pctReceita" ? fmtN(v * 100, 2) + "% da hospedagem" : brl(v) + (l.base === "porEstadia" ? " por estadia" : " por noite"); });
+    const C = calc();
+    document.getElementById("cada-noite").textContent = C.pronto && C.A.cNoite !== null ? brl(C.A.cNoite) : "complete as telas";
+    atualizarNav("noite");
+  };
+  ligarLinhas("v", "varLinhas", vivo);
+  const ml = document.getElementById("mais-linha"); if (ml) ml.onclick = () => { E().varLinhas.push(Z.novaLinhaVar({})); mudou(); rerender(); const n = E().varLinhas.length - 1; const inp = document.getElementById(`v-${n}-nome`); if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus({ preventScroll: true }); } };
+  ligarNav("noite");
+  vivo();
+}
+
+/* ---------- tela 5 · o custo de cada mês ---------- */
+function telaMes() {
+  const a = Z.AJUDA.mes, i = TELAS.indexOf("mes"), r = E();
+  if (!S.semeado.mes && (!r.fixLinhas || !r.fixLinhas.length)) { r.fixLinhas = Z.linhasFixasSugeridas(); S.semeado.mes = true; salvar(); }
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Degraus 4 e 5 · Fixos e custos do modelo</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <p class="dica">As linhas sugeridas vêm só com o nome (até 15). A parcela do empréstimo da obra fica fora desta conta (Pilar 7).</p>
+    <div id="linhas">${r.fixLinhas.map(linhaFixHTML).join("")}</div>
+    ${r.fixLinhas.length < 15 ? `<button type="button" class="btn btn-s btn-mini" id="mais-linha" style="margin-top:12px;width:100%">Acrescentar linha</button>` : ""}
+    ${check("duodecimos", "Os gastos anuais estão divididos por 12")}
+    <h2 style="font-size:1.1rem;margin-top:20px">O seu trabalho</h2>
+    <p class="dica">${esc(Z.TEXTOS.operador)} O valor-hora não é sugerido: é quanto você pagaria a alguém para fazer o que você faz.</p>
+    ${r.naoTrabalho ? "" : `<div class="grade">${campoNum("horasSemana", "Horas por semana", { pos: "h", ph: "Ex.: 8" })}${campoNum("valorHora", "Valor-hora", { pre: "R$", ph: "Ex.: 40" })}</div>`}
+    ${check("naoTrabalho", "Não trabalho na operação; quem opera está nos fixos ou nos custos do modelo")}
+    ${kv("Retirada por mês (horas × valor-hora × 4,33)", "", "retirada")}
+    <h2 style="font-size:1.1rem;margin-top:20px">Custos do modelo</h2>
+    ${check("semModelo", "Não há aluguel, gestão nem royalty")}
+    ${r.semModelo ? "" : `<div class="grade">${campoNum("aluguelMes", "Aluguel por mês", { pre: "R$", ph: "0" })}${campoNum("gestaoPct", "Gestão (% da receita real)", { pos: "%", ph: "0" })}${campoNum("royaltyPct", "Royalty (% da receita bruta)", { pos: "%", ph: "0" })}</div>`}
+    <div class="total-bloco" aria-live="polite"><span>Fixo do mês, com a retirada</span><b id="fixo-mes"></b></div>
+    ${navHTML(i)}${caixasAjuda("mes")}</div>`;
+  const vivo = () => {
+    E().fixLinhas.forEach((l, k) => { const v = Z.valorFixoMes(l), e = Z.erroFixa(l); document.getElementById(`lfe-${k}`).textContent = l.origem ? e : ""; document.getElementById(`lft-${k}`).textContent = !l.origem ? "escolha a origem" : l.origem === BR ? "em branco · vale 0" : v === null ? "falta completar" : brl(v) + " por mês"; });
+    const ret = Z.retiradaMes(E());
+    document.querySelector("#retirada span:last-child").textContent = ret === null ? "falta completar" : brl(ret);
+    const pr = Z.parametros(E()).parcial;
+    document.getElementById("fixo-mes").textContent = brl(pr.fixoMes);
+    atualizarNav("mes");
+  };
+  ligarLinhas("f", "fixLinhas", vivo);
+  const ml = document.getElementById("mais-linha"); if (ml) ml.onclick = () => { E().fixLinhas.push(Z.novaLinhaFixa({})); mudou(); rerender(); const n = E().fixLinhas.length - 1; const inp = document.getElementById(`fx-${n}-nome`); if (inp) { inp.scrollIntoView({ block: "center" }); inp.focus({ preventScroll: true }); } };
+  ligarCampos("mes", (c) => { if (c === "naoTrabalho" || c === "semModelo") return rerender(); vivo(); });
+  ligarNav("mes");
+  vivo();
+}
+
+/* ---------- tela 6 · a reserva de reposição ---------- */
+function telaReserva() {
+  const a = Z.AJUDA.reserva, i = TELAS.indexOf("reserva");
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Degrau 6 · O que sobra</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${campoNum("reservaRep", "Reserva de reposição (% da receita bruta)", { pos: "%", ph: "Sem preenchimento automático", ns: true, grande: true })}
+    <p class="dica">${esc(Z.TEXTOS.reserva)} ${esc(Z.NOTA_FAIXA)}</p>
+    <div id="res-alerta"></div>
+    ${kv("Reserva no cenário medido", "", "res-valor")}${kv("O que sobra no ano, no cenário medido", "", "res-sobra")}${kv("Margem (o que sobra ÷ receita bruta)", "", "res-margem")}
+    <p class="dica" id="res-leitura"></p>
+    ${navHTML(i)}${caixasAjuda("reserva")}</div>`;
+  const vivo = () => {
+    const C = calc(); const put = (id, v) => (document.querySelector(`#${id} span:last-child`).textContent = v);
+    if (C.pronto) { put("res-valor", brl(C.A.cons.reserva)); put("res-sobra", brl(C.A.cons.sobra)); put("res-margem", fmtPct(C.A.cons.margem)); document.getElementById("res-leitura").textContent = Z.leituraMargem(C.A.cons.margem).t + " " + Z.NOTA_FAIXA; }
+    else { put("res-valor", "complete as telas"); put("res-sobra", "complete as telas"); put("res-margem", "-"); document.getElementById("res-leitura").textContent = "Falta: " + C.faltas.join(", ") + "."; }
+    const rr = paraNumero(E().reservaRep);
+    document.getElementById("res-alerta").innerHTML = rr !== null && rr > 0 && rr < 3 ? `<div class="alerta a-atencao" data-id="B9"><b>Reserva de reposição abaixo das fontes</b>As fontes citam de 3% a 6% da receita bruta.</div>` : "";
+  };
+  ligarCampos("reserva", vivo);
+  ligarNav("reserva");
+  vivo();
+}
+
+/* ---------- tela 7 · o primeiro ano e o caixa ---------- */
+function telaCaixa() {
+  const a = Z.AJUDA.caixa, i = TELAS.indexOf("caixa"), r = E(), C = calc();
+  let corpo;
+  if (!C.pronto) corpo = `<div class="ref" id="caixa-falta">Para o primeiro ano mês a mês, falta: ${esc(C.faltas.join(", "))}.</div>`;
+  else {
+    const A = C.A;
+    const lin = A.meses.slice(0, 12).map((m) => `<tr${m.i === A.menorMes ? ' class="tot"' : ""}><td>${m.i} · ${m.nome}<small>${({ alta: "alta", medio: "médio", fraco: "fraco" })[m.tipo] || ""} · rampa ${fmtN(m.rampa * 100, 0)}%</small></td><td class="v">${fmtN(m.noites, 2)}</td><td class="v">${brl(m.res)}</td><td class="v">${brl(m.acum)}</td></tr>`).join("");
+    corpo = `<table class="mini" id="tab-meses"><thead><tr><th style="width:30%">Mês</th><th class="v" style="width:16%">Noites</th><th class="v" style="width:27%">Resultado</th><th class="v" style="width:27%">Acumulado</th></tr></thead><tbody>${lin}</tbody></table>
+      ${kv("Ano 1 com a rampa", brl(A.ano1.cons), "ano1")}${kv("Menor saldo (mês " + (A.menorMes || "?") + ")", brl(A.menorAcum), "menor")}
+      ${kv("Reserva de sazonalidade, em cada mês de alta", A.porMesAlta === null ? "sem mês de alta" : brl(A.porMesAlta), "sazonal")}
+      <h2 style="font-size:1.1rem;margin-top:20px">O giro pelas duas contas do Pilar 6</h2>
+      ${kv("Giro da 6A", ok(C.P.giro6A) ? brl(C.P.giro6A) : "em branco", "giro-6a")}${kv("Conta A: três meses de custo aberto", brl(A.giroA), "giro-a")}${kv("Conta B: buraco do primeiro ano + três meses de fixo", brl(A.giroB), "giro-b")}${kv("Giro mínimo da 6B (a maior das três)", brl(A.giroMinimo), "giro-min")}
+      ${A.giro6AInsuficiente ? `<div class="alerta a-atencao" data-id="B5"><b>O giro da 6A sobe</b>Com o custo aberto, três meses de custo passam a ${brl(A.giroMinimo)}.</div>` : ""}
+      ${campoNum("giro6B", "O giro da 6B (você confirma)", { pre: "R$", ph: "Igual ou maior que o mínimo", grande: true })}
+      <button type="button" class="btn btn-s btn-mini" id="usar-giro" style="margin-top:8px;width:100%">Usar o giro mínimo: ${brl(Z.arred(A.giroMinimo, 2))}</button>
+      <div id="giro-just"></div>
+      ${kv("Investimento refeito (CAPEX + giro da 6B)", "", "invest")}${kv("Colchão no pior mês (giro + menor saldo)", "", "colchao")}${kv("Giro que daria 10% de colchão", brl(A.giro10), "giro10")}
+      <p class="dica" id="colchao-leitura"></p>`;
+  }
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">O primeiro ano e o caixa</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>${corpo}${navHTML(i)}${caixasAjuda("caixa")}</div>`;
+  const vivo = () => {
+    const C2 = calc(); if (!C2.pronto) return atualizarNav("caixa");
+    const A = C2.A, put = (id, v) => (document.querySelector(`#${id} span:last-child`).textContent = v);
+    put("invest", brl(A.investimento)); put("colchao", brl(A.colchao) + " · " + fmtPct(A.colchaoPct) + " do CAPEX");
+    document.getElementById("colchao-leitura").textContent = A.colchaoPct >= 0.1 ? "Colchão de 10% do CAPEX ou mais: passa." : A.colchaoPct >= 0 ? "Colchão abaixo de 10% do CAPEX: ajustar." : "Colchão negativo: o giro não cobre o pior mês.";
+    const g = paraNumero(E().giro6B), gj = document.getElementById("giro-just");
+    if (g !== null && g > A.giroMinimo + 0.005) { if (!document.getElementById("f-giroJustificativa")) { gj.innerHTML = `<label for="f-giroJustificativa">Giro acima do mínimo: escreva por quê</label><textarea id="f-giroJustificativa" maxlength="300">${esc(E().giroJustificativa || "")}</textarea>`; document.getElementById("f-giroJustificativa").addEventListener("input", (e) => { E().giroJustificativa = e.target.value; mudou(); atualizarNav("caixa"); }); } }
+    else gj.innerHTML = "";
+    atualizarNav("caixa");
+  };
+  if (C.pronto) document.getElementById("usar-giro").onclick = () => { E().giro6B = Z.numTexto(Z.arred(C.A.giroMinimo, 2)); mudou(); rerender(); };
+  ligarCampos("caixa", vivo);
+  ligarNav("caixa");
+  vivo();
+}
+const ok = (x) => typeof x === "number" && Number.isFinite(x);
+
+/* ---------- tela 8 · vale a pena ---------- */
+function telaVale() {
+  const a = Z.AJUDA.vale, i = TELAS.indexOf("vale"), r = E();
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Vale a pena</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <p class="dica"><b>${esc(Z.TEXTOS.taxa)}</b> Escreva a taxa agora, antes de ver o resultado.</p>
+    ${campoNum("taxa", "A taxa do seu dinheiro (para o valor presente)", { pos: "% ao ano", ph: "Sem sugestão", ns: true })}
+    ${check("taxaAntes", "Escrevi a taxa antes de ver o resultado")}
+    <h2 style="font-size:1.1rem;margin-top:20px">Venda do negócio (opcional)</h2>
+    <p class="dica">${esc(Z.TEXTOS.multiplo)}</p>
+    ${campoNum("multiploSaida", "Múltiplo de saída (vezes o resultado antes da reserva)", { pos: "vezes", ph: "Em branco" })}
+    <button type="button" class="btn btn-s btn-mini" id="usar-ref" style="margin-top:8px;width:100%">Usar a referência da régua: ${Z.MULTIPLO_REGUA} vezes</button>
+    ${r.multiploRef && String(r.multiploSaida) === String(Z.MULTIPLO_REGUA) ? `<p class="dica" id="mult-ref"><span class="rotulo">referência da régua</span> sem origem estatística nas fontes; aparece só ao lado da conta sem ele.</p>` : ""}
+    <p class="dica">${esc(Z.TEXTOS.moedaConstante)}</p>
+    ${navHTML(i, "Ver o resultado")}${caixasAjuda("vale")}</div>`;
+  document.getElementById("usar-ref").onclick = () => { E().multiploSaida = String(Z.MULTIPLO_REGUA); E().multiploRef = true; mudou(); rerender(); };
+  ligarCampos("vale", (c) => { if (c === "multiploSaida") E().multiploRef = false; });
+  ligarNav("vale");
+}
+
+/* ---------- tela 9 · resultado em cinco partes ---------- */
+function htmlDegraus(A) {
+  const L = [["1 · Receita bruta", "bruta"], ["Deduções", "deducoes"], ["2 · Receita real", "real", 1], ["Custos de cada noite", "variaveis"], ["3 · Margem de contribuição", "contrib", 1], ["Fixos com a retirada", "fixoAno"], ["4 · Resultado antes da reserva", "antes", 1], ["5 · Custos do modelo", "modelo"], ["Reserva de reposição", "reserva"], ["6 · O que sobra", "sobra", 1]];
+  const cen = ["cons", "base", "otim"];
+  return `<table class="mini" id="tab-degraus"><thead><tr><th style="width:31%">Degrau</th><th class="v">Conservador ${fmtN(A.cons.ocup * 100, 1)}%</th><th class="v">Base ${fmtN(A.base.ocup * 100, 1)}%</th><th class="v">Otimista ${fmtN(A.otim.ocup * 100, 1)}%</th></tr></thead><tbody>
+    ${L.map(([n, k, t]) => `<tr${t ? ' class="tot"' : ""} id="d-${k}"><td>${n}</td>${cen.map((s) => `<td class="v">${brl(A.cen[s][k])}</td>`).join("")}</tr>`).join("")}
+    <tr id="d-margem"><td>Margem</td>${cen.map((s) => `<td class="v">${fmtPct(A.cen[s].margem)}</td>`).join("")}</tr>
+    <tr id="d-volta"><td>Tempo de volta (escada)</td>${cen.map((s) => `<td class="v">${fmtVolta(A.volta[s])}</td>`).join("")}</tr>
+  </tbody></table>`;
+}
+function telaResultado() {
+  const i = TELAS.indexOf("resultado"), r = E(), C = calc();
+  if (!C.pronto) {
+    app.innerHTML = `${progresso(i)}<div class="card"><h1 tabindex="-1">${esc(Z.TEXTOS.titulo)}</h1><div class="ref" id="r-falta">Para ver a conta, falta: ${esc(C.faltas.join(", "))}.</div>${navHTML(i)}</div>`;
+    return ligarNav("resultado");
+  }
+  const A = C.A, c = A.cons, L = Z.alertas(r, C), top = Z.tresPrimeiros(L), s = Z.acaoSugerida(r, C), eq = Z.leituraEquilibrio(A);
+  const p4txt = A.p4.status === "pendente" ? "pendente: escreva a sua taxa" : A.vpSem !== null ? `${brl(A.vpSem)} a ${fmtN(C.P.taxa * 100, 2)}% ao ano` + (A.vpCom !== null ? ` · com a venda, ${brl(A.vpCom)}` : "") : A.p4.motivo === "somaSimples" || A.p4.motivo === "somaSimplesComSaida" ? `negativo a qualquer taxa de zero para cima (soma simples de ${brl(A.somaSimples)})` : "";
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">${esc(Z.TEXTOS.pagina)} · Dossiê de Desenvolvimento</div><h1 tabindex="-1">${esc(Z.TEXTOS.titulo)} · ${esc(r.projeto)}</h1>${faixaExemplo()}
+    <p class="lead">${esc(Z.TEXTOS.cenarios)} ${C.impostoBranco ? "<b>Antes do imposto sobre a receita.</b>" : ""}</p>
+    <section class="bloco" id="p-resultado"><h2>1 · Resultado</h2>
+      <div class="numeros">
+        <div class="num largo ${c.sobra < 0 ? "ruim" : ""}"><small>O que sobra no ano, no cenário medido</small><strong id="r-sobra">${brl(c.sobra)}</strong></div>
+        <div class="num"><small>Margem aberta${C.margem6 !== null ? " (página 6: " + fmtN(C.margem6 * 100, 2) + "%)" : ""}</small><strong id="r-margem">${fmtPct(c.margem)}</strong></div>
+        <div class="num"><small>Equilíbrio e folga</small><strong id="r-equilibrio">${A.ocupEq === null ? "não se calcula" : fmtPct(A.ocupEq) + " · " + fmtN(A.folga * 100, 1)}</strong></div>
+        <div class="num"><small>Primeiro ano com a rampa</small><strong id="r-ano1">${brl(A.ano1.cons)}</strong></div>
+        <div class="num ${A.passos[2].status === "redesenhar" ? "ruim" : ""}"><small>Tempo de volta em escada</small><strong id="r-volta">${fmtVolta(A.volta.cons)}</strong></div>
+        <div class="num largo"><small>Investimento refeito (CAPEX + giro da 6B)</small><strong id="r-invest">${brl(A.investimento)}</strong></div>
+      </div>
+      ${htmlDegraus(A)}
+      <h3 style="font-size:1rem;margin-top:16px">De onde vem a diferença com a página 6</h3>
+      <p id="r-dif">${C.margem6 !== null ? `Na página 6, ${brl(c.hosp)} × ${fmtN(C.margem6 * 100, 2)}% = ${brl(C.resultado6)}. Com a sua lista, sobram ${brl(c.sobra)} (${fmtPct(c.margem)}). Saídas sobre a receita: deduções ${fmtPct(C.pesos.deducoes)}, custos de cada noite ${fmtPct(C.pesos.variaveis)}, fixos com o seu trabalho ${fmtPct(C.pesos.fixos)}, reserva ${fmtPct(C.pesos.reserva)}.` : "Sem a margem da página 6 para comparar."}</p>
+      ${r.exemplo ? `<p class="dica">A margem de 40%: ${esc(Z.TEXTOS.referencia.charAt(0).toLowerCase() + Z.TEXTOS.referencia.slice(1))}</p>` : ""}
+      <p class="dica">${esc(Z.TEXTOS.notaP6)}</p>
+      ${kv("Ponto de equilíbrio", A.Neq === null ? "não se calcula" : fmtN(A.Neq, 2) + " noites = " + fmtPct(A.ocupEq), "r-neq")}
+      <p class="dica" id="r-eq-leitura">${esc(eq.t)}</p>
+      ${kv("Custo por diária vendida", brl(A.custoPorDiaria), "r-cpd")}${kv("Diária de equilíbrio", A.diariaEq === null ? "não se calcula" : brl(A.diariaEq), "r-deq")}${kv("Piso que ainda paga a noite", A.piso === null ? "não se calcula" : brl(A.piso), "r-piso")}
+      ${kv("Menor saldo do primeiro ano", brl(A.menorAcum), "r-menor")}${kv("Colchão no pior mês", brl(A.colchao) + " · " + fmtPct(A.colchaoPct), "r-colchao")}
+      ${kv("Giro: 6A / conta A / conta B / 6B", [ok(C.P.giro6A) ? brl(C.P.giro6A) : "-", brl(A.giroA), brl(A.giroB), brl(A.giroUsado)].join(" / "), "r-giro")}
+      ${kv("Como o Pilar 6 calcula (investimento ÷ o que sobra)", fmtVolta(A.voltaP6.cons), "r-voltap6")}${kv("Com o terreno no ano zero", A.voltaTerreno === null ? "sem o valor do terreno" : fmtVolta(A.voltaTerreno), "r-voltaterreno")}
+      <p class="dica">${esc(Z.leituraVolta(A.volta.cons))}</p>
+      ${kv("Retorno simples sobre o que sobra", fmtPct(A.retorno) + (A.retornoTerreno !== null ? " · com o terreno, " + fmtPct(A.retornoTerreno) : ""), "r-retorno")}
+      ${kv("Valor presente de dez anos", p4txt, "r-vp")}
+      ${A.saida > 0 ? `<p class="dica" id="r-saida">Com a venda no ano 10 (${fmtN(C.P.multiplo, 2)} × ${brl(c.depoisModelo)} = ${brl(A.saida)}), o valor presente ${A.taxaViradaCom === null ? "não fica positivo" : "fica negativo a partir de cerca de " + fmtPct(A.taxaViradaCom) + " ao ano"}. ${esc(Z.TEXTOS.multiplo)}</p>` : ""}
+      ${kv("Teste de queda (diária −10%, ocupação −20%)", brl(A.sobraQueda), "r-queda")}
+      ${kv("Sensibilidade: diária −15%", fmtVolta(A.sens.diaria.volta), "r-sens-d")}${kv("Sensibilidade: ocupação −10 pontos", fmtVolta(A.sens.ocupacao.volta), "r-sens-o")}${kv("Sensibilidade: CAPEX +20%", fmtVolta(A.sens.capex.volta), "r-sens-k")}
+      <h3 style="font-size:1rem;margin-top:16px">O que precisa ser verdade (uma premissa por vez)</h3>
+      ${[8, 12].map((T) => { const v = A.verdade[T]; return v ? kv(`Para ${T} anos`, `ocupação ${pctTxt(v.ocup)} · ou diária ${v.diaria === null ? "-" : brl(v.diaria)} · ou CAPEX até ${v.capex > 0 ? brl(v.capex) : "nenhum"}`, "r-verdade-" + T) : ""; }).join("")}
+    </section>
+    <section class="bloco" id="p-significado"><h2>2 · O que significa</h2>
+      <ol class="passos5" id="passos">${A.passos.map((p) => `<li data-status="${p.status || ""}"><i aria-hidden="true"></i><span><b>Passo ${p.n} · ${esc(p.nome)}</b>${esc(STATUS_TXT[p.status] || "falta dado")}</span></li>`).join("")}</ol>
+      <div class="veredito"><small>Veredito sugerido pela régua da Zion</small><strong id="r-veredito">${esc(A.sugerido || "pendente")}</strong><span id="r-motivo">${esc(Z.motivoVeredito(A))}</span></div>
+      <p class="dica">Avançar, Testar, Ajustar, Pausar ou Redesenhar. O «ajustar» acima de 12 anos do Pilar 6 se chama aqui «Redesenhar». Pausar nunca é sugerido: é escolha sua.</p>
+    </section>
+    <section class="bloco" id="p-atencao"><h2>3 · Atenção</h2>
+      ${top.length ? top.map((x) => `<div class="alerta a-${x.tipo}" data-id="${x.id}"><b>${esc(x.tit)}</b>${esc(x.txt)}<small>Fonte: ${esc(x.fonte)}</small></div>`).join("") : `<div class="alerta a-info"><b>Nenhum alerta</b>Nenhuma das conferências disparou.</div>`}
+      ${L.length > 3 ? `<details><summary class="dica" style="cursor:pointer;min-height:40px;display:flex;align-items:center">Ver todos os alertas (${L.length})</summary>${L.slice(3).map((x) => `<div class="alerta a-${x.tipo}" data-id="${x.id}"><b>${esc(x.tit)}</b>${esc(x.txt)}</div>`).join("")}</details>` : ""}
+      <div class="alerta a-info" id="info"><b>${esc(Z.INFO.tit)}</b><ul style="margin:6px 0 0;padding-left:18px">${Z.INFO.contador.map((q) => `<li>${esc(q)}</li>`).join("")}</ul><p style="margin:6px 0 0">${esc(Z.INFO.anote)} ${esc(Z.INFO.advogado)} ${esc(Z.INFO.naoEnvia)}</p></div>
+    </section>
+    <section class="bloco" id="p-fazer"><h2>4 · O que fazer em 30 dias</h2><p id="r-acao"><b>${esc(s.acao)}</b></p><p class="dica">Na tela da ação você pode editar e escolher o prazo.</p></section>
+    <section class="bloco" id="p-verificar"><h2>5 · Como verificar</h2><p id="r-verifica">${esc(s.verificacao)}</p></section>
+    ${navHTML(i, "Mexer nas alavancas")}
+    <p class="aviso">${esc(Z.TEXTOS.aviso)}</p></div>`;
+  ligarNav("resultado");
+}
+
+/* ---------- tela 10 · alavancas e cenário ajustado ---------- */
+function telaAlavancas() {
+  const a = Z.AJUDA.alavancas, i = TELAS.indexOf("alavancas"), r = E();
+  const t = S.alv.tipo, def = Z.ALAVANCAS.find((x) => x.v === t) || Z.ALAVANCAS[0];
+  const aj = r.ajustado;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 5 · Validar</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    <label for="alv-tipo">Alavanca</label><select id="alv-tipo">${Z.ALAVANCAS.map((x) => `<option value="${x.v}" ${x.v === t ? "selected" : ""}>${esc(x.r)}</option>`).join("")}</select>
+    ${t === "extras" ? `<label class="check-lg"><input type="checkbox" id="alv-extras" ${S.alv.valor === true ? "checked" : ""}><span>Ligar as outras receitas que você listou</span></label>` : `<label for="alv-valor">Quanto muda (${esc(def.un)})</label><input type="text" id="alv-valor" inputmode="decimal" value="${esc(S.alv.valor)}"><p class="dica" style="margin:6px 0 0">${esc(def.dica)}</p>`}
+    ${t === "unidades" ? campoNum("capexPorUnidade", "CAPEX de cada unidade que sai (com a reserva)", { pre: "R$", ph: "Ex.: 168.981" }) : ""}
+    <div class="alv-res" id="alv-res"></div>
+    <h2 style="font-size:1.15rem;margin-top:22px">O cenário ajustado</h2>
+    <p class="dica">${esc(Z.TEXTOS.ajustado)}</p>
+    <div class="grade">
+      <div><label for="aj-diaria">Diária</label><div class="campo-num"><span class="un">R$</span><input type="text" id="aj-diaria" data-aj="diaria" inputmode="decimal" value="${esc(aj.diaria)}" placeholder="igual"></div></div>
+      <div><label for="aj-ocup">Ocupação do ano</label><div class="campo-num"><input type="text" id="aj-ocup" data-aj="ocup" inputmode="decimal" value="${esc(aj.ocup)}" placeholder="igual"><span class="un">%</span></div></div>
+      <div><label for="aj-fixoPct">Custo fixo</label><div class="campo-num"><input type="text" id="aj-fixoPct" data-aj="fixoPct" inputmode="decimal" value="${esc(aj.fixoPct)}" placeholder="Ex.: -10"><span class="un">%</span></div></div>
+      <div><label for="aj-capexPct">CAPEX</label><div class="campo-num"><input type="text" id="aj-capexPct" data-aj="capexPct" inputmode="decimal" value="${esc(aj.capexPct)}" placeholder="Ex.: -10"><span class="un">%</span></div></div>
+    </div>
+    <label class="check-lg"><input type="checkbox" id="aj-extras" data-aj="extras" ${aj.extras ? "checked" : ""}><span>Com as outras receitas que você listou</span></label>
+    <div id="aj-res"></div>
+    ${navHTML(i, "Veredito e critério")}${caixasAjuda("alavancas")}</div>`;
+  const vivo = () => {
+    const v = t === "extras" ? S.alv.valor === true : S.alv.valor;
+    const x = Z.alavanca(E(), t, v, HOJE);
+    document.getElementById("alv-res").innerHTML = !x.ok ? `<div class="ref" style="grid-column:1/-1" id="alv-erro">${esc(x.motivo)}</div>` :
+      `<div class="num"><small>O que sobra no ano</small><strong id="alv-sobra">${brl(x.sobra)}</strong></div><div class="num"><small>Ano 1</small><strong id="alv-ano1">${brl(x.ano1)}</strong></div><div class="num"><small>Tempo de volta</small><strong id="alv-volta">${fmtVolta(x.volta)}</strong></div><div class="num ${x.passo3 === "redesenhar" ? "ruim" : ""}"><small>Passo 3</small><strong id="alv-passo3">${esc(x.passo3)}</strong></div>`;
+    const J = Z.ajustado(E(), HOJE), ar = document.getElementById("aj-res");
+    if (!J) ar.innerHTML = `<p class="dica" id="aj-vazio">Escreva pelo menos uma mudança para ver o ajustado.</p>`;
+    else if (!J.ok) ar.innerHTML = `<div class="ref" id="aj-erro">${esc(J.motivo)}</div>`;
+    else { const A = J.A; ar.innerHTML = `<div class="numeros"><div class="num"><small>O que sobra (margem ${fmtPct(A.cons.margem)})</small><strong id="aj-sobra">${brl(A.cons.sobra)}</strong></div><div class="num"><small>Tempo de volta</small><strong id="aj-volta">${fmtVolta(A.volta.cons)}</strong></div><div class="num largo"><small>Pela régua: ${esc(A.regua || "pendente")} · a ficha mostra</small><strong id="aj-veredito">${esc(A.sugerido || "pendente")}</strong></div></div>
+      <ol class="passos5" id="aj-passos">${A.passos.map((p) => `<li data-status="${p.status || ""}"><i aria-hidden="true"></i><span><b>Passo ${p.n}</b>${esc(STATUS_TXT[p.status] || "falta dado")}</span></li>`).join("")}</ol><p class="dica" id="aj-motivo">${esc(Z.motivoVeredito(A))}</p>`; }
+  };
+  document.getElementById("alv-tipo").addEventListener("change", (e) => { const n = e.target.value; S.alv = { tipo: n, valor: n === "extras" ? true : n === "unidades" ? String(Math.max(1, (paraNumero(E().unidades) || 2) - 1)) : n === "diaria" ? "50" : n === "ocupacao" ? "5" : "-10" }; salvar(); rerender(); });
+  const iv = document.getElementById("alv-valor"); if (iv) iv.addEventListener("input", (e) => { S.alv.valor = e.target.value; salvar(); vivo(); });
+  const ie = document.getElementById("alv-extras"); if (ie) ie.addEventListener("change", (e) => { S.alv.valor = e.target.checked; salvar(); vivo(); });
+  app.querySelectorAll("[data-aj]").forEach((el) => el.addEventListener(el.type === "checkbox" ? "change" : "input", () => { E().ajustado[el.dataset.aj] = el.type === "checkbox" ? el.checked : el.value; mudou(); vivo(); }));
+  ligarCampos("alavancas", vivo);
+  ligarNav("alavancas");
+  vivo();
+}
+
+/* ---------- tela 11 · veredito e critério ---------- */
+function telaVeredito() {
+  const a = Z.AJUDA.veredito, i = TELAS.indexOf("veredito"), r = E(), C = calc();
+  const sug = C.pronto ? C.A.sugerido : null;
+  const molde = "Se [o fato], eu não assino a obra: volto à conta e redesenho o tamanho, o produto ou a fase.";
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 5 · Validar</div><h1 class="pergunta" tabindex="-1">${esc(a.titulo)}</h1>${faixaExemplo()}<p class="explica">${esc(a.explica)}</p>
+    ${sug ? `<div class="veredito"><small>A régua sugere</small><strong id="v-sugerido">${esc(sug)}</strong>${esc(Z.motivoVeredito(C.A))}</div>` : ""}
+    <fieldset><legend>O seu veredito</legend><div class="opcoes">${Z.VEREDITOS.map((x) => `<label class="op"><input type="radio" name="r-vereditoPessoa" data-campo="vereditoPessoa" value="${x.v}" ${r.vereditoPessoa === x.v ? "checked" : ""}><span><b>${x.v}</b><br><small>${esc(x.t)}</small></span></label>`).join("")}</div></fieldset>
+    <label for="f-criterioParar">O critério para parar</label><textarea id="f-criterioParar" data-campo="criterioParar" maxlength="300" placeholder="${esc(molde)}">${esc(r.criterioParar)}</textarea>
+    <button type="button" class="btn btn-s btn-mini" id="usar-molde" style="margin-top:8px;width:100%">Usar o molde do Pilar 6</button>
+    <p class="dica">${esc(Z.TEXTOS.naoFecha)}</p>
+    ${navHTML(i, "Ação de 30 dias e PDF")}${caixasAjuda("veredito")}</div>`;
+  document.getElementById("usar-molde").onclick = () => { E().criterioParar = molde; mudou(); rerender(); };
+  ligarCampos("veredito");
+  ligarNav("veredito");
+}
+
+/* ---------- tela 12 · ação de 30 dias, critério, selo, PDF e a volta ---------- */
+function telaAcao() {
+  const i = TELAS.indexOf("acao"), r = E(), C = calc(), s = Z.acaoSugerida(r, C);
+  if (!r.acaoEditada) { r.acao30 = s.acao; r.verificacao = s.verificacao; }
+  if (!r.prazo) r.prazo = hojeISO(30);
+  salvar();
+  const T = C.pronto ? C.transposicao : null, P2 = C.pronto ? C.planilha2 : null;
+  const pl2 = P2 ? `<table class="mini" id="pl2"><thead><tr><th style="width:42%">Aba e célula</th><th>O que vai</th></tr></thead><tbody>
+    <tr><td>Massas B9 a B11</td><td>As unidades da fase na tipologia certa; B12 = ${P2.unidades}</td></tr>
+    <tr><td>Investimento B5</td><td id="pl2-b5">${brl(P2.b5)}</td></tr><tr><td>Investimento B6</td><td>0 (terreno fora da conta)</td></tr><tr><td>Investimento B7</td><td id="pl2-b7">${esc(P2.b7)}</td></tr>
+    <tr><td>Modelo de renda B7:D7</td><td>${brl(P2.diaria)} nos três</td></tr><tr><td>Modelo de renda B8, C8, D8</td><td>${P2.ocup.map((x) => fmtPct(x)).join(" / ")}</td></tr>
+    <tr><td>Modelo de renda B10:D10</td><td>${fmtPct(P2.b10, 2)}</td></tr><tr><td>Modelo de renda B11:D11</td><td id="pl2-b11">${fmtPct(P2.b11, 2)}</td></tr>
+    <tr><td>Modelo de renda B12:D12</td><td id="pl2-b12">${brl(P2.b12)} por noite (com a reserva de reposição)</td></tr><tr><td>Modelo de renda B13:D13</td><td>${P2.b13 === null ? "vazio (anote: aguardando o contador)" : fmtPct(P2.b13, 2)}</td></tr>
+    <tr><td>Modelo de renda B14:D14 e B15:D15</td><td>${fmtPct(P2.b14, 2)} e 0%</td></tr>
+    ${P2.fixos.map((x) => `<tr><td>Modelo de renda ${x.cel}</td><td>${brl(x.valor)}</td></tr>`).join("")}
+    <tr><td>Modelo de renda B50</td><td>${P2.b50 === null ? "a sua taxa" : fmtPct(P2.b50, 2)} (a dica da planilha não é sugestão da Zion)</td></tr><tr><td>Modelo de renda B65</td><td>0</td></tr>
+  </tbody></table><p class="dica">Resultado esperado: a linha do resultado anual do conservador (B41) dá ${brl(C.A.cons.sobra)} e a ocupação de equilíbrio (B44), ${fmtPct(C.A.ocupEq)}. ${esc(Z.TEXTOS.avisoP2)}</p>` : `<p class="dica">Complete a conta para o quadro.</p>`;
+  app.innerHTML = `${progresso(i)}<div class="card"><div class="eyebrow">Etapa 6 · Entregar</div><h1 class="pergunta" tabindex="-1">A sua ação de 30 dias e a página 6B</h1>${faixaExemplo()}
+    <label for="f-acao30">Ação de 30 dias</label><textarea id="f-acao30" maxlength="300">${esc(r.acao30)}</textarea>
+    <button type="button" class="btn btn-s btn-mini" id="usar-sug" style="margin-top:8px;width:100%">Voltar para a ação sugerida</button>
+    <label for="f-prazo">Prazo (até ${dataBR(hojeISO(30))})</label><input type="date" id="f-prazo" min="${HOJE}" max="${hojeISO(30)}" value="${esc(r.prazo)}">
+    <label for="f-verificacao">Como verificar</label><textarea id="f-verificacao" style="min-height:60px">${esc(r.verificacao)}</textarea>
+    <details style="margin-top:6px"><summary class="dica" style="cursor:pointer;min-height:40px;display:flex;align-items:center">Escolher uma verificação da lista</summary><div class="opcoes">${Z.VERIFICACOES.map((v, k) => `<button type="button" class="btn btn-s btn-mini" data-verif="${k}" style="justify-content:flex-start;text-align:left">${esc(v)}</button>`).join("")}</div></details>
+    <div class="falta" id="falta" role="status"></div>
+    <section class="bloco"><h2>Critério de conclusão</h2><ul class="crit" id="criterio"></ul><div id="selo"></div></section>
+    <div class="acoes"><button type="button" class="btn btn-ouro" id="pdf">Baixar a página 6B (PDF)</button></div>
+    <div class="erro" id="erro-pdf" role="alert"></div>
+    <div class="veio" id="lembrete"><b>${esc(Z.TEXTOS.dossie)}</b><br>${esc(Z.TEXTOS.naoEnvia)}</div>
+    <section class="bloco" id="quadro"><h2>Como levar para a página 6</h2>
+      ${T ? kv("Margem operacional", fmtNum(T.margem, 2) + " · " + T.notaTxt, "q-margem") + kv("Capital de giro (meses de custo)", T.giroMeses === null ? "não se calcula" : fmtNum(T.giroMeses, 2), "q-giro") + kv("Diária, ocupações, unidades, folha, infraestrutura comum e terreno", "não mudam") : `<p class="dica">Complete a conta para o quadro.</p>`}
+      <p class="dica" style="margin-top:8px">${esc(Z.TEXTOS.avisoP6)}</p>
+    </section>
+    <section class="bloco" id="quadro-pl2"><h2>Planilha 2, célula a célula</h2>${pl2}</section>
+    ${r.exemplo ? `<p class="dica">${esc(Z.TEXTOS.pilar7)}</p>` : ""}
+    <section class="bloco"><h2>Próxima etapa</h2><p id="proxima">${esc(Z.proximaEtapa(r))}</p>
+      <ol class="passos">${Z.PROXIMOS.map((x) => `<li>${esc(x)}</li>`).join("")}</ol>
+      <div class="acoes"><a class="btn btn-p" href="../pilar6/index.html">Abrir a ficha do Pilar 6</a><button type="button" class="btn btn-s" id="revisar">Revisar as respostas</button><button type="button" class="btn btn-s" id="refazer">Refazer do zero</button><button type="button" class="btn btn-s" id="voltar">Voltar ao veredito</button></div>
+    </section>
+    <p class="aviso">${esc(Z.TEXTOS.aviso)} ${esc(Z.TEXTOS.naoPromete)}</p></div>`;
+  const vivo = () => {
+    const cr = Z.criterio(E(), calc(), HOJE);
+    document.getElementById("criterio").innerHTML = cr.itens.map((x) => `<li class="${x.ok ? "ok" : ""}" data-n="${x.n}">${esc(x.txt)}${x.ok ? "" : " <b>(falta)</b>"}</li>`).join("");
+    document.getElementById("selo").innerHTML = cr.ok ? `<div class="selo" id="selo-ok"><div class="med">6B</div><div><b>Pronto para levar à página 6</b>Página 6B baixada em ${dataBR(HOJE)}. ${esc(Z.proximaEtapa(E()))}</div></div>` : `<p class="dica">${cr.antesDoPdf ? "Tudo pronto: baixe o PDF para receber o selo." : "Enquanto falta algo, o selo espera. O PDF pode ser baixado a qualquer momento como rascunho."}</p>`;
+    document.getElementById("falta").textContent = Z.validarTela("acao", E(), HOJE);
+  };
+  const liga = (id, fn) => document.getElementById(id).addEventListener(id === "f-prazo" ? "change" : "input", (e) => { fn(e.target.value); mudou(); vivo(); });
+  liga("f-acao30", (x) => { E().acao30 = x; E().acaoEditada = true; });
+  liga("f-prazo", (x) => { E().prazo = x; });
+  liga("f-verificacao", (x) => { E().verificacao = x; E().acaoEditada = true; });
+  document.getElementById("usar-sug").onclick = () => { E().acaoEditada = false; mudou(); rerender(); };
+  app.querySelectorAll("[data-verif]").forEach((b) => b.addEventListener("click", () => { E().verificacao = Z.VERIFICACOES[Number(b.dataset.verif)]; E().acaoEditada = true; document.getElementById("f-verificacao").value = E().verificacao; mudou(); vivo(); }));
+  document.getElementById("revisar").onclick = () => irPara(1);
+  document.getElementById("voltar").onclick = () => irPara(i - 1);
+  document.getElementById("refazer").onclick = () => { if (confirm("Apagar as respostas desta página neste aparelho e começar de novo?")) { recomecar(); render(); window.scrollTo(0, 0); } };
+  document.getElementById("pdf").onclick = () => {
+    try {
+      const antes = Z.criterio(E(), calc(), HOJE).antesDoPdf;
+      const info = gerarPDF();
+      window.__ultimoPDF = info;
+      E().pdfBaixado = antes; salvar();
+      document.getElementById("erro-pdf").textContent = "";
+      vivo();
+    } catch (e) { console.error(e); document.getElementById("erro-pdf").textContent = "Não foi possível gerar o PDF agora. Confira a conexão com a internet e tente de novo."; }
+  };
+  vivo();
+}
+
+/* ---------------------------------------------------------------------
+   PDF A4 com jsPDF: página 1 = página 6B; depois o anexo «Alavancas e cenário ajustado» (com o mês a mês e a Planilha 2)
+   --------------------------------------------------------------------- */
+const VERDE = [22, 38, 28], CREME = [245, 241, 232], OURO = [224, 190, 94], CINZA = [70, 86, 75], VERM = [155, 44, 31], OKC = [31, 90, 51], AMBAR = [176, 130, 20];
+const COR_ALERTA = { bloqueia: VERM, critico: VERM, ns: [122, 83, 0], atencao: [150, 110, 20], info: OKC };
+const COR_STATUS = { passa: OKC, ajustar: AMBAR, redesenhar: VERM, pendente: CINZA };
+function gerarPDF() {
+  if (!window.jspdf || !window.jspdf.jsPDF) throw new Error("jsPDF não carregou");
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF({ unit: "mm", format: "a4" });
+  const pt = (t) => String(t ?? "").replace(/²/g, "2").replace(/[“”]/g, '"').replace(/[‘’]/g, "'").replace(/…/g, "...").replace(/[–—−]/g, "-").replace(/≥/g, ">=").replace(/≤/g, "<=").replace(/→/g, "->").replace(/÷/g, "/");
+  const _text = doc.text.bind(doc), _split = doc.splitTextToSize.bind(doc);
+  doc.text = (t, ...a) => _text(Array.isArray(t) ? t.map(pt) : pt(t), ...a);
+  doc.splitTextToSize = (t, ...a) => _split(pt(t), ...a);
+  const W = 210, H = 297, M = 12, CW = W - 2 * M, LIM = H - 15;
+  const r = E(), C = calc(), cr = Z.criterio(r, C, HOJE);
+  let y = 0;
+  const fonte = (estilo, tam, cor) => { doc.setFont("helvetica", estilo); doc.setFontSize(tam); doc.setTextColor(...(cor || VERDE)); };
+  const par = (t, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 7.4, o.cor); const ls = doc.splitTextToSize(String(t), o.w || CW); const lh = (o.size || 7.4) * 0.42; ls.forEach((l, k) => doc.text(l, o.x || M, y + k * lh)); y += ls.length * lh + (o.after ?? 1); };
+  const titulo = (t, x = M) => { y += 1.6; doc.setFont("times", "bold"); doc.setFontSize(10); doc.setTextColor(...VERDE); doc.text(t, x, y); doc.setDrawColor(...OURO); doc.setLineWidth(0.5); doc.line(x, y + 1.1, x + 28, y + 1.1); y += 4.3; };
+  const terreno = r.cidadeUF ? "Terreno em " + r.cidadeUF : "";
+  const cabecalho = (sub) => {
+    doc.setFillColor(...CREME); doc.rect(0, 0, W, H, "F");
+    doc.setFillColor(...VERDE); doc.rect(0, 0, W, 12, "F"); doc.setFillColor(...OURO); doc.rect(0, 12, W, 0.8, "F");
+    fonte("normal", 7.5, CREME); doc.text(sub, M, 7.8); doc.text([r.nome, terreno, dataBR(HOJE)].filter(Boolean).join(" · ").slice(0, 70), W - M, 7.8, { align: "right" });
+    y = 19.5;
+  };
+  const kvs = (lista, x, w, size = 6.8) => { lista.forEach(([k, v]) => { fonte("normal", size, CINZA); const kk = doc.splitTextToSize(k, w * 0.55)[0]; doc.text(kk, x, y); fonte("bold", size); doc.text(doc.splitTextToSize(String(v), w * 0.47)[0], x + w, y, { align: "right" }); y += size * 0.45; }); };
+  // ---------- página 1 · página 6B ----------
+  cabecalho("Zion · Dossiê de Desenvolvimento · Página 6B · Viabilidade");
+  doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...VERDE); doc.text(doc.splitTextToSize("A sua conta · " + r.projeto, CW)[0], M, y); y += 4.4;
+  par(`Da receita bruta ao que sobra depois da reserva de reposição, o primeiro ano mês a mês e a régua da Zion. Página irmã das páginas 6 e 6A. ${Z.TEXTOS.cenarios}${C.impostoBranco ? " Antes do imposto sobre a receita (linha em branco, aguardando o contador)." : ""}`, { size: 7.2, cor: CINZA, after: 1.2 });
+  if (r.exemplo) { doc.setFillColor(...OURO); doc.roundedRect(M, y - 3, CW, 5.2, 1, 1, "F"); fonte("bold", 7.2); doc.text(Z.TEXTOS.exemplo.toUpperCase(), M + 2.5, y + 0.7); y += 4.8; }
+  if (!C.pronto) { par("A conta ainda não está completa. Falta: " + C.faltas.join(", ") + ".", { bold: true, size: 8, cor: VERM }); }
+  else {
+    const A = C.A, c = A.cons;
+    const box = [["O que sobra no ano (cenário medido)", brl(c.sobra)], [`Margem aberta${C.margem6 !== null ? " (página 6: " + fmtN(C.margem6 * 100, 2) + "%)" : ""}`, fmtPct(c.margem)], ["Equilíbrio · folga", A.ocupEq === null ? "não se calcula" : fmtPct(A.ocupEq) + " · " + fmtN(A.folga * 100, 1) + " pontos"],
+      ["Primeiro ano com a rampa", brl(A.ano1.cons)], [`Tempo de volta em escada (Pilar 6: ${fmtVolta(A.voltaP6.cons)})`, fmtVolta(A.volta.cons)], ["Investimento refeito (CAPEX + giro da 6B)", brl(A.investimento)]];
+    const bw = (CW - 2 * 2.5) / 3, bh = 10.5;
+    box.forEach(([k, v], n) => { const x = M + (n % 3) * (bw + 2.5), yy = y + Math.floor(n / 3) * (bh + 2); const ruim = (n === 0 && c.sobra < 0) || (n === 4 && A.passos[2].status === "redesenhar"); doc.setFillColor(...(ruim ? VERM : VERDE)); doc.roundedRect(x, yy, bw, bh, 1.5, 1.5, "F"); fonte("normal", 6, CREME); doc.text(doc.splitTextToSize(k, bw - 4)[0], x + 2, yy + 3.5); fonte("bold", 9, OURO); doc.text(doc.splitTextToSize(v, bw - 3)[0], x + 2, yy + 8.3); });
+    y += 2 * bh + 2 + 4;
+    // a conta em seis degraus
+    titulo("A conta em seis degraus");
+    const larg = [72, 38, 38, 38];
+    const linhaT = (cols, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 7, o.cor); let x = M; cols.forEach((cc, k) => { const al = k === 0 ? "left" : "right"; doc.text(doc.splitTextToSize(String(cc), larg[k] - 2)[0], al === "left" ? x + 1 : x + larg[k] - 1, y, { align: al }); x += larg[k]; }); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.15); doc.line(M, y + 1.1, M + CW, y + 1.1); y += 3.45; };
+    const cen = ["cons", "base", "otim"];
+    linhaT(["Degrau", ...cen.map((s) => ({ cons: "Conservador", base: "Base", otim: "Otimista" })[s] + " " + fmtN(A.cen[s].ocup * 100, 1) + "%")], { bold: true, size: 6.4, cor: CINZA });
+    [["1 · Receita bruta", "bruta", 1], ["Deduções (imposto, comissão, cartão, cancelamento)", "deducoes"], ["2 · Receita real", "real", 1], ["Custos de cada noite", "variaveis"], ["3 · Margem de contribuição", "contrib", 1], ["Fixos com a retirada", "fixoAno"], ["4 · Resultado antes da reserva", "antes", 1], ["5 · Custos do modelo", "modelo"], ["Reserva de reposição", "reserva"], ["6 · O que sobra", "sobra", 1]]
+      .forEach(([n, k, bb]) => linhaT([n, ...cen.map((s) => brl(A.cen[s][k]))], { bold: !!bb }));
+    linhaT(["Margem (o que sobra ÷ receita bruta)", ...cen.map((s) => fmtPct(A.cen[s].margem))]);
+    linhaT(["Tempo de volta em escada", ...cen.map((s) => fmtVolta(A.volta[s]))]);
+    if (C.margem6 !== null) par(`Diferença com a página 6: ${brl(c.hosp)} × ${fmtN(C.margem6 * 100, 2)}% = ${brl(C.resultado6)} pela margem de referência; com a sua lista, ${brl(c.sobra)}. ${Z.TEXTOS.notaP6}`, { size: 6.2, cor: CINZA, after: 0.4 });
+    // duas colunas
+    const colW = (CW - 6) / 2, xR = M + colW + 6;
+    let y0 = y;
+    titulo("Equilíbrio e caixa");
+    kvs([["Ponto de equilíbrio", A.Neq === null ? "não se calcula" : fmtN(A.Neq, 2) + " noites · " + fmtPct(A.ocupEq)], ["Custo por diária vendida", brl(A.custoPorDiaria)], ["Diária de equilíbrio · piso", (A.diariaEq === null ? "-" : brl(A.diariaEq)) + " · " + (A.piso === null ? "-" : brl(A.piso))],
+      ["Menor saldo do primeiro ano", brl(A.menorAcum) + (A.menorMes ? " (mês " + A.menorMes + ")" : "")], ["Giro 6A · conta A · conta B", [ok(C.P.giro6A) ? brl(C.P.giro6A) : "-", brl(A.giroA), brl(A.giroB)].join(" · ")], ["Giro da 6B", brl(A.giroUsado)],
+      ["Colchão no pior mês", brl(A.colchao) + " · " + fmtPct(A.colchaoPct)], ["Reserva de sazonalidade por mês de alta", A.porMesAlta === null ? "-" : brl(A.porMesAlta)]], M, colW);
+    let yE = y; y = y0;
+    titulo("Vale a pena", xR);
+    const p4 = A.p4.status === "pendente" ? "pendente: escreva a sua taxa" : A.vpSem !== null ? brl(A.vpSem) + " a " + fmtN(C.P.taxa * 100, 2) + "%" : "negativo a qualquer taxa";
+    kvs([["Escada · Pilar 6 · com o terreno", fmtVolta(A.volta.cons) + " · " + fmtVolta(A.voltaP6.cons) + " · " + (A.voltaTerreno === null ? "-" : fmtVolta(A.voltaTerreno))], ["Retorno simples", fmtPct(A.retorno) + (A.retornoTerreno !== null ? " · com o terreno " + fmtPct(A.retornoTerreno) : "")], ["Valor presente de dez anos", p4],
+      ["Teste de queda", brl(A.sobraQueda)], ["Sensibilidade: diária −15% · ocupação −10", fmtVolta(A.sens.diaria.volta) + " · " + fmtVolta(A.sens.ocupacao.volta)], ["Sensibilidade: CAPEX +20%", fmtVolta(A.sens.capex.volta)],
+      ["Verdade em 8 anos (ocup. · diária)", A.verdade[8] ? pctTxt(A.verdade[8].ocup) + " · " + (A.verdade[8].diaria === null ? "-" : brl(A.verdade[8].diaria)) : "-"], ["Verdade em 12 anos (ocup. · diária)", A.verdade[12] ? pctTxt(A.verdade[12].ocup) + " · " + (A.verdade[12].diaria === null ? "-" : brl(A.verdade[12].diaria)) : "-"]], xR, colW);
+    y = Math.max(y, yE) + 0.6;
+    // régua e veredito
+    titulo("A régua da Zion em cinco passos");
+    const pw = CW / 5;
+    A.passos.forEach((p, k) => { const x = M + k * pw; doc.setFillColor(...(COR_STATUS[p.status] || CINZA)); doc.circle(x + 2, y - 1, 1.3, "F"); fonte("bold", 6.4); doc.text("Passo " + p.n + ": " + (p.status || "falta"), x + 4.5, y); fonte("normal", 5.6, CINZA); doc.text(doc.splitTextToSize(p.nome, pw - 5)[0], x + 4.5, y + 2.6); });
+    y += 6.4;
+    par(`Veredito sugerido: ${A.sugerido || "pendente"}. ${Z.motivoVeredito(A)}`, { bold: true, size: 7.4, after: 0.5 });
+    par(`Veredito escrito: ${r.vereditoPessoa || "em branco"}. Critério para parar: ${(r.criterioParar || "").trim() || "em branco"}`, { size: 7, after: 0.4 });
+    // atenção
+    titulo("Atenção");
+    const top = Z.tresPrimeiros(Z.alertas(r, C));
+    if (!top.length) par("Nenhuma das conferências disparou.", { size: 7 });
+    top.forEach((a) => { fonte("normal", 6.8); const ls = doc.splitTextToSize(a.txt, CW - 6); const h = 3.2 + ls.length * 2.85 + 0.6; doc.setFillColor(...(COR_ALERTA[a.tipo] || VERDE)); doc.rect(M, y - 2.6, 1.2, h, "F"); fonte("bold", 6.6, COR_ALERTA[a.tipo] || VERDE); doc.text(a.tit.toUpperCase(), M + 3, y); fonte("normal", 6.8); ls.forEach((l, k) => doc.text(l, M + 3, y + 3.2 + k * 2.85)); y += h + 0.4; });
+    par("Pergunte ao seu contador: as perguntas estão no anexo.", { size: 6.2, cor: CINZA, after: 0.2 });
+    // ação e volta
+    titulo("O que fazer em 30 dias");
+    par(`${(r.acao30 || "").trim() || "em branco"}  ·  Prazo: ${dataBR(r.prazo) || "em branco"}`, { bold: true, size: 7.2, after: 0.4 });
+    par(`Como verificar: ${(r.verificacao || "").trim() || "em branco"}`, { size: 6.9, after: 0.2 });
+    const T = C.transposicao;
+    titulo("Como levar para a página 6");
+    par(T ? `Margem operacional: ${fmtNum(T.margem, 2)} (${T.notaTxt}). Capital de giro: ${T.giroMeses === null ? "-" : fmtNum(T.giroMeses, 2)} meses. O resto da página 6 não muda. Planilha 2, célula a célula: no anexo.` : "Complete a conta.", { size: 7, after: 0.3 });
+    par(Z.TEXTOS.avisoP6, { size: 6, cor: CINZA, after: 0.8 });
+  }
+  y += 1.4;
+  if (cr.antesDoPdf) { doc.setFillColor(...VERDE); doc.roundedRect(M, y - 3.4, 66, 5.6, 1.5, 1.5, "F"); fonte("bold", 7.2, OURO); doc.text("PRONTO PARA LEVAR À PÁGINA 6", M + 3, y + 0.6); fonte("normal", 6.4, CINZA); doc.text(doc.splitTextToSize(Z.proximaEtapa(r), CW - 70).slice(0, 2), M + 69, y - 0.4); y += 5; }
+  else par(`Primeira versão: ainda falta ${cr.faltas.length - (r.pdfBaixado ? 0 : 1)} item(ns) do critério de conclusão (veja a ficha).`, { size: 6.6, cor: VERM, after: 0.5 });
+  par(`${Z.TEXTOS.dossie} ${Z.TEXTOS.naoEnvia}`, { size: 6.6, bold: true, after: 0 });
+  const yPagina1 = y;
+  // ---------- anexo ----------
+  const novaPag = () => { doc.addPage(); cabecalho("Zion · Dossiê de Desenvolvimento · Página 6B · Anexo · Alavancas e cenário ajustado"); };
+  const cabe = (h) => { if (y + h > LIM - 4) novaPag(); };
+  novaPag();
+  doc.setFont("times", "bold"); doc.setFontSize(14); doc.setTextColor(...VERDE); doc.text("Anexo · Alavancas e cenário ajustado", M, y); y += 5.5;
+  if (r.exemplo) { par(Z.TEXTOS.exemplo, { bold: true, size: 7.2 }); }
+  if (C.pronto) {
+    const A = C.A;
+    titulo("O primeiro ano mês a mês (cenário medido)");
+    const lm = [40, 30, 40, 40, 36];
+    const linhaM = (cols, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 6.9, o.cor); let x = M; cols.forEach((cc, k) => { const al = k === 0 ? "left" : "right"; doc.text(String(cc), al === "left" ? x + 1 : x + lm[k] - 1, y, { align: al }); x += lm[k]; }); y += 3.2; };
+    linhaM(["Mês", "Rampa", "Noites", "Resultado", "Acumulado"], { bold: true, cor: CINZA, size: 6.4 });
+    A.meses.slice(0, 12).forEach((m) => linhaM([m.i + " · " + m.nome + " (" + ({ alta: "alta", medio: "médio", fraco: "fraco" })[m.tipo] + ")", fmtN(m.rampa * 100, 0) + "%", fmtN(m.noites, 2), brl(m.res), brl(m.acum)], { bold: m.i === A.menorMes }));
+    par(`Ano 1: ${brl(A.ano1.cons)}. Menor saldo: ${brl(A.menorAcum)}. No ano em regime, a soma dos doze meses dá o que sobra: ${brl(A.somaRegime)}.`, { size: 6.8, after: 0.6 });
+    cabe(44);
+    titulo("Uma alavanca por vez");
+    const lista = [["diaria", 50, "Diária R$ 50 maior"], ["ocupacao", 5, "Ocupação 5 pontos maior"], ["fixo", -10, "Custo fixo 10% menor"], ["capex", -10, "CAPEX 10% menor"]];
+    if (C.P.extrasTodos.length) lista.push(["extras", true, "Outras receitas ligadas"]);
+    if (paraNumero(r.capexPorUnidade) && C.P.u > 1) lista.push(["unidades", C.P.u - 1, (C.P.u - 1) + " unidades na fase"]);
+    const la = [62, 36, 36, 30, 22];
+    const linhaA = (cols, o = {}) => { fonte(o.bold ? "bold" : "normal", o.size || 6.9, o.cor); let x = M; cols.forEach((cc, k) => { const al = k === 0 ? "left" : "right"; doc.text(String(cc), al === "left" ? x + 1 : x + la[k] - 1, y, { align: al }); x += la[k]; }); y += 3.2; };
+    linhaA(["Alavanca", "O que sobra", "Ano 1", "Tempo de volta", "Passo 3"], { bold: true, cor: CINZA, size: 6.4 });
+    linhaA(["Nenhuma (a sua conta)", brl(A.cons.sobra), brl(A.ano1.cons), fmtVolta(A.volta.cons), A.passos[2].status]);
+    lista.forEach(([tp, v, n]) => { const x = Z.alavanca(r, tp, v, HOJE); if (x.ok) linhaA([n, brl(x.sobra), brl(x.ano1), fmtVolta(x.volta), x.passo3]); });
+    const J = Z.ajustado(r, HOJE);
+    cabe(30);
+    titulo("O cenário ajustado · o que precisaria ser verdade");
+    if (J && J.ok) {
+      const a = r.ajustado, Aj = J.A;
+      par(`Mudanças: ${[a.diaria ? "diária " + brl(paraNumero(a.diaria)) : "", a.ocup ? "ocupação " + fmtN(paraNumero(a.ocup), 2) + "%" : "", a.fixoPct ? "custo fixo " + a.fixoPct + "%" : "", a.capexPct ? "CAPEX " + a.capexPct + "%" : "", a.extras ? "com as outras receitas" : ""].filter(Boolean).join(", ")}.`, { size: 7, after: 0.4 });
+      par(`O que sobra: ${brl(Aj.cons.sobra)} (margem ${fmtPct(Aj.cons.margem)}). Ano 1: ${brl(Aj.ano1.cons)}. Menor saldo: ${brl(Aj.menorAcum)}. Tempo de volta: ${fmtVolta(Aj.volta.cons)}. Colchão: ${fmtPct(Aj.colchaoPct)}. Teste de queda: ${brl(Aj.sobraQueda)}.`, { size: 7, after: 0.4 });
+      par(`Passos: ${Aj.passos.map((p) => p.n + " " + (p.status || "falta")).join(", ")}. Pela régua: ${Aj.regua || "pendente"}. A ficha mostra: ${Aj.sugerido || "pendente"}. ${Z.motivoVeredito(Aj)}`, { size: 7, bold: true, after: 0.4 });
+      par(Z.TEXTOS.ajustado, { size: 6.4, cor: CINZA });
+    } else par("Nenhum cenário ajustado escrito.", { size: 7 });
+    const P2 = C.planilha2;
+    cabe(70);
+    titulo("Planilha 2, célula a célula");
+    const linhasP2 = [["Massas B9 a B11", "unidades da fase por tipologia; B12 = " + P2.unidades], ["Investimento B5 · B6 · B7", brl(P2.b5) + " · 0 · " + P2.b7], ["Modelo de renda B7:D7", brl(P2.diaria) + " nos três"], ["Modelo de renda B8 · C8 · D8", P2.ocup.map((x) => fmtPct(x)).join(" · ")],
+      ["Modelo de renda B10:D10 · B11:D11", fmtPct(P2.b10, 2) + " · " + fmtPct(P2.b11, 2)], ["Modelo de renda B12:D12 (com a reserva)", brl(P2.b12) + " por noite"], ["Modelo de renda B13:D13", P2.b13 === null ? "vazio: aguardando o contador" : fmtPct(P2.b13, 2)], ["Modelo de renda B14:D14 · B15:D15", fmtPct(P2.b14, 2) + " · 0%"],
+      ...P2.fixos.map((x) => ["Modelo de renda " + x.cel, brl(x.valor)]), ["Modelo de renda B50 · B65", (P2.b50 === null ? "a sua taxa" : fmtPct(P2.b50, 2)) + " · 0"]];
+    kvs(linhasP2, M, CW * 0.7, 6.8);
+    par(`Resultado esperado: linha B41 do conservador = ${brl(A.cons.sobra)}; ocupação de equilíbrio (B44) = ${fmtPct(A.ocupEq)}. ${Z.TEXTOS.avisoP2}`, { size: 6.4, cor: CINZA, after: 0.6 });
+  }
+  cabe(40);
+  titulo(Z.INFO.tit);
+  Z.INFO.contador.forEach((q) => par("- " + q, { size: 7, after: 0.3 }));
+  par(Z.INFO.anote + " " + Z.INFO.advogado, { size: 6.8, cor: CINZA, after: 0.6 });
+  cabe(30);
+  titulo("Próxima etapa");
+  Z.PROXIMOS.forEach((x, k) => par(`${k + 1}. ${x}`, { size: 6.9, after: 0.4 }));
+  const n = doc.getNumberOfPages();
+  for (let k = 1; k <= n; k++) {
+    doc.setPage(k); doc.setDrawColor(214, 205, 184); doc.setLineWidth(0.2); doc.line(M, H - 12, W - M, H - 12);
+    fonte("normal", 6.2, CINZA); doc.text(doc.splitTextToSize(Z.TEXTOS.aviso + " " + Z.TEXTOS.naoEnvia, CW - 14), M, H - 9);
+    doc.text(`${k}/${n}`, W - M, H - 9, { align: "right" });
+  }
+  const arq = "Pagina-6B-Viabilidade-" + (r.projeto || "projeto").normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^A-Za-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".pdf";
+  doc.save(arq);
+  return { arquivo: arq, paginas: n, yPagina1, limitePagina1: LIM };
+}
+
+/* ---------- início ---------- */
+window.ZionViabilidade = { get estado() { return S; }, calcular: calc };
+(function iniciar() {
+  const salvo = carregar();
+  if (salvo) { S = salvo; if (salvo.passo > 0) { S.retomar = true; S.passoSalvo = salvo.passo; S.passo = 0; } }
+  semear();
+  render();
+})();
+</script>
+</body>
+</html>
