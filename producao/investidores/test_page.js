@@ -14,7 +14,7 @@ async function novo(b,vp,cfg=TEST_CFG,url='file://'+DOCS+'/investidores/index.ht
   const p=await ctx.newPage();await p.goto(url);await p.waitForTimeout(500);return {ctx,p};
 }
 async function responde(p,vals){for(const v of vals){await p.check(`#card input[value="${v}"]`,{force:true});await p.click('#prox')}}
-const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora','sim','sim'];
+const RESP=['nao','empresario','participacao','redes','sul','agora','sim','sim'];
 (async()=>{const b=await chromium.launch();
  // 1. lógica pura
  {const {ctx,p}=await novo(b,{width:390,height:844});
@@ -54,7 +54,7 @@ const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora',
   ck('um envio',posts.length===1);const d=posts[0]||{};
   ck('payload: telefone normalizado',d.whatsapp==='5548999999999');ck('payload: classificação aderente',d.classificacao_declarada==='aderente');
   ck('payload: consentimento e termo',d.consentimento_whatsapp===true&&!!d.termo_consentimento&&!!d.consentimento_em);
-  ck('payload: id de submissão único',/\S{8,}/.test(d.submission_id||''));ck('payload: 9 respostas',Object.keys(d.respostas||{}).length===9);
+  ck('payload: id de submissão único',/\S{8,}/.test(d.submission_id||''));ck('payload: 8 respostas',Object.keys(d.respostas||{}).length===8);
   ck('payload sem CPF/patrimônio/faixa de capital',!/cpf|patrimonio|capital|faixa/i.test(JSON.stringify(d)));
   ck('tela final: dois canais de WhatsApp',(await p.locator('#go1').count())===1&&(await p.locator('#go2').count())===1);
   ck('link 02 usa o número escolhido',(await p.getAttribute('#go2','href')).includes('5548988729883'));ck('link 01 usa o final 1061',(await p.getAttribute('#go1','href')).includes('554861371061'));
@@ -69,7 +69,7 @@ const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora',
  {const {ctx,p}=await novo(b,{width:390,height:844},{...TEST_CFG,ENDPOINT:'https://teste.invalid/hook'});await ctx.route('https://teste.invalid/hook',r=>r.fulfill({status:500,body:''}));
   await responde(p,RESP);await p.fill('#nome','Ana Lima');await p.fill('#cidade','Curitiba, PR');await p.fill('#fone','(41) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForTimeout(400);
   ck('falha de servidor mantém o formulário e avisa',(await p.textContent('#err')).includes('Não foi possível')&&(await p.locator('#env').isEnabled()));await ctx.close()}
- {const {ctx,p}=await novo(b,{width:390,height:844});await responde(p,['nao','empresario','comprar_bubble','nao','nao_sei','nao_sei','pesquisando','nao','ainda_nao']);
+ {const {ctx,p}=await novo(b,{width:390,height:844});await responde(p,['nao','empresario','comprar_bubble','nao','nao_sei','pesquisando','nao','ainda_nao']);
   await p.fill('#nome','Beto Souza');await p.fill('#cidade','Recife, PE');await p.fill('#fone','(81) 99999-9999');await p.check('#lgpd');await p.click('#env');await p.waitForSelector('.ok');
   ck('comprador de Bubble vai para a loja, sem prospecção de investimento',(await p.textContent('#card')).includes('loja')&&(await p.locator('#go2').count())===0);await ctx.close()}
  // 5. sem config: nada quebra e não expõe link de WhatsApp
@@ -78,6 +78,7 @@ const RESP=['nao','empresario','participacao','redes','ambas','urubici','agora',
  // 6. conteúdo proibido
  {const {ctx,p}=await novo(b,{width:390,height:844});ck('vídeo sem URL aprovada não toca e não mostra botão de play',(await p.locator('#vbtn .play').count())===0&&(await p.locator('#vbtn video').count())===0);await ctx.close()}
  const html=fs.readFileSync(path.join(DOCS,'investidores/index.html'),'utf8');
+ ck('formulário não oferece investir nas operações atuais (Urubici/Florianópolis à parte)',!/Operações existentes|value="urubici"|\["urubici"|\["florianopolis"/.test(html));
  const vis=html.replace(/nem promessa de rentabilidade/,'').replace(/<script[\s\S]*?<\/script>/g,'').replace(/<style[\s\S]*?<\/style>/g,'');
  ck('sem preço, checkout, mensalidade ou rentabilidade prometida',!/R\$\s?\d|checkout|mensalidade|garantid|retorno de|rentabilidade|à venda|vendemos|compre/i.test(vis));
  console.log(`\n${pass} ok, ${fail} falhas`);await b.close();process.exit(fail?1:0)})();

@@ -62,3 +62,6 @@ Criar **um agente novo "Bela · Investidores" em rascunho** (persona própria: r
 | Fluxo "Zion Investors · cadastro → CRM + Bela + fila prioritária (rascunho)" | `cd2fa28f-ab95-499c-a872-dee83e8dd151` | `draft` **vazio**: faltam gatilho (webhook do site / formulário Meta), passos e travas |
 
 **Ainda não feito:** gatilho webhook e passos do fluxo; campos personalizados (destino, prazo, preferência, intenção declarada, consentimento); ligação do `ZION_CONFIG.ENDPOINT`; tarefa prioritária e aviso ao responsável; roteamento de respostas da Bela atual (R$ 97) para a nova; nenhum teste real de disparo (exige "aprovado").
+
+## Regra de escopo (Bruno, 28/11): só expansão e investimentos
+As opções de investimento ou venda das operações de Urubici e Florianópolis ficam **à parte**: não aparecem na página, no formulário, no carrossel nem nas mensagens. Urubici e Florianópolis aparecem apenas como prova de que o modelo já funciona. Formulário passou a 8 perguntas: saiu "operações existentes / novas / ambas" e a de destino virou região de interesse (Sul / outras regiões / qualquer destino / ainda não sei), **proposta minha, a confirmar**. Para o canal de conversa sobre as operações, criar depois um fluxo/lista separado, com aprovação e revisão jurídica próprias.
