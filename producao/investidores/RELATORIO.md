@@ -39,3 +39,6 @@ Landing no ar em `/oportunidades` (merge autorizado por Bruno; rollback = revert
 
 ## 28/11 · comando definitivo do formulário
 Pacote de aprovação em `META_FORM_V3_PARA_APROVACAO.md` (spec, prévia mobile, classificação A+/A/B/C/D/T/BUBBLE/PENDENTE com 24 testes, política do Meta, argumentos conferidos: 266.388 seguidores confirmados). Nada criado no Meta nem ativado.
+
+## 28/11 · Decisão de Bruno: opção C para a Bela de Investidores
+Só um agente atende cada número no ClickMax (o 1061 é da Bela do R$ 97). Bruno escolheu **C**: a Bela de Investidores (`ac23f31d…`, publicada, sem posto) fica **sem WhatsApp** até haver um número só para investidores. Enquanto isso: lead entra no CRM (fluxo `e5634cba…`), aviso push/e-mail a Bruno, contato e mensagens manuais pela equipe; a Bela do R$ 97 não foi alterada.
