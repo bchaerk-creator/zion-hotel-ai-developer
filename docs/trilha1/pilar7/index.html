@@ -1380,6 +1380,66 @@ function criarPDF(cabecalho) {
     doc.text(`Gerada em ${dataBR(hojeISO())}`, P.M + 4, 229);
     doc.setFontSize(8); doc.text(doc.splitTextToSize(RODAPE, P.CW - 8), P.M + 4, P.H - 30);
   };
+  P.capaEntregavel = (L, feitas) => {
+    const x = P.M + 4, w = P.CW - 8, xd = P.W - P.M - 4;
+    const ETAPAS = [
+      ["ETAPA 1 · LER O LUGAR", [[1, "Território e destino", "Ficha do Território"], [2, "Mercado e demanda", "Ficha do Mercado"]]],
+      ["ETAPA 2 · DESENHAR O PRODUTO", [[3, "Produto e tipologias", "Ficha do Produto"], [4, "Modelo de negócio", "Modelo de Negócio"]]],
+      ["ETAPA 3 · DESENHAR O TERRENO", [[5, "Masterplan faseado", "Masterplan faseado"]]],
+      ["ETAPA 4 · FECHAR A CONTA", [[6, "Pré-viabilidade", "Pré-viabilidade"], [7, "Capital e decisão", "Dossiê e decisão"]]],
+    ];
+    const CLARO = [220, 214, 200], VCLARO = { avancar: [150, 214, 168], testar: [236, 200, 120], ajustar: [236, 200, 120], pausar: [240, 150, 135], parar: [240, 150, 135] };
+    doc.setFillColor(...VERDE); doc.rect(0, 0, P.W, P.H, "F");
+    doc.setDrawColor(...OURO); doc.setLineWidth(0.6); doc.rect(10, 10, P.W - 20, P.H - 20);
+    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...OURO); doc.text("ZION HOTEL ACADEMY  ·  MÉTODO ZION", x, 26);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8.5); doc.setTextColor(...CLARO); doc.text("Dossiê de estruturação do projeto  ·  os 7 pilares", x, 31.5);
+    doc.setFont("times", "bolditalic"); doc.setFontSize(25); doc.setTextColor(...CREME);
+    doc.text("Meu terreno.  Minha visão.", x, 50); doc.setTextColor(...OURO); doc.text("Meu projeto.", x, 62);
+    doc.setFillColor(...OURO); doc.rect(x, 67, 40, 1, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...CREME); doc.text(doc.splitTextToSize(S.perfil.nome || "", w), x, 77);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.setTextColor(...CLARO);
+    doc.text(`Terreno em ${S.perfil.cidade}${S.perfil.uf ? "/" + S.perfil.uf : ""}  ·  Gerado em ${dataBR(hojeISO())}`, x, 82.5);
+    // painel dos pilares
+    let y = 94;
+    const chip = (px, py, txt, cheio) => {
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5);
+      const tw = doc.getTextWidth(txt) + 5;
+      if (cheio) { doc.setFillColor(...OURO); doc.roundedRect(px - tw, py - 4, tw, 5.6, 1.5, 1.5, "F"); doc.setTextColor(...VERDE); }
+      else { doc.setDrawColor(...CLARO); doc.setLineWidth(0.25); doc.roundedRect(px - tw, py - 4, tw, 5.6, 1.5, 1.5); doc.setTextColor(...CLARO); }
+      doc.text(txt, px - tw / 2, py, { align: "center" });
+      return tw;
+    };
+    const linha = (num, nome, entreg, st, v, ajust, dat) => {
+      doc.setFont("times", "bold"); doc.setFontSize(15); doc.setTextColor(...OURO); doc.text(String(num), x + 1, y + 1);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.setTextColor(...CREME); doc.text(nome, x + 11, y - 1);
+      doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...CLARO); doc.text(entreg + (dat ? " · " + dat : ""), x + 11, y + 3.5);
+      const feita = st === "feita";
+      const tw = chip(xd, y - 1, feita ? "FEITA" : "A FAZER", feita);
+      if (feita && v) { doc.setFont("helvetica", "bold"); doc.setFontSize(8.5); doc.setTextColor(...(VCLARO[v] || CREME)); doc.text(v === "decisao" ? "" : (NOME_V[v] || NOME_D[v] || "") + (ajust ? " (ajustado)" : ""), xd - tw - 3, y - 1, { align: "right" }); }
+      y += 12.5;
+    };
+    // página zero
+    const p0 = L.pags[0];
+    doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...OURO); doc.text("MARCO ZERO · PONTO DE PARTIDA", x, y - 5); y += 1;
+    linha("0", "Diagnóstico prévio", "A página zero do seu Dossiê", p0.status, null, false, p0.data ? dataBR(p0.data) : "");
+    ETAPAS.forEach(([tit, itens]) => {
+      doc.setDrawColor(...OURO); doc.setLineWidth(0.2); doc.line(x, y - 6, xd, y - 6);
+      doc.setFont("helvetica", "bold"); doc.setFontSize(7.5); doc.setTextColor(...OURO); doc.text(tit, x, y - 2); y += 4;
+      itens.forEach(([n, nome, entreg]) => {
+        if (n === 7) linha(7, nome, entreg, "feita", L.d, !!L.P.ajustado, dataBR(hojeISO()));
+        else { const pg = L.pags[n]; linha(n, nome, entreg, pg.status, pg.v, pg.ajustado, pg.data ? dataBR(pg.data) : ""); }
+      });
+    });
+    // decisão
+    y += 1;
+    doc.setFillColor(...OURO); doc.roundedRect(x, y, w, 15, 2, 2, "F");
+    doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.setTextColor(...VERDE); doc.text("A SUA DECISÃO", x + 4, y + 5.5);
+    doc.setFont("times", "bold"); doc.setFontSize(15); doc.text(`${NOME_D[L.d]}${L.P.ajustado ? " (página 7 ajustada no simulador)" : ""}`, x + 4, y + 12);
+    doc.setFont("helvetica", "normal"); doc.setFontSize(8); doc.setTextColor(...VERDE);
+    doc.text(`${feitas} de 7 páginas prontas neste aparelho`, xd - 3, y + 12, { align: "right" });
+    doc.setFont("helvetica", "normal"); doc.setFontSize(7.5); doc.setTextColor(...CLARO);
+    doc.text(doc.splitTextToSize("Documento de organização das informações declaradas por você. Não é promessa de investimento, parceria ou resultado. " + RODAPE, w), x, P.H - 32);
+  };
   P.fechar = (nomeArquivo) => {
     const n = doc.getNumberOfPages();
     for (let k = 1; k <= n; k++) {
@@ -1459,11 +1519,7 @@ function paginaFotosPDF(P) {
 function gerarDossiePDF(L) {
   const P = criarPDF("Zion · Dossiê de Desenvolvimento");
   const feitas = L.pags.filter((p) => p.n >= 1 && p.status === "feita").length + 1;
-  P.capa("MÉTODO ZION · O DOSSIÊ COMPLETO", "Dossiê de", "Desenvolvimento", `As sete páginas, uma por pilar, e a decisão: ${NOME_D[L.d].toLowerCase()}. ${feitas} de 7 páginas prontas neste aparelho.`, (doc) => {
-    if (!L.P.ajustado) return;
-    doc.setFillColor(...OURO); doc.roundedRect(P.M + 4, 138, 108, 9, 2, 2, "F");
-    doc.setFont("helvetica", "bold"); doc.setFontSize(9); doc.setTextColor(...VERDE); doc.text(`PÁGINA 7 AJUSTADA NO SIMULADOR · ${dataBR(hojeISO())}`, P.M + 7, 144);
-  });
+  P.capaEntregavel(L, feitas);
   // Sumário
   P.novaPagina();
   P.titulo("O que está nesta pasta");
