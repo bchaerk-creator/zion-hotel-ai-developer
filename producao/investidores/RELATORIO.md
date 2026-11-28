@@ -30,3 +30,6 @@ Classificação (aderente, em maturação, apenas pesquisa, comprador de Bubble)
 
 ## Atualização 28/11 (noite)
 Decisões de Bruno aplicadas na página (WA01 1061, WA02 98872-9883, só expansão, vídeo sem URL até conferência de áudio) e no carrossel (só números documentados). 43 testes ok. Rascunhos criados no ClickMax: ver `MAPA_AUTOMACOES.md`, seção Atualização. Nada ativado.
+
+## Separação plataforma × investidores (28/11)
+Auditoria de 22 fluxos ativos, agentes, tags e sincronização Meta: ver `SEPARACAO_PLATAFORMA_INVESTIDORES.md` (8 pontos de contato e a regra para cada). Nada foi alterado no que já existe.
