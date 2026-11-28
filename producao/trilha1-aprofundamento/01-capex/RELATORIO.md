@@ -39,3 +39,7 @@ Ligar só com o "aprovado" de Bruno: o curso está em 5 turmas. A Plataforma de 
 A Mini Mentoria de Estruturação (R$ 47, oferta `0c71eeba`) entrega a turma «Plataforma de estruturação (R$ 97)» `087479a3` (portal Plataforma Zion Collection), que usa a **cópia** do curso `79d3e792`, e não a Trilha 1. As 5 aulas foram criadas **ligadas** no Pilar 6 da cópia (`b2800aa7`), entre o e-book do Pilar 6 e a Planilha 1: `62ec25cd` aula, `e0cc4ceb` Faça agora, `a4047a7a` tutorial, `97c017e0` e-book, `78611d74` checklist. Todos os links conferidos no ar (28/11).
 A mesma cópia é entregue pelo Club de R$ 97 (turma `69345987`, portal Zion Collection), que portanto também passa a ver o 6A.
 Na Trilha 1 (`fa9a6c54`) as 5 aulas continuam **desligadas** (turmas: Curso · Transforme seu terreno, Estruturação · Viabilidade, Fundadores, Land Bank · Candidatos, Inscrição R$ 270).
+
+## 28/11 · Ligado também na Trilha 1 (aprovado por Bruno: «é essa jornada do desenvolvimento, o curso Transforme seu terreno em um destino turístico, é essa que nós vamos usar»)
+As 5 aulas do Pilar 6 da Trilha 1 (`8e98bed7`, `bccdfac4`, `b17d795c`, `f1918e33`, `758e9b1c`) foram ligadas. Aparecem nas 5 turmas que usam esse curso (a principal: «Curso · Transforme seu terreno em um destino turístico», portal Zion · Jornada do Desenvolvimento).
+**Atenção:** a oferta de R$ 47 vendida hoje (Mini Mentoria `0c71eeba`) entrega a Plataforma de estruturação (cópia), não essa turma. A oferta de R$ 47 ligada à turma «Curso · Transforme seu terreno» (`c91f1ff2`) está arquivada.
