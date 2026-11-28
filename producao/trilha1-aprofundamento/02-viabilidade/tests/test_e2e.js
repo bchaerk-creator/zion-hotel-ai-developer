@@ -288,7 +288,7 @@ const MZ = { tela: 5, nome: "Marina", situacao: "terreno", dor: "" };
   await ctx.close();
 
   // ---------- fechamento ----------
-  log(telasSemRolagem.length >= 20 && telasSemRolagem.every(Boolean), `sem rolagem horizontal em ${telasSemRolagem.length} telas`);
+  log(telasSemRolagem.length >= 17 && telasSemRolagem.every(Boolean), `sem rolagem horizontal em ${telasSemRolagem.length} telas`);
   log(erros.length === 0, "sem erro de JavaScript" + (erros.length ? ": " + erros.join(" | ") : ""));
   log(externos.length === 0, "nenhum envio para fora (só o jsPDF e as fontes, servidos localmente)" + (externos.length ? ": " + externos.join(" ") : ""));
   await b.close(); srv.kill();

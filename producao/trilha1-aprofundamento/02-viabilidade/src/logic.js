@@ -696,11 +696,10 @@
   var NOME_PREMISSA = { imposto: "o imposto está em branco", taxa: "a taxa do seu dinheiro não foi escrita e a soma simples não decide", diaria: "a diária passa de 5% acima da medida no Pilar 2", ocupacao: "a ocupação passa da medida no Pilar 2", ocupacao65: "a ocupação passa de 65%" };
   function motivoVeredito(A) {
     if (!A) return "Complete a conta para ver a régua.";
-    var red = A.passos.filter(function (p) { return p.status === "redesenhar"; }).map(function (p) { return "passo " + p.n; });
-    var aj = A.passos.filter(function (p) { return p.status === "ajustar"; }).map(function (p) { return "passo " + p.n; });
-    if (A.sugerido === "Redesenhar") return "Redesenhar no " + juntar(red) + ": neste desenho a conta não fecha.";
+    var nos = function (st) { var n = A.passos.filter(function (p) { return p.status === st; }).map(function (p) { return String(p.n); }); return n.length === 1 ? "no passo " + n[0] : "nos passos " + juntar(n); };
+    if (A.sugerido === "Redesenhar") return "Redesenhar " + nos("redesenhar") + ": neste desenho a conta não fecha.";
     if (A.sugerido === "Testar") return "A régua dá " + (A.regua || "um resultado ainda pendente") + ", mas " + juntar(A.premissas.map(function (k) { return NOME_PREMISSA[k]; })) + ": prove antes de decidir.";
-    if (A.sugerido === "Ajustar") return "Ajustar no " + juntar(aj) + ": a conta fecha com folga curta.";
+    if (A.sugerido === "Ajustar") return "Ajustar " + nos("ajustar") + ": a conta fecha com folga curta.";
     if (A.sugerido === "Avançar") return "Os cinco passos passam, com os números medidos.";
     return "A régua ainda está pendente.";
   }

@@ -85,7 +85,7 @@ t("Marina 7.8: o limite da página 6 com a margem aberta: 8 × 57.819,79 = 462.5
 // 7.9
 t("Marina 7.9: passos passa, passa, redesenhar, redesenhar, ajustar", A.passos.map((p) => p.status).join() === "passa,passa,redesenhar,redesenhar,ajustar");
 t("Marina 7.9: veredito sugerido «Redesenhar», sem premissa não provada", A.regua === "Redesenhar" && A.sugerido === "Redesenhar" && A.premissas.length === 0);
-t("Marina 7.9: o motivo do veredito cita os passos 3 e 4", Z.motivoVeredito(A) === "Redesenhar no passo 3 e passo 4: neste desenho a conta não fecha.");
+t("Marina 7.9: o motivo do veredito cita os passos 3 e 4", Z.motivoVeredito(A) === "Redesenhar nos passos 3 e 4: neste desenho a conta não fecha.");
 t("Marina 7.9: alertas B5, B7, B11 (os três da tela e do PDF) e B15, nessa ordem", al(EX).join() === "B5,B7,B11,B15" && Z.tresPrimeiros(Z.alertas(EX, C)).map((a) => a.id).join() === "B5,B7,B11");
 const AL = Z.alertas(EX, C);
 t("Marina: B5 diz que três meses de custo passam a R$ 53.524,02", /R\$ 53\.524,02/.test(AL[0].txt));
