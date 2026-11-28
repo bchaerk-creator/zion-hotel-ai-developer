@@ -33,3 +33,20 @@ Política de privacidade: página "Privacidade Zion Land Members" (GitHub Pages,
 - **B · Propriedade com potencial de parceria:** Q01 com terreno + Q08 "Tenho o terreno, mas não tenho capital" + Q10 sim + Q12 sim (agora ou conhecer primeiro).
 - **C · Interessado em formação:** Q10 ou Q12 = "Sim, …conhecer a plataforma primeiro", ou Q09 = "Adquirir conhecimento…".
 - **D · Baixa intenção:** Q10 "Não tenho interesse", ou Q11 "Não estou disposto", ou Q12 "Não estou disposto a investir".
+
+## Correção estratégica (28/11) · conjunto 01
+| | Antes | Depois |
+|---|---|---|
+| Nome | ZC \| INSCRIÇÃO \| 01 PÚBLICO ABERTO \| BR 25-65 | 01 \| PÚBLICO HISTÓRICO CAMPEÃO \| BRASIL |
+| Local | Brasil (moradores e recentes) | igual |
+| Idade | 25–65 | igual |
+| Detalhado | nenhum (aberto) | 1 grupo flexible_spec: interesse Investimentos imobiliários 6003446239080 · cargo Empresário 108611555829523 · comportamentos Frequent international travelers 6022788483583 e Recently Detected iPhone 14 Devices 6320095650783 (mesmo grupo dos conjuntos 120248809131940016, 120250113155280016, 120250521780340016 e 120250522198120016) |
+| Advantage+ público | desligado | desligado |
+| Posicionamentos | automáticos | automáticos (iguais ao conjunto 02) |
+| Orçamento | R$ 30/dia | R$ 30/dia |
+O Meta aceitou os 4 critérios (ainda disponíveis). Conjunto 02, anúncios, criativos e formulário sem alteração. Tudo pausado.
+
+## Atendimento (correção de Bruno)
+Zaya não existe mais; a agente é a Bela. +55 48 98872-9883 = equipe comercial humana, fora do ClickMax (não conectar).
+Frente 01: formulário → botão final → WhatsApp 9883 → equipe humana → inscrição. Frente 02: formulário → ClickMax CRM → Bela (complementar).
+Evitar abordagem dupla (proposta, depende de "aprovado"): etiqueta "Em atendimento humano · 9883" no lead; a Bela só aborda leads sem essa etiqueta e com espera de algumas horas após o cadastro.
